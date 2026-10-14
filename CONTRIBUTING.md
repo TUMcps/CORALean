@@ -337,8 +337,24 @@ Every limit it applies is a named variable at the top of the script, set from
 what the tree actually contains, so raising one is a decision rather than a
 drift. Every message says what to do, not only what is wrong.
 
-It is text only: no Lean, no build, no network, about a second — which is why it
-runs on every commit rather than on request. Setting a clone up means
+It is text only: no Lean, no build, no network — which is why it runs on every
+commit rather than on request. Over the whole tree it takes about fifteen
+seconds on Linux (several times that in Git Bash on Windows); the hook does not
+pay that for a commit that only edits existing Lean files. `scripts/precommit-scope.py`
+compares the index with `HEAD`, and a commit that leaves every file's imports,
+namespaces, type declarations and `noncomputable` lines as they were runs the
+per-file rules on the changed files alone (`check-conventions.sh --staged`,
+well under a second). Anything that could change a rule reading several files
+(a file added, deleted or renamed, one of those lines, `scripts/`, `lakefile.toml`,
+the CI file) runs the whole tree, and `check-references.py` runs when a commit
+touches anything outside `src/` or what that check reads of a Lean file. The hook
+checks the index, not the working tree: when the two differ, the whole-tree runs
+use a checkout of the index in a temporary directory. CI always runs the whole
+tree, so a commit that bypasses the hook, or that the scope wrongly called small,
+fails there. The Python scripts are started through `scripts/find-python.sh`, which
+takes the first of `python3`, `python`, `py -3` that really runs a program (on
+Windows `python3` is by default a Store stub that runs nothing) and stops with a
+message when none does. Setting a clone up means
 
 ```
 git config core.hooksPath .githooks

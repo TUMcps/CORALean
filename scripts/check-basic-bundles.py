@@ -813,13 +813,32 @@ def check_basic(lf, say):
         say(f"{where(g.sections[0].start)}: {msg}")
 
 
-def main():
+def main(argv=()):
+    """Every check, or with `--files LIST --stage DIR` the per-file ones on the files LIST names
+    (repository paths, one per line), their text read from `DIR/<path>`: what `check-conventions.sh
+    --staged` runs on the index versions of a commit's files. A listed file is read where it
+    stands in the repository for everything but its text (the directories the exclusions look at),
+    and the rules that read other files stay out: the exceptions' file and its stale entries (they
+    need the import graph), and the files nothing was said about. The hook sends a commit that
+    touches an excepted file, or an import, down the full path."""
     msgs = []
     say = msgs.append
-    files = [LeanFile(p) for p in all_files()]
+    if argv:
+        if len(argv) != 4 or argv[0] != "--files" or argv[2] != "--stage":
+            print("usage: check-basic-bundles.py [--files LIST --stage DIR]", file=sys.stderr)
+            return 2
+        stage = Path(argv[3])
+        rels = [l.strip() for l in Path(argv[1]).read_text(encoding="utf-8").splitlines()
+                if l.strip().endswith(".lean")]
+        files = [LeanFile(ROOT / r, (stage / r).read_text(encoding="utf-8")) for r in rels]
+        exc = read_exceptions(say)
+        scoped = True
+    else:
+        files = [LeanFile(p) for p in all_files()]
+        exc = read_exceptions(say)
+        scoped = False
     by_rel = {lf.rel: lf for lf in files}
-    exc = read_exceptions(say)
-    graph = import_graph(files)
+    graph = None if scoped else import_graph(files)
     for lf in files:
         if lf.path.name == BASIC:
             check_basic(lf, say)
@@ -833,7 +852,7 @@ def main():
         say(f"{lf.rel}:1: one declaration of {lf.region.code} code lines, at most {MAX_CODE} —"
             f" it is a section of `{basic}` (CONTRIBUTING, \"Small declarations\"), or on"
             f" `{exrel}` with the import cycle that keeps it out")
-    for path, (n, _) in exc.items():
+    for path, (n, _) in ({} if scoped else exc).items():
         tag = f"{exrel}:{n}"
         lf = by_rel.get(path)
         if lf is None:
@@ -853,4 +872,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))

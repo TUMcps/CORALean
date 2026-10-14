@@ -3,13 +3,30 @@
 # check: a green build says nothing about whether `aux_` stayed in its file or
 # whether an `API.lean` slipped a declaration in.
 #
-# Text only — no Lean, no build, no network — so it runs in a second, on a
-# pre-commit hook as well as in CI. That is why the parsing is deliberately
-# shallow: comments are stripped by a two-character scanner and declarations are
-# matched at the start of a line. It reports what is wrong, never rewrites.
+# Text only — no Lean, no build, no network, so it is cheap enough to run on a
+# pre-commit hook as well as in CI: about fifteen seconds over the whole tree
+# on Linux (the per-file pass is three fifths of that, the `Basic.lean` bundles
+# a fifth), and a fraction of a second on `--staged`. That is why the parsing is
+# deliberately shallow: comments are stripped by a two-character scanner and
+# declarations are matched at the start of a line. It reports what is wrong,
+# never rewrites.
+#
+#   sh scripts/check-conventions.sh                  the whole tree (CI)
+#   sh scripts/check-conventions.sh --staged LIST    the per-file rules only, on
+#                                                    the index version of the
+#                                                    `src/**/*.lean` paths in LIST
+#
+# `--staged` is what `.githooks/pre-commit` runs for a commit that cannot change
+# a cross-file rule. It leaves out everything that reads other files than the
+# ones given: reachability, the layout, the collectors' completeness, the float
+# layer's type names, layering, the import guards, the allowlists' stale-entry
+# reports and the `Basic.lean` exceptions' import cycles. It is not a way to
+# check less: `.githooks/pre-commit` decides, with `scripts/precommit-scope.py`,
+# when one of those rules could notice the commit, and then runs the whole tree.
 #
 # POSIX sh and awk, so it runs in CI and in Git Bash on Windows alike, and one
-# Python helper for the `Basic.lean` bundles, `scripts/check-basic-bundles.py`.
+# Python helper for the `Basic.lean` bundles, `scripts/check-basic-bundles.py`,
+# found by `scripts/find-python.sh`.
 
 set -eu
 
@@ -20,6 +37,20 @@ LC_ALL=C
 export LC_ALL
 
 cd "$(dirname "$0")/.."
+repo=$(pwd)
+
+STAGED=
+case "${1:-}" in
+  "") ;;
+  --staged)
+    [ $# -eq 2 ] || { echo "usage: check-conventions.sh [--staged LIST]" >&2; exit 2; }
+    STAGED=$2 ;;
+  *) echo "usage: check-conventions.sh [--staged LIST]" >&2; exit 2 ;;
+esac
+
+# The interpreter for the Python helper, found before any check runs: a missing
+# one is an error here, never an empty report.
+. "$repo/scripts/find-python.sh"
 
 # The numeric limits, gathered here because every one of them is a judgement
 # call and the tree is the evidence for it. Each is at or just above the trimmed
@@ -140,7 +171,26 @@ report() {
 lake_roots=$(sed -n 's/^roots[[:space:]]*=[[:space:]]*\[\(.*\)\].*/\1/p; s/^root[[:space:]]*=[[:space:]]*\(.*\)/\1/p' lakefile.toml |
   grep -o '"[^"]*"' | tr -d '"' | tr '\n' ' ')
 
-files=$(find src -name '*.lean' | sed 's#\\#/#g' | sort)
+if [ -n "$STAGED" ]; then
+  # The index version of each listed file, checked out beside nothing else: the
+  # per-file rules read one file at a time, so this is the whole input they need.
+  # Run from inside it, the paths in the messages are the repository's own. What
+  # lives outside `src/` is read from the checkout, which the hook has already
+  # sent down the full path when the commit changes any of it.
+  files=$(sed 's#\\#/#g' "$STAGED" | grep -E '^src/.*[.]lean$' | sort -u || true)
+  if [ -z "$files" ]; then
+    printf 'conventions: no staged file under src/, nothing to check\n'
+    exit 0
+  fi
+  ALLOWLIST=$repo/$ALLOWLIST
+  NONMODULE_LIST=$repo/$NONMODULE_LIST
+  FAMILY_LONG_FORM_OK=$repo/${FAMILY_LONG_FORM_OK:-scripts/family-notation-exceptions.txt}
+  stage=$(mktemp -d)
+  printf '%s\n' "$files" | git checkout-index --prefix="$stage/" --stdin
+  cd "$stage"
+else
+  files=$(find src -name '*.lean' | sed 's#\\#/#g' | sort)
+fi
 
 # The file list reaches awk through a list file rather than the command line,
 # for every pass below, not only the two that are global by nature. `xargs`
@@ -150,7 +200,7 @@ files=$(find src -name '*.lean' | sed 's#\\#/#g' | sort)
 # reachability check is: a split would see only one batch's declarations and
 # call every entry the other batch owns stale.
 list=$(mktemp)
-trap 'rm -f "$list"' EXIT INT TERM
+trap 'rm -f "$list"; [ -z "${stage:-}" ] || rm -rf "$stage"' EXIT INT TERM
 printf '%s\n' "$files" > "$list"
 
 # Per-file conventions, one pass, plus the allowlist's own stale-entry report
@@ -173,6 +223,7 @@ out=$(awk \
   -v BENCH_DIR="$BENCH_DIR" \
   -v LAKE_ROOTS="$lake_roots" \
   -v NONMOD="$NONMODULE_LIST" \
+  -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" \
   -v ALLOWLIST="$ALLOWLIST" '
 # One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
 function checkReview(val, ln,    d, nm) {
@@ -1015,6 +1066,8 @@ FNR == 1 {
 
 END {
   if (prev != "") check(prev)
+  # The stale-entry reports need the declarations of every file, which a staged run lacks.
+  if (!STALE) exit
   for (name in allowNC)
     if (!(name in usedAllow))
       say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
@@ -1031,6 +1084,8 @@ END {
 }
 ')
 report "$out"
+
+if [ -z "$STAGED" ]; then
 
 # Every module reachable from a root, so a file that was written but never
 # collected is caught rather than silently left out of the build. The roots are
@@ -1241,6 +1296,8 @@ END {
 ' | sort)
 report "$out"
 
+fi
+
 # The proof flag. A statement that wraps over several lines does not obviously
 # end, so a declaration's `:= by` carries `-- --- PROOF ---` once its proof runs
 # to five lines or more — the point where the seam stops being visible at a
@@ -1323,6 +1380,8 @@ END { if (n > 0 && other == 0) print prev ": holds only `import Mathlib.*` lines
         " import Mathlib modules in the file that uses them" }
 ' $files)"
 report "$(printf '%s' "$out" | sed '/^$/d')"
+
+if [ -z "$STAGED" ]; then
 
 # The float layer names its types as the exact layer does, the layer being the
 # namespace: `Float.Zonotope (Vec 𝕋 n)` beside `Real.Zonotope (Vec ℝ n)`, never a
@@ -1419,6 +1478,8 @@ END {
 ' | sort)
 report "$out"
 
+fi
+
 # No file may import the same module twice: union merges of merge trains leave
 # repeated `import` lines in the collector files.
 out=$(awk '
@@ -1427,12 +1488,16 @@ FNR == 1 { delete seen }
 ' $files)
 report "$out"
 
+if [ -z "$STAGED" ]; then
+
 # A CI script line that starts with `!` never fails the job: the runner's `set -e`
 # ignores a negated command's status. The warning gate was such a line and let a
 # warning through to main.
 out=$(grep -nE '^[[:space:]]*-[[:space:]]+"?![[:space:]]' .gitlab-ci.yml |
   sed 's/^\([0-9]*\):.*/.gitlab-ci.yml:\1: a script line negated with `!` cannot fail the job — use `if …; then exit 1; fi`/')
 report "$out"
+
+fi
 
 # A set family is written with its notation, never as the lambda it abbreviates:
 # `(S := 𝒵[𝕋])`, not `(S := fun k => Zonotope (Vec 𝕋 k))` (CONTRIBUTING, "Notation").
@@ -1454,8 +1519,32 @@ report "$out"
 # order and the import cycles that keep a file out takes a real parse, so this
 # rule is the one written in Python; CI's conventions job installs python3 for
 # `check-references.py` already.
-out=$(python3 scripts/check-basic-bundles.py || true)
+#
+# The helper exits 1 when it has findings, which are on its stdout and go through
+# `report` like every other pass; that status is the only one tolerated. Anything
+# else, or a status of 1 with nothing printed, is the helper itself failing (a
+# crash, an interpreter that is not one), and a check that did not run must not
+# read as a check that passed.
+bundle_err=$(mktemp)
+if [ -n "$STAGED" ]; then
+  # Run at the repository, which has the directories the exclusions look at, on
+  # the index versions already checked out here.
+  out=$(cd "$repo" && $PYTHON scripts/check-basic-bundles.py --files "$list" --stage "$stage" \
+    2> "$bundle_err") && bundle_rc=0 || bundle_rc=$?
+else
+  out=$($PYTHON scripts/check-basic-bundles.py 2> "$bundle_err") && bundle_rc=0 || bundle_rc=$?
+fi
+if [ "$bundle_rc" -gt 1 ] || { [ "$bundle_rc" -eq 1 ] && [ -z "$out" ]; }; then
+  cat "$bundle_err" >&2
+  rm -f "$bundle_err"
+  echo "check-conventions.sh: scripts/check-basic-bundles.py failed (status $bundle_rc) —" \
+    "the Basic.lean bundles were not checked" >&2
+  exit 2
+fi
+rm -f "$bundle_err"
 report "$out"
+
+if [ -z "$STAGED" ]; then
 
 # Layering: no file imports a directory the table forbids it, except the listed
 # exceptions, and no exception outlives its import.
@@ -1510,8 +1599,14 @@ out=$(printf '%s\n' "$GUARDED_FILES" | while IFS='|' read -r gf gn; do
 done)
 report "$out"
 
+fi
+
 if [ "$status" -eq 0 ]; then
-  printf 'conventions: %s files, all checks passed\n' "$(printf '%s\n' "$files" | wc -l | tr -d ' ')"
+  if [ -n "$STAGED" ]; then
+    printf 'conventions: %s staged files, per-file rules passed\n' "$(printf '%s\n' "$files" | wc -l | tr -d ' ')"
+  else
+    printf 'conventions: %s files, all checks passed\n' "$(printf '%s\n' "$files" | wc -l | tr -d ' ')"
+  fi
 fi
 
 exit "$status"
