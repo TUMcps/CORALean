@@ -9,8 +9,11 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 /-!
 # `Alg. 2` line 11: the eroded polytope, converted
 
-`maxBackReachCZ`: [1, Alg. 2] line 11, `CZ(P ⊖ Ẑ_W(τ_k))`, the eroded polytope converted by
-(17).
+`maxBackReachCZ`: one operand `CZ(P ⊖ Ẑ_W(τ_k))`, `P ∈ {P₁, P₂}`, of [1, Alg. 2] line 11,
+`CZ ← conv(CZ(P₁ ⊖ Ẑ_W(τ_k)), CZ(P₂ ⊖ Ẑ_W(τ_k)))`: the polytope eroded by (11) and converted
+by (17). The hull is taken in `LinearSys.maxBackReachStep`. The numbering is arXiv v1's: v3
+and the TAC version insert a conversion algorithm as their `Alg. 1`, so this listing is their
+`Alg. 3` (the EA set) and (17) is their `Alg. 1`; their `Alg. 2` is the minimal (AE) set.
 
 ## References
 
@@ -21,7 +24,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,13 +39,13 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Line 11: `CZ(P ⊖ Ẑ_W(τ_k))`, the eroded polytope converted by (17). -/
+/-- [1, Alg. 2] line 11, one operand: `CZ(P ⊖ Ẑ_W(τ_k))`, the eroded polytope converted by (17). -/
 noncomputable def LinearSys.maxBackReachCZ
     (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
     (P : HPolytope (Vec ℝ n)) (ZW : Zonotope (Vec ℝ n)) : ConZonotope (Vec ℝ n) :=
-  let Q := P.minkDiffOf ZW.construct fun i => ZW.supportBound (P.A i)   -- ⊖ Ẑ_W(τ_k)
-  HPolytope.conZonotope (P := Q)
-    (fun j => ρ Q (LinearMap.proj j)) (fun j => ρ Q (-LinearMap.proj j))
+  let P_ZW := P.minkDiffOf ZW.construct fun j => ZW.supportBound (P.A j) -- 11. P ⊖ Ẑ_W(τ_k), (11)
+  HPolytope.conZonotope (P := P_ZW)                                       -- 11. CZ(P ⊖ Ẑ_W(τ_k))
+    (fun j => ρ P_ZW (LinearMap.proj j)) (fun j => ρ P_ZW (-LinearMap.proj j))  -- box, by (17)
 
 end CORALean
 

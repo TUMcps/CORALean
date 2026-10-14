@@ -18,6 +18,8 @@ public import Mathlib.Tactic.FieldSimp
 `s`, and the quotient rule gives `(A_im Θ_l + A_il Θ_m + (Ω_ml - 2Θ_mΥ_l/Λ)fᵢ)/Λ²`. That is the
 printed `Q⁽ⁱ⁾_lm/Λ²`, whose bracket has `l` and `m` the other way round, because
 `Ω_ml - Ω_lm = 2(Θ_mΥ_l - Θ_lΥ_m)/Λ` — the symmetry of second derivatives, which `ring` checks.
+Prop. 2 states the derivative of `y_h` twice; `hasDerivAt_deriv_hitPoint` composes this with
+`hasDerivAt_hitPoint` to state exactly that.
 
 ## References
 
