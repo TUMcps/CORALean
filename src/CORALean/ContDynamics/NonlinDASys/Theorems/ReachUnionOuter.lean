@@ -18,7 +18,7 @@ part is `ReachYUnionSubsetImage`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,19 +39,13 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinDASys.WithSteps.reachUnion_outer (sys : NonlinDASys.WithSteps S Rg m p n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
-    match sys.reachUnion params options with
-    | some R => sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-        ⊆ construct R
-    | none => True := by -- --- PROOF ---
-  have h := sys.ode.reachUnion_outer params options
-  simp only [NonlinDASys.WithSteps.reachUnion]
-  cases hR : sys.ode.reachUnion params options with
-  | none => trivial
-  | some R =>
-    rw [hR] at h
-    rw [sys.reachUnionExact_eq]
-    exact h
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ)
+    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) :
+    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
+      ⊆ construct R := by
+  -- the run is the reduced one, and so is the set it reaches
+  rw [sys.reachUnionExact_eq]
+  exact sys.ode.reachUnion_outer params options hR
 
 end CORALean
 

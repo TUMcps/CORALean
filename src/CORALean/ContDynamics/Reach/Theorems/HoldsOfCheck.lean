@@ -19,7 +19,7 @@ fixes `S` for instance search, `P` being an output of it, so `S` is named, `(S :
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -48,9 +48,7 @@ theorem Reach.holds_of_check [Reach Sys P O S] [Contains ContSet (SetUnion (S n)
   | none => intro h; exact absurd h Bool.false_ne_true
   | some R =>
     intro h
-    have hout := Reach.reach_outer (S := S) sys params options
-    rw [hR] at hout
-    exact spec.holds_of_outer hout (spec.check_sound _ h)
+    exact spec.holds_of_outer (Reach.reach_outer sys params options hR) (spec.check_sound _ h)
 
 end CORALean
 

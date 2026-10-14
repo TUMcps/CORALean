@@ -62,11 +62,11 @@ noncomputable instance LinearSys.reachInstance :
     if 0 < params.tFinal - params.tStart ∧ 0 < options.Δt then
       some (sys.reachAdmissible params options)
     else none
-  reach_outer sys params options := by
-    -- `none` claims nothing, and `some` is the run the side conditions admit
-    split_ifs with h
-    · exact sys.reachAdmissible_outer h.1 h.2
-    · trivial
+  reach_outer sys params options _ hR := by
+    -- `none` is equal to no `some R`, so only the run the side conditions admit is left
+    split_ifs at hR with h
+    cases hR
+    exact sys.reachAdmissible_outer h.1 h.2
 
 /-- Kept as a named `def` rather than an `instance`, so instance resolution stays
 unambiguous between it and `LinearSys.reachInstance`. -/
@@ -75,11 +75,11 @@ unambiguous between it and `LinearSys.reachInstance`. -/
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reachWrappingFree params options) else none
-  reach_outer sys params options := by
-    -- `none` claims nothing, and `some` is the run the side conditions admit
-    split_ifs with h
-    · exact sys.reachWrappingFree_outer params h
-    · trivial
+  reach_outer sys params options _ hR := by
+    -- `none` is equal to no `some R`, so only the run the side conditions admit is left
+    split_ifs at hR with h
+    cases hR
+    exact sys.reachWrappingFree_outer params h
 
 noncomputable instance LinearSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
@@ -88,11 +88,11 @@ noncomputable instance LinearSys.WithInput.reachInstance
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reach params options) else none
-  reach_outer sys params options := by
-    -- `none` claims nothing, and `some` is the run the side conditions admit
-    split_ifs with h
-    · exact sys.reach_outer params h
-    · trivial
+  reach_outer sys params options _ hR := by
+    -- `none` is equal to no `some R`, so only the run the side conditions admit is left
+    split_ifs at hR with h
+    cases hR
+    exact sys.reach_outer params h
 
 noncomputable instance LinearSys.WithInputSplit.reachInstance
     [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
@@ -102,11 +102,11 @@ noncomputable instance LinearSys.WithInputSplit.reachInstance
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reach params options) else none
-  reach_outer sys params options := by
-    -- `none` claims nothing, and `some` is the run the side conditions admit
-    split_ifs with h
-    · exact sys.reach_outer params h
-    · trivial
+  reach_outer sys params options _ hR := by
+    -- `none` is equal to no `some R`, so only the run the side conditions admit is left
+    split_ifs at hR with h
+    cases hR
+    exact sys.reach_outer params h
 
 end CORALean
 

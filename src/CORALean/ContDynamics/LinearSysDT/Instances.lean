@@ -40,7 +40,10 @@ instance LinearSysDT.reachInstance :
       LinearSysDT.ReachOptions S where
   reachExact sys params := sys.reachUnionExact params.X₀ params.U (params.tFinal - params.tStart)
   reach sys params options := some (sys.reachUnion params options)
-  reach_outer sys params options := sys.reachUnion_outer params options
+  reach_outer sys params options _ h := by
+    -- the one set returned is `reachUnion`'s
+    cases h
+    exact sys.reachUnion_outer params options
 
 end CORALean
 

@@ -28,7 +28,7 @@ what `inputSolution`'s enclosure needs of `U`; `LinParamSys.WithInputSplit` drop
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,11 +50,11 @@ noncomputable instance LinParamSys.reachInstance :
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reachUnion params options) else none
-  reach_outer sys params options := by
-    -- `none` claims nothing, and `some` is the run the side conditions admit
-    split_ifs with h
-    · exact sys.reachUnion_outer params h
-    · trivial
+  reach_outer sys params options _ hR := by
+    -- `none` is equal to no `some R`, so only the run the side conditions admit is left
+    split_ifs at hR with h
+    cases hR
+    exact sys.reachUnion_outer params h
 
 noncomputable instance LinParamSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
@@ -63,11 +63,11 @@ noncomputable instance LinParamSys.WithInput.reachInstance
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reachUnion params options) else none
-  reach_outer sys params options := by
-    -- `none` claims nothing, and `some` is the run the side conditions admit
-    split_ifs with h
-    · exact sys.reachUnion_outer params h
-    · trivial
+  reach_outer sys params options _ hR := by
+    -- `none` is equal to no `some R`, so only the run the side conditions admit is left
+    split_ifs at hR with h
+    cases hR
+    exact sys.reachUnion_outer params h
 
 noncomputable instance LinParamSys.WithInputSplit.reachInstance
     [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
@@ -77,11 +77,11 @@ noncomputable instance LinParamSys.WithInputSplit.reachInstance
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reachUnion params options) else none
-  reach_outer sys params options := by
-    -- `none` claims nothing, and `some` is the run the side conditions admit
-    split_ifs with h
-    · exact sys.reachUnion_outer params h
-    · trivial
+  reach_outer sys params options _ hR := by
+    -- `none` is equal to no `some R`, so only the run the side conditions admit is left
+    split_ifs at hR with h
+    cases hR
+    exact sys.reachUnion_outer params h
 
 end CORALean
 
