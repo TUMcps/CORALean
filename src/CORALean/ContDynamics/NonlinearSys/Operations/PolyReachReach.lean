@@ -43,7 +43,9 @@ noncomputable def NonlinearSys.polyReachReach
     (options : NonlinearSys.PolyReachOptions n m o) : Set (Vec ℝ n) :=
   let X₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
+  -- 2. the horizon of the loop, whose clock starts at `0`
   let tf := params.tFinal - params.tStart
+  -- 18. `R([0,t_f])`, the union of the time-interval sets of iterations 1 to `K`
   ⋃ j < options.K, ⋃ s ∈ NonlinearSys.polyReachRun U options.UΔ options.taylor options.combine
     options.post options.sub options.enlarge options.Δt tf options.η options.fuel
     X₀ (j + 1), construct s.Rτ

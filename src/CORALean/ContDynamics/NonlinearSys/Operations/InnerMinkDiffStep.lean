@@ -36,7 +36,7 @@ leaves the set unchanged and is not written.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -59,20 +59,34 @@ variable {n : ℕ} {𝓛 : Type}
 noncomputable def NonlinearSys.innerMinkDiffStep (ops : NonlinearSys.InnerMinkDiffOps n 𝓛)
     (f : Vec ℝ n → Vec ℝ n) (Δt μ : ℝ) (fuel : ℕ) (Rtk : Set (Vec ℝ n)) :
     Option (NonlinearSys.InnerMinkDiffState n 𝓛) :=
-  let xstar := ops.cen Rtk + (Δt / 2) • f (ops.cen Rtk)            -- 4. x*(t_k)
-  let w := f xstar                                                  -- 5. w ← Eq. (6)
-  let A := ops.jac xstar                                            -- 5. A ← Eq. (6)
-  let C := ops.curv Δt A ((fun x => x - xstar) '' ops.box Rtk) w    -- 6. C ← F box ⊕ G w
-  let Rhom := (fun x => xstar + exp (Δt • A) *ᵥ (x - xstar)) '' Rtk  -- 7. R_hom ← Eq. (11)
-  let Rcon := ∫ θ in (0:ℝ)..Δt, exp ((Δt - θ) • A) *ᵥ w             -- 7. R_con ← Eq. (12)
-  let Raff := (fun x => x + Rcon) '' Rhom                           -- 8. R_aff ← Eq. (10)
-  let Raffτ := convexHull ℝ (Rtk ∪ Raff) + C                        -- 8. R̂_aff(τ₀) ← Eq. (16)
-  let L := ops.zero                                                 -- 9. L ← [0ₙ, 0ₙ]
-  (NonlinearSys.innerMinkDiffRemainder ops Δt μ A xstar Raffτ L fuel).map fun Lhat => -- 10-13.
-    let Rerr := ops.err Δt A Lhat                                   -- 14. R̂_err(L̂) ← Eq. (13)
-    let c := ops.cen C + ops.cen Rerr                               -- 14. c
-    let Rtk1 := (fun x => x + (2 : ℝ) • c) '' minkowskiDiff Raff Rerr  -- 15. R̂(t_{k+1})
-    let Rtauk := (fun x => x + (2 : ℝ) • c) ''                      -- 16. R̂(τ_k)
+  -- 4. x*(t_k)
+  let xstar := ops.cen Rtk + (Δt / 2) • f (ops.cen Rtk)
+  -- 5. w ← Eq. (6)
+  let w := f xstar
+  -- 5. A ← Eq. (6)
+  let A := ops.jac xstar
+  -- 6. C ← F box ⊕ G w
+  let C := ops.curv Δt A ((fun x => x - xstar) '' ops.box Rtk) w
+  -- 7. R_hom ← Eq. (11)
+  let Rhom := (fun x => xstar + exp (Δt • A) *ᵥ (x - xstar)) '' Rtk
+  -- 7. R_con ← Eq. (12)
+  let Rcon := ∫ θ in (0:ℝ)..Δt, exp ((Δt - θ) • A) *ᵥ w
+  -- 8. R_aff ← Eq. (10)
+  let Raff := (fun x => x + Rcon) '' Rhom
+  -- 8. R̂_aff(τ₀) ← Eq. (16)
+  let Raffτ := convexHull ℝ (Rtk ∪ Raff) + C
+  -- 9. L ← [0ₙ, 0ₙ]
+  let L := ops.zero
+  -- 10.-13. the remainder `L̂`
+  (NonlinearSys.innerMinkDiffRemainder ops Δt μ A xstar Raffτ L fuel).map fun Lhat =>
+    -- 14. R̂_err(L̂) ← Eq. (13)
+    let Rerr := ops.err Δt A Lhat
+    -- 14. c
+    let c := ops.cen C + ops.cen Rerr
+    -- 15. R̂(t_{k+1})
+    let Rtk1 := (fun x => x + (2 : ℝ) • c) '' minkowskiDiff Raff Rerr
+    -- 16. R̂(τ_k)
+    let Rtauk := (fun x => x + (2 : ℝ) • c) ''
       convexHull ℝ (minkowskiDiff (minkowskiDiff Rtk Rerr) C ∪ minkowskiDiff Rtk1 C)
     { xstar, w, A, C, Rcon, Raff, Lhat, Rerr, c, Rtk1, Rtauk }
 

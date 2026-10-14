@@ -25,7 +25,7 @@ The location's input set need not hold the origin.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,13 +46,20 @@ the input `ℓ.U` split at its centre, [1, Alg. 3]. -/
 def Location.timeIntervalStepSplitFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (r : 𝕋) (η : ℕ)
     (X₀ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
-  let ũ := (Interval.point ℓ.U.c).zonotope                         -- {ũ}, ℓ.U's stored centre
-  let Ũ := Recentre.recentre ℓ.U                                    -- Ũ = U - ũ, holding 0
-  let O := (Interval.point fun _ => zero).zonotope                  -- {0}
-  let HR := ℓ.timeIntervalStepFloat r η X₀                          -- H^R(τ_0)
-  let PuR := ℓ.dynamics.inputSolutionFloat r η (LinComb.linComb O ũ) -- P̃^R(τ_0), from [0, ũ]
-  let PU := ℓ.dynamics.inputSolutionFloat r η Ũ                     -- P^R(r)
-  HR ⊞ PuR ⊞ PU                                                     -- R(τ_0)
+  -- 1. `{ũ}`, the stored centre of `ℓ.U`
+  let ũ := (Interval.point ℓ.U.c).zonotope
+  -- 2. `Ũ ← U - ũ`, holding the origin
+  let Ũ := Recentre.recentre ℓ.U
+  -- 3. `{0}`
+  let O := (Interval.point fun _ => zero).zonotope
+  -- 4. `H^R(τ_0)`, the homogeneous solution
+  let HR := ℓ.timeIntervalStepFloat r η X₀
+  -- 5. `P̃^R(τ_0)`, the constant's share, from the segment `[0, ũ]`
+  let PuR := ℓ.dynamics.inputSolutionFloat r η (LinComb.linComb O ũ)
+  -- 6. `P^R(r)`, the share of `Ũ`
+  let PU := ℓ.dynamics.inputSolutionFloat r η Ũ
+  -- 7. `R(τ_0) ← H^R(τ_0) ⊕ P̃^R(τ_0) ⊕ P^R(r)`
+  HR ⊞ PuR ⊞ PU
 
 end CORALean
 

@@ -27,7 +27,7 @@ and repeat until the new remainder `L` lies in the enlarged guess `L̂`; line 14
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,11 +49,16 @@ def NonlinearSys.innerMinkDiffRemainder (ops : NonlinearSys.InnerMinkDiffOps n �
     (A : Mat ℝ n n) (xstar : Vec ℝ n) (Raffτ : Set (Vec ℝ n)) : 𝓛 → ℕ → Option 𝓛
   | _, 0 => none
   | L, k + 1 =>
-    let Lhat := ops.smul μ L                           -- 11. L̂ ← μL
-    let Rerr := ops.err Δt A Lhat                      -- 11. R̂_err(L̂) ← Eq. (13)
-    let Rτ₀ := ops.box (Raffτ + Rerr)                  -- 12. R̂(τ₀) ← Eq. (25)
-    let L' := ops.lagr xstar Rτ₀                       -- 12. L ← Eq. (9)
-    if ops.sub L' Lhat then some Lhat                  -- 13. until L ⊆ L̂
+    -- 11. L̂ ← μL
+    let Lhat := ops.smul μ L
+    -- 11. R̂_err(L̂) ← Eq. (13)
+    let Rerr := ops.err Δt A Lhat
+    -- 12. R̂(τ₀) ← Eq. (25)
+    let Rτ₀ := ops.box (Raffτ + Rerr)
+    -- 12. L ← Eq. (9)
+    let L' := ops.lagr xstar Rτ₀
+    -- 13. until L ⊆ L̂
+    if ops.sub L' Lhat then some Lhat
     else NonlinearSys.innerMinkDiffRemainder ops Δt μ A xstar Raffτ L' k
 
 end CORALean

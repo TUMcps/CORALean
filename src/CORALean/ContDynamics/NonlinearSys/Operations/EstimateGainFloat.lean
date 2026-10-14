@@ -21,7 +21,7 @@ guarantees holds for whatever this returns. See [1].
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,10 +39,13 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 /-- [1, Alg. 2] line 16: the gain `φ⁽¹⁾` eq. (56) fixes, at the `λ'` the step
 size search settled on. -/
 def estimateGainFloat (ζδ lam rabs1 rabsOpt : 𝕋) (scalings fuel : ℕ) : 𝕋 :=
-  let target := divUp (mulUp lam rabsOpt) rabs1                  -- 56. the right-hand side
-  let lhs := fun φ1 => (List.range scalings).foldl               -- 56. the left-hand side
+  -- 16. eq. (56): the right-hand side
+  let target := divUp (mulUp lam rabsOpt) rabs1
+  -- 16. eq. (56): the left-hand side
+  let lhs := fun φ1 => (List.range scalings).foldl
     (fun p j => mulUp p (interpGainFloat ζδ φ1 j)) one
-  estimateGainSearchFloat lhs target zero one fuel               -- 56. solve for φ⁽¹⁾ in [0,1]
+  -- 16. eq. (56): solve for φ⁽¹⁾ in [0,1]
+  estimateGainSearchFloat lhs target zero one fuel
 
 end CORALean
 

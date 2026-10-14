@@ -35,7 +35,7 @@ R̄([0, r])`. Generic over the representations and the scalar: one definition, b
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -57,14 +57,17 @@ def Location.reachGuard [∀ n, Intersection (G n) (Vec ℝ n)] (ℓ : Location 
     (e : Transition G L 𝕋 n) (reach : ℕ → S n) (halfspaceConv : S n → G n)
     (isEmpty : G n → Bool) (intersectionTimes : List (G n) → G n → ℕ × ℕ)
     (generatorConv : List (G n) → S n) (N : ℕ) : List (G n) × S n :=
-  -- R([(k-1)r, kr]) = reach(…), R^H([(k-1)r, kr]) = halfspaceConv(R([(k-1)r, kr])) ∩ inv
+  -- 1. `R([(k-1)r, kr]) ← reach(…)`, `R^H([(k-1)r, kr]) ← halfspaceConv(R([(k-1)r, kr])) ∩ inv`
   let RH : ℕ → G n := fun k => Intersection.intersection (halfspaceConv (reach (k - 1))) ℓ.inv
-  -- k := 1; while R^H([(k-1)r, kr]) ≠ ∅ and kr < t_f do … k := k + 1, at most N passes
+  -- 2. `k := 1; while R^H([(k-1)r, kr]) ≠ ∅ and kr < t_f do … k := k + 1`, at most N passes
   let k := (fun k => if !isEmpty (RH k) && decide (k < N) then k + 1 else k)^[N] 1
-  let tEnd := k - 1                                                -- t^end_inv = (k - 1) r
-  let RH₀ := (List.range tEnd).map fun i => RH (i + 1)             -- R^H([0, t^end_inv])
-  let tg := intersectionTimes RH₀ e.guard                          -- [t^start_g, t^end_g]
-  -- R_j = generatorConv(R^H([t^start_g, t^end_g]) ∩ g)
+  -- 3. `t^end_inv ← (k - 1) r`
+  let tEnd := k - 1
+  -- 4. `R^H([0, t^end_inv])`, the union of the `R^H([(i-1)r, ir])`
+  let RH₀ := (List.range tEnd).map fun i => RH (i + 1)
+  -- 5. `[t^start_g, t^end_g] ←` the first and last time `R^H([0, t^end_inv])` meets `g`
+  let tg := intersectionTimes RH₀ e.guard
+  -- 6. `R_j ← generatorConv(R^H([t^start_g, t^end_g]) ∩ g)`
   let Rj := generatorConv (((List.range tEnd).filter fun i => tg.1 ≤ i ∧ i ≤ tg.2).map
     fun i => Intersection.intersection (RH (i + 1)) e.guard)
   (RH₀, Rj)

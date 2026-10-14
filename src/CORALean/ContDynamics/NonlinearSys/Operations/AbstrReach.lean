@@ -53,7 +53,9 @@ noncomputable def NonlinearSys.abstrReach (sys : NonlinearSys n m)
     Set (Vec ℝ n) :=
   let X₀ := params.X₀                                               -- the paper's symbols
   let U := params.U
+  -- 2. the horizon of the loop, whose clock starts at `0`
   let tend := params.tFinal - params.tStart
+  -- 18. `R([0,t_end])`, the union of the time-interval sets of iterations 1 to `K`
   ⋃ j < options.K, ⋃ s ∈ sys.abstrRun U options.lin options.Φ options.sub options.enlarge
     options.Δt tend options.η options.taylorTermsAbstr options.ρ
     options.fuel X₀ (j + 1), construct s.Rτ

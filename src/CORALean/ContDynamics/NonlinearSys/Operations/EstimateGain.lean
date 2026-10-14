@@ -37,7 +37,7 @@ accompanying theorem is what it buys.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -52,10 +52,13 @@ namespace CORALean
 size search settled on. -/
 noncomputable def estimateGain (le : ℝ → ℝ → Bool) (ζδ lam rabs1 rabsOpt : ℝ)
     (scalings fuel : ℕ) : ℝ :=
-  let target := lam * rabsOpt / rabs1                          -- 56. the right-hand side
-  let lhs := fun φ1 => ∏ j ∈ Finset.range scalings,            -- 56. the left-hand side
+  -- 16. eq. (56): the right-hand side
+  let target := lam * rabsOpt / rabs1
+  -- 16. eq. (56): the left-hand side
+  let lhs := fun φ1 => ∏ j ∈ Finset.range scalings,
     interpGain ζδ φ1 j
-  estimateGainSearch le lhs target 0 1 fuel                    -- 56. solve for φ⁽¹⁾ in [0,1]
+  -- 16. eq. (56): solve for φ⁽¹⁾ in [0,1]
+  estimateGainSearch le lhs target 0 1 fuel
 
 end CORALean
 

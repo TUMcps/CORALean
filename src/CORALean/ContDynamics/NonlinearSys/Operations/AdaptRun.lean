@@ -18,7 +18,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStep
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -52,7 +52,8 @@ noncomputable def NonlinearSys.adaptRun (sys : NonlinearSys n m) (U : S m)
     match sys.adaptRun U lin Φ sub enlarge le rad dbox ζδ ζh ζZ ζK tend ηlin ηabs o fuel s₀ k with
     | none => none
     | some s =>
-      if s.t < tend                                               -- the horizon of Alg. 1 line 2
+      -- 2. `while t_k < t_end`, the horizon of Alg. 1
+      if s.t < tend
       then sys.adaptStep U lin Φ sub enlarge le rad dbox ζδ ζh ζZ ζK ηlin ηabs o fuel s
       else some s
 

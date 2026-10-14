@@ -53,21 +53,30 @@ noncomputable def NonlinDASys.errorLoopAdaptive (sys : NonlinDASys n p m)
     (Rd_tk : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (r : ℝ) (η : ℕ) :
     ℕ → Vec ℝ n → Vec ℝ p → Option (NonlinDASys.AbstractionError n p)
   | 0, _, _ => none
-  | fuel + 1, adm_x, adm_y =>                                              -- 4. repeat
-    let Lbar_d : Zonotope (Vec ℝ n) := Interval.zonotope ⟨-adm_x, adm_x⟩   -- 5. L̄ᵈ
-    let Lbar_a : Zonotope (Vec ℝ p) := Interval.zonotope ⟨-adm_y, adm_y⟩   -- 5. L̄ᵃ
-    let Lbar : Zonotope (Vec ℝ n) :=                                     -- 5. L̄ = L̄ᵈ ⊕ (-CF⁻¹)L̄ᵃ
+  -- 4. `repeat`
+  | fuel + 1, adm_x, adm_y =>
+    -- 5. `L̄ᵈ`
+    let Lbar_d : Zonotope (Vec ℝ n) := Interval.zonotope ⟨-adm_x, adm_x⟩
+    -- 5. `L̄ᵃ`
+    let Lbar_a : Zonotope (Vec ℝ p) := Interval.zonotope ⟨-adm_y, adm_y⟩
+    -- 5. `L̄ = L̄ᵈ ⊕ (-CF⁻¹)L̄ᵃ`
+    let Lbar : Zonotope (Vec ℝ n) :=
       Lbar_d.plus (Lbar_a.mtimes (-(taylor.C * taylor.F_inv)))
+    -- 6. `Ū`, 7. `Rᵈ(τ_k)`
     let R := NonlinDASys.linReachAt sys { taylor with Verror := Lbar, Verror_y := Lbar_a }
-      Rd_tk U r η                                                          -- 6. Ū, 7. Rᵈ(τ_k)
-    let R_τk := R.2.2                                                      -- 8. R(τ_k), Prop. 2
-    let L := NonlinDASys.abstractionErrorAdaptive (taylor.C * taylor.F_inv)  -- 9. L, Cor. 1
+      Rd_tk U r η
+    -- 8. `R(τ_k)`, Prop. 2
+    let R_τk := R.2.2
+    -- 9. `L`, Cor. 1
+    let L := NonlinDASys.abstractionErrorAdaptive (taylor.C * taylor.F_inv)
       (T.hess R_τk)
-    if (List.finRange n).all (fun i => T.le (L.errorInt_x i) (adm_x i)) &&   -- 10. until L ⊆ L̄
+    -- 10. `until L ⊆ L̄`
+    if (List.finRange n).all (fun i => T.le (L.errorInt_x i) (adm_x i)) &&
         (List.finRange p).all (fun j => T.le (L.errorInt_y j) (adm_y j)) then
       some L
     else
-      sys.errorLoopAdaptive T taylor Rd_tk U r η fuel                      -- 5. next L̄ from L
+      -- 5. the next `L̄` from `L`
+      sys.errorLoopAdaptive T taylor Rd_tk U r η fuel
         (T.expFactor • L.errorInt_x) (T.expFactor • L.errorInt_y)
 
 end CORALean

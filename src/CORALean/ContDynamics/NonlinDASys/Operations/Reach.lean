@@ -20,7 +20,7 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,11 +45,15 @@ noncomputable def NonlinDASys.reach (sys : NonlinDASys n p m)
     (splitFn : Zonotope (Vec ℝ n) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n))
     (R0 : Zonotope (Vec ℝ n)) (tf r : ℝ) (U : Zonotope (Vec ℝ m)) (Lmax : Zonotope (Vec ℝ n))
     (lam : ℝ) (η fuel : ℕ) : Option (Set (Vec ℝ n)) :=
-  let t0 : ℝ := 0                                                            -- l. 1
+  -- 1. `t₀ ← 0`
+  let t0 : ℝ := 0
+  -- 1. `L ← {0}`
   let L : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p) :=
-    (Zonotope.ofPoint (0 : Vec ℝ n), Zonotope.ofPoint (0 : Vec ℝ p))          -- l. 1, L = {0}
-  let Runion : Set (Vec ℝ n) := ∅                                            -- l. 1
-  sys.reachLoop taylor corollary1 sub Lmax lam r η U splitFn fuel t0 tf R0 L Runion  -- l. 2-24
+    (Zonotope.ofPoint (0 : Vec ℝ n), Zonotope.ofPoint (0 : Vec ℝ p))
+  -- 1. `R_union ← ∅`
+  let Runion : Set (Vec ℝ n) := ∅
+  -- 2.-24. the loop, and `Rᵈ([0, t_f]) = R_union`
+  sys.reachLoop taylor corollary1 sub Lmax lam r η U splitFn fuel t0 tf R0 L Runion
 
 end CORALean
 

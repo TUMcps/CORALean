@@ -20,7 +20,7 @@ guarantees holds for whatever this returns. See [1].
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,10 +39,13 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 error radii of eq. (46) and the two diameter vectors of eq. (47). -/
 def tuneAbstrOrderFloat {n : ℕ} (ζK φstar rabs rabsLast : 𝕋) (d1 d2 : Fin n → 𝕋) (κ : ℕ) : ℕ :=
   if le (absolute (divUp (mulUp φstar rabs) rabsLast)) (subDown one ζK)
-    then κ                                                       -- 46. too close to re-tune
+    -- 13. eq. (46): too close to re-tune
+    then κ
   else if ∀ i : Fin n, le (d1 i) zero = true ∨ le ζK (divUp (d2 i) (d1 i)) = true
-    then 1                                                       -- 47. quadratic wins too little
-    else 2                                                       -- 47. it is worth its cost
+    -- 13. eq. (47): quadratic wins too little
+    then 1
+    -- 13. eq. (47): it is worth its cost
+    else 2
 
 end CORALean
 

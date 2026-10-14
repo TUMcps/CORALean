@@ -32,7 +32,7 @@ pins a coordinate to `γ n_ind`, the hyperplane value only for `‖n‖ = 1` (se
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -51,9 +51,12 @@ variable {n : ℕ}
 its breakpoints. -/
 noncomputable def Location.zonoGirardUpper (Z : Real.Zonotope (Vec ℝ n)) (nv : Vec ℝ n) (γ : ℝ)
     (ℓ : Vec ℝ n) : ℝ :=
+  -- 1. the dual bound `(ℓ - μ n)·c + Σ |(ℓ - μ n)·gⱼ| + μγ`, valid for every slope `μ`
   let dual : ℝ → ℝ := fun μ => (ℓ - μ • nv) ⬝ᵥ Z.c + ∑ j, |(ℓ - μ • nv) ⬝ᵥ Z.G j| + μ * γ
+  -- 2. the breakpoints `μ = (gⱼ·ℓ)/(gⱼ·n)` of the sorted generators, those with `gⱼ·n ≠ 0`
   let slopes : List ℝ := (List.finRange Z.h).filterMap fun j =>
     if Z.G j ⬝ᵥ nv = 0 then none else some ((Z.G j ⬝ᵥ ℓ) / (Z.G j ⬝ᵥ nv))
+  -- 3. the least dual bound over the breakpoints and `μ = 0`: the upper end `M_ℓ`
   slopes.foldl (fun m μ => min m (dual μ)) (dual 0)
 
 /-- The set the bases `Bs` enclose the intersection of the reach sets `R₀ :: Rs` with

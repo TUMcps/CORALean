@@ -21,7 +21,7 @@ as the loop runs. `none` as soon as one step's remainder loop runs out of fuel.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,8 +40,10 @@ noncomputable def NonlinearSys.innerMinkDiffLoop (ops : NonlinearSys.InnerMinkDi
     ℕ → Set (Vec ℝ n) → Set (Vec ℝ n) → Option (Set (Vec ℝ n) × Set (Vec ℝ n))
   | 0, Rtk, Rτ => some (Rtk, Rτ)
   | k + 1, Rtk, Rτ =>
-    (NonlinearSys.innerMinkDiffStep ops f Δt μ fuel Rtk).bind fun st =>  -- 3-16. one step
-      NonlinearSys.innerMinkDiffLoop ops f Δt μ fuel k st.Rtk1 (Rτ ∪ st.Rtauk) -- 17-18.
+    -- 3. one step, lines 3-16
+    (NonlinearSys.innerMinkDiffStep ops f Δt μ fuel Rtk).bind fun st =>
+      -- 17. the next step from `R̂(t_{k+1})`, `R̂(τ)` joined with `R̂(τ_k)`
+      NonlinearSys.innerMinkDiffLoop ops f Δt μ fuel k st.Rtk1 (Rτ ∪ st.Rtauk)
 
 end CORALean
 

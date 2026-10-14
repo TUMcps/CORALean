@@ -28,7 +28,7 @@ guarantee `reachFloat_outer` is against the real system's runs through
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,7 +50,9 @@ def NonlinearSys.FloatModel.reachFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
     (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
+  -- 2. the loop runs while `t_k < t_end`: `N = (tFinal - tStart) / Δt` iterations
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt)  -- (tFinal - tStart) / Δt ∈ ℕ
+  -- 3.-17. the iterations; 18. their `R(τ_k)`, `⋃_{k < N} R(τ_k)`
   fm.relinRunFloat params.U options N X₀                            -- ⋃_{k < N} R(τ_k)
 
 end CORALean

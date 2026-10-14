@@ -26,7 +26,7 @@ the representations do not appear, and `X₀` is any set.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,10 +43,14 @@ variable {n : ℕ} {𝓛 : Type}
 noncomputable def NonlinearSys.innerMinkDiff (ops : NonlinearSys.InnerMinkDiffOps n 𝓛)
     (f : Vec ℝ n → Vec ℝ n) (X₀ : Set (Vec ℝ n)) (tend : ℝ) (ω fuel : ℕ) :
     Option (Set (Vec ℝ n)) :=
-  let Δt := tend / ω                                                -- 1. Δt ← t_end/ω
-  let Rt0 := X₀                                                     -- 1. R̂(t₀) ← X₀
-  let μ : ℝ := 11 / 10                                              -- 1. μ ← 1.1
-  (NonlinearSys.innerMinkDiffLoop ops f Δt μ fuel ω Rt0 ∅).map Prod.snd  -- 2-18. R̂(τ)
+  -- 1. Δt ← t_end/ω
+  let Δt := tend / ω
+  -- 1. R̂(t₀) ← X₀
+  let Rt0 := X₀
+  -- 1. μ ← 1.1
+  let μ : ℝ := 11 / 10
+  -- 2. lines 2-18: R̂(τ)
+  (NonlinearSys.innerMinkDiffLoop ops f Δt μ fuel ω Rt0 ∅).map Prod.snd
 
 end CORALean
 

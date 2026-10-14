@@ -26,7 +26,7 @@ being no zonotope. `L_max` and `L ⊆ L̄` are read through `sub`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -54,25 +54,34 @@ noncomputable def NonlinDASys.reachLoop (sys : NonlinDASys n p m)
       Set (Vec ℝ n) → Option (Set (Vec ℝ n))
   | 0, tk, tf, _, _, Runion => if tk < tf then none else some Runion
   | fuel + 1, tk, tf, Rk, L, Runion =>
-      if tk < tf then                                                        -- l. 2
-        let T := taylor Rk                                                   -- l. 3
+      -- 2. `while t_k < t_f`
+      if tk < tf then
+        -- 3. `taylor ← ` the linearization point of `R_k`
+        let T := taylor Rk
+        -- 4.-10. `repeat … until L ⊆ L̄`
         match NonlinDASys.reachRepeat sys T corollary1 sub Lmax lam r η Rk U (fuel + 1) L with
-        | none => none                                                       -- l. 4-10
+        | none => none
         | some rr =>
-          if !sub rr.L.1 Lmax then                                           -- l. 11
-            let Rsplit := splitFn Rk                                         -- l. 12
-            let L0 := (Zonotope.ofPoint (0 : Vec ℝ n), Zonotope.ofPoint (0 : Vec ℝ p))  -- L = {0}
+          -- 11. `if L ⊄ L_max`
+          if !sub rr.L.1 Lmax then
+            -- 12. split `R_k` into two sets
+            let Rsplit := splitFn Rk
+            -- 13.-14. `L ← {0}`, and Alg. 1 on each half over `[0, t_f - t_k]`
+            let L0 := (Zonotope.ofPoint (0 : Vec ℝ n), Zonotope.ofPoint (0 : Vec ℝ p))
             match NonlinDASys.reachLoop sys taylor corollary1 sub Lmax lam r η U splitFn fuel
-                0 (tf - tk) Rsplit.1 L0 ∅,                                   -- l. 13
+                0 (tf - tk) Rsplit.1 L0 ∅,
               NonlinDASys.reachLoop sys taylor corollary1 sub Lmax lam r η U splitFn fuel
-                0 (tf - tk) Rsplit.2 L0 ∅ with                               -- l. 14
-            | some U1, some U2 => some (Runion ∪ U1 ∪ U2)                    -- l. 15-16
+                0 (tf - tk) Rsplit.2 L0 ∅ with
+            -- 15.-16. `R_union ← R_union ∪ …` of both halves
+            | some U1, some U2 => some (Runion ∪ U1 ∪ U2)
             | _, _ => none
           else
+            -- 18.-19. `R(τ_k), R_{k+1}` by `linReach` at the errors `L`
             let R := NonlinDASys.linReach (sys.f T.xs T.ys T.us) (sys.g T.xs T.ys T.us)
-              T.A T.B T.C T.D T.E T.F_inv T.xs T.ys T.us Rk U rr.L.1 rr.L.2 r η   -- l. 18-19
+              T.A T.B T.C T.D T.E T.F_inv T.xs T.ys T.us Rk U rr.L.1 rr.L.2 r η
+            -- 20.-21. `t_k ← t_k + r`, `R_union ← R_union ∪ R(τ_k)`
             NonlinDASys.reachLoop sys taylor corollary1 sub Lmax lam r η U splitFn fuel
-              (tk + r) tf R.1 rr.L (Runion ∪ rr.Rti.construct)               -- l. 20-21
+              (tk + r) tf R.1 rr.L (Runion ∪ rr.Rti.construct)
       else some Runion
 
 end CORALean
