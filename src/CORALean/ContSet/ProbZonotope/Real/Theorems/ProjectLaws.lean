@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ProbZonotope.Real.Operations.Project
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Basic
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.MtimesLaws
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.Submatrix
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 

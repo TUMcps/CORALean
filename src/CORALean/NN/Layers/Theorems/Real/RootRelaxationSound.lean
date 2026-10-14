@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Layers.Definitions.RootRelaxation
 public import CORALean.NN.Layers.Theorems.OfMonotoneSound
-public import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import Mathlib.Analysis.SpecialFunctions.Sqrt
 
 @[expose] public section

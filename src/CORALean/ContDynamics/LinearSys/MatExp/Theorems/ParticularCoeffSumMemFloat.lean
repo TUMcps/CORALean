@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffS
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffSumFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import Mathlib.Algebra.BigOperators.Intervals
 
 @[expose] public section

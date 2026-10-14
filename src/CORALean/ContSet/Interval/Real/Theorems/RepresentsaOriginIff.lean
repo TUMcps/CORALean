@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
 public import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
 

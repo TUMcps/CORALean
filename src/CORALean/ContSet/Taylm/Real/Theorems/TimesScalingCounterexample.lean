@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Times
-public import CORALean.ContSet.Interval.Real.Operations.MulHi
-public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import Mathlib.Analysis.Calculus.ContDiff.Operations
 
 @[expose] public section

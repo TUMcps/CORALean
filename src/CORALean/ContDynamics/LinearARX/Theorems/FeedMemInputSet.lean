@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContDynamics.LinearARX.Operations.Basic
 public import CORALean.ContDynamics.LinearARX.Operations.InputSet
 
 @[expose] public section

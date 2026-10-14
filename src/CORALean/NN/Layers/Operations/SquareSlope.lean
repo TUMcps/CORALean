@@ -1,7 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.SquareDerivLo
-public import CORALean.NN.Layers.Operations.SquareDerivHi
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

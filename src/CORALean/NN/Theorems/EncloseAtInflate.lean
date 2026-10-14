@@ -9,9 +9,8 @@ public import CORALean.NN.Operations.EncloseAt
 public import CORALean.NN.Operations.NetworkConvergent
 public import CORALean.NN.Operations.RefinableNetworkEval
 public import CORALean.NN.Operations.ScheduleCons
-public import CORALean.NN.Operations.ScheduleHead
-public import CORALean.NN.Operations.ScheduleTail
-public import CORALean.NN.Theorems.ScheduleHeadCons
+public import CORALean.NN.Operations.Basic
+public import CORALean.NN.Theorems.Basic
 
 @[expose] public section
 

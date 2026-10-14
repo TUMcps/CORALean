@@ -4,8 +4,7 @@ public import CORALean.ContSet.Interval.Float.Operations.CentreMat
 public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
 public import CORALean.ContSet.Interval.Float.Operations.Magnitude
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
-public import CORALean.ContSet.Interval.Float.Operations.MatResidual
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
 

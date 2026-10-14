@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
 public import CORALean.NN.Layers.Operations.RelaxationTighter
-public import CORALean.NN.Layers.Operations.SigmoidCurvatureRelaxation
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.SigmoidEnclosure
 
 @[expose] public section

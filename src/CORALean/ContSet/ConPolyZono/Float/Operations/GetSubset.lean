@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConsPolyZonotope
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

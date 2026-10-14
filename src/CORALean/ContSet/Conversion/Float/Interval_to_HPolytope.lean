@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 
 @[expose] public section
 

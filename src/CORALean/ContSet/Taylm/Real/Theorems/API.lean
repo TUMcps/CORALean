@@ -22,14 +22,13 @@ public import CORALean.ContSet.Taylm.Real.Theorems.BranchAndBoundMem
 public import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalEncloses
 public import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.ContinuousPolyOf
 public import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.CosScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.CosyGoLe
 public import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
-public import CORALean.ContSet.Taylm.Real.Theorems.DegreeSingle
 public import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
 public import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeCosyGo
 public import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeGlobalMin
@@ -62,7 +61,6 @@ public import CORALean.ContSet.Taylm.Real.Theorems.LogOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.MtimesConstructOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.MtimesOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.OptBnbAdvMem
 public import CORALean.ContSet.Taylm.Real.Theorems.OptBnbMem
 public import CORALean.ContSet.Taylm.Real.Theorems.OptLinQuadMem
@@ -111,11 +109,8 @@ public import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesScalingCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusScaled
-public import CORALean.ContSet.Taylm.Real.Theorems.UplusOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.TraceOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.ProdOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.DetOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.WeightAppend
 public import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
 public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaEmptySetIff
 public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaPointConstruct

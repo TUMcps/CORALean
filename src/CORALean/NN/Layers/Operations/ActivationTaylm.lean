@@ -1,11 +1,9 @@
 module
 
 public import CORALean.ContSet.Conversion.Float.Taylm_to_Interval
-public import CORALean.ContSet.Taylm.Float.Operations.Const
-public import CORALean.ContSet.Taylm.Float.Operations.Plus
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.Pow
 public import CORALean.ContSet.Taylm.Float.Operations.Smul
-public import CORALean.ContSet.Taylm.Float.Operations.Sum
 public import CORALean.NN.Layers.Definitions.PolyRelaxation
 public import CORALean.NN.Layers.Definitions.TaylmArray
 public import CORALean.NN.Layers.Layer

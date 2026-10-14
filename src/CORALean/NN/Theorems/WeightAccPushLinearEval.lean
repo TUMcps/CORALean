@@ -1,7 +1,6 @@
 module
 
-public import CORALean.NN.Operations.WeightAccPushLinear
-public import CORALean.NN.Operations.WeightAccEval
+public import CORALean.NN.Operations.Basic
 
 @[expose] public section
 

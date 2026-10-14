@@ -8,8 +8,7 @@ public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.Interval.Float.Operations.CentreMat
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-public import CORALean.ContSet.Interval.Float.Operations.NormMag
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.Global.Float.BilinUp

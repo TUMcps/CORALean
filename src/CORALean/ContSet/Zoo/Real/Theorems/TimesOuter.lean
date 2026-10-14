@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zoo.Real.Operations.Times
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
-public import CORALean.ContSet.Interval.Real.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 @[expose] public section
 

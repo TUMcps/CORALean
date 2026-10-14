@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Capsule.Float.Operations.Empty
-public import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
+public import CORALean.ContSet.Capsule.Float.Operations.Basic
+public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 
 @[expose] public section
 

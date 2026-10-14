@@ -8,8 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

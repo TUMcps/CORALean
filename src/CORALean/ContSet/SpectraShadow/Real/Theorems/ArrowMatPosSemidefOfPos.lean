@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatQuadForm
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.ArrowMatIsHermitian
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 public import Mathlib.Analysis.Matrix.Order
 
 @[expose] public section

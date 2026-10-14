@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.CompactCons
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ColRep
 public import CORALean.ContSet.PolyZonotope.Real.Operations.FiberSumEqZeroOfNotMem

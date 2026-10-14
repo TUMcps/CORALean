@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.AcosPrinted
 public import CORALean.ContSet.Taylm.Real.Theorems.AsinOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
 

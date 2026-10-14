@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Asin
-public import CORALean.ContSet.Taylm.Real.Operations.Const
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.Minus
 
 @[expose] public section

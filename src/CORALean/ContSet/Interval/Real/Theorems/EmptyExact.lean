@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.Empty
-public import CORALean.ContSet.Interval.Real.Theorems.NotIsNonempty
+public import CORALean.ContSet.Interval.Real.Operations.Basic
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 @[expose] public section
 

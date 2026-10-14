@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Partition
 public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.Relaxation

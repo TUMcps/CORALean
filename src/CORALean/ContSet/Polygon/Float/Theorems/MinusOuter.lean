@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Float.Operations.Minus
-public import CORALean.ContSet.Polygon.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Polygon.Float.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
 
 @[expose] public section

@@ -3,10 +3,9 @@ module
 public import CORALean.ContSet.ProbZonotope.Real.Operations.OfGenerators
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
-public import CORALean.ContSet.ProbZonotope.Real.Operations.Mean
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Basic
 public import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
-public import CORALean.ContSet.ProbZonotope.Real.Operations.Project
 public import CORALean.ContSet.ProbZonotope.Real.Operations.VPolytope
 public import CORALean.ContSet.ProbZonotope.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Max
@@ -19,7 +18,6 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.IntervalCora
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Sup
 public import CORALean.ContSet.ProbZonotope.Real.Operations.SupCora
-public import CORALean.ContSet.ProbZonotope.Real.Operations.PyramidLevels
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Pyramid
 public import CORALean.ContSet.ProbZonotope.Real.Operations.UnitMean
 

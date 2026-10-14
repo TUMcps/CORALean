@@ -1,8 +1,8 @@
 module
 
-public import CORALean.NN.Layers.Operations.InvSqrtRootRelaxation
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.OfAntitoneSound
-public import CORALean.NN.Layers.Theorems.Real.AntitoneInvSqrt
+public import CORALean.NN.Layers.Theorems.Real.Basic
 
 @[expose] public section
 

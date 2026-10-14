@@ -2,7 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Theorems.RunOuter
 public import CORALean.Specification.Theorems.HoldsOfOuter
-public import CORALean.Specification.Theorems.HoldsAllOfOuter
+public import CORALean.Specification.Theorems.Basic
 
 @[expose] public section
 

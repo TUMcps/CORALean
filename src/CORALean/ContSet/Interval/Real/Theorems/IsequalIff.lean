@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Theorems.IsequalConstructEq
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.LeIffSubset
 public import Mathlib.Order.BourbakiWitt
 

@@ -2,8 +2,7 @@ module
 
 public import CORALean.Global.Float.BilinUp
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-public import CORALean.ContSet.Interval.Float.Operations.NormMag
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 
 @[expose] public section

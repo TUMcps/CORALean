@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.LayerRelaxationCoeffList
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

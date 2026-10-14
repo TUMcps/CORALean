@@ -1,14 +1,11 @@
 module
 
-public import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
 public import CORALean.Global.Float.ToRat
-public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMkZero
 public import CORALean.Global.Float.Instances.Flint.Definitions.Axioms
-public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealHalf
-public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealLeOfLe
+public import CORALean.Global.Float.Instances.Flint.Theorems.Basic
 public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMaximum
 public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealMinimum
-public import CORALean.Global.Float.Instances.Flint.Theorems.ToRealNeg
 
 @[expose] public section
 

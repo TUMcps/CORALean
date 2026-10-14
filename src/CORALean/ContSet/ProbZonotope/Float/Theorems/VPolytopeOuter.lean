@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ProbZonotope.Float.Operations.VPolytope
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Basic
 
 @[expose] public section
 

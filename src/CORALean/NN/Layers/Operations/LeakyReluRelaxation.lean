@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.Relaxation
-public import CORALean.NN.Layers.Operations.LeakyReluGapUp
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

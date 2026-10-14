@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Operations.Polymax
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section

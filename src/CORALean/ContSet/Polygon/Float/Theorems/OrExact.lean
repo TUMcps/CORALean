@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Polygon.Float.Operations.Or
+public import CORALean.ContSet.Polygon.Float.Operations.Basic
 
 @[expose] public section
 

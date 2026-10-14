@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter

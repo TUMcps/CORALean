@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Mtimes
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Basic
 public import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceBox
 
 @[expose] public section

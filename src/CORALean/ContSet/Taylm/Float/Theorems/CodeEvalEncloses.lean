@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Float.Operations.CodeEval
 public import CORALean.ContSet.Taylm.Float.Theorems.IntrinsicEncloses
 public import CORALean.ContSet.Taylm.Real.Operations.CodeListMap
-public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter

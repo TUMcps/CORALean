@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
+public import CORALean.HybridDynamics.Operations.Basic
 
 @[expose] public section
 

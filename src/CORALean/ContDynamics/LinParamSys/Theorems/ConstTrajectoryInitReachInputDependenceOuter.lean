@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
 public import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenceOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

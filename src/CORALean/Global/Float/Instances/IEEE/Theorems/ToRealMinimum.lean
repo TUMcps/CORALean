@@ -1,7 +1,7 @@
 module
 
-public import CORALean.Global.Float.Instances.IEEE.Operations.Minimum
-public import CORALean.Global.Float.Instances.IEEE.Theorems.LeIff
+public import CORALean.Global.Float.Instances.IEEE.Operations.Basic
+public import CORALean.Global.Float.Instances.IEEE.Theorems.Basic
 
 @[expose] public section
 

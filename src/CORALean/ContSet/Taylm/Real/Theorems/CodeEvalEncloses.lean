@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.CodeEval
 public import CORALean.ContSet.Taylm.Real.Theorems.IntrinsicEncloses
-public import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter

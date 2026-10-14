@@ -4,7 +4,7 @@ public import CORALean.ContSet.Interval.Real.Definitions.Hull
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Topology.MetricSpace.Bounded
 public import Mathlib.Analysis.Normed.Ring.Lemmas
-public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import Mathlib.Algebra.Order.Group.Pointwise.CompleteLattice
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 

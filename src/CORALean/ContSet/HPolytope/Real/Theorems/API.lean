@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
@@ -13,12 +13,10 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinusExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.MtimesOfOuter
-public import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.PlusOfOuter
 public import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
-public import CORALean.ContSet.HPolytope.Real.Theorems.LiftExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.MldivideCoraCounterexample
 public import CORALean.ContSet.HPolytope.Real.Theorems.ConvHullCoraCounterexample
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiff1DCoraCounterexample
@@ -55,7 +53,6 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeImageAffine
 public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeAddEq
 public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEq
 public import CORALean.ContSet.HPolytope.Real.Theorems.AHPolytopeInterEqCounterexample
-public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
 public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNormCounterexample
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestPolyNormEllipsotope
@@ -106,7 +103,6 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaFullspaceIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
 public import CORALean.ContSet.HPolytope.Real.Theorems.VolumeInterval
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
-public import CORALean.ContSet.HPolytope.Real.Theorems.VolumeLtTop
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageAffine
 public import CORALean.ContSet.HPolytope.Real.Theorems.BallSubsetIneqsIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.EmptyRedundantCounterexample

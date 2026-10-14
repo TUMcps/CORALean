@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Zoo.Float.Operations.Times
+public import CORALean.ContSet.Zoo.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
-public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.IEEE.Operations.RoundDown
+public import CORALean.Global.Float.Instances.IEEE.Operations.Basic
 
 @[expose] public section
 

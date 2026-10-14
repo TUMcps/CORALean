@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
 public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.VPolytope.Float.Operations.Project
-public import CORALean.ContSet.VPolytope.Real.Theorems.ProjectExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

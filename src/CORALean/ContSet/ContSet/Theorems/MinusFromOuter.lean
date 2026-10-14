@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Operations.MinusFrom
+public import CORALean.ContSet.ContSet.Operations.Basic
 public import CORALean.ContSet.ContSet.Theorems.UminusOuter
 public import CORALean.Global.NegScalar
 

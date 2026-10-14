@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Reach
-public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe
 public import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
 public import Mathlib.Tactic.Linarith

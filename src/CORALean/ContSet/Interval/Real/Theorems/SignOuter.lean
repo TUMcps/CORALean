@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.Sign
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageOuter
-public import CORALean.ContSet.Interval.Real.Theorems.SignMonotone
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -1,14 +1,11 @@
 module
 
-public import CORALean.Global.Float.Instances.Binary64.Operations.AddDown
+public import CORALean.Global.Float.Instances.Binary64.Operations.Basic
 public import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
 public import CORALean.Global.Float.Instances.Binary64.Operations.DivDown
 public import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
 public import CORALean.Global.Float.Instances.Binary64.Operations.Half
 public import CORALean.Global.Float.Instances.Binary64.Operations.InRange
-public import CORALean.Global.Float.Instances.Binary64.Operations.Maximum
-public import CORALean.Global.Float.Instances.Binary64.Operations.Minimum
-public import CORALean.Global.Float.Instances.Binary64.Operations.MulDown
 public import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
 public import CORALean.Global.Float.Instances.Binary64.Operations.NextUp
 public import CORALean.Global.Float.Instances.Binary64.Operations.StepUp

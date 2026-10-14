@@ -29,7 +29,7 @@ public import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.LinearARX.Theorems.SimulateMemSimulateBoxFloat
 public import CORALean.ContDynamics.LinearARX.Theorems.SimulateTrajectory
 public import CORALean.ContDynamics.LinearARX.Theorems.StackSimulateZero
-public import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+public import CORALean.ContDynamics.LinearARX.Theorems.Basic
 public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTStep
 public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
 public import CORALean.ContDynamics.LinearARX.Theorems.OfCharpolyStep

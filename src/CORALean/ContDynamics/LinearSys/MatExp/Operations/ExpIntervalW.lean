@@ -2,8 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
-public import CORALean.ContSet.Interval.Real.Operations.MulHi
-public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Polygon.Float.Operations.Interval
+public import CORALean.ContSet.Polygon.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Volume
 
 @[expose] public section

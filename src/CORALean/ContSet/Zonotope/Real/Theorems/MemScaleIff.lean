@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.HRepLinSubset
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 
 @[expose] public section
 

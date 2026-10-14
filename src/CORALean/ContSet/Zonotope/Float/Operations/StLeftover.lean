@@ -1,9 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.StGamma
-public import CORALean.ContSet.Zonotope.Float.Operations.StBeta
-public import CORALean.ContSet.Zonotope.Float.Operations.PointLo
-public import CORALean.ContSet.Zonotope.Float.Operations.PointHi
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
 public import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.ErrBound

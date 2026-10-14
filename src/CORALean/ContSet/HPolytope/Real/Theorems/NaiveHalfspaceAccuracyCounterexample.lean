@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Definitions.NaiveHalfspaceValue
-public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.Global.ShenmaierHalfspace
 public import CORALean.Global.Tensor
 

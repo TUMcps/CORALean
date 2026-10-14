@@ -1,10 +1,8 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Intrinsic
-public import CORALean.ContSet.Taylm.Float.Operations.Const
-public import CORALean.ContSet.Taylm.Float.Operations.Plus
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.Times
-public import CORALean.ContSet.Taylm.Float.Operations.Uminus
 
 @[expose] public section
 

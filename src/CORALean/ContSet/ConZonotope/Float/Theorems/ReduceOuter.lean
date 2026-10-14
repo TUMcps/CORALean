@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-public import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
+public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 
 @[expose] public section

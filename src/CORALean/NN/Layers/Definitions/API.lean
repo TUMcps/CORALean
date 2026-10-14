@@ -11,11 +11,10 @@ public import CORALean.NN.Layers.Definitions.BatchNormLayer
 public import CORALean.NN.Layers.Definitions.ConvLayer
 public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.EvalPoly
-public import CORALean.NN.Layers.Definitions.IdentityLayer
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Definitions.InvSqrt
 public import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
 public import CORALean.NN.Layers.Definitions.LeakyRelu
-public import CORALean.NN.Layers.Definitions.LinearLayer
 public import CORALean.NN.Layers.Definitions.LinearWithErrorLayer
 public import CORALean.NN.Layers.Definitions.MaxPoolLayer
 public import CORALean.NN.Layers.Definitions.PolyAffineConj
@@ -29,7 +28,6 @@ public import CORALean.NN.Layers.Definitions.RegionPoly
 public import CORALean.NN.Layers.Definitions.Relaxation
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Definitions.ReluLayer
-public import CORALean.NN.Layers.Definitions.ReshapeLayer
 public import CORALean.NN.Layers.Definitions.ScaleRounding
 public import CORALean.NN.Layers.Definitions.Sigmoid
 public import CORALean.NN.Layers.Definitions.SigmoidLayer

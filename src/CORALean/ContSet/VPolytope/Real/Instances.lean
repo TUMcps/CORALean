@@ -5,7 +5,7 @@ public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ContSet.Definitions.ExactVertices
 public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
 public import CORALean.ContSet.VPolytope.Real.Theorems.Convex
-public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Theorems.IntersectionOuter
 public import CORALean.ContSet.VPolytope.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact

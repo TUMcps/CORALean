@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Append
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTerms
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MonoBox

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.ExistsMulEq
 public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 

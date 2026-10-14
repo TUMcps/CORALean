@@ -7,7 +7,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset
 public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
 public import CORALean.ContSet.InflatedContSet.Theorems.Convex
 public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
-public import CORALean.ContSet.InflatedContSet.Theorems.IsBounded
+public import CORALean.ContSet.InflatedContSet.Theorems.Basic
 public import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
 public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
 

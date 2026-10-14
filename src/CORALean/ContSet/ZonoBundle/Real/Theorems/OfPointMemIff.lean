@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 
 @[expose] public section

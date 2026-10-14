@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraNormalCone
-public import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 
 @[expose] public section
 

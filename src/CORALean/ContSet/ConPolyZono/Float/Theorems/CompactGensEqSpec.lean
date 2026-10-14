@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
 
 @[expose] public section

@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 @[expose] public section

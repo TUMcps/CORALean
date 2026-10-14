@@ -1,9 +1,8 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Residual
-public import CORALean.ContSet.Zonotope.Float.Operations.ErrorRadius
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
-public import CORALean.ContSet.Zonotope.Float.Operations.ShiftUp
 
 @[expose] public section
 

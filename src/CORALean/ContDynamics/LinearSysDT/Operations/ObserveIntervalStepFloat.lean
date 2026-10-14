@@ -4,8 +4,7 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveIntervalState
 public import CORALean.ContDynamics.LinearSysDT.Operations.ErrMatFloat
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 

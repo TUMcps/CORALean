@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceKeepBy
 public import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
-public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.Global.Entrywise
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
-public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
+public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 
 @[expose] public section
 

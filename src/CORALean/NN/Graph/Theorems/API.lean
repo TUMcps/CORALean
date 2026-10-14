@@ -16,7 +16,7 @@ public import CORALean.NN.Graph.Theorems.ConvUncertainExact
 public import CORALean.NN.Graph.Theorems.DegreeAtEq
 public import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBall
 public import CORALean.NN.Graph.Theorems.DegreeSubmatrixOfBallUncertain
-public import CORALean.NN.Graph.Theorems.EdgeMatNonneg
+public import CORALean.NN.Graph.Theorems.Basic
 public import CORALean.NN.Graph.Theorems.EdgeMatSymm
 public import CORALean.NN.Graph.Theorems.EvalStepsRowBall
 public import CORALean.NN.Graph.Theorems.EvalStepsRowBallEnum
@@ -36,7 +36,6 @@ public import CORALean.NN.Graph.Theorems.GcnStepsP
 public import CORALean.NN.Graph.Theorems.GcnStepsPoint
 public import CORALean.NN.Graph.Theorems.GcnUncertainOuter
 public import CORALean.NN.Graph.Theorems.LinearPolyZonotopeExact
-public import CORALean.NN.Graph.Theorems.MatMulBilinApply
 public import CORALean.NN.Graph.Theorems.MemBallEnumIff
 public import CORALean.NN.Graph.Theorems.MemBallSelf
 public import CORALean.NN.Graph.Theorems.MemBallSuccOfMessagePassing
@@ -51,7 +50,6 @@ public import CORALean.NN.Graph.Theorems.ReduceGNNForNodeExact
 public import CORALean.NN.Graph.Theorems.ReduceKeepZeroStepsCora
 public import CORALean.NN.Graph.Theorems.ReducedStepsRow
 public import CORALean.NN.Graph.Theorems.SelectMul
-public import CORALean.NN.Graph.Theorems.SelectMatMul
 public import CORALean.NN.Graph.Theorems.SelectMatToReal
 public import CORALean.NN.Graph.Theorems.SelectMulTranspose
 public import CORALean.NN.Graph.Theorems.SmulEdgeHalf

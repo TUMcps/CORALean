@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 public import CORALean.ContSet.HPolytope.Float.Operations.CartProd
-public import CORALean.ContSet.Interval.Float.Operations.Append
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.GenBlockDiag
 
 @[expose] public section

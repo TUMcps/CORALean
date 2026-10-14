@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsSpec
-public import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
 public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab

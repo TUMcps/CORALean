@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyMulVec
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 public import CORALean.Global.LinProg.LinProg
 
 @[expose] public section

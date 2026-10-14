@@ -6,7 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
 public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorExtend
-public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.CompactFactors
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Polygon.Real.Operations.Or
+public import CORALean.ContSet.Polygon.Real.Operations.Basic
 public import CORALean.ContSet.VPolytope.Real.Instances
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
-public import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 
 @[expose] public section
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 
 @[expose] public section
 

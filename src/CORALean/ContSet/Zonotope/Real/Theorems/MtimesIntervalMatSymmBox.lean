@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 public import Mathlib.Algebra.BigOperators.Fin

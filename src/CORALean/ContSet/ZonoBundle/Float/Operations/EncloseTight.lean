@@ -4,7 +4,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
 public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
-public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Magnitude
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

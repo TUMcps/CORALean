@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemInterior
-public import CORALean.ContSet.ConZonotope.Float.Theorems.CornerMem
+public import CORALean.ContSet.ConZonotope.Float.Theorems.Basic
 public import Mathlib.Topology.Algebra.Group.Pointwise
 
 @[expose] public section

@@ -6,7 +6,7 @@ import CORALean.Examples.Bench.NnNaive
 import CORALean.NN.Instances
 import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Theorems.LinearSound
 import CORALean.NN.Layers.Theorems.ReluSound

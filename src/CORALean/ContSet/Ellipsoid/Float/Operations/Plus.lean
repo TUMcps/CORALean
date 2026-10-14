@@ -2,9 +2,8 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
 public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
-public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
-public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

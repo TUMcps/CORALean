@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.BoundaryPoint
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 
 @[expose] public section

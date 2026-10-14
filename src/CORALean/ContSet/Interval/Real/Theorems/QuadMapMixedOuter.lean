@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.QuadMapMixed
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 
 @[expose] public section

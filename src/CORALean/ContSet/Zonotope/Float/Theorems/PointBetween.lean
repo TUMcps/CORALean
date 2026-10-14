@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.PointLo
-public import CORALean.ContSet.Zonotope.Float.Operations.PointHi
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section

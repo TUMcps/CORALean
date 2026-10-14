@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
-public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
-public import CORALean.ContSet.HPolytope.Real.Theorems.LiftExact
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 
 @[expose] public section

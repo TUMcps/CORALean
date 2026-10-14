@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
-public import CORALean.ContSet.ConPolyZono.Real.Operations.Affine
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 
 @[expose] public section
 

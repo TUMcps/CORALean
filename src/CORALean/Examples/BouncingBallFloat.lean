@@ -1,5 +1,5 @@
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Interval.Float.Operations.Or
+import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.HybridDynamics.Theorems.ReachFloatOuter
 

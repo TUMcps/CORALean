@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.SpectraShadow.Float.Operations.PolytopeOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.DualBoundLe
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 
 @[expose] public section
 

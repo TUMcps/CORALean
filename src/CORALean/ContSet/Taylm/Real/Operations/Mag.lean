@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
-public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.MtimesMatZonotope
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MtimesMatZonotope
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Basic
 
 @[expose] public section
 

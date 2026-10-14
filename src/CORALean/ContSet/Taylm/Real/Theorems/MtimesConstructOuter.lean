@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 public import Mathlib.Data.Matrix.Mul
 

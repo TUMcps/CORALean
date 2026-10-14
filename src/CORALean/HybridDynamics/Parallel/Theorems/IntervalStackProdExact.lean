@@ -1,7 +1,7 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
-public import CORALean.HybridDynamics.Parallel.Theorems.StackApply
+public import CORALean.HybridDynamics.Parallel.Operations.Basic
+public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Instances
 
 @[expose] public section

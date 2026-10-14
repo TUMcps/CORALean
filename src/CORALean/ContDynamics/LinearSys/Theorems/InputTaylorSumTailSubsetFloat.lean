@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTail
 public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumTailFloat
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 

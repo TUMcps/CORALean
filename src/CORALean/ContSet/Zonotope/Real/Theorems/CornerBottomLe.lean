@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.CornerApply
-public import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
 
 @[expose] public section

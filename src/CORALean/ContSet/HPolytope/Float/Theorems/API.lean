@@ -28,12 +28,11 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleDevBetween
 public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeConstraintsOuter
-public import CORALean.ContSet.HPolytope.Float.Theorems.EqScalarEq
+public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.IsZeroVecDot
 public import CORALean.ContSet.HPolytope.Float.Theorems.DropZerosExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.CompactZerosOuter
-public import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
 public import CORALean.ContSet.HPolytope.Float.Theorems.DropAlignedExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.CompactAlignedIneqOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.IsInvertedPairDot

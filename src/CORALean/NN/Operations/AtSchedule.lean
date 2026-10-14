@@ -7,8 +7,7 @@ public import CORALean.NN.Layers.Layer
 public import CORALean.NN.NeuralNetwork
 public import CORALean.NN.Operations.RefinableLayerAtPattern
 public import CORALean.NN.Operations.ScheduleCons
-public import CORALean.NN.Operations.ScheduleHead
-public import CORALean.NN.Operations.ScheduleTail
+public import CORALean.NN.Operations.Basic
 
 @[expose] public section
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Operations.UlocCora
-public import CORALean.HybridDynamics.Operations.Uloc
+public import CORALean.HybridDynamics.Operations.Basic
 
 @[expose] public section
 

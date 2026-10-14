@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Operations.LeShl
-public import CORALean.Global.Float.Instances.Dyadic.Operations.LeShr
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 
 @[expose] public section
 

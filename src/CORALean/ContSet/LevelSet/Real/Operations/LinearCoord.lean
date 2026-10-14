@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.LevelSet.Real.Definitions.GradEnclosure
-public import CORALean.ContSet.Interval.Real.Operations.MulHi
-public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

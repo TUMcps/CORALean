@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachUnion
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloat
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloatChecked
-public import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Operations.Basic
 public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
 public import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialState
 public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyState

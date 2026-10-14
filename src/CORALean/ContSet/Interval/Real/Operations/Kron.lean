@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.MulLo
-public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import Mathlib.LinearAlgebra.Matrix.Kronecker
 
 @[expose] public section

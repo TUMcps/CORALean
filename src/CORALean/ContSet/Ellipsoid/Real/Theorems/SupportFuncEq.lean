@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
-public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 
 @[expose] public section

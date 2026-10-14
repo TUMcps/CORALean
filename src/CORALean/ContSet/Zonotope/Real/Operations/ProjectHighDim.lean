@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Operations.Embed
+public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.Map
 
 @[expose] public section

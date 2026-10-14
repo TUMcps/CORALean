@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Analysis.Convex.Hull
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.Data.Matrix.Basic

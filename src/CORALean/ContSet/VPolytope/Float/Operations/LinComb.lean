@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.LinComb
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.VPolytope.Float.VPolytope
 
 @[expose] public section

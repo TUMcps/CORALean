@@ -3,7 +3,7 @@ module
 public import CORALean.NN.Layers.Definitions.Sigmoid
 public import CORALean.NN.Layers.Operations.SigmoidDerivHi
 public import CORALean.NN.Layers.Theorems.Real.SigmoidMono
-public import CORALean.NN.Layers.Theorems.Real.SigmoidPos
+public import CORALean.NN.Layers.Theorems.Real.Basic
 
 @[expose] public section
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
-public import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 
 @[expose] public section
 

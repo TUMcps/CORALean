@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Symmetric
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Order.Lattice
 

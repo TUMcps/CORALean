@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Real.Operations.OfPoint
-public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 public import Mathlib.Analysis.Normed.Field.Basic
 
 @[expose] public section

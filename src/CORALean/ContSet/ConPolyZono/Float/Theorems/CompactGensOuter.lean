@@ -1,10 +1,9 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
-public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensEqSpec
 public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
-public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter

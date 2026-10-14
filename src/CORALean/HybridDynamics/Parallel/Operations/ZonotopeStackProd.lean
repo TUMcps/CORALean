@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Operations.Unstack
+public import CORALean.HybridDynamics.Parallel.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 @[expose] public section

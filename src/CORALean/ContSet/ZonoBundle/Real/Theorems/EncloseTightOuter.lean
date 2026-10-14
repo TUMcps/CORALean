@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
 
 @[expose] public section
 

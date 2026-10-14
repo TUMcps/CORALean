@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
 

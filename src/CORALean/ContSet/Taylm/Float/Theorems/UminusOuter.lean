@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.Uminus
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
 
 @[expose] public section

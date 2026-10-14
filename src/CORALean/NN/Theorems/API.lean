@@ -3,8 +3,7 @@ module
 public import CORALean.NN.Theorems.ActivationLipschitz
 public import CORALean.NN.Theorems.AtScheduleEval
 public import CORALean.NN.Theorems.BucketToleranceApprox
-public import CORALean.NN.Theorems.ChainEvalCons
-public import CORALean.NN.Theorems.ChainEvalNil
+public import CORALean.NN.Theorems.Basic
 public import CORALean.NN.Theorems.Classifies
 public import CORALean.NN.Theorems.CompressionPreprocessingOuter
 public import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
@@ -16,7 +15,6 @@ public import CORALean.NN.Theorems.RefineVerifyFromSound
 public import CORALean.NN.Theorems.RefineVerifySound
 public import CORALean.NN.Theorems.EncloseNotMonotone
 public import CORALean.NN.Theorems.EncloseOuter
-public import CORALean.NN.Theorems.EncloseOuterEval
 public import CORALean.NN.Theorems.EvalDifferentiable
 public import CORALean.NN.Theorems.EvalLipschitz
 public import CORALean.NN.Theorems.ExistsMergeBucketAll
@@ -70,10 +68,8 @@ public import CORALean.NN.Theorems.ReduceOnTheFlyOuter
 public import CORALean.NN.Theorems.ReducesAtCongr
 public import CORALean.NN.Theorems.ReducesAtOuter
 public import CORALean.NN.Theorems.ReducesAtRefl
-public import CORALean.NN.Theorems.RefinableLayerAtPatternSound
 public import CORALean.NN.Theorems.ReluNotDifferentiable
 public import CORALean.NN.Theorems.Robustness
-public import CORALean.NN.Theorems.ScheduleHeadCons
 public import CORALean.NN.Theorems.BackpropEqFDerivTranspose
 public import CORALean.NN.Theorems.BackpropEqTranspose
 public import CORALean.NN.Theorems.FgsmAttackDistLe
@@ -112,7 +108,6 @@ public import CORALean.NN.Theorems.SnakeOrderMultiset
 public import CORALean.NN.Theorems.InputNeuronOrderPerm
 public import CORALean.NN.Theorems.WeightAccPushLinearEval
 public import CORALean.NN.Theorems.WeightAccPushAffineEval
-public import CORALean.NN.Theorems.WeightAccLayerEval
 public import CORALean.NN.Theorems.WeightNetworkNormalFormAuxEval
 public import CORALean.NN.Theorems.WeightNetworkNormalFormEval
 public import CORALean.NN.Theorems.RefinableNetworkMemRefinableLayers
@@ -128,11 +123,7 @@ public import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
 public import CORALean.NN.Theorems.CatMaxPoolEvalIff
 public import CORALean.NN.Theorems.SetBasedLossGradient
 public import CORALean.NN.Theorems.SetBasedLossGradientCounterexample
-public import CORALean.NN.Theorems.ReluEnclosureEncloses
 public import CORALean.NN.Theorems.ReluDerEnclosureEncloses
-public import CORALean.NN.Theorems.IdentityEnclosureEncloses
-public import CORALean.NN.Theorems.IdentityDerEnclosureEncloses
-public import CORALean.NN.Theorems.ToRealMatMapAbsolute
 public import CORALean.NN.Theorems.ScalarEnclosesVecMem
 public import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
 public import CORALean.NN.Theorems.IntervalChainFloatLinearRMem

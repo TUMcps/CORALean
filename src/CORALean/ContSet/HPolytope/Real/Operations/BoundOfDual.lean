@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEqFeasible
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 
 @[expose] public section
 

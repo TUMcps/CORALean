@@ -4,7 +4,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.EnclosePointsStursberg
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 public import CORALean.ContSet.Zonotope.Float.Operations.AutoTuneSetOrder
 public import CORALean.ContSet.Zonotope.Float.Operations.ErrUp
-public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesMatZonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
@@ -30,8 +30,6 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
 public import CORALean.ContSet.Zonotope.Float.Operations.RotMat
 public import CORALean.ContSet.Zonotope.Float.Operations.Rotate
 public import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
-public import CORALean.ContSet.Zonotope.Float.Operations.ShiftUp
-public import CORALean.ContSet.Zonotope.Float.Operations.ErrorRadius
 public import CORALean.ContSet.Zonotope.Float.Operations.Radius
 public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorLength
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
@@ -45,7 +43,6 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
 public import CORALean.ContSet.Zonotope.Float.Operations.Reindex
 public import CORALean.ContSet.Zonotope.Float.Operations.ConstrSat
-public import CORALean.ContSet.Zonotope.Float.Operations.Origin
 public import CORALean.ContSet.Zonotope.Float.Operations.Point
 public import CORALean.ContSet.Zonotope.Float.Operations.NormSq
 public import CORALean.ContSet.Zonotope.Float.Operations.SplitHalf
@@ -84,16 +81,10 @@ public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.IsFullDimWith
-public import CORALean.ContSet.Zonotope.Float.Operations.PointLo
-public import CORALean.ContSet.Zonotope.Float.Operations.PointHi
 public import CORALean.ContSet.Zonotope.Float.Operations.MulResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.ErrBound
 public import CORALean.ContSet.Zonotope.Float.Operations.EntryDeviation
 public import CORALean.ContSet.Zonotope.Float.Operations.ContainsZonotope
-public import CORALean.ContSet.Zonotope.Float.Operations.StGamma
-public import CORALean.ContSet.Zonotope.Float.Operations.StBeta
-public import CORALean.ContSet.Zonotope.Float.Operations.StUsed
-public import CORALean.ContSet.Zonotope.Float.Operations.StDelta
 public import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
 public import CORALean.ContSet.Zonotope.Float.Operations.Underapproximate
 public import CORALean.ContSet.Zonotope.Float.Operations.MinkDiffAligned
@@ -113,7 +104,6 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
 public import CORALean.ContSet.Zonotope.Float.Operations.MatZonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 public import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
-public import CORALean.ContSet.Zonotope.Float.Operations.PointMat
 public import CORALean.ContSet.Zonotope.Float.Operations.DetCandidate
 public import CORALean.ContSet.Zonotope.Float.Operations.DominantDirections
 public import CORALean.ContSet.Zonotope.Float.Operations.DominantLengthFilter

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 

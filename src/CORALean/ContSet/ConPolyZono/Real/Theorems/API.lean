@@ -41,7 +41,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ProjectExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.EmptyExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimCoraCounterexample
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank

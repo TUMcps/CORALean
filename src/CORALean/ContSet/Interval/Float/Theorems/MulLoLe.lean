@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.MulLo
-public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

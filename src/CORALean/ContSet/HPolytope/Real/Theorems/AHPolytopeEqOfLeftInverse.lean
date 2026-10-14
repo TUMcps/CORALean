@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Definitions.AHPolytope
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Data.Matrix.Mul
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Abel

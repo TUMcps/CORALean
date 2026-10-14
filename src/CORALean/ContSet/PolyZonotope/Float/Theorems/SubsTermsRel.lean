@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsXprodRel
-public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsTerms
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsTerms
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Project
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ProjectExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
 public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
-public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 
 @[expose] public section

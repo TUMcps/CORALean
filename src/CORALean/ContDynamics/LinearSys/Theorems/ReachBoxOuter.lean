@@ -10,8 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolu
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

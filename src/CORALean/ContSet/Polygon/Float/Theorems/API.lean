@@ -1,17 +1,14 @@
 module
 
-public import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
+public import CORALean.ContSet.Polygon.Float.Theorems.Basic
 public import CORALean.ContSet.Polygon.Float.Theorems.ConvHullOuter
-public import CORALean.ContSet.Polygon.Float.Theorems.EmptyExact
 public import CORALean.ContSet.Polygon.Float.Theorems.IntervalContains
 public import CORALean.ContSet.Polygon.Float.Theorems.IsCompact
 public import CORALean.ContSet.Polygon.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.OrExact
-public import CORALean.ContSet.Polygon.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.TimesOuter
-public import CORALean.ContSet.Polygon.Float.Theorems.BoundDotLe
 public import CORALean.ContSet.Polygon.Float.Theorems.VerticesOuter
 public import CORALean.ContSet.Polygon.Float.Theorems.RepresentsaEmptySetSound
 public import CORALean.ContSet.Polygon.Float.Theorems.AndOuter

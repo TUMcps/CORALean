@@ -4,11 +4,10 @@ public import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
 public import CORALean.ContSet.Polygon.Real.Operations.ContainsRegionCora
 public import CORALean.ContSet.Polygon.Real.Operations.OverlapsRegionCora
 public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
-public import CORALean.ContSet.Polygon.Real.Operations.Empty
+public import CORALean.ContSet.Polygon.Real.Operations.Basic
 public import CORALean.ContSet.Polygon.Real.Operations.Plus
 public import CORALean.ContSet.Polygon.Real.Operations.Mtimes
 public import CORALean.ContSet.Polygon.Real.Operations.LinComb
-public import CORALean.ContSet.Polygon.Real.Operations.Or
 public import CORALean.ContSet.Polygon.Real.Operations.Project
 public import CORALean.ContSet.Polygon.Real.Operations.Vertices
 public import CORALean.ContSet.Polygon.Real.Operations.ConvHull

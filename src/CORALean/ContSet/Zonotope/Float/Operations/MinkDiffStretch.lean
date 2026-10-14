@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
 
 @[expose] public section

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import Mathlib.Analysis.Calculus.ContDiff.Defs
 
 @[expose] public section

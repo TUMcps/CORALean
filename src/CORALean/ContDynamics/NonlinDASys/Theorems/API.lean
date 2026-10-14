@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachYUnionSubsetImage
 public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryOfNonlinearSys
 public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
-public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
+public import CORALean.ContDynamics.NonlinDASys.Theorems.Basic
 public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonIterateSpec
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateSpec
 public import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateSpec

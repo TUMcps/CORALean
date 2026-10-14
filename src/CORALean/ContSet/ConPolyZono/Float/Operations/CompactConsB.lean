@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsGap
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 
 @[expose] public section
 

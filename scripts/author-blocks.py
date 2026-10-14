@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# Back-fill the author block of every Lean file under src/ (issue #123).
+# Back-fill the author block of every Lean file under src/ (issue #123), and of
+# every section of a `Basic.lean` (issue #137).
 #
 #   -- Authors:       Claude Opus 5.5      the model that created the file
 #   -- Written:       16-August-2026
@@ -51,30 +52,23 @@ def adding_models(ref):
 
 
 def rewrite(text, model_of):
-    """New text, or None if the file has no author block / needs no change."""
+    """New text, or None if the file has no author block / needs no change.
+
+    Every block is rewritten: a file's one, or in a `Basic.lean` each section's (issue #137).
+    A section's missing author comes from the commit that added the `Basic.lean`, which is
+    only right for the sections it was created with; correct the others by hand."""
     lines = text.split("\n")
-    for i, l in enumerate(lines):
-        if l.startswith("-- Authors:"):
-            break
-    else:
-        return None
-    if i + 3 >= len(lines):
-        return None
-    pre = "-- Authors:       "
-    cur = lines[i][len(pre):].strip() if lines[i].startswith(pre) else ""
-    names = [n.strip() for n in cur.split(",")]
-    if all(NAME_RE.match(n) for n in names):
-        authors = cur
-    else:
-        authors = model_of()
-    rev = lines[i + 3]
-    if rev.startswith("-- Last revision:"):
-        new_rev = "-- Reviewed:      ---"
-    else:
-        new_rev = rev
     new = lines[:]
-    new[i] = pre + authors
-    new[i + 3] = new_rev
+    pre = "-- Authors:       "
+    for i, l in enumerate(lines):
+        if not l.startswith("-- Authors:") or i + 3 >= len(lines):
+            continue
+        cur = l[len(pre):].strip() if l.startswith(pre) else ""
+        names = [n.strip() for n in cur.split(",")]
+        authors = cur if all(NAME_RE.match(n) for n in names) else model_of()
+        new[i] = pre + authors
+        if lines[i + 3].startswith("-- Last revision:"):
+            new[i + 3] = "-- Reviewed:      ---"
     return "\n".join(new) if new != lines else None
 
 

@@ -1,18 +1,9 @@
 module
 
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.AddDown
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.AddUp
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.DivDown
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.DivUp
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactAdd
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactMul
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.Half
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.Le
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.Maximum
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.Minimum
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.MulDown
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.MulUp
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.Neg
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundDown
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundUp
 

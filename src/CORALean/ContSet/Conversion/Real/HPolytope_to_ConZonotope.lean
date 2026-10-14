@@ -4,7 +4,7 @@ public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
-public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

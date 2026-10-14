@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.GetSyms
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.Mmul
 public import CORALean.ContSet.Taylm.Real.Operations.Mpower
 public import CORALean.ContSet.Taylm.Real.Operations.Acos
@@ -15,19 +15,13 @@ public import CORALean.ContSet.Taylm.Real.Operations.AtanShift
 public import CORALean.ContSet.Taylm.Real.Operations.BnbLoop
 public import CORALean.ContSet.Taylm.Real.Operations.BnbStep
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
-public import CORALean.ContSet.Taylm.Real.Operations.BoxMid
-public import CORALean.ContSet.Taylm.Real.Operations.BoxRad
 public import CORALean.ContSet.Taylm.Real.Operations.BranchAndBound
 public import CORALean.ContSet.Taylm.Real.Operations.CodeEval
 public import CORALean.ContSet.Taylm.Real.Operations.CodeListMap
 public import CORALean.ContSet.Taylm.Real.Operations.Compose
-public import CORALean.ContSet.Taylm.Real.Operations.Const
-public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
 public import CORALean.ContSet.Taylm.Real.Operations.Cos
 public import CORALean.ContSet.Taylm.Real.Operations.Cosh
 public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
-public import CORALean.ContSet.Taylm.Real.Operations.Empty
-public import CORALean.ContSet.Taylm.Real.Operations.Degree
 public import CORALean.ContSet.Taylm.Real.Operations.Exp
 public import CORALean.ContSet.Taylm.Real.Operations.GlobalMin
 public import CORALean.ContSet.Taylm.Real.Operations.GoLoop
@@ -51,8 +45,6 @@ public import CORALean.ContSet.Taylm.Real.Operations.ListMin
 public import CORALean.ContSet.Taylm.Real.Operations.Log
 public import CORALean.ContSet.Taylm.Real.Operations.Mag
 public import CORALean.ContSet.Taylm.Real.Operations.Minus
-public import CORALean.ContSet.Taylm.Real.Operations.Mtimes
-public import CORALean.ContSet.Taylm.Real.Operations.MulTerms
 public import CORALean.ContSet.Taylm.Real.Operations.OptBnb
 public import CORALean.ContSet.Taylm.Real.Operations.OptBnbAdv
 public import CORALean.ContSet.Taylm.Real.Operations.OptLinQuad
@@ -76,15 +68,12 @@ public import CORALean.ContSet.Taylm.Real.Operations.Sinh
 public import CORALean.ContSet.Taylm.Real.Operations.Smul
 public import CORALean.ContSet.Taylm.Real.Operations.SplitAt
 public import CORALean.ContSet.Taylm.Real.Operations.Sqrt
-public import CORALean.ContSet.Taylm.Real.Operations.Sum
 public import CORALean.ContSet.Taylm.Real.Operations.Tan
 public import CORALean.ContSet.Taylm.Real.Operations.Tanh
 public import CORALean.ContSet.Taylm.Real.Operations.Taylor
 public import CORALean.ContSet.Taylm.Real.Operations.TermBounds
 public import CORALean.ContSet.Taylm.Real.Operations.TermBoxBounds
 public import CORALean.ContSet.Taylm.Real.Operations.Times
-public import CORALean.ContSet.Taylm.Real.Operations.Uminus
-public import CORALean.ContSet.Taylm.Real.Operations.Uplus
 public import CORALean.ContSet.Taylm.Real.Operations.SupportBound
 public import CORALean.ContSet.Taylm.Real.Operations.Trace
 public import CORALean.ContSet.Taylm.Real.Operations.Prod

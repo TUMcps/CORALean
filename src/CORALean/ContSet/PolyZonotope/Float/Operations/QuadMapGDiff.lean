@@ -1,8 +1,7 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDiff
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDown
-public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGUp
 
 @[expose] public section
 

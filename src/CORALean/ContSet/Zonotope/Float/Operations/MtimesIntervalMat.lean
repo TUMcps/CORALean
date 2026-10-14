@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.CentreMat
-public import CORALean.ContSet.Interval.Float.Operations.MatResidual
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 
 @[expose] public section

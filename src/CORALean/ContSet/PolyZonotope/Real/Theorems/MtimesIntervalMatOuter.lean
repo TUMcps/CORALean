@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-public import CORALean.ContSet.Interval.Real.Operations.Center
-public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
-public import CORALean.ContSet.SpectraShadow.Real.Operations.PointExample
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
 
 @[expose] public section

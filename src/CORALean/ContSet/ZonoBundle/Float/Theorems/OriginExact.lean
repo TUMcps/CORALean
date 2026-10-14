@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 
 @[expose] public section

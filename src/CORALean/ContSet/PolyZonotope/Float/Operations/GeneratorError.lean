@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Symmetric
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 @[expose] public section

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConsCol
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import Mathlib.Algebra.Module.Prod
 
 @[expose] public section

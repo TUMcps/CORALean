@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 
 @[expose] public section
 

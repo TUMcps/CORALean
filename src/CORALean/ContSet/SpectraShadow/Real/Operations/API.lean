@@ -13,7 +13,7 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.IsBounded
 public import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPoint
 public import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPointCora
 public import CORALean.ContSet.SpectraShadow.Real.Operations.LineExample
-public import CORALean.ContSet.SpectraShadow.Real.Operations.PointExample
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaFullspaceCora
 public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaOrigin
@@ -23,10 +23,8 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFuncCoraAllZ
 public import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
-public import CORALean.ContSet.SpectraShadow.Real.Operations.HyperplaneOne
 public import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Or
-public import CORALean.ContSet.SpectraShadow.Real.Operations.Translate
 public import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeOuter
 public import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeInner
 public import CORALean.ContSet.SpectraShadow.Real.Operations.GFro

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Project
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 
 @[expose] public section

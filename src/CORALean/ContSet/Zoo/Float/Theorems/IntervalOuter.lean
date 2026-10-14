@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zoo.Float.Operations.Interval
+public import CORALean.ContSet.Zoo.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 

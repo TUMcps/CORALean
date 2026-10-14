@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.InvFactorialBounds
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
 public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter

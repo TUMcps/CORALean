@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.ConjSlopeHigh
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.ConjSlopeLow
 
 @[expose] public section

@@ -1,10 +1,10 @@
 module
 
 public import CORALean.NN.Operations.WeightNetworkNormalFormAux
-public import CORALean.NN.Operations.WeightNetworkEval
+public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Theorems.WeightAccPushLinearEval
 public import CORALean.NN.Theorems.WeightAccPushAffineEval
-public import CORALean.NN.Theorems.WeightAccLayerEval
+public import CORALean.NN.Theorems.Basic
 
 @[expose] public section
 

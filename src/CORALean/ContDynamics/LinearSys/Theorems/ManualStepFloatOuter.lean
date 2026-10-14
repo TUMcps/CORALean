@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolu
 public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

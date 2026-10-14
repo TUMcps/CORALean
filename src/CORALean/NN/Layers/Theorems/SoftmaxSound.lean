@@ -3,7 +3,7 @@ module
 public import CORALean.NN.Layers.Operations.Softmax
 public import CORALean.NN.Layers.Theorems.SoftmaxLeRawUpper
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
-public import CORALean.NN.Layers.Theorems.Real.SoftmaxNonneg
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import CORALean.NN.Layers.Theorems.SoftmaxRawLowerLe
 public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
 

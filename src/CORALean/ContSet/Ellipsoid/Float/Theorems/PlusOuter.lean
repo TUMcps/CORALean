@@ -2,8 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
-public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
-public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.PlusSubset

@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-public import CORALean.ContSet.Interval.Float.Operations.RepresentsaPoint
-public import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

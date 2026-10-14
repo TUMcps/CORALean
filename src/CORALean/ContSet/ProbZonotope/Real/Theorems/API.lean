@@ -18,7 +18,7 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.ZonotopeProb
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.UnsafeProbLe
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.UnsafeProbPrintedCounterexample
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.ProjectLaws
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.VPolytopeExact
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.RepresentsaEmptySetIff
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfLeMaxIff
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.GeneratorsMulTranspose

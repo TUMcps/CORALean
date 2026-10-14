@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Operations.MinusFromScalar
+public import CORALean.ContSet.ContSet.Operations.Basic
 public import CORALean.ContSet.ContSet.Theorems.UminusOuter
 
 @[expose] public section

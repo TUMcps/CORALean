@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTerms
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 public import Mathlib.Algebra.BigOperators.Fin

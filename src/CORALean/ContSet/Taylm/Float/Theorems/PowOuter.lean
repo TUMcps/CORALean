@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Pow
 public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 
 @[expose] public section
 

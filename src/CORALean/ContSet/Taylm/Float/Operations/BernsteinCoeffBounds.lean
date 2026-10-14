@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.BernsteinEntryBounds
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.BoundsProd
 
 @[expose] public section

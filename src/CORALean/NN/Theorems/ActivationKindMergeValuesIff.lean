@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Operations.ActivationKindMergeValues
-public import CORALean.NN.Definitions.ActivationKindFn
+public import CORALean.NN.Definitions.Basic
 public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 public import Mathlib.Analysis.SpecialFunctions.Exp
 

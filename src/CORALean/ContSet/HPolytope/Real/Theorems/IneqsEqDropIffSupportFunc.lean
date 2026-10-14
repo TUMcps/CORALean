@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 public import CORALean.Global.DropIdx

@@ -2,8 +2,7 @@ module
 
 public import CORALean.ContSet.LevelSet.Real.Operations.And
 public import CORALean.ContSet.LevelSet.Real.Operations.Contains
-public import CORALean.ContSet.LevelSet.Real.Operations.Empty
-public import CORALean.ContSet.LevelSet.Real.Operations.Inf
+public import CORALean.ContSet.LevelSet.Real.Operations.Basic
 public import CORALean.ContSet.LevelSet.Real.Operations.Plus
 public import CORALean.ContSet.LevelSet.Real.Operations.Test
 public import CORALean.ContSet.LevelSet.Real.Operations.Lift

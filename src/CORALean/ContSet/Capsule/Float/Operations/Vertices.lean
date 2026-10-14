@@ -4,7 +4,7 @@ public import CORALean.ContSet.Capsule.Float.Operations.ArcBox
 public import CORALean.ContSet.Capsule.Float.Operations.PiStep
 public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
 public import CORALean.ContSet.Interval.Float.Operations.Atan2
-public import CORALean.ContSet.Interval.Float.Operations.Minus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

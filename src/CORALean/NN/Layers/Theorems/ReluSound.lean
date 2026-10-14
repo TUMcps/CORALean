@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.Relu
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.ActivationSound
 public import CORALean.NN.Layers.Theorems.ReluRelaxationSound
 

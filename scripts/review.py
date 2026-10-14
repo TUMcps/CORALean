@@ -2,6 +2,8 @@
 # Authors:       Claude Sonnet 5.5
 # Review helper (issue #123): pick a Lean file whose block reads
 # `Reviewed: ---`, open it in VS Code, record a human review in the block.
+# A `Basic.lean` is reviewed by section (issue #137): each section carries its
+# own block, so a section is picked, opened at its banner and reviewed alone.
 #
 #   python3 scripts/review.py [--any] [--in FRAGMENT] [--main] [--commit]
 #   --main: only main-type files, <Dir>/<Layer>/<Dir>.lean or <Dir>/<Dir>.lean
@@ -25,9 +27,13 @@ CONT = "--" + " " * (VALUE_COL - 2)
 ENTRY = re.compile(r"^\d\d-[A-Za-z]+-\d{4} \((?!Claude).+\)$")  # same rule as check-conventions.sh
 
 
-def block_state(lines):
-    """(index of the `Reviewed:` line, number of review entries) or None."""
-    for i, l in enumerate(lines):
+SECTION = re.compile(r"^-- =+  `([^`]+)`  =+ --$")  # a section banner of a `Basic.lean`
+
+
+def block_state(lines, start=0):
+    """(index of the `Reviewed:` line, number of review entries) of the first block at or
+    after line index `start`, or None."""
+    for i, l in enumerate(lines[start:], start):
         if l.startswith("-- Authors:") and i + 3 < len(lines) and lines[i + 3].startswith("-- Reviewed:"):
             if lines[i + 3].rstrip() == HEAD + "---":
                 return i + 3, 0
@@ -38,9 +44,19 @@ def block_state(lines):
     return None
 
 
-def add_review(text, entry):
+def blocks(lines):
+    """`[(index of the `Authors:` line, section label or None)]`: the file's one block, or in
+    a `Basic.lean` one per section, the block directly under its banner."""
+    out = [(i + 1, m.group(1)) for i, l in enumerate(lines[:-1])
+           if (m := SECTION.match(l)) and lines[i + 1].startswith("-- Authors:")]
+    if out:
+        return out
+    return [(i, None) for i, l in enumerate(lines) if l.startswith("-- Authors:")][:1]
+
+
+def add_review(text, entry, start=0):
     lines = text.split("\n")
-    st = block_state(lines)
+    st = block_state(lines, start)
     if st is None:
         raise ValueError("no author block")
     i, n = st
@@ -51,9 +67,9 @@ def add_review(text, entry):
     return "\n".join(lines)
 
 
-def valid(text):
+def valid(text, start=0):
     lines = text.split("\n")
-    st = block_state(lines)
+    st = block_state(lines, start)
     if st is None:
         return False
     i, n = st
@@ -81,28 +97,34 @@ def is_main_type(f, text):
             and MAIN_TYPE in text.split("\n"))
 
 
-def files(any_, frag, main=False):
+def units(any_, frag, main=False):
+    """`[(path, index of the block's `Authors:` line, section label or None)]` still to review
+    (every one with `any_`): a file, or a section of a `Basic.lean`."""
     out = []
     for f in sorted((ROOT / "src").rglob("*.lean")):
         rel = str(f.relative_to(ROOT))
         if frag and frag not in rel:
             continue
         text = f.read_text(encoding="utf-8")
-        st = block_state(text.split("\n"))
-        if st is None or (main and not is_main_type(f, text)):
+        if main and not is_main_type(f, text):
             continue
-        if any_ or st[1] == 0:
-            out.append(f)
+        lines = text.split("\n")
+        for start, label in blocks(lines):
+            st = block_state(lines, start)
+            if st is not None and (any_ or st[1] == 0):
+                out.append((f, start, label))
     return out
 
 
 def tally():
     tot = rev = 0
     for f in (ROOT / "src").rglob("*.lean"):
-        st = block_state(f.read_text(encoding="utf-8").split("\n"))
-        if st:
-            tot += 1
-            rev += st[1] > 0
+        lines = f.read_text(encoding="utf-8").split("\n")
+        for start, _ in blocks(lines):
+            st = block_state(lines, start)
+            if st:
+                tot += 1
+                rev += st[1] > 0
     return rev, tot
 
 
@@ -122,7 +144,18 @@ def self_test():
         assert valid(t1) and valid(t2)
         assert not valid(t2.replace("(Tobias Ladner)", "(Claude Opus 5.5)"))
         assert block_state(t2.split("\n")) == (5, 2)
-    sel = {str(f.relative_to(ROOT)) for f in files(True, None, main=True)}
+        sec = "-- " + "=" * 39 + "  `a`  " + "=" * 39 + " --\n"
+        blk = ("-- Authors:       Claude Opus 5.5\n-- Written:       16-August-2026\n"
+               "-- Last update:   ---\n-- Reviewed:      ---\n\n")
+        two = "/-! doc -/\n\n\n" + sec + blk + "def a := 1\n\n\n" + sec.replace("`a`", "`b`") + \
+            blk + "def b := 2\n"
+        bl = blocks(two.split("\n"))
+        assert [lbl for _, lbl in bl] == ["a", "b"], bl
+        t3 = add_review(two, "13-October-2026 (Tobias Ladner)", bl[1][0])
+        assert t3.count("-- Reviewed:      ---") == 1 and valid(t3, bl[1][0])
+        assert block_state(t3.split("\n"), bl[0][0])[1] == 0
+        assert block_state(t3.split("\n"), bl[1][0])[1] == 1
+    sel = {str(u[0].relative_to(ROOT)) for u in units(True, None, main=True)}
     assert "src/CORALean/ContSet/Zonotope/Real/Zonotope.lean" in sel
     assert "src/CORALean/ContDynamics/LinearSys/LinearSys.lean" in sel
     assert not any("/Operations/" in x for x in sel)
@@ -134,34 +167,36 @@ def main():
     if "--self-test" in a:
         return self_test()
     frag = a[a.index("--in") + 1] if "--in" in a else None
-    cands = files("--any" in a, frag, "--main" in a)
+    cands = units("--any" in a, frag, "--main" in a)
     random.shuffle(cands)
     name = git("config", "user.name") or "Unknown"
     done = 0
-    for f in cands:
+    for f, start, label in cands:
         rel = str(f.relative_to(ROOT))
+        what = f"{rel} `{label}`" if label else rel
+        at = f"{f}:{start}"  # 1-based: the banner above the block
         if shutil.which("code"):
-            subprocess.run(["code", str(f)])
+            subprocess.run(["code", "-g", at] if label else ["code", str(f)])
         else:
-            print(f"open: {f}")
-        print(rel)
+            print(f"open: {at if label else f}")
+        print(what)
         ans = input("[g]ood / [w]rong / [s]kip / [q]uit: ").strip().lower()[:1]
         if ans == "q":
             break
         if ans == "g":
-            new = add_review(f.read_text(encoding="utf-8"), f"{today()} ({name})")
-            assert valid(new)
+            new = add_review(f.read_text(encoding="utf-8"), f"{today()} ({name})", start)
+            assert valid(new, start)
             f.write_text(new, encoding="utf-8")
             done += 1
             if "--commit" in a:
                 subprocess.run(["git", "add", rel], cwd=ROOT)
-                subprocess.run(["git", "commit", "-q", "-m", f"Review {rel}"], cwd=ROOT)
+                subprocess.run(["git", "commit", "-q", "-m", f"Review {what}"], cwd=ROOT)
         elif ans == "w":
-            desc = f"File: {rel}\nCommit: {git('rev-parse', 'HEAD')}\n"
-            print(PROJECT + "?" + "issue[title]=" + urllib.parse.quote(f"Review: {rel}") +
+            desc = f"File: {what}\nCommit: {git('rev-parse', 'HEAD')}\n"
+            print(PROJECT + "?" + "issue[title]=" + urllib.parse.quote(f"Review: {what}") +
                   "&issue[description]=" + urllib.parse.quote(desc))
     rev, tot = tally()
-    print(f"reviewed this run: {done}; reviewed in the tree: {rev}/{tot}")
+    print(f"reviewed this run: {done}; reviewed in the tree: {rev}/{tot} files and sections")
 
 
 if __name__ == "__main__":

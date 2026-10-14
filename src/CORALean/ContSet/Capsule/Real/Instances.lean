@@ -7,7 +7,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.Convex
 public import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
 public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
 public import Mathlib.Analysis.InnerProductSpace.Basic

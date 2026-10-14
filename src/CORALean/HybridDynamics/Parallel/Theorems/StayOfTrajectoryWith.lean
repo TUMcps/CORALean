@@ -2,7 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
 public import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
-public import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
+public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
 public import CORALean.HybridDynamics.Parallel.Definitions.GlobalsDistinct
 public import CORALean.HybridDynamics.Parallel.Definitions.InputsGlobalOnly

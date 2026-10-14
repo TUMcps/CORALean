@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 public import Mathlib.Analysis.Normed.Field.Basic
 
 @[expose] public section

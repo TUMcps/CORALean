@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 public import Mathlib.Data.Matrix.Basic

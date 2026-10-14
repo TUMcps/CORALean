@@ -2,10 +2,10 @@ import CORALean.ContSet.Interval.Float.Instances
 import CORALean.Examples.Bench.MnistParse
 import CORALean.NN.Instances
 import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Operations.Enclose
-import CORALean.NN.Theorems.EncloseOuterEval
+import CORALean.NN.Theorems.Basic
 
 /-!
 # `mnistfc`'s graph, at a sound scalar, with weights that may not fit it

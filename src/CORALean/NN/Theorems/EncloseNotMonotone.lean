@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
 public import CORALean.ContSet.Interval.Real.Instances
-public import CORALean.Global.Float.Instances.Real.Theorems.ToRealReal
+public import CORALean.Global.Float.Instances.Real.Theorems.Basic
 public import CORALean.NN.Layers.Operations.Activation
 
 @[expose] public section

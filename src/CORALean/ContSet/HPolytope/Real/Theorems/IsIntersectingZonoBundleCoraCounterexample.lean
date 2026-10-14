@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingZonoBundleCora
-public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.Tactic.Linarith
 

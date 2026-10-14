@@ -3,8 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-public import CORALean.ContSet.Interval.Float.Operations.NormMag
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.BilinUp
 
 @[expose] public section

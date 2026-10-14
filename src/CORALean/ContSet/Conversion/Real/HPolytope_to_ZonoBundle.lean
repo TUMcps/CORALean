@@ -4,7 +4,7 @@ public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
 public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
-public import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem

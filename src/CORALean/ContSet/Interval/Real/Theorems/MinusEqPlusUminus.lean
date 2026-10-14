@@ -1,8 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.Minus
-public import CORALean.ContSet.Interval.Real.Operations.Uminus
-public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

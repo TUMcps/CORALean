@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.HalveBox
-public import CORALean.ContSet.Taylm.Float.Operations.InBox
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 @[expose] public section
 

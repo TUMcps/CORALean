@@ -10,8 +10,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
 public import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
 public import CORALean.ContSet.ZonoBundle.Float.Operations.BoundDotLP
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Project
-public import CORALean.ContSet.ZonoBundle.Float.Operations.Empty
-public import CORALean.ContSet.ZonoBundle.Float.Operations.Origin
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Basic
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
 public import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMap
 public import CORALean.ContSet.ZonoBundle.Float.Operations.CartProd

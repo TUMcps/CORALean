@@ -3,9 +3,8 @@ module
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMapGDiff
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMapCDown
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMapCUp
-public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
-public import CORALean.ContSet.Interval.Float.Operations.Plus
-public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

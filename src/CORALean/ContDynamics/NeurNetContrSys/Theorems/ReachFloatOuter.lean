@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajec
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatHorizon
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

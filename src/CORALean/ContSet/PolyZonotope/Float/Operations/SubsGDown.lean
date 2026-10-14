@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsTerms
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 
 @[expose] public section
 

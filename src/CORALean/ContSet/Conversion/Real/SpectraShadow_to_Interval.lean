@@ -3,9 +3,8 @@ module
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaEmptySetIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncLeOfBound
-public import CORALean.ContSet.Interval.Real.Operations.Empty
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

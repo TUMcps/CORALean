@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinearARX.Operations.Alg2State
 public import CORALean.ContDynamics.LinearARX.Operations.Bext
 public import CORALean.ContDynamics.LinearARX.Operations.Btilde
 public import CORALean.ContDynamics.LinearARX.Operations.OfObserver
-public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContDynamics.LinearARX.Operations.Basic
 public import CORALean.ContDynamics.LinearARX.Operations.FeedBox
 public import CORALean.ContDynamics.LinearARX.Operations.InputMat
 public import CORALean.ContDynamics.LinearARX.Operations.InputSet

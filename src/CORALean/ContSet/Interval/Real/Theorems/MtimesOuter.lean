@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.Mtimes
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
 public import Mathlib.Data.Matrix.Mul
 

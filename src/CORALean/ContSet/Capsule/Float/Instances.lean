@@ -1,10 +1,7 @@
 module
 
-public import CORALean.ContSet.Capsule.Float.Theorems.Convex
+public import CORALean.ContSet.Capsule.Float.Theorems.Basic
 public import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
-public import CORALean.ContSet.Capsule.Float.Theorems.IsCompact
-public import CORALean.ContSet.Capsule.Float.Theorems.ReduceOuter
-public import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
 public import CORALean.ContSet.Capsule.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter

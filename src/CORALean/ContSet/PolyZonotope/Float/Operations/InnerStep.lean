@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
-public import CORALean.ContSet.Interval.Float.Operations.Minus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Operations.Recip

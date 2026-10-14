@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Topology.MetricSpace.HausdorffDistance
 public import Mathlib.Analysis.Normed.Module.Basic
 

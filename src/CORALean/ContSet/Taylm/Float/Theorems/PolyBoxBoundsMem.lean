@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.PolyBoxBounds
-public import CORALean.ContSet.Taylm.Float.Operations.InBox
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.PowBoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.ProdBoundsMem
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Inf
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.A0AddSumEq
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 
 @[expose] public section
 

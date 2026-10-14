@@ -32,7 +32,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.GetSubset
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusBox
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtG
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtE
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ExtM
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
@@ -164,9 +164,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraWeight
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitGen
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitMany
-public import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonRound
-public import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonPieces
-public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
 public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianDetIntegral
 public import CORALean.ContSet.PolyZonotope.Real.Operations.AddedTermsHessian
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEval
@@ -174,7 +171,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.CubEvalMixed
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubPair
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubQuad
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDep
-public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMap
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapMixed
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SquareExample
@@ -182,7 +178,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCex
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IsPolytopeCexCorners
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraVertex
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraNormalCone
-public import CORALean.ContSet.PolyZonotope.Real.Operations.InCone
 public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraAccepts
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ConvHull
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ExpWeight

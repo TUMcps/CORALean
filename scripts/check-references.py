@@ -2,7 +2,7 @@
 """Checks `references/` against the tree, so a coverage table cannot rot.
 
     python3 scripts/check-references.py
-    python3 scripts/check-references.py --fix   # rewrite stale README counts
+    python3 scripts/check-references.py --fix   # rewrite stale README counts, re-point links
 
 `references/` holds one file per publication, listing that paper's numbered
 results and, for each, where it is formalized. Nothing here reads Lean: the
@@ -48,8 +48,10 @@ compared with one when `CORA_DIR` (default `~/CORA`) exists. See
 
 Exit status is 1 on any complaint, so it belongs in CI beside the conventions.
 `--fix` writes the counts it computed into the README's cells in place of the
-stale ones, so a count is never typed by hand; every other complaint it only
-reports, since each of those is a judgement about a page.
+stale ones, so a count is never typed by hand, and re-points a declaration link
+whose file no longer declares the name to the file that does (a declaration
+moving into or out of a `Basic.lean`); every other complaint it only reports,
+since each of those is a judgement about a page.
 """
 import json
 import os
@@ -580,6 +582,48 @@ def is_float_path(path, name=""):
     return "Float" in p.parts or "Float" in p.stem or "Float" in name
 
 
+DECL_LINK = re.compile(r"\[`([^`]+(?<!\.lean))`\]\(([^)\s]+\.lean)\)")
+
+
+def fix_decl_links(say):
+    """`--fix`: re-point a link `[`Name`](….lean)` whose file no longer declares `Name` to the
+    file that does: the `Basic.lean` beside a target that is gone, else the only file declaring
+    it, else the only one beside the old target (a declaration moved out of `Basic.lean`). Links are by declaration name, so this
+    is what keeps them when a declaration moves between its own file and `Basic.lean`."""
+    index = {}
+    for f in SRC.rglob("*.lean"):
+        for n, _, priv in lean_decls(f):
+            if not priv:
+                index.setdefault(n, set()).add(f.resolve())
+    pages = sorted(REFS.rglob("*.md")) + [ROOT / "FINDINGS.md"]
+    for page in pages:
+        text = page.read_text(encoding="utf-8")
+
+        def repl(m):
+            name, link = m.group(1), m.group(2)
+            target = (page.parent / link).resolve()
+            if target.exists() and any(n == name and not priv for n, _, priv in lean_decls(target)):
+                return m.group(0)
+            homes = index.get(name, set())
+            near = [h for h in homes if h.parent == target.parent]
+            basic = target.parent / "Basic.lean"
+            if not target.exists() and basic.resolve() in homes:
+                home = basic.resolve()  # moved into its directory's bundle
+            elif len(homes) == 1:
+                home = next(iter(homes))
+            else:
+                home = near[0] if len(near) == 1 else None
+            if home is None:
+                say(f"{page.relative_to(ROOT).as_posix()}: cannot re-point `{name}` ({link}):"
+                    f" {len(homes)} files declare it")
+                return m.group(0)
+            return f"[`{name}`]({os.path.relpath(home, page.parent).replace(os.sep, '/')})"
+        new = DECL_LINK.sub(repl, text)
+        if new != text:
+            page.write_text(new, encoding="utf-8")
+            print(f"{page.relative_to(ROOT).as_posix()}: re-pointed declaration links")
+
+
 _ALLOW = None
 
 
@@ -1034,6 +1078,9 @@ def coverage_stats(papers, tables):
 def main():
     problems = []
     say = problems.append
+
+    if "--fix" in sys.argv[1:]:
+        fix_decl_links(say)
 
     if not REFS.is_dir():
         print(f"no {REFS.relative_to(ROOT).as_posix()}/ directory", file=sys.stderr)

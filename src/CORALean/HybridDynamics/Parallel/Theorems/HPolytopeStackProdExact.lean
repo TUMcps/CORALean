@@ -4,8 +4,7 @@ public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdA
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdb
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdAe
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdbe
-public import CORALean.HybridDynamics.Parallel.Theorems.BlockProjApply
-public import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
+public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 
 @[expose] public section
 

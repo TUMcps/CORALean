@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExists
 public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInput
 public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachTimeInterval
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 
 @[expose] public section
 

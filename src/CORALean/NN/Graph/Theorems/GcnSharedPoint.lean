@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
 public import CORALean.NN.Graph.Operations.GcnShared
-public import CORALean.NN.Graph.Theorems.MatMulBilinApply
+public import CORALean.NN.Graph.Theorems.Basic
 
 @[expose] public section
 

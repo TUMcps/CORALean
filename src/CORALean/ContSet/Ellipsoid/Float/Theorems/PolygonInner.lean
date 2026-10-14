@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Polygon
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
-public import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
+public import CORALean.ContSet.Polygon.Float.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
 
 @[expose] public section

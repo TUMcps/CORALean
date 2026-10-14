@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.IsequalNondeg
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsPosStepStrict
 public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 public import Mathlib.Analysis.Normed.Module.Basic

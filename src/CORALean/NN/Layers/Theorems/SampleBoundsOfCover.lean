@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
-public import CORALean.NN.Layers.Operations.SampleHi
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.SampleLo
 public import Mathlib.Analysis.Calculus.MeanValue
 public import Mathlib.Analysis.InnerProductSpace.Basic

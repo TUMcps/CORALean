@@ -1,8 +1,8 @@
 module
 
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.DivUp
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.MantissaPos
-public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMk
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.Basic
 public import Mathlib.Data.Int.ConditionallyCompleteOrder
 
 @[expose] public section

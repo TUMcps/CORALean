@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Mmul
-public import CORALean.ContSet.Taylm.Float.Operations.Const
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 @[expose] public section
 

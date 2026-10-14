@@ -4,8 +4,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MethCBasis
 public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
 public import CORALean.ContSet.Zonotope.Float.Operations.MethCQ
 public import CORALean.ContSet.Zonotope.Float.Operations.MethCReach
-public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

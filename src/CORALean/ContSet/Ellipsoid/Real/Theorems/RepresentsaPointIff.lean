@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactMul
-public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMk
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Basic
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.Basic
 
 @[expose] public section
 

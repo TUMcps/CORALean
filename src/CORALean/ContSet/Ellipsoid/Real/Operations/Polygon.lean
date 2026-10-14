@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
-public import CORALean.ContSet.VPolytope.Real.Operations.EnclosePoints
+public import CORALean.ContSet.VPolytope.Real.Operations.Basic
 public import CORALean.Global.EuclideanNorm
 
 @[expose] public section

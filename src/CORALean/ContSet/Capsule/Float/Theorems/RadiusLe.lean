@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Capsule.Float.Operations.Radius
+public import CORALean.ContSet.Capsule.Float.Operations.Basic
 public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
 
 @[expose] public section

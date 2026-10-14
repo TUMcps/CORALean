@@ -1,16 +1,8 @@
 module
 
-public import CORALean.ContSet.Polygon.Float.Operations.ConvHull
+public import CORALean.ContSet.Polygon.Float.Operations.Basic
 public import CORALean.ContSet.Polygon.Float.Operations.ConvHullOfList
-public import CORALean.ContSet.Polygon.Float.Operations.Empty
-public import CORALean.ContSet.Polygon.Float.Operations.Interval
 public import CORALean.ContSet.Polygon.Float.Operations.IntervalOfList
-public import CORALean.ContSet.Polygon.Float.Operations.LinComb
-public import CORALean.ContSet.Polygon.Float.Operations.Mtimes
-public import CORALean.ContSet.Polygon.Float.Operations.OfPieces
-public import CORALean.ContSet.Polygon.Float.Operations.Or
-public import CORALean.ContSet.Polygon.Float.Operations.Plus
-public import CORALean.ContSet.Polygon.Float.Operations.Project
 public import CORALean.ContSet.Polygon.Float.Operations.Times
 public import CORALean.ContSet.Polygon.Float.Operations.BoundDot
 public import CORALean.ContSet.Polygon.Float.Operations.Vertices

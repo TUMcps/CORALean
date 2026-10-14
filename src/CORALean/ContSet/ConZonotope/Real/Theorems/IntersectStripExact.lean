@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectStrip
-public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 
 @[expose] public section

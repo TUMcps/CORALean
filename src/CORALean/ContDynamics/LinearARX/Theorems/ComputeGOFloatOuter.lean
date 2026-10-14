@@ -67,7 +67,7 @@ theorem LinearARX.computeGOFloat_outer (sys : LinearARX 𝕋 dy du p) (nk : ℕ)
       (if t + p - j = i.val then toRealMat sys.outputEq.C *
         toRealMat sys.toLinearSysDT.A ^ (k.val - 1 - t) * toRealMat (sys.inputMat ⟨j, hj⟩)
       else 0) else 0) (p + 1)]
-    exact Finset.sum_congr rfl fun j _ => by simp
+    exact Finset.sum_congr rfl fun j _ => by rw [dif_pos j.isLt]
   show (∑ j : Fin (p + 1), if t + p - j.val = i.val then
       toRealMat sys.outputEq.C * toRealMat sys.toLinearSysDT.A ^ (k.val - 1 - t)
         * toRealMat (sys.inputMat j) else 0) ∈ _

@@ -125,9 +125,9 @@ import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.ActivationLayerOf
 import CORALean.NN.Layers.Operations.Pack
-import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
-import CORALean.NN.Layers.Theorems.SigmoidRelaxationSound
+import CORALean.NN.Layers.Theorems.Basic
 import CORALean.NN.Layers.Operations.SigmoidEnclosure
 import CORALean.NN.Layers.Operations.SoftmaxBox
 import CORALean.NN.NeuralNetwork
@@ -147,12 +147,11 @@ import CORALean.ContSet.Polygon.Float.Operations.Subtract
 import CORALean.ContSet.SetIntersection.Instances
 import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
 import CORALean.ContSet.Taylm.Float.Operations.Times
-import CORALean.ContSet.Taylm.Float.Operations.Plus
-import CORALean.ContSet.Taylm.Float.Operations.Bounds
+import CORALean.ContSet.Taylm.Float.Operations.Basic
 import CORALean.ContSet.Taylm.Float.Operations.Exp
 import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
 import CORALean.ContSet.Equality.Float.Instances
-import CORALean.ContSet.Equality.Float.Operations.EqBool
+import CORALean.ContSet.Equality.Float.Operations.Basic
 import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
 import CORALean.ContDynamics.NonlinearARX.Operations.Feed
 import CORALean.ContDynamics.NonlinearSysDT.Operations.SimulateBoxFloat

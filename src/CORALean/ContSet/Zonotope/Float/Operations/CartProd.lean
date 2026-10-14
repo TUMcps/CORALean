@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Float.Zonotope
-public import CORALean.ContSet.Interval.Float.Operations.Append
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.GenBlockDiag
 
 @[expose] public section

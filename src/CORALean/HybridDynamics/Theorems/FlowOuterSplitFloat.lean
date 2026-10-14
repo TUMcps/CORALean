@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 

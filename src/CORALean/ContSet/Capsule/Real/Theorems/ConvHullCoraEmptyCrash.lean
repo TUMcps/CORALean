@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Real.Operations.ConvHullCora
 public import CORALean.ContSet.Capsule.Real.Theorems.Convex
-public import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
+public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 public import Mathlib.Analysis.Convex.Hull
 
 @[expose] public section

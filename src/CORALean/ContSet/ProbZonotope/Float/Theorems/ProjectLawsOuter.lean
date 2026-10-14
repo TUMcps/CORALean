@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ProbZonotope.Float.Operations.Project
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.MapMultivariateGaussian
 

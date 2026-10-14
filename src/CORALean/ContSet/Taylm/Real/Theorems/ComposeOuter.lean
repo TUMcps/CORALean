@@ -5,7 +5,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.PowOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
 
 @[expose] public section

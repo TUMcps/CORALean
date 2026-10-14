@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ProbZonotope.Float.Operations.Max
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Max
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import Mathlib.Analysis.Matrix.Spectrum
 public import Mathlib.LinearAlgebra.Matrix.Gershgorin
 public import Mathlib.LinearAlgebra.Eigenspace.Matrix

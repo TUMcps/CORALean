@@ -1,9 +1,8 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
-public import CORALean.ContSet.Interval.Float.Operations.Plus
-public import CORALean.ContSet.Interval.Float.Operations.Residual
-public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 
 @[expose] public section
 

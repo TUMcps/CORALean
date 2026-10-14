@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsClosed
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 public import CORALean.Global.NearestPointSeparates

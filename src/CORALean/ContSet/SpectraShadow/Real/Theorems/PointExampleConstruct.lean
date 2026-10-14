@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Real.Operations.PointExample
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.LmiOfAZero
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 
 @[expose] public section
 

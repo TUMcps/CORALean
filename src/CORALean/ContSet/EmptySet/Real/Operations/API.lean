@@ -1,21 +1,16 @@
 module
 
 public import CORALean.ContSet.EmptySet.Real.Operations.Isequal
-public import CORALean.ContSet.EmptySet.Real.Operations.Radius
+public import CORALean.ContSet.EmptySet.Real.Operations.Basic
 public import CORALean.ContSet.EmptySet.Real.Operations.Centre
 public import CORALean.ContSet.EmptySet.Real.Operations.And
-public import CORALean.ContSet.EmptySet.Real.Operations.Empty
 public import CORALean.ContSet.EmptySet.Real.Operations.HPolytope
 public import CORALean.ContSet.EmptySet.Real.Operations.Lift
 public import CORALean.ContSet.EmptySet.Real.Operations.Not
 public import CORALean.ContSet.EmptySet.Real.Operations.Project
 public import CORALean.ContSet.EmptySet.Real.Operations.ProjectHighDim
 public import CORALean.ContSet.EmptySet.Real.Operations.SupportFunc
-public import CORALean.ContSet.EmptySet.Real.Operations.VPolytope
 public import CORALean.ContSet.EmptySet.Real.Operations.Vertices
-public import CORALean.ContSet.EmptySet.Real.Operations.Volume
-public import CORALean.ContSet.EmptySet.Real.Operations.Interval
-public import CORALean.ContSet.EmptySet.Real.Operations.ConvHull
 public import CORALean.ContSet.EmptySet.Real.Operations.IsBounded
 public import CORALean.ContSet.EmptySet.Real.Operations.IsFullDimTest
 

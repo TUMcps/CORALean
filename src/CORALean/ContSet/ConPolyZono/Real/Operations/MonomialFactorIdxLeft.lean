@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Operations.FactorIdx
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialFactorIdx
 

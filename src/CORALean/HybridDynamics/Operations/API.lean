@@ -29,7 +29,7 @@ public import CORALean.HybridDynamics.Operations.LinearResetSynchronize
 public import CORALean.HybridDynamics.Operations.LinearResetSynchronizeFloat
 public import CORALean.HybridDynamics.Operations.LinearResetResolveUpdateFloat
 public import CORALean.HybridDynamics.Operations.LinearResetResolveFloat
-public import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
+public import CORALean.HybridDynamics.Operations.Basic
 public import CORALean.HybridDynamics.Operations.TransitionToNonlinearResetFloat
 public import CORALean.HybridDynamics.Operations.SdcFlow
 public import CORALean.HybridDynamics.Operations.LocationPotInt
@@ -49,12 +49,10 @@ public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
 public import CORALean.HybridDynamics.Operations.TransitionSynchronizeFloat
 public import CORALean.HybridDynamics.Operations.IdentGuard
 public import CORALean.HybridDynamics.Operations.SplitTreeRegions
-public import CORALean.HybridDynamics.Operations.Scatter
 public import CORALean.HybridDynamics.Operations.LinearResetResolveUpdate
 public import CORALean.HybridDynamics.Operations.LinearResetResolve
 public import CORALean.HybridDynamics.Operations.NonlinearResetResolve
 public import CORALean.HybridDynamics.Operations.NonlinearResetResolveFloat
-public import CORALean.HybridDynamics.Operations.NonlinearResetGlobalColumns
 public import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
 public import CORALean.HybridDynamics.Operations.NonlinearResetResolveCORA
 public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeResolveCORA
@@ -76,7 +74,6 @@ public import CORALean.HybridDynamics.Operations.TrajectoryErrorFloat
 public import CORALean.HybridDynamics.Operations.MatlabLinspace
 public import CORALean.HybridDynamics.Operations.SimulateRandomTimes
 public import CORALean.HybridDynamics.Operations.UlocCora
-public import CORALean.HybridDynamics.Operations.Uloc
 
 /-!
 # What a hybrid automaton computes, collected

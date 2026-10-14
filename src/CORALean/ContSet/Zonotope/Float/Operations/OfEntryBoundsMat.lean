@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
-public import CORALean.ContSet.Interval.Float.Operations.MatResidual
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 @[expose] public section

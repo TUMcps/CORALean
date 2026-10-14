@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
-public import CORALean.ContSet.Polygon.Float.Operations.OfPieces
+public import CORALean.ContSet.Polygon.Float.Operations.Basic
 public import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
 
 @[expose] public section

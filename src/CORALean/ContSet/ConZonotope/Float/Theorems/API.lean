@@ -10,9 +10,8 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceLiftByOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ReduceLiftOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.UnionSubsetLinComb
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConvexHullSubsetLinComb
-public import CORALean.ContSet.ConZonotope.Float.Theorems.Convex
+public import CORALean.ContSet.ConZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Float.Theorems.EmptyExact
-public import CORALean.ContSet.ConZonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesIntervalMatOuter
@@ -37,7 +36,6 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapDepNominal
 public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
 public import CORALean.ContSet.ConZonotope.Float.Theorems.CentreBetween
-public import CORALean.ContSet.ConZonotope.Float.Theorems.CornerMem
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemInterior
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound

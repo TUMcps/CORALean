@@ -4,7 +4,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
 public import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
-public import CORALean.ContSet.Interval.Float.Operations.LinComb
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 
 @[expose] public section

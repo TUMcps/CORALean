@@ -1,11 +1,11 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
-public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionB
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecAppend
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.ListMax
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 @[expose] public section
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.Operations.Polygon
-public import CORALean.ContSet.Polygon.Real.Theorems.ConstructOfPieces
+public import CORALean.ContSet.Polygon.Real.Theorems.Basic
 
 @[expose] public section
 

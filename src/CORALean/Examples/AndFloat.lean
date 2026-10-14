@@ -7,7 +7,7 @@ import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
 import CORALean.ContSet.LevelSet.Float.Theorems.ContainsPointSound
 import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 import CORALean.ContSet.EmptySet.Real.Theorems.AndExact
-import CORALean.ContSet.Fullspace.Real.Theorems.AndExact
+import CORALean.ContSet.Fullspace.Real.Theorems.Basic
 import CORALean.Global.Float.Instances.Dyadic.Instances
 
 /-!

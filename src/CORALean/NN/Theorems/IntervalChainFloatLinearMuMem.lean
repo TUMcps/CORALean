@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Theorems.HalvePlusMem
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.NN.Operations.IntervalChainFwdFloat

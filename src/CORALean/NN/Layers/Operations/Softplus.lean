@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Operations.Activation
-public import CORALean.NN.Layers.Operations.SoftplusRelaxation
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

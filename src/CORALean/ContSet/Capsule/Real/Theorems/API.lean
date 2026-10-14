@@ -11,10 +11,9 @@ public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
 public import CORALean.ContSet.Capsule.Real.Theorems.Convex
 public import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
 public import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
-public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
-public import CORALean.ContSet.Capsule.Real.Theorems.EmptyExact
 public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
 public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
 public import CORALean.ContSet.Capsule.Real.Theorems.RadiusExact

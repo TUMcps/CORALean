@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Real.Operations.Volume
 public import CORALean.ContSet.Polygon.Real.Operations.PieceAreas
-public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.EmptySet.Real.Operations.ConvHull
+public import CORALean.ContSet.EmptySet.Real.Operations.Basic
 public import CORALean.ContSet.EmptySet.Real.Instances
 
 @[expose] public section

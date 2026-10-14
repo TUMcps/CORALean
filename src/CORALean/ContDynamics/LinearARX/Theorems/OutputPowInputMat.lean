@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearARX.Operations.InputMat
 public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
 public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 public import CORALean.ContDynamics.LinearARX.Theorems.OutputEqMulVec
-public import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+public import CORALean.ContDynamics.LinearARX.Theorems.Basic
 
 @[expose] public section
 

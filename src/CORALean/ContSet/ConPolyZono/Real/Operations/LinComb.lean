@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
-public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ToPolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 

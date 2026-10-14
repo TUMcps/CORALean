@@ -1,30 +1,14 @@
 module
 
-public import CORALean.Global.Float.Instances.Dyadic.Operations.AddDown
-public import CORALean.Global.Float.Instances.Dyadic.Operations.AddUp
-public import CORALean.Global.Float.Instances.Dyadic.Operations.AlignExp
-public import CORALean.Global.Float.Instances.Dyadic.Operations.AlignGuard
-public import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenDown
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 public import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenUp
-public import CORALean.Global.Float.Instances.Dyadic.Operations.DivDown
-public import CORALean.Global.Float.Instances.Dyadic.Operations.DivUp
 public import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
-public import CORALean.Global.Float.Instances.Dyadic.Operations.ExactMul
-public import CORALean.Global.Float.Instances.Dyadic.Operations.Half
 public import CORALean.Global.Float.Instances.Dyadic.Operations.Le
 public import CORALean.Global.Float.Instances.Dyadic.Operations.LeAligned
 public import CORALean.Global.Float.Instances.Dyadic.Operations.LeShl
-public import CORALean.Global.Float.Instances.Dyadic.Operations.LeShr
 public import CORALean.Global.Float.Instances.Dyadic.Operations.Maximum
 public import CORALean.Global.Float.Instances.Dyadic.Operations.Minimum
-public import CORALean.Global.Float.Instances.Dyadic.Operations.MulDown
-public import CORALean.Global.Float.Instances.Dyadic.Operations.MulUp
-public import CORALean.Global.Float.Instances.Dyadic.Operations.Neg
 public import CORALean.Global.Float.Instances.Dyadic.Operations.QuotDown
-public import CORALean.Global.Float.Instances.Dyadic.Operations.QuotUp
-public import CORALean.Global.Float.Instances.Dyadic.Operations.RoundDown
-public import CORALean.Global.Float.Instances.Dyadic.Operations.RoundUp
-public import CORALean.Global.Float.Instances.Dyadic.Operations.Shift
 public import CORALean.Global.Float.Instances.Dyadic.Operations.ToRat
 
 /-!

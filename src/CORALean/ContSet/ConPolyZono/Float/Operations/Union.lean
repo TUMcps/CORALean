@@ -7,8 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
-public import CORALean.ContSet.Interval.Float.Operations.Or
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiffError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MidpointResidual
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiff

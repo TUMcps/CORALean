@@ -11,7 +11,7 @@ public import CORALean.NN.Graph.Operations.MessagePassingEnclosure
 public import CORALean.NN.Graph.Theorems.SmulEdgeHalf
 public import CORALean.NN.Graph.Theorems.SqrtAffine
 public import CORALean.NN.Graph.Theorems.UncertainDegreeBounds
-public import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
+public import CORALean.NN.Layers.Theorems.Real.Basic
 
 @[expose] public section
 

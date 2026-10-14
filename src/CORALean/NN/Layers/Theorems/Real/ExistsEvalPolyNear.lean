@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Theorems.Real.EvalPolyCoeff
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import Mathlib.Topology.ContinuousMap.Weierstrass
 
 @[expose] public section

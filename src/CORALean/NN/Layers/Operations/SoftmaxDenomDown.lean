@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.Exp
-public import CORALean.NN.Layers.Operations.SumOffDown
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

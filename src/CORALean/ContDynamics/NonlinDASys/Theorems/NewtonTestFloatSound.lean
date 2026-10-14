@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonTestFloat
 public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual

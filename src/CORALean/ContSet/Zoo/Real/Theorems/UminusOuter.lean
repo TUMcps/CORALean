@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zoo.Real.Operations.Uminus
+public import CORALean.ContSet.Zoo.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
 public import CORALean.ContSet.Interval.Real.Theorems.UminusExact
 

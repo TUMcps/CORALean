@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 
 @[expose] public section

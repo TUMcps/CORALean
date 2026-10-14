@@ -45,7 +45,7 @@ public import CORALean.HybridDynamics.Theorems.RunUntilToRunOn
 public import CORALean.HybridDynamics.Theorems.TimeIntervalInvOuter
 public import CORALean.HybridDynamics.Theorems.TimeIntervalInvFloatOuter
 public import CORALean.HybridDynamics.Theorems.TrajectoryMemIccRight
-public import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateToNonlinearReset
+public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateMemEvaluateFloat
 public import CORALean.HybridDynamics.Theorems.TransitionToNonlinearResetFloatEncloses
 public import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
@@ -83,7 +83,6 @@ public import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact
 public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeExact
 public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeInterval
 public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeOuter
-public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeReset
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeGuardExact
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeReset
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetApply

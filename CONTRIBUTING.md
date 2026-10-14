@@ -304,8 +304,10 @@ carries a reason, that a `def` under `Complexity/Time/` is named for the cost it
 that every `[N]` cited resolves, that the comment lengths and the comment
 density above are respected, that every module is reachable from one of the
 target roots, so a file written but never collected is caught rather than
-silently left out of the build, and that `noncomputable` stays where it is
-legitimate — see below.
+silently left out of the build, that a declaration of at most five code lines
+is a section of its directory's `Basic.lean` and every section is well formed
+(through `scripts/check-basic-bundles.py`; see "Small declarations"), and that
+`noncomputable` stays where it is legitimate — see below.
 
 `noncomputable` is checked against the rule the float layer exists to keep:
 free in a representation's `Real/` layer, in the ℝ model of the scalar
@@ -371,8 +373,9 @@ a theorem lives, which is the kind of prose that rots quietly; this is what
 stops it. It runs beside the conventions, on the same hook and the same CI job.
 
 Nobody types a count. After a row changes, `python3 scripts/check-references.py
---fix` writes the counts it computed into the README's cells. Everything else it
-finds, it only reports.
+--fix` writes the counts it computed into the README's cells, and re-points a
+declaration link whose file no longer declares the name (a declaration moved
+into or out of a `Basic.lean`). Everything else it finds, it only reports.
 
 `scripts/gl.py` is the GitLab client: issues, merge requests and pipelines from
 the command line, so that reading an issue or leaving a comment is not a
@@ -476,7 +479,9 @@ exception, a Lean instance having no name to use.
 has three, and `Dyadic`'s are one-line compositions.
 
 "One each" is meant literally, and `check-conventions.sh` enforces it: a file
-under `Operations/` or `Theorems/` declares exactly one public thing. What it
+under `Operations/` or `Theorems/` declares exactly one public thing — or, if
+that thing is small, it is a section of the directory's `Basic.lean` (see
+"Small declarations" below). What it
 needs and nothing else uses is `aux_`; what the tree needs earns a file of its
 own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
 declared with what it denotes, and instances have no names to collect — and so
@@ -541,6 +546,97 @@ So a cost is an explicit bounding function and a plain `≤`, and `IsBigO` appea
 once at the end, to read one parameter's slice off a bound already proved:
 `LinearSysDT.reachStepBound_isBigO`.
 
+### Small declarations
+
+A declaration of at most **five code lines** does not get a file of its own: it is
+a section of its directory's `Basic.lean` (`Operations/Basic.lean`,
+`Theorems/Basic.lean`, `Global/Basic.lean`, …), which holds that directory's small
+declarations and nothing else. A file's header — imports, module docstring, author
+block, markers — is at least nine lines, so a file of five code lines was mostly
+header. Code lines are the non-blank, non-comment lines between the code markers,
+a declaration's docstring included; `namespace`, `section`, `end`, `open`,
+`variable` and `universe` lines are context and do not count.
+
+```lean
+-- ======================================  `Interval.abs`  ====================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+def Interval.abs (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n) where
+  …
+
+end CORALean.Real
+```
+
+A section is its banner, 100 characters with the declaration's name in backticks
+(as written, or with its namespace below `CORALean` — `Float.MatExp.corrTerm` —
+where two layers' declarations of one name share a bundle), its own author block
+directly under it, one blank line, and then what the declaration's file held
+between its code markers: its `namespace`, `open` and `variable` lines and the
+declaration, wrapped in `section` … `end` when something sat outside a
+namespace. One declaration per section; under `Complexity/Time/` and
+`Complexity/Space/` one operation, its exact statement and `O` corollary together,
+as in `<Op>.lean`. There is no per-section module docstring: the declaration's own
+`/-- … -/` is its description, and every section's declaration (under `Complexity/`,
+its first, the exact statement whose justification it carries) has one. Moving a
+file in moves its module docstring there, less the title line: it becomes the
+docstring of a declaration that had none, and is appended, paragraph by paragraph
+where not already said, to one that had. Since a docstring counts as code, a file
+is eligible only if its declaration fits five code lines and the docstring limits
+*after* that move — a long explanation keeps its file. The file has a module
+docstring of its own and no author block outside the sections; `review.py`
+reviews it section by section.
+
+**Order.** Alphabetical by the banner's name, unless a section uses a declaration
+of an alphabetically later one; then the used one comes first, and among the
+sections free to go next the alphabetically first does. The check reads "uses"
+off the text in two strengths: a section that names another's declaration in full
+(`Interval.center`) *certainly* uses it, and must follow it; one whose identifiers
+contain the last component (`I.center`, `center`) *possibly* does, which dot
+notation makes the most text can say — so a section may come before an
+alphabetically earlier one only if that one possibly uses a section in between.
+
+**What stays a file of its own**, whatever its size: a main-type file, `API.lean`,
+`Instances.lean`, a CORA model or witness (`…Cora`, `…Counterexample`, and every
+file the CORA-bug appendix links), anything under `Examples/` or on
+`scripts/non-module-allowlist.txt`, a file whose module docstring has a
+`## References` block — its citation is what `references/` links to, and a section
+has no docstring to keep it in — and a file whose name says `Float` where neither
+its directory nor its declaration does, since the file name is what marks it as
+float layer to `check-references.py` and the paper's statistics.
+
+**Import cycles.** A bundle imports what its sections import. If one section's
+file imported a file outside the bundle that imports another section back, the
+bundle would import itself, so that declaration keeps its file; it is listed in
+`scripts/basic-bundle-exceptions.txt` with the cycle, one line each. The list is
+the smallest set that breaks every cycle, and only shrinks: an entry whose move
+would close no cycle any more is reported as stale. Only `Basic.lean` is a bundle
+— a cycle is never resolved by a second bundle file in the same directory.
+
+**Moving in and out.** A section that grows past five code lines moves out into a
+file of its own, and a file that shrinks to five moves in; `check-conventions.sh`
+reports both. Dependents import `…/Basic` (the exact module, never a collector),
+and `python3 scripts/check-references.py --fix` re-points the declaration links
+of `references/` and `FINDINGS.md`, which name the declaration and so find it in
+its new file.
+
+**What a bundle changes.** Importing one section imports all of them, and a
+definition change rebuilds the dependents of the whole bundle; for one-liners
+that rarely change that is accepted. A section also sees every section before it,
+and a file importing the bundle sees all of them: inside a declaration named
+`Interval.…` the namespace `Interval` is open, so a bare `max` there, which meant
+`Max.max`, would find `Interval.max` once that is in scope. A declaration whose
+name shadows a root one that way is `protected` — the float layer's
+`Interval.abs`, `Interval.max`, `Interval.min` and `Interval.le` are — and is then
+reached as `I.max` or `Interval.max` only. A proof downstream can likewise meet a `@[simp]` lemma it
+never imported before; such a proof states the lemmas and cases it needs.
+
 ### `aux_`
 
 What a file needs and nothing else uses carries the `aux_` prefix, as in CORA.
@@ -563,7 +659,9 @@ regardless: `BEGIN CODE` after the author block and before `namespace`;
 there is none; a `MAIN ...` marker immediately above the main declaration and
 above its docstring, so the docstring stays attached to what it documents; and
 `END OF CODE` as the file's last line. `API.lean` and any file that declares
-nothing carry none of this — there is nothing to find.
+nothing carry none of this — there is nothing to find. A `Basic.lean` carries
+`BEGIN CODE` and `END OF CODE`, and in place of `MAIN ...` one banner per section
+naming its declaration.
 
 The `MAIN` label names the kind of the declaration under it —
 `MAIN THEOREM`, `MAIN DEFINITION`, `MAIN INSTANCE`, `MAIN TYPE` — so a
@@ -1046,7 +1144,11 @@ file someone else wrote appends itself, comma-separated. `Reviewed:` records hum
 reviews only, as lines `DD-Month-YYYY (Name)` oldest first, continuation lines
 aligned to the value column; `---` means not yet reviewed. To review, run
 `python3 scripts/review.py` (`--in ContSet/Zonotope` restricts it, `--main` picks only main-type files,
-`--commit` commits each review) or the VS Code task "Review a random Lean file". A file added in the old
+`--commit` commits each review) or the VS Code task "Review a random Lean file or Basic.lean
+section". A file added in the old
 format is fixed by `python3 scripts/author-blocks.py`.
 
 Files that only collect or re-export do not: every `API.lean`, `CORALean.lean`.
+A `Basic.lean` carries one block per section instead of one for the file, each
+directly under its section's banner; `review.py` then picks a random unreviewed
+section, opens the file at its banner and writes `Reviewed:` into that block.

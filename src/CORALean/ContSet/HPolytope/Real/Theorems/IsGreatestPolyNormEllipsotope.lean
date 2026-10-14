@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.RowLin
 public import CORALean.Global.EllipsotopeSupport
 

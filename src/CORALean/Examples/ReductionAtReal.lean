@@ -1,4 +1,4 @@
-import CORALean.Global.Float.Instances.Real.Theorems.ToRealReal
+import CORALean.Global.Float.Instances.Real.Theorems.Basic
 import CORALean.NN.Definitions.Reduction
 import CORALean.NN.Theorems.BucketToleranceApprox
 import CORALean.NN.Theorems.CompressionPreprocessingOuter

@@ -3,13 +3,12 @@ module
 public import CORALean.Global.JacobiSliceExistence
 public import CORALean.ContSet.Interval.Float.Theorems.LeSound
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
-public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobianBoxOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.JacobiSliceMemSliceBox

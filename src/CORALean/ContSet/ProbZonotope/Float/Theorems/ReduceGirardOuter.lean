@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ProbZonotope.Float.Operations.ReduceGirard
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
 
 @[expose] public section

@@ -9,9 +9,8 @@ public import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
 public import CORALean.HybridDynamics.Parallel.Operations.Product
 public import CORALean.HybridDynamics.Parallel.Operations.ReachFloat
 public import CORALean.HybridDynamics.Parallel.Operations.ReachFloatChecked
-public import CORALean.HybridDynamics.Parallel.Operations.Unstack
+public import CORALean.HybridDynamics.Parallel.Operations.Basic
 public import CORALean.HybridDynamics.Parallel.Operations.BlockProj
-public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
 public import CORALean.HybridDynamics.Parallel.Operations.HPolytopeStackProd
 public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProdFloat
 public import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsAdd

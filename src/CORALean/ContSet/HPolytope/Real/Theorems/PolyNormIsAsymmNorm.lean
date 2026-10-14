@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.EqZeroOfMulVecNonpos
 public import Mathlib.Tactic.Linarith
 

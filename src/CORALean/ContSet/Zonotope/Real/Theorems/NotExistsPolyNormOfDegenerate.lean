@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Topology.Instances.Matrix
 public import Mathlib.Topology.Algebra.Order.Group
 public import Mathlib.Topology.Instances.Real.Lemmas

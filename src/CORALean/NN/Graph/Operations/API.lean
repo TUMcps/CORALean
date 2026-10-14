@@ -18,7 +18,7 @@ public import CORALean.NN.Graph.Operations.GcnShared
 public import CORALean.NN.Graph.Operations.GcnSteps
 public import CORALean.NN.Graph.Operations.GcnUncertain
 public import CORALean.NN.Graph.Operations.Linear
-public import CORALean.NN.Graph.Operations.LinearBias
+public import CORALean.NN.Graph.Operations.Basic
 public import CORALean.NN.Graph.Operations.LinearLin
 public import CORALean.NN.Graph.Operations.LinearPolyZonotope
 public import CORALean.NN.Graph.Operations.Mask

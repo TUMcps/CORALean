@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Interval
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter

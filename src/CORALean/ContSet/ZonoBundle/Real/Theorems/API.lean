@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.BoxOuter
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.DirPcaCovarianceIsHermitian
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingBoxContains
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
@@ -14,19 +14,16 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.GuardIntersectOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.HullOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectsOfIntersects
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCompact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesMatZonotopeOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.NotIntersectsImp
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOrder
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceCombinedOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ShrinkOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitBoxUnion
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitFilUnion
@@ -54,12 +51,9 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConvHullExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaEmptySetIff
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaOriginIff
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsConZonotope
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytope
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaConvexSet
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructNeUniv
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeEqHPolytope
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLtTop
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLeMember
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytopeConvHull

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ProbZonotope.Float.Operations.OfGenerators
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEq
 

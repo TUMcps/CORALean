@@ -4,7 +4,7 @@ public import CORALean.Global.CoeffNorm
 public import CORALean.Global.LinearRelaxationDual
 public import CORALean.Global.MatrixFunctionalEqSumSingle
 public import CORALean.Global.MatrixFunctionalMulEqSum
-public import CORALean.Global.MatrixTraceTransposeMulEqSum
+public import CORALean.Global.Basic
 public import CORALean.Global.PiLpNormToLpLeOfAbsLe
 public import Mathlib.Analysis.MeanInequalities
 public import Mathlib.Analysis.Normed.Lp.PiLp

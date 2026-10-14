@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-public import CORALean.ContSet.Interval.Real.Operations.EnclosePoints
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 

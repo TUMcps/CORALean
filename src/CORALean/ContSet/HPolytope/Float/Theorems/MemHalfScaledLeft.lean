@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft

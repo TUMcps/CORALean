@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Taylm
-public import CORALean.ContSet.Taylm.Real.Operations.Degree
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section
 

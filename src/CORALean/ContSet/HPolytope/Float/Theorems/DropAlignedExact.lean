@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.DropAligned
-public import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
+public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
 
 @[expose] public section

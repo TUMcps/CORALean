@@ -6,7 +6,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.UnitIntervalMulOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 

@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Rdivide
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
-public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 

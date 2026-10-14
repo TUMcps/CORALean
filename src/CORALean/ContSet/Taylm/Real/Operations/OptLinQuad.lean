@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
-public import CORALean.ContSet.Taylm.Real.Operations.Uminus
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section
 

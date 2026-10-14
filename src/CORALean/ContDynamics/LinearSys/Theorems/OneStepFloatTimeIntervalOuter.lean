@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachShift
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 

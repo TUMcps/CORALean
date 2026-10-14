@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
 public import CORALean.ContSet.Zonotope.Real.Theorems.CubMapMixedCoeff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
-public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

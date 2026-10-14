@@ -1,7 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Operations.TransitionToNonlinearResetFloat
-public import CORALean.HybridDynamics.Operations.TransitionToNonlinearReset
+public import CORALean.HybridDynamics.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint

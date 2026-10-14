@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zoo.Float.Operations.Rdivide
+public import CORALean.ContSet.Zoo.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.RdivideOuter
 public import CORALean.ContSet.Interval.Float.Theorems.RdivideOuter
 

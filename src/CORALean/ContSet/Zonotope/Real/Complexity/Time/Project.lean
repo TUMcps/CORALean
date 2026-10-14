@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Operations.Project
+public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Map
 
 @[expose] public section

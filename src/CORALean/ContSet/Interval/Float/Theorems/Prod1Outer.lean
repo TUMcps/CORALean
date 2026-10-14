@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.Prod1
-public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Real.Operations.Prod1
 public import Mathlib.Algebra.BigOperators.Fin

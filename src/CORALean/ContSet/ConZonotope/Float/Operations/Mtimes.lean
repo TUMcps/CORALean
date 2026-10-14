@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesResidual
 
 @[expose] public section

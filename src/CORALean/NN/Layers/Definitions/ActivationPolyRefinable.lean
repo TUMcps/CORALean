@@ -3,11 +3,11 @@ module
 public import CORALean.NN.Definitions.RefinableLayer
 public import CORALean.NN.Layers.Definitions.ActivationPoly
 public import CORALean.NN.Layers.Layer
-public import CORALean.NN.Layers.Operations.PolyRelaxationFamilyAtPattern
-public import CORALean.NN.Layers.Theorems.AtPatternSound
+public import CORALean.NN.Layers.Operations.Basic
+public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolySound
 public import CORALean.NN.Operations.RefinableLayerAtPattern
-public import CORALean.NN.Theorems.RefinableLayerAtPatternSound
+public import CORALean.NN.Theorems.Basic
 
 @[expose] public section
 

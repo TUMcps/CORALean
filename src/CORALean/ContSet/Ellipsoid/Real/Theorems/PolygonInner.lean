@@ -2,9 +2,9 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Polygon
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
-public import CORALean.ContSet.Polygon.Real.Theorems.ConstructOfPieces
-public import CORALean.ContSet.VPolytope.Real.Theorems.EnclosePointsExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
+public import CORALean.ContSet.Polygon.Real.Theorems.Basic
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

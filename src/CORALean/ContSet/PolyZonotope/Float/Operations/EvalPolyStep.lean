@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Plus
-public import CORALean.ContSet.Interval.Float.Operations.Symmetric
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyBoundS

@@ -4,8 +4,7 @@ public import CORALean.ContSet.Taylm.Float.Operations.Compose
 public import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.PowOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.MinusOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
 
 @[expose] public section

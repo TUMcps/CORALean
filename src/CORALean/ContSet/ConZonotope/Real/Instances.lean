@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact

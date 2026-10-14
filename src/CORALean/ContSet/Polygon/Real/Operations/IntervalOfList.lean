@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Polygon.Real.Polygon
 public import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
 public import CORALean.ContSet.Interval.Real.Operations.Or
-public import CORALean.ContSet.Interval.Real.Operations.Empty
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

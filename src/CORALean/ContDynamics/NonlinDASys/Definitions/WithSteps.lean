@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinDASys.Operations.ToNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Operations.Basic
 public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 
 @[expose] public section

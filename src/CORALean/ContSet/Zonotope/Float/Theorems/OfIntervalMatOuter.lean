@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.OfIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne

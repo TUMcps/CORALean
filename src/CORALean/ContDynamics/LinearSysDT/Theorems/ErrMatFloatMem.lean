@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ErrMatFloat
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 @[expose] public section

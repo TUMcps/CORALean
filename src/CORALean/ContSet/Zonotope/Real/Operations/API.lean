@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
 public import CORALean.ContSet.Zonotope.Real.Operations.Cube
-public import CORALean.ContSet.Zonotope.Real.Operations.Embed
+public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclRatioLoop
@@ -42,7 +42,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOrEmpty
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffStretch
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-public import CORALean.ContSet.Zonotope.Real.Operations.MtimesEqMap
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
@@ -51,7 +50,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.PCACovariance
 public import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
 public import CORALean.ContSet.Zonotope.Real.Operations.PairSum
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
-public import CORALean.ContSet.Zonotope.Real.Operations.Project
 public import CORALean.ContSet.Zonotope.Real.Operations.ProjectHighDim
 public import CORALean.ContSet.Zonotope.Real.Operations.QuadTaylor
 public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
@@ -85,13 +83,11 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Rotate
 public import CORALean.ContSet.Zonotope.Real.Operations.Underapproximate
 public import CORALean.ContSet.Zonotope.Real.Operations.UnderapproximateGen
 public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
-public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaOrigin
 public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPolytopeCora
 public import CORALean.ContSet.Zonotope.Real.Operations.ExactPlus
 public import CORALean.ContSet.Zonotope.Real.Operations.NormUb
 public import CORALean.ContSet.Zonotope.Real.Operations.NormExactCora
 public import CORALean.ContSet.Zonotope.Real.Operations.Radius2
-public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
 public import CORALean.ContSet.Zonotope.Real.Operations.BoundaryPoint
 public import CORALean.ContSet.Zonotope.Real.Operations.Abs
 public import CORALean.ContSet.Zonotope.Real.Operations.ConstrSat

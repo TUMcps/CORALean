@@ -3,13 +3,10 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.BoundDotLe
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesK
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusK
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ProjectOuter
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsCompact
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.OriginExact
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.CentreMemConstruct
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact

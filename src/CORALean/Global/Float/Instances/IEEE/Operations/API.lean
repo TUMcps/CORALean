@@ -1,19 +1,11 @@
 module
 
-public import CORALean.Global.Float.Instances.IEEE.Operations.AddDown
+public import CORALean.Global.Float.Instances.IEEE.Operations.Basic
 public import CORALean.Global.Float.Instances.IEEE.Operations.AddUp
-public import CORALean.Global.Float.Instances.IEEE.Operations.DivDown
 public import CORALean.Global.Float.Instances.IEEE.Operations.DivUp
-public import CORALean.Global.Float.Instances.IEEE.Operations.GridShift
 public import CORALean.Global.Float.Instances.IEEE.Operations.Half
-public import CORALean.Global.Float.Instances.IEEE.Operations.Le
-public import CORALean.Global.Float.Instances.IEEE.Operations.Maximum
-public import CORALean.Global.Float.Instances.IEEE.Operations.Minimum
-public import CORALean.Global.Float.Instances.IEEE.Operations.MulDown
 public import CORALean.Global.Float.Instances.IEEE.Operations.MulUp
-public import CORALean.Global.Float.Instances.IEEE.Operations.Neg
 public import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
-public import CORALean.Global.Float.Instances.IEEE.Operations.RoundDown
 public import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
 
 /-!

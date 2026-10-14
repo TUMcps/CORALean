@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Float.VPolytope
-public import CORALean.ContSet.Interval.Float.Operations.Or
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

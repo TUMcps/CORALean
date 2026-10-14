@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Real.Operations.LinCoef
 public import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
 public import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
-public import CORALean.ContSet.Taylm.Real.Theorems.DegreeSingle
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 
 @[expose] public section
 

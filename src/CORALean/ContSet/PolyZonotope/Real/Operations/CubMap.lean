@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.CubMapDepSingle
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 
 @[expose] public section

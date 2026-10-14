@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
-public import CORALean.ContSet.SpectraShadow.Real.Operations.Translate
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
 
 @[expose] public section

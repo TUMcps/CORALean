@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import CORALean.ContSet.Interval.Float.Operations.LinComb
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.LinComb
 public import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 

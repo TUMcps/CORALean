@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContDynamics.LinearARX.Operations.Basic
 public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
-public import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+public import CORALean.ContDynamics.LinearARX.Theorems.Basic
 public import Mathlib.Analysis.Normed.Field.Basic
 
 @[expose] public section

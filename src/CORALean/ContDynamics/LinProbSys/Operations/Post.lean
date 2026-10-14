@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinProbSys.Definitions.PostState
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Plus
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus

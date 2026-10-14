@@ -1,8 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Operations.ReluRelaxation
-public import CORALean.NN.Layers.Theorems.ClampUnitLeOne
-public import CORALean.NN.Layers.Theorems.ClampUnitNonneg
+public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.Real.ReluBoundsOfSlope
 public import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.Le
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Basic
 public import Mathlib.Tactic.Positivity
 
 @[expose] public section

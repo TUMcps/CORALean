@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.IntersectMany
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
-public import CORALean.ContSet.HPolytope.Real.Theorems.ComapExact
-public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.Global.Entrywise
 
 @[expose] public section
