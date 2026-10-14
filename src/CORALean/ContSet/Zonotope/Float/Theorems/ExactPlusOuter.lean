@@ -56,21 +56,19 @@ theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ)
   refine Fin.addCases (fun j => ?_) (fun j => ?_) j
   · refine Fin.addCases (fun j => ?_) (fun j => ?_) j
     · -- a shared column: the stored sum is rounded down, the gap is up minus down
+      -- the two entries being summed
+      set g₁ := Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i
+      set g₂ := Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i
       have e1 : ((nominal Z₁).exactPlus (nominal Z₂) k).G (Fin.castAdd _ (Fin.castAdd _ j)) i =
-          toReal (Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i) +
-            toReal (Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i) := by
+          toReal g₁ + toReal g₂ := by
         simp only [Real.Zonotope.exactPlus, Fin.append_left, Pi.add_apply]
         rfl
       have e2 : (Z₁.exactPlus Z₂ k).G (Fin.castAdd _ (Fin.castAdd _ j)) i =
-          addDown (Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i)
-            (Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i) := by
-        simp only [Zonotope.exactPlus, Fin.append_left]
+          addDown g₁ g₂ := by
+        simp only [Zonotope.exactPlus, Fin.append_left, g₁, g₂]
       have e3 : Z₁.exactPlusGap Z₂ k i (Fin.castAdd _ (Fin.castAdd _ j)) =
-          subUp (addUp (Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i)
-            (Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i))
-            (addDown (Z₁.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_left _ _)) j) i)
-              (Z₂.G (Fin.castLE (min_le_left _ _ |>.trans (min_le_right _ _)) j) i)) := by
-        simp only [Zonotope.exactPlusGap, Fin.append_left]
+          subUp (addUp g₁ g₂) (addDown g₁ g₂) := by
+        simp only [Zonotope.exactPlusGap, Fin.append_left, g₁, g₂]
       erw [e1, e2, e3]
       exact Zonotope.aux_pairSum_gap _ _
     · -- a copied column of the first operand: exact

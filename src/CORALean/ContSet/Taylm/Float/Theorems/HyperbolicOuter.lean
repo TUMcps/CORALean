@@ -65,9 +65,10 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
   set c := T.constCoef
   set N := T.maxOrder
   set g : ℝ → ℝ := if first then Real.sinh else Real.cosh with hg_def
-  have hm : toReal (maximum (absolute c) (maximum (absolute T.bounds.inf) (absolute T.bounds.sup)))
-      =
-      max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|) := by
+  -- the magnitude bound, as stored and as a real number
+  set Mf : 𝕋 := maximum (absolute c) (maximum (absolute T.bounds.inf) (absolute T.bounds.sup))
+  set M : ℝ := max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|) with hM
+  have hm : toReal Mf = M := by
     rw [toReal_maximum, toReal_maximum, toReal_absolute, toReal_absolute, toReal_absolute]
   have hB0 : (0 : ℝ) ≤ 2 ^ p / 2 := by positivity
   have hcm : |toReal c| ≤ 2 ^ p / 2 :=
@@ -85,9 +86,9 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
     cases first
     · simpa [hg_def] using Real.contDiff_cosh
     · simpa [hg_def] using Real.contDiff_sinh
-  have hbd : ∀ ξ : ℝ, |ξ| ≤ max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|) →
+  have hbd : ∀ ξ : ℝ, |ξ| ≤ M →
       |iteratedDeriv (N + 1) g ξ| ≤
-        Real.cosh (max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|)) := by
+        Real.cosh (M) := by
     intro ξ hξ
     cases first
     · simpa [hg_def] using abs_iteratedDeriv_cosh_le (N + 1) hξ
@@ -116,12 +117,12 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
     -- every point of the hull of the centre and the box is below the magnitude
     have hmag : ∀ ξ ∈ Set.Icc (min (toReal c) (toReal T.bounds.inf))
         (max (toReal c) (toReal T.bounds.sup)),
-        |ξ| ≤ max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|) := by
+        |ξ| ≤ M := by
       intro ξ hξ
-      have h1 := le_max_left |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|)
+      have h1 : |toReal c| ≤ M := le_max_left _ _
       have h2 := le_max_left |toReal T.bounds.inf| |toReal T.bounds.sup|
       have h3 := le_max_right |toReal T.bounds.inf| |toReal T.bounds.sup|
-      have h4 := le_max_right |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|)
+      have h4 : max |toReal T.bounds.inf| |toReal T.bounds.sup| ≤ M := le_max_right _ _
       rw [abs_le]
       constructor
       · rcases min_le_iff.1 hξ.1 with h5 | h5
@@ -136,7 +137,7 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
       Set.uIcc_subset_Icc ⟨min_le_left _ _, le_max_left _ _⟩
         ⟨le_trans (min_le_right _ _) hb.1, le_trans hb.2 (le_max_right _ _)⟩
     have hL := taylor_remainder_abs_le (g := g) (N := N) (c := toReal c) (x := f t)
-      (D := Real.cosh (max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|)))
+      (D := Real.cosh (M))
       (fun ξ _ => hgd.contDiffAt) fun ξ hξ => hbd ξ (hmag ξ (hsub hξ))
     refine le_trans hL ?_
     -- each factor of the bound below its rounded counterpart
@@ -144,24 +145,23 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
     have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
     have hPow := le_powUp (abs_nonneg _) hB (N + 1)
     -- the derivative bound, `cosh` of the magnitude, below its rounding
-    have hD : Real.cosh (max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|))
-        ≤ toReal (coshUp p (maximum (absolute c) (maximum (absolute T.bounds.inf)
-          (absolute T.bounds.sup)))) := by
+    have hD : Real.cosh (M)
+        ≤ toReal (coshUp p Mf) := by
       rw [← hm]
-      have hm0 : -max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|) ≤ 2 ^ p / 2 := by
-        have := le_max_left |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|)
+      have hm0 : -M ≤ 2 ^ p / 2 := by
+        have : |toReal c| ≤ M := le_max_left _ _
         have := abs_nonneg (toReal c)
         linarith
       exact coshUp_ge p _ hp (by rw [hm]; exact hm0)
     -- `1 / (N+1)!` below its rounding
     have hF := (divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
       (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (N + 1)).2
-    have hE := Real.cosh_pos (max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|))
+    have hE := Real.cosh_pos (M)
     have hY := pow_nonneg (abs_nonneg (f t - toReal c)) (N + 1)
     have hFpos : (0 : ℝ) ≤ 1 / ((N + 1).factorial : ℝ) := by positivity
-    calc Real.cosh (max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|)) *
+    calc Real.cosh (M) *
           |f t - toReal c| ^ (N + 1) / ((N + 1).factorial : ℝ)
-        = Real.cosh (max |toReal c| (max |toReal T.bounds.inf| |toReal T.bounds.sup|)) *
+        = Real.cosh (M) *
           |f t - toReal c| ^ (N + 1) * (1 / ((N + 1).factorial : ℝ)) := by ring
       _ ≤ toReal (coshUp p (maximum (absolute c) (maximum (absolute T.bounds.inf)
             (absolute T.bounds.sup)))) * toReal (powUp B (N + 1))

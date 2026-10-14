@@ -73,22 +73,23 @@ theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n} {T : Mat 𝕋 E�
   -- the residual `Δ = G₂ - G₁ T`, entrywise within its rounded magnitude
   set Δ : Mat ℝ n E₂.k := fun i j =>
     toReal (E₂.G i j) - ∑ l, toReal (E₁.G i l) * toReal (T l j) with hΔ
-  have hgap : ∀ i j, |Δ i j| ≤ toReal (maximum
+  -- the rounded magnitude of each residual entry
+  set gapF : Mat 𝕋 n E₂.k := fun i j => maximum
       (subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j))
-      (neg (subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j)))) := fun i j => by
+      (neg (subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j))) with hgapF
+  have hgap : ∀ i j, |Δ i j| ≤ toReal (gapF i j) := fun i j => by
+    -- the entry's two roundings, below and above `G₂ - G₁ T`
+    set dn := subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j) with hdn
+    set up := subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j) with hup
+    show |Δ i j| ≤ toReal (maximum up (neg dn))
     rw [toReal_maximum, toReal_neg]
     have d₁ := le_dotUp (fun l => E₁.G i l) fun l => T l j
     have d₂ := dotDown_le (fun l => E₁.G i l) fun l => T l j
     have s₁ := subDown_le_sub (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j)
     have s₂ := sub_le_subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j)
-    have m₁ := le_max_left (toReal (subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j)))
-      (-toReal (subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j)))
-    have m₂ := le_max_right (toReal (subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j)))
-      (-toReal (subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j)))
+    have m₁ := le_max_left (toReal up) (-toReal dn)
+    have m₂ := le_max_right (toReal up) (-toReal dn)
     exact abs_le.mpr ⟨by simp only [hΔ]; linarith, by simp only [hΔ]; linarith⟩
-  set gapF : Mat 𝕋 n E₂.k := fun i j => maximum
-      (subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j))
-      (neg (subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j))) with hgapF
   have hres := Ellipsoid.mem_generatorError (G := gapF) hgap hu
   -- the residual's reach plus `E₂`'s box lies in `E₁`'s box
   have hbox' : (fun i => (∑ j, Δ i j * u j) + e i) ∈ E₁.I_error.construct := fun i => by

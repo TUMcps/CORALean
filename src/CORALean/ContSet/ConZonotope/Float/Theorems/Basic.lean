@@ -23,6 +23,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open Matrix Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
@@ -66,10 +68,10 @@ Heine–Borel. -/
 theorem ConZonotope.isCompact_construct (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : IsCompact cZ.construct :=
   InflatedContSet.isCompact_construct cZ
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -87,6 +89,8 @@ omit [FloatOps 𝕋] in
 @[simp] theorem ConZonotope.materialise_eq (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ.materialise = cZ := by
   simp [ConZonotope.materialise]
+
+end
 
 end CORALean.Float
 

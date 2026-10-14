@@ -21,6 +21,8 @@ five code lines each; alphabetical, after the sections each one uses (CONTRIBUTI
 
 namespace CORALean.Real
 
+section
+
 open Matrix
 
 variable {n m : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -63,10 +65,10 @@ absorbed and nothing bounded. `rfl`, since `Operations/Plus.lean` states `h`
 directly in the structure instance. -/
 theorem Zonotope.plus_h (Z₁ Z₂ : Zonotope α) : (Z₁.plus Z₂).h = Z₁.h + Z₂.h := rfl
 
-end CORALean.Real
+end
 
 
-namespace CORALean.Real
+section
 
 variable {m n : ℕ}
 
@@ -82,6 +84,8 @@ variable {m n : ℕ}
 the definition rather than restating `bilin_h`. -/
 theorem Zonotope.mtimesMatZonotope_h (M : Zonotope (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
     (Zonotope.mtimesMatZonotope M Z).h = M.h + Z.h + M.h * Z.h := rfl
+
+end
 
 end CORALean.Real
 

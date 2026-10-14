@@ -55,6 +55,7 @@ theorem Capsule.plus_outer (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) :
   rintro _ ⟨x₁, h₁, x₂, h₂, rfl⟩
   -- the rounding of the centre, and the generators' lengths
   have hr := aux_centre_gap_le k C₁ C₂
+  set gap := normUp k fun i => subUp (addUp (C₁.c i) (C₂.c i)) (addDown (C₁.c i) (C₂.c i))
   have hg₁ : ‖toRealVec C₁.g‖₂ ≤ toReal (normUp k C₁.g) := norm₂_le_normUp k fun j => le_rfl
   have hg₂ : ‖toRealVec C₂.g‖₂ ≤ toReal (normUp k C₂.g) := norm₂_le_normUp k fun j => le_rfl
   have s₁ := add_le_addUp C₁.r C₂.r
@@ -65,12 +66,10 @@ theorem Capsule.plus_outer (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) :
     have hK := CORALean.Real.Capsule.plus_outer_keep_left C₁.nominal C₂.nominal h₁ h₂
     refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := ⟨_, _, _⟩) ?_ hK
     have s₂ := add_le_addUp (addUp C₁.r C₂.r) (normUp k C₂.g)
-    have s₃ := add_le_addUp (addUp (addUp C₁.r C₂.r) (normUp k C₂.g))
-      (normUp k fun i => subUp (addUp (C₁.c i) (C₂.c i)) (addDown (C₁.c i) (C₂.c i)))
+    have s₃ := add_le_addUp (addUp (addUp C₁.r C₂.r) (normUp k C₂.g)) gap
     show ‖(toRealVec C₁.c + toRealVec C₂.c) - toRealVec (fun i => addDown (C₁.c i) (C₂.c i))‖₂ +
         ‖toRealVec C₁.g - toRealVec C₁.g‖₂ + (toReal C₁.r + toReal C₂.r + ‖toRealVec C₂.g‖₂) ≤
-      toReal (addUp (addUp (addUp C₁.r C₂.r) (normUp k C₂.g))
-        (normUp k fun i => subUp (addUp (C₁.c i) (C₂.c i)) (addDown (C₁.c i) (C₂.c i))))
+      toReal (addUp (addUp (addUp C₁.r C₂.r) (normUp k C₂.g)) gap)
     rw [sub_self, CORALean.norm₂_zero]
     linarith
   · -- the second generator is kept: the same with the operands swapped, and the sum commuted
@@ -78,12 +77,10 @@ theorem Capsule.plus_outer (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) :
     rw [add_comm x₂ x₁] at hK
     refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := ⟨_, _, _⟩) ?_ hK
     have s₂ := add_le_addUp (addUp C₁.r C₂.r) (normUp k C₁.g)
-    have s₃ := add_le_addUp (addUp (addUp C₁.r C₂.r) (normUp k C₁.g))
-      (normUp k fun i => subUp (addUp (C₁.c i) (C₂.c i)) (addDown (C₁.c i) (C₂.c i)))
+    have s₃ := add_le_addUp (addUp (addUp C₁.r C₂.r) (normUp k C₁.g)) gap
     show ‖(toRealVec C₂.c + toRealVec C₁.c) - toRealVec (fun i => addDown (C₁.c i) (C₂.c i))‖₂ +
         ‖toRealVec C₂.g - toRealVec C₂.g‖₂ + (toReal C₂.r + toReal C₁.r + ‖toRealVec C₁.g‖₂) ≤
-      toReal (addUp (addUp (addUp C₁.r C₂.r) (normUp k C₁.g))
-        (normUp k fun i => subUp (addUp (C₁.c i) (C₂.c i)) (addDown (C₁.c i) (C₂.c i))))
+      toReal (addUp (addUp (addUp C₁.r C₂.r) (normUp k C₁.g)) gap)
     rw [sub_self, CORALean.norm₂_zero, add_comm (toRealVec C₂.c)]
     linarith
 

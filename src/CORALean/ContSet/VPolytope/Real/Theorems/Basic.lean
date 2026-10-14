@@ -24,6 +24,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
+section
+
 variable {n m : ℕ}
 
 
@@ -76,10 +78,10 @@ theorem VPolytope.project_exact (P : VPolytope (Vec ℝ n)) (dims : Fin m → Fi
     (fun x k => x (dims k)) '' P.construct = (P.project dims).construct :=
   VPolytope.map_exact (LinearMap.funLeft ℝ ℝ dims) P
 
-end CORALean.Real
+end
 
 
-namespace CORALean.Real
+section
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
@@ -119,6 +121,8 @@ theorem VPolytope.isBounded_construct (P : VPolytope α) : Bornology.IsBounded P
 directly, having no compactness to read it off. -/
 theorem VPolytope.isClosed_construct (P : VPolytope α) : IsClosed P.construct :=
   P.isCompact_construct.isClosed
+
+end
 
 end CORALean.Real
 

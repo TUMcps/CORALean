@@ -22,6 +22,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
+section
+
 open Matrix
 
 variable {n m : ℕ} {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
@@ -65,10 +67,10 @@ theorem ConZonotope.project_exact (cZ : ConZonotope (Vec ℝ n)) (dims : Fin m �
     (fun x k => x (dims k)) '' cZ.construct = (cZ.project dims).construct :=
   ConZonotope.map_exact (LinearMap.funLeft ℝ ℝ dims) cZ
 
-end CORALean.Real
+end
 
 
-namespace CORALean.Real
+section
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
@@ -84,6 +86,8 @@ theorem ConZonotope.representsa_emptySet_iff (cZ : ConZonotope α) :
     cZ.construct = ∅ ↔ cZ.representsa_emptySet := by
   rw [ConZonotope.construct_eq_image, ConZonotope.representsa_emptySet]
   exact Set.image_eq_empty
+
+end
 
 end CORALean.Real
 

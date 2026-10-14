@@ -19,6 +19,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
@@ -53,10 +55,10 @@ def Capsule.empty (n : ℕ) : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero,
 /-- No direction, no radius, centred at the origin: `zero` reads as `0`, so nothing rounds. -/
 def Capsule.origin (n : ℕ) : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, zero⟩
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps
 
@@ -85,6 +87,8 @@ def Capsule.radius (k : ℕ) (C : Capsule 𝕋 n) : 𝕋 :=
 /-- `@capsule/representsa_.m` at `origin`, tolerance `0`: a point whose centre is `0`. -/
 def Capsule.representsa_origin (C : Capsule 𝕋 n) : Bool :=
   (List.finRange n).all (fun i => le (C.c i) zero && le zero (C.c i)) && C.representsa_point
+
+end
 
 end CORALean.Float
 

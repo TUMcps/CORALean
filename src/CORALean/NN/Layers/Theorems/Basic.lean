@@ -46,6 +46,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
+section
+
 open Float Float.FloatOps Float.SoundFloatArithmetic
 
 -- not `Matrix`: its `zero` would make `FloatOps.zero` ambiguous
@@ -200,10 +202,10 @@ theorem tanhRelaxation_sound (k : ℕ) : (tanhRelaxation (𝕋 := 𝕋) k).Sound
     doubleRounding_sound (by norm_num) (by norm_num)
     (fun t => by rw [toReal_neg, toReal_one, Real.tanh_eq_sigmoid]; ring)
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet
 
@@ -222,10 +224,10 @@ theorem Layer.generatorReduction_sound [∀ n, Reduce (S n) (Vec ℝ n)] (n maxG
     (Layer.generatorReduction (S := S) n maxGens).Sound id :=
   ⟨fun s _x hx => Reduce.reduce_outer s maxGens hx⟩
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet Float.SoundFloatArithmetic
 
@@ -304,6 +306,8 @@ theorem Layer.square_sound :
 theorem Layer.tanh_sound (k : ℕ) :
     (Layer.tanh (𝕋 := 𝕋) (S := S) (n := n) k).Sound fun x i => Real.tanh (x i) :=
   Layer.activation_sound (tanhRelaxation_sound k)
+
+end
 
 end CORALean
 

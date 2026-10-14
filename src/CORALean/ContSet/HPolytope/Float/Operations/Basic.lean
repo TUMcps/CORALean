@@ -22,6 +22,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps SoundFloatArithmetic Matrix
 
 -- membership at each shape, the block that is absent discharged by `Fin.elim0`
@@ -77,10 +79,10 @@ theorem HPolytope.subset_ofBounds (Aq : Mat 𝕋 q n) (u : ∀ i, FloatBound �
     S ⊆ (HPolytope.ofBounds Aq u).construct :=
   fun x hx => HPolytope.mem_ineqs_iff.mpr fun i => (u i).le x hx
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps
 
@@ -110,6 +112,8 @@ def HPolytope.isZeroVec (v : Vec 𝕋 n) : Bool :=
 of its own; the shift rounds as `translate` does. -/
 def HPolytope.minus (P : HPolytope 𝕋 (Vec 𝕋 n)) (v : Vec 𝕋 n) : HPolytope 𝕋 (Vec 𝕋 n) :=
   HPolytope.translate (fun i => neg (v i)) P
+
+end
 
 end CORALean.Float
 

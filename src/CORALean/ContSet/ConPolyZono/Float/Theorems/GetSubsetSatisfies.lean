@@ -40,15 +40,17 @@ theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (a : Fin cPZ.p → ℝ) (ha : ∀ k, |a k| ≤ 1)
     (hsat : (Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).satisfies a) :
     (cPZ.getSubset k cen rad).satisfies a := by -- --- PROOF ---
+  -- the exact generators, the stored (rounded down) ones, and the monomials, named once
+  set G := Real.PolyZonotope.getSubsetG (nominal cPZ.consPolyZonotope) k (toReal cen) (toReal rad)
+  set Gd := cPZ.consPolyZonotope.getSubsetGDown k cen rad
+  set mon := Real.PolyZonotope.monomial
+    (Real.PolyZonotope.getSubsetE (nominal cPZ.consPolyZonotope) k) a
   -- the exact constraint value, a point of `b`
   have hy : (Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).A
       *ᵥ Real.PolyZonotope.monomial (cPZ.consPolyZonotope.getSubset k cen rad).E a
       ∈ cPZ.b.construct := hsat
   -- what rounding `A` costs, scaled by the monomials, a point of the box
-  have hd : (fun i => ∑ l, (toReal (cPZ.consPolyZonotope.getSubsetGDown k cen rad i l)
-        - Real.PolyZonotope.getSubsetG (nominal cPZ.consPolyZonotope) k (toReal cen) (toReal rad)
-            l i) * Real.PolyZonotope.monomial
-              (Real.PolyZonotope.getSubsetE (nominal cPZ.consPolyZonotope) k) a l)
+  have hd : (fun i => ∑ l, (toReal (Gd i l) - G l i) * mon l)
       ∈ (PolyZonotope.generatorError (cPZ.consPolyZonotope.getSubsetGDiff k cen rad)).construct :=
     PolyZonotope.mem_generatorError_monomial
       (fun i l => by
@@ -63,28 +65,16 @@ theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
         (cPZ.getSubset k cen rad).R a) i
       = ((Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).A
         *ᵥ Real.PolyZonotope.monomial (cPZ.consPolyZonotope.getSubset k cen rad).E a) i
-        + ∑ l, (toReal (cPZ.consPolyZonotope.getSubsetGDown k cen rad i l)
-          - Real.PolyZonotope.getSubsetG (nominal cPZ.consPolyZonotope) k (toReal cen)
-              (toReal rad) l i)
-          * Real.PolyZonotope.monomial
-            (Real.PolyZonotope.getSubsetE (nominal cPZ.consPolyZonotope) k) a l := by
+        + ∑ l, (toReal (Gd i l) - G l i) * mon l := by
     -- entrywise, one sum over the new columns on each side
     simp only [Matrix.mulVec, dotProduct, toRealMat]
     erw [← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl fun l _ => ?_
     -- the fields read the same on both sides
-    have h1 : ((nominal cPZ).getSubset k (toReal cen) (toReal rad)).A i l
-        = Real.PolyZonotope.getSubsetG (nominal cPZ.consPolyZonotope) k (toReal cen) (toReal rad)
-          l i := rfl
-    have h2 : Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).R a l
-        = Real.PolyZonotope.monomial
-          (Real.PolyZonotope.getSubsetE (nominal cPZ.consPolyZonotope) k) a l := rfl
-    have h3 : Real.PolyZonotope.monomial (cPZ.consPolyZonotope.getSubset k cen rad).E a l
-        = Real.PolyZonotope.monomial
-          (Real.PolyZonotope.getSubsetE (nominal cPZ.consPolyZonotope) k) a l := rfl
-    have h4 : toReal ((cPZ.getSubset k cen rad).A i l)
-        = toReal (cPZ.consPolyZonotope.getSubsetGDown k cen rad i l) := rfl
-    erw [h1, h2, h3, h4]
+    have h1 : ((nominal cPZ).getSubset k (toReal cen) (toReal rad)).A i l = G l i := rfl
+    have h2 : Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).R a l = mon l := rfl
+    have h4 : toReal ((cPZ.getSubset k cen rad).A i l) = toReal (Gd i l) := rfl
+    erw [h1, h2, h4]
     ring
   show _ ≤ _ ∧ _ ≤ _
   rw [heq]

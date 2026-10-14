@@ -19,6 +19,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
+section
+
 open ContSet
 
 variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSet S α]
@@ -46,10 +48,10 @@ theorem CompactSet.isBounded_construct [CompactSet S α] (s : S) :
 theorem CompactSet.isClosed_construct [CompactSet S α] (s : S) : IsClosed (construct s) :=
   (CompactSet.isCompact_construct s).isClosed
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open Matrix Pointwise
 open ContSet
@@ -77,10 +79,10 @@ open Scalar
 @[simp] theorem matMulBilin_apply {p q r : ℕ} (A : Mat ℝ p q) (B : Mat ℝ q r) :
     matMulBilin A B = A * B := rfl
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open Matrix Pointwise
 open ContSet
@@ -106,10 +108,10 @@ open ContSet
 theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
     x ∈ s ↔ x ∈ construct s := Iff.rfl
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet
 
@@ -139,10 +141,10 @@ representations of one set, since `isequal` is conservative. -/
 theorem ContSet.ne_of_construct_ne {s t : S} (h : construct s ≠ construct t) : ContSet.ne s t :=
   fun hi => h (Isequal.isequal_construct s t hi)
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet Scalar
 
@@ -158,10 +160,10 @@ variable {S α : Type} [ContSet S α]
 /-- `uplus` denotes the set it is given, so it is exact, not only an outer bound. -/
 theorem ContSet.uplus_exact (s : S) : construct (ContSet.uplus s) = construct s := rfl
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet
 
@@ -179,6 +181,8 @@ theorem LinComb.union_subset_linComb [LinComb S α] (s t : S) (hs : (construct s
     (ht : (construct t).Nonempty) :
     construct s ∪ construct t ⊆ construct (LinComb.linComb s t) :=
   (union_subset_segments hs ht).trans (LinComb.linComb_outer s t)
+
+end
 
 end CORALean
 

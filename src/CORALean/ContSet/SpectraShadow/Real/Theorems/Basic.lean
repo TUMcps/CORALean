@@ -22,6 +22,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
+section
+
 open Matrix
 
 variable {N : ℕ}
@@ -52,10 +54,10 @@ theorem SpectraShadow.A₀_add_sum_eq {α : Type} [AddCommGroup α] [Module ℝ 
     (β : Fin S.m → ℝ) (h : ∀ i, S.A i = 0) : S.A₀ + ∑ i, β i • S.A i = S.A₀ := by
   simp [h]
 
-end CORALean.Real
+end
 
 
-namespace CORALean.Real
+section
 
 open Matrix
 
@@ -123,6 +125,8 @@ theorem SpectraShadow.supportFunc_le_supportBound (S : SpectraShadow α) (c : α
     (Y : Mat ℝ S.k S.k) (hY : Y.PosSemidef) (hc : ∀ i, (S.A i * Y).trace = - c (S.G i)) :
     S.supportFunc c ≤ ((c S.c + (S.A₀ * Y).trace : ℝ) : EReal) :=
   S.supportFunc_le_of_bound c (S.supportBound c Y hY hc)
+
+end
 
 end CORALean.Real
 

@@ -46,18 +46,19 @@ theorem Layer.activationPoly_sound {P : LayerRelaxation 𝕋 n m}
   have hpt : Real.PolyZonotope.point (InflatedContSet.nominal s.dependent) a = x := hxa.symm
   have hpmem := PolyZonotope.evalPoly_outer s.dependent (P.coeffList s.interval)
     ⟨a, ha, rfl⟩
-  -- the polynomial part, one neuron's own fit per coordinate
+  -- the polynomial part, one value per coordinate
+  set pv : Vec ℝ n := fun i =>
+    Real.evalPoly (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i)
+  -- each neuron's own fit, evaluated at the box's point
   have hpval : (fun i => Real.PolyZonotope.evalPolyReal
         ((P.coeffList s.interval).map fun v => toReal (v i))
         (Real.PolyZonotope.point (InflatedContSet.nominal s.dependent) a i))
-      = fun i => Real.evalPoly
-          (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i) := by
+      = pv := by
     funext i
     rw [LayerRelaxation.coeffList_coord, Real.PolyZonotope.evalPolyReal_ofFn, congrFun hpt i]
     rfl
   -- and the deviation from that polynomial is inside the box, which is `sound`
-  have hdev : (fun i => σ (x i) - Real.evalPoly
-        (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i))
+  have hdev : (fun i => σ (x i) - pv i)
       ∈ (P.box s.interval).construct := by
     intro i
     have hrel := abs_le.mp ((hP i).sound (hbox i).1 (hbox i).2)
@@ -66,11 +67,7 @@ theorem Layer.activationPoly_sound {P : LayerRelaxation 𝕋 n m}
     rw [toReal_neg]
     exact hrel.1
   -- the value is that polynomial plus that deviation, which is what `plus` holds
-  have hsplit : (fun i => σ (x i))
-      = (fun i => Real.evalPoly
-            (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i))
-        + fun i => σ (x i) - Real.evalPoly
-            (fun k => toReal ((P i).coeffs (s.interval.inf i) (s.interval.sup i) k)) (x i) := by
+  have hsplit : (fun i => σ (x i)) = pv + fun i => σ (x i) - pv i := by
     funext i
     show σ (x i) = _ + _
     ring

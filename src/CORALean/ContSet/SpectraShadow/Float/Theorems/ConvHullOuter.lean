@@ -41,28 +41,24 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem SpectraShadow.aux_singletonOne_mem :
     (fun _ : Fin 1 => (1 : ℝ))
       ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).construct := by -- --- PROOF ---
+  -- the one-dimensional set `{1}`, named once
+  set S1 : SpectraShadow 𝕋 (Vec 𝕋 1) := SpectraShadow.singletonOne
   -- the error box is the origin, and the nominal part holds `1` at `β = 1`
-  have hE : (0 : Vec ℝ 1) ∈
-    (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).I_error.construct := by
-    rw [show (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).I_error =
-      Interval.origin 1 from rfl,
-      Interval.origin_exact]; rfl
+  have hE : (0 : Vec ℝ 1) ∈ S1.I_error.construct := by
+    rw [show S1.I_error = Interval.origin 1 from rfl, Interval.origin_exact]; rfl
   refine ⟨_, ?_, 0, hE, add_zero _⟩
   -- the nominal part, witnessed by `β = 1`
   refine SpectraShadow.mem_nominalSet_iff.2 ⟨fun _ => 1, ?_, fun i => ?_⟩
-  · have : toRealMat (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).A₀
-        + ∑ i, (fun _ : Fin 1 => (1 : ℝ)) i •
-          toRealMat ((SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).A i) =
-            (0 : Mat ℝ 2 2) := by
+  · have : toRealMat S1.A₀ + ∑ i, (fun _ : Fin 1 => (1 : ℝ)) i • toRealMat (S1.A i)
+        = (0 : Mat ℝ 2 2) := by
       ext p q
       fin_cases p <;> fin_cases q <;>
-        simp [toRealMat, SpectraShadow.singletonOne, toReal_one, toReal_zero, toReal_neg]
-    show Matrix.PosSemidef (toRealMat (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).A₀
-        + ∑ i, (fun _ : Fin 1 => (1 : ℝ)) i •
-          toRealMat ((SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).A i))
+        simp [toRealMat, S1, SpectraShadow.singletonOne, toReal_one, toReal_zero, toReal_neg]
+    show Matrix.PosSemidef
+      (toRealMat S1.A₀ + ∑ i, (fun _ : Fin 1 => (1 : ℝ)) i • toRealMat (S1.A i))
     rw [this]
     exact Matrix.PosSemidef.zero
-  · simp [SpectraShadow.singletonOne, toReal_zero, toReal_one]
+  · simp [S1, SpectraShadow.singletonOne, toReal_zero, toReal_one]
 
 theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) :
     (Fin.append y (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))

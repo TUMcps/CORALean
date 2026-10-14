@@ -133,6 +133,11 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU 
     have h4 := add_le_addUp (cZ.c i) (dotUp (fun j => cZ.G j i) ξm)
     constructor <;> linarith
   obtain ⟨hin, heq⟩ := HPolytope.mem_construct_iff.mp hP
+  -- the rounding each constraint row pays against `δ`, summed upward
+  set gapA : Fin cZ.P.m → 𝕋 := fun k =>
+    sumUp fun j => subUp (mulUp (cZ.P.A k j) (ξr j)) (mulDown (cZ.P.A k j) (ξr j))
+  set gapE : Fin cZ.P.me → 𝕋 := fun k =>
+    sumUp fun j => subUp (mulUp (cZ.P.Ae k j) (ξr j)) (mulDown (cZ.P.Ae k j) (ξr j))
   refine ⟨fun i => toReal (addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm))
       + ∑ j, toReal (mulDown (cZ.G j i) (ξr j)) * δ j,
     ConZonotope.mem_nominalSet_iff.mpr ⟨δ, hδ, HPolytope.mem_construct_iff.mpr
@@ -148,12 +153,10 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU 
     have hneg := neg_le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.A k) ξr δ hδ)
     have hd := dotDown_le (cZ.P.A k) ξm
     have hsub := sub_le_subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)
-    have hadd := add_le_addUp (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm))
-      (sumUp fun j => subUp (mulUp (cZ.P.A k j) (ξr j)) (mulDown (cZ.P.A k j) (ξr j)))
+    have hadd := add_le_addUp (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k)
     simp only [mulVec, dotProduct, toRealMat] at hk
     show ∑ j, toReal (mulDown (cZ.P.A k j) (ξr j)) * δ j ≤ toReal (addUp
-      (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm))
-      (sumUp fun j => subUp (mulUp (cZ.P.A k j) (ξr j)) (mulDown (cZ.P.A k j) (ξr j))))
+      (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k))
     linarith
   · -- an equality row, its lower end
     have hk := (heq k).1
@@ -161,11 +164,9 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU 
     have hg := le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.Ae k) ξr δ hδ)
     have hu := le_dotUp (cZ.P.Ae k) ξm
     have hsub := subDown_le_sub (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm)
-    have hsub' := subDown_le_sub (subDown (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm))
-      (sumUp fun j => subUp (mulUp (cZ.P.Ae k j) (ξr j)) (mulDown (cZ.P.Ae k j) (ξr j)))
+    have hsub' := subDown_le_sub (subDown (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm)) (gapE k)
     simp only [mulVec, dotProduct, toRealMat] at hk
-    show toReal (subDown (subDown (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm))
-      (sumUp fun j => subUp (mulUp (cZ.P.Ae k j) (ξr j)) (mulDown (cZ.P.Ae k j) (ξr j))))
+    show toReal (subDown (subDown (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm)) (gapE k))
       ≤ ∑ j, toReal (mulDown (cZ.P.Ae k j) (ξr j)) * δ j
     linarith
   · -- an equality row, its upper end
@@ -174,12 +175,10 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU 
     have hneg := neg_le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.Ae k) ξr δ hδ)
     have hd := dotDown_le (cZ.P.Ae k) ξm
     have hsub := sub_le_subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm)
-    have hadd := add_le_addUp (subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm))
-      (sumUp fun j => subUp (mulUp (cZ.P.Ae k j) (ξr j)) (mulDown (cZ.P.Ae k j) (ξr j)))
+    have hadd := add_le_addUp (subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm)) (gapE k)
     simp only [mulVec, dotProduct, toRealMat] at hk
     show ∑ j, toReal (mulDown (cZ.P.Ae k j) (ξr j)) * δ j ≤ toReal (addUp
-      (subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm))
-      (sumUp fun j => subUp (mulUp (cZ.P.Ae k j) (ξr j)) (mulDown (cZ.P.Ae k j) (ξr j))))
+      (subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm)) (gapE k))
     linarith
   · -- the point: the rescaled one plus the old error and the two roundings
     funext i

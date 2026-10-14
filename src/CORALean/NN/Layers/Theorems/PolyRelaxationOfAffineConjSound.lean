@@ -137,34 +137,24 @@ theorem PolyRelaxation.ofAffineConj_sound {P : PolyRelaxation 𝕋 m} {A B : Sca
   have h4 := add_le_addUp (A.up (P.error (B.down l) (B.up u)))
     (evalPolyUp (conjCoeffsGap A B c (P.coeffs (B.down l) (B.up u)))
       (Relaxation.conjTBound l u))
+  -- `P`'s polynomial at the scaled point, the value the exact function is compared with
+  set pe := Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t) with hpe
   -- the conjugation's scaling is all that separates the two deviations
-  have heq : g t - ra * Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t)
-      - toReal c = ra * (f (rb * t)
-        - Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t)) := by
+  have heq : g t - ra * pe - toReal c = ra * (f (rb * t) - pe) := by
     rw [hg t]; ring
-  have h5 : |g t - (ra * Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k))
-      (rb * t) + toReal c)| ≤ ra * toReal (P.error (B.down l) (B.up u)) := by
-    rw [show g t - (ra * Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k))
-      (rb * t) + toReal c) = ra * (f (rb * t)
-        - Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t)) by
-      rw [← heq]; ring, abs_mul, abs_of_pos ha]
+  have h5 : |g t - (ra * pe + toReal c)| ≤ ra * toReal (P.error (B.down l) (B.up u)) := by
+    rw [show g t - (ra * pe + toReal c) = ra * (f (rb * t) - pe) by rw [← heq]; ring,
+      abs_mul, abs_of_pos ha]
     exact mul_le_mul_of_nonneg_left h1 ha.le
+  -- the polynomial of the rounded coefficients, at the box point
+  set cu := Real.evalPoly (fun k => toReal (conjCoeffsUp A B c (P.coeffs (B.down l) (B.up u)) k)) t
+    with hcu
   -- split into the deviation from the exact conjugate and the coefficient roundings
-  show |g t - Real.evalPoly (fun k => toReal (conjCoeffsUp A B c
-      (P.coeffs (B.down l) (B.up u)) k)) t| ≤ toReal (addUp _ _)
-  have h6 := abs_add_le (g t - (ra * Real.evalPoly
-      (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t) + toReal c))
-    ((ra * Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t)
-      + toReal c) - Real.evalPoly (fun k => toReal (conjCoeffsUp A B c
-        (P.coeffs (B.down l) (B.up u)) k)) t)
-  rw [abs_sub_comm (ra * Real.evalPoly _ (rb * t) + toReal c)] at h6
+  show |g t - cu| ≤ toReal (addUp _ _)
+  have h6 := abs_add_le (g t - (ra * pe + toReal c)) ((ra * pe + toReal c) - cu)
+  rw [abs_sub_comm (ra * pe + toReal c)] at h6
   -- the triangle inequality, with the two pieces bounded above
-  rw [show g t - Real.evalPoly (fun k => toReal (conjCoeffsUp A B c
-        (P.coeffs (B.down l) (B.up u)) k)) t = (g t - (ra * Real.evalPoly
-      (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t) + toReal c))
-    + ((ra * Real.evalPoly (fun k => toReal (P.coeffs (B.down l) (B.up u) k)) (rb * t)
-      + toReal c) - Real.evalPoly (fun k => toReal (conjCoeffsUp A B c
-        (P.coeffs (B.down l) (B.up u)) k)) t) by ring]
+  rw [show g t - cu = (g t - (ra * pe + toReal c)) + ((ra * pe + toReal c) - cu) by ring]
   linarith
 
 end CORALean

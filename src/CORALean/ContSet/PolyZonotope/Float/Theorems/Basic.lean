@@ -33,6 +33,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {p h : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
@@ -184,10 +186,10 @@ theorem PolyZonotope.restructure_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.restructure.construct :=
   (PolyZonotope.reduceBy_outer pZ _ _).trans (PolyZonotope.dependent_outer _)
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -249,6 +251,8 @@ theorem PolyZonotope.nominal_p [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (V
 /-- The nominal PolyZonotope's field `q`, so proofs can see through the instance. -/
 theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
     (InflatedContSet.nominal pZ).q = pZ.q := rfl
+
+end
 
 end CORALean.Float
 

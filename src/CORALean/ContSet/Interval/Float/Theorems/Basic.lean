@@ -36,6 +36,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps SoundFloatArithmetic Pointwise Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
@@ -191,10 +193,10 @@ theorem Interval.times_outer (I J : Interval (Vec 𝕋 n)) :
 theorem Interval.uplus_exact {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
     [Entrywise β ι] (I : Interval α) : I.uplus.construct = I.construct := rfl
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open SoundFloatArithmetic
 
@@ -212,10 +214,10 @@ omit [FloatOps 𝕋] in
 @[simp] theorem Interval.materialise_eq (I : Interval (Vec 𝕋 n)) : I.materialise = I := by
   simp [Interval.materialise]
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open SoundFloatArithmetic
 
@@ -235,10 +237,10 @@ omit [FloatOps 𝕋] in
     I.materialiseMat = I := by
   simp [Interval.materialiseMat]
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open SoundFloatArithmetic
 
@@ -254,6 +256,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- Nothing rounds, so this is `rfl`. -/
 theorem Interval.reindex_nominal (e : Fin m ≃ Fin n) (I : Interval (Vec 𝕋 n)) :
     (I.reindex e).nominal = I.nominal.reindex e := rfl
+
+end
 
 end CORALean.Float
 

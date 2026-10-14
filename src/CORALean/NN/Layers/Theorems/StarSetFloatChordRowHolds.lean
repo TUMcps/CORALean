@@ -77,28 +77,32 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval �
   -- the products with the generators, and the widest factor of the box
   have hP := fun i => Interval.mul_between_corners hklo hkhi
     (le_refl (toReal (s.G j i))) (le_refl (toReal (s.G j i)))
-  have hmag : ∀ i, |α i| ≤ toReal (maximum (absolute (s.l i)) (absolute (s.u i))) := fun i => by
+  -- per generator: the two rounded products with the slope's corners, and the widest factor
+  set lo : Fin s.m → 𝕋 := fun i => Interval.mulLo klo khi (s.G j i) (s.G j i) with hlo
+  set hi : Fin s.m → 𝕋 := fun i => Interval.mulHi klo khi (s.G j i) (s.G j i) with hhi
+  set wd : Fin s.m → 𝕋 := fun i => maximum (absolute (s.l i)) (absolute (s.u i)) with hwd
+  have hmag : ∀ i, |α i| ≤ toReal (wd i) := fun i => by
     rw [toReal_maximum, toReal_absolute, toReal_absolute]
     exact abs_le_max_abs_abs (hα i).1 (hα i).2
   -- what the rounding of one generator's product costs over the box
-  have hterm : ∀ i, (k * toReal (s.G j i) - toReal (Interval.mulLo klo khi (s.G j i) (s.G j i)))
+  have hterm : ∀ i, (k * toReal (s.G j i) - toReal (lo i))
       * α i ≤ toReal (mulUp
-        (subUp (Interval.mulHi klo khi (s.G j i) (s.G j i))
-          (Interval.mulLo klo khi (s.G j i) (s.G j i)))
-        (maximum (absolute (s.l i)) (absolute (s.u i)))) := fun i => by
+        (subUp (hi i)
+          (lo i))
+        (wd i)) := fun i => by
     have hδ0 : 0 ≤ k * toReal (s.G j i)
-        - toReal (Interval.mulLo klo khi (s.G j i) (s.G j i)) := by linarith [(hP i).1]
-    have hw : k * toReal (s.G j i) - toReal (Interval.mulLo klo khi (s.G j i) (s.G j i))
-        ≤ toReal (subUp (Interval.mulHi klo khi (s.G j i) (s.G j i))
-          (Interval.mulLo klo khi (s.G j i) (s.G j i))) :=
+        - toReal (lo i) := by linarith [(hP i).1]
+    have hw : k * toReal (s.G j i) - toReal (lo i)
+        ≤ toReal (subUp (hi i)
+          (lo i)) :=
       le_trans (by linarith [(hP i).2]) (sub_le_subUp _ _)
     -- the cost is nonnegative, so it is at most its size against the widest factor
-    calc (k * toReal (s.G j i) - toReal (Interval.mulLo klo khi (s.G j i) (s.G j i))) * α i
-        ≤ (k * toReal (s.G j i) - toReal (Interval.mulLo klo khi (s.G j i) (s.G j i)))
+    calc (k * toReal (s.G j i) - toReal (lo i)) * α i
+        ≤ (k * toReal (s.G j i) - toReal (lo i))
           * |α i| := mul_le_mul_of_nonneg_left (le_abs_self _) hδ0
-      _ ≤ toReal (subUp (Interval.mulHi klo khi (s.G j i) (s.G j i))
-            (Interval.mulLo klo khi (s.G j i) (s.G j i)))
-          * toReal (maximum (absolute (s.l i)) (absolute (s.u i))) :=
+      _ ≤ toReal (subUp (hi i)
+            (lo i))
+          * toReal (wd i) :=
         mul_le_mul hw (hmag i) (abs_nonneg _) (le_trans hδ0 hw)
       _ ≤ _ := mul_le_mulUp _ _
   have hsumterm := le_trans (Finset.sum_le_sum fun i _ => hterm i) (sum_le_sumUp _)
@@ -108,14 +112,14 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval �
   -- the right-hand side is the two rounded parts added up
   have hrhs := add_le_addUp (Interval.mulHi klo khi (subDown (s.c j) b.inf) (subUp (s.c j) b.inf))
     (sumUp fun i => mulUp
-      (subUp (Interval.mulHi klo khi (s.G j i) (s.G j i))
-        (Interval.mulLo klo khi (s.G j i) (s.G j i)))
-      (maximum (absolute (s.l i)) (absolute (s.u i))))
+      (subUp (hi i)
+        (lo i))
+      (wd i))
   -- the sums, then assemble
   have hsplit : ∑ i, (k * toReal (s.G j i)
-      - toReal (Interval.mulLo klo khi (s.G j i) (s.G j i))) * α i
+      - toReal (lo i)) * α i
       = k * ∑ i, toReal (s.G j i) * α i
-        - ∑ i, toReal (Interval.mulLo klo khi (s.G j i) (s.G j i)) * α i := by
+        - ∑ i, toReal (lo i) * α i := by
     rw [Finset.mul_sum, ← Finset.sum_sub_distrib]
     exact Finset.sum_congr rfl fun i _ => by ring
   have hk' : k * (y - lf) = k * (toReal (s.c j) - lf) + k * ∑ i, toReal (s.G j i) * α i := by
@@ -124,8 +128,8 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval �
   unfold StarSet.chordRow
   simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last, toReal_neg, toReal_one,
     one_mul]
-  have e : ∑ i : Fin s.m, -toReal (Interval.mulLo klo khi (s.G j i) (s.G j i)) * α i
-      = -∑ i, toReal (Interval.mulLo klo khi (s.G j i) (s.G j i)) * α i := by
+  have e : ∑ i : Fin s.m, -toReal (lo i) * α i
+      = -∑ i, toReal (lo i) * α i := by
     rw [← Finset.sum_neg_distrib]
     exact Finset.sum_congr rfl fun i _ => by ring
   rw [e]

@@ -23,6 +23,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
@@ -77,10 +79,10 @@ omit [SoundFloatArithmetic 𝕋] in
 @[simp] theorem Ellipsoid.plus_k (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) :
     (Ellipsoid.plus s₁ s₂ E₁ E₂).k = E₁.k + E₂.k := rfl
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -130,6 +132,8 @@ theorem Ellipsoid.nominal_k [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
 /-- The nominal Ellipsoid's field `c`, so proofs can see through the instance. -/
 theorem Ellipsoid.nominal_q [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
     (InflatedContSet.nominal E).c = toRealVec E.c := rfl
+
+end
 
 end CORALean.Float
 

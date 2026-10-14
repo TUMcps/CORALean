@@ -24,6 +24,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
@@ -151,10 +153,10 @@ def ConPolyZono.rescaleStep (cen rad : ℕ → 𝕋) (acc : ConPolyZono 𝕋 (Ve
     ConPolyZono 𝕋 (Vec 𝕋 n) :=
   if h : r < acc.p then acc.getSubset ⟨r, h⟩ (cen r) (rad r) else acc
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps
 
@@ -170,6 +172,8 @@ open FloatOps
 def ConPolyZono.unitBox (𝕋 : Type) [FloatOps 𝕋] (p : ℕ) : Interval (Vec 𝕋 p) where
   inf := fun _ => neg one
   sup := fun _ => one
+
+end
 
 end CORALean.Float
 

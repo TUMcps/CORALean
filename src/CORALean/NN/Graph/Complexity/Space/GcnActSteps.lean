@@ -53,28 +53,25 @@ theorem GNN.gcnActSteps_h_le (ν : ℕ) (L : ℕ) :
     simp [GNN.gcnActSteps]
   | succ L ih =>
     intro c W acts hadd P H hp
+    -- the first layer's activation set, named once
+    set A := (acts 0).act (GNN.gcnShared (W 0) P H hp) with hA
     -- one step: convolve, enclose the activation, make its generators dependent
-    have hstep : (((acts 0).act (GNN.gcnShared (W 0) P H hp)).dependent).h + 1
-        ≤ (P.h + 2) * (H.h + 1) + ν := by
+    have hstep : A.dependent.h + 1 ≤ (P.h + 2) * (H.h + 1) + ν := by
       have h1 := hadd 0 (Nat.succ_pos L) (GNN.gcnShared (W 0) P H hp)
       rw [GNN.gcnShared_h, GNN.gcnShared_q] at h1
-      show ((acts 0).act (GNN.gcnShared (W 0) P H hp)).h
-          + ((acts 0).act (GNN.gcnShared (W 0) P H hp)).q + 1 ≤ _
+      show A.h + A.q + 1 ≤ _
       nlinarith
     have hih := ih (fun s => c (s + 1)) (fun s => W (s + 1)) (fun s => acts (s + 1))
       (fun s hs => hadd (s + 1) (by omega))
-      (P.padBack ((acts 0).act (GNN.gcnShared (W 0) P H hp)).q)
-      ((acts 0).act (GNN.gcnShared (W 0) P H hp)).dependent (by
-        show P.p + ((acts 0).act (GNN.gcnShared (W 0) P H hp)).q
-          = ((acts 0).act (GNN.gcnShared (W 0) P H hp)).p
-            + ((acts 0).act (GNN.gcnShared (W 0) P H hp)).q
+      (P.padBack A.q)
+      A.dependent (by
+        show P.p + A.q = A.p + A.q
         rw [(acts 0).p_eq]; rfl)
     show (GNN.gcnActSteps L _ _ _ _ _ _).h + 1 ≤ _
     refine hih.trans ?_
     -- `padBack` keeps `P.h`, and the next bound absorbs the step's `ν`
-    show (P.h + 2) ^ L * (((acts 0).act (GNN.gcnShared (W 0) P H hp)).dependent.h + 1 + L * ν)
-      ≤ (P.h + 2) ^ (L + 1) * (H.h + 1 + (L + 1) * ν)
-    calc (P.h + 2) ^ L * (((acts 0).act (GNN.gcnShared (W 0) P H hp)).dependent.h + 1 + L * ν)
+    show (P.h + 2) ^ L * (A.dependent.h + 1 + L * ν) ≤ (P.h + 2) ^ (L + 1) * (H.h + 1 + (L + 1) * ν)
+    calc (P.h + 2) ^ L * (A.dependent.h + 1 + L * ν)
         ≤ (P.h + 2) ^ L * ((P.h + 2) * (H.h + 1) + ν + L * ν) := by gcongr
       _ ≤ (P.h + 2) ^ L * ((P.h + 2) * (H.h + 1 + (L + 1) * ν)) := by
           gcongr

@@ -67,25 +67,21 @@ theorem Capsule.mtimes_outer (k : ℕ) (M : Mat 𝕋 m n) (C : Capsule 𝕋 n) :
     obtain ⟨t, _, hle⟩ := hx
     exact le_trans (CORALean.norm₂_nonneg _) hle
   refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := ⟨_, _, _⟩) ?_ hK
+  -- the rounded radius, and the two rounding gaps of the centre and of the generator
+  set rad := mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j)))
+  set gC := normUp k fun i => subUp (dotUp (M i) C.c) (mulVecDown M C.c i)
+  set gG := normUp k fun i => subUp (dotUp (M i) C.g) (mulVecDown M C.g i)
   -- the three lengths: the centre's gap, the generator's gap, and the scaled radius
   have h₁ := aux_mulVec_gap_le k M C.c
   have h₂ := aux_mulVec_gap_le k M C.g
-  have h₃ : toReal C.r * Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤
-      toReal (mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j)))) :=
+  have h₃ : toReal C.r * Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤ toReal rad :=
     le_trans (mul_le_mul_of_nonneg_left (aux_frobenius_le k M) hr) (mul_le_mulUp _ _)
-  have s₁ := add_le_addUp (mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j))))
-    (normUp k fun i => subUp (dotUp (M i) C.c) (mulVecDown M C.c i))
-  have s₂ := add_le_addUp
-    (addUp (mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j))))
-      (normUp k fun i => subUp (dotUp (M i) C.c) (mulVecDown M C.c i)))
-    (normUp k fun i => subUp (dotUp (M i) C.g) (mulVecDown M C.g i))
+  have s₁ := add_le_addUp rad gC
+  have s₂ := add_le_addUp (addUp rad gC) gG
   show ‖(toRealMat M *ᵥ toRealVec C.c) - toRealVec (mulVecDown M C.c)‖₂ +
       ‖(toRealMat M *ᵥ toRealVec C.g) - toRealVec (mulVecDown M C.g)‖₂ +
       toReal C.r * Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤ _
-  show _ ≤ toReal (addUp
-    (addUp (mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j))))
-      (normUp k fun i => subUp (dotUp (M i) C.c) (mulVecDown M C.c i)))
-    (normUp k fun i => subUp (dotUp (M i) C.g) (mulVecDown M C.g i)))
+  show _ ≤ toReal (addUp (addUp rad gC) gG)
   linarith
 
 end CORALean.Float

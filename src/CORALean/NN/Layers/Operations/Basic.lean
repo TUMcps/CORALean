@@ -35,6 +35,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
+section
+
 open Float Float.FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {N n : ℕ}
@@ -136,10 +138,10 @@ The mirror of `sumOffUp`. -/
 def sumOffDown (i : Fin n) (v : Fin n → 𝕋) : 𝕋 :=
   sumDown fun j => if j = i then zero else v j
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open Float Float.FloatOps
 
@@ -302,10 +304,10 @@ def squareEnclosure : Enclosure 𝕋 where
   lo a := mulDown a a
   hi a := mulUp a a
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet
 
@@ -357,6 +359,8 @@ def Layer.relu (lam : 𝕋 → 𝕋 → 𝕋 := reluSlope) : Layer S n n :=
 /-- CORA's `nnRootLayer`: `Layer.activation` at `rootRelaxation p`. Sound on every set,
 `Real.sqrt` being `0` below `0` and `sqrtUp`/`sqrtDown` total. -/
 def Layer.root (p : ℕ) : Layer S n n := Layer.activation (rootRelaxation p)
+
+end
 
 end CORALean
 

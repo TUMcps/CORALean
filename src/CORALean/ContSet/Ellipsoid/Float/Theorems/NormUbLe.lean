@@ -35,8 +35,10 @@ theorem Ellipsoid.norm₂_le_normUb (k : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec �
   obtain ⟨y, hy, e, he, rfl⟩ := hx
   -- the nominal part, by the exact layer
   have hy' := CORALean.Real.Ellipsoid.norm₂_le_normUb _ hy
-  have herr : ∀ i, |e i| ≤
-      |toReal (maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))| := by
+  -- the error box's largest magnitudes, and the rounded Frobenius norm of the generators
+  set mg : Fin n → 𝕋 := fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))
+  set fr := sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j))
+  have herr : ∀ i, |e i| ≤ |toReal (mg i)| := by
     intro i
     have h : toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i) := he i
     have h' := abs_le_max_abs_abs h.1 h.2
@@ -47,21 +49,16 @@ theorem Ellipsoid.norm₂_le_normUb (k : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec �
   have hq : ‖toRealVec E.c‖₂ ≤ toReal (normUp k E.c) := norm₂_le_normUp k fun j => le_refl _
   -- the Frobenius norm of the stored generator matrix, rounded up
   have hF : Real.sqrt (∑ i, ∑ j, toReal (E.G i j) ^ 2) ≤
-      toReal (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j))) := by
+      toReal fr := by
     refine le_trans (Real.sqrt_le_sqrt ?_) (le_sqrtUp k _)
     refine le_trans (Finset.sum_le_sum fun i _ => ?_) (sum_le_sumUp _)
     exact sq_sum_le_sqSumUp (v := fun j => toReal (E.G i j)) (m := fun j => absolute (E.G i j))
       fun j => by rw [toReal_absolute]
   -- the two upward additions
-  have s₁ := add_le_addUp (normUp k E.c)
-    (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))
-  have s₂ := add_le_addUp (addUp (normUp k E.c)
-    (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))) (normUp k fun i =>
-      maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))
+  have s₁ := add_le_addUp (normUp k E.c) fr
+  have s₂ := add_le_addUp (addUp (normUp k E.c) fr) (normUp k mg)
   have hnom : ‖y‖₂ ≤ ‖toRealVec E.c‖₂ + Real.sqrt (∑ i, ∑ j, toReal (E.G i j) ^ 2) := hy'
-  show ‖y + e‖₂ ≤ toReal (addUp (addUp (normUp k E.c)
-    (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))) (normUp k fun i =>
-      maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))
+  show ‖y + e‖₂ ≤ toReal (addUp (addUp (normUp k E.c) fr) (normUp k mg))
   have := norm₂_add_le y e
   linarith
 

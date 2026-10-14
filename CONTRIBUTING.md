@@ -332,7 +332,9 @@ is a section of its directory's `Basic.lean` and every section is well formed
 defines nothing ("A theorem file defines nothing"), that a float definition is not the exact
 operation at `nominal` under a second name (`scripts/check-float-wrappers.py`; "Float
 definitions earn their name"), that a definition citing a paper's algorithm carries its steps
-(`scripts/check-algorithm-steps.py`; "Algorithms read like the paper"), and that
+(`scripts/check-algorithm-steps.py`; "Algorithms read like the paper"), that a long subterm
+is not spelled out three times in one declaration (`scripts/check-repeated-subterms.py`;
+"Name what repeats"), and that
 `noncomputable` stays where it is legitimate — see below.
 
 `noncomputable` is checked against the rule the float layer exists to keep:
@@ -658,6 +660,34 @@ types, or a different set of instance arguments, which Lean would otherwise add 
 every declaration that mentions the type). Adjacent blocks with the same lines are one
 block (checked). A block opens with `namespace` or `section`, never a bare `open` or
 `variable`, which would leak into every section after it.
+
+**One namespace, opened once.** Where the `variable`s disagree inside one namespace, the
+namespace is not closed and reopened: `end X` directly followed by `namespace X` is
+rejected (checked). The `namespace` line stands once, and each set of `open`s and
+`variable`s lives in a nested `section` … `end` with its own sections; the last `end X`
+closes the namespace after the last of them.
+
+```lean
+namespace CORALean
+
+section
+open ContSet
+variable {S α : Type} [ContSet S α] [Isequal S]
+
+-- … the sections that use these `variable`s …
+
+end
+
+section
+open ContSet Scalar
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type}
+
+-- … the sections that use those …
+
+end
+
+end CORALean
+```
 
 Lean puts a `variable` binder into a declaration only where the declaration uses it,
 and an instance argument only where it uses the type the instance is about, so a block's
@@ -1054,6 +1084,23 @@ declaration it silently detaches the two.
 
 Import Mathlib modules in the file that uses them, never through a shared file:
 a shared import list rebuilds every importer when any import is added to it.
+
+### Name what repeats
+
+A subterm used more than once in a statement or a proof gets a name, once, where it is first
+needed: the reader then sees what the repeated part *is* and compares the places that use it at
+a glance. A fact is a `have h : … := …`. A term in a proof is a `set x := … with hx` (after the
+`obtain` or `intro` it depends on, and before the hypotheses it should replace, since `set`
+rewrites the context as well as the goal), or an `obtain ⟨x, hx⟩ : ∃ x, x = … := ⟨_, rfl⟩` where
+the name should stay opaque. A term in a statement that its readers will see is named by a local
+`let` at the head of the statement (`let mid := … ; a ≤ mid ∧ mid ≤ b`), which a proof takes
+with `intro mid`. Where a `set` name is opaque to `simp` and `linarith`, `simp only [x]` unfolds it
+at that step. Naming changes how a statement or proof is written, not what it states, so it
+does not count as a change of the file for the `Reviewed:` line.
+
+`scripts/check-repeated-subterms.py` reports the clearest case: a parenthesised or `⟨ … ⟩` group
+of 70 characters or more that one declaration spells out three times or more. The ones not yet
+named are on `scripts/repeated-subterm-allowlist.txt`, which only shrinks.
 
 ### `aux_sum_univ_<op>`
 

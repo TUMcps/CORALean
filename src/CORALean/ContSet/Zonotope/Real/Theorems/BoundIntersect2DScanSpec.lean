@@ -174,21 +174,16 @@ theorem Zonotope.boundIntersect2DScan_spec (Z : Zonotope (Vec ℝ 2)) (hh : 0 < 
         (y : EReal) ≤ (Z.boundIntersect2DScan γ).2} := by -- --- PROOF ---
   -- the zonogon with the generators turned upward, then sorted by angle
   set π := Tuple.sort fun i => Complex.arg (⟨Z.pointUp.G i 0, Z.pointUp.G i 1⟩ : ℂ) with hπ
-  have h1 : ∀ j, 0 ≤ (⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ : Zonotope (Vec ℝ 2)).G j 1 ∧
-      (0 < (⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ : Zonotope (Vec ℝ 2)).G j 1 ∨
-        0 ≤ (⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ : Zonotope (Vec ℝ 2)).G j 0) :=
+  set Zs : Zonotope (Vec ℝ 2) := ⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ with hZs
+  have h1 : ∀ j, 0 ≤ Zs.G j 1 ∧ (0 < Zs.G j 1 ∨ 0 ≤ Zs.G j 0) :=
     fun j => Z.pointUp_half_plane (π j)
-  have h2 : ∀ i j : Fin Z.pointUp.h, i < j → 0 ≤
-      (⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ : Zonotope (Vec ℝ 2)).G i 0 *
-          (⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ : Zonotope (Vec ℝ 2)).G j 1 -
-        (⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ : Zonotope (Vec ℝ 2)).G i 1 *
-          (⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ : Zonotope (Vec ℝ 2)).G j 0 :=
+  have h2 : ∀ i j : Fin Z.pointUp.h, i < j → 0 ≤ Zs.G i 0 * Zs.G j 1 - Zs.G i 1 * Zs.G j 0 :=
     fun i j hij => Zonotope.cross_nonneg_of_arg_le (Z.pointUp_half_plane (π i)).1
       (Tuple.monotone_sort (fun i => Complex.arg (⟨Z.pointUp.G i 0, Z.pointUp.G i 1⟩ : ℂ))
         hij.le)
+  -- the scan of the sorted zonogon, whose last point is the sum of the sorted generators
   rw [← Z.construct_pointUp, ← Z.pointUp.construct_comp_perm π]
-  refine Zonotope.aux_scan_sorted ⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ hh h1 h2 γ _ ?_
-    _ _ rfl rfl
+  refine Zonotope.aux_scan_sorted Zs hh h1 h2 γ _ ?_ _ _ rfl rfl
   show _ = Z.pointUp.c - ∑ j, Z.pointUp.G (π j)
   rw [Equiv.sum_comp π Z.pointUp.G]
   rfl

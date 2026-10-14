@@ -63,24 +63,26 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
         ∈ R.construct := by -- --- PROOF ---
   -- name the three objects and their definitions, then hold the state at `t_i` abstract
   intro R μ ξ
-  have hRd : R = (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).H.plus
-      ((STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).Pc.plus
-        (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).D) := rfl
+  -- the constants of the dependency-preserving reachability, named once
+  set dc := STL.depReachConsts A B U Δt κ with hdc
+  have hRd : R = (STL.depReachAt A Δt dc X₀ i).H.plus
+      ((STL.depReachAt A Δt dc X₀ i).Pc.plus
+        (STL.depReachAt A Δt dc X₀ i).D) := rfl
   have hμd : μ = ∑ k : Fin R.h, (if (k : ℕ) < X₀.h + i * U.h then α k else 0) • R.G k := rfl
   have hξd : ξ = (LinearSys.canonical A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
       (LinearSys.heldInput Δt
         (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l))) (i * Δt) := rfl
   clear_value μ ξ R
-  have hU0c : (STL.depReachConsts A B U Δt κ).U₀.c = 0 := by
+  have hU0c : dc.U₀.c = 0 := by
     show B *ᵥ (U.c + -U.c) = 0
     simp
-  have hDc : (STL.depReachConsts A B U Δt κ).D.c = 0 := STL.depBloating_c _ _ _ _ hU0c
+  have hDc : dc.D.c = 0 := STL.depBloating_c _ _ _ _ hU0c
   -- the layout of `R(t_i)`: the sizes of the blocks and where each is centred
-  have hHh := STL.depReachAt_H_h A Δt (STL.depReachConsts A B U Δt κ) X₀ i
-  have hPh : (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).Pc.h = i * U.h :=
-    STL.depReachAt_Pc_h A Δt (STL.depReachConsts A B U Δt κ) X₀ i
-  have hPcc := STL.depReachAt_Pc_c A Δt (STL.depReachConsts A B U Δt κ) X₀ hU0c i
-  have hDcc := STL.depReachAt_D_c A Δt (STL.depReachConsts A B U Δt κ) X₀ hDc i
+  have hHh := STL.depReachAt_H_h A Δt dc X₀ i
+  have hPh : (STL.depReachAt A Δt dc X₀ i).Pc.h = i * U.h :=
+    STL.depReachAt_Pc_h A Δt dc X₀ i
+  have hPcc := STL.depReachAt_Pc_c A Δt dc X₀ hU0c i
+  have hDcc := STL.depReachAt_D_c A Δt dc X₀ hDc i
   have hsum := STL.depReachAt_sum A B X₀ U Δt κ α i
   simp only [] at hsum
   -- the held-input solution at `t_i`
@@ -94,7 +96,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
     refine ⟨fun l => α (X₀.h + j * U.h + l), fun l => hα _, ?_⟩
     simp only [Zonotope.mtimes, Matrix.mulVec_add, Matrix.mulVec_sum, Matrix.mulVec_smul]
     rfl
-  generalize STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i = si at *
+  generalize STL.depReachAt A Δt dc X₀ i = si at *
   subst hRd
   -- `R(t_i) = H ⊕ (P_c ⊕ D)`: the weighted sum splits into those of the three blocks
   have hblocks := STL.sumGen_plus si.H (si.Pc.plus si.D)
@@ -102,8 +104,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
   rw [STL.sumGen_plus si.Pc si.D
     (fun k => (fun k => if k < X₀.h + i * U.h then α k else 0) (si.H.h + k))] at hblocks
   -- `μ` is the weighted sum over `H` and over `P_c`, the last block has weight `0`
-  have hμ : μ = ∑ k : Fin si.H.h, α k • si.H.G k
-      + ∑ k : Fin si.Pc.h, α (X₀.h + k) • si.Pc.G k := by
+  have hμ : μ = ∑ k : Fin si.H.h, α k • si.H.G k + ∑ k : Fin si.Pc.h, α (X₀.h + k) • si.Pc.G k := by
     rw [hμd, hblocks]
     have e1 : ∑ k : Fin si.H.h, (if (k : ℕ) < X₀.h + i * U.h then α k else 0) • si.H.G k
         = ∑ k : Fin si.H.h, α k • si.H.G k := by

@@ -45,26 +45,24 @@ theorem Zonotope.minnormPoint_not_mem_step (Z : Zonotope (Vec ℝ (n + 1)))
     Z.minnormPoint S +
       t • ((Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S))⁻¹ • Z.facetNormal S) ∉
       Z.construct := by -- --- PROOF ---
+  -- the facet normal, its length, and the unit normal along which the step goes
+  set C := Z.facetNormal S
+  set r := Real.sqrt (C ⬝ᵥ C)
+  set u := r⁻¹ • C with hu
   have hCC := Zonotope.facetNormal_dotProduct_self_pos Z S hC
-  have hs : 0 < Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S) := Real.sqrt_pos.mpr hCC
-  have hss : Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S) ^ 2
-      = Z.facetNormal S ⬝ᵥ Z.facetNormal S := Real.sq_sqrt hCC.le
+  have hs : 0 < r := Real.sqrt_pos.mpr hCC
+  have hss : r ^ 2 = C ⬝ᵥ C := Real.sq_sqrt hCC.le
   -- the facet inequality at the stepped point
   intro hmem
   rw [Zonotope.hRep_eq Z hspan] at hmem
   have h1 := hmem S
   unfold Zonotope.minnormPoint at h1
-  have hdiff : Z.c + Z.minnormOffset S • ((Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S))⁻¹ •
-      Z.facetNormal S) + t • ((Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S))⁻¹ •
-      Z.facetNormal S) - Z.c = (Z.minnormOffset S + t) •
-      ((Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S))⁻¹ • Z.facetNormal S) := by
+  have hdiff : Z.c + Z.minnormOffset S • u + t • u - Z.c = (Z.minnormOffset S + t) • u := by
     rw [add_smul]; abel
   rw [hdiff] at h1
-  simp only [dotProduct_smul, smul_eq_mul] at h1
+  simp only [hu, dotProduct_smul, smul_eq_mul] at h1
   -- it reads `(b + t) ‖C‖ ≤ Δd = b ‖C‖`, which `t > 0` contradicts
-  have heq : (Z.minnormOffset S + t) * ((Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S))⁻¹ *
-      (Z.facetNormal S ⬝ᵥ Z.facetNormal S)) = (Z.minnormOffset S + t) *
-      Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S) := by
+  have heq : (Z.minnormOffset S + t) * (r⁻¹ * (C ⬝ᵥ C)) = (Z.minnormOffset S + t) * r := by
     field_simp
     rw [hss]
   have hnn := Zonotope.minnormOffset_nonneg Z S
