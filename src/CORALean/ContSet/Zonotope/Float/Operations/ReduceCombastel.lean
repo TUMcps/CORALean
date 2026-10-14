@@ -11,7 +11,8 @@ public import CORALean.Global.Sort
 
 Combastel's metric is `sqSumUp`, `Global.Float.EuclideanNorm`'s squared length:
 no square root to call, and squaring changes no ranking, since it is monotone
-on the nonnegatives a length is.
+on the nonnegatives a length is. The metrics are computed once, into a stored vector, before the
+sort, so a comparison is two lookups and not two `O(n)` sums.
 -/
 
 -- Authors:       Claude Opus 5
@@ -44,8 +45,9 @@ def Zonotope.aux_combastelSplit (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) (hlt : o *
     Split (Fin Z.h) into (Fin ((o - 1) * n)) ⊕ (Fin (Z.h - (o - 1) * n)) :=
   have hle : (o - 1) * n ≤ Z.h :=
     le_of_lt (lt_of_le_of_lt (Nat.mul_le_mul (Nat.sub_le o 1) (le_refl n)) hlt)
+  let metric : Vector 𝕋 Z.h := Vector.ofFn Z.aux_combastelMetric     -- ‖g‖₂² per generator
   (Partition.split ((o - 1) * n) (Z.h - (o - 1) * n)).reindex
-    ((sortPerm fun j₁ j₂ => le (Z.aux_combastelMetric j₂) (Z.aux_combastelMetric j₁)).symm.trans
+    ((sortPerm fun j₁ j₂ => le metric[j₂] metric[j₁]).symm.trans
       (finCongr (Nat.add_sub_cancel' hle).symm))
 
 
