@@ -1,90 +1,96 @@
-import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Definitions.Relu
+import CORALean.ContSet.Interval.Float.Instances
+import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
+import CORALean.ContSet.HPolytope.Float.Instances
+import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.NN.Instances
 import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
-import CORALean.NN.Theorems.VerifySplitWithSound
+import CORALean.NN.Theorems.VerifySplitSound
+import CORALean.Specification.Instances
 
 /-!
-# `verifySplitWith` decides nothing on its own
+# Splitting the input verifies what the whole box cannot
 
-`verifySplitWith` is a pure `Bool` recursion: it owes no soundness itself, and
-`verifySplitWith_sound` is where a caller pays for it, in exactly two currencies —
-`hcheck`, that its `check` never says `true` of an output box the specification
-does not hold on, and `hcov`, that its `splitter` never drops a point when it
-bisects. Neither is its to prove, and a `false` result carries neither: it only
-says this depth and this `splitter` failed to find them. `verifySplit` is the same
-at `Specification.check`, which brings its own `hcheck`; the check here is an exact
-real comparison, which no `Contains` instance computes, so this file takes the
-general form.
+The network is `y = relu(x) + relu(-x)`, which is `|x|`, on the input box `[-1, 1]`, and the
+specification is `y ≤ 1`. It holds, since `|x| ≤ 1` there, but the box enclosure does not find it:
+the affine layer `x ↦ (x, -x)` is enclosed by `[-1, 1] × [-1, 1]`, which forgets that the two
+coordinates are tied to each other, the ReLUs map that to `[0, 1] × [0, 1]`, and their sum is
+`[0, 2]`, past the bound. So `verifySplit` at depth `0` answers `false`.
 
-`Interval.splitAt` supplies the splitter and `splitAt_cover` discharges `hcov`
-in one line. The network is one ReLU neuron, the one activation whose box
-enclosure genuinely depends on the input's width — the reason splitting has
-anything to buy at all.
+Splitting `x` at `0` removes the dependency: on `[-1, 0]` the first neuron is the constant `0`
+and on `[0, 1]` the second, so each half's enclosure is `[0, 1]` and `y ≤ 1` is
+found. At depth `1` the answer is `true`. Both verdicts are computed, at `Dyadic 24`, by
+`rfl`; the box and its two halves are exact in that format, so no rounding enters.
+
+`verifySplit_sound` turns the `true` into the specification on the network's exact image of the
+whole box. A `false` carries nothing: it says only that this depth did not find a proof, which is
+all depth `0` says here, since the specification holds.
 -/
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   24-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-namespace CORALean.Real
+namespace CORALean.Float
 
-open ContSet
+open CORALean ContSet
+open scoped Matrix
 
-/-- One neuron, ReLU, over boxes. -/
-noncomputable def Example.nn : NeuralNetwork ℐ𝒱 1 1 :=
-  NeuralNetwork.ofLayer (ReluLayer.mk (𝕋 := ℝ) (n := 1) reluSlope rfl)
+/-- Everything below is at binary32's precision; every number used is a small dyadic. -/
+abbrev Example.D := Dyadic 24
 
-/-- Safe: output at most `10`. -/
-def Example.spec : Specification (Set (Vec ℝ 1)) := Specification.safeSet {x | x 0 ≤ 10}
+/-- `x ↦ (x, -x)`, then the two ReLUs, then their sum: `x ↦ relu(x) + relu(-x)`. -/
+def Example.nn : NeuralNetwork ℐ𝒱[Example.D] 1 1 :=
+  .layer (⟨fun i _ => if i = 0 then ⟨1, 0⟩ else ⟨-1, 0⟩, fun _ => ⟨0, 0⟩⟩ :
+      LinearLayer Example.D 1 2)
+    (.layer (⟨reluSlope, rfl⟩ : ReluLayer Example.D 2 2)
+      (.layer (⟨fun _ _ => ⟨1, 0⟩, fun _ => ⟨0, 0⟩⟩ : LinearLayer Example.D 2 1) .output))
+
+/-- The input box `[-1, 1]`. -/
+def Example.input : Interval (Vec Example.D 1) := ⟨fun _ => ⟨-1, 0⟩, fun _ => ⟨1, 0⟩⟩
+
+/-- Safe: `y ≤ 1`, as the one-row halfspace polytope. -/
+def Example.spec : Specification (HPolytope Example.D (Vec Example.D 1)) :=
+  .safeSet ⟨1, fun _ _ => ⟨1, 0⟩, fun _ => ⟨1, 0⟩, 0, fun i => i.elim0,
+    ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `true` exactly when the box's upper bound already meets the spec. -/
-noncomputable def Example.check (I : Interval (Vec ℝ 1)) : Bool := decide (I.sup 0 ≤ (10 : ℝ))
-
 /-- Bisect the one coordinate there is. -/
-noncomputable def Example.splitter (I : Interval (Vec ℝ 1)) :
-    Interval (Vec ℝ 1) × Interval (Vec ℝ 1) :=
+def Example.splitter (I : Interval (Vec Example.D 1)) :
+    Interval (Vec Example.D 1) × Interval (Vec Example.D 1) :=
   I.splitAt (0 : Fin 1)
 
-/-- What a passed `check` is worth: the box's own bound is the spec's. -/
-theorem Example.hcheck : ∀ s : Interval (Vec ℝ 1), Example.check s →
-    Example.spec.Holds (construct s) := by
-  intro s hs x hx
-  exact le_trans (hx 0).2 (of_decide_eq_true hs)
+set_option maxRecDepth 100000 in
+/-- Depth `0`: the box enclosure `[0, 2]` is past the bound, so nothing is verified. -/
+theorem Example.depth_zero_fails :
+    Example.nn.verifySplit Example.spec Example.splitter 0 Example.input = false := by
+  rfl
+
+set_option maxRecDepth 100000 in
+/-- Depth `1`: each half encloses `[0, 1]`, so both pass. -/
+theorem Example.depth_one_verifies :
+    Example.nn.verifySplit Example.spec Example.splitter 1 Example.input = true := by
+  rfl
 
 /-- What the splitter is worth: `splitAt_cover`, at the one coordinate. -/
-theorem Example.hcov (I : Interval (Vec ℝ 1)) :
+theorem Example.hcov (I : Interval (Vec Example.D 1)) :
     construct I ⊆ construct (Example.splitter I).1 ∪ construct (Example.splitter I).2 :=
   Interval.splitAt_cover I (0 : Fin 1)
 
-/-- A `true` run at depth `d` is the only thing this file needs to reach the
-network's exact image — never a computed one, since nothing here evaluates
-a real comparison. -/
-example (d : ℕ) (X : Interval (Vec ℝ 1))
-    (hverify : Example.nn.verifySplitWith Example.check Example.splitter d X) :
-    Example.spec.Holds (Example.nn.eval.out '' construct X) :=
-  Example.nn.verifySplitWith_sound Example.spec Example.check Example.hcheck
-    Example.splitter Example.hcov d X hverify
+/-- The consequence: `|x| ≤ 1` on the whole box, from the depth-`1` run alone. -/
+theorem Example.holds :
+    Example.spec.Holds (Example.nn.eval.out '' construct Example.input) :=
+  Example.nn.verifySplit_sound Example.spec Example.splitter Example.hcov 1 Example.input
+    Example.depth_one_verifies
 
-/-- The same at any function the network is sound at, which is where a reduced
-network's guarantee about its original lands. -/
-example {f : Vec ℝ 1 → Vec ℝ 1} (hf : Example.nn.Sound f) (d : ℕ) (X : Interval (Vec ℝ 1))
-    (hverify : Example.nn.verifySplitWith Example.check Example.splitter d X) :
-    Example.spec.Holds (f '' construct X) :=
-  hf.verifySplitWith_sound Example.spec Example.check Example.hcheck
-    Example.splitter Example.hcov d X hverify
-
-end CORALean.Real
+end CORALean.Float
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --
