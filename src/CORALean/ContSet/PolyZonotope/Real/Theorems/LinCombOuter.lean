@@ -20,7 +20,7 @@ same `λ` also drives the dependent part. So the containment is one-way and the
 statement is `_outer` rather than `_exact` — which is [1, Prop. 15]. Without an
 independent block it is the equality [1, Prop. 14], `linComb_exact_of_dependent`.
 
-Nothing here asks for convexity, as nothing in `segments` does; a polynomial
+Nothing here asks for convexity, as nothing in `Set.linComb` does; a polynomial
 zonotope is generally not convex and this claim is still the right one.
 
 What the witness evaluates to is `linComb_value`, stated apart so that
@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.linComb_outer (pZ₁ pZ₂ : PolyZonotope α) :
-    segments pZ₁.construct pZ₂.construct ⊆ (pZ₁.linComb pZ₂).construct := by -- --- PROOF ---
+    Set.linComb pZ₁.construct pZ₂.construct ⊆ (pZ₁.linComb pZ₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨a₁, β₁, ha₁, hβ₁, rfl⟩, y₂, ⟨a₂, β₂, ha₂, hβ₂, rfl⟩,
     lam, ⟨hl0, hl1⟩, rfl⟩
   refine ⟨Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1),

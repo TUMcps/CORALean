@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Ellipsoid.enclose₂_outer (orOA : Ellipsoid 𝕋 n → Ellipsoid 𝕋 n → Ellipsoid 𝕋 n)
     (hor : ∀ E₁ E₂, E₁.construct ∪ E₂.construct ⊆ (orOA E₁ E₂).construct)
     (E E2 : Ellipsoid 𝕋 n) :
-    segments E.construct E2.construct ⊆ (Ellipsoid.enclose₂ orOA E E2).construct := by
+    Set.linComb E.construct E2.construct ⊆ (Ellipsoid.enclose₂ orOA E E2).construct := by
   rintro _ ⟨y₁, h₁, y₂, h₂, l, ⟨hl0, hl1⟩, rfl⟩
   exact (Ellipsoid.convex_construct _) (hor _ _ (Or.inl h₁)) (hor _ _ (Or.inr h₂)) hl0
     (by linarith) (by ring)

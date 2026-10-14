@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSetLinComb
 
 @[expose] public section
 
@@ -15,7 +15,7 @@ time at a time — `timeIntervalStep_outer`, the quantified statement through
 proved from this one. The wrapping-effect-free construction of [1, Alg. 1], one
 step of it.
 
-`timeIntervalStep_outer_segments` is the whole argument, at the level of `Set`s;
+`timeIntervalStep_outer_setLinComb` is the whole argument, at the level of `Set`s;
 this is that composed with `LinComb.linComb_outer` and `Plus.plus_outer`, the two
 lifts it takes to land in `construct (timeIntervalStep ...)`.
 
@@ -62,8 +62,8 @@ theorem LinearSys.timeIntervalStep_outer_at (sys : LinearSys 𝕋 n) {r : ℝ} (
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.timeIntervalStep r (m + 2) X₀) := by -- --- PROOF ---
-  -- the two lifts `timeIntervalStep_outer_segments` stops short of
-  refine (sys.timeIntervalStep_outer_segments hr hε X₀ ht0 htr).trans
+  -- the two lifts `timeIntervalStep_outer_setLinComb` stops short of
+  refine (sys.timeIntervalStep_outer_setLinComb hr hε X₀ ht0 htr).trans
     ((Set.add_subset_add ?_ subset_rfl).trans (Plus.plus_outer _ _))
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩
   exact LinComb.linComb_outer _ _

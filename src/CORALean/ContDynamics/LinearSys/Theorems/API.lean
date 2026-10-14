@@ -131,7 +131,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubset
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetMtimesPlusCube
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSegmentsSum
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSetLinCombSum
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
@@ -212,7 +212,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOute
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerSubsetTimeIntervalReachSet
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSetLinComb
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepTunedOuter
@@ -344,8 +344,8 @@ representation. `TimeIntervalOuterSplit` drops `0 ∈ U`, needing only
 `Recentre`/`OfPoint`, which any representation with a centre has.
 The `ReachSet` and `TimeIntervalReachSet` trios state the same guarantees of a
 set; `_eq_iUnion` ties the latter to a union of the former, `SubsetAddError`
-runs a step backwards, `Exists…Lt` shrinks its error, `SegmentsSum` feeds
-`TimeIntervalBound` a genuine `+`/`segments`, and `TimeIntervalWitness` its dual.
+runs a step backwards, `Exists…Lt` shrinks its error, `SetLinCombSum` feeds
+`TimeIntervalBound` a genuine `+`/`Set.linComb`, and `TimeIntervalWitness` its dual.
 `Restrict` is what makes the time domain a parameter worth having: a guarantee over one step
 applies to a run over all forward time by throwing the rest away. Only `discretize` and `reach`
 built on it ask for `Set.Ici 0`. `DiscretizeEnclosure…` are `Discretize`/`ReachOuter` enclosed,

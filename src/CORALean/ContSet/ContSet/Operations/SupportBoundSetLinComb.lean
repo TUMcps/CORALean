@@ -7,10 +7,10 @@ public import Mathlib.Tactic.Linarith
 @[expose] public section
 
 /-!
-# The support bound across `segments`
+# The support bound across `Set.linComb`
 
 `Global.LinProg.Composition` carries a bound across the operations Mathlib
-names. `segments` is ours — CORA's `linComb`, which is the convex hull only when
+names. `Set.linComb` is ours — CORA's `linComb`, which is the convex hull only when
 both sets already are — so its case belongs here, computing the combined bound
 rather than beside the definition.
 -/
@@ -32,8 +32,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {S T : Set α} {c : α �
 
 /-- A point between the two sets is a weighted average of one from each, so
 neither bound is beaten. -/
-def SupportBound.segments (u : SupportBound S c) (v : SupportBound T c) :
-    SupportBound (segments S T) c where
+def SupportBound.setLinComb (u : SupportBound S c) (v : SupportBound T c) :
+    SupportBound (Set.linComb S T) c where
   val := max u.val v.val
   le := by
     rintro _ ⟨y₁, h₁, y₂, h₂, lam, ⟨hl₀, hl₁⟩, rfl⟩

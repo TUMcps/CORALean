@@ -19,7 +19,7 @@ point — and is what the independent generators would break, which is why the
 hypothesis is `q = 0` on both sides. The fresh factor is the segment parameter
 under `λ = (1+α)/2`, and `|α| ≤ 1` is exactly `λ ∈ [0,1]`.
 
-[1, Def. 7] writes that parameter over `[-1,1]` as `0.5(1±λ)`; `segments` writes
+[1, Def. 7] writes that parameter over `[-1,1]` as `0.5(1±λ)`; `Set.linComb` writes
 it over `[0,1]`, the same set under `λ ↦ 2λ-1`. It is the convex hull only where
 both operands are convex, which a polynomial zonotope need not be.
 
@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem PolyZonotope.linComb_exact_of_dependent (pZ₁ pZ₂ : PolyZonotope α)
     (h₁ : pZ₁.q = 0) (h₂ : pZ₂.q = 0) :
-    segments pZ₁.construct pZ₂.construct = (pZ₁.linComb pZ₂).construct := by -- --- PROOF ---
+    Set.linComb pZ₁.construct pZ₂.construct = (pZ₁.linComb pZ₂).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (PolyZonotope.linComb_outer pZ₁ pZ₂) ?_
   rintro x ⟨a, β, ha, hβ, rfl⟩
   -- the fresh factor, whose unit bound is the segment parameter's `λ ∈ [0,1]`

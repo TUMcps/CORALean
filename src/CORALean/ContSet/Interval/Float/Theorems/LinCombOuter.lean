@@ -47,7 +47,7 @@ theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.linComb_outer (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    segments I₁.construct I₂.construct ⊆ (I₁.linComb I₂).construct :=
+    Set.linComb I₁.construct I₂.construct ⊆ (I₁.linComb I₂).construct :=
   subset_trans (Real.Interval.linComb_outer I₁.nominal I₂.nominal)
     (Interval.aux_linComb_outer_refines I₁ I₂)
 

@@ -36,14 +36,14 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.segments_convHull_counterexample :
+theorem VPolytope.setLinComb_convHull_counterexample :
     ∃ P₁ P₂ : VPolytope (Vec ℝ n),
-      segments P₁.construct P₂.construct ≠ (P₁.convHull P₂).construct ∧
-        ¬ P₁.construct ∪ P₂.construct ⊆ segments P₁.construct P₂.construct := by -- --- PROOF ---
+      Set.linComb P₁.construct P₂.construct ≠ (P₁.convHull P₂).construct ∧
+        ¬ P₁.construct ∪ P₂.construct ⊆ Set.linComb P₁.construct P₂.construct := by -- --- PROOF ---
   let P₁ : VPolytope (Vec ℝ n) := ⟨0, Fin.elim0⟩
   let P₂ : VPolytope (Vec ℝ n) := ⟨1, fun _ => 0⟩
   -- no point is a convex combination of an empty list
-  have hseg : segments P₁.construct P₂.construct = ∅ :=
+  have hseg : Set.linComb P₁.construct P₂.construct = ∅ :=
     Set.eq_empty_of_forall_notMem fun _ ⟨_, ⟨β, _, hs, _⟩, _⟩ => by simp at hs
   have h0 : (0 : Vec ℝ n) ∈ P₂.construct := P₂.vertex_mem 0
   refine ⟨P₁, P₂, fun h => ?_, fun h => ?_⟩

@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Operations.Basic
-public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSetLinComb
 
 @[expose] public section
 
@@ -176,11 +176,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {S : Type} [ContSet S α]
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `linComb_outer` and `union_subset_segments`: an enclosure of CORA's `or`. -/
+/-- `linComb_outer` and `union_subset_setLinComb`: an enclosure of CORA's `or`. -/
 theorem LinComb.union_subset_linComb [LinComb S α] (s t : S) (hs : (construct s).Nonempty)
     (ht : (construct t).Nonempty) :
     construct s ∪ construct t ⊆ construct (LinComb.linComb s t) :=
-  (union_subset_segments hs ht).trans (LinComb.linComb_outer s t)
+  (union_subset_setLinComb hs ht).trans (LinComb.linComb_outer s t)
 
 end
 

@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- the segment splits into a nominal segment and a segment of the two error boxes
 theorem VPolytope.linComb_outer (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
-    segments P₁.construct P₂.construct ⊆ (P₁.linComb P₂).construct := by -- --- PROOF ---
+    Set.linComb P₁.construct P₂.construct ⊆ (P₁.linComb P₂).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨v₁, hv₁, e₁, he₁, rfl⟩, _, ⟨v₂, hv₂, e₂, he₂, rfl⟩, lam, hlam, rfl⟩
   refine ⟨lam • v₁ + (1 - lam) • v₂, ?_, lam • e₁ + (1 - lam) • e₂, ?_, ?_⟩
   · have h := Real.VPolytope.linComb_outer (nominal P₁) (nominal P₂)

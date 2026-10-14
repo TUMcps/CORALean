@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
+public import CORALean.ContSet.ContSet.Theorems.SetLinCombEqConvexJoin
 
 @[expose] public section
 
@@ -27,11 +27,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem convexHull_union_eq_segments {X Y : Set α} (hX : X.Nonempty) (hY : Y.Nonempty)
+theorem convexHull_union_eq_setLinComb {X Y : Set α} (hX : X.Nonempty) (hY : Y.Nonempty)
     (cX : Convex ℝ X) (cY : Convex ℝ Y) :
-    convexHull ℝ (X ∪ Y) = segments X Y := by
+    convexHull ℝ (X ∪ Y) = Set.linComb X Y := by
   rw [convexHull_union hX hY, convexHull_eq_self.2 cX, convexHull_eq_self.2 cY,
-    segments_eq_convexJoin]
+    setLinComb_eq_convexJoin]
 
 end CORALean
 

@@ -34,7 +34,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.enclose_outer (s : S n) (M : Mat 𝕋 n n) (s₂ : S n) :
-    segments (construct s)
+    Set.linComb (construct s)
         ((fun y : Vec ℝ n => (toRealMat M).mulVec y) '' construct s + construct s₂) ⊆
       construct (ContSet.enclose s M s₂) := by -- --- PROOF ---
   have hm : (fun y : Vec ℝ n => (toRealMat M).mulVec y) '' construct s ⊆
@@ -46,7 +46,7 @@ theorem ContSet.enclose_outer (s : S n) (M : Mat 𝕋 n n) (s₂ : S n) :
   have hp : (fun y : Vec ℝ n => (toRealMat M).mulVec y) '' construct s + construct s₂ ⊆
       construct (Plus.plus (Mtimes.mtimes M s) s₂) :=
     (Set.add_subset_add hm subset_rfl).trans (Plus.plus_outer _ _)
-  refine (?_ : segments (construct s) _ ⊆ segments (construct s) _).trans
+  refine (?_ : Set.linComb (construct s) _ ⊆ Set.linComb (construct s) _).trans
     (LinComb.linComb_outer s _)
   rintro x ⟨y₁, h₁, y₂, h₂, lam, hl, rfl⟩
   exact ⟨y₁, h₁, y₂, hp h₂, lam, hl, rfl⟩

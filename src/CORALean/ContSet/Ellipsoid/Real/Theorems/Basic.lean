@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Project
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SetLinCombSubsetOfIsOrOuter
 
 @[expose] public section
 
@@ -50,8 +50,8 @@ theorem Ellipsoid.dot_transpose {k : ℕ} (G : Mat ℝ n k) (w : Vec ℝ n) (a :
 /-- Outer, given the hull `orOA` encloses both operands (`Ellipsoid.IsOrOuter`). -/
 theorem Ellipsoid.enclose₂_outer (orOA : Ellipsoid n → Ellipsoid n → Ellipsoid n)
     (hor : ∀ E₁ E₂, Ellipsoid.IsOrOuter E₁ E₂ (orOA E₁ E₂)) (E E2 : Ellipsoid n) :
-    segments E.construct E2.construct ⊆ (Ellipsoid.enclose₂ orOA E E2).construct :=
-  Ellipsoid.segments_subset_of_isOrOuter (hor _ _)
+    Set.linComb E.construct E2.construct ⊆ (Ellipsoid.enclose₂ orOA E E2).construct :=
+  Ellipsoid.setLinComb_subset_of_isOrOuter (hor _ _)
 
 
 -- =============================  `Ellipsoid.isBounded_construct`  ============================== --

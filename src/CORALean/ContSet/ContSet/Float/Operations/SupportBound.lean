@@ -1,14 +1,14 @@
 module
 
-public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 public import CORALean.Global.Float.FloatBound
 
 @[expose] public section
 
 /-!
-# Float bounds across `segments`
+# Float bounds across `Set.linComb`
 
-The float counterpart of `ContSet.SupportBound`: `segments` is this interface's
+The float counterpart of `ContSet.SupportBound`: `Set.linComb` is this interface's
 own operation, so its bound rule belongs here rather than in `Global`, and the
 float layer needs its own file rather than the same one — a `Real` file must not
 be able to reach the floating-point scalar.
@@ -35,11 +35,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {S T : Set α} {c : α �
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def FloatBound.segments (u : FloatBound 𝕋 S c) (v : FloatBound 𝕋 T c) :
-    FloatBound 𝕋 (segments S T) c where
+def FloatBound.setLinComb (u : FloatBound 𝕋 S c) (v : FloatBound 𝕋 T c) :
+    FloatBound 𝕋 (Set.linComb S T) c where
   val := maximum u.val v.val
   le := by
-    have h := (u.toSupportBound.segments v.toSupportBound).le
+    have h := (u.toSupportBound.setLinComb v.toSupportBound).le
     rw [toReal_maximum]
     exact h
 

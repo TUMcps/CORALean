@@ -17,7 +17,7 @@ fresh one, the zonotope pairing on the independent coefficients — and
 What the constraints add is one goal: the combined system holds at that witness.
 `satisfies_linComb_iff` splits it into the two operands' own systems at their own
 factors, which the two segment endpoints already satisfy. So no nonemptiness
-hypothesis: a point of `segments` hands over a point of *each* set, and with it
+hypothesis: a point of `Set.linComb` hands over a point of *each* set, and with it
 the witness that its constraints are satisfiable. That both systems are imposed
 even at `λ = 0`, where the first operand's point drops out, costs nothing here.
 
@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.linComb_outer (cPZ₁ cPZ₂ : ConPolyZono α) :
-    segments cPZ₁.construct cPZ₂.construct ⊆ (cPZ₁.linComb cPZ₂).construct := by -- --- PROOF ---
+    Set.linComb cPZ₁.construct cPZ₂.construct ⊆ (cPZ₁.linComb cPZ₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨a₁, β₁, ha₁, hβ₁, hs₁, rfl⟩, y₂, ⟨a₂, β₂, ha₂, hβ₂, hs₂, rfl⟩,
     lam, ⟨hl0, hl1⟩, rfl⟩
   have hA₁ : (fun k => Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1)

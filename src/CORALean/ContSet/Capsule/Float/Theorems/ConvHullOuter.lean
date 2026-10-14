@@ -54,7 +54,7 @@ theorem Capsule.aux_radius_le (k : ℕ) (C : Capsule 𝕋 n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) :
-    segments C.construct S.construct ⊆ (C.convHull k S).construct := by -- --- PROOF ---
+    Set.linComb C.construct S.construct ⊆ (C.convHull k S).construct := by -- --- PROOF ---
   intro z hz
   -- the exact hull capsule holds the segments
   have hK := CORALean.Real.Capsule.convHull_outer C.nominal S.nominal hz

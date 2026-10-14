@@ -48,7 +48,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem ConPolyZono.linComb_exact_of_dependent (cPZ₁ cPZ₂ : ConPolyZono α)
     (h₁ : cPZ₁.qI = 0) (h₂ : cPZ₂.qI = 0) :
-    segments cPZ₁.construct cPZ₂.construct = (cPZ₁.linComb cPZ₂).construct := by -- --- PROOF ---
+    Set.linComb cPZ₁.construct cPZ₂.construct = (cPZ₁.linComb cPZ₂).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (ConPolyZono.linComb_outer cPZ₁ cPZ₂) ?_
   rintro x ⟨a, β, ha, hβ, hsat, rfl⟩
   -- the fresh factor, whose unit bound is the segment parameter's `λ ∈ [0,1]`

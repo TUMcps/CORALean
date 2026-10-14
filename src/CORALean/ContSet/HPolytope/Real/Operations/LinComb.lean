@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
-public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 
 @[expose] public section
 
@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ} {P₁ P₂ : HP
 def HPolytope.linCombOf (Aq : Fin q → (α →ₗ[ℝ] ℝ))
     (u₁ : ∀ i, SupportBound P₁.construct (Aq i))
     (u₂ : ∀ i, SupportBound P₂.construct (Aq i)) : HPolytope α :=
-  HPolytope.ofBounds Aq fun i => (u₁ i).segments (u₂ i)
+  HPolytope.ofBounds Aq fun i => (u₁ i).setLinComb (u₂ i)
 
 end CORALean.Real
 

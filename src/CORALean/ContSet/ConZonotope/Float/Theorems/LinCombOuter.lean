@@ -146,7 +146,7 @@ theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)
 /-- The nominal part spills only by what the centre and the centre generator
 rounded. -/
 theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    segments (nominalSet cZ₁) (nominalSet cZ₂) ⊆
+    Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) ⊆
       nominalSet (cZ₁.linComb cZ₂)
         + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
             + (Zonotope.generatorError
@@ -181,7 +181,7 @@ theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec �
 /-- The box absorbs the two incoming boxes, the centre rounding and the centre
 generator's. -/
 theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    segments cZ₁.I_error.construct cZ₂.I_error.construct
+    Set.linComb cZ₁.I_error.construct cZ₂.I_error.construct
         + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
             + (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)).construct)
       ⊆ (cZ₁.linComb cZ₂).I_error.construct :=
@@ -193,7 +193,7 @@ theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    segments cZ₁.construct cZ₂.construct ⊆ (cZ₁.linComb cZ₂).construct :=
+    Set.linComb cZ₁.construct cZ₂.construct ⊆ (cZ₁.linComb cZ₂).construct :=
   InflatedContSet.linComb_subset (ConZonotope.aux_linComb_nominal cZ₁ cZ₂)
     (ConZonotope.aux_linComb_error cZ₁ cZ₂)
 

@@ -29,10 +29,10 @@ open CORALean Pointwise
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The documented set `segments C (M C + Cplus)` is not inside `Capsule.enclose`. -/
+/-- The documented set `Set.linComb C (M C + Cplus)` is not inside `Capsule.enclose`. -/
 theorem Capsule.enclose_cora_counterexample :
     ∃ (C Cplus : Capsule 1) (M : Mat ℝ 1 1),
-      ¬ segments C.construct
+      ¬ Set.linComb C.construct
           ((fun y => M.mulVec y) '' C.construct + Cplus.construct) ⊆
         (C.enclose M Cplus).construct := by -- --- PROOF ---
   refine ⟨⟨0, 0, 0⟩, ⟨fun _ => 1, 0, 0⟩, 0, fun h => ?_⟩
@@ -40,7 +40,7 @@ theorem Capsule.enclose_cora_counterexample :
     ⟨0, by simp, by simp⟩
   have h1 : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈
       (Capsule.mk (fun _ => (1 : ℝ) : Vec ℝ 1) 0 0).construct := ⟨0, by simp, by simp⟩
-  have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ segments (Capsule.mk (0 : Vec ℝ 1) 0 0).construct
+  have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ Set.linComb (Capsule.mk (0 : Vec ℝ 1) 0 0).construct
       ((fun y => (0 : Mat ℝ 1 1).mulVec y) '' (Capsule.mk (0 : Vec ℝ 1) 0 0).construct +
         (Capsule.mk (fun _ => (1 : ℝ) : Vec ℝ 1) 0 0).construct) :=
     ⟨0, h0, fun _ => 1, ⟨_, ⟨0, h0, rfl⟩, fun _ => 1, h1, by simp⟩, 0, by simp, by simp⟩

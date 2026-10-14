@@ -20,8 +20,8 @@ operation just the first.
 integral over it, asked of the representation instead of proved again at each
 one — plus `DependencyPreserving`, which is what an implementation has when
 the parameters naming a subset of its operand name the corresponding subset
-of its result. `Operations` holds `SupportBoundSegments`, the one thing this
-interface computes: a support-function bound across `segments`, CORA's
+of its result. `Operations` holds `SupportBoundSetLinComb`, the one thing this
+interface computes: a support-function bound across `Set.linComb`, CORA's
 `linComb`.
 
 `Theorems` holds what the operation classes give together: `OfPoint` and

@@ -30,7 +30,7 @@ variable {m n : ℕ}
 
 /-- The segments between `C` and the image of `Cplus` lie in `Capsule.enclose`. -/
 theorem Capsule.enclose_outer (C : Capsule n) (M : Mat ℝ n m) (Cplus : Capsule m) :
-    segments C.construct ((fun y => M.mulVec y) '' Cplus.construct) ⊆
+    Set.linComb C.construct ((fun y => M.mulVec y) '' Cplus.construct) ⊆
       (C.enclose M Cplus).construct := by
   refine Set.Subset.trans ?_ (Capsule.convHull_outer C (Capsule.mtimes M Cplus))
   rintro _ ⟨y₁, h₁, y₂, h₂, l, hl, rfl⟩

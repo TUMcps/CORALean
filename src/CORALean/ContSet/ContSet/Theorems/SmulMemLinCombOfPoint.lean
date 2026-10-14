@@ -8,7 +8,7 @@ public import Mathlib.Tactic.Linarith
 /-!
 # The segment from the origin to a point, without a `segment` field
 
-`linComb (ofPoint 0) (ofPoint v)` already contains every `lam • v`: `segments
+`linComb (ofPoint 0) (ofPoint v)` already contains every `lam • v`: `Set.linComb
 {0} {v}` is exactly `{(1 - lam) • v}`, witnessed at `1 - lam`. So a
 representation with `LinComb` and `OfPoint` gets the segment for free, and no
 class has to carry a `segment` field of its own.
@@ -32,7 +32,7 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The segment from the origin to `v`, read off `linComb` and `ofPoint`
-alone: witness `1 - lam` in `segments`, then `linComb_outer`. -/
+alone: witness `1 - lam` in `Set.linComb`, then `linComb_outer`. -/
 theorem smul_mem_linComb_ofPoint [LinComb S α] [OfPoint S α] (v : α)
     {lam : ℝ} (hlam : lam ∈ Set.Icc (0:ℝ) 1) :
     lam • v ∈ construct (LinComb.linComb (S := S)

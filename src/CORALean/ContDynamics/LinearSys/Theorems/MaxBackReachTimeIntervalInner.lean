@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetExistsForallE
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
 public import CORALean.ContSet.ConZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
-public import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
+public import CORALean.ContSet.ContSet.Theorems.SetLinCombMinkowskiDiffSubset
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 
@@ -126,7 +126,7 @@ theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend 
     (hker₂ : ∀ (i : Fin P₂.me) (y : Vec ℝ n), P₂.Ae i y = 0)
     (hne₁ : (LinearSys.maxBackReachCZ ρ P₁ ZW).construct.Nonempty)
     (hne₂ : (LinearSys.maxBackReachCZ ρ P₂ ZW).construct.Nonempty)
-    (hhom : ∀ y ∈ minkowskiDiff (segments P₁.construct P₂.construct) ZW.construct,
+    (hhom : ∀ y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct) ZW.construct,
       ∃ t ∈ Set.Icc s.t (s.t + Δt), y ∈ (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin ''
         minkowskiDiff (construct Xend) (sys.inputReach W t))
     (hZU : ∀ t ∈ Set.Icc s.t (s.t + Δt), s.ZU.construct ⊆
@@ -158,9 +158,9 @@ theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend 
     rw [heq]
     exact HPolytope.minkDiffOf_inner _ _ _ fun i w _ => hker i w
   -- [1, Lemma 1]: the hull of the two erosions is inside the erosion of the hull
-  have hL : y ∈ minkowskiDiff (segments P₁.construct P₂.construct) ZW.construct := by
+  have hL : y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct) ZW.construct := by
     obtain ⟨y₁, h₁, y₂, h₂, lam, hlam, rfl⟩ := ConZonotope.linComb_inner _ _ hne₁ hne₂ hy
-    exact segments_minkowskiDiff_subset _ _ _
+    exact setLinComb_minkowskiDiff_subset _ _ _
       ⟨y₁, hsub P₁ hker₁ h₁, y₂, hsub P₂ hker₂ h₂, lam, hlam, rfl⟩
   -- (21): the eroded hull is covered slice by slice, and `t` names the slice
   obtain ⟨t, ht, w', hw', hw'eq⟩ := hhom y hL
@@ -206,7 +206,7 @@ theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W X
     (hne₁ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₁ (st (k + 1)).ZW).construct.Nonempty)
     (hne₂ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₂ (st (k + 1)).ZW).construct.Nonempty)
     -- (21): the hull of `P₁`, `P₂` eroded by `Ẑ_W(τ_k)`, covered slice by slice
-    (hhom : ∀ k < ω, ∀ y ∈ minkowskiDiff (segments P₁.construct P₂.construct)
+    (hhom : ∀ k < ω, ∀ y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct)
         (st (k + 1)).ZW.construct,
       ∃ t ∈ Set.Icc (st k).t ((st k).t + Δt),
         y ∈ (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin ''

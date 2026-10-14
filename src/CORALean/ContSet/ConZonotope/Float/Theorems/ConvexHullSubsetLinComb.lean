@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
@@ -40,7 +40,7 @@ theorem ConZonotope.convexHull_subset_linComb (cZ₁ cZ₂ : ConZonotope 𝕋 (V
     convexHull ℝ (cZ₁.construct ∪ cZ₂.construct) ⊆ (cZ₁.linComb cZ₂).construct := by
   have hc : ∀ c : ConZonotope 𝕋 (Vec 𝕋 n), Convex ℝ c.construct := fun c =>
     Convex.add (nominal c).convex_construct c.I_error.nominal.convex_construct
-  rw [convexHull_union_eq_segments h₁ h₂ (hc cZ₁) (hc cZ₂)]
+  rw [convexHull_union_eq_setLinComb h₁ h₂ (hc cZ₁) (hc cZ₂)]
   exact ConZonotope.linComb_outer cZ₁ cZ₂
 
 end CORALean.Float

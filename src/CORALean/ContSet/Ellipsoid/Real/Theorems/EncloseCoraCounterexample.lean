@@ -32,12 +32,12 @@ open Matrix Pointwise
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The documented set `segments E (M E + Eplus)` is not inside the segments between `E` and the
+/-- The documented set `Set.linComb E (M E + Eplus)` is not inside the segments between `E` and the
 `E2 = M Eplus` the code uses. -/
 theorem Ellipsoid.enclose_cora_counterexample :
     ∃ (E Eplus : Ellipsoid 1) (M : Mat ℝ 1 1),
-      ¬ segments E.construct ((M *ᵥ ·) '' E.construct + Eplus.construct) ⊆
-        segments E.construct ((Ellipsoid.mtimes M Eplus).construct) := by -- --- PROOF ---
+      ¬ Set.linComb E.construct ((M *ᵥ ·) '' E.construct + Eplus.construct) ⊆
+        Set.linComb E.construct ((Ellipsoid.mtimes M Eplus).construct) := by -- --- PROOF ---
   refine ⟨Ellipsoid.ofPoint 0, Ellipsoid.ofPoint (fun _ => 1), 0, fun h => ?_⟩
   -- a point ellipsoid is the singleton of its centre
   have hpt : ∀ v : Vec ℝ 1, (Ellipsoid.ofPoint v).construct = {v} := by
@@ -49,7 +49,7 @@ theorem Ellipsoid.enclose_cora_counterexample :
     · rintro rfl
       exact ⟨0, by simp [CORALean.norm₂], by simp [Ellipsoid.ofPoint]⟩
   -- the documented set contains `1`, at `a = 0`
-  have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ segments (Ellipsoid.ofPoint (0 : Vec ℝ 1)).construct
+  have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ Set.linComb (Ellipsoid.ofPoint (0 : Vec ℝ 1)).construct
       ((fun y => (0 : Mat ℝ 1 1) *ᵥ y) '' (Ellipsoid.ofPoint (0 : Vec ℝ 1)).construct +
         (Ellipsoid.ofPoint (fun _ => (1 : ℝ) : Vec ℝ 1)).construct) := by
     refine ⟨0, by rw [hpt]; rfl, fun _ => 1, ?_, 0, by simp, by simp⟩

@@ -54,12 +54,12 @@ theorem VPolytope.polyZonotope_contains (P : VPolytope (Vec ℝ n)) :
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `segments` is Mathlib's convex join: the segment parameter runs over `[0,1]`
+/-- `Set.linComb` is Mathlib's convex join: the segment parameter runs over `[0,1]`
 either way, one written as `λ` and the other as `1 - λ`. -/
-theorem VPolytope.aux_segments_eq_convexJoin (X Y : Set α) :
-    segments X Y = convexJoin ℝ X Y := by -- --- PROOF ---
+theorem VPolytope.aux_setLinComb_eq_convexJoin (X Y : Set α) :
+    Set.linComb X Y = convexJoin ℝ X Y := by -- --- PROOF ---
   ext x
-  simp only [segments, Set.mem_setOf_eq, mem_convexJoin, segment_eq_image, Set.mem_image,
+  simp only [Set.linComb, Set.mem_setOf_eq, mem_convexJoin, segment_eq_image, Set.mem_image,
     Set.mem_Icc]
   constructor
   · rintro ⟨y₁, h₁, y₂, h₂, lam, ⟨hl₀, hl₁⟩, rfl⟩
@@ -140,7 +140,7 @@ theorem VPolytope.aux_hullPZ_construct : ∀ (r : ℕ) (V : Fin (r + 1) → α),
         (PolyZonotope.ofPoint (V (Fin.last (k + 1))))).construct = _
     -- the hull of one more vertex is a segment away from the hull so far
     rw [← PolyZonotope.linComb_exact_of_dependent _ _ hq rfl, ih fun i => V i.castSucc,
-      VPolytope.aux_ofPoint_construct, VPolytope.aux_segments_eq_convexJoin,
+      VPolytope.aux_ofPoint_construct, VPolytope.aux_setLinComb_eq_convexJoin,
       convexJoin_comm, ← convexHull_insert (Set.range_nonempty _),
       ← VPolytope.aux_range_lastCases V]
 

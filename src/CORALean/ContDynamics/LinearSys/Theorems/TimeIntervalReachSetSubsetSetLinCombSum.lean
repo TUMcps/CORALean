@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegments
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSetLinComb
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 @[expose] public section
@@ -16,9 +16,9 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 operation whose only guarantee is `⊆`, so a bound on it cannot be assembled
 from bounds on the two operands (`exists_outer_without_supportBound`). This is
 the same content one step earlier, where `+` is the genuine Minkowski sum and
-`segments` the genuine hull — everything `LinearSys.timeIntervalBound` needs.
+`Set.linComb` the genuine hull — everything `LinearSys.timeIntervalBound` needs.
 
-Built the same way, off `timeIntervalStep_outer_segments` in place of
+Built the same way, off `timeIntervalStep_outer_setLinComb` in place of
 `timeIntervalStep_outer` and no further lift at the top.
 
 ## References
@@ -53,7 +53,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- Reach for this to enclose the whole interval's reachable set by a genuine
 sum of segments and sets; for `timeIntervalReachSet_subset_timeInterval_inputSolution`
 where a computed representation is what is wanted instead. -/
-theorem LinearSys.timeIntervalReachSet_subset_segments_sum (sys : LinearSys 𝕋 n) {T : Set ℝ}
+theorem LinearSys.timeIntervalReachSet_subset_setLinComb_sum (sys : LinearSys 𝕋 n) {T : Set ℝ}
     (R₀ U : S n) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
@@ -66,7 +66,7 @@ theorem LinearSys.timeIntervalReachSet_subset_segments_sum (sys : LinearSys 𝕋
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
     sys.timeIntervalReachSet T R₀ U r
-      ⊆ segments (construct R₀) ((exp (r • toRealMat sys.A)).mulVecLin '' construct R₀)
+      ⊆ Set.linComb (construct R₀) ((exp (r • toRealMat sys.A)).mulVecLin '' construct R₀)
         + construct (Mtimes.mtimes (𝕄 := ℐ)
             (MatExp.correctionMatrix (toRealMat sys.A) r (m + 2)) R₀)
         + construct (sys.inputSolution r (m + 2) U) := by -- --- PROOF ---
@@ -78,7 +78,7 @@ theorem LinearSys.timeIntervalReachSet_subset_segments_sum (sys : LinearSys 𝕋
   rw [sub_zero] at hvoc
   rw [hvoc]
   exact Set.add_mem_add
-    (sys.timeIntervalStep_outer_segments hr hε R₀ ht.1 ht.2 (Set.mem_image_of_mem _ traj.init))
+    (sys.timeIntervalStep_outer_setLinComb hr hε R₀ ht.1 ht.2 (Set.mem_image_of_mem _ traj.init))
     (traj.inputSolution_timeInterval_outer hr hT (m + 2) hε hconv hclosed hbdd hRconv hRclosed
       hRbdd h0 ht.1 ht.2)
 

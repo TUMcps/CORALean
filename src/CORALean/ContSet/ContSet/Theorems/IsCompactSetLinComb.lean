@@ -8,12 +8,12 @@ public import Mathlib.Analysis.Normed.Module.Basic
 /-!
 # The segments between two compact sets are compact
 
-`segments X Y` is the image of `X × Y × [0,1]` under `(y₁,y₂,λ) ↦ λy₁ + (1-λ)y₂`,
+`Set.linComb X Y` is the image of `X × Y × [0,1]` under `(y₁,y₂,λ) ↦ λy₁ + (1-λ)y₂`,
 so compactness of the two operands carries over. Stated in a normed space, the
-only structure the continuity of that map needs beyond the module `segments`
+only structure the continuity of that map needs beyond the module `Set.linComb`
 itself is written against.
 
-This is what lets a Hausdorff bound stated against `segments` be read back as a
+This is what lets a Hausdorff bound stated against `Set.linComb` be read back as a
 witness: a compact set attains its infimum distance, and `≤` on a Hausdorff
 distance gives an actual nearby point only where it does.
 -/
@@ -34,9 +34,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set of all segments running from one compact set to another is compact. -/
-theorem isCompact_segments {X Y : Set α} (hX : IsCompact X) (hY : IsCompact Y) :
-    IsCompact (segments X Y) := by -- --- PROOF ---
-  have himg : segments X Y
+theorem isCompact_setLinComb {X Y : Set α} (hX : IsCompact X) (hY : IsCompact Y) :
+    IsCompact (Set.linComb X Y) := by -- --- PROOF ---
+  have himg : Set.linComb X Y
       = (fun p : (α × α) × ℝ => p.2 • p.1.1 + (1 - p.2) • p.1.2)
         '' ((X ×ˢ Y) ×ˢ Set.Icc (0:ℝ) 1) := by
     ext x

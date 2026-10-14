@@ -126,12 +126,12 @@ theorem PolyZonotope.convHull_cora_counterexample :
     intro hconv
     rw [← PolyZonotope.linComb_exact_of_dependent pZ pZ rfl rfl] at hconv
     -- the chord from `γ(1)` to `γ(-1)` has midpoint `(0, 1, 1)`, and `γ(0) = 0` is a chord point
-    have hM : (![0, 1, 1] : Fin 3 → ℝ) ∈ segments pZ.construct pZ.construct :=
+    have hM : (![0, 1, 1] : Fin 3 → ℝ) ∈ Set.linComb pZ.construct pZ.construct :=
       ⟨![1, 1, 1], (PolyZonotope.aux_curve_mem _).mpr ⟨1, by simp, by simp⟩,
         ![-1, 1, 1], (PolyZonotope.aux_curve_mem _).mpr
           ⟨-1, by simp, by funext i; fin_cases i <;> norm_num⟩,
         1 / 2, ⟨by norm_num, by norm_num⟩, by funext i; fin_cases i <;> norm_num⟩
-    have hO : (0 : Fin 3 → ℝ) ∈ segments pZ.construct pZ.construct :=
+    have hO : (0 : Fin 3 → ℝ) ∈ Set.linComb pZ.construct pZ.construct :=
       ⟨0, (PolyZonotope.aux_curve_mem _).mpr ⟨0, by simp, by funext i; fin_cases i <;> simp⟩,
         0, (PolyZonotope.aux_curve_mem _).mpr ⟨0, by simp, by funext i; fin_cases i <;> simp⟩,
         1, ⟨by norm_num, by norm_num⟩, by simp⟩

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConvHullExact
-public import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
+public import CORALean.ContSet.ContSet.Theorems.SetLinCombEqConvexJoin
 public import Mathlib.Analysis.Convex.Hull
 
 @[expose] public section
@@ -9,7 +9,7 @@ public import Mathlib.Analysis.Convex.Hull
 /-!
 # The segments between two shadows are inside their convex hull
 
-`segments` is the set `linComb` has to enclose, `{λ x₁ + (1 - λ) x₂}`; for a shadow `linComb` is
+`Set.linComb` is the set `linComb` has to enclose, `{λ x₁ + (1 - λ) x₂}`; for a shadow `linComb` is
 `convHull_`, whose set is the convex hull of the union (`convHull_exact`), so the segments lie
 in it.
 -/
@@ -30,9 +30,9 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.segments_subset_convHull (S₁ S₂ : SpectraShadow (Vec ℝ n)) :
-    CORALean.segments S₁.construct S₂.construct ⊆ (S₁.convHull_ S₂).construct := by
-  rw [SpectraShadow.convHull_exact, CORALean.segments_eq_convexJoin]
+theorem SpectraShadow.setLinComb_subset_convHull (S₁ S₂ : SpectraShadow (Vec ℝ n)) :
+    Set.linComb S₁.construct S₂.construct ⊆ (S₁.convHull_ S₂).construct := by
+  rw [SpectraShadow.convHull_exact, CORALean.setLinComb_eq_convexJoin]
   exact convexJoin_subset_convexHull _ _
 
 end CORALean.Real

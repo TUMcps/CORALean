@@ -7,13 +7,13 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Two nonempty sets lie in the segments between them
 
-`segments X Y` joins every point of `X` to every point of `Y`, so for two nonempty sets it
+`Set.linComb X Y` joins every point of `X` to every point of `Y`, so for two nonempty sets it
 contains both of them: take the parameter at `1` and at `0`, with any point of the other set.
 With `LinComb` that is what an enclosure of CORA's `or` rests on: `linComb_outer` says only that
 the segments lie in the result, which by itself says nothing about the operands.
 
 [1, Eq. 37] encloses a union by the convex hull; with the `conv` of [1, Table 3], which is
-`segments`, that needs both operands nonempty, as here.
+`Set.linComb`, that needs both operands nonempty, as here.
 
 ## References
 
@@ -38,8 +38,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem union_subset_segments {X Y : Set α} (hX : X.Nonempty) (hY : Y.Nonempty) :
-    X ∪ Y ⊆ segments X Y := by -- --- PROOF ---
+theorem union_subset_setLinComb {X Y : Set α} (hX : X.Nonempty) (hY : Y.Nonempty) :
+    X ∪ Y ⊆ Set.linComb X Y := by -- --- PROOF ---
   rintro x (hx | hx)
   · obtain ⟨y, hy⟩ := hY
     exact ⟨x, hx, y, hy, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩

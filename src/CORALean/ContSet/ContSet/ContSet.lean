@@ -154,7 +154,7 @@ class Reindex (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
 /-- Every point on a segment running from one set to the other: [1, Def. 7],
 which writes the parameter over `[-1,1]` and calls the result a convex hull — it
 is one only where both sets are convex. -/
-def segments {α : Type} [AddCommGroup α] [Module ℝ α] (X Y : Set α) : Set α :=
+def _root_.Set.linComb {α : Type} [AddCommGroup α] [Module ℝ α] (X Y : Set α) : Set α :=
   {x | ∃ y₁ ∈ X, ∃ y₂ ∈ Y, ∃ lam ∈ Set.Icc (0:ℝ) 1, x = lam • y₁ + (1 - lam) • y₂}
 
 /-- Every point from which anything in `T` still lands in `S`: `plus`'s
@@ -193,7 +193,7 @@ class LinComb (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   linComb : S → S → S
   linComb_outer (s₁ s₂ : S) :
-    segments (construct s₁) (construct s₂) ⊆ construct (linComb s₁ s₂)
+    Set.linComb (construct s₁) (construct s₂) ⊆ construct (linComb s₁ s₂)
 
 /-- A singleton, as a set of the representation. -/
 class OfPoint (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]

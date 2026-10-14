@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SetLinCombSubsetOfIsOrOuter
 
 @[expose] public section
 
@@ -35,10 +35,10 @@ variable {m n : ℕ}
 theorem Ellipsoid.enclose_outer (orOA : Ellipsoid n → Ellipsoid n → Ellipsoid n)
     (hor : ∀ E₁ E₂, Ellipsoid.IsOrOuter E₁ E₂ (orOA E₁ E₂))
     (E : Ellipsoid n) (M : Mat ℝ n m) (Eplus : Ellipsoid m) :
-    segments E.construct ((M *ᵥ ·) '' Eplus.construct) ⊆
+    Set.linComb E.construct ((M *ᵥ ·) '' Eplus.construct) ⊆
       (Ellipsoid.enclose orOA E M Eplus).construct := by
   rw [Ellipsoid.mtimes_exact]
-  exact Ellipsoid.segments_subset_of_isOrOuter (hor _ _)
+  exact Ellipsoid.setLinComb_subset_of_isOrOuter (hor _ _)
 
 
 end CORALean.Real

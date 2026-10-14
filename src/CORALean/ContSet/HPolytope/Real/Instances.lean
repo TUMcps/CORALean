@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.HPolytope
-public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 public import CORALean.ContSet.HPolytope.Real.Operations.Rows
 public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
@@ -84,7 +84,7 @@ serving: a point on a segment between the two beats neither. -/
 noncomputable instance {n : ℕ} : LinComb (HPolytope (Vec ℝ n)) (Vec ℝ n) where
   linComb P₁ P₂ := HPolytope.ofBoundsOpt (Fin.append P₁.rows P₂.rows) fun i =>
     (P₁.supportBound (Fin.append P₁.rows P₂.rows i)).bind fun u =>
-      (P₂.supportBound (Fin.append P₁.rows P₂.rows i)).map u.segments
+      (P₂.supportBound (Fin.append P₁.rows P₂.rows i)).map u.setLinComb
   linComb_outer _ _ := HPolytope.subset_ofBoundsOpt _ _
 
 /-- `mapEquiv` wants an equivalence, not a linear map, so a reindexing goes
