@@ -554,6 +554,7 @@ SyntaxTree.funHanLog  real-layer: the `funHan` of CORA's `syntaxTree.m` for this
 SyntaxTree.funHanMinus  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanPlus  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanPower  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanPowerOddCora  real-layer: the odd branch of `aux_power_` of CORA's `syntaxTree.m` as printed, over real-layer intervals with the real roots; read for its counterexample only
 SyntaxTree.funHanSin  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanSinh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanSinhCora  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
@@ -570,6 +571,7 @@ SyntaxTree.minusNumRight  real-layer: the node `minusNumRight` of `syntaxTree.m`
 SyntaxTree.mpower  real-layer: the node `mpower` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.mtimes  real-layer: the node `mtimes` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.nthroot  real-layer: a helper of the `funHan`s of `syntaxTree.m` over real-layer intervals and the real elementary functions
+SyntaxTree.nthrootZ  real-layer: a helper of `funHanPowerOddCora`, `nthroot` for an integer degree over the real roots
 SyntaxTree.periodic  real-layer: a helper of the `funHan`s of `syntaxTree.m` over real-layer intervals and the real elementary functions
 SyntaxTree.plus  real-layer: the node `plus` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.plusNumLeft  real-layer: the node `plusNumLeft` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
@@ -592,3 +594,15 @@ SyntaxTree.times  real-layer: the node `times` of `syntaxTree.m`, its interval t
 SyntaxTree.timesNumLeft  real-layer: the node `timesNumLeft` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.timesNumRight  real-layer: the node `timesNumRight` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.uminus  real-layer: the node `uminus` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+STLInterval.lowerBound  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+STLInterval.upperBound  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+PointSegmentSignal.indicator  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+PointSegmentSignal.set  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+KleeneSignal.indicator  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+KleeneSignal.fromBoolSignal  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+KleeneSignal.set  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+FourValuedSignal.indicator  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+FourValuedSignal.fromKleeneSignal  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+FourValuedSignal.set  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+FourValuedSignal.uniformSignal  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+FourValuedSignal.combine  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable

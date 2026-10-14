@@ -728,6 +728,11 @@
     }
   },
   "specification/syntaxTree": {
+    "power": {
+      "description": "negative odd exponent: result is the gap between solution rays",
+      "fix": null,
+      "kind": "unsound"
+    },
     "sinh": {
       "description": "target cut to [-1,1] loses solutions of sinh",
       "kind": "unsound"

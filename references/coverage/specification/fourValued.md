@@ -2,12 +2,12 @@
 
 CORA methods of `specification/@fourValued/` (a class of `specification/` or `specification/signals/`; a single-file class lists its public methods, constructor included), one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** none.
+**CORALean counterpart:** `FourValued` (`src/CORALean/Specification/FourValued/`), the four members `False(0)`, `Unknown(1)`, `Inconclusive(2)`, `True(3)` of CORA's enumeration.
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `and` | — | — |  |
-| `fromBool` | — | — |  |
-| `fromKleene` | — | — |  |
-| `not` | — | — |  |
-| `or` | — | — |  |
+| `and` | float | [`FourValued`](../../../src/CORALean/Specification/FourValued/FourValued.lean), [`FourValued.and`](../../../src/CORALean/Specification/FourValued/Operations/And.lean), [`FourValued.and_comm`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean), [`FourValued.fromKleene_and`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean) | route b (scalar-free) — the four masks of `and`, no scalar; commutative, associative, idempotent, `True` its unit, `False` absorbing, De Morgan, `fromKleene` a homomorphism; not distributive and no absorption law (`and_or_distrib_ne`, `and_or_self_ne`), as `Inconclusive` is the unknown interval; arrays are not modelled. |
+| `fromBool` | float | [`FourValued`](../../../src/CORALean/Specification/FourValued/FourValued.lean), [`FourValued.fromBool`](../../../src/CORALean/Specification/FourValued/Operations/Basic.lean), [`FourValued.fromBool_eq_fromKleene`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean) | route b (scalar-free) — `True` for `true`, `False` for `false`; factors through `Kleene.fromBool` and `fromKleene`. |
+| `fromKleene` | float | [`FourValued`](../../../src/CORALean/Specification/FourValued/FourValued.lean), [`FourValued.fromKleene`](../../../src/CORALean/Specification/FourValued/Operations/Basic.lean), [`FourValued.fromKleene_and`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean), [`FourValued.fromKleene_not`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean) | route b (scalar-free) — `True`, `False` and `Unknown` map to themselves; a homomorphism of `and`, `or` and `not` (`fromKleene_and`, `fromKleene_or`, `fromKleene_not`). |
+| `not` | float | [`FourValued`](../../../src/CORALean/Specification/FourValued/FourValued.lean), [`FourValued.not`](../../../src/CORALean/Specification/FourValued/Operations/Not.lean), [`FourValued.not_not`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean), [`FourValued.not_and`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean) | route b (scalar-free) — swaps `True` and `False`, keeps `Unknown` and `Inconclusive`; an involution, with both De Morgan laws (`not_and`, `not_or`). |
+| `or` | float | [`FourValued`](../../../src/CORALean/Specification/FourValued/FourValued.lean), [`FourValued.or`](../../../src/CORALean/Specification/FourValued/Operations/Or.lean), [`FourValued.or_comm`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean), [`FourValued.fromKleene_or`](../../../src/CORALean/Specification/FourValued/Theorems/Basic.lean) | route b (scalar-free) — the four masks of `or`, no scalar; the dual laws of `and`, and `or_and_distrib_ne`, `or_and_self_ne` for the two that fail; arrays are not modelled. |

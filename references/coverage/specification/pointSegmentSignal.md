@@ -2,18 +2,18 @@
 
 CORA methods of `specification/@pointSegmentSignal/` (a class of `specification/` or `specification/signals/`; a single-file class lists its public methods, constructor included), one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** none.
+**CORALean counterpart:** `PointSegmentSignal` (`src/CORALean/Specification/PointSegmentSignal/`), CORA's strictly increasing time points with a value at each point and on the interval after it, over any ordered time type with `0` (the signals of STL are over `ℝ`); the intervals are `STLInterval` (`src/CORALean/Specification/STLInterval/`), and `indicator` and `set` over `ℝ` wrap the generic-time `indicatorBounds` and `setBounds`.
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
-| `allTrue` | — | — |  |
-| `anyTrue` | — | — |  |
-| `combine` | — | — |  |
+| `allTrue` | — | — | definition only, no theorem: `PointSegmentSignal.allTrue` (the values from `start` to `stop` of `priv_relevantValueIdx`) is defined, nothing is proved of its result |
+| `anyTrue` | — | — | definition only, no theorem for CORA's output: `PointSegmentSignal.anyTrue` (the values from `start` to `stop` of `priv_relevantValueIdx`) is defined; only `anyTrue_eq_false_of_at` (a signal that is `false` everywhere has no true value) is proved, one direction of the exact statement |
+| `combine` | proved | [`PointSegmentSignal`](../../../src/CORALean/Specification/PointSegmentSignal/PointSegmentSignal.lean), [`PointSegmentSignal.combine`](../../../src/CORALean/Specification/PointSegmentSignal/Operations/Combine.lean), [`PointSegmentSignal.combineLoop`](../../../src/CORALean/Specification/PointSegmentSignal/Operations/CombineLoop.lean), [`PointSegmentSignal.combine_spec`](../../../src/CORALean/Specification/PointSegmentSignal/Theorems/CombineSpec.lean) | the `while` loop of `combine.m` for each output, ties of the time points by equality (CORA: `eps`), the passes bounded by a fuel that suffices; `combine_spec` says each output is a valid signal whose value at every `t ≥ 0` is `op` of the inputs' values at `t`; one loop per output, as the outputs share only the traversal. |
 | `cutAtFirstFallingEdge` | — | — |  |
 | `findIntervals` | — | — |  |
 | `findLast` | — | — |  |
-| `indicator` | — | — |  |
+| `indicator` | proved | [`PointSegmentSignal`](../../../src/CORALean/Specification/PointSegmentSignal/PointSegmentSignal.lean), [`PointSegmentSignal.indicator`](../../../src/CORALean/Specification/PointSegmentSignal/Operations/Indicator.lean), [`PointSegmentSignal.indicator_spec`](../../../src/CORALean/Specification/PointSegmentSignal/Theorems/IndicatorSpec.lean) | `indicator_spec` says the result is valid and is `val` on the interval and `default` elsewhere, for every `t ≥ 0`; the interval is an `STLInterval` (CORA also accepts an `interval` object and a scalar). |
 | `plot` | out-of-scope | n/a — plotting/display |  |
-| `pointSegmentSignal` | — | — |  |
-| `set` | — | — |  |
+| `pointSegmentSignal` | proved | [`PointSegmentSignal`](../../../src/CORALean/Specification/PointSegmentSignal/PointSegmentSignal.lean), [`PointSegmentSignal.IsValid`](../../../src/CORALean/Specification/PointSegmentSignal/Definitions/IsValid.lean), [`PointSegmentSignal.at`](../../../src/CORALean/Specification/PointSegmentSignal/Operations/At.lean), [`PointSegmentSignal.at_timePoint`](../../../src/CORALean/Specification/PointSegmentSignal/Theorems/AtTimePoint.lean), [`PointSegmentSignal.at_between`](../../../src/CORALean/Specification/PointSegmentSignal/Theorems/AtBetween.lean) | `IsValid` is the constructor's `aux_checkInputs`; `at_timePoint` and `at_between` say what a valid signal's value is at a time point and between two (the denotation); the time type is any ordered `T` with `0`, and `at` takes the last point `≤ time` as the number of points `≤ time` (CORA's `find`), a precondition `time ≥ 0` that CORA checks by an error. |
+| `set` | proved | [`PointSegmentSignal`](../../../src/CORALean/Specification/PointSegmentSignal/PointSegmentSignal.lean), [`PointSegmentSignal.set`](../../../src/CORALean/Specification/PointSegmentSignal/Operations/Set.lean), [`PointSegmentSignal.setPoint`](../../../src/CORALean/Specification/PointSegmentSignal/Operations/SetPoint.lean), [`PointSegmentSignal.set_spec`](../../../src/CORALean/Specification/PointSegmentSignal/Theorems/SetSpec.lean), [`PointSegmentSignal.setPoint_spec`](../../../src/CORALean/Specification/PointSegmentSignal/Theorems/SetPointSpec.lean) | `set_spec`: for a valid signal and an interval starting at `t ≥ 0` the result is valid and has `value` at the times of the interval and the signal's own value elsewhere (an empty interval changes nothing); the loop-free index surgery of `set.m` and its local functions `aux_isNewPointOk` and `aux_setPoint` are written as CORA has them, the latter's value `setPoint_spec`. |
 | `until` | — | — |  |

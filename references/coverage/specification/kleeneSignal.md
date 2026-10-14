@@ -2,22 +2,22 @@
 
 CORA methods of `specification/@kleeneSignal/` (a class of `specification/` or `specification/signals/`; a single-file class lists its public methods, constructor included), one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** none.
+**CORALean counterpart:** `KleeneSignal` (`src/CORALean/Specification/KleeneSignal/`), a Boolean part and an unknown part, each a `PointSegmentSignal`, over any ordered time type with `0`.
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `and_` | — | — |  |
-| `at` | — | — |  |
-| `combine` | — | — |  |
-| `eq` | — | — |  |
+| `at` | proved | [`KleeneSignal`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.at`](../../../src/CORALean/Specification/KleeneSignal/Operations/Basic.lean), [`KleeneSignal.at_not`](../../../src/CORALean/Specification/KleeneSignal/Theorems/Basic.lean), [`KleeneSignal.indicator_spec`](../../../src/CORALean/Specification/KleeneSignal/Theorems/IndicatorSpec.lean) | `at` is `Unknown` where `isUnknown.at` holds, else `fromBool(signal.at)`, as `at.m` reads; time `≥ 0` is a precondition (CORA checks it). |
+| `combine` | proved | [`KleeneSignal`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.combine`](../../../src/CORALean/Specification/KleeneSignal/Operations/Combine.lean), [`KleeneSignal.combine_spec`](../../../src/CORALean/Specification/KleeneSignal/Theorems/CombineSpec.lean) | `combine_spec`: for valid inputs each output is a valid signal whose value at every `t ≥ 0` is `op` of the inputs' Kleene values; the Boolean and unknown parts of the inputs, and of each output, are the `2m` inputs and `2o` outputs of `PointSegmentSignal.combine` (CORA's `c` and `kOp`). |
+| `eq` | proved | [`KleeneSignal`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.eq`](../../../src/CORALean/Specification/KleeneSignal/Operations/Basic.lean), [`KleeneSignal.eq_iff`](../../../src/CORALean/Specification/KleeneSignal/Theorems/Basic.lean), [`KleeneSignal.at_eq_of_eq`](../../../src/CORALean/Specification/KleeneSignal/Theorems/Basic.lean), [`KleeneSignal.eq_not_complete`](../../../src/CORALean/Specification/KleeneSignal/Theorems/EqNotComplete.lean) | `eq` is structural: both parts equal (CORA's `pointSegmentSignal` `==` compares time points up to `eps`, exact here); equal signals have equal values, but not conversely: negation flips the Boolean part under `isUnknown`, so an `Unknown` signal and its negation have the same value yet are not `==` (`eq_not_complete`); CORA's own tests compare through `findIntervals` for that reason. |
 | `findIntervals` | — | — |  |
-| `fromBoolSignal` | — | — |  |
-| `indicator` | — | — |  |
-| `kleeneSignal` | — | — |  |
-| `not` | — | — |  |
+| `fromBoolSignal` | proved | [`KleeneSignal`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.fromBoolSignal`](../../../src/CORALean/Specification/KleeneSignal/Operations/Basic.lean), [`KleeneSignal.fromBoolSignal_spec`](../../../src/CORALean/Specification/KleeneSignal/Theorems/FromBoolSignalSpec.lean) | `fromBoolSignal_spec`: valid, and the value at every `t ≥ 0` is `fromBool` of the Boolean signal's value; the empty `stlInterval()` of CORA is `STLInterval.empty`. |
+| `indicator` | proved | [`KleeneSignal`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.indicator`](../../../src/CORALean/Specification/KleeneSignal/Operations/Basic.lean), [`KleeneSignal.indicator_spec`](../../../src/CORALean/Specification/KleeneSignal/Theorems/IndicatorSpec.lean) | `indicator_spec`: valid, with value `val` at the times of the interval and `default` elsewhere (`t ≥ 0`); the interval is an `STLInterval`. |
+| `kleeneSignal` | proved | [`KleeneSignal`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.IsValid`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.at`](../../../src/CORALean/Specification/KleeneSignal/Operations/Basic.lean), [`Kleene.ofBoolUnk_toBool_isUnknown`](../../../src/CORALean/Specification/Kleene/Theorems/Basic.lean) | the two parts and the value they denote (`Unknown` where `isUnknown` holds, else the Boolean part); the constructor checks nothing, `IsValid` asks both parts to be valid signals; `ofBoolUnk_toBool_isUnknown` says a Kleene value is recovered from its two parts. |
+| `not` | proved | [`KleeneSignal`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.not`](../../../src/CORALean/Specification/KleeneSignal/Operations/Basic.lean), [`KleeneSignal.at_not`](../../../src/CORALean/Specification/KleeneSignal/Theorems/Basic.lean), [`KleeneSignal.not_isValid`](../../../src/CORALean/Specification/KleeneSignal/Theorems/Basic.lean) | `at_not`: for a valid signal the value of `~obj` at every time is the Kleene negation of the value of `obj`; the Boolean part is negated and the unknown part kept, so the Boolean part under `isUnknown` is not the original one. |
 | `or_` | — | — |  |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `plotSig` | out-of-scope | n/a — plotting/display |  |
-| `set` | — | — |  |
+| `set` | proved | [`KleeneSignal`](../../../src/CORALean/Specification/KleeneSignal/KleeneSignal.lean), [`KleeneSignal.set`](../../../src/CORALean/Specification/KleeneSignal/Operations/Basic.lean), [`KleeneSignal.set_spec`](../../../src/CORALean/Specification/KleeneSignal/Theorems/SetSpec.lean) | `set_spec`: valid, with `value` at the times of the interval and the old value elsewhere; both parts are set (`kleeneToBoolUnk`). |
 | `toBoolSignal` | — | — |  |
 | `until` | — | — |  |

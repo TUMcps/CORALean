@@ -15,8 +15,8 @@ narrows
 its operand's interval. `Operations` has the constructor of each operator and `backpropagation`;
 `Theorems` says what each denotes (`eval_*`), that its interval encloses it (`encloses_*`), that its
 `funHan` is sound (`*_sound`), and that `backpropagation` of a sound tree keeps every solution
-(`backpropagation_sound`). Two printed `funHan`s are not sound: `sinhCora_counterexample`,
-`tanCora_counterexample`.
+(`backpropagation_sound`). Three printed `funHan`s are not sound: `sinhCora_counterexample`,
+`tanCora_counterexample`, `powerOddCora_counterexample`.
 
 Not here: the display of a tree, matrix-valued operands beyond `sum`, `prod` and `mtimes`, and
 negative,

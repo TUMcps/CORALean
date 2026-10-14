@@ -49,6 +49,7 @@ public import CORALean.Specification.SyntaxTree.Theorems.PeriodicContains
 public import CORALean.Specification.SyntaxTree.Theorems.PlusSound
 public import CORALean.Specification.SyntaxTree.Theorems.PowerSound
 public import CORALean.Specification.SyntaxTree.Theorems.RestrictContains
+public import CORALean.Specification.SyntaxTree.Theorems.PowerOddCoraCounterexample
 public import CORALean.Specification.SyntaxTree.Theorems.SinSound
 public import CORALean.Specification.SyntaxTree.Theorems.SinhCoraCounterexample
 public import CORALean.Specification.SyntaxTree.Theorems.SoundAcos
@@ -85,6 +86,6 @@ that function, the `*_sound` theorems that its `funHan` is sound, `sound_*` that
 keeps a
 tree `Sound`, and `backpropagation_sound` that `backpropagation` of a sound tree keeps every
 solution.
-`sinhCora_counterexample` and `tanCora_counterexample` are the two places CORA's `funHan` is not
-sound.
+`sinhCora_counterexample`, `tanCora_counterexample` and `powerOddCora_counterexample` are the
+places CORA's `funHan` is not sound.
 -/

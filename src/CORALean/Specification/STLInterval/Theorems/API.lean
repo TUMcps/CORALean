@@ -8,6 +8,7 @@ public import CORALean.Specification.STLInterval.Theorems.InfimumValue
 public import CORALean.Specification.STLInterval.Theorems.IsequalZeroIff
 public import CORALean.Specification.STLInterval.Theorems.MinkDiffCoraCounterexample
 public import CORALean.Specification.STLInterval.Theorems.NonemptySetSubsetIff
+public import CORALean.Specification.STLInterval.Theorems.NotMemBoundsOfEmptyBounds
 public import CORALean.Specification.STLInterval.Theorems.RawSetAdd
 public import CORALean.Specification.STLInterval.Theorems.RawSetBoundsNe
 public import CORALean.Specification.STLInterval.Theorems.RawSetClamp
@@ -26,6 +27,7 @@ public import CORALean.Specification.STLInterval.Theorems.RepresentsaOriginZeroI
 public import CORALean.Specification.STLInterval.Theorems.RepresentsaPointZeroIff
 public import CORALean.Specification.STLInterval.Theorems.SetAnd
 public import CORALean.Specification.STLInterval.Theorems.SetEqSingletonIff
+public import CORALean.Specification.STLInterval.Theorems.SetIffMemBounds
 public import CORALean.Specification.STLInterval.Theorems.SetInjective
 public import CORALean.Specification.STLInterval.Theorems.SetInterval
 public import CORALean.Specification.STLInterval.Theorems.SetLeftClosure
@@ -43,6 +45,7 @@ public import CORALean.Specification.STLInterval.Theorems.SetToRight
 public import CORALean.Specification.STLInterval.Theorems.SupremumClosedIff
 public import CORALean.Specification.STLInterval.Theorems.SupremumValue
 public import CORALean.Specification.STLInterval.Theorems.WithinTolZero
+public import CORALean.Specification.STLInterval.Theorems.ZeroLeLowerBound
 
 /-!
 # STL intervals: the theorems
