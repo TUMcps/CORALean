@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.SinCos
 public import CORALean.Global.Float.Sqrt
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
@@ -30,7 +31,7 @@ of the sine and cosine, `k` the number of bisection and Newton steps.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   13-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -48,20 +49,20 @@ namespace InverseTrig
 def clampOne (a : 𝕋) : 𝕋 := maximum (neg one) (minimum one a)
 
 /-- One bisection step for `arctan z` in `b`, at a midpoint clamped into `[-1, 1]`. -/
-def atanStep (n : ℕ) (z : 𝕋) (b : 𝕋 × 𝕋) : 𝕋 × 𝕋 :=
-  let m := clampOne (half (addUp b.1 b.2))
+def atanStep (n : ℕ) (z : 𝕋) (b : Interval 𝕋) : Interval 𝕋 :=
+  let m := clampOne (half (addUp b.inf b.sup))
   let cl := cosDown n m
   let cu := cosUp n m
-  if le (sinUp n m) (minimum (mulDown z cl) (mulDown z cu)) = true then (m, b.2)  -- tan m ≤ z
-  else if le (maximum (mulUp z cl) (mulUp z cu)) (sinDown n m) = true then (b.1, m) -- z ≤ tan m
+  if le (sinUp n m) (minimum (mulDown z cl) (mulDown z cu)) = true then ⟨m, b.sup⟩  -- tan m ≤ z
+  else if le (maximum (mulUp z cl) (mulUp z cu)) (sinDown n m) = true then ⟨b.inf, m⟩ -- z ≤ tan m
   else b
 
-def atanIter (n : ℕ) (z : 𝕋) : ℕ → 𝕋 × 𝕋 → 𝕋 × 𝕋
+def atanIter (n : ℕ) (z : 𝕋) : ℕ → Interval 𝕋 → Interval 𝕋
   | 0, b => b
   | j + 1, b => atanIter n z j (atanStep n z b)
 
 /-- `arctan z` bracketed, `z` clamped into `[-1, 1]` first. -/
-def atanBracket (n k : ℕ) (z : 𝕋) : 𝕋 × 𝕋 := atanIter n (clampOne z) k (neg one, one)
+def atanBracket (n k : ℕ) (z : 𝕋) : Interval 𝕋 := atanIter n (clampOne z) k ⟨neg one, one⟩
 
 /-- `num / D` from below and above, for `D` between `dl ≥ 1` and `du`. -/
 def quotLo (num dl du : 𝕋) : 𝕋 := minimum (divDown num dl) (divDown num du)
@@ -85,27 +86,27 @@ open InverseTrig
 def atanDown (n k : ℕ) (y : 𝕋) : 𝕋 :=
   let z := quotLo y (atanDenLo k y) (atanDenHi k y)
   let b := atanBracket n k z
-  addDown b.1 b.1
+  addDown b.inf b.inf
 
 /-- `arctan y` from above, at every `y`. -/
 def atanUp (n k : ℕ) (y : 𝕋) : 𝕋 :=
   let z := quotHi y (atanDenLo k y) (atanDenHi k y)
   let b := atanBracket n k z
-  addUp b.2 b.2
+  addUp b.sup b.sup
 
 /-- `arcsin x` from below, at every `x` (`Real.arcsin` is constant outside `[-1, 1]`). -/
 def asinDown (n k : ℕ) (x : 𝕋) : 𝕋 :=
   let x' := clampOne x
   let z := quotLo x' (asinDenLo k x') (asinDenHi k x')
   let b := atanBracket n k z
-  addDown b.1 b.1
+  addDown b.inf b.inf
 
 /-- `arcsin x` from above, at every `x`. -/
 def asinUp (n k : ℕ) (x : 𝕋) : 𝕋 :=
   let x' := clampOne x
   let z := quotHi x' (asinDenLo k x') (asinDenHi k x')
   let b := atanBracket n k z
-  addUp b.2 b.2
+  addUp b.sup b.sup
 
 /-- `arccos x` from below, at every `x`: twice `arcsin √((1 - x)/2)`. -/
 def acosDown (n k : ℕ) (x : 𝕋) : 𝕋 :=
@@ -210,13 +211,13 @@ private theorem mul_between {k c d x : ℝ} (h1 : c ≤ x) (h2 : x ≤ d) :
       le_max_of_le_left (mul_le_mul_of_nonpos_left h1 hk)⟩
 
 /-- A bracket of `arctan z`. -/
-private def Brackets (z : ℝ) (b : 𝕋 × 𝕋) : Prop :=
-  toReal b.1 ≤ Real.arctan z ∧ Real.arctan z ≤ toReal b.2
+private def Brackets (z : ℝ) (b : Interval 𝕋) : Prop :=
+  toReal b.inf ≤ Real.arctan z ∧ Real.arctan z ≤ toReal b.sup
 
-private theorem atanStep_brackets (n : ℕ) {z : 𝕋} {b : 𝕋 × 𝕋}
+private theorem atanStep_brackets (n : ℕ) {z : 𝕋} {b : Interval 𝕋}
     (h : Brackets (toReal z) b) : Brackets (toReal z) (atanStep n z b) := by -- --- PROOF ---
-  set m := clampOne (half (addUp b.1 b.2))
-  have hm := abs_clampOne_le (half (addUp b.1 b.2))
+  set m := clampOne (half (addUp b.inf b.sup))
+  have hm := abs_clampOne_le (half (addUp b.inf b.sup))
   rw [abs_le] at hm
   have hpi := Real.pi_gt_three
   have hm1 : -(Real.pi / 2) < toReal m := by linarith [hm.1]
@@ -248,7 +249,7 @@ private theorem atanStep_brackets (n : ℕ) {z : 𝕋} {b : 𝕋 × 𝕋}
   · exact h
 
 private theorem atanIter_brackets (n : ℕ) {z : 𝕋} :
-    ∀ (j : ℕ) (b : 𝕋 × 𝕋), Brackets (toReal z) b → Brackets (toReal z) (atanIter n z j b) := by
+    ∀ (j : ℕ) (b : Interval 𝕋), Brackets (toReal z) b → Brackets (toReal z) (atanIter n z j b) := by
   intro j
   induction j with
   | zero => exact fun _ h => h
@@ -346,18 +347,18 @@ private theorem abs_le_one_add_sqrt_one_add (y : ℝ) : |y| ≤ 1 + Real.sqrt (1
 
 /-- `arctan` at the lower end of the quotient, a lower bound by monotonicity. -/
 private theorem twice_lower {z : 𝕋} {v : ℝ} (hz : toReal z ≤ v) (hv : |v| ≤ 1) (n k : ℕ) :
-    toReal (addDown (atanBracket n k z).1 (atanBracket n k z).1) ≤ 2 * Real.arctan v := by
+    toReal (addDown (atanBracket n k z).inf (atanBracket n k z).inf) ≤ 2 * Real.arctan v := by
   have hb := (atanBracket_brackets n k z).1
   have hm := Real.arctan_strictMono.monotone (clampOne_le hz hv)
-  have := addDown_le_add (atanBracket n k z).1 (atanBracket n k z).1
+  have := addDown_le_add (atanBracket n k z).inf (atanBracket n k z).inf
   linarith
 
 /-- And at the upper end, an upper bound. -/
 private theorem twice_upper {z : 𝕋} {v : ℝ} (hz : v ≤ toReal z) (hv : |v| ≤ 1) (n k : ℕ) :
-    2 * Real.arctan v ≤ toReal (addUp (atanBracket n k z).2 (atanBracket n k z).2) := by
+    2 * Real.arctan v ≤ toReal (addUp (atanBracket n k z).sup (atanBracket n k z).sup) := by
   have hb := (atanBracket_brackets n k z).2
   have hm := Real.arctan_strictMono.monotone (le_clampOne hz hv)
-  have := add_le_addUp (atanBracket n k z).2 (atanBracket n k z).2
+  have := add_le_addUp (atanBracket n k z).sup (atanBracket n k z).sup
   linarith
 
 /-- A clamped float is in `[-1, 1]`. -/

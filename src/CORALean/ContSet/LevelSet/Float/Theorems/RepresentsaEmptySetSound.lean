@@ -36,7 +36,7 @@ theorem LevelSet.representsa_emptySet_sound (L : CORALean.Real.LevelSet n)
     (hm : 0 < L.m) (h : LevelSet.representsa_emptySet L O = true) :
     L.construct = ∅ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.representsa_emptySet_sound L
-    (fun i => (((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)))
+    (fun i => ⟨((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)⟩)
     (fun i x => ⟨EReal.coe_le_coe_iff.mpr (hO i x).1, EReal.coe_le_coe_iff.mpr (hO i x).2⟩)
     hm ?_
   -- each row's certified comparison, read as reals

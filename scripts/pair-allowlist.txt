@@ -42,8 +42,3 @@ src/CORALean/NN/Layers/Operations/FindRegionRight.lean  other: a region polynomi
 
 src/CORALean/Specification/STL/Theorems/REncCounterexample.lean  state: a two-dimensional signal value (x1, x2)
 src/CORALean/Specification/STL/Theorems/ZEncCounterexample.lean  state: a two-dimensional signal value (x1, x2)
-src/CORALean/Global/Float/DivFact.lean  layering: Global/ may not import ContSet/, where `Float.Interval` lives; converted once the type sits below it (#151)
-src/CORALean/Global/Float/InverseTrig.lean  layering: Global/ may not import ContSet/, where `Float.Interval` lives; converted once the type sits below it (#151)
-src/CORALean/Global/Float/RatUp.lean  layering: Global/ may not import ContSet/, where `Float.Interval` lives; converted once the type sits below it (#151)
-src/CORALean/Global/Float/SinCos.lean  layering: Global/ may not import ContSet/, where `Float.Interval` lives; converted once the type sits below it (#151)
-src/CORALean/Global/Float/TrigRange.lean  layering: Global/ may not import ContSet/, where `Float.Interval` lives; converted once the type sits below it (#151)

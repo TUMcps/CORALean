@@ -89,7 +89,7 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
     exact eval_odePoly_odeL (q := [1, 0, 1]) (fun x => by simp [evalL]; ring) k _
   have ht1 := tanDown_le p c hcc
   have ht2 := le_tanUp p c hcc
-  have hF1 := fun k => divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+  have hF1 := fun k => divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
     (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) k
   refine Taylm.compose_outer h Real.tan c _ _ N _
     (fun k => iteratedDeriv k Real.tan (toReal c) / (k.factorial : ℝ)) (fun k _ => ?_)
@@ -130,7 +130,7 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
     have hE : 0 ≤ evalL (odeL [1, 0, 1] (N + 1)) (Real.tan M) :=
       le_trans (abs_nonneg _) (hD1 (toReal c) Set.left_mem_uIcc)
     -- `1 / (N+1)!` below its rounding
-    have hF := (divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+    have hF := (divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
       (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (N + 1)).2
     have hY := pow_nonneg (abs_nonneg (f t - toReal c)) (N + 1)
     have hFpos : (0 : ℝ) ≤ 1 / ((N + 1).factorial : ℝ) := by positivity
@@ -140,12 +140,12 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
           * (1 / ((N + 1).factorial : ℝ)) := by ring
       _ ≤ toReal (Interval.evalList (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).sup
             * toReal (powUp B (N + 1))
-          * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 := by
+          * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
         apply mul_le_mul (mul_le_mul hD hPow hY (le_trans hE hD)) hF hFpos
         exact mul_nonneg (le_trans hE hD) (le_trans hY hPow)
       _ ≤ toReal (mulUp (Interval.evalList (tanDown p m) (tanUp p m)
               (odeL [1, 0, 1] (N + 1))).sup (powUp B (N + 1)))
-          * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 := by
+          * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
         apply mul_le_mul_of_nonneg_right (mul_le_mulUp _ _) (le_trans hFpos hF)
       _ ≤ _ := mul_le_mulUp _ _
 

@@ -35,7 +35,7 @@ def Taylm.unitRemainder (T : Taylm 𝕋 n) : 𝕋 :=
   let c := T.constCoef
   let b := T.bounds
   let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))      -- |f t - c| ≤ B on the box
-  mulUp (powUp B (N + 1)) (divFact (one, one) (N + 1)).2
+  mulUp (powUp B (N + 1)) (divFact ⟨one, one⟩ (N + 1)).sup
 
 end CORALean.Float
 

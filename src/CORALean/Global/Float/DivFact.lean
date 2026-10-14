@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
@@ -15,7 +16,7 @@ expansion, `g⁽ᵏ⁾(c) / k!`, and `1 / (N+1)!` in a Lagrange remainder, are t
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,15 +31,15 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def divFact (q : 𝕋 × 𝕋) : ℕ → 𝕋 × 𝕋
+def divFact (q : Interval 𝕋) : ℕ → Interval 𝕋
   | 0 => q
-  | k + 1 => (divDown (divFact q k).1 (nsmulUp (k + 1) one),
-      divUp (divFact q k).2 (maximum one (nsmulDown (k + 1) one)))
+  | k + 1 => ⟨divDown (divFact q k).inf (nsmulUp (k + 1) one),
+      divUp (divFact q k).sup (maximum one (nsmulDown (k + 1) one))⟩
 
-theorem divFact_mem [SoundFloatArithmetic 𝕋] (q : 𝕋 × 𝕋) {a : ℝ} (ha0 : 0 ≤ a)
-    (ha : toReal q.1 ≤ a ∧ a ≤ toReal q.2) :
-    ∀ k : ℕ, toReal (divFact q k).1 ≤ a / (k.factorial : ℝ) ∧
-      a / (k.factorial : ℝ) ≤ toReal (divFact q k).2 := by -- --- PROOF ---
+theorem divFact_mem [SoundFloatArithmetic 𝕋] (q : Interval 𝕋) {a : ℝ} (ha0 : 0 ≤ a)
+    (ha : toReal q.inf ≤ a ∧ a ≤ toReal q.sup) :
+    ∀ k : ℕ, toReal (divFact q k).inf ≤ a / (k.factorial : ℝ) ∧
+      a / (k.factorial : ℝ) ≤ toReal (divFact q k).sup := by -- --- PROOF ---
   intro k
   induction k with
   | zero => simpa [divFact] using ha
@@ -64,7 +65,7 @@ theorem divFact_mem [SoundFloatArithmetic 𝕋] (q : 𝕋 × 𝕋) {a : ℝ} (ha
     -- each end: the previous bound, divided by a divisor on the right side of `k + 1`
     constructor
     · refine le_trans (divDown_le_div _ _ hUpos) ?_
-      calc toReal (divFact q k).1 / toReal (nsmulUp (k + 1) (one : 𝕋))
+      calc toReal (divFact q k).inf / toReal (nsmulUp (k + 1) (one : 𝕋))
           ≤ a / (k.factorial : ℝ) / toReal (nsmulUp (k + 1) (one : 𝕋)) :=
             div_le_div_of_nonneg_right ih.1 hUpos.le
         _ ≤ _ := div_le_div_of_nonneg_left hb (by linarith) (by linarith)

@@ -38,12 +38,12 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 def Taylm.arcsinCoef (q : ℕ) (c : 𝕋) (j : ℕ) : Interval 𝕋 :=
   let P := Interval.evalList c c (recL [1, 0, -1] (fun j => 2 * (j : ℤ) + 1) j)
-  let G := divFact (one, one) (j + 1)
+  let G := divFact ⟨one, one⟩ (j + 1)
   let W : Interval 𝕋 :=
     ⟨Interval.mulLo (powDown (invSqrtOneSubLo q c) (2 * j + 1))
-        (powUp (invSqrtOneSubHi q c) (2 * j + 1)) G.1 G.2,
+        (powUp (invSqrtOneSubHi q c) (2 * j + 1)) G.inf G.sup,
       Interval.mulHi (powDown (invSqrtOneSubLo q c) (2 * j + 1))
-        (powUp (invSqrtOneSubHi q c) (2 * j + 1)) G.1 G.2⟩
+        (powUp (invSqrtOneSubHi q c) (2 * j + 1)) G.inf G.sup⟩
   ⟨Interval.mulLo P.inf P.sup W.inf W.sup, Interval.mulHi P.inf P.sup W.inf W.sup⟩
 
 end CORALean.Float

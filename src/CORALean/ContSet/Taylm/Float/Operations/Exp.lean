@@ -41,9 +41,9 @@ def Taylm.exp (p : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   -- `|f t - c| ≤ B` on the box, and `exp` at the top of the hull bounds every derivative
   let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
   let D := expUp p (maximum c b.sup)
-  let ρ := mulUp (mulUp D (powUp B (N + 1))) (divFact (one, one) (N + 1)).2
-  T.compose c (fun k => (divFact (expDown p c, expUp p c) k).1)
-    (fun k => (divFact (expDown p c, expUp p c) k).2) N ρ
+  let ρ := mulUp (mulUp D (powUp B (N + 1))) (divFact ⟨one, one⟩ (N + 1)).sup
+  T.compose c (fun k => (divFact ⟨expDown p c, expUp p c⟩ k).inf)
+    (fun k => (divFact ⟨expDown p c, expUp p c⟩ k).sup) N ρ
 
 end CORALean.Float
 

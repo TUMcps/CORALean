@@ -14,7 +14,7 @@ nothing, so no `↔` and no exactness of the test.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -27,8 +27,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.representsa_emptySet_sound (L : LevelSet n) (O : Fin L.m → EReal × EReal)
-    (hO : ∀ i x, (O i).1 ≤ ((L.f x i : ℝ) : EReal) ∧ ((L.f x i : ℝ) : EReal) ≤ (O i).2)
+theorem LevelSet.representsa_emptySet_sound (L : LevelSet n) (O : Fin L.m → Interval EReal)
+    (hO : ∀ i x, (O i).inf ≤ ((L.f x i : ℝ) : EReal) ∧ ((L.f x i : ℝ) : EReal) ≤ (O i).sup)
     (hm : 0 < L.m) (h : L.representsa_emptySet O) : L.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.FloatOps
 public import Mathlib.Data.Rat.Defs
 
@@ -17,7 +18,7 @@ back through `ToRat` rather than trusting this.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,13 +33,13 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `(lo, hi)` around `k`, by binary doubling. -/
-def aux_natBracket : ℕ → 𝕋 × 𝕋
-  | 0 => (zero, zero)
+/-- `[inf, sup]` around `k`, by binary doubling. -/
+def aux_natBracket : ℕ → Interval 𝕋
+  | 0 => ⟨zero, zero⟩
   | k + 1 =>
     let h := aux_natBracket ((k + 1) / 2)                             -- ⌊(k + 1)/2⌋
-    let d := (addDown h.1 h.1, addUp h.2 h.2)                         -- doubled
-    if (k + 1) % 2 = 0 then d else (addDown d.1 one, addUp d.2 one)  -- and one more if odd
+    let d : Interval 𝕋 := ⟨addDown h.inf h.inf, addUp h.sup h.sup⟩   -- doubled
+    if (k + 1) % 2 = 0 then d else ⟨addDown d.inf one, addUp d.sup one⟩ -- and one more if odd
 termination_by k => k
 decreasing_by omega
 
@@ -47,7 +48,7 @@ decreasing_by omega
 
 /-- `q`, rounded up for a positive `q`: the numerator up over the denominator down. -/
 def ratUp (q : ℚ) : 𝕋 :=
-  divUp (aux_natBracket q.num.toNat).2 (aux_natBracket q.den).1
+  divUp (aux_natBracket q.num.toNat).sup (aux_natBracket q.den).inf
 
 end CORALean.Float
 

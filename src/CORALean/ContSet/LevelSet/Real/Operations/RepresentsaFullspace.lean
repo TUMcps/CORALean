@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.LevelSet.Real.LevelSet
 public import Mathlib.Data.EReal.Basic
 
@@ -20,7 +21,7 @@ tolerance `eps` in CORA, exact here).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,11 +34,11 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LevelSet.representsa_fullspace (L : LevelSet n) (O : Fin L.m → EReal × EReal) : Prop :=
+def LevelSet.representsa_fullspace (L : LevelSet n) (O : Fin L.m → Interval EReal) : Prop :=
   ∀ i, match L.op i with
-    | .eq => (O i).1 = 0 ∧ (O i).2 = 0
-    | .le => ¬(0 < (O i).2)
-    | .lt => ¬(0 ≤ (O i).2)
+    | .eq => (O i).inf = 0 ∧ (O i).sup = 0
+    | .le => ¬(0 < (O i).sup)
+    | .lt => ¬(0 ≤ (O i).sup)
 
 
 end CORALean.Real

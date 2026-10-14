@@ -53,9 +53,9 @@ def Taylm.atan (p q : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
     | 0 => ⟨atanDown p q c, atanUp p q c⟩
     | j + 1 =>
       let P := Interval.evalList c c (recL [1, 0, 1] (fun j => -(2 * ((j : ℤ) + 1))) j)
-      let G := divFact (one, one) (j + 1)
-      let W : Interval 𝕋 := ⟨Interval.mulLo (powDown wl (j + 1)) (powUp wh (j + 1)) G.1 G.2,
-        Interval.mulHi (powDown wl (j + 1)) (powUp wh (j + 1)) G.1 G.2⟩
+      let G := divFact ⟨one, one⟩ (j + 1)
+      let W : Interval 𝕋 := ⟨Interval.mulLo (powDown wl (j + 1)) (powUp wh (j + 1)) G.inf G.sup,
+        Interval.mulHi (powDown wl (j + 1)) (powUp wh (j + 1)) G.inf G.sup⟩
       ⟨Interval.mulLo P.inf P.sup W.inf W.sup, Interval.mulHi P.inf P.sup W.inf W.sup⟩
   T.taylor c (fun k => (coef k).inf) (fun k => (coef k).sup) D
 

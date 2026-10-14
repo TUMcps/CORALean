@@ -48,14 +48,14 @@ theorem Taylm.unitRemainder_le {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T
   set B : 𝕋 := maximum zero (maximum (subUp T.bounds.sup c) (subUp c T.bounds.inf))
   have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   have hPow := le_powUp (abs_nonneg _) hB (N + 1)
-  have hF := (divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+  have hF := (divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
     (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (N + 1)).2
   have hY := pow_nonneg (abs_nonneg (f t - toReal c)) (N + 1)
   have hFpos : (0 : ℝ) ≤ 1 / ((N + 1).factorial : ℝ) := by positivity
   -- the power and `1 / (N+1)!`, the product rounded up
   calc 1 * |f t - toReal c| ^ (N + 1) / ((N + 1).factorial : ℝ)
       = |f t - toReal c| ^ (N + 1) * (1 / ((N + 1).factorial : ℝ)) := by ring
-    _ ≤ toReal (powUp B (N + 1)) * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 :=
+    _ ≤ toReal (powUp B (N + 1)) * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup :=
       mul_le_mul hPow hF hFpos (le_trans hY hPow)
     _ ≤ _ := mul_le_mulUp _ _
 

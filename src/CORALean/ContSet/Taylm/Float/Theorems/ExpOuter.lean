@@ -42,7 +42,7 @@ theorem Taylm.exp_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
   have hmax : toReal (maximum c T.bounds.sup) = max (toReal c) (toReal T.bounds.sup) :=
     toReal_maximum _ _
   have hc : toReal c ≤ 2 ^ p / 2 := le_trans (le_max_left _ _) (hmax ▸ hp)
-  have hcoef := divFact_mem (expDown p c, expUp p c) (Real.exp_pos (toReal c)).le
+  have hcoef := divFact_mem ⟨expDown p c, expUp p c⟩ (Real.exp_pos (toReal c)).le
     ⟨expDown_le p c, le_expUp p c hc⟩
   refine Taylm.compose_outer h Real.exp c _ _ N _
     (fun k => Real.exp (toReal c) / (k.factorial : ℝ))
@@ -69,7 +69,7 @@ theorem Taylm.exp_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
   have hD : Real.exp (max (toReal c) (toReal T.bounds.sup))
       ≤ toReal (expUp p (maximum c T.bounds.sup)) := by
     rw [← hmax]; exact le_expUp p _ hp
-  have hF := (divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+  have hF := (divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
     (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (N + 1)).2
   have hE := Real.exp_pos (max (toReal c) (toReal T.bounds.sup))
   have hY := pow_nonneg (abs_nonneg (f t - toReal c)) (N + 1)
@@ -80,11 +80,11 @@ theorem Taylm.exp_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
       = Real.exp (max (toReal c) (toReal T.bounds.sup)) * |f t - toReal c| ^ (N + 1)
         * (1 / ((N + 1).factorial : ℝ)) := by ring
     _ ≤ toReal (expUp p (maximum c T.bounds.sup)) * toReal (powUp B (N + 1))
-        * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 := by
+        * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
       apply mul_le_mul (mul_le_mul hD hPow hY (le_trans hE.le hD)) hF hFpos
       exact mul_nonneg (le_trans hE.le hD) (le_trans hY hPow)
     _ ≤ toReal (mulUp (expUp p (maximum c T.bounds.sup)) (powUp B (N + 1)))
-        * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 := by
+        * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
       apply mul_le_mul_of_nonneg_right (mul_le_mulUp _ _) (le_trans hFpos hF)
     _ ≤ _ := mul_le_mulUp _ _
 

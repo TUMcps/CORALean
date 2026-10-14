@@ -22,7 +22,7 @@ bounded by `atanDom N` at the magnitude (`abs_iteratedDeriv_atan_le`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -90,7 +90,7 @@ theorem Taylm.atan_outer (p q : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} 
       -- the polynomial, the power and the factorial between their enclosures
       have hb := Interval.evalList_mem (lo := c) (hi := c) (x := toReal c) le_rfl le_rfl
         (recL [1, 0, 1] (fun j => -(2 * ((j : ℤ) + 1))) j)
-      have hG := divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+      have hG := divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
         (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (j + 1)
       have hpl := powDown_le hw0 hwl (j + 1)
       have hph := le_powUp hwpos hwh (j + 1)

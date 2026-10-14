@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.SinCos
 public import Mathlib.Analysis.Calculus.Deriv.MeanValue
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
@@ -22,7 +23,7 @@ taylm centre or a rotation angle.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   13-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -48,21 +49,21 @@ open TrigRange
 
 /-- `cos` over `[l, u]`: falling where the sine is certified non-negative, rising where it is
 certified non-positive, the midpoint form otherwise. -/
-def cosRange (n : ℕ) (l u : 𝕋) : 𝕋 × 𝕋 :=
+def cosRange (n : ℕ) (l u : 𝕋) : Interval 𝕋 :=
   let m := midOf l u
   let r := radOf l u
-  if le zero (subDown (sinDown n m) r) = true then (cosDown n u, cosUp n l)
-  else if le (addUp (sinUp n m) r) zero = true then (cosDown n l, cosUp n u)
-  else (maximum (neg one) (subDown (cosDown n m) r), minimum one (addUp (cosUp n m) r))
+  if le zero (subDown (sinDown n m) r) = true then ⟨cosDown n u, cosUp n l⟩
+  else if le (addUp (sinUp n m) r) zero = true then ⟨cosDown n l, cosUp n u⟩
+  else ⟨maximum (neg one) (subDown (cosDown n m) r), minimum one (addUp (cosUp n m) r)⟩
 
 /-- `sin` over `[l, u]`: rising where the cosine is certified non-negative, falling where it is
 certified non-positive, the midpoint form otherwise. -/
-def sinRange (n : ℕ) (l u : 𝕋) : 𝕋 × 𝕋 :=
+def sinRange (n : ℕ) (l u : 𝕋) : Interval 𝕋 :=
   let m := midOf l u
   let r := radOf l u
-  if le zero (subDown (cosDown n m) r) = true then (sinDown n l, sinUp n u)
-  else if le (addUp (cosUp n m) r) zero = true then (sinDown n u, sinUp n l)
-  else (maximum (neg one) (subDown (sinDown n m) r), minimum one (addUp (sinUp n m) r))
+  if le zero (subDown (cosDown n m) r) = true then ⟨sinDown n l, sinUp n u⟩
+  else if le (addUp (cosUp n m) r) zero = true then ⟨sinDown n u, sinUp n l⟩
+  else ⟨maximum (neg one) (subDown (sinDown n m) r), minimum one (addUp (sinUp n m) r)⟩
 
 open SoundFloatArithmetic
 
@@ -129,8 +130,8 @@ private theorem midpoint_form {g : ℝ → ℝ} (hg : ∀ x y, |g x - g y| ≤ |
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem cosRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) :
-    toReal (cosRange n l u).1 ≤ Real.cos x ∧
-      Real.cos x ≤ toReal (cosRange n l u).2 := by -- --- PROOF ---
+    toReal (cosRange n l u).inf ≤ Real.cos x ∧
+      Real.cos x ≤ toReal (cosRange n l u).sup := by -- --- PROOF ---
   have hl : toReal l ≤ toReal u := le_trans h1 h2
   have hlu : toReal l ∈ Set.Icc (toReal l) (toReal u) := ⟨le_rfl, hl⟩
   have huu : toReal u ∈ Set.Icc (toReal l) (toReal u) := ⟨hl, le_rfl⟩
@@ -156,8 +157,8 @@ theorem cosRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x) (h2 
       (fun z => ⟨Real.neg_one_le_cos z, Real.cos_le_one z⟩) (cosDown_le n _) (le_cosUp n _) h1 h2
 
 theorem sinRange_mem (n : ℕ) {l u : 𝕋} {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) :
-    toReal (sinRange n l u).1 ≤ Real.sin x ∧
-      Real.sin x ≤ toReal (sinRange n l u).2 := by -- --- PROOF ---
+    toReal (sinRange n l u).inf ≤ Real.sin x ∧
+      Real.sin x ≤ toReal (sinRange n l u).sup := by -- --- PROOF ---
   have hl : toReal l ≤ toReal u := le_trans h1 h2
   have hlu : toReal l ∈ Set.Icc (toReal l) (toReal u) := ⟨le_rfl, hl⟩
   have huu : toReal u ∈ Set.Icc (toReal l) (toReal u) := ⟨hl, le_rfl⟩

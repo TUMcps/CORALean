@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.Global.Float.PowUp
 public import CORALean.Global.Float.DivFact
@@ -29,7 +30,7 @@ accuracy; each doubling at most doubles the width, so beyond `|a|/2ⁿ ≈ 2⁻�
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   13-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -70,19 +71,19 @@ structure SinCosBox (𝕋 : Type) where
 def unitBox : SinCosBox 𝕋 := ⟨neg one, one, neg one, one⟩
 
 /-- `sin t` for `0 ≤ t ≤ 1`: `t - t³/6 ± t⁵/64`. -/
-def sinSeedNonneg (t : 𝕋) : 𝕋 × 𝕋 :=
+def sinSeedNonneg (t : 𝕋) : Interval 𝕋 :=
   let t2 := maximum zero (mulDown t t)                              -- t² from below
-  let t3 := (maximum zero (mulDown t2 t), mulUp (mulUp t t) t)      -- t³, both sides
+  let t3 : Interval 𝕋 := ⟨maximum zero (mulDown t2 t), mulUp (mulUp t t) t⟩      -- t³, both sides
   let d := divFact t3 3                                             -- t³/6, both sides
   let e := halfIter 6 (powUp t 5)                              -- t⁵/64 ≥ t⁵/100
-  (subDown (subDown t d.2) e, addUp (subUp t d.1) e)
+  ⟨subDown (subDown t d.sup) e, addUp (subUp t d.inf) e⟩
 
 /-- `cos t` for `0 ≤ t ≤ 1`: from `1 - t²/2` to `1 - t²/2 + t⁴/16`. -/
-def cosSeed (t : 𝕋) : 𝕋 × 𝕋 :=
+def cosSeed (t : 𝕋) : Interval 𝕋 :=
   let t2l := maximum zero (mulDown t t)
   let t2u := mulUp t t
   let e := halfIter 4 (powUp t 4)                              -- t⁴/16 ≥ 5t⁴/96
-  (subDown one (half t2u), addUp (subUp one (half t2l)) e)
+  ⟨subDown one (half t2u), addUp (subUp one (half t2l)) e⟩
 
 /-- Both at `y`, for `|y| ≤ 1` certified; the sine by oddness below zero. -/
 def seed (y : 𝕋) : SinCosBox 𝕋 :=
@@ -90,10 +91,10 @@ def seed (y : 𝕋) : SinCosBox 𝕋 :=
   if le t one = true then
     let s := if le zero y = true then sinSeedNonneg y
       else if le y zero = true then
-        (neg (sinSeedNonneg (neg y)).2, neg (sinSeedNonneg (neg y)).1)
-      else (neg one, one)
+        ⟨neg (sinSeedNonneg (neg y)).sup, neg (sinSeedNonneg (neg y)).inf⟩
+      else ⟨neg one, one⟩
     let c := cosSeed t
-    ⟨s.1, s.2, c.1, c.2⟩
+    ⟨s.inf, s.sup, c.inf, c.sup⟩
   else unitBox
 
 /-- From `θ` to `2θ`. -/
@@ -209,8 +210,8 @@ private theorem unitBox_holds (θ : ℝ) : Holds θ (unitBox : SinCosBox 𝕋) :
 
 /-- The sine seed: `Real.sin_bound`, each of its roundings paid. -/
 private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 1) :
-    toReal (sinSeedNonneg t).1 ≤ Real.sin (toReal t) ∧
-      Real.sin (toReal t) ≤ toReal (sinSeedNonneg t).2 := by -- --- PROOF ---
+    toReal (sinSeedNonneg t).inf ≤ Real.sin (toReal t) ∧
+      Real.sin (toReal t) ≤ toReal (sinSeedNonneg t).sup := by -- --- PROOF ---
   set x := toReal t
   have hb := Real.sin_bound (x := x) (by rw [abs_of_nonneg h0]; exact h1)
   rw [abs_of_nonneg h0, abs_le] at hb
@@ -227,8 +228,8 @@ private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal 
   have h3u : x ^ 3 ≤ toReal (mulUp (mulUp t t) t) := by
     refine le_trans ?_ (mul_le_mulUp _ _)
     rw [pow_succ, sq]; exact mul_le_mul_of_nonneg_right (mul_le_mulUp t t) h0
-  have hd := divFact_mem (maximum zero (mulDown (maximum zero (mulDown t t)) t),
-    mulUp (mulUp t t) t) (pow_nonneg h0 3) ⟨h3l, h3u⟩ 3
+  have hd := divFact_mem ⟨maximum zero (mulDown (maximum zero (mulDown t t)) t),
+    mulUp (mulUp t t) t⟩ (pow_nonneg h0 3) ⟨h3l, h3u⟩ 3
   -- `3! = 6`
   have h6 : ((Nat.factorial 3 : ℕ) : ℝ) = 6 := by norm_num [Nat.factorial]
   rw [h6] at hd
@@ -242,18 +243,18 @@ private theorem sinSeedNonneg_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal 
   simp only [sinSeedNonneg]
   constructor
   · refine le_trans (subDown_le_sub _ _) ?_
-    have := subDown_le_sub t (divFact (maximum zero (mulDown (maximum zero (mulDown t t)) t),
-      mulUp (mulUp t t) t) 3).2
+    have := subDown_le_sub t (divFact ⟨maximum zero (mulDown (maximum zero (mulDown t t)) t),
+      mulUp (mulUp t t) t⟩ 3).sup
     linarith [hd.2]
   · refine le_trans ?_ (add_le_addUp _ _)
-    have := sub_le_subUp t (divFact (maximum zero (mulDown (maximum zero (mulDown t t)) t),
-      mulUp (mulUp t t) t) 3).1
+    have := sub_le_subUp t (divFact ⟨maximum zero (mulDown (maximum zero (mulDown t t)) t),
+      mulUp (mulUp t t) t⟩ 3).inf
     linarith [hd.1]
 
 /-- The cosine seed: `one_sub_sq_div_two_le_cos` below, `Real.cos_bound` above. -/
 private theorem cosSeed_mem {t : 𝕋} (h0 : 0 ≤ toReal t) (h1 : toReal t ≤ 1) :
-    toReal (cosSeed t).1 ≤ Real.cos (toReal t) ∧
-      Real.cos (toReal t) ≤ toReal (cosSeed t).2 := by -- --- PROOF ---
+    toReal (cosSeed t).inf ≤ Real.cos (toReal t) ∧
+      Real.cos (toReal t) ≤ toReal (cosSeed t).sup := by -- --- PROOF ---
   set x := toReal t
   have hb := Real.cos_bound (x := x) (by rw [abs_of_nonneg h0]; exact h1)
   rw [abs_of_nonneg h0, abs_le] at hb

@@ -36,7 +36,7 @@ def Taylm.taylor (T : Taylm 𝕋 n) (c : 𝕋) (lo hi : ℕ → 𝕋) (D : 𝕋)
   let b := T.bounds
   -- `|f t - c| ≤ B` on the box
   let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
-  T.compose c lo hi N (mulUp (mulUp D (powUp B (N + 1))) (divFact (one, one) (N + 1)).2)
+  T.compose c lo hi N (mulUp (mulUp D (powUp B (N + 1))) (divFact ⟨one, one⟩ (N + 1)).sup)
 
 end CORALean.Float
 

@@ -33,7 +33,7 @@ those of `Zonotope.walkEdges`: the first loop the first block of the walk, the s
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -75,15 +75,15 @@ theorem Zonotope.aux_down_vertex (Z : Zonotope (Vec ℝ 2)) (k : Fin Z.h) :
 theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (γ : ℝ)
-    (P₀ : Vec ℝ 2) (hP₀ : P₀ = Z.c - ∑ j, Z.G j) (up down : Vec ℝ 2 × EReal × EReal)
+    (P₀ : Vec ℝ 2) (hP₀ : P₀ = Z.c - ∑ j, Z.G j) (up down : Vec ℝ 2 × Interval EReal)
     (hup : Fin.foldl Z.h (fun s j => (s.1 + (2 : ℝ) • Z.G j,
-      Zonotope.scanEdge γ s.1 (s.1 + (2 : ℝ) • Z.G j) s.2)) (P₀, ((⊤ : EReal), (⊥ : EReal))) = up)
+      Zonotope.scanEdge γ s.1 (s.1 + (2 : ℝ) • Z.G j) s.2)) (P₀, (⟨⊤, ⊥⟩ : Interval EReal)) = up)
     (hdown : Fin.foldl Z.h (fun s j => (s.1 - (2 : ℝ) • Z.G j,
       Zonotope.scanEdge γ s.1 (s.1 - (2 : ℝ) • Z.G j) s.2)) up = down) :
     {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
-      = {y : ℝ | down.2.1 ≤ y ∧ (y : EReal) ≤ down.2.2} := by -- --- PROOF ---
+      = {y : ℝ | down.2.inf ≤ y ∧ (y : EReal) ≤ down.2.sup} := by -- --- PROOF ---
   obtain ⟨u1, u2, u3, uA, uB, uC⟩ := Zonotope.scan_fold γ (fun j => (2 : ℝ) • Z.G j)
-    (fun P j => P + (2 : ℝ) • Z.G j) (fun _ _ => rfl) P₀ (⊤, ⊥) up hup
+    (fun P j => P + (2 : ℝ) • Z.G j) (fun _ _ => rfl) P₀ ⟨⊤, ⊥⟩ up hup
   obtain ⟨d1, d2, d3, dA, dB, dC⟩ := Zonotope.scan_fold γ (fun j => -((2 : ℝ) • Z.G j))
     (fun P j => P - (2 : ℝ) • Z.G j) (fun P j => sub_eq_add_neg _ _) up.1 up.2 down hdown
   -- the edges of the two loops are the walk's, block by block
@@ -107,15 +107,15 @@ theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     rw [hE2 k, Zonotope.corner_not_succ_sub]
   -- every point of a walk edge on the line is between `m` and `M`
   have hbound : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.walkEdges →
-      down.2.1 ≤ y ∧ (y : EReal) ≤ down.2.2 := by
+      down.2.inf ≤ y ∧ (y : EReal) ≤ down.2.sup := by
     intro y hy
     obtain ⟨k, hk | hk⟩ := (Z.mem_walkEdges_iff _).mp hy
     · obtain ⟨a, b⟩ := uA k y ((hfirst k y).mpr hk)
       exact ⟨d2.trans a, b.trans d3⟩
     · exact dA k y ((hsecond k y).mpr hk)
   -- and `m` and `M` are such points, unless nothing meets
-  have hattain : (down.2.1 = ⊤ ∨ ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.walkEdges ∧ down.2.1 = y)
-      ∧ (down.2.2 = ⊥ ∨ ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.walkEdges ∧ down.2.2 = y) := by
+  have hattain : (down.2.inf = ⊤ ∨ ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.walkEdges ∧ down.2.inf = y)
+      ∧ (down.2.sup = ⊥ ∨ ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.walkEdges ∧ down.2.sup = y) := by
     constructor
     · rcases dB with h | ⟨k, y, hy, h⟩
       · rcases uB with h' | ⟨k, y, hy, h'⟩
@@ -145,11 +145,11 @@ theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     -- between `m` and `M`, so in the section
     · rintro ⟨a, b⟩
       -- `m` and `M` are attained at points of the section
-      obtain ⟨ym, hym, hm⟩ : ∃ ym : ℝ, (![γ, ym] : Vec ℝ 2) ∈ Z.walkEdges ∧ down.2.1 = ym := by
+      obtain ⟨ym, hym, hm⟩ : ∃ ym : ℝ, (![γ, ym] : Vec ℝ 2) ∈ Z.walkEdges ∧ down.2.inf = ym := by
         rcases hattain.1 with h | h
         · rw [h] at a; exact absurd a (by simp)
         · exact h
-      obtain ⟨yM, hyM, hM⟩ : ∃ yM : ℝ, (![γ, yM] : Vec ℝ 2) ∈ Z.walkEdges ∧ down.2.2 = yM := by
+      obtain ⟨yM, hyM, hM⟩ : ∃ yM : ℝ, (![γ, yM] : Vec ℝ 2) ∈ Z.walkEdges ∧ down.2.sup = yM := by
         rcases hattain.2 with h | h
         · rw [h] at b; exact absurd b (by simp)
         · exact h
@@ -170,8 +170,8 @@ theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
 
 theorem Zonotope.boundIntersect2DScan_spec (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h) (γ : ℝ) :
     {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} =
-      {y : ℝ | (Z.boundIntersect2DScan γ).1 ≤ y ∧
-        (y : EReal) ≤ (Z.boundIntersect2DScan γ).2} := by -- --- PROOF ---
+      {y : ℝ | (Z.boundIntersect2DScan γ).inf ≤ y ∧
+        (y : EReal) ≤ (Z.boundIntersect2DScan γ).sup} := by -- --- PROOF ---
   -- the zonogon with the generators turned upward, then sorted by angle
   set π := Tuple.sort fun i => Complex.arg (⟨Z.pointUp.G i 0, Z.pointUp.G i 1⟩ : ℂ) with hπ
   set Zs : Zonotope (Vec ℝ 2) := ⟨Z.pointUp.h, Z.pointUp.c, Z.pointUp.G ∘ π⟩ with hZs
