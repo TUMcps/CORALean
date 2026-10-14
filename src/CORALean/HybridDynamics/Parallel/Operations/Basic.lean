@@ -45,7 +45,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- The inverse of `stack`: block `i` of a point of the product space. `Theorems.StackUnstack` and
 `Theorems.UnstackStack` say the two undo each other. -/

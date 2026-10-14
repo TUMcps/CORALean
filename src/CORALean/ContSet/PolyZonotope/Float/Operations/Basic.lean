@@ -85,7 +85,7 @@ def PolyZonotope.quadMapGUp (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope (Vec
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- CORA's `@polyZonotope/representsa_` at type `emptySet`: a polynomial zonotope's nominal part is
 never empty, so only an empty error box (some coordinate with `sup < inf`, by `ltStrict`) makes

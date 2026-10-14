@@ -26,7 +26,7 @@ are `[1, Prop. 1]`. It is the diffusion update, Step 2 of [1, Alg. 1] and of [1,
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

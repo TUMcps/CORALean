@@ -25,7 +25,7 @@ growing worklist only wants to append.
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

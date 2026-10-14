@@ -26,7 +26,7 @@ enclosure in [1, Thm. 6], [1, Thm. 7] and [1, Thm. 8].
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

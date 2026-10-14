@@ -30,7 +30,7 @@ extra hop `[1, §4.3]` needs is for *computing* `P = D̃^(-1/2) Ã D̃^(-1/2)` f
 -- Authors:       Claude Sonnet 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

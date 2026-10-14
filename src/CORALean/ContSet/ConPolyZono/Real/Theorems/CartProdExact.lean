@@ -29,7 +29,7 @@ identified with them, exactly as in `PolyZonotope.cartProd_exact`.
 -- Authors:       Claude Opus 5
 -- Written:       11-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

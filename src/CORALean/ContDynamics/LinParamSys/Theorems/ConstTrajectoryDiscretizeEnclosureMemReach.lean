@@ -32,7 +32,7 @@ restriction of this rather than a second statement.
 -- Authors:       Claude Opus 5
 -- Written:       12-September-2026
 -- Last update:   30-September-2026
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

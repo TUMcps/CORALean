@@ -94,7 +94,7 @@ def roundDown (d : Dyadic fmt.p) : IEEE fmt :=
 -- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- `Dyadic.exactAdd`, which loses nothing, then `roundDown` onto the grid of `fmt`. -/
 def addDown (a b : IEEE fmt) : IEEE fmt := roundDown (Dyadic.exactAdd a.toDyadic b.toDyadic)

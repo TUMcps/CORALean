@@ -29,7 +29,7 @@ all there is no run, and `P_R(0)` is empty rather than `{0}`.
 -- Authors:       Claude Opus 5
 -- Written:       18-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

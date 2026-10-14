@@ -94,7 +94,7 @@ theorem EmptySet.not_exact (E : EmptySet n) : E.not.construct = (E.construct)ᶜ
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- Its interior is `∅`, in every dimension. -/
 theorem EmptySet.not_isFullDim (E : EmptySet n) : ¬ ContSet.IsFullDim E := by
@@ -107,7 +107,7 @@ theorem EmptySet.not_isFullDim (E : EmptySet n) : ¬ ContSet.IsFullDim E := by
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- `0`, CORA's value, is the volume of `∅`. -/
 theorem EmptySet.volume_eq (E : EmptySet n) :

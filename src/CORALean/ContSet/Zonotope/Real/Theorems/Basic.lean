@@ -95,7 +95,7 @@ theorem Zonotope.corner_apply (Z : Zonotope (Vec ℝ 2)) (s : Fin Z.h → Bool) 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- A sum of absolute values over a square root: the lower bound `0` that makes `minnorm`, an
 infimum of offsets, a nonnegative number attained. -/
