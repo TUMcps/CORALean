@@ -5,9 +5,29 @@
       "label": "Review a random Lean file or Basic.lean section",
       "type": "shell",
       "command": "python3 scripts/review.py",
-      "windows": { "command": "python scripts/review.py" },
+      "windows": {
+        "command": "python scripts/review.py"
+      },
       "problemMatcher": [],
-      "presentation": { "reveal": "always", "panel": "dedicated", "focus": true }
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    },
+    {
+      "label": "Review status (how much is reviewed, how much to the 5% goal)",
+      "type": "shell",
+      "command": "python3 scripts/review.py --status",
+      "windows": {
+        "command": "python scripts/review.py --status"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
     }
   ]
 }
