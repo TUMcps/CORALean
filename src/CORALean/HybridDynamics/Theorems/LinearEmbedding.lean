@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.CanonicalClassicalTrajectory
 public import CORALean.HybridDynamics.Definitions.Location
 
 @[expose] public section
@@ -8,11 +8,11 @@ public import CORALean.HybridDynamics.Definitions.Location
 /-!
 # A stay in a location is a linear trajectory
 
-`Location.Trajectory` and `LinearSys.ClassicalTrajectory` differ in exactly two
+`Location.Trajectory` and `LinearSys.CanonicalClassicalTrajectory` differ in exactly two
 fields: the location's is anchored at a point and additionally confined to the
 invariant, the linear one is anchored at a set and knows no invariant. Naming a
 set the initial point lies in is therefore all it takes to hand a stay to the
-whole of `LinearSys` through `ClassicalTrajectory.trajectory`, and the invariant
+whole of `LinearSys` through `CanonicalClassicalTrajectory.trajectory`, and the invariant
 is simply dropped — it only ever tightens an enclosure, never justifies one.
 
 The time domain is `Set.Icc 0 τ` on the location's own clock, which is the shape
@@ -45,7 +45,7 @@ set that holds its initial point. -/
 theorem Location.Trajectory.linearSys {ℓ : Location S G L 𝕋 n} {τ : ℝ}
     {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {R₀ : S n}
     (h₀ : x 0 ∈ construct R₀) :
-    ℓ.dynamics.ClassicalTrajectory (Set.Icc 0 τ) R₀ ℓ.U x u where
+    ℓ.dynamics.CanonicalClassicalTrajectory (Set.Icc 0 τ) R₀ ℓ.U x u where
   init := h₀
   input := traj.input
   flow := traj.flow

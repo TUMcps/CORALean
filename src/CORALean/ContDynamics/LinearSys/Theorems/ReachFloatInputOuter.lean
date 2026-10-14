@@ -44,7 +44,7 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n
     (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := 𝒮)
+        sys.CanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < Rti.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)

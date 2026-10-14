@@ -58,7 +58,7 @@ theorem LinearSys.counterexample_of_verifyHalfspace_violated (sys : LinearSys �
       (fun r k i => (sys.supportLower (tEnd / 2 ^ r) ν₀ νU c (H i) (k + 1)).ρRτ) f r fuel
         = .violated) :
     ∃ (r' j : ℕ) (i : ι), (j : ℝ) * (tEnd / 2 ^ r') ∈ Set.Icc 0 tEnd ∧
-      sys.Trajectory (Set.Icc 0 tEnd) R₀ U
+      sys.CanonicalTrajectory (Set.Icc 0 tEnd) R₀ U
         (sys.closedForm (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).1
           (LinearSys.heldInput (tEnd / 2 ^ r')
             (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).2))

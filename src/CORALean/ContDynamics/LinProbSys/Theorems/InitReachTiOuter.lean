@@ -13,6 +13,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -81,7 +82,8 @@ theorem LinProbSys.initReach_ti_outer (sys : LinProbSys n m) (Veig : Mat ℝ n n
     (hA : IsUnit sys.A.det) (hoc : originContained = true → sys.B *ᵥ uTrans = 0)
     (h0 : (0 : Vec ℝ m) ∈ U.construct) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ Rinit.Z.construct)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) {w : Vec ℝ n}
-    (hw : w ∈ (⟨sys.A⟩ : LinearSys ℝ n).inputReach (S := 𝒵) (Zonotope.mtimes sys.B U) t) :
+    (hw : w ∈ (LinearSys.canonical sys.A : LinearSys ℝ n).inputReach (S := 𝒵)
+        (Zonotope.mtimes sys.B U) t) :
     exp (t • sys.A) *ᵥ x₀ + MatExp.expIntegral sys.A t *ᵥ (sys.B *ᵥ uTrans) + w
       ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r (k + 2) gamma
           originContained).2.1.Z.construct := by -- --- PROOF ---
@@ -129,14 +131,16 @@ theorem LinProbSys.initReach_ti_outer (sys : LinProbSys n m) (Veig : Mat ℝ n n
     show _ ∈ (Zonotope.mtimes sys.B U).construct
     rw [← Zonotope.mtimes_exact]
     exact ⟨0, h0, mulVec_zero _⟩
-  have hw' : w ∈ Zonotope.construct ((⟨A⟩ : LinearSys ℝ n).inputSolution (S := 𝒵) r (k + 2)
-      (Zonotope.mtimes sys.B U)) :=
-    LinearSys.inputReach_subset_inputSolution (S := 𝒵) ⟨A⟩ hr (k + 2) hε
+  have hw' : w ∈ Zonotope.construct
+      ((LinearSys.canonical A : LinearSys ℝ n).inputSolution (S := 𝒵) r (k + 2)
+        (Zonotope.mtimes sys.B U)) :=
+    LinearSys.inputReach_subset_inputSolution (S := 𝒵) (LinearSys.canonical A) hr (k + 2) hε
     (Zonotope.convex_construct _) (Zonotope.isClosed_construct _)
     (Zonotope.isCompact_construct _).isBounded (Zonotope.convex_construct _)
     (Zonotope.isClosed_construct _) (Zonotope.isCompact_construct _).isBounded
-    (LinearSys.inputReach_mono (S := 𝒵) ⟨A⟩ (Zonotope.isCompact_construct _).isBounded hV0
-      ht0 htr hw)
+    -- the input reached by `t` is reached by the whole step, `0 ∈ B U` growing it
+    (LinearSys.inputReach_mono (S := 𝒵) (LinearSys.canonical A)
+      (Zonotope.isCompact_construct _).isBounded hV0 ht0 htr hw)
   have h5 := Set.add_mem_add (Set.add_mem_add (Set.add_mem_add hw' (Zonotope.mem_ofPoint Rtrans))
     (Zonotope.mem_ofPoint (0 : Vec ℝ n)))
     (LinProbSys.aux_zero_mem_confidenceZonotope

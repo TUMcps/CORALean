@@ -69,6 +69,8 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenceOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInitReachInputDependenceOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.SimulateEndTimeCoraExceeds
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryCanonical
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryCanonical
 
 /-!
 # What `LinParamSys` gives, collected

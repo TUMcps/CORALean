@@ -20,7 +20,7 @@ form for every other entry.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +30,6 @@ namespace CORALean
 
 open Matrix ContSet Plus Mtimes
 
-variable {m q s : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 variable [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
@@ -38,16 +37,17 @@ variable [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.canonicalForm_C_ne_one (sys : LinearSys ℝ 1) (B : Mat ℝ 1 m) (c : Vec ℝ 1)
-    (out : OutputEq ℝ 1 m 1) (k : Vec ℝ 1) (E : Mat ℝ 1 q) (F : Mat ℝ 1 s) (U : S m)
-    (uVec : Vec ℝ m) (W : S q) (V : S s) (vVec : Vec ℝ s) (hC : out.C 0 0 = 2) :
-    (sys.canonicalForm B c out k E F U uVec W V vVec).2.1.C ≠ 1 ∧
-      LinearSys.IsCanonicalForm (1 : Mat ℝ 1 1) 0 (0 : Mat ℝ 1 1) 0 (0 : Mat ℝ 1 1)
-        (1 : Mat ℝ 1 1) := by -- --- PROOF ---
-  refine ⟨fun h => ?_, LinearSys.isCanonicalForm_canonical⟩
+/-- The system `ẋ = 0`, `y = 2 x`, with no inputs, disturbances or noises. -/
+theorem LinearSys.canonicalForm_C_ne_one (U : S 0) (uVec : Vec ℝ 0) (W : S 0) (V : S 0)
+    (vVec : Vec ℝ 0) :
+    let sys : LinearSys ℝ 1 := ⟨0, 1, 0, 0, 0, 0, 0, !![2], 0, 0, 0, 0⟩
+    (sys.canonicalForm U uVec W V vVec).1.C ≠ (1 : Mat ℝ 1 1) ∧
+      (sys.canonicalForm U uVec W V vVec).1.IsCanonicalForm := by -- --- PROOF ---
+  intro sys
+  refine ⟨fun h => ?_, LinearSys.isCanonicalForm_canonical sys U uVec W V vVec⟩
   -- the returned `C` is the given one, whose entry is `2`
-  have h00 := congrFun (congrFun h 0) 0
-  simp only [LinearSys.canonicalForm, hC, Matrix.one_apply_eq] at h00
+  have h00 := congrFun (congrFun h (0 : Fin 1)) (0 : Fin 1)
+  simp only [sys, LinearSys.canonicalForm, Matrix.one_apply_eq] at h00
   norm_num at h00
 
 end CORALean

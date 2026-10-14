@@ -12,9 +12,9 @@ CORA's `nonlinearARX/nonlinearSysDT` [1]: a state of `dim_y · p`, the window
 `(y(k-p), …, y(k-1))` of the last `p` outputs, and an input of `dim_u · (p+1)`, the
 inputs `(u(k-p), …, u(k))`, both oldest first, `f(x,u) = [x(dim_y+1:end); f_ARX(x,u)]`:
 block `a < p-1` of the next window is block `a+1` of this one, and the last block is
-`f_ARX`. CORA hands the stacked vectors to `f_ARX` as they are; here `f` reads its
-arguments in the order the class documents, newest first, so the window and the
-input are reversed block-wise (`Fin.rev`) on the way in.
+`f_ARX`; the output is CORA's default, the state. CORA hands the stacked vectors to `f_ARX` as
+they are; here `f` reads its arguments in the order the class documents, newest first, so the
+window and the input are reversed block-wise (`Fin.rev`) on the way in.
 
 `feed u k` is the input signal that results: block `a` holds `u(k+a)`. Unlike
 `LinearARX`, nothing folds into an input set: `NonlinearSysDT` has an input
@@ -27,7 +27,7 @@ of dimension `dim_u (p+1)`, which keeps the dependency between the copies of `u`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -51,6 +51,8 @@ def NonlinearARX.toNonlinearSysDT (sys : NonlinearARX dy du p) :
           (finProdFinEquiv.symm s).2)))
         (fun s => v (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm s).1,
           (finProdFinEquiv.symm s).2))) (finProdFinEquiv.symm r).2
+  q := p * dy
+  g x _ := x
 
 end CORALean
 

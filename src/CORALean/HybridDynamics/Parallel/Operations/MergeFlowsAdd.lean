@@ -35,8 +35,8 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ParallelHybridAutomaton.mergeFlowsAdd [ExactScalar 𝕋] [ExactAdd 𝕋]
-    (P : ParallelHybridAutomaton S G k L 𝕋 n m) (ℓ : ∀ i, L i) : LinearSys 𝕋 (∑ i, n i) where
-  A := Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv <| Matrix.of fun a b =>
+    (P : ParallelHybridAutomaton S G k L 𝕋 n m) (ℓ : ∀ i, L i) : LinearSys 𝕋 (∑ i, n i) :=
+  LinearSys.canonical <| Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv <| Matrix.of fun a b =>
     (if h : a.1 = b.1 then ((P.comp a.1).loc (ℓ a.1)).dynamics.A a.2
         (Fin.cast (congrArg n h.symm) b.2) else 0) +
     (match P.binds a.1 a.2 with

@@ -4,6 +4,7 @@ public import CORALean.Specification.STL.Operations.UnsafeFactors
 public import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
 public import CORALean.Specification.STL.Theorems.DepBloatingC
 public import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -99,7 +100,7 @@ theorem STL.unsafeFactors_interval_counterexample :
       (fun l : Fin p => α l) ∉
         STL.unsafeFactors C d R.c (Matrix.of fun j k => R.G k j) H K hp →
       ∀ t : ℝ, i * Δt ≤ t → t ≤ (i + 1) * Δt →
-      ¬ (∀ r, C.mulVec ((LinearSys.mk A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
+      ¬ (∀ r, C.mulVec ((LinearSys.canonical A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
         (LinearSys.heldInput Δt
           (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l))) t) r
         ≤ d r) := by -- --- PROOF ---

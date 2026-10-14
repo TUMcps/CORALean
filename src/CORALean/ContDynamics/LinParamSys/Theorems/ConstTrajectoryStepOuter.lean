@@ -49,9 +49,9 @@ variable [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One step of a `'constParam'` run, initial set and inputs together. -/
-theorem LinParamSys.ConstTrajectory.step_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
+theorem LinParamSys.CanonicalConstTrajectory.step_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {r : ℝ}
-    (traj : sys.ConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))

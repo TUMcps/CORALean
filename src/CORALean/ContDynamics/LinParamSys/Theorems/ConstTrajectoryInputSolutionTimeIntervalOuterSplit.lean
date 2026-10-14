@@ -7,6 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -60,10 +61,10 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 -- a three-way `plus` in the conclusion, every factor an interval matrix at `ℐ`
 /-- The input's contribution at every time of the step, split along
 `U ⊆ {c} ⊞ U₀`. Neither piece needs `0 ∈ U`. -/
-theorem LinParamSys.ConstTrajectory.inputSolution_timeInterval_outer_split
+theorem LinParamSys.CanonicalConstTrajectory.inputSolution_timeInterval_outer_split
     {sys : LinParamSys ℐ n} {T : Set ℝ} {R₀ U U₀ P Sg : S n} {x u : ℝ → Vec ℝ n}
     {A : Mat ℝ n n} {c : Vec ℝ n} {r : ℝ}
-    (traj : sys.ConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     -- the split, then the segment, the constant, and the part holding the origin
     (hsplit : ∀ y ∈ construct U, y - c ∈ construct U₀) (hcP : c ∈ construct P)
@@ -136,7 +137,7 @@ theorem LinParamSys.ConstTrajectory.inputSolution_timeInterval_outer_split
   · -- the centred part: Prop. 3.3 at the member, unchanged
     exact sys.inputReach_subset_inputSolution hr η hε traj.param hconv₀ hclosed₀ hbdd₀
       hRconv₀ hRclosed₀ hRbdd₀
-      ((LinearSys.mk A : LinearSys ℝ n).inputReach_mono hbdd₀ h0₀ ht0 htr
+      ((LinearSys.canonical A : LinearSys ℝ n).inputReach_mono hbdd₀ h0₀ ht0 htr
         ⟨fun σ => u σ - c, hmem₀, hmeas₀, by simp only [Scalar.toRealMat_real]⟩)
 
 end CORALean

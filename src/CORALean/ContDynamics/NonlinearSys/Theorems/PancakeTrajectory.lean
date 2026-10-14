@@ -39,7 +39,7 @@ theorem NonlinearSys.pancake_trajectory (sys : NonlinearSys n m) (T : ℝ) (hT :
     (u : ℝ → Vec ℝ m) (hrun : sys.Trajectory (Icc 0 T) R₀ U x u)
     (hpos : ∀ t ∈ Icc 0 T, b < c ⬝ᵥ x t) :
     ∃ (S' : ℝ) (y : ℝ → Vec ℝ n) (v : ℝ → Vec ℝ m), 0 ≤ S' ∧
-      (⟨fun z w => ((c ⬝ᵥ z - b) / p) • sys.f z w⟩ : NonlinearSys n m).Trajectory
+      (⟨fun z w => ((c ⬝ᵥ z - b) / p) • sys.f z w, sys.q, sys.g⟩ : NonlinearSys n m).Trajectory
         (Icc 0 S') R₀ U y v ∧ ∀ t ∈ Icc 0 T, ∃ s ∈ Icc 0 S', y s = x t := by -- --- PROOF ---
   have hgc : Continuous (fun z : Vec ℝ n => (c ⬝ᵥ z - b) / p) := by
     unfold dotProduct; fun_prop

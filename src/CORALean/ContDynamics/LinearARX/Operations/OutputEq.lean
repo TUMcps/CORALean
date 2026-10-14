@@ -10,12 +10,12 @@ public import CORALean.ContDynamics.OutputEq.OutputEq
 # The output equation of the converted system
 
 `y(k)` is block `0` of the window `stack y k`: `C` picks it, and `D = 0`, the input
-being already in the state's next window.
+being already in the state's next window, and `k = 0`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   01-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,6 +32,7 @@ def LinearARX.outputEq (_sys : LinearARX 𝕋 dy du p) : OutputEq 𝕋 (p * dy) 
   C := Matrix.of fun r c =>
     if (finProdFinEquiv.symm c).1.val = 0 ∧ (finProdFinEquiv.symm c).2 = r then 1 else 0
   D := 0
+  k := 0
 
 end CORALean
 

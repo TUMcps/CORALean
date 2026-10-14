@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZono
+public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
@@ -208,7 +209,7 @@ theorem LinParamSys.inputSolutionZono_outer (sys : LinParamSys 𝕄𝒵 n)
   -- orders `2` through `m + 2`: over-approximated, through the enclosing interval matrix
   have htermI : ∀ i : ℕ, (∫ τ in (0:ℝ)..r, f i τ)
       ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
-        ((LinParamSys.mk (𝕄 := ℐ) sys.A.interval).inputTerm r i) U) := by
+        ((LinParamSys.canonical (𝕄 := ℐ) sys.A.interval).inputTerm r i) U) := by
     intro i
     obtain ⟨z, hz, hzeq⟩ := hy i
     rw [hpull i, ← hzeq, hcomb i z]
@@ -306,7 +307,7 @@ theorem LinParamSys.inputSolutionZono_outer (sys : LinParamSys 𝕄𝒵 n)
   exact Plus.plus_outer _ _ (Set.add_mem_add
     (Plus.plus_outer _ _ (Set.add_mem_add
       (Plus.plus_outer _ _ (Set.add_mem_add (htermZ 0) (htermZ 1)))
-      ((LinParamSys.mk (𝕄 := ℐ) sys.A.interval).aux_inputTaylorSumTail_outer r U _ m
+      ((LinParamSys.canonical (𝕄 := ℐ) sys.A.interval).aux_inputTaylorSumTail_outer r U _ m
         fun i _ _ => htermI i)))
     hrem)
 

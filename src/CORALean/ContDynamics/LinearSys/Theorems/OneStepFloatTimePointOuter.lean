@@ -50,10 +50,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The state at the end of the step is in `oneStepFloat`'s time-point set. -/
-theorem LinearSys.Trajectory.oneStepFloat_timePoint_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
+theorem LinearSys.CanonicalTrajectory.oneStepFloat_timePoint_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋 n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
-    (traj : sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
+    (traj : sys.CanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
     (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) :
     x (toReal Δt) ∈ (sys.oneStepFloat X U u Δt η).1.construct := by -- --- PROOF ---

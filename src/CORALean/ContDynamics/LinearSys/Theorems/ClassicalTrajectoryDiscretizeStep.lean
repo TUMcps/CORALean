@@ -14,7 +14,7 @@ Variation of constants over `[kΔt, (k+1)Δt]`, where the propagator is `e^{AΔt
 whatever `k` is: every bounded-horizon statement is this iterated, so it is stated
 apart from `discretize`, which needs every step at once. Kept for a classical run
 on a window `[kΔt, (k+1)Δt]` that does not reach back to `0` — a nonlinear run
-linearized step by step — where `ClassicalTrajectory.trajectory` cannot hand it to
+linearized step by step — where `CanonicalClassicalTrajectory.trajectory` cannot hand it to
 `Trajectory`, whose integral equation is anchored at `0`.
 -/
 
@@ -36,8 +36,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.ClassicalTrajectory.discretize_step {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.ClassicalTrajectory T R₀ U x u)
+theorem LinearSys.CanonicalClassicalTrajectory.discretize_step {sys : LinearSys 𝕋 n} {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
     (hΔt : 0 ≤ Δt) (hU : Bornology.IsBounded (construct U)) (k : ℕ)
     (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) :
     x (((k : ℝ) + 1) * Δt)

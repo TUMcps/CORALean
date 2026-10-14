@@ -58,11 +58,12 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- Every trajectory stays in the step enclosure at every time of the step,
 wherever the input set sits. -/
-theorem LinearSys.Trajectory.timeInterval_outer_split [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
+theorem LinearSys.CanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
+    [∀ n, OfPoint (S n) (Vec ℝ n)]
     [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
-    (traj : sys.Trajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (traj : sys.CanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
     x t ∈ construct (Plus.plus

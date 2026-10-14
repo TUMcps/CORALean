@@ -31,7 +31,8 @@ variable {n m q : ℕ}
 
 /-- The parameter read as the last `q` coordinates of a combined input. -/
 def NonlinParamSys.toNonlinearSys (sys : NonlinParamSys n m q) : NonlinearSys n (m + q) :=
-  ⟨fun x w => sys.f x (w ∘ Fin.castAdd q) (w ∘ Fin.natAdd m)⟩
+  ⟨fun x w => sys.f x (w ∘ Fin.castAdd q) (w ∘ Fin.natAdd m), sys.r,
+    fun x w => sys.g x (w ∘ Fin.castAdd q) (w ∘ Fin.natAdd m)⟩
 
 end CORALean
 

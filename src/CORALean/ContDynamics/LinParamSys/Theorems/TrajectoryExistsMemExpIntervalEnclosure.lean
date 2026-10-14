@@ -47,9 +47,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- An input-free `'varParam'` run, at a time `t` of its window, is its start
 mapped by a member of the box's exponential enclosure over `t`. -/
-theorem LinParamSys.Trajectory.exists_mem_expIntervalEnclosure {sys : LinParamSys ℐ n}
+theorem LinParamSys.CanonicalTrajectory.exists_mem_expIntervalEnclosure {sys : LinParamSys ℐ n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
-    (traj : sys.Trajectory T R₀ U x u A) {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T)
+    (traj : sys.CanonicalTrajectory T R₀ U x u A) {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) (η : ℕ)
     (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) :
     ∃ Φ ∈ construct (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η),

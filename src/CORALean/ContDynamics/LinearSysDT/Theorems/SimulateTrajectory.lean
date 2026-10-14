@@ -34,7 +34,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinearSysDT.simulate_trajectory (sys : LinearSysDT 𝕋 n) {R₀ U : S n}
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n}
     (hu : ∀ k, u k ∈ construct U) :
-    sys.Trajectory R₀ U (sys.simulate x₀ u) u where
+    sys.CanonicalTrajectory R₀ U (sys.simulate x₀ u) u where
   init := hx₀
   input := hu
   step _ := rfl

@@ -46,10 +46,12 @@ def toF (x : D) : Float := Float.scaleB (Float.ofInt x.mantissa) x.exponent
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `ẋ = -x + y`, `0 = y - x/2 - u`. -/
+/-- `ẋ = -x + y`, `0 = y - x/2 - u`, the state as output. -/
 noncomputable def daeSys : NonlinDASys 1 1 1 where
   f x y _ := ![-x 0 + y 0]
   g x y u := ![y 0 - x 0 / 2 - u 0]
+  q := 1
+  h x _ _ := x
 
 /-- The constraint solved for `y`, and the only solution. -/
 noncomputable def daeRed : daeSys.ReducedModel where

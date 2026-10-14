@@ -1,4 +1,5 @@
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
 import CORALean.HybridDynamics.Parallel.Theorems.ReachSetSubsetInvariant
 import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
@@ -43,7 +44,7 @@ def PTC.range (lo hi : ℝ) : HPolytope (Vec ℝ 1) :=
 def PTC.decay : HybridAutomaton ℐ𝒱 ℋ𝒫 Unit ℝ 1 where
   loc _ :=
     { inv := PTC.range 0 2
-      dynamics := ⟨!![-1]⟩
+      dynamics := LinearSys.canonical !![-1]
       U := ⟨![0], ![0]⟩
       trans := [⟨HPolytope.ineqs !![-1] ![-1], !![0], 0, ()⟩] }
 
@@ -51,7 +52,7 @@ def PTC.decay : HybridAutomaton ℐ𝒱 ℋ𝒫 Unit ℝ 1 where
 def PTC.integrator : HybridAutomaton ℐ𝒱 ℋ𝒫 Unit ℝ 1 where
   loc _ :=
     { inv := PTC.range (-1) 1
-      dynamics := ⟨!![0]⟩
+      dynamics := LinearSys.canonical !![0]
       U := ⟨![-1], ![1]⟩
       trans := [] }
 

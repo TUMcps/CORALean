@@ -42,9 +42,9 @@ variable [Mtimes 𝕄𝒵 S] [Mtimes ℐ S]
 
 /-- One step of a `'constParam'` run at a matrix zonotope: the step of the
 initial set, plus whatever holds the inputs. -/
-theorem LinParamSys.ConstTrajectory.timeIntervalZono_outer {sys : LinParamSys 𝕄𝒵 n}
+theorem LinParamSys.CanonicalConstTrajectory.timeIntervalZono_outer {sys : LinParamSys 𝕄𝒵 n}
     {T : Set ℝ} {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {r : ℝ}
-    (traj : sys.ConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hεe : ‖(Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ n n) r) sys.A).interval.absMax‖
       / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hεF : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)

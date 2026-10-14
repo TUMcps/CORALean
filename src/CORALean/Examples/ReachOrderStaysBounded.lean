@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachBigO
 import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 import CORALean.ContSet.Zonotope.Real.Instances
+import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 /-!
 # `reach`'s size and its soundness, off the same computed set
@@ -29,7 +30,7 @@ open Matrix ContSet
 
 -- The identity on `Vec ℝ 2`, order held at `3`, started at `(1, 1)` with no input.
 
-def Example.rosSys : LinearSysDT ℝ 2 := ⟨(1 : Mat ℝ 2 2)⟩
+def Example.rosSys : LinearSysDT ℝ 2 := LinearSysDT.canonical (1 : Mat ℝ 2 2)
 
 def Example.rosX0 : Vec ℝ 2 := ![1, 1]
 def Example.rosR0 : Zonotope (Vec ℝ 2) := Zonotope.ofPoint Example.rosX0
@@ -54,7 +55,7 @@ example :
 
 /-- A trajectory the identity leaves fixed: the input held at `0`, witnessed by
 `Zonotope`'s own `OfPoint`. -/
-theorem Example.rosTraj : Example.rosSys.Trajectory (S := 𝒵) Example.rosR0 Example.rosU
+theorem Example.rosTraj : Example.rosSys.CanonicalTrajectory (S := 𝒵) Example.rosR0 Example.rosU
     (fun _ => Example.rosX0) (fun _ => 0) where
   init := Zonotope.mem_ofPoint Example.rosX0
   input _ := Zonotope.mem_ofPoint 0

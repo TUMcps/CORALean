@@ -7,13 +7,14 @@ public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
 public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
 /-!
 # A sampled constant-parameter run is a run of the discretized system
 
-`LinearSys.Trajectory.discretizeEnclosure` at `'constParam'`: one matrix `A` is
+`LinearSys.CanonicalTrajectory.discretizeEnclosure` at `'constParam'`: one matrix `A` is
 fixed over the whole run, so `toLinearSys` hands the sampled recursion to
 `discretize_step` unchanged, and the witness each step needs is
 `exp_mem_expIntervalEnclosure` at that member of the box.
@@ -50,14 +51,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Sampling every `Δt` turns a `'constParam'` run into a run of the system the
 exponential of the box discretizes to. -/
-theorem LinParamSys.ConstTrajectory.discretizeEnclosure {sys : LinParamSys ℐ n} {T : Set ℝ}
+theorem LinParamSys.CanonicalConstTrajectory.discretizeEnclosure {sys : LinParamSys ℐ n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {Δt : ℝ} {η : ℕ}
-    (traj : sys.ConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, (LinearSys.mk A : LinearSys ℝ n).stepInput u Δt k ∈ construct Ud)
+    (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u Δt k ∈ construct Ud)
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1) :
     (sys.discretizeEnclosure Δt η).Trajectory R₀ Ud
-      (fun k : ℕ => x (k * Δt)) ((LinearSys.mk A : LinearSys ℝ n).stepInput u Δt) where
+      (fun k : ℕ => x (k * Δt)) ((LinearSys.canonical A : LinearSys ℝ n).stepInput u Δt) where
   init := by simpa using traj.init
   input k := hUd k
   -- the member is the same matrix at every step; `LinParamSysDT` only permits it to vary

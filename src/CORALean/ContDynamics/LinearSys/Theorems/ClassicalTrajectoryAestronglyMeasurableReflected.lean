@@ -13,9 +13,9 @@ public import Mathlib.MeasureTheory.Integral.Prod
 What `inputSolution_outer` asks of the input, in the reflected form the
 substitution `τ = c - s` leaves behind. The reflected argument sweeps
 `[c - r, c)`, so a domain covering the step ending at `c` is what it needs.
-`ClassicalTrajectory.stepInput_outer` is the one caller. Kept for a classical run
+`CanonicalClassicalTrajectory.stepInput_outer` is the one caller. Kept for a classical run
 on a window `[kΔt, (k+1)Δt]` that does not reach back to `0` — a nonlinear run
-linearized step by step — where `ClassicalTrajectory.trajectory` cannot hand it to
+linearized step by step — where `CanonicalClassicalTrajectory.trajectory` cannot hand it to
 `Trajectory`, whose integral equation is anchored at `0`.
 -/
 
@@ -37,9 +37,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.ClassicalTrajectory.aestronglyMeasurable_input_reflected
+theorem LinearSys.CanonicalClassicalTrajectory.aestronglyMeasurable_input_reflected
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
-    (traj : sys.ClassicalTrajectory T R₀ U x u) {c r : ℝ} (hT : Set.Icc (c - r) c ⊆ T) :
+    (traj : sys.CanonicalClassicalTrajectory T R₀ U x u) {c r : ℝ} (hT : Set.Icc (c - r) c ⊆ T) :
     AEStronglyMeasurable (fun τ => u (c - τ)) (volume.restrict (Set.Ioc 0 r)) := by -- --- PROOF ---
   have hrefl : Continuous fun τ : ℝ => c - τ := continuous_const.sub continuous_id
   have hmem : ∀ τ ∈ Set.Ioc (0 : ℝ) r, c - τ ∈ Set.Ico (c - r) c :=

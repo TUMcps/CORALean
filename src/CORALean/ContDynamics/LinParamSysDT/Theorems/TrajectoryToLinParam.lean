@@ -7,8 +7,8 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
 /-!
 # A `LinearSysDT` trajectory is a `toLinParam` trajectory
 
-`LinearSysDT.Trajectory.step`'s `x (k+1) = toRealMat sys.A *ᵥ x k + u k`,
-repackaged as `LinParamSysDT.Trajectory.step`'s existential: the witness is
+`LinearSysDT.CanonicalTrajectory.step`'s `x (k+1) = toRealMat sys.A *ᵥ x k + u k`,
+repackaged as `LinParamSysDT.CanonicalTrajectory.step`'s existential: the witness is
 `toRealMat sys.A` itself, and `construct sys.A = {toRealMat sys.A}` makes its
 membership `rfl`.
 -/
@@ -31,8 +31,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.Trajectory.toLinParam {sys : LinearSysDT 𝕋 n} {R₀ U : S n}
-    {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) :
+theorem LinearSysDT.CanonicalTrajectory.toLinParam {sys : LinearSysDT 𝕋 n} {R₀ U : S n}
+    {x u : ℕ → Vec ℝ n} (traj : sys.CanonicalTrajectory R₀ U x u) :
     sys.toLinParam.Trajectory R₀ U x u where
   init := traj.init
   input := traj.input

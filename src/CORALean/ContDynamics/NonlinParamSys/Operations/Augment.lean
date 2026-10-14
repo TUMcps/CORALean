@@ -34,7 +34,8 @@ variable {n m q : ℕ}
 
 /-- The parameter read as the last `q` coordinates of the state, with zero dynamics. -/
 def NonlinParamSys.augment (sys : NonlinParamSys n m q) : NonlinearSys (n + q) m :=
-  ⟨fun z u => Fin.append (sys.f (z ∘ Fin.castAdd q) u (z ∘ Fin.natAdd n)) 0⟩
+  ⟨fun z u => Fin.append (sys.f (z ∘ Fin.castAdd q) u (z ∘ Fin.natAdd n)) 0, sys.r,
+    fun z u => sys.g (z ∘ Fin.castAdd q) u (z ∘ Fin.natAdd n)⟩
 
 end CORALean
 

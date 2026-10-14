@@ -38,9 +38,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.ClassicalTrajectory.aestronglyMeasurable_input {sys : LinearSys 𝕋 n}
+theorem LinearSys.CanonicalClassicalTrajectory.aestronglyMeasurable_input {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
-    (traj : sys.ClassicalTrajectory T R₀ U x u) (hT : Set.Icc a b ⊆ T) :
+    (traj : sys.CanonicalClassicalTrajectory T R₀ U x u) (hT : Set.Icc a b ⊆ T) :
     AEStronglyMeasurable u (volume.restrict (Set.Icc a b)) := by -- --- PROOF ---
   rw [show volume.restrict (Set.Icc a b) = volume.restrict (Set.Ioo a b) from
     (Measure.restrict_congr_set Ioo_ae_eq_Icc).symm]

@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.Examples.Bench.Config
 import CORALean.Examples.Bench.Rational
+import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
 
 /-!
 # The spiral system and its rollout, at a chosen scalar
@@ -96,7 +97,7 @@ def buildSystem (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except
   let z0 ← inst "0" ExactDyadic.zero
   let Ad : Mat 𝕋 2 2 := Matrix.of ![![a00, a01], ![a10, a11]]
   let X0 ← buildX0 cfg inst z0
-  pure ⟨⟨Ad⟩, X0, aux_zeroInput z0⟩
+  pure ⟨LinearSysDT.canonicalFloat Ad, X0, aux_zeroInput z0⟩
 
 /-- One step of `LinearSysDT.reach`'s own recursion, exposed so `rollout` and
 the theorem it mirrors read the same equation. -/

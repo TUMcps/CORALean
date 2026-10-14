@@ -43,9 +43,10 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- Sampling into the enclosed system and then running its recursion; nothing
 here combines, which is why `LinComb` is not asked for. -/
-theorem LinearSys.Trajectory.discretizeEnclosure_mem_reach {sys : LinearSys 𝕋 n} {T : Set ℝ}
+theorem LinearSys.CanonicalTrajectory.discretizeEnclosure_mem_reach {sys : LinearSys 𝕋 n}
+    {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {η : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :

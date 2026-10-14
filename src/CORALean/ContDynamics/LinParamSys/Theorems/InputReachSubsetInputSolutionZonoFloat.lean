@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.SmulPowMemInputTermZonoFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
@@ -8,6 +9,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermF
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 public import CORALean.ContSet.ContSet.Theorems.Basic
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -84,25 +86,27 @@ theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
 theorem LinParamSys.aux_inputTaylorSum_subset_zono
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
-    ∀ m, construct ((LinearSys.mk A : LinearSys ℝ n).inputTaylorSum
+    ∀ m, construct ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
       (S := 𝒮) (toReal r) V.construct (m + 2))
       ⊆ construct (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋])
         (S := 𝒵[𝕋])
           (sys.inputTermZonoFloat r 0) V ⊞
           Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
             (sys.inputTermZonoFloat r 1) V)
-        + construct ((LinParamSys.mk (𝕄 := ℐ[𝕋])
+        + construct ((LinParamSys.canonical (𝕄 := ℐ[𝕋])
             sys.A.matInterval).inputTaylorSumTailFloat r V (m + 2)) := by -- --- PROOF ---
   have hAI : A ∈ sys.A.matInterval.construct := Zonotope.matInterval_contains _ hA
   -- orders `0` and `1`, through the matrix zonotope
-  have hZ : ∀ i, ((LinearSys.mk A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) '' V.construct
+  have hZ : ∀ i, ((LinearSys.canonical A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) ''
+      V.construct
       ⊆ construct (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋])
         (S := 𝒵[𝕋])
         (sys.inputTermZonoFloat r i) V) :=
     fun i => LinParamSys.aux_image_subset_mtimes
       (sys.smul_pow_mem_inputTermZonoFloat hr hA i) V
   -- every later order, through the interval matrix the zonotope encloses
-  have hI : ∀ i, ((LinearSys.mk A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) '' V.construct
+  have hI : ∀ i, ((LinearSys.canonical A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) ''
+      V.construct
       ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm sys.A.matInterval r i) V) :=
@@ -120,7 +124,7 @@ theorem LinParamSys.aux_inputTaylorSum_subset_zono
   | succ m ih =>
     refine (Set.add_subset_add ih (hI (m + 3))).trans ?_
     rw [add_assoc]
-    exact Set.add_subset_add le_rfl (Plus.plus_outer ((LinParamSys.mk (𝕄 := fun m n =>
+    exact Set.add_subset_add le_rfl (Plus.plus_outer ((LinParamSys.canonical (𝕄 := fun m n =>
       Interval (Mat 𝕋 m n)) sys.A.matInterval).inputTaylorSumTailFloat r V (m + 2))
       (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm sys.A.matInterval r (m + 3)) V))
@@ -128,7 +132,7 @@ theorem LinParamSys.aux_inputTaylorSum_subset_zono
 /-- The member's remainder, closed and convexified, inside the float product. -/
 theorem LinParamSys.aux_inputRemainder_subset_zono
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {η : ℕ} (hη : (LinParamSys.mk (𝕄 := ℐ[𝕋])
+    {η : ℕ} (hη : (LinParamSys.canonical (𝕄 := ℐ[𝕋])
       sys.A.matInterval).OrderAdmissibleFloat r r η)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
     construct (Mtimes.mtimes (𝕄 := ℐ)
@@ -152,10 +156,10 @@ theorem LinParamSys.aux_inputRemainder_subset_zono
 lies in `inputSolutionZonoFloat`. -/
 theorem LinParamSys.inputReach_subset_inputSolutionZonoFloat
     (sys : LinParamSys 𝕄𝒵[𝕋] n) {Δt : 𝕋} {η : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : (LinParamSys.mk (𝕄 := ℐ[𝕋])
+    (hΔt : 0 < toReal Δt) (hη : (LinParamSys.canonical (𝕄 := ℐ[𝕋])
       sys.A.matInterval).OrderAdmissibleFloat Δt Δt η)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) V (toReal Δt)
+    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (sys.inputSolutionZonoFloat Δt η V).construct := by -- --- PROOF ---
   -- the float bound's condition is the exact one's, with room to spare
   have hε : ‖toReal Δt • A‖ / ((η : ℝ) + 2) < 1 := by
@@ -168,7 +172,7 @@ theorem LinParamSys.inputReach_subset_inputSolutionZonoFloat
       _ ≤ 1 / 2 := hη.2
       _ < 1 := by norm_num
   have hrem := sys.aux_inputRemainder_subset_zono hΔt.le hη hA V
-  have hexact := (LinearSys.mk A : LinearSys ℝ n).inputReach_subset_inputSolution
+  have hexact := (LinearSys.canonical A : LinearSys ℝ n).inputReach_subset_inputSolution
     (S := 𝒮) hΔt η hε
     (U := V.construct) (ConvexSet.convex_construct V) (CompactSet.isClosed_construct V)
     (CompactSet.isBounded_construct V) (convex_convexHull ℝ _).closure isClosed_closure

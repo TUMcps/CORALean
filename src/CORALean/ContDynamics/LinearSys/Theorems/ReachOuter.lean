@@ -41,8 +41,8 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 omit [∀ n, LinComb (S n) (Vec ℝ n)] in
 /-- Sampling and then running the discrete-time recursion; nothing here
 combines, which is why `LinComb` is not asked for. -/
-theorem LinearSys.Trajectory.reach_outer {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U Ud : S n}
-    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
+theorem LinearSys.CanonicalTrajectory.reach_outer {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U Ud : S n}
+    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=

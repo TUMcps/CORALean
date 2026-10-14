@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotope
 import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Theorems.AbsMaxOfPoint
+import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 /-!
 # Discretizing into a matrix zonotope, and running the same `reach`
@@ -36,7 +37,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- The system left with no dynamics at all, so the one hypothesis the
 enclosure needs is immediate: `‖0‖ = 0` dominates any geometric series. -/
-def DMZ.sys : LinearSys ℝ 1 := ⟨0⟩
+def DMZ.sys : LinearSys ℝ 1 := LinearSys.canonical 0
 
 theorem DMZ.hε : ‖(1:ℝ) • toRealMat DMZ.sys.A‖ / ((0:ℕ) + 2 : ℝ) < 1 := by
   simp [DMZ.sys]

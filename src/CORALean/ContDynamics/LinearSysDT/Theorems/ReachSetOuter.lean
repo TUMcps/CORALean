@@ -32,7 +32,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.reachSet_outer (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
-    {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
+    {x u : ℕ → Vec ℝ n} (traj : sys.CanonicalTrajectory R₀ U x u) (k : ℕ) :
     x k ∈ sys.reachSet R₀ U k := by -- --- PROOF ---
   induction k with
   | zero => exact traj.init

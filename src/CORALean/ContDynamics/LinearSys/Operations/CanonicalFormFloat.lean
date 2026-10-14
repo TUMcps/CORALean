@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
-public import CORALean.ContDynamics.OutputEq.OutputEq
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
@@ -28,7 +27,7 @@ sums at ℝ, are boxes here, each sum and product rounded outward. Soundness is
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,32 +37,34 @@ namespace CORALean
 
 open CORALean.Float FloatOps
 
-variable {𝕋 : Type} [FloatOps 𝕋] {n m q r s : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `[linsys_, U_, u_, V_, v_] = canonicalForm(linsys, U, uVec, W, V, vVec)`, line by line, with
 the offsets as boxes. -/
-def LinearSys.canonicalFormFloat (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m) (c : Vec 𝕋 n)
-    (out : OutputEq 𝕋 n m r) (k : Vec 𝕋 r) (E : Mat 𝕋 n q) (F : Mat 𝕋 r s)
-    (U : Zonotope (Vec 𝕋 m)) (uVec : Vec 𝕋 m) (W : Zonotope (Vec 𝕋 q)) (V : Zonotope (Vec 𝕋 s))
-    (vVec : Vec 𝕋 s) :
-    LinearSys 𝕋 n × OutputEq 𝕋 n n r × Zonotope (Vec 𝕋 n) × Interval (Vec 𝕋 n) ×
-    Zonotope (Vec 𝕋 r) ×
-      Interval (Vec 𝕋 r) :=
+def LinearSys.canonicalFormFloat (sys : LinearSys 𝕋 n) (U : Zonotope (Vec 𝕋 sys.m))
+    (uVec : Vec 𝕋 sys.m) (W : Zonotope (Vec 𝕋 sys.r)) (V : Zonotope (Vec 𝕋 sys.s))
+    (vVec : Vec 𝕋 sys.s) :
+    LinearSys 𝕋 n × Zonotope (Vec 𝕋 n) × Interval (Vec 𝕋 n) × Zonotope (Vec 𝕋 sys.q) ×
+      Interval (Vec 𝕋 sys.q) :=
   let U₀ := U.recentre                                               -- U - centerU
   let W₀ := W.recentre                                               -- W - centerW
   let V₀ := V.recentre                                               -- V - centerV
-  let v_ := ((Interval.mtimes out.D (Interval.point uVec)).plus (Interval.point k)).plus
-    (Interval.mtimes F ((Interval.point V.c).plus (Interval.point vVec)))  -- offset on the output
-  let V_ := (Zonotope.mtimes out.D (Zonotope.plus U₀ (Zonotope.point U.c))).plus
-    (Zonotope.mtimes F V₀)                                           -- D (U + centerU) + F V
-  let u_ := (((Interval.mtimes B (Interval.point uVec)).plus
-    (Interval.mtimes B (Interval.point U.c))).plus (Interval.point c)).plus
-    (Interval.mtimes E (Interval.point W.c))                         -- offset on the state
-  let U_ := (Zonotope.mtimes B U₀).plus (Zonotope.mtimes E W₀)       -- B U + E W
-  (⟨sys.A⟩, ⟨out.C, fun _ _ => zero⟩, U_, u_, V_, v_)
+  let v_ := ((Interval.mtimes sys.D (Interval.point uVec)).plus (Interval.point sys.k)).plus
+    (Interval.mtimes sys.F ((Interval.point V.c).plus (Interval.point vVec)))  -- output offset
+  let V_ := (Zonotope.mtimes sys.D (Zonotope.plus U₀ (Zonotope.point U.c))).plus
+    (Zonotope.mtimes sys.F V₀)                                       -- D (U + centerU) + F V
+  let u_ := (((Interval.mtimes sys.B (Interval.point uVec)).plus
+    (Interval.mtimes sys.B (Interval.point U.c))).plus (Interval.point sys.c)).plus
+    (Interval.mtimes sys.E (Interval.point W.c))                     -- offset on the state
+  let U_ := (Zonotope.mtimes sys.B U₀).plus (Zonotope.mtimes sys.E W₀)  -- B U + E W
+  let I : ∀ d, Mat 𝕋 d d := fun _ i j => if i = j then one else zero
+  let sys_ : LinearSys 𝕋 n :=                                        -- A, I, 0, C, 0, 0, 0, I
+    ⟨n, sys.q, n, sys.q, sys.A, I n, fun _ => zero, sys.C, fun _ _ => zero, fun _ => zero,
+      fun _ _ => zero, I sys.q⟩
+  (sys_, U_, u_, V_, v_)
 
 end CORALean
 

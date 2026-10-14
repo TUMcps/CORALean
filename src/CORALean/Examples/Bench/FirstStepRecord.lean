@@ -3,6 +3,7 @@ import CORALean.Examples.Bench.FirstStepJson
 import CORALean.Examples.Bench.FirstStepRat
 import CORALean.Examples.Bench.FirstStepRound
 import CORALean.Examples.Bench.NumberType
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 /-!
 # `firststep`: one number type at one `dt`, one step
@@ -79,7 +80,7 @@ def aux_result (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except 
       pure (Matrix.of ![![a, b], ![nb, a]] : Mat 𝕋 2 2)) with
   | .error e, _ | _, .error e => none' s!"not representable: {e}" x0J
   | .ok dt, .ok A =>
-  let sys : LinearSys 𝕋 2 := ⟨A⟩
+  let sys : LinearSys 𝕋 2 := LinearSys.canonicalFloat A
   let dtJ := [("dt_represented", ratJson (ToRat.toRat dt))]
   let params : Reach.Params (Zonotope (Vec 𝕋 2)) ℚ := { X₀ := X0, tFinal := ToRat.toRat dt }
   let options : LinearSys.ReachOptions 𝕋 :=

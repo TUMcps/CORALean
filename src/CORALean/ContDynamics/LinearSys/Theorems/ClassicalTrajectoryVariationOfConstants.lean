@@ -14,12 +14,12 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 for a run with a derivative everywhere: the substitution `y(s) = e^{-As} x(s)` has
 derivative `e^{-As} u(s)` (`hasDerivWithinAt_expNeg_mulVec`), so the fundamental
 theorem of calculus gives the integral outright. Integrability of the input
-against the exponential is a hypothesis, `ClassicalTrajectory` constraining `u`
+against the exponential is a hypothesis, `CanonicalClassicalTrajectory` constraining `u`
 pointwise only.
 
 Kept beside `Trajectory.variation_of_constants` for a classical run on a window
 `[kΔt, (k+1)Δt]` that does not reach back to `0` — a nonlinear run linearized step
-by step — where `ClassicalTrajectory.trajectory` cannot hand it to `Trajectory`,
+by step — where `CanonicalClassicalTrajectory.trajectory` cannot hand it to `Trajectory`,
 whose integral equation is anchored at `0`. Only the `l∞` operator norm's
 completeness is used for Mathlib's matrix exponential.
 
@@ -56,7 +56,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 Only the flow on `[a, b]` is used, so a domain covering that window is all the
 trajectory has to be defined on. -/
 theorem aux_classical_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
-    {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.ClassicalTrajectory T R₀ U x u)
+    {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
     (hT : Set.Icc a b ⊆ T) (hab : a ≤ b)
     (hu : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume a b) :
     exp ((-b) • toRealMat sys.A) *ᵥ x b - exp ((-a) • toRealMat sys.A) *ᵥ x a
@@ -82,8 +82,9 @@ theorem aux_classical_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {T : Set ℝ} {
 /-- From any time on, not only from 0: `a = 0` gives the familiar statement, and
 one step of a sampled trajectory is the case `a = kΔt`, `b = (k+1)Δt`. The
 domain has to cover `[a, b]` and nothing else. -/
-theorem LinearSys.ClassicalTrajectory.variation_of_constants {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.ClassicalTrajectory T R₀ U x u)
+theorem LinearSys.CanonicalClassicalTrajectory.variation_of_constants {sys : LinearSys 𝕋 n}
+    {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
     (hT : Set.Icc a b ⊆ T) (hab : a ≤ b)
     (hu : IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s) volume a b) :
     x b = exp ((b - a) • toRealMat sys.A) *ᵥ x a

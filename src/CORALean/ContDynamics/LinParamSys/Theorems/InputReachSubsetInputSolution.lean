@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
 public import CORALean.ContDynamics.LinearSys.Operations.InputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -57,7 +58,7 @@ theorem LinParamSys.inputReach_subset_inputSolution (sys : LinParamSys ℐ n)
       (MatExp.intervalInputRemainder sys.A r η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.intervalInputRemainder sys.A r η) U))) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach U r
+    (LinearSys.canonical A : LinearSys ℝ n).inputReach U r
       ⊆ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   rintro _ ⟨u, hmem, hmeas, rfl⟩
   -- the point system's matrix is the member itself

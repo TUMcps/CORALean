@@ -24,7 +24,7 @@ system, not bounded. `0 < p`, as the output is a block of the window. The source
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -56,14 +56,14 @@ theorem NonlinearARX.computeGO_output (sys : NonlinearARX dy du p) (hp : 0 < p)
                 (NonlinearARX.stack p y j) (NonlinearARX.feed p u j))
               : Vec ℝ (p * dy + dy)) := by -- --- PROOF ---
   -- the windows are a run of the converted system
-  have h := NonlinearSysDT.computeGO_output sys.toNonlinearSysDT
-    (fun x (_ : Vec ℝ ((p + 1) * du)) => sys.outputSel (𝕋 := ℝ) *ᵥ x) x0
+  have h := NonlinearSysDT.computeGO_output
+    { sys.toNonlinearSysDT with q := dy, g := fun x _ => sys.outputSel (𝕋 := ℝ) *ᵥ x } x0
     (NonlinearARX.feed p u_ref) (x := NonlinearARX.stack p y) (u := NonlinearARX.feed p u)
     (fun k => sys.toNonlinearSysDT_step hy k) k
   -- and the selection matrix reads `y(k)` off the window
   have hsel : sys.outputSel (𝕋 := ℝ) *ᵥ NonlinearARX.stack p y k = y k :=
     sys.outputSel_mulVec (𝕋 := ℝ) hp y k
-  rw [hsel] at h
+  rw [← hsel]
   exact h
 
 end CORALean

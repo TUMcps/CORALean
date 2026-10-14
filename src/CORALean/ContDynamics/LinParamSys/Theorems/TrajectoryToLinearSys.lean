@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -9,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 # A time-varying run is a run at any frozen matrix, with the drift as input
 
 `ConstTrajectory.toLinearSys` has no free counterpart at `'varParam'`: a run
-drawing a fresh `A t` at every instant is a `LinearSys.Trajectory` for no matrix
+drawing a fresh `A t` at every instant is a `LinearSys.CanonicalTrajectory` for no matrix
 at all, which is why the closed form never applied there. It is one at *every*
 matrix `Â` once the mismatch is paid into the input —
 `A t x + u = Â x + ((A t - Â) x + u)` — and that is what this states.
@@ -45,11 +46,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- The time-varying reading at a frozen matrix: the parameter mismatch becomes
 part of the input, and everything `LinearSys` proves applies again. -/
-theorem LinParamSys.Trajectory.toLinearSys {sys : LinParamSys 𝕄 n} {T : Set ℝ}
+theorem LinParamSys.CanonicalTrajectory.toLinearSys {sys : LinParamSys 𝕄 n} {T : Set ℝ}
     {R₀ U V : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
-    (traj : sys.Trajectory T R₀ U x u A) (Â : Mat ℝ n n) {T' : Set ℝ} (hT' : T' ⊆ T)
+    (traj : sys.CanonicalTrajectory T R₀ U x u A) (Â : Mat ℝ n n) {T' : Set ℝ} (hT' : T' ⊆ T)
     (hT'm : MeasurableSet T') (hV : ∀ t ∈ T', (A t - Â) *ᵥ x t + u t ∈ construct V) :
-    (LinearSys.mk Â : LinearSys ℝ n).Trajectory T' R₀ V x
+    (LinearSys.canonical Â : LinearSys ℝ n).CanonicalTrajectory T' R₀ V x
       (fun t => (A t - Â) *ᵥ x t + u t) where
   init := traj.init
   input := hV

@@ -8,10 +8,12 @@ public import Mathlib.Analysis.Calculus.Deriv.Basic
 /-!
 # Continuous-time nonlinear differential-algebraic systems: the representation
 
-CORA's `nonlinDASys`: `ẋ(t) = f(x(t), y(t), u(t))`, `0 = g(x(t), y(t), u(t))`, with `y` algebraic.
-`n` states, `p` constraints (CORA's `nrOfConstraints`, the dimension of `y`) and `m` inputs;
-time-invariant as CORA's is. CORA's optional output equation `z = h(x, y, u)` has no counterpart
-here, for the reason `NonlinearSys` has none.
+CORA's `nonlinDASys`: `ẋ(t) = f(x(t), y(t), u(t))`, `0 = g(x(t), y(t), u(t))`, with `y` algebraic,
+and the output equation `z = h(x, y, u)`. `n` states, `p` constraints (CORA's `nrOfConstraints`,
+the dimension of `y`) and `m` inputs; the output dimension `q` is a field, as CORA's
+`nrOfOutputs` is a property. Absent an output equation CORA's is the state, `h x y u = x`.
+Time-invariant as CORA's is. The output of a run is `h (x t) (y t) (u t)`, a function of it,
+so `Trajectory` does not repeat it.
 
 A `Trajectory` is `(x, y, u)` with `x` differentiable along `f`, and the constraint holding on
 all of `T`; there is no separate consistency condition on `y 0`, which the constraint at `0`
@@ -22,7 +24,7 @@ that `∂g/∂y` is invertible along solutions; the class does not carry it, as 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,6 +43,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 structure NonlinDASys (n p m : ℕ) where
   f : Vec ℝ n → Vec ℝ p → Vec ℝ m → Vec ℝ n
   g : Vec ℝ n → Vec ℝ p → Vec ℝ m → Vec ℝ p
+  q : ℕ
+  h : Vec ℝ n → Vec ℝ p → Vec ℝ m → Vec ℝ q
 
 structure NonlinDASys.Trajectory (sys : NonlinDASys n p m) (T : Set ℝ) (R₀ : S n)
     (U : S m) (x : ℝ → Vec ℝ n) (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m) : Prop where

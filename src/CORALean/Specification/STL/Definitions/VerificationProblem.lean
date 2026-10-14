@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.Specification.STL.STL
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -45,7 +46,7 @@ def STL.VerificationProblem (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope
     (U : Zonotope (Vec ℝ m)) (φ : STL.Formula (Vec ℝ n)) : Prop :=
   φ.HoldsOn {ξ | ∃ x₀ ∈ X₀.construct, ∃ u : ℝ → Vec ℝ m, (∀ t, 0 ≤ t → u t ∈ U.construct) ∧
     AEStronglyMeasurable u (volume.restrict (Set.Ici 0)) ∧
-    ξ = fun t : ℝ≥0 => (LinearSys.mk A).closedForm x₀ (fun s => B *ᵥ u s) t}
+    ξ = fun t : ℝ≥0 => (LinearSys.canonical A).closedForm x₀ (fun s => B *ᵥ u s) t}
 
 end CORALean
 

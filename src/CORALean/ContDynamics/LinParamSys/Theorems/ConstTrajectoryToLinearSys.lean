@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -10,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 
 The direction `TrajectoryToLinParam` does not give: there a `LinearSys` becomes
 a `LinParamSys` at the point its matrix denotes, here a `ConstTrajectory`
-becomes the `LinearSys.Trajectory` of the one matrix it holds fixed. The
+becomes the `LinearSys.CanonicalTrajectory` of the one matrix it holds fixed. The
 matrix set is dropped, `param` with it, which is why nothing comes back the
 other way without knowing the set is that point.
 
@@ -36,10 +37,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSys.ConstTrajectory.toLinearSys {sys : LinParamSys 𝕄 n} {T : Set ℝ}
+theorem LinParamSys.CanonicalConstTrajectory.toLinearSys {sys : LinParamSys 𝕄 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n}
-    (traj : sys.ConstTrajectory T R₀ U x u A) :
-    (LinearSys.mk A : LinearSys ℝ n).Trajectory T R₀ U x u where
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) :
+    (LinearSys.canonical A : LinearSys ℝ n).CanonicalTrajectory T R₀ U x u where
   init := traj.init
   input := traj.input
   meas := traj.meas

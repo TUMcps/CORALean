@@ -9,8 +9,7 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 
 The state sequence `simulate(linsysDT, params)` returns when `w = 0` and `v = 0`, as
 `priv_conform_unifyTrajectories` [1] calls it to get the nominal solution a test case's
-output is compared with: `x(k+1) = A x(k) + B u(k) + c`. The record keeps `A` only, so `B`,
-`c` are arguments.
+output is compared with: `x(k+1) = A x(k) + B u(k) + c`.
 
 ## References
 
@@ -19,7 +18,7 @@ output is compared with: `x(k+1) = A x(k) + B u(k) + c`. The record keeps `A` on
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,16 +28,16 @@ namespace CORALean
 
 open Matrix Scalar
 
-variable {n m : ℕ}
+variable {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `x(0) = x0`, `x(k+1) = A x(k) + B u(k) + c`. -/
-noncomputable def LinearSysDT.nominalState (sys : LinearSysDT ℝ n) (B : Mat ℝ n m) (c : Vec ℝ n)
-    (x0 : Vec ℝ n) (u : ℕ → Vec ℝ m) : ℕ → Vec ℝ n
+noncomputable def LinearSysDT.nominalState (sys : LinearSysDT ℝ n) (x0 : Vec ℝ n)
+    (u : ℕ → Vec ℝ sys.m) : ℕ → Vec ℝ n
   | 0 => x0
-  | k + 1 => sys.A *ᵥ LinearSysDT.nominalState sys B c x0 u k + B *ᵥ u k + c
+  | k + 1 => sys.A *ᵥ LinearSysDT.nominalState sys x0 u k + sys.B *ᵥ u k + sys.c
 
 end CORALean
 

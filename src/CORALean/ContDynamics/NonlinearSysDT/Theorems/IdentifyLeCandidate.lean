@@ -34,13 +34,16 @@ theorem NonlinearSysDT.identify_le_candidate (φ : Vec ℝ n → Vec ℝ m → V
     (hlt : ∀ a b, lt a b = true ↔ a < b) (err : NonlinearSysDT n m → ℝ) (xNext : Fin N → Vec ℝ n)
     (V : Mat ℝ d r) (s : Fin r → ℝ) (W : Mat ℝ N r) (hr : 0 < r) :
     ∃ sys, NonlinearSysDT.identify φ lt err xNext V s W = some sys ∧
-      (∃ k, 1 ≤ k ∧ k ≤ r ∧ sys = (NonlinearSysDT.mk fun x u =>
-        NonlinearSysDT.identifyCandidate xNext V s W k *ᵥ φ x u)) ∧
-      err sys ≤ err (NonlinearSysDT.mk fun x u =>
-        NonlinearSysDT.identifyCandidate xNext V s W r *ᵥ φ x u) := by
+      (∃ k, 1 ≤ k ∧ k ≤ r ∧ sys = (NonlinearSysDT.mk (fun x u =>
+        NonlinearSysDT.identifyCandidate xNext V s W k *ᵥ φ x u) n
+        fun x _ => x)) ∧
+      err sys ≤ err (NonlinearSysDT.mk (fun x u =>
+        NonlinearSysDT.identifyCandidate xNext V s W r *ᵥ φ x u) n
+        fun x _ => x) := by -- --- PROOF ---
   obtain ⟨M, hM, hk, hle⟩ := dmdSelect_le lt hlt err
-    (fun k => (NonlinearSysDT.mk fun x u =>
-      NonlinearSysDT.identifyCandidate xNext V s W k *ᵥ φ x u)) hr
+    (fun k => (NonlinearSysDT.mk (fun x u =>
+      NonlinearSysDT.identifyCandidate xNext V s W k *ᵥ φ x u) n
+      fun x _ => x)) hr
   exact ⟨M, hM, hk, hle r hr le_rfl⟩
 
 end CORALean

@@ -55,7 +55,7 @@ theorem LinParamSys.reachFloatInputSplit_outer
     {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInputSplit U params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {A : Mat ℝ n n} {x u : ℝ → Vec ℝ n},
-        sys.ConstTrajectory (S := 𝒵[𝕋])
+        sys.CanonicalConstTrajectory (S := 𝒵[𝕋])
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
           params.X₀ U x u A →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)

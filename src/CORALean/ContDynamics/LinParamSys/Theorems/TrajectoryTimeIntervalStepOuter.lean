@@ -51,9 +51,9 @@ variable [Mtimes ℐ S]
 
 /-- An input-free `'varParam'` run is, at every time of the step, in the box's
 own time-interval step of the initial set. -/
-theorem LinParamSys.Trajectory.timeIntervalStep_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
+theorem LinParamSys.CanonicalTrajectory.timeIntervalStep_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
-    (traj : sys.Trajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
+    (traj : sys.CanonicalTrajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 r, u s = 0) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :

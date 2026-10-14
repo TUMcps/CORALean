@@ -55,8 +55,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- With `‖A t‖ ≤ M` and `‖u t‖ ≤ ν` over the window, the state never leaves the
 Grönwall bound of its starting norm. -/
-theorem LinParamSys.Trajectory.norm_le {sys : LinParamSys 𝕄 n} {T : Set ℝ} {R₀ U : S n}
-    {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} (traj : sys.Trajectory T R₀ U x u A)
+theorem LinParamSys.CanonicalTrajectory.norm_le {sys : LinParamSys 𝕄 n} {T : Set ℝ} {R₀ U : S n}
+    {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} (traj : sys.CanonicalTrajectory T R₀ U x u A)
     {a b : ℝ} (hT : Set.Icc a b ⊆ T) {M ν δ : ℝ}
     (hM : ∀ t ∈ Set.Ico a b, ‖A t‖ ≤ M) (hν : ∀ t ∈ Set.Ico a b, ‖u t‖ ≤ ν)
     (hδ : ‖x a‖ ≤ δ) :

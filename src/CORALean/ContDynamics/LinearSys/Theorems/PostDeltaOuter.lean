@@ -48,8 +48,8 @@ variable [Mtimes ℐ S]
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- Every state difference a run confined to `Ψ`'s input over `[0, r]` spans is
 in `postΔ`, from the initial set `R₀` alone. -/
-theorem LinearSys.Trajectory.postDelta_outer {sys : LinearSys 𝕋 n}
-    {T : Set ℝ} {R₀ Ψ : S n} {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.Trajectory T R₀ Ψ x u)
+theorem LinearSys.CanonicalTrajectory.postDelta_outer {sys : LinearSys 𝕋 n}
+    {T : Set ℝ} {R₀ Ψ : S n} {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.CanonicalTrajectory T R₀ Ψ x u)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r)

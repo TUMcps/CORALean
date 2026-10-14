@@ -1,6 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapCoraErr
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 public import CORALean.HybridDynamics.Theorems.AbstractionErrorCoraEqZero
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
@@ -187,7 +188,7 @@ theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample :
         x t ∉ Z.construct := by -- --- PROOF ---
   set x : ℝ → Vec ℝ 3 := fun t => ![t ^ 2 / 2, t, 1] with hx
   set inv : Zonotope (Vec ℝ 3) := ⟨2, ![1, 1, 1], ![![1, 0, 0], ![0, 1, 0]]⟩
-  refine ⟨⟨inv, ⟨aux_hpMapCoraCex_A⟩, Zonotope.ofPoint 0, []⟩, ![0, 1, 0], 2,
+  refine ⟨⟨inv, LinearSys.canonical aux_hpMapCoraCex_A, Zonotope.ofPoint 0, []⟩, ![0, 1, 0], 2,
     Zonotope.ofPoint ![0, 0, 1], 2, 2, 2, x, fun _ => 0, ⟨by norm_num, ?_, ?_, ?_⟩, ?_,
     ⟨by norm_num, le_rfl⟩, le_rfl, ?_, ?_⟩
   -- the run: `ẋ = Ax`, inside the box `inv`

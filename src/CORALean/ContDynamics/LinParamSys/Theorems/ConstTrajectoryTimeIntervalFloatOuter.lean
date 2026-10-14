@@ -40,10 +40,10 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- One step and nothing more, at the frozen member: the domain has to cover
 `[0, r]` only. -/
-theorem LinParamSys.ConstTrajectory.timeIntervalFloat_outer
+theorem LinParamSys.CanonicalConstTrajectory.timeIntervalFloat_outer
     {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U Ud : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {r : 𝕋} {η : ℕ}
-    (traj : sys.ConstTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) (hr : 0 < toReal r)
+    (traj : sys.CanonicalConstTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) (hr : 0 < toReal r)
     (hT : Set.Icc 0 (toReal r) ⊆ T) (hη : sys.OrderAdmissibleFloat r r η) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ toReal r)
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) :

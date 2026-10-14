@@ -29,8 +29,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.Trajectory.state_eq {sys : LinearSysDT 𝕋 n} {R₀ U : S n}
-    {x u : ℕ → Vec ℝ n} (h : sys.Trajectory R₀ U x u) (k : ℕ) :
+theorem LinearSysDT.CanonicalTrajectory.state_eq {sys : LinearSysDT 𝕋 n} {R₀ U : S n}
+    {x u : ℕ → Vec ℝ n} (h : sys.CanonicalTrajectory R₀ U x u) (k : ℕ) :
     x k = toRealMat sys.A ^ k *ᵥ x 0
       + ∑ j ∈ Finset.range k, toRealMat sys.A ^ (k - 1 - j) *ᵥ u j := by -- --- PROOF ---
   induction k with

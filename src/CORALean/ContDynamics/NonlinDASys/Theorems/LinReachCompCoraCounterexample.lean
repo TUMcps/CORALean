@@ -164,7 +164,7 @@ theorem NonlinDASys.linReachCompCora_misses_counterexample {Δt : ℝ} (hΔt : 0
     (F_inv : Mat ℝ 2 2) (Csub Fsub : Fin 2 → Mat ℝ 1 1) (R_xyu : Fin 2 → Zonotope (Vec ℝ 3))
     (Hf₂ Hf₂' Hg₂ Hg₂' : Fin 1 → Mat ℝ 3 3) :
     let sys : NonlinDASys 2 2 1 :=
-      ⟨fun _ y _ => y, fun x y _ => ![y 0 - y 1, y 1 - x 1 ^ 2]⟩
+      ⟨fun _ y _ => y, fun x y _ => ![y 0 - y 1, y 1 - x 1 ^ 2], 2, fun x _ _ => x⟩
     let Rinit : Zonotope (Vec ℝ 2) := ⟨1, 0, fun _ => ![0, 1]⟩
     let U : Zonotope (Vec ℝ 1) := Zonotope.ofPoint 0
     let X : Fin 2 → Mat ℝ 1 2 := ![!![1, 0], !![0, 1]]

@@ -34,8 +34,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.Trajectory.aestronglyMeasurable_input_reflected {sys : LinearSys 𝕋 n}
-    {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) {c r : ℝ}
+theorem LinearSys.CanonicalTrajectory.aestronglyMeasurable_input_reflected {sys : LinearSys 𝕋 n}
+    {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.CanonicalTrajectory T R₀ U x u)
+        {c r : ℝ}
     (hT : Set.Icc (c - r) c ⊆ T) :
     AEStronglyMeasurable (fun τ => u (c - τ)) (volume.restrict (Set.Ioc 0 r)) := by -- --- PROOF ---
   -- translate the window to `[0, r]`, then reflect it about `r`

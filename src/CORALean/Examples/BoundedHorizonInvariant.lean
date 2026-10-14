@@ -1,4 +1,5 @@
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.HybridDynamics.Theorems.RunOnOuter
 
 /-!
@@ -40,7 +41,7 @@ def BHI.trans (b : Bool) : Transition ℐ𝒱 Bool ℝ 1 where
 `trans` tells them apart. -/
 def BHI.loc (b : Bool) : Location ℐ𝒱 ℐ𝒱 Bool ℝ 1 where
   inv := ⟨![(-1:ℝ)], ![1]⟩
-  dynamics := ⟨0⟩
+  dynamics := LinearSys.canonical 0
   U := ⟨![(0:ℝ)], ![0]⟩
   trans := [BHI.trans b]
 

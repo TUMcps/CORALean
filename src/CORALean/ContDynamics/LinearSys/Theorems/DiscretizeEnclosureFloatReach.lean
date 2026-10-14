@@ -37,9 +37,9 @@ variable [Mtimes ℐ[𝕋] S]
 
 /-- Every sample `x (k Δt)` of a run lies in the float-sampled system's `reach`
 after `k` steps under the sampled inputs `Ud`. -/
-theorem LinearSys.Trajectory.discretizeEnclosureFloat_mem_reach {sys : LinearSys 𝕋 n}
+theorem LinearSys.CanonicalTrajectory.discretizeEnclosureFloat_mem_reach {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) (k : ℕ) :

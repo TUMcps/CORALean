@@ -81,8 +81,9 @@ noncomputable example {n m : ℕ} (sys : NonlinearSys n m) (U : PolyZonotope (Ve
 derivatives at `(xs, us)` — `A = 2xs`, `B = 1`, the Hessian `2` in the state block, no
 third derivative — and the start set is handed in, no candidate error. -/
 noncomputable example (U X₀ : PolyZonotope (Vec ℝ 1)) (xs us : Vec ℝ 1) :
-    Option ((⟨fun x u i => x i ^ 2 + u i⟩ : NonlinearSys 1 1).LinStep (S := 𝒫𝒵) U) :=
-  (⟨fun x u i => x i ^ 2 + u i⟩ : NonlinearSys 1 1).linReachPoly U
+    Option ((⟨fun x u i => x i ^ 2 + u i, 1, fun x _ => x⟩ : NonlinearSys 1 1).LinStep
+      (S := 𝒫𝒵) U) :=
+  (⟨fun x u i => x i ^ 2 + u i, 1, fun x _ => x⟩ : NonlinearSys 1 1).linReachPoly U
     (Matrix.of fun _ _ => 2 * xs 0) 1 xs us
     (fun _ => Matrix.of fun i j => if i = 0 ∧ j = 0 then 2 else 0) (fun _ _ => 0)
     (1 / 100) 4 50 50 X₀ 0 10

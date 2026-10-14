@@ -91,6 +91,8 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
 public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ErrorEdge
@@ -189,6 +191,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
 public import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
+public import CORALean.ContDynamics.LinearSys.Operations.Basic
 
 /-!
 # What a continuous-time linear system computes

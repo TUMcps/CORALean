@@ -1,4 +1,5 @@
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.HybridDynamics.Theorems.ReachFloatOuter
@@ -67,7 +68,7 @@ def ball : HybridAutomaton 𝒵[D] (fun k => HPolytope D (Vec D k))
     Unit D 2 where
   loc _ :=
     { inv := aboveFloor
-      dynamics := ⟨!![d 0 0, d 1 0; d 0 0, d 0 0]⟩
+      dynamics := LinearSys.canonicalFloat !![d 0 0, d 1 0; d 0 0, d 0 0]
       U := ⟨0, ![d 0 0, d (-157) (-4)], fun j => j.elim0, ⟨![d 0 0, d 0 0], ![d 0 0, d 0 0]⟩⟩
       trans := [bounce] }
 

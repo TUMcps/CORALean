@@ -8,6 +8,7 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 public import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 @[expose] public section
 
@@ -77,7 +78,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   have hTf : (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)) = toReal Δt := by
     rw [ToRat.toReal_toRat, Rat.cast_zero, sub_zero]
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
-  have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := 𝒮)
+  have ltrajC : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).CanonicalClassicalTrajectory (S := 𝒮)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))).construct

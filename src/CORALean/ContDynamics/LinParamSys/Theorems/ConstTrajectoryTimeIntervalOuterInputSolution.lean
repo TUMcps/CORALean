@@ -43,9 +43,9 @@ variable [Mtimes ℐ S]
 
 /-- One step of a `'constParam'` run, initial set and inputs together, at every
 time of the step rather than at its end. -/
-theorem LinParamSys.ConstTrajectory.timeInterval_outer_inputSolution
+theorem LinParamSys.CanonicalConstTrajectory.timeInterval_outer_inputSolution
     {sys : LinParamSys ℐ n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
-    {A : Mat ℝ n n} {r : ℝ} (traj : sys.ConstTrajectory T R₀ U x u A)
+    {A : Mat ℝ n n} {r : ℝ} (traj : sys.CanonicalConstTrajectory T R₀ U x u A)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)

@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSo
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -51,9 +52,9 @@ variable [Mtimes ℐ S]
 
 /-- One step of a `'varParam'` run, initial set and enlarged input together, at
 every time of the step. -/
-theorem LinParamSys.Trajectory.timeInterval_outer_inputSolution {sys : LinParamSys ℐ n}
+theorem LinParamSys.CanonicalTrajectory.timeInterval_outer_inputSolution {sys : LinParamSys ℐ n}
     {T : Set ℝ} {R₀ U V : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} {r : ℝ}
-    (traj : sys.Trajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (traj : sys.CanonicalTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {Â : Mat ℝ n n} (hÂ : Â ∈ construct sys.A)
     (hV : ∀ s ∈ T, (A s - Â) *ᵥ x s + u s ∈ construct V)
@@ -73,13 +74,13 @@ theorem LinParamSys.Trajectory.timeInterval_outer_inputSolution {sys : LinParamS
   -- the frozen matrix names the point system where `inputReach` lives
   have lin := traj.toLinearSys Â hTt measurableSet_Icc fun s hs => hV s (hTt hs)
   have hmemt : (∫ s in (0:ℝ)..t, exp ((t - s) • Â) *ᵥ ((A s - Â) *ᵥ x s + u s))
-      ∈ (LinearSys.mk Â : LinearSys ℝ n).inputReach V t :=
+      ∈ (LinearSys.canonical Â : LinearSys ℝ n).inputReach V t :=
     ⟨fun s => (A s - Â) *ᵥ x s + u s, fun s hs => hV s (hTt hs),
       lin.aestronglyMeasurable_input subset_rfl, by simp only [Scalar.toRealMat_real]⟩
   refine traj.timeInterval_outer hr hT hε hÂ hV hbdd ht0 htr ?_
   exact sys.inputReach_subset_inputSolution hr (m + 2) hε hÂ hconv hclosed hbdd
     hRconv hRclosed hRbdd
-    ((LinearSys.mk Â : LinearSys ℝ n).inputReach_mono hbdd h0 ht0 htr hmemt)
+    ((LinearSys.canonical Â : LinearSys ℝ n).inputReach_mono hbdd h0 ht0 htr hmemt)
 
 end CORALean
 

@@ -61,7 +61,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     (hinv : sys.AutoInvariantFloat X₀ V s) :
     sys.AutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
+        sys.CanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
         U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
           x t ∈ R.construct := by -- --- PROOF ---
   obtain ⟨h0, hlo, hhi, hH, hPu, hPU⟩ := hinv

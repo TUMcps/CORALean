@@ -8,14 +8,15 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
 /-!
 # `computeGO` gives the output of every run
 
-`y(k) = C{k} x(0) + ∑_j D{k,j} u(j)`, with `y(k) = C x(k) + D u(k)` the output equation: the
-`C` and `D` of the GO model are the coefficients of the output in the initial state and the
-inputs, for every run of the system.
+`y(k) = C{k} x(0) + ∑_j D{k,j} u(j) + k`, with `y(k) = C x(k) + D u(k) + k` the output equation:
+the `C` and `D` of the GO model are the coefficients of the output in the initial state and the
+inputs, for every run of the system; the constant `k`, which CORA's GO model leaves out, is added
+as it stands.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,9 +33,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.computeGO_output {sys : LinearSysDT 𝕋 n} {R₀ U : S n} {x u : ℕ → Vec ℝ n}
-    (h : sys.Trajectory R₀ U x u) (out : OutputEq 𝕋 n n r) {nk : ℕ} (k : Fin nk) :
+    (h : sys.CanonicalTrajectory R₀ U x u) (out : OutputEq 𝕋 n n r) {nk : ℕ} (k : Fin nk) :
     out.eval (x k.val) (u k.val) = (sys.computeGO out nk).C k *ᵥ x 0
-      + ∑ j : Fin nk, (sys.computeGO out nk).D k j *ᵥ u j := by -- --- PROOF ---
+      + ∑ j : Fin nk, (sys.computeGO out nk).D k j *ᵥ u j + toRealVec out.k := by -- --- PROOF ---
   -- the output is `C x(k) + D u(k)`, with `x(k)` in closed form
   simp only [OutputEq.eval, LinearSysDT.computeGO]
   rw [h.state_eq k.val, Matrix.mulVec_add, Matrix.mulVec_mulVec, Matrix.mulVec_sum]

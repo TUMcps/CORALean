@@ -27,7 +27,7 @@ window `x0` itself and need no linearization, which is CORA's `C{k}`, `D{k,·}` 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,10 +45,11 @@ variable {dy du p : ℕ}
 /-- The GO parameters along the reference run from the window `x0` under `u_ref`. -/
 noncomputable def NonlinearARX.computeGO (sys : NonlinearARX dy du p) (x0 : Vec ℝ (p * dy))
     (u_ref : ℕ → Vec ℝ du) : NonlinearSysDT.GO (p * dy) ((p + 1) * du) dy :=
-  let nlnsysDT := sys.toNonlinearSysDT                             -- nlnARX.nonlinearSysDT
   let u_stacked := NonlinearARX.feed p u_ref                       -- getStackedU(nlnARX,u_ref)
   let C_tilde := sys.outputSel (𝕋 := ℝ)                            -- C_tilde
-  nlnsysDT.computeGO (fun x _ => C_tilde *ᵥ x) x0 u_stacked        -- y_d(k) = C_tilde x_d(k)
+  let nlnsysDT : NonlinearSysDT (p * dy) ((p + 1) * du) :=         -- nlnARX.nonlinearSysDT,
+    { sys.toNonlinearSysDT with q := dy, g := fun x _ => C_tilde *ᵥ x }  -- y_d = C_tilde x_d
+  nlnsysDT.computeGO x0 u_stacked
 
 end CORALean
 

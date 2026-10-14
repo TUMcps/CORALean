@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.ExactScalar
 public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -21,12 +22,14 @@ Where the bound state is a state of the coordinate's own component, that sum wou
 at the one entry both land on, so this definition puts the `1` there and drops `A_ij`. That is
 `Amerged` exactly when `A_ij = 0`, which `SelfBindFree` states and the theorems assume. A binding
 to another component's state is always exact: the block is `0` there.
-CORA's nonlinear branch, symbolic, is not here (#40).
+CORA's nonlinear branch, symbolic, is not here (#40), nor its `Bmerged`, `cMerged`, `Emerged`
+and bindings through an output equation: the result is `LinearSys.canonical` of the merged `A`,
+inputs in state coordinates as the components' `CanonicalTrajectory` takes them.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   01-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,8 +46,8 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ParallelHybridAutomaton.mergeFlows [ExactScalar 𝕋] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
-    (ℓ : ∀ i, L i) : LinearSys 𝕋 (∑ i, n i) where
-  A := Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv <| Matrix.of fun a b =>
+    (ℓ : ∀ i, L i) : LinearSys 𝕋 (∑ i, n i) :=
+  LinearSys.canonical <| Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv <| Matrix.of fun a b =>
     match P.binds a.1 a.2 with
     | .global _ => if h : a.1 = b.1 then ((P.comp a.1).loc (ℓ a.1)).dynamics.A a.2
         (Fin.cast (congrArg n h.symm) b.2) else 0

@@ -39,7 +39,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The same statement from an arbitrary time `j`, which is what the induction
 on `k` needs: one step forward moves the start, not the target. -/
 theorem LinearSysDT.aux_backReachSetForall_from (sys : LinearSysDT 𝕋 n) (T U : S n)
-    {R₀ : S n} {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
+    {R₀ : S n} {x u : ℕ → Vec ℝ n} (traj : sys.CanonicalTrajectory R₀ U x u) (k : ℕ) :
     ∀ j, x j ∈ sys.backReachSetForall T U k → x (j + k) ∈ construct T := by -- --- PROOF ---
   induction k with
   | zero => exact fun j hj => hj
@@ -56,7 +56,7 @@ theorem LinearSysDT.aux_backReachSetForall_from (sys : LinearSysDT 𝕋 n) (T U 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.backReachSetForall_trajectory (sys : LinearSysDT 𝕋 n) (T U : S n)
-    {R₀ : S n} {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory R₀ U x u) (k : ℕ)
+    {R₀ : S n} {x u : ℕ → Vec ℝ n} (traj : sys.CanonicalTrajectory R₀ U x u) (k : ℕ)
     (hx : x 0 ∈ sys.backReachSetForall T U k) : x k ∈ construct T := by
   have h := sys.aux_backReachSetForall_from T U traj k 0 hx
   rwa [Nat.zero_add] at h

@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -88,7 +89,7 @@ theorem Krylov.aux_coord_integral {c : ℝ} {u : ℝ → Vec ℝ 1}
 boxes of lines 3 and 8 stay below `c₀` and `c₁`, and `R_p(2)` holds a point beyond `c₀ + c₁`. -/
 theorem Krylov.printed_input_propagation_counterexample :
     let A : Mat ℝ 1 1 := !![-1]
-    let sys : LinearSys ℝ 1 := ⟨A⟩
+    let sys : LinearSys ℝ 1 := LinearSys.canonical A
     let U : Set (Vec ℝ 1) := {u | 0 ≤ u 0 ∧ u 0 ≤ 1}
     let Rb1 := sys.inputReach (S := 𝒮) U 1           -- line 2, tightest
     let Rb2 := (fun y => exp (((1 + 1 : ℕ) : ℝ) • A) *ᵥ y) '' Rb1          -- line 8 at k = 1

@@ -55,7 +55,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 at, at time `t`: the exact reachable set, and not an enclosure of it. -/
 def LinearSys.reachSet (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n) (t : ℝ) :
     Set (Vec ℝ n) :=
-  {y | ∃ x u : ℝ → Vec ℝ n, sys.Trajectory T R₀ U x u ∧ x t = y}
+  {y | ∃ x u : ℝ → Vec ℝ n, sys.CanonicalTrajectory T R₀ U x u ∧ x t = y}
 
 end CORALean
 

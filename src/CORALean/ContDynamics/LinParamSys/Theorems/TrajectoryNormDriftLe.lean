@@ -44,9 +44,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- One radius for the whole window: the drift plus the input never exceeds
 `δ · gronwallBound ρ M ν (b - a) + ν`. -/
-theorem LinParamSys.Trajectory.norm_drift_le {sys : LinParamSys 𝕄 n} {T : Set ℝ}
+theorem LinParamSys.CanonicalTrajectory.norm_drift_le {sys : LinParamSys 𝕄 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
-    (traj : sys.Trajectory T R₀ U x u A) {a b : ℝ} (hT : Set.Icc a b ⊆ T)
+    (traj : sys.CanonicalTrajectory T R₀ U x u A) {a b : ℝ} (hT : Set.Icc a b ⊆ T)
     {M ν ρ δ : ℝ} (hM : ∀ t ∈ Set.Icc a b, ‖A t‖ ≤ M) (hν : ∀ t ∈ Set.Icc a b, ‖u t‖ ≤ ν)
     (hρ : ‖x a‖ ≤ ρ) {Â : Mat ℝ n n} (hδ : ∀ t ∈ Set.Icc a b, ‖A t - Â‖ ≤ δ)
     (hδ0 : 0 ≤ δ) (hM0 : 0 ≤ M) (hν0 : 0 ≤ ν) (hρ0 : 0 ≤ ρ) :

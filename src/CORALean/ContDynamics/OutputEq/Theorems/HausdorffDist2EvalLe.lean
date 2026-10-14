@@ -14,16 +14,16 @@ public import CORALean.Global.EuclideanHausdorffDist
 `d_H(Y(τ_k), Ŷ(τ_k)) ≤ ε · ‖C‖₂`, `‖C‖₂` the largest singular value.
 
 [1]'s eq. (43)'s `Y(t) = C R(t) ⊕ WV + q` is `Set.image2 out.eval` here: `out.eval x u =
-C *ᵥ x + D *ᵥ u`, `D` and `V` playing `W` and the disturbance, `q` folded away as `OutputEq.lean`
-already explains. Stated for arbitrary compact nonempty `X1 X2` and one common `V`, not for a
-system's `R(τ_k)`/`R̂(τ_k)` by name: nothing about *how* `X2` over-approximates `X1` is used, and
-`V` needs no compactness — `hausdorffDist_add_le` asks nothing of the fixed summand.
+C *ᵥ x + D *ᵥ u + k`, `D`, `V` and `k` playing `W`, the disturbance and `q`. Stated for arbitrary
+compact nonempty `X1 X2` and one common `V`, not for a system's `R(τ_k)`/`R̂(τ_k)` by name:
+nothing about *how* `X2` over-approximates `X1` is used, and `V` needs no compactness —
+`hausdorffDist_add_le` asks nothing of the fixed summand.
 
 `‖C‖₂` is not `‖mulVecLin (toRealMat out.C)‖`: `Vec ℝ n` carries the supremum norm, so that
 operator norm is the largest absolute row sum, not `Def. 5`'s `‖·‖₂`. Reading `C` in the paper's
 own norm needs it conjugated through `toEuclidean` on both sides at once, `aux_toEuclideanCLM`.
 
-The proof composes two Hausdorff-distance bounds: `hausdorffDist_add_le` peels the shared `D '' V`
+The proof composes two Hausdorff-distance bounds: `hausdorffDist_add_le` peels the shared `D V + k`
 term off both sides, and `hausdorffDist_image_le` bounds what is left, `C`'s part, at the
 Euclidean read of its operator norm.
 
@@ -34,9 +34,9 @@ Euclidean read of its operator norm.
       Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -87,17 +87,17 @@ theorem aux_hausdorffDist₂_add_le {S : Set (Vec ℝ r)} {V W : Set (Vec ℝ r)
   exact hausdorffDist_add_le (hV.image toEuclidean.continuous) (hVne.image _)
     (hW.image toEuclidean.continuous) (hWne.image _)
 
-/-- [1]'s eq. (43): the output map splits into `C`'s part and `D`'s part, added. -/
+/-- [1]'s eq. (43): the output map splits into `C`'s part and the part `D` and `k` make, added. -/
 theorem aux_image2_eval_eq_add (out : OutputEq 𝕋 n m r) (X : Set (Vec ℝ n)) (V : Set (Vec ℝ m)) :
-    Set.image2 out.eval X V
-      = mulVecLin (toRealMat out.C) '' X + mulVecLin (toRealMat out.D) '' V := by -- --- PROOF ---
+    Set.image2 out.eval X V = mulVecLin (toRealMat out.C) '' X
+      + (fun u => toRealMat out.D *ᵥ u + toRealVec out.k) '' V := by -- --- PROOF ---
   ext y
   simp only [Set.mem_image2, Set.mem_add, Set.mem_image, OutputEq.eval]
   constructor
   · rintro ⟨x, hx, u, hu, rfl⟩
-    exact ⟨_, ⟨x, hx, rfl⟩, _, ⟨u, hu, rfl⟩, rfl⟩
+    exact ⟨_, ⟨x, hx, rfl⟩, _, ⟨u, hu, rfl⟩, (add_assoc _ _ _).symm⟩
   · rintro ⟨_, ⟨x, hx, rfl⟩, _, ⟨u, hu, rfl⟩, rfl⟩
-    exact ⟨x, hx, u, hu, rfl⟩
+    exact ⟨x, hx, u, hu, add_assoc _ _ _⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -115,8 +115,11 @@ theorem OutputEq.hausdorffDist₂_eval_le (out : OutputEq 𝕋 n m r) {X1 X2 : S
   have hC2 : IsCompact (mulVecLin (toRealMat out.C) '' X2) :=
     hX2.image (mulVecLin (toRealMat out.C)).continuous_of_finiteDimensional
   calc hausdorffDist₂ (Set.image2 out.eval X1 V) (Set.image2 out.eval X2 V)
-      = hausdorffDist₂ (mulVecLin (toRealMat out.D) '' V + mulVecLin (toRealMat out.C) '' X1)
-          (mulVecLin (toRealMat out.D) '' V + mulVecLin (toRealMat out.C) '' X2) := by
+      = hausdorffDist₂
+          ((fun u => toRealMat out.D *ᵥ u + toRealVec out.k) '' V
+            + mulVecLin (toRealMat out.C) '' X1)
+          ((fun u => toRealMat out.D *ᵥ u + toRealVec out.k) '' V
+            + mulVecLin (toRealMat out.C) '' X2) := by
         rw [aux_image2_eval_eq_add, aux_image2_eval_eq_add,
           add_comm (mulVecLin (toRealMat out.C) '' X1),
           add_comm (mulVecLin (toRealMat out.C) '' X2)]

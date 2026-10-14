@@ -30,6 +30,8 @@ namespace CORALean
 /-- The system CORA returns: the state stays put, the inputs are the stacked bias perturbations. -/
 def SmoothNetwork.toNonlinearSysDT {n k : ℕ} (N : SmoothNetwork n k) : NonlinearSysDT n N.nu where
   f x _ := x
+  q := n
+  g x _ := x
 
 end CORALean
 

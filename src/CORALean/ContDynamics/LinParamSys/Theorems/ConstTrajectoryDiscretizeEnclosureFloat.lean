@@ -7,6 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.StepInput
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
 public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -43,15 +44,17 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Sampling every `Δt` turns a `'constParam'` run into a run of the float-sampled
 system. -/
-theorem LinParamSys.ConstTrajectory.discretizeEnclosureFloat
+theorem LinParamSys.CanonicalConstTrajectory.discretizeEnclosureFloat
     {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {Δt : 𝕋} {η : ℕ}
-    (traj : sys.ConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, (LinearSys.mk A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ construct Ud)
+    (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ construct
+        Ud)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) :
     (sys.discretizeEnclosureFloat Δt η).Trajectory R₀ Ud
-      (fun k : ℕ => x (k * toReal Δt)) ((LinearSys.mk A : LinearSys ℝ n).stepInput u (toReal Δt))
+      (fun k : ℕ => x (k * toReal Δt))
+          ((LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt))
     where
   init := by simpa using traj.init
   input k := hUd k

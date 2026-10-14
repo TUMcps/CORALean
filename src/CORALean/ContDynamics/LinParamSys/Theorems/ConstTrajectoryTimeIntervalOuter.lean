@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 /-!
 # A constant-parameter run stays in the step enclosure, inputs and all
 
-`LinearSys.Trajectory.timeInterval_outer` at `'constParam'`: the closed form
+`LinearSys.CanonicalTrajectory.timeInterval_outer` at `'constParam'`: the closed form
 splits the run into what the initial set carries and what the inputs
 contributed, and `toLinearSys` is what lets that closed form be used at all —
 one matrix is fixed over the step, so `variation_of_constants` applies to it
@@ -51,9 +51,9 @@ variable [Mtimes ℐ S]
 
 /-- One step and nothing more, at every matrix the system's set holds: the
 domain has to cover `[0, r]` only. -/
-theorem LinParamSys.ConstTrajectory.timeInterval_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
+theorem LinParamSys.CanonicalConstTrajectory.timeInterval_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {r : ℝ}
-    (traj : sys.ConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hU : Bornology.IsBounded (construct U))

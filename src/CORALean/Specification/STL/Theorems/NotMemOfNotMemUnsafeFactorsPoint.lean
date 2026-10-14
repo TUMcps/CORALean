@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.STL.Theorems.DepReachPointDependency
 public import CORALean.Specification.STL.Theorems.NotMemOfNotMemUnsafeFactors
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -47,7 +48,7 @@ theorem STL.not_mem_of_not_mem_unsafeFactors_point (A : Mat ℝ n n) (B : Mat �
     ∀ (hle : X₀.h + i * U.h ≤ R.h),
       (fun l : Fin p => α l) ∉ STL.unsafeFactors C d R.c (Matrix.of fun j k => R.G k j)
           (Fin.castLE hle) (Finset.univ.filter fun k : Fin R.h => X₀.h + i * U.h ≤ k) hp →
-      ¬ (∀ r, C.mulVec ((LinearSys.mk A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
+      ¬ (∀ r, C.mulVec ((LinearSys.canonical A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
         (LinearSys.heldInput Δt
           (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l))) (i * Δt)) r
           ≤ d r) := by -- --- PROOF ---

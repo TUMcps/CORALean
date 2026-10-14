@@ -8,6 +8,7 @@ public import CORALean.ContSet.ConZonotope.Float.Instances
 public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -55,7 +56,7 @@ def LinearSys.minBackReachStepFloat (sys : LinearSys 𝕋 n)
     (Zw : 𝕋 → Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (η ν : ℕ) (s : LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n))) :
     LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n)) :=
-  let Ā : LinearSys 𝕋 n := ⟨fun i j => neg (sys.A i j)⟩             -- time-inverted dynamics
+  let Ā : LinearSys 𝕋 n := { sys with A := fun i j => neg (sys.A i j) }  -- time-inverted dynamics
   let tk1 := addUp s.t Δt                                           -- 8. t_{k+1} ← t_k + Δt
   let Φk := Ā.expSquaringFloat s.t s.t η ν                          -- 8. [e^{-A t_k}]
   let Φk1 := Ā.expSquaringFloat tk1 tk1 η ν                         -- 8. [e^{-A t_{k+1}}]

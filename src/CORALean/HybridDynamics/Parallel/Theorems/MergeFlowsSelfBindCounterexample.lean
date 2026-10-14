@@ -1,6 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddMulVec
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 public import CORALean.HybridDynamics.Parallel.Definitions.SelfBindFree
 public import CORALean.ContSet.HPolytope.Real.Instances
 public import CORALean.ContSet.HPolytope.Real.Operations.Slab
@@ -39,7 +40,7 @@ def SBC.aux_one : Vec ℝ 1 := fun _ => 1
 def SBC.aux_comp : HybridAutomaton ℐ𝒱 ℋ𝒫 Unit ℝ 1 where
   loc _ :=
     { inv := HPolytope.slab (1 : Mat ℝ 1 1) ![0] ![1]
-      dynamics := ⟨!![1]⟩
+      dynamics := LinearSys.canonical !![1]
       U := ⟨![0], ![0]⟩
       trans := [] }
 

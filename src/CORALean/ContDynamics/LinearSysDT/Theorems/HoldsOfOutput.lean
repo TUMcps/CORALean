@@ -31,6 +31,7 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n r : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+    [OfScalarPoint 𝕋 S]
 variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 
 
@@ -38,7 +39,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 
 theorem LinearSysDT.holds_of_output (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) {o : ℕ}
     (ho : 0 < o) (R₀ U : S n) (spec : Specification ContSet) {x u : ℕ → Vec ℝ n}
-    (traj : sys.Trajectory R₀ U x u) (k : ℕ)
+    (traj : sys.CanonicalTrajectory R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct (out.outputSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U))) :
     spec.Holds {out.eval (x k) (u k)} :=
   spec.holds_of_outer

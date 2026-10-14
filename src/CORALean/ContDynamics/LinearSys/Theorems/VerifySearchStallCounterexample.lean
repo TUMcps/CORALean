@@ -8,6 +8,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import Mathlib.Analysis.Complex.Exponential
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -131,7 +132,7 @@ theorem aux_verifySearchLoop_stall (sys : LinearSys 𝕋 n) (X₀ U : S n) (η :
 /-- [1, Alg. 3 (termination)]: `R(1)` keeps a distance `c - (e - 1) > 0` from `L = {c}`, yet
 `verifySearch` answers `undecided` for every `fuel`, `η` and sound oracle. -/
 theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) :
-    let sys : LinearSys ℝ 1 := ⟨1⟩
+    let sys : LinearSys ℝ 1 := LinearSys.canonical 1
     let X₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint 0
     let U : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => fun _ => 1⟩
     let c : ℝ := (∑ i ∈ Finset.range (η + 1), 1 / ((i + 1).factorial : ℝ)) +

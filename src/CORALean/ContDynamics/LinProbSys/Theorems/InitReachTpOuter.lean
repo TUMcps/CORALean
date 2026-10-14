@@ -7,6 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -50,7 +51,8 @@ theorem LinProbSys.initReach_tp_outer (sys : LinProbSys n m) (Veig : Mat ℝ n n
     (uTrans : Vec ℝ m) {r : ℝ} (hr : 0 < r) {η : ℕ}
     (hε : ‖r • sys.A‖ / ((η : ℝ) + 2) < 1) (gamma : ℝ) (originContained : Bool)
     (hA : IsUnit sys.A.det) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ Rinit.Z.construct) {w : Vec ℝ n}
-    (hw : w ∈ (⟨sys.A⟩ : LinearSys ℝ n).inputReach (S := 𝒵) (Zonotope.mtimes sys.B U) r) :
+    (hw : w ∈ (LinearSys.canonical sys.A : LinearSys ℝ n).inputReach (S := 𝒵)
+        (Zonotope.mtimes sys.B U) r) :
     exp (r • sys.A) *ᵥ x₀ + MatExp.expIntegral sys.A r *ᵥ (sys.B *ᵥ uTrans) + w
       ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma
           originContained).1.Z.construct := by -- --- PROOF ---
@@ -62,8 +64,11 @@ theorem LinProbSys.initReach_tp_outer (sys : LinProbSys n m) (Veig : Mat ℝ n n
     rw [← Zonotope.mtimes_exact]
     exact Set.mem_image_of_mem _ hx₀
   -- the input, in the input solution, and the constant input's `Rtrans`
-  have hw' : w ∈ Zonotope.construct ((⟨A⟩ : LinearSys ℝ n).inputSolution (S := 𝒵) r η
-      (Zonotope.mtimes sys.B U)) := LinearSys.inputReach_subset_inputSolution (S := 𝒵) ⟨A⟩ hr η
+  have hw' : w ∈ Zonotope.construct
+      ((LinearSys.canonical A : LinearSys ℝ n).inputSolution (S := 𝒵) r η
+        (Zonotope.mtimes sys.B U)) :=
+    -- the canonical form at `A`, its input `B U` in state coordinates
+    LinearSys.inputReach_subset_inputSolution (S := 𝒵) (LinearSys.canonical A) hr η
     hε (Zonotope.convex_construct _) (Zonotope.isClosed_construct _)
     (Zonotope.isCompact_construct _).isBounded (Zonotope.convex_construct _)
     (Zonotope.isClosed_construct _) (Zonotope.isCompact_construct _).isBounded hw

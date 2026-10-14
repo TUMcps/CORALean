@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -50,7 +51,7 @@ theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η ρ : ℕ}
     (h2 : 2 ≤ η) (U : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) :
     ∀ (k : ℕ) {P : Zonotope (Vec 𝕋 n)}, sys.particularSolutionFloat Δt η ρ U k = some P →
-    (LinearSys.mk A : LinearSys ℝ n).propagateInputSolution (toReal Δt)
+    (LinearSys.canonical A : LinearSys ℝ n).propagateInputSolution (toReal Δt)
         (sys.inputSolutionFloat Δt η U).construct (k + 1) ⊆ P.construct
   | 0, P, h => by
     -- `{0} + e^{A·0} P^R(Δt)` is `P^R(Δt)` itself
@@ -81,9 +82,9 @@ theorem LinParamSys.inputReach_subset_particularSolutionFloat
     (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ} {P : Zonotope (Vec 𝕋 n)}
     (hP : sys.particularSolutionFloat Δt η ρ U k = some P) {t : ℝ} (ht0 : 0 ≤ t)
     (htk : t ≤ ((k + 1 : ℕ) : ℝ) * toReal Δt) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t
+    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t
       ⊆ P.construct := by -- --- PROOF ---
-  set L : LinearSys ℝ n := LinearSys.mk A
+  set L : LinearSys ℝ n := LinearSys.canonical A
   have hbdd := CompactSet.isBounded_construct U
   -- [1, Thm. 3.1]: one step of the input under `A`, inside `inputSolutionFloat`
   have hΔ : L.inputReach (S := 𝒵[𝕋]) U (toReal Δt)

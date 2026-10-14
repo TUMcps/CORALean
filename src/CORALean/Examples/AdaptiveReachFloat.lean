@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachAdaptiveFloatOuter
 import CORALean.Examples.RotationFloat
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 /-!
 # Adaptive reachability in floats, the steps it chose
@@ -33,7 +34,8 @@ namespace CORALean.AdaptiveReachFloat
 open CORALean CORALean.Float CORALean.RotationFloat
 
 /-- The damped rotation. -/
-def sysD : LinearSys (Dyadic 64) 2 := ⟨!![d (-2) 0, d 2 0; d (-2) 0, d (-2) 0]⟩
+def sysD : LinearSys (Dyadic 64) 2 := LinearSys.canonicalFloat
+    (!![d (-2) 0, d 2 0; d (-2) 0, d (-2) 0])
 
 /-- The input enters the second state alone. -/
 def BD : Mat (Dyadic 64) 2 1 := !![d 0 0; d 1 0]

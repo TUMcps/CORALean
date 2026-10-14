@@ -1,4 +1,5 @@
 import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 import CORALean.ContSet.Zonotope.Float.Operations.CartProd
 import CORALean.ContDynamics.LinearARX.Operations.InputMat
 import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRunFloat
@@ -160,6 +161,9 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsSetApprox
 import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
 import CORALean.ContSet.PolyZonotope.Float.Operations.InnerApprox
 import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
+import CORALean.ContDynamics.LinearSys.Operations.Canonical
+import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation
@@ -257,7 +261,7 @@ def arxB : Mat D 2 1 := arxD.inputMat 0
 `[[1, 1], [1, 1]]`, built with no rounding arithmetic, at `D` (#117). -/
 def parP : ParallelHybridAutomaton ℐ𝒱[D] ℐ𝒱[D] 2
     (fun _ => Unit) D (fun _ => 1) 0 where
-  comp _ := ⟨fun _ => ⟨zbox 1, ⟨fun _ _ => d 1 0⟩, zbox 1, []⟩⟩
+  comp _ := ⟨fun _ => ⟨zbox 1, LinearSys.canonicalFloat (fun _ _ => d 1 0), zbox 1, []⟩⟩
   binds i _ := .state i.rev 0
 
 def parA : Mat D 2 2 := (parP.mergeFlows (fun _ => ())).A
@@ -416,7 +420,7 @@ def inputRemainderRun : Interval (Mat D 2 2) := MatExp.intervalInputRemainder st
 The same `A` and `r`, sampled by `discretizeEnclosureFloat` into a `LinParamSysDT` over float
 interval matrices, and five steps of its `reach` under the input set `Z`. -/
 
-def ctSys : LinearSys D 2 := ⟨!![d (-1) 0, d (-4) 0; d 4 0, d (-1) 0]⟩
+def ctSys : LinearSys D 2 := LinearSys.canonical (!![d (-1) 0, d (-4) 0; d 4 0, d (-1) 0])
 def ctSysD : LinParamSysDT ℐ[D] 2 :=
   ctSys.discretizeEnclosureFloat stepR 4
 def ctReachRun : Zonotope (Vec D 2) := ctSysD.reach (S := 𝒵[D])
@@ -503,7 +507,8 @@ def checkFlowRun : List (Zonotope (Vec D 2)) := ctLoc.checkFlowFloat hpNormal hp
 /-- A location drifting along `e₁` at unit speed under a slow rotation, and the guard map of the
 box of half-width `2⁻⁴` about `(1, 0)` onto `x₁ = 1`, `tmax = 2⁻³`, two Taylor terms. -/
 def hpMapLoc : Location 𝒵[D] 𝒵[D] Unit D 2 :=
-  ⟨Z, ⟨!![d 0 0, d (-1) (-1); d 1 (-1), d 0 0]⟩, Zonotope.point ![d 1 0, d 0 0], []⟩
+  ⟨Z, LinearSys.canonicalFloat !![d 0 0, d (-1) (-1); d 1 (-1), d 0 0], Zonotope.point
+      ![d 1 0, d 0 0], []⟩
 def hpMapR0 : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
@@ -517,7 +522,7 @@ admissible order, one step of its flow, its input solution over `Z`, and five sa
 def lpA : Interval (Mat D 2 2) :=
   ⟨!![d (-33) (-5), d (-129) (-5); d 127 (-5), d (-33) (-5)],
     !![d (-31) (-5), d (-127) (-5); d 129 (-5), d (-31) (-5)]⟩
-def lpSys : LinParamSys ℐ[D] 2 := ⟨lpA⟩
+def lpSys : LinParamSys ℐ[D] 2 := LinParamSys.canonical lpA
 def lpOrderRun : Option ℕ := lpSys.reachOrderFloat stepR stepR 2
 def lpStepRun : Zonotope (Vec D 2) := lpSys.timeIntervalStepFloat stepR 4 Z
 def lpInputRun : Zonotope (Vec D 2) := lpSys.inputSolutionFloat stepR 4 Z
@@ -549,7 +554,7 @@ order `2`. Each is a float outer set, its budget, and their certified difference
 every budget generator in the outer set's first and `H` the least-squares right inverse
 `gᵀ/‖g‖²`, the margin shrunk by `15/16`. -/
 
-def ctInnerSys : LinearSys D 1 := ⟨!![d (-1) 0]⟩
+def ctInnerSys : LinearSys D 1 := LinearSys.canonical (!![d (-1) 0])
 def ctInnerX : Zonotope (Vec D 1) := ⟨1, ![d 3 (-1)], !![d 1 (-1)], zbox 1⟩
 def ctInnerU : Zonotope (Vec D 1) := ⟨1, ![d 0 0], !![d 1 (-6)], zbox 1⟩
 -- one step: the float step, its budget, and the step minus its budget
@@ -595,7 +600,7 @@ def ctSysMZ : LinParamSysDT 𝕄𝒵[D] 2 :=
   ctSys.discretizeMatZonotopeFloat stepR 4
 def ctMZReachRun : Zonotope (Vec D 2) := ctSysMZ.reach (S := 𝒵[D])
     ⟨Z, Z, 0, 5⟩ ⟨2, two_pos⟩
-def lpMZSys : LinParamSys 𝕄𝒵[D] 2 := ⟨mzA⟩
+def lpMZSys : LinParamSys 𝕄𝒵[D] 2 := LinParamSys.canonical mzA
 def lpMZInputRun : Zonotope (Vec D 2) := lpMZSys.inputSolutionZonoFloat stepR 4 Z
 
 
@@ -730,7 +735,7 @@ have their own examples in `ReachFloat.lean`, compiled but never run; the two
 below are run, at a system and a network small enough that a handful of steps
 costs nothing. -/
 
-def sys : LinearSysDT D 2 := ⟨!![d 15 (-4), d (-1) (-3); d 1 (-3), d 15 (-4)]⟩
+def sys : LinearSysDT D 2 := LinearSysDT.canonical (!![d 15 (-4), d (-1) (-3); d 1 (-3), d 15 (-4)])
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -921,7 +926,7 @@ theorem vdp_one_sub_sq_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y) (h2 : y ≤
 
 /-- `vdpModel` encloses Van der Pol's field and its slopes over every box. -/
 theorem vdpModel_encloses : vdpModel.Encloses
-    ⟨fun x u => ![x 1, (1 - x 0 * x 0) * x 1 - x 0 + u 0]⟩ := by -- --- PROOF ---
+    ⟨fun x u => ![x 1, (1 - x 0 * x 0) * x 1 - x 0 + u 0], 2, fun x _ => x⟩ := by -- --- PROOF ---
   refine ⟨fun X U x hx u hu => ?_, fun X U x hx x' hx' u hu u' hu' => ?_⟩
   -- the field: `x₂`, then `(1 - x₁²) x₂ - x₁ + u` in three interval steps
   · have hx0 : toReal (X.inf 0) ≤ (x 0 : ℝ) ∧ (x 0 : ℝ) ≤ toReal (X.sup 0) := hx 0
@@ -1082,7 +1087,7 @@ theorem vdp_negTwo_mem {a b : D} {y : ℝ} (h1 : toReal a ≤ y) (h2 : y ≤ toR
 /-- `vdpHessModel` encloses Van der Pol to second order: the Jacobian at the point,
 and the Hessian with `x₂` at the state and `x₁` at the expansion point. -/
 theorem vdpHessModel_encloses : vdpHessModel.Encloses
-    ⟨fun x u => ![x 1, (1 - x 0 * x 0) * x 1 - x 0 + u 0]⟩ where
+    ⟨fun x u => ![x 1, (1 - x 0 * x 0) * x 1 - x 0 + u 0], 2, fun x _ => x⟩ where
   toEncloses := vdpModel_encloses
   taylor_mem X U xs us hxs _ x hx u _ := by
     have hp : toRealVec xs ∈ (Interval.point xs).construct := Interval.mem_point (α := Vec D 2) xs

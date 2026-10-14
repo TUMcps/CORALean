@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
 public import CORALean.ContDynamics.LinearSys.Operations.OneStep
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -57,7 +58,7 @@ noncomputable def NonlinDASys.linReachCora (f₀ : Vec ℝ n) (g₀ : Vec ℝ p)
   let B_lin : Mat ℝ n m := B - CF_inv * E                                 -- B_lin
   let U_lin : Zonotope (Vec ℝ n) :=                                       -- linParams.U
     (U.plus (Zonotope.ofPoint (-us))).mtimes B_lin
-  let linsys : LinearSys ℝ n := ⟨A_lin⟩                                   -- linearSys(A_lin, 1)
+  let linsys : LinearSys ℝ n := LinearSys.canonical A_lin  -- linearSys(A_lin, 1)
   let Rdelta : Zonotope (Vec ℝ n) := Rinit.plus (Zonotope.ofPoint (-xs))  -- Rinit - p.x
   let R := linsys.oneStep (S := 𝒵) Rdelta U_lin f0 Δt η                  -- [Rtp,Rti] = oneStep
   let Verror : Zonotope (Vec ℝ n) :=                                    -- priv_linError_mixed_noInt

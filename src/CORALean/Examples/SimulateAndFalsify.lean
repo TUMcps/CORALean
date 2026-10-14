@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 /-!
 # Reachability and simulation answer opposite halves of the same question
@@ -32,7 +33,7 @@ open ContSet
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The identity: the state never moves on its own. -/
-def SAF.sys : LinearSysDT ℝ 2 := ⟨1⟩
+def SAF.sys : LinearSysDT ℝ 2 := LinearSysDT.canonical 1
 
 /-- `2` on the first coordinate, already outside `spec` below. -/
 def SAF.x0 : Vec ℝ 2 := ![2, 0]

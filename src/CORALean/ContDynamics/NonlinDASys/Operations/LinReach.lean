@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
 public import CORALean.ContDynamics.LinearSys.Operations.OneStep
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -60,7 +61,7 @@ noncomputable def NonlinDASys.linReach (f₀ : Vec ℝ n) (g₀ : Vec ℝ p) (A 
   let f0 : Vec ℝ n := f₀ - CF_inv *ᵥ g₀                                  -- linParams.uTrans
   let A_lin : Mat ℝ n n := A - CF_inv * D                                 -- A_lin
   let B_lin : Mat ℝ n m := B - CF_inv * E                                 -- B_lin
-  let linsys : LinearSys ℝ n := ⟨A_lin⟩                                   -- linearSys(A_lin, 1)
+  let linsys : LinearSys ℝ n := LinearSys.canonical A_lin  -- linearSys(A_lin, 1)
   let U_lin : Zonotope (Vec ℝ n) :=                                       -- B_lin (U - p.u)
     (U.plus (Zonotope.ofPoint (-us))).mtimes B_lin
   let Rdelta : Zonotope (Vec ℝ n) := Rinit.plus (Zonotope.ofPoint (-xs))  -- Rinit - p.x

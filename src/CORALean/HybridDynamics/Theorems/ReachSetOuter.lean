@@ -7,7 +7,7 @@ public import CORALean.HybridDynamics.Definitions.ReachSet
 /-!
 # `reachSet` contains every run
 
-The cheap half, as `LinearSys.Trajectory.reachSet_outer` is: a run is in the
+The cheap half, as `LinearSys.CanonicalTrajectory.reachSet_outer` is: a run is in the
 set of what runs reach by construction, so the proof is the pair itself.
 -/
 

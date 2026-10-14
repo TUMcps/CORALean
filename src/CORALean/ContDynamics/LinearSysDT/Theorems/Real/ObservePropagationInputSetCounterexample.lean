@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 @[expose] public section
 
@@ -38,7 +39,7 @@ open Matrix CORALean.Real
 next set, at every gain and order. -/
 theorem LinearSysDT.observePropagation_input_set_counterexample
     (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) :
-    let sys : LinearSysDT ℝ 1 := ⟨1⟩
+    let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 1
     let U : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩  -- `params.U`
     let ũ : Vec ℝ 1 := fun _ => 1  -- the input drawn from `U`
     let x : ℕ → Vec ℝ 1 := fun k _ => k

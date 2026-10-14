@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.LinearSys
 import CORALean.Examples.Bench.Rollout
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 /-!
 # The spiral system at continuous time, for `headline-a`/`headline-b`
@@ -39,7 +40,7 @@ def buildContSystem (cfg : HeadlineConfig) (inst : String → ExactDyadic → Ex
   let z0 ← inst "0" ExactDyadic.zero
   let X0 ← buildX0 cfg inst z0
   let A : Mat 𝕋 2 2 := Matrix.of ![![a, b], ![nb, a]]
-  pure (⟨A⟩, X0)
+  pure (LinearSys.canonicalFloat A, X0)
 
 end CORALean.Bench
 
