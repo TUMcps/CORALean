@@ -8,7 +8,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
 # The range of a Taylor model
 
 The polynomial's range plus the remainder: one coordinate of CORA's `interval`, which
-`Conversion/Real/Taylm_to_Interval` assembles.
+`Conversion/Real/Operations/Taylm_to_Interval` assembles.
 
 The bound `B(T) = B(P) + [I]` of [1, Eq. 5], `B(P)` being interval evaluation over the
 normalized box.

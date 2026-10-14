@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Layers.Definitions.ActivationPoly
 public import CORALean.NN.Layers.Theorems.CoeffListCoord
-public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalPolyZonotopeNormLe
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
@@ -10,6 +10,28 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleIntervalContains
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeIntervalInfLeSup
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

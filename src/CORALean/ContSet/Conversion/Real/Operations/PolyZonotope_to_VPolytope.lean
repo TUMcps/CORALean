@@ -1,17 +1,13 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 public import CORALean.Global.Corners
 
 @[expose] public section
 
 /-!
-# A polynomial zonotope as its corners — the construction
-
-`PolyZonotope.vPolytope`, `PolyZonotope.corner`, `PolyZonotope.vPolytopeCorners`,
-`PolyZonotope.high`, `PolyZonotope.binarize` and `PolyZonotope.vPolytopeSplit` are the
-constructions; `PolyZonotope_to_VPolytope` states and proves what they guarantee.
+# A polynomial zonotope as its corners
 
 ## References
 

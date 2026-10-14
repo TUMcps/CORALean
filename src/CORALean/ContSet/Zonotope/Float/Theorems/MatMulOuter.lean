@@ -6,6 +6,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatMul
 public import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
 public import CORALean.ContSet.Zonotope.Real.Operations.MatMul
 public import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalContains
 
 @[expose] public section
 

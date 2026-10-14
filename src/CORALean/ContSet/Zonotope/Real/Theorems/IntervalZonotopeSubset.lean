@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 
 @[expose] public section

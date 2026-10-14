@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipSucc
 public import Mathlib.Tactic.Module
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

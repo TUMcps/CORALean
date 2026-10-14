@@ -1,16 +1,15 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 
 /-!
-# A bundle's constrained zonotope, at one component, over a floating-point scalar — the construction
-
-`ZonoBundle.interFrom`, `ZonoBundle.conZonotope` and `ZonoBundle.conZonotopeAll` are the
-constructions; `ZonoBundle_to_ConZonotope` states and proves what they guarantee.
+# A bundle's constrained zonotope, at one component, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

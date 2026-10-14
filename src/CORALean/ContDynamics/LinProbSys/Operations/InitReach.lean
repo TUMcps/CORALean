@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinProbSys.Definitions.PostState
 public import CORALean.ContDynamics.LinProbSys.Operations.InputCov
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Interval.Real.Operations.MatMul
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
@@ -16,6 +16,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

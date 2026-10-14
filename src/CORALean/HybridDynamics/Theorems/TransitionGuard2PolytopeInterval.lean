@@ -1,9 +1,10 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeExact
-public import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalHPolytopeExact
 public import CORALean.ContSet.HPolytope.Real.Instances
 public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
 
 @[expose] public section
 

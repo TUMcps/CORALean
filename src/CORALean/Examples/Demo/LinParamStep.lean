@@ -1,10 +1,11 @@
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
 import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.Examples.Demo.Decimal
 import CORALean.Examples.Demo.Scalar
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # One `LinParamSys` step at an interval matrix, run

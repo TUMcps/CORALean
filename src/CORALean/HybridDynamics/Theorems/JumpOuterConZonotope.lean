@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
-public import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.HybridDynamics.Theorems.JumpOuter
 
 @[expose] public section

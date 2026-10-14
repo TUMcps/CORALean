@@ -7,6 +7,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalContains
 
 @[expose] public section
 

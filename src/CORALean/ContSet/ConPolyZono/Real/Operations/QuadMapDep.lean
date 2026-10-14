@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG

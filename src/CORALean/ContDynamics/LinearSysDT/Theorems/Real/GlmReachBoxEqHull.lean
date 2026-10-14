@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.GlmReachEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalEqHull
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

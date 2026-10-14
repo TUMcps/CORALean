@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Interval.Real.Operations.Radius2
 
 @[expose] public section

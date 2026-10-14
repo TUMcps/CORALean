@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 
 @[expose] public section
 

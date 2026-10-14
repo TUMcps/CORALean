@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitMany
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

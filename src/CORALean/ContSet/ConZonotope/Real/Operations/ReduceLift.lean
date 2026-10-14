@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.ReduceLiftBy
 public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section
 

@@ -5,6 +5,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyper
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.NormNum
 public import Mathlib.Tactic.IntervalCases
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.SpectraShadow.Float.Operations.IsBounded
 public import CORALean.ContSet.Interval.Float.Theorems.IsCompact
+public import CORALean.ContSet.Conversion.Float.Theorems.SpectraShadowIntervalContains
 
 @[expose] public section
 

@@ -1,9 +1,11 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
-public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.NN.Layers.Layer
 public import Mathlib.Analysis.Complex.Exponential
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

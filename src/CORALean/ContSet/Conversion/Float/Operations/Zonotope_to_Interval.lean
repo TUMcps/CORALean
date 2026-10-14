@@ -4,14 +4,12 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import Mathlib.Data.Matrix.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 
 /-!
-# A zonotope as a box, over a floating-point scalar — the construction
-
-`Zonotope.interval` and `Zonotope.matInterval` are the constructions; `Zonotope_to_Interval` states
-and proves what they guarantee.
+# A zonotope as a box, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

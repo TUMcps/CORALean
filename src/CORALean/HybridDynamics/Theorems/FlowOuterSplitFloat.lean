@@ -8,6 +8,10 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReac
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

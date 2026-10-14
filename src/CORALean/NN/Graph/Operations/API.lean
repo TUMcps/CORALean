@@ -7,7 +7,6 @@ public import CORALean.NN.Graph.Operations.BallEnum
 public import CORALean.NN.Graph.Operations.Degree
 public import CORALean.NN.Graph.Operations.DegreeAt
 public import CORALean.NN.Graph.Operations.DegreeCoeff
-public import CORALean.NN.Graph.Operations.DegreeInf
 public import CORALean.NN.Graph.Operations.DegreeSup
 public import CORALean.NN.Graph.Operations.EdgeDegree
 public import CORALean.NN.Graph.Operations.EdgeMat
@@ -77,7 +76,7 @@ admissible edge weighting; `uncertainAdj`/`uncertainAdjPad` are its exact and se
 polynomial zonotopes. `matMulBilin`/`gcnShared`/`gcnUncertain`/`evalSteps`/`gcnSteps` are the
 uncertain convolution and its chain over steps, [1, Prop. 5].
 
-`degreeAt`/`degreeInf`/`degreeSup`/`edgeDegree`/`degreeCoeff` bracket an uncertain degree;
+`degreeAt`/`degreeSup`/`edgeDegree`/`degreeCoeff` bracket an uncertain degree;
 `sqrtSlope`/`sqrtOffset`/`sqrtError`/`sqrtConst`/`sqrtEdgeCoeff` are the inverse-square-root
 relaxation read over that bracket, `sqrtBroadcast`/`sqrtRow`/`sqrtCol` broadcasting it into the
 two normalising matrices `messagePassingEnclosure`, [1, Prop. 4], pairs entrywise with the padded

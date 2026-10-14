@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

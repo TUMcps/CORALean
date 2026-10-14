@@ -6,10 +6,7 @@ public import CORALean.ContSet.Interval.Float.Interval
 @[expose] public section
 
 /-!
-# A spectrahedral shadow's interval hull, over a floating-point scalar — the construction
-
-`SpectraShadow.interval` is the construction; `SpectraShadow_to_Interval` states and proves what it
-guarantees.
+# A spectrahedral shadow's interval hull, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

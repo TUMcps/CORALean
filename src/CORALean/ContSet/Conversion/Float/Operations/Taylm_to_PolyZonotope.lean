@@ -10,9 +10,6 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 /-!
 # An array of Taylor models as a polynomial zonotope, over a floating-point scalar
-
-`Taylm.allTerms` and `Taylm.polyZonotope` are the constructions; `Taylm_to_PolyZonotope` states and
-proves what they guarantee.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,11 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
 public import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
 public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
+public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotopeInner
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclo
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputIntervalTaylorTail
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Zonotope.Real.Instances
 
 @[expose] public section

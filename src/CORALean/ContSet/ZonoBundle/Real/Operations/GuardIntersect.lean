@@ -1,12 +1,13 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Real.Operations.Stack
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

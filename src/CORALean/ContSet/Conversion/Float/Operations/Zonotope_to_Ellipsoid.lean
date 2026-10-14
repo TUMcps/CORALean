@@ -1,15 +1,12 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Ellipsoid
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 @[expose] public section
 
 /-!
-# A zonotope as an ellipsoid, over a floating-point scalar — the construction
-
-`Zonotope.ellipsoidG`, `Zonotope.ellipsoidGap`, `Zonotope.ellipsoidSlack` and `Zonotope.ellipsoid`
-are the constructions; `Zonotope_to_Ellipsoid` states and proves what they guarantee.
+# A zonotope as an ellipsoid, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

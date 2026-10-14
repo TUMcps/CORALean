@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.Point
 
 @[expose] public section

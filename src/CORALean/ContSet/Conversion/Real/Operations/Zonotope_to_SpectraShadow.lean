@@ -7,10 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 @[expose] public section
 
 /-!
-# A zonotope as a spectrahedral shadow — the construction
-
-`Zonotope.spectraShadow` is the construction; `Zonotope_to_SpectraShadow` states and proves what it
-guarantees.
+# A zonotope as a spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

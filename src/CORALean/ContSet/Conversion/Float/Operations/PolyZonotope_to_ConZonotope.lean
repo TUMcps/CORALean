@@ -1,16 +1,17 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 
 /-!
-# A polynomial zonotope as a zonotope, and a constrained one as a constrained — the construction
-
-`PolyZonotope.conZonotope` and `ConPolyZono.conZonotope` are the constructions;
-`PolyZonotope_to_ConZonotope` states and proves what they guarantee.
+# A polynomial zonotope as a zonotope, and a constrained one as a constrained
 -/
 
 -- Authors:       Claude Opus 5.5

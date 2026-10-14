@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
@@ -8,10 +8,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 @[expose] public section
 
 /-!
-# An ellipsoid as a constrained polynomial zonotope, over a floating-point scalar — the construction
-
-`Ellipsoid.conPolyZono` is the construction; `Ellipsoid_to_ConPolyZono` states and proves what it
-guarantees.
+# An ellipsoid as a constrained polynomial zonotope, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

@@ -11,10 +11,7 @@ public import Mathlib.Logic.Function.CompTypeclasses
 @[expose] public section
 
 /-!
-# A polynomial zonotope as a zonotope — the construction
-
-`PolyZonotope.zonotope`, `PolyZonotope.evenWeight` and `PolyZonotope.zonotopeEven` are the
-constructions; `PolyZonotope_to_Zonotope` states and proves what they guarantee.
+# A polynomial zonotope as a zonotope
 -/
 
 -- Authors:       Claude Opus 5

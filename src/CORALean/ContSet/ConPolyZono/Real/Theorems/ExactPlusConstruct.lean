@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ExactPlus
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExactPlusPoint
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 
 @[expose] public section
 

@@ -1,4 +1,4 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.ContSet.HPolytope.Real.Instances
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff

@@ -4,9 +4,10 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinInputFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
-public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

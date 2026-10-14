@@ -1,15 +1,13 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.SpectraShadow_to_Interval
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 
 /-!
-# A spectrahedral shadow as a zonotope — the construction
-
-`SpectraShadow.base` and `SpectraShadow.zonotope` are the constructions; `SpectraShadow_to_Zonotope`
-states and proves what they guarantee.
+# A spectrahedral shadow as a zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

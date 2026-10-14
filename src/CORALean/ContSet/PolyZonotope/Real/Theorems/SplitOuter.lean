@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Split
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePolyZonotopeExact
 
 @[expose] public section
 

@@ -6,6 +6,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesCentralSymm
 public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentralSymmMemConstruct
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

@@ -7,10 +7,7 @@ public import CORALean.Global.EuclideanNorm
 @[expose] public section
 
 /-!
-# An ellipsoid as a spectrahedral shadow — the construction
-
-`Ellipsoid.spectraShadow` is the construction; `Ellipsoid_to_SpectraShadow` states and proves what
-it guarantees.
+# An ellipsoid as a spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

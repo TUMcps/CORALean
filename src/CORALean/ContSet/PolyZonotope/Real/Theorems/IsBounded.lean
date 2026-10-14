@@ -1,7 +1,8 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeConPolyZonoExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
 
 @[expose] public section
 

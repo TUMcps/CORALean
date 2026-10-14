@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.ExploreBNVisits
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

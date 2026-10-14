@@ -6,7 +6,8 @@ public import CORALean.ContDynamics.LinearSys.Operations.MinimumFold
 public import CORALean.ContSet.ConZonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.HPolytope.Float.Instances
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 

@@ -9,6 +9,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylo
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
 public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 public import CORALean.ContSet.Zonotope.Float.Theorems.MatPlusIntervalOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalContains
 
 @[expose] public section
 

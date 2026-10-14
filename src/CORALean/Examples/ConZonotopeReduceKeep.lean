@@ -1,7 +1,9 @@
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 import CORALean.Global.Entrywise
+import CORALean.ContSet.Conversion.Real.Operations.Basic
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 /-!
 # A reduction that keeps the constraint

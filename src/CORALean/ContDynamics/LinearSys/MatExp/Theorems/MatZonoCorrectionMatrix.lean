@@ -7,6 +7,8 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 public import CORALean.ContSet.Interval.Real.Theorems.SmulOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.MatPowOuter
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

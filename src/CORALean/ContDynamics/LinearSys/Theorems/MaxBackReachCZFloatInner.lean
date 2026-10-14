@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
 public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 
 @[expose] public section
 

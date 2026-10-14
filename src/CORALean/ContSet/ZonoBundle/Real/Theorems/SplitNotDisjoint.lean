@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitInter
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

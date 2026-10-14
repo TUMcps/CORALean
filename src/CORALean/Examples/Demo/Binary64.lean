@@ -7,6 +7,8 @@ import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
 import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 import CORALean.Global.Float.NoNaN
 import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # The same run at native binary64

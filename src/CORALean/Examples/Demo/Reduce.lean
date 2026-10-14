@@ -1,4 +1,4 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.Examples.Demo.Decimal
 import CORALean.Examples.Demo.Scalar
 import CORALean.NN.Layers.Operations.Activation
@@ -10,6 +10,11 @@ import CORALean.NN.Layers.Theorems.ReluRelaxationSound
 import CORALean.NN.Operations.Enclose
 import CORALean.NN.Operations.ReduceOnTheFly
 import CORALean.NN.Operations.ReducibleNetworkToNetwork
+import CORALean.ContSet.Conversion.Float.Operations.Basic
+import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Basic
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # [1, Alg. 2] at `Dyadic`, run

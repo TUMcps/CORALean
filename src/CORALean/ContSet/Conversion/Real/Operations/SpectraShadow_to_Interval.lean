@@ -5,14 +5,12 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaEmptySetIf
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 
 /-!
-# A spectrahedral shadow's interval hull — the construction
-
-`SpectraShadow.interval` is the construction; `SpectraShadow_to_Interval` states and proves what it
-guarantees.
+# A spectrahedral shadow's interval hull
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -1,17 +1,14 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Interval
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 @[expose] public section
 
 /-!
-# An ellipsoid as a zonotope — the construction
-
-`Ellipsoid.zonotope`, `Ellipsoid.zonotopeInnerNorm` and `Ellipsoid.zonotopeNorm` are the
-constructions; `Ellipsoid_to_Zonotope` states and proves what they guarantee.
+# An ellipsoid as a zonotope
 
 ## References
 

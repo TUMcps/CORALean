@@ -1,4 +1,4 @@
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.ContSet.HPolytope.Real.Instances
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
@@ -7,6 +7,9 @@ import CORALean.HybridDynamics.Theorems.FlowOuter
 import CORALean.HybridDynamics.Theorems.HoldsOfRun
 import CORALean.HybridDynamics.Theorems.InvariantOfEnclosureCut
 import CORALean.HybridDynamics.Theorems.JumpOuter
+import CORALean.ContSet.Conversion.Real.Operations.Basic
+import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 
 /-!
 # A bouncing ball, as a hybrid automaton

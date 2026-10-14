@@ -4,6 +4,10 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Polygon
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PolygonContains
 public import CORALean.ContSet.Polygon.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeContains
 
 @[expose] public section
 

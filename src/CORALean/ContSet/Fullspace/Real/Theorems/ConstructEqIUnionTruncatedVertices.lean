@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.Fullspace.Real.Operations.TruncatedVertices
-public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

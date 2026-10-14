@@ -1,6 +1,8 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachAdaptiveFloatOuter
 import CORALean.Examples.RotationFloat
 import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # Adaptive reachability in floats, the steps it chose

@@ -3,6 +3,8 @@ module
 public import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

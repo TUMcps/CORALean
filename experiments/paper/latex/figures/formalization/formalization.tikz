@@ -171,19 +171,19 @@
 \addlegendimage{fill=CORAcolorPurple}
 \addlegendentry{proof helpers}
 \begin{scope}\clip[rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:8341,0);
-\fill[CORAcolorBlue] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1719,0);
-\fill[CORAcolorBlue!66.67!CORAcolorPurple] ([yshift=-5.5pt]axis cs:1719,0) rectangle ([yshift=5.5pt]axis cs:4746,0);
-\fill[CORAcolorBlue!33.33!CORAcolorPurple] ([yshift=-5.5pt]axis cs:4746,0) rectangle ([yshift=5.5pt]axis cs:6653,0);
-\fill[CORAcolorPurple] ([yshift=-5.5pt]axis cs:6653,0) rectangle ([yshift=5.5pt]axis cs:8341,0);
+\fill[CORAcolorBlue] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1707,0);
+\fill[CORAcolorBlue!66.67!CORAcolorPurple] ([yshift=-5.5pt]axis cs:1707,0) rectangle ([yshift=5.5pt]axis cs:4750,0);
+\fill[CORAcolorBlue!33.33!CORAcolorPurple] ([yshift=-5.5pt]axis cs:4750,0) rectangle ([yshift=5.5pt]axis cs:6657,0);
+\fill[CORAcolorPurple] ([yshift=-5.5pt]axis cs:6657,0) rectangle ([yshift=5.5pt]axis cs:8341,0);
 \end{scope}
 \draw[black, line width=0.2pt] [rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:8341,0);
 \end{axis}
 \begin{axis}[at={(theorems.south west)}, anchor=south west, height=0.55cm, width=5.00cm, xmin=0, xmax=8341, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,0)};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:859.5,0) {1719};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3232.5,0) {3027};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:5699.5,0) {1907};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:7497,0) {1688};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:853.5,0) {1707};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3228.5,0) {3043};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:5703.5,0) {1907};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:7499,0) {1684};
 \end{axis}
 
 \node[anchor=north, inner sep=0pt] at ([xshift=-1.275cm, yshift=-0.6cm]methods.south) {\ref*{coveragelegend}};

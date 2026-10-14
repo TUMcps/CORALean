@@ -627,6 +627,8 @@ def fix_decl_links(say):
                 home = sibling  # a conversion's construction, in `Operations/` beside its pair file
             elif len(homes) == 1:
                 home = next(iter(homes))
+            elif len([h for h in homes if target.parent in h.parents]) == 1:
+                home = next(h for h in homes if target.parent in h.parents)  # the same layer's
             else:
                 home = near[0] if len(near) == 1 else None
             if home is None:
@@ -994,7 +996,8 @@ NON_CLASS = ("global", "examples", "other")
 def bucket(path):
     """The CORA class (or `global`, `neuralNetwork`) a linked Lean file
     belongs to, from its path: `ContSet/Zonotope/...` is `zonotope`, a conversion
-    `ContSet/Conversion/Real/Zonotope_to_Interval.lean` is the source's method, `ContSet/`'s
+    `ContSet/Conversion/Real/Operations/Zonotope_to_Interval.lean`, or the theorem
+    `ContSet/Conversion/Real/Theorems/ZonotopeIntervalContains.lean`, is the source's method, `ContSet/`'s
     own directories and unions and intersections are `contSet`, `HybridDynamics/Parallel`
     is `parallelHybridAutomaton` and the rest of `HybridDynamics/` `hybridAutomaton`."""
     try:
@@ -1004,7 +1007,13 @@ def bucket(path):
     top = parts[0]
     if top == "ContSet" and len(parts) > 1:
         if parts[1] == "Conversion":
-            return SET_DIR.get(Path(parts[-1]).stem.split("_to_")[0], "contSet")
+            stem = Path(parts[-1]).stem
+            if "_to_" in stem:
+                return SET_DIR.get(stem.split("_to_")[0], "contSet")
+            for key in sorted(SET_DIR, key=len, reverse=True):  # a theorem is named for its source
+                if stem.startswith(key) and (len(stem) == len(key) or stem[len(key)].isupper()):
+                    return SET_DIR[key]
+            return "contSet"
         return SET_DIR.get(parts[1], "contSet")
     if top == "ContDynamics" and len(parts) > 1:
         return SYS_DIR.get(parts[1], "contDynamics")

@@ -3,6 +3,12 @@ module
 public import CORALean.NN.Layers.Operations.Softplus
 public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
 public import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

@@ -8,6 +8,9 @@ public import CORALean.ContSet.VPolytope.Float.Instances
 public import CORALean.ContSet.VPolytope.Float.Operations.LinComb
 public import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
 public import CORALean.ContSet.VPolytope.Float.Operations.Project
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

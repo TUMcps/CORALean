@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.CodeEval
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
-public import CORALean.ContSet.Conversion.Real.Interval_to_Taylm
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section
 

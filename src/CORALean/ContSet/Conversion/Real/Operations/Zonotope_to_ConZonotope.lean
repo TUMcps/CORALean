@@ -6,10 +6,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
 @[expose] public section
 
 /-!
-# A zonotope is a constrained one with nothing to satisfy — the construction
-
-`Zonotope.conZonotope` is the construction; `Zonotope_to_ConZonotope` states and proves what it
-guarantees.
+# A zonotope is a constrained one with nothing to satisfy
 -/
 
 -- Authors:       Claude Opus 5

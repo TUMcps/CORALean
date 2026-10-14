@@ -4,6 +4,19 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
 public import CORALean.NN.Layers.Operations.Linear
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePolyZonotopeExact
 
 @[expose] public section
 

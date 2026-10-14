@@ -4,6 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsPointSet
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitGenCover
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 
 @[expose] public section
 

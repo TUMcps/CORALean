@@ -1,8 +1,9 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

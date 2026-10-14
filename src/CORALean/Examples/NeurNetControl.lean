@@ -1,6 +1,5 @@
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
-import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation

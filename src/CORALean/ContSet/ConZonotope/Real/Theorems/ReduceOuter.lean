@@ -2,8 +2,9 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
-public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section
 

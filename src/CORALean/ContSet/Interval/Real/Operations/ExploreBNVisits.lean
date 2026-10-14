@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 public import Mathlib.Order.Nat
 public import Mathlib.Data.Nat.Find
 

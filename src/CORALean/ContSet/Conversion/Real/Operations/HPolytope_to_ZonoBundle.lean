@@ -1,12 +1,11 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
@@ -19,10 +18,7 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 @[expose] public section
 
 /-!
-# A halfspace description as a bundle of one — the construction
-
-`HPolytope.zonoBundle` and `HPolytope.zonoBundleRows` are the constructions;
-`HPolytope_to_ZonoBundle` states and proves what they guarantee.
+# A halfspace description as a bundle of one
 -/
 
 -- Authors:       Claude Opus 5

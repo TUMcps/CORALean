@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
 public import Mathlib.Tactic.Module
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.Zoo.Float.Zoo
-public import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

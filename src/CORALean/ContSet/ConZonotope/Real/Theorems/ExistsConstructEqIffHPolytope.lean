@@ -1,13 +1,16 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsBounded
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
 public import CORALean.ContSet.HPolytope.Real.Operations.Comap
 public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Real.Operations.MemUnitBoxIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 public import Mathlib.Analysis.InnerProductSpace.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 
 @[expose] public section
 

@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesBox
 public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

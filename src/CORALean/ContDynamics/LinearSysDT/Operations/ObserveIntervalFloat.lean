@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStateFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

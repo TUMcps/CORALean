@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormEquivNorm
 public import Mathlib.Tactic.Module
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

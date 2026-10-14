@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOuterScalingCora
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

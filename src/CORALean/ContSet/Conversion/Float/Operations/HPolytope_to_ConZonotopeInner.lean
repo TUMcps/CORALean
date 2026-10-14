@@ -1,15 +1,16 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotope
 public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 
 /-!
 # A halfspace description as a constrained zonotope from the inside, over a floating-point scalar
-
-`HPolytope.onCoefficientsInner`, `HPolytope.conZonotopeInnerOf` and `HPolytope.conZonotopeInner` are
-the constructions; `HPolytope_to_ConZonotopeInner` states and proves what they guarantee.
 -/
 
 -- Authors:       Claude Opus 5.5

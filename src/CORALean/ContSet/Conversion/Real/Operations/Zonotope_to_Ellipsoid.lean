@@ -10,11 +10,7 @@ public import Mathlib.LinearAlgebra.Matrix.DotProduct
 @[expose] public section
 
 /-!
-# A zonotope as an ellipsoid — the construction
-
-`Zonotope.ellipsoid`, `Zonotope.ellipsoidNorm`, `Zonotope.ellipsoidInnerNorm` and
-`Zonotope.ellipsoidBox` are the constructions; `Zonotope_to_Ellipsoid` states and proves what they
-guarantee.
+# A zonotope as an ellipsoid
 
 ## References
 

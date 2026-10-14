@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.ZonotopeProb
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

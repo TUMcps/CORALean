@@ -1,10 +1,11 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import Mathlib.Data.Matrix.Mul
 public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

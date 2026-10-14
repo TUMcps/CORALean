@@ -36,6 +36,7 @@ public import CORALean.Specification.SyntaxTree.Operations.FunHanTanh
 public import CORALean.Specification.SyntaxTree.Operations.FunHanTimes
 public import CORALean.Specification.SyntaxTree.Operations.Interval
 public import CORALean.Specification.SyntaxTree.SyntaxTree
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

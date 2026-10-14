@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Conversion.Real.ConZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
@@ -10,10 +10,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 @[expose] public section
 
 /-!
-# A constrained zonotope as a constrained polynomial zonotope, over a — the construction
-
-`ConZonotope.conA`, `ConZonotope.conB` and `ConZonotope.conPolyZono` are the constructions;
-`ConZonotope_to_ConPolyZono` states and proves what they guarantee.
+# A constrained zonotope as a constrained polynomial zonotope, over a
 -/
 
 -- Authors:       Claude Opus 5

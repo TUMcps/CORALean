@@ -2,6 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Operations.CheckFlowFloat
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneFloatOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 
 @[expose] public section
 

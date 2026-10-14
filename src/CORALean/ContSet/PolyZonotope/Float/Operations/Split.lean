@@ -1,8 +1,9 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitParallelotope
 public import CORALean.ContSet.Zonotope.Float.Operations.Split
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
 
 @[expose] public section
 

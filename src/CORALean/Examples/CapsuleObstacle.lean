@@ -1,5 +1,5 @@
 import CORALean.ContSet.Capsule.Real.Operations.SupportBound
-import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+import CORALean.ContSet.Conversion.Real.Operations.Basic
 import CORALean.Specification.Theorems.Separation
 
 /-!

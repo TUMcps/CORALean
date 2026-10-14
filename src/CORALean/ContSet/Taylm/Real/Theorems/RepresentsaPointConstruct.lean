@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaPointConstruct
+public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.TaylmPolyZonotopeExact
 
 @[expose] public section
 

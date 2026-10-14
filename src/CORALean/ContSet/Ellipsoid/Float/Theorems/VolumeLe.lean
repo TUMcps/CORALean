@@ -2,6 +2,10 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Volume
 public import CORALean.ContSet.Interval.Float.Theorems.VolumeOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.EllipsoidIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

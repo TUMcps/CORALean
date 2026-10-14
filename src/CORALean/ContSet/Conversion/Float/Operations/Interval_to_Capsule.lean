@@ -4,16 +4,13 @@ public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Real.Instances
 public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
 public import CORALean.ContSet.Interval.Float.Interval
-public import CORALean.ContSet.Conversion.Real.Interval_to_Capsule
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule
 public import CORALean.Global.Float.Sqrt
 
 @[expose] public section
 
 /-!
-# A box as a capsule, over a floating-point scalar — the construction
-
-`Interval.capsuleAlong`, `Interval.widestAxis` and `Interval.capsule` are the constructions;
-`Interval_to_Capsule` states and proves what they guarantee.
+# A box as a capsule, over a floating-point scalar
 -/
 
 -- Authors:       Claude Sonnet 5.5

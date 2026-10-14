@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import Mathlib.Analysis.Convex.Segment
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

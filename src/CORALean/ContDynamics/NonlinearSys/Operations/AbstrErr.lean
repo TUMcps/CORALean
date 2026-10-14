@@ -3,9 +3,10 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.PostDelta
 public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
-public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Instances
 public import CORALean.Global.Block
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 
 @[expose] public section
 

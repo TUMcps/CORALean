@@ -6,10 +6,7 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 @[expose] public section
 
 /-!
-# A float polytope as a level set — the construction
-
-`HPolytope.levelSet` is the construction; `HPolytope_to_LevelSet` states and proves what it
-guarantees.
+# A float polytope as a level set
 -/
 
 -- Authors:       Claude Opus 5.5

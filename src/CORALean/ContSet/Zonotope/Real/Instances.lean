@@ -5,7 +5,7 @@ public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ContSet.Definitions.ExactVertices
 public import CORALean.ContSet.ContSet.Definitions.IntersectStrip
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.WithEmpty.WithEmpty
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
@@ -22,6 +22,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

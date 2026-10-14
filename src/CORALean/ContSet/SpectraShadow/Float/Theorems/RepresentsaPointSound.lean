@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.SpectraShadow.Float.Operations.RepresentsaPoint
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.Conversion.Float.Theorems.SpectraShadowIntervalContains
 
 @[expose] public section
 

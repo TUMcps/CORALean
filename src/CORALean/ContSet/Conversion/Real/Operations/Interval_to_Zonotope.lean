@@ -8,10 +8,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 @[expose] public section
 
 /-!
-# A box as a zonotope — the construction
-
-`Interval.zonotope` is the construction; `Interval_to_Zonotope` states and proves what it
-guarantees.
+# A box as a zonotope
 -/
 
 -- Authors:       Claude Opus 5

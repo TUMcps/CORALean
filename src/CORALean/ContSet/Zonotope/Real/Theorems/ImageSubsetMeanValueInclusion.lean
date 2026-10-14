@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.InclusionOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import Mathlib.Analysis.Calculus.Deriv.MeanValue
 public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

@@ -4,6 +4,10 @@ public import CORALean.ContSet.HPolytope.Float.Instances
 public import CORALean.ContSet.HPolytope.Float.Theorems.ContractBoxOuter
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepInvFloat
 public import CORALean.HybridDynamics.Theorems.FlowOuterFloat
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

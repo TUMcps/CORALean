@@ -7,6 +7,8 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.TuneAbstrOrderFloat
 public import CORALean.Global.Float.Exp
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

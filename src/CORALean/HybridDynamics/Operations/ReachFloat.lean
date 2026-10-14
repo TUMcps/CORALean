@@ -4,6 +4,8 @@ public import CORALean.HybridDynamics.HybridAutomaton
 public import CORALean.HybridDynamics.Operations.GuardIntersectFloat
 public import CORALean.HybridDynamics.Operations.JumpFloat
 public import CORALean.HybridDynamics.Operations.LocationReachFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

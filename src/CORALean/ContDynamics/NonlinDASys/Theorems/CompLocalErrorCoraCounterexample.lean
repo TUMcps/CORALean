@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
 public import Mathlib.LinearAlgebra.Matrix.Notation
 public import Mathlib.Tactic.Linarith
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

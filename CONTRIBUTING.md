@@ -52,9 +52,9 @@ src/CORALean/
                    reachable set: Real/ and Float/, being closed under almost nothing
     Taylm/         a polynomial over `[-1, 1]ⁿ` and a remainder interval, enclosing
                    a function rather than describing a set; Real/ and Float/
-    Conversion/    one file per ordered pair, `<Source>_to_<Target>.lean`, for what the
-                   pair guarantees, and one of the same name in `Operations/` for what it
-                   builds; Real/ and Float/
+    Conversion/    what an ordered pair of representations builds, in `Operations/`, one
+                   file per pair, `<Source>_to_<Target>.lean`, and what it guarantees, in
+                   `Theorems/`, one theorem to a file; Real/ and Float/
   Specification/   what a computed set is checked against — a safe set or an
                    unsafe one — and why checking it on an outer approximation
                    answers for the exact set
@@ -101,22 +101,29 @@ src/CORALean/
 
 A conversion goes in `Conversion/`, not in either representation: two representations of equal
 standing cannot each import the other, so `VPolytope → HPolytope` inside `VPolytope/` and the
-reverse inside `HPolytope/` is a cycle Lean rejects. One file per ordered pair keeps a new
-pair to a file rather than a directory, and keeps every representation independent of every
-other. The pair's file states and proves what the conversion guarantees, as a `Theorems/` file
-does, and what it builds — `Zonotope.polyZonotope`, with the `aux_` definitions only it needs
-— is in the file of the same name in `Operations/` of that layer. The ordered pair is the unit
-there, so that file may declare several definitions (a conversion and its variants) and is
-never a section of a `Basic.lean`. `Real/` holds every ordered pair of the nine
-representations its own collector names — 72 files — and `Capsule_to_Interval` and the `Taylm`
-pairs besides; `Float/` holds the pairs written so far. The declaration is named for the
-target, as in CORA, where `interval(zonotope)` is how a zonotope becomes a box.
+reverse inside `HPolytope/` is a cycle Lean rejects. The layout is a representation's: `Real/`
+and `Float/` each hold `Operations/`, `Theorems/`, `Definitions/`, `Instances.lean` and
+`API.lean`, and nothing else.
 
-Two of those files hold a class instead of a conversion: `ContSet_to_Interval`
-and `Interval_to_ContSet` are the pairs whose other side is a variable, for an
-algorithm that must reach a box, or come back from one, without naming what it
-is propagating. Only the representations that can do it without certificates
-instantiate them, which is the same rule as everywhere else.
+What a pair builds — `Zonotope.polyZonotope`, with the `aux_` definitions only it needs — is the
+file `Operations/<Source>_to_<Target>.lean`. The ordered pair is the unit there, so that file may
+declare several definitions (a conversion and its variants), and a pair that builds one small thing
+is a section of `Operations/Basic.lean`, as anywhere; a pair with variants stays a file, a section
+being one declaration. Every file keeps every representation independent of every other. What the
+pair guarantees is in `Theorems/`, one theorem to a file, as for a representation, a file named for
+its theorem — `Zonotope.interval_contains` is `Theorems/ZonotopeIntervalContains.lean`, the source
+in the name because no representation's directory supplies it — or a section of `Theorems/Basic.lean`
+where it is small. The declaration is named for the target, as in CORA, where `interval(zonotope)` is
+how a zonotope becomes a box. `Real/` holds every ordered pair of the nine representations its own
+collector names — 72 pairs — and `Capsule_to_Interval` and the `Taylm` pairs besides; `Float/`
+holds the pairs written so far.
+
+Two classes belong to no pair but stand where one would: `IntervalOuter` and `OfInterval` are the
+pairs whose other side is a variable, for an algorithm that must reach a box, or come back from one,
+without naming what it is propagating. The class is in `Definitions/`, and the instances are in
+`Instances.lean`, not beside it: each field is the guarantee of a conversion, which a definition file
+does not import. Only the representations that can do it without certificates instantiate them,
+which is the same rule as everywhere else.
 
 An operation may be *implemented* by conversion — `VPolytope.intersection` goes
 out to halfspaces, where intersection is free, and comes back — and then imports
@@ -141,8 +148,8 @@ per-statement version of a representation's whole `<Rep>/Real/Theorems/`.
 
 A directory holding any of `Operations/`, `Theorems/` or `Definitions/` is a
 *class root*: beside them it holds its class file, `Instances.lean` and
-`API.lean`, and nothing else. `ContSet/Conversion/` is the exception, a table of
-pairs rather than a class. A `Definitions/` file declares types, `abbrev`s,
+`API.lean`, and nothing else; `ContSet/Conversion/Real/` and `Float/` are class roots with no class
+file. A `Definitions/` file declares types, `abbrev`s,
 propositions, sets and `noncomputable` specifications; a computable `def`
 returning data is an algorithm, and belongs in `Operations/`, as does any `def`
 returning an `Option` — a search that can fail — and a theorem belongs in
@@ -958,9 +965,11 @@ it says. A float operation is a definition of its own when it computes something
 does not: a result in `𝕋` where the exact one is a real number (`nominalSupportBound` is the
 `FloatBound` above `nominal.supportBound`, with every rounding upward), another algorithm
 (`HPolytope.levelSet`, which writes an equation as two inequalities), or the error box. The
-bare form is rejected by `scripts/check-float-wrappers.py`; what stays is listed in
-`scripts/float-wrapper-allowlist.txt` with the reason, which is a class's `construct` or a
-type's meaning (`Taylm.Encloses`), spelt for dot notation to resolve.
+bare form is rejected by `scripts/check-float-wrappers.py`, and so is the exact operation applied
+to the arguments read as reals — `Real.HPolytope.rowLin (toRealMat M) i` — which is no more than the
+conversion under a name. What stays is listed in `scripts/float-wrapper-allowlist.txt` with the
+reason: a class's `construct` or a type's meaning (`Taylm.Encloses`), spelt for dot notation to
+resolve, or a name (`rowLin`) whose statements would otherwise spell the conversion out each time.
 
 **The float layer is part of the work, not a follow-up.** New work carries both
 layers wherever it can, and a contribution that lands only the `Real` half must

@@ -13,7 +13,7 @@ being `intersectionH`'s own row count — `q₁ + q₂ + 2n`, the two callers' d
 plus one operand's box. Feasible, the count is exactly that power; infeasible,
 `emptySet` gives zero. Both are `rfl` once the branch is fixed, against
 `Operations/Intersection.lean`, `Operations/IntersectionH.lean` and
-`HPolytope_to_VPolytope.lean`'s `vPolytope`.
+`HPolytope.vPolytope`, built in `Conversion/Real/Operations/HPolytope_to_VPolytope.lean`.
 
 No closed form covers both branches at once — the `Nonempty` check genuinely
 decides which one applies — so the two theorems below are stated separately

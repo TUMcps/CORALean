@@ -14,6 +14,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

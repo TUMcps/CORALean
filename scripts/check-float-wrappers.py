@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rejects a float definition that only applies the exact operation to `nominal` (issue #154).
+"""Rejects a float definition that only applies the exact operation to what the floats denote (issue #154).
 
     python3 scripts/check-float-wrappers.py
 
@@ -7,8 +7,10 @@ A float set's `nominal` is the exact set its stored floats describe, so a `def` 
 whose whole body is `X.nominal.op args` (or `(InflatedContSet.nominal X).op args`) is the exact
 operation under a second name, and every use of it can say `X.nominal.op args` instead. A float
 operation earns its own definition by computing something: another algorithm, a result in `𝕋`,
-the error box. The check is syntactic and finds only the bare form; a wrapper that adds an
-argument or a coercion is for the reviewer.
+the error box. The same goes for a `def` whose whole body is `Real.op` applied to arguments read as
+reals with `toReal`, `toRealMat` or `toRealVec` (or to a `nominal`): the exact operation at what the
+floats denote, `Real.HPolytope.rowLin (toRealMat M) i`. The check is syntactic and finds only the
+bare forms; a wrapper that adds an argument or a coercion is for the reviewer.
 
 An entry of `scripts/float-wrapper-allowlist.txt` — `<path>::<name>  <reason>` per line — names a
 definition that is a bare wrapper on purpose. The list only shrinks: an entry whose definition is
@@ -29,10 +31,14 @@ END = re.compile(r"^(/--|/-|--|def\b|abbrev\b|theorem\b|lemma\b|instance\b|struc
                  r"inductive\b|noncomputable\b|private\b|protected\b|@\[|end\b|namespace\b|"
                  r"section\b|open\b|variable\b|set_option\b|omit\b)")
 ARGS = r"(?: +[\w.'()⟨⟩]+)*"
+# An argument of the exact operation: a name, its `nominal`, or a name read as a real.
+REAL_ARG = r"(?: +(?:\((?:toReal|toRealMat|toRealVec) [\w.']+\)|[\w.']+))+"
 WRAPPER = [
     re.compile(r"^\(?[A-Za-z_][\w.']*\.nominal\)?\.[A-Za-z_][\w']*" + ARGS + r"$"),
     re.compile(r"^\((?:\w+\.)*nominal [\w.']+\)\.[A-Za-z_][\w']*" + ARGS + r"$"),
 ]
+# `Real.op (toRealMat M) i`: the exact operation applied to the arguments read as reals.
+TOREAL = re.compile(r"^Real\.[A-Za-z_][\w.']*" + REAL_ARG + r"$")
 
 
 def is_float(path):
@@ -61,7 +67,8 @@ def wrappers(path):
         if k < 0:
             continue
         body = text[k + 2:].strip()
-        if any(w.match(body) for w in WRAPPER):
+        if any(w.match(body) for w in WRAPPER) or (
+                TOREAL.match(body) and re.search(r"\(toReal(Mat|Vec)? |\.nominal\b", body)):
             out.append((i + 1, m.group(2)))
     return out
 
@@ -81,8 +88,8 @@ def main():
             key = f"{rel}::{name}"
             seen.add(key)
             if key not in allow:
-                msgs.append(f"{rel}:{ln}: `{name}` only applies the exact operation to `nominal`"
-                            f" — delete it and write `X.nominal.…` at the use sites, or list it in"
+                msgs.append(f"{rel}:{ln}: `{name}` only applies the exact operation to what the floats denote"
+                            f" — delete it and write the exact operation at the use sites, or list it in"
                             f" scripts/float-wrapper-allowlist.txt with the reason it exists")
     for key, n in allow.items():
         if key not in seen:

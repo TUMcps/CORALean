@@ -5,6 +5,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNStepSpec
 public import CORALean.ContSet.Interval.Real.Theorems.CornerSumMono
 public import CORALean.ContSet.Interval.Real.Theorems.CornerSumUpdate
 public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

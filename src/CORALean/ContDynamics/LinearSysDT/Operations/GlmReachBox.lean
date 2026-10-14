@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

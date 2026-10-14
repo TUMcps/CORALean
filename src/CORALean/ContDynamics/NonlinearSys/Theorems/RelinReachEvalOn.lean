@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryDiscretizeStep
-public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PostEvalOn
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter

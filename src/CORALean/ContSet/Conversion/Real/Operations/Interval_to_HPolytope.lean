@@ -6,10 +6,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 @[expose] public section
 
 /-!
-# A box as halfspaces — the construction
-
-`Interval.hPolytope` is the construction; `Interval_to_HPolytope` states and proves what it
-guarantees.
+# A box as halfspaces
 -/
 
 -- Authors:       Claude Opus 5

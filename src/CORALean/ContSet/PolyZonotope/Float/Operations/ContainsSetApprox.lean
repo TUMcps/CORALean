@@ -1,10 +1,11 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.PolyZonotope.Float.Operations.IndepFactors
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
 public import CORALean.ContSet.PolyZonotope.Float.Operations.IsFullDim
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGenAll
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

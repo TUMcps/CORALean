@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

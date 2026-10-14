@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLe
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorSetSuccSubset
 public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserver
 public import CORALean.Global.MulVecPosNegBounds
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

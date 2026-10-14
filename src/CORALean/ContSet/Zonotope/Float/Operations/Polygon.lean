@@ -1,9 +1,14 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

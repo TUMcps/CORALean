@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.NN.NeuralNetwork
 public import CORALean.NN.Operations.ExplainBox
 public import CORALean.NN.Operations.Enclose

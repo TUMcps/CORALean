@@ -2,14 +2,12 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 
 /-!
-# A box as a zonotope, over a floating-point scalar — the construction
-
-`Interval.radiusFrom` and `Interval.zonotope` are the constructions; `Interval_to_Zonotope` states
-and proves what they guarantee.
+# A box as a zonotope, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

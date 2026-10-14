@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section

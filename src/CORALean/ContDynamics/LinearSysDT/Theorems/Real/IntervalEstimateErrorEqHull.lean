@@ -6,6 +6,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.IntervalAttained
 public import CORALean.ContSet.Interval.Real.Definitions.Hull
 public import Mathlib.Algebra.BigOperators.Pi
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySound
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 
 @[expose] public section
 

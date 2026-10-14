@@ -11,7 +11,7 @@ public import CORALean.NN.Graph.Theorems.DegreeAtEq
 # `D̃^(-1/2)` at an uncertain degree, as an affine function of the edge factors
 
 The inverse square root of node `j`'s degree, read through a `Relaxation` at the
-box `[degreeInf, degreeSup]` that node's degree is known to sit in. What comes
+box `[degree, degreeSup]` that node's degree is known to sit in. What comes
 back is a slope, an offset and an error, and composing the slope with the affine
 `degreeAt` of `degreeAt_eq` leaves `s_j` affine in the edge weights again:
 

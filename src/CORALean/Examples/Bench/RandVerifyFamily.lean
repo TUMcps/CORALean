@@ -7,6 +7,8 @@ import CORALean.Examples.Bench.RandVerifyParse
 import CORALean.Examples.Bench.RandVerifyReference
 import CORALean.Examples.Bench.RandVerifySci
 import CORALean.Examples.Bench.RandVerifySupportGap
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # `lake exe bench randverify-family --in FILE [--dt Q] [--eta K] [--order R] [--check C] ...`

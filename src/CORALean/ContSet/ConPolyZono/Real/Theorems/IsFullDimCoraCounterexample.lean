@@ -1,9 +1,10 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.IsFullDimCora
-public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeConPolyZonoExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimCoraCounterexample
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
 
 @[expose] public section
 

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Interval.Real.Operations.Cos
 public import CORALean.ContSet.Interval.Real.Operations.CoshHi
 public import CORALean.ContSet.Interval.Real.Operations.CoshLo

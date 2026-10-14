@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Float.Instances
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.NN.Layers.Layer
 

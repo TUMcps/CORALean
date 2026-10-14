@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 
 @[expose] public section

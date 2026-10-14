@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitParallelotope
 public import CORALean.ContSet.Zonotope.Real.Operations.Split
 

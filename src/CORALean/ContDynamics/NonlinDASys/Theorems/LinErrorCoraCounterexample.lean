@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
 public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

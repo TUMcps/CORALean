@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
-public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

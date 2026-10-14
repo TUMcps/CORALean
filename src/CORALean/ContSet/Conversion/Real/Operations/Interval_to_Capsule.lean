@@ -6,10 +6,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 @[expose] public section
 
 /-!
-# A box as a capsule — the construction
-
-`Interval.capsuleAlong` and `Interval.capsule` are the constructions; `Interval_to_Capsule` states
-and proves what they guarantee.
+# A box as a capsule
 -/
 
 -- Authors:       Claude Opus 5.5

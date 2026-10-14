@@ -4,10 +4,11 @@ public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterva
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachPoly
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.MapEquiv
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

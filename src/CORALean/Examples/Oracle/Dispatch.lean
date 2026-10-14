@@ -3,6 +3,8 @@ import CORALean.Examples.Oracle.Ops.Enclosure
 import CORALean.Examples.Oracle.Ops.FromRound
 import CORALean.Examples.Oracle.Ops.Reach
 import CORALean.Examples.Oracle.Ops.ZonotopeOps
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # One request line to one response `Json`

@@ -9,7 +9,7 @@ public import CORALean.NN.Graph.Operations.Degree
 # The degree of a graph whose edges are uncertain, at one choice of weights
 
 [1]'s degree matrix `D̃ = diag(1 Ã)`, read at `Ã = A(λ) + I` and one node at a
-time. `degreeInf` and `degreeSup` are the two ends of the range `degreeAt` can
+time. `degree` and `degreeSup` are the two ends of the range `degreeAt` can
 take, at all weights `0` and at all weights `1`.
 
 ## References

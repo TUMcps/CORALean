@@ -3,7 +3,7 @@ import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorOfPoly
 import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinDeltaReachOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
-import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContSet.PolyZonotope.Real.Instances
 
 /-!

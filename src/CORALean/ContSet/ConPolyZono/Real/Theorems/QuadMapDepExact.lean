@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMap
 public import CORALean.ContSet.ConPolyZono.Real.Operations.QuadMapDep
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadEvalSumExt
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 
 @[expose] public section
 

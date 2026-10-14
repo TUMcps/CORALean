@@ -5,6 +5,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsStursberg
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

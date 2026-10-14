@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Graph.Operations.DegreeInf
+public import CORALean.NN.Graph.Operations.Degree
 public import CORALean.NN.Graph.Operations.DegreeSup
 public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.InvSqrt
@@ -16,7 +16,7 @@ public import CORALean.NN.Layers.Operations.RelaxationBox
 # The inverse-square-root relaxation's offset over an uncertain degree
 
 The relaxation's offset read over node `j`'s own degree interval
-`[degreeInf, degreeSup]`, the box its uncertain degree is known to sit in.
+`[degree, degreeSup]`, the box its uncertain degree is known to sit in.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -37,7 +37,7 @@ variable {N m : ℕ}
 /-- The relaxation's offset over that same interval. -/
 noncomputable def GNN.sqrtOffset (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (j : Fin N) : ℝ :=
-  R.offset (GNN.degreeInf A U j) (GNN.degreeSup A U j)
+  R.offset (GNN.degree A j) (GNN.degreeSup A U j)
 
 end CORALean.Real
 

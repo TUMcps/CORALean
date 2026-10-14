@@ -8,8 +8,9 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeF
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
 public import CORALean.ContDynamics.Reach.Operations.Steps
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.Global.Float.ToRat
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

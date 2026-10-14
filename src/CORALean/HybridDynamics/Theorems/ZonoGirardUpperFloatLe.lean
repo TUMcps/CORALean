@@ -1,6 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 
 @[expose] public section
 

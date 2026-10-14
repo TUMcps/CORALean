@@ -2,16 +2,13 @@ module
 
 public import CORALean.Global.BlockDiag
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 
 @[expose] public section
 
 /-!
-# A constrained zonotope as a spectrahedral shadow — the construction
-
-`ConZonotope.spectraShadow` is the construction; `ConZonotope_to_SpectraShadow` states and proves
-what it guarantees.
+# A constrained zonotope as a spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

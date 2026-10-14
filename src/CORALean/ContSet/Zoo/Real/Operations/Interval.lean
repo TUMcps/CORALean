@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.Zoo.Real.Zoo
 public import CORALean.ContSet.Interval.Real.Operations.Intersection
-public import CORALean.ContSet.Conversion.Real.Taylm_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

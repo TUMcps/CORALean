@@ -3,6 +3,11 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Operations.Split
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalConZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

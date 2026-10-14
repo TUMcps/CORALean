@@ -1,9 +1,15 @@
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
-import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
+import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeContains
+import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
+import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
+import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePolyZonotopeExact
+import CORALean.ContSet.Conversion.Real.Operations.Basic
+import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 
 /-!
 # Leaving a representation and coming back

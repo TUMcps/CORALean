@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.PolyZonotope.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Dependent
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
@@ -9,6 +9,14 @@ public import CORALean.Global.Float.Instances.Real.Instances
 public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Layers.Operations.LayerRelaxationBox
 public import CORALean.NN.Layers.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 
 @[expose] public section
 

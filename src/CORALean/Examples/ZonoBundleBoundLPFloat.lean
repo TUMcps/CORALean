@@ -1,6 +1,7 @@
 import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
 import CORALean.ContSet.HPolytope.Float.Operations.RowLin
 import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 
 /-!
 # A bundle's support value: the least member bound against a linear program

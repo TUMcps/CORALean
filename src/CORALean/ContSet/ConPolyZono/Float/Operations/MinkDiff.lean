@@ -3,8 +3,10 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.Point
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
 
 @[expose] public section
 

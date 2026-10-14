@@ -1,17 +1,17 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
-public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
-public import CORALean.ContSet.Conversion.Real.ConZonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAllExact
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
 
 @[expose] public section
 
 /-!
-# A bundle's corners, at one component — the construction
-
-`ZonoBundle.vPolytope` and `ZonoBundle.vPolytopeAll` are the constructions;
-`ZonoBundle_to_VPolytope` states and proves what they guarantee.
+# A bundle's corners, at one component
 -/
 
 -- Authors:       Claude Opus 5

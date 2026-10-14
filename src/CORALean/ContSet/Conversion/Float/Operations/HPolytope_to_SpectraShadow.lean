@@ -1,18 +1,16 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 
 @[expose] public section
 
 /-!
-# A polytope as a spectrahedral shadow, over a floating-point scalar — the construction
-
-`HPolytope.spectraShadow` is the construction; `HPolytope_to_SpectraShadow` states and proves what
-it guarantees.
+# A polytope as a spectrahedral shadow, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

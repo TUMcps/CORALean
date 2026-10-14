@@ -4,6 +4,8 @@ public import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDepende
 public import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrix
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

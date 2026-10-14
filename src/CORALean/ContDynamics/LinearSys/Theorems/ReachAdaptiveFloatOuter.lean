@@ -4,6 +4,10 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveRunFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

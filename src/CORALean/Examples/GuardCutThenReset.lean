@@ -1,5 +1,8 @@
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConPolyZonoExact
 import CORALean.HybridDynamics.Theorems.JumpIntersectionOfPointOuter
+import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeConPolyZonoExact
 
 /-!
 # The guard cut and the jump, chained

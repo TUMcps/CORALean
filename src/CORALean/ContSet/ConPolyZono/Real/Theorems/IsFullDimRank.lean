@@ -1,8 +1,9 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.IsFullDimCora
-public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoPolyZonotopeContains
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimRank
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 
 @[expose] public section
 

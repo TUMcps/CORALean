@@ -4,7 +4,9 @@ public import CORALean.ContDynamics.LinearSys.Operations.VerifyStepFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySoundFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.MaximumFoldToReal
 public import CORALean.ContDynamics.LinearSys.Theorems.MinimumFoldToReal
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 

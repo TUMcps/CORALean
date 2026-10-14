@@ -112,9 +112,7 @@ PAIR_LIST=scripts/pair-allowlist.txt
 # `Definitions/` folder, holds its class file, `Instances.lean` and `API.lean`
 # and nothing else: every other file has a role folder beside them. Which of
 # the remaining files is the class file is not guessed at, so the rule is that
-# there is at most one. `ContSet/Conversion/` is exempt by name, a pairwise
-# table of conversions rather than a class.
-CLASS_ROOT_EXEMPT=src/CORALean/ContSet/Conversion
+# there is at most one.
 
 # Class roots not yet sorted into role folders, one per line. The list only
 # shrinks: an entry whose directory now passes, or is gone, is reported the way
@@ -585,9 +583,10 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   # file (issue #136): that is the one exception, and it stays out of the pattern.
   # A `Basic.lean` holds one declaration per section instead, which
   # `check-basic-bundles.py` checks.
-  # The `Operations/` of a conversion layer is the exception, as its theorem side is: the unit is
-  # the ordered pair, and what one pair builds (`ellipsoid`, `ellipsoidNorm`, `ellipsoidBox`) is a
-  # file, named `<Source>_to_<Target>`, however many definitions that is.
+  # The `Operations/` of a conversion layer is the exception: the unit is the ordered pair, and
+  # what one pair builds (`ellipsoid`, `ellipsoidNorm`, `ellipsoidBox`) is a file, named
+  # `<Source>_to_<Target>`, however many definitions that is. A pair that builds one small thing is
+  # a section of `Basic.lean` like anywhere else; its theorems are one to a file in `Theorems/`.
   if (f ~ /\/(Operations|Theorems)\// && !(f ~ /\/(API|Basic)\.lean$/) &&
       f !~ /\/Conversion\/(Real|Float)\/Operations\// && npub > MAX_PUBLIC_DECL) {
     decls = pubList[1]
@@ -618,9 +617,9 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
           " files under " BENCH_DIR " may")
   }
 
-  if (f ~ /\/Conversion\// && !(f ~ /\/API\.lean$/) &&
+  if (f ~ /\/Conversion\/(Real|Float)\/Operations\// && !(f ~ /\/(API|Basic)\.lean$/) &&
       !(f ~ /\/[A-Za-z]+_to_[A-Za-z]+\.lean$/))
-    say(f ":1: a file in `Conversion/` is named `<Source>_to_<Target>.lean`")
+    say(f ":1: a file in `Conversion/*/Operations/` is named `<Source>_to_<Target>.lean`")
 
   # A layer directory and the namespace it declares must agree, since the path
   # is what a reader navigates by and the namespace is what Lean resolves by.
@@ -1038,13 +1037,7 @@ FNR == 1 {
     # `Definitions/` (a type, a proposition, a set, a specification) or `Operations/` (an
     # algorithm). Free are the declarations that serve one proof only — `private` and `aux_` —
     # and `Complexity/Space/`, a claim proved from the definition, is read the same way.
-    # A pair file of a conversion, `Conversion/<Layer>/<Source>_to_<Target>.lean`, is the theorem
-    # file of its pair, the construction being in `Conversion/<Layer>/Operations/`; the two
-    # files that hold the class instances of the pairs whose other side is a variable are the
-    # exception, instances being what they are for.
-    if ((FILENAME ~ /\/Theorems\// || FILENAME ~ /\/Complexity\/Space\// ||
-         (FILENAME ~ /\/Conversion\/(Real|Float)\/[A-Za-z]+_to_[A-Za-z]+\.lean$/ &&
-          FILENAME !~ /\/(ContSet_to_Interval|Interval_to_ContSet)\.lean$/)) &&
+    if ((FILENAME ~ /\/Theorems\// || FILENAME ~ /\/Complexity\/Space\//) &&
         FILENAME !~ /\/API\.lean$/ && kind != "theorem" && kind != "lemma" &&
         prefix !~ /private / && b !~ /^aux_/)
       say(FILENAME ":" FNR ": a `" kind "` in a theorem file — `" qualDecl "` is a definition," \
@@ -1206,7 +1199,7 @@ report "$out"
 # layer, which is exactly the representations of `ContSet/`; everywhere else an
 # object is written once over the scalar, `Theorems/Real/` holds what only ℝ
 # can state of it, and `Global/Float/` is the scalar interface itself.
-out=$(awk -v LIST="$list" -v EXEMPT="$CLASS_ROOT_EXEMPT" \
+out=$(awk -v LIST="$list" \
   -v PENDING="$(printf '%s' "$CLASS_ROOT_PENDING" | tr '\n' ' ')" '
 function dirOf(p,   d) { d = p; sub(/\/[^\/]*$/, "", d); return d }
 function baseOf(p,   b) { b = p; sub(/^.*\//, "", b); return b }
@@ -1244,7 +1237,6 @@ BEGIN {
             " interface; everything else is written once over the scalar"
   }
   for (d in root) {
-    if (d == EXEMPT || index(d, EXEMPT "/") == 1) continue
     if (d in pending) continue
     if (nextra[d] > 1)
       print d ": a class root holds its class file, `Instances.lean` and `API.lean` only," \

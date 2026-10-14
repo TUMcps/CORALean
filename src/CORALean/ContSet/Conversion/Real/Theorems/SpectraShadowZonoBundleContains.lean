@@ -1,0 +1,43 @@
+module
+
+public import CORALean.ContSet.Conversion.Real.Theorems.SpectraShadowZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeZonoBundleExact
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+
+@[expose] public section
+
+/-!
+# A spectrahedral shadow as a zonoBundle
+
+CORA's `zonoBundle(SpS)` is `zonoBundle(zonotope(SpS))`. The zonotope encloses a shadow with
+bounded base spectrahedron (`SpectraShadow.zonotope_contains`), and the conversion of a
+zonotope loses nothing (`Zonotope.zonoBundle_exact`), so this is an outer
+approximation too, not an equality.
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem SpectraShadow.zonoBundle_contains (S : SpectraShadow α) (hb : S.base.isBounded) :
+    S.construct ⊆ S.zonoBundle.construct := by
+  rw [SpectraShadow.zonoBundle, ← Zonotope.zonoBundle_exact]
+  exact S.zonotope_contains hb
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

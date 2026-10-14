@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeFloat
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

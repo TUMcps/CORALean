@@ -1,10 +1,13 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Float.Instances
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.HybridDynamics.Definitions.Transition
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
 
 @[expose] public section
 

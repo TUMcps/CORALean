@@ -9,10 +9,7 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 @[expose] public section
 
 /-!
-# A polytope as a spectrahedral shadow — the construction
-
-`HPolytope.stackedRows`, `HPolytope.stackedBounds` and `HPolytope.spectraShadow` are the
-constructions; `HPolytope_to_SpectraShadow` states and proves what they guarantee.
+# A polytope as a spectrahedral shadow
 -/
 
 -- Authors:       Claude Opus 5.5

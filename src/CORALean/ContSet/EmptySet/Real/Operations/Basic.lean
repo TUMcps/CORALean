@@ -6,6 +6,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
 public import Mathlib.Data.ENNReal.Basic
 public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

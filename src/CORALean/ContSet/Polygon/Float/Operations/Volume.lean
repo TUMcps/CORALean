@@ -2,6 +2,9 @@ module
 
 public import CORALean.ContSet.Polygon.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Volume
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

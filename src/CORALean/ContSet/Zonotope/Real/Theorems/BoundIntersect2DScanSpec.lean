@@ -11,6 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructPointUp
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructCompPerm
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.PointUpHalfPlane
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

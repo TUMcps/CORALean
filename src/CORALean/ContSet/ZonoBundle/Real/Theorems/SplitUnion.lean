@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

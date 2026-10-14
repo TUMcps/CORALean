@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAllExact
 public import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
 public import CORALean.ContSet.ZonoBundle.Real.Operations.ReduceCombined
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
@@ -9,6 +9,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCompact
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
 
 @[expose] public section
 

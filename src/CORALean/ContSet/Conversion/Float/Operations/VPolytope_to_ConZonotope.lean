@@ -2,17 +2,15 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.VPolytope.Float.VPolytope
-public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 
 /-!
-# A hull as a constrained zonotope, over a floating-point scalar — the construction
-
-`VPolytope.simplex` and `VPolytope.conZonotope` are the constructions; `VPolytope_to_ConZonotope`
-states and proves what they guarantee.
+# A hull as a constrained zonotope, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

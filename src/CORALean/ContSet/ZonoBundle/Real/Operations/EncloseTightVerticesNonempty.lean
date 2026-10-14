@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightVertices
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -3,8 +3,8 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
-public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
@@ -12,6 +12,9 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapMixed
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 public import CORALean.Global.Block
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 
 @[expose] public section
 

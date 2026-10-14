@@ -1,9 +1,10 @@
 import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatOuter
 import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.Global.Float.Instances.Binary64.Instances
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # A continuous-time rotation, reached in floats both ways

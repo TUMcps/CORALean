@@ -5,10 +5,7 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 @[expose] public section
 
 /-!
-# A constrained polynomial zonotope as a polynomial zonotope — the construction
-
-`ConPolyZono.polyZonotope` is the construction; `ConPolyZono_to_PolyZonotope` states and proves what
-it guarantees.
+# A constrained polynomial zonotope as a polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

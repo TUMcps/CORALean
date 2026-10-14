@@ -3,14 +3,12 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
 
 @[expose] public section
 
 /-!
-# A polynomial zonotope as a constrained one, over a floating-point scalar — the construction
-
-`PolyZonotope.conPolyZono` is the construction; `PolyZonotope_to_ConPolyZono` states and proves what
-it guarantees.
+# A polynomial zonotope as a constrained one, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

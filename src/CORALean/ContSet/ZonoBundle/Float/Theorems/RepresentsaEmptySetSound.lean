@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.ConZonotope.Float.Theorems.RepresentsaEmptySetSound
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonoBundleConZonotopeAllContains
 
 @[expose] public section
 

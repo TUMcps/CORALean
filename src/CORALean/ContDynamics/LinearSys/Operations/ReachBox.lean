@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import Mathlib.Analysis.Normed.Algebra.Exponential
 public import Mathlib.Topology.Instances.Matrix

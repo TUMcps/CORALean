@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ZonoBundle
 
 @[expose] public section
 

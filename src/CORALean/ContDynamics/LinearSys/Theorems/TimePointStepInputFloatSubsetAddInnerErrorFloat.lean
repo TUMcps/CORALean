@@ -4,6 +4,10 @@ public import CORALean.ContDynamics.LinearSys.Operations.Discretize
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddExcess
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

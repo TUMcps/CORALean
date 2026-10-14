@@ -2,10 +2,12 @@ module
 
 public import CORALean.ContSet.Capsule.Float.Operations.BoundDotUp
 public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
 public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
 public import CORALean.ContSet.HPolytope.Float.Operations.RowLin
 public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 

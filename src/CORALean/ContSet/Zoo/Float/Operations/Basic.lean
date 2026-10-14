@@ -6,6 +6,7 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.Rdivide
 public import CORALean.ContSet.Taylm.Float.Operations.Times
 public import CORALean.ContSet.Zoo.Float.Zoo
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

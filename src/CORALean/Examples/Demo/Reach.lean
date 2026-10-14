@@ -3,11 +3,12 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContDynamics.OutputEq.Operations.OutputSet
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.Examples.Demo.Decimal
 import CORALean.Examples.Demo.Scalar
 import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # `LinearSysDT.reach` at `Dyadic`, run

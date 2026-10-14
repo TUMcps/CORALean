@@ -13,10 +13,7 @@ public import CORALean.Global.EuclideanNorm
 @[expose] public section
 
 /-!
-# An ellipsoid as a constrained polynomial zonotope — the construction
-
-`Ellipsoid.conPolyZonoR` and `Ellipsoid.conPolyZono` are the constructions;
-`Ellipsoid_to_ConPolyZono` states and proves what they guarantee.
+# An ellipsoid as a constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

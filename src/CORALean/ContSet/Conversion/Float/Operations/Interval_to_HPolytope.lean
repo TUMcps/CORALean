@@ -8,10 +8,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 @[expose] public section
 
 /-!
-# A box as halfspaces, over a floating-point scalar — the construction
-
-`identityMat`, `negIdentityMat` and `Interval.hPolytope` are the constructions;
-`Interval_to_HPolytope` states and proves what they guarantee.
+# A box as halfspaces, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

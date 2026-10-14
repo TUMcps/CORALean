@@ -9,10 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 @[expose] public section
 
 /-!
-# A zonotope as a polynomial zonotope, over a floating-point scalar — the construction
-
-`Zonotope.polyZonotope` is the construction; `Zonotope_to_PolyZonotope` states and proves what it
-guarantees.
+# A zonotope as a polynomial zonotope, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

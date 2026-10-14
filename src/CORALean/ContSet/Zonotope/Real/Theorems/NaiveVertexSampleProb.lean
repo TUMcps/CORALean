@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.NaiveVertexSampleLe
 public import CORALean.Global.ShenmaierHalfspace
 public import Mathlib.MeasureTheory.Measure.Real
 public import Mathlib.Probability.Independence.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

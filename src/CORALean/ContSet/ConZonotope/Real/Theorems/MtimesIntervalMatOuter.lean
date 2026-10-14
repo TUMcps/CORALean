@@ -5,6 +5,8 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

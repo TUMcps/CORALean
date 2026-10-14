@@ -6,9 +6,11 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
 public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputs
-public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
-public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Instances
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

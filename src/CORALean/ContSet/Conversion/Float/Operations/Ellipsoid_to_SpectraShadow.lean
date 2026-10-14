@@ -1,16 +1,13 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_SpectraShadow
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
 
 @[expose] public section
 
 /-!
-# An ellipsoid as a spectrahedral shadow, over a floating-point scalar — the construction
-
-`Ellipsoid.spectraShadow` is the construction; `Ellipsoid_to_SpectraShadow` states and proves what
-it guarantees.
+# An ellipsoid as a spectrahedral shadow, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

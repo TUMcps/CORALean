@@ -6,6 +6,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import Mathlib.Analysis.Convex.Hull
 public import Mathlib.LinearAlgebra.Matrix.ToLin
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

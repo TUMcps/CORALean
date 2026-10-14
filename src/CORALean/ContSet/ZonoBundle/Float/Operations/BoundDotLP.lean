@@ -1,8 +1,10 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonoBundleConZonotopeAllContains
 public import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 public import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
+public import CORALean.ContSet.Conversion.Float.Operations.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 
 @[expose] public section
 

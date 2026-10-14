@@ -7,10 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 @[expose] public section
 
 /-!
-# A constrained polynomial zonotope as a polynomial zonotope, over a — the construction
-
-`ConPolyZono.polyZonotope` is the construction; `ConPolyZono_to_PolyZonotope` states and proves what
-it guarantees.
+# A constrained polynomial zonotope as a polynomial zonotope, over a
 -/
 
 -- Authors:       Claude Opus 5.5

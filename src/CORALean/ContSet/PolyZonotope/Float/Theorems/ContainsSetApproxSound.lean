@@ -1,10 +1,13 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeIntervalContains
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsSetApprox
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenAllCover
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

@@ -6,6 +6,10 @@ public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.HybridDynamics.Operations.GuardIntersectFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 
