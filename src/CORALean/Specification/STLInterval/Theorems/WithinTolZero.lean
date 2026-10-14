@@ -1,0 +1,45 @@
+module
+
+public import CORALean.Specification.STLInterval.Definitions.WithinTol
+
+@[expose] public section
+
+/-!
+# `withinTol` at tolerance zero
+
+At `tol = 0` `withinTol` is equality.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- `withinTol 0 a b` iff `a = b`. -/
+theorem STLInterval.withinTol_zero (a b : EReal) :
+    STLInterval.withinTol 0 a b ↔ a = b := by -- --- PROOF ---
+  constructor
+  · rintro (⟨x, y, rfl, rfl, h | h⟩ | ⟨h, _⟩)
+    · have : x = y := sub_eq_zero.1 (abs_nonpos_iff.1 h)
+      rw [this]
+    · have : x = y := sub_eq_zero.1 (abs_nonpos_iff.1 (by simpa using h))
+      rw [this]
+    · exact h
+  · rintro rfl
+    induction a using EReal.rec with
+    | bot => exact Or.inr ⟨rfl, Or.inr rfl⟩
+    | top => exact Or.inr ⟨rfl, Or.inl rfl⟩
+    | coe x => exact Or.inl ⟨x, x, rfl, rfl, Or.inl (by simp)⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -720,5 +720,21 @@
       "description": "reach-set window keeps the last set's robustness, not the minimum",
       "kind": "unsound"
     }
+  },
+  "specification/stlInterval": {
+    "minkDiff": {
+      "description": "upper bound is NaN for two unbounded operands",
+      "kind": "other"
+    }
+  },
+  "specification/syntaxTree": {
+    "sinh": {
+      "description": "target cut to [-1,1] loses solutions of sinh",
+      "kind": "unsound"
+    },
+    "tan": {
+      "description": "target cut to [-1,1] loses solutions of tan",
+      "kind": "unsound"
+    }
   }
 }

@@ -204,8 +204,8 @@ Rulings on borderline cases:
 | [rtl](specification/rtl.md) | specification | 5 | 0 | 0 | 0 | 4 | 1 | 0 |
 | [specification](specification/specification.md) | specification | 14 | 0 | 2 | 0 | 6 | 6 | 1 |
 | [stl](specification/stl.md) | specification | 52 | 28 | 4 | 0 | 15 | 5 | 4 |
-| [stlInterval](specification/stlInterval.md) | specification | 19 | 0 | 0 | 0 | 17 | 2 | 0 |
-| [syntaxTree](specification/syntaxTree.md) | specification | 27 | 0 | 0 | 0 | 27 | 0 | 0 |
+| [stlInterval](specification/stlInterval.md) | specification | 19 | 17 | 0 | 0 | 0 | 2 | 1 |
+| [syntaxTree](specification/syntaxTree.md) | specification | 27 | 27 | 0 | 0 | 0 | 0 | 2 |
 | [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 0 | 0 | 0 | 5 | 1 | 0 |
 | [trajectoryAnalyzer](specification/trajectoryAnalyzer.md) | specification | 2 | 0 | 0 | 0 | 2 | 0 | 0 |
 | [ProbOccupancyPrediction](others/ProbOccupancyPrediction.md) | others | 25 | 0 | 0 | 0 | 21 | 4 | 0 |

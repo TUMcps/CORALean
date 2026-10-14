@@ -51,3 +51,5 @@ src/CORALean/NN/Layers/Theorems/ActivationLayerOfSound.lean  cycle once moved in
 src/CORALean/NN/Layers/Theorems/Real/SigmoidPolyFamilySound.lean  cycle once moved in: `Basic` → `NN/Layers/Definitions/SigmoidPolyFamily` → `NN/Layers/Theorems/Real/AbsSigmoidDerivLeOne` → `Basic`
 src/CORALean/NN/Layers/Theorems/Real/TanhPolyRelaxationSound.lean  cycle once moved in: `Basic` → `NN/Layers/Theorems/Real/SigmoidPolyRelaxationSound` → `Basic`
 src/CORALean/NN/Layers/Theorems/ReluSound.lean  cycle once moved in: `Basic` → `NN/Layers/Theorems/ReluRelaxationSound` → `Basic`
+src/CORALean/Specification/SyntaxTree/Operations/Interval.lean  cycle once moved in: `Basic` → `Specification/SyntaxTree/Operations/FunHanExp` → `Basic`
+src/CORALean/Specification/SyntaxTree/Operations/Nthroot.lean  cycle once moved in: `Basic` → `Specification/SyntaxTree/Operations/FunHanPower` → `Basic`
