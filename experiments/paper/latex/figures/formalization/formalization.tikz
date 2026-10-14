@@ -11,7 +11,7 @@
 
 \begin{axis}[name=methods,
     at={(2.55cm,0cm)}, anchor=north west,
-    height=5.0cm,
+    height=3.0cm,
     width=0.50\linewidth-2.55cm,
     ytick={0,1,2,3,4,5},
     yticklabels={{Set representations},{Cont. dynamics},{Hybrid systems},{Neural networks},{Specification},{Others}},
@@ -33,57 +33,57 @@
 \addplot[draw=none, forget plot] coordinates {(0,0) (0,5)};
 \addlegendimage{fill=CORAcolorReachSet}
 \addlegendentry{proved, at float}
-\addlegendimage{fill=CORAcolorReachSet2}
+\addlegendimage{fill=CORAcolorReachSet!50!CORAcolorReachSet2}
 \addlegendentry{proved, real only}
-\addlegendimage{fill=CORAcolorPurple!35!white}
-\addlegendentry{sound bound only}
+\addlegendimage{fill=CORAcolorReachSet2}
+\addlegendentry{looser bound only}
 \addlegendimage{fill=white}
 \addlegendentry{not yet}
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:666.268,0) -- ([yshift=5.5pt]axis cs:666.268,0) [sharp corners] -- ([yshift=5.5pt]axis cs:0,0) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:566,0);
-\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:566,0) rectangle ([yshift=5.5pt]axis cs:607,0);
-\fill[CORAcolorPurple!35!white] ([yshift=-5.5pt]axis cs:607,0) rectangle ([yshift=5.5pt]axis cs:655,0);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:566,0) rectangle ([yshift=5.5pt]axis cs:607,0);
+\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:607,0) rectangle ([yshift=5.5pt]axis cs:655,0);
 \fill[white] ([yshift=-5.5pt]axis cs:655,0) rectangle ([yshift=5.5pt]axis cs:666.268,0);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:666.268,0) -- ([yshift=5.5pt]axis cs:666.268,0) [sharp corners] -- ([yshift=5.5pt]axis cs:0,0) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:666.268,0) {\hspace{0em}\textcolor{black!40}{+247}};
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:106.268,1) -- ([yshift=5.5pt]axis cs:106.268,1) [sharp corners] -- ([yshift=5.5pt]axis cs:0,1) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,1) rectangle ([yshift=5.5pt]axis cs:72,1);
-\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:72,1) rectangle ([yshift=5.5pt]axis cs:95,1);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:72,1) rectangle ([yshift=5.5pt]axis cs:95,1);
 \fill[white] ([yshift=-5.5pt]axis cs:95,1) rectangle ([yshift=5.5pt]axis cs:106.268,1);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:106.268,1) -- ([yshift=5.5pt]axis cs:106.268,1) [sharp corners] -- ([yshift=5.5pt]axis cs:0,1) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:106.268,1) {\hspace{0em}\textcolor{black!40}{+60}};
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,2) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:61.5352,2) -- ([yshift=5.5pt]axis cs:61.5352,2) [sharp corners] -- ([yshift=5.5pt]axis cs:0,2) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,2) rectangle ([yshift=5.5pt]axis cs:39,2);
-\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:39,2) rectangle ([yshift=5.5pt]axis cs:50.2676,2);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:39,2) rectangle ([yshift=5.5pt]axis cs:50.2676,2);
 \fill[white] ([yshift=-5.5pt]axis cs:50.2676,2) rectangle ([yshift=5.5pt]axis cs:61.5352,2);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,2) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:61.5352,2) -- ([yshift=5.5pt]axis cs:61.5352,2) [sharp corners] -- ([yshift=5.5pt]axis cs:0,2) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:61.5352,2) {\hspace{0em}\textcolor{black!40}{+44}};
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:63.2676,3) -- ([yshift=5.5pt]axis cs:63.2676,3) [sharp corners] -- ([yshift=5.5pt]axis cs:0,3) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,3) rectangle ([yshift=5.5pt]axis cs:52,3);
-\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:52,3) rectangle ([yshift=5.5pt]axis cs:63.2676,3);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:52,3) rectangle ([yshift=5.5pt]axis cs:63.2676,3);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:63.2676,3) -- ([yshift=5.5pt]axis cs:63.2676,3) [sharp corners] -- ([yshift=5.5pt]axis cs:0,3) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:63.2676,3) {\hspace{0em}\textcolor{black!40}{+45}};
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:205.268,4) -- ([yshift=5.5pt]axis cs:205.268,4) [sharp corners] -- ([yshift=5.5pt]axis cs:0,4) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,4) rectangle ([yshift=5.5pt]axis cs:11.2676,4);
-\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:11.2676,4) rectangle ([yshift=5.5pt]axis cs:39.2676,4);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:11.2676,4) rectangle ([yshift=5.5pt]axis cs:39.2676,4);
 \fill[white] ([yshift=-5.5pt]axis cs:39.2676,4) rectangle ([yshift=5.5pt]axis cs:205.268,4);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:205.268,4) -- ([yshift=5.5pt]axis cs:205.268,4) [sharp corners] -- ([yshift=5.5pt]axis cs:0,4) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:205.268,4) {\hspace{0em}\textcolor{black!40}{+24}};
 \begin{scope}\clip([yshift=-5.5pt]axis cs:0,5) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:129.803,5) -- ([yshift=5.5pt]axis cs:129.803,5) [sharp corners] -- ([yshift=5.5pt]axis cs:0,5) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-5.5pt]axis cs:0,5) rectangle ([yshift=5.5pt]axis cs:11.2676,5);
-\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:11.2676,5) rectangle ([yshift=5.5pt]axis cs:22.5352,5);
-\fill[CORAcolorPurple!35!white] ([yshift=-5.5pt]axis cs:22.5352,5) rectangle ([yshift=5.5pt]axis cs:33.8028,5);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:11.2676,5) rectangle ([yshift=5.5pt]axis cs:22.5352,5);
+\fill[CORAcolorReachSet2] ([yshift=-5.5pt]axis cs:22.5352,5) rectangle ([yshift=5.5pt]axis cs:33.8028,5);
 \fill[white] ([yshift=-5.5pt]axis cs:33.8028,5) rectangle ([yshift=5.5pt]axis cs:129.803,5);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-5.5pt]axis cs:0,5) [rounded corners=1.5pt] -- ([yshift=-5.5pt]axis cs:129.803,5) -- ([yshift=5.5pt]axis cs:129.803,5) [sharp corners] -- ([yshift=5.5pt]axis cs:0,5) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:129.803,5) {\hspace{0em}\textcolor{black!40}{+95}};
 \end{axis}
-\begin{axis}[at={(methods.south west)}, anchor=south west, height=5.0cm, width=0.50\linewidth-2.55cm, xmin=0, xmax=1000, enlarge y limits={abs=0.7}, hide axis, clip=false]
+\begin{axis}[at={(methods.south west)}, anchor=south west, height=3.0cm, width=0.50\linewidth-2.55cm, xmin=0, xmax=1000, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,5)};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:283,0) {566};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:122.268,4) {166};
