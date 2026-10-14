@@ -22,7 +22,7 @@ offset computed in any precision are sound as they stand and only `error` has to
 -- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   23-September-2026
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

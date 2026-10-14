@@ -50,7 +50,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- The blocks of a stack are what was stacked. `Theorems.StackUnstack` is the other way round. -/
 @[simp] theorem unstack_stack (x : ∀ i, Vec ℝ (n i)) : unstack (stack x) = x := by

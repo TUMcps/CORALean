@@ -71,7 +71,7 @@ theorem HPolytope.mem_ineqs_iff {A : Mat 𝕋 q n} {b : Vec 𝕋 q} {x : Vec ℝ
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- The rounding has already been paid where each bound was combined, and nothing
 rounds here. -/

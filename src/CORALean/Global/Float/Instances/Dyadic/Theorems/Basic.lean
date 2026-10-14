@@ -71,7 +71,7 @@ theorem toReal_le_of_le {a b : Dyadic p} (h : le a b = true) : toReal a ≤ toRe
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- `toReal_def` restated at an anonymous constructor, which is the form
 `quotDown_le_div` and `le_quotUp` both rewrite with after computing a quotient. -/

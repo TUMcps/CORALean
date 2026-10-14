@@ -179,7 +179,7 @@ def mulDown (a b : Dyadic p) : Dyadic p := roundDown (exactMul a b)
 -- Authors:       Claude Sonnet 5
 -- Written:       16-August-2026
 -- Last update:   02-September-2026
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- The ceiling is the floor of the negation, so this negates, shifts right by
 `shift` bits, and negates back. -/

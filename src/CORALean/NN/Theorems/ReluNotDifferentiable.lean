@@ -25,7 +25,7 @@ CORA reads the subgradient there instead, and either choice is a heuristic.
 -- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

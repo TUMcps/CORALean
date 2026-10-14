@@ -38,7 +38,7 @@ lemmas match. Composed with `PolyZonotope.quadMap_exact`, this is half of
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   12-September-2026
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

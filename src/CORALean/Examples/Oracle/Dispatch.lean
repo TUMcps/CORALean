@@ -21,7 +21,7 @@ a type, and `handleOp`, which is where an op name becomes a handler.
 -- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
 -- Last update:   30-September-2026
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -900,7 +900,9 @@ def others_on_disk(cora):
 
 
 def coverage_tables(say):
-    return [CoraTable(p, say) for g in CORA_GROUPS for p in sorted((COVERAGE / g).glob("*.md"))]
+    # By name, not by Path: WindowsPath sorts case-insensitively and would reorder the tables.
+    return [CoraTable(p, say) for g in CORA_GROUPS
+            for p in sorted((COVERAGE / g).glob("*.md"), key=lambda p: p.name)]
 
 
 def counts_of(table):

@@ -1361,9 +1361,15 @@ code:
 <version>`: an agent writes its own model, and a model that substantially changes a
 file someone else wrote appends itself, comma-separated. `Reviewed:` records human
 reviews only, as lines `DD-Month-YYYY (Name)` oldest first, continuation lines
-aligned to the value column; `---` means not yet reviewed. To review, run
+aligned to the value column; `---` means not yet reviewed. A change keeps the stamp
+unless it is meaningful, and most changes are not: only a statement or definition that now
+says something different, or a new proof idea, resets it to `---`. Moving declarations out,
+renaming, changed notation, reformatting and reworded comments all keep it. A kept stamp
+keeps its original date, so a later `Last update:` shows the file changed since its review.
+To review, run
 `python3 scripts/review.py` (`--in ContSet/Zonotope` restricts it, `--main` picks only main-type files,
-`--commit` commits each review) or the VS Code task "Review a random Lean file or Basic.lean
+`--updated` picks only files updated since their last review, `--commit` commits each review)
+or the VS Code task "Review a random Lean file or Basic.lean
 section". A file added in the old
 format is fixed by `python3 scripts/author-blocks.py`.
 

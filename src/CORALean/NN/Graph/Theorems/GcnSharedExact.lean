@@ -23,7 +23,7 @@ by construction, and a caller who needs it accounted for runs
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

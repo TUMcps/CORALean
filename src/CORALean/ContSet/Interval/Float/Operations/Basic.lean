@@ -444,7 +444,7 @@ def Interval.sum₂ (I : Interval (Mat 𝕋 m n)) : Interval (Vec 𝕋 m) where
 -- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- The box `[-r, r]`, which is what a bound known only in magnitude gives. -/
 def Interval.symmetric (r : Vec 𝕋 n) : Interval (Vec 𝕋 n) := ⟨fun i => neg (r i), r⟩

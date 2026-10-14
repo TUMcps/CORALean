@@ -27,7 +27,7 @@ an inclusion whose entire loss is the rounding.
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

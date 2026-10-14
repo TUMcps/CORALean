@@ -14,7 +14,7 @@ For `n ≠ 0` and `g` above the bit length of `m`, `|n| * 2 ^ g` exceeds `|m|` a
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

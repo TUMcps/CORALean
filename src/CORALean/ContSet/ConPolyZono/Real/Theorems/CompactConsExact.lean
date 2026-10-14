@@ -29,7 +29,7 @@ term on both sides and only the constraint vector is rewritten.
 -- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

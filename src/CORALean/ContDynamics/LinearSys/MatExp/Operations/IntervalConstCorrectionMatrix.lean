@@ -22,7 +22,7 @@ public import CORALean.ContSet.Interval.Real.Operations.AbsMax
 -- Authors:       Claude Sonnet 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
