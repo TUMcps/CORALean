@@ -313,6 +313,11 @@
       "description": "capsule/ellipsoid test counts zero widths; unit square accepted",
       "kind": "other",
       "cex": "RepresentsaCapsuleCoraCounterexample.lean"
+    },
+    "rdivide": {
+      "description": "negative numerator over interval ending at 0: half-line mirrored",
+      "kind": "unsound",
+      "cex": "RdivideNumeratorCoraCounterexample.lean"
     }
   },
   "contSet/levelSet": {
@@ -373,6 +378,11 @@
       "description": "signed Jacobian determinant gives negative volume",
       "kind": "other",
       "cex": "VolumeNegExample.lean"
+    },
+    "interval": {
+      "description": "bernstein: cellfun on a matrix for one dimension",
+      "kind": "other",
+      "cex": "IntervalBernsteinCoraCrash.lean"
     }
   },
   "contSet/polygon": {
@@ -514,6 +524,13 @@
       "cex": "SupportFuncCoraAllZeroNeSupportFunc.lean"
     }
   },
+  "contSet/taylm": {
+    "asin": {
+      "description": "remainder uses asin power, not derivative; far too small",
+      "kind": "unsound",
+      "cex": "AsinRemainderCoraCounterexample.lean"
+    }
+  },
   "contSet/zonoBundle": {
     "isequal": {
       "description": "different member counts return true before comparison",
@@ -603,6 +620,22 @@
       "kind": "other",
       "findings": [
         "zonotope and constrained zonotope `contains_`, point container and a set operand"
+      ]
+    },
+    "split": {
+      "description": "coordinate used as box generator index; bundle calls missing get",
+      "kind": "other",
+      "cex": "SplitCoraSegmentCrash.lean",
+      "findings": [
+        "Zonotope `split`, `'bundle'`"
+      ]
+    },
+    "splitFirstGen": {
+      "description": "generator index passed as coordinate of the box",
+      "kind": "other",
+      "cex": "SplitFirstGenCoraCrash.lean",
+      "findings": [
+        "Zonotope `split` and `splitFirstGen`, generator index of the box"
       ]
     }
   },
@@ -695,6 +728,10 @@
     "check": {
       "description": "custom check on a cell passes if any piece passes",
       "kind": "unsound"
+    },
+    "robustness": {
+      "description": "distance outside mixes Euclidean and norm 1",
+      "kind": "other"
     }
   },
   "specification/stl": {

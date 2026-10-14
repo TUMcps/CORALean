@@ -10,6 +10,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.AntiderivPrintedCounterexampl
 public import CORALean.ContSet.Taylm.Real.Theorems.ArcsinEqAddArcsinShiftIff
 public import CORALean.ContSet.Taylm.Real.Theorems.ArcsinShiftCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.AsinOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.AsinRemainderCoraCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.AtanEqAddAtanShift
 public import CORALean.ContSet.Taylm.Real.Theorems.AtanOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.AtanShiftCounterexample

@@ -144,6 +144,9 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ScaledRPI
 public import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitCoraSegmentCrash
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitFirstGenCoraCrash
+public import CORALean.ContSet.Zonotope.Real.Theorems.SplitBundleCoraCrash
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitLongestGenUnion
 public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBall
 public import CORALean.ContSet.Zonotope.Real.Theorems.StepSubsetClosedBallOfReduceBoxOrder

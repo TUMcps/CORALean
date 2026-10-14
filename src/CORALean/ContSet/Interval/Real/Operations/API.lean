@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.ContainsScalingCora
+public import CORALean.ContSet.Interval.Real.Operations.RdivideNumeratorCora
 public import CORALean.ContSet.Interval.Real.Operations.BoundaryRatio
 public import CORALean.ContSet.Interval.Real.Operations.BoundaryPoint
 public import CORALean.ContSet.Interval.Real.Operations.Point

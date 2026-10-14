@@ -6,6 +6,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Project
+public import CORALean.ContSet.PolyZonotope.Real.Operations.IntervalBernsteinCora
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesEqMap
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RadiusReach

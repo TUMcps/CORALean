@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Theorems.ContainsScalingCoraCounterexample
+public import CORALean.ContSet.Interval.Real.Theorems.RdivideNumeratorCoraCounterexample
 public import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
 public import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
 public import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
