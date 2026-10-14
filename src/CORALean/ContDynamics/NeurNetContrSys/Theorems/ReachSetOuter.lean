@@ -12,9 +12,9 @@ what runs reach by construction, so the proof is the pair itself. All the
 content sits in the other half, `reachSet_subset_reach`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Reach for this to say where a run *is*; reach for `reachSet_subset_reach`
 to say what encloses it. -/
 theorem NeurNetContrSys.Trajectory.reachSet_outer {sys : NeurNetContrSys 𝕋 S n}
-    {π : Vec ℝ n → Vec ℝ n} {Δtc : ℝ} {H : ℕ} {R₀ : S n} {x : ℝ → Vec ℝ n}
+    {π : Vec ℝ n → Vec ℝ sys.plant.m} {Δtc : ℝ} {H : ℕ} {R₀ : S n} {x : ℝ → Vec ℝ n}
     (traj : sys.Trajectory π Δtc H R₀ x) (t : ℝ) :
     x t ∈ sys.reachSet π Δtc H R₀ t :=
   ⟨x, traj, rfl⟩

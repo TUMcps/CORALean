@@ -30,9 +30,9 @@ to quantify over.
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   12-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -51,7 +51,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Every state some zero-order-hold run of `sys` under `π` over `H` periods of
 length `Δtc` from `R₀` is at, at time `t`: the exact reachable set, not an
 enclosure of it. -/
-def NeurNetContrSys.reachSet (sys : NeurNetContrSys 𝕋 S n) (π : Vec ℝ n → Vec ℝ n) (Δtc : ℝ)
+def NeurNetContrSys.reachSet (sys : NeurNetContrSys 𝕋 S n) (π : Vec ℝ n → Vec ℝ sys.plant.m)
+    (Δtc : ℝ)
     (H : ℕ) (R₀ : S n) (t : ℝ) : Set (Vec ℝ n) :=
   {y | ∃ x : ℝ → Vec ℝ n, sys.Trajectory π Δtc H R₀ x ∧ x t = y}
 

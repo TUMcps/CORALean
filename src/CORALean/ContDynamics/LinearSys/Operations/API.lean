@@ -38,6 +38,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
 public import CORALean.ContDynamics.LinearSys.Operations.GirardReach
 public import CORALean.ContDynamics.LinearSys.Operations.InputReach
+public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionBoxFloat
@@ -159,6 +160,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
 public import CORALean.ContDynamics.LinearSys.Operations.Identify
+public import CORALean.ContDynamics.LinearSys.Operations.OfABc
 public import CORALean.ContDynamics.LinearSys.Operations.IdentifyCandidate
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatChecked
 public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatChecked

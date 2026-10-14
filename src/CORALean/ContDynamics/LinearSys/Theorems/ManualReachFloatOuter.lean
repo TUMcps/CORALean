@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 public import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ManualRunFloatOuter
@@ -13,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 [1, Alg. 1] in floats from `manualInitFloat`, which holds the invariant at `t₀ = 0`: `H(0)`
 is `X₀` itself, and the constant and the `Ũ`-input have contributed `0`, which `{0}` holds.
 `manualRunFloat_outer` does the rest, at the order `reachOrderFloat` admitted. Every input
-`u(t) ∈ B U` is in `V = B U`'s float enclosure.
+`u(t) ∈ B U + c` is in `V = B U ⊕ c`'s float enclosure.
 
 ## References
 
@@ -22,9 +23,9 @@ is `X₀` itself, and the constant and the `Ũ`-input have contributed `0`, whic
       Transactions on Automatic Control, vol. 68, no. 12, 2023, pp. 7771–7786.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -65,17 +66,18 @@ theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U` is, at every
+/-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U + c` is, at every
 time of window `k`, in the `k`-th set. -/
-theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.manualReachFloat B params options = some Rs) :
+    (h : sys.manualReachFloat params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
         sys.CanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
+          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+            params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
           (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
@@ -85,15 +87,14 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 
   obtain ⟨N, hN, η', hη', h⟩ := h
   obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
   have hadm := (LinearSys.reachOrderFloat_spec hη').1
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U with hV
+  set V := sys.inputSetFloat U with hV
   obtain ⟨hlen, hsnd⟩ := sys.manualRunFloat_outer hΔt hadm h
     (sys.aux_manualInvariantFloat_init X₀ V)
   refine ⟨N, hNΔt, hlen, fun {x u} traj k hk t ht => ?_⟩
-  -- the run's inputs are in `B U`'s float enclosure
-  have hUV : (Scalar.toRealMat B *ᵥ ·) '' U.construct ⊆ V.construct := by
-    rintro _ ⟨w, hw, rfl⟩
-    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U
-      (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
+  -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
+  have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+      U.construct ⊆ ContSet.construct V :=
+    sys.inputSetFloat_outer U
   have hkN : (k : ℝ) + 1 ≤ N := by rw [hlen] at hk; exact_mod_cast hk
   refine hsnd traj hUV k hk t ⟨by simpa [LinearSys.manualInitFloat] using ht.1,
     by simpa [LinearSys.manualInitFloat] using ht.2⟩ ?_

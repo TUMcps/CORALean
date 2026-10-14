@@ -16,9 +16,9 @@ The algorithms are `LinearSys.reachFloatInput` and `LinearSys.reachWrappingFreeF
 the box `S.U` as a zonotope in input space and `B` apart.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 def randVerifyReach (alg : RandAlg) (S : RandSystem 𝕋) (tFinal : ℚ) (η ρ : ℕ) :
     Except String (List (Zonotope (Vec 𝕋 5))) :=
   -- the system, the problem and the algorithm's options, as CORA's `params`/`options`
-  let sys : LinearSys 𝕋 5 := LinearSys.canonicalFloat S.A
+  let sys : LinearSys 𝕋 5 :=                                   -- linearSys(A, B), c = 0
+    { LinearSys.canonicalFloat S.A with m := 2, B := S.B, D := fun _ _ => FloatOps.zero }
   let params : Reach.InputParams (Zonotope (Vec 𝕋 5)) (Zonotope (Vec 𝕋 2)) ℚ :=
     { X₀ := S.X0, U := Interval.zonotope S.U, tFinal := tFinal }
   let options : LinearSys.ReachOptions 𝕋 :=
@@ -52,11 +53,11 @@ def randVerifyReach (alg : RandAlg) (S : RandSystem 𝕋) (tFinal : ℚ) (η ρ 
   -- the windows of the chosen algorithm
   match alg with
   | .standard =>
-    match sys.reachFloatInput S.B params options with
+    match sys.reachFloatInput params options with
     | some (Rti, _) => pure Rti
     | none => throw "reachFloatInput returned none (a window's squaring search failed)"
   | .wrappingFree =>
-    match sys.reachWrappingFreeFloatInput S.B params options with
+    match sys.reachWrappingFreeFloatInput params options with
     | some Rti => pure Rti
     | none => throw "reachWrappingFreeFloatInput returned none (a window's squaring search failed)"
 

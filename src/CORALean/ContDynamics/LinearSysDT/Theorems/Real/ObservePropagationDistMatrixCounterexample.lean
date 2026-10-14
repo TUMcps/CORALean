@@ -22,7 +22,7 @@ it. `F` and `params.V` are dropped alike. Read from the source, not run.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,22 +39,21 @@ open Matrix CORALean.Real
 is not in the observer's next set, at every gain and every positive order. -/
 theorem LinearSysDT.observePropagation_dist_matrix_counterexample
     (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) (horder : 0 < order) :
-    let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 1
-    let E : Mat ℝ 1 1 := 2  -- `linsysDT.E`
+    let sys : LinearSysDT ℝ 1 := { LinearSysDT.canonical 1 with E := 2 }  -- `E = 2`
     let W : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩  -- `params.W`
     let w : Vec ℝ 1 := fun _ => 1
     let x : ℕ → Vec ℝ 1 := fun k _ => 2 * k
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (x 0)
     let y : ℕ → Vec ℝ 1 := fun k => (1 : Mat ℝ 1 1) *ᵥ x k  -- `C = 1`, `v = 0`
-    x 0 ∈ R₀.construct ∧ w ∈ W.construct ∧ x 1 = sys.A *ᵥ x 0 + 0 + E *ᵥ w ∧
-      x 1 ∉ (sys.observePropagation 1 gain order W R₀ (Zonotope.ofPoint 0)
+    x 0 ∈ R₀.construct ∧ w ∈ W.construct ∧ x 1 = sys.A *ᵥ x 0 + sys.B *ᵥ 0 + sys.E *ᵥ w ∧
+      x 1 ∉ (sys.observePropagation gain order W R₀ (Zonotope.ofPoint 0)
         (fun _ => 0) y 1).construct := by -- --- PROOF ---
-  intro sys E W w x R₀ y
+  intro sys W w x R₀ y
   refine ⟨Zonotope.mem_ofPoint _, ⟨fun _ => 1, fun _ => by norm_num, ?_⟩, ?_, ?_⟩
   · funext i
     simp [W, w]
   · funext i
-    simp [x, w, sys, E]
+    simp [x, w, sys]
   · -- the order is met, so `reduce` returns the step's set unchanged
     simp only [LinearSysDT.observePropagation, Zonotope.reduce, Zonotope.reduceGirard]
     rw [dif_neg (by simp only [Zonotope.plus, Zonotope.mtimes, Zonotope.ofPoint, W, R₀]; omega)]

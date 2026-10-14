@@ -21,7 +21,7 @@ another method bounds the reachable error, and the box is the hull of it.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,20 +36,19 @@ variable {n nu ny nw nv : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.intervalEstimate_le_of_bounds (A : Mat ℝ n n) (B : Mat ℝ n nu)
-    (C : Mat ℝ ny n) (E : Mat ℝ n nw) (F : Mat ℝ ny nv) (L : Mat ℝ n ny)
-    (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ nw)) (V : Zonotope (Vec ℝ nv))
-    (u : ℕ → Vec ℝ nu) (y : ℕ → Vec ℝ ny) (k : ℕ) (lo hi : Vec ℝ n)
-    (h : ∀ e ∈ LinearSysDT.reachErrorSet A C E F L X₀ W V k, ∀ i, lo i ≤ e i ∧ e i ≤ hi i)
+theorem LinearSysDT.intervalEstimate_le_of_bounds (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
+    (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) (lo hi : Vec ℝ n)
+    (h : ∀ e ∈ LinearSysDT.reachErrorSet sys L X₀ W V k, ∀ i, lo i ≤ e i ∧ e i ≤ hi i)
     (i : Fin n) :
-    let x := (LinearSysDT.intervalEstimateState A B C E F L X₀ W V u y k).x
-    x i + lo i ≤ (LinearSysDT.intervalEstimate A B C E F L X₀ W V u y k).inf i ∧
-      (LinearSysDT.intervalEstimate A B C E F L X₀ W V u y k).sup i ≤
+    let x := (LinearSysDT.intervalEstimateState sys L X₀ W V u y k).x
+    x i + lo i ≤ (LinearSysDT.intervalEstimate sys L X₀ W V u y k).inf i ∧
+      (LinearSysDT.intervalEstimate sys L X₀ W V u y k).sup i ≤
         x i + hi i := by -- --- PROOF ---
   intro x
-  obtain ⟨-, heq⟩ := LinearSysDT.intervalEstimate_error_eq_hull A B C E F L X₀ W V u y k
-  set s := LinearSysDT.intervalEstimateState A B C E F L X₀ W V u y k
-  set Ω := LinearSysDT.reachErrorSet A C E F L X₀ W V k
+  obtain ⟨-, heq⟩ := LinearSysDT.intervalEstimate_error_eq_hull sys L X₀ W V u y k
+  set s := LinearSysDT.intervalEstimateState sys L X₀ W V u y k
+  set Ω := LinearSysDT.reachErrorSet sys L X₀ W V k
   -- `Ω_k` is nonempty: the centres of `⟨0, H₀⟩`, `W` and `V`
   have hne : Ω.Nonempty := by
     refine ⟨_, Set.add_mem_add (Set.add_mem_add ⟨0, ⟨0, by simp, by simp⟩, rfl⟩

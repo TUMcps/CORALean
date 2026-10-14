@@ -13,7 +13,8 @@ outputs and not in a state, with `f` over `ℝ` as `NonlinearSysDT` holds its `f
 argument holding `y(k-1-i)`, and the inputs, block `j` of the second holding
 `u(k-j)`; `pastOut` and `pastIn` read those two windows off a signal.
 
-Time is counted in sampling periods, as in `NonlinearSysDT`, so no `dt` is stored.
+CORA's sampling time `dt` is stored, as in `NonlinearSysDT`, and carried to the converted
+system; runs are indexed by the step.
 Left out: CORA's cached Jacobian, Hessian and third-order tensor, which
 `NonlinearSysDT.LinStep` already supplies at the converted system.
 
@@ -29,7 +30,7 @@ and every input in `U`; the conversion is not used to state it.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,6 +48,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 structure NonlinearARX (dy du p : ℕ) where
   f : Vec ℝ (p * dy) → Vec ℝ ((p + 1) * du) → Vec ℝ dy
+  dt : ℝ
 
 /-- The window of `p` outputs starting at `k`, block `a` holding `y(k+a)`. -/
 def NonlinearARX.stack (p : ℕ) (y : ℕ → Vec ℝ dy) (k : ℕ) : Vec ℝ (p * dy) :=

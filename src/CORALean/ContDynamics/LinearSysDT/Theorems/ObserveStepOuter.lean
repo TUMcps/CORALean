@@ -28,7 +28,7 @@ strips are the reals the floats store.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,20 +45,27 @@ variable [IntersectStrip 𝕋 S] {n p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.observeStep_outer (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (σ : Vec 𝕋 p)
-    (W : S n) (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n p) (u : Vec 𝕋 n)
-    (y : Vec 𝕋 p) (Xhat : S n) {X : Set (Vec ℝ n)} (hX : X ⊆ construct Xhat) :
-    ((fun x => toRealMat sys.A *ᵥ x + toRealVec u) '' X + construct W) ∩
-        {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (σ i)} ⊆
-      construct (sys.observeStep C σ W options u y Xhat) := by -- --- PROOF ---
+theorem LinearSysDT.observeStep_outer (sys : LinearSysDT 𝕋 n) (σ : Vec 𝕋 sys.q)
+    (W : S n) (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n sys.q) (u : Vec 𝕋 sys.m)
+    (y : Vec 𝕋 sys.q) (Xhat : S n) {X : Set (Vec ℝ n)} (hX : X ⊆ construct Xhat) :
+    ((fun x => toRealMat sys.A *ᵥ x + toRealMat sys.B *ᵥ toRealVec u + toRealVec sys.c) '' X +
+        construct W) ∩
+        {x | ∀ i, |(toRealMat sys.C *ᵥ x - toRealVec y) i| ≤ toReal (σ i)} ⊆
+      construct (sys.observeStep σ W options u y Xhat) := by -- --- PROOF ---
   -- the prediction holds every predicted state
-  have hpred : (fun x => toRealMat sys.A *ᵥ x + toRealVec u) '' X + construct W ⊆
-      construct (plus (plus (mtimes sys.A Xhat) (OfScalarPoint.ofVec u)) W) := by
+  have hpred : (fun x => toRealMat sys.A *ᵥ x + toRealMat sys.B *ᵥ toRealVec u + toRealVec sys.c) ''
+      X + construct W ⊆
+      construct (plus (plus (plus (mtimes sys.A Xhat) (mtimes sys.B (OfScalarPoint.ofVec u)))
+        (OfScalarPoint.ofVec sys.c)) W) := by
     rintro _ ⟨_, ⟨x, hx, rfl⟩, w, hw, rfl⟩
     have hA : toRealMat sys.A *ᵥ x ∈ construct (mtimes sys.A Xhat) :=
       mtimes_outer sys.A Xhat (Set.mem_biUnion (Set.mem_singleton _) ⟨x, hX hx, rfl⟩)
-    exact plus_outer _ _ ⟨_, plus_outer _ _ ⟨_, hA, _, OfScalarPoint.mem_ofVec u, rfl⟩, w, hw,
-      rfl⟩
+    have hB : toRealMat sys.B *ᵥ toRealVec u ∈
+        construct (mtimes sys.B (OfScalarPoint.ofVec (S := S) u)) :=
+      mtimes_outer sys.B _ (Set.mem_biUnion (Set.mem_singleton _)
+        ⟨_, OfScalarPoint.mem_ofVec u, rfl⟩)
+    exact plus_outer _ _ ⟨_, plus_outer _ _ ⟨_, plus_outer _ _ ⟨_, hA, _, hB, rfl⟩, _,
+      OfScalarPoint.mem_ofVec sys.c, rfl⟩, w, hw, rfl⟩
   intro x hx
   unfold LinearSysDT.observeStep
   split

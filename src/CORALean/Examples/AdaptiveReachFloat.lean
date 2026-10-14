@@ -23,7 +23,7 @@ the step doubles once it can, and the last step lands on `t_f`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,6 +40,10 @@ def sysD : LinearSys (Dyadic 64) 2 := LinearSys.canonicalFloat
 /-- The input enters the second state alone. -/
 def BD : Mat (Dyadic 64) 2 1 := !![d 0 0; d 1 0]
 
+/-- The damped rotation with that input, CORA's `linearSys(A, BD)`: `c = 0`, the output the
+state. -/
+def sysBD : LinearSys (Dyadic 64) 2 := { sysD with m := 1, B := BD, D := fun _ _ => d 0 0 }
+
 /-- `[3/8, 5/8]`, centred at `1/2`: `0` is not in it. -/
 def UD : Zonotope (Vec (Dyadic 64) 1) where
   h := 1
@@ -54,12 +58,12 @@ def optionsD : LinearSys.AdaptiveOptions (Dyadic 64) :=
 
 /-- `[0, 1]`, every parameter tuned. -/
 def adaptiveD : Option (List (LinearSys.AdaptiveStepInfo (Dyadic 64) 2)) :=
-  sysD.reachAdaptiveFloat BD { X₀ := X₀D, U := UD, tFinal := 1 } optionsD
+  sysBD.reachAdaptiveFloat { X₀ := X₀D, U := UD, tFinal := 1 } optionsD
 
 /-- What a successful run is worth: its windows cover `[0, 1]`, and every run
 under every input signal in `B U` is in the window of every time. -/
 example {steps : List (LinearSys.AdaptiveStepInfo (Dyadic 64) 2)} (h : adaptiveD = some steps) :=
-  sysD.reachAdaptiveFloat_outer BD h
+  sysBD.reachAdaptiveFloat_outer h
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

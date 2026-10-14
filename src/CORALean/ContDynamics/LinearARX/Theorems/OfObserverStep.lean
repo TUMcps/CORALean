@@ -20,7 +20,7 @@ the recursion of `ofObserver` from `k = p` on, once `(A + MC)^p = 0`. [1] cites 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -62,12 +62,12 @@ theorem LinearARX.aux_observer_unroll (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.ofObserver_step {p : ℕ} (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
-    (Du : Mat ℝ dy du) (M : Mat ℝ n dy) (hM : (A + M * C) ^ p = 0) {x : ℕ → Vec ℝ n}
+    (Du : Mat ℝ dy du) (M : Mat ℝ n dy) (dt : ℝ) (hM : (A + M * C) ^ p = 0) {x : ℕ → Vec ℝ n}
     {u : ℕ → Vec ℝ du} {y : ℕ → Vec ℝ dy} (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k)
     (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k) (k : ℕ) (hk : p ≤ k) :
-    y k = ∑ i : Fin p, toRealMat ((LinearARX.ofObserver p A Bu C Du M).Abar i)
+    y k = ∑ i : Fin p, toRealMat ((LinearARX.ofObserver p A Bu C Du M dt).Abar i)
         *ᵥ y (k - (i + 1))
-      + ∑ j : Fin (p + 1), toRealMat ((LinearARX.ofObserver p A Bu C Du M).Bbar j)
+      + ∑ j : Fin (p + 1), toRealMat ((LinearARX.ofObserver p A Bu C Du M dt).Bbar j)
         *ᵥ u (k - j) := by -- --- PROOF ---
   conv_lhs => rw [hy, LinearARX.aux_observer_unroll A Bu C Du M hx hy k p hk, hM, zero_mulVec,
     zero_add, mulVec_sum]

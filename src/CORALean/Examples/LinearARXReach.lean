@@ -15,7 +15,7 @@ places its window in the reachable set of the conversion at every step.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,6 +32,7 @@ open Matrix ContSet
 def Example.arx : LinearARX ℝ 1 1 2 where
   Abar i := Matrix.of fun _ _ => if i.val = 0 then 1 else -1
   Bbar j := Matrix.of fun _ _ => if j.val = 2 then 0 else 1
+  dt := 1
 
 /-- The zero signal is a run for any boxes containing the origin. -/
 theorem Example.arx_zero_trajectory (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1))

@@ -20,7 +20,7 @@ The source is [1].
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,16 +33,19 @@ variable {n m N r : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.identify_le_candidate (lt : ℝ → ℝ → Bool) (hlt : ∀ a b, lt a b = true ↔ a < b)
+theorem LinearSys.identify_le_candidate (lt : ℝ → ℝ → Bool)
+    (hlt : ∀ a b, lt a b = true ↔ a < b)
     (err : Mat ℝ n (n + 1 + m) → ℝ) (dx : Fin N → Vec ℝ n)
     (V : Mat ℝ (n + 1 + m) r) (s : Fin r → ℝ) (W : Mat ℝ N r) (hr : 0 < r) :
-    ∃ M, LinearSys.identify lt err dx V s W = some (dmdBlocks M) ∧
+    ∃ M, LinearSys.identify lt err dx V s W =
+        some (LinearSys.ofABc (dmdBlocks M).1 (dmdBlocks M).2.1 (dmdBlocks M).2.2) ∧
       (∃ k, 1 ≤ k ∧ k ≤ r ∧ M = LinearSys.identifyCandidate dx V s W k) ∧
       err M ≤ err (LinearSys.identifyCandidate dx V s W r) := by -- --- PROOF ---
   obtain ⟨M, hM, hk, hle⟩ := dmdSelect_le lt hlt err (LinearSys.identifyCandidate dx V s W) hr
   refine ⟨M, ?_, hk, hle r hr le_rfl⟩
-  -- `identify` is the selection mapped through the blocks
-  show Option.map dmdBlocks (dmdSelect lt err (LinearSys.identifyCandidate dx V s W) r) = _
+  -- `identify` is the selection mapped through the blocks and `ofABc`
+  show Option.map (fun M => LinearSys.ofABc (dmdBlocks M).1 (dmdBlocks M).2.1 (dmdBlocks M).2.2)
+    (dmdSelect lt err (LinearSys.identifyCandidate dx V s W) r) = _
   rw [hM]
   rfl
 

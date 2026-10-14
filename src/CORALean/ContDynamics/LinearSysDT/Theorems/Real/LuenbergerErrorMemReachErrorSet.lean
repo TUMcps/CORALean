@@ -26,7 +26,7 @@ unrolling it the theorem's Eq. 23. The box of its Eq. 21 is the hull of `Ω_k`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,17 +41,17 @@ variable {n nu ny nw nv : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.luenbergerError_mem_reachErrorSet (A : Mat ℝ n n) (B : Mat ℝ n nu)
-    (C : Mat ℝ ny n) (E : Mat ℝ n nw) (F : Mat ℝ ny nv) (L : Mat ℝ n ny)
-    (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ nw)) (V : Zonotope (Vec ℝ nv))
-    (u : ℕ → Vec ℝ nu) (y : ℕ → Vec ℝ ny) (x xh : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ nw)
-    (v : ℕ → Vec ℝ nv) (h0 : x 0 ∈ X₀.construct) (hw : ∀ k, w k ∈ W.construct)
-    (hv : ∀ k, v k ∈ V.construct) (hstep : ∀ k, x (k + 1) = A *ᵥ x k + B *ᵥ u k + E *ᵥ w k)
-    (hy : ∀ k, y k = C *ᵥ x k + F *ᵥ v k) (hxh0 : xh 0 = X₀.c)
-    (hxh : ∀ k, xh (k + 1) = A *ᵥ xh k + B *ᵥ u k + L *ᵥ (y k - C *ᵥ xh k)) (k : ℕ) :
-    x k - xh k ∈ LinearSysDT.reachErrorSet A C E F L X₀ W V k := by -- --- PROOF ---
-  set M := A - L * C with hM
-  set d : ℕ → Vec ℝ n := fun j => E *ᵥ w j + (-(L * F)) *ᵥ v j with hd
+theorem LinearSysDT.luenbergerError_mem_reachErrorSet (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
+    (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (x xh : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ sys.r)
+    (v : ℕ → Vec ℝ sys.s) (h0 : x 0 ∈ X₀.construct) (hw : ∀ k, w k ∈ W.construct)
+    (hv : ∀ k, v k ∈ V.construct)
+    (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + sys.E *ᵥ w k)
+    (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (hxh0 : xh 0 = X₀.c)
+    (hxh : ∀ k, xh (k + 1) = sys.A *ᵥ xh k + sys.B *ᵥ u k + L *ᵥ (y k - sys.C *ᵥ xh k)) (k : ℕ) :
+    x k - xh k ∈ LinearSysDT.reachErrorSet sys L X₀ W V k := by -- --- PROOF ---
+  set M := sys.A - L * sys.C with hM
+  set d : ℕ → Vec ℝ n := fun j => sys.E *ᵥ w j + (-(L * sys.F)) *ᵥ v j with hd
   -- [1, Eq. 14]: the error recursion
   have herr : ∀ j, x (j + 1) - xh (j + 1) = M *ᵥ (x j - xh j) + d j := fun j => by
     rw [hstep, hxh, hy, hM, hd]
@@ -76,8 +76,8 @@ theorem LinearSysDT.luenbergerError_mem_reachErrorSet (A : Mat ℝ n n) (B : Mat
     obtain ⟨β, hβ, hx⟩ := h0
     exact ⟨β, hβ, by rw [hxh0, hx]; simp⟩
   have hsplit : ∑ m ∈ Finset.range k, (M ^ m) *ᵥ d (k - 1 - m) =
-      ∑ m ∈ Finset.range k, (M ^ m * E) *ᵥ w (k - 1 - m) +
-        ∑ m ∈ Finset.range k, (M ^ m * -(L * F)) *ᵥ v (k - 1 - m) := by
+      ∑ m ∈ Finset.range k, (M ^ m * sys.E) *ᵥ w (k - 1 - m) +
+        ∑ m ∈ Finset.range k, (M ^ m * -(L * sys.F)) *ᵥ v (k - 1 - m) := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun m _ => by simp only [hd, mulVec_add, mulVec_mulVec]
   rw [hclosed, hsplit, ← add_assoc]

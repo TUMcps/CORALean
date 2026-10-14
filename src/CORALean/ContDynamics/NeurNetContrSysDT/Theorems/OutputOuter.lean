@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
+public import CORALean.ContDynamics.LinearSysDT.Operations.Basic
 
 @[expose] public section
 
@@ -17,9 +18,9 @@ looser one `reach` itself widens through, as `NeurNetContrSysDT.Operations`
 already notes at the state.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +30,7 @@ namespace CORALean
 
 open Matrix ContSet Scalar Plus Reduce Mtimes
 
-variable {n r : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
     [OfScalarPoint 𝕋 S]
@@ -38,13 +39,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.output_outer (sys : NeurNetContrSysDT 𝕋 S n)
-    (out : OutputEq 𝕋 n n r) {o : ℕ} (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ n}
+    {o : ℕ} (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.plant.m}
     (hπ : sys.contr.Sound π) {x : ℕ → Vec ℝ n}
     (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    out.eval (x k) (π (x k)) ∈ construct
-      (out.outputSet (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩)
+    sys.plant.outputEq.eval (x k) (π (x k)) ∈ construct
+      (sys.plant.outputEq.outputSet (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩)
         (sys.contr.enclose (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩))) :=
-  out.outputSet_outer _ _ (sys.reach_outer ho R₀ hπ traj k)
+  sys.plant.outputEq.outputSet_outer _ _ (sys.reach_outer ho R₀ hπ traj k)
     (hπ.enclose_outer _ _ (sys.reach_outer ho R₀ hπ traj k))
 
 end CORALean

@@ -22,7 +22,7 @@ reachable, but `y(2) = 2` forces `ũ(2) = 1` and so `y(3) ≥ 0`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ open Matrix Scalar
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.reachWindow_ne_prod :
-    let sys : LinearARX ℝ 1 1 2 := ⟨fun _ => 0, fun j => if j.val ≤ 1 then 1 else 0⟩
+    let sys : LinearARX ℝ 1 1 2 := ⟨fun _ => 0, fun j => if j.val ≤ 1 then 1 else 0, 1⟩
     let U : ℕ → Set (Vec ℝ 1) := fun _ => {v | |v 0| ≤ 1}
     ∃ w : Vec ℝ (2 * 1), (∀ a : Fin 2, (fun b => w (finProdFinEquiv (a, b))) ∈
       sys.reachOut 0 U (2 + a)) ∧ w ∉ sys.reachWindow 0 U 2 := by -- --- PROOF ---

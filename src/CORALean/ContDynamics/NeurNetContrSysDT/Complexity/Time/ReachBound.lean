@@ -23,7 +23,7 @@ states for `NeuralNetwork.enclose` in general.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       23-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -71,8 +71,14 @@ theorem NeurNetContrSysDT.reachCost_le (sys : NeurNetContrSysDT ℝ 𝒵 n) {o :
     -- the step's input is the set reached so far, at order `o`; its enclosure is at most `hEnc`
     have hstep := NeurNetContrSysDT.aux_step_le n hEnc o _ _
       (sys.aux_reach_h_le ho R₀ hR₀ k) (hE k)
+    -- the input map's `mtimes` is at the enclosure's size, at most `hEnc`
+    have hin : Zonotope.mtimesCost n sys.plant.m
+        (sys.contr.enclose (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h + Zonotope.plusCost n ≤
+        Zonotope.mtimesCost n sys.plant.m hEnc + Zonotope.plusCost n :=
+      Cost.add_le_add (Zonotope.mtimesCost_mono n sys.plant.m (hE k)) le_rfl
     have h := Nat.add_le_add (Cost.le_iff.mp ih)
-      (Nat.add_le_add (le_refl (NeuralNetwork.encloseCost LC sys.contr).ops) (Cost.le_iff.mp hstep))
+      (Nat.add_le_add (Nat.add_le_add (le_refl (NeuralNetwork.encloseCost LC sys.contr).ops)
+        (Cost.le_iff.mp hin)) (Cost.le_iff.mp hstep))
     refine Cost.le_iff.mpr ?_
     simpa [NeurNetContrSysDT.reachCost, NeurNetContrSysDT.reachStepBound, Nat.succ_mul,
       Nat.add_assoc] using h

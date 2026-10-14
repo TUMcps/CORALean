@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import Mathlib.Algebra.Group.Pointwise.Set.BigOperators
 public import Mathlib.Data.Matrix.Mul
@@ -25,7 +26,7 @@ enter: the error dynamics `e_{k+1} = (A - LC) e_k + E w_k - L F v_k` [1, Eq. 14]
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,12 +42,12 @@ variable {n ny nw nv : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Ω_k`, Eq. 24 of [1, Thm. 2]. -/
-def LinearSysDT.reachErrorSet (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
-    (F : Mat ℝ ny nv) (L : Mat ℝ n ny) (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ nw))
-    (V : Zonotope (Vec ℝ nv)) (k : ℕ) : Set (Vec ℝ n) :=
-  (((A - L * C) ^ k) *ᵥ ·) '' (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).construct +
-    ∑ i ∈ Finset.range k, (((A - L * C) ^ i * E) *ᵥ ·) '' W.construct +
-    ∑ i ∈ Finset.range k, (((A - L * C) ^ i * -(L * F)) *ᵥ ·) '' V.construct
+def LinearSysDT.reachErrorSet (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q) (X₀ : Zonotope (Vec ℝ n))
+    (W : Zonotope (Vec ℝ sys.r))
+    (V : Zonotope (Vec ℝ sys.s)) (k : ℕ) : Set (Vec ℝ n) :=
+  (((sys.A - L * sys.C) ^ k) *ᵥ ·) '' (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).construct +
+    ∑ i ∈ Finset.range k, (((sys.A - L * sys.C) ^ i * sys.E) *ᵥ ·) '' W.construct +
+    ∑ i ∈ Finset.range k, (((sys.A - L * sys.C) ^ i * -(L * sys.F)) *ᵥ ·) '' V.construct
 
 end CORALean
 

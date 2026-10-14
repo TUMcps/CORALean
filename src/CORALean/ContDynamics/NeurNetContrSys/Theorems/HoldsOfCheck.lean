@@ -16,7 +16,7 @@ At the period boundaries, since that is where `reach` has anything to say.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
 variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
@@ -43,7 +43,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem NeurNetContrSys.holds_of_check [Contains ContSet (S n)] [IsDisjoint ContSet (S n)]
     (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt)
     (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ} {R₀ : S n}
-    {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
     (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H) :
     spec.check (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) →

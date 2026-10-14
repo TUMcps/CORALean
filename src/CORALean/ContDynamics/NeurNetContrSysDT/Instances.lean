@@ -16,9 +16,9 @@ is `reachUnion_outer`. No input set: the closed loop reads its own input off the
 controller.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,6 +31,7 @@ open ContSet
 variable {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable [OfScalarPoint 𝕋 S]
 
 
 -- ========================================  INSTANCES  ========================================= --

@@ -19,9 +19,9 @@ enclosure. `Theorems.ReachSetOuter` puts every run into it,
 `ReachSetSubsetReach` puts it inside `reach`.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,7 +39,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every state some run of `sys` under `π` from `R₀` is at after `k` steps: the
 exact reachable set, not an enclosure of it. -/
-def NeurNetContrSysDT.reachSet (sys : NeurNetContrSysDT 𝕋 S n) (π : Vec ℝ n → Vec ℝ n)
+def NeurNetContrSysDT.reachSet (sys : NeurNetContrSysDT 𝕋 S n) (π : Vec ℝ n → Vec ℝ sys.plant.m)
     (R₀ : S n) (k : ℕ) : Set (Vec ℝ n) :=
   {y | ∃ x : ℕ → Vec ℝ n, sys.Trajectory π R₀ x ∧ x k = y}
 

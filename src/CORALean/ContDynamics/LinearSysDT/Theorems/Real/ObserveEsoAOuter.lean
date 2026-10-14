@@ -20,7 +20,7 @@ CORA's step does not enclose it (`LinearSysDT.observeEsoA1D_counterexample`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,18 +35,19 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.observeEsoA_outer (sys : LinearSysDT ℝ n) (C : Mat ℝ m n) {W : Mat ℝ n n}
+theorem LinearSysDT.observeEsoA_outer (sys : LinearSysDT ℝ n) {W : Mat ℝ n n}
     (hW : W.PosDef) (φ : ℝ) {p lam : ℝ} (hp0 : 0 < p) (hp1 : p < 1) (hl0 : 0 ≤ lam)
-    (hl1 : lam < 1) (σsqPrev : ℝ) (u : Vec ℝ n) (y : Vec ℝ m) {Q : Mat ℝ n n} (hQ : Q.PosDef)
-    (c : Vec ℝ n) {x w : Vec ℝ n} (hx : x ∈ (Ellipsoid.ofShape Q c).construct)
+    (hl1 : lam < 1) (σsqPrev : ℝ) (u : Vec ℝ sys.m) (y : Vec ℝ sys.q) {Q : Mat ℝ n n}
+    (hQ : Q.PosDef) (c : Vec ℝ n) {x w : Vec ℝ n} (hx : x ∈ (Ellipsoid.ofShape Q c).construct)
     (hw : w ∈ (Ellipsoid.ofShape W 0).construct)
-    (hy : ‖C *ᵥ (sys.A *ᵥ x + u + w) - y‖₂ ≤ φ) :
-    sys.A *ᵥ x + u + w
-      ∈ (sys.observeEsoA C W φ p lam σsqPrev u y Q c).construct := by -- --- PROOF ---
-  obtain ⟨hN, hpred⟩ := Ellipsoid.mem_ofShape_affine_add hQ hW sys.A hp0 hp1 c u hx hw
+    (hy : ‖sys.C *ᵥ (sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w) - y‖₂ ≤ φ) :
+    sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w
+      ∈ (sys.observeEsoA W φ p lam σsqPrev u y Q c).construct := by -- --- PROOF ---
+  obtain ⟨hN, hpred⟩ :=
+    Ellipsoid.mem_ofShape_affine_add hQ hW sys.A hp0 hp1 c (sys.B *ᵥ u + sys.c) hx hw
   simp only [LinearSysDT.observeEsoA]
   split_ifs
-  · exact Ellipsoid.intersectStripGollamudi_outer hN _ C φ y hl0 hl1 ⟨hpred, hy⟩
+  · exact Ellipsoid.intersectStripGollamudi_outer hN _ sys.C φ y hl0 hl1 ⟨hpred, hy⟩
   · exact hpred
 
 end CORALean

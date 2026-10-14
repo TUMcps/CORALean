@@ -22,9 +22,9 @@ Where the bound state is a state of the coordinate's own component, that sum wou
 at the one entry both land on, so this definition puts the `1` there and drops `A_ij`. That is
 `Amerged` exactly when `A_ij = 0`, which `SelfBindFree` states and the theorems assume. A binding
 to another component's state is always exact: the block is `0` there.
-CORA's nonlinear branch, symbolic, is not here (#40), nor its `Bmerged`, `cMerged`, `Emerged`
-and bindings through an output equation: the result is `LinearSys.canonical` of the merged `A`,
-inputs in state coordinates as the components' `CanonicalTrajectory` takes them.
+The result is `LinearSys.canonical` of the merged `A`, as the locations' canonical flows take it;
+CORA's full merge, through output equations, is `mergeFlowsLinearSys`; its nonlinear branch is
+not here (#40).
 -/
 
 -- Authors:       Claude Opus 5.5

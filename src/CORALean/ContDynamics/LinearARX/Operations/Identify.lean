@@ -19,9 +19,9 @@ arguments). The interpolation to a uniform step (`uniformTimeStepSize`) is not m
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,12 +35,12 @@ variable {dy du p N r : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sys = linearARX.identify(traj)`, line by line of `priv_identifyDMD`. -/
-noncomputable def LinearARX.identify (lt : ℝ → ℝ → Bool)
+noncomputable def LinearARX.identify (dt : ℝ) (lt : ℝ → ℝ → Bool)
     (err : Mat ℝ dy (p * dy + (p + 1) * du) → ℝ) (yNext : Fin N → Vec ℝ dy)
     (V : Mat ℝ (p * dy + (p + 1) * du) r) (s : Fin r → ℝ) (W : Mat ℝ N r) :
     Option (LinearARX ℝ dy du p) :=
   let Alist := LinearARX.identifyCandidate yNext V s W          -- Alist{rank}
-  (dmdSelect lt err Alist r).map LinearARX.identifyBlocks          -- best rank, A_, B_
+  (dmdSelect lt err Alist r).map (LinearARX.identifyBlocks dt)     -- linearARX(A_, B_, dt)
 
 end CORALean
 

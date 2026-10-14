@@ -15,9 +15,9 @@ runs here is a set of initial states, and the enclosure is still loose,
 `reach` pairing each state with every input rather than with its own.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Every point of `R₀` starts a run, so the runs of a closed loop are exactly
 its initial states. -/
 theorem NeurNetContrSysDT.trajectory_iterate (sys : NeurNetContrSysDT 𝕋 S n)
-    (π : Vec ℝ n → Vec ℝ n) {R₀ : S n}
+    (π : Vec ℝ n → Vec ℝ sys.plant.m) {R₀ : S n}
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
     sys.Trajectory π R₀ (fun k => (sys.map π)^[k] x₀) where
   init := hx₀

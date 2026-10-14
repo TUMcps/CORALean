@@ -25,7 +25,7 @@ for an outer approximation; CORA's `reach` always starts at `k_init = p` and is 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,7 +39,7 @@ open Matrix Scalar Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.alg2_ne_reachWindow :
-    let sys : LinearARX ℝ 1 1 1 := ⟨fun _ => 1, fun j => if j.val = 0 then 1 else 0⟩
+    let sys : LinearARX ℝ 1 1 1 := ⟨fun _ => 1, fun j => if j.val = 0 then 1 else 0, 1⟩
     let Uc : Set (Vec ℝ 1) := {v | |v 0| ≤ 1}
     (fun _ => 3) ∈ sys.reachWindow 0 (fun _ => Uc + {0}) (2 + 1 * 1) ∧
       (fun _ => 3) ∉ sys.alg2 0 Uc (fun _ => 0) 2 1 := by -- --- PROOF ---

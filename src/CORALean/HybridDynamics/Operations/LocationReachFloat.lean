@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
 public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
 public import CORALean.HybridDynamics.Definitions.Location
@@ -21,7 +22,7 @@ a horizon of zero steps has no window to hold the stay's one state.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,7 +42,7 @@ def Location.reachFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n) (tFinal : ℚ)
     (options : LinearSys.ReachOptions 𝕋) (X₀ : Zonotope (Vec 𝕋 n)) : Option
     (List (Zonotope (Vec 𝕋 n))) :=
   if tFinal ≤ 0 then none else do                                  -- a stay of positive length
-  let (Rti, _) ← ℓ.dynamics.reachFloatInput (identityMat 𝕋 n)     -- ẋ = A x + I u, u ∈ ℓ.U
+  let (Rti, _) ← (LinearSys.canonicalFloat ℓ.dynamics.A).reachFloatInput  -- ẋ = A x + u, u ∈ ℓ.U
     ⟨X₀, ℓ.U, 0, tFinal⟩ options
   pure Rti
 

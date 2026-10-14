@@ -7,13 +7,16 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # Discrete-time linear systems with a set-valued system matrix
 
-CORA's `linParamSysDT`, `x(k+1) = A(k) x(k) + u(k)` with `A(k)` ranging over a
-set `sys.A` at every step, not fixed for the run — the system-matrix
-uncertainty of [1, §3.3]. `LinearSysDT` is the point-matrix case, `𝕄 := Mat 𝕋`,
-and stays separate rather than being re-expressed through this: unifying them
-would touch every downstream file that reads `x (k+1) = toRealMat sys.A *ᵥ x k
-+ u k` directly (`NeurNetContrSysDT`, `LinearSys.discretize`, `OutputEq`, the
-`Holds…` theorems), which is a decision of its own, left open on #29.
+`x(k+1) = A(k) x(k) + u(k)` with `A(k)` ranging over a set `sys.A` at every step, not fixed
+for the run — the system-matrix uncertainty of [1, Sec. 3.3]. CORA has no class of this name:
+this is the discrete step inside CORA's `linParamSys/post`, `R(k+1) = M R(k) ⊕ R_input` with
+`M` the enclosure `mappingMatrixSet` of `e^{AΔt}` over the parameter set, the loop of
+[1, Alg. 4]. `LinParamSys.discretizeEnclosure` (and its float twin) produce one from a
+`LinParamSys`, `LinearSys.discretizeMatZonotopeFloat` from a `LinearSys` whose `e^{AΔt}` is
+only enclosed, and `LinearSysDT.toLinParam` embeds the point-matrix case, `𝕄 := Mat 𝕋`.
+Like CORA's step it has no `B`, `c`, output or `dt`: the input is already in state
+coordinates and steps are counted. `LinearSysDT` stays separate rather than being
+re-expressed through this, a decision left open on #29.
 
 `Trajectory.step` picks a fresh `A ∈ construct sys.A` at every `k`, mirroring
 `LinearSysDT.reachHeld`'s distinction between a fresh input each step and one
@@ -26,9 +29,9 @@ set. `TrajectoryOn K` is the same, known only for `k < K`.
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

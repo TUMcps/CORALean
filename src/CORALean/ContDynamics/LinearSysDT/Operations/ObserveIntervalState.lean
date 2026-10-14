@@ -23,7 +23,7 @@ CORA's `priv_observe_interval` initialisation, `x = center(R0)`, `R_x = R0`, `R_
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,11 +38,12 @@ variable {n p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.observeIntervalState (sys : LinearSysDT ℝ n) (C : Mat ℝ p n) (L : Mat ℝ n p)
-    (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ p)) (u : ℕ → Vec ℝ n) (y : ℕ → Vec ℝ p) :
+def LinearSysDT.observeIntervalState (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
+    (y : ℕ → Vec ℝ sys.q) :
     ℕ → LinearSysDT.ObserveIntervalState n
   | 0 => { x := R₀.c, Rx := R₀, Rwv := Interval.point 0, D := (Zonotope.mtimes (-L) V).plus W }
-  | k + 1 => sys.observeIntervalStep C L (u k) (y k) (sys.observeIntervalState C L R₀ W V u y k)
+  | k + 1 => sys.observeIntervalStep L (u k) (y k) (sys.observeIntervalState L R₀ W V u y k)
 
 end CORALean
 

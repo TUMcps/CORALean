@@ -33,6 +33,7 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB1D
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoA
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveEsoB
 public import CORALean.ContDynamics.LinearSysDT.Operations.Identify
+public import CORALean.ContDynamics.LinearSysDT.Operations.OfABc
 public import CORALean.ContDynamics.LinearSysDT.Operations.IdentifyCandidate
 public import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
 public import CORALean.ContDynamics.LinearSysDT.Operations.NominalState

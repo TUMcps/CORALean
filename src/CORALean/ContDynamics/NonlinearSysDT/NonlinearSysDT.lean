@@ -9,8 +9,8 @@ public import CORALean.ContSet.ContSet.ContSet
 
 CORA's `nonlinearSysDT`: `x(k+1) = f(x(k), u(k))` with the output equation `y(k) = g(x(k), u(k))`,
 the output dimension `q` a field as in `NonlinearSys`, time-invariant as `NonlinearSys`'s field
-is; CORA's `dt` is not stored, steps being counted. No flow, no time integral and
-no `MatExp`: a step is one evaluation of `f`, not a solution of an ODE.
+is, and CORA's sampling time `dt`; runs are indexed by the step `k`, the time `k dt`. No flow,
+no time integral and no `MatExp`: a step is one evaluation of `f`, not a solution of an ODE.
 
 Simpler than `NonlinearSys` for the same reason `LinearSysDT` is simpler than
 `LinearSys` — no continuous time to sample and no discretization step, so a
@@ -44,6 +44,7 @@ structure NonlinearSysDT (n m : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ n
   q : ℕ
   g : Vec ℝ n → Vec ℝ m → Vec ℝ q
+  dt : ℝ
 
 structure NonlinearSysDT.Trajectory (sys : NonlinearSysDT n m) (R₀ : S n) (U : S m)
     (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m) : Prop where

@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ToLinearSys
 /-!
 # What the converted system holds over a step is the discrete one's input
 
-With `e^L = A_d`, `Δt ≠ 0` and `A_d - I` regular, `∫₀^Δt e^{Aσ}dσ` applied to the converted `B`
+With `e^L = A_d`, `dt ≠ 0` and `A_d - I` regular, `∫₀^dt e^{Aσ}dσ` applied to the converted `B`
 (and to `c`, and to `E`) is the original `B` (`c`, `E`): the input that a step of the
 converted system accumulates is the discrete one's, as [1] intends. Only for a regular
 `A_d - I`; where `linsolve` fails CORA falls back on a numerical fit.
@@ -38,17 +38,17 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.expIntegral_toLinearSys (sys : LinearSysDT ℝ n) (L : Mat ℝ n n) {Δt : ℝ}
-    (hΔt : Δt ≠ 0) (hL : exp L = sys.A) (hM : IsUnit (sys.A - 1).det) :
-    Real.MatExp.expIntegral (Δt⁻¹ • L) Δt * (sys.toLinearSys L Δt).B = sys.B ∧
-      Real.MatExp.expIntegral (Δt⁻¹ • L) Δt *ᵥ (sys.toLinearSys L Δt).c = sys.c ∧
-      Real.MatExp.expIntegral (Δt⁻¹ • L) Δt * (sys.toLinearSys L Δt).E
+theorem LinearSysDT.expIntegral_toLinearSys (sys : LinearSysDT ℝ n) (L : Mat ℝ n n)
+    (hdt : sys.dt ≠ 0) (hL : exp L = sys.A) (hM : IsUnit (sys.A - 1).det) :
+    Real.MatExp.expIntegral (sys.dt⁻¹ • L) sys.dt * (sys.toLinearSys L).B = sys.B ∧
+      Real.MatExp.expIntegral (sys.dt⁻¹ • L) sys.dt *ᵥ (sys.toLinearSys L).c = sys.c ∧
+      Real.MatExp.expIntegral (sys.dt⁻¹ • L) sys.dt * (sys.toLinearSys L).E
         = sys.E := by -- --- PROOF ---
-  set Ac : Mat ℝ n n := Δt⁻¹ • L with hAc
-  set I : Mat ℝ n n := Real.MatExp.expIntegral Ac Δt with hI
+  set Ac : Mat ℝ n n := sys.dt⁻¹ • L with hAc
+  set I : Mat ℝ n n := Real.MatExp.expIntegral Ac sys.dt with hI
   -- `A_d - 1 = Ac · I`, and a regular product has regular factors
-  have hexp : exp (Δt • Ac) = sys.A := by
-    rw [hAc, smul_smul, mul_inv_cancel₀ hΔt, one_smul, hL]
+  have hexp : exp (sys.dt • Ac) = sys.A := by
+    rw [hAc, smul_smul, mul_inv_cancel₀ hdt, one_smul, hL]
   have hprod : sys.A - 1 = Ac * I := by
     rw [hI, Real.MatExp.mul_expIntegral, hexp]
   have hdet : IsUnit (Ac.det * I.det) := by rw [← Matrix.det_mul, ← hprod]; exact hM

@@ -15,9 +15,9 @@ Positional, as the mathematics: `Reach` reads `Δtc` off the system, CORA's `sys
 and `H = tFinal - tStart` and the initial set off `params`.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,7 +39,9 @@ def NeurNetContrSys.reachUnionExact (sys : NeurNetContrSys 𝕋 S n) (Δtc : ℝ
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ i ≤ H, {y | ∃ x : ℝ → Vec ℝ n, x 0 ∈ X ∧
     (∀ j < H, ∀ t ∈ Set.Icc ((j : ℝ) * Δtc) (((j : ℝ) + 1) * Δtc),
-      HasDerivWithinAt x (toRealMat sys.plant.A *ᵥ x t + sys.contr.eval.out (x ((j : ℝ) * Δtc)))
+      HasDerivWithinAt x (toRealMat sys.plant.A *ᵥ x t +
+          (toRealMat sys.plant.B *ᵥ sys.contr.eval.out (x ((j : ℝ) * Δtc)) +
+            toRealVec sys.plant.c))
         (Set.Icc ((j : ℝ) * Δtc) (((j : ℝ) + 1) * Δtc)) t) ∧
     x ((i : ℝ) * Δtc) = y}
 

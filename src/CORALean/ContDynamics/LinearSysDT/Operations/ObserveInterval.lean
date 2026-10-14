@@ -23,7 +23,7 @@ CORA stores as `R{k+2}`: its loop writes `R{i+1}` from the variables before they
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,10 +38,11 @@ variable {n p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.observeInterval (sys : LinearSysDT ℝ n) (C : Mat ℝ p n) (L : Mat ℝ n p)
-    (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ p)) (u : ℕ → Vec ℝ n) (y : ℕ → Vec ℝ p)
+def LinearSysDT.observeInterval (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
+    (y : ℕ → Vec ℝ sys.q)
     (k : ℕ) : Interval (Vec ℝ n) :=
-  let s := sys.observeIntervalState C L R₀ W V u y k
+  let s := sys.observeIntervalState L R₀ W V u y k
   let E := s.Rx.interval.plus s.Rwv  -- `box(R_x) + R_wv`
   (Interval.point s.x).plus E  -- `x + E`
 

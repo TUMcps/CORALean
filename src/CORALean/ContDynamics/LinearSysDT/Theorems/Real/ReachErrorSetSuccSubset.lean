@@ -25,7 +25,7 @@ applied to a point of `Ω_k`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -61,19 +61,19 @@ theorem LinearSysDT.aux_sum_succ_mem {m : ℕ} (M : Mat ℝ n n) (K : Mat ℝ n 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.reachErrorSet_succ_subset (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
-    (F : Mat ℝ ny nv) (L : Mat ℝ n ny) (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ nw))
-    (V : Zonotope (Vec ℝ nv)) (k : ℕ) :
-    LinearSysDT.reachErrorSet A C E F L X₀ W V (k + 1) ⊆
-      ((A - L * C) *ᵥ ·) '' LinearSysDT.reachErrorSet A C E F L X₀ W V k +
-        (E *ᵥ ·) '' W.construct + ((-(L * F)) *ᵥ ·) '' V.construct := by -- --- PROOF ---
+theorem LinearSysDT.reachErrorSet_succ_subset (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r))
+    (V : Zonotope (Vec ℝ sys.s)) (k : ℕ) :
+    LinearSysDT.reachErrorSet sys L X₀ W V (k + 1) ⊆
+      ((sys.A - L * sys.C) *ᵥ ·) '' LinearSysDT.reachErrorSet sys L X₀ W V k +
+        (sys.E *ᵥ ·) '' W.construct + ((-(L * sys.F)) *ᵥ ·) '' V.construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨_, ⟨a, ha, rfl⟩, b, hb, rfl⟩, c, hc, rfl⟩
   obtain ⟨g, hg, rfl⟩ := (Set.mem_finsetSum _ _ _).mp hb
   obtain ⟨f, hf, rfl⟩ := (Set.mem_finsetSum _ _ _).mp hc
   -- split off the `i = 0` terms, the rest being `A - LC` times a point of `Ω_k`
   obtain ⟨zg, hzg, w₀, hw₀, hgs⟩ := LinearSysDT.aux_sum_succ_mem _ _ _ k g hg
   obtain ⟨zf, hzf, v₀, hv₀, hfs⟩ := LinearSysDT.aux_sum_succ_mem _ _ _ k f hf
-  refine ⟨_, ⟨_, ⟨((A - L * C) ^ k) *ᵥ a + zg + zf,
+  refine ⟨_, ⟨_, ⟨((sys.A - L * sys.C) ^ k) *ᵥ a + zg + zf,
     Set.add_mem_add (Set.add_mem_add ⟨a, ha, rfl⟩ hzg) hzf, rfl⟩, _, ⟨w₀, hw₀, rfl⟩, rfl⟩,
     _, ⟨v₀, hv₀, rfl⟩, ?_⟩
   rw [hgs, hfs]

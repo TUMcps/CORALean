@@ -188,7 +188,7 @@ here, bar `varInputs` (`pending #1`), which has no float refinement yet;
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   13-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -247,6 +247,7 @@ scalar and their theorems are not restricted to ℝ (#117). -/
 def arxD : LinearARX D 1 1 2 where
   Abar i := Matrix.of fun _ _ => if i.val = 0 then d 1 0 else d (-1) 0
   Bbar j := Matrix.of fun _ _ => if j.val = 2 then d 0 0 else d 1 0
+  dt := d 1 0
 
 def arxA : Mat D 2 2 := arxD.toLinearSysDT.A
 def arxB : Mat D 2 1 := arxD.inputMat 0
@@ -614,7 +615,7 @@ most `2⁻⁴`; CORA's `errorSolution_adaptive` with its order, `Z` dynamic and 
 input solution's orders `1 … 4` and `H(t_{k+1})` from `Z`, under the constant `Z`'s centre. -/
 
 def manualReachRun : Option (List (Zonotope (Vec D 2))) :=
-  ctSys.manualReachFloat (identityMat D 2) { X₀ := Z, U := Z, tFinal := 1 / 8 } ⟨stepR, 4, 2⟩
+  ctSys.manualReachFloat { X₀ := Z, U := Z, tFinal := 1 / 8 } ⟨stepR, 4, 2⟩
 def curvatureErrorRun : D := ctSys.timeIntervalStepCurvatureErrorFloat stepR 4 Z
 def intervalErrorRun : D := ctSys.timeIntervalStepErrorFloat stepR 4 Z
 def pointErrorRun : D := ctSys.timePointStepErrorFloat stepR 4 Z

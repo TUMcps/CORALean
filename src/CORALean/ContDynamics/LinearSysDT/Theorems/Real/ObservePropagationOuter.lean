@@ -27,7 +27,7 @@ induction uses is `x_0 ∈ S_0`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,30 +42,30 @@ variable {n p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.observePropagation_outer (sys : LinearSysDT ℝ n) (C : Mat ℝ p n)
-    (gain : Zonotope (Vec ℝ n) → Mat ℝ n p) (order : ℕ) (W R₀ : Zonotope (Vec ℝ n))
-    (V : Zonotope (Vec ℝ p)) (u : ℕ → Vec ℝ n) (y : ℕ → Vec ℝ p) (x w : ℕ → Vec ℝ n)
-    (v : ℕ → Vec ℝ p) (h0 : x 0 ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
-    (hv : ∀ k, v k ∈ V.construct) (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + u k + w k)
-    (hy : ∀ k, y k = C *ᵥ x k + v k) (k : ℕ) :
-    x k ∈ (sys.observePropagation C gain order W R₀ V u y k).construct := by -- --- PROOF ---
+theorem LinearSysDT.observePropagation_outer (sys : LinearSysDT ℝ n)
+    (gain : Zonotope (Vec ℝ n) → Mat ℝ n sys.q) (order : ℕ) (W R₀ : Zonotope (Vec ℝ n))
+    (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (x w : ℕ → Vec ℝ n)
+    (v : ℕ → Vec ℝ sys.q) (h0 : x 0 ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
+    (hv : ∀ k, v k ∈ V.construct) (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + w k)
+    (hy : ∀ k, y k = sys.C *ᵥ x k + v k) (k : ℕ) :
+    x k ∈ (sys.observePropagation gain order W R₀ V u y k).construct := by -- --- PROOF ---
   induction k with
   | zero => exact h0
   | succ k ih =>
-    set S := sys.observePropagation C gain order W R₀ V u y k
+    set S := sys.observePropagation gain order W R₀ V u y k
     set L := gain S
     -- the true state, one point of each summand of (6)
     have heq : x (k + 1) =
-        (sys.A - L * C) *ᵥ x k + u k + L *ᵥ y k + (-L) *ᵥ v k + w k := by
+        (sys.A - L * sys.C) *ᵥ x k + sys.B *ᵥ u k + L *ᵥ y k + (-L) *ᵥ v k + w k := by
       rw [hstep, hy, Matrix.sub_mulVec, ← Matrix.mulVec_mulVec, Matrix.mulVec_add,
         Matrix.neg_mulVec]
       abel
-    have h1 : (sys.A - L * C) *ᵥ x k ∈ (Zonotope.mtimes (sys.A - L * C) S).construct := by
+    have h1 : (sys.A - L * sys.C) *ᵥ x k ∈ (Zonotope.mtimes (sys.A - L * sys.C) S).construct := by
       rw [← Zonotope.mtimes_exact]; exact ⟨x k, ih, rfl⟩
     have h4 : (-L) *ᵥ v k ∈ (Zonotope.mtimes (-L) V).construct := by
       rw [← Zonotope.mtimes_exact]; exact ⟨v k, hv k, rfl⟩
-    show x (k + 1) ∈ (Zonotope.reduce (((((Zonotope.mtimes (sys.A - L * C) S).plus
-      (Zonotope.ofPoint (u k))).plus (Zonotope.ofPoint (L *ᵥ y k))).plus
+    show x (k + 1) ∈ (Zonotope.reduce (((((Zonotope.mtimes (sys.A - L * sys.C) S).plus
+      (Zonotope.ofPoint (sys.B *ᵥ u k))).plus (Zonotope.ofPoint (L *ᵥ y k))).plus
       (Zonotope.mtimes (-L) V)).plus W) order).construct
     refine Zonotope.reduce_outer _ _ ?_
     rw [heq, ← Zonotope.plus_exact, ← Zonotope.plus_exact, ← Zonotope.plus_exact,

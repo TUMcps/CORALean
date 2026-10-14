@@ -28,7 +28,7 @@ and a float type the rounded one, with `A`, `u`, `C`, `y`, `σ` the reals the fl
 
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,13 +45,14 @@ variable [OfScalarPoint 𝕋 S] [IntersectStrip 𝕋 S] {n p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.observeStripBased_outer (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (σ : Vec 𝕋 p) (W R₀ : S n) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p)
-    (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n p) (x w : ℕ → Vec ℝ n)
+theorem LinearSysDT.observeStripBased_outer (sys : LinearSysDT 𝕋 n) (σ : Vec 𝕋 sys.q)
+    (W R₀ : S n) (u : ℕ → Vec 𝕋 sys.m) (y : ℕ → Vec 𝕋 sys.q)
+    (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n sys.q) (x w : ℕ → Vec ℝ n)
     (h0 : x 0 ∈ construct R₀) (hw : ∀ k, w k ∈ construct W)
-    (hstep : ∀ k, x (k + 1) = toRealMat sys.A *ᵥ x k + toRealVec (u k) + w k)
-    (hy : ∀ k i, |(toRealMat C *ᵥ x k - toRealVec (y k)) i| ≤ toReal (σ i)) (k : ℕ) :
-    x k ∈ construct (sys.observeStripBased C σ W R₀ u y options k) := by -- --- PROOF ---
+    (hstep : ∀ k, x (k + 1) =
+      toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ toRealVec (u k) + toRealVec sys.c + w k)
+    (hy : ∀ k i, |(toRealMat sys.C *ᵥ x k - toRealVec (y k)) i| ≤ toReal (σ i)) (k : ℕ) :
+    x k ∈ construct (sys.observeStripBased σ W R₀ u y options k) := by -- --- PROOF ---
   induction k with
   | zero =>
     unfold LinearSysDT.observeStripBased
@@ -61,7 +62,7 @@ theorem LinearSysDT.observeStripBased_outer (sys : LinearSysDT 𝕋 n) (C : Mat 
   | succ k ih =>
     unfold LinearSysDT.observeStripBased
     refine reduce_outer _ _ ?_
-    refine sys.observeStep_outer C σ W options (u k) (y (k + 1)) _
+    refine sys.observeStep_outer σ W options (u k) (y (k + 1)) _
       (Set.singleton_subset_iff.mpr ih) ⟨⟨_, ⟨x k, rfl, rfl⟩, w k, hw k, ?_⟩, hy (k + 1)⟩
     rw [hstep]
 

@@ -14,9 +14,9 @@ CORA wraps the output function as
 system is the identity update on `n` states with `SmoothNetwork.nu` inputs.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,6 +32,7 @@ def SmoothNetwork.toNonlinearSysDT {n k : ℕ} (N : SmoothNetwork n k) : Nonline
   f x _ := x
   q := n
   g x _ := x
+  dt := 1                                                           -- CORA passes `dt = 1`
 
 end CORALean
 

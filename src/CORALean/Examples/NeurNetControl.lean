@@ -35,9 +35,9 @@ Nothing here evaluates to a number. Over ℝ every operation is noncomputable, a
 `Float` is where the same loops produce bounds.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -77,7 +77,7 @@ noncomputable def Example.nnControlled (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b
 /-- Every discrete closed-loop run from `R₀` is inside the alternating recursion
 at every step. -/
 example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
-    {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
+    {π : Vec ℝ 2 → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ 2} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     x k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer ho R₀ hπ traj k
@@ -85,7 +85,7 @@ example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) {o : 
 /-- A safe set the reached zonotope stays inside is a safe set the run stays
 inside — `Specification.holds_of_outer`, reached from the loop. -/
 example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
-    (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
+    (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ 2} (traj : sys.Trajectory π R₀ x) (k : ℕ)
     (h : (Specification.safeSet safe).Holds (construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩))) :
     (Specification.safeSet safe).Holds {x k} :=
@@ -94,7 +94,7 @@ example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) {o : 
 /-- The discrete loop is deterministic, so a run is settled by where it
 started. -/
 example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2))
-    {π : Vec ℝ 2 → Vec ℝ 2} {x y : ℕ → Vec ℝ 2}
+    {π : Vec ℝ 2 → Vec ℝ sys.plant.m} {x y : ℕ → Vec ℝ 2}
     (hx : sys.Trajectory π R₀ x) (hy : sys.Trajectory π R₀ y) (h : x 0 = y 0) : x = y :=
   hx.eq_of_init hy h
 
@@ -102,7 +102,7 @@ example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2))
 period boundary — `N` reachability steps of length `Δt` per period. -/
 example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o)
     {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
-    {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
+    {π : Vec ℝ 2 → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ 2} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x) (i : ℕ) (hi : i ≤ H) :
     x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) :=
   sys.reach_outer o η N ho hΔt hε hπ traj i hi
@@ -110,7 +110,7 @@ example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N
 /-- The same checked against a safe set. -/
 example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o)
     {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
-    (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ 2} (hπ : sys.contr.Sound π)
+    (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ 2} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
     (i : ℕ) (hi : i ≤ H)
     (h : (Specification.safeSet safe).Holds (construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :

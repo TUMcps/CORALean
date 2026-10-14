@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
@@ -23,7 +24,7 @@ other observers are.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,25 +39,25 @@ variable {n nu ny nw nv : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def LinearSysDT.intervalObserverCoord (A : Mat ℝ n n) (B : Mat ℝ n nu)
-    (C : Mat ℝ ny n) (E : Mat ℝ n nw) (F : Mat ℝ ny nv) (L : Mat ℝ n ny) (S : Mat ℝ n n)
-    (wl wu : Vec ℝ nw) (vl vu : Vec ℝ nv) (xl₀ xu₀ : Vec ℝ n) (u : ℕ → Vec ℝ nu)
-    (y : ℕ → Vec ℝ ny) : ℕ → Interval (Vec ℝ n)
+noncomputable def LinearSysDT.intervalObserverCoord (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (S : Mat ℝ n n)
+    (wl wu : Vec ℝ sys.r) (vl vu : Vec ℝ sys.s) (xl₀ xu₀ : Vec ℝ n) (u : ℕ → Vec ℝ sys.m)
+    (y : ℕ → Vec ℝ sys.q) : ℕ → Interval (Vec ℝ n)
   | 0 =>
     let Sp := S.map (max 0)  -- `S⁺`
     let Sn := Sp - S  -- `S⁻`
     ⟨Sp *ᵥ xl₀ - Sn *ᵥ xu₀, Sp *ᵥ xu₀ - Sn *ᵥ xl₀⟩  -- (42a), (42b)
   | k + 1 =>
-    let I := LinearSysDT.intervalObserverCoord A B C E F L S wl wu vl vu xl₀ xu₀ u y k
-    let R := S * (A - L * C) * S⁻¹  -- `R = S (A - LC) S⁻¹`
-    let K := S * E  -- `SE`
-    let G := -(S * L * F)  -- `-SLF`
+    let I := LinearSysDT.intervalObserverCoord sys L S wl wu vl vu xl₀ xu₀ u y k
+    let R := S * (sys.A - L * sys.C) * S⁻¹  -- `R = S (A - LC) S⁻¹`
+    let K := S * sys.E  -- `SE`
+    let G := -(S * L * sys.F)  -- `-SLF`
     let gu := K.map (max 0) *ᵥ wu - (K.map (max 0) - K) *ᵥ wl + G.map (max 0) *ᵥ vu -
       (G.map (max 0) - G) *ᵥ vl  -- (43), `g̅`
     let gl := K.map (max 0) *ᵥ wl - (K.map (max 0) - K) *ᵥ wu + G.map (max 0) *ᵥ vl -
       (G.map (max 0) - G) *ᵥ vu  -- (43), `g̲`
-    let zu := R *ᵥ I.sup + (S * B) *ᵥ u k + (S * L) *ᵥ y k + gu  -- (42c)
-    let zl := R *ᵥ I.inf + (S * B) *ᵥ u k + (S * L) *ᵥ y k + gl  -- (42d)
+    let zu := R *ᵥ I.sup + (S * sys.B) *ᵥ u k + (S * L) *ᵥ y k + gu  -- (42c)
+    let zl := R *ᵥ I.inf + (S * sys.B) *ᵥ u k + (S * L) *ᵥ y k + gl  -- (42d)
     ⟨zl, zu⟩
 
 end CORALean

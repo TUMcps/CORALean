@@ -18,7 +18,7 @@ removes `x(k-n)`; what is left is the convolution of `a` with the impulse respon
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -151,12 +151,12 @@ theorem aux_charpoly_convolution (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.ofCharpoly_step (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
-    (Du : Mat ℝ dy du) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ du} {y : ℕ → Vec ℝ dy}
+    (Du : Mat ℝ dy du) (dt : ℝ) {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ du} {y : ℕ → Vec ℝ dy}
     (hx : ∀ k, x (k + 1) = A *ᵥ x k + Bu *ᵥ u k) (hy : ∀ k, y k = C *ᵥ x k + Du *ᵥ u k)
     (k : ℕ) (hk : n ≤ k) :
-    y k = ∑ i : Fin n, toRealMat ((LinearARX.ofCharpoly A Bu C Du).Abar i) *ᵥ y (k - (i + 1))
+    y k = ∑ i : Fin n, toRealMat ((LinearARX.ofCharpoly A Bu C Du dt).Abar i) *ᵥ y (k - (i + 1))
       + ∑ j : Fin (n + 1),
-        toRealMat ((LinearARX.ofCharpoly A Bu C Du).Bbar j) *ᵥ u (k - j) := by -- --- PROOF ---
+        toRealMat ((LinearARX.ofCharpoly A Bu C Du dt).Bbar j) *ᵥ u (k - j) := by -- --- PROOF ---
   -- the identity of `aux_charpoly_convolution`, with `a₀ = 1` split off the left side
   obtain ⟨t, rfl⟩ := Nat.exists_eq_add_of_le hk
   have hK := aux_charpoly_convolution A Bu C Du hx hy t

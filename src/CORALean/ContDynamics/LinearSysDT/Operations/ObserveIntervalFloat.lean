@@ -20,7 +20,7 @@ gain `L` fixed. Soundness is `observeIntervalFloat_outer`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,11 +35,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.observeIntervalFloat (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (L : Mat 𝕋 n p)
-    (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n)
-    (y : ℕ → Vec 𝕋 p) (k : ℕ) :
+def LinearSysDT.observeIntervalFloat (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
+    (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
+    (y : ℕ → Vec 𝕋 sys.q) (k : ℕ) :
     Interval (Vec 𝕋 n) :=
-  let s := sys.observeIntervalStateFloat C L R₀ W V u y k
+  let s := sys.observeIntervalStateFloat L R₀ W V u y k
   let E := s.Rx.interval.plus s.Rwv                                  -- `box(R_x) + R_wv`
   s.x.plus E                                                         -- `x̂ + E`
 

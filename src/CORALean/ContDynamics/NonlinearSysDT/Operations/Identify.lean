@@ -22,7 +22,7 @@ are not modelled. `'opt'`, `'sparse'` and `'nested'` are not formalized.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,12 +38,13 @@ variable {n m N r d : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `sys = identify(traj)`, line by line of `priv_identifyDMD`. -/
-noncomputable def NonlinearSysDT.identify (φ : Vec ℝ n → Vec ℝ m → Vec ℝ d) (lt : ℝ → ℝ → Bool)
+noncomputable def NonlinearSysDT.identify (φ : Vec ℝ n → Vec ℝ m → Vec ℝ d) (dt : ℝ)
+    (lt : ℝ → ℝ → Bool)
     (err : NonlinearSysDT n m → ℝ) (xNext : Fin N → Vec ℝ n) (V : Mat ℝ d r) (s : Fin r → ℝ)
     (W : Mat ℝ N r) : Option (NonlinearSysDT n m) :=
   let Alist := NonlinearSysDT.identifyCandidate xNext V s W               -- Alist{rank}
   let sysTmp := fun k =>                                           -- sysTmp
-    (NonlinearSysDT.mk (fun x u => Alist k *ᵥ φ x u) n fun x _ => x : NonlinearSysDT n m)
+    (NonlinearSysDT.mk (fun x u => Alist k *ᵥ φ x u) n (fun x _ => x) dt : NonlinearSysDT n m)
   dmdSelect lt err sysTmp r                                       -- best rank
 
 end CORALean

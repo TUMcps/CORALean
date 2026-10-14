@@ -26,9 +26,9 @@ restate here — the gap sits in what the class proves, not only in this file.
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,7 +45,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
 
 
@@ -56,7 +56,7 @@ reachable set, not to a run of it. -/
 theorem NeurNetContrSys.reachSet_subset_reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ)
     (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt)
     (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ} (R₀ : S n)
-    {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) {i : ℕ} (hi : i ≤ H) :
+    {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π) {i : ℕ} (hi : i ≤ H) :
     sys.reachSet π ((N : ℝ) * Δt) H R₀ ((i : ℝ) * ((N : ℝ) * Δt))
       ⊆ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by
   rintro _ ⟨x, traj, rfl⟩

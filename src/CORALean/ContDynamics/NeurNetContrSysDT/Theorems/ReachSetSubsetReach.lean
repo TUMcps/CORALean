@@ -18,9 +18,9 @@ invocation coincide here, with no period between them for `reachSet` and
 arise in the purely discrete loop.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,6 +33,7 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable [OfScalarPoint 𝕋 S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -40,7 +41,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 /-- Reach for this at every step; the guarantee attaches to the reachable set,
 not to a run of it. -/
 theorem NeurNetContrSysDT.reachSet_subset_reach (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ}
-    (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) (k : ℕ) :
+    (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π) (k : ℕ) :
     sys.reachSet π R₀ k ⊆ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by
   rintro _ ⟨x, traj, rfl⟩
   exact sys.reach_outer ho R₀ hπ traj k

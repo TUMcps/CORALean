@@ -8,10 +8,10 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 /-!
 # The continuous-time system of a discrete-time one
 
-CORA's `linearSys(linsysDT)` [1], its matrix-logarithm branch: `A = logm(A_d)/Δt` and, for
-each of `B`, `c`, `E` that is not zero, `linsolve(A_d - I, A X)`. The matrix logarithm is an
-argument `L` (one with `e^L = A_d`, as `logm` returns where it is real: Mathlib has none), and
-`Δt` is as well, `LinearSysDT` counting steps. Where `logm` is not real or `linsolve` fails, CORA
+CORA's `linearSys(linsysDT)` [1], its matrix-logarithm branch: `A = logm(A_d)/dt` and, for
+each of `B`, `c`, `E` that is not zero, `linsolve(A_d - I, A X)`, `dt` the system's sampling
+time. The matrix logarithm is an argument `L` (one with `e^L = A_d`, as `logm` returns where it
+is real: Mathlib has none). Where `logm` is not real or `linsolve` fails, CORA
 runs `fmincon` on a cost of the discretization, not formalized (solver-dependent).
 
 ## References
@@ -37,9 +37,9 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `linearSys(A, B, c, C, D, k, E, F)`, the output equation carried over as it stands. -/
-noncomputable def LinearSysDT.toLinearSys (sys : LinearSysDT ℝ n) (L : Mat ℝ n n) (Δt : ℝ) :
+noncomputable def LinearSysDT.toLinearSys (sys : LinearSysDT ℝ n) (L : Mat ℝ n n) :
     LinearSys ℝ n :=
-  let A := Δt⁻¹ • L                                                  -- logm(sys.A)/sys.dt
+  let A := sys.dt⁻¹ • L                                              -- logm(sys.A)/sys.dt
   let M := sys.A - 1                                                 -- sys.A - eye(n)
   let B := M⁻¹ * (A * sys.B)                                         -- linsolve(M, A*sys.B)
   let c := M⁻¹ *ᵥ (A *ᵥ sys.c)                                       -- linsolve(M, A*sys.c)

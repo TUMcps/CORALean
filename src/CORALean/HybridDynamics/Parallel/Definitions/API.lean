@@ -12,6 +12,7 @@ public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
 public import CORALean.HybridDynamics.Parallel.Definitions.SyncLabels
 public import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
 public import CORALean.HybridDynamics.Parallel.Definitions.SyncRun
+public import CORALean.HybridDynamics.Parallel.Definitions.OutputSource
 
 /-!
 # What a parallel hybrid automaton means
