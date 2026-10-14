@@ -68,7 +68,7 @@ theorem Taylm.sqrtCoef_mem (q : ℕ) (c : 𝕋) (hc : 0 < toReal c) (k : ℕ) :
     rw [toReal_maximum, toReal_zero]; exact max_le (by positivity) hdiv2
   have hpl := powDown_le hw0 hwl k
   have hph := le_powUp (by positivity : (0 : ℝ) ≤ 1 / toReal c) hdiv1 k
-  have hG := divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+  have hG := divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
     (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) k
   -- the four factors through the corner products
   have hA := Real.Interval.mul_between_corners hDh.1 hDh.2 (sqrtDown_le q c) (le_sqrtUp q c)

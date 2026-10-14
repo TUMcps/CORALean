@@ -17,7 +17,7 @@ number of halvings of the sine and cosine.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.cos (p : ℕ) (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
-  inf := fun i => (cosRange p (I.inf i) (I.sup i)).1
-  sup := fun i => (cosRange p (I.inf i) (I.sup i)).2
+  inf := fun i => (cosRange p (I.inf i) (I.sup i)).inf
+  sup := fun i => (cosRange p (I.inf i) (I.sup i)).sup
 
 
 end CORALean.Float

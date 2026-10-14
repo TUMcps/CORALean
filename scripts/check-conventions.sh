@@ -102,7 +102,7 @@ ALLOWLIST=scripts/noncomputable-allowlist.txt
 # that is a module now, or is gone, is reported as stale.
 NONMODULE_LIST=scripts/non-module-allowlist.txt
 
-# Pairs `ℝ × ℝ`, `𝕋 × 𝕋`, `α × α` (CONTRIBUTING, "Bounds of one quantity"): the lower
+# Pairs `ℝ × ℝ`, `𝕋 × 𝕋`, `α × α`, `EReal × EReal` (CONTRIBUTING, "Bounds of one quantity"): the lower
 # and the upper bound of one quantity are an `Interval`, so a file that still spells such a
 # pair names why in this list, `<path>  <reason>` per line. `Examples/` is exempt: it is
 # input and output, where a pair is a datum. The list only shrinks, as the one above.
@@ -147,6 +147,11 @@ src/CORALean/ContSet/ProbZonotope/Float/Theorems/EncloseMeanOuter.lean | ContDyn
 src/CORALean/ContSet/ProbZonotope/Float/Operations/Enclose.lean | ContDynamics | encloses the mean with the matrix-exponential enclosure that lives with LinearSys
 src/CORALean/ContSet/ProbZonotope/Real/Theorems/GaussPdfExpMulVec.lean | ContDynamics | the Gaussian density under exp(At) uses the determinant of the matrix exponential
 src/CORALean/ContSet/Zonotope/Real/Theorems/FaultObservePRadiusCounterexample.lean | ContDynamics | counterexample to the fault-radius LMI, which is defined with LinearSysDT
+src/CORALean/Global/Float/DivFact.lean | ContSet/Interval | q / k! is an enclosure, so it is a Float.Interval, the type of the very enclosures it feeds; imports ContSet/Interval/Float/Interval only, which needs nothing above Global/Float/SoundFloatArithmetic
+src/CORALean/Global/Float/InverseTrig.lean | ContSet/Interval | the arctangent bracket is an enclosure, so it is a Float.Interval, the type of the enclosures built from it; imports ContSet/Interval/Float/Interval only, which needs nothing above Global/Float/SoundFloatArithmetic
+src/CORALean/Global/Float/RatUp.lean | ContSet/Interval | the bracket around a natural number is an enclosure, so it is a Float.Interval; imports ContSet/Interval/Float/Interval only, which needs nothing above Global/Float/SoundFloatArithmetic
+src/CORALean/Global/Float/SinCos.lean | ContSet/Interval | the sine and cosine seeds are enclosures, so they are Float.Intervals, the type of the enclosures built from them; imports ContSet/Interval/Float/Interval only, which needs nothing above Global/Float/SoundFloatArithmetic
+src/CORALean/Global/Float/TrigRange.lean | ContSet/Interval | the sine and cosine over a range are enclosures, so they are Float.Intervals, the type of the enclosures built from them; imports ContSet/Interval/Float/Interval only, which needs nothing above Global/Float/SoundFloatArithmetic
 "
 
 # The base files: imported by so much of the tree that what creeps into their
@@ -923,11 +928,12 @@ FNR == 1 {
     say(FILENAME ":" FNR ": `sorry` — finish the proof or drop the declaration")
   # A pair of one scalar twice: the bounds of one quantity belong in an `Interval`.
   if (FILENAME !~ /^src\/CORALean\/Examples\// &&
-      (index(code, "ℝ × ℝ") || index(code, "𝕋 × 𝕋") || index(code, "α × α"))) {
+      (index(code, "ℝ × ℝ") || index(code, "𝕋 × 𝕋") || index(code, "α × α") ||
+       index(code, "EReal × EReal"))) {
     pairSeen[FILENAME] = 1
     if (!(FILENAME in pairOK) && !(FILENAME in pairWarned)) {
       pairWarned[FILENAME] = 1
-      say(FILENAME ":" FNR ": a pair `ℝ × ℝ`/`𝕋 × 𝕋`/`α × α` — bounds of one quantity are an" \
+      say(FILENAME ":" FNR ": a pair `ℝ × ℝ`/`𝕋 × 𝕋`/`α × α`/`EReal × EReal` — bounds of one quantity are an" \
           " `Interval`; if this pair is two quantities, list the file in " PAIRLIST " with the reason")
     }
   }
@@ -1685,16 +1691,25 @@ BEGIN {
   for (i = 1; i <= n; i++) {
     if (es[i] !~ /\|/) continue
     split(es[i], kv, " [|] ")
-    excline[kv[1] "/" kv[2]] = 1
+    # the directory column is a top-level directory, or a path prefix below one
+    # (`ContSet/Interval`), which then admits only the imports under that prefix
+    split(kv[2], dp, "/"); excline[kv[1] "/" kv[2]] = 1
+    excpre[kv[1] "/" dp[1]] = excpre[kv[1] "/" dp[1]] " " kv[2]
     if (kv[3] == "") print "layering: exception for " kv[1] " has no reason"
   }
 }
 /^(public[ \t]+)?(meta[ \t]+)?import[ \t]+CORALean\./ {
   split(FILENAME, pp, "/"); from = pp[3]
-  to = $NF; sub(/^CORALean\./, "", to); sub(/\..*/, "", to)
+  full = $NF; sub(/^CORALean\./, "", full); gsub(/\./, "/", full)
+  to = full; sub(/\/.*/, "", to)
   if (to == from || !((from "/" to) in forbid)) next
   key = FILENAME "/" to
-  if (key in excline) { used[key] = 1; next }
+  m = split(excpre[key], pres, " "); ok = 0
+  for (j = 1; j <= m; j++) {
+    p = pres[j]
+    if (p == to || index(full "/", p "/") == 1) { used[FILENAME "/" p] = 1; ok = 1 }
+  }
+  if (ok) next
   print FILENAME ": imports CORALean." to ", which " from "/ may not import (LAYERS in check-conventions.sh)"
 }
 END { for (k in excline) if (!(k in used)) print "layering: stale exception " k }

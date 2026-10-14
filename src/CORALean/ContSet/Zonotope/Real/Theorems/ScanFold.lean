@@ -21,7 +21,7 @@ update `scanEdge_spec`. `step` is the move, `P ± 2 g_j`, given with the vector 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,19 +34,19 @@ namespace CORALean.Real
 
 theorem Zonotope.scan_fold {n : ℕ} (γ : ℝ) (d : Fin n → Vec ℝ 2)
     (step : Vec ℝ 2 → Fin n → Vec ℝ 2) (hstep : ∀ P j, step P j = P + d j) (P₀ : Vec ℝ 2)
-    (mM₀ : EReal × EReal) (s : Vec ℝ 2 × EReal × EReal)
+    (mM₀ : Interval EReal) (s : Vec ℝ 2 × Interval EReal)
     (hs : Fin.foldl n (fun s j => (step s.1 j, Zonotope.scanEdge γ s.1 (step s.1 j) s.2))
       (P₀, mM₀) = s) :
-    s.1 = P₀ + ∑ i, d i ∧ s.2.1 ≤ mM₀.1 ∧ mM₀.2 ≤ s.2.2 ∧
+    s.1 = P₀ + ∑ i, d i ∧ s.2.inf ≤ mM₀.inf ∧ mM₀.sup ≤ s.2.sup ∧
     (∀ (k : Fin n) (y : ℝ), (![γ, y] : Vec ℝ 2) ∈ segment ℝ
         (P₀ + ∑ i, if i < k then d i else 0) (P₀ + (∑ i, if i < k then d i else 0) + d k) →
-      s.2.1 ≤ y ∧ (y : EReal) ≤ s.2.2) ∧
-    (s.2.1 = mM₀.1 ∨ ∃ (k : Fin n) (y : ℝ), (![γ, y] : Vec ℝ 2) ∈ segment ℝ
+      s.2.inf ≤ y ∧ (y : EReal) ≤ s.2.sup) ∧
+    (s.2.inf = mM₀.inf ∨ ∃ (k : Fin n) (y : ℝ), (![γ, y] : Vec ℝ 2) ∈ segment ℝ
         (P₀ + ∑ i, if i < k then d i else 0) (P₀ + (∑ i, if i < k then d i else 0) + d k) ∧
-      s.2.1 = y) ∧
-    (s.2.2 = mM₀.2 ∨ ∃ (k : Fin n) (y : ℝ), (![γ, y] : Vec ℝ 2) ∈ segment ℝ
+      s.2.inf = y) ∧
+    (s.2.sup = mM₀.sup ∨ ∃ (k : Fin n) (y : ℝ), (![γ, y] : Vec ℝ 2) ∈ segment ℝ
         (P₀ + ∑ i, if i < k then d i else 0) (P₀ + (∑ i, if i < k then d i else 0) + d k) ∧
-      s.2.2 = y) := by -- --- PROOF ---
+      s.2.sup = y) := by -- --- PROOF ---
   induction n generalizing P₀ mM₀ s with
   | zero =>
     rw [Fin.foldl_zero] at hs

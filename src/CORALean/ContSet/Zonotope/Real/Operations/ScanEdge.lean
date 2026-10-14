@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.Global.Tensor
 public import Mathlib.Analysis.Convex.Segment
 public import Mathlib.Data.EReal.Basic
@@ -24,7 +25,7 @@ for `M`. `m` and `M` start at `∞` and `-∞` (line 2), hence `EReal`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,15 +38,15 @@ namespace CORALean.Real
 
 open scoped Classical in
 /-- [1, Alg. 3] lines 11-15: update `(m, M)` with the intersection of `[P; Q]` and `L_γ`. -/
-noncomputable def Zonotope.scanEdge (γ : ℝ) (P Q : Vec ℝ 2) (mM : EReal × EReal) :
-    EReal × EReal :=
+noncomputable def Zonotope.scanEdge (γ : ℝ) (P Q : Vec ℝ 2) (mM : Interval EReal) :
+    Interval EReal :=
   -- 11. if `[P; Q]` intersects `L_γ`
   if (segment ℝ P Q ∩ {z | z 0 = γ}).Nonempty then
     -- 12. `(x, y) ← [P; Q] ∩ L_γ`, read at every point of it: the least `y` and the greatest
     let ym := sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q}
     let yM := sSup {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q}
     -- 13. `m ← min(m, y)`, and line 14, `M ← max(M, y)`
-    (min mM.1 ym, max mM.2 yM)
+    ⟨min mM.inf ym, max mM.sup yM⟩
   else mM
 
 end CORALean.Real

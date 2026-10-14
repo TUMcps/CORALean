@@ -46,8 +46,8 @@ def Taylm.sqrtCoef (q : ℕ) (c : 𝕋) (k : ℕ) : Interval 𝕋 :=
     Interval.mulHi Dh.inf Dh.sup (sqrtDown q c) (sqrtUp q c)⟩
   let B : Interval 𝕋 := ⟨Interval.mulLo A.inf A.sup (powDown wl k) (powUp wh k),
     Interval.mulHi A.inf A.sup (powDown wl k) (powUp wh k)⟩
-  let G := divFact (one, one) k
-  ⟨Interval.mulLo B.inf B.sup G.1 G.2, Interval.mulHi B.inf B.sup G.1 G.2⟩
+  let G := divFact ⟨one, one⟩ k
+  ⟨Interval.mulLo B.inf B.sup G.inf G.sup, Interval.mulHi B.inf B.sup G.inf G.sup⟩
 
 end CORALean.Float
 

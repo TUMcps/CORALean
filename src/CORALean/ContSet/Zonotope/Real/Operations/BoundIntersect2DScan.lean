@@ -29,7 +29,7 @@ generator, and the sort is `Tuple.sort`; a loop `for j from 1 to r` is `Fin.fold
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,11 +42,11 @@ namespace CORALean.Real
 
 /-- [1, Alg. 3]: the segment `[m; M]` with `{γ} × [m; M] = Z ∩ L_γ`. -/
 noncomputable def Zonotope.boundIntersect2DScan (Z : Zonotope (Vec ℝ 2)) (γ : ℝ) :
-    EReal × EReal :=
+    Interval EReal :=
   -- 1. the current position, `P ← c`
   let P := Z.c
   -- 2. `m ← ∞`, `M ← -∞`
-  let mM : EReal × EReal := (⊤, ⊥)
+  let mM : Interval EReal := ⟨⊤, ⊥⟩
   -- 3. lines 3-6: turn every generator upward
   let Z := Z.pointUp
   -- 7. lines 3, 7-8: `P ← P - gᵢ` drives `P` to the lowest vertex

@@ -103,7 +103,7 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
     split_ifs
     · exact ⟨sinhDown_le p c hc2, sinhUp_ge p c hc1⟩
     · exact ⟨coshDown_le p c, coshUp_ge p c hc1 hc2⟩
-  have hF1 := fun k => divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+  have hF1 := fun k => divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
     (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) k
   refine Taylm.compose_outer h g c _ _ N _
     (fun k => iteratedDeriv k g (toReal c) / (k.factorial : ℝ)) (fun k _ => ?_) fun t ht => ?_
@@ -154,7 +154,7 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
         linarith
       exact coshUp_ge p _ hp (by rw [hm]; exact hm0)
     -- `1 / (N+1)!` below its rounding
-    have hF := (divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+    have hF := (divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
       (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (N + 1)).2
     have hE := Real.cosh_pos (M)
     have hY := pow_nonneg (abs_nonneg (f t - toReal c)) (N + 1)
@@ -165,12 +165,12 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
           |f t - toReal c| ^ (N + 1) * (1 / ((N + 1).factorial : ℝ)) := by ring
       _ ≤ toReal (coshUp p (maximum (absolute c) (maximum (absolute T.bounds.inf)
             (absolute T.bounds.sup)))) * toReal (powUp B (N + 1))
-          * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 := by
+          * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
         apply mul_le_mul (mul_le_mul hD hPow hY (le_trans hE.le hD)) hF hFpos
         exact mul_nonneg (le_trans hE.le hD) (le_trans hY hPow)
       _ ≤ toReal (mulUp (coshUp p (maximum (absolute c) (maximum (absolute T.bounds.inf)
             (absolute T.bounds.sup)))) (powUp B (N + 1)))
-          * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 := by
+          * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
         apply mul_le_mul_of_nonneg_right (mul_le_mulUp _ _) (le_trans hFpos hF)
       _ ≤ _ := mul_le_mulUp _ _
 

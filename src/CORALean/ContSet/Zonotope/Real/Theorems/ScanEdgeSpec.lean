@@ -24,7 +24,7 @@ interval, so its infimum and supremum are attained.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -60,14 +60,14 @@ theorem Zonotope.aux_hits_compact (γ : ℝ) (P Q : Vec ℝ 2) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.scanEdge_spec (γ : ℝ) (P Q : Vec ℝ 2) (mM : EReal × EReal) :
-    (Zonotope.scanEdge γ P Q mM).1 ≤ mM.1 ∧ mM.2 ≤ (Zonotope.scanEdge γ P Q mM).2 ∧
+theorem Zonotope.scanEdge_spec (γ : ℝ) (P Q : Vec ℝ 2) (mM : Interval EReal) :
+    (Zonotope.scanEdge γ P Q mM).inf ≤ mM.inf ∧ mM.sup ≤ (Zonotope.scanEdge γ P Q mM).sup ∧
     (∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q →
-      (Zonotope.scanEdge γ P Q mM).1 ≤ y ∧ (y : EReal) ≤ (Zonotope.scanEdge γ P Q mM).2) ∧
-    ((Zonotope.scanEdge γ P Q mM).1 = mM.1 ∨ ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q ∧
-      (Zonotope.scanEdge γ P Q mM).1 = y) ∧
-    ((Zonotope.scanEdge γ P Q mM).2 = mM.2 ∨ ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q ∧
-      (Zonotope.scanEdge γ P Q mM).2 = y) := by -- --- PROOF ---
+      (Zonotope.scanEdge γ P Q mM).inf ≤ y ∧ (y : EReal) ≤ (Zonotope.scanEdge γ P Q mM).sup) ∧
+    ((Zonotope.scanEdge γ P Q mM).inf = mM.inf ∨ ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q ∧
+      (Zonotope.scanEdge γ P Q mM).inf = y) ∧
+    ((Zonotope.scanEdge γ P Q mM).sup = mM.sup ∨ ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q ∧
+      (Zonotope.scanEdge γ P Q mM).sup = y) := by -- --- PROOF ---
   classical
   by_cases hn : (segment ℝ P Q ∩ {z | z 0 = γ}).Nonempty
   · -- the edge meets the line: `m` and `M` are updated with its least and greatest `y`
@@ -83,8 +83,8 @@ theorem Zonotope.scanEdge_spec (γ : ℝ) (P Q : Vec ℝ 2) (mM : EReal × EReal
     have hyM := hcpt.sSup_mem hne
     -- the update is by the least and greatest `y` of the edge on the line
     have hsc : Zonotope.scanEdge γ P Q mM
-        = (min mM.1 (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} : ℝ),
-          max mM.2 (sSup {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} : ℝ)) := by
+        = ⟨min mM.inf (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} : ℝ),
+          max mM.sup (sSup {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} : ℝ)⟩ := by
       unfold Zonotope.scanEdge
       rw [if_pos ⟨z, hz, hz0⟩]
     rw [hsc]
@@ -92,10 +92,10 @@ theorem Zonotope.scanEdge_spec (γ : ℝ) (P Q : Vec ℝ 2) (mM : EReal × EReal
     refine ⟨min_le_left _ _, le_max_left _ _, fun y hy => ⟨?_, ?_⟩, ?_, ?_⟩
     · exact (min_le_right _ _).trans (EReal.coe_le_coe_iff.mpr (csInf_le hcpt.bddBelow hy))
     · exact (EReal.coe_le_coe_iff.mpr (le_csSup hcpt.bddAbove hy)).trans (le_max_right _ _)
-    · rcases min_choice mM.1 (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} : ℝ) with h | h
+    · rcases min_choice mM.inf (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} : ℝ) with h | h
       · exact Or.inl h
       · exact Or.inr ⟨_, hym, h⟩
-    · rcases max_choice mM.2 (sSup {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} : ℝ) with h | h
+    · rcases max_choice mM.sup (sSup {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q} : ℝ) with h | h
       · exact Or.inl h
       · exact Or.inr ⟨_, hyM, h⟩
   · -- it does not: nothing changes, and no `y` of the edge is on the line

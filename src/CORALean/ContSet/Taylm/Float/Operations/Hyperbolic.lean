@@ -17,7 +17,7 @@ The derivatives of `sinh` and `cosh` alternate between the two, so the `k`-th co
 centre `c` is `sinh c / k!` or `cosh c / k!` by the parity of `k`: `first` says whether the even
 coefficients are `sinh`'s (`Taylm.sinh`) or `cosh`'s (`Taylm.cosh`). `sinh c` and `cosh c` are
 enclosed by `sinhDown`/`sinhUp` and `coshDown`/`coshUp`, and the quotient by `k!` as the product
-with `[divFact (1, 1) k]` through the four corner products `mulLo`, `mulHi`, since `sinh c` has no
+with `[divFact ⟨1, 1⟩ k]` through the four corner products `mulLo`, `mulHi`, since `sinh c` has no
 sign. The remainder is Lagrange's: `cosh` at the magnitude `m` of the model bounds every
 derivative, times `Bᴺ⁺¹ / (N+1)!` with `B` the reach, each factor rounded up. `p` is the precision
 of the exponentials (`Global/Float/Exp`).
@@ -48,11 +48,11 @@ def Taylm.hyperbolic (p : ℕ) (first : Bool) (T : Taylm 𝕋 n) : Taylm 𝕋 n 
   let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
   let m := maximum (absolute c) (maximum (absolute b.inf) (absolute b.sup))
   let D := coshUp p m
-  let ρ := mulUp (mulUp D (powUp B (N + 1))) (divFact (one, one) (N + 1)).2
+  let ρ := mulUp (mulUp D (powUp B (N + 1))) (divFact ⟨one, one⟩ (N + 1)).sup
   -- the `k`-th derivative at `c` is `sinh c` or `cosh c` by parity, over `k!`
   let base : ℕ → Interval 𝕋 := fun k =>
     if (k % 2 == 0) == first then ⟨sinhDown p c, sinhUp p c⟩ else ⟨coshDown p c, coshUp p c⟩
-  let invFact : ℕ → Interval 𝕋 := fun k => ⟨(divFact (one, one) k).1, (divFact (one, one) k).2⟩
+  let invFact : ℕ → Interval 𝕋 := divFact ⟨one, one⟩
   T.compose c
     (fun k => Interval.mulLo (base k).inf (base k).sup (invFact k).inf (invFact k).sup)
     (fun k => Interval.mulHi (base k).inf (base k).sup (invFact k).inf (invFact k).sup) N ρ

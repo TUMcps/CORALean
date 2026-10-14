@@ -36,7 +36,7 @@ theorem LevelSet.representsa_fullspace_sound (L : CORALean.Real.LevelSet n)
     (h : LevelSet.representsa_fullspace L O = true) :
     L.construct = Set.univ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.representsa_fullspace_sound L
-    (fun i => (((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)))
+    (fun i => ⟨((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)⟩)
     (fun i x => ⟨EReal.coe_le_coe_iff.mpr (hO i x).1, EReal.coe_le_coe_iff.mpr (hO i x).2⟩) ?_
   -- each row's certified comparison, read as reals
   simp only [LevelSet.representsa_fullspace, List.all_eq_true, List.mem_finRange,

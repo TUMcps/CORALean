@@ -1338,7 +1338,11 @@ conventions check does confirm that an `assert_not_imported` module has a file.
 `scripts/check-conventions.sh` enforces two things. `GUARDED_FILES` lists the guarded
 files with their guard counts, and a missing guard, a guard without its comment or a
 count that differs is reported. `LAYERS` lists, per top-level directory of
-`src/CORALean/`, the directories it may not import: `Global/` imports no other layer,
+`src/CORALean/`, the directories it may not import: `Global/` imports no other layer (but
+the five `Global/Float/` enclosure files that name their results `Float.Interval` import
+`ContSet/Interval/Float/Interval`, which needs nothing above `Global/Float/SoundFloatArithmetic`;
+an exception names a path prefix such as `ContSet/Interval` and then admits only imports under
+it),
 `ContSet/` no dynamics, network or specification code, and nothing but `Examples/`
 imports `HybridDynamics/`. `ContDynamics/`, `NN/` and `Specification/` import one
 another and stay unordered. The imports that break a row are `LAYER_EXCEPTIONS`, each

@@ -53,7 +53,7 @@ theorem Taylm.arcsinCoef_mem (q : ℕ) (c : 𝕋)
   -- the three factors between their enclosures
   have hb := Interval.evalList_mem (lo := c) (hi := c) (x := toReal c) le_rfl le_rfl
     (recL [1, 0, -1] (fun j => 2 * (j : ℤ) + 1) j)
-  have hG := divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one
+  have hG := divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
     (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (j + 1)
   have hpl := powDown_le hv.2.1 hv.2.2.1 (2 * j + 1)
   have hph := le_powUp (inv_nonneg.2 (Real.sqrt_nonneg _)) hv.2.2.2 (2 * j + 1)
