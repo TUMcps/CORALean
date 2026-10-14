@@ -50,8 +50,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every state of a run on `[0, T]` whose inputs, less `u₀`, lie in `U`, less its free
 motion and what `u₀` contributes, is one `U`-input's contribution. -/
-theorem LinearSys.Trajectory.sub_mem_inputReach_shift {sys : LinearSys 𝕋 n} {T : ℝ}
-    {R₀ W U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory (Set.Icc 0 T) R₀ W x u)
+theorem LinearSys.CanonicalTrajectory.sub_mem_inputReach_shift {sys : LinearSys 𝕋 n} {T : ℝ}
+    {R₀ W U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.CanonicalTrajectory (Set.Icc 0 T) R₀ W x u)
     (u₀ : Vec ℝ n) (hWU : ∀ v ∈ construct W, v - u₀ ∈ construct U)
     (hW : Bornology.IsBounded (construct W)) (hU : Bornology.IsBounded (construct U))
     {t : ℝ} (ht : t ∈ Set.Icc 0 T) :

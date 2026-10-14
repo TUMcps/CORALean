@@ -24,7 +24,7 @@ with the counterexample of Sec. 5.2, the direction search that feeds them, and t
 claim that the search always decides (`Alg. 3 (termination)`). What the
 tree answers for is the two set representations the paper defines for itself —
 polytopes in both forms and ellipsoids, at which the support function is an equality
-rather than a bound — and, `LinearSys.Trajectory` being a Carathéodory run and
+rather than a bound — and, `LinearSys.CanonicalTrajectory` being a Carathéodory run and
 `LinearSys.reachSet_eq` an equality, the falsification side: every lower bound is a
 value some run of the system takes, and every `unsafe` comes with that run.
 

@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinearSys.trajectory_heldInput (sys : LinearSys 𝕋 n) (R₀ U : S n)
     (hU : Bornology.IsBounded (construct U)) {t : ℝ} (ht : 0 ≤ t) (Δt : ℝ) {x₀ : Vec ℝ n}
     (hx₀ : x₀ ∈ construct R₀) {v : ℕ → Vec ℝ n} (hv : ∀ j, v j ∈ construct U) :
-    sys.Trajectory (Set.Icc 0 t) R₀ U (sys.closedForm x₀ (LinearSys.heldInput Δt v))
+    sys.CanonicalTrajectory (Set.Icc 0 t) R₀ U (sys.closedForm x₀ (LinearSys.heldInput Δt v))
       (LinearSys.heldInput Δt v) :=
   let hu : ∀ s ∈ Set.Icc (0:ℝ) t, LinearSys.heldInput Δt v s ∈ construct U := fun _ _ => hv _
   let hmeas := (LinearSys.heldInput_measurable Δt v).aestronglyMeasurable

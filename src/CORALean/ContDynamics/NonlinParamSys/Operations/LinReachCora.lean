@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
+public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 
@@ -51,7 +52,7 @@ noncomputable def NonlinParamSys.linReachCora (sys : NonlinParamSys n m q) (xs :
     (Rerror : Zonotope (Vec ℝ n)) (r : ℝ) (η : ℕ) : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) :=
   -- [sys,linsys,linParams,linOptions] = linearize(sys,Rinit,params,options);
   let lin := sys.linearize xs us paramInt
-  let linsys : LinParamSys 𝕄𝒵 n := ⟨lin.zA⟩
+  let linsys : LinParamSys 𝕄𝒵 n := LinParamSys.canonical lin.zA
   -- Rdelta = Rinit + (-sys.linError.p.x);
   let Rdelta : Zonotope (Vec ℝ n) := Rinit ⊞ Zonotope.ofPoint (-lin.xs)
   -- [linsys,R] = initReach_inputDependence(linsys,Rdelta,linParams,linOptions);

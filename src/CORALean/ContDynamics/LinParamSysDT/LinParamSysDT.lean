@@ -54,7 +54,7 @@ structure LinParamSysDT.Trajectory (sys : LinParamSysDT 𝕄 n) (R₀ U : S n)
   step (k : ℕ) : ∃ A ∈ construct sys.A, x (k + 1) = A *ᵥ x k + u k
 
 /-- A run known only for its first `K` steps: `x` and `u` past that point are
-unconstrained, exactly as `LinearSysDT.TrajectoryOn`'s are. -/
+unconstrained, exactly as `LinearSysDT.CanonicalTrajectoryOn`'s are. -/
 structure LinParamSysDT.TrajectoryOn (sys : LinParamSysDT 𝕄 n) (R₀ U : S n) (K : ℕ)
     (x u : ℕ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀

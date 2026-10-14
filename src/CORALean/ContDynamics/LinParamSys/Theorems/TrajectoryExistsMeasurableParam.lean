@@ -43,8 +43,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- A run over `[0, t]` agrees almost everywhere there with a parameter that is
 measurable and inside the box at every instant. -/
-theorem LinParamSys.Trajectory.exists_measurable_param {sys : LinParamSys ℐ n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} (traj : sys.Trajectory T R₀ U x u A)
+theorem LinParamSys.CanonicalTrajectory.exists_measurable_param {sys : LinParamSys ℐ n} {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
+        (traj : sys.CanonicalTrajectory T R₀ U x u A)
     {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T) :
     ∃ Â : ℝ → Mat ℝ n n, (∀ i j, Measurable fun s => Â s i j) ∧
       (∀ s, Â s ∈ construct sys.A) ∧

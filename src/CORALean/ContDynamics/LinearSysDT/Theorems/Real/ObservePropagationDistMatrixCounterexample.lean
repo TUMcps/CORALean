@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 @[expose] public section
 
@@ -38,7 +39,7 @@ open Matrix CORALean.Real
 is not in the observer's next set, at every gain and every positive order. -/
 theorem LinearSysDT.observePropagation_dist_matrix_counterexample
     (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) (horder : 0 < order) :
-    let sys : LinearSysDT ℝ 1 := ⟨1⟩
+    let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 1
     let E : Mat ℝ 1 1 := 2  -- `linsysDT.E`
     let W : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩  -- `params.W`
     let w : Vec ℝ 1 := fun _ => 1

@@ -20,7 +20,7 @@ converted system accumulates is the discrete one's, as [1] intends. Only for a r
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,18 +33,17 @@ open Matrix NormedSpace
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-variable {n m q : ℕ}
+variable {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.expIntegral_toLinearSys (sys : LinearSysDT ℝ n) (L : Mat ℝ n n) {Δt : ℝ}
-    (hΔt : Δt ≠ 0) (hL : exp L = sys.A) (hM : IsUnit (sys.A - 1).det) (B : Mat ℝ n m)
-    (c : Vec ℝ n) (E : Mat ℝ n q) :
-    Real.MatExp.expIntegral (Δt⁻¹ • L) Δt * (sys.toLinearSys L Δt B c E).2.1 = B ∧
-      Real.MatExp.expIntegral (Δt⁻¹ • L) Δt *ᵥ (sys.toLinearSys L Δt B c E).2.2.1 = c ∧
-      Real.MatExp.expIntegral (Δt⁻¹ • L) Δt * (sys.toLinearSys L Δt B c E).2.2.2
-        = E := by -- --- PROOF ---
+    (hΔt : Δt ≠ 0) (hL : exp L = sys.A) (hM : IsUnit (sys.A - 1).det) :
+    Real.MatExp.expIntegral (Δt⁻¹ • L) Δt * (sys.toLinearSys L Δt).B = sys.B ∧
+      Real.MatExp.expIntegral (Δt⁻¹ • L) Δt *ᵥ (sys.toLinearSys L Δt).c = sys.c ∧
+      Real.MatExp.expIntegral (Δt⁻¹ • L) Δt * (sys.toLinearSys L Δt).E
+        = sys.E := by -- --- PROOF ---
   set Ac : Mat ℝ n n := Δt⁻¹ • L with hAc
   set I : Mat ℝ n n := Real.MatExp.expIntegral Ac Δt with hI
   -- `A_d - 1 = Ac · I`, and a regular product has regular factors
@@ -60,12 +59,11 @@ theorem LinearSysDT.expIntegral_toLinearSys (sys : LinearSysDT ℝ n) (L : Mat �
     rw [hprod, Matrix.mul_inv_rev, Matrix.mul_assoc, Matrix.mul_assoc I⁻¹ Ac⁻¹ Ac,
       Matrix.nonsing_inv_mul _ hAcu, Matrix.mul_one, Matrix.mul_nonsing_inv _ hIu]
   refine ⟨?_, ?_, ?_⟩
-  · simp only [LinearSysDT.toLinearSys]
+  · show I * ((sys.A - 1)⁻¹ * (Ac * sys.B)) = sys.B
     rw [← Matrix.mul_assoc, ← Matrix.mul_assoc, hkey, Matrix.one_mul]
-  · simp only [LinearSysDT.toLinearSys]
-    rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec,
-      show I * (sys.A - 1)⁻¹ * (Δt⁻¹ • L) = 1 from hkey, Matrix.one_mulVec]
-  · simp only [LinearSysDT.toLinearSys]
+  · show I *ᵥ ((sys.A - 1)⁻¹ *ᵥ (Ac *ᵥ sys.c)) = sys.c
+    rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hkey, Matrix.one_mulVec]
+  · show I * ((sys.A - 1)⁻¹ * (Ac * sys.E)) = sys.E
     rw [← Matrix.mul_assoc, ← Matrix.mul_assoc, hkey, Matrix.one_mul]
 
 end CORALean

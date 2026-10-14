@@ -38,7 +38,8 @@ open ContSet
 in `reach` at each sample time. It fails to compile the moment `PolyZonotope`
 loses one of the three instances the discrete recursion propagates through. -/
 example {n : ℕ} (sys : LinearSys ℝ n) (T : Set ℝ) (R₀ U Ud : PolyZonotope (Vec ℝ n))
-    (x u : ℝ → Vec ℝ n) (Δt : ℝ) (traj : sys.Trajectory (S := 𝒫𝒵) T R₀ U x u) (hΔt : 0 ≤ Δt)
+    (x u : ℝ → Vec ℝ n) (Δt : ℝ) (traj : sys.CanonicalTrajectory (S := 𝒫𝒵) T R₀ U x u)
+        (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒫𝒵) ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
@@ -47,7 +48,7 @@ example {n : ℕ} (sys : LinearSys ℝ n) (T : Set ℝ) (R₀ U Ud : PolyZonotop
 /-- The bounded-horizon form, which is what a hybrid location could call: the
 domain covers `[0, KΔt]` and the conclusion stops at step `K`. -/
 example {n : ℕ} (sys : LinearSys ℝ n) (T : Set ℝ) (R₀ U Ud : PolyZonotope (Vec ℝ n))
-    (x u : ℝ → Vec ℝ n) (Δt : ℝ) (K : ℕ) (traj : sys.Trajectory (S := 𝒫𝒵) T R₀ U x u)
+    (x u : ℝ → Vec ℝ n) (Δt : ℝ) (K : ℕ) (traj : sys.CanonicalTrajectory (S := 𝒫𝒵) T R₀ U x u)
     (hΔt : 0 ≤ Δt) (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T)
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :

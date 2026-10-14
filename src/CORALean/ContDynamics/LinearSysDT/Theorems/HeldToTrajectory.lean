@@ -32,9 +32,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A held run at `fun _ => u`, so `LinearSysDT.reach_outer` covers it too. -/
-theorem LinearSysDT.HeldTrajectory.toTrajectory {sys : LinearSysDT 𝕋 n} {R₀ U : S n}
-    {x : ℕ → Vec ℝ n} {u : Vec ℝ n} (h : sys.HeldTrajectory R₀ U x u) :
-    sys.Trajectory R₀ U x (fun _ => u) where
+theorem LinearSysDT.CanonicalHeldTrajectory.toTrajectory {sys : LinearSysDT 𝕋 n} {R₀ U : S n}
+    {x : ℕ → Vec ℝ n} {u : Vec ℝ n} (h : sys.CanonicalHeldTrajectory R₀ U x u) :
+    sys.CanonicalTrajectory R₀ U x (fun _ => u) where
   init := h.init
   input _ := h.input
   step := h.step

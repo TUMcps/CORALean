@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinear
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -51,9 +52,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 /-- Everything a constant-parameter run's input contributed up to any time in
 the step lies in the enclosure computed for the whole step. -/
-theorem LinParamSys.ConstTrajectory.inputSolution_timeInterval_outer
+theorem LinParamSys.CanonicalConstTrajectory.inputSolution_timeInterval_outer
     {sys : LinParamSys ℐ n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
-    {A : Mat ℝ n n} {r : ℝ} (traj : sys.ConstTrajectory T R₀ U x u A)
+    {A : Mat ℝ n n} {r : ℝ} (traj : sys.CanonicalConstTrajectory T R₀ U x u A)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
@@ -73,12 +74,12 @@ theorem LinParamSys.ConstTrajectory.inputSolution_timeInterval_outer
   -- the fixed matrix names the point system where `inputReach` and its measurability live
   have lin := traj.toLinearSys
   have hmemt : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
-      ∈ (LinearSys.mk A : LinearSys ℝ n).inputReach U t :=
+      ∈ (LinearSys.canonical A : LinearSys ℝ n).inputReach U t :=
     ⟨u, fun s hs => traj.input s (hTt hs), lin.aestronglyMeasurable_input hTt,
       by simp only [Scalar.toRealMat_real]⟩
   exact sys.inputReach_subset_inputSolution hr η hε traj.param hconv hclosed hbdd
     hRconv hRclosed hRbdd
-    ((LinearSys.mk A : LinearSys ℝ n).inputReach_mono hbdd h0 ht0 htr hmemt)
+    ((LinearSys.canonical A : LinearSys ℝ n).inputReach_mono hbdd h0 ht0 htr hmemt)
 
 end CORALean
 

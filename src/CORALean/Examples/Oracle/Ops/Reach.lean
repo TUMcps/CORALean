@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.Examples.Oracle.Dtype
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 /-!
 # `"linearSysReach"`, via `LinearSys.reachFloat`
@@ -98,7 +99,7 @@ def handleLinearSysReach {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic �
       { X₀ := X0, tFinal := (aux_toRat tFinal).1 / (aux_toRat tFinal).2 }
     let options : LinearSys.ReachOptions 𝕋 :=
       { Δt := Δt, η := eta, ρ := rho }
-    match LinearSys.reachFloat (𝕋 := 𝕋) ⟨A⟩ params options with
+    match LinearSys.reachFloat (𝕋 := 𝕋) (LinearSys.canonicalFloat A) params options with
     | none => throw s!"linearSysReach: reachFloat returned none -- no admissible Taylor order \
         (raised from taylorTerms = {eta}) was found for this timeStep"
     | some (Rti, Rtp) =>

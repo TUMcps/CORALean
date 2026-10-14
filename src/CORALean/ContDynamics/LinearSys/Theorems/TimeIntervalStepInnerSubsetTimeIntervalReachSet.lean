@@ -71,7 +71,7 @@ theorem LinearSys.timeIntervalStepInner_subset_timeIntervalReachSet
     fun _ _ => Zonotope.centre_mem_construct U
   have hmeas : AEStronglyMeasurable (fun _ : ℝ => U.c) (volume.restrict (Set.Icc 0 r)) :=
     aestronglyMeasurable_const
-  have traj : sys.Trajectory (S := 𝒵) (Set.Icc 0 r) X₀ U
+  have traj : sys.CanonicalTrajectory (S := 𝒵) (Set.Icc 0 r) X₀ U
       (sys.closedForm y fun _ => U.c) (fun _ => U.c) :=
     ⟨by rw [sys.closedForm_zero]; exact hinner hy, hu, hmeas,
       sys.closedForm_continuousOn (S := 𝒵) y hr.le hU hu hmeas,

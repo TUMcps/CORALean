@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFlo
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -82,11 +83,11 @@ theorem LinParamSys.expIntegral_mem_constInputSolutionFloat
       Zonotope (Vec 𝕋 n)) with hseg
   -- the constant `ũ` held over `[0, t]` is an admissible input of the segment
   have hconst : Real.MatExp.expIntegral A t *ᵥ Scalar.toRealVec uc
-      ∈ (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) seg t :=
+      ∈ (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) seg t :=
     ⟨fun _ => Scalar.toRealVec uc, fun _ _ => hũseg, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A (Scalar.toRealVec uc) ht0).symm⟩
   exact sys.inputReach_subset_inputSolutionFloat hr hη hA seg
-    ((LinearSys.mk A : LinearSys ℝ n).inputReach_mono (CompactSet.isBounded_construct seg)
+    ((LinearSys.canonical A : LinearSys ℝ n).inputReach_mono (CompactSet.isBounded_construct seg)
       h0seg ht0 htr hconst)
 
 end CORALean

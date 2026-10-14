@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
@@ -47,7 +48,7 @@ def LinParamSys.inputSolutionZonoFloat (sys : LinParamSys 𝕄𝒵[𝕋] n)
     (sys.inputTermZonoFloat r 0) V ⊞
     Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
       (sys.inputTermZonoFloat r 1) V ⊞
-    (LinParamSys.mk (𝕄 := ℐ[𝕋]) IA).inputTaylorSumTailFloat r V η ⊞
+    (LinParamSys.canonical (𝕄 := ℐ[𝕋]) IA).inputTaylorSumTailFloat r V η ⊞
     Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (MatExp.intervalInputRemainder IA r η) V
 

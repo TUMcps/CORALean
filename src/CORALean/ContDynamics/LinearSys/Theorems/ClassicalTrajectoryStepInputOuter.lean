@@ -22,7 +22,7 @@ The cost is convexity and closedness of `U`, which `ContSet` does not offer; a
 representation that cannot supply them keeps the general form, where the enclosure
 stays a hypothesis. Kept for a classical run on a window `[kΔt, (k+1)Δt]` that
 does not reach back to `0` — a nonlinear run linearized step by step — where
-`ClassicalTrajectory.trajectory` cannot hand it to `Trajectory`, whose integral
+`CanonicalClassicalTrajectory.trajectory` cannot hand it to `Trajectory`, whose integral
 equation is anchored at `0`.
 
 ## References
@@ -59,9 +59,9 @@ omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- What a step's input contributed lies in `inputSolution`, for every step.
 Reflecting about the step's end is what the substitution inside
 `inputSolution_outer` leaves behind, and only step `k` is spoken about. -/
-theorem LinearSys.ClassicalTrajectory.stepInput_outer [Mtimes ℐ S]
+theorem LinearSys.CanonicalClassicalTrajectory.stepInput_outer [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.ClassicalTrajectory T R₀ U x u)
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
     (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))

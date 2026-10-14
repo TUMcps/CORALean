@@ -9,7 +9,9 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
 # `LinearSysDT` instantiates `Reach`
 
 `params` is `Reach.InputParams` counted in sampling periods, `U` among them as in
-CORA; `options` is `LinearSysDT.ReachOptions`. `reachExact` is `reachUnionExact`
+CORA, the combined input `B U ⊕ c ⊕ E W` of the canonical form in state coordinates, which
+`Trajectory.canonical` reads every run of the full equation into; `options` is
+`LinearSysDT.ReachOptions`. `reachExact` is `reachUnionExact`
 over `tFinal - tStart` steps, the system being time-invariant, `reach` is
 `reachUnion` (always `some`: nothing here can fail at run time), and the guarantee
 is `reachUnion_outer` — nothing new, every field already proved for its own
@@ -18,7 +20,7 @@ sake in `Definitions`, `Operations` and `Theorems`.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

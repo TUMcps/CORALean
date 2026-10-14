@@ -81,7 +81,7 @@ theorem LinearSys.interpolated_run_mem (sys : LinearSys 𝕋 n) (R₀ U : S n)
     {v : ι → ℕ → Vec ℝ n} (hv : ∀ j ∈ s, ∀ i, v j i ∈ construct U) {y : ι → Vec ℝ n}
     (hy : ∀ j ∈ s, y j ∈ L) {k : ℕ}
     (h0 : ∑ j ∈ s, w j • (sys.heldSim Δt (x j) (v j) k - y j) = 0) :
-    sys.Trajectory (Set.Icc 0 (k * Δt)) R₀ U
+    sys.CanonicalTrajectory (Set.Icc 0 (k * Δt)) R₀ U
         (sys.closedForm (∑ j ∈ s, w j • x j)
           (LinearSys.heldInput Δt fun i => ∑ j ∈ s, w j • v j i))
         (LinearSys.heldInput Δt fun i => ∑ j ∈ s, w j • v j i) ∧

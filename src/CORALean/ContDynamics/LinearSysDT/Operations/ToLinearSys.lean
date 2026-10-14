@@ -21,7 +21,7 @@ runs `fmincon` on a cost of the discretization, not formalized (solver-dependent
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,18 +31,20 @@ namespace CORALean
 
 open Matrix
 
-variable {n m q : ℕ}
+variable {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `A` of the returned system with `B`, `c`, `E`; the record keeps `A` only. -/
-noncomputable def LinearSysDT.toLinearSys (sys : LinearSysDT ℝ n) (L : Mat ℝ n n) (Δt : ℝ)
-    (B : Mat ℝ n m) (c : Vec ℝ n) (E : Mat ℝ n q) :
-    LinearSys ℝ n × Mat ℝ n m × Vec ℝ n × Mat ℝ n q :=
+/-- `linearSys(A, B, c, C, D, k, E, F)`, the output equation carried over as it stands. -/
+noncomputable def LinearSysDT.toLinearSys (sys : LinearSysDT ℝ n) (L : Mat ℝ n n) (Δt : ℝ) :
+    LinearSys ℝ n :=
   let A := Δt⁻¹ • L                                                  -- logm(sys.A)/sys.dt
   let M := sys.A - 1                                                 -- sys.A - eye(n)
-  (⟨A⟩, M⁻¹ * (A * B), M⁻¹ *ᵥ (A *ᵥ c), M⁻¹ * (A * E))               -- linsolve(M, A*B), ...
+  let B := M⁻¹ * (A * sys.B)                                         -- linsolve(M, A*sys.B)
+  let c := M⁻¹ *ᵥ (A *ᵥ sys.c)                                       -- linsolve(M, A*sys.c)
+  let E := M⁻¹ * (A * sys.E)                                         -- linsolve(M, A*sys.E)
+  ⟨sys.m, sys.q, sys.r, sys.s, A, B, c, sys.C, sys.D, sys.k, E, sys.F⟩
 
 end CORALean
 

@@ -27,12 +27,10 @@ variable {n p m : ℕ}
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- The ordinary system with `y` replaced by `h x u`.
-
-`ẋ = f(x, h(x,u), u)`: the algebraic variable eliminated through the reduced model. -/
+/-- The ordinary system with `y` replaced by `h x u`, in the dynamics and the output alike. -/
 def NonlinDASys.ReducedModel.toNonlinearSys {sys : NonlinDASys n p m}
     (red : sys.ReducedModel) : NonlinearSys n m :=
-  ⟨fun x u => sys.f x (red.h x u) u⟩
+  ⟨fun x u => sys.f x (red.h x u) u, sys.q, fun x u => sys.h x (red.h x u) u⟩
 
 end CORALean
 

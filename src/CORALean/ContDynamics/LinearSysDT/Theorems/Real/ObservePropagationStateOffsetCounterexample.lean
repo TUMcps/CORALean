@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObservePropagation
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 @[expose] public section
 
@@ -38,7 +39,7 @@ open Matrix CORALean.Real
 output, and `x₁` is not in the observer's next set, at every gain and order. -/
 theorem LinearSysDT.observePropagation_state_offset_counterexample
     (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) :
-    let sys : LinearSysDT ℝ 1 := ⟨1⟩
+    let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 1
     let c : Vec ℝ 1 := fun _ => 1  -- `linsysDT.c`
     let x : ℕ → Vec ℝ 1 := fun k _ => k
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (x 0)

@@ -6,6 +6,7 @@ import CORALean.Global.Float.Instances.Binary64.Instances
 import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
 import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 import CORALean.Global.Float.NoNaN
+import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
 
 /-!
 # The same run at native binary64
@@ -42,7 +43,7 @@ open CORALean CORALean.Float
 what a `Float` literal takes; all four entries are exact in binary64. -/
 def Ab : Mat Float 2 2 := !![0.9375, -0.125; 0.125, 0.9375]
 
-def sysb : LinearSysDT Float 2 := ⟨Ab⟩
+def sysb : LinearSysDT Float 2 := LinearSysDT.canonicalFloat Ab
 
 /-- Zero width in every coordinate, as `zeroBox` is at `Dyadic`. -/
 def zeroBoxB (n : ℕ) : Interval (Vec Float n) := ⟨fun _ => 0.0, fun _ => 0.0⟩

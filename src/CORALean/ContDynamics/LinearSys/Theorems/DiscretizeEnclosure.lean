@@ -17,7 +17,7 @@ with an exact matrix, `exp_mem_expEnclosure` at the same exponential
 `discretize_step` already produces.
 
 The witness is the same matrix `e^{AΔt}` at every `k` — the system does not
-actually vary, `LinParamSysDT.Trajectory` merely permits it to. `reach` built
+actually vary, `LinParamSysDT.CanonicalTrajectory` merely permits it to. `reach` built
 on this trajectory does not exploit that constancy, so the enclosure is looser
 than an exact discretization would be if the exponential could be computed.
 -/
@@ -48,9 +48,9 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.Trajectory.discretizeEnclosure {sys : LinearSys 𝕋 n} {T : Set ℝ}
+theorem LinearSys.CanonicalTrajectory.discretizeEnclosure {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {η : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) :

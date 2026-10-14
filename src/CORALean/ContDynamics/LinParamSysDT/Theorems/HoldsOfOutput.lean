@@ -29,7 +29,7 @@ variable {n r : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) 
 variable {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes 𝕄 S] [Mtimes (Mat 𝕋) S]
+variable [Mtimes 𝕄 S] [Mtimes (Mat 𝕋) S] [OfScalarPoint 𝕋 S]
 variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 
 

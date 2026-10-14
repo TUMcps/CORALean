@@ -11,6 +11,8 @@ import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
+import CORALean.ContDynamics.LinearSys.Operations.Canonical
+import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 /-!
 # A two-state plant with a ReLU controller, verified end to end
@@ -58,7 +60,7 @@ noncomputable def Example.nnController (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (
 
 noncomputable def Example.nnControlledDT (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3)
     (W₂ : Mat ℝ 2 3) (b₂ : Vec ℝ 2) : NeurNetContrSysDT ℝ 𝒵 2 where
-  plant := ⟨A⟩
+  plant := LinearSysDT.canonical A
   contr := Example.nnController W₁ b₁ W₂ b₂
 
 
@@ -67,7 +69,7 @@ noncomputable def Example.nnControlledDT (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) 
 /-- The same controller on a continuous plant, sampled. -/
 noncomputable def Example.nnControlled (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3)
     (W₂ : Mat ℝ 2 3) (b₂ : Vec ℝ 2) : NeurNetContrSys ℝ 𝒵 2 where
-  plant := ⟨A⟩
+  plant := LinearSys.canonical A
   contr := Example.nnController W₁ b₁ W₂ b₂
 
 -- anonymous, since their content is that they elaborate at this representation

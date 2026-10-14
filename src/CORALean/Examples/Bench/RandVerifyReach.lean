@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
 import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 import CORALean.Examples.Bench.RandVerifyAlg
 import CORALean.Examples.Bench.RandVerifySystem
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 /-!
 # `randverify`: the one call into the reach algorithm
@@ -36,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 def randVerifyReach (alg : RandAlg) (S : RandSystem 𝕋) (tFinal : ℚ) (η ρ : ℕ) :
     Except String (List (Zonotope (Vec 𝕋 5))) :=
   -- the system, the problem and the algorithm's options, as CORA's `params`/`options`
-  let sys : LinearSys 𝕋 5 := ⟨S.A⟩
+  let sys : LinearSys 𝕋 5 := LinearSys.canonicalFloat S.A
   let params : Reach.InputParams (Zonotope (Vec 𝕋 5)) (Zonotope (Vec 𝕋 2)) ℚ :=
     { X₀ := S.X0, U := Interval.zonotope S.U, tFinal := tFinal }
   let options : LinearSys.ReachOptions 𝕋 :=

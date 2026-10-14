@@ -6,6 +6,7 @@ public import CORALean.ContSet.ConZonotope.Float.Instances
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -45,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 iteration. -/
 def LinearSys.minBackReachInitFloat (sys : LinearSys 𝕋 n) (W₀ U₀ : Zonotope (Vec 𝕋 n)) (t₀ : 𝕋)
     (η : ℕ) : LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n)) :=
-  let Ā : LinearSys 𝕋 n := ⟨fun i j => neg (sys.A i j)⟩             -- time-inverted dynamics
+  let Ā : LinearSys 𝕋 n := { sys with A := fun i j => neg (sys.A i j) }  -- time-inverted dynamics
   { t := t₀                                                         -- 1. τ = [t₀, t_end]
     ZW₀ := Ā.inputSolutionFloat t₀ η W₀                             -- 5. Ẑ_{W₀}(-t₀)
     ZU₀ := Ā.inputSolutionFloat t₀ η U₀                             -- 6. Ẑ_{U₀}(-t₀)

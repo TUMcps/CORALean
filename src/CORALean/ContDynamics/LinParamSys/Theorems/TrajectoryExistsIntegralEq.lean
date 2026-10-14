@@ -58,8 +58,9 @@ theorem aux_intervalIntegrable_param {B : Interval (Mat ℝ n n)} {A : ℝ → M
 
 /-- An input-free run over `[0, t]` solves the integral equation at a parameter
 inside the box with integrable entries. -/
-theorem LinParamSys.Trajectory.exists_integral_eq {sys : LinParamSys ℐ n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} (traj : sys.Trajectory T R₀ U x u A)
+theorem LinParamSys.CanonicalTrajectory.exists_integral_eq {sys : LinParamSys ℐ n} {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
+        (traj : sys.CanonicalTrajectory T R₀ U x u A)
     {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T) (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) :
     ∃ Â : ℝ → Mat ℝ n n,
       (∀ i j a b, IntervalIntegrable (fun s => Â s i j) volume a b) ∧

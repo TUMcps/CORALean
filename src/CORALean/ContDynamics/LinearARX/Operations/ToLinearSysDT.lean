@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearARX.LinearARX
-public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
+public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 public import CORALean.Global.ExactScalar
 
 @[expose] public section
@@ -15,14 +15,14 @@ block `a+1` of this one, and the last block is `∑ Ā_i y(k-i)` — block `a'`
 carries `Ā_{p-a'}`, `Fin.rev a'` here. The input terms `∑ B̄_i u(k-i+1)` are not
 in `A`: they enter in state coordinates, through `inputMat` and `inputSet`.
 
-CORA stacks the last `p+1` inputs into an input of dimension `dim_u (p+1)`;
-`LinearSysDT` has no `B`, so those folds into the input set instead, which is what
-loses the dependency between the copies of `u`.
+CORA stacks the last `p+1` inputs into an input of dimension `dim_u (p+1)`; the converted
+system is the canonical form `LinearSysDT.canonical`, so they fold into the input set instead,
+which is what loses the dependency between the copies of `u`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   01-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,8 +35,8 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearARX.toLinearSysDT (sys : LinearARX 𝕋 dy du p) : LinearSysDT 𝕋 (p * dy) where
-  A := Matrix.of fun r c =>
+def LinearARX.toLinearSysDT (sys : LinearARX 𝕋 dy du p) : LinearSysDT 𝕋 (p * dy) :=
+  LinearSysDT.canonical <| Matrix.of fun r c =>
     if (finProdFinEquiv.symm r).1.val + 1 < p then
       if (finProdFinEquiv.symm c).1.val = (finProdFinEquiv.symm r).1.val + 1
           ∧ (finProdFinEquiv.symm c).2 = (finProdFinEquiv.symm r).2 then 1 else 0

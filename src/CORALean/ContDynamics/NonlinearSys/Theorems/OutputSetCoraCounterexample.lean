@@ -21,7 +21,7 @@ second- and third-order terms are `0` at either `tensorOrderOutput`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,15 +37,14 @@ open CORALean.Real
 /-- `x = 0` under the input `1` is a run of `ẋ = 0` from `R0 = {0}` with inputs in `U = {1}`, and
 its output `x(0) + u(0) = 1` is not in CORA's output set at `R0`. -/
 theorem NonlinearSys.outputSetCora_counterexample :
-    let sys : NonlinearSys 1 1 := ⟨fun _ _ => 0⟩
-    let h : Vec ℝ 1 → Vec ℝ 1 → Vec ℝ 1 := fun x v => x + v
+    let sys : NonlinearSys 1 1 := ⟨fun _ _ => 0, 1, fun x v => x + v⟩
     let R0 : Zonotope (Vec ℝ 1) := ⟨0, 0, Fin.elim0⟩
     let U : Zonotope (Vec ℝ 1) := ⟨0, 1, Fin.elim0⟩
     let x : ℝ → Vec ℝ 1 := fun _ => 0
     let u : ℝ → Vec ℝ 1 := fun _ => 1
     sys.Trajectory (S := 𝒵) (Set.Ici 0) R0 U x u ∧
-      h (x 0) (u 0) ∉ NonlinearSys.outputSetCora h R0 U 0 := by -- --- PROOF ---
-  intro sys h R0 U x u
+      sys.g (x 0) (u 0) ∉ sys.outputSetCora R0 U 0 := by -- --- PROOF ---
+  intro sys R0 U x u
   refine ⟨⟨?_, fun _ _ => ?_, fun _ _ => ?_⟩, ?_⟩
   -- `R0` and `U` are the points `0` and `1`; `ẋ = 0` holds for the constant run
   · exact ⟨Fin.elim0, fun j => j.elim0, by simp [x, R0]⟩
@@ -56,7 +55,7 @@ theorem NonlinearSys.outputSetCora_counterexample :
     simp only [R0, U, Finset.univ_eq_empty, Finset.sum_empty, add_zero, sub_self] at hx' hv
     subst hx' hv
     have := congrFun hy 0
-    simp [h, x, u, R0, U] at this
+    simp [sys, x, u, R0, U] at this
 
 end CORALean
 

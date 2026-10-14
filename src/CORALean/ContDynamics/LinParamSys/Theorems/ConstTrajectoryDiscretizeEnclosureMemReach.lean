@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosure
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -53,11 +54,11 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 /-- Sampling into the discretized system and then running its recursion: the
 reachable set at every sample time, at maximum order `o`. -/
-theorem LinParamSys.ConstTrajectory.discretizeEnclosure_mem_reach {sys : LinParamSys ℐ n}
+theorem LinParamSys.CanonicalConstTrajectory.discretizeEnclosure_mem_reach {sys : LinParamSys ℐ n}
     {T : Set ℝ} {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {Δt : ℝ} {η : ℕ}
-    (traj : sys.ConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, (LinearSys.mk A : LinearSys ℝ n).stepInput u Δt k ∈ construct Ud)
+    (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u Δt k ∈ construct Ud)
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretizeEnclosure Δt η).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=

@@ -1,4 +1,5 @@
 import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.ContSet.HPolytope.Real.Instances
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 import CORALean.ContSet.Zonotope.Real.Instances
@@ -75,7 +76,7 @@ the only location back into it. -/
 noncomputable def Example.bouncingBall (g d p v : ℝ) : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2 where
   loc _ :=
     { inv := Example.ballBox p v
-      dynamics := ⟨!![0, 1; 0, 0]⟩
+      dynamics := LinearSys.canonical !![0, 1; 0, 0]
       U := ⟨0, ![0, -g], ![]⟩
       trans := [Example.bounce d] }
 

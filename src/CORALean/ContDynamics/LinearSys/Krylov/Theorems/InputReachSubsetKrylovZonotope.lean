@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputReachSubsetKr
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -87,7 +88,7 @@ theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
 `c_u` and the `g⁽ⁱ⁾_u`, plus the thesis' remainder `E(δ)·δ·U` closed and convexified. -/
 theorem Krylov.inputReach_subset_krylovZonotope (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) {δ : ℝ}
     (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒮) Z.construct δ
+    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) Z.construct δ
       ⊆ (∑ j ∈ Finset.range (η + 1),
           (⟨Z.h, Krylov.aux_krylovTerm A δ m j Z.c,
             fun i => Krylov.aux_krylovTerm A δ m j (Z.G i)⟩ : Zonotope (Vec ℝ n)).construct)

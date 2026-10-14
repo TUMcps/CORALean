@@ -56,8 +56,8 @@ theorem aux_aestronglyMeasurable_shift {f : ℝ → Vec ℝ n} {a b c : ℝ}
 
 /-- Step `k`'s input contribution lies in `inputReach U Δt`, the domain covering
 that step alone. -/
-theorem LinearSys.Trajectory.stepInput_mem_inputReach {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory T R₀ U x u) (k : ℕ)
+theorem LinearSys.CanonicalTrajectory.stepInput_mem_inputReach {sys : LinearSys 𝕋 n} {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.CanonicalTrajectory T R₀ U x u) (k : ℕ)
     (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) :
     sys.stepInput u Δt k ∈ sys.inputReach U Δt := by -- --- PROOF ---
   rw [show ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt from by ring] at hT

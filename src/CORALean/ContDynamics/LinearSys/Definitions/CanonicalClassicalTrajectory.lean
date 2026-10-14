@@ -15,7 +15,7 @@ regularity here, being pinned by `u t = ẋ(t) - A x(t)` wherever the flow holds
 
 This was `Trajectory` before the Carathéodory reading replaced it. It stays as
 the special case a nonlinear or parameter-varying run is first linearized to,
-classically, and `ClassicalTrajectory.trajectory` hands each such run to every
+classically, and `CanonicalClassicalTrajectory.trajectory` hands each such run to every
 guarantee stated over `Trajectory`. It excludes a zero-order-hold input, whose
 jumps have no two-sided derivative, so nothing reached is stated over it.
 -/
@@ -40,7 +40,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- A run of `sys` on `T` whose state has the derivative `A x + u` at every
 point of `T`, within `T`. -/
-structure LinearSys.ClassicalTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
+structure LinearSys.CanonicalClassicalTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
     (x u : ℝ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U

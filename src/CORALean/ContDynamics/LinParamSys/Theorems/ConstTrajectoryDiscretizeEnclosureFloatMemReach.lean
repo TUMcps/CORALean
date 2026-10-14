@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryDiscretizeEnclosureFloat
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -36,12 +37,13 @@ variable [Mtimes ℐ[𝕋] S]
 
 /-- Every sample `x (k Δt)` of a `'constParam'` run lies in the float-sampled
 system's `reach` after `k` steps under the sampled inputs `Ud`. -/
-theorem LinParamSys.ConstTrajectory.discretizeEnclosureFloat_mem_reach
+theorem LinParamSys.CanonicalConstTrajectory.discretizeEnclosureFloat_mem_reach
     {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {Δt : 𝕋} {η : ℕ}
-    (traj : sys.ConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, (LinearSys.mk A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ construct Ud)
+    (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ construct
+        Ud)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * toReal Δt) ∈ construct ((sys.discretizeEnclosureFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
       ⟨o, ho⟩) :=

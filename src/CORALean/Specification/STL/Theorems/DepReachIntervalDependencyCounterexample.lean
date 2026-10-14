@@ -7,6 +7,7 @@ public import CORALean.Specification.STL.Theorems.DepBloatingC
 public import CORALean.Specification.STL.Theorems.DepReachIntervalSumEval
 public import CORALean.Specification.STL.Theorems.ExpIntegralZeroOne
 public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -53,7 +54,7 @@ theorem STL.depReachInterval_dependency_counterexample :
       ∀ (i : ℕ) (t : ℝ), i * Δt ≤ t → t ≤ (i + 1) * Δt →
       let R := (STL.depReach A B X₀ U Δt κ i).2
       let idx : ℕ → ℕ := fun k => if k < X₀.h then k else k - X₀.h - 1
-      let ξ := (LinearSys.mk A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
+      let ξ := (LinearSys.canonical A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
         (LinearSys.heldInput Δt
           (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l))) t
       ∃ β : ℕ → ℝ, (∀ k, |β k| ≤ 1) ∧
@@ -84,7 +85,7 @@ theorem STL.depReachInterval_dependency_counterexample :
     exact STL.depBloating_c _ _ _ _ rfl
   rw [hRc] at heq
   -- the solution at `t = 1/2` of `ẋ = u` held at `1` is `1/2`, and the claim says `1`
-  have hcf : (LinearSys.mk (0 : Mat ℝ 1 1)).closedForm
+  have hcf : (LinearSys.canonical (0 : Mat ℝ 1 1)).closedForm
       (0 + ∑ l : Fin 0, (1:ℝ) • (l.elim0 : Vec ℝ 1))
       (LinearSys.heldInput 1 fun j : ℕ =>
         (1 : Mat ℝ 1 1) *ᵥ (0 + ∑ l : Fin 1, (1:ℝ) • (fun _ => 1 : Vec ℝ 1)))

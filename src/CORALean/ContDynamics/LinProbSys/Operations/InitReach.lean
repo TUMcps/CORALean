@@ -15,6 +15,7 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -72,7 +73,8 @@ noncomputable def LinProbSys.initReach (sys : LinProbSys n m) (Veig : Mat ℝ n 
   -- priv_inputSolution, non-probabilistic solution
   let V := Zonotope.mtimes sys.B U                                  -- V = obj.B*params.U
   let vTrans := sys.B *ᵥ uTrans                                     -- vTrans = obj.B*params.uTrans
-  let inputSolV := (⟨A⟩ : LinearSys ℝ n).inputSolution (S := 𝒵) r η V   -- Vsum+E*r*V
+  let inputSolV :=                                                 -- Vsum+E*r*V
+    (LinearSys.canonical A : LinearSys ℝ n).inputSolution (S := 𝒵) r η V
   let inputSolVtrans := (A⁻¹ * (eAt - 1)) *ᵥ vTrans                -- inv(A)*(expm(A*r)-I)*vTrans
   let inputCorr : Zonotope (Vec ℝ n) := if originContained then Zonotope.ofPoint 0
     else Zonotope.mtimesIntervalMat (Interval.matMul (Interval.point A⁻¹) F)

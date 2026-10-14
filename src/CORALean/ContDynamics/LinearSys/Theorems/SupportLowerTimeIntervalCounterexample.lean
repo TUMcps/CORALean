@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
 public import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -41,7 +42,7 @@ open Matrix ContSet Scalar NormedSpace MeasureTheory
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.supportLower_timeInterval_counterexample :
-    let sys : LinearSys ℝ 3 := ⟨0⟩
+    let sys : LinearSys ℝ 3 := LinearSys.canonical 0
     let U : Set (Vec ℝ 3) := convexHull ℝ {![0, 0, 0], ![1, 0, 0], ![0, 1, 0], ![0, 0, 1]}
     let ℓ : Vec ℝ 3 →ₗ[ℝ] ℝ :=
       (LinearMap.proj 0 : Vec ℝ 3 →ₗ[ℝ] ℝ) + (LinearMap.proj 1 : Vec ℝ 3 →ₗ[ℝ] ℝ) +

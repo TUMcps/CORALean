@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -44,7 +45,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 before the first iteration. -/
 noncomputable def LinearSys.minBackReachInit (sys : LinearSys 𝕋 n)
     (W₀ U₀ : Zonotope (Vec ℝ n)) (t₀ : ℝ) (η : ℕ) : LinearSys.MinBackReachState n :=
-  let Ā : LinearSys ℝ n := ⟨-toRealMat sys.A⟩                       -- time-inverted dynamics
+  let Ā : LinearSys ℝ n := LinearSys.canonical (-toRealMat sys.A)  -- time-inverted dynamics
   { t := t₀                                                         -- 1. τ = [t₀, t_end]
     ZW₀ := Ā.inputSolution (S := 𝒵) t₀ η W₀                         -- 5. Ẑ_{W₀}(-t₀)
     ZU₀ := Ā.inputSolution (S := 𝒵) t₀ η U₀                         -- 6. Ẑ_{U₀}(-t₀)

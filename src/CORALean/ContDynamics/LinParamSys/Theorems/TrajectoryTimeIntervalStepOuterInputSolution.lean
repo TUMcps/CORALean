@@ -99,9 +99,9 @@ theorem aux_hull_subset_inputTerm (sys : LinParamSys ℐ n) {U : S n} {M₀ : Ma
 
 /-- A `'varParam'` run with an input is, at every time of the step, in the
 box's own time-interval step of the initial set plus its input solution. -/
-theorem LinParamSys.Trajectory.timeIntervalStep_outer_inputSolution {sys : LinParamSys ℐ n}
+theorem LinParamSys.CanonicalTrajectory.timeIntervalStep_outer_inputSolution {sys : LinParamSys ℐ n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
-    (traj : sys.Trajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
+    (traj : sys.CanonicalTrajectory T R₀ U x u A) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T)
     {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)

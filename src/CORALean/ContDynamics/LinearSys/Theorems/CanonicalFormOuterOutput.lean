@@ -18,7 +18,7 @@ not tied to the state input. Outer only.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,7 +28,7 @@ namespace CORALean
 
 open Matrix ContSet Scalar Plus Mtimes
 
-variable {n m q r s : ℕ}
+variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 variable [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
@@ -36,17 +36,16 @@ variable [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.canonicalForm_output_outer (sys : LinearSys ℝ n) (B : Mat ℝ n m)
-    (c : Vec ℝ n) (out : OutputEq ℝ n m r) (k : Vec ℝ r) (E : Mat ℝ n q) (F : Mat ℝ r s)
-    (U : S m) (uVec : Vec ℝ m) (W : S q) (V : S s) (vVec : Vec ℝ s) {u : Vec ℝ m}
-    (hu : u ∈ construct U) {v : Vec ℝ s} (hv : v ∈ construct V) :
-    out.D *ᵥ (uVec + u) + k + F *ᵥ (vVec + v)
-        - (sys.canonicalForm B c out k E F U uVec W V vVec).2.2.2.2.2
-      ∈ construct (sys.canonicalForm B c out k E F U uVec W V vVec).2.2.2.2.1 := by -- --- PROOF ---
+theorem LinearSys.canonicalForm_output_outer (sys : LinearSys ℝ n) (U : S sys.m)
+    (uVec : Vec ℝ sys.m) (W : S sys.r) (V : S sys.s) (vVec : Vec ℝ sys.s) {u : Vec ℝ sys.m}
+    (hu : u ∈ construct U) {v : Vec ℝ sys.s} (hv : v ∈ construct V) :
+    sys.D *ᵥ (uVec + u) + sys.k + sys.F *ᵥ (vVec + v)
+        - (sys.canonicalForm U uVec W V vVec).2.2.2.2
+      ∈ construct (sys.canonicalForm U uVec W V vVec).2.2.2.1 := by -- --- PROOF ---
   -- the offset cancels, leaving `D u + F (v - centerV)`
-  have heq : out.D *ᵥ (uVec + u) + k + F *ᵥ (vVec + v)
-        - (sys.canonicalForm B c out k E F U uVec W V vVec).2.2.2.2.2
-      = out.D *ᵥ u + F *ᵥ (v - Recentre.centre V) := by
+  have heq : sys.D *ᵥ (uVec + u) + sys.k + sys.F *ᵥ (vVec + v)
+        - (sys.canonicalForm U uVec W V vVec).2.2.2.2
+      = sys.D *ᵥ u + sys.F *ᵥ (v - Recentre.centre V) := by
     simp only [LinearSys.canonicalForm, Matrix.mulVec_add, Matrix.mulVec_sub]
     abel
   rw [heq]

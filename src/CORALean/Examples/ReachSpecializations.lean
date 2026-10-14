@@ -39,7 +39,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- Reachability at a zonotope, with nothing topological left to assume. -/
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec ℝ n)}
-    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory (S := 𝒵) T R₀ U x u)
+    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.CanonicalTrajectory (S := 𝒵) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒵)
@@ -49,7 +49,7 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec 
 /-- The same at a constrained zonotope, whose compactness comes from its
 `domain` being a polytope rather than from the coefficient cube. -/
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : ConZonotope (Vec ℝ n)}
-    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.Trajectory (S := 𝒞) T R₀ U x u)
+    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.CanonicalTrajectory (S := 𝒞) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach (S := 𝒞)
@@ -60,7 +60,7 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : ConZonotope (V
 never widens for an order bound and the whole width is the input solution's. -/
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ}
-    (traj : sys.Trajectory (S := ℐ𝒱) T R₀ U x u)
+    (traj : sys.CanonicalTrajectory (S := ℐ𝒱) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach
@@ -71,7 +71,7 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec 
 /-- The step enclosure at a zonotope: every time of the step, not only its end.
 `0 ∈ U` is a fact about where the input set sits, so no class supplies it. -/
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec ℝ n)}
-    {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.Trajectory (S := 𝒵) T R₀ U x u)
+    {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.CanonicalTrajectory (S := 𝒵) T R₀ U x u)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
@@ -83,7 +83,7 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec 
 instance missing for. -/
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} {r : ℝ}
-    (traj : sys.Trajectory (S := ℐ𝒱) T R₀ U x u)
+    (traj : sys.CanonicalTrajectory (S := ℐ𝒱) T R₀ U x u)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :

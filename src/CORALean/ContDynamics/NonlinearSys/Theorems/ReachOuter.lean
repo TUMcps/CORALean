@@ -11,8 +11,8 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 # The nonlinear reachable set is the linearized one
 
 The payoff, [1, Sec. IV-A]: nothing new is computed for a nonlinear system. Once `linearize` has
-turned the run into a classical linear one, `ClassicalTrajectory.trajectory` and
-`LinearSys.Trajectory.reach_outer` are the whole proof, the enclosing set the linear
+turned the run into a classical linear one, `CanonicalClassicalTrajectory.trajectory` and
+`LinearSys.CanonicalTrajectory.reach_outer` are the whole proof, the enclosing set the linear
 system's `reach`.
 
 The nonlinearity is paid for entirely in `linInput`, which is why

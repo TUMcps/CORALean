@@ -61,7 +61,7 @@ variable {𝓛 : Type}
 theorem NonlinearSys.innerMinkDiff_timeInterval_counterexample
     (ops : NonlinearSys.InnerMinkDiffOps 2 𝓛) (fuel : ℕ) (hfuel : 0 < fuel)
     (U : Set (Vec ℝ 1)) :
-    let sys : NonlinearSys 2 1 := ⟨fun x _ => ![x 1, 0]⟩
+    let sys : NonlinearSys 2 1 := ⟨fun x _ => ![x 1, 0], 2, fun x _ => x⟩
     let A : Mat ℝ 2 2 := !![0, 1; 0, 0]
     let X₀ : Set (Vec ℝ 2) := Icc ![-1 / 10, -1] ![1 / 10, 1]
     ops.cen X₀ = 0 → (∀ x, ops.jac x = A) → (∀ B, ops.curv 1 A B 0 = {0}) →

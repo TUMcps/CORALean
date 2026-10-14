@@ -6,6 +6,7 @@ public import CORALean.Specification.STL.Theorems.DepReachAtPcH
 public import CORALean.Specification.STL.Theorems.SumGenMtimes
 public import CORALean.Specification.STL.Theorems.SumGenOfPoint
 public import CORALean.Specification.STL.Theorems.SumGenPlus
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -50,7 +51,7 @@ theorem STL.depReachAt_sum (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope 
     (U : Zonotope (Vec ℝ m)) (Δt : ℝ) (κ : ℕ) (α : ℕ → ℝ) (i : ℕ) :
     let s := STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i
     s.H.c + ∑ k : Fin s.H.h, α k • s.H.G k + ∑ k : Fin s.Pc.h, α (X₀.h + k) • s.Pc.G k
-      = (LinearSys.mk A).heldSim Δt (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
+      = (LinearSys.canonical A).heldSim Δt (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
           (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l))
           i := by -- --- PROOF ---
   induction i with

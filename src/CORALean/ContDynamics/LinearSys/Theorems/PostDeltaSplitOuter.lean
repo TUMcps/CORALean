@@ -49,9 +49,9 @@ variable [Mtimes ℐ S]
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- Every state difference a run with inputs in `Ψ ⊆ {ũ} ⊕ Ũ` spans over `[0, r]` is in
 `postDeltaSplit`, from the initial set `R₀` alone. -/
-theorem LinearSys.Trajectory.postDeltaSplit_outer {sys : LinearSys 𝕋 n}
+theorem LinearSys.CanonicalTrajectory.postDeltaSplit_outer {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ Ψ U₀ P Sg : S n} {x u : ℝ → Vec ℝ n} {c : Vec ℝ n} {r : ℝ}
-    (traj : sys.Trajectory T R₀ Ψ x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (traj : sys.CanonicalTrajectory T R₀ Ψ x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hbdd : Bornology.IsBounded (construct Ψ))
     -- the split, and the two sets the constant part is enclosed against

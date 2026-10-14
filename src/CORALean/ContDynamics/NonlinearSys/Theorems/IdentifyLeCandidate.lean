@@ -34,13 +34,16 @@ theorem NonlinearSys.identify_le_candidate (φ : Vec ℝ n → Vec ℝ m → Vec
     (hlt : ∀ a b, lt a b = true ↔ a < b) (err : NonlinearSys n m → ℝ) (dx : Fin N → Vec ℝ n)
     (V : Mat ℝ d r) (s : Fin r → ℝ) (W : Mat ℝ N r) (hr : 0 < r) :
     ∃ sys, NonlinearSys.identify φ lt err dx V s W = some sys ∧
-      (∃ k, 1 ≤ k ∧ k ≤ r ∧ sys = (NonlinearSys.mk fun x u =>
-        NonlinearSys.identifyCandidate dx V s W k *ᵥ φ x u)) ∧
-      err sys ≤ err (NonlinearSys.mk fun x u =>
-        NonlinearSys.identifyCandidate dx V s W r *ᵥ φ x u) := by
+      (∃ k, 1 ≤ k ∧ k ≤ r ∧ sys = (NonlinearSys.mk (fun x u =>
+        NonlinearSys.identifyCandidate dx V s W k *ᵥ φ x u) n
+        fun x _ => x)) ∧
+      err sys ≤ err (NonlinearSys.mk (fun x u =>
+        NonlinearSys.identifyCandidate dx V s W r *ᵥ φ x u) n
+        fun x _ => x) := by -- --- PROOF ---
   obtain ⟨M, hM, hk, hle⟩ := dmdSelect_le lt hlt err
-    (fun k => (NonlinearSys.mk fun x u =>
-      NonlinearSys.identifyCandidate dx V s W k *ᵥ φ x u)) hr
+    (fun k => (NonlinearSys.mk (fun x u =>
+      NonlinearSys.identifyCandidate dx V s W k *ᵥ φ x u) n
+      fun x _ => x)) hr
   exact ⟨M, hM, hk, hle r hr le_rfl⟩
 
 end CORALean

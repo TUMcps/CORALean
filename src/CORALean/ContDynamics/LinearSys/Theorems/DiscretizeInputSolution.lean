@@ -37,9 +37,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
-theorem LinearSys.Trajectory.discretize_inputSolution [Mtimes ℐ S]
+theorem LinearSys.CanonicalTrajectory.discretize_inputSolution [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
+    (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))
@@ -49,7 +49,7 @@ theorem LinearSys.Trajectory.discretize_inputSolution [Mtimes ℐ S]
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U))) :
-    (sys.discretize Δt).Trajectory R₀ (sys.inputSolution Δt η U)
+    (sys.discretize Δt).CanonicalTrajectory R₀ (sys.inputSolution Δt η U)
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) :=
   traj.discretize hΔt.le hT hbdd
     (fun k => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k

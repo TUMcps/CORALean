@@ -7,6 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -140,7 +141,7 @@ theorem Krylov.varying_input_not_of_errorBound :
         ‖exp (t • Krylov.augment A u) *ᵥ v - Krylov.arnoldiBasis (Krylov.augment A u) v 1 *ᵥ
             (exp (t • Krylov.arnoldiHessenberg (Krylov.augment A u) v 1) *ᵥ Pi.single 0 1)‖₂
           ≤ ‖v‖₂ * ε * t)
-      ∧ ∃ y ∈ (LinearSys.mk A : LinearSys ℝ 2).inputReach (S := 𝒮) U δ,
+      ∧ ∃ y ∈ (LinearSys.canonical A : LinearSys ℝ 2).inputReach (S := 𝒮) U δ,
           ε * δ < |y 0| := by -- --- PROOF ---
   intro A w U v δ ε
   have hv : v = ![0, 0, 1] := by

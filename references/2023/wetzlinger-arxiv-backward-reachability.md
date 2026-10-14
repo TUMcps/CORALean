@@ -60,7 +60,7 @@ likewise, with no regularity asked of either; but `ξ(t;x_0,u(·),w(·))` is int
 is none. The gap is not cosmetic. A pointwise derivative is a pointwise limit of
 difference quotients and so measurable — which is what
 [`ClassicalTrajectoryAestronglyMeasurableInput.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ClassicalTrajectoryAestronglyMeasurableInput.lean)
-proves of a one-input `ClassicalTrajectory` — so `ẋ = Ax + Bu + Ew` holding at every point
+proves of a one-input `CanonicalClassicalTrajectory` — so `ẋ = Ax + Bu + Ew` holding at every point
 of `[0,t]` forces `Bu + Ew` measurable there. Two consequences for `t > 0`, both in the
 strong direction:
 

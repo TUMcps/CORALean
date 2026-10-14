@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
 public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 @[expose] public section
 
@@ -68,7 +69,7 @@ def NonlinearSys.FloatModel.relinStepAtFloat (fm : NonlinearSys.FloatModel 𝕋 
   let AB := fm.linearizeFloat xs us                                 -- A, B
   let V := fm.linInputFloat AB.1 AB.2 xs X U U'                     -- f(z✱) - A x✱ ⊕ B U ⊕ L
   let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))
-  let lin : LinearSys 𝕋 n := ⟨AB.1⟩                                 -- δ̇ = A δ + ũ, ũ ∈ V
+  let lin : LinearSys 𝕋 n := LinearSys.canonicalFloat AB.1  -- δ̇ = A δ + ũ, ũ ∈ V
   let S ← lin.reachFloatInput (identityMat 𝕋 n)                     -- one step from R - x✱
     ⟨R ⊞ pt fun i => neg (xs i), V, 0, ToRat.toRat Δt⟩ options
   let Δτ ← S.1.head?                                                -- 13. R(τ_k) - x✱

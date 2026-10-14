@@ -62,6 +62,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormCNeOne
+public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalTrajectoryTrajectoryCanonical
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormOuterOutput
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormOuterState
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFormFloatOutputOuter
@@ -238,6 +239,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetAddError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointSubsetReachFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryCanonical
 public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryDeltaReachOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableReflected

@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
-public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.CanonicalClassicalTrajectory
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ The handoff conservative linearization exists for: the same state function `x`,
 the linear system `linearize A`, and the input signal
 `ũ(t) = f(x(t), u(t)) - A x(t)`, which lies in `linInput` wherever the
 certificate holds. The flow condition is then an identity — `A x + ũ = f(x,u)`
-— and the run is a `LinearSys.ClassicalTrajectory`, handed on by `.trajectory`.
+— and the run is a `LinearSys.CanonicalClassicalTrajectory`, handed on by `.trajectory`.
 
 The confinement `hR` stays a hypothesis here, the certificate saying nothing
 outside `R`. It is discharged one level up, by `confinement_of_subset`, from a
@@ -62,7 +62,7 @@ theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ}
     (traj : sys.Trajectory T R₀ U x u)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hR : ∀ t ∈ T, x t ∈ R) :
-    (NonlinearSys.linearize A).ClassicalTrajectory T R₀ (linInput sys.f A B xs us U L) x
+    (NonlinearSys.linearize A).CanonicalClassicalTrajectory T R₀ (linInput sys.f A B xs us U L) x
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) where
   init := traj.init
   input t ht := linInput_outer cert (hR t ht) (traj.input t ht)

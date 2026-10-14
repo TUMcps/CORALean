@@ -38,8 +38,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Reach for this to say where a run *is*; reach for a `reachSet_subset_`
 theorem to say what encloses it. -/
-theorem LinearSys.Trajectory.reachSet_outer {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
-    {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory T R₀ U x u) (t : ℝ) :
+theorem LinearSys.CanonicalTrajectory.reachSet_outer {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
+    {x u : ℝ → Vec ℝ n} (traj : sys.CanonicalTrajectory T R₀ U x u) (t : ℝ) :
     x t ∈ sys.reachSet T R₀ U t :=
   ⟨x, u, traj, rfl⟩
 

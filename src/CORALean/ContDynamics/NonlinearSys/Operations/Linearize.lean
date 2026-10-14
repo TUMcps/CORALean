@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -37,7 +38,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The linear system a linearization at any matrix `A` produces. -/
-def NonlinearSys.linearize (A : Mat ℝ n n) : LinearSys ℝ n := ⟨A⟩
+def NonlinearSys.linearize (A : Mat ℝ n n) : LinearSys ℝ n := LinearSys.canonical A
 
 end CORALean
 

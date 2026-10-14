@@ -45,7 +45,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- The closed form itself, proved once so both the base and the step case of
 `reachHeld_outer` read membership off it rather than reproving the recursion. -/
 theorem aux_x_eq {sys : LinearSysDT ℝ n} {R₀ U : S n} {x : ℕ → Vec ℝ n} {u : Vec ℝ n}
-    (h : sys.HeldTrajectory R₀ U x u) (N : ℕ) :
+    (h : sys.CanonicalHeldTrajectory R₀ U x u) (N : ℕ) :
     x N = sys.A ^ N *ᵥ x 0 + (∑ i ∈ Finset.range N, sys.A ^ i) *ᵥ u := by -- --- PROOF ---
   induction N with
   | zero => simp
@@ -59,7 +59,7 @@ theorem aux_x_eq {sys : LinearSysDT ℝ n} {R₀ U : S n} {x : ℕ → Vec ℝ n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.reachHeld_outer (sys : LinearSysDT ℝ n) (R₀ U : S n)
-    {x : ℕ → Vec ℝ n} {u : Vec ℝ n} (h : sys.HeldTrajectory R₀ U x u) (N : ℕ) :
+    {x : ℕ → Vec ℝ n} {u : Vec ℝ n} (h : sys.CanonicalHeldTrajectory R₀ U x u) (N : ℕ) :
     x N ∈ construct (sys.reachHeld ⟨R₀, U, 0, N⟩) := by
   rw [aux_x_eq h N]
   exact plus_outer _ _ (Set.add_mem_add

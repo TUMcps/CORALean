@@ -8,6 +8,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 public import Mathlib.Analysis.Normed.Algebra.Exponential
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -52,7 +53,7 @@ noncomputable def LinearSys.minBackReachStep (sys : LinearSys 𝕋 n)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (Δt : ℝ) (η : ℕ)
     (s : LinearSys.MinBackReachState n) : LinearSys.MinBackReachState n :=
-  let Ā : LinearSys ℝ n := ⟨-toRealMat sys.A⟩                       -- time-inverted dynamics
+  let Ā : LinearSys ℝ n := LinearSys.canonical (-toRealMat sys.A)  -- time-inverted dynamics
   let tk1 := s.t + Δt                                               -- 8. t_{k+1} ← t_k + Δt
   let Φk := exp (s.t • toRealMat Ā.A)                               -- 8. e^{-A t_k}
   let Φk1 := exp (tk1 • toRealMat Ā.A)                              -- 8. e^{-A t_{k+1}}

@@ -52,6 +52,8 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveIntervalFloatOut
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSpecCoraFinalCounterexample
+public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryCanonical
+public import CORALean.ContDynamics.LinearSysDT.Theorems.CanonicalTrajectoryTrajectoryCanonical
 
 /-!
 # What `LinearSysDT` guarantees

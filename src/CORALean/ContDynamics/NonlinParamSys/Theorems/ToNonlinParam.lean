@@ -32,7 +32,7 @@ variable {n m q : ℕ}
 
 /-- The field a plain nonlinear system is, its parameter ignored. -/
 def NonlinearSys.toNonlinParam (sys : NonlinearSys n m) : NonlinParamSys n m q :=
-  ⟨fun x u _ => sys.f x u⟩
+  ⟨fun x u _ => sys.f x u, sys.q, fun x u _ => sys.g x u⟩
 
 end CORALean
 

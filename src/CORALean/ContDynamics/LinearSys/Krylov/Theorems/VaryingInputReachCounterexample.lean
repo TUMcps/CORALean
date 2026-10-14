@@ -9,6 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubM
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -540,7 +541,7 @@ theorem Krylov.aux_rot_errorBound_le {β : ℝ} (hβ : β ∈ Set.Icc (-1 : ℝ)
 
 /-- The input `-sin s sin 40s · w` reaches `y` with `y₄ = π/40`. -/
 theorem Krylov.aux_rot_mem_inputReach :
-    ∃ y ∈ (LinearSys.mk !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0] :
+    ∃ y ∈ (LinearSys.canonical !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0] :
         LinearSys ℝ 4).inputReach (S := 𝒮)
         {u | ∃ β ∈ Set.Icc (-1 : ℝ) 1, u = β • ![1 / 10, 0, 0, 0]} Real.pi,
       y 3 = Real.pi / 40 := by -- --- PROOF ---
@@ -610,7 +611,7 @@ theorem Krylov.varying_input_reach_counterexample :
             *ᵥ Pi.single 0 1) 2|) →
         (Krylov.arnoldi (Krylov.augment A u) v 3).2 3 2 * ω
           * (if 0 < ν then (Real.exp (ν * δ) - 1) / (ν * δ) else 1) ≤ ε)
-      ∧ ∃ y ∈ (LinearSys.mk A : LinearSys ℝ 4).inputReach (S := 𝒮) U δ,
+      ∧ ∃ y ∈ (LinearSys.canonical A : LinearSys ℝ 4).inputReach (S := 𝒮) U δ,
           ε * δ < |y 3| := by -- --- PROOF ---
   intro A w U v δ ε
   refine ⟨?_, fun u hu => ?_, ?_⟩

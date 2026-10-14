@@ -8,6 +8,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -48,7 +49,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n)
     {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInput U params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {A : Mat ℝ n n} {x u : ℝ → Vec ℝ n},
-        sys.ConstTrajectory (S := 𝒵[𝕋])
+        sys.CanonicalConstTrajectory (S := 𝒵[𝕋])
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
           params.X₀ U x u A →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
@@ -84,7 +85,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n)
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   -- that integral is one admissible input's contribution by `t`, under `A`
   have hin : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
-      ∈ (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t :=
+      ∈ (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t :=
     ⟨u, fun s hs => traj.input s (hTt hs), lin.aestronglyMeasurable_input hTt, by
       simp only [Scalar.toRealMat_real]⟩
   -- `e^{At} = e^{A t_k} e^{Aτ}`, both powers of the same member

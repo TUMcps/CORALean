@@ -41,6 +41,8 @@ def NeurNetContrSysNL.extended (sys : NeurNetContrSysNL S n m r) : NonlinearSys 
   f z w := Fin.append
     (sys.plant.f (fun k => z (Fin.castAdd m k))
       (Fin.append (fun k => z (Fin.natAdd n k)) w)) (0 : Vec ℝ m)
+  q := sys.plant.q
+  g z w := sys.plant.g (fun k => z (Fin.castAdd m k)) (Fin.append (fun k => z (Fin.natAdd n k)) w)
 
 end CORALean
 

@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemLinCombMtimesIff
 public import Mathlib.Analysis.Complex.ExponentialBounds
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -70,7 +71,7 @@ theorem LinearSys.girardExample_spec :
         (⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).construct) 2
     ∧ 3 * Real.exp 1 - 5 ≤ Metric.hausdorffDist
       (⋃ t ∈ Set.Icc (0:ℝ) (1 / 100),
-        (⟨Matrix.diagonal fun _ => 100⟩ : LinearSys ℝ 1).reachSet (S := 𝒵)
+        (LinearSys.canonical (Matrix.diagonal fun _ => 100) : LinearSys ℝ 1).reachSet (S := 𝒵)
           (Set.Icc 0 t) (⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1))
           (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1)) t)
       (((⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).linComb
@@ -79,7 +80,7 @@ theorem LinearSys.girardExample_spec :
         (Zonotope.cube 1 (2 * (Real.exp 1 - 2)))).construct := by -- --- PROOF ---
   have hnorm : ‖(Matrix.diagonal fun _ => 100 : Mat ℝ 1 1)‖ = 100 := by
     rw [Matrix.linfty_opNorm_diagonal]; simp
-  set sys : LinearSys ℝ 1 := ⟨Matrix.diagonal fun _ => 100⟩ with hsys
+  set sys : LinearSys ℝ 1 := LinearSys.canonical (Matrix.diagonal fun _ => 100) with hsys
   set Z : Zonotope (Vec ℝ 1) := ⟨1, fun _ => 1, fun _ _ => 1⟩ with hZ
   set U : Zonotope (Vec ℝ 1) := ⟨0, 0, Fin.elim0⟩ with hU
   set E : Mat ℝ 1 1 := exp ((1 / 100 : ℝ) • (Matrix.diagonal fun _ => 100 : Mat ℝ 1 1)) with hE

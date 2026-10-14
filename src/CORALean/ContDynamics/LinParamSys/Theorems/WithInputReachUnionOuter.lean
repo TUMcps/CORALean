@@ -10,6 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -81,7 +82,7 @@ theorem LinParamSys.WithInput.reachUnion_outer (sys : LinParamSys.WithInput S n)
   simp only [sub_zero, Scalar.toRealMat_real] at hvoc
   -- that integral is one admissible input's contribution by `t`, under `A`
   have hin : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
-      ∈ (LinearSys.mk A : LinearSys ℝ n).inputReach sys.U t :=
+      ∈ (LinearSys.canonical A : LinearSys ℝ n).inputReach sys.U t :=
     ⟨u, fun s hs => traj.input s (hTt hs), trajL.aestronglyMeasurable_input hTt, by
       simp only [Scalar.toRealMat_real]⟩
   -- window `k` is `H^R(τ_k) ⊕ P^R(t_{k+1})`, and `k < N`

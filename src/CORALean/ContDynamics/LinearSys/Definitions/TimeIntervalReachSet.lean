@@ -47,7 +47,7 @@ at, at some time in `[0, r]`: the exact reachable set over the interval, and
 not an enclosure of it. -/
 def LinearSys.timeIntervalReachSet (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n) (r : ℝ) :
     Set (Vec ℝ n) :=
-  {y | ∃ x u : ℝ → Vec ℝ n, sys.Trajectory T R₀ U x u ∧ ∃ t ∈ Set.Icc (0:ℝ) r, x t = y}
+  {y | ∃ x u : ℝ → Vec ℝ n, sys.CanonicalTrajectory T R₀ U x u ∧ ∃ t ∈ Set.Icc (0:ℝ) r, x t = y}
 
 end CORALean
 

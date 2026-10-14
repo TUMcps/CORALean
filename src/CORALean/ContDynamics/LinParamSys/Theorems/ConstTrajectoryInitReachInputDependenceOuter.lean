@@ -10,9 +10,10 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 /-!
 # A run with a parameter-dependent constant input stays in the corrected first step
 
-`LinParamSys.ConstTrajectory.initReachInputDependence_outer`: `initReachInputDependence_outer`
-for a `'constParam'` run whose matrix is `A(p) = A_c + Σ pᵢ A_g⁽ⁱ⁾` and whose input is the
-constant `u(p) = U_c + Σ pᵢ U_G⁽ⁱ⁾` at the same `p`. The run is the point system's
+`LinParamSys.CanonicalConstTrajectory.initReachInputDependence_outer`:
+`initReachInputDependence_outer` for a `'constParam'` run whose matrix is
+`A(p) = A_c + Σ pᵢ A_g⁽ⁱ⁾` and whose input is the constant `u(p) = U_c + Σ pᵢ U_G⁽ⁱ⁾` at the
+same `p`. The run is the point system's
 (`toLinearSys`), so variation of constants gives it in closed form, the input integral being
 the constant's on `[0, t]`.
 -/
@@ -40,10 +41,11 @@ variable {n : ℕ}
 
 /-- A constant-parameter run whose matrix and constant input share the parameter `p` is at the
 end of the step in the time-point set and at every time of it in the time-interval set. -/
-theorem LinParamSys.ConstTrajectory.initReachInputDependence_outer {sys : LinParamSys 𝕄𝒵 n}
+theorem LinParamSys.CanonicalConstTrajectory.initReachInputDependence_outer {sys : LinParamSys 𝕄𝒵 n}
     {T : Set ℝ} {Rinit : Zonotope (Vec ℝ n)} {Uc : Vec ℝ n} {UG : Fin sys.A.h → Vec ℝ n}
     {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n}
-    (traj : sys.ConstTrajectory (S := 𝒵) T Rinit (⟨sys.A.h, Uc, UG⟩ : Zonotope (Vec ℝ n)) x u A)
+    (traj : sys.CanonicalConstTrajectory (S := 𝒵) T Rinit (⟨sys.A.h, Uc, UG⟩ : Zonotope (Vec ℝ n))
+        x u A)
     {p : Fin sys.A.h → ℝ} (hp : ∀ i, |p i| ≤ 1) (hA : A = sys.A.c + ∑ i, p i • sys.A.G i)
     (hu : ∀ s ∈ T, u s = Uc + ∑ i, p i • UG i)
     {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}

@@ -34,7 +34,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 theorem LinearARX.toLinearSysDT_trajectory (sys : LinearARX 𝕋 dy du p) {Y₀ : S (p * dy)}
     {U : S du} {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.Trajectory Y₀ U y u) :
-    sys.toLinearSysDT.Trajectory Y₀ (sys.inputSet U) (LinearARX.stack p y) (sys.feed u) where
+    sys.toLinearSysDT.CanonicalTrajectory Y₀ (sys.inputSet U) (LinearARX.stack p y) (sys.feed u)
+        where
   init := traj.init
   input k := sys.feed_mem_inputSet U traj.input k
   step k := sys.toLinearSysDT_step traj.step k

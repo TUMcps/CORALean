@@ -8,6 +8,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 @[expose] public section
 
@@ -106,7 +107,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
   have hUU' : U.construct ⊆ U'.construct :=
     fun v hv => (aux_mem_hull U.interval U.c).1 (Zonotope.interval_contains U hv)
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
-  have ltrajC : (⟨A⟩ : LinearSys 𝕋 n).ClassicalTrajectory (S := 𝒮)
+  have ltrajC : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).CanonicalClassicalTrajectory (S := 𝒮)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))).construct

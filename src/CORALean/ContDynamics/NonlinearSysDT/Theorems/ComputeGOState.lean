@@ -19,7 +19,7 @@ the errors, and nothing about how large the errors are.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,23 +29,23 @@ namespace CORALean
 
 open Matrix
 
-variable {n m r : ℕ}
+variable {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.computeGO_state (sys : NonlinearSysDT n m)
-    (out : Vec ℝ n → Vec ℝ m → Vec ℝ r) (x0 : Vec ℝ n) (u_ref : ℕ → Vec ℝ m)
+    (x0 : Vec ℝ n) (u_ref : ℕ → Vec ℝ m)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (hx : ∀ k, x (k + 1) = sys.f (x k) (u k)) (k : ℕ) :
-    x (k + 1) - (sys.computeGO out x0 u_ref).x (k + 1)
-      = (sys.computeGO out x0 u_ref).A k *ᵥ (x 0 - x0)
+    x (k + 1) - (sys.computeGO x0 u_ref).x (k + 1)
+      = (sys.computeGO x0 u_ref).A k *ᵥ (x 0 - x0)
         + ∑ j ∈ Finset.range (k + 1),
-            (sys.computeGO out x0 u_ref).B k j *ᵥ (u j - u_ref j)
-        + ∑ j ∈ Finset.range (k + 1), (sys.computeGO out x0 u_ref).F k j *ᵥ
+            (sys.computeGO x0 u_ref).B k j *ᵥ (u j - u_ref j)
+        + ∑ j ∈ Finset.range (k + 1), (sys.computeGO x0 u_ref).F k j *ᵥ
             (Fin.append
-              (linResidual sys.f ((sys.computeGO out x0 u_ref).x j) (u_ref j) (x j) (u j))
-              (linResidual out ((sys.computeGO out x0 u_ref).x j) (u_ref j) (x j) (u j))
-              : Vec ℝ (n + r)) := by -- --- PROOF ---
+              (linResidual sys.f ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
+              (linResidual sys.g ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
+              : Vec ℝ (n + sys.q)) := by -- --- PROOF ---
   -- the recursion of the deviation, with the residual as its error
   have h := descProd_state
     (fun k => jacobianMat (fun x => sys.f x (u_ref k)) (sys.refState x0 u_ref k))

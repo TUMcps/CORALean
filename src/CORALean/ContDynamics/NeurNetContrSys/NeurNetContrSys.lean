@@ -19,16 +19,16 @@ a sampling instant `u` jumps and `x` is differentiable only one-sidedly, so a
 derivative-everywhere run on `Ici 0` would force the input never to switch.
 Restricted to one closed period the derivative is exactly right, the endpoints
 being where it becomes one-sided; `Theorems.Period` reads a period as a
-`LinearSys.ClassicalTrajectory`, which `ClassicalTrajectory.trajectory` hands to
+`LinearSys.CanonicalClassicalTrajectory`, which `CanonicalClassicalTrajectory.trajectory` hands to
 `LinearSys`, and is the only place the two developments touch.
 
-`H` bounds the number of periods asserted over. No `B`, for the reason
-`NeurNetContrSysDT` gives: an actuation matrix is the controller's last layer.
+`H` bounds the number of periods asserted over. The plant runs in its canonical form, as in
+`NeurNetContrSysDT`: only its `A` is read, an actuation matrix being the controller's last layer.
 -/
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

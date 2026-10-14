@@ -10,6 +10,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -101,7 +102,8 @@ theorem NonlinDASys.Trajectory.linReach_outer {sys : NonlinDASys n p m} {Δt : �
     refine Set.add_mem_add ?_ h0
     rw [hU_lin, ← Zonotope.mtimes_exact, ← Zonotope.plus_exact]
     exact ⟨us + -us, Set.add_mem_add hus (Zonotope.mem_ofPoint _), by simp⟩
-  have hε' : ‖Δt • Scalar.toRealMat (⟨A_lin⟩ : LinearSys ℝ n).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1 := by
+  have hε' : ‖Δt • Scalar.toRealMat (LinearSys.canonical A_lin : LinearSys ℝ n).A‖ /
+      (((q + 2 : ℕ) : ℝ) + 2) < 1 := by
     rw [Scalar.toRealMat_real]; exact hε
   -- the time-varying input's interval-matrix images, and `{f0}`, are zonotopes too
   have hRc := Zonotope.convex_construct (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)

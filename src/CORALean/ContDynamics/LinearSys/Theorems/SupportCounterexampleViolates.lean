@@ -56,7 +56,7 @@ theorem LinearSys.supportCounterexample_violates (sys : LinearSys 𝕋 n) (R₀ 
     (hc : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d c ≤ d (νU d)) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) {f : ℝ} {k : ℕ}
     (hf : f < (sys.supportLower Δt ν₀ νU c ℓ (k + 1)).ρRτ) :
     ∃ j, (j = k ∨ j = k + 1) ∧
-      sys.Trajectory (Set.Icc 0 ((k + 1 : ℕ) * Δt)) R₀ U
+      sys.CanonicalTrajectory (Set.Icc 0 ((k + 1 : ℕ) * Δt)) R₀ U
         (sys.closedForm (sys.supportCounterexample Δt ν₀ νU ℓ j).1
           (LinearSys.heldInput Δt (sys.supportCounterexample Δt ν₀ νU ℓ j).2))
         (LinearSys.heldInput Δt (sys.supportCounterexample Δt ν₀ νU ℓ j).2) ∧

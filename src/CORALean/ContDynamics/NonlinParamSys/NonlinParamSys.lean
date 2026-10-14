@@ -9,9 +9,9 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 /-!
 # Continuous-time nonlinear systems with uncertain parameters
 
-CORA's `nonlinParamSys`: `ẋ(t) = f(x(t), u(t), p(t))`, `NonlinearSys` with a third
-argument ranging over a parameter set — the last of the main system classes with
-no counterpart here.
+CORA's `nonlinParamSys`: `ẋ(t) = f(x(t), u(t), p(t))` with the output equation
+`y = g(x, u, p)`, `NonlinearSys` with a third argument ranging over a parameter set of
+dimension `q`, the output dimension `r` a field as `NonlinearSys`'s is.
 
 Two trajectory readings, as CORA distinguishes them: `Trajectory` lets `p` vary
 freely over time, a fresh element of `P` at every instant, mirroring
@@ -27,9 +27,9 @@ counterexample having been constructed.
 an extra input.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,6 +47,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 structure NonlinParamSys (n m q : ℕ) where
   f : Vec ℝ n → Vec ℝ m → Vec ℝ q → Vec ℝ n
+  r : ℕ
+  g : Vec ℝ n → Vec ℝ m → Vec ℝ q → Vec ℝ r
 
 structure NonlinParamSys.Trajectory (sys : NonlinParamSys n m q) (T : Set ℝ)
     (R₀ : S n) (U : S m) (P : S q) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m)

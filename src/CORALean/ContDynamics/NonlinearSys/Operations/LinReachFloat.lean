@@ -9,6 +9,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinPointFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinearizeFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 @[expose] public section
 
@@ -75,7 +76,7 @@ def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 
   match alg with
   | .lin => NonlinearSys.oneStepFloat A xs Vlin R options
   | .poly errorOrder => do
-    let lin : LinearSys 𝕋 n := ⟨A⟩                                  -- linsys
+    let lin : LinearSys 𝕋 n := LinearSys.canonicalFloat A                              -- linsys
     let η ← lin.reachOrderFloat Δt Δt options.η           -- η, admissible
     let Rdelta := R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0,  -- Rinit + (-p.x)
       ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))

@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
 public import CORALean.Global.Float.Instances.Real.Theorems.Basic
 public import Mathlib.LinearAlgebra.Matrix.Notation
 public import Mathlib.Tactic.FinCases
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -111,14 +112,15 @@ theorem LinearSys.printedSupportInput_counterexample :
     fin_cases i <;> simp only [νU] <;> split_ifs <;> norm_num
   let ℓ : Vec ℝ 2 →ₗ[ℝ] ℝ := LinearMap.proj 0 - (1 / 4 : ℝ) • LinearMap.proj 1
   have hu' : ∀ _ : ℕ, (![1, 1] : Vec ℝ 2) ∈ U := fun _ i => by fin_cases i <;> simp
-  have key := h 2 ⟨!![0, 1; 0, 0]⟩ 1 one_pos U νU hνU ℓ 1 (fun _ => ![1, 1]) hu'
+  have key := h 2 (LinearSys.canonical !![0, 1; 0, 0]) 1 one_pos U νU hνU ℓ 1 (fun _ => ![1, 1]) hu'
   -- the printed input at `j = 0` is `ν(U, ℓ) = (1, -1)`
   have hν : νU (ℓ.comp (mulVecLin (exp ((((0 : ℕ) : ℝ) * 1) • toRealMat
-      (⟨!![0, 1; 0, 0]⟩ : LinearSys ℝ 2).A)))) = ![1, -1] := by
+      (LinearSys.canonical !![0, 1; 0, 0] : LinearSys ℝ 2).A)))) = ![1, -1] := by
     simp only [Nat.cast_zero, zero_mul, zero_smul, exp_zero, Matrix.mulVecLin_one,
       LinearMap.comp_id, νU, ℓ]
     ext i; fin_cases i <;> norm_num
-  have hstep : ∀ u : ℕ → Vec ℝ 2, (⟨!![0, 1; 0, 0]⟩ : LinearSys ℝ 2).heldSim 1 0 u 1
+  have hstep : ∀ u : ℕ → Vec ℝ 2, (LinearSys.canonical !![0, 1; 0, 0] : LinearSys ℝ 2).heldSim 1 0
+      u 1
       = (1 + (1 / 2 : ℝ) • !![0, 1; 0, 0] : Mat ℝ 2 2) *ᵥ u 0 := fun u => by
     show _ *ᵥ (0 : Vec ℝ 2) + _ = _
     rw [mulVec_zero, zero_add, toRealMat_real, aux_expIntegral_nilpotent]

@@ -53,9 +53,9 @@ variable [Mtimes ℐ S]
 
 /-- One step of a `'varParam'` run: the box's homogeneous step, plus whatever
 holds the input and the parameter drift together. -/
-theorem LinParamSys.Trajectory.timeInterval_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
+theorem LinParamSys.CanonicalTrajectory.timeInterval_outer {sys : LinParamSys ℐ n} {T : Set ℝ}
     {R₀ U V Vd : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} {r : ℝ}
-    (traj : sys.Trajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
+    (traj : sys.CanonicalTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {Â : Mat ℝ n n} (hÂ : Â ∈ construct sys.A)
     (hV : ∀ s ∈ T, (A s - Â) *ᵥ x s + u s ∈ construct V)

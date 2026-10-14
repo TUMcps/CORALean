@@ -13,13 +13,13 @@ produces the input, `u(k) = π(x(k))`, and the plant advances
 `x(k+1) = A x(k) + u(k)`. One controller invocation per plant step, so there is no
 inter-sample behaviour to describe; `NeurNetContrSys` is the continuous-time loop.
 
-No `B`. `LinearSysDT` carries only `A`, so the plant's input is already in state
-coordinates and `B u` is `Layer.linear B 0`, exact at every representation the
-controller's own linear layers already ask for.
+The plant runs in its canonical form: the controller's output is the combined input
+`B u + c` in state coordinates and the loop reads only the plant's `A`, so an actuation
+matrix is `Layer.linear B c` as the controller's last layer, exact at every representation
+the controller's own linear layers already ask for.
 
 The system is indexed by the set representation, which no other system class in
-`ContDynamics` is. That is `Layer` carrying `enclose` and its soundness as
-fields: a network is an object over a representation rather than a function.
+`ContDynamics` is: `Layer` carries `enclose` and its soundness as fields.
 
 `Trajectory` is the substantive departure from the rest of `ContDynamics`: there
 is no input set and no free input, so a run is the orbit of `map` from a point of
@@ -28,7 +28,7 @@ is no input set and no free input, so a run is the orbit of `map` from a point o
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

@@ -49,6 +49,9 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
 public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReach
 public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSpecCora
+public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
+public import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
+public import CORALean.ContDynamics.LinearSysDT.Operations.Basic
 
 /-!
 # What `LinearSysDT` computes

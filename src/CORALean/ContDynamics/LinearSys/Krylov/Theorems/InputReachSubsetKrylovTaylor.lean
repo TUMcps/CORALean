@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolu
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 public import Mathlib.Analysis.Normed.Module.Convex
 public import Mathlib.Analysis.Normed.Group.Bounded
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -99,7 +100,7 @@ theorem Krylov.aux_isBounded_iUnion_image (I : Interval (Mat ℝ n n)) {U : Set 
 /-- Order `j` of the thesis' Taylor sum is the Krylov term `P Ṽ H̃^{j+1} e₁ δ^{j+1}/(j+1)!`. -/
 theorem Krylov.aux_inputTerm_image_eq (A : Mat ℝ n n) (U : Set (Vec ℝ n)) (δ : ℝ) (m : ℕ)
     {j : ℕ} (hj : j + 1 ≤ m) :
-    ((LinearSys.mk A : LinearSys ℝ n).inputTerm δ j *ᵥ ·) '' U
+    ((LinearSys.canonical A : LinearSys ℝ n).inputTerm δ j *ᵥ ·) '' U
       = (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>
           (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
             (Krylov.arnoldiHessenberg (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1)
@@ -117,7 +118,7 @@ with the thesis' remainder `E(δ)·δ·U` closed and convexified in place of [1]
 theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec ℝ n)}
     (hconv : Convex ℝ U) (hclosed : IsClosed U) (hbdd : Bornology.IsBounded U) {δ : ℝ}
     (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒮) U δ
+    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) U δ
       ⊆ (∑ j ∈ Finset.range (η + 1),
           (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>
             (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
@@ -127,14 +128,14 @@ theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec �
             (⋃ M ∈ (MatExp.inputRemainder A δ η).construct, (M *ᵥ ·) '' U)) := by -- --- PROOF ---
   have hR := Krylov.aux_isBounded_iUnion_image (MatExp.inputRemainder A δ η) hbdd
   -- the thesis' enclosure, at plain sets
-  have hexact := (LinearSys.mk A : LinearSys ℝ n).inputReach_subset_inputSolution
+  have hexact := (LinearSys.canonical A : LinearSys ℝ n).inputReach_subset_inputSolution
     (S := 𝒮) hδ η hε (U := U) hconv hclosed hbdd
     (convex_convexHull ℝ _).closure isClosed_closure (isBounded_convexHull.2 hR).closure
   refine hexact.trans ?_
   unfold LinearSys.inputSolution
   refine Set.add_subset_add ?_ le_rfl
   -- its Taylor sum, one order at a time, is the sum of the Krylov terms
-  suffices h : ∀ i ≤ η, construct ((LinearSys.mk A : LinearSys ℝ n).inputTaylorSum
+  suffices h : ∀ i ≤ η, construct ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
       (S := 𝒮) δ U i)
       ⊆ ∑ j ∈ Finset.range (i + 1),
           (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>

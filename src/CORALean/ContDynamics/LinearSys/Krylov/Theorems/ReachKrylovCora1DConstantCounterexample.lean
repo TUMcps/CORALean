@@ -1,11 +1,12 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.CanonicalClassicalTrajectory
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ReachKrylovCora1D
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -43,7 +44,7 @@ theorem Krylov.reachKrylovCora1D_constant_counterexample (Δt ε eps : ℝ) (o :
     (hε0 : 0 ≤ ε) (hε : 2 * ε < Δt) (heps : 0 ≤ eps) (ho : 2 ≤ o) :
     ∃ R, Krylov.reachKrylovCora1D 0 1 1 Δt ε eps o = some R ∧
       ∃ x w : ℝ → Vec ℝ 1,
-        (LinearSys.mk (0 : Mat ℝ 1 1) : LinearSys ℝ 1).ClassicalTrajectory
+        (LinearSys.canonical (0 : Mat ℝ 1 1) : LinearSys ℝ 1).CanonicalClassicalTrajectory
           (S := 𝒮) (Set.Icc 0 Δt) {0} {fun _ => 1} x w ∧
         x Δt ∉ R.construct := by -- --- PROOF ---
   -- Arnoldi on the zero matrix from `e₂`: `v⁽¹⁾ = e₂`, `h₁,₁ = h₂,₁ = 0`

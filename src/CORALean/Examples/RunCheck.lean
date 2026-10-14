@@ -2,6 +2,8 @@ import CORALean.Examples.RunnableFloat
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContDynamics.LinearSys.Operations.Canonical
+import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
 
 /-!
 # Every runnable algorithm of `RunnableFloat`, executed
@@ -632,7 +634,8 @@ def fZ' : Zonotope (Vec F 2) where
 
 -- a discrete-time system, a network and a continuous-time system sampled, as at `Dyadic 24`
 def fSys : LinearSysDT F 2 :=
-  ⟨!![floatLit 15 (-4), floatLit (-1) (-3); floatLit 1 (-3), floatLit 15 (-4)]⟩
+  LinearSysDT.canonicalFloat
+    !![floatLit 15 (-4), floatLit (-1) (-3); floatLit 1 (-3), floatLit 15 (-4)]
 def fReach : Zonotope (Vec F 2) := fSys.reach (S := 𝒵[F]) ⟨fZ, fZ, 0, 5⟩
     ⟨2, by decide⟩
 def fNet : NeuralNetwork 𝒵[F] 2 2 :=
@@ -640,7 +643,7 @@ def fNet : NeuralNetwork 𝒵[F] 2 2 :=
     (.layer (⟨reluSlope, rfl⟩ : ReluLayer F 2 2) .output)
 def fEnclose : Zonotope (Vec F 2) := fNet.enclose fZ
 def fStepR : F := floatLit 1 (-5)
-def fCtSys : LinearSys F 2 := ⟨!![-1, -4; 4, -1]⟩
+def fCtSys : LinearSys F 2 := LinearSys.canonical !![-1, -4; 4, -1]
 def fCtD : LinParamSysDT ℐ[F] 2 :=
   fCtSys.discretizeEnclosureFloat fStepR 4
 def fCtReach : Zonotope (Vec F 2) :=

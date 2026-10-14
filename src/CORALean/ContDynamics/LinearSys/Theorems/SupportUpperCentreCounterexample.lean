@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
 public import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -47,7 +48,7 @@ open Matrix ContSet Scalar NormedSpace
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.supportUpper_centre_counterexample :
-    let sys : LinearSys ℝ 3 := ⟨0⟩
+    let sys : LinearSys ℝ 3 := LinearSys.canonical 0
     let U : Set (Vec ℝ 3) := convexHull ℝ
       {![-3, -3, -3], ![-2, -3, -3], ![-3, -2, -3], ![-3, -3, -2]}
     let ℓ : Vec ℝ 3 →ₗ[ℝ] ℝ :=

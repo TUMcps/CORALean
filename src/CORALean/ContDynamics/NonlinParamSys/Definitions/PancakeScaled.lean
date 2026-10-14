@@ -35,6 +35,8 @@ variable {n m : ℕ}
 noncomputable def NonlinearSys.pancakeScaled (sys : NonlinearSys n m) (nv : Vec ℝ n) (d : ℝ) :
     NonlinParamSys n m 1 where
   f x u p := ((nv ⬝ᵥ x - d) / p 0) • sys.f x u
+  r := sys.q
+  g x u _ := sys.g x u
 
 end CORALean
 

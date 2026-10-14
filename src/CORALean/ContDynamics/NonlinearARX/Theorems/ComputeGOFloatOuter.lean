@@ -23,7 +23,7 @@ output deviation of every run, the linearization errors `L_j` aside.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   13-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -85,8 +85,9 @@ theorem NonlinearARX.computeGOFloat_outer (sys : NonlinearARX dy du p)
       rw [hj, ← hz]
       exact Interval.mem_point _
   -- the system case, at the converted model and the selection
-  exact NonlinearSysDT.computeGOFloat_outer sys.toNonlinearSysDT _ h.toNonlinearSysDTFloat ho x0
-    (NonlinearARX.feed p u_ref) k j
+  exact NonlinearSysDT.computeGOFloat_outer
+    { sys.toNonlinearSysDT with q := dy, g := fun x _ => sys.outputSel (𝕋 := ℝ) *ᵥ x }
+    h.toNonlinearSysDTFloat ho x0 (NonlinearARX.feed p u_ref) k j
 
 end CORALean
 

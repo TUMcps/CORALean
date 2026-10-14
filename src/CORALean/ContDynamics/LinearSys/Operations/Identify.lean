@@ -13,8 +13,8 @@ CORA's `identify` with `options.alg = 'dmd'` [1]: every rank `1, …, rankMax` g
 candidate `[A c B]`, and the one of least `computeError` is the system (`err`, compared by
 `lt`; both arguments). The data points are the SVD of their regressors `[x; 1; u]` and
 the `dx`; the interpolation to a uniform step (`uniformTimeStepSize`) and the finite
-differences of `getDataPoints` are not modelled. Returns `(A, B, c)`, the record keeping
-`A` only. `'opt'` is `fmincon`.
+differences of `getDataPoints` are not modelled. Returns the triple `(A, B, c)` CORA hands its
+constructor, the remaining matrices being its defaults. `'opt'` is `fmincon`.
 
 ## References
 
@@ -23,7 +23,7 @@ differences of `getDataPoints` are not modelled. Returns `(A, B, c)`, the record
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

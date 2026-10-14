@@ -10,7 +10,7 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # What a classical run's `variation_of_constants` assumes about the input
 
-`ClassicalTrajectory` puts no regularity on `u`, and none has to be added: the flow pins
+`CanonicalClassicalTrajectory` puts no regularity on `u`, and none has to be added: the flow pins
 `u` to the derivative of `x`, so the integrand `e^{-As} u(s)` is itself a
 derivative — of `e^{-As} x(s)`. A derivative within `Ici s` is measurable in `s`
 for *any* function, so measurability costs nothing.
@@ -23,7 +23,7 @@ The statement asks only that the domain cover the window `[a, b]` it speaks abou
 so the identity pinning `u` holds on the half-open window alone — enough, the
 missing point being null. Kept for a classical run on a window `[kΔt, (k+1)Δt]`
 that does not reach back to `0` — a nonlinear run linearized step by step — where
-`ClassicalTrajectory.trajectory` cannot hand it to `Trajectory`, whose integral
+`CanonicalClassicalTrajectory.trajectory` cannot hand it to `Trajectory`, whose integral
 equation is anchored at `0`.
 -/
 
@@ -51,8 +51,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The integrand is the derivative of the substituted trajectory, taken within
 `Ici s`: the form Mathlib's measurability lemma speaks about, and no weaker, the
 two agreeing wherever the domain still extends to the right of `s`. -/
-theorem LinearSys.ClassicalTrajectory.aux_integrand_eq_derivWithin {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.ClassicalTrajectory T R₀ U x u) {a b s : ℝ}
+theorem LinearSys.CanonicalClassicalTrajectory.aux_integrand_eq_derivWithin {sys : LinearSys 𝕋 n}
+    {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
+        {a b s : ℝ}
     (hT : Set.Icc a b ⊆ T) (hs : s ∈ Set.Ico a b) :
     exp ((-s) • toRealMat sys.A) *ᵥ u s
       = derivWithin (fun r : ℝ => exp ((-r) • toRealMat sys.A) *ᵥ x r) (Set.Ici s) s :=
@@ -62,8 +64,9 @@ theorem LinearSys.ClassicalTrajectory.aux_integrand_eq_derivWithin {sys : Linear
 /-- Measurable with nothing assumed of `u`: `stronglyMeasurable_derivWithin_Ici`
 holds for every function, and the integrand is a derivative of that shape almost
 everywhere on the window. -/
-theorem LinearSys.ClassicalTrajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.ClassicalTrajectory T R₀ U x u)
+theorem LinearSys.CanonicalClassicalTrajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n}
+    {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
     (hT : Set.Icc a b ⊆ T) :
     AEStronglyMeasurable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       (volume.restrict (Set.Ioc a b)) := by -- --- PROOF ---
@@ -83,8 +86,9 @@ theorem aux_classical_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : �
 
 /-- What `variation_of_constants` asks for, given only that the input set is
 bounded — which every representation of a set of points is. -/
-theorem LinearSys.ClassicalTrajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.ClassicalTrajectory T R₀ U x u)
+theorem LinearSys.CanonicalClassicalTrajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n}
+    {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
     (hT : Set.Icc a b ⊆ T) (hab : a ≤ b) (hU : Bornology.IsBounded (construct U)) :
     IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       volume a b := by -- --- PROOF ---

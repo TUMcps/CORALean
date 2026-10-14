@@ -18,7 +18,7 @@ in canonical form [1]. `false` says nothing, since `le` is only sound when it an
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,35 +28,35 @@ namespace CORALean
 
 open CORALean.Float FloatOps SoundFloatArithmetic
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m q r s : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- One-sided: `true` gives the real system in canonical form. -/
-theorem LinearSys.isCanonicalFormFloat_sound {B : Mat 𝕋 n m} {c : Vec 𝕋 n} {D : Mat 𝕋 r m}
-    {k : Vec 𝕋 r} {E : Mat 𝕋 n q} {F : Mat 𝕋 r s}
-    (h : LinearSys.isCanonicalFormFloat B c D k E F = true) :
-    LinearSys.IsCanonicalForm (toRealMat B) (toRealVec c) (toRealMat D) (toRealVec k)
-      (toRealMat E) (toRealMat F) := by -- --- PROOF ---
+theorem LinearSys.isCanonicalFormFloat_sound {sys : LinearSys 𝕋 n}
+    (h : sys.isCanonicalFormFloat = true) : sys.IsCanonicalForm := by -- --- PROOF ---
   unfold LinearSys.isCanonicalFormFloat at h
   simp only [Bool.and_eq_true, beq_iff_eq, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨⟨⟨⟨⟨hm, hs⟩, hc⟩, hk⟩, hE⟩, hD⟩, hB⟩ := h
   refine ⟨hm, hs, ?_, ?_, ?_, ?_, ?_⟩
+  -- each entry test reads its float as the value it was compared with
   · funext i
-    simpa [toRealVec, toReal_zero] using LinearSys.entryIsFloat_sound (hc i)
+    exact (LinearSys.entryIsFloat_sound (hc i)).trans toReal_zero
   · funext i
-    simpa [toRealVec, toReal_zero] using LinearSys.entryIsFloat_sound (hk i)
+    exact (LinearSys.entryIsFloat_sound (hk i)).trans toReal_zero
   · funext i j
-    simpa [toRealMat, toReal_zero] using LinearSys.entryIsFloat_sound (hE i j)
+    exact (LinearSys.entryIsFloat_sound (hE i j)).trans toReal_zero
   · funext i j
-    simpa [toRealMat, toReal_zero] using LinearSys.entryIsFloat_sound (hD i j)
+    exact (LinearSys.entryIsFloat_sound (hD i j)).trans toReal_zero
   · intro i j
     have := LinearSys.entryIsFloat_sound (hB i j)
     by_cases hij : (i : ℕ) = (j : ℕ)
-    · simpa [toRealMat, hij, toReal_one] using this
-    · simpa [toRealMat, hij, toReal_zero] using this
+    · rw [if_pos hij] at this ⊢
+      exact this.trans toReal_one
+    · rw [if_neg hij] at this ⊢
+      exact this.trans toReal_zero
 
 end CORALean
 

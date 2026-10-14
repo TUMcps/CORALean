@@ -37,6 +37,8 @@ open Matrix ContSet
 rather than merely bounded. -/
 def Example.quadraticStep : NonlinearSysDT 1 1 where
   f x u := ![x 0 ^ 2 + u 0]
+  q := 1
+  g x _ := x
 
 /-- The tangent slope at `p`: `f`'s own second derivative, `2`, is what makes
 the residual below `(x - p)²` and nothing more. `Matrix.of` rather than `!!`,

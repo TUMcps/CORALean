@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinParamSys.Operations.LinReachCora
+public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Mathlib.Analysis.Calculus.Deriv.Add
 public import Mathlib.Analysis.Calculus.Deriv.Mul
@@ -47,7 +48,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 /-- For `ẋ = p²`, `p ∈ [1, 2]`, the state of the run at `p = 2` after a step `r` lies outside
 both sets of `linReachCora`, which is run with `Rerror = {0}` (the remainder is zero). -/
 theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r) (x₀ : ℝ) :
-    let sys : NonlinParamSys 1 1 1 := ⟨fun _ _ p => fun _ => p 0 ^ 2⟩
+    let sys : NonlinParamSys 1 1 1 := ⟨fun _ _ p => fun _ => p 0 ^ 2, 1, fun x _ _ => x⟩
     let P : Zonotope (Vec ℝ 1) := ⟨1, fun _ => 3 / 2, fun _ _ => 1 / 2⟩
     let I : Interval (Vec ℝ 1) := ⟨fun _ => 1, fun _ => 2⟩
     let R := sys.linReachCora (fun _ => x₀) 0 I (Zonotope.ofPoint fun _ => x₀)
@@ -202,7 +203,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
         (hTi i j).2]
     -- the centre of the time-point set is at least the centre of the start
     have hctp : Rd.c 0 ≤ (LinParamSys.dependentHomSol
-        ⟨(⟨1, 0, fun _ => 0⟩ : Zonotope (Mat ℝ 1 1))⟩ r 2 Rd Uc UG).c 0 := by
+        (LinParamSys.canonical (⟨1, 0, fun _ => 0⟩ : Zonotope (Mat ℝ 1 1))) r 2 Rd Uc UG).c 0 := by
       have hcplus : ∀ Z₁ Z₂ : Zonotope (Vec ℝ 1), (Z₁ ⊞ Z₂).c 0 = Z₁.c 0 + Z₂.c 0 :=
         fun _ _ => rfl
       have hcen0 : ∀ IM : Interval (Mat ℝ 1 1), (∀ i j, IM.inf i j = 0 ∧ IM.sup i j = 0) →
@@ -216,7 +217,8 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       positivity
     -- the time-point set: state part `0`, `R_lowOrder` `d + 2 r`, the remainders `0`
     have htp : S (LinParamSys.dependentHomSol
-        ⟨(⟨1, 0, fun _ => 0⟩ : Zonotope (Mat ℝ 1 1))⟩ r 2 Rd Uc UG) = Rd.c 0 + 2 * r := by
+        (LinParamSys.canonical (⟨1, 0, fun _ => 0⟩ : Zonotope (Mat ℝ 1 1))) r 2 Rd Uc UG) = Rd.c 0
+            + 2 * r := by
       simp only [LinParamSys.dependentHomSol, hSplus, hB, hC, hlow]
       rw [← hE1, ← hE2, hI1 _ _ hEI, hSplus, hSpt, hSRd, hZ E1 _ hE1z, hZ E2 _ hE2z]
       simp
@@ -232,7 +234,8 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
         habs C hzC, hE, (hpow B hz _ _ _).1, (hpow B hz _ _ _).2]
     -- the time-interval set: the hull of start and time-point set, plus the zero terms
     have hti : S (LinParamSys.initReachInputDependence
-        ⟨(⟨1, 0, fun _ => 0⟩ : Zonotope (Mat ℝ 1 1))⟩ r 2 Rd Uc UG).2 ≤ Rd.c 0 + 2 * r := by
+        (LinParamSys.canonical (⟨1, 0, fun _ => 0⟩ : Zonotope (Mat ℝ 1 1))) r 2 Rd Uc UG).2 ≤ Rd.c
+            0 + 2 * r := by
       simp only [LinParamSys.initReachInputDependence, hSplus, hB, hZ _ _ hFz, hZ _ _ hFiz]
       have h := (hlin Rd _ hh hctp).trans htp.le
       change S (Zonotope.linComb _ _) + 0 + 0 ≤ _
@@ -251,7 +254,8 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     fin_cases i
     simp [sys, I, NonlinParamSys.linearize, Interval.center, Interval.radius]
     norm_num
-  have hc := core r hr.le _ hUc ⟨(sys.linearize (fun _ => x₀) 0 I).zA⟩ hA _ hUG
+  have hc := core r hr.le _ hUc (LinParamSys.canonical (sys.linearize (fun _ => x₀) 0 I).zA) hA _
+      hUG
     (Zonotope.ofPoint (fun _ => x₀) ⊞ Zonotope.ofPoint (-(sys.linearize (fun _ => x₀) 0 I).xs))
     rfl
   have hSRdc : (Zonotope.ofPoint (fun _ : Fin 1 => x₀)

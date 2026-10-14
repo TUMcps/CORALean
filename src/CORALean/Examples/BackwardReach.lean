@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachForallInnerZonotope
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 /-!
 # One backward step, computed and then believed
@@ -35,7 +36,7 @@ open Matrix ContSet Scalar Mtimes
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def BReach.sys : LinearSysDT ℝ 1 := ⟨!![(2:ℝ)]⟩
+def BReach.sys : LinearSysDT ℝ 1 := LinearSysDT.canonical !![(2:ℝ)]
 
 /-- The right inverse the backward step travels along, handed in rather than
 computed: `A⁻¹` is no set operation. -/

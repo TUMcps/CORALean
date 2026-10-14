@@ -62,11 +62,11 @@ variable [Mtimes ℐ S]
 -- the six shape hypotheses are asked of the remainder products, not of the sets they multiply
 /-- A constant-parameter run stays in the step enclosure at every time of the
 step, wherever the input set sits. -/
-theorem LinParamSys.ConstTrajectory.timeInterval_outer_split
+theorem LinParamSys.CanonicalConstTrajectory.timeInterval_outer_split
     [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
     {sys : LinParamSys ℐ n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
-    {A : Mat ℝ n n} {r : ℝ} (traj : sys.ConstTrajectory T R₀ U x u A)
+    {A : Mat ℝ n n} {r : ℝ} (traj : sys.CanonicalConstTrajectory T R₀ U x u A)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :

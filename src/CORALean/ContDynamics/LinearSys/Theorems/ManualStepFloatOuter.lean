@@ -62,7 +62,7 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     (hinv : sys.ManualInvariantFloat X₀ V s) :
     sys.ManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
+        sys.CanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
         U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
           x t ∈ R.construct := by -- --- PROOF ---
   obtain ⟨h0, hlo, hhi, hH, hPu, hPU⟩ := hinv

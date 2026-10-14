@@ -2,6 +2,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpEnclosure
 import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosure
 import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 /-!
 # Discretizing with an exponential that can only be enclosed
@@ -34,7 +35,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- The system left with no dynamics at all, so the one hypothesis the
 enclosure needs is immediate: `‖0‖ = 0` dominates any geometric series. -/
-def Example.sys : LinearSys ℝ 1 := ⟨0⟩
+def Example.sys : LinearSys ℝ 1 := LinearSys.canonical 0
 
 theorem Example.hε : ‖(1:ℝ) • toRealMat Example.sys.A‖ / ((0:ℕ) + 2 : ℝ) < 1 := by
   simp [Example.sys]

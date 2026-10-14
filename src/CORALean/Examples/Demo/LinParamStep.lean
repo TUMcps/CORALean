@@ -1,4 +1,5 @@
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
+import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Instances
@@ -60,7 +61,7 @@ def paramΔt : D := dy 1 (-3)
 
 /-- The step's homogeneous set and input solution at a matrix box. -/
 def paramStep (B : Interval (Mat D 2 2)) : Zonotope (Vec D 2) × Zonotope (Vec D 2) :=
-  let sys : LinParamSys ℐ[D] 2 := ⟨B⟩
+  let sys : LinParamSys ℐ[D] 2 := LinParamSys.canonical B
   (sys.timeIntervalStepFloat paramΔt 4 paramR₀, sys.inputSolutionFloat paramΔt 4 paramU)
 
 /-- One row: the set as a box, and its widths. -/

@@ -34,8 +34,9 @@ variable {sys : LinearSys 𝕋 n} {T T' : Set ℝ} {R₀ U : S n} {x u : ℝ →
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every run on `T` is a run on any smaller domain. -/
-theorem LinearSys.Trajectory.restrict (traj : sys.Trajectory T R₀ U x u) (hT : T' ⊆ T) :
-    sys.Trajectory T' R₀ U x u where
+theorem LinearSys.CanonicalTrajectory.restrict (traj : sys.CanonicalTrajectory T R₀ U x u)
+    (hT : T' ⊆ T) :
+    sys.CanonicalTrajectory T' R₀ U x u where
   init := traj.init
   input t ht := traj.input t (hT ht)
   meas := traj.meas.mono_measure (MeasureTheory.Measure.restrict_mono hT le_rfl)

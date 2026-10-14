@@ -3,6 +3,7 @@ import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatOuter
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.Global.Float.Instances.Binary64.Instances
 import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 
 /-!
 # A continuous-time rotation, reached in floats both ways
@@ -58,7 +59,7 @@ def summary {𝕋 : Type} [FloatOps 𝕋] (toF : 𝕋 → Float) (Z : Zonotope (
 
 /-! ## At `Dyadic 64` -/
 
-def sysD : LinearSys (Dyadic 64) 2 := ⟨!![d 0 0, d 1 0; d (-1) 0, d 0 0]⟩
+def sysD : LinearSys (Dyadic 64) 2 := LinearSys.canonicalFloat (!![d 0 0, d 1 0; d (-1) 0, d 0 0])
 
 def X₀D : Zonotope (Vec (Dyadic 64) 2) where
   h := 2
@@ -96,7 +97,7 @@ example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (
 
 /-! ## At native `Float` -/
 
-def sysF : LinearSys Float 2 := ⟨!![0.0, 1.0; -1.0, 0.0]⟩
+def sysF : LinearSys Float 2 := LinearSys.canonicalFloat !![0.0, 1.0; -1.0, 0.0]
 
 def X₀F : Zonotope (Vec Float 2) where
   h := 2

@@ -11,6 +11,7 @@ public import CORALean.Specification.STL.Theorems.DepReachAtPcC
 public import CORALean.Specification.STL.Theorems.DepReachAtPcH
 public import CORALean.Specification.STL.Theorems.DepReachAtSum
 public import CORALean.Specification.STL.Theorems.SumGenPlus
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -54,7 +55,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
     (hα : ∀ k, |α k| ≤ 1) (i : ℕ) :
     let R := STL.depReachPoint (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i)
     let μ : Vec ℝ n := ∑ k : Fin R.h, (if (k : ℕ) < X₀.h + i * U.h then α k else 0) • R.G k
-    let ξ := (LinearSys.mk A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
+    let ξ := (LinearSys.canonical A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
       (LinearSys.heldInput Δt
         (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l))) (i * Δt)
     ξ = μ + R.c ∧ ∀ β : Fin R.h → ℝ, (∀ k, |β k| ≤ 1) →
@@ -66,7 +67,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
       ((STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).Pc.plus
         (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).D) := rfl
   have hμd : μ = ∑ k : Fin R.h, (if (k : ℕ) < X₀.h + i * U.h then α k else 0) • R.G k := rfl
-  have hξd : ξ = (LinearSys.mk A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
+  have hξd : ξ = (LinearSys.canonical A).closedForm (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
       (LinearSys.heldInput Δt
         (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l))) (i * Δt) := rfl
   clear_value μ ξ R
@@ -83,11 +84,11 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
   have hsum := STL.depReachAt_sum A B X₀ U Δt κ α i
   simp only [] at hsum
   -- the held-input solution at `t_i`
-  have hxi : ξ = (LinearSys.mk A).heldSim Δt (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
+  have hxi : ξ = (LinearSys.canonical A).heldSim Δt (X₀.c + ∑ l : Fin X₀.h, α l • X₀.G l)
       (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l)) i := by
     rw [hξd]
     -- `heldSim` is the solution at `t_i`, for the inputs `B u` in `B U`
-    refine (LinearSys.mk A).closedForm_heldInput (S := 𝒵)
+    refine (LinearSys.canonical A).closedForm_heldInput (S := 𝒵)
       (U := Zonotope.mtimes B U) (Zonotope.isBounded_construct _) hΔt _ ?_ i
     intro j
     refine ⟨fun l => α (X₀.h + j * U.h + l), fun l => hα _, ?_⟩

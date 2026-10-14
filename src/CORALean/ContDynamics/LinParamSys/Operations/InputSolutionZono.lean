@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTail
+public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZono
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
@@ -53,7 +54,7 @@ noncomputable def LinParamSys.inputSolutionZono (sys : LinParamSys 𝕄𝒵 n) (
     (U : S n) : S n :=
   Mtimes.mtimes (𝕄 := 𝕄𝒵) (sys.inputTermZono r 0) U ⊞
     Mtimes.mtimes (𝕄 := 𝕄𝒵) (sys.inputTermZono r 1) U ⊞
-    (LinParamSys.mk (𝕄 := ℐ) sys.A.interval).inputTaylorSumTail r U η ⊞
+    (LinParamSys.canonical (𝕄 := ℐ) sys.A.interval).inputTaylorSumTail r U η ⊞
     Mtimes.mtimes (𝕄 := ℐ) (MatExp.intervalInputRemainder sys.A.interval r η) U
 
 end CORALean

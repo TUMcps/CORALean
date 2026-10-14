@@ -30,6 +30,7 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+    [OfScalarPoint 𝕋 S]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -44,7 +45,12 @@ theorem LinearARX.aux_outputEq_eval (sys : LinearARX 𝕋 dy du p) (hp : 0 < p) 
     show toRealMat (0 : Mat 𝕋 dy (p * dy)) i j = 0
     rw [Scalar.toRealMat_apply]
     exact ExactScalar.toReal_zero
-  simp only [OutputEq.eval, hD, Matrix.zero_mulVec, add_zero, Pi.add_apply, Pi.zero_apply]
+  have hk : toRealVec sys.outputEq.k = 0 := by
+    funext i
+    show toRealVec (0 : Vec 𝕋 dy) i = 0
+    rw [Scalar.toRealVec_apply]
+    exact ExactScalar.toReal_zero
+  simp only [OutputEq.eval, hD, hk, Matrix.zero_mulVec, add_zero, Pi.add_apply, Pi.zero_apply]
   show ∑ c, toRealMat sys.outputEq.C r c * LinearARX.stack p y k c = y k r
   simp only [Scalar.toRealMat_apply]
   rw [LinearARX.sum_block, Finset.sum_eq_single (⟨0, hp⟩ : Fin p)]

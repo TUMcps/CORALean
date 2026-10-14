@@ -38,7 +38,7 @@ set `X`, under inputs in `sys.U`, is at, at some time of that horizon. -/
 def LinParamSys.WithInput.reachUnionExact (sys : LinParamSys.WithInput S n)
     (tFinal : ℝ) (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   {y | ∃ A : Mat ℝ n n, ∃ x u : ℝ → Vec ℝ n,
-    sys.sys.ConstTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X
+    sys.sys.CanonicalConstTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X
       (construct sys.U) x u A ∧ ∃ t ∈ Set.Icc (0 : ℝ) tFinal, x t = y}
 
 end CORALean

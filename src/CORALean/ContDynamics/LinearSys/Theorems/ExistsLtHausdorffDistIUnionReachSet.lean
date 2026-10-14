@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -58,7 +59,8 @@ theorem LinearSys.exists_lt_hausdorffDist_iUnion_reachSet :
                 * μ))).construct := by -- --- PROOF ---
   obtain ⟨hnorm, hgr, hd⟩ := LinearSys.girardExample_spec
   have he : 2.7182818283 < Real.exp 1 := Real.exp_one_gt_d9
-  refine ⟨⟨Matrix.diagonal fun _ => 100⟩, ⟨1, fun _ => 1, fun _ _ => 1⟩, ⟨0, 0, Fin.elim0⟩,
+  refine ⟨LinearSys.canonical (Matrix.diagonal fun _ => 100), ⟨1, fun _ => 1, fun _ _ => 1⟩,
+      ⟨0, 0, Fin.elim0⟩,
     0, 1 / 100, 2, ?_, by norm_num, le_rfl, ?_, hgr, ?_⟩
   · show 0 < ‖(Matrix.diagonal fun _ => (100:ℝ) : Mat ℝ 1 1)‖
     rw [hnorm]; norm_num

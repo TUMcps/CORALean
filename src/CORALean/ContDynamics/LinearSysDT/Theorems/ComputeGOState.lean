@@ -31,7 +31,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.computeGO_state {sys : LinearSysDT 𝕋 n} {R₀ U : S n} {x u : ℕ → Vec ℝ n}
-    (h : sys.Trajectory R₀ U x u) (out : OutputEq 𝕋 n n r) {nk : ℕ} (k : Fin nk) :
+    (h : sys.CanonicalTrajectory R₀ U x u) (out : OutputEq 𝕋 n n r) {nk : ℕ} (k : Fin nk) :
     x (k.val + 1) = (sys.computeGO out nk).A k *ᵥ x 0
       + ∑ j : Fin nk, (sys.computeGO out nk).B k j *ᵥ u j := by -- --- PROOF ---
   rw [h.state_eq (k.val + 1)]

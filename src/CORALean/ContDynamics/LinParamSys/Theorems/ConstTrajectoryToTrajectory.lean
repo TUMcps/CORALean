@@ -33,8 +33,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem LinParamSys.constTrajectory_toTrajectory {sys : LinParamSys 𝕄 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n}
-    (traj : sys.ConstTrajectory T R₀ U x u A) :
-    sys.Trajectory T R₀ U x u (fun _ => A) where
+    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) :
+    sys.CanonicalTrajectory T R₀ U x u (fun _ => A) where
   init := traj.init
   input := traj.input
   param _ _ := traj.param

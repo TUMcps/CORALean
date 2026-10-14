@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEqOfMeasurable
@@ -106,10 +107,10 @@ theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n)
 
 /-- A `'varParam'` run over a float box with an input is, at every time of
 the step, in the float time-interval step plus the float input solution. -/
-theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer_inputSolution
+theorem LinParamSys.CanonicalTrajectory.timeIntervalStepFloat_outer_inputSolution
     {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
-    (traj : sys.Trajectory (S := 𝒵[𝕋]) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
+    (traj : sys.CanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 (toReal Δt) ⊆ T)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt)
@@ -119,8 +120,8 @@ theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer_inputSolution
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt with hr
   set η := m + 2 with hη'
-  let sysR : LinParamSys ℐ n := ⟨sys.A.nominal⟩
-  have trajR : sysR.Trajectory (S := 𝒵[𝕋]) T R₀ U x u A :=
+  let sysR : LinParamSys ℐ n := LinParamSys.canonical sys.A.nominal
+  have trajR : sysR.CanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A :=
     ⟨traj.init, traj.input, traj.param, traj.meas, traj.measParam, traj.cont, traj.flow⟩
   have hcpt : IsCompact (construct U) := Zonotope.isCompact_construct U
   obtain ⟨Â, hÂi, hÂB, hx⟩ := trajR.exists_integral_eq_of_measurable hΔt.le hT

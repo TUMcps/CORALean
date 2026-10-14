@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 public import CORALean.Global.Jacobian
 
 @[expose] public section
@@ -26,7 +27,7 @@ D_lin (U - p_u)`. The sets are zonotopes as in CORA; the set is that of the valu
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,15 +37,16 @@ namespace CORALean
 
 open CORALean.Real Matrix
 
-variable {n m r : ℕ}
+variable {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- CORA's output set at the reachable set `R`, for the output equation `h`, the input set `U` and
-the nominal input `u` as the user passes them (`params.U`, `params.u`). -/
-noncomputable def NonlinearSys.outputSetCora (h : Vec ℝ n → Vec ℝ m → Vec ℝ r)
-    (R : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (u : Vec ℝ m) : Set (Vec ℝ r) :=
+/-- CORA's output set at the reachable set `R`, for the system's output equation `h = sys.g`, the
+input set `U` and the nominal input `u` as the user passes them (`params.U`, `params.u`). -/
+noncomputable def NonlinearSys.outputSetCora (sys : NonlinearSys n m)
+    (R : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (u : Vec ℝ m) : Set (Vec ℝ sys.q) :=
+  let h := sys.g                                        -- out_mFile
   -- postProcessing: aux_set_U_uTrans_uTransVec
   let centerU := U.c                                    -- centerU = center(params.U)
   let _uTrans := u + centerU                            -- params.u = params.u + center(params.U)

@@ -9,6 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMon
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ContSet.Theorems.Basic
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -54,7 +55,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 by window: `plus` absorbs one propagated copy at a time. -/
 theorem LinParamSys.aux_propagate_subset_particularSolution (sys : LinParamSys ℐ n)
     (Δt : ℝ) (η : ℕ) (U : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) : ∀ k : ℕ,
-    (LinearSys.mk A : LinearSys ℝ n).propagateInputSolution Δt
+    (LinearSys.canonical A : LinearSys ℝ n).propagateInputSolution Δt
         (construct (sys.inputSolution Δt η U)) (k + 1)
       ⊆ construct (sys.particularSolution Δt η U k)
   | 0 => by
@@ -84,9 +85,9 @@ theorem LinParamSys.inputReach_subset_particularSolution
     {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {U : S n}
     (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) {t : ℝ} (ht0 : 0 ≤ t)
     (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach U t
+    (LinearSys.canonical A : LinearSys ℝ n).inputReach U t
       ⊆ construct (sys.particularSolution Δt η U k) := by -- --- PROOF ---
-  set L : LinearSys ℝ n := LinearSys.mk A
+  set L : LinearSys ℝ n := LinearSys.canonical A
   have hbdd := CompactSet.isBounded_construct U
   -- [1, Thm. 3.1]: one step of the input under `A`, inside the box's `inputSolution`
   have hΔ : L.inputReach U Δt ⊆ construct (sys.inputSolution Δt η U) :=

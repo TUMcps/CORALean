@@ -53,8 +53,8 @@ variable [∀ n, Recentre (S' n) (Vec ℝ n)] [∀ n, CompactSet (S' n) (Vec ℝ
 /-- Every state of a run on `[0, T]` with inputs in `U ⊆ V`, less its free
 motion and what `V`'s centre contributes, is one `recentre V`-input's
 contribution. -/
-theorem LinearSys.Trajectory.sub_mem_inputReach_recentre {sys : LinearSys 𝕋 n} {T : ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.Trajectory (Set.Icc 0 T) R₀ U x u)
+theorem LinearSys.CanonicalTrajectory.sub_mem_inputReach_recentre {sys : LinearSys 𝕋 n} {T : ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.CanonicalTrajectory (Set.Icc 0 T) R₀ U x u)
     {V : S' n} (hUV : construct U ⊆ construct V) {t : ℝ} (ht : t ∈ Set.Icc 0 T) :
     x t - (exp (t • toRealMat sys.A) *ᵥ x 0
         + MatExp.expIntegral (toRealMat sys.A) t *ᵥ Recentre.centre V)

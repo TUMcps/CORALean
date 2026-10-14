@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachExistsOuter
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
 import CORALean.ContSet.Interval.Real.Instances
+import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 /-!
 # One backward step in the `∃` reading, at a box
@@ -35,7 +36,7 @@ open Matrix Pointwise ContSet Scalar Plus Mtimes
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def BReachE.sys : LinearSysDT ℝ 1 := ⟨!![(2:ℝ)]⟩
+def BReachE.sys : LinearSysDT ℝ 1 := LinearSysDT.canonical !![(2:ℝ)]
 
 /-- The left inverse the backward step travels along: `Ainv A = 1`, where the
 `∀` reading asks for `A Ainv = 1`. At a square matrix the same one serves. -/
@@ -106,7 +107,7 @@ theorem BReachE.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ construct BReachE.T := by
 /-- And the set spent the other way: from `0.3` there *is* an admissible signal
 whose run is in the target one step on. -/
 example : ∃ u : ℕ → Vec ℝ 1,
-    BReachE.sys.TrajectoryOn (S := ℐ𝒱) BReachE.T BReachE.U 1
+    BReachE.sys.CanonicalTrajectoryOn (S := ℐ𝒱) BReachE.T BReachE.U 1
       (BReachE.sys.simulate ![(0.3:ℝ)] u) u ∧
     BReachE.sys.simulate ![(0.3:ℝ)] u 1 ∈ construct BReachE.T :=
   BReachE.sys.backReachSetExists_trajectory (S := ℐ𝒱) BReachE.T BReachE.U

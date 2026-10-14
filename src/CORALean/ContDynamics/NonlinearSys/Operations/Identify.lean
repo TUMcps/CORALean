@@ -43,7 +43,7 @@ noncomputable def NonlinearSys.identify (φ : Vec ℝ n → Vec ℝ m → Vec �
     (W : Mat ℝ N r) : Option (NonlinearSys n m) :=
   let Alist := NonlinearSys.identifyCandidate dx V s W               -- Alist{rank}
   let sysTmp := fun k =>                                           -- sysTmp
-    (NonlinearSys.mk fun x u => Alist k *ᵥ φ x u : NonlinearSys n m)
+    (NonlinearSys.mk (fun x u => Alist k *ᵥ φ x u) n fun x _ => x : NonlinearSys n m)
   dmdSelect lt err sysTmp r                                       -- best rank
 
 end CORALean

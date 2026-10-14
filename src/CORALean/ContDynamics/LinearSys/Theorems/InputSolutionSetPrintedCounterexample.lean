@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InputRemainder
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import Mathlib.Analysis.Normed.Algebra.Exponential
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
@@ -56,12 +57,12 @@ theorem LinearSys.inputSolutionSet_printed_counterexample :
   intro h
   -- the constant input `1` reaches `1` over `[0, 1]` at `A = 0`
   have hmem : (fun _ => 1 : Vec ℝ 1) ∈
-      (⟨0⟩ : LinearSys ℝ 1).inputReach (S := 𝒵)
+      (LinearSys.canonical 0 : LinearSys ℝ 1).inputReach (S := 𝒵)
         (⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)) 1 := by
     refine ⟨fun _ _ => 1, fun s _ => ⟨fun _ => 0, fun _ => by simp, by simp⟩, ?_, ?_⟩
     · exact aestronglyMeasurable_const
     · simp
-  have := h 1 ⟨0⟩ ⟨1, fun _ => 1, fun _ _ => 1⟩ 1 one_pos 0 hmem
+  have := h 1 (LinearSys.canonical 0) ⟨1, fun _ => 1, fun _ _ => 1⟩ 1 one_pos 0 hmem
   simp at this
   obtain ⟨M, hM, x, _, hMx⟩ := this
   -- at `A = 0` the remainder is the zero matrix

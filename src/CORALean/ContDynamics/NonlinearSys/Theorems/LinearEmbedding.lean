@@ -33,7 +33,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- The field a linear system is. -/
 def LinearSys.nonlinearSys (sys : LinearSys 𝕋 n) : NonlinearSys n n :=
-  ⟨fun x u => toRealMat sys.A *ᵥ x + u⟩
+  ⟨fun x u => toRealMat sys.A *ᵥ x + u, n, fun x _ => x⟩
 
 end CORALean
 

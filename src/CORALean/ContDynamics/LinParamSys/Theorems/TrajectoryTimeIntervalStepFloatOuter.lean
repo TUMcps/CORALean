@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Definitions.OrderAdmissibleFloat
+public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryExistsIntegralEq
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMemCorrectionMatrixOfRemainderFloat
@@ -11,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSubPeanoBakerS
 /-!
 # An input-free time-varying run stays in the float step
 
-`LinParamSys.Trajectory.timeIntervalStep_outer` at the float step: a fresh member
+`LinParamSys.CanonicalTrajectory.timeIntervalStep_outer` at the float step: a fresh member
 of the float box at every instant, and still `timeIntervalStepFloat`, the set the
 float `'constParam'` step computes. The run is a run of the box's nominal real
 system, so it solves the integral equation at a measurable member
@@ -47,10 +48,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- An input-free `'varParam'` run over a float box is, at every time of the step,
 in the float time-interval step of the initial set. -/
-theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer
+theorem LinParamSys.CanonicalTrajectory.timeIntervalStepFloat_outer
     {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
-    (traj : sys.Trajectory (S := 𝒵[𝕋]) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
+    (traj : sys.CanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 (toReal Δt) ⊆ T) (hu : ∀ s ∈ Set.Ico 0 (toReal Δt), u s = 0)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt) :
@@ -58,8 +59,8 @@ theorem LinParamSys.Trajectory.timeIntervalStepFloat_outer
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt with hr
   -- the same run, read at the box's nominal real system
-  let sysR : LinParamSys ℐ n := ⟨sys.A.nominal⟩
-  have trajR : sysR.Trajectory (S := 𝒵[𝕋]) T R₀ U x u A :=
+  let sysR : LinParamSys ℐ n := LinParamSys.canonical sys.A.nominal
+  have trajR : sysR.CanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A :=
     ⟨traj.init, traj.input, traj.param, traj.meas, traj.measParam, traj.cont, traj.flow⟩
   obtain ⟨Â, hÂi, hÂB, hx⟩ := trajR.exists_integral_eq hΔt.le hT hu
   have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
