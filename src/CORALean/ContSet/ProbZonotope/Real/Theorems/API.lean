@@ -41,6 +41,7 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.PyramidNotGeProb
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.EphMtimesExp
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.EphMtimesExpLeMax
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.GaussPdfExpMulVec
+public import CORALean.ContSet.ProbZonotope.Real.Theorems.AbsSqrtMulVecLe
 
 /-!
 # What a probabilistic zonotope guarantees, collected

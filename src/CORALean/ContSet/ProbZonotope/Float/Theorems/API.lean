@@ -13,6 +13,9 @@ public import CORALean.ContSet.ProbZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.ProjectLawsOuter
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.ReduceGirardOuter
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.VPolytopeOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.ZonotopeOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.ZonotopeProb
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.IntervalProb
 
 /-!
 # Float probabilistic zonotopes: the guarantees

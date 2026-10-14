@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
@@ -9,6 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Operations.Project
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
+public import CORALean.Global.Float.Sqrt
 
 @[expose] public section
 
@@ -39,6 +42,25 @@ layer this is a different set of laws, not an enclosure of the input's. -/
 def ProbZonotope.abs (P : ProbZonotope 𝕋 n) : ProbZonotope 𝕋 n :=
   ⟨P.Z.abs, P.cov⟩
 
+end CORALean.Float
+
+
+-- =============================  `ProbZonotope.confidenceRadius`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+/-- `m √(n Σᵢᵢ)`, rounded up, at the covariance interval's upper diagonal: the reach of `m g β`,
+`g` the covariance's square root and `β` in the unit cube, in coordinate `i`. -/
+def ProbZonotope.confidenceRadius (p : ℕ) (P : ProbZonotope 𝕋 n) (m : 𝕋) : Vec 𝕋 n :=
+  fun i => mulUp m (sqrtUp p (nsmulUp n (maximum zero (P.cov.sup i i))))
 end CORALean.Float
 
 
@@ -176,6 +198,42 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- CORA's `polytope(zonotope(probZ.Z))`: the corner polytope of the mean zonotope; the covariance
 plays no part. -/
 def ProbZonotope.vPolytope (P : ProbZonotope 𝕋 n) : VPolytope (Vec 𝕋 n) := P.Z.vPolytope
+end CORALean.Float
+
+
+-- =================================  `ProbZonotope.zonotope`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+/-- The mean zonotope plus the box `[-ρ, ρ]` of `confidenceRadius`, as diagonal generators. -/
+def ProbZonotope.zonotope (p : ℕ) (P : ProbZonotope 𝕋 n) (m : 𝕋) : Zonotope (Vec 𝕋 n) :=
+  P.Z.plus (Interval.zonotope ⟨fun i => neg (P.confidenceRadius p m i), P.confidenceRadius p m⟩)
+end CORALean.Float
+
+
+-- =================================  `ProbZonotope.interval`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+/-- CORA's `interval(probZ)`: the interval hull of the confidence zonotope. -/
+def ProbZonotope.interval (p : ℕ) (P : ProbZonotope 𝕋 n) (m : 𝕋) : Interval (Vec 𝕋 n) :=
+  (P.zonotope p m).interval
 end CORALean.Float
 
 

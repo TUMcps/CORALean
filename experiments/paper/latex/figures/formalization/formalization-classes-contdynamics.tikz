@@ -21,7 +21,7 @@
     major x grid style={draw=black!15, line width=0.4pt},
     yticklabel style={font=\scriptsize},
     xmax=26,
-    legend columns=3, legend to name=classlegend,
+    legend columns=2, legend to name=classlegend,
     legend style={legend cell align=left, align=left, draw=white!15!black, rounded corners, font=\scriptsize, inner sep=1.5pt, /tikz/every even column/.append style={column sep=0.5ex}, /tikz/every odd column/.append style={column sep=0pt}},
     legend image code/.code={\draw[#1, draw=black, line width=0.2pt, rounded corners=1pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}]
 \addplot[draw=none, forget plot] coordinates {(0,0) (0,12)};
@@ -29,6 +29,8 @@
 \addlegendentry{proved, at float}
 \addlegendimage{fill=CORAcolorReachSet2}
 \addlegendentry{proved, real only}
+\addlegendimage{fill=CORAcolorPurple!35!white}
+\addlegendentry{sound bound only}
 \addlegendimage{fill=white}
 \addlegendentry{not yet}
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,1) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:8,1) -- ([yshift=2.5pt]axis cs:8,1) [sharp corners] -- ([yshift=2.5pt]axis cs:0,1) -- cycle;
