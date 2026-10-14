@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_HPolytope
 
 @[expose] public section
 
@@ -32,10 +33,6 @@ vertex per row.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
-
-noncomputable def VPolytope.hPolytope (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
-    HPolytope α :=
-  HPolytope.ofBounds Aq fun i => P.supportBound (Aq i)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

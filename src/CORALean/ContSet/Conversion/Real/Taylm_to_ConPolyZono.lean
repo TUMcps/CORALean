@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Taylm_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_ConPolyZono
 
 @[expose] public section
 
@@ -23,9 +24,6 @@ exact where that is.
 namespace CORALean.Real
 
 variable {n m : ℕ}
-
-noncomputable def Taylm.conPolyZono (T : Fin m → Taylm n) : ConPolyZono (Vec ℝ m) :=
-  (Taylm.polyZonotope T).conPolyZono
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

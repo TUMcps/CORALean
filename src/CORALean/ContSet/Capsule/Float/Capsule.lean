@@ -44,6 +44,8 @@ structure Capsule (𝕋 : Type) (n : ℕ) where
 def Capsule.nominal [SoundFloatArithmetic 𝕋] (C : Capsule 𝕋 n) : CORALean.Real.Capsule n :=
   ⟨toRealVec C.c, toRealVec C.g, toReal C.r⟩
 
+/-- The set a capsule of stored floats stands for: its nominal's. Without an error box there is
+nothing to inflate, so this is the class's `construct`, spelt for `C.construct` to resolve. -/
 def Capsule.construct [SoundFloatArithmetic 𝕋] (C : Capsule 𝕋 n) : Set (Vec ℝ n) :=
   C.nominal.construct
 

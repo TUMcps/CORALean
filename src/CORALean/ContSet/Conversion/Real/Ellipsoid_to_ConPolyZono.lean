@@ -9,6 +9,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecEqSum
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.Global.EuclideanNorm
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConPolyZono
 
 @[expose] public section
 
@@ -52,39 +53,17 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The diagonal constraint exponent matrix: factor `j` reads its own square
-everywhere except the last row, which reads the slack factor to the first
-power alone. -/
-def Ellipsoid.aux_conPolyZonoR (k : ℕ) : Fin (k + 1) → Fin (k + 1) → ℕ :=
-  fun r c => if r = c then (if c.val < k then 2 else 1) else 0
-
 /-- A diagonal exponent matrix's monomial is its one nonzero factor, to the
 diagonal's own power. -/
 theorem Ellipsoid.aux_monomial_conPolyZonoR {k : ℕ} (a : Fin (k + 1) → ℝ) (j : Fin (k + 1)) :
-    PolyZonotope.monomial (Ellipsoid.aux_conPolyZonoR k) a j
+    PolyZonotope.monomial (Ellipsoid.conPolyZonoR k) a j
       = a j ^ (if j.val < k then 2 else 1) := by -- --- PROOF ---
   rw [PolyZonotope.monomial, Finset.prod_eq_single j]
-  · rw [Ellipsoid.aux_conPolyZonoR, if_pos rfl]
+  · rw [Ellipsoid.conPolyZonoR, if_pos rfl]
   · intro r _ hrj
-    rw [Ellipsoid.aux_conPolyZonoR, if_neg hrj, pow_zero]
+    rw [Ellipsoid.conPolyZonoR, if_neg hrj, pow_zero]
   · intro h
     exact absurd (Finset.mem_univ j) h
-
-/-- `E.k` dependent factors read `E.G`'s columns exactly as `E`'s own affine map
-does; one further factor absorbs the unit ball's radius slack. -/
-noncomputable def Ellipsoid.conPolyZono (E : Ellipsoid n) : ConPolyZono (Vec ℝ n) where
-  p := E.k + 1
-  h := E.k
-  qI := 0
-  m := 1
-  q := E.k + 1
-  c := E.c
-  G := ConPolyZono.consCol E.G
-  E := ConPolyZono.padE (PolyZonotope.identE E.k) 1
-  GI := Fin.elim0
-  A := fun _ j => if j.val < E.k then 1 else -(1 / 2)
-  b := Interval.point fun _ => (1 / 2 : ℝ)
-  R := Ellipsoid.aux_conPolyZonoR E.k
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -124,7 +103,7 @@ theorem Ellipsoid.conPolyZono_exact (E : Ellipsoid n) :
             rw [if_pos (by simp)]
           have h2 : PolyZonotope.monomial E.conPolyZono.R
               (Fin.append u fun _ : Fin 1 => t) (Fin.castAdd 1 k) = u k ^ 2 := by
-            show PolyZonotope.monomial (Ellipsoid.aux_conPolyZonoR E.k)
+            show PolyZonotope.monomial (Ellipsoid.conPolyZonoR E.k)
                 (Fin.append u fun _ : Fin 1 => t) (Fin.castAdd 1 k) = u k ^ 2
             rw [Ellipsoid.aux_monomial_conPolyZonoR,
               if_pos (show (Fin.castAdd 1 k).val < E.k by simp),
@@ -141,7 +120,7 @@ theorem Ellipsoid.conPolyZono_exact (E : Ellipsoid n) :
             rw [if_neg hval]
           have h2 : PolyZonotope.monomial E.conPolyZono.R
               (Fin.append u fun _ : Fin 1 => t) (Fin.natAdd E.k l) = t := by
-            show PolyZonotope.monomial (Ellipsoid.aux_conPolyZonoR E.k)
+            show PolyZonotope.monomial (Ellipsoid.conPolyZonoR E.k)
                 (Fin.append u fun _ : Fin 1 => t) (Fin.natAdd E.k l) = t
             rw [Ellipsoid.aux_monomial_conPolyZonoR, if_neg hval, pow_one, Fin.append_right]
           rw [h1, h2]

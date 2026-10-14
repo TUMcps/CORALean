@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.ZonoBundle_to_PolyZonotope
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ namespace CORALean.Float
 open InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def ZonoBundle.polyZonotope (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) : PolyZonotope (Vec 𝕋 n) :=
-  (zB.zonotope i).polyZonotope
 
 variable [SoundFloatArithmetic 𝕋]
 

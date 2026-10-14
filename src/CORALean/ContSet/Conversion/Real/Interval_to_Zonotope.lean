@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Algebra.BigOperators.Pi
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 
@@ -37,11 +38,6 @@ in particular, is exactly one zonotope [1, Sec. VI-A (ℓ∞)].
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Interval.zonotope (I : Interval (Vec ℝ n)) : Zonotope (Vec ℝ n) where
-  h := n
-  c := fun i => (I.inf i + I.sup i) / 2
-  G := fun j i => if i = j then (I.sup i - I.inf i) / 2 else 0
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

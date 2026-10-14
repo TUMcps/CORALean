@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormContinuousOn
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import Mathlib.Analysis.SpecialFunctions.Exponential
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 public import Mathlib.MeasureTheory.Integral.Prod

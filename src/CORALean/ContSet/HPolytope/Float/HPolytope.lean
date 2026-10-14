@@ -58,6 +58,8 @@ def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 (Vec 𝕋 
   (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).intersection
     (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be.inf) (toRealVec P.be.sup))
 
+/-- The set a polytope of stored floats stands for: its nominal's. Without an error box there is
+nothing to inflate, so this is the class's `construct`, spelt for `P.construct` to resolve. -/
 def HPolytope.construct [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 (Vec 𝕋 n)) : Set (Vec ℝ n) :=
   P.nominal.construct
 

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.Conversion.Float.Operations.ZonoBundle_to_ConZonotope
 
 @[expose] public section
 
@@ -34,17 +35,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `cZ` intersected with each member of a family in turn. -/
-def ZonoBundle.aux_interFrom (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : {k : ℕ} →
-    (Fin k → Zonotope (Vec 𝕋 n)) →
-    ConZonotope 𝕋 (Vec 𝕋 n)
-  | 0, _ => cZ
-  | _ + 1, Z => ZonoBundle.aux_interFrom (cZ.intersection (Z 0).conZonotope) fun i => Z i.succ
-
 theorem ZonoBundle.aux_subset_interFrom {S : Set (Vec ℝ n)} :
     ∀ {k : ℕ} (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (Z : Fin k → Zonotope (Vec 𝕋 n)),
       S ⊆ cZ.construct → (∀ i, S ⊆ (Z i).construct) →
-      S ⊆ (ZonoBundle.aux_interFrom cZ Z).construct := by -- --- PROOF ---
+      S ⊆ (ZonoBundle.interFrom cZ Z).construct := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro cZ _ h _; exact h
@@ -52,17 +46,6 @@ theorem ZonoBundle.aux_subset_interFrom {S : Set (Vec ℝ n)} :
     intro cZ Z h hZ
     refine ih _ _ (fun x hx => ConZonotope.intersection_outer _ _ ⟨h hx, ?_⟩) fun i => hZ i.succ
     exact Zonotope.conZonotope_contains _ (hZ 0 hx)
-
-
-def ZonoBundle.conZonotope (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) : ConZonotope 𝕋 (Vec 𝕋 n) :=
-  (zB.zonotope i).conZonotope
-
-/-- Every member at once: the first member's constrained zonotope, intersected
-with each of the rest. -/
-def ZonoBundle.conZonotopeAll (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) : ConZonotope
-    𝕋 (Vec 𝕋 n) :=
-  ZonoBundle.aux_interFrom (zB.conZonotope ⟨0, hk⟩)
-    fun (i : Fin (zB.k - 1)) => zB.zonotope ⟨i + 1, by omega⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.SpectraShadow_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_ConZonotope
 
 @[expose] public section
 
@@ -25,10 +26,6 @@ approximation too, not an equality.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-
-noncomputable def SpectraShadow.conZonotope (S : SpectraShadow α) : ConZonotope α :=
-  S.zonotope.conZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

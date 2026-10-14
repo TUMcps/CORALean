@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_Zonotope
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ and the slant of the segment.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Capsule.zonotope (C : Capsule n) : Zonotope (Vec ℝ n) :=
-  C.interval.zonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

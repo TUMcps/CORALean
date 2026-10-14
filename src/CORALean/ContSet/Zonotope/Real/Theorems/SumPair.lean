@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
-public import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffDiff
-public import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffSum
+public import CORALean.ContSet.Zonotope.Real.Operations.PairCoeffDiff
+public import CORALean.ContSet.Zonotope.Real.Operations.PairCoeffSum
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import Mathlib.Data.Fintype.BigOperators
 public import Mathlib.Tactic.Module

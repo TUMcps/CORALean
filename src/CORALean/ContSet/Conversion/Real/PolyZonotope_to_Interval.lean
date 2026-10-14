@@ -4,6 +4,7 @@ public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 public import Mathlib.Order.BourbakiWitt
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
 
 @[expose] public section
 
@@ -44,9 +45,6 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-def PolyZonotope.interval (pZ : PolyZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :=
-  pZ.zonotope.interval
-
 theorem PolyZonotope.interval_contains (pZ : PolyZonotope (Vec ℝ n)) :
     pZ.construct ⊆ pZ.interval.construct :=
   subset_trans pZ.zonotope_contains (Zonotope.interval_contains _)
@@ -60,11 +58,6 @@ theorem PolyZonotope.interval_inf_le_sup (pZ : PolyZonotope (Vec ℝ n)) (i : Fi
   have hmem := pZ.interval_contains (pZ.point_mem_construct (a := fun _ => 0)
     fun _ => by rw [abs_zero]; exact zero_le_one)
   exact le_trans (hmem i).1 (hmem i).2
-
-/-- The tighter box, through `zonotopeEven`: an even-exponent generator halves
-into the centre instead of being boxed whole. -/
-noncomputable def PolyZonotope.intervalEven (pZ : PolyZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :=
-  pZ.zonotopeEven.interval
 
 /-- [2, Prop. 1]: the tighter box contains the set. -/
 theorem PolyZonotope.intervalEven_contains (pZ : PolyZonotope (Vec ℝ n)) :

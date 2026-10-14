@@ -6,6 +6,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
 
 @[expose] public section
 
@@ -50,11 +51,6 @@ namespace CORALean.Real
 open Matrix
 
 variable {n : ℕ}
-
-noncomputable def Zonotope.ellipsoid (Z : Zonotope (Vec ℝ n)) : Ellipsoid n where
-  k := Z.h
-  c := Z.c
-  G := Matrix.of fun i j => Real.sqrt Z.h * Z.G j i
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -107,13 +103,6 @@ theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec ℝ n)) :
       ne_of_gt (Real.sqrt_pos.mpr (by exact_mod_cast j.pos))
     field_simp
 
-/-- [1, Thm. 1]: `E(r E₀, z̄)` with `E₀ = F Fᵀ`, as the generator `√r F`. -/
-noncomputable def Zonotope.ellipsoidNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (r : ℝ) :
-    Ellipsoid n where
-  k := n
-  c := Z.c
-  G := √r • F
-
 /-- [1, Thm. 1]: `r` bounding `⌈F⁻¹ Z⌉²` makes `E(r F Fᵀ, z̄)` enclose `Z`. -/
 theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (r : ℝ)
     (hF : IsUnit F.det)
@@ -148,13 +137,6 @@ theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ 
       rw [Matrix.smul_mulVec, Matrix.mulVec_smul, smul_smul, mul_inv_cancel₀ hs.ne', one_smul,
         hFv]
 
-/-- [1, Thm. 3]: `E(l E₀, z̄)` with `E₀ = F Fᵀ`, as the generator `√l F`. -/
-noncomputable def Zonotope.ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (l : ℝ) :
-    Ellipsoid n where
-  k := n
-  c := Z.c
-  G := √l • F
-
 /-- [1, Thm. 3]: a ball of radius `√l` around the centre of `F⁻¹ Z` puts `E(l F Fᵀ, z̄)` in
 `Z`; `l ≤ ⌊F⁻¹ Z⌋²` is what that ball says. -/
 theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (l : ℝ)
@@ -175,12 +157,6 @@ theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat
   show Z.c + (√l • F) *ᵥ u = Z.c + ∑ j, β j • Z.G j
   rw [Matrix.smul_mulVec, ← Matrix.mulVec_smul]
   exact hmap
-
-/-- [2, Sec. 4.1]: `E(n diag(β₁², …, β_n²), c)` with `βᵢ = ∑ⱼ |Gᵢⱼ|`, the box's ellipsoid. -/
-noncomputable def Zonotope.ellipsoidBox (Z : Zonotope (Vec ℝ n)) : Ellipsoid n where
-  k := n
-  c := Z.c
-  G := Matrix.diagonal fun i => Real.sqrt n * ∑ j, |Z.G j i|
 
 /-- [2, Sec. 4.1]: the zonotope lies in the ellipsoid of its bounding box,
 `Z ⊆ [c − β, c + β] ⊆ E(n diag(β²), c)`. -/

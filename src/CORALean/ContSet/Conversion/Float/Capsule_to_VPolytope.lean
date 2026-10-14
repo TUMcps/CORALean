@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Capsule_to_VPolytope
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Capsule.vPolytope (C : Capsule 𝕋 n) : VPolytope (Vec 𝕋 n) :=
-  C.interval.vPolytope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

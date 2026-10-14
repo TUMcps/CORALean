@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.ZonoBundle_to_HPolytope
 
 @[expose] public section
 
@@ -23,10 +24,6 @@ in the directions the caller names.
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def ZonoBundle.hPolytope {q : ℕ} (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) (Aq : Mat 𝕋 q n) :
-    HPolytope 𝕋 (Vec 𝕋 n) :=
-  (zB.zonotope i).hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

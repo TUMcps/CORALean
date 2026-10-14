@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Theorems.ConZonoLifting
+public import CORALean.HybridDynamics.Parallel.Operations.ConZonoLifting
 public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
 
 @[expose] public section

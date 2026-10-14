@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.HPolytope_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConPolyZono
 
 @[expose] public section
 
@@ -25,10 +26,6 @@ route's, exactly as in `HPolytope.polyZonotope_contains`.
 namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
-
-noncomputable def HPolytope.conPolyZono (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : ConPolyZono (Vec ℝ n) :=
-  (HPolytope.polyZonotope up lo).conPolyZono
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

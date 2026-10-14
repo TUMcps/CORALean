@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Conversion.Float.Operations.API
 public import CORALean.ContSet.Conversion.Float.Capsule_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Float.Capsule_to_Ellipsoid
 public import CORALean.ContSet.Conversion.Float.Capsule_to_HPolytope

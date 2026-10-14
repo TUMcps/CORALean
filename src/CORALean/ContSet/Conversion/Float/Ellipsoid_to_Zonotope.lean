@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Ellipsoid_to_Zonotope
 
 @[expose] public section
 
@@ -27,9 +28,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Ellipsoid.zonotope (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Zonotope (Vec 𝕋 n) :=
-  (E.interval s).zonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

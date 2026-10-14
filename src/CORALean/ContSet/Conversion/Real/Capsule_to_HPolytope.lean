@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_HPolytope
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ ends and the slant of the segment.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Capsule.hPolytope (C : Capsule n) : HPolytope (Vec ℝ n) :=
-  C.interval.hPolytope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

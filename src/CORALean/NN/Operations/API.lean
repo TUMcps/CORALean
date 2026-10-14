@@ -25,6 +25,7 @@ public import CORALean.NN.Operations.IntervalChainFwd
 public import CORALean.NN.Operations.IntervalChainJvp
 public import CORALean.NN.Operations.LayerRefinable
 public import CORALean.NN.Operations.LayerSensitivity
+public import CORALean.NN.Operations.MarginDir
 public import CORALean.NN.Operations.MaxOver
 public import CORALean.NN.Operations.MergeCols
 public import CORALean.NN.Operations.MergeRows

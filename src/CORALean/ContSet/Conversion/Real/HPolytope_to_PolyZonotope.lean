@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_PolyZonotope
 
 @[expose] public section
 
@@ -27,10 +28,6 @@ Loses whatever the box route loses and nothing further.
 namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
-
-noncomputable def HPolytope.polyZonotope (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : PolyZonotope (Vec ℝ n) :=
-  (HPolytope.zonotope up lo).polyZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

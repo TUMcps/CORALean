@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_PolyZonotope
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ segment.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Capsule.polyZonotope (C : Capsule n) : PolyZonotope (Vec ℝ n) :=
-  C.interval.polyZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_HPolytope
 
 @[expose] public section
 
@@ -31,9 +32,6 @@ namespace CORALean.Float
 open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
-
-def VPolytope.hPolytope (P : VPolytope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 (Vec 𝕋 n) :=
-  HPolytope.ofBounds Aq fun i => P.boundDot (Aq i) fun _ => rfl
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ToNonlinearSys
 public import Mathlib.Analysis.Calculus.Deriv.Add
 
 @[expose] public section

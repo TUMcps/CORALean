@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_LevelSet
 
 @[expose] public section
 
@@ -27,13 +28,6 @@ namespace CORALean.Real
 open Matrix CORALean
 
 variable {n : ℕ}
-
-
-/-- `levelSet(E)`: the single constraint `(x - q)ᵀ (G Gᵀ)⁻¹ (x - q) - 1 ≤ 0`. -/
-noncomputable def Ellipsoid.levelSet (E : Ellipsoid n) : LevelSet n where
-  m := 1
-  f x := fun _ => (x - E.c) ⬝ᵥ ((E.G * E.Gᵀ)⁻¹ *ᵥ (x - E.c)) - 1
-  op := fun _ => .le
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

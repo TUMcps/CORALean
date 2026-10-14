@@ -316,6 +316,8 @@ def excluded(lf):
         return p.name
     if p.stem in (p.parent.name, p.parent.parent.name) or class_root(p.parent):
         return "main-type file"
+    if "/Conversion/" in rel:
+        return "conversion pair file"  # the ordered pair is the unit, named `<Source>_to_<Target>`
     if WITNESS.search(p.stem):
         return "CORA model or witness"
     if rel in cora_bug_files():

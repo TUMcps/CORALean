@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
+public import CORALean.HybridDynamics.Parallel.Operations.BoxLifting
 public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
 
 @[expose] public section

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
 public import Mathlib.Order.BourbakiWitt
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_ZonoBundle
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ so this is no worse than `Interval → Zonotope` already is.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Interval.zonoBundle (I : Interval (Vec ℝ n)) : ZonoBundle (Vec ℝ n) :=
-  I.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

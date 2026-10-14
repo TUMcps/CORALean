@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+public import CORALean.ContSet.Zonotope.Real.Definitions.Coefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import Mathlib.Data.Matrix.Mul

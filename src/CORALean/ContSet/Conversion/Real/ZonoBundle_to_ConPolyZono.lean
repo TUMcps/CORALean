@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConPolyZono
 public import Mathlib.Order.BourbakiWitt
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConPolyZono
 
 @[expose] public section
 
@@ -27,9 +28,6 @@ than any one member — so all the loss here is that choice.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ZonoBundle.conPolyZono (zB : ZonoBundle α) (i : Fin zB.k) : ConPolyZono α :=
-  (zB.zonotope i).conPolyZono
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

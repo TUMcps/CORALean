@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Ellipsoid
 
 @[expose] public section
 
@@ -39,17 +40,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- One generator per coordinate, the box's own radius scaled by the proposed
-`√n` and rounded up. -/
-def Interval.ellipsoidG (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Mat 𝕋 n n :=
-  diagonalBlock fun i => mulUp σ (I.radiusFrom i)
-
-def Interval.ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n where
-  k := n
-  c := I.center
-  G := I.ellipsoidG σ
-  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 open SoundFloatArithmetic InflatedContSet
 

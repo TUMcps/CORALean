@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Definitions.Aligned
+public import CORALean.ContSet.Zonotope.Real.Definitions.Coefficient
 public import CORALean.ContSet.Zonotope.Real.Definitions.ReduceBoxAdmissible
 public import CORALean.ContSet.Zonotope.Real.Definitions.OverApproxIndex
 public import CORALean.ContSet.Zonotope.Real.Definitions.ZonotopeNorm

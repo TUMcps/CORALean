@@ -8,6 +8,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfAppend
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import Mathlib.Algebra.BigOperators.Pi
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Taylm
 
 @[expose] public section
 
@@ -33,11 +34,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def PolyZonotope.taylm (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) : Fin n → Taylm 𝕋 (pZ.p + pZ.q) :=
-  fun i => ⟨(pZ.c i, 0) :: (List.ofFn (fun j => (pZ.G j i, Fin.append (fun k => pZ.E k j) 0))
-    ++ List.ofFn (fun l => (pZ.GI l i, Pi.single (Fin.natAdd pZ.p l) 1))),
-    pZ.I_error.inf i, pZ.I_error.sup i, N⟩
 
 variable [SoundFloatArithmetic 𝕋]
 

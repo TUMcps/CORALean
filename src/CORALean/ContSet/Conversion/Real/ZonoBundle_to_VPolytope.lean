@@ -4,6 +4,7 @@ public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.ConZonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_VPolytope
 
 @[expose] public section
 
@@ -36,34 +37,12 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-noncomputable def ZonoBundle.vPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
-    VPolytope (Vec ℝ n) :=
-  (zB.zonotope i).vPolytope
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.vPolytope_contains (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
     zB.construct ⊆ (zB.vPolytope i).construct :=
   subset_trans (zB.zonotope_contains i) (Zonotope.vPolytope_contains _)
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The coefficient domain of `conZonotope(zB)` is nonempty when the bundle is. -/
-theorem ZonoBundle.aux_domain_nonempty (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (hne : zB.construct.Nonempty) :
-    (zB.conZonotopeAll hk).domain.construct.Nonempty := by
-  obtain ⟨x, hx⟩ := hne
-  rw [← ZonoBundle.conZonotopeAll_exact zB hk] at hx
-  obtain ⟨β, hb, hP, -⟩ := hx
-  exact ⟨β, ConZonotope.mem_domain_iff.mpr ⟨hb, hP⟩⟩
-
-
-/-- CORA's `vertices_` of a bundle: the vertices of `conZonotope(zB)`. -/
-noncomputable def ZonoBundle.vPolytopeAll (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (hne : zB.construct.Nonempty) : VPolytope (Vec ℝ n) :=
-  (zB.conZonotopeAll hk).vPolytope (zB.aux_domain_nonempty hk hne)
 
 /-- Exact: the vertex list spans the bundle. -/
 theorem ZonoBundle.vPolytopeAll_exact (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)

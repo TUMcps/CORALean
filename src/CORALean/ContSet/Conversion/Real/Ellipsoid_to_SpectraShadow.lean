@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.Global.EuclideanNorm
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_SpectraShadow
 
 @[expose] public section
 
@@ -30,17 +31,6 @@ namespace CORALean.Real
 open CORALean Matrix
 
 variable {n : ℕ}
-
-/-- The ellipsoid as the shadow of `‖u‖₂ ≤ 1`, the ball written as one linear matrix
-inequality of size `k + 1`. -/
-def Ellipsoid.spectraShadow (E : Ellipsoid n) : SpectraShadow (Vec ℝ n) where
-  k := E.k + 1
-  m := E.k
-  A₀ := 1
-  A := fun i => Matrix.of fun p q =>
-    if (p = 0 ∧ q = i.succ) ∨ (p = i.succ ∧ q = 0) then 1 else 0
-  c := E.c
-  G := fun i r => E.G r i
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

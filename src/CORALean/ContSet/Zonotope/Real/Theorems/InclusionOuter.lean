@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Inclusion
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
-public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+public import CORALean.ContSet.Zonotope.Real.Definitions.Coefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol

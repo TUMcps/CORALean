@@ -1,8 +1,8 @@
 module
 
 public import CORALean.NN.Theorems.DisjointMisclassifiedOfBounds
-public import CORALean.NN.Theorems.MarginDir
-public import CORALean.NN.Theorems.Misclassified
+public import CORALean.NN.Operations.MarginDir
+public import CORALean.NN.Definitions.Misclassified
 public import CORALean.NN.Theorems.HoldsOfEnclose
 
 @[expose] public section

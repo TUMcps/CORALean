@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 public import CORALean.ContSet.VPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_Interval
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def VPolytope.interval (P : VPolytope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
-  Interval.ofBounds P.boundProj P.boundNegProj
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 

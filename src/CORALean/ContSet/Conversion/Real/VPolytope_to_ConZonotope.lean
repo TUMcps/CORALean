@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.VPolytope.Real.VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConZonotope
 
 @[expose] public section
 
@@ -32,15 +33,6 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-/-- The standard simplex as constraints: nonnegative, summing to one. -/
-def VPolytope.simplex (k : ℕ) : HPolytope (Vec ℝ k) where
-  m := k
-  A := fun j => -LinearMap.proj j
-  b := fun _ => 0
-  me := 1
-  Ae := fun _ => ∑ j, LinearMap.proj j
-  be := fun _ => 1
-
 theorem VPolytope.mem_simplex_iff {k : ℕ} {β : Vec ℝ k} :
     β ∈ (VPolytope.simplex k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
   constructor
@@ -58,12 +50,6 @@ theorem VPolytope.mem_simplex_iff {k : ℕ} {β : Vec ℝ k} :
       linarith [hnn j]
     · show (∑ j, LinearMap.proj j : Vec ℝ k →ₗ[ℝ] ℝ) β = 1
       rwa [LinearMap.sum_apply]
-
-def VPolytope.conZonotope (P : VPolytope α) : ConZonotope α where
-  h := P.k
-  c := 0
-  G := P.V
-  P := VPolytope.simplex P.k
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

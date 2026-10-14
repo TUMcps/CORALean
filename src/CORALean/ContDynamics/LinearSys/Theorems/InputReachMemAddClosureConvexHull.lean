@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.InputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableReflectIoc
 public import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalMulVecSet
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsExpRemainderEntryLe

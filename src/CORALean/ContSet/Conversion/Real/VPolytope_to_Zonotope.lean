@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.VPolytope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_Zonotope
 
 @[expose] public section
 
@@ -24,16 +25,12 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-noncomputable def VPolytope.zonotope (P : VPolytope (Vec ℝ n)) : Zonotope (Vec ℝ n) :=
-  P.interval.zonotope
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.zonotope_contains (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.zonotope.construct :=
   subset_trans P.interval_contains (Interval.zonotope_contains _)
-
 
 end CORALean.Real
 

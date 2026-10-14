@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_ConZonotope
 
 @[expose] public section
 
@@ -25,16 +26,12 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-noncomputable def Interval.conZonotope (I : Interval (Vec ℝ n)) : ConZonotope (Vec ℝ n) :=
-  I.zonotope.conZonotope
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.conZonotope_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.conZonotope.construct :=
   subset_trans I.zonotope_contains (Zonotope.conZonotope_exact _).subset
-
 
 end CORALean.Real
 

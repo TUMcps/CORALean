@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Float.Operations.Capsule_to_ConPolyZono
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Capsule.conPolyZono (C : Capsule 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
-  C.interval.conPolyZono
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

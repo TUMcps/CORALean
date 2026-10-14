@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinearEmbedding
 public import CORALean.ContDynamics.LinearSys.Definitions.CanonicalClassicalTrajectory
 
 @[expose] public section

@@ -6,6 +6,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
 public import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_VPolytope
 
 @[expose] public section
 
@@ -36,11 +37,6 @@ constraints first and pays for it in precision instead.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-noncomputable def ConZonotope.vPolytope (cZ : ConZonotope α)
-    (hne : cZ.domain.construct.Nonempty) : VPolytope α where
-  k := (cZ.domain.vPolytope hne).k
-  V := fun l => cZ.c + ∑ j, ((cZ.domain.vPolytope hne).V l) j • cZ.G j
 
 theorem ConZonotope.vPolytope_contains (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
     cZ.construct ⊆ (cZ.vPolytope hne).construct := by -- --- PROOF ---

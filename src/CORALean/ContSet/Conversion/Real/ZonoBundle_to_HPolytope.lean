@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_HPolytope
 
 @[expose] public section
 
@@ -26,10 +27,6 @@ the caller names, as `Zonotope.hPolytope_contains` already is.
 namespace CORALean.Real
 
 variable {n q : ℕ}
-
-def ZonoBundle.hPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
-    (Aq : Fin q → (Vec ℝ n →ₗ[ℝ] ℝ)) : HPolytope (Vec ℝ n) :=
-  (zB.zonotope i).hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -31,7 +31,6 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrAdaptiveTensor
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachTensor3Cora2DIndexCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OutputSetCoraCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachAdaptiveCora1DHessianRegionCounterexample
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OptDeltatDescent

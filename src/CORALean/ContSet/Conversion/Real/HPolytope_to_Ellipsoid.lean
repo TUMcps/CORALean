@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_Ellipsoid
 
 @[expose] public section
 
@@ -27,10 +28,6 @@ programs.
 namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
-
-noncomputable def HPolytope.ellipsoid (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : Ellipsoid n :=
-  (HPolytope.zonotope up lo).ellipsoid
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

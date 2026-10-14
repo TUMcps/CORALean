@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_ZonoBundle
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ sharing, then `Zonotope.zonoBundle` — the single-member bundle, exact by
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ConPolyZono.zonoBundle (cPZ : ConPolyZono α) : ZonoBundle α :=
-  cPZ.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

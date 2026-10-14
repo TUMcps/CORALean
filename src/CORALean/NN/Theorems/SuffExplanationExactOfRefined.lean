@@ -1,8 +1,8 @@
 module
 
-public import CORALean.NN.Theorems.Misclassified
-public import CORALean.NN.Theorems.SuffExplanationAbstract
-public import CORALean.NN.Theorems.SuffExplanationExact
+public import CORALean.NN.Definitions.Misclassified
+public import CORALean.NN.Definitions.SuffExplanationAbstract
+public import CORALean.NN.Definitions.SuffExplanationExact
 public import CORALean.Specification.Theorems.HoldsOfOuter
 
 @[expose] public section

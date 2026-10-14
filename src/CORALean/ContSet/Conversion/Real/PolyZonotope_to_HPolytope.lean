@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_HPolytope
 
 @[expose] public section
 
@@ -28,9 +29,6 @@ caller's, exactly as in `Zonotope.hPolytope_contains`.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
-
-def PolyZonotope.hPolytope (pZ : PolyZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) : HPolytope α :=
-  pZ.zonotope.hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

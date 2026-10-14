@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_Zonotope
 
 @[expose] public section
 
@@ -24,8 +25,6 @@ same shape, sound at every partition.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ZonoBundle.zonotope (zB : ZonoBundle α) (i : Fin zB.k) : Zonotope α := zB.Z i
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

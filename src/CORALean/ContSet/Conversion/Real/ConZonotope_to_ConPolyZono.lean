@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 
 @[expose] public section
 
@@ -24,7 +25,7 @@ The factors are the coefficients themselves, one each and to the first power, so
 generators and constraint columns read off the same identity exponent matrix. A
 constrained zonotope is exactly the linear fragment of the representation.
 
-`aux_coeffs` is the converse of `HPolytope.rowLin`: a constraint there is a
+`coeffs` is the converse of `HPolytope.rowLin`: a constraint there is a
 functional, here a matrix row, and a functional is its values on the unit vectors.
 -/
 
@@ -45,12 +46,8 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The coefficients of a linear functional on a coordinate space. -/
-def ConZonotope.aux_coeffs {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ) : Vec ℝ h :=
-  fun j => f (Pi.single j 1)
-
 theorem ConZonotope.aux_apply_eq_sum {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ) (β : Vec ℝ h) :
-    f β = ∑ j, ConZonotope.aux_coeffs f j * β j := by -- --- PROOF ---
+    f β = ∑ j, ConZonotope.coeffs f j * β j := by -- --- PROOF ---
   have hsingle : ∀ j k : Fin h, (Pi.single j (1:ℝ) : Vec ℝ h) k = if k = j then 1 else 0 :=
     fun j k => Pi.single_apply j (1:ℝ) k
   have hβ : β = ∑ j, β j • (Pi.single j (1:ℝ) : Vec ℝ h) := by
@@ -64,7 +61,7 @@ theorem ConZonotope.aux_apply_eq_sum {h : ℕ} (f : Vec ℝ h →ₗ[ℝ] ℝ) (
   conv_lhs => rw [hβ]
   rw [map_sum]
   exact Finset.sum_congr rfl fun j _ => by
-    rw [map_smul, smul_eq_mul, ConZonotope.aux_coeffs, mul_comm]
+    rw [map_smul, smul_eq_mul, ConZonotope.coeffs, mul_comm]
 
 /-- What a row can reach over the unit cube, which is what the supplied lower
 bound has to clear. -/
@@ -74,32 +71,6 @@ theorem ConZonotope.aux_abs_sum_le {h : ℕ} (c β : Vec ℝ h) (hβ : ∀ j, |�
     _ ≤ ∑ j, |c j| := Finset.sum_le_sum fun j _ => by
         rw [abs_mul]
         exact mul_le_of_le_one_right (abs_nonneg _) (hβ j)
-
-/-- The inequality rows, then the equality rows, each read off as coefficients
-over the coefficient space. -/
-def ConZonotope.conA (cZ : ConZonotope (Vec ℝ n)) : Mat ℝ (cZ.P.m + cZ.P.me) cZ.h :=
-  Fin.append (fun i => ConZonotope.aux_coeffs (cZ.P.A i))
-    fun i => ConZonotope.aux_coeffs (cZ.P.Ae i)
-
-/-- An inequality gets the free lower bound; an equality is the degenerate
-interval. -/
-def ConZonotope.conB (cZ : ConZonotope (Vec ℝ n)) : Interval (Vec ℝ (cZ.P.m + cZ.P.me)) :=
-  ⟨Fin.append (fun i => -∑ j, |ConZonotope.aux_coeffs (cZ.P.A i) j|) cZ.P.be,
-   Fin.append cZ.P.b cZ.P.be⟩
-
-def ConZonotope.conPolyZono (cZ : ConZonotope (Vec ℝ n)) : ConPolyZono (Vec ℝ n) where
-  p := cZ.h
-  h := cZ.h
-  qI := 0
-  m := cZ.P.m + cZ.P.me
-  q := cZ.h
-  c := cZ.c
-  G := cZ.G
-  E := PolyZonotope.identE cZ.h
-  GI := Fin.elim0
-  A := ConZonotope.conA cZ
-  b := ConZonotope.conB cZ
-  R := PolyZonotope.identE cZ.h
 
 -- identity exponents make the monomial vector the factor vector itself
 theorem ConZonotope.aux_mulVec_conA (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.h) :
@@ -131,10 +102,10 @@ theorem ConZonotope.satisfies_conPolyZono_iff (cZ : ConZonotope (Vec ℝ n)) (β
       rw [ConZonotope.conA, Fin.append_right]
   -- the free lower bound: no row falls below minus its own absolute row sum
   have hfree : ∀ i : Fin cZ.P.m,
-      -∑ j, |ConZonotope.aux_coeffs (cZ.P.A i) j| ≤ cZ.P.A i β := by
+      -∑ j, |ConZonotope.coeffs (cZ.P.A i) j| ≤ cZ.P.A i β := by
     intro i
     rw [ConZonotope.aux_apply_eq_sum (cZ.P.A i) β]
-    have h := ConZonotope.aux_abs_sum_le (ConZonotope.aux_coeffs (cZ.P.A i)) β hβ
+    have h := ConZonotope.aux_abs_sum_le (ConZonotope.coeffs (cZ.P.A i)) β hβ
     rw [abs_le] at h
     exact h.1
   constructor

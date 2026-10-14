@@ -130,12 +130,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubset
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetMtimesPlusCube
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalBound
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSegmentsSum
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalWitness
-public import CORALean.ContDynamics.LinearSys.Theorems.TimePointBoundOfInputReach
-public import CORALean.ContDynamics.LinearSys.Theorems.TimePointWitness
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
@@ -148,7 +144,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
 public import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachSupportFloatGe
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
 public import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepFloatTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepFloatTimePointOuter
@@ -221,7 +216,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSegm
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetInitialAddError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepTunedOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimePointBound
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerInner

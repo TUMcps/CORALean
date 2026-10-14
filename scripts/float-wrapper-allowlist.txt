@@ -1,0 +1,17 @@
+# Float definitions that are only `X.nominal.op args` on purpose (CONTRIBUTING, "Float
+# definitions earn their name"; issue #154).
+#
+# `scripts/check-float-wrappers.py` refuses any other such definition: the exact operation at
+# `nominal` is already written `X.nominal.op args`. An entry says why the name is kept. The list
+# only shrinks, and an entry whose definition is gone or no longer a bare wrapper is reported as
+# stale.
+#
+# One line per definition: `<path>::<name>  <reason>`. A reason starts with one of:
+#   class:    the `construct` of a representation without an error box, which the `ContSet`
+#             instance and every `X.construct` in a statement resolve through by dot notation.
+#   meaning:  what a stored value claims, the hypothesis its theorems share, as `construct` is a
+#             set's.
+src/CORALean/ContSet/Capsule/Float/Capsule.lean::Capsule.construct  class: the capsule's set is its nominal's; dot notation `C.construct` and the `ContSet` instance read it
+src/CORALean/ContSet/HPolytope/Float/HPolytope.lean::HPolytope.construct  class: the polytope's set is its nominal's; dot notation `P.construct` and the `ContSet` instance read it
+src/CORALean/ContSet/Interval/Float/Interval.lean::Interval.construct  class: the interval's set is its nominal's; dot notation `I.construct` and the `ContSet` instance read it
+src/CORALean/ContSet/Taylm/Float/Taylm.lean::Taylm.Encloses  meaning: what a stored Taylor model claims, the hypothesis of every float Taylor-model theorem

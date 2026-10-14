@@ -13,6 +13,8 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReducedOrde
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachInnerRep
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSetBound
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSetWitness
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachLTVCora
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep

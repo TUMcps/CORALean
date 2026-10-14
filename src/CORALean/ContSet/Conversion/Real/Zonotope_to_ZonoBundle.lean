@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ZonoBundle
 
 @[expose] public section
 
@@ -23,8 +24,6 @@ one-element index type `Fin 1`.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def Zonotope.zonoBundle (Z : Zonotope α) : ZonoBundle α := ⟨1, fun _ => Z⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

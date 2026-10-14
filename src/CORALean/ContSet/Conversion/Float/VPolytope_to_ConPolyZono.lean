@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.VPolytope_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_ConPolyZono
 
 @[expose] public section
 
@@ -25,16 +26,12 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def VPolytope.conPolyZono (P : VPolytope (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
-  P.polyZonotope.conPolyZono
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.conPolyZono_contains (P : VPolytope (Vec 𝕋 n)) :
     P.construct ⊆ P.conPolyZono.construct :=
   subset_trans P.polyZonotope_contains P.polyZonotope.conPolyZono_contains
-
 
 end CORALean.Float
 

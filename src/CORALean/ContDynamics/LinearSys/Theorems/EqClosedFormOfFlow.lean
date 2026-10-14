@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import Mathlib.Analysis.ODE.Gronwall
 
 @[expose] public section

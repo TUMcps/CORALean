@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 public import CORALean.ContDynamics.LinParamSysDT.Operations.ReachUnion
 public import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
+public import CORALean.ContDynamics.LinParamSysDT.Operations.ToLinParam
 
 /-!
 # What `LinParamSysDT` computes

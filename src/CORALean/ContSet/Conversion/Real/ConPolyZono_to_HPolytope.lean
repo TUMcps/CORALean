@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_HPolytope
 
 @[expose] public section
 
@@ -30,10 +31,6 @@ separate piece of mathematics and no tighter enclosure is attempted here.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {qI : ℕ}
-
-noncomputable def ConPolyZono.hPolytope (cPZ : ConPolyZono α) (Aq : Fin qI → (α →ₗ[ℝ] ℝ)) :
-    HPolytope α :=
-  cPZ.polyZonotope.hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

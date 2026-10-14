@@ -7,6 +7,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import Mathlib.Algebra.BigOperators.Pi
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Taylm
 
 @[expose] public section
 
@@ -31,10 +32,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def Zonotope.taylm (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) : Fin n → Taylm 𝕋 Z.h :=
-  fun i => ⟨(Z.c i, 0) :: List.ofFn (fun j => (Z.G j i, Pi.single j 1)),
-    Z.I_error.inf i, Z.I_error.sup i, N⟩
 
 variable [SoundFloatArithmetic 𝕋]
 

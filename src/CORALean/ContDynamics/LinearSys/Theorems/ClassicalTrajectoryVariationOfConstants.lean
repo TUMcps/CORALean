@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
 public import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 
 @[expose] public section

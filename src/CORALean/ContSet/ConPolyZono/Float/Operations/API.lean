@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionD
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Isequal
 public import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA

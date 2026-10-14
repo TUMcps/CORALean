@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormEq
 public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 
 @[expose] public section

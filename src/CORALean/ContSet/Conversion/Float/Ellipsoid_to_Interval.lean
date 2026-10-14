@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 public import CORALean.Global.Float.EuclideanNorm
+public import CORALean.ContSet.Conversion.Float.Operations.Ellipsoid_to_Interval
 
 @[expose] public section
 
@@ -39,11 +40,6 @@ namespace CORALean.Float
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- The box, given one proposed length per coordinate. -/
-def Ellipsoid.interval (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Interval (Vec 𝕋 n) where
-  inf := fun i => addDown (subDown (E.c i) (absolute (s i))) (E.I_error.inf i)
-  sup := fun i => addUp (addUp (E.c i) (absolute (s i))) (E.I_error.sup i)
 
 open SoundFloatArithmetic InflatedContSet
 

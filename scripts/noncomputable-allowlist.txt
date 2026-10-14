@@ -104,7 +104,6 @@ GNN.alg1Graph  real-layer: an ℝ-only part of NN (the graph layers, sensitivity
 GNN.alg1Node  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.ball  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.ballEnum  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
-GNN.ballEnumIdx  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.mask  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.messagePassing  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 GNN.messagePassingEnclosure  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
@@ -212,15 +211,11 @@ LinearSys.supportLower  real-layer: HSCC'23 `Alg. 1` lines 1-4, 6-10, 14-16 (low
 LinearSys.supportUpper  real-layer: HSCC'23 `Alg. 1` lines 1-5, 7-13 (upper bounds) at the real exponential `e^{AΔt}` and `∫e^{Aσ}dσ` over a support-function oracle; proved over ℝ and never run, no float counterpart
 LinearSys.verifySearch  real-layer: HSCC'23 `Alg. 3` line 1 and the search loop at the real exponential and over support-function and support-vector oracles; proved sound over ℝ and never run, no float counterpart
 LinearSys.verifySearchLoop  real-layer: HSCC'23 `Alg. 3` lines 3, 7-9 and 14-25 over support-function and support-vector oracles, the bounds of `Alg. 1` at the real exponential; proved sound over ℝ and never run, no float counterpart
-LinearSys.timeIntervalBound  spec: a support-function certificate for the exact reachable set, a proof object with nothing to run
 LinearSys.timeIntervalStep  real-layer: one window at the real exponential; runs in floats as `LinearSys.timeIntervalStepFloat`
 LinearSys.timeIntervalStepCurvatureError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timeIntervalStepCurvatureErrorFloat` (`timeIntervalStepCurvatureError_le_float`)
 LinearSys.timeIntervalStepEps  real-layer: `timeIntervalStep` at the exact `MatExp.expRemainderOrder`; runs in floats as `LinearSys.timeIntervalStepEpsFloat`, the order by the computable `MatExp.tuneOrder` (`timeIntervalStepEpsFloat_outer`)
 LinearSys.timeIntervalStepError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timeIntervalStepErrorFloat` (`timeIntervalStepError_le_float`)
 LinearSys.timePoint  spec: the exact time-point sets `e^{A k Δt} X₀`; `LinearSys.timePoint_subset_reachFloat` encloses them in `reachFloat`'s
-LinearSys.timePointBound  spec: a support-function certificate for the exact reachable set, a proof object with nothing to run
-LinearSys.timePointBoundOfInputReach  spec: a support-function certificate for the exact reachable set, a proof object with nothing to run
-LinearSys.timePointWitness  spec: a support-function certificate for the exact reachable set, a proof object with nothing to run
 LinearSys.timePointStep  real-layer: `e^{Ar} X₀ ⊕ inputSolution`; runs in floats as `LinearSys.timePointStepInputFloat`, `[e^{Ar}] X₀ ⊞ inputSolutionFloat`, and composed in `reachFloatInput`
 LinearSys.timePointStepError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timePointStepErrorFloat` (`timePointStepError_le_float`)
 LinearSys.timePointStepRemainderError  real-layer: an ℝ-valued error estimate from norms of exact matrices; runs in floats rounded up as `LinearSys.timePointStepRemainderErrorFloat` (`timePointStepRemainderError_le_float`)
@@ -393,7 +388,6 @@ lagrangeRemainder  real-layer: the third-order box at a real bound `E`; runs in 
 layerSensitivity  real-layer: an ℝ-only part of NN (the graph layers, sensitivity and the heuristics it ranks by), with no scalar-generic form yet
 linResidual  real-layer: the residual of a first-order expansion, from real Jacobians (`fderiv`); a statement about real functions
 localAbstrErr  spec: an abstraction-error measure of an exact `Set`, its box diameter
-mulVecL  spec: `Matrix.mulVec` as a continuous bilinear map, a proof device for differentiating the flow
 norm₂  spec: a norm or Hausdorff distance over ℝ, used only to state a guarantee
 odePoly  real-layer: a polynomial over ℝ built by recursion, the derivative bound of a Taylm elementary function (`Taylm.tan`, `atan`, `asin`), reached only from the real layer
 optDeltat  real-layer: a tuning heuristic in ℝ arithmetic (eq. (58)); runs in floats as `optDeltatFloat`, restated over the scalar `𝕋` (a heuristic, so no soundness statement)

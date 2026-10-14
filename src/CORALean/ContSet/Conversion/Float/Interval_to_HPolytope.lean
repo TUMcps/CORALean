@@ -4,6 +4,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 
 @[expose] public section
 
@@ -33,14 +34,6 @@ open Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-/-- The identity, and the identity negated: the only two constraint matrices a
-box needs. -/
-def identityMat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : Mat 𝕋 n n :=
-  fun i j => if i = j then one else zero
-
-def negIdentityMat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : Mat 𝕋 n n :=
-  fun i j => if i = j then neg one else zero
-
 theorem identityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
     (toRealMat (identityMat 𝕋 n) *ᵥ x) i = x i := by -- --- PROOF ---
   show ∑ j, toReal (if i = j then (one : 𝕋) else zero) * x j = x i
@@ -61,10 +54,6 @@ theorem negIdentityMat_mulVec (x : Vec ℝ n) (i : Fin n) :
     rw [if_neg (Ne.symm hj), toReal_zero, zero_mul]
   · intro hc
     exact absurd (Finset.mem_univ i) hc
-
-def Interval.hPolytope (I : Interval (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
-  (HPolytope.ineqs (identityMat 𝕋 n) I.sup).intersection
-    (HPolytope.ineqs (negIdentityMat 𝕋 n) fun j => neg (I.inf j))
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

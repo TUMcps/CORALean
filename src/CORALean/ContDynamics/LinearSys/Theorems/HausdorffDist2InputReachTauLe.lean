@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetClosureCo
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
 public import CORALean.Global.Norm2MulVecLeErrOfMemClosureConvexHull
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.Global.EuclideanHausdorffDistAddLe
 
 @[expose] public section

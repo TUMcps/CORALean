@@ -18,6 +18,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachCora1D
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachTensor3Cora2D
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinearEmbedding
 public import CORALean.ContDynamics.NonlinearSys.Operations.OutputSetCora
 public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveCora1D
 public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveTensor3Cora2D

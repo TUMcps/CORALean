@@ -5,6 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 public import CORALean.ContSet.Taylm.Real.Taylm
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
 
 @[expose] public section
 
@@ -34,18 +35,6 @@ variable {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def Taylm.aux_allTerms (T : Fin m → Taylm n) : List (Fin m × (ℝ × (Fin n → ℕ))) :=
-  (List.finRange m).flatMap fun i => (T i).terms.map fun a => (i, a)
-
-noncomputable def Taylm.polyZonotope (T : Fin m → Taylm n) : PolyZonotope (Vec ℝ m) where
-  p := n
-  h := (Taylm.aux_allTerms T).length
-  q := m
-  c := fun i => ((T i).remInf + (T i).remSup) / 2
-  G := fun j => Pi.single ((Taylm.aux_allTerms T).get j).1 ((Taylm.aux_allTerms T).get j).2.1
-  E := fun k j => ((Taylm.aux_allTerms T).get j).2.2 k
-  GI := fun l => Pi.single l (((T l).remSup - (T l).remInf) / 2)
-
 theorem Taylm.aux_dep_apply (T : Fin m → Taylm n) (a : Vec ℝ n) (i : Fin m) :
     (∑ j, PolyZonotope.monomial (Taylm.polyZonotope T).E a j • (Taylm.polyZonotope T).G j) i
       = (T i).poly a := by -- --- PROOF ---
@@ -54,7 +43,7 @@ theorem Taylm.aux_dep_apply (T : Fin m → Taylm n) (a : Vec ℝ n) (i : Fin m) 
       (PolyZonotope.monomial (Taylm.polyZonotope T).E a j • (Taylm.polyZonotope T).G j) i
         = (fun x : Fin m × (ℝ × (Fin n → ℕ)) =>
             if x.1 = i then x.2.1 * Taylm.monomial x.2.2 a else 0)
-          ((Taylm.aux_allTerms T).get j) := by
+          ((Taylm.allTerms T).get j) := by
     intro j
     -- the generator is nonzero only along its own coordinate
     simp only [Taylm.polyZonotope, Pi.smul_apply, smul_eq_mul, Pi.single_apply]
@@ -71,10 +60,10 @@ theorem Taylm.aux_dep_apply (T : Fin m → Taylm n) (a : Vec ℝ n) (i : Fin m) 
     rw [← List.sum_ofFn]
     congr 1
     exact List.ext_get (by simp) fun k h1 h2 => by simp
-  show ∑ j : Fin (Taylm.aux_allTerms T).length, _ = _
-  refine Eq.trans (key (Taylm.aux_allTerms T)
+  show ∑ j : Fin (Taylm.allTerms T).length, _ = _
+  refine Eq.trans (key (Taylm.allTerms T)
     (fun x => if x.1 = i then x.2.1 * Taylm.monomial x.2.2 a else 0)) ?_
-  simp only [Taylm.aux_allTerms, List.flatMap, List.map_flatten, List.sum_flatten, List.map_map]
+  simp only [Taylm.allTerms, List.flatMap, List.map_flatten, List.sum_flatten, List.map_map]
   -- coordinate `i` collects exactly the terms of model `i`
   have hrow : ∀ i' : Fin m, (List.sum ∘
       (List.map fun x : Fin m × (ℝ × (Fin n → ℕ)) =>

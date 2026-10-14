@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConZonotope
 
 @[expose] public section
 
@@ -24,9 +25,6 @@ step. A direct constrained enclosure is a separate piece of mathematics.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Ellipsoid.conZonotope (E : Ellipsoid n) : ConZonotope (Vec ℝ n) :=
-  E.zonotope.conZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

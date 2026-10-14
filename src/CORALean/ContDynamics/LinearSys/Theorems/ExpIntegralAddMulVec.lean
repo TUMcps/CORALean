@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 
 @[expose] public section
 

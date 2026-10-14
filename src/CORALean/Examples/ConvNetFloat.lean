@@ -20,7 +20,7 @@ import CORALean.NN.Layers.Theorems.MaxPoolSound
 import CORALean.NN.Layers.Theorems.ReshapeExact
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.EncloseOuter
-import CORALean.NN.Theorems.MarginDir
+import CORALean.NN.Operations.MarginDir
 
 /-!
 # The same convolutional network, over a floating-point scalar

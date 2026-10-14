@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsWeightedLe
-public import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffDiff
+public import CORALean.ContSet.Zonotope.Real.Operations.PairCoeffDiff
 
 @[expose] public section
 

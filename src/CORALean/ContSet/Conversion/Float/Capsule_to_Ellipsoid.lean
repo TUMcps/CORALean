@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Float.Operations.Capsule_to_Ellipsoid
 
 @[expose] public section
 
@@ -26,10 +27,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-/-- The scaling `σ` is the one `Interval.ellipsoid` asks for: a float at least `√n`. -/
-def Capsule.ellipsoid (C : Capsule 𝕋 n) (σ : 𝕋) : Ellipsoid 𝕋 n :=
-  C.interval.ellipsoid σ
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

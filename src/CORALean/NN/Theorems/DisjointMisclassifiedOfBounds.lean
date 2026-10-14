@@ -1,7 +1,7 @@
 module
 
-public import CORALean.NN.Theorems.MarginDir
-public import CORALean.NN.Theorems.Misclassified
+public import CORALean.NN.Operations.MarginDir
+public import CORALean.NN.Definitions.Misclassified
 public import CORALean.Global.LinProg.LinProg
 public import Mathlib.Tactic.Linarith
 

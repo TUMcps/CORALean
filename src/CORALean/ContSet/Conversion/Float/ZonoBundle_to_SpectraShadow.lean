@@ -4,6 +4,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.InfExact
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Conversion.Float.Operations.ZonoBundle_to_SpectraShadow
 
 @[expose] public section
 
@@ -27,11 +28,6 @@ encloses the bundle; it is not claimed to equal it.
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def ZonoBundle.spectraShadow (zB : ZonoBundle (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
-  match List.ofFn fun i => Zonotope.spectraShadow (zB.Z i) with
-  | [] => SpectraShadow.Inf n                    -- no member: the whole space
-  | S :: Ss => Ss.foldl SpectraShadow.inter S    -- `and_` of the members, in order
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

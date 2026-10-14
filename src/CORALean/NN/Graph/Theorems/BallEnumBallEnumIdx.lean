@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Graph.Theorems.BallEnumIdx
+public import CORALean.NN.Graph.Definitions.BallEnumIdx
 
 @[expose] public section
 

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_LevelSet
 
 @[expose] public section
 
@@ -24,13 +25,6 @@ here they become `Ae x - be = 0` and the conversion is total.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-
-/-- `levelSet(P)`: `A x - b ≤ 0` stacked on `Ae x - be = 0`. -/
-def HPolytope.levelSet (P : HPolytope (Vec ℝ n)) : LevelSet n where
-  m := P.m + P.me
-  f x := Fin.append (fun i => P.A i x - P.b i) (fun j => P.Ae j x - P.be j)
-  op := Fin.append (fun _ => .le) (fun _ => .eq)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

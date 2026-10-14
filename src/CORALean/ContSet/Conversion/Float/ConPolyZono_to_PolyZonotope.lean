@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
 
 @[expose] public section
 
@@ -27,16 +28,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def ConPolyZono.polyZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
-  p := cPZ.p
-  h := cPZ.h
-  q := cPZ.qI
-  c := cPZ.c
-  G := cPZ.G
-  E := cPZ.E
-  GI := cPZ.GI
-  I_error := cPZ.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

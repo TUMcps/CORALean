@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_PolyZonotope
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ here regardless.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ConZonotope.polyZonotope (cZ : ConZonotope α) : PolyZonotope α :=
-  cZ.zonotope.polyZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

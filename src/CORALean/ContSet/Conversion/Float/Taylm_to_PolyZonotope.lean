@@ -5,6 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Taylm.Float.Taylm
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Conversion.Float.Operations.Taylm_to_PolyZonotope
 
 @[expose] public section
 
@@ -33,25 +34,6 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- Every term of every coordinate, tagged with the coordinate it belongs to. -/
-def Taylm.aux_allTerms (T : Fin m → Taylm 𝕋 n) : List (Fin m × (𝕋 × (Fin n → ℕ))) :=
-  (List.finRange m).flatMap fun i => (T i).terms.map fun a => (i, a)
-
-
-def Taylm.polyZonotope (T : Fin m → Taylm 𝕋 n) : PolyZonotope (Vec 𝕋 m) where
-  p := n
-  h := (Taylm.aux_allTerms T).length
-  q := 0
-  c := fun _ => zero
-  G := fun j i => if ((Taylm.aux_allTerms T).get j).1 = i then ((Taylm.aux_allTerms T).get j).2.1
-    else zero
-  E := fun k j => ((Taylm.aux_allTerms T).get j).2.2 k
-  GI := Fin.elim0
-  I_error := ⟨fun i => (T i).remInf, fun i => (T i).remSup⟩
-
 variable [SoundFloatArithmetic 𝕋]
 
 
@@ -63,18 +45,18 @@ theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n) (i : Fi
         Real.PolyZonotope.monomial (Taylm.polyZonotope T).E t l
       = (T i).nominal.poly t := by -- --- PROOF ---
   -- each summand is nonzero only for the terms of coordinate `i`
-  have hg : ∀ j : Fin (Taylm.aux_allTerms T).length,
+  have hg : ∀ j : Fin (Taylm.allTerms T).length,
       toReal ((Taylm.polyZonotope T).G j i) *
         Real.PolyZonotope.monomial (Taylm.polyZonotope T).E t j
         = (fun x : Fin m × (𝕋 × (Fin n → ℕ)) =>
             if x.1 = i then toReal x.2.1 * Real.Taylm.monomial x.2.2 t else 0)
-          ((Taylm.aux_allTerms T).get j) := by
+          ((Taylm.allTerms T).get j) := by
     intro j
     simp only [Taylm.polyZonotope, Real.PolyZonotope.monomial, Real.Taylm.monomial]
     split_ifs
     · rfl
     · simp [toReal_zero]
-  change ∑ j : Fin (Taylm.aux_allTerms T).length, _ = _
+  change ∑ j : Fin (Taylm.allTerms T).length, _ = _
   refine Eq.trans (Finset.sum_congr rfl fun j _ => hg j) ?_
   -- a sum over the generator indices is a sum over the term list
   have key : ∀ (L : List (Fin m × (𝕋 × (Fin n → ℕ)))) (g : Fin m × (𝕋 × (Fin n → ℕ)) → ℝ),
@@ -83,9 +65,9 @@ theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n) (i : Fi
     rw [← List.sum_ofFn]
     congr 1
     exact List.ext_get (by simp) fun k h1 h2 => by simp
-  refine Eq.trans (key (Taylm.aux_allTerms T)
+  refine Eq.trans (key (Taylm.allTerms T)
     (fun x => if x.1 = i then toReal x.2.1 * Real.Taylm.monomial x.2.2 t else 0)) ?_
-  simp only [Taylm.aux_allTerms, List.flatMap, List.map_flatten, List.sum_flatten, List.map_map]
+  simp only [Taylm.allTerms, List.flatMap, List.map_flatten, List.sum_flatten, List.map_map]
   -- coordinate `i` collects exactly the terms of model `i`
   have hrow : ∀ i' : Fin m, (List.sum ∘
       (List.map fun x : Fin m × (𝕋 × (Fin n → ℕ)) =>

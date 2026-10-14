@@ -33,6 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- The nominal set's bound as a float. `cPZ.nominal.supportBound` is a real number; this is the
+`𝕋` value above it, which adds the independent block's extent with every rounding upward, and
+that sum is what the stored floats can compute. -/
 def ConPolyZono.nominalSupportBound (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal cPZ).polyZonotope.point ''

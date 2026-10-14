@@ -107,7 +107,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsMulRel
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPolyRel
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsPowRel
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsTermsRel
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsXprodRel
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem

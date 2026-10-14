@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_ZonoBundle
 
 @[expose] public section
 
@@ -23,8 +24,6 @@ Through the box's own zonotope, then `Zonotope.zonoBundle`, exact by
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Interval.zonoBundle (I : Interval (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) := I.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

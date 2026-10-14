@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
 public import Mathlib.Order.BourbakiWitt
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_Interval
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ step then loses nothing further.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-def ZonoBundle.interval (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) : Interval (Vec ℝ n) :=
-  (zB.zonotope i).interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

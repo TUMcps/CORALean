@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_LevelSet
 
 @[expose] public section
 
@@ -26,13 +27,6 @@ namespace CORALean.Real
 open Entrywise
 
 variable {n : ℕ}
-
-
-/-- The box as `inf - x ≤ 0` stacked on `x - sup ≤ 0`. -/
-def Interval.levelSet (I : Interval (Vec ℝ n)) : LevelSet n where
-  m := n + n
-  f x := Fin.append (fun i => I.inf i - x i) (fun i => x i - I.sup i)
-  op := Fin.append (fun _ => .le) (fun _ => .le)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

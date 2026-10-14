@@ -3,6 +3,10 @@ module
 public import CORALean.NN.Definitions.Chain
 public import CORALean.NN.Definitions.IntervalChain
 public import CORALean.NN.Definitions.MergeBucket
+public import CORALean.NN.Definitions.MinSuffExplanation
+public import CORALean.NN.Definitions.MinSuffExplanationAbstract
+public import CORALean.NN.Definitions.MinSuffExplanationExact
+public import CORALean.NN.Definitions.Misclassified
 public import CORALean.NN.Definitions.ReducibleNetwork
 public import CORALean.NN.Definitions.Reduction
 public import CORALean.NN.Definitions.RefinableLayer
@@ -10,6 +14,9 @@ public import CORALean.NN.Definitions.RefinableNetwork
 public import CORALean.NN.Definitions.RefinableNetworkImage
 public import CORALean.NN.Definitions.Schedule
 public import CORALean.NN.Definitions.SmoothNetwork
+public import CORALean.NN.Definitions.SuffExplanation
+public import CORALean.NN.Definitions.SuffExplanationAbstract
+public import CORALean.NN.Definitions.SuffExplanationExact
 public import CORALean.NN.Definitions.WeightAcc
 public import CORALean.NN.Definitions.WeightLayer
 public import CORALean.NN.Definitions.WeightNetwork

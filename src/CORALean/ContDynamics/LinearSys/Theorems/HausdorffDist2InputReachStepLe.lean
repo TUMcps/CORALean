@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLeOfConvex
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.Global.EuclideanHausdorffDistAddLe
 
 @[expose] public section

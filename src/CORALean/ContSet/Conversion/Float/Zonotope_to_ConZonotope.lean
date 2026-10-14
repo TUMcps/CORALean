@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 
@@ -31,9 +32,6 @@ namespace CORALean.Float
 open SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def Zonotope.conZonotope (Z : Zonotope (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
-  ⟨Z.h, Z.c, Z.G, HPolytope.fullspace 𝕋 Z.h, Z.I_error⟩
 
 variable [SoundFloatArithmetic 𝕋]
 

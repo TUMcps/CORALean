@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Float.VPolytope
 public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_VPolytope
 
 @[expose] public section
 
@@ -26,11 +27,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Interval.vPolytope (I : Interval (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
-  k := 2 ^ n
-  V := fun l i => if signEquiv n l i then I.sup i else I.inf i
-  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -85,7 +81,6 @@ theorem Interval.vPolytope_exact (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i)) :
     (Interval.vPolytope I).construct = I.construct :=
   Set.Subset.antisymm (Interval.contains_vPolytope I hI) (Interval.vPolytope_contains I)
-
 
 end CORALean.Float
 

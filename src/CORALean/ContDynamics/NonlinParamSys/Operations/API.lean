@@ -7,6 +7,8 @@ public import CORALean.ContDynamics.NonlinParamSys.Operations.LinReachCora
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloat
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachFloatChecked
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ToNonlinParam
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ToNonlinearSys
 
 /-!
 # What `NonlinParamSys` computes

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_Ellipsoid
 
 @[expose] public section
 
@@ -27,9 +28,6 @@ inflation.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def ConZonotope.ellipsoid (cZ : ConZonotope (Vec ℝ n)) : Ellipsoid n :=
-  cZ.zonotope.ellipsoid
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

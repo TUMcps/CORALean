@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_VPolytope
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ aligned box, which loses the rounded ends and the slant of the segment.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Capsule.vPolytope (C : Capsule n) : VPolytope (Vec ℝ n) :=
-  C.interval.vPolytope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

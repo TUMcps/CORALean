@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonotope
 
 @[expose] public section
 
@@ -31,16 +32,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Interval.polyZonotope (I : Interval (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
-  p := 0
-  h := 0
-  q := 0
-  c := fun _ => zero
-  G := Fin.elim0
-  E := fun _ => Fin.elim0
-  GI := Fin.elim0
-  I_error := I
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
+public import CORALean.ContSet.Zonotope.Real.Definitions.Coefficient
 public import Mathlib.Tactic.FieldSimp
 
 @[expose] public section

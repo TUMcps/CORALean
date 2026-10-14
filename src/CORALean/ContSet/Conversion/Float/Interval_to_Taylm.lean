@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Taylm
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Taylm
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Interval.taylm (I : Interval (Vec 𝕋 n)) (N : ℕ) : Fin n → Taylm 𝕋 n :=
-  I.zonotope.taylm N
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

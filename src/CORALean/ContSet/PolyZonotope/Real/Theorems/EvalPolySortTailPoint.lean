@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolySortTailP
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyReal
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PowSortPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SortPlusPoint

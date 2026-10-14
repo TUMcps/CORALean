@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_Zonotope
 
 @[expose] public section
 
@@ -25,10 +26,6 @@ namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
-noncomputable def HPolytope.zonotope (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : Zonotope (Vec ℝ n) :=
-  (HPolytope.interval up lo).zonotope
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -36,7 +33,6 @@ theorem HPolytope.zonotope_contains (up : ∀ j, SupportBound P.construct (Linea
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.zonotope up lo).construct :=
   subset_trans (HPolytope.interval_contains up lo) (Interval.zonotope_contains _)
-
 
 end CORALean.Real
 

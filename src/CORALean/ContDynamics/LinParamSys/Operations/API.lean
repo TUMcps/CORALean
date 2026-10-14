@@ -18,6 +18,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
+public import CORALean.ContDynamics.LinParamSys.Operations.ToLinParam
 public import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachStepk
 public import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
 public import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachStepk

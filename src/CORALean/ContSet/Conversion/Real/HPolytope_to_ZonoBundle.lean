@@ -15,6 +15,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import Mathlib.Tactic.Linarith
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ZonoBundle
 
 @[expose] public section
 
@@ -50,10 +51,6 @@ open Matrix
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
-noncomputable def HPolytope.zonoBundle (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : ZonoBundle (Vec ℝ n) :=
-  (HPolytope.zonotope up lo).zonoBundle
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -61,17 +58,6 @@ theorem HPolytope.zonoBundle_contains (up : ∀ j, SupportBound P.construct (Lin
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.zonoBundle up lo).construct :=
   subset_trans (HPolytope.zonotope_contains up lo) (Zonotope.zonoBundle_exact _).subset
-
-/-- CORA's `@polytope/zonoBundle`: one zonotope per row, the box of the vertices in the row's
-orthogonal basis, mapped back. -/
-noncomputable def HPolytope.zonoBundleRows [NeZero n] (P : HPolytope (Vec ℝ n))
-    (V : VPolytope (Vec ℝ n)) [NeZero V.k] (B : Fin (P.m + (P.me + P.me)) → Mat ℝ n n) :
-    ZonoBundle (Vec ℝ n) where
-  k := P.m + (P.me + P.me)
-  Z := fun i =>
-    let V_ := fun j => (B i)ᵀ *ᵥ V.V j                      -- V_ = B' * V
-    let box := Interval.enclosePoints V_                     -- interval(min(V_,[],2), max(V_,[],2))
-    Zonotope.mtimes (B i) box.zonotope                       -- Z{i} = B * zonotope(box)
 
 /-- Exact: the bundle of the rows' bounding zonotopes is the polytope. -/
 theorem HPolytope.zonoBundleRows_exact [NeZero n] (P : HPolytope (Vec ℝ n))

@@ -5,6 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonotope
 
 @[expose] public section
 
@@ -29,16 +30,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def Zonotope.polyZonotope (Z : Zonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
-  p := Z.h
-  h := Z.h
-  q := 0
-  c := Z.c
-  G := Z.G
-  E := Real.PolyZonotope.identE Z.h
-  GI := Fin.elim0
-  I_error := Z.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

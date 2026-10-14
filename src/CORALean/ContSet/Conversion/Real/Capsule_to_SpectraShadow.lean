@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_SpectraShadow
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ aligned box, which loses the rounded ends and the slant of the segment.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Capsule.spectraShadow (C : Capsule n) : SpectraShadow (Vec ℝ n) :=
-  C.interval.spectraShadow
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

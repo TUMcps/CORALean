@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
 public import CORALean.Global.Corners
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_VPolytope
 
 @[expose] public section
 
@@ -44,24 +45,9 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-noncomputable def PolyZonotope.vPolytope (pZ : PolyZonotope α) : VPolytope α :=
-  pZ.zonotope.vPolytope
-
 theorem PolyZonotope.vPolytope_contains (pZ : PolyZonotope α) :
     pZ.construct ⊆ pZ.vPolytope.construct :=
   subset_trans pZ.zonotope_contains (Zonotope.vPolytope_contains _)
-
-/-- The vertex a choice of sign picks out, one sign per factor and then one per
-independent generator. -/
-def PolyZonotope.corner (pZ : PolyZonotope α) (σ : Fin (pZ.p + pZ.q) → Bool) : α :=
-  pZ.c
-    + ∑ i, PolyZonotope.monomial pZ.E
-        (fun k => if σ (Fin.castAdd pZ.q k) then (1:ℝ) else -1) i • pZ.G i
-    + ∑ j, (if σ (Fin.natAdd pZ.p j) then (1:ℝ) else -1) • pZ.GI j
-
-noncomputable def PolyZonotope.vPolytopeCorners (pZ : PolyZonotope α) : VPolytope α where
-  k := 2 ^ (pZ.p + pZ.q)
-  V := fun v => pZ.corner (signEquiv (pZ.p + pZ.q) v)
 
 /-- The corners enclose as soon as no exponent exceeds one, which is what makes
 the point multilinear in the factors — and then nothing is lost, as nothing is
@@ -203,44 +189,21 @@ theorem PolyZonotope.vPolytopeCorners_contains_of_binary (pZ : PolyZonotope α)
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The paper's `H` block, read column by column: a column with no exponent above
-one is zeroed rather than deleted, so the index set stays `Fin pZ.h`. -/
-def PolyZonotope.aux_high (pZ : PolyZonotope α) : PolyZonotope α where
-  p := pZ.p
-  h := pZ.h
-  q := pZ.q
-  c := 0
-  G := fun i => if ∀ k, pZ.E k i ≤ 1 then 0 else pZ.G i
-  E := pZ.E
-  GI := pZ.GI
-
-/-- The paper's `PZ̄`: what `H` reaches is made independent, through the tight
-zonotope enclosure of [1, Prop. 5], and `K` keeps its exponents. -/
-noncomputable def PolyZonotope.aux_binarize (pZ : PolyZonotope α) : PolyZonotope α :=
-  let H := pZ.aux_high.zonotopeEven                       -- [1, Prop. 5]'s tight enclosure of H
-  { p := pZ.p
-    h := pZ.h
-    q := pZ.h + pZ.q
-    c := pZ.c + H.c
-    G := fun i => if ∀ k, pZ.E k i ≤ 1 then pZ.G i else 0
-    E := fun k i => if ∀ k', pZ.E k' i ≤ 1 then pZ.E k i else 0
-    GI := H.G }
-
-theorem PolyZonotope.aux_binarize_E_le (pZ : PolyZonotope α) (k : Fin pZ.aux_binarize.p)
-    (i : Fin pZ.aux_binarize.h) : pZ.aux_binarize.E k i ≤ 1 := by
+theorem PolyZonotope.aux_binarize_E_le (pZ : PolyZonotope α) (k : Fin pZ.binarize.p)
+    (i : Fin pZ.binarize.h) : pZ.binarize.E k i ≤ 1 := by
   show (if ∀ k', pZ.E k' i ≤ 1 then pZ.E k i else 0) ≤ 1
   split_ifs with h
   · exact h k
   · exact Nat.zero_le 1
 
 theorem PolyZonotope.aux_binarize_contains (pZ : PolyZonotope α) :
-    pZ.construct ⊆ pZ.aux_binarize.construct := by -- --- PROOF ---
+    pZ.construct ⊆ pZ.binarize.construct := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hb, rfl⟩
   -- what the given-up columns and the independent block reach is a zonotope's
   have hmem : (0 : α) + ∑ i, PolyZonotope.monomial pZ.E a i
         • (if ∀ k, pZ.E k i ≤ 1 then (0:α) else pZ.G i)
-      + ∑ j, β j • pZ.GI j ∈ pZ.aux_high.construct := ⟨a, β, ha, hb, rfl⟩
-  obtain ⟨γ, hγ, hγeq⟩ := pZ.aux_high.zonotopeEven_contains hmem
+      + ∑ j, β j • pZ.GI j ∈ pZ.high.construct := ⟨a, β, ha, hb, rfl⟩
+  obtain ⟨γ, hγ, hγeq⟩ := pZ.high.zonotopeEven_contains hmem
   rw [zero_add] at hγeq
   refine ⟨a, γ, ha, hγ, ?_⟩
   -- every column lands in exactly one of the two blocks
@@ -258,17 +221,12 @@ theorem PolyZonotope.aux_binarize_contains (pZ : PolyZonotope α) :
         (Finset.prod_congr rfl fun k _ => congrArg (a k ^ ·) (if_pos hbin).symm)
     · rw [if_neg hbin, if_neg hbin, smul_zero, zero_add]
   show pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, β j • pZ.GI j
-      = pZ.c + pZ.aux_high.zonotopeEven.c
+      = pZ.c + pZ.high.zonotopeEven.c
         + ∑ i, PolyZonotope.monomial (fun k i => if ∀ k', pZ.E k' i ≤ 1 then pZ.E k i else 0) a i
             • (if ∀ k, pZ.E k i ≤ 1 then pZ.G i else 0)
-        + ∑ l, γ l • pZ.aux_high.zonotopeEven.G l
+        + ∑ l, γ l • pZ.high.zonotopeEven.G l
   rw [hsplit, add_assoc, add_assoc, hγeq]
   abel
-
-/-- [1, Prop. 6]'s `poly`: the corners of `aux_binarize`, which keeps every
-column the zonotope enclosure of `vPolytope` would have freed. -/
-noncomputable def PolyZonotope.vPolytopeSplit (pZ : PolyZonotope α) : VPolytope α :=
-  pZ.aux_binarize.vPolytopeCorners
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

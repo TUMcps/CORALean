@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Graph.Definitions.BallEnumIdx
 public import CORALean.NN.Graph.Definitions.PermInvariant
 public import CORALean.NN.Graph.Definitions.ActLayer
 

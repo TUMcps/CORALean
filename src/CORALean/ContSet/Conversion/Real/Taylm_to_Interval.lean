@@ -4,6 +4,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_Interval
 
 @[expose] public section
 
@@ -27,9 +28,6 @@ branch-and-bound methods (`optBnb`, `optLinQuad`, `optBernstein`) are tighter an
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-def Taylm.interval {m : ℕ} (T : Fin m → Taylm n) : Interval (Vec ℝ m) :=
-  ⟨fun i => (T i).bounds.1, fun i => (T i).bounds.2⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

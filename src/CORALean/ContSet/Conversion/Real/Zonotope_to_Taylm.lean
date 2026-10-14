@@ -7,6 +7,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import Mathlib.Algebra.BigOperators.Pi
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Taylm
 
 @[expose] public section
 
@@ -28,9 +29,6 @@ remainder. Exact: the box of factors is the zonotope's box of coefficients.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-def Zonotope.taylm {m : ℕ} (Z : Zonotope (Vec ℝ m)) (N : ℕ) : Fin m → Taylm Z.h :=
-  fun i => ⟨(Z.c i, 0) :: List.ofFn (fun j => (Z.G j i, Pi.single j 1)), 0, 0, N⟩
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

@@ -4,6 +4,7 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Interval.Float.Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Taylm_to_Interval
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Taylm.interval {m : ℕ} (T : Fin m → Taylm 𝕋 n) : Interval (Vec 𝕋 m) :=
-  ⟨fun i => (T i).bounds.1, fun i => (T i).bounds.2⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

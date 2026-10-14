@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
 public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_Interval
 
 @[expose] public section
 
@@ -28,10 +29,6 @@ any box.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def VPolytope.interval (P : VPolytope (Vec ℝ n)) : Interval (Vec ℝ n) where
-  inf := fun i => ⨅ l, P.V l i
-  sup := fun i => ⨆ l, P.V l i
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

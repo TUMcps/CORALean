@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
 
 @[expose] public section
 
@@ -33,14 +34,6 @@ only there to supply generators, and drops out.
 namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
-
-noncomputable def HPolytope.conZonotope
-    (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : ConZonotope (Vec ℝ n) where
-  h := (HPolytope.zonotope up lo).h
-  c := (HPolytope.zonotope up lo).c
-  G := (HPolytope.zonotope up lo).G
-  P := (P.translate (-(HPolytope.zonotope up lo).c)).comap (HPolytope.zonotope up lo).genMap
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

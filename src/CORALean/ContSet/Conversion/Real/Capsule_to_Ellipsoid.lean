@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Capsule_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_Ellipsoid
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ segment.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Capsule.ellipsoid (C : Capsule n) : Ellipsoid n :=
-  C.interval.ellipsoid
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

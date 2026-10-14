@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
 public import Mathlib.Order.BourbakiWitt
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ZonoBundle
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ independent one, then `Zonotope.zonoBundle` — the single-member bundle, exact 
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def PolyZonotope.zonoBundle (pZ : PolyZonotope α) : ZonoBundle α :=
-  pZ.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

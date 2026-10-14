@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_HPolytope
 
 @[expose] public section
 
@@ -38,9 +39,6 @@ absorbs a zonotope without enumerating either one's vertices.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
-
-def Zonotope.hPolytope (Z : Zonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) : HPolytope α :=
-  HPolytope.ofBounds Aq fun i => Z.supportBound (Aq i)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

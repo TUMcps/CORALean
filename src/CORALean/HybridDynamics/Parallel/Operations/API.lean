@@ -1,5 +1,8 @@
 module
 
+public import CORALean.HybridDynamics.Parallel.Operations.BoxLifting
+public import CORALean.HybridDynamics.Parallel.Operations.BoxSyncLifting
+public import CORALean.HybridDynamics.Parallel.Operations.ConZonoLifting
 public import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
 public import CORALean.HybridDynamics.Parallel.Operations.LiftTransition
 public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSets
@@ -21,6 +24,7 @@ public import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
 public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsCoraTarget
 public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsSync
 public import CORALean.HybridDynamics.Parallel.Operations.ProductSync
+public import CORALean.HybridDynamics.Parallel.Operations.ZonoLifting
 public import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd
 public import CORALean.HybridDynamics.Parallel.Operations.ConZonotopeStackProd
 public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutCora

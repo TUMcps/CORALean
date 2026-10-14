@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.VPolytope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ZonoBundle
 
 @[expose] public section
 
@@ -24,9 +25,6 @@ route's, so this is no worse than `VPolytope → Zonotope` already is.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def VPolytope.zonoBundle (P : VPolytope (Vec ℝ n)) : ZonoBundle (Vec ℝ n) :=
-  P.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
