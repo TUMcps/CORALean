@@ -183,9 +183,9 @@ Rulings on borderline cases:
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 0 | 2 | 11 | 1 |
 | [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 0 | 1 | 0 |
 | [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 0 | 7 | 0 | 0 | 3 | 0 |
-| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 2 | 13 | 0 | 1 | 8 | 5 |
-| [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 0 | 4 | 1 |
-| [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 0 | 1 | 6 | 2 |
+| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 2 | 13 | 0 | 1 | 8 | 6 |
+| [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 0 | 4 | 2 |
+| [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 0 | 1 | 6 | 3 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 0 | 7 | 1 |
 | [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 0 | 4 | 1 |
 | [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 13 | 0 | 0 | 41 | 2 |

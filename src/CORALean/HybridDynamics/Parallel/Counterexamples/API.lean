@@ -4,6 +4,7 @@ public import CORALean.HybridDynamics.Parallel.Counterexamples.InvariantCutCora
 public import CORALean.HybridDynamics.Parallel.Counterexamples.MergeFlowsSelfBind
 public import CORALean.HybridDynamics.Parallel.Counterexamples.MergeTransitionSetsCoraTarget
 public import CORALean.HybridDynamics.Parallel.Counterexamples.SimulateRandomTimesCora
+public import CORALean.HybridDynamics.Parallel.Counterexamples.MergeFlowsNonlinearCora
 
 /-!
 # Counterexamples of `Parallel`, collected

@@ -13,6 +13,9 @@ public import CORALean.HybridDynamics.Counterexamples.ResetTaylor
 public import CORALean.HybridDynamics.Counterexamples.RobustProjectionCora
 public import CORALean.HybridDynamics.Counterexamples.TransitionSynchronizeTargetCORA
 public import CORALean.HybridDynamics.Counterexamples.UlocCora
+public import CORALean.HybridDynamics.Counterexamples.LocationReachJumpTimeCora
+public import CORALean.HybridDynamics.Counterexamples.NonlinearResetExpansionPointCora
+public import CORALean.HybridDynamics.Counterexamples.NonlinearResetSecondOrderBoundCora
 
 /-!
 # Counterexamples of `HybridDynamics`, collected

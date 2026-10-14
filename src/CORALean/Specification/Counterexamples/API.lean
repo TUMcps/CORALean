@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.Counterexamples.CheckCustomCora
 public import CORALean.Specification.Counterexamples.DistancePolyPointCora
+public import CORALean.Specification.Counterexamples.CheckReachSetCora
 
 /-!
 # Counterexamples of `Specification`, collected
