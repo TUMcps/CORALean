@@ -8,6 +8,7 @@ public import CORALean.HybridDynamics.Definitions.ReachSet
 public import CORALean.HybridDynamics.Definitions.RunUntil
 public import CORALean.HybridDynamics.Definitions.UrgentRun
 public import CORALean.HybridDynamics.Definitions.UrgentReachSetAt
+public import CORALean.HybridDynamics.Definitions.NonlinearResetArg
 public import CORALean.HybridDynamics.Definitions.NonlinearReset
 public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
 public import CORALean.HybridDynamics.Definitions.NonlinHybridAutomaton

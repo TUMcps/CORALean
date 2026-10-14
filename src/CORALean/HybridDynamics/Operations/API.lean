@@ -71,6 +71,7 @@ public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloa
 public import CORALean.HybridDynamics.Operations.TrajectoryErrorFloat
 public import CORALean.HybridDynamics.Operations.MatlabLinspace
 public import CORALean.HybridDynamics.Operations.SimulateRandomTimes
+public import CORALean.HybridDynamics.Operations.NonlinearResetSecondOrderBound
 
 /-!
 # What a hybrid automaton computes, collected

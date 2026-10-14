@@ -674,12 +674,21 @@
       "description": "coordinate pinned wrongly for non-unit normals",
       "cex": "GuardIntersectZonoGirardCora.lean",
       "kind": "unsound"
+    },
+    "reach": {
+      "description": "split location indexes whole result; jump time errors",
+      "kind": "other"
     }
   },
   "hybridDynamics/nonlinearReset": {
     "resolve": {
       "description": "global inputs numbered by occurrence; reaches parallel automaton resets",
       "kind": "unsound"
+    },
+    "evaluate": {
+      "description": "second-order bound reads output 1 for all; expansion point crash",
+      "kind": "unsound",
+      "cex": "NonlinearResetSecondOrderBoundCora.lean"
     }
   },
   "hybridDynamics/transition": {
@@ -723,11 +732,16 @@
       "kind": "other",
       "cex": "SimulateRandomTimesCora.lean",
       "fix": null
+    },
+    "mergeFlows": {
+      "description": "nonlinear merge drops global input behind a bound output",
+      "kind": "other",
+      "cex": "MergeFlowsNonlinearCora.lean"
     }
   },
   "specification/specification": {
     "check": {
-      "description": "custom check on a cell passes if any piece passes",
+      "description": "custom check on cell passes if any; reachSet check errors",
       "kind": "unsound"
     },
     "robustness": {
