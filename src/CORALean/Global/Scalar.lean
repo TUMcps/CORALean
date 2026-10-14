@@ -22,11 +22,30 @@ reading applied to every entry. So a matrix built by placing existing entries, `
 
 -- Authors:       Claude Opus 5
 -- Written:       18-August-2026
--- Last update:   01-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+-- Import guards (CONTRIBUTING, "Import guards and layering"): what must stay out of the closure.
+
+-- Measure theory, whose import closure is larger than this whole layer.
+assert_not_exists MeasureTheory.Measure
+-- Probability, which sits on top of measure theory.
+assert_not_exists ProbabilityTheory.IndepFun
+-- Determinants and the spectral theory built on them.
+assert_not_exists Matrix.det
+-- The analytic special functions; exact enclosures of them belong higher up.
+assert_not_exists Real.exp
+-- Calculus, which only the dynamics layers need.
+assert_not_exists HasDerivAt
+-- Inner-product geometry; the sup norm is what this layer uses.
+assert_not_exists InnerProductSpace
+-- The entrywise layer sits above this file.
+assert_not_imported CORALean.Global.Entrywise
+-- The abstract set class sits above this file.
+assert_not_imported CORALean.ContSet.ContSet.ContSet
 
 namespace CORALean
 
