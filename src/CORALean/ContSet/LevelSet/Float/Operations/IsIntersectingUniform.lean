@@ -18,7 +18,7 @@ intersecting, which is what `true` says.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,10 +33,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LevelSet.isIntersecting_uniform (tol : 𝕋) (op : CORALean.Real.CompOp) (B : Fin m → 𝕋 × 𝕋) :
+def LevelSet.isIntersecting_uniform (tol : 𝕋) (op : CORALean.Real.CompOp) (B : Fin m → Interval 𝕋) :
     Bool :=
-  let lb : Fin m → 𝕋 := fun i => (B i).1
-  let ub : Fin m → 𝕋 := fun i => (B i).2
+  let lb : Fin m → 𝕋 := fun i => (B i).inf
+  let ub : Fin m → 𝕋 := fun i => (B i).sup
   -- a row refutes a common point when its bound lies certainly outside the band
   let refutes : Fin m → Bool := fun i =>
     match op with

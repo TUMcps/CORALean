@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Linarith
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -25,9 +25,9 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.halveBox_sub {B : Fin n → ℝ × ℝ} (hB : ∀ k, (B k).1 ≤ (B k).2) (β : Fin n) :
-    (∀ k, ((Taylm.halveBox B β).1 k).1 ≤ ((Taylm.halveBox B β).1 k).2) ∧
-      (∀ k, ((Taylm.halveBox B β).2 k).1 ≤ ((Taylm.halveBox B β).2 k).2) ∧
+theorem Taylm.halveBox_sub {B : Fin n → Interval ℝ} (hB : ∀ k, (B k).inf ≤ (B k).sup) (β : Fin n) :
+    (∀ k, ((Taylm.halveBox B β).1 k).inf ≤ ((Taylm.halveBox B β).1 k).sup) ∧
+      (∀ k, ((Taylm.halveBox B β).2 k).inf ≤ ((Taylm.halveBox B β).2 k).sup) ∧
       (∀ t, Taylm.InBox (Taylm.halveBox B β).1 t → Taylm.InBox B t) ∧
       (∀ t, Taylm.InBox (Taylm.halveBox B β).2 t → Taylm.InBox B t) := by -- --- PROOF ---
   have hm := hB β

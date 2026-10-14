@@ -14,7 +14,7 @@ appended.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.splitAt (i : ℕ) (l : List (Fin n → 𝕋 × 𝕋)) : List (Fin n → 𝕋 × 𝕋) :=
+def Taylm.splitAt (i : ℕ) (l : List (Fin n → Interval 𝕋)) : List (Fin n → Interval 𝕋) :=
   match l[i]? with
   | none => l
   | some B => match Taylm.widestCoord B with

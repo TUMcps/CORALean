@@ -22,7 +22,7 @@ normalized box.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,8 +35,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.bounds (T : Taylm n) : ℝ × ℝ :=
-  ((Taylm.polyBounds T.terms).1 + T.remInf, (Taylm.polyBounds T.terms).2 + T.remSup)
+def Taylm.bounds (T : Taylm n) : Interval ℝ :=
+  ⟨(Taylm.polyBounds T.terms).inf + T.remInf, (Taylm.polyBounds T.terms).sup + T.remSup⟩
 
 end CORALean.Real
 

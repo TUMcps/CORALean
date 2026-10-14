@@ -21,7 +21,7 @@ when it runs out.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,16 +34,16 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.ldbLoop (T : Taylm n) (ε : ℝ) : ℕ → (Fin n → ℝ × ℝ) → ℝ
-  | 0, B => (T.reexpand B).ldbStep.1
+noncomputable def Taylm.ldbLoop (T : Taylm n) (ε : ℝ) : ℕ → (Fin n → Interval ℝ) → ℝ
+  | 0, B => (T.reexpand B).ldbStep.1.inf
   | fuel + 1, B =>
     -- (1)-(3) on the current box, re-expanded at its centre
     let st := (T.reexpand B).ldbStep
     -- (a): `d > ε`, so shrink to the kept part and go to (3); (b): `M` is the bound
-    if ε < st.2.1 - st.1 then
-      Taylm.ldbLoop T ε fuel fun k => (Taylm.boxMid B k + Taylm.boxRad B k * (st.2.2 k).1,
-        Taylm.boxMid B k + Taylm.boxRad B k * (st.2.2 k).2)
-    else st.1
+    if ε < st.1.sup - st.1.inf then
+      Taylm.ldbLoop T ε fuel fun k => ⟨Taylm.boxMid B k + Taylm.boxRad B k * (st.2 k).inf,
+        Taylm.boxMid B k + Taylm.boxRad B k * (st.2 k).sup⟩
+    else st.1.inf
 
 end CORALean.Real
 

@@ -19,7 +19,7 @@ is left for each is its derivatives.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,16 +34,16 @@ variable {n : ℕ}
 
 theorem Taylm.taylor_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (g : ℝ → ℝ)
     (c D : ℝ)
-    (hg : ∀ ξ ∈ Set.Icc (min c T.bounds.1) (max c T.bounds.2),
+    (hg : ∀ ξ ∈ Set.Icc (min c T.bounds.inf) (max c T.bounds.sup),
       ContDiffAt ℝ (T.maxOrder + 1) g ξ)
-    (hD : ∀ ξ ∈ Set.Icc (min c T.bounds.1) (max c T.bounds.2),
+    (hD : ∀ ξ ∈ Set.Icc (min c T.bounds.inf) (max c T.bounds.sup),
       |iteratedDeriv (T.maxOrder + 1) g ξ| ≤ D) :
     (T.taylor g c D).Encloses fun t => g (f t) := by -- --- PROOF ---
   unfold Taylm.taylor
   refine Taylm.compose_outer h g c _ _ _ fun t ht => ?_
   have hb := Taylm.bounds_mem h ht
   -- the segment from the centre to `f t` lies in the hull the hypotheses cover
-  have hsub : Set.uIcc c (f t) ⊆ Set.Icc (min c T.bounds.1) (max c T.bounds.2) :=
+  have hsub : Set.uIcc c (f t) ⊆ Set.Icc (min c T.bounds.inf) (max c T.bounds.sup) :=
     Set.uIcc_subset_Icc ⟨min_le_left _ _, le_max_left _ _⟩
       ⟨le_trans (min_le_right _ _) hb.1, le_trans hb.2 (le_max_right _ _)⟩
   have hL := taylor_remainder_abs_le (fun ξ hξ => hg ξ (hsub hξ)) (fun ξ hξ => hD ξ (hsub hξ))
@@ -51,11 +51,11 @@ theorem Taylm.taylor_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses
   have hy : |f t - c| ≤ T.reach c := by
     rw [Taylm.reach, abs_le]
     constructor
-    · have := neg_abs_le (T.bounds.1 - c)
-      have := le_max_left |T.bounds.1 - c| |T.bounds.2 - c|
+    · have := neg_abs_le (T.bounds.inf - c)
+      have := le_max_left |T.bounds.inf - c| |T.bounds.sup - c|
       linarith [hb.1]
-    · have := le_abs_self (T.bounds.2 - c)
-      have := le_max_right |T.bounds.1 - c| |T.bounds.2 - c|
+    · have := le_abs_self (T.bounds.sup - c)
+      have := le_max_right |T.bounds.inf - c| |T.bounds.sup - c|
       linarith [hb.2]
   refine le_trans hL ?_
   gcongr

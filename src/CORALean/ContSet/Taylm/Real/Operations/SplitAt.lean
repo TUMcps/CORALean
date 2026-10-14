@@ -21,7 +21,7 @@ without coordinates, is left as it is.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.splitAt (i : ℕ) (l : List (Fin n → ℝ × ℝ)) : List (Fin n → ℝ × ℝ) :=
+noncomputable def Taylm.splitAt (i : ℕ) (l : List (Fin n → Interval ℝ)) : List (Fin n → Interval ℝ)
+    :=
   match l[i]? with
   | none => l
   | some B => match Taylm.widestCoord B with

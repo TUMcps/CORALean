@@ -29,7 +29,7 @@ attains its extreme coefficients, as at the corners of a multilinear one.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 theorem Taylm.optBernstein_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
     {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
-    T.optBernstein.1 ≤ f t ∧ f t ≤ T.optBernstein.2 := by -- --- PROOF ---
+    T.optBernstein.inf ≤ f t ∧ f t ≤ T.optBernstein.sup := by -- --- PROOF ---
   set N := T.bernsteinDegree with hN
   set B := Taylm.bernsteinCoeff T.terms N with hB
   set w : (Fin n → Fin (N + 1)) → ℝ := fun β =>

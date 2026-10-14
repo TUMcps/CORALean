@@ -218,6 +218,14 @@ only operation that moves between ambient types, so it stays its own class
 `Mtimes`, over a family, and an algorithm that travels between dimensions asks
 for it on top.
 
+### Bounds of one quantity
+
+The lower and the upper bound of one quantity are an `Interval` (`Interval ℝ`, `Interval 𝕋`, a box
+`Interval (Vec ℝ n)`), read through `inf` and `sup`, never a pair `ℝ × ℝ` read with `.1`/`.2`; a pair
+stays where its two components are two quantities (a value and its error, a sine and a cosine, a
+state and an input), and `check-conventions.sh` asks for a reason in `scripts/pair-allowlist.txt`
+for each file that spells one.
+
 ### Notation
 
 | | |

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -21,7 +22,7 @@ that `LevelSet.containsCellCora_counterexample` can state that it is unsound.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,8 +37,8 @@ variable {m : ℕ}
 
 /-- The cell branch of `contains_(ls, S)` for a set `S`, `B i = (lb i, ub i)` the interval
 evaluation of row `i` over `interval(S)`. -/
-def LevelSet.containsCellCora (op : Fin m → CompOp) (B : Fin m → ℝ × ℝ) : Prop :=
-  let ub : Fin m → ℝ := fun i => (B i).2
+def LevelSet.containsCellCora (op : Fin m → CompOp) (B : Fin m → Interval ℝ) : Prop :=
+  let ub : Fin m → ℝ := fun i => (B i).sup
   let resVec : Fin m → Prop := fun i =>
     match op i with
     | .le => ub i < 0 ∨ |ub i| ≤ 1 / 10 ^ 8

@@ -24,7 +24,7 @@ intersection to be nonempty, where `Alg. 3` returns `[∞; -∞]`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,10 +36,10 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 4]: the segment `[m; M]` with `{γ} × [m; M] = Z ∩ L_γ`. -/
-noncomputable def Zonotope.boundIntersect2DBisect (Z : Zonotope (Vec ℝ 2)) (γ : ℝ) : ℝ × ℝ :=
+noncomputable def Zonotope.boundIntersect2DBisect (Z : Zonotope (Vec ℝ 2)) (γ : ℝ) : Interval ℝ :=
   let m := Z.bisectLow γ                                               -- lines 1-28
   let M := -Z.mirrorY.bisectLow γ                                      -- line 29
-  (m, M)                                                               -- line 30
+  ⟨m, M⟩                                                               -- line 30
 
 end CORALean.Real
 

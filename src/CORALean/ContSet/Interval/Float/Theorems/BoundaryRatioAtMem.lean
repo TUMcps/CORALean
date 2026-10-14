@@ -14,7 +14,7 @@ of the stored floats.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,13 +30,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.boundaryRatioAt_mem {I : Interval (Vec 𝕋 n)} {dir start : Vec 𝕋 n} {i : Fin n}
-    {x : 𝕋 × 𝕋} (hx : Interval.boundaryRatioAt I dir start i = some x) :
+    {x : Interval 𝕋} (hx : Interval.boundaryRatioAt I dir start i = some x) :
     (0 < toReal (dir i) ∧
-        toReal x.1 ≤ (toReal (I.sup i) - toReal (start i)) / toReal (dir i) ∧
-        (toReal (I.sup i) - toReal (start i)) / toReal (dir i) ≤ toReal x.2) ∨
+        toReal x.inf ≤ (toReal (I.sup i) - toReal (start i)) / toReal (dir i) ∧
+        (toReal (I.sup i) - toReal (start i)) / toReal (dir i) ≤ toReal x.sup) ∨
       (toReal (dir i) < 0 ∧
-        toReal x.1 ≤ (toReal (start i) - toReal (I.inf i)) / -toReal (dir i) ∧
-        (toReal (start i) - toReal (I.inf i)) / -toReal (dir i) ≤ toReal x.2) := by -- --- PROOF ---
+        toReal x.inf ≤ (toReal (start i) - toReal (I.inf i)) / -toReal (dir i) ∧
+        (toReal
+            (start i) - toReal (I.inf i)) / -toReal (dir i) ≤ toReal x.sup) := by -- --- PROOF ---
   unfold Interval.boundaryRatioAt at hx
   split_ifs at hx with h1 h2
   · -- positive direction

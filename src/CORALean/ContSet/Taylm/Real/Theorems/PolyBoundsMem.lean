@@ -13,7 +13,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,8 +28,8 @@ variable {n : ℕ}
 
 theorem Taylm.polyBounds_mem (L : List (ℝ × (Fin n → ℕ))) {t : Vec ℝ n}
     (ht : t ∈ Taylm.box n) :
-    (Taylm.polyBounds L).1 ≤ Taylm.polyOf L t ∧
-      Taylm.polyOf L t ≤ (Taylm.polyBounds L).2 := by -- --- PROOF ---
+    (Taylm.polyBounds L).inf ≤ Taylm.polyOf L t ∧
+      Taylm.polyOf L t ≤ (Taylm.polyBounds L).sup := by -- --- PROOF ---
   induction L with
   | nil => simp [Taylm.polyBounds]
   | cons a L ih =>

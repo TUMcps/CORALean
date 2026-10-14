@@ -16,7 +16,7 @@ factorial below their roundings, as in `Taylm.exp_outer`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,7 +45,7 @@ theorem Taylm.unitRemainder_le {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T
     (fun ξ _ => hg ξ) fun ξ _ => hD ξ
   refine le_trans hL ?_
   -- the reach of the hull from the centre, below its rounding
-  set B : 𝕋 := maximum zero (maximum (subUp T.bounds.2 c) (subUp c T.bounds.1))
+  set B : 𝕋 := maximum zero (maximum (subUp T.bounds.sup c) (subUp c T.bounds.inf))
   have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   have hPow := le_powUp (abs_nonneg _) hB (N + 1)
   have hF := (divFact_mem ((one : 𝕋), (one : 𝕋)) zero_le_one

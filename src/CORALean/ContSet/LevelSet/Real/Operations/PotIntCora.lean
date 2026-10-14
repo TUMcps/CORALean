@@ -17,7 +17,7 @@ that swaps a lone hyperplane hit for the next time-point set.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,7 +31,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def LevelSet.potIntCora (guards : List (LevelSet n)) (nSets : ℕ)
-    (B : (g : LevelSet n) → ℕ → Fin g.m → ℝ × ℝ) : Set (ℕ × ℕ) :=
+    (B : (g : LevelSet n) → ℕ → Fin g.m → Interval ℝ) : Set (ℕ × ℕ) :=
   {p | ∃ i : p.1 < guards.length,
     let guardSet := guards[p.1]
     p.2 < nSets ∧ LevelSet.isIntersecting_cell (1 / 10 ^ 8) guardSet.op (B guardSet p.2)}

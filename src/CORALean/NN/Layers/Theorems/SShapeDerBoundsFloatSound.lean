@@ -15,7 +15,7 @@ and `u`. An outer statement: it holds in the cases the comparison does not decid
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem sShapeDerBoundsFloat_sound {df : ℝ → ℝ} (h : SShape df) {dfLo dfHi : 𝕋 → 𝕋}
     (hlo : ∀ a, toReal (dfLo a) ≤ df (toReal a)) (hhi : ∀ a, df (toReal a) ≤ toReal (dfHi a))
     {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
-    toReal (sShapeDerBoundsFloat dfLo dfHi l u).1 ≤ df t ∧
-      df t ≤ toReal (sShapeDerBoundsFloat dfLo dfHi l u).2 := by -- --- PROOF ---
+    toReal (sShapeDerBoundsFloat dfLo dfHi l u).inf ≤ df t ∧
+      df t ≤ toReal (sShapeDerBoundsFloat dfLo dfHi l u).sup := by -- --- PROOF ---
   -- `df` rises towards `0` on the left, by evenness
   have hneg : ∀ {s t : ℝ}, s ≤ t → t ≤ 0 → df s ≤ df t := fun {s t} hst ht => by
     rw [← h.even s, ← h.even t]

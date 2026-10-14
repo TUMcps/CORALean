@@ -20,7 +20,7 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,10 +36,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sqrtCoef_mem (q : ℕ) (c : 𝕋) (hc : 0 < toReal c) (k : ℕ) :
-    toReal (Taylm.sqrtCoef q c k).1 ≤
+    toReal (Taylm.sqrtCoef q c k).inf ≤
         iteratedDeriv k Real.sqrt (toReal c) / (k.factorial : ℝ) ∧
       iteratedDeriv k Real.sqrt (toReal c) / (k.factorial : ℝ) ≤
-        toReal (Taylm.sqrtCoef q c k).2 := by -- --- PROOF ---
+        toReal (Taylm.sqrtCoef q c k).sup := by -- --- PROOF ---
   -- the derivative as a product of the four factors
   have hfun : Real.sqrt = fun x : ℝ => x ^ (1 / 2 : ℝ) := funext Real.sqrt_eq_rpow
   have hd : iteratedDeriv k Real.sqrt (toReal c) / (k.factorial : ℝ) =

@@ -23,7 +23,7 @@ queue.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,8 +36,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.goStep (lb : (Fin n → ℝ × ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
-    List (Fin n → ℝ × ℝ) × ℝ → List (Fin n → ℝ × ℝ) × ℝ
+noncomputable def Taylm.goStep (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
+    List (Fin n → Interval ℝ) × ℝ → List (Fin n → Interval ℝ) × ℝ
   | ([], cut) => ([], cut)
   | (B :: rest, cut) =>
     -- a box whose lower bound is above the cutoff is eliminated

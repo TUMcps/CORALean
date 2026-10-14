@@ -23,7 +23,7 @@ range bounds them, and `x^(-1/2) = 1/√x` for positive `x`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.invSqrt_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hpos : 0 < min T.constCoef T.bounds.1) :
+    (hpos : 0 < min T.constCoef T.bounds.inf) :
     T.invSqrt.Encloses fun t => (Real.sqrt (f t))⁻¹ := by -- --- PROOF ---
   have hE : T.invSqrt.Encloses fun t => f t ^ (-(1 / 2) : ℝ) := by
     refine Taylm.taylor_outer h _ _ _ (fun ξ hξ => Real.contDiffAt_rpow_const_of_ne

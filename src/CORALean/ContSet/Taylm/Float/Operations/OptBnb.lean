@@ -13,7 +13,7 @@ rounded outward.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,9 +28,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.optBnb (T : Taylm 𝕋 n) (ε : 𝕋) (fuel : ℕ) : 𝕋 × 𝕋 :=
-  let b := Taylm.branchAndBound T.terms (fun _ => (neg one, one)) ε false fuel
-  (addDown b.1 T.remInf, addUp b.2 T.remSup)
+def Taylm.optBnb (T : Taylm 𝕋 n) (ε : 𝕋) (fuel : ℕ) : Interval 𝕋 :=
+  let b := Taylm.branchAndBound T.terms (fun _ => ⟨neg one, one⟩) ε false fuel
+  ⟨addDown b.inf T.remInf, addUp b.sup T.remSup⟩
 end CORALean.Float
 
 

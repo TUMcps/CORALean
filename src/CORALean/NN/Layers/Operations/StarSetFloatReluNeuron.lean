@@ -18,7 +18,7 @@ whose rows hold wherever the bounds do.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,10 +34,10 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The ReLU step on neuron `j` of a float star set, given its bounds. -/
-def StarSet.reluNeuron (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋) :
+def StarSet.reluNeuron (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋) :
     StarSet 𝕋 n :=
-  if le zero b.1 then s
-  else if le b.2 zero then
+  if le zero b.inf then s
+  else if le b.sup zero then
     { s with c := Function.update s.c j zero, G := Function.update s.G j (fun _ => zero) }
   else
     { m := s.m + 1
@@ -49,7 +49,7 @@ def StarSet.reluNeuron (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋) :
          (Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one), neg (s.c j))] ++
         (if StarSet.chordGuard b then [s.chordRow j b] else [])
       l := Fin.snoc (α := fun _ => 𝕋) s.l zero
-      u := Fin.snoc (α := fun _ => 𝕋) s.u (maximum b.2 zero) }
+      u := Fin.snoc (α := fun _ => 𝕋) s.u (maximum b.sup zero) }
 
 end CORALean.Float
 

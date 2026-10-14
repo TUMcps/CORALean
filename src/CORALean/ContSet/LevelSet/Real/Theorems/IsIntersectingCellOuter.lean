@@ -15,7 +15,7 @@ verdict proves the level set misses the box. The `==` rows are unsound
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,8 +29,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.isIntersecting_cell_outer (L : LevelSet n) (hne : ∀ i, L.op i ≠ .eq)
-    (I : Interval (Vec ℝ n)) (B : Fin L.m → ℝ × ℝ) {tol : ℝ} (htol : 0 ≤ tol)
-    (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.construct (B i).1 (B i).2)
+    (I : Interval (Vec ℝ n)) (B : Fin L.m → Interval ℝ) {tol : ℝ} (htol : 0 ≤ tol)
+    (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.construct (B i).inf (B i).sup)
     (h : ¬ LevelSet.isIntersecting_cell tol L.op B) :
     L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
   classical

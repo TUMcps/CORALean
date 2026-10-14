@@ -14,7 +14,7 @@ The empty product is `1` on both sides, a power is a product with the previous o
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subsPow_rel {A : List ((𝕋 × 𝕋) × (Fin p → ℕ))}
+theorem PolyZonotope.subsPow_rel {A : List ((Interval 𝕋) × (Fin p → ℕ))}
     {A' : List (ℝ × (Fin p → ℕ))} (hA : PolyZonotope.subsRel A A') (d : ℕ) :
     PolyZonotope.subsRel (PolyZonotope.subsPow A d) (Real.PolyZonotope.subsPow A' d) := by
   induction d with

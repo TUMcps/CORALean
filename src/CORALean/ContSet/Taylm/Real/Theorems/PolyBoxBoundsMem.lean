@@ -26,7 +26,7 @@ its interval power, the product in the interval product, and the term and the su
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,15 +39,15 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.polyBoxBounds_mem (L : List (ℝ × (Fin n → ℕ))) {B : Fin n → ℝ × ℝ} {t : Vec ℝ n}
+theorem Taylm.polyBoxBounds_mem (L : List (ℝ × (Fin n → ℕ))) {B : Fin n → Interval ℝ} {t : Vec ℝ n}
     (ht : Taylm.InBox B t) :
-    (Taylm.polyBoxBounds L B).1 ≤ Taylm.polyOf L t ∧
-      Taylm.polyOf L t ≤ (Taylm.polyBoxBounds L B).2 := by -- --- PROOF ---
+    (Taylm.polyBoxBounds L B).inf ≤ Taylm.polyOf L t ∧
+      Taylm.polyOf L t ≤ (Taylm.polyBoxBounds L B).sup := by -- --- PROOF ---
   -- one term
-  have hterm : ∀ a : ℝ × (Fin n → ℕ), (Taylm.termBoxBounds B a).1 ≤ a.1 * Taylm.monomial a.2 t ∧
-      a.1 * Taylm.monomial a.2 t ≤ (Taylm.termBoxBounds B a).2 := by
+  have hterm : ∀ a : ℝ × (Fin n → ℕ), (Taylm.termBoxBounds B a).inf ≤ a.1 * Taylm.monomial a.2 t ∧
+      a.1 * Taylm.monomial a.2 t ≤ (Taylm.termBoxBounds B a).sup := by
     intro a
-    have hM := Taylm.prodBounds_mem (List.ofFn fun k => Taylm.powBounds (B k).1 (B k).2 (a.2 k))
+    have hM := Taylm.prodBounds_mem (List.ofFn fun k => Taylm.powBounds (B k).inf (B k).sup (a.2 k))
       (List.ofFn fun k => t k ^ a.2 k) (by simp) fun i h₁ h₂ => by
         simp only [List.getElem_ofFn]
         exact Taylm.powBounds_mem (ht ⟨i, by simpa using h₁⟩).1 (ht ⟨i, by simpa using h₁⟩).2 _

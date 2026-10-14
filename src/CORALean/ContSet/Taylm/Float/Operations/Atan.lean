@@ -24,7 +24,7 @@ bound is `atanDom N` (`recL [1, 0, 1] (j ↦ 2(j+1)) N`) at the magnitude `Taylm
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -44,20 +44,20 @@ def Taylm.atan (p q : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   let c := T.constCoef
   let m := T.magUp
   -- `|atan⁽ᴺ⁺¹⁾| ≤ atanDom N` at `m`
-  let D := (Interval.evalList m m (recL [1, 0, 1] (fun j => 2 * ((j : ℤ) + 1)) N)).2
+  let D := (Interval.evalList m m (recL [1, 0, 1] (fun j => 2 * ((j : ℤ) + 1)) N)).sup
   -- `w = (1 + c²)⁻¹` between its roundings
   let wl := maximum zero (divDown one (addUp one (mulUp c c)))
   let wh := divUp one (maximum one (addDown one (mulDown c c)))
-  let coef : ℕ → 𝕋 × 𝕋 := fun k =>
+  let coef : ℕ → Interval 𝕋 := fun k =>
     match k with
-    | 0 => (atanDown p q c, atanUp p q c)
+    | 0 => ⟨atanDown p q c, atanUp p q c⟩
     | j + 1 =>
       let P := Interval.evalList c c (recL [1, 0, 1] (fun j => -(2 * ((j : ℤ) + 1))) j)
       let G := divFact (one, one) (j + 1)
-      let W : 𝕋 × 𝕋 := (Interval.mulLo (powDown wl (j + 1)) (powUp wh (j + 1)) G.1 G.2,
-        Interval.mulHi (powDown wl (j + 1)) (powUp wh (j + 1)) G.1 G.2)
-      (Interval.mulLo P.1 P.2 W.1 W.2, Interval.mulHi P.1 P.2 W.1 W.2)
-  T.taylor c (fun k => (coef k).1) (fun k => (coef k).2) D
+      let W : Interval 𝕋 := ⟨Interval.mulLo (powDown wl (j + 1)) (powUp wh (j + 1)) G.1 G.2,
+        Interval.mulHi (powDown wl (j + 1)) (powUp wh (j + 1)) G.1 G.2⟩
+      ⟨Interval.mulLo P.inf P.sup W.inf W.sup, Interval.mulHi P.inf P.sup W.inf W.sup⟩
+  T.taylor c (fun k => (coef k).inf) (fun k => (coef k).sup) D
 
 end CORALean.Float
 

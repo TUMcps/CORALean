@@ -14,7 +14,7 @@ times the bracketed binomial one, each corner by directed arithmetic.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,9 +29,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.reexpCoef (k : Fin n) (m r : 𝕋) (p : (𝕋 × (Fin n → ℕ)) × ℕ) : 𝕋 × 𝕋 :=
+def Taylm.reexpCoef (k : Fin n) (m r : 𝕋) (p : (𝕋 × (Fin n → ℕ)) × ℕ) : Interval 𝕋 :=
   let B := Taylm.binomCoef (p.1.2 k) p.2 m r
-  (Interval.mulLo p.1.1 p.1.1 B.1 B.2, Interval.mulHi p.1.1 p.1.1 B.1 B.2)
+  ⟨Interval.mulLo p.1.1 p.1.1 B.inf B.sup, Interval.mulHi p.1.1 p.1.1 B.inf B.sup⟩
 
 end CORALean.Float
 

@@ -18,7 +18,7 @@ inside `[-1, 1]`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.ldbStep_sub (T : Taylm n) (k : Fin n) :
-    -1 ≤ (T.ldbStep.2.2 k).1 ∧ (T.ldbStep.2.2 k).2 ≤ 1 := by -- --- PROOF ---
+    -1 ≤ (T.ldbStep.2 k).inf ∧ (T.ldbStep.2 k).sup ≤ 1 := by -- --- PROOF ---
   simp only [Taylm.ldbStep]
   split_ifs with h1 h2
   · constructor <;> linarith [h1.2]

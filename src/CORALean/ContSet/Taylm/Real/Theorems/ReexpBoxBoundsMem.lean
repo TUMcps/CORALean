@@ -20,7 +20,7 @@ coordinate of radius zero), so `P t` is the re-expanded polynomial at `s` and li
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,10 +33,10 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.reexpBoxBounds_mem (P : List (ℝ × (Fin n → ℕ))) {B : Fin n → ℝ × ℝ}
+theorem Taylm.reexpBoxBounds_mem (P : List (ℝ × (Fin n → ℕ))) {B : Fin n → Interval ℝ}
     {t : Vec ℝ n} (ht : Taylm.InBox B t) :
-    (Taylm.reexpBoxBounds P B).1 ≤ Taylm.polyOf P t ∧
-      Taylm.polyOf P t ≤ (Taylm.reexpBoxBounds P B).2 := by -- --- PROOF ---
+    (Taylm.reexpBoxBounds P B).inf ≤ Taylm.polyOf P t ∧
+      Taylm.polyOf P t ≤ (Taylm.reexpBoxBounds P B).sup := by -- --- PROOF ---
   -- the normalized coordinates of `t`
   set s : Vec ℝ n := fun k =>
     if Taylm.boxRad B k = 0 then 0 else (t k - Taylm.boxMid B k) / Taylm.boxRad B k

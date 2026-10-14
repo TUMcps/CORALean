@@ -24,7 +24,7 @@ lists evaluate as the real ones (`eval_odePoly_odeL`), and `Interval.evalList_me
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -76,12 +76,12 @@ theorem Taylm.tanh_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h
       (fun ξ _ => contDiff_tanh.contDiffAt) fun ξ _ => hD1 ξ
     refine le_trans hL ?_
     -- each factor of the bound below its rounded counterpart
-    set B : 𝕋 := maximum zero (maximum (subUp T.bounds.2 c) (subUp c T.bounds.1))
+    set B : 𝕋 := maximum zero (maximum (subUp T.bounds.sup c) (subUp c T.bounds.inf))
     have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
     have hPow := le_powUp (abs_nonneg _) hB (N + 1)
     -- the derivative bound below its rounding
     have hD : evalL (odeL [1, 0, 1] (N + 1)) 1 ≤
-        toReal (Interval.evalList (one : 𝕋) one (odeL [1, 0, 1] (N + 1))).2 :=
+        toReal (Interval.evalList (one : 𝕋) one (odeL [1, 0, 1] (N + 1))).sup :=
       (Interval.evalList_mem (lo := (one : 𝕋)) (hi := one) (by rw [toReal_one])
         (by rw [toReal_one]) _).2
     -- the bound is non-negative, being above an absolute value
@@ -94,12 +94,12 @@ theorem Taylm.tanh_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h
     calc evalL (odeL [1, 0, 1] (N + 1)) 1 * |f t - toReal c| ^ (N + 1) / ((N + 1).factorial : ℝ)
         = evalL (odeL [1, 0, 1] (N + 1)) 1 * |f t - toReal c| ^ (N + 1)
           * (1 / ((N + 1).factorial : ℝ)) := by ring
-      _ ≤ toReal (Interval.evalList (one : 𝕋) one (odeL [1, 0, 1] (N + 1))).2
+      _ ≤ toReal (Interval.evalList (one : 𝕋) one (odeL [1, 0, 1] (N + 1))).sup
             * toReal (powUp B (N + 1))
           * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 := by
         apply mul_le_mul (mul_le_mul hD hPow hY (le_trans hE hD)) hF hFpos
         exact mul_nonneg (le_trans hE hD) (le_trans hY hPow)
-      _ ≤ toReal (mulUp (Interval.evalList (one : 𝕋) one (odeL [1, 0, 1] (N + 1))).2
+      _ ≤ toReal (mulUp (Interval.evalList (one : 𝕋) one (odeL [1, 0, 1] (N + 1))).sup
             (powUp B (N + 1))) * toReal (divFact ((one : 𝕋), (one : 𝕋)) (N + 1)).2 := by
         apply mul_le_mul_of_nonneg_right (mul_le_mulUp _ _) (le_trans hFpos hF)
       _ ≤ _ := mul_le_mulUp _ _

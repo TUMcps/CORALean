@@ -16,7 +16,7 @@ over the whole space are stored floats. A row holds everywhere when `ub ≤ 0` (
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,13 +31,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LevelSet.representsa_fullspace (L : CORALean.Real.LevelSet n) (O : Fin L.m → 𝕋 × 𝕋) :
+def LevelSet.representsa_fullspace (L : CORALean.Real.LevelSet n) (O : Fin L.m → Interval 𝕋) :
     Bool :=
   (List.finRange L.m).all fun i =>
     match L.op i with
-    | .eq => (le (O i).1 zero && le zero (O i).1) && (le (O i).2 zero && le zero (O i).2)
-    | .le => le (O i).2 zero
-    | .lt => ltStrict (O i).2 zero
+    | .eq => (le (O i).inf zero && le zero (O i).inf) && (le (O i).sup zero && le zero (O i).sup)
+    | .le => le (O i).sup zero
+    | .lt => ltStrict (O i).sup zero
 
 end CORALean.Float
 

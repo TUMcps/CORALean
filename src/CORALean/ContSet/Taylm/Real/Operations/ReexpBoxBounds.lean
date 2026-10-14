@@ -21,7 +21,7 @@ normalized box, and bound the result there by interval arithmetic (`polyBounds`)
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,8 +34,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.reexpBoxBounds (P : List (ℝ × (Fin n → ℕ))) (B : Fin n → ℝ × ℝ) :
-    ℝ × ℝ :=
+noncomputable def Taylm.reexpBoxBounds (P : List (ℝ × (Fin n → ℕ))) (B : Fin n → Interval ℝ) :
+    Interval ℝ :=
   Taylm.polyBounds (Taylm.reexpTerms (Taylm.boxMid B) (Taylm.boxRad B) P)
 
 end CORALean.Real

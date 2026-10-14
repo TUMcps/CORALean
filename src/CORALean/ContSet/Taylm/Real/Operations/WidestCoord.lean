@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Data.Real.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -19,7 +20,7 @@ when the box has no coordinates.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,10 +33,10 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.widestCoord (B : Fin n → ℝ × ℝ) : Option (Fin n) :=
+noncomputable def Taylm.widestCoord (B : Fin n → Interval ℝ) : Option (Fin n) :=
   (List.finRange n).foldl (fun best k => match best with
     | none => some k
-    | some j => if (B j).2 - (B j).1 < (B k).2 - (B k).1 then some k else some j) none
+    | some j => if (B j).sup - (B j).inf < (B k).sup - (B k).inf then some k else some j) none
 
 end CORALean.Real
 

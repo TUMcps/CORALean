@@ -21,7 +21,7 @@ angle `a₀` known only in boxes and the step `π / 499` in bounds: the index `i
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,11 +36,11 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Capsule.arcBox (p : ℕ) (step : 𝕋 × 𝕋) (ctr : Interval (Vec 𝕋 2)) (a₀ : Interval (Vec 𝕋 1))
+def Capsule.arcBox (p : ℕ) (step : Interval 𝕋) (ctr : Interval (Vec 𝕋 2)) (a₀ : Interval (Vec 𝕋 1))
     (r : 𝕋) (i : ℕ) : Interval (Vec 𝕋 2) :=
   -- the angle `a₀ + i * step`
   let idx : Interval (Vec 𝕋 1) := ⟨fun _ => intDown (i : ℤ), fun _ => intUp (i : ℤ)⟩
-  let stp : Interval (Vec 𝕋 1) := ⟨fun _ => step.1, fun _ => step.2⟩
+  let stp : Interval (Vec 𝕋 1) := ⟨fun _ => step.inf, fun _ => step.sup⟩
   let a := a₀.plus (idx.times stp)
   -- the two coordinates `ctr j + r * cos a` and `ctr j + r * sin a`
   let rad : Interval (Vec 𝕋 1) := Interval.point fun _ => r

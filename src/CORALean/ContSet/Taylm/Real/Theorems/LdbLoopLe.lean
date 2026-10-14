@@ -25,7 +25,7 @@ point is below, and the kept point is in the next box, where the induction holds
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,38 +39,38 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.ldbLoop_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : ℝ) :
-    ∀ (fuel : ℕ) (B : Fin n → ℝ × ℝ), (∀ k, -1 ≤ (B k).1 ∧ (B k).2 ≤ 1) →
+    ∀ (fuel : ℕ) (B : Fin n → Interval ℝ), (∀ k, -1 ≤ (B k).inf ∧ (B k).sup ≤ 1) →
       ∀ t, Taylm.InBox B t → Taylm.ldbLoop T ε fuel B ≤ f t := by -- --- PROOF ---
   intro fuel
   induction fuel with
   | zero =>
     intro B hB t ht
     obtain ⟨s, hs, rfl⟩ := Taylm.exists_normalized ht
-    have hB' : ∀ k, -1 ≤ (B k).1 ∧ (B k).1 ≤ (B k).2 ∧ (B k).2 ≤ 1 := fun k =>
+    have hB' : ∀ k, -1 ≤ (B k).inf ∧ (B k).inf ≤ (B k).sup ∧ (B k).sup ≤ 1 := fun k =>
       ⟨(hB k).1, le_trans (ht k).1 (ht k).2, (hB k).2⟩
     exact Taylm.ldbStep_lower (Taylm.reexpand_outer h hB') hs
   | succ fuel ih =>
     intro B hB t ht
-    have hB' : ∀ k, -1 ≤ (B k).1 ∧ (B k).1 ≤ (B k).2 ∧ (B k).2 ≤ 1 := fun k =>
+    have hB' : ∀ k, -1 ≤ (B k).inf ∧ (B k).inf ≤ (B k).sup ∧ (B k).sup ≤ 1 := fun k =>
       ⟨(hB k).1, le_trans (ht k).1 (ht k).2, (hB k).2⟩
     have hE := Taylm.reexpand_outer h hB'
     obtain ⟨s, hs, rfl⟩ := Taylm.exists_normalized ht
     simp only [Taylm.ldbLoop]
     split_ifs with hd
-    · set R := (T.reexpand B).ldbStep.2.2
+    · set R := (T.reexpand B).ldbStep.2
       -- the kept box lies in the current one
       have hrad : ∀ k, 0 ≤ Taylm.boxRad B k := fun k => by
         simp only [Taylm.boxRad]; linarith [(hB' k).2.1]
-      have hsub : ∀ k, -1 ≤ Taylm.boxMid B k + Taylm.boxRad B k * (R k).1 ∧
-          Taylm.boxMid B k + Taylm.boxRad B k * (R k).2 ≤ 1 := by
+      have hsub : ∀ k, -1 ≤ Taylm.boxMid B k + Taylm.boxRad B k * (R k).inf ∧
+          Taylm.boxMid B k + Taylm.boxRad B k * (R k).sup ≤ 1 := by
         intro k
         have hR := Taylm.ldbStep_sub (T.reexpand B) k
         have := hrad k
         simp only [Taylm.boxMid, Taylm.boxRad] at this ⊢
         constructor <;> nlinarith [(hB' k).1, (hB' k).2.1, (hB' k).2.2, hR.1, hR.2]
       have himg : ∀ q, Taylm.InBox R q → Taylm.InBox (fun k =>
-          (Taylm.boxMid B k + Taylm.boxRad B k * (R k).1,
-            Taylm.boxMid B k + Taylm.boxRad B k * (R k).2))
+          ⟨Taylm.boxMid B k + Taylm.boxRad B k * (R k).inf,
+            Taylm.boxMid B k + Taylm.boxRad B k * (R k).sup⟩)
           (fun k => Taylm.boxMid B k + Taylm.boxRad B k * q k) := by
         intro q hq k
         exact ⟨by nlinarith [(hq k).1, hrad k], by nlinarith [(hq k).2, hrad k]⟩

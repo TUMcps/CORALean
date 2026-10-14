@@ -23,7 +23,7 @@ re-expands `P` at the sub-box's centre first (lines 15, 22, 28).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,8 +36,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.branchAndBound (P : List (ℝ × (Fin n → ℕ))) (X : Fin n → ℝ × ℝ)
-    (ε : ℝ) (adv : Bool) (fuel : ℕ) : ℝ × ℝ :=
+noncomputable def Taylm.branchAndBound (P : List (ℝ × (Fin n → ℕ))) (X : Fin n → Interval ℝ)
+    (ε : ℝ) (adv : Bool) (fuel : ℕ) : Interval ℝ :=
   -- 15-16, 22-23, 28-29: a sub-box's bound, re-expanded first in the advanced setting
   let bnd := fun B => if adv then Taylm.reexpBoxBounds P B else Taylm.polyBoxBounds P B
   -- 2-5: one box, `[x]` itself

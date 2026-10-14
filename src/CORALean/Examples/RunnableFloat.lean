@@ -1388,7 +1388,7 @@ def interSum : SetIntersection (Zonotope (Vec D 2)) :=
 /-- The sign test of the disc `x² + y² ≤ 1` at bounds `-1/2` on its row value. -/
 def lsContainsRun : Bool :=
   LevelSet.containsPoint (𝕋 := D) (⟨1, fun _ => 0, ![.le]⟩ : CORALean.Real.LevelSet 2)
-    ![(d (-1) (-1), d (-1) (-1))]
+    ![⟨d (-1) (-1), d (-1) (-1)⟩]
 
 /-- `x · x` and `x · x + x` for the variable `x ∈ [1/2, 3/2]`, order `3`, as ranges (`exp` is run
 at `Dyadic 53` in `TaylmFloat`). -/
@@ -1396,8 +1396,8 @@ def tlmI : Interval (Vec D 1) := ⟨![d 1 (-1)], ![d 3 (-1)]⟩
 def tlmX : Taylm D 1 := (tlmI.taylm 3) 0
 def tlmSq : Taylm D 1 := tlmX.times tlmX
 def tlmSum : Taylm D 1 := tlmSq.plus tlmX
-def tlmSqBox : Interval D := ⟨tlmSq.bounds.1, tlmSq.bounds.2⟩
-def tlmSumBox : Interval D := ⟨tlmSum.bounds.1, tlmSum.bounds.2⟩
+def tlmSqBox : Interval D := ⟨tlmSq.bounds.inf, tlmSq.bounds.sup⟩
+def tlmSumBox : Interval D := ⟨tlmSum.bounds.inf, tlmSum.bounds.sup⟩
 
 /-- `exp (x · x)` at the reduction depth `53`, far above the mantissa width `24`: `expUp`
 returns an exponent about `2 ^ 32`, which `addUp` and `le` take without forming `2 ^ gap` (#131).

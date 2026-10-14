@@ -15,7 +15,7 @@ rounded outward.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,10 +30,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {ι : Type}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.boundsProd (E : ι → 𝕋 × 𝕋) : List ι → 𝕋 × 𝕋 → 𝕋 × 𝕋
+def Taylm.boundsProd (E : ι → Interval 𝕋) : List ι → Interval 𝕋 → Interval 𝕋
   | [], I => I
   | k :: l, I => Taylm.boundsProd E l
-    (Interval.mulLo I.1 I.2 (E k).1 (E k).2, Interval.mulHi I.1 I.2 (E k).1 (E k).2)
+    ⟨Interval.mulLo I.inf I.sup (E k).inf (E k).sup, Interval.mulHi I.inf I.sup (E k).inf (E k).sup⟩
 
 end CORALean.Float
 

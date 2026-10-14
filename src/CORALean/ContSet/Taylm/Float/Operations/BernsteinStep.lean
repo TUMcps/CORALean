@@ -19,7 +19,7 @@ the corner products. Zero for `i > j`, where `C(j, i) = 0`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,15 +34,15 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.bernsteinStep (N e j i : ℕ) : 𝕋 × 𝕋 :=
+def Taylm.bernsteinStep (N e j i : ℕ) : Interval 𝕋 :=
   if i ≤ j then
     -- the ratio, then the signed integer
     let rLo : 𝕋 := divDown (intDown (j.choose i : ℤ)) (intUp (N.choose i : ℤ))
     let rHi : 𝕋 := if le (one : 𝕋) (intDown (N.choose i : ℤ)) then
       divUp (intUp (j.choose i : ℤ)) (intDown (N.choose i : ℤ)) else one
     let c : ℤ := (e.choose i : ℤ) * 2 ^ i * (-1) ^ (e - i)
-    (Interval.mulLo rLo rHi (intDown c) (intUp c), Interval.mulHi rLo rHi (intDown c) (intUp c))
-  else (zero, zero)
+    ⟨Interval.mulLo rLo rHi (intDown c) (intUp c), Interval.mulHi rLo rHi (intDown c) (intUp c)⟩
+  else ⟨zero, zero⟩
 
 end CORALean.Float
 

@@ -10,7 +10,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Mag
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -24,24 +24,24 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.abs_le_mag (T : Taylm n) {ξ : ℝ}
-    (hξ : ξ ∈ Set.Icc (min T.constCoef T.bounds.1) (max T.constCoef T.bounds.2)) :
+    (hξ : ξ ∈ Set.Icc (min T.constCoef T.bounds.inf) (max T.constCoef T.bounds.sup)) :
     |ξ| ≤ T.mag := by -- --- PROOF ---
   unfold Taylm.mag
-  have h1 := le_max_left |T.constCoef| (max |T.bounds.1| |T.bounds.2|)
-  have h2 := le_max_left |T.bounds.1| |T.bounds.2|
-  have h3 := le_max_right |T.bounds.1| |T.bounds.2|
-  have h4 := le_max_right |T.constCoef| (max |T.bounds.1| |T.bounds.2|)
+  have h1 := le_max_left |T.constCoef| (max |T.bounds.inf| |T.bounds.sup|)
+  have h2 := le_max_left |T.bounds.inf| |T.bounds.sup|
+  have h3 := le_max_right |T.bounds.inf| |T.bounds.sup|
+  have h4 := le_max_right |T.constCoef| (max |T.bounds.inf| |T.bounds.sup|)
   rw [abs_le]
   constructor
   · -- the lower end of the hull is the centre or the range's bottom
     have := hξ.1
-    rcases min_choice T.constCoef T.bounds.1 with h | h <;> rw [h] at this
+    rcases min_choice T.constCoef T.bounds.inf with h | h <;> rw [h] at this
     · linarith [neg_abs_le T.constCoef]
-    · linarith [neg_abs_le T.bounds.1]
+    · linarith [neg_abs_le T.bounds.inf]
   · have := hξ.2
-    rcases max_choice T.constCoef T.bounds.2 with h | h <;> rw [h] at this
+    rcases max_choice T.constCoef T.bounds.sup with h | h <;> rw [h] at this
     · linarith [le_abs_self T.constCoef]
-    · linarith [le_abs_self T.bounds.2]
+    · linarith [le_abs_self T.bounds.sup]
 
 end CORALean.Real
 

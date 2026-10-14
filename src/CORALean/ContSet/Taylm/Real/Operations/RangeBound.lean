@@ -22,7 +22,7 @@ public import CORALean.ContSet.Conversion.Real.Interval_to_Taylm
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.rangeBound {m : ℕ} (e : Taylm.CodeList ℝ m) (D : Interval (Vec ℝ m))
-    (N : ℕ) : Option (ℝ × ℝ) :=
+    (N : ℕ) : Option (Interval ℝ) :=
   -- 1. a Taylor model of the identity, with remainder `[0, 0]`
   let TI := D.taylm N
   -- 2. evaluate the code list for `f` in Taylor model arithmetic

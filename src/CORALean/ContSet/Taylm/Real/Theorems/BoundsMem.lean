@@ -19,7 +19,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.bounds_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) {t : Vec ℝ n}
-    (ht : t ∈ Taylm.box n) : T.bounds.1 ≤ f t ∧ f t ≤ T.bounds.2 := by
+    (ht : t ∈ Taylm.box n) : T.bounds.inf ≤ f t ∧ f t ≤ T.bounds.sup := by
   have h₁ := h t ht
   have h₂ := Taylm.polyBounds_mem T.terms ht
   simp only [Taylm.bounds, Taylm.poly] at *

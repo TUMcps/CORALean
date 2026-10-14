@@ -26,7 +26,7 @@ Both in magnitude: `L_q` as `Taylm.inv` bounds it, `rᴺ⁺¹/mᴺ⁺²`, and `R
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,14 +43,14 @@ noncomputable def Taylm.invTight (T : Taylm n) : Taylm n :=
   let c := T.constCoef
   let N := T.maxOrder
   -- the distance of the hull from zero, and the reach of the range from the centre
-  let m := max (min c T.bounds.1) (-max c T.bounds.2)
+  let m := max (min c T.bounds.inf) (-max c T.bounds.sup)
   let r := T.reach c
   -- (33): `L_q`, the Lagrange remainder, in magnitude
   let ρL := r ^ (N + 1) / m ^ (N + 2)
   -- (34): `R_q(B(T), c_f)`, the exact remainder, in magnitude
   let ρR := r ^ (N + 1) / (m * |c| ^ (N + 1))
   -- (38): `R_q` once `L_q` reaches past `1/B(T)` at both ends, `L_q` otherwise
-  let ρ := if -ρL < 1 / T.bounds.2 ∧ 1 / T.bounds.1 < ρL then ρR else ρL
+  let ρ := if -ρL < 1 / T.bounds.sup ∧ 1 / T.bounds.inf < ρL then ρR else ρL
   T.compose c (fun k => iteratedDeriv k (fun x => x⁻¹) c / (k.factorial : ℝ)) N ρ
 
 end CORALean.Real

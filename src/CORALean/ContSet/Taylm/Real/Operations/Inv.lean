@@ -21,7 +21,7 @@ range, is the hull lying on one side of zero; `m` is then its distance from zero
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable {n : ℕ}
 noncomputable def Taylm.inv (T : Taylm n) : Taylm n :=
   let c := T.constCoef
   -- the hull of the centre and the range, and its distance from zero
-  let m := max (min c T.bounds.1) (-max c T.bounds.2)
+  let m := max (min c T.bounds.inf) (-max c T.bounds.sup)
   T.taylor (fun x => x⁻¹) c (((T.maxOrder + 1).factorial : ℝ) / m ^ (T.maxOrder + 2))
 
 end CORALean.Real

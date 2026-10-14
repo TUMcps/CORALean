@@ -24,7 +24,7 @@ generators' `∑ⱼ |nᵀgⱼ|` is rounded up from `max(⌈nᵀgⱼ⌉, −⌊n�
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Sec. 5.2]: `[ω̲, ω̄]`, the range of `nᵀx − d` over `Z`, rounded outward. -/
-def Zonotope.halfspaceRange (nv : Vec 𝕋 n) (d : 𝕋) (Z : Zonotope (Vec 𝕋 n)) : 𝕋 × 𝕋 :=
+def Zonotope.halfspaceRange (nv : Vec 𝕋 n) (d : 𝕋) (Z : Zonotope (Vec 𝕋 n)) : Interval 𝕋 :=
   let ωcLo := subDown (dotDown nv Z.c) d                  -- the centre `nᵀc − d`, down
   let ωcHi := subUp (dotUp nv Z.c) d                      -- and up
   let ρ := sumUp fun j =>                                 -- `∑ⱼ |nᵀgⱼ|`, up
@@ -48,7 +48,7 @@ def Zonotope.halfspaceRange (nv : Vec 𝕋 n) (d : 𝕋) (Z : Zonotope (Vec 𝕋
   -- `nᵀe`
   let eLo := sumDown fun i => Interval.mulLo (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i)
   let eHi := sumUp fun i => Interval.mulHi (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i)
-  (addDown (subDown ωcLo ρ) eLo, addUp (addUp ωcHi ρ) eHi)
+  ⟨addDown (subDown ωcLo ρ) eLo, addUp (addUp ωcHi ρ) eHi⟩
 
 end CORALean.Float
 

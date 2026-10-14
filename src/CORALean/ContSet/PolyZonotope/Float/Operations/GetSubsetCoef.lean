@@ -19,7 +19,7 @@ the corner products, so the exact real lies in the pair.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,15 +35,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.getSubsetCoef (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋)
-    (i : Fin pZ.h) (j : ℕ) : 𝕋 × 𝕋 :=
+    (i : Fin pZ.h) (j : ℕ) : Interval 𝕋 :=
   let e := pZ.E k i
   -- the integer, then the power of the centre, then the power of the radius
-  let A : 𝕋 × 𝕋 := (Interval.mulLo (intDown (e.choose j : ℤ)) (intUp (e.choose j : ℤ))
+  let A : Interval 𝕋 := ⟨Interval.mulLo (intDown (e.choose j : ℤ)) (intUp (e.choose j : ℤ))
     (Interval.powLo cen (e - j)) (Interval.powHi cen (e - j)),
     Interval.mulHi (intDown (e.choose j : ℤ)) (intUp (e.choose j : ℤ))
-    (Interval.powLo cen (e - j)) (Interval.powHi cen (e - j)))
-  (Interval.mulLo A.1 A.2 (Interval.powLo rad j) (Interval.powHi rad j),
-    Interval.mulHi A.1 A.2 (Interval.powLo rad j) (Interval.powHi rad j))
+    (Interval.powLo cen (e - j)) (Interval.powHi cen (e - j))⟩
+  ⟨Interval.mulLo A.inf A.sup (Interval.powLo rad j) (Interval.powHi rad j),
+    Interval.mulHi A.inf A.sup (Interval.powLo rad j) (Interval.powHi rad j)⟩
 
 end CORALean.Float
 

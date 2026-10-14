@@ -14,7 +14,7 @@ second otherwise; the other coordinates are untouched.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -27,11 +27,11 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.halveBox_cover {B : Fin n → ℝ × ℝ} (β : Fin n) {t : Vec ℝ n}
+theorem Taylm.halveBox_cover {B : Fin n → Interval ℝ} (β : Fin n) {t : Vec ℝ n}
     (ht : Taylm.InBox B t) :
     Taylm.InBox (Taylm.halveBox B β).1 t ∨
       Taylm.InBox (Taylm.halveBox B β).2 t := by -- --- PROOF ---
-  rcases le_total (t β) (((B β).1 + (B β).2) / 2) with h | h
+  rcases le_total (t β) (((B β).inf + (B β).sup) / 2) with h | h
   · left
     intro k
     by_cases hk : k = β

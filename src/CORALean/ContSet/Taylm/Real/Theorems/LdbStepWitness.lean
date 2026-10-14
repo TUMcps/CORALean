@@ -21,7 +21,7 @@ other estimate is above the function everywhere; the point is kept, since a cut 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +35,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.ldbStep_witness {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Encloses g) :
-    ∃ q ∈ Taylm.box n, Taylm.InBox T.ldbStep.2.2 q ∧ g q ≤ T.ldbStep.2.1 := by -- --- PROOF ---
+    ∃ q ∈ Taylm.box n, Taylm.InBox T.ldbStep.2 q ∧ g q ≤ T.ldbStep.1.sup := by -- --- PROOF ---
   set p : Vec ℝ n := fun k => if 0 < Taylm.linCoef T.terms k then -1 else 1
   have hp : p ∈ Taylm.box n := fun k => by simp only [p]; split_ifs <;> norm_num
   have h0 : (0 : Vec ℝ n) ∈ Taylm.box n := fun k => by simp
@@ -51,16 +51,16 @@ theorem Taylm.ldbStep_witness {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Enclo
     rw [abs_mul] at h1
     nlinarith [abs_nonneg (Taylm.linCoef T.terms k), abs_le.2 this]
   have hA : g p ≤ T.constCoef + ∑ k, |Taylm.linCoef T.terms k|
-      + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).2 + T.remSup) := by
+      + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.remSup) := by
     simp only [Taylm.poly, Taylm.constCoef] at hrp ⊢
     linarith [hrp.2, hb.2]
   have hB : g p ≤ T.poly p + T.remSup := by linarith [hrp.2]
   have hC : g 0 ≤ T.poly 0 + T.remSup := by linarith [hr0.2]
   -- one of the two points is at most `Min`, so it is kept
-  have hex : ∃ q ∈ Taylm.box n, g q ≤ T.ldbStep.2.1 := by
+  have hex : ∃ q ∈ Taylm.box n, g q ≤ T.ldbStep.1.sup := by
     simp only [Taylm.ldbStep]
     rcases le_total (T.poly 0 + T.remSup) (min (T.constCoef + ∑ k, |Taylm.linCoef T.terms k|
-      + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).2 + T.remSup)) (T.poly p + T.remSup))
+      + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.remSup)) (T.poly p + T.remSup))
       with hc | hc
     · exact ⟨0, h0, le_min (le_trans hC (le_trans hc (min_le_left _ _)))
         (le_min (le_trans hC (le_trans hc (min_le_right _ _))) hC)⟩

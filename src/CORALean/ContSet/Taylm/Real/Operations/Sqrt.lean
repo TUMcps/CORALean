@@ -21,7 +21,7 @@ The square root of [1, Def. 3 (sqrt)], under its condition that the range is pos
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable {n : ℕ}
 noncomputable def Taylm.sqrt (T : Taylm n) : Taylm n :=
   T.taylor Real.sqrt T.constCoef
     (|(descPochhammer ℝ (T.maxOrder + 1)).eval (1 / 2)|
-      * min T.constCoef T.bounds.1 ^ ((1 / 2 : ℝ) - (T.maxOrder + 1 : ℕ)))
+      * min T.constCoef T.bounds.inf ^ ((1 / 2 : ℝ) - (T.maxOrder + 1 : ℕ)))
 
 end CORALean.Real
 

@@ -21,7 +21,7 @@ the centre and the range bound lying strictly on one side of zero. `|ξ| ≥ m` 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,10 +35,10 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.inv_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hside : 0 < min T.constCoef T.bounds.1 ∨ max T.constCoef T.bounds.2 < 0) :
+    (hside : 0 < min T.constCoef T.bounds.inf ∨ max T.constCoef T.bounds.sup < 0) :
     T.inv.Encloses fun t => (f t)⁻¹ := by -- --- PROOF ---
-  set lo := min T.constCoef T.bounds.1
-  set hi := max T.constCoef T.bounds.2
+  set lo := min T.constCoef T.bounds.inf
+  set hi := max T.constCoef T.bounds.sup
   -- every point of the hull is at least `m` away from zero, and `m > 0`
   have hm : ∀ ξ ∈ Set.Icc lo hi, 0 < max lo (-hi) ∧ max lo (-hi) ≤ |ξ| := by
     intro ξ hξ

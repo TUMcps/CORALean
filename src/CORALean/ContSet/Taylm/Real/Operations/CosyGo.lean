@@ -19,7 +19,7 @@ COSY-GO's box steps with its bound of a box, and the mid-point estimate `P(p) + 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,8 +32,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.cosyGo (T : Taylm n) (X : Fin n → ℝ × ℝ) (ε : ℝ) (ldbFuel fuel : ℕ) :
-    ℝ × ℝ :=
+noncomputable def Taylm.cosyGo (T : Taylm n) (X : Fin n → Interval ℝ) (ε : ℝ) (ldbFuel fuel : ℕ) :
+    Interval ℝ :=
   Taylm.globalMin (T.goLowerBound ε ldbFuel) (fun p => T.poly p + T.remSup) X fuel
 
 end CORALean.Real

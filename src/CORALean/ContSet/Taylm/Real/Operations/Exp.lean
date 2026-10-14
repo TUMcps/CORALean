@@ -21,7 +21,7 @@ bounded in magnitude rather than as the interval product of eq. (2.4).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +35,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.exp (T : Taylm n) : Taylm n :=
-  T.taylor Real.exp T.constCoef (Real.exp (max T.constCoef T.bounds.2))
+  T.taylor Real.exp T.constCoef (Real.exp (max T.constCoef T.bounds.sup))
 
 end CORALean.Real
 

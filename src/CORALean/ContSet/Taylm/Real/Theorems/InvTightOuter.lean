@@ -24,7 +24,7 @@ bound, which is at most the Lagrange one since `|c| ≥ m`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,12 +38,12 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.invTight_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hside : 0 < min T.constCoef T.bounds.1 ∨ max T.constCoef T.bounds.2 < 0) :
+    (hside : 0 < min T.constCoef T.bounds.inf ∨ max T.constCoef T.bounds.sup < 0) :
     T.invTight.Encloses fun t => (f t)⁻¹ := by -- --- PROOF ---
   set c := T.constCoef
   set N := T.maxOrder
-  set lo := min c T.bounds.1
-  set hi := max c T.bounds.2
+  set lo := min c T.bounds.inf
+  set hi := max c T.bounds.sup
   set m := max lo (-hi)
   set r := T.reach c
   -- every point of the hull is at least `m` away from zero, and `m > 0`
@@ -66,11 +66,11 @@ theorem Taylm.invTight_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Enclos
   have hy : |f t - c| ≤ r := by
     rw [abs_le]
     constructor
-    · have := neg_abs_le (T.bounds.1 - c)
-      have := le_max_left |T.bounds.1 - c| |T.bounds.2 - c|
+    · have := neg_abs_le (T.bounds.inf - c)
+      have := le_max_left |T.bounds.inf - c| |T.bounds.sup - c|
       simp only [r, Taylm.reach]; linarith [hb.1]
-    · have := le_abs_self (T.bounds.2 - c)
-      have := le_max_right |T.bounds.1 - c| |T.bounds.2 - c|
+    · have := le_abs_self (T.bounds.sup - c)
+      have := le_max_right |T.bounds.inf - c| |T.bounds.sup - c|
       simp only [r, Taylm.reach]; linarith [hb.2]
   -- the exact remainder, and its magnitude
   simp only [Taylm.inv_coef, div_mul_eq_mul_div]

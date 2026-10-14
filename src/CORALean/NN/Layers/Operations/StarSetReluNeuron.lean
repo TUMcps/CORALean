@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.StarSet
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -18,7 +19,7 @@ The rows use the centre and generators before the neuron's row is cleared, as CO
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,10 +30,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def StarSet.reluNeuron {n : ℕ} (s : StarSet n) (j : Fin n) (b : ℝ × ℝ) :
+noncomputable def StarSet.reluNeuron {n : ℕ} (s : StarSet n) (j : Fin n) (b : Interval ℝ) :
     StarSet n :=
-  let l := b.1
-  let u := b.2
+  let l := b.inf
+  let u := b.sup
   if 0 ≤ l then s
   else if u ≤ 0 then
     { s with c := Function.update s.c j 0, G := Function.update s.G j 0 }

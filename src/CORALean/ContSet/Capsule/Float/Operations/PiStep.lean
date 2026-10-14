@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.Float.InverseTrig
 public import CORALean.Global.Float.IntRound
+public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section
 
@@ -16,7 +17,7 @@ itself otherwise.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,12 +32,12 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Capsule.piStep (p k : ℕ) : 𝕋 × 𝕋 :=
+def Capsule.piStep (p k : ℕ) : Interval 𝕋 :=
   -- `π` from below and above
   let piLo := addDown (acosDown p k (zero : 𝕋)) (acosDown p k zero)
   let piHi := addUp (acosUp p k (zero : 𝕋)) (acosUp p k zero)
-  (divDown piLo (intUp 499),
-    if ltStrict zero (intDown 499 : 𝕋) = true then divUp piHi (intDown 499) else piHi)
+  ⟨divDown piLo (intUp 499),
+    if ltStrict zero (intDown 499 : 𝕋) = true then divUp piHi (intDown 499) else piHi⟩
 
 end CORALean.Float
 

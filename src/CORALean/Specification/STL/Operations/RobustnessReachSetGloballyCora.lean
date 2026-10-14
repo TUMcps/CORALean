@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Analysis.Real.Sqrt
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -25,7 +26,7 @@ minimum over the windows `index`; `none` is its `-inf`. `meets` stands for `isIn
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,10 +39,12 @@ namespace CORALean
 
 /-- CORA's `robustness(globally(x(1) > 0, interval(0,T)), R)` for a one-branch reach set of a
 one-dimensional system: time points `tp` with sets `Xp`, time intervals `ti` with sets `Xi`, every
-set an interval `(lo, hi)`. `none` is the uniform branch, left, or the value `-inf`. -/
+set an interval `[lo, hi]`. `none` is the uniform branch, left, or the value `-inf`. -/
 noncomputable def STL.robustnessReachSetGloballyCora
-    (meets : ℝ × ℝ → ℝ × ℝ → Bool) (isectApprox isectExact : ℝ × ℝ → ℝ → Bool) (eps : ℝ)
-    (tp : List ℝ) (Xp : List (ℝ × ℝ)) (ti : List (ℝ × ℝ)) (Xi : List (ℝ × ℝ)) (T : ℝ) :
+    (meets : Real.Interval ℝ → Real.Interval ℝ → Bool)
+    (isectApprox isectExact : Real.Interval ℝ → ℝ → Bool) (eps : ℝ)
+    (tp : List ℝ) (Xp : List (Real.Interval ℝ)) (ti : List (Real.Interval ℝ))
+    (Xi : List (Real.Interval ℝ)) (T : ℝ) :
     Option ℝ :=
   let b := -eps                                               -- sets{1} = ~polytope(-1,0)
   let dts := List.zipWith (· - ·) tp.tail tp                  -- dt = diff(timePoint.time)
@@ -56,22 +59,22 @@ noncomputable def STL.robustnessReachSetGloballyCora
   let dt := (tFinal - tStart) / (N - 1)                       -- dt = (tFinal-tStart)/(length(t)-1)
   let fromS := 0 / dt                                         -- from = scale*res.from
   let toS := T / dt                                           -- to = scale*res.to
-  let I : ℝ × ℝ :=
+  let I : Real.Interval ℝ :=
     if 1e-10 < |(round fromS : ℝ) - fromS| ∨ 1e-10 < |(round toS : ℝ) - toS| then
-      (⌊fromS⌋ * dt, ⌈toS⌉ * dt)                             -- stlInterval(floor(from)*dt,...)
-    else (round fromS * dt, round toS * dt)                   -- stlInterval(round(from)*dt,...)
-  let robSet : ℝ × ℝ → ℝ := fun S =>                          -- aux_robustnessSet(S,set)
+      ⟨⌊fromS⌋ * dt, ⌈toS⌉ * dt⟩                             -- stlInterval(floor(from)*dt,...)
+    else ⟨round fromS * dt, round toS * dt⟩                   -- stlInterval(round(from)*dt,...)
+  let robSet : Real.Interval ℝ → ℝ := fun S =>                          -- aux_robustnessSet(S,set)
     if !(isectApprox S b) || !(isectExact S b) then
-      Real.sqrt ((S.1 - b) ^ 2)                               -- val = sqrt(val), quadprog
-    else -(b - S.1)                                           -- [~,val] = CORAlinprog(problem)
+      Real.sqrt ((S.inf - b) ^ 2)                               -- val = sqrt(val), quadprog
+    else -(b - S.inf)                                           -- [~,val] = CORAlinprog(problem)
   let r : List ℝ := (List.range (N - 1)).map fun i =>         -- for i = 1:length(t)-1
-    let w := (t.getD i 0, t.getD (i + 1) 0)                   -- interval(t(i),t(i+1))
-    let R_ := ((tp.zip Xp).filter (fun p => meets (p.1, p.1) w)).map Prod.snd ++
+    let w : Real.Interval ℝ := ⟨t.getD i 0, t.getD (i + 1) 0⟩  -- interval(t(i),t(i+1))
+    let R_ := ((tp.zip Xp).filter (fun p => meets ⟨p.1, p.1⟩ w)).map Prod.snd ++
       ((ti.zip Xi).filter (fun p => meets p.1 w)).map Prod.snd  -- aux_findReachSets(R,...)
     (R_.foldl (fun acc S => if acc.2 then acc else
       (robSet S, decide (robSet S = 0))) ((0 : ℝ), false)).1  -- r(j,i) = ...; if ~r(j,i) break
   let index := (List.range N).filter
-    (fun i => decide (I.1 ≤ t.getD i 0 ∧ t.getD i 0 ≤ I.2))   -- find(time >= from & ...)
+    (fun i => decide (I.inf ≤ t.getD i 0 ∧ t.getD i 0 ≤ I.sup))   -- find(time >= from & ...)
   let index := index.filter (· < N - 1)                       -- index(index <= length(r))
   match index with                                            -- r(cnt) = min(r_(index))
   | [] => none

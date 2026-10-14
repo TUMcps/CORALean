@@ -15,7 +15,7 @@ comparison makes the real test fail at the bounds read as reals. A `true` says n
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,14 +31,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.isIntersecting_cell_outer (L : CORALean.Real.LevelSet n)
-    (hne : ∀ i, L.op i ≠ .eq) (I : Interval (Vec 𝕋 n)) (B : Fin L.m → 𝕋 × 𝕋) {tol : 𝕋}
+    (hne : ∀ i, L.op i ≠ .eq) (I : Interval (Vec 𝕋 n)) (B : Fin L.m → Interval 𝕋) {tol : 𝕋}
     (htol : 0 ≤ toReal tol)
     (hB : ∀ i, CORALean.Real.IsRangeBound (fun x => L.f x i) I.construct
-      (toReal (B i).1) (toReal (B i).2))
+      (toReal (B i).inf) (toReal (B i).sup))
     (h : LevelSet.isIntersecting_cell tol L.op B = false) :
     L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.isIntersecting_cell_outer L hne I.nominal
-    (fun i => (toReal (B i).1, toReal (B i).2)) htol hB ?_
+    (fun i => ⟨toReal (B i).inf, toReal (B i).sup⟩) htol hB ?_
   -- the refuting row, and the real test failing there
   simp only [LevelSet.isIntersecting_cell, List.all_eq_false, List.mem_finRange, true_and,
     Bool.not_eq_true', Bool.not_eq_false] at h

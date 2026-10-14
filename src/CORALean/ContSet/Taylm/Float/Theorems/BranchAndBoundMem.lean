@@ -17,7 +17,7 @@ On every point of the box `X` the polynomial of the term list lies in the result
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,12 +32,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.branchAndBound_mem (P : List (𝕋 × (Fin n → ℕ))) (X : Fin n → 𝕋 × 𝕋) (ε : 𝕋)
+theorem Taylm.branchAndBound_mem (P : List (𝕋 × (Fin n → ℕ))) (X : Fin n → Interval 𝕋) (ε : 𝕋)
     (adv : Bool) (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) :
-    toReal (Taylm.branchAndBound P X ε adv fuel).1 ≤
+    toReal (Taylm.branchAndBound P X ε adv fuel).inf ≤
         Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t ∧
       Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t
-        ≤ toReal (Taylm.branchAndBound P X ε adv fuel).2 :=
+        ≤ toReal (Taylm.branchAndBound P X ε adv fuel).sup :=
   Taylm.bnbLoop_mem (fun B t hB => by
       -- each setting's bound of a sub-box
       cases adv

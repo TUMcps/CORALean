@@ -14,7 +14,7 @@ whatever the boxes covered before the split, they cover after it.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -27,7 +27,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.splitAt_covers {X : Fin n → ℝ × ℝ} {l : List (Fin n → ℝ × ℝ)} (i : ℕ)
+theorem Taylm.splitAt_covers {X : Fin n → Interval ℝ} {l : List (Fin n → Interval ℝ)} (i : ℕ)
     (h : Taylm.Covers X l) : Taylm.Covers X (Taylm.splitAt i l) := by -- --- PROOF ---
   intro t ht
   obtain ⟨B', hB', htB'⟩ := h t ht

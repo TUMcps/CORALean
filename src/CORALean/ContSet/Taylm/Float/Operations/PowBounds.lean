@@ -14,7 +14,7 @@ The range of `t ^ k` over `[l, u]`, by the float interval power `Interval.power`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,9 +29,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.powBounds (l u : 𝕋) (k : ℕ) : 𝕋 × 𝕋 :=
+def Taylm.powBounds (l u : 𝕋) (k : ℕ) : Interval 𝕋 :=
   let P : Interval (Vec 𝕋 1) := Interval.power ⟨fun _ => l, fun _ => u⟩ k
-  (P.inf 0, P.sup 0)
+  ⟨P.inf 0, P.sup 0⟩
 end CORALean.Float
 
 

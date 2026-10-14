@@ -14,7 +14,7 @@ least (`minimum`, exact), `none` when no coordinate is certified to have a nonze
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.boundaryRatio (I : Interval (Vec 𝕋 n)) (dir start : Vec 𝕋 n) : Option (𝕋 × 𝕋) :=
+def Interval.boundaryRatio (I : Interval (Vec 𝕋 n)) (dir start : Vec 𝕋 n) : Option (Interval 𝕋) :=
   (List.finRange n).foldl (fun acc i =>
     Interval.boundaryRatioStep acc (Interval.boundaryRatioAt I dir start i)) none
 

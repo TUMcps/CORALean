@@ -23,7 +23,7 @@ products. `q` is the precision of the square root.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,16 +38,16 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.sqrtCoef (q : ℕ) (c : 𝕋) (k : ℕ) : 𝕋 × 𝕋 :=
-  let Dh : 𝕋 × 𝕋 := (halfPow k (intDown (sqrtDeriv k)), halfPow k (intUp (sqrtDeriv k)))
+def Taylm.sqrtCoef (q : ℕ) (c : 𝕋) (k : ℕ) : Interval 𝕋 :=
+  let Dh : Interval 𝕋 := ⟨halfPow k (intDown (sqrtDeriv k)), halfPow k (intUp (sqrtDeriv k))⟩
   let wl := maximum zero (divDown one c)
   let wh := divUp one c
-  let A : 𝕋 × 𝕋 := (Interval.mulLo Dh.1 Dh.2 (sqrtDown q c) (sqrtUp q c),
-    Interval.mulHi Dh.1 Dh.2 (sqrtDown q c) (sqrtUp q c))
-  let B : 𝕋 × 𝕋 := (Interval.mulLo A.1 A.2 (powDown wl k) (powUp wh k),
-    Interval.mulHi A.1 A.2 (powDown wl k) (powUp wh k))
+  let A : Interval 𝕋 := ⟨Interval.mulLo Dh.inf Dh.sup (sqrtDown q c) (sqrtUp q c),
+    Interval.mulHi Dh.inf Dh.sup (sqrtDown q c) (sqrtUp q c)⟩
+  let B : Interval 𝕋 := ⟨Interval.mulLo A.inf A.sup (powDown wl k) (powUp wh k),
+    Interval.mulHi A.inf A.sup (powDown wl k) (powUp wh k)⟩
   let G := divFact (one, one) k
-  (Interval.mulLo B.1 B.2 G.1 G.2, Interval.mulHi B.1 B.2 G.1 G.2)
+  ⟨Interval.mulLo B.inf B.sup G.1 G.2, Interval.mulHi B.inf B.sup G.1 G.2⟩
 
 end CORALean.Float
 

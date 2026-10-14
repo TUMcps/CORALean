@@ -13,7 +13,7 @@ Entry by entry, each factor in its interval: `mul_between_corners` at each step 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -24,9 +24,9 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.prodBounds_mem : ∀ (L : List (ℝ × ℝ)) (x : List ℝ), L.length = x.length →
-    (∀ i (h₁ : i < L.length) (h₂ : i < x.length), L[i].1 ≤ x[i] ∧ x[i] ≤ L[i].2) →
-    (Taylm.prodBounds L).1 ≤ x.prod ∧ x.prod ≤ (Taylm.prodBounds L).2
+theorem Taylm.prodBounds_mem : ∀ (L : List (Interval ℝ)) (x : List ℝ), L.length = x.length →
+    (∀ i (h₁ : i < L.length) (h₂ : i < x.length), L[i].inf ≤ x[i] ∧ x[i] ≤ L[i].sup) →
+    (Taylm.prodBounds L).inf ≤ x.prod ∧ x.prod ≤ (Taylm.prodBounds L).sup
   | [], [], _, _ => by simp [Taylm.prodBounds]
   | a :: L, y :: x, hl, hm => by
     have h0 := hm 0 (by simp) (by simp)

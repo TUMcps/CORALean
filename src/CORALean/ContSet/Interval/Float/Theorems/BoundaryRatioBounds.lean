@@ -16,7 +16,7 @@ ratio below the result's lower end is below every coordinate's.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,16 +32,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- What the fold keeps of the coordinates it has processed. -/
-def Interval.aux_ratioInv (f : Fin n → Option (𝕋 × 𝕋)) (idx : List (Fin n))
-    (acc : Option (𝕋 × 𝕋)) : Prop :=
+def Interval.aux_ratioInv (f : Fin n → Option (Interval 𝕋)) (idx : List (Fin n))
+    (acc : Option (Interval 𝕋)) : Prop :=
   (acc = none ↔ ∀ i ∈ idx, f i = none) ∧
     ∀ a, acc = some a →
-      (∀ i ∈ idx, ∀ x, f i = some x → toReal a.1 ≤ toReal x.1 ∧ toReal a.2 ≤ toReal x.2) ∧
-        ∀ y : ℝ, (∀ i ∈ idx, ∀ x, f i = some x → y ≤ toReal x.2) → y ≤ toReal a.2
+      (∀ i ∈ idx, ∀ x, f i = some x → toReal a.inf ≤ toReal x.inf ∧ toReal a.sup ≤ toReal x.sup) ∧
+        ∀ y : ℝ, (∀ i ∈ idx, ∀ x, f i = some x → y ≤ toReal x.sup) → y ≤ toReal a.sup
 
 /-- One step keeps the invariant for the coordinates up to `i`. -/
-theorem Interval.aux_ratio_step (f : Fin n → Option (𝕋 × 𝕋)) (idx : List (Fin n)) (i : Fin n)
-    (acc : Option (𝕋 × 𝕋)) (h : Interval.aux_ratioInv f idx acc) :
+theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : List (Fin n)) (i : Fin n)
+    (acc : Option (Interval 𝕋)) (h : Interval.aux_ratioInv f idx acc) :
     Interval.aux_ratioInv f (idx ++ [i])
       (Interval.boundaryRatioStep acc (f i)) := by -- --- PROOF ---
   obtain ⟨h1, h2⟩ := h
@@ -88,7 +88,8 @@ theorem Interval.aux_ratio_step (f : Fin n → Option (𝕋 × 𝕋)) (idx : Lis
         constructor
         · intro hn; exact absurd hn (by simp)
         · intro hall; exact absurd (hall i (Or.inr rfl)) (by simp [hfi])
-      · have hb' : (minimum a.1 r.1, minimum a.2 r.2) = b := Option.some.inj hb
+      · have hb' : (⟨minimum a.inf r.inf, minimum a.sup r.sup⟩ : Interval 𝕋) = b :=
+          Option.some.inj hb
         subst hb'
         obtain ⟨h3, h4⟩ := h2 a rfl
         -- each processed coordinate's bounds are above the minimum, which is below both
@@ -103,8 +104,8 @@ theorem Interval.aux_ratio_step (f : Fin n → Option (𝕋 × 𝕋)) (idx : Lis
         · rw [toReal_minimum]
           exact le_min (h4 y fun j hj x hx => hy j (by simp [hj]) x hx) (hy i (by simp) r hfi)
 
-theorem Interval.aux_ratio_foldl (f : Fin n → Option (𝕋 × 𝕋)) :
-    ∀ (l : List (Fin n)) (acc : Option (𝕋 × 𝕋)) (idx : List (Fin n)),
+theorem Interval.aux_ratio_foldl (f : Fin n → Option (Interval 𝕋)) :
+    ∀ (l : List (Fin n)) (acc : Option (Interval 𝕋)) (idx : List (Fin n)),
       Interval.aux_ratioInv f idx acc →
       Interval.aux_ratioInv f (idx ++ l)
         (l.foldl (fun acc i => Interval.boundaryRatioStep acc (f i)) acc) := by -- --- PROOF ---
@@ -124,9 +125,9 @@ theorem Interval.boundaryRatio_bounds (I : Interval (Vec 𝕋 n)) (dir start : V
         ∀ i, Interval.boundaryRatioAt I dir start i = none) ∧
       ∀ a, Interval.boundaryRatio I dir start = some a →
         (∀ i x, Interval.boundaryRatioAt I dir start i = some x →
-          toReal a.1 ≤ toReal x.1 ∧ toReal a.2 ≤ toReal x.2) ∧
-        ∀ y : ℝ, (∀ i x, Interval.boundaryRatioAt I dir start i = some x → y ≤ toReal x.2) →
-          y ≤ toReal a.2 := by -- --- PROOF ---
+          toReal a.inf ≤ toReal x.inf ∧ toReal a.sup ≤ toReal x.sup) ∧
+        ∀ y : ℝ, (∀ i x, Interval.boundaryRatioAt I dir start i = some x → y ≤ toReal x.sup) →
+          y ≤ toReal a.sup := by -- --- PROOF ---
   have h := Interval.aux_ratio_foldl (Interval.boundaryRatioAt I dir start) (List.finRange n)
     none [] ⟨by simp, fun a ha => absurd ha (by simp)⟩
   obtain ⟨h1, h2⟩ := h

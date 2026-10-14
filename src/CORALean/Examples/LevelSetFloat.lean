@@ -25,7 +25,7 @@ Each certain answer is a guarantee, and the theorem instances below apply
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -58,8 +58,8 @@ noncomputable def levelSet : CORALean.Real.LevelSet 2 where
 noncomputable def levelPoint : Vec ℝ 2 := ![1 / 2, 1 / 4]
 
 /-- Exact bounds on the three row values at `p`: `-11/16`, `-1/2`, `0`. -/
-def B : Fin 3 → D × D := ![(d (-11) (-4), d (-11) (-4)), (d (-1) (-1), d (-1) (-1)),
-  (d 0 0, d 0 0)]
+def B : Fin 3 → Interval D := ![⟨d (-11) (-4), d (-11) (-4)⟩, ⟨d (-1) (-1), d (-1) (-1)⟩,
+  ⟨d 0 0, d 0 0⟩]
 
 /-- `levelSet` with its function dropped, which the tests never call, so `#eval` can run them. -/
 def levelOps : CORALean.Real.LevelSet 2 := ⟨3, fun _ => 0, ops⟩
@@ -67,7 +67,7 @@ def levelOps : CORALean.Real.LevelSet 2 := ⟨3, fun _ => 0, ops⟩
 #eval LevelSet.containsPoint (𝕋 := D) levelOps B  -- true
 
 /-- Bounds at `(2, 0)`, outside the disc: `3 ≤ 0` is not certified. -/
-def Bout : Fin 3 → D × D := ![(d 3 0, d 3 0), (d (-2) 0, d (-2) 0), (d 2 0, d 2 0)]
+def Bout : Fin 3 → Interval D := ![⟨d 3 0, d 3 0⟩, ⟨d (-2) 0, d (-2) 0⟩, ⟨d 2 0, d 2 0⟩]
 
 #eval LevelSet.containsPoint (𝕋 := D) levelOps Bout  -- false
 
@@ -90,7 +90,7 @@ noncomputable def levelEmpty : CORALean.Real.LevelSet 1 where
 /-- `levelEmpty` with its function dropped. -/
 def levelEmptyOps : CORALean.Real.LevelSet 1 := ⟨1, fun _ => 0, ![.le]⟩
 
-def O : Fin 1 → D × D := ![(d 1 0, d 2 0)]
+def O : Fin 1 → Interval D := ![⟨d 1 0, d 2 0⟩]
 
 #eval LevelSet.representsa_emptySet (𝕋 := D) levelEmptyOps O  -- true
 
@@ -118,7 +118,7 @@ noncomputable def levelDisc : CORALean.Real.LevelSet 2 where
   op := ![.le]
 
 /-- Range of `x² + y² - 1` over the box: `[7, 17]`. -/
-def Bbox : Fin 1 → D × D := ![(d 7 0, d 17 0)]
+def Bbox : Fin 1 → Interval D := ![⟨d 7 0, d 17 0⟩]
 
 #eval LevelSet.isIntersecting_cell (m := 1) (d 0 0 : D) ![.le] Bbox  -- false
 

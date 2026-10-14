@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.StarSet
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -17,7 +18,7 @@ box is `(l + u) / 2`, which is what the row's centre is taken at here. CORA's co
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,10 +29,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def StarSet.rowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : ℝ × ℝ :=
+noncomputable def StarSet.rowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : Interval ℝ :=
   let c_ := s.c j + ∑ k, s.G j k * ((s.l k + s.u k) / 2)
   let r := ∑ k, |s.G j k * ((s.u k - s.l k) / 2)|
-  (c_ - r, c_ + r)
+  ⟨c_ - r, c_ + r⟩
 
 end CORALean.Real
 

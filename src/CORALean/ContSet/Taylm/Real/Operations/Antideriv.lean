@@ -23,7 +23,7 @@ width alone misses whenever `J` is not symmetric and `ℓ` can be negative
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +42,7 @@ noncomputable def Taylm.antideriv (i : Fin n) (T : Taylm n) : Taylm n :=
   let Plow := T.terms.filter fun a => Nat.blt (Taylm.degree a.2) N
   let Prest := T.terms.filter fun a => !Nat.blt (Taylm.degree a.2) N
   -- `J = B(P - P_{n-1}) + I`
-  let J := ((Taylm.polyBounds Prest).1 + T.remInf, (Taylm.polyBounds Prest).2 + T.remSup)
+  let J := ((Taylm.polyBounds Prest).inf + T.remInf, (Taylm.polyBounds Prest).sup + T.remSup)
   -- `∫₀^{xᵢ} P_{n-1} dxᵢ`, and `J` times the signed lengths `[-1, 1]`
   { terms := Taylm.integrateTerms i Plow
     remInf := Interval.mulLo J.1 J.2 (-1) 1

@@ -16,7 +16,7 @@ The fold over the outputs multiplies the powers of the output polynomials (`subs
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,9 +39,9 @@ theorem PolyZonotope.subsXprod_rel (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
         (InflatedContSet.nominal pZin) idu i) := by -- --- PROOF ---
   unfold PolyZonotope.subsXprod Real.PolyZonotope.subsXprod
   generalize List.finRange nu = L
-  have h1 : PolyZonotope.subsRel ([((one, one), 0)] : List ((𝕋 × 𝕋) × (Fin pZin.p → ℕ)))
+  have h1 : PolyZonotope.subsRel ([(⟨one, one⟩, 0)] : List ((Interval 𝕋) × (Fin pZin.p → ℕ)))
       [(1, 0)] := List.Forall₂.cons ⟨rfl, by simp [toReal_one]⟩ List.Forall₂.nil
-  generalize ([((one, one), 0)] : List ((𝕋 × 𝕋) × (Fin pZin.p → ℕ))) = acc at h1 ⊢
+  generalize ([(⟨one, one⟩, 0)] : List ((Interval 𝕋) × (Fin pZin.p → ℕ))) = acc at h1 ⊢
   generalize ([(1, 0)] : List (ℝ × (Fin pZin.p → ℕ))) = acc' at h1 ⊢
   induction L generalizing acc acc' with
   | nil => exact h1

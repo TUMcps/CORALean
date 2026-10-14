@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.BernsteinCoeff
 public import CORALean.ContSet.Taylm.Real.Operations.BernsteinDegree
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -21,7 +22,7 @@ plus the remainder interval. Written as a pair (lower, upper), as `Taylm.bounds`
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,11 +36,11 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `optBernstein`: `interval(min(min(B)), max(max(B))) + obj.remainder`. -/
-noncomputable def Taylm.optBernstein (T : Taylm n) : ℝ × ℝ :=
+noncomputable def Taylm.optBernstein (T : Taylm n) : Interval ℝ :=
   let N := T.bernsteinDegree                                         -- n = max(max(E))
   let B := Taylm.bernsteinCoeff T.terms N                           -- poly2bernstein(G, E, dom)
-  (Finset.univ.inf' ⟨fun _ => 0, Finset.mem_univ _⟩ B + T.remInf,    -- min(min(B)) + remainder
-   Finset.univ.sup' ⟨fun _ => 0, Finset.mem_univ _⟩ B + T.remSup)    -- max(max(B)) + remainder
+  ⟨Finset.univ.inf' ⟨fun _ => 0, Finset.mem_univ _⟩ B + T.remInf,    -- min(min(B)) + remainder
+   Finset.univ.sup' ⟨fun _ => 0, Finset.mem_univ _⟩ B + T.remSup⟩    -- max(max(B)) + remainder
 
 end CORALean.Real
 

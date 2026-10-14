@@ -24,7 +24,7 @@ the first that eliminates the box; their maximum is what the hierarchy can reach
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,12 +38,13 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 open Classical in
-noncomputable def Taylm.goLowerBound (T : Taylm n) (ε : ℝ) (fuel : ℕ) (B : Fin n → ℝ × ℝ) : ℝ :=
+noncomputable def Taylm.goLowerBound (T : Taylm n) (ε : ℝ) (fuel : ℕ) (B : Fin n → Interval ℝ) : ℝ
+    :=
   let TB := T.reexpand B
   -- the mere interval bound
-  let lIN := (Taylm.polyBoxBounds T.terms B).1 + T.remInf
+  let lIN := (Taylm.polyBoxBounds T.terms B).inf + T.remInf
   -- the naive Taylor model bound, from the model re-expanded on the box
-  let lTM := TB.bounds.1
+  let lTM := TB.bounds.inf
   -- LDB
   let lLDB := TB.ldb ε fuel
   -- QFB at the box's centre, where the quadratic part is positive semidefinite

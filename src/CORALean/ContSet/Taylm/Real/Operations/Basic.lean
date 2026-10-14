@@ -24,21 +24,23 @@ variable {n : ℕ}
 -- ======================================  `Taylm.boxMid`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The centre of a box -/
-noncomputable def Taylm.boxMid (B : Fin n → ℝ × ℝ) : Vec ℝ n := fun k => ((B k).1 + (B k).2) / 2
+noncomputable def Taylm.boxMid (B : Fin n → Interval ℝ) : Vec ℝ n :=
+    fun k => ((B k).inf + (B k).sup) / 2
 
 
 -- ======================================  `Taylm.boxRad`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The radius of a box -/
-noncomputable def Taylm.boxRad (B : Fin n → ℝ × ℝ) : Vec ℝ n := fun k => ((B k).2 - (B k).1) / 2
+noncomputable def Taylm.boxRad (B : Fin n → Interval ℝ) : Vec ℝ n :=
+    fun k => ((B k).sup - (B k).inf) / 2
 
 
 -- ======================================  `Taylm.const`  ======================================= --

@@ -17,7 +17,7 @@ source, not run). The bounds are range bounds of the guard function over the set
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,8 +38,8 @@ def LevelSet.aux_G : LevelSet 1 :=
 def LevelSet.aux_R : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
 
 /-- The bounds of the guard function over `[0, 1]`: `(0, 1)` and `(-1, 0)`. -/
-def LevelSet.aux_BG (g : LevelSet 1) (_ : ℕ) : Fin g.m → ℝ × ℝ :=
-  fun i => if i.val = 0 then (0, 1) else (-1, 0)
+def LevelSet.aux_BG (g : LevelSet 1) (_ : ℕ) : Fin g.m → Interval ℝ :=
+  fun i => if i.val = 0 then ⟨0, 1⟩ else ⟨-1, 0⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -47,7 +47,7 @@ def LevelSet.aux_BG (g : LevelSet 1) (_ : ℕ) : Fin g.m → ℝ × ℝ :=
 theorem LevelSet.potIntCora_misses_counterexample :
     LevelSet.aux_G.construct ∩ LevelSet.aux_R.construct ≠ ∅ ∧
       (∀ i : Fin 2, IsRangeBound (fun x => LevelSet.aux_G.f x i) LevelSet.aux_R.construct
-        (LevelSet.aux_BG LevelSet.aux_G 0 i).1 (LevelSet.aux_BG LevelSet.aux_G 0 i).2) ∧
+        (LevelSet.aux_BG LevelSet.aux_G 0 i).inf (LevelSet.aux_BG LevelSet.aux_G 0 i).sup) ∧
       (0, 0) ∉ LevelSet.potIntCora [LevelSet.aux_G] 1 LevelSet.aux_BG := by -- --- PROOF ---
   refine ⟨?_, ?_, ?_⟩
   · -- the point `0` is in both

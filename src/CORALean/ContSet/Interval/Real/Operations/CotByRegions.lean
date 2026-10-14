@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -21,7 +22,7 @@ modulo the period `π`, and, the cotangent falling on all of `(0, π)`, two case
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,13 +33,13 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Interval.cotByRegions (lo hi : ℝ) : Option (ℝ × ℝ) :=
+noncomputable def Interval.cotByRegions (lo hi : ℝ) : Option (Interval ℝ) :=
   let z_lo := lo - Real.pi * ⌊lo / Real.pi⌋  -- `mod(x̲, π)`
   let z_hi := hi - Real.pi * ⌊hi / Real.pi⌋  -- `mod(x̅, π)`
   if Real.pi ≤ hi - lo ∨ z_hi < z_lo then
     none
   else
-    some (Real.cot z_hi, Real.cot z_lo)
+    some ⟨Real.cot z_hi, Real.cot z_lo⟩
 
 end CORALean.Real
 

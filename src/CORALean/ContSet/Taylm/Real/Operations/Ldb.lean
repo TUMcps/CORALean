@@ -18,7 +18,7 @@ The lower bound of a model's minimum over the normalized box by the linear domin
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.ldb (T : Taylm n) (ε : ℝ) (fuel : ℕ) : ℝ :=
-  Taylm.ldbLoop T ε fuel fun _ => (-1, 1)
+  Taylm.ldbLoop T ε fuel fun _ => ⟨-1, 1⟩
 
 end CORALean.Real
 

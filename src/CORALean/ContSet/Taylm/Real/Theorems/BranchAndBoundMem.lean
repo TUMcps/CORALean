@@ -25,7 +25,7 @@ loop's boxes always cover `[x]`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,10 +38,10 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.branchAndBound_mem (P : List (ℝ × (Fin n → ℕ))) (X : Fin n → ℝ × ℝ) (ε : ℝ)
+theorem Taylm.branchAndBound_mem (P : List (ℝ × (Fin n → ℕ))) (X : Fin n → Interval ℝ) (ε : ℝ)
     (adv : Bool) (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) :
-    (Taylm.branchAndBound P X ε adv fuel).1 ≤ Taylm.polyOf P t ∧
-      Taylm.polyOf P t ≤ (Taylm.branchAndBound P X ε adv fuel).2 := by -- --- PROOF ---
+    (Taylm.branchAndBound P X ε adv fuel).inf ≤ Taylm.polyOf P t ∧
+      Taylm.polyOf P t ≤ (Taylm.branchAndBound P X ε adv fuel).sup := by -- --- PROOF ---
   refine Taylm.bnbLoop_mem (fun B t hB => ?_) ε ht fuel [X] fun t' h' => ⟨X, by simp, h'⟩
   -- each setting's bound of a sub-box
   cases adv

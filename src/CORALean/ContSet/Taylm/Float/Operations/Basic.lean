@@ -43,36 +43,36 @@ def Taylm.belowPow (p : ℕ) (x : 𝕋) : Bool := le (half^[p] x) (half one)
 -- ===============================  `Taylm.bernsteinEntryBounds`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- `bernsteinEntry N e j`, the sum over `i ≤ e` of its terms, between two floats: the terms'
 `bernsteinStep` brackets, the lower ends summed down and the upper ends summed up. -/
-def Taylm.bernsteinEntryBounds (N e j : ℕ) : 𝕋 × 𝕋 :=
-  (listSumDown ((List.range (e + 1)).map fun i => (Taylm.bernsteinStep (𝕋 := 𝕋) N e j i).1),
-    listSumUp ((List.range (e + 1)).map fun i => (Taylm.bernsteinStep (𝕋 := 𝕋) N e j i).2))
+def Taylm.bernsteinEntryBounds (N e j : ℕ) : Interval 𝕋 :=
+  ⟨listSumDown ((List.range (e + 1)).map fun i => (Taylm.bernsteinStep (𝕋 := 𝕋) N e j i).inf),
+    listSumUp ((List.range (e + 1)).map fun i => (Taylm.bernsteinStep (𝕋 := 𝕋) N e j i).sup)⟩
 
 
 -- ======================================  `Taylm.boxMid`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The midpoint of a box, `(l + u) / 2` with the sum rounded up. -/
-def Taylm.boxMid (B : Fin n → 𝕋 × 𝕋) : Vec 𝕋 n := fun k => half (addUp (B k).1 (B k).2)
+def Taylm.boxMid (B : Fin n → Interval 𝕋) : Vec 𝕋 n := fun k => half (addUp (B k).inf (B k).sup)
 
 
 -- ======================================  `Taylm.boxRad`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- A radius around the stored midpoint reaching both ends of the box: the larger of the two gaps,
 rounded up. -/
-def Taylm.boxRad (B : Fin n → 𝕋 × 𝕋) : Vec 𝕋 n :=
-  fun k => maximum (subUp (B k).2 (Taylm.boxMid B k)) (subUp (Taylm.boxMid B k) (B k).1)
+def Taylm.boxRad (B : Fin n → Interval 𝕋) : Vec 𝕋 n :=
+  fun k => maximum (subUp (B k).sup (Taylm.boxMid B k)) (subUp (Taylm.boxMid B k) (B k).inf)
 
 
 -- ======================================  `Taylm.const`  ======================================= --
@@ -149,37 +149,37 @@ def Taylm.plus (T₁ T₂ : Taylm 𝕋 n) : Taylm 𝕋 n :=
 -- ====================================  `Taylm.polyBounds`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The term ranges summed, each end rounded outward. -/
-def Taylm.polyBounds (L : List (𝕋 × (Fin n → ℕ))) : 𝕋 × 𝕋 :=
-  (listSumDown (L.map fun a => (Taylm.termBounds a).1),
-    listSumUp (L.map fun a => (Taylm.termBounds a).2))
+def Taylm.polyBounds (L : List (𝕋 × (Fin n → ℕ))) : Interval 𝕋 :=
+  ⟨listSumDown (L.map fun a => (Taylm.termBounds a).inf),
+    listSumUp (L.map fun a => (Taylm.termBounds a).sup)⟩
 
 
 -- ======================================  `Taylm.bounds`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The range of a Taylor model -/
-def Taylm.bounds (T : Taylm 𝕋 n) : 𝕋 × 𝕋 :=
-  (addDown (Taylm.polyBounds T.terms).1 T.remInf, addUp (Taylm.polyBounds T.terms).2 T.remSup)
+def Taylm.bounds (T : Taylm 𝕋 n) : Interval 𝕋 :=
+  ⟨addDown (Taylm.polyBounds T.terms).inf T.remInf, addUp (Taylm.polyBounds T.terms).sup T.remSup⟩
 
 
 -- ======================================  `Taylm.magUp`  ======================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The largest absolute value of the constant part and the two ends of the range: a bound of
 `|ξ|` on the hull of the centre and the range, which is where a Lagrange remainder looks for
 the derivative. -/
 def Taylm.magUp (T : Taylm 𝕋 n) : 𝕋 :=
-  maximum (absolute T.constCoef) (maximum (absolute T.bounds.1) (absolute T.bounds.2))
+  maximum (absolute T.constCoef) (maximum (absolute T.bounds.inf) (absolute T.bounds.sup))
 
 
 -- =======================================  `Taylm.sum`  ======================================== --
@@ -208,26 +208,26 @@ def Taylm.mtimes {k m : ℕ} (M : Mat 𝕋 k m) (T : Fin m → Taylm 𝕋 n) : F
 -- ==================================  `Taylm.termBoxBounds`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The range of one term `c ∏ tₖ ^ eₖ` over a box `B`: the power ranges of the coordinates
 multiplied, then the coefficient, every end rounded outward. -/
-def Taylm.termBoxBounds (B : Fin n → 𝕋 × 𝕋) (a : 𝕋 × (Fin n → ℕ)) : 𝕋 × 𝕋 :=
-  let M := Taylm.prodBounds fun k => Taylm.powBounds (B k).1 (B k).2 (a.2 k)
-  (Interval.mulLo a.1 a.1 M.1 M.2, Interval.mulHi a.1 a.1 M.1 M.2)
+def Taylm.termBoxBounds (B : Fin n → Interval 𝕋) (a : 𝕋 × (Fin n → ℕ)) : Interval 𝕋 :=
+  let M := Taylm.prodBounds fun k => Taylm.powBounds (B k).inf (B k).sup (a.2 k)
+  ⟨Interval.mulLo a.1 a.1 M.inf M.sup, Interval.mulHi a.1 a.1 M.inf M.sup⟩
 
 
 -- ==================================  `Taylm.polyBoxBounds`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The range of a term list over a box `B`: the term ranges summed, each end rounded outward. -/
-def Taylm.polyBoxBounds (L : List (𝕋 × (Fin n → ℕ))) (B : Fin n → 𝕋 × 𝕋) : 𝕋 × 𝕋 :=
-  (listSumDown (L.map fun a => (Taylm.termBoxBounds B a).1),
-    listSumUp (L.map fun a => (Taylm.termBoxBounds B a).2))
+def Taylm.polyBoxBounds (L : List (𝕋 × (Fin n → ℕ))) (B : Fin n → Interval 𝕋) : Interval 𝕋 :=
+  ⟨listSumDown (L.map fun a => (Taylm.termBoxBounds B a).inf),
+    listSumUp (L.map fun a => (Taylm.termBoxBounds B a).sup)⟩
 
 
 -- ======================================  `Taylm.trace`  ======================================= --
@@ -284,22 +284,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ======================================  `Taylm.InBox`  ======================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- A real point lies in the box whose stored float ends are read as reals. -/
-def Taylm.InBox (B : Fin n → 𝕋 × 𝕋) (t : Vec ℝ n) : Prop :=
-  ∀ k, toReal (B k).1 ≤ t k ∧ t k ≤ toReal (B k).2
+def Taylm.InBox (B : Fin n → Interval 𝕋) (t : Vec ℝ n) : Prop :=
+  ∀ k, toReal (B k).inf ≤ t k ∧ t k ≤ toReal (B k).sup
 
 
 -- ======================================  `Taylm.Covers`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- Every point of the box `X` lies in one of the boxes `l`. -/
-def Taylm.Covers (X : Fin n → 𝕋 × 𝕋) (l : List (Fin n → 𝕋 × 𝕋)) : Prop :=
+def Taylm.Covers (X : Fin n → Interval 𝕋) (l : List (Fin n → Interval 𝕋)) : Prop :=
   ∀ t, Taylm.InBox X t → ∃ B ∈ l, Taylm.InBox B t
 
 end CORALean.Float

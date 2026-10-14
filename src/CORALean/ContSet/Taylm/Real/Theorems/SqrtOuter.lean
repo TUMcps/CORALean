@@ -23,7 +23,7 @@ derivatives are `iter_deriv_rpow_const`'s, and a negative power decreases.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sqrt_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hpos : 0 < min T.constCoef T.bounds.1) :
+    (hpos : 0 < min T.constCoef T.bounds.inf) :
     T.sqrt.Encloses fun t => Real.sqrt (f t) := by -- --- PROOF ---
   refine Taylm.taylor_outer h _ _ _ (fun ξ hξ => Real.contDiffAt_sqrt
     (ne_of_gt (lt_of_lt_of_le hpos hξ.1))) fun ξ hξ => ?_

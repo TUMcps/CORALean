@@ -17,7 +17,7 @@ chord from `(l, 0)` to `(u, u)`, since `max` is convex.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,8 +30,8 @@ open ContSet
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet n) (j : Fin n) (b : ℝ × ℝ)
-    (hb : ∀ x ∈ construct s, b.1 ≤ x j ∧ x j ≤ b.2) :
+theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet n) (j : Fin n) (b : Interval ℝ)
+    (hb : ∀ x ∈ construct s, b.inf ≤ x j ∧ x j ≤ b.sup) :
     (fun (x : Vec ℝ n) => (Function.update x j (max (x j) 0) : Vec ℝ n)) '' construct s
       ⊆ construct (s.reluNeuron j b) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
@@ -40,14 +40,14 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet n) (j : Fin n) (b : ℝ 
   obtain ⟨α, hα, hcα, hxα⟩ := hx
   unfold StarSet.reluNeuron
   -- the neuron is nonnegative everywhere: the ReLU is the identity
-  by_cases h0 : 0 ≤ b.1
+  by_cases h0 : 0 ≤ b.inf
   · rw [if_pos h0]
     have : max (x j) 0 = x j := max_eq_left (by linarith [hbx.1])
     rw [this, Function.update_eq_self]
     exact ⟨α, hα, hcα, hxα⟩
   rw [if_neg h0]
   -- the neuron is nonpositive everywhere: the ReLU is `0`, the row cleared
-  by_cases h1 : b.2 ≤ 0
+  by_cases h1 : b.sup ≤ 0
   · rw [if_pos h1]
     have : max (x j) 0 = 0 := max_eq_right (by linarith [hbx.2])
     rw [this]
@@ -63,10 +63,10 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet n) (j : Fin n) (b : ℝ 
   have hxj := hxα j
   have hβ0 : 0 ≤ β := le_max_right _ _
   have hβx : x j ≤ β := le_max_left _ _
-  have hβu : β ≤ b.2 := max_le hbx.2 h1.le
+  have hβu : β ≤ b.sup := max_le hbx.2 h1.le
   -- the chord from `(l, 0)` to `(u, u)` lies above the ReLU
-  have hden : 0 < b.2 - b.1 := by linarith
-  have hchord : β ≤ b.2 / (b.2 - b.1) * (x j - b.1) := by
+  have hden : 0 < b.sup - b.inf := by linarith
+  have hchord : β ≤ b.sup / (b.sup - b.inf) * (x j - b.inf) := by
     rw [div_mul_eq_mul_div, le_div_iff₀ hden]
     rcases le_total (x j) 0 with h | h
     · rw [hβ, max_eq_right h]; nlinarith [hbx.1]
@@ -88,8 +88,8 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet n) (j : Fin n) (b : ℝ 
     · simp [Fin.sum_univ_castSucc, hβ0]
     · simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last, hS]
       linarith
-    · have hS' : ∑ k : Fin s.m, -(b.2 / (b.2 - b.1)) * s.G j k * α k
-          = -(b.2 / (b.2 - b.1)) * (x j - s.c j) := by
+    · have hS' : ∑ k : Fin s.m, -(b.sup / (b.sup - b.inf)) * s.G j k * α k
+          = -(b.sup / (b.sup - b.inf)) * (x j - s.c j) := by
         rw [← hS, Finset.mul_sum]
         exact Finset.sum_congr rfl fun k _ => by ring
       simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last]

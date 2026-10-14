@@ -23,7 +23,7 @@ give the same verdict.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,8 +39,8 @@ open CORALean
 theorem LevelSet.containsCellCora_counterexample :
     let ls : LevelSet 1 := ⟨2, fun x => ![x 0 - 2, x 0 - 10], ![CompOp.eq, CompOp.le]⟩
     let S : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
-    let B : Fin 2 → ℝ × ℝ := ![(-2, -1), (-10, -9)]
-    (∀ i, IsRangeBound (fun x => ls.f x i) S.construct (B i).1 (B i).2) ∧
+    let B : Fin 2 → Interval ℝ := ![⟨-2, -1⟩, ⟨-10, -9⟩]
+    (∀ i, IsRangeBound (fun x => ls.f x i) S.construct (B i).inf (B i).sup) ∧
       LevelSet.containsCellCora ls.op B ∧ ¬ S.construct ⊆ ls.construct := by -- --- PROOF ---
   intro ls S B
   refine ⟨?_, ?_, ?_⟩

@@ -27,7 +27,7 @@ At an end on a pole the printed `[cot z̅, cot z̲]` is not the range: on `[π, 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -88,8 +88,9 @@ theorem Interval.cotByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) (hlo : Real.
     (Interval.cotByRegions lo hi = none →
       ¬BddAbove (Real.cot '' (Set.Icc lo hi ∩ {x | Real.sin x ≠ 0})) ∧
         ¬BddBelow (Real.cot '' (Set.Icc lo hi ∩ {x | Real.sin x ≠ 0}))) ∧
-    (∀ a b, Interval.cotByRegions lo hi = some (a, b) →
-      Real.cot '' (Set.Icc lo hi ∩ {x | Real.sin x ≠ 0}) = Set.Icc a b) := by -- --- PROOF ---
+    (∀ I, Interval.cotByRegions lo hi = some I →
+      Real.cot
+          '' (Set.Icc lo hi ∩ {x | Real.sin x ≠ 0}) = Set.Icc I.inf I.sup) := by -- --- PROOF ---
   have hpi := Real.pi_pos
   simp only [Interval.cotByRegions]
   have hcases := fun hw => Interval.mod_sub_mod_cases hpi hle hw
@@ -115,16 +116,16 @@ theorem Interval.cotByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) (hlo : Real.
   · -- at least a period wide: a pole inside
     rw [if_pos (Or.inl hw)]
     refine ⟨fun _ => Interval.tan_unbounded_of_pole hpole (by linarith) (by linarith),
-      fun a b h => by cases h⟩
+      fun I h => by cases h⟩
   split_ifs with hA
   · -- swapped: a pole inside
     have h := (hcases (not_le.1 hw)).resolve_left fun h => by linarith [h.1, hA.resolve_left hw]
     exact ⟨fun _ => Interval.tan_unbounded_of_pole hpole (by linarith) (by linarith [h.2]),
-      fun a b h => by cases h⟩
+      fun I h => by cases h⟩
   · -- between two poles, falling
-    refine ⟨fun h => (by cases h), fun a b h => ?_⟩
-    simp only [Option.some.injEq, Prod.mk.injEq] at h
-    obtain ⟨rfl, rfl⟩ := h
+    refine ⟨fun h => (by cases h), fun I h => ?_⟩
+    obtain rfl := Option.some.inj h
+    dsimp only
     have h := (hcases (not_le.1 hw)).resolve_right fun h => hA (Or.inr h.1)
     rw [aux_image_tan_between ⌊lo / Real.pi⌋ (by linarith)
       (by linarith [h.2, hzu.2, hzl_def, hzu_def]) (by linarith [hzl.1]), ← aux_cot_eq_tan,

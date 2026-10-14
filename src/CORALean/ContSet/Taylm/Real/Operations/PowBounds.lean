@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Data.Real.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -20,7 +21,7 @@ to the larger one's. The building block of [1, Eq. 12].
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,10 +32,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.powBounds (l u : ℝ) (k : ℕ) : ℝ × ℝ :=
-  if k = 0 then (1, 1)
-  else if Even k then (if l ≤ 0 ∧ 0 ≤ u then 0 else min (l ^ k) (u ^ k), max (l ^ k) (u ^ k))
-  else (l ^ k, u ^ k)
+noncomputable def Taylm.powBounds (l u : ℝ) (k : ℕ) : Interval ℝ :=
+  if k = 0 then ⟨1, 1⟩
+  else if Even k then ⟨if l ≤ 0 ∧ 0 ≤ u then 0 else min (l ^ k) (u ^ k), max (l ^ k) (u ^ k)⟩
+  else ⟨l ^ k, u ^ k⟩
 
 end CORALean.Real
 

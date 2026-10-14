@@ -2,6 +2,7 @@ module
 
 public import CORALean.NN.Layers.Operations.SShapeDerBounds
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section
 
@@ -22,7 +23,7 @@ than CORA's three cases there, never narrower. Not modelled, as at ℝ: the `NaN
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,12 +39,12 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The bounds `(df_l, df_u)` on `df` over `[l, u]`, from float bounds of `df` at stored points. -/
-def sShapeDerBoundsFloat (dfLo dfHi : 𝕋 → 𝕋) (l u : 𝕋) : 𝕋 × 𝕋 :=
-  (minimum (dfLo l) (dfLo u),                                       -- the farther end
+def sShapeDerBoundsFloat (dfLo dfHi : 𝕋 → 𝕋) (l u : 𝕋) : Interval 𝕋 :=
+  ⟨minimum (dfLo l) (dfLo u),                                       -- the farther end
    if le l zero && le zero u then dfHi zero                         -- `0` inside: the peak
    else if le zero l then dfHi l                                    -- right of `0`: decreasing
    else if le u zero then dfHi u                                    -- left of `0`: increasing
-   else dfHi zero)                                                  -- undecided: the peak
+   else dfHi zero⟩                                                  -- undecided: the peak
 
 end CORALean
 

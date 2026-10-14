@@ -21,7 +21,7 @@ otherwise halve each. The source's `α̅` and `α̲`; lines 15-16, 22-23 and 28-
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,12 +34,13 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.bnbStep (bnd : (Fin n → ℝ × ℝ) → ℝ × ℝ) (l : List (Fin n → ℝ × ℝ)) :
-    List (Fin n → ℝ × ℝ) :=
+noncomputable def Taylm.bnbStep (bnd : (Fin n → Interval ℝ) → Interval ℝ) (l : List (Fin n →
+    Interval ℝ)) :
+    List (Fin n → Interval ℝ) :=
   -- 8: the box whose interval holds the upper bound
-  let αhi := Taylm.argMaxIdx (l.map fun B => (bnd B).2)
+  let αhi := Taylm.argMaxIdx (l.map fun B => (bnd B).sup)
   -- 9: the box whose interval holds the lower bound
-  let αlo := Taylm.argMaxIdx (l.map fun B => -(bnd B).1)
+  let αlo := Taylm.argMaxIdx (l.map fun B => -(bnd B).inf)
   -- 10-16: one box holds both, and is halved; 17-29: each is halved
   if αhi = αlo then Taylm.splitAt αhi l else Taylm.splitAt αlo (Taylm.splitAt αhi l)
 

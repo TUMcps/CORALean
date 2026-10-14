@@ -13,7 +13,7 @@ the Lagrange remainder is a power of.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -26,7 +26,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.reach (T : Taylm n) (c : ℝ) : ℝ := max |T.bounds.1 - c| |T.bounds.2 - c|
+def Taylm.reach (T : Taylm n) (c : ℝ) : ℝ := max |T.bounds.inf - c| |T.bounds.sup - c|
 
 end CORALean.Real
 

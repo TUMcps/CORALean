@@ -17,7 +17,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.GoStep
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,8 +30,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.goLoop (lb : (Fin n → ℝ × ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
-    ℕ → List (Fin n → ℝ × ℝ) × ℝ → List (Fin n → ℝ × ℝ) × ℝ
+noncomputable def Taylm.goLoop (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ) :
+    ℕ → List (Fin n → Interval ℝ) × ℝ → List (Fin n → Interval ℝ) × ℝ
   | 0, st => st
   | fuel + 1, st => Taylm.goLoop lb ub fuel (Taylm.goStep lb ub st)
 

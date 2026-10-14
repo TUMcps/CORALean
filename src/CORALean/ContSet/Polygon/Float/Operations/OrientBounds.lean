@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section
 
@@ -16,7 +17,7 @@ sign of these bounds.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,12 +33,12 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `(lo, hi)` around `(q - p) × (r - p)`. -/
-def Polygon.orientBounds (p q r : Vec 𝕋 2) : 𝕋 × 𝕋 :=
+def Polygon.orientBounds (p q r : Vec 𝕋 2) : Interval 𝕋 :=
   let lo : 𝕋 := sumDown ![mulDown (q 0) (r 1), mulDown (p 0) (q 1), mulDown (r 0) (p 1),
     neg (mulUp (q 0) (p 1)), neg (mulUp (p 0) (r 1)), neg (mulUp (r 0) (q 1))]
   let hi : 𝕋 := sumUp ![mulUp (q 0) (r 1), mulUp (p 0) (q 1), mulUp (r 0) (p 1),
     neg (mulDown (q 0) (p 1)), neg (mulDown (p 0) (r 1)), neg (mulDown (r 0) (q 1))]
-  (lo, hi)
+  ⟨lo, hi⟩
 
 end CORALean.Float
 

@@ -24,7 +24,7 @@ lies in the segment the routine returns for that plane set, for every `ℓ ∈ D
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 2]: the polyhedron contains `Z ∩ G`, for any `bound` meeting its specification. -/
-theorem ContSet.dimReduce_outer {bound : Set (ℝ × ℝ) → ℝ → ℝ × ℝ}
+theorem ContSet.dimReduce_outer {bound : Set (ℝ × ℝ) → ℝ → Real.Interval ℝ}
     (hb : ContSet.IsBoundIntersect2D bound) (Z : Set (Vec ℝ n)) (nv : Vec ℝ n) (γ : ℝ)
     (D : Finset (Vec ℝ n)) :
     {x | x ∈ Z ∧ x ⬝ᵥ nv = γ} ⊆ ContSet.dimReduce bound Z nv γ D := by -- --- PROOF ---

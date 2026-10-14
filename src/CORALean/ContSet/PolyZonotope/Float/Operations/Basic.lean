@@ -122,12 +122,12 @@ def PolyZonotope.splitMany (pZ : PolyZonotope (Vec 𝕋 n)) : ℕ → List (Poly
 -- =================================  `PolyZonotope.subsTerms`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The generators of the result, as pairs of an original generator and a term. -/
 def PolyZonotope.subsTerms (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ} (pZin : PolyZonotope (Vec 𝕋 nu))
-    (idu : Fin nu → Fin pZ.p) : List (Fin pZ.h × ((𝕋 × 𝕋) × (Fin pZin.p → ℕ))) :=
+    (idu : Fin nu → Fin pZ.p) : List (Fin pZ.h × ((Interval 𝕋) × (Fin pZin.p → ℕ))) :=
   (List.finRange pZ.h).flatMap fun i => (pZ.subsXprod pZin idu i).map fun t => (i, t)
 
 

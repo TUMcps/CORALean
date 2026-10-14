@@ -20,7 +20,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.GoodBoxHalve
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,8 +34,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.cosyGo_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    {X : Fin n → ℝ × ℝ} (hX : Taylm.GoodBox X) (ε : ℝ) (ldbFuel fuel : ℕ) {t : Vec ℝ n}
-    (ht : Taylm.InBox X t) : (T.cosyGo X ε ldbFuel fuel).1 ≤ f t :=
+    {X : Fin n → Interval ℝ} (hX : Taylm.GoodBox X) (ε : ℝ) (ldbFuel fuel : ℕ) {t : Vec ℝ n}
+    (ht : Taylm.InBox X t) : (T.cosyGo X ε ldbFuel fuel).inf ≤ f t :=
   Taylm.globalMin_le (fun _ β hB => Taylm.goodBox_halve hB β)
     (fun _ hB _ ht => Taylm.goLowerBound_le h ε ldbFuel hB ht) hX fuel ht
 

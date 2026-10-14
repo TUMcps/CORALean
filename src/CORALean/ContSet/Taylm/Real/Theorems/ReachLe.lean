@@ -25,7 +25,7 @@ times its weight, and the remainder is at most `C·hᴺ⁺¹ ≤ C·h`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,9 +41,9 @@ variable {n : ℕ}
 /-- The bounds minus the constant terms are at most `h` times the weight. -/
 theorem Taylm.aux_abs_polyBounds_sub_le (L : List (ℝ × (Fin n → ℕ))) {h : ℝ} (h0 : 0 < h)
     (h1 : h ≤ 1) :
-    |(Taylm.polyBounds L).1 - ((L.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum|
+    |(Taylm.polyBounds L).inf - ((L.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum|
         ≤ h * Taylm.weight L h ∧
-      |(Taylm.polyBounds L).2 - ((L.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum|
+      |(Taylm.polyBounds L).sup - ((L.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum|
         ≤ h * Taylm.weight L h := by -- --- PROOF ---
   induction L with
   | nil => simp [Taylm.polyBounds, Taylm.weight]
@@ -52,7 +52,7 @@ theorem Taylm.aux_abs_polyBounds_sub_le (L : List (ℝ × (Fin n → ℕ))) {h :
       mul_add] at ih ⊢
     by_cases hd : Taylm.degree a.2 = 0
     · -- a constant term is its own bound and is subtracted again
-      have hta : Taylm.termBounds a = (a.1, a.1) := by simp [Taylm.termBounds, hd]
+      have hta : Taylm.termBounds a = ⟨a.1, a.1⟩ := by simp [Taylm.termBounds, hd]
       simp only [hd, beq_self_eq_true, if_true, List.map_cons, List.sum_cons, hta,
         add_sub_add_left_eq_sub]
       have hw0 : 0 ≤ h * (|a.1| / h ^ 0) := by positivity
@@ -87,14 +87,14 @@ theorem Taylm.reach_le {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1) (hT
   unfold Taylm.reach Taylm.bounds Taylm.constCoef
   -- each end: the polynomial's part, then the remainder's
   refine max_le ?_ ?_
-  · rw [show (Taylm.polyBounds T.terms).1 + T.remInf
+  · rw [show (Taylm.polyBounds T.terms).inf + T.remInf
         - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum
-        = ((Taylm.polyBounds T.terms).1
+        = ((Taylm.polyBounds T.terms).inf
           - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum) + T.remInf by ring]
     exact le_trans (abs_add_le _ _) (by linarith [hb.1])
-  · rw [show (Taylm.polyBounds T.terms).2 + T.remSup
+  · rw [show (Taylm.polyBounds T.terms).sup + T.remSup
         - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum
-        = ((Taylm.polyBounds T.terms).2
+        = ((Taylm.polyBounds T.terms).sup
           - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum) + T.remSup by ring]
     exact le_trans (abs_add_le _ _) (by linarith [hb.2])
 

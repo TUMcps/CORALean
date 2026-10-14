@@ -37,7 +37,7 @@ not on the function it encloses.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -52,11 +52,11 @@ variable {n : ℕ}
 
 noncomputable def Taylm.intrinsic : Taylm.Intrinsic → Taylm n → Option (Taylm n)
   | .exp, T => some T.exp
-  | .log, T => if 0 < min T.constCoef T.bounds.1 then some T.log else none
+  | .log, T => if 0 < min T.constCoef T.bounds.inf then some T.log else none
   | .inv, T =>
-    if 0 < min T.constCoef T.bounds.1 ∨ max T.constCoef T.bounds.2 < 0 then some T.inv else none
-  | .sqrt, T => if 0 < min T.constCoef T.bounds.1 then some T.sqrt else none
-  | .invSqrt, T => if 0 < min T.constCoef T.bounds.1 then some T.invSqrt else none
+    if 0 < min T.constCoef T.bounds.inf ∨ max T.constCoef T.bounds.sup < 0 then some T.inv else none
+  | .sqrt, T => if 0 < min T.constCoef T.bounds.inf then some T.sqrt else none
+  | .invSqrt, T => if 0 < min T.constCoef T.bounds.inf then some T.invSqrt else none
   | .sin, T => some T.sin
   | .cos, T => some T.cos
   | .sinh, T => some T.sinh
