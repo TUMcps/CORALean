@@ -698,6 +698,19 @@
     }
   },
   "specification/stl": {
+    "eliminateTrueFalse": {
+      "description": "until with true right operand rewritten to true",
+      "kind": "other",
+      "cex": "TreeEliminateTrueFalseCoraUntilCounterexample.lean",
+      "findings": [
+        "`stl/eliminateTrueFalse`, constant right operand of `until`"
+      ]
+    },
+    "negationNormalForm": {
+      "description": "negated comparison keeps strictness; boundary case changes",
+      "kind": "other",
+      "cex": "TreeNegationNormalFormCoraCounterexample.lean"
+    },
     "robustness": {
       "description": "reach-set window keeps the last set's robustness, not the minimum",
       "kind": "unsound"
