@@ -47,7 +47,6 @@ src/CORALean/NN/Layers/Operations/Sigmoid.lean  cycle once moved in: `Basic` →
 src/CORALean/NN/Layers/Operations/SigmoidPolyDerivBound.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/PolyDerivBoundUp` → `NN/Layers/Operations/PolyDerivRadiusUp` → `NN/Layers/Operations/PowRange` → `Basic`
 src/CORALean/NN/Layers/Operations/Square.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/SquareRelaxation` → `Basic`
 src/CORALean/NN/Layers/Operations/Tanh.lean  cycle once moved in: `Basic` → `NN/Layers/Operations/TanhRelaxation` → `NN/Layers/Operations/SigmoidRelaxation` → `Basic`
-src/CORALean/NN/Layers/Theorems/ActivationLayerOfSound.lean  cycle once moved in: `Basic` → `NN/Layers/Instances` → `Basic`
 src/CORALean/NN/Layers/Theorems/Real/SigmoidPolyFamilySound.lean  cycle once moved in: `Basic` → `NN/Layers/Definitions/SigmoidPolyFamily` → `NN/Layers/Theorems/Real/AbsSigmoidDerivLeOne` → `Basic`
 src/CORALean/NN/Layers/Theorems/Real/TanhPolyRelaxationSound.lean  cycle once moved in: `Basic` → `NN/Layers/Theorems/Real/SigmoidPolyRelaxationSound` → `Basic`
 src/CORALean/NN/Layers/Theorems/ReluSound.lean  cycle once moved in: `Basic` → `NN/Layers/Theorems/ReluRelaxationSound` → `Basic`

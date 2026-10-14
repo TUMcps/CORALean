@@ -6264,7 +6264,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 7,
+        "cora_issues": 8,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -6318,7 +6318,7 @@
           "matlab-runtime": 5,
           "deprecated": 1
         },
-        "cora_issues": 5,
+        "cora_issues": 6,
         "findings": {
           "correct": 19,
           "underspecified": 4,
@@ -6372,7 +6372,7 @@
           "matlab-runtime": 4,
           "deprecated": 0
         },
-        "cora_issues": 6,
+        "cora_issues": 8,
         "findings": {
           "correct": 38,
           "underspecified": 6,
@@ -6561,7 +6561,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 8,
+        "cora_issues": 9,
         "findings": {
           "correct": 46,
           "underspecified": 17,
@@ -6669,7 +6669,7 @@
           "matlab-runtime": 3,
           "deprecated": 0
         },
-        "cora_issues": 5,
+        "cora_issues": 6,
         "findings": {
           "correct": 12,
           "underspecified": 4,
@@ -6696,7 +6696,7 @@
           "matlab-runtime": 5,
           "deprecated": 2
         },
-        "cora_issues": 14,
+        "cora_issues": 15,
         "findings": {
           "correct": 146,
           "underspecified": 48,
@@ -7290,7 +7290,7 @@
           "matlab-runtime": 2,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 6,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -8254,7 +8254,7 @@
         "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 41,
-        "cora_issues": 86,
+        "cora_issues": 93,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -8329,7 +8329,7 @@
         "not_yet": 0,
         "out_of_scope": 45,
         "needs_float": 7,
-        "cora_issues": 3,
+        "cora_issues": 8,
         "out_of_scope_by_reason": {
           "plotting/display": 5,
           "random/sampling": 2,
@@ -8405,7 +8405,7 @@
       "not_yet": 202,
       "out_of_scope": 515,
       "needs_float": 177,
-      "cora_issues": 135,
+      "cora_issues": 147,
       "out_of_scope_by_reason": {
         "plotting/display": 129,
         "random/sampling": 51,
@@ -8442,8 +8442,8 @@
       "paper": 1707,
       "float": 1907,
       "helper": 1686,
-      "lemma": 3055,
-      "total": 8355,
+      "lemma": 3064,
+      "total": 8364,
       "examples": 129
     }
   }

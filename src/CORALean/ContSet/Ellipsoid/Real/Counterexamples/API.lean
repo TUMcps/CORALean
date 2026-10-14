@@ -10,6 +10,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Counterexamples.HalderPolyPrinted
 public import CORALean.ContSet.Ellipsoid.Real.Counterexamples.IntersectStripGollamudi1D
 public import CORALean.ContSet.Ellipsoid.Real.Counterexamples.IntersectStripLiu1D
 public import CORALean.ContSet.Ellipsoid.Real.Counterexamples.IsBiggerCora
+public import CORALean.ContSet.Ellipsoid.Real.Counterexamples.PlusCellCora
 public import CORALean.ContSet.Ellipsoid.Real.Counterexamples.PrintedEllipseImage
 public import CORALean.ContSet.Ellipsoid.Real.Counterexamples.RepresentsaHyperplaneCora
 

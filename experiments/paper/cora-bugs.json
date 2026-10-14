@@ -213,6 +213,10 @@
       "description": "1-D test is n == 1; segment accepted as hyperplane",
       "kind": "other",
       "cex": "RepresentsaHyperplaneCora.lean"
+    },
+    "lift_": {
+      "description": "project applies the inverse permutation of lift",
+      "kind": "other"
     }
   },
   "contSet/conPolyZono": {
@@ -263,6 +267,10 @@
       "description": "1-D test is n == 1; segment accepted as hyperplane",
       "kind": "other",
       "cex": "RepresentsaHyperplaneCora.lean"
+    },
+    "lift_": {
+      "description": "project applies the inverse permutation of lift",
+      "kind": "other"
     }
   },
   "contSet/ellipsoid": {
@@ -297,6 +305,14 @@
       "description": "1-D test is n == 1; segment accepted as hyperplane",
       "kind": "other",
       "cex": "RepresentsaHyperplaneCora.lean"
+    },
+    "lift_": {
+      "description": "project applies the inverse permutation of lift",
+      "kind": "other"
+    },
+    "plus": {
+      "description": "cell array of summands: cellfun without cell, crash",
+      "kind": "other"
     }
   },
   "contSet/interval": {
@@ -474,6 +490,10 @@
         "Polytope `representsa_`, `'interval'`, infeasible zero row",
         "Polytope `representsa_`, `'halfspace'`, vertex representation"
       ]
+    },
+    "cartProd_": {
+      "description": "product flagged bounded if either factor is bounded",
+      "kind": "other"
     }
   },
   "contSet/probZonotope": {
@@ -553,6 +573,10 @@
       "description": "halfspace form reads undefined variable; always errors",
       "kind": "other",
       "fix": null
+    },
+    "lift_": {
+      "description": "project applies the inverse permutation of lift",
+      "kind": "other"
     }
   },
   "contSet/zonotope": {
@@ -637,6 +661,10 @@
       "findings": [
         "Zonotope `split` and `splitFirstGen`, generator index of the box"
       ]
+    },
+    "lift_": {
+      "description": "project applies the inverse permutation of lift",
+      "kind": "other"
     }
   },
   "contSet/zoo": {
@@ -702,6 +730,26 @@
       "description": "DeepZ S-shape unsound at $x^3$; reaches network output",
       "kind": "unsound",
       "fix": "DeepZSShapeSound.lean"
+    },
+    "nnActLayerFromHandle": {
+      "description": "error bound skips interior extremum; radius too small",
+      "kind": "unsound"
+    },
+    "nnLayer": {
+      "description": "interval evaluation uses only end points; non-monotone layers unsound",
+      "kind": "unsound"
+    },
+    "nnExpLayer": {
+      "description": "getDerBounds has one output; error bound crashes",
+      "kind": "other"
+    },
+    "nnRootLayer": {
+      "description": "derivative of sqrt is sqrt(x)/2; singh band unsound",
+      "kind": "unsound"
+    },
+    "nnSoftPlusLayer": {
+      "description": "clamped slope misses extremum; derivative cached at sharpness 2",
+      "kind": "unsound"
     }
   },
   "nn/neuralNetwork": {

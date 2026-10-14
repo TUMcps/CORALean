@@ -4,6 +4,7 @@ public import CORALean.ContSet.HPolytope.Real.Counterexamples.AHPolytopeEqOfLeft
 public import CORALean.ContSet.HPolytope.Real.Counterexamples.AHPolytopeInterEq
 public import CORALean.ContSet.HPolytope.Real.Counterexamples.AHPolytopeSubsetConvexHullAHOfCert
 public import CORALean.ContSet.HPolytope.Real.Counterexamples.AHPolytopeSubsetConvexHullOfCert
+public import CORALean.ContSet.HPolytope.Real.Counterexamples.CartProdBoundedCora
 public import CORALean.ContSet.HPolytope.Real.Counterexamples.Compact1DEqCora
 public import CORALean.ContSet.HPolytope.Real.Counterexamples.ConvHullCora
 public import CORALean.ContSet.HPolytope.Real.Counterexamples.EmptyRedundant
