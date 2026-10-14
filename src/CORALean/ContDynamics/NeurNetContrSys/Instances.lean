@@ -50,13 +50,13 @@ noncomputable instance NeurNetContrSys.WithPeriod.reachInstance :
     if 0 < options.Δt ∧ (options.N : ℝ) * options.Δt = sys.dt then
       some (sys.sys.reachUnion params options)
     else none
-  reach_outer sys params options := by
-    split_ifs with h
-    · -- the period `reachUnion` steps through is the system's own
-      have hout := sys.sys.reachUnion_outer params h.1
-      rw [h.2] at hout
-      exact hout
-    · trivial
+  reach_outer sys params options _ hR := by
+    split_ifs at hR with h
+    cases hR
+    -- the period `reachUnion` steps through is the system's own
+    have hout := sys.sys.reachUnion_outer params h.1
+    rw [h.2] at hout
+    exact hout
 
 end CORALean
 

@@ -97,8 +97,7 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer
   obtain ⟨Rs, hRs, Rj, hRj, rfl⟩ := hZ
   -- `x(t_f)` is in the scaled reach set at the horizon
   have hmem : x tf ∈ construct Rs := by
-    have h1 := scaled.reachUnion_outer ⟨R₀, 0, tScaled⟩ optionsScaled
-    rw [hRs] at h1
+    have h1 := scaled.reachUnion_outer ⟨R₀, 0, tScaled⟩ optionsScaled hRs
     have hx : x tf ∈ scaled.reachUnionExact (tScaled - 0) (construct R₀) := by
       simp only [NonlinParamSys.WithSteps.reachUnionExact, mem_iUnion, mem_setOf_eq, sub_zero]
       refine ⟨tScaled, ⟨hS0, le_rfl⟩, x ∘ σ, u ∘ σ, p, ⟨?_, fun s hs => ?_, hp, fun s hs => ?_⟩, ?_⟩
@@ -134,8 +133,7 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer
   obtain ⟨J, hJ, hJm⟩ := hmap _ _ hRj Ri hRi
   -- the shifted run is a run of the original system from `Ri` over `[0, δ]`
   have hxJ : x t ∈ construct J := by
-    have h2 := sys.reachUnion_outer ⟨Ri, 0, δ⟩ optionsJump
-    rw [hJ] at h2
+    have h2 := sys.reachUnion_outer ⟨Ri, 0, δ⟩ optionsJump hJ
     refine h2 ?_
     simp only [NonlinearSys.WithSteps.reachUnionExact, mem_iUnion, NonlinearSys.reachSet,
       mem_setOf_eq, sub_zero]

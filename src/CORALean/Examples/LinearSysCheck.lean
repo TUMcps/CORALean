@@ -27,12 +27,13 @@ answer for every trajectory.
 The third example adds the input box `[-1/10, 1/10]²` as `LinearSys.WithInput`,
 its `0 ∈ U` the zonotope's centre, and answers for every run under it; the
 fourth moves that box off the origin, to `[1/10, 3/10] × [-1/10, 1/10]`, as
-`LinearSys.WithInputSplit`, which asks for no `0 ∈ U` at all.
+`LinearSys.WithInputSplit`, which asks for no `0 ∈ U` at all. The last is a failed run, at
+`Δt = 0`: `reach` returns `none`, so `reach_outer` has no set to speak of and `check` is `false`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 namespace CORALean.Real
@@ -88,5 +89,11 @@ example :
           LinearSys.WithInputSplit ℝ 𝒵 2)
         ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
   Reach.holds_of_check (S := 𝒵) _ _ _ _
+
+/-- At `Δt = 0` no window can be taken, and `reach` says so: no set, nothing to enclose. -/
+example :
+    Reach.reach (S := 𝒵) (LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2)
+      ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨0, 4⟩ = none :=
+  if_neg fun h => lt_irrefl _ h.2
 
 end CORALean.Real

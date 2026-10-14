@@ -24,7 +24,7 @@ condition the linear step would otherwise put in `options`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,7 +50,7 @@ noncomputable instance NonlinearSys.reachInstance :
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (construct params.X₀)
   reach sys params options := sys.reachUnion params options
-  reach_outer sys params options := sys.reachUnion_outer params options
+  reach_outer sys params options _ h := sys.reachUnion_outer params options h
 
 end CORALean
 

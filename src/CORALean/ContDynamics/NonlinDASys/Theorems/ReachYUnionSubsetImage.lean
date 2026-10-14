@@ -15,7 +15,7 @@ over it.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,23 +36,18 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinDASys.WithSteps.reachYUnion_subset_image (sys : NonlinDASys.WithSteps S Rg m p n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
-    match sys.reachUnion params options with
-    | some R => sys.reachYUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-        ⊆ (fun xu : Vec ℝ n × Vec ℝ m => sys.red.h xu.1 xu.2) ''
-          (construct R ×ˢ construct sys.ode.U)
-    | none => True := by -- --- PROOF ---
-  have h := sys.reachUnion_outer params options
-  cases hR : sys.reachUnion params options with
-  | none => trivial
-  | some R =>
-    rw [hR] at h
-    intro z hz
-    simp only [NonlinDASys.WithSteps.reachYUnionExact, Set.mem_iUnion, Set.mem_setOf_eq] at hz
-    obtain ⟨t, ht, x, y, u, traj, rfl⟩ := hz
-    refine ⟨(x t, u t), ⟨h ?_, traj.input t ht⟩, (traj.y_eq sys.red ht).symm⟩
-    simp only [NonlinDASys.WithSteps.reachUnionExact, Set.mem_iUnion, Set.mem_setOf_eq]
-    exact ⟨t, ht, x, y, u, traj, rfl⟩
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ)
+    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) :
+    sys.reachYUnionExact (params.tFinal - params.tStart) (construct params.X₀)
+      ⊆ (fun xu : Vec ℝ n × Vec ℝ m => sys.red.h xu.1 xu.2) ''
+        (construct R ×ˢ construct sys.ode.U) := by -- --- PROOF ---
+  have h := sys.reachUnion_outer params options hR
+  intro z hz
+  simp only [NonlinDASys.WithSteps.reachYUnionExact, Set.mem_iUnion, Set.mem_setOf_eq] at hz
+  obtain ⟨t, ht, x, y, u, traj, rfl⟩ := hz
+  refine ⟨(x t, u t), ⟨h ?_, traj.input t ht⟩, (traj.y_eq sys.red ht).symm⟩
+  simp only [NonlinDASys.WithSteps.reachUnionExact, Set.mem_iUnion, Set.mem_setOf_eq]
+  exact ⟨t, ht, x, y, u, traj, rfl⟩
 
 end CORALean
 

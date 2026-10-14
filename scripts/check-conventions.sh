@@ -927,6 +927,12 @@ FNR == 1 {
           " `Interval`; if this pair is two quantities, list the file in " PAIRLIST " with the reason")
     }
   }
+  # A guarantee about an `Option` result is stated at `… = some R` (CONTRIBUTING,
+  # "Verification"): a `match` arm `| none => True` closing a statement is a
+  # proof about a run that returned nothing, which reads as a passed check.
+  if (code ~ /^[ \t]*\|[ \t]*none[ \t]*=>[ \t]*True[ \t]*(:=.*)?$/)
+    say(FILENAME ":" FNR ": `| none => True` — state the guarantee at `… = some R`," \
+        " so a failed run has nothing to enclose rather than a `True`")
   if (code ~ /^axiom[ \t]/ && FILENAME == NEAREST_AXIOM_FILE) {
     if (code !~ ("^axiom[ \t]+" NEAREST_AXIOM "([ \t:]|$)"))
       say(FILENAME ":" FNR ": `axiom` — this file assumes `" NEAREST_AXIOM "` and" \

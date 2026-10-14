@@ -988,6 +988,17 @@ everything inside it. One theorem, both directions, and it knows nothing about
 what produced either set, which is why `LinearSysDT.holds_of_reach` and
 `NeuralNetwork.holds_of_enclose` are a line each.
 
+`Reach` is that superset's interface, once for every system class. `reach` returns an
+`Option`: `none` where the run could not certify its own soundness conditions — a horizon no
+multiple of `Δt`, a linearization region missing the set computed in it — which is where CORA
+raises an error. `reach_outer` takes the set by `reach sys params options = some R`, so a
+failed run has no `R` and nothing follows about it; `Reach.check` answers `false` for it.
+State every guarantee about an `Option` result that way, never as a `match` whose `none` arm
+is `True`, which proves something of a run that returned nothing and reads like a passed check
+(`check-conventions.sh` refuses the arm). A side condition the run can decide belongs in the
+test that chooses `none`, not among `reach_outer`'s hypotheses; one fixed when `options` is
+built, a positive zonotope order, is a field with a default proof, refused at elaboration.
+
 The converse fails, and that is the method's whole cost: a specification that
 fails on the computed set is not a counterexample, and the answer to it is a
 tighter enclosure rather than an argument about the system.
