@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Counterexamples.DependentHomSolLowOrder
+public import CORALean.ContDynamics.LinParamSys.Counterexamples.InitReachConstantOffsetCora
 public import CORALean.ContDynamics.LinParamSys.Counterexamples.SimulateEndTimeCora
 
 /-!

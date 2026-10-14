@@ -165,10 +165,10 @@ Rulings on borderline cases:
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 23 | 0 | 0 | 9 | 6 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 1 | 27 | 11 | 0 | 12 | 1 |
 | [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 28 | 6 | 0 | 7 | 6 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 5 | 57 | 4 | 0 | 14 | 15 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 5 | 57 | 4 | 0 | 14 | 16 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 0 | 2 | 2 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 6 | 0 | 0 | 11 | 4 |
-| [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 1 | 6 | 0 | 0 | 4 | 2 |
+| [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 1 | 6 | 0 | 0 | 4 | 3 |
 | [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 3 | 0 | 0 | 0 | 5 | 1 |
 | [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 4 | 0 | 0 | 2 | 0 |
 | [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 1 | 21 | 0 | 1 | 10 | 3 |
