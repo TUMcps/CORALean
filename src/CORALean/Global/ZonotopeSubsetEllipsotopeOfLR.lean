@@ -1,9 +1,6 @@
 module
 
 public import Mathlib.Analysis.Normed.Lp.PiLp
-public import Mathlib.Analysis.Normed.Group.Basic
-public import Mathlib.Analysis.SpecialFunctions.Pow.Real
-public import Mathlib.Topology.Algebra.InfiniteSum.Real
 
 @[expose] public section
 

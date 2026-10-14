@@ -1,8 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.Pow
-public import CORALean.ContSet.Taylm.Float.Operations.Smul
 
 @[expose] public section
 

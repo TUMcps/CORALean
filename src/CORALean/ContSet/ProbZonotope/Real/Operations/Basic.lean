@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Max
-public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 
 @[expose] public section

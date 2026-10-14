@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 

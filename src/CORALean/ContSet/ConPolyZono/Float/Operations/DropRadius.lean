@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-public import CORALean.Global.Partition
 
 @[expose] public section
 

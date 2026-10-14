@@ -1,9 +1,7 @@
 module
 
 public import CORALean.Global.Tensor
-public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 public import Mathlib.Analysis.Convex.Hull
-public import Mathlib.Algebra.Order.Floor.Semiring
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 @[expose] public section

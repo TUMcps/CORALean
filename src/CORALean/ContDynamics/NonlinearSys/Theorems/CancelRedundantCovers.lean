@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
+public import Mathlib.Data.Set.Lattice
 
 @[expose] public section
 

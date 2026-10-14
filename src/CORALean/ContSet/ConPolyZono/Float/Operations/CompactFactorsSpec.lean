@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UsedFactors
 
 @[expose] public section
 

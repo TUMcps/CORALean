@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.MeasureTheory.Measure.WithDensity
-public import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
 
 @[expose] public section
 

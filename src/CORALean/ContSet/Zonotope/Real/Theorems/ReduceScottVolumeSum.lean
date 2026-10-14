@@ -2,7 +2,6 @@ module
 
 public import CORALean.Global.Tensor
 public import Mathlib.Data.Real.Basic
-public import Mathlib.LinearAlgebra.Matrix.Adjugate
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 @[expose] public section

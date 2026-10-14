@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Taylm.Float.Operations.BernsteinCoeffBounds
 public import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
-public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 @[expose] public section
 

@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinProbSys.LinProbSys
 public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
 public import CORALean.ContSet.Interval.Real.Interval
 

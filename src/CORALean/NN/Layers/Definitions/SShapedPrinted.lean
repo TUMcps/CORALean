@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Analysis.Calculus.ContDiff.Defs
-public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 @[expose] public section
 

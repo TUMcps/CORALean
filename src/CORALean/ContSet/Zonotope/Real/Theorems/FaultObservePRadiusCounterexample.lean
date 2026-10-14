@@ -4,8 +4,6 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.FaultRadiusLmi
 public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
 public import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
-public import Mathlib.Tactic.FinCases
-public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
 

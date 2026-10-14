@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
 public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section
 

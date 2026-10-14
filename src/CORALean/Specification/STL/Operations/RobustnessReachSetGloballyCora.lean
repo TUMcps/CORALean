@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Algebra.Order.Round
 public import Mathlib.Analysis.Real.Sqrt
 
 @[expose] public section

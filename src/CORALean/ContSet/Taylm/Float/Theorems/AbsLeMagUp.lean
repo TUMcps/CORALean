@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
-public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
 

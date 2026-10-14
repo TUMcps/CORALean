@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
-public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepMat
-public import Mathlib.LinearAlgebra.Matrix.Notation
 
 @[expose] public section
 

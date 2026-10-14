@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Data.Real.Basic
-public import Mathlib.Logic.Function.Basic
 
 @[expose] public section
 

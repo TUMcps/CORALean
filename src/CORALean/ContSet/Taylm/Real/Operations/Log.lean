@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Taylor
-public import CORALean.ContSet.Taylm.Real.Operations.Basic
-public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 @[expose] public section
 

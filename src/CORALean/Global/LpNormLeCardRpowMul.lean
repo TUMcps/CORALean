@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Analysis.Normed.Lp.PiLp
-public import Mathlib.Analysis.MeanInequalities
 
 @[expose] public section
 

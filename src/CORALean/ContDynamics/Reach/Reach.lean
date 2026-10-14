@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.SetUnion.SetUnion
 
 @[expose] public section

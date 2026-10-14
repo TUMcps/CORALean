@@ -1,12 +1,9 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Definitions.PolyNorm
-public import CORALean.ContSet.HPolytope.Real.Operations.Comap
 public import CORALean.ContSet.HPolytope.Real.Operations.Lift
 public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 public import CORALean.ContSet.HPolytope.Real.Operations.Volume
-public import Mathlib.Algebra.Order.Group.Finset
-public import Mathlib.Topology.MetricSpace.Bounded
 
 @[expose] public section
 

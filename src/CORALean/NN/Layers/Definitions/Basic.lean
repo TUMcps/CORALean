@@ -1,8 +1,6 @@
 module
 
 public import CORALean.Global.Tensor
-public import Mathlib.Data.Nat.Notation
-public import Mathlib.Data.Set.Prod
 
 @[expose] public section
 

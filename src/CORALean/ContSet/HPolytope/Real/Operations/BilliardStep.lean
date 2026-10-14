@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.BilliardEnd
-public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 @[expose] public section
 

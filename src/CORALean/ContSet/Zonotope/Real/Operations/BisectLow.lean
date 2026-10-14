@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.BisectStep
-public import Mathlib.Analysis.Convex.Segment
 public import CORALean.ContSet.Zonotope.Real.Operations.PointUp
 
 @[expose] public section

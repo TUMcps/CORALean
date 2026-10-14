@@ -2,7 +2,6 @@ module
 
 public import Mathlib.Data.Real.Basic
 public import Mathlib.Analysis.Convex.Hull
-public import Mathlib.Analysis.Convex.Basic
 
 @[expose] public section
 

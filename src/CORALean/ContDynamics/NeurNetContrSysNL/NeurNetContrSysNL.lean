@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 public import CORALean.NN.NeuralNetwork
-public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 @[expose] public section
 

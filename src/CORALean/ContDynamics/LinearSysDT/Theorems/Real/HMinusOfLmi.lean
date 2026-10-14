@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
-public import Mathlib.Algebra.BigOperators.Intervals
 
 @[expose] public section
 

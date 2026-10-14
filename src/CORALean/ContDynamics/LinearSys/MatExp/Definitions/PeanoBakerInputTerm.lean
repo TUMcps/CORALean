@@ -1,7 +1,6 @@
 module
 
 public import CORALean.Global.Tensor
-public import Mathlib.Data.Matrix.Mul
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 @[expose] public section

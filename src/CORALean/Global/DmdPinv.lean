@@ -1,7 +1,6 @@
 module
 
 public import CORALean.Global.DmdCandidate
-public import Mathlib.Data.Matrix.Diagonal
 
 @[expose] public section
 

@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
-public import Mathlib.Order.Disjoint
 
 @[expose] public section
 

@@ -1,8 +1,6 @@
 module
 
-public import CORALean.Global.Tensor
 public import Mathlib.Analysis.Normed.Algebra.Exponential
-public import Mathlib.Topology.Algebra.InfiniteSum.NatInt
 
 @[expose] public section
 

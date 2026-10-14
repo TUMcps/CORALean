@@ -1,8 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import Mathlib.Data.Matrix.Mul
 
 @[expose] public section
 

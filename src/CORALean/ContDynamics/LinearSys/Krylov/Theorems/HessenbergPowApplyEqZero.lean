@@ -2,7 +2,6 @@ module
 
 public import CORALean.Global.Tensor
 public import Mathlib.Data.Matrix.Mul
-public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
 

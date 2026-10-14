@@ -2,8 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
-public import CORALean.ContDynamics.LinearSysDT.Operations.ReachHeld
-public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 
 @[expose] public section
 

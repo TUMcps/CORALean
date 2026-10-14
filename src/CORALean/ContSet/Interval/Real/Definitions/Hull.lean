@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Interval
-public import CORALean.Global.Entrywise
-public import Mathlib.Order.ConditionallyCompleteLattice.Basic
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 @[expose] public section

@@ -3,9 +3,6 @@ module
 public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
 public import Mathlib.Analysis.SpecialFunctions.Log.Basic
-public import Mathlib.Data.Matrix.Basic
-public import Mathlib.LinearAlgebra.Matrix.Notation
-public import Mathlib.Tactic.FinCases
 
 @[expose] public section
 

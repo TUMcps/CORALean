@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Float.Operations.Basic
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.MeanExact
 
 @[expose] public section
 

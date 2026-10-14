@@ -1,7 +1,6 @@
 module
 
 public import CORALean.Specification.STL.Definitions.MILPEncoding
-public import Mathlib.Order.MinMax
 
 @[expose] public section
 

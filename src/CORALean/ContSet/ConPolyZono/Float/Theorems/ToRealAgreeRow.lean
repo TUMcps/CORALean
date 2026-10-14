@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
-public import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
 
 @[expose] public section
 

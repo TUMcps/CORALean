@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 @[expose] public section
 

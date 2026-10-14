@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGain
-public import CORALean.Global.Tensor
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 @[expose] public section

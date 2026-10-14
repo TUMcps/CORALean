@@ -1,8 +1,6 @@
 module
 
-public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
-public import Mathlib.Algebra.Order.Floor.Semiring
 
 @[expose] public section
 

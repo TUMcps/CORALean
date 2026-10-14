@@ -1,7 +1,5 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Interval
-public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 
 @[expose] public section

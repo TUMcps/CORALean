@@ -2,7 +2,6 @@ module
 
 public import CORALean.Specification.STL.Operations.VerifySTLKochdumperGloballyCora
 public import Mathlib.Analysis.Calculus.Deriv.Basic
-public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 

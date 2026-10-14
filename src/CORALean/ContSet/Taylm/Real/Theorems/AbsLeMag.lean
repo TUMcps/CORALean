@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Mag
-public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 

@@ -1,8 +1,6 @@
 module
 
 public import CORALean.Global.Tensor
-public import Mathlib.Data.Matrix.Basic
-public import Mathlib.Data.Real.Basic
 public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 @[expose] public section

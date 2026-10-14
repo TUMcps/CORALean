@@ -2,7 +2,6 @@ module
 
 public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsCoraTarget
 public import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
-public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetCORACounterexample
 
 @[expose] public section
 

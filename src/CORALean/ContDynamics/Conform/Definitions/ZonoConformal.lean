@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-public import Mathlib.Data.Matrix.Mul
 
 @[expose] public section
 

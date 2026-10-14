@@ -1,9 +1,7 @@
 module
 
 public import Mathlib.Data.Real.Basic
-public import Mathlib.Order.Interval.Set.Defs
 public import Mathlib.Data.List.MinMax
-public import Mathlib.Data.List.FinRange
 
 @[expose] public section
 

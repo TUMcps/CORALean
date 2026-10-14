@@ -1,7 +1,6 @@
 module
 
 public import CORALean.HybridDynamics.Operations.ReachGuard
-public import Mathlib.Algebra.Order.Floor.Semiring
 
 @[expose] public section
 

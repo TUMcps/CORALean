@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Probability.Kernel.Invariance
-public import Mathlib.Probability.Kernel.Defs
 
 @[expose] public section
 

@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
-public import CORALean.ContSet.Taylm.Real.Operations.Reexpand
-public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 public import CORALean.ContSet.Taylm.Real.Operations.Ldb
 public import CORALean.ContSet.Taylm.Real.Operations.QfbLower
 public import CORALean.ContSet.Taylm.Real.Operations.Hessian

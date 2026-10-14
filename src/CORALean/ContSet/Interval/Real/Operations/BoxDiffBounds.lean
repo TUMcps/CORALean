@@ -2,8 +2,6 @@ module
 
 public import Mathlib.Data.Real.Basic
 public import Mathlib.Data.List.MinMax
-public import Mathlib.Data.List.FinRange
-public import Mathlib.Logic.Function.Basic
 
 @[expose] public section
 

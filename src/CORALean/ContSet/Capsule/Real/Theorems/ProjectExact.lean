@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Capsule.Real.Operations.Project
-public import CORALean.ContSet.Capsule.Real.Capsule
 
 @[expose] public section
 

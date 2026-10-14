@@ -1,6 +1,5 @@
 module
 
-public import CORALean.Global.Tensor
 public import Mathlib.Data.Finset.Card
 public import Mathlib.Data.Fintype.Basic
 

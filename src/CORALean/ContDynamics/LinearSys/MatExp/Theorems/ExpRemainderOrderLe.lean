@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.OrderAdmissible
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
 
 @[expose] public section

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.HybridDynamics.Definitions.Transition
+public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 @[expose] public section
 

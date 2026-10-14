@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
-public import CORALean.ContSet.Interval.Float.Operations.MatMul
 
 @[expose] public section
 

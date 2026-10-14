@@ -2,8 +2,6 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Pool
 public import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
-public import Mathlib.Data.List.Sublists
-public import Mathlib.Data.List.MinMax
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 
 @[expose] public section

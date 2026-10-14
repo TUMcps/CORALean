@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Topology.MetricSpace.HausdorffDistance
 public import CORALean.HybridDynamics.TimeTriggered.DiffInclAutomaton
 
 @[expose] public section

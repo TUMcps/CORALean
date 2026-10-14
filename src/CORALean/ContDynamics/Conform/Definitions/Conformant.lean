@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.Conform.Definitions.ReachOut
+public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 @[expose] public section
 

@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.ListMin
-public import Mathlib.Order.MinMax
 
 @[expose] public section
 

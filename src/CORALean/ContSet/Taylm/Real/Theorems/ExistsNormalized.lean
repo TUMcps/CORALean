@@ -2,9 +2,6 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Definitions.Box
-public import CORALean.ContSet.Taylm.Real.Taylm
-public import Mathlib.Tactic.FieldSimp
-public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 

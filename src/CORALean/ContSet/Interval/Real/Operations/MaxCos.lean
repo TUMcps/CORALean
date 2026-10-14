@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 public import Mathlib.Data.Real.Sign
 

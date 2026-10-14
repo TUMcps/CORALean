@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import Mathlib.Analysis.InnerProductSpace.Dual
-public import Mathlib.Analysis.Normed.Module.FiniteDimension
 
 @[expose] public section
 

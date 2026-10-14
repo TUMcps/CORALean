@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
-public import Mathlib.Data.Real.Basic
 
 @[expose] public section
 

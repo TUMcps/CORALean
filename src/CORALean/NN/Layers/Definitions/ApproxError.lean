@@ -1,8 +1,6 @@
 module
 
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
-public import Mathlib.Data.Real.Basic
-public import Mathlib.Order.Interval.Set.Defs
 
 @[expose] public section
 

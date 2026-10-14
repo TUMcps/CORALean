@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Capsule.Real.Operations.ConvHull
-public import CORALean.ContSet.Capsule.Real.Operations.Empty
 
 @[expose] public section
 

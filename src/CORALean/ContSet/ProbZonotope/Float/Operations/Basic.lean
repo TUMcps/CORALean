@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
-public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.Abs
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes

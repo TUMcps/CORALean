@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.MaxCos
-public import Mathlib.Topology.Order.IntermediateValue
-public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 
 @[expose] public section
 

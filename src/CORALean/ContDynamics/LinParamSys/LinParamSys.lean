@@ -1,9 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import Mathlib.Analysis.Calculus.Deriv.Basic
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
-public import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 @[expose] public section
 

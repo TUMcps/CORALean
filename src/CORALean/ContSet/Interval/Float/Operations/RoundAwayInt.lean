@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Algebra.Order.Floor.Ring
 public import Mathlib.Data.Rat.Floor
 
 @[expose] public section

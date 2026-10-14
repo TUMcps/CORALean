@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Float.Operations.ProbReduce
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.ProbReduceEq
 
 @[expose] public section
 

@@ -1,7 +1,6 @@
 module
 
 public import CORALean.Global.Float.FloatOps
-public import CORALean.Global.Tensor
 
 @[expose] public section
 

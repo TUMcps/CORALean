@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 @[expose] public section

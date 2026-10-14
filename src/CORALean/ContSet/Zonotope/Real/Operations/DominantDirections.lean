@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.DominantShortlist
 public import CORALean.ContSet.Zonotope.Real.Operations.DominantScore
-public import Mathlib.Data.List.MinMax
 
 @[expose] public section
 

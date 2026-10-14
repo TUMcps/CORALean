@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
-public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 
 @[expose] public section
 

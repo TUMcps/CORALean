@@ -2,8 +2,6 @@ module
 
 public import CORALean.Global.Tensor
 public import Mathlib.Analysis.Normed.Lp.PiLp
-public import Mathlib.Analysis.Normed.Lp.ProdLp
-public import Mathlib.Data.Matrix.Mul
 
 @[expose] public section
 

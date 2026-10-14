@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
-public import Mathlib.Data.Real.Basic
-public import Mathlib.Data.Matrix.Mul
 
 @[expose] public section
 

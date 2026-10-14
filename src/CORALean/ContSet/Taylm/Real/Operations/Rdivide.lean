@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Inv
-public import CORALean.ContSet.Taylm.Real.Operations.Times
 
 @[expose] public section
 

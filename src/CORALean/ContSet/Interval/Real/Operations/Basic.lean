@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Operations.Cos
 public import CORALean.ContSet.Interval.Real.Operations.CoshHi
 public import CORALean.ContSet.Interval.Real.Operations.CoshLo
@@ -11,11 +10,8 @@ public import CORALean.ContSet.Interval.Real.Operations.Or
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadBilin
 public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
-public import Mathlib.Analysis.Complex.Trigonometric
 public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
-public import Mathlib.Data.Finset.Lattice.Fold
-public import Mathlib.Data.Real.Sign
 
 @[expose] public section
 

@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Data.Matrix.Mul
-public import Mathlib.Data.Matrix.Diagonal
 public import CORALean.NN.Definitions.WeightLayer
 
 @[expose] public section
