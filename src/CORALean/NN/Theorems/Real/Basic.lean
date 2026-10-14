@@ -16,13 +16,14 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+
 -- =================================  `mergeRowWeight_nonneg`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       06-September-2026
 -- Last update:   23-September-2026
 -- Reviewed:      ---
-
-namespace CORALean
 
 /-- ℝ-only, the weights being exact: a sum of absolute values. -/
 theorem mergeRowWeight_nonneg {n n₂ : ℕ} (W : Mat ℝ n₂ n) (i : Fin n₂) :

@@ -8,12 +8,18 @@ A declaration of at most `MAX_CODE` code lines lives in a section of its directo
 header, the line lengths and every author block field; this adds what needs a parse of the
 sections or the import graph:
 
-* a `Basic.lean`: no file-level author block, only blank lines between `BEGIN CODE`, the
-  sections and `END OF CODE`; each section opens with its banner, naming the declaration,
+* a `Basic.lean`: no file-level author block; its sections sit in *groups*, each under one
+  context block (`groups`: `namespace`s, `open`s and `variable`s, the sections, the `end`s;
+  a section holds no context line of its own, a block opens with `namespace` or `section`,
+  closes with matching `end`s, has a section under it, and repeats no neighbour's lines);
+  only blank lines between `BEGIN CODE`, the blocks, the sections and `END OF CODE`;
+  each section opens with its banner, naming the declaration,
   with its own author block directly under it and one blank line under that; one declaration
   per section (in `Complexity/Time|Space/`, one operation: every declaration of the old
   `<Op>.lean`), at most `MAX_CODE` code lines, a docstring on the (first) declaration, no
-  `MAIN`/`AUXILIARY` marker, no CORA model or witness; sections in order (`order_problems`: alphabetical, after the sections they use);
+  `MAIN`/`AUXILIARY` marker, no CORA model or witness; sections in order within a group
+  (`order_problems`: alphabetical, after the sections they use) and groups in order by their
+  first section (`group_order_problems`);
 * every other file: one that is eligible (`eligible`: its module docstring, moved into the
   declaration's own as `section_doc` moves it, still within the cap) is in a `Basic.lean`, unless
   `EXCEPTIONS` lists it with the import cycle that keeps it out;
@@ -22,7 +28,7 @@ sections or the import graph:
 
 Code lines are counted as issue #137 defines them: the non-blank, non-comment lines between the
 code markers, declaration docstrings included; `namespace`, `section`, `end`, `open`,
-`variable` and `universe` lines are context and do not count.
+`variable` and `universe` lines are context (the group's, not the section's) and do not count.
 
 The parsing is the shallow kind `check-conventions.sh` does: comments stripped by a
 two-character scanner, commands matched at the start of a line. `scripts/review.py` and
@@ -159,7 +165,7 @@ def items(lines, sc, lo, hi):
             continue
         top = depth == 0 and raw[:1] not in ("", " ", "\t") and not raw.startswith("--")
         if not top:
-            if cur is not None and raw.strip():
+            if cur is not None and raw.strip() and not raw.lstrip().startswith("--"):
                 cur.end = i
             continue
         if raw.startswith("/--"):
@@ -425,20 +431,6 @@ def eligible(lf):
     return (lf.single() and lf.region.code <= MAX_CODE and excluded(lf) is None and fits(lf))
 
 
-def qualified(lines, region):
-    """The first declaration's name with the namespaces open around it, below `CORALean`."""
-    stack = []
-    for it in region.items:
-        if it.kind == "context" and it.word == "namespace":
-            stack.append(lines[it.start].split()[1])
-        elif it.kind == "context" and it.word == "end" and stack:
-            stack.pop()
-        elif it.kind == "decl":
-            full = ".".join(stack + [it.name])
-            return full[len("CORALean."):] if full.startswith("CORALean.") else full
-    return ""
-
-
 class Section:
     def __init__(self, bf, start, stop):
         lines = bf.lines
@@ -464,7 +456,15 @@ class Section:
         self.body_lo, self.body_hi = lo, hi
         self.region = Region(lines, bf.sc, lo, hi)
         self.names = [d.name for d in self.region.decls]
-        self.qualified = qualified(lines, self.region)
+        self.group = None
+
+    @property
+    def qualified(self):
+        """The first declaration's name with the namespaces of its block, below `CORALean`."""
+        if not self.names:
+            return ""
+        full = ".".join(self.group.namespaces + [self.names[0]]) if self.group else self.names[0]
+        return full[len("CORALean."):] if full.startswith("CORALean.") else full
 
     def label_ok(self):
         """A banner names the declaration as written, or — where two sections of one bundle
@@ -477,13 +477,97 @@ class Section:
 
 
 def sections(lf):
-    """The sections of a `Basic.lean`, in file order."""
+    """The sections of a `Basic.lean`, in file order. A section runs from its banner to the next
+    banner or the next context line (`namespace`, `open`, `variable`, `end` …) at column 0:
+    context belongs to a group (`groups`), not to a section."""
     lines = lf.lines
     if lf.begin < 0 or lf.end < 0:
         return []
     starts = [i for i in range(lf.begin + 1, lf.end) if SECTION_BANNER.match(lines[i])]
-    return [Section(lf, s, starts[k + 1] if k + 1 < len(starts) else lf.end)
-            for k, s in enumerate(starts)]
+    ctx = [it.start for it in lf.region.items if it.kind == "context"]
+    out = []
+    for k, s in enumerate(starts):
+        stop = starts[k + 1] if k + 1 < len(starts) else lf.end
+        stop = min([stop] + [c for c in ctx if c > s])
+        out.append(Section(lf, s, stop))
+    return out
+
+
+class Group:
+    """A run of sections under one context block: the `namespace`/`open`/`variable` lines above
+    them and the `end` lines below. Sections that sit outside any block form a group of their
+    own with no context lines."""
+
+    def __init__(self, start, rootless=False):
+        self.start = start
+        self.context = []        # [(line index, text)] of the opening block
+        self.sections = []
+        self.stack = []          # the names `end` must close, innermost last
+        self.rootless = rootless
+        self.phase = "sections" if rootless else "open"   # open, sections, closing, done
+
+    @property
+    def label(self):
+        return self.sections[0].label if self.sections else ""
+
+    @property
+    def namespaces(self):
+        return [t.split()[1] for _, t in self.context if t.startswith("namespace ")]
+
+    def signature(self):
+        return tuple(" ".join(t.split()) for _, t in self.context)
+
+
+def groups(lf, secs, say):
+    """The groups of a `Basic.lean`, in file order: each section under the context block it is
+    wrapped in. A malformed block is reported through `say(line index, message)`."""
+    lines = lf.lines
+    events = [(it.start, "ctx", it) for it in lf.region.items if it.kind == "context"]
+    events += [(s.start, "sec", s) for s in secs]
+    events.sort(key=lambda e: e[0])
+    out, cur = [], None
+    for i, kind, x in events:
+        if kind == "ctx":
+            text = " ".join(l.strip() for l in lines[x.start:x.end + 1])
+            if x.word == "end":
+                if cur is None or cur.rootless or not cur.stack:
+                    say(i, "`end` with no `namespace` or `section` open")
+                    continue
+                want = cur.stack.pop()
+                if want is not None and text.split()[1:2] != [want]:
+                    say(i, f"`{text}` closes `namespace {want}`")
+                cur.phase = "closing" if cur.stack else "done"
+                continue
+            if cur is None or cur.rootless or cur.phase == "done":
+                cur = Group(i)
+                out.append(cur)
+            elif cur.phase != "open":
+                say(i, "context after the sections of a block — close it with `end` first; a"
+                       " section holds no `namespace`, `open` or `variable` of its own")
+                continue
+            if not cur.context and x.word not in ("namespace", "section"):
+                say(i, f"a context block opens with `namespace` or `section`, not `{x.word}`:"
+                       " an `open` or `variable` outside one leaks into every section after it")
+            cur.context.append((i, text))
+            if x.word in ("namespace", "section"):
+                cur.stack.append(text.split()[1] if len(text.split()) > 1 else None)
+        else:
+            if cur is None or cur.phase == "done":
+                cur = Group(i, rootless=True)
+                out.append(cur)
+            elif cur.phase == "closing":
+                say(i, "a section between the `end` lines of a block")
+            elif cur.phase == "open":
+                cur.phase = "sections"
+            cur.sections.append(x)
+            x.group = cur
+    for g in out:
+        if g.stack:
+            say(g.start, "a context block is never closed: it needs an `end` for every"
+                         " `namespace` and `section`")
+        if not g.sections:
+            say(g.start, "a context block with no section under it")
+    return out
 
 
 def relations(secs):
@@ -545,29 +629,50 @@ def canonical_order(labels, deps):
     return out if len(out) == len(labels) else None
 
 
-def order_problems(secs):
-    """`[(section, message)]` where the order is not the canonical one: a section placed
-    before a section it certainly uses, or after an alphabetically smaller one that nothing
-    kept waiting — at its place, every section still to come and alphabetically before it must
-    possibly use one at or after that place, or it would have come first."""
-    certain, possible = relations(secs)
-    pos = {s.label: i for i, s in enumerate(secs)}
+def order_check(labels, certain, possible):
+    """`[(index, message)]` where `labels` is not in the canonical order: a unit placed before a
+    unit it certainly uses, or after an alphabetically smaller one that nothing kept waiting —
+    at its place, every unit still to come and alphabetically before it must possibly use one at
+    or after that place, or it would have come first."""
+    pos = {l: i for i, l in enumerate(labels)}
     key = lambda l: (l.casefold(), l)
     out = []
-    for i, s in enumerate(secs):
-        late = sorted(d for d in certain[s.label] if pos[d] > i)
+    for i, l in enumerate(labels):
+        late = sorted(d for d in certain[l] if pos[d] > i)
         if late:
-            out.append((s, f"section `{s.label}` uses {', '.join('`' + d + '`' for d in late)},"
+            out.append((i, f"`{l}` uses {', '.join('`' + d + '`' for d in late)},"
                            f" which {'come' if len(late) > 1 else 'comes'} after it — a section follows"
                            " the sections it uses"))
-        for t in secs[i + 1:]:
-            if key(t.label) < key(s.label) and not any(
-                    i <= pos[d] < pos[t.label] for d in possible[t.label]):
-                out.append((s, f"section `{s.label}` comes before `{t.label}`, which uses"
-                               " nothing in between — sections are alphabetical, after the"
-                               " sections they use"))
+        for t in labels[i + 1:]:
+            if key(t) < key(l) and not any(i <= pos[d] < pos[t] for d in possible[t]):
+                out.append((i, f"`{l}` comes before `{t}`, which uses nothing in between —"
+                               " sections are alphabetical, after the sections they use"))
                 break
     return out
+
+
+def order_problems(secs):
+    """`[(section, message)]` for the order of the sections of one group."""
+    certain, possible = relations(secs)
+    return [(secs[i], f"section {m}") for i, m in order_check([s.label for s in secs], certain, possible)]
+
+
+def group_order_problems(secs, grps):
+    """`[(group, message)]` for the order of the groups: by the label of the first section,
+    after the groups whose sections they use, by the same rule as the sections of a group."""
+    grps = [g for g in grps if g.sections]
+    certain, possible = relations(secs)
+    owner = {s.label: g.label for g in grps for s in g.sections}
+    c = {g.label: set() for g in grps}
+    p = {g.label: set() for g in grps}
+    for g in grps:
+        for s in g.sections:
+            c[g.label] |= {owner[d] for d in certain[s.label]}
+            p[g.label] |= {owner[d] for d in possible[s.label]}
+        c[g.label].discard(g.label)
+        p[g.label].discard(g.label)
+    return [(grps[i], f"the block of {m}")
+            for i, m in order_check([g.label for g in grps], c, p)]
 
 
 def all_files():
@@ -635,10 +740,24 @@ def check_basic(lf, say):
     if not secs:
         say(f"{rel}:1: a `Basic.lean` with no sections — delete it")
         return
-    for i in range(lf.begin + 1, secs[0].start):
-        if lines[i].strip():
-            say(f"{where(i)}: nothing sits between `BEGIN CODE` and the first section banner")
+    grps = groups(lf, secs, lambda i, msg: say(f"{where(i)}: {msg}"))
+    first = min(g.start for g in grps)
+    for i in range(lf.begin + 1, first):
+        if lines[i].strip() and not MARKER.match(lines[i]):
+            say(f"{where(i)}: nothing sits between `BEGIN CODE` and the first context block or"
+                " section banner")
             break
+    inside = set()
+    for s in secs:
+        inside.update(range(s.start, s.stop))
+    for it in lf.region.items:
+        if it.kind != "context" and it.start not in inside:
+            say(f"{where(it.start)}: a declaration outside any section — every declaration is"
+                " a section, under its banner")
+    for a, b in zip(grps, grps[1:]):
+        if a.context and a.signature() == b.signature():
+            say(f"{where(b.start)}: this block repeats the one at line {a.start + 1} — the two"
+                " groups are one, with their sections ordered together")
     cx = is_complexity(rel)
     seen = {}
     for s in secs:
@@ -687,8 +806,11 @@ def check_basic(lf, say):
                 " into a file of its own")
         if WITNESS.search(s.label.split(".")[-1]):
             say(f"{tag}: `{s.label}` is a CORA model or witness, which keeps a file of its own")
-    for s, msg in order_problems(secs):
-        say(f"{where(s.start)}: {msg}")
+    for g in grps:
+        for s, msg in order_problems(g.sections):
+            say(f"{where(s.start)}: {msg}")
+    for g, msg in group_order_problems(secs, grps):
+        say(f"{where(g.sections[0].start)}: {msg}")
 
 
 def main():

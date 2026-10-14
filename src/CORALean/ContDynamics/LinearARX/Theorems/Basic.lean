@@ -15,15 +15,16 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+variable {dy p : ℕ}
+
+
 -- ==================================  `LinearARX.sum_block`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
-
-variable {dy p : ℕ}
 
 /-- A sum over the coordinates of `Vec ℝ (p * dy)` is the sum over blocks of the sum
 over the coordinates inside, by `finProdFinEquiv`. -/

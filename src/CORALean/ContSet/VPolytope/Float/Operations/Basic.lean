@@ -19,17 +19,18 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
--- ===================================  `VPolytope.bordered`  =================================== --
--- Authors:       Claude Opus 5.5
--- Written:       04-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean.Float
 
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ===================================  `VPolytope.bordered`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- A float vertex matrix `V` (`n × k`) with a row of ones appended: `[V; 1ᵀ]`, `(n + 1) × k`. Its
 right inverse reaches, besides the points near the vertices' mean, the weights' sum, which is
@@ -40,24 +41,23 @@ def VPolytope.bordered (P : VPolytope (Vec 𝕋 n)) : Mat 𝕋 (n + 1) P.k := fu
 end CORALean.Float
 
 
--- =================================  `VPolytope.boundNegProj`  ================================= --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
+
+-- =================================  `VPolytope.boundNegProj`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
 /-- The nominal bound and the error box's own, added. -/
 def VPolytope.boundNegProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :
     FloatBound 𝕋 P.construct (-LinearMap.proj j) :=
   InflatedContSet.boundOfParts (P.nominalBoundNegProj j) (P.E.boundNegProj j)
-
-end CORALean.Float
 
 
 -- ==================================  `VPolytope.boundProj`  =================================== --
@@ -65,12 +65,6 @@ end CORALean.Float
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
 -- Reviewed:      ---
-
-namespace CORALean.Float
-
-open FloatOps SoundFloatArithmetic InflatedContSet
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The nominal bound and the error box's own, added. -/
 def VPolytope.boundProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :

@@ -17,22 +17,21 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
--- =======================================  `ContSet.eq`  ======================================= --
--- Authors:       Claude Opus 5.5
--- Written:       03-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean
 
 open ContSet
 
 variable {S α : Type} [ContSet S α] [Isequal S]
 
+
+-- =======================================  `ContSet.eq`  ======================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
 /-- CORA's `eq`: `res = isequal(S1, S2)`. -/
 def ContSet.eq (s t : S) : Prop := Isequal.isequal s t
-
-end CORALean
 
 
 -- =======================================  `ContSet.ne`  ======================================= --
@@ -41,23 +40,11 @@ end CORALean
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean
-
-open ContSet
-
-variable {S α : Type} [ContSet S α] [Isequal S]
-
 /-- CORA's `ne`: `res = ~isequal(S1, S2)`. -/
 def ContSet.ne (s t : S) : Prop := ¬ Isequal.isequal s t
 
 end CORALean
 
-
--- =====================================  `ContSet.uminus`  ===================================== --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
 
 namespace CORALean
 
@@ -65,6 +52,13 @@ open ContSet Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] [NegScalar 𝕋] {S : ℕ → Type}
 variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
+
+
+-- =====================================  `ContSet.uminus`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- CORA's `uminus`: `S = -1 * S`.
 
@@ -76,19 +70,20 @@ def ContSet.uminus (s : S n) : S n :=
 end CORALean
 
 
--- ===================================  `ContSet.minusFrom`  ==================================== --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean
 
 open ContSet Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] [NegScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
+variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ} [∀ n, Plus (S n) (Vec ℝ n)]
+variable [∀ n, OfPoint (S n) (Vec ℝ n)]
+
+
+-- ===================================  `ContSet.minusFrom`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- CORA's `minus` for a numeric minuend `p`: `S = -S + p`.
 
@@ -99,19 +94,20 @@ def ContSet.minusFrom (p : Vec ℝ n) (s : S n) : S n :=
 end CORALean
 
 
--- ================================  `ContSet.minusFromScalar`  ================================= --
--- Authors:       Claude Opus 5.5
--- Written:       03-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean
 
 open ContSet Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] [NegScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
-variable [∀ n, Plus (S n) (Vec ℝ n)] [OfScalarPoint 𝕋 S]
+variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ} [∀ n, Plus (S n) (Vec ℝ n)]
+variable [OfScalarPoint 𝕋 S]
+
+
+-- ================================  `ContSet.minusFromScalar`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- CORA's `minus` for a numeric minuend `p`: `S = -S + p`.
 
@@ -122,17 +118,18 @@ def ContSet.minusFromScalar (p : Vec 𝕋 n) (s : S n) : S n :=
 end CORALean
 
 
--- =====================================  `ContSet.uplus`  ====================================== --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean
 
 open ContSet Scalar
 
 variable {S α : Type} [ContSet S α]
+
+
+-- =====================================  `ContSet.uplus`  ====================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- CORA's `uplus`: `S = S`.
 

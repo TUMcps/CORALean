@@ -16,15 +16,16 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+open Matrix
+
+
 -- ===============================  `trace_transpose_mul_eq_sum`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
-
-open Matrix
 
 /-- `tr(Aᵀ B) = Σₖ Σⱼ A_{kj} B_{kj}`. -/
 theorem trace_transpose_mul_eq_sum {a b : ℕ} (A B : Matrix (Fin a) (Fin b) ℝ) :

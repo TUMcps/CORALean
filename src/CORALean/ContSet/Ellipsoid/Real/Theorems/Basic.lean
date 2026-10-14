@@ -22,24 +22,23 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+open Matrix
+
+variable {n m : ℕ}
+
+
 -- ================================  `Ellipsoid.dot_transpose`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-open Matrix
-
-variable {n : ℕ}
-
 /-- `(Gᵀ w) · a = w · (G a)`, the identity behind the support point and the shape matrix `G Gᵀ`. -/
 theorem Ellipsoid.dot_transpose {k : ℕ} (G : Mat ℝ n k) (w : Vec ℝ n) (a : Vec ℝ k) :
     (Gᵀ *ᵥ w) ⬝ᵥ a = w ⬝ᵥ (G *ᵥ a) := by
   rw [Matrix.dotProduct_mulVec, Matrix.mulVec_transpose]
-
-end CORALean.Real
 
 
 -- ================================  `Ellipsoid.enclose₂_outer`  ================================ --
@@ -48,17 +47,11 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- Outer, given the hull `orOA` encloses both operands (`Ellipsoid.IsOrOuter`). -/
 theorem Ellipsoid.enclose₂_outer (orOA : Ellipsoid n → Ellipsoid n → Ellipsoid n)
     (hor : ∀ E₁ E₂, Ellipsoid.IsOrOuter E₁ E₂ (orOA E₁ E₂)) (E E2 : Ellipsoid n) :
     segments E.construct E2.construct ⊆ (Ellipsoid.enclose₂ orOA E E2).construct :=
   Ellipsoid.segments_subset_of_isOrOuter (hor _ _)
-
-end CORALean.Real
 
 
 -- =============================  `Ellipsoid.isBounded_construct`  ============================== --
@@ -67,16 +60,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- Read off compactness rather than proved again: `‖G u‖ ≤ ‖G‖ ‖u‖₂` would need the
 operator norm, and the compactness proof already carries everything. -/
 theorem Ellipsoid.isBounded_construct (E : Ellipsoid n) : Bornology.IsBounded E.construct :=
   E.isCompact_construct.isBounded
-
-end CORALean.Real
 
 
 -- ==============================  `Ellipsoid.isClosed_construct`  ============================== --
@@ -85,16 +72,10 @@ end CORALean.Real
 -- Last update:   04-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- Read off compactness, as for a zonotope and for the same reason: `construct` is
 an affine image, and an affine image of a merely closed set need not be closed. -/
 theorem Ellipsoid.isClosed_construct (E : Ellipsoid n) : IsClosed E.construct :=
   E.isCompact_construct.isClosed
-
-end CORALean.Real
 
 
 -- ================================  `Ellipsoid.mem_construct`  ================================= --
@@ -103,19 +84,11 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-open Matrix
-
-variable {n : ℕ}
-
 /-- An introduction rather than a characterisation: any affine image of a unit
 ball point is a point the ellipsoid contains. `Theorems/QMemConstruct` is the
 same statement at `u = 0`, the centre. -/
 theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ E.k} (hu : ‖u‖₂ ≤ 1) :
     E.q + E.G *ᵥ u ∈ E.construct := ⟨u, hu, rfl⟩
-
-end CORALean.Real
 
 
 -- =============================  `Ellipsoid.centre_mem_construct`  ============================= --
@@ -124,17 +97,11 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- CORA's `center` is the field `q`; it is the image of the zero coefficient vector,
 whatever the generators. -/
 theorem Ellipsoid.centre_mem_construct (E : Ellipsoid n) : E.q ∈ E.construct := by
   have hu : ‖(0 : Vec ℝ E.k)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
   simpa using Ellipsoid.mem_construct (E := E) hu
-
-end CORALean.Real
 
 
 -- =================================  `Ellipsoid.mem_ofPoint`  ================================== --
@@ -143,17 +110,11 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- `ofPoint v` reuses `mem_construct` at `u = 0 : Vec ℝ 0`, the only coefficient
 vector a `0`-column `G` admits, in `unitBall₂` because `norm₂_zero ≤ 1`. -/
 theorem Ellipsoid.mem_ofPoint (v : Vec ℝ n) : v ∈ (Ellipsoid.ofPoint v).construct := by
   have hu : ‖(0 : Vec ℝ 0)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
   simpa [Ellipsoid.ofPoint] using Ellipsoid.mem_construct (E := Ellipsoid.ofPoint v) hu
-
-end CORALean.Real
 
 
 -- ================================  `Ellipsoid.project_exact`  ================================= --
@@ -162,17 +123,11 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n m : ℕ}
-
 /-- Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact
 without injectivity, so nothing is added and nothing lost. -/
 theorem Ellipsoid.project_exact (E : Ellipsoid n) (dims : Fin m → Fin n) :
     (fun x k => x (dims k)) '' E.construct = (E.project dims).construct :=
   Ellipsoid.map_exact (LinearMap.funLeft ℝ ℝ dims) E
-
-end CORALean.Real
 
 
 -- ===================================  `Ellipsoid.quad_eq`  ==================================== --
@@ -180,12 +135,6 @@ end CORALean.Real
 -- Written:       10-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-open Matrix
-
-variable {n : ℕ}
 
 /-- `vᵀ Q v = (Gᵀ v)ᵀ (Gᵀ v)` for `Q = G Gᵀ`, so it is `‖Gᵀ v‖₂²` and nonnegative. -/
 theorem Ellipsoid.quad_eq (E : Ellipsoid n) (v : Vec ℝ n) :

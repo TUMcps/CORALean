@@ -20,23 +20,24 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+open Matrix
+
+variable {n m : ℕ} {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
+
+
 -- =============================  `ConZonotope.isClosed_construct`  ============================= --
 -- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
-
 /-- Read off compactness. The halfspace description behind `domain` is closed on its
 own, but `construct` is an image of it, and an image of a merely closed set need
 not be closed. -/
 theorem ConZonotope.isClosed_construct (cZ : ConZonotope α) : IsClosed cZ.construct :=
   cZ.isCompact_construct.isClosed
-
-end CORALean.Real
 
 
 -- ================================  `ConZonotope.mtimes_exact`  ================================ --
@@ -45,17 +46,11 @@ end CORALean.Real
 -- Last update:   04-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-open Matrix
-
 /-- `map_exact` at `A *ᵥ ·`, which is the case reachability runs: the constraints
 are on the coefficients and a linear map of the ambient space never sees them. -/
 theorem ConZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
     (M *ᵥ ·) '' cZ.construct = (ConZonotope.mtimes M cZ).construct :=
   ConZonotope.map_exact (Matrix.mulVecLin M) cZ
-
-end CORALean.Real
 
 
 -- ===============================  `ConZonotope.project_exact`  ================================ --
@@ -63,10 +58,6 @@ end CORALean.Real
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {n m : ℕ}
 
 /-- Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact
 without injectivity, so nothing is added and nothing lost. -/
@@ -77,15 +68,16 @@ theorem ConZonotope.project_exact (cZ : ConZonotope (Vec ℝ n)) (dims : Fin m �
 end CORALean.Real
 
 
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
 -- ==========================  `ConZonotope.representsa_emptySet_iff`  ========================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A constrained zonotope is empty iff its coefficient polytope is -/
 theorem ConZonotope.representsa_emptySet_iff (cZ : ConZonotope α) :

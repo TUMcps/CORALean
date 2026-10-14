@@ -15,15 +15,16 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
 -- ==============================  `ProbZonotope.vPolytope_exact`  ============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {n : ℕ}
 
 /-- The polytope is the mean zonotope `Z`, exactly: not the confidence set of the probabilistic
 generators, which CORA's `polytope` and `vertices_` ignore. -/

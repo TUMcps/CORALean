@@ -16,15 +16,16 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+variable {n m : ℕ}
+
+
 -- ===============================  `ConPolyZono.project_exact`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {n m : ℕ}
 
 /-- Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact
 without injectivity, so nothing is added and nothing lost. -/

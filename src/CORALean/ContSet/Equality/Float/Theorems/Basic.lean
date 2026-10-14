@@ -15,17 +15,18 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
--- ==================================  `ContSet.eqBool_sound`  ================================== --
--- Authors:       Claude Opus 5.5
--- Written:       03-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean.Float
 
 open CORALean
 
 variable {S α : Type} [ContSet S α] [Isequal S] [DecidableRel (Isequal.isequal (S := S))]
+
+
+-- ==================================  `ContSet.eqBool_sound`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- `true` says the class's `isequal` holds, which says the two representations denote one set. -/
 theorem ContSet.eqBool_sound {s t : S} (h : ContSet.eqBool s t = true) :

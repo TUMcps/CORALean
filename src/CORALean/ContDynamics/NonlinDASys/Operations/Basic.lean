@@ -16,15 +16,16 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+variable {n p m : ℕ}
+
+
 -- ========================  `NonlinDASys.ReducedModel.toNonlinearSys`  ========================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
-
-variable {n p m : ℕ}
 
 /-- The ordinary system with `y` replaced by `h x u`.
 

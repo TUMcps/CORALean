@@ -16,17 +16,18 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
--- ===============================  `ConZonotope.mtimes_eq_map`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       01-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- ===============================  `ConZonotope.mtimes_eq_map`  ================================ --
+-- Authors:       Claude Opus 5
+-- Written:       01-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
 
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
 theorem ConZonotope.mtimes_eq_map (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
