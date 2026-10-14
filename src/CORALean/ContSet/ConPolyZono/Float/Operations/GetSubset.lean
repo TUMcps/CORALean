@@ -38,9 +38,9 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) 
     ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := (cPZ.toPolyZonotope.getSubset k cen rad).h
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := (cPZ.consPolyZonotope.getSubset k cen rad).h
+  q := (cPZ.consPolyZonotope.getSubset k cen rad).h
   c := cPZ.c
   G := (cPZ.toPolyZonotope.getSubset k cen rad).G
   E := (cPZ.toPolyZonotope.getSubset k cen rad).E
@@ -48,7 +48,7 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) 
   A := fun i l => (cPZ.consPolyZonotope.getSubset k cen rad).G l i
   -- the rounding of the stored constraint entries, scaled by monomials in `[-1, 1]`
   b := cPZ.b.plus (PolyZonotope.generatorError (cPZ.consPolyZonotope.getSubsetGDiff k cen rad))
-  EC := (cPZ.consPolyZonotope.getSubset k cen rad).E
+  R := (cPZ.consPolyZonotope.getSubset k cen rad).E
   I_error := (cPZ.toPolyZonotope.getSubset k cen rad).I_error
 
 end CORALean.Float

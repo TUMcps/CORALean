@@ -48,7 +48,7 @@ noncomputable def LinearSysDT.observeEsoB1D (A C W V u y Q c σsqPrev : ℝ) : �
   let Qnext := (1 - p)⁻¹ * Qhom + (σsqPrev * p)⁻¹ * W  -- `Q_next` (`1e-3`: a tolerance)
   let δ := y - C * chom  -- `delta` of `aux_methodLiu2016`
   if σsqPrev + δ * δ > 1 then  -- Theorem 3 of Liu et al.
-    Ellipsoid.intersectStripLiu1D Qnext chom C V barV y σsqPrev  -- `E.q`, `E.Q`, `sigma_sq`
+    Ellipsoid.intersectStripLiu1D Qnext chom C V barV y σsqPrev  -- `E.c`, `E.Q`, `sigma_sq`
   else (chom, Qnext, σsqPrev)  -- the ellipsoid is unchanged
 
 end CORALean

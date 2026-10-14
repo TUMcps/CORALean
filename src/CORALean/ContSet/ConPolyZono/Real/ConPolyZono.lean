@@ -10,21 +10,29 @@ public import Mathlib.Data.Matrix.Mul
 # Constrained polynomial zonotopes: the representation
 
 CORA's `conPolyZono`, and [1, Def. 5]: a `PolyZonotope` whose factors additionally satisfy
-polynomial constraints `A μ(α) ∈ b`, the constraint monomials read off `EC` over
-the *same* factors as the generators. That sharing is the content of the
+polynomial constraints `A μ_R(α) = b`, the constraint monomials read off the exponent
+matrix `R` over the *same* factors as the generators. That sharing is the content of the
 representation — a constraint and a generator are two readings of one
 `PolyZonotope.monomial` — so the constraints are a matrix relation, not a polytope.
 
-`b` is an `Interval` where [1] writes `A μ(α) = b`: an equality has no direction
-to round in, so no float layer could compute a constraint at all; `Interval.point
-b` gives it back. Of the five counts two are renamed against [1] to avoid
-`PolyZonotope`'s: `m` counts constraints, `s` constraint generators. `holds`
-states the constraint over the data, which an operation assembling one needs.
+The symbols are [1]'s: `p` factors, `h` generators, `m` constraints, `q` constraint generators,
+so `A` is `m × q` and `R` is `p × q`. [1] has no independent generators; their count is `qI`,
+`PolyZonotope`'s `q` [2, Def. 1] being the letter [1] gives the constraint generators.
+
+`b` is an `Interval` where [1] writes `A μ_R(α) = b`; `Interval.point b` gives that back.
+Nothing here rounds; the width is for the float layer, whose `nominal` must be an exact
+`ConPolyZono`. Rounding the stored `A` or `b` names another equation, which has no interior to
+absorb the error, so the stored `b` is read as the interval it was widened to. The operations
+copy `b` through and build crisp rows from crisp ones; only `intersection`, whose agreement rows
+carry a tolerance box, writes a row of positive width.
 
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
       Informatica, 2023.
+* [2] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5
@@ -49,35 +57,36 @@ structure ConPolyZono (α : Type) where
   p : ℕ
   /-- The dependent generators. -/
   h : ℕ
-  /-- The independent generators. -/
-  q : ℕ
+  /-- The independent generators, `qI` of them; [1] has none. -/
+  qI : ℕ
   /-- The constraints. -/
   m : ℕ
   /-- The constraint generators. -/
-  s : ℕ
+  q : ℕ
   c : α
   G : Fin h → α
   E : Fin p → Fin h → ℕ
-  GI : Fin q → α
-  A : Mat ℝ m s
-  /-- Interval-valued, so that a bound has a direction to be rounded in. -/
+  GI : Fin qI → α
+  A : Mat ℝ m q
+  /-- The constraint vector `b` of [1], held as the interval it is widened to. -/
   b : Interval (Vec ℝ m)
-  EC : Fin p → Fin s → ℕ
+  /-- The constraint exponent matrix, `R` of [1]. -/
+  R : Fin p → Fin q → ℕ
 
-/-- The constraint `A μ(α) ∈ b`, one row at a time and over the data rather than
+/-- The constraint `A μ_R(α) ∈ b`, one row at a time and over the data rather than
 over a set, so an operation can name the constraints of the system it is still
 assembling. -/
-def ConPolyZono.holds {p m s : ℕ} (A : Mat ℝ m s) (b : Interval (Vec ℝ m))
-    (EC : Fin p → Fin s → ℕ) (a : Fin p → ℝ) : Prop :=
-  ∀ i, b.inf i ≤ (A *ᵥ PolyZonotope.monomial EC a) i
-        ∧ (A *ᵥ PolyZonotope.monomial EC a) i ≤ b.sup i
+def ConPolyZono.holds {p m q : ℕ} (A : Mat ℝ m q) (b : Interval (Vec ℝ m))
+    (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) : Prop :=
+  ∀ i, b.inf i ≤ (A *ᵥ PolyZonotope.monomial R a) i
+        ∧ (A *ᵥ PolyZonotope.monomial R a) i ≤ b.sup i
 
-/-- What a set's own factors must satisfy. -/
+/-- What a set's own factors must satisfy: `holds` at its own fields. -/
 def ConPolyZono.satisfies (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) : Prop :=
-  ConPolyZono.holds cPZ.A cPZ.b cPZ.EC a
+  ConPolyZono.holds cPZ.A cPZ.b cPZ.R a
 
 def ConPolyZono.construct (cPZ : ConPolyZono α) : Set α :=
-  {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
+  {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ cPZ.satisfies a
         ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, β j • cPZ.GI j}
 

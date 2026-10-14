@@ -37,8 +37,8 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Row `r` and column `t` gone, the rest corrected by a rank-one term. -/
-noncomputable def ConPolyZono.reduceConA {m s : ℕ} (A : Mat ℝ m s) (r : Fin m) (t : Fin s) :
-    Mat ℝ (m - 1) (s - 1) :=
+noncomputable def ConPolyZono.reduceConA {m q : ℕ} (A : Mat ℝ m q) (r : Fin m) (t : Fin q) :
+    Mat ℝ (m - 1) (q - 1) :=
   Matrix.of fun j i => A (dropIdx r j) (dropIdx t i)
     - A r (dropIdx t i) * A (dropIdx r j) t / A r t
 

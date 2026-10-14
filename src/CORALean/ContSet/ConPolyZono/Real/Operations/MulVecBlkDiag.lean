@@ -35,7 +35,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Block `j`'s row of `blkDiag A` pairs with block `j`'s entries alone. -/
-theorem ConPolyZono.mulVec_blkDiag {a m s : ℕ} (A : Mat ℝ m s) (u : Fin (a * s) → ℝ)
+theorem ConPolyZono.mulVec_blkDiag {a m q : ℕ} (A : Mat ℝ m q) (u : Fin (a * q) → ℝ)
     (j : Fin a) (i : Fin m) :
     (∑ y, ConPolyZono.blkDiag a A (finProdFinEquiv (j, i)) y * u y)
       = ∑ l, A i l * u (finProdFinEquiv (j, l)) := by -- --- PROOF ---

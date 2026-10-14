@@ -52,7 +52,7 @@ theorem ConPolyZono.nominal_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
   have hreal : Real.ConPolyZono.intersectionDep (nominal cPZ₁) (nominal cPZ₂)
         (ConPolyZono.intersectionD cPZ₁ cPZ₂)
       = (⟨cPZ₁.p + cPZ₂.p, cPZ₁.h + cPZ₂.h, 0, cPZ₁.m + cPZ₂.m + n,
-        cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h),
+        cPZ₁.q + cPZ₂.q + (cPZ₁.h + cPZ₂.h),
         toRealVec cPZ₁.c,
         Fin.append (fun (l : Fin cPZ₁.h) (i : Fin n) => toReal (cPZ₁.G l i))
           (0 : Fin cPZ₂.h → Vec ℝ n),
@@ -60,19 +60,19 @@ theorem ConPolyZono.nominal_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
         Real.ConPolyZono.intersectionA (nominal cPZ₁) (nominal cPZ₂),
         Real.ConPolyZono.intersectionB (nominal cPZ₁) (nominal cPZ₂)
           (ConPolyZono.intersectionD cPZ₁ cPZ₂),
-        Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)
+        Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R)
           (Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E)⟩ : Real.ConPolyZono (Vec ℝ n)) := rfl
   rw [hreal]
   -- and the float side in the same shape, so the two records differ only field by field
   show (⟨cPZ₁.p + cPZ₂.p, cPZ₁.h + cPZ₂.h, 0, cPZ₁.m + cPZ₂.m + n,
-      cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h),
+      cPZ₁.q + cPZ₂.q + (cPZ₁.h + cPZ₂.h),
       toRealVec cPZ₁.c,
       fun l i => toReal (Fin.append cPZ₁.G (fun _ _ => zero) l i),
       Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E,
       fun j i => toReal ((Fin.elim0 : Fin 0 → Vec 𝕋 n) j i),
       toRealMat (ConPolyZono.intersectionA cPZ₁ cPZ₂),
       (ConPolyZono.intersectionB cPZ₁ cPZ₂).nominal,
-      Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)
+      Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R)
         (Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E)⟩ : Real.ConPolyZono (Vec ℝ n)) = _
   rw [hG, hGI, ConPolyZono.toRealMat_intersectionA, ConPolyZono.nominal_intersectionB]
 

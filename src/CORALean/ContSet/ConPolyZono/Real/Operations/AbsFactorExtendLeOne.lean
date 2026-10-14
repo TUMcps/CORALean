@@ -22,11 +22,11 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.abs_factorExtend_le_one {p h s : ℕ} (E : Fin p → Fin h → ℕ)
-    (EC : Fin p → Fin s → ℕ) {a : Fin (ConPolyZono.usedFactors E EC).card → ℝ}
+theorem ConPolyZono.abs_factorExtend_le_one {p h q : ℕ} (E : Fin p → Fin h → ℕ)
+    (R : Fin p → Fin q → ℕ) {a : Fin (ConPolyZono.usedFactors E R).card → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (k : Fin p) :
-    |ConPolyZono.factorExtend E EC a k| ≤ 1 :=
-  PolyZonotope.abs_factorExtend_le_one (ConPolyZono.appendE E EC) ha k
+    |ConPolyZono.factorExtend E R a k| ≤ 1 :=
+  PolyZonotope.abs_factorExtend_le_one (ConPolyZono.appendE E R) ha k
 
 end CORALean.Real
 

@@ -9,8 +9,8 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Intersection
 
 `intersection` runs `intersectionDep` on the two `dependent` sets: every independent generator is
 freed into a factor first, so the two operands' `p` and `h` each carry their
-own `q` along before the two combine, the independent block empties, `m` picks
-up one row per output coordinate, and `s` gains one constraint generator per
+own `qI` along before the two combine, the independent block empties, `m` picks
+up one row per output coordinate, and `q` gains one constraint generator per
 freed dependent generator. `rfl` by unfolding `dependent` and `intersectionDep` rather
 than restating either.
 -/
@@ -31,20 +31,20 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.intersection_p (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.intersection cPZ₁ cPZ₂).p = (cPZ₁.p + cPZ₁.q) + (cPZ₂.p + cPZ₂.q) := rfl
+    (ConPolyZono.intersection cPZ₁ cPZ₂).p = (cPZ₁.p + cPZ₁.qI) + (cPZ₂.p + cPZ₂.qI) := rfl
 
 theorem ConPolyZono.intersection_h (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.intersection cPZ₁ cPZ₂).h = (cPZ₁.h + cPZ₁.q) + (cPZ₂.h + cPZ₂.q) := rfl
+    (ConPolyZono.intersection cPZ₁ cPZ₂).h = (cPZ₁.h + cPZ₁.qI) + (cPZ₂.h + cPZ₂.qI) := rfl
 
-theorem ConPolyZono.intersection_q (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.intersection cPZ₁ cPZ₂).q = 0 := rfl
+theorem ConPolyZono.intersection_qI (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.intersection cPZ₁ cPZ₂).qI = 0 := rfl
 
 theorem ConPolyZono.intersection_m (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
     (ConPolyZono.intersection cPZ₁ cPZ₂).m = cPZ₁.m + cPZ₂.m + n := rfl
 
-theorem ConPolyZono.intersection_s (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.intersection cPZ₁ cPZ₂).s
-      = cPZ₁.s + cPZ₂.s + ((cPZ₁.h + cPZ₁.q) + (cPZ₂.h + cPZ₂.q)) := rfl
+theorem ConPolyZono.intersection_q (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.intersection cPZ₁ cPZ₂).q
+      = cPZ₁.q + cPZ₂.q + ((cPZ₁.h + cPZ₁.qI) + (cPZ₂.h + cPZ₂.qI)) := rfl
 
 end CORALean.Real
 

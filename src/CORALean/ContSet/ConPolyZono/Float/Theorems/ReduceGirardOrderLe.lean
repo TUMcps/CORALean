@@ -38,14 +38,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The count arithmetic, and all of it: two budgets summing to at most `K`,
 each clamped to the block it cuts, plus the `m` the box adds. -/
-theorem ConPolyZono.aux_order_arith {d K h q m : ℕ} (hd : d ≤ K) :
-    min d h + (min (K - d) q + m) ≤ K + m := by omega
+theorem ConPolyZono.aux_order_arith {d K h qI m : ℕ} (hd : d ≤ K) :
+    min d h + (min (K - d) qI + m) ≤ K + m := by omega
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceGirard_order_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {o : ℕ} (ho : 0 < o) :
-    (cPZ.reduceGirard o).h + (cPZ.reduceGirard o).q ≤ o * n := by -- --- PROOF ---
+    (cPZ.reduceGirard o).h + (cPZ.reduceGirard o).qI ≤ o * n := by -- --- PROOF ---
   have hK : (o - 1) * n + n = o * n := by
     rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
   unfold ConPolyZono.reduceGirard

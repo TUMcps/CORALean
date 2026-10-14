@@ -27,14 +27,14 @@ namespace CORALean.Real
 
 /-- The same generator monomial read against an extended factor vector, which is
 what the reverse inclusion supplies. -/
-theorem ConPolyZono.monomial_factorExtend_left {p h s : ℕ} (E : Fin p → Fin h → ℕ)
-    (EC : Fin p → Fin s → ℕ) (a : Fin (ConPolyZono.usedFactors E EC).card → ℝ) (i : Fin h) :
-    PolyZonotope.monomial E (ConPolyZono.factorExtend E EC a) i
-      = PolyZonotope.monomial (fun k i => E (ConPolyZono.factorIdx E EC k) i)
+theorem ConPolyZono.monomial_factorExtend_left {p h q : ℕ} (E : Fin p → Fin h → ℕ)
+    (R : Fin p → Fin q → ℕ) (a : Fin (ConPolyZono.usedFactors E R).card → ℝ) (i : Fin h) :
+    PolyZonotope.monomial E (ConPolyZono.factorExtend E R a) i
+      = PolyZonotope.monomial (fun k i => E (ConPolyZono.factorIdx E R k) i)
         a i := by -- --- PROOF ---
-  have hmon := ConPolyZono.monomial_factorIdx_left E EC (ConPolyZono.factorExtend E EC a) i
-  have hext : (fun k => ConPolyZono.factorExtend E EC a (ConPolyZono.factorIdx E EC k)) = a :=
-    funext fun k => PolyZonotope.factorExtend_factorIdx (ConPolyZono.appendE E EC) a k
+  have hmon := ConPolyZono.monomial_factorIdx_left E R (ConPolyZono.factorExtend E R a) i
+  have hext : (fun k => ConPolyZono.factorExtend E R a (ConPolyZono.factorIdx E R k)) = a :=
+    funext fun k => PolyZonotope.factorExtend_factorIdx (ConPolyZono.appendE E R) a k
   rw [hext] at hmon
   exact hmon.symm
 

@@ -39,7 +39,7 @@ def Ellipsoid.spectraShadow (E : Ellipsoid n) : SpectraShadow (Vec ℝ n) where
   A₀ := 1
   A := fun i => Matrix.of fun p q =>
     if (p = 0 ∧ q = i.succ) ∨ (p = i.succ ∧ q = 0) then 1 else 0
-  c := E.q
+  c := E.c
   G := fun i r => E.G r i
 
 

@@ -29,11 +29,11 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mulVec_intersectionA_left (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (v : Fin (cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h)) → ℝ) (i : Fin (cPZ₁.m + cPZ₂.m)) :
+    (v : Fin (cPZ₁.q + cPZ₂.q + (cPZ₁.h + cPZ₂.h)) → ℝ) (i : Fin (cPZ₁.m + cPZ₂.m)) :
     (ConPolyZono.intersectionA cPZ₁ cPZ₂ *ᵥ v) (Fin.castAdd n i)
       = (ConPolyZono.plusA cPZ₁.A cPZ₂.A *ᵥ fun l => v (Fin.castAdd (cPZ₁.h + cPZ₂.h) l))
         i := by -- --- PROOF ---
-  show ∑ l : Fin (cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h)),
+  show ∑ l : Fin (cPZ₁.q + cPZ₂.q + (cPZ₁.h + cPZ₂.h)),
       ConPolyZono.intersectionA cPZ₁ cPZ₂ (Fin.castAdd n i) l * v l
     = ∑ l, ConPolyZono.plusA cPZ₁.A cPZ₂.A i l * v (Fin.castAdd (cPZ₁.h + cPZ₂.h) l)
   rw [Fin.sum_univ_add]

@@ -14,7 +14,7 @@ terms and each of those times `α₁`. Eight groups, `2 + 2p₁ + 2p₂ + 2p₁p
 
 Given as a map from column index to column rather than as the transposed matrix
 the representation stores, since every group is defined by what its column *is*;
-`unionConEC` is this read the other way round.
+`unionConR` is this read the other way round.
 
 ## References
 

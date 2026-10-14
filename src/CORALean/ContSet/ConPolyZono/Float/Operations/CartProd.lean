@@ -37,16 +37,16 @@ def ConPolyZono.cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁)) (cPZ₂ : C
     ConPolyZono 𝕋 (Vec 𝕋 (n₁ + n₂)) where
   p := cPZ₁.p + cPZ₂.p
   h := cPZ₁.h + cPZ₂.h
-  q := cPZ₁.q + cPZ₂.q
+  qI := cPZ₁.qI + cPZ₂.qI
   m := cPZ₁.m + cPZ₂.m
-  s := cPZ₁.s + cPZ₂.s
+  q := cPZ₁.q + cPZ₂.q
   c := Fin.append cPZ₁.c cPZ₂.c
   G := fun l i => genBlockDiag (fun i l => cPZ₁.G l i) (fun i l => cPZ₂.G l i) i l
   E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
   GI := fun j i => genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i j
   A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
   b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
-  EC := Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC
+  R := Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R
   I_error := Interval.append cPZ₁.I_error cPZ₂.I_error
 
 end CORALean.Float

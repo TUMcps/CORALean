@@ -39,8 +39,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 def ConPolyZono.exactPlus (cPZ₁ cPZ₂ : ConPolyZono α) (hp : cPZ₁.p = cPZ₂.p) : ConPolyZono α :=
   let pZ := cPZ₁.polyZonotope.exactPlus cPZ₂.polyZonotope hp
-  { p := pZ.p, h := pZ.h, q := pZ.q, m := cPZ₁.m, s := cPZ₁.s, c := pZ.c, G := pZ.G, E := pZ.E,
-    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, EC := cPZ₁.EC }
+  { p := pZ.p, h := pZ.h, qI := pZ.q, m := cPZ₁.m, q := cPZ₁.q, c := pZ.c, G := pZ.G, E := pZ.E,
+    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, R := cPZ₁.R }
 
 end CORALean.Real
 

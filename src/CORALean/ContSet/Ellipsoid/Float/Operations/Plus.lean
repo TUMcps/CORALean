@@ -47,10 +47,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Ellipsoid.plus (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) : Ellipsoid 𝕋 n where
   k := E₁.k + E₂.k
-  q := fun i => addDown (E₁.q i) (E₂.q i)
+  c := fun i => addDown (E₁.c i) (E₂.c i)
   G := Ellipsoid.plusG s₁ s₂ E₁ E₂
   I_error := (E₁.I_error.plus E₂.I_error).plus
-    ((Ellipsoid.centerResidual E₁.q E₂.q).plus
+    ((Ellipsoid.centerResidual E₁.c E₂.c).plus
       (Ellipsoid.generatorError (Ellipsoid.plusGap s₁ s₂ E₁ E₂)))
 
 end CORALean.Float

@@ -46,12 +46,12 @@ theorem Ellipsoid.vertices_outer (k : ℕ) (E : Ellipsoid 𝕋 1) :
   -- the two ends, each rounded in the outward direction
   have he0 : toReal (E.I_error.inf 0) ≤ e 0 ∧ e 0 ≤ toReal (E.I_error.sup 0) := he 0
   have hy0 := hyu 0
-  have h1 := addDown_le_add (subDown (E.q 0) ρ) (E.I_error.inf 0)
-  have h2 := subDown_le_sub (E.q 0) ρ
-  have h3 := add_le_addUp (addUp (E.q 0) ρ) (E.I_error.sup 0)
-  have h4 := add_le_addUp (E.q 0) ρ
-  set lo := toReal (addDown (subDown (E.q 0) ρ) (E.I_error.inf 0)) with hlo
-  set hi := toReal (addUp (addUp (E.q 0) ρ) (E.I_error.sup 0)) with hhi
+  have h1 := addDown_le_add (subDown (E.c 0) ρ) (E.I_error.inf 0)
+  have h2 := subDown_le_sub (E.c 0) ρ
+  have h3 := add_le_addUp (addUp (E.c 0) ρ) (E.I_error.sup 0)
+  have h4 := add_le_addUp (E.c 0) ρ
+  set lo := toReal (addDown (subDown (E.c 0) ρ) (E.I_error.inf 0)) with hlo
+  set hi := toReal (addUp (addUp (E.c 0) ρ) (E.I_error.sup 0)) with hhi
   have hl : lo ≤ (y + e) 0 := by
     simp only [Pi.add_apply]; linarith [he0.1]
   have hh : (y + e) 0 ≤ hi := by

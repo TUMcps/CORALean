@@ -38,16 +38,16 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 def PolyZonotope.conPolyZono (pZ : PolyZonotope α) : ConPolyZono α where
   p := pZ.p
   h := pZ.h
-  q := pZ.q
+  qI := pZ.q
   m := 0
-  s := 0
+  q := 0
   c := pZ.c
   G := pZ.G
   E := pZ.E
   GI := pZ.GI
   A := 0
   b := Interval.point 0
-  EC := fun _ => Fin.elim0
+  R := fun _ => Fin.elim0
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

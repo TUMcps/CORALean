@@ -51,9 +51,9 @@ block, and, at every factor vector in `[-1,1]ᵖ` whose substitution is in `[-1,
 the original constraint, the constraint and the generator sum up to the error boxes. -/
 def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋)
     (t : ℕ) : Prop :=
-  acc.p = cPZ.p ∧ acc.q = cPZ.q ∧ acc.c = cPZ.c
-  ∧ (∀ (β : ℕ → ℝ) (i : Fin n), ∑ j : Fin acc.q, toReal (acc.GI j i) * β j
-      = ∑ j : Fin cPZ.q, toReal (cPZ.GI j i) * β j)
+  acc.p = cPZ.p ∧ acc.qI = cPZ.qI ∧ acc.c = cPZ.c
+  ∧ (∀ (β : ℕ → ℝ) (i : Fin n), ∑ j : Fin acc.qI, toReal (acc.GI j i) * β j
+      = ∑ j : Fin cPZ.qI, toReal (cPZ.GI j i) * β j)
   ∧ ∀ a : ℕ → ℝ, (∀ k, k < cPZ.p → |a k| ≤ 1)
     → (∀ k, k < cPZ.p → |ConPolyZono.aux_rescaleSub cen rad t a k| ≤ 1)
     → cPZ.satisfies (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad t a k)
@@ -212,18 +212,18 @@ theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋
   obtain ⟨hsat, hpt'⟩ := hpt δ hδ hb (by rw [hsubx]; exact hs)
   obtain ⟨e', he', heq⟩ := hpt' e he
   -- the coefficients of the independent block, read on `ℕ`
-  set βN : ℕ → ℝ := fun j => if h : j < cPZ.q then β ⟨j, h⟩ else 0 with hβNdef
-  have hβN : ∀ i : Fin n, ∑ j : Fin cPZ.q, toReal (cPZ.GI j i) * βN j
-      = ∑ j : Fin cPZ.q, toReal (cPZ.GI j i) * β j := fun i =>
+  set βN : ℕ → ℝ := fun j => if h : j < cPZ.qI then β ⟨j, h⟩ else 0 with hβNdef
+  have hβN : ∀ i : Fin n, ∑ j : Fin cPZ.qI, toReal (cPZ.GI j i) * βN j
+      = ∑ j : Fin cPZ.qI, toReal (cPZ.GI j i) * β j := fun i =>
     Finset.sum_congr rfl fun j _ => by simp [hβNdef, j.2]
   refine ⟨fun i => toReal (acc.c i)
       + (∑ l, toReal (acc.G l i) * Real.PolyZonotope.monomial acc.E (fun k => δ k) l)
-      + ∑ j : Fin acc.q, toReal (acc.GI j i) * βN j,
+      + ∑ j : Fin acc.qI, toReal (acc.GI j i) * βN j,
     ConPolyZono.mem_nominalSet_iff.mpr ⟨fun k => δ k, fun j => βN j,
       fun k => hδ k (hp ▸ k.2), fun j => ?_, hsat, fun _ => rfl⟩, e', he', ?_⟩
   · -- the coefficients stay in `[-1, 1]`
-    have hj : (j : ℕ) < cPZ.q := hq ▸ j.2
-    show |(if h : (j : ℕ) < cPZ.q then β ⟨j, h⟩ else 0)| ≤ 1
+    have hj : (j : ℕ) < cPZ.qI := hq ▸ j.2
+    show |(if h : (j : ℕ) < cPZ.qI then β ⟨j, h⟩ else 0)| ≤ 1
     rw [dif_pos hj]
     exact hβ _
   · -- the point: the invariant at `δ`, the centre and the independent block unchanged
@@ -232,7 +232,7 @@ theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋
     rw [hsubx] at hi
     show toReal (acc.c i)
         + (∑ l, toReal (acc.G l i) * Real.PolyZonotope.monomial acc.E (fun k => δ k) l)
-        + ∑ j : Fin acc.q, toReal (acc.GI j i) * βN j + e' i = y i + e i
+        + ∑ j : Fin acc.qI, toReal (acc.GI j i) * βN j + e' i = y i + e i
     rw [hy i, hc, hGI βN i, hβN i]
     linarith
 
@@ -256,7 +256,7 @@ theorem ConPolyZono.rescale_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     show toReal (neg one) ≤ x i ∧ x i ≤ toReal one
     rw [toReal_neg, toReal_one]
     exact abs_le.mp (hx i)
-  by_cases hA : cPZ.m = 0 ∨ cPZ.s = 0
+  by_cases hA : cPZ.m = 0 ∨ cPZ.q = 0
   · -- empty `A`: CORA does not contract, the box stays `[-1,1]ᵖ`
     rw [if_pos hA]
     exact hunit k

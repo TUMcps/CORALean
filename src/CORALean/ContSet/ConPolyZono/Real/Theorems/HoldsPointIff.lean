@@ -33,10 +33,10 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The paper's equality, as the degenerate interval. -/
-theorem ConPolyZono.holds_point_iff {p m s : ℕ} (A : Mat ℝ m s) (b : Vec ℝ m)
-    (EC : Fin p → Fin s → ℕ) (a : Fin p → ℝ) :
-    ConPolyZono.holds A (Interval.point b) EC a
-      ↔ ∀ i, (A *ᵥ PolyZonotope.monomial EC a) i = b i :=
+theorem ConPolyZono.holds_point_iff {p m q : ℕ} (A : Mat ℝ m q) (b : Vec ℝ m)
+    (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) :
+    ConPolyZono.holds A (Interval.point b) R a
+      ↔ ∀ i, (A *ᵥ PolyZonotope.monomial R a) i = b i :=
   forall_congr' fun _ => ⟨fun h => le_antisymm h.2 h.1, fun h => ⟨h.ge, h.le⟩⟩
 
 end CORALean.Real

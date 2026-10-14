@@ -35,7 +35,7 @@ variable {n m : ℕ}
 
 def Ellipsoid.mtimes (M : Mat ℝ m n) (E : Ellipsoid n) : Ellipsoid m where
   k := E.k
-  q := M *ᵥ E.q
+  c := M *ᵥ E.c
   G := M * E.G
 
 end CORALean.Real

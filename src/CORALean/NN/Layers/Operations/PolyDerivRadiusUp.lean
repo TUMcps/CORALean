@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def polyDerivRadiusUp (c : Fin (n + 1) → 𝕋) (l u : 𝕋) : 𝕋 :=
   sumUp fun i => if (i : ℕ) = 1 then zero
     else mulUp (mulUp (absolute (c i)) (nsmulUp (i : ℕ) one))
-      (powRange (maximum (absolute l) (absolute u)) ((i : ℕ) - 1)).2
+      (powRange (maximum (absolute l) (absolute u)) ((i : ℕ) - 1)).sup
 
 end CORALean
 

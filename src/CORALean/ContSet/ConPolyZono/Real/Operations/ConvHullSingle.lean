@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
 
 @[expose] public section
@@ -44,16 +44,16 @@ noncomputable def ConPolyZono.convHullSingle {α : Type} [AddCommGroup α] [Modu
     (cPZ : ConPolyZono α) : ConPolyZono α where
   p := a * cPZ.p + a
   h := a + (a * cPZ.h + a * cPZ.h)
-  q := 0
+  qI := 0
   m := a * cPZ.m + 1
-  s := a * cPZ.s + a
+  q := a * cPZ.q + a
   c := (a : ℝ) • cPZ.c
   G := ConPolyZono.convHullG a cPZ.c cPZ.G
   E := ConPolyZono.convHullE a cPZ.E
   GI := Fin.elim0
   A := ConPolyZono.convHullA a cPZ.A
   b := ConPolyZono.convHullB a cPZ.b
-  EC := ConPolyZono.convHullEC a cPZ.EC
+  R := ConPolyZono.convHullR a cPZ.R
 
 end CORALean.Real
 

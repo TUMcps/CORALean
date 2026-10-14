@@ -11,8 +11,8 @@ public import CORALean.ContSet.ConPolyZono.Real.Complexity.Space.QuadMap
 
 The size of an operation's result as a function of its operands' — the three
 `PolyZonotope` counts, factors `p`, dependent generators `h` and independent
-generators `q`, plus the two this representation adds, constraints `m` and
-constraint generators `s`. Each equality is `rfl` against the structure
+generators `qI`, plus the two this representation adds, constraints `m` and
+constraint generators `q`. Each equality is `rfl` against the structure
 instance in `Operations/`; `compact`'s three shrinking counts are bounds
 instead, since compaction's whole job is to make them smaller.
 

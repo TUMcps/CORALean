@@ -37,18 +37,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 Only `p` and the two exponent matrices change, all over ℕ, so nothing rounds and
 neither `b` nor the box moves. -/
 def ConPolyZono.compactFactorsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
-  p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.EC).card
+  p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.R).card
   h := cPZ.h
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := cPZ.s
+  q := cPZ.q
   c := cPZ.c
   G := cPZ.G
-  E := fun k i => cPZ.E (Real.ConPolyZono.factorIdx cPZ.E cPZ.EC k) i
+  E := fun k i => cPZ.E (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k) i
   GI := cPZ.GI
   A := cPZ.A
   b := cPZ.b
-  EC := fun k l => cPZ.EC (Real.ConPolyZono.factorIdx cPZ.E cPZ.EC k) l
+  R := fun k l => cPZ.R (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k) l
   I_error := cPZ.I_error
 
 end CORALean.Float

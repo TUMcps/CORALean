@@ -58,7 +58,7 @@ noncomputable def LinearSysDT.observeEsoA1D (A C W V u y Q c σsqPrev : ℝ) : �
     let lam := min α ν  -- `lambda`
     let Qtmp := (1 - lam) + lam * G  -- `Q_tmp`
     let σsq := 1 - lam + lam * phi ^ 2 - lam * (1 - lam) * δ * Qtmp⁻¹ * δ  -- `sigma_sq`
-    let E := Ellipsoid.intersectStripGollamudi1D Qnext chom C phi y lam  -- `E.q`, `E.Q`
+    let E := Ellipsoid.intersectStripGollamudi1D Qnext chom C phi y lam  -- `E.c`, `E.Q`
     (E.1, E.2, σsq)
   else (chom, Qnext, σsqPrev)  -- the ellipsoid is unchanged
 

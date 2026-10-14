@@ -17,7 +17,7 @@ subtraction and one addition per coordinate for each of `inf` and `sup`,
 `4 * n`. Everything else — `plusA`, `PolyZonotope.plusE`, `appendE` — lays a
 field out block-diagonally and is free.
 
-`h₂` is the *dependent* count `intersectionDep` sees, `cPZ₂.h + cPZ₂.q` by
+`h₂` is the *dependent* count `intersectionDep` sees, `cPZ₂.h + cPZ₂.qI` by
 `dependent`, which `Complexity/Space/Intersection.lean` states as the `h`
 `intersectionDep`'s second operand carries.
 -/

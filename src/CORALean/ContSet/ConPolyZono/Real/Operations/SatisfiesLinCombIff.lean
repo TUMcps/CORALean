@@ -37,8 +37,8 @@ theorem ConPolyZono.satisfies_linComb_iff (cPZ₁ cPZ₂ : ConPolyZono α)
       cPZ₁.satisfies (fun k => a (Fin.castAdd 1 (Fin.castAdd cPZ₂.p k)))
         ∧ cPZ₂.satisfies (fun k => a (Fin.castAdd 1 (Fin.natAdd cPZ₁.p k))) :=
   (ConPolyZono.holds_padE_iff (ConPolyZono.plusA cPZ₁.A cPZ₂.A)
-      (ConPolyZono.plusB cPZ₁.b cPZ₂.b) (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) 1 a).trans
-    (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.EC cPZ₂.A cPZ₂.b cPZ₂.EC
+      (ConPolyZono.plusB cPZ₁.b cPZ₂.b) (PolyZonotope.plusE cPZ₁.R cPZ₂.R) 1 a).trans
+    (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R
       (fun k => a (Fin.castAdd 1 k)))
 
 end CORALean.Real

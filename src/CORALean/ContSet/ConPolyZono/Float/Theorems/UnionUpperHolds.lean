@@ -68,13 +68,13 @@ theorem ConPolyZono.aux_unionCon_close (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ +
 theorem ConPolyZono.holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
     (ha : ∀ k, |a k| ≤ 1)
     (h : Real.ConPolyZono.holds (Real.ConPolyZono.unionUpperA p₁ p₂)
-      Real.ConPolyZono.unionUpperB (Real.ConPolyZono.unionUpperEC p₁ p₂) a) :
+      Real.ConPolyZono.unionUpperB (Real.ConPolyZono.unionUpperR p₁ p₂) a) :
     Real.ConPolyZono.holds (toRealMat (ConPolyZono.unionUpperA p₁ p₂ : Mat 𝕋 _ _))
       (ConPolyZono.unionUpperB p₁ p₂ : Interval (Vec 𝕋 _)).nominal
-      (Real.ConPolyZono.unionUpperEC p₁ p₂) a := by -- --- PROOF ---
+      (Real.ConPolyZono.unionUpperR p₁ p₂) a := by -- --- PROOF ---
   rw [ConPolyZono.unionUpperA, ConPolyZono.unionUpperB, ConPolyZono.toRealMat_plusA,
-    ConPolyZono.nominal_plusB, Real.ConPolyZono.unionUpperEC, Real.ConPolyZono.holds_shared_iff]
-  rw [Real.ConPolyZono.unionUpperA, Real.ConPolyZono.unionUpperB, Real.ConPolyZono.unionUpperEC,
+    ConPolyZono.nominal_plusB, Real.ConPolyZono.unionUpperR, Real.ConPolyZono.holds_shared_iff]
+  rw [Real.ConPolyZono.unionUpperA, Real.ConPolyZono.unionUpperB, Real.ConPolyZono.unionUpperR,
     Real.ConPolyZono.holds_shared_iff] at h
   obtain ⟨h₁, h₂⟩ := h
   refine ⟨?_, fun i => ?_⟩

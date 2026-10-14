@@ -40,16 +40,16 @@ The generators stand, so the ambient box is untouched. -/
 def ConPolyZono.compactConsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := cPZ.h
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := (PolyZonotope.repKeep cPZ.EC).card
+  q := (PolyZonotope.repKeep cPZ.R).card
   c := cPZ.c
   G := cPZ.G
   E := cPZ.E
   GI := cPZ.GI
   A := cPZ.mergedConsCol
   b := ConPolyZono.compactConsB cPZ
-  EC := fun k l => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC l)
+  R := fun k l => cPZ.R k (PolyZonotope.keepIdx cPZ.R l)
   I_error := cPZ.I_error
 
 end CORALean.Float

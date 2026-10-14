@@ -33,7 +33,7 @@ monomial and an independent coefficient obey the same bound, so one box covers
 the two blocks together. -/
 def ConPolyZono.dropRadius (cPZ : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) : Vec ℝ n :=
+    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) : Vec ℝ n :=
   fun i => (∑ l, |cPZ.G (partD.right l) i|) + ∑ j, |cPZ.GI (partI.right j) i|
 
 end CORALean.Real

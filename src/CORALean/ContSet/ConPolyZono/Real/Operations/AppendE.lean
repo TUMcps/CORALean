@@ -28,8 +28,8 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.appendE {p s t : ℕ} (E₁ : Fin p → Fin s → ℕ) (E₂ : Fin p → Fin t → ℕ) :
-    Fin p → Fin (s + t) → ℕ :=
+def ConPolyZono.appendE {p q t : ℕ} (E₁ : Fin p → Fin q → ℕ) (E₂ : Fin p → Fin t → ℕ) :
+    Fin p → Fin (q + t) → ℕ :=
   fun k => Fin.append (E₁ k) (E₂ k)
 
 end CORALean.Real

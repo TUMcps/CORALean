@@ -29,16 +29,16 @@ separate piece of mathematics and no tighter enclosure is attempted here.
 
 namespace CORALean.Real
 
-variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
+variable {α : Type} [AddCommGroup α] [Module ℝ α] {qI : ℕ}
 
-noncomputable def ConPolyZono.hPolytope (cPZ : ConPolyZono α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+noncomputable def ConPolyZono.hPolytope (cPZ : ConPolyZono α) (Aq : Fin qI → (α →ₗ[ℝ] ℝ)) :
     HPolytope α :=
   cPZ.polyZonotope.hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.hPolytope_contains (cPZ : ConPolyZono α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
+theorem ConPolyZono.hPolytope_contains (cPZ : ConPolyZono α) (Aq : Fin qI → (α →ₗ[ℝ] ℝ)) :
     cPZ.construct ⊆ (cPZ.hPolytope Aq).construct :=
   subset_trans cPZ.polyZonotope_contains (PolyZonotope.hPolytope_contains _ _)
 

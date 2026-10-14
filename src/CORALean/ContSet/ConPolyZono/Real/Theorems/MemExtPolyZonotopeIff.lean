@@ -38,9 +38,9 @@ theorem ConPolyZono.aux_sum_ext (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p �
     ∑ i : Fin cPZ.extPolyZonotope.h,
         PolyZonotope.monomial cPZ.extPolyZonotope.E a i • cPZ.extPolyZonotope.G i
       = (∑ i : Fin cPZ.h, PolyZonotope.monomial cPZ.E a i • ((cPZ.G i, 0) : Vec ℝ n × Vec ℝ cPZ.m))
-        + ∑ l : Fin cPZ.s, PolyZonotope.monomial cPZ.EC a l
+        + ∑ l : Fin cPZ.q, PolyZonotope.monomial cPZ.R a l
             • ((0, ConPolyZono.consCol cPZ.A l) : Vec ℝ n × Vec ℝ cPZ.m) := by -- --- PROOF ---
-  show ∑ i : Fin (cPZ.h + cPZ.s), PolyZonotope.monomial (ConPolyZono.appendE cPZ.E cPZ.EC) a i
+  show ∑ i : Fin (cPZ.h + cPZ.q), PolyZonotope.monomial (ConPolyZono.appendE cPZ.E cPZ.R) a i
       • (Fin.append (fun i => ((cPZ.G i, 0) : Vec ℝ n × Vec ℝ cPZ.m))
           (fun l => ((0, ConPolyZono.consCol cPZ.A l) : Vec ℝ n × Vec ℝ cPZ.m)) i) = _
   rw [Fin.sum_univ_add]
@@ -53,8 +53,8 @@ theorem ConPolyZono.aux_sum_ext (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p �
 theorem ConPolyZono.mem_extPolyZonotope_iff (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec ℝ n)
     (t : Vec ℝ cPZ.m) :
     (p, t) ∈ cPZ.extPolyZonotope.construct ↔
-      ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-        ∧ (∀ i, (cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC a) i = cPZ.b.inf i + t i)
+      ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
+        ∧ (∀ i, (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R a) i = cPZ.b.inf i + t i)
         ∧ p = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i
             + ∑ j, β j • cPZ.GI j := by -- --- PROOF ---
   constructor

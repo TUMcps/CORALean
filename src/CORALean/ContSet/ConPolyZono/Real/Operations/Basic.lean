@@ -35,7 +35,7 @@ variable {k n : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The map onto the set, affine in the independent half and polynomial in the
 dependent one. -/
-def ConPolyZono.affine (cPZ : ConPolyZono α) (ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ)) : α :=
+def ConPolyZono.affine (cPZ : ConPolyZono α) (ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ)) : α :=
   cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E ab.1 i • cPZ.G i + ∑ j, ab.2 j • cPZ.GI j
 
 
@@ -57,7 +57,7 @@ def ConPolyZono.centre (cPZ : ConPolyZono α) : α := cPZ.c
 -- Reviewed:      ---
 
 /-- Constraint column `l` as a vector, which is the generator the merge adds. -/
-def ConPolyZono.consCol {m s : ℕ} (A : Mat ℝ m s) (l : Fin s) : Vec ℝ m := fun i => A i l
+def ConPolyZono.consCol {m q : ℕ} (A : Mat ℝ m q) (l : Fin q) : Vec ℝ m := fun i => A i l
 
 
 -- =================================  `ConPolyZono.factorIdx`  ================================== --
@@ -67,9 +67,9 @@ def ConPolyZono.consCol {m s : ℕ} (A : Mat ℝ m s) (l : Fin s) : Vec ℝ m :=
 -- Reviewed:      ---
 
 /-- The kept factors, indexed by a plain count, as `PolyZonotope`'s is. -/
-def ConPolyZono.factorIdx {p h s : ℕ} (E : Fin p → Fin h → ℕ) (EC : Fin p → Fin s → ℕ)
-    (k : Fin (ConPolyZono.usedFactors E EC).card) : Fin p :=
-  PolyZonotope.factorIdx (ConPolyZono.appendE E EC) k
+def ConPolyZono.factorIdx {p h q : ℕ} (E : Fin p → Fin h → ℕ) (R : Fin p → Fin q → ℕ)
+    (k : Fin (ConPolyZono.usedFactors E R).card) : Fin p :=
+  PolyZonotope.factorIdx (ConPolyZono.appendE E R) k
 
 
 -- ===============================  `ConPolyZono.mtimes_eq_map`  ================================ --

@@ -171,8 +171,8 @@ theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) :
       (0 ≤ x 0 ∧ x 0 ≤ 1) ∧ (0 ≤ x 1 ∧ x 1 ≤ 1) := fun x => by
     rw [h]; exact Interval.aux_mem_unitSquare x
   -- a point of the ellipsoid, coordinatewise
-  have coord : ∀ (x : Vec ℝ 2) (u : Vec ℝ E.k), x = E.q + E.G.mulVec u → ∀ i,
-      x i = E.q i + ∑ j, E.G i j * u j := by
+  have coord : ∀ (x : Vec ℝ 2) (u : Vec ℝ E.k), x = E.c + E.G.mulVec u → ∀ i,
+      x i = E.c i + ∑ j, E.G i j * u j := by
     intro x u hx i
     rw [hx]
     simp [Matrix.mulVec, dotProduct]
@@ -207,7 +207,7 @@ theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) :
     have hm2 : m ^ 2 = N := Real.sq_sqrt hpos.le
     have hmpos : 0 < m := Real.sqrt_pos.mpr hpos
     -- the point `q - G a / ‖a‖` is in the ellipsoid, so `q₁ ≥ ‖a‖`
-    have hq : m ≤ E.q 1 := by
+    have hq : m ≤ E.c 1 := by
       let w : Vec ℝ E.k := fun j => -(E.G 1 j) / m
       -- `w` has norm `1`
       have hw : ‖w‖₂ ≤ 1 := by
@@ -219,7 +219,7 @@ theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) :
         unfold norm₂
         rw [this, Real.sqrt_one]
       -- its image has a non-negative second coordinate, `q₁ - m`
-      have hmemw := (hmem (E.q + E.G.mulVec w)).mp ⟨w, hw, rfl⟩
+      have hmemw := (hmem (E.c + E.G.mulVec w)).mp ⟨w, hw, rfl⟩
       have c1 := coord _ w rfl 1
       have hdot : ∑ j, E.G 1 j * w j = -m := by
         have : ∑ j, E.G 1 j * w j = -(N / m) := by
@@ -232,7 +232,7 @@ theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) :
       rw [c1, hdot] at this
       linarith
     -- both corners sit on the minimal face, which is one point, so they coincide
-    have huv := Interval.aux_face_unique (fun j => E.G 1 j) u v (E.q 1) hpos hq (sq_le u hu)
+    have huv := Interval.aux_face_unique (fun j => E.G 1 j) u v (E.c 1) hpos hq (sq_le u hu)
       (sq_le v hv) (by linarith) (by linarith)
     rw [huv] at cu0
     linarith

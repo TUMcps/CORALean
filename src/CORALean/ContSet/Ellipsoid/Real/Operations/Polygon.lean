@@ -37,7 +37,7 @@ open Matrix
 noncomputable def Ellipsoid.polygon (E : Ellipsoid 2) (L : List (Vec ℝ 2)) : Polygon :=
   -- `Y(:,i) = q + G (Gᵀ l / ‖Gᵀ l‖₂)` for the `i`-th direction `l`
   let Y : Fin L.length → Vec ℝ 2 := fun i =>
-    E.q + E.G *ᵥ (‖E.Gᵀ *ᵥ L[i]‖₂⁻¹ • (E.Gᵀ *ᵥ L[i]))
+    E.c + E.G *ᵥ (‖E.Gᵀ *ᵥ L[i]‖₂⁻¹ • (E.Gᵀ *ᵥ L[i]))
   Polygon.ofPieces [VPolytope.enclosePoints Y]
 
 end CORALean.Real

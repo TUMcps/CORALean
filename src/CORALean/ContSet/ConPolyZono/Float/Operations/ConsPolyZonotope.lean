@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 # `ConPolyZono.consPolyZonotope`, over a floating-point scalar
 
 The constraint block read as a `PolyZonotope` over `Vec 𝕋 m`: the columns of `A` as dependent
-generators at the exponents `EC`, no centre, no independent generators, an error box that is the
+generators at the exponents `R`, no centre, no independent generators, an error box that is the
 origin. Whatever is done to its generators is then done to the constraint columns.
 -/
 
@@ -33,11 +33,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def ConPolyZono.consPolyZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 cPZ.m) where
   p := cPZ.p
-  h := cPZ.s
+  h := cPZ.q
   q := 0
   c := fun _ => zero
   G := fun l i => cPZ.A i l
-  E := cPZ.EC
+  E := cPZ.R
   GI := Fin.elim0
   I_error := Interval.point fun _ => zero
 

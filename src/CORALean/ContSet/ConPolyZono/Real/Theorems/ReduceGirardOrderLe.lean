@@ -15,7 +15,7 @@ The proof is arithmetic. Both budgets are clamped — to their block, and to
 keeps a selection rule free to be a heuristic. At `o = 0` there is nothing to
 state: CORA floors the budget at nothing and adds the box of `n` regardless.
 
-The constraint counts `m` and `s` are outside this: the ranking copies them, so
+The constraint counts `m` and `q` are outside this: the ranking copies them, so
 `compact` is the only stage that moves them and the only bound they have.
 -/
 
@@ -36,14 +36,14 @@ variable {n : ℕ}
 
 /-- The count arithmetic, and all of it: two budgets summing to at most `K`,
 each clamped to the block it cuts, plus the `m` the box adds. -/
-theorem ConPolyZono.aux_order_arith {d K h q m : ℕ} (hd : d ≤ K) :
-    min d h + (min (K - d) q + m) ≤ K + m := by omega
+theorem ConPolyZono.aux_order_arith {d K h qI m : ℕ} (hd : d ≤ K) :
+    min d h + (min (K - d) qI + m) ≤ K + m := by omega
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceGirard_order_le (cPZ : ConPolyZono (Vec ℝ n)) {o : ℕ} (ho : 0 < o) :
-    (cPZ.reduceGirard o).h + (cPZ.reduceGirard o).q ≤ o * n := by -- --- PROOF ---
+    (cPZ.reduceGirard o).h + (cPZ.reduceGirard o).qI ≤ o * n := by -- --- PROOF ---
   have hK : (o - 1) * n + n = o * n := by
     rw [Nat.sub_one_mul, Nat.sub_add_cancel (Nat.le_mul_of_pos_left n ho)]
   unfold ConPolyZono.reduceGirard

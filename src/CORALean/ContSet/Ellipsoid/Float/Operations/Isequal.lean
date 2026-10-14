@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Ellipsoid.isequal (E S : Ellipsoid 𝕋 n) : Bool :=
   if e : E.k = S.k then
     (List.finRange n).all (fun i =>
-      (le (E.q i) (S.q i) && le (S.q i) (E.q i)) &&
+      (le (E.c i) (S.c i) && le (S.c i) (E.c i)) &&
       (le (E.I_error.inf i) (S.I_error.inf i) && le (S.I_error.inf i) (E.I_error.inf i)) &&
       (le (E.I_error.sup i) (S.I_error.sup i) && le (S.I_error.sup i) (E.I_error.sup i)) &&
       (List.finRange E.k).all fun j =>

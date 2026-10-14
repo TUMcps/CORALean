@@ -99,7 +99,7 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound cPZ.I_error i) :=
     fun i => PolyZonotope.abs_le_errorBound he i
   -- the factors of the dependent form: `a`, then `β`, then the error box's coordinates
-  set a' : Fin (cPZ.p + (cPZ.q + n)) → ℝ := Fin.append a (Fin.append β
+  set a' : Fin (cPZ.p + (cPZ.qI + n)) → ℝ := Fin.append a (Fin.append β
     fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound cPZ.I_error i)) (e i))
     with ha'
   have ha'b : ∀ l, |a' l| ≤ 1 := by
@@ -129,7 +129,7 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
     _, hbox, ?_⟩
   · -- the padded constraints read only the first block, which is `a`
     show Real.ConPolyZono.holds (toRealMat cPZ.A) cPZ.b.nominal
-      (Real.ConPolyZono.padE cPZ.EC (cPZ.q + n)) a'
+      (Real.ConPolyZono.padE cPZ.R (cPZ.qI + n)) a'
     rw [Real.ConPolyZono.holds_padE_iff]
     simp only [ha', Fin.append_left]
     exact hs

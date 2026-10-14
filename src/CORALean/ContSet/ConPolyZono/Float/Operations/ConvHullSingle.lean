@@ -4,7 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullA
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullB
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullR
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
@@ -47,16 +47,16 @@ def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     𝕋 (Vec 𝕋 n) where
   p := a * cPZ.p + a
   h := a + (a * cPZ.h + a * cPZ.h)
-  q := 0
+  qI := 0
   m := a * cPZ.m + 1
-  s := a * cPZ.s + a
+  q := a * cPZ.q + a
   c := fun i => nsmulDown a (cPZ.c i)
   G := ConPolyZono.convHullG a cPZ.c cPZ.G
   E := Real.ConPolyZono.convHullE a cPZ.E
   GI := Fin.elim0
   A := ConPolyZono.convHullA a cPZ.A
   b := ConPolyZono.convHullB a cPZ.b
-  EC := Real.ConPolyZono.convHullEC a cPZ.EC
+  R := Real.ConPolyZono.convHullR a cPZ.R
   -- the operand's box, and what storing `a c` from below leaves to pay
   I_error := cPZ.I_error.plus (Interval.residual (fun i => nsmulDown a (cPZ.c i))
     (fun i => nsmulUp a (cPZ.c i)) (fun i => nsmulDown a (cPZ.c i)))

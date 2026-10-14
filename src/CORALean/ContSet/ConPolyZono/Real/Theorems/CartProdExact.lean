@@ -53,10 +53,10 @@ theorem ConPolyZono.aux_sum_univ_cartProd_h {cPZ₁ : ConPolyZono α} {cPZ₂ : 
 
 omit [Module ℝ α] [Module ℝ β] in
 /-- The same at the independent generator count. -/
-theorem ConPolyZono.aux_sum_univ_cartProd_q {cPZ₁ : ConPolyZono α} {cPZ₂ : ConPolyZono β}
-    (f : Fin (cPZ₁.q + cPZ₂.q) → α × β) :
-    ∑ j : Fin (cPZ₁.cartProd cPZ₂).q, f j
-      = ∑ j, f (Fin.castAdd cPZ₂.q j) + ∑ j, f (Fin.natAdd cPZ₁.q j) :=
+theorem ConPolyZono.aux_sum_univ_cartProd_qI {cPZ₁ : ConPolyZono α} {cPZ₂ : ConPolyZono β}
+    (f : Fin (cPZ₁.qI + cPZ₂.qI) → α × β) :
+    ∑ j : Fin (cPZ₁.cartProd cPZ₂).qI, f j
+      = ∑ j, f (Fin.castAdd cPZ₂.qI j) + ∑ j, f (Fin.natAdd cPZ₁.qI j) :=
   Fin.sum_univ_add f
 
 
@@ -75,11 +75,11 @@ theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZo
       Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
       Fin.addCases (fun j => by simpa using hβ₁ j) (fun j => by simpa using hβ₂ j),
       ?_, ?_⟩
-    · refine (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.EC cPZ₂.A cPZ₂.b cPZ₂.EC
+    · refine (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R
         _).mpr ⟨?_, ?_⟩
       · rw [hA₁]; exact hs₁
       · rw [hA₂]; exact hs₂
-    · rw [ConPolyZono.aux_sum_univ_cartProd_h, ConPolyZono.aux_sum_univ_cartProd_q]
+    · rw [ConPolyZono.aux_sum_univ_cartProd_h, ConPolyZono.aux_sum_univ_cartProd_qI]
       simp only [ConPolyZono.cartProd, PolyZonotope.monomial_plusE_left,
         PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right]
       refine Prod.ext ?_ ?_
@@ -90,25 +90,25 @@ theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZo
   -- back: the pair's equation and its constraint split apart per coordinate
   · rintro ⟨x₁, x₂⟩ ⟨a, β, ha, hβ, hsat, hxy⟩
     obtain ⟨hs₁, hs₂⟩ :=
-      (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.EC cPZ₂.A cPZ₂.b cPZ₂.EC a).mp hsat
+      (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R a).mp hsat
     have hx₁ : x₁ = cPZ₁.c + ∑ i, PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) i
-              • cPZ₁.G i + ∑ j, β (Fin.castAdd cPZ₂.q j) • cPZ₁.GI j := by
+              • cPZ₁.G i + ∑ j, β (Fin.castAdd cPZ₂.qI j) • cPZ₁.GI j := by
       have h1 := congrArg Prod.fst hxy
-      rw [ConPolyZono.aux_sum_univ_cartProd_h, ConPolyZono.aux_sum_univ_cartProd_q] at h1
+      rw [ConPolyZono.aux_sum_univ_cartProd_h, ConPolyZono.aux_sum_univ_cartProd_qI] at h1
       simpa only [ConPolyZono.cartProd, PolyZonotope.monomial_plusE_left,
         PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right, Prod.fst_add,
         Prod.fst_sum, Prod.smul_fst, smul_zero, Finset.sum_const_zero, add_zero] using h1
     have hx₂ : x₂ = cPZ₂.c + ∑ i, PolyZonotope.monomial cPZ₂.E (fun k => a (Fin.natAdd cPZ₁.p k)) i
-              • cPZ₂.G i + ∑ j, β (Fin.natAdd cPZ₁.q j) • cPZ₂.GI j := by
+              • cPZ₂.G i + ∑ j, β (Fin.natAdd cPZ₁.qI j) • cPZ₂.GI j := by
       have h2 := congrArg Prod.snd hxy
-      rw [ConPolyZono.aux_sum_univ_cartProd_h, ConPolyZono.aux_sum_univ_cartProd_q] at h2
+      rw [ConPolyZono.aux_sum_univ_cartProd_h, ConPolyZono.aux_sum_univ_cartProd_qI] at h2
       simpa only [ConPolyZono.cartProd, PolyZonotope.monomial_plusE_left,
         PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right, Prod.snd_add,
         Prod.snd_sum, Prod.smul_snd, smul_zero, Finset.sum_const_zero, zero_add] using h2
     -- the restricted factors and coefficients, one point of each set
-    exact ⟨⟨fun k => a (Fin.castAdd cPZ₂.p k), fun j => β (Fin.castAdd cPZ₂.q j),
+    exact ⟨⟨fun k => a (Fin.castAdd cPZ₂.p k), fun j => β (Fin.castAdd cPZ₂.qI j),
               fun k => ha _, fun j => hβ _, hs₁, hx₁⟩,
-           ⟨fun k => a (Fin.natAdd cPZ₁.p k), fun j => β (Fin.natAdd cPZ₁.q j),
+           ⟨fun k => a (Fin.natAdd cPZ₁.p k), fun j => β (Fin.natAdd cPZ₁.qI j),
               fun k => ha _, fun j => hβ _, hs₂, hx₂⟩⟩
 
 end CORALean.Real

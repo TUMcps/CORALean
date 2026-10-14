@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.OfPoint
 /-!
 # A generator-free constrained polynomial zonotope contains its own centre
 
-`ofPoint v` states its own `p`, `h`, `q` and `m`, that count only up to
+`ofPoint v` states its own `p`, `h`, `qI` and `m`, that count only up to
 unfolding, so both sums and the empty constraint system each need unfolding
 to be seen as vacuous.
 -/

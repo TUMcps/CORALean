@@ -32,12 +32,12 @@ kept dependent generators keep their exponent columns, kept independent ones are
 copied, and the rest becomes a box no longer tied to the factors. -/
 def ConPolyZono.reduceBy (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
+    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := d
-  q := dI + n
+  qI := dI + n
   m := cPZ.m
-  s := cPZ.s
+  q := cPZ.q
   c := cPZ.c
   G := fun l => cPZ.G (partD.left l)
   E := fun k l => cPZ.E k (partD.left l)
@@ -45,7 +45,7 @@ def ConPolyZono.reduceBy (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     fun j i => diagonalBlock (cPZ.dropRadius partD partI) i j
   A := cPZ.A
   b := cPZ.b
-  EC := cPZ.EC
+  R := cPZ.R
   I_error := cPZ.I_error
 
 end CORALean.Float

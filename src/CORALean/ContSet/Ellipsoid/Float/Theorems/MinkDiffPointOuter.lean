@@ -37,12 +37,12 @@ theorem Ellipsoid.minkDiffPoint_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) :
   rintro _ ⟨_, ⟨y, hy, e, he, rfl⟩, rfl⟩
   obtain ⟨u, hu, hyu⟩ := Ellipsoid.mem_nominalSet_iff.mp hy
   -- the centre's rounding, which the residual box holds
-  let r : Vec ℝ n := fun i => toReal (E.q i) + toReal (neg (s i))
-    - toReal (addDown (E.q i) (neg (s i)))
-  have hr : r ∈ (Ellipsoid.centerResidual E.q fun i => neg (s i)).construct :=
+  let r : Vec ℝ n := fun i => toReal (E.c i) + toReal (neg (s i))
+    - toReal (addDown (E.c i) (neg (s i)))
+  have hr : r ∈ (Ellipsoid.centerResidual E.c fun i => neg (s i)).construct :=
     Interval.sub_mem_residual fun _ => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
   -- the same `u` at the stored centre, and the two boxes summed
-  refine ⟨fun i => toReal (addDown (E.q i) (neg (s i))) + ∑ j, toReal (E.G i j) * u j,
+  refine ⟨fun i => toReal (addDown (E.c i) (neg (s i))) + ∑ j, toReal (E.G i j) * u j,
     Ellipsoid.mem_nominalSet_iff.mpr ⟨u, hu, fun _ => rfl⟩, e + r,
     Interval.plus_outer _ _ ⟨e, he, r, hr, rfl⟩, ?_⟩
   funext i

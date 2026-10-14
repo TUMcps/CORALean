@@ -34,17 +34,17 @@ column here rather than moving into the bound. -/
 noncomputable def ConPolyZono.compactCons (cPZ : ConPolyZono α) : ConPolyZono α where
   p := cPZ.p
   h := cPZ.h
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := (PolyZonotope.compactKeep cPZ.EC (ConPolyZono.consCol cPZ.A)).card
+  q := (PolyZonotope.compactKeep cPZ.R (ConPolyZono.consCol cPZ.A)).card
   c := cPZ.c
   G := cPZ.G
   E := cPZ.E
   GI := cPZ.GI
-  A := fun i l => PolyZonotope.fiberSum (PolyZonotope.rep cPZ.EC) (ConPolyZono.consCol cPZ.A)
-                    (PolyZonotope.compactIdx cPZ.EC (ConPolyZono.consCol cPZ.A) l) i
+  A := fun i l => PolyZonotope.fiberSum (PolyZonotope.rep cPZ.R) (ConPolyZono.consCol cPZ.A)
+                    (PolyZonotope.compactIdx cPZ.R (ConPolyZono.consCol cPZ.A) l) i
   b := cPZ.b
-  EC := fun k l => cPZ.EC k (PolyZonotope.compactIdx cPZ.EC (ConPolyZono.consCol cPZ.A) l)
+  R := fun k l => cPZ.R k (PolyZonotope.compactIdx cPZ.R (ConPolyZono.consCol cPZ.A) l)
 
 end CORALean.Real
 

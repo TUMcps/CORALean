@@ -60,7 +60,7 @@ theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
   have hi := hmem i
   -- and is what the stored matrix gives
   have heq : ((toRealMat (cPZ.getSubset k cen rad).A) *ᵥ Real.PolyZonotope.monomial
-        (cPZ.getSubset k cen rad).EC a) i
+        (cPZ.getSubset k cen rad).R a) i
       = ((Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).A
         *ᵥ Real.PolyZonotope.monomial (cPZ.consPolyZonotope.getSubset k cen rad).E a) i
         + ∑ l, (toReal (cPZ.consPolyZonotope.getSubsetGDown k cen rad i l)
@@ -76,7 +76,7 @@ theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     have h1 : ((nominal cPZ).getSubset k (toReal cen) (toReal rad)).A i l
         = Real.PolyZonotope.getSubsetG (nominal cPZ.consPolyZonotope) k (toReal cen) (toReal rad)
           l i := rfl
-    have h2 : Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).EC a l
+    have h2 : Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).R a l
         = Real.PolyZonotope.monomial
           (Real.PolyZonotope.getSubsetE (nominal cPZ.consPolyZonotope) k) a l := rfl
     have h3 : Real.PolyZonotope.monomial (cPZ.consPolyZonotope.getSubset k cen rad).E a l

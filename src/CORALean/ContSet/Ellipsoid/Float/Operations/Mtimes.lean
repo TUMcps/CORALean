@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Ellipsoid.mtimes`
 
-`G ↦ M G` and `q ↦ M q`, as over ℝ, with both rounded and the difference paid
+`G ↦ M G` and `c ↦ M c`, as over ℝ, with both rounded and the difference paid
 into the box. The generator count is untouched and the shape stays out of it —
 which is the whole reason the generator form is stored: `Q ↦ M Q Mᵀ` would be a
 new shape matrix to take a square root of, and here even the *support function's*
@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 def Ellipsoid.mtimes (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Ellipsoid 𝕋 m where
   k := E.k
-  q := mulVecDown M E.q
+  c := mulVecDown M E.c
   G := matMulDown M E.G
   I_error := (Interval.mtimes M E.I_error).plus (Ellipsoid.mtimesResidual M E)
 

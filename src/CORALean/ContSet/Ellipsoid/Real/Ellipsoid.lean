@@ -7,11 +7,11 @@ public import CORALean.Global.EuclideanNorm
 /-!
 # Ellipsoids: the representation
 
-The definition is [1, Def. 4]: CORA's `ellipsoid` stores a positive semi-definite
-shape matrix `Q` and a centre `q`. CORALean stores the *generator* matrix `G`
-instead and denotes the same family as the affine image of a Euclidean unit ball,
+The definition is [1, Def. 4]: CORA's `ellipsoid` stores a shape matrix `Q` and a centre, which
+[1] calls `c` and so does the field. CORALean stores the *generator* matrix `G` instead and
+denotes the same family as the affine image of a Euclidean unit ball,
 
-  `E = {q + G u | ‖u‖₂ ≤ 1}`,   `Q = G Gᵀ`.
+  `E = {c + G u | ‖u‖₂ ≤ 1}`,   `Q = G Gᵀ`.
 
 The generator form needs no matrix inverse, no positive-semi-definiteness side
 condition to carry through every operation, and no matrix square root to get
@@ -50,11 +50,11 @@ variable {n : ℕ}
 
 structure Ellipsoid (n : ℕ) where
   k : ℕ
-  q : Vec ℝ n
+  c : Vec ℝ n
   G : Mat ℝ n k
 
 def Ellipsoid.construct (E : Ellipsoid n) : Set (Vec ℝ n) :=
-  {x | ∃ u : Vec ℝ E.k, ‖u‖₂ ≤ 1 ∧ x = E.q + E.G *ᵥ u}
+  {x | ∃ u : Vec ℝ E.k, ‖u‖₂ ≤ 1 ∧ x = E.c + E.G *ᵥ u}
 
 end CORALean.Real
 

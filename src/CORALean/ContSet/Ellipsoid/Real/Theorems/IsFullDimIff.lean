@@ -46,14 +46,14 @@ theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) :
       rw [show Matrix.mulVecLin E.G = L from rfl, h, finrank_top]; simp
   rw [hrank]
   -- the ellipsoid sits inside the translate of the range
-  have hsub : E.construct ⊆ (fun v => E.q + v) '' (LinearMap.range L : Set (Vec ℝ n)) := by
+  have hsub : E.construct ⊆ (fun v => E.c + v) '' (LinearMap.range L : Set (Vec ℝ n)) := by
     rintro x ⟨u, -, rfl⟩
     exact ⟨L u, ⟨u, rfl⟩, rfl⟩
   constructor
   · -- an interior point makes the subspace have one, so it is everything
     rintro ⟨y, hy⟩
     have h1 := interior_mono hsub hy
-    have h1' : y ∈ (Homeomorph.addLeft E.q) '' interior (LinearMap.range L : Set (Vec ℝ n)) := by
+    have h1' : y ∈ (Homeomorph.addLeft E.c) '' interior (LinearMap.range L : Set (Vec ℝ n)) := by
       rw [Homeomorph.image_interior]; exact h1
     obtain ⟨v, hv, -⟩ := h1'
     exact Submodule.eq_top_of_nonempty_interior' _ ⟨v, hv⟩
@@ -64,12 +64,12 @@ theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) :
     have hopen : IsOpenMap L := L.isOpenMap_of_finiteDimensional hsurj
     let U : Set (Vec ℝ E.k) := {u | ‖u‖₂ < 1}
     have hU : IsOpen U := continuous_norm₂.isOpen_preimage _ isOpen_Iio
-    have hV : IsOpen ((fun v => E.q + v) '' (L '' U)) :=
-      (Homeomorph.addLeft E.q).isOpenMap _ (hopen _ hU)
-    have hVsub : (fun v => E.q + v) '' (L '' U) ⊆ E.construct := by
+    have hV : IsOpen ((fun v => E.c + v) '' (L '' U)) :=
+      (Homeomorph.addLeft E.c).isOpenMap _ (hopen _ hU)
+    have hVsub : (fun v => E.c + v) '' (L '' U) ⊆ E.construct := by
       rintro _ ⟨_, ⟨u, hu, rfl⟩, rfl⟩
       exact ⟨u, le_of_lt hu, rfl⟩
-    refine ⟨E.q, interior_maximal hVsub hV ⟨0, ⟨0, ?_, map_zero L⟩, by simp⟩⟩
+    refine ⟨E.c, interior_maximal hVsub hV ⟨0, ⟨0, ?_, map_zero L⟩, by simp⟩⟩
     show ‖(0 : Vec ℝ E.k)‖₂ < 1
     rw [norm₂_zero]; exact one_pos
 

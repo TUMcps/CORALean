@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 structure Ellipsoid (𝕋 : Type) (n : ℕ) where
   /-- The generator count, as over ℝ: `G` is `n × k` and need not be square. -/
   k : ℕ
-  q : Vec 𝕋 n
+  c : Vec 𝕋 n
   G : Mat 𝕋 n k
   /-- The error box, the paper's `𝓘_error`. -/
   I_error : Interval (Vec 𝕋 n)
@@ -52,7 +52,7 @@ structure Ellipsoid (𝕋 : Type) (n : ℕ) where
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (Ellipsoid 𝕋 n) (CORALean.Real.Ellipsoid n)
       (Vec 𝕋 n) (Vec ℝ n) where
-  nominal E := ⟨E.k, toRealVec E.q, toRealMat E.G⟩
+  nominal E := ⟨E.k, toRealVec E.c, toRealMat E.G⟩
   I_error E := E.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/

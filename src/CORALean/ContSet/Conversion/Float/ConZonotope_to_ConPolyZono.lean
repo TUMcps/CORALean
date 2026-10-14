@@ -54,16 +54,16 @@ def ConZonotope.conB (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 (
 def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cZ.h
   h := cZ.h
-  q := 0
+  qI := 0
   m := cZ.P.m + cZ.P.me
-  s := cZ.h
+  q := cZ.h
   c := cZ.c
   G := cZ.G
   E := Real.PolyZonotope.identE cZ.h
   GI := Fin.elim0
   A := ConZonotope.conA cZ
   b := ConZonotope.conB cZ
-  EC := Real.PolyZonotope.identE cZ.h
+  R := Real.PolyZonotope.identE cZ.h
   I_error := cZ.I_error
 
 variable [SoundFloatArithmetic 𝕋]

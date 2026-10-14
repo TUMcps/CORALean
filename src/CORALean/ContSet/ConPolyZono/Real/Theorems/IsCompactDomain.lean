@@ -44,26 +44,26 @@ variable {α : Type}
 
 /-- A constraint row is a polynomial in the factors. -/
 theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α) (i : Fin cPZ.m) :
-    Continuous fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ) =>
-      (cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC ab.1) i := by -- --- PROOF ---
-  have hrow : (fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ) =>
-        (cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC ab.1) i)
-      = fun ab => ∑ l, cPZ.A i l * PolyZonotope.monomial cPZ.EC ab.1 l := rfl
+    Continuous fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) =>
+      (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i := by -- --- PROOF ---
+  have hrow : (fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) =>
+        (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i)
+      = fun ab => ∑ l, cPZ.A i l * PolyZonotope.monomial cPZ.R ab.1 l := rfl
   rw [hrow]
   exact continuous_finsetSum _ fun l _ =>
-    continuous_const.mul ((PolyZonotope.continuous_monomial cPZ.EC l).comp continuous_fst)
+    continuous_const.mul ((PolyZonotope.continuous_monomial cPZ.R l).comp continuous_fst)
 
 /-- Four families of conditions, each an inequality between continuous
 functions, so the domain is a finite intersection of closed sets. -/
 theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) :
     IsClosed cPZ.domain := by -- --- PROOF ---
   have hdom : cPZ.domain
-      = (⋂ k, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ) | |ab.1 k| ≤ 1})
-        ∩ ((⋂ j, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ) | |ab.2 j| ≤ 1})
-          ∩ ((⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ) |
-                cPZ.b.inf i ≤ (cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC ab.1) i})
-            ∩ ⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ) |
-                (cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC ab.1) i ≤ cPZ.b.sup i})) := by
+      = (⋂ k, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.1 k| ≤ 1})
+        ∩ ((⋂ j, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.2 j| ≤ 1})
+          ∩ ((⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) |
+                cPZ.b.inf i ≤ (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i})
+            ∩ ⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) |
+                (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i ≤ cPZ.b.sup i})) := by
     ext ab
     -- `forall_and` is what separates a two-sided constraint into two families
     simp only [ConPolyZono.domain, ConPolyZono.satisfies, ConPolyZono.holds,
@@ -85,7 +85,8 @@ theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) :
 theorem ConPolyZono.isCompact_domain (cPZ : ConPolyZono α) :
     IsCompact cPZ.domain := by -- --- PROOF ---
   refine IsCompact.of_isClosed_subset
-    ((isCompact_closedBall (0 : Fin cPZ.p → ℝ) 1).prod (isCompact_closedBall (0 : Fin cPZ.q → ℝ) 1))
+    ((isCompact_closedBall (0 : Fin cPZ.p → ℝ) 1).prod
+      (isCompact_closedBall (0 : Fin cPZ.qI → ℝ) 1))
     cPZ.aux_isClosed_domain fun ab hab => ?_
   -- both cubes are the unit ball of the supremum norm, which is where the bound comes from
   refine Set.mem_prod.mpr ⟨?_, ?_⟩

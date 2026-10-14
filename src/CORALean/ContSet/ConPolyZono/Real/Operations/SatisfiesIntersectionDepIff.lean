@@ -51,23 +51,23 @@ theorem ConPolyZono.satisfies_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (
               * PolyZonotope.monomial cPZ₂.E (fun k => a (Fin.natAdd cPZ₁.p k)) l
           ≤ cPZ₂.c i - cPZ₁.c i + D.sup i := by -- --- PROOF ---
   have hcol : (fun l => PolyZonotope.monomial (ConPolyZono.appendE
-        (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a
+        (PolyZonotope.plusE cPZ₁.R cPZ₂.R) (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a
           (Fin.castAdd (cPZ₁.h + cPZ₂.h) l))
-      = PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) a :=
+      = PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.R cPZ₂.R) a :=
     funext fun l => ConPolyZono.monomial_appendE_left _ _ a l
   -- the inherited rows first: through the append they are `plusA` on the left block
   have hC : ∀ i : Fin (cPZ₁.m + cPZ₂.m),
       (ConPolyZono.intersectionA cPZ₁ cPZ₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE
-          (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a)
+          (PolyZonotope.plusE cPZ₁.R cPZ₂.R) (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a)
           (Fin.castAdd n i)
         = (ConPolyZono.plusA cPZ₁.A cPZ₂.A *ᵥ
-            PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) a) i := by
+            PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.R cPZ₂.R) a) i := by
     intro i
     rw [ConPolyZono.mulVec_intersectionA_left, hcol]
   -- then the agreement rows, each side's monomials read off its own factors
   have hG : ∀ i : Fin n,
       (ConPolyZono.intersectionA cPZ₁ cPZ₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE
-          (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a)
+          (PolyZonotope.plusE cPZ₁.R cPZ₂.R) (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a)
           (Fin.natAdd (cPZ₁.m + cPZ₂.m) i)
         = (∑ l, cPZ₁.G l i
               * PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l)
@@ -85,9 +85,9 @@ theorem ConPolyZono.satisfies_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (
     -- the projections are read away first: `Fin.castAdd` does not fit `Fin (intersectionDep ..).m`
     have hsat : ConPolyZono.holds (ConPolyZono.intersectionA cPZ₁ cPZ₂)
         (ConPolyZono.intersectionB cPZ₁ cPZ₂ D)
-        (ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)
+        (ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.R cPZ₂.R)
           (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a := hsat'
-    refine ⟨(ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.EC cPZ₂.A cPZ₂.b cPZ₂.EC a).mp
+    refine ⟨(ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R a).mp
         (fun i => ?_), fun i => ?_⟩
     · have h := hsat (Fin.castAdd n i)
       rw [hC i] at h
@@ -97,11 +97,11 @@ theorem ConPolyZono.satisfies_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (
       simpa only [ConPolyZono.intersectionB, Fin.append_right] using h
   · rintro ⟨hcon, hagree⟩
     have hplus :=
-      (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.EC cPZ₂.A cPZ₂.b cPZ₂.EC a).mpr hcon
+      (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R a).mpr hcon
     -- the index here reads `Fin (intersectionDep ..).m`, which `Fin.castAdd` misses
     show ConPolyZono.holds (ConPolyZono.intersectionA cPZ₁ cPZ₂)
       (ConPolyZono.intersectionB cPZ₁ cPZ₂ D)
-      (ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)
+      (ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.R cPZ₂.R)
         (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a
     refine Fin.addCases (fun i => ?_) fun i => ?_
     · rw [hC i]

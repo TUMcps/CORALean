@@ -31,8 +31,8 @@ open Matrix
 
 theorem Ellipsoid.isBigger_cora_counterexample :
     ∃ E₁ E₂ : Ellipsoid 1, E₁.isBiggerCora E₂ ∧
-      ¬ ((fun x => x - E₂.q) '' E₂.construct ⊆
-        (fun x => x - E₁.q) '' E₁.construct) := by -- --- PROOF ---
+      ¬ ((fun x => x - E₂.c) '' E₂.construct ⊆
+        (fun x => x - E₁.c) '' E₁.construct) := by -- --- PROOF ---
   -- the data, unit and double generator
   let E₁ : Ellipsoid 1 := ⟨1, 0, 1⟩
   let E₂ : Ellipsoid 1 := ⟨1, 0, Matrix.of fun _ _ => 2⟩

@@ -64,7 +64,7 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
         rw [Fin.append_right]
         exact (congrFun (Fin.append_right (nominal cPZ₁).G (nominal cPZ₂).G l) i).symm
   -- the independent blocks likewise
-  have hGI : ∀ j : Fin (cPZ₁.q + cPZ₂.q), toReal (Fin.append cPZ₁.GI cPZ₂.GI j i)
+  have hGI : ∀ j : Fin (cPZ₁.qI + cPZ₂.qI), toReal (Fin.append cPZ₁.GI cPZ₂.GI j i)
       = Fin.append (nominal cPZ₁).GI (nominal cPZ₂).GI j i :=
     Fin.addCases
       (fun j => by

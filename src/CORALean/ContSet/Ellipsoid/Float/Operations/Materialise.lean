@@ -31,10 +31,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Ellipsoid.materialise (E : Ellipsoid 𝕋 n) : Ellipsoid 𝕋 n :=
-  let q : Vector 𝕋 n := Vector.ofFn E.q
+  let q : Vector 𝕋 n := Vector.ofFn E.c
   let G : Vector (Vector 𝕋 E.k) n := Vector.ofFn fun i => Vector.ofFn fun j => E.G i j
   { k := E.k
-    q := fun i => q[i.val]'i.isLt
+    c := fun i => q[i.val]'i.isLt
     G := fun i j => (G[i.val]'i.isLt)[j.val]'j.isLt
     I_error := E.I_error.materialise }
 

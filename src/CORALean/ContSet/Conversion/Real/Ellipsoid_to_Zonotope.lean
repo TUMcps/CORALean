@@ -57,7 +57,7 @@ theorem Ellipsoid.zonotope_contains (E : Ellipsoid n) : E.construct ⊆ E.zonoto
 noncomputable def Ellipsoid.zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
     (r : ℝ) : Zonotope (Vec ℝ n) where
   h := m
-  c := E.q
+  c := E.c
   G := fun j => (√r)⁻¹ • (E.G *ᵥ S j)
 
 /-- [1, Thm. 2]: `r ≥ ⌈Z(S, 0)⌉²` puts the scaled zonotope in the ellipsoid. -/
@@ -73,7 +73,7 @@ theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fi
   · rw [norm₂_smul, abs_of_pos (inv_pos.mpr hs), inv_mul_le_iff₀ hs, mul_one]
     calc ‖∑ j, β j • S j‖₂ = √(‖∑ j, β j • S j‖₂ ^ 2) := (Real.sqrt_sq (norm₂_nonneg _)).symm
       _ ≤ √r := Real.sqrt_le_sqrt hle
-  · show E.q + ∑ j, β j • ((√r)⁻¹ • (E.G *ᵥ S j)) = E.q + E.G *ᵥ ((√r)⁻¹ • ∑ j, β j • S j)
+  · show E.c + ∑ j, β j • ((√r)⁻¹ • (E.G *ᵥ S j)) = E.c + E.G *ᵥ ((√r)⁻¹ • ∑ j, β j • S j)
     rw [Matrix.mulVec_smul, Matrix.mulVec_sum, Finset.smul_sum]
     simp only [Matrix.mulVec_smul, smul_comm (√r)⁻¹]
 
@@ -81,7 +81,7 @@ theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fi
 noncomputable def Ellipsoid.zonotopeNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
     (l : ℝ) : Zonotope (Vec ℝ n) where
   h := m
-  c := E.q
+  c := E.c
   G := fun j => (√l)⁻¹ • (E.G *ᵥ S j)
 
 /-- [1, Thm. 4]: a ball of radius `√l` inside `Z(S, 0)` — `l ≤ ⌊Z(S, 0)⌋²` — makes the scaled
@@ -99,7 +99,7 @@ theorem Ellipsoid.zonotopeNorm_contains (E : Ellipsoid n) {m : ℕ} (S : Fin m �
   rw [zero_add] at heq
   change ∀ j : Fin m, |β j| ≤ 1 at hβ
   refine ⟨(β : Fin m → ℝ), hβ, ?_⟩
-  show E.q + E.G *ᵥ u = E.q + ∑ j, β j • ((√l)⁻¹ • (E.G *ᵥ S j))
+  show E.c + E.G *ᵥ u = E.c + ∑ j, β j • ((√l)⁻¹ • (E.G *ᵥ S j))
   have hu' : u = (√l)⁻¹ • ∑ j, β j • S j := by
     rw [← heq, smul_smul, inv_mul_cancel₀ hs.ne', one_smul]
   rw [hu', Matrix.mulVec_smul, Matrix.mulVec_sum, Finset.smul_sum]

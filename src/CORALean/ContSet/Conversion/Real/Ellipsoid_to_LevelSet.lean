@@ -32,7 +32,7 @@ variable {n : ℕ}
 /-- `levelSet(E)`: the single constraint `(x - q)ᵀ (G Gᵀ)⁻¹ (x - q) - 1 ≤ 0`. -/
 noncomputable def Ellipsoid.levelSet (E : Ellipsoid n) : LevelSet n where
   m := 1
-  f x := fun _ => (x - E.q) ⬝ᵥ ((E.G * E.Gᵀ)⁻¹ *ᵥ (x - E.q)) - 1
+  f x := fun _ => (x - E.c) ⬝ᵥ ((E.G * E.Gᵀ)⁻¹ *ᵥ (x - E.c)) - 1
   op := fun _ => .le
 
 
@@ -56,11 +56,11 @@ theorem Ellipsoid.levelSet_exact (E : Ellipsoid n) (hQ : IsUnit (E.G * E.Gᵀ).d
   constructor
   -- a point of the sublevel set is `q + G u` for `u = Gᵀ Q⁻¹ (x - q)`, of squared length `≤ 1`
   · intro h
-    have h1 : (x - E.q) ⬝ᵥ (Q⁻¹ *ᵥ (x - E.q)) ≤ 1 := by
+    have h1 : (x - E.c) ⬝ᵥ (Q⁻¹ *ᵥ (x - E.c)) ≤ 1 := by
       have := h (0 : Fin 1)
       simp only [Ellipsoid.levelSet, CompOp.holds] at this
       linarith
-    refine ⟨E.Gᵀ *ᵥ (Q⁻¹ *ᵥ (x - E.q)), ?_, ?_⟩
+    refine ⟨E.Gᵀ *ᵥ (Q⁻¹ *ᵥ (x - E.c)), ?_, ?_⟩
     · rw [← pow_le_one_iff_of_nonneg (norm₂_nonneg _) two_ne_zero, ← dotProduct_self, hz]
       exact h1
     · rw [hQw]; abel

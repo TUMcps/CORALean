@@ -47,10 +47,10 @@ theorem ConPolyZono.aux_sum_univ_plus_h {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec �
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- The same at the independent generator count. -/
-theorem ConPolyZono.aux_sum_univ_plus_q {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)}
-    (f : Fin (cPZ₁.q + cPZ₂.q) → ℝ) :
-    ∑ j : Fin (cPZ₁.plus cPZ₂).q, f j
-      = ∑ j, f (Fin.castAdd cPZ₂.q j) + ∑ j, f (Fin.natAdd cPZ₁.q j) :=
+theorem ConPolyZono.aux_sum_univ_plus_qI {cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)}
+    (f : Fin (cPZ₁.qI + cPZ₂.qI) → ℝ) :
+    ∑ j : Fin (cPZ₁.plus cPZ₂).qI, f j
+      = ∑ j, f (Fin.castAdd cPZ₂.qI j) + ∑ j, f (Fin.natAdd cPZ₁.qI j) :=
   Fin.sum_univ_add f
 
 theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
@@ -85,7 +85,7 @@ theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋
   · exact Interval.sub_mem_residual (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
   · funext i
     simp only [Pi.add_apply]
-    rw [ConPolyZono.aux_sum_univ_plus_h, ConPolyZono.aux_sum_univ_plus_q]
+    rw [ConPolyZono.aux_sum_univ_plus_h, ConPolyZono.aux_sum_univ_plus_qI]
     simp only [ConPolyZono.plus, Real.PolyZonotope.monomial_plusE_left,
       Real.PolyZonotope.monomial_plusE_right, Fin.append_left, Fin.append_right,
       hx₁ i, hx₂ i]

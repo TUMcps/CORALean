@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 @[expose] public section
 
 /-!
-# `ConPolyZono.unionLowerEC`
+# `ConPolyZono.unionLowerR`
 
 The monomials the operands' rows are read against, [1, Thm. 1]'s `R_L`: the two
 constraint exponent matrices block-diagonally over their own factor blocks,
@@ -36,9 +36,9 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Both operands' constraint monomials, and `α₁` for the selector column. -/
-def ConPolyZono.unionLowerEC {p₁ s₁ p₂ s₂ : ℕ} (EC₁ : Fin p₁ → Fin s₁ → ℕ)
-    (EC₂ : Fin p₂ → Fin s₂ → ℕ) : Fin (p₁ + p₂ + 2) → Fin (s₁ + s₂ + 1) → ℕ :=
-  ConPolyZono.appendE (ConPolyZono.padE (PolyZonotope.plusE EC₁ EC₂) 2)
+def ConPolyZono.unionLowerR {p₁ q₁ p₂ q₂ : ℕ} (R₁ : Fin p₁ → Fin q₁ → ℕ)
+    (R₂ : Fin p₂ → Fin q₂ → ℕ) : Fin (p₁ + p₂ + 2) → Fin (q₁ + q₂ + 1) → ℕ :=
+  ConPolyZono.appendE (ConPolyZono.padE (PolyZonotope.plusE R₁ R₂) 2)
     (fun k _ => ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1 k)
 
 end CORALean.Real

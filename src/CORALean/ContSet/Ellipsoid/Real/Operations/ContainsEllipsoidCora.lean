@@ -51,7 +51,7 @@ def Ellipsoid.containsEllipsoidCora (E₁ E₂ : Ellipsoid n) (Hp : Mat ℝ E₁
   let r_comb := (Matrix.fromCols H G).rank
   if r < n ∧ r_comb > r then False else
     let Theta := Hp * G
-    let theta : Mat ℝ E₁.k 1 := Hp * Matrix.of (fun i (_ : Fin 1) => (E₂.q - E₁.q) i)
+    let theta : Mat ℝ E₁.k 1 := Hp * Matrix.of (fun i (_ : Fin 1) => (E₂.c - E₁.c) i)
     let A := Matrix.fromBlocks (Thetaᵀ * Theta) (Thetaᵀ * theta) (thetaᵀ * Theta) (thetaᵀ * theta)
     let B : Matrix (Fin E₂.k ⊕ Fin 1) (Fin E₂.k ⊕ Fin 1) ℝ := Matrix.fromBlocks 0 0 0 1
     let C : Matrix (Fin E₂.k ⊕ Fin 1) (Fin E₂.k ⊕ Fin 1) ℝ := Matrix.fromBlocks 1 0 0 (-1)

@@ -36,16 +36,16 @@ def ConPolyZono.mtimes (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
     ConPolyZono (Vec ℝ k) where
   p := cPZ.p
   h := cPZ.h
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := cPZ.s
+  q := cPZ.q
   c := M *ᵥ cPZ.c
   G := fun i => M *ᵥ cPZ.G i
   E := cPZ.E
   GI := fun j => M *ᵥ cPZ.GI j
   A := cPZ.A
   b := cPZ.b
-  EC := cPZ.EC
+  R := cPZ.R
 
 end CORALean.Real
 

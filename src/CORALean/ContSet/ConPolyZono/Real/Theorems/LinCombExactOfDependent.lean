@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
 
 The result is [1, Prop. 8], stated there as an equality for the representation
 of [1, Def. 5] — which carries no independent generators, and that is why the
-hypothesis here is `q = 0` on both sides. `linComb_outer` is `⊆` and needs none.
+hypothesis here is `qI = 0` on both sides. `linComb_outer` is `⊆` and needs none.
 
 `⊇` is `PolyZonotope.linComb_value_dependent`: the generators of
 `ConPolyZono.linComb` are `PolyZonotope.linComb`'s, so the arithmetic reading a
@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.linComb_exact_of_dependent (cPZ₁ cPZ₂ : ConPolyZono α)
-    (h₁ : cPZ₁.q = 0) (h₂ : cPZ₂.q = 0) :
+    (h₁ : cPZ₁.qI = 0) (h₂ : cPZ₂.qI = 0) :
     segments cPZ₁.construct cPZ₂.construct = (cPZ₁.linComb cPZ₂).construct := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (ConPolyZono.linComb_outer cPZ₁ cPZ₂) ?_
   rintro x ⟨a, β, ha, hβ, hsat, rfl⟩

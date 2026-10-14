@@ -27,13 +27,13 @@ namespace CORALean.Real
 
 /-- Fresh factors at exponent zero constrain nothing, so the system says of the
 widened factor vector exactly what it said of the original. -/
-theorem ConPolyZono.holds_padE_iff {p m s : ℕ} (A : Mat ℝ m s) (b : Interval (Vec ℝ m))
-    (EC : Fin p → Fin s → ℕ) (r : ℕ) (a : Fin (p + r) → ℝ) :
-    ConPolyZono.holds A b (ConPolyZono.padE EC r) a
-      ↔ ConPolyZono.holds A b EC (fun k => a (Fin.castAdd r k)) := by
-  have hm : PolyZonotope.monomial (ConPolyZono.padE EC r) a
-      = PolyZonotope.monomial EC (fun k => a (Fin.castAdd r k)) :=
-    funext fun l => ConPolyZono.monomial_padE EC r a l
+theorem ConPolyZono.holds_padE_iff {p m q : ℕ} (A : Mat ℝ m q) (b : Interval (Vec ℝ m))
+    (R : Fin p → Fin q → ℕ) (r : ℕ) (a : Fin (p + r) → ℝ) :
+    ConPolyZono.holds A b (ConPolyZono.padE R r) a
+      ↔ ConPolyZono.holds A b R (fun k => a (Fin.castAdd r k)) := by
+  have hm : PolyZonotope.monomial (ConPolyZono.padE R r) a
+      = PolyZonotope.monomial R (fun k => a (Fin.castAdd r k)) :=
+    funext fun l => ConPolyZono.monomial_padE R r a l
   simp only [ConPolyZono.holds, hm]
 
 end CORALean.Real

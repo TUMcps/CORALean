@@ -10,7 +10,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceGirard
 
 CORA's `@conPolyZono/reduce` at Girard's rule: bring the generator count down to
 a maximum order. `reduce` compacts first, so the count counts distinct
-monomials, and compaction is also the only stage that moves `s`.
+monomials, and compaction is also the only stage that moves `q`.
 -/
 
 -- Authors:       Claude Opus 5

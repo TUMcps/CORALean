@@ -56,8 +56,8 @@ theorem Ellipsoid.aux_norm₂_mulVec_le_one {a b : ℕ} (T : Mat ℝ a b) (u : V
 
 theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n} {T : Mat 𝕋 E₁.k E₂.k}
     (h : E₁.isBigger E₂ T = true) :
-    (fun x => x - toRealVec E₂.q) '' E₂.construct
-      ⊆ (fun x => x - toRealVec E₁.q) '' E₁.construct := by -- --- PROOF ---
+    (fun x => x - toRealVec E₂.c) '' E₂.construct
+      ⊆ (fun x => x - toRealVec E₁.c) '' E₁.construct := by -- --- PROOF ---
   simp only [Ellipsoid.isBigger, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hT, hbox⟩ := h
@@ -104,8 +104,8 @@ theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n} {T : Mat 𝕋 E�
       ∧ (∑ j, Δ i j * u j) + e i ≤ toReal (E₁.I_error.sup i)
     exact ⟨by linarith, by linarith⟩
   -- the moved point is `G₁ v` plus that remainder, moved from `q₁`
-  refine ⟨toRealVec E₁.q + ((fun i => ∑ l, toReal (E₁.G i l) * v l)
-      + fun i => (∑ j, Δ i j * u j) + e i), ⟨fun i => toReal (E₁.q i)
+  refine ⟨toRealVec E₁.c + ((fun i => ∑ l, toReal (E₁.G i l) * v l)
+      + fun i => (∑ j, Δ i j * u j) + e i), ⟨fun i => toReal (E₁.c i)
       + ∑ l, toReal (E₁.G i l) * v l, Ellipsoid.mem_nominalSet_iff.mpr ⟨v, hvn, fun _ => rfl⟩,
       _, hbox', ?_⟩, ?_⟩
   · funext i

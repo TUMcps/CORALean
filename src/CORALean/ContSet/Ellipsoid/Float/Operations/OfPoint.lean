@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Ellipsoid.ofPoint (p : Vec 𝕋 n) : Ellipsoid 𝕋 n where
   k := 0
-  q := p
+  c := p
   G := fun _ j => j.elim0
   I_error := Interval.origin n
 

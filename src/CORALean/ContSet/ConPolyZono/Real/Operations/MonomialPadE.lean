@@ -25,19 +25,19 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.monomial_padE {p s : ℕ} (EC : Fin p → Fin s → ℕ) (r : ℕ)
-    (a : Fin (p + r) → ℝ) (l : Fin s) :
-    PolyZonotope.monomial (ConPolyZono.padE EC r) a l
-      = PolyZonotope.monomial EC (fun k => a (Fin.castAdd r k)) l := by -- --- PROOF ---
+theorem ConPolyZono.monomial_padE {p q : ℕ} (R : Fin p → Fin q → ℕ) (r : ℕ)
+    (a : Fin (p + r) → ℝ) (l : Fin q) :
+    PolyZonotope.monomial (ConPolyZono.padE R r) a l
+      = PolyZonotope.monomial R (fun k => a (Fin.castAdd r k)) l := by -- --- PROOF ---
   rw [PolyZonotope.monomial, PolyZonotope.monomial, Fin.prod_univ_add]
-  -- the appended factors contribute a product of `1`s
+  -- the appended factors contribute a product of `1`q
   have hnew : (∏ k : Fin r, a (Fin.natAdd p k)
-      ^ ConPolyZono.padE EC r (Fin.natAdd p k) l) = 1 :=
+      ^ ConPolyZono.padE R r (Fin.natAdd p k) l) = 1 :=
     Finset.prod_eq_one fun k _ => by
       simp only [ConPolyZono.padE, PolyZonotope.padE, Fin.append_right, pow_zero]
   have hold : (∏ k : Fin p, a (Fin.castAdd r k)
-      ^ ConPolyZono.padE EC r (Fin.castAdd r k) l)
-      = ∏ k, a (Fin.castAdd r k) ^ EC k l :=
+      ^ ConPolyZono.padE R r (Fin.castAdd r k) l)
+      = ∏ k, a (Fin.castAdd r k) ^ R k l :=
     Finset.prod_congr rfl fun k _ => by
       simp only [ConPolyZono.padE, PolyZonotope.padE, Fin.append_left]
   rw [hnew, hold, mul_one]

@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 def Ellipsoid.cartProdVec (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) : Ellipsoid 𝕋 (n + m) where
   k := E.k
-  q := Fin.append E.q v
+  c := Fin.append E.c v
   G := fun i j => Fin.addCases (fun i => E.G i j) (fun _ => zero) i
   I_error := ⟨Fin.append E.I_error.inf fun _ => zero, Fin.append E.I_error.sup fun _ => zero⟩
 

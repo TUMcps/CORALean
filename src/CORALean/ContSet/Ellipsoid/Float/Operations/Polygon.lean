@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 /-- The polygon spanned by the vertices of the factors that the ellipsoid certifies. -/
 def Ellipsoid.polygon (E : Ellipsoid 𝕋 2) (U : List (Vec 𝕋 E.k)) : Polygon 𝕋 :=
   -- the candidate vertex of a factor `u`: `q + G u`, rounded up
-  let vertex : Vec 𝕋 E.k → Vec 𝕋 2 := fun u i => addUp (E.q i) (dotUp (fun j => E.G i j) u)
+  let vertex : Vec 𝕋 E.k → Vec 𝕋 2 := fun u i => addUp (E.c i) (dotUp (fun j => E.G i j) u)
   -- the factors whose vertex `containsPoint` certifies
   let kept : List (Vec 𝕋 E.k) := U.filter fun u => E.containsPoint (vertex u) u
   let Y : Fin kept.length → Vec 𝕋 2 := fun j => vertex kept[j]

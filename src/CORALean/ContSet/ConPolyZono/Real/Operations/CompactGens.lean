@@ -34,9 +34,9 @@ whole constraint block stands, `p` included, so the constraint is untouched. -/
 noncomputable def ConPolyZono.compactGens (cPZ : ConPolyZono α) : ConPolyZono α where
   p := cPZ.p
   h := (PolyZonotope.compactKeep cPZ.E cPZ.G).card
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := cPZ.s
+  q := cPZ.q
   c := cPZ.c
   G := fun j => PolyZonotope.fiberSum (PolyZonotope.rep cPZ.E) cPZ.G
                   (PolyZonotope.compactIdx cPZ.E cPZ.G j)
@@ -44,7 +44,7 @@ noncomputable def ConPolyZono.compactGens (cPZ : ConPolyZono α) : ConPolyZono �
   GI := cPZ.GI
   A := cPZ.A
   b := cPZ.b
-  EC := cPZ.EC
+  R := cPZ.R
 
 end CORALean.Real
 

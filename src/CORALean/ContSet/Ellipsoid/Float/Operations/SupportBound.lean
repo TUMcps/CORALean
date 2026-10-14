@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 /-!
 # An ellipsoid answers a direction in floats, and still without a linear program
 
-The exact value is `⟨d, q⟩ + ‖Gᵀd‖₂`, and the norm is a square root the scalar
+The exact value is `⟨d, c⟩ + ‖Gᵀd‖₂`, and the norm is a square root the scalar
 has not got. It needs none: the caller hands in a proposed length `s`, and
 `Global.Float.EuclideanNorm` turns `s` into a bound by one multiplication in
 each rounding direction, so an ellipsoid costs the layer no new scalar operation.

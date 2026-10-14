@@ -33,7 +33,7 @@ theorem ConPolyZono.construct_subset_of_representsa_point (cPZ : ConPolyZono α)
   rintro _ ⟨a, β, -, -, -, rfl⟩
   -- both sums run over `Fin 0`
   have h1 : IsEmpty (Fin cPZ.h) := ⟨fun j => by have := j.2; omega⟩
-  have h2 : IsEmpty (Fin cPZ.q) := ⟨fun j => by have := j.2; omega⟩
+  have h2 : IsEmpty (Fin cPZ.qI) := ⟨fun j => by have := j.2; omega⟩
   simp
 
 end CORALean.Real

@@ -33,7 +33,7 @@ two row sums, added upward. A monomial and an independent coefficient obey the
 same bound, so one box covers the two blocks together. -/
 def ConPolyZono.dropRadius (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) : Vec 𝕋 n :=
+    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) : Vec 𝕋 n :=
   fun i₀ => addUp (radius (fun i l => cPZ.G (partD.right l) i) i₀)
     (radius (fun i j => cPZ.GI (partI.right j) i) i₀)
 

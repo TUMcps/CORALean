@@ -43,7 +43,7 @@ theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) :
   · rintro ⟨x, hx⟩ _ ⟨u, hu, rfl⟩
     -- `c ± G₂ u` both lie in the centred first ellipsoid, `c = x + q₂ - q₁`
     have hin : ∀ u' : Vec ℝ E₂.k, ‖u'‖₂ ≤ 1 →
-        (x + E₂.q - E₁.q) + E₂.G *ᵥ u' ∈ (⟨E₁.k, 0, E₁.G⟩ : Ellipsoid n).construct := by
+        (x + E₂.c - E₁.c) + E₂.G *ᵥ u' ∈ (⟨E₁.k, 0, E₁.G⟩ : Ellipsoid n).construct := by
       intro u' hu'
       obtain ⟨w, hw, heq⟩ := hx _ ⟨u', hu', rfl⟩
       exact ⟨w, hw, by rw [zero_add, ← sub_eq_iff_eq_add'.mpr heq]; abel⟩
@@ -51,10 +51,10 @@ theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) :
     have hm := hin (-u) (by rw [show -u = (-1 : ℝ) • u by simp, norm₂_smul]; simpa using hu)
     -- reflect the second point through the centre
     obtain ⟨w, hw, hweq⟩ := hm
-    have hm' : -(x + E₂.q - E₁.q) + E₂.G *ᵥ u ∈ (⟨E₁.k, 0, E₁.G⟩ : Ellipsoid n).construct :=
+    have hm' : -(x + E₂.c - E₁.c) + E₂.G *ᵥ u ∈ (⟨E₁.k, 0, E₁.G⟩ : Ellipsoid n).construct :=
       ⟨-w, by rw [show -w = (-1 : ℝ) • w by simp, norm₂_smul]; simpa using hw, by
         rw [Matrix.mulVec_neg, zero_add]
-        have : E₁.G *ᵥ w = (x + E₂.q - E₁.q) + E₂.G *ᵥ -u := by rw [hweq, zero_add]
+        have : E₁.G *ᵥ w = (x + E₂.c - E₁.c) + E₂.G *ᵥ -u := by rw [hweq, zero_add]
         rw [this, Matrix.mulVec_neg]
         abel⟩
     have hmid := (Ellipsoid.convex_construct _) hp hm' (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -66,7 +66,7 @@ theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) :
     module
   -- conversely `q₁ - q₂` is in the difference
   · intro hsub
-    refine ⟨E₁.q - E₂.q, fun y ⟨u, hu, hy⟩ => ?_⟩
+    refine ⟨E₁.c - E₂.c, fun y ⟨u, hu, hy⟩ => ?_⟩
     obtain ⟨w, hw, heq⟩ := hsub ⟨u, hu, rfl⟩
     refine ⟨w, hw, ?_⟩
     rw [hy]

@@ -53,7 +53,7 @@ def Zonotope.ellipsoidSlack (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Vec 𝕋 n
 
 def Zonotope.ellipsoid (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n where
   k := Z.h
-  q := Z.c
+  c := Z.c
   G := Z.ellipsoidG σ
   I_error := ⟨fun i => subDown (Z.I_error.inf i) (Z.ellipsoidSlack σ i),
           fun i => addUp (Z.I_error.sup i) (Z.ellipsoidSlack σ i)⟩

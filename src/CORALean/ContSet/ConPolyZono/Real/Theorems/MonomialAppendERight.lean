@@ -25,9 +25,9 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.monomial_appendE_right {p s t : ℕ} (E₁ : Fin p → Fin s → ℕ)
+theorem ConPolyZono.monomial_appendE_right {p q t : ℕ} (E₁ : Fin p → Fin q → ℕ)
     (E₂ : Fin p → Fin t → ℕ) (a : Fin p → ℝ) (l : Fin t) :
-    PolyZonotope.monomial (ConPolyZono.appendE E₁ E₂) a (Fin.natAdd s l)
+    PolyZonotope.monomial (ConPolyZono.appendE E₁ E₂) a (Fin.natAdd q l)
       = PolyZonotope.monomial E₂ a l := by
   rw [PolyZonotope.monomial, PolyZonotope.monomial]
   exact Finset.prod_congr rfl fun k _ => by

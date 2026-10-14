@@ -86,8 +86,8 @@ def ConPolyZono.compactGensGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
 /-- The merged constraint column as stored, `A`'s rows read as the generator
 matrix they are on the constraint side. -/
 def ConPolyZono.mergedConsCol (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
-    (l : Fin (PolyZonotope.repKeep cPZ.EC).card) : 𝕋 :=
-  PolyZonotope.fiberDown (Real.PolyZonotope.rep cPZ.EC) cPZ.A i (PolyZonotope.keepIdx cPZ.EC l)
+    (l : Fin (PolyZonotope.repKeep cPZ.R).card) : 𝕋 :=
+  PolyZonotope.fiberDown (Real.PolyZonotope.rep cPZ.R) cPZ.A i (PolyZonotope.keepIdx cPZ.R l)
 
 
 -- ==============================  `ConPolyZono.mergedConsColUp`  =============================== --
@@ -98,8 +98,8 @@ def ConPolyZono.mergedConsCol (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ
 
 /-- `ConPolyZono.mergedConsColUp` -/
 def ConPolyZono.mergedConsColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
-    (l : Fin (PolyZonotope.repKeep cPZ.EC).card) : 𝕋 :=
-  PolyZonotope.fiberUp (Real.PolyZonotope.rep cPZ.EC) cPZ.A i (PolyZonotope.keepIdx cPZ.EC l)
+    (l : Fin (PolyZonotope.repKeep cPZ.R).card) : 𝕋 :=
+  PolyZonotope.fiberUp (Real.PolyZonotope.rep cPZ.R) cPZ.A i (PolyZonotope.keepIdx cPZ.R l)
 
 
 -- ===============================  `ConPolyZono.compactConsGap`  =============================== --
@@ -110,7 +110,7 @@ def ConPolyZono.mergedConsColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin c
 
 /-- What a merged constraint column can be off by. -/
 def ConPolyZono.compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    Mat 𝕋 cPZ.m (PolyZonotope.repKeep cPZ.EC).card :=
+    Mat 𝕋 cPZ.m (PolyZonotope.repKeep cPZ.R).card :=
   fun i l => subUp (cPZ.mergedConsColUp i l) (cPZ.mergedConsCol i l)
 
 

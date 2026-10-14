@@ -34,12 +34,12 @@ kept, with the former's exponent columns, and the rest is absorbed into a
 diagonal block of `n` independent generators. The constraints stand. -/
 def ConPolyZono.reduceBy (cPZ : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono (Vec ℝ n) where
+    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) : ConPolyZono (Vec ℝ n) where
   p := cPZ.p
   h := d
-  q := dI + n
+  qI := dI + n
   m := cPZ.m
-  s := cPZ.s
+  q := cPZ.q
   c := cPZ.c
   G := fun l => cPZ.G (partD.left l)
   E := fun k l => cPZ.E k (partD.left l)
@@ -47,7 +47,7 @@ def ConPolyZono.reduceBy (cPZ : ConPolyZono (Vec ℝ n))
           (Matrix.diagonal (cPZ.dropRadius partD partI))
   A := cPZ.A
   b := cPZ.b
-  EC := cPZ.EC
+  R := cPZ.R
 
 end CORALean.Real
 

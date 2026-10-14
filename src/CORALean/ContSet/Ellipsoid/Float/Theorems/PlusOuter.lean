@@ -101,7 +101,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
     (hs : 1 / toReal s₁ ^ 2 + 1 / toReal s₂ ^ 2 ≤ 1) :
     nominalSet E₁ + nominalSet E₂ ⊆
       nominalSet (Ellipsoid.plus s₁ s₂ E₁ E₂)
-        + ((Ellipsoid.centerResidual E₁.q E₂.q).construct
+        + ((Ellipsoid.centerResidual E₁.c E₂.c).construct
             + (Ellipsoid.generatorError
               (Ellipsoid.plusGap s₁ s₂ E₁ E₂)).construct) := by -- --- PROOF ---
   rintro _ ⟨x₁, hx₁', x₂, hx₂', rfl⟩
@@ -134,7 +134,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
       _ = 1 := Real.sqrt_one
   -- the witness: stored centre and generators at `w`, both shortfalls charged
   have hgen := Ellipsoid.mem_generatorError (Ellipsoid.aux_plusGap s₁ s₂ E₁ E₂) hw
-  refine ⟨fun i => toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).q i)
+  refine ⟨fun i => toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).c i)
             + ∑ j, toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).G i j) * w j,
           Ellipsoid.mem_nominalSet_iff.mpr ⟨w, hw, fun _ => rfl⟩,
           _, ⟨_, Interval.sub_mem_residual
@@ -154,10 +154,10 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by field_simp; ring
   -- the goal spelled out, so the two block identities line up with it
-  show toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).q i)
+  show toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).c i)
         + (∑ j, toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).G i j) * w j)
-      + ((toReal (E₁.q i) + toReal (E₂.q i)
-            - toReal (addDown (E₁.q i) (E₂.q i)))
+      + ((toReal (E₁.c i) + toReal (E₂.c i)
+            - toReal (addDown (E₁.c i) (E₂.c i)))
         + ∑ j, Fin.append
             (fun j => toReal s₁ * toReal (E₁.G i j) - toReal (mulDown s₁ (E₁.G i j)))
             (fun j => toReal s₂ * toReal (E₂.G i j) - toReal (mulDown s₂ (E₂.G i j))) j
@@ -176,7 +176,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
 scalings. -/
 theorem Ellipsoid.aux_plus_error (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) :
     E₁.I_error.construct + E₂.I_error.construct
-        + ((Ellipsoid.centerResidual E₁.q E₂.q).construct
+        + ((Ellipsoid.centerResidual E₁.c E₂.c).construct
             + (Ellipsoid.generatorError (Ellipsoid.plusGap s₁ s₂ E₁ E₂)).construct) ⊆
       (Ellipsoid.plus s₁ s₂ E₁ E₂).I_error.construct :=
   subset_trans

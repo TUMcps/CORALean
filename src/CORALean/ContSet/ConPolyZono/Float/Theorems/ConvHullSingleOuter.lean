@@ -63,14 +63,14 @@ theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Ve
   refine ConPolyZono.mem_nominalSet_iff.mpr ⟨v, fun j => j.elim0, hv, fun j => j.elim0,
     ConPolyZono.convHullSingle_satisfies_of_real a cPZ v hsat, fun i => ?_⟩
   -- no independent generators
-  have h0 : ∀ f : Fin (cPZ.convHullSingle a).q → ℝ, ∑ j, f j = 0 := fun f =>
+  have h0 : ∀ f : Fin (cPZ.convHullSingle a).qI → ℝ, ∑ j, f j = 0 := fun f =>
     Finset.sum_eq_zero fun j _ => Fin.elim0 (show Fin 0 from j)
   rw [h0, add_zero]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hq : cPZ.q = 0)
+theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hq : cPZ.qI = 0)
     (ha : n + 1 ≤ a) :
     convexHull ℝ cPZ.construct ⊆ (cPZ.convHullSingle a).construct := by -- --- PROOF ---
   intro x hx

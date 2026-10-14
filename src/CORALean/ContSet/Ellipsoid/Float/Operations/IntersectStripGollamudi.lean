@@ -14,9 +14,9 @@ public import CORALean.Global.Float.Sqrt
 
 The real layer's corrected Gollamudi update (CORA's `@ellipsoid/intersectStrip`) for **one**
 strip `|c x - y| ≤ φ`, worked in the coefficient space of the stored generators, so neither `Q⁻¹`
-nor a matrix square root is formed. For `x = q + G u` the strip is `|vᵀ u - δ| ≤ φ` with
-`v = Gᵀ cᵀ`, `δ = y - c q`; with `ν = vᵀ v`, `s = 1 - λ + λ ν` the result has centre
-`q + κ G v`, `κ = λ δ / s` (the real centre), and generators `α G + β (G v) vᵀ`, the image of
+nor a matrix square root is formed. For `x = E.c + G u` the strip is `|vᵀ u - δ| ≤ φ` with
+`v = Gᵀ cᵀ`, `δ = y - c E.c`; with `ν = vᵀ v`, `s = 1 - λ + λ ν` the result has centre
+`E.c + κ G v`, `κ = λ δ / s` (the real centre), and generators `α G + β (G v) vᵀ`, the image of
 `N = α I + β v vᵀ` with `N² ⪰ σ² ((1 - λ) I + λ v vᵀ)⁻¹`; for `Q = G Gᵀ`, `G` invertible, that is
 the real shape `σ² invQ⁻¹` (`Theorems/ExistsBallOfStrip`).
 
@@ -52,9 +52,9 @@ def Ellipsoid.intersectStripGollamudi (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : 
   let vV : Vector 𝕋 E.k := Vector.ofFn fun j => dotDown (fun i => E.G i j) c
   let v : Vec 𝕋 E.k := fun j => vV[j.val]'j.isLt
   let ev : Vec 𝕋 E.k := fun j => subUp (dotUp (fun i => E.G i j) c) (v j)
-  -- the innovation `δ = y - c q`, rounded down, and its rounding gap
-  let δ : 𝕋 := subDown y (dotUp c E.q)
-  let eδ : 𝕋 := subUp (subUp y (dotDown c E.q)) δ
+  -- the innovation `δ = y - c E.c`, rounded down, and its rounding gap
+  let δ : 𝕋 := subDown y (dotUp c E.c)
+  let eδ : 𝕋 := subUp (subUp y (dotDown c E.c)) δ
   -- the strip widened by the box, `|c e| ≤ Σᵢ |cᵢ| max(|infᵢ|, |supᵢ|)`, and by both gaps
   let mag : Vec 𝕋 n := fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))
   let φ' : 𝕋 := addUp (addUp (addUp φ (dotUp (fun i => absolute (c i)) mag)) (sumUp ev)) eδ
@@ -83,9 +83,9 @@ def Ellipsoid.intersectStripGollamudi (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : 
   let wHiV : Vector 𝕋 n := Vector.ofFn fun i => dotUp (E.G i) v
   let wLo : Vec 𝕋 n := fun i => wLoV[i.val]'i.isLt
   let wHi : Vec 𝕋 n := fun i => wHiV[i.val]'i.isLt
-  -- the centre `q + κ G v`
-  let qLo : Vec 𝕋 n := fun i => addDown (E.q i) (Interval.mulLo κLo κHi (wLo i) (wHi i))
-  let qHi : Vec 𝕋 n := fun i => addUp (E.q i) (Interval.mulHi κLo κHi (wLo i) (wHi i))
+  -- the centre `E.c + κ G v`
+  let qLo : Vec 𝕋 n := fun i => addDown (E.c i) (Interval.mulLo κLo κHi (wLo i) (wHi i))
+  let qHi : Vec 𝕋 n := fun i => addUp (E.c i) (Interval.mulHi κLo κHi (wLo i) (wHi i))
   -- the generators `α G + β (G v) vᵀ`
   let bLo : Vec 𝕋 n := fun i => Interval.mulLo β β (wLo i) (wHi i)
   let bHi : Vec 𝕋 n := fun i => Interval.mulHi β β (wLo i) (wHi i)
@@ -98,7 +98,7 @@ def Ellipsoid.intersectStripGollamudi (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : 
   then
     Ellipsoid.materialise
       { k := E.k
-        q := qLo
+        c := qLo
         G := GLo
         I_error := (E.I_error.plus (Interval.residual qLo qHi qLo)).plus
             (Ellipsoid.generatorError GD) }

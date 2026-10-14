@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConValue
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdAddCol
@@ -41,7 +41,7 @@ open Matrix
 
 theorem ConPolyZono.holds_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) :
     ConPolyZono.holds (ConPolyZono.unionUpperA p₁ p₂) ConPolyZono.unionUpperB
-        (ConPolyZono.unionUpperEC p₁ p₂) a
+        (ConPolyZono.unionUpperR p₁ p₂) a
       ↔ (a (ConPolyZono.unionSel p₁ p₂) * a (Fin.natAdd (p₁ + p₂) 1) = 1
         ∧ (1 + a (ConPolyZono.unionSel p₁ p₂)
               + 2⁻¹ * ConPolyZono.unionMeanSq (fun j => a (Fin.castAdd 2 (Fin.castAdd p₂ j)))
@@ -49,7 +49,7 @@ theorem ConPolyZono.holds_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂
             * (1 - 2⁻¹
               * ConPolyZono.unionMeanSq (fun k => a (Fin.castAdd 2 (Fin.natAdd p₁ k))))
           - a (Fin.natAdd (p₁ + p₂) 1) - 1 = 0) := by -- --- PROOF ---
-  rw [ConPolyZono.unionUpperA, ConPolyZono.unionUpperB, ConPolyZono.unionUpperEC,
+  rw [ConPolyZono.unionUpperA, ConPolyZono.unionUpperB, ConPolyZono.unionUpperR,
     ConPolyZono.holds_shared_iff]
   constructor
   · rintro ⟨h₁, h₂⟩

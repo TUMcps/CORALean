@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One copy of `A` per block, and a final row summing the weights. -/
-def ConPolyZono.convHullA (a : ℕ) {m s : ℕ} (A : Mat 𝕋 m s) : Mat 𝕋 (a * m + 1) (a * s + a) :=
+def ConPolyZono.convHullA (a : ℕ) {m q : ℕ} (A : Mat 𝕋 m q) : Mat 𝕋 (a * m + 1) (a * q + a) :=
   fun x => Fin.append
     (fun r => Fin.append (ConPolyZono.blkDiag a A r) (fun _ => zero))
     (fun _ => Fin.append (fun _ => zero) (fun _ => one)) x

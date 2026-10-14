@@ -44,7 +44,7 @@ theorem Ellipsoid.norm₂_le_normUb (k : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec �
     exact le_trans h' (le_abs_self _)
   -- the error box, by the length of its largest magnitudes
   have hErr := norm₂_le_normUp k herr
-  have hq : ‖toRealVec E.q‖₂ ≤ toReal (normUp k E.q) := norm₂_le_normUp k fun j => le_refl _
+  have hq : ‖toRealVec E.c‖₂ ≤ toReal (normUp k E.c) := norm₂_le_normUp k fun j => le_refl _
   -- the Frobenius norm of the stored generator matrix, rounded up
   have hF : Real.sqrt (∑ i, ∑ j, toReal (E.G i j) ^ 2) ≤
       toReal (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j))) := by
@@ -53,13 +53,13 @@ theorem Ellipsoid.norm₂_le_normUb (k : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec �
     exact sq_sum_le_sqSumUp (v := fun j => toReal (E.G i j)) (m := fun j => absolute (E.G i j))
       fun j => by rw [toReal_absolute]
   -- the two upward additions
-  have s₁ := add_le_addUp (normUp k E.q)
+  have s₁ := add_le_addUp (normUp k E.c)
     (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))
-  have s₂ := add_le_addUp (addUp (normUp k E.q)
+  have s₂ := add_le_addUp (addUp (normUp k E.c)
     (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))) (normUp k fun i =>
       maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))
-  have hnom : ‖y‖₂ ≤ ‖toRealVec E.q‖₂ + Real.sqrt (∑ i, ∑ j, toReal (E.G i j) ^ 2) := hy'
-  show ‖y + e‖₂ ≤ toReal (addUp (addUp (normUp k E.q)
+  have hnom : ‖y‖₂ ≤ ‖toRealVec E.c‖₂ + Real.sqrt (∑ i, ∑ j, toReal (E.G i j) ^ 2) := hy'
+  show ‖y + e‖₂ ≤ toReal (addUp (addUp (normUp k E.c)
     (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))) (normUp k fun i =>
       maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))
   have := norm₂_add_le y e

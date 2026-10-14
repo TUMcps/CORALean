@@ -6,7 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnitCol
 @[expose] public section
 
 /-!
-# `ConPolyZono.convHullEC`
+# `ConPolyZono.convHullR`
 
 The constraint exponent matrix of [1, Prop. 9]: the linear combination's, once
 per copy and over that copy's own factors, then one column per weight factor for
@@ -35,10 +35,10 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Each copy's constraint exponents, then the weight factors themselves. -/
-def ConPolyZono.convHullEC (a : ℕ) {p s : ℕ} (EC : Fin p → Fin s → ℕ) :
-    Fin (a * p + a) → Fin (a * s + a) → ℕ :=
+def ConPolyZono.convHullR (a : ℕ) {p q : ℕ} (R : Fin p → Fin q → ℕ) :
+    Fin (a * p + a) → Fin (a * q + a) → ℕ :=
   Fin.append
-    (fun x => Fin.append (ConPolyZono.blkDiag a EC x) (fun _ => 0))
+    (fun x => Fin.append (ConPolyZono.blkDiag a R x) (fun _ => 0))
     (fun j => Fin.append (fun _ => 0) (ConPolyZono.unitCol j 1))
 
 end CORALean.Real

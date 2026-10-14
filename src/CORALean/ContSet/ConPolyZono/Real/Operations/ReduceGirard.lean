@@ -51,7 +51,7 @@ noncomputable def ConPolyZono.aux_girardKeptDep (cPZ : ConPolyZono (Vec ℝ n)) 
   let rank := (Tuple.sort fun l =>
     -ConPolyZono.aux_girardMetric (Fin.append cPZ.G cPZ.GI) l).symm
   min K (Finset.univ.filter fun l : Fin cPZ.h =>
-    (rank (Fin.castAdd cPZ.q l) : ℕ) < K).card
+    (rank (Fin.castAdd cPZ.qI l) : ℕ) < K).card
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -61,7 +61,7 @@ together, keep the `(o-1)·n` Girard ranks first and box the rest, bringing the
 total back to `n·o`. Noncomputable, as ordering reals is. -/
 noncomputable def ConPolyZono.reduceGirard (cPZ : ConPolyZono (Vec ℝ n)) (o : ℕ) :
     ConPolyZono (Vec ℝ n) :=
-  if o * n < cPZ.h + cPZ.q then
+  if o * n < cPZ.h + cPZ.qI then
     let K := (o - 1) * n
     let d := cPZ.aux_girardKeptDep K
     cPZ.reduceBy (ConPolyZono.aux_girardSplit (ConPolyZono.aux_girardMetric cPZ.G) d)

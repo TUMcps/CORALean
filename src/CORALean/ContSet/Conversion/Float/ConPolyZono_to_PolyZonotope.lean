@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def ConPolyZono.polyZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := cPZ.p
   h := cPZ.h
-  q := cPZ.q
+  q := cPZ.qI
   c := cPZ.c
   G := cPZ.G
   E := cPZ.E

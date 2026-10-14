@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
 /-!
 # `Ellipsoid.representsa_point` is sound
 
-A `true` answer makes `G = 0`, so the nominal part is the single point `q`, and the error box is a
+A `true` answer makes `G = 0`, so the nominal part is the single point `c`, and the error box is a
 point: the ellipsoid is their sum, a point.
 -/
 
@@ -40,8 +40,8 @@ theorem Ellipsoid.representsa_point_sound {E : Ellipsoid 𝕋 n}
     (by simpa [toReal_zero] using toReal_le_of_le (hG j i).1)
     (by simpa [toReal_zero] using toReal_le_of_le (hG j i).2)
   obtain ⟨v, hv⟩ := Interval.representsa_point_sound hE
-  refine ⟨toRealVec E.q + v, ?_⟩
-  have hN : InflatedContSet.nominalSet E = {toRealVec E.q} :=
+  refine ⟨toRealVec E.c + v, ?_⟩
+  have hN : InflatedContSet.nominalSet E = {toRealVec E.c} :=
     (Real.Ellipsoid.representsa_point_iff (InflatedContSet.nominal E)).2
       (Matrix.ext fun i j => hG0 i j)
   show InflatedContSet.nominalSet E + E.I_error.construct = _

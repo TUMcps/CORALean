@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Read back, the stored matrix is the exact layer's. -/
-theorem ConPolyZono.aux_toRealMat_convHullA (a : ℕ) {m s : ℕ} (A : Mat 𝕋 m s) :
+theorem ConPolyZono.aux_toRealMat_convHullA (a : ℕ) {m q : ℕ} (A : Mat 𝕋 m q) :
     toRealMat (ConPolyZono.convHullA a A)
       = Real.ConPolyZono.convHullA a (toRealMat A) := by -- --- PROOF ---
   funext x y
@@ -57,10 +57,10 @@ theorem ConPolyZono.convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZon
     (cPZ.convHullSingle a).satisfies v := by -- --- PROOF ---
   unfold ConPolyZono.satisfies
   show Real.ConPolyZono.holds (toRealMat (ConPolyZono.convHullA a cPZ.A))
-    (ConPolyZono.convHullB a cPZ.b).nominal (Real.ConPolyZono.convHullEC a cPZ.EC) v
+    (ConPolyZono.convHullB a cPZ.b).nominal (Real.ConPolyZono.convHullR a cPZ.R) v
   rw [ConPolyZono.aux_toRealMat_convHullA]
   have h' : Real.ConPolyZono.holds (Real.ConPolyZono.convHullA a (toRealMat cPZ.A))
-      (Real.ConPolyZono.convHullB a cPZ.b.nominal) (Real.ConPolyZono.convHullEC a cPZ.EC) v := h
+      (Real.ConPolyZono.convHullB a cPZ.b.nominal) (Real.ConPolyZono.convHullR a cPZ.R) v := h
   refine Real.ConPolyZono.holds_mono (fun i => ?_) (fun i => ?_) h'
   -- the weight row's bound is an integer enclosure, the copies' are copied
   · refine Fin.addCases (fun r => ?_) (fun r => ?_) i

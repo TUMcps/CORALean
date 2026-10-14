@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `@ellipsoid/center` returns the field `q`: the stored centre, in `𝕋`. -/
-def Ellipsoid.centre (E : Ellipsoid 𝕋 n) : Vec 𝕋 n := E.q
+/-- CORA's `@ellipsoid/center` returns the field `q`, here `c`: the stored centre, in `𝕋`. -/
+def Ellipsoid.centre (E : Ellipsoid 𝕋 n) : Vec 𝕋 n := E.c
 
 
 -- ===================================  `Ellipsoid.enclose₂`  =================================== --

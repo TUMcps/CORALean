@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 noncomputable def Zonotope.ellipsoid (Z : Zonotope (Vec ℝ n)) : Ellipsoid n where
   k := Z.h
-  q := Z.c
+  c := Z.c
   G := Matrix.of fun i j => Real.sqrt Z.h * Z.G j i
 
 
@@ -111,7 +111,7 @@ theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec ℝ n)) :
 noncomputable def Zonotope.ellipsoidNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (r : ℝ) :
     Ellipsoid n where
   k := n
-  q := Z.c
+  c := Z.c
   G := √r • F
 
 /-- [1, Thm. 1]: `r` bounding `⌈F⁻¹ Z⌉²` makes `E(r F Fᵀ, z̄)` enclose `Z`. -/
@@ -152,7 +152,7 @@ theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ 
 noncomputable def Zonotope.ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (l : ℝ) :
     Ellipsoid n where
   k := n
-  q := Z.c
+  c := Z.c
   G := √l • F
 
 /-- [1, Thm. 3]: a ball of radius `√l` around the centre of `F⁻¹ Z` puts `E(l F Fᵀ, z̄)` in
@@ -179,7 +179,7 @@ theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat
 /-- [2, Sec. 4.1]: `E(n diag(β₁², …, β_n²), c)` with `βᵢ = ∑ⱼ |Gᵢⱼ|`, the box's ellipsoid. -/
 noncomputable def Zonotope.ellipsoidBox (Z : Zonotope (Vec ℝ n)) : Ellipsoid n where
   k := n
-  q := Z.c
+  c := Z.c
   G := Matrix.diagonal fun i => Real.sqrt n * ∑ j, |Z.G j i|
 
 /-- [2, Sec. 4.1]: the zonotope lies in the ellipsoid of its bounding box,

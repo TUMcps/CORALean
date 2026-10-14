@@ -38,17 +38,17 @@ variable {n m : ℕ}
 
 theorem Ellipsoid.affine_image_exact (A : Mat ℝ m n) (b : Vec ℝ m) (E : Ellipsoid n) :
     (fun x => A *ᵥ x + b) '' E.construct =
-      (⟨E.k, A *ᵥ E.q + b, A * E.G⟩ : Ellipsoid m).construct := by -- --- PROOF ---
+      (⟨E.k, A *ᵥ E.c + b, A * E.G⟩ : Ellipsoid m).construct := by -- --- PROOF ---
   ext y
   constructor
   · rintro ⟨_, ⟨u, hu, rfl⟩, rfl⟩
     refine ⟨u, hu, ?_⟩
-    show A *ᵥ (E.q + E.G *ᵥ u) + b = A *ᵥ E.q + b + (A * E.G) *ᵥ u
+    show A *ᵥ (E.c + E.G *ᵥ u) + b = A *ᵥ E.c + b + (A * E.G) *ᵥ u
     rw [Matrix.mulVec_add, ← Matrix.mulVec_mulVec]
     abel
   · rintro ⟨u, hu, rfl⟩
-    refine ⟨E.q + E.G *ᵥ u, ⟨u, hu, rfl⟩, ?_⟩
-    show A *ᵥ (E.q + E.G *ᵥ u) + b = A *ᵥ E.q + b + (A * E.G) *ᵥ u
+    refine ⟨E.c + E.G *ᵥ u, ⟨u, hu, rfl⟩, ?_⟩
+    show A *ᵥ (E.c + E.G *ᵥ u) + b = A *ᵥ E.c + b + (A * E.G) *ᵥ u
     rw [Matrix.mulVec_add, ← Matrix.mulVec_mulVec]
     abel
 

@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- `p` is the precision of the upward square roots, as in `normUb`. -/
 def Ellipsoid.radius (p : ℕ) (E : Ellipsoid 𝕋 n) : 𝕋 :=
-  let centred : Ellipsoid 𝕋 n := { E with q := fun _ => zero }
+  let centred : Ellipsoid 𝕋 n := { E with c := fun _ => zero }
   centred.normUb p
 
 end CORALean.Float

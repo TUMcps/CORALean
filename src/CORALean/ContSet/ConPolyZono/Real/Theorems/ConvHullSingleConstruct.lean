@@ -16,7 +16,7 @@ with non-negative weights summing to one.
 Both halves are the same two lemmas read in opposite directions —
 `holds_convHull_iff` splitting the constraints into the copies' own plus the
 weight row, and `sum_convHullE` reading the generator sum back as a weighted sum
-of points. `q = 0` is [1, Def. 5]'s representation, as for
+of points. `qI = 0` is [1, Def. 5]'s representation, as for
 `linComb_exact_of_dependent`: a point of the set has to be its copy's, and an
 independent generator would answer to no copy.
 
@@ -42,14 +42,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `convHullSingle a` denotes the weighted sums of `a` points of the set. -/
-theorem ConPolyZono.convHullSingle_construct (a : ℕ) (cPZ : ConPolyZono α) (hq : cPZ.q = 0) :
+theorem ConPolyZono.convHullSingle_construct (a : ℕ) (cPZ : ConPolyZono α) (hq : cPZ.qI = 0) :
     (cPZ.convHullSingle a).construct
       = {x | ∃ y : Fin a → α, ∃ lam : Fin a → ℝ, (∀ j, y j ∈ cPZ.construct)
         ∧ (∀ j, 0 ≤ lam j) ∧ ∑ j, lam j = 1 ∧ x = ∑ j, lam j • y j} := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨v, β, hv, hβ, hsat, rfl⟩
-    obtain ⟨hj, hl⟩ := (ConPolyZono.holds_convHull_iff cPZ.A cPZ.b cPZ.EC v).mp hsat
+    obtain ⟨hj, hl⟩ := (ConPolyZono.holds_convHull_iff cPZ.A cPZ.b cPZ.R v).mp hsat
     refine ⟨fun j => cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E
         (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) i • cPZ.G i,
       fun j => 1 + v (Fin.natAdd (a * cPZ.p) j), fun j => ?_, fun j => ?_, ?_, ?_⟩
@@ -85,7 +85,7 @@ theorem ConPolyZono.convHullSingle_construct (a : ℕ) (cPZ : ConPolyZono α) (h
       · rw [hvdef, Fin.append_left]; exact haj _ _
       · rw [hvlam j, abs_le]; constructor <;> linarith [hlam j, hlam1 j]
     · -- each copy carries its own point's factors, and the weights the last row
-      refine (ConPolyZono.holds_convHull_iff cPZ.A cPZ.b cPZ.EC v).mpr ⟨fun j => ?_, ?_⟩
+      refine (ConPolyZono.holds_convHull_iff cPZ.A cPZ.b cPZ.R v).mpr ⟨fun j => ?_, ?_⟩
       · rw [hvblk j]; exact hsatj j
       · rw [Finset.sum_congr rfl (fun j (_ : j ∈ Finset.univ) => hvlam j),
           Finset.sum_sub_distrib, hsum, Finset.sum_const, Finset.card_univ, Fintype.card_fin,

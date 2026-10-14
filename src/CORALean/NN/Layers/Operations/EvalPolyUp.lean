@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- And from above, the same terms rounded the other way. -/
 def evalPolyUp (c : Fin (n + 1) → 𝕋) (t : 𝕋) : 𝕋 :=
-  sumUp fun i => mulRangeUp (c i) (powRange t (i : ℕ)).1 (powRange t (i : ℕ)).2
+  sumUp fun i => mulRangeUp (c i) (powRange t (i : ℕ)).inf (powRange t (i : ℕ)).sup
 
 end CORALean
 

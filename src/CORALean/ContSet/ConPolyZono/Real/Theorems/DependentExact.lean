@@ -41,11 +41,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The dependent block and the freed one, split apart and each read back
 against its own factors. Both inclusions come down to this equation. -/
-theorem ConPolyZono.aux_sum_dependent (cPZ : ConPolyZono α) (a : Fin (cPZ.p + cPZ.q) → ℝ) :
-    (∑ i : Fin (cPZ.h + cPZ.q),
-        PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.q)) a i
+theorem ConPolyZono.aux_sum_dependent (cPZ : ConPolyZono α) (a : Fin (cPZ.p + cPZ.qI) → ℝ) :
+    (∑ i : Fin (cPZ.h + cPZ.qI),
+        PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.qI)) a i
           • Fin.append cPZ.G cPZ.GI i)
-      = (∑ i, PolyZonotope.monomial cPZ.E (fun k => a (Fin.castAdd cPZ.q k)) i • cPZ.G i)
+      = (∑ i, PolyZonotope.monomial cPZ.E (fun k => a (Fin.castAdd cPZ.qI k)) i • cPZ.G i)
         + ∑ j, a (Fin.natAdd cPZ.p j) • cPZ.GI j := by -- --- PROOF ---
   rw [Fin.sum_univ_add]
   congr 1
@@ -62,7 +62,7 @@ theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) :
     cPZ.construct = cPZ.dependent.construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, ha, hb, hsat, rfl⟩
-    have hA : (fun k => Fin.append a b (Fin.castAdd cPZ.q k)) = a :=
+    have hA : (fun k => Fin.append a b (Fin.castAdd cPZ.qI k)) = a :=
       funext fun k => Fin.append_left a b k
     -- forward: the freed coefficients become the right half of the factor vector
     refine ⟨Fin.append a b, fun _ => 0,
@@ -72,8 +72,8 @@ theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) :
       rw [hA]
       exact hsat
     · show cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i) + ∑ j, b j • cPZ.GI j
-          = cPZ.c + (∑ i : Fin (cPZ.h + cPZ.q),
-              PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.q))
+          = cPZ.c + (∑ i : Fin (cPZ.h + cPZ.qI),
+              PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.qI))
                 (Fin.append a b) i • Fin.append cPZ.G cPZ.GI i)
             + ∑ j : Fin 0, (0:ℝ) • (Fin.elim0 j : α)
       rw [ConPolyZono.aux_sum_dependent]
@@ -82,14 +82,14 @@ theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) :
       abel
   -- back: the same split read the other way, the independent block now empty
   · rintro _ ⟨a, b, ha, _, hsat, rfl⟩
-    refine ⟨fun k => a (Fin.castAdd cPZ.q k), fun j => a (Fin.natAdd cPZ.p j),
+    refine ⟨fun k => a (Fin.castAdd cPZ.qI k), fun j => a (Fin.natAdd cPZ.p j),
       fun k => ha _, fun j => ha _,
       (ConPolyZono.satisfies_dependent_iff cPZ a).mp hsat, ?_⟩
-    show cPZ.c + (∑ i : Fin (cPZ.h + cPZ.q),
-            PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.q)) a i
+    show cPZ.c + (∑ i : Fin (cPZ.h + cPZ.qI),
+            PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.qI)) a i
               • Fin.append cPZ.G cPZ.GI i)
           + ∑ j : Fin 0, b j • (Fin.elim0 j : α)
-        = cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E (fun k => a (Fin.castAdd cPZ.q k)) i • cPZ.G i)
+        = cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E (fun k => a (Fin.castAdd cPZ.qI k)) i • cPZ.G i)
           + ∑ j, a (Fin.natAdd cPZ.p j) • cPZ.GI j
     rw [ConPolyZono.aux_sum_dependent]
     simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero]

@@ -47,16 +47,16 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
     ConPolyZono α where
   p := cPZ.p
   h := (cPZ.toPolyZonotope.getSubset r cen rad).h
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := (cPZ.consPolyZonotope.getSubset r cen rad).h
+  q := (cPZ.consPolyZonotope.getSubset r cen rad).h
   c := cPZ.c
   G := (cPZ.toPolyZonotope.getSubset r cen rad).G
   E := (cPZ.toPolyZonotope.getSubset r cen rad).E
   GI := cPZ.GI
   A := fun i j => (cPZ.consPolyZonotope.getSubset r cen rad).G j i
   b := cPZ.b
-  EC := (cPZ.consPolyZonotope.getSubset r cen rad).E
+  R := (cPZ.consPolyZonotope.getSubset r cen rad).E
 
 end CORALean.Real
 

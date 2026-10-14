@@ -38,7 +38,7 @@ def ConPolyZono.nominalSupportBound (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {c : V
     (u : FloatBound 𝕋 ((InflatedContSet.nominal cPZ).polyZonotope.point ''
       {α | (∀ k, |α k| ≤ 1) ∧ (InflatedContSet.nominal cPZ).satisfies α}) c) :
     FloatBound 𝕋 (nominalSet cPZ) c :=
-  let extent : Fin cPZ.q → 𝕋 := fun j =>
+  let extent : Fin cPZ.qI → 𝕋 := fun j =>
     maximum (dotUp a (cPZ.GI j)) (neg (dotDown a (cPZ.GI j)))
   { val := addUp u.val (sumUp extent)
     le := fun x hx => le_trans

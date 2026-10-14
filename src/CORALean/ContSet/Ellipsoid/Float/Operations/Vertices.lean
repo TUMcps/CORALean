@@ -35,8 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 def Ellipsoid.vertices (k : ℕ) (E : Ellipsoid 𝕋 1) : List (Vec 𝕋 1) :=
   let ρ := normUp k fun j => E.G 0 j
-  [fun _ => addDown (subDown (E.q 0) ρ) (E.I_error.inf 0),
-   fun _ => addUp (addUp (E.q 0) ρ) (E.I_error.sup 0)]
+  [fun _ => addDown (subDown (E.c 0) ρ) (E.I_error.inf 0),
+   fun _ => addUp (addUp (E.c 0) ρ) (E.I_error.sup 0)]
 
 end CORALean.Float
 

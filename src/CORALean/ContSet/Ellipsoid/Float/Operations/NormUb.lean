@@ -8,7 +8,7 @@ public import CORALean.Global.Float.Sqrt
 /-!
 # `Ellipsoid.normUb`, over a floating-point scalar
 
-CORA's `@ellipsoid/norm_.m` (type `2`), as an upper bound: `‖q‖₂`, plus the Frobenius norm of `G`,
+CORA's `@ellipsoid/norm_.m` (type `2`), as an upper bound: `‖c‖₂`, plus the Frobenius norm of `G`,
 plus the length of the error box's largest magnitudes, every sum rounded up and the roots by `k`
 Newton steps (`Global/Float/Sqrt`). Outer, as over ℝ: not CORA's `sqrt(max(eig(Q)))`.
 -/
@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Ellipsoid.normUb (k : ℕ) (E : Ellipsoid 𝕋 n) : 𝕋 :=
   let err := fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))
   let frobenius := sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j))
-  addUp (addUp (normUp k E.q) frobenius) (normUp k err)
+  addUp (addUp (normUp k E.c) frobenius) (normUp k err)
 
 end CORALean.Float
 

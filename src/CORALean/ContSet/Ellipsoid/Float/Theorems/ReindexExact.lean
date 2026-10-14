@@ -39,8 +39,8 @@ theorem aux_reindex_nominal (e : Fin m ≃ Fin n) (E : Ellipsoid 𝕋 n) :
     InflatedContSet.nominal (E.reindex e)
       = Real.Ellipsoid.map (reindexLin e) (InflatedContSet.nominal E) := by -- --- PROOF ---
   unfold Real.Ellipsoid.map
-  show (⟨E.k, toRealVec fun i => E.q (e i), toRealMat fun i j => E.G (e i) j⟩ : Real.Ellipsoid m)
-    = ⟨E.k, LinearMap.toMatrix' (reindexLin e) *ᵥ toRealVec E.q,
+  show (⟨E.k, toRealVec fun i => E.c (e i), toRealMat fun i j => E.G (e i) j⟩ : Real.Ellipsoid m)
+    = ⟨E.k, LinearMap.toMatrix' (reindexLin e) *ᵥ toRealVec E.c,
         LinearMap.toMatrix' (reindexLin e) * toRealMat E.G⟩
   congr 1
   · rw [← Matrix.toLin'_apply, Matrix.toLin'_toMatrix']

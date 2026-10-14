@@ -34,16 +34,16 @@ def ConPolyZono.intersectionDep (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) (D : I
     ConPolyZono (Vec ℝ n) where
   p := cPZ₁.p + cPZ₂.p
   h := cPZ₁.h + cPZ₂.h
-  q := 0
+  qI := 0
   m := cPZ₁.m + cPZ₂.m + n
-  s := cPZ₁.s + cPZ₂.s + (cPZ₁.h + cPZ₂.h)
+  q := cPZ₁.q + cPZ₂.q + (cPZ₁.h + cPZ₂.h)
   c := cPZ₁.c
   G := Fin.append cPZ₁.G 0
   E := PolyZonotope.plusE cPZ₁.E cPZ₂.E
   GI := Fin.elim0
   A := ConPolyZono.intersectionA cPZ₁ cPZ₂
   b := ConPolyZono.intersectionB cPZ₁ cPZ₂ D
-  EC := ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)
+  R := ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.R cPZ₂.R)
           (PolyZonotope.plusE cPZ₁.E cPZ₂.E)
 
 end CORALean.Real

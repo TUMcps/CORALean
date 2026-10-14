@@ -55,19 +55,19 @@ theorem ConPolyZono.aux_realG_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
 -- the same for the independent generators
 theorem ConPolyZono.aux_realGI_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
-    (l : Fin cPZ₁.q) :
+    (l : Fin cPZ₁.qI) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).GI
-      (Fin.castAdd cPZ₂.q l) = ((InflatedContSet.nominal cPZ₁).GI l, 0) := by
+      (Fin.castAdd cPZ₂.qI l) = ((InflatedContSet.nominal cPZ₁).GI l, 0) := by
   dsimp only [Real.ConPolyZono.cartProd]
-  exact Fin.append_left (m := cPZ₁.q) (n := cPZ₂.q) _ _ l
+  exact Fin.append_left (m := cPZ₁.qI) (n := cPZ₂.qI) _ _ l
 
 theorem ConPolyZono.aux_realGI_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
-    (l : Fin cPZ₂.q) :
+    (l : Fin cPZ₂.qI) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).GI
-      (Fin.natAdd cPZ₁.q l) = (0, (InflatedContSet.nominal cPZ₂).GI l) := by
+      (Fin.natAdd cPZ₁.qI l) = (0, (InflatedContSet.nominal cPZ₂).GI l) := by
   dsimp only [Real.ConPolyZono.cartProd]
-  exact Fin.append_right (m := cPZ₁.q) (n := cPZ₂.q) _ _ l
+  exact Fin.append_right (m := cPZ₁.qI) (n := cPZ₂.qI) _ _ l
 
 /-- The nominal constrained polynomial zonotope of the product is the exact product, mapped
 through the append. -/
@@ -98,11 +98,11 @@ theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n�
     funext l
     refine Fin.addCases (fun l => ?_) (fun l => ?_) l
     · show (fun i => toReal (genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i
-        (Fin.castAdd cPZ₂.q l))) = _
+        (Fin.castAdd cPZ₂.qI l))) = _
       rw [toReal_genBlockDiag_left, ConPolyZono.aux_realGI_left, appendLinear_apply]
       rfl
     · show (fun i => toReal (genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i
-        (Fin.natAdd cPZ₁.q l))) = _
+        (Fin.natAdd cPZ₁.qI l))) = _
       rw [toReal_genBlockDiag_right, ConPolyZono.aux_realGI_right, appendLinear_apply]
       rfl
   · -- the constraint matrix

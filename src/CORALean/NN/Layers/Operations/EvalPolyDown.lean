@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The polynomial the stored coefficients denote, from below. -/
 def evalPolyDown (c : Fin (n + 1) → 𝕋) (t : 𝕋) : 𝕋 :=
-  sumDown fun i => mulRangeDown (c i) (powRange t (i : ℕ)).1 (powRange t (i : ℕ)).2
+  sumDown fun i => mulRangeDown (c i) (powRange t (i : ℕ)).inf (powRange t (i : ℕ)).sup
 
 end CORALean
 

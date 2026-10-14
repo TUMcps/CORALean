@@ -60,12 +60,12 @@ theorem ConPolyZono.aux_value_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono (Vec 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (D : Interval (Vec ℝ n)) (hq₁ : cPZ₁.q = 0) (hq₂ : cPZ₂.q = 0) :
+    (D : Interval (Vec ℝ n)) (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0) :
     cPZ₁.construct ∩ (cPZ₂.construct + D.construct)
       = (cPZ₁.intersectionDep cPZ₂ D).construct := by -- --- PROOF ---
-  have hz₁ : ∀ b : Fin cPZ₁.q → ℝ, ∑ j, b j • cPZ₁.GI j = 0 :=
+  have hz₁ : ∀ b : Fin cPZ₁.qI → ℝ, ∑ j, b j • cPZ₁.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
-  have hz₂ : ∀ b : Fin cPZ₂.q → ℝ, ∑ j, b j • cPZ₂.GI j = 0 :=
+  have hz₂ : ∀ b : Fin cPZ₂.qI → ℝ, ∑ j, b j • cPZ₂.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨⟨a₁, β₁, ha₁, -, hs₁, hx₁⟩, y, ⟨a₂, β₂, ha₂, -, hs₂, hy⟩, d, hd, hyd⟩

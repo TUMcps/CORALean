@@ -31,9 +31,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.padE {p s : ℕ} (EC : Fin p → Fin s → ℕ) (r : ℕ) :
-    Fin (p + r) → Fin s → ℕ :=
-  PolyZonotope.padE EC r
+def ConPolyZono.padE {p q : ℕ} (R : Fin p → Fin q → ℕ) (r : ℕ) :
+    Fin (p + r) → Fin q → ℕ :=
+  PolyZonotope.padE R r
 
 end CORALean.Real
 

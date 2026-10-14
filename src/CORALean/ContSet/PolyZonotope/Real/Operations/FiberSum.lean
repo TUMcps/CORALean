@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 Split out of `Compact.lean` (issue #62): shared with `compactKeep` and
 `compactGens` in this directory, and read again by `ConPolyZono`'s own
-compaction over `EC`, all outside this file.
+compaction over `R`, all outside this file.
 -/
 
 -- Authors:       Claude Opus 5

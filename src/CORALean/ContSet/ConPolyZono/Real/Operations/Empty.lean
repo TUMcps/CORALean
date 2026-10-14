@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 # `ConPolyZono.empty`
 
 CORA's `conPolyZono.empty(n)`: no generators and a single constraint row that cannot hold. The
-row has the empty constraint matrix (`s = 0`, so `A μ = 0`) and the crossed bound `[1, 0]`,
+row has the empty constraint matrix (`q = 0`, so `A μ = 0`) and the crossed bound `[1, 0]`,
 so `1 ≤ 0` is required of the zero vector and no factor vector is admitted.
 -/
 

@@ -47,7 +47,7 @@ def Interval.ellipsoidG (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Mat 𝕋 n n :
 
 def Interval.ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n where
   k := n
-  q := I.center
+  c := I.center
   G := I.ellipsoidG σ
   I_error := ⟨fun _ => zero, fun _ => zero⟩
 
