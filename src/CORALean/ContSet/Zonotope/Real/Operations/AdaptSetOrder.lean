@@ -41,10 +41,14 @@ variable {n : ℕ}
 reduction accumulates. -/
 noncomputable def Zonotope.adaptSetOrder (le : ℝ → ℝ → Bool) (Z : Zonotope (Vec ℝ n))
     (εSmax εSacc tf ti Δt : ℝ) : ℕ × ℝ :=
-  let εSi := (εSmax - εSacc) / (tf - ti) * Δt              -- 1. the admissible share, eq. (13)
-  let Φset := Z.h                                          -- 2. param(PR), reducing nothing
-  let Φset' := Zonotope.adaptSetOrderLoop le Z εSi Φset Φset  -- 3.-7. decrement while admissible
-  (Φset', εSacc + Z.reduceBoxError Φset')                  -- 8. accumulate, eq. (12)
+  -- 1. the admissible share of the remaining budget, `ε_{S,i}`, eq. (13)
+  let εSi := (εSmax - εSacc) / (tf - ti) * Δt
+  -- 2. `Φ_set ← param(PR)`, reducing nothing
+  let Φset := Z.h
+  -- 3. lines 3-7: `decr` and `red` while the reduction is admissible
+  let Φset' := Zonotope.adaptSetOrderLoop le Z εSi Φset Φset
+  -- 8. accumulate the reduction's error, eq. (12)
+  (Φset', εSacc + Z.reduceBoxError Φset')
 
 end CORALean.Real
 

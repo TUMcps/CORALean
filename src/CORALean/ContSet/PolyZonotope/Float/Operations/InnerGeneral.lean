@@ -43,19 +43,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- [1, Alg. 3] as `aux_InnerGeneral` runs it. -/
 def PolyZonotope.innerGeneral (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (Vec 𝕋 pZ.p))
     (Y : Interval (Vec 𝕋 n)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ) : Bool :=
-  -- ind = aux_getSuitableSubmatrix(df(X_), n)
+  -- 7. split `u` into `(u₁, u₂)` at the columns `ind` of `f'(x̃)` (lines 7-10)
   match PolyZonotope.innerColumns (PolyZonotope.jacobianBox pZ X₀) with
   | none => false
   | some ind =>
-    -- x_ = center(X_), and df(x_) at the columns `ind`
+    -- 3. `x̃ ← mid(x̃)`, and 5. `f'(x̃)` at the columns `ind` (the first `r` lines of the Jacobian)
     let xc : Vec 𝕋 pZ.p := Interval.center X₀
     let Jc := PolyZonotope.jacobianBox pZ (Interval.point xc)
     let M : Mat 𝕋 n n := fun i j => half (addUp (Jc.inf i (ind j)) (Jc.sup i (ind j)))
-    -- C = aux_preconditionMatrix(df, X_, ind, n)
+    -- 6. `C ← precondition(J_{f1:r})`
     let C : Mat 𝕋 n n := inv M
-    -- eye(n)
+    -- 6. the identity, `C = eye(n)`: the preconditioner of the retry without preconditioning
     let I : Mat 𝕋 n n := fun i j => if i = j then one else zero
-    -- the test, and aux_InnerGeneral(f,df,X,X_,Y_,'none') if it fails
+    -- 11. lines 11-20: `b` and the loop (`innerTest`); retried with `C = eye(n)` on failure
     PolyZonotope.innerTest pZ X X₀ Y ind M C iter || PolyZonotope.innerTest pZ X X₀ Y ind I I iter
 
 end CORALean.Float

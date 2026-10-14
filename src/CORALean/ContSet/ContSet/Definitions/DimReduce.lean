@@ -36,12 +36,17 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 2]: the polyhedron of the bounds `bound` returns on each `Π_{n,ℓ}(Z)`. -/
+/-- [1, Alg. 2]: the polyhedron of the bounds `bound` returns on each `Π_{n,ℓ}(Z)`. Line 5 is the
+step numbered 3 here, since lines 1-4 are one loop. -/
 def ContSet.dimReduce (bound : Set (ℝ × ℝ) → ℝ → Real.Interval ℝ) (Z : Set (Vec ℝ n)) (nv : Vec ℝ n)
     (γ : ℝ) (D : Finset (Vec ℝ n)) : Set (Vec ℝ n) :=
-  ContSet.hyperplanePolyhedron D
-    (fun ℓ => (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).inf)
-    (fun ℓ => (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).sup)
+  -- 1. for every `ℓ ∈ D` (lines 1-4), the plane image of `Z` under `Π_{n,ℓ}(x) = (x·n, x·ℓ)`
+  let Sπ := fun ℓ : Vec ℝ n => (fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z
+  -- 2. its cut with the line `L_γ`, `[m_ℓ; M_ℓ] ← BOUND_INTERSECT_2D(Sπ_{n,ℓ}, L_γ)`
+  let m := fun ℓ => (bound (Sπ ℓ) γ).inf
+  let M := fun ℓ => (bound (Sπ ℓ) γ).sup
+  -- 3. return `{x | ∀ ℓ ∈ D, m_ℓ ≤ x·ℓ ≤ M_ℓ}`
+  ContSet.hyperplanePolyhedron D m M
 
 end CORALean
 

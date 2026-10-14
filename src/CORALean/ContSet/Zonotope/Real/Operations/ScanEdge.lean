@@ -39,10 +39,13 @@ open scoped Classical in
 /-- [1, Alg. 3] lines 11-15: update `(m, M)` with the intersection of `[P; Q]` and `L_γ`. -/
 noncomputable def Zonotope.scanEdge (γ : ℝ) (P Q : Vec ℝ 2) (mM : EReal × EReal) :
     EReal × EReal :=
-  if (segment ℝ P Q ∩ {z | z 0 = γ}).Nonempty then              -- line 11
-    let ym := sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q}  -- line 12: `(x, y) ← …`
+  -- 11. if `[P; Q]` intersects `L_γ`
+  if (segment ℝ P Q ∩ {z | z 0 = γ}).Nonempty then
+    -- 12. `(x, y) ← [P; Q] ∩ L_γ`, read at every point of it: the least `y` and the greatest
+    let ym := sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q}
     let yM := sSup {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ P Q}
-    (min mM.1 ym, max mM.2 yM)                                    -- lines 13-14
+    -- 13. `m ← min(m, y)`, and line 14, `M ← max(M, y)`
+    (min mM.1 ym, max mM.2 yM)
   else mM
 
 end CORALean.Real

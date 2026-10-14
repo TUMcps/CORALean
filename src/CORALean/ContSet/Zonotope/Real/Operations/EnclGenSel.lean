@@ -46,12 +46,18 @@ variable {n : ℕ}
 noncomputable def Zonotope.enclGenSel (le lt : ℝ → ℝ → Bool)
     (encloses : Zonotope (Vec ℝ n) → Bool) (Zm Zs : Zonotope (Vec ℝ n)) (μbar : ℝ) :
     Zonotope (Vec ℝ n) :=
-  let Gsort := sortPerm fun i j => le (∑ k, Zm.G j k ^ 2) (∑ k, Zm.G i k ^ 2)  -- 1. sort(Gm)
-  let rsel : Vec ℝ n := 0                                       -- 2. r_sel ← 0
-  let rs := Zs.recentre.absBound                                -- 3. r_s ← rad(box(Zs))
-  let ξratio := Zm.enclRatioLoop lt Gsort rs μbar Zm.h 0 rsel   -- 4.-10. grow by the ratio
-  let ξ := Zm.enclCoverLoop encloses Gsort Zs.c Zm.h ξratio     -- 11.-13. grow until Zs fits
-  Zm.genSelection Gsort Zm.c ξ                                  -- 14. Z_{m,encl}
+  -- 1. `G_sort ← sort(G_m)`, longest first
+  let Gsort := sortPerm fun i j => le (∑ k, Zm.G j k ^ 2) (∑ k, Zm.G i k ^ 2)
+  -- 2. `r_sel ← 0`
+  let rsel : Vec ℝ n := 0
+  -- 3. `r_s ← rad(box(Z_s))`
+  let rs := Zs.recentre.absBound
+  -- 4. lines 4-10: `µ ← inf`, `ξ ← 0`; while `µ > µ̄` and `ξ < n_m`, grow `ξ` by the ratio
+  let ξratio := Zm.enclRatioLoop lt Gsort rs μbar Zm.h 0 rsel
+  -- 11. lines 11-13: while `Z_s ⊄ (c_s, g_sort^(1), …, g_sort^(ξ))`, `ξ ← ξ + 1`
+  let ξ := Zm.enclCoverLoop encloses Gsort Zs.c Zm.h ξratio
+  -- 14. `Z_{m,encl} ← (c_m, g_sort^(1), …, g_sort^(ξ))`
+  Zm.genSelection Gsort Zm.c ξ
 
 end CORALean.Real
 

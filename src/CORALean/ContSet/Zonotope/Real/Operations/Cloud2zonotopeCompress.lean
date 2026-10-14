@@ -42,10 +42,15 @@ variable {n : ℕ} {κ : Type}
 /-- `X = compress(X, g)`, [1, Alg. 4]. -/
 noncomputable def Zonotope.cloud2zonotopeCompress (X : κ → Vec ℝ n) (g : Vec ℝ n) :
     κ → Vec ℝ n :=
+  -- 2. compute the compression direction, `u = g / ‖g‖`
   let u := (‖g‖₂)⁻¹ • g
+  -- 3. for each point-vector `xᵢ` in `X`
   fun j =>
+    -- 4. compute its coordinate along `u`, `d := xᵢ · u`
     let d := X j ⬝ᵥ u
+    -- 5. compress along `u`, `d := min(‖g‖, max(-‖g‖, d))`
     let d := min ‖g‖₂ (max (-‖g‖₂) d)
+    -- 6. update the coordinates, `xᵢ = xᵢ - d u`
     X j - d • u
 
 end CORALean.Real

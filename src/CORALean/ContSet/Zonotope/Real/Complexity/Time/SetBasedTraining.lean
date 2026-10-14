@@ -96,14 +96,24 @@ theorem SetBasedNet.aux_output_le (cGrad : Cost) {n h N Q : ℕ} (hN : 1 ≤ N) 
 /-- What one iteration of [1, Alg. 2] costs from an input set with `h` generators. -/
 def SetBasedNet.trainingCost (cNeuron cGrad cBack : Cost) :
     {n k : ℕ} → SetBasedNet n k → ℕ → Cost
+  -- 8. the output set `Y`: the loss gradient `G_κ ← ∇_Y L(t, Y)`
   | n, _, .output, h => (n * (h + 1)) • cGrad
   | n, _, @SetBasedNet.linear _ m _ _ _ tail, h =>
-      Zonotope.mtimesCost m n h + Zonotope.plusCost m + Zonotope.mtimesCost n m h +
+      -- 4. the forward step `H_k ← W_k H_{k-1} + b_k`
+      Zonotope.mtimesCost m n h + Zonotope.plusCost m +
+        -- 11. the backward map `G_{k-1} ← W_kᵀ G_k`
+        Zonotope.mtimesCost n m h +
+        -- 12. the weight update `W_k ← W_k - η (G_k ⊙ H_{k-1}ᵀ)`, and 13. the bias update
         ⟨2 * (m * n * (h + 1)) + 2 * (m * n)⟩ + ⟨2 * m⟩ +
+        -- 2. the layers after this one, forward (lines 2-6) and back (lines 9-15)
         tail.trainingCost cNeuron cGrad cBack h
   | n, _, .nonlinear _ _ _ tail, h =>
+      -- 6. the forward step `H_k ← enclose(ϕ_k, H_{k-1})`
       Zonotope.imageEnclosureCost n h cNeuron + ⟨n * (2 * h + 2) + 10 * (n * (h + 1))⟩ +
-        (n * (h + 1)) • cBack + tail.trainingCost cNeuron cGrad cBack (h + n)
+        -- 15. the backward step `G_{k-1} ← backpropEnclose(ϕ_k, G_k)`
+        (n * (h + 1)) • cBack +
+        -- 2. the layers after this one, forward (lines 2-6) and back (lines 9-15)
+        tail.trainingCost cNeuron cGrad cBack (h + n)
 
 /-- Every iteration, `κ + 1` terms each at most `C N² Q`. -/
 theorem SetBasedNet.trainingCost_le_succ (cNeuron cGrad cBack : Cost) {N Q : ℕ} (hN : 1 ≤ N)

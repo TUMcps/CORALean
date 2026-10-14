@@ -41,12 +41,18 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 noncomputable def PolyZonotope.innerScaling (pZ : PolyZonotope α) (B : List (PolyZonotope α))
     (contract : ∀ m : ℕ, ((Fin m → ℝ) → α) → (Fin m → ℝ) × (Fin m → ℝ) →
       (Fin m → ℝ) × (Fin m → ℝ)) : (Fin pZ.p → ℝ) × (Fin pZ.p → ℝ) :=
+  -- 1. `[α̲, ᾱ] = [-1, 1]`
   let init : (Fin pZ.p → ℝ) × (Fin pZ.p → ℝ) := (-1, 1)
+  -- 2. for each `PZₖ` of `B`:
   let step := fun (bounds : (Fin pZ.p → ℝ) × (Fin pZ.p → ℝ)) (PZk : PolyZonotope α) =>
+    -- 3. the constraint `c(α) = 0` of `C(α̲, ᾱ) ∩ PZₖ`, [1, Prop. 2]
     let c := fun x : Fin (pZ.p + PZk.p) → ℝ =>
       pZ.point (fun i => x (Fin.castAdd PZk.p i)) - PZk.point (fun j => x (Fin.natAdd pZ.p j))
+    -- 4. `I = contract(c, [α̲, ᾱ] × [-1, 1])`
     let I := contract (pZ.p + PZk.p) c (Fin.append bounds.1 (-1), Fin.append bounds.2 1)
+    -- 5. `I = project(I, [1 … p])`
     let Iproj := (fun i => I.1 (Fin.castAdd PZk.p i), fun i => I.2 (Fin.castAdd PZk.p i))
+    -- 6. `[α̲, ᾱ] = [α̲, ᾱ] \ I`, [1, Prop. 3]
     boxDiffBounds bounds.1 bounds.2 Iproj.1 Iproj.2
   B.foldl step init
 

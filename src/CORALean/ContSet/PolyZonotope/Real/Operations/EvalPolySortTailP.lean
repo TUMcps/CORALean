@@ -43,10 +43,14 @@ variable {n : ℕ}
 /-- The tail of [1, Alg. 2]'s sum, from degree `k + 1` upward. -/
 noncomputable def PolyZonotope.evalPolySortTailP (pZ : PolyZonotope (Vec ℝ n)) :
     List (Vec ℝ n) → ℕ → {R : PolyZonotope (Vec ℝ n) // R.p = pZ.p}
+  -- 15. no terms left: `0`
   | [], _ => ⟨⟨pZ.p, 0, 0, 0, Fin.elim0, fun _ => Fin.elim0, Fin.elim0⟩, rfl⟩
   | a :: rest, k =>
+      -- 13. `PZⁱ ← aᵢ · PZⁱ`, the sorted power (lines 1-10, `powSort`) scaled by its coefficient
       let T := (pZ.powSort k).1.map (Entrywise.hadamardLin a)
+      -- 15. the terms of higher degree, summed
       let S := PolyZonotope.evalPolySortTailP pZ rest (k + 1)
+      -- 15. `sortPlus(…)`: add the term to the rest
       ⟨T.sortPlus S.1 ((pZ.powSort k).2.trans S.2.symm), (pZ.powSort k).2⟩
 
 end CORALean.Real

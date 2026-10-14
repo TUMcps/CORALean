@@ -37,9 +37,12 @@ namespace CORALean.Real
 /-- [1, Alg. 1 (R)], [1, Alg. 1 (iteration)] with `E` and `R`, applied `k + 1` times. -/
 noncomputable def ConZonotope.tightenER {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc) (k : ℕ) :
     Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal)) :=
-  let E₀ : Interval (Vec ℝ ng) := ⟨fun _ => -1, fun _ => 1⟩                  -- 1. Ej ← [-1,1]
-  let R₀ : (Fin ng → EReal) × (Fin ng → EReal) := (fun _ => ⊥, fun _ => ⊤)  -- 1. Rj ← [-∞,∞]
-  (ConZonotope.tightenPassER A b)^[k + 1] (E₀, R₀)                           -- 2-10, k + 1 times
+  -- 1. start from the unit box, `E_j ← [-1, 1]`
+  let E₀ : Interval (Vec ℝ ng) := ⟨fun _ => -1, fun _ => 1⟩
+  -- 1. and from the whole line, `R_j ← [-∞, ∞]`
+  let R₀ : (Fin ng → EReal) × (Fin ng → EReal) := (fun _ => ⊥, fun _ => ⊤)
+  -- 2. lines 2-10, the pass over every row, run `k + 1` times on its own output
+  (ConZonotope.tightenPassER A b)^[k + 1] (E₀, R₀)
 
 end CORALean.Real
 

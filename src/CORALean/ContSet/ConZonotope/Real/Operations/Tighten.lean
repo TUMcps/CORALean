@@ -43,8 +43,10 @@ namespace CORALean.Real
 coordinate tightened at a time by every row of `Aξ = b` in turn. -/
 noncomputable def ConZonotope.tighten {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc) :
     Interval (Vec ℝ ng) :=
-  let E₀ : Interval (Vec ℝ ng) := ⟨fun _ => -1, fun _ => 1⟩                  -- 1. Ej ← [-1,1]
-  Fin.foldl nc (fun E i => ConZonotope.tightenRow A b i E) E₀                -- 1, 9-10: i ← 1..nc
+  -- 1. start from the unit box, `E_j ← [-1, 1]`
+  let E₀ : Interval (Vec ℝ ng) := ⟨fun _ => -1, fun _ => 1⟩
+  -- 2. lines 2-10: tighten every coordinate by row `i` of `Aξ = b`, for `i ← 1, …, nc` in turn
+  Fin.foldl nc (fun E i => ConZonotope.tightenRow A b i E) E₀
 
 end CORALean.Real
 

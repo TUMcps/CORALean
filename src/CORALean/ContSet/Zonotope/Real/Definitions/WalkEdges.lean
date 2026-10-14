@@ -36,7 +36,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 3]: the segments joining consecutive corners of the walk, in both blocks. -/
+/-- The segments joining consecutive corners of the walk, in both blocks: the edges the scan of
+[1] visits. -/
 def Zonotope.walkEdges (Z : Zonotope α) : Set α :=
   ⋃ k : Fin Z.h,
     segment ℝ (Z.walk (Fin.castAdd _ k.castSucc)) (Z.walk (Fin.castAdd _ k.succ)) ∪

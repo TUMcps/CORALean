@@ -38,9 +38,12 @@ variable {n : ℕ}
 
 /-- [1, Alg. 1, line 6]: the bounds of `[l₁, u₁] \ [l₂, u₂]` by [1, Prop. 3], closed. -/
 noncomputable def boxDiffBounds (l₁ u₁ l₂ u₂ : Fin n → ℝ) : (Fin n → ℝ) × (Fin n → ℝ) :=
+  -- 6. the gaps `l₂ - l₁` and `u₁ - u₂` between `I` and `[α̲, ᾱ]` ([1, Prop. 3]'s difference)
   let dl := l₂ - l₁
   let du := u₁ - u₂
+  -- 6. the axis `i*` where `I` leaves the largest part of the box
   let iStar := (List.finRange n).argmax fun i => max (dl i) (du i)
+  -- 6. the bound on that side moved onto `I`'s; with no axis the box is kept
   match iStar with
   | none => (l₁, u₁)
   | some i => if du i ≤ dl i then (l₁, Function.update u₁ i (l₂ i))

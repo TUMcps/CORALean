@@ -37,7 +37,8 @@ namespace CORALean
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 3]: `bound S γ = (m, M)` has `{γ} × [m; M] = S ∩ L_γ`, for every `S` and `γ`. -/
+/-- The output of [1]'s `BOUND_INTERSECT_2D` (Algorithms 3 and 4): `bound S γ = (m, M)` has
+`{γ} × [m; M] = S ∩ L_γ`, for every `S` and `γ`. A specification, not an algorithm. -/
 def ContSet.IsBoundIntersect2D (bound : Set (ℝ × ℝ) → ℝ → Real.Interval ℝ) : Prop :=
   ∀ (S : Set (ℝ × ℝ)) (γ : ℝ),
     {y : ℝ | (γ, y) ∈ S} = Set.Icc (bound S γ).inf (bound S γ).sup

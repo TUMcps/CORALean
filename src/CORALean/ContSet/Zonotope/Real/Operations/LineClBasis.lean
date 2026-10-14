@@ -103,10 +103,12 @@ noncomputable def Zonotope.aux_lineClRun (Z : Zonotope (Vec ℝ n))
 if no run gave an invertible matrix. -/
 noncomputable def Zonotope.lineClBasis (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (ξ : ℝ) (fuel runs : ℕ) : Mat ℝ n n :=
-  let Lmin := (List.range runs).foldl                               -- lines 1, 14-18
+  -- 1. for `t = 1 : r`, lines 2-13 (`aux_lineClRun`), keeping the `L` of least `V(Z_cand)` (14-17)
+  let Lmin := (List.range runs).foldl
     (fun best t => Zonotope.lineClKeep (Z.lineClVolume part) best (Z.aux_lineClRun part ξ fuel t))
     none
-  Lmin.getD 1                                                       -- line 19
+  -- 19. `Z_red = L_min · IH(L_min⁻¹ Z)`: the transformation matrix is `L_min`
+  Lmin.getD 1
 
 
 end CORALean.Real
