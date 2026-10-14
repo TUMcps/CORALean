@@ -10,6 +10,11 @@ relaxedAutoImplicit = false
 # so far, so a search tactic still fails loudly rather than quietly costing
 # seconds. Override per declaration when justified.
 maxHeartbeats = 40000
+# Dead tactics cost compile time and hide proof drift; the CI warning gate keeps
+# them out.
+weak.linter.unusedTactic = true
+weak.linter.unreachableTactic = true
+weak.linter.unusedSimpArgs = true
 
 [[require]]
 name = "mathlib"
