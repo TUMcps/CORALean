@@ -16,15 +16,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainder
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinInput
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinPoint
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPoly
-public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachCora1D
-public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachTensor3Cora2D
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinearEmbedding
-public import CORALean.ContDynamics.NonlinearSys.Operations.OutputSetCora
-public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveCora1D
-public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveTensor3Cora2D
-public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptErrLoopCora1D
-public import CORALean.ContDynamics.NonlinearSys.Operations.OptimalDeltatCora
-public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveCora1D
 public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Operations.LocalAbstrErr
 public import CORALean.ContDynamics.NonlinearSys.Operations.PrecompStatError
@@ -107,7 +99,6 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInnerErr
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiffLoop
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerMinkdiff
-public import CORALean.ContDynamics.NonlinearSys.Operations.ReachInnerScalingCora1D
 
 /-!
 # What a linearization computes

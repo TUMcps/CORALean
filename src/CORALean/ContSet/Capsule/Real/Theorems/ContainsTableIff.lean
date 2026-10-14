@@ -10,7 +10,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.ContainsPointIff
 With `δ = x - c` and `g_n = g / ‖g‖₂`, `x` lies in the capsule iff the foot of its
 projection falls strictly inside the axis and the distance to the axis is at most `r`, or
 one of the two end spheres contains it. [1, Table 2] prints the axis test with `< r`,
-which misses the capsule's boundary (`ContainsTableCounterexample`); with `≤ r` it is
+which misses the capsule's boundary (`ContainsTable`); with `≤ r` it is
 CORA's `aux_containsPoint` plus the end spheres unconditionally, which add nothing since
 both lie in the capsule.
 

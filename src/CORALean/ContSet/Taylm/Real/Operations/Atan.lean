@@ -16,7 +16,7 @@ magnitude. No domain condition.
 
 A Taylor model of `arctan ∘ f` as [1, Def. 3 (arctan)] asks, but expanded at `c_f` directly
 rather than through the source's addition formula, which needs `1 + c_f·f > 0`
-(`AtanShiftCounterexample`).
+(`AtanShift`).
 
 ## References
 

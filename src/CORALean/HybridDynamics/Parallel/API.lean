@@ -4,6 +4,7 @@ public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
 public import CORALean.HybridDynamics.Parallel.Definitions.API
 public import CORALean.HybridDynamics.Parallel.Operations.API
 public import CORALean.HybridDynamics.Parallel.Theorems.API
+public import CORALean.HybridDynamics.Parallel.Counterexamples.API
 
 /-!
 # Parallel hybrid automata, collected

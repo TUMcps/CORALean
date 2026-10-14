@@ -13,25 +13,18 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.MtimesExact
 public import CORALean.ContSet.LevelSet.Real.Theorems.TaylorSeriesMem
 public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxSubset
 public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxExact
-public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxCounterexample
 public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxParabola
 public import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectSolvableSubset
 public import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectUnsolvableSubset
-public import CORALean.ContSet.LevelSet.Real.Theorems.GuardIntersectUnsolvableCounterexample
-public import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinCounterexample
 public import CORALean.ContSet.LevelSet.Real.Theorems.SolvedGuardSinOfNeZero
 public import CORALean.ContSet.LevelSet.Real.Theorems.OutsideInvariantOfRangeBound
 public import CORALean.ContSet.LevelSet.Real.Theorems.GuardDisjointOfRangeBound
 public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingUniformOuter
 public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellOuter
-public import CORALean.ContSet.LevelSet.Real.Theorems.IsIntersectingCellCounterexample
-public import CORALean.ContSet.LevelSet.Real.Theorems.ContainsCellCoraCounterexample
-public import CORALean.ContSet.LevelSet.Real.Theorems.PotIntCoraMissesCounterexample
 public import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaEmptySetSound
 public import CORALean.ContSet.LevelSet.Real.Theorems.RepresentsaFullspaceSound
 public import CORALean.ContSet.LevelSet.Real.Theorems.CompactExact
 public import CORALean.ContSet.LevelSet.Real.Theorems.IsequalSound
-public import CORALean.ContSet.LevelSet.Real.Theorems.IsequalCoraCounterexample
 public import CORALean.ContSet.LevelSet.Real.Theorems.TightenDomainLinearIsContractor
 
 /-!

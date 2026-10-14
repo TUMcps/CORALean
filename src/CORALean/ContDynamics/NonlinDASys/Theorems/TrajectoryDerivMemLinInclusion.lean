@@ -18,7 +18,7 @@ the sets being computed, and never shows the run stays there; the proposition's 
 "independent of the amount of overapproximation" says the same. And `L̄` holds the exact
 linearization error `ℓᵈ - C F⁻¹ ℓᵃ` at every consistent point of `R^z`, which is `L ⊆ L̄` with
 `L` read with one Lagrange point per row ([1, Eq. 8]) rather than the single `ξ` of
-[1, Eq. 15], which can miss it (`SharedLagrangePointCounterexample`).
+[1, Eq. 15], which can miss it (`SharedLagrangePoint`).
 
 ## References
 

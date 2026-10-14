@@ -13,6 +13,7 @@ public import CORALean.Specification.STL.API
 public import CORALean.Specification.STLInterval.API
 public import CORALean.Specification.SyntaxTree.API
 public import CORALean.Specification.Theorems.API
+public import CORALean.Specification.Counterexamples.API
 
 /-!
 # Specifications, collected

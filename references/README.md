@@ -208,8 +208,8 @@ statement leaves open, such as the class of input signals, are `underspecified`.
 **A `fixed` row links its counterexample.** The row's third cell names, after
 `**Counterexample:**`, a Lean theorem declared in a file the row links, which exhibits a
 non-degenerate input on which the printed statement fails (the file is named for the
-theorem, `FooCounterexample.lean`/`foo_counterexample` where it can be, or `not_*`/`*_ne_*`
-for a negation of the printed statement). `scripts/check-references.py` fails a `fixed`
+theorem, in a `Counterexamples/` folder, `Foo.lean`/`foo_counterexample` where it can be, or
+`not_*`/`*_ne_*` for a negation of the printed statement). `scripts/check-references.py` fails a `fixed`
 row without the marker, and one whose named theorem is not declared in a linked file. A
 row for which no counterexample is written says `**No counterexample:** <why>` with a
 reason of at least 40 characters; these stay rare, and each is a debt.

@@ -1,7 +1,5 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.ContainsScalingCora
-public import CORALean.ContSet.Interval.Real.Operations.RdivideNumeratorCora
 public import CORALean.ContSet.Interval.Real.Operations.BoundaryRatio
 public import CORALean.ContSet.Interval.Real.Operations.BoundaryPoint
 public import CORALean.ContSet.Interval.Real.Operations.Point
@@ -33,8 +31,6 @@ public import CORALean.ContSet.Interval.Real.Operations.Asinh
 public import CORALean.ContSet.Interval.Real.Operations.RoundAway
 public import CORALean.ContSet.Interval.Real.Operations.Round
 public import CORALean.ContSet.Interval.Real.Operations.ProjectHighDim
-public import CORALean.ContSet.Interval.Real.Operations.RepresentsaCapsuleCora
-public import CORALean.ContSet.Interval.Real.Operations.RepresentsaEllipsoidCora
 public import CORALean.ContSet.Interval.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.Interval.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.Interval.Real.Operations.Times

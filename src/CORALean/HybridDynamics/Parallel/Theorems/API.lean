@@ -30,7 +30,6 @@ public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddMulVec
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddFlowLaw
 public import CORALean.HybridDynamics.Parallel.Theorems.RunToProductAdd
 public import CORALean.HybridDynamics.Parallel.Theorems.RunOfProductAdd
-public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsSelfBindCounterexample
 public import CORALean.HybridDynamics.Parallel.Theorems.ZonotopeStackProdValue
 public import CORALean.HybridDynamics.Parallel.Theorems.ZonotopeStackProdExact
 public import CORALean.HybridDynamics.Parallel.Theorems.ConZonotopeStackProdExact
@@ -38,9 +37,6 @@ public import CORALean.HybridDynamics.Parallel.Theorems.ZonoLiftingExact
 public import CORALean.HybridDynamics.Parallel.Theorems.ConZonoLiftingExact
 public import CORALean.HybridDynamics.Parallel.Theorems.LiftSyncTransitionReset
 public import CORALean.HybridDynamics.Parallel.Theorems.SyncRunToProduct
-public import CORALean.HybridDynamics.Parallel.Theorems.InvariantCutCoraCounterexample
-public import CORALean.HybridDynamics.Parallel.Theorems.MergeTransitionSetsCoraWrongTargetCounterexample
-public import CORALean.HybridDynamics.Parallel.Theorems.SimulateRandomTimesCoraCounterexample
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlow
 
 /-!
@@ -58,7 +54,7 @@ constrained zonotope instead, and `BoxSyncLifting` adds the guard conjunction th
 transitions need. `Run.ofProduct` is the converse of `Run.toProduct` and `reachSet_product_eq` the
 equality of reachable sets they give, under `Lifting.Exact`, `GlobalsDistinct` and
 `InputsGlobalOnly`; all of them are proved once for any flow with `FlowLaw` (`...With`), so that
-`mergeFlowsAdd` (no `SelfBindFree`) shares them. `MergeFlowsSelfBindCounterexample` shows
+`mergeFlowsAdd` (no `SelfBindFree`) shares them. `MergeFlowsSelfBind` shows
 `SelfBindFree` cannot be dropped from `mergeFlows`. `SyncRunToProduct` is `Run.toProduct` with
 synchronization labels.
 -/

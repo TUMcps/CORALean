@@ -16,18 +16,14 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ConsistentInitialStateFloatRoot
 public import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateFloatRoot
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ExistsLagrangeRemainder
-public import CORALean.ContDynamics.NonlinDASys.Theorems.SharedLagrangePointCounterexample
 public import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
 public import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
 public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryDerivMemLinInclusion
 public import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
 public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
-public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorCoraCounterexample
-public import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearCoraCounterexample
 public import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearOuter
 public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
 public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
-public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachCoraCounterexample
 public import CORALean.ContDynamics.NonlinDASys.Theorems.InitReachOuter
 public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
 public import CORALean.ContDynamics.NonlinDASys.Theorems.LinPointCertifiesOfSubset
@@ -42,9 +38,6 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachAdaptiveOuter
 public import CORALean.ContDynamics.NonlinDASys.Theorems.EnlargeInterfaceInputSubset
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsEqPreimage
-public import CORALean.ContDynamics.NonlinDASys.Theorems.CompositionalLocalErrorCounterexample
-public import CORALean.ContDynamics.NonlinDASys.Theorems.CompLocalErrorCoraCounterexample
-public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachCompCoraCounterexample
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachNextCompositionalSpec
 
 /-!
@@ -59,5 +52,5 @@ reachable set, and `ReachUnionOuter` what `reachUnion` guarantees through it,
 `ConsistentInitialStateFloatRoot` and `SteadyStateFloatRoot` its two uses.
 `ComposeSubsystemsExact` and `ComposeSubsystemsEqPreimage` are the join of subsystem sets,
 `ReachNextCompositionalSpec` what the compositional loop certifies, and
-`CompositionalLocalErrorCounterexample` that local `C F⁻¹` blocks miss the coupling.
+`CompositionalLocalError` that local `C F⁻¹` blocks miss the coupling.
 -/

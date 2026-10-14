@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Operations.API
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.API
+public import CORALean.ContSet.ConPolyZono.Real.Counterexamples.API
 public import CORALean.ContSet.ConPolyZono.Real.Complexity.API
 public import CORALean.ContSet.ConPolyZono.Real.Instances
 

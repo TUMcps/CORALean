@@ -89,7 +89,6 @@ public import CORALean.NN.Layers.Theorems.SoftmaxSound
 public import CORALean.NN.Layers.Theorems.SoftplusRelaxationSound
 public import CORALean.NN.Layers.Theorems.SoftplusSound
 public import CORALean.NN.Layers.Theorems.SquareRelaxationSound
-public import CORALean.NN.Layers.Theorems.StarSetCoraRowBoundsUnsound
 public import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
 public import CORALean.NN.Layers.Theorems.StarSetFloatReluNeuronOuter
 public import CORALean.NN.Layers.Theorems.StarSetFloatRowBoundsMem

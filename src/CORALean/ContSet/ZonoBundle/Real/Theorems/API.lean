@@ -41,11 +41,9 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.CartProdExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnlargeOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEnlarge
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalConstruct
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalCoraCounterexample
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsFullDimAllMembers
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCentreMem
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ContainsAllIff
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsIntervalCoraCounterexample
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBoxOfForall
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConvHullExact

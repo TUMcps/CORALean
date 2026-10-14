@@ -14,15 +14,12 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Project
 public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
-public import CORALean.ContSet.Ellipsoid.Real.Operations.ConvHullCora
-public import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsEllipsoidCora
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Vertices
 public import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
 public import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
-public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBiggerCora
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi1D
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu1D
@@ -54,7 +51,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Polygon
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
 public import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
-public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaHyperplaneCora
 
 /-!
 # What an ellipsoid computes, collected

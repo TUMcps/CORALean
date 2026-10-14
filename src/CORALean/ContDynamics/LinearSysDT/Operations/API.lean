@@ -16,7 +16,6 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSetBound
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSetWitness
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
-public import CORALean.ContDynamics.LinearSysDT.Operations.ReachLTVCora
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStep
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveStripBased
 public import CORALean.ContDynamics.LinearSysDT.Operations.ErrMatFloat
@@ -51,7 +50,6 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalObserverTrans
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveDescriptorLPV
 public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReach
 public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReachBox
-public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSpecCora
 public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 public import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
 public import CORALean.ContDynamics.LinearSysDT.Operations.Basic

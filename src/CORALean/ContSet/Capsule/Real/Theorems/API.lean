@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
 public import CORALean.ContSet.Capsule.Real.Theorems.ContainsPointIff
 public import CORALean.ContSet.Capsule.Real.Theorems.ContainsTableIff
-public import CORALean.ContSet.Capsule.Real.Theorems.ContainsTableCounterexample
 public import CORALean.ContSet.Capsule.Real.Theorems.SegDistMem
 public import CORALean.ContSet.Capsule.Real.Theorems.IsIntersectingIff
 public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
@@ -23,25 +22,17 @@ public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
 public import CORALean.ContSet.Capsule.Real.Theorems.PlusVecExact
 public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.Capsule.Real.Theorems.MtimesCoraCounterexample
-public import CORALean.ContSet.Capsule.Real.Theorems.IsIntersectingCoraCounterexample
 public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
-public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullCoraEmptyCrash
 public import CORALean.ContSet.Capsule.Real.Theorems.EncloseOuter
-public import CORALean.ContSet.Capsule.Real.Theorems.EncloseCoraCounterexample
 public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
 public import CORALean.ContSet.Capsule.Real.Theorems.EnclosePointsMem
 public import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
 public import CORALean.ContSet.Capsule.Real.Theorems.VolumeEq
-public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
 
 /-!
 # What a capsule guarantees, collected
-
-`IsFullDimCora.lean` is deliberately not collected here: it states the CORA discrepancy at the
-`ContSet` instance, which `Instances.lean` declares after importing this file.
 
 `construct_eq_empty` and `construct_eq_add` are the shared case split, at
 `C.r < 0` and `0 ≤ C.r`; `convex_construct` and `isCompact_construct` both

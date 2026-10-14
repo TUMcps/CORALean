@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.ContSet.Theorems.AddProperties
-public import CORALean.ContSet.ContSet.Theorems.AddPropertiesCounterexample
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 public import CORALean.ContSet.ContSet.Theorems.DecomposeOuter
@@ -42,7 +41,6 @@ public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOf
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMulVecImageSubsetOfConvex
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffNotSubsetOfDiscontinuous
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffProperties
-public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffPropertiesCounterexample
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuous
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuousOfConvex
 public import CORALean.ContSet.ContSet.Theorems.MinusFromOuter
@@ -51,7 +49,6 @@ public import CORALean.ContSet.ContSet.Theorems.MinusOuter
 public import CORALean.ContSet.ContSet.Theorems.MinusScalarOuter
 public import CORALean.ContSet.ContSet.Theorems.PolygonExact
 public import CORALean.ContSet.ContSet.Theorems.ProdProperties
-public import CORALean.ContSet.ContSet.Theorems.ProdPropertiesCounterexample
 public import CORALean.ContSet.ContSet.Theorems.ProjectHighDimOuter
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneDot
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneFloatOuter
@@ -62,7 +59,6 @@ public import CORALean.ContSet.ContSet.Theorems.PropertyFacts
 public import CORALean.ContSet.ContSet.Theorems.SetLinCombEqConvexJoin
 public import CORALean.ContSet.ContSet.Theorems.SetLinCombMinkowskiDiffSubset
 public import CORALean.ContSet.ContSet.Theorems.SetLinCombProperties
-public import CORALean.ContSet.ContSet.Theorems.SetLinCombPropertiesCounterexample
 public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 public import CORALean.ContSet.ContSet.Theorems.SubsetHyperplanePolyhedron
 public import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff

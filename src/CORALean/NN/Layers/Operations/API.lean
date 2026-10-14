@@ -120,7 +120,6 @@ public import CORALean.NN.Layers.Operations.SoftplusEnclosure
 public import CORALean.NN.Layers.Operations.Square
 public import CORALean.NN.Layers.Operations.SquareRelaxation
 public import CORALean.NN.Layers.Operations.SquareSlope
-public import CORALean.NN.Layers.Operations.StarSetCoraRowBounds
 public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
 public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
 public import CORALean.NN.Layers.Operations.StarSetFloatContSet

@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.Capsule.Real.Complexity.Time.Plus
 public import CORALean.ContSet.Capsule.Real.Complexity.Time.PlusVec
 public import CORALean.ContSet.Capsule.Real.Complexity.Time.Mtimes
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.MtimesCora
 public import CORALean.ContSet.Capsule.Real.Complexity.Time.Radius
 public import CORALean.ContSet.Capsule.Real.Complexity.Time.ConvHull
 public import CORALean.ContSet.Capsule.Real.Complexity.Time.Enclose

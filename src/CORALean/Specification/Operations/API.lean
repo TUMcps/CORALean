@@ -1,9 +1,7 @@
 module
 
 public import CORALean.Specification.Operations.Check
-public import CORALean.Specification.Operations.CheckCustomCora
 public import CORALean.Specification.Operations.DiffPoint
-public import CORALean.Specification.Operations.DistancePolyPointCora
 public import CORALean.Specification.Operations.VerifyConvex
 public import CORALean.Specification.Operations.VerifyConvexStep
 public import CORALean.Specification.Operations.VerifyHalfspace

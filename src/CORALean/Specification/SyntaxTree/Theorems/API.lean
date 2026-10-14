@@ -24,16 +24,12 @@ public import CORALean.Specification.SyntaxTree.Theorems.EnclosesOfSound
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesPower
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesSin
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesSinh
-public import CORALean.Specification.SyntaxTree.Theorems.EnclosesSinhCora
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesSqrt
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesTan
-public import CORALean.Specification.SyntaxTree.Theorems.EnclosesTanCora
 public import CORALean.Specification.SyntaxTree.Theorems.EnclosesTanh
 public import CORALean.Specification.SyntaxTree.Theorems.EvalMtimes
 public import CORALean.Specification.SyntaxTree.Theorems.EvalProd
-public import CORALean.Specification.SyntaxTree.Theorems.EvalSinhCora
 public import CORALean.Specification.SyntaxTree.Theorems.EvalSum
-public import CORALean.Specification.SyntaxTree.Theorems.EvalTanCora
 public import CORALean.Specification.SyntaxTree.Theorems.ExpSound
 public import CORALean.Specification.SyntaxTree.Theorems.FunHanAcosSound
 public import CORALean.Specification.SyntaxTree.Theorems.FunHanAcoshSound
@@ -49,9 +45,7 @@ public import CORALean.Specification.SyntaxTree.Theorems.PeriodicContains
 public import CORALean.Specification.SyntaxTree.Theorems.PlusSound
 public import CORALean.Specification.SyntaxTree.Theorems.PowerSound
 public import CORALean.Specification.SyntaxTree.Theorems.RestrictContains
-public import CORALean.Specification.SyntaxTree.Theorems.PowerOddCoraCounterexample
 public import CORALean.Specification.SyntaxTree.Theorems.SinSound
-public import CORALean.Specification.SyntaxTree.Theorems.SinhCoraCounterexample
 public import CORALean.Specification.SyntaxTree.Theorems.SoundAcos
 public import CORALean.Specification.SyntaxTree.Theorems.SoundAcosh
 public import CORALean.Specification.SyntaxTree.Theorems.SoundAsin
@@ -71,7 +65,6 @@ public import CORALean.Specification.SyntaxTree.Theorems.SoundSum
 public import CORALean.Specification.SyntaxTree.Theorems.SoundTan
 public import CORALean.Specification.SyntaxTree.Theorems.SoundTanh
 public import CORALean.Specification.SyntaxTree.Theorems.SqrtSound
-public import CORALean.Specification.SyntaxTree.Theorems.TanCoraCounterexample
 public import CORALean.Specification.SyntaxTree.Theorems.TanSound
 public import CORALean.Specification.SyntaxTree.Theorems.TanhSound
 public import CORALean.Specification.SyntaxTree.Theorems.TimesSound

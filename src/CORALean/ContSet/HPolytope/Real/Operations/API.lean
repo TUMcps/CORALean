@@ -38,16 +38,8 @@ public import CORALean.ContSet.HPolytope.Real.Operations.OfPoint
 public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.Operations.Stack
 public import CORALean.ContSet.HPolytope.Real.Operations.Lift
-public import CORALean.ContSet.HPolytope.Real.Operations.MldivideCora
-public import CORALean.ContSet.HPolytope.Real.Operations.ConvHullCora
 public import CORALean.ContSet.HPolytope.Real.Operations.OfEqs1D
-public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiff1DCora
-public import CORALean.ContSet.HPolytope.Real.Operations.Compact1DEqCora
-public import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingVPolyCora
-public import CORALean.ContSet.HPolytope.Real.Operations.IsIntersectingZonoBundleCora
 public import CORALean.ContSet.HPolytope.Real.Operations.ZonoBundleVar
-public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalCora
-public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaPointCora
 public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeConstraints
 public import CORALean.ContSet.HPolytope.Real.Operations.NormalizeRows
 public import CORALean.ContSet.HPolytope.Real.Operations.ProjectHighDim
@@ -76,10 +68,6 @@ public import CORALean.ContSet.HPolytope.Real.Operations.HitAndRunStep
 public import CORALean.ContSet.HPolytope.Real.Operations.FacetNormal
 public import CORALean.ContSet.HPolytope.Real.Operations.BilliardEnd
 public import CORALean.ContSet.HPolytope.Real.Operations.BilliardStep
-public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaHyperplaneCora
-public import CORALean.ContSet.HPolytope.Real.Operations.RowLowerCora
-public import CORALean.ContSet.HPolytope.Real.Operations.RowUpperCora
-public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaIntervalZeroRowCora
 
 /-!
 # What `HPolytope` computes

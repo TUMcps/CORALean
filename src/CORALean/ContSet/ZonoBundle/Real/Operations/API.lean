@@ -33,7 +33,6 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.Project
 public import CORALean.ContSet.ZonoBundle.Real.Operations.CartProd
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
-public import CORALean.ContSet.ZonoBundle.Real.Operations.IsequalCora
 public import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
 public import CORALean.ContSet.ZonoBundle.Real.Operations.IsCentre
 public import CORALean.ContSet.ZonoBundle.Real.Operations.ContainsAll

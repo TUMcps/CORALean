@@ -47,7 +47,6 @@ public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrd
 public import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSol
 public import CORALean.ContDynamics.LinParamSys.Operations.InitReachInputDependence
-public import CORALean.ContDynamics.LinParamSys.Operations.SimulateEndTimeCora
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 
 /-!

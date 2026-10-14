@@ -7,6 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Krylov.API
 public import CORALean.ContDynamics.LinearSys.MatExp.API
 public import CORALean.ContDynamics.LinearSys.Operations.API
 public import CORALean.ContDynamics.LinearSys.Theorems.API
+public import CORALean.ContDynamics.LinearSys.Counterexamples.API
 
 /-!
 # Continuous-time linear systems, collected

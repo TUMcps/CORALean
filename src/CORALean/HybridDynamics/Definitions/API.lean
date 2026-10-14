@@ -13,10 +13,7 @@ public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
 public import CORALean.HybridDynamics.Definitions.NonlinHybridAutomaton
 public import CORALean.HybridDynamics.Definitions.ConstFlowHitSet
 public import CORALean.HybridDynamics.Definitions.CheckFlow
-public import CORALean.HybridDynamics.Definitions.CheckFlowCora
 public import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirard
-public import CORALean.HybridDynamics.Definitions.RobustProjectionCora
-public import CORALean.HybridDynamics.Definitions.GuardIntersectZonoGirardCora
 public import CORALean.HybridDynamics.Definitions.HitSet
 public import CORALean.HybridDynamics.Definitions.SdcInput
 public import CORALean.HybridDynamics.Definitions.HitHessian

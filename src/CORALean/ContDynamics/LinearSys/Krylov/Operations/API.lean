@@ -7,7 +7,6 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiBasis
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ArnoldiHessenberg
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Alg2
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Alg2Corrected
-public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ReachKrylovCora1D
 
 /-!
 # The Arnoldi iteration

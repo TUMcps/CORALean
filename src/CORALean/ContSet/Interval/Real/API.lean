@@ -4,6 +4,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Definitions.API
 public import CORALean.ContSet.Interval.Real.Operations.API
 public import CORALean.ContSet.Interval.Real.Theorems.API
+public import CORALean.ContSet.Interval.Real.Counterexamples.API
 public import CORALean.ContSet.Interval.Real.Complexity.API
 public import CORALean.ContSet.Interval.Real.Instances
 

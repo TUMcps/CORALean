@@ -11,15 +11,12 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.Inter
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
 public import CORALean.ContSet.SpectraShadow.Real.Operations.IsBounded
 public import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPoint
-public import CORALean.ContSet.SpectraShadow.Real.Operations.ContainsPointCora
 public import CORALean.ContSet.SpectraShadow.Real.Operations.LineExample
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaFullspaceCora
 public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaOrigin
 public import CORALean.ContSet.SpectraShadow.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportBound
-public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFuncCoraAllZero
 public import CORALean.ContSet.SpectraShadow.Real.Operations.ArrowMat
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne

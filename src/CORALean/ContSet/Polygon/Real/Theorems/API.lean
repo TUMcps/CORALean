@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
-public import CORALean.ContSet.Polygon.Real.Theorems.ContainsEllipsoidCoraCounterexample
-public import CORALean.ContSet.Polygon.Real.Theorems.IsIntersectingEllipsoidCoraCounterexample
 public import CORALean.ContSet.Polygon.Real.Theorems.Basic
 public import CORALean.ContSet.Polygon.Real.Theorems.MemConstruct
 public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
@@ -14,8 +12,6 @@ public import CORALean.ContSet.Polygon.Real.Theorems.ProjectExact
 public import CORALean.ContSet.Polygon.Real.Theorems.VerticesHull
 public import CORALean.ContSet.Polygon.Real.Theorems.ConvHullExact
 public import CORALean.ContSet.Polygon.Real.Theorems.RepresentsaEmptySetIff
-public import CORALean.ContSet.Polygon.Real.Theorems.IsequalCoraCounterexample
-public import CORALean.ContSet.Polygon.Real.Theorems.RepresentsaOriginCoraCounterexample
 public import CORALean.ContSet.Polygon.Real.Theorems.IntervalContains
 public import CORALean.ContSet.Polygon.Real.Theorems.MinusExact
 public import CORALean.ContSet.Polygon.Real.Theorems.IsFullDimIff
@@ -37,8 +33,6 @@ public import CORALean.ContSet.Polygon.Real.Theorems.MldivideOuter
 public import CORALean.ContSet.Polygon.Real.Theorems.MinkDiffSandwich
 public import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLeIff
 public import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLe
-public import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistCounterexample
-public import CORALean.ContSet.Polygon.Real.Theorems.RemoveCollinearPointsCounterexample
 
 /-!
 # Polygon theorems, collected

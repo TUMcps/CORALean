@@ -4,6 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Real.Definitions.API
 public import CORALean.ContSet.Ellipsoid.Real.Operations.API
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.API
+public import CORALean.ContSet.Ellipsoid.Real.Counterexamples.API
 public import CORALean.ContSet.Ellipsoid.Real.Complexity.API
 public import CORALean.ContSet.Ellipsoid.Real.Instances
 

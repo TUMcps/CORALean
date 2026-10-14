@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.NonlinParamSys.Instances
 public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
 public import CORALean.ContDynamics.NonlinParamSys.Operations.API
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.API
+public import CORALean.ContDynamics.NonlinParamSys.Counterexamples.API
 
 /-!
 # Continuous-time nonlinear systems with uncertain parameters, collected

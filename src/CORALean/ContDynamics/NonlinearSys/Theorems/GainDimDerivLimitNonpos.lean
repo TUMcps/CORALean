@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimDerivTendsto
 non-positive exactly when `g'(0)/g(0) ≥ 0`, that is when the width
 `dᵢ(box(R^∞_abs(t))) = t^{qᵢ+1}g(t)` does not lose relative size to its leading term as `t` leaves
 `0`. That is the correction `(41)` needs: with every `Q⁽ᵖ⁾ᵢ` constant `g'(0)` is the non-negative
-coefficient of `t^{qᵢ+2}` and the condition holds. `GainDerivCounterexample` has `g'(0)/g(0) < 0`
+coefficient of `t^{qᵢ+2}` and the condition holds. `GainDeriv` has `g'(0)/g(0) < 0`
 and a positive limit.
 
 ## References

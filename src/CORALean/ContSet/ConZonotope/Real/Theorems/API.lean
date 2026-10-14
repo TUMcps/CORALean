@@ -67,7 +67,6 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERNotSuperset
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRowIndep
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqOfRZero
-public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRZeroCounterexample
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqComapLift
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveHausdorffEq
 public import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateIsMinOn
@@ -83,15 +82,11 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectManyExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
-public import CORALean.ContSet.ConZonotope.Real.Theorems.IsFullDimCoraCounterexample
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ContainsPointIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreMem
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreIffOfEqZero
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapMixedOuter
-public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapCoraNotOuter
-public import CORALean.ContSet.ConZonotope.Real.Theorems.SupportFuncUpperCoraCounterexample
-public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
 
 /-!
 # What `ConZonotope` guarantees

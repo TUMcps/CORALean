@@ -14,13 +14,8 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.ConsistentInitialStat
 public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
 public import CORALean.ContDynamics.NonlinDASys.Operations.JointReachSet
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinError
-public import CORALean.ContDynamics.NonlinDASys.Operations.LinErrorCora
-public import CORALean.ContDynamics.NonlinDASys.Operations.CompLocalErrorCora
-public import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearCora
 public import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinear
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
-public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCora
-public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachCompCora
 public import CORALean.ContDynamics.NonlinDASys.Operations.InitReach
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachRepeat
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop

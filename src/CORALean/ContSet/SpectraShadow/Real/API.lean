@@ -4,6 +4,7 @@ public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 public import CORALean.ContSet.SpectraShadow.Real.Definitions.API
 public import CORALean.ContSet.SpectraShadow.Real.Operations.API
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.API
+public import CORALean.ContSet.SpectraShadow.Real.Counterexamples.API
 public import CORALean.ContSet.SpectraShadow.Real.Instances
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.EncloseExact
 

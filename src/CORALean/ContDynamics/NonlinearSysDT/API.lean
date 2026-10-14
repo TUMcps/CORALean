@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
 public import CORALean.ContDynamics.NonlinearSysDT.Definitions.API
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.API
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.API
+public import CORALean.ContDynamics.NonlinearSysDT.Counterexamples.API
 public import CORALean.ContDynamics.NonlinearSysDT.Complexity.API
 public import CORALean.ContDynamics.NonlinearSysDT.Instances
 

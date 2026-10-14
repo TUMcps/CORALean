@@ -9,7 +9,6 @@ public import CORALean.ContDynamics.LinProbSys.Theorems.InitReachInputCov
 public import CORALean.ContDynamics.LinProbSys.Theorems.InitReachPostCov
 public import CORALean.ContDynamics.LinProbSys.Theorems.InitReachTiOuter
 public import CORALean.ContDynamics.LinProbSys.Theorems.InitReachTpOuter
-public import CORALean.ContDynamics.LinProbSys.Theorems.ReachCovCoraLt
 
 /-!
 # What `LinProbSys` guarantees

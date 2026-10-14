@@ -10,7 +10,7 @@ public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
 
 As `isIntersecting_uniform_outer`, for a cell of operators none of which is `==`: a negative
 verdict proves the level set misses the box. The `==` rows are unsound
-(`IsIntersectingCellCounterexample`). Outer only.
+(`IsIntersectingCell`). Outer only.
 -/
 
 -- Authors:       Claude Opus 5.5

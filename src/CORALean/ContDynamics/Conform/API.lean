@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.Conform.Definitions.API
 public import CORALean.ContDynamics.Conform.Operations.API
 public import CORALean.ContDynamics.Conform.Plant
 public import CORALean.ContDynamics.Conform.Theorems.API
+public import CORALean.ContDynamics.Conform.Counterexamples.API
 
 /-!
 # Reachset conformance, collected

@@ -43,7 +43,6 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.EmptyExact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimCoraCounterexample
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitLongestGenUnion
@@ -58,11 +57,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffNotInner
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.RescaleExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointIff
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointCoraCounterexample
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaEmptyCounterexample
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointCoraCounterexample
 
 /-!
 # What `ConPolyZono` guarantees

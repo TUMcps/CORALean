@@ -16,7 +16,7 @@ rows in the page's table. Four columns:
 * a few words on what is wrong, from `experiments/paper/ledger-errors.json` (written by hand
   from the row's Class cell and the page's Findings; LaTeX-escaped here outside `$...$`);
 * the Lean counterexample: the linked file that declares the first theorem the row names after
-  `**Counterexample:**`, else the first linked file named `*Counterexample*` or `Not*`;
+  `**Counterexample:**`, else the first linked file in a `Counterexamples/` folder or named `Not*`;
 * the Lean fix, for a `fixed` row only: the `fix` of the row's description entry if it has one
   (a linked file's name), else the first linked file that is not a definition or operation
   (`Definitions/`, `Operations/`), not a counterexample file (as above, or declaring a named
@@ -40,9 +40,19 @@ from pathlib import Path, PurePosixPath
 
 REPO_URL = "https://gitlab.lrz.de/cps/CORALean/-/blob/main"
 CLASSES = ("false", "fixed")
-CEX_NAME = re.compile(r"Counterexample|^Not(?=[A-Z])")
-NOT_A_FIX = re.compile(r"Counterexample|^Not(?=[A-Z])|Not(?=[A-Z])")
+CEX_NAME = re.compile(r"^Not(?=[A-Z])")
+NOT_A_FIX = re.compile(r"Not(?=[A-Z])")
 NOT_A_THEOREM_DIR = {"Definitions", "Operations"}
+
+
+def is_cex(p):
+    """A counterexample file: one in a `Counterexamples/` folder (#148), or named `Not*`."""
+    return "Counterexamples" in p.parts or bool(CEX_NAME.search(p.stem))
+
+
+def not_a_fix(p):
+    """What is no repair: a counterexample file, or one named for a negation (`Not*`)."""
+    return "Counterexamples" in p.parts or bool(NOT_A_FIX.search(p.stem))
 
 
 def paths(cr):
@@ -89,7 +99,7 @@ def classify(cr, row):
     decls = {p: {n.rsplit(".", 1)[-1] for n, kind, _ in cr.lean_decls(p)
                  if kind in ("theorem", "lemma")} for p in row["links"]}
     cex_files = [p for p in row["links"] if any(n in decls[p] for n in row["cex_names"])]
-    by_name = [p for p in row["links"] if CEX_NAME.search(p.stem)]
+    by_name = [p for p in row["links"] if is_cex(p)]
     first = None
     for n in row["cex_names"]:
         first = next((p for p in row["links"] if n in decls[p]), None)
@@ -102,7 +112,7 @@ def classify(cr, row):
 
 def default_fix(row, cex_files):
     for p in row["links"]:
-        if NOT_A_THEOREM_DIR & set(p.parts) or p in cex_files or NOT_A_FIX.search(p.stem):
+        if NOT_A_THEOREM_DIR & set(p.parts) or p in cex_files or not_a_fix(p):
             continue
         return p
     return None

@@ -17,7 +17,7 @@ by [1]'s Eq. (18) (`heldSim`) or run in continuous time under `heldInput`.
 `u(j) = ν(U₀, (e^{A t_j})ᵀ ℓ) + ũ`, while (18) multiplies `u(j)` by `T` and then by
 `e^{A t_{k-1-j}}` on the way to `x(k)`: the direction has to be
 `(e^{A t_{k-1-j}} T)ᵀ ℓ`, with the steps counted from the end and `T` applied.
-`PrintedSupportInputCounterexample` is a system on which the printed inputs miss
+`PrintedSupportInput` is a system on which the printed inputs miss
 the support vector; the page for [1] under `references/` says more.
 `ν(U₀, d) + ũ = ν(U, d)`, so `νU` is `ν(U, ·)`, and `d_j` is line 8 of
 [1, Alg. 1 (lower bounds)] in closed form.

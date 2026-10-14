@@ -7,7 +7,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSuperse
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConvHullCoraEmptyCrash
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
@@ -36,22 +35,16 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkowskiDiffNonemptyIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.InterHyperplaneEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DistPointEqMax
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.DistPointNonnegCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DistEllipsoidEqMax
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DistHyperplaneEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestRadius
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsLeastVolumeSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerIffSubset
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBiggerCoraCounterexample
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripGollamudi1DCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripGollamudiOuter
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripLiu1DCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IntersectStripLiuOuter
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeAffineAdd
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseOuter
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseCoraCounterexample
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsEllipsoidCoraCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkDiffPointExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SetLinCombSubsetOfIsOrOuter
@@ -77,8 +70,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLamSumPos
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetHasDerivAt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetIsMinOn
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderLogDetSecondDeriv
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderMuIncreasingCounterexample
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderMuPositiveCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderPolyDivProd
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderRootBoundsTwo
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderRootUnique
@@ -98,7 +89,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderTraceIsMinOn
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.KurzhanskiEqHalder
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.LogDetHalderEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.PrintedEllipseImageCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadraticFormEquiv
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapePlus
@@ -107,7 +97,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeSetOfQuadLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsApproxLownerJohnOfSandwich
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemIffNormFactor
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderPolyExpand
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.HalderPolyPrintedCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutVolumeRatioLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeMtimes
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.PolygonInner
@@ -116,7 +105,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GoffinSpec
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreOfMinVolume
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SumNotConstruct
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaHyperplaneCoraCounterexample
 
 /-!
 # What an ellipsoid guarantees, collected

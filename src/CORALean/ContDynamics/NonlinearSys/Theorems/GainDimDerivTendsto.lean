@@ -17,7 +17,7 @@ differentiable near `0` with `g'` continuous at `0`, and then
 `dφᵢ/dh → δ^{qᵢ+1}(δ − 1) g'(0)/g(0)`. This is not `[1]`'s closing formula, which has only the
 coefficient of `t^{qᵢ+2}` where `g'(0)` also carries the derivative at `0` of the coefficient of
 `t^{qᵢ+1}`, the sum of the `Q̇⁽ᵖ⁾ᵢ(0)`; `(B.5)` evaluates `Q` at `δh` where it needs `h`, and the
-difference is of that order. `GainDimDerivLimitNonpos` reads the sign off, `GainDerivCounterexample`
+difference is of that order. `GainDimDerivLimitNonpos` reads the sign off, `GainDeriv`
 is a family where it is positive.
 
 `g` and `g'` are given as a pair `HasDerivAt g (g' t) t` near `0`, so no smoothness class is named;

@@ -1,7 +1,5 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Theorems.ContainsScalingCoraCounterexample
-public import CORALean.ContSet.Interval.Real.Theorems.RdivideNumeratorCoraCounterexample
 public import CORALean.ContSet.Interval.Real.Theorems.BoundaryRatioIsGreatest
 public import CORALean.ContSet.Interval.Real.Theorems.DivMemCornerHull
 public import CORALean.ContSet.Interval.Real.Theorems.ArgEqArctanOfRePos
@@ -74,7 +72,6 @@ public import CORALean.ContSet.Interval.Real.Theorems.LeSubset
 public import CORALean.ContSet.Interval.Real.Theorems.LtSubset
 public import CORALean.ContSet.Interval.Real.Theorems.ProjectExact
 public import CORALean.ContSet.Interval.Real.Theorems.ProjectHighDimExact
-public import CORALean.ContSet.Interval.Real.Theorems.RepresentsaCapsuleCoraCounterexample
 public import CORALean.ContSet.Interval.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.Interval.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
@@ -129,8 +126,6 @@ public import CORALean.ContSet.Interval.Real.Theorems.ExistsMeasurableMulVecEq
 public import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
 public import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
 public import CORALean.ContSet.Interval.Real.Theorems.PowerExact
-public import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraCounterexample
-public import CORALean.ContSet.Interval.Real.Theorems.Atan2CoraGuardMissed
 public import CORALean.ContSet.Interval.Real.Theorems.MulMatEntryImage
 public import CORALean.ContSet.Interval.Real.Theorems.ConstructSubsetConvexHullVertices
 public import CORALean.ContSet.Interval.Real.Theorems.LiftExact
@@ -148,7 +143,6 @@ public import CORALean.ContSet.Interval.Real.Theorems.InvImageIccCases
 public import CORALean.ContSet.Interval.Real.Theorems.HullIsLeast
 public import CORALean.ContSet.Interval.Real.Theorems.HullAdd
 public import CORALean.ContSet.Interval.Real.Theorems.HullImageOfNonneg
-public import CORALean.ContSet.Interval.Real.Theorems.ImageOfNonnegCounterexample
 public import CORALean.ContSet.Interval.Real.Theorems.ExtremalLoIsLeast
 public import CORALean.ContSet.Interval.Real.Theorems.ExtremalHiIsGreatest
 public import CORALean.ContSet.Interval.Real.Theorems.ZeroMemExtremal
@@ -156,7 +150,6 @@ public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseLeftLe
 public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseRightGe
 public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxReviseIsContractor
 public import CORALean.ContSet.Interval.Real.Theorems.ExistsZeroIffExtrema
-public import CORALean.ContSet.Interval.Real.Theorems.ExistsZeroIffExtremaCounterexample
 public import CORALean.ContSet.Interval.Real.Theorems.NaturalExtensionDependency
 public import CORALean.ContSet.Interval.Real.Theorems.ExtremalExample
 public import CORALean.ContSet.Interval.Real.Theorems.PolyBoxRewriteRemarks
@@ -174,17 +167,12 @@ public import CORALean.ContSet.Interval.Real.Theorems.ExistsUniqueBorderVertex
 public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsComplementIff
 public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsTranslateIff
 public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsScaleIff
-public import CORALean.ContSet.Interval.Real.Theorems.ScaleBoxCounterexample
-public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNNegCounterexample
-public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNUnorderedCounterexample
 public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNSort
 public import CORALean.ContSet.Interval.Real.Theorems.VertexEdgeSolutionIff
-public import CORALean.ContSet.Interval.Real.Theorems.VertexEdgeSolutionCounterexample
 public import CORALean.ContSet.Interval.Real.Theorems.ExtremePointsFaceEq5
 public import CORALean.ContSet.Interval.Real.Theorems.FaceInterHyperplaneNonempty
 public import CORALean.ContSet.Interval.Real.Theorems.PrefixFacePartition
 public import CORALean.ContSet.Interval.Real.Theorems.PieceHasBorderVertex
-public import CORALean.ContSet.Interval.Real.Theorems.PieceSolutionCounterexample
 public import CORALean.ContSet.Interval.Real.Theorems.BoxPlaneIntersectNaiveEq
 public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsLengthLeCard
 public import CORALean.ContSet.Interval.Real.Theorems.BoxDiffSubsetDiff

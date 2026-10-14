@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinProbSys.Definitions.API
 public import CORALean.ContDynamics.LinProbSys.LinProbSys
 public import CORALean.ContDynamics.LinProbSys.Operations.API
 public import CORALean.ContDynamics.LinProbSys.Theorems.API
+public import CORALean.ContDynamics.LinProbSys.Counterexamples.API
 
 /-!
 # Linear systems with white noise, collected

@@ -6,11 +6,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
-public import CORALean.ContSet.Zonotope.Real.Operations.BoxRadiusCora
-public import CORALean.ContSet.Zonotope.Real.Operations.BoxCora
-public import CORALean.ContSet.Zonotope.Real.Operations.SplitCora
-public import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGenCora
-public import CORALean.ContSet.Zonotope.Real.Operations.SplitBundleCora
 public import CORALean.ContSet.Zonotope.Real.Operations.Cube
 public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
@@ -35,10 +30,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MethCFilter
 public import CORALean.ContSet.Zonotope.Real.Operations.MethCVolume
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffAligned
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffApprox
-public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOuterScalingCora
-public import CORALean.ContSet.Zonotope.Real.Operations.AreAlignedCora
-public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffExact2dCora
-public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffDegenerateCora
 public import CORALean.ContSet.Zonotope.Real.Operations.Aligned
 public import CORALean.ContSet.Zonotope.Real.Operations.BackReachAligned
 public import CORALean.ContSet.Zonotope.Real.Operations.CombineGens
@@ -90,10 +81,8 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Rotate
 public import CORALean.ContSet.Zonotope.Real.Operations.Underapproximate
 public import CORALean.ContSet.Zonotope.Real.Operations.UnderapproximateGen
 public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
-public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPolytopeCora
 public import CORALean.ContSet.Zonotope.Real.Operations.ExactPlus
 public import CORALean.ContSet.Zonotope.Real.Operations.NormUb
-public import CORALean.ContSet.Zonotope.Real.Operations.NormExactCora
 public import CORALean.ContSet.Zonotope.Real.Operations.Radius2
 public import CORALean.ContSet.Zonotope.Real.Operations.BoundaryPoint
 public import CORALean.ContSet.Zonotope.Real.Operations.Abs
@@ -125,8 +114,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxNLP
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxRaghuraman
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxScale
 public import CORALean.ContSet.Zonotope.Real.Operations.SortByLength
-public import CORALean.ContSet.Zonotope.Real.Operations.RaghuramanGProdCora
-public import CORALean.ContSet.Zonotope.Real.Operations.RaghuramanAlphaMaxCora
 public import CORALean.ContSet.Zonotope.Real.Operations.SplitDropped
 public import CORALean.ContSet.Zonotope.Real.Operations.SplitKept
 public import CORALean.ContSet.Zonotope.Real.Operations.Venum

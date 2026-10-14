@@ -21,15 +21,12 @@ public import CORALean.HybridDynamics.Parallel.Operations.ProductWith
 public import CORALean.HybridDynamics.Parallel.Operations.ProductAdd
 public import CORALean.HybridDynamics.Parallel.Operations.SyncPick
 public import CORALean.HybridDynamics.Parallel.Operations.LiftSyncTransition
-public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsCoraTarget
 public import CORALean.HybridDynamics.Parallel.Operations.MergeTransitionSetsSync
 public import CORALean.HybridDynamics.Parallel.Operations.ProductSync
 public import CORALean.HybridDynamics.Parallel.Operations.ZonoLifting
 public import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd
 public import CORALean.HybridDynamics.Parallel.Operations.ConZonotopeStackProd
-public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutCora
 public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutDocumented
-public import CORALean.HybridDynamics.Parallel.Operations.SimulateRandomTimesCora
 public import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsLinearSys
 
 /-!

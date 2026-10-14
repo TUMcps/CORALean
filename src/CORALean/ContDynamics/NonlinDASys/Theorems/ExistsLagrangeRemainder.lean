@@ -21,7 +21,7 @@ quadratic form `νᵀ H(ξ) ν` of the Hessian, whose entries are `Hf ξ eⱼ e�
 `ξ` belongs to the coordinate: each `fᵢ` has its own, on the segment and so in `R^z` when
 `R^z` is convex, which is [1, Eq. 23]'s `Hᵈ⁽ⁱ⁾(ξ) ∈ Hᵈ⁽ⁱ⁾` row by row. [1, Eq. 10], [1, Eq. 11]
 and [1, Eq. 20] take one `ξ` for all coordinates at once, which this does not give and which
-fails (`SharedLagrangePointCounterexample`).
+fails (`SharedLagrangePoint`).
 
 The proof is the mean value theorem twice along `φ(s) = F(z* + s ν)`: Cauchy's form for
 `φ(s) - s φ'(0)` against `s²` on `[0, 1]` gives `c` with `φ'(c) - φ'(0) = 2c (φ(1) - φ(0) - φ'(0))`,

@@ -12,7 +12,7 @@ public import Mathlib.Analysis.CStarAlgebra.Matrix
 [1, Prop. 1], corrected: if `Σ = G Gᵀ` is invertible, the law of `c + G N` has the density
 `(2π)^{-n/2} det(Σ)^{-1/2} exp(-½ (x - c)ᵀ Σ⁻¹ (x - c))` on `ℝⁿ`. [1] prints `(2π)^{-q/2}`, the
 normalization of the `q` independent generators' joint density, which is not one of `x ∈ ℝⁿ`
-when `q > n` (`GZonotopeLawPrintedPdfCounterexample`). And [1]'s hypothesis "order greater than
+when `q > n` (`GZonotopeLawPrintedPdf`). And [1]'s hypothesis "order greater than
 one (`q > n`)" does not make `Σ` invertible — `G` needs rank `n`, which `det Σ ≠ 0` states;
 `q = n` with `G` invertible is allowed too. The proof goes through the square root `B` of `Σ`:
 `c + G N` and `c + B N` have the same law (`gZonotopeLaw_eq`), and `B` is square and

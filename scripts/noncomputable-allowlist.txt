@@ -51,12 +51,10 @@ levelSet  real-layer: a worked example over the real layer (reals, trigonometric
 LinearARX.computeGO  real-layer: the GO parameters as real matrices, powers of the real window matrix; the guarantee is a statement about runs over ℝ
 LinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearSys.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
-LinearSysDT.reachLTVCora  real-layer: CORA's `reach` loop for a time-varying `linearSysDT` as printed over real zonotopes with `reduceGirard`, the model `reachLTVCora_counterexample` runs; CORALean's `LinearSysDT` is time-invariant
 LinearSysDT.computeGO  real-layer: the GO parameters as real matrices, powers of the real state matrix; the guarantee is a statement about runs over ℝ
 linProbInput  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
 linProbState  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
 linProbSys  real-layer: a worked example over the real layer (reals, trigonometric or differential-algebraic objects), proved and never run
-NonlinDASys.outputSetLinearCora  real-layer: the zeroth and first order of CORA's output set, from a real Jacobian (`fderiv`); a statement about a real output function
 NonlinDASys.outputSetLinear  real-layer: the zeroth and first order of the output set, from real Jacobians (`fderiv`); a statement about a real output function
 NonlinearSys.identify  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 NonlinearSys.identifyCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
@@ -335,14 +333,6 @@ NonlinearSys.linPoint  real-layer: the expansion point at the real `f`; runs in 
 NonlinearSys.linReachInner  real-layer: CORA's `contDynamics/linReachInner.m` over exact sets, the exact Minkowski difference of `Set`s at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linReachInnerErr  real-layer: the abstraction error loop of CORA's `linReachInner.m` over exact sets, its stopping test a comparison of real vectors; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.linReachPoly  real-layer: the `'poly'` step at a supplied Hessian and third-order bound; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
-NonlinearSys.linReachCora1D  real-layer: CORA's `'lin'` step as printed over real intervals in one dimension at a supplied Hessian bound, the model `linReachCora1D_hessianRegion_counterexample` runs; the float step checks its region first, see `NonlinearSys.FloatHessModel.linReachFloat`
-NonlinearSys.linReachTensor3Cora2D  real-layer: CORA's `'lin'` step at `tensorOrder = 3` as printed over real boxes in two dimensions at supplied interval kernels, the model `linReachTensor3Cora2D_index_counterexample` runs; the float step checks its region first, see `NonlinearSys.FloatHessModel.linReachFloat`
-NonlinearSys.abstrErrAdaptiveTensor3Cora2D  real-layer: CORA's `priv_abstractionError_adaptive` ('lin', tensorOrder 3) as printed over real boxes in two dimensions at supplied interval kernels, the model `abstrErrAdaptiveTensor3Cora2D_factor_counterexample` runs; no float refinement
-NonlinearSys.outputSetCora  real-layer: CORA's `aux_outputSet` at `out_isLinear` after `postProcessing`, from real Jacobians (`fderiv`), the model `outputSetCora_counterexample` runs; a statement about a real output function
-NonlinearSys.abstrErrAdaptiveCora1D  real-layer: CORA's `priv_abstractionError_adaptive` ('lin', tensorOrder 2) as printed over real intervals in one dimension at a supplied interval Hessian, for `linReachAdaptiveCora1D`; the float step checks its region first, see `NonlinearSys.FloatHessModel.adaptStepFloat`
-NonlinearSys.adaptErrLoopCora1D  real-layer: the abstraction-error loop of CORA's `linReach_adaptive` as printed, deciding real comparisons, for `linReachAdaptiveCora1D`
-NonlinearSys.optimalDeltatCora  real-layer: CORA's `aux_optimaldeltat` as printed over the reals (real logarithm and powers, a scan for the first minimizer); the float tuning is `NonlinearSys.FloatHessModel.optDeltatFloat`
-NonlinearSys.linReachAdaptiveCora1D  real-layer: the first step of CORA's `linReach_adaptive` ('lin') as printed over real intervals in one dimension at a supplied interval Hessian, the model `linReachAdaptiveCora1D_hessianRegion_counterexample` runs; the float step checks its region first, see `NonlinearSys.FloatHessModel.adaptStepFloat`
 NonlinearSys.polyReachReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
 NonlinearSys.polyReachRun  real-layer: [Althoff 2013, Alg. 1]'s loop at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.reachAlgFloat` at `.poly` (`Encloses.reachAlgFloat_outer`)
 NonlinearSys.polyReachStep  real-layer: [Althoff 2013, Alg. 1]'s step at supplied derivative bundles; runs in floats as `NonlinearSys.FloatHessModel.linReachFloat` at `.poly` (`Encloses.linReachFloat_outer`)
@@ -432,26 +422,19 @@ LinearSys.oneStep  real-layer: the one-step reachable sets at the real matrix ex
 Krylov.arnoldi  real-layer: the Arnoldi iteration over ℝ (Euclidean norm and division by it), the subject of Althoff's Krylov paper; no float Krylov reachability yet
 Krylov.arnoldiBasis  real-layer: the basis V of the Arnoldi iteration over ℝ, read off `Krylov.arnoldi`; no float Krylov reachability yet
 Krylov.arnoldiHessenberg  real-layer: the Hessenberg matrix H of the Arnoldi iteration over ℝ, read off `Krylov.arnoldi`; no float Krylov reachability yet
-Krylov.reachKrylovCora1D  real-layer: CORA's first `'krylov'` time-point set as printed over the reals in one dimension (real `exp`, the real Arnoldi pass), the model `reachKrylovCora1D_constant_counterexample` runs; no float Krylov reachability yet
 STL.CNF.upsilon  real-layer: time is `ℝ≥0` and `X_{c/2}` divides by two, which `NNReal` cannot compute; the transformation acts on reach sequences indexed by real time
 StarSet.rowBounds  real-layer: the star set of CORA's constrained-zonotope propagation is over ℝ, no scalar-generic form yet; bounds of a neuron over the factor box
-StarSet.coraRowBounds  real-layer: the star set's neuron bounds as CORA's code computes them, kept for the counterexample, ℝ-only for the same reason
 StarSet.reluNeuron  real-layer: one ReLU neuron step on the real star set, ℝ-only for the same reason
 Layer.reluStar  real-layer: the ReLU layer on the real star set, a loop of the neuron step, ℝ-only for the same reason
 IntervalChain.fwd  real-layer: the interval forward pass of linear and activation layers over ℝ, whose derivative the backpropagation is the adjoint of
 IntervalChain.jvp  real-layer: the tangent propagation of the interval chain, the specification its backpropagation is the adjoint of
 IntervalChain.backprop  real-layer: CORA's interval backpropagation over ℝ, ℝ-only like `Chain.backprop`
 NonlinDASys.linError  real-layer: [Althoff, Krogh 2014, Cor. 1] over the real `Zonotope.quadMap` and `Interval.zonotope`; no float refinement
-NonlinDASys.compLocalErrorCora  real-layer: CORA's per-subsystem compositional linearization error, read for its counterexample only
-NonlinDASys.linErrorCora  real-layer: CORA's sign-flipped variant of `NonlinDASys.linError`, read for its counterexample only
-NonlinDASys.linReachCora  real-layer: CORA's `linReach` step at `NonlinDASys.linErrorCora`, read for its counterexample only
-NonlinDASys.linReachCompCora  real-layer: CORA's compositional `linReach` step at `NonlinDASys.compLocalErrorCora`, read for its counterexample only
 
 dmdCandidate  real-layer: the dynamic mode decomposition at a real SVD factorization (an argument, not computed); no float SVD exists to run it on
 LinearARX.ofCharpoly  real-layer: the coefficients of the real characteristic polynomial; `LinearARX.ofObserver`, its sibling, is real-layer too
 LinearSysDT.toLinearSys  real-layer: the converted system at a real matrix logarithm (an argument, Mathlib has none) and the real matrix inverse; no float counterpart
 LinProbSys.initReachCov  real-layer: CORA's input covariance at a diagonal `A`, real exponential; kept to state the finding that it is the printed, wrong-sign form
-LinProbSys.reachCovCora  real-layer: the covariance CORA's reach loop carries (`post` with `initReachCov`), read for its counterexample only; no float counterpart
 LinProbSys.inputCov  real-layer: the corrected one-step noise covariance at the real exponential and matrix inverse; a Gaussian process has no float counterpart
 LinProbSys.initReach  real-layer: the first step of the probabilistic reach loop at the real matrix exponential, inverse and `Real.ProbZonotope`; a Gaussian process has no float counterpart
 LinProbSys.post  real-layer: one step of the probabilistic reach loop at the real matrix exponential and `Real.ProbZonotope`; a Gaussian process has no float counterpart
@@ -468,7 +451,6 @@ sindyStep  real-layer: one pass of sequential thresholded least squares, compari
 sindy  real-layer: sequential thresholded least squares at real coefficients, the regression an argument; no float counterpart
 sindyBig  real-layer: the entries at least the threshold in magnitude, a filter on real comparisons
 NonlinParamSys.linearize  real-layer: the matrix zonotopes of real Jacobians (`fderiv`) over the parameter box; no float Jacobian of a real `f` exists to run it on
-NonlinParamSys.linReachCora  real-layer: one step of `linReach` on the real-layer `linearize` and `initReachInputDependence`; the float counterpart of the first needs a `FloatModel`, of the second a float interval matrix, neither is carried
 NonlinDASys.linReach  real-layer: one DAE linearization step through `LinearSys.oneStep` at the real matrix exponential; no float refinement
 NonlinDASys.initReach  real-layer: `NonlinDASys.linReach` on each start set, split by `Zonotope.split`; no float refinement
 NonlinDASys.reach  real-layer: Althoff and Krogh `Alg. 1`, line 1 and the loop over zonotopes at the real exponential, with the linearization, Cor. 1's errors and the split as arguments; proved sound for certified runs over ℝ and never run
@@ -491,16 +473,6 @@ forwardInnerRange  real-layer: [1, Alg. 1, Step 3] through `kaucherInnerStep` at
 GuardMap.abstractionError  real-layer: CORA's `aux_abstractionError` of the hyperplane map at the real matrix exponential of `|A|tmax` and `Real.Zonotope`
 NonlinearSys.WithSteps.guardIntersectPancake  real-layer: CORA's `guardIntersect_pancake` at supplied certificates, with a real square root for the normal
 Location.guardIntersectHyperplaneMap  real-layer: CORA's `guardIntersect_hyperplaneMap` over `Real.Zonotope`, with real divisions and `Real.sqrt`
-GuardMap.abstractionErrorCora  real-layer: CORA's printed `aux_abstractionError` with `err1` overwritten, read for its counterexample only
-Location.guardIntersectHyperplaneMapCoraErr  real-layer: `Location.guardIntersectHyperplaneMap` with CORA's printed error, read for its counterexample only
-NonlinearSys.reachInnerScalingCora1D  real-layer: CORA's `'scale'` inner approximation as printed in one dimension at a supplied optimizer and contractor, read for its counterexample only
-STL.evaluatePredicateUnionCora  real-layer: the union-of-unsafe-sets branch of CORA's `aux_evaluatePredicate` as printed, over real zonotope and halfspaces; the model `evaluatePredicateUnionCora_lastOnly_counterexample` runs
-STL.evaluatePredicateUnionPolytopeCora  real-layer: the union-of-unsafe-sets branch of CORA's `aux_evaluatePredicate` as printed, over real zonotope and polytopes, `isIntersecting` a parameter; read for the verdict counterexample only
-STL.safeToUnsafeCora  real-layer: CORA's `aux_safe2unsafe` as printed over real polytopes, `isIntersecting` a parameter; read for the verdict counterexample only
-STL.verifySTLKochdumperGloballyCora  real-layer: the first iteration of CORA's `priv_verifySTL_kochdumper` on `ẋ = 0` and `globally(φ,[0,T])`, as printed for that path; the model `verifySTLKochdumperGloballyCora_unionLastOnly_counterexample` runs
-STL.robustnessReachSetGloballyCora  real-layer: CORA's `stl/robustness` on a one-branch reach set of a 1-D system against `globally(x(1) > 0,[0,T])`, as printed for that path; read for its counterexample only
-LinearSys.verifyRAIntersectionDistanceCora  real-layer: CORA's `aux_distanceIntersectionZono` in `ℝ¹` (sSup/sInf of the intersection), read for the touching-verdict counterexample only
-LinearSys.verifyRAOuterVerdictCora  real-layer: the verdict of CORA's `priv_verifyRA_zonotope` for one outer set and one unsafe set in `ℝ¹`, no safe set, as printed; its counterexample runs
 STL.depBloating  real-layer: Eq. (15) of Kochdumper-Bak as printed, a Minkowski sum of maps of `U₀` by matrices and an interval matrix over real zonotopes
 STL.depBox  real-layer: `interval(Z)` of Alg. 1 of Kochdumper-Bak, the interval hull as a real zonotope, a sum of absolute values
 STL.depCurvatureF  real-layer: Eq. (18) `F` of Kochdumper-Bak, an interval matrix of real terms and the matrix exponential remainder
@@ -513,7 +485,6 @@ STL.depReachInterval  real-layer: Eq. (19) `R(τ_i)` of Kochdumper-Bak, the conv
 STL.depReachStep  real-layer: lines 5-7 of Alg. 1 of Kochdumper-Bak, the matrix exponential applied to real zonotopes
 STL.Tree.halfspace2set  real-layer: tests the real coefficients of a halfspace row for zero (`A ~= 0`), which `ℝ` cannot decide computably, to build a comparison over real `STL.Expr` constants
 STL.Tree.polytope2stl  real-layer: the conjunction of `STL.Tree.halfspace2set` rows of a real `HPolytope`
-STL.Tree.polytope2stlCora  real-layer: the conjunction of `STL.Tree.halfspace2set` inequality rows of a real `HPolytope`, as printed
 STLInterval.stlInterval  real-layer: `@stlInterval` bounds are `EReal`, whose order (`lb > ub`) `ℝ` cannot decide computably; the constructor's normalization
 STLInterval.and_  real-layer: `@stlInterval/and_.m` over `EReal` bounds, compared by the order of `EReal`
 STLInterval.plus  real-layer: `@stlInterval/plus.m` over `EReal` bounds
@@ -523,7 +494,6 @@ STLInterval.minus  real-layer: `@stlInterval/minus.m` over `EReal` bounds, compa
 STLInterval.minusInterval  real-layer: `@stlInterval/minus.m` with a real-layer `Interval (Vec ℝ 1)` subtrahend, over `EReal` bounds
 STLInterval.minusNum  real-layer: `@stlInterval/minus.m` with a real number, over `EReal` bounds
 STLInterval.minkDiff  real-layer: `@stlInterval/minkDiff.m` over `EReal` bounds, with `Inf - Inf` taken as `+∞`
-STLInterval.minkDiffCora  real-layer: `@stlInterval/minkDiff.m` with `Inf - Inf = NaN` as MATLAB computes it, read for its counterexample only
 STLInterval.leftClosure  real-layer: `@stlInterval/leftClosure.m` over `EReal` bounds
 STLInterval.rightClosure  real-layer: `@stlInterval/rightClosure.m` over `EReal` bounds
 STLInterval.toLeft  real-layer: `@stlInterval/toLeft.m` over `EReal` bounds
@@ -554,7 +524,6 @@ SyntaxTree.funHanLog  real-layer: the `funHan` of CORA's `syntaxTree.m` for this
 SyntaxTree.funHanMinus  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanPlus  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanPower  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
-SyntaxTree.funHanPowerOddCora  real-layer: the odd branch of `aux_power_` of CORA's `syntaxTree.m` as printed, over real-layer intervals with the real roots; read for its counterexample only
 SyntaxTree.funHanSin  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanSinh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanSinhCora  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
@@ -582,13 +551,9 @@ SyntaxTree.restrict  real-layer: a helper of the `funHan`s of `syntaxTree.m` ove
 SyntaxTree.signedRoots  real-layer: a helper of the `funHan`s of `syntaxTree.m` over real-layer intervals and the real elementary functions
 SyntaxTree.sin  real-layer: the node `sin` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.sinh  real-layer: the node `sinh` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
-SyntaxTree.sinhCora  real-layer: the node `sinhCora` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
-SyntaxTree.sinhCoraTree  real-layer: the tree of the counterexample to CORA's printed `funHan`, over real-layer intervals; read for its counterexample only
 SyntaxTree.sqrt  real-layer: the node `sqrt` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.sum  real-layer: the node `sum` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.tan  real-layer: the node `tan` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
-SyntaxTree.tanCora  real-layer: the node `tanCora` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
-SyntaxTree.tanCoraTree  real-layer: the tree of the counterexample to CORA's printed `funHan`, over real-layer intervals; read for its counterexample only
 SyntaxTree.tanh  real-layer: the node `tanh` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.times  real-layer: the node `times` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
 SyntaxTree.timesNumLeft  real-layer: the node `timesNumLeft` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
@@ -606,4 +571,3 @@ FourValuedSignal.fromKleeneSignal  real-layer: takes the real-layer `STLInterval
 FourValuedSignal.set  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 FourValuedSignal.uniformSignal  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 FourValuedSignal.combine  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
-Specification.distancePolyPointCora  spec: CORA's `aux_distancePolyPoint` as printed, with the linear program as an infimum and `linsolve` as a chosen solution, a model for a counterexample and never run

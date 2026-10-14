@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Krylov.Definitions.API
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.API
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.API
+public import CORALean.ContDynamics.LinearSys.Krylov.Counterexamples.API
 
 /-!
 # Reachability in the Krylov subspace, collected

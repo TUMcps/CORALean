@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.NonlinDASys.Instances
 public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
 public import CORALean.ContDynamics.NonlinDASys.Operations.API
 public import CORALean.ContDynamics.NonlinDASys.Theorems.API
+public import CORALean.ContDynamics.NonlinDASys.Counterexamples.API
 
 /-!
 # Nonlinear differential-algebraic systems, collected

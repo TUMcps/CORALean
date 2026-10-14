@@ -11,7 +11,7 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
 [1, Def. 3 (arcsin)] rewrites `arcsin f = arcsin c_f + arcsin g` under the sole condition that
 the range lies in `(-1, 1)`. `g` is `sin (arcsin f - arcsin c_f)`, so the identity is
 `arcsin (sin θ) = θ`, which holds exactly when `|θ| ≤ π/2`: the corrected condition, and the
-reason the printed one is not enough (`ArcsinShiftCounterexample`).
+reason the printed one is not enough (`ArcsinShift`).
 
 ## References
 

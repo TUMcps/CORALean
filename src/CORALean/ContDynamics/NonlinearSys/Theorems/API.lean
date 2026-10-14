@@ -17,7 +17,6 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimLePow
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPow
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimTendstoPowConst
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderEqTopIff
-public import CORALean.ContDynamics.NonlinearSys.Theorems.GainOrderMaxCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrEqLocalAbstrErr
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErr
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GlobalAbstrErrLeLocalAbstrErrOfSolver
@@ -26,11 +25,6 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderMono
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyRegion
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachCora1DHessianRegionCounterexample
-public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrAdaptiveTensor3Cora2DFactorCounterexample
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachTensor3Cora2DIndexCounterexample
-public import CORALean.ContDynamics.NonlinearSys.Theorems.OutputSetCoraCounterexample
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachAdaptiveCora1DHessianRegionCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OptDeltatDescent
@@ -57,7 +51,6 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachEvalOn
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinTimeIntervalOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionOfAnalytic
-public import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetAbstrReach
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetCentreAbstrReach
@@ -65,7 +58,6 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ClassicalTrajectoryIff
 public import CORALean.ContDynamics.NonlinearSys.Theorems.TuneDeltatInitGain
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
-public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsEqCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.EnclosesOfHasFDerivAt
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
@@ -101,25 +93,19 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffInputSolutionSubsetReachSet
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ConvexHullTimeIntervalCounterexample
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ConvexHullTimeIntervalConvexCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CancelRedundantCovers
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimDerivTendsto
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimDerivLimitNonpos
-public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDerivCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetReachSetAdd
 public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffStepSubsetReachSet
 public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffLoopAdd
 public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffLoopSubsetReachSet
 public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffCertOfAbstractionError
-public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffTimeIntervalCounterexample
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerSubsetReachSet
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubsetReachSet
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerCertOfAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSet
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSetHorizon
-public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerScalingCounterexample
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerScalingCora1DCounterexample
 
 /-!
 # What `NonlinearSys` guarantees

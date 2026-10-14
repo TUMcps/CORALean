@@ -4,6 +4,7 @@ public import CORALean.ContSet.Taylm.Real.Definitions.API
 public import CORALean.ContSet.Taylm.Real.Taylm
 public import CORALean.ContSet.Taylm.Real.Operations.API
 public import CORALean.ContSet.Taylm.Real.Theorems.API
+public import CORALean.ContSet.Taylm.Real.Counterexamples.API
 
 /-!
 # Taylor models, collected

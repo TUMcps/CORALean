@@ -8,7 +8,6 @@ public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
 public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
 public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemSimulateBoxFloat
 public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemReach
-public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachStepCoraHoldsOfError
 public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
 public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTTrajectory
 public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
