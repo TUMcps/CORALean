@@ -52,14 +52,24 @@ so the denominator is CORA's, not ours. Those are `spectraShadow`, `taylm`, `aff
 | Method | State | In CORALean | Note |
 ```
 
-**State.** One of four:
+**State.** One of five:
 
 | State | Meaning |
 |---|---|
 | `proved` | a real-layer definition and a theorem about it: an exact, outer or inner statement (or, for a property such as `isBounded`, the theorem that characterizes it), linked in the third cell. A definition alone is not `proved`. |
 | `float` | `proved`, and runnable at float, by one of two routes (below). |
-| `—` | not yet. A definition without a theorem lands here, and says so in the note. |
+| `bound` | CORALean has a theorem about a **sound but different or looser** result than CORA's, so the row is better than `—` but is not CORA's method (definition below). The note says what differs. |
+| `—` | not yet: nothing usable. A definition without a theorem lands here, and says so in the note. |
 | `out-of-scope` | CORALean does not do this, for one of the reasons below. "Hard" is never a reason. |
+
+**When a method is `proved` or `float` at all.** Only when the Lean definition *is* CORA's method: the same algorithm and the same outputs. Options or secondary outputs of CORA that the Lean definition does not model are stated in the note; if CORA's *main* output differs (a different set, a tighter or looser set, another default algorithm whose result is not the same set), the row is not `proved`/`float`.
+
+**When a method is `bound`.** The row links a definition and a theorem (as `proved`) such that
+
+* the result is a **sound** statement about the mathematical object CORA's method approximates (the exact set, function range or exponential, as the method's name and help text say): an outer approximation of it, or an inner one, and the theorem says so (it need not contain the particular set CORA's own, possibly different, enclosure returns); and
+* the definition is **not** CORA's method: the result is coarser (a bounding box or interval hull where CORA returns a tight set; a larger remainder; an enclosure of a segment where CORA solves an LP; a box where CORA builds eigen generators), or computed by a different algorithm than CORA's default.
+
+The note names what differs from CORA, first, in plain words ("box, CORA: eigen generators"; "different remainder"; "pieces: ..."); an empty note is refused, as is a `route b` note. A `bound` row has no float/real split of its own: one state keeps the tables and the figure simple, and whether the bound runs at float is read from its links (a `float:` part lists the float layer), as for any row; the float backlog is `proved` only. A `bound` row becomes `proved`/`float` when a definition that is CORA's method is added and linked. It is never used for a result that is merely a consequence of other pieces with no statement about CORA's output, or that is unsound.
 
 A `proved` row that is not `float` is the **float backlog** (`needs_float` in
 `experiments/paper/formalization-stats.json`).
@@ -136,83 +146,83 @@ Rulings on borderline cases:
 ## Counts
 
 <!-- coverage-counts -->
-| Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |
-|---|---|---|---|---|---|---|---|
-| [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 28 | 0 | 10 | 7 |
-| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 2 | 36 | 1 | 8 | 4 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 36 | 0 | 12 | 5 |
-| [contSet](contSet/contSet.md) | contSet | 101 | 1 | 28 | 0 | 72 | 0 |
-| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 35 | 0 | 12 | 6 |
-| [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 7 | 0 |
-| [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 20 | 0 | 8 | 0 |
-| [interval](contSet/interval.md) | contSet | 110 | 0 | 92 | 0 | 18 | 3 |
-| [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 9 | 3 |
-| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 1 | 54 | 3 | 15 | 8 |
-| [polygon](contSet/polygon.md) | contSet | 46 | 1 | 32 | 2 | 11 | 9 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 3 | 43 | 0 | 12 | 8 |
-| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 5 | 14 | 0 | 9 | 4 |
-| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 23 | 0 | 9 | 5 |
-| [taylm](contSet/taylm.md) | contSet | 51 | 1 | 38 | 0 | 12 | 0 |
-| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 34 | 0 | 7 | 5 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 6 | 60 | 0 | 14 | 12 |
-| [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 2 | 2 |
-| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 6 | 0 | 11 | 4 |
-| [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 1 | 6 | 0 | 4 | 2 |
-| [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 3 | 0 | 0 | 5 | 1 |
-| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 4 | 0 | 2 | 0 |
-| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 1 | 21 | 1 | 10 | 3 |
-| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 4 | 7 | 0 | 6 | 2 |
-| [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 1 | 0 |
-| [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 6 | 3 | 1 | 3 | 5 |
-| [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 1 | 3 | 1 | 4 | 1 |
-| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 0 | 5 | 0 | 3 | 1 |
-| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 3 | 6 | 1 | 8 | 2 |
-| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 1 | 7 | 0 | 3 | 2 |
-| [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 4 | 0 |
-| [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 2 | 11 | 1 |
-| [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 1 | 0 |
-| [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 0 | 7 | 0 | 3 | 0 |
-| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 2 | 13 | 1 | 8 | 5 |
-| [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 4 | 1 |
-| [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 1 | 6 | 2 |
-| [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 7 | 1 |
-| [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 4 | 1 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 13 | 0 | 41 | 2 |
-| [atomicProposition](specification/atomicProposition.md) | specification | 5 | 0 | 0 | 5 | 0 | 0 |
-| [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 0 | 0 | 4 | 0 | 0 |
-| [finiteSignal](specification/finiteSignal.md) | specification | 10 | 0 | 0 | 9 | 1 | 0 |
-| [fourValued](specification/fourValued.md) | specification | 5 | 0 | 0 | 5 | 0 | 0 |
-| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 0 | 0 | 16 | 2 | 0 |
-| [kleene](specification/kleene.md) | specification | 4 | 0 | 0 | 4 | 0 | 0 |
-| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 0 | 0 | 13 | 2 | 0 |
-| [logicSignal](specification/logicSignal.md) | specification | 10 | 0 | 0 | 9 | 1 | 0 |
-| [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 0 | 0 | 6 | 1 | 0 |
-| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 0 | 0 | 4 | 1 | 0 |
-| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 0 | 0 | 10 | 1 | 0 |
-| [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 0 | 0 | 5 | 0 | 0 |
-| [rtl](specification/rtl.md) | specification | 5 | 0 | 0 | 4 | 1 | 0 |
-| [specification](specification/specification.md) | specification | 14 | 0 | 2 | 6 | 6 | 1 |
-| [stl](specification/stl.md) | specification | 52 | 28 | 4 | 15 | 5 | 4 |
-| [stlInterval](specification/stlInterval.md) | specification | 19 | 0 | 0 | 17 | 2 | 0 |
-| [syntaxTree](specification/syntaxTree.md) | specification | 27 | 0 | 0 | 27 | 0 | 0 |
-| [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 0 | 0 | 5 | 1 | 0 |
-| [trajectoryAnalyzer](specification/trajectoryAnalyzer.md) | specification | 2 | 0 | 0 | 2 | 0 | 0 |
-| [ProbOccupancyPrediction](others/ProbOccupancyPrediction.md) | others | 25 | 0 | 0 | 21 | 4 | 0 |
-| [commonocean2cora](others/commonocean2cora.md) | others | 1 | 0 | 0 | 0 | 1 | 0 |
-| [commonroad2cora](others/commonroad2cora.md) | others | 1 | 0 | 0 | 0 | 1 | 0 |
-| [cora2spaceex](others/cora2spaceex.md) | others | 1 | 0 | 0 | 0 | 1 | 0 |
-| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 5 | 4 | 20 | 10 | 0 |
-| [markovchain](others/markovchain.md) | others | 12 | 0 | 0 | 7 | 5 | 0 |
-| [matPolytope](others/matPolytope.md) | others | 20 | 3 | 0 | 10 | 7 | 0 |
-| [matZonotope](others/matZonotope.md) | others | 33 | 3 | 2 | 19 | 9 | 0 |
-| [matrixSet](others/matrixSet.md) | others | 3 | 0 | 0 | 0 | 3 | 0 |
-| [neuralnetwork2cora](others/neuralnetwork2cora.md) | others | 1 | 0 | 0 | 0 | 1 | 0 |
-| [partition](others/partition.md) | others | 12 | 0 | 0 | 10 | 2 | 0 |
-| [powerSystem2cora](others/powerSystem2cora.md) | others | 2 | 0 | 0 | 0 | 2 | 0 |
-| [road](others/road.md) | others | 15 | 0 | 0 | 9 | 6 | 0 |
-| [simulation](others/simulation.md) | others | 7 | 0 | 0 | 4 | 3 | 0 |
-| [spaceex2cora](others/spaceex2cora.md) | others | 40 | 0 | 0 | 0 | 40 | 0 |
+| Class | Group | Methods | proved | float | bound | not yet | out of scope | CORA issues |
+|---|---|---|---|---|---|---|---|---|
+| [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 | 0 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 22 | 6 | 0 | 10 | 7 |
+| [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 2 | 30 | 6 | 1 | 8 | 4 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 31 | 5 | 0 | 12 | 5 |
+| [contSet](contSet/contSet.md) | contSet | 101 | 1 | 28 | 0 | 0 | 72 | 0 |
+| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 33 | 2 | 0 | 12 | 6 |
+| [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 0 | 7 | 0 |
+| [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 20 | 0 | 0 | 8 | 0 |
+| [interval](contSet/interval.md) | contSet | 110 | 0 | 92 | 0 | 0 | 18 | 3 |
+| [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 0 | 9 | 3 |
+| [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 3 | 50 | 2 | 3 | 15 | 8 |
+| [polygon](contSet/polygon.md) | contSet | 46 | 1 | 32 | 0 | 2 | 11 | 9 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 4 | 38 | 4 | 0 | 12 | 8 |
+| [probZonotope](contSet/probZonotope.md) | contSet | 28 | 3 | 14 | 2 | 0 | 9 | 4 |
+| [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 23 | 0 | 0 | 9 | 5 |
+| [taylm](contSet/taylm.md) | contSet | 51 | 1 | 27 | 11 | 0 | 12 | 0 |
+| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 28 | 6 | 0 | 7 | 5 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 5 | 57 | 4 | 0 | 14 | 12 |
+| [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 0 | 2 | 2 |
+| [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 6 | 0 | 0 | 11 | 4 |
+| [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 1 | 6 | 0 | 0 | 4 | 2 |
+| [linProbSys](contDynamics/linProbSys.md) | contDynamics | 8 | 3 | 0 | 0 | 0 | 5 | 1 |
+| [linearARX](contDynamics/linearARX.md) | contDynamics | 7 | 1 | 4 | 0 | 0 | 2 | 0 |
+| [linearSys](contDynamics/linearSys.md) | contDynamics | 33 | 1 | 21 | 0 | 1 | 10 | 3 |
+| [linearSysDT](contDynamics/linearSysDT.md) | contDynamics | 17 | 4 | 7 | 0 | 0 | 6 | 2 |
+| [neurNetContrSys](contDynamics/neurNetContrSys.md) | contDynamics | 5 | 0 | 4 | 0 | 0 | 1 | 0 |
+| [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 6 | 3 | 0 | 1 | 3 | 5 |
+| [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 1 | 3 | 0 | 1 | 4 | 1 |
+| [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 0 | 5 | 0 | 0 | 3 | 1 |
+| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 3 | 6 | 0 | 1 | 8 | 2 |
+| [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 1 | 7 | 0 | 0 | 3 | 2 |
+| [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 0 | 4 | 0 |
+| [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 0 | 2 | 11 | 1 |
+| [hybridDynamics](hybridDynamics/hybridDynamics.md) | hybridDynamics | 2 | 0 | 1 | 0 | 0 | 1 | 0 |
+| [linearReset](hybridDynamics/linearReset.md) | hybridDynamics | 10 | 0 | 7 | 0 | 0 | 3 | 0 |
+| [location](hybridDynamics/location.md) | hybridDynamics | 24 | 2 | 13 | 0 | 1 | 8 | 5 |
+| [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 0 | 4 | 1 |
+| [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 0 | 1 | 6 | 2 |
+| [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 0 | 7 | 1 |
+| [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 0 | 4 | 1 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 13 | 0 | 0 | 41 | 2 |
+| [atomicProposition](specification/atomicProposition.md) | specification | 5 | 0 | 0 | 0 | 5 | 0 | 0 |
+| [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 0 | 0 | 0 | 4 | 0 | 0 |
+| [finiteSignal](specification/finiteSignal.md) | specification | 10 | 0 | 0 | 0 | 9 | 1 | 0 |
+| [fourValued](specification/fourValued.md) | specification | 5 | 0 | 0 | 0 | 5 | 0 | 0 |
+| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 0 | 0 | 0 | 16 | 2 | 0 |
+| [kleene](specification/kleene.md) | specification | 4 | 0 | 0 | 0 | 4 | 0 | 0 |
+| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 0 | 0 | 0 | 13 | 2 | 0 |
+| [logicSignal](specification/logicSignal.md) | specification | 10 | 0 | 0 | 0 | 9 | 1 | 0 |
+| [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 0 | 0 | 0 | 6 | 1 | 0 |
+| [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 0 | 0 | 0 | 4 | 1 | 0 |
+| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 0 | 0 | 0 | 10 | 1 | 0 |
+| [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 0 | 0 | 0 | 5 | 0 | 0 |
+| [rtl](specification/rtl.md) | specification | 5 | 0 | 0 | 0 | 4 | 1 | 0 |
+| [specification](specification/specification.md) | specification | 14 | 0 | 2 | 0 | 6 | 6 | 1 |
+| [stl](specification/stl.md) | specification | 52 | 28 | 4 | 0 | 15 | 5 | 4 |
+| [stlInterval](specification/stlInterval.md) | specification | 19 | 0 | 0 | 0 | 17 | 2 | 0 |
+| [syntaxTree](specification/syntaxTree.md) | specification | 27 | 0 | 0 | 0 | 27 | 0 | 0 |
+| [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 0 | 0 | 0 | 5 | 1 | 0 |
+| [trajectoryAnalyzer](specification/trajectoryAnalyzer.md) | specification | 2 | 0 | 0 | 0 | 2 | 0 | 0 |
+| [ProbOccupancyPrediction](others/ProbOccupancyPrediction.md) | others | 25 | 0 | 0 | 0 | 21 | 4 | 0 |
+| [commonocean2cora](others/commonocean2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
+| [commonroad2cora](others/commonroad2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
+| [cora2spaceex](others/cora2spaceex.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
+| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 5 | 4 | 1 | 19 | 10 | 0 |
+| [markovchain](others/markovchain.md) | others | 12 | 0 | 0 | 0 | 7 | 5 | 0 |
+| [matPolytope](others/matPolytope.md) | others | 20 | 3 | 0 | 0 | 10 | 7 | 0 |
+| [matZonotope](others/matZonotope.md) | others | 33 | 3 | 2 | 3 | 16 | 9 | 0 |
+| [matrixSet](others/matrixSet.md) | others | 3 | 0 | 0 | 0 | 0 | 3 | 0 |
+| [neuralnetwork2cora](others/neuralnetwork2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
+| [partition](others/partition.md) | others | 12 | 0 | 0 | 0 | 10 | 2 | 0 |
+| [powerSystem2cora](others/powerSystem2cora.md) | others | 2 | 0 | 0 | 0 | 0 | 2 | 0 |
+| [road](others/road.md) | others | 15 | 0 | 0 | 0 | 9 | 6 | 0 |
+| [simulation](others/simulation.md) | others | 7 | 0 | 0 | 0 | 4 | 3 | 0 |
+| [spaceex2cora](others/spaceex2cora.md) | others | 40 | 0 | 0 | 0 | 0 | 40 | 0 |
 <!-- /coverage-counts -->
 
 `python3 scripts/check-references.py --fix` rewrites the table above.
@@ -222,9 +232,9 @@ Rulings on borderline cases:
 * every method file of a tabulated class has a row, and a row names a method file: the
   method lists are in [cora-inventory.json](cora-inventory.json), committed so CI needs no
   CORA checkout, and compared with one (`CORA_DIR`, default `~/CORA`) where it exists;
-* the state is one of the four, the out-of-scope reason one of the six;
+* the state is one of the five, the out-of-scope reason one of the six;
 * every link points at a Lean file that exists and declares the named declaration;
-* a `proved` row links a theorem (or a class whose fields carry the guarantee), and a
+* a `proved` or `bound` row links a theorem (or a class whose fields carry the guarantee), a `bound` row's note says what differs, and a
   `float` row links a float-layer definition and a float-layer theorem (route a) or carries a
   `route b —` note whose linked definitions are outside `Real/`, not `noncomputable`, not on the
   allowlist, and whose theorem or class names a scalar or a set representation (route b);

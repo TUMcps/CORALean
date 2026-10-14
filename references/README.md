@@ -149,6 +149,9 @@ per CORA class (`contSet`, `contDynamics`, `hybridDynamics`, `nn`), one row per 
 
 * `proved`: a real-layer definition with an exact, outer or inner theorem;
 * `float`: additionally a float-layer computable definition with an outer (or inner) theorem;
+* `bound`: a theorem about a sound result that is looser than, or different from, CORA's
+  (a bounding box where CORA computes a tight set, another remainder or default algorithm); the note
+  says what differs;
 * `—`: not yet;
 * `out-of-scope`, with one of six reasons: `plotting/display`, `random/sampling`,
   `solver-dependent`, `io/conversion-to-matlab-objects`, `matlab-runtime`, `deprecated`.
@@ -158,7 +161,7 @@ A `proved` row without a float refinement is the float backlog. A row may carry 
 `cora-issue` note where [FINDINGS.md](../FINDINGS.md) records that CORA's own implementation
 is wrong. `scripts/check-references.py` checks the tables: every method file has a row,
 every link resolves to a declaration the file has, a `proved` row links a theorem, a `float`
-row a float-layer theorem, and the counts are the tables' counts.
+row a float-layer theorem, a `bound` row a theorem and a note, and the counts are the tables' counts.
 
 ## Theorem categories
 

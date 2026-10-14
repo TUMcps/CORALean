@@ -38,10 +38,11 @@ script would write now, so the figure cannot lag the tables.
 
 `references/coverage/` is the other half: one table per CORA class, one row per CORA
 method (`contSet/@zonotope/plus.m`, ...), saying whether CORALean answers it
-(`proved`, `float`, `—`, or `out-of-scope` with one of a few documented reasons).
+(`proved`, `float`, `bound`, `—`, or `out-of-scope` with one of a few documented reasons).
 Every method file of every listed class must have a row; every linked declaration
-must exist in the linked file; a `proved` row must link a theorem and a `float`
-row a float-layer theorem. The method inventory is committed
+must exist in the linked file; a `proved` row must link a theorem, a `float`
+row a float-layer theorem, and a `bound` row a theorem and a note saying what differs
+from CORA. The method inventory is committed
 (`references/coverage/cora-inventory.json`) so CI needs no CORA checkout, and is
 compared with one when `CORA_DIR` (default `~/CORA`) exists. See
 `references/coverage/README.md`.
@@ -527,8 +528,9 @@ INVENTORY = COVERAGE / "cora-inventory.json"
 CORA_GROUPS = ("contSet", "contDynamics", "hybridDynamics", "nn", "specification", "others")
 # What a row says about a CORA method: a real-layer definition with a theorem about it
 # (`proved`), additionally a float-layer computable definition with a theorem (`float`),
+# a sound but looser or different result than CORA's (`bound`, the note says what differs),
 # not yet (`—`), or not CORALean's business (`out-of-scope`, with a reason).
-CORA_STATES = ("proved", "float", "—", "out-of-scope")
+CORA_STATES = ("proved", "float", "bound", "—", "out-of-scope")
 CORA_OUT = ("plotting/display", "random/sampling", "solver-dependent",
             "io/conversion-to-matlab-objects", "matlab-runtime", "deprecated")
 # The groups the paper's overview shows, one bar each.
@@ -772,11 +774,16 @@ class CoraTable:
                 continue
             found.append((target, name, kinds[0]))
         carries = [(t, n, k) for t, n, k in found if k in ("theorem", "lemma", "class", "structure")]
-        if state in ("proved", "float") and not carries:
+        if state in ("proved", "float", "bound") and not carries:
             say(f"{tag}: `{state}` needs a linked theorem (or the class whose fields carry "
                 "the guarantee); a definition alone is `—`")
         route_b = note.startswith("route b —")
         route_sf = note.startswith("route b (scalar-free) —")
+        if state == "bound" and (route_b or route_sf):
+            say(f"{tag}: a `bound` row is not `route b`: it is not CORA's method")
+        if state == "bound" and not note.strip():
+            say(f"{tag}: a `bound` row's note says what differs from CORA (the result, the "
+                "algorithm or the default)")
         if (route_b or route_sf) and state != "float":
             say(f"{tag}: a `route b` note belongs on a `float` row")
         if state == "float" and route_sf:
@@ -886,16 +893,16 @@ def coverage_tables(say):
 def counts_of(table):
     st = table.states()
     return {"methods": len(st), "proved": st.count("proved"), "float": st.count("float"),
-            "not_yet": st.count("—"), "out_of_scope": st.count("out-of-scope")}
+            "bound": st.count("bound"), "not_yet": st.count("—"), "out_of_scope": st.count("out-of-scope")}
 
 
 def counts_block(tables):
-    lines = ["| Class | Group | Methods | proved | float | not yet | out of scope | CORA issues |",
-             "|---|---|---|---|---|---|---|---|"]
+    lines = ["| Class | Group | Methods | proved | float | bound | not yet | out of scope | CORA issues |",
+             "|---|---|---|---|---|---|---|---|---|"]
     for t in tables:
         c = counts_of(t)
         lines.append(f"| [{t.name}]({t.group}/{t.name}.md) | {t.group} | {c['methods']} | "
-                     f"{c['proved']} | {c['float']} | {c['not_yet']} | {c['out_of_scope']} | {t.issues} |")
+                     f"{c['proved']} | {c['float']} | {c['bound']} | {c['not_yet']} | {c['out_of_scope']} | {t.issues} |")
     return "\n".join(lines) + "\n"
 
 
@@ -1054,7 +1061,7 @@ def coverage_stats(papers, tables):
             "findings": found.get(t.name, zero()),
         })
     def agg(entries):
-        keys = ("methods", "proved", "float", "not_yet", "out_of_scope", "needs_float", "cora_issues")
+        keys = ("methods", "proved", "float", "bound", "not_yet", "out_of_scope", "needs_float", "cora_issues")
         out = {k: sum(e[k] for e in entries) for k in keys}
         out["out_of_scope_by_reason"] = {r: sum(e["out_of_scope_by_reason"][r] for e in entries)
                                          for r in CORA_OUT}
@@ -1322,7 +1329,7 @@ def main():
         return 1
     cov = want["cora_coverage"]["totals"]
     print(f"coverage: {cov['methods']} CORA methods: {cov['proved']} proved, {cov['float']} float, "
-          f"{cov['not_yet']} not yet, {cov['out_of_scope']} out of scope")
+          f"{cov['bound']} bound, {cov['not_yet']} not yet, {cov['out_of_scope']} out of scope")
     by = want["totals"]["by_class"]
     print(f"references: {len(papers)} papers, {done}/{total} results formalized, "
           f"{out} out of scope, all checks passed")
