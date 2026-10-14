@@ -1,33 +1,21 @@
+import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfCheck
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
 import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfCheck
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.HybridDynamics.Theorems.HoldsOfCheck
-import CORALean.HybridDynamics.Theorems.HoldsOfRun
-import CORALean.NN.Layers.Definitions.Enclosure
-import CORALean.NN.Layers.Definitions.Relaxation
-import CORALean.NN.Layers.Definitions.Relu
-import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Operations.Basic
-import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.Specification.Instances
-import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
 
 /-!
 # Reachability at a floating-point representation
 
 Every declaration below is `:=` and nothing else, and that is the claim: the
 discrete-time algorithms need no float counterpart, naming no scalar operation of
-their own. `LinearSysDT.reach`, `NeurNetContrSysDT.reach` and the whole hybrid
-automaton are written against `Scalar 𝕋` and the operation classes, so a float
-representation supplies them the same way an exact one does.
-
-The `def`s below are `def` rather than `noncomputable def`, as are `Sigmoid`,
-`Tanh`, `Softmax`, `maxPool` and `SigmoidPoly`: `Layer` stores no function.
+their own. `LinearSysDT.reach` is written against `Scalar 𝕋` and the operation
+classes, so a float representation supplies it the same way an exact one does, and
+the exact layer's soundness theorems read at a float zonotope or box unchanged.
+`ReachClosedLoopFloat` and `ReachHybridFloat` do the same for a controller in the
+loop and for a hybrid automaton.
 
 An algorithm needs a float counterpart precisely where it computes a *real number
 that is no set operation*, only a set operation having an error box to pay its
@@ -57,6 +45,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ} {
 CORA's `linearSysDT` is given in discrete time to begin with, so its matrix is
 stored data and a float one denotes the affine map exactly, as a linear layer's
 weights do. -/
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set after `k` steps, at a float zonotope. Everything it calls —
 `mtimes`, `plus`, `reduce` — is the float representation's own. -/
@@ -127,67 +118,6 @@ example (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) {o : ℕ} (ho : 0
         (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U))) :
     spec.Holds {out.eval (x k) (u k)} :=
   sys.holds_of_output (S := 𝒵[𝕋]) out ho R₀ U spec traj k h
-
-/-! ## A network controlling a discrete plant
-
-Both halves are float here — the plant's matrix and the controller's weights —
-and neither the system type nor `reach` notices. -/
-
-/-- Affine, ReLU, affine, in the loop with a two-state plant. -/
-def Example.closedLoopFloat (A : Mat 𝕋 2 2) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
-    (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) : NeurNetContrSysDT 𝕋 𝒵[𝕋] 2 :=
-  ⟨LinearSysDT.canonicalFloat A, .layer (LinearLayer.mk W₁ b₁)
-    (.layer (ReluLayer.mk (𝕋 := 𝕋) reluSlope rfl) (.layer (LinearLayer.mk W₂ b₂) .output))⟩
-
-
--- =====================================  MAIN DEFINITION  ====================================== --
-
-def Example.reachClosedLoopFloat (sys : NeurNetContrSysDT 𝕋 𝒵[𝕋] n)
-    (o : ℕ) (ho : 0 < o) (R₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 n) :=
-  sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩
-
-example (sys : NeurNetContrSysDT 𝕋 𝒵[𝕋] n) {o : ℕ} (ho : 0 < o)
-    (R₀ : Zonotope (Vec 𝕋 n)) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    x k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
-  sys.reach_outer (S := 𝒵[𝕋]) ho R₀ hπ traj k
-
-/-- A box safe set checked on the closed loop's computed zonotope. -/
-example (sys : NeurNetContrSysDT 𝕋 𝒵[𝕋] n) {o : ℕ} (ho : 0 < o)
-    (R₀ : Zonotope (Vec 𝕋 n)) (spec : Specification (Interval (Vec 𝕋 n)))
-    {π : Vec ℝ n → Vec ℝ sys.plant.m}
-    (hπ : sys.contr.Sound π) {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    spec.check (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
-  sys.holds_of_check (S := 𝒵[𝕋]) ho R₀ spec hπ traj k
-
-/-! ## A hybrid automaton
-
-The automaton, its runs and its invariant are propositions over whatever the
-locations are described in — the state's representation and the guard's alike,
-those being separate parameters — so they read at a float one with nothing to
-add. `Transition.W` and `.w` read through `Scalar 𝕋` like `LinearSysDT.A`,
-so that half is not what stops `Transition.jump` at a float representation.
-What stops it is `OfInterval`: `jump` calls `CORALean.Real`'s, converting an
-*exact* real box, and no float representation has that instance — one would have
-to round the box into the representation's own floats before an `InflatedContSet`
-error box exists to pay that rounding into, which is exactly what
-`CORALean.Float.OfInterval` is for instead. `Transition.jumpFloat` is the float
-route, `w` being stored floats already; `BouncingBallFloat` runs it. -/
-
-example {HA : HybridAutomaton 𝒵[𝕋] 𝒵[𝕋] L 𝕋 n}
-    {R : L → Zonotope (Vec 𝕋 n)}
-    (hinv : HA.Invariant R) (spec : Specification (Set (Vec ℝ n))) {ℓ ℓ' : L}
-    {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
-    (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=
-  HA.holds_of_invariant hinv spec run hx h
-
-/-- The same, checked: the invariant at the location the run ends in, against a box. -/
-example {HA : HybridAutomaton 𝒵[𝕋] 𝒵[𝕋] L 𝕋 n}
-    {R : L → Zonotope (Vec 𝕋 n)}
-    (hinv : HA.Invariant R) (spec : Specification (Interval (Vec 𝕋 n))) {ℓ ℓ' : L}
-    {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ)) :
-    spec.check (R ℓ') → (spec.Holds {y}) :=
-  HybridAutomaton.holds_of_check hinv spec run hx
 
 end CORALean.Float
 

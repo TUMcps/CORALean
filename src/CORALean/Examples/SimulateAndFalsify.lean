@@ -1,27 +1,28 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
-import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
 import CORALean.ContSet.ContSet.Theorems.Basic
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 import CORALean.Specification.Theorems.Basic
 
 /-!
-# Reachability and simulation answer opposite halves of the same question
+# A sampled run falsifies a specification the enclosure cannot refute
 
 An enclosure is a superset, so a specification holding on it proves safety and
 one violated on it proves nothing — the violation may sit entirely in the
 approximation error. A sampled run is exact: one point genuinely reached, so a
-specification it violates is genuinely violated. `simulate_mem_reach` is the
-first half, `not_holds_of_simulate` the second, at the same run.
+specification it violates is genuinely violated. `not_holds_of_simulate` turns
+that violation into a verdict on whatever `reach` computes, at any order.
 
-The system here does nothing — `A = 1`, no input — so `simulate` just repeats
-the initial point, and that point already sits outside the safe set: the
-falsification needs no steps to find.
+The system is a discrete double integrator, `x(k+1) = [[1, 1], [0, 1]] x(k)`,
+started at `(0, 1)` with no input: the position grows by the speed `1` every
+step, `x(k) = (k, 1)`. The specification keeps the position at most `3`, so it
+holds at the start and for three steps, and the run leaves the safe set only at
+step `4`: the falsification has to follow the evolution that far.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,44 +35,44 @@ open ContSet
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The identity: the state never moves on its own. -/
-def SAF.sys : LinearSysDT ℝ 2 := LinearSysDT.canonical 1
+/-- The double integrator: position `+=` speed, speed constant. -/
+def SAF.sys : LinearSysDT ℝ 2 := LinearSysDT.canonical !![1, 1; 0, 1]
 
-/-- `2` on the first coordinate, already outside `spec` below. -/
-def SAF.x0 : Vec ℝ 2 := ![2, 0]
+/-- Position `0`, speed `1`. -/
+def SAF.x0 : Vec ℝ 2 := ![0, 1]
 
 def SAF.R0 : Interval (Vec ℝ 2) := Interval.point SAF.x0
 def SAF.U : Interval (Vec ℝ 2) := Interval.point (0 : Vec ℝ 2)
 
-/-- Safe: the first coordinate at most `1`. `x0` already fails it. -/
-def SAF.spec : Specification (Set (Vec ℝ 2)) := Specification.safeSet {x | x 0 ≤ 1}
+/-- Safe: the position at most `3`. `x0` satisfies it. -/
+def SAF.spec : Specification (Set (Vec ℝ 2)) := Specification.safeSet {x | x 0 ≤ 3}
 
-/-- Held at `x0`, at every step: the identity system moved by a zero input. -/
-theorem SAF.sim_const (k : ℕ) :
-    SAF.sys.simulate SAF.x0 (fun _ => (0 : Vec ℝ 2)) k = SAF.x0 := by -- --- PROOF ---
+/-- After `k` steps the run is at position `k`, speed `1`. -/
+theorem SAF.sim_eq (k : ℕ) :
+    SAF.sys.simulate SAF.x0 (fun _ => (0 : Vec ℝ 2)) k = ![(k : ℝ), 1] := by -- --- PROOF ---
   induction k with
-  | zero => rfl
+  | zero => ext i; fin_cases i <;> simp [LinearSysDT.simulate, SAF.x0]
   | succ k ih =>
     simp only [LinearSysDT.simulate]
     rw [ih]
-    simp [SAF.sys, Matrix.one_mulVec]
+    ext i
+    fin_cases i <;> simp [SAF.sys]
 
-/-- `simulate`'s run sits inside `reach`'s enclosure at any order and any
-horizon — the half an enclosure is trusted for. -/
-example {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    SAF.sys.simulate SAF.x0 (fun _ => (0 : Vec ℝ 2)) k
-      ∈ construct (SAF.sys.reach (S := ℐ𝒱) ⟨SAF.R0, SAF.U, 0, k⟩ ⟨o, ho⟩) :=
-  SAF.sys.simulate_mem_reach (S := ℐ𝒱) ho SAF.R0 SAF.U
-    (Interval.mem_point SAF.x0) (fun _ => Interval.mem_point 0) k
+/-- Three steps in, the run is still at position `3`, inside the safe set: this
+sample refutes nothing. -/
+example : SAF.sys.simulate SAF.x0 (fun _ => (0 : Vec ℝ 2)) 3 ∈ {x : Vec ℝ 2 | x 0 ≤ 3} := by
+  simp [SAF.sim_eq]
 
-/-- The sampled run violates `spec` outright, so it refutes `spec` over
-whatever `reach` computes — the half a sample is trusted for, and an enclosure
-never could be, since the violation might be nothing but its own slack. -/
-example {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    ¬ SAF.spec.Holds (construct (SAF.sys.reach (S := ℐ𝒱) ⟨SAF.R0, SAF.U, 0, k⟩ ⟨o, ho⟩)) :=
+/-- Four steps in, the run is at position `4`, so it refutes `spec` over whatever
+`reach` computes at step `4`, at any order — the half a sample is trusted for. -/
+example {o : ℕ} (ho : 0 < o) :
+    ¬ SAF.spec.Holds (construct (SAF.sys.reach (S := ℐ𝒱) ⟨SAF.R0, SAF.U, 0, 4⟩ ⟨o, ho⟩)) :=
   SAF.sys.not_holds_of_simulate (S := ℐ𝒱) ho SAF.R0 SAF.U SAF.spec
-    (Interval.mem_point SAF.x0) (fun _ => Interval.mem_point 0) k
-    (by rw [SAF.sim_const]; simp [SAF.spec, SAF.x0])
+    (Interval.mem_point SAF.x0) (fun _ => Interval.mem_point 0) 4
+    (by
+      rw [SAF.sim_eq]
+      simp [SAF.spec]
+      norm_num)
 
 end CORALean.Real
 

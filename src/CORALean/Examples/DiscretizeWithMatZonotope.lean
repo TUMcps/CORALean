@@ -14,15 +14,18 @@ one that file already runs, declaration for declaration, and not one line of
 the recursion multiplies by `sys.A` through `Mtimes`, which never asked what
 represents the matrix set.
 
+The system is the decay `ẋ = -x`, so the state genuinely moves: the run checked against
+`reach` is `x(k) = (e^{-Δt})ᵏ x₀`, not a fixed point.
+
 What is gained is downstream of this file rather than visible in it. An
 interval matrix bounds each entry of `e^{AΔt}` on its own, so a step forgets
 that the entries move together; a matrix zonotope carries them on shared
 generators, and the step is tighter for it.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,12 +38,13 @@ open Matrix ContSet NormedSpace Scalar
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
-/-- The system left with no dynamics at all, so the one hypothesis the
-enclosure needs is immediate: `‖0‖ = 0` dominates any geometric series. -/
-def DMZ.sys : LinearSys ℝ 1 := LinearSys.canonical 0
+/-- A decay, `ẋ = -x`: its flow is a contraction, and the one hypothesis the enclosure
+needs is `‖Δt • A‖ / 2 = 1 / 2 < 1`. -/
+def DMZ.sys : LinearSys ℝ 1 := LinearSys.canonical (-1)
 
 theorem DMZ.hε : ‖(1:ℝ) • toRealMat DMZ.sys.A‖ / ((0:ℕ) + 2 : ℝ) < 1 := by
-  simp [DMZ.sys]
+  simp [DMZ.sys, toRealMat]
+  norm_num
 
 /-- The discretized system, over the matrix zonotope `expMatZonoEnclosure`
 computed for this `Δt` and this truncation order. -/
@@ -60,27 +64,27 @@ def DMZ.x0 : Vec ℝ 1 := ![1]
 noncomputable def DMZ.R0 : Zonotope (Vec ℝ 1) := Zonotope.ofPoint DMZ.x0
 noncomputable def DMZ.U : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (0 : Vec ℝ 1)
 
-/-- A run at the true exponential, `exp 0 = 1`, so the state never moves. -/
+/-- The run at the true exponential, `x(k) = (e^{-Δt})ᵏ x₀`: the decay itself. -/
 theorem DMZ.traj : DMZ.sysD.Trajectory (S := 𝒵) DMZ.R0 DMZ.U
-    (fun _ => DMZ.x0) (fun _ => 0) where
-  init := Zonotope.mem_ofPoint DMZ.x0
+    (fun k => DMZ.A0 ^ k *ᵥ DMZ.x0) (fun _ => 0) where
+  init := by rw [pow_zero, Matrix.one_mulVec]; exact Zonotope.mem_ofPoint _
   input _ := Zonotope.mem_ofPoint 0
-  step _ := ⟨DMZ.A0, DMZ.A0_mem, by
-    simp [DMZ.A0, DMZ.sys, DMZ.x0, exp_zero, Matrix.one_mulVec]⟩
+  step k := ⟨DMZ.A0, DMZ.A0_mem, by
+    simp [Matrix.mulVec_mulVec, pow_succ']⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `reach_outer`, at the matrix zonotope `discretizeMatZonotope` produced. -/
 theorem DMZ.mem_reach {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    DMZ.x0 ∈ construct (DMZ.sysD.reach (S := 𝒵) ⟨DMZ.R0, DMZ.U, 0, k⟩ ⟨o, ho⟩) :=
+    DMZ.A0 ^ k *ᵥ DMZ.x0 ∈ construct (DMZ.sysD.reach (S := 𝒵) ⟨DMZ.R0, DMZ.U, 0, k⟩ ⟨o, ho⟩) :=
   DMZ.sysD.reach_outer (S := 𝒵) ho DMZ.R0 DMZ.U DMZ.traj k
 
 /-- `holds_of_reach`, closing the chain at whatever specification the caller
 checks the computed reachable set against. -/
 example (spec : Specification (Set (Vec ℝ 1))) {o : ℕ} (ho : 0 < o) (k : ℕ)
     (h : spec.Holds (construct (DMZ.sysD.reach (S := 𝒵) ⟨DMZ.R0, DMZ.U, 0, k⟩ ⟨o, ho⟩))) :
-    spec.Holds {DMZ.x0} :=
+    spec.Holds {DMZ.A0 ^ k *ᵥ DMZ.x0} :=
   DMZ.sysD.holds_of_reach (S := 𝒵) ho DMZ.R0 DMZ.U spec DMZ.traj k h
 
 end CORALean.Real
