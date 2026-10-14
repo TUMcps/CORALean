@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Operations.MaxCos
 
 @[expose] public section

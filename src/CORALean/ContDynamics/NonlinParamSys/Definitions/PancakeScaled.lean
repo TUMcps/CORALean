@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
 public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-public import Mathlib.Data.Matrix.Mul
 
 @[expose] public section
 

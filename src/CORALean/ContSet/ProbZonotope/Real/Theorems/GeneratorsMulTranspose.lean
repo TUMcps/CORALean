@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Generators
-public import Mathlib.Analysis.Matrix.PosDef
 
 @[expose] public section
 

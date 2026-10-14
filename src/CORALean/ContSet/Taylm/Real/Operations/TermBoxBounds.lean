@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.PowBounds
 public import CORALean.ContSet.Taylm.Real.Operations.ProdBounds
-public import CORALean.ContSet.Taylm.Real.Taylm
 
 @[expose] public section
 

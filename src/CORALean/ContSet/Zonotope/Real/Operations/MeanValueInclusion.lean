@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Inclusion
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 
 @[expose] public section
 

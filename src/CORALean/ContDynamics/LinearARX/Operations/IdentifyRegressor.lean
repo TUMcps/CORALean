@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinearARX.LinearARX
 public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
 
 @[expose] public section

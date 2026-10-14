@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Real.Operations.Stack
 public import CORALean.ContSet.Interval.Real.Operations.Basic

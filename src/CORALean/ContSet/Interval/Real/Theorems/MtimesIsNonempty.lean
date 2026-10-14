@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section
 

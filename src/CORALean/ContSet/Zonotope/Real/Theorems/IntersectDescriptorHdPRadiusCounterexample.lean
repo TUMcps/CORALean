@@ -4,8 +4,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
 public import CORALean.ContSet.Zonotope.Real.Definitions.PRadius
 public import Mathlib.Data.Matrix.ColumnRowPartitioned
 public import Mathlib.LinearAlgebra.Matrix.PosDef
-public import Mathlib.Tactic.FinCases
-public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
 

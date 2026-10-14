@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Analysis.Calculus.Deriv.Basic
-public import Mathlib.Analysis.Normed.Module.Basic
 
 @[expose] public section
 

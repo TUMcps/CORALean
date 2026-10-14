@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
+public import CORALean.ContSet.Polygon.Real.Polygon
 
 @[expose] public section
 

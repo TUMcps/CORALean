@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.NonlinParamSys.NonlinParamSys
 public import CORALean.Global.Jacobian
-public import Mathlib.Analysis.Calculus.FDeriv.Const
 
 @[expose] public section
 

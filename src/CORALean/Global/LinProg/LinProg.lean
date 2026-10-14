@@ -1,6 +1,5 @@
 module
 
-public import CORALean.Global.Tensor
 public import Mathlib.Algebra.Module.LinearMap.Defs
 public import Mathlib.Data.Real.Basic
 

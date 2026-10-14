@@ -1,6 +1,5 @@
 module
 
-public import CORALean.Global.Tensor
 public import Mathlib.Data.Finset.SDiff
 
 @[expose] public section

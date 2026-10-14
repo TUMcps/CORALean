@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Data.Real.Basic
-public import Mathlib.Order.Lattice
 
 @[expose] public section
 

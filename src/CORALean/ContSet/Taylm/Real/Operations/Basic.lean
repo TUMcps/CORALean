@@ -2,9 +2,6 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Plus
 public import CORALean.ContSet.Taylm.Real.Operations.Smul
-public import CORALean.ContSet.Taylm.Real.Taylm
-public import CORALean.Global.Tensor
-public import Mathlib.Data.Real.Basic
 
 @[expose] public section
 

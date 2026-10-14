@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 
 @[expose] public section

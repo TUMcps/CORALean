@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Data.NNReal.Defs
-public import Mathlib.Tactic.Ring
 
 @[expose] public section
 

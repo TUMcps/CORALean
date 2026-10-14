@@ -1,9 +1,6 @@
 module
 
 public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
-public import Mathlib.Algebra.Group.Pointwise.Set.Basic
-public import Mathlib.Data.Fintype.BigOperators
-public import Mathlib.Tactic.Abel
 
 @[expose] public section
 

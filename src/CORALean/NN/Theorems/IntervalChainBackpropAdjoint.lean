@@ -2,7 +2,6 @@ module
 
 public import CORALean.NN.Operations.IntervalChainBackprop
 public import CORALean.NN.Operations.IntervalChainJvp
-public import Mathlib.Data.Matrix.Mul
 
 @[expose] public section
 

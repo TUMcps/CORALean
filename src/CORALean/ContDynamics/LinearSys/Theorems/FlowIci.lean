@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.ClassicalTrajectory
-public import Mathlib.Analysis.InnerProductSpace.Basic
 
 @[expose] public section
 

@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Compose
 public import CORALean.ContSet.Taylm.Real.Operations.Reach
-public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
 
 @[expose] public section

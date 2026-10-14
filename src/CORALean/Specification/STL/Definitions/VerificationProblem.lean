@@ -3,7 +3,6 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.Specification.STL.STL
-public import Mathlib.MeasureTheory.Function.StronglyMeasurable.AEStronglyMeasurable
 
 @[expose] public section
 

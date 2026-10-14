@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
-public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
 

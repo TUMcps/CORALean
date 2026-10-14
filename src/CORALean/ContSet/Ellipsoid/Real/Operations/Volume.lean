@@ -2,8 +2,6 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
 public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 @[expose] public section
 

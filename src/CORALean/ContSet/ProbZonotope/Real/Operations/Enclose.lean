@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-public import Mathlib.Analysis.Normed.Algebra.Exponential
 
 @[expose] public section
 

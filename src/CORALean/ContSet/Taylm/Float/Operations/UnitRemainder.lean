@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
-public import CORALean.Global.Float.PowUp
 public import CORALean.Global.Float.DivFact
 
 @[expose] public section

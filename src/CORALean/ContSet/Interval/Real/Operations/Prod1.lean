@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Times
-public import CORALean.ContSet.Interval.Real.Operations.Point
 
 @[expose] public section
 

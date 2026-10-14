@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
 public import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
+public import CORALean.ContDynamics.OutputEq.OutputEq
 
 @[expose] public section
 

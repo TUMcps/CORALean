@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.MatPow
-public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Smul
 
 @[expose] public section

@@ -1,8 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
-public import Mathlib.Order.Filter.Basic
 
 @[expose] public section
 

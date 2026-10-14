@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section

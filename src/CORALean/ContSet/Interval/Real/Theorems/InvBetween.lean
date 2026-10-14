@@ -1,8 +1,6 @@
 module
 
 public import Mathlib.Data.Real.Basic
-public import Mathlib.Algebra.Order.Field.Basic
-public import Mathlib.Algebra.Order.GroupWithZero.Basic
 
 @[expose] public section
 

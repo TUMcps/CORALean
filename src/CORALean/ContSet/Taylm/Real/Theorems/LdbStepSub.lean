@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.LdbStep
-public import Mathlib.Tactic.Linarith
-public import Mathlib.Tactic.NormNum
 
 @[expose] public section
 

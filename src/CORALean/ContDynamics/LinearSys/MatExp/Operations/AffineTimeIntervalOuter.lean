@@ -3,7 +3,6 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimePointNext
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CurvatureEnclosure
 public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
-public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 
 @[expose] public section
 

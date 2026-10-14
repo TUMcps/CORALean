@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Data.Sign.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Dirac
 
 @[expose] public section

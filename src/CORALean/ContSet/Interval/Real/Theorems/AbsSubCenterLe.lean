@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 @[expose] public section
 

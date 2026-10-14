@@ -2,7 +2,6 @@ module
 
 public import Mathlib.Data.Real.Basic
 public import Mathlib.Order.Interval.Finset.Nat
-public import Mathlib.Data.Finset.Lattice.Fold
 
 @[expose] public section
 

@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
-public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 
 @[expose] public section
 

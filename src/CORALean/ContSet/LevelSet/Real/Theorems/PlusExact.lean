@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.LevelSet.Real.Operations.Plus
-public import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
 
 @[expose] public section
 

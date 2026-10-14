@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Data.Real.Basic
-public import Mathlib.Data.List.FinRange
 
 @[expose] public section
 

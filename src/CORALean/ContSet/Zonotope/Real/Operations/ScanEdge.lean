@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.Global.Tensor
 public import Mathlib.Analysis.Convex.Segment
 public import Mathlib.Data.EReal.Basic

@@ -1,7 +1,5 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.Basic
-public import CORALean.ContSet.Taylm.Real.Operations.Smul
 public import CORALean.ContSet.Taylm.Real.Operations.Times
 
 @[expose] public section

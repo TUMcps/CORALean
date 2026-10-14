@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Data.Fintype.Basic
-public import CORALean.Global.Tensor
 
 @[expose] public section
 

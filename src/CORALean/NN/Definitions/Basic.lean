@@ -1,12 +1,10 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Interval
-public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.NN.Definitions.ActivationKind
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Definitions.Sigmoid
 public import Mathlib.Analysis.Complex.Trigonometric
-public import Mathlib.Data.Real.Basic
 
 @[expose] public section
 

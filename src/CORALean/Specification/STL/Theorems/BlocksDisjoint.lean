@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Data.NNReal.Defs
-public import Mathlib.Order.Interval.Set.Basic
 
 @[expose] public section
 

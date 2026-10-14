@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffOuterScalingCora
-public import Mathlib.Tactic.FinCases
 
 @[expose] public section
 

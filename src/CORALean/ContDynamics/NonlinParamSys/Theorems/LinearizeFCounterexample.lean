@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.NonlinParamSys.Operations.Linearize
-public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 

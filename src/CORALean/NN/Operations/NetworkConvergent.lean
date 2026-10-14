@@ -1,7 +1,5 @@
 module
 
-public import CORALean.NN.Definitions.RefinableNetwork
-public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Operations.Convergent
 public import CORALean.NN.Operations.RefinableNetworkEval
 public import Mathlib.Topology.EMetricSpace.Lipschitz

@@ -2,7 +2,6 @@ module
 
 public import CORALean.Global.Tensor
 public import Mathlib.Data.List.MinMax
-public import Mathlib.Data.List.FinRange
 public import Mathlib.Data.Real.Basic
 
 @[expose] public section

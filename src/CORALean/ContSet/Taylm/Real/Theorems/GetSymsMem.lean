@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Tactic.Linarith
 public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section

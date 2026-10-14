@@ -3,7 +3,6 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTerm
 public import CORALean.ContSet.Interval.Real.Operations.AbsMax
-public import CORALean.ContSet.Interval.Real.Operations.Smul
 
 @[expose] public section
 

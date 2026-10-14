@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 public import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
 
 @[expose] public section

@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
-public import CORALean.ContSet.Interval.Float.Operations.Smul
 
 @[expose] public section
 

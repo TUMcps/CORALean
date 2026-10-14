@@ -1,10 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
-public import Mathlib.Analysis.Calculus.FDeriv.Measurable
-public import Mathlib.MeasureTheory.Integral.IntegrableOn
-public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 @[expose] public section
 

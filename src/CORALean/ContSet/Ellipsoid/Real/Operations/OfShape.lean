@@ -1,14 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
 public import Mathlib.Analysis.Matrix.Order
-public import Mathlib.Analysis.Matrix.PosDef
-public import Mathlib.Tactic.Abel
-public import Mathlib.Tactic.FieldSimp
-public import Mathlib.Tactic.Linarith
-public import Mathlib.Tactic.Positivity
-public import Mathlib.Tactic.Ring
 
 @[expose] public section
 

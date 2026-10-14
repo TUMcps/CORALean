@@ -1,11 +1,6 @@
 module
 
 public import Mathlib.Analysis.Normed.Module.Basic
-public import Mathlib.Topology.MetricSpace.Pseudo.Defs
-public import Mathlib.Analysis.Normed.Group.Basic
-public import Mathlib.Algebra.Order.Field.Basic
-public import Mathlib.Tactic.Linarith
-public import Mathlib.Tactic.FieldSimp
 
 @[expose] public section
 

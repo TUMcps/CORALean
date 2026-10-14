@@ -1,9 +1,7 @@
 module
 
 public import CORALean.Global.Tensor
-public import Mathlib.Data.List.Basic
 public import Mathlib.Data.Real.Basic
-public import Mathlib.Data.Set.Lattice
 
 @[expose] public section
 

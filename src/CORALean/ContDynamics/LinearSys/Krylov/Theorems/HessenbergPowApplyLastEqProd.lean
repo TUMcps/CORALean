@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HessenbergPowApplyEqZero
+public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
 

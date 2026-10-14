@@ -4,7 +4,6 @@ public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
 public import CORALean.Global.Float.Exp
 public import CORALean.Global.Float.InverseTrig
 public import CORALean.Global.Float.PowDown
-public import CORALean.Global.Float.Sqrt
 
 @[expose] public section
 

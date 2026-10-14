@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Probability.Independence.Basic
-public import Mathlib.MeasureTheory.Constructions.Pi
 
 @[expose] public section
 

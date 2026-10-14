@@ -1,7 +1,6 @@
 module
 
 public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
-public import CORALean.Global.ExactScalar
 
 @[expose] public section
 

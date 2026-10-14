@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
-public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 
 @[expose] public section
 

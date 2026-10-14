@@ -1,6 +1,5 @@
 module
 
-public import CORALean.Specification.STL.Definitions.DiscreteFormula
 public import CORALean.Specification.STL.Operations.DFormulaBound
 
 @[expose] public section

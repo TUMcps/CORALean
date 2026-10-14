@@ -2,9 +2,7 @@ module
 
 public import CORALean.Global.Tensor
 public import Mathlib.Analysis.Normed.Ring.Lemmas
-public import Mathlib.Analysis.Normed.Group.Constructions
 public import Mathlib.Data.Matrix.Mul
-public import Mathlib.Tactic.FieldSimp
 
 @[expose] public section
 

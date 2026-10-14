@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 @[expose] public section
 

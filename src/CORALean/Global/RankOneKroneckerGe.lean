@@ -2,8 +2,6 @@ module
 
 public import Mathlib.Data.Real.Basic
 public import Mathlib.LinearAlgebra.Matrix.Rank
-public import Mathlib.LinearAlgebra.Matrix.Kronecker
-public import Mathlib.LinearAlgebra.Dimension.Constructions
 
 @[expose] public section
 

@@ -1,8 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

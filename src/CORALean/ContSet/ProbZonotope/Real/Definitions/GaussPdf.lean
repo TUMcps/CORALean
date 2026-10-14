@@ -2,9 +2,6 @@ module
 
 public import CORALean.Global.Tensor
 public import Mathlib.Analysis.InnerProductSpace.PiL2
-public import Mathlib.Analysis.SpecialFunctions.Pow.Real
-public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
-public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 @[expose] public section
 

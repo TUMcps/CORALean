@@ -1,6 +1,5 @@
 module
 
-public import Mathlib.Algebra.Group.Pi.Basic
 public import CORALean.Specification.STL.Definitions.DependencyPreservedBy
 
 @[expose] public section

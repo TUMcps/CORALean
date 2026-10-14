@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-public import CORALean.ContSet.ContSet.ContSet
 
 @[expose] public section
 

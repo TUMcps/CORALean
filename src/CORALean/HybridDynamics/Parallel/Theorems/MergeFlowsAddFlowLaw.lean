@@ -1,5 +1,6 @@
 module
 
+public import CORALean.HybridDynamics.Parallel.Definitions.FlowLaw
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsAddMulVec
 
 @[expose] public section

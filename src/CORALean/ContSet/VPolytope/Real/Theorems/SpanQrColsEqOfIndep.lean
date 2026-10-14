@@ -3,7 +3,6 @@ module
 public import CORALean.Global.Tensor
 public import Mathlib.LinearAlgebra.Matrix.Rank
 public import Mathlib.Data.Real.Basic
-public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 @[expose] public section
 

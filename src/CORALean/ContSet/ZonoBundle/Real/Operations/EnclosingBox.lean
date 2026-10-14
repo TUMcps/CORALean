@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
 public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Interval
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse

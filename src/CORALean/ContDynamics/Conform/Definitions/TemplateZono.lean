@@ -1,8 +1,6 @@
 module
 
 public import CORALean.Global.CrossProduct
-public import Mathlib.Algebra.Order.AbsoluteValue.Basic
-public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
 
 @[expose] public section
 

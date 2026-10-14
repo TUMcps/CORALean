@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.NN.NeuralNetwork
+public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 @[expose] public section
 

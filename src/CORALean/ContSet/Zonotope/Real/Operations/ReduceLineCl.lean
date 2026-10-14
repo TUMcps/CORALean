@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 public import CORALean.ContSet.Zonotope.Real.Operations.LineClBasis
 
 @[expose] public section

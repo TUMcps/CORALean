@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Definitions.IntervalChain
+public import Mathlib.Data.Matrix.Basic
 
 @[expose] public section
 

@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
-public import Mathlib.Analysis.SpecialFunctions.Pow.Real
-public import Mathlib.Analysis.SpecialFunctions.Exp
 
 @[expose] public section
 

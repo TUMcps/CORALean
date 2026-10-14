@@ -1,6 +1,5 @@
 module
 
-public import CORALean.Global.Tensor
 public import Mathlib.Probability.Distributions.Gaussian.Multivariate
 
 @[expose] public section

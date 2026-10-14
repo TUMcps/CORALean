@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
-public import CORALean.ContDynamics.OutputEq.OutputEq
 
 @[expose] public section
 

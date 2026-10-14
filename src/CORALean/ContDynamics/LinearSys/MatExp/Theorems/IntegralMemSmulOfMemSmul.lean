@@ -1,8 +1,6 @@
 module
 
 public import CORALean.Global.Tensor
-public import Mathlib.Analysis.LocallyConvex.Separation
-public import Mathlib.Analysis.Normed.Module.FiniteDimension
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 @[expose] public section

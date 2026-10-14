@@ -1,10 +1,11 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
+public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Taylm.Real.Definitions.Box
+public import CORALean.ContSet.Taylm.Real.Operations.PolyBoxBounds
+public import CORALean.ContSet.Taylm.Real.Taylm
 public import CORALean.ContSet.Taylm.Real.Theorems.PowBoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.ProdBoundsMem
-public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 
 @[expose] public section
 

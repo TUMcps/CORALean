@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.BoxDiff
-public import Mathlib.Order.Interval.Set.Basic
 
 @[expose] public section
 

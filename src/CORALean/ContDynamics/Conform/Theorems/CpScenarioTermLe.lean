@@ -1,10 +1,7 @@
 module
 
-public import Mathlib.Algebra.Order.Floor.Ring
 public import Mathlib.Data.Nat.Choose.Basic
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
-public import Mathlib.Tactic.Linarith
-public import Mathlib.Tactic.FieldSimp
 
 @[expose] public section
 

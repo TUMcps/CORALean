@@ -1,7 +1,6 @@
 module
 
 public import CORALean.Specification.STL.Definitions.SampledTime
-public import CORALean.Specification.STL.Definitions.Pform
 public import Mathlib.Data.NNReal.Defs
 
 @[expose] public section

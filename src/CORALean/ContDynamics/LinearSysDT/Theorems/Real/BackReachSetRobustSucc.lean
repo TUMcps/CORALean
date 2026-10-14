@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetRobust
 public import CORALean.ContSet.ContSet.ContSet
-public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 @[expose] public section
 

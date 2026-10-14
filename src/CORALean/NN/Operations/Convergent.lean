@@ -1,7 +1,6 @@
 module
 
 public import CORALean.NN.Definitions.RefinableLayer
-public import CORALean.NN.Layers.Layer
 public import Mathlib.Topology.MetricSpace.Pseudo.Pi
 
 @[expose] public section

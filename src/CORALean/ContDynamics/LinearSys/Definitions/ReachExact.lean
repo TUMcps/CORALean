@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import Mathlib.Analysis.Normed.Algebra.Exponential
-public import Mathlib.Topology.Instances.Matrix
 
 @[expose] public section
 

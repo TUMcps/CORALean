@@ -2,8 +2,6 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.MatPow
 public import CORALean.ContSet.Interval.Real.Operations.Smul
-public import Mathlib.Algebra.BigOperators.Ring.Finset
-public import Mathlib.Tactic.Ring
 
 @[expose] public section
 

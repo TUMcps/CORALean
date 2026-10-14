@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveIntervalStep
 public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 
 @[expose] public section
 

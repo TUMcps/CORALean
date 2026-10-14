@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Operations.RefinableNetworkEval
 public import CORALean.NN.Operations.RefinementLipschitz
 
 @[expose] public section

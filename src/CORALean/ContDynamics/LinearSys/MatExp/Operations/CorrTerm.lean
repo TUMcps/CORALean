@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
+public import CORALean.Global.Tensor
 
 @[expose] public section
 

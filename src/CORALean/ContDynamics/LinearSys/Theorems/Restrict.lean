@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
-public import Mathlib.Analysis.InnerProductSpace.Basic
 
 @[expose] public section
 

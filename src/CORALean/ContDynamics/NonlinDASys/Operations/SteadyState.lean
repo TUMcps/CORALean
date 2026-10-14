@@ -3,7 +3,6 @@ module
 public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
 public import CORALean.ContDynamics.NonlinDASys.Operations.NewtonIterate
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-public import Mathlib.LinearAlgebra.Matrix.Block
 
 @[expose] public section
 

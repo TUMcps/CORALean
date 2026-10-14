@@ -1,9 +1,6 @@
 module
 
-public import Mathlib.Data.List.Basic
-public import Mathlib.Logic.Function.Basic
 public import Mathlib.Data.Real.Basic
-public import CORALean.Global.Tensor
 
 @[expose] public section
 

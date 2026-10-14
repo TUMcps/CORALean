@@ -1,10 +1,7 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.Pow
-public import CORALean.ContSet.Taylm.Real.Operations.Smul
 public import CORALean.ContSet.Taylm.Real.Operations.Minus
-public import CORALean.ContSet.Taylm.Real.Operations.Plus
 
 @[expose] public section
 

@@ -1,6 +1,5 @@
 module
 
-public import CORALean.Global.Tensor
 public import Mathlib.Data.Fin.Tuple.Sort
 public import Mathlib.Data.Real.Basic
 

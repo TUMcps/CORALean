@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorMatrix
 public import CORALean.ContSet.Zonotope.Real.Operations.DominantLengthFilter
-public import Mathlib.Data.List.Sort
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 
 @[expose] public section

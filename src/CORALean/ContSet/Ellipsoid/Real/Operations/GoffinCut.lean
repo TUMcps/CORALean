@@ -3,7 +3,6 @@ module
 public import CORALean.ContSet.Ellipsoid.Real.Operations.CutShape
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Analysis.Matrix.Order
-public import Mathlib.Analysis.SpecialFunctions.Sqrt
 
 @[expose] public section
 

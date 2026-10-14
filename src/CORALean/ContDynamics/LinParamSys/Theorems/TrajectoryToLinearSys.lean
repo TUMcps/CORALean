@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.LinParamSys
 public import CORALean.ContDynamics.LinearSys.LinearSys
-public import Mathlib.Analysis.Calculus.Deriv.Add
 
 @[expose] public section
 

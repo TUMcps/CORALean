@@ -2,14 +2,10 @@ module
 
 public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
-public import CORALean.ContSet.Interval.Float.Operations.MatMul
-public import CORALean.ContSet.Interval.Float.Operations.MatPlus
-public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Operations.Transpose
 public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
-public import CORALean.ContSet.Zonotope.Float.Operations.Point
 
 @[expose] public section
 
