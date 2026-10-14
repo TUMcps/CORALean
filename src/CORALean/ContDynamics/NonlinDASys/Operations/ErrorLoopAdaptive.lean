@@ -10,22 +10,28 @@ public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 /-!
 # `NonlinDASys.errorLoopAdaptive`
 
-The `while` loop on the abstraction error of CORA's `linReach_adaptive` ([1, Alg. 1]):
-boxes of the admissible error, the pass over them, the abstraction error over its joint set,
-accepted where it fits and run again at `expFactor` times it where it does not. Both `Verror`
-and `priv_abstractionError_adaptive` subtract `CF_inv` times the algebraic error where CORA adds
-it (FINDINGS.md). The linear part and `errorSolution_adaptive` are one `oneStep` at
-`U_lin ⊕ Verror`, as in `linReach`; `fuel` replaces the loop and its divergence test.
+[1, Alg. 1] lines 4-10, `repeat … until L ⊆ L̄`, as CORA's `linReach_adaptive` runs it (the
+tuning of [2] applied to [1]); each step carries its line number. Line 3's `taylor` is the
+argument. Where it departs from the listing, it follows CORA. Line 5: the guess is not
+`ĉ ⊕ λ(L̃ ⊕ (-ĉ))` (17) but the origin-centred boxes `L̄ᵈ`, `L̄ᵃ` of `expFactor` (`λ`) times the
+last error's size `errorInt`, joined through `-CF⁻¹` as (15) joins `σ` and `φ`; the first pass
+starts from the caller's `adm_x`, `adm_y`, not line 1's `{0}`. Lines 6-7 are one `linReachAt`
+at `Ū`. Line 10: `L ⊆ L̄` part by part, `errorInt ≤ adm` — CORA's `perfInd <= 1` without the
+division, which in Lean (`x/0 = 0`) would accept any error where `adm` is `0`; there is no
+`L_max` exit and no split (lines 11-16), `fuel` replacing both with `none`. `L̄ᵃ` enters with
+`-CF⁻¹` where CORA adds it (FINDINGS.md).
 
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
       Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
+* [2] M. Wetzlinger, A. Kulmburg and M. Althoff. "Adaptive Parameter Tuning for Reachability
+      Analysis of Nonlinear Systems". HSCC, 2021, Article 16.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,31 +46,29 @@ variable {n p m q : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `while` loop on the abstraction error of `linReach_adaptive`: boxes of the admissible
-error `adm_x`, `adm_y`, the pass over them, the abstraction error over its joint set, accepted
-where it fits and run again at `expFactor` times it where it does not. -/
+/-- [1, Alg. 1] lines 4-10 at line 3's `taylor`, from `Rd_tk = Rᵈ(t_k)` with step `r`: the error
+`L` of the first pass with `L ⊆ L̄`, `L̄` growing to `expFactor` times `L`; `none` after `fuel`. -/
 noncomputable def NonlinDASys.errorLoopAdaptive (sys : NonlinDASys n p m)
-    (T : NonlinDASys.AdaptTuning n p m q) (L : NonlinDASys.LinPoint n p m)
-    (Rstart : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (Δt : ℝ) (η : ℕ) :
+    (T : NonlinDASys.AdaptTuning n p m q) (taylor : NonlinDASys.LinPoint n p m)
+    (Rd_tk : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (r : ℝ) (η : ℕ) :
     ℕ → Vec ℝ n → Vec ℝ p → Option (NonlinDASys.AbstractionError n p)
   | 0, _, _ => none
-  | fuel + 1, adm_x, adm_y =>
-    let Verror_x : Zonotope (Vec ℝ n) :=   -- 0 +- adm_x
-      Interval.zonotope ⟨-adm_x, adm_x⟩
-    let Verror_y : Zonotope (Vec ℝ p) :=   -- 0 +- adm_y
-      Interval.zonotope ⟨-adm_y, adm_y⟩
-    let Verror : Zonotope (Vec ℝ n) :=                                     -- Verror, sign corrected
-      Verror_x.plus (Verror_y.mtimes (-(L.C * L.F_inv)))
-    let R := NonlinDASys.linReachAt sys { L with Verror := Verror, Verror_y := Verror_y }
-      Rstart U Δt η                                                        -- Rmax and R_y
-    let err := NonlinDASys.abstractionErrorAdaptive (L.C * L.F_inv)        -- abstractionError
-      (T.hess R.2.2)
-    if (List.finRange n).all (fun i => T.le (err.errorInt_x i / adm_x i) 1) &&
-        (List.finRange p).all (fun j => T.le (err.errorInt_y j / adm_y j) 1) then
-      some err                                                             -- perfIndCurr <= 1
+  | fuel + 1, adm_x, adm_y =>                                              -- 4. repeat
+    let Lbar_d : Zonotope (Vec ℝ n) := Interval.zonotope ⟨-adm_x, adm_x⟩   -- 5. L̄ᵈ
+    let Lbar_a : Zonotope (Vec ℝ p) := Interval.zonotope ⟨-adm_y, adm_y⟩   -- 5. L̄ᵃ
+    let Lbar : Zonotope (Vec ℝ n) :=                                     -- 5. L̄ = L̄ᵈ ⊕ (-CF⁻¹)L̄ᵃ
+      Lbar_d.plus (Lbar_a.mtimes (-(taylor.C * taylor.F_inv)))
+    let R := NonlinDASys.linReachAt sys { taylor with Verror := Lbar, Verror_y := Lbar_a }
+      Rd_tk U r η                                                          -- 6. Ū, 7. Rᵈ(τ_k)
+    let R_τk := R.2.2                                                      -- 8. R(τ_k), Prop. 2
+    let L := NonlinDASys.abstractionErrorAdaptive (taylor.C * taylor.F_inv)  -- 9. L, Cor. 1
+      (T.hess R_τk)
+    if (List.finRange n).all (fun i => T.le (L.errorInt_x i) (adm_x i)) &&   -- 10. until L ⊆ L̄
+        (List.finRange p).all (fun j => T.le (L.errorInt_y j) (adm_y j)) then
+      some L
     else
-      sys.errorLoopAdaptive T L Rstart U Δt η fuel                         -- expFactor * errorInt
-        (T.expFactor • err.errorInt_x) (T.expFactor • err.errorInt_y)
+      sys.errorLoopAdaptive T taylor Rd_tk U r η fuel                      -- 5. next L̄ from L
+        (T.expFactor • L.errorInt_x) (T.expFactor • L.errorInt_y)
 
 end CORALean
 

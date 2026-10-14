@@ -23,7 +23,7 @@ tuned step (`tune`, `aux_optimaldeltat`) and the next finite horizon (`nextH`, t
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +42,7 @@ structure NonlinDASys.AdaptTuning (n p m q : ℕ) where
   taylor : Zonotope (Vec ℝ n) → NonlinDASys.LinPoint n p m
   /-- The Hessian intervals over a joint set of `(x, y)` (`nlnsysDA.hessian`). -/
   hess : Zonotope (Vec ℝ n × Vec ℝ p) → NonlinDASys.HessData n p q
-  /-- Comparison of reals, as the test `perfInd ≤ 1`. -/
+  /-- Comparison of reals, as the test `errorInt ≤ error_adm` (CORA: `perfInd ≤ 1`). -/
   le : ℝ → ℝ → Bool
   /-- `expFactor`, the bloating of the admissible error. -/
   expFactor : ℝ

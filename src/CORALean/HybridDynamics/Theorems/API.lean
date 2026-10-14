@@ -64,6 +64,7 @@ public import CORALean.HybridDynamics.Theorems.HasDerivAtSdcFlow
 public import CORALean.HybridDynamics.Theorems.MemConstFlowHitSet
 public import CORALean.HybridDynamics.Theorems.MemHitSet
 public import CORALean.HybridDynamics.Theorems.TendstoSdcFlowError
+public import CORALean.HybridDynamics.Theorems.HasDerivAtDerivHitPoint
 public import CORALean.HybridDynamics.Theorems.HasDerivAtHitJacobian
 public import CORALean.HybridDynamics.Theorems.HasDerivAtHitPoint
 public import CORALean.HybridDynamics.Theorems.LocationPotIntComplete

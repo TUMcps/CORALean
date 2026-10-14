@@ -143,3 +143,9 @@ deliberately and consistently. The later paper reprints the same two steps as it
 recorded on the [NAHS 2022 paper](../2022/wetzlinger-nahs-abstraction-error.md)'s page. Nothing to fix here; it is the cross-check that settles which of the
 two readings was meant, and `optDeltat` is passed the previous gain in both.
 [`TuneDeltat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltat.lean)
+
+## Cited without a result
+
+These name the paper as a whole. A locator would put each in a row above.
+
+* [`ErrorLoopAdaptive.lean`](../../src/CORALean/ContDynamics/NonlinDASys/Operations/ErrorLoopAdaptive.lean)
