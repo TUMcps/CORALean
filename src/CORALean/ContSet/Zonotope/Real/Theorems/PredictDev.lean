@@ -44,16 +44,17 @@ theorem Zonotope.predict_dev (A : Mat ℝ n n) (F : Mat ℝ n m) (X : Zonotope (
     ∃ θ : Vec ℝ n, ∃ γ : Vec ℝ m, X.c + θ ∈ X.construct ∧ (∀ j, |γ j| ≤ 1) ∧
       z - ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))).c
         = A *ᵥ θ + F *ᵥ γ := by -- --- PROOF ---
+  -- the sum of the two zonotopes, named once
+  set Zp : Zonotope (Vec ℝ n) :=
+    (X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))
   obtain ⟨b, hb, rfl⟩ : ∃ b : Fin (X.h + m) → ℝ, (∀ j, |b j| ≤ 1) ∧
-      z = ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))).c +
-        ∑ j : Fin (X.h + m), b j •
-          ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))).G j := hz
+      z = Zp.c + ∑ j : Fin (X.h + m), b j • Zp.G j := hz
   -- the coefficients of the old estimate and of the disturbance
   refine ⟨∑ j : Fin X.h, b (Fin.castAdd m j) • X.G j, fun j => b (Fin.natAdd X.h j),
     ⟨fun j => b (Fin.castAdd m j), fun j => hb _, rfl⟩, fun j => hb _, ?_⟩
   rw [add_sub_cancel_left, Fin.sum_univ_add]
-  simp only [Zonotope.plus, Zonotope.mtimes, Fin.append_left, Fin.append_right, Matrix.mulVec_sum,
-    Matrix.mulVec_smul]
+  simp only [Zp, Zonotope.plus, Zonotope.mtimes, Fin.append_left, Fin.append_right,
+    Matrix.mulVec_sum, Matrix.mulVec_smul]
   congr 1
   ext i
   simp [Matrix.mulVec, dotProduct, Finset.sum_apply, mul_comm]

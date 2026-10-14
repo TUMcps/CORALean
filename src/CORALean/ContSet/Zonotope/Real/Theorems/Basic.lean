@@ -33,6 +33,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
+section
+
 open Matrix ContSet
 open scoped Classical
 
@@ -140,10 +142,10 @@ theorem Zonotope.rank_eq_iff (Z : Zonotope (Vec ℝ n)) :
   rw [← Zonotope.rank_eq_finrank_iff]
   simp
 
-end CORALean.Real
+end
 
 
-namespace CORALean.Real
+section
 
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
@@ -159,6 +161,8 @@ merely closed set need not be closed. Closedness on its own is what the
 integrand of a set-valued integral is asked for. -/
 theorem Zonotope.isClosed_construct (Z : Zonotope α) : IsClosed Z.construct :=
   Z.isCompact_construct.isClosed
+
+end
 
 end CORALean.Real
 

@@ -27,10 +27,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The stored centres bracket the exact shifted one, which is what is left. -/
 theorem Zonotope.shift_brackets_mid (Z : Zonotope (Vec 𝕋 n)) (i : Fin n) :
-    toReal (Z.shiftDown i) ≤ toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i))
-        / 2 ∧
-      toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2
-        ≤ toReal (Z.shiftUp i) := by -- --- PROOF ---
+    let mid := toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2
+    toReal (Z.shiftDown i) ≤ mid ∧ mid ≤ toReal (Z.shiftUp i) := by -- --- PROOF ---
+  intro mid
+  simp only [mid]
   constructor
   · have h1 := addDown_le_add (Z.c i) (half (addDown (Z.I_error.inf i) (Z.I_error.sup i)))
     have h2 := addDown_le_add (Z.I_error.inf i) (Z.I_error.sup i)

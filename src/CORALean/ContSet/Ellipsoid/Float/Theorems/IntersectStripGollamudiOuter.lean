@@ -96,10 +96,13 @@ theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y 
       - toReal y| ≤ toReal φ)
     {v ev : Vec 𝕋 E.k} (hv : ∀ j, v j = dotDown (fun i => E.G i j) c)
     (hev : ∀ j, ev j = subUp (dotUp (fun i => E.G i j) c) (v j)) :
-    |toRealVec v ⬝ᵥ u - toReal (subDown y (dotUp c E.c))|
-      ≤ toReal (addUp (addUp (addUp φ (dotUp (fun i => absolute (c i))
-          (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))) (sumUp ev))
-          (subUp (subUp y (dotDown c E.c)) (subDown y (dotUp c E.c)))) := by -- --- PROOF ---
+    let box := dotUp (fun i => absolute (c i))
+      (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))
+    let δs := subDown y (dotUp c E.c)
+    |toRealVec v ⬝ᵥ u - toReal δs|
+      ≤ toReal (addUp (addUp (addUp φ box) (sumUp ev))
+          (subUp (subUp y (dotDown c E.c)) δs)) := by -- --- PROOF ---
+  intro box δs
   -- the exact `v` and its rounding gap
   set vt : Vec ℝ E.k := fun j => ∑ i, toReal (E.G i j) * toReal (c i) with hvt
   have hvt₁ : ∀ j, toRealVec v j ≤ vt j := fun j => by
@@ -117,8 +120,7 @@ theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y 
     (sub_le_subUp _ _)
   -- the box through `c`
   set ce := ∑ i, toReal (c i) * e i with hce
-  have hce₁ : |ce| ≤ toReal (dotUp (fun i => absolute (c i))
-      (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))) := by
+  have hce₁ : |ce| ≤ toReal box := by
     refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (le_dotUp _ _))
     refine Finset.sum_le_sum fun i _ => ?_
     rw [abs_mul, toReal_absolute]
@@ -151,13 +153,10 @@ theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y 
     simp only [dotProduct, sub_mul, Finset.sum_sub_distrib]
     ring
   -- `φ'` is above the three widenings, and each part is bounded
-  have hφ₁ := add_le_addUp φ (dotUp (fun i => absolute (c i))
-    (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))
-  have hφ₂ := add_le_addUp (addUp φ (dotUp (fun i => absolute (c i))
-    (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))) (sumUp ev)
-  have hφ₃ := add_le_addUp (addUp (addUp φ (dotUp (fun i => absolute (c i))
-    (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))) (sumUp ev))
-    (subUp (subUp y (dotDown c E.c)) (subDown y (dotUp c E.c)))
+  have hφ₁ := add_le_addUp φ box
+  have hφ₂ := add_le_addUp (addUp φ box) (sumUp ev)
+  have hφ₃ := add_le_addUp (addUp (addUp φ box) (sumUp ev))
+    (subUp (subUp y (dotDown c E.c)) δs)
   rw [hsplit, abs_le]
   have a1 := abs_le.mp hx
   have a2 := abs_le.mp hce₁
@@ -309,24 +308,18 @@ theorem Ellipsoid.aux_strip_row {k : ℕ} (G : Mat ℝ n k) {v w u : Vec ℝ k} 
 /-- One stored generator entry `α G + β (G v) v`, against its two roundings. -/
 theorem Ellipsoid.aux_strip_gen {α β Gij vj wLo wHi : 𝕋} {W : ℝ} (hW₁ : toReal wLo ≤ W)
     (hW₂ : W ≤ toReal wHi) :
-    |toReal α * toReal Gij + toReal β * W * toReal vj
-        - toReal (addDown (mulDown α Gij) (Interval.mulLo (Interval.mulLo β β wLo wHi)
-            (Interval.mulHi β β wLo wHi) vj vj))|
-      ≤ toReal (subUp (addUp (mulUp α Gij) (Interval.mulHi (Interval.mulLo β β wLo wHi)
-            (Interval.mulHi β β wLo wHi) vj vj))
-          (addDown (mulDown α Gij) (Interval.mulLo (Interval.mulLo β β wLo wHi)
-            (Interval.mulHi β β wLo wHi) vj vj))) := by -- --- PROOF ---
+    let lo := Interval.mulLo (Interval.mulLo β β wLo wHi) (Interval.mulHi β β wLo wHi) vj vj
+    let hi := Interval.mulHi (Interval.mulLo β β wLo wHi) (Interval.mulHi β β wLo wHi) vj vj
+    |toReal α * toReal Gij + toReal β * W * toReal vj - toReal (addDown (mulDown α Gij) lo)|
+      ≤ toReal (subUp (addUp (mulUp α Gij) hi) (addDown (mulDown α Gij) lo)) := by -- --- PROOF ---
+  intro lo hi
   have hb := Ellipsoid.aux_mul_mem_corners (le_refl (toReal β)) (le_refl _) hW₁ hW₂
   have hc := Ellipsoid.aux_mul_mem_corners (x := toReal vj) hb.1 hb.2 (le_refl _) (le_refl _)
   have m1 := mulDown_le_mul α Gij
   have m2 := mul_le_mulUp α Gij
-  have a1 := addDown_le_add (mulDown α Gij) (Interval.mulLo (Interval.mulLo β β wLo wHi)
-    (Interval.mulHi β β wLo wHi) vj vj)
-  have a2 := add_le_addUp (mulUp α Gij) (Interval.mulHi (Interval.mulLo β β wLo wHi)
-    (Interval.mulHi β β wLo wHi) vj vj)
-  have s1 := sub_le_subUp (addUp (mulUp α Gij) (Interval.mulHi (Interval.mulLo β β wLo wHi)
-    (Interval.mulHi β β wLo wHi) vj vj)) (addDown (mulDown α Gij)
-    (Interval.mulLo (Interval.mulLo β β wLo wHi) (Interval.mulHi β β wLo wHi) vj vj))
+  have a1 := addDown_le_add (mulDown α Gij) lo
+  have a2 := add_le_addUp (mulUp α Gij) hi
+  have s1 := sub_le_subUp (addUp (mulUp α Gij) hi) (addDown (mulDown α Gij) lo)
   rw [abs_le]
   constructor <;> linarith
 

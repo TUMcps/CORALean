@@ -145,23 +145,21 @@ theorem Zonotope.reduceBox_antitone (Z : Zonotope (Vec ℝ n)) {o o' : ℕ} (ho 
   · -- both below the threshold: the dropped generators nest, so does the box
     intro x hx
     obtain ⟨β, hβ, hx⟩ := (Z.aux_mem_reduceByBox_iff (Z.girardSplit o' hlt') x).mp hx
-    have hdrop : ∀ i, |(∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i|) * β i|
-        ≤ ∑ l, |Z.G ((Z.girardSplit o hlt).right l) i| := by
+    -- the two box radii, along coordinate `i`: the larger order's, and the smaller order's
+    set big : Fin n → ℝ := fun i => ∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i|
+    set small : Fin n → ℝ := fun i => ∑ l, |Z.G ((Z.girardSplit o hlt).right l) i|
+    have hdrop : ∀ i, |big i * β i| ≤ small i := by
       intro i
-      calc |(∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i|) * β i|
-          ≤ ∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i| := by
+      calc |big i * β i|
+          ≤ big i := by
             rw [abs_mul, abs_of_nonneg (Finset.sum_nonneg fun l' _ => abs_nonneg _)]
-            calc (∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i|) * |β i|
-                ≤ (∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i|) * 1 :=
-                  mul_le_mul_of_nonneg_left (hβ i)
-                    (Finset.sum_nonneg fun l' _ => abs_nonneg _)
-              _ = ∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i| := mul_one _
-        _ ≤ ∑ l, |Z.G ((Z.girardSplit o hlt).right l) i| :=
-            Zonotope.aux_reduceByBox_diag_sum_le Z hlt hlt' ho i
+            calc big i * |β i| ≤ big i * 1 :=
+                  mul_le_mul_of_nonneg_left (hβ i) (Finset.sum_nonneg fun l' _ => abs_nonneg _)
+              _ = big i := mul_one _
+        _ ≤ small i := Zonotope.aux_reduceByBox_diag_sum_le Z hlt hlt' ho i
     -- the witness: the same point, scaled back onto the smaller order's box
     refine (Z.aux_mem_reduceByBox_iff (Z.girardSplit o hlt) x).mpr
-      ⟨fun i => Zonotope.coefficient (∑ l, |Z.G ((Z.girardSplit o hlt).right l) i|)
-        ((∑ l', |Z.G ((Z.girardSplit o' hlt').right l') i|) * β i),
+      ⟨fun i => Zonotope.coefficient (small i) (big i * β i),
         fun i => Zonotope.abs_coefficient_le_one
           (Finset.sum_nonneg fun l _ => abs_nonneg _) (hdrop i), fun i => ?_⟩
     rw [hx i, Zonotope.mul_coefficient (hdrop i)]

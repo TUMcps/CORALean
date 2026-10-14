@@ -17,6 +17,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
+section
+
 open ContSet
 
 variable {ContSet α : Type} [CORALean.ContSet ContSet α]
@@ -54,10 +56,10 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 @[simp] theorem Specification.holds_unsafeSet {s : ContSet} {X : Set α} :
     (Specification.unsafeSet s).Holds X ↔ Disjoint X (construct s) := Iff.rfl
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X O : Set α}
 
@@ -73,6 +75,8 @@ specification at a time, for `Specification.HoldsAll`. -/
 theorem Specification.holdsAll_of_outer (specs : List (Specification ContSet)) (h : X ⊆ O)
     (hO : Specification.HoldsAll specs O) : Specification.HoldsAll specs X :=
   fun spec hmem => (spec.holds_of_outer h) (hO spec hmem)
+
+end
 
 end CORALean
 

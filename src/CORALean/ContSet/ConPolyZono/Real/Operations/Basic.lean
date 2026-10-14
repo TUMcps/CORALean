@@ -22,6 +22,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
+section
+
 open Matrix
 
 variable {k n : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
@@ -107,10 +109,10 @@ def ConPolyZono.unitBox (p : ℕ) : Interval (Vec ℝ p) where
   inf := fun _ => -1
   sup := fun _ => 1
 
-end CORALean.Real
+end
 
 
-namespace CORALean.Real
+section
 
 variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
 
@@ -124,6 +126,8 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 /-- The constraint is untouched, and `rfl` is the honest proof of it. -/
 theorem ConPolyZono.satisfies_map (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α)
     (a : Fin cPZ.p → ℝ) : (cPZ.map f).satisfies a ↔ cPZ.satisfies a := Iff.rfl
+
+end
 
 end CORALean.Real
 

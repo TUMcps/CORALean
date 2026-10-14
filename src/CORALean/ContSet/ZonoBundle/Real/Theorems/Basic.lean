@@ -25,6 +25,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
+section
+
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 
@@ -40,10 +42,10 @@ theorem ZonoBundle.isBounded_construct {zB : ZonoBundle α} (h : 0 < zB.k) :
     Bornology.IsBounded zB.construct :=
   (ZonoBundle.isCompact_construct h).isBounded
 
-end CORALean.Real
+end
 
 
-namespace CORALean.Real
+section
 
 variable {n : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
 
@@ -121,6 +123,8 @@ theorem ZonoBundle.representsa_convexSet (zB : ZonoBundle (Vec ℝ n)) :
 theorem ZonoBundle.volume_lt_top (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
     zB.volume < ⊤ :=
   (ZonoBundle.isBounded_construct hk).measure_lt_top
+
+end
 
 end CORALean.Real
 

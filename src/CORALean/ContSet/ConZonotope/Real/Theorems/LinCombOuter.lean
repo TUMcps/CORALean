@@ -39,34 +39,30 @@ theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope α) :
   have hd₂ : β₂ ∈ cZ₂.domain.construct := ConZonotope.mem_domain_iff.mpr ⟨hβ₂, hP₂⟩
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith
   have hm1 : (1:ℝ) - lam ≤ 1 := by linarith
+  -- the concatenated coefficient vector: the two scaled blocks, then the weight
+  set βc := Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂)) fun _ : Fin 1 => 2 * lam - 1
   -- stated at their own instances, since the goal spells the count as a projection
-  have hpar : ((blockLast (cZ₁.h + cZ₂.h)) (Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂))
-      fun _ : Fin 1 => 2 * lam - 1) + 1) / 2 = lam := by
+  have hpar : ((blockLast (cZ₁.h + cZ₂.h)) βc + 1) / 2 = lam := by
     rw [blockLast_append]
     ring
-  have hpar' : (((-blockLast (cZ₁.h + cZ₂.h)) (Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂))
-      fun _ : Fin 1 => 2 * lam - 1)) + 1) / 2 = 1 - lam := by
+  have hpar' : (((-blockLast (cZ₁.h + cZ₂.h)) βc) + 1) / 2 = 1 - lam := by
     rw [LinearMap.neg_apply, blockLast_append]
     ring
   -- and each block is read off the concatenation by the map its constraints were pulled back along
-  have hf₁ : ((blockLeft cZ₁.h cZ₂.h).comp (blockLeft (cZ₁.h + cZ₂.h) 1))
-      (Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂)) fun _ : Fin 1 => 2 * lam - 1)
-      = lam • β₁ := by
+  have hf₁ : ((blockLeft cZ₁.h cZ₂.h).comp (blockLeft (cZ₁.h + cZ₂.h) 1)) βc = lam • β₁ := by
     rw [LinearMap.comp_apply, blockLeft_append, blockLeft_append]
-  have hf₂ : ((blockRight cZ₁.h cZ₂.h).comp (blockLeft (cZ₁.h + cZ₂.h) 1))
-      (Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂)) fun _ : Fin 1 => 2 * lam - 1)
+  have hf₂ : ((blockRight cZ₁.h cZ₂.h).comp (blockLeft (cZ₁.h + cZ₂.h) 1)) βc
       = (1 - lam) • β₂ := by
     rw [LinearMap.comp_apply, blockLeft_append, blockRight_append]
-  refine ⟨Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂)) (fun _ : Fin 1 => 2 * lam - 1),
-    ?_, ?_, ?_⟩
+  refine ⟨βc, ?_, ?_, ?_⟩
   · refine Fin.addCases ?_ ?_
     · refine Fin.addCases ?_ ?_
       · intro j
-        simpa using ConZonotope.abs_smul_coeff_le_one hl0 hl1 hβ₁ j
+        simpa [βc] using ConZonotope.abs_smul_coeff_le_one hl0 hl1 hβ₁ j
       · intro j
-        simpa using ConZonotope.abs_smul_coeff_le_one hm0 hm1 hβ₂ j
+        simpa [βc] using ConZonotope.abs_smul_coeff_le_one hm0 hm1 hβ₂ j
     · intro _
-      simp only [Fin.append_right]
+      simp only [βc, Fin.append_right]
       rw [abs_le]
       constructor <;> linarith
   -- each block answers to its own constraints at the weight the parameter names
@@ -81,7 +77,7 @@ theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope α) :
       rw [Finset.smul_sum]
       exact Finset.sum_congr rfl fun j _ => mul_smul (1 - lam) (β₂ j) (cZ₂.G j)
     rw [ConZonotope.sum_univ_linComb, Fin.sum_univ_add]
-    simp only [ConZonotope.linComb, Fin.append_left, Fin.append_right, Fin.sum_univ_one,
+    simp only [βc, ConZonotope.linComb, Fin.append_left, Fin.append_right, Fin.sum_univ_one,
       Pi.smul_apply, smul_eq_mul]
     rw [hs₁, hs₂]
     module

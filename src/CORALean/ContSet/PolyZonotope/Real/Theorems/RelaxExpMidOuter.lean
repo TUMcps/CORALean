@@ -56,17 +56,13 @@ theorem PolyZonotope.relaxExpMid_outer (pZ : PolyZonotope α)
   rintro x ⟨a, β, ha, hβ, rfl⟩
   obtain ⟨hlo, hhi⟩ := Set.mem_Icc.mp
     (PolyZonotope.sub_monomial_mem_eDrift (k₀ := k₀) pZ.E ha hsim)
+  -- the drift of the two merged columns, as the exact layer counts it
+  set ed := PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)
   -- the two ends are counts of the relaxed generator, so neither is negative
-  have hfst : (0:ℝ) ≤ ((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ) :=
-    Nat.cast_nonneg _
-  have hsnd : (0:ℝ) ≤ ((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ) :=
-    Nat.cast_nonneg _
-  have hmidval : (pZ.relaxDrift part k₀).1
-      = (((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
-        - ((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2 := rfl
-  have hradval : (pZ.relaxDrift part k₀).2
-      = (((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).2 : ℝ)
-        + ((PolyZonotope.eDrift pZ.E k₀ (part.right 0) (part.right 1)).1 : ℝ)) / 2 := rfl
+  have hfst : (0:ℝ) ≤ (ed.1 : ℝ) := Nat.cast_nonneg _
+  have hsnd : (0:ℝ) ≤ (ed.2 : ℝ) := Nat.cast_nonneg _
+  have hmidval : (pZ.relaxDrift part k₀).1 = ((ed.2 : ℝ) - (ed.1 : ℝ)) / 2 := rfl
+  have hradval : (pZ.relaxDrift part k₀).2 = ((ed.2 : ℝ) + (ed.1 : ℝ)) / 2 := rfl
   have hnn : (0:ℝ) ≤ (pZ.relaxDrift part k₀).2 := by
     rw [hradval]
     linarith

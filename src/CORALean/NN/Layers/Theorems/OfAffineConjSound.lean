@@ -103,14 +103,16 @@ theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding
   have hbu : rb * t ≤ toReal (B.up u) :=
     le_trans (mul_le_mul_of_nonneg_left hu hb.le) (hB.up_ge u)
   have hRsound := hR.sound hbl hbu
+  set sl := toReal (R.slope (B.down l) (B.up u)) with hsl
+  set off := toReal (R.offset (B.down l) (B.up u)) with hoff
   -- the affine map's own slope and offset cancel, leaving `ra` times `f`'s deviation
-  have heq : g t - (ra * rb * toReal (R.slope (B.down l) (B.up u)) * t
-        + (ra * toReal (R.offset (B.down l) (B.up u)) + toReal c))
-      = ra * (f (rb * t) - (toReal (R.slope (B.down l) (B.up u)) * (rb * t)
-        + toReal (R.offset (B.down l) (B.up u)))) := by
+  have heq : g t - (ra * rb * sl * t
+        + (ra * off + toReal c))
+      = ra * (f (rb * t) - (sl * (rb * t)
+        + off)) := by
     rw [hg t]; ring
-  have hbound1 : |g t - (ra * rb * toReal (R.slope (B.down l) (B.up u)) * t
-        + (ra * toReal (R.offset (B.down l) (B.up u)) + toReal c))|
+  have hbound1 : |g t - (ra * rb * sl * t
+        + (ra * off + toReal c))|
       ≤ ra * toReal (R.error (B.down l) (B.up u)) := by
     rw [heq, abs_mul, abs_of_pos ha]
     exact mul_le_mul_of_nonneg_left hRsound ha.le
@@ -119,17 +121,17 @@ theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding
   have hOffsetLow := aux_conjOffsetLow_le R hA B c l u
   have hOffsetHigh := aux_le_conjOffsetHigh R hA B c l u
   -- how far the chosen slope and offset can be from the exact product and sum
-  have hSlopeGap : |ra * rb * toReal (R.slope (B.down l) (B.up u))
+  have hSlopeGap : |ra * rb * sl
         - toReal (Relaxation.conjSlope R A B l u)|
       ≤ toReal (Relaxation.conjSlopeGap R A B l u) := by
     rw [Relaxation.conjSlopeGap]; exact abs_sub_le_spread hSlopeLow hSlopeHigh
-  have hOffsetGap : |(ra * toReal (R.offset (B.down l) (B.up u)) + toReal c)
+  have hOffsetGap : |(ra * off + toReal c)
         - toReal (Relaxation.conjOffset R A B c l u)|
       ≤ toReal (Relaxation.conjOffsetGap R A B c l u) := by
     rw [Relaxation.conjOffsetGap]; exact abs_sub_le_spread hOffsetLow hOffsetHigh
   have htBound := aux_abs_le_conjTBound hl hu
   -- the slope gap multiplies `t`, bounded only by the box, not by anything smaller
-  have hcorrection : |(ra * rb * toReal (R.slope (B.down l) (B.up u))
+  have hcorrection : |(ra * rb * sl
         - toReal (Relaxation.conjSlope R A B l u)) * t|
       ≤ toReal (mulUp (Relaxation.conjSlopeGap R A B l u) (Relaxation.conjTBound l u)) := by
     rw [abs_mul]
@@ -139,24 +141,24 @@ theorem Relaxation.ofAffineConj_sound {R : Relaxation 𝕋} {A B : ScaleRounding
   -- the goal splits into the three pieces just bounded, plus their own roundings
   have hkey : g t - (toReal (Relaxation.conjSlope R A B l u) * t
         + toReal (Relaxation.conjOffset R A B c l u))
-      = (g t - (ra * rb * toReal (R.slope (B.down l) (B.up u)) * t
-          + (ra * toReal (R.offset (B.down l) (B.up u)) + toReal c)))
-        + (ra * rb * toReal (R.slope (B.down l) (B.up u))
+      = (g t - (ra * rb * sl * t
+          + (ra * off + toReal c)))
+        + (ra * rb * sl
           - toReal (Relaxation.conjSlope R A B l u)) * t
-        + ((ra * toReal (R.offset (B.down l) (B.up u)) + toReal c)
+        + ((ra * off + toReal c)
           - toReal (Relaxation.conjOffset R A B c l u)) := by
     ring
   rw [hkey]
-  have htri1 := abs_add_le (g t - (ra * rb * toReal (R.slope (B.down l) (B.up u)) * t
-      + (ra * toReal (R.offset (B.down l) (B.up u)) + toReal c))
-    + (ra * rb * toReal (R.slope (B.down l) (B.up u))
+  have htri1 := abs_add_le (g t - (ra * rb * sl * t
+      + (ra * off + toReal c))
+    + (ra * rb * sl
       - toReal (Relaxation.conjSlope R A B l u)) * t)
-    ((ra * toReal (R.offset (B.down l) (B.up u)) + toReal c)
+    ((ra * off + toReal c)
       - toReal (Relaxation.conjOffset R A B c l u))
   -- the same split, one level in: the first two pieces against each other
-  have htri2 := abs_add_le (g t - (ra * rb * toReal (R.slope (B.down l) (B.up u)) * t
-      + (ra * toReal (R.offset (B.down l) (B.up u)) + toReal c)))
-    ((ra * rb * toReal (R.slope (B.down l) (B.up u))
+  have htri2 := abs_add_le (g t - (ra * rb * sl * t
+      + (ra * off + toReal c)))
+    ((ra * rb * sl
       - toReal (Relaxation.conjSlope R A B l u)) * t)
   have hstep1 := add_le_addUp (A.up (R.error (B.down l) (B.up u)))
     (mulUp (Relaxation.conjSlopeGap R A B l u) (Relaxation.conjTBound l u))

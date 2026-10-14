@@ -85,8 +85,9 @@ theorem Zonotope.boundaryRatioAt_ge (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start
     have h4 := le_max_right (toReal (dotUp C (Z.G j))) (-toReal (dotDown C (Z.G j)))
     rw [abs_le]
     exact ⟨by linarith, by linarith⟩
-  have hsum : ∑ j, β j * ∑ k, toReal (C k) * toReal (Z.G j k)
-      ≤ toReal (sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ)))) := by
+  -- the rounded sum of the generators' magnitudes along `C`
+  set Δu := sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ)))
+  have hsum : ∑ j, β j * ∑ k, toReal (C k) * toReal (Z.G j k) ≤ toReal Δu := by
     refine le_trans (Finset.sum_le_sum fun j _ => ?_)
       (le_trans (Finset.sum_le_sum fun j _ => hterm j) (sum_le_sumUp _))
     calc β j * ∑ k, toReal (C k) * toReal (Z.G j k)
@@ -96,17 +97,13 @@ theorem Zonotope.boundaryRatioAt_ge (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start
           mul_le_mul_of_nonneg_right (hβ j) (abs_nonneg _)
       _ = _ := one_mul _
   -- `t` times the lower end of `C dir` is under the numerator
-  have hnum : t * toReal (dotDown C dir) ≤ toReal (subUp
-      (addUp (dotUp C Z.c) (sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ)))))
-      (dotDown C start)) := by
+  have hnum : t * toReal (dotDown C dir)
+      ≤ toReal (subUp (addUp (dotUp C Z.c) Δu) (dotDown C start)) := by
     have hc := le_dotUp C Z.c
     have hs := dotDown_le C start
     have hd := dotDown_le C dir
-    have hρ := add_le_addUp (dotUp C Z.c)
-      (sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ))))
-    have hn := sub_le_subUp
-      (addUp (dotUp C Z.c) (sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ)))))
-      (dotDown C start)
+    have hρ := add_le_addUp (dotUp C Z.c) Δu
+    have hn := sub_le_subUp (addUp (dotUp C Z.c) Δu) (dotDown C start)
     have : t * toReal (dotDown C dir) ≤ t * ∑ k, toReal (C k) * toReal (dir k) :=
       mul_le_mul_of_nonneg_left hd ht
     linarith

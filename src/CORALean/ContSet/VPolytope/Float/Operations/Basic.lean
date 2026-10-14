@@ -21,6 +21,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
@@ -38,10 +40,10 @@ what a convex combination fixes at one. -/
 def VPolytope.bordered (P : VPolytope (Vec 𝕋 n)) : Mat 𝕋 (n + 1) P.k := fun i j =>
   if h : i.val < n then P.V j ⟨i.val, h⟩ else one
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic InflatedContSet
 
@@ -70,6 +72,8 @@ def VPolytope.boundNegProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :
 def VPolytope.boundProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :
     FloatBound 𝕋 P.construct (LinearMap.proj j) :=
   InflatedContSet.boundOfParts (P.nominalBoundProj j) (P.I_error.boundProj j)
+
+end
 
 end CORALean.Float
 

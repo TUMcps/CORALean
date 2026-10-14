@@ -11,7 +11,9 @@ sections or the import graph:
 * a `Basic.lean`: no file-level author block; its sections sit in *groups*, each under one
   context block (`groups`: `namespace`s, `open`s and `variable`s, the sections, the `end`s;
   a section holds no context line of its own, a block opens with `namespace` or `section`,
-  closes with matching `end`s, has a section under it, and repeats no neighbour's lines);
+  closes with matching `end`s, has a section under it, and repeats no neighbour's lines; a
+  namespace holding several `variable` sets stays open, each set in a nested `section` … `end`,
+  and `end X` directly followed by `namespace X` is rejected);
   only blank lines between `BEGIN CODE`, the blocks, the sections and `END OF CODE`;
   each section opens with its banner, naming the declaration,
   with its own author block directly under it and one blank line under that; one declaration
@@ -61,6 +63,11 @@ def set_root(root):
     NONMODULE = ROOT / "scripts" / "non-module-allowlist.txt"
     CORA_BUGS_TEX = ROOT / "experiments" / "paper" / "latex" / "appendix-cora-bugs.tex"
     _NONMOD = _BUGS = None
+
+# `Basic.lean` files still closing and reopening a namespace, because another branch is editing
+# them; the entry goes once that branch has merged and the file is converted (a stale entry is
+# reported).
+REOPEN_PENDING = {"src/CORALean/HybridDynamics/Operations/Basic.lean"}
 
 BEGIN = "-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --"
 END = "-- ---------------------------------------  END OF CODE  ---------------------------------------- --"
@@ -498,11 +505,14 @@ def sections(lf):
 class Group:
     """A run of sections under one context block: the `namespace`/`open`/`variable` lines above
     them and the `end` lines below. Sections that sit outside any block form a group of their
-    own with no context lines."""
+    own with no context lines. A namespace holding several `variable` sets is a *frame*: the
+    `namespace` lines once, then one `section` ... `end` block per set; each such block is a
+    group, the later ones carrying the frame's `namespace` lines as `inherited`."""
 
     def __init__(self, start, rootless=False):
         self.start = start
         self.context = []        # [(line index, text)] of the opening block
+        self.inherited = []      # [(line index, text)]: the `namespace` lines of the frame it sits in
         self.sections = []
         self.stack = []          # the names `end` must close, innermost last
         self.rootless = rootless
@@ -514,35 +524,79 @@ class Group:
 
     @property
     def namespaces(self):
-        return [t.split()[1] for _, t in self.context if t.startswith("namespace ")]
+        return [t.split()[1] for _, t in self.inherited + self.context
+                if t.startswith("namespace ")]
 
     def signature(self):
-        return tuple(" ".join(t.split()) for _, t in self.context)
+        return tuple(" ".join(t.split()) for _, t in self.inherited + self.context)
 
 
 def groups(lf, secs, say):
     """The groups of a `Basic.lean`, in file order: each section under the context block it is
-    wrapped in. A malformed block is reported through `say(line index, message)`."""
+    wrapped in. A malformed block is reported through `say(line index, message)`.
+
+    A namespace opened once may hold several `section` blocks, one per set of `variable`s: the
+    first of them is the group that opened the namespace, the next ones are groups of their own
+    with the namespace as their frame (`Group.inherited`). A namespace closed and reopened at
+    once — `end X` directly followed by `namespace X` — is what a frame replaces; it is
+    reported."""
     lines = lf.lines
     events = [(it.start, "ctx", it) for it in lf.region.items if it.kind == "context"]
     events += [(s.start, "sec", s) for s in secs]
     events.sort(key=lambda e: e[0])
     out, cur = [], None
+    frame = None                 # [namespace lines of the open frame, names `end` must close]
+    last_end = None              # the name the latest context event closed, with no section since
     for i, kind, x in events:
         if kind == "ctx":
             text = " ".join(l.strip() for l in lines[x.start:x.end + 1])
             if x.word == "end":
-                if cur is None or cur.rootless or not cur.stack:
+                owner = cur if cur is not None and not cur.rootless and cur.stack else None
+                if owner is None and frame is not None and frame[1]:
+                    want = frame[1].pop()
+                    if text.split()[1:2] != [want]:
+                        say(i, f"`{text}` closes `namespace {want}`")
+                    last_end = want
+                    if not frame[1]:
+                        frame = None
+                    continue
+                if owner is None:
                     say(i, "`end` with no `namespace` or `section` open")
                     continue
-                want = cur.stack.pop()
+                want = owner.stack.pop()
                 if want is not None and text.split()[1:2] != [want]:
                     say(i, f"`{text}` closes `namespace {want}`")
-                cur.phase = "closing" if cur.stack else "done"
+                last_end = want
+                owner.phase = "closing" if owner.stack else "done"
+                continue
+            if (x.word == "section" and cur is not None and not cur.rootless
+                    and cur.phase == "closing" and cur.stack
+                    and all(w is not None for w in cur.stack)):
+                # the namespace stays open: the block just closed was a section of its frame
+                frame = [[(j, t) for j, t in cur.context if t.startswith("namespace ")],
+                         list(cur.stack)]
+                cur.stack = []
+                cur.phase = "done"
+                cur = Group(i)
+                cur.inherited = list(frame[0])
+                out.append(cur)
+                cur.context.append((i, text))
+                cur.stack.append(None)
+                last_end = None
                 continue
             if cur is None or cur.rootless or cur.phase == "done":
                 cur = Group(i)
                 out.append(cur)
+                if frame is not None and x.word == "section":
+                    cur.inherited = list(frame[0])
+                elif x.word == "namespace" and last_end is not None:
+                    name = text.split()[1] if len(text.split()) > 1 else None
+                    if name == last_end and lf.rel in REOPEN_PENDING:
+                        lf.reopen_pending = True
+                    elif name == last_end:
+                        say(i, f"`end {last_end}` directly followed by `namespace {name}`: the"
+                               " namespace stays open, each set of `variable`s in a nested"
+                               " `section` … `end`")
             elif cur.phase != "open":
                 say(i, "context after the sections of a block — close it with `end` first; a"
                        " section holds no `namespace`, `open` or `variable` of its own")
@@ -551,9 +605,11 @@ def groups(lf, secs, say):
                 say(i, f"a context block opens with `namespace` or `section`, not `{x.word}`:"
                        " an `open` or `variable` outside one leaks into every section after it")
             cur.context.append((i, text))
+            last_end = None
             if x.word in ("namespace", "section"):
                 cur.stack.append(text.split()[1] if len(text.split()) > 1 else None)
         else:
+            last_end = None
             if cur is None or cur.phase == "done":
                 cur = Group(i, rootless=True)
                 out.append(cur)
@@ -563,6 +619,8 @@ def groups(lf, secs, say):
                 cur.phase = "sections"
             cur.sections.append(x)
             x.group = cur
+    if frame is not None:
+        say(frame[0][0][0] if frame[0] else 0, "a namespace is never closed: it needs an `end`")
     for g in out:
         if g.stack:
             say(g.start, "a context block is never closed: it needs an `end` for every"
@@ -742,7 +800,11 @@ def check_basic(lf, say):
     if not secs:
         say(f"{rel}:1: a `Basic.lean` with no sections — delete it")
         return
+    lf.reopen_pending = False
     grps = groups(lf, secs, lambda i, msg: say(f"{where(i)}: {msg}"))
+    if rel in REOPEN_PENDING and not lf.reopen_pending:
+        say(f"{rel}:1: stale `REOPEN_PENDING` entry in scripts/check-basic-bundles.py — the file"
+            " no longer closes and reopens a namespace; remove the entry")
     first = min(g.start for g in grps)
     for i in range(lf.begin + 1, first):
         if lines[i].strip() and not MARKER.match(lines[i]):

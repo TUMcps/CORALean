@@ -31,6 +31,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps SoundFloatArithmetic InflatedContSet Matrix Pointwise
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r m : ℕ}
@@ -132,10 +134,10 @@ theorem Zonotope.reindex_nominal (e : Fin m ≃ Fin n) (Z : Zonotope (Vec 𝕋 n
     InflatedContSet.nominal (Z.reindex e)
       = Real.Zonotope.map (reindexLin e) (InflatedContSet.nominal Z) := rfl
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -186,10 +188,10 @@ theorem Zonotope.nominal_G [SoundFloatArithmetic 𝕋] (Z : Zonotope (Vec 𝕋 n
 theorem Zonotope.nominal_h [SoundFloatArithmetic 𝕋] (Z : Zonotope (Vec 𝕋 n)) :
     (InflatedContSet.nominal Z).h = Z.h := rfl
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -208,6 +210,8 @@ omit [FloatOps 𝕋] in
 @[simp] theorem Zonotope.materialiseMat_eq (Z : Zonotope (Mat 𝕋 m n)) :
     Z.materialiseMat = Z := by
   simp [Zonotope.materialiseMat]
+
+end
 
 end CORALean.Float
 

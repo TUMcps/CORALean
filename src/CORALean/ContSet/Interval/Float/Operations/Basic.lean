@@ -27,6 +27,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps Pointwise SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
@@ -505,10 +507,10 @@ def Interval.uminus (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
 does. -/
 def prodUp {k : ℕ} (f : Fin k → 𝕋) : 𝕋 := Fin.foldr k (fun i acc => mulUp (f i) acc) one
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 variable {𝕋 : Type} {m₁ m₂ n n₁ n₂ : ℕ}
 
@@ -580,10 +582,10 @@ def Interval.vertcat (I : Interval (Mat 𝕋 m₁ n)) (J : Interval (Mat 𝕋 m�
   inf := Fin.append I.inf J.inf
   sup := Fin.append I.sup J.sup
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -627,10 +629,10 @@ the tree). -/
 def Interval.stlInterval (I : Interval (Vec 𝕋 1)) : Set ℝ :=
   Set.Icc (toReal (I.inf 0)) (toReal (I.sup 0))
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps
 
@@ -660,6 +662,8 @@ def Interval.mtimes (M : Mat 𝕋 m n) (I : Interval (Vec 𝕋 n)) : Interval (V
 def Interval.project (I : Interval (Vec 𝕋 n)) (dims : Fin m → Fin n) : Interval (Vec 𝕋 m) where
   inf := fun k => I.inf (dims k)
   sup := fun k => I.sup (dims k)
+
+end
 
 end CORALean.Float
 

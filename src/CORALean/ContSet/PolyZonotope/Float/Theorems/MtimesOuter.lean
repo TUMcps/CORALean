@@ -55,20 +55,20 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope (V
     (toRealMat M *ᵥ ·) '' nominalSet pZ ⊆
       nominalSet (PolyZonotope.mtimes M pZ)
         + (PolyZonotope.mtimesResidual M pZ).construct := by -- --- PROOF ---
+  -- the exact product of a column with row `i` of `M`, and what its stored rounding is short
+  set ex : Vec 𝕋 n → Fin m → ℝ := fun g i => ∑ k, toReal (M i k) * toReal (g k)
+  set gap : Vec 𝕋 n → Fin m → ℝ := fun g i => ex g i - toReal (mulVecDown M g i)
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx'
-  have hres : (fun i => (∑ k, toReal (M i k) * toReal (pZ.c k))
-        - toReal (mulVecDown M pZ.c i))
+  have hres : (fun i => gap pZ.c i)
       ∈ (Interval.residual (mulVecDown M pZ.c) (mulVecUp M pZ.c)
           (mulVecDown M pZ.c)).construct :=
     Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) pZ.c, le_dotUp (M i) pZ.c⟩)
   -- the two generator blocks' shortfalls, each bounded by a coefficient inside `[-1,1]`
-  have hdepBox : (fun i => ∑ l, ((∑ k, toReal (M i k) * toReal (pZ.G l k))
-        - toReal (mulVecDown M (pZ.G l) i)) * Real.PolyZonotope.monomial pZ.E a l)
+  have hdepBox : (fun i => ∑ l, gap (pZ.G l) i * Real.PolyZonotope.monomial pZ.E a l)
       ∈ (PolyZonotope.generatorError (matMulDiff M (fun i l => pZ.G l i))).construct :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.matMul_close M pZ.G) ha
-  have hindBox : (fun i => ∑ j, ((∑ k, toReal (M i k) * toReal (pZ.GI j k))
-        - toReal (mulVecDown M (pZ.GI j) i)) * β j)
+  have hindBox : (fun i => ∑ j, gap (pZ.GI j) i * β j)
       ∈ (PolyZonotope.generatorError (matMulDiff M (fun i j => pZ.GI j i))).construct :=
     PolyZonotope.mem_generatorError (PolyZonotope.matMul_close M pZ.GI) hβ
   refine ⟨fun i => toReal ((PolyZonotope.mtimes M pZ).c i)
@@ -81,16 +81,12 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope (V
   funext i
   -- the stored generators and their errors recombine into the exact ones
   have hdep : (∑ l, toReal (mulVecDown M (pZ.G l) i) * Real.PolyZonotope.monomial pZ.E a l)
-      + (∑ l, ((∑ k, toReal (M i k) * toReal (pZ.G l k))
-          - toReal (mulVecDown M (pZ.G l) i)) * Real.PolyZonotope.monomial pZ.E a l)
-      = ∑ l, (∑ k, toReal (M i k) * toReal (pZ.G l k))
-          * Real.PolyZonotope.monomial pZ.E a l := by
+      + (∑ l, gap (pZ.G l) i * Real.PolyZonotope.monomial pZ.E a l)
+      = ∑ l, ex (pZ.G l) i * Real.PolyZonotope.monomial pZ.E a l := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun l _ => by ring
-  have hind : (∑ j, toReal (mulVecDown M (pZ.GI j) i) * β j)
-      + (∑ j, ((∑ k, toReal (M i k) * toReal (pZ.GI j k))
-          - toReal (mulVecDown M (pZ.GI j) i)) * β j)
-      = ∑ j, (∑ k, toReal (M i k) * toReal (pZ.GI j k)) * β j := by
+  have hind : (∑ j, toReal (mulVecDown M (pZ.GI j) i) * β j) + (∑ j, gap (pZ.GI j) i * β j)
+      = ∑ j, ex (pZ.GI j) i * β j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   -- the goal spelled out, so the two recombinations line up with it term by term
@@ -98,12 +94,8 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope (V
         + (∑ l : Fin pZ.h, toReal ((PolyZonotope.mtimes M pZ).G l i)
             * Real.PolyZonotope.monomial pZ.E a l)
         + ∑ j : Fin pZ.q, toReal ((PolyZonotope.mtimes M pZ).GI j i) * β j
-      + (((∑ k, toReal (M i k) * toReal (pZ.c k)) - toReal (mulVecDown M pZ.c i)
-          + ∑ l, ((∑ k, toReal (M i k) * toReal (pZ.G l k))
-              - toReal (mulVecDown M (pZ.G l) i))
-            * Real.PolyZonotope.monomial pZ.E a l)
-        + ∑ j, ((∑ k, toReal (M i k) * toReal (pZ.GI j k))
-            - toReal (mulVecDown M (pZ.GI j) i)) * β j)
+      + ((gap pZ.c i + ∑ l, gap (pZ.G l) i * Real.PolyZonotope.monomial pZ.E a l)
+        + ∑ j, gap (pZ.GI j) i * β j)
     = (toRealMat M *ᵥ x) i
   rw [PolyZonotope.mulVec_split M pZ.c pZ.G pZ.GI (Real.PolyZonotope.monomial pZ.E a) β hx i]
   simp only [PolyZonotope.mtimes]

@@ -21,6 +21,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
@@ -49,10 +51,10 @@ Heine–Borel. -/
 theorem VPolytope.isCompact_construct (P : VPolytope (Vec 𝕋 n)) : IsCompact P.construct :=
   InflatedContSet.isCompact_construct P
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -69,6 +71,8 @@ omit [FloatOps 𝕋] in
 /-- `materialise` is the identity: it changes only what running the definition costs. -/
 @[simp] theorem VPolytope.materialise_eq (P : VPolytope (Vec 𝕋 n)) : P.materialise = P := by
   simp [VPolytope.materialise]
+
+end
 
 end CORALean.Float
 

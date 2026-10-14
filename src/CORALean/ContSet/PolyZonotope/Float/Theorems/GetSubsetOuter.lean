@@ -38,34 +38,28 @@ theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin p
         + pZ.I_error.construct ⊆ (pZ.getSubset k cen rad).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := Real.PolyZonotope.mem_construct_iff.mp hz
+  -- the exact generators, the stored (rounded down) ones and the monomials, named once
+  set G := Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad)
+  set Gd : Fin n → Fin (pZ.h * (pZ.maxExp k + 1)) → 𝕋 := pZ.getSubsetGDown k cen rad
+  set mon := Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a
   -- the rounding of the generators, scaled by the monomials, lies in the added box
-  have hbox : (fun i => ∑ l, (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen)
-        (toReal rad) l i - toReal (pZ.getSubsetGDown k cen rad i l))
-          * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
-      ∈ (PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).construct :=
+  set err : Fin n → ℝ := fun i =>
+    ∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), (G l i - toReal (Gd i l)) * mon l with herr
+  have hbox : err ∈ (PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).construct :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.getSubsetG_close pZ k cen rad) ha
   -- the float point at the same coefficients, plus what the rounding and the box add
   refine ⟨fun i => toReal ((pZ.getSubset k cen rad).c i)
-      + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (pZ.getSubsetGDown k cen rad i l)
-          * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
+      + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (Gd i l) * mon l)
       + ∑ j : Fin pZ.q, toReal ((pZ.getSubset k cen rad).GI j i) * β j,
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, fun _ => rfl⟩,
-    fun i => (∑ l, (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
-        - toReal (pZ.getSubsetGDown k cen rad i l))
-        * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l) + e i,
-    ?_, ?_⟩
+    fun i => err i + e i, ?_, ?_⟩
   · -- the sum of the two boxes' points is a point of the interval sum
     intro i
     have h₁ : toReal (pZ.I_error.inf i) ≤ e i := (he i).1
     have h₂ : e i ≤ toReal (pZ.I_error.sup i) := (he i).2
-    have h₃ : toReal ((PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).inf i) ≤
-          (∑ l, (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
-            - toReal (pZ.getSubsetGDown k cen rad i l))
-            * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l) ∧
-        (∑ l, (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
-            - toReal (pZ.getSubsetGDown k cen rad i l))
-            * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l) ≤
-          toReal ((PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).sup i) := hbox i
+    have h₃ : toReal ((PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).inf i) ≤ err i ∧
+        err i ≤ toReal ((PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).sup i) :=
+      hbox i
     refine ⟨le_trans (addDown_le_add _ _) ?_, le_trans ?_ (add_le_addUp _ _)⟩
     · simp only [Entrywise.entry]
       linarith [h₃.1]
@@ -73,33 +67,17 @@ theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin p
       linarith [h₃.2]
   · funext i
     -- the exact point's coordinate, with the stored fields spelt as the exact ones
-    have hzi : z i = toReal (pZ.c i)
-        + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)),
-          Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
-            * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
+    have hzi : z i = toReal (pZ.c i) + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), G l i * mon l)
         + ∑ j : Fin pZ.q, toReal (pZ.GI j i) * β j := hz i
     -- the stored and the exact generator sums differ by exactly the box's point
-    have hsum : (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (pZ.getSubsetGDown k cen rad i l)
-          * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
-        + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)),
-          (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
-            - toReal (pZ.getSubsetGDown k cen rad i l))
-            * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
-        = ∑ l : Fin (pZ.h * (pZ.maxExp k + 1)),
-          Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
-            * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l := by
+    have hsum : (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (Gd i l) * mon l) + err i
+        = ∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), G l i * mon l := by
+      simp only [herr]
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun l _ => by ring
     -- spelt out, the coordinate is the exact point's plus the box's
-    show toReal (pZ.c i)
-        + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (pZ.getSubsetGDown k cen rad i l)
-          * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
-        + (∑ j : Fin pZ.q, toReal (pZ.GI j i) * β j)
-        + ((∑ l : Fin (pZ.h * (pZ.maxExp k + 1)),
-          (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
-            - toReal (pZ.getSubsetGDown k cen rad i l))
-            * Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal pZ) k) a l)
-          + e i) = z i + e i
+    show toReal (pZ.c i) + (∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), toReal (Gd i l) * mon l)
+        + (∑ j : Fin pZ.q, toReal (pZ.GI j i) * β j) + (err i + e i) = z i + e i
     rw [hzi]
     linarith [hsum]
 

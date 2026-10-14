@@ -45,6 +45,8 @@ theorem ConZonotope.quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n) (cZ : ConZon
       ⊆ nominalSet (ConZonotope.quadMapDep Q cZ)
         + (I_error (ConZonotope.quadMapDep Q cZ)).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, rfl⟩
+  -- the exact layer's quadratic map of the read-back operand, named once
+  set R := Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ) with hR
   -- the exact layer's enclosure, on the read-back operand
   obtain ⟨β, hβ, hP, hx⟩ := Real.ConZonotope.quadMap_outer (fun k => toRealMat (Q k))
     (nominal cZ) ⟨z, hz, rfl⟩
@@ -52,9 +54,9 @@ theorem ConZonotope.quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n) (cZ : ConZon
   obtain ⟨β', hβ', hP', hx'⟩ : ∃ β' : Fin (cZ.h + cZ.h + cZ.h * cZ.h) → ℝ, (∀ j, |β' j| ≤ 1)
       ∧ β' ∈ (ConZonotope.quadMapDep Q cZ).P.construct
       ∧ ∀ i, (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) z i
-        = (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
+        = R.c i
           + ∑ l, β' l
-            * (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).G l i := by
+            * R.G l i := by
     refine ⟨β, hβ, ?_, fun i => ?_⟩
     -- the constraints of the exact form are the operand's, pulled back through two blocks
     · exact HPolytope.mem_padLeft_iff.mpr (HPolytope.mem_padLeft_iff.mpr hP)
@@ -62,13 +64,12 @@ theorem ConZonotope.quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n) (cZ : ConZon
       simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul] at this
       exact this
   -- the two shortfalls, in the box the stored zonotope carries
-  have hd₁ : (fun i => (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
+  have hd₁ : (fun i => R.c i
         - toReal (ConZonotope.quadMapCDown Q cZ i))
       ∈ (Interval.residual (ConZonotope.quadMapCDown Q cZ) (ConZonotope.quadMapCUp Q cZ)
         (ConZonotope.quadMapCDown Q cZ)).construct :=
     Interval.sub_mem_residual fun i => ConZonotope.quadMapC_between Q cZ i
-  have hd₂ : (fun i => ∑ l, ((Real.ConZonotope.quadMap (fun k => toRealMat (Q k))
-        (nominal cZ)).G l i - toReal (ConZonotope.quadMapGDown Q cZ i l)) * β' l)
+  have hd₂ : (fun i => ∑ l, (R.G l i - toReal (ConZonotope.quadMapGDown Q cZ i l)) * β' l)
       ∈ (Zonotope.generatorError (ConZonotope.quadMapGDiff Q cZ)).construct :=
     Zonotope.mem_generatorError (fun i l => ConZonotope.quadMapG_close Q cZ i l) hβ'
   -- the stored nominal point at `β'`
@@ -78,14 +79,14 @@ theorem ConZonotope.quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n) (cZ : ConZon
   -- the stored point and the two shortfalls, coordinate `i`
   show toReal (ConZonotope.quadMapCDown Q cZ i)
       + ∑ l, toReal (ConZonotope.quadMapGDown Q cZ i l) * β' l
-      + ((Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
+      + (R.c i
           - toReal (ConZonotope.quadMapCDown Q cZ i)
-        + ∑ l, ((Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).G l i
+        + ∑ l, (R.G l i
           - toReal (ConZonotope.quadMapGDown Q cZ i l)) * β' l)
       = z ⬝ᵥ (toRealMat (Q i) *ᵥ z)
-  have hsplit : ∑ l, ((Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).G l i
+  have hsplit : ∑ l, (R.G l i
         - toReal (ConZonotope.quadMapGDown Q cZ i l)) * β' l
-      = ∑ l, β' l * (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).G l i
+      = ∑ l, β' l * R.G l i
         - ∑ l, toReal (ConZonotope.quadMapGDown Q cZ i l) * β' l := by
     rw [← Finset.sum_sub_distrib]
     exact Finset.sum_congr rfl fun l _ => by ring

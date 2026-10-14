@@ -19,6 +19,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
+section
+
 open ContSet
 
 variable {S α : Type} [ContSet S α] [Isequal S]
@@ -43,10 +45,10 @@ def ContSet.eq (s t : S) : Prop := Isequal.isequal s t
 /-- CORA's `ne`: `res = ~isequal(S1, S2)`. -/
 def ContSet.ne (s t : S) : Prop := ¬ Isequal.isequal s t
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet Scalar
 
@@ -67,10 +69,10 @@ def ContSet.uminus (s : S n) : S n :=
   let A : Mat 𝕋 n n := -1
   Mtimes.mtimes A s
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet Scalar
 
@@ -91,10 +93,10 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)]
 def ContSet.minusFrom (p : Vec ℝ n) (s : S n) : S n :=
   Plus.plus (ContSet.uminus (𝕋 := 𝕋) s) (OfPoint.ofPoint p)
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet Scalar
 
@@ -115,10 +117,10 @@ variable [OfScalarPoint 𝕋 S]
 def ContSet.minusFromScalar (p : Vec 𝕋 n) (s : S n) : S n :=
   Plus.plus (ContSet.uminus (𝕋 := 𝕋) s) (OfScalarPoint.ofVec (𝕋 := 𝕋) p)
 
-end CORALean
+end
 
 
-namespace CORALean
+section
 
 open ContSet Scalar
 
@@ -135,6 +137,8 @@ variable {S α : Type} [ContSet S α]
 
 CORA's `uplus` is the identity, so it takes no operation class. -/
 def ContSet.uplus (s : S) : S := s
+
+end
 
 end CORALean
 

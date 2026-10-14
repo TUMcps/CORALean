@@ -1620,7 +1620,7 @@ report "$out"
 # "Algorithms read like the paper"). Same contract as the helper above: status 1 with findings
 # on stdout is a finding, anything else is the helper failing.
 if [ -z "$STAGED" ]; then
-  for helper in check-float-wrappers.py check-algorithm-steps.py; do
+  for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

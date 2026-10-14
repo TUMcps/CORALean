@@ -68,10 +68,15 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)
         (ConPolyZono.compactGensGap cPZ)).construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hsat, hxi⟩ := ConPolyZono.mem_nominalSet_iff.mp hx
+  -- the kept exponents, the monomials on them, and the exact fibre sums of coordinate `i`
+  set Ek : Fin cPZ.p → Fin (PolyZonotope.repKeep cPZ.E).card → ℕ :=
+    fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j') with hEk
+  set mon := Real.PolyZonotope.monomial Ek a with hmon
+  set fib : Fin n → Fin (PolyZonotope.repKeep cPZ.E).card → ℝ := fun i j =>
+    Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E) (fun l => toReal (cPZ.G l i))
+      (PolyZonotope.keepIdx cPZ.E j) with hfib
   refine ⟨fun i => toReal (cPZ.c i)
-            + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j)
-                * Real.PolyZonotope.monomial
-                    (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j)
+            + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j) * mon j)
             + ∑ j, toReal (cPZ.GI j i) * β j,
           ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, hsat, fun _ => rfl⟩,
           _, PolyZonotope.mem_generatorError_monomial
@@ -79,40 +84,23 @@ theorem ConPolyZono.aux_compactGens_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)
             (cPZ.aux_compactGensGap) ha, ?_⟩
   funext i
   -- the stored merged columns and their errors recombine into the exact fibres
-  have hsum : (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j)
-        * Real.PolyZonotope.monomial (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j)
+  have hsum : (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j) * mon j)
       + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
-          (Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-              (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
-            - toReal (cPZ.mergedCol i j))
-            * Real.PolyZonotope.monomial (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j)
-      = ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
-          Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-              (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
-            * Real.PolyZonotope.monomial
-                (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j := by
+          (fib i j - toReal (cPZ.mergedCol i j)) * mon j)
+      = ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, fib i j * mon j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   -- the goal spelled out, so `hsum` and `aux_merge` line up with it
   show toReal (cPZ.c i)
-        + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j)
-            * Real.PolyZonotope.monomial (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j)
+        + (∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, toReal (cPZ.mergedCol i j) * mon j)
         + (∑ j, toReal (cPZ.GI j i) * β j)
       + ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
-          (Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-              (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
-            - toReal (cPZ.mergedCol i j))
-            * Real.PolyZonotope.monomial (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j
+          (fib i j - toReal (cPZ.mergedCol i j)) * mon j
     = x i
   -- the regrouping read at the generators laid out as CORA's `n × h` matrix
   have hmerge : (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E a l)
-      = ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card,
-          Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
-              (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
-            * Real.PolyZonotope.monomial
-                (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) a j :=
-    ConPolyZono.merge cPZ.E (fun i l => cPZ.G l i) a
-      (fun k j' => cPZ.E k (PolyZonotope.keepIdx cPZ.E j')) (fun _ _ => rfl) i
+      = ∑ j : Fin (PolyZonotope.repKeep cPZ.E).card, fib i j * mon j :=
+    ConPolyZono.merge cPZ.E (fun i l => cPZ.G l i) a Ek (fun _ _ => rfl) i
   rw [hxi i, hmerge]
   linarith [hsum]
 

@@ -49,19 +49,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 coefficient vector of the polytope inside the unit box, the polytope being nonempty there. -/
 theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
     (hne : ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.construct) {γ : Vec ℝ k} {lam : ℝ}
+    {Q : HPolytope 𝕋 (Vec 𝕋 k)} (hQ : Q = P.intersection (HPolytope.unitBox 𝕋 k))
     (hl0 : 0 ≤ lam)
-    (hA : ∀ i, (toRealMat (P.intersection (HPolytope.unitBox 𝕋 k)).A *ᵥ γ) i
-        ≤ lam * toReal ((P.intersection (HPolytope.unitBox 𝕋 k)).b i))
-    (hE : ∀ i, lam * toReal ((P.intersection (HPolytope.unitBox 𝕋 k)).be.inf i)
-          ≤ (toRealMat (P.intersection (HPolytope.unitBox 𝕋 k)).Ae *ᵥ γ) i ∧
-        (toRealMat (P.intersection (HPolytope.unitBox 𝕋 k)).Ae *ᵥ γ) i
-          ≤ lam * toReal ((P.intersection (HPolytope.unitBox 𝕋 k)).be.sup i)) :
+    (hA : ∀ i, (toRealMat Q.A *ᵥ γ) i ≤ lam * toReal (Q.b i))
+    (hE : ∀ i, lam * toReal (Q.be.inf i) ≤ (toRealMat Q.Ae *ᵥ γ) i ∧
+        (toRealMat Q.Ae *ᵥ γ) i ≤ lam * toReal (Q.be.sup i)) :
     ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.construct ∧ lam • β = γ := by -- --- PROOF ---
   obtain rfl | hpos := hl0.eq_or_lt
   · -- zero weight: the unit-box rows pin the block to the origin
     obtain ⟨β, hβ, hP⟩ := hne
     refine ⟨β, hβ, hP, funext fun j => ?_⟩
     -- the two unit-box rows of coordinate `j`, at weight zero, bound it by `0` both ways
+    subst hQ
     have hup := hA (Fin.natAdd P.m (Fin.castAdd k j))
     have hlo := hA (Fin.natAdd P.m (Fin.natAdd k j))
     simp only [HPolytope.intersection, HPolytope.mulVec_append_right, Fin.append_right,
@@ -72,23 +71,25 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
   · -- positive weight: divide through, the rows then holding as stated
     refine ⟨lam⁻¹ • γ, ?_⟩
     -- the divided vector meets the rows at weight one, and the unit box
-    have hmem : lam⁻¹ • γ ∈ (P.intersection (HPolytope.unitBox 𝕋 k)).construct := by
+    have hmem : lam⁻¹ • γ ∈ Q.construct := by
       refine HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun i => ⟨?_, ?_⟩⟩
-      · rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
-        calc lam⁻¹ * (toRealMat (P.intersection (HPolytope.unitBox 𝕋 k)).A *ᵥ γ) i
-            ≤ lam⁻¹ * (lam * toReal ((P.intersection (HPolytope.unitBox 𝕋 k)).b i)) :=
+      · -- the inequality rows scale by `lam⁻¹`
+        rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
+        calc lam⁻¹ * (toRealMat Q.A *ᵥ γ) i
+            ≤ lam⁻¹ * (lam * toReal (Q.b i)) :=
               mul_le_mul_of_nonneg_left (hA i) (inv_nonneg.mpr hl0)
           _ = _ := by field_simp
       · rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
-        calc toReal ((P.intersection (HPolytope.unitBox 𝕋 k)).be.inf i)
-            = lam⁻¹ * (lam * toReal ((P.intersection (HPolytope.unitBox 𝕋 k)).be.inf i)) := by
+        calc toReal (Q.be.inf i)
+            = lam⁻¹ * (lam * toReal (Q.be.inf i)) := by
               field_simp
           _ ≤ _ := mul_le_mul_of_nonneg_left (hE i).1 (inv_nonneg.mpr hl0)
       · rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
-        calc lam⁻¹ * (toRealMat (P.intersection (HPolytope.unitBox 𝕋 k)).Ae *ᵥ γ) i
-            ≤ lam⁻¹ * (lam * toReal ((P.intersection (HPolytope.unitBox 𝕋 k)).be.sup i)) :=
+        calc lam⁻¹ * (toRealMat Q.Ae *ᵥ γ) i
+            ≤ lam⁻¹ * (lam * toReal (Q.be.sup i)) :=
               mul_le_mul_of_nonneg_left (hE i).2 (inv_nonneg.mpr hl0)
           _ = _ := by field_simp
+    rw [hQ] at hmem
     obtain ⟨hP, hbox⟩ := HPolytope.mem_intersection_iff.mp hmem
     exact ⟨HPolytope.mem_unitBox_iff.mp hbox, hP, by rw [smul_smul, mul_inv_cancel₀ hpos.ne',
       one_smul]⟩
@@ -137,11 +138,11 @@ theorem ConZonotope.linCombSameCentre_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Ve
   obtain ⟨β₁, hβ₁, hP₁, hγ₁eq⟩ := ConZonotope.aux_blockCoeff cZ₁.P
     (by obtain ⟨y, hy⟩ := hne₁
         obtain ⟨b, hb, hbP, -⟩ := ConZonotope.mem_nominalSet_iff.mp hy
-        exact ⟨b, hb, hbP⟩) hl0 hA₁ hE₁
+        exact ⟨b, hb, hbP⟩) rfl hl0 hA₁ hE₁
   obtain ⟨β₂, hβ₂, hP₂, hγ₂eq⟩ := ConZonotope.aux_blockCoeff cZ₂.P
     (by obtain ⟨y, hy⟩ := hne₂
         obtain ⟨b, hb, hbP, -⟩ := ConZonotope.mem_nominalSet_iff.mp hy
-        exact ⟨b, hb, hbP⟩) (by linarith) hA₂ hE₂
+        exact ⟨b, hb, hbP⟩) rfl (by linarith) hA₂ hE₂
   refine ⟨fun i => toReal (cZ₁.c i) + ∑ j, toReal (cZ₁.G j i) * β₁ j,
     ConZonotope.mem_nominalSet_iff.mpr ⟨β₁, hβ₁, hP₁, fun _ => rfl⟩,
     fun i => toReal (cZ₂.c i) + ∑ j, toReal (cZ₂.G j i) * β₂ j,

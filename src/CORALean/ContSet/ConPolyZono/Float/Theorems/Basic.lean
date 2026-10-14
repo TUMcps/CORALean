@@ -25,6 +25,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps SoundFloatArithmetic InflatedContSet Pointwise Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
@@ -92,10 +94,10 @@ theorem ConPolyZono.toRealVec_append {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b
   refine funext (Fin.addCases (fun i => ?_) (fun i => ?_)) <;>
     simp only [toRealVec, Fin.append_left, Fin.append_right]
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open Matrix FloatOps SoundFloatArithmetic
 
@@ -146,6 +148,8 @@ theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono �
 /-- The nominal ConPolyZono's field `R`, so proofs can see through the instance. -/
 theorem ConPolyZono.nominal_R [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (InflatedContSet.nominal cPZ).R = cPZ.R := rfl
+
+end
 
 end CORALean.Float
 

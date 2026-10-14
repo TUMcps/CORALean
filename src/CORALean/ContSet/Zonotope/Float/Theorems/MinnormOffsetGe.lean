@@ -101,16 +101,15 @@ theorem Zonotope.minnormOffset_ge (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (S
     have h3 := le_max_left (toReal (dotUp C (Z.G j))) (-toReal (dotDown C (Z.G j)))
     have h4 := le_max_right (toReal (dotUp C (Z.G j))) (-toReal (dotDown C (Z.G j)))
     exact ⟨by linarith, by linarith⟩
-  have hΔ : r * s ≤
-      toReal (sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ)))) :=
+  -- the rounded sum of the generators' magnitudes along `C`
+  set Δu := sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ)))
+  have hΔ : r * s ≤ toReal Δu :=
     huy ▸ le_trans hdot (le_trans (Finset.sum_le_sum fun j _ => hterm j) (sum_le_sumUp _))
-  have hΔ0 : 0 ≤ toReal (sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ)))) :=
+  have hΔ0 : 0 ≤ toReal Δu :=
     le_trans (mul_nonneg hr hs.le) hΔ
   -- divide: by the true length, then by its lower bound, then round the quotient up
-  calc r ≤ toReal (sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ))))
-        / s := (le_div_iff₀ hs).mpr hΔ
-    _ ≤ toReal (sumUp fun υ => maximum (dotUp C (Z.G υ)) (neg (dotDown C (Z.G υ))))
-        / toReal (sqrtDown p (dotDown C C)) := div_le_div_of_nonneg_left hΔ0 hlen hle
+  calc r ≤ toReal Δu / s := (le_div_iff₀ hs).mpr hΔ
+    _ ≤ toReal Δu / toReal (sqrtDown p (dotDown C C)) := div_le_div_of_nonneg_left hΔ0 hlen hle
     _ ≤ _ := div_le_divUp _ _ hlen
 
 end CORALean.Float

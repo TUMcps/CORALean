@@ -60,10 +60,11 @@ theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) :
   have hK := CORALean.Real.Capsule.convHull_outer C.nominal S.nominal hz
   refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := C.nominal.convHull S.nominal)
     ?_ hK
-  -- the stored centre and generator are within the half-gaps of the exact ones
+  -- the centre's and the generator's half-gaps, rounded up
+  set gc := normUp k fun i => half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i)))
+  set gg := normUp k fun i => half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i)))
   have hc : ‖(C.nominal.convHull S.nominal).c - (Capsule.convHull k C S).nominal.c‖₂ ≤
-      toReal (normUp k fun i => half (subUp (addUp (C.c i) (S.c i))
-        (addDown (C.c i) (S.c i)))) := by
+      toReal gc := by
     refine norm₂_le_normUp k fun j => ?_
     have h := Capsule.aux_half_gap_le (x := toReal (C.c j) + toReal (S.c j))
       (addDown_le_add (C.c j) (S.c j)) (add_le_addUp (C.c j) (S.c j))
@@ -74,8 +75,7 @@ theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) :
     show |(C.nominal.convHull S.nominal).c j - toReal (half (addUp (C.c j) (S.c j)))| ≤ _
     rw [e]; exact h
   have hg : ‖(C.nominal.convHull S.nominal).g - (Capsule.convHull k C S).nominal.g‖₂ ≤
-      toReal (normUp k fun i => half (subUp (subUp (C.c i) (S.c i))
-        (subDown (C.c i) (S.c i)))) := by
+      toReal gg := by
     refine norm₂_le_normUp k fun j => ?_
     -- the same, for the difference
     have h := Capsule.aux_half_gap_le (x := toReal (C.c j) - toReal (S.c j))
@@ -89,12 +89,8 @@ theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) :
   -- the stored radius adds both gaps to the larger rounded-up radius
   have hr₁ := Capsule.aux_radius_le k C
   have hr₂ := Capsule.aux_radius_le k S
-  have s₁ := add_le_addUp (maximum (C.radius k) (S.radius k))
-    (addUp (normUp k fun i => half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i))))
-      (normUp k fun i => half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i)))))
-  have s₂ := add_le_addUp
-    (normUp k fun i => half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i))))
-    (normUp k fun i => half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i))))
+  have s₁ := add_le_addUp (maximum (C.radius k) (S.radius k)) (addUp gc gg)
+  have s₂ := add_le_addUp gc gg
   have hm : max C.nominal.radius S.nominal.radius ≤
       toReal (maximum (C.radius k) (S.radius k)) := by
     rw [toReal_maximum]; exact max_le_max hr₁ hr₂

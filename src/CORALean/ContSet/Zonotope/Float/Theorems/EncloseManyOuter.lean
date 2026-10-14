@@ -67,15 +67,12 @@ theorem Zonotope.encloseMany_outer (p : ℕ) (Zs : Fin (q + 1) → Zonotope (Vec
     (Set.mem_iUnion₂.mpr ⟨A, hA, Set.mem_image_of_mem _ h1⟩)
   -- its interval hull, then the hull over all cells
   have h3 := Zonotope.interval_contains _ h2
-  have h4 : A *ᵥ x ∈ Interval.construct (⟨fun k => minimumOver fun i =>
-        ((Zonotope.mtimesIntervalMat IM ((Zs i).reduceGirard 1)).interval).inf k,
-      fun k => maximumOver fun i =>
-        ((Zonotope.mtimesIntervalMat IM ((Zs i).reduceGirard 1)).interval).sup k⟩ :
-      Interval (Vec 𝕋 (m + 1))) := fun k =>
-    ⟨le_trans (minimumOver_le (fun i =>
-        ((Zonotope.mtimesIntervalMat IM ((Zs i).reduceGirard 1)).interval).inf k) i) (h3 k).1,
-      le_trans (h3 k).2 (le_maximumOver (fun i =>
-        ((Zonotope.mtimesIntervalMat IM ((Zs i).reduceGirard 1)).interval).sup k) i)⟩
+  set hull : Fin (q + 1) → Interval (Vec 𝕋 (m + 1)) := fun i =>
+    (Zonotope.mtimesIntervalMat IM ((Zs i).reduceGirard 1)).interval with hhull
+  have h4 : A *ᵥ x ∈ Interval.construct (⟨fun k => minimumOver fun i => (hull i).inf k,
+      fun k => maximumOver fun i => (hull i).sup k⟩ : Interval (Vec 𝕋 (m + 1))) := fun k =>
+    ⟨le_trans (minimumOver_le (fun i => (hull i).inf k) i) (h3 k).1,
+      le_trans (h3 k).2 (le_maximumOver (fun i => (hull i).sup k) i)⟩
   -- rotated back, the point returns to itself
   have h5 := Zonotope.mtimes_outer
     (Zonotope.encloseManyBasis (fun i => divDown (direction i) (normUp p direction))) _

@@ -18,6 +18,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
@@ -44,10 +46,10 @@ theorem SpectraShadow.nominal_c [SoundFloatArithmetic 𝕋] (S : SpectraShadow �
 theorem SpectraShadow.nominal_G [SoundFloatArithmetic 𝕋] (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     (InflatedContSet.nominal S).G = fun j i => toReal (S.G j i) := rfl
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -64,6 +66,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem SpectraShadow.or_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     convexHull ℝ (S₁.construct ∪ S₂.construct) ⊆ (S₁.or S₂).construct :=
   SpectraShadow.convHull_outer S₁ S₂
+
+end
 
 end CORALean.Float
 

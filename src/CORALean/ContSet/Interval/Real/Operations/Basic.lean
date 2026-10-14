@@ -28,6 +28,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
+section
+
 open Entrywise
 
 variable {n m : ℕ} {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
@@ -355,10 +357,10 @@ def Interval.uminus (I : Interval α) : Interval α where
 /-- CORA's `@interval/uplus`: unary plus, the identity. -/
 def Interval.uplus (I : Interval α) : Interval α := I
 
-end CORALean.Real
+end
 
 
-namespace CORALean.Real
+section
 
 variable {m n : ℕ}
 
@@ -412,6 +414,8 @@ on or above the `K`-th superdiagonal (`i + K ≤ j`) and
 zeroes the rest. CORA requires `K ≥ 0` and defaults it to `0`, so `K : ℕ`. -/
 def Interval.triu (K : ℕ) (I : Interval (Mat ℝ m n)) : Interval (Mat ℝ m n) :=
   I.mask (fun i j => (i : ℕ) + K ≤ (j : ℕ))
+
+end
 
 end CORALean.Real
 

@@ -24,6 +24,8 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
+section
+
 open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
@@ -271,10 +273,10 @@ def Taylm.minus (T₁ T₂ : Taylm 𝕋 n) : Taylm 𝕋 n := T₁.plus T₂.umin
 /-- CORA's unary `+`: the model itself. -/
 def Taylm.uplus (T : Taylm 𝕋 n) : Taylm 𝕋 n := T
 
-end CORALean.Float
+end
 
 
-namespace CORALean.Float
+section
 
 open FloatOps SoundFloatArithmetic
 
@@ -301,6 +303,8 @@ def Taylm.InBox (B : Fin n → Interval 𝕋) (t : Vec ℝ n) : Prop :=
 /-- Every point of the box `X` lies in one of the boxes `l`. -/
 def Taylm.Covers (X : Fin n → Interval 𝕋) (l : List (Fin n → Interval 𝕋)) : Prop :=
   ∀ t, Taylm.InBox X t → ∃ B ∈ l, Taylm.InBox B t
+
+end
 
 end CORALean.Float
 

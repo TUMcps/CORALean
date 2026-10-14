@@ -42,20 +42,20 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (cPZ : ConPolyZono �
     (toRealMat M *ᵥ ·) '' nominalSet cPZ ⊆
       nominalSet (ConPolyZono.mtimes M cPZ)
         + (ConPolyZono.mtimesResidual M cPZ).construct := by -- --- PROOF ---
+  -- the exact product of a column with row `i` of `M`, and what its stored rounding is short
+  set ex : Vec 𝕋 n → Fin k → ℝ := fun g i => ∑ r, toReal (M i r) * toReal (g r)
+  set gap : Vec 𝕋 n → Fin k → ℝ := fun g i => ex g i - toReal (mulVecDown M g i)
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_nominalSet_iff.mp hx'
-  have hres : (fun i => (∑ r, toReal (M i r) * toReal (cPZ.c r))
-        - toReal (mulVecDown M cPZ.c i))
+  have hres : (fun i => gap cPZ.c i)
       ∈ (Interval.residual (mulVecDown M cPZ.c) (mulVecUp M cPZ.c)
           (mulVecDown M cPZ.c)).construct :=
     Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) cPZ.c, le_dotUp (M i) cPZ.c⟩)
   -- the two generator blocks' shortfalls, each bounded by a coefficient inside `[-1,1]`
-  have hdepBox : (fun i => ∑ l, ((∑ r, toReal (M i r) * toReal (cPZ.G l r))
-        - toReal (mulVecDown M (cPZ.G l) i)) * Real.PolyZonotope.monomial cPZ.E a l)
+  have hdepBox : (fun i => ∑ l, gap (cPZ.G l) i * Real.PolyZonotope.monomial cPZ.E a l)
       ∈ (PolyZonotope.generatorError (matMulDiff M fun i l => cPZ.G l i)).construct :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.matMul_close M cPZ.G) ha
-  have hindBox : (fun i => ∑ j, ((∑ r, toReal (M i r) * toReal (cPZ.GI j r))
-        - toReal (mulVecDown M (cPZ.GI j) i)) * β j)
+  have hindBox : (fun i => ∑ j, gap (cPZ.GI j) i * β j)
       ∈ (PolyZonotope.generatorError (matMulDiff M fun i j => cPZ.GI j i)).construct :=
     PolyZonotope.mem_generatorError (PolyZonotope.matMul_close M cPZ.GI) hβ
   refine ⟨fun i => toReal ((ConPolyZono.mtimes M cPZ).c i)
@@ -68,16 +68,12 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (cPZ : ConPolyZono �
   funext i
   -- the stored generators and their errors recombine into the exact ones
   have hdep : (∑ l, toReal (mulVecDown M (cPZ.G l) i) * Real.PolyZonotope.monomial cPZ.E a l)
-      + (∑ l, ((∑ r, toReal (M i r) * toReal (cPZ.G l r))
-          - toReal (mulVecDown M (cPZ.G l) i)) * Real.PolyZonotope.monomial cPZ.E a l)
-      = ∑ l, (∑ r, toReal (M i r) * toReal (cPZ.G l r))
-          * Real.PolyZonotope.monomial cPZ.E a l := by
+      + (∑ l, gap (cPZ.G l) i * Real.PolyZonotope.monomial cPZ.E a l)
+      = ∑ l, ex (cPZ.G l) i * Real.PolyZonotope.monomial cPZ.E a l := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun l _ => by ring
-  have hind : (∑ j, toReal (mulVecDown M (cPZ.GI j) i) * β j)
-      + (∑ j, ((∑ r, toReal (M i r) * toReal (cPZ.GI j r))
-          - toReal (mulVecDown M (cPZ.GI j) i)) * β j)
-      = ∑ j, (∑ r, toReal (M i r) * toReal (cPZ.GI j r)) * β j := by
+  have hind : (∑ j, toReal (mulVecDown M (cPZ.GI j) i) * β j) + (∑ j, gap (cPZ.GI j) i * β j)
+      = ∑ j, ex (cPZ.GI j) i * β j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   -- the goal spelled out, so the two recombinations line up with it term by term
@@ -85,11 +81,8 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (cPZ : ConPolyZono �
         + (∑ l : Fin cPZ.h, toReal ((ConPolyZono.mtimes M cPZ).G l i)
             * Real.PolyZonotope.monomial cPZ.E a l)
         + ∑ j : Fin cPZ.qI, toReal ((ConPolyZono.mtimes M cPZ).GI j i) * β j
-      + (((∑ r, toReal (M i r) * toReal (cPZ.c r)) - toReal (mulVecDown M cPZ.c i)
-          + ∑ l, ((∑ r, toReal (M i r) * toReal (cPZ.G l r))
-              - toReal (mulVecDown M (cPZ.G l) i)) * Real.PolyZonotope.monomial cPZ.E a l)
-        + ∑ j, ((∑ r, toReal (M i r) * toReal (cPZ.GI j r))
-            - toReal (mulVecDown M (cPZ.GI j) i)) * β j)
+      + ((gap cPZ.c i + ∑ l, gap (cPZ.G l) i * Real.PolyZonotope.monomial cPZ.E a l)
+        + ∑ j, gap (cPZ.GI j) i * β j)
     = (toRealMat M *ᵥ x) i
   rw [PolyZonotope.mulVec_split M cPZ.c cPZ.G cPZ.GI (Real.PolyZonotope.monomial cPZ.E a) β hx i]
   simp only [ConPolyZono.mtimes]

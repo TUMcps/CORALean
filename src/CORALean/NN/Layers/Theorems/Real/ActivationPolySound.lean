@@ -53,28 +53,23 @@ theorem Layer.activationPoly_sound {P : LayerRelaxation ℝ n m} (hP : ∀ i, (P
     exact hx
   obtain ⟨a, ha, hxa⟩ := s.dependent.exists_point_of_q_zero rfl hxd
   set J : Float.Interval (Vec ℝ n) := ⟨s.interval.inf, s.interval.sup⟩
+  -- the polynomial part, one value per coordinate
+  set pv : Vec ℝ n := fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i)
   -- the polynomial part, read at the very factors `x` itself came from
   have hpval : (s.dependent.evalPoly (P.coeffList J)).point
-        (fun k => a (Fin.cast (s.dependent.evalPoly_p (P.coeffList J)) k))
-      = fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
+        (fun k => a (Fin.cast (s.dependent.evalPoly_p (P.coeffList J)) k)) = pv := by
     rw [PolyZonotope.evalPoly_exact]
     funext i
     rw [aux_coord, PolyZonotope.evalPolyReal_ofFn, ← congrFun hxa i]
     rfl
-  have hpmem : (fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
-      ∈ (s.dependent.evalPoly (P.coeffList J)).construct :=
+  have hpmem : pv ∈ (s.dependent.evalPoly (P.coeffList J)).construct :=
     hpval ▸ PolyZonotope.point_mem_construct _ fun k => ha _
   -- and the deviation from that polynomial is inside the box, which is `sound`
-  have hdev : (fun i => σ (x i)
-        - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
-      ∈ (P.box J).nominal.construct := by
+  have hdev : (fun i => σ (x i) - pv i) ∈ (P.box J).nominal.construct := by
     intro i
     have hrel := abs_le.mp ((hP i).sound (hbox i).1 (hbox i).2)
     exact ⟨hrel.1, hrel.2⟩
-  have hsplit : (fun i => σ (x i))
-      = (fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i))
-        + fun i => σ (x i)
-            - evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i)) (x i) := by
+  have hsplit : (fun i => σ (x i)) = pv + fun i => σ (x i) - pv i := by
     funext i
     show σ (x i) = _ + _
     ring
