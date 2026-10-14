@@ -17,7 +17,7 @@ power (`powDown_le`/`le_powUp`) and the reciprocal factorial
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,16 +33,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.taylorCoeffBounds_mem {r : 𝕋} (hr : 0 ≤ toReal r) (k : ℕ) :
-    toReal (MatExp.taylorCoeffBounds r k).1 ≤ toReal r ^ k / (Nat.factorial k : ℝ)
+    toReal (MatExp.taylorCoeffBounds r k).inf ≤ toReal r ^ k / (Nat.factorial k : ℝ)
       ∧ toReal r ^ k / (Nat.factorial k : ℝ)
-        ≤ toReal (MatExp.taylorCoeffBounds r k).2 := by -- --- PROOF ---
+        ≤ toReal (MatExp.taylorCoeffBounds r k).sup := by -- --- PROOF ---
   obtain ⟨hlo, hhi⟩ := MatExp.invFactorialBounds_mem (𝕋 := 𝕋) k
   have hpk : 0 ≤ toReal r ^ k := pow_nonneg hr k
   have hinv : (0 : ℝ) ≤ (Nat.factorial k : ℝ)⁻¹ := by positivity
   rw [div_eq_mul_inv]
   constructor
   · -- the clamped reciprocal is in `[0, 1/k!]`, so the lower power may be compared first
-    set y := maximum zero (MatExp.invFactorialBounds (𝕋 := 𝕋) k).1
+    set y := maximum zero (MatExp.invFactorialBounds (𝕋 := 𝕋) k).inf
     have hy0 : 0 ≤ toReal y := by rw [toReal_maximum, toReal_zero]; exact le_max_left _ _
     have hy1 : toReal y ≤ (Nat.factorial k : ℝ)⁻¹ := by
       rw [toReal_maximum, toReal_zero]; exact max_le hinv hlo

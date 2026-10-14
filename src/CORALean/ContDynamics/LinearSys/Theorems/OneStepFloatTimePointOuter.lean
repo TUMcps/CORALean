@@ -31,7 +31,7 @@ soundness asks only an admissible order. Outer only.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -56,7 +56,7 @@ theorem LinearSys.CanonicalTrajectory.oneStepFloat_timePoint_outer {sys : Linear
     (traj : sys.CanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
     (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) :
-    x (toReal Δt) ∈ (sys.oneStepFloat X U u Δt η).1.construct := by -- --- PROOF ---
+    x (toReal Δt) ∈ (sys.oneStepFloat X U u Δt η).Rtp.construct := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
   set r := toReal Δt with hr
   -- the `U`-input's share, in `PU`

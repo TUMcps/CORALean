@@ -20,7 +20,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.DirPca
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,8 +38,8 @@ variable {n : ℕ}
 /-- The pca heuristic's split is exact, at any vertex cloud. -/
 theorem ZonoBundle.splitPca_union {m : ℕ} (V : Fin m → Vec ℝ n) (zB : ZonoBundle (Vec ℝ n))
     (i : Fin zB.k) (j : Fin n) :
-    (zB.split (ZonoBundle.dirPca V) (zB.enclosingBox (ZonoBundle.dirPca V) i) j).1.construct
-      ∪ (zB.split (ZonoBundle.dirPca V) (zB.enclosingBox (ZonoBundle.dirPca V) i) j).2.construct
+    (zB.split (ZonoBundle.dirPca V) (zB.enclosingBox (ZonoBundle.dirPca V) i) j).fst.construct
+      ∪ (zB.split (ZonoBundle.dirPca V) (zB.enclosingBox (ZonoBundle.dirPca V) i) j).snd.construct
       = zB.construct :=
   ZonoBundle.split_union_enclosingBox _ (Matrix.UnitaryGroup.det_isUnit _) zB i j
 

@@ -33,7 +33,7 @@ The induction is on the search's own fuel; nothing here needs it to terminate.
 
 -- Authors:       Claude Opus 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,8 +50,9 @@ variable {n : ℕ}
 is the initialization scaled by `ζ_δ` a positive number of times. -/
 theorem tuneDeltatInit_gain {le : ℝ → ℝ → Bool} (hle : ∀ a b : ℝ, le a b = true → a ≤ b)
     (dabs : ℝ → Fin n → ℝ) (ζδ ζΔ : ℝ) :
-    ∀ (fuel : ℕ) (Δ : ℝ) (p : ℝ × ℝ), tuneDeltatInit le dabs ζδ ζΔ Δ fuel = some p →
-      ζΔ ≤ p.2 ∧ ∃ j : ℕ, p.1 = ζδ ^ (j + 1) * Δ := by -- --- PROOF ---
+    ∀ (fuel : ℕ) (Δ : ℝ) (p : NonlinearSys.TunedStep ℝ),
+      tuneDeltatInit le dabs ζδ ζΔ Δ fuel = some p →
+      ζΔ ≤ p.gain ∧ ∃ j : ℕ, p.step = ζδ ^ (j + 1) * Δ := by -- --- PROOF ---
   intro fuel
   induction fuel with
   | zero => intro Δ p h; rw [tuneDeltatInit] at h; exact absurd h (by simp)

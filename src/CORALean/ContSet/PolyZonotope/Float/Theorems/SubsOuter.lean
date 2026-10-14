@@ -23,7 +23,7 @@ layer.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -57,8 +57,8 @@ theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
   have hm : ∀ l : Fin st.length,
       (st.get l).1 = (rt.get (Fin.cast hlen l)).1 ∧
       (st.get l).2.2 = (rt.get (Fin.cast hlen l)).2.2 ∧
-      toReal (st.get l).2.1.1 ≤ ρ l ∧
-      ρ l ≤ toReal (st.get l).2.1.2 :=
+      toReal (st.get l).2.1.inf ≤ ρ l ∧
+      ρ l ≤ toReal (st.get l).2.1.sup :=
     fun l => hget l.1 l.2 (lt_of_lt_of_eq l.2 hlen)
   have hE : ∀ r l, (pZ.subs pZin idu share).E r l = R.E r (Fin.cast hlen l) := by
     intro r l

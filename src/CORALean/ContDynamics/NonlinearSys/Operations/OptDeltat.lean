@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.NonlinearSys.Definitions.OptStep
 public import CORALean.ContDynamics.NonlinearSys.Operations.OptDeltatSearch
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachSizeEstimate
 
@@ -28,7 +29,7 @@ errors large, too small a step reduces too often; the minimum is the balance.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,10 +43,10 @@ namespace CORALean
 /-- [1, Alg. 2] line 10: eq. (58)'s optimal time step size, and the `λ'` it was
 found at. -/
 noncomputable def optDeltat (le : ℝ → ℝ → Bool) (ζδ ζZ ζA φ1 r₀ rabs h : ℝ) (fuel : ℕ) :
-    ℝ × ℕ :=
+    NonlinearSys.OptStep ℝ :=
   let cost := reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs             -- 57. the cost function
   let sstar := optDeltatSearch le cost 0 fuel                    -- 58. the argmin over λ'
-  (h * ζδ ^ sstar, sstar)                                        -- 58. Δt* = h ζ_δ^{λ'}
+  ⟨h * ζδ ^ sstar, sstar⟩                                        -- 58. Δt* = h ζ_δ^{λ'}
 
 end CORALean
 

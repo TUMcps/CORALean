@@ -16,7 +16,7 @@ constrained zonotope.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +30,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.split_union (cZ : ConZonotope (Vec ℝ n)) (d : Fin n) :
-    (cZ.split d).1.construct ∪ (cZ.split d).2.construct = cZ.construct := by -- --- PROOF ---
+    (cZ.split d).fst.construct ∪ (cZ.split d).snd.construct = cZ.construct := by -- --- PROOF ---
   unfold ConZonotope.split
   dsimp only
   rw [← ConZonotope.intersection_exact, ← ConZonotope.intersection_exact]

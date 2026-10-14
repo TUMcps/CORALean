@@ -29,7 +29,7 @@ the piece. Anything uncertified, or fewer than three vertices, gives `none`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -54,7 +54,7 @@ def Polygon.innerHRep (p : VPolytope (Vec 𝕋 2)) : Option (HPolytope 𝕋 (Vec
   -- the fan from `v₀`: every triangle `v₀ vᵢ vᵢ₊₁` for `0 < i < k - 1` turns left
   let fan : Bool := (List.finRange p.k).all fun i =>
     i.val == 0 || i.val + 1 == p.k ||
-      ltStrict zero (Polygon.orientBounds (p.V ⟨0, i.pos⟩) (p.V i) (p.V (finRotate p.k i))).1
+      ltStrict zero (Polygon.orientBounds (p.V ⟨0, i.pos⟩) (p.V i) (p.V (finRotate p.k i))).inf
   -- the error box holds the origin
   let origin : Bool := (List.finRange 2).all fun j => le (p.I_error.inf j) zero && le zero
       (p.I_error.sup j)

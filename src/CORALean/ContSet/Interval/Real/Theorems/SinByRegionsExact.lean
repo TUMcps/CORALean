@@ -25,7 +25,7 @@ where it is `1` and one where it is `-1`, the argument the paper's Figs. 1-2 dra
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -310,7 +310,8 @@ theorem aux_sinByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi
 /-- [1, Eq. 12]: every case is the sine's exact range on `[lo, hi]`. -/
 theorem Interval.sinByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) :
     Real.sin '' Set.Icc lo hi =
-      Set.Icc (Interval.sinByRegions lo hi).1 (Interval.sinByRegions lo hi).2 := by -- --- PROOF ---
+      Set.Icc (Interval.sinByRegions lo hi).inf
+        (Interval.sinByRegions lo hi).sup := by -- --- PROOF ---
   have hpi := Real.pi_pos
   have h2pi : (0 : ℝ) < 2 * Real.pi := by positivity
   simp only [Interval.sinByRegions]

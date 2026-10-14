@@ -51,7 +51,7 @@ the remainder `ρ` within `Ê` by `norm_exp_sub_expTaylor_le` and the float boun
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -203,7 +203,7 @@ theorem LinearSys.trajectoryErrorFloat_outer (sys : LinearSys 𝕋 n) (f u : Vec
   apply hf0
   -- the bounds every coefficient needs
   have hM : ∀ i m : ℕ, ((Nat.factorial (m + 2) : ℝ)⁻¹) • Ar ^ i ∈ (Interval.smul
-      (MatExp.invFactorialBounds (m + 2)).1 (MatExp.invFactorialBounds (m + 2)).2
+      (MatExp.invFactorialBounds (m + 2)).inf (MatExp.invFactorialBounds (m + 2)).sup
       (Interval.matPow (Interval.point A) i)).construct := fun i m =>
     Interval.smul_outer (MatExp.invFactorialBounds_mem (m + 2)).1
       (MatExp.invFactorialBounds_mem (m + 2)).2 _

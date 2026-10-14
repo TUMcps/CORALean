@@ -17,7 +17,7 @@ of `invSqrtOneSubHi`, the product rounded up. `q` is the precision of the square
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.arcsinBound (q : ℕ) (m : 𝕋) (N : ℕ) : 𝕋 :=
-  mulUp (Interval.evalList m m (recL [1, 0, 1] (fun j => 2 * (j : ℤ) + 1) N)).2
+  mulUp (Interval.evalList m m (recL [1, 0, 1] (fun j => 2 * (j : ℤ) + 1) N)).sup
     (powUp (invSqrtOneSubHi q m) (2 * N + 1))
 
 end CORALean.Float

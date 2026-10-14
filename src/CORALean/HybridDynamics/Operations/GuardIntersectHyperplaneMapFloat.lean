@@ -44,7 +44,7 @@ float test fails: `Λ`, `nᵀ(Ax + b)`, `Λ²` or `‖n‖` not certified away f
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -89,13 +89,13 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
   let flowRed := (Zonotope.mtimes A R0hull).plus (Zonotope.point b) -- A*R0 + b
   let Λint := flowRed.halfspaceRange nv zero                        -- Lambda_int
   let dint := R0hull.halfspaceRange nv d                            -- interval(n'*R0 - d)
-  let Λinv := recipI Λint.1 Λint.2                                  -- 1/Lambda_int
-  let τlo := Interval.mulLo (neg dint.2) (neg dint.1) (Λinv.inf 0) (Λinv.sup 0)  -- tau
-  let τhi := Interval.mulHi (neg dint.2) (neg dint.1) (Λinv.inf 0) (Λinv.sup 0)
+  let Λinv := recipI Λint.inf Λint.sup                                  -- 1/Lambda_int
+  let τlo := Interval.mulLo (neg dint.sup) (neg dint.inf) (Λinv.inf 0) (Λinv.sup 0)  -- tau
+  let τhi := Interval.mulHi (neg dint.sup) (neg dint.inf) (Λinv.inf 0) (Λinv.sup 0)
   let τc := half (addUp τlo τhi)                                    -- its centre
   let τg := maximum (subUp τhi τc) (subUp τc τlo)                   -- and radius
-  let Λmin := minimum (absolute Λint.1) (absolute Λint.2)
-  let Λmax := maximum (absolute Λint.1) (absolute Λint.2)
+  let Λmin := minimum (absolute Λint.inf) (absolute Λint.sup)
+  let Λmax := maximum (absolute Λint.inf) (absolute Λint.sup)
   let φlo := divDown one (mulUp Λmax Λmax)                          -- phi = 1/Lambda_int^2
   let φhi := divUp one (mulDown Λmin Λmin)
   let Q := fun i => GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i  -- Q{i}
@@ -113,9 +113,9 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
   let flowSet := (Zonotope.mtimes A R₀).plus (Zonotope.point b)    -- flowSet = A*R0 + b
   let numInt := err.halfspaceRange (fun i => neg (nv i)) zero       -- interval(-n*err)
   let denInt := flowSet.halfspaceRange nv zero                      -- interval(n*flowSet)
-  let denInv := recipI denInt.1 denInt.2
-  let Ilo := Interval.mulLo numInt.1 numInt.2 (denInv.inf 0) (denInv.sup 0)  -- I = num/den
-  let Ihi := Interval.mulHi numInt.1 numInt.2 (denInv.inf 0) (denInv.sup 0)
+  let denInv := recipI denInt.inf denInt.sup
+  let Ilo := Interval.mulLo numInt.inf numInt.sup (denInv.inf 0) (denInv.sup 0)  -- I = num/den
+  let Ihi := Interval.mulHi numInt.inf numInt.sup (denInv.inf 0) (denInv.sup 0)
   let res2 :=                                                      -- I*flowSet + err
     ((Zonotope.mtimesIntervalMat (mulI Ilo Ihi) flowSet).plus err).materialise
   -- `normalizeConstraints`: `n/‖n‖` and `d/‖n‖` as boxes
@@ -132,8 +132,8 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
     let res1 := ((k.zonotope.plus (Zonotope.mtimesIntervalMat Lk R0_)).plus
       (Zonotope.mtimesIntervalMat (mulI (half φlo) (half φhi)) Rquad)).materialise
     let R := ((res1.plus res2).reduceGirard zonotopeOrder).materialise  -- R = reduce(res1 + res2)
-    if (ltStrict zero Λint.1 || ltStrict Λint.2 zero) && (ltStrict zero denInt.1 ||
-        ltStrict denInt.2 zero) && ltStrict zero (mulDown Λmin Λmin) && ltStrict zero nrmLo &&
+    if (ltStrict zero Λint.inf || ltStrict Λint.sup zero) && (ltStrict zero denInt.inf ||
+        ltStrict denInt.sup zero) && ltStrict zero (mulDown Λmin Λmin) && ltStrict zero nrmLo &&
         le nrmA (half (nsmulDown (η + 2) one)) then
       some (ContSet.projectOnHyperplaneIntervalFloat (S := 𝒵[𝕋]) R cI
         (Interval.mulLo d d rLo rHi) (Interval.mulHi d d rLo rHi))

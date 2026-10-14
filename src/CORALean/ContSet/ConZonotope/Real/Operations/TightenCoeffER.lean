@@ -28,7 +28,7 @@ the newest bound alone gives the same interval.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,9 +46,9 @@ noncomputable def ConZonotope.tightenCoeffER {nc ng : ℕ} (A : Mat ℝ nc ng) (
     Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal)) :=
   if A i j = 0 then S else                                                   -- 3. if a_ij ≠ 0
     let Rij := ConZonotope.rowBound A b i j S.1                              -- a_ij⁻¹ b_i − Σ ...
-    let R : (Fin ng → EReal) × (Fin ng → EReal) :=
-      (Function.update S.2.1 j (max (S.2.1 j) ((min Rij.1 Rij.2 : ℝ) : EReal)),
-       Function.update S.2.2 j (min (S.2.2 j) ((max Rij.1 Rij.2 : ℝ) : EReal)))  -- 4. Rj ← Rj ∩ ...
+    let R : (Fin ng → EReal) × (Fin ng → EReal) :=              -- 4. Rj ← Rj ∩ ...
+      (Function.update S.2.1 j (max (S.2.1 j) ((min Rij.inf Rij.sup : ℝ) : EReal)),
+       Function.update S.2.2 j (min (S.2.2 j) ((max Rij.inf Rij.sup : ℝ) : EReal)))
     let E := ConZonotope.tightenCoeff A b i j S.1                            -- 5. Ej ← Ej ∩ Rj
     (E, R)
 

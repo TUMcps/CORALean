@@ -43,6 +43,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatInputInvaria
 public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveState
 public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveStepInfo
+public import CORALean.ContDynamics.LinearSys.Definitions.StepSets
 public import CORALean.ContDynamics.LinearSys.Definitions.AdaptiveInvariant
 public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
 public import CORALean.ContDynamics.LinearSys.Definitions.ManualStateFloat

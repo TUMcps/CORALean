@@ -15,7 +15,7 @@ As `plus`, under the members' own denominator certificates: the Taylor model's m
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zoo.rdivide_outer {Z₁ Z₂ : Zoo 𝕋 n} {f g : Vec ℝ n → ℝ} (h₁ : Z₁.Encloses f)
     (h₂ : Z₂.Encloses g)
-    (hm : ∀ T, Z₂.taylm = some T → 0 < toReal (maximum (minimum T.constCoef T.bounds.1)
-      (neg (maximum T.constCoef T.bounds.2))))
+    (hm : ∀ T, Z₂.taylm = some T → 0 < toReal (maximum (minimum T.constCoef T.bounds.inf)
+      (neg (maximum T.constCoef T.bounds.sup))))
     (hJ : ∀ J, Z₂.ivl = some J →
       ∀ i, ltStrict zero (J.inf i) = true ∨ ltStrict (J.sup i) zero = true) :
     (Z₁.rdivide Z₂).Encloses fun t => f t / g t := by -- --- PROOF ---

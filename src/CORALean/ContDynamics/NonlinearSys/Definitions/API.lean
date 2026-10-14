@@ -5,6 +5,8 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyAbstractionErro
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinStep
 public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.AdaptState
+public import CORALean.ContDynamics.NonlinearSys.Definitions.OptStep
+public import CORALean.ContDynamics.NonlinearSys.Definitions.TunedStep
 public import CORALean.ContDynamics.NonlinearSys.Definitions.CentreAbstrState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
 public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
@@ -32,6 +34,7 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
 
 `AbstractionError`/`PolyAbstractionError` are the certificates a linearization
 is checked against; `LinStep` bundles one linearization with its certificate.
+`OptStep`/`TunedStep` are what `optDeltat` and the tuning of `Δt` return.
 `AbstrState`/`AdaptState`/`CentreAbstrState`/`PolyReachState` (with
 `PolyTaylor`/`PolyPost`) are what each reachability loop hands its next
 iteration. `ReachSet` is the set the flow actually reaches, `RobustReachSet` the one reached

@@ -23,7 +23,7 @@ same products in the same order, so the same values.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   25-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,10 +37,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def MatExp.expIntervalTaylor (A : Interval (Mat 𝕋 n n)) : ℕ → Interval (Mat 𝕋 n n)
-  | 0 => Interval.smul (MatExp.invFactorialBounds 0).1 (MatExp.invFactorialBounds 0).2
+  | 0 => Interval.smul (MatExp.invFactorialBounds 0).inf (MatExp.invFactorialBounds 0).sup
       (Interval.matPow A 0)
   | k + 1 => (Interval.matPlus
-      (Interval.smul (MatExp.invFactorialBounds (k + 1)).1 (MatExp.invFactorialBounds (k + 1)).2
+      (Interval.smul (MatExp.invFactorialBounds (k + 1)).inf (MatExp.invFactorialBounds (k + 1)).sup
         (Interval.matPow A (k + 1)))
       (MatExp.expIntervalTaylor A k)).materialiseMat
 
@@ -51,13 +51,13 @@ def MatExp.expIntervalTaylor (A : Interval (Mat 𝕋 n n)) : ℕ → Interval (M
 to the next by `matPow`'s own step. -/
 def MatExp.aux_expIntervalTaylorPair (A : Interval (Mat 𝕋 n n)) :
     ℕ → Interval (Mat 𝕋 n n) × Interval (Mat 𝕋 n n)
-  | 0 => (Interval.matPow A 0, Interval.smul (MatExp.invFactorialBounds 0).1
-      (MatExp.invFactorialBounds 0).2 (Interval.matPow A 0))
+  | 0 => (Interval.matPow A 0, Interval.smul (MatExp.invFactorialBounds 0).inf
+      (MatExp.invFactorialBounds 0).sup (Interval.matPow A 0))
   | k + 1 =>
     let PS := MatExp.aux_expIntervalTaylorPair A k
     let P := (Interval.matMul A PS.1).materialiseMat
-    (P, (Interval.matPlus (Interval.smul (MatExp.invFactorialBounds (k + 1)).1
-      (MatExp.invFactorialBounds (k + 1)).2 P) PS.2).materialiseMat)
+    (P, (Interval.matPlus (Interval.smul (MatExp.invFactorialBounds (k + 1)).inf
+      (MatExp.invFactorialBounds (k + 1)).sup P) PS.2).materialiseMat)
 
 /-- The same sum, `η` products rather than `η²/2`. -/
 def MatExp.aux_expIntervalTaylorImpl (A : Interval (Mat 𝕋 n n)) (k : ℕ) : Interval (Mat 𝕋 n n) :=

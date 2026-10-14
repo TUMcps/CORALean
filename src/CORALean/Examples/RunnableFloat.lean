@@ -432,8 +432,10 @@ def ctErrorBoxRun : Zonotope (Vec D 2) := ctSys.timePointStepErrorBoxFloat stepR
 def ctInputErrorRun : Zonotope (Vec D 2) := ctSys.reachInputErrorFloat stepR 4 Z 5
 
 -- CORA's `oneStep` from `Z`: `Z` re-centred as the inputs `U`, `Z`'s centre as the constant `u`
-def oneStepTpRun : Zonotope (Vec D 2) := (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).1
-def oneStepTiRun : Zonotope (Vec D 2) := (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).2
+def oneStepTpRun : Zonotope (Vec D 2) :=
+  (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).Rtp
+def oneStepTiRun : Zonotope (Vec D 2) :=
+  (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).Rti
 
 /-- The float Minkowski difference at a checked representation: the box `[-2, 2]²` minus a box of
 half-width `½` at `x₀ = ⅛`, its generators written in the minuend's by `M = ¼ I`, certified with

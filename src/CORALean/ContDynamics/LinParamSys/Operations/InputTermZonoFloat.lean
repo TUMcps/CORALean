@@ -23,7 +23,7 @@ zonotope to the power `i`, kept as a matrix zonotope, scaled by `r^{i+1}/(i+1)!`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def LinParamSys.inputTermZonoFloat (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n)
     (r : 𝕋) (i : ℕ) : Zonotope (Mat 𝕋 n n) :=
   let c := MatExp.taylorCoeffBounds r (i + 1)                  -- r^{i+1}/(i+1)! ∈ [c.1, c.2]
-  (Zonotope.matSmul c.1 c.2 (sys.A.matPow i)).materialiseMat    -- · Aᵢ
+  (Zonotope.matSmul c.inf c.sup (sys.A.matPow i)).materialiseMat    -- · Aᵢ
 
 end CORALean
 

@@ -29,7 +29,7 @@ compare the two orders eq. (47) weighs.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -67,21 +67,22 @@ noncomputable def NonlinearSys.adaptStep (sys : NonlinearSys n m) (U : S m)
     let rabs1 := rad ((NonlinearSys.linearize p₁.1).inputSolution hk ηabs Ψh)  -- 9. r⁽¹⁾_abs,k
     let ζA := Real.exp (Matrix.trace p₁.1 * hk)                   -- eq. (50)'s e^{tr(Ah)}
     let opt := optDeltat le ζδ ζZ ζA s.φ (rad s.R) rabs1 hk fuel  -- 10. optDeltat, Δt_k ← Δt*
-    let p₂ := sys.adaptLinPass U lin opt.1 ηlin s.R               -- 3.-6. a = 2, at Δt_k = Δt*
+    let p₂ := sys.adaptLinPass U lin opt.Δt ηlin s.R               -- 3.-6. a = 2, at Δt_k = Δt*
     match abstrErrLoop sub enlarge (Φ 1 p₂.2.2) (OfPoint.ofPoint 0) fuel,      -- 7. abstrErrLoop,
       abstrErrLoop sub enlarge (Φ 2 p₂.2.2) (OfPoint.ofPoint 0) fuel with      --    at both orders
     | some Ψ₁, some Ψ₂ =>
       let lsys := NonlinearSys.linearize p₂.1
-      let Rabs₁ := lsys.inputSolution opt.1 ηabs Ψ₁               -- 12. abstrSolAdaptive at κ = 1
-      let Rabs₂ := lsys.inputSolution opt.1 ηabs Ψ₂               -- 12. abstrSolAdaptive at κ = 2
+      let Rabs₁ := lsys.inputSolution opt.Δt ηabs Ψ₁               -- 12. abstrSolAdaptive at κ = 1
+      let Rabs₂ := lsys.inputSolution opt.Δt ηabs Ψ₂               -- 12. abstrSolAdaptive at κ = 2
       let Rabs := if s.κ = 1 then Rabs₁ else Rabs₂                -- 12. R_abs(Δt*) at κ_k
       let rabsOpt := rad Rabs                                     -- 12. r^{(λ*)}_abs,k
       let κ' := tuneAbstrOrder le ζK s.φ rabsOpt s.rabs           -- 13. tuneAbstrOrder
         (dbox Rabs₁) (dbox Rabs₂) s.κ
-      let φk := estimateGain le ζδ ((1 / ζδ) ^ opt.2) rabs1 rabsOpt opt.2 fuel -- 16. estimateGain
+      let φk := estimateGain le ζδ ((1 / ζδ) ^ opt.exponent)    -- 16. estimateGain
+        rabs1 rabsOpt opt.exponent fuel
       let Rt := p₂.2.1 ⊞ Rabs                                     -- 17. R(t_{k+1})
       let Rτ := p₂.2.2 ⊞ Rabs                                     -- 17. R(τ_{k+1})
-      some { t := s.t + opt.1, R := Reduce.reduce Rt o,           -- 18. redAdaptive
+      some { t := s.t + opt.Δt, R := Reduce.reduce Rt o,           -- 18. redAdaptive
              Rτ := Reduce.reduce Rτ o, h := hk, φ := φk, κ := κ', rabs := rabsOpt }
     | _, _ => none
 

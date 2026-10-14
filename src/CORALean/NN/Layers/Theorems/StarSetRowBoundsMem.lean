@@ -15,7 +15,7 @@ plus `Σ G_jk (α_k - mid_k)`, and each factor is within its radius of the middl
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +30,7 @@ open ContSet
 
 theorem StarSet.rowBounds_mem {n : ℕ} (s : StarSet n) (j : Fin n) {x : Vec ℝ n}
     (hx : x ∈ construct s) :
-    (s.rowBounds j).1 ≤ x j ∧ x j ≤ (s.rowBounds j).2 := by -- --- PROOF ---
+    (s.rowBounds j).inf ≤ x j ∧ x j ≤ (s.rowBounds j).sup := by -- --- PROOF ---
   obtain ⟨α, hα, -, hxα⟩ := hx
   -- each factor is within its radius of the middle of its box
   have hterm : ∀ k, |s.G j k * (α k - (s.l k + s.u k) / 2)|

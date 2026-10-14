@@ -40,7 +40,7 @@ the box's norm.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -202,8 +202,8 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder (A : Interval (M
   -- the mapping matrix: the rescaled terms, each in its order of the float Taylor box
   have hΦ : ∑ k ∈ Finset.range (η + 1), Q k
       ∈ (MatExp.expIntervalEnclosure (Interval.smul r r A) η).construct := by
-    have hterm : ∀ k, Q k ∈ (Interval.smul (MatExp.invFactorialBounds k).1
-        (MatExp.invFactorialBounds k).2
+    have hterm : ∀ k, Q k ∈ (Interval.smul (MatExp.invFactorialBounds k).inf
+        (MatExp.invFactorialBounds k).sup
         (Interval.matPow (Interval.smul r r A) k)).construct := fun k => by
       have h := Interval.smul_outer (MatExp.invFactorialBounds_mem k).1
         (MatExp.invFactorialBounds_mem k).2 _ (hQmem k)
@@ -241,7 +241,7 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder (A : Interval (M
     have hc0 : lam ^ (i + 2) - lam ≤ 0 := sub_nonpos.mpr (pow_le_of_le_one hlam0 hlam1 (by omega))
     -- the weight times `r^k/k!` lies in `[cLo, 0]`
     have hlo : toReal (mulDown (MatExp.corrCoeffLow (𝕋 := 𝕋) (i + 2))
-        (MatExp.taylorCoeffBounds r (i + 2)).2) ≤ (lam ^ (i + 2) - lam) * ρk :=
+        (MatExp.taylorCoeffBounds r (i + 2)).sup) ≤ (lam ^ (i + 2) - lam) * ρk :=
       le_trans (mulDown_le_mul _ _) (le_trans
         (mul_le_mul_of_nonpos_left hhi (le_trans hκ (hc.trans hc0)))
         (mul_le_mul_of_nonneg_right (hκ.trans hc) hρ0))

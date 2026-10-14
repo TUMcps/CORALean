@@ -19,7 +19,7 @@ branch-and-bound methods (`optBnb`, `optLinQuad`, `optBernstein`) are tighter an
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

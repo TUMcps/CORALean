@@ -34,7 +34,7 @@ second component of the joint set, which CORA builds as `R_xy` and projects.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -66,8 +66,8 @@ noncomputable def NonlinDASys.linReach (f₀ : Vec ℝ n) (g₀ : Vec ℝ p) (A 
     (U.plus (Zonotope.ofPoint (-us))).mtimes B_lin
   let Rdelta : Zonotope (Vec ℝ n) := Rinit.plus (Zonotope.ofPoint (-xs))  -- Rinit - p.x
   let R := linsys.oneStep (S := 𝒵) Rdelta (U_lin.plus Verror) f0 Δt η    -- oneStep
-  let Rtp : Zonotope (Vec ℝ n) := R.1.plus (Zonotope.ofPoint xs)          -- Rtp + p.x
-  let Rti : Zonotope (Vec ℝ n) := R.2.plus (Zonotope.ofPoint xs)          -- Rti + p.x
+  let Rtp : Zonotope (Vec ℝ n) := R.Rtp.plus (Zonotope.ofPoint xs)          -- Rtp + p.x
+  let Rti : Zonotope (Vec ℝ n) := R.Rti.plus (Zonotope.ofPoint xs)          -- Rti + p.x
   let Rti_y := NonlinDASys.jointReachSet xs ys us g₀ D E F_inv Rti U Verror_y   -- R_xy
   (Rtp, Rti, Rti_y)
 

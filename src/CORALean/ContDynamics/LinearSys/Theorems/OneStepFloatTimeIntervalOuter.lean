@@ -36,7 +36,7 @@ The real theorem's convexity, closedness and boundedness hypotheses are gone, as
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -62,7 +62,7 @@ theorem LinearSys.CanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : Lin
       W x w)
     (h0 : (0 : Vec ℝ n) ∈ U.construct) {t : ℝ} (ht0 : 0 ≤ t) (htΔ : t ≤ toReal Δt)
     (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) :
-    x t ∈ (sys.oneStepFloat X U u Δt η).2.construct := by -- --- PROOF ---
+    x t ∈ (sys.oneStepFloat X U u Δt η).Rti.construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set A := Scalar.toRealMat sys.A with hA
   set r := toReal Δt with hr

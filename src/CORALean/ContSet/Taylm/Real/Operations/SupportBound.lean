@@ -22,7 +22,7 @@ a Taylor model's polynomial is enclosed, not attained. CORA's other types are no
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -52,7 +52,7 @@ theorem Taylm.aux_linearMap_eq_sum (c : Vec ℝ m →ₗ[ℝ] ℝ) (x : Vec ℝ 
 /-- `supportFunc_`, `upper`: the upper end of the range of `dirᵀ T`. -/
 noncomputable def Taylm.supportBound (c : Vec ℝ m →ₗ[ℝ] ℝ) (T : Fin m → Taylm n) :
     SupportBound (Taylm.construct T) c where
-  val := (Taylm.mtimes (fun (_ : Fin 1) j => c (Pi.single j 1)) T 0).bounds.2
+  val := (Taylm.mtimes (fun (_ : Fin 1) j => c (Pi.single j 1)) T 0).bounds.sup
   le x hx := by
     -- the point is the value at some `t` of functions the models enclose
     obtain ⟨f, hf, t, ht, hxf⟩ := (Taylm.mem_construct_iff T x).1 hx

@@ -21,7 +21,7 @@ zonotope: a member's `i`-th power lies in the zonotope's `i`-th power
 
 -- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,7 +50,7 @@ theorem MatExp.corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 n n)) {r : �
   have hc0 : Real.MatExp.corrCoeff i ≤ 0 := by
     have h := Real.MatExp.corrCoeff_le_sub hi (le_refl (0:ℝ))
     rwa [zero_pow (by omega : i ≠ 0), sub_zero] at h
-  have hlo : toReal (mulDown (MatExp.corrCoeffLow (𝕋 := 𝕋) i) (MatExp.taylorCoeffBounds r i).2)
+  have hlo : toReal (mulDown (MatExp.corrCoeffLow (𝕋 := 𝕋) i) (MatExp.taylorCoeffBounds r i).sup)
       ≤ Real.MatExp.corrCoeff i * ρ :=
     le_trans (mulDown_le_mul _ _) (le_trans
       (mul_le_mul_of_nonpos_left hhi (le_trans hκ hc0))

@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Data.Real.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -12,10 +13,11 @@ CORA's `@nonlinearSys/private/priv_abstractionError_adaptive.m` at `alg = 'lin'`
 shifted by the linearization point `p` to `totalInt_x`, its largest magnitude `dx`, and the
 Lagrange term `0.5 * dz' * H_ * dz` of [1, Prop. 1] with the Hessian read over `totalInt_x`.
 
-Intervals are `(inf, sup)` pairs. `hessIv lo hi` is CORA's interval Hessian `H` over
-`[lo, hi]`, as the user's Hessian file evaluates it; `max(infimum(abs(H)), supremum(abs(H)))` is
-`max |inf H| |sup H|`. `hessianConst` is `options.hessianConst` once `options.isHessianConst`
-holds (`some`), else `none`; the check that sets it runs in the caller.
+Intervals are `Real.Interval ℝ`, read through `inf` and `sup`. `hessIv lo hi` is CORA's interval
+Hessian `H` over `[lo, hi]`, as the user's Hessian file evaluates it;
+`max(infimum(abs(H)), supremum(abs(H)))` is `max |inf H| |sup H|`. `hessianConst` is
+`options.hessianConst` once `options.isHessianConst` holds (`some`), else `none`;
+the check that sets it runs in the caller.
 
 ## References
 
@@ -26,7 +28,7 @@ holds (`some`), else `none`; the check that sets it runs in the caller.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,17 +41,17 @@ namespace CORALean
 
 /-- CORA's `priv_abstractionError_adaptive` (`'lin'`, `tensorOrder = 2`) in 1D without inputs:
 `trueError` for the box `Rmax`, linearization point `p`, interval Hessian `hessIv`. -/
-noncomputable def NonlinearSys.abstrErrAdaptiveCora1D (hessIv : ℝ → ℝ → ℝ × ℝ)
-    (hessianConst : Option ℝ) (p : ℝ) (Rmax : ℝ × ℝ) : ℝ :=
+noncomputable def NonlinearSys.abstrErrAdaptiveCora1D (hessIv : ℝ → ℝ → Real.Interval ℝ)
+    (hessianConst : Option ℝ) (p : ℝ) (Rmax : Real.Interval ℝ) : ℝ :=
   let IH_x := Rmax                                        -- IH_x = interval(R)
-  let totalInt_x := (IH_x.1 + p, IH_x.2 + p)              -- totalInt_x = IH_x + p.x
-  let IHinf := |IH_x.1|                                   -- IHinf = abs(infimum(IH_x))
-  let IHsup := |IH_x.2|                                   -- IHsup = abs(supremum(IH_x))
+  let totalInt_x : Real.Interval ℝ := ⟨IH_x.inf + p, IH_x.sup + p⟩        -- totalInt_x = IH_x + p.x
+  let IHinf := |IH_x.inf|                                   -- IHinf = abs(infimum(IH_x))
+  let IHsup := |IH_x.sup|                                   -- IHsup = abs(supremum(IH_x))
   let dx := max IHinf IHsup                               -- dx = max(IHinf,IHsup)
   match hessianConst with
   | none =>                                               -- if ~options.isHessianConst
-    let H := hessIv totalInt_x.1 totalInt_x.2             -- H = nlnsys.hessian(totalInt_x,...)
-    let H_ := max |H.1| |H.2|                             -- H_ = max(infimum(H_),supremum(H_))
+    let H := hessIv totalInt_x.inf totalInt_x.sup             -- H = nlnsys.hessian(totalInt_x,...)
+    let H_ := max |H.inf| |H.sup|                             -- H_ = max(infimum(H_),supremum(H_))
     1 / 2 * dx * H_ * dx                                  -- err(i,1) = 0.5 * dz' * H_ * dz
   | some H_ =>                                            -- use saved H_
     1 / 2 * dx * H_ * dx                                  -- err(i,1) = 0.5*dz'*hessianConst*dz

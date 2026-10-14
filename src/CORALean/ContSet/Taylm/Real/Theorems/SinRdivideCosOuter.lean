@@ -22,7 +22,7 @@ Encloses `tan ∘ f` whenever the denominator's model passes the inverse's condi
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sin_rdivide_cos_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hside : 0 < min T.cos.constCoef T.cos.bounds.1 ∨ max T.cos.constCoef T.cos.bounds.2 < 0) :
+    (hside : 0 < min T.cos.constCoef T.cos.bounds.inf ∨ max T.cos.constCoef T.cos.bounds.sup < 0) :
     (T.sin.rdivide T.cos).Encloses fun t => Real.tan (f t) := by
   simpa only [Real.tan_eq_sin_div_cos] using
     Taylm.rdivide_outer (Taylm.sin_outer h) (Taylm.cos_outer h) hside

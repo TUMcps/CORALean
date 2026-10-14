@@ -36,7 +36,7 @@ norm bound is at most `(η + 2)/2`, which the enclosure theorem takes as a float
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -60,10 +60,10 @@ def GuardMap.abstractionErrorFloat (A : Mat 𝕋 n n) (U R₀ : Zonotope (Vec �
   let Apow : ℕ → Interval (Mat 𝕋 n n) := fun i =>                -- `A^i`, bracketed
     Interval.matPow (Interval.point A) i
   let M₁ : ℕ → Interval (Mat 𝕋 n n) := fun m =>                  -- `A^(m+2)/(m+2)!`
-    Interval.smul (MatExp.invFactorialBounds (m + 2)).1 (MatExp.invFactorialBounds (m + 2)).2
+    Interval.smul (MatExp.invFactorialBounds (m + 2)).inf (MatExp.invFactorialBounds (m + 2)).sup
       (Apow (m + 2))
   let M₂ : ℕ → Interval (Mat 𝕋 n n) := fun m =>                  -- `A^(m+1)/(m+2)!`
-    Interval.smul (MatExp.invFactorialBounds (m + 2)).1 (MatExp.invFactorialBounds (m + 2)).2
+    Interval.smul (MatExp.invFactorialBounds (m + 2)).inf (MatExp.invFactorialBounds (m + 2)).sup
       (Apow (m + 1))
   let tmaxHi : ℕ → 𝕋 := fun m => powUp tmax (m + 1)             -- `tmax^(m+1)`, up
   let thLo : ℕ → 𝕋 := fun m => powDown th (m + 1)               -- `th^(m+1)`, down

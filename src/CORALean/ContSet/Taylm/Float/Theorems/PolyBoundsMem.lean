@@ -17,7 +17,7 @@ The exact range, its two sums rounded outward.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,19 +34,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.polyBounds_mem (L : List (𝕋 × (Fin n → ℕ))) {t : Vec ℝ n}
     (ht : t ∈ Real.Taylm.box n) :
-    toReal (Taylm.polyBounds L).1 ≤ Real.Taylm.polyOf (L.map fun a => (toReal a.1, a.2)) t ∧
+    toReal (Taylm.polyBounds L).inf ≤ Real.Taylm.polyOf (L.map fun a => (toReal a.1, a.2)) t ∧
       Real.Taylm.polyOf (L.map fun a => (toReal a.1, a.2)) t
-        ≤ toReal (Taylm.polyBounds L).2 := by -- --- PROOF ---
+        ≤ toReal (Taylm.polyBounds L).sup := by -- --- PROOF ---
   have hr := Real.Taylm.polyBounds_mem (L.map fun a => (toReal a.1, a.2)) ht
   -- the exact sums are the float sums' terms read as reals
-  have e1 : (Real.Taylm.polyBounds (L.map fun a => (toReal a.1, a.2))).1
-      = ((L.map fun a => (Taylm.termBounds a).1).map toReal).sum := by
+  have e1 : (Real.Taylm.polyBounds (L.map fun a => (toReal a.1, a.2))).inf
+      = ((L.map fun a => (Taylm.termBounds a).inf).map toReal).sum := by
     simp only [Real.Taylm.polyBounds, List.map_map]
     congr 1
     exact List.map_congr_left fun a _ => by
       simp only [Function.comp_apply, ← Taylm.toReal_termBounds a]
-  have e2 : (Real.Taylm.polyBounds (L.map fun a => (toReal a.1, a.2))).2
-      = ((L.map fun a => (Taylm.termBounds a).2).map toReal).sum := by
+  have e2 : (Real.Taylm.polyBounds (L.map fun a => (toReal a.1, a.2))).sup
+      = ((L.map fun a => (Taylm.termBounds a).sup).map toReal).sum := by
     simp only [Real.Taylm.polyBounds, List.map_map]
     congr 1
     exact List.map_congr_left fun a _ => by

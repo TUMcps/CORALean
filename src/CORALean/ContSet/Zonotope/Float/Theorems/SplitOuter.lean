@@ -21,7 +21,7 @@ match entry by entry, the halved one because halving is exact (`toReal_half`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -76,10 +76,10 @@ theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.split_outer (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) :
-    Z.construct ⊆ (Z.split j).1.construct ∪ (Z.split j).2.construct := by -- --- PROOF ---
+    Z.construct ⊆ (Z.split j).fst.construct ∪ (Z.split j).snd.construct := by -- --- PROOF ---
   rintro _ ⟨zn, hzn, e, he, rfl⟩
   -- the nominal point lies in one of the real halves
-  have hmem : zn ∈ ((nominal Z).split j).1.construct ∪ ((nominal Z).split j).2.construct :=
+  have hmem : zn ∈ ((nominal Z).split j).fst.construct ∪ ((nominal Z).split j).snd.construct :=
     (Real.Zonotope.split_union (nominal Z) j).symm ▸ hzn
   -- the real halved generators, read entry by entry
   have key : ∀ (i : Fin n) (k : Fin Z.h),

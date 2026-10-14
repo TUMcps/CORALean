@@ -44,7 +44,7 @@ interval products, and the reduction and projection after.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -65,8 +65,8 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 /-- `nᵀx − d` of a point of `Z` lies in the range `Zonotope.halfspaceRange` computes. -/
 theorem aux_hpMap_range {v : Vec ℝ n} {d : ℝ} {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
     (hx : x ∈ Z.construct) :
-    (Z.halfspaceRange v d).1 ≤ v ⬝ᵥ x - d ∧
-      v ⬝ᵥ x - d ≤ (Z.halfspaceRange v d).2 := by -- --- PROOF ---
+    (Z.halfspaceRange v d).inf ≤ v ⬝ᵥ x - d ∧
+      v ⬝ᵥ x - d ≤ (Z.halfspaceRange v d).sup := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   have hb : |∑ i, β i * v ⬝ᵥ Z.G i| ≤ ∑ i, |v ⬝ᵥ Z.G i| := by
     refine (Finset.abs_sum_le_sum_abs _ _).trans (Finset.sum_le_sum fun i _ => ?_)
@@ -164,16 +164,16 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
     let flowRed := (Zonotope.mtimes A R0red).plus (Zonotope.ofPoint b)
     let Λint := flowRed.halfspaceRange nv 0
     let dint := R0red.halfspaceRange nv d
-    let τlo := Interval.mulLo (-dint.2) (-dint.1) Λint.2⁻¹ Λint.1⁻¹
-    let τhi := Interval.mulHi (-dint.2) (-dint.1) Λint.2⁻¹ Λint.1⁻¹
+    let τlo := Interval.mulLo (-dint.sup) (-dint.inf) Λint.sup⁻¹ Λint.inf⁻¹
+    let τhi := Interval.mulHi (-dint.sup) (-dint.inf) Λint.sup⁻¹ Λint.inf⁻¹
     let ψc : Vec ℝ n := -nv - ((τlo + τhi) / 2) • Υ
     let ψg : Vec ℝ n := -(((τhi - τlo) / 2) • Υ)
-    let φlo := 1 / max (Λint.1 ^ 2) (Λint.2 ^ 2)
-    let φhi := 1 / min (Λint.1 ^ 2) (Λint.2 ^ 2)
+    let φlo := 1 / max (Λint.inf ^ 2) (Λint.sup ^ 2)
+    let φhi := 1 / min (Λint.inf ^ 2) (Λint.sup ^ 2)
     let Q := GuardMap.hitHessianMatZono A b nv d R0red ψc ψg
     let Rquad := Zonotope.quadMapMatZono (fun i => (Q i).c)
       (fun (j : Fin (1 + R0red.h + R0red.h)) i => (Q i).G j) R0red.recentre
-    (0 < Λint.1 ∨ Λint.2 < 0) →
+    (0 < Λint.inf ∨ Λint.sup < 0) →
     GuardMap.hitPoint A b nv d x₀ ∈ (((Zonotope.ofPoint (GuardMap.hitPoint A b nv d R0red.c)).plus
       (Zonotope.mtimes (GuardMap.hitJacobian A b nv d R0red.c) R₀.recentre)).plus
       (Zonotope.mtimesIntervalMat ⟨Matrix.of fun j k =>
@@ -187,7 +187,7 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
   have hx₀' : x₀ ∈ R0red.construct := hsub x₀ hx₀
   -- `Λ` on the reduced set, within `Λ_int`, so nonzero, and `1/Λ²` within `[φ̲, φ̄]`
   have hΛr : ∀ x ∈ R0red.construct,
-      Λint.1 ≤ nv ⬝ᵥ (A *ᵥ x + b) ∧ nv ⬝ᵥ (A *ᵥ x + b) ≤ Λint.2 := fun x hx => by
+      Λint.inf ≤ nv ⬝ᵥ (A *ᵥ x + b) ∧ nv ⬝ᵥ (A *ᵥ x + b) ≤ Λint.sup := fun x hx => by
     have h := aux_hpMap_range (v := nv) (d := 0) (aux_hpMap_flow_mem A b hx)
     rw [sub_zero] at h
     exact h
@@ -206,7 +206,7 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
   rw [hx₀ν] at hexp
   have hφm := GuardMap.hitFactor_mem_Icc A b nv (Zonotope.convex_construct R0red) hΛne hφ hξ hx₀'
   -- `Θ(ξ)/Λ(ξ) = ψ_c + κψ_g`: `τ(ξ) = (d − nᵀξ)/Λ(ξ)` lies in `[τ̲, τ̄]`
-  have hnum : -dint.2 ≤ d - nv ⬝ᵥ ξ ∧ d - nv ⬝ᵥ ξ ≤ -dint.1 := by
+  have hnum : -dint.sup ≤ d - nv ⬝ᵥ ξ ∧ d - nv ⬝ᵥ ξ ≤ -dint.inf := by
     have h := aux_hpMap_range (v := nv) (d := d) hξ
     constructor <;> linarith [h.1, h.2]
   have hinv := aux_hpMap_inv hΛ (hΛr ξ hξ).1 (hΛr ξ hξ).2
@@ -265,9 +265,9 @@ theorem aux_hpMap_res2 (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ E : Zonotope (
     let flowSet := (Zonotope.mtimes A R₀).plus (Zonotope.ofPoint b)
     let numInt := E.halfspaceRange (-nv) 0
     let denInt := flowSet.halfspaceRange nv 0
-    let Ilo := Interval.mulLo numInt.1 numInt.2 denInt.2⁻¹ denInt.1⁻¹
-    let Ihi := Interval.mulHi numInt.1 numInt.2 denInt.2⁻¹ denInt.1⁻¹
-    (0 < denInt.1 ∨ denInt.2 < 0) →
+    let Ilo := Interval.mulLo numInt.inf numInt.sup denInt.sup⁻¹ denInt.inf⁻¹
+    let Ihi := Interval.mulHi numInt.inf numInt.sup denInt.sup⁻¹ denInt.inf⁻¹
+    (0 < denInt.inf ∨ denInt.sup < 0) →
     (-(nv ⬝ᵥ e₁) / (nv ⬝ᵥ (A *ᵥ x₀ + b))) • (A *ᵥ x₀ + b) + e₂
       ∈ ((Zonotope.mtimesIntervalMat ⟨Matrix.of fun j k =>
           Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) Ilo Ihi,

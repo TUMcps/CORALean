@@ -16,7 +16,7 @@ centre and the range from zero, `max (min c lo) (-max c hi)` (`invBound`). Sound
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,10 +32,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.inv (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
-  T.taylor T.constCoef (fun k => (Taylm.invCoef T.constCoef k).1)
-    (fun k => (Taylm.invCoef T.constCoef k).2)
-    (Taylm.invBound (maximum (minimum T.constCoef T.bounds.1)
-      (neg (maximum T.constCoef T.bounds.2))) T.maxOrder)
+  T.taylor T.constCoef (fun k => (Taylm.invCoef T.constCoef k).inf)
+    (fun k => (Taylm.invCoef T.constCoef k).sup)
+    (Taylm.invBound (maximum (minimum T.constCoef T.bounds.inf)
+      (neg (maximum T.constCoef T.bounds.sup))) T.maxOrder)
 
 end CORALean.Float
 

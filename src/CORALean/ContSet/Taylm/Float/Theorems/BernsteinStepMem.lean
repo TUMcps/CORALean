@@ -16,7 +16,7 @@ between the two floats `bernsteinStep` returns.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem Taylm.bernsteinStep_mem (N e j i : ℕ) (hj : j ≤ N) :
     let step := Taylm.bernsteinStep (𝕋 := 𝕋) N e j i
     let term := ((j.choose i : ℝ) / (N.choose i : ℝ)) * ((e.choose i : ℝ) * 2 ^ i * (-1) ^ (e - i))
-    toReal step.1 ≤ term ∧ term ≤ toReal step.2 := by -- --- PROOF ---
+    toReal step.inf ≤ term ∧ term ≤ toReal step.sup := by -- --- PROOF ---
   intro step term
   simp only [step, term]
   unfold Taylm.bernsteinStep

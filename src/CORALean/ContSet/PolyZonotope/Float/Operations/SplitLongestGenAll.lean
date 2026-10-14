@@ -17,7 +17,7 @@ row errors there.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -44,9 +44,9 @@ def PolyZonotope.splitLongestGenAll (pZ : PolyZonotope (Vec 𝕋 n)) : List (Pol
     | some b => if le (len l) (len b) then some b else some l) none with
   | none => [pZ]
   | some l =>
-    if hl : l.val < pZ.h then [pZ.splitLongestGen.1, pZ.splitLongestGen.2]
-    else [(pZ.splitIndepGen ⟨l.val - pZ.h, by have := l.isLt; omega⟩).1,
-      (pZ.splitIndepGen ⟨l.val - pZ.h, by have := l.isLt; omega⟩).2]
+    if hl : l.val < pZ.h then [pZ.splitLongestGen.fst, pZ.splitLongestGen.snd]
+    else [(pZ.splitIndepGen ⟨l.val - pZ.h, by have := l.isLt; omega⟩).fst,
+      (pZ.splitIndepGen ⟨l.val - pZ.h, by have := l.isLt; omega⟩).snd]
 
 end CORALean.Float
 

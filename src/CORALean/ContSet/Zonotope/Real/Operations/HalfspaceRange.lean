@@ -23,7 +23,7 @@ The paper uses it to bound the times a reachable set meets the guard.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,10 +40,10 @@ variable {n : ℕ}
 
 /-- [1, Sec. 5.2]: `[ω̲, ω̄]`, the range of `nᵀx - d` over `Z`. -/
 noncomputable def Zonotope.halfspaceRange (nv : Vec ℝ n) (d : ℝ) (Z : Zonotope (Vec ℝ n)) :
-    ℝ × ℝ :=
+    Interval ℝ :=
   let ωc := nv ⬝ᵥ Z.c - d                  -- the centre of `(nᵀ ⊗ Z) ⊕ (-d)`
   let ω : Fin Z.h → ℝ := fun i => nv ⬝ᵥ Z.G i  -- its generators
-  (ωc - ∑ i, |ω i|, ωc + ∑ i, |ω i|)
+  ⟨ωc - ∑ i, |ω i|, ωc + ∑ i, |ω i|⟩
 
 end CORALean.Real
 

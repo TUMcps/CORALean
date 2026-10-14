@@ -19,7 +19,7 @@ direction is a float vector `a` and `hc` says the functional `c` reads it, as fo
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 def Taylm.boundDot {c : Vec ℝ m →ₗ[ℝ] ℝ} (a : Vec 𝕋 m) (T : Fin m → Taylm 𝕋 n)
     (hc : ∀ x : Vec ℝ m, c x = ∑ j, toReal (a j) * x j) :
     FloatBound 𝕋 (Taylm.construct T) c where
-  val := (Taylm.mtimes (fun (_ : Fin 1) j => a j) T 0).bounds.2
+  val := (Taylm.mtimes (fun (_ : Fin 1) j => a j) T 0).bounds.sup
   le x hx := by
     -- the point is the value at some `t` of functions the models enclose
     obtain ⟨f, hf, t, ht, hxf⟩ := (Real.Taylm.mem_construct_iff _ x).1 hx

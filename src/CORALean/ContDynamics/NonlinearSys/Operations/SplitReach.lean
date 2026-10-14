@@ -32,7 +32,7 @@ Real only, since `Zonotope.split` is: `FloatOps` carries no exact halving.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -59,8 +59,8 @@ noncomputable def NonlinearSys.splitReach (step : Real.Zonotope (Vec ℝ n) → 
       | none => none
       | some j =>
         let halves := R.split j
-        match NonlinearSys.splitReach step pick fuel halves.1,
-          NonlinearSys.splitReach step pick fuel halves.2 with
+        match NonlinearSys.splitReach step pick fuel halves.fst,
+          NonlinearSys.splitReach step pick fuel halves.snd with
         | some l₁, some l₂ => some (l₁ ++ l₂)
         | _, _ => none
 

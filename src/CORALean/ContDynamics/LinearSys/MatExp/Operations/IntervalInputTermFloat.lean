@@ -22,7 +22,7 @@ joined by `smul`. The float counterpart of `LinearSys.inputTerm` at a point
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,8 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- `Aⁱ r^{i+1}/(i+1)!` over the whole box `A`, for a nonnegative `r`. -/
 def MatExp.intervalInputTerm (A : Interval (Mat 𝕋 n n)) (r : 𝕋) (i : ℕ) :
     Interval (Mat 𝕋 n n) :=
-  let c := MatExp.taylorCoeffBounds r (i + 1)                   -- r^{i+1}/(i+1)! ∈ [c.1, c.2]
-  (Interval.smul c.1 c.2 (Interval.matPow A i)).materialiseMat  -- · Aⁱ
+  let c := MatExp.taylorCoeffBounds r (i + 1)                   -- r^{i+1}/(i+1)! ∈ [c.inf, c.sup]
+  (Interval.smul c.inf c.sup (Interval.matPow A i)).materialiseMat  -- · Aⁱ
 
 end CORALean.Float
 

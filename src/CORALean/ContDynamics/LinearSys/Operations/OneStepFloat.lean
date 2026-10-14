@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Definitions.StepSets
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
@@ -28,7 +29,7 @@ box.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 `Rti` of the step `Δt`, from `X`, under the constant input `u` and the inputs in `U`, at Taylor
 order `η`. -/
 def LinearSys.oneStepFloat (sys : LinearSys 𝕋 n) (X U : Zonotope (Vec 𝕋 n)) (u : Vec 𝕋 n) (Δt : 𝕋)
-    (η : ℕ) : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
+    (η : ℕ) : LinearSys.StepSets (Zonotope (Vec 𝕋 n)) :=
   let A := Interval.point sys.A                                           -- [A, A]
   let PU := sys.inputSolutionFloat Δt η U                                 -- time-varying input
   let Pu := sys.inputSolutionFloat Δt η (Zonotope.point u)                -- constant input
@@ -61,7 +62,7 @@ def LinearSys.oneStepFloat (sys : LinearSys 𝕋 n) (X U : Zonotope (Vec 𝕋 n)
     (S := 𝒵[𝕋])
     (MatExp.intervalCorrectionMatrix A Δt η) X
   let Hti := LinComb.linComb X Htp ⊞ C_state                              -- `CH(X, Htp) ⊕ C_state`
-  (Htp ⊞ PU, Hti ⊞ PU ⊞ C_input)                                          -- `Rtp`, `Rti`
+  ⟨Htp ⊞ PU, Hti ⊞ PU ⊞ C_input⟩                                          -- `Rtp`, `Rti`
 
 end CORALean
 

@@ -34,7 +34,7 @@ other sets first. `true` is only returned where the error box holds `0`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -74,7 +74,7 @@ def PolyZonotope.containsSetApprox (pZ S : PolyZonotope (Vec 𝕋 n))
     | s => s
   -- the error box holds `0`, and S is full-dimensional
   ((List.finRange n).all fun i => le (pZ.I_error.inf i) zero && le zero (pZ.I_error.sup i)) &&
-    S.isFullDim && ((step^[fuel] ([S], 1, 8, none)).2.2.2 == some true)
+    S.isFullDim && ((step^[fuel] ([S], 1, 8, none)).snd.2.snd == some true)
 
 end CORALean.Float
 

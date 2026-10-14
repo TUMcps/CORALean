@@ -20,7 +20,7 @@ semidefinite `H`; `l(P - Q_{x₀}) + l(I)` is the lower bound of the model `T - 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.qfbLower (T : Taylm n) (H : Mat ℝ n n) (x0 : Vec ℝ n) : ℝ :=
-  (T.minus (Taylm.quadForm H x0 T.maxOrder)).bounds.1
+  (T.minus (Taylm.quadForm H x0 T.maxOrder)).bounds.inf
 
 end CORALean.Real
 

@@ -15,7 +15,7 @@ terms lie in their brackets (`bernsteinStep_mem`), and the two sums round outwar
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,13 +31,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.bernsteinEntryBounds_mem (N e j : ℕ) (hj : j ≤ N) :
-    toReal (Taylm.bernsteinEntryBounds (𝕋 := 𝕋) N e j).1 ≤ Real.Taylm.bernsteinEntry N e j ∧
-      Real.Taylm.bernsteinEntry N e j ≤ toReal (Taylm.bernsteinEntryBounds (𝕋 := 𝕋) N e j).2
+    toReal (Taylm.bernsteinEntryBounds (𝕋 := 𝕋) N e j).inf ≤ Real.Taylm.bernsteinEntry N e j ∧
+      Real.Taylm.bernsteinEntry N e j ≤ toReal (Taylm.bernsteinEntryBounds (𝕋 := 𝕋) N e j).sup
     := by -- --- PROOF ---
-  have hs : ∀ i, toReal (Taylm.bernsteinStep (𝕋 := 𝕋) N e j i).1
+  have hs : ∀ i, toReal (Taylm.bernsteinStep (𝕋 := 𝕋) N e j i).inf
         ≤ ((j.choose i : ℝ) / (N.choose i : ℝ)) * ((e.choose i : ℝ) * 2 ^ i * (-1) ^ (e - i)) ∧
       ((j.choose i : ℝ) / (N.choose i : ℝ)) * ((e.choose i : ℝ) * 2 ^ i * (-1) ^ (e - i))
-        ≤ toReal (Taylm.bernsteinStep (𝕋 := 𝕋) N e j i).2 :=
+        ≤ toReal (Taylm.bernsteinStep (𝕋 := 𝕋) N e j i).sup :=
     fun i => Taylm.bernsteinStep_mem N e j i hj
   have hsum : ∀ g : ℕ → ℝ, ((List.range (e + 1)).map g).sum = ∑ i ∈ Finset.range (e + 1), g i :=
     fun g => rfl

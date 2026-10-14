@@ -16,7 +16,7 @@ range, where `√⁽ᴺ⁺¹⁾` is largest. `q` is the precision of the square 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,9 +32,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.sqrt (q : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
-  T.taylor T.constCoef (fun k => (Taylm.sqrtCoef q T.constCoef k).1)
-    (fun k => (Taylm.sqrtCoef q T.constCoef k).2)
-    (Taylm.sqrtBound q (minimum T.constCoef T.bounds.1) T.maxOrder)
+  T.taylor T.constCoef (fun k => (Taylm.sqrtCoef q T.constCoef k).inf)
+    (fun k => (Taylm.sqrtCoef q T.constCoef k).sup)
+    (Taylm.sqrtBound q (minimum T.constCoef T.bounds.inf) T.maxOrder)
 
 end CORALean.Float
 

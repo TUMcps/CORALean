@@ -28,7 +28,7 @@ The other intrinsics have no float counterpart here and give `none`, as does a f
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,17 +45,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Taylm.intrinsic (p q s : ℕ) : Real.Taylm.Intrinsic → Taylm 𝕋 n → Option (Taylm 𝕋 n)
   | .exp, T =>
-    if Taylm.belowPow p (maximum T.constCoef T.bounds.2) then some (T.exp p) else none
+    if Taylm.belowPow p (maximum T.constCoef T.bounds.sup) then some (T.exp p) else none
   | .log, T =>
-    if ltStrict zero (minimum T.constCoef T.bounds.1) then some (T.log q s) else none
+    if ltStrict zero (minimum T.constCoef T.bounds.inf) then some (T.log q s) else none
   | .sin, T => some (T.sin p)
   | .cos, T => some (T.cos p)
   | .sinh, T =>
     if Taylm.belowPow p (maximum (absolute T.constCoef)
-      (maximum (absolute T.bounds.1) (absolute T.bounds.2))) then some (T.sinh p) else none
+      (maximum (absolute T.bounds.inf) (absolute T.bounds.sup))) then some (T.sinh p) else none
   | .cosh, T =>
     if Taylm.belowPow p (maximum (absolute T.constCoef)
-      (maximum (absolute T.bounds.1) (absolute T.bounds.2))) then some (T.cosh p) else none
+      (maximum (absolute T.bounds.inf) (absolute T.bounds.sup))) then some (T.cosh p) else none
   | _, _ => none
 
 end CORALean.Float

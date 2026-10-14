@@ -26,7 +26,7 @@ the operators' guarantees. The grouping into runs of `μ` affects precision, not
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,11 +41,12 @@ variable {n : ℕ}
 
 /-- [1, Sec. 3.2]: `r(x) ∈ unify(…)` for every `x ∈ R(τⱼ)` with `g(x) = 0`. -/
 theorem Location.guardTransitionLevelSet_outer {R T : Type} {den : R → Set (Vec ℝ n)}
-    {denT : T → Set (Vec ℝ n)} {g : Vec ℝ n → ℝ} {r : Vec ℝ n → Vec ℝ n} {bound : R → ℝ × ℝ}
+    {denT : T → Set (Vec ℝ n)} {g : Vec ℝ n → ℝ} {r : Vec ℝ n → Vec ℝ n}
+    {bound : R → Real.Interval ℝ}
     {box : R → Real.Interval (Vec ℝ n)}
     {contract : Real.Interval (Vec ℝ n) → Real.Interval (Vec ℝ n)} (μ : ℕ)
     {intersect : Real.Interval (Vec ℝ n) → T} {reset : T → T} {unify : List T → T}
-    (hbound : ∀ Rj, Real.IsRangeBound g (den Rj) (bound Rj).1 (bound Rj).2)
+    (hbound : ∀ Rj, Real.IsRangeBound g (den Rj) (bound Rj).inf (bound Rj).sup)
     (hbox : ∀ Rj, den Rj ⊆ (box Rj).construct) (hcontract : Real.IsContractor g contract)
     (hintersect : ∀ I : Real.Interval (Vec ℝ n),
       I.construct ∩ {x | g x = 0} ⊆ denT (intersect I))
@@ -55,7 +56,7 @@ theorem Location.guardTransitionLevelSet_outer {R T : Type} {den : R → Set (Ve
     r x ∈ denT (Location.guardTransitionLevelSet bound box contract μ intersect reset
       unify Rs) := by -- --- PROOF ---
   -- Step 1 keeps `R(τⱼ)`: `0 = g(x)` lies in its bound
-  have hhit : Rj ∈ Rs.filter fun Rj => (bound Rj).1 ≤ 0 ∧ 0 ≤ (bound Rj).2 := by
+  have hhit : Rj ∈ Rs.filter fun Rj => (bound Rj).inf ≤ 0 ∧ 0 ≤ (bound Rj).sup := by
     have h := hbound Rj x hx
     rw [hg] at h
     exact List.mem_filter.mpr ⟨hRj, by simpa using h⟩

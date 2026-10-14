@@ -26,7 +26,7 @@ set it is applied at. Outer only: neither `Pu` nor `PU` is exact.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -72,7 +72,7 @@ theorem LinearSys.CanonicalTrajectory.oneStep_timePoint_outer {sys : LinearSys �
       (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u))))
     (pRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u)))) :
-    x Δt ∈ construct (sys.oneStep X U u Δt (m + 2)).1 := by -- --- PROOF ---
+    x Δt ∈ construct (sys.oneStep X U u Δt (m + 2)).Rtp := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   have hU := hbdd
   have hp := traj.sub_mem_inputReach_shift u hWU hW hU ⟨hΔt.le, le_rfl⟩

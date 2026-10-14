@@ -32,7 +32,7 @@ the rest to its error.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -53,11 +53,11 @@ def GuardMap.sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) (t : 𝕋) (η :
   let Apow : ℕ → Interval (Mat 𝕋 n n) := fun i =>                -- `Aⁱ`, bracketed
     Interval.matPow (Interval.point A) i
   let coefLo : ℕ → ℕ → 𝕋 := fun p q =>                           -- `tᵖ/q!`, down
-    Interval.mulLo (powDown t p) (powUp t p) (MatExp.invFactorialBounds q).1
-      (MatExp.invFactorialBounds q).2
+    Interval.mulLo (powDown t p) (powUp t p) (MatExp.invFactorialBounds q).inf
+      (MatExp.invFactorialBounds q).sup
   let coefHi : ℕ → ℕ → 𝕋 := fun p q =>                           -- and up
-    Interval.mulHi (powDown t p) (powUp t p) (MatExp.invFactorialBounds q).1
-      (MatExp.invFactorialBounds q).2
+    Interval.mulHi (powDown t p) (powUp t p) (MatExp.invFactorialBounds q).inf
+      (MatExp.invFactorialBounds q).sup
   let Θ := Interval.sumTermsMat (fun k =>                         -- `Θ = ∑ᵢ₌₂^η tⁱ⁻¹/i! Aⁱ`
     Interval.smul (coefLo (k + 1) (k + 2)) (coefHi (k + 1) (k + 2)) (Apow (k + 2))) (η - 1)
   let Γstar := Interval.sumTermsMat (fun k =>                     -- `Γ* = ∑ᵢ₌₀^η tⁱ/(i+1)! Aⁱ`

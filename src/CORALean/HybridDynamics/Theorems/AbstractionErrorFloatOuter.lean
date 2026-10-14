@@ -48,7 +48,7 @@ the float `mtimesIntervalMat`, `plus` and `sumTerms` hold products and sums of t
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -173,7 +173,7 @@ theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n)
   have ht0 := ht.1
   have htm := ht.2
   have hM : ∀ i m : ℕ, ((Nat.factorial (m + 2) : ℝ)⁻¹) • Ar ^ i ∈ (Interval.smul
-      (MatExp.invFactorialBounds (m + 2)).1 (MatExp.invFactorialBounds (m + 2)).2
+      (MatExp.invFactorialBounds (m + 2)).inf (MatExp.invFactorialBounds (m + 2)).sup
       (Interval.matPow (Interval.point A) i)).construct := fun i m =>
     Interval.smul_outer (MatExp.invFactorialBounds_mem (m + 2)).1
       (MatExp.invFactorialBounds_mem (m + 2)).2 _

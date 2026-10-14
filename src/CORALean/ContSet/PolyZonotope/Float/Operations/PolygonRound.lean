@@ -13,7 +13,7 @@ split along its longest factor (`splitLongestGen`), the others are kept.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 def PolyZonotope.polygonRound (pick : PolyZonotope (Vec 𝕋 2) → Bool)
     (L : List (PolyZonotope (Vec 𝕋 2))) :
     List (PolyZonotope (Vec 𝕋 2)) :=
-  L.flatMap fun q => if pick q then [q.splitLongestGen.1, q.splitLongestGen.2] else [q]
+  L.flatMap fun q => if pick q then [q.splitLongestGen.fst, q.splitLongestGen.snd] else [q]
 
 end CORALean.Float
 

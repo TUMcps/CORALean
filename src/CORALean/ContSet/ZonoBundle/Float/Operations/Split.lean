@@ -24,7 +24,7 @@ box `B` is an argument: CORA's `box(Λ⁻¹ Z_∩)` needs the inverse, which is 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +42,7 @@ def ZonoBundle.split (Λ : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (j : Fin n)
     (zB : ZonoBundle (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) × ZonoBundle (Vec 𝕋 n) :=
   let Ψ := Zonotope.mtimes Λ B.zonotope                  -- Ψ = Λ box
   let Ψs := Ψ.split j                                     -- the two halves along `w⁽ʲ⁾`
-  (zB.intersection ⟨1, fun _ => Ψs.1⟩, zB.intersection ⟨1, fun _ => Ψs.2⟩)
+  (zB.intersection ⟨1, fun _ => Ψs.fst⟩, zB.intersection ⟨1, fun _ => Ψs.snd⟩)
 
 end CORALean.Float
 

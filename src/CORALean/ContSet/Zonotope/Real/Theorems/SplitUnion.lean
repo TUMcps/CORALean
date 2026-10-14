@@ -38,7 +38,7 @@ It first appeared as [2, Prop. 3].
 
 -- Authors:       Claude Opus 5
 -- Written:       11-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -53,11 +53,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The two halves of a split cover the zonotope they came from, exactly. -/
 theorem Zonotope.split_union (Z : Zonotope α) (j : Fin Z.h) :
-    (Z.split j).1.construct ∪ (Z.split j).2.construct = Z.construct := by -- --- PROOF ---
-  have h₁ : (Z.split j).1.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
+    (Z.split j).fst.construct ∪ (Z.split j).snd.construct = Z.construct := by -- --- PROOF ---
+  have h₁ : (Z.split j).fst.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c - (2 : ℝ)⁻¹ • Z.G j
         + ∑ k, β k • Function.update Z.G j ((2 : ℝ)⁻¹ • Z.G j) k} := rfl
-  have h₂ : (Z.split j).2.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
+  have h₂ : (Z.split j).snd.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c + (2 : ℝ)⁻¹ • Z.G j
         + ∑ k, β k • Function.update Z.G j ((2 : ℝ)⁻¹ • Z.G j) k} := rfl
   rw [h₁, h₂]

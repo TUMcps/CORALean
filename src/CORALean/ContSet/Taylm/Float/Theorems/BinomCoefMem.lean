@@ -18,7 +18,7 @@ The integer, the two powers and their products each lie between their directed r
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,9 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.binomCoef_mem (e j : ℕ) (m r : 𝕋) :
-    toReal (Taylm.binomCoef e j m r).1 ≤ (e.choose j : ℝ) * toReal m ^ (e - j) * toReal r ^ j ∧
+    toReal (Taylm.binomCoef e j m r).inf ≤ (e.choose j : ℝ) * toReal m ^ (e - j) * toReal r ^ j ∧
       (e.choose j : ℝ) * toReal m ^ (e - j) * toReal r ^ j ≤
-        toReal (Taylm.binomCoef e j m r).2 := by -- --- PROOF ---
+        toReal (Taylm.binomCoef e j m r).sup := by -- --- PROOF ---
   -- the integer between its roundings
   have hI := intDown_le_intUp (𝕋 := 𝕋) (e.choose j : ℤ)
   simp only [Int.cast_natCast] at hI

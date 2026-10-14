@@ -31,7 +31,7 @@ Outer only: the hull is a `linComb`, and `Pu`, `PU`, `F`, `G` are bounds.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -78,7 +78,7 @@ theorem LinearSys.CanonicalTrajectory.oneStep_timeInterval_outer {sys : LinearSy
       (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u))))
     (pRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt (m + 2)) (OfPoint.ofPoint (S := S n) u)))) :
-    x t ∈ construct (sys.oneStep X U u Δt (m + 2)).2 := by -- --- PROOF ---
+    x t ∈ construct (sys.oneStep X U u Δt (m + 2)).Rti := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set lam : ℝ := t / Δt with hlam
   have hl0 : 0 ≤ lam := div_nonneg ht0 hΔt.le

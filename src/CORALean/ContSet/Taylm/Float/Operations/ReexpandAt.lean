@@ -16,7 +16,7 @@ remainder, a monomial being at most one in magnitude on the box.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Taylm.reexpandAt (k : Fin n) (m r : 𝕋) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   -- what storing the upper corners costs, summed over the new terms
   let err := listSumUp ((T.reexpPairs k).map fun p =>
-    subUp (Taylm.reexpCoef k m r p).2 (Taylm.reexpCoef k m r p).1)
-  ⟨(T.reexpPairs k).map fun p => ((Taylm.reexpCoef k m r p).2, Function.update p.1.2 k p.2),
+    subUp (Taylm.reexpCoef k m r p).sup (Taylm.reexpCoef k m r p).inf)
+  ⟨(T.reexpPairs k).map fun p => ((Taylm.reexpCoef k m r p).sup, Function.update p.1.2 k p.2),
     subDown T.remInf err, addUp T.remSup err, T.maxOrder⟩
 
 end CORALean.Float

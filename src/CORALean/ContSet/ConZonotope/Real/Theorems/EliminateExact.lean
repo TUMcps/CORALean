@@ -37,7 +37,7 @@ inside `[-1,1]` exactly where `R_{r,j} ⊆ [-1,1]` says.
 
 -- Authors:       Claude Opus 5
 -- Written:       21-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -60,13 +60,13 @@ theorem ConZonotope.aux_rowBound_dep {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec 
     (hSread : ∀ l, l ≠ j → A r l ≠ 0 → l ∈ S) {E : Interval (Vec ℝ ng)}
     {β : Vec ℝ ng} (hβS : ∀ k ∈ S, E.inf k ≤ β k ∧ β k ≤ E.sup k)
     (hAj : A r j ≠ 0) (hrow : (A *ᵥ β) r = b r) :
-    min (ConZonotope.rowBound A b r j E).1 (ConZonotope.rowBound A b r j E).2 ≤ β j ∧
-      β j ≤ max (ConZonotope.rowBound A b r j E).1
-        (ConZonotope.rowBound A b r j E).2 := by -- --- PROOF ---
-  have hR1 : (ConZonotope.rowBound A b r j E).1
+    min (ConZonotope.rowBound A b r j E).inf (ConZonotope.rowBound A b r j E).sup ≤ β j ∧
+      β j ≤ max (ConZonotope.rowBound A b r j E).inf
+        (ConZonotope.rowBound A b r j E).sup := by -- --- PROOF ---
+  have hR1 : (ConZonotope.rowBound A b r j E).inf
       = (b r - ∑ l ∈ Finset.univ.erase j, max (A r l * E.inf l) (A r l * E.sup l))
         / A r j := rfl
-  have hR2 : (ConZonotope.rowBound A b r j E).2
+  have hR2 : (ConZonotope.rowBound A b r j E).sup
       = (b r - ∑ l ∈ Finset.univ.erase j, min (A r l * E.inf l) (A r l * E.sup l))
         / A r j := rfl
   -- outside `S` a term only enters with a zero coefficient: `hSread` catches the rest
@@ -194,10 +194,10 @@ theorem ConZonotope.aux_eliminate_superset {ng nc : ℕ} (c : α) (G : Fin ng �
     (S : Set (Fin ng)) (hjS : j ∉ S) (hrS : ∀ l, l ≠ j → A r l ≠ 0 → l ∈ S)
     (hclosed : ∀ k ∈ S, ∀ i : Fin nc, A i k ≠ 0 →
       ∀ l : Fin ng, l ≠ k → A i l ≠ 0 → l ∈ S)
-    (hR : -1 ≤ min (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).1
-              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).2 ∧
-          max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).1
-              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).2 ≤ 1) :
+    (hR : -1 ≤ min (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
+              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ∧
+          max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
+              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) :
     (ConZonotope.eliminate c G A b r j).construct
       ⊆ (ConZonotope.ofMat c G A b).construct := by -- --- PROOF ---
   intro x hx
@@ -274,10 +274,10 @@ theorem ConZonotope.eliminate_exact_of_dependClosed {ng nc : ℕ} (c : α) (G : 
     (S : Set (Fin ng)) (hjS : j ∉ S) (hrS : ∀ l, l ≠ j → A r l ≠ 0 → l ∈ S)
     (hclosed : ∀ k ∈ S, ∀ i : Fin nc, A i k ≠ 0 →
       ∀ l : Fin ng, l ≠ k → A i l ≠ 0 → l ∈ S)
-    (hR : -1 ≤ min (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).1
-              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).2 ∧
-          max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).1
-              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).2 ≤ 1) :
+    (hR : -1 ≤ min (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
+              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ∧
+          max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
+              (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) :
     (ConZonotope.ofMat c G A b).construct = (ConZonotope.eliminate c G A b r j).construct := by
   exact Set.Subset.antisymm (ConZonotope.aux_eliminate_subset c G A b r j hAj)
     (ConZonotope.aux_eliminate_superset c G A b r j hAj S hjS hrS hclosed hR)

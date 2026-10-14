@@ -32,7 +32,7 @@ sums in `sumTermsMat` (`Θ`'s indices `i = k + 2`), and the products and their s
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -54,9 +54,10 @@ theorem GuardMap.sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n)
       ∈ (GuardMap.sdcInputFloat A uc t η x₀).construct := by -- --- PROOF ---
   -- `tᵖ/q!` between the corner products
   have hcoef : ∀ p q : ℕ, toReal (Interval.mulLo (powDown t p) (powUp t p)
-      (MatExp.invFactorialBounds q).1 (MatExp.invFactorialBounds q).2) ≤ toReal t ^ p / q.factorial
+      (MatExp.invFactorialBounds q).inf (MatExp.invFactorialBounds q).sup)
+        ≤ toReal t ^ p / q.factorial
       ∧ toReal t ^ p / q.factorial ≤ toReal (Interval.mulHi (powDown t p) (powUp t p)
-        (MatExp.invFactorialBounds q).1 (MatExp.invFactorialBounds q).2) := fun p q => by
+        (MatExp.invFactorialBounds q).inf (MatExp.invFactorialBounds q).sup) := fun p q => by
     rw [div_eq_mul_inv]
     exact Interval.mul_between_corners (powDown_le ht le_rfl p) (le_powUp ht le_rfl p)
       (MatExp.invFactorialBounds_mem q).1 (MatExp.invFactorialBounds_mem q).2
@@ -65,10 +66,12 @@ theorem GuardMap.sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n)
   -- `Θ`, reindexed by `i = k + 2`
   have hΘ : (∑ i ∈ Finset.Ico 2 (η + 1), (toReal t ^ (i - 1) / (i.factorial : ℝ)) •
       toRealMat A ^ i) ∈ (Interval.sumTermsMat (fun k => Interval.smul
-        (Interval.mulLo (powDown t (k + 1)) (powUp t (k + 1)) (MatExp.invFactorialBounds (k + 2)).1
-          (MatExp.invFactorialBounds (k + 2)).2)
-        (Interval.mulHi (powDown t (k + 1)) (powUp t (k + 1)) (MatExp.invFactorialBounds (k + 2)).1
-          (MatExp.invFactorialBounds (k + 2)).2)
+        (Interval.mulLo (powDown t (k + 1)) (powUp t (k + 1))
+          (MatExp.invFactorialBounds (k + 2)).inf
+          (MatExp.invFactorialBounds (k + 2)).sup)
+        (Interval.mulHi (powDown t (k + 1)) (powUp t (k + 1))
+          (MatExp.invFactorialBounds (k + 2)).inf
+          (MatExp.invFactorialBounds (k + 2)).sup)
         (Interval.matPow (Interval.point A) (k + 2))) (η - 1)).construct := by
     rw [Finset.sum_Ico_eq_sum_range, show η + 1 - 2 = η - 1 by omega]
     refine Interval.sum_mem_sumTermsMat _ _ _ fun k _ => ?_
@@ -77,10 +80,10 @@ theorem GuardMap.sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n)
   -- `Γ*`, term by term
   have hΓ : (∑ i ∈ Finset.range (η + 1), (toReal t ^ i / ((i + 1).factorial : ℝ)) •
       toRealMat A ^ i) ∈ (Interval.sumTermsMat (fun k => Interval.smul
-        (Interval.mulLo (powDown t k) (powUp t k) (MatExp.invFactorialBounds (k + 1)).1
-          (MatExp.invFactorialBounds (k + 1)).2)
-        (Interval.mulHi (powDown t k) (powUp t k) (MatExp.invFactorialBounds (k + 1)).1
-          (MatExp.invFactorialBounds (k + 1)).2)
+        (Interval.mulLo (powDown t k) (powUp t k) (MatExp.invFactorialBounds (k + 1)).inf
+          (MatExp.invFactorialBounds (k + 1)).sup)
+        (Interval.mulHi (powDown t k) (powUp t k) (MatExp.invFactorialBounds (k + 1)).inf
+          (MatExp.invFactorialBounds (k + 1)).sup)
         (Interval.matPow (Interval.point A) k)) (η + 1)).construct :=
     Interval.sum_mem_sumTermsMat _ _ _ fun k _ =>
       Interval.smul_outer (hcoef k (k + 1)).1 (hcoef k (k + 1)).2 _ (hpow k)

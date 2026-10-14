@@ -21,7 +21,7 @@ exact bound is not.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.optBernstein_mem (T : Taylm 𝕋 n) {f : Vec ℝ n → ℝ} (h : T.Encloses f)
     {t : Vec ℝ n} (ht : t ∈ Real.Taylm.box n) :
-    toReal (Taylm.optBernstein T).1 ≤ f t ∧ f t ≤ toReal (Taylm.optBernstein T).2
+    toReal (Taylm.optBernstein T).inf ≤ f t ∧ f t ≤ toReal (Taylm.optBernstein T).sup
     := by -- --- PROOF ---
   -- the exact bound, and the exact degree the float degree reads as
   have hr := Real.Taylm.optBernstein_mem h ht
@@ -52,7 +52,7 @@ theorem Taylm.optBernstein_mem (T : Taylm 𝕋 n) {f : Vec ℝ n → ℝ} (h : T
   simp only [Real.Taylm.optBernstein] at hr
   -- every coefficient bracket lies below, respectively above, the exact extreme
   have hlo : toReal (Taylm.listMin (fun β => (Taylm.bernsteinCoeffBounds T.terms
-        T.nominal.bernsteinDegree β).1) (Taylm.bernsteinIdx n T.nominal.bernsteinDegree))
+        T.nominal.bernsteinDegree β).inf) (Taylm.bernsteinIdx n T.nominal.bernsteinDegree))
       ≤ Finset.univ.inf' ⟨fun _ => 0, Finset.mem_univ _⟩
         (Real.Taylm.bernsteinCoeff T.nominal.terms T.nominal.bernsteinDegree) :=
     Finset.le_inf' _ _ fun β _ => le_trans
@@ -62,11 +62,11 @@ theorem Taylm.optBernstein_mem (T : Taylm 𝕋 n) {f : Vec ℝ n → ℝ} (h : T
   have hhi : Finset.univ.sup' ⟨fun _ => 0, Finset.mem_univ _⟩
         (Real.Taylm.bernsteinCoeff T.nominal.terms T.nominal.bernsteinDegree)
       ≤ toReal (Taylm.listMax (fun β => (Taylm.bernsteinCoeffBounds T.terms
-        T.nominal.bernsteinDegree β).2) (Taylm.bernsteinIdx n T.nominal.bernsteinDegree)) :=
+        T.nominal.bernsteinDegree β).sup) (Taylm.bernsteinIdx n T.nominal.bernsteinDegree)) :=
     Finset.sup'_le _ _ fun β _ => le_trans
       (Taylm.bernsteinCoeffBounds_mem T.terms _ β).2
       (Taylm.le_listMax (fun β => (Taylm.bernsteinCoeffBounds T.terms
-        T.nominal.bernsteinDegree β).2) (Taylm.mem_bernsteinIdx n _ β))
+        T.nominal.bernsteinDegree β).sup) (Taylm.mem_bernsteinIdx n _ β))
   constructor
   · refine le_trans (addDown_le_add _ _) (le_trans ?_ hr.1)
     exact add_le_add hlo le_rfl

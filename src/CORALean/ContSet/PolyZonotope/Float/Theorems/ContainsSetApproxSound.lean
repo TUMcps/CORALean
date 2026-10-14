@@ -21,7 +21,7 @@ ended empty.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -70,8 +70,8 @@ theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope (Vec 𝕋 n))
   revert hit
   refine (Function.Iterate.rec
     (fun s : List (PolyZonotope (Vec 𝕋 n)) × ℕ × ℕ × Option Bool =>
-      (∀ x ∈ S.construct, x ∈ pZ.construct ∨ ∃ T ∈ s.1, x ∈ T.construct) ∧
-        (s.2.2.2 = some true → S.construct ⊆ pZ.construct))
+      (∀ x ∈ S.construct, x ∈ pZ.construct ∨ ∃ T ∈ s.fst, x ∈ T.construct) ∧
+        (s.snd.2.snd = some true → S.construct ⊆ pZ.construct))
     (⟨fun x hx => Or.inr ⟨S, List.mem_singleton_self S, hx⟩, fun h => by cases h⟩) ?_ fuel).2
   · rintro ⟨L, cnt, splits, st⟩ ⟨hcov, hdone⟩
     cases st with

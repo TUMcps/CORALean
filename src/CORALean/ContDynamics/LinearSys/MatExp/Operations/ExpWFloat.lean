@@ -22,7 +22,7 @@ brackets, each rounded outward.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,9 +41,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def MatExp.expW (M : Mat 𝕋 n n) (t : 𝕋) : Interval (Mat 𝕋 n n) :=
   let ht := MatExp.halfSqBounds t                                   -- ½ t², bracketed
   ⟨fun i j => addDown (mulDown t (M i j))                           -- t M
-      (Interval.mulLo ht.1 ht.2 (dotDown (M i) fun k => M k j) (dotUp (M i) fun k => M k j)),
+      (Interval.mulLo ht.inf ht.sup (dotDown (M i) fun k => M k j) (dotUp (M i) fun k => M k j)),
     fun i j => addUp (mulUp t (M i j))
-      (Interval.mulHi ht.1 ht.2 (dotDown (M i) fun k => M k j) (dotUp (M i) fun k => M k j))⟩
+      (Interval.mulHi ht.inf ht.sup (dotDown (M i) fun k => M k j) (dotUp (M i) fun k => M k j))⟩
 
 end CORALean.Float
 

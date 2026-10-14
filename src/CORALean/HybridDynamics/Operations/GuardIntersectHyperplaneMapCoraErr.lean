@@ -36,7 +36,7 @@ ways, `ψ_c = Θ/Λ` at the point, and `A R0 + b` has no generators to slice.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -73,12 +73,12 @@ noncomputable def Location.guardIntersectHyperplaneMapCoraErr (ℓ : Location �
   let flowRed := (Zonotope.mtimes A R0red).plus (Zonotope.ofPoint b)  -- A*R0 + b
   let Λint := flowRed.halfspaceRange nv 0                          -- Lambda_int
   let dint := R0red.halfspaceRange nv d                            -- interval(n'*R0 - d)
-  let τlo := Interval.mulLo (-dint.2) (-dint.1) Λint.2⁻¹ Λint.1⁻¹  -- tau = (d - n'R0)/Lambda
-  let τhi := Interval.mulHi (-dint.2) (-dint.1) Λint.2⁻¹ Λint.1⁻¹
+  let τlo := Interval.mulLo (-dint.sup) (-dint.inf) Λint.sup⁻¹ Λint.inf⁻¹ -- tau = (d - n'R0)/Lambda
+  let τhi := Interval.mulHi (-dint.sup) (-dint.inf) Λint.sup⁻¹ Λint.inf⁻¹
   let ψc : Vec ℝ n := -nv - ((τlo + τhi) / 2) • Υ                  -- psi_c, one factor
   let ψg : Vec ℝ n := -(((τhi - τlo) / 2) • Υ)                     -- psi_g, one factor
-  let φlo := 1 / max (Λint.1 ^ 2) (Λint.2 ^ 2)                     -- phi = 1/Lambda_int^2
-  let φhi := 1 / min (Λint.1 ^ 2) (Λint.2 ^ 2)
+  let φlo := 1 / max (Λint.inf ^ 2) (Λint.sup ^ 2)                     -- phi = 1/Lambda_int^2
+  let φhi := 1 / min (Λint.inf ^ 2) (Λint.sup ^ 2)
   let k := GuardMap.hitPoint A b nv d x0                           -- k
   let L := GuardMap.hitJacobian A b nv d x0                        -- L
   let Q := GuardMap.hitHessianMatZono A b nv d R0red ψc ψg         -- Q{i}
@@ -91,12 +91,12 @@ noncomputable def Location.guardIntersectHyperplaneMapCoraErr (ℓ : Location �
   let flowSet := (Zonotope.mtimes A R₀).plus (Zonotope.ofPoint b)  -- flowSet = A*R0 + b
   let numInt := err.halfspaceRange (-nv) 0                         -- interval(-n*err)
   let denInt := flowSet.halfspaceRange nv 0                        -- interval(n*flowSet)
-  let Ilo := Interval.mulLo numInt.1 numInt.2 denInt.2⁻¹ denInt.1⁻¹  -- I = num/den
-  let Ihi := Interval.mulHi numInt.1 numInt.2 denInt.2⁻¹ denInt.1⁻¹
+  let Ilo := Interval.mulLo numInt.inf numInt.sup denInt.sup⁻¹ denInt.inf⁻¹  -- I = num/den
+  let Ihi := Interval.mulHi numInt.inf numInt.sup denInt.sup⁻¹ denInt.inf⁻¹
   let res2 := (Zonotope.mtimesIntervalMat (mulI Ilo Ihi) flowSet).plus err  -- I*flowSet + err
   let R := (res1.plus res2).reduceGirard zonotopeOrder             -- R = reduce(res1 + res2)
   let nrm := Real.sqrt (nv ⬝ᵥ nv)                                  -- normalizeConstraints
-  if (0 < Λint.1 ∨ Λint.2 < 0) ∧ (0 < denInt.1 ∨ denInt.2 < 0) then
+  if (0 < Λint.inf ∨ Λint.sup < 0) ∧ (0 < denInt.inf ∨ denInt.sup < 0) then
     some (ContSet.projectOnHyperplane (S := 𝒵) R (nrm⁻¹ • nv) (d / nrm))  -- projectOnHyperplane
   else none
 

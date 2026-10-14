@@ -19,7 +19,7 @@ the magnitude `Taylm.magUp`. `p` and `q` are the precisions of `asinDown`/`asinU
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,10 +39,10 @@ def Taylm.asin (p q : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   T.taylor c
     (fun k => match k with
       | 0 => asinDown p q c
-      | j + 1 => (Taylm.arcsinCoef q c j).1)
+      | j + 1 => (Taylm.arcsinCoef q c j).inf)
     (fun k => match k with
       | 0 => asinUp p q c
-      | j + 1 => (Taylm.arcsinCoef q c j).2)
+      | j + 1 => (Taylm.arcsinCoef q c j).sup)
     (Taylm.arcsinBound q T.magUp T.maxOrder)
 
 end CORALean.Float

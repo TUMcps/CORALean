@@ -35,7 +35,7 @@ the pair `(E, R)` through lines 3-5, and the two folds and the iteration follow 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -53,9 +53,9 @@ open Matrix
 theorem ConZonotope.aux_rowBound_mem {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng} (h0 : A i j ≠ 0)
     (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) :
-    min (ConZonotope.rowBound A b i j E).1 (ConZonotope.rowBound A b i j E).2 ≤ β j ∧
-      β j ≤ max (ConZonotope.rowBound A b i j E).1
-        (ConZonotope.rowBound A b i j E).2 := by -- --- PROOF ---
+    min (ConZonotope.rowBound A b i j E).inf (ConZonotope.rowBound A b i j E).sup ≤ β j ∧
+      β j ≤ max (ConZonotope.rowBound A b i j E).inf
+        (ConZonotope.rowBound A b i j E).sup := by -- --- PROOF ---
   -- `Σ_{l≠j} a_il βl` lies inside the interval the same sum bounds entrywise
   have hS1 : (∑ l ∈ Finset.univ.erase j, min (A i l * E.inf l) (A i l * E.sup l))
       ≤ ∑ l ∈ Finset.univ.erase j, A i l * β l :=
@@ -95,17 +95,17 @@ theorem ConZonotope.aux_tightenCoeffER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (
     rw [if_neg h0]
     rcases eq_or_ne k j with rfl | hk
     · show Function.update S.1.inf k (max (S.1.inf k)
-            (min (ConZonotope.rowBound A b i k S.1).1 (ConZonotope.rowBound A b i k S.1).2)) k
+            (min (ConZonotope.rowBound A b i k S.1).inf (ConZonotope.rowBound A b i k S.1).sup)) k
             ≤ β k
           ∧ β k ≤ Function.update S.1.sup k (min (S.1.sup k)
-            (max (ConZonotope.rowBound A b i k S.1).1 (ConZonotope.rowBound A b i k S.1).2)) k
+            (max (ConZonotope.rowBound A b i k S.1).inf (ConZonotope.rowBound A b i k S.1).sup)) k
       rw [Function.update_self, Function.update_self]
       exact ⟨max_le (hE k).1 hlo, le_min (hE k).2 hhi⟩
     · show Function.update S.1.inf j (max (S.1.inf j)
-            (min (ConZonotope.rowBound A b i j S.1).1 (ConZonotope.rowBound A b i j S.1).2)) k
+            (min (ConZonotope.rowBound A b i j S.1).inf (ConZonotope.rowBound A b i j S.1).sup)) k
             ≤ β k
           ∧ β k ≤ Function.update S.1.sup j (min (S.1.sup j)
-            (max (ConZonotope.rowBound A b i j S.1).1 (ConZonotope.rowBound A b i j S.1).2)) k
+            (max (ConZonotope.rowBound A b i j S.1).inf (ConZonotope.rowBound A b i j S.1).sup)) k
       rw [Function.update_of_ne hk, Function.update_of_ne hk]
       exact hE k
   · -- line 4: `R_j` met with the same bound, every other `R_k` untouched
