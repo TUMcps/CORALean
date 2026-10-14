@@ -325,15 +325,19 @@
       "kind": "unsound",
       "cex": "ContainsScalingCora.lean"
     },
+    "rdivide": {
+      "description": "negative numerator over interval ending at 0: half-line mirrored",
+      "kind": "unsound",
+      "cex": "RdivideNumeratorCora.lean"
+    },
     "representsa_": {
       "description": "capsule/ellipsoid test counts zero widths; unit square accepted",
       "kind": "other",
       "cex": "RepresentsaCapsuleCora.lean"
     },
-    "rdivide": {
-      "description": "negative numerator over interval ending at 0: half-line mirrored",
-      "kind": "unsound",
-      "cex": "RdivideNumeratorCora.lean"
+    "supportFunc_": {
+      "description": "zero direction times infinite bound gives NaN",
+      "kind": "other"
     }
   },
   "contSet/levelSet": {
@@ -433,6 +437,11 @@
       "description": "pairs polygons index-wise instead of all pairs",
       "kind": "unsound"
     },
+    "randPoint_": {
+      "description": "extreme points masked by row mask; two vertices only",
+      "kind": "other",
+      "fix": null
+    },
     "removeCollinearPoints": {
       "description": "angle sort reorders boundary of non-star-shaped polygons",
       "kind": "unsound"
@@ -504,6 +513,10 @@
     "interval": {
       "description": "ignores deterministic generators; mean outside the box",
       "kind": "unsound"
+    },
+    "mtimes": {
+      "description": "interval matrix leaves covariance unmapped",
+      "kind": "other"
     },
     "pyramid": {
       "description": "step function misses floor; no probability bound",
@@ -860,6 +873,37 @@
     "tan": {
       "description": "target cut to [-1,1] loses solutions of tan",
       "kind": "unsound"
+    }
+  },
+  "others/intervalMatrix": {
+    "expmDifferentAlgorithms": {
+      "description": "point-matrix remainder is a constant; series misses exp(A)",
+      "kind": "unsound"
+    },
+    "expmTaylorHornerScaling": {
+      "description": "point-matrix remainder is a constant; series misses exp(A)",
+      "kind": "unsound"
+    },
+    "randPoint": {
+      "description": "half-width used as width; half range, no vertices",
+      "kind": "other",
+      "fix": null
+    }
+  },
+  "others/matPolytope": {
+    "expmIndMixed": {
+      "description": "simplePlus reads undefined variable; always errors",
+      "kind": "other"
+    },
+    "simplePlus": {
+      "description": "size of undefined variable Z1; crash",
+      "kind": "other"
+    }
+  },
+  "contSet/fullspace": {
+    "mtimes": {
+      "description": "rank-deficient matrix maps to the whole space",
+      "kind": "other"
     }
   }
 }

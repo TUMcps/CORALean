@@ -10,7 +10,7 @@ CORA methods of `matrixSet/@matPolytope/`, one row each, and where CORALean answ
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `expm` | — | — | the exponential of a matrix polytope is not modelled |
 | `expmInd` | — | — | the exponential of a matrix polytope is not modelled |
-| `expmIndMixed` | — | — | the mixed evaluation is not modelled |
+| `expmIndMixed` | — | — | the mixed evaluation is not modelled; cora-issue — `simplePlus.m` calls `size(Z1)` on an undefined variable (`matV1` was meant), so `expmIndMixed` throws for every `intermediateOrder >= 1` (`MatExp.expmIndMixedPolytope_cora_counterexample`, FINDINGS.md `MatPolytope simplePlus, expmIndMixed, undefined Z1`; read from the source, not run) |
 | `getPrintSetInfo` | out-of-scope | n/a — plotting/display |  |
 | `intervalMatrix` | — | — | the enclosing interval matrix of a matrix polytope is not modelled |
 | `isempty` | out-of-scope | n/a — matlab-runtime | dimension check of the stored array (`any(dim == 0)`), not an emptiness statement about the set |
@@ -23,6 +23,6 @@ CORA methods of `matrixSet/@matPolytope/`, one row each, and where CORALean answ
 | `plus` | proved | [`VPolytope.plus`](../../../src/CORALean/ContSet/VPolytope/Real/Operations/Plus.lean), [`VPolytope.plus_exact`](../../../src/CORALean/ContSet/VPolytope/Real/Theorems/PlusExact.lean) | exact, generic over the ambient type, used at `Mat ℝ m n`: the vertices are all sums, whose hull is the Minkowski sum; CORA then prunes to the hull vertices with `convhulln` (and keeps all sums if that fails), which does not change the set. Real layer only |
 | `polytope` | — | — | the vectorisation into a vector polytope is not modelled |
 | `representsa` | — | — | `representsa` of a matrix polytope is not modelled |
-| `simplePlus` | proved | [`VPolytope.plus`](../../../src/CORALean/ContSet/VPolytope/Real/Operations/Plus.lean), [`VPolytope.plus_exact`](../../../src/CORALean/ContSet/VPolytope/Real/Theorems/PlusExact.lean) | exact, as `plus`: all pairwise vertex sums without the hull step |
+| `simplePlus` | proved | [`VPolytope.plus`](../../../src/CORALean/ContSet/VPolytope/Real/Operations/Plus.lean), [`VPolytope.plus_exact`](../../../src/CORALean/ContSet/VPolytope/Real/Theorems/PlusExact.lean) | exact, as `plus`: all pairwise vertex sums without the hull step; cora-issue — `simplePlus.m` calls `size(Z1)` on an undefined variable (`matV1` was meant), so `expmIndMixed` throws for every `intermediateOrder >= 1` (`MatExp.expmIndMixedPolytope_cora_counterexample`, FINDINGS.md `MatPolytope simplePlus, expmIndMixed, undefined Z1`; read from the source, not run) |
 | `size` | out-of-scope | n/a — matlab-runtime |  |
 | `vertices` | out-of-scope | n/a — matlab-runtime | field getter |
