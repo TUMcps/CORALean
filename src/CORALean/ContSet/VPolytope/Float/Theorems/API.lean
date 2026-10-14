@@ -7,6 +7,7 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.ConstructEmptySet
 public import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
 public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionCutOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.MatPolytopeExact

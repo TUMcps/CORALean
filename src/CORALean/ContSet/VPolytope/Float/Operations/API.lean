@@ -15,6 +15,7 @@ public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundDot
 public import CORALean.ContSet.VPolytope.Float.Operations.Project
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 public import CORALean.ContSet.VPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.VPolytope.Float.Operations.IntersectionCut
 public import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
 public import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
 public import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints

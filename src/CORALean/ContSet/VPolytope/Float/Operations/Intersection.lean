@@ -14,6 +14,16 @@ intersection's vertices are generally none of either operand's. Each operand's
 box already absorbed its error box, intersecting boxes is exact, and the corners
 are stored bounds copied — so this operation rounds nowhere, all of its
 imprecision being in the detour rather than in the arithmetic.
+
+Why this and not more. The `Intersection` class carries no direction family, and the
+intersection's vertices are not computable soundly at float: a vertex enumeration of the
+halfspace description would need either a solver or a proof of its rounding, neither of
+which exists here (CORA itself stays in halfspaces and stacks the rows; a vertex set is
+never recomputed). So the result is a box, `box P₁ ∩ box P₂`: an enclosure that can be far
+from the intersection (two thin diagonal strips meeting in a small square give the
+strips' whole bounding box). Where the caller can name directions,
+`VPolytope.intersectionCut` is tighter: the same box cut to both operands' halfspaces. A
+result that is not a box needs a sound vertex enumeration at float, which is not here.
 -/
 
 -- Authors:       Claude Opus 5
