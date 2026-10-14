@@ -514,3 +514,81 @@ STL.depReachStep  real-layer: lines 5-7 of Alg. 1 of Kochdumper-Bak, the matrix 
 STL.Tree.halfspace2set  real-layer: tests the real coefficients of a halfspace row for zero (`A ~= 0`), which `ℝ` cannot decide computably, to build a comparison over real `STL.Expr` constants
 STL.Tree.polytope2stl  real-layer: the conjunction of `STL.Tree.halfspace2set` rows of a real `HPolytope`
 STL.Tree.polytope2stlCora  real-layer: the conjunction of `STL.Tree.halfspace2set` inequality rows of a real `HPolytope`, as printed
+STLInterval.stlInterval  real-layer: `@stlInterval` bounds are `EReal`, whose order (`lb > ub`) `ℝ` cannot decide computably; the constructor's normalization
+STLInterval.and_  real-layer: `@stlInterval/and_.m` over `EReal` bounds, compared by the order of `EReal`
+STLInterval.plus  real-layer: `@stlInterval/plus.m` over `EReal` bounds
+STLInterval.plusInterval  real-layer: `@stlInterval/plus.m` with a real-layer `Interval (Vec ℝ 1)` summand, over `EReal` bounds
+STLInterval.plusNum  real-layer: `@stlInterval/plus.m` with a real number, over `EReal` bounds
+STLInterval.minus  real-layer: `@stlInterval/minus.m` over `EReal` bounds, compared with `0`
+STLInterval.minusInterval  real-layer: `@stlInterval/minus.m` with a real-layer `Interval (Vec ℝ 1)` subtrahend, over `EReal` bounds
+STLInterval.minusNum  real-layer: `@stlInterval/minus.m` with a real number, over `EReal` bounds
+STLInterval.minkDiff  real-layer: `@stlInterval/minkDiff.m` over `EReal` bounds, with `Inf - Inf` taken as `+∞`
+STLInterval.minkDiffCora  real-layer: `@stlInterval/minkDiff.m` with `Inf - Inf = NaN` as MATLAB computes it, read for its counterexample only
+STLInterval.leftClosure  real-layer: `@stlInterval/leftClosure.m` over `EReal` bounds
+STLInterval.rightClosure  real-layer: `@stlInterval/rightClosure.m` over `EReal` bounds
+STLInterval.toLeft  real-layer: `@stlInterval/toLeft.m` over `EReal` bounds
+STLInterval.toRight  real-layer: `@stlInterval/toRight.m` over `EReal` bounds
+STLInterval.interval  real-layer: `@stlInterval/interval.m` into the real-layer `Interval`, through `EReal.toReal`
+SyntaxTree.Unary.fn  real-layer: the function a `syntaxTree` denotes: the real elementary functions, which are not computable
+SyntaxTree.acos  real-layer: the node `acos` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.acosh  real-layer: the node `acosh` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.asin  real-layer: the node `asin` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.asinh  real-layer: the node `asinh` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.atan  real-layer: the node `atan` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.atanh  real-layer: the node `atanh` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.backpropagation  real-layer: `backpropagation` of `syntaxTree.m` over real-layer intervals
+SyntaxTree.cos  real-layer: the node `cos` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.cosh  real-layer: the node `cosh` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.eval  real-layer: the function a `syntaxTree` denotes: the real elementary functions, which are not computable
+SyntaxTree.exp  real-layer: the node `exp` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.funHanAcos  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanAcosh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanAsin  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanAsinh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanAtan  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanAtanh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanCos  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanCosh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanExp  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanLog  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanMinus  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanPlus  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanPower  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanSin  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanSinh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanSinhCora  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanSqrt  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanTan  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanTanCora  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanTanh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanTimes  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.funHanUminus  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
+SyntaxTree.log  real-layer: the node `log` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.minus  real-layer: the node `minus` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.minusNumLeft  real-layer: the node `minusNumLeft` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.minusNumRight  real-layer: the node `minusNumRight` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.mpower  real-layer: the node `mpower` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.mtimes  real-layer: the node `mtimes` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.nthroot  real-layer: a helper of the `funHan`s of `syntaxTree.m` over real-layer intervals and the real elementary functions
+SyntaxTree.periodic  real-layer: a helper of the `funHan`s of `syntaxTree.m` over real-layer intervals and the real elementary functions
+SyntaxTree.plus  real-layer: the node `plus` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.plusNumLeft  real-layer: the node `plusNumLeft` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.plusNumRight  real-layer: the node `plusNumRight` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.power  real-layer: the node `power` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.prod  real-layer: the node `prod` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.restrict  real-layer: a helper of the `funHan`s of `syntaxTree.m` over real-layer intervals and the real elementary functions
+SyntaxTree.signedRoots  real-layer: a helper of the `funHan`s of `syntaxTree.m` over real-layer intervals and the real elementary functions
+SyntaxTree.sin  real-layer: the node `sin` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.sinh  real-layer: the node `sinh` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.sinhCora  real-layer: the node `sinhCora` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.sinhCoraTree  real-layer: the tree of the counterexample to CORA's printed `funHan`, over real-layer intervals; read for its counterexample only
+SyntaxTree.sqrt  real-layer: the node `sqrt` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.sum  real-layer: the node `sum` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.tan  real-layer: the node `tan` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.tanCora  real-layer: the node `tanCora` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.tanCoraTree  real-layer: the tree of the counterexample to CORA's printed `funHan`, over real-layer intervals; read for its counterexample only
+SyntaxTree.tanh  real-layer: the node `tanh` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.times  real-layer: the node `times` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.timesNumLeft  real-layer: the node `timesNumLeft` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.timesNumRight  real-layer: the node `timesNumRight` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
+SyntaxTree.uminus  real-layer: the node `uminus` of `syntaxTree.m`, its interval the real-layer `Interval` and its operator the real function
