@@ -33,7 +33,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 4]: `Z` with `y` negated throughout (line 29, the upper search). -/
+/-- `Z` with `y` negated throughout: the upper search of [1] is the lower one on it. -/
 def Zonotope.mirrorY (Z : Zonotope (Vec ℝ 2)) : Zonotope (Vec ℝ 2) where
   h := Z.h
   c := ![Z.c 0, -Z.c 1]

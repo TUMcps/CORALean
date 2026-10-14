@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 3]: `Z` under `(x, y) ↦ (x - κ y, y)`. -/
+/-- `Z` under `(x, y) ↦ (x - κ y, y)`, a tool for reading the scan of [1]. -/
 def Zonotope.shear (κ : ℝ) (Z : Zonotope (Vec ℝ 2)) : Zonotope (Vec ℝ 2) where
   h := Z.h
   c := ![Z.c 0 - κ * Z.c 1, Z.c 1]

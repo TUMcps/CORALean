@@ -41,13 +41,16 @@ open Classical in
 /-- The vertices `w` [1, Alg. 2] visits from the s-face `(p₁, …, p_j, *, …, *)`. -/
 noncomputable def Interval.exploreBNVisits (b : Vec ℝ n) (α : ℝ) (j : ℕ) (p : Fin n → Bool) :
     List (Fin n → Bool) :=
-  -- `(v₁, …, v_j, b_{j+1}, …, b_k, 0, …, 0)` as labels
+  -- 5. `w ← (v₁, …, v_j, 0, …, 0)`, and 7. `w_i ← b_i` for `j < i ≤ k`, as labels
   let lab : ℕ → Fin n → Bool := fun k i => if (i : ℕ) < j then p i else decide ((i : ℕ) < k)
-  let k := max j (Nat.findGreatest                                           -- 6
+  -- 6. the maximum `k ≤ n` with `∑_{i ≤ j} v_i + ∑_{j < i ≤ k} b_i ≤ α`
+  let k := max j (Nat.findGreatest
     (fun k => ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner (lab k) i ≤ α) n)
-  let w := lab k                                                             -- 5, 7
-  w :: if hk : k < n then                                                    -- 9
-    -- 10-12: the pieces `(v₁, …, v_j, b_{j+1}, …, b_{i-1}, 0, *, …)` of `P(v, v')` but `v'`
+  -- 8. `w` is handed to `FIND SOLUTIONS` (the head of the list)
+  let w := lab k
+  -- 9. if `k < n`, a partition is needed
+  w :: if hk : k < n then
+    -- 10. lines 10-12: explore every piece `z ∈ P(v, v') \ {v'}` (Lemma 6.2), `v'` as printed
     (List.range' j (k - j)).attach.flatMap fun i =>
       Interval.exploreBNVisits b α (i.1 + 1) fun m => if (m : ℕ) = i.1 then false else w m
   else []

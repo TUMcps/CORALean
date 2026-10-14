@@ -37,7 +37,9 @@ variable {n : ℕ}
 
 /-- `[1, Alg. 1]`: `true` iff every corner of `Z₁` has `‖v - c₂‖_{Z₂} ≤ 1`. -/
 noncomputable def Zonotope.venum (Z₁ Z₂ : Zonotope (Vec ℝ n)) : Bool :=
+  -- 1. `V ← vertices(Z₁)`, read as the sign corners
   let V := Finset.univ.image Z₁.corner
+  -- 2. for `v ∈ V`, return False if `‖v - c₂‖_{Z₂} > 1`; 3. return True
   if ∀ v ∈ V, ¬ Z₂.zonotopeNorm (v - Z₂.c) > 1 then true else false
 
 end CORALean.Real

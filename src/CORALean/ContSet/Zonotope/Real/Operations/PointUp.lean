@@ -37,6 +37,7 @@ namespace CORALean.Real
 noncomputable def Zonotope.pointUp (Z : Zonotope (Vec ℝ 2)) : Zonotope (Vec ℝ 2) where
   h := Z.h
   c := Z.c
+  -- 4. lines 4-6: if `y_gᵢ < 0` or (`y_gᵢ = 0` and `x_gᵢ < 0`) then `gᵢ ← -gᵢ`
   G := fun i => if Z.G i 1 < 0 ∨ (Z.G i 1 = 0 ∧ Z.G i 0 < 0) then -Z.G i else Z.G i
 
 end CORALean.Real

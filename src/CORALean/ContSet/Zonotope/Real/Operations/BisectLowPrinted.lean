@@ -39,15 +39,23 @@ namespace CORALean.Real
 open scoped Classical in
 /-- [1, Alg. 4] lines 1-28 with line 16 taking "smaller" by increasing angle on both sides. -/
 noncomputable def Zonotope.bisectLowPrinted (Z : Zonotope (Vec ℝ 2)) (γ : ℝ) : ℝ :=
-  let P := Z.c                                                         -- line 1
-  let Z := Z.pointUp                                                   -- lines 3-6
-  let P := P - ∑ i, Z.G i                                              -- lines 3, 7, 8
-  let right := decide (P 0 < γ)                                        -- line 9
-  let G := if right then Finset.univ.filter fun i => 0 < Z.G i 0       -- lines 10, 12
+  -- 1. the current position, `P ← c`
+  let P := Z.c
+  -- 3. lines 3-6: turn every generator upward
+  let Z := Z.pointUp
+  -- 7. lines 3, 7-8: `P ← P - gᵢ` drives `P` to the lowest vertex
+  let P := P - ∑ i, Z.G i
+  -- 9. look right if `x_P < γ`, left otherwise
+  let right := decide (P 0 < γ)
+  -- 10. lines 10-13: `G` is the generators pointing that way
+  let G := if right then Finset.univ.filter fun i => 0 < Z.G i 0
     else Finset.univ.filter fun i => Z.G i 0 < 0
-  let s := ∑ i ∈ G, (2 : ℝ) • Z.G i                                    -- line 14
+  -- 14. `s ← ∑_{g ∈ G} 2g`
+  let s := ∑ i ∈ G, (2 : ℝ) • Z.G i
+  -- 15. lines 15-26: `while |G| > 1`, with "smaller" by increasing angle on both sides
   let loop := (Z.bisectStep γ true)^[Z.h] (P, G, s)
-  sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ loop.1 (loop.1 + loop.2.2)}  -- lines 27-28
+  -- 27. lines 27-28: `(x, y) ← [P; P + s] ∩ L_γ`, `m ← y`
+  sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ loop.1 (loop.1 + loop.2.2)}
 
 end CORALean.Real
 

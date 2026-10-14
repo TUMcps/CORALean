@@ -43,8 +43,10 @@ open scoped Classical in
 /-- [1, Alg. 4] line 16: `(G<, G>)` of `G` at the pivot `s`. -/
 noncomputable def Zonotope.splitPivot (Z : Zonotope (Vec ℝ 2)) (right : Bool)
     (G : Finset (Fin Z.h)) (s : Vec ℝ 2) : Finset (Fin Z.h) × Finset (Fin Z.h) :=
+  -- 16. `G₁`, the generators of `G` smaller than the pivot `s` in the order of the walk
   let G₁ := G.filter fun i => if right then Complex.arg ⟨Z.G i 0, Z.G i 1⟩ < Complex.arg ⟨s 0, s 1⟩
     else Complex.arg ⟨s 0, s 1⟩ < Complex.arg ⟨Z.G i 0, Z.G i 1⟩
+  -- 16. `(G₁, G₂)`, `G₂` the bigger ones; none smaller (all parallel to `s`): least index split off
   if G₁.Nonempty then (G₁, G \ G₁)
   else (G.filter fun i => ∀ j ∈ G, i ≤ j, G.filter fun i => ¬ ∀ j ∈ G, i ≤ j)
 

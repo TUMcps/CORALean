@@ -49,26 +49,26 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def PolyZonotope.innerStep (pZ : PolyZonotope (Vec 𝕋 n)) (X₀ : Interval (Vec 𝕋 pZ.p))
     (ind : Fin n ↪ Fin pZ.p) (C : Mat 𝕋 n n) (xc : Vec 𝕋 pZ.p) (b U : Interval (Vec 𝕋 n)) :
     Option (Interval (Vec 𝕋 n)) :=
-  -- the coordinates of `u₁`
+  -- 10. which coordinates make up `u₁`
   let sel : Fin pZ.p → Bool := fun k => (List.finRange n).any fun i => decide (ind i = k)
-  -- U2_ - u2_, and `0` at the coordinates of `u₁`
+  -- 14. `ũ₂ - ũ₂`, and `0` at the coordinates of `u₁`
   let W2 : Interval (Vec 𝕋 pZ.p) := ⟨fun k => if sel k then zero else subDown (X₀.inf k) (xc k),
     fun k => if sel k then zero else subUp (X₀.sup k) (xc k)⟩
-  -- C*df(X_modified)
+  -- 10. `C J`, the preconditioned Jacobian on the current box
   let CJ := (Interval.matMul (Interval.point C) (PolyZonotope.jacobianBox pZ
     (PolyZonotope.sliceBox X₀ ind U))).materialiseMat
-  -- [J1, J2] = aux_Extract(C*df(X_modified), ind, n)
+  -- 10. `(J_{f1:r,u1}, J_{f1:r,u2}) ← Extract(C J, r, m)`
   let J1 : Interval (Mat 𝕋 n n) := ⟨fun i j => CJ.inf i (ind j), fun i j => CJ.sup i (ind j)⟩
   let J2 : Interval (Mat 𝕋 n pZ.p) := ⟨fun i k => if sel k then zero else CJ.inf i k,
     fun i k => if sel k then zero else CJ.sup i k⟩
-  -- diag(J1) and aux_OffDiag(J1)
+  -- 14. `Diag J_{f1:r,u1}` and `OffDiag J_{f1:r,u1}`
   let D : Interval (Vec 𝕋 n) := ⟨fun i => J1.inf i i, fun i => J1.sup i i⟩
   let Off : Interval (Mat 𝕋 n n) := ⟨fun i j => if i = j then zero else J1.inf i j,
     fun i j => if i = j then zero else J1.sup i j⟩
-  -- u1_
+  -- 14. the midpoint `ũ₁`
   let u1c : Vec 𝕋 n := fun i => xc (ind i)
   if (List.finRange n).all fun i => ltStrict zero (D.inf i) || ltStrict (D.sup i) zero then
-    -- t = aux_InvDiag(J1)*(b - aux_OffDiag(J1)*(U1_-u1_)) - J2*(U2_ - u2_)
+    -- 14. `t ← (Diag⁻¹ J₁)(b - (OffDiag J₁)(ũ₁ - ũ₁) - J₂(ũ₂ - ũ₂))`
     some ((D.recip.times (b.minus (Off.mtimesIntervalMat (U.minus (Interval.point u1c))))).minus
       (J2.mtimesIntervalMat W2)).materialise
   else none

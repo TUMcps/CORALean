@@ -46,10 +46,13 @@ variable {n m : ℕ}
 noncomputable def Zonotope.mspb [NeZero m]
     (dir : (Fin m × (Fin n → Bool) × (Fin n → Bool) → Vec ℝ n) → Vec ℝ n)
     (L : Fin m → Mat ℝ n n × Interval (Vec ℝ n) × Interval (Vec ℝ n)) : Zonotope (Vec ℝ n) :=
+  -- 3. the potential vertices `P := ⋃ₗ Aₗ[r]±ₗ ⊕ [v]±ₗ` (steps 1-2), as the matrix `X_P`
   let XP : Fin m × (Fin n → Bool) × (Fin n → Bool) → Vec ℝ n := fun (l, b, b') =>
     (L l).1 *ᵥ (fun i => if b i then (L l).2.1.sup i else (L l).2.1.inf i) +
       fun i => if b' i then (L l).2.2.sup i else (L l).2.2.inf i
+  -- 4. `{c_M, R_M} := cloud2zonotope(X_P, ratio, n, 0)` for `ratio = 0`
   let M := Zonotope.cloud2zonotope dir 0 n 0 XP
+  -- 5. and for `ratio = 0.1, …, 1`, keeping `r* := argmin μ(Z(R_M))` (eq. 45), the first of equals
   (List.range' 1 10).foldl
     (fun M (k : ℕ) =>
       let M' := Zonotope.cloud2zonotope dir ((k : ℝ) / 10) n 0 XP

@@ -48,15 +48,21 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 def PolyZonotope.relaxGreedy (η : ℕ) : ℕ → PolyZonotope α → PolyZonotope α
   | 0, PZ => PZ
   | fuel + 1, PZ =>
-    let G := PolyZonotope.ExpEdge PZ.E η                                  -- 1: G_{PZ,η}
-    let G' := fun i => @PolyZonotope.greedyTarget PZ.h G                  -- 2: greedy(G_{PZ,η})
+    -- 1. construct `G_{PZ,η}`, Def. 5
+    let G := PolyZonotope.ExpEdge PZ.E η
+    -- 2. `G_{PZ,η} ← greedy(G_{PZ,η})`: each node keeps its lightest outgoing edge
+    let G' := fun i => @PolyZonotope.greedyTarget PZ.h G
       (fun i j => PolyZonotope.instDecidableExpEdge PZ.E η i j) (PolyZonotope.expWeight PZ.E) i
-    match PolyZonotope.leafNode G' with                                   -- 3: |G.E| > 0
+    -- 3. `while |G_{PZ,η}.E| > 0`; 9. otherwise return `PZ`
+    match PolyZonotope.leafNode G' with
     | none => PZ
-    | some (i, j) =>                                                      -- 4, 5: leaf i, (i,j)
+    -- 4. `i ←` a leaf node of `G_{PZ,η}`; 5. `j ←` the `j ∈ [h]` with `(i, j) ∈ G_{PZ,η}.E`
+    | some (i, j) =>
       if h2 : 2 ≤ PZ.h then
-        let PZ' := PZ.relaxExpMulti (PolyZonotope.pairSplit h2 i j)       -- 6: relax(PZ, i, j)
-        PolyZonotope.relaxGreedy η fuel PZ'                               -- 7, 3: update G, loop
+        -- 6. `PZ ← relax(PZ, i, j)`, Thm. 1
+        let PZ' := PZ.relaxExpMulti (PolyZonotope.pairSplit h2 i j)
+        -- 7. update `G_{PZ,η}` (lines 1-2 on the relaxed set) and loop to line 3
+        PolyZonotope.relaxGreedy η fuel PZ'
       else PZ
 
 end CORALean.Real

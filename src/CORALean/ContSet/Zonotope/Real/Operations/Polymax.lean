@@ -42,8 +42,11 @@ variable {n : ℕ}
 /-- `[1, Alg. 2]` against the facets `{H x ≤ h}` of `Z₂ - c₂`. -/
 noncomputable def Zonotope.polymax (Z₁ Z₂ : Zonotope (Vec ℝ n)) {s : ℕ} (H : Mat ℝ s n)
     (h : Vec ℝ s) : Bool :=
+  -- 4. for `i = 1, …, s` and `j = 1, …, m₁`, `x_j ← 1` if `η_iᵀ g_j / h_i ≥ 0`, else `-1`
   let x : Fin s → Fin Z₁.h → ℝ := fun i j => if (H *ᵥ Z₁.G j) i / h i ≥ 0 then 1 else -1
+  -- 5. the vertex `c₁ + G₁ x` is what is tested, not `x` itself; `(H, h)` is given
   let v : Fin s → Vec ℝ n := fun i => Z₁.c + ∑ j, x i j • Z₁.G j
+  -- 6. return False if some `‖v - c₂‖_{Z₂} > 1`, and True otherwise
   if ∀ i, ¬ Z₂.zonotopeNorm (v i - Z₂.c) > 1 then true else false
 
 end CORALean.Real

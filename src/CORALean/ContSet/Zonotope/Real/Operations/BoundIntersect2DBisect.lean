@@ -37,9 +37,12 @@ namespace CORALean.Real
 
 /-- [1, Alg. 4]: the segment `[m; M]` with `{γ} × [m; M] = Z ∩ L_γ`. -/
 noncomputable def Zonotope.boundIntersect2DBisect (Z : Zonotope (Vec ℝ 2)) (γ : ℝ) : Interval ℝ :=
-  let m := Z.bisectLow γ                                               -- lines 1-28
-  let M := -Z.mirrorY.bisectLow γ                                      -- line 29
-  ⟨m, M⟩                                                               -- line 30
+  -- 1. lines 1-28: `m`, the lower end, by bisection from the lowest vertex
+  let m := Z.bisectLow γ
+  -- 29. the same thing for `M`, from the upper vertex: the lower search on the mirror image
+  let M := -Z.mirrorY.bisectLow γ
+  -- 30. return `[m; M]`
+  ⟨m, M⟩
 
 end CORALean.Real
 

@@ -51,31 +51,31 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- [1, Alg. 3] as CORA runs it: `true` proves `Y ⊆ f(X)` for the dependent point map `f`. -/
 def PolyZonotope.innerTest (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (Vec 𝕋 pZ.p))
     (Y : Interval (Vec 𝕋 n)) (ind : Fin n ↪ Fin pZ.p) (M C : Mat 𝕋 n n) (iter : ℕ) : Bool :=
-  -- tau = 1.01; mu = 0.9 (squared)
+  -- 1. `τ ← 1.01`, `μ ← 0.9` (`μ` squared, as distances are)
   let τ : 𝕋 := divUp (nsmulUp 101 one) (nsmulUp 100 one)
   let μsq : 𝕋 := divUp (nsmulUp 81 one) (nsmulUp 100 one)
-  -- x_ = center(X_)
+  -- 3. `x̃ ← mid(x̃)`
   let xc : Vec 𝕋 pZ.p := Interval.center X₀
-  -- [u1_, u2_] = aux_Extract(x_), [U1, ~] = aux_Extract(X), [U1_, U2_] = aux_Extract(X_)
+  -- 7. `(ũ₁, ũ₂) ← Extract(x̃, r, m)`, 9. `(u₁, u₂) ← Extract(x, r, m)`, and the same for `x̃`
   let u1c : Vec 𝕋 n := fun i => xc (ind i)
   let U1 : Interval (Vec 𝕋 n) := ⟨fun i => X.inf (ind i), fun i => X.sup (ind i)⟩
   let U1₀ : Interval (Vec 𝕋 n) := ⟨fun i => X₀.inf (ind i), fun i => X₀.sup (ind i)⟩
-  -- b = C*Y_ - C*f(x_)
+  -- 11. `b ← C ỹ - C f(x̃)`
   let b : Interval (Vec 𝕋 n) := ((Interval.mtimes C Y).minus
     (Interval.mtimes C (PolyZonotope.pointBox pZ (Interval.point xc)))).materialise
-  -- C nonsingular, and x_ in X and X_ off `ind`
+  -- 6. `C` is checked nonsingular, and `x̃` in `x` and `x̃` off `ind` (soundness, not printed)
   let ok : Bool := PolyZonotope.precondRegular M C && (List.finRange pZ.p).all fun k =>
     (List.finRange n).any (fun i => decide (ind i = k)) || (le (X.inf k) (xc k)
       && le (xc k) (X.sup k) && le (X₀.inf k) (xc k) && le (xc k) (X₀.sup k))
-  -- d(U1_, U1_'), squared
+  -- 12. the distance `d(ũ, ũ + τt)` of line 17, squared
   let dist : Interval (Vec 𝕋 n) → Interval (Vec 𝕋 n) → 𝕋 := fun U V => sumUp fun i =>
     let e := maximum (absolute (subUp (U.sup i) (V.sup i))) (absolute (subUp (U.inf i) (V.inf i)))
     mulUp e e
-  -- d(2) <= mu*d(1), `none` read as `Inf`
+  -- 13. `d_k ≤ μ d_{k-1}`, `none` read as `+∞`
   let contracts : Option 𝕋 → Option 𝕋 → Bool := fun d₁ d₂ => match d₁, d₂ with
     | some a, some c => le c (mulUp μsq a)
     | _, _ => true
-  -- one pass of the `while` body: the current `U1_`, `d(1)`, `d(2)`, and the answer once known
+  -- 13. one pass of the `while` loop: the current `ũ₁`, `d_{k-1}`, `d_k`, and the answer once known
   let step : Interval (Vec 𝕋 n) × Option 𝕋 × Option 𝕋 × Option Bool →
       Interval (Vec 𝕋 n) × Option 𝕋 × Option 𝕋 × Option Bool := fun s =>
     match s with
@@ -84,17 +84,18 @@ def PolyZonotope.innerTest (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (
         match PolyZonotope.innerStep pZ X₀ ind C xc b U with
         | none => (U, d₁, d₂, some false)
         | some t =>
-          -- contains_(U1_, u1_ + t)
+          -- 15. if `ũ + t ⊆ ũ` return true
           if Interval.le ((Interval.point u1c).plus t) U then
             (U, d₁, d₂, some (Interval.le (Interval.point u1c) U))
           else
-            -- U1_ = u1_ + tau*t, d(1) = d(2), d(2) = aux_dist(U1_, u1_ + tau*t)
+            -- 16. `d_{k-1} ← d_k`, 17. `d_k ← d(ũ, ũ + τt)`, 18. `ũ ← ũ + τt`
             let U' : Interval (Vec 𝕋 n) := Interval.materialise
               ⟨fun i => addDown (u1c i) (mulDown τ (t.inf i)),
                 fun i => addUp (u1c i) (mulUp τ (t.sup i))⟩
             (U', d₂, some (dist U U'), none)
       else (U, d₁, d₂, some false)
     | s => s
+  -- 20. return false once the loop is left; the loop runs on `iter`, which caps it
   ok && ((step^[iter] (U1₀, none, none, none)).2.2.2 == some true)
 
 end CORALean.Float

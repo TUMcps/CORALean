@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 4]: the invariant of the loop on the state `(P, G, s)`. -/
+/-- The invariant of the loop on the state `(P, G, s)` of the dichotomic search of [1]. -/
 def Zonotope.BisectInv (Z : Zonotope (Vec ℝ 2)) (γ σ : ℝ)
     (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2) : Prop :=
   ∃ B : Finset (Fin Z.h),

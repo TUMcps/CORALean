@@ -43,15 +43,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def PolyZonotope.innerSpecial (pZ : PolyZonotope (Vec 𝕋 n)) (X X₀ : Interval (Vec 𝕋 pZ.p))
     (Y : Interval (Vec 𝕋 n)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ)
     (h : n = pZ.p) : Bool :=
-  -- every coordinate is `u₁`
+  -- 1. every coordinate is `u₁`; lines 1-2: `τ ← 1.01`, `μ ← 0.9` are set in `innerTest`
   let ind : Fin n ↪ Fin pZ.p := ⟨Fin.cast h, Fin.cast_injective h⟩
-  -- x_ = center(X_)
+  -- 2. `x̃ ← mid x̃`
   let xc : Vec 𝕋 pZ.p := Interval.center X₀
-  -- df(x_)
+  -- 3. `f'(x̃)`, as the midpoint of its enclosure
   let Jc := PolyZonotope.jacobianBox pZ (Interval.point xc)
   let M : Mat 𝕋 n n := fun i j => half (addUp (Jc.inf i (ind j)) (Jc.sup i (ind j)))
-  -- C = inv(df(x_))
+  -- 3. `C ← f'(x̃)⁻¹`
   let C : Mat 𝕋 n n := inv M
+  -- 4. lines 4-13: `b ← C ỹ - C f(x̃)`, the inflation loop and the answer (`innerTest`)
   PolyZonotope.innerTest pZ X X₀ Y ind M C iter
 
 end CORALean.Float

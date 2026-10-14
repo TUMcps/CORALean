@@ -42,10 +42,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- [1, Alg. 3]: the order to reduce `PR([0,t_{i+1}])` to, and the `ε_S` that
 reduction accumulates. -/
 def Zonotope.adaptSetOrder (Z : Zonotope (Vec 𝕋 n)) (εSmax εSacc tf ti : ℚ) (Δt : 𝕋) : ℕ × ℚ :=
-  let εSi := (εSmax - εSacc) / (tf - ti) * ToRat.toRat Δt   -- 1. the admissible share, eq. (13)
-  let Φset := Z.h                                          -- 2. param(PR), reducing nothing
-  let Φset' := Z.adaptSetOrderLoop εSi Φset Φset           -- 3.-7. decrement while admissible
-  (Φset', εSacc + ToRat.toRat (Z.reduceGirardBox Φset').errOp)  -- 8. accumulate, eq. (12)
+  -- 1. the admissible share of the remaining budget, `ε_{S,i}`, eq. (13)
+  let εSi := (εSmax - εSacc) / (tf - ti) * ToRat.toRat Δt
+  -- 2. `Φ_set ← param(PR)`, reducing nothing
+  let Φset := Z.h
+  -- 3. lines 3-7: `decr` and `red` while the reduction is admissible
+  let Φset' := Z.adaptSetOrderLoop εSi Φset Φset
+  -- 8. accumulate the reduction's error, eq. (12)
+  (Φset', εSacc + ToRat.toRat (Z.reduceGirardBox Φset').errOp)
 
 end CORALean.Float
 

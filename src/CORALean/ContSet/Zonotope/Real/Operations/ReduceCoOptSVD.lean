@@ -53,11 +53,15 @@ that satisfies eq. 13, PCA's parallelotope when not. -/
 noncomputable def Zonotope.reduceCoOptSVD (Z : Zonotope (Vec ℝ n))
     (opt : Mat ℝ n n × Vec ℝ n × Mat ℝ n n → Mat ℝ n n × Vec ℝ n × Mat ℝ n n) :
     Zonotope (Vec ℝ n) :=
+  -- 1. initialize `C` using Algorithm 2: the principal axes `U₀` and the box radii `S₀`
   let part := (Partition.split 0 Z.h).reindex (finCongr (zero_add Z.h)).symm
   let U₀ := Z.pcaBasis part
   let S₀ : Vec ℝ n := fun k => ∑ l, |(U₀⁻¹ *ᵥ Z.G l) k|
+  -- 2. decomposition `C = U S Vᵀ`, here `U₀ diag(S₀) Iᵀ`; 3-5. minimize (11) subject to (13)
   let USV := opt (U₀, S₀, 1)
+  -- 6. compute `U S Vᵀ = C`
   let C := USV.1 * Matrix.diagonal USV.2.1 * USV.2.2ᵀ
+  -- 7. `Z_red = (c | C)`, when the solver's candidate meets (13); else the initialisation
   if USV.1ᵀ * USV.1 = 1 ∧ USV.2.2ᵀ * USV.2.2 = 1 ∧ (∀ i, USV.2.1 i ≠ 0)
       ∧ ∀ i, ∑ j, |((USV.2.2 * Matrix.diagonal USV.2.1⁻¹ * USV.1ᵀ) *ᵥ Z.G j) i| ≤ 1 then
     ⟨n, Z.c, fun k i => C i k⟩
