@@ -19,6 +19,19 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 namespace CORALean
 
 
+-- =============================  `FourValuedSignal.at_eq_ii_iff`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The signal is `Inconclusive` at a time exactly when `isInconclusive` holds there. -/
+theorem FourValuedSignal.at_eq_ii_iff {T : Type} [LinearOrder T] (s : FourValuedSignal T) (t : T) :
+    s.at t = FourValued.ii ↔ s.isInconclusive.at t = true := by
+  unfold FourValuedSignal.at
+  split_ifs with h <;> cases s.signal.at t <;> simp [h, FourValued.fromKleene]
+
+
 -- ================================  `FourValuedSignal.eq_iff`  ================================= --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026

@@ -20,6 +20,19 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 namespace CORALean
 
 
+-- ===============================  `KleeneSignal.at_eq_uu_iff`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The signal is `Unknown` at a time exactly when `isUnknown` holds there. -/
+theorem KleeneSignal.at_eq_uu_iff {T : Type} [LinearOrder T] (s : KleeneSignal T) (t : T) :
+    s.at t = Kleene.uu ↔ s.isUnknown.at t = true := by
+  unfold KleeneSignal.at
+  split_ifs with h <;> cases s.signal.at t <;> simp [h, Kleene.fromBool]
+
+
 -- ==================================  `KleeneSignal.at_not`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026

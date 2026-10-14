@@ -108,6 +108,30 @@ theorem Kleene.code_or (a b : Kleene) : (a.or b).code = max a.code b.code := by
   cases a <;> cases b <;> rfl
 
 
+-- ==================================  `Kleene.eq_of_ff_iff`  =================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Kleene values that agree on `False` and are not `True` are equal. -/
+theorem Kleene.eq_of_ff_iff (a b : Kleene) (h : a = Kleene.ff ↔ b = Kleene.ff)
+    (ha : a ≠ Kleene.tt) (hb : b ≠ Kleene.tt) : a = b := by
+  cases a <;> cases b <;> simp_all
+
+
+-- ==================================  `Kleene.eq_of_tt_iff`  =================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Kleene values that agree on `True` and are not `False` are equal. -/
+theorem Kleene.eq_of_tt_iff (a b : Kleene) (h : a = Kleene.tt ↔ b = Kleene.tt)
+    (ha : a ≠ Kleene.ff) (hb : b ≠ Kleene.ff) : a = b := by
+  cases a <;> cases b <;> simp_all
+
+
 -- ==================================  `Kleene.fromBool_and`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026

@@ -193,13 +193,13 @@ Rulings on borderline cases:
 | [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 0 | 0 | 0 | 4 | 0 | 0 |
 | [finiteSignal](specification/finiteSignal.md) | specification | 10 | 0 | 0 | 0 | 9 | 1 | 0 |
 | [fourValued](specification/fourValued.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 0 |
-| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 9 | 0 | 0 | 7 | 2 | 0 |
+| [fourValuedSignal](specification/fourValuedSignal.md) | specification | 18 | 16 | 0 | 0 | 0 | 2 | 0 |
 | [kleene](specification/kleene.md) | specification | 4 | 0 | 4 | 0 | 0 | 0 | 0 |
-| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 8 | 0 | 0 | 5 | 2 | 0 |
+| [kleeneSignal](specification/kleeneSignal.md) | specification | 15 | 13 | 0 | 0 | 0 | 2 | 0 |
 | [logicSignal](specification/logicSignal.md) | specification | 10 | 0 | 0 | 0 | 9 | 1 | 0 |
 | [onlineAnalyzerNode](specification/onlineAnalyzerNode.md) | specification | 7 | 0 | 0 | 0 | 6 | 1 | 0 |
 | [onlineReachSetAnalyzer](specification/onlineReachSetAnalyzer.md) | specification | 5 | 0 | 0 | 0 | 4 | 1 | 0 |
-| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 4 | 0 | 0 | 6 | 1 | 0 |
+| [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 10 | 0 | 0 | 0 | 1 | 0 |
 | [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 0 | 0 | 0 | 5 | 0 | 0 |
 | [rtl](specification/rtl.md) | specification | 5 | 0 | 0 | 0 | 4 | 1 | 0 |
 | [specification](specification/specification.md) | specification | 14 | 0 | 2 | 0 | 6 | 6 | 2 |

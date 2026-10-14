@@ -19,6 +19,28 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 namespace CORALean
 
 
+-- ====================================  `List.matlabDiff`  ===================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `diff(x)` of a logical array: the differences of neighbours, `-1`, `0` or `1`. -/
+def List.matlabDiff (l : List Bool) : List ℤ :=
+  List.zipWith (fun a b => (b.toNat : ℤ) - a.toNat) l l.tail
+
+
+-- ====================================  `List.matlabFind`  ===================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `find(x)` with a predicate: the one-based indices of the entries that satisfy it. -/
+def List.matlabFind {α : Type} (p : α → Bool) (l : List α) : List ℕ :=
+  (List.range' 1 l.length).filter (fun j => (l[j - 1]?).any p)
+
+
 -- ===============================  `PointSegmentSignal.length`  ================================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
@@ -60,6 +82,18 @@ def PointSegmentSignal.pointValue {T : Type} (s : PointSegmentSignal T) (i : ℕ
 /-- `precIntervalValue(obj,i)`: the value on the interval before the `i`-th time point. -/
 def PointSegmentSignal.precIntervalValue {T : Type} (s : PointSegmentSignal T) (i : ℕ) : Bool :=
   s.values.getD (2 * i - 3) false
+
+
+-- ==========================  `PointSegmentSignal.precTimeAtValIdx`  =========================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `[time,atPoint] = precTimeAtValIdx(obj,i)`: the time point before the `i`-th stored value. -/
+def PointSegmentSignal.precTimeAtValIdx {T : Type} [Zero T] (s : PointSegmentSignal T) (i : ℕ) :
+    T × Bool :=
+  (s.timePoints.getD ((i + 1) / 2 - 1) 0, decide (i % 2 = 1))
 
 
 -- ==========================  `PointSegmentSignal.succIntervalValue`  ========================== --

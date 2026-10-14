@@ -7,6 +7,7 @@ public import CORALean.Specification.Theorems.DiffPointMemSub
 public import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
 public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
 public import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
+public import CORALean.Specification.Theorems.FoldlSetSpec
 public import CORALean.Specification.Theorems.HoldsAllSetIntersection
 public import CORALean.Specification.Theorems.HoldsCustomIff
 public import CORALean.Specification.Theorems.HoldsIUnion

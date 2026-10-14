@@ -103,6 +103,18 @@ noncomputable def STLInterval.rightClosure : STLInterval → STLInterval
   | I@(.nonempty l u lc _ _ _ _) => if u = ⊤ then I else stlInterval l u lc true
 
 
+-- =============================  `STLInterval.stlIntervalBounds`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `stlInterval(lb,ub,lc,rc)` for real bounds, `ub` possibly `inf`. -/
+noncomputable def STLInterval.stlIntervalBounds (lb : ℝ) (ub : WithTop ℝ) (lc rc : Bool) :
+    STLInterval :=
+  STLInterval.stlInterval (lb : EReal) (ub.recTopCoe (⊤ : EReal) (fun r => (r : EReal))) lc rc
+
+
 -- ==================================  `STLInterval.toRight`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
