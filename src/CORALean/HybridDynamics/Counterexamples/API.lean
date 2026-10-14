@@ -1,0 +1,21 @@
+module
+
+public import CORALean.HybridDynamics.Counterexamples.AbstractionErrorCora
+public import CORALean.HybridDynamics.Counterexamples.AbstractionErrorCoraEqZero
+public import CORALean.HybridDynamics.Counterexamples.AbstractionErrorCoraMisses
+public import CORALean.HybridDynamics.Counterexamples.CheckFlowCora
+public import CORALean.HybridDynamics.Counterexamples.GuardIntersectHyperplaneMapCoraErr
+public import CORALean.HybridDynamics.Counterexamples.GuardIntersectZonoGirardCora
+public import CORALean.HybridDynamics.Counterexamples.HitHessianMatZono
+public import CORALean.HybridDynamics.Counterexamples.NonlinearResetResolveCORA
+public import CORALean.HybridDynamics.Counterexamples.NonlinearResetSynchronizeResolveCORA
+public import CORALean.HybridDynamics.Counterexamples.ResetTaylor
+public import CORALean.HybridDynamics.Counterexamples.RobustProjectionCora
+public import CORALean.HybridDynamics.Counterexamples.TransitionSynchronizeTargetCORA
+public import CORALean.HybridDynamics.Counterexamples.UlocCora
+
+/-!
+# Counterexamples of `HybridDynamics`, collected
+
+The refutations of printed statements, and the models of CORA's code that they refute.
+-/

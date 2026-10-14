@@ -11,7 +11,6 @@ public import CORALean.ContDynamics.Conform.Theorems.CpScenarioTermLe
 public import CORALean.ContDynamics.Conform.Theorems.DevSetTemplateZono
 public import CORALean.ContDynamics.Conform.Theorems.DevSetZeroTemplateZono
 public import CORALean.ContDynamics.Conform.Theorems.DisjointSingletonAddIff
-public import CORALean.ContDynamics.Conform.Theorems.FalsifyAddCounterexample
 public import CORALean.ContDynamics.Conform.Theorems.GloCostEq
 public import CORALean.ContDynamics.Conform.Theorems.GloSetTemplateZono
 public import CORALean.ContDynamics.Conform.Theorems.GloStateSpace

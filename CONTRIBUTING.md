@@ -25,6 +25,8 @@ src/CORALean/
     Interval/
       Real/        Interval.lean (the type), Operations/ (one per operation),
                    Theorems/ (one per guarantee),
+                   Counterexamples/ (what refutes a printed statement, and the
+                   model of CORA's code it refutes),
                    Complexity/Space/ (how large a result is, proved),
                    Complexity/Time/ (what running it costs, asserted),
                    Instances.lean (the interface, instantiated),
@@ -522,6 +524,7 @@ models and systems follow the same shape:
 | `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `Trajectory` — no theorem, and no storage helper (see "Main-type files") |
 | `Operations/*.lean` | one operation each, as CORA gives it a file each |
 | `Theorems/*.lean` | one guarantee each, stated and proved together |
+| `Counterexamples/*.lean` | a refutation of a printed statement or of CORA's code, with the model of CORA's code it refutes (see "Counterexamples") |
 | `Complexity/Space/*.lean` | how large a result is — a theorem, proved from the definition — and its `O` corollary where there is one |
 | `Complexity/Time/*.lean` | how much running it costs — a `def`, asserted against a model — its monotonicity and bounds, and its `O` corollary where there is one |
 | `Instances.lean` | the class instances, whose fields *are* the guarantees |
@@ -547,11 +550,40 @@ relaxed on purpose: one file per operation holds the exact statement (`plus_h`,
 `plusCost`) *and* its `O` corollary (`..._isBigO`), the corollary being derived
 from the exact one. Nowhere else may two public declarations share a file.
 Nothing sits directly in `Complexity/` but `API.lean`, and no `Cost/` directory
-exists; `check-conventions.sh` rejects both.
+exists; `check-conventions.sh` rejects both. `Counterexamples/` is the other
+exception, and says why below.
 
 The rule is what keeps the table above true, and it is checked because a
 convention nobody tests is one the tree drifts out of: a helper that quietly
 grows a second user is the usual way a file stops doing only its own job.
+
+### Counterexamples
+
+A statement that fails, whether the paper's or CORA's code, is a **refutation**; CORA's code as printed,
+written down only to be refuted, is a **model** (`…Cora`: `Polygon.representsaOriginCora`, the
+`'origin'` test with `all([])` true). Both live in the `Counterexamples/` folder of the layer they
+refute, next to `Theorems/`: `ContSet/Zonotope/Real/Counterexamples/`,
+`Specification/STL/Counterexamples/`, `Global/Counterexamples/`. A repaired statement (the fix of a
+`fixed` row) is library content and stays in `Theorems/`; so does a theorem about the corrected
+counterexample of a paper, whose file name may still end in `Counterexample`
+(`HeldSimSupportCounterexample.lean`).
+
+A model and its refutation share one file, named for the model:
+`Counterexamples/RepresentsaOriginCora.lean` holds `representsaOriginCora` and
+`representsaOriginCora_counterexample`. The model exists for that refutation, and the one-public-declaration
+rule does not apply here. A model that several refutations use, or that is used by another model, keeps a
+file of its own, named for it. A refutation of a paper statement with no model is named for its theorem,
+without a suffix: no file name ends in `Counterexample`, the folder says it. The module docstring holds
+one `# ` title per part and may be `20` lines long for each of them.
+
+Nothing else is a counterexample: `check-conventions.sh` sends a file named `…Cora`, or declaring a
+`…Cora` definition or a `…counterexample` theorem, into a `Counterexamples/` folder, and refuses a file
+there that neither says `counterexample` or `Cora`, nor declares a negated statement (`not_`, `_ne`). A model the library imports (the `zonotopeCora` the
+containment test of `PolyZonotope` is stated with) stays where it is, listed with its importer in
+`COUNTEREXAMPLE_EXCEPTIONS`. `noncomputable` is free in the folder, its models being read and never run.
+`Counterexamples/API.lean` collects the folder, and the `API.lean` that collects `Theorems/` imports it.
+The `**Counterexample:**` links of `references/`, the appendix tables `scripts/errors-table.py` and
+`scripts/cora-bugs-table.py` and the paper's statistics find a counterexample by that folder.
 
 ### Main-type files
 
@@ -743,8 +775,9 @@ notation makes the most text can say — so a section may come before an
 alphabetically earlier one only if that one possibly uses a section in between.
 
 **What stays a file of its own**, whatever its size: a main-type file, `API.lean`,
-`Instances.lean`, a CORA model or witness (`…Cora`, `…Counterexample`, and every
-file the CORA-bug appendix links), anything under `Examples/` or on
+`Instances.lean`, anything in a `Counterexamples/` folder (a CORA model or a
+refutation), a CORA model the library imports (`COUNTEREXAMPLE_EXCEPTIONS` in
+`check-conventions.sh`), every file the CORA-bug appendix links, anything under `Examples/` or on
 `scripts/non-module-allowlist.txt`, a file whose module docstring has a
 `## References` block — its citation is what `references/` links to, and a section
 has no docstring to keep it in — and a file whose name says `Float` where neither

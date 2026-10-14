@@ -4,6 +4,7 @@ public import CORALean.Specification.STLInterval.Definitions.API
 public import CORALean.Specification.STLInterval.Operations.API
 public import CORALean.Specification.STLInterval.STLInterval
 public import CORALean.Specification.STLInterval.Theorems.API
+public import CORALean.Specification.STLInterval.Counterexamples.API
 
 /-!
 # CORA's `stlInterval`, collected

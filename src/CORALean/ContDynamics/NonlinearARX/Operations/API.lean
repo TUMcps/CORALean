@@ -4,7 +4,6 @@ public import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGO
 public import CORALean.ContDynamics.NonlinearARX.Operations.ComputeGOFloat
 public import CORALean.ContDynamics.NonlinearARX.Operations.Feed
 public import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
-public import CORALean.ContDynamics.NonlinearARX.Operations.ReachStepCora
 public import CORALean.ContDynamics.NonlinearARX.Operations.Simulate
 public import CORALean.ContDynamics.NonlinearARX.Operations.SimulateBoxFloat
 public import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDT

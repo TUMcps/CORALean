@@ -4,6 +4,7 @@ public import CORALean.NN.Graph.Complexity.API
 public import CORALean.NN.Graph.Definitions.API
 public import CORALean.NN.Graph.Operations.API
 public import CORALean.NN.Graph.Theorems.API
+public import CORALean.NN.Graph.Counterexamples.API
 
 /-!
 # Graph neural networks, collected

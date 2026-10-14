@@ -7,7 +7,6 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.IntegrableExpNegNormSq
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianEqWithDensity
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawEqWithDensity
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawDensity
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.GZonotopeLawPrintedPdfCounterexample
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.OfGeneratorsLaws
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.PlusLaws
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.MtimesLaws
@@ -16,7 +15,6 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianBox
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.ConfidenceZonotopeProb
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.ZonotopeProb
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.UnsafeProbLe
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.UnsafeProbPrintedCounterexample
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.ProjectLaws
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.RepresentsaEmptySetIff
@@ -28,9 +26,6 @@ public import CORALean.ContSet.ProbZonotope.Real.Theorems.EncloseMeanOuter
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.AbsLeCorner
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.AbsNotMem
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.IntervalProb
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.UnitMeanIntervalCora
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.IntervalCoraNotMem
-public import CORALean.ContSet.ProbZonotope.Real.Theorems.SupCoraLt
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.SupIsLUB
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.SqrtMulVecMemZonotope
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.MemZonotopeOfQuadLt

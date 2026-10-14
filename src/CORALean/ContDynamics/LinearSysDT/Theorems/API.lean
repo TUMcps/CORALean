@@ -49,7 +49,6 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ObservePropagationFloat
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedOuter
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSpecCoraFinalCounterexample
 public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryCanonical
 public import CORALean.ContDynamics.LinearSysDT.Theorems.CanonicalTrajectoryTrajectoryCanonical
 

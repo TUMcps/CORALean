@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Abel
 `y ⊕ V ⊆ R` is `y ∈ R ⊖ V` by [1, Sec. 2.2]'s definition of `⊖`. The falsification
 `(y ⊕ V) ∩ R = ∅` is `y ∉ R ⊕ (-V)`: some error `v` with `y + v ∈ R` is `y ∈ R - v`. [1,
 Sec. 2.2] prints `R ⊕ V`, which is the same only for `V = -V`
-(`FalsifyAddCounterexample`).
+(`FalsifyAdd`).
 
 ## References
 

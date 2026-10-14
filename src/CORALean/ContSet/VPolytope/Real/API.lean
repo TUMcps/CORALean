@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.VPolytope.Real.VPolytope
 public import CORALean.ContSet.VPolytope.Real.Operations.API
 public import CORALean.ContSet.VPolytope.Real.Theorems.API
+public import CORALean.ContSet.VPolytope.Real.Counterexamples.API
 public import CORALean.ContSet.VPolytope.Real.Complexity.API
 public import CORALean.ContSet.VPolytope.Real.Instances
 public import CORALean.ContSet.VPolytope.Real.Theorems.EncloseExact

@@ -8,6 +8,7 @@ public import CORALean.NN.Layers.API
 public import CORALean.NN.NeuralNetwork
 public import CORALean.NN.Operations.API
 public import CORALean.NN.Theorems.API
+public import CORALean.NN.Counterexamples.API
 
 /-!
 # Neural network verification, collected

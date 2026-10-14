@@ -61,7 +61,6 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.SupportBound
 public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
 public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.ConZonotope.Real.Operations.IsFullDimCora
 public import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
 public import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
 public import CORALean.ContSet.ConZonotope.Real.Operations.Stack
@@ -69,8 +68,6 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubMap
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubMapMixed
-public import CORALean.ContSet.ConZonotope.Real.Operations.SupportFuncUpperCora
-public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaHyperplaneCora
 
 /-!
 # What `ConZonotope` computes

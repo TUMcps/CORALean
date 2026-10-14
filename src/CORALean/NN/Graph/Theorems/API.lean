@@ -46,7 +46,6 @@ public import CORALean.NN.Graph.Theorems.NotMemBallOfIsolated
 public import CORALean.NN.Graph.Theorems.OneLeDegree
 public import CORALean.NN.Graph.Theorems.PoolingExact
 public import CORALean.NN.Graph.Theorems.ReduceGNNForNodeExact
-public import CORALean.NN.Graph.Theorems.ReduceKeepZeroStepsCora
 public import CORALean.NN.Graph.Theorems.ReducedStepsRow
 public import CORALean.NN.Graph.Theorems.SelectMul
 public import CORALean.NN.Graph.Theorems.SelectMatToReal

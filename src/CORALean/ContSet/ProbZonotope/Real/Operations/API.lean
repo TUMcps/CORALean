@@ -14,10 +14,8 @@ public import CORALean.ContSet.ProbZonotope.Real.Operations.ProbReduce
 public import CORALean.ContSet.ProbZonotope.Real.Operations.ReduceGirard
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Enclose
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
-public import CORALean.ContSet.ProbZonotope.Real.Operations.IntervalCora
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Interval
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Sup
-public import CORALean.ContSet.ProbZonotope.Real.Operations.SupCora
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Pyramid
 public import CORALean.ContSet.ProbZonotope.Real.Operations.UnitMean
 

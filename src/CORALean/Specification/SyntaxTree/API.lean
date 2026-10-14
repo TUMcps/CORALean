@@ -4,6 +4,7 @@ public import CORALean.Specification.SyntaxTree.Definitions.API
 public import CORALean.Specification.SyntaxTree.Operations.API
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.API
+public import CORALean.Specification.SyntaxTree.Counterexamples.API
 
 /-!
 # CORA's `syntaxTree`, collected

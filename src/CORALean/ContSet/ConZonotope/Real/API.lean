@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.ConZonotope.Real.Operations.API
 public import CORALean.ContSet.ConZonotope.Real.Theorems.API
+public import CORALean.ContSet.ConZonotope.Real.Counterexamples.API
 public import CORALean.ContSet.ConZonotope.Real.Complexity.API
 public import CORALean.ContSet.ConZonotope.Real.Instances
 

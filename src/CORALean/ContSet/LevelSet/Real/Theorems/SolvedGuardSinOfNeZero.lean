@@ -10,7 +10,7 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 
 Off the line `x₁ = 0`, where `-sin(x₁)/x₁` is defined, `x₂x₁ + sin(x₁) = 0` and
 `x₂ = -sin(x₁)/x₁` say the same: [1, Example 2] with the line removed from both sides.
-`SolvedGuardSinCounterexample` is the line.
+`SolvedGuardSin` is the line.
 
 ## References
 

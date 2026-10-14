@@ -16,7 +16,7 @@ finite below one, the domain `AsinOuter` assumes.
 
 A Taylor model of `arcsin ∘ f` as [1, Def. 3 (arcsin)] asks, but expanded at `c_f` directly
 rather than through the source's addition formula, which fails on wide ranges
-(`ArcsinShiftCounterexample`).
+(`ArcsinShift`).
 
 ## References
 

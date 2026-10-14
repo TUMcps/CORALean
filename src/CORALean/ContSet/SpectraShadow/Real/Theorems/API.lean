@@ -14,7 +14,6 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.ProjectExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsIffVertices
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsPointCoraLine
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsPointZeroIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleMem
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleNotMem
@@ -22,10 +21,8 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleSum
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleIsBounded
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaEmptySetIff
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaFullspaceCoraLine
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.RepresentsaPointIff
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncCoraAllZeroNeSupportFunc
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqBotIff
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqOfComplementary
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.SupportFuncEqTopOfUnbounded

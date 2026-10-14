@@ -4,6 +4,7 @@ public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.HPolytope.Real.Definitions.API
 public import CORALean.ContSet.HPolytope.Real.Operations.API
 public import CORALean.ContSet.HPolytope.Real.Theorems.API
+public import CORALean.ContSet.HPolytope.Real.Counterexamples.API
 public import CORALean.ContSet.HPolytope.Real.Complexity.API
 public import CORALean.ContSet.HPolytope.Real.Instances
 

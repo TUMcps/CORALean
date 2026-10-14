@@ -323,8 +323,10 @@ def excluded(lf):
         return p.name
     if p.stem in (p.parent.name, p.parent.parent.name) or class_root(p.parent):
         return "main-type file"
+    if "Counterexamples" in Path(rel).parts:
+        return "refutation or CORA model (Counterexamples/)"
     if WITNESS.search(p.stem):
-        return "CORA model or witness"
+        return "CORA model the library imports (COUNTEREXAMPLE_EXCEPTIONS)"
     if rel in cora_bug_files():
         return "linked from the CORA-bug appendix"
     if rel in nonmodule_files():
@@ -867,7 +869,7 @@ def check_basic(lf, say):
             say(f"{tag}: section `{s.label}` is {r.code} code lines, over {MAX_CODE} — move it"
                 " into a file of its own")
         if WITNESS.search(s.label.split(".")[-1]):
-            say(f"{tag}: `{s.label}` is a CORA model or witness, which keeps a file of its own")
+            say(f"{tag}: `{s.label}` is a CORA model or witness, which belongs in a `Counterexamples/` folder")
     for g in grps:
         for s, msg in order_problems(g.sections):
             say(f"{where(s.start)}: {msg}")

@@ -1,0 +1,62 @@
+module
+
+public import CORALean.ContSet.Interval.Real.Interval
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
+
+/-!
+# CORA's scaling branch of `interval/contains_` for a point, as printed
+
+`@interval/contains_.m` l. 68-73: for numeric `S` with `scalingToggle`,
+`c = center(I); scaling = abs(S)./(abs([I.inf-c I.sup-c])); res = scaling <= 1 + tol`.
+Taken as printed, in one dimension: `abs(S)` where `abs(S - c)` is meant, so `res` tests
+`S ∈ [-r, r]` for the radius `r`, not `S ∈ I`. The result is a `1 × 2` row (one entry per
+column of `[I.inf-c I.sup-c]`), here `Fin 2 → Prop`. `scalingToggle` is set by
+`contSet/contains.m` l. 87-91 when `nargout >= 3`, i.e. `[res,cert,scaling] = contains(I,p)`.
+Not modelled: the `n × 2` shapes in higher dimension, `NaN` or `Inf` for a degenerate `I`.
+
+# CORA's `interval/contains_` scaling branch accepts a point outside the interval
+
+For `I = interval(1, 3)` and `S = 0`: `c = 2`, `scaling = abs(0)./abs([-1 1]) = [0 0]`, so
+`res = [1 1]` although `0 ∉ [1, 3]`. Reached by `[res,cert,scaling] = contains(I, 0)`
+(`contSet/contains.m` l. 87-91). Read from the source, not run.
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- The model: CORA's code as printed, kept only to be refuted.
+/-- CORA's `res` in the scaling branch: `abs(S)` over `abs(I.inf - c)`, `abs(I.sup - c)`. -/
+noncomputable def Interval.containsScalingCora (I : Interval (Vec ℝ 1)) (S : Vec ℝ 1)
+    (tol : ℝ) : Fin 2 → Prop :=
+  let c := (I.inf 0 + I.sup 0) / 2
+  let bounds : Fin 2 → ℝ := fun j => |if j = 0 then I.inf 0 - c else I.sup 0 - c|
+  let scaling : Fin 2 → ℝ := fun j => |S 0| / bounds j
+  fun j => scaling j ≤ 1 + tol
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- Every entry of CORA's `res` holds for `S = 0` and `I = [1, 3]`, yet `0 ∉ I`. -/
+theorem Interval.containsScalingCora_counterexample :
+    ∃ (I : Interval (Vec ℝ 1)) (S : Vec ℝ 1),
+      (∀ j, I.containsScalingCora S 0 j) ∧ S ∉ I.construct := by -- --- PROOF ---
+  refine ⟨⟨fun _ => 1, fun _ => 3⟩, fun _ => 0, fun j => ?_, fun h => ?_⟩
+  · simp [Interval.containsScalingCora]
+  · have := (h 0).1
+    simp [Entrywise.entry] at this
+    linarith
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

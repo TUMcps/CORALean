@@ -7,7 +7,6 @@ public import CORALean.HybridDynamics.Theorems.FlowOuterSplit
 public import CORALean.HybridDynamics.Theorems.FlowOuterFloat
 public import CORALean.HybridDynamics.Theorems.FlowOuterSplitFloat
 public import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
-public import CORALean.HybridDynamics.Theorems.HitHessianMatZonoCounterexample
 public import CORALean.HybridDynamics.Theorems.HitHessianNumMemHitHessianMatZono
 public import CORALean.HybridDynamics.Theorems.HitPointMemTaylor
 public import CORALean.HybridDynamics.Theorems.HoldsAllOfInvariant
@@ -72,12 +71,9 @@ public import CORALean.HybridDynamics.Theorems.LocationPotOutOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectNondetFloatOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectPolytopeFloatOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardOuter
-public import CORALean.HybridDynamics.Theorems.RobustProjectionCoraCounterexample
-public import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardCoraCounterexample
 public import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardFloatOuter
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperLe
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
-public import CORALean.HybridDynamics.Theorems.CheckFlowCoraDropsHitCounterexample
 public import CORALean.HybridDynamics.Theorems.CheckFlowDropped
 public import CORALean.HybridDynamics.Theorems.CheckFlowFloatDropped
 public import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact
@@ -87,19 +83,15 @@ public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeOuter
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeGuardExact
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeReset
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetApply
-public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetCORACounterexample
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeFloatEncloses
 public import CORALean.HybridDynamics.Theorems.ResetTaylorMem
-public import CORALean.HybridDynamics.Theorems.ResetTaylorCounterexample
 public import CORALean.HybridDynamics.Theorems.TrajectoryErrorOuter
 public import CORALean.HybridDynamics.Theorems.IdentGuardEq
 public import CORALean.HybridDynamics.Theorems.SplitTreeExecutable
 public import CORALean.HybridDynamics.Theorems.LinearResetResolveApply
 public import CORALean.HybridDynamics.Theorems.NonlinearResetResolveApply
 public import CORALean.HybridDynamics.Theorems.NonlinearResetFloatModelEnclosesResolve
-public import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORACounterexample
 public import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORASharedInputs
-public import CORALean.HybridDynamics.Theorems.NonlinearResetSynchronizeResolveCORACounterexample
 public import CORALean.HybridDynamics.Theorems.UrgentReachSetAtSubsetReachSet
 public import CORALean.HybridDynamics.Theorems.UrgentRunToRun
 public import CORALean.HybridDynamics.Theorems.ReachGuardOuter
@@ -112,9 +104,6 @@ public import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
 public import CORALean.HybridDynamics.Theorems.AbstractionErrorDecomp
 public import CORALean.HybridDynamics.Theorems.AbstractionErrorOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapOuter
-public import CORALean.HybridDynamics.Theorems.AbstractionErrorCoraEqZero
-public import CORALean.HybridDynamics.Theorems.AbstractionErrorCoraCounterexample
-public import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapCoraErrCounterexample
 public import CORALean.HybridDynamics.Theorems.GuardIntersectPancakeOuter
 public import CORALean.HybridDynamics.Theorems.AbstractionErrorFloatOuter
 public import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
@@ -123,7 +112,6 @@ public import CORALean.HybridDynamics.Theorems.HitHessianMatZonoFloatMem
 public import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
 public import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapFloatOuter
 public import CORALean.HybridDynamics.Theorems.TrajectoryErrorFloatOuter
-public import CORALean.HybridDynamics.Theorems.UlocCoraCounterexample
 
 /-!
 # What a hybrid run guarantees, collected

@@ -6,6 +6,7 @@ public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Layers.Operations.API
 public import CORALean.NN.Layers.Theorems.API
+public import CORALean.NN.Layers.Counterexamples.API
 
 /-!
 # The standard layers, collected

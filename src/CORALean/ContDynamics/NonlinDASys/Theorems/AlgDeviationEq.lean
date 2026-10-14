@@ -14,7 +14,7 @@ public import Mathlib.Data.Matrix.Mul
 Stated with `ℓᵃ` the one linearization error of the constraint at the point at hand, so
 nothing about which set holds it: [1, Eq. 12] prints the set `{-½ F⁻¹ φ | φⱼ = νᵀH^{a,(j)}(ξ)ν,
 ξ ∈ R^z, ν ∈ R^z_Δ}`, one `ξ` for all `j`, which need not hold `ℓᵃ`
-(`SharedLagrangePointCounterexample`); with one `ξ⁽ʲ⁾` per row it does
+(`SharedLagrangePoint`); with one `ξ⁽ʲ⁾` per row it does
 (`NonlinDASys.exists_lagrange_remainder`). Only `F⁻¹ F = I` is used.
 
 ## References

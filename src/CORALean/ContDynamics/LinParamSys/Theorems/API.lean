@@ -62,12 +62,10 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoOut
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryTimeIntervalZonoOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepIntervalOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoFloatOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolLowOrderCounterexample
 public import CORALean.ContDynamics.LinParamSys.Theorems.MemDependentLowOrder
 public import CORALean.ContDynamics.LinParamSys.Theorems.DependentHomSolOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenceOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInitReachInputDependenceOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.SimulateEndTimeCoraExceeds
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryCanonical
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryCanonical
 
@@ -94,7 +92,7 @@ is `InputSolutionOuter` at a matrix zonotope instead, `…ZonoOuter` the step th
 `ReachOrderAdmissible`/`ReachUnionOuter`/`WithInputReachUnionOuter` are `Instances`'.
 `…Float…` are the same guarantees of the float operations, at float interval matrices.
 `InitReachInputDependenceOuter` (`DependentHomSolOuter`, `MemDependentLowOrder`, a run's
-`ConstTrajectory…`) is CORA's step corrected, `DependentHomSolLowOrderCounterexample` CORA's.
+`ConstTrajectory…`) is CORA's step corrected, `DependentHomSolLowOrder` CORA's.
 
 ## References
 

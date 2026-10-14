@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.API
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.API
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.API
+public import CORALean.ContDynamics.LinearSys.MatExp.Counterexamples.API
 
 /-!
 # Enclosing a matrix exponential, collected

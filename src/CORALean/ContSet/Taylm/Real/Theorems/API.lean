@@ -6,14 +6,10 @@ public import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe
 public import CORALean.ContSet.Taylm.Real.Theorems.AcosOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.AcosPrintedOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.AntiderivOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.AntiderivPrintedCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.ArcsinEqAddArcsinShiftIff
-public import CORALean.ContSet.Taylm.Real.Theorems.ArcsinShiftCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.AsinOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.AsinRemainderCoraCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.AtanEqAddAtanShift
 public import CORALean.ContSet.Taylm.Real.Theorems.AtanOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.AtanShiftCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.BernsteinBasisNonneg
 public import CORALean.ContSet.Taylm.Real.Theorems.BnbLoopMem
@@ -115,7 +111,6 @@ public import CORALean.ContSet.Taylm.Real.Theorems.TaylorScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
-public import CORALean.ContSet.Taylm.Real.Theorems.TimesScalingCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg

@@ -6,7 +6,6 @@ public import CORALean.Specification.STLInterval.Theorems.ContainsZeroIff
 public import CORALean.Specification.STLInterval.Theorems.InfimumClosedIff
 public import CORALean.Specification.STLInterval.Theorems.InfimumValue
 public import CORALean.Specification.STLInterval.Theorems.IsequalZeroIff
-public import CORALean.Specification.STLInterval.Theorems.MinkDiffCoraCounterexample
 public import CORALean.Specification.STLInterval.Theorems.NonemptySetSubsetIff
 public import CORALean.Specification.STLInterval.Theorems.NotMemBoundsOfEmptyBounds
 public import CORALean.Specification.STLInterval.Theorems.RawSetAdd

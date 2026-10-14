@@ -13,7 +13,6 @@ public import CORALean.ContDynamics.NonlinearSysDT.Operations.Identify
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.IdentifyCandidate
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStepFloat
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.ObserveStripBasedFloat
-public import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachSpecCora
 
 /-!
 # What `NonlinearSysDT` computes

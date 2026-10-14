@@ -4,6 +4,7 @@ public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
 public import CORALean.ContSet.ProbZonotope.Real.Definitions.API
 public import CORALean.ContSet.ProbZonotope.Real.Operations.API
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.API
+public import CORALean.ContSet.ProbZonotope.Real.Counterexamples.API
 
 /-!
 # Probabilistic zonotopes, collected

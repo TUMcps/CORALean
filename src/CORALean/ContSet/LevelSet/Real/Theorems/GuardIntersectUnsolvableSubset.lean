@@ -11,7 +11,7 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.TaylorSeriesMem
 [1, Prop. 2], with eq. (11) corrected. Solving `0 = g(x) ∈ b + aᵀ(x - c) + v(x) ⊕ [l, u]` for
 `x(k)` gives `x(k) ∈ (-b + aᵀc - Σ_{i≠k} a(i)x(i) - v(x)) / a(k) ⊕ -[l, u]/a(k)`: `v(x)` moves
 to the other side with its sign flipped. [1] prints `+ v(x)` in (11) and in the proof's first
-step, and with it the enclosure fails (`GuardIntersectUnsolvableCounterexample`); [1]'s own
+step, and with it the enclosure fails (`GuardIntersectUnsolvable`); [1]'s own
 `Example 4` is computed with `- v(x)`. The split of (11) into `p_k + D_p` and the interval
 `[D_l, D_u] ⊇ D_p(I) ⊕ -[l, u]/a(k)` of (12) are hypotheses, since they are taken on the
 polynomial's monomials. [1] divides by `a(k)` without saying so; `a(k) ≠ 0` is supplied, and

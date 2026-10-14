@@ -10,7 +10,7 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 
 [1, Def. 3 (arctan)] rewrites `arctan f = arctan c_f + arctan g` with no condition at all. It is
 `arctan_add` at `f` and `-c_f`, which needs `f·(-c_f) < 1`: the corrected condition is
-`1 + c_f·f > 0` on the domain, without which the formula fails (`AtanShiftCounterexample`).
+`1 + c_f·f > 0` on the domain, without which the formula fails (`AtanShift`).
 
 ## References
 

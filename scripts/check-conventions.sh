@@ -61,6 +61,8 @@ MAX_COLLECTOR_DOC=25  # module docstring, collector: it is the directory entry p
 MAX_DECL_DOC=3        # docstring ahead of a declaration
 MAX_LINES_WO_COMMENT=20  # a minimum density, not a maximum: proofs need signposts
 MAX_PUBLIC_DECL=1     # public declarations per `Operations/`/`Theorems/` file (#62)
+# `Counterexamples/` (#148) is outside that rule: a CORA model and its refutations share a file,
+# and so does the module docstring's cap, once for each `# ` title a part of the file brings.
 
 # The one file that may carry an `axiom`. `Float` is opaque in Lean's logic, so
 # the native binary64 backend has to assume what the hardware does; every other
@@ -144,7 +146,7 @@ LAYER_EXCEPTIONS="
 src/CORALean/ContSet/ProbZonotope/Float/Theorems/EncloseMeanOuter.lean | ContDynamics | encloses the mean with the matrix-exponential enclosure that lives with LinearSys
 src/CORALean/ContSet/ProbZonotope/Float/Operations/Enclose.lean | ContDynamics | encloses the mean with the matrix-exponential enclosure that lives with LinearSys
 src/CORALean/ContSet/ProbZonotope/Real/Theorems/GaussPdfExpMulVec.lean | ContDynamics | the Gaussian density under exp(At) uses the determinant of the matrix exponential
-src/CORALean/ContSet/Zonotope/Real/Theorems/FaultObservePRadiusCounterexample.lean | ContDynamics | counterexample to the fault-radius LMI, which is defined with LinearSysDT
+src/CORALean/ContSet/Zonotope/Real/Counterexamples/FaultObservePRadius.lean | ContDynamics | counterexample to the fault-radius LMI, which is defined with LinearSysDT
 src/CORALean/Global/Float/DivFact.lean | ContSet/Interval | q / k! is an enclosure, so it is a Float.Interval, the type of the very enclosures it feeds; imports ContSet/Interval/Float/Interval only, which needs nothing above Global/Float/SoundFloatArithmetic
 src/CORALean/Global/Float/InverseTrig.lean | ContSet/Interval | the arctangent bracket is an enclosure, so it is a Float.Interval, the type of the enclosures built from it; imports ContSet/Interval/Float/Interval only, which needs nothing above Global/Float/SoundFloatArithmetic
 src/CORALean/Global/Float/RatUp.lean | ContSet/Interval | the bracket around a natural number is an enclosure, so it is a Float.Interval; imports ContSet/Interval/Float/Interval only, which needs nothing above Global/Float/SoundFloatArithmetic
@@ -163,6 +165,32 @@ src/CORALean/Global/Scalar.lean | 8
 src/CORALean/Global/Float/FloatOps.lean | 8
 src/CORALean/ContSet/ContSet/ContSet.lean | 10
 src/CORALean/ContSet/Interval/Real/Interval.lean | 8
+"
+
+# Counterexamples (#148). A refutation and a model of CORA's code as printed live in a `Counterexamples/`
+# folder, which holds nothing else, and no file name ends in `Counterexample` (the folder says it). A
+# file that the rule would send there but the library imports stays where it is, listed here as
+# `file | reason`: a CORA model that library code uses (the conversion `zonotopeCora` of `containsPointSet`),
+# or a theorem about the corrected counterexample of the paper. The list only shrinks.
+COUNTEREXAMPLE_EXCEPTIONS="
+src/CORALean/ContSet/ConPolyZono/Real/Operations/IsFullDimCora.lean | the library imports it (IsFullDimRank)
+src/CORALean/ContSet/PolyZonotope/Float/Operations/ZonotopeCora.lean | the library imports it (ContainsPointSet)
+src/CORALean/ContSet/PolyZonotope/Float/Theorems/ZonotopeCoraContains.lean | the library imports it (ContainsPointSetSound)
+src/CORALean/ContSet/PolyZonotope/Real/Operations/CoraNormalCone.lean | the library imports it (IsPolytopeCexCoraNormalCone)
+src/CORALean/ContSet/PolyZonotope/Real/Operations/CoraVertex.lean | the library imports it (IsPolytopeCexCoraVertex)
+src/CORALean/ContSet/PolyZonotope/Real/Operations/CoraWeight.lean | the library imports it (ZonotopeCora)
+src/CORALean/ContSet/PolyZonotope/Real/Operations/IsFullDimCora.lean | the library imports it (IsFullDimRank)
+src/CORALean/ContSet/PolyZonotope/Real/Operations/ZonotopeCora.lean | the library imports it (ContainsPointSet, Polygon)
+src/CORALean/ContSet/PolyZonotope/Real/Theorems/IsPolytopeCexCoraNormalCone.lean | the library imports it (IsPolytopeCexInCone)
+src/CORALean/ContSet/PolyZonotope/Real/Theorems/IsPolytopeCexCoraVertex.lean | the library imports it (IsPolytopeCexInCone, IsPolytopeCexMemConstruct)
+src/CORALean/ContSet/PolyZonotope/Real/Theorems/ZonotopeCoraContains.lean | the library imports it (ContainsPointSetSound, PolygonOuter)
+src/CORALean/ContSet/Polygon/Real/Operations/SampledHullCora.lean | the library imports it (SampledHullMissesCircle)
+src/CORALean/ContSet/ZonoBundle/Real/Operations/IsIntervalCora.lean | the library imports it (IsBoxOfForall)
+src/CORALean/Specification/SyntaxTree/Operations/FunHanSinhCora.lean | the library imports it (Basic)
+src/CORALean/Specification/SyntaxTree/Operations/FunHanTanCora.lean | the library imports it (Basic)
+src/CORALean/ContDynamics/LinearSys/Operations/SupportCounterexample.lean | the corrected counterexample of [1, Sec. 4.2], which the verification search extracts a run from; a repair, not a refutation
+src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimSupportCounterexample.lean | the corrected counterexample reaches the lower bound exactly; a repair that other theorems use
+src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimLeSupportCounterexample.lean | the corrected counterexample is a support vector; a repair that other theorems use
 "
 
 status=0
@@ -210,8 +238,10 @@ fi
 # reachability check is: a split would see only one batch's declarations and
 # call every entry the other batch owns stale.
 list=$(mktemp)
-trap 'rm -f "$list"; [ -z "${stage:-}" ] || rm -rf "$stage"' EXIT INT TERM
+cexlist=$(mktemp)
+trap 'rm -f "$list" "$cexlist"; [ -z "${stage:-}" ] || rm -rf "$stage"' EXIT INT TERM
 printf '%s\n' "$files" > "$list"
+printf '%s\n' "$COUNTEREXAMPLE_EXCEPTIONS" > "$cexlist"
 
 # Per-file conventions, one pass, plus the allowlist's own stale-entry report
 # at the end, which needs every file's declarations to have been seen.
@@ -234,6 +264,7 @@ out=$(awk \
   -v LAKE_ROOTS="$lake_roots" \
   -v NONMOD="$NONMODULE_LIST" \
   -v PAIRLIST="$PAIR_LIST" \
+  -v CEXLIST="$cexlist" \
   -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" \
   -v ALLOWLIST="$ALLOWLIST" '
 # One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
@@ -308,6 +339,16 @@ BEGIN {
     pairLine[p] = pairFNR
   }
   close(PAIRLIST)
+
+  # The counterexample exceptions: `<path> | <reason>` per line.
+  while ((getline cline < CEXLIST) > 0) {
+    if (cline !~ /[^ \t]/) continue
+    cpath = cline; sub(/[ \t]*\|.*$/, "", cpath); sub(/^[ \t]+/, "", cpath)
+    if (cline !~ /\|[ \t]*[^ \t]/)
+      say("scripts/check-conventions.sh: COUNTEREXAMPLE_EXCEPTIONS entry `" cpath "` carries no reason")
+    cexOK[cpath] = 1
+  }
+  close(CEXLIST)
 
   # An import line in any of the forms a module may write it; the prefixes are
   # what `public`/`meta` add, and a non-module may use neither.
@@ -504,6 +545,7 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
     say(f ":1: no module docstring — every file opens with `/-! ... -/`")
   } else {
     cap = collector ? MAX_COLLECTOR_DOC : MAX_MODULE_DOC
+    if (f ~ /\/Counterexamples\// && nh1 > 1) cap = MAX_MODULE_DOC * nh1
     if (docLen > cap)
       say(f ":" docLine ": module docstring is " docLen " lines, over " cap \
           " — keep what is non-obvious about this file and drop the rest")
@@ -521,6 +563,35 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   } else if (docLine > 0 && authorLine != docEnd + 2) {
     say(f ":" authorLine ": the author block goes one blank line under the module" \
         " docstring, which ends at line " docEnd)
+  }
+
+  # Counterexamples (#148). A refutation or a model of the CORA code lives in a `Counterexamples/`
+  # folder, and that folder holds nothing else; no file name ends in `Counterexample`. What a folder
+  # holds is told by name and by what the file says, which is as much as text can tell: a file
+  # there says `counterexample` or `Cora` somewhere, or is named for CORA, or declares a negated
+  # statement (`not_`, `_ne`). `COUNTEREXAMPLE_EXCEPTIONS` lists
+  # the files the library imports.
+  stemName = f; sub(/^.*\//, "", stemName); sub(/\.lean$/, "", stemName)
+  if (f ~ /\/Counterexamples\//) {
+    if (stemName ~ /Counterexample$/)
+      say(f ":1: a file in `Counterexamples/` is named for the model or the theorem, without the" \
+          " `Counterexample` suffix")
+    else if (!collector && !cexWord && !cexNeg && stemName !~ /Cora|CORA/)
+      say(f ":1: `Counterexamples/` holds refutations and models of the CORA code, and this file" \
+          " never says `counterexample` or `Cora`, names no negated theorem (`not_`, `_ne`), and" \
+          " is not named for the CORA code")
+  } else if (!collector) {
+    why = ""
+    if (stemName ~ /Counterexample$/) why = "its name ends in `Counterexample`"
+    else if (stemName ~ /Cora([^a-z]|$)/) why = "its name says `Cora`"
+    else if (cexDecl != "") why = "it declares `" cexDecl "`"
+    if (why != "") {
+      if (f in cexOK) cexUsed[f] = 1
+      else
+        say(f ":1: a refutation or a model of the CORA code lives in a `Counterexamples/` folder" \
+            " (" why "): move it there without the `Counterexample` suffix, or list it in" \
+            " COUNTEREXAMPLE_EXCEPTIONS if the library imports it")
+    }
   }
 
   # The module header, at fixed lines (CONTRIBUTING, "The module header"):
@@ -693,7 +764,7 @@ FNR == 1 {
   blockKind = ""; blockStart = 0; declDocEnd = 0
   prevPureComment = 0; prevLineComment = 0; run = 0; blanks = 0; inRefs = 0; refsLine = 0
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
-  npub = 0; nDeclTotal = 0; lastFNR = 0; defPending = 0
+  npub = 0; nDeclTotal = 0; lastFNR = 0; defPending = 0; nh1 = 0; cexWord = 0; cexNeg = 0; cexDecl = ""; sigOpen = 0
   beginCount = 0; endCount = 0; auxCount = 0; mainishCount = 0
   beginFNR = 0; endFNR = 0
   afterPending = 0; afterLabel = ""; afterMarkerFNR = 0; afterBlanks = 0
@@ -771,6 +842,7 @@ FNR == 1 {
   if (charlen(lenLine) > MAX_LINE)
     say(FILENAME ":" FNR ": line is " charlen(lenLine) " characters, over the limit of " \
         MAX_LINE " — wrap it")
+  if (!cexWord && raw ~ /[Cc]ounterexample|Cora([^a-z]|$)/) cexWord = 1
   if (FNR == 2) line2 = raw
   if (raw ~ /[ \t]$/)
     say(FILENAME ":" FNR ": trailing whitespace — strip it")
@@ -841,6 +913,7 @@ FNR == 1 {
   # References live in the module docstring; everything else that names a
   # number in brackets is citing one.
   if (lineKind == "mod") {
+    if (raw ~ /^# /) nh1++
     if (raw ~ /^#+ References[ \t]*$/) { inRefs = 1; if (refsLine == 0) refsLine = FNR }
     else if (raw ~ /^#+ /) inRefs = 0
     if (inRefs && raw ~ /^\* \[[0-9]+\] /) {
@@ -887,10 +960,15 @@ FNR == 1 {
   # signature, and only over lines that carry code, so blank lines neither help
   # nor hurt. Reported once per stretch, at the line the stretch began, since
   # that is where the comment goes.
+  # In a `Counterexamples/` file every declaration has its signature exempt, not only the first:
+  # the model comes first and the long statement of the refutation after it.
+  if (FILENAME ~ /\/Counterexamples\// && code ~ DECL_START) sigOpen = 1
+  inSig = sigOpen
+  if (sigOpen && (code ~ /:=/ || code ~ /(^|[ \t])where([ \t]|$)/)) sigOpen = 0
   if (authorLine > 0 && FNR > blockEnd && firstBodyFound && FNR > firstBodyLine) {
     if (sawComment || lineKind != "") {
       endRun(FILENAME)
-    } else if (code ~ /[^ \t]/) {
+    } else if (code ~ /[^ \t]/ && !inSig) {
       if (run == 0) runStart = FNR
       run++
     }
@@ -1010,6 +1088,15 @@ FNR == 1 {
     sub(DECL_PREFIX, "", qualDecl)
     sub(/[ \t([{:].*$/, "", qualDecl)
     nDeclTotal++
+    if (!cexNeg && qualDecl ~ /(^|[._])not_|_not([_.]|$)|_ne([_.]|$)|(^|_)ne_|[Cc]ora/) cexNeg = 1
+
+    # A public definition named for the CORA code (`…Cora`) or a theorem named `…counterexample`
+    # belongs in a `Counterexamples/` folder (#148); `check` reports the first one found.
+    if (cexDecl == "" && b !~ /^aux_/ && prefix !~ /private /) {
+      if ((kind == "theorem" || kind == "lemma") ? (b ~ /[Cc]ounterexample$/) \
+          : (b ~ /[Cc]ora([A-Z0-9_]|$)/))
+        cexDecl = FNR ":" qualDecl
+    }
 
     # Whatever `MAIN ...`/`INSTANCES` marker is still open closes on the first
     # declaration seen after it, regardless of how many comment or blank lines
@@ -1047,13 +1134,14 @@ FNR == 1 {
     # `noncomputable` is free in the `Real/` layer of a representation (rule 1),
     # in the instance of the scalar interface at ℝ, `Global/Float/Instances/Real/`
     # (rule 2), and in a `Definitions/` file, which says what an object means
-    # and is never run. Elsewhere it is free only for an `aux_` declaration
+    # and is never run, and in a `Counterexamples/` file, whose models are read, not run.
+    # Elsewhere it is free only for an `aux_` declaration
     # (rule 3) or a name the allowlist gives a reason (rule 4), and under
     # `Float/` even the allowlist does not reach: the float layer exists to run.
     if (prefix ~ /noncomputable /) {
       isAux = (b ~ /^aux_/)
       if (FILENAME !~ /\/ContSet\/.*\/Real\// && FILENAME !~ /\/Global\/Float\/Instances\/Real\// &&
-          FILENAME !~ /\/Definitions\//) {
+          FILENAME !~ /\/Definitions\// && FILENAME !~ /\/Counterexamples\//) {
         if (FILENAME ~ /\/Float\//) {
           if (!isAux)
             say(FILENAME ":" FNR ": `noncomputable` under `Float/` — only an" \
@@ -1135,6 +1223,10 @@ END {
     if (!(name in usedAllow))
       say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
           "` — no longer matches any `noncomputable` declaration the rules do not already allow")
+  for (p in cexOK)
+    if (!(p in cexUsed))
+      say("scripts/check-conventions.sh: stale COUNTEREXAMPLE_EXCEPTIONS entry `" p \
+          "` — the file is gone or no longer asks to live in `Counterexamples/`")
   for (p in pairOK)
     if (!(p in seenFile))
       say(PAIRLIST ":" pairLine[p] ": stale entry `" p "` — no such file")
@@ -1228,7 +1320,7 @@ BEGIN {
       cur = par
     }
     if (f ~ /^src\/CORALean\/ContSet\//) continue
-    t = f; gsub(/\/Theorems\/Real\//, "/Theorems/-/", t)
+    t = f; gsub(/\/(Theorems|Counterexamples)\/Real\//, "/Theorems/-/", t)
     if (t ~ /\/Real\// && f !~ /^src\/CORALean\/Global\/Float\//)
       print f ": a `Real/` folder outside `ContSet/` is a `Theorems/Real/` only," \
             " for what holds of a scalar-generic object at ℝ alone"

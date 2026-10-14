@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.ZonoBundle.Real.Operations.API
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.API
+public import CORALean.ContSet.ZonoBundle.Real.Counterexamples.API
 public import CORALean.ContSet.ZonoBundle.Real.Complexity.API
 public import CORALean.ContSet.ZonoBundle.Real.Instances
 

@@ -10,10 +10,6 @@ public import CORALean.ContSet.Taylm.Real.Operations.AntiderivPrinted
 public import CORALean.ContSet.Taylm.Real.Operations.ArcsinShift
 public import CORALean.ContSet.Taylm.Real.Operations.ArgMaxIdx
 public import CORALean.ContSet.Taylm.Real.Operations.Asin
-public import CORALean.ContSet.Taylm.Real.Operations.AsinDasinCora
-public import CORALean.ContSet.Taylm.Real.Operations.AsinFactor1Cora
-public import CORALean.ContSet.Taylm.Real.Operations.AsinPolyCora
-public import CORALean.ContSet.Taylm.Real.Operations.AsinRemainderUpperCora
 public import CORALean.ContSet.Taylm.Real.Operations.Atan
 public import CORALean.ContSet.Taylm.Real.Operations.AtanShift
 public import CORALean.ContSet.Taylm.Real.Operations.BnbLoop

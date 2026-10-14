@@ -16,9 +16,8 @@ src/CORALean/ContDynamics/LinearSys/Operations/VerifyStepFloat.lean  other: the 
 src/CORALean/ContDynamics/LinearSys/Theorems/ClosedFormFlow.lean  state: the pair of integration variables (s, t) of the double integral
 src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveEsoA1D.lean  state: the estimate, its shape and the scalar sigma-squared, three values and no bounds
 src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveEsoB1D.lean  state: the estimate, its shape and the scalar sigma-squared, three values and no bounds
-src/CORALean/ContDynamics/NonlinearSys/Operations/LinReachAdaptiveCora1D.lean  other: the result triple (Rti, Rtp, time step); the textual hit is `Real.Interval ℝ × ℝ`
-src/CORALean/ContDynamics/NonlinearSys/Operations/ReachInnerScalingCora1D.lean  state: a point (alpha, beta) of the plane, the argument and the result of the optimizer fmincon
-src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachInnerScalingCora1DCounterexample.lean  state: a point (alpha, beta) of the plane, the argument and the result of the optimizer fmincon
+src/CORALean/ContDynamics/NonlinearSys/Counterexamples/LinReachAdaptiveCora1D.lean  other: the result triple (Rti, Rtp, time step); the textual hit is `Real.Interval ℝ × ℝ`
+src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ReachInnerScalingCora1D.lean  state: a point (alpha, beta) of the plane, the argument and the result of the optimizer fmincon
 src/CORALean/ContSet/Capsule/Real/Operations/SegDist.lean  other: the two segment parameters (t1, t2)
 src/CORALean/ContSet/Capsule/Real/Theorems/SegDistMem.lean  other: the two segment parameters (t1, t2)
 src/CORALean/ContSet/ContSet/Definitions/DimReduce.lean  state: `Set (ℝ × ℝ)` is a set of points of the plane
@@ -33,12 +32,12 @@ src/CORALean/ContSet/Interval/Real/Theorems/ExtremalExample.lean  state: a point
 src/CORALean/ContSet/PolyZonotope/Real/Operations/RelaxDrift.lean  other: midpoint and half-width, not two bounds
 src/CORALean/Global/ForwardInnerReach.lean  improper: the improper interval `]z[` of Step 3
 src/CORALean/Global/KaucherInner.lean  improper: Kaucher products and sums, whose ends cross by design
-src/CORALean/Global/RegionOfAttractionCounterexample.lean  state: a point of the plane
+src/CORALean/Global/Counterexamples/RegionOfAttraction.lean  state: a point of the plane
 src/CORALean/Global/SLemmaHomogeneous.lean  state: a point (P z, Q z) of the plane
 src/CORALean/HybridDynamics/TimeTriggered/Theorems/FinalConversionNotErrorLt.lean  state: a location state of the automaton, the state and its timer
-src/CORALean/NN/Layers/Definitions/EvaluateSinghNeuronCora.lean  other: centre, generator and error
+src/CORALean/NN/Layers/Counterexamples/Real/EvaluateSinghCora.lean  other: centre, generator and error
 src/CORALean/NN/Layers/Operations/FindRegionLeft.lean  other: a region polynomial and its end `RegionPoly 𝕋 × 𝕋`
 src/CORALean/NN/Layers/Operations/FindRegionRight.lean  other: a region polynomial and its end `RegionPoly 𝕋 × 𝕋`
 
-src/CORALean/Specification/STL/Theorems/REncCounterexample.lean  state: a two-dimensional signal value (x1, x2)
-src/CORALean/Specification/STL/Theorems/ZEncCounterexample.lean  state: a two-dimensional signal value (x1, x2)
+src/CORALean/Specification/STL/Counterexamples/REnc.lean  state: a two-dimensional signal value (x1, x2)
+src/CORALean/Specification/STL/Counterexamples/ZEnc.lean  state: a two-dimensional signal value (x1, x2)

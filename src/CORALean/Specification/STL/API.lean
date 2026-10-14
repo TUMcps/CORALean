@@ -4,6 +4,7 @@ public import CORALean.Specification.STL.Definitions.API
 public import CORALean.Specification.STL.Operations.API
 public import CORALean.Specification.STL.STL
 public import CORALean.Specification.STL.Theorems.API
+public import CORALean.Specification.STL.Counterexamples.API
 
 /-!
 # Signal temporal logic model checking, collected

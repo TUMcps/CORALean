@@ -16,8 +16,8 @@ class, then method. Four columns:
   `$...$`), with the `kind` of the bug: `unsound` (the result can miss reachable states, is not
   the enclosure it claims to be, or is a wrong verdict a verification relies on) or `other` (too
   large, a wrong flag, a crash or error path, a documented behaviour that is not the code's);
-* the Lean counterexample: the entry's `cex` if it has one (`null`: none), else the first linked file named
-  `*Counterexample*` or `*Not{Inner,Outer,Sound,Mem}*`, else the first that declares a theorem
+* the Lean counterexample: the entry's `cex` if it has one (`null`: none), else the first linked file in a `Counterexamples/` folder or named
+  `*Not{Inner,Outer,Sound,Mem}*`, else the first that declares a theorem
   named `*counterexample*`;
 * the Lean fix: the entry's `fix` if it has one (`null`: none), else the first file the row's third column
   links that is not a counterexample and does not transcribe CORA (`Cora` in its name); a row
@@ -43,7 +43,12 @@ import re
 from pathlib import Path, PurePosixPath
 
 REPO_URL = "https://gitlab.lrz.de/cps/CORALean/-/blob/main"
-CEX_NAME = re.compile(r"Counterexample|Not(?:Inner|Outer|Sound|Mem)")
+CEX_NAME = re.compile(r"Not(?:Inner|Outer|Sound|Mem)")
+
+
+def is_cex(p):
+    """A counterexample file: one in a `Counterexamples/` folder (#148), or named `*Not{Inner,...}*`."""
+    return "Counterexamples" in p.parts or bool(CEX_NAME.search(p.stem))
 DECL_CEX = re.compile(r"counterexample", re.I)
 KINDS = ("unsound", "other")
 MAX_WORDS = 10
@@ -173,7 +178,7 @@ def table(cr):
                 problems.append(f"{where}: cex `{entry['cex']}` is not a Lean file the row or "
                                 "its FINDINGS.md row links")
         else:
-            cex = next((p for p in files if CEX_NAME.search(p.stem)), None)
+            cex = next((p for p in files if is_cex(p)), None)
             if cex is None:
                 cex = next((p for p in files if any(
                     k in ("theorem", "lemma") and DECL_CEX.search(n)
@@ -190,7 +195,7 @@ def table(cr):
                 problems.append(f"{where}: state is `—`, so there is no fix, but its entry names one")
         elif row["state"] != "—":
             fix = next((p for p in row["col3"]
-                        if not CEX_NAME.search(p.stem) and "Cora" not in p.stem
+                        if not is_cex(p) and "Cora" not in p.stem
                         and "CORA" not in p.stem), None)
             if fix is None:
                 problems.append(f"{where}: no default fix; name one under `fix` (null for none)")

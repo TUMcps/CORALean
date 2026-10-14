@@ -15,8 +15,6 @@ public import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectSolvable
 public import CORALean.ContSet.LevelSet.Real.Operations.GuardIntersectUnsolvable
 public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingUniform
 public import CORALean.ContSet.LevelSet.Real.Operations.IsIntersectingCell
-public import CORALean.ContSet.LevelSet.Real.Operations.ContainsCellCora
-public import CORALean.ContSet.LevelSet.Real.Operations.PotIntCora
 public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.LevelSet.Real.Operations.RepresentsaFullspace
 public import CORALean.ContSet.LevelSet.Real.Operations.Compact

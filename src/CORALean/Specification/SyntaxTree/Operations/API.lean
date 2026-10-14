@@ -15,7 +15,6 @@ public import CORALean.Specification.SyntaxTree.Operations.FunHanLog
 public import CORALean.Specification.SyntaxTree.Operations.FunHanMinus
 public import CORALean.Specification.SyntaxTree.Operations.FunHanPlus
 public import CORALean.Specification.SyntaxTree.Operations.FunHanPower
-public import CORALean.Specification.SyntaxTree.Operations.FunHanPowerOddCora
 public import CORALean.Specification.SyntaxTree.Operations.FunHanSin
 public import CORALean.Specification.SyntaxTree.Operations.FunHanSinh
 public import CORALean.Specification.SyntaxTree.Operations.FunHanSinhCora
@@ -31,10 +30,6 @@ public import CORALean.Specification.SyntaxTree.Operations.NthrootZ
 public import CORALean.Specification.SyntaxTree.Operations.Periodic
 public import CORALean.Specification.SyntaxTree.Operations.Restrict
 public import CORALean.Specification.SyntaxTree.Operations.SignedRoots
-public import CORALean.Specification.SyntaxTree.Operations.SinhCora
-public import CORALean.Specification.SyntaxTree.Operations.SinhCoraTree
-public import CORALean.Specification.SyntaxTree.Operations.TanCora
-public import CORALean.Specification.SyntaxTree.Operations.TanCoraTree
 
 /-!
 # Syntax trees: the operations

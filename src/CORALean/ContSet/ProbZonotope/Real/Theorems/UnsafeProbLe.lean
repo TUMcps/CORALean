@@ -12,7 +12,7 @@ and the regions cover the confidence set `E`, then
 `P(X ∈ B) ≤ P(X ∉ E) + Σᵢ hᵢ V(Qᵢ ∩ B)`. [1] builds exactly these heights `h₁^max, h₂^max, …`
 of the enclosing probabilistic hull on the confidence rings `Qᵢ` (Fig. 5) and then prints
 `p̄ = 1 - erf(γ/√2)^{2n} + Σᵢ V(Qᵢ ∩ B)`, dropping them: a volume is not a probability
-(`UnsafeProbPrintedCounterexample`). [1]'s `1 - erf(γ/√2)^{2n}` is its bound on `P(X ∉ E)`,
+(`UnsafeProbPrinted`). [1]'s `1 - erf(γ/√2)^{2n}` is its bound on `P(X ∉ E)`,
 here whatever `(μ.withDensity f) Eᶜ` is.
 
 ## References

@@ -13,7 +13,7 @@ integrated, and `J = B(P - P_{n-1}) + I` is multiplied by the interval `[aᵢ - 
 signed lengths `xᵢ - x₀ᵢ`, here `[-1, 1]`, where the source multiplies by the width `bᵢ - aᵢ`.
 The integral of something in `J` over a segment of signed length `ℓ` is in `ℓ·J`, which the
 width alone misses whenever `J` is not symmetric and `ℓ` can be negative
-(`AntiderivPrintedCounterexample`).
+(`AntiderivPrinted`).
 
 ## References
 

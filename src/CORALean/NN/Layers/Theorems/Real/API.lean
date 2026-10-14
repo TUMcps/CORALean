@@ -71,7 +71,6 @@ public import CORALean.NN.Layers.Theorems.Real.ReluGapOfSlopeEqIte
 public import CORALean.NN.Layers.Theorems.Real.SShapeBandSound
 public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSound
 public import CORALean.NN.Layers.Theorems.Real.SShapeBandAreaLe
-public import CORALean.NN.Layers.Theorems.Real.EvaluateSinghCoraMissesCounterexample
 public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeCubeNotSound
 public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeSigmoidSound
 public import CORALean.NN.Layers.Theorems.Real.DeepZSShapeTanhSound
@@ -84,7 +83,6 @@ public import CORALean.NN.Layers.Theorems.Real.ApproxErrorSigmoid
 public import CORALean.NN.Layers.Theorems.Real.ApproxErrorTanh
 public import CORALean.NN.Layers.Theorems.Real.ExistsCriticalExtreme
 public import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfTanh
-public import CORALean.NN.Layers.Theorems.Real.EncloseNonlinearPrintedCounterexample
 
 /-!
 # What holds of the standard layers only at ℝ, collected

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.LevelSet.Real.LevelSet
 public import CORALean.ContSet.LevelSet.Real.Operations.API
 public import CORALean.ContSet.LevelSet.Real.Theorems.API
+public import CORALean.ContSet.LevelSet.Real.Counterexamples.API
 public import CORALean.ContSet.LevelSet.Real.Instances
 public import CORALean.ContSet.LevelSet.Real.Definitions.API
 

@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.NonlinearARX.Definitions.FloatModel
 public import CORALean.ContDynamics.NonlinearARX.Definitions.FloatJacModel
 public import CORALean.ContDynamics.NonlinearARX.Operations.API
 public import CORALean.ContDynamics.NonlinearARX.Theorems.API
+public import CORALean.ContDynamics.NonlinearARX.Counterexamples.API
 
 /-!
 # Nonlinear ARX models, collected

@@ -39,7 +39,7 @@ elliptic functions, which Mathlib lacks.
 | `Lemma 4.4` | `Ψ̃(-r) = a - 1/λ ∫₀^{(r - 1/r)/2}√(m + t²)/√(1 + t²) dt` (4.23). | — | — |
 | `Lemma 4.5` | `lim_{z̃→∞} Φ̃(z̃)/z̃ = 2λ > 0`, `λ` the ratio in (4.3). | — | — |
 | `Thm. 5.1` | For upper Hessenberg `H_k` with `a_k`, `b_k`, `c_k` the extreme eigenvalues of its Hermitian part and the largest of its skew-Hermitian part, and `0 < q < 1`: `\|h(t)\| ≤ 2Q q^{k-1}/(1 - q) e^{-tz̃}` (5.2), `Q = 11.08` Crouzeix's constant, `z̃` (5.3). | — | — |
-| `Thm. 5.2` | (A priori bound) For `A`, `a`, `b`, `c` of (5.1) and `0 < q < 1`: `‖w(τ) - w_k(τ)‖ ≤ 2Qτ‖A‖ q^{k-1}/(1 - q) e^{-τ min{a,0} - τz̃}` (5.4), `z̃` (5.5). | — partial: [`ErrorLeOfDecayBound.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorLeOfDecayBound.lean) proves the last step, from `\|h(s)\| ≤ Ce^{-sz}` and `z ≤ ν(A)` to the error bound `h_{k+1,k}Cτe^{-τz}`, and [`WangYeIntegralStepCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/WangYeIntegralStepCounterexample.lean) the step of the printed proof that fails; missing: (5.2) of `Thm. 5.1`, `Q`, the bounds `h_{k+1,k} ≤ ‖A‖₂` and `z̃ ≤ a`, and (5.4) itself | — |
+| `Thm. 5.2` | (A priori bound) For `A`, `a`, `b`, `c` of (5.1) and `0 < q < 1`: `‖w(τ) - w_k(τ)‖ ≤ 2Qτ‖A‖ q^{k-1}/(1 - q) e^{-τ min{a,0} - τz̃}` (5.4), `z̃` (5.5). | — partial: [`ErrorLeOfDecayBound.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorLeOfDecayBound.lean) proves the last step, from `\|h(s)\| ≤ Ce^{-sz}` and `z ≤ ν(A)` to the error bound `h_{k+1,k}Cτe^{-τz}`, and [`WangYeIntegralStep.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Counterexamples/WangYeIntegralStep.lean) the step of the printed proof that fails; missing: (5.2) of `Thm. 5.1`, `Q`, the bounds `h_{k+1,k} ≤ ‖A‖₂` and `z̃ ≤ a`, and (5.4) itself | — |
 | `Cor. 5.3` | For `a > 0` (positive definite `A`): `‖w(τ) - w_k(τ)‖ ≤ 2Qτ‖A‖ q^{k-1}/(1 - q) e^{-τ{a - (1/q - q)/(2λ)}}` (5.6), and at `q = 1/(√(a²λ² + 1) + aλ)` the bound `2Qτ‖A‖ q^{k-1}/(1 - q)` (5.7). | — | — |
 | `Eq. 5.9` | The minimizing `q = q(k)` of `E(q) = q^{k-1}e^{-τz̃}/(1 - q)` (5.8) solves `(k-1)q + (2-k)q² - C(1 - q)√((1 - q²)² + 4mq²) = 0`, `C = τ/(2λ)`, and has a root in `(0, 1)`. | — | — |
 | `Cor. 5.4` | For `m ≈ 0`: `‖w(τ) - w_k(τ)‖ ≤ 2Qτ‖A‖ q₀^{k-1}/(1 - q₀)`, `q₀ = (√κ - 1)/(√κ + 1) + O(√m)`, `κ = b/a`; with the expansions (5.10)-(5.15). | — | — |
@@ -67,7 +67,7 @@ nonnegative), which is (5.4) with `e^{-τ min{a,0}}` dropped. `Cor. 5.3` and (5.
 step. The `Thm. 5.2` row stays `—` while (5.2) is not formalized; the step itself is
 [`ErrorLeOfDecayBound.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorLeOfDecayBound.lean)
 and its failure as printed
-[`WangYeIntegralStepCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/WangYeIntegralStepCounterexample.lean).
+[`WangYeIntegralStep.lean`](../../src/CORALean/ContDynamics/LinearSys/Krylov/Counterexamples/WangYeIntegralStep.lean).
 
 **Notation of Sec. 3.** (3.3) writes `w_k(τ) = V_k^Te^{-τH_k}e₁`, with the transpose, while `Thm. 3.1`
 and the line before (3.3) use `V_ke^{-τH_k}e₁`; `H_k = V_k^TAV_k` and (3.2)'s `h²_{i,k}` are for real

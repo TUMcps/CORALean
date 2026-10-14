@@ -4,6 +4,7 @@ public import CORALean.HybridDynamics.HybridAutomaton
 public import CORALean.HybridDynamics.Definitions.API
 public import CORALean.HybridDynamics.Operations.API
 public import CORALean.HybridDynamics.Theorems.API
+public import CORALean.HybridDynamics.Counterexamples.API
 public import CORALean.HybridDynamics.Complexity.API
 public import CORALean.HybridDynamics.Parallel.API
 public import CORALean.HybridDynamics.TimeTriggered.API

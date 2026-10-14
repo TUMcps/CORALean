@@ -144,7 +144,7 @@
     },
     "Eq. 5": {
       "description": "only the ``if'' holds; ties break ``only if''",
-      "fix": "RobustSelectorCounterexample.lean"
+      "fix": "RobustSelector.lean"
     },
     "Sec. V (correctness)": {
       "description": "$r > 0$ is sufficient, not necessary; until corrected"

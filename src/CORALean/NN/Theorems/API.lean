@@ -52,7 +52,6 @@ public import CORALean.NN.Theorems.MergeErrorWidthLe
 public import CORALean.NN.Theorems.MergeErrorWidthLeRow
 public import CORALean.NN.Theorems.MinSuffExplanationAbstractOfMin
 public import CORALean.NN.Theorems.MinSuffExplanationAbstractOfRefined
-public import CORALean.NN.Theorems.MinSuffExplanationCounterexample
 public import CORALean.NN.Theorems.MinSuffExplanationExactOfRefined
 public import CORALean.NN.Theorems.MultiLayerRefinementConverges
 public import CORALean.NN.Theorems.NeuronMergingNetworkOuter
@@ -92,7 +91,6 @@ public import CORALean.NN.Theorems.SuffExplanationOfNeuronMerging
 public import CORALean.NN.Theorems.SuffExplanationRefined
 public import CORALean.NN.Theorems.SuffExplanationTransfer
 public import CORALean.NN.Theorems.ToLayerSound
-public import CORALean.NN.Theorems.SmoothNetworkCoraCounterexample
 public import CORALean.NN.Theorems.SmoothNetworkOutputFnZero
 public import CORALean.NN.Theorems.VerifySplitSound
 public import CORALean.NN.Theorems.VerifySplitWithSound
@@ -114,7 +112,6 @@ public import CORALean.NN.Theorems.CatMaxSegmentEvalIff
 public import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
 public import CORALean.NN.Theorems.CatMaxPoolEvalIff
 public import CORALean.NN.Theorems.SetBasedLossGradient
-public import CORALean.NN.Theorems.SetBasedLossGradientCounterexample
 public import CORALean.NN.Theorems.ReluDerEnclosureEncloses
 public import CORALean.NN.Theorems.ScalarEnclosesVecMem
 public import CORALean.NN.Theorems.IntervalChainFloatLinearMuMem
@@ -137,7 +134,7 @@ and [1, Algs. 1-3] are sound at every scalar (`ReduceOnTheFlyOuter`, `HoldsOfRed
 explanations [2]. `SuffExplanationTransfer`/`OfExact` carry sufficiency to the original network,
 `SuffExplanationRefined` and `MinSuffExplanationAbstractOfMin`/`OfRefined` carry it enclosure to
 enclosure; the `ExactOfRefined` pair with `SuffExplanationExactOfReducesAt` is [2, Prop. 3] and
-its discharge, `MinSuffExplanationCounterexample` and `SuffExplanationConverseFails` its limits.
+its discharge, `MinSuffExplanation` and `SuffExplanationConverseFails` its limits.
 `SensitivityFDeriv` is what the refinement heuristic [3] rests on: the backpropagated Jacobian
 identified with `fderiv` wherever `EvalDifferentiable` holds, which `SensitivityOfMatrix` hands
 to `SensitivityLinear`/`SensitivityActivation`; `ReluNotDifferentiable` is why ReLU gets none.

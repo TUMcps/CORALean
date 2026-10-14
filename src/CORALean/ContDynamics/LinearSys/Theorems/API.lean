@@ -117,7 +117,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerSubsetI
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionInnerSubsetInputSolutionSet
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetConverges
-public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetPrintedCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSetDistInner
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstInputAddErrorBox
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionFloatSubsetAddBox
@@ -256,7 +255,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecOfVerifyRun
 public import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyRun
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySafe
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyViolated
-public import CORALean.ContDynamics.LinearSys.Theorems.VerifyRAOuterVerdictTouchCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyFloatSafe
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyFloatViolated
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecFloatOfVerifyStepFloat
@@ -274,7 +272,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveRunFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachAdaptiveFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonal
-public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovarianceDiagonalCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.IdentifyCandidateFit
 public import CORALean.ContDynamics.LinearSys.Theorems.IdentifyLeCandidate
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatCheckedEqSome
@@ -314,7 +311,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimEq
 public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimLeSupportCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimSupportCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.InterpolatedRunMem
-public import CORALean.ContDynamics.LinearSys.Theorems.PrintedSupportInputCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetConvex
 public import CORALean.ContDynamics.LinearSys.Theorems.SupportCounterexampleViolates
 public import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerMemImageReachSet
@@ -327,9 +323,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovariancePosSemidef
 public import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchLoopSound
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchSound
-public import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerTimeIntervalCounterexample
-public import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperCentreCounterexample
-public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchStallCounterexample
 
 /-!
 # What `LinearSys` guarantees

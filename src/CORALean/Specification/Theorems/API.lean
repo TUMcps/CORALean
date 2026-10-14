@@ -1,11 +1,9 @@
 module
 
 public import CORALean.Specification.Theorems.Basic
-public import CORALean.Specification.Theorems.CheckCustomCoraAnyCounterexample
 public import CORALean.Specification.Theorems.CheckSound
 public import CORALean.Specification.Theorems.Containment
 public import CORALean.Specification.Theorems.DiffPointMemSub
-public import CORALean.Specification.Theorems.DistancePolyPointCoraNormCounterexample
 public import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
 public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
 public import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe

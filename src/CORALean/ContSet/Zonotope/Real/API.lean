@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.ContSet.Zonotope.Real.Definitions.API
 public import CORALean.ContSet.Zonotope.Real.Operations.API
 public import CORALean.ContSet.Zonotope.Real.Theorems.API
+public import CORALean.ContSet.Zonotope.Real.Counterexamples.API
 public import CORALean.ContSet.Zonotope.Real.Complexity.API
 public import CORALean.ContSet.Zonotope.Real.Instances
 

@@ -20,6 +20,7 @@ public import CORALean.ContDynamics.LinearSysDT.Instances
 public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 public import CORALean.ContDynamics.LinearSysDT.Operations.API
 public import CORALean.ContDynamics.LinearSysDT.Theorems.API
+public import CORALean.ContDynamics.LinearSysDT.Counterexamples.API
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ConsistentSet
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ExactUncertainSet
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ObserveStripOptions

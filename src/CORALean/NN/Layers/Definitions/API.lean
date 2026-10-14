@@ -52,8 +52,6 @@ public import CORALean.NN.Layers.Definitions.WindowMax
 public import CORALean.NN.Layers.Definitions.SShape
 public import CORALean.NN.Layers.Definitions.DeepZRelu
 public import CORALean.NN.Layers.Definitions.DeepZSShape
-public import CORALean.NN.Layers.Definitions.EvaluateSinghNeuronCora
-public import CORALean.NN.Layers.Definitions.EvaluateSinghCora
 public import CORALean.NN.Layers.Definitions.SShapedPrinted
 public import CORALean.NN.Layers.Definitions.ApproxError
 public import CORALean.NN.Layers.Definitions.ApproxErrorRelaxation

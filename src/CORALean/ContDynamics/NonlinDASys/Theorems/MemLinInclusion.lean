@@ -15,7 +15,7 @@ linearized dynamics ([1, Eq. 10]) gives `ẋ = w + Ã Δx + B̃ Δu + (ℓᵈ - 
 `ℓᵈ = f(z) - (f(z*) + A Δx + B Δu + C Δy)` and `ℓᵃ = g(z) - (g(z*) + D Δx + E Δu + F Δy)` are
 the exact linearization errors at `z = (x, y, u)`, and the hypothesis is that `L` holds their
 combination. [1, Eq. 15] prints `L` with one Lagrange point `ξ` for all rows of `f` and
-`g`, which need not hold it (`SharedLagrangePointCounterexample`); with one `ξ` per row,
+`g`, which need not hold it (`SharedLagrangePoint`); with one `ξ` per row,
 [1, Eq. 8], it does (`NonlinDASys.exists_lagrange_remainder`), and so does every enclosure
 [1, Cor. 1] computes. The state must be consistent, `g(z) = 0`, and only `F⁻¹ F = I` is used.
 

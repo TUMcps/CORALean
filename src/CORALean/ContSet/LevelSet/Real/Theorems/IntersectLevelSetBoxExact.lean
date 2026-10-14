@@ -11,7 +11,7 @@ public import CORALean.ContSet.LevelSet.Real.Operations.IntersectLevelSetBox
 read pointwise, `p_k(I) ⊆ [l(k), u(k)]` — the model is exactly `I ∩ LS`. That needs one more
 hypothesis than [1] prints: `p_k` must not depend on `x(k)`. The proof "replaces `x(k)` with
 `p_k(x)`", and an image point `h(x)` lies on `LS` only if `p_k(h(x)) = p_k(x)`;
-`IntersectLevelSetBoxCounterexample` shows the equality failing without it. [1]'s two uses,
+`IntersectLevelSetBox` shows the equality failing without it. [1]'s two uses,
 `Prop. 1` and `Prop. 2`, both ask `∂p_k/∂x(k) = 0` before applying the theorem.
 
 ## References

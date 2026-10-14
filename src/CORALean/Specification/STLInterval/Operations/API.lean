@@ -5,7 +5,6 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 public import CORALean.Specification.STLInterval.Operations.Infimum
 public import CORALean.Specification.STLInterval.Operations.Interval
 public import CORALean.Specification.STLInterval.Operations.MinkDiff
-public import CORALean.Specification.STLInterval.Operations.MinkDiffCora
 public import CORALean.Specification.STLInterval.Operations.Minus
 public import CORALean.Specification.STLInterval.Operations.MinusInterval
 public import CORALean.Specification.STLInterval.Operations.MinusNum

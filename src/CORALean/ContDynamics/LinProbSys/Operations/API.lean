@@ -5,7 +5,6 @@ public import CORALean.ContDynamics.LinProbSys.Operations.Post
 public import CORALean.ContDynamics.LinProbSys.Operations.EnclosingHull
 public import CORALean.ContDynamics.LinProbSys.Operations.InputCov
 public import CORALean.ContDynamics.LinProbSys.Operations.InitReach
-public import CORALean.ContDynamics.LinProbSys.Operations.ReachCovCora
 
 /-!
 # What `LinProbSys` computes

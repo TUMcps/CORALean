@@ -13,7 +13,7 @@ public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 `(CCᵀ)ᵢⱼ e^{(λᵢ+λⱼ)(t-τ)}`, which integrates over `[0, t]` to
 `(CCᵀ)ᵢⱼ / (λᵢ + λⱼ) · (e^{(λᵢ+λⱼ)t} - 1)`: the printed form is the one for the drift `-A`,
 the sign convention `dx = -Ax dt + B dW` of the handbook [1] cites, not for [1]'s own
-`ẋ = Ax + …`. `NoiseCovarianceDiagonalCounterexample` separates the two. Stated for real
+`ẋ = Ax + …`. `NoiseCovarianceDiagonal` separates the two. Stated for real
 eigenvalues with `λᵢ + λⱼ ≠ 0`, which the division needs.
 
 ## References

@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
-public import CORALean.ContSet.Polygon.Real.Operations.ContainsRegionCora
-public import CORALean.ContSet.Polygon.Real.Operations.OverlapsRegionCora
 public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
 public import CORALean.ContSet.Polygon.Real.Operations.Basic
 public import CORALean.ContSet.Polygon.Real.Operations.Plus
@@ -12,8 +10,6 @@ public import CORALean.ContSet.Polygon.Real.Operations.Project
 public import CORALean.ContSet.Polygon.Real.Operations.Vertices
 public import CORALean.ContSet.Polygon.Real.Operations.ConvHull
 public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.Polygon.Real.Operations.IsequalCora
-public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaOriginCora
 public import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
 public import CORALean.ContSet.Polygon.Real.Operations.Interval
 public import CORALean.ContSet.Polygon.Real.Operations.Times

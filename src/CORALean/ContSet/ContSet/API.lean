@@ -5,6 +5,7 @@ public import CORALean.ContSet.ContSet.Definitions.API
 public import CORALean.ContSet.ContSet.Float.API
 public import CORALean.ContSet.ContSet.Operations.API
 public import CORALean.ContSet.ContSet.Theorems.API
+public import CORALean.ContSet.ContSet.Counterexamples.API
 
 /-!
 # The set interface, collected
