@@ -1,0 +1,44 @@
+module
+
+public import CORALean.Specification.STL.Operations.TreeDisjunctiveNormalForm
+public import CORALean.Specification.STL.Theorems.TreeSatDnfLoop
+public import CORALean.Specification.STL.Theorems.Basic
+
+@[expose] public section
+
+/-!
+# The disjunctive normal form keeps the meaning
+
+`disjunctiveNormalForm(obj)` is satisfied by the same traces as `obj` (`Tree.Sat`, CORA's reading
+of `until`), with or without the negation normal form step.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open scoped NNReal
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem STL.Tree.sat_disjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool) (ξ : ℝ≥0 → Fin n → ℝ) :
+    (φ.disjunctiveNormalForm nnf).Sat ξ ↔ φ.Sat ξ := by -- --- PROOF ---
+  unfold STL.Tree.disjunctiveNormalForm
+  rw [STL.Tree.sat_dnfLoop]
+  cases nnf
+  · exact STL.Tree.sat_negationNormalForm φ ξ
+  · exact Iff.rfl
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

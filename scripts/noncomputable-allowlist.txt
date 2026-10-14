@@ -520,3 +520,6 @@ STL.depReachConsts  real-layer: line 1 of Alg. 1 of Kochdumper-Bak: `T` is the r
 STL.depReachInit  real-layer: lines 2-3 of Alg. 1 of Kochdumper-Bak over real zonotopes and interval matrices
 STL.depReachInterval  real-layer: Eq. (19) `R(τ_i)` of Kochdumper-Bak, the convex hull enclosure of real zonotopes
 STL.depReachStep  real-layer: lines 5-7 of Alg. 1 of Kochdumper-Bak, the matrix exponential applied to real zonotopes
+STL.Tree.halfspace2set  real-layer: tests the real coefficients of a halfspace row for zero (`A ~= 0`), which `ℝ` cannot decide computably, to build a comparison over real `STL.Expr` constants
+STL.Tree.polytope2stl  real-layer: the conjunction of `STL.Tree.halfspace2set` rows of a real `HPolytope`
+STL.Tree.polytope2stlCora  real-layer: the conjunction of `STL.Tree.halfspace2set` inequality rows of a real `HPolytope`, as printed
