@@ -81,6 +81,8 @@ CLAIM = re.compile(r"^(Thm\.|Prop\.|Property|Lemma|Cor\.)", re.I)
 # A file proves something if it declares a theorem, or discharges a field of a
 # structure that carries its own guarantee -- `SupportBound`'s `le := by ...`.
 PROOF = re.compile(r"^(theorem|lemma)\s|:=\s*by\b", re.M)
+# What makes a file "stated for a generic scalar or representation" (route b of a row).
+GENERIC_SCALAR = re.compile(r"Scalar|FloatOps|ExactScalar|ContSet \(S n\)|Contains ContSet S")
 # A cell deferring a result to the page that owns it: ``tracked as `X` on
 # [Title](../year/file.md)``. The locator and the page are what get checked.
 TRACKED = re.compile(r"tracked as\s+`([^`]+)`\s+on\s+\[[^\]]*\]\(([^)]+)\)")
@@ -548,21 +550,29 @@ DECL = re.compile(
 COUNTS_BLOCK = re.compile(r"(<!-- coverage-counts -->\n)(.*?)(<!-- /coverage-counts -->)", re.S)
 
 
+_COMMENT_EDGE = re.compile(r"/-|-/")
+
+
 def strip_block_comments(text):
     """`text` without its (nested) `/- ... -/` comments, so a line of Lean quoted in a
-    docstring is not a declaration."""
+    docstring is not a declaration. Jumps from one comment edge to the next, not one
+    character at a time: this runs over the whole tree."""
     out, depth, i = [], 0, 0
-    while i < len(text):
-        if text.startswith("/-", i):
-            depth += 1
-            i += 2
-        elif depth and text.startswith("-/", i):
-            depth -= 1
-            i += 2
+    while True:
+        if depth:
+            m = _COMMENT_EDGE.search(text, i)
+            if m is None:
+                break
+            depth += 1 if m.group() == "/-" else -1
+            i = m.end()
         else:
-            if not depth:
-                out.append(text[i])
-            i += 1
+            j = text.find("/-", i)
+            if j < 0:
+                out.append(text[i:])
+                break
+            out.append(text[i:j])
+            depth = 1
+            i = j + 2
     return "".join(out)
 
 
@@ -733,8 +743,7 @@ class CoraTable:
             for m in DECL.finditer(strip_block_comments(t.read_text(encoding="utf-8"))):
                 if m.group(3) == n and "noncomputable" in m.group(1):
                     say(f"{tag}: route b, but `{n}` is `noncomputable`")
-        generic = re.compile(r"Scalar|FloatOps|ExactScalar|ContSet \(S n\)|Contains ContSet S")
-        if not any("Real" not in t.parts and generic.search(t.read_text(encoding="utf-8"))
+        if not any("Real" not in t.parts and GENERIC_SCALAR.search(t.read_text(encoding="utf-8"))
                    for t, n, k in found):
             say(f"{tag}: route b, but no linked declaration is stated for a generic scalar "
                 "or representation")

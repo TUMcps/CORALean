@@ -1,12 +1,71 @@
 #!/bin/sh
-# Runs the convention checks before a commit is written. Text only, so it costs
-# a second — it does not build, and a commit that passes here can still fail to
-# compile.
+# Runs the convention checks before a commit is written, on what the commit will
+# contain (the index), not on the working tree. Text only: it does not build, and
+# a commit that passes here can still fail to compile.
+#
+# What it costs depends on what the commit touches. `scripts/precommit-scope.py`
+# compares each staged file with `HEAD`. A commit that only edits existing
+# `src/**/*.lean` files without changing their imports, namespaces, type
+# declarations or `noncomputable` lines runs the per-file rules on those files
+# alone (`check-conventions.sh --staged`): about a second. A commit that adds,
+# deletes or renames a file, changes one of those lines, or touches `scripts/`,
+# `lakefile.toml` or the CI file, runs the whole tree, about fifteen seconds on
+# Linux and several times that in Git Bash on Windows; the reference check runs
+# when a commit touches anything outside `src/` or what it reads of a Lean file
+# (declaration names, the bibliography, the cites), and takes about seven.
+# When the working tree differs from the index, the whole-tree runs take place on
+# a checkout of the index in a temporary directory, so unstaged edits can neither
+# hide a violation nor invent one.
 #
 # Required, not optional: `git config core.hooksPath .githooks` is part of
-# setting the repository up, and CI runs the same scripts so a commit that
-# bypasses it fails there instead.
+# setting the repository up, and CI runs the same scripts over the whole tree,
+# so a commit that bypasses it, or one this scope wrongly called small, fails
+# there instead.
 
-root="$(git rev-parse --show-toplevel)"
-sh "$root/scripts/check-conventions.sh" || exit 1
-exec python3 "$root/scripts/check-references.py"
+root="$(git rev-parse --show-toplevel)" || exit 1
+cd "$root" || exit 1
+
+# `PYTHON`, or a loud exit: the Windows `python3` is a Store stub that runs nothing.
+. "$root/scripts/find-python.sh"
+
+list=$(mktemp) || exit 1
+tree=
+trap 'rm -f "$list"; [ -z "$tree" ] || rm -rf "$tree"' EXIT INT TERM
+
+scope=$($PYTHON scripts/precommit-scope.py "$list") || exit 1
+conventions=$(printf '%s\n' "$scope" | sed -n 's/^conventions=//p')
+references=$(printf '%s\n' "$scope" | sed -n 's/^references=//p')
+
+# The tree the whole-tree checks read: this one when it is the index, else a
+# checkout of the index. Untracked files count as a difference only under the
+# directories the checks read.
+checkout() {
+  if [ -n "$tree" ]; then return; fi
+  if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard -- src references scripts)" ]; then
+    tree=
+    treedir=$root
+  else
+    tree=$(mktemp -d) || exit 1
+    git checkout-index -a --prefix="$tree/" || exit 1
+    treedir=$tree
+  fi
+}
+treedir=$root
+
+status=0
+case "$conventions" in
+  full)
+    checkout
+    sh "$treedir/scripts/check-conventions.sh" || status=1 ;;
+  staged)
+    sh "$root/scripts/check-conventions.sh" --staged "$list" || status=1 ;;
+  none) ;;
+  *) echo "pre-commit: unexpected scope '$scope'" >&2; exit 1 ;;
+esac
+
+if [ "$references" = yes ]; then
+  checkout
+  $PYTHON "$treedir/scripts/check-references.py" || status=1
+fi
+
+exit "$status"
