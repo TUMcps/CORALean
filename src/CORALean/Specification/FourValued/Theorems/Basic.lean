@@ -138,6 +138,30 @@ theorem FourValued.fromKleene_and (a b : Kleene) :
   cases a <;> cases b <;> rfl
 
 
+-- ============================  `FourValued.fromKleene_eq_ff_iff`  ============================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `fromKleene` gives `False` only for `False`. -/
+theorem FourValued.fromKleene_eq_ff_iff (k : Kleene) :
+    FourValued.fromKleene k = FourValued.ff ↔ k = Kleene.ff := by
+  cases k <;> simp [FourValued.fromKleene]
+
+
+-- ============================  `FourValued.fromKleene_eq_tt_iff`  ============================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `fromKleene` gives `True` only for `True`. -/
+theorem FourValued.fromKleene_eq_tt_iff (k : Kleene) :
+    FourValued.fromKleene k = FourValued.tt ↔ k = Kleene.tt := by
+  cases k <;> simp [FourValued.fromKleene]
+
+
 -- ===============================  `FourValued.fromKleene_not`  ================================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026

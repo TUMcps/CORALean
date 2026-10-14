@@ -94,6 +94,18 @@ noncomputable def FourValuedSignal.set (s : FourValuedSignal ℝ) (I : STLInterv
   ⟨s.signal.set I value.toKleene, s.isInconclusive.set I value.isInconclusive⟩
 
 
+-- ============================  `FourValuedSignal.toKleeneSignal?`  ============================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `toKleeneSignal(obj)` without argument; CORA throws if a value is inconclusive, here `none`. -/
+def FourValuedSignal.toKleeneSignal? {T : Type} [LinearOrder T] [Zero T]
+    (s : FourValuedSignal T) : Option (KleeneSignal T) :=
+  if s.isInconclusive.anyTrue 0 ⊤ true false id then none else some s.signal
+
+
 -- =============================  `FourValuedSignal.uniformSignal`  ============================= --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026

@@ -32,6 +32,18 @@ theorem List.getD_map_not (l : List Bool) (i : ℕ) (h : i < l.length) :
   simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem h]
 
 
+-- ================================  `List.pairwise_matlabFind`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `find` returns increasing indices. -/
+theorem List.pairwise_matlabFind {α : Type} (p : α → Bool) (l : List α) :
+    (List.matlabFind p l).Pairwise (· < ·) :=
+  (List.pairwise_lt_range').sublist (List.filter_sublist)
+
+
 -- ==============================  `PointSegmentSignal.atIdx_snd`  ============================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026

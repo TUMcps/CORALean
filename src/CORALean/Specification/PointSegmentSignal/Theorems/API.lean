@@ -1,9 +1,12 @@
 module
 
+public import CORALean.Specification.PointSegmentSignal.Theorems.AllTrueSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueEqFalseOfAt
+public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtAppendGe
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtAppendLt
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtBetween
+public import CORALean.Specification.PointSegmentSignal.Theorems.AtEqCell
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtIdxFst
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtLast
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtSnocEq
@@ -11,9 +14,30 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.AtSnocGt
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtSnocLt
 public import CORALean.Specification.PointSegmentSignal.Theorems.AtTimePoint
 public import CORALean.Specification.PointSegmentSignal.Theorems.Basic
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellBetween
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellGeIff
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellLeIff
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellLt
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellMemBounds
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellMono
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellRel
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellTake
+public import CORALean.Specification.PointSegmentSignal.Theorems.CellTimePoint
 public import CORALean.Specification.PointSegmentSignal.Theorems.CombineSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.CutAtFirstFallingEdgeAt
+public import CORALean.Specification.PointSegmentSignal.Theorems.CutAtFirstFallingEdgeSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.ExistsCellEq
+public import CORALean.Specification.PointSegmentSignal.Theorems.ExistsCellLe
+public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsMaximal
+public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsRuns
+public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsStretch
+public import CORALean.Specification.PointSegmentSignal.Theorems.FindLastSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.FirstFallingEdge
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorBoundsSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.IntervalUntilSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.IsNewPointOkIff
 public import CORALean.Specification.PointSegmentSignal.Theorems.IsValidAppendDrop
 public import CORALean.Specification.PointSegmentSignal.Theorems.IsValidSnoc
@@ -23,14 +47,24 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.ListLeOfMemTake
 public import CORALean.Specification.PointSegmentSignal.Theorems.ListLengthTakeWhileEqOfPairwiseLt
 public import CORALean.Specification.PointSegmentSignal.Theorems.ListLtOfMemTake
 public import CORALean.Specification.PointSegmentSignal.Theorems.ListLtOfPairwiseGetElemSucc
+public import CORALean.Specification.PointSegmentSignal.Theorems.ListRunsOfMatlabDiff
+public import CORALean.Specification.PointSegmentSignal.Theorems.MemMatlabFind
+public import CORALean.Specification.PointSegmentSignal.Theorems.MemTakeDrop
 public import CORALean.Specification.PointSegmentSignal.Theorems.NonnegOfMemTimePoints
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotIsValid
+public import CORALean.Specification.PointSegmentSignal.Theorems.PrecTimeAtValIdxSucc
+public import CORALean.Specification.PointSegmentSignal.Theorems.RelevantCells
+public import CORALean.Specification.PointSegmentSignal.Theorems.RelevantStartSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.RelevantStopSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetBoundsSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetPointSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetSpec
+public import CORALean.Specification.PointSegmentSignal.Theorems.SuccTimeAtValIdxOfGe
+public import CORALean.Specification.PointSegmentSignal.Theorems.SuccTimeAtValIdxOfLt
 public import CORALean.Specification.PointSegmentSignal.Theorems.SuffixAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.TakeWhileLePos
+public import CORALean.Specification.PointSegmentSignal.Theorems.UntilSpec
 
 /-!
 # Piecewise-constant signals, theorems

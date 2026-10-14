@@ -3,9 +3,14 @@ module
 public import CORALean.Specification.STLInterval.Theorems.Basic
 public import CORALean.Specification.STLInterval.Theorems.ContainsPointZeroIff
 public import CORALean.Specification.STLInterval.Theorems.ContainsZeroIff
+public import CORALean.Specification.STLInterval.Theorems.FieldsAndRight
+public import CORALean.Specification.STLInterval.Theorems.FieldsLeftClosure
+public import CORALean.Specification.STLInterval.Theorems.FieldsStlIntervalBounds
 public import CORALean.Specification.STLInterval.Theorems.InfimumClosedIff
 public import CORALean.Specification.STLInterval.Theorems.InfimumValue
 public import CORALean.Specification.STLInterval.Theorems.IsequalZeroIff
+public import CORALean.Specification.STLInterval.Theorems.LowerStlInterval
+public import CORALean.Specification.STLInterval.Theorems.MaximalRunsCongr
 public import CORALean.Specification.STLInterval.Theorems.NonemptySetSubsetIff
 public import CORALean.Specification.STLInterval.Theorems.NotMemBoundsOfEmptyBounds
 public import CORALean.Specification.STLInterval.Theorems.RawSetAdd
@@ -39,12 +44,15 @@ public import CORALean.Specification.STLInterval.Theorems.SetPlusInterval
 public import CORALean.Specification.STLInterval.Theorems.SetPlusNum
 public import CORALean.Specification.STLInterval.Theorems.SetRightClosure
 public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
+public import CORALean.Specification.STLInterval.Theorems.SetStlIntervalBounds
 public import CORALean.Specification.STLInterval.Theorems.SetToLeft
 public import CORALean.Specification.STLInterval.Theorems.SetToRight
+public import CORALean.Specification.STLInterval.Theorems.SetUntilNoZero
 public import CORALean.Specification.STLInterval.Theorems.SupremumClosedIff
 public import CORALean.Specification.STLInterval.Theorems.SupremumValue
 public import CORALean.Specification.STLInterval.Theorems.WithinTolZero
 public import CORALean.Specification.STLInterval.Theorems.ZeroLeLowerBound
+public import CORALean.Specification.STLInterval.Theorems.ZeroLeOfMemSet
 
 /-!
 # STL intervals: the theorems

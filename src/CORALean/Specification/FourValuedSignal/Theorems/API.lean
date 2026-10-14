@@ -1,13 +1,23 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Theorems.AtAnd
 public import CORALean.Specification.FourValuedSignal.Theorems.AtNot
+public import CORALean.Specification.FourValuedSignal.Theorems.AtOr
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
 public import CORALean.Specification.FourValuedSignal.Theorems.CombineSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.ConclusiveIntervalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.EqNotComplete
+public import CORALean.Specification.FourValuedSignal.Theorems.FindIntervalsSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.FromKleeneSignalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.IndicatorSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.MergeSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.MinMaxSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.SetSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalAtIff
+public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalEqNoneIff
+public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.UniformSignalSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.UntilSpec
 
 /-!
 # Four-valued signals, theorems
