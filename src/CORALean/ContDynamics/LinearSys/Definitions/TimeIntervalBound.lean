@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSegmentsSum
-public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSetLinCombSum
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 public import CORALean.Global.LinProg.Composition
 
 @[expose] public section
@@ -10,10 +10,10 @@ public import CORALean.Global.LinProg.Composition
 # A support bound over a whole step, not a time point
 
 [1, Alg. 1 (upper bounds)]'s line 13: `ρ(R̂(τ_k), ℓ) ← max{ρ(H(t_k), ℓ), ρ(H(t_{k+1}), ℓ)} +
-ρ(C, d_k) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term — `SupportBound.segments` for the
+ρ(C, d_k) + ρ(P̂_U(t_{k+1}), ℓ)`, term for term — `SupportBound.setLinComb` for the
 `max`, `SupportBound.image` for the direction pulled back through `e^{Ar}`
 rather than the value moved, `SupportBound.add` for the two `+`s, and
-`SupportBound.mono` to cross `timeIntervalReachSet_subset_segments_sum`.
+`SupportBound.mono` to cross `timeIntervalReachSet_subset_setLinComb_sum`.
 
 The three bounds are hypotheses, exactly as `reachSetBound` takes its two: any
 representation that can answer `SupportBound` on `R₀`, on the correction term
@@ -71,9 +71,9 @@ noncomputable def LinearSys.timeIntervalBound (sys : LinearSys 𝕋 n) {T : Set 
       SupportBound (construct (sys.inputSolution r (m + 2) U)) d)
     (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     SupportBound (sys.timeIntervalReachSet T R₀ U r) c :=
-  (((b₀ c).segments (SupportBound.image (mulVecLin (exp (r • toRealMat sys.A)))
+  (((b₀ c).setLinComb (SupportBound.image (mulVecLin (exp (r • toRealMat sys.A)))
       (b₀ (c.comp (mulVecLin (exp (r • toRealMat sys.A))))))).add (bC c)).add (bP c) |>.mono
-    (sys.timeIntervalReachSet_subset_segments_sum R₀ U hr hT hε hconv hclosed hbdd hRconv
+    (sys.timeIntervalReachSet_subset_setLinComb_sum R₀ U hr hT hε hconv hclosed hbdd hRconv
       hRclosed hRbdd h0)
 
 end CORALean

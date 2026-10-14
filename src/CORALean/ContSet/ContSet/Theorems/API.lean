@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ContSet.Theorems.AddProperties
 public import CORALean.ContSet.ContSet.Theorems.AddPropertiesCounterexample
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 public import CORALean.ContSet.ContSet.Theorems.DecomposeOuter
 public import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 public import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
@@ -23,7 +23,7 @@ public import CORALean.ContSet.ContSet.Theorems.ImageLinearMapProperties
 public import CORALean.ContSet.ContSet.Theorems.InterProperties
 public import CORALean.ContSet.ContSet.Theorems.InteriorEqEmptyIffForallBall
 public import CORALean.ContSet.ContSet.Theorems.IntersectStripSeqOuter
-public import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
+public import CORALean.ContSet.ContSet.Theorems.IsCompactSetLinComb
 public import CORALean.ContSet.ContSet.Theorems.IsFullDimIffAffineSpan
 public import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
 public import CORALean.ContSet.ContSet.Theorems.LinCombConvexHullSubset
@@ -59,17 +59,17 @@ public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloat
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
 public import CORALean.ContSet.ContSet.Theorems.ProjectOuter
 public import CORALean.ContSet.ContSet.Theorems.PropertyFacts
-public import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
-public import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
-public import CORALean.ContSet.ContSet.Theorems.SegmentsProperties
-public import CORALean.ContSet.ContSet.Theorems.SegmentsPropertiesCounterexample
+public import CORALean.ContSet.ContSet.Theorems.SetLinCombEqConvexJoin
+public import CORALean.ContSet.ContSet.Theorems.SetLinCombMinkowskiDiffSubset
+public import CORALean.ContSet.ContSet.Theorems.SetLinCombProperties
+public import CORALean.ContSet.ContSet.Theorems.SetLinCombPropertiesCounterexample
 public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 public import CORALean.ContSet.ContSet.Theorems.SubsetHyperplanePolyhedron
 public import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
 public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 public import CORALean.ContSet.ContSet.Theorems.TimesOuter
 public import CORALean.ContSet.ContSet.Theorems.UminusOuter
-public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSetLinComb
 
 /-!
 # What the set interface's classes and definitions give together
@@ -87,12 +87,12 @@ approximation with a bounded error set into an inner approximation of the exact 
 an inner reachability algorithm is built on. Althoff's Prop. 3 and Prop. 4 are
 `minkowskiDiff_add_subset_add` and `minkowskiDiff_encl_subset_add`, his Lemma 1
 `minkowskiDiff_eq_iInter`, his Thm. 1's step `minkowskiDiff_add_assoc`; Wetzlinger and
-Althoff's Lemma 1 is `segments_minkowskiDiff_subset`, and with Kulmburg their Remark 1
+Althoff's Lemma 1 is `setLinComb_minkowskiDiff_subset`, and with Kulmburg their Remark 1
 `minkowskiDiff_not_subset_of_discontinuous`.
 
 `hausdorffDist_add_le`, `hausdorffDist_image_le` and `hausdorffDist_mulVecLin_add_le` are the
 three distances here rather than inclusions: adding the same compact set to both sides, moving two
 sets through a continuous linear map, or perturbing a linear image by another matrix, can each
 only bring the two sides together — the last is Wetzlinger et al.'s Prop. 10, cited in its file.
-`isCompact_segments` lets such a distance be read back as a witness.
+`isCompact_setLinComb` lets such a distance be read back as a witness.
 -/

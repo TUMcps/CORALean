@@ -80,7 +80,7 @@ theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.construct.Nonem
 
 theorem ConZonotope.linComb_inner (cZ₁ cZ₂ : ConZonotope α) (h₁ : cZ₁.construct.Nonempty)
     (h₂ : cZ₂.construct.Nonempty) :
-    (cZ₁.linComb cZ₂).construct ⊆ segments cZ₁.construct cZ₂.construct := by -- --- PROOF ---
+    (cZ₁.linComb cZ₂).construct ⊆ Set.linComb cZ₁.construct cZ₂.construct := by -- --- PROOF ---
   rintro x ⟨β, hβ, hP, rfl⟩
   set lam : ℝ := (β (Fin.natAdd (cZ₁.h + cZ₂.h) 0) + 1) / 2 with hlam
   have habs := hβ (Fin.natAdd (cZ₁.h + cZ₂.h) 0)

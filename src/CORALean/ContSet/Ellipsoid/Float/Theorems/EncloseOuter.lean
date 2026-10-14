@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 theorem Ellipsoid.enclose_outer (orOA : Ellipsoid 𝕋 n → Ellipsoid 𝕋 n → Ellipsoid 𝕋 n)
     (hor : ∀ E₁ E₂, E₁.construct ∪ E₂.construct ⊆ (orOA E₁ E₂).construct)
     (E : Ellipsoid 𝕋 n) (M : Mat 𝕋 n m) (Eplus : Ellipsoid 𝕋 m) :
-    segments E.construct ((toRealMat M *ᵥ ·) '' Eplus.construct) ⊆
+    Set.linComb E.construct ((toRealMat M *ᵥ ·) '' Eplus.construct) ⊆
       (Ellipsoid.enclose orOA E M Eplus).construct := by -- --- PROOF ---
   rintro _ ⟨y₁, h₁, y₂, h₂, l, ⟨hl0, hl1⟩, rfl⟩
   -- the image end lies in the float image, and both ends in the hull

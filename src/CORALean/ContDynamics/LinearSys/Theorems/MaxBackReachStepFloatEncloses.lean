@@ -328,7 +328,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
         exact h
       exact hP h'
     -- the moved point is a segment between the two exact sets, so in their hull
-    have hyseg : z + δ ∈ segments (LinearSys.maxBackReachCZ ρ P₁r
+    have hyseg : z + δ ∈ Set.linComb (LinearSys.maxBackReachCZ ρ P₁r
           (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW).construct
         (LinearSys.maxBackReachCZ ρ P₂r
           (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW).construct :=

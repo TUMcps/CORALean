@@ -35,7 +35,7 @@ example {n : ℕ} (P₁ P₂ : HPolytope (Vec ℝ n)) :
 
 /-- And `linComb`, on the same rows and the same certificates. -/
 example {n : ℕ} (P₁ P₂ : HPolytope (Vec ℝ n)) :
-    segments (construct P₁) (construct P₂) ⊆ construct (LinComb.linComb P₁ P₂) :=
+    Set.linComb (construct P₁) (construct P₂) ⊆ construct (LinComb.linComb P₁ P₂) :=
   LinComb.linComb_outer P₁ P₂
 
 /-- The whole space is unbounded in every non-zero direction, so every row of

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
@@ -34,7 +34,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem ConZonotope.linComb_eq_convexHull (cZ₁ cZ₂ : ConZonotope α)
     (h₁ : cZ₁.construct.Nonempty) (h₂ : cZ₂.construct.Nonempty) :
     (cZ₁.linComb cZ₂).construct = convexHull ℝ (cZ₁.construct ∪ cZ₂.construct) := by
-  rw [convexHull_union_eq_segments h₁ h₂ cZ₁.convex_construct cZ₂.convex_construct]
+  rw [convexHull_union_eq_setLinComb h₁ h₂ cZ₁.convex_construct cZ₂.convex_construct]
   exact Set.Subset.antisymm (ConZonotope.linComb_inner cZ₁ cZ₂ h₁ h₂)
     (ConZonotope.linComb_outer cZ₁ cZ₂)
 

@@ -51,7 +51,7 @@ theorem VPolytope.aux_subset_linComb_right (P₁ P₂ : VPolytope α) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.linComb_outer (P₁ P₂ : VPolytope α) :
-    segments P₁.construct P₂.construct ⊆ (P₁.linComb P₂).construct := by
+    Set.linComb P₁.construct P₂.construct ⊆ (P₁.linComb P₂).construct := by
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, ⟨hlo, hup⟩, rfl⟩
   exact VPolytope.convex_construct _ (VPolytope.aux_subset_linComb_left P₁ P₂ hy₁)
     (VPolytope.aux_subset_linComb_right P₁ P₂ hy₂) hlo (by linarith) (by ring)

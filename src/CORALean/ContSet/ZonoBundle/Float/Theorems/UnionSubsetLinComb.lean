@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
+public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSetLinComb
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
 
@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ZonoBundle.union_subset_linComb (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n))
     (h₁ : zB₁.construct.Nonempty) (h₂ : zB₂.construct.Nonempty) :
     zB₁.construct ∪ zB₂.construct ⊆ (zB₁.linComb zB₂).construct :=
-  (union_subset_segments h₁ h₂).trans (ZonoBundle.linComb_outer zB₁ zB₂)
+  (union_subset_setLinComb h₁ h₂).trans (ZonoBundle.linComb_outer zB₁ zB₂)
 
 end CORALean.Float
 

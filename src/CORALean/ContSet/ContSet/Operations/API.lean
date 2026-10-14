@@ -12,7 +12,7 @@ public import CORALean.ContSet.ContSet.Operations.Project
 public import CORALean.ContSet.ContSet.Operations.Decompose
 public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
 public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneFloat
-public import CORALean.ContSet.ContSet.Operations.SupportBoundSegments
+public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
 public import CORALean.ContSet.ContSet.Operations.Times
 public import CORALean.ContSet.ContSet.Operations.Polygon
 public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
@@ -20,7 +20,7 @@ public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFlo
 /-!
 # What the set interface computes
 
-`SupportBoundSegments` carries a support-function bound across `segments`, CORA's `linComb`.
+`SupportBoundSetLinComb` carries a support-function bound across `Set.linComb`, CORA's `linComb`.
 
 The derived methods, written over the classes: `times`, `uminus` through `mtimes`, `uplus` the
 identity, `minus` and `minusFrom` through `plus` and `ofPoint`, `enlarge` through `centre`,

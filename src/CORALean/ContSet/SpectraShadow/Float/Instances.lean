@@ -68,7 +68,7 @@ instance {n : ℕ} : Intersection (SpectraShadow 𝕋 (Vec 𝕋 n)) (Vec ℝ n) 
 /-- The convex hull of the union, enclosed: the guarantee `enclose` and `or` ask of `linComb`. -/
 instance {n : ℕ} : LinComb (SpectraShadow 𝕋 (Vec 𝕋 n)) (Vec ℝ n) where
   linComb S₁ S₂ := S₁.convHull_ S₂
-  linComb_outer S₁ S₂ := SpectraShadow.segments_subset_convHull S₁ S₂
+  linComb_outer S₁ S₂ := SpectraShadow.setLinComb_subset_convHull S₁ S₂
 
 end CORALean.Float
 

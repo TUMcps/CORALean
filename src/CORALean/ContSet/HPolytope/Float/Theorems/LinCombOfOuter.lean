@@ -34,7 +34,7 @@ variable {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
 theorem HPolytope.linCombOf_outer (Aq : Mat 𝕋 q n)
     (u₁ : ∀ i, FloatBound 𝕋 P₁.construct (rowLin Aq i))
     (u₂ : ∀ i, FloatBound 𝕋 P₂.construct (rowLin Aq i)) :
-    segments P₁.construct P₂.construct ⊆ (HPolytope.linCombOf Aq u₁ u₂).construct :=
+    Set.linComb P₁.construct P₂.construct ⊆ (HPolytope.linCombOf Aq u₁ u₂).construct :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Float

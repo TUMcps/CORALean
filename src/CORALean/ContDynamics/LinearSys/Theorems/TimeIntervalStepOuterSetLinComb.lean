@@ -13,7 +13,7 @@ public import CORALean.ContSet.Interval.Real.Instances
 ends on two representation calls: `LinComb.linComb_outer` turns the straight
 line from `X₀` to its image into a hull, `Plus.plus_outer` turns the sum of
 that hull and the curvature term into `timeIntervalStep`. Held back, the
-straight line is a genuine `segments` between `construct X₀` and its exact
+straight line is a genuine `Set.linComb` between `construct X₀` and its exact
 image, and only the curvature term still needs `Mtimes`, which has no
 set-level form to fall back to. `timeIntervalStep_outer` is this composed with
 those two lifts.
@@ -49,11 +49,11 @@ variable [Mtimes ℐ S]
 
 /-- Every image of the initial set under the flow, at every time of the step,
 inside the exact sum `timeIntervalStep_outer` only reaches after two lifts. -/
-theorem LinearSys.timeIntervalStep_outer_segments (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)
+theorem LinearSys.timeIntervalStep_outer_setLinComb (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)
     {m : ℕ} (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
-      ⊆ segments (construct X₀) ((exp (r • toRealMat sys.A)).mulVecLin '' construct X₀)
+      ⊆ Set.linComb (construct X₀) ((exp (r • toRealMat sys.A)).mulVecLin '' construct X₀)
         + construct (Mtimes.mtimes (𝕄 := ℐ)
             (MatExp.correctionMatrix (toRealMat sys.A) r (m + 2)) X₀) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA

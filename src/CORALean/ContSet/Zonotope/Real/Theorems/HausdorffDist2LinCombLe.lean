@@ -14,7 +14,7 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 
 Given `H = H(t_k) = ⟨c_h, G_h⟩_Z` and the propagated `H' = H(t_{k+1}) = e^{AΔt_k}H(t_k) +
 P^u(Δt_k)` (a matrix image of `H` shifted by the point `c_p`, exact by `Zonotope.mtimes`/`shift`),
-the exact linear combination is `S = comb(H,H') = segments H.construct H'.construct` — [1]'s own
+the exact linear combination is `S = comb(H,H') = Set.linComb H.construct H'.construct` — [1]'s own
 `Def. 7`, and the union of segments between two *convex* sets (every zonotope is convex) is their
 convex hull, so `S` is exactly [1]'s `comb`. `Zonotope.linComb_outer` already gives the "obvious
 containment" `S ⊆ Ŝ` [1]'s own proof leans on for `Ŝ := H.linComb H'`; the rest of this file is
@@ -80,7 +80,7 @@ propagated `H(t_{k+1}) = e^{AΔt_k}H + c_p`, at `‖·‖₂`. -/
 theorem Zonotope.hausdorffDist₂_linComb_le (A : Mat ℝ n n) (Δtk : ℝ) (H : Zonotope (Vec ℝ n))
     (cp : Vec ℝ n) :
     hausdorffDist₂
-        (segments H.construct (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp)).construct)
+        (Set.linComb H.construct (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp)).construct)
         (H.linComb (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp))).construct
       ≤ Real.sqrt H.h *
         genOpNorm₂ (fun j => (exp (Δtk • A) - 1).mulVec (H.G j)) := by -- --- PROOF ---
@@ -127,7 +127,7 @@ theorem Zonotope.hausdorffDist₂_linComb_le (A : Mat ℝ n n) (Δtk : ℝ) (H :
   have hx2mem : x2 ∈ H'.construct :=
     ⟨βSum, hβSum1, by rw [hx2]; exact congrArg _ (Finset.sum_congr rfl fun j _ => by
       rw [hH'G j])⟩
-  have hsmem : lam • x1 + (1 - lam) • x2 ∈ segments H.construct H'.construct :=
+  have hsmem : lam • x1 + (1 - lam) • x2 ∈ Set.linComb H.construct H'.construct :=
     ⟨x1, hx1mem, x2, hx2mem, lam, ⟨hlam0, hlam1⟩, rfl⟩
   refine ⟨lam • x1 + (1 - lam) • x2, hsmem, ?_⟩
   -- unwind `ŝ`'s own coordinates: `linComb`'s centre and its three generator blocks

@@ -53,7 +53,7 @@ instance : Mtimes (Mat ℝ) (fun n => SpectraShadow (Vec ℝ n)) where
 inside it, and `convHull_` is what `enclose` and `or` ask for. -/
 instance {n : ℕ} : LinComb (SpectraShadow (Vec ℝ n)) (Vec ℝ n) where
   linComb := SpectraShadow.convHull_
-  linComb_outer := SpectraShadow.segments_subset_convHull
+  linComb_outer := SpectraShadow.setLinComb_subset_convHull
 
 end CORALean.Real
 

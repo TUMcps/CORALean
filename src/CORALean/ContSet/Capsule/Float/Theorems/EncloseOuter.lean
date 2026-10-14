@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.enclose_outer (k : ℕ) (C : Capsule 𝕋 n) (M : Mat 𝕋 n m) (Cplus : Capsule 𝕋 m) :
-    segments C.construct ((toRealMat M *ᵥ ·) '' Cplus.construct) ⊆
+    Set.linComb C.construct ((toRealMat M *ᵥ ·) '' Cplus.construct) ⊆
       (C.enclose k M Cplus).construct := by
   refine Set.Subset.trans ?_ (Capsule.convHull_outer k C (Capsule.mtimes k M Cplus))
   rintro _ ⟨y₁, h₁, y₂, h₂, l, hl, rfl⟩

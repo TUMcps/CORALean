@@ -54,7 +54,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.EncloseCoraCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsEllipsoidCoraCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkDiffPointExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SetLinCombSubsetOfIsOrOuter
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestNorm
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GeneratorsMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.AndPointExact

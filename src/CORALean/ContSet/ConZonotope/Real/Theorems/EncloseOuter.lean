@@ -74,7 +74,7 @@ theorem ConZonotope.aux_sum_univ_enclose {M : Type} [AddCommMonoid M] {cZ₁ cZ�
 
 theorem ConZonotope.enclose_outer (cZ₁ cZ₂ : ConZonotope α) (hh : cZ₁.h = cZ₂.h)
     (hP : cZ₂.P = cZ₁.P.comap (reindexLin (Fin.castOrderIso hh).toEquiv)) :
-    segments cZ₁.construct cZ₂.construct ⊆ (cZ₁.enclose cZ₂ hh).construct := by -- --- PROOF ---
+    Set.linComb cZ₁.construct cZ₂.construct ⊆ (cZ₁.enclose cZ₂ hh).construct := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨β₁, hβ₁, hP₁, rfl⟩, y₂, ⟨β₂, hβ₂, hP₂, rfl⟩, lam, ⟨hl0, hl1⟩, rfl⟩
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith
   -- `β₂` read at `cZ₁`'s index lies in `cZ₁.P` too, the two sharing one system

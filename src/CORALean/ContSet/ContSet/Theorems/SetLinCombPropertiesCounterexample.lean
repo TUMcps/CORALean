@@ -35,12 +35,13 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem segments_properties_counterexample (hn : 0 < n) :
+theorem setLinComb_properties_counterexample (hn : 0 < n) :
     ∃ S₁ S₂ : Set (Vec ℝ n), interior S₁ = ∅ ∧ Bornology.IsBounded S₁ ∧
       (interior S₂).Nonempty ∧ ¬ Bornology.IsBounded S₂ ∧
-      interior (segments S₁ S₂) = ∅ ∧ Bornology.IsBounded (segments S₁ S₂) := by -- --- PROOF ---
+      interior (Set.linComb S₁ S₂) = ∅ ∧
+        Bornology.IsBounded (Set.linComb S₁ S₂) := by -- --- PROOF ---
   haveI : Nonempty (Fin n) := ⟨⟨0, hn⟩⟩
-  have hseg : segments (∅ : Set (Vec ℝ n)) Set.univ = ∅ :=
+  have hseg : Set.linComb (∅ : Set (Vec ℝ n)) Set.univ = ∅ :=
     Set.eq_empty_of_forall_notMem fun _ ⟨_, hy, _⟩ => hy
   refine ⟨∅, Set.univ, interior_empty, Bornology.isBounded_empty, ?_,
     NormedSpace.unbounded_univ ℝ _, ?_, ?_⟩

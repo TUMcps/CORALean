@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 
 @[expose] public section
 
 /-!
 # For a convex representation, `linComb` holds the convex hull of the union
 
-`linComb_outer` and `convexHull_union_eq_segments`: an enclosure of CORA's `convHull_`.
+`linComb_outer` and `convexHull_union_eq_setLinComb`: an enclosure of CORA's `convHull_`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -31,7 +31,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {S : Type} [ContSet S α]
 theorem LinComb.convexHull_subset_linComb [LinComb S α] [ConvexSet S α] (s t : S)
     (hs : (construct s).Nonempty) (ht : (construct t).Nonempty) :
     convexHull ℝ (construct s ∪ construct t) ⊆ construct (LinComb.linComb s t) := by
-  rw [convexHull_union_eq_segments hs ht (ConvexSet.convex_construct s)
+  rw [convexHull_union_eq_setLinComb hs ht (ConvexSet.convex_construct s)
     (ConvexSet.convex_construct t)]
   exact LinComb.linComb_outer s t
 

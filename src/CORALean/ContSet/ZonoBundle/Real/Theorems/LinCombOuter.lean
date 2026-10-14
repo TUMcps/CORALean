@@ -6,10 +6,10 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 @[expose] public section
 
 /-!
-# `ZonoBundle.linComb` over-approximates `segments`
+# `ZonoBundle.linComb` over-approximates `Set.linComb`
 
 Sound because a point `lam • a + (1 - lam) • b` with `a ∈ ⋂ᵢ Aᵢ` and
-`b ∈ ⋂ⱼ Bⱼ` lies in `segments Aᵢ Bⱼ` for *every* pair `(i, j)` — the same
+`b ∈ ⋂ⱼ Bⱼ` lies in `Set.linComb Aᵢ Bⱼ` for *every* pair `(i, j)` — the same
 `lam` serving all of them — so it lies in the intersection of the pairwise
 combinations, which `Zonotope.linComb_outer` reads each pair into.
 -/
@@ -30,7 +30,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.linComb_outer (B₁ B₂ : ZonoBundle α) :
-    segments B₁.construct B₂.construct ⊆ (B₁.linComb B₂).construct := by -- --- PROOF ---
+    Set.linComb B₁.construct B₂.construct ⊆ (B₁.linComb B₂).construct := by -- --- PROOF ---
   rintro x ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩
   simp only [ZonoBundle.construct, Set.mem_iInter] at hy₁ hy₂ ⊢
   intro p

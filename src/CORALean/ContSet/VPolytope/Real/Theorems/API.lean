@@ -27,8 +27,8 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.InterNonemptyIff
 public import CORALean.ContSet.VPolytope.Real.Theorems.InteriorEqEmptyIffRankLt
 public import CORALean.ContSet.VPolytope.Real.Theorems.NotSubsetOfNotIsBounded
 public import CORALean.ContSet.VPolytope.Real.Theorems.RestrictAffineHull
-public import CORALean.ContSet.VPolytope.Real.Theorems.SegmentsConvHullCounterexample
-public import CORALean.ContSet.VPolytope.Real.Theorems.SegmentsEqConvHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.SetLinCombConvHullCounterexample
+public import CORALean.ContSet.VPolytope.Real.Theorems.SetLinCombEqConvHull
 public import CORALean.ContSet.VPolytope.Real.Theorems.SpanQrColsCounterexample
 public import CORALean.ContSet.VPolytope.Real.Theorems.SpanQrColsEqOfIndep
 public import CORALean.ContSet.VPolytope.Real.Theorems.SubsetIffVertexMem

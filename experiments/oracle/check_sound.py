@@ -184,7 +184,7 @@ def exact_hull_plus_box(req, _resp):
 
 
 def exact_hull_lincomb(req, _resp):
-    """`linComb(Z,Z2)` (`segments`, not the convex hull): the coordinatewise union of the two
+    """`linComb(Z,Z2)` (`Set.linComb`, not the convex hull): the coordinatewise union of the two
     hulls -- a linear interpolation between two extremes reaches no further than whichever
     extreme is larger, so the sup/inf over `λ ∈ [0,1]` is attained at `λ ∈ {0,1}`."""
     lo1, hi1 = hull_of_zonotope_json(req["Z"])

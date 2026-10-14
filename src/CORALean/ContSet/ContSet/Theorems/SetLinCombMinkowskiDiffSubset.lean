@@ -8,7 +8,7 @@ public import CORALean.ContSet.ContSet.ContSet
 # Minkowski difference distributes over the hull of two sets
 
 [1, Lemma 1]: for compact, convex, nonempty `S1, S2, S3 ⊂ ℝⁿ`,
-`conv(S1 ⊖ S3, S2 ⊖ S3) ⊆ conv(S1, S2) ⊖ S3`. Stated on `segments`, which is
+`conv(S1 ⊖ S3, S2 ⊖ S3) ⊆ conv(S1, S2) ⊖ S3`. Stated on `Set.linComb`, which is
 CORA's convex hull exactly when both operands are convex — the paper's own
 hypothesis on `S1` and `S2` — so this is a literal reading of the claim rather
 than a restatement of it.
@@ -45,9 +45,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Lemma 1]: the segments of two Minkowski differences by the same set sit
 inside the Minkowski difference of the segments by that set. -/
-theorem segments_minkowskiDiff_subset (S1 S2 S3 : Set α) :
-    segments (minkowskiDiff S1 S3) (minkowskiDiff S2 S3) ⊆
-      minkowskiDiff (segments S1 S2) S3 := by
+theorem setLinComb_minkowskiDiff_subset (S1 S2 S3 : Set α) :
+    Set.linComb (minkowskiDiff S1 S3) (minkowskiDiff S2 S3) ⊆
+      minkowskiDiff (Set.linComb S1 S2) S3 := by
   rintro x ⟨y1, hy1, y2, hy2, lam, hlam, rfl⟩ z hz
   exact ⟨y1 + z, hy1 z hz, y2 + z, hy2 z hz, lam, hlam, by module⟩
 

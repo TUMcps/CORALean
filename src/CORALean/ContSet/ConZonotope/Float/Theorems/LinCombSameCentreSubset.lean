@@ -101,7 +101,7 @@ theorem ConZonotope.linCombSameCentre_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Ve
     (hc : cZ₂.c = cZ₁.c)
     (hne₁ : (nominalSet cZ₁).Nonempty) (hne₂ : (nominalSet cZ₂).Nonempty) :
     nominalSet (cZ₁.linCombSameCentre cZ₂) ⊆
-      segments (nominalSet cZ₁) (nominalSet cZ₂) := by -- --- PROOF ---
+      Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hP, hval⟩ := ConZonotope.mem_nominalSet_iff.mp hx
   -- the coefficient vector in its three blocks

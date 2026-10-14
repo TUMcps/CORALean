@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 /-!
 # `timeIntervalStepFloat` contains the flow at every time of the step
 
-The argument of `timeIntervalStep_outer_segments`, at the float matrices:
+The argument of `timeIntervalStep_outer_setLinComb`, at the float matrices:
 `e^{As} x = ((1 - s/Δt) x + (s/Δt) e^{AΔt} x) + (e^{As} - I - (s/Δt)(e^{AΔt} - I)) x`.
 The first term is on the segment `linComb` covers, once `e^{AΔt}` is in
 `expIntervalFloat`; the second is in `[F] R` by

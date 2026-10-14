@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
-public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
+public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 public import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
@@ -106,7 +106,7 @@ theorem STL.tendsto_depReach_linComb_hausdorff_zero (A : Mat ℝ n n) (B : Mat �
   have hnext : (STL.depReachAt A Δt cs X₀ (i + 1)).H
       = (Zonotope.mtimes (exp (Δt • A)) Hi).shift (-(MatExp.expIntegral A Δt).mulVec (B *ᵥ U.c)) :=
     aux_plus_ofPoint_eq_shift _ _
-  rw [hnext, convexHull_union_eq_segments ⟨Hi.c, Zonotope.centre_mem_construct Hi⟩
+  rw [hnext, convexHull_union_eq_setLinComb ⟨Hi.c, Zonotope.centre_mem_construct Hi⟩
     ⟨_, Zonotope.centre_mem_construct _⟩ Hi.convex_construct (Zonotope.convex_construct _)]
   refine (Zonotope.hausdorffDist₂_linComb_le A Δt Hi _).trans ?_
   -- the generators of `H(t_i)`

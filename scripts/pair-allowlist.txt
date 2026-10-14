@@ -43,7 +43,7 @@ src/CORALean/ContSet/ContSet/Definitions/DimReduce.lean  state: `Set (ℝ × ℝ
 src/CORALean/ContSet/ContSet/Definitions/IsBoundIntersect2D.lean  state: `Set (ℝ × ℝ)` is a set of points of the plane
 src/CORALean/ContSet/ContSet/Theorems/DimReduceOuter.lean  state: `Set (ℝ × ℝ)` is a set of points of the plane
 src/CORALean/ContSet/ContSet/Theorems/DimReduceTight.lean  state: `Set (ℝ × ℝ)` is a set of points of the plane
-src/CORALean/ContSet/ContSet/Theorems/IsCompactSegments.lean  other: a segment as its two endpoints and a parameter
+src/CORALean/ContSet/ContSet/Theorems/IsCompactSetLinComb.lean  other: a segment as its two endpoints and a parameter
 src/CORALean/ContSet/Ellipsoid/Real/Operations/IntersectStripGollamudi1D.lean  other: centre and shape
 src/CORALean/ContSet/Ellipsoid/Real/Operations/IntersectStripLiu1D.lean  other: centre, shape and sigma-squared
 src/CORALean/ContSet/Interval/Real/Theorems/ExistsMulEq.lean  state: a point of the product domain

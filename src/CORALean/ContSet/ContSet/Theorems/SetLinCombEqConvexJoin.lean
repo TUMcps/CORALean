@@ -7,7 +7,7 @@ public import Mathlib.Tactic.Linarith
 @[expose] public section
 
 /-!
-# `segments` is Mathlib's convex join
+# `Set.linComb` is Mathlib's convex join
 
 The parameter runs over `[0,1]` either way, one written as `λ` and the other as `1 - λ`.
 -/
@@ -27,10 +27,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem segments_eq_convexJoin (X Y : Set α) :
-    segments X Y = convexJoin ℝ X Y := by -- --- PROOF ---
+theorem setLinComb_eq_convexJoin (X Y : Set α) :
+    Set.linComb X Y = convexJoin ℝ X Y := by -- --- PROOF ---
   ext x
-  simp only [segments, Set.mem_setOf_eq, mem_convexJoin, segment_eq_image, Set.mem_image,
+  simp only [Set.linComb, Set.mem_setOf_eq, mem_convexJoin, segment_eq_image, Set.mem_image,
     Set.mem_Icc]
   constructor
   · rintro ⟨y₁, h₁, y₂, h₂, lam, ⟨hl₀, hl₁⟩, rfl⟩

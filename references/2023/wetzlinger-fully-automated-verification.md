@@ -121,14 +121,14 @@ for `Prop. 2`/`Prop. 11`. Two smaller things fell out of writing it down. [1]'s 
 flow map as `e^{At}` at *absolute* time `t ∈ τ_k` while every other set in it is relative to `t_k`,
 which does not compose — the formalized tube runs over the elapsed time `t - t_k ∈ [0,Δt]`. And
 reading a `d_H ≤ r` back as an actual nearby point needs the set searched to be compact, which is
-what [`isCompact_segments`](../../src/CORALean/ContSet/ContSet/Theorems/IsCompactSegments.lean) and
+what [`isCompact_setLinComb`](../../src/CORALean/ContSet/ContSet/Theorems/IsCompactSetLinComb.lean) and
 `hausdorffDist₂_exists_mem_dist_le` supply; `Def. 5` states the distance for compact sets in the
 first place, so nothing is assumed there that `Def. 5` does not already ask.
 
 **`Prop. 9` is proved at `‖·‖₂`, and `linComb` does compute exactly the set `S` the paper's proof
 needs — no convex-hull/`linComb` gap here.** `S := comb(H(t_k),H(t_{k+1}))` is
-[1]'s own `Def. 7` (this repository's `segments`, the union of every segment between a point of
-one set and a point of the other), and since every zonotope is convex, `segments` here already
+[1]'s own `Def. 7` (this repository's `Set.linComb`, the union of every segment between a point of
+one set and a point of the other), and since every zonotope is convex, `Set.linComb` here already
 *is* the convex hull `Zonotope.linComb_outer` needs only the inclusion direction of: the finding
 that `linComb` is not CORA's convex hull (recorded on the NAHS'22 page) matters when one of the
 two operands is *not* convex — H(t_k) and its propagated image H(t_{k+1}) both are, so the gap
