@@ -1,21 +1,22 @@
 module
 
-public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Augment
 public import Mathlib.Analysis.Matrix.Normed
 
 @[expose] public section
 
 /-!
-# An order admissible for a step and its plant's matrix
+# An order admissible for a step and the augmented matrix
 
-`LinearSys.reachOrder`'s formula at `reach_outer`'s own side condition —
-`‖Δt • A‖ / (η + 2) < 1` has no `+ 2` on the numerator's denominator here, so
-`⌈‖Δt • A‖⌉₊` alone clears it, `reachOrder_admissible` its proof.
+`LinearSys.reachOrder`'s formula at `reach_outer`'s own side condition, read at the matrix the
+steps are taken with, the augmented `A_aug = [A B; 0 0]` (`augment`) —
+`‖Δt • A_aug‖ / (η + 2) < 1` has no `+ 2` on the numerator's denominator here, so
+`⌈‖Δt • A_aug‖⌉₊` alone clears it, `reachOrder_admissible` its proof.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,10 +35,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- An order admissible for the step `Δt` at `sys.plant.A`, `η` in
+/-- An order admissible for the step `Δt` at the augmented matrix `[A B; 0 0]`, `η` in
 `NeurNetContrSys.reach`'s own naming. -/
-noncomputable def NeurNetContrSys.reachOrder (sys : NeurNetContrSys 𝕋 S n) (Δt : ℝ) : ℕ :=
-  ⌈‖Δt • toRealMat sys.plant.A‖⌉₊
+noncomputable def NeurNetContrSys.reachOrder (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
+    (Δt : ℝ) : ℕ :=
+  ⌈‖Δt • sys.augment.A‖⌉₊
 
 end CORALean
 

@@ -792,7 +792,7 @@ def findRegionPolysRun : Option (List (RegionPoly D)) :=
 #eval findRegionPolysRun.map List.length
 
 /-- `ctSys` closed around `net`, two control periods of two float steps of `r` each (#1). -/
-def nnContrSys : NeurNetContrSys D 𝒵[D] 2 := ⟨ctSys, net⟩
+def nnContrSys : NeurNetContrSys (LinearSys D 2) 𝒵[D] 2 := ⟨ctSys, net⟩
 def nnContrReachRun : Zonotope (Vec D 2) := nnContrSys.reachFloat ⟨Z, 0, 2⟩
     ⟨stepR, 2, 4, 2, two_pos⟩
 /-- The same loop's set at every period boundary `0, 1, 2`, at an order `reachOrderFloat` finds. -/

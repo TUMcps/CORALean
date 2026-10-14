@@ -35,7 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every state reachable in at most `H` periods of length `Δtc` of the closed loop
 from a bare initial set `X`, at a period boundary. -/
-def NeurNetContrSys.reachUnionExact (sys : NeurNetContrSys 𝕋 S n) (Δtc : ℝ) (H : ℕ)
+def NeurNetContrSys.reachUnionExact (sys : NeurNetContrSys (LinearSys 𝕋 n) S n) (Δtc : ℝ) (H : ℕ)
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ i ≤ H, {y | ∃ x : ℝ → Vec ℝ n, x 0 ∈ X ∧
     (∀ j < H, ∀ t ∈ Set.Icc ((j : ℝ) * Δtc) (((j : ℝ) + 1) * Δtc),

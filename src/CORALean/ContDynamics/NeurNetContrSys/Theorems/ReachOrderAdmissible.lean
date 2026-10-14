@@ -13,9 +13,9 @@ denominator once `2` is added — `LinearSys.reachOrder_admissible`'s argument,
 one `+ 2` short since `reach_outer` asks for none on the numerator's side.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,9 +34,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSys.reachOrder_admissible (sys : NeurNetContrSys 𝕋 S n) (Δt : ℝ) :
-    ‖Δt • toRealMat sys.plant.A‖ / ((sys.reachOrder Δt : ℝ) + 2) < 1 := by
-  have hle : ‖Δt • toRealMat sys.plant.A‖ ≤ (sys.reachOrder Δt : ℝ) := Nat.le_ceil _
+theorem NeurNetContrSys.reachOrder_admissible (sys : NeurNetContrSys (LinearSys 𝕋 n) S n) (Δt : ℝ) :
+    ‖Δt • sys.augment.A‖ / ((sys.reachOrder Δt : ℝ) + 2) < 1 := by
+  have hle : ‖Δt • sys.augment.A‖ ≤ (sys.reachOrder Δt : ℝ) := Nat.le_ceil _
   have hpos : (0:ℝ) < (sys.reachOrder Δt : ℝ) + 2 := by positivity
   rw [div_lt_one hpos]
   linarith

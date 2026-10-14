@@ -13,7 +13,7 @@ public import CORALean.ContSet.SetUnion.SetUnion
 The periods `0` through `H = tFinal - tStart` of `reach`, one per branch of the
 `SetUnion` — the `Reach.reach` field of the instance. `η` is a floor,
 raised to `reachOrder`'s order where that is higher, since only an order admissible
-for `Δt` and the plant's matrix makes `reach_outer` hold.
+for `Δt` and the augmented matrix `[A B; 0 0]` makes `reach_outer` hold.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5
@@ -39,7 +39,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 /-- The periods `0` through `tFinal - tStart` of `reach`, from `R0`, at `η`
 raised to `reachOrder`'s order. -/
-noncomputable def NeurNetContrSys.reachUnion (sys : NeurNetContrSys 𝕋 S n)
+noncomputable def NeurNetContrSys.reachUnion (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
     (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions ℝ) : SetUnion (S n) :=
   let R₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt

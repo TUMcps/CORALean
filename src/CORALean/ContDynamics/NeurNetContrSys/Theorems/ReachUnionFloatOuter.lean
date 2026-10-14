@@ -34,13 +34,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Every zero-order-hold run of `H` control periods is, at the `i`-th period boundary, in
 the `i`-th set of `reachUnionFloat`. -/
 theorem NeurNetContrSys.reachUnionFloat_outer
-    (sys : NeurNetContrSys 𝕋 𝒵[𝕋] n)
+    (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[𝕋] n)
     {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ} {options : NeurNetContrSys.ReachOptions 𝕋}
     {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachUnionFloat params options = some Rs)
     (hΔt : 0 < toReal options.Δt) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {x : ℝ → Vec ℝ n}
+    {W : Zonotope (Vec 𝕋 0)} {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ 0}
     (traj : sys.Trajectory π ((options.N : ℝ) * toReal options.Δt)
-      (params.tFinal - params.tStart) params.X₀ x) :
+      (params.tFinal - params.tStart) params.X₀ W x w) :
     Rs.length = params.tFinal - params.tStart + 1 ∧ ∀ (i : ℕ) (hi : i < Rs.length),
       x ((i : ℝ) * ((options.N : ℝ) * toReal options.Δt))
         ∈ construct Rs[i] := by -- --- PROOF ---
