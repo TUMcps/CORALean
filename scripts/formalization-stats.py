@@ -27,7 +27,7 @@ Writes `experiments/paper/formalization-stats.json` and, under
 
 * `figures/formalization/formalization.tikz`, the paper's overview figure in pgfplots, in the
   CORA colours of `cora-macs.sty`: (a) on the left, CORA methods per group (proved and runnable
-  at float, proved and needing float, sound bound only, not yet; one thin rounded border round each bar, the
+  at float, proved and needing float, looser bound only, not yet; one thin rounded border round each bar, the
   out-of-scope count as "+n" after it), (b) and (c) stacked on the right: how the papers'
   results fared (and the in-scope ones not yet formalized), and what the Lean theorems are;
 * `figures/formalization/formalization-caption.tex`, its caption, with the out-of-scope reasons
@@ -111,8 +111,10 @@ def mix(a, b, pct):
     return tuple(round(pct / 100 * x + (1 - pct / 100) * y, 4) for x, y in zip(CORA[a], CORA[b]))
 
 
-BOUND_COLOUR = "CORAcolorPurple!35!white"  # xcolor mix: a pale purple, between "proved" and "not yet"
-CORA[BOUND_COLOUR] = mix("CORAcolorPurple", "white", 35)
+# The three coverage shades are CORA's own reach-set gradient, `CORAcolor('CORA:reachSet', 3, i)`:
+# `CORAcolorReachSet` (i = 3), their midpoint (i = 2), `CORAcolorReachSet2` (i = 1); darker is stronger.
+PROVED_COLOUR = "CORAcolorReachSet!50!CORAcolorReachSet2"
+CORA[PROVED_COLOUR] = mix("CORAcolorReachSet", "CORAcolorReachSet2", 50)
 
 
 def blue_to_purple(i, n):
@@ -140,8 +142,8 @@ RESULT_CLASSES = [
 RESULTS = RESULT_CLASSES + [seg("not_yet", "not yet", "white")]
 COVERAGE = [
     seg("float", "proved, at float", "CORAcolorReachSet"),
-    seg("proved", "proved, real only", "CORAcolorReachSet2"),
-    seg("bound", "sound bound only", BOUND_COLOUR),
+    seg("proved", "proved, real only", PROVED_COLOUR),
+    seg("bound", "looser bound only", "CORAcolorReachSet2"),
     seg("not_yet", "not yet", "white"),
 ]
 THEOREMS = [
@@ -342,7 +344,7 @@ def tikz(data):
     TAIL = 3 / 28.45 + CHAR_W * len(f"+{results[0][2]}") + 0.03
     xb = 0.59  # (b) and (c) start at this fraction of the line: a clear gap after (a)
     wb = (1 - xb) * LINEWIDTH_CM - TAIL  # what is left after the "+n"
-    p_methods = panel("methods", methods, COVERAGE, "5.0cm", "", "coveragelegend",
+    p_methods = panel("methods", methods, COVERAGE, "3.0cm", "", "coveragelegend",
                       title="(a) CORA functions",
                       at=f"at={{({lab_a}cm,0cm)}}, anchor=north west",
                       width=f"0.50\\linewidth-{lab_a}cm", width_cm=wa,

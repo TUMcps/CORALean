@@ -27,45 +27,45 @@
 \addplot[draw=none, forget plot] coordinates {(0,0) (0,12)};
 \addlegendimage{fill=CORAcolorReachSet}
 \addlegendentry{proved, at float}
-\addlegendimage{fill=CORAcolorReachSet2}
+\addlegendimage{fill=CORAcolorReachSet!50!CORAcolorReachSet2}
 \addlegendentry{proved, real only}
-\addlegendimage{fill=CORAcolorPurple!35!white}
-\addlegendentry{sound bound only}
+\addlegendimage{fill=CORAcolorReachSet2}
+\addlegendentry{looser bound only}
 \addlegendimage{fill=white}
 \addlegendentry{not yet}
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,1) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:8,1) -- ([yshift=2.5pt]axis cs:8,1) [sharp corners] -- ([yshift=2.5pt]axis cs:0,1) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,1) rectangle ([yshift=2.5pt]axis cs:6,1);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:6,1) rectangle ([yshift=2.5pt]axis cs:8,1);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:6,1) rectangle ([yshift=2.5pt]axis cs:8,1);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,1) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:8,1) -- ([yshift=2.5pt]axis cs:8,1) [sharp corners] -- ([yshift=2.5pt]axis cs:0,1) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:8,1) {\hspace{0em}\textcolor{black!40}{+11}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,2) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:7,2) -- ([yshift=2.5pt]axis cs:7,2) [sharp corners] -- ([yshift=2.5pt]axis cs:0,2) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,2) rectangle ([yshift=2.5pt]axis cs:6,2);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:6,2) rectangle ([yshift=2.5pt]axis cs:7,2);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:6,2) rectangle ([yshift=2.5pt]axis cs:7,2);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,2) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:7,2) -- ([yshift=2.5pt]axis cs:7,2) [sharp corners] -- ([yshift=2.5pt]axis cs:0,2) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:7,2) {\hspace{0em}\textcolor{black!40}{+4}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,3) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:3,3) -- ([yshift=2.5pt]axis cs:3,3) [sharp corners] -- ([yshift=2.5pt]axis cs:0,3) -- cycle;
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:0,3) rectangle ([yshift=2.5pt]axis cs:3,3);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:0,3) rectangle ([yshift=2.5pt]axis cs:3,3);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,3) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:3,3) -- ([yshift=2.5pt]axis cs:3,3) [sharp corners] -- ([yshift=2.5pt]axis cs:0,3) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:3,3) {\hspace{0em}\textcolor{black!40}{+5}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,4) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:5,4) -- ([yshift=2.5pt]axis cs:5,4) [sharp corners] -- ([yshift=2.5pt]axis cs:0,4) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,4) rectangle ([yshift=2.5pt]axis cs:4,4);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:4,4) rectangle ([yshift=2.5pt]axis cs:5,4);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:4,4) rectangle ([yshift=2.5pt]axis cs:5,4);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,4) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:5,4) -- ([yshift=2.5pt]axis cs:5,4) [sharp corners] -- ([yshift=2.5pt]axis cs:0,4) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:5,4) {\hspace{0em}\textcolor{black!40}{+2}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,5) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:23,5) -- ([yshift=2.5pt]axis cs:23,5) [sharp corners] -- ([yshift=2.5pt]axis cs:0,5) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,5) rectangle ([yshift=2.5pt]axis cs:21,5);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:21,5) rectangle ([yshift=2.5pt]axis cs:22,5);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:21,5) rectangle ([yshift=2.5pt]axis cs:22,5);
 \fill[white] ([yshift=-2.5pt]axis cs:22,5) rectangle ([yshift=2.5pt]axis cs:23,5);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,5) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:23,5) -- ([yshift=2.5pt]axis cs:23,5) [sharp corners] -- ([yshift=2.5pt]axis cs:0,5) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:23,5) {\hspace{0em}\textcolor{black!40}{+10}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,6) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:11,6) -- ([yshift=2.5pt]axis cs:11,6) [sharp corners] -- ([yshift=2.5pt]axis cs:0,6) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,6) rectangle ([yshift=2.5pt]axis cs:7,6);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:7,6) rectangle ([yshift=2.5pt]axis cs:11,6);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:7,6) rectangle ([yshift=2.5pt]axis cs:11,6);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,6) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:11,6) -- ([yshift=2.5pt]axis cs:11,6) [sharp corners] -- ([yshift=2.5pt]axis cs:0,6) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:11,6) {\hspace{0em}\textcolor{black!40}{+6}};
@@ -76,14 +76,14 @@
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:4,7) {\hspace{0em}\textcolor{black!40}{+1}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,8) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:10,8) -- ([yshift=2.5pt]axis cs:10,8) [sharp corners] -- ([yshift=2.5pt]axis cs:0,8) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,8) rectangle ([yshift=2.5pt]axis cs:3,8);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:3,8) rectangle ([yshift=2.5pt]axis cs:9,8);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:3,8) rectangle ([yshift=2.5pt]axis cs:9,8);
 \fill[white] ([yshift=-2.5pt]axis cs:9,8) rectangle ([yshift=2.5pt]axis cs:10,8);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,8) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:10,8) -- ([yshift=2.5pt]axis cs:10,8) [sharp corners] -- ([yshift=2.5pt]axis cs:0,8) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:10,8) {\hspace{0em}\textcolor{black!40}{+3}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,9) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:5,9) -- ([yshift=2.5pt]axis cs:5,9) [sharp corners] -- ([yshift=2.5pt]axis cs:0,9) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,9) rectangle ([yshift=2.5pt]axis cs:3,9);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:3,9) rectangle ([yshift=2.5pt]axis cs:4,9);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:3,9) rectangle ([yshift=2.5pt]axis cs:4,9);
 \fill[white] ([yshift=-2.5pt]axis cs:4,9) rectangle ([yshift=2.5pt]axis cs:5,9);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,9) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:5,9) -- ([yshift=2.5pt]axis cs:5,9) [sharp corners] -- ([yshift=2.5pt]axis cs:0,9) -- cycle;
@@ -95,14 +95,14 @@
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:5,10) {\hspace{0em}\textcolor{black!40}{+3}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,11) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:10,11) -- ([yshift=2.5pt]axis cs:10,11) [sharp corners] -- ([yshift=2.5pt]axis cs:0,11) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,11) rectangle ([yshift=2.5pt]axis cs:6,11);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:6,11) rectangle ([yshift=2.5pt]axis cs:9,11);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:6,11) rectangle ([yshift=2.5pt]axis cs:9,11);
 \fill[white] ([yshift=-2.5pt]axis cs:9,11) rectangle ([yshift=2.5pt]axis cs:10,11);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,11) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:10,11) -- ([yshift=2.5pt]axis cs:10,11) [sharp corners] -- ([yshift=2.5pt]axis cs:0,11) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:10,11) {\hspace{0em}\textcolor{black!40}{+8}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,12) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:8,12) -- ([yshift=2.5pt]axis cs:8,12) [sharp corners] -- ([yshift=2.5pt]axis cs:0,12) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,12) rectangle ([yshift=2.5pt]axis cs:7,12);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:7,12) rectangle ([yshift=2.5pt]axis cs:8,12);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:7,12) rectangle ([yshift=2.5pt]axis cs:8,12);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,12) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:8,12) -- ([yshift=2.5pt]axis cs:8,12) [sharp corners] -- ([yshift=2.5pt]axis cs:0,12) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:8,12) {\hspace{0em}\textcolor{black!40}{+3}};

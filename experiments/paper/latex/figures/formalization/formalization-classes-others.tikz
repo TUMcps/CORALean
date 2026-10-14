@@ -27,10 +27,10 @@
 \addplot[draw=none, forget plot] coordinates {(0,0) (0,11)};
 \addlegendimage{fill=CORAcolorReachSet}
 \addlegendentry{proved, at float}
-\addlegendimage{fill=CORAcolorReachSet2}
+\addlegendimage{fill=CORAcolorReachSet!50!CORAcolorReachSet2}
 \addlegendentry{proved, real only}
-\addlegendimage{fill=CORAcolorPurple!35!white}
-\addlegendentry{sound bound only}
+\addlegendimage{fill=CORAcolorReachSet2}
+\addlegendentry{looser bound only}
 \addlegendimage{fill=white}
 \addlegendentry{not yet}
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:0,1) {\hspace{0em}\textcolor{black!40}{+4}};
@@ -52,7 +52,7 @@
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:7,4) {\hspace{0em}\textcolor{black!40}{+3}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,5) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:16,5) -- ([yshift=2.5pt]axis cs:16,5) [sharp corners] -- ([yshift=2.5pt]axis cs:0,5) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,5) rectangle ([yshift=2.5pt]axis cs:13,5);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:13,5) rectangle ([yshift=2.5pt]axis cs:15,5);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:13,5) rectangle ([yshift=2.5pt]axis cs:15,5);
 \fill[white] ([yshift=-2.5pt]axis cs:15,5) rectangle ([yshift=2.5pt]axis cs:16,5);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,5) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:16,5) -- ([yshift=2.5pt]axis cs:16,5) [sharp corners] -- ([yshift=2.5pt]axis cs:0,5) -- cycle;
@@ -80,7 +80,7 @@
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:39,10) {\hspace{0em}\textcolor{black!40}{+4}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,11) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:20,11) -- ([yshift=2.5pt]axis cs:20,11) [sharp corners] -- ([yshift=2.5pt]axis cs:0,11) -- cycle;
 \fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,11) rectangle ([yshift=2.5pt]axis cs:13,11);
-\fill[CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:13,11) rectangle ([yshift=2.5pt]axis cs:20,11);
+\fill[CORAcolorReachSet!50!CORAcolorReachSet2] ([yshift=-2.5pt]axis cs:13,11) rectangle ([yshift=2.5pt]axis cs:20,11);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,11) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:20,11) -- ([yshift=2.5pt]axis cs:20,11) [sharp corners] -- ([yshift=2.5pt]axis cs:0,11) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:20,11) {\hspace{0em}\textcolor{black!40}{+41}};
