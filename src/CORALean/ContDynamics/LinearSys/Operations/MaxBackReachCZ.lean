@@ -42,8 +42,10 @@ variable {n : ℕ}
 noncomputable def LinearSys.maxBackReachCZ
     (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
     (P : HPolytope (Vec ℝ n)) (ZW : Zonotope (Vec ℝ n)) : ConZonotope (Vec ℝ n) :=
-  let P_ZW := P.minkDiffOf ZW.construct fun j => ZW.supportBound (P.A j) -- 11. P ⊖ Ẑ_W(τ_k), (11)
-  HPolytope.conZonotope (P := P_ZW)                                       -- 11. CZ(P ⊖ Ẑ_W(τ_k))
+  -- 11. P ⊖ Ẑ_W(τ_k), (11)
+  let P_ZW := P.minkDiffOf ZW.construct fun j => ZW.supportBound (P.A j)
+  -- 11. CZ(P ⊖ Ẑ_W(τ_k))
+  HPolytope.conZonotope (P := P_ZW)
     (fun j => ρ P_ZW (LinearMap.proj j)) (fun j => ρ P_ZW (-LinearMap.proj j))  -- box, by Alg. 1
 
 end CORALean

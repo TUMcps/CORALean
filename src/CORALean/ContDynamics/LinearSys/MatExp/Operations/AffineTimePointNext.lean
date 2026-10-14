@@ -23,7 +23,7 @@ itself falls back on when `A` is singular.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -44,6 +44,7 @@ variable {n : ℕ}
 /-- [1]'s `H(t_{k+1}) = e^{AΔt}H(t_k) ⊕ A^{-1}(e^{AΔt}-I_n)ũ`, Lines 6-7 of [1, Alg. 1]. -/
 noncomputable def MatExp.affineTimePointNext (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (Δt : ℝ) : Zonotope (Vec ℝ n) :=
+  -- 6.-7. H(t_{k+1}) ← e^{AΔt}H(t_k) ⊕ A^{-1}(e^{AΔt} - I_n)ũ
   (Zonotope.mtimes (exp (Δt • A)) H).shift (-(MatExp.expIntegral A Δt).mulVec ũ)
 
 end CORALean.Real

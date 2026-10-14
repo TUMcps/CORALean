@@ -23,7 +23,7 @@ PENDING = ROOT / "scripts" / "algorithm-steps-pending.txt"
 
 MIN_LINES = 3  # a one- or two-line definition has no steps to number
 CITES = re.compile(r"\bAlg\.|\bAlgorithm\b")
-STEP = re.compile(r"^\s*--\s*\d+\.\s")
+STEP = re.compile(r"^\s*--\s*\d+\.(?:-\d+\.)?\s")
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:(?:private|protected|noncomputable|partial|unsafe|"
                   r"nonrec)\s+)*(def|abbrev)\s+(\S+)")
 PREFIX = re.compile(r"^(@\[[^\]]*\]\s*$|(set_option|open|omit|include)\b.*\bin\s*$)")

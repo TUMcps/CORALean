@@ -97,3 +97,5 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`ExpDiffMatrices.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/ExpDiffMatrices.lean)
 * [`ExpDiffPrintedCounterexample.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpDiffPrintedCounterexample.lean)
 * [`ExpMulVecImageSubsetAddImage2.lean`](../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpMulVecImageSubsetAddImage2.lean)
+* [`DiscretizeEnclosureFloat.lean`](../../src/CORALean/ContDynamics/LinParamSys/Operations/DiscretizeEnclosureFloat.lean)
+* [`TimeIntervalStepFloat.lean`](../../src/CORALean/ContDynamics/LinParamSys/Operations/TimeIntervalStepFloat.lean)

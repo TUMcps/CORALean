@@ -23,7 +23,7 @@ centre. The horizon `t_end` must be a positive float.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,7 +45,8 @@ def LinearSys.autoReachFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
   if 0 < ToRat.toRat tend ∧ ToRat.isNaN tend = false then               -- a positive horizon
     match sys.autoRunFloat X₀ V tend εmax ζ ηmax fuel K (LinearSys.autoInitFloat X₀ tend) with
     | none => none                                                      -- the tuning gave out
-    | some (s, Rs) => if ToRat.toRat tend ≤ s.t then some Rs else none  -- 33. R̂([0,t_end])
+    -- 33. R̂([0,t_end])
+    | some (s, Rs) => if ToRat.toRat tend ≤ s.t then some Rs else none
   else none
 
 end CORALean

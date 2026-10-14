@@ -27,7 +27,7 @@ interval.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -53,16 +53,23 @@ noncomputable def LinearSys.maxBackReachStep (sys : LinearSys 𝕋 n)
     (P₁ P₂ : HPolytope (Vec ℝ n)) (U W₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (Δt : ℝ) (η : ℕ)
     (s : LinearSys.MaxBackReachState n) : LinearSys.MaxBackReachState n :=
-  let tk1 := s.t + Δt                                               -- 7. t_{k+1} ← t_k + Δt
-  let Φk := exp (s.t • toRealMat sys.A)                             -- 7. e^{A t_k}
-  let ZU := Zonotope.plus s.ZU (Zonotope.mtimes Φk                  -- 8. Z̲_U(t_{k+1})
+  -- 7. t_{k+1} ← t_k + Δt
+  let tk1 := s.t + Δt
+  -- 7. e^{A t_k}
+  let Φk := exp (s.t • toRealMat sys.A)
+  -- 8. Z̲_U(t_{k+1})
+  let ZU := Zonotope.plus s.ZU (Zonotope.mtimes Φk
     (Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) Δt) U))
-  let ZW₀ := Zonotope.plus s.ZW₀                                    -- 9. Ẑ_{W₀}(t_{k+1})
+  -- 9. Ẑ_{W₀}(t_{k+1})
+  let ZW₀ := Zonotope.plus s.ZW₀
     (Zonotope.mtimes Φk (sys.inputSolution (S := 𝒵) Δt η W₀))
-  let ZW := Zonotope.plus ZW₀ (Zw s.t)                              -- 10. Ẑ_W(τ_k)
-  let CZ := ConZonotope.linComb                                     -- 11. conv(CZ(…), CZ(…))
+  -- 10. Ẑ_W(τ_k)
+  let ZW := Zonotope.plus ZW₀ (Zw s.t)
+  -- 11. conv(CZ(…), CZ(…))
+  let CZ := ConZonotope.linComb
     (LinearSys.maxBackReachCZ ρ P₁ ZW) (LinearSys.maxBackReachCZ ρ P₂ ZW)
-  let R := ConZonotope.mtimes (exp ((-tk1) • toRealMat sys.A))  -- 12. e^{-A t_{k+1}}(CZ ⊕ -Z̲_U)
+  -- 12. e^{-A t_{k+1}}(CZ ⊕ -Z̲_U)
+  let R := ConZonotope.mtimes (exp ((-tk1) • toRealMat sys.A))
     (ConZonotope.plus CZ (Zonotope.conZonotope (Zonotope.mtimes (-(1 : Mat ℝ n n)) s.ZU)))
   { t := tk1, ZU := ZU, ZW₀ := ZW₀, ZW := ZW, R := R }
 

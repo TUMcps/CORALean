@@ -27,7 +27,7 @@ bundle and a one-member bundle, as over `ℝ`; one `let` per line of the listing
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,16 +46,23 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def LinearSys.bundleReachFloat (sys : LinearSys 𝕋 n) (Rh₀ : ZonoBundle (Vec 𝕋 n))
     (Ri₀ : Zonotope (Vec 𝕋 n)) (r : 𝕋) (η N : ℕ) : List (ZonoBundle (Vec 𝕋 n)) :=
   let E := sys.expIntervalFloat r r η
+  -- 1. P₀ = box(R^i_0)
   let P₀ := Ri₀.interval.zonotope
+  -- 2. R_0 = R^h_0 ⊕ P_0
   let R₀ := Plus.plus Rh₀ P₀.zonoBundle
+  -- 3. for k = 1 … N
   ((List.range N).foldl
     (fun (S : (ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) × List
       (ZonoBundle (Vec 𝕋 n))) _ =>
+      -- 4. R^h_k = e^{Ar} R^h_{k-1}
       let Rhₖ := Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵ℬ[𝕋]) E S.1.1
+      -- 5. R^i_k = e^{Ar} R^i_{k-1}
       let Riₖ := Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋]) E S.1.2.1
+      -- 6. P_k = P_{k-1} ⊕ box(R^i_k)
       let Pₖ := Plus.plus S.1.2.2 Riₖ.interval.zonotope
+      -- 7. R_k = R^h_k ⊕ P_k
       let Rₖ := Plus.plus Rhₖ Pₖ.zonoBundle
       ((Rhₖ, Riₖ, Pₖ), S.2 ++ [Rₖ]))
     ((Rh₀, Ri₀, P₀), [R₀])).2

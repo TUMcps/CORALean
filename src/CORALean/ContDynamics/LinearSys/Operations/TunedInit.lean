@@ -18,7 +18,7 @@ accumulated errors, before the first iteration.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,11 +36,15 @@ variable {n : ℕ}
 /-- Lines 1-3: the time, the step `Alg. 2` starts from, and the two accumulated
 errors, before the first iteration. -/
 noncomputable def LinearSys.tunedInit (tf μ : ℝ) : LinearSys.TunedState n :=
-  { t := 0                                                       -- 1. t ← 0
-    Δt := tf * μ                                                  -- 2. Δt₋₁ ← t_f μ
+  -- 1. t ← 0
+  { t := 0
+    -- 2. Δt₋₁ ← t_f μ
+    Δt := tf * μ
     η := 0
-    εP := 0                                                       -- 3. ε_P([0,0]) ← 0
-    εS := 0                                                       -- 3. ε_S([0,0]) ← 0
+    -- 3. ε_P([0,0]) ← 0
+    εP := 0
+    -- 3. ε_S([0,0]) ← 0
+    εS := 0
     PR := Zonotope.ofPoint 0
     R := Zonotope.ofPoint 0 }
 

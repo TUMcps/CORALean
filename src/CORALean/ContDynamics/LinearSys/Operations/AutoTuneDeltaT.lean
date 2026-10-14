@@ -19,7 +19,7 @@ and `autoTuneOrder` sweeps until both admissible-error bounds clear.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,8 +39,10 @@ did not suffice. -/
 noncomputable def LinearSys.autoTuneDeltaT (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk tend εmax ζ εaAcc Δtprev : ℝ) (ηmax fuel : ℕ)
     (U₀ : Zonotope (Vec ℝ n)) : Option (ℝ × ℕ) :=
-  let Δt₀ := 2 * Δtprev                                                     -- 5. Δt_k ← 2Δt_{k-1}
-  sys.autoTuneSearch le H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt₀ fuel            -- 6.-15. the repeat
+  -- 5. Δt_k ← 2Δt_{k-1}
+  let Δt₀ := 2 * Δtprev
+  -- 6.-15. the repeat
+  sys.autoTuneSearch le H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt₀ fuel
 
 end CORALean
 

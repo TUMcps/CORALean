@@ -19,7 +19,7 @@ completion.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,6 +39,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 sets that ran to completion. -/
 noncomputable def LinearSys.autoReach (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (tend εmax ζ : ℝ) (ηmax fuel K : ℕ) : Set (Vec ℝ n) :=
+  -- 33. R̂([0,t_end]), the union of the time-interval sets R̂(τ_k)
   ⋃ k < K, ⋃ s ∈ sys.autoRun le X₀ U tend εmax ζ ηmax fuel k,
     ⋃ r ∈ sys.autoStep le X₀ U tend εmax ζ ηmax fuel s, construct r.2
 

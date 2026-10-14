@@ -33,7 +33,7 @@ bound `nrm` are also refused if `isNaN`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -61,21 +61,30 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec
   let eAt := sys.expSquaringFloat s.tLo s.tHi ηe sq                 -- [e^{A t_i}]
   let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_i}] ·
     (S := 𝒵[𝕋]) eAt
-  let (Δt, η, εH, εP) ← sys.adaptTimeStepFloat eAt X₀ Ũ options.εHmax    -- 5. Alg. 2
+  -- 5. Alg. 2
+  let (Δt, η, εH, εP) ← sys.adaptTimeStepFloat eAt X₀ Ũ options.εHmax
     options.εPmax s.εP tf s.t s.Δt options.μ options.ηmax options.fuel
   let nrm := MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point sys.A))  -- ≥ ‖Δt A‖
   if 0 < ToRat.toRat Δt ∧ 2 ≤ η ∧ ToRat.toRat nrm / ((η : ℚ) + 2) ≤ 1 / 2  -- admissible
       ∧ ToRat.isNaN Δt = false ∧ ToRat.isNaN nrm = false then              -- not read from a NaN
-    let HR₀ := sys.timeIntervalStepFloat Δt η X₀                    -- 6. HR([0,Δt_i])
+    -- 6. HR([0,Δt_i])
+    let HR₀ := sys.timeIntervalStepFloat Δt η X₀
     let PuR := sys.inputSolutionFloat Δt η seg                      -- P̃^R([0,Δt_i]), from [0, ũ]
     let Pu := sys.inputSolutionFloat Δt η ũ                         -- P̃(Δt_i)
-    let PU := sys.inputSolutionFloat Δt η Ũ                         -- 6. PR([0,Δt_i])
-    let HR := eA (HR₀ ⊞ PuR ⊞ PU)                                   -- 7. e^{At_i}(HR ⊕ PR)
-    let PR := s.P ⊞ eA (Pu ⊞ PU)                                    -- 7. (P̃ ⊕ PR)(t_{i+1})
-    let (Φset, εS) := Zonotope.adaptSetOrder PR options.εSmax s.εS tf s.t Δt   -- 8. Alg. 3
-    let PRred := Reduce.reduce PR Φset                              -- 8. red(PR, Φ_set,i)
-    let R := HR ⊞ s.P                                               -- 9. R([t_i,t_{i+1}])
-    let t' := s.t + ToRat.toRat Δt                                  -- 10. t ← t + Δt_i
+    -- 6. PR([0,Δt_i])
+    let PU := sys.inputSolutionFloat Δt η Ũ
+    -- 7. e^{At_i}(HR ⊕ PR)
+    let HR := eA (HR₀ ⊞ PuR ⊞ PU)
+    -- 7. (P̃ ⊕ PR)(t_{i+1})
+    let PR := s.P ⊞ eA (Pu ⊞ PU)
+    -- 8. Alg. 3
+    let (Φset, εS) := Zonotope.adaptSetOrder PR options.εSmax s.εS tf s.t Δt
+    -- 8. red(PR, Φ_set,i)
+    let PRred := Reduce.reduce PR Φset
+    -- 9. R([t_i,t_{i+1}])
+    let R := HR ⊞ s.P
+    -- 10. t ← t + Δt_i
+    let t' := s.t + ToRat.toRat Δt
     some ({ tStart := t₀ + s.t, tEnd := t₀ + min t' tf, Δt := Δt, η := η,
             ρ := Φset, R := R, εH := εH, εP := εP, εS := εS },
           { t := t', tLo := addDown s.tLo Δt, tHi := addUp s.tHi Δt, Δt := Δt,

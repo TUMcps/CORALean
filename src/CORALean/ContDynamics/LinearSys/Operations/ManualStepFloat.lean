@@ -34,7 +34,7 @@ the float layer has no `G`, and encloses a constant input's share this way throu
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -54,28 +54,42 @@ and `R̂(τ_k)`, or `none` where no squaring count fits `[e^{At_k}]` or `[e^{At_
 def LinearSys.manualStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (η ρ : ℕ) (s : LinearSys.ManualStateFloat 𝕋 n) :
     Option (LinearSys.ManualStateFloat 𝕋 n × Zonotope (Vec 𝕋 n)) := do
-  let ũ := (Interval.point V.c).zonotope                            -- 1. {ũ}, V's stored centre
-  let Ũ := Recentre.recentre V                                      -- 1. U₀ = V - ũ, holding 0
+  -- 1. {ũ}, V's stored centre
+  let ũ := (Interval.point V.c).zonotope
+  -- 1. U₀ = V - ũ, holding 0
+  let Ũ := Recentre.recentre V
   let seg := LinComb.linComb (Interval.point fun _ => zero).zonotope ũ    -- [0, ũ]
-  let PuΔt := sys.inputSolutionFloat Δt η ũ                         -- 3. P^u(Δt), eq. (19)
-  let PUΔt := sys.inputSolutionFloat Δt η Ũ                         -- 3. P̂^U(Δt), eq. (20)
+  -- 3. P^u(Δt), eq. (19)
+  let PuΔt := sys.inputSolutionFloat Δt η ũ
+  -- 3. P̂^U(Δt), eq. (20)
+  let PUΔt := sys.inputSolutionFloat Δt η Ũ
   let PuτΔt := sys.inputSolutionFloat Δt η seg                      -- P^u(τ), every τ ≤ Δt
-  let tk1 := s.t + ToRat.toRat Δt                                   -- 5. t_{k+1}
-  let tLo1 := addDown s.tLo Δt                                      -- 5. a float below t_{k+1}
-  let tHi1 := addUp s.tHi Δt                                        -- 5. a float above t_{k+1}
+  -- 5. t_{k+1}
+  let tk1 := s.t + ToRat.toRat Δt
+  -- 5. a float below t_{k+1}
+  let tLo1 := addDown s.tLo Δt
+  -- 5. a float above t_{k+1}
+  let tHi1 := addUp s.tHi Δt
   let sq ← sys.squaringsFloat Δt s.tLo s.tHi η                      -- t_k / 2^sq within Δt
-  let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 6. [e^{A t_k}] ·
+  -- 6. [e^{A t_k}] ·
+  let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋])
     (sys.expSquaringFloat s.tLo s.tHi η sq)
-  let Puk1 := (s.Pu.zonotope ⊞ Φtk PuΔt).interval                   -- 6. P^u(t_{k+1}), a box
+  -- 6. P^u(t_{k+1}), a box
+  let Puk1 := (s.Pu.zonotope ⊞ Φtk PuΔt).interval
   let sq1 ← sys.squaringsFloat Δt tLo1 tHi1 η                       -- t_{k+1} / 2^sq1 within Δt
-  let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 7. [e^{A t_{k+1}}] ·
+  -- 7. [e^{A t_{k+1}}] ·
+  let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋])
     (sys.expSquaringFloat tLo1 tHi1 η sq1)
-  let Hk1 := Φtk1 X₀ ⊞ Puk1.zonotope                                -- 7. H(t_{k+1})
-  let Hτk := sys.timeIntervalStepFloat Δt η s.H ⊞ PuτΔt             -- 8.-9. Ĥ(τ_k)
-  let PUk1 := Reduce.reduce (s.PU ⊞ Φtk PUΔt) ρ                     -- 10. P̂^U(t_{k+1})
-  let Rτk := Hτk ⊞ PUk1                                             -- 11. R̂(τ_k)
+  -- 7. H(t_{k+1})
+  let Hk1 := Φtk1 X₀ ⊞ Puk1.zonotope
+  -- 8.-9. Ĥ(τ_k)
+  let Hτk := sys.timeIntervalStepFloat Δt η s.H ⊞ PuτΔt
+  -- 10. P̂^U(t_{k+1})
+  let PUk1 := Reduce.reduce (s.PU ⊞ Φtk PUΔt) ρ
+  -- 11. R̂(τ_k)
+  let Rτk := Hτk ⊞ PUk1
   pure ({ t := tk1, tLo := tLo1, tHi := tHi1, H := Hk1, Pu := Puk1, PU := PUk1 }, Rτk)
 
 end CORALean

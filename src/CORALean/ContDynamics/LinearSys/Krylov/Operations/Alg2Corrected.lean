@@ -26,7 +26,7 @@ propagates `R*_{b,1}` by `e^{Akδ}`, (24)'s `e^{At_k}` at `t_k = kδ`, not by th
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,23 +47,34 @@ def Krylov.alg2Corrected (theoremIII1 : Set (Vec ℝ n) → ℝ → Set (Vec ℝ
     (X₀ : Set (Vec ℝ n)) (δ tf : ℝ) : Set (Vec ℝ n) :=
   let box : Set (Vec ℝ n) → Set (Vec ℝ n) :=
     fun S => {x | ∀ i, ∃ y ∈ S, ∃ z ∈ S, y i ≤ x i ∧ x i ≤ z i}
-  let Rsh1 := theoremIII1 X₀ δ                              -- line 1
-  let Rsb1 := corollaryIV2                                  -- line 2
-  let Rp1 := box (convexHull ℝ (insert 0 Rsb1))             -- line 3
-  let Rh1 := theoremIII2 X₀ Rsh1                            -- line 4
-  let R1 := Rh1 + Rp1                                       -- line 5
-  -- lines 6–12: `(R*_{h,k}, R_{p,k}, R_k)` after the pass for `k = m`, `m + 1` its index
+  -- 1. R*_{h,1} ← theorem_III.1(X₀, A, δ)
+  let Rsh1 := theoremIII1 X₀ δ
+  -- 2. R*_{b,1} ← corollary_IV.2(U, A, B, δ)
+  let Rsb1 := corollaryIV2
+  -- 3. R_{p,1} ← box(conv(0, R*_{b,1}))
+  let Rp1 := box (convexHull ℝ (insert 0 Rsb1))
+  -- 4. R_{h,1} ← theorem_III.2(X₀, R*_{h,1}, A, δ)
+  let Rh1 := theoremIII2 X₀ Rsh1
+  -- 5. R_1 ← R_{h,1} ⊕ R_{p,1}
+  let R1 := Rh1 + Rp1
+  -- 6.-12. for k = 1 … ⌈t_f/δ - 1⌉: `(R*_{h,k}, R_{p,k}, R_k)` after `m` passes, `k = m + 1`
   let state : ℕ → Set (Vec ℝ n) × Set (Vec ℝ n) × Set (Vec ℝ n) := fun m =>
     Nat.rec (motive := fun _ => Set (Vec ℝ n) × Set (Vec ℝ n) × Set (Vec ℝ n)) (Rsh1, Rp1, R1)
       (fun m prev =>
         let k : ℝ := m + 1
-        let Rshk1 := theoremIII1 X₀ ((k + 1) * δ)           -- line 7
-        let Rsbk1 := theoremIII1 Rsb1 (k * δ)               -- line 8
-        let Rpk1 := prev.2.1 + box Rsbk1                    -- line 9
-        let Rhk1 := theoremIII2 prev.1 (theoremIII1 prev.1 δ)  -- line 10
-        let Rk1 := Rhk1 + Rpk1                              -- line 11
+        -- 7. R*_{h,k+1} ← theorem_III.1(X₀, A, (k + 1)δ)
+        let Rshk1 := theoremIII1 X₀ ((k + 1) * δ)
+        -- 8. R*_{b,k+1} ← theorem_III.1(R*_{b,1}, A, kδ), with `e^{Akδ}`
+        let Rsbk1 := theoremIII1 Rsb1 (k * δ)
+        -- 9. R_{p,k+1} ← R_{p,k} ⊕ box(R*_{b,k+1})
+        let Rpk1 := prev.2.1 + box Rsbk1
+        -- 10. R_{h,k+1} ← theorem_III.2(R*_{h,k}, theorem_III.1(R*_{h,k}, A, δ), A, δ)
+        let Rhk1 := theoremIII2 prev.1 (theoremIII1 prev.1 δ)
+        -- 11. R_{k+1} ← R_{h,k+1} ⊕ R_{p,k+1}
+        let Rk1 := Rhk1 + Rpk1
         (Rshk1, Rpk1, Rk1)) m
-  ⋃ m ∈ Finset.range ⌈tf / δ⌉₊, (state m).2.2               -- line 13
+  -- 13. R([0, t_f]) ← ⋃_k R_k
+  ⋃ m ∈ Finset.range ⌈tf / δ⌉₊, (state m).2.2
 
 end CORALean.Real
 

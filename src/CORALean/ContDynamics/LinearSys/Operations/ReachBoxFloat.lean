@@ -33,7 +33,7 @@ that search fails. The result is the list `R₀, …, R_N`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -54,19 +54,28 @@ def LinearSys.reachBoxFloat (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec �
     Option (List (Zonotope (Vec 𝕋 n))) := do
   let η' ← sys.reachOrderFloat r r η                               -- η, raised until admissible
   let eAr := sys.expIntervalFloat r r η'                           -- [e^{Ar}]
-  let H₀ := sys.timeIntervalStepFloat r η' X₀                      -- H^R_0 = CH(X⁰, e^{Ar}X⁰) + FX⁰
-  let V₀ := sys.inputSolutionFloat r η' U                          -- V₀ = ⊕ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E·r·U
-  let P₀ := V₀.interval.zonotope                                   -- P^R_0 = box(V₀)
-  let R₀ := H₀ ⊞ P₀                                                -- R₀ = H^R_0 + P^R_0
+  -- 1. H^R_0 = CH(X⁰, e^{Ar}X⁰) + FX⁰
+  let H₀ := sys.timeIntervalStepFloat r η' X₀
+  -- 2. V₀ = ⊕ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E·r·U
+  let V₀ := sys.inputSolutionFloat r η' U
+  -- 3. P^R_0 = box(V₀)
+  let P₀ := V₀.interval.zonotope
+  -- 4. R₀ = H^R_0 + P^R_0
+  let R₀ := H₀ ⊞ P₀
   let ℰ := fun (Z : Zonotope (Vec 𝕋 n)) =>                               -- Z ↦ [e^{Ar}] Z
     Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eAr Z
+  -- 5. for k = 1 … (t_f/r - 1)
   pure ((List.range N).foldl
     (fun (s : (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) × List
       (Zonotope (Vec 𝕋 n))) _ =>
-      let Hₖ := ℰ s.1.1                                            -- H^R_k = e^{Ar} H^R_{k-1}
-      let Vₖ := ℰ s.1.2.1                                          -- V_k = e^{Ar} V_{k-1}
-      let Pₖ := s.1.2.2 ⊞ Vₖ.interval.zonotope                     -- P^R_k = P^R_{k-1} + box(V_k)
-      let Rₖ := Hₖ ⊞ Pₖ                                            -- R_k = H^R_k + P^R_k
+      -- 6. H^R_k = e^{Ar} H^R_{k-1}
+      let Hₖ := ℰ s.1.1
+      -- 7. V_k = e^{Ar} V_{k-1}
+      let Vₖ := ℰ s.1.2.1
+      -- 8. P^R_k = P^R_{k-1} + box(V_k)
+      let Pₖ := s.1.2.2 ⊞ Vₖ.interval.zonotope
+      -- 9. R_k = H^R_k + P^R_k
+      let Rₖ := Hₖ ⊞ Pₖ
       ((Hₖ, Vₖ, Pₖ), s.2 ++ [Rₖ]))
     ((H₀, V₀, P₀), [R₀])).2
 

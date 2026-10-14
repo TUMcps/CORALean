@@ -26,7 +26,7 @@ enter with covariance `0`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,8 +46,11 @@ noncomputable def LinProbSys.enclosingHull (sys : LinProbSys n m) (r : ℝ)
     (Rhat : ProbZonotope n) (Rbar : Zonotope (Vec ℝ n)) (Runder : ProbZonotope n) (γ : ℝ)
     (k : ℕ) : ProbZonotope n :=
   let eAr := NormedSpace.exp (r • sys.A)
-  let Rbarbar := ProbZonotope.plus ⟨Rbar, 0⟩ Runder                -- ℛ̄(r) = R̄(r) ⊞ ℛ̲(r)
-  let R₀ := ProbZonotope.plus Rhat ⟨Rbarbar.zonotope γ, 0⟩         -- ℛ̂([0,r]) + η(ℛ̄(r), γ)
+  -- 1. ℛ̄(r) = R̄(r) ⊞ ℛ̲(r)
+  let Rbarbar := ProbZonotope.plus ⟨Rbar, 0⟩ Runder
+  -- 2. ℛ([0,r]) = ℛ̂([0,r]) + η(ℛ̄(r), γ)
+  let R₀ := ProbZonotope.plus Rhat ⟨Rbarbar.zonotope γ, 0⟩
+  -- 3. for k = 1 … ζ: ℛ([kr,(k+1)r]) = e^{Ar} ℛ([(k-1)r,kr]) + ℛ̄(r)
   Nat.rec R₀ (fun _ Rk => ProbZonotope.plus (ProbZonotope.mtimes eAr Rk) Rbarbar) k
 
 end CORALean

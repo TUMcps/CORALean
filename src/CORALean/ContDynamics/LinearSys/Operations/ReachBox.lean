@@ -32,7 +32,7 @@ exact `e^{Ar}`. `LinearSys.WithInput.reach` runs the same windows without `box()
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -52,17 +52,26 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 noncomputable def LinearSys.reachBox (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n)) (r : ℝ)
     (η N : ℕ) : List (Zonotope (Vec ℝ n)) :=
   let eAr := exp (r • toRealMat sys.A)                             -- e^{Ar}
-  let H₀ := sys.timeIntervalStep (S := 𝒵) r η X₀          -- H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰
-  let V₀ := sys.inputSolution (S := 𝒵) r η U              -- V₀ = ⊕ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U
-  let P₀ := V₀.interval.zonotope                                   -- P^R_0 = box(V₀)
-  let R₀ := H₀.plus P₀                                             -- R₀ = H^R_0 + P^R_0
+  -- 1. H^R_0 = CH(X⁰, e^{Ar}X⁰) + F X⁰
+  let H₀ := sys.timeIntervalStep (S := 𝒵) r η X₀
+  -- 2. V₀ = ⊕ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U
+  let V₀ := sys.inputSolution (S := 𝒵) r η U
+  -- 3. P^R_0 = box(V₀)
+  let P₀ := V₀.interval.zonotope
+  -- 4. R₀ = H^R_0 + P^R_0
+  let R₀ := H₀.plus P₀
+  -- 5. for k = 1 … (t_f/r - 1)
   ((List.range N).foldl
     (fun (s : (Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n))
         × List (Zonotope (Vec ℝ n))) _ =>
-      let Hₖ := s.1.1.mtimes eAr                                   -- H^R_k = e^{Ar} H^R_{k-1}
-      let Vₖ := s.1.2.1.mtimes eAr                                 -- V_k = e^{Ar} V_{k-1}
-      let Pₖ := s.1.2.2.plus Vₖ.interval.zonotope                  -- P^R_k = P^R_{k-1} + box(V_k)
-      let Rₖ := Hₖ.plus Pₖ                                         -- R_k = H^R_k + P^R_k
+      -- 6. H^R_k = e^{Ar} H^R_{k-1}
+      let Hₖ := s.1.1.mtimes eAr
+      -- 7. V_k = e^{Ar} V_{k-1}
+      let Vₖ := s.1.2.1.mtimes eAr
+      -- 8. P^R_k = P^R_{k-1} + box(V_k)
+      let Pₖ := s.1.2.2.plus Vₖ.interval.zonotope
+      -- 9. R_k = H^R_k + P^R_k
+      let Rₖ := Hₖ.plus Pₖ
       ((Hₖ, Vₖ, Pₖ), s.2 ++ [Rₖ]))
     ((H₀, V₀, P₀), [R₀])).2
 

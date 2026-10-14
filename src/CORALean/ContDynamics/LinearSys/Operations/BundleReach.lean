@@ -34,7 +34,7 @@ soundness theorem. No float refinement: the step is the exact `e^{Ar}`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -54,14 +54,21 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 noncomputable def LinearSys.bundleReach (sys : LinearSys 𝕋 n) (Rh₀ : ZonoBundle (Vec ℝ n))
     (Ri₀ : Zonotope (Vec ℝ n)) (r : ℝ) (N : ℕ) : List (ZonoBundle (Vec ℝ n)) :=
   let E := exp (r • toRealMat sys.A)
+  -- 1. P₀ = box(R^i_0)
   let P₀ := Ri₀.interval.zonotope
+  -- 2. R_0 = R^h_0 ⊕ P_0
   let R₀ := Rh₀.plus P₀.zonoBundle
+  -- 3. for k = 1 … N
   ((List.range N).foldl
     (fun (S : (ZonoBundle (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n))
         × List (ZonoBundle (Vec ℝ n))) _ =>
+      -- 4. R^h_k = e^{Ar} R^h_{k-1}
       let Rhₖ := S.1.1.mtimes E
+      -- 5. R^i_k = e^{Ar} R^i_{k-1}
       let Riₖ := S.1.2.1.mtimes E
+      -- 6. P_k = P_{k-1} ⊕ box(R^i_k)
       let Pₖ := S.1.2.2.plus Riₖ.interval.zonotope
+      -- 7. R_k = R^h_k ⊕ P_k
       let Rₖ := Rhₖ.plus Pₖ.zonoBundle
       ((Rhₖ, Riₖ, Pₖ), S.2 ++ [Rₖ]))
     ((Rh₀, Ri₀, P₀), [R₀])).2

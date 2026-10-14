@@ -20,7 +20,7 @@ use, so the step is sound at any pair this returns: no soundness theorem is owed
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,8 +39,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 def LinearSys.autoTuneDeltaTFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
     (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n) (tk tend εmax ζ εaAcc : ℚ) (Δtprev : 𝕋) (ηmax fuel : ℕ)
     (U₀ : Zonotope (Vec 𝕋 n)) : Option (𝕋 × ℕ) :=
-  let Δt₀ := addUp Δtprev Δtprev                                          -- 5. Δt_k ← 2Δt_{k-1}
-  sys.autoTuneSearchFloat eAtk H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt₀ fuel   -- 6.-15. the repeat
+  -- 5. Δt_k ← 2Δt_{k-1}
+  let Δt₀ := addUp Δtprev Δtprev
+  -- 6.-15. the repeat
+  sys.autoTuneSearchFloat eAtk H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt₀ fuel
 
 end CORALean
 

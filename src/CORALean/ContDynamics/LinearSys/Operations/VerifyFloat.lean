@@ -21,7 +21,7 @@ is `verifyFloat_safe` and `verifyFloat_violated`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +42,8 @@ def LinearSys.verifyFloat (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
     (distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋)
     (G : Fin (r + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (F : Fin (w + 1) → HPolytope 𝕋 (Vec 𝕋 n)) (εmax₀ : 𝕋)
     (fuel : ℕ) : Option Bool :=
-  LinearSys.verifyRunFloat reachFn innerApprox distG distF G F εmax₀ fuel       -- 1. ε_max ← ε_max₀
+  -- 1. ε_max ← ε_max₀
+  LinearSys.verifyRunFloat reachFn innerApprox distG distF G F εmax₀ fuel
 
 end CORALean
 

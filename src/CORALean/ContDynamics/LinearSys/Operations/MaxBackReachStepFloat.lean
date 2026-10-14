@@ -38,7 +38,7 @@ how much of each set the conversion covers.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -60,27 +60,32 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
     (Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (η : ℕ) (s : LinearSys.MaxBackReachStateFloat 𝕋 n) :
     Option (LinearSys.MaxBackReachStateFloat 𝕋 n) := do
-  let tk1Lo := addDown s.tLo Δt                                     -- 7. t_{k+1} ← t_k + Δt
+  -- 7. t_{k+1} ← t_k + Δt
+  let tk1Lo := addDown s.tLo Δt
   let tk1Hi := addUp s.tHi Δt
   let ηk ← sys.reachOrderFloat s.tLo s.tHi η                        -- the orders, raised until
   let ηk1 ← sys.reachOrderFloat tk1Lo tk1Hi η                       -- admissible at each bracket
   let ηn ← sys.reachOrderFloat (neg tk1Hi) (neg tk1Lo) η
   let η' ← sys.reachOrderFloat Δt Δt η
-  let Φk := sys.expIntervalFloat s.tLo s.tHi ηk                     -- 7. [e^{A t_k}]
+  -- 7. [e^{A t_k}]
+  let Φk := sys.expIntervalFloat s.tLo s.tHi ηk
   let Ψ := sys.expIntervalFloat tk1Lo tk1Hi ηk1                     -- [e^{A t_{k+1}}]
   let Φn := sys.expIntervalFloat (neg tk1Hi) (neg tk1Lo) ηn         -- [e^{-A t_{k+1}}]
   let I := MatExp.adaptiveIntegral (Interval.point sys.A) Δt η'     -- [∫₀^Δt e^{As}ds]
   let M := Interval.matMul Φk I                                     -- [e^{A t_k} ∫₀^Δt e^{As}ds]
   let T := Mtimes.mtimes (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋]) M U
-  let ZU := s.ZU ⊞ T                                                -- 8. Z̲_U(t_{k+1})
+  -- 8. Z̲_U(t_{k+1})
+  let ZU := s.ZU ⊞ T
   let UErr : Vec 𝕋 n := fun i =>                                    -- what ZU lies outside by
     addUp (addUp (s.UErr i) ((Zonotope.mtimesIntervalMatBox M U).magnitude i))
       ((Zonotope.plusBox s.ZU T).magnitude i)
-  let ZW₀ := s.ZW₀ ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 9. Ẑ_{W₀}(t_{k+1})
+  -- 9. Ẑ_{W₀}(t_{k+1})
+  let ZW₀ := s.ZW₀ ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋]) Φk
     (sys.inputSolutionFloat Δt η' W₀)
-  let ZW := ZW₀ ⊞ Zw s.tLo s.tHi                                    -- 10. Ẑ_W(τ_k)
+  -- 10. Ẑ_W(τ_k)
+  let ZW := ZW₀ ⊞ Zw s.tLo s.tHi
   let Z₀ := Bx.zonotope                                             -- the conversion box
   let ζ : Vec 𝕋 n := fun k =>                                       -- |z| for a point of the hull
     addUp (absolute (Z₀.c k)) (radius (fun i j => Z₀.G j i) k)
@@ -89,9 +94,12 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
   let Hs := (P₁.conZonotopeInner Bx).linCombSameCentre (P₂.conZonotopeInner Bx)  -- its shape
   let ρe := LinearSys.maxBackReachErosionFloat Φn Ψ Hs ζ DU         -- the margin line 12 needs
   let ZWe := ZW ⊞ (Interval.mk (fun i => neg (ρe i)) ρe).zonotope  -- Ẑ_W(τ_k), widened by it
-  let C₁ := LinearSys.maxBackReachCZFloat Bx P₁ ZWe                 -- 11. CZ(P₁ ⊖ Ẑ_W(τ_k))
-  let C₂ := LinearSys.maxBackReachCZFloat Bx P₂ ZWe                 -- 11. CZ(P₂ ⊖ Ẑ_W(τ_k))
-  let H := C₁.linCombSameCentre C₂                                  -- 11. conv(CZ(…), CZ(…))
+  -- 11. CZ(P₁ ⊖ Ẑ_W(τ_k))
+  let C₁ := LinearSys.maxBackReachCZFloat Bx P₁ ZWe
+  -- 11. CZ(P₂ ⊖ Ẑ_W(τ_k))
+  let C₂ := LinearSys.maxBackReachCZFloat Bx P₂ ZWe
+  -- 11. conv(CZ(…), CZ(…))
+  let H := C₁.linCombSameCentre C₂
   if C₁.zeroFeasible && C₂.zeroFeasible then
     pure { tLo := tk1Lo
            tHi := tk1Hi
@@ -99,7 +107,8 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
            UErr := UErr
            ZW₀ := ZW₀
            ZW := ZW
-           RH := H.mtimesNominal Φn.inf                             -- 12. e^{-A t_{k+1}} CZ …
+           -- 12. e^{-A t_{k+1}} CZ …
+           RH := H.mtimesNominal Φn.inf
            RU := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- … Z̲_U
              (S := 𝒵[𝕋]) Φn s.ZU }
   else none

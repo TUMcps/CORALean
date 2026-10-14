@@ -27,7 +27,7 @@ so the result is a `Set`, as `tunedReach` returns one for the same reason.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -48,8 +48,10 @@ noncomputable def LinearSys.minBackReachTimeInterval (sys : LinearSys 𝕋 n)
     (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (N : Mat ℝ q n) (t₀ tend : ℝ) (η ω : ℕ) : Set (Vec ℝ n) :=
-  let Δt := (tend - t₀) / ω                                         -- 1. Δt ← (t_end - t₀)/ω
-  let P := HPolytope.ineqs N                                        -- 4., 14. ⟨N,p⟩_H
+  -- 1. Δt ← (t_end - t₀)/ω
+  let Δt := (tend - t₀) / ω
+  -- 4. and 14. ⟨N,p⟩_H
+  let P := HPolytope.ineqs N
     (sys.minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1))
   ⋃ k < ω, ((sys.minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct ∩ P.construct)
 

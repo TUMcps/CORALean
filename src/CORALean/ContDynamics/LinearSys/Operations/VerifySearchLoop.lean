@@ -34,7 +34,7 @@ flag with the failure of the test. The polytopes are the lists of their vertices
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -67,32 +67,51 @@ noncomputable def LinearSys.verifySearchLoop (sys : LinearSys 𝕋 n) (X₀ U : 
     ℕ → LinearSys.VerifySearchState n → VerifyAnswer
   | 0, _ => .undecided
   | fuel + 1, s =>
-      let ρRhat := (sys.supportUpper s.Δt η X₀ U ρ s.ℓ s.k).ρR                 -- l. 3, upper
+      -- 3. ρ(R̂(t), ℓ_i), the upper bound of Alg. 1 with Δt
+      let ρRhat := (sys.supportUpper s.Δt η X₀ U ρ s.ℓ s.k).ρR
+      -- 3. ρ(Ř(t), ℓ_i), the lower bound of Alg. 1 with Δt
       let ρRcheck :=
-        (sys.supportLower s.Δt ν₀ νU (Recentre.centre U) s.ℓ s.k).ρR           -- l. 3, lower
-      if ρRhat + ρL (-s.ℓ) < 0 then .safe                                     -- l. 4-6
+        (sys.supportLower s.Δt ν₀ νU (Recentre.centre U) s.ℓ s.k).ρR
+      -- 4.-6. return safe
+      if ρRhat + ρL (-s.ℓ) < 0 then .safe
       else
-        let falsifiable := s.falsifiable && !decide (ρRcheck + ρL (-s.ℓ) < 0)  -- l. 7-9
-        let vhat := νhat s.Δt s.ℓ - νL (-s.ℓ)                                 -- l. 10
+        -- 7.-9. falsifiable ← false where ρ(Ř(t), ℓ_i) + ρ(L, -ℓ_i) < 0
+        let falsifiable := s.falsifiable && !decide (ρRcheck + ρL (-s.ℓ) < 0)
+        -- 10. v̂_i ← ν(R̂(t), ℓ_i) - ν(L, -ℓ_i)
+        let vhat := νhat s.Δt s.ℓ - νL (-s.ℓ)
+        -- 10. v̌_i ← ν(Ř(t), ℓ_i) - ν(L, -ℓ_i)
         let vcheck := sys.heldSim s.Δt (sys.supportCounterexample s.Δt ν₀ νU s.ℓ s.k).1
-          (sys.supportCounterexample s.Δt ν₀ νU s.ℓ s.k).2 s.k - νL (-s.ℓ)    -- l. 10
-        let Phat := s.Phat ++ [vhat]                                          -- l. 11
-        let Pcheck := s.Pcheck ++ [vcheck]                                    -- l. 11
-        if inHull Pcheck then .violated                                       -- l. 12-13
-        else if falsifiable = false ∧ inHull Phat = true then                 -- l. 14
+          (sys.supportCounterexample s.Δt ν₀ νU s.ℓ s.k).2 s.k - νL (-s.ℓ)
+        -- 11. P̂ ← conv(P̂, v̂_i)
+        let Phat := s.Phat ++ [vhat]
+        -- 11. P̌ ← conv(P̌, v̌_i)
+        let Pcheck := s.Pcheck ++ [vcheck]
+        -- 12.-13. return unsafe where 0 ∈ P̌
+        if inHull Pcheck then .violated
+        -- 14. else if falsifiable = false ∧ 0 ∈ P̂
+        else if falsifiable = false ∧ inHull Phat = true then
+          -- 15.-16. Δt ← 0.5 Δt, i ← 1, P̂, P̌ ← ∅, falsifiable ← true; continue
           sys.verifySearchLoop X₀ U η ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁
-            fuel ⟨1, ℓ₁, s.Δt / 2, 2 * s.k, [], [], true⟩                     -- l. 15-16
-        else if s.i > n + 1 then                                              -- l. 18
-          let facet := closestFacet Pcheck                                    -- l. 19
-          let o := facet.2                                                    -- l. 20
-          let Phat' := o.filterMap fun j => Phat[j]?                          -- l. 21
-          let Pcheck' := o.filterMap fun j => Pcheck[j]?                      -- l. 21
+            fuel ⟨1, ℓ₁, s.Δt / 2, 2 * s.k, [], [], true⟩
+        -- 18. if i > n + 1
+        else if s.i > n + 1 then
+          -- 19. H ← the halfspace of the facet of P̌ closest to 0
+          let facet := closestFacet Pcheck
+          -- 20. o₁, …, o_n ← the indices of the vertices on the facet
+          let o := facet.2
+          -- 21. P̂ ← ⟨[v̂_{o₁} … v̂_{o_n}]⟩_V
+          let Phat' := o.filterMap fun j => Phat[j]?
+          -- 21. P̌ ← ⟨[v̌_{o₁} … v̌_{o_n}]⟩_V
+          let Pcheck' := o.filterMap fun j => Pcheck[j]?
+          -- 25. ℓ_{i+1} ← the facet's normal, i ← i + 1
           sys.verifySearchLoop X₀ U η ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁
-            fuel ⟨s.i + 1, facet.1, s.Δt, s.k, Phat', Pcheck', falsifiable⟩    -- l. 25
+            fuel ⟨s.i + 1, facet.1, s.Δt, s.k, Phat', Pcheck', falsifiable⟩
         else
-          let h := gramSchmidt Pcheck                                         -- l. 23
+          -- 23. h ← a vector orthogonal to v̌_1, …, v̌_i, by Gram-Schmidt
+          let h := gramSchmidt Pcheck
+          -- 25. ℓ_{i+1} ← h, i ← i + 1
           sys.verifySearchLoop X₀ U η ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁
-            fuel ⟨s.i + 1, h, s.Δt, s.k, Phat, Pcheck, falsifiable⟩            -- l. 25
+            fuel ⟨s.i + 1, h, s.Δt, s.k, Phat, Pcheck, falsifiable⟩
 
 end CORALean
 

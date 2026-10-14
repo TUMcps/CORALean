@@ -36,7 +36,7 @@ algorithm uses for it.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -59,20 +59,34 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 noncomputable def LinearSys.manualStep (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n))
     (Δt : ℝ) (η ρ : ℕ) (s : LinearSys.ManualState n) :
     LinearSys.ManualState n × Zonotope (Vec ℝ n) :=
-  let ũ := U.c                                                          -- 1. ũ ← Bc_u + p
-  let U₀ : Zonotope (Vec ℝ n) := { h := U.h, c := 0, G := U.G }          -- 1. U₀ ← ⟨0,BG_u⟩_Z
-  let PuΔt := sys.stepInputConst ũ Δt                                   -- 3. P^u(Δt), eq. (19)
-  let PUΔt := sys.inputSolution (S := 𝒵) Δt η U₀                        -- 3. P̂^U(Δt), eq. (20)
-  let tk1 := s.t + Δt                                                   -- 5. t_{k+1}
-  let Φtk := exp (s.t • toRealMat sys.A)                                -- 6. e^{A t_k}
-  let Puk1 := s.Pu + Φtk *ᵥ PuΔt                                        -- 6. P^u(t_{k+1})
-  let Φtk1 := exp (tk1 • toRealMat sys.A)                               -- 7. e^{A t_{k+1}}
-  let Hk1 := Zonotope.plus (Zonotope.mtimes Φtk1 X₀) (Zonotope.ofPoint Puk1)  -- 7. H(t_{k+1})
-  let C := MatExp.curvatureEnclosure (toRealMat sys.A) s.H ũ Δt η        -- 8. C, eq. (15)-(16)
-  let Hτk := Zonotope.plus (Zonotope.linComb s.H Hk1) C                  -- 9. Ĥ(τ_k)
-  let PUsum := Zonotope.plus s.PU (Zonotope.mtimes Φtk PUΔt)             -- 10. inside `reduce(·,ρ)`
-  let PUk1 := Zonotope.reduce PUsum ρ                                    -- 10. P̂^U(t_{k+1})
-  let Rτk := Zonotope.plus Hτk PUk1                                      -- 11. R̂(τ_k)
+  -- 1. ũ ← Bc_u + p
+  let ũ := U.c
+  -- 1. U₀ ← ⟨0,BG_u⟩_Z
+  let U₀ : Zonotope (Vec ℝ n) := { h := U.h, c := 0, G := U.G }
+  -- 3. P^u(Δt), eq. (19)
+  let PuΔt := sys.stepInputConst ũ Δt
+  -- 3. P̂^U(Δt), eq. (20)
+  let PUΔt := sys.inputSolution (S := 𝒵) Δt η U₀
+  -- 5. t_{k+1}
+  let tk1 := s.t + Δt
+  -- 6. e^{A t_k}
+  let Φtk := exp (s.t • toRealMat sys.A)
+  -- 6. P^u(t_{k+1})
+  let Puk1 := s.Pu + Φtk *ᵥ PuΔt
+  -- 7. e^{A t_{k+1}}
+  let Φtk1 := exp (tk1 • toRealMat sys.A)
+  -- 7. H(t_{k+1})
+  let Hk1 := Zonotope.plus (Zonotope.mtimes Φtk1 X₀) (Zonotope.ofPoint Puk1)
+  -- 8. C, eq. (15)-(16)
+  let C := MatExp.curvatureEnclosure (toRealMat sys.A) s.H ũ Δt η
+  -- 9. Ĥ(τ_k)
+  let Hτk := Zonotope.plus (Zonotope.linComb s.H Hk1) C
+  -- 10. inside `reduce(·,ρ)`
+  let PUsum := Zonotope.plus s.PU (Zonotope.mtimes Φtk PUΔt)
+  -- 10. P̂^U(t_{k+1})
+  let PUk1 := Zonotope.reduce PUsum ρ
+  -- 11. R̂(τ_k)
+  let Rτk := Zonotope.plus Hτk PUk1
   ({ t := tk1, H := Hk1, Pu := Puk1, PU := PUk1 }, Rτk)
 
 end CORALean

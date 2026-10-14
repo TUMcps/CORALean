@@ -27,7 +27,7 @@ the constant centre trajectory's contribution over one interval.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -48,7 +48,8 @@ noncomputable def LinearSys.maxBackReachTimeInterval (sys : LinearSys 𝕋 n)
     (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
     (P₁ P₂ : HPolytope (Vec ℝ n)) (U W₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (t₀ tend : ℝ) (η ω : ℕ) : Set (Vec ℝ n) :=
-  let Δt := (tend - t₀) / ω                                         -- 1. Δt ← (t_end - t₀)/ω
+  -- 1. Δt ← (t_end - t₀)/ω
+  let Δt := (tend - t₀) / ω
   ⋃ k < ω, (sys.maxBackReachRun ρ P₁ P₂ U W₀ Zw t₀ Δt η (k + 1)).R.construct
 
 end CORALean
