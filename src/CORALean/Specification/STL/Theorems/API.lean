@@ -132,6 +132,18 @@ public import CORALean.Specification.STL.Theorems.TendstoDepBloatingZero
 public import CORALean.Specification.STL.Theorems.TendstoDepReachAtCZero
 public import CORALean.Specification.STL.Theorems.TendstoSSupNormOfEventuallySubsetClosedBall
 public import CORALean.Specification.STL.Theorems.TendstoDepReachLinCombHausdorffZero
+public import CORALean.Specification.STL.Theorems.Basic
+public import CORALean.Specification.STL.Theorems.SatFinally
+public import CORALean.Specification.STL.Theorems.SatGlobally
+public import CORALean.Specification.STL.Theorems.SatImplies
+public import CORALean.Specification.STL.Theorems.SatNot
+public import CORALean.Specification.STL.Theorems.SatUntil
+public import CORALean.Specification.STL.Theorems.TreeEliminateTrueFalseCoraUntilCounterexample
+public import CORALean.Specification.STL.Theorems.TreeNegationNormalFormCoraCounterexample
+public import CORALean.Specification.STL.Theorems.TreeSatCompare
+public import CORALean.Specification.STL.Theorems.TreeSatDesugar
+public import CORALean.Specification.STL.Theorems.TreeSatEliminateTrueFalseWith
+public import CORALean.Specification.STL.Theorems.TreeSatNnfWith
 
 /-!
 # Signal and reachset temporal logic: the theorems

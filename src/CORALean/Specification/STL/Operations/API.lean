@@ -38,6 +38,15 @@ public import CORALean.Specification.STL.Operations.DepReachAt
 public import CORALean.Specification.STL.Operations.DepReachPoint
 public import CORALean.Specification.STL.Operations.DepReachInterval
 public import CORALean.Specification.STL.Operations.DepReach
+public import CORALean.Specification.STL.Operations.Basic
+public import CORALean.Specification.STL.Operations.CmpDual
+public import CORALean.Specification.STL.Operations.CmpNegate
+public import CORALean.Specification.STL.Operations.TreeCompare
+public import CORALean.Specification.STL.Operations.TreeDesugar
+public import CORALean.Specification.STL.Operations.TreeEliminateTrueFalseCora
+public import CORALean.Specification.STL.Operations.TreeEliminateTrueFalseWith
+public import CORALean.Specification.STL.Operations.TreeNegationNormalFormCora
+public import CORALean.Specification.STL.Operations.TreeNnfWith
 
 /-!
 # Signal and reachset temporal logic: the operations

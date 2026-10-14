@@ -82,6 +82,13 @@ def STL.Formula.finally (a b : ℝ≥0) (φ : STL.Formula X) : STL.Formula X := 
 def STL.Formula.release (a b : ℝ≥0) (φ ψ : STL.Formula X) : STL.Formula X :=
   .not (.until a b (.not φ) (.not ψ))
 
+/-- `φ ⇒ ψ := ¬φ ∨ ψ`. -/
+def STL.Formula.implies (φ ψ : STL.Formula X) : STL.Formula X := .or (.not φ) ψ
+
+/-- `G[a,b] φ := ¬F[a,b] ¬φ`. -/
+def STL.Formula.globally (a b : ℝ≥0) (φ : STL.Formula X) : STL.Formula X :=
+  .not (.finally a b (.not φ))
+
 /-- `⋁` of a list, `false` for the empty one. -/
 def STL.Formula.bigOr (l : List (STL.Formula X)) : STL.Formula X := l.foldr .or .ff
 

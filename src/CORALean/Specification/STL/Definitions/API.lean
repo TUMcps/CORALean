@@ -22,6 +22,10 @@ public import CORALean.Specification.STL.Definitions.DepReachConsts
 public import CORALean.Specification.STL.Definitions.DepReachState
 public import CORALean.Specification.STL.Definitions.DependencyPreservedBy
 public import CORALean.Specification.STL.Definitions.VerificationProblem
+public import CORALean.Specification.STL.Definitions.Cmp
+public import CORALean.Specification.STL.Definitions.Expr
+public import CORALean.Specification.STL.Definitions.Tree
+public import CORALean.Specification.STL.Definitions.TreeWellFormed
 
 /-!
 # Signal and reachset temporal logic: the definitions
