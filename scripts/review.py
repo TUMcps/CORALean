@@ -163,6 +163,15 @@ def self_test():
         assert t3.count("-- Reviewed:      ---") == 1 and valid(t3, bl[1][0])
         assert block_state(t3.split("\n"), bl[0][0])[1] == 0
         assert block_state(t3.split("\n"), bl[1][0])[1] == 1
+        # a bundle in the layout of issue #137's follow-up: context blocks around the sections
+        blocked = ("/-! doc -/\n\n\nnamespace A\n\nvariable {n : Nat}\n\n\n" + sec + blk +
+                   "def a := 1\n\n\n" + sec.replace("`a`", "`b`") + blk + "def b := 2\n\nend A\n\n\n"
+                   "namespace B\n\n\n" + sec.replace("`a`", "`c`") + blk + "def c := 3\n\nend B\n")
+        bl = blocks(blocked.split("\n"))
+        assert [lbl for _, lbl in bl] == ["a", "b", "c"], bl
+        t4 = add_review(blocked, "13-October-2026 (Tobias Ladner)", bl[2][0])
+        assert t4.count("-- Reviewed:      ---") == 2 and valid(t4, bl[2][0])
+        assert "end A" in t4 and "end B" in t4  # the context lines are left alone
     sel = {str(u[0].relative_to(ROOT)) for u in units(True, None, main=True)}
     assert "src/CORALean/ContSet/Zonotope/Real/Zonotope.lean" in sel
     assert "src/CORALean/ContDynamics/LinearSys/LinearSys.lean" in sel

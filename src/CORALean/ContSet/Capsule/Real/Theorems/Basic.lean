@@ -17,21 +17,20 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
 -- ==================================  `Capsule.empty_exact`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- `Capsule.empty` denotes the empty set -/
 theorem Capsule.empty_exact (n : ℕ) : (Capsule.empty n).construct = ∅ :=
   Capsule.construct_eq_empty (by simp [Capsule.empty])
-
-end CORALean.Real
 
 
 -- ==================================  `Capsule.mem_ofPoint`  =================================== --
@@ -39,10 +38,6 @@ end CORALean.Real
 -- Written:       07-September-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {n : ℕ}
 
 /-- `ofPoint v` states its own `g` and `r`, both `0`, so the segment endpoint at
 any `t` collapses to `v` and the ball shrinks to `Real.sqrt 0 ≤ 0`. -/

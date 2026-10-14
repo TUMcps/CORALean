@@ -15,15 +15,16 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X O : Set α}
+
+
 -- ============================  `Specification.holdsAll_of_outer`  ============================= --
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   24-September-2026
 -- Reviewed:      ---
-
-namespace CORALean
-
-variable {ContSet α : Type} [CORALean.ContSet ContSet α] {X O : Set α}
 
 /-- Split out of `HoldsOfOuter.lean` (issue #62): the same transfer, one
 specification at a time, for `Specification.HoldsAll`. -/

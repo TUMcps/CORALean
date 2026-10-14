@@ -15,17 +15,18 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
--- =====================================  `GNN.linearBias`  ===================================== --
--- Authors:       Claude Opus 5.5
--- Written:       03-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean.Real
 
 open Matrix
 
 variable {N F₁ F₂ : ℕ}
+
+
+-- =====================================  `GNN.linearBias`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- The bias `b` repeated for each of the `N` nodes.
 

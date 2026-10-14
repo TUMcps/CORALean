@@ -20,21 +20,23 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+-- The number of globally bound inputs, CORA's `numGlobalInputs = nnz(idxGlobalInput)`.
+variable {N g k : ℕ} {n m p : Fin k → ℕ}
+
+
 -- ==================================  `HybridAutomaton.uloc`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean
-
 /-- Intended `uloc{l}`: `u` at every location below `numLoc`.
 
 `uloc = repmat({params.u},numLoc,1)`: every location `l < numLoc` gets `u` itself. -/
 def HybridAutomaton.uloc {α : Type} (numLoc : Nat) (u : α) (l : Nat) : Option α :=
   if l < numLoc then some u else none
-
-end CORALean
 
 
 -- ==============================  `NonlinearReset.globalColumns`  ============================== --
@@ -43,18 +45,11 @@ end CORALean
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean
-
-variable {N g k : ℕ} {n m p : Fin k → ℕ}
-
--- The number of globally bound inputs, CORA's `numGlobalInputs = nnz(idxGlobalInput)`.
 /-- CORA's `numGlobalInputs = nnz(idxGlobalInput)` in `nonlinearReset/resolve`: how many inputs of
 the components are bound to a global input, counted with repetitions. -/
 def NonlinearReset.globalColumns (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g) : ℕ :=
   (Finset.univ.filter fun ij : (Σ i, Fin (m i)) =>
     ∃ a, inputBinds ij.1 ij.2 = .global a).card
-
-end CORALean
 
 
 -- ========================================  `scatter`  ========================================= --
@@ -62,8 +57,6 @@ end CORALean
 -- Written:       04-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
 
 /-- The entries of `v` placed at the coordinates `σ` of a larger vector, zero elsewhere: MATLAB's
 `x(σ) = v` on a zero vector. `resolve` of a reset writes a block `B(stateBinds{i}, ...)`. -/
@@ -73,15 +66,16 @@ def scatter {n N : ℕ} (σ : Fin n → Fin N) (v : Fin n → ℝ) : Fin N → �
 end CORALean
 
 
+namespace CORALean
+
+variable {G : ℕ → Type} {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
 -- ==============================  `Transition.toNonlinearReset`  =============================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
-
-variable {G : ℕ → Type} {L : Type} {𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- A transition's affine reset `x ↦ W x + w` as a nonlinear reset, which ignores its input: CORA's
 `linearReset` is a `nonlinearReset` with a function that happens to be affine. -/

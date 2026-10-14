@@ -17,22 +17,21 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+variable {n m : ℕ}
+
+
 -- ===================================  `Fullspace.convHull`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- `fullspace/convHull_`: the full space.
 
 CORA's `@fullspace/convHull_`: the hull of the full space and anything is the full space. -/
 def Fullspace.convHull (F : Fullspace n) {S : Type} (_ : S) : Fullspace n := F
-
-end CORALean.Real
 
 
 -- =====================================  `Fullspace.Inf`  ====================================== --
@@ -41,16 +40,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n m : ℕ}
-
 /-- `fullspace.Inf(n)`.
 
 CORA's `fullspace.Inf(n)`: the full space in `n` dimensions, the only value of the type. -/
 def Fullspace.Inf (n : ℕ) : Fullspace n := ⟨⟩
-
-end CORALean.Real
 
 
 -- ==================================  `Fullspace.isBounded`  =================================== --
@@ -59,16 +52,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- CORA's `isBounded` of the fullspace, as the `Bool` it answers: `dim(fs) == 0`: `false` in every
 positive dimension. Holds no scalar and computes nothing numeric; `Fullspace.isBounded_iff` says
 it is boundedness of the set. -/
 def Fullspace.isBounded (_ : Fullspace n) : Bool := decide (n = 0)
-
-end CORALean.Real
 
 
 -- ====================================  `Fullspace.radius`  ==================================== --
@@ -76,10 +63,6 @@ end CORALean.Real
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {n m : ℕ}
 
 /-- `fullspace/radius`: `Inf`.
 

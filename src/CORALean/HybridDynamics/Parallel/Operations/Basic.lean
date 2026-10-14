@@ -16,15 +16,16 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+variable {k : ℕ} {n : Fin k → ℕ}
+
+
 -- ===================================  `Interval.stackProd`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {k : ℕ} {n : Fin k → ℕ}
 
 /-- The Cartesian product of one box per component, as a box of the stacked space: the lower
 bounds stacked, the upper bounds stacked. `Theorems.StackProdExact` says it is exactly the
@@ -35,15 +36,16 @@ def Interval.stackProd (bs : ∀ i, Interval (Vec ℝ (n i))) : Interval (Vec �
 end CORALean.Real
 
 
+namespace CORALean
+
+variable {k : ℕ} {n : Fin k → ℕ}
+
+
 -- ========================================  `unstack`  ========================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
-
-variable {k : ℕ} {n : Fin k → ℕ}
 
 /-- The inverse of `stack`: block `i` of a point of the product space. `Theorems.StackUnstack` and
 `Theorems.UnstackStack` say the two undo each other. -/

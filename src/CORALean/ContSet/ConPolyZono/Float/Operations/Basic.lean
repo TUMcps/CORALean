@@ -22,21 +22,22 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
 -- ===================================  `ConPolyZono.centre`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 /-- CORA's `center` of a constrained polynomial zonotope: the stored field `c`, nothing computed,
 so nothing rounds. Whether it is a point of the set is `centre_mem_construct`. -/
 def ConPolyZono.centre (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 n := cPZ.c
-
-end CORALean.Float
 
 
 -- =================================  `ConPolyZono.isFullDim`  ================================== --
@@ -45,18 +46,10 @@ end CORALean.Float
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 /-- `ConPolyZono.isFullDimWith` at the default candidate right inverse of the independent generators
 (`Zonotope.rightInvCandidate`). Only `true` is certain. -/
 def ConPolyZono.isFullDim (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
   cPZ.isFullDimWith (Zonotope.rightInvCandidate fun i j => cPZ.GI j i)
-
-end CORALean.Float
 
 
 -- ================================  `ConPolyZono.mergedColUp`  ================================= --
@@ -65,19 +58,11 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 /-- The same fibre rounded the other way, which is what bounds the gap. -/
 def ConPolyZono.mergedColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (PolyZonotope.repKeep cPZ.E).card) : 𝕋 :=
   PolyZonotope.fiberUp (Real.PolyZonotope.rep cPZ.E) (fun i l => cPZ.G l i) i
     (PolyZonotope.keepIdx cPZ.E j)
-
-end CORALean.Float
 
 
 -- ===============================  `ConPolyZono.compactGensGap`  =============================== --
@@ -86,18 +71,10 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 /-- What a merged generator column can be off by. -/
 def ConPolyZono.compactGensGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     Mat 𝕋 n (PolyZonotope.repKeep cPZ.E).card :=
   fun i j => subUp (cPZ.mergedColUp i j) (cPZ.mergedCol i j)
-
-end CORALean.Float
 
 
 -- ===============================  `ConPolyZono.mergedConsCol`  ================================ --
@@ -106,19 +83,11 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 /-- The merged constraint column as stored, `A`'s rows read as the generator
 matrix they are on the constraint side. -/
 def ConPolyZono.mergedConsCol (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
     (l : Fin (PolyZonotope.repKeep cPZ.EC).card) : 𝕋 :=
   PolyZonotope.fiberDown (Real.PolyZonotope.rep cPZ.EC) cPZ.A i (PolyZonotope.keepIdx cPZ.EC l)
-
-end CORALean.Float
 
 
 -- ==============================  `ConPolyZono.mergedConsColUp`  =============================== --
@@ -127,18 +96,10 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 /-- `ConPolyZono.mergedConsColUp` -/
 def ConPolyZono.mergedConsColUp (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
     (l : Fin (PolyZonotope.repKeep cPZ.EC).card) : 𝕋 :=
   PolyZonotope.fiberUp (Real.PolyZonotope.rep cPZ.EC) cPZ.A i (PolyZonotope.keepIdx cPZ.EC l)
-
-end CORALean.Float
 
 
 -- ===============================  `ConPolyZono.compactConsGap`  =============================== --
@@ -147,18 +108,10 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 /-- What a merged constraint column can be off by. -/
 def ConPolyZono.compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     Mat 𝕋 cPZ.m (PolyZonotope.repKeep cPZ.EC).card :=
   fun i l => subUp (cPZ.mergedConsColUp i l) (cPZ.mergedConsCol i l)
-
-end CORALean.Float
 
 
 -- ===================================  `ConPolyZono.plusB`  ==================================== --
@@ -167,18 +120,10 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps
-
-variable {𝕋 : Type} [FloatOps 𝕋]
-
 /-- The two right-hand sides side by side. Copied, so nothing here rounds. -/
 def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Interval (Vec 𝕋 m₁)) (b₂ : Interval (Vec 𝕋 m₂)) :
     Interval (Vec 𝕋 (m₁ + m₂)) :=
   ⟨Fin.append b₁.inf b₂.inf, Fin.append b₁.sup b₂.sup⟩
-
-end CORALean.Float
 
 
 -- ===============================  `ConPolyZono.intersectionB`  ================================ --
@@ -187,19 +132,11 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
 /-- The two systems' own bounds, then the agreement rows'. -/
 def ConPolyZono.intersectionB (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     Interval (Vec 𝕋 (cPZ₁.m + cPZ₂.m + n)) :=
   ⟨Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b).inf (ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf,
    Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b).sup (ConPolyZono.intersectionAgree cPZ₁ cPZ₂).sup⟩
-
-end CORALean.Float
 
 
 -- ================================  `ConPolyZono.rescaleStep`  ================================= --
@@ -207,10 +144,6 @@ end CORALean.Float
 -- Written:       12-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Float
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- One step of the fold `rescale` runs: factor `r` re-parametrized onto `cen r ± rad r` by the
 float `getSubset`, the set left alone when `r` is not a factor. -/
@@ -221,15 +154,16 @@ def ConPolyZono.rescaleStep (cen rad : ℕ → 𝕋) (acc : ConPolyZono 𝕋 (Ve
 end CORALean.Float
 
 
+namespace CORALean.Float
+
+open FloatOps
+
+
 -- ==================================  `ConPolyZono.unitBox`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Float
-
-open FloatOps
 
 /-- The factor box `[-1,1]ᵖ` with which CORA's `@conPolyZono/rescale` starts, stored as floats:
 `-1` and `1` are exact in the scalar, so the box is the exact layer's. -/

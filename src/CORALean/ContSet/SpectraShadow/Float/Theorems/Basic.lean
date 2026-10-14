@@ -16,17 +16,18 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
--- =================================  `SpectraShadow.or_outer`  ================================= --
--- Authors:       Claude Opus 5.5
--- Written:       09-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =================================  `SpectraShadow.or_outer`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       09-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- `or` is `convHull_`, so `convHull_outer` is its guarantee: an enclosure. -/
 theorem SpectraShadow.or_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :

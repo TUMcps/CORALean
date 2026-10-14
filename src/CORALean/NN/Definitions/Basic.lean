@@ -19,13 +19,14 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+
 -- ===================================  `ActivationKind.fn`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
 
 /-- The scalar function: `max t 0`, the logistic function, or `tanh`. -/
 noncomputable def ActivationKind.fn : ActivationKind → ℝ → ℝ
@@ -33,16 +34,12 @@ noncomputable def ActivationKind.fn : ActivationKind → ℝ → ℝ
   | .sigmoid => Real.sigmoid
   | .tanh => Real.tanh
 
-end CORALean
-
 
 -- ====================================  `InputOrderMethod`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
 
 /-- CORA's `method` of `getInputNeuronOrder`: `'in-order'`, `'sensitivity'`, `'snake'`. -/
 inductive InputOrderMethod where
@@ -53,17 +50,18 @@ inductive InputOrderMethod where
 end CORALean
 
 
--- =====================================  `ScalarEncloses`  ===================================== --
--- Authors:       Claude Opus 5.5
--- Written:       12-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean.Float
 
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
+
+
+-- =====================================  `ScalarEncloses`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       12-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- `ScalarEncloses E f`: for every box `I` and every real `x` in it, `f x` lies in the box `E I`.
 It is what an activation's stored enclosure owes the real activation or derivative it stands for. -/

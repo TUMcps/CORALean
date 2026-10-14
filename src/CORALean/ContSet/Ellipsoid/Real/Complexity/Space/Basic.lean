@@ -17,17 +17,18 @@ five code lines each; alphabetical, after the sections each one uses (CONTRIBUTI
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
--- ===================================  `Ellipsoid.mtimes_k`  =================================== --
--- Authors:       Claude Opus 5
--- Written:       07-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- ===================================  `Ellipsoid.mtimes_k`  =================================== --
+-- Authors:       Claude Opus 5
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- `mtimes` sends `G` to `M G`, an `m × k` matrix from an `n × k` one, so the
 generator count carries over exactly. `rfl`, since `Operations/Mtimes.lean`
@@ -35,18 +36,12 @@ states `k` directly. -/
 theorem Ellipsoid.mtimes_k (M : Mat ℝ m n) (E : Ellipsoid n) :
     (Ellipsoid.mtimes M E).k = E.k := rfl
 
-end CORALean.Real
-
 
 -- ====================================  `Ellipsoid.plus_k`  ==================================== --
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {n : ℕ}
 
 /-- `plus`'s generator count: the two operands' concatenated into the wider
 generator matrix `H = [s₁ G₁ | s₂ G₂]`, exactly as a zonotope's would. `rfl`,

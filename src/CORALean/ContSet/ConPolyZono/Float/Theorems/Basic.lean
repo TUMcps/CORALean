@@ -22,24 +22,23 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic InflatedContSet Pointwise Matrix
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
+
+
 -- ============================  `ConPolyZono.compactFactors_outer`  ============================ --
 -- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open FloatOps SoundFloatArithmetic InflatedContSet
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
 /-- Costs nothing at all: `compactFactors_nominal` already is the exact equality. -/
 theorem ConPolyZono.compactFactors_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.construct ⊆ cPZ.compactFactors.construct :=
   InflatedContSet.mono_subset (ConPolyZono.compactFactors_nominal cPZ).subset (subset_refl _)
-
-end CORALean.Float
 
 
 -- ============================  `ConPolyZono.isCompact_construct`  ============================= --
@@ -48,17 +47,11 @@ end CORALean.Float
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
 /-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_construct`
 carries compactness across: the nominal set is compact as over ℝ, the box by
 Heine–Borel. -/
 theorem ConPolyZono.isCompact_construct (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : IsCompact cPZ.construct :=
   InflatedContSet.isCompact_construct cPZ
-
-end CORALean.Float
 
 
 -- ==================================  `ConPolyZono.mtimes_h`  ================================== --
@@ -67,19 +60,11 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open Pointwise Matrix FloatOps SoundFloatArithmetic InflatedContSet
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
-
 omit [SoundFloatArithmetic 𝕋] in
 /-- The image is read off the same factor vectors, so nothing about the dependent
 block's shape moves. -/
 @[simp] theorem ConPolyZono.mtimes_h (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (ConPolyZono.mtimes M cPZ).h = cPZ.h := rfl
-
-end CORALean.Float
 
 
 -- ===================================  `ConPolyZono.plus_h`  =================================== --
@@ -88,18 +73,10 @@ end CORALean.Float
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Float
-
-open Matrix FloatOps SoundFloatArithmetic InflatedContSet
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
 omit [SoundFloatArithmetic 𝕋] in
 /-- The two blocks concatenate, so `h` adds. -/
 @[simp] theorem ConPolyZono.plus_h (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (cPZ₁.plus cPZ₂).h = cPZ₁.h + cPZ₂.h := rfl
-
-end CORALean.Float
 
 
 -- ==============================  `ConPolyZono.toRealVec_append`  ============================== --
@@ -107,12 +84,6 @@ end CORALean.Float
 -- Written:       02-September-2026
 -- Last update:   05-September-2026
 -- Reviewed:      ---
-
-namespace CORALean.Float
-
-open Matrix FloatOps SoundFloatArithmetic InflatedContSet
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Appending two float vectors and reading back commutes -/
 theorem ConPolyZono.toRealVec_append {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b₂ : Vec 𝕋 m₂) :

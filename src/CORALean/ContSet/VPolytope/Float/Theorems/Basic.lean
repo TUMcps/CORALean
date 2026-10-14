@@ -18,15 +18,16 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Float
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
 -- ===============================  `VPolytope.convex_construct`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Float
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- What this denotes is a nominal set plus an error box, so `InflatedContSet.convex_construct`
 carries convexity across: the nominal set is convex as over ℝ, the box because
@@ -34,18 +35,12 @@ its coordinates are bounded independently. -/
 theorem VPolytope.convex_construct (P : VPolytope (Vec 𝕋 n)) : Convex ℝ P.construct :=
   InflatedContSet.convex_construct P
 
-end CORALean.Float
-
 
 -- =============================  `VPolytope.isCompact_construct`  ============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Float
-
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_construct`
 carries compactness across: the nominal set is compact as over ℝ, the box by

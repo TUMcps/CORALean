@@ -20,22 +20,21 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+variable {n m : ℕ}
+
+
 -- ===================================  `EmptySet.convHull`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- `emptySet/convHull_`: the other operand.
 
 CORA's `@emptySet/convHull_`: the hull of the empty set and `S` is `S`, returned as it is. -/
 def EmptySet.convHull (_ : EmptySet n) {S : Type} (s : S) : S := s
-
-end CORALean.Real
 
 
 -- =====================================  `EmptySet.empty`  ===================================== --
@@ -44,16 +43,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n m : ℕ}
-
 /-- `emptySet.empty(n)`.
 
 CORA's `emptySet.empty(n)`: the empty set in `n` dimensions, the only value of the type. -/
 def EmptySet.empty (n : ℕ) : EmptySet n := ⟨⟩
-
-end CORALean.Real
 
 
 -- ===================================  `EmptySet.interval`  ==================================== --
@@ -62,16 +55,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- `emptySet/interval`: `Interval.empty n`.
 
 CORA's `@emptySet/interval`: `interval.empty(n)`, the crossed box `Interval.empty`. -/
 def EmptySet.interval (_ : EmptySet n) : Interval (Vec ℝ n) := Interval.empty n
-
-end CORALean.Real
 
 
 -- ====================================  `EmptySet.radius`  ===================================== --
@@ -80,16 +67,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n m : ℕ}
-
 /-- `emptySet/radius`: `0`.
 
 CORA's `@emptySet/radius`: `0`. -/
 def EmptySet.radius (_ : EmptySet n) : ENNReal := 0
-
-end CORALean.Real
 
 
 -- ====================================  `EmptySet.volume`  ===================================== --
@@ -98,16 +79,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n m : ℕ}
-
 /-- `emptySet/volume_`: `0`.
 
 CORA's `@emptySet/volume_`: `0`. -/
 def EmptySet.volume (_ : EmptySet n) : ENNReal := 0
-
-end CORALean.Real
 
 
 -- ===================================  `EmptySet.vPolytope`  =================================== --
@@ -115,10 +90,6 @@ end CORALean.Real
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {n m : ℕ}
 
 /-- `emptySet/polytope` at vertices: `VPolytope.emptySet`.
 

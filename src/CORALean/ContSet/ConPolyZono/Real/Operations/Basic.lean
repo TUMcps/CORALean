@@ -20,22 +20,23 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+open Matrix
+
+variable {k n : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
 -- ===================================  `ConPolyZono.affine`  =================================== --
 -- Authors:       Claude Opus 5
 -- Written:       05-September-2026
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
 /-- The map onto the set, affine in the independent half and polynomial in the
 dependent one. -/
 def ConPolyZono.affine (cPZ : ConPolyZono α) (ab : (Fin cPZ.p → ℝ) × (Fin cPZ.q → ℝ)) : α :=
   cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E ab.1 i • cPZ.G i + ∑ j, ab.2 j • cPZ.GI j
-
-end CORALean.Real
 
 
 -- ===================================  `ConPolyZono.centre`  =================================== --
@@ -44,15 +45,9 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
 /-- CORA's `@conPolyZono/center`: the field `c`, with no guarantee that it lies in the set.
 `centre_mem_construct` says when it does. -/
 def ConPolyZono.centre (cPZ : ConPolyZono α) : α := cPZ.c
-
-end CORALean.Real
 
 
 -- ==================================  `ConPolyZono.consCol`  =================================== --
@@ -61,12 +56,8 @@ end CORALean.Real
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
 /-- Constraint column `l` as a vector, which is the generator the merge adds. -/
 def ConPolyZono.consCol {m s : ℕ} (A : Mat ℝ m s) (l : Fin s) : Vec ℝ m := fun i => A i l
-
-end CORALean.Real
 
 
 -- =================================  `ConPolyZono.factorIdx`  ================================== --
@@ -75,14 +66,10 @@ end CORALean.Real
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
 /-- The kept factors, indexed by a plain count, as `PolyZonotope`'s is. -/
 def ConPolyZono.factorIdx {p h s : ℕ} (E : Fin p → Fin h → ℕ) (EC : Fin p → Fin s → ℕ)
     (k : Fin (ConPolyZono.usedFactors E EC).card) : Fin p :=
   PolyZonotope.factorIdx (ConPolyZono.appendE E EC) k
-
-end CORALean.Real
 
 
 -- ===============================  `ConPolyZono.mtimes_eq_map`  ================================ --
@@ -91,17 +78,9 @@ end CORALean.Real
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-open Matrix
-
-variable {k n : ℕ}
-
 /-- True by `rfl`, and what lets `mtimes` inherit `map`'s exactness. -/
 theorem ConPolyZono.mtimes_eq_map (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
     ConPolyZono.mtimes M cPZ = cPZ.map (Matrix.mulVecLin M) := rfl
-
-end CORALean.Real
 
 
 -- ===================================  `ConPolyZono.plusB`  ==================================== --
@@ -110,32 +89,11 @@ end CORALean.Real
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
 /-- The two right-hand sides side by side, each bound concatenated with its
 own. -/
 def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Interval (Vec ℝ m₁)) (b₂ : Interval (Vec ℝ m₂)) :
     Interval (Vec ℝ (m₁ + m₂)) :=
   ⟨Fin.append b₁.inf b₂.inf, Fin.append b₁.sup b₂.sup⟩
-
-end CORALean.Real
-
-
--- ===============================  `ConPolyZono.satisfies_map`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
-
-/-- The constraint is untouched, and `rfl` is the honest proof of it. -/
-theorem ConPolyZono.satisfies_map (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α)
-    (a : Fin cPZ.p → ℝ) : (cPZ.map f).satisfies a ↔ cPZ.satisfies a := Iff.rfl
-
-end CORALean.Real
 
 
 -- ==================================  `ConPolyZono.unitBox`  =================================== --
@@ -144,12 +102,28 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
 /-- The factor box `[-1,1]ᵖ`, which `rescale` contracts. -/
 def ConPolyZono.unitBox (p : ℕ) : Interval (Vec ℝ p) where
   inf := fun _ => -1
   sup := fun _ => 1
+
+end CORALean.Real
+
+
+namespace CORALean.Real
+
+variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Module ℝ β]
+
+
+-- ===============================  `ConPolyZono.satisfies_map`  ================================ --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- The constraint is untouched, and `rfl` is the honest proof of it. -/
+theorem ConPolyZono.satisfies_map (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α)
+    (a : Fin cPZ.p → ℝ) : (cPZ.map f).satisfies a ↔ cPZ.satisfies a := Iff.rfl
 
 end CORALean.Real
 

@@ -17,22 +17,21 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean
+
+variable {G P : ℕ → Type} {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+
+
 -- ========================  `NonlinearReset.evaluate_toNonlinearReset`  ======================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean
-
-variable {G : ℕ → Type} {L : Type} {𝕋 : Type} [Scalar 𝕋] {n : ℕ}
-
 /-- At every point, `evaluate` of `Transition.toNonlinearReset` is `Transition.reset`: the nonlinear
 reset class contains the affine one, whatever the input. -/
 theorem NonlinearReset.evaluate_toNonlinearReset (e : Transition G L 𝕋 n) (x : Vec ℝ n)
     (u : Vec ℝ 0) : e.toNonlinearReset.evaluate x u = e.reset x := rfl
-
-end CORALean
 
 
 -- ============================  `Transition.guard2polytope_reset`  ============================= --
@@ -40,10 +39,6 @@ end CORALean
 -- Written:       04-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean
-
-variable {G P : ℕ → Type} {L : Type} {𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- The reset is untouched, so it is the same map. -/
 theorem Transition.guard2polytope_reset (conv : G n → P n) (e : Transition G L 𝕋 n) :

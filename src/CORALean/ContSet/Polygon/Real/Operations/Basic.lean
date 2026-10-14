@@ -15,20 +15,19 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+
 -- =====================================  `Polygon.empty`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
 /-- The empty polygon, `polygon(zeros(2,0))`.
 
 CORA's `polygon.empty`: no pieces. -/
 def Polygon.empty : Polygon := ⟨[]⟩
-
-end CORALean.Real
 
 
 -- =======================================  `Polygon.or`  ======================================= --
@@ -36,8 +35,6 @@ end CORALean.Real
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
 
 /-- The union: the pieces of both.
 

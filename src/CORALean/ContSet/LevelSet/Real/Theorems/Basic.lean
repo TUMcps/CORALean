@@ -20,22 +20,21 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
 -- ================================  `LevelSet.construct_empty`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- `LevelSet.empty` denotes the empty set -/
 theorem LevelSet.construct_empty (n : ℕ) : (LevelSet.empty n).construct = ∅ := by
   ext x
   simp [LevelSet.empty, LevelSet.construct, CompOp.holds]
-
-end CORALean.Real
 
 
 -- =================================  `LevelSet.construct_Inf`  ================================= --
@@ -44,16 +43,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- `LevelSet.Inf` denotes the whole space -/
 theorem LevelSet.construct_Inf (n : ℕ) : (LevelSet.Inf n).construct = Set.univ := by
   ext x
   simp [LevelSet.Inf, LevelSet.construct, CompOp.holds]
-
-end CORALean.Real
 
 
 -- ================================  `LevelSet.forall_fin_add`  ================================= --
@@ -62,17 +55,11 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- A statement about every index of `Fin (a + b)` splits into the first `a` and the last `b`. What
 the stacked constraints of `and_` and the two-sided bounds of `Interval.levelSet` need. -/
 theorem LevelSet.forall_fin_add {a b : ℕ} (P : Fin (a + b) → Prop) :
     (∀ i, P i) ↔ (∀ i : Fin a, P (Fin.castAdd b i)) ∧ ∀ j : Fin b, P (Fin.natAdd a j) :=
   ⟨fun h => ⟨fun _ => h _, fun _ => h _⟩, fun h i => Fin.addCases h.1 h.2 i⟩
-
-end CORALean.Real
 
 
 -- ==================================  `LevelSet.lift_exact`  =================================== --
@@ -81,16 +68,10 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
 /-- The lifted level set is exactly the points whose selected coordinates lie in the original. -/
 theorem LevelSet.lift_exact {N : ℕ} (L : LevelSet n) (dims : Fin n → Fin N) :
     (L.lift_ dims).construct = (fun x : Vec ℝ N => fun i => x (dims i)) ⁻¹' L.construct :=
   rfl
-
-end CORALean.Real
 
 
 -- =============================  `LevelSet.splitEquality_fst_op`  ============================== --
@@ -99,15 +80,11 @@ end CORALean.Real
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
 /-- Every constraint of the first part is an equality. -/
 theorem LevelSet.splitEquality_fst_op {n : ℕ} (L : LevelSet n)
     (j : Fin L.splitEquality.1.m) : L.splitEquality.1.op j = .eq := by
   have := Finset.orderEmbOfFin_mem (Finset.univ.filter fun i => L.op i = .eq) rfl j
   exact (Finset.mem_filter.mp this).2
-
-end CORALean.Real
 
 
 -- =============================  `LevelSet.splitEquality_snd_op`  ============================== --
@@ -115,8 +92,6 @@ end CORALean.Real
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
 
 /-- No constraint of the second part is an equality. -/
 theorem LevelSet.splitEquality_snd_op {n : ℕ} (L : LevelSet n)

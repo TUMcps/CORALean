@@ -566,29 +566,58 @@ a declaration's docstring included; `namespace`, `section`, `end`, `open`,
 `variable` and `universe` lines are context and do not count.
 
 ```lean
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
 -- ======================================  `Interval.abs`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-namespace CORALean.Real
-
-variable {n : ℕ}
-
+/-- The componentwise absolute value of an interval: the interval of `|x|` over its points. -/
 def Interval.abs (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n) where
   …
+
+
+-- ======================================  `Interval.max`  ====================================== --
+…
 
 end CORALean.Real
 ```
 
+**A bundle is its context blocks, each with its sections.** What the old files each said
+for themselves — `namespace`, `open`, `variable` — is said once for the sections that
+share it. A *block* is a `namespace` line (nested ones allowed), then `open` lines,
+then `variable` lines, then the sections, then the `end` lines; the block's lines are
+context and do not count toward a section's five. A file usually has one block; it has
+several where the sections cannot share one: another namespace (`CORALean.Float`
+beside `CORALean.Float.Binary64`), or `variable`s that disagree (the same name at two
+types, or a different set of instance arguments, which Lean would otherwise add to
+every declaration that mentions the type). Adjacent blocks with the same lines are one
+block (checked). A block opens with `namespace` or `section`, never a bare `open` or
+`variable`, which would leak into every section after it.
+
+Lean puts a `variable` binder into a declaration only where the declaration uses it,
+and an instance argument only where it uses the type the instance is about, so a block's
+`variable` lines are the union of what its sections each needed, in an order that keeps
+every section's own binders in their own order (the order of the arguments of a
+declaration is the order of the `variable` list). Two sections whose instance arguments
+differ for a type both use, or which bind one name at two types, are not in one block:
+the first would silently gain arguments, the second would shadow. A section that needs a
+binder or an `open` its block lacks adds it to the block's line if that changes no other
+section's declaration, and otherwise starts a block of its own. The conversion that
+introduced blocks was checked on every constant of the 103 bundles: its type and value
+hashed alike before and after.
+
 A section is its banner, 100 characters with the declaration's name in backticks
 (as written, or with its namespace below `CORALean` — `Float.MatExp.corrTerm` —
 where two layers' declarations of one name share a bundle), its own author block
-directly under it, one blank line, and then what the declaration's file held
-between its code markers: its `namespace`, `open` and `variable` lines and the
-declaration, wrapped in `section` … `end` when something sat outside a
-namespace. One declaration per section; under `Complexity/Time/` and
+directly under it, one blank line, and then the declaration with its `/-- … -/`:
+nothing of `namespace`, `open` or `variable`, and no `section` … `end` of its own.
+One declaration per section; under `Complexity/Time/` and
 `Complexity/Space/` one operation, its exact statement and `O` corollary together,
 as in `<Op>.lean`. There is no per-section module docstring: the declaration's own
 `/-- … -/` is its description, and every section's declaration (under `Complexity/`,
@@ -601,9 +630,11 @@ is eligible only if its declaration fits five code lines and the docstring limit
 docstring of its own and no author block outside the sections; `review.py`
 reviews it section by section.
 
-**Order.** Alphabetical by the banner's name, unless a section uses a declaration
-of an alphabetically later one; then the used one comes first, and among the
-sections free to go next the alphabetically first does. The check reads "uses"
+**Order.** Within a block, alphabetical by the banner's name, unless a section uses
+a declaration of an alphabetically later one; then the used one comes first, and among
+the sections free to go next the alphabetically first does. The blocks themselves are
+ordered the same way by the name of their first section, after the blocks whose sections
+they use. The check reads "uses"
 off the text in two strengths: a section that names another's declaration in full
 (`Interval.center`) *certainly* uses it, and must follow it; one whose identifiers
 contain the last component (`I.center`, `center`) *possibly* does, which dot

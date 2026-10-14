@@ -17,17 +17,18 @@ five code lines each; alphabetical, after the sections each one uses (CONTRIBUTI
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 
--- ===================================  `VPolytope.mtimes_k`  =================================== --
--- Authors:       Claude Opus 5
--- Written:       07-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
 namespace CORALean.Real
 
 open Matrix
 
 variable {n m : ℕ}
+
+
+-- ===================================  `VPolytope.mtimes_k`  =================================== --
+-- Authors:       Claude Opus 5
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
 
 /-- `mtimes` is `map` at `A *ᵥ ·`: the vertex count carries over exactly, one image
 vertex per operand vertex. `rfl`, since `Operations/Mtimes.lean` states `k`
@@ -35,18 +36,12 @@ directly. -/
 theorem VPolytope.mtimes_k (M : Mat ℝ m n) (P : VPolytope (Vec ℝ n)) :
     (VPolytope.mtimes M P).k = P.k := rfl
 
-end CORALean.Real
-
 
 -- =============================  `VPolytope.mtimesMatPolytope_k`  ============================== --
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
 -- Reviewed:      ---
-
-namespace CORALean.Real
-
-variable {n m : ℕ}
 
 /-- `mtimesMatPolytope` is `bilin` at `Matrix.mulVecBilin`, so its count is
 `bilin`'s: the matrix's own vertex count times the operand's. `rfl`, by
