@@ -1,6 +1,11 @@
 module
 
 public import CORALean.Specification.STL.Operations.Basic
+public import CORALean.Specification.STL.Operations.TreeConjunctiveNormalForm
+public import CORALean.Specification.STL.Operations.TreeDisjunctiveNormalForm
+public import CORALean.Specification.STL.Theorems.TreeIsCnfCnfLoop
+public import CORALean.Specification.STL.Theorems.TreeIsDnfDnfLoop
+public import CORALean.Specification.STL.Theorems.TreeMemAssignIdentifiersFrom
 public import CORALean.Specification.STL.Theorems.TreeSatCompare
 public import CORALean.Specification.STL.Theorems.TreeSatEliminateTrueFalseWith
 public import CORALean.Specification.STL.Theorems.TreeSatNnfWith
@@ -99,6 +104,40 @@ variable {n : ℕ}
 theorem STL.Expr.eval_times (e₁ e₂ : STL.Expr n) (x : Fin n → ℝ) :
     (STL.Expr.times e₁ e₂).eval x = e₁.eval x * e₂.eval x := by
   cases e₁ <;> cases e₂ <;> simp [STL.Expr.times, STL.Expr.eval, mul_comm]
+
+end CORALean
+
+
+-- ==========================  `STL.Tree.isCnf_conjunctiveNormalForm`  ========================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+namespace CORALean
+
+variable {n : ℕ}
+
+/-- The result of `conjunctiveNormalForm(obj)` is a conjunction of clauses. -/
+theorem STL.Tree.isCnf_conjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool) :
+    (φ.conjunctiveNormalForm nnf).IsCnf := STL.Tree.isCnf_cnfLoop _
+
+end CORALean
+
+
+-- ==========================  `STL.Tree.isDnf_disjunctiveNormalForm`  ========================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+namespace CORALean
+
+variable {n : ℕ}
+
+/-- The result of `disjunctiveNormalForm(obj)` is a disjunction of cubes. -/
+theorem STL.Tree.isDnf_disjunctiveNormalForm (φ : STL.Tree n) (nnf : Bool) :
+    (φ.disjunctiveNormalForm nnf).IsDnf := STL.Tree.isDnf_dnfLoop _
 
 end CORALean
 
@@ -234,6 +273,26 @@ variable {n : ℕ}
 theorem STL.Tree.sat_negationNormalForm (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) :
     φ.negationNormalForm.Sat ξ ↔ φ.Sat ξ :=
   (STL.Tree.sat_nnfWith STL.Cmp.negate STL.Cmp.rel_negate φ false ξ).trans (by simp)
+
+end CORALean
+
+
+-- =======================  `STL.Tree.temporal_of_mem_assignIdentifiers`  ======================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+namespace CORALean
+
+open scoped NNReal
+
+variable {n : ℕ}
+
+/-- Every listed formula of `assignIdentifiers` is non-temporal. -/
+theorem STL.Tree.temporal_of_mem_assignIdentifiers (φ ψ : STL.Tree n)
+    (h : ψ ∈ φ.assignIdentifiers) : ψ.temporal = false :=
+  (STL.Tree.temporal_of_mem_assignIdentifiersFrom φ [] ψ h).resolve_left (by simp)
 
 end CORALean
 

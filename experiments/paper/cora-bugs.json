@@ -711,6 +711,11 @@
       "kind": "other",
       "cex": "TreeNegationNormalFormCoraCounterexample.lean"
     },
+    "polytope2stl": {
+      "description": "equality constraints of the polytope dropped",
+      "kind": "other",
+      "cex": "TreePolytope2stlCoraCounterexample.lean"
+    },
     "robustness": {
       "description": "reach-set window keeps the last set's robustness, not the minimum",
       "kind": "unsound"

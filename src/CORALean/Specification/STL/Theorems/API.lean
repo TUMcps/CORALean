@@ -139,11 +139,47 @@ public import CORALean.Specification.STL.Theorems.SatImplies
 public import CORALean.Specification.STL.Theorems.SatNot
 public import CORALean.Specification.STL.Theorems.SatUntil
 public import CORALean.Specification.STL.Theorems.TreeEliminateTrueFalseCoraUntilCounterexample
+public import CORALean.Specification.STL.Theorems.TreeExistsConstraintsOfIsLinearPredicate
+public import CORALean.Specification.STL.Theorems.TreeIsClauseOfMemGetClausesCnf
+public import CORALean.Specification.STL.Theorems.TreeIsCnfCnfLoop
+public import CORALean.Specification.STL.Theorems.TreeIsCnfCnfRewrite
+public import CORALean.Specification.STL.Theorems.TreeIsCubeOfMemGetClausesDnf
+public import CORALean.Specification.STL.Theorems.TreeIsDnfDnfLoop
+public import CORALean.Specification.STL.Theorems.TreeIsDnfDnfRewrite
+public import CORALean.Specification.STL.Theorems.TreeIsNextCombinedCombineNext
+public import CORALean.Specification.STL.Theorems.TreeIsPredicateOfIsLinearPredicate
+public import CORALean.Specification.STL.Theorems.TreeLinearMapApplyEqSum
+public import CORALean.Specification.STL.Theorems.TreeMaximumTimeFromAdd
+public import CORALean.Specification.STL.Theorems.TreeMaximumTimeFromOfNotTemporal
+public import CORALean.Specification.STL.Theorems.TreeMemAssignIdentifiersFrom
+public import CORALean.Specification.STL.Theorems.TreeMinimumTimeFromAdd
+public import CORALean.Specification.STL.Theorems.TreeMinimumTimeFromOfNotTemporal
 public import CORALean.Specification.STL.Theorems.TreeNegationNormalFormCoraCounterexample
+public import CORALean.Specification.STL.Theorems.TreePolytope2stlCoraCounterexample
+public import CORALean.Specification.STL.Theorems.TreeSatCnfLoop
+public import CORALean.Specification.STL.Theorems.TreeSatCnfRewrite
+public import CORALean.Specification.STL.Theorems.TreeSatCombineNext
 public import CORALean.Specification.STL.Theorems.TreeSatCompare
+public import CORALean.Specification.STL.Theorems.TreeSatCongrGetVariables
+public import CORALean.Specification.STL.Theorems.TreeSatCongrMaximumTime
+public import CORALean.Specification.STL.Theorems.TreeSatCongrMinimumTime
+public import CORALean.Specification.STL.Theorems.TreeSatCongrOfIsPredicate
+public import CORALean.Specification.STL.Theorems.TreeSatConjoin
+public import CORALean.Specification.STL.Theorems.TreeSatConjunctiveNormalForm
 public import CORALean.Specification.STL.Theorems.TreeSatDesugar
+public import CORALean.Specification.STL.Theorems.TreeSatDisjunctiveNormalForm
+public import CORALean.Specification.STL.Theorems.TreeSatDnfLoop
+public import CORALean.Specification.STL.Theorems.TreeSatDnfRewrite
 public import CORALean.Specification.STL.Theorems.TreeSatEliminateTrueFalseWith
+public import CORALean.Specification.STL.Theorems.TreeSatGetClausesCnf
+public import CORALean.Specification.STL.Theorems.TreeSatGetClausesDnf
+public import CORALean.Specification.STL.Theorems.TreeSatHalfspace2set
 public import CORALean.Specification.STL.Theorems.TreeSatNnfWith
+public import CORALean.Specification.STL.Theorems.TreeSatPolytope2stl
+public import CORALean.Specification.STL.Theorems.TreeSatPolytope2stlCora
+public import CORALean.Specification.STL.Theorems.TreeTemporalOfIsPredicate
+public import CORALean.Specification.STL.Theorems.ExprEvalCongrVariables
+public import CORALean.Specification.STL.Theorems.ExprExistsAffineOfIsLinear
 
 /-!
 # Signal and reachset temporal logic: the theorems

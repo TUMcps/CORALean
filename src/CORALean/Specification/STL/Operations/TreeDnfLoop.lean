@@ -1,0 +1,109 @@
+module
+
+public import CORALean.Specification.STL.Operations.TreeDnfRewrite
+
+@[expose] public section
+
+/-!
+# The rewrite loop of the disjunctive normal form
+
+`@stl/disjunctiveNormalForm.m`: `while true`, rewrite and stop at the first pass that counts no
+distribution. The loop ends because every pass that distributes lowers the weight of the formula
+(`|` adds and adds one, `&` multiplies, a leaf weighs two): distributing `(a | b) & c` replaces a
+product `(a + b + 1) * c` by a sum `a * c + b * c + 1`.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       14-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open scoped NNReal
+
+variable {n : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+-- the weight of a formula: `|` adds, `&` multiplies, a leaf weighs two
+def STL.Tree.aux_dnfWeight : STL.Tree n → ℕ
+  | .or φ ψ => aux_dnfWeight φ + aux_dnfWeight ψ + 1
+  | .and φ ψ => aux_dnfWeight φ * aux_dnfWeight ψ
+  | _ => 2
+
+-- every formula weighs at least two
+theorem STL.Tree.aux_two_le_dnfWeight (φ : STL.Tree n) : 2 ≤ φ.aux_dnfWeight := by
+  induction φ with
+  | or φ ψ ihφ ihψ => simp only [STL.Tree.aux_dnfWeight]; omega
+  | and φ ψ ihφ ihψ => simp only [STL.Tree.aux_dnfWeight]; nlinarith
+  | _ => simp [STL.Tree.aux_dnfWeight]
+
+-- a pass never raises the weight, and lowers it when it distributes
+theorem STL.Tree.aux_dnfRewrite_weight (φ : STL.Tree n) :
+    (φ.dnfRewrite).1.aux_dnfWeight ≤ φ.aux_dnfWeight ∧
+      ((φ.dnfRewrite).2 ≠ 0 →
+        (φ.dnfRewrite).1.aux_dnfWeight < φ.aux_dnfWeight) := by -- --- PROOF ---
+  induction φ with
+  | and φ ψ ihφ ihψ =>
+    have h₁ := STL.Tree.aux_two_le_dnfWeight (φ.dnfRewrite).1
+    have h₂ := STL.Tree.aux_two_le_dnfWeight (ψ.dnfRewrite).1
+    obtain ⟨a₁, a₂⟩ := ihφ
+    obtain ⟨b₁, b₂⟩ := ihψ
+    simp only [STL.Tree.dnfRewrite]
+    split
+    all_goals simp_all only [STL.Tree.aux_dnfWeight]
+    -- both operands became `|`: four cubes replace the product
+    · rename_i ψ' _ _ _ l₁ l₂ r₁ r₂ _ _
+      have t₁ := STL.Tree.aux_two_le_dnfWeight l₁
+      have t₂ := STL.Tree.aux_two_le_dnfWeight l₂
+      have t₃ := STL.Tree.aux_two_le_dnfWeight r₁
+      have t₄ := STL.Tree.aux_two_le_dnfWeight r₂
+      have key := Nat.mul_le_mul a₁ b₁
+      refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
+    -- only the left operand is an `|`
+    · rename_i ψ' _ _ _ l₁ l₂ _ _
+      have key := Nat.mul_le_mul a₁ b₁
+      refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
+    -- only the right operand is an `|`
+    · rename_i _ _ _ r₁ r₂ φ' ψ' _ _
+      have key := Nat.mul_le_mul a₁ b₁
+      refine ⟨?_, fun _ => ?_⟩ <;> nlinarith
+    -- nothing distributed here: the weight drops where an operand's did
+    · refine ⟨Nat.mul_le_mul a₁ b₁, fun h => ?_⟩
+      by_cases c : φ.dnfRewrite.2 = 0
+      · have := Nat.mul_le_mul (a₁) (b₂ (by omega))
+        nlinarith
+      · have := Nat.mul_le_mul (a₂ c) b₁
+        nlinarith
+  -- the case of an `|`
+  | or φ ψ ihφ ihψ =>
+    obtain ⟨a₁, a₂⟩ := ihφ
+    obtain ⟨b₁, b₂⟩ := ihψ
+    simp only [STL.Tree.dnfRewrite, STL.Tree.aux_dnfWeight]
+    refine ⟨by omega, fun h => ?_⟩
+    by_cases hφ : (φ.dnfRewrite).2 = 0
+    · have := b₂ (by omega); omega
+    · have := a₂ hφ; omega
+  | _ => simp [STL.Tree.dnfRewrite]
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `while true [obj,cnt] = aux_rewrite(obj); if cnt == 0 break; end end` of
+`disjunctiveNormalForm.m`, with the NNF step left to the caller. -/
+def STL.Tree.dnfLoop (φ : STL.Tree n) : STL.Tree n :=
+  let res := (φ.dnfRewrite).1
+  let cnt := (φ.dnfRewrite).2
+  if _ : cnt = 0 then res else dnfLoop res
+termination_by φ.aux_dnfWeight
+decreasing_by rename_i h; exact (STL.Tree.aux_dnfRewrite_weight φ).2 h
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

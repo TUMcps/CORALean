@@ -193,7 +193,7 @@ Rulings on borderline cases:
 | [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 0 | 0 | 5 | 0 | 0 |
 | [rtl](specification/rtl.md) | specification | 5 | 0 | 0 | 4 | 1 | 0 |
 | [specification](specification/specification.md) | specification | 14 | 0 | 2 | 6 | 6 | 1 |
-| [stl](specification/stl.md) | specification | 52 | 16 | 4 | 27 | 5 | 3 |
+| [stl](specification/stl.md) | specification | 52 | 28 | 4 | 15 | 5 | 4 |
 | [stlInterval](specification/stlInterval.md) | specification | 19 | 0 | 0 | 17 | 2 | 0 |
 | [syntaxTree](specification/syntaxTree.md) | specification | 27 | 0 | 0 | 27 | 0 | 0 |
 | [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 0 | 0 | 5 | 1 | 0 |

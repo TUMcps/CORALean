@@ -25,6 +25,11 @@ public import CORALean.Specification.STL.Definitions.VerificationProblem
 public import CORALean.Specification.STL.Definitions.Cmp
 public import CORALean.Specification.STL.Definitions.Expr
 public import CORALean.Specification.STL.Definitions.Tree
+public import CORALean.Specification.STL.Definitions.TreeIsClause
+public import CORALean.Specification.STL.Definitions.TreeIsCnf
+public import CORALean.Specification.STL.Definitions.TreeIsCube
+public import CORALean.Specification.STL.Definitions.TreeIsDnf
+public import CORALean.Specification.STL.Definitions.TreeIsNextCombined
 public import CORALean.Specification.STL.Definitions.TreeWellFormed
 
 /-!

@@ -41,12 +41,31 @@ public import CORALean.Specification.STL.Operations.DepReach
 public import CORALean.Specification.STL.Operations.Basic
 public import CORALean.Specification.STL.Operations.CmpDual
 public import CORALean.Specification.STL.Operations.CmpNegate
+public import CORALean.Specification.STL.Operations.TreeAssignIdentifiersFrom
+public import CORALean.Specification.STL.Operations.TreeCnfLoop
+public import CORALean.Specification.STL.Operations.TreeCnfRewrite
+public import CORALean.Specification.STL.Operations.TreeCombineNext
 public import CORALean.Specification.STL.Operations.TreeCompare
+public import CORALean.Specification.STL.Operations.TreeConjoin
+public import CORALean.Specification.STL.Operations.TreeConjunctiveNormalForm
 public import CORALean.Specification.STL.Operations.TreeDesugar
+public import CORALean.Specification.STL.Operations.TreeDisjunctiveNormalForm
+public import CORALean.Specification.STL.Operations.TreeDnfLoop
+public import CORALean.Specification.STL.Operations.TreeDnfRewrite
 public import CORALean.Specification.STL.Operations.TreeEliminateTrueFalseCora
 public import CORALean.Specification.STL.Operations.TreeEliminateTrueFalseWith
+public import CORALean.Specification.STL.Operations.TreeGetVariables
+public import CORALean.Specification.STL.Operations.TreeHalfspace2set
+public import CORALean.Specification.STL.Operations.TreeIsLinearPredicate
+public import CORALean.Specification.STL.Operations.TreeMaximumTimeFrom
+public import CORALean.Specification.STL.Operations.TreeMinimumTimeFrom
 public import CORALean.Specification.STL.Operations.TreeNegationNormalFormCora
 public import CORALean.Specification.STL.Operations.TreeNnfWith
+public import CORALean.Specification.STL.Operations.TreePolytope2stl
+public import CORALean.Specification.STL.Operations.TreePolytope2stlCora
+public import CORALean.Specification.STL.Operations.TreeTemporal
+public import CORALean.Specification.STL.Operations.ExprIsLinear
+public import CORALean.Specification.STL.Operations.ExprVariables
 
 /-!
 # Signal and reachset temporal logic: the operations
