@@ -13,13 +13,13 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBac
 exact layer's `maxBackReachCZ` (`minkowskiDiff_subset_maxBackReachCZ`). The erosion is monotone
 in the right directions: a float polytope inside the exact one, and an exact subtrahend inside
 the float one, leave the float difference inside the exact.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

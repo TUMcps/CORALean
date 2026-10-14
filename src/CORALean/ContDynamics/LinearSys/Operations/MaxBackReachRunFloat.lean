@@ -5,19 +5,19 @@ public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachStepFloat
 @[expose] public section
 
 /-!
-# `Alg. 2` lines 6-13 in floats: the state after the first `k` iterations
+# `Alg. 3` lines 6-13 in floats: the state after the first `k` iterations
 
 `maxBackReachRun` computed in `𝕋`: `0` is line 2's pre-loop state, so the `k`-th iteration's set
 is `run (k+1)`'s. `none` as soon as one iteration is, or when the order the search raises `η`
 to at `t₀` is not the
 one it raises it to at `Δt`: the exact run takes one order throughout.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

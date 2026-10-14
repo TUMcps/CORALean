@@ -7,15 +7,15 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 @[expose] public section
 
 /-!
-# `Alg. 2`'s loop state
+# `Alg. 3`'s loop state
 
-`MaxBackReachState`: what one iteration of [1, Alg. 2] hands the next.
+`MaxBackReachState`: what one iteration of [1, Alg. 3] hands the next.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -33,7 +33,7 @@ open CORALean.Real
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- What one iteration of [1, Alg. 2] hands the next. -/
+/-- What one iteration of [1, Alg. 3] hands the next. -/
 structure LinearSys.MaxBackReachState (n : ℕ) where
   /-- `t_k`, line 7. -/
   t : ℝ

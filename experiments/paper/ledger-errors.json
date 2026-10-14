@@ -365,11 +365,6 @@
       "description": "false for $k_\\mathrm{init} > p$"
     }
   },
-  "2023/wetzlinger-arxiv-backward-reachability": {
-    "Prop. 1": {
-      "description": "sum (23) starts at $i = 1$, dropping the first order"
-    }
-  },
   "2023/wetzlinger-hscc-support-functions": {
     "Sec. 4.2": {
       "description": "support direction drops $T$ and counts steps from the wrong end",

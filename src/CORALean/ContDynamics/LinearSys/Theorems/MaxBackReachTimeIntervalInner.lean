@@ -13,25 +13,25 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 @[expose] public section
 
 /-!
-# `Thm. 2`: what `Alg. 2` returns is inside the maximal set over `τ`
+# `Thm. 2`: what `Alg. 3` returns is inside the EA set over `τ`
 
-[1, Thm. 2] holds [1, Alg. 2] to its claim, and it runs `⊆`, not `⊇`: (51) is an
+[1, Thm. 2] holds [1, Alg. 3] to its claim, and it runs `⊆`, not `⊇`: (54) is an
 *inner* approximation. Proved outright: line 12's linear map and `⊕ -Z̲_U(t_k)`,
 line 11's hull and conversion, `Lemma 1` carrying the hull of two erosions into
 the erosion of the hull — the step the lemma exists for — the time-point
 identity `Prop. 5` in its inner direction, `Prop. 2`, and line 14's union.
 
 `hhom` and `hZU` are what the paper imports: (21)'s inner homogeneous
-time-interval solution and (24)-(27)'s particular solutions. Both are stated
+time-interval solution and (25)-(29)'s particular solutions. Both are stated
 *per time* `t ∈ τ_k`. The paper's own proof states them against the union over
 `τ_k` and then erodes that union, which needs `(⋃ₜ Aₜ) ⊖ B ⊆ ⋃ₜ (Aₜ ⊖ B)` — the
 direction that fails; see the findings on the paper's page.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5
@@ -116,8 +116,8 @@ theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys 𝕋 n) {U 
   rw [hend]
   exact hxt
 
-/-- One iteration of [1, Alg. 2] lands inside the time-point solutions over
-`τ_k`, which is (51). -/
+/-- One iteration of [1, Alg. 3] lands inside the time-point solutions over
+`τ_k`, which is (54). -/
 theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {s : LinearSys.MaxBackReachState n} (hs : 0 ≤ s.t)
     (hZW : (sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw Δt η s).ZW = ZW)
@@ -148,7 +148,7 @@ theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend 
   rintro _ ⟨v, hv, rfl⟩
   obtain ⟨y, hy, z, hz, rfl⟩ := Set.mem_add.mp hv
   obtain ⟨c, hc, rfl⟩ := hz
-  -- lines 11, (17), (11): each endpoint of the hull is a `P_i` eroded by `Ẑ_W(τ_k)`
+  -- lines 11, Alg. 1, (11): each endpoint of the hull is a `P_i` eroded by `Ẑ_W(τ_k)`
   have hsub : ∀ P : HPolytope (Vec ℝ n), (∀ (i : Fin P.me) (w : Vec ℝ n), P.Ae i w = 0) →
       (LinearSys.maxBackReachCZ ρ P ZW).construct ⊆ minkowskiDiff P.construct ZW.construct := by
     intro P hker
@@ -190,7 +190,7 @@ theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Thm. 2]: what `Alg. 2` returns is inside the time-interval maximal
+/-- [1, Thm. 2]: what `Alg. 3` returns is inside the time-interval EA
 backward reachable set — an inner approximation, `⊆`. -/
 theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {t₀ tend : ℝ} {ω : ℕ} {τ : Set ℝ} {st : ℕ → LinearSys.MaxBackReachState n}
@@ -211,7 +211,7 @@ theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W X
       ∃ t ∈ Set.Icc (st k).t ((st k).t + Δt),
         y ∈ (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin ''
           minkowskiDiff (construct Xend) (sys.inputReach W t))
-    -- (24)-(27): the inner input particular solution, carried to `t_{k+1}`
+    -- (25)-(29): the inner input particular solution, carried to `t_{k+1}`
     (hZU : ∀ k < ω, ∀ t ∈ Set.Icc (st k).t ((st k).t + Δt), (st k).ZU.construct ⊆
       (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t) :
     sys.maxBackReachTimeInterval ρ P₁ P₂ Uz W₀ Zw t₀ tend η ω ⊆

@@ -11,21 +11,22 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 @[expose] public section
 
 /-!
-# [1, Prop. 1]'s printed (23) does not enclose the particular solution
+# The preprint's (24) does not enclose the particular solution
 
-[1, Prop. 1] (arXiv v1) prints (23) as `⊕_{i=1}^{η} Aⁱ Δt^{i+1}/(i+1)! S ⊕ E(Δt, η) Δt S`,
-summing from `i = 1` and so dropping the first order `Δt·S`, and calls it an outer
-approximation of the particular solution `Z_S(Δt)`. At `A = 0` the remainder `E` is the zero
-matrix and every `Aⁱ` with `i ≥ 1` vanishes, so the printed set is `{0}`, while `Z_S(Δt)`
-is `Δt·S`. `A = 0`, `Δt = 1`, `η = 0` and `S = [0, 2]` meet every side condition of the
+[1, Prop. 1] approximates the particular solution `Z_S(Δt)` from outside by [1, (24)]. The first
+preprint (arXiv v1) printed that formula, there (23), as
+`⊕_{i=1}^{η} Aⁱ Δt^{i+1}/(i+1)! S ⊕ E(Δt, η) Δt S`, summing from `i = 1` and so dropping the
+first order `Δt·S`; the later versions sum from `i = 0`. At `A = 0` the remainder `E` is the
+zero matrix and every `Aⁱ` with `i ≥ 1` vanishes, so the printed set is `{0}`, while
+`Z_S(Δt)` is `Δt·S`. `A = 0`, `Δt = 1`, `η = 0` and `S = [0, 2]` meet every side condition of the
 proposition (`S` convex, closed, bounded, non-empty, and `Δt‖A‖ ≤ 1`), and `1 ∈ Z_S(1)`
 is the constant input `u ≡ 1`.
 
 ## References
 
 * [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
-      Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -47,7 +48,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Prop. 1] as printed: the particular solution lies in (23) summed from `i = 1`. -/
+/-- [1, Prop. 1] as arXiv v1 printed it: the particular solution lies in (24) summed from
+`i = 1`. -/
 theorem LinearSys.inputSolutionSet_printed_counterexample :
     ¬ ∀ (n : ℕ) (sys : LinearSys ℝ n) (U : Zonotope (Vec ℝ n)) (Δt : ℝ), 0 < Δt → ∀ η : ℕ,
       sys.inputReach (S := 𝒵) U Δt

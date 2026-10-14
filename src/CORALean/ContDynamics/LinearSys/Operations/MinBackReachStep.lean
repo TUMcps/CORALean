@@ -13,17 +13,17 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 @[expose] public section
 
 /-!
-# `Alg. 1` lines 8-11: one iteration of the main loop
+# `Alg. 2` lines 8-11: one iteration of the main loop
 
-`minBackReachStep`: [1, Alg. 1], propagating the two particular solutions and the converted
-target set over `τ_k`, over the time-inverted dynamics `ẋ̃ = -A x̃ - u - w`. `Zw` is (26), the
+`minBackReachStep`: [1, Alg. 2], propagating the two particular solutions and the converted
+target set over `τ_k`, over the time-inverted dynamics `ẋ̃ = -A x̃ - u - w`. `Zw` is (27), the
 constant centre trajectory's contribution over one interval.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -47,7 +47,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Lines 8-11: one iteration of [1, Alg. 1]'s main loop, propagating the two
+/-- Lines 8-11: one iteration of [1, Alg. 2]'s main loop, propagating the two
 particular solutions and the converted target set over `τ_k`. -/
 noncomputable def LinearSys.minBackReachStep (sys : LinearSys 𝕋 n)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))

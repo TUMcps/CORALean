@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 /-!
 # The float `μ` is an upper bound of the exact one
 
-`μ`, [1, Alg. 2] line 3, is the radius of the ball `B_μ` that lines 4 and 5 subtract, so an upper
+`μ`, [1, Alg. 3] line 3, is the radius of the ball `B_μ` that lines 4 and 5 subtract, so an upper
 bound keeps the polytope inside the exact one: this is the direction an inner approximation needs.
 The float value is the Frobenius bound `√γ ‖M G‖_F` of an entrywise magnitude bound of `M G`, `M =
 e^{AΔt} - I` known to lie in `[e^{AΔt}] - I`, and the spectral norm of a matrix is at most its
@@ -21,9 +21,9 @@ the float one stores.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

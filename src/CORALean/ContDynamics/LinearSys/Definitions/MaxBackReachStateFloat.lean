@@ -6,7 +6,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 @[expose] public section
 
 /-!
-# What one iteration of `Alg. 2` in floats hands the next
+# What one iteration of `Alg. 3` in floats hands the next
 
 `MaxBackReachState` in `𝕋`, with three differences the guarantee forces. The time `t_k` is a
 bracket, since a float need not hold it. `Z̲_U(t_k)` is *not* an inner set: its float
@@ -18,9 +18,9 @@ the summands are each described by their stored numbers.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- What one iteration of [1, Alg. 2] hands the next, in floats. -/
+/-- What one iteration of [1, Alg. 3] hands the next, in floats. -/
 structure LinearSys.MaxBackReachStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) where
   /-- `t_k`, line 7: a lower end. -/
   tLo : 𝕋

@@ -5,19 +5,19 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachRunFloatEnclo
 @[expose] public section
 
 /-!
-# The float run of `Alg. 2` is inside the exact run
+# The float run of `Alg. 3` is inside the exact run
 
 The inner approximation, `⊆`, and never `⊇`: the float `R̂^{∃∀}(-τ_{k-1})` after `k` iterations,
 the sum of the first summand and the negated second, is inside the exact layer's set of the same
 iteration. Whatever `maxBackReachTimeInterval_inner` says of the exact run's sets, it says of the
 float's, which are inside them. This is the `R` of `maxBackReachRunFloat_encloses`.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

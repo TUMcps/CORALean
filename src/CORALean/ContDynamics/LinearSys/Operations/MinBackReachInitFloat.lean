@@ -11,18 +11,18 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 @[expose] public section
 
 /-!
-# `Alg. 1` lines 1-6 in floats: the loop state before the first iteration
+# `Alg. 2` lines 1-6 in floats: the loop state before the first iteration
 
-`minBackReachInit` computed in `𝕋`: [1, Alg. 1] lines 1-6, the two centred particular solutions of
+`minBackReachInit` computed in `𝕋`: [1, Alg. 2] lines 1-6, the two centred particular solutions of
 the time-inverted dynamics `-A` accumulated up to `t₀`, by `inputSolutionFloat` rather than
 `inputSolution`, and the origin as the start of `R̂^∃`. Negating a float is exact, so `-A` costs
 no rounding.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

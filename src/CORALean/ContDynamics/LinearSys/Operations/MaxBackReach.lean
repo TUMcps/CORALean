@@ -12,9 +12,9 @@ public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 @[expose] public section
 
 /-!
-# `Alg. 2`: the maximal time-interval backward reachable set, every line
+# `Alg. 3`: the EA time-interval backward reachable set, every line
 
-[1, Alg. 2] in full. Lines 3-5 compute the two polytopes of the inner approximated
+[1, Alg. 3] in full. Lines 3-5 compute the two polytopes of the inner approximated
 homogeneous time-interval solution (21): `box(X_end)` from the caller's support oracle `ρ`
 (the linear programs of (9)), `F box(X_end)` with `F` the interval matrix (19), `μ` (22) at
 the spectral norm, `P₁ = X_end ⊖ F box(X_end) ⊖ B_μ` and `P₂ = e^{AΔt}X_end ⊖ F box(X_end) ⊖ B_μ`,
@@ -22,13 +22,13 @@ the spectral norm, `P₁ = X_end ⊖ F box(X_end) ⊖ B_μ` and `P₂ = e^{AΔt}
 the preimage under `e^{-AΔt}`. Lines 1-2 and 6-14 are `maxBackReachTimeInterval`, which takes
 the two polytopes. Line 14's union is no constrained zonotope, so the result is a `Set`.
 
-`Zw` is (26), the constant centre trajectory's contribution over one interval.
+`Zw` is (27), the constant centre trajectory's contribution over one interval.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -66,7 +66,7 @@ noncomputable def aux_maxBackReach_expEquiv (A : Mat ℝ n n) (Δt : ℝ) : Vec 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 2]: `R̂^{∃∀}(-τ)` from the target set `X_end`, lines 3-5 computed here. -/
+/-- [1, Alg. 3]: `R̂^{∃∀}(-τ)` from the target set `X_end`, lines 3-5 computed here. -/
 noncomputable def LinearSys.maxBackReach (sys : LinearSys 𝕋 n)
     (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
     (Xend : HPolytope (Vec ℝ n)) (U W₀ : Zonotope (Vec ℝ n))

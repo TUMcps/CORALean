@@ -6,20 +6,20 @@ public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachStateFloat
 @[expose] public section
 
 /-!
-# A float state of `Alg. 2` that stands for an exact one
+# A float state of `Alg. 3` that stands for an exact one
 
 What `maxBackReachStepFloat` keeps true of its state against the exact layer's: the time lies in
 the bracket; the float `Z̲_U(t_k)` lies within `UErr` of the exact one and holds `0` in its
 error box; the two disturbance sets `Ẑ_{W₀}`, `Ẑ_W` hold the exact ones; and the float
 `R̂^{∃∀}(-τ_{k-1})` lies inside the exact one. The last is the inner approximation, the first
 three are what it is derived from and are all outer or within a stated distance.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

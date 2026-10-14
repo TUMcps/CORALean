@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 @[expose] public section
 
 /-!
-# `Alg. 2` lines 1-2 in floats: the loop state before the first iteration
+# `Alg. 3` lines 1-2 in floats: the loop state before the first iteration
 
 `maxBackReachInit` computed in `𝕋`: the two particular solutions accumulated up to `t₀`. The
 integral `∫₀^{t₀} e^{As}ds` is only known to an interval matrix (`MatExp.adaptiveIntegral`),
@@ -22,13 +22,13 @@ with its excess over the exact set recorded, `UErr`: a later step makes room for
 (`maxBackReachStepFloat`). `Ẑ_{W₀}(t₀)` is `inputSolutionFloat`, an outer set, which is the
 direction a set that is subtracted wants. `η` is raised with `reachOrderFloat` to the first order
 the float remainder bound at `t₀ · A` admits; `none` when that search fails.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

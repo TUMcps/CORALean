@@ -8,16 +8,16 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 @[expose] public section
 
 /-!
-# `Alg. 1` lines 1-6: the loop state before the first iteration
+# `Alg. 2` lines 1-6: the loop state before the first iteration
 
-`minBackReachInit`: [1, Alg. 1] lines 1-6, the two centred particular solutions
+`minBackReachInit`: [1, Alg. 2] lines 1-6, the two centred particular solutions
 accumulated up to `t₀`, before the first iteration.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5

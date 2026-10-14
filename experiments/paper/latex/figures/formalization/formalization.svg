@@ -58,18 +58,18 @@
 <text x="150" y="188" font-size="10" fill="#888">+n: out of scope, not in the bar</text>
 <text x="150" y="200" font-weight="bold">(b) Formalized paper statements</text>
 <text x="142" y="219" text-anchor="end">Paper results</text>
-<rect x="150.0" y="208" width="330.0" height="14" fill="rgb(120,197,127)"/>
-<text x="315.0" y="219" text-anchor="middle" font-size="9" fill="#000">780</text>
-<rect x="480.0" y="208" width="15.7" height="14" fill="rgb(237,177,32)"/>
-<rect x="495.7" y="208" width="102.0" height="14" fill="rgb(255,174,76)"/>
-<text x="546.7" y="219" text-anchor="middle" font-size="9" fill="#000">241</text>
-<rect x="597.6" y="208" width="45.3" height="14" fill="rgb(241,141,145)"/>
-<text x="620.3" y="219" text-anchor="middle" font-size="9" fill="#000">107</text>
+<rect x="150.0" y="208" width="330.4" height="14" fill="rgb(120,197,127)"/>
+<text x="315.2" y="219" text-anchor="middle" font-size="9" fill="#000">781</text>
+<rect x="480.4" y="208" width="15.7" height="14" fill="rgb(237,177,32)"/>
+<rect x="496.1" y="208" width="102.0" height="14" fill="rgb(255,174,76)"/>
+<text x="547.1" y="219" text-anchor="middle" font-size="9" fill="#000">241</text>
+<rect x="598.1" y="208" width="44.8" height="14" fill="rgb(241,141,145)"/>
+<text x="620.5" y="219" text-anchor="middle" font-size="9" fill="#000">106</text>
 <rect x="642.9" y="208" width="4.7" height="14" fill="rgb(162,20,47)"/>
 <rect x="647.6" y="208" width="22.4" height="14" fill="rgb(255,255,255)"/>
 <text x="658.8" y="219" text-anchor="middle" font-size="9" fill="#000">53</text>
 <rect x="150" y="208" width="520.0" height="14" fill="none" stroke="#000" stroke-width="0.8"/>
-<text x="675.0" y="219" font-size="9" fill="#888">+1062</text>
+<text x="675.0" y="219" font-size="9" fill="#888">+1063</text>
 <rect x="150" y="234" width="12" height="12" fill="rgb(120,197,127)" stroke="#000" stroke-width="0.8"/>
 <text x="168" y="244">correct</text>
 <rect x="340" y="234" width="12" height="12" fill="rgb(237,177,32)" stroke="#000" stroke-width="0.8"/>

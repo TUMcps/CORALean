@@ -10,9 +10,9 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 @[expose] public section
 
 /-!
-# `Alg. 2` lines 4-5 in floats: the eroded polytope
+# `Alg. 3` lines 4-5 in floats: the eroded polytope
 
-`maxBackReachPoly` computed in `𝕋`: [1, Alg. 2] lines 4-5, `X ⊖ F box(X_end) ⊖ B_μ`, one of the
+`maxBackReachPoly` computed in `𝕋`: [1, Alg. 3] lines 4-5, `X ⊖ F box(X_end) ⊖ B_μ`, one of the
 two polytopes of the inner approximated homogeneous time-interval solution (21). A difference
 is a guarantee, so this is where the float layer rounds **inward**: each inequality's bound is
 lowered by the subtrahend's support in that row's direction, rounded *up*
@@ -27,9 +27,9 @@ for the root.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

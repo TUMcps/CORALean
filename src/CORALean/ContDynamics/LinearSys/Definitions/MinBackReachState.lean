@@ -7,15 +7,15 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 @[expose] public section
 
 /-!
-# `Alg. 1`'s loop state
+# `Alg. 2`'s loop state
 
-`MinBackReachState`: what one iteration of [1, Alg. 1] hands the next.
+`MinBackReachState`: what one iteration of [1, Alg. 2] hands the next.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -33,7 +33,7 @@ open CORALean.Real
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- What one iteration of [1, Alg. 1] hands the next, over the time type `T`, the zonotope type
+/-- What one iteration of [1, Alg. 2] hands the next, over the time type `T`, the zonotope type
 `Z` and the constrained-zonotope type `C` of whichever layer runs it: the real one at `ℝ` and
 `Real.Zonotope`, the float one at `𝕋` and `Float.Zonotope`. -/
 structure LinearSys.MinBackReachStateOf (T Z C : Type) where

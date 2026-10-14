@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
 @[expose] public section
 
 /-!
-# [1, Prop. 3]: the minimal time-point backward reachable set, exactly
+# [1, Prop. 3]: the time-point AE backward reachable set, exactly
 
 `R^{∀∃}(-t) = e^{-At}((Xend ⊕ -Z_W(t)) ⊖ Z_U(t))`, with `Z_U` and `Z_W` the
 exact particular solutions `inputReach U t` and `inputReach W t` — plain sets of
@@ -28,9 +28,9 @@ direct, and needs `U` and `W` bounded, which the paper's zonotopes are.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -5,17 +5,17 @@ public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachSupport
 @[expose] public section
 
 /-!
-# `Alg. 1` lines 4 and 14: the accumulated support value
+# `Alg. 2` lines 4 and 14: the accumulated support value
 
-`minBackReachP`: [1, Alg. 1] lines 4 and 14, `p_(j)` after the steps `0` to `k`. `max`, not
+`minBackReachP`: [1, Alg. 2] lines 4 and 14, `p_(j)` after the steps `0` to `k`. `max`, not
 line 14's `min` — a union's support is the largest of its parts', see the findings on the
 reference page.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5

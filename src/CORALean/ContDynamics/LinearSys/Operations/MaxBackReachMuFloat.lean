@@ -9,9 +9,9 @@ public import CORALean.Global.Float.Sqrt
 @[expose] public section
 
 /-!
-# `Alg. 2` line 3 in floats: the curvature radius `μ`
+# `Alg. 3` line 3 in floats: the curvature radius `μ`
 
-`maxBackReachMu` computed in `𝕋`: [1, Alg. 2] line 3, `μ ← √γ ‖(e^{AΔt} - I_n)G‖₂`, rounded
+`maxBackReachMu` computed in `𝕋`: [1, Alg. 3] line 3, `μ ← √γ ‖(e^{AΔt} - I_n)G‖₂`, rounded
 **up**. `μ` is the radius of the ball `B_μ` that line 4 and 5 subtract, so a larger one only
 shrinks the polytope: the direction is the exact layer's `⊆`, an inner approximation.
 
@@ -22,9 +22,9 @@ magnitudes of `G`, all rounded up; `√γ` and the root are `sqrtUp`.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

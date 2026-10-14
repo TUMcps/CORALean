@@ -31,5 +31,5 @@ Backward, `PerturbedTrajectory` is `Trajectory` with a second, independently
 quantified signal `w`: `backReachSetForallExists` and `backReachSetExistsForall`
 are Wetzlinger and Althoff's Def. 6 and Def. 7, each with a `timeInterval...`
 sibling, the reading in which Prop. 3 and Prop. 5 are equalities.
-`minBackReachTimeInterval` is their Alg. 1, held to Thm. 1 in `Theorems`.
+`minBackReachTimeInterval` is their Alg. 2, held to Thm. 1 in `Theorems`.
 -/

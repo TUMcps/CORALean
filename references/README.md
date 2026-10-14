@@ -124,7 +124,6 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Fully Automatic Neural Network Reduction for Formal Verification](2023/ladner-tmlr-network-reduction.md) | Ladner, Althoff | TMLR | 2023 | 🟢 14/14 \| 5 |
 | [Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification](2023/liu-tro-guarantees-real-robotic.md) | Liu, Schürmann, Althoff | IEEE Transactions on Robotics, 39(5):3776-3790 | 2023 | 🟢 15/15 \| 17 |
 | [Reachability Analysis of ARMAX Models](2023/luetzow-cdc-armax.md) | Lützow, Althoff | CDC, pp. 7027-7034 | 2023 | 🟢 14/14 \| 5 |
-| [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2023/wetzlinger-arxiv-backward-reachability.md) | Wetzlinger, Althoff | arXiv:2310.19083 | 2023 | 🟢 11/11 \| 9 |
 | [Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets](2023/wetzlinger-fully-automated-verification.md) | Wetzlinger, Kochdumper, Bak, Althoff | IEEE Transactions on Automatic Control, vol. 68, no. 12, pp. 7771–7786 | 2023 | 🟢 19/19 \| 6 |
 | [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md) | Wetzlinger, Kochdumper, Bak, Althoff | HSCC | 2023 | 🟢 9/9 \| 4 |
 | [Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis](2024/kochdumper-nahs-stl-lti-verification.md) | Kochdumper, Bak | Nonlinear Analysis: Hybrid Systems, 53:101491 | 2024 | 🟡 11/15 \| 15 |
@@ -140,6 +139,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md) | Lützow, Eichelbeck, Kochenderfer, Althoff | Journal of Machine Learning Research, 26(294):1-37 | 2025 | 🟢 13/13 \| 19 |
 | [Underapproximative Methods for the Order Reduction of Zonotopes](2025/luetzow-lcss-underapprox-order-reduction.md) | Lützow, Kochdumper, Althoff | IEEE Control Systems Letters, 9:1730-1735 | 2025 | 🟢 10/10 \| 12 |
 | [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md) | Lützow, Althoff | IEEE Transactions on Automatic Control, 71(5):3014-3029 | 2026 | 🟢 14/14 \| 11 |
+| [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2026/wetzlinger-tac-backward-reachability.md) | Wetzlinger, Althoff | IEEE Transactions on Automatic Control, 71(1):352-367 | 2026 | 🟢 11/11 \| 10 |
 
 ## CORA coverage
 
@@ -301,7 +301,7 @@ pages carry one:
 * [Constrained Polynomial Zonotopes](2023/kochdumper-constrained-polyzonotopes.md)
 * [Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis](2023/ladner-hscc-abstraction-refinement.md)
 * [Fully Automatic Neural Network Reduction for Formal Verification](2023/ladner-tmlr-network-reduction.md)
-* [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2023/wetzlinger-arxiv-backward-reachability.md)
+* [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2026/wetzlinger-tac-backward-reachability.md)
 * [Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets](2023/wetzlinger-fully-automated-verification.md)
 * [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md)
 * [Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems](2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)

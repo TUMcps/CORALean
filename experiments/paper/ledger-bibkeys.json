@@ -48,7 +48,6 @@
     "2023/althoff-arch-reachset-conformance": "althoff2023checking",
     "2023/liu-tro-guarantees-real-robotic": "liu2023guarantees",
     "2023/luetzow-cdc-armax": "luetzow2023reachability",
-    "2023/wetzlinger-arxiv-backward-reachability": "wetzlinger2023backward",
     "2023/wetzlinger-hscc-support-functions": "wetzlinger2023fully",
     "2024/kochdumper-nahs-stl-lti-verification": "kochdumper2024fully",
     "2024/kulmburg-ecc-zonotope-ellipsotope-containment": "kulmburg2024search",

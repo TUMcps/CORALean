@@ -6,23 +6,23 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 @[expose] public section
 
 /-!
-# `Alg. 1` line 16: the minimal time-interval backward reachable set
+# `Alg. 2` line 16: the AE time-interval backward reachable set
 
-`minBackReachTimeInterval`: [1, Alg. 1] line 16, `R^{∀∃}(-τ)`, the `ω` steps' sets united,
+`minBackReachTimeInterval`: [1, Alg. 2] line 16, `R^{∀∃}(-τ)`, the `ω` steps' sets united,
 each cut by the polytope `⟨N,p⟩_H` the propagated support functions built, over the
 time-inverted dynamics `ẋ̃ = -A x̃ - u - w`. Nothing here searches, so no fuel: `ω` and `η`
 are fixed by [1, Assumption 1] and the loop is bounded by `ω`.
 
 `ρ` is the caller's support oracle for a constrained zonotope — a linear program, which
-`HPolytope.supportBound` solves but only as an `Option`. `Zw` is (26), the constant centre
+`HPolytope.supportBound` solves but only as an `Option`. `Zw` is (27), the constant centre
 trajectory's contribution over one interval. And line 16's union is no constrained zonotope,
 so the result is a `Set`, as `tunedReach` returns one for the same reason.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -42,7 +42,7 @@ variable {n q : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 1] line 16: `R̂^∀∃(-τ)`, the `ω` steps' sets united, each cut by the
+/-- [1, Alg. 2] line 16: `R̂^∀∃(-τ)`, the `ω` steps' sets united, each cut by the
 polytope `⟨N,p⟩_H` the propagated support functions built. -/
 noncomputable def LinearSys.minBackReachTimeInterval (sys : LinearSys 𝕋 n)
     (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c)

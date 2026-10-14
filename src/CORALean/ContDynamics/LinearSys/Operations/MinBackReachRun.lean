@@ -5,16 +5,16 @@ public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachStep
 @[expose] public section
 
 /-!
-# `Alg. 1` lines 7-15: the loop
+# `Alg. 2` lines 7-15: the loop
 
-`minBackReachRun`: [1, Alg. 1] lines 7-15, the state after the `k`-th iteration, holding
+`minBackReachRun`: [1, Alg. 2] lines 7-15, the state after the `k`-th iteration, holding
 `R̂^∃(-τ_k)`.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
