@@ -10,7 +10,6 @@ public import CORALean.ContDynamics.LinParamSysDT.API
 public import CORALean.ContDynamics.LinProbSys.API
 public import CORALean.ContDynamics.NeurNetContrSys.API
 public import CORALean.ContDynamics.NeurNetContrSysDT.API
-public import CORALean.ContDynamics.NeurNetContrSysNL.API
 public import CORALean.ContDynamics.NonlinDASys.API
 public import CORALean.ContDynamics.NonlinParamSys.API
 public import CORALean.ContDynamics.NonlinearSys.API

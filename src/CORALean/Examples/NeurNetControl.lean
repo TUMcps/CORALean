@@ -68,7 +68,7 @@ noncomputable def Example.nnControlledDT (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) 
 
 /-- The same controller on a continuous plant, sampled. -/
 noncomputable def Example.nnControlled (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3)
-    (W₂ : Mat ℝ 2 3) (b₂ : Vec ℝ 2) : NeurNetContrSys ℝ 𝒵 2 where
+    (W₂ : Mat ℝ 2 3) (b₂ : Vec ℝ 2) : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2 where
   plant := LinearSys.canonical A
   contr := Example.nnController W₁ b₁ W₂ b₂
 
@@ -100,19 +100,22 @@ example (sys : NeurNetContrSysDT ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2))
 
 /-- Every zero-order-hold run is inside the two-rate recursion at every control
 period boundary — `N` reachability steps of length `Δt` per period. -/
-example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o)
-    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
+example (sys : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ)
+    (ho : 0 < o)
+    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {π : Vec ℝ 2 → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {x : ℝ → Vec ℝ 2} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x) (i : ℕ) (hi : i ≤ H) :
+    {W : Zonotope (Vec ℝ 0)} {x : ℝ → Vec ℝ 2} {w : ℝ → Vec ℝ 0}
+    (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ W x w) (i : ℕ) (hi : i ≤ H) :
     x ((i : ℝ) * ((N : ℝ) * Δt)) ∈ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) :=
   sys.reach_outer o η N ho hΔt hε hπ traj i hi
 
 /-- The same checked against a safe set. -/
-example (sys : NeurNetContrSys ℝ 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o)
-    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
+example (sys : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2) (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ)
+    (ho : 0 < o)
+    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {x : ℝ → Vec ℝ 2} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
-    (i : ℕ) (hi : i ≤ H)
+    {W : Zonotope (Vec ℝ 0)} {x : ℝ → Vec ℝ 2} {w : ℝ → Vec ℝ 0}
+    (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ W x w) (i : ℕ) (hi : i ≤ H)
     (h : (Specification.safeSet safe).Holds (construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :
     (Specification.safeSet safe).Holds {x ((i : ℝ) * ((N : ℝ) * Δt))} :=
   sys.holds_of_reach o η N ho hΔt hε hπ traj _ i hi h

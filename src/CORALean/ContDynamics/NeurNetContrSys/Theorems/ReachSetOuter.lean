@@ -22,9 +22,10 @@ content sits in the other half, `reachSet_subset_reach`.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSet
+open NeurNetContrSys (Plant)
 
-variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {n : ℕ} {P : Type} [Plant P n]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
@@ -32,11 +33,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Reach for this to say where a run *is*; reach for `reachSet_subset_reach`
 to say what encloses it. -/
-theorem NeurNetContrSys.Trajectory.reachSet_outer {sys : NeurNetContrSys 𝕋 S n}
-    {π : Vec ℝ n → Vec ℝ sys.plant.m} {Δtc : ℝ} {H : ℕ} {R₀ : S n} {x : ℝ → Vec ℝ n}
-    (traj : sys.Trajectory π Δtc H R₀ x) (t : ℝ) :
-    x t ∈ sys.reachSet π Δtc H R₀ t :=
-  ⟨x, traj, rfl⟩
+theorem NeurNetContrSys.Trajectory.reachSet_outer {sys : NeurNetContrSys P S n}
+    {π : Vec ℝ n → Vec ℝ (Plant.m sys.plant)} {Δtc : ℝ} {H : ℕ} {R₀ : S n}
+    {W : S (Plant.r sys.plant)} {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ (Plant.r sys.plant)}
+    (traj : sys.Trajectory π Δtc H R₀ W x w) (t : ℝ) :
+    x t ∈ sys.reachSet π Δtc H R₀ W t :=
+  ⟨x, w, traj, rfl⟩
 
 end CORALean
 

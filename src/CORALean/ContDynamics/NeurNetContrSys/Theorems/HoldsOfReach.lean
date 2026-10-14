@@ -43,10 +43,11 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSys.holds_of_reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ) (ho : 0 < o)
-    {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
+theorem NeurNetContrSys.holds_of_reach (sys : NeurNetContrSys (LinearSys 𝕋 n) S n) (o η N : ℕ)
+    (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {R₀ : S n} {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {x : ℝ → Vec ℝ n} (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ x)
+    {W : S 0} {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ 0}
+    (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ W x w)
     (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H)
     (h : spec.Holds (construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :
     spec.Holds {x ((i : ℝ) * ((N : ℝ) * Δt))} :=

@@ -20,9 +20,9 @@ indexed by — nothing between them, the same silence `ReachOuter` names.
 
 `Theorems.ReachSetOuter` puts every run into it.
 
-[1, Def. 3]'s `ξ(t, x0, uc(·), w(·))` is `x t` here, at whichever `x` a
-`Trajectory` supplies; this plant takes no disturbance `w`, so `R(t)` has none
-to quantify over.
+[1, Def. 3]'s `ξ(t, x0, uc(·), w(·))` is `x t` here, at whichever `x` and disturbance `w` a
+`Trajectory` supplies, at any plant; a linear plant takes no disturbance (`r = 0`), so there
+`R(t)` has none to quantify over.
 
 ## References
 
@@ -40,21 +40,23 @@ to quantify over.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSet
+open NeurNetContrSys (Plant)
 
-variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {n : ℕ} {P : Type} [Plant P n]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every state some zero-order-hold run of `sys` under `π` over `H` periods of
-length `Δtc` from `R₀` is at, at time `t`: the exact reachable set, not an
+/-- Every state some zero-order-hold run of `sys` under `π` over `H` periods of length `Δtc`
+from `R₀`, under a disturbance in `W`, is at, at time `t`: the exact reachable set, not an
 enclosure of it. -/
-def NeurNetContrSys.reachSet (sys : NeurNetContrSys 𝕋 S n) (π : Vec ℝ n → Vec ℝ sys.plant.m)
-    (Δtc : ℝ)
-    (H : ℕ) (R₀ : S n) (t : ℝ) : Set (Vec ℝ n) :=
-  {y | ∃ x : ℝ → Vec ℝ n, sys.Trajectory π Δtc H R₀ x ∧ x t = y}
+def NeurNetContrSys.reachSet (sys : NeurNetContrSys P S n)
+    (π : Vec ℝ n → Vec ℝ (Plant.m sys.plant)) (Δtc : ℝ) (H : ℕ) (R₀ : S n)
+    (W : S (Plant.r sys.plant)) (t : ℝ) : Set (Vec ℝ n) :=
+  {y | ∃ x : ℝ → Vec ℝ n, ∃ w : ℝ → Vec ℝ (Plant.r sys.plant),
+    sys.Trajectory π Δtc H R₀ W x w ∧ x t = y}
 
 end CORALean
 

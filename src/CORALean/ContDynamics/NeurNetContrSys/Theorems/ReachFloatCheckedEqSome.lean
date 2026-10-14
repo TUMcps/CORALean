@@ -13,9 +13,9 @@ unchecked `some`, and none of its floats is a NaN. Whatever is proved of `reachF
 proved of the checked result, which has passed the NaN test as well.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSys.reachFloatChecked_eq_some
-    (sys : NeurNetContrSys 𝕋 𝒵[𝕋] n)
+    (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[𝕋] n)
     (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋)
     {R : Zonotope (Vec 𝕋 n)} (h : sys.reachFloatChecked params options = some R) :
     sys.reachFloat params options = R ∧ noNaN (𝕋 := 𝕋) R = true := by

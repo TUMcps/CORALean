@@ -1,17 +1,30 @@
 module
 
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Augment
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.AugmentFloat
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.CartProd
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Extended
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Project
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
-public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
-public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnion
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloatChecked
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachOrder
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnion
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnionFloat
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachWith
 
 /-!
 # What `NeurNetContrSys` computes
 
-`Reach`, the two-rate recursion: the network's enclosure of the controller
-closing every period, `LinearSys`'s own machinery taking the steps inside it.
-`ReachOrder`/`ReachUnion` are `Instances`' Taylor order and `SetUnion`. `ReachFloat` is
-`Reach` at float zonotopes, the plant sampled by `discretizeEnclosureFloat`.
+`ReachWith`, [1, Alg. 2] at any plant: the network's image of the set reached so far, stacked
+under it, reached as the `Extended` system of a control period by an algorithm the caller
+supplies, and projected back. `Reach` is it at a linear plant, the period reached by
+`LinearSys`'s own machinery on the `Augment`ed system, the product and projection `CartProd`
+and `Project`; `ReachFloat` is `Reach` at float zonotopes, on `AugmentFloat`.
+`ReachOrder`/`ReachUnion` are `Instances`' Taylor order and `SetUnion`.
+
+## References
+
+* [1] N. Kochdumper et al. "Open- and Closed-Loop Neural Network Verification
+      using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/

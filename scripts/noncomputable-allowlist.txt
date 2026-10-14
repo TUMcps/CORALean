@@ -317,9 +317,9 @@ MatExp.particularSolutionTauError  real-layer: eq. (26), a tuning quantity of TA
 MatExp.quadTerm  real-layer: the diagonal factor `γ` at a real point; runs in floats as `Float.MatExp.quadTerm` (`quadTerm_mem`)
 MatExp.quadTermHi  real-layer: the greatest `γ` on a real box; runs in floats as `Float.MatExp.quadTermHi` (`quadTermHi_ge`)
 MatExp.quadTermLo  real-layer: the least `γ` on a real box; runs in floats as `Float.MatExp.quadTermLo` (`quadTermLo_le`)
-NeurNetContrSys.reach  real-layer: the closed loop sampled by the exact `LinearSys.discretize`; runs in floats as `NeurNetContrSys.reachFloat` (`reachFloat_outer`)
+NeurNetContrSys.reach  real-layer: the closed loop's augmented system sampled by the exact `LinearSys.discretize`; runs in floats as `NeurNetContrSys.reachFloat` (`reachFloat_outer`)
 NeurNetContrSys.WithPeriod.reachInstance  real-layer: the `Reach` instance over `NeurNetContrSys.reachUnion`; runs in floats as `NeurNetContrSys.reachUnionFloat` (`reachUnionFloat_outer`), the order from `LinearSys.reachOrderFloat`
-NeurNetContrSys.reachOrder  real-layer: an admissible order by `⌈‖ΔtA‖⌉`; runs in floats as `LinearSys.reachOrderFloat` at `sys.plant`, inside `NeurNetContrSys.reachUnionFloat`
+NeurNetContrSys.reachOrder  real-layer: an admissible order by `⌈‖ΔtA_aug‖⌉`; runs in floats as `LinearSys.reachOrderFloat` at `sys.augmentFloat`, inside `NeurNetContrSys.reachUnionFloat`
 NeurNetContrSys.reachUnion  real-layer: the periods `0` through `tFinal - tStart` of `reach`; runs in floats as `NeurNetContrSys.reachUnionFloat` (`reachUnionFloat_outer`)
 NeurNetContrSysDT.reachCost  cost: an asserted running cost under `Complexity/Time/`, never meant to compute
 NeurNetContrSysDT.simulate  spec: an idealised real-valued closed-loop trajectory, used only in a correctness statement

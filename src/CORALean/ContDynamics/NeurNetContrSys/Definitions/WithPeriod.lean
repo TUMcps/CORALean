@@ -17,7 +17,7 @@ does `reach`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,7 +31,7 @@ namespace CORALean
 /-- `sys` with its control period `dt`, CORA's `sys.dt`. -/
 structure NeurNetContrSys.WithPeriod (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
     [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) where
-  sys : NeurNetContrSys 𝕋 S n
+  sys : NeurNetContrSys (LinearSys 𝕋 n) S n
   dt : ℝ
 
 end CORALean

@@ -45,17 +45,19 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 /-- Every closed-loop run over `tFinal - tStart` periods of length `N · Δt` from
 `R0` is inside `reachUnion` at every period boundary. -/
-theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys 𝕋 S n)
+theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
     (params : Reach.Params (S n) ℕ) {options : NeurNetContrSys.ReachOptions ℝ}
     (hΔt : 0 < options.Δt) :
     sys.reachUnionExact ((options.N : ℝ) * options.Δt) (params.tFinal - params.tStart)
       (construct params.X₀) ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
   intro y hy
   obtain ⟨i, hi, x, hx0, hflow, rfl⟩ := Set.mem_iUnion₂.mp hy
+  -- no disturbance at a linear plant: any set of `Vec ℝ 0` holds the one there is
   have traj : sys.Trajectory sys.contr.eval.out ((options.N : ℝ) * options.Δt)
-      (params.tFinal - params.tStart) params.X₀ x := ⟨hx0, hflow⟩
+      (params.tFinal - params.tStart) params.X₀ (OfPoint.ofPoint 0) x (fun _ => 0) :=
+    ⟨hx0, fun _ _ => OfPoint.mem_ofPoint _, hflow⟩
   -- the order `reachUnion` runs at clears the step, as `reachOrder`'s own does
-  have hε : ‖options.Δt • toRealMat sys.plant.A‖
+  have hε : ‖options.Δt • sys.augment.A‖
       / (((max options.η (sys.reachOrder options.Δt) : ℕ) : ℝ) + 2) < 1 := by
     have hle : (sys.reachOrder options.Δt : ℝ)
         ≤ ((max options.η (sys.reachOrder options.Δt) : ℕ) : ℝ) := by

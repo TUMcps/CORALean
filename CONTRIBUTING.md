@@ -76,8 +76,10 @@ src/CORALean/
                    parameters, reached with the parameter as extra states
     NonlinDASys/   ẋ = f(x,y,u), 0 = g(x,y,u): index 1, reached through a
                    reduced model that eliminates y, supplied as data
-    NeurNetContrSys/  a plant closed around a network, whose input set is what
-                   NN encloses; NeurNetContrSysDT/ steps a discrete plant
+    NeurNetContrSys/  a plant closed around a network, one class over every
+                   plant as CORA's: each control period is reached as the
+                   extended system [x; u], u̇ = 0, from the state set times
+                   what NN encloses; NeurNetContrSysDT/ steps a discrete plant
     OutputEq/      y = C x + D u, kept out of the system classes so that it
                    applies to all of them
   HybridDynamics/  locations, transitions and the automaton; a run alternates

@@ -53,13 +53,13 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 /-- Reach for this at the period boundaries; the guarantee attaches to the
 reachable set, not to a run of it. -/
-theorem NeurNetContrSys.reachSet_subset_reach (sys : NeurNetContrSys 𝕋 S n) (o η N : ℕ)
-    (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt)
-    (hε : ‖Δt • toRealMat sys.plant.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ} (R₀ : S n)
-    {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π) {i : ℕ} (hi : i ≤ H) :
-    sys.reachSet π ((N : ℝ) * Δt) H R₀ ((i : ℝ) * ((N : ℝ) * Δt))
+theorem NeurNetContrSys.reachSet_subset_reach (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
+    (o η N : ℕ) (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt)
+    (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ} (R₀ : S n)
+    {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π) (W : S 0) {i : ℕ} (hi : i ≤ H) :
+    sys.reachSet π ((N : ℝ) * Δt) H R₀ W ((i : ℝ) * ((N : ℝ) * Δt))
       ⊆ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by
-  rintro _ ⟨x, traj, rfl⟩
+  rintro _ ⟨x, w, traj, rfl⟩
   exact sys.reach_outer o η N ho hΔt hε hπ traj i hi
 
 end CORALean
