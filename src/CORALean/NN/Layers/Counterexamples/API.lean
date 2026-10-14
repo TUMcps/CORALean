@@ -1,7 +1,10 @@
 module
 
+public import CORALean.NN.Layers.Counterexamples.Conv2DSanitiseCora
+public import CORALean.NN.Layers.Counterexamples.ElementwiseAffineConZonotopeCora
 public import CORALean.NN.Layers.Counterexamples.EvaluateIntervalCora
 public import CORALean.NN.Layers.Counterexamples.ExpGetDerBoundsCora
+public import CORALean.NN.Layers.Counterexamples.LinearErrorCora
 public import CORALean.NN.Layers.Counterexamples.MinMaxDiffOrderCora
 public import CORALean.NN.Layers.Counterexamples.RootDfCora
 public import CORALean.NN.Layers.Counterexamples.SoftPlusDfCora
