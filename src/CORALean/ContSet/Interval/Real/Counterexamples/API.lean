@@ -8,9 +8,11 @@ public import CORALean.ContSet.Interval.Real.Counterexamples.ExploreBNNeg
 public import CORALean.ContSet.Interval.Real.Counterexamples.ExploreBNUnordered
 public import CORALean.ContSet.Interval.Real.Counterexamples.ImageOfNonneg
 public import CORALean.ContSet.Interval.Real.Counterexamples.PieceSolution
+public import CORALean.ContSet.Interval.Real.Counterexamples.RandPointIntervalMatrixCora
 public import CORALean.ContSet.Interval.Real.Counterexamples.RdivideNumeratorCora
 public import CORALean.ContSet.Interval.Real.Counterexamples.RepresentsaCapsuleCora
 public import CORALean.ContSet.Interval.Real.Counterexamples.ScaleBox
+public import CORALean.ContSet.Interval.Real.Counterexamples.SupportFuncUpperCora
 public import CORALean.ContSet.Interval.Real.Counterexamples.VertexEdgeSolution
 
 /-!

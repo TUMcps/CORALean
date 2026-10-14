@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Fullspace.Real.Counterexamples.API
 public import CORALean.ContSet.Fullspace.Real.Fullspace
 public import CORALean.ContSet.Fullspace.Real.Instances
 public import CORALean.ContSet.Fullspace.Real.Operations.API

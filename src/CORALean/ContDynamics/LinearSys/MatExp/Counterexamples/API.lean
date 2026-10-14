@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Counterexamples.ExpDiffPrinted
+public import CORALean.ContDynamics.LinearSys.MatExp.Counterexamples.TaylorPointRemainderCora
+public import CORALean.ContDynamics.LinearSys.MatExp.Counterexamples.ExpmIndMixedPolytopeCora
 
 /-!
 # Counterexamples of `MatExp`, collected

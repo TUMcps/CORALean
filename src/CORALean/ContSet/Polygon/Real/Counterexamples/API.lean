@@ -4,6 +4,7 @@ public import CORALean.ContSet.Polygon.Real.Counterexamples.ContainsRegionCora
 public import CORALean.ContSet.Polygon.Real.Counterexamples.HausdorffDist
 public import CORALean.ContSet.Polygon.Real.Counterexamples.IsequalCora
 public import CORALean.ContSet.Polygon.Real.Counterexamples.OverlapsRegionCora
+public import CORALean.ContSet.Polygon.Real.Counterexamples.RandPointExtremeCora
 public import CORALean.ContSet.Polygon.Real.Counterexamples.RemoveCollinearPoints
 public import CORALean.ContSet.Polygon.Real.Counterexamples.RepresentsaOriginCora
 
