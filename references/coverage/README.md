@@ -149,23 +149,23 @@ Rulings on borderline cases:
 | Class | Group | Methods | proved | float | bound | not yet | out of scope | CORA issues |
 |---|---|---|---|---|---|---|---|---|
 | [affine](contSet/affine.md) | contSet | 1 | 0 | 1 | 0 | 0 | 0 | 0 |
-| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 22 | 6 | 0 | 10 | 7 |
+| [capsule](contSet/capsule.md) | contSet | 39 | 1 | 22 | 6 | 0 | 10 | 8 |
 | [conPolyZono](contSet/conPolyZono.md) | contSet | 47 | 2 | 30 | 6 | 1 | 8 | 4 |
-| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 31 | 5 | 0 | 12 | 5 |
+| [conZonotope](contSet/conZonotope.md) | contSet | 50 | 2 | 31 | 5 | 0 | 12 | 6 |
 | [contSet](contSet/contSet.md) | contSet | 101 | 1 | 28 | 0 | 0 | 72 | 0 |
-| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 33 | 2 | 0 | 12 | 6 |
+| [ellipsoid](contSet/ellipsoid.md) | contSet | 50 | 3 | 33 | 2 | 0 | 12 | 8 |
 | [emptySet](contSet/emptySet.md) | contSet | 30 | 2 | 21 | 0 | 0 | 7 | 0 |
 | [fullspace](contSet/fullspace.md) | contSet | 33 | 5 | 20 | 0 | 0 | 8 | 0 |
 | [interval](contSet/interval.md) | contSet | 110 | 0 | 92 | 0 | 0 | 18 | 4 |
 | [levelSet](contSet/levelSet.md) | contSet | 22 | 4 | 9 | 0 | 0 | 9 | 3 |
 | [polyZonotope](contSet/polyZonotope.md) | contSet | 73 | 3 | 50 | 2 | 3 | 15 | 9 |
 | [polygon](contSet/polygon.md) | contSet | 46 | 1 | 32 | 0 | 2 | 11 | 9 |
-| [polytope](contSet/polytope.md) | contSet | 58 | 4 | 38 | 4 | 0 | 12 | 8 |
+| [polytope](contSet/polytope.md) | contSet | 58 | 4 | 38 | 4 | 0 | 12 | 9 |
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 3 | 14 | 2 | 0 | 9 | 4 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 23 | 0 | 0 | 9 | 5 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 1 | 27 | 11 | 0 | 12 | 1 |
-| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 28 | 6 | 0 | 7 | 5 |
-| [zonotope](contSet/zonotope.md) | contSet | 80 | 5 | 57 | 4 | 0 | 14 | 14 |
+| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 28 | 6 | 0 | 7 | 6 |
+| [zonotope](contSet/zonotope.md) | contSet | 80 | 5 | 57 | 4 | 0 | 14 | 15 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 0 | 2 | 2 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 6 | 0 | 0 | 11 | 4 |
 | [linParamSys](contDynamics/linParamSys.md) | contDynamics | 11 | 1 | 6 | 0 | 0 | 4 | 2 |
@@ -187,7 +187,7 @@ Rulings on borderline cases:
 | [nonlinearReset](hybridDynamics/nonlinearReset.md) | hybridDynamics | 9 | 0 | 5 | 0 | 0 | 4 | 2 |
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 0 | 1 | 6 | 3 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 0 | 7 | 1 |
-| [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 0 | 4 | 1 |
+| [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 0 | 4 | 6 |
 | [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 7 | 13 | 0 | 0 | 41 | 2 |
 | [atomicProposition](specification/atomicProposition.md) | specification | 5 | 0 | 0 | 0 | 5 | 0 | 0 |
 | [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 0 | 0 | 0 | 4 | 0 | 0 |

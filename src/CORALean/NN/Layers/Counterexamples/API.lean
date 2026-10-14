@@ -1,5 +1,11 @@
 module
 
+public import CORALean.NN.Layers.Counterexamples.EvaluateIntervalCora
+public import CORALean.NN.Layers.Counterexamples.ExpGetDerBoundsCora
+public import CORALean.NN.Layers.Counterexamples.MinMaxDiffOrderCora
+public import CORALean.NN.Layers.Counterexamples.RootDfCora
+public import CORALean.NN.Layers.Counterexamples.SoftPlusDfCora
+public import CORALean.NN.Layers.Counterexamples.SoftPlusExtremeCora
 public import CORALean.NN.Layers.Counterexamples.StarSetCoraRowBounds
 public import CORALean.NN.Layers.Counterexamples.Real.API
 

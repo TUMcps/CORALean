@@ -8,6 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Counterexamples.FRadiusGradient
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.FaultObservePRadius
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.IntersectDescriptorHdPRadius
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.IntersectStripWangFRadCora
+public import CORALean.ContSet.Zonotope.Real.Counterexamples.LiftCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.MinkDiffAlignedBounds
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.MinkDiffDegenerateCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.MinkDiffExact2dCora
