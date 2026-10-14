@@ -47,10 +47,10 @@ def LinearSys.deltaReachFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η      -- [F]
   let eAΔtI := Interval.matPlus eAΔt (Interval.point (negIdentityMat 𝕋 n))  -- [e^{AΔt}] - I
   let O := (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope           -- the origin
-  LinComb.linComb O (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔtI R) ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- enclose(0, ·) ⊕ F R
-      (S := fun k => Zonotope (Vec 𝕋 k)) F R
+  LinComb.linComb O (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋]) eAΔtI R) ⊞
+    Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- enclose(0, ·) ⊕ F R
+      (S := 𝒵[𝕋]) F R
 
 end CORALean
 

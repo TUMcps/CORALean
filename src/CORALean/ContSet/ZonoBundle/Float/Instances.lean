@@ -44,6 +44,11 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
+/-- The zonotope-bundle family over vectors.
+The scalar is an argument: a notation cannot capture the section
+variable `𝕋`, so `(S := 𝒵ℬ[𝕋])`. -/
+scoped notation "𝒵ℬ[" t "]" => fun n => ZonoBundle (Vec t n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -83,20 +88,20 @@ instance {n : ℕ} : Reduce (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) where
     rw [ZonoBundle.materialise_eq]
     exact ZonoBundle.reduce_outer zB o
 
-instance : Reindex (fun k => ZonoBundle (Vec 𝕋 k)) where
+instance : Reindex 𝒵ℬ[𝕋] where
   reindex e zB := (ZonoBundle.reindex e zB).materialise
   reindex_exact e zB := by
     rw [ZonoBundle.materialise_eq]
     exact ZonoBundle.reindex_exact e zB
 
-instance : Mtimes (Mat 𝕋) (fun k => ZonoBundle (Vec 𝕋 k)) where
+instance : Mtimes (Mat 𝕋) 𝒵ℬ[𝕋] where
   mtimes M zB := (ZonoBundle.mtimes M zB).materialise
   mtimes_outer M zB := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, ZonoBundle.materialise_eq]
     exact ZonoBundle.mtimes_outer M zB
 
 /-- The same operation at a float interval matrix, member by member, as `Zonotope`'s is. -/
-instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun k => ZonoBundle (Vec 𝕋 k)) where
+instance : Mtimes ℐ[𝕋] 𝒵ℬ[𝕋] where
   mtimes IM zB := (ZonoBundle.mtimesIntervalMat IM zB).materialise
   mtimes_outer IM zB := by
     rw [ZonoBundle.materialise_eq]

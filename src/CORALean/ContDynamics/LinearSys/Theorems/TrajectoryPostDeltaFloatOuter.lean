@@ -54,7 +54,7 @@ at every time of the step, by a point of `postDeltaFloat`. -/
 theorem LinearSys.Trajectory.postDeltaFloat_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {R V : Zonotope (Vec 𝕋 n)}
     {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n}
-    (traj : sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal Δt)) R.construct U
+    (traj : sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct U
       x u) (hUV : U ⊆ V.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 (toReal Δt)) :
     x t - x 0 ∈ (sys.postDeltaFloat Δt η R V).construct := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA

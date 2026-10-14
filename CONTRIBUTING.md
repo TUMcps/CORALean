@@ -224,7 +224,15 @@ for it on top.
 | --- | --- |
 | `x ∈ s` | membership in what a representation denotes |
 | `s₁ ⊞ s₂` | `plus`, and deliberately not `+`: it is only *outer*, so `construct (s₁ ⊞ s₂)` merely contains `construct s₁ + construct s₂` |
-| `𝒵`, `ℐ` | the zonotope and interval-matrix families, for pinning `(S := 𝒵)` where the elaborator cannot read a family off one member |
+| `𝒵`, `ℐ`, `𝕄𝒵`, `ℐ𝒱`, `𝒫𝒵`, `𝒵ℬ`, `𝒱𝒫`, … | the zonotope and interval-matrix families, for pinning `(S := 𝒵)` where the elaborator cannot read a family off one member |
+| `𝒵[𝕋]`, `ℐ[𝕋]`, … | the same families in the float layer, scoped in `CORALean.Float`; the scalar is an argument because a notation cannot capture a section variable such as `𝕋` |
+| `𝒮` | the family of sets of real vectors, `fun n => Set (Vec ℝ n)` |
+
+A family is written with its notation, never as `fun k => Zonotope (Vec 𝕋 k)`;
+`check-conventions.sh` rejects the long form outside the notation definitions.
+The exact layer's notations are scoped in `CORALean.Real` (`open CORALean.Real`),
+the float layer's in `CORALean.Float`, and both are defined next to the instances
+of the representation, in its `Instances.lean`.
 
 Bundling the binders of a generic file into a `class abbrev` was tried and
 reverted: each use adds an unfolding step to instance search, which produced

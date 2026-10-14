@@ -35,13 +35,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- One step of the float sampled run is the float step from the previous set, reduced. -/
 theorem LinearSys.discretizeEnclosureFloat_reach_succ (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ)
     {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec 𝕋 n)) (k : ℕ) :
-    (sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+    (sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k + 1⟩ ⟨o, ho⟩
       = (sys.timePointStepInputFloat Δt η
-          ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+          ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
             ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) U).reduce o := by
   show Reduce.reduce (sys.timePointStepInputFloat Δt η ((sys.discretizeEnclosureFloat Δt η).reach
-    (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) U) o = _
+    (S := 𝒵[𝕋]) ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) U) o = _
   exact Zonotope.materialise_eq _
 
 end CORALean

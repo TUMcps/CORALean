@@ -60,12 +60,12 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : ConZonotope (V
 never widens for an order bound and the whole width is the input solution's. -/
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ}
-    (traj : sys.Trajectory (S := fun m => Interval (Vec ℝ m)) T R₀ U x u)
+    (traj : sys.Trajectory (S := ℐ𝒱) T R₀ U x u)
     (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     x (k * Δt) ∈ construct ((sys.discretize Δt).reach
-      (S := fun m => Interval (Vec ℝ m))
-      ⟨R₀, sys.inputSolution (S := fun m => Interval (Vec ℝ m)) Δt η U, 0, k⟩ ⟨o, ho⟩) :=
+      (S := ℐ𝒱)
+      ⟨R₀, sys.inputSolution (S := ℐ𝒱) Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_convexCompact hΔt hT η hε ho k
 
 /-- The step enclosure at a zonotope: every time of the step, not only its end.
@@ -83,13 +83,13 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec 
 instance missing for. -/
 example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} {r : ℝ}
-    (traj : sys.Trajectory (S := fun m => Interval (Vec ℝ m)) T R₀ U x u)
+    (traj : sys.Trajectory (S := ℐ𝒱) T R₀ U x u)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
     x t ∈ construct (Plus.plus
-      (sys.timeIntervalStep (S := fun m => Interval (Vec ℝ m)) r (m + 2) R₀)
-      (sys.inputSolution (S := fun m => Interval (Vec ℝ m)) r (m + 2) U)) :=
+      (sys.timeIntervalStep (S := ℐ𝒱) r (m + 2) R₀)
+      (sys.inputSolution (S := ℐ𝒱) r (m + 2) U)) :=
   traj.timeInterval_outer_convexCompact hr hT hε ht0 htr h0
 
 end CORALean.Real

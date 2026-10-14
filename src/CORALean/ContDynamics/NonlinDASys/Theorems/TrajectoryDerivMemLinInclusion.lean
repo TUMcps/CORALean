@@ -47,7 +47,7 @@ variable {n p m : ℕ}
 linearization error, has `ẋ(t) ∈ Ã (x(t) - x*) ⊕ w ⊕ B̃ (U ⊕ (-u*)) ⊕ L̄` on all of `τ`. -/
 theorem NonlinDASys.Trajectory.hasDerivWithinAt_mem_linInclusion {sys : NonlinDASys n p m}
     {τ : Set ℝ} {R₀ : Set (Vec ℝ n)} {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p}
-    {u : ℝ → Vec ℝ m} (hrun : sys.Trajectory (S := fun k => Set (Vec ℝ k)) τ R₀ U x y u)
+    {u : ℝ → Vec ℝ m} (hrun : sys.Trajectory (S := 𝒮) τ R₀ U x y u)
     {xs : Vec ℝ n} {ys : Vec ℝ p} {us : Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m}
     {C : Mat ℝ n p} {D : Mat ℝ p n} {E : Mat ℝ p m} {F F_inv : Mat ℝ p p}
     (hF : F_inv * F = 1) {L : Set (Vec ℝ n)} {Rz : Set (Vec ℝ n × Vec ℝ p × Vec ℝ m)}

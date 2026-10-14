@@ -60,7 +60,7 @@ theorem LinearSys.supportUpper_centre_counterexample :
       IsGreatest ((fun x : Vec ℝ 3 => x i) '' U) (-2)) ∧
     IsGreatest (ℓ '' U) (ℓ ![-2, -3, -3]) ∧
     max (S 1).ρH (S 2).ρH + 0 + (S 2).ρP = -17 / 2 ∧
-    ∃ t ∈ Set.Icc (1 : ℝ) 2, ∃ y ∈ sys.reachSet (S := fun n => Set (Vec ℝ n))
+    ∃ t ∈ Set.Icc (1 : ℝ) 2, ∃ y ∈ sys.reachSet (S := 𝒮)
       (Set.Icc 0 t) ({0} : Set (Vec ℝ 3)) U t, -17 / 2 < ℓ y := by -- --- PROOF ---
   intro sys U ℓ ũ S
   have hS : ∀ s ∈ ({![-3, -3, -3], ![-2, -3, -3], ![-3, -2, -3], ![-3, -3, -2]} :
@@ -110,9 +110,9 @@ theorem LinearSys.supportUpper_centre_counterexample :
     -- next step of the computation
     have hbdd : Bornology.IsBounded U := (hfin.isCompact_convexHull ℝ).isBounded
     refine ⟨1, ⟨le_rfl, one_le_two⟩, ![-2, -3, -3], ?_, by rw [hℓe]; norm_num⟩
-    rw [LinearSys.reachSet_eq (S := fun n => Set (Vec ℝ n)) sys ({0} : Set (Vec ℝ 3)) U
+    rw [LinearSys.reachSet_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U
       zero_le_one hbdd]
-    have hmem := sys.expIntegral_mem_inputReach (S := fun n => Set (Vec ℝ n)) zero_le_one
+    have hmem := sys.expIntegral_mem_inputReach (S := 𝒮) zero_le_one
       (U := U) (v := ![-2, -3, -3]) (subset_convexHull ℝ _ (by simp))
     simp only [h0, MatExp.expIntegral_zero, Matrix.one_mulVec, one_smul] at hmem
     have := Set.add_mem_add (s := (exp ((1 : ℝ) • toRealMat sys.A)).mulVecLin ''

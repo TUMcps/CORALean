@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def aux_setMtimesTail : Mtimes (Mat ℝ) (fun k => Set (Vec ℝ k)) where
+@[reducible] def aux_setMtimesTail : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -58,19 +58,19 @@ attribute [local instance] aux_setPlusTail aux_setMtimesTail
 /-- At `r ≥ 0`, every order count `i`: the exact tail at plain sets is in the float tail. -/
 theorem LinearSys.inputTaylorSumTail_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) (U : Zonotope (Vec 𝕋 n)) : ∀ i,
-    construct (sys.inputTaylorSumTail (S := fun k => Set (Vec ℝ k)) (toReal r) U.construct i)
+    construct (sys.inputTaylorSumTail (S := 𝒮) (toReal r) U.construct i)
       ⊆ (sys.inputTaylorSumTailFloat r U i).construct := by -- --- PROOF ---
   -- a matrix in a float box maps `U` into the float product
   have hprod : ∀ {B : Interval (Mat 𝕋 n n)} {M : Mat ℝ n n}, M ∈ B.construct →
       (M *ᵥ ·) '' U.construct
-        ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k)) B U) :=
+        ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋]) B U) :=
     fun {B} {_} hM => (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' U.construct) hM).trans
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) B U)
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) B U)
   have hterm : ∀ i, (sys.inputTerm (toReal r) i *ᵥ ·) '' U.construct
-      ⊆ construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) U) :=
     fun i => hprod (MatExp.smul_pow_mem_intervalInputTerm _ hr (Interval.mem_point sys.A) i)
   -- the tail, term by term, by strong induction on the order

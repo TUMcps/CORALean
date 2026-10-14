@@ -26,10 +26,11 @@ bias box. Needs `0 < λ`, which makes the box a bracket of `N`.
 namespace CORALean
 
 open Matrix ContSet Plus Mtimes Float Float.OfInterval Float.SoundFloatArithmetic
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
-  [Mtimes (fun m n => Float.Interval (Mat 𝕋 m n)) S] [Float.OfInterval S 𝕋] {n m : ℕ}
+  [Mtimes ℐ[𝕋] S] [Float.OfInterval S 𝕋] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -71,10 +72,10 @@ theorem Layer.lipConstrLinearFloat_sound (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (la
     simp only [← Matrix.mulVec_mulVec, Matrix.mulVec_diagonal, Pi.add_apply, mul_add]
   -- so both parts are enclosed by `mtimes_outer` and `plus_outer`
   show (fun i => N i * (toRealMat W *ᵥ x + toRealVec b) i) ∈ construct
-    (plus (mtimes (𝕄 := fun m n => Float.Interval (Mat 𝕋 m n)) _ s) (ofInterval _))
+    (plus (mtimes (𝕄 := ℐ[𝕋]) _ s) (ofInterval _))
   rw [key]
   exact plus_outer _ _ (Set.add_mem_add
-    (mtimes_outer (𝕄 := fun m n => Float.Interval (Mat 𝕋 m n)) _ s
+    (mtimes_outer (𝕄 := ℐ[𝕋]) _ s
       (Set.mem_biUnion hmat (Set.mem_image_of_mem _ hx)))
     (ofInterval_outer _ hbias))
 

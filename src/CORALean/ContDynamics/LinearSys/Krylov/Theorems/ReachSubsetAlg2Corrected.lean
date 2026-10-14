@@ -84,14 +84,14 @@ theorem Krylov.reach_subset_alg2Corrected (A : Mat ℝ n n) {U : Set (Vec ℝ n)
     (theoremIII2 : Set (Vec ℝ n) → Set (Vec ℝ n) → Set (Vec ℝ n)) (X₀ : Set (Vec ℝ n))
     {δ tf : ℝ} (hδ : 0 < δ) (htf : 0 < tf)
     (hIII1 : ∀ X t, 0 ≤ t → (exp (t • A) *ᵥ ·) '' X ⊆ theoremIII1 X t)
-    (hIV2 : (LinearSys.mk A : LinearSys ℝ n).inputReach (S := fun k => Set (Vec ℝ k)) U δ
+    (hIV2 : (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒮) U δ
       ⊆ corollaryIV2)
     (hIII2 : ∀ X, ∀ t ∈ Set.Icc 0 δ, (exp (t • A) *ᵥ ·) '' X ⊆ theoremIII2 X (theoremIII1 X δ))
     {t : ℝ} (ht : t ∈ Set.Icc 0 tf) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ X₀) {y : Vec ℝ n}
-    (hy : y ∈ (LinearSys.mk A : LinearSys ℝ n).inputReach (S := fun k => Set (Vec ℝ k)) U t) :
+    (hy : y ∈ (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒮) U t) :
     exp (t • A) *ᵥ x₀ + y
       ∈ Krylov.alg2Corrected theoremIII1 corollaryIV2 theoremIII2 X₀ δ tf := by -- --- PROOF ---
-  set Rp := (LinearSys.mk A : LinearSys ℝ n).inputReach (S := fun k => Set (Vec ℝ k)) U δ
+  set Rp := (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒮) U δ
     with hRp
   let box : Set (Vec ℝ n) → Set (Vec ℝ n) :=
     fun S => {x | ∀ i, ∃ y ∈ S, ∃ z ∈ S, y i ≤ x i ∧ x i ≤ z i}
@@ -151,7 +151,7 @@ theorem Krylov.reach_subset_alg2Corrected (A : Mat ℝ n n) {U : Set (Vec ℝ n)
           Krylov.aux_exp_add_mulVec]
   obtain ⟨m, hm, s, hs, rfl⟩ := Krylov.aux_exists_step hδ htf ht
   have hy' := Krylov.inputReach_subset_sum_exp_image (LinearSys.mk A : LinearSys ℝ n)
-    (S := fun k => Set (Vec ℝ k)) hbdd h0 hδ.le m hs.1 hs.2 hy
+    (S := 𝒮) hbdd h0 hδ.le m hs.1 hs.2 hy
   simp only [Scalar.toRealMat_real] at hy'
   exact Set.mem_iUnion₂.2 ⟨m, Finset.mem_range.2 hm, (key m).2.2 s hs x₀ hx₀ y hy'⟩
 

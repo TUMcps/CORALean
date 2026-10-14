@@ -36,7 +36,7 @@ def Example.arx : LinearARX ℝ 1 1 2 where
 /-- The zero signal is a run for any boxes containing the origin. -/
 theorem Example.arx_zero_trajectory (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1))
     (hY : (0 : Vec ℝ 2) ∈ construct Y₀) (hU : (0 : Vec ℝ 1) ∈ construct U) :
-    Example.arx.Trajectory (S := fun n => Interval (Vec ℝ n)) Y₀ U (fun _ => 0) (fun _ => 0)
+    Example.arx.Trajectory (S := ℐ𝒱) Y₀ U (fun _ => 0) (fun _ => 0)
     where
   init := hY
   input _ := hU
@@ -46,9 +46,9 @@ theorem Example.arx_zero_trajectory (Y₀ : Interval (Vec ℝ 2)) (U : Interval 
 example (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1)) (hY : (0 : Vec ℝ 2) ∈ construct Y₀)
     (hU : (0 : Vec ℝ 1) ∈ construct U) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     LinearARX.stack 2 (fun _ => (0 : Vec ℝ 1)) k ∈ construct
-      (Example.arx.toLinearSysDT.reach (S := fun n => Interval (Vec ℝ n))
-        ⟨Y₀, Example.arx.inputSet (S := fun n => Interval (Vec ℝ n)) U, 0, k⟩ ⟨o, ho⟩) :=
-  Example.arx.reach_outer (S := fun n => Interval (Vec ℝ n)) ho Y₀ U
+      (Example.arx.toLinearSysDT.reach (S := ℐ𝒱)
+        ⟨Y₀, Example.arx.inputSet (S := ℐ𝒱) U, 0, k⟩ ⟨o, ho⟩) :=
+  Example.arx.reach_outer (S := ℐ𝒱) ho Y₀ U
     (Example.arx_zero_trajectory Y₀ U hY hU) k
 
 end CORALean.Real

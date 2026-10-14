@@ -117,7 +117,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.hessRemainder_abstractionError
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {us : Vec 𝕋 m} {X : Interval (Vec 𝕋 n)}
     {U : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.construct)
     (hus : toRealVec us ∈ U.construct) :
-    AbstractionError (S := fun k => Interval (Vec 𝕋 k)) sys.f (Scalar.toRealMat A)
+    AbstractionError (S := ℐ𝒱[𝕋]) sys.f (Scalar.toRealMat A)
       (Scalar.toRealMat B) (toRealVec xs) (toRealVec us) X.construct U.construct
       (fm.hessRemainder A B xs us X U) where
   encloses x hx u hu := by

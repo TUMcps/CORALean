@@ -47,6 +47,15 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
+/-- The interval-matrix family. A generic theorem quantifies over `𝕄 : ℕ → ℕ → Type`
+and the elaborator cannot read that family off one member, so a use site has to
+name it: `(𝕄 := ℐ)`. -/
+scoped notation "ℐ" => fun m n => Interval (Mat ℝ m n)
+
+/-- The interval-vector family, `ℐ` being already the matrix one: pins `(S := ℐ𝒱)`
+where a generic theorem cannot read the family off one member. -/
+scoped notation "ℐ𝒱" => fun n => Interval (Vec ℝ n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -92,29 +101,20 @@ instance : Reduce (Interval (Vec ℝ n)) (Vec ℝ n) where
 /-- The one instance here whose field is an equality: a reshape layer's content
 is that it loses nothing, and `Mtimes` at a permutation matrix has no room to
 say so. -/
-instance : Reindex (fun n => Interval (Vec ℝ n)) where
+instance : Reindex (ℐ𝒱) where
   reindex := Interval.reindex
   reindex_exact := Interval.reindex_exact
 
-instance : Mtimes (Mat ℝ) (fun n => Interval (Vec ℝ n)) where
+instance : Mtimes (Mat ℝ) (ℐ𝒱) where
   mtimes := Interval.mtimes
   mtimes_outer M I := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Interval.mtimes_outer M I
 
-/-- The interval-matrix family. A generic theorem quantifies over `𝕄 : ℕ → ℕ → Type`
-and the elaborator cannot read that family off one member, so a use site has to
-name it: `(𝕄 := ℐ)`. -/
-scoped notation "ℐ" => fun m n => Interval (Mat ℝ m n)
-
-/-- The interval-vector family, `ℐ` being already the matrix one: pins `(S := ℐ𝒱)`
-where a generic theorem cannot read the family off one member. -/
-scoped notation "ℐ𝒱" => fun n => Interval (Vec ℝ n)
-
 /-- The same operation at an interval matrix, which a discretization wants. A
 box needs no fresh generator to absorb the radius: the four corner products
 already bound each term, so the result is a box of the same shape. -/
-instance : Mtimes ℐ (fun n => Interval (Vec ℝ n)) where
+instance : Mtimes ℐ (ℐ𝒱) where
   mtimes := Interval.mtimesIntervalMat
   mtimes_outer IM I := Interval.mtimesIntervalMat_outer IM I
 

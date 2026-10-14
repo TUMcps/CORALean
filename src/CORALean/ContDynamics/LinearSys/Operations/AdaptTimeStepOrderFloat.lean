@@ -53,17 +53,17 @@ def LinearSys.adaptTimeStepOrderFloat (sys : LinearSys 𝕋 n) (eAt : Interval (
     (X₀ U : Zonotope (Vec 𝕋 n)) (εHmax εPi : ℚ) (Δt : 𝕋) : ℕ → ℕ → Option (ℕ × ℚ × ℚ)
   | _, 0 => none
   | η, k + 1 =>
-    let eA := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{At_i}] ·
-      (S := fun k => Zonotope (Vec 𝕋 k)) eAt
+    let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{At_i}] ·
+      (S := 𝒵[𝕋]) eAt
     let nrm := MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point sys.A))  -- ≥ ‖Δt A‖
     let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η   -- F_x(Δt, η)
     let E := MatExp.intervalInputRemainder (Interval.point sys.A) Δt η     -- E(Δt, η) Δt
     let εH := ToRat.toRat                                                  -- 10. calc. HR⁺, ε_H
-      (eA (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) F X₀)).errOp
+      (eA (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) F X₀)).errOp
     let εP := ToRat.toRat                                                  -- 11. calc. PR⁺, ε_P
-      (eA (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) E U)).errOp
+      (eA (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) E U)).errOp
     if le nrm (half (nsmulDown (η + 2) one)) && decide (εH ≤ εHmax) && decide (εP ≤ εPi)
     then some (η, εH, εP)                                                  -- 12. both inside
     else sys.adaptTimeStepOrderFloat eAt X₀ U εHmax εPi Δt (η + 1) k

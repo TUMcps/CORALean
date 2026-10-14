@@ -42,7 +42,7 @@ class OfInterval (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
   ofInterval_outer {n : ℕ} (I : Interval (Vec ℝ n)) :
     construct I ⊆ construct (ofInterval I)
 
-instance : OfInterval (fun n => Interval (Vec ℝ n)) where
+instance : OfInterval (ℐ𝒱) where
   ofInterval I := I
   ofInterval_outer _ := subset_rfl
 
@@ -50,7 +50,7 @@ noncomputable instance : OfInterval 𝒵 where
   ofInterval I := I.zonotope
   ofInterval_outer I := Interval.zonotope_contains I
 
-noncomputable instance : OfInterval (fun n => ConZonotope (Vec ℝ n)) where
+noncomputable instance : OfInterval (𝒞) where
   ofInterval I := I.conZonotope
   ofInterval_outer I := Interval.conZonotope_contains I
 

@@ -57,7 +57,7 @@ def Example.quadraticL (r : ℝ) : Interval (Vec ℝ 1) := ⟨![0], ![r ^ 2]⟩
 /-- The certificate: arithmetic, since the residual is a computed square rather
 than a Taylor remainder. -/
 theorem Example.quadraticCert (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
-    AbstractionError (S := fun n => Interval (Vec ℝ n)) Example.quadraticStep.f
+    AbstractionError (S := ℐ𝒱) Example.quadraticStep.f
       (Example.quadraticA p) Example.quadraticB ![p] ![q] (Example.quadraticRegion p r)
       (construct U) (Example.quadraticL r) where
   encloses x hx u _ := by
@@ -82,7 +82,7 @@ theorem Example.quadraticCert (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
 
 /-- One linearization at `p`, over the box representation. -/
 def Example.quadraticLinStep (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
-    Example.quadraticStep.LinStep ℝ (S := fun n => Interval (Vec ℝ n)) U where
+    Example.quadraticStep.LinStep ℝ (S := ℐ𝒱) U where
   A := Example.quadraticA p
   B := Example.quadraticB
   xs := ![p]
@@ -101,19 +101,19 @@ def Example.quadraticLinStep (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
 reused throughout — `reach_outer` asks for nothing else once the certificate is
 in hand. -/
 example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) {x u : ℕ → Vec ℝ 1}
-    (traj : Example.quadraticStep.Trajectory (S := fun n => Interval (Vec ℝ n)) R₀ U x u)
+    (traj : Example.quadraticStep.Trajectory (S := ℐ𝒱) R₀ U x u)
     (hR : ∀ k, x k ∈ Example.quadraticRegion p r) (k : ℕ) :
-    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n))
+    x k ∈ construct (Example.quadraticStep.reach (S := ℐ𝒱)
       ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ (fun _ => Example.quadraticLinStep p q r U)) :=
   Example.quadraticStep.reach_outer ho (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
 
 /-- The bounded-horizon form, for a run known only up to step `K`. -/
 example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) (K : ℕ)
     {x u : ℕ → Vec ℝ 1}
-    (traj : Example.quadraticStep.TrajectoryOn (S := fun n => Interval (Vec ℝ n))
+    (traj : Example.quadraticStep.TrajectoryOn (S := ℐ𝒱)
       R₀ U K x u)
     (hR : ∀ k < K, x k ∈ Example.quadraticRegion p r) (k : ℕ) (hk : k ≤ K) :
-    x k ∈ construct (Example.quadraticStep.reach (S := fun n => Interval (Vec ℝ n))
+    x k ∈ construct (Example.quadraticStep.reach (S := ℐ𝒱)
       ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ (fun _ => Example.quadraticLinStep p q r U)) :=
   Example.quadraticStep.reach_outer_on ho (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
     hk

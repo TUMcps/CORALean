@@ -57,8 +57,8 @@ first step's search gave out. The time `t` is kept exactly. -/
 def NonlinearSys.FloatHessModel.adaptStepFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (fm : NonlinearSys.FloatHessModel 𝕋 n m) (U : Zonotope (Vec 𝕋 m))
     (options : LinearSys.ReachOptions 𝕋) (ζδ ζh ζZ ζK : 𝕋) (prec bis fuel : ℕ)
-    (s : NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋) :
-    Option (NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋) := do
+    (s : NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋) :
+    Option (NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋) := do
   let rad := fun (Z : Zonotope (Vec 𝕋 n)) =>                              -- radius of the box of Z
     maximumOver fun i => half (subUp (Z.interval.sup i) (Z.interval.inf i))
   let dia := fun (Z : Zonotope (Vec 𝕋 n)) (i : Fin n) =>  -- diameter of the box of Z

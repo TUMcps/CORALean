@@ -54,6 +54,16 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
+/-- The zonotope family over vectors.
+The scalar is an argument: a notation cannot capture the section
+variable `𝕋`, so `(S := 𝒵[𝕋])`. -/
+scoped notation "𝒵[" t "]" => fun n => Zonotope (Vec t n)
+
+/-- The matrix-zonotope family.
+The scalar is an argument: a notation cannot capture the section
+variable `𝕋`, so `(S := 𝕄𝒵[𝕋])`. -/
+scoped notation "𝕄𝒵[" t "]" => fun m n => Zonotope (Mat t m n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -92,7 +102,7 @@ instance {n : ℕ} : Recentre (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
   sub_centre_mem_recentre := Zonotope.sub_centre_mem_recentre
 
 /-- The point zonotope: no generators and the origin error box, exactly the stored point. -/
-instance : OfScalarPoint 𝕋 (fun k => Zonotope (Vec 𝕋 k)) where
+instance : OfScalarPoint 𝕋 𝒵[𝕋] where
   ofVec v := Zonotope.point v
   mem_ofVec v := by
     have h := Zonotope.construct_point v
@@ -101,18 +111,18 @@ instance : OfScalarPoint 𝕋 (fun k => Zonotope (Vec 𝕋 k)) where
     exact Set.mem_singleton _
 
 /-- The stored centre. -/
-instance : ScalarCentre 𝕋 (fun k => Zonotope (Vec 𝕋 k)) where
+instance : ScalarCentre 𝕋 𝒵[𝕋] where
   centreVec Z := Z.c
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/
-instance : Reindex (fun k => Zonotope (Vec 𝕋 k)) where
+instance : Reindex 𝒵[𝕋] where
   reindex e Z := (Zonotope.reindex e Z).materialise
   reindex_exact e Z := by
     rw [Zonotope.materialise_eq]
     exact Zonotope.reindex_exact e Z
 
-instance : Mtimes (Mat 𝕋) (fun k => Zonotope (Vec 𝕋 k)) where
+instance : Mtimes (Mat 𝕋) 𝒵[𝕋] where
   mtimes M Z := (Zonotope.mtimes M Z).materialise
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, Zonotope.materialise_eq]
@@ -120,7 +130,7 @@ instance : Mtimes (Mat 𝕋) (fun k => Zonotope (Vec 𝕋 k)) where
 
 /-- The rounded update, with `I - Λ C` an interval matrix; the guarantee reads the strips at the
 reals they store. -/
-instance : IntersectStrip 𝕋 (fun k => Zonotope (Vec 𝕋 k)) where
+instance : IntersectStrip 𝕋 𝒵[𝕋] where
   intersectStrip C φ y Λ Z := (Zonotope.intersectStrip C φ y Λ Z).materialise
   intersectStrip_outer C φ y Λ Z := by
     rw [Zonotope.materialise_eq]
@@ -129,7 +139,7 @@ instance : IntersectStrip 𝕋 (fun k => Zonotope (Vec 𝕋 k)) where
 /-- The same operation at a float interval matrix, which the float
 `expIntervalEnclosure` chain builds towards, exactly as `Real`'s `Mtimes ℐ 𝒵`
 does at the exact layer. -/
-instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun k => Zonotope (Vec 𝕋 k)) where
+instance : Mtimes ℐ[𝕋] 𝒵[𝕋] where
   mtimes IM Z := (Zonotope.mtimesIntervalMat IM Z).materialise
   mtimes_outer IM Z := by
     rw [Zonotope.materialise_eq]
@@ -137,7 +147,7 @@ instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun k => Zonotope (Vec �
 
 /-- The same operation at a float matrix zonotope, what a `LinParamSys` or `LinParamSysDT`
 over `Zonotope (Mat 𝕋 m n)` multiplies a reachable set by, as `Real`'s `Mtimes 𝕄𝒵 𝒵` does. -/
-instance : Mtimes (fun m n => Zonotope (Mat 𝕋 m n)) (fun k => Zonotope (Vec 𝕋 k)) where
+instance : Mtimes 𝕄𝒵[𝕋] 𝒵[𝕋] where
   mtimes M Z := (Zonotope.mtimesMatZonotope M Z).materialise
   mtimes_outer M Z := by
     rw [Zonotope.materialise_eq]

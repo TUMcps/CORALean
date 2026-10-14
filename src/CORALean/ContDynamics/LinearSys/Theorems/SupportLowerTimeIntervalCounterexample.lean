@@ -52,7 +52,7 @@ theorem LinearSys.supportLower_timeInterval_counterexample :
       IsGreatest ((fun x : Vec ℝ 3 => x i) '' U) 1) ∧
     IsGreatest (ℓ '' U) (ℓ ![1, 0, 0]) ∧
     (sys.supportLower 1 (fun _ => 0) (fun _ => ![1, 0, 0]) ũ ℓ 1).ρRτ = 3 / 2 ∧
-    IsGreatest {r | ∃ t ∈ Set.Icc (0 : ℝ) 1, ∃ y ∈ sys.reachSet (S := fun n => Set (Vec ℝ n))
+    IsGreatest {r | ∃ t ∈ Set.Icc (0 : ℝ) 1, ∃ y ∈ sys.reachSet (S := 𝒮)
       (Set.Icc 0 t) ({0} : Set (Vec ℝ 3)) U t, r = ℓ y} 1 := by -- --- PROOF ---
   intro sys U ℓ ũ
   have hS : ∀ s ∈ ({![0, 0, 0], ![1, 0, 0], ![0, 1, 0], ![0, 0, 1]} : Set (Vec ℝ 3)),
@@ -104,10 +104,10 @@ theorem LinearSys.supportLower_timeInterval_counterexample :
     have hℓ1 : ∀ x ∈ U, ℓ x ≤ 1 := fun x hx => by simpa [hℓe] using hmax.2 ⟨x, hx, rfl⟩
     refine ⟨?_, ?_⟩
     · refine ⟨1, ⟨zero_le_one, le_rfl⟩, ![1, 0, 0], ?_, by simp [hℓe]⟩
-      rw [LinearSys.reachSet_eq (S := fun n => Set (Vec ℝ n)) sys ({0} : Set (Vec ℝ 3)) U
+      rw [LinearSys.reachSet_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U
         zero_le_one hbdd]
       -- next step of the computation
-      have hmem := sys.expIntegral_mem_inputReach (S := fun n => Set (Vec ℝ n)) zero_le_one
+      have hmem := sys.expIntegral_mem_inputReach (S := 𝒮) zero_le_one
         (U := U) (v := ![1, 0, 0]) (subset_convexHull ℝ _ (by simp))
       have h0 : toRealMat sys.A = 0 := by simp [hA]
       simp only [h0, MatExp.expIntegral_zero, Matrix.one_mulVec, one_smul] at hmem
@@ -116,7 +116,7 @@ theorem LinearSys.supportLower_timeInterval_counterexample :
       simpa using this
     -- next step of the computation
     · rintro r ⟨t, ⟨ht0, ht1⟩, y, hy, rfl⟩
-      rw [LinearSys.reachSet_eq (S := fun n => Set (Vec ℝ n)) sys ({0} : Set (Vec ℝ 3)) U ht0
+      rw [LinearSys.reachSet_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U ht0
         hbdd] at hy
       obtain ⟨a, ⟨x, hx, rfl⟩, z, ⟨u, hu, hmeas, rfl⟩, rfl⟩ := hy
       have hx0 : x = 0 := hx

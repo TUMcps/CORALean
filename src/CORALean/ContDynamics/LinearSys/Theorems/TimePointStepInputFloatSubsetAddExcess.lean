@@ -63,8 +63,8 @@ theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys �
         + (sys.timePointStepExcessFloat r η X U).construct
         + (sys.timePointStepErrorBoxFloat r η U).construct := by -- --- PROOF ---
   set eA := sys.expIntervalFloat r r η
-  set M := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k)) eA X
+  set M := Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋]) eA X
   set P := sys.inputSolutionFloat r η U
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal r) le_rfl le_rfl
   have hM0 : (0 : Vec ℝ n) ∈ M.E.construct := by

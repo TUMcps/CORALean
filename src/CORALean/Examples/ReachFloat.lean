@@ -61,47 +61,47 @@ weights do. -/
 `mtimes`, `plus`, `reduce` — is the float representation's own. -/
 def Example.reachZonotopeFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 n) :=
-  sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩
+  sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩
 
 /-- The same at a float box, where `reduce` is the identity. -/
 def Example.reachIntervalFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Interval (Vec 𝕋 n)) (k : ℕ) : Interval (Vec 𝕋 n) :=
-  sys.reach (S := fun n => Interval (Vec 𝕋 n)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩
+  sys.reach (S := ℐ𝒱[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩
 
 -- Anonymous, since their content is that they elaborate.
 
 /-- Every run of the system is enclosed, by the exact layer's theorem read at a
 float representation. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec 𝕋 n))
-    {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory (S := fun k => Zonotope (Vec 𝕋 k)) R₀ U
+    {x u : ℕ → Vec ℝ n} (traj : sys.Trajectory (S := 𝒵[𝕋]) R₀ U
     x u) (k : ℕ) :
-    x k ∈ construct (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
-  sys.reach_outer (S := fun k => Zonotope (Vec 𝕋 k)) ho R₀ U traj k
+    x k ∈ construct (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
+  sys.reach_outer (S := 𝒵[𝕋]) ho R₀ U traj k
 
 /-- One step, which is what a closed loop needs and `reach_outer` cannot give. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R U : Zonotope (Vec 𝕋 n)) {x u : Vec ℝ n}
     (hx : x ∈ construct R) (hu : u ∈ construct U) :
     Scalar.toRealMat sys.A *ᵥ x + u ∈
-      construct (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R, U, 0, 1⟩ ⟨o, ho⟩) :=
-  sys.reach_one_outer (S := fun k => Zonotope (Vec 𝕋 k)) ho R U hx hu
+      construct (sys.reach (S := 𝒵[𝕋]) ⟨R, U, 0, 1⟩ ⟨o, ho⟩) :=
+  sys.reach_one_outer (S := 𝒵[𝕋]) ho R U hx hu
 
 /-- A specification checked on the computed set answers for the state. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec 𝕋 n))
     (spec : Specification (Set (Vec ℝ n))) {x u : ℕ → Vec ℝ n}
-    (traj : sys.Trajectory (S := fun k => Zonotope (Vec 𝕋 k)) R₀ U x u) (k : ℕ)
+    (traj : sys.Trajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct
-    (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩))) :
+    (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩))) :
     spec.Holds {x k} :=
-  sys.holds_of_reach (S := fun k => Zonotope (Vec 𝕋 k)) ho R₀ U spec traj k h
+  sys.holds_of_reach (S := 𝒵[𝕋]) ho R₀ U spec traj k h
 
 /-- The same with nothing left to prove by hand: a halfspace description checked on the
 computed zonotope by `Specification.check`, which runs. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec 𝕋 n))
     (spec : Specification (HPolytope 𝕋 (Vec 𝕋 n))) {x u : ℕ → Vec ℝ n}
-    (traj : sys.Trajectory (S := fun k => Zonotope (Vec 𝕋 k)) R₀ U x u) (k : ℕ) :
-    spec.check (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) →
+    (traj : sys.Trajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ) :
+    spec.check (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) →
     (spec.Holds {x k}) :=
-  sys.holds_of_check (S := fun k => Zonotope (Vec 𝕋 k)) ho R₀ U spec traj k
+  sys.holds_of_check (S := 𝒵[𝕋]) ho R₀ U spec traj k
 
 /-! ## An output equation
 
@@ -113,19 +113,19 @@ representation, and its matrices are stored floats like the plant's. -/
 free of the state dimension, which is what an output is for. -/
 def Example.outputZonotopeFloat (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r)
     (o : ℕ) (ho : 0 < o) (R₀ U : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 r) :=
-  out.outputSet (S := fun k => Zonotope (Vec 𝕋 k))
-    (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U
+  out.outputSet (S := 𝒵[𝕋])
+    (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U
 
 /-- A specification checked on the output set answers for the output — the one
 question this repository could not ask before. -/
 example (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec 𝕋 n)) (spec : Specification (Set (Vec ℝ r))) {x u : ℕ → Vec ℝ n}
-    (traj : sys.Trajectory (S := fun k => Zonotope (Vec 𝕋 k)) R₀ U x u) (k : ℕ)
+    (traj : sys.Trajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct
-      (out.outputSet (S := fun k => Zonotope (Vec 𝕋 k))
-        (sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U))) :
+      (out.outputSet (S := 𝒵[𝕋])
+        (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U))) :
     spec.Holds {out.eval (x k) (u k)} :=
-  sys.holds_of_output (S := fun k => Zonotope (Vec 𝕋 k)) out ho R₀ U spec traj k h
+  sys.holds_of_output (S := 𝒵[𝕋]) out ho R₀ U spec traj k h
 
 /-! ## A network controlling a discrete plant
 
@@ -134,29 +134,29 @@ and neither the system type nor `reach` notices. -/
 
 /-- Affine, ReLU, affine, in the loop with a two-state plant. -/
 def Example.closedLoopFloat (A : Mat 𝕋 2 2) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
-    (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) : NeurNetContrSysDT 𝕋 (fun k => Zonotope (Vec 𝕋 k)) 2 :=
+    (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) : NeurNetContrSysDT 𝕋 𝒵[𝕋] 2 :=
   ⟨⟨A⟩, .layer (LinearLayer.mk W₁ b₁)
     (.layer (ReluLayer.mk (𝕋 := 𝕋) reluSlope rfl) (.layer (LinearLayer.mk W₂ b₂) .output))⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Example.reachClosedLoopFloat (sys : NeurNetContrSysDT 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
+def Example.reachClosedLoopFloat (sys : NeurNetContrSysDT 𝕋 𝒵[𝕋] n)
     (o : ℕ) (ho : 0 < o) (R₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope (Vec 𝕋 n) :=
   sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩
 
-example (sys : NeurNetContrSysDT 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n) {o : ℕ} (ho : 0 < o)
+example (sys : NeurNetContrSysDT 𝕋 𝒵[𝕋] n) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec 𝕋 n)) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     x k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
-  sys.reach_outer (S := fun k => Zonotope (Vec 𝕋 k)) ho R₀ hπ traj k
+  sys.reach_outer (S := 𝒵[𝕋]) ho R₀ hπ traj k
 
 /-- A box safe set checked on the closed loop's computed zonotope. -/
-example (sys : NeurNetContrSysDT 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n) {o : ℕ} (ho : 0 < o)
+example (sys : NeurNetContrSysDT 𝕋 𝒵[𝕋] n) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec 𝕋 n)) (spec : Specification (Interval (Vec 𝕋 n))) {π : Vec ℝ n → Vec ℝ n}
     (hπ : sys.contr.Sound π) {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     spec.check (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
-  sys.holds_of_check (S := fun k => Zonotope (Vec 𝕋 k)) ho R₀ spec hπ traj k
+  sys.holds_of_check (S := 𝒵[𝕋]) ho R₀ spec hπ traj k
 
 /-! ## A hybrid automaton
 
@@ -172,7 +172,7 @@ error box exists to pay that rounding into, which is exactly what
 `CORALean.Float.OfInterval` is for instead. `Transition.jumpFloat` is the float
 route, `w` being stored floats already; `BouncingBallFloat` runs it. -/
 
-example {HA : HybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => Zonotope (Vec 𝕋 k)) L 𝕋 n}
+example {HA : HybridAutomaton 𝒵[𝕋] 𝒵[𝕋] L 𝕋 n}
     {R : L → Zonotope (Vec 𝕋 n)}
     (hinv : HA.Invariant R) (spec : Specification (Set (Vec ℝ n))) {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
@@ -180,7 +180,7 @@ example {HA : HybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => Zonotop
   HA.holds_of_invariant hinv spec run hx h
 
 /-- The same, checked: the invariant at the location the run ends in, against a box. -/
-example {HA : HybridAutomaton (fun k => Zonotope (Vec 𝕋 k)) (fun k => Zonotope (Vec 𝕋 k)) L 𝕋 n}
+example {HA : HybridAutomaton 𝒵[𝕋] 𝒵[𝕋] L 𝕋 n}
     {R : L → Zonotope (Vec 𝕋 n)}
     (hinv : HA.Invariant R) (spec : Specification (Interval (Vec 𝕋 n))) {ℓ ℓ' : L}
     {x y : Vec ℝ n} (run : HA.Run ℓ x ℓ' y) (hx : x ∈ construct (R ℓ)) :

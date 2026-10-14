@@ -56,7 +56,7 @@ def Location.guardIntersectPolytopeFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zono
       (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
         (ConZonotope.intersection (Zonotope.conZonotope R) guard)).interval
     let box := (Rs.map cut).foldl Interval.or (cut R₀)   -- boxes of the cuts R_j ∩ guard, joined
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B box.zonotope
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B box.zonotope
 
 end CORALean
 

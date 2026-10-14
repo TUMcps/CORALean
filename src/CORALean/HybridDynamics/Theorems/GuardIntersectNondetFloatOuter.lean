@@ -66,35 +66,35 @@ theorem Location.guardIntersectNondetFloat_outer (Bs : List (Mat 𝕋 n n)) (R�
     rw [Matrix.mulVec_mulVec, hT, hB, Matrix.one_mulVec]
   -- the state boxed in the basis
   have h1 : Scalar.toRealMat Bᵀ *ᵥ x ∈
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) Bᵀ R).construct :=
-    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) Bᵀ R
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ R).construct :=
+    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ R
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx))
   have h2 := hfold (Rs.map
-    fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) Bᵀ R).interval)
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) Bᵀ R₀).interval
+    fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ R).interval)
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ R₀).interval
       (Scalar.toRealMat Bᵀ *ᵥ x) (by
       rcases List.mem_cons.mp hR with rfl | hR'
       · exact Or.inl (Zonotope.interval_contains _ h1)
       · exact Or.inr ⟨_, List.mem_map.mpr ⟨R, hR', rfl⟩, Zonotope.interval_contains _ h1⟩)
   generalize List.foldl Interval.or
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) Bᵀ R₀).interval
-    (Rs.map fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) Bᵀ
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ R₀).interval
+    (Rs.map fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ
       R).interval) = box at h2 ⊢
   -- back through the basis, into the conZonotope and its cut
-  have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B box.zonotope
+  have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B box.zonotope
     (Set.mem_biUnion rfl (Set.mem_image_of_mem (fun v => Scalar.toRealMat B *ᵥ v)
       (Interval.zonotope_contains _ h2)))
   rw [hBB] at h3
   have h5 := ConZonotope.intersection_outer _ guard ⟨Zonotope.conZonotope_contains _ h3, hg⟩
   generalize ConZonotope.intersection
-    (Zonotope.conZonotope (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
+    (Zonotope.conZonotope (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
     box.zonotope)) guard = cZ at h5 ⊢
   -- boxed again in the basis
   have h6 : Scalar.toRealMat Bᵀ *ᵥ x ∈
     (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ).construct :=
     Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h5))
-  have h7 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
+  have h7 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
     (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ).interval.zonotope
     (Set.mem_biUnion rfl (Set.mem_image_of_mem (fun v => Scalar.toRealMat B *ᵥ v)
       (Interval.zonotope_contains _ (ConZonotope.interval_contains _ h6))))

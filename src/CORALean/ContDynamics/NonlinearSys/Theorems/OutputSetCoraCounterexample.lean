@@ -43,7 +43,7 @@ theorem NonlinearSys.outputSetCora_counterexample :
     let U : Zonotope (Vec ℝ 1) := ⟨0, 1, Fin.elim0⟩
     let x : ℝ → Vec ℝ 1 := fun _ => 0
     let u : ℝ → Vec ℝ 1 := fun _ => 1
-    sys.Trajectory (S := fun n => Zonotope (Vec ℝ n)) (Set.Ici 0) R0 U x u ∧
+    sys.Trajectory (S := 𝒵) (Set.Ici 0) R0 U x u ∧
       h (x 0) (u 0) ∉ NonlinearSys.outputSetCora h R0 U 0 := by -- --- PROOF ---
   intro sys h R0 U x u
   refine ⟨⟨?_, fun _ _ => ?_, fun _ _ => ?_⟩, ?_⟩

@@ -76,8 +76,8 @@ def fuelr : ℕ := 40
 
 /-- Line 5's look-ahead box at the hidden layer, and the neurons line 6 merges there. -/
 def lookAhead : Interval (Vec D 4) :=
-  (Layer.activation (S := fun n => Interval (Vec D n)) (reluRelaxation reluSlope)).enclose
-    ((ReducedLinear.toLayer (S := fun n => Interval (Vec D n)) ⟨Wr₁, br₁, zeroBox 4⟩).enclose
+  (Layer.activation (S := ℐ𝒱[D]) (reluRelaxation reluSlope)).enclose
+    ((ReducedLinear.toLayer (S := ℐ𝒱[D]) ⟨Wr₁, br₁, zeroBox 4⟩).enclose
       Xr.interval)
 
 def mergedLine : String :=
@@ -112,7 +112,7 @@ def reduceReport : String :=
     mergedLine,
     ""]
   -- run Alg. 2, then print the widths, the error boxes and both enclosures
-  match reduceOnTheFly (S := fun k => Zonotope (Vec D k)) FloatOps.le tolr fuelr Xr ρr
+  match reduceOnTheFly (S := 𝒵[D]) FloatOps.le tolr fuelr Xr ρr
     reducible with
   | none => String.intercalate "\n" (header ++ ["Alg. 2 ran out of fuel"])
   | some (Φhat, Y) => String.intercalate "\n" (header ++ [
@@ -120,7 +120,7 @@ def reduceReport : String :=
       "error box I' of each reduced linear layer:"] ++ errorLines Φhat 1 ++ [
       "",
       "unreduced enclose  "
-        ++ showBox ((reducible.toNetwork (S := fun k => Zonotope (Vec D k))).enclose Xr).interval,
+        ++ showBox ((reducible.toNetwork (S := 𝒵[D])).enclose Xr).interval,
       "reduced Y          " ++ showBox Y.interval])
 
 end CORALean.Demo

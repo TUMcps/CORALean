@@ -54,6 +54,11 @@ open Matrix
 
 variable {n : ℕ}
 
+/-- The zonotope family over vectors. A generic theorem quantifies over
+`S : ℕ → Type` and the elaborator cannot read that family off one member, so a
+use site has to name it: `(S := 𝒵)`. -/
+scoped notation "𝒵" => fun n => Zonotope (Vec ℝ n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -101,29 +106,24 @@ noncomputable instance : Reduce (Zonotope (Vec ℝ n)) (Vec ℝ n) where
 
 /-- `map` at the relabelling, and no operation of its own: a reindexing *is* a
 linear map, and a zonotope is exactly closed under one. -/
-instance : Reindex (fun n => Zonotope (Vec ℝ n)) where
+instance : Reindex (𝒵) where
   reindex e Z := Zonotope.map (reindexLin e) Z
   reindex_exact e Z := (Zonotope.map_exact (reindexLin e) Z).symm
 
-instance : Mtimes (Mat ℝ) (fun n => Zonotope (Vec ℝ n)) where
+instance : Mtimes (Mat ℝ) (𝒵) where
   mtimes := Zonotope.mtimes
   mtimes_outer M Z := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Zonotope.mtimes_exact M Z).subset
 
 /-- `OfPoint` again, at the family: ℝ is its own scalar, so the point is stored as it is. -/
-instance : OfScalarPoint ℝ (fun n => Zonotope (Vec ℝ n)) where
+instance : OfScalarPoint ℝ (𝒵) where
   ofVec := Zonotope.ofPoint
   mem_ofVec := Zonotope.mem_ofPoint
 
-instance : IntersectStrip ℝ (fun n => Zonotope (Vec ℝ n)) where
+instance : IntersectStrip ℝ (𝒵) where
   intersectStrip C φ y Λ Z := Zonotope.intersectStrip C φ y Λ Z
   intersectStrip_outer := Zonotope.intersectStrip_outer
-
-/-- The zonotope family over vectors. A generic theorem quantifies over
-`S : ℕ → Type` and the elaborator cannot read that family off one member, so a
-use site has to name it: `(S := 𝒵)`. -/
-scoped notation "𝒵" => fun n => Zonotope (Vec ℝ n)
 
 /-- Multiplication by a plain matrix at any ambient type it acts on. At `Vec`
 this repeats `mtimes`; at `Mat` it is matrix multiplication of a matrix

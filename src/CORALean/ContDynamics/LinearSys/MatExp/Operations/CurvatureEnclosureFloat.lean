@@ -48,10 +48,10 @@ def MatExp.curvatureEnclosure (A : Interval (Mat 𝕋 n n)) (H : Zonotope (Vec �
     (Δt : 𝕋) (η : ℕ) : Zonotope (Vec 𝕋 n) :=
   let F := MatExp.intervalCorrectionMatrix A Δt η                     -- [F(Δt,η)]
   let G := MatExp.intervalConstCorrectionMatrix A Δt η                -- [G(Δt,η)]
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [F] H(t_k) ⊕
-    (S := fun k => Zonotope (Vec 𝕋 k)) F H ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [G] ũ
-      (S := fun k => Zonotope (Vec 𝕋 k)) G (Interval.point ũ).zonotope
+  Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [F] H(t_k) ⊕
+    (S := 𝒵[𝕋]) F H ⊞
+    Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [G] ũ
+      (S := 𝒵[𝕋]) G (Interval.point ũ).zonotope
 
 end CORALean.Float
 

@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : �
 /-- A matrix times the real value of a point is in the `mtimes` of its point box. -/
 theorem LinearARX.aux_mulVec_mem_box (M : Mat 𝕋 (p * dy) du) (v : Vec 𝕋 du) :
     Scalar.toRealMat M *ᵥ Scalar.toRealVec v ∈
-      construct (mtimes (S := fun n => Interval (Vec 𝕋 n)) M (Interval.point v)) :=
-  mtimes_outer (S := fun n => Interval (Vec 𝕋 n)) M _
+      construct (mtimes (S := ℐ𝒱[𝕋]) M (Interval.point v)) :=
+  mtimes_outer (S := ℐ𝒱[𝕋]) M _
     (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (Interval.mem_point v)))
 
 /-- The fold adds each listed term to a partial sum that is already enclosed. -/
@@ -44,7 +44,7 @@ theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * dy) du)
       a ∈ construct acc →
       a + (l.map fun j => Scalar.toRealMat (M j.succ) *ᵥ Scalar.toRealVec (w j.succ)).sum ∈
         construct (l.foldl (fun acc j => plus (S := Interval (Vec 𝕋 (p * dy))) acc
-          (mtimes (S := fun n => Interval (Vec 𝕋 n)) (M j.succ) (Interval.point (w j.succ))))
+          (mtimes (S := ℐ𝒱[𝕋]) (M j.succ) (Interval.point (w j.succ))))
           acc) := by -- --- PROOF ---
   intro l
   induction l with

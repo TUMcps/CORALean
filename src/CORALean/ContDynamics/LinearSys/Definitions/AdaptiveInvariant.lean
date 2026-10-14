@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def LinearSys.AdaptiveInvariant (sys : LinearSys 𝕋 n) (V : Float.Zonotope (Vec 𝕋 n))
     (s : LinearSys.AdaptiveState 𝕋 n) : Prop :=
   0 ≤ s.t ∧ toReal s.tLo ≤ (s.t : ℝ) ∧ (s.t : ℝ) ≤ toReal s.tHi ∧
-    ∀ y ∈ sys.inputReach (S := fun k => Float.Zonotope (Vec 𝕋 k)) (Recentre.recentre V) s.t,
+    ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recentre.recentre V) s.t,
       MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V + y ∈ s.P.construct
 
 end CORALean

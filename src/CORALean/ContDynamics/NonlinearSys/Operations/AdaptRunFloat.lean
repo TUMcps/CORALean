@@ -41,8 +41,8 @@ if one of them fails. -/
 def NonlinearSys.FloatHessModel.adaptRunFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (fm : NonlinearSys.FloatHessModel 𝕋 n m) (U : Zonotope (Vec 𝕋 m))
     (options : LinearSys.ReachOptions 𝕋) (ζδ ζh ζZ ζK : 𝕋) (prec bis fuel : ℕ) (tend : ℚ) :
-    ℕ → NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋 →
-      Option (List (NonlinearSys.AdaptState (fun k => Zonotope (Vec 𝕋 k)) n ℚ 𝕋))
+    ℕ → NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋 →
+      Option (List (NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋))
   | 0, _ => some []
   | k + 1, s =>
     if s.t < tend                                                   -- 2. while t_k < t_end

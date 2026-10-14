@@ -46,14 +46,14 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer
     {options : LinearSys.ReachOptions 𝕋} {R Rt Rτ : Zonotope (Vec 𝕋 n)} {A : Mat 𝕋 n n}
     (hpass : fm.adaptLinPassFloat U options R = some (A, Rt, Rτ)) :
     0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
+      sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt),
         sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ
           (x t - toRealVec (fm.linPointFloat options.Δt R U).1) ∈
           ((fm.f (Interval.point (fm.linPointFloat options.Δt R U).1)
             (Interval.point (fm.linPointFloat options.Δt R U).2)).zonotope ⊞
-            Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
+            Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋])
               (fm.linearizeFloat (fm.linPointFloat options.Δt R U).1
                 (fm.linPointFloat options.Δt R U).2).2
               (Recentre.recentre U)).construct) →

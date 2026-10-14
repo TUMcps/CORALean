@@ -69,7 +69,7 @@ def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 
   let B := (fm.linearizeFloat xs us).2                              -- 3. B
   let f₀ := fm.f (Interval.point xs) (Interval.point us)            -- [f(x✱, u✱)]
   let V := fun (L : Zonotope (Vec 𝕋 n)) =>                                -- f(z✱) ⊕ B(U - u✱) ⊕ L
-    (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
+    (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
       (Recentre.recentre U)) ⊞ L
   let Vlin := V (fm.hessRemainder A B xs us X U').zonotope          -- priv_abstrerr_lin
   match alg with

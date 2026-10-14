@@ -61,7 +61,7 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     sys.AdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
       r.tEnd = t₀ + min s'.t tf ∧
       ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
+        sys.Trajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
         U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ tf →
           x t ∈ r.R.construct := by -- --- PROOF ---
   obtain ⟨h0, hlo, hhi, hP⟩ := hinv
@@ -89,10 +89,10 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     rwa [← ToRat.toReal_toRat]⟩
   -- `[e^{At_i}] Z` holds `e^{At_i} z`
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (ti • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eAt Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eAt Z
+      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eAt Z) :=
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eAt Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec (le_max_right _ _) hsq) hlo hhi) (Set.mem_image_of_mem _ hz))
   -- `{ũ}` and `[0, ũ]` hold what they are built from
@@ -112,15 +112,15 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     exact ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
   have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
-      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) W τ :=
+      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := 𝒵[𝕋]) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
   have hPu := sys.inputReach_subset_inputSolutionFloat hΔr hadm _ (hconst hpt hΔr.le)
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔr hadm Ũ
   -- the `Ũ`-input's share by `t_i + Δt` comes apart at `t_i`
-  have hsep : ∀ y ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ (toReal Δt + ti),
-      ∃ p ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ (toReal Δt),
-        ∃ q ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ ti, y = exp (ti • A)
+  have hsep : ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ (toReal Δt + ti),
+      ∃ p ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ (toReal Δt),
+        ∃ q ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ ti, y = exp (ti • A)
           *ᵥ p + q := by
     intro y hy
     obtain ⟨_, ⟨p, hp, rfl⟩, q, hq, rfl⟩ := sys.inputReach_separation_subset hΔr.le
@@ -158,15 +158,15 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     have hτ0 : 0 ≤ τ := sub_nonneg.mpr ht.1
     have hτΔ : τ ≤ toReal Δt := by linarith [ht.2]
     -- the run's departure from the free motion and the constant's share, by `t_{i+1}`
-    have hd := traj.sub_mem_inputReach_recentre (S' := fun k => Zonotope (Vec 𝕋 k)) (V := V)
+    have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) (V := V)
       hUV ⟨ht0, htf⟩
-    have hd' := sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k))
+    have hd' := sys.inputReach_mono (S := 𝒵[𝕋])
       (CompactSet.isBounded_construct Ũ)
       (Recentre.zero_mem_recentre V) ht0 ht.2 hd
     obtain ⟨p, hp, q, hq, hpq⟩ := hsep _ hd'
     -- the free motion and the constant over `[0, τ]`, inside `HR₀ ⊕ P̃^R`
     have hc := sys.inputReach_subset_inputSolutionFloat hΔr hadm seg
-      (sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k))
+      (sys.inputReach_mono (S := 𝒵[𝕋])
         (CompactSet.isBounded_construct seg) h0seg hτ0 hτΔ
         (hconst hũseg hτ0))
     have hcore := Plus.plus_outer (sys.timeIntervalStepFloat Δt η X₀)

@@ -53,7 +53,7 @@ theorem aux_mem_foldl_or {x : Vec ℝ n} :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Location.guardIntersectFloat_outer
-    (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
+    (ℓ : Location 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
     (guard : HPolytope 𝕋 (Vec 𝕋 n)) {Rs : List (Zonotope (Vec 𝕋 n))}
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ Rs)
     {x : Vec ℝ n} (hx : x ∈ construct R) (hinv : x ∈ construct ℓ.inv)

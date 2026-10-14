@@ -45,9 +45,9 @@ variable {n m : ℕ}
 /-- What is reached at `Δt` from points reached at `T` is reached at `T + Δt`, under `u₀`. -/
 theorem NonlinearSys.reachSet_subset_reachSet_add (sys : NonlinearSys n m)
     (X₀ X : Set (Vec ℝ n)) (u₀ : Vec ℝ m) {T Δt : ℝ} (hT : 0 ≤ T) (hΔt : 0 ≤ Δt)
-    (hX : X ⊆ sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 T) X₀ {u₀} T) :
-    sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 Δt) X {u₀} Δt ⊆
-      sys.reachSet (S := fun k => Set (Vec ℝ k)) (Icc 0 (T + Δt)) X₀ {u₀}
+    (hX : X ⊆ sys.reachSet (S := 𝒮) (Icc 0 T) X₀ {u₀} T) :
+    sys.reachSet (S := 𝒮) (Icc 0 Δt) X {u₀} Δt ⊆
+      sys.reachSet (S := 𝒮) (Icc 0 (T + Δt)) X₀ {u₀}
         (T + Δt) := by -- --- PROOF ---
   classical
   rintro _ ⟨x₂, u₂, traj₂, rfl⟩

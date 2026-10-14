@@ -633,18 +633,18 @@ def fZ' : Zonotope (Vec F 2) where
 -- a discrete-time system, a network and a continuous-time system sampled, as at `Dyadic 24`
 def fSys : LinearSysDT F 2 :=
   ⟨!![floatLit 15 (-4), floatLit (-1) (-3); floatLit 1 (-3), floatLit 15 (-4)]⟩
-def fReach : Zonotope (Vec F 2) := fSys.reach (S := fun k => Zonotope (Vec F k)) ⟨fZ, fZ, 0, 5⟩
+def fReach : Zonotope (Vec F 2) := fSys.reach (S := 𝒵[F]) ⟨fZ, fZ, 0, 5⟩
     ⟨2, by decide⟩
-def fNet : NeuralNetwork (fun k => Zonotope (Vec F k)) 2 2 :=
+def fNet : NeuralNetwork 𝒵[F] 2 2 :=
   .layer (⟨identityMat F 2, fun _ => 0⟩ : LinearLayer F 2 2)
     (.layer (⟨reluSlope, rfl⟩ : ReluLayer F 2 2) .output)
 def fEnclose : Zonotope (Vec F 2) := fNet.enclose fZ
 def fStepR : F := floatLit 1 (-5)
 def fCtSys : LinearSys F 2 := ⟨!![-1, -4; 4, -1]⟩
-def fCtD : LinParamSysDT (fun m n => Interval (Mat F m n)) 2 :=
+def fCtD : LinParamSysDT ℐ[F] 2 :=
   fCtSys.discretizeEnclosureFloat fStepR 4
 def fCtReach : Zonotope (Vec F 2) :=
-  fCtD.reach (S := fun k => Zonotope (Vec F k)) ⟨fZ, fZ, 0, 5⟩ ⟨2, two_pos⟩
+  fCtD.reach (S := 𝒵[F]) ⟨fZ, fZ, 0, 5⟩ ⟨2, two_pos⟩
 def fSafe : Specification (Interval (Vec F 2)) := .safeSet ⟨fun _ => -10, fun _ => 10⟩
 
 -- the rows, in the order of the `Dyadic 24` ones
@@ -654,7 +654,7 @@ def floatRows : StateT Nat IO Unit := do
   row "I" (ofBox fI)
   row "Z_plus" (ofZono (fZ.plus fZ))
   row "Z_reduce" (ofZono (fZ.reduce 1))
-  row "Z_mtimes" (ofZono (Mtimes.mtimes (S := fun k => Zonotope (Vec F k)) (identityMat F 2) fZ))
+  row "Z_mtimes" (ofZono (Mtimes.mtimes (S := 𝒵[F]) (identityMat F 2) fZ))
   row "plusBoxRun" (ofBox (Zonotope.plusBox fZ fZ))
   row "mtimesBoxRun" (ofBox (Zonotope.mtimesBox (identityMat F 2) fZ))
   row "reduceGirardBoxRun" (ofZono (Zonotope.reduceGirardBox fZ 1))

@@ -40,6 +40,7 @@ nonnegativity is [1, Cor. 1]'s `X ⊂ ℝ₊`, without which the ReLU is not the
 namespace CORALean
 
 open Matrix ContSet Float Float.IntervalOuter Float.OfInterval Float.SoundFloatArithmetic
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
@@ -70,9 +71,9 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
     · rename_i Φhat Y' hrun2
       cases hrun
       set part := Partition.ofPred fun i => B_m1δ i = true
-      set I_m1 := (Layer.activation (S := fun n => Interval (Vec 𝕋 n)) R_relu).enclose
+      set I_m1 := (Layer.activation (S := ℐ𝒱[𝕋]) R_relu).enclose
         (((ReducedLinear.identity (𝕋 := 𝕋) n).toLayer
-          (S := fun n => Interval (Vec 𝕋 n))).enclose I_X)
+          (S := ℐ𝒱[𝕋])).enclose I_X)
       rintro _ ⟨x, hx, rfl⟩
       -- the stored identity denotes the identity, and the stored zeros zero
       have hId : ∀ k, toRealMat (diagonalBlock fun _ : Fin k => (FloatOps.one : 𝕋)) = 1 := by
@@ -97,8 +98,8 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
         simp [Real.relu, hX x hx i]
       -- line 2's look-ahead box holds `x`, so its bucket `B` holds `x`'s merged pixels
       have hxI : x ∈ I_m1.construct := by
-        have h := (Layer.activation_sound (S := fun n => Interval (Vec 𝕋 n)) hR).enclose_outer _ _
-          (Layer.linearWithError_mem (S := fun n => Interval (Vec 𝕋 n))
+        have h := (Layer.activation_sound (S := ℐ𝒱[𝕋]) hR).enclose_outer _ _
+          (Layer.linearWithError_mem (S := ℐ𝒱[𝕋])
             (diagonalBlock fun _ => FloatOps.one)
             (Interval.construct_subset_nonemptyHull _ (h00 n)) I_X hx)
         rwa [hId, hrelu] at h
@@ -109,13 +110,13 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
       -- and line 3's `H_{-2}` holds its surviving pixels
       have hxl : x ∘ part.left ∈ construct (ofInterval (S := S)
           ((((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).toLayer
-            (S := fun n => Interval (Vec 𝕋 n))).enclose I_X)) := by
+            (S := ℐ𝒱[𝕋])).enclose I_X)) := by
         apply ofInterval_outer
         have hc : (0 : Vec ℝ n) ∘ part.left
             - toRealVec ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).b
             ∈ ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).I'.construct :=
           fun i => h00 n (part.left i)
-        have h := Layer.linearWithError_mem (S := fun n => Interval (Vec 𝕋 n))
+        have h := Layer.linearWithError_mem (S := ℐ𝒱[𝕋])
           ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).W
           (Interval.construct_subset_nonemptyHull _ hc) I_X hx
         have hW : toRealMat ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).W

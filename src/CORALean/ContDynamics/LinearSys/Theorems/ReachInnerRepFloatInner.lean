@@ -50,6 +50,7 @@ namespace CORALean
 
 open CORALean.Float FloatOps SoundFloatArithmetic InflatedContSet Matrix NormedSpace
 open scoped Pointwise
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -65,16 +66,16 @@ given both error boxes bracket `0`. -/
 theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋} (hΔt : 0 < toReal Δt)
     {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)}
     (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct) (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ)
-    (M : Fin ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+    (M : Fin ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h →
       Fin (sys.reachErrorFloat Δt η o ho R₀ U k).h → 𝕋) (ρ : 𝕋)
-    (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+    (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h n) {D : Zonotope (Vec 𝕋 n)}
     (hD : sys.reachInnerRepFloat Δt η o ho R₀ U k M ρ H = some D) :
-    D.construct ⊆ sys.reachSet (S := fun k => Real.Zonotope (Vec ℝ k))
+    D.construct ⊆ sys.reachSet (S := 𝒵)
       (Set.Icc 0 ((k : ℝ) * toReal Δt)) (nominal R₀) (nominal U)
       ((k : ℝ) * toReal Δt) := by -- --- PROOF ---
-  set R := (sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+  set R := (sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
     ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩
   set B := sys.reachErrorFloat Δt η o ho R₀ U k
   set Q := Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt))
@@ -85,7 +86,7 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     sys.zero_mem_discretizeEnclosureFloat_reach_error hΔt.le hη ho hR₀ hU k
   obtain ⟨_, -, b, hb, -⟩ := hout (Zonotope.centre_mem_construct R hR0)
   have hinner := (sys.discretize (toReal Δt)).reachSet_inner_of_outer
-    (S := fun k => Real.Zonotope (Vec ℝ k))
+    (S := 𝒵)
     (Real.Zonotope.convex_construct (nominal R₀)) (Real.Zonotope.isCompact_construct (nominal R₀))
     (Real.Zonotope.convex_construct Q) (Real.Zonotope.isCompact_construct Q) k
     ⟨b, hb⟩ (Zonotope.isCompact_construct B).isBounded hout
@@ -97,12 +98,12 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     rw [← Real.Zonotope.mtimes_exact] at hv'
     obtain ⟨c, hc, rfl⟩ := hv'
     exact ⟨c, hc, rfl⟩
-  have hzoh := sys.discretize_reachSet_subset_inputReach (S := fun k => Real.Zonotope (Vec ℝ k))
+  have hzoh := sys.discretize_reachSet_subset_inputReach (S := 𝒵)
     hΔt (nominal R₀) (nominal U) Q (Real.Zonotope.isBounded_construct _)
     ⟨_, Real.Zonotope.centre_mem_construct _⟩ hstep k
   exact (Zonotope.minkDiffRep_inner hD).trans (hinner.trans (hzoh.trans
     (sys.mulVecLin_image_add_inputReach_subset_reachSet
-      (S := fun k => Real.Zonotope (Vec ℝ k)) (nominal R₀) (nominal U) (by positivity)
+      (S := 𝒵) (nominal R₀) (nominal U) (by positivity)
       (Real.Zonotope.isBounded_construct _))))
 
 end CORALean

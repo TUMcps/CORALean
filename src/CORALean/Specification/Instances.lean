@@ -241,10 +241,10 @@ instance (priority := 50) isDisjointZonoBundleZonoBundle :
 /-- The box's pair at a float zonotope, `S` fixed rather than inferred: the generic instances
 above cannot find a family written as a lambda. -/
 instance containsBoxZonotope : Contains (Interval (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) :=
-  containsBoxOuter (S := fun k => Zonotope (Vec 𝕋 k))
+  containsBoxOuter (S := 𝒵[𝕋])
 
 instance isDisjointBoxZonotope : IsDisjoint (Interval (Vec 𝕋 n)) (Zonotope (Vec 𝕋 n)) :=
-  isDisjointBoxOuter (S := fun k => Zonotope (Vec 𝕋 k))
+  isDisjointBoxOuter (S := 𝒵[𝕋])
 
 instance containsPolytopeInterval : Contains (HPolytope 𝕋 (Vec 𝕋 n)) (Interval (Vec 𝕋 n)) where
   contains P I := aux_containsRows P (aux_boxBound I)

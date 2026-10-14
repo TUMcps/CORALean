@@ -35,6 +35,7 @@ which leaves `Rproj` unchanged when it has at most `n` generators and encloses i
 namespace CORALean
 
 open Matrix Scalar
+open scoped CORALean.Real
 
 variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n m : ℕ}
 
@@ -42,7 +43,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n m :
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `checkFlow`, linear branch, as printed: the reach sets kept, `sys.c` added entrywise. -/
-noncomputable def Location.checkFlowCora (ℓ : Location (fun n => Real.Zonotope (Vec ℝ n)) G L ℝ n)
+noncomputable def Location.checkFlowCora (ℓ : Location 𝒵 G L ℝ n)
     (B : Mat ℝ n m) (off : Vec ℝ n) (uLo uHi : Vec ℝ m) (c : Vec ℝ n) (d : ℝ)
     (Rs : List (Real.Zonotope (Vec ℝ n))) : List (Real.Zonotope (Vec ℝ n)) :=
   open Classical in Rs.filter fun R =>

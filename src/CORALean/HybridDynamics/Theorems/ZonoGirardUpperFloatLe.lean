@@ -36,10 +36,10 @@ theorem Location.zonoGirardUpperFloat_le (Z : Zonotope (Vec 𝕋 n)) (nv : Vec �
     x ⬝ᵥ toRealVec ℓ ≤ toReal (Location.zonoGirardUpperFloat Z nv γ ℓ) := by -- --- PROOF ---
   unfold Location.zonoGirardUpperFloat
   -- the plane image of `x` lies in the plane zonotope
-  have hy := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
+  have hy := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋])
     (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) Z
     (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx))
-  generalize Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k))
+  generalize Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋])
     (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) Z = S at hy ⊢
   have h0 : (Scalar.toRealMat (fun (i : Fin 2) (j : Fin n) => if i = 0 then nv j else ℓ j) *ᵥ x) 0
       = toReal γ := by

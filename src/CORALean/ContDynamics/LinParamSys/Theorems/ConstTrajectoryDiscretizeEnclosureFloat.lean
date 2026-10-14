@@ -44,7 +44,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Sampling every `Δt` turns a `'constParam'` run into a run of the float-sampled
 system. -/
 theorem LinParamSys.ConstTrajectory.discretizeEnclosureFloat
-    {sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n} {T : Set ℝ}
+    {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {Δt : 𝕋} {η : ℕ}
     (traj : sys.ConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))

@@ -64,13 +64,13 @@ def LinearSys.manualStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
   let tLo1 := addDown s.tLo Δt                                      -- 5. a float below t_{k+1}
   let tHi1 := addUp s.tHi Δt                                        -- 5. a float above t_{k+1}
   let sq ← sys.squaringsFloat Δt s.tLo s.tHi η                      -- t_k / 2^sq within Δt
-  let Φtk := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- 6. [e^{A t_k}] ·
-    (S := fun k => Zonotope (Vec 𝕋 k))
+  let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 6. [e^{A t_k}] ·
+    (S := 𝒵[𝕋])
     (sys.expSquaringFloat s.tLo s.tHi η sq)
   let Puk1 := (s.Pu.zonotope ⊞ Φtk PuΔt).interval                   -- 6. P^u(t_{k+1}), a box
   let sq1 ← sys.squaringsFloat Δt tLo1 tHi1 η                       -- t_{k+1} / 2^sq1 within Δt
-  let Φtk1 := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- 7. [e^{A t_{k+1}}] ·
-    (S := fun k => Zonotope (Vec 𝕋 k))
+  let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 7. [e^{A t_{k+1}}] ·
+    (S := 𝒵[𝕋])
     (sys.expSquaringFloat tLo1 tHi1 η sq1)
   let Hk1 := Φtk1 X₀ ⊞ Puk1.zonotope                                -- 7. H(t_{k+1})
   let Hτk := sys.timeIntervalStepFloat Δt η s.H ⊞ PuτΔt             -- 8.-9. Ĥ(τ_k)

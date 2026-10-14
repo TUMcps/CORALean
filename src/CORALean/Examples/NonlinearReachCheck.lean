@@ -28,20 +28,21 @@ further — no confinement of any run — to answer for every trajectory.
 namespace CORALean.Real
 
 open ContSet
+open scoped CORALean.Float
 
 -- Anonymous, since their content is that they elaborate.
 
 /-- A discrete nonlinear system, its region tests and the check run by `Reach.check`. -/
-example (sys : NonlinearSysDT.WithSteps (fun n => Interval (Vec ℝ n))
-      (fun n => Float.Interval (Vec ℝ n)) ℝ 1 2)
+example (sys : NonlinearSysDT.WithSteps ℐ𝒱
+      ℐ𝒱[ℝ] ℝ 1 2)
     (params : Reach.Params (Interval (Vec ℝ 2)) ℕ) (options : NonlinearSysDT.ReachOptions)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
-    Reach.check (S := fun n => Interval (Vec ℝ n)) sys params options spec →
-    (spec.Holds (Reach.reachExact (S := fun n => Interval (Vec ℝ n)) sys params)) :=
+    Reach.check (S := ℐ𝒱) sys params options spec →
+    (spec.Holds (Reach.reachExact (S := ℐ𝒱) sys params)) :=
   Reach.holds_of_check _ _ _ _
 
 /-- The continuous case, the ball test `2MΔt` about each step's start run by `reach`. -/
-example (sys : NonlinearSys.WithSteps 𝒵 (fun n => Float.Interval (Vec ℝ n)) 1 2)
+example (sys : NonlinearSys.WithSteps 𝒵 ℐ𝒱[ℝ] 1 2)
     (params : Reach.Params (Zonotope (Vec ℝ 2)) ℝ) (options : LinearSys.ReachOptions ℝ)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
     Reach.check (S := 𝒵) sys params options spec →

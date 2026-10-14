@@ -45,8 +45,8 @@ the product's box, the sum's `plusBox` and the input solution's box. -/
 def LinearSys.timePointStepExcessFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ)
     (X U : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let eAr := sys.expIntervalFloat r r η                                     -- [e^{Ar}]
-  let M := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{Ar}] X
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAr X
+  let M := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{Ar}] X
+    (S := 𝒵[𝕋]) eAr X
   let P := sys.inputSolutionFloat r η U                                     -- P(r), in floats
   ((Zonotope.mtimesIntervalMatBox eAr X).zonotope ⊞                         -- M beyond e^{Ar} X
     (Zonotope.plusBox M P).zonotope) ⊞                                      -- M ⊞ P beyond M + P

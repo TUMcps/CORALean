@@ -42,10 +42,10 @@ def LinearSys.timeIntervalStepFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : 
     Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                                  -- [e^{AΔt}]
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η      -- [F]
-  LinComb.linComb R (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt R) ⊞
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- linComb(R, e R) ⊕ F R
-      (S := fun k => Zonotope (Vec 𝕋 k)) F R
+  LinComb.linComb R (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    (S := 𝒵[𝕋]) eAΔt R) ⊞
+    Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- linComb(R, e R) ⊕ F R
+      (S := 𝒵[𝕋]) F R
 
 end CORALean
 

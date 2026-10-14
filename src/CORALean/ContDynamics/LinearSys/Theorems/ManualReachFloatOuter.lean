@@ -73,7 +73,7 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 
     (h : sys.manualReachFloat B params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := fun k => Set (Vec ℝ k))
+        sys.Trajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
@@ -85,14 +85,14 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 
   obtain ⟨N, hN, η', hη', h⟩ := h
   obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
   have hadm := (LinearSys.reachOrderFloat_spec hη').1
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B U with hV
+  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U with hV
   obtain ⟨hlen, hsnd⟩ := sys.manualRunFloat_outer hΔt hadm h
     (sys.aux_manualInvariantFloat_init X₀ V)
   refine ⟨N, hNΔt, hlen, fun {x u} traj k hk t ht => ?_⟩
   -- the run's inputs are in `B U`'s float enclosure
   have hUV : (Scalar.toRealMat B *ᵥ ·) '' U.construct ⊆ V.construct := by
     rintro _ ⟨w, hw, rfl⟩
-    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B U
+    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U
       (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
   have hkN : (k : ℝ) + 1 ≤ N := by rw [hlen] at hk; exact_mod_cast hk
   refine hsnd traj hUV k hk t ⟨by simpa [LinearSys.manualInitFloat] using ht.1,

@@ -47,6 +47,10 @@ open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 
+/-- The constrained-polynomial-zonotope family over vectors. The elaborator
+cannot read the family off one member, so a use site names it: `(S := 𝒞𝒫𝒵)`. -/
+scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -81,15 +85,11 @@ noncomputable instance : Reduce (ConPolyZono (Vec ℝ n)) (Vec ℝ n) where
   reduce := ConPolyZono.reduce
   reduce_outer := ConPolyZono.reduce_outer
 
-instance : Mtimes (Mat ℝ) (fun n => ConPolyZono (Vec ℝ n)) where
+instance : Mtimes (Mat ℝ) (𝒞𝒫𝒵) where
   mtimes := ConPolyZono.mtimes
   mtimes_outer M cPZ := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (ConPolyZono.mtimes_exact M cPZ).subset
-
-/-- The constrained-polynomial-zonotope family over vectors. The elaborator
-cannot read the family off one member, so a use site names it: `(S := 𝒞𝒫𝒵)`. -/
-scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
 
 instance : Reindex 𝒞𝒫𝒵 where
   reindex e cPZ := ConPolyZono.map (reindexLin e) cPZ

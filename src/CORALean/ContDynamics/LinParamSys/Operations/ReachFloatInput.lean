@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- The windows `τ_0, …, τ_{N-1}` of width `Δt` from `X₀` at every member of `sys.A`,
 under inputs in `U`, the first reduced to order `ρ`, at Taylor order `η` raised
 until admissible. -/
-def LinParamSys.reachFloatInput (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.reachFloatInput (sys : LinParamSys ℐ[𝕋] n)
     (U : Zonotope (Vec 𝕋 n)) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
     (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols

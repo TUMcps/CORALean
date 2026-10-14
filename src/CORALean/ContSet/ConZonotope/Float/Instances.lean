@@ -72,7 +72,7 @@ instance : Mtimes (Mat 𝕋) (fun k => ConZonotope 𝕋 (Vec 𝕋 k)) where
     exact ConZonotope.mtimes_outer M cZ
 
 /-- The same operation at a float interval matrix, as `Zonotope`'s is. -/
-instance : Mtimes (fun m n => Interval (Mat 𝕋 m n)) (fun k => ConZonotope 𝕋 (Vec 𝕋 k)) where
+instance : Mtimes ℐ[𝕋] (fun k => ConZonotope 𝕋 (Vec 𝕋 k)) where
   mtimes IM cZ := (ConZonotope.mtimesIntervalMat IM cZ).materialise
   mtimes_outer IM cZ := by
     rw [ConZonotope.materialise_eq]

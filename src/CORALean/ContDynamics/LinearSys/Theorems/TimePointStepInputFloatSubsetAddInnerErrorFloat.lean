@@ -32,6 +32,7 @@ namespace CORALean
 
 open CORALean.Float FloatOps SoundFloatArithmetic InflatedContSet Matrix NormedSpace
 open scoped Pointwise
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -49,7 +50,7 @@ theorem LinearSys.timePointStepInputFloat_subset_add_innerErrorFloat (sys : Line
     {X₀ U : Zonotope (Vec 𝕋 n)} (hX₀ : (0 : Vec ℝ n) ∈ X₀.E.construct)
     (hU : (0 : Vec ℝ n) ∈ U.E.construct) :
     (sys.timePointStepInputFloat r η X₀ U).construct
-      ⊆ (sys.discretize (toReal r)).reachSet (S := fun k => Real.Zonotope (Vec ℝ k)) (nominal X₀)
+      ⊆ (sys.discretize (toReal r)).reachSet (S := 𝒵) (nominal X₀)
           (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal r))
             (nominal U)) 1
         + (sys.timePointStepInnerErrorFloat r η X₀ U).construct := by -- --- PROOF ---
@@ -61,15 +62,15 @@ theorem LinearSys.timePointStepInputFloat_subset_add_innerErrorFloat (sys : Line
   -- `X₀`'s point splits into its nominal part and its error box, which `[e^{Ar}]` carries
   obtain ⟨a, ha, e₀, he₀, rfl⟩ := hy
   have he₀' : exp (toReal r • Scalar.toRealMat sys.A) *ᵥ e₀ ∈
-    (Mtimes.mtimes (S := fun k => Zonotope (Vec 𝕋 k))
-      (𝕄 := fun m n => Interval (Mat 𝕋 m n)) eA X₀.E.zonotope).construct :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eA _
+    (Mtimes.mtimes (S := 𝒵[𝕋])
+      (𝕄 := ℐ[𝕋]) eA X₀.E.zonotope).construct :=
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eA _
       (Set.mem_biUnion he ⟨e₀, Interval.zonotope_contains _ he₀, rfl⟩)
   have hB : exp (toReal r • Scalar.toRealMat sys.A) *ᵥ e₀ + b + t
       ∈ (sys.timePointStepInnerErrorFloat r η X₀ U).construct := by
     show _ ∈ ContSet.construct
-      ((Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eA
+      ((Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
       X₀.E.zonotope ⊞ sys.timePointStepExcessFloat r η X₀ U) ⊞ sys.timePointStepErrorBoxFloat r η U)
     exact Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add he₀' hb)) ht)
   refine ⟨exp (toReal r • Scalar.toRealMat sys.A) *ᵥ a + w, ⟨_, ⟨a, ha, rfl⟩, w, hw, rfl⟩,

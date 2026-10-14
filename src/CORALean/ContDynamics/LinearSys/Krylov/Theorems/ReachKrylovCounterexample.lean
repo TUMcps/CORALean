@@ -66,7 +66,7 @@ theorem Krylov.reach_krylov_counterexample :
       ((Htp.plus (RTrans E)).plus (Zonotope.ofPoint 0)).reduceGirard 10
     (K.2 1 0 = 1 ∧ τ = 1 ∧ ¬ ‖v‖₂ * (τ * γ * t ^ 2 / (Nat.factorial 2 : ℝ)) > ε) ∧
       ∃ x w : ℝ → Vec ℝ 2,
-        (LinearSys.mk A : LinearSys ℝ 2).ClassicalTrajectory (S := fun k => Set (Vec ℝ k))
+        (LinearSys.mk A : LinearSys ℝ 2).ClassicalTrajectory (S := 𝒮)
           (Set.Icc 0 t) {0} {u} x w ∧
         ∀ E : Mat ℝ 2 2, x t ∉ (Rtp E).construct := by -- --- PROOF ---
   intro A u t ε C v K τ γ V box Htp RTrans Rtp

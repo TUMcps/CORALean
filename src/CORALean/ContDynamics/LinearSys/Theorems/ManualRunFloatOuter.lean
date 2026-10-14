@@ -43,7 +43,7 @@ theorem LinearSys.manualRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonoto
     ∀ {K : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} {Rs : List (Zonotope (Vec 𝕋 n))},
       sys.manualRunFloat X₀ V Δt η ρ K s = some Rs → sys.ManualInvariantFloat X₀ V s →
       Rs.length = K ∧ ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 T) X₀.construct U x u →
+        sys.Trajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
         U ⊆ V.construct → ∀ (j : ℕ) (hj : j < Rs.length),
           ∀ t ∈ Set.Icc ((s.t : ℝ) + j * toReal Δt) (s.t + (j + 1) * toReal Δt), t ≤ T →
             x t ∈ Rs[j].construct := by -- --- PROOF ---

@@ -39,7 +39,7 @@ initial set `X` under inputs in `sys.U`. -/
 def NonlinearSysDT.WithSteps.reachUnionExact (sys : NonlinearSysDT.WithSteps S Rg 𝕋 m n) (K : ℕ)
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ k ≤ K, {y | ∃ (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m),
-    sys.sys.TrajectoryOn (S := fun k => Set (Vec ℝ k)) X (construct sys.U) K x u ∧ x k = y}
+    sys.sys.TrajectoryOn (S := 𝒮) X (construct sys.U) K x u ∧ x k = y}
 
 end CORALean
 

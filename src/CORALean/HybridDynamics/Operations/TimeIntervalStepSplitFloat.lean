@@ -43,7 +43,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 
 /-- The enclosure of a stay of length up to `r` from `X₀`, at Taylor order `η`,
 the input `ℓ.U` split at its centre, [1, Alg. 3]. -/
-def Location.timeIntervalStepSplitFloat (ℓ : Location (fun k => Zonotope (Vec 𝕋 k)) G L 𝕋 n)
+def Location.timeIntervalStepSplitFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (r : 𝕋) (η : ℕ)
     (X₀ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let ũ := (Interval.point ℓ.U.c).zonotope                         -- {ũ}, ℓ.U's stored centre

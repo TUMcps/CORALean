@@ -68,8 +68,8 @@ def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
   let ηe := max ηmax 2                                                 -- [e^{At_k}]'s order
   let sq ← sys.squaringsFloat s.Δt s.tLo s.tHi ηe                      -- t_k / 2^sq within Δt_{k-1}
   let eAtk := sys.expSquaringFloat s.tLo s.tHi ηe sq                   -- [e^{A t_k}]
-  let Φtk := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{A t_k}] ·
-    (S := fun k => Zonotope (Vec 𝕋 k)) eAtk
+  let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_k}] ·
+    (S := 𝒵[𝕋]) eAtk
   let (Δtk, ηk) ← sys.autoTuneDeltaTFloat eAtk s.H V.c s.t (ToRat.toRat tend) εmax ζ   -- 5.-15.
     s.εa s.Δt ηmax fuel U₀                                             -- Δt_k, η_k
   let nrm := MatExp.normUpperBound (Interval.smul Δtk Δtk (Interval.point sys.A))  -- ≥ ‖Δt_k A‖
@@ -79,15 +79,15 @@ def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec �
     let tLo1 := addDown s.tLo Δtk                                      -- 7. a float below t_{k+1}
     let tHi1 := addUp s.tHi Δtk                                        -- 7. a float above t_{k+1}
     let sq1 ← sys.squaringsFloat Δtk tLo1 tHi1 ηk                      -- t_{k+1} / 2^sq1 in Δt_k
-    let Φtk1 := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- [e^{A t_{k+1}}] ·
-      (S := fun k => Zonotope (Vec 𝕋 k))
+    let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_{k+1}}] ·
+      (S := 𝒵[𝕋])
       (sys.expSquaringFloat tLo1 tHi1 ηk sq1)
-    let bPU0Δt := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  -- 16. bPU_0(Δt_k), eq. (27)
-      (S := fun k => Zonotope (Vec 𝕋 k))
+    let bPU0Δt := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 16. bPU_0(Δt_k), eq. (27)
+      (S := 𝒵[𝕋])
       (MatExp.intervalInputTerm (Interval.point sys.A) Δtk 0) U₀
     let bPUinfΔt := sys.inputTaylorSumTailFloat Δtk U₀ ηk ⊞           -- 16. bPU_∞(Δt_k), eq. (27)
-      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))  --     ⊕_i ÃᵢU₀ ⊕ E Δt_k U₀
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      Mtimes.mtimes (𝕄 := ℐ[𝕋])  --     ⊕_i ÃᵢU₀ ⊕ E Δt_k U₀
+        (S := 𝒵[𝕋])
         (MatExp.intervalInputRemainder (Interval.point sys.A) Δtk ηk) U₀
     let PUinfProp := Φtk bPUinfΔt                                      -- 17. e^{At_k}bPU_∞(Δt_k)
     let PUinfBox := PUinfProp.interval.zonotope                        -- 17. box(·)

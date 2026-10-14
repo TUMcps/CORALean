@@ -38,8 +38,8 @@ def aux_reachInputErrorFloat (eAΔt : Interval (Mat 𝕋 n n)) (box : Zonotope (
     ℕ → Zonotope (Vec 𝕋 n)
   | 0 => Zonotope.point fun _ => zero
   | k + 1 =>
-    Plus.plus (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt
+    Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eAΔt
       (aux_reachInputErrorFloat eAΔt box k)) box
 
 

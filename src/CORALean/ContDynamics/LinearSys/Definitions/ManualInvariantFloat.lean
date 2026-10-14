@@ -50,7 +50,7 @@ def LinearSys.ManualInvariantFloat (sys : LinearSys 𝕋 n) (X₀ V : Float.Zono
     (∀ x ∈ X₀.construct, exp ((s.t : ℝ) • Scalar.toRealMat sys.A) *ᵥ x
       + MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V ∈ s.H.construct) ∧
     MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V ∈ s.Pu.construct ∧
-    ∀ y ∈ sys.inputReach (S := fun k => Float.Zonotope (Vec 𝕋 k)) (Recentre.recentre V) s.t, y ∈
+    ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recentre.recentre V) s.t, y ∈
       s.PU.construct
 
 end CORALean

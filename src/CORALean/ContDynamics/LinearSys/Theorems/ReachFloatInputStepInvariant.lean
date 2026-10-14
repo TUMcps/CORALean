@@ -53,10 +53,10 @@ theorem LinearSys.reachFloatInputStep_invariant (sys : LinearSys 𝕋 n) {Δt : 
   set A := Scalar.toRealMat sys.A with hA
   -- `[e^{AΔt}] Z` holds `e^{AΔt} z`
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (Δt • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt Z
+      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eAΔt Z) :=
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eAΔt Z
       (Set.mem_biUnion heA (Set.mem_image_of_mem _ hz))
   -- `e^{A(a+Δt)} = e^{AΔt} e^{Aa}`, both powers of the same matrix
   have hexp : ∀ a : ℝ, exp ((a + Δt) • A) = exp (Δt • A) * exp (a • A) := fun a => by
@@ -66,16 +66,16 @@ theorem LinearSys.reachFloatInputStep_invariant (sys : LinearSys 𝕋 n) {Δt : 
   have hnext : ∀ {Z : Zonotope (Vec 𝕋 n)} {a : ℝ}, 0 ≤ a → ∀ {x₀ : Vec ℝ n},
       exp (a • A) *ᵥ x₀ + Real.MatExp.expIntegral A a *ᵥ ũ ∈ Z.construct →
       exp ((a + Δt) • A) *ᵥ x₀ + Real.MatExp.expIntegral A (a + Δt) *ᵥ ũ ∈ ContSet.construct
-        (Reduce.reduce (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt Z ⊞ Pu) ρ) := by
+        (Reduce.reduce (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋]) eAΔt Z ⊞ Pu) ρ) := by
     intro Z a ha x₀ hz
     rw [hexp, ← Matrix.mulVec_mulVec, Real.MatExp.expIntegral_add_mulVec A ũ ha hΔt, ← add_assoc,
       ← Matrix.mulVec_add]
     exact Reduce.reduce_outer _ ρ (Plus.plus_outer _ _ (Set.add_mem_add (hmt hz) hPu))
   -- the one-step set carried across `t_{k+1}` rather than `t_k`
   have h4' : (fun y => exp ((((k + 1 : ℕ) : ℝ) * Δt) • A) *ᵥ y)
-      '' sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ Δt ⊆ ContSet.construct
-        (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      '' sys.inputReach (S := 𝒵[𝕋]) Ũ Δt ⊆ ContSet.construct
+        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
           eAΔt s.2.2.2) := by
     rintro _ ⟨y, hy, rfl⟩
     have ht : (((k + 1 : ℕ) : ℝ) * Δt) = (k : ℝ) * Δt + Δt := by push_cast; ring

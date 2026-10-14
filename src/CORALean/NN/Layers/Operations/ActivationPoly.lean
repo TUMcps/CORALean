@@ -42,6 +42,7 @@ centred at zero, so the layer rounds nowhere of its own.
 namespace CORALean
 
 open Float Float.FloatOps
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
@@ -50,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- `dependent` first, then each neuron's fit on the set, then the residual box. -/
 def Layer.activationPoly (P : LayerRelaxation 𝕋 n m) :
-    Layer (fun k => Float.PolyZonotope (Vec 𝕋 k)) n n where
+    Layer 𝒫𝒵[𝕋] n n where
   enclose s := Plus.plus (s.dependent.evalPoly (P.coeffList s.interval))
     (Interval.polyZonotope (P.box s.interval))
 

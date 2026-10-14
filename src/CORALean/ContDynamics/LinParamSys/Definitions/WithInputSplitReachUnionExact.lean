@@ -38,7 +38,7 @@ set `X`, under inputs in `sys.U` wherever it sits, is at, at some time. -/
 def LinParamSys.WithInputSplit.reachUnionExact (sys : LinParamSys.WithInputSplit S n)
     (tFinal : ℝ) (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   {y | ∃ A : Mat ℝ n n, ∃ x u : ℝ → Vec ℝ n,
-    sys.sys.ConstTrajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 tFinal) X
+    sys.sys.ConstTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X
       (construct sys.U) x u A ∧ ∃ t ∈ Set.Icc (0 : ℝ) tFinal, x t = y}
 
 end CORALean

@@ -541,7 +541,7 @@ theorem Krylov.aux_rot_errorBound_le {β : ℝ} (hβ : β ∈ Set.Icc (-1 : ℝ)
 /-- The input `-sin s sin 40s · w` reaches `y` with `y₄ = π/40`. -/
 theorem Krylov.aux_rot_mem_inputReach :
     ∃ y ∈ (LinearSys.mk !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0] :
-        LinearSys ℝ 4).inputReach (S := fun k => Set (Vec ℝ k))
+        LinearSys ℝ 4).inputReach (S := 𝒮)
         {u | ∃ β ∈ Set.Icc (-1 : ℝ) 1, u = β • ![1 / 10, 0, 0, 0]} Real.pi,
       y 3 = Real.pi / 40 := by -- --- PROOF ---
   set A : Mat ℝ 4 4 := !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0] with hA
@@ -570,7 +570,7 @@ theorem Krylov.aux_rot_mem_inputReach :
     nlinarith [norm_nonneg w, norm_nonneg β]
   refine ⟨_, ⟨fun s => c s • w, hU, hmeas, rfl⟩, ?_⟩
   have hint := intervalIntegrable_expSub_mulVec (A := A) (c := Real.pi) Real.pi_pos.le
-    (S := fun k => Set (Vec ℝ k)) (U := U) hbdd hU hmeas
+    (S := 𝒮) (U := U) hbdd hU hmeas
   -- the fourth coordinate, read through the coordinate projection
   have hproj := ContinuousLinearMap.intervalIntegral_comp_comm
     (ContinuousLinearMap.proj (R := ℝ) (φ := fun _ : Fin 4 => ℝ) 3) hint
@@ -610,7 +610,7 @@ theorem Krylov.varying_input_reach_counterexample :
             *ᵥ Pi.single 0 1) 2|) →
         (Krylov.arnoldi (Krylov.augment A u) v 3).2 3 2 * ω
           * (if 0 < ν then (Real.exp (ν * δ) - 1) / (ν * δ) else 1) ≤ ε)
-      ∧ ∃ y ∈ (LinearSys.mk A : LinearSys ℝ 4).inputReach (S := fun k => Set (Vec ℝ k)) U δ,
+      ∧ ∃ y ∈ (LinearSys.mk A : LinearSys ℝ 4).inputReach (S := 𝒮) U δ,
           ε * δ < |y 3| := by -- --- PROOF ---
   intro A w U v δ ε
   refine ⟨?_, fun u hu => ?_, ?_⟩

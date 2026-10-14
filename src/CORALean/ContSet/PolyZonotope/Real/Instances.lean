@@ -48,6 +48,11 @@ open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 
+/-- The polynomial-zonotope family over vectors. The elaborator cannot read the
+family off one member, so a use site names it: `(S := 𝒫𝒵)` — two letters, `𝒫`
+alone being Mathlib's powerset. -/
+scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -73,16 +78,11 @@ noncomputable instance : Reduce (PolyZonotope (Vec ℝ n)) (Vec ℝ n) where
   reduce := PolyZonotope.reduce
   reduce_outer := PolyZonotope.reduce_outer
 
-instance : Mtimes (Mat ℝ) (fun n => PolyZonotope (Vec ℝ n)) where
+instance : Mtimes (Mat ℝ) (𝒫𝒵) where
   mtimes := PolyZonotope.mtimes
   mtimes_outer M pZ := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (PolyZonotope.mtimes_exact M pZ).subset
-
-/-- The polynomial-zonotope family over vectors. The elaborator cannot read the
-family off one member, so a use site names it: `(S := 𝒫𝒵)` — two letters, `𝒫`
-alone being Mathlib's powerset. -/
-scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
 
 /-- The same operation at an interval matrix: the radius is boxed into one fresh
 *independent* generator per coordinate, unlike `Zonotope`, which has no other

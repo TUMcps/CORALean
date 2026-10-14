@@ -37,7 +37,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 in `sys.U`, is at, at some time of that horizon. -/
 def LinearSys.WithInputSplit.reachExact (sys : LinearSys.WithInputSplit 𝕋 S n) (tFinal : ℝ)
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  sys.sys.timeIntervalReachSet (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 tFinal) X
+  sys.sys.timeIntervalReachSet (S := 𝒮) (Set.Icc 0 tFinal) X
     (construct sys.U) tFinal
 
 end CORALean

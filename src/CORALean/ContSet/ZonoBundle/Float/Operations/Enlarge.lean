@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 def ZonoBundle.enlarge (zB : ZonoBundle (Vec 𝕋 n)) (factor : Vec 𝕋 n) : ZonoBundle (Vec 𝕋 n) where
   k := zB.k
-  Z := fun i => ContSet.enlargeScalar (S := fun k => Zonotope (Vec 𝕋 k)) (zB.Z i) factor
+  Z := fun i => ContSet.enlargeScalar (S := 𝒵[𝕋]) (zB.Z i) factor
 
 end CORALean.Float
 

@@ -48,15 +48,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 
 /-- The set the observer holds after the measurement `y`, from `Xhat` before it. -/
 def NonlinearSysDT.observeStepFloat (sys : NonlinearSysDT n m) {U : Zonotope (Vec 𝕋 m)}
-    (step : sys.LinStep (S := fun k => Zonotope (Vec 𝕋 k)) 𝕋 U) (o : NonlinearSysDT.ReachOptions)
+    (step : sys.LinStep (S := 𝒵[𝕋]) 𝕋 U) (o : NonlinearSysDT.ReachOptions)
     (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W : Zonotope (Vec 𝕋 n))
     (options : LinearSysDT.ObserveStripOptions 𝕋 (Zonotope (Vec 𝕋 n)) n p) (y : Vec 𝕋 p)
     (Xhat : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
-  let Rpost := sys.reach (S := fun k => Zonotope (Vec 𝕋 k)) ⟨Xhat, U, 0, 1⟩ o  -- post(sys,Rnext,..)
+  let Rpost := sys.reach (S := 𝒵[𝕋]) ⟨Xhat, U, 0, 1⟩ o  -- post(sys,Rnext,..)
     (fun _ => step)
   let Xbar := Rpost.plus W                                      -- Rnext.tp + params.W
   if options.sequential then
-    ContSet.intersectStripSeq (S := fun k => Zonotope (Vec 𝕋 k)) C σ y options.gain Xbar
+    ContSet.intersectStripSeq (S := 𝒵[𝕋]) C σ y options.gain Xbar
   else Zonotope.intersectStrip C σ y (options.gain Xbar) Xbar     -- priv_observe_intersectionMethod
 
 end CORALean

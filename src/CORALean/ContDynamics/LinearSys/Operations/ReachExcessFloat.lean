@@ -45,10 +45,10 @@ def LinearSys.reachExcessFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η o : ℕ
   | j + 1 =>
     let eAΔt := sys.expIntervalFloat Δt Δt η                        -- [e^{AΔt}]
     let P := sys.inputSolutionFloat Δt η U                          -- the input set, in floats
-    let Rj := (sys.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))   -- R_j
+    let Rj := (sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])   -- R_j
       ⟨R₀, P, 0, j⟩ ⟨o, ho⟩
     let W := sys.timePointStepInputFloat Δt η Rj U                  -- [e^{AΔt}] R_j ⊞ P
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eAΔt
         (sys.reachExcessFloat Δt η o ho R₀ U j) ⊞                   -- carried excess
       sys.timePointStepExcessFloat Δt η Rj U) ⊞                     -- the step's own
       Zonotope.reduceGirardBox W o                                  -- the reduction's

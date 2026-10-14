@@ -60,7 +60,7 @@ def paramΔt : D := dy 1 (-3)
 
 /-- The step's homogeneous set and input solution at a matrix box. -/
 def paramStep (B : Interval (Mat D 2 2)) : Zonotope (Vec D 2) × Zonotope (Vec D 2) :=
-  let sys : LinParamSys (fun m n => Interval (Mat D m n)) 2 := ⟨B⟩
+  let sys : LinParamSys ℐ[D] 2 := ⟨B⟩
   (sys.timeIntervalStepFloat paramΔt 4 paramR₀, sys.inputSolutionFloat paramΔt 4 paramU)
 
 /-- One row: the set as a box, and its widths. -/

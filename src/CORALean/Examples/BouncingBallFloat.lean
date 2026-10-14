@@ -63,7 +63,7 @@ def bounce : Transition (fun k => HPolytope D (Vec D k)) Unit D 2 where
   target := ()
 
 /-- `ṗ = v`, `v̇ = -g`, the gravity a constant input `{(0, -g)}`. -/
-def ball : HybridAutomaton (fun k => Zonotope (Vec D k)) (fun k => HPolytope D (Vec D k))
+def ball : HybridAutomaton 𝒵[D] (fun k => HPolytope D (Vec D k))
     Unit D 2 where
   loc _ :=
     { inv := aboveFloor

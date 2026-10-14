@@ -38,7 +38,7 @@ def LinearSys.inputTaylorSumBoxFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (U : Zo
   | 0 => sys.inputTermBoxFloat r U 0
   | i + 1 =>
     let S := sys.inputTaylorSumFloat r U i                          -- the float sum so far
-    let T := Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    let T := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (MatExp.intervalInputTerm (Interval.point sys.A) r (i + 1)) U   -- [T_{i+1}] U
     (sys.inputTaylorSumBoxFloat r U i ⊞ sys.inputTermBoxFloat r U (i + 1)) ⊞
       (Zonotope.plusBox S T).zonotope                               -- S ⊞ T beyond S + T

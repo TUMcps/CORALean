@@ -41,6 +41,11 @@ namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
+/-- The polynomial-zonotope family over vectors.
+The scalar is an argument: a notation cannot capture the section
+variable `𝕋`, so `(S := 𝒫𝒵[𝕋])`. -/
+scoped notation "𝒫𝒵[" t "]" => fun n => PolyZonotope (Vec t n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -63,7 +68,7 @@ instance {n : ℕ} : Reduce (PolyZonotope (Vec 𝕋 n)) (Vec ℝ n) where
     rw [PolyZonotope.materialise_eq]
     exact PolyZonotope.reduce_outer pZ o
 
-instance : Mtimes (Mat 𝕋) (fun k => PolyZonotope (Vec 𝕋 k)) where
+instance : Mtimes (Mat 𝕋) 𝒫𝒵[𝕋] where
   mtimes M pZ := (PolyZonotope.mtimes M pZ).materialise
   mtimes_outer M pZ := by
     simp only [ContSet.construct_mat, Set.biUnion_singleton, PolyZonotope.materialise_eq]
@@ -71,7 +76,7 @@ instance : Mtimes (Mat 𝕋) (fun k => PolyZonotope (Vec 𝕋 k)) where
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/
-instance : Reindex (fun k => PolyZonotope (Vec 𝕋 k)) where
+instance : Reindex 𝒫𝒵[𝕋] where
   reindex e pZ := (PolyZonotope.reindex e pZ).materialise
   reindex_exact e pZ := by
     rw [PolyZonotope.materialise_eq]

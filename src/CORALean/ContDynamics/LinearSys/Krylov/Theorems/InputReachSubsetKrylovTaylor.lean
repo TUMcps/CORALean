@@ -54,7 +54,7 @@ variable {n : ℕ}
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] def Krylov.aux_setMtimes : Mtimes (Mat ℝ) (fun k => Set (Vec ℝ k)) where
+@[reducible] def Krylov.aux_setMtimes : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -62,7 +62,7 @@ variable {n : ℕ}
 
 /-- An interval matrix's images of a plain set, closed and convexified. -/
 @[reducible] noncomputable def Krylov.aux_setMtimesInterval :
-    Mtimes (fun m k => Interval (Mat ℝ m k)) (fun k => Set (Vec ℝ k)) where
+    Mtimes (ℐ) 𝒮 where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
@@ -117,7 +117,7 @@ with the thesis' remainder `E(δ)·δ·U` closed and convexified in place of [1]
 theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec ℝ n)}
     (hconv : Convex ℝ U) (hclosed : IsClosed U) (hbdd : Bornology.IsBounded U) {δ : ℝ}
     (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) :
-    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := fun k => Set (Vec ℝ k)) U δ
+    (LinearSys.mk A : LinearSys ℝ n).inputReach (S := 𝒮) U δ
       ⊆ (∑ j ∈ Finset.range (η + 1),
           (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>
             (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
@@ -128,14 +128,14 @@ theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec �
   have hR := Krylov.aux_isBounded_iUnion_image (MatExp.inputRemainder A δ η) hbdd
   -- the thesis' enclosure, at plain sets
   have hexact := (LinearSys.mk A : LinearSys ℝ n).inputReach_subset_inputSolution
-    (S := fun k => Set (Vec ℝ k)) hδ η hε (U := U) hconv hclosed hbdd
+    (S := 𝒮) hδ η hε (U := U) hconv hclosed hbdd
     (convex_convexHull ℝ _).closure isClosed_closure (isBounded_convexHull.2 hR).closure
   refine hexact.trans ?_
   unfold LinearSys.inputSolution
   refine Set.add_subset_add ?_ le_rfl
   -- its Taylor sum, one order at a time, is the sum of the Krylov terms
   suffices h : ∀ i ≤ η, construct ((LinearSys.mk A : LinearSys ℝ n).inputTaylorSum
-      (S := fun k => Set (Vec ℝ k)) δ U i)
+      (S := 𝒮) δ U i)
       ⊆ ∑ j ∈ Finset.range (i + 1),
           (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>
             (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ

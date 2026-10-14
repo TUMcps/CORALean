@@ -43,6 +43,9 @@ open Matrix
 
 variable {n : ℕ}
 
+/-- The vertex-polytope family over vectors: pins `(S := 𝒱𝒫)`. -/
+scoped notation "𝒱𝒫" => fun n => VPolytope (Vec ℝ n)
+
 
 -- ========================================  INSTANCES  ========================================= --
 
@@ -86,7 +89,7 @@ instance : Reduce (VPolytope (Vec ℝ n)) (Vec ℝ n) where
   reduce P _ := P
   reduce_outer _ _ := subset_rfl
 
-instance : Mtimes (Mat ℝ) (fun n => VPolytope (Vec ℝ n)) where
+instance : Mtimes (Mat ℝ) (𝒱𝒫) where
   mtimes := VPolytope.mtimes
   mtimes_outer M P := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -97,11 +100,11 @@ and the elaborator cannot read that family off one member, so a use site has to
 name it: `(𝕄 := 𝕄𝒫)`. -/
 scoped notation "𝕄𝒫" => fun m n => VPolytope (Mat ℝ m n)
 
-noncomputable instance : Mtimes 𝕄𝒫 (fun n => VPolytope (Vec ℝ n)) where
+noncomputable instance : Mtimes 𝕄𝒫 (𝒱𝒫) where
   mtimes := VPolytope.mtimesMatPolytope
   mtimes_outer M P := VPolytope.mtimesMatPolytope_outer M P
 
-instance : Reindex (fun n => VPolytope (Vec ℝ n)) where
+instance : Reindex (𝒱𝒫) where
   reindex e P := VPolytope.map (reindexLin e) P
   reindex_exact e P := (VPolytope.map_exact (reindexLin e) P).symm
 

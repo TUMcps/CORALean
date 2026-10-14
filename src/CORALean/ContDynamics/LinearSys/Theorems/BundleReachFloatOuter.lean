@@ -71,26 +71,26 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
   set EI := sys.expIntervalFloat r r η
   have hE : E ∈ EI.construct := sys.exp_mem_expIntervalFloat hη le_rfl le_rfl
   have hmulZ : ∀ (Z : Zonotope (Vec 𝕋 n)) (v : Vec ℝ n), v ∈ Z.construct →
-      E *ᵥ v ∈ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) EI Z).construct :=
-    fun Z v hv => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) EI Z
+      E *ᵥ v ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) EI Z).construct :=
+    fun Z v hv => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) EI Z
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hv))
   have hmulB : ∀ (B : ZonoBundle (Vec 𝕋 n)) (v : Vec ℝ n), v ∈ B.construct →
-      E *ᵥ v ∈ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => ZonoBundle (Vec 𝕋 k)) EI B).construct :=
-    fun B v hv => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => ZonoBundle (Vec 𝕋 k)) EI B
+      E *ᵥ v ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵ℬ[𝕋]) EI B).construct :=
+    fun B v hv => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵ℬ[𝕋]) EI B
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hv))
   -- the loop's state, its step and its output, and the closed form of the list it builds
   set step : ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)
       → ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) :=
-    fun s => (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => ZonoBundle (Vec 𝕋 k)) EI s.1,
-      Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) EI s.2.1,
+    fun s => (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      (S := 𝒵ℬ[𝕋]) EI s.1,
+      Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) EI s.2.1,
       Plus.plus s.2.2
-        (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) EI
+        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) EI
           s.2.1).interval.zonotope)
   set out : ZonoBundle (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) → ZonoBundle (Vec 𝕋 n) :=
     fun s => Plus.plus s.1 s.2.2.zonoBundle
@@ -140,8 +140,8 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
         have hr'' : r' ∈ Set.Icc (0:ℝ) r' := ⟨hr, le_rfl⟩
         have hP := (ih r' hr'').2.2
         rw [show ((k : ℝ) * r' + r') = ((k + 1 : ℕ) : ℝ) * r' by push_cast; ring] at hP
-        have hb : _ ∈ (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k)) EI
+        have hb : _ ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋]) EI
             (step^[k] s₀).2.1).interval.zonotope.construct :=
           (Zonotope.interval_contains _).trans (Interval.zonotope_contains _) (h2 hw)
         exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ ⟨v, hP hv, _, hb, add_comm _ _⟩

@@ -62,7 +62,7 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     (hinv : sys.ManualInvariantFloat X₀ V s) :
     sys.ManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 T) X₀.construct U x u →
+        sys.Trajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
         U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
           x t ∈ R.construct := by -- --- PROOF ---
   obtain ⟨h0, hlo, hhi, hH, hPu, hPU⟩ := hinv
@@ -83,21 +83,21 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     push_cast; rw [hΔq]; ring
   -- `[e^{At_k}] Z` and `[e^{At_{k+1}}] Z` hold `e^{At_k} z` and `e^{At_{k+1}} z`
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (tk • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (sys.expSquaringFloat s.tLo s.tHi η sq) Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ Z
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec hη.1 hsq) hlo hhi) (Set.mem_image_of_mem _ hz))
   -- the same at `t_{k+1}`, inside the bracket `[tLo ⊖ Δt, tHi ⊕ Δt]`
   have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct
       → exp ((toReal Δt + tk) • A) *ᵥ z
-        ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-          (S := fun k => Zonotope (Vec 𝕋 k))
+        ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (S := 𝒵[𝕋])
           (sys.expSquaringFloat (addDown s.tLo Δt) (addUp s.tHi Δt) η sq1) Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ Z
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec hη.1 hsq1)
         ((addDown_le_add _ _).trans (by linarith)) (le_trans (by linarith) (add_le_addUp _ _)))
@@ -119,16 +119,16 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     exact ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
   have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
-      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) W τ :=
+      Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := 𝒵[𝕋]) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
   -- one step's shares, the constant's and the `Ũ`-input's, in their float input solutions
   have hPuΔ := sys.inputReach_subset_inputSolutionFloat hΔt hη _ (hconst hpt hΔt.le)
   have hPUΔ := sys.inputReach_subset_inputSolutionFloat hΔt hη Ũ
   -- the `Ũ`-input's share by `t_k + Δt` comes apart at `t_k`, and so does the constant's
-  have hPU' : ∀ y ∈ sys.inputReach (S := fun k => Zonotope (Vec 𝕋 k)) Ũ (toReal Δt + tk),
-      y ∈ (Reduce.reduce (s.PU ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+  have hPU' : ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ (toReal Δt + tk),
+      y ∈ (Reduce.reduce (s.PU ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (sys.expSquaringFloat s.tLo s.tHi η sq) (sys.inputSolutionFloat Δt η Ũ)) ρ).construct := by
     intro y hy
     obtain ⟨_, ⟨p, hp, rfl⟩, q, hq, rfl⟩ := sys.inputReach_separation_subset hΔt.le
@@ -139,8 +139,8 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     rwa [add_comm q] at hmem
   -- the constant's share by `t_{k+1}`, in the box `P^u(t_{k+1})`
   have hPu' : Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ
-      ∈ (s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k))
+      ∈ (s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋])
         (sys.expSquaringFloat s.tLo s.tHi η sq)
         (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval.construct := by
     rw [Real.MatExp.expIntegral_add_mulVec A ũ hΔt.le htk0, add_comm]
@@ -167,15 +167,15 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     have hτ0 : 0 ≤ τ := sub_nonneg.mpr ht.1
     have hτΔ : τ ≤ toReal Δt := by linarith [ht.2]
     -- the run's departure from the free motion and the constant's share, by `t_{k+1}`
-    have hd := traj.sub_mem_inputReach_recentre (S' := fun k => Zonotope (Vec 𝕋 k)) (V := V)
+    have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) (V := V)
       hUV ⟨ht0, htT⟩
-    have hd' := sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k))
+    have hd' := sys.inputReach_mono (S := 𝒵[𝕋])
       (CompactSet.isBounded_construct Ũ)
       (Recentre.zero_mem_recentre V) ht0 ht.2 hd
     -- the free motion and the constant over `[0, τ]` from `H(t_k)`
     have hcore := sys.timeIntervalStepFloat_outer hΔt hη s.H (hH (x 0) traj.init) hτ0 hτΔ
     have hc := sys.inputReach_subset_inputSolutionFloat hΔt hη seg
-      (sys.inputReach_mono (S := fun k => Zonotope (Vec 𝕋 k))
+      (sys.inputReach_mono (S := 𝒵[𝕋])
         (CompactSet.isBounded_construct seg) h0seg hτ0 hτΔ
         (hconst hũseg hτ0))
     have hexp : exp (t • A) = exp (τ • A) * exp (tk • A) := by

@@ -37,6 +37,7 @@ part of `U`, and the component along `c` is taken of everything.
 namespace CORALean
 
 open Matrix Scalar
+open scoped CORALean.Real
 
 variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
@@ -45,7 +46,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 
 /-- The supremum of the flow component `c·(A x + u)` over the projection of `R` onto
 `{x | c·x = d}` and the inputs `U`. -/
-noncomputable def Location.flowUp (ℓ : Location (fun n => Real.Zonotope (Vec ℝ n)) G L ℝ n)
+noncomputable def Location.flowUp (ℓ : Location 𝒵 G L ℝ n)
     (c : Vec ℝ n) (d : ℝ) (R : Real.Zonotope (Vec ℝ n)) : ℝ :=
   let A : Mat ℝ n n := toRealMat ℓ.dynamics.A
   let P : Mat ℝ n n := 1 - vecMulVec c c                       -- the projector `I - c cᵀ`
@@ -54,7 +55,7 @@ noncomputable def Location.flowUp (ℓ : Location (fun n => Real.Zonotope (Vec �
     + c ⬝ᵥ (A *ᵥ (d • c)) + (ℓ.U.supportBound (Real.HPolytope.rowLin (fun _ : Fin 1 => c) 0)).val
 
 /-- The reach sets whose projection onto the hyperplane has outward flow somewhere. -/
-noncomputable def Location.checkFlow (ℓ : Location (fun n => Real.Zonotope (Vec ℝ n)) G L ℝ n)
+noncomputable def Location.checkFlow (ℓ : Location 𝒵 G L ℝ n)
     (c : Vec ℝ n) (d : ℝ) (Rs : List (Real.Zonotope (Vec ℝ n))) :
     List (Real.Zonotope (Vec ℝ n)) :=
   open Classical in Rs.filter fun R => decide (0 < ℓ.flowUp c d R)

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Every zero-order-hold run of `H` control periods is inside `reachFloat` at every
 period boundary, the order admissible for the step. -/
-theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
+theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys 𝕋 𝒵[𝕋] n)
     (o η N : ℕ) (ho : 0 < o) {Δt : 𝕋} (hΔt : 0 < toReal Δt)
     (hη : sys.plant.OrderAdmissibleFloat Δt Δt η) {H : ℕ} {R₀ : Zonotope (Vec 𝕋 n)}
     {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) {x : ℝ → Vec ℝ n}
@@ -60,7 +60,7 @@ theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys 𝕋 (fun k => Z
       (K := N) hΔt subset_rfl hη ho N le_rfl
     -- the conclusion unfolded, so `key` matches it at the period's own clock
     show x (((i + 1 : ℕ) : ℝ) * ((N : ℝ) * toReal Δt)) ∈ construct
-      ((sys.plant.discretizeEnclosureFloat Δt η).reach (S := fun k => Zonotope (Vec 𝕋 k))
+      ((sys.plant.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨sys.reachFloat ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩,
           sys.plant.inputSolutionFloat Δt η
             (sys.contr.enclose (sys.reachFloat ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩)), 0, N⟩ ⟨o, ho⟩)

@@ -87,7 +87,7 @@ theorem sum_outer : ContSet.construct I + ContSet.construct J ⊆ ContSet.constr
 theorem image_outer :
     (⋃ A ∈ ContSet.construct (identityMat D 2), (A *ᵥ ·) '' ContSet.construct I) ⊆
       ContSet.construct image :=
-  SetIntersection.mtimes_outer (S := fun n => Zonotope (Vec D n)) (𝕄 := Mat D) (identityMat D 2) I
+  SetIntersection.mtimes_outer (S := 𝒵[D]) (𝕄 := Mat D) (identityMat D 2) I
 
 /-- The reduced branches still contain the intersection. -/
 theorem small_outer : ContSet.construct I ⊆ ContSet.construct small :=

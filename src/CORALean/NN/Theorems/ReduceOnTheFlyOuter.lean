@@ -39,6 +39,7 @@ at every `le`, `tol`, `fuel` and `ρ`: which buckets come out never matters to s
 namespace CORALean
 
 open Matrix ContSet Float Float.IntervalOuter Float.SoundFloatArithmetic
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
@@ -103,15 +104,15 @@ theorem aux_reduceOnTheFlyFrom_outer :
             simp only [Option.some.injEq, Prod.mk.injEq] at hrun
             obtain ⟨rfl, rfl⟩ := hrun
             set part := Partition.ofPred fun i => B_kδ i = true
-            set I_k := (Layer.activation (S := fun n => Interval (Vec 𝕋 n)) R).enclose
-              ((L.toLayer (S := fun n => Interval (Vec 𝕋 n))).enclose (interval H))
+            set I_k := (Layer.activation (S := ℐ𝒱[𝕋]) R).enclose
+              ((L.toLayer (S := ℐ𝒱[𝕋])).enclose (interval H))
             -- a point of `H_{k-2}`, and its value `v` after the exact layers `k-1` and `k`
             intro x hx
             set v : Vec ℝ _ := fun i => σ ((toRealMat L.W *ᵥ x + c) i) with hv
             -- line 5's box holds the merged neurons' values, computed at the float boxes
             have hvk : v ∈ construct I_k :=
-              (Layer.activation_sound (S := fun n => Interval (Vec 𝕋 n)) hR).enclose_outer _ _
-                (Layer.linearWithError_mem (S := fun n => Interval (Vec 𝕋 n)) L.W
+              (Layer.activation_sound (S := ℐ𝒱[𝕋]) hR).enclose_outer _ _
+                (Layer.linearWithError_mem (S := ℐ𝒱[𝕋]) L.W
                   (Interval.construct_subset_nonemptyHull _ hc) _ (interval_outer H hx))
             have hw : v ∘ part.right
                 ∈ (⟨I_k.inf ∘ part.right, I_k.sup ∘ part.right⟩ : Interval (Vec 𝕋 _)).construct :=

@@ -63,6 +63,12 @@ abbrev Tensor (α : Type u) : List ℕ → Type u
 abbrev Vec (α : Type u) (n : ℕ) := Tensor α [n]
 abbrev Mat (α : Type u) (n m : ℕ) := Matrix (Fin n) (Fin m) α
 
+set_option quotPrecheck false in
+set_option hygiene false in
+/-- The family of sets of real vectors, `(S := 𝒮)`. Unhygienic and unchecked, as the
+real numbers are not imported here: `Real` resolves where it is used. -/
+notation "𝒮" => fun n => Set (Vec Real n)
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 

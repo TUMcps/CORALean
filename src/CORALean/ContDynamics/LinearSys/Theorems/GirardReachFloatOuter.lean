@@ -116,7 +116,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
     {μ r : 𝕋} {T : ℚ} {Qs : List (Zonotope (Vec 𝕋 n))} (h : sys.girardReachFloat I μ r T = some Qs)
     (hA : 0 < ‖Scalar.toRealMat sys.A‖) (hr : 0 < toReal r) (hμ : 0 ≤ toReal μ)
     (hU : ∀ u ∈ U.construct, ‖u‖ ≤ toReal μ) :
-    ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSet (S := fun k => Zonotope (Vec 𝕋 k)) (Set.Icc 0 t) I U t
+    ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSet (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t
       ⊆ ⋃ Q ∈ Qs, Q.construct := by -- --- PROOF ---
   simp only [LinearSys.girardReachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h
@@ -193,21 +193,21 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
   -- `[e^{rA}] Z` holds `e^{rA} z`
   have hexp : exp (rr • A) ∈ eRA.construct := sys.exp_mem_expIntervalFloat hadm le_rfl le_rfl
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (rr • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) eRA Z) :=
-    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eRA Z
+      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) eRA Z) :=
+    fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eRA Z
       (Set.mem_biUnion hexp (Set.mem_image_of_mem _ hz))
   have hUb : Bornology.IsBounded (ContSet.construct U) := CompactSet.isBounded_construct U
   set f : Zonotope (Vec 𝕋 n) → Zonotope (Vec 𝕋 n) := fun Q =>
-    Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eRA Q ⊞
+    Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eRA Q ⊞
       cube βr with hf
   set Q₀ := LinComb.linComb I
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k)) eRA I)
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eRA I)
     ⊞ cube (addUp αr βr) with hQ₀
   -- every window lands in its own iterate
   have hwin : ∀ i : ℕ, ∀ t ∈ Set.Icc ((i : ℝ) * rr) (((i : ℝ) + 1) * rr),
-      sys.reachSet (S := fun k => Zonotope (Vec 𝕋 k)) (Set.Icc 0 t) I U t ⊆
+      sys.reachSet (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t ⊆
         (f^[i] Q₀).construct := by
     intro i
     induction i with
@@ -215,13 +215,13 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
       intro t ht y hy
       simp only [Nat.cast_zero, zero_mul, zero_add, one_mul] at ht
       obtain ⟨ht0, htr⟩ := ht
-      rw [sys.reachSet_eq (S := fun k => Zonotope (Vec 𝕋 k)) I U ht0 hUb] at hy
+      rw [sys.reachSet_eq (S := 𝒵[𝕋]) I U ht0 hUb] at hy
       obtain ⟨_, ⟨z, hz, rfl⟩, v, hv, rfl⟩ := hy
       -- the point of the segment from `z` to `e^{rA} z`, at the fraction `t / r`
       have hlam : t / rr ∈ Set.Icc (0:ℝ) 1 := ⟨div_nonneg ht0 hr.le, (div_le_one hr).mpr htr⟩
       set p : Vec ℝ n := (1 - t / rr) • z + (t / rr) • (exp (rr • A) *ᵥ z) with hp
       have hpP : p ∈ (LinComb.linComb I
-          (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+          (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
             eRA I)).construct :=
         LinComb.linComb_outer _ _ ⟨z, hz, exp (rr • A) *ᵥ z, hmt hz, 1 - t / rr,
           ⟨by linarith [hlam.2], by linarith [hlam.1]⟩, by rw [hp, sub_sub_cancel]⟩
@@ -249,7 +249,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
       have ht' : t - rr ∈ Set.Icc ((i : ℝ) * rr) (((i : ℝ) + 1) * rr) := by
         push_cast at ht; constructor <;> linarith [ht.1, ht.2]
       have hti : 0 ≤ t - rr := (mul_nonneg (Nat.cast_nonneg i) hr.le).trans ht'.1
-      rw [show t = (t - rr) + rr by ring, sys.reachSet_add_eq (S := fun k => Zonotope (Vec 𝕋 k)) I U
+      rw [show t = (t - rr) + rr by ring, sys.reachSet_add_eq (S := 𝒵[𝕋]) I U
         hti hr.le hUb] at hy
       obtain ⟨_, ⟨q, hq, rfl⟩, v, hv, rfl⟩ := hy
       rw [Function.iterate_succ_apply']

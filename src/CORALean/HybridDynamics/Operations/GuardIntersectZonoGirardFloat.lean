@@ -59,7 +59,7 @@ def Location.guardIntersectZonoGirardFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zo
         fun k => Location.zonoGirardUpperFloat R nv γ (Bᵀ k)⟩
     -- `I`, the cuts joined
     let I := (Rs.map cut).foldl Interval.or (cut R₀)
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B I.zonotope
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B I.zonotope
 
 end CORALean
 

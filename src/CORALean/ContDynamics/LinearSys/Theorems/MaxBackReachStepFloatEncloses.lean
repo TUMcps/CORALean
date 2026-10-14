@@ -57,6 +57,7 @@ namespace CORALean
 
 open CORALean.Float FloatOps SoundFloatArithmetic ContSet InflatedContSet Matrix NormedSpace
 open scoped Pointwise
+open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -124,15 +125,15 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
   -- the disturbance sets: the exact `Ẑ_{W₀}` is inside the float one
   have h5 : construct (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW₀ ⊆ ZW₀.construct := by
     show (CORALean.Real.Zonotope.plus sr.ZW₀ (CORALean.Real.Zonotope.mtimes Φk'
-      (sys.inputSolution (S := fun k => CORALean.Real.Zonotope (Vec ℝ k)) Δ η' W₀r))).construct
+      (sys.inputSolution (S := 𝒵) Δ η' W₀r))).construct
       ⊆ ZW₀.construct
     rw [← CORALean.Real.Zonotope.plus_exact]
     rintro _ ⟨a, ha, b, hb, rfl⟩
     rw [← CORALean.Real.Zonotope.mtimes_exact] at hb
     obtain ⟨b', hb', rfl⟩ := hb
     exact Plus.plus_outer s.ZW₀ _ (Set.add_mem_add (hs.ZW₀ ha)
-      (Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-        (S := fun k => Zonotope (Vec 𝕋 k)) Φk _
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+        (S := 𝒵[𝕋]) Φk _
         (Set.mem_biUnion hΦk (Set.mem_image_of_mem _ (hW hb')))))
   -- and so is the new `Ẑ_W`: the new `Ẑ_{W₀}` plus the disturbance part
   have h6 : construct (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW ⊆ ZW.construct := by

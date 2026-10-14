@@ -38,16 +38,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `P̃(t_k)` at index `k`, at every member of `sys.A`: `P̃(t_0) = {0}`, and
 `P̃(t_{k+1}) = [e^{[A]Δt}] P̃(t_k) ⊕ P̃^R(τ_0)`, reduced to order `ρ`. -/
-def LinParamSys.constPropagateFloat (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n)
+def LinParamSys.constPropagateFloat (sys : LinParamSys ℐ[𝕋] n)
     (Δt : 𝕋) (η ρ : ℕ) (uc : Vec 𝕋 n) : ℕ → Zonotope (Vec 𝕋 n)
-  | 0 => OfScalarPoint.ofVec (S := fun k => Zonotope (Vec 𝕋 k))  -- P̃(t_0) = {0}
+  | 0 => OfScalarPoint.ofVec (S := 𝒵[𝕋])  -- P̃(t_0) = {0}
     (fun _ => (zero : 𝕋))
   | k + 1 =>
     let Pctk := sys.constPropagateFloat Δt η ρ uc k                  -- P̃(t_k)
     let eAΔt := sys.expIntervalFloat Δt Δt η                         -- [e^{[A]Δt}]
     let PcRΔt := sys.constInputSolutionFloat Δt η uc                 -- P̃^R(τ_0), ũ over one window
-    Reduce.reduce (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) eAΔt Pctk ⊞ PcRΔt) ρ
+    Reduce.reduce (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) eAΔt Pctk ⊞ PcRΔt) ρ
 
 end CORALean
 

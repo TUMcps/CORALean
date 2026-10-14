@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.timeIntervalStepFloat_outer
-    (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {Δt : 𝕋} {η : ℕ}
+    (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ}
     (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) :
@@ -53,18 +53,18 @@ theorem LinParamSys.timeIntervalStepFloat_outer
     abel
   -- `e^{AΔt} x` lies in `[e^{AΔt}] R`
   have hE : exp (r • A) *ᵥ x ∈ construct
-    (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (sys.expIntervalFloat Δt Δt (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ R
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη hA le_rfl le_rfl)
         (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `[F] R`
   have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ construct
-      (Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))
+      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R) :=
-    Mtimes.mtimes_outer (𝕄 := fun m n => Interval (Mat 𝕋 m n))
-      (S := fun k => Zonotope (Vec 𝕋 k)) _ R
+    Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
+      (S := 𝒵[𝕋]) _ R
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2 hA hs0 hs)
         (Set.mem_image_of_mem _ hx))
   rw [hdecomp]

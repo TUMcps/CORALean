@@ -90,9 +90,9 @@ theorem Krylov.printed_input_propagation_counterexample :
     let A : Mat ℝ 1 1 := !![-1]
     let sys : LinearSys ℝ 1 := ⟨A⟩
     let U : Set (Vec ℝ 1) := {u | 0 ≤ u 0 ∧ u 0 ≤ 1}
-    let Rb1 := sys.inputReach (S := fun k => Set (Vec ℝ k)) U 1           -- line 2, tightest
+    let Rb1 := sys.inputReach (S := 𝒮) U 1           -- line 2, tightest
     let Rb2 := (fun y => exp (((1 + 1 : ℕ) : ℝ) • A) *ᵥ y) '' Rb1          -- line 8 at k = 1
-    ∃ y ∈ sys.inputReach (S := fun k => Set (Vec ℝ k)) U 2, ∃ c₀ c₁ : ℝ,
+    ∃ y ∈ sys.inputReach (S := 𝒮) U 2, ∃ c₀ c₁ : ℝ,
       0 ≤ c₀ ∧ 0 ≤ c₁ ∧ (∀ x ∈ Rb1, x 0 ≤ c₀) ∧ (∀ x ∈ Rb2, x 0 ≤ c₁)
         ∧ c₀ + c₁ < y 0 := by -- --- PROOF ---
   intro A sys U Rb1 Rb2
@@ -108,7 +108,7 @@ theorem Krylov.printed_input_propagation_counterexample :
   have hRb1 : ∀ x ∈ Rb1, x 0 ≤ 1 - Real.exp (-1) := by
     rintro _ ⟨u, hu, hmeas, rfl⟩
     have hint := intervalIntegrable_expSub_mulVec (A := !![(-1 : ℝ)]) (c := 1) zero_le_one
-      (S := fun k => Set (Vec ℝ k)) (U := U) hbdd hu hmeas
+      (S := 𝒮) (U := U) hbdd hu hmeas
     -- its first coordinate is integrable, read through the coordinate projection
     have hcomp : IntervalIntegrable (fun s => Real.exp (-(1 - s)) * u s 0) volume 0 1 := by
       have h0 := hint.1

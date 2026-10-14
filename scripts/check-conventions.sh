@@ -1434,6 +1434,21 @@ out=$(grep -nE '^[[:space:]]*-[[:space:]]+"?![[:space:]]' .gitlab-ci.yml |
   sed 's/^\([0-9]*\):.*/.gitlab-ci.yml:\1: a script line negated with `!` cannot fail the job — use `if …; then exit 1; fi`/')
 report "$out"
 
+# A set family is written with its notation, never as the lambda it abbreviates:
+# `(S := 𝒵[𝕋])`, not `(S := fun k => Zonotope (Vec 𝕋 k))` (CONTRIBUTING, "Notation").
+# The long form is allowed in the notation definitions themselves and where the
+# notation is out of reach because the file does not import the representation's
+# `Instances.lean` (imports are not added for a notation); a file listed here
+# says so by name, and the list only shrinks.
+FAMILY_LONG_FORM_OK=${FAMILY_LONG_FORM_OK:-scripts/family-notation-exceptions.txt}
+out=$(printf '%s\n' "$files" | xargs grep -nE \
+  'fun [^=]+ => ((CORALean\.)?(Real|Float)\.)?(Zonotope|Interval|ZonoBundle|VPolytope|PolyZonotope|HPolytope|ConZonotope|ConPolyZono) \((Vec|Mat) |fun [a-z]+ => Set \(Vec (ℝ|Real) ' |
+  grep -v 'notation "' |
+  awk -F: -v LIST="$FAMILY_LONG_FORM_OK" '
+    BEGIN { while ((getline f < LIST) > 0) if (f !~ /^#/ && f != "") { split(f, w, " "); ok[w[1]] = 1 } }
+    !($1 in ok) { print $1 ":" $2 ": a set family written as a lambda — use its notation (`𝒵[𝕋]`, `ℐ`, `𝒮`, …)" }')
+report "$out"
+
 # A declaration of at most five code lines is a section of its directory's
 # `Basic.lean` (CONTRIBUTING, "Small declarations"). Reading sections, their
 # order and the import cycles that keep a file out takes a real parse, so this

@@ -40,7 +40,7 @@ zonotope: `[Tᵢ]` on the error box, and the product's own box. -/
 def LinearSys.inputTermBoxFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (U : Zonotope (Vec 𝕋 n)) (i : ℕ) :
     Zonotope (Vec 𝕋 n) :=
   let T := MatExp.intervalInputTerm (Interval.point sys.A) r i      -- [Tᵢ]
-  Mtimes.mtimes (𝕄 := fun m n => Interval (Mat 𝕋 m n)) (S := fun k => Zonotope (Vec 𝕋 k))  -- [Tᵢ] E
+  Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])  -- [Tᵢ] E
     T U.E.zonotope ⊞
     (Zonotope.mtimesIntervalMatBox T U).zonotope                    -- [Tᵢ] U beyond Tᵢ U
 

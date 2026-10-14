@@ -50,9 +50,9 @@ theorem NonlinearSys.FloatModel.Encloses.linInputFloat_outer
     h.f_mem _ _ _ (Interval.mem_point (α := Vec 𝕋 n) xs) _ (Interval.mem_point (α := Vec 𝕋 m) U.c)
   -- `B(u - u✱)`, `u - u✱` being in `U`'s recentred set
   have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ construct
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
       (Recentre.recentre U)) :=
-    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) B _
+    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B _
       (Set.mem_biUnion (Set.mem_singleton _)
       (Set.mem_image_of_mem _ (Zonotope.sub_centre_mem_recentre hu)))
   have hsplit : sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs)

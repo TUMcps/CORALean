@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Every zero-order-hold run of `H` control periods is, at the `i`-th period boundary, in
 the `i`-th set of `reachUnionFloat`. -/
 theorem NeurNetContrSys.reachUnionFloat_outer
-    (sys : NeurNetContrSys 𝕋 (fun k => Zonotope (Vec 𝕋 k)) n)
+    (sys : NeurNetContrSys 𝕋 𝒵[𝕋] n)
     {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ} {options : NeurNetContrSys.ReachOptions 𝕋}
     {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachUnionFloat params options = some Rs)
     (hΔt : 0 < toReal options.Δt) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)

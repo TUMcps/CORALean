@@ -77,7 +77,7 @@ def steps : ℕ := 5
 a table of `k` rows costs `k²/2` steps where a fold would cost `k`, and every
 row is one call to the definition the theorems are about. -/
 def R (k : ℕ) : Zonotope (Vec (Dyadic p) 2) :=
-  (sys p).reach (S := fun k => Zonotope (Vec (Dyadic p) k)) ⟨R₀ p, U p, 0, k⟩ ⟨order, by decide⟩
+  (sys p).reach (S := 𝒵[Dyadic p]) ⟨R₀ p, U p, 0, k⟩ ⟨order, by decide⟩
 
 def reachRow (k : ℕ) : String :=
   let Z := R p k
@@ -97,7 +97,7 @@ def out : OutputEq (Dyadic p) 2 2 1 where
 /-- The output set at step `k`, from the reachable set and the same input set
 the step was taken with. -/
 def Y (k : ℕ) : Zonotope (Vec (Dyadic p) 1) :=
-  (out p).outputSet (S := fun k => Zonotope (Vec (Dyadic p) k)) (R p k) (U p)
+  (out p).outputSet (S := 𝒵[Dyadic p]) (R p k) (U p)
 
 def outputRow (k : ℕ) : String :=
   let Z := Y p k

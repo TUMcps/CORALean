@@ -35,6 +35,7 @@ The ReLU is the caller's relaxation; `compressionPreprocessing_outer` asks it be
 namespace CORALean
 
 open Float ContSet OfInterval
+open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
   {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
@@ -53,8 +54,8 @@ def compressionPreprocessing (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : 
   let L_m2 := ReducedLinear.identity (𝕋 := 𝕋) n                     -- Alg. 3, line 1: L_{-2}
   let L_m1 := R_relu                                                -- Alg. 3, line 1: L_{-1}
   let I_m1 :=                                                       -- Alg. 3, line 2 (Alg. 2, l. 5)
-    (Layer.activation (S := fun n => Interval (Vec 𝕋 n)) L_m1).enclose
-      ((L_m2.toLayer (S := fun n => Interval (Vec 𝕋 n))).enclose I_X)
+    (Layer.activation (S := ℐ𝒱[𝕋]) L_m1).enclose
+      ((L_m2.toLayer (S := ℐ𝒱[𝕋])).enclose I_X)
   match bucketTolerance le tol fuel .dynamic I_m1 ρ with            -- Alg. 3, line 2 (Alg. 2, l. 6)
   | none => none
   | some B_m1δ =>
@@ -62,7 +63,7 @@ def compressionPreprocessing (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : 
     let Lhat_m2 := L_m2.mergeRows part                              -- Alg. 3, line 2: L̂_{-2}
     let Lhat_1 := L_1.mergeCols part I_m1                           -- Alg. 3, line 2: L̂_0, in L_1
     let H_m2 := ofInterval                                          -- Alg. 3, line 3
-      ((Lhat_m2.toLayer (S := fun n => Interval (Vec 𝕋 n))).enclose I_X)
+      ((Lhat_m2.toLayer (S := ℐ𝒱[𝕋])).enclose I_X)
     let Φ'_org := ReducibleNetwork.cons (ReducedLinear.identity _) L_m1 hσ_relu .dynamic
       (.cons Lhat_1 L_2 hσ_2 B_2 rest)                              -- Alg. 3, line 4
     match reduceOnTheFly le tol fuel H_m2 ρ Φ'_org with             -- Alg. 3, line 5

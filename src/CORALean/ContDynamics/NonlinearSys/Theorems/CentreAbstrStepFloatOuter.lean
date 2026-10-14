@@ -36,7 +36,7 @@ theorem NonlinearSys.FloatModel.Encloses.centreAbstrStepFloat_outer
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {R Rτ Rt : Zonotope (Vec 𝕋 n)}
     (hstep : fm.centreAbstrStepFloat U options R = some (Rτ, Rt)) :
     0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := fun k => Set (Vec ℝ k)) (Set.Icc 0 (toReal options.Δt))
+      sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
         x (toReal options.Δt) ∈ Rt.construct :=

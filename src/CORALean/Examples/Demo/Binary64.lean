@@ -64,7 +64,7 @@ def Ub : Zonotope (Vec Float 2) where
 /-- The same `order` and the same `steps` as the `Dyadic` runs, so the three
 tables are the same computation and nothing else. -/
 def Rb (k : ℕ) : Zonotope (Vec Float 2) :=
-  sysb.reach (S := fun k => Zonotope (Vec Float k)) ⟨R₀b, Ub, 0, k⟩ ⟨order, by decide⟩
+  sysb.reach (S := 𝒵[Float]) ⟨R₀b, Ub, 0, k⟩ ⟨order, by decide⟩
 
 /-! ## On the page
 

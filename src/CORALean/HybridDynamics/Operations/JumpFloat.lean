@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 
 /-- The reset image `W Rg ⊕ {w}` of the guard-cut set `Rg`. -/
 def Transition.jumpFloat (e : Transition G L 𝕋 n) (Rg : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
-  Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Zonotope (Vec 𝕋 k)) e.W Rg ⊞
+  Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) e.W Rg ⊞
     (Interval.point e.w).zonotope
 
 end CORALean
