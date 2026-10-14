@@ -25,7 +25,7 @@ Line 8 computes rather than the exact product it encloses.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,6 +46,7 @@ variable {n : ℕ}
 /-- Line 8 of [1, Alg. 1]: the curvature enclosure `C = F(Δt,η)H(t_k) ⊕ G(Δt,η)ũ`. -/
 noncomputable def MatExp.curvatureEnclosure (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (Δt : ℝ) (η : ℕ) : Zonotope (Vec ℝ n) :=
+  -- 8. C ← F(Δt,η) H(t_k) ⊕ G(Δt,η) ũ
   (Zonotope.mtimesIntervalMat (MatExp.correctionMatrix A Δt η) H).plus
     (Zonotope.mtimesIntervalMat (MatExp.constCorrectionMatrix A Δt η) (Zonotope.ofPoint ũ))
 

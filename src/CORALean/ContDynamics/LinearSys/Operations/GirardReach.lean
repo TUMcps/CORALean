@@ -39,7 +39,7 @@ Taken at the exact `e^{rA}` and `e^{r‖A‖}`; it runs in floats as `girardReac
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -63,16 +63,26 @@ returning `R_{N-1} = Q₀ ∪ ... ∪ Q_{N-1}` as the list of its members. -/
 noncomputable def LinearSys.girardReach (sys : LinearSys 𝕋 n) (I : Zonotope (Vec ℝ n))
     (μ r T : ℝ) : List (Zonotope (Vec ℝ n)) :=
   let A := toRealMat sys.A
+  -- 1. N = ⌈T/r⌉
   let N := ⌈T / r⌉₊
+  -- 2. α_r = (e^{r‖A‖} - 1 - r‖A‖) sup_{x∈I} ‖x‖
   let αr := (Real.exp (r * ‖A‖) - 1 - r * ‖A‖) * Finset.univ.fold max 0 I.absBound
+  -- 3. β_r = (e^{r‖A‖} - 1)/‖A‖ · μ
   let βr := (Real.exp (r * ‖A‖) - 1) / ‖A‖ * μ
+  -- 4. P₀, the convex hull of I and e^{rA}I
   let P₀ := I.linComb (I.mtimes (exp (r • A)))
+  -- 5. Q₀ = P₀ + □(α_r + β_r)
   let Q₀ := P₀.plus (Zonotope.cube n (αr + βr))
+  -- 6. R₀ = Q₀
   let R₀ := [Q₀]
+  -- 7. for i = 1 … N - 1
   ((List.range (N - 1)).foldl
     (fun (QR : Zonotope (Vec ℝ n) × List (Zonotope (Vec ℝ n))) _ =>
+      -- 8. Pᵢ = e^{rA} Qᵢ₋₁
       let Pᵢ := QR.1.mtimes (exp (r • A))
+      -- 9. Qᵢ = Pᵢ + □(β_r)
       let Qᵢ := Pᵢ.plus (Zonotope.cube n βr)
+      -- 10. Rᵢ = Rᵢ₋₁ ∪ Qᵢ
       let Rᵢ := QR.2 ++ [Qᵢ]
       (Qᵢ, Rᵢ))
     (Q₀, R₀)).2

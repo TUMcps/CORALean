@@ -19,7 +19,7 @@ standing for `t_end/Δt`.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,6 +39,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 time-interval sets, `K` standing for `t_end/Δt`. -/
 noncomputable def LinearSys.manualReach (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n))
     (Δt : ℝ) (η ρ K : ℕ) : Set (Vec ℝ n) :=
+  -- 12.-13. R̂([0,t_end]), the union of the time-interval sets R̂(τ_k)
   ⋃ k < K, construct (sys.manualStep X₀ U Δt η ρ (sys.manualRun X₀ U Δt η ρ k)).2
 
 end CORALean

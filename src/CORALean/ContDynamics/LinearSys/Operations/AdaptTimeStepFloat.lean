@@ -27,7 +27,7 @@ replaces a NaN `Δt` by the horizon.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,12 +47,14 @@ accumulated `ε_P` for step `i`, or `none` where `fuel` shrinkings did not suffi
 def LinearSys.adaptTimeStepFloat (sys : LinearSys 𝕋 n) (eAt : Interval (Mat 𝕋 n n))
     (X₀ U : Zonotope (Vec 𝕋 n)) (εHmax εPmax εPacc tf ti : ℚ) (Δtprev μ : 𝕋) (ηmax fuel : ℕ) :
     Option (𝕋 × ℕ × ℚ × ℚ) :=
-  let Δt := divUp Δtprev μ                                          -- 1. enlarge the previous step
+  -- 1. enlarge the previous step
+  let Δt := divUp Δtprev μ
   let maxTimeStep : 𝕋 := ratUp (tf - ti)                            -- t_f - t_i, rounded up
   let Δt' := if ToRat.toRat Δt < tf - ti then Δt else maxTimeStep   -- clipped to the horizon
   match sys.adaptTimeStepSearchFloat eAt X₀ U εHmax εPmax εPacc tf ti μ ηmax Δt' fuel with
   | none => none
-  | some (Δti, ηi, εH, εP) => some (Δti, ηi, εH, εPacc + εP)       -- 13. accumulate, eq. (9)
+  -- 13. accumulate, eq. (9)
+  | some (Δti, ηi, εH, εP) => some (Δti, ηi, εH, εPacc + εP)
 
 end CORALean
 

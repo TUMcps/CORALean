@@ -42,7 +42,7 @@ input solution that `manualStepFloat` falls back on.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -63,49 +63,73 @@ tuned step is inadmissible, or no squaring count fits `[e^{At_k}]` or `[e^{At_{k
 def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (tend : 𝕋)
     (εmax ζ : ℚ) (ηmax fuel : ℕ) (s : LinearSys.AutoStateFloat 𝕋 n) :
     Option (LinearSys.AutoStateFloat 𝕋 n × Zonotope (Vec 𝕋 n)) := do
-  let ũ := (Interval.point V.c).zonotope                              -- 3. {ũ}, V's stored centre
-  let U₀ := Recentre.recentre V                                        -- 3. U₀ = V - ũ, holding 0
+  -- 3. {ũ}, V's stored centre
+  let ũ := (Interval.point V.c).zonotope
+  -- 3. U₀ = V - ũ, holding 0
+  let U₀ := Recentre.recentre V
   let ηe := max ηmax 2                                                 -- [e^{At_k}]'s order
   let sq ← sys.squaringsFloat s.Δt s.tLo s.tHi ηe                      -- t_k / 2^sq within Δt_{k-1}
   let eAtk := sys.expSquaringFloat s.tLo s.tHi ηe sq                   -- [e^{A t_k}]
   let Φtk := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_k}] ·
     (S := 𝒵[𝕋]) eAtk
-  let (Δtk, ηk) ← sys.autoTuneDeltaTFloat eAtk s.H V.c s.t (ToRat.toRat tend) εmax ζ   -- 5.-15.
-    s.εa s.Δt ηmax fuel U₀                                             -- Δt_k, η_k
+  -- 5.-15. Δt_k, η_k
+  let (Δtk, ηk) ← sys.autoTuneDeltaTFloat eAtk s.H V.c s.t (ToRat.toRat tend) εmax ζ
+    s.εa s.Δt ηmax fuel U₀
   let nrm := MatExp.normUpperBound (Interval.smul Δtk Δtk (Interval.point sys.A))  -- ≥ ‖Δt_k A‖
   if 0 < ToRat.toRat Δtk ∧ 2 ≤ ηk ∧ ToRat.toRat nrm / ((ηk : ℚ) + 2) ≤ 1 / 2   -- admissible
       ∧ ToRat.isNaN Δtk = false ∧ ToRat.isNaN nrm = false then              -- not read from a NaN
-    let tk1 := s.t + ToRat.toRat Δtk                                   -- 7. t_{k+1}
-    let tLo1 := addDown s.tLo Δtk                                      -- 7. a float below t_{k+1}
-    let tHi1 := addUp s.tHi Δtk                                        -- 7. a float above t_{k+1}
+    -- 7. t_{k+1}
+    let tk1 := s.t + ToRat.toRat Δtk
+    -- 7. a float below t_{k+1}
+    let tLo1 := addDown s.tLo Δtk
+    -- 7. a float above t_{k+1}
+    let tHi1 := addUp s.tHi Δtk
     let sq1 ← sys.squaringsFloat Δtk tLo1 tHi1 ηk                      -- t_{k+1} / 2^sq1 in Δt_k
     let Φtk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_{k+1}}] ·
       (S := 𝒵[𝕋])
       (sys.expSquaringFloat tLo1 tHi1 ηk sq1)
-    let bPU0Δt := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- 16. bPU_0(Δt_k), eq. (27)
+    -- 16. bPU_0(Δt_k), eq. (27)
+    let bPU0Δt := Mtimes.mtimes (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋])
       (MatExp.intervalInputTerm (Interval.point sys.A) Δtk 0) U₀
-    let bPUinfΔt := sys.inputTaylorSumTailFloat Δtk U₀ ηk ⊞           -- 16. bPU_∞(Δt_k), eq. (27)
-      Mtimes.mtimes (𝕄 := ℐ[𝕋])  --     ⊕_i ÃᵢU₀ ⊕ E Δt_k U₀
+    -- 16. bPU_∞(Δt_k), eq. (27), with ⊕_i ÃᵢU₀ ⊕ E Δt_k U₀
+    let bPUinfΔt := sys.inputTaylorSumTailFloat Δtk U₀ ηk ⊞
+      Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (MatExp.intervalInputRemainder (Interval.point sys.A) Δtk ηk) U₀
-    let PUinfProp := Φtk bPUinfΔt                                      -- 17. e^{At_k}bPU_∞(Δt_k)
-    let PUinfBox := PUinfProp.interval.zonotope                        -- 17. box(·)
-    let PUinf1 := s.PUinf ⊞ PUinfBox                                   -- 17. P̂^U_∞(t_{k+1})
-    let PU01 := s.PU0 ⊞ Φtk bPU0Δt                                     -- 18. P̂^U_0(t_{k+1})
-    let εrτ := tk1 / ToRat.toRat tend * ζ * εmax - s.εr                -- 19. eq. (35),(34)
-    let ρk ← PU01.autoTuneSetOrder εrτ 0 (PU01.h + 1)                  -- 20.-22. ρ_k
-    let PUk1 := Reduce.reduce PU01 ρk ⊞ PUinf1                         -- 23. P̂^U(t_{k+1})
-    let PuΔt := sys.inputSolutionFloat Δtk ηk ũ                        -- 24. P^u(Δt_k), eq. (19)
-    let Puk1 := (s.Pu.zonotope ⊞ Φtk PuΔt).interval                    -- 25. P^u(t_{k+1}), a box
-    let Hk1 := Φtk1 X₀ ⊞ Puk1.zonotope                                 -- 26. H(t_{k+1})
-    let Hτk := sys.affineWindowFloat s.H Hk1 V.c Δtk ηk                -- 27.-28. Ĥ(τ_k)
-    let Δεa := ToRat.toRat                                             -- 29. Δε^a_k, eq. (33)
+    -- 17. e^{At_k}bPU_∞(Δt_k)
+    let PUinfProp := Φtk bPUinfΔt
+    -- 17. box(·)
+    let PUinfBox := PUinfProp.interval.zonotope
+    -- 17. P̂^U_∞(t_{k+1})
+    let PUinf1 := s.PUinf ⊞ PUinfBox
+    -- 18. P̂^U_0(t_{k+1})
+    let PU01 := s.PU0 ⊞ Φtk bPU0Δt
+    -- 19. eq. (35),(34)
+    let εrτ := tk1 / ToRat.toRat tend * ζ * εmax - s.εr
+    -- 20.-22. ρ_k
+    let ρk ← PU01.autoTuneSetOrder εrτ 0 (PU01.h + 1)
+    -- 23. P̂^U(t_{k+1})
+    let PUk1 := Reduce.reduce PU01 ρk ⊞ PUinf1
+    -- 24. P^u(Δt_k), eq. (19)
+    let PuΔt := sys.inputSolutionFloat Δtk ηk ũ
+    -- 25. P^u(t_{k+1}), a box
+    let Puk1 := (s.Pu.zonotope ⊞ Φtk PuΔt).interval
+    -- 26. H(t_{k+1})
+    let Hk1 := Φtk1 X₀ ⊞ Puk1.zonotope
+    -- 27.-28. Ĥ(τ_k)
+    let Hτk := sys.affineWindowFloat s.H Hk1 V.c Δtk ηk
+    -- 29. Δε^a_k, eq. (33)
+    let Δεa := ToRat.toRat
       (sys.particularSolutionErrorFloat eAtk U₀ Δtk ηk)
-    let εa1 := s.εa + Δεa                                              -- 29. ε^a_{k+1}
-    let Δεr := ToRat.toRat (PU01.reduceBoxError ρk)                    -- 29. Δε^r_k, Prop. 4
-    let εr1 := s.εr + Δεr                                              -- 29. ε^r_{k+1}
-    let Rτk := Hτk ⊞ PUk1                                              -- 30. R̂(τ_k)
+    -- 29. ε^a_{k+1}
+    let εa1 := s.εa + Δεa
+    -- 29. Δε^r_k, Prop. 4
+    let Δεr := ToRat.toRat (PU01.reduceBoxError ρk)
+    -- 29. ε^r_{k+1}
+    let εr1 := s.εr + Δεr
+    -- 30. R̂(τ_k)
+    let Rτk := Hτk ⊞ PUk1
     pure ({ t := tk1, tLo := tLo1, tHi := tHi1, Δt := Δtk, H := Hk1, Pu := Puk1, PU0 := PU01,
             PUinf := PUinf1, εa := εa1, εr := εr1 }, Rτk)
   else none

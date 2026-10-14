@@ -50,8 +50,10 @@ def LinearSys.maxBackReachCZFloat (Bx : Interval (Vec 𝕋 n)) (P : HPolytope �
   let ρ_ZW : ∀ j, FloatBound 𝕋 ZW.construct (rowLin P.A j) := fun j =>   -- ρ(Ẑ_W, H_(j,·)ᵀ)
     let u := ZW.conZonotope.boundDot (c := rowLin P.A j) (P.A j) fun _ => rfl
     ⟨u.val, fun x hx => u.le x (Zonotope.conZonotope_contains ZW hx)⟩
-  let P_ZW := P.minkDiffOf ZW.construct ρ_ZW                        -- 11. P ⊖ Ẑ_W(τ_k), (11)
-  P_ZW.conZonotopeInner Bx                                          -- 11. CZ(P ⊖ Ẑ_W(τ_k)), Alg. 1
+  -- 11. P ⊖ Ẑ_W(τ_k), (11)
+  let P_ZW := P.minkDiffOf ZW.construct ρ_ZW
+  -- 11. CZ(P ⊖ Ẑ_W(τ_k)), Alg. 1
+  P_ZW.conZonotopeInner Bx
 
 end CORALean
 

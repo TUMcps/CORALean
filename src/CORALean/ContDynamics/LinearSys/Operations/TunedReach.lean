@@ -21,7 +21,7 @@ can step past `t_f`; the accompanying theorem asks that it does not.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,6 +42,7 @@ time-interval sets. -/
 noncomputable def LinearSys.tunedReach (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εSmax tf μ : ℝ) (ηmax fuel K : ℕ) :
     Set (Vec ℝ n) :=
+  -- 12. R([0,t_f]), the union of the time-interval sets R([t_i,t_{i+1}])
   ⋃ i < K, ⋃ s ∈ sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel (i + 1), construct s.R
 
 end CORALean

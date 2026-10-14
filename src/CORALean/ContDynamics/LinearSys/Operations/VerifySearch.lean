@@ -21,7 +21,7 @@ because `Δt = t`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -51,14 +51,21 @@ noncomputable def LinearSys.verifySearch (sys : LinearSys 𝕋 n) (X₀ U : S n)
     (inHull : List (Vec ℝ n) → Bool)
     (closestFacet : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ) × List ℕ)
     (gramSchmidt : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ)) (fuel : ℕ) : VerifyAnswer :=
-  let i : ℕ := 1                                                              -- l. 1
+  -- 1. i ← 1
+  let i : ℕ := 1
+  -- 1. ℓ₁ ← I_n(·,1)
   let ℓ₁ : Vec ℝ n →ₗ[ℝ] ℝ := ∑ j : Fin n, if (j : ℕ) = 0 then LinearMap.proj j else 0
-  let Δt := t                                                                 -- l. 1
-  let Phat : List (Vec ℝ n) := []                                             -- l. 1
-  let Pcheck : List (Vec ℝ n) := []                                           -- l. 1
-  let falsifiable := true                                                     -- l. 1
+  -- 1. Δt ← t
+  let Δt := t
+  -- 1. P̂ ← ∅
+  let Phat : List (Vec ℝ n) := []
+  -- 1. P̌ ← ∅
+  let Pcheck : List (Vec ℝ n) := []
+  -- 1. falsifiable ← true
+  let falsifiable := true
+  -- 2. repeat
   sys.verifySearchLoop X₀ U η ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁ fuel
-    ⟨i, ℓ₁, Δt, 1, Phat, Pcheck, falsifiable⟩                                 -- l. 2
+    ⟨i, ℓ₁, Δt, 1, Phat, Pcheck, falsifiable⟩
 
 end CORALean
 

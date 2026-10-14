@@ -21,7 +21,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.LinComb
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,6 +42,7 @@ variable {n : ℕ}
 /-- [1]'s eq. (22) `Ĥ(τ_k) = comb(H(t_k),H(t_{k+1})) ⊕ C`, Line 9 of [1, Alg. 1]. -/
 noncomputable def MatExp.affineTimeIntervalOuter (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (Δt : ℝ) (η : ℕ) : Zonotope (Vec ℝ n) :=
+  -- 9. Ĥ(τ_k) ← comb(H(t_k), H(t_{k+1})) ⊕ C, eq. (22)
   (H.linComb (MatExp.affineTimePointNext A H ũ Δt)).plus
     (MatExp.curvatureEnclosure A H ũ Δt η)
 

@@ -30,7 +30,7 @@ than with this definition.
 
 -- Authors:       Claude Opus 5
 -- Written:       12-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The discrete-time system a step of `Δt` leaves behind, at a system matrix
-that was a set already: `e^{AΔt}` enclosed over the whole box, [1, Alg. 4]. -/
+that was a set already: `e^{AΔt}` enclosed over the whole box, as the loop of [1] uses it. -/
 noncomputable def LinParamSys.discretizeEnclosure (sys : LinParamSys ℐ n) (Δt : ℝ) (η : ℕ) :
     LinParamSysDT ℐ n :=
   ⟨MatExp.expIntervalEnclosure (Interval.smul Δt sys.A) η⟩

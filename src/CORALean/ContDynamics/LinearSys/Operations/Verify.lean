@@ -20,7 +20,7 @@ reach a verdict. Line 1's "estimated from simulations" is left a parameter, `ε_
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,7 +43,8 @@ noncomputable def LinearSys.verify (reachFn : ℝ → Zonotope (Vec ℝ n))
     (distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ)
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n))
     (le : ℝ → ℝ → Bool) (εmax₀ : ℝ) (fuel : ℕ) : Option Bool :=
-  LinearSys.verifyRun reachFn innerApprox distG distF G F le εmax₀ fuel        -- 1. ε_max ← ε_max₀
+  -- 1. ε_max ← ε_max₀
+  LinearSys.verifyRun reachFn innerApprox distG distF G F le εmax₀ fuel
 
 end CORALean
 

@@ -21,7 +21,7 @@ whose `reach` runs as it stands.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The discrete-time system a step of `Δt` leaves behind, `e^{AΔt}` enclosed in
-floats over every `A ∈ sys.A` at Taylor order `η`, [1, Alg. 4]. -/
+floats over every `A ∈ sys.A` at Taylor order `η`, as the loop of [1] uses it. -/
 def LinParamSys.discretizeEnclosureFloat
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) (Δt : 𝕋) (η : ℕ) :
     LinParamSysDT (fun m n => Interval (Mat 𝕋 m n)) n :=

@@ -20,7 +20,7 @@ arithmetic is.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,12 +40,15 @@ for step `i`, or `none` where `fuel` shrinkings of `Δt_i` did not suffice. -/
 noncomputable def LinearSys.adaptTimeStep (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ) :
     Option (ℝ × ℕ × ℝ) :=
-  let Δt := Δtprev / μ                                          -- 1. enlarge the previous step
-  let sweep :=                                                  -- 2.-12. the do-while
+  -- 1. enlarge the previous step
+  let Δt := Δtprev / μ
+  -- 2.-12. the do-while
+  let sweep :=
     LinearSys.adaptTimeStepSearch sys le X₀ U εHmax εPmax εPacc tf ti μ ηmax Δt fuel
   match sweep with
   | none => none
-  | some (Δti, ηi) =>                                           -- 13. accumulate, eq. (9)
+  -- 13. accumulate, eq. (9)
+  | some (Δti, ηi) =>
     some (Δti, ηi, εPacc + sys.timePointStepRemainderError Δti ηi U)
 
 end CORALean

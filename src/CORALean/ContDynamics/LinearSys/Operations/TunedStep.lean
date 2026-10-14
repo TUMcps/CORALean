@@ -24,7 +24,7 @@ and their sum is `R([t_i,t_{i+1}])`. `none` where `Alg. 2` ran out of fuel.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,17 +49,28 @@ noncomputable def LinearSys.tunedStep (sys : LinearSys 𝕋 n) (le : ℝ → ℝ
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εSmax tf μ : ℝ) (ηmax fuel : ℕ)
     (s : LinearSys.TunedState n) : Option (LinearSys.TunedState n) :=
   match sys.adaptTimeStep le X₀ U εHmax εPmax s.εP tf s.t s.Δt μ ηmax fuel with
-  | none => none                                                  -- 5. Alg. 2 gave out
-  | some (Δt, η, εP) =>                                           -- 5. Alg. 2
-    let HR₀ := sys.timeIntervalStep (S := 𝒵) Δt η X₀               -- 6. HR([0,Δt_i])
-    let PR₀ := sys.inputSolution (S := 𝒵) Δt η U                   -- 6. PR([0,Δt_i])
-    let Φti := exp (s.t • toRealMat sys.A)                         -- 7. eq. (2)'s e^{A t_i}
-    let HR := Zonotope.mtimes Φti HR₀                              -- 7. HR([t_i,t_{i+1}])
-    let PR := Zonotope.plus s.PR (Zonotope.mtimes Φti PR₀)         -- 7. PR([0,t_{i+1}])
-    let setOrder := PR.adaptSetOrder le εSmax s.εS tf s.t Δt       -- 8. Alg. 3
-    let PRred := PR.reduce setOrder.1                              -- 8. red(PR, Φ_set,i)
-    let R := Zonotope.plus HR PRred                                -- 9. R([t_i,t_{i+1}])
-    some { t := s.t + Δt, Δt := Δt, η := η,                        -- 10. t ← t + Δt_i
+  -- 5. Alg. 2 gave out
+  | none => none
+  -- 5. Alg. 2
+  | some (Δt, η, εP) =>
+    -- 6. HR([0,Δt_i])
+    let HR₀ := sys.timeIntervalStep (S := 𝒵) Δt η X₀
+    -- 6. PR([0,Δt_i])
+    let PR₀ := sys.inputSolution (S := 𝒵) Δt η U
+    -- 7. eq. (2)'s e^{A t_i}
+    let Φti := exp (s.t • toRealMat sys.A)
+    -- 7. HR([t_i,t_{i+1}])
+    let HR := Zonotope.mtimes Φti HR₀
+    -- 7. PR([0,t_{i+1}])
+    let PR := Zonotope.plus s.PR (Zonotope.mtimes Φti PR₀)
+    -- 8. Alg. 3
+    let setOrder := PR.adaptSetOrder le εSmax s.εS tf s.t Δt
+    -- 8. red(PR, Φ_set,i)
+    let PRred := PR.reduce setOrder.1
+    -- 9. R([t_i,t_{i+1}])
+    let R := Zonotope.plus HR PRred
+    -- 10. t ← t + Δt_i
+    some { t := s.t + Δt, Δt := Δt, η := η,
            εP := εP, εS := setOrder.2, PR := PRred, R := R }
 
 end CORALean

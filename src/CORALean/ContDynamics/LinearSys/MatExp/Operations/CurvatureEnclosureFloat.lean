@@ -30,7 +30,7 @@ different enclosure such as the input solution of the segment `[0, ũ]`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,6 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Line 8 of [1, Alg. 1]: the curvature enclosure `C = [F] H(t_k) ⊕ [G] {ũ}`. -/
 def MatExp.curvatureEnclosure (A : Interval (Mat 𝕋 n n)) (H : Zonotope (Vec 𝕋 n)) (ũ : Vec 𝕋 n)
     (Δt : 𝕋) (η : ℕ) : Zonotope (Vec 𝕋 n) :=
+  -- 8. C ← [F(Δt,η)] H(t_k) ⊕ [G(Δt,η)] ũ, from the two interval matrices
   let F := MatExp.intervalCorrectionMatrix A Δt η                     -- [F(Δt,η)]
   let G := MatExp.intervalConstCorrectionMatrix A Δt η                -- [G(Δt,η)]
   Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [F] H(t_k) ⊕

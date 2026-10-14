@@ -31,7 +31,7 @@ presumes.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -53,20 +53,30 @@ noncomputable def LinearSys.verifyStep (reachFn : ℝ → Zonotope (Vec ℝ n))
     (distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ)
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n))
     (le : ℝ → ℝ → Bool) (εmax : ℝ) : LinearSys.VerifyIter × ℝ :=
-  let Rout := reachFn εmax                                                    -- 3. R̂(t)
-  let Rin := innerApprox Rout εmax                                            -- 4. Ř(t), Sec. V
+  -- 3. R̂(t)
+  let Rout := reachFn εmax
+  -- 4. Ř(t), Sec. V
+  let Rin := innerApprox Rout εmax
+  -- 5.-8. ν̂_G
   let νGout := Finset.univ.sup' Finset.univ_nonempty
-    (fun j => distG Rout.conZonotope (G j))                                   -- 5.-8. ν̂_G
+    (fun j => distG Rout.conZonotope (G j))
+  -- 5. and 9.-10. ν̌_G
   let νGin := Finset.univ.sup' Finset.univ_nonempty
-    (fun j => distG Rin (G j))                                                -- 5., 9.-10. ν̌_G
+    (fun j => distG Rin (G j))
+  -- 5. and 12.-14. ν̂_F
   let νFout := Finset.univ.inf' Finset.univ_nonempty
-    (fun j => distF Rout.conZonotope (F j))                                   -- 5., 12.-14. ν̂_F
+    (fun j => distF Rout.conZonotope (F j))
+  -- 5., 12. and 15.-16. ν̌_F
   let νFin := Finset.univ.inf' Finset.univ_nonempty
-    (fun j => distF Rin (F j))                                                -- 5., 12., 15.-16.
-  let ν0 := min (-νGin) νFin                                                  -- 18.
-  let ν1 := if le 0 νGout then min ν0 νGout else ν0                           -- 19.-21.
-  let ν2 := if le νFout 0 then min ν1 (-νFout) else ν1                        -- 22.-24.
-  let εmax' := max (0.1 * εmax) (min ν2 (0.9 * εmax))                         -- 25.
+    (fun j => distF Rin (F j))
+  -- 18. ν ← min(-ν̌_G, ν̌_F)
+  let ν0 := min (-νGin) νFin
+  -- 19.-21. if ν̂_G ≥ 0, ν ← min(ν, ν̂_G)
+  let ν1 := if le 0 νGout then min ν0 νGout else ν0
+  -- 22.-24. if ν̂_F ≤ 0, ν ← min(ν, -ν̂_F)
+  let ν2 := if le νFout 0 then min ν1 (-νFout) else ν1
+  -- 25. ε_max ← max(0.1 ε_max, min(ν, 0.9 ε_max))
+  let εmax' := max (0.1 * εmax) (min ν2 (0.9 * εmax))
   ({ νGout := νGout, νGin := νGin, νFout := νFout, νFin := νFin }, εmax')
 
 end CORALean

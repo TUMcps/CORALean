@@ -32,7 +32,7 @@ that can bound `ρ(X, d)` supplies. The loop of line 6 is the recursion on `k`; 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -60,29 +60,44 @@ noncomputable def LinearSys.supportUpper (sys : LinearSys 𝕋 n) (Δt : ℝ) (�
     (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) :
     ℕ → LinearSys.SupportUpperState n
   | 0 =>
-      let d₀ := ℓ                                                       -- l. 1
-      let ρH₀ := ρ X₀ ℓ                                                 -- l. 1
-      let Pu₀ : Vec ℝ n := 0                                            -- l. 3
-      let ρP₀ : ℝ := 0                                                  -- l. 3
+      -- 1. d₀ ← ℓ
+      let d₀ := ℓ
+      -- 1. ρ(H(t₀), ℓ) ← ρ(X₀, ℓ)
+      let ρH₀ := ρ X₀ ℓ
+      -- 3. P_u(t₀) ← 0
+      let Pu₀ : Vec ℝ n := 0
+      -- 3. ρ(P̂_U(t₀), ℓ) ← 0
+      let ρP₀ : ℝ := 0
       ⟨d₀, Pu₀, ρH₀, ρP₀, ρH₀ + ρP₀, ρH₀ + ρP₀⟩
   | k + 1 =>
       let s := sys.supportUpper Δt η X₀ U ρ ℓ k                         -- step `k`
       let A := toRealMat sys.A
-      let ũ := Recentre.centre U                                        -- l. 2
-      let U₀ := Recentre.recentre U                                     -- l. 2
+      -- 2. ũ ← center(U)
+      let ũ := Recentre.centre U
+      -- 2. U₀ ← U - ũ
+      let U₀ := Recentre.recentre U
       let T := MatExp.expIntegral A Δt                                  -- (13)
-      let PuΔt := T *ᵥ ũ                                                -- l. 4, (12)
-      let PUΔt := sys.inputSolution Δt η U₀                             -- l. 4, (16)
+      -- 4. P_u(Δt), eq. (12)
+      let PuΔt := T *ᵥ ũ
+      -- 4. P̂_U(Δt), eq. (16)
+      let PUΔt := sys.inputSolution Δt η U₀
       let F := MatExp.correctionMatrix A Δt η                           -- (14)
       let G := MatExp.constCorrectionMatrix A Δt η                      -- (15)
+      -- 5. C ← F X₀ ⊕ G ũ
       let C := Plus.plus (Mtimes.mtimes (𝕄 := ℐ) F X₀)
-        (Mtimes.mtimes (𝕄 := ℐ) G (OfPoint.ofPoint ũ))                  -- l. 5, F X₀ ⊕ G ũ
-      let d' := s.d.comp (mulVecLin (exp (Δt • A)))                     -- l. 8
-      let Pu' := exp (Δt • A) *ᵥ s.Pu + PuΔt                            -- l. 9
-      let ρH' := ρ X₀ d' + ℓ Pu'                                        -- l. 10
-      let ρP' := s.ρP + ρ PUΔt s.d                                      -- l. 11
-      let ρR' := ρH' + ρP'                                              -- l. 12
-      let ρRτ := max s.ρH ρH' + ρ C s.d + ρP'                           -- l. 13
+        (Mtimes.mtimes (𝕄 := ℐ) G (OfPoint.ofPoint ũ))
+      -- 8. d_{k+1} ← (e^{AΔt})ᵀ d_k
+      let d' := s.d.comp (mulVecLin (exp (Δt • A)))
+      -- 9. P_u(t_{k+1})
+      let Pu' := exp (Δt • A) *ᵥ s.Pu + PuΔt
+      -- 10. ρ(H(t_{k+1}), ℓ)
+      let ρH' := ρ X₀ d' + ℓ Pu'
+      -- 11. ρ(P̂_U(t_{k+1}), ℓ)
+      let ρP' := s.ρP + ρ PUΔt s.d
+      -- 12. ρ(R̂(t_{k+1}), ℓ)
+      let ρR' := ρH' + ρP'
+      -- 13. ρ(R̂(τ_k), ℓ)
+      let ρRτ := max s.ρH ρH' + ρ C s.d + ρP'
       ⟨d', Pu', ρH', ρP', ρR', ρRτ⟩
 
 end CORALean

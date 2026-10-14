@@ -52,10 +52,14 @@ def LinearSys.reachAdaptiveFloat (sys : LinearSys 𝕋 n)
   let X₀ := params.X₀                                               -- the paper's symbols
   let V := sys.inputSetFloat params.U                               -- B U ⊕ c, in the state space
   let tf := params.tFinal - params.tStart                           -- shifted to start at 0
-  let s₀ : LinearSys.AdaptiveState 𝕋 n :=                           -- 1.-3. initialize
-    { t := 0, tLo := zero, tHi := zero,                             -- 1. t ← 0
-      Δt := mulDown (ratUp tf) options.μ,                           -- 2. Δt₋₁ ← t_f μ
-      εP := 0, εS := 0,                                             -- 3. ε_P ← 0, ε_S ← 0
+  -- 1.-3. initialize
+  let s₀ : LinearSys.AdaptiveState 𝕋 n :=
+    -- 1. t ← 0
+    { t := 0, tLo := zero, tHi := zero,
+      -- 2. Δt₋₁ ← t_f μ
+      Δt := mulDown (ratUp tf) options.μ,
+      -- 3. ε_P ← 0, ε_S ← 0
+      εP := 0, εS := 0,
       P := (Interval.point fun _ => zero).zonotope }                -- nothing contributed yet
   if 0 < tf then sys.adaptiveRunFloat X₀ V params.tStart tf options options.maxSteps s₀
   else none

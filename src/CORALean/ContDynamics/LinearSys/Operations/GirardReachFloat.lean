@@ -30,7 +30,7 @@ as one past the bit length of `⌈r‖A‖⌉`, which keeps its argument in rang
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,7 +49,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 `i < N`, returned as the list of the `Qᵢ`, or `none` if no order admits `[e^{rA}]`. -/
 def LinearSys.girardReachFloat (sys : LinearSys 𝕋 n) (I : Zonotope (Vec 𝕋 n)) (μ r : 𝕋) (T : ℚ) :
     Option (List (Zonotope (Vec 𝕋 n))) := do
-  let N := ⌈T / ToRat.toRat r⌉₊                                     -- N = ⌈T/r⌉
+  -- 1. N = ⌈T/r⌉
+  let N := ⌈T / ToRat.toRat r⌉₊
   let η ← sys.reachOrderFloat r r 2                                 -- an order [e^{rA}] admits
   let eRA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{rA}] ·
     (S := 𝒵[𝕋])
@@ -58,17 +59,26 @@ def LinearSys.girardReachFloat (sys : LinearSys 𝕋 n) (I : Zonotope (Vec 𝕋 
   let x := mulUp r nA                                               -- ≥ r‖A‖
   let E := expUp (Nat.log2 (⌈ToRat.toRat x⌉₊ + 1) + 5) x            -- ≥ e^{r‖A‖}
   let s := maximum zero (maximumOver fun j => I.absBoundError j)    -- ≥ sup_{x∈I} ‖x‖
-  let αr := mulUp (subUp (subUp E one) x) s                         -- α_r
-  let βr := mulUp (divUp (subUp E one) nA) μ                        -- β_r
+  -- 2. α_r
+  let αr := mulUp (subUp (subUp E one) x) s
+  -- 3. β_r
+  let βr := mulUp (divUp (subUp E one) nA) μ
   let cube := fun c : 𝕋 => (⟨fun _ => neg c, fun _ => c⟩ : Interval (Vec 𝕋 n)).zonotope  -- □(c)
-  let P₀ := LinComb.linComb I (eRA I)                               -- P₀ = conv(I, [e^{rA}] I)
-  let Q₀ := P₀ ⊞ cube (addUp αr βr)                                 -- Q₀ = P₀ + □(α_r + β_r)
-  let R₀ := [Q₀]                                                    -- R₀ = Q₀
+  -- 4. P₀ = conv(I, [e^{rA}] I)
+  let P₀ := LinComb.linComb I (eRA I)
+  -- 5. Q₀ = P₀ + □(α_r + β_r)
+  let Q₀ := P₀ ⊞ cube (addUp αr βr)
+  -- 6. R₀ = Q₀
+  let R₀ := [Q₀]
+  -- 7. for i = 1 … N - 1
   pure ((List.range (N - 1)).foldl
     (fun (QR : Zonotope (Vec 𝕋 n) × List (Zonotope (Vec 𝕋 n))) _ =>
-      let Pᵢ := eRA QR.1                                            -- Pᵢ = [e^{rA}] Qᵢ₋₁
-      let Qᵢ := Pᵢ ⊞ cube βr                                        -- Qᵢ = Pᵢ + □(β_r)
-      let Rᵢ := QR.2 ++ [Qᵢ]                                        -- Rᵢ = Rᵢ₋₁ ∪ Qᵢ
+      -- 8. Pᵢ = [e^{rA}] Qᵢ₋₁
+      let Pᵢ := eRA QR.1
+      -- 9. Qᵢ = Pᵢ + □(β_r)
+      let Qᵢ := Pᵢ ⊞ cube βr
+      -- 10. Rᵢ = Rᵢ₋₁ ∪ Qᵢ
+      let Rᵢ := QR.2 ++ [Qᵢ]
       (Qᵢ, Rᵢ))
     (Q₀, R₀)).2
 

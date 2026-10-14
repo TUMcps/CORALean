@@ -57,7 +57,8 @@ def LinearSys.manualReachFloat (sys : LinearSys 𝕋 n)
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let V := sys.inputSetFloat params.U                               -- B U ⊕ c, in the state space
-  sys.manualRunFloat X₀ V Δt η' ρ N (LinearSys.manualInitFloat X₀)  -- 1.-11.
+  -- 1.-11. the loop over the time steps, from the initial state
+  sys.manualRunFloat X₀ V Δt η' ρ N (LinearSys.manualInitFloat X₀)
 
 end CORALean
 

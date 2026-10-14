@@ -33,7 +33,7 @@ the two polytopes. Line 14's union is no constrained zonotope, so the result is 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -71,16 +71,21 @@ noncomputable def LinearSys.maxBackReach (sys : LinearSys 𝕋 n)
     (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
     (Xend : HPolytope (Vec ℝ n)) (U W₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (t₀ tend : ℝ) (η ω : ℕ) : Set (Vec ℝ n) :=
-  let Δt := (tend - t₀) / ω                                         -- 1. Δt ← (t_end - t₀)/ω
+  -- 1. Δt ← (t_end - t₀)/ω
+  let Δt := (tend - t₀) / ω
   let B := Xend.zonotope (fun j => ρ Xend (LinearMap.proj j))       -- box(X_end)
     (fun j => ρ Xend (-LinearMap.proj j))
   let FB := Zonotope.mtimesIntervalMat                              -- F box(X_end), see (19)
     (MatExp.correctionMatrix (toRealMat sys.A) Δt η) B
-  let μ := sys.maxBackReachMu Δt B                                  -- 3. μ ← √γ ‖(e^{AΔt} - I)G‖₂
-  let P₁ := LinearSys.maxBackReachPoly Xend FB μ                    -- 4. P₁ ← X_end ⊖ F box ⊖ B_μ
-  let P₂ := LinearSys.maxBackReachPoly                              -- 5. P₂ ← e^{AΔt}X_end ⊖ …
+  -- 3. μ ← √γ ‖(e^{AΔt} - I)G‖₂
+  let μ := sys.maxBackReachMu Δt B
+  -- 4. P₁ ← X_end ⊖ F box ⊖ B_μ
+  let P₁ := LinearSys.maxBackReachPoly Xend FB μ
+  -- 5. P₂ ← e^{AΔt}X_end ⊖ …
+  let P₂ := LinearSys.maxBackReachPoly
     (Xend.mapEquiv (aux_maxBackReach_expEquiv (toRealMat sys.A) Δt)) FB μ
-  sys.maxBackReachTimeInterval ρ P₁ P₂ U W₀ Zw t₀ tend η ω         -- 2, 6-14
+  -- 2. and 6.-14. the loop over the time intervals and its union
+  sys.maxBackReachTimeInterval ρ P₁ P₂ U W₀ Zw t₀ tend η ω
 
 end CORALean
 

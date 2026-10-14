@@ -32,7 +32,7 @@ carries `d_k`, `P_u(t_k)`, `ρ(H(t_k), ℓ)`, `ρ(P̌_U(t_k), ℓ)` and the two 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -58,26 +58,40 @@ noncomputable def LinearSys.supportLower (sys : LinearSys 𝕋 n) (Δt : ℝ)
     ℕ → LinearSys.SupportLowerState n
   | 0 =>
       let ρX₀ := fun d : Vec ℝ n →ₗ[ℝ] ℝ => d (ν₀ d)                  -- Def. 1
-      let d₀ := ℓ                                                       -- l. 1
-      let ρH₀ := ρX₀ ℓ                                                  -- l. 1
-      let Pu₀ : Vec ℝ n := 0                                            -- l. 3
-      let ρP₀ : ℝ := 0                                                  -- l. 3
+      -- 1. d₀ ← ℓ
+      let d₀ := ℓ
+      -- 1. ρ(H(t₀), ℓ) ← ρ(X₀, ℓ)
+      let ρH₀ := ρX₀ ℓ
+      -- 3. P_u(t₀) ← 0
+      let Pu₀ : Vec ℝ n := 0
+      -- 3. ρ(P̌_U(t₀), ℓ) ← 0
+      let ρP₀ : ℝ := 0
       ⟨d₀, Pu₀, ρH₀, ρP₀, ρH₀ + ρP₀, ρH₀ + ρP₀⟩
   | k + 1 =>
       let s := sys.supportLower Δt ν₀ νU c ℓ k                         -- step `k`
       let A := toRealMat sys.A
       let ρX₀ := fun d : Vec ℝ n →ₗ[ℝ] ℝ => d (ν₀ d)                  -- Def. 1
-      let ũ := c                                                        -- l. 2
-      let ρU₀ := fun d : Vec ℝ n →ₗ[ℝ] ℝ => d (νU d) - d ũ            -- l. 2, U₀ = U - ũ
+      -- 2. ũ ← center(U)
+      let ũ := c
+      -- 2. U₀ ← U - ũ, as a support function
+      let ρU₀ := fun d : Vec ℝ n →ₗ[ℝ] ℝ => d (νU d) - d ũ
       let T := MatExp.expIntegral A Δt                                  -- (13)
-      let PuΔt := T *ᵥ ũ                                                -- l. 4, (12)
-      let ρPΔt := fun d : Vec ℝ n →ₗ[ℝ] ℝ => ρU₀ (d.comp (mulVecLin T)) -- l. 4, (17), (1)
-      let d' := s.d.comp (mulVecLin (exp (Δt • A)))                     -- l. 8
-      let Pu' := exp (Δt • A) *ᵥ s.Pu + PuΔt                            -- l. 9
-      let ρH' := ρX₀ d' + ℓ Pu'                                         -- l. 10
-      let ρP' := s.ρP + ρPΔt s.d                                        -- l. 14
-      let ρR' := ρH' + ρP'                                              -- l. 15
-      let ρRτ := max s.ρH ρH' + s.ρP                                    -- l. 16
+      -- 4. P_u(Δt), eq. (12)
+      let PuΔt := T *ᵥ ũ
+      -- 4. P̌_U(Δt), eq. (17), as a support function by (1)
+      let ρPΔt := fun d : Vec ℝ n →ₗ[ℝ] ℝ => ρU₀ (d.comp (mulVecLin T))
+      -- 8. d_{k+1} ← (e^{AΔt})ᵀ d_k
+      let d' := s.d.comp (mulVecLin (exp (Δt • A)))
+      -- 9. P_u(t_{k+1})
+      let Pu' := exp (Δt • A) *ᵥ s.Pu + PuΔt
+      -- 10. ρ(H(t_{k+1}), ℓ)
+      let ρH' := ρX₀ d' + ℓ Pu'
+      -- 14. ρ(P̌_U(t_{k+1}), ℓ)
+      let ρP' := s.ρP + ρPΔt s.d
+      -- 15. ρ(Ř(t_{k+1}), ℓ)
+      let ρR' := ρH' + ρP'
+      -- 16. ρ(Ř(τ_k), ℓ)
+      let ρRτ := max s.ρH ρH' + s.ρP
       ⟨d', Pu', ρH', ρP', ρR', ρRτ⟩
 
 end CORALean

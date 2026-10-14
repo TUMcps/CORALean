@@ -39,7 +39,7 @@ cannot satisfy `ε_max`, `ε^a_k`/`ε^r_k` named fields to induct on.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -63,39 +63,64 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 noncomputable def LinearSys.autoStep (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (tend εmax ζ : ℝ) (ηmax fuel : ℕ)
     (s : LinearSys.AutoState n) : Option (LinearSys.AutoState n × Zonotope (Vec ℝ n)) :=
-  let ũ := U.c                                                         -- 3. ũ ← Bc_u + p
-  let U₀ : Zonotope (Vec ℝ n) := { h := U.h, c := 0, G := U.G }         -- 3. U₀ ← ⟨0,BG_u⟩_Z
+  -- 3. ũ ← Bc_u + p
+  let ũ := U.c
+  -- 3. U₀ ← ⟨0,BG_u⟩_Z
+  let U₀ : Zonotope (Vec ℝ n) := { h := U.h, c := 0, G := U.G }
   match sys.autoTuneDeltaT le s.H ũ s.t tend εmax ζ s.εa s.Δt ηmax fuel U₀ with
-  | none => none                                                       -- 5.-15. gave out
-  | some (Δtk, ηk) =>                                                  -- 5.-15. Δt_k, η_k
-    let tk1 := s.t + Δtk                                               -- 7. t_{k+1}
+  -- 5.-15. gave out
+  | none => none
+  -- 5.-15. Δt_k, η_k
+  | some (Δtk, ηk) =>
+    -- 7. t_{k+1}
+    let tk1 := s.t + Δtk
     let Φtk := exp (s.t • toRealMat sys.A)                             -- e^{A t_k}
     let Φtk1 := exp (tk1 • toRealMat sys.A)                            -- e^{A t_{k+1}}
     let A' := toRealMat sys.A
-    let bPU0Δt := Zonotope.mtimes (MatExp.particularCoeff A' Δtk 0) U₀ -- 16. bPU_0(Δt_k), eq. (27)
-    let bPUinfΔt := Zonotope.plus                                      -- 16. bPU_∞(Δt_k), eq. (27)
-      (sys.inputTaylorSumTail (S := 𝒵) Δtk U₀ ηk)                      --     ⊕_{i=1}^{η_k} ÃᵢU₀
+    -- 16. bPU_0(Δt_k), eq. (27)
+    let bPU0Δt := Zonotope.mtimes (MatExp.particularCoeff A' Δtk 0) U₀
+    -- 16. bPU_∞(Δt_k), eq. (27), with ⊕_{i=1}^{η_k} ÃᵢU₀
+    let bPUinfΔt := Zonotope.plus
+      (sys.inputTaylorSumTail (S := 𝒵) Δtk U₀ ηk)
       (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A' Δtk ηk) U₀)
-    let PUinfProp := Zonotope.mtimes Φtk bPUinfΔt                      -- 17. e^{At_k}bPU_∞(Δt_k)
-    let PUinfBox := PUinfProp.interval.zonotope                        -- 17. box(·)
-    let PUinf1 := Zonotope.plus s.PUinf PUinfBox                       -- 17. P̂^U_∞(t_{k+1})
-    let PU01 := Zonotope.plus s.PU0 (Zonotope.mtimes Φtk bPU0Δt)       -- 18. P̂^U_0(t_{k+1})
-    let εrτ := tk1 / tend * ζ * εmax - s.εr                            -- 19. eq. (35),(34)
+    -- 17. e^{At_k}bPU_∞(Δt_k)
+    let PUinfProp := Zonotope.mtimes Φtk bPUinfΔt
+    -- 17. box(·)
+    let PUinfBox := PUinfProp.interval.zonotope
+    -- 17. P̂^U_∞(t_{k+1})
+    let PUinf1 := Zonotope.plus s.PUinf PUinfBox
+    -- 18. P̂^U_0(t_{k+1})
+    let PU01 := Zonotope.plus s.PU0 (Zonotope.mtimes Φtk bPU0Δt)
+    -- 19. eq. (35),(34)
+    let εrτ := tk1 / tend * ζ * εmax - s.εr
     match Zonotope.autoTuneSetOrder le PU01 εrτ 0 (PU01.h + 1) with
-    | none => none                                                     -- 20.-22. gave out
-    | some ρk =>                                                       -- 20.-22. ρ_k
-      let PUk1 := Zonotope.plus (Zonotope.reduce PU01 ρk) PUinf1       -- 23. P̂^U(t_{k+1})
-      let PuΔt := sys.stepInputConst ũ Δtk                             -- 24. P^u(Δt_k), eq. (19)
-      let Puk1 := s.Pu + Φtk *ᵥ PuΔt                                   -- 25. P^u(t_{k+1})
-      let Hk1 := Zonotope.plus (Zonotope.mtimes Φtk1 X₀)               -- 26. H(t_{k+1})
+    -- 20.-22. gave out
+    | none => none
+    -- 20.-22. ρ_k
+    | some ρk =>
+      -- 23. P̂^U(t_{k+1})
+      let PUk1 := Zonotope.plus (Zonotope.reduce PU01 ρk) PUinf1
+      -- 24. P^u(Δt_k), eq. (19)
+      let PuΔt := sys.stepInputConst ũ Δtk
+      -- 25. P^u(t_{k+1})
+      let Puk1 := s.Pu + Φtk *ᵥ PuΔt
+      -- 26. H(t_{k+1})
+      let Hk1 := Zonotope.plus (Zonotope.mtimes Φtk1 X₀)
         (Zonotope.ofPoint Puk1)
-      let C := MatExp.curvatureEnclosure A' s.H ũ Δtk ηk               -- 27. C, eq. (15)-(16)
-      let Hτk := Zonotope.plus (Zonotope.linComb s.H Hk1) C            -- 28. Ĥ(τ_k)
-      let Δεa := MatExp.particularSolutionError A' s.t U₀.construct Δtk ηk -- 29. Δε^a_k, eq. (33)
-      let εa1 := s.εa + Δεa                                            -- 29. ε^a_{k+1}
-      let Δεr := PU01.reduceBoxError ρk                                -- 29. Δε^r_k, Prop. 4
-      let εr1 := s.εr + Δεr                                            -- 29. ε^r_{k+1}
-      let Rτk := Zonotope.plus Hτk PUk1                                -- 30. R̂(τ_k)
+      -- 27. C, eq. (15)-(16)
+      let C := MatExp.curvatureEnclosure A' s.H ũ Δtk ηk
+      -- 28. Ĥ(τ_k)
+      let Hτk := Zonotope.plus (Zonotope.linComb s.H Hk1) C
+      -- 29. Δε^a_k, eq. (33)
+      let Δεa := MatExp.particularSolutionError A' s.t U₀.construct Δtk ηk
+      -- 29. ε^a_{k+1}
+      let εa1 := s.εa + Δεa
+      -- 29. Δε^r_k, Prop. 4
+      let Δεr := PU01.reduceBoxError ρk
+      -- 29. ε^r_{k+1}
+      let εr1 := s.εr + Δεr
+      -- 30. R̂(τ_k)
+      let Rτk := Zonotope.plus Hτk PUk1
       some ({ t := tk1, Δt := Δtk, H := Hk1, Pu := Puk1, PU0 := PU01, PUinf := PUinf1,
               εa := εa1, εr := εr1 }, Rτk)
 

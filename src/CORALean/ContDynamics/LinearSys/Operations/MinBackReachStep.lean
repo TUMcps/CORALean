@@ -28,7 +28,7 @@ constant centre trajectory's contribution over one interval.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       19-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -54,19 +54,28 @@ noncomputable def LinearSys.minBackReachStep (sys : LinearSys 𝕋 n)
     (Zw : ℝ → Zonotope (Vec ℝ n)) (Δt : ℝ) (η : ℕ)
     (s : LinearSys.MinBackReachState n) : LinearSys.MinBackReachState n :=
   let Ā : LinearSys ℝ n := LinearSys.canonical (-toRealMat sys.A)  -- time-inverted dynamics
-  let tk1 := s.t + Δt                                               -- 8. t_{k+1} ← t_k + Δt
-  let Φk := exp (s.t • toRealMat Ā.A)                               -- 8. e^{-A t_k}
-  let Φk1 := exp (tk1 • toRealMat Ā.A)                              -- 8. e^{-A t_{k+1}}
-  let ZW₀ := Zonotope.plus s.ZW₀                                    -- 9. Ẑ_{W₀}(-t_{k+1})
+  -- 8. t_{k+1} ← t_k + Δt
+  let tk1 := s.t + Δt
+  -- 8. e^{-A t_k}
+  let Φk := exp (s.t • toRealMat Ā.A)
+  -- 8. e^{-A t_{k+1}}
+  let Φk1 := exp (tk1 • toRealMat Ā.A)
+  -- 9. Ẑ_{W₀}(-t_{k+1})
+  let ZW₀ := Zonotope.plus s.ZW₀
     (Zonotope.mtimes Φk (Ā.inputSolution (S := 𝒵) Δt η W₀))
-  let ZU₀ := Zonotope.plus s.ZU₀                                    -- 12. Ẑ_{U₀}(-t_{k+1})
+  -- 12. Ẑ_{U₀}(-t_{k+1})
+  let ZU₀ := Zonotope.plus s.ZU₀
     (Zonotope.mtimes Φk (Ā.inputSolution (S := 𝒵) Δt η U₀))
-  let ZW := Zonotope.plus ZW₀ (Zw s.t)                              -- 10. Ẑ_W(-τ_k)
-  let hull := ConZonotope.linComb (ConZonotope.mtimes Φk1 CZ)       -- 11. conv(…, …)
+  -- 10. Ẑ_W(-τ_k)
+  let ZW := Zonotope.plus ZW₀ (Zw s.t)
+  -- 11. conv(…, …)
+  let hull := ConZonotope.linComb (ConZonotope.mtimes Φk1 CZ)
     (ConZonotope.mtimes Φk CZ)
-  let curv := ConZonotope.mtimesIntervalMat                         -- 11. F e^{-A t_{k+1}} CZ
+  -- 11. F e^{-A t_{k+1}} CZ
+  let curv := ConZonotope.mtimesIntervalMat
     (MatExp.correctionMatrix (toRealMat Ā.A) Δt η) (ConZonotope.mtimes Φk1 CZ)
-  let R := ConZonotope.plus (ConZonotope.plus hull curv)            -- 11. ⊕ -Ẑ_W(-τ_k)
+  -- 11. ⊕ -Ẑ_W(-τ_k)
+  let R := ConZonotope.plus (ConZonotope.plus hull curv)
     (Zonotope.conZonotope (Zonotope.mtimes (-(1 : Mat ℝ n n)) ZW))
   { t := tk1, ZW₀ := ZW₀, ZU₀ := ZU₀, R := R }
 

@@ -23,7 +23,7 @@ value is the step.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `linComb(R, [e^{AΔt}] R) ⊕ [F] R` over every `A ∈ sys.A`, at Taylor order `η`,
-[1, Alg. 4]. -/
+as the loop of [1] computes it. -/
 def LinParamSys.timeIntervalStepFloat (sys : LinParamSys ℐ[𝕋] n)
     (Δt : 𝕋) (η : ℕ) (R : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                                  -- [e^{AΔt}]
