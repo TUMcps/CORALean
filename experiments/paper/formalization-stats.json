@@ -6453,7 +6453,7 @@
           "matlab-runtime": 11,
           "deprecated": 0
         },
-        "cora_issues": 3,
+        "cora_issues": 4,
         "findings": {
           "correct": 47,
           "underspecified": 8,
@@ -6507,7 +6507,7 @@
           "matlab-runtime": 7,
           "deprecated": 1
         },
-        "cora_issues": 8,
+        "cora_issues": 9,
         "findings": {
           "correct": 31,
           "underspecified": 12,
@@ -6642,7 +6642,7 @@
           "matlab-runtime": 9,
           "deprecated": 0
         },
-        "cora_issues": 0,
+        "cora_issues": 1,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -6696,7 +6696,7 @@
           "matlab-runtime": 5,
           "deprecated": 2
         },
-        "cora_issues": 12,
+        "cora_issues": 14,
         "findings": {
           "correct": 146,
           "underspecified": 48,
@@ -7695,7 +7695,7 @@
           "matlab-runtime": 3,
           "deprecated": 0
         },
-        "cora_issues": 1,
+        "cora_issues": 2,
         "findings": {
           "correct": 0,
           "underspecified": 2,
@@ -8254,7 +8254,7 @@
         "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 41,
-        "cora_issues": 81,
+        "cora_issues": 86,
         "out_of_scope_by_reason": {
           "plotting/display": 51,
           "random/sampling": 37,
@@ -8354,7 +8354,7 @@
         "not_yet": 92,
         "out_of_scope": 24,
         "needs_float": 93,
-        "cora_issues": 9,
+        "cora_issues": 10,
         "out_of_scope_by_reason": {
           "plotting/display": 16,
           "random/sampling": 1,
@@ -8405,7 +8405,7 @@
       "not_yet": 202,
       "out_of_scope": 515,
       "needs_float": 177,
-      "cora_issues": 126,
+      "cora_issues": 132,
       "out_of_scope_by_reason": {
         "plotting/display": 129,
         "random/sampling": 51,
@@ -8441,9 +8441,9 @@
     "theorems": {
       "paper": 1707,
       "float": 1907,
-      "helper": 1684,
-      "lemma": 3043,
-      "total": 8341,
+      "helper": 1686,
+      "lemma": 3050,
+      "total": 8350,
       "examples": 129
     }
   }

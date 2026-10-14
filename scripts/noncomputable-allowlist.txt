@@ -606,3 +606,4 @@ FourValuedSignal.fromKleeneSignal  real-layer: takes the real-layer `STLInterval
 FourValuedSignal.set  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 FourValuedSignal.uniformSignal  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 FourValuedSignal.combine  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+Specification.distancePolyPointCora  spec: CORA's `aux_distancePolyPoint` as printed, with the linear program as an infimum and `linsolve` as a chosen solution, a model for a counterexample and never run

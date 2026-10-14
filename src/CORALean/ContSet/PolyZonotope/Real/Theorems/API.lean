@@ -153,6 +153,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumCoraCounterexample
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaPointConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaCapsuleCoraCrash
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IntervalBernsteinCoraCrash
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaEmptySetIff
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdSubset

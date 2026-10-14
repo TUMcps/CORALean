@@ -6,6 +6,11 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.AutoTuneSetOrder
 public import CORALean.ContSet.Zonotope.Real.Operations.Bilin
+public import CORALean.ContSet.Zonotope.Real.Operations.BoxRadiusCora
+public import CORALean.ContSet.Zonotope.Real.Operations.BoxCora
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitCora
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitFirstGenCora
+public import CORALean.ContSet.Zonotope.Real.Operations.SplitBundleCora
 public import CORALean.ContSet.Zonotope.Real.Operations.Cube
 public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
