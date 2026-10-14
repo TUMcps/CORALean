@@ -8,8 +8,11 @@
 #   python3 scripts/review.py [--any] [--in FRAGMENT] [--main] [--commit]
 #   --main: only main-type files, <Dir>/<Layer>/<Dir>.lean or <Dir>/<Dir>.lean
 #           holding the `MAIN TYPE` banner of check-conventions.sh
+#   python3 scripts/review.py --status: how much is human-reviewed, and how much more the goal
+#           of GOAL (5%) of all files and sections needs
 #   python3 scripts/review.py --self-test
 import datetime
+import math
 import random
 import re
 import shutil
@@ -124,6 +127,22 @@ def units(any_, frag, main=False):
     return out
 
 
+GOAL = 0.05  # the share of files and sections a human should have reviewed
+
+
+def status():
+    """Reviewed units (files and `Basic.lean` sections), overall and for main-type files, and how
+    many more reach GOAL."""
+    rev, tot = tally()
+    main = units(True, None, main=True)
+    mrev = sum(block_state(f.read_text(encoding="utf-8").split("\n"), s)[1] > 0 for f, s, _ in main)
+    need = max(0, math.ceil(GOAL * tot) - rev)
+    print(f"reviewed: {rev} of {tot} files and sections ({100 * rev / tot:.2f}%)")
+    print(f"main-type files: {mrev} of {len(main)} ({100 * mrev / max(1, len(main)):.1f}%)")
+    print(f"goal {GOAL:.0%}: {math.ceil(GOAL * tot)} reviewed; "
+          + (f"{need} more to go" if need else "reached"))
+
+
 def tally():
     tot = rev = 0
     for f in (ROOT / "src").rglob("*.lean"):
@@ -183,6 +202,8 @@ def main():
     a = sys.argv[1:]
     if "--self-test" in a:
         return self_test()
+    if "--status" in a:
+        return status()
     frag = a[a.index("--in") + 1] if "--in" in a else None
     cands = units("--any" in a, frag, "--main" in a)
     random.shuffle(cands)
