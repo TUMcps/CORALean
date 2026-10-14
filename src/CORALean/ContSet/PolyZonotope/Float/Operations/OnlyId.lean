@@ -40,7 +40,7 @@ def PolyZonotope.onlyId (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p))
   (⟨S.card, pZ.h, 0, pZ.c, fun j i => if mask j then pZ.G j i else zero,
       fun k' i => pZ.E (S.orderIsoOfFin rfl k').1 i, Fin.elim0, Interval.origin n⟩,
    ⟨pZ.p, pZ.h, pZ.q, fun _ => zero, fun j i => if mask j then zero else pZ.G j i, pZ.E, pZ.GI,
-      pZ.err⟩)
+      pZ.I_error⟩)
 
 end CORALean.Float
 

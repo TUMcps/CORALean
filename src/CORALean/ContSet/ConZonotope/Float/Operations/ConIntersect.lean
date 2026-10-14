@@ -45,7 +45,7 @@ def ConZonotope.conIntersect (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n)) (cZ₂ : Co
     (M : Mat 𝕋 m n) :
     ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- M (c₁ + G₁ β₁ + e₁): centre and generators rounded down, the rest in a box
-  let W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, cZ₁.G, cZ₁.E⟩
+  let W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, cZ₁.G, cZ₁.I_error⟩
   -- Z = [c₁, G₁, zeros(size(G₂))]
   let G : Fin (cZ₁.h + cZ₂.h) → Vec 𝕋 n := Fin.append cZ₁.G fun _ _ => zero
   -- A = blkdiag(A₁, A₂), b = [b₁; b₂]
@@ -55,13 +55,13 @@ def ConZonotope.conIntersect (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n)) (cZ₂ : Co
     Fin.append (fun j => W.G j i) fun j => neg (cZ₂.G j i)
   -- b = [b; c₂ - M c₁], widened by what the two error boxes let the points differ by
   let bagree : Interval (Vec 𝕋 m) :=
-    ⟨fun i => addDown (subDown (cZ₂.c i) (W.c i)) (subDown (cZ₂.E.inf i) (W.E.sup i)),
-     fun i => addUp (subUp (cZ₂.c i) (W.c i)) (subUp (cZ₂.E.sup i) (W.E.inf i))⟩
+    ⟨fun i => addDown (subDown (cZ₂.c i) (W.c i)) (subDown (cZ₂.I_error.inf i) (W.I_error.sup i)),
+     fun i => addUp (subUp (cZ₂.c i) (W.c i)) (subUp (cZ₂.I_error.sup i) (W.I_error.inf i))⟩
   { h := cZ₁.h + cZ₂.h
     c := cZ₁.c
     G := G
     P := P.intersection (HPolytope.eqs Aagree bagree)
-    E := cZ₁.E }
+    I_error := cZ₁.I_error }
 
 end CORALean.Float
 

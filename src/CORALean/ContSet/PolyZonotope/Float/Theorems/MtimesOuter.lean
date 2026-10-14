@@ -111,9 +111,9 @@ theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (pZ : PolyZonotope (V
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 theorem PolyZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (error pZ).construct + (PolyZonotope.mtimesResidual M pZ).construct ⊆
-      (error (PolyZonotope.mtimes M pZ)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M pZ.err))
+    (toRealMat M *ᵥ ·) '' (I_error pZ).construct + (PolyZonotope.mtimesResidual M pZ).construct ⊆
+      (I_error (PolyZonotope.mtimes M pZ)).construct :=
+  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M pZ.I_error))
     (Interval.plus_outer _ _)
 
 

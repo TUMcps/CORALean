@@ -61,6 +61,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHull
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDimWith
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ZeroMonomials
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Materialise
 
 /-!
 # What `ConPolyZono` computes

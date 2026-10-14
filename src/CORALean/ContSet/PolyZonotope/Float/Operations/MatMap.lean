@@ -46,8 +46,8 @@ def PolyZonotope.matMap (pZ₁ : PolyZonotope (Mat 𝕋 n k)) (pZ₂ : PolyZonot
   let H₁ := PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.extGens pZ₁) pZ₁.GI)
   let H₂ := PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.extGens pZ₂) pZ₂.GI)
   -- the operands' error boxes: `N₁ e₂ + e₁ (N₂ + e₂)`
-  let errs := Interval.matPlus (Interval.matMul H₁ pZ₂.err)
-    (Interval.matMul pZ₁.err (Interval.matPlus H₂ pZ₂.err))
+  let errs := Interval.matPlus (Interval.matMul H₁ pZ₂.I_error)
+    (Interval.matMul pZ₁.I_error (Interval.matPlus H₂ pZ₂.I_error))
   { p := pZ₁.p
     h := (pZ₁.h + 1) * (pZ₂.h + 1)
     q := pZ₁.q * (pZ₂.h + 1) + pZ₁.q * pZ₂.q + (pZ₁.h + 1) * pZ₂.q
@@ -55,7 +55,7 @@ def PolyZonotope.matMap (pZ₁ : PolyZonotope (Mat 𝕋 n k)) (pZ₂ : PolyZonot
     G := PolyZonotope.pairG matMulDown pZ₁ pZ₂
     E := PolyZonotope.bilinE pZ₁ pZ₂ hp
     GI := PolyZonotope.pairGI matMulDown pZ₁ pZ₂
-    err := Interval.matPlus gap errs }
+    I_error := Interval.matPlus gap errs }
 
 end CORALean.Float
 

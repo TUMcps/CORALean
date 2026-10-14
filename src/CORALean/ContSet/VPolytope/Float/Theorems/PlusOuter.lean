@@ -53,10 +53,10 @@ theorem VPolytope.aux_plus_nominal (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
 
 -- the box absorbs the two incoming boxes and that pairwise-sum gap
 theorem VPolytope.aux_plus_error (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
-    (error P₁).construct + (error P₂).construct
+    (I_error P₁).construct + (I_error P₂).construct
       + (VPolytope.columnGap (VPolytope.pairSum addDown P₁ P₂)
-          (VPolytope.pairSum addUp P₁ P₂)).construct ⊆ (error (P₁.plus P₂)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.plus_outer P₁.E P₂.E))
+          (VPolytope.pairSum addUp P₁ P₂)).construct ⊆ (I_error (P₁.plus P₂)).construct :=
+  subset_trans (Set.add_subset_add_right (Interval.plus_outer P₁.I_error P₂.I_error))
     (Interval.plus_outer _ _)
 
 

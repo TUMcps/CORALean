@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.InflatedContSet.Theorems.Convex
 public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
+public import CORALean.ContSet.VPolytope.Float.Operations.Materialise
 public import CORALean.ContSet.VPolytope.Float.VPolytope
 public import CORALean.ContSet.VPolytope.Real.Instances
 
@@ -16,7 +18,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float
 
@@ -47,6 +48,27 @@ carries compactness across: the nominal set is compact as over ℝ, the box by
 Heine–Borel. -/
 theorem VPolytope.isCompact_construct (P : VPolytope (Vec 𝕋 n)) : IsCompact P.construct :=
   InflatedContSet.isCompact_construct P
+
+end CORALean.Float
+
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ================================  `VPolytope.materialise_eq`  ================================ --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialise` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem VPolytope.materialise_eq (P : VPolytope (Vec 𝕋 n)) : P.materialise = P := by
+  simp [VPolytope.materialise]
 
 end CORALean.Float
 

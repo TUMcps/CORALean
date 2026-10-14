@@ -37,7 +37,7 @@ theorem ConZonotope.project_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (dims : F
     (fun x k => x (dims k)) '' cZ.construct ⊆ (cZ.project dims).construct :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.ConZonotope.project_exact (nominal cZ) dims))
-    (Interval.project_outer cZ.E dims)
+    (Interval.project_outer cZ.I_error dims)
 
 end CORALean.Float
 

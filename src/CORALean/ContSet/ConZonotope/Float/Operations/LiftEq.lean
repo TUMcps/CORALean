@@ -43,7 +43,7 @@ def ConZonotope.liftEq (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋
   h := cZ.h
   c := Fin.append cZ.c fun _ => zero
   G := fun j => Fin.append (cZ.G j) fun i => cZ.P.Ae i j
-  E := ⟨Fin.append cZ.E.inf fun _ => zero, Fin.append cZ.E.sup fun _ => zero⟩
+  I_error := ⟨Fin.append cZ.I_error.inf fun _ => zero, Fin.append cZ.I_error.sup fun _ => zero⟩
 
 end CORALean.Float
 

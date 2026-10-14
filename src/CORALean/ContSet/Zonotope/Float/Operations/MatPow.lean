@@ -1,7 +1,8 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.MatMul
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
+public import CORALean.ContSet.Zonotope.Float.Operations.MatMul
+public import CORALean.ContSet.Zonotope.Float.Operations.MaterialiseMat
 
 @[expose] public section
 

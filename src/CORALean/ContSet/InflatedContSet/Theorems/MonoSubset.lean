@@ -32,7 +32,7 @@ variable [InflatedContSet S N (Vec 𝕋 n) (Vec ℝ n)] [InflatedContSet T M (Ve
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem mono_subset {s : S} {t : T} (hnominal : nominalSet s ⊆ nominalSet t)
-    (herror : (error s).construct ⊆ (error t).construct) :
+    (herror : (I_error s).construct ⊆ (I_error t).construct) :
     construct s ⊆ construct t :=
   Set.add_subset_add hnominal herror
 

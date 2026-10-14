@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n h : ℕ}
 
 /-- The box radius, rounded up; halving is exact, so only the difference rounds. -/
 def Zonotope.errorRadius (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
-  fun i => half (subUp (Z.E.sup i) (Z.E.inf i))
+  fun i => half (subUp (Z.I_error.sup i) (Z.I_error.inf i))
 
 
 -- ================================  `Zonotope.generatorError`  ================================= --
@@ -103,7 +103,7 @@ def Zonotope.pointMat (A : Mat 𝕋 m n) : Zonotope (Mat 𝕋 m n) :=
 /-- The box midpoint added to the centre, rounded up — the other side of the gap
 `shiftDown` leaves for `absorbError` to store. -/
 def Zonotope.shiftUp (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
-  fun i => addUp (Z.c i) (half (addUp (Z.E.inf i) (Z.E.sup i)))
+  fun i => addUp (Z.c i) (half (addUp (Z.I_error.inf i) (Z.I_error.sup i)))
 
 
 -- ====================================  `Zonotope.stBeta`  ===================================== --
@@ -115,7 +115,7 @@ def Zonotope.shiftUp (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
 /-- The approximate coefficients of the centres, `H (c₁ - c₂ - e₂)`, with `e₂` the lower corner of
 the second error box. -/
 def Zonotope.stBeta (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) : Vec 𝕋 Z₂.h :=
-  fun k => dotDown (H k) fun l => subDown (subDown (Z₁.c l) (Z₂.c l)) (Z₂.E.inf l)
+  fun k => dotDown (H k) fun l => subDown (subDown (Z₁.c l) (Z₂.c l)) (Z₂.I_error.inf l)
 
 
 -- ====================================  `Zonotope.stGamma`  ==================================== --

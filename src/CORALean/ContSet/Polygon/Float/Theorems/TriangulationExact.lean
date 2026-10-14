@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Float.Operations.Triangulation
 public import CORALean.ContSet.Polygon.Real.Theorems.ConstructEqTriples
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Float.VPolytope
 
 @[expose] public section
@@ -42,7 +43,7 @@ theorem Polygon.triangulation_exact (P : Polygon 𝕋) :
     rfl
   · -- the nominal part of a triangle is the real triangle of the nominal vertices
     have hnom : ∀ (p : VPolytope (Vec 𝕋 2)) (a b c : Fin p.k),
-        (nominal (⟨3, ![p.V a, p.V b, p.V c], p.E⟩ : VPolytope (Vec 𝕋 2))) =
+        (nominal (⟨3, ![p.V a, p.V b, p.V c], p.I_error⟩ : VPolytope (Vec 𝕋 2))) =
           (⟨3, ![(nominal p).V a, (nominal p).V b, (nominal p).V c]⟩ :
             Real.VPolytope (Vec ℝ 2)) := fun p a b c => by
       show Real.VPolytope.mk 3 _ = _

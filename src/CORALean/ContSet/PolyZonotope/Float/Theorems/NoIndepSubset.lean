@@ -37,8 +37,8 @@ theorem PolyZonotope.noIndep_subset (pZ : PolyZonotope (Vec 𝕋 n)) :
     congr 1
     funext j
     exact j.elim0
-  show InflatedContSet.nominalSet pZ.noIndep + pZ.err.construct
-    ⊆ InflatedContSet.nominalSet pZ + pZ.err.construct
+  show InflatedContSet.nominalSet pZ.noIndep + pZ.I_error.construct
+    ⊆ InflatedContSet.nominalSet pZ + pZ.I_error.construct
   have h2 : InflatedContSet.nominalSet pZ.noIndep
       = ((InflatedContSet.nominal pZ).noIndep).construct := by
     show ContSet.construct (InflatedContSet.nominal pZ.noIndep) = _

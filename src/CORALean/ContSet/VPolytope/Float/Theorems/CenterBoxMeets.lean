@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
+public import CORALean.ContSet.VPolytope.Float.Theorems.NominalEq
 public import CORALean.ContSet.VPolytope.Real.Operations.Center
 public import CORALean.ContSet.VPolytope.Real.Theorems.CenterMem
 
@@ -57,7 +58,7 @@ theorem VPolytope.aux_div_le {s sU k kD kU : ℝ} (hs : s ≤ sU) (hD : 0 < kD) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.centerBox_meets (P : VPolytope (Vec 𝕋 n)) (hk : 0 < P.k) :
-    ∃ x ∈ P.centerBox.construct, {x} + P.E.construct ⊆ P.construct := by -- --- PROOF ---
+    ∃ x ∈ P.centerBox.construct, {x} + P.I_error.construct ⊆ P.construct := by -- --- PROOF ---
   -- the exact mean of the nominal vertices
   refine ⟨(InflatedContSet.nominal P).center, ?_, ?_⟩
   · -- the two roundings of the count, the lower one floored at one

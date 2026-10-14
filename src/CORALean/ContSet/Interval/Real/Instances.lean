@@ -2,14 +2,15 @@ module
 
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
 public import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 public import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
 public import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Interval.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.Interval.Real.Theorems.MinkDiffExact
 public import CORALean.ContSet.Interval.Real.Theorems.PlusExact
 public import CORALean.ContSet.Interval.Real.Theorems.ReindexExact
 public import Mathlib.Analysis.InnerProductSpace.Basic

@@ -91,7 +91,7 @@ def PolyZonotope.quadMapGUp (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope (Vec
 never empty, so only an empty error box (some coordinate with `sup < inf`, by `ltStrict`) makes
 the set empty; a `true` is sound. -/
 def PolyZonotope.representsa_emptySet (pZ : PolyZonotope (Vec 𝕋 n)) : Bool :=
-  pZ.err.representsa_emptySet
+  pZ.I_error.representsa_emptySet
 
 
 -- ==================================  `PolyZonotope.resolve`  ================================== --

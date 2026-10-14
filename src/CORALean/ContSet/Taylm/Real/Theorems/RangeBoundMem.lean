@@ -1,8 +1,10 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.RangeBound
-public import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalEncloses
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalEncloses
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 

@@ -50,7 +50,7 @@ def SpectraShadow.containsPoint (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (p : Vec �
   let lo : Vec 𝕋 n := fun r => subDown (p r) (addUp (S.c r) (dotUp (fun j => S.G j r) β))
   let hi : Vec 𝕋 n := fun r => subUp (p r) (addDown (S.c r) (dotDown (fun j => S.G j r) β))
   symmetric && dominant &&
-    (List.finRange n).all fun r => le (S.E.inf r) (lo r) && le (hi r) (S.E.sup r)
+    (List.finRange n).all fun r => le (S.I_error.inf r) (lo r) && le (hi r) (S.I_error.sup r)
 
 end CORALean.Float
 

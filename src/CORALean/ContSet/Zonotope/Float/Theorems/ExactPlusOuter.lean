@@ -103,7 +103,8 @@ theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ)
 
 theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
     (Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).construct
-      + (Z₁.E.construct + Z₂.E.construct) ⊆ (Z₁.exactPlus Z₂ k).construct := by -- --- PROOF ---
+      + (Z₁.I_error.construct + Z₂.I_error.construct) ⊆ (Z₁.exactPlus Z₂ k).construct
+        := by -- --- PROOF ---
   rintro _ ⟨y, ⟨δ, hδ, rfl⟩, _, ⟨e₁, he₁, e₂, he₂, rfl⟩, rfl⟩
   set F := Z₁.exactPlus Z₂ k with hF
   -- the stored nominal point on the same coefficients
@@ -119,7 +120,7 @@ theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
   -- the box absorbs the two incoming boxes and both roundings
   have hE : e₁ + e₂ + (fun i => (toReal (Z₁.c i) + toReal (Z₂.c i)) - toReal (F.c i))
       + (fun i => ∑ j, (((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
-        - toReal (F.G j i)) * δ j) ∈ F.E.construct :=
+        - toReal (F.G j i)) * δ j) ∈ F.I_error.construct :=
     Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _
       ⟨e₁, he₁, e₂, he₂, rfl⟩, _, hr₁, rfl⟩, _, hr₂, rfl⟩
   refine ⟨_, hp, _, hE, ?_⟩

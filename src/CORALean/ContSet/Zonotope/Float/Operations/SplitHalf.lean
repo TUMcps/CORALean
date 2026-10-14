@@ -35,7 +35,7 @@ def Zonotope.splitHalf (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n
   h := Z.h
   c := fun i => addDown (Z.c i) (s i)
   G := Function.update Z.G j fun i => half (Z.G j i)
-  E := Z.E.plus (Zonotope.centerResidual Z.c s)
+  I_error := Z.I_error.plus (Zonotope.centerResidual Z.c s)
 
 end CORALean.Float
 

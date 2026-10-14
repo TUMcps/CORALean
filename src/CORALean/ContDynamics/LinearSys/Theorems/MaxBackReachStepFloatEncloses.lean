@@ -78,8 +78,8 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n)) (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n))
     (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n)) (sr : LinearSys.MaxBackReachState n)
     (hs : s.Encloses sr) (hΔt : 0 < toReal Δt)
-    (hU0 : (0 : Vec ℝ n) ∈ U.E.construct) (hU : U.construct ⊆ construct Ur)
-    (hWE : W₀.E = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
+    (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
+    (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
     (hZw : construct (Zwr sr.t) ⊆ (Zw s.tLo s.tHi).construct)
     (hP₁ : P₁.construct ⊆ P₁r.construct) (hP₂ : P₂.construct ⊆ P₂r.construct)
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
@@ -118,8 +118,8 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
   have hΦk : Φk' ∈ Φk.construct := sys.exp_mem_expIntervalFloat hadmk hs.tLo_le hs.le_tHi
   have hI : Ξ ∈ I.construct := sys.expIntegral_mem_adaptiveIntegralFloat hΔt.le hadm'
   have hM : Φk' * Ξ ∈ M.construct := Interval.matMul_outer _ _ hΦk hI
-  have hT0 : (0 : Vec ℝ n) ∈ T.E.construct := by
-    show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat M U).materialise).E.construct
+  have hT0 : (0 : Vec ℝ n) ∈ T.I_error.construct := by
+    show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat M U).materialise).I_error.construct
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_mtimesIntervalMat_error hM hU0
   -- the disturbance sets: the exact `Ẑ_{W₀}` is inside the float one
@@ -145,7 +145,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     exact Plus.plus_outer ZW₀ _ (Set.add_mem_add (h5 ha) (hZw hb))
   refine ⟨h1lo, h1hi, ?_, ?_, h5, h6, ?_⟩
   -- the error box of the new `Z̲_U` holds `0`
-  · show (0 : Vec ℝ n) ∈ ((Zonotope.plus s.ZU T).materialise).E.construct
+  · show (0 : Vec ℝ n) ∈ ((Zonotope.plus s.ZU T).materialise).I_error.construct
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_plus_error hs.zero_mem hT0
   -- a point of the new `Z̲_U`: the old one's, plus the new term's, plus the boxes

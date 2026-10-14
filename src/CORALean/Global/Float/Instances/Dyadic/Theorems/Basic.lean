@@ -4,6 +4,7 @@ public import CORALean.Global.Float.Instances.Dyadic.Dyadic
 public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 public import CORALean.Global.Float.Instances.Dyadic.Operations.ToRat
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import Mathlib.Algebra.Ring.CharZero
 
 @[expose] public section
@@ -17,7 +18,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float
 

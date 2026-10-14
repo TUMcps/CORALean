@@ -70,9 +70,9 @@ theorem SpectraShadow.Inf_exact (n : ℕ) :
       simp [SpectraShadow.Inf, toReal_zero, h]
   -- the box is the origin, so the sum is unchanged
   show InflatedContSet.nominalSet (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n))
-      + (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)).E.construct = _
+      + (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)).I_error.construct = _
   rw [hN]
-  have hE : (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)).E.construct = {0} :=
+  have hE : (SpectraShadow.Inf n : SpectraShadow 𝕋 (Vec 𝕋 n)).I_error.construct = {0} :=
     Interval.origin_exact n
   rw [hE]
   simp

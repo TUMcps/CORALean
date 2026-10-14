@@ -47,7 +47,7 @@ def Zonotope.exactPlus (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Zonotope 
   { h := m + (Z₁.h - m) + (Z₂.h - m)
     c := fun i => addDown (Z₁.c i) (Z₂.c i)
     G := fun j i => Fin.append (Fin.append (shared i) (rest₁ i)) (rest₂ i) j
-    E := ((Z₁.E.plus Z₂.E).plus (Zonotope.centerResidual Z₁.c Z₂.c)).plus
+    I_error := ((Z₁.I_error.plus Z₂.I_error).plus (Zonotope.centerResidual Z₁.c Z₂.c)).plus
       (Zonotope.generatorError (Z₁.exactPlusGap Z₂ k)) }
 
 end CORALean.Float

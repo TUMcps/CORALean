@@ -97,9 +97,9 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (cPZ : ConPolyZono �
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 theorem ConPolyZono.aux_mtimes_error (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (error cPZ).construct + (ConPolyZono.mtimesResidual M cPZ).construct ⊆
-      (error (ConPolyZono.mtimes M cPZ)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M cPZ.err))
+    (toRealMat M *ᵥ ·) '' (I_error cPZ).construct + (ConPolyZono.mtimesResidual M cPZ).construct ⊆
+      (I_error (ConPolyZono.mtimes M cPZ)).construct :=
+  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M cPZ.I_error))
     (Interval.plus_outer _ _)
 
 

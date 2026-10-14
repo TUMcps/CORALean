@@ -1,7 +1,9 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Materialise
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
 
 @[expose] public section

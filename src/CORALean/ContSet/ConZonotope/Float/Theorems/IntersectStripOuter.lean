@@ -89,7 +89,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
     intro k
     have h : y₁ k + e k = x k := congrFun hx k
     rw [← h, hy₁ k]
-  set W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩ with hW
+  set W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.I_error⟩ with hW
   -- the exact entries of `C G`
   set CG : Mat ℝ s cZ.h := fun k j => ∑ l, toReal (C k l) * toReal (cZ.G j l) with hCG
   have hCx : ∀ k, (toRealMat C *ᵥ x) k = (∑ l, toReal (C k l) * toReal (cZ.c l))
@@ -119,7 +119,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
   -- the image's nominal point at `ξ`, and what is left of `C x`, inside the image's box
   set eW : Vec ℝ s := fun k =>
     (toRealMat C *ᵥ x) k - (toReal (W.c k) + ∑ j, toReal (W.G j k) * ξ j) with heW
-  have heWmem : eW ∈ W.E.construct := by
+  have heWmem : eW ∈ W.I_error.construct := by
     have hgen : ∀ k j, |CG k j - toReal (mulVecDown C (cZ.G j) k)|
         ≤ toReal (matMulDiff C (fun i j => cZ.G j i) k j) := by
       intro k j
@@ -130,7 +130,8 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
       rw [abs_le]
       exact ⟨by linarith, by linarith⟩
     -- the box's image, then the centre's and the generators' rounding
-    refine Interval.plus_outer _ _ ⟨toRealMat C *ᵥ e, Interval.mtimes_outer C cZ.E ⟨e, he, rfl⟩,
+    refine Interval.plus_outer _ _
+        ⟨toRealMat C *ᵥ e, Interval.mtimes_outer C cZ.I_error ⟨e, he, rfl⟩,
       _, Interval.plus_outer _ _
         ⟨_, Interval.sub_mem_residual (stored := mulVecDown C cZ.c)
             (fun k => ⟨dotDown_le (C k) cZ.c, le_dotUp (C k) cZ.c⟩),
@@ -201,14 +202,14 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
     exact ⟨by simp only [hcLo]; linarith, by simp only [hcHi]; linarith⟩
   -- `e - Λ C e`, inside the box of the two interval images
   have heΛ : e - toRealMat Λ *ᵥ (toRealMat C *ᵥ e)
-      ∈ (cZ.E.minus (Interval.mtimes Λ (Interval.mtimes C cZ.E))).construct :=
+      ∈ (cZ.I_error.minus (Interval.mtimes Λ (Interval.mtimes C cZ.I_error))).construct :=
     Interval.minus_outer _ _ ⟨e, he, _, Interval.mtimes_outer Λ _
-      ⟨_, Interval.mtimes_outer C cZ.E ⟨e, he, rfl⟩, rfl⟩, rfl⟩
+      ⟨_, Interval.mtimes_outer C cZ.I_error ⟨e, he, rfl⟩, rfl⟩, rfl⟩
   -- the strip rows, and the old ones on the first block
   have hPnew : Fin.append ξ ν ∈ ((cZ.P.padLeft s).intersection (HPolytope.eqs
       (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k) else zero)
-      ⟨fun k => subDown (subDown (y k) (W.c k)) (W.E.sup k),
-       fun k => subUp (subUp (y k) (W.c k)) (W.E.inf k)⟩)).construct := by
+      ⟨fun k => subDown (subDown (y k) (W.c k)) (W.I_error.sup k),
+       fun k => subUp (subUp (y k) (W.c k)) (W.I_error.inf k)⟩)).construct := by
     refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_padLeft_iff.mpr ?_,
       HPolytope.mem_eqs_iff.mpr fun k => ?_⟩
     · rw [blockLeft_append]; exact hP
@@ -221,21 +222,21 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
           (fun h => absurd (Finset.mem_univ k) h), if_pos rfl, toReal_neg]
         ring
       -- the row is `y - W.c - eW`, and `eW` is inside the image's box
-      have hb : toReal (W.E.inf k) ≤ eW k ∧ eW k ≤ toReal (W.E.sup k) := heWmem k
+      have hb : toReal (W.I_error.inf k) ≤ eW k ∧ eW k ≤ toReal (W.I_error.sup k) := heWmem k
       have he' := hνeq k
       have hk : ∑ j, toReal (W.G j k) * ξ j - toReal (φ k) * ν k
           = toReal (y k) - toReal (W.c k) - eW k := by
         simp only [heW]; linarith
-      show toReal (subDown (subDown (y k) (W.c k)) (W.E.sup k))
+      show toReal (subDown (subDown (y k) (W.c k)) (W.I_error.sup k))
           ≤ (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k)
             else zero) *ᵥ Fin.append ξ ν) k
         ∧ (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k)
-            else zero) *ᵥ Fin.append ξ ν) k ≤ toReal (subUp (subUp (y k) (W.c k)) (W.E.inf k))
+            else zero) *ᵥ Fin.append ξ ν) k ≤ toReal (subUp (subUp (y k) (W.c k)) (W.I_error.inf k))
       rw [hrow, hk]
       have h1 := subDown_le_sub (y k) (W.c k)
-      have h2 := subDown_le_sub (subDown (y k) (W.c k)) (W.E.sup k)
+      have h2 := subDown_le_sub (subDown (y k) (W.c k)) (W.I_error.sup k)
       have h3 := sub_le_subUp (y k) (W.c k)
-      have h4 := sub_le_subUp (subUp (y k) (W.c k)) (W.E.inf k)
+      have h4 := sub_le_subUp (subUp (y k) (W.c k)) (W.I_error.inf k)
       exact ⟨by linarith, by linarith⟩
   -- the bracket the gain multiplies is zero: the strip rows at `x`
   have hbr : ∀ k, wR k - ∑ j, CG k j * ξ j + toReal (φ k) * ν k

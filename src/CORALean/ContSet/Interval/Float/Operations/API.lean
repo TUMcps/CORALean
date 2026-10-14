@@ -75,6 +75,8 @@ public import CORALean.ContSet.Interval.Float.Operations.RoundAwayInt
 public import CORALean.ContSet.Interval.Float.Operations.Round
 public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
 public import CORALean.ContSet.Interval.Float.Operations.Submatrix
+public import CORALean.ContSet.Interval.Float.Operations.Materialise
+public import CORALean.ContSet.Interval.Float.Operations.MaterialiseMat
 
 /-!
 # What `Interval` computes

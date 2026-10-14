@@ -35,7 +35,7 @@ def VPolytope.projectHighDim (P : VPolytope (Vec 𝕋 n)) (dims : Fin n → Fin 
   k := P.k
   V := fun l j =>
     if h : ∃ k, dims k = j then P.V l (Fin.find (fun k => dims k = j) h) else zero
-  E := P.E.projectHighDim_ N dims
+  I_error := P.I_error.projectHighDim_ N dims
 
 end CORALean.Float
 

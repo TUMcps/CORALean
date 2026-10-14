@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Definitions.IsConformDyn
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import Mathlib.Algebra.BigOperators.Intervals
 public import Mathlib.Tactic.LinearCombination
 public import Mathlib.Tactic.Module

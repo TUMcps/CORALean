@@ -33,7 +33,7 @@ def Ellipsoid.reindex (e : Fin m ≃ Fin n) (E : Ellipsoid 𝕋 n) : Ellipsoid �
   k := E.k
   q := fun i => E.q (e i)
   G := fun i j => E.G (e i) j
-  err := E.err.reindex e
+  I_error := E.I_error.reindex e
 
 end CORALean.Float
 

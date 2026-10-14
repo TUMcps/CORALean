@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 /-- Some piece with a nonempty box and three vertices certified not collinear. -/
 def Polygon.isFullDim (P : Polygon 𝕋) : Bool :=
   P.sets.any fun p =>
-    ((List.finRange 2).all fun i => le (p.E.inf i) (p.E.sup i)) &&
+    ((List.finRange 2).all fun i => le (p.I_error.inf i) (p.I_error.sup i)) &&
       (List.finRange p.k).any fun a => (List.finRange p.k).any fun b =>
         (List.finRange p.k).any fun c => Polygon.crossCertified p a b c
 

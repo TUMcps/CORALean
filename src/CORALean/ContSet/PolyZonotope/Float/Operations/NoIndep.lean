@@ -37,7 +37,7 @@ def PolyZonotope.noIndep (pZ : PolyZonotope (Vec ğ•‹ n)) : PolyZonotope (Vec ğ
   G := pZ.G
   E := pZ.E
   GI := Fin.elim0
-  err := pZ.err
+  I_error := pZ.I_error
 
 end CORALean.Float
 

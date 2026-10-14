@@ -3,6 +3,9 @@ module
 public import CORALean.ContSet.Taylm.Real.Definitions.Scaled
 public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.Trace
+public import CORALean.ContSet.Taylm.Real.Taylm
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
 
@@ -18,10 +21,43 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-
 namespace CORALean.Real
 
 variable {n : ℕ}
+
+
+-- ==================================  `Taylm.degree_single`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A unit vector has degree one -/
+theorem Taylm.degree_single (k : Fin n) : Taylm.degree (Pi.single k 1 : Fin n → ℕ) = 1 := by
+  simp [Taylm.degree, Finset.sum_pi_single']
+
+
+-- ===================================  `Taylm.monomial_add`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- A monomial of a sum of exponents is the product of the monomials. -/
+theorem Taylm.monomial_add (e₁ e₂ : Fin n → ℕ) (t : Vec ℝ n) :
+    Taylm.monomial (e₁ + e₂) t = Taylm.monomial e₁ t * Taylm.monomial e₂ t := by
+  simp [Taylm.monomial, pow_add, Finset.prod_mul_distrib]
+
+
+-- ==================================  `Taylm.monomial_zero`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The monomial of the zero exponent is `1`. -/
+theorem Taylm.monomial_zero (t : Vec ℝ n) : Taylm.monomial 0 t = 1 := by
+  simp [Taylm.monomial]
 
 
 -- ===================================  `Taylm.const_outer`  ==================================== --
@@ -36,17 +72,6 @@ theorem Taylm.const_outer (c : ℝ) (N : ℕ) : (Taylm.const n c N).Encloses fun
   simp [Taylm.const, Taylm.poly, Taylm.monomial_zero]
 
 
--- ==================================  `Taylm.degree_single`  =================================== --
--- Authors:       Claude Opus 5.5
--- Written:       03-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A unit vector has degree one -/
-theorem Taylm.degree_single (k : Fin n) : Taylm.degree (Pi.single k 1 : Fin n → ℕ) = 1 := by
-  simp [Taylm.degree, Finset.sum_pi_single']
-
-
 -- ===================================  `Taylm.mtimes_outer`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
@@ -58,6 +83,18 @@ theorem Taylm.mtimes_outer {k m : ℕ} (M : Mat ℝ k m) {T : Fin m → Taylm n}
     {f : Fin m → Vec ℝ n → ℝ} (h : ∀ j, (T j).Encloses (f j)) (i : Fin k) :
     (Taylm.mtimes M T i).Encloses fun t => ∑ j, M i j * f j t :=
   Taylm.sum_outer fun j => Taylm.smul_outer (M i j) (h j)
+
+
+-- ===================================  `Taylm.polyOf_ofFn`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The polynomial of a term family is the sum of its terms. -/
+theorem Taylm.polyOf_ofFn {h : ℕ} (F : Fin h → ℝ × (Fin n → ℕ)) (t : Vec ℝ n) :
+    Taylm.polyOf (List.ofFn F) t = ∑ j, (F j).1 * Taylm.monomial (F j).2 t := by
+  simp [Taylm.polyOf, List.sum_ofFn]
 
 
 -- ===================================  `Taylm.trace_outer`  ==================================== --

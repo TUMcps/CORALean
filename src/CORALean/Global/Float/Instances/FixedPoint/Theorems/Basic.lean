@@ -3,6 +3,7 @@ module
 public import CORALean.Global.Float.Instances.FixedPoint.FixedPoint
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealDef
 
 @[expose] public section
 
@@ -15,7 +16,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float.FixedPoint
 

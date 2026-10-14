@@ -92,7 +92,7 @@ theorem ConPolyZono.aux_minkDiff_fold :
 
 /-- Outer: `P ⊖ Z ⊆ minkDiff P Z` for a float subtrahend whose error box holds `0`. -/
 theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n))
-    (h0 : (0 : Vec ℝ n) ∈ Z.E.construct) :
+    (h0 : (0 : Vec ℝ n) ∈ Z.I_error.construct) :
     minkowskiDiff cPZ₁.construct Z.construct ⊆ (cPZ₁.minkDiff Z).construct := by -- --- PROOF ---
   intro x hx
   refine ConPolyZono.aux_minkDiff_fold Z.G _

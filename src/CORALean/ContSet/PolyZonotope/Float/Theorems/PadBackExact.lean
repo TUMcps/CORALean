@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.padBack_exact (r : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct = (pZ.padBack r).construct := by -- --- PROOF ---
-  show InflatedContSet.nominalSet pZ + pZ.err.construct
-    = InflatedContSet.nominalSet (pZ.padBack r) + pZ.err.construct
+  show InflatedContSet.nominalSet pZ + pZ.I_error.construct
+    = InflatedContSet.nominalSet (pZ.padBack r) + pZ.I_error.construct
   have h : InflatedContSet.nominalSet (pZ.padBack r)
       = ((InflatedContSet.nominal pZ).padBack r).construct := rfl
   rw [h, ← Real.PolyZonotope.padBack_exact]

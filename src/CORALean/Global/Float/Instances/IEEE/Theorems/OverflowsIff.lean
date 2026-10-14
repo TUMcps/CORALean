@@ -1,7 +1,9 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.IEEE.Operations.Overflows
+public import CORALean.Global.Float.Instances.IEEE.Theorems.Basic
 
 @[expose] public section
 

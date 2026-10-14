@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 lies in the stored half: same coefficients, and the centre rounding in the box. -/
 theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n)
     {zn e : Vec ℝ n}
-    (he : e ∈ Z.E.construct) (β : Vec ℝ Z.h) (hβ : ∀ k, |β k| ≤ 1)
+    (he : e ∈ Z.I_error.construct) (β : Vec ℝ Z.h) (hβ : ∀ k, |β k| ≤ 1)
     (hzn : ∀ i, zn i = toReal (Z.c i) + toReal (s i)
       + ∑ k, β k * Function.update (fun k => toReal (Z.G k i)) j (toReal (Z.G j i) / 2) k) :
     zn + e ∈ (Z.splitHalf j s).construct := by -- --- PROOF ---
@@ -62,7 +62,7 @@ theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s 
   refine ⟨fun i => toReal ((Z.splitHalf j s).c i)
             + ∑ k, toReal ((Z.splitHalf j s).G k i) * β k,
     Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩, _,
-    Interval.plus_outer Z.E (Zonotope.centerResidual Z.c s) ⟨e, he, _, hr, rfl⟩, ?_⟩
+    Interval.plus_outer Z.I_error (Zonotope.centerResidual Z.c s) ⟨e, he, _, hr, rfl⟩, ?_⟩
   -- compare coordinate by coordinate: the stored sum reads as the real halved one
   funext i
   have hs : ∑ k, toReal ((Z.splitHalf j s).G k i) * β k

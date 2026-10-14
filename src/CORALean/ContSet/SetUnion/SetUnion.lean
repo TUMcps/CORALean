@@ -24,7 +24,7 @@ growing worklist only wants to append.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,12 +47,6 @@ def SetUnion.construct [ContSet S α] (u : SetUnion S) : Set α :=
   ⋃ s ∈ u.sets, ContSet.construct s
 
 instance [ContSet S α] : ContSet (SetUnion S) α := ⟨SetUnion.construct⟩
-
-/-- Unfolds membership to a witnessing branch, for every proof below. -/
-theorem SetUnion.mem_construct [ContSet S α] {u : SetUnion S} {x : α} :
-    x ∈ ContSet.construct u ↔ ∃ s ∈ u.sets, x ∈ ContSet.construct s := by
-  show x ∈ SetUnion.construct u ↔ _
-  simp [SetUnion.construct]
 
 end CORALean
 

@@ -1,21 +1,22 @@
 module
 
-public import CORALean.ContSet.VPolytope.Float.Theorems.MatPolytopeExact
-public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectHighDimOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.BoundDotLe
-public import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
-public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.ConstructEmptySet
 public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
+public import CORALean.ContSet.VPolytope.Float.Theorems.BoundDotLe
+public import CORALean.ContSet.VPolytope.Float.Theorems.CenterBoxMeets
+public import CORALean.ContSet.VPolytope.Float.Theorems.ConstructEmptySet
 public import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.EnclosePointsExact
-public import CORALean.ContSet.VPolytope.Float.Theorems.OriginExact
-public import CORALean.ContSet.VPolytope.Float.Theorems.CenterBoxMeets
+public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.MatPolytopeExact
+public import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.NominalEq
+public import CORALean.ContSet.VPolytope.Float.Theorems.NominalLinComb
+public import CORALean.ContSet.VPolytope.Float.Theorems.OriginExact
+public import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectHighDimOuter
+public import CORALean.ContSet.VPolytope.Float.Theorems.ProjectOuter
 
 /-!
 # What the float `VPolytope` guarantees

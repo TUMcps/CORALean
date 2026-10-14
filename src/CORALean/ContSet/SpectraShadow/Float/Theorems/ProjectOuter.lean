@@ -37,7 +37,7 @@ theorem SpectraShadow.project_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (dims 
     (fun x k => x (dims k)) '' S.construct ⊆ (S.project dims).construct :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.SpectraShadow.project_exact (nominal S) dims))
-    (Interval.project_outer S.E dims)
+    (Interval.project_outer S.I_error dims)
 
 end CORALean.Float
 

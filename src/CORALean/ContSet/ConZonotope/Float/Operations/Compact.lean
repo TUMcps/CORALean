@@ -55,7 +55,7 @@ def ConZonotope.compact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 
         Ae := fun r l => cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l)
         be := ⟨fun r => cZ.P.be.inf (R.orderEmbOfFin rfl r),
                fun r => cZ.P.be.sup (R.orderEmbOfFin rfl r)⟩ }
-    E := cZ.E }
+    I_error := cZ.I_error }
 
 end CORALean.Float
 

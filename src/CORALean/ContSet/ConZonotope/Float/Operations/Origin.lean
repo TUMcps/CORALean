@@ -35,7 +35,7 @@ def ConZonotope.origin (n : ℕ) : ConZonotope 𝕋 (Vec 𝕋 n) where
   c := fun _ => zero
   G := Fin.elim0
   P := HPolytope.fullspace 𝕋 0
-  E := Interval.origin n
+  I_error := Interval.origin n
 
 end CORALean.Float
 

@@ -35,7 +35,7 @@ def ConZonotope.reindex (e : Fin m ≃ Fin n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n
   c := fun i => cZ.c (e i)
   G := fun j i => cZ.G j (e i)
   P := cZ.P
-  E := cZ.E.reindex e
+  I_error := cZ.I_error.reindex e
 
 end CORALean.Float
 

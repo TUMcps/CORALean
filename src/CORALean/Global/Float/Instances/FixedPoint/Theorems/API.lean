@@ -13,6 +13,7 @@ public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealHalf
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMaximum
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMinimum
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealDef
 
 /-!
 # What `FixedPoint` guarantees

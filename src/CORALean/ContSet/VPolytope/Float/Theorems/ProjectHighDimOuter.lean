@@ -49,7 +49,7 @@ theorem VPolytope.projectHighDim_outer (P : VPolytope (Vec 𝕋 n)) {dims : Fin 
       refine (Finset.sum_eq_zero fun k _ => ?_).symm
       have : dims k ≠ j := fun hk => h ⟨k, hk⟩
       simp [this]
-  refine image_subset (fun _ _ => ?_) ?_ (Interval.projectHighDim_outer P.E dims hdims)
+  refine image_subset (fun _ _ => ?_) ?_ (Interval.projectHighDim_outer P.I_error dims hdims)
   · rw [hmat, hmat, hmat, Matrix.mulVec_add]
   · -- the nominal vertices of the result are the padded nominal vertices
     have hnom : nominal (P.projectHighDim dims) =

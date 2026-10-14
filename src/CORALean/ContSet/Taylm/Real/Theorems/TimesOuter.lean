@@ -1,10 +1,12 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.Times
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Taylm.Real.Operations.Times
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import Mathlib.Tactic.LinearCombination
 
 @[expose] public section

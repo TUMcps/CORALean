@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 public import CORALean.ContDynamics.LinearSys.Operations.Reach
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

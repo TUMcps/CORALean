@@ -40,9 +40,9 @@ def PolyZonotope.interval (pZ : PolyZonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 
   let rG := radius fun i l => pZ.G l i
   let rGI := radius fun i j => pZ.GI j i
   { inf := fun i => subDown (subDown (subDown (pZ.c i) (rG i)) (rGI i))
-      (PolyZonotope.errorBound pZ.err i)
+      (PolyZonotope.errorBound pZ.I_error i)
     sup := fun i => addUp (addUp (addUp (pZ.c i) (rG i)) (rGI i))
-      (PolyZonotope.errorBound pZ.err i) }
+      (PolyZonotope.errorBound pZ.I_error i) }
 
 open SoundFloatArithmetic InflatedContSet
 
@@ -63,27 +63,27 @@ theorem PolyZonotope.interval_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
     (fun _ _ => le_refl _) hβ i
   set rG := radius fun i l => pZ.G l i
   set rGI := radius fun i j => pZ.GI j i
-  have herr : |e i| ≤ toReal (PolyZonotope.errorBound pZ.err i) :=
-    PolyZonotope.abs_le_errorBound (I := pZ.err) he i
+  have herr : |e i| ≤ toReal (PolyZonotope.errorBound pZ.I_error i) :=
+    PolyZonotope.abs_le_errorBound (I := pZ.I_error) he i
   have hzi : z i = toReal (pZ.c i)
       + (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
       + ∑ j, toReal (pZ.GI j i) * β j := hz i
   -- each face on its own, the three roundings all going away from the set
   constructor
   · have h1 := subDown_le_sub (subDown (subDown (pZ.c i) (rG i)) (rGI i))
-      (PolyZonotope.errorBound pZ.err i)
+      (PolyZonotope.errorBound pZ.I_error i)
     have h2 := subDown_le_sub (subDown (pZ.c i) (rG i)) (rGI i)
     have h3 := subDown_le_sub (pZ.c i) (rG i)
     show toReal (subDown (subDown (subDown (pZ.c i) (rG i)) (rGI i))
-        (PolyZonotope.errorBound pZ.err i)) ≤ z i + e i
+        (PolyZonotope.errorBound pZ.I_error i)) ≤ z i + e i
     rw [hzi]
     linarith [neg_le_of_abs_le hdep, neg_le_of_abs_le hind, neg_le_of_abs_le herr]
   · have h1 := add_le_addUp (addUp (addUp (pZ.c i) (rG i)) (rGI i))
-      (PolyZonotope.errorBound pZ.err i)
+      (PolyZonotope.errorBound pZ.I_error i)
     have h2 := add_le_addUp (addUp (pZ.c i) (rG i)) (rGI i)
     have h3 := add_le_addUp (pZ.c i) (rG i)
     show z i + e i ≤ toReal (addUp (addUp (addUp (pZ.c i) (rG i)) (rGI i))
-      (PolyZonotope.errorBound pZ.err i))
+      (PolyZonotope.errorBound pZ.I_error i))
     rw [hzi]
     linarith [le_of_abs_le hdep, le_of_abs_le hind, le_of_abs_le herr]
 

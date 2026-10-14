@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def VPolytope.convHull (P Q : VPolytope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := P.k + Q.k
   V := Fin.append P.V Q.V
-  E := P.E.or Q.E
+  I_error := P.I_error.or Q.I_error
 
 end CORALean.Float
 

@@ -77,7 +77,7 @@ def VPolytope.conZonotope (P : VPolytope (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec �
   c := fun _ => zero
   G := P.V
   P := VPolytope.simplex 𝕋 P.k
-  E := P.E
+  I_error := P.I_error
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

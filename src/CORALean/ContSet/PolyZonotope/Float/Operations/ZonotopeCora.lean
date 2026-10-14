@@ -44,7 +44,7 @@ def PolyZonotope.zonotopeCora (pZ : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec �
   { h := pZ.h + pZ.q
     c := cLo
     G := Fin.append G pZ.GI
-    E := ⟨pZ.err.inf, fun i => addUp (pZ.err.sup i) (subUp (cHi i) (cLo i))⟩ }
+    I_error := ⟨pZ.I_error.inf, fun i => addUp (pZ.I_error.sup i) (subUp (cHi i) (cLo i))⟩ }
 
 end CORALean.Float
 

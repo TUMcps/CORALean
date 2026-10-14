@@ -49,7 +49,7 @@ def Ellipsoid.plus (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) : Ellipsoid
   k := E₁.k + E₂.k
   q := fun i => addDown (E₁.q i) (E₂.q i)
   G := Ellipsoid.plusG s₁ s₂ E₁ E₂
-  err := (E₁.err.plus E₂.err).plus
+  I_error := (E₁.I_error.plus E₂.I_error).plus
     ((Ellipsoid.centerResidual E₁.q E₂.q).plus
       (Ellipsoid.generatorError (Ellipsoid.plusGap s₁ s₂ E₁ E₂)))
 

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.Specification
+public import CORALean.Specification.Theorems.Basic
 public import Mathlib.Analysis.Convex.Hull
 
 @[expose] public section

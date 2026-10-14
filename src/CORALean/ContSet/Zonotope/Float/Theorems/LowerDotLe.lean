@@ -33,14 +33,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.lowerDot_le (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n)
-    (hE : ∀ i, toReal (Z.E.inf i) ≤ toReal (Z.E.sup i)) :
+    (hE : ∀ i, toReal (Z.I_error.inf i) ≤ toReal (Z.I_error.sup i)) :
     ∃ x ∈ Z.construct, toReal (Z.lowerDot a) ≤ ∑ i, toReal (a i) * x i := by -- --- PROOF ---
   -- the generator signs and the box corner the support formula names
   set s : Fin Z.h → ℝ := fun j => ∑ i, toReal (a i) * toReal (Z.G j i) with hs
   set β : Vec ℝ Z.h := fun j => if 0 ≤ s j then 1 else -1 with hβ
   set e : Vec ℝ n := fun i =>
-    if toReal (a i) * toReal (Z.E.inf i) ≤ toReal (a i) * toReal (Z.E.sup i)
-    then toReal (Z.E.inf i) else toReal (Z.E.sup i) with he
+    if toReal (a i) * toReal (Z.I_error.inf i) ≤ toReal (a i) * toReal (Z.I_error.sup i)
+    then toReal (Z.I_error.inf i) else toReal (Z.I_error.sup i) with he
   -- the signs are admissible coefficients, and the corner is in the box
   have hβ1 : ∀ j, |β j| ≤ 1 := fun j => by
     by_cases h : 0 ≤ s j <;> simp [hβ, h]
@@ -48,11 +48,11 @@ theorem Zonotope.lowerDot_le (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n)
     by_cases h : 0 ≤ s j
     · simp [hβ, h, abs_of_nonneg h]
     · simp [hβ, h, abs_of_neg (not_le.mp h)]
-  have hemem : e ∈ Z.E.construct := fun i => by
-    show toReal (Z.E.inf i) ≤ e i ∧ e i ≤ toReal (Z.E.sup i)
-    by_cases h : toReal (a i) * toReal (Z.E.inf i) ≤ toReal (a i) * toReal (Z.E.sup i)
-    · rw [show e i = toReal (Z.E.inf i) from if_pos h]; exact ⟨le_rfl, hE i⟩
-    · rw [show e i = toReal (Z.E.sup i) from if_neg h]; exact ⟨hE i, le_rfl⟩
+  have hemem : e ∈ Z.I_error.construct := fun i => by
+    show toReal (Z.I_error.inf i) ≤ e i ∧ e i ≤ toReal (Z.I_error.sup i)
+    by_cases h : toReal (a i) * toReal (Z.I_error.inf i) ≤ toReal (a i) * toReal (Z.I_error.sup i)
+    · rw [show e i = toReal (Z.I_error.inf i) from if_pos h]; exact ⟨le_rfl, hE i⟩
+    · rw [show e i = toReal (Z.I_error.sup i) from if_neg h]; exact ⟨hE i, le_rfl⟩
   set z : Vec ℝ n := fun i => toReal (Z.c i) + ∑ j, toReal (Z.G j i) * β j with hz
   refine ⟨z + e, ⟨z, Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ1, fun i => rfl⟩, e, hemem, rfl⟩, ?_⟩
   -- the value at that point
@@ -92,11 +92,11 @@ theorem Zonotope.lowerDot_le (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n)
     · exact le_trans hlo (le_abs_self _)
     · exact le_trans (neg_le_neg hhi) (neg_le_abs _)
   -- the box: the smaller end of each coordinate
-  have hb : toReal (sumDown fun i => minimum (mulDown (a i) (Z.E.inf i))
-      (mulDown (a i) (Z.E.sup i))) ≤ ∑ i, toReal (a i) * e i := by
+  have hb : toReal (sumDown fun i => minimum (mulDown (a i) (Z.I_error.inf i))
+      (mulDown (a i) (Z.I_error.sup i))) ≤ ∑ i, toReal (a i) * e i := by
     refine le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun i _ => ?_)
     rw [toReal_minimum]
-    by_cases h : toReal (a i) * toReal (Z.E.inf i) ≤ toReal (a i) * toReal (Z.E.sup i)
+    by_cases h : toReal (a i) * toReal (Z.I_error.inf i) ≤ toReal (a i) * toReal (Z.I_error.sup i)
     · simp only [he, if_pos h]
       exact le_trans (min_le_left _ _) (mulDown_le_mul _ _)
     · simp only [he, if_neg h]

@@ -70,7 +70,7 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
   -- `A` known only to within `matResidual` of the centre matrix
   have hR : R ∈ Rs.construct := Interval.sub_mem_matResidual fun i j => hA (i, j)
   -- the residual on the error box, box times box
-  have hRe : R *ᵥ e ∈ (Interval.mtimesIntervalMat Rs cZ.E).construct :=
+  have hRe : R *ᵥ e ∈ (Interval.mtimesIntervalMat Rs cZ.I_error).construct :=
     Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hR ⟨e, he, rfl⟩)
   -- the residual on the nominal part, within the new generators
   have hbound' := Zonotope.abs_residual_le IM hR (ConZonotope.aux_nominal_zonotope hz)

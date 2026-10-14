@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.centre_mem_construct (E : Ellipsoid 𝕋 n)
-    (h0 : ∀ i, toReal (E.err.inf i) ≤ 0 ∧ 0 ≤ toReal (E.err.sup i)) :
+    (h0 : ∀ i, toReal (E.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (E.I_error.sup i)) :
     toRealVec E.centre ∈ E.construct :=
   ⟨toRealVec E.centre,
     Ellipsoid.mem_nominalSet_iff.mpr ⟨0, by simp [norm₂_zero], fun i => by

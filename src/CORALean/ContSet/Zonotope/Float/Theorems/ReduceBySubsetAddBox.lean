@@ -17,7 +17,7 @@ block stores, so the two match exactly rather than merely bound one another.
 `reduceByBox`'s own error box is degenerately `0`, so its membership costs
 nothing beyond the nominal part.
 
-`reduceBy` never touches the box — `E := Z.E` — so `y₂` witnesses membership in
+`reduceBy` never touches the box — `I_error := Z.I_error` — so `y₂` witnesses membership in
 `Z`'s own error box directly, with no need of a `0`-in-the-box hypothesis the
 way `plus` and `mtimes` do.
 -/
@@ -86,7 +86,7 @@ theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec 𝕋 n))
   -- the box's own point: the dropped rows' rounded-up radius, at `β`'s natAdd half
   set z : Vec ℝ n :=
     fun i => toReal (radius (fun i l => Z.G (part.right l) i) i) * β (Fin.natAdd q i) with hzdef
-  have hzero : (0 : Vec ℝ n) ∈ (Zonotope.reduceByBox Z part).E.construct := fun i =>
+  have hzero : (0 : Vec ℝ n) ∈ (Zonotope.reduceByBox Z part).I_error.construct := fun i =>
     ⟨by show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i
         rw [toReal_zero]; exact le_refl 0,
      by show (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)

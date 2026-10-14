@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.ExactAdd
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.Basic
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealDef
 public import Mathlib.Tactic.Positivity
 
 @[expose] public section

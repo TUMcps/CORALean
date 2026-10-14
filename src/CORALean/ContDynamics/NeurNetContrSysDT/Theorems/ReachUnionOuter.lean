@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachUnionExac
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.ReachUnion
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.NN.Theorems.SoundEval
 
 @[expose] public section

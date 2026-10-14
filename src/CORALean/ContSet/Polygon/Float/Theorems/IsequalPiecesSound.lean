@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Float.Operations.IsequalPieces
 public import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

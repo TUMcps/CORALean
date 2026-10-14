@@ -32,7 +32,7 @@ def Zonotope.project (Z : Zonotope (Vec 𝕋 n)) (dims : Fin m → Fin n) : Zono
   h := Z.h
   c := fun k => Z.c (dims k)
   G := fun j k => Z.G j (dims k)
-  E := Z.E.project dims
+  I_error := Z.I_error.project dims
 
 end CORALean.Float
 

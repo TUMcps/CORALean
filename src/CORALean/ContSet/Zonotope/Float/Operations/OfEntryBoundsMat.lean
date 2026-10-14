@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The lower bounds stored, the gaps to the upper ones paid into the box beside `E`. -/
+/-- The lower bounds stored, the gaps to the upper ones paid into the box beside `I_error`. -/
 def Zonotope.ofEntryBoundsMat {h : ℕ} (cLo cHi : Mat 𝕋 m n) (GLo GHi : Fin h → Mat 𝕋 m n)
     (E : Interval (Mat 𝕋 m n)) : Zonotope (Mat 𝕋 m n) :=
   let W : Mat 𝕋 m n := fun i j => sumUp fun k => subUp (GHi k i j) (GLo k i j)   -- Σ widths
@@ -41,7 +41,7 @@ def Zonotope.ofEntryBoundsMat {h : ℕ} (cLo cHi : Mat 𝕋 m n) (GLo GHi : Fin 
   { h := h
     c := cLo
     G := GLo
-    E := Interval.matPlus (Interval.matPlus E Ec) ⟨fun i j => neg (W i j), W⟩ }
+    I_error := Interval.matPlus (Interval.matPlus E Ec) ⟨fun i j => neg (W i j), W⟩ }
 
 end CORALean.Float
 

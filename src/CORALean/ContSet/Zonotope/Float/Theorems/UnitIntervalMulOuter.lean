@@ -51,16 +51,17 @@ theorem Zonotope.unitIntervalMul_outer (Z : Zonotope (Vec 𝕋 n)) {s : ℝ} (hs
     · ring
     · exact Finset.sum_congr rfl fun j _ => by ring
   · -- `|s eᵢ| ≤ |eᵢ| ≤ max(|E̲ᵢ|, |Ēᵢ|)`
-    have hei : toReal (Z.E.inf i) ≤ e i ∧ e i ≤ toReal (Z.E.sup i) := he i
-    have hm : |e i| ≤ max |toReal (Z.E.inf i)| |toReal (Z.E.sup i)| := by
+    have hei : toReal (Z.I_error.inf i) ≤ e i ∧ e i ≤ toReal (Z.I_error.sup i) := he i
+    have hm : |e i| ≤ max |toReal (Z.I_error.inf i)| |toReal (Z.I_error.sup i)| := by
       rcases le_total 0 (e i) with h0 | h0
       · exact le_max_of_le_right (by rw [abs_of_nonneg h0]; exact hei.2.trans (le_abs_self _))
       · exact le_max_of_le_left (by
           rw [abs_of_nonpos h0]; exact (neg_le_neg hei.1).trans (neg_le_abs _))
     have hse : |s * e i| ≤ |e i| := by
       rw [abs_mul]; exact mul_le_of_le_one_left (abs_nonneg _) hs
-    show toReal (neg (maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i)))) ≤ s * e i ∧
-      s * e i ≤ toReal (maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i)))
+    show toReal (neg (maximum (absolute (Z.I_error.inf i)) (absolute (Z.I_error.sup i)))) ≤ s * e i
+        ∧
+      s * e i ≤ toReal (maximum (absolute (Z.I_error.inf i)) (absolute (Z.I_error.sup i)))
     rw [toReal_neg, toReal_maximum, toReal_absolute, toReal_absolute]
     exact abs_le.mp (hse.trans hm)
 

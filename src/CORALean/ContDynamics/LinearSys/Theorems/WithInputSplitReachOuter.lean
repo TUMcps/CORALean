@@ -13,6 +13,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubM
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

@@ -35,7 +35,7 @@ def Zonotope.abs (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := Z.h
   c := fun i => absolute (Z.c i)
   G := fun j i => absolute (Z.G j i)
-  E := Z.E
+  I_error := Z.I_error
 
 end CORALean.Float
 

@@ -1,6 +1,10 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import Mathlib.Algebra.BigOperators.Pi
 
@@ -30,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Zonotope.taylm (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) : Fin n → Taylm 𝕋 Z.h :=
   fun i => ⟨(Z.c i, 0) :: List.ofFn (fun j => (Z.G j i, Pi.single j 1)),
-    Z.E.inf i, Z.E.sup i, N⟩
+    Z.I_error.inf i, Z.I_error.sup i, N⟩
 
 variable [SoundFloatArithmetic 𝕋]
 
@@ -65,8 +69,8 @@ theorem Zonotope.taylm_exact (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) :
     obtain ⟨β, hβ, hpβ⟩ := Zonotope.mem_nominalSet_iff.mp hp
     refine ⟨β, hβ, fun i => ?_⟩
     rw [Zonotope.aux_taylm_poly]
-    have h2 : toReal (Z.E.inf i) ≤ e i ∧ e i ≤ toReal (Z.E.sup i) := he i
-    show toReal (Z.E.inf i) ≤ (p + e) i - _ ∧ (p + e) i - _ ≤ toReal (Z.E.sup i)
+    have h2 : toReal (Z.I_error.inf i) ≤ e i ∧ e i ≤ toReal (Z.I_error.sup i) := he i
+    show toReal (Z.I_error.inf i) ≤ (p + e) i - _ ∧ (p + e) i - _ ≤ toReal (Z.I_error.sup i)
     rw [Pi.add_apply, hpβ i]
     constructor <;> linarith [h2.1, h2.2]
 

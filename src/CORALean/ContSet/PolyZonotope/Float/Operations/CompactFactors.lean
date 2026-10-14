@@ -39,7 +39,7 @@ def PolyZonotope.compactFactors (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope 
   G := pZ.G
   E := fun k i => pZ.E (Real.PolyZonotope.factorIdx pZ.E k) i
   GI := pZ.GI
-  err := pZ.err
+  I_error := pZ.I_error
 
 end CORALean.Float
 

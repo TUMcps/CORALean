@@ -44,7 +44,7 @@ def PolyZonotope.getSubset (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen 
   E := fun k' l => if k' = k then ((finProdFinEquiv.symm l).2 : ℕ)
     else pZ.E k' (finProdFinEquiv.symm l).1
   GI := pZ.GI
-  err := pZ.err.plus (PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad))
+  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad))
 
 end CORALean.Float
 

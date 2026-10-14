@@ -1,6 +1,9 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Taylm.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.Global.Float.ListSum
 
 @[expose] public section

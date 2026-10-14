@@ -1,9 +1,10 @@
 module
 
-public import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
 public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
+public import CORALean.ContSet.VPolytope.Float.Theorems.NominalEq
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
 
 @[expose] public section
 
@@ -52,18 +53,18 @@ theorem VPolytope.aux_convHull_nominal (P Q : VPolytope (Vec 𝕋 n)) :
 
 theorem VPolytope.convHull_outer (P Q : VPolytope (Vec 𝕋 n)) :
     convexHull ℝ (P.construct ∪ Q.construct) ⊆ (P.convHull Q).construct := by -- --- PROOF ---
-  have hbox : (error (P.convHull Q)).construct = (P.E.or Q.E).construct := rfl
+  have hbox : (I_error (P.convHull Q)).construct = (P.I_error.or Q.I_error).construct := rfl
   refine convexHull_min ?_ ?_
   · -- each operand's point is a nominal point plus an error
     rintro x (⟨a, ha, e, he, rfl⟩ | ⟨a, ha, e, he, rfl⟩)
     · refine ⟨a, ?_, e, ?_, rfl⟩
       · rw [VPolytope.aux_convHull_nominal]
         exact subset_convexHull ℝ _ (Or.inl ha)
-      · exact Interval.or_outer P.E Q.E (Or.inl he)
+      · exact Interval.or_outer P.I_error Q.I_error (Or.inl he)
     · refine ⟨a, ?_, e, ?_, rfl⟩
       · rw [VPolytope.aux_convHull_nominal]
         exact subset_convexHull ℝ _ (Or.inr ha)
-      · exact Interval.or_outer P.E Q.E (Or.inr he)
+      · exact Interval.or_outer P.I_error Q.I_error (Or.inr he)
   · -- a sum of two convex sets
     refine Convex.add ?_ ?_
     · rw [VPolytope.aux_convHull_nominal]

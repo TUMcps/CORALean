@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.Taylm.Real.Operations.BranchAndBound
 public import CORALean.ContSet.Taylm.Real.Theorems.BnbLoopMem
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoxBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Taylm.Real.Theorems.ReexpBoxBoundsMem
 
 @[expose] public section

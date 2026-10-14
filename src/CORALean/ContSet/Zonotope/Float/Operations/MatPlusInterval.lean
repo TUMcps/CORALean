@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 def Zonotope.matPlusInterval (Z : Zonotope (Mat 𝕋 m n)) (I : Interval (Mat 𝕋 m n)) :
     Zonotope (Mat 𝕋 m n) :=
-  { Z with E := Interval.matPlus Z.E I }
+  { Z with I_error := Interval.matPlus Z.I_error I }
 
 end CORALean.Float
 

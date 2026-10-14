@@ -52,7 +52,7 @@ def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPol
     A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
     b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
     EC := Real.ConPolyZono.padE (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) 1
-    err := pZ.err }
+    I_error := pZ.I_error }
 
 end CORALean.Float
 

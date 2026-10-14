@@ -40,8 +40,8 @@ def checksum (toD : 𝕋 → Float) (arr : Array (Zonotope (Vec 𝕋 2))) : Floa
     let cSum := (Array.ofFn Z.c).foldl (· + toD ·) 0.0
     let rowSum (i : Fin 2) : Float := (Array.ofFn fun j => Z.G j i).foldl (· + toD ·) 0.0
     let gSum := (Array.ofFn rowSum).foldl (· + ·) 0.0
-    let iSum := (Array.ofFn Z.E.inf).foldl (· + toD ·) 0.0
-    let sSum := (Array.ofFn Z.E.sup).foldl (· + toD ·) 0.0
+    let iSum := (Array.ofFn Z.I_error.inf).foldl (· + toD ·) 0.0
+    let sSum := (Array.ofFn Z.I_error.sup).foldl (· + toD ·) 0.0
     acc + cSum + gSum + iSum + sSum) 0.0
 
 /-- The middle sample once `xs` is sorted -- `reps` is always small and odd in

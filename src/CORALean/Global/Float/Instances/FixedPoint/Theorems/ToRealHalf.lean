@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.Half
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealDef
 
 @[expose] public section
 

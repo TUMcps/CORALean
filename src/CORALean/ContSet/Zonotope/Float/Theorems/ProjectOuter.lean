@@ -37,7 +37,7 @@ theorem Zonotope.project_outer (Z : Zonotope (Vec 𝕋 n)) (dims : Fin m → Fin
     (fun x k => x (dims k)) '' Z.construct ⊆ (Z.project dims).construct :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.Zonotope.project_exact (nominal Z) dims))
-    (Interval.project_outer Z.E dims)
+    (Interval.project_outer Z.I_error dims)
 
 end CORALean.Float
 

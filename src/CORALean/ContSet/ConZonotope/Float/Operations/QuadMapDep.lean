@@ -50,7 +50,7 @@ def ConZonotope.quadMapDep (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (
   c := ConZonotope.quadMapCDown Q cZ
   G := fun l i => ConZonotope.quadMapGDown Q cZ i l
   P := (cZ.P.padLeft cZ.h).padLeft (cZ.h * cZ.h)
-  E := (Interval.residual (ConZonotope.quadMapCDown Q cZ) (ConZonotope.quadMapCUp Q cZ)
+  I_error := (Interval.residual (ConZonotope.quadMapCDown Q cZ) (ConZonotope.quadMapCUp Q cZ)
     (ConZonotope.quadMapCDown Q cZ)).plus
       (Zonotope.generatorError (ConZonotope.quadMapGDiff Q cZ))
 

@@ -273,14 +273,14 @@ def parseZonotope (j : Json) : Except String (DynZonotope 𝕋) := do
   let ⟨n, cVec⟩ ← parseVec readD (← field j "c")
   let ⟨h, gMat⟩ ← parseMatRowsFixed readD n (← field j "G")
   let eBox ← parseIntervalVecFixed readD n (← field j "E")
-  pure ⟨n, { h := h, c := cVec, G := fun j i => gMat i j, E := eBox }⟩
+  pure ⟨n, { h := h, c := cVec, G := fun j i => gMat i j, I_error := eBox }⟩
 
 /-- The same, at an already-known `n` -- the second zonotope of a two-operand op. -/
 def parseZonotopeFixed (n : Nat) (j : Json) : Except String (Zonotope (Vec 𝕋 n)) := do
   let cVec ← parseVecFixed readD n (← field j "c")
   let ⟨h, gMat⟩ ← parseMatRowsFixed readD n (← field j "G")
   let eBox ← parseIntervalVecFixed readD n (← field j "E")
-  pure { h := h, c := cVec, G := fun j i => gMat i j, E := eBox }
+  pure { h := h, c := cVec, G := fun j i => gMat i j, I_error := eBox }
 
 variable (showD : 𝕋 → String)
 
@@ -305,7 +305,7 @@ def printIntervalMat {r c : Nat} (I : Interval (Mat 𝕋 r c)) : Json :=
 def printZonotope {n : Nat} (Z : Zonotope (Vec 𝕋 n)) : Json :=
   Json.mkObj
     [("c", printVec showD Z.c), ("G", printMat showD fun i j => Z.G j i),
-      ("E", printIntervalVec showD Z.E)]
+      ("E", printIntervalVec showD Z.I_error)]
 
 end CORALean.Oracle
 

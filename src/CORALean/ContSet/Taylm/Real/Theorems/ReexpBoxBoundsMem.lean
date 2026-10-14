@@ -1,11 +1,13 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.ReexpBoxBounds
 public import CORALean.ContSet.Taylm.Real.Definitions.Box
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
+public import CORALean.ContSet.Taylm.Real.Operations.ReexpBoxBounds
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
-public import Mathlib.Tactic.Linarith
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
 public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 

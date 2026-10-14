@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.SetIntersection.Theorems.MtimesOuter
 public import CORALean.ContSet.SetIntersection.Theorems.PlusOuter
 public import CORALean.ContSet.SetIntersection.Theorems.ReduceOuter

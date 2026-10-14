@@ -40,7 +40,7 @@ def Zonotope.cubMapDep (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope (Vec
   h := (Z.h + 1) * (Z.h + 1) * (Z.h + 1)
   c := Zonotope.cubMapCDown T Z
   G := fun l i => Zonotope.cubMapGDown T Z i l
-  E := (Interval.residual (Zonotope.cubMapCDown T Z) (Zonotope.cubMapCUp T Z)
+  I_error := (Interval.residual (Zonotope.cubMapCDown T Z) (Zonotope.cubMapCUp T Z)
     (Zonotope.cubMapCDown T Z)).plus (Zonotope.generatorError (Zonotope.cubMapGDiff T Z))
 
 end CORALean.Float

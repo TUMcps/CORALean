@@ -54,7 +54,7 @@ def Zonotope.minkDiffAlignedCandidate (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (hh : 
     else subUp (Z₁.G i r) (Z₂.G (Fin.cast hh i) r)
   let G := fun i r =>  -- ρ · (g₁ᵢ - g₂ᵢ), rounded towards zero
     if le zero (diff i r) then mulDown ρ (diff i r) else mulUp ρ (diff i r)
-  { h := Z₁.h, c := c, G := G, E := Interval.origin n }
+  { h := Z₁.h, c := c, G := G, I_error := Interval.origin n }
 
 end CORALean.Float
 

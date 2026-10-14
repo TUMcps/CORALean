@@ -56,7 +56,8 @@ def Polygon.innerHRep (p : VPolytope (Vec 𝕋 2)) : Option (HPolytope 𝕋 (Vec
     i.val == 0 || i.val + 1 == p.k ||
       ltStrict zero (Polygon.orientBounds (p.V ⟨0, i.pos⟩) (p.V i) (p.V (finRotate p.k i))).1
   -- the error box holds the origin
-  let origin : Bool := (List.finRange 2).all fun j => le (p.E.inf j) zero && le zero (p.E.sup j)
+  let origin : Bool := (List.finRange 2).all fun j => le (p.I_error.inf j) zero && le zero
+      (p.I_error.sup j)
   -- the outward normal `(dᵢ₁, -dᵢ₀)` and its bound at `vᵢ`, rounded down
   let A : Mat 𝕋 p.k 2 := fun i => ![d i 1, neg (d i 0)]
   let b : Vec 𝕋 p.k := fun i => dotDown (A i) (p.V i)

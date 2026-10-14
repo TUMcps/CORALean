@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) (cen rad : 𝕋) :
     (Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).construct
-        + cPZ.err.construct ⊆ (cPZ.getSubset k cen rad).construct := by -- --- PROOF ---
+        + cPZ.I_error.construct ⊆ (cPZ.getSubset k cen rad).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hsat, hz⟩ := Real.ConPolyZono.mem_construct_iff.mp hz
   -- the rounding of the generators, scaled by the monomials, lies in the added box
@@ -64,8 +64,8 @@ theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : F
     ?_, ?_⟩
   · -- the sum of the two boxes' points is a point of the interval sum
     intro i
-    have h₁ : toReal (cPZ.toPolyZonotope.err.inf i) ≤ e i := (he i).1
-    have h₂ : e i ≤ toReal (cPZ.toPolyZonotope.err.sup i) := (he i).2
+    have h₁ : toReal (cPZ.toPolyZonotope.I_error.inf i) ≤ e i := (he i).1
+    have h₂ : e i ≤ toReal (cPZ.toPolyZonotope.I_error.sup i) := (he i).2
     -- the generator rounding's point, within its own box
     have h₃ : toReal ((PolyZonotope.generatorError
           (cPZ.toPolyZonotope.getSubsetGDiff k cen rad)).inf i) ≤

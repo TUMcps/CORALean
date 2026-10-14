@@ -90,10 +90,10 @@ theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) 
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
 theorem PolyZonotope.aux_plus_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
-    pZ₁.err.construct + pZ₂.err.construct
+    pZ₁.I_error.construct + pZ₂.I_error.construct
         + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct ⊆
-      (pZ₁.plus pZ₂).err.construct :=
-  subset_trans (Set.add_subset_add_right (Interval.plus_outer pZ₁.err pZ₂.err))
+      (pZ₁.plus pZ₂).I_error.construct :=
+  subset_trans (Set.add_subset_add_right (Interval.plus_outer pZ₁.I_error pZ₂.I_error))
     (Interval.plus_outer _ _)
 
 

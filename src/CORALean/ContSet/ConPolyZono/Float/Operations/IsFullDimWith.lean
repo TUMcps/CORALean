@@ -42,7 +42,7 @@ def ConPolyZono.isFullDimWith (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (H : Mat �
     && (List.finRange cPZ.m).all (fun i =>
       le (cPZ.b.inf i) (dotDown (cPZ.A i) cPZ.zeroMonomials)
         && le (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b.sup i))
-    && (List.finRange n).all fun i => le (cPZ.err.inf i) (cPZ.err.sup i)
+    && (List.finRange n).all fun i => le (cPZ.I_error.inf i) (cPZ.I_error.sup i)
 
 end CORALean.Float
 

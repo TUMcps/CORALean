@@ -31,7 +31,7 @@ def Ellipsoid.project (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) : Ellipsoi
   k := E.k
   q := fun i => E.q (dims i)
   G := fun i j => E.G (dims i) j
-  err := E.err.project dims
+  I_error := E.I_error.project dims
 
 end CORALean.Float
 

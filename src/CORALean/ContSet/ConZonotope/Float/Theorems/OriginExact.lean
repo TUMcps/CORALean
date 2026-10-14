@@ -53,11 +53,11 @@ theorem ConZonotope.origin_exact (n : ℕ) :
       refine ⟨fun j => j.elim0, fun j => j.elim0, HPolytope.mem_fullspace _, ?_⟩
       show (0 : Vec ℝ n) = toRealVec (fun _ : Fin n => (zero : 𝕋)) + ∑ j : Fin 0, _
       simp [hc]
-  have hE : (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).E.construct = {0} :=
+  have hE : (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.construct = {0} :=
     Interval.origin_exact n
   -- the sum of the two singletons
   show InflatedContSet.nominalSet (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n))
-      + (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).E.construct = _
+      + (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.construct = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

@@ -55,7 +55,7 @@ def PolyZonotope.relaxExpEven (pZ : PolyZonotope (Vec 𝕋 n))
   G := Fin.append (fun l => pZ.G (part.left l)) (fun _ => pZ.mergedGen part)
   E := fun k => Fin.append (fun l => pZ.E k (part.left l)) (fun _ => pZ.E k (part.right 1))
   GI := Fin.append pZ.GI (fun _ => pZ.relaxGenEven part k₀)
-  err := pZ.err.plus (PolyZonotope.generatorError (pZ.relaxGapEven part k₀))
+  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.relaxGapEven part k₀))
 
 end CORALean.Float
 

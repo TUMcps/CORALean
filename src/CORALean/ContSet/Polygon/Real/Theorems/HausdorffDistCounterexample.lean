@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Real.Theorems.HausdorffDistLe
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
 
 @[expose] public section

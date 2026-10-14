@@ -1,8 +1,11 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.AntiderivPrinted
-public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 @[expose] public section
 

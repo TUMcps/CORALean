@@ -56,7 +56,7 @@ def aux_readVec (field : String) (inst : String → ExactDyadic → Except Strin
 /-- The zero-input zonotope `reach` still takes: a single point at the origin,
 no generators, no error. -/
 def aux_zeroInput (z0 : 𝕋) : Zonotope (Vec 𝕋 2) :=
-  { h := 0, c := fun _ => z0, G := fun j => j.elim0, E := ⟨fun _ => z0, fun _ => z0⟩ }
+  { h := 0, c := fun _ => z0, G := fun j => j.elim0, I_error := ⟨fun _ => z0, fun _ => z0⟩ }
 
 /-- `X0` from the config's center and generator rows, all read into `𝕋` through
 `inst` -- shared with `ContRollout.buildContSystem`, so not `aux_`-named despite
@@ -73,7 +73,7 @@ def buildX0 (cfg : HeadlineConfig) (inst : String → ExactDyadic → Except Str
     { h := h
       c := fun i => cArr.getD i.val z0
       G := fun j i => (gRows.getD j.val #[]).getD i.val z0
-      E := ⟨fun _ => z0, fun _ => z0⟩ }
+      I_error := ⟨fun _ => z0, fun _ => z0⟩ }
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

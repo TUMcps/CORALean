@@ -12,6 +12,7 @@ src/CORALean/ContSet/ConPolyZono/Real/Operations/RescaleStep.lean  cycle once mo
 src/CORALean/ContSet/LevelSet/Real/Theorems/AndExact.lean  cycle once moved in: `Basic` → `ContSet/LevelSet/Real/Theorems/ForallAppendHolds` → `Basic`
 src/CORALean/ContSet/PolyZonotope/Float/Operations/QuadUp.lean  cycle once moved in: `Basic` → `ContSet/PolyZonotope/Float/Operations/BilinGUp` → `Basic`
 src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsPoly.lean  cycle once moved in: `Basic` → `ContSet/PolyZonotope/Float/Operations/SubsXprod` → `Basic`
+src/CORALean/ContSet/SpectraShadow/Float/Theorems/MaterialiseEq.lean  cycle once moved in: `Basic` → `ContSet/SpectraShadow/Float/Theorems/ConvHullOuter` → `Basic`
 src/CORALean/ContSet/SpectraShadow/Real/Operations/Or.lean  cycle once moved in: `Basic` → `ContSet/SpectraShadow/Real/Operations/ConvHull` → `Basic`
 src/CORALean/ContSet/SpectraShadow/Real/Theorems/OrExact.lean  cycle once moved in: `Basic` → `ContSet/SpectraShadow/Real/Theorems/ConvHullExact` → `ContSet/SpectraShadow/Real/Theorems/ConeConstruct` → `ContSet/SpectraShadow/Real/Theorems/ArrowMatPosSemidefOfPos` → `Basic`
 src/CORALean/ContSet/Taylm/Float/Operations/Compose.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Float/Operations/Pow` → `Basic`
@@ -27,6 +28,9 @@ src/CORALean/ContSet/Taylm/Real/Operations/PolyBounds.lean  cycle once moved in:
 src/CORALean/ContSet/Taylm/Real/Operations/Pow.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Operations/Times` → `Basic`
 src/CORALean/ContSet/Taylm/Real/Operations/Reach.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Operations/Bounds` → `ContSet/Taylm/Real/Operations/PolyBounds` → `ContSet/Taylm/Real/Operations/TermBounds` → `Basic`
 src/CORALean/ContSet/Taylm/Real/Operations/Tanh.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Operations/Taylor` → `ContSet/Taylm/Real/Operations/Compose` → `Basic`
+src/CORALean/ContSet/Taylm/Real/Theorems/PolyOfAppend.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Theorems/SumOuter` → `ContSet/Taylm/Real/Theorems/PlusOuter` → `Basic`
+src/CORALean/ContSet/Taylm/Real/Theorems/PolyOfCons.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Theorems/SmulOuter` → `Basic`
+src/CORALean/ContSet/Taylm/Real/Theorems/PolyOfNil.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Theorems/SmulOuter` → `Basic`
 src/CORALean/ContSet/Taylm/Real/Theorems/TanhOuter.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Theorems/TaylorOuter` → `ContSet/Taylm/Real/Theorems/ComposeOuter` → `Basic`
 src/CORALean/ContSet/VPolytope/Float/Operations/IsFullDim.lean  cycle once moved in: `Basic` → `ContSet/VPolytope/Float/Operations/IsFullDimWith` → `Basic`
 src/CORALean/ContSet/Zonotope/Float/Operations/ConstrSat.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Float/Zonotope_to_Interval` → `ContSet/Zonotope/Float/Theorems/MemGeneratorError` → `Basic`

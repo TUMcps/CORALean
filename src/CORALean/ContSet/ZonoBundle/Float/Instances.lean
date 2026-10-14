@@ -2,14 +2,16 @@ module
 
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Materialise
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesIntervalMatOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
 
 @[expose] public section
 

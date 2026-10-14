@@ -39,11 +39,11 @@ variable [InflatedContSet S₁ N₁ (Vec 𝕋 n₁) (Vec ℝ n₁)] [InflatedCon
 theorem append_construct {s₁ : S₁} {s₂ : S₂} {t : T}
     (hnominal : nominalSet t = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (nominalSet s₁ ×ˢ nominalSet s₂))
-    (herror : error t = Interval.append (error s₁) (error s₂)) :
+    (herror : I_error t = Interval.append (I_error s₁) (I_error s₂)) :
     construct t = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (construct s₁ ×ˢ construct s₂) := by
-  show nominalSet t + (error t).construct = _ '' ((nominalSet s₁ + (error s₁).construct) ×ˢ
-    (nominalSet s₂ + (error s₂).construct))
+  show nominalSet t + (I_error t).construct = _ '' ((nominalSet s₁ + (I_error s₁).construct) ×ˢ
+    (nominalSet s₂ + (I_error s₂).construct))
   rw [hnominal, herror, Interval.append_construct, append_image_prod_add]
 
 end CORALean.Float.InflatedContSet

@@ -37,7 +37,7 @@ def ConPolyZono.exactPlus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hp : 
     ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let pZ := cPZ₁.toPolyZonotope.exactPlus cPZ₂.toPolyZonotope hp
   { p := pZ.p, h := pZ.h, q := pZ.q, m := cPZ₁.m, s := cPZ₁.s, c := pZ.c, G := pZ.G, E := pZ.E,
-    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, EC := cPZ₁.EC, err := pZ.err }
+    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, EC := cPZ₁.EC, I_error := pZ.I_error }
 
 end CORALean.Float
 

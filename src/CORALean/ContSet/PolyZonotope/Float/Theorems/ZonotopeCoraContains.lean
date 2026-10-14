@@ -80,8 +80,8 @@ theorem PolyZonotope.zonotopeCora_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
   · -- the rounded-down centre is below the exact one
     have h1 := addDown_le_add (pZ.c i) (sumDown fun l => s l i)
     have h2 := sumDown_le_sum fun l => s l i
-    have he1 : toReal (pZ.err.inf i) ≤ e i := (he i).1
-    show toReal (pZ.err.inf i) ≤ e i + d i
+    have he1 : toReal (pZ.I_error.inf i) ≤ e i := (he i).1
+    show toReal (pZ.I_error.inf i) ≤ e i + d i
     simp only [hd]
     linarith
   · -- the rounding gap bounds `d` above
@@ -89,10 +89,10 @@ theorem PolyZonotope.zonotopeCora_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
     have h2 := sum_le_sumUp fun l => s l i
     have h3 := sub_le_subUp (addUp (pZ.c i) (sumUp fun l => s l i))
       (addDown (pZ.c i) (sumDown fun l => s l i))
-    have h4 := add_le_addUp (pZ.err.sup i) (subUp (addUp (pZ.c i) (sumUp fun l => s l i))
+    have h4 := add_le_addUp (pZ.I_error.sup i) (subUp (addUp (pZ.c i) (sumUp fun l => s l i))
       (addDown (pZ.c i) (sumDown fun l => s l i)))
-    have he2 : e i ≤ toReal (pZ.err.sup i) := (he i).2
-    show e i + d i ≤ toReal (addUp (pZ.err.sup i) (subUp (addUp (pZ.c i) (sumUp fun l => s l i))
+    have he2 : e i ≤ toReal (pZ.I_error.sup i) := (he i).2
+    show e i + d i ≤ toReal (addUp (pZ.I_error.sup i) (subUp (addUp (pZ.c i) (sumUp fun l => s l i))
       (addDown (pZ.c i) (sumDown fun l => s l i))))
     simp only [hd]
     linarith

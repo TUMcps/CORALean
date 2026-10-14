@@ -46,7 +46,7 @@ def PolyZonotope.innerApprox (pZ : PolyZonotope (Vec 𝕋 n)) (tol : 𝕋)
   -- S = innerApproxImage(f, D, tol)
   let S := PolyZonotope.innerApproxImage pZ D tol inv iter depth D
   -- the error box holds `0`
-  if (List.finRange n).all fun i => le (pZ.err.inf i) zero && le zero (pZ.err.sup i) then
+  if (List.finRange n).all fun i => le (pZ.I_error.inf i) zero && le zero (pZ.I_error.sup i) then
     -- S{i} = zonotope(S{i}) + zonotope(zeros(dim(pZ),1), pZ.GI), rounded inward
     S.filterMap fun Y =>
       let c : Vec 𝕋 n := Interval.center Y

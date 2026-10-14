@@ -58,7 +58,7 @@ def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
   b := ConPolyZono.convHullB a cPZ.b
   EC := Real.ConPolyZono.convHullEC a cPZ.EC
   -- the operand's box, and what storing `a c` from below leaves to pay
-  err := cPZ.err.plus (Interval.residual (fun i => nsmulDown a (cPZ.c i))
+  I_error := cPZ.I_error.plus (Interval.residual (fun i => nsmulDown a (cPZ.c i))
     (fun i => nsmulUp a (cPZ.c i)) (fun i => nsmulDown a (cPZ.c i)))
 
 end CORALean.Float

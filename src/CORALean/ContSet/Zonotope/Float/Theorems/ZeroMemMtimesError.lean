@@ -118,7 +118,8 @@ theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat 𝕋 m n) (Z : Zonotope (V
 
 /-- `mtimes` keeps `0` in the error box, given the operand already has it. -/
 theorem Zonotope.zero_mem_mtimes_error {M : Mat 𝕋 m n} {Z : Zonotope (Vec 𝕋 n)}
-    (h : (0 : Vec ℝ n) ∈ Z.E.construct) : (0 : Vec ℝ m) ∈ (Zonotope.mtimes M Z).E.construct :=
+    (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) : (0 : Vec ℝ m) ∈
+        (Zonotope.mtimes M Z).I_error.construct :=
   Zonotope.aux_zero_mem_interval_plus' (Zonotope.aux_zero_mem_interval_mtimes h)
     (Zonotope.aux_zero_mem_mtimesResidual M Z)
 

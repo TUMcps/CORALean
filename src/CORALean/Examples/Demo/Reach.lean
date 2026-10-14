@@ -58,14 +58,14 @@ def R₀ : Zonotope (Vec (Dyadic p) 2) where
   h := 2
   c := ![dy 1 0, dy 0 0]
   G := !![dy 1 (-3), dy 0 0; dy 0 0, dy 1 (-3)]
-  E := zeroBox 2
+  I_error := zeroBox 2
 
 /-- `[-1/64, 1/64]²`, the set every step's input is drawn from. -/
 def U : Zonotope (Vec (Dyadic p) 2) where
   h := 2
   c := ![dy 0 0, dy 0 0]
   G := !![dy 1 (-6), dy 0 0; dy 0 0, dy 1 (-6)]
-  E := zeroBox 2
+  I_error := zeroBox 2
 
 /-- Maximum order: at most `3 * 2` generators survive a step. -/
 def order : ℕ := 3
@@ -85,7 +85,7 @@ def reachRow (k : ℕ) : String :=
   pad 4 (toString k) ++ pad 7 (toString Z.h) ++ "  " ++ showBox Z.interval
 
 def errorRow (k : ℕ) : String :=
-  let E := (R p k).E
+  let E := (R p k).I_error
   pad 4 (toString k) ++ "  " ++ pad 14 (showWidth E 0) ++ pad 15 (showWidth E 1)
 
 /-- `y = x₁ + u₂`: a scalar sensor reading one state coordinate, with the second

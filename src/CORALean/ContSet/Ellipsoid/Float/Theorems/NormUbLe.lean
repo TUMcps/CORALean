@@ -36,9 +36,9 @@ theorem Ellipsoid.norm₂_le_normUb (k : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec �
   -- the nominal part, by the exact layer
   have hy' := CORALean.Real.Ellipsoid.norm₂_le_normUb _ hy
   have herr : ∀ i, |e i| ≤
-      |toReal (maximum (absolute (E.err.inf i)) (absolute (E.err.sup i)))| := by
+      |toReal (maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))| := by
     intro i
-    have h : toReal (E.err.inf i) ≤ e i ∧ e i ≤ toReal (E.err.sup i) := he i
+    have h : toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i) := he i
     have h' := abs_le_max_abs_abs h.1 h.2
     rw [toReal_maximum, toReal_absolute, toReal_absolute]
     exact le_trans h' (le_abs_self _)
@@ -57,11 +57,11 @@ theorem Ellipsoid.norm₂_le_normUb (k : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec �
     (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))
   have s₂ := add_le_addUp (addUp (normUp k E.q)
     (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))) (normUp k fun i =>
-      maximum (absolute (E.err.inf i)) (absolute (E.err.sup i)))
+      maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))
   have hnom : ‖y‖₂ ≤ ‖toRealVec E.q‖₂ + Real.sqrt (∑ i, ∑ j, toReal (E.G i j) ^ 2) := hy'
   show ‖y + e‖₂ ≤ toReal (addUp (addUp (normUp k E.q)
     (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j)))) (normUp k fun i =>
-      maximum (absolute (E.err.inf i)) (absolute (E.err.sup i))))
+      maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))
   have := norm₂_add_le y e
   linarith
 

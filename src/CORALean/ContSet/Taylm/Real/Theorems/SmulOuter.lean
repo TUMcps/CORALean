@@ -1,8 +1,10 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.Smul
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Taylm.Real.Operations.Smul
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
 
 @[expose] public section
 

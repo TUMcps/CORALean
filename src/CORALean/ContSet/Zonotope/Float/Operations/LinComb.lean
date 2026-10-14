@@ -44,7 +44,7 @@ def Zonotope.linComb (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n)
   h := Z₁.h + Z₂.h + 1
   c := Zonotope.midpoint Z₁.c Z₂.c
   G := fun j i => Zonotope.linCombG addDown subDown Z₁ Z₂ i j
-  E := (Z₁.E.linComb Z₂.E).plus
+  I_error := (Z₁.I_error.linComb Z₂.I_error).plus
         ((Zonotope.midpointResidual Z₁.c Z₂.c).plus
           (Zonotope.generatorError (Zonotope.linCombGDiff Z₁ Z₂)))
 

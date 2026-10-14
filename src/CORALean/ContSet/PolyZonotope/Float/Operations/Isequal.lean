@@ -34,8 +34,8 @@ def PolyZonotope.isequal (Z S : PolyZonotope (Vec 𝕋 n)) : Bool :=
   if e : Z.p = S.p ∧ Z.h = S.h ∧ Z.q = S.q then
     (List.finRange n).all (fun i =>
       (le (Z.c i) (S.c i) && le (S.c i) (Z.c i)) &&
-      (le (Z.err.inf i) (S.err.inf i) && le (S.err.inf i) (Z.err.inf i)) &&
-      (le (Z.err.sup i) (S.err.sup i) && le (S.err.sup i) (Z.err.sup i)) &&
+      (le (Z.I_error.inf i) (S.I_error.inf i) && le (S.I_error.inf i) (Z.I_error.inf i)) &&
+      (le (Z.I_error.sup i) (S.I_error.sup i) && le (S.I_error.sup i) (Z.I_error.sup i)) &&
       (List.finRange Z.h).all (fun j =>
         le (Z.G j i) (S.G (Fin.cast e.2.1 j) i) && le (S.G (Fin.cast e.2.1 j) i) (Z.G j i)) &&
       (List.finRange Z.q).all fun j =>

@@ -38,7 +38,7 @@ def PolyZonotope.reindex (e : Fin m ≃ Fin n) (pZ : PolyZonotope (Vec 𝕋 n)) 
   G := fun j i => pZ.G j (e i)
   E := pZ.E
   GI := fun j i => pZ.GI j (e i)
-  err := pZ.err.reindex e
+  I_error := pZ.I_error.reindex e
 
 end CORALean.Float
 

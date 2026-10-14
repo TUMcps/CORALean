@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.LinParamSysDT.Operations.ReachUnion
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
 public import CORALean.ContSet.SetUnion.SetUnion
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

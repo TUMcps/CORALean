@@ -34,10 +34,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem PolyZonotope.replaceId_exact (pZ : PolyZonotope (Vec 𝕋 n)) {p' : ℕ} (f : Fin pZ.p → Fin p')
     (hf : Function.Injective f) : (pZ.replaceId f).construct = pZ.construct := by -- --- PROOF ---
   have h : nominalSet (pZ.replaceId f) = ((nominal pZ).replaceId f).construct := rfl
-  show nominalSet (pZ.replaceId f) + (pZ.replaceId f).err.construct
-    = nominalSet pZ + pZ.err.construct
+  show nominalSet (pZ.replaceId f) + (pZ.replaceId f).I_error.construct
+    = nominalSet pZ + pZ.I_error.construct
   rw [h]
-  exact congrArg (· + pZ.err.construct) (Real.PolyZonotope.replaceId_exact (nominal pZ) f hf)
+  exact congrArg (· + pZ.I_error.construct) (Real.PolyZonotope.replaceId_exact (nominal pZ) f hf)
 
 end CORALean.Float
 

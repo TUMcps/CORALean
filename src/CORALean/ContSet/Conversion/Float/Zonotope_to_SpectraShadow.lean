@@ -48,7 +48,7 @@ def Zonotope.spectraShadow (Z : Zonotope (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec
   A := fun j => blockDiag zero (Zonotope.unitDiag one j) (Zonotope.unitDiag (neg one) j)
   c := Z.c
   G := Z.G
-  E := Z.E
+  I_error := Z.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

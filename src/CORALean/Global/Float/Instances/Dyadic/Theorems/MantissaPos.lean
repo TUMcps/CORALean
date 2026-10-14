@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Dyadic
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 
 @[expose] public section
 

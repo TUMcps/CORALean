@@ -37,7 +37,7 @@ def Zonotope.compactZeros (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) wh
   c := Z.c
   G := fun j =>
     Z.G ((Finset.univ.filter fun j => Z.keepColumn j = true).orderEmbOfFin rfl j)
-  E := Z.E
+  I_error := Z.I_error
 
 end CORALean.Float
 

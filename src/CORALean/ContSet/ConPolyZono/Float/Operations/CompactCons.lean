@@ -60,7 +60,7 @@ def ConPolyZono.compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
     b := ⟨fun i => subDown (cPZ.b.inf i) (radius gap i),
       fun i => addUp (cPZ.b.sup i) (radius gap i)⟩
     EC := fun a l => cPZ.EC a (k l)
-    err := cPZ.err }
+    I_error := cPZ.I_error }
 
 end CORALean.Float
 

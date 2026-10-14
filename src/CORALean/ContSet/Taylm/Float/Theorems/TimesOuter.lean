@@ -1,11 +1,13 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Taylm.Float.Operations.Times
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
 public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoundsMem
-public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 

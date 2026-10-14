@@ -31,7 +31,7 @@ def Zonotope.matZonotope (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Mat 𝕋 n 1) w
   h := Z.h
   c := fun i _ => Z.c i
   G := fun k i _ => Z.G k i
-  E := ⟨fun i _ => Z.E.inf i, fun i _ => Z.E.sup i⟩
+  I_error := ⟨fun i _ => Z.I_error.inf i, fun i _ => Z.I_error.sup i⟩
 
 end CORALean.Float
 

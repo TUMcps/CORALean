@@ -175,12 +175,12 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
 /-- The box absorbs the two incoming boxes, the centre rounding and the
 scalings. -/
 theorem Ellipsoid.aux_plus_error (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) :
-    E₁.err.construct + E₂.err.construct
+    E₁.I_error.construct + E₂.I_error.construct
         + ((Ellipsoid.centerResidual E₁.q E₂.q).construct
             + (Ellipsoid.generatorError (Ellipsoid.plusGap s₁ s₂ E₁ E₂)).construct) ⊆
-      (Ellipsoid.plus s₁ s₂ E₁ E₂).err.construct :=
+      (Ellipsoid.plus s₁ s₂ E₁ E₂).I_error.construct :=
   subset_trans
-    (Set.add_subset_add (Interval.plus_outer E₁.err E₂.err) (Interval.plus_outer _ _))
+    (Set.add_subset_add (Interval.plus_outer E₁.I_error E₂.I_error) (Interval.plus_outer _ _))
     (Interval.plus_outer _ _)
 
 

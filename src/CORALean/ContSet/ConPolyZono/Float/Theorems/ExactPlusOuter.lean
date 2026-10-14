@@ -86,7 +86,7 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 
 theorem ConPolyZono.exactPlus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hp : cPZ₁.p = cPZ₂.p) :
     (Real.ConPolyZono.exactPlus (nominal cPZ₁) (nominal cPZ₂) hp).construct
-        + (cPZ₁.err.construct + cPZ₂.err.construct)
+        + (cPZ₁.I_error.construct + cPZ₂.I_error.construct)
       ⊆ (cPZ₁.exactPlus cPZ₂ hp).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨y', hy', r, hr, hyr⟩ := ConPolyZono.aux_exactPlus_nominal cPZ₁ cPZ₂ hp hy

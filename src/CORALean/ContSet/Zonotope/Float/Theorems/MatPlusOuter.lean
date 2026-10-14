@@ -53,7 +53,7 @@ theorem Zonotope.matPlus_outer (Z₁ Z₂ : Zonotope (Mat 𝕋 m n)) :
   -- the nominal sum rounded, the two boxes added
   have hmem : a + b + (e + f) ∈ (Zonotope.matPlus Z₁ Z₂).construct :=
     Zonotope.ofEntryBoundsMat_outer
-      (CORALean.Real.Zonotope.plus Z₁.nominal Z₂.nominal) (Interval.matPlus Z₁.E Z₂.E)
+      (CORALean.Real.Zonotope.plus Z₁.nominal Z₂.nominal) (Interval.matPlus Z₁.I_error Z₂.I_error)
       (cLo := fun i j => addDown (Z₁.c i j) (Z₂.c i j))
       (cHi := fun i j => addUp (Z₁.c i j) (Z₂.c i j))
       (fun i j => ⟨addDown_le_add _ _, add_le_addUp _ _⟩) hG

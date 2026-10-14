@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.SetUnion.Theorems.MtimesExact
 public import CORALean.ContSet.SetUnion.Theorems.MtimesOuter
 public import CORALean.ContSet.SetUnion.Theorems.PlusOuter

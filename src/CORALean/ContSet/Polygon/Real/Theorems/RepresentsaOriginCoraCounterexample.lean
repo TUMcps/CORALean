@@ -1,7 +1,8 @@
 module
 
-public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaOriginCora
 public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.Polygon.Real.Operations.RepresentsaOriginCora
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Instances
 
 @[expose] public section

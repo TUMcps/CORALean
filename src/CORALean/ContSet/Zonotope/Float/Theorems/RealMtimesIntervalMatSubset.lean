@@ -51,11 +51,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- A zonotope whose error box is the point `0` is its nominal part. -/
 theorem aux_construct_nominal_point {V : Zonotope (Vec 𝕋 n)}
-    (hE : V.E = Interval.point fun _ => FloatOps.zero)
+    (hE : V.I_error = Interval.point fun _ => FloatOps.zero)
     {y : Vec ℝ n} (hy : y ∈ V.construct) : y ∈ nominalSet V := by -- --- PROOF ---
   obtain ⟨z, hz, e, he, rfl⟩ := hy
   have he0 : e = 0 := funext fun i => by
-    have h : toReal (V.E.inf i) ≤ e i ∧ e i ≤ toReal (V.E.sup i) := he i
+    have h : toReal (V.I_error.inf i) ≤ e i ∧ e i ≤ toReal (V.I_error.sup i) := he i
     rw [hE] at h
     change toReal (zero : 𝕋) ≤ e i ∧ e i ≤ toReal (zero : 𝕋) at h
     rw [toReal_zero] at h
@@ -91,7 +91,7 @@ theorem aux_mid_add_rad_le {lo hi C M : ℝ} (hlo : |lo - C| ≤ M) (hhi : |hi -
 theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Mat ℝ m n)}
     {IMf : Interval (Mat 𝕋 m n)} (hlo : IMr.inf ∈ IMf.construct) (hhi : IMr.sup ∈ IMf.construct)
     (hle : ∀ i j, IMr.inf i j ≤ IMr.sup i j) {Zr : CORALean.Real.Zonotope (Vec ℝ n)}
-    {V : Zonotope (Vec 𝕋 n)} (hE : V.E = Interval.point fun _ => FloatOps.zero)
+    {V : Zonotope (Vec 𝕋 n)} (hE : V.I_error = Interval.point fun _ => FloatOps.zero)
     (hZ : Zr.construct ⊆ V.construct) :
     (CORALean.Real.Zonotope.mtimesIntervalMat IMr Zr).construct ⊆
       (Zonotope.mtimesIntervalMat IMf V).construct := by -- --- PROOF ---
@@ -144,8 +144,8 @@ theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Ma
   -- the stored centre, the float residual, and what a point of `V` can be
   set C := Interval.centreMat IMf with hC
   set Rs := Interval.matResidual IMf.inf IMf.sup C with hRs
-  have hV0 : (0 : Vec ℝ n) ∈ V.E.construct := fun i => by
-    show toReal (V.E.inf i) ≤ 0 ∧ 0 ≤ toReal (V.E.sup i)
+  have hV0 : (0 : Vec ℝ n) ∈ V.I_error.construct := fun i => by
+    show toReal (V.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (V.I_error.sup i)
     rw [hE]
     change toReal (FloatOps.zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (FloatOps.zero : 𝕋)
     rw [toReal_zero]
@@ -225,8 +225,8 @@ theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Ma
     exact le_trans (abs_add_le _ _) (by linarith)
   have hb0 : ∀ i, 0 ≤ toReal (b i) := fun i => le_trans (abs_nonneg _) (hvb i)
   -- the zero error of the residual on `V`'s error box
-  have h0 : (0 : Vec ℝ m) ∈ (Interval.mtimesIntervalMat Rs V.E).construct := by
-    have := Interval.mtimesIntervalMat_outer Rs V.E (Set.mem_biUnion hRl ⟨0, hV0, rfl⟩)
+  have h0 : (0 : Vec ℝ m) ∈ (Interval.mtimesIntervalMat Rs V.I_error).construct := by
+    have := Interval.mtimesIntervalMat_outer Rs V.I_error (Set.mem_biUnion hRl ⟨0, hV0, rfl⟩)
     simpa using this
   -- the stored centre's image, then one coefficient per coordinate for what is left
   obtain ⟨γ, hγ, ht₀γ⟩ := Zonotope.mem_nominalSet_iff.mp ht₀

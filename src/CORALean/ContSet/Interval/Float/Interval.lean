@@ -24,7 +24,7 @@ definition rather than by a lemma. Each operation then owes only enclosure.
 
 -- Authors:       Claude Opus 5
 -- Written:       16-August-2026
--- Last update:   24-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,41 +50,6 @@ def Interval.nominal {α β : Type} [RealImage α β] (I : Interval α) :
 def Interval.construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
     [Entrywise β ι] (I : Interval α) : Set β :=
   I.nominal.construct
-
-/-! ## Storage
-
-Both bounds are function types, so the interval an operation returns is a
-closure over the one it was given and a loop pays for its whole history on every
-read. `materialise` stores them, and `materialise_eq` says it is the identity,
-so what it changes is only what running a definition costs. `Global/Tensor` says
-why the vectors are built here rather than by a helper.
-
-This is also the storage of five other representations, which carry an error box
-of this type and materialise it through here. -/
-
-def Interval.materialise (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
-  let lo : Vector 𝕋 n := Vector.ofFn I.inf
-  let hi : Vector 𝕋 n := Vector.ofFn I.sup
-  ⟨fun i => lo[i.val]'i.isLt, fun i => hi[i.val]'i.isLt⟩
-
-omit [FloatOps 𝕋] in
-@[simp] theorem Interval.materialise_eq (I : Interval (Vec 𝕋 n)) : I.materialise = I := by
-  simp [Interval.materialise]
-
-variable {m : ℕ}
-
-/-- The same storage at `Mat 𝕋 m n`, needed once the interval-matrix chain
-(`matMul`, `matPow`, `expIntervalTaylor`) starts nesting recursive calls: each
-row is materialised, then the rows themselves. -/
-def Interval.materialiseMat (I : Interval (Mat 𝕋 m n)) : Interval (Mat 𝕋 m n) :=
-  let lo : Vector (Vector 𝕋 n) m := Vector.ofFn fun i => Vector.ofFn (I.inf i)
-  let hi : Vector (Vector 𝕋 n) m := Vector.ofFn fun i => Vector.ofFn (I.sup i)
-  ⟨fun i j => (lo[i.val]'i.isLt)[j.val]'j.isLt, fun i j => (hi[i.val]'i.isLt)[j.val]'j.isLt⟩
-
-omit [FloatOps 𝕋] in
-@[simp] theorem Interval.materialiseMat_eq (I : Interval (Mat 𝕋 m n)) :
-    I.materialiseMat = I := by
-  simp [Interval.materialiseMat]
 
 end CORALean.Float
 

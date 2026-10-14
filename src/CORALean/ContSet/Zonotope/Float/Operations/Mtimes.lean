@@ -33,7 +33,7 @@ def Zonotope.mtimes (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) : Zonotope (V
   h := Z.h
   c := mulVecDown M Z.c
   G := fun j => mulVecDown M (Z.G j)
-  E := (Interval.mtimes M Z.E).plus (Zonotope.mtimesResidual M Z)
+  I_error := (Interval.mtimes M Z.I_error).plus (Zonotope.mtimesResidual M Z)
 
 end CORALean.Float
 

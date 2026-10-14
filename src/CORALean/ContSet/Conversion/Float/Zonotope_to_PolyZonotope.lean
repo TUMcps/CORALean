@@ -38,7 +38,7 @@ def Zonotope.polyZonotope (Z : Zonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n
   G := Z.G
   E := Real.PolyZonotope.identE Z.h
   GI := Fin.elim0
-  err := Z.E
+  I_error := Z.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

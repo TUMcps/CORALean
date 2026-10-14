@@ -43,8 +43,9 @@ def Zonotope.mtimesMatZonotope (M : Zonotope (Mat 𝕋 m n)) (Z : Zonotope (Vec 
     fun mul i k => Fin.append (Fin.append (fun l => mul (M.G l) Z.c) (fun j => mul M.c (g j)))
       (fun k => mul (M.G (finProdFinEquiv.symm k).1) (g (finProdFinEquiv.symm k).2)) k i
   let IM :=                                                         -- a
-    ({ M with E := Interval.point fun _ _ => zero } : Zonotope (Mat 𝕋 m n)).matInterval
-  let E := (Interval.mtimesIntervalMat IM Z.E).plus (Interval.mtimesIntervalMat M.E Z.interval)
+    ({ M with I_error := Interval.point fun _ _ => zero } : Zonotope (Mat 𝕋 m n)).matInterval
+  let E := (Interval.mtimesIntervalMat IM Z.I_error).plus
+      (Interval.mtimesIntervalMat M.I_error Z.interval)
   Zonotope.ofEntryBounds (mulVecDown M.c Z.c) (mulVecUp M.c Z.c) (gens mulVecDown)
     (gens mulVecUp) E
 

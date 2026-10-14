@@ -1,36 +1,36 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesIntervalMatOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.UnionSubsetLinComb
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOrder
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.IsCompact
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ProjectOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.EmptyExact
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.OriginExact
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReplaceConstruct
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.QuadMapOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.CartProdExact
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.EnlargeOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEnlarge
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.IsequalSound
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.SplitOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.IsFullDimSound
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ContainsPointSound
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.RepresentsaEmptySetSound
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.Basic
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ShrinkOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.CartProdExact
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEnlarge
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.Convex
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.EmptyExact
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.EncloseTightOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.EnlargeOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IsCompact
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IsFullDimSound
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.IsequalSound
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.OriginExact
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.PlusOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOrder
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReindexExact
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReplaceConstruct
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.RepresentsaEmptySetSound
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ShrinkOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.SplitOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.UnionSubsetLinComb
 
 /-!
 # What a float zonotope bundle guarantees, collected

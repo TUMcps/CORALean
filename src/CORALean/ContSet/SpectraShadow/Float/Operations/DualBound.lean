@@ -31,7 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def SpectraShadow.dualBound (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (Y : Mat 𝕋 S.k S.k) : 𝕋 :=
   let nominal : 𝕋 := addUp (dotUp a S.c) (sumUp fun r => dotUp (fun j => S.A₀ r j) fun j => Y j r)
-  let box : 𝕋 := sumUp fun r => maximum (mulUp (a r) (S.E.inf r)) (mulUp (a r) (S.E.sup r))
+  let box : 𝕋 := sumUp fun r => maximum (mulUp (a r) (S.I_error.inf r))
+      (mulUp (a r) (S.I_error.sup r))
   addUp nominal box
 
 end CORALean.Float

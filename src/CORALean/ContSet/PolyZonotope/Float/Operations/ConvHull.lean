@@ -50,7 +50,7 @@ def PolyZonotope.convHull (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : PolyZonoto
   -- Z = enclose(Z1, Z2)
   let Z := Z₁.linComb Z₂
   -- pZ.GI = Z.G
-  { pZ with q := Z.h, GI := Z.G, err := pZ.err.plus (Z.E.plus (Interval.point Z.c)) }
+  { pZ with q := Z.h, GI := Z.G, I_error := pZ.I_error.plus (Z.I_error.plus (Interval.point Z.c)) }
 
 end CORALean.Float
 

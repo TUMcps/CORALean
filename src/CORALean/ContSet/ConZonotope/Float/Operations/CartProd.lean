@@ -39,7 +39,7 @@ def ConZonotope.cartProd (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁)) (cZ₂ : Con
   c := Fin.append cZ₁.c cZ₂.c
   G := fun j i => genBlockDiag (fun i j => cZ₁.G j i) (fun i j => cZ₂.G j i) i j
   P := cZ₁.P.cartProd cZ₂.P
-  E := Interval.append cZ₁.E cZ₂.E
+  I_error := Interval.append cZ₁.I_error cZ₂.I_error
 
 end CORALean.Float
 

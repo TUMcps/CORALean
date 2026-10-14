@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 `construct` — nominal part and error box together. -/
 def Zonotope.absBoundError (Z : Zonotope (Vec 𝕋 n)) (j : Fin n) : 𝕋 :=
   addUp (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
-    (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j)))
+    (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))
 
 end CORALean.Float
 

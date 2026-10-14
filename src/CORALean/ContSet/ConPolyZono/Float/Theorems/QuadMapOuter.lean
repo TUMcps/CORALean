@@ -62,16 +62,16 @@ theorem ConPolyZono.aux_quadMapG_close (Q : Fin k → Mat 𝕋 n n) (pZ : PolyZo
 `β`, then the error coordinates, is the nominal point plus the error. -/
 theorem ConPolyZono.aux_dependent_point (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fin pZ.p → ℝ)
     (β : Fin pZ.q → ℝ) (e : Vec ℝ n)
-    (hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.err i)) (i : Fin n) :
+    (hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.I_error i)) (i : Fin n) :
     toReal (pZ.c i) + (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
         + (∑ j, toReal (pZ.GI j i) * β j) + e i
       = toReal (pZ.dependent.c i) + ∑ l : Fin pZ.dependent.h, toReal (pZ.dependent.G l i)
         * Real.PolyZonotope.monomial pZ.dependent.E (Fin.append a (Fin.append β
-          fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.err i)) (e i)))
+          fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.I_error i)) (e i)))
           l := by -- --- PROOF ---
   -- the diagonal block reproduces `e` exactly, coordinate by coordinate
-  have hd : ∑ l, Matrix.diagonal (toRealVec (PolyZonotope.errorBound pZ.err)) i l
-      * Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.err l)) (e l)
+  have hd : ∑ l, Matrix.diagonal (toRealVec (PolyZonotope.errorBound pZ.I_error)) i l
+      * Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.I_error l)) (e l)
         = e i := by
     rw [Real.Zonotope.sum_diagonal_mul]
     exact Real.Zonotope.mul_coefficient (hbound i)
@@ -96,11 +96,11 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
   rintro _ ⟨_, ⟨z, hz', e, he, rfl⟩, rfl⟩
   obtain ⟨a, β, ha, hβ, hs, hz⟩ := ConPolyZono.mem_nominalSet_iff.mp hz'
   set D := cPZ.toPolyZonotope.dependent with hD
-  have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound cPZ.err i) :=
+  have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound cPZ.I_error i) :=
     fun i => PolyZonotope.abs_le_errorBound he i
   -- the factors of the dependent form: `a`, then `β`, then the error box's coordinates
   set a' : Fin (cPZ.p + (cPZ.q + n)) → ℝ := Fin.append a (Fin.append β
-    fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound cPZ.err i)) (e i))
+    fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound cPZ.I_error i)) (e i))
     with ha'
   have ha'b : ∀ l, |a' l| ≤ 1 := by
     refine Fin.addCases (fun l => ?_) (Fin.addCases (fun j => ?_) (fun j => ?_))

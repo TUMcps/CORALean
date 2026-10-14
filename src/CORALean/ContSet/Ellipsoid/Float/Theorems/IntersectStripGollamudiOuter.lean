@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
@@ -90,14 +91,14 @@ theorem Ellipsoid.aux_le_sq_mul {S a q r : ℝ} (ha : 0 < a) (hq : S / a ≤ q)
 `|vᵀ u - δ| ≤ φ'` for the stored `v` and `δ`, `φ` widened by the box and the two rounding gaps. -/
 theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y : 𝕋) {u : Vec ℝ E.k}
     {e : Vec ℝ n} (hu : ‖u‖₂ ≤ 1)
-    (he : ∀ i, toReal (E.err.inf i) ≤ e i ∧ e i ≤ toReal (E.err.sup i))
+    (he : ∀ i, toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i))
     (hx : |∑ i, toReal (c i) * (toReal (E.q i) + ∑ j, toReal (E.G i j) * u j + e i)
       - toReal y| ≤ toReal φ)
     {v ev : Vec 𝕋 E.k} (hv : ∀ j, v j = dotDown (fun i => E.G i j) c)
     (hev : ∀ j, ev j = subUp (dotUp (fun i => E.G i j) c) (v j)) :
     |toRealVec v ⬝ᵥ u - toReal (subDown y (dotUp c E.q))|
       ≤ toReal (addUp (addUp (addUp φ (dotUp (fun i => absolute (c i))
-          (fun i => maximum (absolute (E.err.inf i)) (absolute (E.err.sup i))))) (sumUp ev))
+          (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))) (sumUp ev))
           (subUp (subUp y (dotDown c E.q)) (subDown y (dotUp c E.q)))) := by -- --- PROOF ---
   -- the exact `v` and its rounding gap
   set vt : Vec ℝ E.k := fun j => ∑ i, toReal (E.G i j) * toReal (c i) with hvt
@@ -117,7 +118,7 @@ theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y 
   -- the box through `c`
   set ce := ∑ i, toReal (c i) * e i with hce
   have hce₁ : |ce| ≤ toReal (dotUp (fun i => absolute (c i))
-      (fun i => maximum (absolute (E.err.inf i)) (absolute (E.err.sup i)))) := by
+      (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))) := by
     refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (le_dotUp _ _))
     refine Finset.sum_le_sum fun i _ => ?_
     rw [abs_mul, toReal_absolute]
@@ -151,11 +152,11 @@ theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y 
     ring
   -- `φ'` is above the three widenings, and each part is bounded
   have hφ₁ := add_le_addUp φ (dotUp (fun i => absolute (c i))
-    (fun i => maximum (absolute (E.err.inf i)) (absolute (E.err.sup i))))
+    (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))
   have hφ₂ := add_le_addUp (addUp φ (dotUp (fun i => absolute (c i))
-    (fun i => maximum (absolute (E.err.inf i)) (absolute (E.err.sup i))))) (sumUp ev)
+    (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))) (sumUp ev)
   have hφ₃ := add_le_addUp (addUp (addUp φ (dotUp (fun i => absolute (c i))
-    (fun i => maximum (absolute (E.err.inf i)) (absolute (E.err.sup i))))) (sumUp ev))
+    (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))))) (sumUp ev))
     (subUp (subUp y (dotDown c E.q)) (subDown y (dotUp c E.q)))
   rw [hsplit, abs_le]
   have a1 := abs_le.mp hx
@@ -355,7 +356,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid �
   -- the point: `x = q + G u + e`
   obtain ⟨xn, hxn, e, he, rfl⟩ := hxE
   obtain ⟨u, hu, hxu⟩ := Ellipsoid.mem_nominalSet_iff.mp hxn
-  have he' : ∀ i, toReal (E.err.inf i) ≤ e i ∧ e i ≤ toReal (E.err.sup i) := fun i => he i
+  have he' : ∀ i, toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i) := fun i => he i
   have hxS' : |∑ i, toReal (c i) * (toReal (E.q i) + ∑ j, toReal (E.G i j) * u j + e i)
       - toReal y| ≤ toReal φ := by
     have h : |∑ i, toReal (c i) * (xn + e) i - toReal y| ≤ toReal φ := hxS

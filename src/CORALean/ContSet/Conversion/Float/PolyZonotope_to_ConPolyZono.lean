@@ -40,7 +40,7 @@ def PolyZonotope.conPolyZono (pZ : PolyZonotope (Vec 𝕋 n)) : ConPolyZono 𝕋
   A := fun i => i.elim0
   b := ⟨fun i => i.elim0, fun i => i.elim0⟩
   EC := fun _ => Fin.elim0
-  err := pZ.err
+  I_error := pZ.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

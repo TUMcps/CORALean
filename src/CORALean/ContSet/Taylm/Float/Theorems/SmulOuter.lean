@@ -1,9 +1,11 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Taylm.Float.Operations.Smul
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
-public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 @[expose] public section
 

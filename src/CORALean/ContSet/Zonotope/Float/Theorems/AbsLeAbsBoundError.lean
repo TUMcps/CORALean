@@ -42,9 +42,10 @@ theorem Zonotope.aux_abs_nominal_le (Z : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n}
 
 /-- A point of the box never leaves whichever corner is farther from the origin. -/
 theorem Zonotope.aux_abs_error_le (Z : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n}
-    (hx : x ∈ (error Z).construct) (j : Fin n) :
-    |x j| ≤ toReal (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j))) := by -- --- PROOF ---
-  have h : toReal (Z.E.inf j) ≤ x j ∧ x j ≤ toReal (Z.E.sup j) := hx j
+    (hx : x ∈ (I_error Z).construct) (j : Fin n) :
+    |x j| ≤ toReal (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))
+      := by -- --- PROOF ---
+  have h : toReal (Z.I_error.inf j) ≤ x j ∧ x j ≤ toReal (Z.I_error.sup j) := hx j
   rw [toReal_maximum, toReal_absolute, toReal_absolute]
   rcases abs_cases (x j) with ⟨heq, _⟩ | ⟨heq, _⟩
   · rw [heq]; exact le_trans h.2 (le_trans (le_abs_self _) (le_max_right _ _))
@@ -61,7 +62,7 @@ theorem Zonotope.abs_le_absBoundError {Z : Zonotope (Vec 𝕋 n)} {x : Vec ℝ n
   calc |xnom j + xerr j|
       ≤ |xnom j| + |xerr j| := abs_add_le _ _
     _ ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
-        + toReal (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j))) :=
+        + toReal (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j))) :=
         add_le_add (Zonotope.aux_abs_nominal_le Z hxnom j) (Zonotope.aux_abs_error_le Z hxerr j)
     _ ≤ toReal (Zonotope.absBoundError Z j) := add_le_addUp _ _
 

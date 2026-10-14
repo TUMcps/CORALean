@@ -75,8 +75,8 @@ theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 
     convexHull ℝ cPZ.construct ⊆ (cPZ.convHullSingle a).construct := by -- --- PROOF ---
   intro x hx
   -- the hull of the nominal set plus the box is the nominal hull plus the box
-  have hx' : x ∈ convexHull ℝ (nominalSet cPZ + cPZ.err.construct) := hx
-  have hconv : Convex ℝ cPZ.err.construct := Real.Interval.convex_construct _
+  have hx' : x ∈ convexHull ℝ (nominalSet cPZ + cPZ.I_error.construct) := hx
+  have hconv : Convex ℝ cPZ.I_error.construct := Real.Interval.convex_construct _
   rw [convexHull_add, hconv.convexHull_eq] at hx'
   obtain ⟨r, hr, e, he, rfl⟩ := hx'
   -- the nominal hull is the exact form on the read-back operand

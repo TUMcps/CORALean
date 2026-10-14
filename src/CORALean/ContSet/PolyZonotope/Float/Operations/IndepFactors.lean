@@ -35,7 +35,7 @@ variable {𝕋 : Type} {n : ℕ}
 /-- The independent generators as dependent ones with factors of their own. -/
 def PolyZonotope.indepFactors (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
   ⟨pZ.p + pZ.q, pZ.h + pZ.q, 0, pZ.c, Fin.append pZ.G pZ.GI,
-    Real.PolyZonotope.plusE pZ.E (Real.PolyZonotope.identE pZ.q), Fin.elim0, pZ.err⟩
+    Real.PolyZonotope.plusE pZ.E (Real.PolyZonotope.identE pZ.q), Fin.elim0, pZ.I_error⟩
 
 end CORALean.Float
 

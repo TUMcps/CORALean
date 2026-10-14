@@ -45,7 +45,7 @@ def SpectraShadow.cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : SpectraShadow �
       (fun _ => blockDiag zero (fun _ _ => zero) (arrowMat zero one (fun _ => zero)))
     c := fun _ => zero
     G := Fin.append (Fin.append (fun _ => T'.c) T'.G) (fun _ _ => zero)
-    E := Interval.origin N }
+    I_error := Interval.origin N }
 
 end CORALean.Float
 

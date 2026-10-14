@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Real.Operations.Project
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Instances
 public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 

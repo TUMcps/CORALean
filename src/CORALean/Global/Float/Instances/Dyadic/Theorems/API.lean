@@ -22,6 +22,7 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealShift
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowCoarsen
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 
 /-!
 # What `Dyadic` guarantees

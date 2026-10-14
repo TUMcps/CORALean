@@ -60,7 +60,7 @@ def SpectraShadow.tieInter (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : Spect
     A := fun l => blockDiag zero (X l) (diagonalBlock (d l))
     c := fun _ => zero
     G := Fin.append (fun _ _ => zero) unit
-    E := Interval.origin n }
+    I_error := Interval.origin n }
 
 end CORALean.Float
 

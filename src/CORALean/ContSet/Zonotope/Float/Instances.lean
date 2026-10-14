@@ -1,10 +1,11 @@
 module
 
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.Global.Float.NoNaN
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ContSet.Definitions.IntersectStrip
 public import CORALean.ContSet.Interval.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
+public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
@@ -18,6 +19,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
+public import CORALean.Global.Float.NoNaN
 
 @[expose] public section
 
@@ -155,7 +157,7 @@ instance : Mtimes 𝕄𝒵[𝕋] 𝒵[𝕋] where
 
 /-- Centre, generators and error box, for `ifNoNaN`. -/
 instance {n : ℕ} : Floats 𝕋 (Zonotope (Vec 𝕋 n)) :=
-  ⟨fun Z => Floats.floats Z.c ++ Floats.floats Z.G ++ Floats.floats Z.E⟩
+  ⟨fun Z => Floats.floats Z.c ++ Floats.floats Z.G ++ Floats.floats Z.I_error⟩
 
 end CORALean.Float
 

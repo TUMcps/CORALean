@@ -45,8 +45,9 @@ def Zonotope.halfspaceRange (nv : Vec 𝕋 n) (d : 𝕋) (Z : Zonotope (Vec 𝕋
   let ωcHi := subUp (dotUp nv Z.c) d                      -- and up
   let ρ := sumUp fun j =>                                 -- `∑ⱼ |nᵀgⱼ|`, up
     maximum (dotUp nv (Z.G j)) (neg (dotDown nv (Z.G j)))
-  let eLo := sumDown fun i => Interval.mulLo (nv i) (nv i) (Z.E.inf i) (Z.E.sup i)  -- `nᵀe`
-  let eHi := sumUp fun i => Interval.mulHi (nv i) (nv i) (Z.E.inf i) (Z.E.sup i)
+  -- `nᵀe`
+  let eLo := sumDown fun i => Interval.mulLo (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i)
+  let eHi := sumUp fun i => Interval.mulHi (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i)
   (addDown (subDown ωcLo ρ) eLo, addUp (addUp ωcHi ρ) eHi)
 
 end CORALean.Float

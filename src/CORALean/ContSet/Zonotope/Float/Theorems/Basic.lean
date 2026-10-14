@@ -1,14 +1,18 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.Abs
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
+public import CORALean.ContSet.Zonotope.Float.Operations.MaterialiseMat
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceAndAbsorb
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 public import CORALean.ContSet.Zonotope.Float.Operations.Reindex
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCornerMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
@@ -24,7 +28,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float
 
@@ -128,6 +131,83 @@ moving the coordinate axis. -/
 theorem Zonotope.reindex_nominal (e : Fin m ≃ Fin n) (Z : Zonotope (Vec 𝕋 n)) :
     InflatedContSet.nominal (Z.reindex e)
       = Real.Zonotope.map (reindexLin e) (InflatedContSet.nominal Z) := rfl
+
+end CORALean.Float
+
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ================================  `Zonotope.materialise_eq`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialise` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem Zonotope.materialise_eq (Z : Zonotope (Vec 𝕋 n)) : Z.materialise = Z := by
+  simp [Zonotope.materialise]
+
+
+-- ===================================  `Zonotope.nominal_c`  =================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal Zonotope's field `c`, so proofs can see through the instance. -/
+theorem Zonotope.nominal_c [SoundFloatArithmetic 𝕋] (Z : Zonotope (Vec 𝕋 n)) :
+    (InflatedContSet.nominal Z).c = toRealVec Z.c := rfl
+
+
+-- ===================================  `Zonotope.nominal_G`  =================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal Zonotope's field `G`, so proofs can see through the instance. -/
+theorem Zonotope.nominal_G [SoundFloatArithmetic 𝕋] (Z : Zonotope (Vec 𝕋 n)) :
+    (InflatedContSet.nominal Z).G = fun j i => toReal (Z.G j i) := rfl
+
+
+-- ===================================  `Zonotope.nominal_h`  =================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal zonotope's fields, so proofs can see through the instance. -/
+theorem Zonotope.nominal_h [SoundFloatArithmetic 𝕋] (Z : Zonotope (Vec 𝕋 n)) :
+    (InflatedContSet.nominal Z).h = Z.h := rfl
+
+end CORALean.Float
+
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+variable {m : ℕ}
+
+
+-- ===============================  `Zonotope.materialiseMat_eq`  =============================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialiseMat` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem Zonotope.materialiseMat_eq (Z : Zonotope (Mat 𝕋 m n)) :
+    Z.materialiseMat = Z := by
+  simp [Zonotope.materialiseMat]
 
 end CORALean.Float
 

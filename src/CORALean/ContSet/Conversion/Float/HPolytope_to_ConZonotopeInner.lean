@@ -56,7 +56,7 @@ def HPolytope.conZonotopeInnerOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope
   c := Z.c
   G := Z.G
   P := P.onCoefficientsInner Z
-  E := Interval.point fun _ => zero
+  I_error := Interval.point fun _ => zero
 
 /-- The tightened conversion of `P` at the box `Bx`, inside `P`: the box only decides how much of
 `P` it covers, never whether it stays inside. -/

@@ -487,7 +487,7 @@ models and systems follow the same shape:
 
 | File | Holds |
 | --- | --- |
-| `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `Trajectory` |
+| `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `Trajectory` — no theorem, and no storage helper (see "Main-type files") |
 | `Operations/*.lean` | one operation each, as CORA gives it a file each |
 | `Theorems/*.lean` | one guarantee each, stated and proved together |
 | `Complexity/Space/*.lean` | how large a result is — a theorem, proved from the definition — and its `O` corollary where there is one |
@@ -520,6 +520,21 @@ exists; `check-conventions.sh` rejects both.
 The rule is what keeps the table above true, and it is checked because a
 convention nobody tests is one the tree drifts out of: a helper that quietly
 grows a second user is the usual way a file stops doing only its own job.
+
+### Main-type files
+
+The file that holds a `MAIN TYPE` banner at `<Name>/<Name>.lean` or
+`<Name>/<Layer>/<Name>.lean` is where a reader meets the type first, so it holds the type and
+what it denotes and nothing said or done about it. Kept: the structure or class, its
+`nominal` view and `construct`, the `InflatedContSet` instance that gives the float sets their
+meaning, and the other definitions the type is stated with (`Taylm.polyOf`, `Specification.Holds`).
+Moved out: every `theorem` and `lemma` — the `nominal_h` fields that let a proof see through
+an instance, `materialise_eq`, `mem_construct` — to `Theorems/`, and the storage helper
+`materialise`, which rebuilds a float set's function-typed fields as vectors and is the
+identity, to `Operations/`. Each goes where its size puts it: a section of `Basic.lean` when it
+is at most five code lines ("Small declarations"), a file of its own otherwise.
+`check-conventions.sh` rejects a `theorem`, `lemma` or `materialise…` definition in a main-type
+file.
 
 ### A size is proved; a running cost is asserted
 

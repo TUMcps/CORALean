@@ -34,7 +34,7 @@ def Zonotope.plus (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) wh
   h := Z₁.h + Z₂.h
   c := fun i => addDown (Z₁.c i) (Z₂.c i)
   G := Fin.append Z₁.G Z₂.G
-  E := (Z₁.E.plus Z₂.E).plus (Zonotope.centerResidual Z₁.c Z₂.c)
+  I_error := (Z₁.I_error.plus Z₂.I_error).plus (Zonotope.centerResidual Z₁.c Z₂.c)
 
 end CORALean.Float
 

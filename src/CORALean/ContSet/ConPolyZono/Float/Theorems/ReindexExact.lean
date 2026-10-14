@@ -36,12 +36,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem ConPolyZono.reindex_exact (e : Fin m ≃ Fin n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     (cPZ.reindex e).construct = reindexLin e '' cPZ.construct := by -- --- PROOF ---
-  show InflatedContSet.nominalSet (cPZ.reindex e) + (cPZ.err.reindex e).construct
-    = reindexLin e '' (InflatedContSet.nominalSet cPZ + cPZ.err.construct)
+  show InflatedContSet.nominalSet (cPZ.reindex e) + (cPZ.I_error.reindex e).construct
+    = reindexLin e '' (InflatedContSet.nominalSet cPZ + cPZ.I_error.construct)
   have h : InflatedContSet.nominalSet (cPZ.reindex e)
       = reindexLin e '' InflatedContSet.nominalSet cPZ :=
     (Real.ConPolyZono.map_exact (reindexLin e) (InflatedContSet.nominal cPZ)).symm
-  rw [InflatedContSet.image_add, Interval.reindex_exact e cPZ.err, h]
+  rw [InflatedContSet.image_add, Interval.reindex_exact e cPZ.I_error, h]
 
 end CORALean.Float
 

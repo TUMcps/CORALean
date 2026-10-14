@@ -1,7 +1,10 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Materialise
 public import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -15,10 +18,21 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
-
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ===============================  `ZonoBundle.materialise_eq`  ================================ --
+-- Authors:       Claude Opus 5
+-- Written:       07-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] in
+/-- `materialise` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem ZonoBundle.materialise_eq (zB : ZonoBundle (Vec 𝕋 n)) : zB.materialise = zB := by
+  simp [ZonoBundle.materialise]
 
 
 -- ============================  `ZonoBundle.reduceCombined_outer`  ============================= --

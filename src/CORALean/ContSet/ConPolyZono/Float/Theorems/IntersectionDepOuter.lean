@@ -34,23 +34,24 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- What the two error boxes let the two nominal points differ by, and the
 tolerance the stored rows amount to covers it. -/
 theorem ConPolyZono.aux_mem_intersectionD (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {e₁ e₂ : Vec ℝ n}
-    (h₁ : e₁ ∈ cPZ₁.err.construct) (h₂ : e₂ ∈ cPZ₂.err.construct) :
+    (h₁ : e₁ ∈ cPZ₁.I_error.construct) (h₂ : e₂ ∈ cPZ₂.I_error.construct) :
     e₂ - e₁ ∈ (ConPolyZono.intersectionD cPZ₁ cPZ₂).construct := by -- --- PROOF ---
   intro i
-  have hb₁ : toReal (cPZ₁.err.inf i) ≤ e₁ i ∧ e₁ i ≤ toReal (cPZ₁.err.sup i) := h₁ i
-  have hb₂ : toReal (cPZ₂.err.inf i) ≤ e₂ i ∧ e₂ i ≤ toReal (cPZ₂.err.sup i) := h₂ i
+  have hb₁ : toReal (cPZ₁.I_error.inf i) ≤ e₁ i ∧ e₁ i ≤ toReal (cPZ₁.I_error.sup i) := h₁ i
+  have hb₂ : toReal (cPZ₂.I_error.inf i) ≤ e₂ i ∧ e₂ i ≤ toReal (cPZ₂.I_error.sup i) := h₂ i
   show (ConPolyZono.intersectionD cPZ₁ cPZ₂).inf i ≤ (e₂ - e₁) i
     ∧ (e₂ - e₁) i ≤ (ConPolyZono.intersectionD cPZ₁ cPZ₂).sup i
   rw [Pi.sub_apply]
   simp only [ConPolyZono.intersectionD, ConPolyZono.intersectionAgree]
   constructor
   · linarith [addDown_le_add (subDown (cPZ₂.c i) (cPZ₁.c i))
-        (subDown (cPZ₂.err.inf i) (cPZ₁.err.sup i)),
+        (subDown (cPZ₂.I_error.inf i) (cPZ₁.I_error.sup i)),
       subDown_le_sub (cPZ₂.c i) (cPZ₁.c i),
-      subDown_le_sub (cPZ₂.err.inf i) (cPZ₁.err.sup i), hb₁.2, hb₂.1]
-  · linarith [add_le_addUp (subUp (cPZ₂.c i) (cPZ₁.c i)) (subUp (cPZ₂.err.sup i) (cPZ₁.err.inf i)),
+      subDown_le_sub (cPZ₂.I_error.inf i) (cPZ₁.I_error.sup i), hb₁.2, hb₂.1]
+  · linarith [add_le_addUp (subUp (cPZ₂.c i) (cPZ₁.c i))
+      (subUp (cPZ₂.I_error.sup i) (cPZ₁.I_error.inf i)),
       sub_le_subUp (cPZ₂.c i) (cPZ₁.c i),
-      sub_le_subUp (cPZ₂.err.sup i) (cPZ₁.err.inf i), hb₁.1, hb₂.2]
+      sub_le_subUp (cPZ₂.I_error.sup i) (cPZ₁.I_error.inf i), hb₁.1, hb₂.2]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

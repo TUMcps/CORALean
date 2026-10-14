@@ -1,13 +1,14 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.MaterialiseEq
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.PlusOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.ProjectOuter
 public import Mathlib.Analysis.Convex.Hull
 
 @[expose] public section
@@ -42,8 +43,8 @@ theorem SpectraShadow.aux_singletonOne_mem :
       ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).construct := by -- --- PROOF ---
   -- the error box is the origin, and the nominal part holds `1` at `β = 1`
   have hE : (0 : Vec ℝ 1) ∈
-    (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).E.construct := by
-    rw [show (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).E =
+    (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).I_error.construct := by
+    rw [show (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).I_error =
       Interval.origin 1 from rfl,
       Interval.origin_exact]; rfl
   refine ⟨_, ?_, 0, hE, add_zero _⟩
@@ -66,8 +67,8 @@ theorem SpectraShadow.aux_singletonOne_mem :
 theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) :
     (Fin.append y (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
       ∈ (SpectraShadow.hyperplaneOne 𝕋 n).construct := by -- --- PROOF ---
-  have hE : (0 : Vec ℝ (n + 1)) ∈ (SpectraShadow.hyperplaneOne 𝕋 n).E.construct := by
-    rw [show (SpectraShadow.hyperplaneOne 𝕋 n).E = Interval.origin (n + 1) from rfl,
+  have hE : (0 : Vec ℝ (n + 1)) ∈ (SpectraShadow.hyperplaneOne 𝕋 n).I_error.construct := by
+    rw [show (SpectraShadow.hyperplaneOne 𝕋 n).I_error = Interval.origin (n + 1) from rfl,
       Interval.origin_exact]; rfl
   refine ⟨_, ?_, 0, hE, add_zero _⟩
   refine SpectraShadow.mem_nominalSet_iff.2 ⟨y, ?_, fun i => ?_⟩

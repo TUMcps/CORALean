@@ -39,7 +39,7 @@ def ConZonotope.mtimesNominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec �
   c := fun i => dotDown (M i) cZ.c
   G := fun j => mulVecDown M (cZ.G j)
   P := cZ.P
-  E := Interval.point fun _ => zero
+  I_error := Interval.point fun _ => zero
 
 end CORALean.Float
 

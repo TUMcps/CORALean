@@ -37,7 +37,7 @@ def ConPolyZono.supportBound (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {c : Vec ℝ 
     (u : FloatBound 𝕋 ((InflatedContSet.nominal cPZ).polyZonotope.point ''
       {α | (∀ k, |α k| ≤ 1) ∧ (InflatedContSet.nominal cPZ).satisfies α}) c) :
     FloatBound 𝕋 cPZ.construct c :=
-  boundOfParts (cPZ.nominalSupportBound a hc u) (cPZ.err.boundDot a hc)
+  boundOfParts (cPZ.nominalSupportBound a hc u) (cPZ.I_error.boundDot a hc)
 
 end CORALean.Float
 

@@ -9,6 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticula
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

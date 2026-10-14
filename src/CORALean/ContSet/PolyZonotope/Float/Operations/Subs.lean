@@ -49,7 +49,7 @@ def PolyZonotope.subs (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ} (pZin : PolyZo
       + ∑ j ∈ Finset.univ.filter (fun j => pZ.subsFactor pZin share j = r),
           ((pZ.subsTerms pZin idu).get l).2.2 j
   GI := pZ.GI
-  err := pZ.err.plus (PolyZonotope.generatorError (pZ.subsGDiff pZin idu))
+  I_error := pZ.I_error.plus (PolyZonotope.generatorError (pZ.subsGDiff pZin idu))
 
 end CORALean.Float
 

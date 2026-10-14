@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Float.Operations.ContainsPoint
 public import CORALean.ContSet.Polygon.Float.Theorems.PieceHoldsSound
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 
@@ -36,7 +37,7 @@ theorem Polygon.containsPoint_sound {P : Polygon 𝕋} {x : Vec 𝕋 2}
     List.mem_finRange, forall_const] at h
   obtain ⟨p, hp, hbox, hx⟩ := h
   -- the origin is in the box
-  have h0 : (0 : Vec ℝ 2) ∈ p.E.construct := fun i =>
+  have h0 : (0 : Vec ℝ 2) ∈ p.I_error.construct := fun i =>
     ⟨(toReal_le_of_le (hbox i).1).trans_eq toReal_zero,
       toReal_zero.symm.trans_le (toReal_le_of_le (hbox i).2)⟩
   exact SetUnion.mem_construct.mpr

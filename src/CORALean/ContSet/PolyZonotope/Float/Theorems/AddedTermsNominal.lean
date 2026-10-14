@@ -35,7 +35,7 @@ theorem PolyZonotope.addedTerms_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
     (∀ idx, toReal (pZ.addedTerms.G idx 0)
       = (Real.PolyZonotope.addedTerms (PolyZonotope.nominal pZ)).G idx)
     ∧ pZ.addedTerms.E = (Real.PolyZonotope.addedTerms (PolyZonotope.nominal pZ)).E
-    ∧ pZ.addedTerms.err = Interval.point fun _ => zero := by -- --- PROOF ---
+    ∧ pZ.addedTerms.I_error = Interval.point fun _ => zero := by -- --- PROOF ---
   refine ⟨fun idx => ?_, rfl, rfl⟩
   simp only [PolyZonotope.addedTerms, Real.PolyZonotope.addedTerms]
   generalize finProdFinEquiv.symm idx = pr

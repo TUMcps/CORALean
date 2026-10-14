@@ -65,7 +65,7 @@ def Xr : Zonotope (Vec D 2) where
   h := 2
   c := ![dy 3 (-1), dy 1 (-2)]
   G := !![dy 1 (-1), dy 0 0; dy 0 0, dy 1 (-2)]
-  E := zeroBox 2
+  I_error := zeroBox 2
 
 /-- `ρ = 1/2`, `≈` within `1/8`, and fuel for forty rounds of either loop. -/
 def ρr : D := dy 1 (-1)

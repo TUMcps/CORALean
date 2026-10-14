@@ -111,9 +111,9 @@ theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 theorem Zonotope.aux_mtimes_error (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (error Z).construct + (Zonotope.mtimesResidual M Z).construct ⊆
-      (error (Zonotope.mtimes M Z)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M Z.E))
+    (toRealMat M *ᵥ ·) '' (I_error Z).construct + (Zonotope.mtimesResidual M Z).construct ⊆
+      (I_error (Zonotope.mtimes M Z)).construct :=
+  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M Z.I_error))
     (Interval.plus_outer _ _)
 
 

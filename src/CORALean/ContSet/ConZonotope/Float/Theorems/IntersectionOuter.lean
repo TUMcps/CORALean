@@ -64,25 +64,25 @@ theorem ConZonotope.intersection_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋
         simp only [mulVec, dotProduct, toRealMat, Fin.sum_univ_add, Fin.append_left,
           Fin.append_right, toReal_neg, neg_mul, Finset.sum_neg_distrib]
         ring
-      have hb₁ : toReal (cZ₁.E.inf i) ≤ e₁ i ∧ e₁ i ≤ toReal (cZ₁.E.sup i) := he₁ i
-      have hb₂ : toReal (cZ₂.E.inf i) ≤ e₂ i ∧ e₂ i ≤ toReal (cZ₂.E.sup i) := he₂ i
+      have hb₁ : toReal (cZ₁.I_error.inf i) ≤ e₁ i ∧ e₁ i ≤ toReal (cZ₁.I_error.sup i) := he₁ i
+      have hb₂ : toReal (cZ₂.I_error.inf i) ≤ e₂ i ∧ e₂ i ≤ toReal (cZ₂.I_error.sup i) := he₂ i
       have hxi := (hx₁' i).trans (hx₂' i).symm
       -- both ends: the stored bound rounded outward from the extreme `e₂ - e₁`
       refine ⟨?_, ?_⟩
       · show toReal (addDown (subDown (cZ₂.c i) (cZ₁.c i))
-            (subDown (cZ₂.E.inf i) (cZ₁.E.sup i))) ≤ _
+            (subDown (cZ₂.I_error.inf i) (cZ₁.I_error.sup i))) ≤ _
         refine le_of_le_of_eq ?_ hrow.symm
         linarith [addDown_le_add (subDown (cZ₂.c i) (cZ₁.c i))
-            (subDown (cZ₂.E.inf i) (cZ₁.E.sup i)),
+            (subDown (cZ₂.I_error.inf i) (cZ₁.I_error.sup i)),
           subDown_le_sub (cZ₂.c i) (cZ₁.c i),
-          subDown_le_sub (cZ₂.E.inf i) (cZ₁.E.sup i), hb₁.2, hb₂.1]
+          subDown_le_sub (cZ₂.I_error.inf i) (cZ₁.I_error.sup i), hb₁.2, hb₂.1]
       · show _ ≤ toReal (addUp (subUp (cZ₂.c i) (cZ₁.c i))
-            (subUp (cZ₂.E.sup i) (cZ₁.E.inf i)))
+            (subUp (cZ₂.I_error.sup i) (cZ₁.I_error.inf i)))
         refine le_of_eq_of_le hrow ?_
         linarith [add_le_addUp (subUp (cZ₂.c i) (cZ₁.c i))
-            (subUp (cZ₂.E.sup i) (cZ₁.E.inf i)),
+            (subUp (cZ₂.I_error.sup i) (cZ₁.I_error.inf i)),
           sub_le_subUp (cZ₂.c i) (cZ₁.c i),
-          sub_le_subUp (cZ₂.E.sup i) (cZ₁.E.inf i), hb₁.1, hb₂.2]
+          sub_le_subUp (cZ₂.I_error.sup i) (cZ₁.I_error.inf i), hb₁.1, hb₂.2]
   -- the second generator block is zero, so the point is the first operand's
   · intro i
     rw [hy₁ i]

@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearSysDT.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.ReachUnion
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ConfinementOfSubsetOn
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

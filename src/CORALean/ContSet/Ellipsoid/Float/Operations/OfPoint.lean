@@ -33,7 +33,7 @@ def Ellipsoid.ofPoint (p : Vec 𝕋 n) : Ellipsoid 𝕋 n where
   k := 0
   q := p
   G := fun _ j => j.elim0
-  err := Interval.origin n
+  I_error := Interval.origin n
 
 end CORALean.Float
 

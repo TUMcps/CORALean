@@ -33,7 +33,7 @@ def Zonotope.representsa_origin (Z : Zonotope (Vec 𝕋 n)) : Bool :=
   (((List.finRange Z.h).all fun j => (List.finRange n).all fun i =>
     FloatOps.le (Z.G j i) zero && FloatOps.le zero (Z.G j i)) &&
     (List.finRange n).all (fun i => FloatOps.le (Z.c i) zero && FloatOps.le zero (Z.c i)) &&
-    Z.E.representsa_origin)
+    Z.I_error.representsa_origin)
 
 end CORALean.Float
 

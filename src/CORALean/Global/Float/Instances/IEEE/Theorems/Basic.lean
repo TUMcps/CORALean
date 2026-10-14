@@ -4,8 +4,10 @@ public import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
+public import CORALean.Global.Float.Instances.IEEE.IEEE
 public import CORALean.Global.Float.Instances.IEEE.Operations.AddUp
 public import CORALean.Global.Float.Instances.IEEE.Operations.Basic
 public import CORALean.Global.Float.Instances.IEEE.Operations.DivUp
@@ -25,7 +27,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float.IEEE
 
@@ -138,6 +139,27 @@ theorem toReal_half (x : IEEE fmt) : (half x).toReal = x.toReal / 2 :=
 theorem toReal_neg (x : IEEE fmt) : (neg x).toReal = -x.toReal := Dyadic.toReal_neg x.toDyadic
 
 end CORALean.Float.IEEE
+
+
+namespace CORALean.Float
+
+namespace IEEE
+
+variable {fmt : IEEEFormat}
+
+
+-- =======================================  `toReal_def`  ======================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       28-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The real value of an IEEE number is its mantissa times a power of two. -/
+theorem toReal_def (x : IEEE fmt) : x.toReal = (x.mantissa : ℝ) * 2 ^ x.exponent :=
+  Dyadic.toReal_def _
+
+end IEEE
+end CORALean.Float
 
 
 -- ---------------------------------------  END OF CODE  ---------------------------------------- --

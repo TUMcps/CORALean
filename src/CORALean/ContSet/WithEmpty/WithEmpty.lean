@@ -24,7 +24,7 @@ module ambient types too — every type `ContSet` is indexed by.
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,12 +49,6 @@ def WithEmpty.construct [ContSet S α] : WithEmpty S → Set α
   | .of s => ContSet.construct s
 
 instance [ContSet S α] : ContSet (WithEmpty S) α := ⟨WithEmpty.construct⟩
-
-@[simp] theorem WithEmpty.construct_empty [ContSet S α] :
-    ContSet.construct (WithEmpty.empty : WithEmpty S) = (∅ : Set α) := rfl
-
-@[simp] theorem WithEmpty.construct_of [ContSet S α] (s : S) :
-    ContSet.construct (WithEmpty.of s) = ContSet.construct s := rfl
 
 end CORALean
 

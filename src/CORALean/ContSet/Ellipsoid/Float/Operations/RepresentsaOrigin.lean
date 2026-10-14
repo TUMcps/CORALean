@@ -33,7 +33,7 @@ def Ellipsoid.representsa_origin (E : Ellipsoid 𝕋 n) : Bool :=
   (((List.finRange E.k).all fun j => (List.finRange n).all fun i =>
     FloatOps.le (E.G i j) zero && FloatOps.le zero (E.G i j)) &&
     (List.finRange n).all (fun i => FloatOps.le (E.q i) zero && FloatOps.le zero (E.q i)) &&
-    E.err.representsa_origin)
+    E.I_error.representsa_origin)
 
 end CORALean.Float
 

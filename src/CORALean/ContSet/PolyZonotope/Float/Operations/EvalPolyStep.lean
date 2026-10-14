@@ -44,10 +44,10 @@ def PolyZonotope.evalPolyStep (R pZ : PolyZonotope (Vec 𝕋 n)) (hp : R.p = pZ.
   G := (PolyZonotope.mul R pZ hp).G
   E := (PolyZonotope.mul R pZ hp).E
   GI := (PolyZonotope.mul R pZ hp).GI
-  err := ((PolyZonotope.mul R pZ hp).err.plus
+  I_error := ((PolyZonotope.mul R pZ hp).I_error.plus
       (PolyZonotope.centerResidual (PolyZonotope.mul R pZ hp).c a0)).plus
     (Interval.symmetric (fun i =>
-      mulUp (PolyZonotope.errorBound R.err i) (PolyZonotope.evalPolyBoundS pZ i)))
+      mulUp (PolyZonotope.errorBound R.I_error i) (PolyZonotope.evalPolyBoundS pZ i)))
 
 end CORALean.Float
 

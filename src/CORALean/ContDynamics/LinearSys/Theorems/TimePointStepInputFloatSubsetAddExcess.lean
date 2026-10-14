@@ -55,7 +55,7 @@ nominal zonotope, widened by `timePointStepExcessFloat` and the step's float err
 upper side of the float step, at `r > 0` and an admissible order. -/
 theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
-    (hX : (0 : Vec ℝ n) ∈ X.E.construct) (hU : (0 : Vec ℝ n) ∈ U.E.construct) :
+    (hX : (0 : Vec ℝ n) ∈ X.I_error.construct) (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) :
     (sys.timePointStepInputFloat r η X U).construct
       ⊆ (exp (toReal r • Scalar.toRealMat sys.A) *ᵥ ·) '' X.construct
         + (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal r))
@@ -67,8 +67,8 @@ theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys �
     (S := 𝒵[𝕋]) eA X
   set P := sys.inputSolutionFloat r η U
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal r) le_rfl le_rfl
-  have hM0 : (0 : Vec ℝ n) ∈ M.E.construct := by
-    show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat _ X).materialise).E.construct
+  have hM0 : (0 : Vec ℝ n) ∈ M.I_error.construct := by
+    show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat _ X).materialise).I_error.construct
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_mtimesIntervalMat_error he hX
   have hP0 := sys.zero_mem_inputSolutionFloat_error hr.le hη hU

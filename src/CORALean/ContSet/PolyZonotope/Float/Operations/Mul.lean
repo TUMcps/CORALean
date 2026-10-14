@@ -52,7 +52,7 @@ def PolyZonotope.mul (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁.p = p
   G := fun l i => PolyZonotope.mulGDown pZ₁ pZ₂ i l
   E := PolyZonotope.mulE pZ₁ pZ₂ hp
   GI := Fin.elim0
-  err := PolyZonotope.generatorError (PolyZonotope.mulGDiff pZ₁ pZ₂)
+  I_error := PolyZonotope.generatorError (PolyZonotope.mulGDiff pZ₁ pZ₂)
 
 end CORALean.Float
 

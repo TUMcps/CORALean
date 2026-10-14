@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Operations.Basic
 public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
@@ -15,7 +16,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean
 
@@ -45,6 +45,66 @@ theorem CompactSet.isBounded_construct [CompactSet S α] (s : S) :
 /-- `CompactSet.isClosed_construct`: compactness over a normed space gives closedness for free. -/
 theorem CompactSet.isClosed_construct [CompactSet S α] (s : S) : IsClosed (construct s) :=
   (CompactSet.isCompact_construct s).isClosed
+
+end CORALean
+
+
+namespace CORALean
+
+open Matrix Pointwise
+open ContSet
+open Scalar
+
+
+-- =================================  `ContSet.construct_mat`  ================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- A matrix is the set holding its real image, as a `ContSet`. -/
+@[simp] theorem ContSet.construct_mat {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} (M : Mat 𝕋 m n) :
+    construct M = {toRealMat M} := rfl
+
+
+-- ===================================  `matMulBilin_apply`  ==================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- `matMulBilin` is the matrix product. -/
+@[simp] theorem matMulBilin_apply {p q r : ℕ} (A : Mat ℝ p q) (B : Mat ℝ q r) :
+    matMulBilin A B = A * B := rfl
+
+end CORALean
+
+
+namespace CORALean
+
+open Matrix Pointwise
+open ContSet
+
+
+-- =================================  `ContSet.construct_set`  ================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- A set is its own `ContSet` representation. -/
+@[simp] theorem ContSet.construct_set {α : Type} (X : Set α) : construct X = X := rfl
+
+
+-- ====================================  `ContSet.mem_iff`  ===================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- Membership in a representation is membership in the set it denotes. -/
+theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
+    x ∈ s ↔ x ∈ construct s := Iff.rfl
 
 end CORALean
 

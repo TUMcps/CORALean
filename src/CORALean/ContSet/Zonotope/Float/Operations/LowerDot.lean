@@ -37,7 +37,7 @@ def Zonotope.lowerDot (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
   let gens := sumDown fun j => maximum zero                         -- Σⱼ |aᵀGⱼ|, from below
     (maximum (dotDown a (Z.G j)) (neg (dotUp a (Z.G j))))
   let box := sumDown fun i =>                                       -- Σᵢ aᵢ eᵢ, at the smaller end
-    minimum (mulDown (a i) (Z.E.inf i)) (mulDown (a i) (Z.E.sup i))
+    minimum (mulDown (a i) (Z.I_error.inf i)) (mulDown (a i) (Z.I_error.sup i))
   addDown (addDown centre gens) box
 
 end CORALean.Float

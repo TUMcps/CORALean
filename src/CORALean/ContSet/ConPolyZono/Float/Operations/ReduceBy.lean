@@ -46,7 +46,7 @@ def ConPolyZono.reduceBy (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
   A := cPZ.A
   b := cPZ.b
   EC := cPZ.EC
-  err := cPZ.err
+  I_error := cPZ.I_error
 
 end CORALean.Float
 

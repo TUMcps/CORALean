@@ -1,9 +1,11 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.ReexpBoxBounds
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoxBoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.ReexpandOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 

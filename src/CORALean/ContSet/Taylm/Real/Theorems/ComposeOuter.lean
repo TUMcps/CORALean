@@ -1,12 +1,14 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Compose
-public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.PowOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Real.Theorems.PowOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
 
 @[expose] public section
 

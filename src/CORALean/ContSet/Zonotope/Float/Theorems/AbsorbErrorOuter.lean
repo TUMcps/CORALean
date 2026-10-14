@@ -57,9 +57,9 @@ theorem Zonotope.absorbError_outer (Z : Zonotope (Vec 𝕋 n)) :
   refine ⟨fun i => toReal (Z.absorbError.c i)
             + ∑ j, toReal (Z.absorbError.G j i)
                 * Fin.append β (fun l => Real.Zonotope.coefficient (toReal (Z.errorRadius l))
-                    (e l - (toReal (Z.E.inf l) + toReal (Z.E.sup l)) / 2)) j,
+                    (e l - (toReal (Z.I_error.inf l) + toReal (Z.I_error.sup l)) / 2)) j,
           Zonotope.mem_nominalSet_iff.mpr ⟨_, ?_, fun _ => rfl⟩,
-          fun i => toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2
+          fun i => toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2
             - toReal (Z.shiftDown i), ?_, ?_⟩
   -- the fresh coefficients read the box from its own midpoint outward
   · refine Fin.addCases (fun l => ?_) (fun l => ?_)

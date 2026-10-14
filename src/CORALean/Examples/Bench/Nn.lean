@@ -195,7 +195,7 @@ def sound (reps : ℕ) (arithmetic : String) (inst : ExactDyadic → 𝕋) (toD 
   let H := Z.interval
   pure (⟨"interval", arithmetic, true, toExact (I.inf 0), toExact (I.sup 0), none, okI, sI, mI⟩,
     ⟨"zonotope", arithmetic, true, toExact (H.inf 0), toExact (H.sup 0),
-      some (toExact (Z.E.inf 0), toExact (Z.E.sup 0)), okZ, sZ, mZ⟩)
+      some (toExact (Z.I_error.inf 0), toExact (Z.I_error.sup 0)), okZ, sZ, mZ⟩)
 
 open CORALean.Bench.NearestUnsound in
 /-- `sound`'s two analyses at `NearestDyadic 24`, round-to-nearest binary32 — the

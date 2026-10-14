@@ -39,7 +39,8 @@ theorem Zonotope.sub_centre_mem_recentre {Z : Zonotope (Vec 𝕋 n)} {y : Vec �
       zero_add]
     rfl
   · obtain ⟨hlo, hhi⟩ := he i
-    show toReal (minimum (Z.E.inf i) zero) ≤ e i ∧ e i ≤ toReal (maximum (Z.E.sup i) zero)
+    show toReal (minimum (Z.I_error.inf i) zero) ≤ e i ∧ e i ≤ toReal
+        (maximum (Z.I_error.sup i) zero)
     rw [toReal_minimum, toReal_maximum]
     exact ⟨le_trans (min_le_left _ _) hlo, le_trans hhi (le_max_left _ _)⟩
 

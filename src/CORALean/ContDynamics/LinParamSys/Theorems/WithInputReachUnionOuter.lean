@@ -11,6 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

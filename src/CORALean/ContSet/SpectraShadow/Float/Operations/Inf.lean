@@ -38,7 +38,7 @@ def SpectraShadow.Inf (n : ℕ) : SpectraShadow 𝕋 (Vec 𝕋 n) where
   A := fun _ _ _ => zero
   c := fun _ => zero
   G := fun j i => if i.val = j.val then one else zero
-  E := Interval.origin n
+  I_error := Interval.origin n
 
 end CORALean.Float
 

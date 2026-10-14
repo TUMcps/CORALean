@@ -1,6 +1,10 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Taylm
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import Mathlib.Algebra.BigOperators.Pi
 

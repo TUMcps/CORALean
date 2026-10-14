@@ -114,7 +114,7 @@ theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : M
       exact this.le
   have hx : y₀ ∈ interior (nominalSet cPZ) :=
     interior_maximal hVsub hV fun i _ => by simpa [Metric.mem_ball] using hB
-  have he : (fun i => toReal (cPZ.err.inf i)) ∈ (error cPZ).construct := fun i =>
+  have he : (fun i => toReal (cPZ.I_error.inf i)) ∈ (I_error cPZ).construct := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx he)⟩
 

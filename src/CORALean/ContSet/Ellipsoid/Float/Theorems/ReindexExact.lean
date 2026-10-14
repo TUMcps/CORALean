@@ -54,14 +54,14 @@ theorem aux_reindex_nominal (e : Fin m ≃ Fin n) (E : Ellipsoid 𝕋 n) :
 
 theorem Ellipsoid.reindex_exact (e : Fin m ≃ Fin n) (E : Ellipsoid 𝕋 n) :
     (E.reindex e).construct = reindexLin e '' E.construct := by -- --- PROOF ---
-  show InflatedContSet.nominalSet (E.reindex e) + (E.err.reindex e).construct
-    = reindexLin e '' (InflatedContSet.nominalSet E + E.err.construct)
+  show InflatedContSet.nominalSet (E.reindex e) + (E.I_error.reindex e).construct
+    = reindexLin e '' (InflatedContSet.nominalSet E + E.I_error.construct)
   have h : InflatedContSet.nominalSet (E.reindex e)
       = reindexLin e '' InflatedContSet.nominalSet E := by
     unfold InflatedContSet.nominalSet
     rw [aux_reindex_nominal]
     exact (Real.Ellipsoid.map_exact (reindexLin e) (InflatedContSet.nominal E)).symm
-  rw [InflatedContSet.image_add, Interval.reindex_exact e E.err, h]
+  rw [InflatedContSet.image_add, Interval.reindex_exact e E.I_error, h]
 
 end CORALean.Float
 

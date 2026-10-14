@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Operations.Le
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowAlign
 
 @[expose] public section

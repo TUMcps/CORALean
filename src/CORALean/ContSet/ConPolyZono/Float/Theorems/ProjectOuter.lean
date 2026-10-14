@@ -37,7 +37,7 @@ theorem ConPolyZono.project_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (dims : 
     (fun x k => x (dims k)) '' cPZ.construct ⊆ (cPZ.project dims).construct :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.ConPolyZono.project_exact (nominal cPZ) dims))
-    (Interval.project_outer cPZ.err dims)
+    (Interval.project_outer cPZ.I_error dims)
 
 end CORALean.Float
 

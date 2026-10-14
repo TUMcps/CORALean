@@ -97,10 +97,10 @@ theorem SpectraShadow.containsPoint_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)} 
     have s₂ := sub_le_subUp (p r) (addDown (S.c r) (dotDown (fun j => S.G j r) β))
     have b₁ := toReal_le_of_le l₁
     have b₂ := toReal_le_of_le l₂
-    show toReal (S.E.inf r)
+    show toReal (S.I_error.inf r)
         ≤ toReal (p r) - (toReal (S.c r) + ∑ j, toReal (S.G j r) * toReal (β j))
       ∧ toReal (p r) - (toReal (S.c r) + ∑ j, toReal (S.G j r) * toReal (β j))
-        ≤ toReal (S.E.sup r)
+        ≤ toReal (S.I_error.sup r)
     constructor <;> linarith
   · -- the point is the nominal point plus the remainder
     funext r

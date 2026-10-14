@@ -45,7 +45,7 @@ theorem SpectraShadow.empty_exact (n : ℕ) :
     simp [toRealMat, SpectraShadow.empty, toReal_neg, toReal_one] at h
     norm_num at h
   show InflatedContSet.nominalSet (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n))
-      + (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)).E.construct = _
+      + (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)).I_error.construct = _
   rw [hN, Set.empty_add]
 
 end CORALean.Float

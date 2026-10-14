@@ -1544,6 +1544,40 @@ fi
 rm -f "$bundle_err"
 report "$out"
 
+# A main-type file holds the type and what it denotes, not what is said or done about
+# it (CONTRIBUTING, "Main-type files"): the file with the `MAIN TYPE` banner at
+# `<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` has no `theorem`/`lemma`, and no
+# `def`/`abbrev` named `materialise…`, the storage helper of the float sets. Those go to
+# `Theorems/` and `Operations/`, where the small ones share a `Basic.lean`.
+out=$(awk '
+function flush(   i) {
+  if (banner && isMain)
+    for (i = 1; i <= nh; i++)
+      print file ":" hl[i] ": " hw[i] " in a main-type file — move it to `Theorems/` or" \
+            " `Operations/` (a `Basic.lean` section when it is small)"
+  nh = 0
+}
+FNR == 1 {
+  flush()
+  inb = 0; banner = 0; file = FILENAME
+  n = split(FILENAME, pp, "/"); stem = pp[n]; sub(/\.lean$/, "", stem)
+  isMain = (stem == pp[n-1] || stem == pp[n-2])
+}
+{
+  s = $0
+  if (inb) { if (s ~ /-\//) inb = 0; next }
+  if (s ~ /^[ \t]*\/-/) { if (s !~ /-\//) inb = 1; next }
+  if (s ~ /^-- =.*MAIN TYPE/) banner = 1
+  if (s ~ /^[ \t]*--/ || !isMain) next
+  if (s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|nonrec)[ \t]+)*(theorem|lemma)[ \t]/) {
+    nh++; hl[nh] = FNR; hw[nh] = "a theorem"
+  } else if (s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec)[ \t]+)*(def|abbrev)[ \t]+([A-Za-z0-9_.]*[.])?materialise/) {
+    nh++; hl[nh] = FNR; hw[nh] = "storage (`materialise`)"
+  }
+}
+END { flush() }
+' $files)
+report "$out"
 if [ -z "$STAGED" ]; then
 
 # Layering: no file imports a directory the table forbids it, except the listed

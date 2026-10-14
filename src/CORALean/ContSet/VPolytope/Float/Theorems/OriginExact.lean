@@ -1,7 +1,8 @@
 module
 
-public import CORALean.ContSet.VPolytope.Float.Operations.Origin
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+public import CORALean.ContSet.VPolytope.Float.Operations.Origin
+public import CORALean.ContSet.VPolytope.Float.Theorems.NominalEq
 public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
 public import CORALean.ContSet.VPolytope.Real.Operations.Point
 
@@ -45,10 +46,10 @@ theorem VPolytope.origin_exact (n : ℕ) :
     unfold InflatedContSet.nominalSet
     rw [h]
     exact Real.VPolytope.construct_point 0
-  have hE : (VPolytope.origin n : VPolytope (Vec 𝕋 n)).E.construct = {0} :=
+  have hE : (VPolytope.origin n : VPolytope (Vec 𝕋 n)).I_error.construct = {0} :=
     Interval.origin_exact n
   show InflatedContSet.nominalSet (VPolytope.origin n : VPolytope (Vec 𝕋 n))
-      + (VPolytope.origin n : VPolytope (Vec 𝕋 n)).E.construct = _
+      + (VPolytope.origin n : VPolytope (Vec 𝕋 n)).I_error.construct = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

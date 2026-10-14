@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def VPolytope.linComb (P₁ P₂ : VPolytope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := P₁.k + P₂.k
   V := Fin.append P₁.V P₂.V
-  E := P₁.E.linComb P₂.E
+  I_error := P₁.I_error.linComb P₂.I_error
 
 end CORALean.Float
 

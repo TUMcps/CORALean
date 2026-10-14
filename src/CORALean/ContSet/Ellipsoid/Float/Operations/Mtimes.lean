@@ -38,7 +38,7 @@ def Ellipsoid.mtimes (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Ellipsoid 𝕋 
   k := E.k
   q := mulVecDown M E.q
   G := matMulDown M E.G
-  err := (Interval.mtimes M E.err).plus (Ellipsoid.mtimesResidual M E)
+  I_error := (Interval.mtimes M E.I_error).plus (Ellipsoid.mtimesResidual M E)
 
 end CORALean.Float
 

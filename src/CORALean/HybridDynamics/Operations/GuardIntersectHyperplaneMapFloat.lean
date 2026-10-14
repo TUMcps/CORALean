@@ -101,8 +101,8 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
   let Q := fun i => GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i  -- Q{i}
   -- `Q{i}`'s centres with error boxes as interval matrices, and generators, each stored once
   let Dv : Vector (Interval (Mat 𝕋 n n)) n := Vector.ofFn fun i =>
-    (⟨fun l m => addDown ((Q i).c l m) ((Q i).E.inf l m),
-      fun l m => addUp ((Q i).c l m) ((Q i).E.sup l m)⟩ : Interval (Mat 𝕋 n n)).materialiseMat
+    (⟨fun l m => addDown ((Q i).c l m) ((Q i).I_error.inf l m),
+      fun l m => addUp ((Q i).c l m) ((Q i).I_error.sup l m)⟩ : Interval (Mat 𝕋 n n)).materialiseMat
   let Kv : Vector (Vector (Vector (Vector 𝕋 n) n) n) (1 + R0red.h + R0red.h) :=
     Vector.ofFn fun j => Vector.ofFn fun i => Vector.ofFn fun l => Vector.ofFn fun m =>
       (Q i).G j l m

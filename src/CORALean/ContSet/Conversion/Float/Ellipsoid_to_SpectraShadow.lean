@@ -38,7 +38,7 @@ def Ellipsoid.spectraShadow (E : Ellipsoid 𝕋 n) : SpectraShadow 𝕋 (Vec �
   A := fun i p q => if (p = 0 ∧ q = i.succ) ∨ (p = i.succ ∧ q = 0) then one else zero
   c := E.q
   G := fun j i => E.G i j
-  E := E.err
+  I_error := E.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 
@@ -65,8 +65,8 @@ theorem Ellipsoid.spectraShadow_exact (E : Ellipsoid 𝕋 n) :
     E.construct = E.spectraShadow.construct := by -- --- PROOF ---
   obtain ⟨h₀, hA⟩ := Ellipsoid.aux_toRealMat_spectraShadow E
   -- the box is carried over, so only the nominal parts are compared
-  show nominalSet E + (error E).construct = nominalSet E.spectraShadow +
-    (error E.spectraShadow).construct
+  show nominalSet E + (InflatedContSet.I_error E).construct = nominalSet E.spectraShadow +
+    (InflatedContSet.I_error E.spectraShadow).construct
   congr 1
   ext x
   constructor

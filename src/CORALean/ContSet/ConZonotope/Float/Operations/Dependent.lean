@@ -35,9 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def ConZonotope.dependent (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) where
   h := cZ.h + n
   c := cZ.c
-  G := Fin.append cZ.G (diagonalBlock (PolyZonotope.errorBound cZ.E))
+  G := Fin.append cZ.G (diagonalBlock (PolyZonotope.errorBound cZ.I_error))
   P := cZ.P.padLeft n
-  E := ⟨fun _ => zero, fun _ => zero⟩
+  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 end CORALean.Float
 

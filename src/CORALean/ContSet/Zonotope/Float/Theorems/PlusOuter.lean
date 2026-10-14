@@ -72,9 +72,9 @@ theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotop
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
 theorem Zonotope.aux_plus_error (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
-    Z₁.E.construct + Z₂.E.construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct ⊆
-      (Z₁.plus Z₂).E.construct :=
-  subset_trans (Set.add_subset_add_right (Interval.plus_outer Z₁.E Z₂.E))
+    Z₁.I_error.construct + Z₂.I_error.construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct ⊆
+      (Z₁.plus Z₂).I_error.construct :=
+  subset_trans (Set.add_subset_add_right (Interval.plus_outer Z₁.I_error Z₂.I_error))
     (Interval.plus_outer _ _)
 
 

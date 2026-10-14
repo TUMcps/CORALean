@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Materialise
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter

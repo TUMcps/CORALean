@@ -45,8 +45,8 @@ def zonotopeRatJson (nonFinite : 𝕋 → Bool) (Z : Zonotope (Vec 𝕋 2)) : Js
     [ ("c", Json.arr (Array.ofFn fun i => s (Z.c i))),
       ("G", Json.arr (Array.ofFn fun i => Json.arr (Array.ofFn fun j => s (Z.G j i)))),
       ("E", Json.mkObj
-        [ ("inf", Json.arr (Array.ofFn fun i => s (Z.E.inf i))),
-          ("sup", Json.arr (Array.ofFn fun i => s (Z.E.sup i))) ]) ]
+        [ ("inf", Json.arr (Array.ofFn fun i => s (Z.I_error.inf i))),
+          ("sup", Json.arr (Array.ofFn fun i => s (Z.I_error.sup i))) ]) ]
 
 end CORALean.Bench
 

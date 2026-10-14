@@ -45,7 +45,7 @@ theorem Zonotope.representsa_origin_sound {Z : Zonotope (Vec 𝕋 n)}
   have hN : InflatedContSet.nominalSet Z = {0} :=
     (Real.Zonotope.representsa_origin_iff (InflatedContSet.nominal Z)).2
       ⟨hc0, fun j => funext fun i => hG0 i j⟩
-  show InflatedContSet.nominalSet Z + Z.E.construct = _
+  show InflatedContSet.nominalSet Z + Z.I_error.construct = _
   rw [hN, Interval.representsa_origin_sound hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

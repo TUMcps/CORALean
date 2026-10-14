@@ -42,7 +42,7 @@ def ConPolyZono.quadMap (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 (Ve
   let qZ := PolyZonotope.quadMapDep Q pZ
   { p := qZ.p, h := qZ.h, q := 0, m := cPZ.m, s := cPZ.s, c := qZ.c, G := qZ.G, E := qZ.E,
     GI := Fin.elim0, A := cPZ.A, b := cPZ.b,
-    EC := Real.ConPolyZono.padE cPZ.EC (cPZ.q + n), err := qZ.err }
+    EC := Real.ConPolyZono.padE cPZ.EC (cPZ.q + n), I_error := qZ.I_error }
 
 end CORALean.Float
 

@@ -41,7 +41,7 @@ def SpectraShadow.plus (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraSh
     (fun i => blockDiag zero (fun _ _ => zero) (S₂.A i))
   c := fun i => addDown (S₁.c i) (S₂.c i)
   G := Fin.append S₁.G S₂.G
-  E := (S₁.E.plus S₂.E).plus (SpectraShadow.centerResidual S₁.c S₂.c)
+  I_error := (S₁.I_error.plus S₂.I_error).plus (SpectraShadow.centerResidual S₁.c S₂.c)
 
 end CORALean.Float
 

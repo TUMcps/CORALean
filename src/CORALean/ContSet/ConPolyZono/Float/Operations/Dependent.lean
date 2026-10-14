@@ -51,7 +51,7 @@ def ConPolyZono.dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono �
   A := cPZ.A
   b := cPZ.b
   EC := Real.ConPolyZono.padE cPZ.EC cPZ.q
-  err := cPZ.err
+  I_error := cPZ.I_error
 
 end CORALean.Float
 

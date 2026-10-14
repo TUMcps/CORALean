@@ -57,7 +57,7 @@ def ConZonotope.reduceLiftBy (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     G := Gnew
     P := { m := cZ.P.m, A := Aineq, b := fun i => addUp (cZ.P.b i) (slack i),
            me := cZ.P.me, Ae := Anew, be := cZ.P.be }
-    E := cZ.E }
+    I_error := cZ.I_error }
 
 end CORALean.Float
 

@@ -53,7 +53,8 @@ def ConZonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (cZ : ConZonoto
     c := MZ.c
     G := Fin.append MZ.G (diagonalBlock b)                          -- mid(M) G, then diag(b)
     P := MZ.P.padLeft m                                             -- new coefficients are free
-    E := MZ.E.plus (Interval.mtimesIntervalMat Rs cZ.E) }           -- mid(M) E ⊕ (M - mid(M)) E
+    -- mid(M) E ⊕ (M - mid(M)) E
+    I_error := MZ.I_error.plus (Interval.mtimesIntervalMat Rs cZ.I_error) }
 
 end CORALean.Float
 

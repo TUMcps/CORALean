@@ -26,7 +26,7 @@ number it denotes.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -44,15 +44,6 @@ structure FixedPoint (f : ℕ) where
   d : ℕ
 
 def FixedPoint.toReal {f : ℕ} (x : FixedPoint f) : ℝ := (((x.m : ℚ) / 10 ^ x.d : ℚ) : ℝ)
-
-/-- The number `toReal` denotes, past the rational detour it computes it by.
-Every proof about `FixedPoint` rewrites with this where it would have unfolded
-the definition. -/
-theorem FixedPoint.toReal_def {f : ℕ} (x : FixedPoint f) :
-    FixedPoint.toReal x = (x.m : ℝ) / 10 ^ x.d := by
-  rw [FixedPoint.toReal]
-  push_cast
-  ring
 
 end CORALean.Float
 

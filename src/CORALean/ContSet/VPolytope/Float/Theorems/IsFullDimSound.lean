@@ -107,7 +107,7 @@ theorem VPolytope.isFullDim_sound {P : VPolytope (Vec 𝕋 n)} {H : Mat 𝕋 P.k
       exact this.symm
   have hx : m ∈ interior (nominalSet P) :=
     interior_maximal hUsub hU fun i _ => by simpa [Metric.mem_ball] using hB
-  have he : (fun i => toReal (P.E.inf i)) ∈ (error P).construct := fun i =>
+  have he : (fun i => toReal (P.I_error.inf i)) ∈ (I_error P).construct := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx he)⟩
 

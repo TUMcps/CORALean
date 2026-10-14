@@ -48,7 +48,7 @@ abbrev PolyZonotope.aux_Z (P : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n
 /-- The dependent value at `a`, plus an error, is a point of the operand without its independent
 block. -/
 theorem PolyZonotope.aux_dep_mem (P : PolyZonotope (Vec 𝕋 n)) {a : Fin P.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) {e : Vec ℝ n} (he : e ∈ P.err.construct) :
+    (ha : ∀ k, |a k| ≤ 1) {e : Vec ℝ n} (he : e ∈ P.I_error.construct) :
     (fun i => toReal (P.c i) + ∑ l, toReal (P.G l i) * Real.PolyZonotope.monomial P.E a l) + e
       ∈ P.noIndep.construct :=
   Set.add_mem_add (PolyZonotope.mem_nominalSet_iff.mpr

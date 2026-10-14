@@ -40,7 +40,7 @@ def VPolytope.isFullDimWith (P : VPolytope (Vec 𝕋 n)) (H : Mat 𝕋 P.k (n + 
   let δ : 𝕋 := half (divDown one (nsmulUp P.k one))
   Nat.ble 1 P.k && le (nsmulUp P.k δ) one
     && Zonotope.ballCert P.bordered H (Zonotope.ballB H δ) δ
-    && (List.finRange n).all fun i => le (P.E.inf i) (P.E.sup i)
+    && (List.finRange n).all fun i => le (P.I_error.inf i) (P.I_error.sup i)
 
 end CORALean.Float
 

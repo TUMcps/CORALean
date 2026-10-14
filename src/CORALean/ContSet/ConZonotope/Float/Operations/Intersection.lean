@@ -61,13 +61,14 @@ def ConZonotope.intersection (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Con
     Fin.append (fun j => cZ₁.G j i) fun j => neg (cZ₂.G j i)
   -- b = [b; c₂ - c₁], widened by what the two error boxes let the points differ by
   let bagree : Interval (Vec 𝕋 n) :=
-    ⟨fun i => addDown (subDown (cZ₂.c i) (cZ₁.c i)) (subDown (cZ₂.E.inf i) (cZ₁.E.sup i)),
-     fun i => addUp (subUp (cZ₂.c i) (cZ₁.c i)) (subUp (cZ₂.E.sup i) (cZ₁.E.inf i))⟩
+    ⟨fun i => addDown (subDown (cZ₂.c i) (cZ₁.c i))
+        (subDown (cZ₂.I_error.inf i) (cZ₁.I_error.sup i)),
+     fun i => addUp (subUp (cZ₂.c i) (cZ₁.c i)) (subUp (cZ₂.I_error.sup i) (cZ₁.I_error.inf i))⟩
   { h := cZ₁.h + cZ₂.h
     c := cZ₁.c
     G := G
     P := P.intersection (HPolytope.eqs Aagree bagree)
-    E := cZ₁.E }
+    I_error := cZ₁.I_error }
 
 end CORALean.Float
 

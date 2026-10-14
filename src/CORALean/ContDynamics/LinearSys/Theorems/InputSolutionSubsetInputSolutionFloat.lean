@@ -93,7 +93,7 @@ theorem LinearSys.aux_inputTaylorSumZ_subset (sys : LinearSys 𝕋 n) {r : 𝕋}
 theorem LinearSys.inputSolution_subset_inputSolutionFloat (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
     (hr : 0 ≤ toReal r) (hη : sys.OrderAdmissibleFloat r r η)
     {Wr : CORALean.Real.Zonotope (Vec ℝ n)} {V : Zonotope (Vec 𝕋 n)}
-    (hE : V.E = Interval.point fun _ => FloatOps.zero) (hW : Wr.construct ⊆ V.construct) :
+    (hE : V.I_error = Interval.point fun _ => FloatOps.zero) (hW : Wr.construct ⊆ V.construct) :
     construct (sys.inputSolution (S := 𝒵) (toReal r) η Wr)
       ⊆ (sys.inputSolutionFloat r η V).construct := by -- --- PROOF ---
   set IMr := CORALean.Real.MatExp.inputRemainder (Scalar.toRealMat sys.A) (toReal r) η with hIMr

@@ -34,9 +34,9 @@ theorem PolyZonotope.rmId_construct (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset
     (pZ.rmId S).construct
       = {x | ∃ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ), (∀ k, |a k| ≤ 1) ∧ (∀ k ∈ S, a k = 1)
           ∧ (∀ j, |β j| ≤ 1) ∧ x = (nominal pZ).point a + ∑ j, β j • (nominal pZ).GI j}
-        + pZ.err.construct := by
+        + pZ.I_error.construct := by
   have h : nominalSet (pZ.rmId S) = ((nominal pZ).rmId S).construct := rfl
-  show nominalSet (pZ.rmId S) + (pZ.rmId S).err.construct = _
+  show nominalSet (pZ.rmId S) + (pZ.rmId S).I_error.construct = _
   rw [h, Real.PolyZonotope.rmId_construct (nominal pZ) S]
   rfl
 

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Interval.Float.Operations.Materialise
 public import CORALean.Global.Float.Sqrt
 
 @[expose] public section

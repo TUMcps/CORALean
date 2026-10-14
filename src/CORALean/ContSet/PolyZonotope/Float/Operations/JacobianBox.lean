@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Operations.MaterialiseMat
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MonoBox
 public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope

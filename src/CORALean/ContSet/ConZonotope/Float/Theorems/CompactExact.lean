@@ -89,7 +89,7 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     refine ⟨fun j => ConZonotope.aux_toReal_eq_zero (by simpa using hr.1.1 j), ?_, ?_⟩
     · simpa [toReal_zero] using toReal_le_of_le hr.1.2
     · simpa [toReal_zero] using toReal_le_of_le hr.2
-  show nominalSet cZ.compact + cZ.E.construct = nominalSet cZ + cZ.E.construct
+  show nominalSet cZ.compact + cZ.I_error.construct = nominalSet cZ + cZ.I_error.construct
   congr 1
   ext y
   rw [ConZonotope.mem_nominalSet_iff, ConZonotope.mem_nominalSet_iff]

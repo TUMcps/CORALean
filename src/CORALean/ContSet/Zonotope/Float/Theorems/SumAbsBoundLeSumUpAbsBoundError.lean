@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
+public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 
@@ -40,7 +41,7 @@ theorem Zonotope.sum_absBound_le_sumUp_absBoundError (Z : Zonotope (Vec 𝕋 n))
   have hc : |toRealVec Z.c j| = toReal (absolute (Z.c j)) := (toReal_absolute _).symm
   have hG : ∑ l, |toReal (Z.G l j)| ≤ toReal (radius (fun i j => Z.G j i) j) :=
     sum_abs_le_radius (d := fun i j => Z.G j i) j
-  have hE : 0 ≤ toReal (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j))) := by
+  have hE : 0 ≤ toReal (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j))) := by
     rw [toReal_maximum, toReal_absolute]
     exact le_max_of_le_left (abs_nonneg _)
   refine le_trans ?_ (add_le_addUp _ _)

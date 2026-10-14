@@ -27,13 +27,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The new generators reach every point the box did. -/
 theorem Zonotope.abs_sub_mid_le_errorRadius (Z : Zonotope (Vec 𝕋 n)) {e : Vec ℝ n}
-    (he : e ∈ Z.E.construct) (i : Fin n) :
-    |e i - (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2|
+    (he : e ∈ Z.I_error.construct) (i : Fin n) :
+    |e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2|
       ≤ toReal (Z.errorRadius i) := by -- --- PROOF ---
-  have hwidth := sub_le_subUp (Z.E.sup i) (Z.E.inf i)
+  have hwidth := sub_le_subUp (Z.I_error.sup i) (Z.I_error.inf i)
   -- ascribed, so `toRealVec _ i` is unfolded to the atom linarith shares with hwidth
-  have hlo : toReal (Z.E.inf i) ≤ e i := (he i).1
-  have hhi : e i ≤ toReal (Z.E.sup i) := (he i).2
+  have hlo : toReal (Z.I_error.inf i) ≤ e i := (he i).1
+  have hhi : e i ≤ toReal (Z.I_error.sup i) := (he i).2
   simp only [Zonotope.errorRadius, toReal_half]
   rw [abs_le]
   exact ⟨by linarith, by linarith⟩

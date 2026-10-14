@@ -65,7 +65,7 @@ def handlePlus (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String
 def handlePlusBox (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
   let I ← parseIntervalVecFixed dops.readExact dz.n (← field req "I")
-  pure [("Z", printZonotope dops.showExact { dz.Z with E := Plus.plus dz.Z.E I })]
+  pure [("Z", printZonotope dops.showExact { dz.Z with I_error := Plus.plus dz.Z.I_error I })]
 
 def handleLinComb (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")

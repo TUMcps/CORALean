@@ -61,8 +61,8 @@ def stepJson (toD : 𝕋 → Float) (toExact : Option (𝕋 → String)) (k : �
       ("c", Json.arr (Array.ofFn fun i => sj (Z.c i))),
       ("G", Json.arr (Array.ofFn fun i => Json.arr (Array.ofFn fun j => sj (Z.G j i)))),
       ("E", Json.mkObj
-        [ ("inf", Json.arr (Array.ofFn fun i => sj (Z.E.inf i))),
-          ("sup", Json.arr (Array.ofFn fun i => sj (Z.E.sup i))) ]) ]
+        [ ("inf", Json.arr (Array.ofFn fun i => sj (Z.I_error.inf i))),
+          ("sup", Json.arr (Array.ofFn fun i => sj (Z.I_error.sup i))) ]) ]
 
 /-- `sound` and `label`: `nearest` is the unsound round-to-nearest baseline, and
 every other type is outward-rounded. In every `meta`, `writeRunNone`'s included. -/
@@ -99,7 +99,7 @@ box's radius per dimension (`sup - inf`, unsigned by construction). -/
 def csvRow (toD : 𝕋 → Float) (k : ℕ) (t : Float) (Z : Zonotope (Vec 𝕋 2)) : String :=
   let width (i : Fin 2) : Float :=
     2.0 * (Array.ofFn fun j => (toD (Z.G j i)).abs).foldl (· + ·) 0.0
-  let radius (i : Fin 2) : Float := toD (Z.E.sup i) - toD (Z.E.inf i)
+  let radius (i : Fin 2) : Float := toD (Z.I_error.sup i) - toD (Z.I_error.inf i)
   let f := floatToCsv
   s!"{k},{f t},{f (width 0)},{f (width 1)},{f (radius 0)},{f (radius 1)}"
 

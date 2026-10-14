@@ -47,7 +47,7 @@ def PolyZonotope.cubMapDep (T : Fin m → Fin n → Mat 𝕋 n n) (pZ : PolyZono
     let t := Real.Zonotope.cubIdx (pZ.h + 1) (pZ.h + 1) (pZ.h + 1) l
     PolyZonotope.extE pZ k t.1.1 + PolyZonotope.extE pZ k t.1.2 + PolyZonotope.extE pZ k t.2
   GI := Fin.elim0
-  err := PolyZonotope.generatorError (PolyZonotope.cubMapGDiff T pZ)
+  I_error := PolyZonotope.generatorError (PolyZonotope.cubMapGDiff T pZ)
 
 end CORALean.Float
 

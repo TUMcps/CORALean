@@ -43,7 +43,7 @@ theorem PolyZonotope.containsPointApprox_sound (pZ : PolyZonotope (Vec 𝕋 n)) 
   simp only [Bool.and_eq_true, Bool.or_eq_true] at h
   obtain ⟨herr, hrest⟩ := h
   -- `0` is in the error box
-  have h0 : ∀ i, toReal (pZ.err.inf i) ≤ 0 ∧ 0 ≤ toReal (pZ.err.sup i) := fun i => by
+  have h0 : ∀ i, toReal (pZ.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (pZ.I_error.sup i) := fun i => by
     have h := List.all_eq_true.mp herr i (List.mem_finRange i)
     simp only [Bool.and_eq_true] at h
     exact ⟨le_of_le_of_eq (toReal_le_of_le h.1) toReal_zero,

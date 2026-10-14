@@ -1,9 +1,10 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Materialise
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.MulHi
 public import CORALean.ContSet.Interval.Float.Operations.MulLo
-public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.Sqrt
 
 @[expose] public section
@@ -55,7 +56,7 @@ def Ellipsoid.intersectStripGollamudi (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : 
   let δ : 𝕋 := subDown y (dotUp c E.q)
   let eδ : 𝕋 := subUp (subUp y (dotDown c E.q)) δ
   -- the strip widened by the box, `|c e| ≤ Σᵢ |cᵢ| max(|infᵢ|, |supᵢ|)`, and by both gaps
-  let mag : Vec 𝕋 n := fun i => maximum (absolute (E.err.inf i)) (absolute (E.err.sup i))
+  let mag : Vec 𝕋 n := fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))
   let φ' : 𝕋 := addUp (addUp (addUp φ (dotUp (fun i => absolute (c i)) mag)) (sumUp ev)) eδ
   -- `ν = vᵀ v`, `1 - λ` and `s = 1 - λ + λ ν`, each from both sides
   let νLo : 𝕋 := maximum zero (dotDown v v)
@@ -99,7 +100,8 @@ def Ellipsoid.intersectStripGollamudi (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : 
       { k := E.k
         q := qLo
         G := GLo
-        err := (E.err.plus (Interval.residual qLo qHi qLo)).plus (Ellipsoid.generatorError GD) }
+        I_error := (E.I_error.plus (Interval.residual qLo qHi qLo)).plus
+            (Ellipsoid.generatorError GD) }
   else E
 
 end CORALean.Float

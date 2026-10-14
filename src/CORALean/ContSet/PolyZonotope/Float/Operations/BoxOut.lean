@@ -43,7 +43,7 @@ def PolyZonotope.boxOut (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h →
   G := fun l => pZ.G ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
   E := fun k l => pZ.E k ((Finset.univ.filter fun l => removed l = false).orderEmbOfFin rfl l)
   GI := Fin.append pZ.GI fun j i => diagonalBlock (pZ.boxOutRadius removed taken) i j
-  err := pZ.err
+  I_error := pZ.I_error
 
 end CORALean.Float
 

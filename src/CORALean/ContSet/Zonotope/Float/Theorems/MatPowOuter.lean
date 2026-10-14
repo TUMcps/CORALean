@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.MatPow
+public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
 

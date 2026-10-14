@@ -50,7 +50,7 @@ def Zonotope.cornerHi (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 ^ Z.h)) (i : Fin n
 def Zonotope.vPolytope (Z : Zonotope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := 2 ^ Z.h
   V := Z.cornerLo
-  E := (VPolytope.columnGap Z.cornerLo Z.cornerHi).plus Z.E
+  I_error := (VPolytope.columnGap Z.cornerLo Z.cornerHi).plus Z.I_error
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

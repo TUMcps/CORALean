@@ -91,17 +91,17 @@ theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n} {T : Mat 𝕋 E�
       (neg (subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j))) with hgapF
   have hres := Ellipsoid.mem_generatorError (G := gapF) hgap hu
   -- the residual's reach plus `E₂`'s box lies in `E₁`'s box
-  have hbox' : (fun i => (∑ j, Δ i j * u j) + e i) ∈ E₁.err.construct := fun i => by
+  have hbox' : (fun i => (∑ j, Δ i j * u j) + e i) ∈ E₁.I_error.construct := fun i => by
     have hr : toReal (neg (radius gapF i)) ≤ ∑ j, Δ i j * u j
         ∧ ∑ j, Δ i j * u j ≤ toReal (radius gapF i) := hres i
-    have he' : toReal (E₂.err.inf i) ≤ e i ∧ e i ≤ toReal (E₂.err.sup i) := he i
+    have he' : toReal (E₂.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E₂.I_error.sup i) := he i
     rw [toReal_neg] at hr
     have b₁ := toReal_le_of_le (hbox i).1
     have b₂ := toReal_le_of_le (hbox i).2
-    have r₁ := subDown_le_sub (E₂.err.inf i) (radius gapF i)
-    have r₂ := add_le_addUp (E₂.err.sup i) (radius gapF i)
-    show toReal (E₁.err.inf i) ≤ (∑ j, Δ i j * u j) + e i
-      ∧ (∑ j, Δ i j * u j) + e i ≤ toReal (E₁.err.sup i)
+    have r₁ := subDown_le_sub (E₂.I_error.inf i) (radius gapF i)
+    have r₂ := add_le_addUp (E₂.I_error.sup i) (radius gapF i)
+    show toReal (E₁.I_error.inf i) ≤ (∑ j, Δ i j * u j) + e i
+      ∧ (∑ j, Δ i j * u j) + e i ≤ toReal (E₁.I_error.sup i)
     exact ⟨by linarith, by linarith⟩
   -- the moved point is `G₁ v` plus that remainder, moved from `q₁`
   refine ⟨toRealVec E₁.q + ((fun i => ∑ l, toReal (E₁.G i l) * v l)

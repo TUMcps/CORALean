@@ -29,7 +29,7 @@ variables, CORA's `[p₁(t) + e₁; …]` with `t ∈ [-1, 1]ⁿ`, for the conve
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -70,46 +70,8 @@ def Taylm.construct {m : ℕ} (T : Fin m → Taylm n) : Set (Vec ℝ m) :=
   {x | ∃ t ∈ Taylm.box n, ∀ i,
     (T i).remInf ≤ x i - (T i).poly t ∧ x i - (T i).poly t ≤ (T i).remSup}
 
-/-! ## Evaluating a term list
-
-What every operation's proof reads its polynomial through. -/
-
-@[simp] theorem Taylm.polyOf_nil (t : Vec ℝ n) : Taylm.polyOf [] t = 0 := rfl
-
-@[simp] theorem Taylm.polyOf_cons (a : ℝ × (Fin n → ℕ)) (L : List (ℝ × (Fin n → ℕ)))
-    (t : Vec ℝ n) :
-    Taylm.polyOf (a :: L) t = a.1 * Taylm.monomial a.2 t + Taylm.polyOf L t := by
-  simp [Taylm.polyOf]
-
-theorem Taylm.polyOf_append (L₁ L₂ : List (ℝ × (Fin n → ℕ))) (t : Vec ℝ n) :
-    Taylm.polyOf (L₁ ++ L₂) t = Taylm.polyOf L₁ t + Taylm.polyOf L₂ t := by
-  simp [Taylm.polyOf]
-
-theorem Taylm.polyOf_ofFn {h : ℕ} (F : Fin h → ℝ × (Fin n → ℕ)) (t : Vec ℝ n) :
-    Taylm.polyOf (List.ofFn F) t = ∑ j, (F j).1 * Taylm.monomial (F j).2 t := by
-  simp [Taylm.polyOf, List.sum_ofFn]
 
 -- the monomial is a product, so it splits over a sum of exponents
-theorem Taylm.monomial_zero (t : Vec ℝ n) : Taylm.monomial 0 t = 1 := by
-  simp [Taylm.monomial]
-
-theorem Taylm.monomial_add (e₁ e₂ : Fin n → ℕ) (t : Vec ℝ n) :
-    Taylm.monomial (e₁ + e₂) t = Taylm.monomial e₁ t * Taylm.monomial e₂ t := by
-  simp [Taylm.monomial, pow_add, Finset.prod_mul_distrib]
-
-theorem Taylm.monomial_single (j : Fin n) (t : Vec ℝ n) :
-    Taylm.monomial (Pi.single j 1) t = t j := by
-  rw [Taylm.monomial, Finset.prod_eq_single j]
-  · simp
-  · intro k _ hk; simp [hk]
-  · intro h; exact absurd (Finset.mem_univ j) h
-
-/-- On the box every monomial is in `[-1, 1]`, which is what a rounded coefficient pays. -/
-theorem Taylm.abs_monomial_le_one {t : Vec ℝ n} (ht : t ∈ Taylm.box n) (e : Fin n → ℕ) :
-    |Taylm.monomial e t| ≤ 1 := by
-  rw [Taylm.monomial, Finset.abs_prod]
-  exact Finset.prod_le_one (fun k _ => abs_nonneg _) fun k _ => by
-    rw [abs_pow]; exact pow_le_one₀ (abs_nonneg _) (ht k)
 
 end CORALean.Real
 

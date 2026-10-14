@@ -1,10 +1,12 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.OptBernstein
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqSumBernsteinCoeff
-public import CORALean.ContSet.Taylm.Real.Theorems.LeBernsteinDegree
-public import CORALean.ContSet.Taylm.Real.Theorems.SumBernsteinBasis
 public import CORALean.ContSet.Taylm.Real.Theorems.BernsteinBasisNonneg
+public import CORALean.ContSet.Taylm.Real.Theorems.LeBernsteinDegree
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqSumBernsteinCoeff
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Real.Theorems.SumBernsteinBasis
 
 @[expose] public section
 

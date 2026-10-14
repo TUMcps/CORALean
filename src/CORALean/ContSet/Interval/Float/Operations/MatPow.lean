@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.MaterialiseMat
 public import CORALean.ContSet.Interval.Float.Operations.Point
 
 @[expose] public section

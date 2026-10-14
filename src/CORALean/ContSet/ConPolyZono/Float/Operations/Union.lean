@@ -67,7 +67,7 @@ def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   EC := Real.ConPolyZono.appendE (Real.ConPolyZono.unionUpperEC cPZ₁.p cPZ₂.p)
     (Real.ConPolyZono.unionLowerEC cPZ₁.EC cPZ₂.EC)
   -- the boxes of both operands, and what storing the centre and the generator cost
-  err := (cPZ₁.err.or cPZ₂.err).plus
+  I_error := (cPZ₁.I_error.or cPZ₂.I_error).plus
     ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).plus
       (PolyZonotope.halfDiffError cPZ₁.c cPZ₂.c))
 

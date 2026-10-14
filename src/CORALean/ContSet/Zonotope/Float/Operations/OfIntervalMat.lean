@@ -42,7 +42,7 @@ def Zonotope.ofIntervalMat (I : Interval (Mat 𝕋 m n)) : Zonotope (Mat 𝕋 m 
   { h := m * n
     c := C
     G := fun k i j => if finProdFinEquiv (i, j) = k then r i j else zero
-    E := Interval.point fun _ _ => zero }
+    I_error := Interval.point fun _ _ => zero }
 
 end CORALean.Float
 
