@@ -35,9 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Both operands' systems, plus the selector column that switches them. -/
-def ConPolyZono.unionLowerA {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat 𝕋 m₁ s₁)
-    (b₁ : Interval (Vec 𝕋 m₁)) (A₂ : Mat 𝕋 m₂ s₂) (b₂ : Interval (Vec 𝕋 m₂)) :
-    Mat 𝕋 (m₁ + m₂) (s₁ + s₂ + 1) :=
+def ConPolyZono.unionLowerA {m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat 𝕋 m₁ q₁)
+    (b₁ : Interval (Vec 𝕋 m₁)) (A₂ : Mat 𝕋 m₂ q₂) (b₂ : Interval (Vec 𝕋 m₂)) :
+    Mat 𝕋 (m₁ + m₂) (q₁ + q₂ + 1) :=
   fun i => Fin.append (ConPolyZono.plusA A₁ A₂ i)
     (fun _ => Fin.append (fun r => neg (half (b₁.inf r))) (fun r => half (b₂.inf r)) i)
 

@@ -38,9 +38,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isGreatest_dot (E : Ellipsoid n) (l : Vec ℝ n) :
-    IsGreatest ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.q + √(l ⬝ᵥ (E.shape *ᵥ l))) := by -- --- PROOF ---
+    IsGreatest ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.c + √(l ⬝ᵥ (E.shape *ᵥ l))) := by -- --- PROOF ---
   set w : Vec ℝ E.k := E.Gᵀ *ᵥ l with hw
-  have hlG : ∀ u, l ⬝ᵥ (E.q + E.G *ᵥ u) = l ⬝ᵥ E.q + w ⬝ᵥ u := fun u => by
+  have hlG : ∀ u, l ⬝ᵥ (E.c + E.G *ᵥ u) = l ⬝ᵥ E.c + w ⬝ᵥ u := fun u => by
     rw [dotProduct_add, Matrix.dotProduct_mulVec, hw, Matrix.mulVec_transpose]
   have hnorm : ‖w‖₂ = √(l ⬝ᵥ (E.shape *ᵥ l)) := by
     rw [norm₂, Ellipsoid.shape, ← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec,
@@ -52,16 +52,16 @@ theorem Ellipsoid.isGreatest_dot (E : Ellipsoid n) (l : Vec ℝ n) :
   refine ⟨?_, ?_⟩
   -- attained at `u = w / ‖w‖₂`, or anywhere when `w = 0`
   · rcases (norm₂_nonneg w).eq_or_lt with h0 | hpos
-    · refine ⟨E.q, ⟨0, by rw [norm₂_zero]; exact zero_le_one, by simp⟩, ?_⟩
+    · refine ⟨E.c, ⟨0, by rw [norm₂_zero]; exact zero_le_one, by simp⟩, ?_⟩
       rw [← h0, add_zero]
-    · refine ⟨E.q + E.G *ᵥ (‖w‖₂⁻¹ • w), ⟨_, ?_, rfl⟩, ?_⟩
+    · refine ⟨E.c + E.G *ᵥ (‖w‖₂⁻¹ • w), ⟨_, ?_, rfl⟩, ?_⟩
       · rw [norm₂_smul, abs_of_pos (inv_pos.mpr hpos), inv_mul_cancel₀ hpos.ne']
-      · show l ⬝ᵥ (E.q + E.G *ᵥ (‖w‖₂⁻¹ • w)) = _
+      · show l ⬝ᵥ (E.c + E.G *ᵥ (‖w‖₂⁻¹ • w)) = _
         rw [hlG, dotProduct_smul, dotProduct_self, smul_eq_mul]
         field_simp
   -- Cauchy–Schwarz on the unit ball
   · rintro _ ⟨_, ⟨u, hu, rfl⟩, rfl⟩
-    show l ⬝ᵥ (E.q + E.G *ᵥ u) ≤ _
+    show l ⬝ᵥ (E.c + E.G *ᵥ u) ≤ _
     rw [hlG]
     have := dotProduct_le_norm₂_mul_norm₂ w u
     have : ‖w‖₂ * ‖u‖₂ ≤ ‖w‖₂ := mul_le_of_le_one_right (norm₂_nonneg w) hu

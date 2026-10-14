@@ -29,10 +29,10 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isGreatest_normExact (E : Ellipsoid n) (hn : 1 ≤ n) (hq : E.q = 0) :
+theorem Ellipsoid.isGreatest_normExact (E : Ellipsoid n) (hn : 1 ≤ n) (hq : E.c = 0) :
     IsGreatest ((fun x => ‖x‖₂) '' E.construct) (E.normExact hn) := by
   have h := Ellipsoid.isGreatest_radius E hn
-  have hf : (fun x : Vec ℝ n => ‖x‖₂) = fun x => ‖x - E.q‖₂ := by simp [hq]
+  have hf : (fun x : Vec ℝ n => ‖x‖₂) = fun x => ‖x - E.c‖₂ := by simp [hq]
   rw [hf]
   exact h
 

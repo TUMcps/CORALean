@@ -6,7 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 @[expose] public section
 
 /-!
-# `ConPolyZono.unionUpperEC`
+# `ConPolyZono.unionUpperR`
 
 The monomials the two selector rows of [1, Thm. 1] are read against: the single
 column `α₁α₂`, then `unionConCol`'s eight groups, transposed into the matrix the
@@ -33,7 +33,7 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The selector rows' exponent matrix. -/
-def ConPolyZono.unionUpperEC (p₁ p₂ : ℕ) : Fin (p₁ + p₂ + 2) →
+def ConPolyZono.unionUpperR (p₁ p₂ : ℕ) : Fin (p₁ + p₂ + 2) →
     Fin (1 + (2 + (p₁ + p₁ + (p₂ + p₂ + (p₁ * p₂ + p₁ * p₂))))) → ℕ :=
   ConPolyZono.appendE
     (fun k _ => ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1 k

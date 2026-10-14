@@ -38,14 +38,14 @@ theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
     (cPZ.getSubset r cen rad).satisfies a
       ↔ cPZ.satisfies (Function.update a r (cen + rad * a r)) := by -- --- PROOF ---
   -- the expanded constraint matrix at the new factors is the original at the re-parametrized
-  have hL : (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).EC a
+  have hL : (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).R a
       = (cPZ.consPolyZonotope.getSubset r cen rad).point a := by
     unfold PolyZonotope.point
     rw [ConPolyZono.mulVec_eq_sum,
       show (cPZ.consPolyZonotope.getSubset r cen rad).c = (0 : Vec ℝ cPZ.m) from rfl, zero_add]
     exact Finset.sum_congr rfl fun x _ => rfl
   -- and the original constraint matrix at the re-parametrized factors, as a point
-  have hR : cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC (Function.update a r (cen + rad * a r))
+  have hR : cPZ.A *ᵥ PolyZonotope.monomial cPZ.R (Function.update a r (cen + rad * a r))
       = cPZ.consPolyZonotope.point (Function.update a r (cen + rad * a r)) := by
     unfold PolyZonotope.point
     rw [ConPolyZono.mulVec_eq_sum,

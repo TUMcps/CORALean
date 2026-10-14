@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Mtimes
 
 `mtimes` is `map` at `A *ᵥ ·`: it touches the centre and both generator blocks
 only, so all five counts carry over exactly — the constraint system in
-particular is untouched, since `M` never reaches `A`, `b` or `EC`. `rfl`
+particular is untouched, since `M` never reaches `A`, `b` or `R`. `rfl`
 against the structure instance in `Operations/Mtimes.lean`.
 -/
 
@@ -36,14 +36,14 @@ theorem ConPolyZono.mtimes_p (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
 theorem ConPolyZono.mtimes_h (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
     (ConPolyZono.mtimes M cPZ).h = cPZ.h := rfl
 
-theorem ConPolyZono.mtimes_q (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M cPZ).q = cPZ.q := rfl
+theorem ConPolyZono.mtimes_qI (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.mtimes M cPZ).qI = cPZ.qI := rfl
 
 theorem ConPolyZono.mtimes_m (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
     (ConPolyZono.mtimes M cPZ).m = cPZ.m := rfl
 
-theorem ConPolyZono.mtimes_s (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.mtimes M cPZ).s = cPZ.s := rfl
+theorem ConPolyZono.mtimes_q (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.mtimes M cPZ).q = cPZ.q := rfl
 
 end CORALean.Real
 

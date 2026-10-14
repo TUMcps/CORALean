@@ -97,13 +97,13 @@ theorem aux_parallelogram (E : Ellipsoid n) (u v : Vec ℝ n) :
 /-- The first ellipse: semi-axes `2` and `1`. -/
 def aux_E₁ : Ellipsoid 2 where
   k := 2
-  q := 0
+  c := 0
   G := !![2, 0; 0, 1]
 
 /-- The second ellipse: semi-axes `1` and `2`. -/
 def aux_E₂ : Ellipsoid 2 where
   k := 2
-  q := 0
+  c := 0
   G := !![1, 0; 0, 2]
 
 theorem aux_E₁_shape : aux_E₁.shape.PosDef := by -- --- PROOF ---
@@ -150,10 +150,10 @@ theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
       ‖aux_E₁.pullback (aux_dotFun d)‖₂ + ‖aux_E₂.pullback (aux_dotFun d)‖₂ := by -- --- PROOF ---
   have h1 := aux_support_sum_eq E aux_E₁ aux_E₂ h (aux_dotFun d)
   have h2 := aux_support_sum_eq E aux_E₁ aux_E₂ h (aux_dotFun (-d))
-  have hq₁ : aux_E₁.q = 0 := rfl
-  have hq₂ : aux_E₂.q = 0 := rfl
-  have hl : aux_dotFun (-d) E.q = -aux_dotFun d E.q := by
-    show (-d) ⬝ᵥ E.q = -(d ⬝ᵥ E.q)
+  have hq₁ : aux_E₁.c = 0 := rfl
+  have hq₂ : aux_E₂.c = 0 := rfl
+  have hl : aux_dotFun (-d) E.c = -aux_dotFun d E.c := by
+    show (-d) ⬝ᵥ E.c = -(d ⬝ᵥ E.c)
     exact neg_dotProduct _ _
   have hn : ∀ F : Ellipsoid 2, ‖F.pullback (aux_dotFun (-d))‖₂ = ‖F.pullback (aux_dotFun d)‖₂ := by
     intro F

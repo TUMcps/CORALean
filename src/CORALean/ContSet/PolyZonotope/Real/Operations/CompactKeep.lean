@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 
 Split out of `Compact.lean` (issue #62): used again by `compactIdx` and
 `compactGens` below, by `Theorems/CompactGensExact.lean`, and by
-`ConPolyZono`'s own compaction over `EC`, all outside this file.
+`ConPolyZono`'s own compaction over `R`, all outside this file.
 -/
 
 -- Authors:       Claude Opus 5

@@ -26,9 +26,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [AddCommGroup α] [Module ℝ α] in
 theorem ConPolyZono.satisfies_dependent_iff (cPZ : ConPolyZono α)
-    (a : Fin (cPZ.p + cPZ.q) → ℝ) :
-    cPZ.dependent.satisfies a ↔ cPZ.satisfies (fun k => a (Fin.castAdd cPZ.q k)) :=
-  ConPolyZono.holds_padE_iff cPZ.A cPZ.b cPZ.EC cPZ.q a
+    (a : Fin (cPZ.p + cPZ.qI) → ℝ) :
+    cPZ.dependent.satisfies a ↔ cPZ.satisfies (fun k => a (Fin.castAdd cPZ.qI k)) :=
+  ConPolyZono.holds_padE_iff cPZ.A cPZ.b cPZ.R cPZ.qI a
 
 end CORALean.Real
 

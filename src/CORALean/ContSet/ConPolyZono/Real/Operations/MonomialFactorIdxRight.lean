@@ -24,21 +24,21 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same at the constraint block, `appendE`'s right half. -/
-theorem ConPolyZono.monomial_factorIdx_right {p h s : ℕ} (E : Fin p → Fin h → ℕ)
-    (EC : Fin p → Fin s → ℕ) (a : Fin p → ℝ) (l : Fin s) :
-    PolyZonotope.monomial (fun k l => EC (ConPolyZono.factorIdx E EC k) l)
-        (fun k => a (ConPolyZono.factorIdx E EC k)) l
-      = PolyZonotope.monomial EC a l :=
-  calc PolyZonotope.monomial (fun k l => EC (ConPolyZono.factorIdx E EC k) l)
-        (fun k => a (ConPolyZono.factorIdx E EC k)) l
+theorem ConPolyZono.monomial_factorIdx_right {p h q : ℕ} (E : Fin p → Fin h → ℕ)
+    (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) (l : Fin q) :
+    PolyZonotope.monomial (fun k l => R (ConPolyZono.factorIdx E R k) l)
+        (fun k => a (ConPolyZono.factorIdx E R k)) l
+      = PolyZonotope.monomial R a l :=
+  calc PolyZonotope.monomial (fun k l => R (ConPolyZono.factorIdx E R k) l)
+        (fun k => a (ConPolyZono.factorIdx E R k)) l
       = PolyZonotope.monomial
-          (ConPolyZono.appendE (fun k i => E (ConPolyZono.factorIdx E EC k) i)
-            fun k l => EC (ConPolyZono.factorIdx E EC k) l)
-          (fun k => a (ConPolyZono.factorIdx E EC k)) (Fin.natAdd h l) :=
+          (ConPolyZono.appendE (fun k i => E (ConPolyZono.factorIdx E R k) i)
+            fun k l => R (ConPolyZono.factorIdx E R k) l)
+          (fun k => a (ConPolyZono.factorIdx E R k)) (Fin.natAdd h l) :=
         (ConPolyZono.monomial_appendE_right _ _ _ l).symm
-    _ = PolyZonotope.monomial (ConPolyZono.appendE E EC) a (Fin.natAdd h l) :=
-        PolyZonotope.monomial_factorIdx (ConPolyZono.appendE E EC) a (Fin.natAdd h l)
-    _ = PolyZonotope.monomial EC a l := ConPolyZono.monomial_appendE_right E EC a l
+    _ = PolyZonotope.monomial (ConPolyZono.appendE E R) a (Fin.natAdd h l) :=
+        PolyZonotope.monomial_factorIdx (ConPolyZono.appendE E R) a (Fin.natAdd h l)
+    _ = PolyZonotope.monomial R a l := ConPolyZono.monomial_appendE_right E R a l
 
 end CORALean.Real
 

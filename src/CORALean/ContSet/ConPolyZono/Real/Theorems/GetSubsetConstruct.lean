@@ -48,16 +48,16 @@ one applied to the re-parametrized factors — `getSubset_point` read at the
 constraint columns, both sides unfolded to a sum over one coordinate. -/
 theorem ConPolyZono.aux_getSubset_mulVec (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
     (a : Fin cPZ.p → ℝ) :
-    (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).EC a
-      = cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC
+    (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).R a
+      = cPZ.A *ᵥ PolyZonotope.monomial cPZ.R
         (Function.update a r (cen + rad * a r)) := by -- --- PROOF ---
-  have hL : (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).EC a
+  have hL : (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).R a
       = (cPZ.consPolyZonotope.getSubset r cen rad).point a := by
     unfold PolyZonotope.point
     rw [ConPolyZono.mulVec_eq_sum,
       show (cPZ.consPolyZonotope.getSubset r cen rad).c = (0 : Vec ℝ cPZ.m) from rfl, zero_add]
     exact Finset.sum_congr rfl fun x _ => rfl
-  have hR : cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC (Function.update a r (cen + rad * a r))
+  have hR : cPZ.A *ᵥ PolyZonotope.monomial cPZ.R (Function.update a r (cen + rad * a r))
       = cPZ.consPolyZonotope.point (Function.update a r (cen + rad * a r)) := by
     unfold PolyZonotope.point
     rw [ConPolyZono.mulVec_eq_sum,
@@ -90,14 +90,14 @@ theorem ConPolyZono.aux_getSubset_holds (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
 theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
     (hrad : 0 ≤ rad) :
     (cPZ.getSubset r cen rad).construct
-      = {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.q → ℝ,
+      = {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
             |a r - cen| ≤ rad ∧ (∀ k, k ≠ r → |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
             ∧ cPZ.satisfies a
             ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i
                 + ∑ j, β j • cPZ.GI j} := by -- --- PROOF ---
   ext x
-  -- `p`/`q` are literally unchanged, so `show` picks that binder type up front
-  show (∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.q → ℝ,
+  -- `p`/`qI` are literally unchanged, so `show` picks that binder type up front
+  show (∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
         (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ (cPZ.getSubset r cen rad).satisfies a
         ∧ x = (cPZ.getSubset r cen rad).c
             + ∑ i, PolyZonotope.monomial (cPZ.getSubset r cen rad).E a i

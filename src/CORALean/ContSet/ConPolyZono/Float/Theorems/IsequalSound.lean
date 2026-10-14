@@ -40,8 +40,8 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)} (h : Z.i
     have eqr : ∀ {a b : 𝕋}, (le a b = true ∧ le b a = true) → toReal a = toReal b :=
       fun ⟨h₁, h₂⟩ => le_antisymm (toReal_le_of_le h₁) (toReal_le_of_le h₂)
     obtain ⟨⟨hnum, hcon⟩, hE⟩ := h
-    obtain ⟨p₁, h₁, q₁, m₁, s₁, c₁, G₁, E₁, GI₁, A₁, b₁, EC₁, r₁⟩ := Z
-    obtain ⟨p₂, h₂, q₂, m₂, s₂, c₂, G₂, E₂, GI₂, A₂, b₂, EC₂, r₂⟩ := S
+    obtain ⟨p₁, h₁, qI₁, m₁, q₁, c₁, G₁, E₁, GI₁, A₁, b₁, R₁, r₁⟩ := Z
+    obtain ⟨p₂, h₂, qI₂, m₂, q₂, c₂, G₂, E₂, GI₂, A₂, b₂, R₂, r₂⟩ := S
     simp only at e hnum hcon hE
     obtain ⟨rfl, rfl, rfl, rfl, rfl⟩ := e
     simp only [Fin.cast_eq_self] at hnum hcon hE
@@ -58,7 +58,7 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)} (h : Z.i
     have hbi : toRealVec b₁.inf = toRealVec b₂.inf := funext fun r => eqr (hcon r).1.1
     have hbs : toRealVec b₁.sup = toRealVec b₂.sup := funext fun r => eqr (hcon r).1.2
     have hE₁ : E₁ = E₂ := funext fun k => funext fun j => (by simpa using (hE k).1 j)
-    have hE₂ : EC₁ = EC₂ := funext fun k => funext fun j => (by simpa using (hE k).2 j)
+    have hE₂ : R₁ = R₂ := funext fun k => funext fun j => (by simpa using (hE k).2 j)
     -- the interval fields read as the same real boxes
     have hint : ∀ {m : ℕ} {u v : Interval (Vec 𝕋 m)}, toRealVec u.inf = toRealVec v.inf →
         toRealVec u.sup = toRealVec v.sup → u.nominal = v.nominal := by
@@ -71,20 +71,20 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)} (h : Z.i
       unfold Interval.construct
       rw [hint hEi hEs]
     -- so the nominal sets are the same
-    have hN : (nominal (⟨p₁, h₁, q₁, m₁, s₁, c₁, G₁, E₁, GI₁, A₁, b₁, EC₁, r₁⟩ :
+    have hN : (nominal (⟨p₁, h₁, qI₁, m₁, q₁, c₁, G₁, E₁, GI₁, A₁, b₁, R₁, r₁⟩ :
         ConPolyZono 𝕋 (Vec 𝕋 n))) =
-        nominal (⟨p₁, h₁, q₁, m₁, s₁, c₂, G₂, E₂, GI₂, A₂, b₂, EC₂, r₂⟩ : ConPolyZono
+        nominal (⟨p₁, h₁, qI₁, m₁, q₁, c₂, G₂, E₂, GI₂, A₂, b₂, R₂, r₂⟩ : ConPolyZono
           𝕋 (Vec 𝕋 n)) := by
-      show (⟨p₁, h₁, q₁, m₁, s₁, toRealVec c₁, fun l i => toReal (G₁ l i), E₁,
-          fun j i => toReal (GI₁ j i), toRealMat A₁, b₁.nominal, EC₁⟩ :
+      show (⟨p₁, h₁, qI₁, m₁, q₁, toRealVec c₁, fun l i => toReal (G₁ l i), E₁,
+          fun j i => toReal (GI₁ j i), toRealMat A₁, b₁.nominal, R₁⟩ :
           CORALean.Real.ConPolyZono (Vec ℝ n)) =
-        ⟨p₁, h₁, q₁, m₁, s₁, toRealVec c₂, fun l i => toReal (G₂ l i), E₂,
-          fun j i => toReal (GI₂ j i), toRealMat A₂, b₂.nominal, EC₂⟩
+        ⟨p₁, h₁, qI₁, m₁, q₁, toRealVec c₂, fun l i => toReal (G₂ l i), E₂,
+          fun j i => toReal (GI₂ j i), toRealMat A₂, b₂.nominal, R₂⟩
       rw [hc, hG, hGI, hE₁, hE₂, hA, hint hbi hbs]
     -- the sum of nominal set and error box, on both sides
-    change ContSet.construct (nominal (⟨p₁, h₁, q₁, m₁, s₁, c₁, G₁, E₁, GI₁, A₁, b₁, EC₁, r₁⟩ :
+    change ContSet.construct (nominal (⟨p₁, h₁, qI₁, m₁, q₁, c₁, G₁, E₁, GI₁, A₁, b₁, R₁, r₁⟩ :
           ConPolyZono 𝕋 (Vec 𝕋 n))) + r₁.construct =
-      ContSet.construct (nominal (⟨p₁, h₁, q₁, m₁, s₁, c₂, G₂, E₂, GI₂, A₂, b₂, EC₂, r₂⟩ :
+      ContSet.construct (nominal (⟨p₁, h₁, qI₁, m₁, q₁, c₂, G₂, E₂, GI₂, A₂, b₂, R₂, r₂⟩ :
           ConPolyZono 𝕋 (Vec 𝕋 n))) + r₂.construct
     rw [hN, hr]
   · simp at h

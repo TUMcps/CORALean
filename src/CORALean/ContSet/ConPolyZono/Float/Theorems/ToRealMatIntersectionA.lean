@@ -41,7 +41,7 @@ theorem ConPolyZono.toRealMat_intersectionA (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
       = fun i => Fin.append
           (fun r => Fin.append (Real.ConPolyZono.plusA (toRealMat cPZ₁.A) (toRealMat cPZ₂.A) r)
             (0 : Fin (cPZ₁.h + cPZ₂.h) → ℝ))
-          (fun r => Fin.append (0 : Fin (cPZ₁.s + cPZ₂.s) → ℝ)
+          (fun r => Fin.append (0 : Fin (cPZ₁.q + cPZ₂.q) → ℝ)
             (Real.ConPolyZono.agreeRow (nominal cPZ₁) (nominal cPZ₂) r)) i := rfl
   rw [hreal]
   refine funext (Fin.addCases (fun i => ?_) fun i => ?_) <;>

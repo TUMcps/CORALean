@@ -43,19 +43,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- The exact image, regrouped so the centre and each generator appear once. -/
 theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (u : Vec ℝ E.k)
-    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (E.q k) + ∑ j, toReal (E.G k j) * u j) (i : Fin m) :
-    (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (E.q k))
+    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (E.c k) + ∑ j, toReal (E.G k j) * u j) (i : Fin m) :
+    (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (E.c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)) * u j := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _
   calc ∑ k, toReal (M i k) * x k
-      = ∑ k, (toReal (M i k) * toReal (E.q k)
+      = ∑ k, (toReal (M i k) * toReal (E.c k)
               + ∑ j, toReal (M i k) * toReal (E.G k j) * u j) := by
         refine Finset.sum_congr rfl fun k _ => ?_
         rw [hx k, mul_add, Finset.mul_sum]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => by ring)
-    _ = (∑ k, toReal (M i k) * toReal (E.q k))
+    _ = (∑ k, toReal (M i k) * toReal (E.c k))
         + ∑ k, ∑ j, toReal (M i k) * toReal (E.G k j) * u j := Finset.sum_add_distrib
-    _ = (∑ k, toReal (M i k) * toReal (E.q k))
+    _ = (∑ k, toReal (M i k) * toReal (E.c k))
         + ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)) * u j := by
         rw [Finset.sum_comm]
         exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
@@ -79,11 +79,11 @@ theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
     have hgap := sub_le_subUp (matMulUp M E.G i j) (matMulDown M E.G i j)
     rw [abs_le]
     exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
-  refine ⟨fun i => toReal ((Ellipsoid.mtimes M E).q i)
+  refine ⟨fun i => toReal ((Ellipsoid.mtimes M E).c i)
             + ∑ j : Fin E.k, toReal ((Ellipsoid.mtimes M E).G i j) * u j,
           Ellipsoid.mem_nominalSet_iff.mpr ⟨u, hu, fun _ => rfl⟩,
           _, Interval.plus_outer _ _
-            ⟨_, Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) E.q, le_dotUp (M i) E.q⟩),
+            ⟨_, Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) E.c, le_dotUp (M i) E.c⟩),
              _, Ellipsoid.mem_generatorError hgen hu, rfl⟩, ?_⟩
   funext i
   -- the stored generators and their errors recombine into the exact ones
@@ -93,9 +93,9 @@ theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
       = ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)) * u j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
-  show toReal ((Ellipsoid.mtimes M E).q i)
+  show toReal ((Ellipsoid.mtimes M E).c i)
         + ∑ j : Fin E.k, toReal ((Ellipsoid.mtimes M E).G i j) * u j
-      + ((∑ k, toReal (M i k) * toReal (E.q k) - toReal (mulVecDown M E.q i))
+      + ((∑ k, toReal (M i k) * toReal (E.c k) - toReal (mulVecDown M E.c i))
         + ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)
             - toReal (matMulDown M E.G i j)) * u j)
     = (toRealMat M *ᵥ x) i

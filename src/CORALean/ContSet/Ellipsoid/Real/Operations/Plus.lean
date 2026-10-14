@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 noncomputable def Ellipsoid.plus (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) : Ellipsoid n where
   k := E₁.k + E₂.k
-  q := E₁.q + E₂.q
+  c := E₁.c + E₂.c
   G := Matrix.of fun i =>
     Fin.append (fun j => s₁ * E₁.G i j) (fun j => s₂ * E₂.G i j)
 

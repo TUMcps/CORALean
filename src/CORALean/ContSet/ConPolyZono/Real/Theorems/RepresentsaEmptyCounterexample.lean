@@ -36,7 +36,7 @@ open Matrix
 `GI` is nonempty, `none` for the rest (the constraint check and the contraction of the domain,
 which are not modelled). -/
 def ConPolyZono.aux_isEmptySetPrinted {α : Type} (cPZ : ConPolyZono α) : Option Bool :=
-  let giNonempty := decide (0 < cPZ.q)
+  let giNonempty := decide (0 < cPZ.qI)
   if giNonempty then some false else none
 
 
@@ -50,7 +50,7 @@ def ConPolyZono.aux_emptyWithGI : ConPolyZono ℝ :=
 
 /-- The set is empty although `GI` is nonempty, and CORA's printed check answers "not empty". -/
 theorem ConPolyZono.representsa_empty_counterexample :
-    0 < ConPolyZono.aux_emptyWithGI.q ∧ ConPolyZono.aux_emptyWithGI.construct = ∅ ∧
+    0 < ConPolyZono.aux_emptyWithGI.qI ∧ ConPolyZono.aux_emptyWithGI.construct = ∅ ∧
       ConPolyZono.aux_isEmptySetPrinted ConPolyZono.aux_emptyWithGI
         = some false := by -- --- PROOF ---
   refine ⟨Nat.one_pos, ?_,

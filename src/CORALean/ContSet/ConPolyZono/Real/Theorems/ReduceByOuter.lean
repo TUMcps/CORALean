@@ -19,7 +19,7 @@ of partitions, which is what lets the ranking be a heuristic — Girard's metric
 appears nowhere below.
 
 The constraint is what a `PolyZonotope` does not have to carry, and it costs
-nothing: `p`, `A`, `b` and `EC` are copied, so the very witness `a` that
+nothing: `p`, `A`, `b` and `R` are copied, so the very witness `a` that
 satisfied the old system satisfies the new one, and only the value equation has
 work in it. Kept generators keep their exponent columns; the dropped ones of
 either block contribute `D` in row `i`, which the diagonal block reproduces with
@@ -46,10 +46,10 @@ variable {n d r dI rI : ℕ}
 /-- `Fin.sum_univ_add` at `reduceBy`'s independent generator count, stated
 through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
-theorem ConPolyZono.aux_sum_univ_reduceBy_q {cPZ : ConPolyZono (Vec ℝ n)}
+theorem ConPolyZono.aux_sum_univ_reduceBy_qI {cPZ : ConPolyZono (Vec ℝ n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
-    ∑ j : Fin (cPZ.reduceBy partD partI).q, f j
+    {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
+    ∑ j : Fin (cPZ.reduceBy partD partI).qI, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
 
@@ -58,7 +58,7 @@ theorem ConPolyZono.aux_sum_univ_reduceBy_q {cPZ : ConPolyZono (Vec ℝ n)}
 as two atoms, defeq or not. -/
 theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono (Vec ℝ n)}
     {partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
+    {partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)} (f : Fin d → ℝ) :
     ∑ l : Fin (cPZ.reduceBy partD partI).h, f l = ∑ l, f l :=
   rfl
 
@@ -85,7 +85,7 @@ theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono (Vec ℝ n))
 /-- The same for the dropped independent generators, where the coefficient is
 already free. -/
 theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono (Vec ℝ n))
-    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin cPZ.q → ℝ}
+    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) {β : Fin cPZ.qI → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ j, cPZ.GI (partI.right j) i * β (partI.right j)|
       ≤ ∑ j, |cPZ.GI (partI.right j) i| :=
@@ -104,7 +104,7 @@ theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono (Vec ℝ n))
 they are. -/
 theorem ConPolyZono.reduceBy_outer (cPZ : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
-    (partI : Split (Fin cPZ.q) into (Fin dI) ⊕ (Fin rI)) :
+    (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) :
     cPZ.construct ⊆ (cPZ.reduceBy partD partI).construct := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_construct_iff.mp hxmem
@@ -131,7 +131,7 @@ theorem ConPolyZono.reduceBy_outer (cPZ : ConPolyZono (Vec ℝ n))
   -- the value: the kept columns unchanged, the dropped ones inside the new box
   · rw [hx i, partD.sum_split₂ fun l => cPZ.G l i * PolyZonotope.monomial cPZ.E a l,
       partI.sum_split₂ fun j => cPZ.GI j i * β j,
-      ConPolyZono.aux_sum_univ_reduceBy_q, ConPolyZono.aux_sum_univ_reduceBy_h]
+      ConPolyZono.aux_sum_univ_reduceBy_qI, ConPolyZono.aux_sum_univ_reduceBy_h]
     simp only [ConPolyZono.reduceBy, Fin.append_left, Fin.append_right]
     rw [Zonotope.sum_diagonal_mul', Zonotope.mul_coefficient (hbound i)]
     have hmono : ∀ l : Fin d,

@@ -47,10 +47,10 @@ example (cPZ : ConPolyZono (Vec ℝ n)) (G : ConZonotope (Vec ℝ n)) :
   exact ConPolyZono.intersection_exact cPZ G.conPolyZono
 
 /-- The paper's `A μ(α) = b`, as the degenerate interval. -/
-example {p m s : ℕ} (A : Mat ℝ m s) (b : Vec ℝ m) (EC : Fin p → Fin s → ℕ)
-    (a : Fin p → ℝ) (h : ConPolyZono.holds A (Interval.point b) EC a) (i : Fin m) :
-    (A *ᵥ PolyZonotope.monomial EC a) i = b i :=
-  (ConPolyZono.holds_point_iff A b EC a).mp h i
+example {p m s : ℕ} (A : Mat ℝ m s) (b : Vec ℝ m) (R : Fin p → Fin s → ℕ)
+    (a : Fin p → ℝ) (h : ConPolyZono.holds A (Interval.point b) R a) (i : Fin m) :
+    (A *ᵥ PolyZonotope.monomial R a) i = b i :=
+  (ConPolyZono.holds_point_iff A b R a).mp h i
 
 end Real
 

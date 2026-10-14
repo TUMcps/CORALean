@@ -36,7 +36,7 @@ def Ellipsoid.spectraShadow (E : Ellipsoid 𝕋 n) : SpectraShadow 𝕋 (Vec �
   m := E.k
   A₀ := fun p q => if p = q then one else zero
   A := fun i p q => if (p = 0 ∧ q = i.succ) ∨ (p = i.succ ∧ q = 0) then one else zero
-  c := E.q
+  c := E.c
   G := fun j i => E.G i j
   I_error := E.I_error
 
@@ -72,7 +72,7 @@ theorem Ellipsoid.spectraShadow_exact (E : Ellipsoid 𝕋 n) :
   constructor
   · intro hx
     obtain ⟨β, hP, hx'⟩ := (Real.Ellipsoid.spectraShadow_exact (nominal E)).subset hx
-    change x = toRealVec E.q + ∑ i, β i • (fun r => toReal (E.G r i) : Vec ℝ n) at hx'
+    change x = toRealVec E.c + ∑ i, β i • (fun r => toReal (E.G r i) : Vec ℝ n) at hx'
     -- the stored inequality is the exact layer's, matrix by matrix
     have e : toRealMat E.spectraShadow.A₀ + ∑ i, β i • toRealMat (E.spectraShadow.A i) =
         (nominal E).spectraShadow.A₀ + ∑ i, β i • (nominal E).spectraShadow.A i := by
@@ -80,7 +80,7 @@ theorem Ellipsoid.spectraShadow_exact (E : Ellipsoid 𝕋 n) :
       exact congrArg _ (Finset.sum_congr rfl fun i _ => congrArg _ (hA i))
     exact SpectraShadow.mem_nominalSet_iff.mpr
       ⟨β, (Iff.of_eq (congrArg Matrix.PosSemidef e)).mpr hP, fun i => (congrFun hx' i).trans
-      (Entrywise.add_sum_smul_apply (toRealVec E.q) (fun j i => toReal (E.G i j)) β i)⟩
+      (Entrywise.add_sum_smul_apply (toRealVec E.c) (fun j i => toReal (E.G i j)) β i)⟩
   · intro hx
     obtain ⟨β, hP, hx'⟩ := SpectraShadow.mem_nominalSet_iff.mp hx
     have e : toRealMat E.spectraShadow.A₀ + ∑ i, β i • toRealMat (E.spectraShadow.A i) =
@@ -90,7 +90,7 @@ theorem Ellipsoid.spectraShadow_exact (E : Ellipsoid 𝕋 n) :
     refine (Real.Ellipsoid.spectraShadow_exact (nominal E)).superset
       ⟨β, (Iff.of_eq (congrArg Matrix.PosSemidef e)).mp hP, ?_⟩
     funext i
-    exact (hx' i).trans (Entrywise.add_sum_smul_apply (toRealVec E.q)
+    exact (hx' i).trans (Entrywise.add_sum_smul_apply (toRealVec E.c)
       (fun j i => toReal (E.G i j)) β i).symm
 
 end CORALean.Float

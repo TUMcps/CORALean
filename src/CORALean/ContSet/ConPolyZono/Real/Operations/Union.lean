@@ -4,10 +4,10 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
 
 @[expose] public section
 
@@ -50,10 +50,10 @@ noncomputable def ConPolyZono.union {α : Type} [AddCommGroup α] [Module ℝ α
     (cPZ₁ cPZ₂ : ConPolyZono α) : ConPolyZono α where
   p := cPZ₁.p + cPZ₂.p + 2
   h := 1 + (cPZ₁.h + cPZ₂.h)
-  q := 0
+  qI := 0
   m := 1 + 1 + (cPZ₁.m + cPZ₂.m)
-  s := 1 + (2 + (cPZ₁.p + cPZ₁.p + (cPZ₂.p + cPZ₂.p + (cPZ₁.p * cPZ₂.p + cPZ₁.p * cPZ₂.p))))
-    + (cPZ₁.s + cPZ₂.s + 1)
+  q := 1 + (2 + (cPZ₁.p + cPZ₁.p + (cPZ₂.p + cPZ₂.p + (cPZ₁.p * cPZ₂.p + cPZ₁.p * cPZ₂.p))))
+    + (cPZ₁.q + cPZ₂.q + 1)
   c := (2 : ℝ)⁻¹ • (cPZ₁.c + cPZ₂.c)
   G := ConPolyZono.unionG cPZ₁.c cPZ₂.c cPZ₁.G cPZ₂.G
   E := ConPolyZono.unionE cPZ₁.E cPZ₂.E
@@ -61,8 +61,8 @@ noncomputable def ConPolyZono.union {α : Type} [AddCommGroup α] [Module ℝ α
   A := ConPolyZono.plusA (ConPolyZono.unionUpperA cPZ₁.p cPZ₂.p)
     (ConPolyZono.unionLowerA cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b)
   b := ConPolyZono.plusB ConPolyZono.unionUpperB (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
-  EC := ConPolyZono.appendE (ConPolyZono.unionUpperEC cPZ₁.p cPZ₂.p)
-    (ConPolyZono.unionLowerEC cPZ₁.EC cPZ₂.EC)
+  R := ConPolyZono.appendE (ConPolyZono.unionUpperR cPZ₁.p cPZ₂.p)
+    (ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R)
 
 end CORALean.Real
 

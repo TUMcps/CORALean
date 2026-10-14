@@ -9,7 +9,7 @@ public import CORALean.ContSet.InflatedContSet.InflatedContSet
 # Constrained polynomial zonotopes over a floating-point scalar: the representation
 
 CORA's `conPolyZono` with its five counts, its two generator blocks and its
-constraint system `A μ(α) ∈ b`, plus the error box that makes it an
+constraint system `A μ_R(α) ∈ b`, plus the error box that makes it an
 `InflatedContSet`. `ConPolyZono 𝕋 α` is generic over its ambient type,
 generators a family, as the exact layer's `ConPolyZono α` is; `𝕋` stays, the
 constraint system being scalar at every ambient type. `ConPolyZono 𝕋 (Vec 𝕋 n)`
@@ -48,30 +48,31 @@ structure ConPolyZono (𝕋 α : Type) where
   p : ℕ
   /-- The dependent generators. -/
   h : ℕ
-  /-- The independent generators. -/
-  q : ℕ
+  /-- The independent generators, `qI` of them. -/
+  qI : ℕ
   /-- The constraints. -/
   m : ℕ
   /-- The constraint generators. -/
-  s : ℕ
+  q : ℕ
   c : α
   G : Fin h → α
   E : Fin p → Fin h → ℕ
-  GI : Fin q → α
-  A : Mat 𝕋 m s
+  GI : Fin qI → α
+  A : Mat 𝕋 m q
   /-- Interval-valued, as over ℝ, and this is one of the two places a float
   operation may pay its rounding. -/
   b : Interval (Vec 𝕋 m)
-  EC : Fin p → Fin s → ℕ
+  /-- The constraint exponent matrix. -/
+  R : Fin p → Fin q → ℕ
   I_error : Interval α
 
 /-- The exact constrained polynomial zonotope the stored floats describe, read
 through `RealImage`. -/
 protected abbrev ConPolyZono.nominal {α β : Type} [RealImage α β] [SoundFloatArithmetic 𝕋]
     (cPZ : ConPolyZono 𝕋 α) : CORALean.Real.ConPolyZono β :=
-  ⟨cPZ.p, cPZ.h, cPZ.q, cPZ.m, cPZ.s, RealImage.realImage cPZ.c,
+  ⟨cPZ.p, cPZ.h, cPZ.qI, cPZ.m, cPZ.q, RealImage.realImage cPZ.c,
     fun l => RealImage.realImage (cPZ.G l), cPZ.E, fun j => RealImage.realImage (cPZ.GI j),
-    toRealMat cPZ.A, cPZ.b.nominal, cPZ.EC⟩
+    toRealMat cPZ.A, cPZ.b.nominal, cPZ.R⟩
 
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
     InflatedContSet (ConPolyZono 𝕋 α) (CORALean.Real.ConPolyZono β) α β where
@@ -83,7 +84,7 @@ instance's constraint block unfolded, as the three equations below unfold the
 rest of it. -/
 def ConPolyZono.satisfies [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (a : Fin cPZ.p → ℝ) : Prop :=
-  Real.ConPolyZono.holds (toRealMat cPZ.A) cPZ.b.nominal cPZ.EC a
+  Real.ConPolyZono.holds (toRealMat cPZ.A) cPZ.b.nominal cPZ.R a
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev ConPolyZono.construct [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :

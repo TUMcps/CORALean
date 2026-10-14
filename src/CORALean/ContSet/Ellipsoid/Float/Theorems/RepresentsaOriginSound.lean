@@ -39,7 +39,7 @@ theorem Ellipsoid.representsa_origin_sound {E : Ellipsoid 𝕋 n}
   have hG0 : ∀ i j, toReal (E.G i j) = 0 := fun i j => le_antisymm
     (by simpa [toReal_zero] using toReal_le_of_le (hG j i).1)
     (by simpa [toReal_zero] using toReal_le_of_le (hG j i).2)
-  have hq0 : toRealVec E.q = 0 := funext fun i => le_antisymm
+  have hq0 : toRealVec E.c = 0 := funext fun i => le_antisymm
     (by simpa [toRealVec, toReal_zero] using toReal_le_of_le (hq i).1)
     (by simpa [toRealVec, toReal_zero] using toReal_le_of_le (hq i).2)
   have hN : InflatedContSet.nominalSet E = {0} :=

@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.toRealMat_plusA {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat 𝕋 m₁ s₁)
-    (A₂ : Mat 𝕋 m₂ s₂) :
+theorem ConPolyZono.toRealMat_plusA {m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat 𝕋 m₁ q₁)
+    (A₂ : Mat 𝕋 m₂ q₂) :
     toRealMat (ConPolyZono.plusA A₁ A₂)
       = Real.ConPolyZono.plusA (toRealMat A₁) (toRealMat A₂) := by -- --- PROOF ---
   have key : ∀ i l, toRealMat (ConPolyZono.plusA A₁ A₂) i l

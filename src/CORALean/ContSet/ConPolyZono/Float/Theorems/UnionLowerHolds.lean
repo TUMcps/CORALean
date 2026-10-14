@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
 
 @[expose] public section
 
@@ -35,8 +35,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Read back, the stored matrix is the exact layer's on the read-back operands. -/
-theorem ConPolyZono.aux_toRealMat_unionLowerA {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat 𝕋 m₁ s₁)
-    (b₁ : Interval (Vec 𝕋 m₁)) (A₂ : Mat 𝕋 m₂ s₂) (b₂ : Interval (Vec 𝕋 m₂)) :
+theorem ConPolyZono.aux_toRealMat_unionLowerA {m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat 𝕋 m₁ q₁)
+    (b₁ : Interval (Vec 𝕋 m₁)) (A₂ : Mat 𝕋 m₂ q₂) (b₂ : Interval (Vec 𝕋 m₂)) :
     toRealMat (ConPolyZono.unionLowerA A₁ b₁ A₂ b₂)
       = Real.ConPolyZono.unionLowerA (toRealMat A₁) b₁.nominal (toRealMat A₂)
         b₂.nominal := by -- --- PROOF ---
@@ -53,15 +53,15 @@ theorem ConPolyZono.aux_toRealMat_unionLowerA {m₁ s₁ m₂ s₂ : ℕ} (A₁ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.holds_unionLower_of_real {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat 𝕋 m₁ s₁)
-    (b₁ : Interval (Vec 𝕋 m₁)) (A₂ : Mat 𝕋 m₂ s₂) (b₂ : Interval (Vec 𝕋 m₂))
-    (EC₁ : Fin p₁ → Fin s₁ → ℕ) (EC₂ : Fin p₂ → Fin s₂ → ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
+theorem ConPolyZono.holds_unionLower_of_real {p₁ p₂ m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat 𝕋 m₁ q₁)
+    (b₁ : Interval (Vec 𝕋 m₁)) (A₂ : Mat 𝕋 m₂ q₂) (b₂ : Interval (Vec 𝕋 m₂))
+    (R₁ : Fin p₁ → Fin q₁ → ℕ) (R₂ : Fin p₂ → Fin q₂ → ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
     (h : Real.ConPolyZono.holds
       (Real.ConPolyZono.unionLowerA (toRealMat A₁) b₁.nominal (toRealMat A₂) b₂.nominal)
       (Real.ConPolyZono.unionLowerB b₁.nominal b₂.nominal)
-      (Real.ConPolyZono.unionLowerEC EC₁ EC₂) a) :
+      (Real.ConPolyZono.unionLowerR R₁ R₂) a) :
     Real.ConPolyZono.holds (toRealMat (ConPolyZono.unionLowerA A₁ b₁ A₂ b₂))
-      (ConPolyZono.unionLowerB b₁ b₂).nominal (Real.ConPolyZono.unionLowerEC EC₁ EC₂)
+      (ConPolyZono.unionLowerB b₁ b₂).nominal (Real.ConPolyZono.unionLowerR R₁ R₂)
         a := by -- --- PROOF ---
   -- the matrix is the exact one, so only the bounds are left
   rw [ConPolyZono.aux_toRealMat_unionLowerA]

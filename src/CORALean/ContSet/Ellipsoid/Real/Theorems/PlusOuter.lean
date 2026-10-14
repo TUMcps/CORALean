@@ -55,9 +55,9 @@ theorem Ellipsoid.aux_sum_univ_plus {s₁ s₂ : ℝ} {E₁ E₂ : Ellipsoid n}
 reproduces the summands exactly. -/
 theorem Ellipsoid.aux_value_plus {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ : s₂ ≠ 0)
     (E₁ E₂ : Ellipsoid n) (u₁ : Vec ℝ E₁.k) (u₂ : Vec ℝ E₂.k) :
-    (Ellipsoid.plus s₁ s₂ E₁ E₂).q + (Ellipsoid.plus s₁ s₂ E₁ E₂).G *ᵥ
+    (Ellipsoid.plus s₁ s₂ E₁ E₂).c + (Ellipsoid.plus s₁ s₂ E₁ E₂).G *ᵥ
         Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂)
-      = (E₁.q + E₁.G *ᵥ u₁) + (E₂.q + E₂.G *ᵥ u₂) := by -- --- PROOF ---
+      = (E₁.c + E₁.G *ᵥ u₁) + (E₂.c + E₂.G *ᵥ u₂) := by -- --- PROOF ---
   have hmul : (Ellipsoid.plus s₁ s₂ E₁ E₂).G *ᵥ
       Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂)
       = E₁.G *ᵥ u₁ + E₂.G *ᵥ u₂ := by
@@ -72,7 +72,7 @@ theorem Ellipsoid.aux_value_plus {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂
       (Finset.sum_congr rfl fun j _ => ?_)
     · field_simp
     · field_simp
-  show (E₁.q + E₂.q) + (Ellipsoid.plus s₁ s₂ E₁ E₂).G *ᵥ _ = _
+  show (E₁.c + E₂.c) + (Ellipsoid.plus s₁ s₂ E₁ E₂).G *ᵥ _ = _
   rw [hmul]
   abel
 

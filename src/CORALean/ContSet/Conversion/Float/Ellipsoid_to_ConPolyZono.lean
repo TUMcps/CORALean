@@ -36,17 +36,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Ellipsoid.conPolyZono (E : Ellipsoid 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := E.k + 1
   h := E.k
-  q := 0
+  qI := 0
   m := 1
-  s := E.k + 1
-  c := E.q
+  q := E.k + 1
+  c := E.c
   -- the ellipsoid stores its generators as a matrix, one per column
   G := fun l i => E.G i l
   E := Real.ConPolyZono.padE (Real.PolyZonotope.identE E.k) 1
   GI := Fin.elim0
   A := fun _ j => if j.val < E.k then one else neg (half one)
   b := ⟨fun _ => half one, fun _ => half one⟩
-  EC := fun r c => if r = c then (if c.val < E.k then 2 else 1) else 0
+  R := fun r c => if r = c then (if c.val < E.k then 2 else 1) else 0
   I_error := E.I_error
 
 variable [SoundFloatArithmetic 𝕋]

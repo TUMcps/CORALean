@@ -47,16 +47,16 @@ def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
   let k := PolyZonotope.tabAt (PolyZonotope.repKeep cPZ.E) kt
   { p := cPZ.p
     h := (PolyZonotope.repKeep cPZ.E).card
-    q := cPZ.q
+    qI := cPZ.qI
     m := cPZ.m
-    s := cPZ.s
+    q := cPZ.q
     c := cPZ.c
     G := fun j i => PolyZonotope.fiberDown r (fun i l => cPZ.G l i) i (k j)
     E := fun a j => cPZ.E a (k j)
     GI := cPZ.GI
     A := cPZ.A
     b := cPZ.b
-    EC := cPZ.EC
+    R := cPZ.R
     I_error := cPZ.I_error.plus (PolyZonotope.generatorError fun i j =>
       subUp (PolyZonotope.fiberUp r (fun i l => cPZ.G l i) i (k j))
         (PolyZonotope.fiberDown r (fun i l => cPZ.G l i) i (k j))) }

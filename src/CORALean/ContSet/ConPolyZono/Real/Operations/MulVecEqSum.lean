@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 # A constraint matrix applied to a factor vector is a sum of columns
 
 `A μ(α)` read as a generator sum over the constraint columns, at the monomials
-`EC` names — the form `sum_monomial_merge` merges.
+`R` names — the form `sum_monomial_merge` merges.
 -/
 
 -- Authors:       Claude Opus 5
@@ -27,8 +27,8 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `A μ(α)` read as a generator sum over the constraint columns, at the
-monomials `EC` names — the form `sum_monomial_merge` merges. -/
-theorem ConPolyZono.mulVec_eq_sum {m s : ℕ} (A : Mat ℝ m s) (v : Vec ℝ s) :
+monomials `R` names — the form `sum_monomial_merge` merges. -/
+theorem ConPolyZono.mulVec_eq_sum {m q : ℕ} (A : Mat ℝ m q) (v : Vec ℝ q) :
     A *ᵥ v = ∑ l, v l • ConPolyZono.consCol A l := by
   funext i
   show (∑ l, A i l * v l) = (∑ l, v l • ConPolyZono.consCol A l) i

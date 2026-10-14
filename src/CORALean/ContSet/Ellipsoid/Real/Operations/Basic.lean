@@ -71,7 +71,7 @@ theorem Ellipsoid.apply_mulVec (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ)
 /-- `ellipsoid/representsa_` at `origin`.
 
 CORA's `@ellipsoid/representsa_` at type `origin` with tolerance `0`: a point at `q = 0`. -/
-def Ellipsoid.representsa_origin (E : Ellipsoid n) : Prop := E.q = 0 ∧ E.representsa_point
+def Ellipsoid.representsa_origin (E : Ellipsoid n) : Prop := E.c = 0 ∧ E.representsa_point
 
 end CORALean.Real
 

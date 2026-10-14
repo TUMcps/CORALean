@@ -33,10 +33,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 omit [FloatOps 𝕋] in
 theorem ConPolyZono.compactFactors_eq_spec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.compactFactors = cPZ.compactFactorsSpec := by -- --- PROOF ---
-  have hf : ∀ k, PolyZonotope.tabAt (Real.ConPolyZono.usedFactors cPZ.E cPZ.EC)
+  have hf : ∀ k, PolyZonotope.tabAt (Real.ConPolyZono.usedFactors cPZ.E cPZ.R)
       (((List.finRange cPZ.p).filter fun k =>
-        (∃ i, Real.ConPolyZono.appendE cPZ.E cPZ.EC k i ≠ 0 : Bool)).toArray) k
-      = Real.ConPolyZono.factorIdx cPZ.E cPZ.EC k := fun k =>
+        (∃ i, Real.ConPolyZono.appendE cPZ.E cPZ.R k i ≠ 0 : Bool)).toArray) k
+      = Real.ConPolyZono.factorIdx cPZ.E cPZ.R k := fun k =>
     PolyZonotope.tabAt_filter _ _ (fun x => by
       simp [Real.ConPolyZono.usedFactors, Real.PolyZonotope.usedFactors]) k
   simp only [ConPolyZono.compactFactors, ConPolyZono.compactFactorsSpec, hf]

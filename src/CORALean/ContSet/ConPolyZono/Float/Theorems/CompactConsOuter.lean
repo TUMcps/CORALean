@@ -41,19 +41,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A merged constraint column is off by at most the gap between the two
 directed masked sums, as a generator column is. -/
 theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin cPZ.m)
-    (l : Fin (PolyZonotope.repKeep cPZ.EC).card) :
-    |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.EC)
-        (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.EC l)
+    (l : Fin (PolyZonotope.repKeep cPZ.R).card) :
+    |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
+        (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R l)
       - toReal (cPZ.mergedConsCol i l)|
         ≤ toReal (ConPolyZono.compactConsGap cPZ i l) := by -- --- PROOF ---
   have hlo : toReal (cPZ.mergedConsCol i l)
-      ≤ Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.EC)
-          (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.EC l) :=
-    PolyZonotope.fiberDown_le (Real.PolyZonotope.rep cPZ.EC) cPZ.A i (PolyZonotope.keepIdx cPZ.EC l)
-  have hhi : Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.EC)
-        (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.EC l)
+      ≤ Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
+          (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R l) :=
+    PolyZonotope.fiberDown_le (Real.PolyZonotope.rep cPZ.R) cPZ.A i (PolyZonotope.keepIdx cPZ.R l)
+  have hhi : Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
+        (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R l)
       ≤ toReal (cPZ.mergedConsColUp i l) :=
-    PolyZonotope.le_fiberUp (Real.PolyZonotope.rep cPZ.EC) cPZ.A i (PolyZonotope.keepIdx cPZ.EC l)
+    PolyZonotope.le_fiberUp (Real.PolyZonotope.rep cPZ.R) cPZ.A i (PolyZonotope.keepIdx cPZ.R l)
   have hgap := sub_le_subUp (cPZ.mergedConsColUp i l) (cPZ.mergedConsCol i l)
   rw [abs_le]
   simp only [ConPolyZono.compactConsGap]
@@ -66,52 +66,52 @@ theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 
     cPZ.compactConsSpec.satisfies a := by -- --- PROOF ---
   intro i
   have hb : toReal (cPZ.b.inf i)
-        ≤ (∑ l, toReal (cPZ.A i l) * Real.PolyZonotope.monomial cPZ.EC a l)
-      ∧ (∑ l, toReal (cPZ.A i l) * Real.PolyZonotope.monomial cPZ.EC a l)
+        ≤ (∑ l, toReal (cPZ.A i l) * Real.PolyZonotope.monomial cPZ.R a l)
+      ∧ (∑ l, toReal (cPZ.A i l) * Real.PolyZonotope.monomial cPZ.R a l)
         ≤ toReal (cPZ.b.sup i) := hsat i
-  have hex := ConPolyZono.merge cPZ.EC cPZ.A a
-    (fun k j' => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC j')) (fun _ _ => rfl) i
+  have hex := ConPolyZono.merge cPZ.R cPZ.A a
+    (fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j')) (fun _ _ => rfl) i
   -- the exact merged row is the stored one plus what the gaps carry
-  have hsplit : (∑ j, Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.EC)
-            (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.EC j)
+  have hsplit : (∑ j, Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
+            (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R j)
           * Real.PolyZonotope.monomial
-              (fun k j' => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC j')) a j)
+              (fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j')) a j)
       = (∑ j, toReal (cPZ.mergedConsCol i j)
             * Real.PolyZonotope.monomial
-                (fun k j' => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC j')) a j)
-        + ∑ j, (Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.EC)
-              (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.EC j)
+                (fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j')) a j)
+        + ∑ j, (Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
+              (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R j)
             - toReal (cPZ.mergedConsCol i j))
             * Real.PolyZonotope.monomial
-                (fun k j' => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC j')) a j := by
+                (fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j')) a j := by
     rw [← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   -- one radius bounds the whole row, every constraint monomial lying in `[-1,1]`
-  have hrad : |∑ j, (Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.EC)
-              (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.EC j)
+  have hrad : |∑ j, (Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
+              (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R j)
             - toReal (cPZ.mergedConsCol i j))
             * Real.PolyZonotope.monomial
-                (fun k j' => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC j')) a j|
+                (fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j')) a j|
       ≤ toReal (radius (ConPolyZono.compactConsGap cPZ) i) :=
     abs_sum_le_radius
-      (Δ := fun i j => Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.EC)
-              (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.EC j)
+      (Δ := fun i j => Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R)
+              (fun r => toReal (cPZ.A i r)) (PolyZonotope.keepIdx cPZ.R j)
             - toReal (cPZ.mergedConsCol i j))
       (fun i j => le_trans (ConPolyZono.aux_compactConsGap cPZ i j) (le_abs_self _))
       (fun j => Real.PolyZonotope.abs_monomial_le_one
-        (fun k j' => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC j')) ha j) i
+        (fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j')) ha j) i
   rw [abs_le] at hrad
   -- both bounds now, `b` having moved out by the very number `hrad` supplies
   refine ⟨?_, ?_⟩
   · show toReal (subDown (cPZ.b.inf i) (radius (ConPolyZono.compactConsGap cPZ) i))
       ≤ ∑ j, toReal (cPZ.mergedConsCol i j)
           * Real.PolyZonotope.monomial
-              (fun k j' => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC j')) a j
+              (fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j')) a j
     have hd := subDown_le_sub (cPZ.b.inf i) (radius (ConPolyZono.compactConsGap cPZ) i)
     linarith [hb.1, hex, hsplit, hrad.1, hrad.2]
   · show (∑ j, toReal (cPZ.mergedConsCol i j)
           * Real.PolyZonotope.monomial
-              (fun k j' => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC j')) a j)
+              (fun k j' => cPZ.R k (PolyZonotope.keepIdx cPZ.R j')) a j)
       ≤ toReal (addUp (cPZ.b.sup i) (radius (ConPolyZono.compactConsGap cPZ) i))
     have hu := add_le_addUp (cPZ.b.sup i) (radius (ConPolyZono.compactConsGap cPZ) i)
     linarith [hb.2, hex, hsplit, hrad.1, hrad.2]

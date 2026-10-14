@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 `PolyZonotope.mtimes` with the constraint system carried along untouched. That
 it *is* untouched is the whole content: the constraints live on the factors, a
-map of the ambient space moves no factor, and so `A`, `b` and `EC` are copied
+map of the ambient space moves no factor, and so `A`, `b` and `R` are copied
 rather than recomputed — which is the only way a constraint block can cross a
 float layer at all.
 
@@ -39,16 +39,16 @@ def ConPolyZono.mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
     𝕋 (Vec 𝕋 k) where
   p := cPZ.p
   h := cPZ.h
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := cPZ.s
+  q := cPZ.q
   c := mulVecDown M cPZ.c
   G := fun l => mulVecDown M (cPZ.G l)
   E := cPZ.E
   GI := fun j => mulVecDown M (cPZ.GI j)
   A := cPZ.A
   b := cPZ.b
-  EC := cPZ.EC
+  R := cPZ.R
   I_error := (Interval.mtimes M cPZ.I_error).plus (ConPolyZono.mtimesResidual M cPZ)
 
 end CORALean.Float

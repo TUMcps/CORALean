@@ -26,10 +26,10 @@ namespace CORALean.Real
 
 /-- Widening a bound only admits more factor vectors, which is what makes a
 rounded constraint sound. -/
-theorem ConPolyZono.holds_mono {p m s : ℕ} {A : Mat ℝ m s} {b b' : Interval (Vec ℝ m)}
-    {EC : Fin p → Fin s → ℕ} {a : Fin p → ℝ} (hinf : ∀ i, b'.inf i ≤ b.inf i)
-    (hsup : ∀ i, b.sup i ≤ b'.sup i) (h : ConPolyZono.holds A b EC a) :
-    ConPolyZono.holds A b' EC a :=
+theorem ConPolyZono.holds_mono {p m q : ℕ} {A : Mat ℝ m q} {b b' : Interval (Vec ℝ m)}
+    {R : Fin p → Fin q → ℕ} {a : Fin p → ℝ} (hinf : ∀ i, b'.inf i ≤ b.inf i)
+    (hsup : ∀ i, b.sup i ≤ b'.sup i) (h : ConPolyZono.holds A b R a) :
+    ConPolyZono.holds A b' R a :=
   fun i => ⟨le_trans (hinf i) (h i).1, le_trans (h i).2 (hsup i)⟩
 
 end CORALean.Real

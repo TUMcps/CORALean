@@ -20,7 +20,7 @@ gives `∅`. CORA does not inherit this — `@conPolyZono/convHull_` tests
 `representsa_(cPZ,'emptySet',...)` first and returns the other set.
 
 Both operands non-empty is therefore carried, and is what step (28) actually
-needs. `q = 0` is [1, Def. 5]'s representation, as for `linComb`, which this
+needs. `qI = 0` is [1, Def. 5]'s representation, as for `linComb`, which this
 routes through; no condition on the exponent matrices enters, the fresh weight
 factor on every replicated column making a degree-`0` one behave like any other.
 
@@ -45,11 +45,11 @@ namespace CORALean.Real
 
 /-- The convex hull of two non-empty operands, exactly. -/
 theorem ConPolyZono.convHull_exact_of_nonempty {n : ℕ} (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (hq₁ : cPZ₁.q = 0) (hq₂ : cPZ₂.q = 0)
+    (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
     (hne₁ : cPZ₁.construct.Nonempty) (hne₂ : cPZ₂.construct.Nonempty) :
     convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct)
       = (cPZ₁.convHull cPZ₂).construct := by -- --- PROOF ---
-  have hq : (cPZ₁.linComb cPZ₂).q = 0 := by simp [ConPolyZono.linComb, hq₁, hq₂]
+  have hq : (cPZ₁.linComb cPZ₂).qI = 0 := by simp [ConPolyZono.linComb, hq₁, hq₂]
   have hrk : Module.finrank ℝ (Vec ℝ n) + 1 ≤ n + 1 := by rw [Module.finrank_fin_fun ℝ]
   rw [ConPolyZono.convHull, ConPolyZono.convHullSingle_exact _ _ hq hrk,
     ← ConPolyZono.linComb_exact_of_dependent cPZ₁ cPZ₂ hq₁ hq₂]

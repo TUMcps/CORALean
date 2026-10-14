@@ -137,15 +137,15 @@ theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono �
     (InflatedContSet.nominal cPZ).b = cPZ.b.nominal := rfl
 
 
--- =================================  `ConPolyZono.nominal_EC`  ================================= --
+-- =================================  `ConPolyZono.nominal_R`  ================================== --
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
-/-- The nominal ConPolyZono's field `EC`, so proofs can see through the instance. -/
-theorem ConPolyZono.nominal_EC [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    (InflatedContSet.nominal cPZ).EC = cPZ.EC := rfl
+/-- The nominal ConPolyZono's field `R`, so proofs can see through the instance. -/
+theorem ConPolyZono.nominal_R [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    (InflatedContSet.nominal cPZ).R = cPZ.R := rfl
 
 end CORALean.Float
 

@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 def ConPolyZono.polyZonotope (cPZ : ConPolyZono α) : PolyZonotope α where
   p := cPZ.p
   h := cPZ.h
-  q := cPZ.q
+  q := cPZ.qI
   c := cPZ.c
   G := cPZ.G
   E := cPZ.E

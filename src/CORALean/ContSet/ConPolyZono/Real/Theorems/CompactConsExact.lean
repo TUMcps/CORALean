@@ -48,14 +48,14 @@ omit [AddCommGroup α] [Module ℝ α] in
 This is `sum_monomial_merge` at `Vec ℝ m`, the exponent side knowing nothing
 about which block it came from. -/
 theorem ConPolyZono.aux_mulVec_compactCons (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) :
-    cPZ.compactCons.A *ᵥ PolyZonotope.monomial cPZ.compactCons.EC a
-      = cPZ.A *ᵥ PolyZonotope.monomial cPZ.EC a := by -- --- PROOF ---
-  rw [ConPolyZono.mulVec_eq_sum cPZ.compactCons.A (PolyZonotope.monomial cPZ.compactCons.EC a),
-    ConPolyZono.mulVec_eq_sum cPZ.A (PolyZonotope.monomial cPZ.EC a),
-    PolyZonotope.sum_monomial_merge cPZ.EC (ConPolyZono.consCol cPZ.A) a
-      (PolyZonotope.rep cPZ.EC) (PolyZonotope.compactKeep cPZ.EC (ConPolyZono.consCol cPZ.A))
-      (PolyZonotope.col_rep cPZ.EC)
-      fun j hj => PolyZonotope.fiberSum_eq_zero_of_notMem cPZ.EC (ConPolyZono.consCol cPZ.A) hj,
+    cPZ.compactCons.A *ᵥ PolyZonotope.monomial cPZ.compactCons.R a
+      = cPZ.A *ᵥ PolyZonotope.monomial cPZ.R a := by -- --- PROOF ---
+  rw [ConPolyZono.mulVec_eq_sum cPZ.compactCons.A (PolyZonotope.monomial cPZ.compactCons.R a),
+    ConPolyZono.mulVec_eq_sum cPZ.A (PolyZonotope.monomial cPZ.R a),
+    PolyZonotope.sum_monomial_merge cPZ.R (ConPolyZono.consCol cPZ.A) a
+      (PolyZonotope.rep cPZ.R) (PolyZonotope.compactKeep cPZ.R (ConPolyZono.consCol cPZ.A))
+      (PolyZonotope.col_rep cPZ.R)
+      fun j hj => PolyZonotope.fiberSum_eq_zero_of_notMem cPZ.R (ConPolyZono.consCol cPZ.A) hj,
     PolyZonotope.sum_compactKeep]
   rfl
 

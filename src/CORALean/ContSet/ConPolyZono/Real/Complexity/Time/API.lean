@@ -15,7 +15,7 @@ operation, every one **asserted**. `Complexity/Space/` is the other directory an
 other kind of claim: how large a *result* is, which is proved.
 
 `map`, `mtimes` and `plus` cost exactly what their `PolyZonotope` counterparts
-do — the constraint system, `A`, `b` and `EC`, is untouched by any of the
+do — the constraint system, `A`, `b` and `R`, is untouched by any of the
 three, so the extra fields a constrained set carries never enter. `dependent`
 is zero, for the same reason `PolyZonotope.dependentCost` is: concatenation,
 an identity block and a padded constraint block, nothing computed. `quadMap`

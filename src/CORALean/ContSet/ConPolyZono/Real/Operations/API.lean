@@ -66,11 +66,11 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConValue
 public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsSharedIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsUnionUpperIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerLeft
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecUnionLowerRight
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
@@ -92,7 +92,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.SumConvHullE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullB
-public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullR
 public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsConvHullIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHull
@@ -125,7 +125,7 @@ and `quadMap` exact rather than merely sound.
 computes, and this is what the constraints buy.
 
 `compact` is the one that has to know about the sharing: merging is `PolyZonotope`'s at
-both blocks, but a factor is dropped only when neither `E` nor `EC` reads it.
+both blocks, but a factor is dropped only when neither `E` nor `R` reads it.
 `quadMap` carries over from `PolyZonotope` unchanged, and that it does is worth knowing —
 a quadratic map reads the generators and the exponent matrix and the constraints read
 neither, so they constrain the image as they did the argument.

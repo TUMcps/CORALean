@@ -31,7 +31,7 @@ theorem ConPolyZono.satisfies_plus_iff (cPZ₁ cPZ₂ : ConPolyZono α)
     (cPZ₁.plus cPZ₂).satisfies a ↔
       cPZ₁.satisfies (fun k => a (Fin.castAdd cPZ₂.p k))
         ∧ cPZ₂.satisfies (fun k => a (Fin.natAdd cPZ₁.p k)) :=
-  ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.EC cPZ₂.A cPZ₂.b cPZ₂.EC a
+  ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R a
 
 end CORALean.Real
 

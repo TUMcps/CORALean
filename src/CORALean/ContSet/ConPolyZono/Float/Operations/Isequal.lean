@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
-  if e : Z.p = S.p ∧ Z.h = S.h ∧ Z.q = S.q ∧ Z.m = S.m ∧ Z.s = S.s then
+  if e : Z.p = S.p ∧ Z.h = S.h ∧ Z.qI = S.qI ∧ Z.m = S.m ∧ Z.q = S.q then
     -- the centre, the error box and the two generator blocks, entry by entry
     (List.finRange n).all (fun i =>
       (le (Z.c i) (S.c i) && le (S.c i) (Z.c i)) &&
@@ -40,7 +40,7 @@ def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
       (le (Z.I_error.sup i) (S.I_error.sup i) && le (S.I_error.sup i) (Z.I_error.sup i)) &&
       (List.finRange Z.h).all (fun j =>
         le (Z.G j i) (S.G (Fin.cast e.2.1 j) i) && le (S.G (Fin.cast e.2.1 j) i) (Z.G j i)) &&
-      (List.finRange Z.q).all fun j =>
+      (List.finRange Z.qI).all fun j =>
         le (Z.GI j i) (S.GI (Fin.cast e.2.2.1 j) i) &&
           le (S.GI (Fin.cast e.2.2.1 j) i) (Z.GI j i)) &&
     -- the constraint interval and matrix
@@ -49,15 +49,15 @@ def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
         le (S.b.inf (Fin.cast e.2.2.2.1 r)) (Z.b.inf r)) &&
       (le (Z.b.sup r) (S.b.sup (Fin.cast e.2.2.2.1 r)) &&
         le (S.b.sup (Fin.cast e.2.2.2.1 r)) (Z.b.sup r)) &&
-      (List.finRange Z.s).all fun j =>
+      (List.finRange Z.q).all fun j =>
         le (Z.A r j) (S.A (Fin.cast e.2.2.2.1 r) (Fin.cast e.2.2.2.2 j)) &&
           le (S.A (Fin.cast e.2.2.2.1 r) (Fin.cast e.2.2.2.2 j)) (Z.A r j)) &&
     -- the exponent matrices of the generators and of the constraints
     (List.finRange Z.p).all (fun k =>
       (List.finRange Z.h).all (fun j =>
         Z.E k j == S.E (Fin.cast e.1 k) (Fin.cast e.2.1 j)) &&
-      (List.finRange Z.s).all fun j =>
-        Z.EC k j == S.EC (Fin.cast e.1 k) (Fin.cast e.2.2.2.2 j))
+      (List.finRange Z.q).all fun j =>
+        Z.R k j == S.R (Fin.cast e.1 k) (Fin.cast e.2.2.2.2 j))
   else false
 
 end CORALean.Float

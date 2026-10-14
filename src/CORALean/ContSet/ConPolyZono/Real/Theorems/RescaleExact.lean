@@ -50,8 +50,8 @@ def ConPolyZono.aux_rescaleSub (cen rad : ℕ → ℝ) (n : ℕ) (a : ℕ → �
 /-- What `n` steps of `rescaleStep` leave: the factor counts, the independent block, and
 the constraints and generators as the original's, read at `rescaleSub`. -/
 def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono α) (cen rad : ℕ → ℝ) (n : ℕ) : Prop :=
-  acc.p = cPZ.p ∧ acc.q = cPZ.q
-  ∧ (∀ β : ℕ → ℝ, ∑ j : Fin acc.q, β j • acc.GI j = ∑ j : Fin cPZ.q, β j • cPZ.GI j)
+  acc.p = cPZ.p ∧ acc.qI = cPZ.qI
+  ∧ (∀ β : ℕ → ℝ, ∑ j : Fin acc.qI, β j • acc.GI j = ∑ j : Fin cPZ.qI, β j • cPZ.GI j)
   ∧ (∀ a : ℕ → ℝ, acc.satisfies (fun k : Fin acc.p => a k)
       ↔ cPZ.satisfies (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad n a k))
   ∧ (∀ a : ℕ → ℝ, acc.c + ∑ i, PolyZonotope.monomial acc.E (fun k : Fin acc.p => a k) i • acc.G i
@@ -127,13 +127,13 @@ theorem ConPolyZono.aux_rescaleInv_fold (cPZ : ConPolyZono α) (cen rad : ℕ �
 /-- Membership, with factor vectors on `ℕ` so that the counts need no casts. -/
 theorem ConPolyZono.aux_mem_construct_nat (acc : ConPolyZono α) (x : α) :
     x ∈ acc.construct ↔ ∃ a β : ℕ → ℝ, (∀ k, k < acc.p → |a k| ≤ 1)
-      ∧ (∀ j, j < acc.q → |β j| ≤ 1) ∧ acc.satisfies (fun k : Fin acc.p => a k)
+      ∧ (∀ j, j < acc.qI → |β j| ≤ 1) ∧ acc.satisfies (fun k : Fin acc.p => a k)
       ∧ x = acc.c + ∑ i, PolyZonotope.monomial acc.E (fun k : Fin acc.p => a k) i • acc.G i
-          + ∑ j : Fin acc.q, β j • acc.GI j := by -- --- PROOF ---
+          + ∑ j : Fin acc.qI, β j • acc.GI j := by -- --- PROOF ---
   constructor
   · rintro ⟨a, β, ha, hβ, hs, hx⟩
     refine ⟨fun n => if h : n < acc.p then a ⟨n, h⟩ else 0,
-      fun n => if h : n < acc.q then β ⟨n, h⟩ else 0, ?_, ?_, ?_, ?_⟩
+      fun n => if h : n < acc.qI then β ⟨n, h⟩ else 0, ?_, ?_, ?_, ?_⟩
     · intro k hk; simpa [hk] using ha ⟨k, hk⟩
     · intro j hj; simpa [hj] using hβ ⟨j, hj⟩
     · simpa using hs
@@ -255,7 +255,7 @@ theorem ConPolyZono.rescale_exact (cPZ : ConPolyZono α)
   -- unfold the contraction: `contract` is applied only when `A` is not empty
   unfold ConPolyZono.rescale
   dsimp only
-  by_cases hA : cPZ.m = 0 ∨ cPZ.s = 0
+  by_cases hA : cPZ.m = 0 ∨ cPZ.q = 0
   · -- empty `A`: CORA does not contract, the box stays `[-1,1]ᵖ`
     rw [if_pos hA]
     refine ConPolyZono.aux_rescale_exact_of_box cPZ _ (fun k => ?_) (fun a ha _ k => ?_)

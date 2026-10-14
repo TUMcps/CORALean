@@ -32,7 +32,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `conPolyZono/representsa_` at `point`: no generator column of either block. -/
-def ConPolyZono.representsa_point (cPZ : ConPolyZono α) : Bool := cPZ.h == 0 && cPZ.q == 0
+def ConPolyZono.representsa_point (cPZ : ConPolyZono α) : Bool := cPZ.h == 0 && cPZ.qI == 0
 
 end CORALean.Real
 

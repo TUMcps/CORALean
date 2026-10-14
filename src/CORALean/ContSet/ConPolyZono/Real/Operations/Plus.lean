@@ -37,16 +37,16 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono α) : ConPolyZono α where
   p := cPZ₁.p + cPZ₂.p
   h := cPZ₁.h + cPZ₂.h
-  q := cPZ₁.q + cPZ₂.q
+  qI := cPZ₁.qI + cPZ₂.qI
   m := cPZ₁.m + cPZ₂.m
-  s := cPZ₁.s + cPZ₂.s
+  q := cPZ₁.q + cPZ₂.q
   c := cPZ₁.c + cPZ₂.c
   G := Fin.append cPZ₁.G cPZ₂.G
   E := PolyZonotope.plusE cPZ₁.E cPZ₂.E
   GI := Fin.append cPZ₁.GI cPZ₂.GI
   A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
   b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
-  EC := PolyZonotope.plusE cPZ₁.EC cPZ₂.EC
+  R := PolyZonotope.plusE cPZ₁.R cPZ₂.R
 
 end CORALean.Real
 

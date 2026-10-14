@@ -43,8 +43,8 @@ theorem Ellipsoid.aux_quad_eq_norm_sq (E : Ellipsoid n) (v : Vec ℝ n) :
 
 theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank = n) :
     E₁.isBigger E₂ ↔
-      (fun x => x - E₂.q) '' E₂.construct ⊆
-        (fun x => x - E₁.q) '' E₁.construct := by -- --- PROOF ---
+      (fun x => x - E₂.c) '' E₂.construct ⊆
+        (fun x => x - E₁.c) '' E₁.construct := by -- --- PROOF ---
   constructor
   · rintro h _ ⟨x, ⟨u, hu, rfl⟩, rfl⟩
     -- the centred point `p = G₂ u`
@@ -70,7 +70,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
     have hs0 : 0 ≤ p ⬝ᵥ w := by rw [hs]; positivity
     have hle : p ⬝ᵥ w ≤ 1 := by nlinarith
     -- so the centred point is in `E₁ - q₁`
-    refine ⟨E₁.q + p, ?_, add_sub_cancel_left _ _⟩
+    refine ⟨E₁.c + p, ?_, add_sub_cancel_left _ _⟩
     refine (E₁.ellipsoidNorm_le_one_iff hr p).mp ?_
     unfold Ellipsoid.ellipsoidNorm
     simp only
@@ -86,7 +86,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
       set u : Vec ℝ E₂.k := ‖E₂.Gᵀ *ᵥ v‖₂⁻¹ • (E₂.Gᵀ *ᵥ v) with hu
       have hun : ‖u‖₂ = 1 := by
         rw [hu, norm₂_smul, abs_of_pos (inv_pos.mpr hpos), inv_mul_cancel₀ ha]
-      obtain ⟨_, ⟨u', hu', rfl⟩, hy⟩ := hsub ⟨E₂.q + E₂.G *ᵥ u, Ellipsoid.mem_construct hun.le,
+      obtain ⟨_, ⟨u', hu', rfl⟩, hy⟩ := hsub ⟨E₂.c + E₂.G *ᵥ u, Ellipsoid.mem_construct hun.le,
         add_sub_cancel_left _ _⟩
       have hGu : E₁.G *ᵥ u' = E₂.G *ᵥ u := by simpa using hy
       -- `a = vᵀ G₂ u` on one side, at most `‖G₁ᵀ v‖` on the other

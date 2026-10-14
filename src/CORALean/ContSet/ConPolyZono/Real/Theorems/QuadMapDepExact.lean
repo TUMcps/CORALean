@@ -18,7 +18,7 @@ with the *same* factor vector on both sides.
 
 Which is the whole content. The witnesses are unchanged, so the constraint they
 satisfy is unchanged, and it is the same proposition before and after because
-`quadMapDep` copies `A`, `b` and `EC` across.
+`quadMapDep` copies `A`, `b` and `R` across.
 -/
 
 -- Authors:       Claude Opus 5
@@ -39,9 +39,9 @@ variable {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.quadMapDep_exact (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n))
-    (hq : cPZ.q = 0) :
+    (hq : cPZ.qI = 0) :
     quadEval Q '' cPZ.construct = (cPZ.quadMapDep Q).construct := by -- --- PROOF ---
-  have hz : ∀ b : Fin cPZ.q → ℝ, ∑ j, b j • cPZ.GI j = 0 :=
+  have hz : ∀ b : Fin cPZ.qI → ℝ, ∑ j, b j • cPZ.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
   have hquad : ∀ a : Fin cPZ.p → ℝ,
       quadEval Q (cPZ.c + ∑ i, monomial cPZ.E a i • cPZ.G i)

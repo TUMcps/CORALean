@@ -38,8 +38,8 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Entry `r` gone, the rest shifted by what the eliminated row leaves behind. -/
-noncomputable def ConPolyZono.reduceConB {m s : ℕ} (A : Mat ℝ m s) (b : Interval (Vec ℝ m))
-    (r : Fin m) (t : Fin s) : Interval (Vec ℝ (m - 1)) where
+noncomputable def ConPolyZono.reduceConB {m q : ℕ} (A : Mat ℝ m q) (b : Interval (Vec ℝ m))
+    (r : Fin m) (t : Fin q) : Interval (Vec ℝ (m - 1)) where
   inf := fun j => b.inf (dropIdx r j) - b.inf r * A (dropIdx r j) t / A r t
   sup := fun j => b.sup (dropIdx r j) - b.inf r * A (dropIdx r j) t / A r t
 

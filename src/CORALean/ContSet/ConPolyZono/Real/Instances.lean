@@ -58,7 +58,7 @@ scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
 instance : ContSet (ConPolyZono α) α := ⟨ConPolyZono.construct⟩
 
 /-- At every ambient type, as the set-level statement is: it is the coefficient
-space that has to be finite-dimensional, and that one is `Fin p × Fin q`. -/
+space that has to be finite-dimensional, and that one is `Fin p × Fin qI`. -/
 instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (ConPolyZono α) α :=
   ⟨ConPolyZono.isCompact_construct⟩
 

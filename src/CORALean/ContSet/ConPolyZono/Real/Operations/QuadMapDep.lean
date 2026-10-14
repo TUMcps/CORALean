@@ -13,7 +13,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapG
 The map on a set whose coefficients are all dependent. Sound only there, so
 nothing calls it directly. Touches the centre, generators and exponent matrix
 of the enclosing polynomial zonotope; the constraint system reads none of
-those, so `A`, `b` and `EC` pass through untouched.
+those, so `A`, `b` and `R` pass through untouched.
 -/
 
 -- Authors:       Claude Opus 5
@@ -37,16 +37,16 @@ def ConPolyZono.quadMapDep (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec �
     ConPolyZono (Vec ℝ k) where
   p := cPZ.p
   h := (cPZ.h + 1) * (cPZ.h + 1)
-  q := 0
+  qI := 0
   m := cPZ.m
-  s := cPZ.s
+  q := cPZ.q
   c := 0
   G := PolyZonotope.quadMapG Q cPZ.polyZonotope
   E := PolyZonotope.quadMapE cPZ.polyZonotope
   GI := Fin.elim0
   A := cPZ.A
   b := cPZ.b
-  EC := cPZ.EC
+  R := cPZ.R
 
 end CORALean.Real
 

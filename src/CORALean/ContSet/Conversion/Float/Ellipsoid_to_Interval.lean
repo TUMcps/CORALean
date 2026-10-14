@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- The box, given one proposed length per coordinate. -/
 def Ellipsoid.interval (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Interval (Vec 𝕋 n) where
-  inf := fun i => addDown (subDown (E.q i) (absolute (s i))) (E.I_error.inf i)
-  sup := fun i => addUp (addUp (E.q i) (absolute (s i))) (E.I_error.sup i)
+  inf := fun i => addDown (subDown (E.c i) (absolute (s i))) (E.I_error.inf i)
+  sup := fun i => addUp (addUp (E.c i) (absolute (s i))) (E.I_error.sup i)
 
 open SoundFloatArithmetic InflatedContSet
 
@@ -81,19 +81,19 @@ theorem Ellipsoid.interval_contains (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
   have hrow := E.aux_row_le s hs hu i
   have hlo : toReal (E.I_error.inf i) ≤ e i := (he i).1
   have hhi : e i ≤ toReal (E.I_error.sup i) := (he i).2
-  have hzi : z i = toReal (E.q i) + ∑ j, toReal (E.G i j) * u j := hz i
+  have hzi : z i = toReal (E.c i) + ∑ j, toReal (E.G i j) * u j := hz i
   -- each face on its own, the two roundings going opposite ways
   constructor
-  · have h1 := addDown_le_add (subDown (E.q i) (absolute (s i))) (E.I_error.inf i)
-    have h2 := subDown_le_sub (E.q i) (absolute (s i))
+  · have h1 := addDown_le_add (subDown (E.c i) (absolute (s i))) (E.I_error.inf i)
+    have h2 := subDown_le_sub (E.c i) (absolute (s i))
     have h3 := neg_le_of_abs_le hrow
-    show toReal (addDown (subDown (E.q i) (absolute (s i))) (E.I_error.inf i)) ≤ z i + e i
+    show toReal (addDown (subDown (E.c i) (absolute (s i))) (E.I_error.inf i)) ≤ z i + e i
     rw [hzi]
     linarith
-  · have h1 := add_le_addUp (addUp (E.q i) (absolute (s i))) (E.I_error.sup i)
-    have h2 := add_le_addUp (E.q i) (absolute (s i))
+  · have h1 := add_le_addUp (addUp (E.c i) (absolute (s i))) (E.I_error.sup i)
+    have h2 := add_le_addUp (E.c i) (absolute (s i))
     have h3 := le_of_abs_le hrow
-    show z i + e i ≤ toReal (addUp (addUp (E.q i) (absolute (s i))) (E.I_error.sup i))
+    show z i + e i ≤ toReal (addUp (addUp (E.c i) (absolute (s i))) (E.I_error.sup i))
     rw [hzi]
     linarith
 

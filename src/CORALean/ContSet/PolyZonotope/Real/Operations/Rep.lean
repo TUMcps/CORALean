@@ -10,7 +10,7 @@ public import Mathlib.Data.Finset.Max
 
 Split out of `Compact.lean` (issue #62): used again by `Theorems/RepIdem.lean`
 and by every later step of `compact`, and by `ConPolyZono`'s own compaction
-over `EC`, all outside this file.
+over `R`, all outside this file.
 -/
 
 -- Authors:       Claude Opus 5

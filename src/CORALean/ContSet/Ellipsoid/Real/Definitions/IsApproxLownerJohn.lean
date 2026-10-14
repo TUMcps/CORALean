@@ -36,8 +36,8 @@ variable {n : ℕ}
 
 /-- [1, Def. 1.2]: `E(E/n², s) ⊆ C ⊆ E((1+ε)E, s)`, as generators `G/n` and `√(1+ε) G`. -/
 def Ellipsoid.IsApproxLownerJohn (ε : ℝ) (C : Set (Vec ℝ n)) (E : Ellipsoid n) : Prop :=
-  (⟨E.k, E.q, (1 / (n : ℝ)) • E.G⟩ : Ellipsoid n).construct ⊆ C
-    ∧ C ⊆ (⟨E.k, E.q, Real.sqrt (1 + ε) • E.G⟩ : Ellipsoid n).construct
+  (⟨E.k, E.c, (1 / (n : ℝ)) • E.G⟩ : Ellipsoid n).construct ⊆ C
+    ∧ C ⊆ (⟨E.k, E.c, Real.sqrt (1 + ε) • E.G⟩ : Ellipsoid n).construct
 
 end CORALean.Real
 

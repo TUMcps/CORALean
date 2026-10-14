@@ -50,7 +50,7 @@ theorem aux_norm₂_neg (x : Vec ℝ n) : ‖-x‖₂ = ‖x‖₂ := by
 
 /-- The least value of `lᵀ x` on an ellipsoid, from the largest of `-lᵀ x`. -/
 theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) :
-    IsLeast ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.q - √(l ⬝ᵥ (E.shape *ᵥ l))) := by -- --- PROOF ---
+    IsLeast ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.c - √(l ⬝ᵥ (E.shape *ᵥ l))) := by -- --- PROOF ---
   obtain ⟨⟨x, hx, hxv⟩, hub⟩ := E.isGreatest_dot (-l)
   have hsq : (-l) ⬝ᵥ (E.shape *ᵥ -l) = l ⬝ᵥ (E.shape *ᵥ l) := by
     rw [Matrix.mulVec_neg, neg_dotProduct, dotProduct_neg, neg_neg]
@@ -71,10 +71,10 @@ theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) :
 theorem Ellipsoid.dist_ellipsoid_eq_max (E₁ E₂ : Ellipsoid n) :
     (Disjoint E₁.construct E₂.construct → ∃ d > 0,
       IsLeast {t | ∃ x ∈ E₁.construct, ∃ y ∈ E₂.construct, t = ‖x - y‖₂} d ∧
-      IsGreatest {t | ∃ l : Vec ℝ n, ‖l‖₂ = 1 ∧ t = l ⬝ᵥ E₁.q - √(l ⬝ᵥ (E₁.shape *ᵥ l)) -
-        l ⬝ᵥ E₂.q - √(l ⬝ᵥ (E₂.shape *ᵥ l))} d) ∧
+      IsGreatest {t | ∃ l : Vec ℝ n, ‖l‖₂ = 1 ∧ t = l ⬝ᵥ E₁.c - √(l ⬝ᵥ (E₁.shape *ᵥ l)) -
+        l ⬝ᵥ E₂.c - √(l ⬝ᵥ (E₂.shape *ᵥ l))} d) ∧
     ((E₁.construct ∩ E₂.construct).Nonempty → ∀ l : Vec ℝ n,
-      l ⬝ᵥ E₁.q - √(l ⬝ᵥ (E₁.shape *ᵥ l)) - l ⬝ᵥ E₂.q - √(l ⬝ᵥ (E₂.shape *ᵥ l)) ≤
+      l ⬝ᵥ E₁.c - √(l ⬝ᵥ (E₁.shape *ᵥ l)) - l ⬝ᵥ E₂.c - √(l ⬝ᵥ (E₂.shape *ᵥ l)) ≤
         0) := by -- --- PROOF ---
   refine ⟨fun hdisj => ?_, fun ⟨z, hz1, hz2⟩ l => ?_⟩
   · -- the origin is not in `E₂ - E₁`, a compact convex set

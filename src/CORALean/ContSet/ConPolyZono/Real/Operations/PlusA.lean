@@ -28,10 +28,10 @@ namespace CORALean.Real
 
 /-- Two constraint systems side by side, block-diagonally: each set's rows read
 only its own constraint generators. -/
-def ConPolyZono.plusA {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁) (A₂ : Mat ℝ m₂ s₂) :
-    Mat ℝ (m₁ + m₂) (s₁ + s₂) := fun i =>
-  Fin.append (fun r => Fin.append (A₁ r) (0 : Fin s₂ → ℝ))
-    (fun r => Fin.append (0 : Fin s₁ → ℝ) (A₂ r)) i
+def ConPolyZono.plusA {m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁) (A₂ : Mat ℝ m₂ q₂) :
+    Mat ℝ (m₁ + m₂) (q₁ + q₂) := fun i =>
+  Fin.append (fun r => Fin.append (A₁ r) (0 : Fin q₂ → ℝ))
+    (fun r => Fin.append (0 : Fin q₁ → ℝ) (A₂ r)) i
 
 end CORALean.Real
 

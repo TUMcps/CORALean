@@ -33,7 +33,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.construct_eq_image (E : Ellipsoid n) :
-    E.construct = (fun u : Vec ℝ E.k => E.q + E.G *ᵥ u) '' unitBall₂ E.k := by -- --- PROOF ---
+    E.construct = (fun u : Vec ℝ E.k => E.c + E.G *ᵥ u) '' unitBall₂ E.k := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨u, hu, rfl⟩

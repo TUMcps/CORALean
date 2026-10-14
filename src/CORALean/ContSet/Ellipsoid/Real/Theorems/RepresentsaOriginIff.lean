@@ -30,7 +30,7 @@ theorem Ellipsoid.representsa_origin_iff (E : Ellipsoid n) :
     E.construct = {0} ↔ E.representsa_origin := by -- --- PROOF ---
   constructor
   · intro h
-    have hc : E.q = 0 := by
+    have hc : E.c = 0 := by
       have := Ellipsoid.centre_mem_construct E
       rw [h] at this
       exact this

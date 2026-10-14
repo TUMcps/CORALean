@@ -33,7 +33,7 @@ open Matrix
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One copy of `A` per block, and a final row summing the weights. -/
-def ConPolyZono.convHullA (a : ℕ) {m s : ℕ} (A : Mat ℝ m s) : Mat ℝ (a * m + 1) (a * s + a) :=
+def ConPolyZono.convHullA (a : ℕ) {m q : ℕ} (A : Mat ℝ m q) : Mat ℝ (a * m + 1) (a * q + a) :=
   fun x => Fin.append
     (fun r => Fin.append (ConPolyZono.blkDiag a A r) (fun _ => (0 : ℝ)))
     (fun _ => Fin.append (fun _ => (0 : ℝ)) (fun _ => (1 : ℝ))) x

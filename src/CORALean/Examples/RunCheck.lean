@@ -122,12 +122,12 @@ def ofPZ {n : ℕ} (P : PolyZonotope (Vec 𝕋 n)) : Out :=
     vecF P.c ++ matF P.G ++ matF P.GI ++ boxF P.I_error, false⟩
 
 def ofCPZ {n : ℕ} (P : ConPolyZono 𝕋 (Vec 𝕋 n)) : Out :=
-  ⟨s!"p={P.p} h={P.h} q={P.q} m={P.m} s={P.s} c={vecS P.c} err={boxS P.I_error}",
+  ⟨s!"p={P.p} h={P.h} qI={P.qI} m={P.m} q={P.q} c={vecS P.c} err={boxS P.I_error}",
     vecF P.c ++ matF P.G ++ matF P.GI ++ matF P.A ++ boxF P.b ++ boxF P.I_error, false⟩
 
 -- the remaining representations, and the containers of sets
 def ofEll {n : ℕ} (E : Ellipsoid 𝕋 n) : Out :=
-  ⟨s!"k={E.k} q={vecS E.q} err={boxS E.I_error}", vecF E.q ++ matF E.G ++ boxF E.I_error, false⟩
+  ⟨s!"k={E.k} c={vecS E.c} err={boxS E.I_error}", vecF E.c ++ matF E.G ++ boxF E.I_error, false⟩
 
 def ofBundle {n : ℕ} (B : ZonoBundle (Vec 𝕋 n)) : Out :=
   let hulls := (List.range B.k).filterMap fun i =>

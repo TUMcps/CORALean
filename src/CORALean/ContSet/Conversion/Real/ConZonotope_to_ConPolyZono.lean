@@ -90,16 +90,16 @@ def ConZonotope.conB (cZ : ConZonotope (Vec ℝ n)) : Interval (Vec ℝ (cZ.P.m 
 def ConZonotope.conPolyZono (cZ : ConZonotope (Vec ℝ n)) : ConPolyZono (Vec ℝ n) where
   p := cZ.h
   h := cZ.h
-  q := 0
+  qI := 0
   m := cZ.P.m + cZ.P.me
-  s := cZ.h
+  q := cZ.h
   c := cZ.c
   G := cZ.G
   E := PolyZonotope.identE cZ.h
   GI := Fin.elim0
   A := ConZonotope.conA cZ
   b := ConZonotope.conB cZ
-  EC := PolyZonotope.identE cZ.h
+  R := PolyZonotope.identE cZ.h
 
 -- identity exponents make the monomial vector the factor vector itself
 theorem ConZonotope.aux_mulVec_conA (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.h) :

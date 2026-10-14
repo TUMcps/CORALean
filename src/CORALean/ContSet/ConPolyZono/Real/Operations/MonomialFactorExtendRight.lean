@@ -24,14 +24,14 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same at the constraint block. -/
-theorem ConPolyZono.monomial_factorExtend_right {p h s : ℕ} (E : Fin p → Fin h → ℕ)
-    (EC : Fin p → Fin s → ℕ) (a : Fin (ConPolyZono.usedFactors E EC).card → ℝ) (l : Fin s) :
-    PolyZonotope.monomial EC (ConPolyZono.factorExtend E EC a) l
-      = PolyZonotope.monomial (fun k l => EC (ConPolyZono.factorIdx E EC k) l)
+theorem ConPolyZono.monomial_factorExtend_right {p h q : ℕ} (E : Fin p → Fin h → ℕ)
+    (R : Fin p → Fin q → ℕ) (a : Fin (ConPolyZono.usedFactors E R).card → ℝ) (l : Fin q) :
+    PolyZonotope.monomial R (ConPolyZono.factorExtend E R a) l
+      = PolyZonotope.monomial (fun k l => R (ConPolyZono.factorIdx E R k) l)
         a l := by -- --- PROOF ---
-  have hmon := ConPolyZono.monomial_factorIdx_right E EC (ConPolyZono.factorExtend E EC a) l
-  have hext : (fun k => ConPolyZono.factorExtend E EC a (ConPolyZono.factorIdx E EC k)) = a :=
-    funext fun k => PolyZonotope.factorExtend_factorIdx (ConPolyZono.appendE E EC) a k
+  have hmon := ConPolyZono.monomial_factorIdx_right E R (ConPolyZono.factorExtend E R a) l
+  have hext : (fun k => ConPolyZono.factorExtend E R a (ConPolyZono.factorIdx E R k)) = a :=
+    funext fun k => PolyZonotope.factorExtend_factorIdx (ConPolyZono.appendE E R) a k
   rw [hext] at hmon
   exact hmon.symm
 

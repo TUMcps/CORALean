@@ -51,14 +51,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
 theorem ConPolyZono.aux_sum_univ_reduceCon (cPZ : ConPolyZono α) (r : Fin cPZ.m)
-    (d : Fin cPZ.h) (t : Fin cPZ.s) (a : Fin cPZ.p → ℝ) :
+    (d : Fin cPZ.h) (t : Fin cPZ.q) (a : Fin cPZ.p → ℝ) :
     ∑ i : Fin (cPZ.reduceCon r d t).h,
         PolyZonotope.monomial (cPZ.reduceCon r d t).E a i • (cPZ.reduceCon r d t).G i
       = ∑ i : Fin (cPZ.h - 1), PolyZonotope.monomial cPZ.E a (dropIdx d i) • cPZ.G (dropIdx d i)
-        + ∑ i : Fin (cPZ.s - 1), PolyZonotope.monomial cPZ.EC a (dropIdx t i)
+        + ∑ i : Fin (cPZ.q - 1), PolyZonotope.monomial cPZ.R a (dropIdx t i)
             • ((-(cPZ.A r (dropIdx t i)) / cPZ.A r t) • cPZ.G d) := by -- --- PROOF ---
-  refine (Fin.sum_univ_add (f := fun i : Fin ((cPZ.h - 1) + (cPZ.s - 1)) =>
-    PolyZonotope.monomial (ConPolyZono.reduceConE cPZ.E cPZ.EC d t) a i
+  refine (Fin.sum_univ_add (f := fun i : Fin ((cPZ.h - 1) + (cPZ.q - 1)) =>
+    PolyZonotope.monomial (ConPolyZono.reduceConE cPZ.E cPZ.R d t) a i
       • ConPolyZono.reduceConG cPZ.G cPZ.A r d t i)).trans ?_
   congr 1
   · exact Finset.sum_congr rfl fun i _ => by
@@ -72,11 +72,11 @@ theorem ConPolyZono.aux_sum_univ_reduceCon (cPZ : ConPolyZono α) (r : Fin cPZ.m
 /-- Eliminating a constraint keeps every point: the same factors satisfy the
 reduced system and give the same value. -/
 theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : Fin cPZ.h)
-    (t : Fin cPZ.s) (hE : ∀ k, cPZ.E k d = cPZ.EC k t) (hA : cPZ.A r t ≠ 0)
+    (t : Fin cPZ.q) (hE : ∀ k, cPZ.E k d = cPZ.R k t) (hA : cPZ.A r t ≠ 0)
     (hb : cPZ.b.inf r = cPZ.b.sup r) :
     cPZ.construct ⊆ (cPZ.reduceCon r d t).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, hsat, rfl⟩
-  set μ := PolyZonotope.monomial cPZ.EC a with hμ
+  set μ := PolyZonotope.monomial cPZ.R a with hμ
   set ν := PolyZonotope.monomial cPZ.E a with hν
   -- eq. (33): generator `d` and constraint generator `t` are the same monomial
   have hmt : ν d = μ t := by
@@ -88,32 +88,32 @@ theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : 
     rw [h2, ← hb] at h1
     linarith [h1.1, h1.2]
   -- eq. (35), read as what the surviving constraint generators sum to
-  have hrest : ∑ i : Fin (cPZ.s - 1), cPZ.A r (dropIdx t i) * μ (dropIdx t i)
+  have hrest : ∑ i : Fin (cPZ.q - 1), cPZ.A r (dropIdx t i) * μ (dropIdx t i)
       = cPZ.b.inf r - cPZ.A r t * μ t := by
     rw [← hrow, sum_dropIdx t (fun i => cPZ.A r i * μ i)]
     ring
   refine ⟨a, β, ha, hβ, ?_, ?_⟩
   -- eq. (36): every surviving row holds, its right-hand side shifted
   · intro j
-    have hJ : ∑ i : Fin (cPZ.s - 1), cPZ.A (dropIdx r j) (dropIdx t i) * μ (dropIdx t i)
+    have hJ : ∑ i : Fin (cPZ.q - 1), cPZ.A (dropIdx r j) (dropIdx t i) * μ (dropIdx t i)
         = (cPZ.A *ᵥ μ) (dropIdx r j) - cPZ.A (dropIdx r j) t * μ t := by
       have hmv : (cPZ.A *ᵥ μ) (dropIdx r j) = ∑ i, cPZ.A (dropIdx r j) i * μ i := rfl
       rw [hmv, sum_dropIdx t (fun i => cPZ.A (dropIdx r j) i * μ i)]
       ring
     -- the reduced row, before the rank-one correction is split off it
-    have hsum : ((cPZ.reduceCon r d t).A *ᵥ PolyZonotope.monomial (cPZ.reduceCon r d t).EC a) j
-        = ∑ i : Fin (cPZ.s - 1),
+    have hsum : ((cPZ.reduceCon r d t).A *ᵥ PolyZonotope.monomial (cPZ.reduceCon r d t).R a) j
+        = ∑ i : Fin (cPZ.q - 1),
             (cPZ.A (dropIdx r j) (dropIdx t i)
               - cPZ.A r (dropIdx t i) * cPZ.A (dropIdx r j) t / cPZ.A r t) * μ (dropIdx t i) :=
       rfl
-    have hterm : ∀ i : Fin (cPZ.s - 1),
+    have hterm : ∀ i : Fin (cPZ.q - 1),
         (cPZ.A (dropIdx r j) (dropIdx t i)
             - cPZ.A r (dropIdx t i) * cPZ.A (dropIdx r j) t / cPZ.A r t) * μ (dropIdx t i)
           = cPZ.A (dropIdx r j) (dropIdx t i) * μ (dropIdx t i)
             - cPZ.A (dropIdx r j) t / cPZ.A r t
               * (cPZ.A r (dropIdx t i) * μ (dropIdx t i)) := fun i => by ring
     -- so the row is the original one, shifted by exactly what `reduceConB` shifts
-    have hval : ((cPZ.reduceCon r d t).A *ᵥ PolyZonotope.monomial (cPZ.reduceCon r d t).EC a) j
+    have hval : ((cPZ.reduceCon r d t).A *ᵥ PolyZonotope.monomial (cPZ.reduceCon r d t).R a) j
         = (cPZ.A *ᵥ μ) (dropIdx r j) - cPZ.b.inf r * cPZ.A (dropIdx r j) t / cPZ.A r t := by
       rw [hsum, Finset.sum_congr rfl (fun i _ => hterm i), Finset.sum_sub_distrib,
         ← Finset.mul_sum, hJ, hrest]
@@ -130,19 +130,19 @@ theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : 
     have hres : ∑ i : Fin (cPZ.reduceCon r d t).h,
           PolyZonotope.monomial (cPZ.reduceCon r d t).E a i • (cPZ.reduceCon r d t).G i
         = ∑ i : Fin (cPZ.h - 1), ν (dropIdx d i) • cPZ.G (dropIdx d i)
-          + ∑ i : Fin (cPZ.s - 1),
+          + ∑ i : Fin (cPZ.q - 1),
               μ (dropIdx t i) • ((-(cPZ.A r (dropIdx t i)) / cPZ.A r t) • cPZ.G d) := by
       rw [hν, hμ]
       exact ConPolyZono.aux_sum_univ_reduceCon cPZ r d t a
     -- the new block is one scalar multiple of `G d`, so it sums as one
-    have hterm : ∀ i : Fin (cPZ.s - 1),
+    have hterm : ∀ i : Fin (cPZ.q - 1),
         μ (dropIdx t i) • ((-(cPZ.A r (dropIdx t i)) / cPZ.A r t) • cPZ.G d)
           = (-(1 / cPZ.A r t) * (cPZ.A r (dropIdx t i) * μ (dropIdx t i))) • cPZ.G d := by
       intro i
       rw [smul_smul]
       congr 1
       field_simp
-    have hsum2 : ∑ i : Fin (cPZ.s - 1),
+    have hsum2 : ∑ i : Fin (cPZ.q - 1),
           μ (dropIdx t i) • ((-(cPZ.A r (dropIdx t i)) / cPZ.A r t) • cPZ.G d)
         = (-(1 / cPZ.A r t) * (cPZ.b.inf r - cPZ.A r t * μ t)) • cPZ.G d := by
       simp only [hterm, ← Finset.sum_smul, ← Finset.mul_sum, hrest]

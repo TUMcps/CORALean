@@ -28,7 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `conPolyZono/representsa_` at `point`: no generator column of either block. -/
-def ConPolyZono.representsa_point (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool := cPZ.h == 0 && cPZ.q == 0
+def ConPolyZono.representsa_point (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
+  cPZ.h == 0 && cPZ.qI == 0
 
 end CORALean.Float
 

@@ -42,30 +42,30 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.holds_shared_iff {p m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
-    (b₁ : Interval (Vec ℝ m₁)) (EC₁ : Fin p → Fin s₁ → ℕ) (A₂ : Mat ℝ m₂ s₂)
-    (b₂ : Interval (Vec ℝ m₂)) (EC₂ : Fin p → Fin s₂ → ℕ) (a : Fin p → ℝ) :
+theorem ConPolyZono.holds_shared_iff {p m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
+    (b₁ : Interval (Vec ℝ m₁)) (R₁ : Fin p → Fin q₁ → ℕ) (A₂ : Mat ℝ m₂ q₂)
+    (b₂ : Interval (Vec ℝ m₂)) (R₂ : Fin p → Fin q₂ → ℕ) (a : Fin p → ℝ) :
     ConPolyZono.holds (ConPolyZono.plusA A₁ A₂) (ConPolyZono.plusB b₁ b₂)
-        (ConPolyZono.appendE EC₁ EC₂) a
-      ↔ ConPolyZono.holds A₁ b₁ EC₁ a ∧ ConPolyZono.holds A₂ b₂ EC₂ a := by -- --- PROOF ---
+        (ConPolyZono.appendE R₁ R₂) a
+      ↔ ConPolyZono.holds A₁ b₁ R₁ a ∧ ConPolyZono.holds A₂ b₂ R₂ a := by -- --- PROOF ---
   have hL : ∀ i : Fin m₁,
-      (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE EC₁ EC₂) a)
+      (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE R₁ R₂) a)
           (Fin.castAdd m₂ i)
-        = (A₁ *ᵥ PolyZonotope.monomial EC₁ a) i := by
+        = (A₁ *ᵥ PolyZonotope.monomial R₁ a) i := by
     intro i
-    have hm : (fun l => PolyZonotope.monomial (ConPolyZono.appendE EC₁ EC₂) a
-        (Fin.castAdd s₂ l)) = PolyZonotope.monomial EC₁ a :=
-      funext fun l => ConPolyZono.monomial_appendE_left EC₁ EC₂ a l
+    have hm : (fun l => PolyZonotope.monomial (ConPolyZono.appendE R₁ R₂) a
+        (Fin.castAdd q₂ l)) = PolyZonotope.monomial R₁ a :=
+      funext fun l => ConPolyZono.monomial_appendE_left R₁ R₂ a l
     rw [ConPolyZono.mulVec_plusA_left, hm]
   -- the mirror on the right block, its monomials read off the same factors
   have hR : ∀ i : Fin m₂,
-      (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE EC₁ EC₂) a)
+      (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (ConPolyZono.appendE R₁ R₂) a)
           (Fin.natAdd m₁ i)
-        = (A₂ *ᵥ PolyZonotope.monomial EC₂ a) i := by
+        = (A₂ *ᵥ PolyZonotope.monomial R₂ a) i := by
     intro i
-    have hm : (fun l => PolyZonotope.monomial (ConPolyZono.appendE EC₁ EC₂) a
-        (Fin.natAdd s₁ l)) = PolyZonotope.monomial EC₂ a :=
-      funext fun l => ConPolyZono.monomial_appendE_right EC₁ EC₂ a l
+    have hm : (fun l => PolyZonotope.monomial (ConPolyZono.appendE R₁ R₂) a
+        (Fin.natAdd q₁ l)) = PolyZonotope.monomial R₂ a :=
+      funext fun l => ConPolyZono.monomial_appendE_right R₁ R₂ a l
     rw [ConPolyZono.mulVec_plusA_right, hm]
   -- both directions, `plusB` splitting the bounds the way the rows split
   constructor

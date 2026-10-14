@@ -34,34 +34,34 @@ open Matrix
 /-- Two constraint systems side by side hold exactly when each holds on the
 factors it came with; the block-diagonal exponent matrix is what makes the
 right-to-left direction work, neither system's monomials seeing the other's. -/
-theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
-    (b₁ : Interval (Vec ℝ m₁)) (EC₁ : Fin p₁ → Fin s₁ → ℕ) (A₂ : Mat ℝ m₂ s₂)
+theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
+    (b₁ : Interval (Vec ℝ m₁)) (R₁ : Fin p₁ → Fin q₁ → ℕ) (A₂ : Mat ℝ m₂ q₂)
     (b₂ : Interval (Vec ℝ m₂))
-    (EC₂ : Fin p₂ → Fin s₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) :
+    (R₂ : Fin p₂ → Fin q₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) :
     ConPolyZono.holds (ConPolyZono.plusA A₁ A₂) (ConPolyZono.plusB b₁ b₂)
-        (PolyZonotope.plusE EC₁ EC₂) a
-      ↔ ConPolyZono.holds A₁ b₁ EC₁ (fun k => a (Fin.castAdd p₂ k))
-        ∧ ConPolyZono.holds A₂ b₂ EC₂ (fun k => a (Fin.natAdd p₁ k)) := by -- --- PROOF ---
+        (PolyZonotope.plusE R₁ R₂) a
+      ↔ ConPolyZono.holds A₁ b₁ R₁ (fun k => a (Fin.castAdd p₂ k))
+        ∧ ConPolyZono.holds A₂ b₂ R₂ (fun k => a (Fin.natAdd p₁ k)) := by -- --- PROOF ---
   have hL : ∀ i : Fin m₁,
-      (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (PolyZonotope.plusE EC₁ EC₂) a)
+      (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (PolyZonotope.plusE R₁ R₂) a)
           (Fin.castAdd m₂ i)
-        = (A₁ *ᵥ PolyZonotope.monomial EC₁ fun k => a (Fin.castAdd p₂ k)) i := by
+        = (A₁ *ᵥ PolyZonotope.monomial R₁ fun k => a (Fin.castAdd p₂ k)) i := by
     intro i
-    have hm : (fun l => PolyZonotope.monomial (PolyZonotope.plusE EC₁ EC₂) a
-          (Fin.castAdd s₂ l))
-        = PolyZonotope.monomial EC₁ (fun k => a (Fin.castAdd p₂ k)) :=
-      funext fun l => PolyZonotope.monomial_plusE_left EC₁ EC₂ a l
+    have hm : (fun l => PolyZonotope.monomial (PolyZonotope.plusE R₁ R₂) a
+          (Fin.castAdd q₂ l))
+        = PolyZonotope.monomial R₁ (fun k => a (Fin.castAdd p₂ k)) :=
+      funext fun l => PolyZonotope.monomial_plusE_left R₁ R₂ a l
     rw [ConPolyZono.mulVec_plusA_left, hm]
   -- the mirror on the right block, monomials again read off its own factors
   have hR : ∀ i : Fin m₂,
-      (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (PolyZonotope.plusE EC₁ EC₂) a)
+      (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (PolyZonotope.plusE R₁ R₂) a)
           (Fin.natAdd m₁ i)
-        = (A₂ *ᵥ PolyZonotope.monomial EC₂ fun k => a (Fin.natAdd p₁ k)) i := by
+        = (A₂ *ᵥ PolyZonotope.monomial R₂ fun k => a (Fin.natAdd p₁ k)) i := by
     intro i
-    have hm : (fun l => PolyZonotope.monomial (PolyZonotope.plusE EC₁ EC₂) a
-          (Fin.natAdd s₁ l))
-        = PolyZonotope.monomial EC₂ (fun k => a (Fin.natAdd p₁ k)) :=
-      funext fun l => PolyZonotope.monomial_plusE_right EC₁ EC₂ a l
+    have hm : (fun l => PolyZonotope.monomial (PolyZonotope.plusE R₁ R₂) a
+          (Fin.natAdd q₁ l))
+        = PolyZonotope.monomial R₂ (fun k => a (Fin.natAdd p₁ k)) :=
+      funext fun l => PolyZonotope.monomial_plusE_right R₁ R₂ a l
     rw [ConPolyZono.mulVec_plusA_right, hm]
   -- both directions now, `plusB` splitting the bounds the same way the rows split
   constructor

@@ -13,7 +13,7 @@ matrices change, all over ℕ, so nothing rounds and neither `b` nor the box
 moves.
 
 The used factors are listed once, and every exponent read goes through that list:
-the specification re-derives the sorted finset at each of the `p · (h + s)` reads
+the specification re-derives the sorted finset at each of the `p · (h + q)` reads
 (issue #61). `compactFactors_eq_spec` says they are one.
 -/
 
@@ -38,20 +38,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 used factors built once. -/
 def ConPolyZono.compactFactors (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let ft := ((List.finRange cPZ.p).filter fun k =>
-    (∃ i, Real.ConPolyZono.appendE cPZ.E cPZ.EC k i ≠ 0 : Bool)).toArray
-  let f := PolyZonotope.tabAt (Real.ConPolyZono.usedFactors cPZ.E cPZ.EC) ft
-  { p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.EC).card
+    (∃ i, Real.ConPolyZono.appendE cPZ.E cPZ.R k i ≠ 0 : Bool)).toArray
+  let f := PolyZonotope.tabAt (Real.ConPolyZono.usedFactors cPZ.E cPZ.R) ft
+  { p := (Real.ConPolyZono.usedFactors cPZ.E cPZ.R).card
     h := cPZ.h
-    q := cPZ.q
+    qI := cPZ.qI
     m := cPZ.m
-    s := cPZ.s
+    q := cPZ.q
     c := cPZ.c
     G := cPZ.G
     E := fun k i => cPZ.E (f k) i
     GI := cPZ.GI
     A := cPZ.A
     b := cPZ.b
-    EC := fun k l => cPZ.EC (f k) l
+    R := fun k l => cPZ.R (f k) l
     I_error := cPZ.I_error }
 
 end CORALean.Float

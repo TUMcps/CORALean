@@ -36,11 +36,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The stored indicator is the real monomial at the factors `0`. -/
-theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.s) :
+theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.q) :
     toReal (cPZ.zeroMonomials k)
-      = Real.PolyZonotope.monomial cPZ.EC (fun _ => (0 : ℝ)) k := by -- --- PROOF ---
+      = Real.PolyZonotope.monomial cPZ.R (fun _ => (0 : ℝ)) k := by -- --- PROOF ---
   unfold ConPolyZono.zeroMonomials Real.PolyZonotope.monomial
-  by_cases h : ∀ l, cPZ.EC l k = 0
+  by_cases h : ∀ l, cPZ.R l k = 0
   · rw [if_pos h, toReal_one]
     exact (Finset.prod_eq_one fun l _ => by rw [h l, pow_zero]).symm
   · rw [if_neg h, toReal_zero]
@@ -49,7 +49,7 @@ theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k :
     exact (Finset.prod_eq_zero (Finset.mem_univ l) (by rw [zero_pow hl])).symm
 
 /-- A combination of the stored independent generators is their matrix applied to the weights. -/
-theorem ConPolyZono.aux_sum_gi (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (β : Vec ℝ cPZ.q) :
+theorem ConPolyZono.aux_sum_gi (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (β : Vec ℝ cPZ.qI) :
     (∑ j, β j • (nominal cPZ).GI j)
       = toRealMat (fun i j => cPZ.GI j i) *ᵥ β := by -- --- PROOF ---
   funext i
@@ -64,7 +64,7 @@ theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
       ∧ le (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b.sup i) = true) :
     cPZ.satisfies (fun _ => 0) := by -- --- PROOF ---
   intro i
-  have hA : (toRealMat cPZ.A *ᵥ Real.PolyZonotope.monomial cPZ.EC (fun _ => (0 : ℝ))) i
+  have hA : (toRealMat cPZ.A *ᵥ Real.PolyZonotope.monomial cPZ.R (fun _ => (0 : ℝ))) i
       = ∑ k, toReal (cPZ.A i k) * toReal (cPZ.zeroMonomials k) := by
     simp only [Matrix.mulVec, dotProduct, toRealMat]
     exact Finset.sum_congr rfl fun k _ => by rw [ConPolyZono.aux_zeroMonomials]
@@ -73,7 +73,7 @@ theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
     le_trans (le_dotUp (cPZ.A i) cPZ.zeroMonomials) (toReal_le_of_le (h i).2)⟩
 
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
-theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.q n} {B : 𝕋}
+theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n} {B : 𝕋}
     (hc : Zonotope.ballCert (fun i j => cPZ.GI j i) H B one = true)
     (hsat : cPZ.satisfies (fun _ => 0)) {y₀ : Vec ℝ n}
     (hy₀ : y₀ = (nominal cPZ).c
@@ -93,7 +93,7 @@ theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Ma
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.q n}
+theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n}
     (h : cPZ.isFullDimWith H = true) : (interior cPZ.construct).Nonempty := by -- --- PROOF ---
   simp only [ConPolyZono.isFullDimWith, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h

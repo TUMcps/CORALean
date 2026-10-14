@@ -32,12 +32,12 @@ namespace CORALean.Real
 
 theorem ConPolyZono.mem_construct_iff {n : ℕ} {cPZ : ConPolyZono (Vec ℝ n)} {x : Vec ℝ n} :
     x ∈ cPZ.construct ↔
-      ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
+      ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ cPZ.satisfies a
         ∧ ∀ i, x i = cPZ.c i + (∑ l, cPZ.G l i * PolyZonotope.monomial cPZ.E a l)
               + ∑ j, cPZ.GI j i * β j := by -- --- PROOF ---
   -- one coordinate of the defining equation, both generator blocks transposed
-  have key : ∀ (a : Fin cPZ.p → ℝ) (β : Fin cPZ.q → ℝ) (i : Fin n),
+  have key : ∀ (a : Fin cPZ.p → ℝ) (β : Fin cPZ.qI → ℝ) (i : Fin n),
       (cPZ.c + ∑ l, PolyZonotope.monomial cPZ.E a l • cPZ.G l + ∑ j, β j • cPZ.GI j) i
         = cPZ.c i + (∑ l, cPZ.G l i * PolyZonotope.monomial cPZ.E a l)
             + ∑ j, cPZ.GI j i * β j := by

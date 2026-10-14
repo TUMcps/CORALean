@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Compact
 
 Three stages, each keeping a `Finset` of the columns it filters down to: a
 merged column never adds one, so the dependent-generator, constraint-generator
-and factor counts each shrink or stand, never grow. `m` and `q` are untouched
+and factor counts each shrink or stand, never grow. `m` and `qI` are untouched
 by any stage and so carry no bound of their own. `Finset.card_le_univ` against
 each stage's ambient `Fin` index closes all three.
 -/
@@ -37,16 +37,16 @@ theorem ConPolyZono.compact_h_le (cPZ : ConPolyZono α) : (cPZ.compact).h ≤ cP
     _ = cPZ.h := Fintype.card_fin cPZ.h
 
 omit [Module ℝ α] in
-theorem ConPolyZono.compact_s_le (cPZ : ConPolyZono α) : (cPZ.compact).s ≤ cPZ.s := by
-  show (PolyZonotope.compactKeep cPZ.compactGens.EC
-    (ConPolyZono.consCol cPZ.compactGens.A)).card ≤ cPZ.s
-  calc _ ≤ Fintype.card (Fin cPZ.s) := Finset.card_le_univ _
-    _ = cPZ.s := Fintype.card_fin cPZ.s
+theorem ConPolyZono.compact_q_le (cPZ : ConPolyZono α) : (cPZ.compact).q ≤ cPZ.q := by
+  show (PolyZonotope.compactKeep cPZ.compactGens.R
+    (ConPolyZono.consCol cPZ.compactGens.A)).card ≤ cPZ.q
+  calc _ ≤ Fintype.card (Fin cPZ.q) := Finset.card_le_univ _
+    _ = cPZ.q := Fintype.card_fin cPZ.q
 
 omit [Module ℝ α] in
 theorem ConPolyZono.compact_p_le (cPZ : ConPolyZono α) : (cPZ.compact).p ≤ cPZ.p := by
   show (ConPolyZono.usedFactors cPZ.compactGens.compactCons.E
-    cPZ.compactGens.compactCons.EC).card ≤ cPZ.p
+    cPZ.compactGens.compactCons.R).card ≤ cPZ.p
   calc _ ≤ Fintype.card (Fin cPZ.p) := Finset.card_le_univ _
     _ = cPZ.p := Fintype.card_fin cPZ.p
 

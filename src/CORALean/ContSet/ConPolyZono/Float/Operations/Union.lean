@@ -5,8 +5,8 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperB
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerA
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionLowerB
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionE
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperEC
-public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerEC
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpperR
+public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiffError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MidpointResidual
@@ -52,10 +52,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ₁.p + cPZ₂.p + 2
   h := 1 + (cPZ₁.h + cPZ₂.h)
-  q := 0
+  qI := 0
   m := 1 + 1 + (cPZ₁.m + cPZ₂.m)
-  s := 1 + (2 + (cPZ₁.p + cPZ₁.p + (cPZ₂.p + cPZ₂.p + (cPZ₁.p * cPZ₂.p + cPZ₁.p * cPZ₂.p))))
-    + (cPZ₁.s + cPZ₂.s + 1)
+  q := 1 + (2 + (cPZ₁.p + cPZ₁.p + (cPZ₂.p + cPZ₂.p + (cPZ₁.p * cPZ₂.p + cPZ₁.p * cPZ₂.p))))
+    + (cPZ₁.q + cPZ₂.q + 1)
   c := PolyZonotope.midpoint cPZ₁.c cPZ₂.c
   G := Fin.append (fun _ => PolyZonotope.halfDiff cPZ₁.c cPZ₂.c) (Fin.append cPZ₁.G cPZ₂.G)
   E := Real.ConPolyZono.unionE cPZ₁.E cPZ₂.E
@@ -64,8 +64,8 @@ def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
     (ConPolyZono.unionLowerA cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b)
   b := ConPolyZono.plusB (ConPolyZono.unionUpperB cPZ₁.p cPZ₂.p)
     (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
-  EC := Real.ConPolyZono.appendE (Real.ConPolyZono.unionUpperEC cPZ₁.p cPZ₂.p)
-    (Real.ConPolyZono.unionLowerEC cPZ₁.EC cPZ₂.EC)
+  R := Real.ConPolyZono.appendE (Real.ConPolyZono.unionUpperR cPZ₁.p cPZ₂.p)
+    (Real.ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R)
   -- the boxes of both operands, and what storing the centre and the generator cost
   I_error := (cPZ₁.I_error.or cPZ₂.I_error).plus
     ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).plus

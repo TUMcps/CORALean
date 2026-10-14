@@ -36,9 +36,9 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Both operands' systems, plus the selector column that switches them. -/
-noncomputable def ConPolyZono.unionLowerA {m₁ s₁ m₂ s₂ : ℕ} (A₁ : Mat ℝ m₁ s₁)
-    (b₁ : Interval (Vec ℝ m₁)) (A₂ : Mat ℝ m₂ s₂) (b₂ : Interval (Vec ℝ m₂)) :
-    Mat ℝ (m₁ + m₂) (s₁ + s₂ + 1) :=
+noncomputable def ConPolyZono.unionLowerA {m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
+    (b₁ : Interval (Vec ℝ m₁)) (A₂ : Mat ℝ m₂ q₂) (b₂ : Interval (Vec ℝ m₂)) :
+    Mat ℝ (m₁ + m₂) (q₁ + q₂ + 1) :=
   fun i => Fin.append (ConPolyZono.plusA A₁ A₂ i)
     (fun _ => Fin.append (fun r => -(2⁻¹ * b₁.inf r)) (fun r => 2⁻¹ * b₂.inf r) i)
 

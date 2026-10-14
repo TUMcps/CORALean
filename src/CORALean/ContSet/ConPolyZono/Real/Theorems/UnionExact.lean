@@ -29,7 +29,7 @@ weaker than `regular`: duplicate columns never enter the argument. It is also th
 weakest hypothesis on the exponent matrices alone, since an all-zero column of
 `E₂` is broken by putting all of `G₂` on it.
 
-`q = 0` is `Def. 5`'s representation, as for `linComb_exact_of_dependent`; `b`
+`qI = 0` is `Def. 5`'s representation, as for `linComb_exact_of_dependent`; `b`
 non-empty is what an interval bound costs where [1]'s is crisp — a crossed `b`
 would make *both* branches unsatisfiable, not just its own.
 
@@ -105,10 +105,10 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
     (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E)
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (hab : ∀ k, |a k| ≤ 1)
     (hup : ConPolyZono.holds (ConPolyZono.unionUpperA cPZ₁.p cPZ₂.p)
-      ConPolyZono.unionUpperB (ConPolyZono.unionUpperEC cPZ₁.p cPZ₂.p) a)
+      ConPolyZono.unionUpperB (ConPolyZono.unionUpperR cPZ₁.p cPZ₂.p) a)
     (hlow : ConPolyZono.holds (ConPolyZono.unionLowerA cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b)
       (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
-      (ConPolyZono.unionLowerEC cPZ₁.EC cPZ₂.EC) a) :
+      (ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R) a) :
     (2:ℝ)⁻¹ • (cPZ₁.c + cPZ₂.c)
         + (∑ i, PolyZonotope.monomial (ConPolyZono.unionE cPZ₁.E cPZ₂.E) a i
             • ConPolyZono.unionG cPZ₁.c cPZ₂.c cPZ₁.G cPZ₂.G i)
@@ -125,7 +125,7 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
     refine ⟨fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k)), fun _ => 0,
       fun k => hab _, fun _ => by simp, fun r => ?_, ?_⟩
     · have h := hlow (Fin.castAdd cPZ₂.m r)
-      rw [ConPolyZono.mulVec_unionLower_left cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b cPZ₁.EC cPZ₂.EC
+      rw [ConPolyZono.mulVec_unionLower_left cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b cPZ₁.R cPZ₂.R
         a r, hx1] at h
       simp only [ConPolyZono.unionLowerB, Fin.append_left] at h
       exact ⟨by linarith [h.1], by linarith [h.2]⟩
@@ -141,7 +141,7 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
     refine ⟨fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k)), fun _ => 0,
       fun k => hab _, fun _ => by simp, fun r => ?_, ?_⟩
     · have h := hlow (Fin.natAdd cPZ₁.m r)
-      rw [ConPolyZono.mulVec_unionLower_right cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b cPZ₁.EC cPZ₂.EC
+      rw [ConPolyZono.mulVec_unionLower_right cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b cPZ₁.R cPZ₂.R
         a r, hx1] at h
       simp only [ConPolyZono.unionLowerB, Fin.append_right] at h
       exact ⟨by linarith [h.1], by linarith [h.2]⟩
@@ -157,11 +157,11 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
-    (hq₁ : cPZ₁.q = 0) (hq₂ : cPZ₂.q = 0)
+    (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
     (hb₁ : cPZ₁.b.IsNonempty (ι := Fin cPZ₁.m))
     (hb₂ : cPZ₂.b.IsNonempty (ι := Fin cPZ₂.m))
-    (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hEC₁ : ConPolyZono.NoZeroCol cPZ₁.EC)
-    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E) (hEC₂ : ConPolyZono.NoZeroCol cPZ₂.EC) :
+    (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.NoZeroCol cPZ₁.R)
+    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E) (hR₂ : ConPolyZono.NoZeroCol cPZ₂.R) :
     cPZ₁.construct ∪ cPZ₂.construct = (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   have hb₁' : ∀ i, cPZ₁.b.inf i ≤ cPZ₁.b.sup i := fun i => hb₁ i
   have hb₂' : ∀ i, cPZ₂.b.inf i ≤ cPZ₂.b.sup i := fun i => hb₂ i
@@ -191,11 +191,11 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
             constructor <;> linarith [h.1, h.2]
           · -- the other operand's rows, its whole left side pinned to zero
             rw [ConPolyZono.mulVec_unionLower_right]
-            have hzero : (cPZ₂.A *ᵥ PolyZonotope.monomial cPZ₂.EC
+            have hzero : (cPZ₂.A *ᵥ PolyZonotope.monomial cPZ₂.R
                 fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k))) r = 0 := by
-              show (∑ l, cPZ₂.A r l * PolyZonotope.monomial cPZ₂.EC _ l) = 0
+              show (∑ l, cPZ₂.A r l * PolyZonotope.monomial cPZ₂.R _ l) = 0
               exact Finset.sum_eq_zero fun l _ => by
-                rw [ConPolyZono.monomial_eq_zero_of_noZeroCol hEC₂ hz l, mul_zero]
+                rw [ConPolyZono.monomial_eq_zero_of_noZeroCol hR₂ hz l, mul_zero]
             rw [hzero, hx1]
             simp only [ConPolyZono.unionLowerB, Fin.append_right]
             constructor <;> linarith [hb₂' r]
@@ -232,11 +232,11 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
         · refine Fin.addCases (fun r => ?_) fun r => ?_
           · -- the first operand's rows, its whole left side pinned to zero
             rw [ConPolyZono.mulVec_unionLower_left]
-            have hzero : (cPZ₁.A *ᵥ PolyZonotope.monomial cPZ₁.EC
+            have hzero : (cPZ₁.A *ᵥ PolyZonotope.monomial cPZ₁.R
                 fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) r = 0 := by
-              show (∑ l, cPZ₁.A r l * PolyZonotope.monomial cPZ₁.EC _ l) = 0
+              show (∑ l, cPZ₁.A r l * PolyZonotope.monomial cPZ₁.R _ l) = 0
               exact Finset.sum_eq_zero fun l _ => by
-                rw [ConPolyZono.monomial_eq_zero_of_noZeroCol hEC₁ hz l, mul_zero]
+                rw [ConPolyZono.monomial_eq_zero_of_noZeroCol hR₁ hz l, mul_zero]
             rw [hzero, hx1]
             simp only [ConPolyZono.unionLowerB, Fin.append_left]
             constructor <;> linarith [hb₁' r]
@@ -266,7 +266,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
   -- back: the constraint splits, and the branch it leaves says which operand
   · rintro ⟨a, β, hab, hβ, hsat, rfl⟩
     obtain ⟨hup, hlow⟩ := (ConPolyZono.holds_shared_iff _ _ _ _ _ _ a).mp hsat
-    have hq0 : (cPZ₁.union cPZ₂).q = 0 := rfl
+    have hq0 : (cPZ₁.union cPZ₂).qI = 0 := rfl
     have hz : (∑ j, β j • (cPZ₁.union cPZ₂).GI j) = 0 :=
       Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
     rw [hz, add_zero]

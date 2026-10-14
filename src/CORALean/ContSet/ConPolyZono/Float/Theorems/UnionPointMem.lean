@@ -128,7 +128,7 @@ theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
   refine ConPolyZono.mem_nominalSet_iff.mpr ⟨a, fun j => j.elim0, ha, fun j => j.elim0,
     ConPolyZono.union_satisfies_of_real cPZ₁ cPZ₂ a ha hsat, fun i => ?_⟩
   -- no independent generators
-  have h0 : ∀ f : Fin (cPZ₁.union cPZ₂).q → ℝ, ∑ j, f j = 0 := fun f =>
+  have h0 : ∀ f : Fin (cPZ₁.union cPZ₂).qI → ℝ, ∑ j, f j = 0 := fun f =>
     Finset.sum_eq_zero fun j _ => Fin.elim0 (show Fin 0 from j)
   rw [h0, add_zero]
 

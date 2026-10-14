@@ -38,7 +38,7 @@ def ConPolyZono.rescale (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (contract : Interval (Vec 𝕋 cPZ.p) → Interval (Vec 𝕋 cPZ.p)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let dom := ConPolyZono.unitBox 𝕋 cPZ.p
   -- `if ~isempty(cPZ.A)`
-  let dom' := if cPZ.m = 0 ∨ cPZ.s = 0 then dom else contract dom
+  let dom' := if cPZ.m = 0 ∨ cPZ.q = 0 then dom else contract dom
   -- the midpoint rounded, the radius rounded up from it to both ends
   let cen : ℕ → 𝕋 := fun r =>
     if h : r < cPZ.p then half (addDown (dom'.sup ⟨r, h⟩) (dom'.inf ⟨r, h⟩)) else zero

@@ -49,15 +49,15 @@ variable {n : ℕ}
 theorem Ellipsoid.supportBound_attained (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     ∃ x ∈ E.construct, c x = (E.supportBound c).val := by -- --- PROOF ---
   by_cases hv : ‖E.pullback c‖₂ = 0
-  · refine ⟨E.q, E.q_mem_construct, ?_⟩
-    show c E.q = c E.q + ‖E.pullback c‖₂
+  · refine ⟨E.c, E.q_mem_construct, ?_⟩
+    show c E.c = c E.c + ‖E.pullback c‖₂
     rw [hv, add_zero]
   · have hpos : 0 < ‖E.pullback c‖₂ := lt_of_le_of_ne (norm₂_nonneg _) (Ne.symm hv)
-    refine ⟨E.q + E.G *ᵥ ((‖E.pullback c‖₂)⁻¹ • E.pullback c),
+    refine ⟨E.c + E.G *ᵥ ((‖E.pullback c‖₂)⁻¹ • E.pullback c),
       Ellipsoid.mem_construct ?_, ?_⟩
     · rw [norm₂_smul, abs_of_nonneg (le_of_lt (inv_pos.mpr hpos)), inv_mul_cancel₀ hv]
-    · show c (E.q + E.G *ᵥ ((‖E.pullback c‖₂)⁻¹ • E.pullback c))
-          = c E.q + ‖E.pullback c‖₂
+    · show c (E.c + E.G *ᵥ ((‖E.pullback c‖₂)⁻¹ • E.pullback c))
+          = c E.c + ‖E.pullback c‖₂
       rw [map_add, E.apply_mulVec c, dotProduct_smul, smul_eq_mul, dotProduct_self, pow_two,
         ← mul_assoc, inv_mul_cancel₀ hv, one_mul]
 

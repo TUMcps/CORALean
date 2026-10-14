@@ -57,8 +57,8 @@ theorem ConPolyZono.aux_mem_intersectionD (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the nominal side is the exact layer's intersection, at the tolerance `intersectionD` supplies
-theorem ConPolyZono.intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hq₁ : cPZ₁.q = 0)
-    (hq₂ : cPZ₂.q = 0) :
+theorem ConPolyZono.intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hq₁ : cPZ₁.qI = 0)
+    (hq₂ : cPZ₂.qI = 0) :
     cPZ₁.construct ∩ cPZ₂.construct ⊆ (cPZ₁.intersectionDep cPZ₂).construct := by -- --- PROOF ---
   have hnom : nominalSet (cPZ₁.intersectionDep cPZ₂)
       = nominalSet cPZ₁ ∩ (nominalSet cPZ₂ + (ConPolyZono.intersectionD cPZ₁ cPZ₂).construct) := by

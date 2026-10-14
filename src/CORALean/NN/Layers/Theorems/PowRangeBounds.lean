@@ -15,7 +15,7 @@ By induction on the exponent, each step one product bracket.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   23-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,8 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem powRange_bounds (t : 𝕋) (k : ℕ) :
-    toReal (powRange t k).1 ≤ toReal t ^ k
-      ∧ toReal t ^ k ≤ toReal (powRange t k).2 := by -- --- PROOF ---
+    toReal (powRange t k).inf ≤ toReal t ^ k
+      ∧ toReal t ^ k ≤ toReal (powRange t k).sup := by -- --- PROOF ---
   induction k with
   | zero =>
     -- `one` is exact, so the empty product is bracketed by itself
@@ -41,10 +41,10 @@ theorem powRange_bounds (t : 𝕋) (k : ℕ) :
   | succ k ih =>
     have hcomm : toReal t ^ (k + 1) = toReal t * toReal t ^ k := by ring
     refine ⟨?_, ?_⟩
-    · show toReal (mulRangeDown t (powRange t k).1 (powRange t k).2) ≤ _
+    · show toReal (mulRangeDown t (powRange t k).inf (powRange t k).sup) ≤ _
       rw [hcomm]
       exact mulRangeDown_le ih.1 ih.2
-    · show _ ≤ toReal (mulRangeUp t (powRange t k).1 (powRange t k).2)
+    · show _ ≤ toReal (mulRangeUp t (powRange t k).inf (powRange t k).sup)
       rw [hcomm]
       exact le_mulRangeUp ih.1 ih.2
 

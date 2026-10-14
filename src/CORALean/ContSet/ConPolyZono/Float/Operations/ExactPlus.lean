@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def ConPolyZono.exactPlus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hp : cPZ₁.p = cPZ₂.p) :
     ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let pZ := cPZ₁.toPolyZonotope.exactPlus cPZ₂.toPolyZonotope hp
-  { p := pZ.p, h := pZ.h, q := pZ.q, m := cPZ₁.m, s := cPZ₁.s, c := pZ.c, G := pZ.G, E := pZ.E,
-    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, EC := cPZ₁.EC, I_error := pZ.I_error }
+  { p := pZ.p, h := pZ.h, qI := pZ.q, m := cPZ₁.m, q := cPZ₁.q, c := pZ.c, G := pZ.G, E := pZ.E,
+    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, R := cPZ₁.R, I_error := pZ.I_error }
 
 end CORALean.Float
 

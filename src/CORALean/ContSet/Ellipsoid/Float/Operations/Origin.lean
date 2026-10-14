@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Ellipsoid.origin (n : ℕ) : Ellipsoid 𝕋 n where
   k := 0
-  q := fun _ => zero
+  c := fun _ => zero
   G := fun _ j => j.elim0
   I_error := Interval.origin n
 

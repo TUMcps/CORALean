@@ -13,7 +13,7 @@ public import Mathlib.Tactic.Positivity
 `quadMap` is `quadMapDep` run on `dependent`: the factor and dependent-generator
 counts are `dependent`'s own, `quadMapDep`'s square then landing on that count
 rather than the operand's, and the independent block empties — the constraint
-count `m` and the constraint-generator count `s` both carry straight through,
+count `m` and the constraint-generator count `q` both carry straight through,
 since the constraint system reads none of the enclosing polynomial zonotope.
 `rfl` by unfolding `quadMapDep` and `dependent` rather than restating either.
 
@@ -44,23 +44,23 @@ variable {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.quadMap_p (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q cPZ).p = cPZ.p + cPZ.q := rfl
+    (ConPolyZono.quadMap Q cPZ).p = cPZ.p + cPZ.qI := rfl
 
 theorem ConPolyZono.quadMap_h (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q cPZ).h = (cPZ.h + cPZ.q + 1) * (cPZ.h + cPZ.q + 1) := rfl
+    (ConPolyZono.quadMap Q cPZ).h = (cPZ.h + cPZ.qI + 1) * (cPZ.h + cPZ.qI + 1) := rfl
 
-theorem ConPolyZono.quadMap_q (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q cPZ).q = 0 := rfl
+theorem ConPolyZono.quadMap_qI (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.quadMap Q cPZ).qI = 0 := rfl
 
 theorem ConPolyZono.quadMap_m (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
     (ConPolyZono.quadMap Q cPZ).m = cPZ.m := rfl
 
-theorem ConPolyZono.quadMap_s (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    (ConPolyZono.quadMap Q cPZ).s = cPZ.s := rfl
+theorem ConPolyZono.quadMap_q (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
+    (ConPolyZono.quadMap Q cPZ).q = cPZ.q := rfl
 
 
 theorem ConPolyZono.quadMap_h_isBigO (Q : Fin k → Mat ℝ n n) (cPZ : ℕ → ConPolyZono (Vec ℝ n))
-    (hC : ∀ m, (cPZ m).h + (cPZ m).q = m) :
+    (hC : ∀ m, (cPZ m).h + (cPZ m).qI = m) :
     (fun m : ℕ => (((ConPolyZono.quadMap Q (cPZ m)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => ((m : ℝ)) ^ 2 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound 4

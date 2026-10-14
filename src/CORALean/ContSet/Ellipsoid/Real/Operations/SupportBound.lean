@@ -44,7 +44,7 @@ variable {n : ℕ}
 maximum is attained, which `Theorems.SupportBoundAttained` states. -/
 noncomputable def Ellipsoid.supportBound (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     SupportBound E.construct c where
-  val := c E.q + ‖E.pullback c‖₂
+  val := c E.c + ‖E.pullback c‖₂
   le := by
     rintro _ ⟨u, hu, rfl⟩
     rw [map_add]

@@ -40,16 +40,16 @@ constraint block stands. -/
 def ConPolyZono.compactGensSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
   h := (PolyZonotope.repKeep cPZ.E).card
-  q := cPZ.q
+  qI := cPZ.qI
   m := cPZ.m
-  s := cPZ.s
+  q := cPZ.q
   c := cPZ.c
   G := fun j i => cPZ.mergedCol i j
   E := fun k j => cPZ.E k (PolyZonotope.keepIdx cPZ.E j)
   GI := cPZ.GI
   A := cPZ.A
   b := cPZ.b
-  EC := cPZ.EC
+  R := cPZ.R
   I_error := cPZ.I_error.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap cPZ))
 
 end CORALean.Float

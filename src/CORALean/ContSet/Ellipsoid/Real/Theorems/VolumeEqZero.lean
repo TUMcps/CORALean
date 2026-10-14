@@ -55,7 +55,7 @@ theorem Ellipsoid.volume_eq_of_rank_lt (E : Ellipsoid n) (hr : E.rank < n) :
       unfold Ellipsoid.rank Matrix.rank
       rw [h, finrank_top, Module.finrank_fin_fun]
     omega
-  refine measure_mono_null (t := (fun v => -E.q + v) ⁻¹'
+  refine measure_mono_null (t := (fun v => -E.c + v) ⁻¹'
     (LinearMap.range (Matrix.mulVecLin E.G) : Set (Vec ℝ n))) ?_ ?_
   · rintro x ⟨u, -, rfl⟩
     simp only [Set.mem_preimage, neg_add_cancel_left, SetLike.mem_coe]

@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 def Ellipsoid.project (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) : Ellipsoid 𝕋 m where
   k := E.k
-  q := fun i => E.q (dims i)
+  c := fun i => E.c (dims i)
   G := fun i j => E.G (dims i) j
   I_error := E.I_error.project dims
 

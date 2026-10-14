@@ -35,13 +35,14 @@ omit [Module ℝ α] in
 theorem ConPolyZono.plus_h (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).h = cPZ₁.h + cPZ₂.h := rfl
 
 omit [Module ℝ α] in
-theorem ConPolyZono.plus_q (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).q = cPZ₁.q + cPZ₂.q := rfl
+theorem ConPolyZono.plus_qI (cPZ₁ cPZ₂ : ConPolyZono α) :
+    (cPZ₁.plus cPZ₂).qI = cPZ₁.qI + cPZ₂.qI := rfl
 
 omit [Module ℝ α] in
 theorem ConPolyZono.plus_m (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).m = cPZ₁.m + cPZ₂.m := rfl
 
 omit [Module ℝ α] in
-theorem ConPolyZono.plus_s (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).s = cPZ₁.s + cPZ₂.s := rfl
+theorem ConPolyZono.plus_q (cPZ₁ cPZ₂ : ConPolyZono α) : (cPZ₁.plus cPZ₂).q = cPZ₁.q + cPZ₂.q := rfl
 
 end CORALean.Real
 

@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.supportFunc_eq (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    supportFunc E.construct c = ((dualVec c ⬝ᵥ E.q +
+    supportFunc E.construct c = ((dualVec c ⬝ᵥ E.c +
       √(dualVec c ⬝ᵥ (E.shape *ᵥ dualVec c)) : ℝ) : EReal) := by -- --- PROOF ---
   -- `‖Gᵀ l‖₂ = √(lᵀ G Gᵀ l)`
   have hnorm : ‖E.pullback c‖₂ = √(dualVec c ⬝ᵥ (E.shape *ᵥ dualVec c)) := by
@@ -48,8 +48,8 @@ theorem Ellipsoid.supportFunc_eq (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] �
     simp only [dotProduct, sq]
     rfl
   have hval :
-      (E.supportBound c).val = dualVec c ⬝ᵥ E.q + √(dualVec c ⬝ᵥ (E.shape *ᵥ dualVec c)) := by
-    show c E.q + ‖E.pullback c‖₂ = _
+      (E.supportBound c).val = dualVec c ⬝ᵥ E.c + √(dualVec c ⬝ᵥ (E.shape *ᵥ dualVec c)) := by
+    show c E.c + ‖E.pullback c‖₂ = _
     rw [apply_eq_dotProduct, hnorm]
   rw [← hval]
   obtain ⟨⟨x, hx, hcx⟩, hub⟩ := E.isGreatest_support c

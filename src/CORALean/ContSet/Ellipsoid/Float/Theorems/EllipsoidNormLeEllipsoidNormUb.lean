@@ -66,7 +66,7 @@ theorem Ellipsoid.ellipsoidNorm_le_ellipsoidNormUb {prec : ℕ} {E : Ellipsoid �
     set w : Vec ℝ E.k := s⁻¹ • toRealVec u with hw
     have hwn : ‖w‖₂ ≤ 1 := by
       rw [hw, norm₂_smul, abs_inv, abs_of_pos hpos, inv_mul_cancel₀ hpos.ne']
-    have hmem : (nominal E).q + (nominal E).G *ᵥ w ∈ (nominal E).construct := ⟨w, hwn, rfl⟩
+    have hmem : (nominal E).c + (nominal E).G *ᵥ w ∈ (nominal E).construct := ⟨w, hwn, rfl⟩
     have hle := ((CORALean.Real.Ellipsoid.ellipsoidNorm_le_one_iff (nominal E) hr _).mpr hmem)
     have hpw : toRealVec p = s • ((nominal E).G *ᵥ w) := by
       rw [hp, hw, Matrix.mulVec_smul, smul_smul, mul_inv_cancel₀ hpos.ne', one_smul]

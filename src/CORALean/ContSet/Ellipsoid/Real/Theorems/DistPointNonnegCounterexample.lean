@@ -39,7 +39,7 @@ open Matrix
 
 theorem Ellipsoid.dist_point_nonneg_counterexample :
     ∃ (E : Ellipsoid 1) (a l : Vec ℝ 1), a ∈ E.construct ∧ ‖l‖₂ = 1 ∧
-      l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.shape *ᵥ l)) = 0 := by -- --- PROOF ---
+      l ⬝ᵥ a - l ⬝ᵥ E.c - √(l ⬝ᵥ (E.shape *ᵥ l)) = 0 := by -- --- PROOF ---
   have hsh : (⟨1, 0, !![1]⟩ : Ellipsoid 1).shape = 1 := by
     ext i j
     fin_cases i

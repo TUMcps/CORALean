@@ -59,7 +59,7 @@ theorem ConPolyZono.aux_sum_compactGens (cPZ : ConPolyZono α) (a : Fin cPZ.p �
 -- the constraint block is copied, so one factor vector answers for both sides
 theorem ConPolyZono.compactGens_exact (cPZ : ConPolyZono α) :
     cPZ.construct = cPZ.compactGens.construct := by -- --- PROOF ---
-  have key : ∀ (a : Fin cPZ.p → ℝ) (β : Fin cPZ.q → ℝ),
+  have key : ∀ (a : Fin cPZ.p → ℝ) (β : Fin cPZ.qI → ℝ),
       cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i) + ∑ j, β j • cPZ.GI j
         = cPZ.c + (∑ j : Fin cPZ.compactGens.h,
             PolyZonotope.monomial cPZ.compactGens.E a j • cPZ.compactGens.G j)

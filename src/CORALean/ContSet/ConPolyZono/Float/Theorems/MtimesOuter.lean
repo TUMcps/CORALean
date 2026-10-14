@@ -15,7 +15,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
 
 `PolyZonotope.mtimes_outer`'s argument at one more field, and the extra field
 costs nothing: the constraint is a statement about the factor vector, the same
-factor vector witnesses the image, and the stored `A`, `b` and `EC` are the same
+factor vector witnesses the image, and the stored `A`, `b` and `R` are the same
 floats. `satisfies_mtimes` transfers by `id`, and every lemma the polynomial
 zonotope's proof used — `mulVec_split`, `matMul_close`, `mem_generatorError` —
 is reused rather than restated.
@@ -61,7 +61,7 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (cPZ : ConPolyZono �
   refine ⟨fun i => toReal ((ConPolyZono.mtimes M cPZ).c i)
             + (∑ l : Fin cPZ.h, toReal ((ConPolyZono.mtimes M cPZ).G l i)
                 * Real.PolyZonotope.monomial cPZ.E a l)
-            + ∑ j : Fin cPZ.q, toReal ((ConPolyZono.mtimes M cPZ).GI j i) * β j,
+            + ∑ j : Fin cPZ.qI, toReal ((ConPolyZono.mtimes M cPZ).GI j i) * β j,
           ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, hsat, fun _ => rfl⟩,
           _, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, hres, _, hdepBox, rfl⟩,
             _, hindBox, rfl⟩, ?_⟩
@@ -84,7 +84,7 @@ theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n) (cPZ : ConPolyZono �
   show toReal ((ConPolyZono.mtimes M cPZ).c i)
         + (∑ l : Fin cPZ.h, toReal ((ConPolyZono.mtimes M cPZ).G l i)
             * Real.PolyZonotope.monomial cPZ.E a l)
-        + ∑ j : Fin cPZ.q, toReal ((ConPolyZono.mtimes M cPZ).GI j i) * β j
+        + ∑ j : Fin cPZ.qI, toReal ((ConPolyZono.mtimes M cPZ).GI j i) * β j
       + (((∑ r, toReal (M i r) * toReal (cPZ.c r)) - toReal (mulVecDown M cPZ.c i)
           + ∑ l, ((∑ r, toReal (M i r) * toReal (cPZ.G l r))
               - toReal (mulVecDown M (cPZ.G l) i)) * Real.PolyZonotope.monomial cPZ.E a l)

@@ -32,16 +32,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def ConPolyZono.origin (n : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := 0
   h := 0
-  q := 0
+  qI := 0
   m := 0
-  s := 0
+  q := 0
   c := fun _ => zero
   G := Fin.elim0
   E := fun i => i.elim0
   GI := Fin.elim0
   A := fun i => i.elim0
   b := Interval.origin 0
-  EC := fun i => i.elim0
+  R := fun i => i.elim0
   I_error := Interval.origin n
 
 end CORALean.Float

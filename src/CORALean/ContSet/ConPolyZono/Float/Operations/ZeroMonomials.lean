@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 cPZ.s := fun k =>
-  if ∀ l, cPZ.EC l k = 0 then one else zero
+def ConPolyZono.zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 cPZ.q := fun k =>
+  if ∀ l, cPZ.R l k = 0 then one else zero
 
 end CORALean.Float
 

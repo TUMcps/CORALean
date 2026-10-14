@@ -181,7 +181,7 @@ theorem Ellipsoid.goffin_spec {ε : ℝ} (hε : 0 < ε) (hn : 2 ≤ n) (Z : Set 
   refine ⟨hinv j, fun hnone => ?_⟩
   -- the stop: the ball of radius `1/(n√(1+ε))` in `Z′` puts `E(E_j/(n²(1+ε)), 0)` in `Z` (Eq. 5)
   set E := Ellipsoid.goffin ε test E₀ j
-  have hin : (⟨(Ellipsoid.ofShape E 0).k, (Ellipsoid.ofShape E 0).q,
+  have hin : (⟨(Ellipsoid.ofShape E 0).k, (Ellipsoid.ofShape E 0).c,
       (1 / ((n : ℝ) * Real.sqrt (1 + ε))) • (Ellipsoid.ofShape E 0).G⟩ : Ellipsoid n).construct
         ⊆ Z := by
     intro x hx

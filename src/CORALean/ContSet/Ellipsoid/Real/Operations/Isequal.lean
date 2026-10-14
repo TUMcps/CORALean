@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 # `Ellipsoid.isequal`
 
 CORA's `@ellipsoid/isequal.m` for two ellipsoids: both empty, or neither and the shape matrices
-`Q` and the centres `q` agree to the tolerance (`withinTol`). Here the ellipsoid is stored by its
+`Q` and the centres `c` agree to the tolerance (`withinTol`). Here the ellipsoid is stored by its
 generators `G` with `Q = G Gᵀ`, and the tolerance is `0`: the test compares the representation,
 the same number of generators, the same centre and the same `G`. That is stricter than CORA's on
 `Q` (two generator matrices with `G Gᵀ = H Hᵀ` denote the same ellipsoid), so the test is sound,
@@ -32,7 +32,7 @@ variable {n : ℕ}
 
 /-- `ellipsoid/isequal` at tolerance `0`, on the generator form: same count, centre and `G`. -/
 def Ellipsoid.isequal (E S : Ellipsoid n) : Prop :=
-  ∃ e : E.k = S.k, E.q = S.q ∧ ∀ i j, E.G i j = S.G i (Fin.cast e j)
+  ∃ e : E.k = S.k, E.c = S.c ∧ ∀ i j, E.G i j = S.G i (Fin.cast e j)
 
 end CORALean.Real
 

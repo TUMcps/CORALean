@@ -32,7 +32,7 @@ variable {n : ℕ}
 
 /-- `contains_(E, p)` at `tol = 0`: `ellipsoidNorm(p - c) <= 1`. -/
 noncomputable def Ellipsoid.containsPoint (E : Ellipsoid n) (p : Vec ℝ n) : Prop :=
-  let c := E.q
+  let c := E.c
   let scaling := E.ellipsoidNorm (p - c)
   scaling ≤ 1
 

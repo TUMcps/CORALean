@@ -29,9 +29,9 @@ namespace CORALean.Real
 /-- The factors either block still reads. `appendE` puts both exponent matrices
 over the shared factors, so this is `PolyZonotope.usedFactors` of one matrix and
 denotes the union of the two used sets. -/
-def ConPolyZono.usedFactors {p h s : ℕ} (E : Fin p → Fin h → ℕ) (EC : Fin p → Fin s → ℕ) :
+def ConPolyZono.usedFactors {p h q : ℕ} (E : Fin p → Fin h → ℕ) (R : Fin p → Fin q → ℕ) :
     Finset (Fin p) :=
-  PolyZonotope.usedFactors (ConPolyZono.appendE E EC)
+  PolyZonotope.usedFactors (ConPolyZono.appendE E R)
 
 end CORALean.Real
 

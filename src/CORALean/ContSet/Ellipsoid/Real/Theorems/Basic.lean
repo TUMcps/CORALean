@@ -88,7 +88,7 @@ theorem Ellipsoid.isClosed_construct (E : Ellipsoid n) : IsClosed E.construct :=
 ball point is a point the ellipsoid contains. `Theorems/QMemConstruct` is the
 same statement at `u = 0`, the centre. -/
 theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ E.k} (hu : ‖u‖₂ ≤ 1) :
-    E.q + E.G *ᵥ u ∈ E.construct := ⟨u, hu, rfl⟩
+    E.c + E.G *ᵥ u ∈ E.construct := ⟨u, hu, rfl⟩
 
 
 -- =============================  `Ellipsoid.centre_mem_construct`  ============================= --
@@ -99,7 +99,7 @@ theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ E.k} (hu : ‖u�
 
 /-- CORA's `center` is the field `q`; it is the image of the zero coefficient vector,
 whatever the generators. -/
-theorem Ellipsoid.centre_mem_construct (E : Ellipsoid n) : E.q ∈ E.construct := by
+theorem Ellipsoid.centre_mem_construct (E : Ellipsoid n) : E.c ∈ E.construct := by
   have hu : ‖(0 : Vec ℝ E.k)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
   simpa using Ellipsoid.mem_construct (E := E) hu
 

@@ -43,8 +43,8 @@ variable {n : ℕ}
 theorem Ellipsoid.dist_point_eq_max (E : Ellipsoid n) (a : Vec ℝ n) :
     (a ∉ E.construct → ∃ d > 0, IsLeast ((fun x => ‖a - x‖₂) '' E.construct) d ∧
       IsGreatest {t | ∃ l : Vec ℝ n, ‖l‖₂ = 1 ∧
-        t = l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.shape *ᵥ l))} d) ∧
-    (a ∈ E.construct → ∀ l : Vec ℝ n, l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.shape *ᵥ l)) ≤
+        t = l ⬝ᵥ a - l ⬝ᵥ E.c - √(l ⬝ᵥ (E.shape *ᵥ l))} d) ∧
+    (a ∈ E.construct → ∀ l : Vec ℝ n, l ⬝ᵥ a - l ⬝ᵥ E.c - √(l ⬝ᵥ (E.shape *ᵥ l)) ≤
       0) := by -- --- PROOF ---
   refine ⟨fun ha => ?_, fun ha l => ?_⟩
   · obtain ⟨p, hp, hd, hleast, hsep⟩ := nearest_point_separates E.construct
@@ -54,7 +54,7 @@ theorem Ellipsoid.dist_point_eq_max (E : Ellipsoid n) (a : Vec ℝ n) :
     -- at `l = (a - p)/d` the maximum over `E` is taken at `p`
     · set l := ‖a - p‖₂⁻¹ • (a - p) with hl
       obtain ⟨⟨x, hx, hxval⟩, hub⟩ := E.isGreatest_dot l
-      have hρ : l ⬝ᵥ E.q + √(l ⬝ᵥ (E.shape *ᵥ l)) = l ⬝ᵥ p := by
+      have hρ : l ⬝ᵥ E.c + √(l ⬝ᵥ (E.shape *ᵥ l)) = l ⬝ᵥ p := by
         refine le_antisymm ?_ (hub ⟨p, hp, rfl⟩)
         rw [← hxval]
         show l ⬝ᵥ x ≤ l ⬝ᵥ p

@@ -40,7 +40,7 @@ theorem ConPolyZono.satisfies_plus_iff (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec �
       ↔ cPZ₁.satisfies (fun k => a (Fin.castAdd cPZ₂.p k))
         ∧ cPZ₂.satisfies (fun k => a (Fin.natAdd cPZ₁.p k)) := by
   show Real.ConPolyZono.holds (toRealMat (ConPolyZono.plusA cPZ₁.A cPZ₂.A))
-      (ConPolyZono.plusB cPZ₁.b cPZ₂.b).nominal (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) a ↔ _
+      (ConPolyZono.plusB cPZ₁.b cPZ₂.b).nominal (Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R) a ↔ _
   rw [ConPolyZono.toRealMat_plusA, ConPolyZono.nominal_plusB]
   exact Real.ConPolyZono.holds_plus_iff _ _ _ _ _ _ a
 

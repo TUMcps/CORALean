@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
 /-!
 # `Ellipsoid.cartProdVec` is the product with a point, exactly
 
-`E.q + E.G u` with the point appended is the padded centre plus the padded generators at `u`, as
+`E.c + E.G u` with the point appended is the padded centre plus the padded generators at `u`, as
 the padding rows are zero.
 -/
 
@@ -32,7 +32,7 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid n) (v : Vec ℝ m) :
   ext z
   constructor
   · rintro ⟨u, hu, rfl⟩
-    refine ⟨E.q + E.G.mulVec u, ⟨u, hu, rfl⟩, ?_⟩
+    refine ⟨E.c + E.G.mulVec u, ⟨u, hu, rfl⟩, ?_⟩
     funext i
     refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;>
       simp [Ellipsoid.cartProdVec, Matrix.mulVec, dotProduct]

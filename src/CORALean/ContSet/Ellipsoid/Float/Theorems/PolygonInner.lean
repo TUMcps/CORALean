@@ -41,7 +41,7 @@ theorem Ellipsoid.polygon_inner (E : Ellipsoid 𝕋 2) (U : List (Vec 𝕋 E.k))
   rintro _ ⟨l, rfl⟩
   -- the kept factor `kept[l]` passed the test with its own vertex
   have hmem := List.getElem_mem (l := U.filter fun u => E.containsPoint
-    (fun i => addUp (E.q i) (dotUp (fun j => E.G i j) u)) u) l.isLt
+    (fun i => addUp (E.c i) (dotUp (fun j => E.G i j) u)) u) l.isLt
   exact Ellipsoid.containsPoint_sound (List.mem_filter.mp hmem).2
 
 end CORALean.Float

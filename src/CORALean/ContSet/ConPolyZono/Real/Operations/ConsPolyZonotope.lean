@@ -9,14 +9,14 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 # `ConPolyZono.consPolyZonotope`
 
 The constraint data read as a `PolyZonotope` over the constraint codomain
-`Vec ℝ m`: CORA's `polyZonotope(-cPZ.b, cPZ.A, [], cPZ.EC, cPZ.id)` inside
+`Vec ℝ m`: CORA's `polyZonotope(-cPZ.b, cPZ.A, [], cPZ.R, cPZ.id)` inside
 `@conPolyZono/getSubset`, with the offset dropped rather than carried as `-b` —
 `b` is an `Interval` here and is `getSubset`'s own field, untouched by the
 substitution, so there is nothing to fold in and fold back out.
 
 Not a set-level operation, the same way `toPolyZonotope` is not: what it is for
 is arithmetic, applying a `PolyZonotope` operation to the constraint block and
-reading the constraint value back off `A *ᵥ monomial EC a` via
+reading the constraint value back off `A *ᵥ monomial R a` via
 `mulVec_eq_sum`.
 -/
 
@@ -37,11 +37,11 @@ namespace CORALean.Real
 def ConPolyZono.consPolyZonotope {α : Type} (cPZ : ConPolyZono α) :
     PolyZonotope (Vec ℝ cPZ.m) where
   p := cPZ.p
-  h := cPZ.s
+  h := cPZ.q
   q := 0
   c := 0
   G := ConPolyZono.consCol cPZ.A
-  E := cPZ.EC
+  E := cPZ.R
   GI := Fin.elim0
 
 end CORALean.Real

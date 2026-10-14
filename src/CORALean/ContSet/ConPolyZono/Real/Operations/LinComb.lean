@@ -46,16 +46,16 @@ noncomputable def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono α) : ConPoly
   let pZ := cPZ₁.toPolyZonotope.linComb cPZ₂.toPolyZonotope   -- the segment's generators
   { p := cPZ₁.p + cPZ₂.p + 1
     h := cPZ₁.h + cPZ₂.h + (cPZ₁.h + cPZ₂.h + 1)
-    q := cPZ₁.q + cPZ₂.q
+    qI := cPZ₁.qI + cPZ₂.qI
     m := cPZ₁.m + cPZ₂.m
-    s := cPZ₁.s + cPZ₂.s
+    q := cPZ₁.q + cPZ₂.q
     c := pZ.c
     G := pZ.G
     E := pZ.E
     GI := pZ.GI
     A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
     b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
-    EC := ConPolyZono.padE (PolyZonotope.plusE cPZ₁.EC cPZ₂.EC) 1 }
+    R := ConPolyZono.padE (PolyZonotope.plusE cPZ₁.R cPZ₂.R) 1 }
 
 end CORALean.Real
 

@@ -69,7 +69,7 @@ theorem Ellipsoid.aux_rayleigh (A : Mat ℝ n n) (hA : A.IsHermitian) (h0 : 0 < 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
-    IsGreatest ((fun x => ‖x - E.q‖₂) '' E.construct)
+    IsGreatest ((fun x => ‖x - E.c‖₂) '' E.construct)
       (E.radius 1 hn ⟨0, one_pos⟩) := by -- --- PROOF ---
   -- the shape matrix, its first eigenvalue `l0`
   have hQ : E.shape.IsHermitian := by
@@ -85,7 +85,7 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
   · -- attained at `q + G u*`
     by_cases hl : l0 ≤ 0
     · -- no spread: the centre itself
-      refine ⟨E.q, E.q_mem_construct, ?_⟩
+      refine ⟨E.c, E.q_mem_construct, ?_⟩
       have : Real.sqrt l0 = 0 := Real.sqrt_eq_zero_of_nonpos hl
       simp [this, norm₂_zero]
     · have hl := not_le.mp hl
@@ -118,7 +118,7 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
         have h3 : ‖E.Gᵀ *ᵥ v‖₂ = Real.sqrt l0 := by
           rw [← h2]; exact (Real.sqrt_sq (norm₂_nonneg _)).symm
         rw [h3, inv_mul_cancel₀ hpos.ne']
-      refine ⟨E.q + E.G *ᵥ u, Ellipsoid.mem_construct hun, ?_⟩
+      refine ⟨E.c + E.G *ᵥ u, Ellipsoid.mem_construct hun, ?_⟩
       simp only [add_sub_cancel_left, hGu]
       rw [norm₂_smul, hvn, mul_one, abs_of_pos hpos]
   · -- the bound

@@ -41,11 +41,11 @@ variable {n : ℕ}
 
 theorem Ellipsoid.dist_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ) (hv : v ≠ 0) :
     ((E.construct ∩ {x | v ⬝ᵥ x = c}).Nonempty ↔
-        |c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.shape *ᵥ v)) ≤ 0) ∧
-    (0 < |c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.shape *ᵥ v)) →
+        |c - v ⬝ᵥ E.c| - √(v ⬝ᵥ (E.shape *ᵥ v)) ≤ 0) ∧
+    (0 < |c - v ⬝ᵥ E.c| - √(v ⬝ᵥ (E.shape *ᵥ v)) →
       IsLeast {t | ∃ x ∈ E.construct, ∃ y : Vec ℝ n, v ⬝ᵥ y = c ∧ t = ‖x - y‖₂}
-        ((|c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.shape *ᵥ v))) / ‖v‖₂)) := by -- --- PROOF ---
-  obtain ⟨m, hm⟩ : ∃ m : ℝ, m = v ⬝ᵥ E.q := ⟨_, rfl⟩
+        ((|c - v ⬝ᵥ E.c| - √(v ⬝ᵥ (E.shape *ᵥ v))) / ‖v‖₂)) := by -- --- PROOF ---
+  obtain ⟨m, hm⟩ : ∃ m : ℝ, m = v ⬝ᵥ E.c := ⟨_, rfl⟩
   obtain ⟨σ, hσ⟩ : ∃ σ : ℝ, σ = √(v ⬝ᵥ (E.shape *ᵥ v)) := ⟨_, rfl⟩
   rw [← hm, ← hσ]
   have hσ0 : 0 ≤ σ := by rw [hσ]; exact Real.sqrt_nonneg _

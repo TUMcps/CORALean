@@ -127,9 +127,9 @@ theorem Ellipsoid.nominal_k [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
-/-- The nominal Ellipsoid's field `q`, so proofs can see through the instance. -/
+/-- The nominal Ellipsoid's field `c`, so proofs can see through the instance. -/
 theorem Ellipsoid.nominal_q [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
-    (InflatedContSet.nominal E).q = toRealVec E.q := rfl
+    (InflatedContSet.nominal E).c = toRealVec E.c := rfl
 
 end CORALean.Float
 

@@ -35,9 +35,9 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) :
       (fun x : Vec ℝ n => (Fin.append x (toRealVec v) : Vec ℝ (n + m))) ''
         E.construct := by -- --- PROOF ---
   -- the stored fields on the two parts of the coordinates
-  have hql : ∀ i : Fin n, (E.cartProdVec v).q (Fin.castAdd m i) = E.q i := fun i => by
+  have hql : ∀ i : Fin n, (E.cartProdVec v).c (Fin.castAdd m i) = E.c i := fun i => by
     simp only [Ellipsoid.cartProdVec, Fin.append_left]
-  have hqr : ∀ i : Fin m, (E.cartProdVec v).q (Fin.natAdd n i) = v i := fun i => by
+  have hqr : ∀ i : Fin m, (E.cartProdVec v).c (Fin.natAdd n i) = v i := fun i => by
     simp only [Ellipsoid.cartProdVec, Fin.append_right]
   have hGl : ∀ (i : Fin n) (j : Fin E.k), (E.cartProdVec v).G (Fin.castAdd m i) j = E.G i j :=
     fun i j => by simp only [Ellipsoid.cartProdVec, Fin.addCases_left]
@@ -74,7 +74,7 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) :
       exact le_antisymm h.2 h.1
     -- the same for the generator sum, whose appended rows are zero
     have hz₁ : ∀ i : Fin n, z (Fin.castAdd m i)
-        = toReal (E.q i) + ∑ j, toReal (E.G i j) * u j := fun i => by
+        = toReal (E.c i) + ∑ j, toReal (E.G i j) * u j := fun i => by
       have h := hz (Fin.castAdd m i)
       simp only [hql, hGl] at h
       exact h
@@ -99,11 +99,11 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) :
     refine ⟨Fin.append z (toRealVec v), Ellipsoid.mem_nominalSet_iff.mpr ⟨u, hu, fun i => ?_⟩,
       Fin.append e 0, fun i => ?_, ?_⟩
     · refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-      · show Fin.append z (toRealVec v) (Fin.castAdd m i) = toReal ((E.cartProdVec v).q
+      · show Fin.append z (toRealVec v) (Fin.castAdd m i) = toReal ((E.cartProdVec v).c
           (Fin.castAdd m i)) + ∑ j, toReal ((E.cartProdVec v).G (Fin.castAdd m i) j) * u j
         simp only [hql, hGl, Fin.append_left]
         exact hz i
-      · show Fin.append z (toRealVec v) (Fin.natAdd n i) = toReal ((E.cartProdVec v).q
+      · show Fin.append z (toRealVec v) (Fin.natAdd n i) = toReal ((E.cartProdVec v).c
           (Fin.natAdd n i)) + ∑ j, toReal ((E.cartProdVec v).G (Fin.natAdd n i) j) * u j
         simp only [hqr, hGr, toReal_zero, zero_mul, Finset.sum_const_zero, add_zero,
           Fin.append_right]
