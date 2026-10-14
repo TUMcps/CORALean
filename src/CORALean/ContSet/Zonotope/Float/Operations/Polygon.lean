@@ -1,8 +1,9 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
 
 @[expose] public section
 
@@ -50,7 +51,7 @@ def Zonotope.polygon (Z : Zonotope (Vec 𝕋 2)) : VPolytope (Vec 𝕋 2) :=
   let order : List (Fin Z.h) := (List.finRange Z.h).mergeSort fun i j =>
     le zero (cross (hat i) (hat j))
   let Zs : Zonotope (Vec 𝕋 2) := Zonotope.materialise
-    ⟨Z.h, Zm.c, fun i => hat (order.getD i.val i), Zm.E⟩
+    ⟨Z.h, Zm.c, fun i => hat (order.getD i.val i), Zm.I_error⟩
   -- the checks the walk needs
   let halfPlane : Bool := (List.finRange Z.h).all fun j =>
     le zero (Zs.G j 1) && (ltStrict zero (Zs.G j 1) || le zero (Zs.G j 0))
@@ -63,7 +64,8 @@ def Zonotope.polygon (Z : Zonotope (Vec 𝕋 2)) : VPolytope (Vec 𝕋 2) :=
   let hi : Fin ((Z.h + 1) + (Z.h + 1)) → Vec 𝕋 2 := Fin.append
     (fun k => Zs.cornerHi ((signEquiv Zs.h).symm fun j => decide (j.val < k.val)))
     (fun k => Zs.cornerHi ((signEquiv Zs.h).symm fun j => !decide (j.val < k.val)))
-  if halfPlane && sorted then ⟨(Z.h + 1) + (Z.h + 1), lo, (VPolytope.columnGap lo hi).plus Z.E⟩
+  if halfPlane && sorted then
+      ⟨(Z.h + 1) + (Z.h + 1), lo, (VPolytope.columnGap lo hi).plus Z.I_error⟩
   else Z.interval.vPolytope
 
 end CORALean.Float

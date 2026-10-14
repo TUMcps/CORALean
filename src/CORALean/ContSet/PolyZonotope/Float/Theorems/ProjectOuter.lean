@@ -38,7 +38,7 @@ theorem PolyZonotope.project_outer (pZ : PolyZonotope (Vec 𝕋 n)) (dims : Fin 
     (fun x k => x (dims k)) '' pZ.construct ⊆ (pZ.project dims).construct :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.PolyZonotope.map_exact (LinearMap.funLeft ℝ ℝ dims) (nominal pZ)))
-    (Interval.project_outer pZ.err dims)
+    (Interval.project_outer pZ.I_error dims)
 
 end CORALean.Float
 

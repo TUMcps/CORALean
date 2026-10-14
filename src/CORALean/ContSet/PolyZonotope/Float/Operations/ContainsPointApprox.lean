@@ -61,7 +61,7 @@ def PolyZonotope.containsPointApprox (pZ : PolyZonotope (Vec 𝕋 n)) (s : Vec �
   let X₀ : Interval (Vec 𝕋 (pZ.p + pZ.q)) :=
     ⟨fun k => subDown (start k) δ, fun k => addUp (start k) δ⟩
   -- the error box holds `0`
-  ((List.finRange n).all fun i => le (pZ.err.inf i) zero && le zero (pZ.err.sup i)) &&
+  ((List.finRange n).all fun i => le (pZ.I_error.inf i) zero && le zero (pZ.I_error.sup i)) &&
     (atCentre || PolyZonotope.innerGeneral pZd X X₀ Y inv iter)
 
 end CORALean.Float

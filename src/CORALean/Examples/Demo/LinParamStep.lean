@@ -47,14 +47,14 @@ def paramR₀ : Zonotope (Vec D 2) where
   h := 2
   c := ![dy 1 0, dy 0 0]
   G := !![dy 1 (-3), dy 0 0; dy 0 0, dy 1 (-3)]
-  E := zeroBox 2
+  I_error := zeroBox 2
 
 /-- `[-1/64, 1/64]²`. -/
 def paramU : Zonotope (Vec D 2) where
   h := 2
   c := ![dy 0 0, dy 0 0]
   G := !![dy 1 (-6), dy 0 0; dy 0 0, dy 1 (-6)]
-  E := zeroBox 2
+  I_error := zeroBox 2
 
 /-- The step size, `1/8`. -/
 def paramΔt : D := dy 1 (-3)

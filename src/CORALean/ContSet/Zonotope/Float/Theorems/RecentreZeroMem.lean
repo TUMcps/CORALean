@@ -34,7 +34,7 @@ theorem Zonotope.zero_mem_recentre (Z : Zonotope (Vec 𝕋 n)) :
   refine ⟨0, Zonotope.mem_nominalSet_iff.mpr ⟨0, fun j => by simp, fun i => ?_⟩, 0,
     fun i => ?_, add_zero 0⟩
   · simp [Zonotope.recentre, toReal_zero]
-  · show toReal (minimum (Z.E.inf i) zero) ≤ 0 ∧ 0 ≤ toReal (maximum (Z.E.sup i) zero)
+  · show toReal (minimum (Z.I_error.inf i) zero) ≤ 0 ∧ 0 ≤ toReal (maximum (Z.I_error.sup i) zero)
     rw [toReal_minimum, toReal_maximum, toReal_zero]
     exact ⟨min_le_right _ _, le_max_right _ _⟩
 

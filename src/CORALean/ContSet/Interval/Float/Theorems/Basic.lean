@@ -4,6 +4,8 @@ public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.CenterBox
 public import CORALean.ContSet.Interval.Float.Operations.Ctranspose
+public import CORALean.ContSet.Interval.Float.Operations.Materialise
+public import CORALean.ContSet.Interval.Float.Operations.MaterialiseMat
 public import CORALean.ContSet.Interval.Float.Operations.Reindex
 public import CORALean.ContSet.Interval.Float.Operations.Times
 public import CORALean.ContSet.Interval.Float.Theorems.CenterGe
@@ -31,7 +33,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float
 
@@ -189,6 +190,50 @@ theorem Interval.times_outer (I J : Interval (Vec 𝕋 n)) :
 /-- The set is unchanged, definitionally. -/
 theorem Interval.uplus_exact {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
     [Entrywise β ι] (I : Interval α) : I.uplus.construct = I.construct := rfl
+
+end CORALean.Float
+
+
+namespace CORALean.Float
+
+open SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ================================  `Interval.materialise_eq`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialise` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem Interval.materialise_eq (I : Interval (Vec 𝕋 n)) : I.materialise = I := by
+  simp [Interval.materialise]
+
+end CORALean.Float
+
+
+namespace CORALean.Float
+
+open SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+variable {m : ℕ}
+
+
+-- ===============================  `Interval.materialiseMat_eq`  =============================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialiseMat` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem Interval.materialiseMat_eq (I : Interval (Mat 𝕋 m n)) :
+    I.materialiseMat = I := by
+  simp [Interval.materialiseMat]
 
 end CORALean.Float
 

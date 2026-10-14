@@ -44,7 +44,7 @@ def X : Zonotope (Vec D 2) where
   h := 2
   c := ![dy 0 0, dy 0 0]
   G := !![dy 1 0, dy 0 0; dy 0 0, dy 1 0]
-  E := zeroBox 2
+  I_error := zeroBox 2
 
 def layerLine (i : ℕ) {n : ℕ} (Z : Zonotope (Vec D n)) : String :=
   pad 6 (toString i) ++ pad 7 (toString Z.h) ++ "  " ++ showBox Z.interval

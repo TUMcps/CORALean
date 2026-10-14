@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
 public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

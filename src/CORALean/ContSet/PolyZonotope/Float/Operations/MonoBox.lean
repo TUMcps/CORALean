@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Operations.Materialise
 public import CORALean.ContSet.Interval.Float.Operations.Power
 public import CORALean.ContSet.Interval.Float.Operations.Prod1
 

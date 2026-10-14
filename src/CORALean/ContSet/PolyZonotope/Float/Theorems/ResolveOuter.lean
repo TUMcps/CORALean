@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.resolve_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (x : 𝕋) :
     (Real.PolyZonotope.resolve (nominal pZ) k (toReal x)).construct
-        + pZ.err.construct ⊆ (pZ.resolve k x).construct := by
+        + pZ.I_error.construct ⊆ (pZ.resolve k x).construct := by
   have h := PolyZonotope.getSubset_outer pZ k x zero
   rw [toReal_zero] at h
   exact h

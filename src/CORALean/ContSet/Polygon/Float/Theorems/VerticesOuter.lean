@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Float.Operations.Vertices
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 
@@ -32,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Polygon.vertices_outer (P : Polygon 𝕋) :
     ContSet.construct P ⊆ ⋃ p ∈ P.sets,
-      (convexHull ℝ {v | v ∈ P.vertices.map toRealVec} + p.E.construct) := by -- --- PROOF ---
+      (convexHull ℝ {v | v ∈ P.vertices.map toRealVec} + p.I_error.construct) := by -- --- PROOF ---
   intro x hx
   obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hx
   obtain ⟨y, hy, e, he, rfl⟩ := hxp

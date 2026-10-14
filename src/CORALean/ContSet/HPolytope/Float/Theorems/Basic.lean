@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.HPolytope.Float.HPolytope
 public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
 public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
+public import CORALean.ContSet.HPolytope.Float.Operations.Materialise
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -15,6 +17,26 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Matrix FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ================================  `HPolytope.materialise_eq`  ================================ --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialise` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem HPolytope.materialise_eq (P : HPolytope 𝕋 (Vec 𝕋 n)) : P.materialise = P := by
+  simp [HPolytope.materialise]
+
+end CORALean.Float
 
 
 namespace CORALean.Float

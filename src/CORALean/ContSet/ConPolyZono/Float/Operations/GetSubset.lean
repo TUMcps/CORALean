@@ -49,7 +49,7 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) 
   -- the rounding of the stored constraint entries, scaled by monomials in `[-1, 1]`
   b := cPZ.b.plus (PolyZonotope.generatorError (cPZ.consPolyZonotope.getSubsetGDiff k cen rad))
   EC := (cPZ.consPolyZonotope.getSubset k cen rad).E
-  err := (cPZ.toPolyZonotope.getSubset k cen rad).err
+  I_error := (cPZ.toPolyZonotope.getSubset k cen rad).I_error
 
 end CORALean.Float
 

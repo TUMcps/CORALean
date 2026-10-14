@@ -1,9 +1,11 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.LdbStep
 public import CORALean.ContSet.Taylm.Real.Definitions.Box
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqLinAddHigher
+public import CORALean.ContSet.Taylm.Real.Operations.LdbStep
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqLinAddHigher
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 

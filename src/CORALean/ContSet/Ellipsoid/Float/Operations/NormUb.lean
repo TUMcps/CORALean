@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Ellipsoid.normUb (k : ℕ) (E : Ellipsoid 𝕋 n) : 𝕋 :=
-  let err := fun i => maximum (absolute (E.err.inf i)) (absolute (E.err.sup i))
+  let err := fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))
   let frobenius := sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j))
   addUp (addUp (normUp k E.q) frobenius) (normUp k err)
 

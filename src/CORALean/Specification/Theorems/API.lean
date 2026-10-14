@@ -1,26 +1,27 @@
 module
 
+public import CORALean.Specification.Theorems.Basic
 public import CORALean.Specification.Theorems.CheckCustomCoraAnyCounterexample
 public import CORALean.Specification.Theorems.CheckSound
 public import CORALean.Specification.Theorems.Containment
 public import CORALean.Specification.Theorems.DiffPointMemSub
 public import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
+public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
 public import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
-public import CORALean.Specification.Theorems.HoldsOfOuter
-public import CORALean.Specification.Theorems.Basic
 public import CORALean.Specification.Theorems.HoldsAllSetIntersection
-public import CORALean.Specification.Theorems.HoldsUnion
+public import CORALean.Specification.Theorems.HoldsCustomIff
 public import CORALean.Specification.Theorems.HoldsIUnion
+public import CORALean.Specification.Theorems.HoldsOfOuter
+public import CORALean.Specification.Theorems.HoldsUnion
 public import CORALean.Specification.Theorems.Intersection
 public import CORALean.Specification.Theorems.InvariantOfBounds
 public import CORALean.Specification.Theorems.Separation
 public import CORALean.Specification.Theorems.SubsetHPolytope
 public import CORALean.Specification.Theorems.VerifyConvexFoldInv
+public import CORALean.Specification.Theorems.VerifyConvexSafe
 public import CORALean.Specification.Theorems.VerifyHalfspaceSafe
 public import CORALean.Specification.Theorems.VerifyHalfspaceUnsafe
 public import CORALean.Specification.Theorems.Violation
-public import CORALean.Specification.Theorems.VerifyConvexSafe
-public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
 
 /-!
 # Checking a specification, collected

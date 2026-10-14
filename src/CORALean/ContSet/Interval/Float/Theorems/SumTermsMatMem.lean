@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
-public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
+public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 
 @[expose] public section
 

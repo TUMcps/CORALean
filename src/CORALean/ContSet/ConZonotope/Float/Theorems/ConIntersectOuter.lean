@@ -75,7 +75,7 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n))
   rintro x ⟨⟨y₁, hy₁', e₁, he₁, hx₁⟩, y₂, hy₂', e₂, he₂, hx₂⟩
   obtain ⟨β₁, hβ₁, hP₁, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hP₂, hy₂⟩ := ConZonotope.mem_nominalSet_iff.mp hy₂'
-  set W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G j i, cZ₁.E⟩ with hW
+  set W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G j i, cZ₁.I_error⟩ with hW
   -- the float image's nominal point at `β₁`, and what is left of `M x`
   set yW : Vec ℝ m := fun i => toReal (W.c i) + ∑ j, toReal (W.G j i) * β₁ j with hyW
   set eW : Vec ℝ m := fun i => (toRealMat M *ᵥ x) i - yW i with heW
@@ -85,7 +85,7 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n))
     simp only at h
     rw [← h, Pi.add_apply, hy₁ k]
   -- the rest lies in the float image's error box
-  have heWmem : eW ∈ W.E.construct := by
+  have heWmem : eW ∈ W.I_error.construct := by
     -- the generators are wrong by this much, entrywise
     have hgen : ∀ i j, |(∑ k, toReal (M i k) * toReal (cZ₁.G j k))
         - toReal (mulVecDown M (cZ₁.G j) i)|
@@ -100,7 +100,8 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n))
       rw [abs_le]
       exact ⟨by linarith, by linarith⟩
     -- the box's image, then the centre's and the generators' rounding
-    refine Interval.plus_outer _ _ ⟨toRealMat M *ᵥ e₁, Interval.mtimes_outer M cZ₁.E ⟨e₁, he₁, rfl⟩,
+    refine Interval.plus_outer _ _
+        ⟨toRealMat M *ᵥ e₁, Interval.mtimes_outer M cZ₁.I_error ⟨e₁, he₁, rfl⟩,
       _, Interval.plus_outer _ _
         ⟨_, Interval.sub_mem_residual (stored := mulVecDown M cZ₁.c)
             (fun i => ⟨dotDown_le (M i) cZ₁.c, le_dotUp (M i) cZ₁.c⟩),
@@ -141,26 +142,26 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n))
         simp only [hyW, mulVec, dotProduct, toRealMat, Fin.sum_univ_add, Fin.append_left,
           Fin.append_right, toReal_neg, neg_mul, Finset.sum_neg_distrib]
         ring
-      have hbW : toReal (W.E.inf i) ≤ eW i ∧ eW i ≤ toReal (W.E.sup i) := heWmem i
-      have hb₂ : toReal (cZ₂.E.inf i) ≤ e₂ i ∧ e₂ i ≤ toReal (cZ₂.E.sup i) := he₂ i
+      have hbW : toReal (W.I_error.inf i) ≤ eW i ∧ eW i ≤ toReal (W.I_error.sup i) := heWmem i
+      have hb₂ : toReal (cZ₂.I_error.inf i) ≤ e₂ i ∧ e₂ i ≤ toReal (cZ₂.I_error.sup i) := he₂ i
       have hxi : yW i + eW i = y₂ i + e₂ i := by
         rw [hx₂' i, heW]; ring
       -- both ends: the stored bound rounded outward from the extreme `e₂ - eW`
       refine ⟨?_, ?_⟩
       · show toReal (addDown (subDown (cZ₂.c i) (W.c i))
-            (subDown (cZ₂.E.inf i) (W.E.sup i))) ≤ _
+            (subDown (cZ₂.I_error.inf i) (W.I_error.sup i))) ≤ _
         refine le_of_le_of_eq ?_ hrow.symm
         linarith [addDown_le_add (subDown (cZ₂.c i) (W.c i))
-            (subDown (cZ₂.E.inf i) (W.E.sup i)),
+            (subDown (cZ₂.I_error.inf i) (W.I_error.sup i)),
           subDown_le_sub (cZ₂.c i) (W.c i),
-          subDown_le_sub (cZ₂.E.inf i) (W.E.sup i), hbW.2, hb₂.1]
+          subDown_le_sub (cZ₂.I_error.inf i) (W.I_error.sup i), hbW.2, hb₂.1]
       · show _ ≤ toReal (addUp (subUp (cZ₂.c i) (W.c i))
-            (subUp (cZ₂.E.sup i) (W.E.inf i)))
+            (subUp (cZ₂.I_error.sup i) (W.I_error.inf i)))
         refine le_of_eq_of_le hrow ?_
         linarith [add_le_addUp (subUp (cZ₂.c i) (W.c i))
-            (subUp (cZ₂.E.sup i) (W.E.inf i)),
+            (subUp (cZ₂.I_error.sup i) (W.I_error.inf i)),
           sub_le_subUp (cZ₂.c i) (W.c i),
-          sub_le_subUp (cZ₂.E.sup i) (W.E.inf i), hbW.1, hb₂.2]
+          sub_le_subUp (cZ₂.I_error.sup i) (W.I_error.inf i), hbW.1, hb₂.2]
   -- the second generator block is zero, so the point is the first operand's
   · intro i
     rw [hy₁ i]

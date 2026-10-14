@@ -38,7 +38,7 @@ def PolyZonotope.rmId (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p)) :
   G := pZ.G
   E := fun k => pZ.E (Sᶜ.orderIsoOfFin rfl k).1
   GI := pZ.GI
-  err := pZ.err
+  I_error := pZ.I_error
 
 end CORALean.Float
 

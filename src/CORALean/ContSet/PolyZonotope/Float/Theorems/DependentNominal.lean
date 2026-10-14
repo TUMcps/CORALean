@@ -57,11 +57,11 @@ theorem PolyZonotope.dependent_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ nominalSet pZ.dependent := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hz'
-  have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.err i) :=
+  have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.I_error i) :=
     fun i => PolyZonotope.abs_le_errorBound he i
   refine PolyZonotope.mem_nominalSet_iff.mpr
     ⟨Fin.append a (Fin.append β
-        (fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.err i)) (e i))),
+        (fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.I_error i)) (e i))),
       Fin.elim0, ?_, fun j => j.elim0, fun i => ?_⟩
   · refine Fin.addCases (fun k => ?_) (Fin.addCases (fun j => ?_) (fun j => ?_))
     · simpa using ha k
@@ -70,8 +70,8 @@ theorem PolyZonotope.dependent_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
       exact Real.Zonotope.abs_coefficient_le_one
         ((abs_nonneg _).trans (hbound j)) (hbound j)
   -- and the diagonal block reproduces `e` exactly, coordinate by coordinate
-  · have hd : ∑ l, Matrix.diagonal (toRealVec (PolyZonotope.errorBound pZ.err)) i l
-        * Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.err l)) (e l)
+  · have hd : ∑ l, Matrix.diagonal (toRealVec (PolyZonotope.errorBound pZ.I_error)) i l
+        * Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.I_error l)) (e l)
           = e i := by
       rw [Real.Zonotope.sum_diagonal_mul]
       exact Real.Zonotope.mul_coefficient (hbound i)

@@ -43,7 +43,7 @@ theorem Zonotope.cubMapDep_coeff (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zon
     ∃ γ : Fin (Zonotope.cubMapDep T Z).h → ℝ, (∀ l, |γ l| ≤ 1)
       ∧ (∀ j : Fin Z.h,
           γ ((Real.Zonotope.cubIdx (Z.h + 1) (Z.h + 1) (Z.h + 1)).symm ((0, 0), j.succ)) = p j)
-      ∧ ∃ e ∈ (Zonotope.cubMapDep T Z).E.construct,
+      ∧ ∃ e ∈ (Zonotope.cubMapDep T Z).I_error.construct,
           Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k))
               (toRealVec Z.c + ∑ j, p j • toRealVec (Z.G j))
             = fun i => toReal ((Zonotope.cubMapDep T Z).c i)

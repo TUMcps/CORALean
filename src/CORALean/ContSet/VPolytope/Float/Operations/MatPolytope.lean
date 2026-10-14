@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def VPolytope.matPolytope (P : VPolytope (Vec 𝕋 n)) : VPolytope (Mat 𝕋 n 1) where
   k := P.k
   V := fun l i _ => P.V l i
-  E := ⟨fun i _ => P.E.inf i, fun i _ => P.E.sup i⟩
+  I_error := ⟨fun i _ => P.I_error.inf i, fun i _ => P.I_error.sup i⟩
 
 end CORALean.Float
 

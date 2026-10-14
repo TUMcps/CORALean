@@ -70,7 +70,7 @@ theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ
     (Set.mem_iUnion₂.mpr ⟨_, hA, Set.mem_image_of_mem _ hx⟩)
   -- `C x` is a point of the strip zonotope
   let strip : Zonotope (Vec 𝕋 p) :=
-    { h := p, c := y, G := fun j i => if i = j then φ i else zero, E := Interval.origin p }
+    { h := p, c := y, G := fun j i => if i = j then φ i else zero, I_error := Interval.origin p }
   have hCx : toRealMat C *ᵥ x ∈ strip.construct := by
     refine ⟨toRealMat C *ᵥ x, ?_, 0, ?_, add_zero _⟩
     · -- the coefficients `(C x - y)_i / φ_i` lie in `[-1, 1]` and reach `C x`
@@ -103,7 +103,7 @@ theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ
           simp only [Pi.sub_apply, toRealVec]
           show _ = toReal (y i) + _
           ring
-    · have hE : (InflatedContSet.error strip).construct = {0} := Interval.origin_exact p
+    · have hE : (InflatedContSet.I_error strip).construct = {0} := Interval.origin_exact p
       rw [hE]
       exact Set.mem_singleton _
   have h2 := Zonotope.mtimes_outer Λ strip ⟨_, hCx, rfl⟩

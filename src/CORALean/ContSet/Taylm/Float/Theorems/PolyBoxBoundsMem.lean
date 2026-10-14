@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.PowBoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.ProdBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 

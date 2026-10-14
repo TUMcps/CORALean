@@ -46,7 +46,7 @@ def PolyZonotope.reduceBy (pZ : PolyZonotope (Vec 𝕋 n))
   E := fun k l => pZ.E k (partD.left l)
   GI := Fin.append (fun j => pZ.GI (partI.left j))
     fun j i => diagonalBlock (pZ.dropRadius partD partI) i j
-  err := pZ.err
+  I_error := pZ.I_error
 
 end CORALean.Float
 

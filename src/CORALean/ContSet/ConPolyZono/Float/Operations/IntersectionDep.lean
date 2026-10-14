@@ -48,7 +48,7 @@ def ConPolyZono.intersectionDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
   b := ConPolyZono.intersectionB cPZ₁ cPZ₂
   EC := Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC)
           (Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E)
-  err := cPZ₁.err
+  I_error := cPZ₁.I_error
 
 end CORALean.Float
 

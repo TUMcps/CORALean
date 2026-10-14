@@ -2,6 +2,11 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfAppend
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import Mathlib.Algebra.BigOperators.Pi
 
 @[expose] public section
@@ -32,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def PolyZonotope.taylm (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) : Fin n → Taylm 𝕋 (pZ.p + pZ.q) :=
   fun i => ⟨(pZ.c i, 0) :: (List.ofFn (fun j => (pZ.G j i, Fin.append (fun k => pZ.E k j) 0))
     ++ List.ofFn (fun l => (pZ.GI l i, Pi.single (Fin.natAdd pZ.p l) 1))),
-    pZ.err.inf i, pZ.err.sup i, N⟩
+    pZ.I_error.inf i, pZ.I_error.sup i, N⟩
 
 variable [SoundFloatArithmetic 𝕋]
 
@@ -85,8 +90,8 @@ theorem PolyZonotope.taylm_exact (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) :
     refine ⟨Fin.append a β, fun k => Fin.addCases (fun k => by simpa using ha k)
       (fun l => by simpa using hβ l) k, fun i => ?_⟩
     rw [PolyZonotope.aux_taylm_poly]
-    have h2 : toReal (pZ.err.inf i) ≤ e i ∧ e i ≤ toReal (pZ.err.sup i) := he i
-    show toReal (pZ.err.inf i) ≤ (p + e) i - _ ∧ (p + e) i - _ ≤ toReal (pZ.err.sup i)
+    have h2 : toReal (pZ.I_error.inf i) ≤ e i ∧ e i ≤ toReal (pZ.I_error.sup i) := he i
+    show toReal (pZ.I_error.inf i) ≤ (p + e) i - _ ∧ (p + e) i - _ ≤ toReal (pZ.I_error.sup i)
     rw [Pi.add_apply, hpβ i]
     simp only [Fin.append_left, Fin.append_right]
     constructor <;> linarith [h2.1, h2.2]

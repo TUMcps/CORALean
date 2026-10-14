@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 def SpectraShadow.zonotope (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k) :
     Option (Zonotope (Vec 𝕋 n)) :=
   (S.base.interval Yup Ylo).map fun B =>
-    (Zonotope.mtimes (fun r j => S.G j r) B.zonotope).plus ((Interval.point S.c).plus S.E).zonotope
+    (Zonotope.mtimes (fun r j => S.G j r) B.zonotope).plus
+        ((Interval.point S.c).plus S.I_error).zonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -59,7 +60,7 @@ theorem SpectraShadow.zonotope_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
     (SpectraShadow.mem_base hP))
   have hGβ := Zonotope.mtimes_outer (fun r j => S.G j r) B.zonotope ⟨β, hβ, rfl⟩
   -- the centre plus the error is in the box zonotope
-  have hce : toRealVec S.c + e ∈ ((Interval.point S.c).plus S.E).zonotope.construct :=
+  have hce : toRealVec S.c + e ∈ ((Interval.point S.c).plus S.I_error).zonotope.construct :=
     Interval.zonotope_contains _ (Interval.plus_outer _ _ ⟨_, Interval.mem_point S.c, e, he, rfl⟩)
   refine Zonotope.plus_outer _ _ ⟨_, hGβ, _, hce, ?_⟩
   funext r

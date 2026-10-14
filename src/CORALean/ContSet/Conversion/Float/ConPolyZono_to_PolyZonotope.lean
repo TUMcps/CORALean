@@ -36,7 +36,7 @@ def ConPolyZono.polyZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : PolyZonotop
   G := cPZ.G
   E := cPZ.E
   GI := cPZ.GI
-  err := cPZ.err
+  I_error := cPZ.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

@@ -81,18 +81,18 @@ theorem PolyZonotope.splitIndepGen_outer (pZ : PolyZonotope (Vec 𝕋 n)) (j : F
         have := addDown_le_add (pZ.c i) (half (pZ.GI j i))
         simp only [d, toReal_half] at this ⊢
         linarith
-      have he1 : toReal (pZ.err.inf i) ≤ e i := (he i).1
-      show toReal (pZ.err.inf i) ≤ e i + d i
+      have he1 : toReal (pZ.I_error.inf i) ≤ e i := (he i).1
+      show toReal (pZ.I_error.inf i) ≤ e i + d i
       linarith
     · -- the rounding gap bounds `d` above
       have hgap := sub_le_subUp (addUp (pZ.c i) (half (pZ.GI j i)))
         (addDown (pZ.c i) (half (pZ.GI j i)))
       have hup := add_le_addUp (pZ.c i) (half (pZ.GI j i))
-      have hsum := add_le_addUp (pZ.err.sup i) (subUp (addUp (pZ.c i) (half (pZ.GI j i)))
+      have hsum := add_le_addUp (pZ.I_error.sup i) (subUp (addUp (pZ.c i) (half (pZ.GI j i)))
         (addDown (pZ.c i) (half (pZ.GI j i))))
-      show e i + d i ≤ toReal (addUp (pZ.err.sup i) (subUp (addUp (pZ.c i) (half (pZ.GI j i)))
+      show e i + d i ≤ toReal (addUp (pZ.I_error.sup i) (subUp (addUp (pZ.c i) (half (pZ.GI j i)))
         (addDown (pZ.c i) (half (pZ.GI j i)))))
-      have he2 : e i ≤ toReal (pZ.err.sup i) := (he i).2
+      have he2 : e i ≤ toReal (pZ.I_error.sup i) := (he i).2
       simp only [d, toReal_half] at hup ⊢
       linarith
   · -- the second half, at `2βⱼ + 1`
@@ -117,18 +117,18 @@ theorem PolyZonotope.splitIndepGen_outer (pZ : PolyZonotope (Vec 𝕋 n)) (j : F
         have := subDown_le_sub (pZ.c i) (half (pZ.GI j i))
         simp only [d, toReal_half] at this ⊢
         linarith
-      have he1 : toReal (pZ.err.inf i) ≤ e i := (he i).1
-      show toReal (pZ.err.inf i) ≤ e i + d i
+      have he1 : toReal (pZ.I_error.inf i) ≤ e i := (he i).1
+      show toReal (pZ.I_error.inf i) ≤ e i + d i
       linarith
     · -- the rounding gap bounds `d` above
       have hgap := sub_le_subUp (subUp (pZ.c i) (half (pZ.GI j i)))
         (subDown (pZ.c i) (half (pZ.GI j i)))
       have hup := sub_le_subUp (pZ.c i) (half (pZ.GI j i))
-      have hsum := add_le_addUp (pZ.err.sup i) (subUp (subUp (pZ.c i) (half (pZ.GI j i)))
+      have hsum := add_le_addUp (pZ.I_error.sup i) (subUp (subUp (pZ.c i) (half (pZ.GI j i)))
         (subDown (pZ.c i) (half (pZ.GI j i))))
-      show e i + d i ≤ toReal (addUp (pZ.err.sup i) (subUp (subUp (pZ.c i) (half (pZ.GI j i)))
+      show e i + d i ≤ toReal (addUp (pZ.I_error.sup i) (subUp (subUp (pZ.c i) (half (pZ.GI j i)))
         (subDown (pZ.c i) (half (pZ.GI j i)))))
-      have he2 : e i ≤ toReal (pZ.err.sup i) := (he i).2
+      have he2 : e i ≤ toReal (pZ.I_error.sup i) := (he i).2
       simp only [d, toReal_half] at hup ⊢
       linarith
 

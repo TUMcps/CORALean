@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.CanonicalForm
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

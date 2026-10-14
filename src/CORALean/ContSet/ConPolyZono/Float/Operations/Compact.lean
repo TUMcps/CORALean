@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactCons
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Materialise
 
 @[expose] public section
 

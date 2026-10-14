@@ -75,9 +75,9 @@ theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n
     ring
 
 theorem ConZonotope.aux_plus_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    (error cZ₁).construct + (error cZ₂).construct
-      + (Zonotope.centerResidual cZ₁.c cZ₂.c).construct ⊆ (error (cZ₁.plus cZ₂)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.plus_outer cZ₁.E cZ₂.E))
+    (I_error cZ₁).construct + (I_error cZ₂).construct
+      + (Zonotope.centerResidual cZ₁.c cZ₂.c).construct ⊆ (I_error (cZ₁.plus cZ₂)).construct :=
+  subset_trans (Set.add_subset_add_right (Interval.plus_outer cZ₁.I_error cZ₂.I_error))
     (Interval.plus_outer _ _)
 
 

@@ -25,7 +25,7 @@ survives an outer approximation, so this one provably does, pinned down to a saf
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   24-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -66,15 +66,6 @@ def Specification.unsafeSet (s : ContSet) : Specification ContSet := ⟨s, .unsa
 `safeSet` — see `check.m`'s numeric branch and `robustness.m`. -/
 def Specification.invariant (s : ContSet) : Specification ContSet := ⟨s, .invariant⟩
 
-@[simp] theorem Specification.holds_safeSet {s : ContSet} {X : Set α} :
-    (Specification.safeSet s).Holds X ↔ X ⊆ construct s := Iff.rfl
-
-@[simp] theorem Specification.holds_unsafeSet {s : ContSet} {X : Set α} :
-    (Specification.unsafeSet s).Holds X ↔ Disjoint X (construct s) := Iff.rfl
-
-@[simp] theorem Specification.holds_invariant {s : ContSet} {X : Set α} :
-    (Specification.invariant s).Holds X ↔ X ⊆ construct s := Iff.rfl
-
 /-- CORA's `'custom'`: a predicate on the whole set, proved hereditary under
 `⊆` (`mono`) and closed under the unions `holds_iUnion` needs
 (`iUnionClosed`) — which makes it exactly a safe set, per `holds_custom_iff`. -/
@@ -83,14 +74,6 @@ def Specification.custom (p : Set α → Prop)
     (_iUnionClosed : ∀ {ι : Type} {X : ι → Set α}, (∀ i, p (X i)) → p (⋃ i, X i)) :
     Specification (Set α) :=
   Specification.safeSet (⋃ h : {S : Set α // p S}, h.1)
-
-theorem Specification.holds_custom_iff (p : Set α → Prop)
-    (mono : ∀ {X O : Set α}, X ⊆ O → p O → p X)
-    (iUnionClosed : ∀ {ι : Type} {X : ι → Set α}, (∀ i, p (X i)) → p (⋃ i, X i))
-    {X : Set α} : (Specification.custom p mono iUnionClosed).Holds X ↔ p X := by
-  rw [Specification.custom, Specification.holds_safeSet, ContSet.construct_set]
-  refine ⟨fun hsub => mono hsub (iUnionClosed fun h => h.2), fun hpX => ?_⟩
-  exact Set.subset_iUnion (fun h : {S : Set α // p S} => h.1) ⟨X, hpX⟩
 
 /-- A requirement is normally several of these at once, all stored alike. -/
 def Specification.HoldsAll (specs : List (Specification ContSet)) (X : Set α) : Prop :=

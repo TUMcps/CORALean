@@ -60,7 +60,7 @@ theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat 𝕋 m n)) (Z : Zono
   have h := CORALean.Real.Zonotope.mtimesMatZonotope_outer M.nominal Zn
   have haz : a *ᵥ z ∈ R.construct := h (Set.mem_biUnion ha ⟨z, hz, rfl⟩)
   -- the matrix zonotope's nominal part, boxed: its nominal part with a zero box
-  have ha' : a ∈ ({ M with E := Interval.point fun _ _ => zero } :
+  have ha' : a ∈ ({ M with I_error := Interval.point fun _ _ => zero } :
       Zonotope (Mat 𝕋 m n)).matInterval.construct := by
     refine Zonotope.matInterval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
     refine Interval.mem_mat_iff.mpr fun i j => ?_
@@ -68,8 +68,8 @@ theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat 𝕋 m n)) (Z : Zono
     rw [toReal_zero]
     exact ⟨le_rfl, le_rfl⟩
   have hx : z + f ∈ Z.interval.construct := Zonotope.interval_contains Z ⟨z, hz, f, hf, rfl⟩
-  have hE : a *ᵥ f + e *ᵥ (z + f) ∈ ((Interval.mtimesIntervalMat _ Z.E).plus
-      (Interval.mtimesIntervalMat M.E Z.interval)).construct :=
+  have hE : a *ᵥ f + e *ᵥ (z + f) ∈ ((Interval.mtimesIntervalMat _ Z.I_error).plus
+      (Interval.mtimesIntervalMat M.I_error Z.interval)).construct :=
     Interval.plus_outer _ _ ⟨_, Interval.mtimesIntervalMat_outer _ _
       (Set.mem_biUnion ha' ⟨f, hf, rfl⟩), _, Interval.mtimesIntervalMat_outer _ _
       (Set.mem_biUnion he ⟨z + f, hx, rfl⟩), rfl⟩

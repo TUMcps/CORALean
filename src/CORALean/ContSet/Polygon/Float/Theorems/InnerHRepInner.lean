@@ -166,7 +166,7 @@ theorem Polygon.innerHRep_inner {p : VPolytope (Vec 𝕋 2)} {H : HPolytope 𝕋
       (Polygon.orientBounds_le _ _ _).1
   obtain ⟨a, b, c, α, β, γ, hα, hβ, hγ, hsum, hxe⟩ :=
     Polygon.aux_fan (fun l => toRealVec (p.V l)) x hk hfan' hedge
-  have h0 : (0 : Vec ℝ 2) ∈ p.E.construct := fun i =>
+  have h0 : (0 : Vec ℝ 2) ∈ p.I_error.construct := fun i =>
     ⟨(toReal_le_of_le (horig i).1).trans_eq toReal_zero,
       toReal_zero.symm.trans_le (toReal_le_of_le (horig i).2)⟩
   refine ⟨x, ?_, 0, h0, add_zero _⟩

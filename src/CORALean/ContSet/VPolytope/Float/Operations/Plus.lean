@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def VPolytope.plus (P₁ P₂ : VPolytope (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := P₁.k * P₂.k
   V := VPolytope.pairSum addDown P₁ P₂
-  E := (P₁.E.plus P₂.E).plus
+  I_error := (P₁.I_error.plus P₂.I_error).plus
         (VPolytope.columnGap (VPolytope.pairSum addDown P₁ P₂)
           (VPolytope.pairSum addUp P₁ P₂))
 

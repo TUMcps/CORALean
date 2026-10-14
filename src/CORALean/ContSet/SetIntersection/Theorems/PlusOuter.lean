@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.SetIntersection.Operations.Plus
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 
 @[expose] public section
 

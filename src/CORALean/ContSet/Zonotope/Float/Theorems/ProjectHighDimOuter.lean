@@ -97,7 +97,7 @@ theorem Zonotope.projectHighDim_outer (Z : Zonotope (Vec 𝕋 n)) (proj : Fin n 
   have hext : (fun x : Vec ℝ n => Function.extend proj x 0) = Real.Zonotope.embed proj :=
     funext (Zonotope.aux_extend_eq_embed proj hproj)
   refine image_subset (fun x y => by simp only [congrFun hext]; exact map_add _ x y) ?_
-    (Interval.projectHighDim_outer Z.E proj hproj)
+    (Interval.projectHighDim_outer Z.I_error proj hproj)
   rw [hext]
   have h := Real.Zonotope.map_exact (Real.Zonotope.embed proj) (nominal Z)
   rw [← Real.Zonotope.projectHighDim_, ← Zonotope.aux_nominal_projectHighDim_ Z proj hproj] at h

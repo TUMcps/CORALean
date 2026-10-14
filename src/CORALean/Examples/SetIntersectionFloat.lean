@@ -1,9 +1,10 @@
+import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.SetIntersection.Instances
-import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
+import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 
 /-!
 # An intersection of float zonotopes, operated on branch-wise
@@ -94,7 +95,7 @@ theorem small_outer : ContSet.construct I ⊆ ContSet.construct small :=
   SetIntersection.reduce_outer I 1
 
 /-- The centre of a zonotope with no error is one of its points. -/
-theorem centre_mem (Z : Zonotope (Vec D 2)) (h : Z.E = box0) : toRealVec Z.c ∈ Z.construct :=
+theorem centre_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z.c ∈ Z.construct :=
   Zonotope.centre_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
 
 /-- The origin is in the square and the diamond, hence in `I`. -/

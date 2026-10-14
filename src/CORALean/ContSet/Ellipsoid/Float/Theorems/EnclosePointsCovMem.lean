@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.EnclosePointsCov
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -36,10 +37,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 two roundings lie in the error box. -/
 theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (p : Vec 𝕋 n) (u : Vec 𝕋 E.k)
     (hsq : ∑ j, toReal (u j) ^ 2 ≤ 1)
-    (hlo : ∀ i, toReal (E.err.inf i)
+    (hlo : ∀ i, toReal (E.I_error.inf i)
       ≤ toReal (subDown (p i) (addUp (E.q i) (dotUp (fun j => E.G i j) u))))
     (hhi : ∀ i, toReal (subUp (p i) (addDown (E.q i) (dotDown (fun j => E.G i j) u)))
-      ≤ toReal (E.err.sup i)) :
+      ≤ toReal (E.I_error.sup i)) :
     toRealVec p ∈ E.construct := by -- --- PROOF ---
   -- the factor vector has length at most one
   have hnorm : ‖toRealVec u‖₂ ≤ 1 := by
@@ -61,10 +62,10 @@ theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (p : Vec 𝕋 n) (
     have s₂ := sub_le_subUp (p i) (addDown (E.q i) (dotDown (fun j => E.G i j) u))
     have l₁ := hlo i
     have l₂ := hhi i
-    show toReal (E.err.inf i)
+    show toReal (E.I_error.inf i)
         ≤ toReal (p i) - (toReal (E.q i) + ∑ j, toReal (E.G i j) * toReal (u j))
       ∧ toReal (p i) - (toReal (E.q i) + ∑ j, toReal (E.G i j) * toReal (u j))
-        ≤ toReal (E.err.sup i)
+        ≤ toReal (E.I_error.sup i)
     constructor <;> linarith
   · -- the point is the nominal point plus the remainder
     funext i

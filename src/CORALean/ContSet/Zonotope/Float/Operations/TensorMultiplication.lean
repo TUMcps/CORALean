@@ -41,7 +41,7 @@ def Zonotope.tensorMultiplication (Z : Zonotope (Vec 𝕋 n)) (M : Zonotope.Tens
   h := L.C
   c := fun _ => zero
   G := fun cInd iDim => Zonotope.tensorHDown M Z.dependent L iDim cInd
-  E := Zonotope.generatorError (Zonotope.tensorHDiff M Z.dependent L)
+  I_error := Zonotope.generatorError (Zonotope.tensorHDiff M Z.dependent L)
 
 end CORALean.Float
 

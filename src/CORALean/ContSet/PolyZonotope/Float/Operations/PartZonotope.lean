@@ -55,7 +55,7 @@ def PolyZonotope.partZonotope (pZ : PolyZonotope (Vec 𝕋 n)) (V : Finset (Fin 
         (fun g => if ¬ isZero i ∧ grp i = g.val then 1 else 0) r)
       (fun i => Fin.addCases (fun k => if k ∈ V then 0 else pZ.E k i) (fun _ => 0) r)
     GI := pZ.GI
-    err := pZ.err }
+    I_error := pZ.I_error }
 
 end CORALean.Float
 

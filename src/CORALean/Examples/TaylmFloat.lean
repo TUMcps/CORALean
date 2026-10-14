@@ -1,7 +1,8 @@
-import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
-import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
 import CORALean.ContSet.Conversion.Float.Taylm_to_Interval
+import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
+import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 
 /-!
 # A Taylor model, run and bounded

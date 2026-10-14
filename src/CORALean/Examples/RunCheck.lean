@@ -101,7 +101,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToF 𝕋]
 
 -- one summary per representation: its dimensions, its center, an error box, a hull
 def zonoF {n : ℕ} (Z : Zonotope (Vec 𝕋 n)) : List Float :=
-  vecF Z.c ++ matF Z.G ++ boxF Z.E ++ boxF Z.interval
+  vecF Z.c ++ matF Z.G ++ boxF Z.I_error ++ boxF Z.interval
 
 def ofZono {n : ℕ} (Z : Zonotope (Vec 𝕋 n)) : Out :=
   ⟨s!"h={Z.h} c={vecS Z.c} hull={boxS Z.interval}", zonoF Z, false⟩
@@ -111,23 +111,23 @@ def ofHP {n : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 n)) : Out :=
   ⟨s!"m={P.m} me={P.me} b={vecS P.b}", matF P.A ++ vecF P.b ++ matF P.Ae ++ boxF P.be, false⟩
 
 def ofVP {n : ℕ} (P : VPolytope (Vec 𝕋 n)) : Out :=
-  ⟨s!"k={P.k} E={boxS P.E}", matF P.V ++ boxF P.E, false⟩
+  ⟨s!"k={P.k} E={boxS P.I_error}", matF P.V ++ boxF P.I_error, false⟩
 
 def ofCZ {n : ℕ} (C : ConZonotope 𝕋 (Vec 𝕋 n)) : Out :=
-  ⟨s!"h={C.h} c={vecS C.c} rows={C.P.m} E={boxS C.E}",
-    vecF C.c ++ matF C.G ++ matF C.P.A ++ vecF C.P.b ++ boxF C.E, false⟩
+  ⟨s!"h={C.h} c={vecS C.c} rows={C.P.m} E={boxS C.I_error}",
+    vecF C.c ++ matF C.G ++ matF C.P.A ++ vecF C.P.b ++ boxF C.I_error, false⟩
 
 def ofPZ {n : ℕ} (P : PolyZonotope (Vec 𝕋 n)) : Out :=
-  ⟨s!"p={P.p} h={P.h} q={P.q} c={vecS P.c} err={boxS P.err}",
-    vecF P.c ++ matF P.G ++ matF P.GI ++ boxF P.err, false⟩
+  ⟨s!"p={P.p} h={P.h} q={P.q} c={vecS P.c} err={boxS P.I_error}",
+    vecF P.c ++ matF P.G ++ matF P.GI ++ boxF P.I_error, false⟩
 
 def ofCPZ {n : ℕ} (P : ConPolyZono 𝕋 (Vec 𝕋 n)) : Out :=
-  ⟨s!"p={P.p} h={P.h} q={P.q} m={P.m} s={P.s} c={vecS P.c} err={boxS P.err}",
-    vecF P.c ++ matF P.G ++ matF P.GI ++ matF P.A ++ boxF P.b ++ boxF P.err, false⟩
+  ⟨s!"p={P.p} h={P.h} q={P.q} m={P.m} s={P.s} c={vecS P.c} err={boxS P.I_error}",
+    vecF P.c ++ matF P.G ++ matF P.GI ++ matF P.A ++ boxF P.b ++ boxF P.I_error, false⟩
 
 -- the remaining representations, and the containers of sets
 def ofEll {n : ℕ} (E : Ellipsoid 𝕋 n) : Out :=
-  ⟨s!"k={E.k} q={vecS E.q} err={boxS E.err}", vecF E.q ++ matF E.G ++ boxF E.err, false⟩
+  ⟨s!"k={E.k} q={vecS E.q} err={boxS E.I_error}", vecF E.q ++ matF E.G ++ boxF E.I_error, false⟩
 
 def ofBundle {n : ℕ} (B : ZonoBundle (Vec 𝕋 n)) : Out :=
   let hulls := (List.range B.k).filterMap fun i =>
@@ -179,8 +179,8 @@ def ofProbZ {n : ℕ} (P : ProbZonotope 𝕋 n) : Out :=
     zonoF P.Z ++ matF P.cov.inf ++ matF P.cov.sup, false⟩
 
 def ofSpS {n : ℕ} (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : Out :=
-  ⟨s!"k={S.k} m={S.m} c={vecS S.c} E={boxS S.E}",
-    matF S.A₀ ++ vecF S.c ++ matF S.G ++ boxF S.E, false⟩
+  ⟨s!"k={S.k} m={S.m} c={vecS S.c} E={boxS S.I_error}",
+    matF S.A₀ ++ vecF S.c ++ matF S.G ++ boxF S.I_error, false⟩
 -- the regions of a piecewise polynomial fit: their number, largest error and spans
 def ofRegions (o : Option (List (RegionPoly 𝕋))) : Out :=
   match o with
@@ -194,9 +194,10 @@ def ofRegions (o : Option (List (RegionPoly 𝕋))) : Out :=
 
 -- matrix zonotopes and lists of windows (`none` is a missing value)
 def ofMZ {m n : ℕ} (M : Zonotope (Mat 𝕋 m n)) : Out :=
-  ⟨s!"h={M.h} c={matS M.c} E inf={matS M.E.inf} sup={matS M.E.sup}",
+  ⟨s!"h={M.h} c={matS M.c} E inf={matS M.I_error.inf} sup={matS M.I_error.sup}",
     matF M.c ++ (List.range M.h).flatMap (fun i =>
-      if h : i < M.h then matF (M.G ⟨i, h⟩) else []) ++ matF M.E.inf ++ matF M.E.sup, false⟩
+      if h : i < M.h then matF (M.G ⟨i, h⟩) else []) ++ matF M.I_error.inf ++ matF M.I_error.sup,
+          false⟩
 
 def ofWindows {n : ℕ} (o : Option (List (Zonotope (Vec 𝕋 n)))) : Out :=
   match o with
@@ -622,7 +623,7 @@ def fZ : Zonotope (Vec F 2) where
   h := 2
   c := ![floatLit 1 0, floatLit 0 0]
   G := !![floatLit 1 (-2), 0; 0, floatLit 1 (-2)]
-  E := fzbox 2
+  I_error := fzbox 2
 
 def fI : Interval (Vec F 2) := fZ.interval
 /-- Entries a float cannot hold exactly, so the Box operations have an overshoot to report. -/
@@ -630,7 +631,7 @@ def fZ' : Zonotope (Vec F 2) where
   h := 2
   c := ![0.1, 0.2]
   G := ![![0.3, 0.7], ![0.1, 0.9]]
-  E := fzbox 2
+  I_error := fzbox 2
 
 -- a discrete-time system, a network and a continuous-time system sampled, as at `Dyadic 24`
 def fSys : LinearSysDT F 2 :=

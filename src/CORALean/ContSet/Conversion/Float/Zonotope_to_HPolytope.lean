@@ -75,7 +75,7 @@ def Zonotope.nominalBoundDot (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[�
 
 def Zonotope.boundDot (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) : FloatBound 𝕋 Z.construct c :=
-  InflatedContSet.boundOfParts (Z.nominalBoundDot a hc) (Z.E.boundDot a hc)
+  InflatedContSet.boundOfParts (Z.nominalBoundDot a hc) (Z.I_error.boundDot a hc)
 
 def Zonotope.hPolytope (Z : Zonotope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) : HPolytope 𝕋 (Vec 𝕋 n) :=
   HPolytope.ofBounds Aq fun i => Z.boundDot (Aq i) fun _ => rfl

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Real.Operations.Triangulation
 public import CORALean.ContSet.Polygon.Real.Theorems.ConstructEqTriples
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Instances
 
 @[expose] public section

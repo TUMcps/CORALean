@@ -40,7 +40,7 @@ def Interval.polyZonotope (I : Interval (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n
   G := Fin.elim0
   E := fun _ => Fin.elim0
   GI := Fin.elim0
-  err := I
+  I_error := I
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

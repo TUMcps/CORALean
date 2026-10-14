@@ -41,11 +41,11 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A float run's error box always brackets `0`, given its two inputs do. -/
 theorem LinearSysDT.reachFloat_zero_mem_error (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
+    {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) :
     (0 : Vec ℝ n) ∈
       (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩
-        ⟨o, ho⟩).E.construct := by -- --- PROOF ---
+        ⟨o, ho⟩).I_error.construct := by -- --- PROOF ---
   induction k with
   | zero => exact hR₀
   | succ k ih =>
@@ -58,11 +58,12 @@ theorem LinearSysDT.reachFloat_zero_mem_error (sys : LinearSysDT 𝕋 n) {o : �
         Zonotope.reduce]
     -- each operation keeps `0` in the error box
     rw [hstep]
-    have hM : (0 : Vec ℝ n) ∈ (Zonotope.mtimes sys.A Rk).E.construct :=
+    have hM : (0 : Vec ℝ n) ∈ (Zonotope.mtimes sys.A Rk).I_error.construct :=
       Zonotope.zero_mem_mtimes_error ih
-    have hW : (0 : Vec ℝ n) ∈ ((Zonotope.mtimes sys.A Rk).plus U).E.construct :=
+    have hW : (0 : Vec ℝ n) ∈ ((Zonotope.mtimes sys.A Rk).plus U).I_error.construct :=
       Zonotope.zero_mem_plus_error hM hU
-    show (0 : Vec ℝ n) ∈ (Zonotope.reduceGirard ((Zonotope.mtimes sys.A Rk).plus U) o).E.construct
+    show (0 : Vec ℝ n) ∈
+        (Zonotope.reduceGirard ((Zonotope.mtimes sys.A Rk).plus U) o).I_error.construct
     unfold Zonotope.reduceGirard
     split_ifs with hlt
     · exact hW

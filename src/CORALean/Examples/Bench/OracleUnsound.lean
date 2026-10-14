@@ -36,7 +36,7 @@ def aux_dyadicOf (x : Float) : ExactDyadic :=
   ⟨d.mantissa, d.exponent⟩
 
 /-- `roundTo` is not offered for `nearest`, which has no exact rounding of its own. -/
-def aux_nativeRoundTo {𝕋 : Type} : String → ExactScalar → Except String (𝕋 × 𝕋 × 𝕋) :=
+def aux_nativeRoundTo {𝕋 : Type} : String → Oracle.ExactScalar → Except String (𝕋 × 𝕋 × 𝕋) :=
   fun _ _ => throw "roundTo: not supported for nearest"
 
 /-- The message for a negative decimal exponent: `1/50` is no binary number. -/

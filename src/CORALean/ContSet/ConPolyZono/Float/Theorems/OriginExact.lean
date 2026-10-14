@@ -51,11 +51,11 @@ theorem ConPolyZono.origin_exact (n : ℕ) :
     rw [h]
     exact Set.ext fun x =>
       (Real.ConPolyZono.mem_ofPoint_iff (0 : Vec ℝ n) x).trans Set.mem_singleton_iff.symm
-  have hE : (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).err.construct = {0} :=
+  have hE : (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.construct = {0} :=
     Interval.origin_exact n
   -- the sum of the two singletons
   show InflatedContSet.nominalSet (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n))
-      + (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).err.construct = _
+      + (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.construct = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

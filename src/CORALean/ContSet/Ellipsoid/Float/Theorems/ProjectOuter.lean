@@ -61,7 +61,7 @@ theorem Ellipsoid.project_outer (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) 
       have h := Real.Ellipsoid.project_exact (nominal E) dims
       rw [← Ellipsoid.aux_nominal_project] at h
       exact h))
-    (Interval.project_outer E.err dims)
+    (Interval.project_outer E.I_error dims)
 
 end CORALean.Float
 

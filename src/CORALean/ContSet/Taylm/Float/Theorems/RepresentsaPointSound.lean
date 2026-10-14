@@ -1,6 +1,9 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 

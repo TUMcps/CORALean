@@ -47,7 +47,7 @@ def Ellipsoid.conPolyZono (E : Ellipsoid 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n)
   A := fun _ j => if j.val < E.k then one else neg (half one)
   b := ⟨fun _ => half one, fun _ => half one⟩
   EC := fun r c => if r = c then (if c.val < E.k then 2 else 1) else 0
-  err := E.err
+  I_error := E.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

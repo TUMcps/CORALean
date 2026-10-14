@@ -45,8 +45,8 @@ theorem LinearSys.maxBackReachRunFloat_inner (sys : LinearSys 𝕋 n) (Bx : Inte
       SupportBound P.construct c)
     (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n)) (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n))
     (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀) (hΔt : 0 < toReal Δt)
-    (hU0 : (0 : Vec ℝ n) ∈ U.E.construct) (hU : U.construct ⊆ construct Ur)
-    (hWE : W₀.E = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
+    (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
+    (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
     (hZw : ∀ (tLo tHi : 𝕋) (t : ℝ), toReal tLo ≤ t → t ≤ toReal tHi →
       construct (Zwr t) ⊆ (Zw tLo tHi).construct)
     (hP₁ : P₁.construct ⊆ P₁r.construct) (hP₂ : P₂.construct ⊆ P₂r.construct)

@@ -50,7 +50,7 @@ def ConPolyZono.compactGensSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   A := cPZ.A
   b := cPZ.b
   EC := cPZ.EC
-  err := cPZ.err.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap cPZ))
+  I_error := cPZ.I_error.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap cPZ))
 
 end CORALean.Float
 

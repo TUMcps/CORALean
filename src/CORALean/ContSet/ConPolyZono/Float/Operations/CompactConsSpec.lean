@@ -50,7 +50,7 @@ def ConPolyZono.compactConsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   A := cPZ.mergedConsCol
   b := ConPolyZono.compactConsB cPZ
   EC := fun k l => cPZ.EC k (PolyZonotope.keepIdx cPZ.EC l)
-  err := cPZ.err
+  I_error := cPZ.I_error
 
 end CORALean.Float
 

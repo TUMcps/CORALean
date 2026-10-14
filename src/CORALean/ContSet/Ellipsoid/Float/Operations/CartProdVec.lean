@@ -32,7 +32,7 @@ def Ellipsoid.cartProdVec (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) : Ellipsoid �
   k := E.k
   q := Fin.append E.q v
   G := fun i j => Fin.addCases (fun i => E.G i j) (fun _ => zero) i
-  err := ⟨Fin.append E.err.inf fun _ => zero, Fin.append E.err.sup fun _ => zero⟩
+  I_error := ⟨Fin.append E.I_error.inf fun _ => zero, Fin.append E.I_error.sup fun _ => zero⟩
 
 end CORALean.Float
 

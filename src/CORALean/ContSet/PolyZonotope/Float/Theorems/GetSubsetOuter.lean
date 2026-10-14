@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋) :
     (Real.PolyZonotope.getSubset (nominal pZ) k (toReal cen) (toReal rad)).construct
-        + pZ.err.construct ⊆ (pZ.getSubset k cen rad).construct := by -- --- PROOF ---
+        + pZ.I_error.construct ⊆ (pZ.getSubset k cen rad).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := Real.PolyZonotope.mem_construct_iff.mp hz
   -- the rounding of the generators, scaled by the monomials, lies in the added box
@@ -56,8 +56,8 @@ theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin p
     ?_, ?_⟩
   · -- the sum of the two boxes' points is a point of the interval sum
     intro i
-    have h₁ : toReal (pZ.err.inf i) ≤ e i := (he i).1
-    have h₂ : e i ≤ toReal (pZ.err.sup i) := (he i).2
+    have h₁ : toReal (pZ.I_error.inf i) ≤ e i := (he i).1
+    have h₂ : e i ≤ toReal (pZ.I_error.sup i) := (he i).2
     have h₃ : toReal ((PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).inf i) ≤
           (∑ l, (Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l i
             - toReal (pZ.getSubsetGDown k cen rad i l))

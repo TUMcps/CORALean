@@ -37,7 +37,7 @@ def PolyZonotope.padBack (r : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonoto
   G := pZ.G
   E := Real.PolyZonotope.padE pZ.E r
   GI := pZ.GI
-  err := pZ.err
+  I_error := pZ.I_error
 
 end CORALean.Float
 

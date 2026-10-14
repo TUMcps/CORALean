@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Zonotope.radius (k : ℕ) (Z : Zonotope (Vec 𝕋 n)) : 𝕋 :=
-  let err := fun i => maximum (absolute (Z.E.inf i)) (absolute (Z.E.sup i))
+  let err := fun i => maximum (absolute (Z.I_error.inf i)) (absolute (Z.I_error.sup i))
   let errLength := normUp k err
   let generatorSum := addUp (sumUp fun j => normUp k (Z.G j)) errLength
   let boxLength :=

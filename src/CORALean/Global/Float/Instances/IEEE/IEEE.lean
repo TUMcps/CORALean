@@ -24,7 +24,7 @@ through `toDyadic`, so the exact steps and their proofs are `Dyadic`'s too.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -88,9 +88,6 @@ def toDyadic (x : IEEE fmt) : Dyadic fmt.p := ⟨x.mantissa, x.exponent⟩
 
 /-- `Dyadic.toReal`, and computable for the same reason. -/
 def toReal (x : IEEE fmt) : ℝ := x.toDyadic.toReal
-
-theorem toReal_def (x : IEEE fmt) : x.toReal = (x.mantissa : ℝ) * 2 ^ x.exponent :=
-  Dyadic.toReal_def _
 
 end IEEE
 

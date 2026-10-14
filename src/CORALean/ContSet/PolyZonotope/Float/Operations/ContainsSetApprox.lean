@@ -73,7 +73,7 @@ def PolyZonotope.containsSetApprox (pZ S : PolyZonotope (Vec 𝕋 n))
       else (L', cnt + 1, splits', some L'.isEmpty)
     | s => s
   -- the error box holds `0`, and S is full-dimensional
-  ((List.finRange n).all fun i => le (pZ.err.inf i) zero && le zero (pZ.err.sup i)) &&
+  ((List.finRange n).all fun i => le (pZ.I_error.inf i) zero && le zero (pZ.I_error.sup i)) &&
     S.isFullDim && ((step^[fuel] ([S], 1, 8, none)).2.2.2 == some true)
 
 end CORALean.Float

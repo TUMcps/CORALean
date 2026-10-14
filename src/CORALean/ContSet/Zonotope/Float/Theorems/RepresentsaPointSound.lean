@@ -44,7 +44,7 @@ theorem Zonotope.representsa_point_sound {Z : Zonotope (Vec 𝕋 n)}
   have hN : InflatedContSet.nominalSet Z = {toRealVec Z.c} :=
     (Real.Zonotope.representsa_point_iff (InflatedContSet.nominal Z)).2
       fun j => funext fun i => hG0 i j
-  show InflatedContSet.nominalSet Z + Z.E.construct = _
+  show InflatedContSet.nominalSet Z + Z.I_error.construct = _
   rw [hN, hv, Set.singleton_add_singleton]
 
 end CORALean.Float

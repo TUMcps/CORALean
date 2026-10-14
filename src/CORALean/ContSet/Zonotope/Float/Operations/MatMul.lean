@@ -49,8 +49,9 @@ def Zonotope.matMul (M : Zonotope (Mat 𝕋 p q)) (N : Zonotope (Mat 𝕋 q r)) 
     fun mul => Fin.append (Fin.append (fun i => mul (M.G i) N.c) (fun j => mul M.c (N.G j)))
       (fun k => mul (M.G (finProdFinEquiv.symm k).1) (N.G (finProdFinEquiv.symm k).2))
   -- the box around `a`, the first nominal part, then the two error terms `af + eB`
-  let IM := ({ M with E := Interval.point fun _ _ => zero } : Zonotope (Mat 𝕋 p q)).matInterval
-  let E := Interval.matPlus (Interval.matMul IM N.E) (Interval.matMul M.E N.matInterval)
+  let IM := ({ M with I_error := Interval.point fun _ _ => zero } : Zonotope
+      (Mat 𝕋 p q)).matInterval
+  let E := Interval.matPlus (Interval.matMul IM N.I_error) (Interval.matMul M.I_error N.matInterval)
   Zonotope.ofEntryBoundsMat (matMulDown M.c N.c) (matMulUp M.c N.c) (gens matMulDown)
     (gens matMulUp) E
 

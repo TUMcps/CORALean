@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.centre_mem_construct (pZ : PolyZonotope (Vec 𝕋 n))
     (hE : Real.ConPolyZono.NoZeroCol pZ.E)
-    (h0 : ∀ i, toReal (pZ.err.inf i) ≤ 0 ∧ 0 ≤ toReal (pZ.err.sup i)) :
+    (h0 : ∀ i, toReal (pZ.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (pZ.I_error.sup i)) :
     toRealVec pZ.centre ∈ pZ.construct := by
   refine ⟨toRealVec pZ.centre, PolyZonotope.mem_nominalSet_iff.mpr
     ⟨fun _ => 0, fun _ => 0, fun k => by simp, fun j => by simp, fun i => ?_⟩, 0, h0, add_zero _⟩

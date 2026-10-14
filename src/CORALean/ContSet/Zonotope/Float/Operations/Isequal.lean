@@ -34,8 +34,8 @@ def Zonotope.isequal (Z S : Zonotope (Vec 𝕋 n)) : Bool :=
   if e : Z.h = S.h then
     (List.finRange n).all (fun i =>
       (le (Z.c i) (S.c i) && le (S.c i) (Z.c i)) &&
-      (le (Z.E.inf i) (S.E.inf i) && le (S.E.inf i) (Z.E.inf i)) &&
-      (le (Z.E.sup i) (S.E.sup i) && le (S.E.sup i) (Z.E.sup i)) &&
+      (le (Z.I_error.inf i) (S.I_error.inf i) && le (S.I_error.inf i) (Z.I_error.inf i)) &&
+      (le (Z.I_error.sup i) (S.I_error.sup i) && le (S.I_error.sup i) (Z.I_error.sup i)) &&
       (List.finRange Z.h).all fun j =>
         le (Z.G j i) (S.G (Fin.cast e j) i) && le (S.G (Fin.cast e j) i) (Z.G j i))
   else false

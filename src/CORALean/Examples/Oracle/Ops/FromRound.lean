@@ -95,7 +95,7 @@ def handleRoundToZonotope (dops : DtypeOps 𝕋) (mode : String) (req : Json) :
     { h := h
       c := fun i => (cT.getD i.val d0).1
       G := fun (l : Fin h) (i : Fin n) => (gT.getD (i.val * h + l.val) d0).1
-      E := ⟨fun i => subDown (addDown (eInf.getD i.val FloatOps.zero) (cT.getD i.val d0).2.1)
+      I_error := ⟨fun i => subDown (addDown (eInf.getD i.val FloatOps.zero) (cT.getD i.val d0).2.1)
               (gRowBound i),
             fun i => addUp (addUp (eSup.getD i.val FloatOps.zero) (cT.getD i.val d0).2.2)
               (gRowBound i)⟩ }

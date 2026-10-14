@@ -137,7 +137,7 @@ theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 
 theorem ConPolyZono.union_point_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {y e : Vec ℝ n}
     (hy : y ∈ (Real.ConPolyZono.union (nominal cPZ₁) (nominal cPZ₂)).construct)
-    (he : e ∈ (cPZ₁.err.or cPZ₂.err).construct) :
+    (he : e ∈ (cPZ₁.I_error.or cPZ₂.I_error).construct) :
     y + e ∈ (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   obtain ⟨a, β, ha, hβ, hsat, hy⟩ := hy
   set t := a (Real.ConPolyZono.unionSel cPZ₁.p cPZ₂.p) with ht

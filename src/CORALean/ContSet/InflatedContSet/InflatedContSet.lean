@@ -47,7 +47,7 @@ class InflatedContSet (S : Type) (N : outParam Type) (α : outParam Type) (β : 
   nominal : S → N
   /-- Everything rounding has cost, as a box. Held in `α`, the stored ambient
   type, because operations compute it. -/
-  error : S → Interval α
+  I_error : S → Interval α
 
 namespace InflatedContSet
 
@@ -59,7 +59,7 @@ variable [ContSet N β] [InflatedContSet S N α β]
 `N` is a variable. -/
 abbrev nominalSet (s : S) : Set β := ContSet.construct (nominal s)
 
-def construct (s : S) : Set β := nominalSet s + (error s).construct
+def construct (s : S) : Set β := nominalSet s + (I_error s).construct
 
 instance : ContSet S β := ⟨construct⟩
 

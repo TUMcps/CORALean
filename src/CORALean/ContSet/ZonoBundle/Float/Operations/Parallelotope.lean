@@ -50,7 +50,7 @@ def ZonoBundle.parallelotope (Λ H : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (
   { h := Z.h
     c := Z.c
     G := Z.G
-    E := Z.E.plus ⟨fun _ => neg e, fun _ => e⟩ }
+    I_error := Z.I_error.plus ⟨fun _ => neg e, fun _ => e⟩ }
 
 end CORALean.Float
 

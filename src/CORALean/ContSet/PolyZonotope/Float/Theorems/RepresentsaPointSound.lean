@@ -46,7 +46,7 @@ theorem PolyZonotope.representsa_point_sound {pZ : PolyZonotope (Vec 𝕋 n)}
     Real.PolyZonotope.construct_eq_of_representsa_point (nominal pZ)
       ⟨fun l => funext fun i => hz _ (hG l i).1 (hG l i).2,
         fun j => funext fun i => hz _ (hGI j i).1 (hGI j i).2⟩
-  show nominalSet pZ + pZ.err.construct = _
+  show nominalSet pZ + pZ.I_error.construct = _
   rw [hN, hv, Set.singleton_add_singleton]
   rfl
 

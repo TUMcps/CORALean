@@ -45,7 +45,7 @@ theorem Ellipsoid.representsa_origin_sound {E : Ellipsoid 𝕋 n}
   have hN : InflatedContSet.nominalSet E = {0} :=
     (Real.Ellipsoid.representsa_origin_iff (InflatedContSet.nominal E)).2
       ⟨hq0, Matrix.ext fun i j => hG0 i j⟩
-  show InflatedContSet.nominalSet E + E.err.construct = _
+  show InflatedContSet.nominalSet E + E.I_error.construct = _
   rw [hN, Interval.representsa_origin_sound hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

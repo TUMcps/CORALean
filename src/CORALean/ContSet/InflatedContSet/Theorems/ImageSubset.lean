@@ -36,7 +36,7 @@ so nothing is carried between them: selecting or padding coordinates rounds noth
 theorem image_subset {s : S} {t : T} {f : Vec ℝ n → Vec ℝ m}
     (hadd : ∀ x y, f (x + y) = f x + f y)
     (hnominal : f '' nominalSet s ⊆ nominalSet t)
-    (herror : f '' (error s).construct ⊆ (error t).construct) :
+    (herror : f '' (I_error s).construct ⊆ (I_error t).construct) :
     f '' construct s ⊆ construct t := by
   rintro _ ⟨_, ⟨a, ha, b, hb, rfl⟩, rfl⟩
   exact ⟨f a, hnominal ⟨a, ha, rfl⟩, f b, herror ⟨b, hb, rfl⟩, (hadd a b).symm⟩

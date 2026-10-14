@@ -26,7 +26,7 @@ tighter bound is the one worth not taking.
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,48 +46,18 @@ structure Ellipsoid (𝕋 : Type) (n : ℕ) where
   k : ℕ
   q : Vec 𝕋 n
   G : Mat 𝕋 n k
-  /-- The error box. Named `err` rather than `E`, which reads as an exponent
-  matrix nowhere here but as the exact layer's ellipsoid everywhere. -/
-  err : Interval (Vec 𝕋 n)
+  /-- The error box, the paper's `𝓘_error`. -/
+  I_error : Interval (Vec 𝕋 n)
 
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (Ellipsoid 𝕋 n) (CORALean.Real.Ellipsoid n)
       (Vec 𝕋 n) (Vec ℝ n) where
   nominal E := ⟨E.k, toRealVec E.q, toRealMat E.G⟩
-  error E := E.err
-
-/-! The nominal ellipsoid's fields, so proofs can see through the instance. -/
-
-theorem Ellipsoid.nominal_k [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
-    (InflatedContSet.nominal E).k = E.k := rfl
-
-theorem Ellipsoid.nominal_q [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
-    (InflatedContSet.nominal E).q = toRealVec E.q := rfl
-
-theorem Ellipsoid.nominal_G [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
-    (InflatedContSet.nominal E).G = toRealMat E.G := rfl
+  I_error E := E.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev Ellipsoid.construct [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) : Set (Vec ℝ n) :=
   InflatedContSet.construct E
-
-/-! ## Storage
-
-Every field is a function type, so the ellipsoid an operation returns is a
-closure over the one it was given. `materialise` stores them and `materialise_eq`
-says it is the identity; `Global/Tensor` says why the vectors are built here. -/
-
-def Ellipsoid.materialise (E : Ellipsoid 𝕋 n) : Ellipsoid 𝕋 n :=
-  let q : Vector 𝕋 n := Vector.ofFn E.q
-  let G : Vector (Vector 𝕋 E.k) n := Vector.ofFn fun i => Vector.ofFn fun j => E.G i j
-  { k := E.k
-    q := fun i => q[i.val]'i.isLt
-    G := fun i j => (G[i.val]'i.isLt)[j.val]'j.isLt
-    err := E.err.materialise }
-
-omit [FloatOps 𝕋] in
-@[simp] theorem Ellipsoid.materialise_eq (E : Ellipsoid 𝕋 n) : E.materialise = E := by
-  simp [Ellipsoid.materialise]
 
 end CORALean.Float
 

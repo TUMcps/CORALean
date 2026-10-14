@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import Mathlib.Analysis.Normed.Field.Basic
 
 @[expose] public section

@@ -1,9 +1,12 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.LinCoef
 public import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
-public import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
+public import CORALean.ContSet.Taylm.Real.Operations.LinCoef
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
+public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 

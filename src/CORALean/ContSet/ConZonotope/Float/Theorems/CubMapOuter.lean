@@ -39,7 +39,8 @@ theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n) (cZ : Co
   rintro _ ⟨x, hx, rfl⟩
   obtain ⟨β, hβ, hP, hxβ⟩ := ConZonotope.mem_nominalSet_iff.mp (ConZonotope.dependent_nominal cZ hx)
   obtain ⟨γ, hγ, hlin, e, he, heq⟩ := Zonotope.cubMapDep_coeff T
-    (⟨cZ.dependent.h, cZ.dependent.c, cZ.dependent.G, cZ.dependent.E⟩ : Zonotope (Vec 𝕋 n)) β hβ
+    (⟨cZ.dependent.h, cZ.dependent.c, cZ.dependent.G, cZ.dependent.I_error⟩ : Zonotope (Vec 𝕋 n)) β
+        hβ
   -- the lifted constraints read the linear block, which is `β`
   have hdims : Function.Injective fun j : Fin cZ.dependent.h =>
       (Real.Zonotope.cubIdx (cZ.dependent.h + 1) (cZ.dependent.h + 1)

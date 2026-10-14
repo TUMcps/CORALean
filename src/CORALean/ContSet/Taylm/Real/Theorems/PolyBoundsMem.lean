@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Taylm.Real.Theorems.TermBoundsMem
 
 @[expose] public section

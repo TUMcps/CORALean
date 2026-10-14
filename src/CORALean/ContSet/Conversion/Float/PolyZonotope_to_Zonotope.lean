@@ -35,7 +35,7 @@ def PolyZonotope.zonotope (pZ : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 
   h := pZ.h + pZ.q
   c := pZ.c
   G := Fin.append pZ.G pZ.GI
-  E := pZ.err
+  I_error := pZ.I_error
 
 def ConPolyZono.zonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   cPZ.polyZonotope.zonotope

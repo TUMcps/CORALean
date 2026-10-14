@@ -65,7 +65,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 given both error boxes bracket `0`. -/
 theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋} (hΔt : 0 < toReal Δt)
     {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)}
-    (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct) (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ)
+    (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct) (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ)
     (M : Fin ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h →
       Fin (sys.reachErrorFloat Δt η o ho R₀ U k).h → 𝕋) (ρ : 𝕋)
@@ -82,7 +82,7 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     (nominal U)
   have hout := sys.discretizeEnclosureFloat_reach_subset_add_errorFloat hΔt hη ho hR₀ hU k
   -- the budget is nonempty: the float run holds its centre, and lies in `Y + B`
-  have hR0 : (0 : Vec ℝ n) ∈ R.E.construct :=
+  have hR0 : (0 : Vec ℝ n) ∈ R.I_error.construct :=
     sys.zero_mem_discretizeEnclosureFloat_reach_error hΔt.le hη ho hR₀ hU k
   obtain ⟨_, -, b, hb, -⟩ := hout (Zonotope.centre_mem_construct R hR0)
   have hinner := (sys.discretize (toReal Δt)).reachSet_inner_of_outer

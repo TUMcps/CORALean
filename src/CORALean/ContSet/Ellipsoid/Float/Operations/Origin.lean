@@ -33,7 +33,7 @@ def Ellipsoid.origin (n : ℕ) : Ellipsoid 𝕋 n where
   k := 0
   q := fun _ => zero
   G := fun _ j => j.elim0
-  err := Interval.origin n
+  I_error := Interval.origin n
 
 end CORALean.Float
 

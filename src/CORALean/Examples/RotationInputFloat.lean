@@ -36,7 +36,7 @@ def UD : Zonotope (Vec (Dyadic 64) 1) where
   h := 1
   c := ![d 1 (-1)]
   G := !![d 1 (-3)]
-  E := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
+  I_error := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 /-- `[0, 1/8]` in eight windows, Taylor order at least `4`, order `10`: the windows,
 then `R_0, …, R_8`. -/

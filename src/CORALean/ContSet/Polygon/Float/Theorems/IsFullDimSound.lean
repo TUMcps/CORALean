@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ContSet.Definitions.IsFullDim
 public import CORALean.ContSet.Polygon.Float.Operations.IsFullDim
 public import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
 public import Mathlib.Topology.Algebra.Group.Pointwise
 
@@ -88,9 +89,9 @@ theorem Polygon.isFullDim_sound {P : Polygon 𝕋} (h : Polygon.isFullDim P = tr
     (Polygon.aux_cross_ne_zero hc)
   obtain ⟨x, hx⟩ := (CORALean.Real.VPolytope.isFullDim_iff (nominal p)).mpr hspan
   -- moved by the box's lower corner, it is interior to the piece, so to the region
-  have he : (fun i => toReal (p.E.inf i)) ∈ p.E.construct := fun i =>
+  have he : (fun i => toReal (p.I_error.inf i)) ∈ p.I_error.construct := fun i =>
     ⟨le_refl _, toReal_le_of_le (hbox i)⟩
-  have hin : x + (fun i => toReal (p.E.inf i)) ∈ interior (VPolytope.construct p) :=
+  have hin : x + (fun i => toReal (p.I_error.inf i)) ∈ interior (VPolytope.construct p) :=
     subset_interior_add_left (Set.add_mem_add hx he)
   refine ⟨_, interior_mono (fun y hy => ?_) hin⟩
   exact SetUnion.mem_construct.mpr ⟨p, hp, hy⟩

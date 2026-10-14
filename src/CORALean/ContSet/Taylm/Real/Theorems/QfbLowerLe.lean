@@ -1,9 +1,11 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.QfbLower
-public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfQuadTerms
-public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfQuadTerms
 public import Mathlib.LinearAlgebra.Matrix.PosDef
 
 @[expose] public section

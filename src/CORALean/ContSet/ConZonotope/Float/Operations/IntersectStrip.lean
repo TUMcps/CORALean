@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n s : ℕ}
 def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C : Mat 𝕋 s n) (φ y : Vec 𝕋 s)
     (Λ : Mat 𝕋 n s) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   -- C (c + G ξ + e): centre and generators rounded down, the rest in a box
-  let W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.E⟩
+  let W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.I_error⟩
   -- c + Λ (y - C c), as bounds around the stored centre
   let w : Interval (Vec 𝕋 s) :=
     ⟨fun k => subDown (y k) (dotUp (C k) cZ.c), fun k => subUp (y k) (dotDown (C k) cZ.c)⟩
@@ -66,13 +66,13 @@ def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C : Mat �
   let Astrip : Mat 𝕋 s (cZ.h + s) := fun k =>
     Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k) else zero
   let bstrip : Interval (Vec 𝕋 s) :=
-    ⟨fun k => subDown (subDown (y k) (W.c k)) (W.E.sup k),
-     fun k => subUp (subUp (y k) (W.c k)) (W.E.inf k)⟩
+    ⟨fun k => subDown (subDown (y k) (W.c k)) (W.I_error.sup k),
+     fun k => subUp (subUp (y k) (W.c k)) (W.I_error.inf k)⟩
   { h := cZ.h + s
     c := cLo
     G := Fin.append G₁ G₂
     P := (cZ.P.padLeft s).intersection (HPolytope.eqs Astrip bstrip)
-    E := (((cZ.E.minus (Interval.mtimes Λ (Interval.mtimes C cZ.E))).plus
+    I_error := (((cZ.I_error.minus (Interval.mtimes Λ (Interval.mtimes C cZ.I_error))).plus
         (Interval.residual cLo cHi cLo)).plus (Zonotope.generatorError gap₁)).plus
       (Zonotope.generatorError gap₂) }
 

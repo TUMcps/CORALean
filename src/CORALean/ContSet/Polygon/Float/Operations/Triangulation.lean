@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 /-- The vertex triangles of every piece, each with its piece's error box. -/
 def Polygon.triangulation (P : Polygon 𝕋) : Polygon 𝕋 :=
   ⟨P.sets.flatMap fun p => (List.finRange p.k).flatMap fun a => (List.finRange p.k).flatMap
-    fun b => (List.finRange p.k).map fun c => ⟨3, ![p.V a, p.V b, p.V c], p.E⟩⟩
+    fun b => (List.finRange p.k).map fun c => ⟨3, ![p.V a, p.V b, p.V c], p.I_error⟩⟩
 
 end CORALean.Float
 

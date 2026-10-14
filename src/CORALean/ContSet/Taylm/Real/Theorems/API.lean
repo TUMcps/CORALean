@@ -1,8 +1,5 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Theorems.GetSymsMem
-public import CORALean.ContSet.Taylm.Real.Theorems.MmulOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.MpowerOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.AbsConstCoefLe
 public import CORALean.ContSet.Taylm.Real.Theorems.AbsLeMag
 public import CORALean.ContSet.Taylm.Real.Theorems.AbsPolyBoundsLe
@@ -16,26 +13,29 @@ public import CORALean.ContSet.Taylm.Real.Theorems.AsinOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.AtanEqAddAtanShift
 public import CORALean.ContSet.Taylm.Real.Theorems.AtanOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.AtanShiftCounterexample
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.BernsteinBasisNonneg
 public import CORALean.ContSet.Taylm.Real.Theorems.BnbLoopMem
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.BranchAndBoundMem
 public import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalEncloses
 public import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.ComposeOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.ContinuousPolyOf
 public import CORALean.ContSet.Taylm.Real.Theorems.CosOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.CosScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.CoshOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.CosyGoLe
 public import CORALean.ContSet.Taylm.Real.Theorems.DegreeEqOne
+public import CORALean.ContSet.Taylm.Real.Theorems.DetOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
 public import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeCosyGo
 public import CORALean.ContSet.Taylm.Real.Theorems.ExistsLeGlobalMin
 public import CORALean.ContSet.Taylm.Real.Theorems.ExistsNormalized
-public import CORALean.ContSet.Taylm.Real.Theorems.ExpOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.ExpLagrangeMem
+public import CORALean.ContSet.Taylm.Real.Theorems.ExpOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.ExpScaled
+public import CORALean.ContSet.Taylm.Real.Theorems.GetSymsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.GlobalMinLe
 public import CORALean.ContSet.Taylm.Real.Theorems.GoLowerBoundLe
 public import CORALean.ContSet.Taylm.Real.Theorems.GoodBoxHalve
@@ -60,6 +60,8 @@ public import CORALean.ContSet.Taylm.Real.Theorems.ListMinLe
 public import CORALean.ContSet.Taylm.Real.Theorems.LogOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.MmulOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.MpowerOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.MtimesConstructOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.OptBnbAdvMem
 public import CORALean.ContSet.Taylm.Real.Theorems.OptBnbMem
@@ -76,10 +78,13 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfQuadTerms
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfSmul
 public import CORALean.ContSet.Taylm.Real.Theorems.PowBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinBasis
+public import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinEntry
 public import CORALean.ContSet.Taylm.Real.Theorems.PowMaxOrder
 public import CORALean.ContSet.Taylm.Real.Theorems.PowOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.PowScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.ProdBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.ProdOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.QfbLowerLe
 public import CORALean.ContSet.Taylm.Real.Theorems.QfbOptimal
 public import CORALean.ContSet.Taylm.Real.Theorems.RangeBoundMem
@@ -87,6 +92,8 @@ public import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.ReachLe
 public import CORALean.ContSet.Taylm.Real.Theorems.ReexpBoxBoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.ReexpandOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaEmptySetIff
+public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaPointConstruct
 public import CORALean.ContSet.Taylm.Real.Theorems.SinOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SinRdivideCosOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SinScaled
@@ -96,6 +103,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.SmulOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SmulScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.SplitAtCovers
 public import CORALean.ContSet.Taylm.Real.Theorems.SqrtOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.SumBernsteinBasis
 public import CORALean.ContSet.Taylm.Real.Theorems.SumOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SumScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.TanOuter
@@ -109,15 +117,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.TimesScaled
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesScalingCounterexample
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.UminusScaled
-public import CORALean.ContSet.Taylm.Real.Theorems.ProdOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.DetOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.WeightNonneg
-public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaEmptySetIff
-public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaPointConstruct
-public import CORALean.ContSet.Taylm.Real.Theorems.SumBernsteinBasis
-public import CORALean.ContSet.Taylm.Real.Theorems.BernsteinBasisNonneg
-public import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinBasis
-public import CORALean.ContSet.Taylm.Real.Theorems.PowEqSumBernsteinEntry
 public import CORALean.ContSet.Taylm.Real.Theorems.LeBernsteinDegree
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfEqSumBernsteinCoeff
 public import CORALean.ContSet.Taylm.Real.Theorems.OptBernsteinMem
@@ -125,6 +125,11 @@ public import CORALean.ContSet.Taylm.Real.Theorems.QfbQuadExpand
 public import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchStepVariational
 public import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchStepFixedIsMinOn
 public import CORALean.ContSet.Taylm.Real.Theorems.QfbSearchConverges
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfAppend
+public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
+public import CORALean.ContSet.Taylm.Real.Theorems.AbsMonomialLeOne
 
 /-!
 # Taylor model guarantees, collected

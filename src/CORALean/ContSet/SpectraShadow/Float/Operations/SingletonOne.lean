@@ -35,7 +35,7 @@ abbrev SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1) where
   A := fun _ p q => if p = q then (if p = 0 then neg one else one) else zero
   c := fun _ => zero
   G := fun _ _ => one
-  E := Interval.origin 1
+  I_error := Interval.origin 1
 
 end CORALean.Float
 

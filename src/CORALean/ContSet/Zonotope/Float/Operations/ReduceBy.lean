@@ -39,7 +39,7 @@ def Zonotope.reduceBy (Z : Zonotope (Vec 𝕋 n)) (part : Split (Fin Z.h) into (
   c := Z.c
   G := Fin.append (fun l => Z.G (part.left l))
          (diagonalBlock (radius fun i l => Z.G (part.right l) i))
-  E := Z.E
+  I_error := Z.I_error
 
 end CORALean.Float
 

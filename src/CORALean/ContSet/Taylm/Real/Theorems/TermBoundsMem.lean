@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.TermBounds
+public import CORALean.ContSet.Taylm.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -34,8 +34,8 @@ def Ellipsoid.isequal (E S : Ellipsoid 𝕋 n) : Bool :=
   if e : E.k = S.k then
     (List.finRange n).all (fun i =>
       (le (E.q i) (S.q i) && le (S.q i) (E.q i)) &&
-      (le (E.err.inf i) (S.err.inf i) && le (S.err.inf i) (E.err.inf i)) &&
-      (le (E.err.sup i) (S.err.sup i) && le (S.err.sup i) (E.err.sup i)) &&
+      (le (E.I_error.inf i) (S.I_error.inf i) && le (S.I_error.inf i) (E.I_error.inf i)) &&
+      (le (E.I_error.sup i) (S.I_error.sup i) && le (S.I_error.sup i) (E.I_error.sup i)) &&
       (List.finRange E.k).all fun j =>
         le (E.G i j) (S.G i (Fin.cast e j)) && le (S.G i (Fin.cast e j)) (E.G i j))
   else false

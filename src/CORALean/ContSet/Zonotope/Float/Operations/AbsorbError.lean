@@ -38,7 +38,7 @@ def Zonotope.absorbError (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) whe
   h := Z.h + n
   c := Z.shiftDown
   G := Fin.append Z.G (diagonalBlock Z.errorRadius)
-  E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
+  I_error := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
 end CORALean.Float
 

@@ -46,13 +46,13 @@ theorem Zonotope.matSmul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤
   have hentry : ∀ x : 𝕋, toReal (Interval.mulLo cLo cHi x x) ≤ c * toReal x
       ∧ c * toReal x ≤ toReal (Interval.mulHi cLo cHi x x) :=
     fun x => Interval.mul_between_corners hcLo hcHi le_rfl le_rfl
-  have hmem := Zonotope.ofEntryBoundsMat_outer Zc (Interval.smul cLo cHi Z.E)
+  have hmem := Zonotope.ofEntryBoundsMat_outer Zc (Interval.smul cLo cHi Z.I_error)
     (cLo := fun i j => Interval.mulLo cLo cHi (Z.c i j) (Z.c i j))
     (cHi := fun i j => Interval.mulHi cLo cHi (Z.c i j) (Z.c i j))
     (GLo := fun k i j => Interval.mulLo cLo cHi (Z.G k i j) (Z.G k i j))
     (GHi := fun k i j => Interval.mulHi cLo cHi (Z.G k i j) (Z.G k i j))
     (fun i j => hentry (Z.c i j)) (fun k i j => hentry (Z.G k i j))
-    ⟨c • a, hca, c • e, Interval.smul_outer hcLo hcHi Z.E he, rfl⟩
+    ⟨c • a, hca, c • e, Interval.smul_outer hcLo hcHi Z.I_error he, rfl⟩
   rw [smul_add]
   exact hmem
 

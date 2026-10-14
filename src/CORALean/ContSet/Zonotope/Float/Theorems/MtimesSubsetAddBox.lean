@@ -80,7 +80,7 @@ theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
 /-- `mtimes` reaches no further than the image of `Z.construct`, widened by
 `mtimesBox`, provided `Z` already brackets `0` in its own box. -/
 theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n))
-    (h : (0 : Vec ℝ n) ∈ Z.E.construct) :
+    (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) :
     (Zonotope.mtimes M Z).construct ⊆
       (toRealMat M *ᵥ ·) '' Z.construct
         + (Zonotope.mtimesBox M Z).construct := by -- --- PROOF ---
@@ -90,7 +90,7 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
   set x : Vec ℝ n := fun k => toReal (Z.c k) + ∑ l, toReal (Z.G l k) * β l with hxdefeq
   have hxmem : (toRealMat M *ᵥ x) ∈ (toRealMat M *ᵥ ·) '' Z.construct := by
     refine ⟨x, ?_, rfl⟩
-    have hh : x + (0 : Vec ℝ n) ∈ nominalSet Z + Z.E.construct :=
+    have hh : x + (0 : Vec ℝ n) ∈ nominalSet Z + Z.I_error.construct :=
       Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩) h
     rwa [add_zero] at hh
   -- the centre and each generator's rounding gap, at the same coefficients

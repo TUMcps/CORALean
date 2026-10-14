@@ -53,14 +53,14 @@ def R₀b : Zonotope (Vec Float 2) where
   h := 2
   c := ![1.0, 0.0]
   G := !![0.125, 0.0; 0.0, 0.125]
-  E := zeroBoxB 2
+  I_error := zeroBoxB 2
 
 /-- `[-1/64, 1/64]²`. -/
 def Ub : Zonotope (Vec Float 2) where
   h := 2
   c := ![0.0, 0.0]
   G := !![0.015625, 0.0; 0.0, 0.015625]
-  E := zeroBoxB 2
+  I_error := zeroBoxB 2
 
 /-- The same `order` and the same `steps` as the `Dyadic` runs, so the three
 tables are the same computation and nothing else. -/
@@ -105,7 +105,8 @@ def errorRowB (k : ℕ) : String :=
   match RbChecked k with
   | none => pad 4 (toString k) ++ "rejected: a float of the result is a NaN"
   | some Z =>
-    pad 4 (toString k) ++ pad 28 (showExact (widthB Z.E 0)) ++ pad 26 (showExact (widthB Z.E 1))
+    pad 4 (toString k) ++ pad 28 (showExact (widthB Z.I_error 0)) ++ pad 26
+        (showExact (widthB Z.I_error 1))
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

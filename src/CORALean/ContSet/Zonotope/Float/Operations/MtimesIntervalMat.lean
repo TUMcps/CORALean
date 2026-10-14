@@ -51,7 +51,8 @@ def Zonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope (Vec
   { h := Z.h + m
     c := MZ.c
     G := Fin.append MZ.G (diagonalBlock b)                          -- mid(M) G, then diag(b)
-    E := MZ.E.plus (Interval.mtimesIntervalMat Rs Z.E) }            -- mid(M) E ⊕ (M - mid(M)) E
+    -- mid(M) E ⊕ (M - mid(M)) E
+    I_error := MZ.I_error.plus (Interval.mtimesIntervalMat Rs Z.I_error) }
 
 end CORALean.Float
 

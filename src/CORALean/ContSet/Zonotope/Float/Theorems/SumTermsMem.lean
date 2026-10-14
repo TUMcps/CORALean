@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
+public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 

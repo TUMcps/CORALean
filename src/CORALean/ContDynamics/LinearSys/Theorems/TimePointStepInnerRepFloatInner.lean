@@ -65,7 +65,7 @@ reaches at `t = r` from the nominal zonotopes of `X₀` and `U`, at `r > 0` and 
 order, given both error boxes bracket `0`. -/
 theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {X₀ U : Zonotope (Vec 𝕋 n)}
-    (hX₀ : (0 : Vec ℝ n) ∈ X₀.E.construct) (hU : (0 : Vec ℝ n) ∈ U.E.construct)
+    (hX₀ : (0 : Vec ℝ n) ∈ X₀.I_error.construct) (hU : (0 : Vec ℝ n) ∈ U.I_error.construct)
     (M : Fin (sys.timePointStepInputFloat r η X₀ U).h →
       Fin (sys.timePointStepInnerErrorFloat r η X₀ U).h → 𝕋) (ρ : 𝕋)
     (H : Mat 𝕋 (sys.timePointStepInputFloat r η X₀ U).h n) {D : Zonotope (Vec 𝕋 n)}
@@ -78,7 +78,7 @@ theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r :
     (nominal U)
   have hout := sys.timePointStepInputFloat_subset_add_innerErrorFloat hr hη hX₀ hU
   -- the budget is nonempty: the float step holds its centre, and lies in `Y + B`
-  have hS0 : (0 : Vec ℝ n) ∈ S.E.construct :=
+  have hS0 : (0 : Vec ℝ n) ∈ S.I_error.construct :=
     sys.zero_mem_timePointStepInputFloat_error hr.le hη hX₀ hU
   obtain ⟨_, -, b, hb, -⟩ := hout (Zonotope.centre_mem_construct S hS0)
   have hinner := (sys.discretize (toReal r)).reachSet_inner_of_outer

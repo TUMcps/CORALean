@@ -52,7 +52,7 @@ def Zonotope.minkDiffRepCandidate (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
   let scale := fun i => mulDown ρ (margin i)  -- shrunk by ρ
   let G := fun i r =>  -- scale i · gᵢ, rounded towards zero
     if le zero (Z₁.G i r) then mulDown (scale i) (Z₁.G i r) else mulUp (scale i) (Z₁.G i r)
-  { h := Z₁.h, c := c, G := G, E := Interval.origin n }
+  { h := Z₁.h, c := c, G := G, I_error := Interval.origin n }
 
 end CORALean.Float
 

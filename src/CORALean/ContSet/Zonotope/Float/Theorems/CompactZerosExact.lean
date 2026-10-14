@@ -43,9 +43,9 @@ theorem Zonotope.compactZeros_exact (Z : Zonotope (Vec 𝕋 n)) :
     rw [toReal_zero] at h₁ h₂
     exact le_antisymm h₁ h₂
   have hN : nominal Z.compactZeros = (nominal Z).filterGen Z.keepColumn := rfl
-  have hE : error Z.compactZeros = error Z := rfl
-  show ContSet.construct (nominal Z.compactZeros) + (error Z.compactZeros).construct =
-    ContSet.construct (nominal Z) + (error Z).construct
+  have hE : I_error Z.compactZeros = I_error Z := rfl
+  show ContSet.construct (nominal Z.compactZeros) + (I_error Z.compactZeros).construct =
+    ContSet.construct (nominal Z) + (I_error Z).construct
   rw [hN, hE]
   congr 1
   exact CORALean.Real.Zonotope.filterGen_construct _ _ hz

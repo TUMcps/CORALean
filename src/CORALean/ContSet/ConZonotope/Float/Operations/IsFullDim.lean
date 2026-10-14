@@ -38,7 +38,7 @@ def ConZonotope.isFullDim (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (H : Mat 𝕋 cZ.
     (β₀ : Vec 𝕋 cZ.h) : Bool :=
   let δ := cZ.interiorMargin β₀
   cZ.interiorCert H β₀ δ (Zonotope.ballB H δ)
-    && (List.finRange n).all fun i => le (cZ.E.inf i) (cZ.E.sup i)
+    && (List.finRange n).all fun i => le (cZ.I_error.inf i) (cZ.I_error.sup i)
 
 end CORALean.Float
 

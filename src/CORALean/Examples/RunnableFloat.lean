@@ -217,7 +217,7 @@ def Z : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 (-2), d 0 0; d 0 0, d 1 (-2)]
-  E := zbox 2
+  I_error := zbox 2
 
 def I : Interval (Vec D 2) := Z.interval
 def V : VPolytope (Vec D 2) := Z.vPolytope
@@ -441,12 +441,12 @@ def minkDiffMinuend : Zonotope (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]
   G := !![d 1 1, d 0 0; d 0 0, d 1 1]
-  E := zbox 2
+  I_error := zbox 2
 def minkDiffSubtrahend : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 (-3), d 0 0]
   G := !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
-  E := zbox 2
+  I_error := zbox 2
 def minkDiffOpt : Option (Zonotope (Vec D 2)) :=
   minkDiffMinuend.minkDiffRep minkDiffSubtrahend (fun i j => if i = j then d 1 (-2) else d 0 0)
     (d 15 (-4)) !![d 1 (-1), d 0 0; d 0 0, d 1 (-1)]
@@ -458,12 +458,12 @@ def minkDiffNSMinuend : Zonotope (Vec D 2) where
   h := 3
   c := ![d 0 0, d 0 0]
   G := !![d 1 0, d 0 0; d 0 0, d 1 0; d 1 0, d 1 0]
-  E := zbox 2
+  I_error := zbox 2
 def minkDiffNSSubtrahend : Zonotope (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]
   G := !![d 1 (-1), d 0 0; d 1 (-2), d 1 (-1)]
-  E := zbox 2
+  I_error := zbox 2
 def minkDiffNSOpt : Option (Zonotope (Vec D 2)) :=
   let M : Mat D 3 2 := !![d 1 (-1), d 0 0; d 0 0, d 1 (-2); d 0 0, d 1 (-2)]
   minkDiffNSMinuend.minkDiffRep minkDiffNSSubtrahend (fun i j => M i j) (d 1 (-1))
@@ -513,7 +513,7 @@ def hpMapR0 : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 (-4), d 0 0; d 0 0, d 1 (-4)]
-  E := zbox 2
+  I_error := zbox 2
 def hpMapRun : Option (Zonotope (Vec D 2)) :=
   hpMapLoc.guardIntersectHyperplaneMapFloat hpNormal (d 1 0) hpMapR0 (d 1 (-3)) 2 10 10 20
 
@@ -718,7 +718,7 @@ def Zbig : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 0, d 0 0; d 0 0, d 1 0]
-  E := zbox 2
+  I_error := zbox 2
 
 def dominantDirectionsRun : Option (Mat D 2 2) := Z.dominantDirections
 def filterOutRun : List (Fin 2) :=
@@ -819,7 +819,7 @@ def nnContrUnionRun : Option (List (Zonotope (Vec D 2))) :=
 #eval mtimesIntervalMatRun.inf 0
 #eval mtimesIntervalMatRun.sup 0
 #eval mtimesIntervalMatZonoRun.c 0
-#eval mtimesIntervalMatZonoRun.E.sup 0
+#eval mtimesIntervalMatZonoRun.I_error.sup 0
 
 -- The step matrices (#1, phase 3): an admissible order, then one entry of each box.
 #eval stepOrderRun
@@ -871,8 +871,8 @@ def nnContrUnionRun : Option (List (Zonotope (Vec D 2))) :=
 -- Matrix zonotopes in floats (#1): `e^{rA}`'s enclosure, then a sampled reach and an input set.
 #eval mzExpRun.h
 #eval mzExpRun.c 0 0
-#eval mzExpRun.E.inf 0 0
-#eval mzExpRun.E.sup 0 0
+#eval mzExpRun.I_error.inf 0 0
+#eval mzExpRun.I_error.sup 0 0
 #eval ctSysMZ.A.c 0 0
 #eval ctMZReachRun.h
 #eval ctMZReachRun.c 0
@@ -1307,7 +1307,7 @@ def backW : Zonotope (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]
   G := !![d 1 (-8), d 0 0; d 0 0, d 1 (-8)]
-  E := zbox 2
+  I_error := zbox 2
 
 def backBx : Interval (Vec D 2) := Z.interval
 def backInitRun : Option (LinearSys.MaxBackReachStateFloat D 2) :=
@@ -1359,7 +1359,7 @@ def cZ_eqs : ConZonotope D (Vec D 2) where
   G := ![![d 1 0, d 0 0], ![d 0 0, d 1 0], ![d 1 (-1), d 1 (-1)], ![d 1 (-2), d (-1) (-1)]]
   P := { m := 1, A := ![![d 1 0, d 0 0, d 0 0, d 0 0]], b := ![d 1 (-1)],
          me := 1, Ae := ![![d 0 0, d 0 0, d 1 0, d 1 0]], be := zbox 1 }
-  E := zbox 2
+  I_error := zbox 2
 
 def cZ_reduceLift : ConZonotope D (Vec D 2) := cZ_eqs.reduceLift 1
 
@@ -1428,7 +1428,7 @@ def pZinner : PolyZonotope (Vec D 2) where
   G := ![![d 2 0, d 0 0], ![d 0 0, d 2 0], ![d 2 0, d 2 0]]
   E := ![![1, 0, 3], ![0, 1, 1]]
   GI := ![![d 1 (-1), d 0 0]]
-  err := zbox 2
+  I_error := zbox 2
 -- the inner boxes, the point and the box
 def pZ_innerApprox : List (Zonotope (Vec D 2)) :=
   PolyZonotope.innerApprox pZinner (d 1 (-3)) (fun M => Zonotope.basisInverse M) 20 6

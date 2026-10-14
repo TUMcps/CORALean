@@ -52,7 +52,7 @@ def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonot
     fun _ : Fin 1 => fun i => half (subDown (cZ₁.c i) (cZ₂.c i))
   P := ((cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).intersection
     (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)))
-  E := (cZ₁.E.linComb cZ₂.E).plus
+  I_error := (cZ₁.I_error.linComb cZ₂.I_error).plus
     ((Zonotope.midpointResidual cZ₁.c cZ₂.c).plus
       (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)))
 

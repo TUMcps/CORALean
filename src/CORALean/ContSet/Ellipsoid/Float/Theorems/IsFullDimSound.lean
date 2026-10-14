@@ -94,7 +94,7 @@ theorem Ellipsoid.isFullDim_sound {E : Ellipsoid 𝕋 n} {H : Mat 𝕋 E.k n}
     exact this
   -- an interior point of the nominal ellipsoid, moved by a member of the box
   obtain ⟨x, hx⟩ := (CORALean.Real.Ellipsoid.isFullDim_iff (nominal E)).mpr hrank
-  have he : (fun i => toReal (E.err.inf i)) ∈ E.err.construct := fun i =>
+  have he : (fun i => toReal (E.I_error.inf i)) ∈ E.I_error.construct := fun i =>
     ⟨le_refl _, toReal_le_of_le (h i).2⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx he)⟩
 

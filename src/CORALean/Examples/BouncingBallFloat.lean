@@ -77,7 +77,7 @@ def R0 : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 (-4), d 0 0; d 0 0, d 1 (-4)]
-  E := ⟨![d 0 0, d 0 0], ![d 0 0, d 0 0]⟩
+  I_error := ⟨![d 0 0, d 0 0], ![d 0 0, d 0 0]⟩
 
 /-- Steps of `1/32`, four Taylor terms, zonotope order `10`. -/
 def options : LinearSys.ReachOptions D := ⟨d 1 (-5), 4, 10⟩

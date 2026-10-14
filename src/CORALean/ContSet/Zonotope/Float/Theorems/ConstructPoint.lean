@@ -43,8 +43,8 @@ theorem Zonotope.construct_point (c : Vec 𝕋 n) :
     rw [h]
     exact Set.ext fun x =>
       (Real.Zonotope.mem_ofPoint_iff (toRealVec c) x).trans Set.mem_singleton_iff.symm
-  have hE : (Zonotope.point c).E.construct = {0} := Interval.origin_exact n
-  show InflatedContSet.nominalSet (Zonotope.point c) + (Zonotope.point c).E.construct = _
+  have hE : (Zonotope.point c).I_error.construct = {0} := Interval.origin_exact n
+  show InflatedContSet.nominalSet (Zonotope.point c) + (Zonotope.point c).I_error.construct = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

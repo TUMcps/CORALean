@@ -109,7 +109,7 @@ def HPolytope.conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec
   c := Z.c
   G := Z.G
   P := P.onCoefficients Z
-  E := Z.E
+  I_error := Z.I_error
 
 -- the coefficients meet the carried rows because the widening covers the carrying error
 theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n))

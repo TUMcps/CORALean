@@ -29,7 +29,7 @@ of its own.
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   10-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,8 +49,7 @@ structure ConZonotope (𝕋 α : Type) where
   c : α
   G : Fin h → α
   P : HPolytope 𝕋 (Vec 𝕋 h)
-  E : Interval α
-
+  I_error : Interval α
 
 /-- The exact constrained zonotope the stored floats describe, read through `RealImage`. -/
 protected abbrev ConZonotope.nominal {α β : Type} [RealImage α β] [SoundFloatArithmetic 𝕋]
@@ -60,33 +59,12 @@ protected abbrev ConZonotope.nominal {α β : Type} [RealImage α β] [SoundFloa
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
     InflatedContSet (ConZonotope 𝕋 α) (CORALean.Real.ConZonotope β) α β where
   nominal := ConZonotope.nominal
-  error cZ := cZ.E
+  I_error cZ := cZ.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev ConZonotope.construct [SoundFloatArithmetic 𝕋] (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Set (Vec ℝ n) :=
   InflatedContSet.construct cZ
-
-/-! ## Storage
-
-Every field is a function type, so the representation an operation returns is a
-closure over the one it was given. `materialise` stores them and `materialise_eq`
-says it is the identity; `Global/Tensor` says why the vectors are built here. The
-constraint polytope goes through its own `materialise`. -/
-
-def ConZonotope.materialise (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
-  let c : Vector 𝕋 n := Vector.ofFn cZ.c
-  let G : Vector (Vector 𝕋 n) cZ.h := Vector.ofFn fun j => Vector.ofFn (cZ.G j)
-  { h := cZ.h
-    c := fun i => c[i.val]'i.isLt
-    G := fun j i => (G[j.val]'j.isLt)[i.val]'i.isLt
-    P := cZ.P.materialise
-    E := cZ.E.materialise }
-
-omit [FloatOps 𝕋] in
-@[simp] theorem ConZonotope.materialise_eq (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    cZ.materialise = cZ := by
-  simp [ConZonotope.materialise]
 
 end CORALean.Float
 

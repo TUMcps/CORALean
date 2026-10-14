@@ -26,6 +26,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotop
 public import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Shrink
 public import CORALean.ContSet.ZonoBundle.Float.Operations.EncloseTight
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Materialise
 
 /-!
 # What a float zonotope bundle computes, collected

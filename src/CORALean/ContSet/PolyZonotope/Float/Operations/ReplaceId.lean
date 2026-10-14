@@ -37,7 +37,7 @@ def PolyZonotope.replaceId (pZ : PolyZonotope (Vec 𝕋 n)) {p' : ℕ} (f : Fin 
   G := pZ.G
   E := fun k' i => ∑ k ∈ Finset.univ.filter (fun k => f k = k'), pZ.E k i
   GI := pZ.GI
-  err := pZ.err
+  I_error := pZ.I_error
 
 end CORALean.Float
 

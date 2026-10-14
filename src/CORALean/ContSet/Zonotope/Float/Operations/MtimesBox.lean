@@ -42,7 +42,7 @@ def Zonotope.mtimesBox (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) : Interval
   (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => zero⟩ :
       Interval (Vec 𝕋 m)).plus
     ((Zonotope.generatorError (matMulDiff M fun i j => Z.G j i)).plus
-      (Zonotope.mtimes M Z).E)
+      (Zonotope.mtimes M Z).I_error)
 
 end CORALean.Float
 

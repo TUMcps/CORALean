@@ -54,7 +54,7 @@ def summary {𝕋 : Type} [FloatOps 𝕋] (toF : 𝕋 → Float) (Z : Zonotope (
     ℕ × List String × List String :=
   let I := Z.interval
   (Z.h, List.ofFn fun i => sci ((toF (I.sup i) - toF (I.inf i)) / 2),
-    List.ofFn fun i => sci (toF (Z.E.sup i) - toF (Z.E.inf i)))
+    List.ofFn fun i => sci (toF (Z.I_error.sup i) - toF (Z.I_error.inf i)))
 
 
 /-! ## At `Dyadic 64` -/
@@ -65,7 +65,7 @@ def X₀D : Zonotope (Vec (Dyadic 64) 2) where
   h := 2
   c := ![d 1 0, d 0 0]
   G := !![d 1 (-4), d 0 0; d 0 0, d 1 (-4)]
-  E := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
+  I_error := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 def ΔtD : Dyadic 64 := d 1 (-6)
 
@@ -103,7 +103,7 @@ def X₀F : Zonotope (Vec Float 2) where
   h := 2
   c := ![1.0, 0.0]
   G := !![0.0625, 0.0; 0.0, 0.0625]
-  E := ⟨fun _ => 0.0, fun _ => 0.0⟩
+  I_error := ⟨fun _ => 0.0, fun _ => 0.0⟩
 
 def ΔtF : Float := 0.015625
 

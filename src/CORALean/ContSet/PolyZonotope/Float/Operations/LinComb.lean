@@ -61,7 +61,7 @@ def PolyZonotope.linComb (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : PolyZonotop
           (fun _ : Fin 1 => PolyZonotope.halfDiff pZ₁.c pZ₂.c))
   E := Real.PolyZonotope.linCombE pZ₁.E pZ₂.E
   GI := fun j i => PolyZonotope.linCombGI addDown subDown pZ₁ pZ₂ i j
-  err := (pZ₁.err.linComb pZ₂.err).plus
+  I_error := (pZ₁.I_error.linComb pZ₂.I_error).plus
     ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).plus
       ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).plus
         (Zonotope.generatorError (PolyZonotope.linCombGIDiff pZ₁ pZ₂))))

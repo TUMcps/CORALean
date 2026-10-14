@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ConPolyZono.getSubset_point_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p)
     (cen rad : 𝕋) (a : Fin cPZ.p → ℝ) (ha : ∀ k, |a k| ≤ 1)
     (hsat : cPZ.satisfies (Function.update a k (toReal cen + toReal rad * a k))) :
-    (cPZ.getSubset k cen rad).satisfies a ∧ ∀ e ∈ cPZ.err.construct,
-      ∃ e' ∈ (cPZ.getSubset k cen rad).err.construct, ∀ i,
+    (cPZ.getSubset k cen rad).satisfies a ∧ ∀ e ∈ cPZ.I_error.construct,
+      ∃ e' ∈ (cPZ.getSubset k cen rad).I_error.construct, ∀ i,
         (∑ l, toReal ((cPZ.getSubset k cen rad).G l i)
           * Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).E a l) + e' i
         = (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E
@@ -63,8 +63,8 @@ theorem ConPolyZono.getSubset_point_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
         (Real.PolyZonotope.getSubsetE (nominal cPZ.toPolyZonotope) k) a l) + e i, ?_, ?_⟩
   · -- the sum of the two boxes' points is a point of the interval sum
     intro i
-    have h₁ : toReal (cPZ.toPolyZonotope.err.inf i) ≤ e i := (he i).1
-    have h₂ : e i ≤ toReal (cPZ.toPolyZonotope.err.sup i) := (he i).2
+    have h₁ : toReal (cPZ.toPolyZonotope.I_error.inf i) ≤ e i := (he i).1
+    have h₂ : e i ≤ toReal (cPZ.toPolyZonotope.I_error.sup i) := (he i).2
     -- the generator rounding's point, within its own box
     have h₃ : toReal ((PolyZonotope.generatorError
           (cPZ.toPolyZonotope.getSubsetGDiff k cen rad)).inf i) ≤

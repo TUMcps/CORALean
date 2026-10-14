@@ -1,17 +1,18 @@
 module
 
-public import CORALean.Global.Float.ToRat
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.Basic
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.DivDownLeDiv
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeDivUp
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeRoundUp
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.RoundDownLe
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactAdd
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactMul
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealHalf
-public import CORALean.Global.Float.Instances.FixedPoint.Theorems.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMaximum
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMinimum
+public import CORALean.Global.Float.ToRat
 
 @[expose] public section
 

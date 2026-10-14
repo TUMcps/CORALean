@@ -1,11 +1,12 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
-public import CORALean.ContSet.SpectraShadow.Float.Operations.SingletonOne
-public import CORALean.ContSet.SpectraShadow.Float.Operations.HyperplaneOne
 public import CORALean.ContSet.SpectraShadow.Float.Operations.CartProd
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
+public import CORALean.ContSet.SpectraShadow.Float.Operations.HyperplaneOne
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Inter
+public import CORALean.ContSet.SpectraShadow.Float.Operations.Materialise
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Project
+public import CORALean.ContSet.SpectraShadow.Float.Operations.SingletonOne
 
 @[expose] public section
 

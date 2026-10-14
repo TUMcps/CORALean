@@ -41,7 +41,7 @@ def LinearSys.inputTermBoxFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (U : Zonotop
     Zonotope (Vec 𝕋 n) :=
   let T := MatExp.intervalInputTerm (Interval.point sys.A) r i      -- [Tᵢ]
   Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])  -- [Tᵢ] E
-    T U.E.zonotope ⊞
+    T U.I_error.zonotope ⊞
     (Zonotope.mtimesIntervalMatBox T U).zonotope                    -- [Tᵢ] U beyond Tᵢ U
 
 end CORALean

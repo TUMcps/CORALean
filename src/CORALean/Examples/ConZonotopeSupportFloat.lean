@@ -41,7 +41,7 @@ def square (P : HPolytope D (Vec D 2)) : ConZonotope D (Vec D 2) where
   c := ![d 0 0, d 0 0]
   G := ![![d 1 0, d 0 0], ![d 0 0, d 1 0]]
   P := P
-  E := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
+  I_error := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 /-- `β₁ + β₂ = 0`, an equality row with a point interval as its right-hand side:
 the segment `{(t, -t)}`. -/

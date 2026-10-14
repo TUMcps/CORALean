@@ -1,10 +1,11 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
-public import CORALean.Global.Float.ToRat
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.IEEE.Theorems.Basic
 public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMaximum
 public import CORALean.Global.Float.Instances.IEEE.Theorems.ToRealMinimum
+public import CORALean.Global.Float.ToRat
 
 @[expose] public section
 

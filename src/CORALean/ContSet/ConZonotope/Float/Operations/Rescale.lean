@@ -70,7 +70,8 @@ def ConZonotope.rescale (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU : Vec 𝕋
         Ae := fun k j => mulDown (cZ.P.Ae k j) (ξr j)
         be := ⟨fun k => subDown (subDown (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm)) (sumUp (gapAe k)),
                fun k => addUp (subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm)) (sumUp (gapAe k))⟩ }
-    E := (cZ.E.plus (Interval.residual cLo cHi cLo)).plus (Zonotope.generatorError gapG) }
+    I_error := (cZ.I_error.plus (Interval.residual cLo cHi cLo)).plus
+        (Zonotope.generatorError gapG) }
 
 end CORALean.Float
 

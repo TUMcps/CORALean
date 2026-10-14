@@ -33,7 +33,7 @@ def Zonotope.reindex (e : Fin m ≃ Fin n) (Z : Zonotope (Vec 𝕋 n)) : Zonotop
   h := Z.h
   c := fun i => Z.c (e i)
   G := fun j i => Z.G j (e i)
-  E := Z.E.reindex e
+  I_error := Z.I_error.reindex e
 
 end CORALean.Float
 

@@ -54,7 +54,7 @@ def Zonotope.reduceMethC (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : Zonotope (Vec �
       { h := n
         c := Z.c
         G := fun k i => mulDown ρ (P i k)
-        E := Z.E.plus (Zonotope.generatorError fun i k =>
+        I_error := Z.I_error.plus (Zonotope.generatorError fun i k =>
           subUp (mulUp ρ (P i k)) (mulDown ρ (P i k))) }
     else Z
   else Z

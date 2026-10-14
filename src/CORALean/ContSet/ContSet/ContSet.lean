@@ -80,14 +80,9 @@ open ContSet
 instance (priority := low) {S α : Type} [ContSet S α] : Membership α S :=
   ⟨fun s x => x ∈ construct s⟩
 
-theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
-    x ∈ s ↔ x ∈ construct s := Iff.rfl
-
 /-- A plain set denotes itself: what lets a specification or a guarantee stated at
 a representation take a set with no representation at all. -/
 instance {α : Type} : ContSet (Set α) α := ⟨id⟩
-
-@[simp] theorem ContSet.construct_set {α : Type} (X : Set α) : construct X = X := rfl
 
 open Scalar
 
@@ -95,9 +90,6 @@ open Scalar
 statement about a set of matrices cover the plain one. -/
 instance {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} : ContSet (Mat 𝕋 m n) (Mat ℝ m n) where
   construct M := {toRealMat M}
-
-@[simp] theorem ContSet.construct_mat {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} (M : Mat 𝕋 m n) :
-    construct M = {toRealMat M} := rfl
 
 /-- The set of linear maps `α → β` that `M` denotes. `α` is an input and only
 `β` an `outParam`, so one matrix type acts on several ambient types, the
@@ -124,9 +116,6 @@ def matMulBilin {p q r : ℕ} : Mat ℝ p q →ₗ[ℝ] Mat ℝ q r →ₗ[ℝ] 
   toFun := matMulLeft
   map_add' A B := LinearMap.ext fun C => Matrix.add_mul A B C
   map_smul' c A := LinearMap.ext fun C => Matrix.smul_mul c A C
-
-@[simp] theorem matMulBilin_apply {p q r : ℕ} (A : Mat ℝ p q) (B : Mat ℝ q r) :
-    matMulBilin A B = A * B := rfl
 
 /-- A matrix acting on vectors. -/
 instance {𝕋 : Type} [Scalar 𝕋] {p q : ℕ} : LinMapSet (Mat 𝕋 p q) (Vec ℝ q) (Vec ℝ p) where

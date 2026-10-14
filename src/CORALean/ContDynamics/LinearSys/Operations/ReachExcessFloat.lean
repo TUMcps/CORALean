@@ -41,7 +41,7 @@ error box, then the previous excess through `[e^{AΔt}]`, each step's float exce
 reduction's box. -/
 def LinearSys.reachExcessFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec 𝕋 n)) : ℕ → Zonotope (Vec 𝕋 n)
-  | 0 => R₀.E.zonotope                                              -- E(R₀)
+  | 0 => R₀.I_error.zonotope                                              -- E(R₀)
   | j + 1 =>
     let eAΔt := sys.expIntervalFloat Δt Δt η                        -- [e^{AΔt}]
     let P := sys.inputSolutionFloat Δt η U                          -- the input set, in floats

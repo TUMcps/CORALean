@@ -42,7 +42,7 @@ def ConPolyZono.empty (n : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   A := fun _ j => j.elim0
   b := ⟨fun _ => one, fun _ => zero⟩
   EC := fun i => i.elim0
-  err := Interval.origin n
+  I_error := Interval.origin n
 
 end CORALean.Float
 

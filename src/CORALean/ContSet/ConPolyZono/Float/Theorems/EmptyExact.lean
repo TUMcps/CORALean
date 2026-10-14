@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Empty
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -47,7 +48,7 @@ theorem ConPolyZono.empty_exact (n : ℕ) :
     rw [hs] at h₂
     linarith
   show InflatedContSet.nominalSet (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n))
-      + (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n)).err.construct = _
+      + (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.construct = _
   rw [hN, Set.empty_add]
 
 end CORALean.Float

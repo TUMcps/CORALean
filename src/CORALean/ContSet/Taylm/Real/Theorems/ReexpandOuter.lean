@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Reexpand
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfReexpTerms
 public import Mathlib.Tactic.Linarith
 

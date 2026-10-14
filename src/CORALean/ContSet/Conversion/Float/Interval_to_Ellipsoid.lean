@@ -49,7 +49,7 @@ def Interval.ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 
   k := n
   q := I.center
   G := I.ellipsoidG σ
-  err := ⟨fun _ => zero, fun _ => zero⟩
+  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 open SoundFloatArithmetic InflatedContSet
 

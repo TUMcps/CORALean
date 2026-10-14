@@ -45,7 +45,7 @@ def PolyZonotope.addedTerms (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec
   E := fun k idx => Fin.addCases (fun k' => PolyZonotope.extE pZ k' (finProdFinEquiv.symm idx).2)
     (fun j => if j = (finProdFinEquiv.symm idx).1 then 1 else 0) k
   GI := Fin.elim0
-  err := Interval.point fun _ => zero
+  I_error := Interval.point fun _ => zero
 
 end CORALean.Float
 

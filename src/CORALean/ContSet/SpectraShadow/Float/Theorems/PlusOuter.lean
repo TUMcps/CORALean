@@ -104,9 +104,10 @@ theorem SpectraShadow.aux_plus_nominal (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
 theorem SpectraShadow.aux_plus_error (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    S₁.E.construct + S₂.E.construct + (SpectraShadow.centerResidual S₁.c S₂.c).construct ⊆
-      (S₁.plus S₂).E.construct :=
-  subset_trans (Set.add_subset_add_right (Interval.plus_outer S₁.E S₂.E))
+    S₁.I_error.construct + S₂.I_error.construct +
+        (SpectraShadow.centerResidual S₁.c S₂.c).construct ⊆
+      (S₁.plus S₂).I_error.construct :=
+  subset_trans (Set.add_subset_add_right (Interval.plus_outer S₁.I_error S₂.I_error))
     (Interval.plus_outer _ _)
 
 

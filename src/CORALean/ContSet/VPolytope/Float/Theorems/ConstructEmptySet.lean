@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Float.Operations.EmptySet
+public import CORALean.ContSet.VPolytope.Float.Theorems.NominalEq
 public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
 
 @[expose] public section
@@ -42,7 +43,7 @@ theorem VPolytope.construct_emptySet : (VPolytope.emptySet 𝕋 n).construct = �
     rw [h]
     exact Real.VPolytope.construct_emptySet
   show InflatedContSet.nominalSet (VPolytope.emptySet 𝕋 n)
-      + (VPolytope.emptySet 𝕋 n).E.construct = _
+      + (VPolytope.emptySet 𝕋 n).I_error.construct = _
   rw [hN, Set.empty_add]
 
 end CORALean.Float

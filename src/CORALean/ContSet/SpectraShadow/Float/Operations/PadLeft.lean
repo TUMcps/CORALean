@@ -37,7 +37,7 @@ def SpectraShadow.padLeft (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (m : ℕ) : Spec
   A := S.A
   c := Fin.append S.c fun _ => zero
   G := fun j => Fin.append (S.G j) fun _ : Fin m => zero
-  E := ⟨Fin.append S.E.inf fun _ => zero, Fin.append S.E.sup fun _ => zero⟩
+  I_error := ⟨Fin.append S.I_error.inf fun _ => zero, Fin.append S.I_error.sup fun _ => zero⟩
 
 end CORALean.Float
 

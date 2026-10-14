@@ -37,7 +37,7 @@ def Zonotope.projectHighDim_ (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) (proj : Fin n
   c := fun j => if h : ∃ k, proj k = j then Z.c (Fin.find (fun k => proj k = j) h) else zero
   G := fun l j =>
     if h : ∃ k, proj k = j then Z.G l (Fin.find (fun k => proj k = j) h) else zero
-  E := Z.E.projectHighDim_ N proj
+  I_error := Z.I_error.projectHighDim_ N proj
 
 end CORALean.Float
 

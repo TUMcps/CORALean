@@ -44,9 +44,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q r : ℕ}
 /-- The merged block covers the absorbed generators and the box together. -/
 theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h} {e : Vec ℝ n}
-    (hβ : ∀ j, |β j| ≤ 1) (he : e ∈ Z.E.construct) (i : Fin n) :
+    (hβ : ∀ j, |β j| ≤ 1) (he : e ∈ Z.I_error.construct) (i : Fin n) :
     |(∑ l, toReal (Z.G (part.right l) i) * β (part.right l))
-        + (e i - (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2)|
+        + (e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2)|
       ≤ toReal (addUp (radius (fun i l => Z.G (part.right l) i) i) (Z.errorRadius i)) := by
   have hgen := Zonotope.abs_absorbed_le_radius Z part hβ i
   have hbox := Zonotope.abs_sub_mid_le_errorRadius Z he i
@@ -81,9 +81,9 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
                       (toReal (addUp (radius (fun i l => Z.G (part.right l) i) i)
                         (Z.errorRadius i)))
                       ((∑ l, toReal (Z.G (part.right l) i) * β (part.right l))
-                        + (e i - (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2))) j,
+                        + (e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2))) j,
           Zonotope.mem_nominalSet_iff.mpr ⟨_, ?_, fun _ => rfl⟩,
-          fun i => toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2
+          fun i => toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2
             - toReal (Z.shiftDown i), ?_, ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)
     · simpa using hβ (part.left l)
@@ -99,8 +99,8 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
                   (toReal (addUp (radius (fun i l => Z.G (part.right l) i) i)
                     (Z.errorRadius i)))
                   ((∑ l, toReal (Z.G (part.right l) i) * β (part.right l))
-                    + (e i - (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2))) j
-        + (toReal (Z.c i) + (toReal (Z.E.inf i) + toReal (Z.E.sup i)) / 2
+                    + (e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2))) j
+        + (toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2
             - toReal (Z.shiftDown i))
       = z i + e i
     -- the dropped generators and the recentred box come back out of the diagonal block

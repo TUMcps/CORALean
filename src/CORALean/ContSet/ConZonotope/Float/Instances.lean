@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContSet.ConZonotope.Float.Operations.Materialise
+public import CORALean.ContSet.ConZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesIntervalMatOuter

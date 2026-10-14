@@ -66,10 +66,10 @@ theorem SpectraShadow.padLeft_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (m : �
       exact le_of_eq (Real.SpectraShadow.map_exact _ _))
     (by
       rintro _ ⟨e, he, rfl⟩ i
-      show toReal ((Fin.append S.E.inf fun _ => zero) i) ≤ (Fin.append e 0) i
-        ∧ (Fin.append e 0) i ≤ toReal ((Fin.append S.E.sup fun _ => zero) i)
+      show toReal ((Fin.append S.I_error.inf fun _ => zero) i) ≤ (Fin.append e 0) i
+        ∧ (Fin.append e 0) i ≤ toReal ((Fin.append S.I_error.sup fun _ => zero) i)
       refine Fin.addCases (fun j => ?_) (fun j => ?_) i
-      · have h : toReal (S.E.inf j) ≤ e j ∧ e j ≤ toReal (S.E.sup j) := he j
+      · have h : toReal (S.I_error.inf j) ≤ e j ∧ e j ≤ toReal (S.I_error.sup j) := he j
         simpa using h
       · simp [toReal_zero])
 

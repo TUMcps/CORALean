@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Taylm.Float.Taylm
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 
@@ -48,7 +50,7 @@ def Taylm.polyZonotope (T : Fin m → Taylm 𝕋 n) : PolyZonotope (Vec 𝕋 m) 
     else zero
   E := fun k j => ((Taylm.aux_allTerms T).get j).2.2 k
   GI := Fin.elim0
-  err := ⟨fun i => (T i).remInf, fun i => (T i).remSup⟩
+  I_error := ⟨fun i => (T i).remInf, fun i => (T i).remSup⟩
 
 variable [SoundFloatArithmetic 𝕋]
 

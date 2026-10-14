@@ -104,12 +104,12 @@ theorem SpectraShadow.cone_outer (hN : 0 < N) (T : SpectraShadow 𝕋 (Vec 𝕋 
     rcases hz with rfl | ⟨s, hs, x, hx, rfl⟩
     · exact Or.inl rfl
     · exact Or.inr ⟨s, hs, x, T.construct_subset_absorb hx, rfl⟩
-  have hE : T.cone.E.construct = {0} := Interval.origin_exact N
+  have hE : T.cone.I_error.construct = {0} := Interval.origin_exact N
   refine ⟨z, hnom, 0, ?_, add_zero z⟩
-  rw [show T.cone.E = Interval.origin N from rfl] at hE
+  rw [show T.cone.I_error = Interval.origin N from rfl] at hE
   exact (by
-    rw [InflatedContSet.error]
-    exact hE ▸ rfl : (0 : Vec ℝ N) ∈ (InflatedContSet.error T.cone).construct)
+    rw [InflatedContSet.I_error]
+    exact hE ▸ rfl : (0 : Vec ℝ N) ∈ (InflatedContSet.I_error T.cone).construct)
 
 end CORALean.Float
 

@@ -45,7 +45,7 @@ def PolyZonotope.bilin (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope 
   G := fun l i => PolyZonotope.bilinGDown Q pZ₁ pZ₂ i l
   E := PolyZonotope.bilinE pZ₁ pZ₂ hp
   GI := Fin.elim0
-  err := PolyZonotope.generatorError (PolyZonotope.bilinGDiff Q pZ₁ pZ₂)
+  I_error := PolyZonotope.generatorError (PolyZonotope.bilinGDiff Q pZ₁ pZ₂)
 
 end CORALean.Float
 

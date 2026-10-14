@@ -1,5 +1,7 @@
 import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
+import CORALean.ContSet.Zonotope.Float.Operations.Materialise
+import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 import CORALean.Examples.Oracle.Dtype
 
 /-!
@@ -56,7 +58,7 @@ hi_i` -- see the module docstring for why `[lo_i,hi_i] ⊆ [-r_i,r_i]`. `none` a
 `[0,0]`, so a zero generator is never appended. -/
 def aux_foldRow {n : ℕ} (dops : DtypeOps 𝕋) (Zp : Zonotope (Vec 𝕋 n)) (i : Fin n) :
     Option (Fin n × 𝕋) :=
-  let r := FloatOps.maximum (FloatOps.neg (Zp.E.inf i)) (Zp.E.sup i)
+  let r := FloatOps.maximum (FloatOps.neg (Zp.I_error.inf i)) (Zp.I_error.sup i)
   if aux_isZeroT dops r then none else some (i, r)
 
 def handleEnclosure (dops : DtypeOps 𝕋) (req : Json) :
@@ -72,7 +74,7 @@ def handleEnclosure (dops : DtypeOps 𝕋) (req : Json) :
       let (row, val) := newCols.getD (l.val - h') (i, FloatOps.zero)
       if row = i then val else FloatOps.zero
   let Z' : Zonotope (Vec 𝕋 n) :=
-    { h := hFinal, c := Zp.c, G := G, E := ⟨fun _ => FloatOps.zero, fun _ => FloatOps.zero⟩ }
+    { h := hFinal, c := Zp.c, G := G, I_error := ⟨fun _ => FloatOps.zero, fun _ => FloatOps.zero⟩ }
   pure [("Z", printZonotope dops.showExact Z')]
 
 end CORALean.Oracle

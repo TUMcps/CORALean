@@ -1,15 +1,16 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMem
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

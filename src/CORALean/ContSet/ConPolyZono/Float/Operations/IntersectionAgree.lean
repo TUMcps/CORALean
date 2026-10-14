@@ -33,8 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 the difference of the two centres, widened by how far the two error boxes let
 the nominal points stand apart, each end rounded outward. -/
 def ConPolyZono.intersectionAgree (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
-  ⟨fun i => addDown (subDown (cPZ₂.c i) (cPZ₁.c i)) (subDown (cPZ₂.err.inf i) (cPZ₁.err.sup i)),
-   fun i => addUp (subUp (cPZ₂.c i) (cPZ₁.c i)) (subUp (cPZ₂.err.sup i) (cPZ₁.err.inf i))⟩
+  ⟨fun i => addDown (subDown (cPZ₂.c i) (cPZ₁.c i))
+      (subDown (cPZ₂.I_error.inf i) (cPZ₁.I_error.sup i)),
+   fun i => addUp (subUp (cPZ₂.c i) (cPZ₁.c i)) (subUp (cPZ₂.I_error.sup i) (cPZ₁.I_error.inf i))⟩
 
 end CORALean.Float
 

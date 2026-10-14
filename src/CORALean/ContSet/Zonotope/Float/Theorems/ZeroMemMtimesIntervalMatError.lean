@@ -38,15 +38,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 matrix `A`. -/
 theorem Zonotope.zero_mem_mtimesIntervalMat_error {IM : Interval (Mat 𝕋 m n)}
     {Z : Zonotope (Vec 𝕋 n)}
-    {A : Mat ℝ m n} (hA : A ∈ IM.construct) (h : (0 : Vec ℝ n) ∈ Z.E.construct) :
-    (0 : Vec ℝ m) ∈ (Zonotope.mtimesIntervalMat IM Z).E.construct := by -- --- PROOF ---
+    {A : Mat ℝ m n} (hA : A ∈ IM.construct) (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) :
+    (0 : Vec ℝ m) ∈ (Zonotope.mtimesIntervalMat IM Z).I_error.construct := by -- --- PROOF ---
   set C := Interval.centreMat IM
   set Rs := Interval.matResidual IM.inf IM.sup C
   have hR : (fun i j => A i j - toReal (C i j)) ∈ Rs.construct :=
     Interval.sub_mem_matResidual fun i j => hA (i, j)
   -- the residual box times the error box holds `R 0 = 0`
-  have hRe : (0 : Vec ℝ m) ∈ (Interval.mtimesIntervalMat Rs Z.E).construct := by
-    have := Interval.mtimesIntervalMat_outer Rs Z.E (Set.mem_biUnion hR ⟨0, h, rfl⟩)
+  have hRe : (0 : Vec ℝ m) ∈ (Interval.mtimesIntervalMat Rs Z.I_error).construct := by
+    have := Interval.mtimesIntervalMat_outer Rs Z.I_error (Set.mem_biUnion hR ⟨0, h, rfl⟩)
     simpa only [Matrix.mulVec_zero] using this
   -- and so does the sum of the two boxes
   have h0 := Interval.plus_outer _ _

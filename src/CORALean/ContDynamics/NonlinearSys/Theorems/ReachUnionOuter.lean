@@ -8,6 +8,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTim
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.Interval.Real.Instances
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

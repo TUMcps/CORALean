@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.WithEmpty.WithEmpty
 public import CORALean.ContSet.WithEmpty.Instances
+public import CORALean.ContSet.WithEmpty.Theorems.API
 
 /-!
 # A representation or nothing, collected

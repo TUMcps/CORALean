@@ -57,7 +57,7 @@ def Interval.zonotope (I : Interval (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := n
   c := I.center
   G := diagonalBlock I.radiusFrom
-  E := ⟨fun _ => zero, fun _ => zero⟩
+  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 /-- The generators alone already cover the box, before the error box is even
 consulted — which is what lets a caller read off coefficients directly. -/

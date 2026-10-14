@@ -34,7 +34,7 @@ def PolyZonotope.supportBound (pZ : PolyZonotope (Vec 𝕋 n)) {c : Vec ℝ n �
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal pZ).subsetAt {a | ∀ k, |a k| ≤ 1}) c) :
     FloatBound 𝕋 pZ.construct c :=
-  boundOfParts (pZ.nominalSupportBound a hc u) (pZ.err.boundDot a hc)
+  boundOfParts (pZ.nominalSupportBound a hc u) (pZ.I_error.boundDot a hc)
 
 end CORALean.Float
 

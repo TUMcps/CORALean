@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- `(E.sup - E.inf) / 2` at dimension `i` -- the box's radius, half of
 `Output.csvRow`'s full-width `Eradius` column. -/
 def aux_eRadius (toD : 𝕋 → Float) (Z : Zonotope (Vec 𝕋 2)) (i : Fin 2) : Float :=
-  (toD (Z.E.sup i) - toD (Z.E.inf i)) / 2.0
+  (toD (Z.I_error.sup i) - toD (Z.I_error.inf i)) / 2.0
 
 /-- `Σ_j |G_ij|` at dimension `i` -- the nominal hull's half-width, CORA's own
 formula halved. -/
@@ -82,8 +82,8 @@ def aux_isBlowup (e : Float) : Bool := decide (e > 1.0) || aux_notFinite e
 
 /-- Whether any number `Z` stores is past the type's range: centre, generators, error box. -/
 def zonoOverflows (overflows : 𝕋 → Bool) (Z : Zonotope (Vec 𝕋 2)) : Bool :=
-  (List.finRange 2).any fun i => overflows (Z.c i) || overflows (Z.E.inf i) ||
-    overflows (Z.E.sup i) || (List.finRange Z.h).any fun j => overflows (Z.G j i)
+  (List.finRange 2).any fun i => overflows (Z.c i) || overflows (Z.I_error.inf i) ||
+    overflows (Z.I_error.sup i) || (List.finRange Z.h).any fun j => overflows (Z.G j i)
 
 /-- The first step whose set stores a value past the range, `none` if none does. -/
 def firstOverflowStep (overflows : 𝕋 → Bool) (steps : Array (Zonotope (Vec 𝕋 2))) : Option ℕ :=

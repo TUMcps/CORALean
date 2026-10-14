@@ -50,16 +50,16 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
   obtain ⟨p, hp, e₁, he₁, rfl⟩ := Set.mem_add.mp hx
   obtain ⟨β, hβ, hp'⟩ := Zonotope.mem_nominalSet_iff.mp hp
   -- the second error box's lower corner, and the real objects
-  have he₂ : (fun i => toReal (Z₂.E.inf i)) ∈ (error Z₂).construct := fun i =>
+  have he₂ : (fun i => toReal (Z₂.I_error.inf i)) ∈ (I_error Z₂).construct := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   -- every entry's leftover (centre residual, `G₁ - G₂ Γ`, error box) fits in `B`
-  have hres' : ∀ i, |toReal (Z₁.c i) - toReal (Z₂.E.inf i)
+  have hres' : ∀ i, |toReal (Z₁.c i) - toReal (Z₂.I_error.inf i)
         - (toReal (Z₂.c i) + (toRealMat (fun i j => Z₂.G j i) *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i)|
       + ∑ j, |(toRealMat (fun i j => Z₁.G j i)
           - toRealMat (fun i j => Z₂.G j i) * toRealMat (Z₂.stGamma Z₁ H)) i j|
       + |e₁ i| ≤ toReal (Zonotope.ballB H (Z₂.stDelta Z₁ H)) := by
     intro i
-    have a1 := Zonotope.entryDeviation_bound Z₁.c Z₂.E.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
+    have a1 := Zonotope.entryDeviation_bound Z₁.c Z₂.I_error.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
       (Z₂.pointHi (Z₂.stBeta Z₁ H)) i
       (Zonotope.point_between Z₂ (Z₂.stBeta Z₁ H) i).1
       (Zonotope.point_between Z₂ (Z₂.stBeta Z₁ H) i).2
@@ -69,16 +69,16 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
           (fun i j => Z₂.G j i) (Z₂.stGamma Z₁ H) i j) :=
       le_trans (Finset.sum_le_sum fun j _ => Zonotope.mulResidual_bound _ _ _ i j)
         (sum_le_sumUp _)
-    have a3 := Zonotope.abs_le_errBound Z₁.E he₁ i
+    have a3 := Zonotope.abs_le_errBound Z₁.I_error he₁ i
     -- the three terms, rounded up, add to at most `B`
     have a4 := toReal_le_of_le (hres i)
     simp only [Zonotope.stLeftover] at a4
-    have a5 := add_le_addUp (addUp (Zonotope.entryDeviation Z₁.c Z₂.E.inf
+    have a5 := add_le_addUp (addUp (Zonotope.entryDeviation Z₁.c Z₂.I_error.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
       (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
         (Z₂.stGamma Z₁ H) i j))
-      (Zonotope.errBound Z₁.E i)
-    have a6 := add_le_addUp (Zonotope.entryDeviation Z₁.c Z₂.E.inf
+      (Zonotope.errBound Z₁.I_error i)
+    have a6 := add_le_addUp (Zonotope.entryDeviation Z₁.c Z₂.I_error.inf
       (Z₂.pointLo (Z₂.stBeta Z₁ H)) (Z₂.pointHi (Z₂.stBeta Z₁ H)) i)
       (sumUp fun j => Zonotope.mulResidual (fun i j => Z₁.G j i) (fun i j => Z₂.G j i)
         (Z₂.stGamma Z₁ H) i j)
@@ -106,7 +106,7 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
   -- the real lemma gives coefficients for the second set
   obtain ⟨γ, hγ, hxγ⟩ := CORALean.Real.Zonotope.contains_via_reach (toRealMat (fun i j => Z₁.G j i))
     (toRealMat (fun i j => Z₂.G j i)) (toRealMat (Z₂.stGamma Z₁ H)) (toRealVec (Z₂.stBeta Z₁ H))
-    (toRealVec Z₁.c) (toRealVec Z₂.c) e₁ (fun i => toReal (Z₂.E.inf i))
+    (toRealVec Z₁.c) (toRealVec Z₂.c) e₁ (fun i => toReal (Z₂.I_error.inf i))
     (fun d hd => by
       obtain ⟨β', h1, h2⟩ := hreach d hd
       exact ⟨β', h1, h2⟩)

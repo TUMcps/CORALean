@@ -85,7 +85,7 @@ theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋
 
 theorem PolyZonotope.exactPlus_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁.p = pZ₂.p) :
     (Real.PolyZonotope.exactPlus (nominal pZ₁) (nominal pZ₂) hp).construct
-        + (pZ₁.err.construct + pZ₂.err.construct)
+        + (pZ₁.I_error.construct + pZ₂.I_error.construct)
       ⊆ (pZ₁.exactPlus pZ₂ hp).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨y', hy', r, hr, hyr⟩ := PolyZonotope.aux_exactPlus_nominal pZ₁ pZ₂ hp hy

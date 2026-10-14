@@ -34,7 +34,7 @@ variable [ContSet N (Vec ℝ n)] [InflatedContSet S N (Vec 𝕋 n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem convex_construct [ConvexSet N (Vec ℝ n)] (s : S) : Convex ℝ (construct s) :=
-  Convex.add (ConvexSet.convex_construct (nominal s)) (error s).nominal.convex_construct
+  Convex.add (ConvexSet.convex_construct (nominal s)) (I_error s).nominal.convex_construct
 
 end CORALean.Float.InflatedContSet
 

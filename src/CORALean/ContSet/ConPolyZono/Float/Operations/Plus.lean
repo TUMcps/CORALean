@@ -48,7 +48,7 @@ def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZo
   A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
   b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
   EC := Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC
-  err := (cPZ₁.err.plus cPZ₂.err).plus (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c)
+  I_error := (cPZ₁.I_error.plus cPZ₂.I_error).plus (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c)
 
 end CORALean.Float
 

@@ -51,7 +51,7 @@ def SpectraShadow.mtimes (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n)
       (fun i => blockDiag zero (fun _ _ => zero) (diagonalBlock (constraintPoint i)))
     c := fun _ => zero
     G := fun l r => Fin.append (fun _ : Fin S.m => zero) (fun i => M r i) l
-    E := Interval.mtimes M S.E }
+    I_error := Interval.mtimes M S.I_error }
 
 end CORALean.Float
 

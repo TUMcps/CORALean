@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContSet.VPolytope.Float.Operations.Materialise
+public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.VPolytope.Float.Theorems.MtimesOuter

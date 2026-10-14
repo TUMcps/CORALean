@@ -44,7 +44,7 @@ theorem Ellipsoid.representsa_point_sound {E : Ellipsoid 𝕋 n}
   have hN : InflatedContSet.nominalSet E = {toRealVec E.q} :=
     (Real.Ellipsoid.representsa_point_iff (InflatedContSet.nominal E)).2
       (Matrix.ext fun i j => hG0 i j)
-  show InflatedContSet.nominalSet E + E.err.construct = _
+  show InflatedContSet.nominalSet E + E.I_error.construct = _
   rw [hN, hv, Set.singleton_add_singleton]
 
 end CORALean.Float

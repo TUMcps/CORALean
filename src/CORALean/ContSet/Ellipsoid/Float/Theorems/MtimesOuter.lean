@@ -105,9 +105,9 @@ theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 theorem Ellipsoid.aux_mtimes_error (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
-    (toRealMat M *ᵥ ·) '' (error E).construct + (Ellipsoid.mtimesResidual M E).construct ⊆
-      (error (Ellipsoid.mtimes M E)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M E.err))
+    (toRealMat M *ᵥ ·) '' (I_error E).construct + (Ellipsoid.mtimesResidual M E).construct ⊆
+      (I_error (Ellipsoid.mtimes M E)).construct :=
+  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M E.I_error))
     (Interval.plus_outer _ _)
 
 

@@ -86,15 +86,15 @@ theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec �
 /-- The box absorbs the two incoming boxes, both centre roundings and the
 independent block's, exactly as for the unconstrained set. -/
 theorem ConPolyZono.aux_linComb_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    segments cPZ₁.err.construct cPZ₂.err.construct
+    segments cPZ₁.I_error.construct cPZ₂.I_error.construct
         + ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).construct
             + ((PolyZonotope.halfDiffError cPZ₁.c cPZ₂.c).construct
                 + (Zonotope.generatorError
                     (PolyZonotope.linCombGIDiff cPZ₁.polyZonotope
                       cPZ₂.polyZonotope)).construct))
-      ⊆ (cPZ₁.linComb cPZ₂).err.construct :=
+      ⊆ (cPZ₁.linComb cPZ₂).I_error.construct :=
   subset_trans
-    (Set.add_subset_add (Interval.linComb_outer cPZ₁.err cPZ₂.err)
+    (Set.add_subset_add (Interval.linComb_outer cPZ₁.I_error cPZ₂.I_error)
       (subset_trans (Set.add_subset_add_left (Interval.plus_outer _ _))
         (Interval.plus_outer _ _)))
     (Interval.plus_outer _ _)

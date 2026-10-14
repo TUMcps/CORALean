@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The result's box denotes the origin alone, so nothing is left outside its
 nominal set. -/
 theorem PolyZonotope.zero_mem_dependent_err (pZ : PolyZonotope (Vec 𝕋 n)) :
-    (0 : Vec ℝ n) ∈ (pZ.dependent.err).construct := fun i =>
+    (0 : Vec ℝ n) ∈ (pZ.dependent.I_error).construct := fun i =>
   ⟨le_of_eq (by rw [PolyZonotope.dependent]; exact toReal_zero),
    le_of_eq (by rw [PolyZonotope.dependent]; exact toReal_zero.symm)⟩
 

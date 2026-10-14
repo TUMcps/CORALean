@@ -1,6 +1,9 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfAppend
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import Mathlib.Algebra.BigOperators.Ring.Finset
 public import Mathlib.Data.Nat.Choose.Sum
 

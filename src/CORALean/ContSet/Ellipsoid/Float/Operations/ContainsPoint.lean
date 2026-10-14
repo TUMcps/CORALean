@@ -37,7 +37,7 @@ def Ellipsoid.containsPoint (E : Ellipsoid 𝕋 n) (p : Vec 𝕋 n) (u : Vec �
   let lo : Vec 𝕋 n := fun i => subDown (p i) (addUp (E.q i) (dotUp (fun j => E.G i j) u))
   let hi : Vec 𝕋 n := fun i => subUp (p i) (addDown (E.q i) (dotDown (fun j => E.G i j) u))
   le (sqSumUp fun j => absolute (u j)) one &&
-    (List.finRange n).all fun i => le (E.err.inf i) (lo i) && le (hi i) (E.err.sup i)
+    (List.finRange n).all fun i => le (E.I_error.inf i) (lo i) && le (hi i) (E.I_error.sup i)
 
 end CORALean.Float
 

@@ -33,13 +33,13 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Zonotope.interval (Z : Zonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
-  inf := fun i => addDown (subDown (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.E.inf i)
-  sup := fun i => addUp (addUp (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.E.sup i)
+  inf := fun i => addDown (subDown (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.I_error.inf i)
+  sup := fun i => addUp (addUp (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.I_error.sup i)
 
 def Zonotope.matInterval {m : ℕ} (Z : Zonotope (Mat 𝕋 m n)) : Interval (Mat 𝕋 m n) :=
   let r : Mat 𝕋 m n := fun i j => sumUp fun k => absolute (Z.G k i j)   -- Σ |G_k|
-  ⟨fun i j => addDown (subDown (Z.c i j) (r i j)) (Z.E.inf i j),
-   fun i j => addUp (addUp (Z.c i j) (r i j)) (Z.E.sup i j)⟩
+  ⟨fun i j => addDown (subDown (Z.c i j) (r i j)) (Z.I_error.inf i j),
+   fun i j => addUp (addUp (Z.c i j) (r i j)) (Z.I_error.sup i j)⟩
 
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
@@ -54,21 +54,23 @@ theorem Zonotope.interval_contains (Z : Zonotope (Vec 𝕋 n)) :
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hzmem
   have hgen := abs_sum_le_radius (d := fun i j => Z.G j i) (Δ := fun i j => toReal (Z.G j i))
     (fun _ _ => le_refl _) hβ i
-  have hlo : toReal (Z.E.inf i) ≤ e i := (he i).1
-  have hhi : e i ≤ toReal (Z.E.sup i) := (he i).2
+  have hlo : toReal (Z.I_error.inf i) ≤ e i := (he i).1
+  have hhi : e i ≤ toReal (Z.I_error.sup i) := (he i).2
   have hzi : z i = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * β j := hz i
   -- each face on its own, the two roundings going opposite ways
   constructor
-  · have h1 := addDown_le_add (subDown (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.E.inf i)
+  · have h1 := addDown_le_add (subDown (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.I_error.inf i)
     have h2 := subDown_le_sub (Z.c i) (radius (fun i j => Z.G j i) i)
     have h3 := neg_le_of_abs_le hgen
-    show toReal (addDown (subDown (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.E.inf i)) ≤ z i + e i
+    show toReal (addDown (subDown (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.I_error.inf i)) ≤ z i
+        + e i
     rw [hzi]
     linarith
-  · have h1 := add_le_addUp (addUp (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.E.sup i)
+  · have h1 := add_le_addUp (addUp (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.I_error.sup i)
     have h2 := add_le_addUp (Z.c i) (radius (fun i j => Z.G j i) i)
     have h3 := le_of_abs_le hgen
-    show z i + e i ≤ toReal (addUp (addUp (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.E.sup i))
+    show z i + e i ≤ toReal
+        (addUp (addUp (Z.c i) (radius (fun i j => Z.G j i) i)) (Z.I_error.sup i))
     rw [hzi]
     linarith
 
@@ -77,7 +79,7 @@ theorem Zonotope.matInterval_contains {m : ℕ} (Z : Zonotope (Mat 𝕋 m n)) :
   rintro _ ⟨a, ⟨β, hβ, ha⟩, e, he, rfl⟩
   show a + e ∈ _
   refine Interval.mem_mat_iff.mpr fun i j => ?_
-  have he' : toReal (Z.E.inf i j) ≤ e i j ∧ e i j ≤ toReal (Z.E.sup i j) :=
+  have he' : toReal (Z.I_error.inf i j) ≤ e i j ∧ e i j ≤ toReal (Z.I_error.sup i j) :=
     Interval.mem_mat_iff.mp he i j
   -- the generators reach no further than their absolute sum
   have hgen : |∑ k, β k * toReal (Z.G k i j)| ≤ toReal (sumUp fun k => absolute (Z.G k i j)) := by
@@ -94,16 +96,16 @@ theorem Zonotope.matInterval_contains {m : ℕ} (Z : Zonotope (Mat 𝕋 m n)) :
   -- each face on its own, the two roundings going opposite ways
   constructor
   · have h1 := addDown_le_add (subDown (Z.c i j) (sumUp fun k => absolute (Z.G k i j)))
-      (Z.E.inf i j)
+      (Z.I_error.inf i j)
     have h2 := subDown_le_sub (Z.c i j) (sumUp fun k => absolute (Z.G k i j))
     show toReal (addDown (subDown (Z.c i j) (sumUp fun k => absolute (Z.G k i j)))
-      (Z.E.inf i j)) ≤ _
+      (Z.I_error.inf i j)) ≤ _
     linarith [he'.1]
   · have h1 := add_le_addUp (addUp (Z.c i j) (sumUp fun k => absolute (Z.G k i j)))
-      (Z.E.sup i j)
+      (Z.I_error.sup i j)
     have h2 := add_le_addUp (Z.c i j) (sumUp fun k => absolute (Z.G k i j))
     show _ ≤ toReal (addUp (addUp (Z.c i j) (sumUp fun k => absolute (Z.G k i j)))
-      (Z.E.sup i j))
+      (Z.I_error.sup i j))
     linarith [he'.2]
 
 end CORALean.Float

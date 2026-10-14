@@ -44,8 +44,9 @@ theorem Ellipsoid.ofPoint_exact (p : Vec 𝕋 n) :
     rw [h]
     exact Set.ext fun x =>
       (Real.Ellipsoid.mem_ofPoint_iff (toRealVec p) x).trans Set.mem_singleton_iff.symm
-  have hE : (Ellipsoid.ofPoint p).err.construct = {0} := Interval.origin_exact n
-  show InflatedContSet.nominalSet (Ellipsoid.ofPoint p) + (Ellipsoid.ofPoint p).err.construct = _
+  have hE : (Ellipsoid.ofPoint p).I_error.construct = {0} := Interval.origin_exact n
+  show InflatedContSet.nominalSet (Ellipsoid.ofPoint p) + (Ellipsoid.ofPoint p).I_error.construct =
+      _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

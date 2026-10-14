@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.construct_subset_of_representsa_point (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (h : cPZ.representsa_point = true) :
-    cPZ.construct ⊆ {toRealVec cPZ.c} + cPZ.err.construct := by
+    cPZ.construct ⊆ {toRealVec cPZ.c} + cPZ.I_error.construct := by
   -- the nominal set has the same generator counts, so the exact layer's test passes on it
   have hN : InflatedContSet.nominalSet cPZ ⊆ {toRealVec cPZ.c} :=
     Real.ConPolyZono.construct_subset_of_representsa_point (InflatedContSet.nominal cPZ) h

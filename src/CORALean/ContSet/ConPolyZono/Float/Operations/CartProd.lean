@@ -47,7 +47,7 @@ def ConPolyZono.cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁)) (cPZ₂ : C
   A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
   b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
   EC := Real.PolyZonotope.plusE cPZ₁.EC cPZ₂.EC
-  err := Interval.append cPZ₁.err cPZ₂.err
+  I_error := Interval.append cPZ₁.I_error cPZ₂.I_error
 
 end CORALean.Float
 

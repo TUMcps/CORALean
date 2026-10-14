@@ -36,7 +36,7 @@ def SpectraShadow.project (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (dims : Fin m �
   A := S.A
   c := fun i => S.c (dims i)
   G := fun j i => S.G j (dims i)
-  E := S.E.project dims
+  I_error := S.I_error.project dims
 
 end CORALean.Float
 

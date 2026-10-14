@@ -41,13 +41,13 @@ def ConZonotope.cubMap (T : Fin m → Fin n → Mat 𝕋 n n) (cZ : ConZonotope 
     ConZonotope 𝕋 (Vec 𝕋 m) :=
   let d := cZ.dependent
   -- the zonotope `Zonotope.cubMapDep` maps
-  let Z : Zonotope (Vec 𝕋 n) := ⟨d.h, d.c, d.G, d.E⟩
+  let Z : Zonotope (Vec 𝕋 n) := ⟨d.h, d.c, d.G, d.I_error⟩
   { h := (Zonotope.cubMapDep T Z).h
     c := (Zonotope.cubMapDep T Z).c
     G := (Zonotope.cubMapDep T Z).G
     P := d.P.lift_ fun j : Fin d.h =>
       (Real.Zonotope.cubIdx (d.h + 1) (d.h + 1) (d.h + 1)).symm ((0, 0), j.succ)
-    E := (Zonotope.cubMapDep T Z).E }
+    I_error := (Zonotope.cubMapDep T Z).I_error }
 
 end CORALean.Float
 

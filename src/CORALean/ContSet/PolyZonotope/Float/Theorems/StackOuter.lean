@@ -36,35 +36,35 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n n₁ n₂ 
 
 /-- A box point padded below by zero is a point of the padded box. -/
 theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₂ : ℕ) :
-    CORALean.blockPadLeft n n₂ '' pZ.err.construct ⊆
-      (pZ.blockPadLeft n₂).err.construct := by -- --- PROOF ---
+    CORALean.blockPadLeft n n₂ '' pZ.I_error.construct ⊆
+      (pZ.blockPadLeft n₂).I_error.construct := by -- --- PROOF ---
   rintro _ ⟨e, he, rfl⟩ i
   refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-  · show toReal (Fin.append pZ.err.inf (fun _ => (zero : 𝕋)) (Fin.castAdd n₂ i)) ≤
+  · show toReal (Fin.append pZ.I_error.inf (fun _ => (zero : 𝕋)) (Fin.castAdd n₂ i)) ≤
         Fin.append e 0 (Fin.castAdd n₂ i) ∧ Fin.append e 0 (Fin.castAdd n₂ i) ≤
-        toReal (Fin.append pZ.err.sup (fun _ => (zero : 𝕋)) (Fin.castAdd n₂ i))
+        toReal (Fin.append pZ.I_error.sup (fun _ => (zero : 𝕋)) (Fin.castAdd n₂ i))
     simp only [Fin.append_left]
     exact he i
-  · show toReal (Fin.append pZ.err.inf (fun _ => (zero : 𝕋)) (Fin.natAdd n i)) ≤
+  · show toReal (Fin.append pZ.I_error.inf (fun _ => (zero : 𝕋)) (Fin.natAdd n i)) ≤
         Fin.append e 0 (Fin.natAdd n i) ∧ Fin.append e 0 (Fin.natAdd n i) ≤
-        toReal (Fin.append pZ.err.sup (fun _ => (zero : 𝕋)) (Fin.natAdd n i))
+        toReal (Fin.append pZ.I_error.sup (fun _ => (zero : 𝕋)) (Fin.natAdd n i))
     simp only [Fin.append_right, toReal_zero]
     exact ⟨le_refl _, le_refl _⟩
 
 /-- A box point padded above by zero is a point of the padded box. -/
 theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₁ : ℕ) :
-    CORALean.blockPadRight n₁ n '' pZ.err.construct ⊆
-      (pZ.blockPadRight n₁).err.construct := by -- --- PROOF ---
+    CORALean.blockPadRight n₁ n '' pZ.I_error.construct ⊆
+      (pZ.blockPadRight n₁).I_error.construct := by -- --- PROOF ---
   rintro _ ⟨e, he, rfl⟩ i
   refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-  · show toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.err.inf (Fin.castAdd n i)) ≤
+  · show toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.I_error.inf (Fin.castAdd n i)) ≤
         Fin.append 0 e (Fin.castAdd n i) ∧ Fin.append 0 e (Fin.castAdd n i) ≤
-        toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.err.sup (Fin.castAdd n i))
+        toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.I_error.sup (Fin.castAdd n i))
     simp only [Fin.append_left, toReal_zero]
     exact ⟨le_refl _, le_refl _⟩
-  · show toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.err.inf (Fin.natAdd n₁ i)) ≤
+  · show toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.I_error.inf (Fin.natAdd n₁ i)) ≤
         Fin.append 0 e (Fin.natAdd n₁ i) ∧ Fin.append 0 e (Fin.natAdd n₁ i) ≤
-        toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.err.sup (Fin.natAdd n₁ i))
+        toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.I_error.sup (Fin.natAdd n₁ i))
     simp only [Fin.append_right]
     exact he i
 
@@ -74,8 +74,8 @@ theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope (Vec 𝕋 n)) (n₁ : �
 theorem PolyZonotope.stack_outer (pZ₁ : PolyZonotope (Vec 𝕋 n₁)) (pZ₂ : PolyZonotope (Vec 𝕋 n₂))
     (hp : pZ₁.p = pZ₂.p) :
     (Real.PolyZonotope.stack (nominal pZ₁) (nominal pZ₂) hp).construct
-        + (CORALean.blockPadLeft n₁ n₂ '' pZ₁.err.construct
-          + CORALean.blockPadRight n₁ n₂ '' pZ₂.err.construct)
+        + (CORALean.blockPadLeft n₁ n₂ '' pZ₁.I_error.construct
+          + CORALean.blockPadRight n₁ n₂ '' pZ₂.I_error.construct)
       ⊆ (pZ₁.stack pZ₂ hp).construct := by -- --- PROOF ---
   have h := PolyZonotope.exactPlus_outer (pZ₁.blockPadLeft n₂) (pZ₂.blockPadRight n₁) hp
   -- the padded nominal sets are the exact layer's maps; the factor-list proof is carried along

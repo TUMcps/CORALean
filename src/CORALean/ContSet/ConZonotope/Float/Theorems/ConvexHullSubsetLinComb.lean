@@ -39,7 +39,7 @@ theorem ConZonotope.convexHull_subset_linComb (cZ₁ cZ₂ : ConZonotope 𝕋 (V
     (h₁ : cZ₁.construct.Nonempty) (h₂ : cZ₂.construct.Nonempty) :
     convexHull ℝ (cZ₁.construct ∪ cZ₂.construct) ⊆ (cZ₁.linComb cZ₂).construct := by
   have hc : ∀ c : ConZonotope 𝕋 (Vec 𝕋 n), Convex ℝ c.construct := fun c =>
-    Convex.add (nominal c).convex_construct c.E.nominal.convex_construct
+    Convex.add (nominal c).convex_construct c.I_error.nominal.convex_construct
   rw [convexHull_union_eq_segments h₁ h₂ (hc cZ₁) (hc cZ₂)]
   exact ConZonotope.linComb_outer cZ₁ cZ₂
 

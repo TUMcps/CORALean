@@ -56,8 +56,8 @@ zonotopes of `R₀` and `U`, widened by `reachErrorFloat`, at `Δt > 0` and an a
 given both error boxes bracket `0`. -/
 theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : LinearSys 𝕋 n)
     {Δt : 𝕋} (hΔt : 0 < toReal Δt) {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ}
-    (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
+    (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) :
     ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).construct
       ⊆ (sys.discretize (toReal Δt)).reachSet (S := 𝒵)
@@ -98,7 +98,7 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     set Rk := (sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩ with hRk
     set W := sys.timePointStepInputFloat Δt η Rk U
-    have hRk0 : (0 : Vec ℝ n) ∈ Rk.E.construct :=
+    have hRk0 : (0 : Vec ℝ n) ∈ Rk.I_error.construct :=
       sys.zero_mem_discretizeEnclosureFloat_reach_error hΔt.le hη ho hR₀ hU k
     intro x hx
     rw [sys.discretizeEnclosureFloat_reach_succ] at hx

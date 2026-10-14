@@ -36,7 +36,7 @@ theorem PolyZonotope.onlyId_outer (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (
     pZ.construct ⊆ (pZ.onlyId S).1.construct + (pZ.onlyId S).2.construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, β, ha, hβ, rfl⟩, e, he, rfl⟩
   have hpt := PolyZonotope.onlyId_point pZ S a
-  have h0 : (0 : Vec ℝ n) ∈ (pZ.onlyId S).1.err.construct := by
+  have h0 : (0 : Vec ℝ n) ∈ (pZ.onlyId S).1.I_error.construct := by
     show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
     rw [Interval.origin_exact]; rfl
   -- the part of the first piece at the factors of `S`, and the remainder's point

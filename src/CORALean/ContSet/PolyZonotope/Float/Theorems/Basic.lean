@@ -2,9 +2,11 @@ module
 
 public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
 public import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Materialise
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
@@ -28,7 +30,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float
 
@@ -182,6 +183,72 @@ a zero to the error box. -/
 theorem PolyZonotope.restructure_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.restructure.construct :=
   (PolyZonotope.reduceBy_outer pZ _ _).trans (PolyZonotope.dependent_outer _)
+
+end CORALean.Float
+
+
+namespace CORALean.Float
+
+open FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ==============================  `PolyZonotope.materialise_eq`  =============================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialise` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem PolyZonotope.materialise_eq (pZ : PolyZonotope (Vec 𝕋 n)) :
+    pZ.materialise = pZ := by
+  simp [PolyZonotope.materialise]
+
+
+-- =================================  `PolyZonotope.nominal_E`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal PolyZonotope's field `E`, so proofs can see through the instance. -/
+theorem PolyZonotope.nominal_E [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
+    (InflatedContSet.nominal pZ).E = pZ.E := rfl
+
+
+-- =================================  `PolyZonotope.nominal_h`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal PolyZonotope's field `h`, so proofs can see through the instance. -/
+theorem PolyZonotope.nominal_h [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
+    (InflatedContSet.nominal pZ).h = pZ.h := rfl
+
+
+-- =================================  `PolyZonotope.nominal_p`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal set's fields, so proofs can see through the instance. -/
+theorem PolyZonotope.nominal_p [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
+    (InflatedContSet.nominal pZ).p = pZ.p := rfl
+
+
+-- =================================  `PolyZonotope.nominal_q`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal PolyZonotope's field `q`, so proofs can see through the instance. -/
+theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
+    (InflatedContSet.nominal pZ).q = pZ.q := rfl
 
 end CORALean.Float
 

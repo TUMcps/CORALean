@@ -39,7 +39,7 @@ theorem ConZonotope.empty_exact (n : ℕ) :
     rw [HPolytope.construct_emptySet] at h
     exact h
   show InflatedContSet.nominalSet (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n))
-      + (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)).E.construct = _
+      + (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.construct = _
   rw [hN, Set.empty_add]
 
 end CORALean.Float

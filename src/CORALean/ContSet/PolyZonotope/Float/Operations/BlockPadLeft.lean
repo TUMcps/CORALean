@@ -38,7 +38,7 @@ def PolyZonotope.blockPadLeft (n₂ : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) :
   G := fun l => Fin.append (pZ.G l) fun _ => zero
   E := pZ.E
   GI := fun j => Fin.append (pZ.GI j) fun _ => zero
-  err := ⟨Fin.append pZ.err.inf fun _ => zero, Fin.append pZ.err.sup fun _ => zero⟩
+  I_error := ⟨Fin.append pZ.I_error.inf fun _ => zero, Fin.append pZ.I_error.sup fun _ => zero⟩
 
 end CORALean.Float
 

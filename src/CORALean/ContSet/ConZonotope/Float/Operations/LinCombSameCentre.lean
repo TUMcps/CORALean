@@ -47,7 +47,7 @@ def ConZonotope.linCombSameCentre (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) 
   G := Fin.append (Fin.append cZ₁.G cZ₂.G) fun _ : Fin 1 => fun _ => zero
   P := ((cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).intersection
     (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)))
-  E := Interval.point fun _ => zero
+  I_error := Interval.point fun _ => zero
 
 end CORALean.Float
 

@@ -51,10 +51,10 @@ def PolyZonotope.dependent (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 
   q := 0
   c := pZ.c
   G := fun l i => Fin.append (fun l => pZ.G l i)
-    (Fin.append (fun j => pZ.GI j i) (diagonalBlock (PolyZonotope.errorBound pZ.err) i)) l
+    (Fin.append (fun j => pZ.GI j i) (diagonalBlock (PolyZonotope.errorBound pZ.I_error) i)) l
   E := Real.PolyZonotope.plusE pZ.E (Real.PolyZonotope.identE (pZ.q + n))
   GI := Fin.elim0
-  err := ⟨fun _ => zero, fun _ => zero⟩
+  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 end CORALean.Float
 

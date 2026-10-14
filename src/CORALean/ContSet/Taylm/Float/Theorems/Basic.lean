@@ -5,6 +5,7 @@ public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 
 @[expose] public section
 
@@ -17,7 +18,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float
 

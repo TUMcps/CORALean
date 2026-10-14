@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def Interval.vPolytope (I : Interval (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) where
   k := 2 ^ n
   V := fun l i => if signEquiv n l i then I.sup i else I.inf i
-  E := ⟨fun _ => zero, fun _ => zero⟩
+  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

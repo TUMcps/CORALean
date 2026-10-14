@@ -147,7 +147,7 @@ theorem SpectraShadow.mtimes_outer (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (V
               (fun i => M r i) l) * (Fin.append β x : Fin (S.m + n) → ℝ) l
         rw [Fin.sum_univ_add]
         simp [toReal_zero, Matrix.mulVec, dotProduct, toRealMat])
-    (Interval.mtimes_outer M S.E)
+    (Interval.mtimes_outer M S.I_error)
 
 
 end CORALean.Float

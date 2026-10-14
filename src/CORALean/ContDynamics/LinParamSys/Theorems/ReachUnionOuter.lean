@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
 public import CORALean.ContSet.SetUnion.SetUnion
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

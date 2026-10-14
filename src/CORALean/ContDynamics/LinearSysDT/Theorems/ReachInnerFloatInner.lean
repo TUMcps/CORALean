@@ -53,8 +53,8 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 reachable set, read from the nominal parts of `R₀` and `U` — the float
 counterpart of `reachInner_inner`. -/
 theorem LinearSysDT.reachInnerFloat_inner (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
+    {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) :
     sys.reachInnerFloat o ho R₀ U k ⊆
       sys.reachSet (S := 𝒵)
         (nominal R₀) (nominal U) k :=

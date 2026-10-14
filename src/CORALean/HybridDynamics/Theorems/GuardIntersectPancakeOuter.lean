@@ -1,10 +1,11 @@
 module
 
-public import CORALean.HybridDynamics.Operations.GuardIntersectPancake
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
+public import CORALean.HybridDynamics.Operations.GuardIntersectPancake
 
 @[expose] public section
 

@@ -1,13 +1,15 @@
 module
 
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Real.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 public import CORALean.ContSet.Zonotope.Float.Operations.Polygon
+public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
-public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
-public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-public import CORALean.ContSet.Interval.Real.Theorems.Convex
-public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 
 @[expose] public section
 
@@ -56,13 +58,13 @@ theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) :
     simp [Zonotope.materialise]
   have hcs : Zs.c = Z.c := by
     funext i
-    show (Zonotope.materialise ⟨Z.h, Zm.c, fun i => hat (order.getD i.val i), Zm.E⟩).c i = _
+    show (Zonotope.materialise ⟨Z.h, Zm.c, fun i => hat (order.getD i.val i), Zm.I_error⟩).c i = _
     simp [Zonotope.materialise, Zm]
-  have hEs : Zs.E = Z.E := by
-    show Interval.materialise (Interval.materialise Z.E) = Z.E
+  have hEs : Zs.I_error = Z.I_error := by
+    show Interval.materialise (Interval.materialise Z.I_error) = Z.I_error
     simp
   have hGs : ∀ (j : Fin Z.h) i, Zs.G j i = hat (order.getD j.val j) i := fun j i => by
-    show (Zonotope.materialise ⟨Z.h, Zm.c, fun i => hat (order.getD i.val i), Zm.E⟩).G j i = _
+    show (Zonotope.materialise ⟨Z.h, Zm.c, fun i => hat (order.getD i.val i), Zm.I_error⟩).G j i = _
     simp [Zonotope.materialise]
   -- the sorted list is a permutation of the indices
   have hperm : order.Perm (List.finRange Z.h) := List.mergeSort_perm _ _
@@ -95,7 +97,7 @@ theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) :
     rintro _ ⟨y, hy, e, he, rfl⟩
     refine ⟨y, ?_, e, ?_, rfl⟩
     swap
-    · show e ∈ Zs.E.construct
+    · show e ∈ Zs.I_error.construct
       rw [hEs]; exact he
     obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hy
     -- the coefficients follow the generators to their new places and signs
@@ -205,8 +207,8 @@ theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) :
   -- add the zonotope's own box
   intro x hx
   obtain ⟨p, hp, e, he, rfl⟩ := hS hx
-  have he' : e ∈ Z.E.construct := by
-    have h : e ∈ Zs.E.construct := he
+  have he' : e ∈ Z.I_error.construct := by
+    have h : e ∈ Zs.I_error.construct := he
     rw [hEs] at h; exact h
   obtain ⟨v, hv, g, hg, hvg⟩ := hstep (hreal hp)
   refine ⟨v, hv, g + e, ?_, ?_⟩

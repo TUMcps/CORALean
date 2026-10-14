@@ -23,7 +23,7 @@ fixed arity, and `List` is what lets a caller append rather than reindex.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,12 +46,6 @@ def SetIntersection.construct [ContSet S α] (I : SetIntersection S) : Set α :=
   ⋂ s ∈ I.sets, ContSet.construct s
 
 instance [ContSet S α] : ContSet (SetIntersection S) α := ⟨SetIntersection.construct⟩
-
-/-- Unfolds membership to a fact about every branch, for every proof below. -/
-theorem SetIntersection.mem_construct [ContSet S α] {I : SetIntersection S} {x : α} :
-    x ∈ ContSet.construct I ↔ ∀ s ∈ I.sets, x ∈ ContSet.construct s := by
-  show x ∈ SetIntersection.construct I ↔ _
-  simp [SetIntersection.construct]
 
 end CORALean
 

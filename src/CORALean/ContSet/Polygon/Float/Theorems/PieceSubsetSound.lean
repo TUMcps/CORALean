@@ -42,7 +42,7 @@ theorem Polygon.pieceSubset_sound {p q : VPolytope (Vec 𝕋 2)} (h : Polygon.pi
     exact convexHull_min (Set.range_subset_iff.mpr fun l => Polygon.pieceHolds_sound (hV l))
       (nominal q).convex_construct
   -- the boxes, corner by corner
-  have hbox : p.E.construct ⊆ q.E.construct := fun e he i =>
+  have hbox : p.I_error.construct ⊆ q.I_error.construct := fun e he i =>
     ⟨le_trans (toReal_le_of_le (hE i).1) (he i).1, le_trans (he i).2 (toReal_le_of_le (hE i).2)⟩
   exact Set.add_subset_add hnom hbox
 

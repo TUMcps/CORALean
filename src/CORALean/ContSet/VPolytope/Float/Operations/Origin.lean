@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 def VPolytope.origin (n : ℕ) : VPolytope (Vec 𝕋 n) where
   k := 1
   V := fun _ _ => zero
-  E := Interval.origin n
+  I_error := Interval.origin n
 
 end CORALean.Float
 

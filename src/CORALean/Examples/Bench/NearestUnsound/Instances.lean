@@ -1,12 +1,13 @@
-import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
-import CORALean.Global.Float.ToRat
 import CORALean.Examples.Bench.NearestUnsound.Axioms
 import CORALean.Examples.Bench.NearestUnsound.NearestDyadic
 import CORALean.Examples.Bench.NearestUnsound.NearestFloat
 import CORALean.Examples.Bench.NearestUnsound.NearestUnsound
 import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
+import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
+import CORALean.Global.Float.ToRat
 
 /-!
 # The round-to-nearest scalars as float models, UNSOUNDLY

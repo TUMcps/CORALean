@@ -44,7 +44,7 @@ def Zonotope.containsZonotope (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 
   Zonotope.ballCert (fun i j => Z₂.G j i) H (Zonotope.ballB H δ) δ
     && (List.finRange Z₂.h).all (fun k => le (addUp (Z₂.stUsed Z₁ H k) δ) one)
     && (List.finRange n).all (fun i => le (Z₂.stLeftover Z₁ H i) (Zonotope.ballB H δ))
-    && (List.finRange n).all fun i => le (Z₂.E.inf i) (Z₂.E.sup i)
+    && (List.finRange n).all fun i => le (Z₂.I_error.inf i) (Z₂.I_error.sup i)
 
 end CORALean.Float
 

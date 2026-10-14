@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.Operations.Times
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.Global.ExactScalar
 
 @[expose] public section

@@ -57,8 +57,9 @@ theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W�
     {t₀ : 𝕋} {η η' : ℕ} {s : LinearSys.MaxBackReachStateFloat 𝕋 n}
     (h : sys.maxBackReachInitFloat U W₀ t₀ η = some s) (hη' : sys.reachOrderFloat t₀ t₀ η = some η')
     (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀)
-    (hU0 : (0 : Vec ℝ n) ∈ U.E.construct) (hU : U.construct ⊆ construct Ur)
-    (hWE : W₀.E = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct) :
+    (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
+    (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero)
+        (hW₀r : W₀r.construct ⊆ W₀.construct) :
     s.Encloses (sys.maxBackReachInit Ur W₀r (toReal t₀) η') := by -- --- PROOF ---
   -- the float state, with the order the search found
   simp only [LinearSys.maxBackReachInitFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
@@ -72,7 +73,7 @@ theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W�
   set I := MatExp.adaptiveIntegral (Interval.point sys.A) t₀ η'
   refine ⟨le_rfl, le_rfl, ?_, ?_, hW, ?_, ?_⟩
   -- the error box of `Z̲_U` holds `0`
-  · show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat I U).materialise).E.construct
+  · show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat I U).materialise).I_error.construct
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_mtimesIntervalMat_error hI hU0
   -- a point of the float `Z̲_U` is the exact integral of a point of `U`, plus the box

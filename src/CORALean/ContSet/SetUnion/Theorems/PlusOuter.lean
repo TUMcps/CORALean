@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.SetUnion.Operations.Plus
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

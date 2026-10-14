@@ -52,9 +52,9 @@ theorem Zonotope.halfspaceRange_mem (nv : Vec 𝕋 n) (d : 𝕋) {Z : Zonotope (
       rw [abs_mul]
       exact (mul_le_of_le_one_left (abs_nonneg _) (hβ j)).trans (hsj j)).trans (sum_le_sumUp _))
   -- the box's part, term by term between the corners
-  have hbox : ∀ i, toReal (Interval.mulLo (nv i) (nv i) (Z.E.inf i) (Z.E.sup i))
+  have hbox : ∀ i, toReal (Interval.mulLo (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i))
       ≤ toReal (nv i) * e i ∧ toReal (nv i) * e i
-        ≤ toReal (Interval.mulHi (nv i) (nv i) (Z.E.inf i) (Z.E.sup i)) := fun i =>
+        ≤ toReal (Interval.mulHi (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i)) := fun i =>
     Interval.mul_between_corners le_rfl le_rfl (he i).1 (he i).2
   have hbLo := (Finset.sum_le_sum fun i _ => (hbox i).1).trans' (sumDown_le_sum _)
   have hbHi := (Finset.sum_le_sum fun i _ => (hbox i).2).trans (sum_le_sumUp _)
@@ -79,9 +79,9 @@ theorem Zonotope.halfspaceRange_mem (nv : Vec 𝕋 n) (d : 𝕋) {Z : Zonotope (
   have h3 := subDown_le_sub (subDown (dotDown nv Z.c) d) ρ
   have h4 := add_le_addUp (subUp (dotUp nv Z.c) d) ρ
   have h5 := addDown_le_add (subDown (subDown (dotDown nv Z.c) d) ρ)
-    (sumDown fun i => Interval.mulLo (nv i) (nv i) (Z.E.inf i) (Z.E.sup i))
+    (sumDown fun i => Interval.mulLo (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i))
   have h6 := add_le_addUp (addUp (subUp (dotUp nv Z.c) d) ρ)
-    (sumUp fun i => Interval.mulHi (nv i) (nv i) (Z.E.inf i) (Z.E.sup i))
+    (sumUp fun i => Interval.mulHi (nv i) (nv i) (Z.I_error.inf i) (Z.I_error.sup i))
   have hg := abs_le.mp hgen
   simp only [Zonotope.halfspaceRange]
   constructor <;> linarith [hg.1, hg.2]

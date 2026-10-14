@@ -51,11 +51,11 @@ theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋
 
 -- the old box travels through the map and absorbs the column gap on the way
 theorem VPolytope.aux_mtimes_error (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (error P).construct
+    (toRealMat M *ᵥ ·) '' (I_error P).construct
       + (VPolytope.columnGap (fun l => mulVecDown M (P.V l))
           fun l => mulVecUp M (P.V l)).construct ⊆
-      (error (VPolytope.mtimes M P)).construct :=
-  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M P.E))
+      (I_error (VPolytope.mtimes M P)).construct :=
+  subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M P.I_error))
     (Interval.plus_outer _ _)
 
 

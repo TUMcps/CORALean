@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.ToRealTermBounds
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import CORALean.Global.Float.ListSum
 
 @[expose] public section

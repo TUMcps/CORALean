@@ -3,7 +3,9 @@ module
 public import CORALean.ContSet.Taylm.Real.Operations.Antideriv
 public import CORALean.ContSet.Taylm.Real.Theorems.IntegralPolyOf
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 @[expose] public section
 

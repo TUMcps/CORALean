@@ -183,8 +183,8 @@ is a point of the float `matMap`. -/
 theorem PolyZonotope.matMap_outer (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     (pZ₂ : PolyZonotope (Mat 𝕋 k m)) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ)
     (ha : ∀ i, |a i| ≤ 1) (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (hβ₁ : ∀ j, |β₁ j| ≤ 1)
-    (hβ₂ : ∀ j, |β₂ j| ≤ 1) {e₁ : Mat ℝ n k} (he₁ : e₁ ∈ pZ₁.err.construct) {e₂ : Mat ℝ k m}
-    (he₂ : e₂ ∈ pZ₂.err.construct) :
+    (hβ₂ : ∀ j, |β₂ j| ≤ 1) {e₁ : Mat ℝ n k} (he₁ : e₁ ∈ pZ₁.I_error.construct) {e₂ : Mat ℝ k m}
+    (he₂ : e₂ ∈ pZ₂.I_error.construct) :
     ((PolyZonotope.nominal pZ₁).point a + ∑ j, β₁ j • (PolyZonotope.nominal pZ₁).GI j + e₁) *
         ((PolyZonotope.nominal pZ₂).point (fun i => a (Fin.cast hp.symm i))
           + ∑ j, β₂ j • (PolyZonotope.nominal pZ₂).GI j + e₂)

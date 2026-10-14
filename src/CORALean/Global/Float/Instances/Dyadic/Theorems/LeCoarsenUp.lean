@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Operations.CoarsenUp
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.TwoZpowCoarsen
 public import Mathlib.Analysis.Normed.Ring.Lemmas
 

@@ -147,6 +147,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplicationZon
 public import CORALean.ContSet.Zonotope.Float.Operations.BoundaryRatioAt
 public import CORALean.ContSet.Zonotope.Float.Operations.BoundaryRatio
 public import CORALean.ContSet.Zonotope.Float.Operations.BoundaryPoint
+public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
+public import CORALean.ContSet.Zonotope.Float.Operations.MaterialiseMat
 
 /-!
 # What `Zonotope` computes

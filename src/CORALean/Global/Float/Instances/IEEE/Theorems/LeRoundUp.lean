@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealShift
 public import CORALean.Global.Float.Instances.IEEE.Operations.RoundUp
 public import Mathlib.Analysis.Normed.Ring.Lemmas

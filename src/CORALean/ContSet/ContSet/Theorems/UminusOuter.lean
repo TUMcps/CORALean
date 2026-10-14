@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.Operations.Basic
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

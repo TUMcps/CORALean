@@ -39,7 +39,7 @@ def Zonotope.reduceAndAbsorbBy (Z : Zonotope (Vec 𝕋 n))
   G := Fin.append (fun l => Z.G (part.left l))
          (diagonalBlock fun i => addUp (radius (fun i l => Z.G (part.right l) i) i)
            (Z.errorRadius i))
-  E := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
+  I_error := Interval.residual Z.shiftDown Z.shiftUp Z.shiftDown
 
 end CORALean.Float
 

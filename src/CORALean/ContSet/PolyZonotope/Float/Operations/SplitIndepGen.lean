@@ -41,9 +41,9 @@ def PolyZonotope.splitIndepGen (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ.q) :
   let c₂ : Vec 𝕋 n := fun i => subDown (pZ.c i) (g i)
   -- the rounding gaps, on top of the error boxes
   let err₁ : Interval (Vec 𝕋 n) :=
-    ⟨pZ.err.inf, fun i => addUp (pZ.err.sup i) (subUp (addUp (pZ.c i) (g i)) (c₁ i))⟩
+    ⟨pZ.I_error.inf, fun i => addUp (pZ.I_error.sup i) (subUp (addUp (pZ.c i) (g i)) (c₁ i))⟩
   let err₂ : Interval (Vec 𝕋 n) :=
-    ⟨pZ.err.inf, fun i => addUp (pZ.err.sup i) (subUp (subUp (pZ.c i) (g i)) (c₂ i))⟩
+    ⟨pZ.I_error.inf, fun i => addUp (pZ.I_error.sup i) (subUp (subUp (pZ.c i) (g i)) (c₂ i))⟩
   (⟨pZ.p, pZ.h, pZ.q, c₁, pZ.G, pZ.E, GI', err₁⟩, ⟨pZ.p, pZ.h, pZ.q, c₂, pZ.G, pZ.E, GI', err₂⟩)
 
 end CORALean.Float

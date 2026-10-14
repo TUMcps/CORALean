@@ -49,7 +49,7 @@ def ConPolyZono.compactFactorsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPo
   A := cPZ.A
   b := cPZ.b
   EC := fun k l => cPZ.EC (Real.ConPolyZono.factorIdx cPZ.E cPZ.EC k) l
-  err := cPZ.err
+  I_error := cPZ.I_error
 
 end CORALean.Float
 

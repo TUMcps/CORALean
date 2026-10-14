@@ -84,10 +84,10 @@
 <text x="548" y="260">not yet</text>
 <text x="150" y="280" font-weight="bold">(c) Lean theorems</text>
 <text x="142" y="299" text-anchor="end">Lean theorems</text>
-<rect x="150.0" y="288" width="111.5" height="14" fill="rgb(0,114,189)"/>
-<text x="205.8" y="299" text-anchor="middle" font-size="9" fill="#fff">1720</text>
-<rect x="261.5" y="288" width="178.3" height="14" fill="rgb(42,92,173)"/>
-<text x="350.6" y="299" text-anchor="middle" font-size="9" fill="#000">2750</text>
+<rect x="150.0" y="288" width="111.2" height="14" fill="rgb(0,114,189)"/>
+<text x="205.6" y="299" text-anchor="middle" font-size="9" fill="#fff">1716</text>
+<rect x="261.2" y="288" width="178.5" height="14" fill="rgb(42,92,173)"/>
+<text x="350.5" y="299" text-anchor="middle" font-size="9" fill="#000">2754</text>
 <rect x="439.8" y="288" width="123.4" height="14" fill="rgb(84,69,158)"/>
 <text x="501.5" y="299" text-anchor="middle" font-size="9" fill="#000">1903</text>
 <rect x="563.2" y="288" width="106.8" height="14" fill="rgb(126,47,142)"/>

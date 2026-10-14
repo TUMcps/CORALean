@@ -26,7 +26,7 @@ to certify.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   10-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,8 +50,7 @@ structure SpectraShadow (𝕋 α : Type) where
   A : Fin m → Mat 𝕋 k k
   c : α
   G : Fin m → α
-  E : Interval α
-
+  I_error : Interval α
 
 /-- The exact shadow the stored floats describe, read through `RealImage`. -/
 protected abbrev SpectraShadow.nominal {α β : Type} [RealImage α β] [SoundFloatArithmetic 𝕋]
@@ -62,45 +61,12 @@ protected abbrev SpectraShadow.nominal {α β : Type} [RealImage α β] [SoundFl
 instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [SoundFloatArithmetic 𝕋] :
     InflatedContSet (SpectraShadow 𝕋 α) (CORALean.Real.SpectraShadow β) α β where
   nominal := SpectraShadow.nominal
-  error S := S.E
-
-/-! The nominal shadow's fields, so proofs can see through the instance. -/
-
-theorem SpectraShadow.nominal_c [SoundFloatArithmetic 𝕋] (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    (InflatedContSet.nominal S).c = toRealVec S.c := rfl
-
-theorem SpectraShadow.nominal_G [SoundFloatArithmetic 𝕋] (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    (InflatedContSet.nominal S).G = fun j i => toReal (S.G j i) := rfl
+  I_error S := S.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
 abbrev SpectraShadow.construct [SoundFloatArithmetic 𝕋] (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     Set (Vec ℝ n) :=
   InflatedContSet.construct S
-
-/-! ## Storage
-
-Every field is a function type, so the shadow an operation returns is a closure
-over the one it was given. `materialise` stores them and `materialise_eq` says it
-is the identity; `Global/Tensor` says why the vectors are built here. -/
-
-def SpectraShadow.materialise (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
-  let A₀ : Vector (Vector 𝕋 S.k) S.k := Vector.ofFn fun i => Vector.ofFn fun j => S.A₀ i j
-  let A : Vector (Vector (Vector 𝕋 S.k) S.k) S.m :=
-    Vector.ofFn fun l => Vector.ofFn fun i => Vector.ofFn fun j => S.A l i j
-  let c : Vector 𝕋 n := Vector.ofFn S.c
-  let G : Vector (Vector 𝕋 n) S.m := Vector.ofFn fun j => Vector.ofFn (S.G j)
-  { k := S.k
-    m := S.m
-    A₀ := fun i j => (A₀[i.val]'i.isLt)[j.val]'j.isLt
-    A := fun l i j => ((A[l.val]'l.isLt)[i.val]'i.isLt)[j.val]'j.isLt
-    c := fun i => c[i.val]'i.isLt
-    G := fun j i => (G[j.val]'j.isLt)[i.val]'i.isLt
-    E := S.E.materialise }
-
-omit [FloatOps 𝕋] in
-@[simp] theorem SpectraShadow.materialise_eq (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    S.materialise = S := by
-  simp [SpectraShadow.materialise]
 
 end CORALean.Float
 

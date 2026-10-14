@@ -35,7 +35,7 @@ abbrev SpectraShadow.hyperplaneOne (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : Spe
   c := Fin.append (fun _ => zero) (fun _ : Fin 1 => one)
   G := fun j r => Fin.append (fun i : Fin n => if i = j then one else zero)
     (fun _ : Fin 1 => zero) r
-  E := Interval.origin (n + 1)
+  I_error := Interval.origin (n + 1)
 
 end CORALean.Float
 

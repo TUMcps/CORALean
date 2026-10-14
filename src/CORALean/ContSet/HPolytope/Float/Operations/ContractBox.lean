@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.HPolytope
 public import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
+public import CORALean.ContSet.Interval.Float.Operations.Materialise
 
 @[expose] public section
 

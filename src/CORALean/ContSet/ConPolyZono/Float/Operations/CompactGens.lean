@@ -57,7 +57,7 @@ def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
     A := cPZ.A
     b := cPZ.b
     EC := cPZ.EC
-    err := cPZ.err.plus (PolyZonotope.generatorError fun i j =>
+    I_error := cPZ.I_error.plus (PolyZonotope.generatorError fun i j =>
       subUp (PolyZonotope.fiberUp r (fun i l => cPZ.G l i) i (k j))
         (PolyZonotope.fiberDown r (fun i l => cPZ.G l i) i (k j))) }
 

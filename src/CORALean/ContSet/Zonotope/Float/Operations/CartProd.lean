@@ -36,7 +36,7 @@ def Zonotope.cartProd (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec �
   h := Z₁.h + Z₂.h
   c := Fin.append Z₁.c Z₂.c
   G := fun j i => genBlockDiag (fun i j => Z₁.G j i) (fun i j => Z₂.G j i) i j
-  E := Interval.append Z₁.E Z₂.E
+  I_error := Interval.append Z₁.I_error Z₂.I_error
 
 end CORALean.Float
 

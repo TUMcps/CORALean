@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def VPolytope.emptySet (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : VPolytope (Vec 𝕋 n) where
   k := 0
   V := Fin.elim0
-  E := Interval.origin n
+  I_error := Interval.origin n
 
 end CORALean.Float
 

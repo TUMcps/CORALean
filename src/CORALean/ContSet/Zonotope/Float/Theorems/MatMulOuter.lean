@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Zonotope.Float.Operations.MatMul
 public import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsMatOuter
@@ -54,7 +55,7 @@ theorem Zonotope.matMul_outer (M : Zonotope (Mat 𝕋 p q)) (N : Zonotope (Mat �
   have hab : a * b ∈ Z.construct :=
     CORALean.Real.Zonotope.matMul_outer _ _ (Set.mem_biUnion ha ⟨b, hb, rfl⟩)
   -- the first nominal part, boxed: it is the nominal part of `M` with a zero box
-  have ha' : a ∈ ({ M with E := Interval.point fun _ _ => zero } :
+  have ha' : a ∈ ({ M with I_error := Interval.point fun _ _ => zero } :
       Zonotope (Mat 𝕋 p q)).matInterval.construct := by
     refine Zonotope.matInterval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
     refine Interval.mem_mat_iff.mpr fun i j => ?_

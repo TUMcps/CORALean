@@ -1,7 +1,9 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.NotHoldsOfSimulate
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
+import CORALean.ContSet.ContSet.Theorems.Basic
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
+import CORALean.Specification.Theorems.Basic
 
 /-!
 # Reachability and simulation answer opposite halves of the same question

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Dyadic
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import Mathlib.Algebra.Ring.CharZero
 
 @[expose] public section

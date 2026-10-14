@@ -35,7 +35,7 @@ def ConPolyZono.toPolyZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : PolyZonot
   G := cPZ.G
   E := cPZ.E
   GI := cPZ.GI
-  err := cPZ.err
+  I_error := cPZ.I_error
 
 end CORALean.Float
 

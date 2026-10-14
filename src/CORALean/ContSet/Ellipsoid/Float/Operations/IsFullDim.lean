@@ -40,7 +40,7 @@ def Ellipsoid.isFullDim (E : Ellipsoid 𝕋 n) (H : Mat 𝕋 E.k n) : Bool :=
       (neg (dotDown (fun j => E.G i j) (fun j => H j l)))
   let offDiag : Fin n → 𝕋 := fun i => sumUp fun l => if l = i then zero else mag i l
   (List.finRange n).all fun i =>
-    ltStrict (offDiag i) (diagLo i) && le (E.err.inf i) (E.err.sup i)
+    ltStrict (offDiag i) (diagLo i) && le (E.I_error.inf i) (E.I_error.sup i)
 
 end CORALean.Float
 

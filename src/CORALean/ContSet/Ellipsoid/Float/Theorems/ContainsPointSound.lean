@@ -59,10 +59,10 @@ theorem Ellipsoid.containsPoint_sound {E : Ellipsoid 𝕋 n} {p : Vec 𝕋 n} {u
     have s₂ := sub_le_subUp (p i) (addDown (E.q i) (dotDown (fun j => E.G i j) u))
     have l₁ := toReal_le_of_le hlo
     have l₂ := toReal_le_of_le hhi
-    show toReal (E.err.inf i)
+    show toReal (E.I_error.inf i)
         ≤ toReal (p i) - (toReal (E.q i) + ∑ j, toReal (E.G i j) * toReal (u j))
       ∧ toReal (p i) - (toReal (E.q i) + ∑ j, toReal (E.G i j) * toReal (u j))
-        ≤ toReal (E.err.sup i)
+        ≤ toReal (E.I_error.sup i)
     constructor <;> linarith
   · -- the point is the nominal point plus the remainder
     funext i

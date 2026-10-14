@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 def Polygon.containsPoint (P : Polygon 𝕋) (x : Vec 𝕋 2) : Bool :=
   P.sets.any fun p =>
-    ((List.finRange 2).all fun i => le (p.E.inf i) zero && le zero (p.E.sup i)) &&
+    ((List.finRange 2).all fun i => le (p.I_error.inf i) zero && le zero (p.I_error.sup i)) &&
       Polygon.pieceHolds p x
 
 end CORALean.Float

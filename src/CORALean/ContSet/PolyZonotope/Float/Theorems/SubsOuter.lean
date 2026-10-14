@@ -42,7 +42,7 @@ theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     (pZin : PolyZonotope (Vec 𝕋 nu))
     (idu : Fin nu → Fin pZ.p) (share : Fin pZin.p → Option (Fin pZ.p)) :
     (Real.PolyZonotope.subs (nominal pZ) (nominal pZin) idu share).construct
-        + pZ.err.construct ⊆ (pZ.subs pZin idu share).construct := by -- --- PROOF ---
+        + pZ.I_error.construct ⊆ (pZ.subs pZin idu share).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := Real.PolyZonotope.mem_construct_iff.mp hz
   obtain ⟨hlen, hget⟩ := List.forall₂_iff_get.mp (PolyZonotope.subsTerms_rel pZ pZin idu)
@@ -114,8 +114,8 @@ theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     ?_, ?_⟩
   · -- the sum of the two boxes' points is a point of the interval sum
     intro i
-    have h₁ : toReal (pZ.err.inf i) ≤ e i := (he i).1
-    have h₂ : e i ≤ toReal (pZ.err.sup i) := (he i).2
+    have h₁ : toReal (pZ.I_error.inf i) ≤ e i := (he i).1
+    have h₂ : e i ≤ toReal (pZ.I_error.sup i) := (he i).2
     have h₃ : toReal ((PolyZonotope.generatorError (pZ.subsGDiff pZin idu)).inf i) ≤
           (∑ l, Δ i l * Real.PolyZonotope.monomial (pZ.subs pZin idu share).E a l) ∧
         (∑ l, Δ i l * Real.PolyZonotope.monomial (pZ.subs pZin idu share).E a l) ≤

@@ -39,7 +39,7 @@ def Ellipsoid.boundDot (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a
     (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) (s : 𝕋)
     (hs : toReal (sqSumUp (E.pullbackAbs a)) ≤ toReal (mulDown s s)) :
     FloatBound 𝕋 E.construct c :=
-  InflatedContSet.boundOfParts (E.nominalBoundDot a hc s hs) (E.err.boundDot a hc)
+  InflatedContSet.boundOfParts (E.nominalBoundDot a hc s hs) (E.I_error.boundDot a hc)
 
 end CORALean.Float
 

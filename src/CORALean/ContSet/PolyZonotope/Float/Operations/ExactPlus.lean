@@ -44,7 +44,7 @@ def PolyZonotope.exactPlus (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁
   G := Fin.append pZ₁.G pZ₂.G
   E := fun k => Fin.append (pZ₁.E k) (pZ₂.E (Fin.cast hp k))
   GI := Fin.append pZ₁.GI pZ₂.GI
-  err := (pZ₁.err.plus pZ₂.err).plus (PolyZonotope.centerResidual pZ₁.c pZ₂.c)
+  I_error := (pZ₁.I_error.plus pZ₂.I_error).plus (PolyZonotope.centerResidual pZ₁.c pZ₂.c)
 
 end CORALean.Float
 

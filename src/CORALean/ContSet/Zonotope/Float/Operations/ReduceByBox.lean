@@ -42,7 +42,7 @@ def Zonotope.reduceByBox (Z : Zonotope (Vec 𝕋 n))
   h := n
   c := fun _ => zero
   G := diagonalBlock (radius fun i l => Z.G (part.right l) i)
-  E := ⟨fun _ => zero, fun _ => zero⟩
+  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 end CORALean.Float
 

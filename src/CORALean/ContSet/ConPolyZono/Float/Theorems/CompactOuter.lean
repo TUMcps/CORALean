@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactGensOuter
 
 @[expose] public section

@@ -36,14 +36,14 @@ theorem Zonotope.containsPoint_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z
     forall_const] at h
   obtain ⟨⟨hc, hd⟩, hE⟩ := h
   have hdev := toReal_le_of_le hd
-  have hx : (fun i => toReal (p i) - toReal (Z.E.inf i)) ∈ nominalSet Z :=
+  have hx : (fun i => toReal (p i) - toReal (Z.I_error.inf i)) ∈ nominalSet Z :=
     Zonotope.box_subset hc _ fun i =>
-      le_trans (Zonotope.deviation_bound p Z.E.inf Z.c Z.c (toRealVec Z.c)
+      le_trans (Zonotope.deviation_bound p Z.I_error.inf Z.c Z.c (toRealVec Z.c)
         (fun _ => le_refl _) (fun _ => le_refl _) i) hdev
-  have he : (fun i => toReal (Z.E.inf i)) ∈ (error Z).construct := fun i =>
+  have he : (fun i => toReal (Z.I_error.inf i)) ∈ (I_error Z).construct := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
-  have hsum : toRealVec p = (fun i => toReal (p i) - toReal (Z.E.inf i))
-      + fun i => toReal (Z.E.inf i) := by
+  have hsum : toRealVec p = (fun i => toReal (p i) - toReal (Z.I_error.inf i))
+      + fun i => toReal (Z.I_error.inf i) := by
     funext i
     simp [toRealVec]
   rw [hsum]

@@ -1,3 +1,5 @@
+import CORALean.ContSet.Zonotope.Float.Operations.Materialise
+import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 import CORALean.Examples.Bench.RandVerifyInstance
 import CORALean.Examples.Bench.RandVerifyRatExact
 import CORALean.Examples.Bench.RandVerifySystem
@@ -98,7 +100,7 @@ def readRandSystem (inst : String → ExactDyadic → Except String 𝕋) (exact
         { h := 5
           c := fun i => xc.getD i z
           G := fun i j => if i.val = j.val then xr.getD i z else z
-          E := ⟨fun _ => z, fun _ => z⟩ }
+          I_error := ⟨fun _ => z, fun _ => z⟩ }
       U := ⟨fun i => ulo.getD i z, fun i => uhi.getD i z⟩
       dt := dtv
       x0Enclosed := x0cr.any (·.2.2) }

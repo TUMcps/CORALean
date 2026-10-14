@@ -64,7 +64,7 @@ def ConZonotope.conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConPolyZono �
   A := ConZonotope.conA cZ
   b := ConZonotope.conB cZ
   EC := Real.PolyZonotope.identE cZ.h
-  err := cZ.E
+  I_error := cZ.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

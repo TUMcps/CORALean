@@ -1,9 +1,10 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
+public import CORALean.ContSet.WithEmpty.Theorems.Basic
 
 @[expose] public section
 

@@ -51,12 +51,12 @@ theorem Zoo.ofInterval_encloses (I : Interval (Vec 𝕋 n)) (N : ℕ) (i : Fin n
         ∑ j, toReal (I.zonotope.G j i) * t j := Zoo.aux_ofInterval_poly I.zonotope N i t
     have hs : ∑ j, toReal (I.zonotope.G j i) * t j = toReal (I.radiusFrom i) * t i :=
       Zoo.diagonalBlock_sum I i t
-    have h0 : toReal (I.zonotope.E.inf i) = 0 := toReal_zero
-    have h1 : toReal (I.zonotope.E.sup i) = 0 := toReal_zero
+    have h0 : toReal (I.zonotope.I_error.inf i) = 0 := toReal_zero
+    have h1 : toReal (I.zonotope.I_error.sup i) = 0 := toReal_zero
     have hc : toReal (I.zonotope.c i) = toReal (I.center i) := rfl
-    show toReal (I.zonotope.E.inf i) ≤ toReal (I.center i) + toReal (I.radiusFrom i) * t i -
+    show toReal (I.zonotope.I_error.inf i) ≤ toReal (I.center i) + toReal (I.radiusFrom i) * t i -
         (I.taylm N i).nominal.poly t ∧ toReal (I.center i) + toReal (I.radiusFrom i) * t i -
-        (I.taylm N i).nominal.poly t ≤ toReal (I.zonotope.E.sup i)
+        (I.taylm N i).nominal.poly t ≤ toReal (I.zonotope.I_error.sup i)
     rw [hp, hs, hc, h0, h1]
     constructor <;> linarith
   · -- the interval: `c ± abs r` contains `c + r t` for `|t| ≤ 1`

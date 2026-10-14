@@ -170,8 +170,8 @@
 \addlegendimage{fill=CORAcolorPurple}
 \addlegendentry{proof helpers}
 \begin{scope}\clip[rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:8021,0);
-\fill[CORAcolorBlue] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1720,0);
-\fill[CORAcolorBlue!66.67!CORAcolorPurple] ([yshift=-5.5pt]axis cs:1720,0) rectangle ([yshift=5.5pt]axis cs:4470,0);
+\fill[CORAcolorBlue] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1716,0);
+\fill[CORAcolorBlue!66.67!CORAcolorPurple] ([yshift=-5.5pt]axis cs:1716,0) rectangle ([yshift=5.5pt]axis cs:4470,0);
 \fill[CORAcolorBlue!33.33!CORAcolorPurple] ([yshift=-5.5pt]axis cs:4470,0) rectangle ([yshift=5.5pt]axis cs:6373,0);
 \fill[CORAcolorPurple] ([yshift=-5.5pt]axis cs:6373,0) rectangle ([yshift=5.5pt]axis cs:8021,0);
 \end{scope}
@@ -179,8 +179,8 @@
 \end{axis}
 \begin{axis}[at={(theorems.south west)}, anchor=south west, height=0.55cm, width=5.00cm, xmin=0, xmax=8021, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,0)};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:860,0) {1720};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3095,0) {2750};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:858,0) {1716};
+\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3093,0) {2754};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:5421.5,0) {1903};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:7197,0) {1648};
 \end{axis}

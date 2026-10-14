@@ -31,13 +31,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.construct_eq_nominal {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
-    (hE : cZ.E = Interval.point fun _ => zero) : cZ.construct = nominalSet cZ := by -- --- PROOF ---
+    (hE : cZ.I_error = Interval.point fun _ => zero) : cZ.construct = nominalSet cZ
+      := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨y, hy, e, he, rfl⟩
     -- the error is the point `0`
     have he0 : e = 0 := funext fun i => by
-      have h : toReal (cZ.E.inf i) ≤ e i ∧ e i ≤ toReal (cZ.E.sup i) := he i
+      have h : toReal (cZ.I_error.inf i) ≤ e i ∧ e i ≤ toReal (cZ.I_error.sup i) := he i
       rw [hE] at h
       change toReal (zero : 𝕋) ≤ e i ∧ e i ≤ toReal (zero : 𝕋) at h
       rw [toReal_zero] at h
@@ -48,7 +49,7 @@ theorem ConZonotope.construct_eq_nominal {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
     exact hy
   · intro hx
     refine ⟨x, hx, 0, fun i => ?_, add_zero x⟩
-    show toReal (cZ.E.inf i) ≤ 0 ∧ 0 ≤ toReal (cZ.E.sup i)
+    show toReal (cZ.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (cZ.I_error.sup i)
     rw [hE]
     change toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)
     rw [toReal_zero]

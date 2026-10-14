@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Float.Polygon
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
 
 @[expose] public section

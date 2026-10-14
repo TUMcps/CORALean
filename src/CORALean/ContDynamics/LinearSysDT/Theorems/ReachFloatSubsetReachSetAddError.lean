@@ -90,8 +90,8 @@ theorem aux_reduceGirardBox_construct_subset_nominal (Z : Zonotope (Vec 𝕋 n))
 the nominal parts of `R₀` and `U` — widened by the error that run accumulated,
 provided both `R₀` and `U` bracket `0` in their own error boxes. -/
 theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT 𝕋 n) {o : ℕ}
-    (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.E.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.E.construct) (k : ℕ) :
+    (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) :
     (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
       sys.reachSet (S := 𝒵) (nominal R₀) (nominal U) k
         + (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
@@ -112,9 +112,9 @@ theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT �
       simp only [Mtimes.mtimes, Plus.plus, Reduce.reduce, Zonotope.materialise_eq,
         Zonotope.reduce, hMdef, hWdef]
     -- what `plus_subset_add_box` and `mtimes_subset_add_box` ask beyond `reduce_subset_add_box`
-    have hRk0 : (0 : Vec ℝ n) ∈ Rk.E.construct :=
+    have hRk0 : (0 : Vec ℝ n) ∈ Rk.I_error.construct :=
       sys.reachFloat_zero_mem_error ho hR₀ hU k
-    have hM0 : (0 : Vec ℝ n) ∈ M.E.construct := Zonotope.zero_mem_mtimes_error hRk0
+    have hM0 : (0 : Vec ℝ n) ∈ M.I_error.construct := Zonotope.zero_mem_mtimes_error hRk0
     intro x hx
     rw [hstep] at hx
     -- peel the three boxes off, in the order `reach`'s step applies the operations

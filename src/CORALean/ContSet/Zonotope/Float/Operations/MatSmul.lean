@@ -38,7 +38,7 @@ def Zonotope.matSmul (cLo cHi : 𝕋) (Z : Zonotope (Mat 𝕋 m n)) : Zonotope (
   let lo : Mat 𝕋 m n → Mat 𝕋 m n := fun A i j => Interval.mulLo cLo cHi (A i j) (A i j)
   let hi : Mat 𝕋 m n → Mat 𝕋 m n := fun A i j => Interval.mulHi cLo cHi (A i j) (A i j)
   Zonotope.ofEntryBoundsMat (lo Z.c) (hi Z.c) (fun k => lo (Z.G k)) (fun k => hi (Z.G k))
-    (Interval.smul cLo cHi Z.E)
+    (Interval.smul cLo cHi Z.I_error)
 
 end CORALean.Float
 

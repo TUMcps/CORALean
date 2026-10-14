@@ -1,15 +1,16 @@
 module
 
-public import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
-public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.Convex
 public import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
+public import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
 public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
+public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.ContSet.Definitions.ConvexSet
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import Mathlib.Analysis.InnerProductSpace.Basic
 
 @[expose] public section

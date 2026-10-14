@@ -88,9 +88,9 @@ theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {a : Ve
     le_trans (Finset.sum_le_sum fun r _ => le_dotUp _ _) (sum_le_sumUp _)
   have hc := le_dotUp a S.c
   have hbox : ∑ r, toReal (a r) * e r ≤ toReal (sumUp fun r =>
-      maximum (mulUp (a r) (S.E.inf r)) (mulUp (a r) (S.E.sup r))) := by
+      maximum (mulUp (a r) (S.I_error.inf r)) (mulUp (a r) (S.I_error.sup r))) := by
     refine le_trans (Finset.sum_le_sum fun r _ => ?_) (sum_le_sumUp _)
-    have hb : toReal (S.E.inf r) ≤ e r ∧ e r ≤ toReal (S.E.sup r) := he r
+    have hb : toReal (S.I_error.inf r) ≤ e r ∧ e r ≤ toReal (S.I_error.sup r) := he r
     exact SpectraShadow.aux_mul_le_corner _ _ _ hb.1 hb.2
   -- the point's value along `a`, split into centre, generators and error
   have hsplit : ∑ r, toReal (a r) * (y + e) r = ∑ r, toReal (a r) * toReal (S.c r)
@@ -104,7 +104,7 @@ theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {a : Ve
   have s₁ := add_le_addUp (dotUp a S.c) (sumUp fun r => dotUp (fun j => S.A₀ r j) fun j => Y j r)
   have s₂ := add_le_addUp (addUp (dotUp a S.c)
     (sumUp fun r => dotUp (fun j => S.A₀ r j) fun j => Y j r))
-    (sumUp fun r => maximum (mulUp (a r) (S.E.inf r)) (mulUp (a r) (S.E.sup r)))
+    (sumUp fun r => maximum (mulUp (a r) (S.I_error.inf r)) (mulUp (a r) (S.I_error.sup r)))
   simp only [SpectraShadow.dualBound]
   rw [hsplit]
   linarith

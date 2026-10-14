@@ -1,17 +1,18 @@
 module
 
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.AddDownLeAdd
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.AddLeAddUp
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
-public import CORALean.Global.Float.ToRat
-public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.DivDownLeDiv
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeDivUp
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeRoundUp
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactMul
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMaximum
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMinimum
+public import CORALean.Global.Float.ToRat
 
 @[expose] public section
 

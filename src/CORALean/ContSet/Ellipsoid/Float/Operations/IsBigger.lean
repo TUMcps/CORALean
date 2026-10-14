@@ -43,8 +43,8 @@ def Ellipsoid.isBigger (E₁ E₂ : Ellipsoid 𝕋 n) (T : Mat 𝕋 E₁.k E₂.
   let reach : Vec 𝕋 n := radius gap
   le (sumUp fun i => sqSumUp fun j => absolute (T i j)) one &&
     (List.finRange n).all fun i =>
-      le (E₁.err.inf i) (subDown (E₂.err.inf i) (reach i)) &&
-        le (addUp (E₂.err.sup i) (reach i)) (E₁.err.sup i)
+      le (E₁.I_error.inf i) (subDown (E₂.I_error.inf i) (reach i)) &&
+        le (addUp (E₂.I_error.sup i) (reach i)) (E₁.I_error.sup i)
 
 end CORALean.Float
 

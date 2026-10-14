@@ -34,7 +34,7 @@ def ConZonotope.project (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (dims : Fin m → F
   c := fun k => cZ.c (dims k)
   G := fun j k => cZ.G j (dims k)
   P := cZ.P
-  E := cZ.E.project dims
+  I_error := cZ.I_error.project dims
 
 end CORALean.Float
 

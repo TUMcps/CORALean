@@ -37,7 +37,7 @@ def Ellipsoid.minkDiffPoint (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Ellipsoid 
   { k := E.k
     q := fun i => addDown (E.q i) (negS i)
     G := E.G
-    err := E.err.plus (Ellipsoid.centerResidual E.q negS) }
+    I_error := E.I_error.plus (Ellipsoid.centerResidual E.q negS) }
 
 end CORALean.Float
 

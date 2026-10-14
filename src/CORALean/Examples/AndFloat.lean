@@ -1,14 +1,15 @@
-import CORALean.ContSet.Zonotope.Float.Theorems.AndOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
-import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Polygon.Float.Theorems.AndOuter
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
-import CORALean.ContSet.LevelSet.Float.Theorems.ContainsPointSound
-import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
+import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 import CORALean.ContSet.EmptySet.Real.Theorems.AndExact
 import CORALean.ContSet.Fullspace.Real.Theorems.Basic
+import CORALean.ContSet.LevelSet.Float.Theorems.ContainsPointSound
+import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
+import CORALean.ContSet.Polygon.Float.Theorems.AndOuter
+import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.ContSet.Zonotope.Float.Theorems.AndOuter
+import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
 import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 
 /-!
 # The `and_` family, run and applied
@@ -75,7 +76,7 @@ def squareDiamond : Zonotope (Vec D 2) := square.and_ diamond
 #eval boxF squareDiamond.interval   -- the hull of the answer
 
 /-- Both zonotopes have no error, so their centres are points of them. -/
-theorem centre_mem (Z : Zonotope (Vec D 2)) (h : Z.E = box0) : toRealVec Z.c ∈ Z.construct :=
+theorem centre_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z.c ∈ Z.construct :=
   Zonotope.centre_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
 
 /-- The origin is in both, hence in the answer. -/

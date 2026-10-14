@@ -45,10 +45,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 /-- A point of `Z`, nominal part and error box together, reaches no further than
 `|c| + Σ|G| + |E|`, rounded up. -/
 theorem Zonotope.aux_abs_le_construct {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ n}
-    (hz : z ∈ nominalSet Z) (he : e ∈ Z.E.construct) (j : Fin n) :
+    (hz : z ∈ nominalSet Z) (he : e ∈ Z.I_error.construct) (j : Fin n) :
     |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) ∧
       |z j + e j| ≤ toReal (addUp (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
-        (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j)))) := by -- --- PROOF ---
+        (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))) := by -- --- PROOF ---
   obtain ⟨β, hβ, hzβ⟩ := Zonotope.mem_nominalSet_iff.mp hz
   have hgen := abs_sum_le_radius (d := fun i j => Z.G j i) (Δ := fun i j => toReal (Z.G j i))
     (fun _ _ => le_refl _) hβ j
@@ -59,8 +59,9 @@ theorem Zonotope.aux_abs_le_construct {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ
     rw [hzβ j]
     exact le_trans (le_trans (abs_add_le _ _) (by linarith)) hup
   -- the error box, by the larger magnitude of its bounds
-  have hej : toReal (Z.E.inf j) ≤ e j ∧ e j ≤ toReal (Z.E.sup j) := he j
-  have heb : |e j| ≤ toReal (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j))) := by
+  have hej : toReal (Z.I_error.inf j) ≤ e j ∧ e j ≤ toReal (Z.I_error.sup j) := he j
+  have heb : |e j| ≤ toReal (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j))) :=
+      by
     rw [toReal_maximum, toReal_absolute, toReal_absolute]
     exact abs_le_max_abs_abs hej.1 hej.2
   exact ⟨hzb, le_trans (abs_add_le _ _) (le_trans (add_le_add hzb heb) (add_le_addUp _ _))⟩
@@ -82,7 +83,7 @@ theorem Zonotope.aux_abs_mulVec_le {R : Mat ℝ m n} {x : Vec ℝ n} {r : Mat �
 /-- `mtimesIntervalMat` reaches no further than the image of `Z.construct` under any `A` in
 the box, widened by `mtimesIntervalMatBox`, provided `Z` brackets `0` in its own box. -/
 theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
-    (Z : Zonotope (Vec 𝕋 n)) (h : (0 : Vec ℝ n) ∈ Z.E.construct) {A : Mat ℝ m n}
+    (Z : Zonotope (Vec 𝕋 n)) (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) {A : Mat ℝ m n}
     (hA : A ∈ IM.construct) :
     (Zonotope.mtimesIntervalMat IM Z).construct ⊆
       (A *ᵥ ·) '' Z.construct
@@ -94,7 +95,8 @@ theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
   set r : Mat 𝕋 m n := fun i j => maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j))
     with hrdef
   set ν : Vec 𝕋 n := fun j => addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j) with hνdef
-  set ξ : Vec 𝕋 n := fun j => addUp (ν j) (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j)))
+  set ξ : Vec 𝕋 n := fun j => addUp (ν j)
+      (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))
     with hξdef
   set b : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ν j) with hbdef
   set a : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ξ j) with hadef

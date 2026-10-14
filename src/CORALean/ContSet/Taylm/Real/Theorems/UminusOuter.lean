@@ -1,7 +1,9 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
+public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section

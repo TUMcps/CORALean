@@ -39,7 +39,7 @@ def ConZonotope.plus (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope
   c := fun i => addDown (cZ₁.c i) (cZ₂.c i)
   G := Fin.append cZ₁.G cZ₂.G
   P := (cZ₁.P.padLeft cZ₂.h).intersection (HPolytope.padRight cZ₁.h cZ₂.P)
-  E := (cZ₁.E.plus cZ₂.E).plus (Zonotope.centerResidual cZ₁.c cZ₂.c)
+  I_error := (cZ₁.I_error.plus cZ₂.I_error).plus (Zonotope.centerResidual cZ₁.c cZ₂.c)
 
 end CORALean.Float
 

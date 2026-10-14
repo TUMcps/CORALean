@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Operations.Point
 

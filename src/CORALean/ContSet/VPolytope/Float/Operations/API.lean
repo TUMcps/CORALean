@@ -22,6 +22,7 @@ public import CORALean.ContSet.VPolytope.Float.Operations.Origin
 public import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
 public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDimWith
 public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
+public import CORALean.ContSet.VPolytope.Float.Operations.Materialise
 
 /-!
 # What the float `VPolytope` computes

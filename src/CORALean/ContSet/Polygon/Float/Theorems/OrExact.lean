@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Float.Operations.Basic
+public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
 

@@ -38,7 +38,7 @@ def PolyZonotope.compactGens (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Ve
   G := fun j i => pZ.mergedCol i j
   E := fun k j => pZ.E k (PolyZonotope.keepIdx pZ.E j)
   GI := pZ.GI
-  err := pZ.err.plus (PolyZonotope.generatorError (PolyZonotope.compactGap pZ))
+  I_error := pZ.I_error.plus (PolyZonotope.generatorError (PolyZonotope.compactGap pZ))
 
 end CORALean.Float
 

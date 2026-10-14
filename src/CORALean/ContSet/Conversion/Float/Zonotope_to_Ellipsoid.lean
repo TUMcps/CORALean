@@ -55,8 +55,8 @@ def Zonotope.ellipsoid (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 
   k := Z.h
   q := Z.c
   G := Z.ellipsoidG σ
-  err := ⟨fun i => subDown (Z.E.inf i) (Z.ellipsoidSlack σ i),
-          fun i => addUp (Z.E.sup i) (Z.ellipsoidSlack σ i)⟩
+  I_error := ⟨fun i => subDown (Z.I_error.inf i) (Z.ellipsoidSlack σ i),
+          fun i => addUp (Z.I_error.sup i) (Z.ellipsoidSlack σ i)⟩
 
 open Pointwise SoundFloatArithmetic InflatedContSet
 
@@ -142,15 +142,15 @@ theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) (hσ
     Ellipsoid.mem_nominalSet_iff.mpr ⟨fun j => β j / toReal σ, hnorm, fun i => rfl⟩,
     fun i => e i + S i, fun i => ?_, funext fun i => ?_⟩
   -- the shifted error stays in the widened box
-  · have h1 := subDown_le_sub (Z.E.inf i) (Z.ellipsoidSlack σ i)
-    have h2 := add_le_addUp (Z.E.sup i) (Z.ellipsoidSlack σ i)
-    have h3 : toReal (Z.E.inf i) ≤ e i := (he i).1
-    have h4 : e i ≤ toReal (Z.E.sup i) := (he i).2
+  · have h1 := subDown_le_sub (Z.I_error.inf i) (Z.ellipsoidSlack σ i)
+    have h2 := add_le_addUp (Z.I_error.sup i) (Z.ellipsoidSlack σ i)
+    have h3 : toReal (Z.I_error.inf i) ≤ e i := (he i).1
+    have h4 : e i ≤ toReal (Z.I_error.sup i) := (he i).2
     have h5 := abs_le.mp (hSle i)
     constructor
-    · show toReal (subDown (Z.E.inf i) (Z.ellipsoidSlack σ i)) ≤ e i + S i
+    · show toReal (subDown (Z.I_error.inf i) (Z.ellipsoidSlack σ i)) ≤ e i + S i
       linarith
-    · show e i + S i ≤ toReal (addUp (Z.E.sup i) (Z.ellipsoidSlack σ i))
+    · show e i + S i ≤ toReal (addUp (Z.I_error.sup i) (Z.ellipsoidSlack σ i))
       linarith
   · show _ + (e i + S i) = z i + e i
     have := hres i

@@ -58,7 +58,7 @@ theorem SpectraShadow.construct_subset_absorb (S : SpectraShadow 𝕋 (Vec 𝕋 
     · -- each box constraint is the box's bound at `e`
       rw [Fin.sum_univ_add]
       refine Fin.addCases (fun r' => ?_) (fun r' => ?_) r <;>
-        have hb : toReal (S.E.inf r') ≤ e r' ∧ e r' ≤ toReal (S.E.sup r') := he r' <;>
+        have hb : toReal (S.I_error.inf r') ≤ e r' ∧ e r' ≤ toReal (S.I_error.sup r') := he r' <;>
         simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, toRealVec,
           Fin.append_left, Fin.append_right] <;>
         simp [toReal_zero, toReal_neg, hunit] <;> linarith [hb.1, hb.2]

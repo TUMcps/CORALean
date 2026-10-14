@@ -93,9 +93,10 @@ theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋
 
 /-- The box absorbs the two incoming boxes and the centre rounding. -/
 theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ₁.err.construct + cPZ₂.err.construct
-        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct ⊆ (cPZ₁.plus cPZ₂).err.construct :=
-  subset_trans (Set.add_subset_add_right (Interval.plus_outer cPZ₁.err cPZ₂.err))
+    cPZ₁.I_error.construct + cPZ₂.I_error.construct
+        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct ⊆
+            (cPZ₁.plus cPZ₂).I_error.construct :=
+  subset_trans (Set.add_subset_add_right (Interval.plus_outer cPZ₁.I_error cPZ₂.I_error))
     (Interval.plus_outer _ _)
 
 

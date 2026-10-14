@@ -43,13 +43,15 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) :
     fun i j => by simp only [Ellipsoid.cartProdVec, Fin.addCases_left]
   have hGr : ∀ (i : Fin m) (j : Fin E.k), (E.cartProdVec v).G (Fin.natAdd n i) j = zero :=
     fun i j => by simp only [Ellipsoid.cartProdVec, Fin.addCases_right]
-  have hil : ∀ i : Fin n, (E.cartProdVec v).err.inf (Fin.castAdd m i) = E.err.inf i := fun i => by
+  have hil : ∀ i : Fin n, (E.cartProdVec v).I_error.inf (Fin.castAdd m i) = E.I_error.inf i := fun
+      i => by
     simp only [Ellipsoid.cartProdVec, Fin.append_left]
-  have hsl : ∀ i : Fin n, (E.cartProdVec v).err.sup (Fin.castAdd m i) = E.err.sup i := fun i => by
+  have hsl : ∀ i : Fin n, (E.cartProdVec v).I_error.sup (Fin.castAdd m i) = E.I_error.sup i := fun
+      i => by
     simp only [Ellipsoid.cartProdVec, Fin.append_left]
-  have hir : ∀ i : Fin m, (E.cartProdVec v).err.inf (Fin.natAdd n i) = zero := fun i => by
+  have hir : ∀ i : Fin m, (E.cartProdVec v).I_error.inf (Fin.natAdd n i) = zero := fun i => by
     simp only [Ellipsoid.cartProdVec, Fin.append_right]
-  have hsr : ∀ i : Fin m, (E.cartProdVec v).err.sup (Fin.natAdd n i) = zero := fun i => by
+  have hsr : ∀ i : Fin m, (E.cartProdVec v).I_error.sup (Fin.natAdd n i) = zero := fun i => by
     simp only [Ellipsoid.cartProdVec, Fin.append_right]
   -- the two directions, a point of the product and a point of the factor
   ext x
@@ -57,16 +59,16 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) :
   · rintro ⟨z, hz, e, he, rfl⟩
     obtain ⟨u, hu, hz⟩ := Ellipsoid.mem_nominalSet_iff.mp hz
     -- the first `n` coordinates are the original's, the rest the point
-    have he₁ : ∀ i : Fin n, toReal (E.err.inf i) ≤ e (Fin.castAdd m i)
-        ∧ e (Fin.castAdd m i) ≤ toReal (E.err.sup i) := fun i => by
-      have h : toReal ((E.cartProdVec v).err.inf (Fin.castAdd m i)) ≤ e (Fin.castAdd m i)
-          ∧ e (Fin.castAdd m i) ≤ toReal ((E.cartProdVec v).err.sup (Fin.castAdd m i)) :=
+    have he₁ : ∀ i : Fin n, toReal (E.I_error.inf i) ≤ e (Fin.castAdd m i)
+        ∧ e (Fin.castAdd m i) ≤ toReal (E.I_error.sup i) := fun i => by
+      have h : toReal ((E.cartProdVec v).I_error.inf (Fin.castAdd m i)) ≤ e (Fin.castAdd m i)
+          ∧ e (Fin.castAdd m i) ≤ toReal ((E.cartProdVec v).I_error.sup (Fin.castAdd m i)) :=
         he (Fin.castAdd m i)
       rw [hil, hsl] at h
       exact h
     have he₂ : ∀ i : Fin m, e (Fin.natAdd n i) = 0 := fun i => by
-      have h : toReal ((E.cartProdVec v).err.inf (Fin.natAdd n i)) ≤ e (Fin.natAdd n i)
-          ∧ e (Fin.natAdd n i) ≤ toReal ((E.cartProdVec v).err.sup (Fin.natAdd n i)) :=
+      have h : toReal ((E.cartProdVec v).I_error.inf (Fin.natAdd n i)) ≤ e (Fin.natAdd n i)
+          ∧ e (Fin.natAdd n i) ≤ toReal ((E.cartProdVec v).I_error.sup (Fin.natAdd n i)) :=
         he (Fin.natAdd n i)
       rw [hir, hsr, toReal_zero] at h
       exact le_antisymm h.2 h.1
@@ -108,12 +110,16 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) :
         rfl
     -- the appended error is zero, the first coordinates' the original's
     · refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-      · show toReal ((E.cartProdVec v).err.inf (Fin.castAdd m i)) ≤ Fin.append e 0 (Fin.castAdd m i)
-          ∧ Fin.append e 0 (Fin.castAdd m i) ≤ toReal ((E.cartProdVec v).err.sup (Fin.castAdd m i))
+      · show toReal ((E.cartProdVec v).I_error.inf (Fin.castAdd m i)) ≤ Fin.append e 0
+          (Fin.castAdd m i)
+          ∧ Fin.append e 0 (Fin.castAdd m i) ≤ toReal
+              ((E.cartProdVec v).I_error.sup (Fin.castAdd m i))
         rw [hil, hsl, Fin.append_left]
         exact he i
-      · show toReal ((E.cartProdVec v).err.inf (Fin.natAdd n i)) ≤ Fin.append e 0 (Fin.natAdd n i)
-          ∧ Fin.append e 0 (Fin.natAdd n i) ≤ toReal ((E.cartProdVec v).err.sup (Fin.natAdd n i))
+      · show toReal ((E.cartProdVec v).I_error.inf (Fin.natAdd n i)) ≤ Fin.append e 0
+          (Fin.natAdd n i)
+          ∧ Fin.append e 0 (Fin.natAdd n i) ≤ toReal
+              ((E.cartProdVec v).I_error.sup (Fin.natAdd n i))
         rw [hir, hsr, Fin.append_right, toReal_zero]
         exact ⟨le_refl _, le_refl _⟩
     · funext i

@@ -2,12 +2,14 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Materialise
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Mtimes
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsNominal
 public import CORALean.ContSet.ConPolyZono.Real.Instances
 public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -20,7 +22,6 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
-
 
 namespace CORALean.Float
 
@@ -90,6 +91,61 @@ theorem ConPolyZono.toRealVec_append {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b
     toRealVec (Fin.append b₁ b₂) = Fin.append (toRealVec b₁) (toRealVec b₂) := by
   refine funext (Fin.addCases (fun i => ?_) (fun i => ?_)) <;>
     simp only [toRealVec, Fin.append_left, Fin.append_right]
+
+end CORALean.Float
+
+
+namespace CORALean.Float
+
+open Matrix FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ===============================  `ConPolyZono.materialise_eq`  =============================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialise` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem ConPolyZono.materialise_eq (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    cPZ.materialise = cPZ := by
+  simp [ConPolyZono.materialise]
+
+
+-- =================================  `ConPolyZono.nominal_A`  ================================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal set's fields, so proofs can see through the instance. -/
+theorem ConPolyZono.nominal_A [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    (InflatedContSet.nominal cPZ).A = toRealMat cPZ.A := rfl
+
+
+-- =================================  `ConPolyZono.nominal_b`  ================================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal ConPolyZono's field `b`, so proofs can see through the instance. -/
+theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    (InflatedContSet.nominal cPZ).b = cPZ.b.nominal := rfl
+
+
+-- =================================  `ConPolyZono.nominal_EC`  ================================= --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- The nominal ConPolyZono's field `EC`, so proofs can see through the instance. -/
+theorem ConPolyZono.nominal_EC [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    (InflatedContSet.nominal cPZ).EC = cPZ.EC := rfl
 
 end CORALean.Float
 

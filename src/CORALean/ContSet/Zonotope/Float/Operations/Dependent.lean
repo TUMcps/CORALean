@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Zonotope.dependent (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := Z.h + n
   c := Z.c
-  G := Fin.append Z.G (diagonalBlock (PolyZonotope.errorBound Z.E))
-  E := ⟨fun _ => zero, fun _ => zero⟩
+  G := Fin.append Z.G (diagonalBlock (PolyZonotope.errorBound Z.I_error))
+  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 end CORALean.Float
 

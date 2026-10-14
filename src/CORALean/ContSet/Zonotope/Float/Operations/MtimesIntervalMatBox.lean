@@ -48,12 +48,12 @@ def Zonotope.mtimesIntervalMatBox (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope (
   let ν : Vec 𝕋 n := fun j =>                                       -- |c| + Σ|G|
     addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)
   let ξ : Vec 𝕋 n := fun j =>                                       -- |c| + Σ|G| + |E|
-    addUp (ν j) (maximum (absolute (Z.E.inf j)) (absolute (Z.E.sup j)))
+    addUp (ν j) (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))
   let b : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ν j)   -- diag(b)'s reach
   let a : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ξ j)   -- (mid(M) - A) x's reach
   (Zonotope.mtimesBox C Z).plus                                     -- mid(M) Z's rounding
     ((Interval.symmetric fun i => addUp (a i) (b i)).plus           -- a + b, symmetric
-      (Zonotope.mtimesIntervalMat IM Z).E)                          -- [M] Z's own box
+      (Zonotope.mtimesIntervalMat IM Z).I_error)                          -- [M] Z's own box
 
 end CORALean.Float
 

@@ -37,7 +37,7 @@ def Zonotope.recentre (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := Z.h
   c := fun _ => zero
   G := Z.G
-  E := ⟨fun i => minimum (Z.E.inf i) zero, fun i => maximum (Z.E.sup i) zero⟩
+  I_error := ⟨fun i => minimum (Z.I_error.inf i) zero, fun i => maximum (Z.I_error.sup i) zero⟩
 
 end CORALean.Float
 

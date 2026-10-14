@@ -58,7 +58,7 @@ def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen ra
     → (∀ k, k < cPZ.p → |ConPolyZono.aux_rescaleSub cen rad t a k| ≤ 1)
     → cPZ.satisfies (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad t a k)
     → acc.satisfies (fun k : Fin acc.p => a k)
-      ∧ ∀ e ∈ cPZ.err.construct, ∃ e' ∈ acc.err.construct, ∀ i,
+      ∧ ∀ e ∈ cPZ.I_error.construct, ∃ e' ∈ acc.I_error.construct, ∀ i,
         (∑ l, toReal (acc.G l i) * Real.PolyZonotope.monomial acc.E (fun k : Fin acc.p => a k) l)
             + e' i
           = (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E
