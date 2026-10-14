@@ -45,8 +45,10 @@ variable {n m : ℕ}
 /-- [1, Alg. 3]: `true` is `VERIFIED`, `false` is `UNKNOWN` after `I` iterations. -/
 def RefinableNetwork.refineVerify (rn : RefinableNetwork S n m) (ρ : ℕ) (X : S n)
     (isDisjoint : S m → Bool) (refineStep : Schedule → Schedule) (I : ℕ) : Bool :=
-  let ψ : Schedule := fun _ _ => 1                            -- 1: order pattern ψ ← 1
-  rn.refineVerifyFrom ρ X isDisjoint refineStep ψ I           -- 2-17
+  -- 1. `Initialize order pattern ψ ← 1`
+  let ψ : Schedule := fun _ _ => 1
+  -- 2. `for i = 1, …, I`: lines 3-15 each; 17. `return UNKNOWN` once they are spent
+  rn.refineVerifyFrom ρ X isDisjoint refineStep ψ I
 
 end CORALean
 

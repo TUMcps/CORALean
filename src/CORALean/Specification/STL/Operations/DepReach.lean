@@ -42,10 +42,17 @@ variable {n m : ℕ}
 noncomputable def STL.depReach (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope (Vec ℝ n))
     (U : Zonotope (Vec ℝ m)) (Δt : ℝ) (κ : ℕ) (i : ℕ) :
     Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) :=
-  let cs := STL.depReachConsts A B U Δt κ                          -- line 1
-  let s := STL.depReachAt A Δt cs X₀ i                              -- lines 2-3, 5-7: state at t_i
-  let s' := STL.depReachAt A Δt cs X₀ (i + 1)                       -- state at t_{i+1}
-  (STL.depReachPoint s, STL.depReachInterval s s')                  -- lines 8-9
+  -- 1. `ũ, U₀, T, F, G, D`
+  let cs := STL.depReachConsts A B U Δt κ
+  -- 2. `H(t_i), P_c(t_i), D_i, C_i`: lines 2-3, then `i` passes of the loop
+  let s := STL.depReachAt A Δt cs X₀ i
+  -- 5. … and one pass further, for `t_{i+1}`
+  let s' := STL.depReachAt A Δt cs X₀ (i + 1)
+  -- 8. `R(t_i) ← H(t_i) ⊕ P(t_i)`, with `P(t_i) = P_c(t_i) ⊕ D_i`
+  let R_ti := STL.depReachPoint s
+  -- 9. `R(τ_i) ← conv(H(t_i), H(t_{i+1})) ⊕ P(t_{i+1}) ⊕ C_i`
+  let R_τi := STL.depReachInterval s s'
+  (R_ti, R_τi)
 
 end CORALean
 

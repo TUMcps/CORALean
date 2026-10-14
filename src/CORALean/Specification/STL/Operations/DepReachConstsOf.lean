@@ -45,12 +45,18 @@ variable {n m : ℕ}
 /-- Line 1 of [1, Alg. 1]. -/
 noncomputable def STL.depReachConsts (A : Mat ℝ n n) (B : Mat ℝ n m) (U : Zonotope (Vec ℝ m))
     (Δt : ℝ) (κ : ℕ) : STL.DepReachConsts n :=
-  let ũ := B *ᵥ U.c                                                -- ũ ← B c_u
-  let U₀ := Zonotope.mtimes B (U.plus (Zonotope.ofPoint (-U.c)))     -- U₀ ← B(U ⊕ (-c_u))
-  let T := MatExp.expIntegral A Δt                                  -- T ← (14)
-  let F := STL.depCurvatureF A Δt κ                                 -- F ← (18)
-  let G := STL.depCurvatureG A Δt κ                                 -- G ← (18)
-  let D := STL.depBloating A U₀ Δt κ                                -- D ← (15)
+  -- 1. `ũ ← B c_u`
+  let ũ := B *ᵥ U.c
+  -- 1. `U₀ ← B(U ⊕ (-c_u))`
+  let U₀ := Zonotope.mtimes B (U.plus (Zonotope.ofPoint (-U.c)))
+  -- 1. `T ← (14)`
+  let T := MatExp.expIntegral A Δt
+  -- 1. `F ← (18)`
+  let F := STL.depCurvatureF A Δt κ
+  -- 1. `G ← (18)`
+  let G := STL.depCurvatureG A Δt κ
+  -- 1. `D ← (15)`
+  let D := STL.depBloating A U₀ Δt κ
   ⟨ũ, U₀, T, F, G, D⟩
 
 end CORALean

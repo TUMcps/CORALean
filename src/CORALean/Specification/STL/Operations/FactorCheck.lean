@@ -40,13 +40,19 @@ variable {S X : Type}
 def STL.factorCheck (H J K : ℕ) (box : Set X) (R : ℕ → Set S) (P : ℕ → ℕ → ℕ → List (Set S))
     (unsafeSet : ℕ → Set S → Set X) (meets : Set S → Set S → Bool) (isEmpty : Set X → Bool) :
     List (Set X) :=
-  let L₀ : List (Set X) := [] -- line 3
+  -- 3. `L ← ∅`
+  let L₀ : List (Set X) := []
+  -- 6. the pairs `(j, k)`, `j` from 0 to `J` and `k` from 0 to `K`
   let jk := (List.range (J + 1)).flatMap fun j => (List.range (K + 1)).map fun k => (j, k)
-  (List.range (H + 1)).foldl (fun L h => -- line 4
-    let V₀ : List (Set X) := [box] -- line 5
-    let V := jk.foldl (fun V (j, k) => -- lines 6-13
+  -- 4. `for h ← 0 to H do`, carrying `L`
+  (List.range (H + 1)).foldl (fun L h =>
+    -- 5. `V ← [-1, 1]^p`
+    let V₀ : List (Set X) := [box]
+    -- 6. `for j, k`: lines 7-13, here `STL.factorStep`
+    let V := jk.foldl (fun V (j, k) =>
       STL.factorStep (R j) (P h j k) (unsafeSet j) meets isEmpty V) V₀
-    L ++ V) L₀ -- line 14
+    -- 14. `L ← (L, V)`
+    L ++ V) L₀
 
 end CORALean
 

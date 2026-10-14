@@ -43,8 +43,12 @@ noncomputable def verifyConvex (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O 
     (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d) (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
     (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (ℓ : ℕ → α →ₗ[ℝ] ℝ) (fuel : ℕ) :
     VerifyAnswer :=
-  ((List.range fuel).foldl (verifyConvexStep bO bU wO wU ℓ)
-    (.undecided, (∅ : Set α))).1
+  -- 1. `P̌ ← ∅` (and no answer yet)
+  let init : VerifyAnswer × Set α := (.undecided, ∅)
+  -- 2. `repeat`: lines 4-13 once per direction `ℓᵢ`, `fuel` times at most
+  let final := (List.range fuel).foldl (verifyConvexStep bO bU wO wU ℓ) init
+  -- 5., 13. the answer a pass reached, `safe` or `unsafe`; `undecided` once `fuel` is spent
+  final.1
 
 end CORALean
 

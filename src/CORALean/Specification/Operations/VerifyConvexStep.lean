@@ -47,9 +47,16 @@ noncomputable def verifyConvexStep (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBoun
   | (.safe, V), _ => (.safe, V)
   | (.violated, V), _ => (.violated, V)
   | (.undecided, V), i =>
-      if (bO (ℓ i)).val + (bU (-(ℓ i))).val < 0 then (.safe, V)
+      -- 4. `ρ(R̂(t), ℓᵢ) + ρ(L, −ℓᵢ)`, the upper bound against the unsafe set's support function
+      let sep := (bO (ℓ i)).val + (bU (-(ℓ i))).val
+      -- 5. `if … < 0 then return safe`
+      if sep < 0 then (.safe, V)
       else
-        let V' := insert (diffPoint wO wU (ℓ i)) V
+        -- 10. `v̌ᵢ ← ν(Ř(t), ℓᵢ) − ν(L, −ℓᵢ)`
+        let v := diffPoint wO wU (ℓ i)
+        -- 11. `P̌ ← conv(P̌, v̌ᵢ)`: the vertices are kept, the hull is taken at line 12
+        let V' := insert v V
+        -- 12. `if 0 ∈ P̌ then return unsafe`
         if (0 : α) ∈ convexHull ℝ V' then (.violated, V') else (.undecided, V')
 
 end CORALean

@@ -47,11 +47,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 leave `≈ ρ n_k` of its neurons, `none` where `fuel` runs out first. -/
 def bucketTolerance (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : ℕ) (B : MergeBuckets 𝕋)
     (I_k : Interval (Vec 𝕋 n)) (ρ : 𝕋) : Option (Fin n → Bool) :=
-  let δmin := (zero : 𝕋)                                            -- Alg. 1, line 1
-  let δmax := subUp (maxOver I_k.sup) (minOver I_k.inf)             -- Alg. 1, line 1
-  match growBucketTolerance le B I_k ρ δmax fuel with               -- Alg. 1, lines 2-6
+  -- 1. `δmin ← 0`
+  let δmin := (zero : 𝕋)
+  -- 1. `δmax ← max(u_k) − min(l_k)`
+  let δmax := subUp (maxOver I_k.sup) (minOver I_k.inf)
+  -- 2. `do` 3. `δmax ← 10 δmax` … 6. `while n̂_k / n_k > ρ`: 1) the upper bound for the tolerance
+  match growBucketTolerance le B I_k ρ δmax fuel with
   | none => none
-  | some δmax => bisectBucketTolerance le tol B I_k ρ δmin δmax fuel  -- Alg. 1, lines 7-17
+  | some δmax =>
+    -- 7. `do` 8. `δ ← (δmin + δmax) / 2` … 16. `while n̂_k / n_k ≉ ρ`, 17. `return B_{k,δ}`
+    bisectBucketTolerance le tol B I_k ρ δmin δmax fuel
 
 end CORALean
 

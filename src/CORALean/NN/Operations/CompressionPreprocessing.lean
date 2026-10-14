@@ -51,23 +51,33 @@ def compressionPreprocessing (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : 
     {n n₁ m : ℕ} (I_X : Interval (Vec 𝕋 n)) (L_1 : ReducedLinear 𝕋 n n₁) (L_2 : Relaxation 𝕋)
     (hσ_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ)
     (B_2 : MergeBuckets 𝕋) (rest : ReducibleNetwork 𝕋 n₁ m) (ρ : 𝕋) : Option (S m) :=
-  let L_m2 := ReducedLinear.identity (𝕋 := 𝕋) n                     -- Alg. 3, line 1: L_{-2}
-  let L_m1 := R_relu                                                -- Alg. 3, line 1: L_{-1}
-  let I_m1 :=                                                       -- Alg. 3, line 2 (Alg. 2, l. 5)
+  -- 1. `L_{-2}`, the identity, of `L_{-2}, L_{-1}, L_0 ← construct Φ_pre` (Cor. 1)
+  let L_m2 := ReducedLinear.identity (𝕋 := 𝕋) n
+  -- 1. `L_{-1}`, the ReLU; `L_0`, the identity, is composed into `L_1`
+  let L_m1 := R_relu
+  -- 2. `L̂_{-2}, L̂_{-1}, L̂_0 ← reduce using I_X, ρ` (Thm. 1): Alg. 2's line 5, `I_{-1}`
+  let I_m1 :=
     (Layer.activation (S := ℐ𝒱[𝕋]) L_m1).enclose
       ((L_m2.toLayer (S := ℐ𝒱[𝕋])).enclose I_X)
-  match bucketTolerance le tol fuel .dynamic I_m1 ρ with            -- Alg. 3, line 2 (Alg. 2, l. 6)
+  -- 2. … Alg. 2's line 6: the merge buckets `B_{-1,δ}` at the tolerance of `Alg. 1`
+  match bucketTolerance le tol fuel .dynamic I_m1 ρ with
   | none => none
   | some B_m1δ =>
-    let part := Partition.ofPred fun i => B_m1δ i = true            -- Alg. 3, line 2 (Alg. 2, l. 7)
-    let Lhat_m2 := L_m2.mergeRows part                              -- Alg. 3, line 2: L̂_{-2}
-    let Lhat_1 := L_1.mergeCols part I_m1                           -- Alg. 3, line 2: L̂_0, in L_1
-    let H_m2 := ofInterval                                          -- Alg. 3, line 3
+    -- 2. … Alg. 2's line 7: the neurons the buckets merge
+    let part := Partition.ofPred fun i => B_m1δ i = true
+    -- 2. … `L̂_{-2}` merges the rows of `L_{-2}`
+    let Lhat_m2 := L_m2.mergeRows part
+    -- 2. … `L̂_0` merges the columns of `L_1`, composed into it
+    let Lhat_1 := L_1.mergeCols part I_m1
+    -- 3. `H_{-2} ← zonotope(L̂_{-2}(I_X))` (Prop. 2)
+    let H_m2 := ofInterval
       ((Lhat_m2.toLayer (S := ℐ𝒱[𝕋])).enclose I_X)
+    -- 4. `Φ'_org(·) ← Φ_org(L̂_0(L̂_{-1}(·)))`: the layers prepended
     let Φ'_org := ReducibleNetwork.cons (ReducedLinear.identity _) L_m1 hσ_relu .dynamic
-      (.cons Lhat_1 L_2 hσ_2 B_2 rest)                              -- Alg. 3, line 4
-    match reduceOnTheFly le tol fuel H_m2 ρ Φ'_org with             -- Alg. 3, line 5
-    | some (_, Y) => some Y                                         -- Alg. 3, line 6
+      (.cons Lhat_1 L_2 hσ_2 B_2 rest)
+    -- 5. `Y ← execute Alg. 2 using H_{-2}, Φ'_org, ρ`, 6. `return Y`
+    match reduceOnTheFly le tol fuel H_m2 ρ Φ'_org with
+    | some (_, Y) => some Y
     | none => none
 
 end CORALean

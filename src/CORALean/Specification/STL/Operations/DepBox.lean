@@ -41,7 +41,9 @@ variable {n : ℕ}
 /-- `interval(Z)` of [1, Alg. 1], as a zonotope with `n` axis-aligned generators. -/
 noncomputable def STL.depBox (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ n) where
   h := n
+  -- 3. `interval(Z) = [c − r, c + r]`: the centre of `Z` is the centre of the box
   c := Z.c
+  -- 3. … with `r_i = Σ_l |G_{i,l}|`, the generator `r_i e_i` along each axis
   G := Matrix.diagonal fun i => ∑ l, |Z.G l i|
 
 end CORALean

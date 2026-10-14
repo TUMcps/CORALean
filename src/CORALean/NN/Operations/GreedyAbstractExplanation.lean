@@ -39,6 +39,7 @@ variable {n : ℕ}
 loop entered at the coarsest level with `N` refinements to spend. -/
 def greedyAbstractExplanation (n : ℕ) (absSuff genuine : ℕ → Finset (Fin n) → Bool) (N : ℕ) :
     Finset (Fin n) :=
+  -- 1. `S ← [n]`, 2. `for each feature i`, 18. `return S`; 3-16: `suff` is the refinement loop
   greedyMinimalExplanation n fun E => explanationRefineLoop absSuff genuine E 0 N
 
 end CORALean
