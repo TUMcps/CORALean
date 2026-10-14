@@ -22,9 +22,9 @@ of `f_ARX` from the real value of that window under that input has its stacked w
 step, in the printed box.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   13-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,6 +49,7 @@ def toF (x : D) : Float := Float.scaleB (Float.ofInt x.mantissa) x.exponent
 `(u(k), u(k-1), u(k-2))`. -/
 noncomputable def arxSys : NonlinearARX 1 1 2 where
   f y u := ![y 0 / 2 - y 1 ^ 2 / 4 + u 0]
+  dt := 1
 
 /-- The square's enclosure over `[a, b]`. -/
 def sqLo (a b : D) : D := Interval.mulLo a b a b

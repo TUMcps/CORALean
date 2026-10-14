@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
@@ -23,9 +24,9 @@ time-point twin place `δ` over the window and at its end, and adding `x✱` bac
 places `x`. No certificate and no confinement is asked of the caller.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -93,7 +94,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
     ⟨fun i => minimum (Ω.inf i) (xs i), fun i => maximum (Ω.sup i) (xs i)⟩ with hX_def
   set U' : Interval (Vec 𝕋 m) :=
     ⟨fun i => minimum (U.interval.inf i) (U.c i), fun i => maximum (U.interval.sup i) (U.c i)⟩
-  obtain ⟨hΔt, -⟩ := LinearSys.reachFloatInput_invariant _ _ hS
+  obtain ⟨hΔt, -⟩ := LinearSys.reachFloatInput_invariant _ hS
   refine ⟨hΔt, fun {x u} traj => ?_⟩
   -- the horizon `reachFloatInput` was given is the step
   have hTf : (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)) = toReal Δt := by
@@ -111,7 +112,9 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))).construct
-      ((Scalar.toRealMat (identityMat 𝕋 n) *ᵥ ·) '' (fm.linInputFloat A B xs X U U').construct)
+      ((fun u => Scalar.toRealMat (LinearSys.canonicalFloat A).B *ᵥ u +
+        Scalar.toRealVec (LinearSys.canonicalFloat A).c) ''
+        (fm.linInputFloat A B xs X U U').construct)
       (fun t => x t - toRealVec xs)
       (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) := by
     refine ⟨?_, fun t ht => ?_, fun t ht => ?_⟩
@@ -123,12 +126,11 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
       have := Plus.plus_outer R (⟨0, fun i => neg (xs i), fun j => j.elim0,
         ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
-    -- the input, through the identity
+    -- the input, through `B = I`, `c = 0`
     · rw [hTf] at ht
       refine ⟨_, h.linInputFloat_outer A B (aux_mem_hull Ω xs).2 hUU'
         (aux_mem_hull U.interval U.c).2 (hxX t ht) (traj.input t ht), ?_⟩
-      funext i
-      exact identityMat_mulVec _ i
+      exact congrFun (LinearSys.canonicalFloat_input A) _
     -- the flow, `δ̇ = ẋ = A δ + (f - A δ)`
     · have ht' : t ∈ Set.Icc 0 (toReal Δt) := by rwa [hTf] at ht
       have hd := (traj.flow t ht').sub_const (toRealVec xs)
@@ -139,12 +141,14 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
       abel
   -- a classical run on `[0, Δt]` with its input in a compact set is a Carathéodory one
   have hVb : Bornology.IsBounded
-      ((Scalar.toRealMat (identityMat 𝕋 n) *ᵥ ·) '' (fm.linInputFloat A B xs X U U').construct) :=
-    ((Zonotope.isCompact_construct _).image
-      (continuous_const.matrix_mulVec continuous_id)).isBounded
+      ((fun u => Scalar.toRealMat (LinearSys.canonicalFloat A).B *ᵥ u +
+        Scalar.toRealVec (LinearSys.canonicalFloat A).c) ''
+        (fm.linInputFloat A B xs X U U').construct) := by
+    rw [LinearSys.canonicalFloat_input, Set.image_id]
+    exact (Zonotope.isCompact_construct _).isBounded
   have ltraj := ltrajC.trajectory (convex_Icc _ _) ⟨le_rfl, by rw [hTf]; exact hΔt.le⟩ hVb
-  obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ hS
-  obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ hS
+  obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ hS
+  obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ hS
   -- adding `x✱` back
   have hback : ∀ {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.construct →
       y ∈ construct (Z ⊞ (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :

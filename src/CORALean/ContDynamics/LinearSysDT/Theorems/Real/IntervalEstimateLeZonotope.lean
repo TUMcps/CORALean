@@ -25,7 +25,7 @@ Its Eq. 34b prints the generators `E`, `-LF`, for the sets `⟨0, D_w⟩`, `⟨0
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,20 +40,19 @@ variable {n nu ny nw nv : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.intervalEstimate_le_zonotope (A : Mat ℝ n n) (B : Mat ℝ n nu)
-    (C : Mat ℝ ny n) (E : Mat ℝ n nw) (F : Mat ℝ ny nv) (L : Mat ℝ n ny)
-    (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ nw)) (V : Zonotope (Vec ℝ nv))
-    (u : ℕ → Vec ℝ nu) (y : ℕ → Vec ℝ ny) (Z : ℕ → Zonotope (Vec ℝ n))
+theorem LinearSysDT.intervalEstimate_le_zonotope (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
+    (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (Z : ℕ → Zonotope (Vec ℝ n))
     (hZ0 : X₀.construct ⊆ (Z 0).construct)
-    (hZ : ∀ k, ((A - L * C) *ᵥ ·) '' (Z k).construct + {B *ᵥ u k + L *ᵥ y k} +
-      (E *ᵥ ·) '' W.construct + ((-(L * F)) *ᵥ ·) '' V.construct ⊆ (Z (k + 1)).construct)
+    (hZ : ∀ k, ((sys.A - L * sys.C) *ᵥ ·) '' (Z k).construct + {sys.B *ᵥ u k + L *ᵥ y k} +
+      (sys.E *ᵥ ·) '' W.construct + ((-(L * sys.F)) *ᵥ ·) '' V.construct ⊆ (Z (k + 1)).construct)
     (k : ℕ) (i : Fin n) :
-    (Z k).interval.inf i ≤ (LinearSysDT.intervalEstimate A B C E F L X₀ W V u y k).inf i ∧
-      (LinearSysDT.intervalEstimate A B C E F L X₀ W V u y k).sup i ≤
+    (Z k).interval.inf i ≤ (LinearSysDT.intervalEstimate sys L X₀ W V u y k).inf i ∧
+      (LinearSysDT.intervalEstimate sys L X₀ W V u y k).sup i ≤
         (Z k).interval.sup i := by -- --- PROOF ---
-  set S := LinearSysDT.intervalEstimateState A B C E F L X₀ W V u y
+  set S := LinearSysDT.intervalEstimateState sys L X₀ W V u y
   -- its Eq. 52: the estimate plus any reachable error lies in the zonotope
-  have hin : ∀ k, ∀ e ∈ LinearSysDT.reachErrorSet A C E F L X₀ W V k,
+  have hin : ∀ k, ∀ e ∈ LinearSysDT.reachErrorSet sys L X₀ W V k,
       (S k).x + e ∈ (Z k).construct := by
     intro k
     induction k with
@@ -66,16 +65,16 @@ theorem LinearSysDT.intervalEstimate_le_zonotope (A : Mat ℝ n n) (B : Mat ℝ 
     | succ k ih =>
       intro e he
       obtain ⟨_, ⟨_, ⟨e', he', rfl⟩, _, ⟨w, hw, rfl⟩, rfl⟩, _, ⟨v, hv, rfl⟩, rfl⟩ :=
-        LinearSysDT.reachErrorSet_succ_subset A C E F L X₀ W V k he
+        LinearSysDT.reachErrorSet_succ_subset sys L X₀ W V k he
       refine hZ k ⟨_, ⟨_, ⟨_, ⟨_, ih e' he', rfl⟩, _, rfl, rfl⟩, _, ⟨w, hw, rfl⟩, rfl⟩, _,
         ⟨v, hv, rfl⟩, ?_⟩
       -- the observer update is `(A - LC) x̂ + B u + L y`
-      change _ = (LinearSysDT.intervalEstimateStep A B C L (u k) (y k) (S k)).x + _
+      change _ = (LinearSysDT.intervalEstimateStep sys L (u k) (y k) (S k)).x + _
       simp only [LinearSysDT.intervalEstimateStep, sub_mulVec, mulVec_sub, mulVec_add,
         ← mulVec_mulVec]
       abel
   -- so the zonotope's box bounds `Ω_k`, shifted by the estimate
-  obtain ⟨h1, h2⟩ := LinearSysDT.intervalEstimate_le_of_bounds A B C E F L X₀ W V u y k
+  obtain ⟨h1, h2⟩ := LinearSysDT.intervalEstimate_le_of_bounds sys L X₀ W V u y k
     ((Z k).interval.inf - (S k).x) ((Z k).interval.sup - (S k).x)
     (fun e he j => by
       have := Zonotope.interval_contains _ (hin k e he) j
@@ -83,7 +82,7 @@ theorem LinearSysDT.intervalEstimate_le_zonotope (A : Mat ℝ n n) (B : Mat ℝ 
         at this
       simp only [Pi.add_apply, Pi.sub_apply] at this ⊢
       constructor <;> linarith [this.1, this.2]) i
-  rw [show LinearSysDT.intervalEstimateState A B C E F L X₀ W V u y k = S k from rfl] at h1 h2
+  rw [show LinearSysDT.intervalEstimateState sys L X₀ W V u y k = S k from rfl] at h1 h2
   simp only [Pi.sub_apply, add_sub_cancel] at h1 h2
   exact ⟨h1, h2⟩
 

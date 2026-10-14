@@ -53,6 +53,7 @@ def NonlinearARX.toNonlinearSysDT (sys : NonlinearARX dy du p) :
           (finProdFinEquiv.symm s).2))) (finProdFinEquiv.symm r).2
   q := p * dy
   g x _ := x
+  dt := sys.dt
 
 end CORALean
 

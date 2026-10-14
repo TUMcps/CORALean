@@ -13,9 +13,9 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
 `i ≤ tFinal - tStart` in the list.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ theorem NeurNetContrSys.reachUnionFloat_outer
     (sys : NeurNetContrSys 𝕋 𝒵[𝕋] n)
     {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ} {options : NeurNetContrSys.ReachOptions 𝕋}
     {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachUnionFloat params options = some Rs)
-    (hΔt : 0 < toReal options.Δt) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    (hΔt : 0 < toReal options.Δt) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ n}
     (traj : sys.Trajectory π ((options.N : ℝ) * toReal options.Δt)
       (params.tFinal - params.tStart) params.X₀ x) :

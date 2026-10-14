@@ -25,7 +25,7 @@ set are both `P^R(Δt)`, by `inputReach_subset_inputSolutionFloat`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,10 +45,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- A successful run's loop states, the step positive and `N` of them spanning
 the horizon, each holding what `ReachFloatInputInvariant` asks at its pass. -/
-theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
+    (h : sys.reachFloatInput params options = some (Rti, Rtp)) :
     0 < toReal options.Δt ∧ ∃ N : ℕ,
       (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       ∃ S : List (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) ×
@@ -57,9 +57,8 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n) (B : Mat �
         Rtp = params.X₀ :: S.map (fun s => s.1 ⊞ s.2.2.1) ∧
         ∀ (k : ℕ) (hk : k < S.length), sys.ReachFloatInputInvariant (toReal options.Δt)
           params.X₀.construct (Recentre.centre
-            (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B params.U))
-          (Recentre.recentre (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
-            params.U)) k S[k] := by -- --- PROOF ---
+            (sys.inputSetFloat params.U))
+          (Recentre.recentre (sys.inputSetFloat params.U)) k S[k] := by -- --- PROOF ---
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
@@ -72,7 +71,7 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n) (B : Mat �
   rw [List.getElem_iterate]
   clear hk
   -- the input set in the state space, its centre, and one step's `[e^{AΔt}]`
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U with hV
+  set V := sys.inputSetFloat U with hV
   set A := Scalar.toRealMat sys.A with hA
   set ũ := Recentre.centre V with hũ
   have heA := sys.exp_mem_expIntervalFloat hadm (t := toReal Δt) le_rfl le_rfl

@@ -35,7 +35,7 @@ namespace CORALean
 
 open Matrix ContSet Plus Mtimes
 
-variable {n q r : ℕ} {ι : Type}
+variable {n : ℕ} {ι : Type}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
@@ -70,14 +70,14 @@ theorem aux_conform_delta (sys : LinearSysDT ℝ n) (x0 : Vec ℝ n) (u : ℕ �
     abel
 
 /-- The disturbances' part of the deviation set holds the sum, one member of `W` per term. -/
-theorem aux_conform_add (sys : LinearSysDT ℝ n) (C : Mat ℝ r n) (E : Mat ℝ n q) (W : S q)
-    (ω : ℕ → Vec ℝ q) (hω : ∀ j, ω j ∈ construct W) (k : ℕ) :
-    ∑ j ∈ Finset.range k, (C * sys.A ^ j) *ᵥ (E *ᵥ ω j)
-      ∈ construct (sys.conformAdd C E W k) := by -- --- PROOF ---
+theorem aux_conform_add (sys : LinearSysDT ℝ n) (W : S sys.r)
+    (ω : ℕ → Vec ℝ sys.r) (hω : ∀ j, ω j ∈ construct W) (k : ℕ) :
+    ∑ j ∈ Finset.range k, (sys.C * sys.A ^ j) *ᵥ (sys.E *ᵥ ω j)
+      ∈ construct (sys.conformAdd W k) := by -- --- PROOF ---
   induction k with
   | zero =>
     -- the empty sum is `0`, the point
-    simpa [LinearSysDT.conformAdd] using OfPoint.mem_ofPoint (S := S r) (0 : Vec ℝ r)
+    simpa [LinearSysDT.conformAdd] using OfPoint.mem_ofPoint (S := S sys.q) (0 : Vec ℝ sys.q)
   | succ k ih =>
     -- the new term, a member of `C A^k (E W)`
     rw [Finset.sum_range_succ]
@@ -121,7 +121,7 @@ theorem LinearSysDT.isConformDyn_of_model (sys : LinearSysDT ℝ n) (X₀ : S n)
     linear_combination (norm := module) h
   rw [hdev]
   -- one member of each summand of `R_k`, the disturbances' terms read in the other order
-  have hadd := aux_conform_add sys sys.C sys.E W (fun j => w (k - 1 - j)) (fun j => hw _) k
+  have hadd := aux_conform_add sys W (fun j => w (k - 1 - j)) (fun j => hw _) k
   have hre : ∑ l ∈ Finset.range k, (sys.C * sys.A ^ (k - 1 - l)) *ᵥ (sys.E *ᵥ w l)
       = ∑ j ∈ Finset.range k, (sys.C * sys.A ^ j) *ᵥ (sys.E *ᵥ w (k - 1 - j)) := by
     rw [← Finset.sum_range_reflect

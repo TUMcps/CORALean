@@ -36,12 +36,12 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def LinearARX.toLinearSysDT (sys : LinearARX 𝕋 dy du p) : LinearSysDT 𝕋 (p * dy) :=
-  LinearSysDT.canonical <| Matrix.of fun r c =>
+  LinearSysDT.canonical (Matrix.of fun r c =>
     if (finProdFinEquiv.symm r).1.val + 1 < p then
       if (finProdFinEquiv.symm c).1.val = (finProdFinEquiv.symm r).1.val + 1
           ∧ (finProdFinEquiv.symm c).2 = (finProdFinEquiv.symm r).2 then 1 else 0
     else sys.Abar (Fin.rev (finProdFinEquiv.symm c).1)
-      (finProdFinEquiv.symm r).2 (finProdFinEquiv.symm c).2
+      (finProdFinEquiv.symm r).2 (finProdFinEquiv.symm c).2) sys.dt
 
 end CORALean
 

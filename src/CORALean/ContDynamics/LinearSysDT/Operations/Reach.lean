@@ -16,18 +16,19 @@ representation with no `linComb`.
 by `ReachOptions`. The result is the time-point set at `params.tFinal`, CORA's
 last `timePoint.set`; `reachUnion` collects the earlier ones.
 
-Time is counted in sampling periods: CORA's `linearSysDT` carries `dt` and takes
-`(tFinal - tStart) / dt` steps, but no `dt` can be divided exactly at every scalar
+The horizon is counted in sampling periods: CORA's `linearSysDT` takes
+`(tFinal - tStart) / dt` steps of its `dt`, but no `dt` can be divided exactly at every scalar
 this runs at — ℝ, where `discretize` holds `e^{AΔt}` exactly, has no computable
-exact quotient — so `LinearSysDT` carries none, and `tStart`, `tFinal` are ℕ. The
-step count `tFinal - tStart` is then exact, as CORA's integer check demands; a
-horizon ending before it starts is `0` steps under ℕ's subtraction, where CORA
-refuses it, and every guarantee here is stated at `tStart = 0`.
+exact quotient — so `tStart`, `tFinal` are ℕ, the times `tStart dt`, `tFinal dt` of the
+system's `sys.dt`, which the result does not depend on. The step count `tFinal - tStart` is
+then exact, as CORA's integer check demands; a horizon ending before it starts is `0` steps
+under ℕ's subtraction, where CORA refuses it, and every guarantee here is stated at
+`tStart = 0`.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       18-August-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

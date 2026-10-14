@@ -13,9 +13,9 @@ side of `LinearARX.Trajectory.step`: `identifyBlocks` cuts the columns where `id
 stacks them.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,11 +38,12 @@ theorem aux_sum_finProd {p d : ℕ} (f : Fin (p * d) → ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.identifyBlocks_mulVec (M : Mat ℝ dy (p * dy + (p + 1) * du))
+theorem LinearARX.identifyBlocks_mulVec (dt : ℝ) (M : Mat ℝ dy (p * dy + (p + 1) * du))
     (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) (k : ℕ) :
     M *ᵥ LinearARX.identifyRegressor p y u k
-      = ∑ i : Fin p, (LinearARX.identifyBlocks M).Abar i *ᵥ y (k - (i + 1))
-        + ∑ j : Fin (p + 1), (LinearARX.identifyBlocks M).Bbar j *ᵥ u (k - j) := by -- --- PROOF ---
+      = ∑ i : Fin p, (LinearARX.identifyBlocks dt M).Abar i *ᵥ y (k - (i + 1))
+        + ∑ j : Fin (p + 1),
+          (LinearARX.identifyBlocks dt M).Bbar j *ᵥ u (k - j) := by -- --- PROOF ---
   funext a
   -- split the columns into the output part and the input part
   simp only [Matrix.mulVec, dotProduct, LinearARX.identifyRegressor, Pi.add_apply,

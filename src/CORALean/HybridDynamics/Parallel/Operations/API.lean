@@ -26,6 +26,7 @@ public import CORALean.HybridDynamics.Parallel.Operations.ConZonotopeStackProd
 public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutCora
 public import CORALean.HybridDynamics.Parallel.Operations.InvariantCutDocumented
 public import CORALean.HybridDynamics.Parallel.Operations.SimulateRandomTimesCora
+public import CORALean.HybridDynamics.Parallel.Operations.MergeFlowsLinearSys
 
 /-!
 # What a parallel hybrid automaton computes, collected

@@ -11,8 +11,8 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
 One step of CORA's ellipsoidal observer `ESO-B` (`priv_observe_ESO_B`), corrected so that it
 encloses the true state (`LinearSysDT.observeEsoB_outer`), on `E(Q, c)` at the level `1`:
 
-* `post`: the shape `A Q Aᵀ` and the centre `A c + u` (the known input `B u + c` folded into `u`,
-  as `LinearSysDT` folds it);
+* `post`: the shape `A Q Aᵀ` and the centre `A c + B u + c_sys` (`B` and the offset `c_sys`
+  the system's, as CORA's `post` adds them; `C` too is the system's);
 * the prediction `Q_next = (1 - p)⁻¹ A Q Aᵀ + p⁻¹ W` at any `p ∈ (0, 1)`, where the code has
   `(σ² p)⁻¹ W`, the prediction of the level-`σ²` set (Eq. 21 of Liu, Zhao and Wu, IET Control
   Theory & Applications, 2016); CORA's `p = √tr W / (√tr(σ² A Q Aᵀ) + √tr W)` (Eq. 48) is one
@@ -27,7 +27,7 @@ encloses the true state (`LinearSysDT.observeEsoB_outer`), on `E(Q, c)` at the l
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,15 +42,16 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def LinearSysDT.observeEsoB (sys : LinearSysDT ℝ n) (C : Mat ℝ m n)
-    (W : Mat ℝ n n) (V : Mat ℝ m m) (p lam σsqPrev : ℝ) (u : Vec ℝ n) (y : Vec ℝ m)
+noncomputable def LinearSysDT.observeEsoB (sys : LinearSysDT ℝ n)
+    (W : Mat ℝ n n) (V : Mat ℝ sys.q sys.q) (p lam σsqPrev : ℝ) (u : Vec ℝ sys.m)
+    (y : Vec ℝ sys.q)
     (Q : Mat ℝ n n) (c : Vec ℝ n) : Ellipsoid n :=
   let Qhom := sys.A * Q * sys.Aᵀ  -- `Rnext_hom = post(...)`: the shape of `A*Rnext.tp`
-  let chom := sys.A *ᵥ c + u  -- its centre
+  let chom := sys.A *ᵥ c + (sys.B *ᵥ u + sys.c)  -- its centre, `A c + B u + c`
   let Qnext := (1 - p)⁻¹ • Qhom + p⁻¹ • W  -- `Q_next`; the code has `(sigma_sq*p)^-1`
-  let δ := y - C *ᵥ chom  -- `delta` of `aux_methodLiu2016`
+  let δ := y - sys.C *ᵥ chom  -- `delta` of `aux_methodLiu2016`
   if σsqPrev + δ ⬝ᵥ δ > 1 then  -- Theorem 3 of Liu et al.
-    Ellipsoid.intersectStripLiu Qnext chom C V y 1 lam  -- corrected; the code passes `sigma_sq`
+    Ellipsoid.intersectStripLiu Qnext chom sys.C V y 1 lam  -- corrected; the code passes `sigma_sq`
   else Ellipsoid.ofShape Qnext chom  -- the ellipsoid is unchanged
 
 end CORALean

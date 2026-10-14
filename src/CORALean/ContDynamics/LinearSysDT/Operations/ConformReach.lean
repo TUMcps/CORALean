@@ -20,7 +20,7 @@ mapping by `E` and `F`, which this applies, as `isconform_dyn` does.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +30,7 @@ namespace CORALean
 
 open Matrix ContSet Plus Mtimes
 
-variable {n q s r : ℕ}
+variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
@@ -38,10 +38,10 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [∀ n, OfPoint (S
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `R = E{k}*X0 + Radd + params.V`. -/
-noncomputable def LinearSysDT.conformReach (sys : LinearSysDT ℝ n) (C : Mat ℝ r n)
-    (E : Mat ℝ n q) (F : Mat ℝ r s) (X₀ : S n) (W : S q) (V : S s) (k : ℕ) : S r :=
-  plus (plus (Mtimes.mtimes (𝕄 := Mat ℝ) (C * sys.A ^ k : Mat ℝ r n) X₀)
-    (LinearSysDT.conformAdd sys C E W k)) (Mtimes.mtimes (𝕄 := Mat ℝ) F V)
+noncomputable def LinearSysDT.conformReach (sys : LinearSysDT ℝ n) (X₀ : S n) (W : S sys.r)
+    (V : S sys.s) (k : ℕ) : S sys.q :=
+  plus (plus (Mtimes.mtimes (𝕄 := Mat ℝ) (sys.C * sys.A ^ k : Mat ℝ sys.q n) X₀)
+    (LinearSysDT.conformAdd sys W k)) (Mtimes.mtimes (𝕄 := Mat ℝ) sys.F V)
 
 end CORALean
 

@@ -26,9 +26,9 @@ Reach for `reachSet_subset_reach` for the same guarantee restated on the
 reachable set rather than on one run.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,22 +41,30 @@ open Matrix ContSet Scalar Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
+variable [OfScalarPoint 𝕋 S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o)
-    (R₀ : S n) {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π)
+    (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     x k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact traj.init
   | succ k ih =>
+    set R := sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩
     show x (k + 1) ∈ construct (sys.plant.reach
-      ⟨sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩, sys.contr.enclose (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩), 0, 1⟩
+      ⟨R, plus (mtimes sys.plant.B (sys.contr.enclose R)) (OfScalarPoint.ofVec sys.plant.c), 0, 1⟩
         ⟨o, ho⟩)
-    rw [traj.step k]
-    exact sys.plant.reach_one_outer ho _ _ ih (hπ.enclose_outer _ _ ih)
+    -- the input `B π(x) + c` is in `B N(R) ⊕ c`, the controller's output in `N(R)`
+    have hu : toRealMat sys.plant.B *ᵥ π (x k) + toRealVec sys.plant.c ∈
+        construct (plus (mtimes sys.plant.B (sys.contr.enclose R))
+          (OfScalarPoint.ofVec (S := S) sys.plant.c)) :=
+      plus_outer _ _ ⟨_, mtimes_outer sys.plant.B _ (Set.mem_biUnion (Set.mem_singleton _)
+        ⟨_, hπ.enclose_outer _ _ ih, rfl⟩), _, OfScalarPoint.mem_ofVec sys.plant.c, rfl⟩
+    rw [traj.step k, add_assoc]
+    exact sys.plant.reach_one_outer ho _ _ ih hu
 
 end CORALean
 

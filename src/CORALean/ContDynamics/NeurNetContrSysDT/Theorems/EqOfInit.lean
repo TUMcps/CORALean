@@ -14,9 +14,9 @@ settles them everywhere, via `aux_eq_iterate` identifying each with the orbit
 of `map` at its own starting point.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem NeurNetContrSysDT.Trajectory.aux_eq_iterate {sys : NeurNetContrSysDT 𝕋 S n} {R₀ : S n}
-    {π : Vec ℝ n → Vec ℝ n} {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
+    {π : Vec ℝ n → Vec ℝ sys.plant.m} {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
     x k = (sys.map π)^[k] (x 0) := by -- --- PROOF ---
   induction k with
   | zero => rfl
@@ -47,7 +47,7 @@ theorem NeurNetContrSysDT.Trajectory.aux_eq_iterate {sys : NeurNetContrSysDT �
 /-- Determinism, in the form it is normally wanted: the initial state settles
 the run, whichever initial sets the two runs were taken from. -/
 theorem NeurNetContrSysDT.Trajectory.eq_of_init {sys : NeurNetContrSysDT 𝕋 S n} {R₀ R₁ : S n}
-    {π : Vec ℝ n → Vec ℝ n} {x y : ℕ → Vec ℝ n} (hx : sys.Trajectory π R₀ x)
+    {π : Vec ℝ n → Vec ℝ sys.plant.m} {x y : ℕ → Vec ℝ n} (hx : sys.Trajectory π R₀ x)
     (hy : sys.Trajectory π R₁ y) (h : x 0 = y 0) : x = y := by
   funext k
   rw [hx.aux_eq_iterate k, hy.aux_eq_iterate k, h]

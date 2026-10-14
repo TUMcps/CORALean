@@ -16,9 +16,9 @@ raised to `reachOrder`'s order where that is higher, since only an order admissi
 for `Δt` and the plant's matrix makes `reach_outer` hold.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,7 @@ open ContSet Plus Reduce Mtimes
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

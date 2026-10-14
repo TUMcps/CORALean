@@ -16,7 +16,7 @@ linearization, an observer's error dynamics.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,9 +29,10 @@ variable {n : ℕ} {𝕋 : Type} [Zero 𝕋] [One 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `(A, I, 0, I, 0, 0, 0, I)`, every dimension `n`. -/
-abbrev LinearSysDT.canonical (A : Mat 𝕋 n n) : LinearSysDT 𝕋 n :=
-  ⟨n, n, n, n, A, 1, 0, 1, 0, 0, 0, 1⟩
+/-- `(A, I, 0, I, 0, 0, 0, I)`, every dimension `n`, at the sampling time `dt`, one period
+unless given. -/
+abbrev LinearSysDT.canonical (A : Mat 𝕋 n n) (dt : 𝕋 := 1) : LinearSysDT 𝕋 n :=
+  ⟨n, n, n, n, A, 1, 0, 1, 0, 0, 0, 1, dt⟩
 
 end CORALean
 

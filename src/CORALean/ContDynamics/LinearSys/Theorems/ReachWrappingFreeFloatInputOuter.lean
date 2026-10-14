@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
 public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFreeFloatInput
@@ -31,7 +32,7 @@ induction on `k`, from `{0}` at `t_0 = 0`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,17 +50,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U` is,
+/-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U + c` is,
 at every time of window `k`, in the `k`-th set. -/
-theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachWrappingFreeFloatInput B params options = some Rs) :
+    (h : sys.reachWrappingFreeFloatInput params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
         sys.CanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
+          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+            params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
           (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
@@ -75,7 +77,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
   rw [List.length_range] at hHlen hPlen
   refine ⟨N, hNΔt, by simp [hHlen, hPlen], fun {x u} traj k hk t ht => ?_⟩
   set Δ := toReal Δt with hΔ
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U with hV
+  set V := sys.inputSetFloat U with hV
   set A := Scalar.toRealMat sys.A with hA
   set ũ := Recentre.centre V with hũ
   set Ũ := Recentre.recentre V with hŨ
@@ -154,12 +156,10 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n) (B 
   have hk0 : (0 : ℝ) ≤ (k : ℝ) * Δ := by positivity
   have ht0 : 0 ≤ t := le_trans hk0 ht.1
   have hτ : t - k * Δ ∈ Set.Icc 0 Δ := ⟨sub_nonneg.mpr ht.1, by linarith [ht.2]⟩
-  -- the run's inputs are in `B U`'s float enclosure
-  have hUV : ContSet.construct ((Scalar.toRealMat B *ᵥ ·) '' U.construct)
-      ⊆ ContSet.construct V := by
-    rintro _ ⟨w, hw, rfl⟩
-    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B U
-      (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
+  -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
+  have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+      U.construct ⊆ ContSet.construct V :=
+    sys.inputSetFloat_outer U
   have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) hUV
     ⟨ht0, ht.2.trans hkN⟩
   -- the `Ũ`-input's share by `t`: its first step carried across `t_k`, and the rest

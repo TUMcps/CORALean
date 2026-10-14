@@ -17,9 +17,9 @@ that is `<`. Only as good as `err`. The source is [1].
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,16 +32,17 @@ variable {dy du p N r : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearARX.identify_le_candidate (lt : ℝ → ℝ → Bool) (hlt : ∀ a b, lt a b = true ↔ a < b)
+theorem LinearARX.identify_le_candidate (dt : ℝ) (lt : ℝ → ℝ → Bool)
+    (hlt : ∀ a b, lt a b = true ↔ a < b)
     (err : Mat ℝ dy (p * dy + (p + 1) * du) → ℝ) (yNext : Fin N → Vec ℝ dy)
     (V : Mat ℝ (p * dy + (p + 1) * du) r) (s : Fin r → ℝ) (W : Mat ℝ N r) (hr : 0 < r) :
-    ∃ M, LinearARX.identify lt err yNext V s W = some (LinearARX.identifyBlocks M) ∧
+    ∃ M, LinearARX.identify dt lt err yNext V s W = some (LinearARX.identifyBlocks dt M) ∧
       (∃ k, 1 ≤ k ∧ k ≤ r ∧ M = LinearARX.identifyCandidate yNext V s W k) ∧
       err M ≤ err (LinearARX.identifyCandidate yNext V s W r) := by -- --- PROOF ---
   obtain ⟨M, hM, hk, hle⟩ := dmdSelect_le lt hlt err (LinearARX.identifyCandidate yNext V s W) hr
   refine ⟨M, ?_, hk, hle r hr le_rfl⟩
   -- `identify` is the selection mapped through the blocks
-  show Option.map LinearARX.identifyBlocks (dmdSelect lt err
+  show Option.map (LinearARX.identifyBlocks dt) (dmdSelect lt err
     (LinearARX.identifyCandidate yNext V s W) r) = _
   rw [hM]
   rfl

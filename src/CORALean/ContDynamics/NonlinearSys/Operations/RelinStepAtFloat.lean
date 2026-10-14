@@ -35,9 +35,9 @@ to lie in the box its slopes are taken over.
       Control, 2021.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -70,7 +70,7 @@ def NonlinearSys.FloatModel.relinStepAtFloat (fm : NonlinearSys.FloatModel 𝕋 
   let V := fm.linInputFloat AB.1 AB.2 xs X U U'                     -- f(z✱) - A x✱ ⊕ B U ⊕ L
   let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))
   let lin : LinearSys 𝕋 n := LinearSys.canonicalFloat AB.1  -- δ̇ = A δ + ũ, ũ ∈ V
-  let S ← lin.reachFloatInput (identityMat 𝕋 n)                     -- one step from R - x✱
+  let S ← lin.reachFloatInput                                       -- one step from R - x✱
     ⟨R ⊞ pt fun i => neg (xs i), V, 0, ToRat.toRat Δt⟩ options
   let Δτ ← S.1.head?                                                -- 13. R(τ_k) - x✱
   let Δ₁ ← S.2[1]?                                                  -- R(t_{k+1}) - x✱

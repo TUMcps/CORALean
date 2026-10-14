@@ -12,9 +12,9 @@ outputs and not in a state: the ARMAX model of [2, Def. 5], its input the combin
 `Abar i` is `Ā_{i+1}` and `Bbar j` is `B̄_{j+1}`, so lag `j` of the input, `u(k-j)`, is
 `Bbar j`, and `Bbar 0` is the feedthrough.
 
-Time is counted in sampling periods, as in `LinearSysDT`, which is why no `dt` is
-stored. CORA's `tvp` parametrization (`A_tilde`, `B_tilde`) is not stored: it is
-computed from this one (`Aext`, `Btilde`). No `B`-versus-`c` choice: a constant
+CORA's sampling time `dt` is stored, as in `LinearSysDT`, and carried to the converted
+system; runs are indexed by the step. CORA's `tvp` parametrization (`A_tilde`, `B_tilde`) is
+not stored: it is computed from this one (`Aext`, `Btilde`). No `B`-versus-`c` choice: a constant
 offset folds into the input set, as it does for every system here.
 
 `stack y k` is the window `(y(k), …, y(k+p-1))`, block `a` holding `y(k+a)`, the
@@ -31,7 +31,7 @@ input in `U`; the conversion is not used to state it.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,6 +50,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 structure LinearARX (𝕋 : Type) (dy du p : ℕ) where
   Abar : Fin p → Mat 𝕋 dy dy
   Bbar : Fin (p + 1) → Mat 𝕋 dy du
+  dt : 𝕋
 
 /-- The window of `p` outputs starting at `k`, block `a` holding `y(k+a)`. -/
 def LinearARX.stack (p : ℕ) (y : ℕ → Vec ℝ dy) (k : ℕ) : Vec ℝ (p * dy) :=

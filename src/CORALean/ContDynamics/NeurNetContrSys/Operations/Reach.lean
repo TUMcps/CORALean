@@ -18,8 +18,8 @@ public import CORALean.NN.Operations.Enclose
 
 [1, Alg. 2]'s loop, at two nested levels — the whole point of the continuous
 case. The outer recursion is on the control period: the network is invoked on
-the enclosure reached at the end of the last period, and the input set it
-returns is held. The inner level is `N` reachability steps of length `Δt`
+the enclosure reached at the end of the last period, and the input term it gives the plant,
+`B N(R) ⊕ c`, is held. The inner level is `N` reachability steps of length `Δt`
 under that one set, and it is `LinearSys`'s own machinery — `discretize`
 samples the flow, `reach ... N` takes the steps, `inputSolution` encloses what
 the input contributes to each.
@@ -39,9 +39,9 @@ guarantee is stated at `tStart = 0`.
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -58,7 +58,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -73,8 +73,11 @@ noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys 𝕋 S n)
   let η := options.η
   let o := options.ρ
   let H := params.tFinal - params.tStart                           -- control periods
-  let period := fun R => (sys.plant.discretize Δt).reach          -- N steps under one held input
-    ⟨R, sys.plant.inputSolution Δt η (sys.contr.enclose R), 0, N⟩ ⟨o, options.hZonotopeOrder⟩
+  let period := fun R =>                                            -- N steps under one held input
+    let U := Plus.plus (Mtimes.mtimes (𝕄 := Mat ℝ) (toRealMat sys.plant.B)
+      (sys.contr.enclose R)) (OfPoint.ofPoint (toRealVec sys.plant.c))  -- B N(R) ⊕ c
+    (sys.plant.discretize Δt).reach
+      ⟨R, sys.plant.inputSolution Δt η U, 0, N⟩ ⟨o, options.hZonotopeOrder⟩
   Nat.rec (motive := fun _ => S n) R₀ (fun _ R => period R) H       -- R(HNΔt)
 
 end CORALean

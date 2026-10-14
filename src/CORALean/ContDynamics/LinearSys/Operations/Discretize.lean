@@ -24,7 +24,7 @@ file reasoning about this definition must make the same one — the `l∞` opera
 norm — or the terms will not match.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
@@ -46,7 +46,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- The system a step of `Δt` leaves behind. -/
 noncomputable def LinearSys.discretize (sys : LinearSys 𝕋 n) (Δt : ℝ) : LinearSysDT ℝ n :=
-  LinearSysDT.canonical (exp (Δt • toRealMat sys.A))
+  LinearSysDT.canonical (exp (Δt • toRealMat sys.A)) Δt
 
 end CORALean
 

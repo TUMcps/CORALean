@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Operations.ReachAdaptiveFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.AdaptiveRunFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
@@ -10,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 # `reachAdaptiveFloat` holds every run, over windows covering the horizon
 
 The windows of a successful run cover `[tStart, tFinal]` without a gap, and
-every run of `ẋ = Ax + u` with `u(t) ∈ B U` from `X₀` is, at every time of a
+every run of `ẋ = Ax + u` with `u(t) ∈ B U + c` from `X₀` is, at every time of a
 window, in that window's set. [1, Alg. 1] in floats is sound whatever it tunes: whatever step,
 truncation order and reduction order [1]'s `Alg. 2` and `Alg. 3` chose, the
 initial state holds the invariant (nothing contributed by time `0`) and every
@@ -24,7 +25,7 @@ step keeps it (`adaptiveStepFloat_outer`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,24 +41,25 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every time of `[tStart, tFinal]` lies in some step's window, and every run on
-the horizon from `X₀` under inputs `u(t) ∈ B U` lies, at every time of a
+the horizon from `X₀` under inputs `u(t) ∈ B U + c` lies, at every time of a
 window, in that window's set. -/
-theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.AdaptiveOptions 𝕋} {steps : List (LinearSys.AdaptiveStepInfo 𝕋 n)}
-    (h : sys.reachAdaptiveFloat B params options = some steps) :
+    (h : sys.reachAdaptiveFloat params options = some steps) :
     (∀ t ∈ Set.Icc (params.tStart : ℝ) params.tFinal, ∃ (k : ℕ) (hk : k < steps.length),
         t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧
       ∀ {x u : ℝ → Vec ℝ n},
         sys.CanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
+          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+            params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < steps.length), ∀ t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd,
           x (t - params.tStart) ∈ steps[k].R.construct := by -- --- PROOF ---
   unfold LinearSys.reachAdaptiveFloat at h
   dsimp only at h
   split_ifs at h with htf
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B params.U with hV
+  set V := sys.inputSetFloat params.U with hV
   -- nothing is contributed by time `0`
   have hinv : sys.AdaptiveInvariant V (⟨0, zero, zero,
       mulDown (ratUp (params.tFinal - params.tStart)) options.μ, 0, 0,
@@ -78,11 +80,10 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n) (B : Mat �
         rw [htf']; linarith [ht.2]⟩
       obtain ⟨k, hk, rfl⟩ := List.mem_iff_getElem.mp hr
       exact ⟨k, hk, hmem⟩
-  · -- the run's inputs are in `B U`'s float enclosure
-    have hUV : (Scalar.toRealMat B *ᵥ ·) '' params.U.construct ⊆ V.construct := by
-      rintro _ ⟨w, hw, rfl⟩
-      exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B params.U
-        (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
+  · -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
+    have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+        params.U.construct ⊆ ContSet.construct V :=
+      sys.inputSetFloat_outer params.U
     rw [← htf'] at traj
     exact hsnd _ (List.getElem_mem hk) traj hUV t ht
 

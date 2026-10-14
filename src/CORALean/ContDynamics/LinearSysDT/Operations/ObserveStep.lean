@@ -12,8 +12,9 @@ public import CORALean.ContSet.ContSet.Operations.IntersectStripSeq
 [1, Alg. 1]: Step 1 (prediction) `X̄_k = A X̂_{k-1} ⊕ W`, which is `A p̂ ⊕ [A Ĥ  F]`
 [1, Eq. 2], and Step 2 (update) the measurement strips `|c_iᵀ x - y_i| ≤ σ_i` met by
 `intersectStripSeq` [1, Eq. 3], or, as CORA's `intersectionType = 2` does, all at once by
-`intersectStrip`. CORA's prediction also adds the known input, `u` here in state coordinates
-(`B u` folded, as `LinearSysDT` folds it); the paper's system has none, `u = 0`.
+`intersectStrip`. CORA's prediction is its `post`, `A X̂ ⊕ B u ⊕ c`, before `W` is added, with
+`A`, `B`, `c` and the strips' `C` the system's; the paper's system has neither input nor offset,
+`u = 0`, `c = 0`.
 
 Written once over the set classes and the scalar: at `Real.Zonotope` and ℝ it is the paper's
 step, at `Float.Zonotope` and a float type the same step in directed rounding. Soundness, for
@@ -32,7 +33,7 @@ both, is `observeStep_outer`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,12 +50,13 @@ variable [IntersectStrip 𝕋 S] {n p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.observeStep (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W : S n)
-    (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n p) (u : Vec 𝕋 n) (y : Vec 𝕋 p)
+def LinearSysDT.observeStep (sys : LinearSysDT 𝕋 n) (σ : Vec 𝕋 sys.q) (W : S n)
+    (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n sys.q) (u : Vec 𝕋 sys.m) (y : Vec 𝕋 sys.q)
     (Xhat : S n) : S n :=
-  let Xbar := plus (plus (mtimes sys.A Xhat) (OfScalarPoint.ofVec u)) W  -- Step 1, prediction X̄
-  if options.sequential then intersectStripSeq C σ y options.gain Xbar  -- Step 2, update X̂_k
-  else intersectStrip C σ y (options.gain Xbar) Xbar
+  let Xbar := plus (plus (plus (mtimes sys.A Xhat) (mtimes sys.B (OfScalarPoint.ofVec u)))
+    (OfScalarPoint.ofVec sys.c)) W  -- Step 1, prediction X̄, CORA's `post` then `+ W`
+  if options.sequential then intersectStripSeq sys.C σ y options.gain Xbar  -- Step 2, update X̂_k
+  else intersectStrip sys.C σ y (options.gain Xbar) Xbar
 
 end CORALean
 

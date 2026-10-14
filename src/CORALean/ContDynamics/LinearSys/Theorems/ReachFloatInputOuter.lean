@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
 public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
 
@@ -8,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReac
 /-!
 # `reachFloatInput` holds every run over every window
 
-A run of `ẋ = Ax + u` with `u(t) ∈ B U`, any such signal the run is a solution
+A run of `ẋ = Ax + u` with `u(t) ∈ B U + c`, any such signal the run is a solution
 for, at `t = t_k + τ` of window `k`: its free motion plus the constant's
 contribution is in `H(τ_k)`, and the rest is one `Ũ`-input's contribution by
 `t` (`Trajectory.sub_mem_inputReach_recentre`), which is in `P^R(t_{k+1})`
@@ -18,7 +19,7 @@ since `0 ∈ Ũ` lets the later window end bound it (`inputReach_mono`). No
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,31 +37,30 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U` is,
+/-- Every run on `[0, tFinal - tStart]` from `X₀` under inputs `u(t) ∈ B U + c` is,
 at every time of window `k`, in the `k`-th time-interval set. -/
-theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
+theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloatInput B params options = some (Rti, Rtp)) :
+    (h : sys.reachFloatInput params options = some (Rti, Rtp)) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
         sys.CanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct) x u →
+          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+            params.U.construct) x u →
         ∀ (k : ℕ) (hk : k < Rti.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
           (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rti[k].construct := by -- --- PROOF ---
-  obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant B h
+  obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant h
   refine ⟨N, hNΔt, by simp [hlen], fun {x u} traj k hk t ht => ?_⟩
   set Δ := toReal options.Δt with hΔ
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B params.U with hV
+  set V := sys.inputSetFloat params.U with hV
   have hk' : k < S.length := by simpa using hk
   obtain ⟨-, h2, h3, -⟩ := hinv k hk'
-  -- the run's inputs are in `B U`'s float enclosure
-  have hUV : ContSet.construct ((Scalar.toRealMat B *ᵥ ·) '' params.U.construct)
-      ⊆ ContSet.construct V := by
-    rintro _ ⟨w, hw, rfl⟩
-    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B params.U
-      (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
+  -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
+  have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+      params.U.construct ⊆ ContSet.construct V :=
+    sys.inputSetFloat_outer params.U
   -- window `k` lies inside the horizon
   have hkN : ((k : ℝ) + 1) * Δ ≤ (params.tFinal : ℝ) - params.tStart := by
     rw [← hNΔt]

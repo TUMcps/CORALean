@@ -22,7 +22,7 @@ collected box at the origin and the disturbance set at `(-L) V ⊕ W`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,13 +37,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.observeIntervalStateFloat (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n)
-    (L : Mat 𝕋 n p) (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 p)) (u : ℕ → Vec 𝕋 n)
-    (y : ℕ → Vec 𝕋 p) : ℕ → LinearSysDT.ObserveIntervalStateFloat 𝕋 n
+def LinearSysDT.observeIntervalStateFloat (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
+    (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
+    (y : ℕ → Vec 𝕋 sys.q) : ℕ → LinearSysDT.ObserveIntervalStateFloat 𝕋 n
   | 0 => { x := Interval.point R₀.c, Rx := R₀, Rwv := Interval.point fun _ => zero,
            D := (Zonotope.mtimes (fun i j => neg (L i j)) V).plus W }
   | k + 1 =>
-    sys.observeIntervalStepFloat C L (u k) (y k) (sys.observeIntervalStateFloat C L R₀ W V u y k)
+    sys.observeIntervalStepFloat L (u k) (y k) (sys.observeIntervalStateFloat L R₀ W V u y k)
 
 end CORALean
 

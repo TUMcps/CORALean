@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
@@ -21,7 +23,7 @@ in `ℓ.U`, and so in the identity's image of it.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -74,10 +76,9 @@ theorem Location.Trajectory.reachFloat_outer
   obtain ⟨⟨Rti, Rtp⟩, hreach, hRs⟩ := Option.bind_eq_some_iff.mp h
   cases hRs
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, -, hinv⟩ :=
-    ℓ.dynamics.reachFloatInput_invariant (identityMat 𝕋 n) hreach
+    (LinearSys.canonicalFloat ℓ.dynamics.A).reachFloatInput_invariant hreach
   set Δ := toReal options.Δt with hΔ
-  set V := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋])
-    (identityMat 𝕋 n) ℓ.U with hV
+  set V := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat ℓ.U with hV
   simp only [Rat.cast_zero, sub_zero] at hNΔt
   -- the horizon holds `t`, and has at least one window
   have htf' : (0 : ℝ) < tFinal := by exact_mod_cast not_le.mp htf
@@ -89,13 +90,11 @@ theorem Location.Trajectory.reachFloat_outer
   obtain ⟨k, hk, hkt, htk⟩ := aux_window hΔt hN ht.1 (by rw [hNΔt]; linarith [ht.2])
   have hk' : k < S.length := by rw [hlen]; exact hk
   obtain ⟨-, h2, h3, -⟩ := hinv k hk'
-  -- the location's inputs are in the identity's image of `ℓ.U`
+  -- the location's inputs are in `ℓ.U`'s enclosure, the canonical form's `B = I`, `c = 0`
   have hUV : construct ℓ.U ⊆ construct V := by
-    intro w hw
-    have hI : toRealMat (identityMat 𝕋 n) *ᵥ w = w := funext (identityMat_mulVec w)
-    rw [← hI]
-    exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) (identityMat 𝕋 n) ℓ.U
-      (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))
+    have h := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat_outer ℓ.U
+    rw [LinearSys.canonicalFloat_input, Set.image_id] at h
+    exact h
   have hd := ((traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, ht.1.trans ht.2⟩
     (CompactSet.isBounded_construct ℓ.U)).sub_mem_inputReach_recentre
       (S' := 𝒵[𝕋]) hUV ht

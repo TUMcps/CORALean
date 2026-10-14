@@ -31,7 +31,7 @@ loop, at `Float.Zonotope` and a float type the same loop in directed rounding, a
 
 -- Authors:       Claude Opus 5.5
 -- Written:       13-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,15 +49,15 @@ variable [OfScalarPoint 𝕋 S] [IntersectStrip 𝕋 S] {n p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `R k`, the set the observer holds after the measurement `y k`. -/
-def LinearSysDT.observeStripBased (sys : LinearSysDT 𝕋 n) (C : Mat 𝕋 p n) (σ : Vec 𝕋 p)
-    (W R₀ : S n) (u : ℕ → Vec 𝕋 n) (y : ℕ → Vec 𝕋 p)
-    (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n p) : ℕ → S n
+def LinearSysDT.observeStripBased (sys : LinearSysDT 𝕋 n) (σ : Vec 𝕋 sys.q)
+    (W R₀ : S n) (u : ℕ → Vec 𝕋 sys.m) (y : ℕ → Vec 𝕋 sys.q)
+    (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n sys.q) : ℕ → S n
   | 0 =>
-    if options.sequential then intersectStripSeq C σ (y 0) options.gain R₀
-    else intersectStrip C σ (y 0) (options.gain R₀) R₀
+    if options.sequential then intersectStripSeq sys.C σ (y 0) options.gain R₀
+    else intersectStrip sys.C σ (y 0) (options.gain R₀) R₀
   | k + 1 =>
-    reduce (sys.observeStep C σ W options (u k) (y (k + 1))
-      (sys.observeStripBased C σ W R₀ u y options k)) options.ρ
+    reduce (sys.observeStep σ W options (u k) (y (k + 1))
+      (sys.observeStripBased σ W R₀ u y options k)) options.ρ
 
 end CORALean
 

@@ -21,9 +21,9 @@ issue that landed it — so, as in `NeurNetControl.lean`, every operation stays
 over ℝ and `def` would still be `noncomputable`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   30-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,6 +39,7 @@ def Example.quadraticStep : NonlinearSysDT 1 1 where
   f x u := ![x 0 ^ 2 + u 0]
   q := 1
   g x _ := x
+  dt := 1
 
 /-- The tangent slope at `p`: `f`'s own second derivative, `2`, is what makes
 the residual below `(x - p)²` and nothing more. `Matrix.of` rather than `!!`,

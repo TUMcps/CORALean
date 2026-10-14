@@ -17,7 +17,7 @@ enclosure, so the box is outer.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,15 +33,24 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.simulate_mem_simulateBox
-    (sys : NeurNetContrSysDT 𝕋 ℐ𝒱[𝕋] n) {π : Vec ℝ n → Vec ℝ n}
+    (sys : NeurNetContrSysDT 𝕋 ℐ𝒱[𝕋] n) {π : Vec ℝ n → Vec ℝ sys.plant.m}
     (hπ : sys.contr.Sound π) (x₀ : Vec 𝕋 n) (k : ℕ) :
     sys.simulate π (Scalar.toRealVec x₀) k ∈ construct (sys.simulateBox x₀ k) := by -- --- PROOF ---
   induction k with
   | zero => exact Interval.mem_point x₀
   | succ k ih =>
+    rw [show sys.simulate π (Scalar.toRealVec x₀) (k + 1) =
+      Scalar.toRealMat sys.plant.A *ᵥ sys.simulate π (Scalar.toRealVec x₀) k +
+        (Scalar.toRealMat sys.plant.B *ᵥ π (sys.simulate π (Scalar.toRealVec x₀) k) +
+          Scalar.toRealVec sys.plant.c) from add_assoc _ _ _]
+    -- `A x` in `A B_k`, `B π(x)` in `B enclose(B_k)`, `c` in its point box
     exact plus_outer (S := Interval (Vec 𝕋 n)) _ _
       (Set.add_mem_add (mtimes_outer (S := ℐ𝒱[𝕋]) sys.plant.A _
-        (Set.mem_biUnion rfl (Set.mem_image_of_mem _ ih))) (hπ.enclose_outer _ _ ih))
+        (Set.mem_biUnion rfl (Set.mem_image_of_mem _ ih)))
+        (plus_outer (S := Interval (Vec 𝕋 n)) _ _ (Set.add_mem_add
+          (mtimes_outer (S := ℐ𝒱[𝕋]) sys.plant.B _
+            (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hπ.enclose_outer _ _ ih))))
+          (OfScalarPoint.mem_ofVec (S := ℐ𝒱[𝕋]) sys.plant.c))))
 
 end CORALean
 

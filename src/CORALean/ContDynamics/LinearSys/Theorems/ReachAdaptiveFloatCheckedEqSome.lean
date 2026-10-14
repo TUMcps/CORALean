@@ -12,9 +12,9 @@ it is the unchecked `some`, and none of its floats is a NaN. Whatever is proved 
 `reachAdaptiveFloat` is proved of the checked result, which has passed the NaN test as well.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,15 +30,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachAdaptiveFloatChecked_eq_some (sys : LinearSys 𝕋 n)
-    (B : Mat 𝕋 n m)
-    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
+    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ)
     (options : LinearSys.AdaptiveOptions 𝕋)
     {Rs : (List (LinearSys.AdaptiveStepInfo 𝕋 n))}
-    (h : sys.reachAdaptiveFloatChecked B params options = some Rs) :
-    sys.reachAdaptiveFloat B params options = some Rs ∧
+    (h : sys.reachAdaptiveFloatChecked params options = some Rs) :
+    sys.reachAdaptiveFloat params options = some Rs ∧
       noNaN (𝕋 := 𝕋) (Rs.map fun r => (r.Δt, r.R)) = true := by -- --- PROOF ---
   unfold LinearSys.reachAdaptiveFloatChecked at h
-  cases hr : sys.reachAdaptiveFloat B params options with
+  cases hr : sys.reachAdaptiveFloat params options with
   | none => simp [hr] at h
   | some infos =>
     rw [hr] at h

@@ -20,9 +20,9 @@ The source is [1].
 * [1] `contDynamics/@linearARX/private/priv_identifyDMD.m`
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,7 +45,7 @@ def aux_arxStack (sys : LinearARX ℝ dy du p) : Mat ℝ dy (p * dy + (p + 1) * 
 
 /-- The blocks of the stacked matrix are the system. -/
 theorem aux_identifyBlocks_stack (sys : LinearARX ℝ dy du p) :
-    LinearARX.identifyBlocks (aux_arxStack sys) = sys := by
+    LinearARX.identifyBlocks sys.dt (aux_arxStack sys) = sys := by
   cases sys
   simp only [LinearARX.identifyBlocks, aux_arxStack, Fin.addCases_left, Fin.addCases_right,
     Equiv.symm_apply_apply]
@@ -60,16 +60,16 @@ theorem LinearARX.identifyCandidate_fit (y : Fin N → ℕ → Vec ℝ dy) (u : 
     (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (sys' : LinearARX ℝ dy du p)
     (hdata : ∀ j, y j (k j) = ∑ i : Fin p, sys'.Abar i *ᵥ y j (k j - (i + 1))
       + ∑ l : Fin (p + 1), sys'.Bbar l *ᵥ u j (k j - l)) (j : Fin N) :
-    y j (k j) = ∑ i : Fin p, (LinearARX.identifyBlocks (LinearARX.identifyCandidate
+    y j (k j) = ∑ i : Fin p, (LinearARX.identifyBlocks sys'.dt (LinearARX.identifyCandidate
           (fun j => y j (k j)) V s W r)).Abar i *ᵥ y j (k j - (i + 1))
-      + ∑ l : Fin (p + 1), (LinearARX.identifyBlocks (LinearARX.identifyCandidate
+      + ∑ l : Fin (p + 1), (LinearARX.identifyBlocks sys'.dt (LinearARX.identifyCandidate
           (fun j => y j (k j)) V s W r)).Bbar l *ᵥ u j (k j - l) := by -- --- PROOF ---
   -- the data is `X2 = G X1` for `G = [A' B']`
   have hG : (Matrix.of fun i j => y j (k j) i : Mat ℝ dy N)
       = aux_arxStack sys' * (Matrix.of fun i j =>
         LinearARX.identifyRegressor p (y j) (u j) (k j) i) := by
     ext i j
-    have h := LinearARX.identifyBlocks_mulVec (aux_arxStack sys') (y j) (u j) (k j)
+    have h := LinearARX.identifyBlocks_mulVec sys'.dt (aux_arxStack sys') (y j) (u j) (k j)
     rw [aux_identifyBlocks_stack] at h
     simp only [Matrix.of_apply, Matrix.mul_apply]
     rw [hdata j]

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
@@ -15,8 +16,9 @@ public import CORALean.Global.Float.ToRat
 /-!
 # Recursive reachability with inputs in floats: CORA's `priv_reach_standard`
 
-`ẋ = Ax + Bu`, `u(t) ∈ U` arbitrary in time, computed in `𝕋`: `X₀`, `U` (in
-input space), `Δt`, `η`, `ρ` and `N` read as `reachFloat` reads them. `V = B U`
+`ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, computed in `𝕋`: `X₀`, `U` (in
+input space), `Δt`, `η`, `ρ` and `N` read as `reachFloat` reads them, `B` and `c`
+the system's. `V = B U ⊕ c` (`inputSetFloat`, CORA's `canonicalForm` at `W = {0}`)
 is split at its stored centre into the constant `ũ` and `Ũ = V - ũ ∋ 0`, as
 CORA's `canonicalForm` splits it, so `0 ∈ U` is not asked.
 
@@ -31,7 +33,7 @@ one-step set. Window `k` is `H(τ_k) ⊕ P^R(t_{k+1})`, time point `k + 1` is
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,9 +49,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The windows `R(τ_0), …, R(τ_{N-1})` and the time-point sets `R_0, …, R_N`
-of `ẋ = Ax + Bu` from `X₀` under inputs in `U`, reducing to order `ρ`. -/
-def LinearSys.reachFloatInput (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
-    (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
+of `ẋ = Ax + Bu + c` from `X₀` under inputs in `U`, reducing to order `ρ`. -/
+def LinearSys.reachFloatInput (sys : LinearSys 𝕋 n) (params : Reach.InputParams (Zonotope (Vec 𝕋 n))
+    (Zonotope (Vec 𝕋 sys.m)) ℚ)
     (options : LinearSys.ReachOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n)) × List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
@@ -58,8 +60,7 @@ def LinearSys.reachFloatInput (sys : LinearSys 𝕋 n) (B : Mat 𝕋 n m)
   let ρ := options.ρ
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
-  let V := Mtimes.mtimes (𝕄 := Mat 𝕋)  -- B U, in the state space
-    (S := 𝒵[𝕋]) B params.U
+  let V := sys.inputSetFloat params.U                               -- B U ⊕ c, in the state space
   let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored centre
   let Ũ := Recentre.recentre V                                      -- Ũ = V - ũ, holding 0
   let eAΔt := sys.expIntervalFloat Δt Δt η'                         -- [e^{AΔt}], once

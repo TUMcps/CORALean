@@ -25,7 +25,7 @@ error set must start as `R0 - center(R0)`, which is the hypothesis `x_0 - center
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,7 +43,7 @@ theorem LinearSysDT.observeInterval_cora_counterexample :
     let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 0
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (fun _ => 1)
     (fun _ => 1 : Vec ℝ 1) ∈ R₀.construct ∧
-      (fun _ => 1 : Vec ℝ 1) ∉ (sys.observeInterval (0 : Mat ℝ 1 1) (0 : Mat ℝ 1 1) R₀ R₀
+      (fun _ => 1 : Vec ℝ 1) ∉ (sys.observeInterval (0 : Mat ℝ 1 1) R₀ R₀
         (Zonotope.ofPoint 0) (fun _ => 0) (fun _ => 0) 0).construct := by -- --- PROOF ---
   intro sys R₀
   refine ⟨Zonotope.mem_ofPoint _, fun h => ?_⟩

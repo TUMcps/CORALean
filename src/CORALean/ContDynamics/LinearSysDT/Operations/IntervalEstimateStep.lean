@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 public import CORALean.ContDynamics.LinearSysDT.Definitions.IntervalEstimateState
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.Interval.Real.Operations.Basic
@@ -22,7 +23,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,15 +38,15 @@ variable {n nu ny : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.intervalEstimateStep (A : Mat ℝ n n) (B : Mat ℝ n nu) (C : Mat ℝ ny n)
-    (L : Mat ℝ n ny) (u : Vec ℝ nu) (y : Vec ℝ ny) (s : LinearSysDT.IntervalEstimateState n) :
+def LinearSysDT.intervalEstimateStep (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q) (u : Vec ℝ sys.m)
+    (y : Vec ℝ sys.q) (s : LinearSysDT.IntervalEstimateState n) :
     LinearSysDT.IntervalEstimateState n :=
-  let x := A *ᵥ s.x + B *ᵥ u + L *ᵥ (y - C *ᵥ s.x)  -- line 8
-  let Sx := Zonotope.mtimes (A - L * C) s.Sx  -- line 9
+  let x := sys.A *ᵥ s.x + sys.B *ᵥ u + L *ᵥ (y - sys.C *ᵥ s.x)  -- line 8
+  let Sx := Zonotope.mtimes (sys.A - L * sys.C) s.Sx  -- line 9
   let Sw := s.Sw.plus s.Dw.interval  -- line 10
   let Sv := s.Sv.plus s.Dv.interval  -- line 11
-  let Dw := Zonotope.mtimes (A - L * C) s.Dw  -- line 12
-  let Dv := Zonotope.mtimes (A - L * C) s.Dv  -- line 13
+  let Dw := Zonotope.mtimes (sys.A - L * sys.C) s.Dw  -- line 12
+  let Dv := Zonotope.mtimes (sys.A - L * sys.C) s.Dv  -- line 13
   { x := x, Sx := Sx, Sw := Sw, Sv := Sv, Dw := Dw, Dv := Dv }
 
 end CORALean

@@ -9,8 +9,10 @@ public import CORALean.ContSet.ContSet.ContSet
 
 CORA's `linearSysDT`, `x(k+1) = A x(k) + B u(k) + c + E w(k)` with the output
 `y(k) = C x(k) + D u(k) + k + F v(k)`, every matrix stored, the dimensions beside `n` fields as
-in `LinearSys`: `m` inputs, `q` outputs, `r` disturbances, `s` noises. Time is counted in
-sampling periods, so CORA's `dt` is not stored.
+in `LinearSys`: `m` inputs, `q` outputs, `r` disturbances, `s` noises, and CORA's sampling
+time `dt`. Runs and reachable sets are indexed by the step `k`, the time `k dt`, as CORA's
+`reach` and `simulate` step through `tStart:dt:tFinal`; `dt` is what a conversion to
+continuous time reads (`toLinearSys`) and what a discretization stores (`LinearSys.discretize`).
 
 `Trajectory` is a run of the whole equation. `CanonicalTrajectory` is a run of the canonical
 form, `x(k+1) = A x(k) + u'(k)` with the combined input `u' = B u + c + E w` in state
@@ -58,6 +60,7 @@ structure LinearSysDT (𝕋 : Type) (n : ℕ) where
   k : Vec 𝕋 q
   E : Mat 𝕋 n r
   F : Mat 𝕋 q s
+  dt : 𝕋
 
 /-- A run of the whole equation: the state from `X₀` under inputs in `U` and disturbances in
 `W`, and the output under noise in `V`. -/

@@ -22,7 +22,7 @@ from the source, not run.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,18 +39,17 @@ open Matrix CORALean.Real
 output, and `x₁` is not in the observer's next set, at every gain and order. -/
 theorem LinearSysDT.observePropagation_state_offset_counterexample
     (gain : Zonotope (Vec ℝ 1) → Mat ℝ 1 1) (order : ℕ) :
-    let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 1
-    let c : Vec ℝ 1 := fun _ => 1  -- `linsysDT.c`
+    let sys : LinearSysDT ℝ 1 := { LinearSysDT.canonical 1 with c := fun _ => 1 }  -- `c = 1`
     let x : ℕ → Vec ℝ 1 := fun k _ => k
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (x 0)
     let y : ℕ → Vec ℝ 1 := fun k => (1 : Mat ℝ 1 1) *ᵥ x k  -- `C = 1`, `v = 0`
-    x 0 ∈ R₀.construct ∧ x 1 = sys.A *ᵥ x 0 + 0 + c ∧
-      x 1 ∉ (sys.observePropagation 1 gain order (Zonotope.ofPoint 0) R₀ (Zonotope.ofPoint 0)
+    x 0 ∈ R₀.construct ∧ x 1 = sys.A *ᵥ x 0 + sys.B *ᵥ 0 + sys.c ∧
+      x 1 ∉ (sys.observePropagation gain order (Zonotope.ofPoint 0) R₀ (Zonotope.ofPoint 0)
         (fun _ => 0) y 1).construct := by -- --- PROOF ---
-  intro sys c x R₀ y
+  intro sys x R₀ y
   refine ⟨Zonotope.mem_ofPoint _, ?_, ?_⟩
   · funext i
-    simp [x, c, sys]
+    simp [x, sys]
   · rintro ⟨β, -, hx⟩
     have h0 := congrFun hx 0
     simp [LinearSysDT.observePropagation, Zonotope.reduce, Zonotope.reduceGirard,

@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
+public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 public import CORALean.ContDynamics.Reach.Definitions.Params
@@ -14,8 +15,8 @@ public import CORALean.NN.Operations.Enclose
 # A neural-network-controlled continuous plant, reached in floats
 
 `NeurNetContrSys.reach` computed in `𝕋`, at float zonotopes: each control period
-encloses the network's output over the period's initial set, takes that as the
-plant's input set, and runs `N` steps of the plant sampled by
+encloses the network's output over the period's initial set, maps it to the plant's input term
+`B N(R) ⊕ c` (`inputSetFloat`), and runs `N` steps of the plant sampled by
 `discretizeEnclosureFloat` under `inputSolutionFloat` of it — the exact
 `discretize` and `inputSolution` replaced by their float enclosures. The order
 `η` is the caller's; `reachFloat_outer` asks it to be admissible.
@@ -23,7 +24,7 @@ plant's input set, and runs `N` steps of the plant sampled by
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -51,7 +52,7 @@ def NeurNetContrSys.reachFloat (sys : NeurNetContrSys 𝕋 𝒵[𝕋] n)
   let H := params.tFinal - params.tStart                           -- control periods
   let period := fun R : Zonotope (Vec 𝕋 n) =>                       -- N steps under one held input
     (sys.plant.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
-      ⟨R, sys.plant.inputSolutionFloat Δt η (sys.contr.enclose R), 0, N⟩
+      ⟨R, sys.plant.inputSolutionFloat Δt η (sys.plant.inputSetFloat (sys.contr.enclose R)), 0, N⟩
       ⟨o, options.hZonotopeOrder⟩
   Nat.repeat period H R₀                                            -- R(HNΔt)
 

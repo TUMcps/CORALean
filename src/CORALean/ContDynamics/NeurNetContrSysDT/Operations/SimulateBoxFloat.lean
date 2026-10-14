@@ -20,7 +20,7 @@ enclosure is outer: `enclose` of a box is not a point even from a point.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,13 +35,14 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The boxes `B_k` of the closed loop from `x₀`: `B_{k+1} = A B_k ⊕ enclose(B_k)`. -/
+/-- The boxes `B_k` of the closed loop from `x₀`: `B_{k+1} = A B_k ⊕ (B enclose(B_k) ⊕ c)`. -/
 def NeurNetContrSysDT.simulateBox (sys : NeurNetContrSysDT 𝕋 ℐ𝒱[𝕋] n)
     (x₀ : Vec 𝕋 n) : ℕ → Interval (Vec 𝕋 n)
   | 0 => Interval.point x₀
   | k + 1 =>
-    plus (S := Interval (Vec 𝕋 n)) (mtimes (S := ℐ𝒱[𝕋]) sys.plant.A
-      (sys.simulateBox x₀ k)) (sys.contr.enclose (sys.simulateBox x₀ k))
+    plus (S := Interval (Vec 𝕋 n)) (mtimes (S := ℐ𝒱[𝕋]) sys.plant.A (sys.simulateBox x₀ k))
+      (plus (S := Interval (Vec 𝕋 n)) (mtimes (S := ℐ𝒱[𝕋]) sys.plant.B
+        (sys.contr.enclose (sys.simulateBox x₀ k))) (OfScalarPoint.ofVec (S := ℐ𝒱[𝕋]) sys.plant.c))
 
 end CORALean
 

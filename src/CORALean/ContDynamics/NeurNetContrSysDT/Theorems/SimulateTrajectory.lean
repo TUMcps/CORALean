@@ -14,9 +14,9 @@ predicate. Two obligations, not three: the controller supplies the input, so a
 run is determined by its initial state alone, with nothing for `input` to say.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.simulate_trajectory (sys : NeurNetContrSysDT 𝕋 S n)
-    (π : Vec ℝ n → Vec ℝ n) {R₀ : S n}
+    (π : Vec ℝ n → Vec ℝ sys.plant.m) {R₀ : S n}
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
     sys.Trajectory π R₀ (sys.simulate π x₀) where
   init := hx₀

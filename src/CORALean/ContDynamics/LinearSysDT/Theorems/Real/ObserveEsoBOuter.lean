@@ -21,7 +21,7 @@ without the update the prediction is the result. CORA's step does not enclose it
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,19 +36,22 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.observeEsoB_outer (sys : LinearSysDT ℝ n) (C : Mat ℝ m n) {W : Mat ℝ n n}
-    (hW : W.PosDef) {V : Mat ℝ m m} (hV : V.PosDef) {p lam : ℝ} (hp0 : 0 < p) (hp1 : p < 1)
-    (hl0 : 0 < lam) (hl1 : lam < 1) (σsqPrev : ℝ) (u : Vec ℝ n) (y : Vec ℝ m) {Q : Mat ℝ n n}
+theorem LinearSysDT.observeEsoB_outer (sys : LinearSysDT ℝ n) {W : Mat ℝ n n}
+    (hW : W.PosDef) {V : Mat ℝ sys.q sys.q} (hV : V.PosDef) {p lam : ℝ} (hp0 : 0 < p)
+    (hp1 : p < 1) (hl0 : 0 < lam) (hl1 : lam < 1) (σsqPrev : ℝ) (u : Vec ℝ sys.m)
+    (y : Vec ℝ sys.q) {Q : Mat ℝ n n}
     (hQ : Q.PosDef) (c : Vec ℝ n) {x w : Vec ℝ n} (hx : x ∈ (Ellipsoid.ofShape Q c).construct)
     (hw : w ∈ (Ellipsoid.ofShape W 0).construct)
-    (hy : (y - C *ᵥ (sys.A *ᵥ x + u + w)) ⬝ᵥ V⁻¹ *ᵥ (y - C *ᵥ (sys.A *ᵥ x + u + w)) ≤ 1) :
-    sys.A *ᵥ x + u + w
-      ∈ (sys.observeEsoB C W V p lam σsqPrev u y Q c).construct := by -- --- PROOF ---
-  obtain ⟨hN, hpred⟩ := Ellipsoid.mem_ofShape_affine_add hQ hW sys.A hp0 hp1 c u hx hw
+    (hy : (y - sys.C *ᵥ (sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w)) ⬝ᵥ
+      V⁻¹ *ᵥ (y - sys.C *ᵥ (sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w)) ≤ 1) :
+    sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w
+      ∈ (sys.observeEsoB W V p lam σsqPrev u y Q c).construct := by -- --- PROOF ---
+  obtain ⟨hN, hpred⟩ :=
+    Ellipsoid.mem_ofShape_affine_add hQ hW sys.A hp0 hp1 c (sys.B *ᵥ u + sys.c) hx hw
   simp only [LinearSysDT.observeEsoB]
   split_ifs
   · rw [Ellipsoid.mem_ofShape_iff hN] at hpred
-    exact Ellipsoid.intersectStripLiu_outer hN _ C hV y 1 hl0 hl1 ⟨hpred, hy⟩
+    exact Ellipsoid.intersectStripLiu_outer hN _ sys.C hV y 1 hl0 hl1 ⟨hpred, hy⟩
   · exact hpred
 
 end CORALean

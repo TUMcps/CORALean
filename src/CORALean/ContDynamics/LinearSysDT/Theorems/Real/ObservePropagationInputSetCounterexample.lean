@@ -22,7 +22,7 @@ moves the state to `x₁ = 1`, and the next set of `observePropagation` (`PRad-E
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,8 +45,8 @@ theorem LinearSysDT.observePropagation_input_set_counterexample
     let x : ℕ → Vec ℝ 1 := fun k _ => k
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (x 0)
     let y : ℕ → Vec ℝ 1 := fun k => (1 : Mat ℝ 1 1) *ᵥ x k  -- `C = 1`, `v = 0`
-    x 0 ∈ R₀.construct ∧ ũ ∈ U.construct ∧ x 1 = sys.A *ᵥ x 0 + (0 + ũ) ∧
-      x 1 ∉ (sys.observePropagation 1 gain order (Zonotope.ofPoint 0) R₀ (Zonotope.ofPoint 0)
+    x 0 ∈ R₀.construct ∧ ũ ∈ U.construct ∧ x 1 = sys.A *ᵥ x 0 + sys.B *ᵥ (0 + ũ) ∧
+      x 1 ∉ (sys.observePropagation gain order (Zonotope.ofPoint 0) R₀ (Zonotope.ofPoint 0)
         (fun _ => 0) y 1).construct := by -- --- PROOF ---
   intro sys U ũ x R₀ y
   refine ⟨Zonotope.mem_ofPoint _, ⟨fun _ => 1, fun _ => by norm_num, ?_⟩, ?_, ?_⟩

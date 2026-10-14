@@ -27,7 +27,7 @@ Schur is not needed for the enclosure, only for the bounds to stay bounded.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,31 +42,31 @@ variable {n nu ny nw nv : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.intervalObserverTransformed_outer (A : Mat ℝ n n) (B : Mat ℝ n nu)
-    (C : Mat ℝ ny n) (E : Mat ℝ n nw) (F : Mat ℝ ny nv) (L : Mat ℝ n ny) (S : Mat ℝ n n)
-    (wl wu : Vec ℝ nw) (vl vu : Vec ℝ nv) (xl₀ xu₀ : Vec ℝ n) (u : ℕ → Vec ℝ nu)
-    (y : ℕ → Vec ℝ ny) (x : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ nw) (v : ℕ → Vec ℝ nv)
-    (hS : IsUnit S.det) (hR : ∀ i j, 0 ≤ (S * (A - L * C) * S⁻¹) i j)
+theorem LinearSysDT.intervalObserverTransformed_outer (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (S : Mat ℝ n n)
+    (wl wu : Vec ℝ sys.r) (vl vu : Vec ℝ sys.s) (xl₀ xu₀ : Vec ℝ n) (u : ℕ → Vec ℝ sys.m)
+    (y : ℕ → Vec ℝ sys.q) (x : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ sys.r) (v : ℕ → Vec ℝ sys.s)
+    (hS : IsUnit S.det) (hR : ∀ i j, 0 ≤ (S * (sys.A - L * sys.C) * S⁻¹) i j)
     (h0 : ∀ i, xl₀ i ≤ x 0 i ∧ x 0 i ≤ xu₀ i) (hw : ∀ k i, wl i ≤ w k i ∧ w k i ≤ wu i)
     (hv : ∀ k i, vl i ≤ v k i ∧ v k i ≤ vu i)
-    (hstep : ∀ k, x (k + 1) = A *ᵥ x k + B *ᵥ u k + E *ᵥ w k)
-    (hy : ∀ k, y k = C *ᵥ x k + F *ᵥ v k) (k : ℕ) :
-    x k ∈ (LinearSysDT.intervalObserverTransformed A B C E F L S wl wu vl vu xl₀ xu₀ u y
+    (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + sys.E *ᵥ w k)
+    (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (k : ℕ) :
+    x k ∈ (LinearSysDT.intervalObserverTransformed sys L S wl wu vl vu xl₀ xu₀ u y
       k).construct := by -- --- PROOF ---
-  set Z := LinearSysDT.intervalObserverCoord A B C E F L S wl wu vl vu xl₀ xu₀ u y
-  set R := S * (A - L * C) * S⁻¹
-  set K := S * E
-  set G := -(S * L * F)
+  set Z := LinearSysDT.intervalObserverCoord sys L S wl wu vl vu xl₀ xu₀ u y
+  set R := S * (sys.A - L * sys.C) * S⁻¹
+  set K := S * sys.E
+  set G := -(S * L * sys.F)
   set gu := K.map (max 0) *ᵥ wu - (K.map (max 0) - K) *ᵥ wl + G.map (max 0) *ᵥ vu -
     (G.map (max 0) - G) *ᵥ vl
   set gl := K.map (max 0) *ᵥ wl - (K.map (max 0) - K) *ᵥ wu + G.map (max 0) *ᵥ vl -
     (G.map (max 0) - G) *ᵥ vu
   have hSS : S⁻¹ * S = 1 := nonsing_inv_mul S hS
   -- its Eq. 44: the transformed state
-  have hz : ∀ k, S *ᵥ x (k + 1) = R *ᵥ (S *ᵥ x k) + (S * B) *ᵥ u k + (S * L) *ᵥ y k +
+  have hz : ∀ k, S *ᵥ x (k + 1) = R *ᵥ (S *ᵥ x k) + (S * sys.B) *ᵥ u k + (S * L) *ᵥ y k +
       (K *ᵥ w k + G *ᵥ v k) := fun k => by
-    have hRS : R *ᵥ (S *ᵥ x k) = (S * (A - L * C)) *ᵥ x k := by
-      rw [mulVec_mulVec, Matrix.mul_assoc (S * (A - L * C)), hSS, Matrix.mul_one]
+    have hRS : R *ᵥ (S *ᵥ x k) = (S * (sys.A - L * sys.C)) *ᵥ x k := by
+      rw [mulVec_mulVec, Matrix.mul_assoc (S * (sys.A - L * sys.C)), hSS, Matrix.mul_one]
     rw [hRS, hstep, hy]
     simp only [K, G, sub_mulVec, mulVec_add, neg_mulVec, ← mulVec_mulVec,
       Matrix.mul_sub]
@@ -85,14 +85,14 @@ theorem LinearSysDT.intervalObserverTransformed_outer (A : Mat ℝ n n) (B : Mat
     (fun k i => by simp only [Pi.sub_apply]; linarith [(hg k i).2])
     (fun i => by simp only [Pi.sub_apply]; exact sub_nonneg.mpr (h0z i).2)
     (fun k => by
-      change R *ᵥ (Z k).sup + (S * B) *ᵥ u k + (S * L) *ᵥ y k + gu - S *ᵥ x (k + 1) = _
+      change R *ᵥ (Z k).sup + (S * sys.B) *ᵥ u k + (S * L) *ᵥ y k + gu - S *ᵥ x (k + 1) = _
       rw [hz, mulVec_sub]; abel)
   have hL := nonneg_of_nonneg_recurrence R (fun k => S *ᵥ x k - (Z k).inf)
     (fun k => (K *ᵥ w k + G *ᵥ v k) - gl) hR
     (fun k i => by simp only [Pi.sub_apply]; linarith [(hg k i).1])
     (fun i => by simp only [Pi.sub_apply]; exact sub_nonneg.mpr (h0z i).1)
     (fun k => by
-      change S *ᵥ x (k + 1) - (R *ᵥ (Z k).inf + (S * B) *ᵥ u k + (S * L) *ᵥ y k + gl) = _
+      change S *ᵥ x (k + 1) - (R *ᵥ (Z k).inf + (S * sys.B) *ᵥ u k + (S * L) *ᵥ y k + gl) = _
       rw [hz, mulVec_sub]; abel)
   cases k with
   | zero => exact h0

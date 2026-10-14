@@ -24,7 +24,7 @@ interval observer when `A - LC ≥ 0` [1, Thm. 4]. Real only, as the other obser
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,20 +39,20 @@ variable {n nu ny nw nv : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.intervalObserver (A : Mat ℝ n n) (B : Mat ℝ n nu) (C : Mat ℝ ny n)
-    (E : Mat ℝ n nw) (F : Mat ℝ ny nv) (L : Mat ℝ n ny) (wl wu : Vec ℝ nw) (vl vu : Vec ℝ nv)
-    (xl₀ xu₀ : Vec ℝ n) (u : ℕ → Vec ℝ nu) (y : ℕ → Vec ℝ ny) : ℕ → Interval (Vec ℝ n)
+def LinearSysDT.intervalObserver (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q) (wl wu : Vec ℝ sys.r)
+    (vl vu : Vec ℝ sys.s)
+    (xl₀ xu₀ : Vec ℝ n) (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) : ℕ → Interval (Vec ℝ n)
   | 0 => ⟨xl₀, xu₀⟩
   | k + 1 =>
-    let I := LinearSysDT.intervalObserver A B C E F L wl wu vl vu xl₀ xu₀ u y k
-    let Ep := E.map (max 0)  -- `E⁺`
-    let En := Ep - E  -- `E⁻`
-    let Gp := (-(L * F)).map (max 0)  -- `(-LF)⁺`
-    let Gn := Gp - -(L * F)  -- `(-LF)⁻`
+    let I := LinearSysDT.intervalObserver sys L wl wu vl vu xl₀ xu₀ u y k
+    let Ep := sys.E.map (max 0)  -- `E⁺`
+    let En := Ep - sys.E  -- `E⁻`
+    let Gp := (-(L * sys.F)).map (max 0)  -- `(-LF)⁺`
+    let Gn := Gp - -(L * sys.F)  -- `(-LF)⁻`
     let du := Ep *ᵥ wu - En *ᵥ wl + Gp *ᵥ vu - Gn *ᵥ vl  -- (37), `d̅`
     let dl := Ep *ᵥ wl - En *ᵥ wu + Gp *ᵥ vl - Gn *ᵥ vu  -- (37), `d̲`
-    let xu := A *ᵥ I.sup + B *ᵥ u k + L *ᵥ (y k - C *ᵥ I.sup) + du  -- (36), upper
-    let xl := A *ᵥ I.inf + B *ᵥ u k + L *ᵥ (y k - C *ᵥ I.inf) + dl  -- (36), lower
+    let xu := sys.A *ᵥ I.sup + sys.B *ᵥ u k + L *ᵥ (y k - sys.C *ᵥ I.sup) + du  -- (36), upper
+    let xl := sys.A *ᵥ I.inf + sys.B *ᵥ u k + L *ᵥ (y k - sys.C *ᵥ I.inf) + dl  -- (36), lower
     ⟨xl, xu⟩
 
 end CORALean

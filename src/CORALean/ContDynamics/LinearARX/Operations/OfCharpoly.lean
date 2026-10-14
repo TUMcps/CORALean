@@ -22,7 +22,7 @@ in place of an observer gain, `p = n`. `Abar i` is `Ā_{i+1}` and `Bbar j` is `B
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,10 +39,11 @@ variable {n dy du : ℕ}
 
 /-- `A_bar`, `B_bar` of the `'CH'` branch, one coefficient `a_j = coeff (n - j)` at a time. -/
 noncomputable def LinearARX.ofCharpoly (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
-    (Du : Mat ℝ dy du) : LinearARX ℝ dy du n where
+    (Du : Mat ℝ dy du) (dt : ℝ) : LinearARX ℝ dy du n where
   Abar i := -(A.charpoly.coeff (n - ((i : ℕ) + 1))) • (1 : Mat ℝ dy dy)
   Bbar j := ∑ i ∈ Finset.range ((j : ℕ) + 1), A.charpoly.coeff (n - i) •
     (if (j : ℕ) - i = 0 then Du else C * A ^ ((j : ℕ) - i - 1) * Bu)
+  dt := dt                                                          -- obj.dt
 
 end CORALean
 

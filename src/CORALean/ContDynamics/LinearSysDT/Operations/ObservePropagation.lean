@@ -16,8 +16,9 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 as CORA runs it for `FRad-C` (`priv_observe_intersectionFreeAdaptive`, the gain computed from
 the current set's generators), `PRad-E` and `Nom-G` (`priv_observe_intersectionFree`, a gain
 fixed offline): each step then reduced to `order`. The gain is a function of the current set,
-which covers both. No intersection is taken, so no strip widths enter; the input `u` is in state
-coordinates (`B u` folded, as `LinearSysDT` folds it).
+which covers both. No intersection is taken, so no strip widths enter. `A`, `B`, `C` are the
+system's, the input `u` in input coordinates; as in CORA, neither `c` nor `E`, `D`, `k`, `F` enters
+(the counterexamples `observePropagation_state_offset_counterexample` and its siblings).
 
 ## References
 
@@ -28,7 +29,7 @@ coordinates (`B u` folded, as `LinearSysDT` folds it).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -44,14 +45,16 @@ variable {n p : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `S k`, the set the observer holds for the state at step `k`. -/
-noncomputable def LinearSysDT.observePropagation (sys : LinearSysDT ℝ n) (C : Mat ℝ p n)
-    (gain : Zonotope (Vec ℝ n) → Mat ℝ n p) (order : ℕ) (W R₀ : Zonotope (Vec ℝ n))
-    (V : Zonotope (Vec ℝ p)) (u : ℕ → Vec ℝ n) (y : ℕ → Vec ℝ p) : ℕ → Zonotope (Vec ℝ n)
+noncomputable def LinearSysDT.observePropagation (sys : LinearSysDT ℝ n)
+    (gain : Zonotope (Vec ℝ n) → Mat ℝ n sys.q) (order : ℕ) (W R₀ : Zonotope (Vec ℝ n))
+    (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
+    (y : ℕ → Vec ℝ sys.q) : ℕ → Zonotope (Vec ℝ n)
   | 0 => R₀
   | k + 1 =>
-    let S := sys.observePropagation C gain order W R₀ V u y k
+    let S := sys.observePropagation gain order W R₀ V u y k
     let L := gain S  -- the observer gain at this step
-    let S' := ((((Zonotope.mtimes (sys.A - L * C) S).plus (Zonotope.ofPoint (u k))).plus
+    let S' := ((((Zonotope.mtimes (sys.A - L * sys.C) S).plus
+      (Zonotope.ofPoint (sys.B *ᵥ u k))).plus
       (Zonotope.ofPoint (L *ᵥ y k))).plus (Zonotope.mtimes (-L) V)).plus W  -- (6)
     S'.reduce order
 

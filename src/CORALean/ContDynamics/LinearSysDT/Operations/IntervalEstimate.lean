@@ -20,7 +20,7 @@ is `Zonotope.interval`, exact by [1, Property 4] (`Zonotope.interval_eq_hull`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,11 +35,11 @@ variable {n nu ny nw nv : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LinearSysDT.intervalEstimate (A : Mat ℝ n n) (B : Mat ℝ n nu) (C : Mat ℝ ny n)
-    (E : Mat ℝ n nw) (F : Mat ℝ ny nv) (L : Mat ℝ n ny) (X₀ : Zonotope (Vec ℝ n))
-    (W : Zonotope (Vec ℝ nw)) (V : Zonotope (Vec ℝ nv)) (u : ℕ → Vec ℝ nu)
-    (y : ℕ → Vec ℝ ny) (k : ℕ) : Interval (Vec ℝ n) :=
-  let s := LinearSysDT.intervalEstimateState A B C E F L X₀ W V u y k
+def LinearSysDT.intervalEstimate (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
+    (X₀ : Zonotope (Vec ℝ n))
+    (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s)) (u : ℕ → Vec ℝ sys.m)
+    (y : ℕ → Vec ℝ sys.q) (k : ℕ) : Interval (Vec ℝ n) :=
+  let s := LinearSysDT.intervalEstimateState sys L X₀ W V u y k
   let e := s.Sx.interval.plus (s.Sw.plus s.Sv)  -- line 5, `[e̲_k, e̅_k]`
   (Interval.point s.x).plus e  -- lines 6-7, `x̂_k + [e̲_k, e̅_k]`
 

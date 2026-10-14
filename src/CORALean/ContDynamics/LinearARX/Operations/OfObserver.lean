@@ -21,7 +21,7 @@ this structure, `Abar i` is `Ā_{i+1}` and `Bbar j` is `B̄_j`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,9 +35,10 @@ variable {n dy du : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def LinearARX.ofObserver (p : ℕ) (A : Mat ℝ n n) (Bu : Mat ℝ n du) (C : Mat ℝ dy n)
-    (Du : Mat ℝ dy du) (M : Mat ℝ n dy) : LinearARX ℝ dy du p where
+    (Du : Mat ℝ dy du) (M : Mat ℝ n dy) (dt : ℝ) : LinearARX ℝ dy du p where
   Abar i := -(C * (A + M * C) ^ (i : ℕ) * M)
   Bbar j := if (j : ℕ) = 0 then Du else C * (A + M * C) ^ ((j : ℕ) - 1) * (Bu + M * Du)
+  dt := dt                                                          -- obj.dt
 
 end CORALean
 

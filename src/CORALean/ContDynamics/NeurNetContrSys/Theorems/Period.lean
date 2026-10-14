@@ -13,10 +13,10 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 # One control period is a linear run under the enclosed input set
 
 The join between the two halves, and the only place they touch. On period `i` the
-input is the single vector `π(x(i Δtc))`; the state at `i Δtc` is in whatever set
-the previous period was enclosed by, so the network's guarantee puts that vector
-in `enclose` of it — and a constant lying in a set is an admissible input of a
-`LinearSys.CanonicalClassicalTrajectory` at that set.
+input term is the single vector `B π(x(i Δtc)) + c`; the state at `i Δtc` is in whatever set
+the previous period was enclosed by, so the network's guarantee puts `π(x(i Δtc))` in
+`enclose` of it, and any `U` holding `B N + c` (`hU`) holds the input term — and a constant
+lying in a set is an admissible input of a `LinearSys.CanonicalClassicalTrajectory` at that set.
 
 `R` is a parameter with its membership a hypothesis, as in
 `NonlinearSys.Trajectory.shift`: the caller already holds the enclosure and its
@@ -30,9 +30,9 @@ Soundness does not need it, precision does; recovering it means a constant-input
 step, which `MatExp` does not yet offer.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -51,14 +51,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Period `i` of a closed-loop run, in the period's own clock, is a linear run
 from `R` under the constant input the controller produced at its start. -/
 theorem NeurNetContrSys.Trajectory.period {sys : NeurNetContrSys 𝕋 S n} {Δtc : ℝ} {H : ℕ}
-    {R₀ : S n} {π : Vec ℝ n → Vec ℝ n} (hπ : sys.contr.Sound π) {x : ℝ → Vec ℝ n}
+    {R₀ : S n} {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π) {x : ℝ → Vec ℝ n}
     (traj : sys.Trajectory π Δtc H R₀ x) (i : ℕ) (hi : i < H)
-    (R : S n) (hR : x ((i : ℝ) * Δtc) ∈ construct R) :
-    sys.plant.CanonicalClassicalTrajectory (Set.Icc 0 Δtc) R (sys.contr.enclose R)
+    (R : S n) (hR : x ((i : ℝ) * Δtc) ∈ construct R) (U : S n)
+    (hU : ∀ v ∈ construct (sys.contr.enclose R),
+      toRealMat sys.plant.B *ᵥ v + toRealVec sys.plant.c ∈ construct U) :
+    sys.plant.CanonicalClassicalTrajectory (Set.Icc 0 Δtc) R U
       (fun t => x ((i : ℝ) * Δtc + t))
-      (fun _ => π (x ((i : ℝ) * Δtc))) where
+      (fun _ => toRealMat sys.plant.B *ᵥ π (x ((i : ℝ) * Δtc)) + toRealVec sys.plant.c) where
   init := by simpa using hR
-  input _ _ := hπ.enclose_outer R _ hR
+  input _ _ := hU _ (hπ.enclose_outer R _ hR)
   flow t ht := by
     have hmaps : Set.MapsTo (fun s => (i : ℝ) * Δtc + s) (Set.Icc 0 Δtc)
         (Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) := by
