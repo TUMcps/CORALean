@@ -18,13 +18,13 @@ the searches at `t₀` and at `Δt` land on one order `ηr`, and is `none` other
 the theorem names is at that `ηr`. The float input solution holds the exact one
 (`inputSolution_subset_inputSolutionFloat`), so the input `W₀` is only asked to hold `W₀r` with
 error box `{0}`.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

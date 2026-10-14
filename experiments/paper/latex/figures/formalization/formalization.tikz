@@ -124,20 +124,20 @@
 \addlegendimage{fill=white}
 \addlegendentry{not yet}
 \begin{scope}\clip[rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1229.66,0);
-\fill[CORAcolorSafe] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:780,0);
-\fill[CORAcolorUnknown] ([yshift=-5.5pt]axis cs:780,0) rectangle ([yshift=5.5pt]axis cs:817,0);
-\fill[CORAcolorHighlight1] ([yshift=-5.5pt]axis cs:817,0) rectangle ([yshift=5.5pt]axis cs:1058,0);
-\fill[CORAcolorUnsafe] ([yshift=-5.5pt]axis cs:1058,0) rectangle ([yshift=5.5pt]axis cs:1165,0);
+\fill[CORAcolorSafe] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:781,0);
+\fill[CORAcolorUnknown] ([yshift=-5.5pt]axis cs:781,0) rectangle ([yshift=5.5pt]axis cs:818,0);
+\fill[CORAcolorHighlight1] ([yshift=-5.5pt]axis cs:818,0) rectangle ([yshift=5.5pt]axis cs:1059,0);
+\fill[CORAcolorUnsafe] ([yshift=-5.5pt]axis cs:1059,0) rectangle ([yshift=5.5pt]axis cs:1165,0);
 \fill[CORAcolorDarkRed] ([yshift=-5.5pt]axis cs:1165,0) rectangle ([yshift=5.5pt]axis cs:1176.66,0);
 \fill[white] ([yshift=-5.5pt]axis cs:1176.66,0) rectangle ([yshift=5.5pt]axis cs:1229.66,0);
 \end{scope}
 \draw[black, line width=0.2pt] [rounded corners=1.5pt] ([yshift=-5.5pt]axis cs:0,0) rectangle ([yshift=5.5pt]axis cs:1229.66,0);
-\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:1229.66,0) {\hspace{0em}\textcolor{black!40}{+1062}};
+\node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:1229.66,0) {\hspace{0em}\textcolor{black!40}{+1063}};
 \end{axis}
 \begin{axis}[at={(results.south west)}, anchor=south west, height=0.55cm, width=4.22cm, xmin=0, xmax=1229, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,0)};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:390,0) {780};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:937.5,0) {241};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:390.5,0) {781};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:938.5,0) {241};
 \end{axis}
 
 \begin{axis}[name=theorems,

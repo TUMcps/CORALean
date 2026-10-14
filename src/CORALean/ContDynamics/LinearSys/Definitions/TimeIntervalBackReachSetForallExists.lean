@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
 /-!
 # The states no admissible input can keep out of the target over an interval
 
-[1, Def. 6]: the time-interval minimal backward reachable set `R^{∀∃}(-τ)`,
+[1, Def. 6]: the time-interval AE backward reachable set `R^{∀∃}(-τ)`,
 as `backReachSetForallExists` reads the time-point one, over the runs `U` and
 `W` actually name — measurable and bounded, the class the solution exists in.
 
@@ -18,9 +18,9 @@ time-point sets inside this one. `U` and `W` are admissible over the whole of
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5

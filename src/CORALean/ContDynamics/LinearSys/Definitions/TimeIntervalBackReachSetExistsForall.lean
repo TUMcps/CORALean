@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
 /-!
 # The states one admissible input can steer into the target over an interval
 
-[1, Def. 7]: the time-interval maximal backward reachable set `R^{∃∀}(-τ)`,
+[1, Def. 7]: the time-interval EA backward reachable set `R^{∃∀}(-τ)`,
 as `backReachSetExistsForall` reads the time-point one and
 `timeIntervalBackReachSetForallExists` reads Def. 6's: the guards range over
 the measurable admissible signals.
@@ -18,9 +18,9 @@ the whole of `T`.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5

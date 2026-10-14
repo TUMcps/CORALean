@@ -13,13 +13,13 @@ The exact layer's `maxBackReachCZ` offsets each row by the zonotope's support bo
 (`Zonotope.supportBound_attained`): a point of `P ⊖ Ẑ_W` meets each row with the support taken
 off, because the attaining point of `Ẑ_W` is added into `P`, and an equality row is blind to the
 subtrahend.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

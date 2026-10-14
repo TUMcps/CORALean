@@ -10,9 +10,9 @@ public import Mathlib.Analysis.CStarAlgebra.Matrix
 @[expose] public section
 
 /-!
-# `Alg. 2` line 3: the curvature radius `μ`
+# `Alg. 3` line 3: the curvature radius `μ`
 
-`maxBackReachMu`: [1, Alg. 2] line 3, `μ ← √γ ‖(e^{AΔt} - I_n)G‖₂`, (22) as printed: `‖·‖₂` is
+`maxBackReachMu`: [1, Alg. 3] line 3, `μ ← √γ ‖(e^{AΔt} - I_n)G‖₂`, (22) as printed: `‖·‖₂` is
 the spectral norm, the operator norm between Euclidean spaces (Mathlib's
 `Matrix.instL2OpNormedAddCommGroup`, named explicitly since the tree's matrices otherwise carry
 the ℓ^∞ one), and `G ∈ ℝ^{n×γ}` is the generator matrix of `box(X_end)`, its columns the
@@ -20,9 +20,9 @@ zonotope's generators.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5

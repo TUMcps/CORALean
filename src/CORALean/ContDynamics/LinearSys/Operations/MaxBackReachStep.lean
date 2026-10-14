@@ -11,18 +11,18 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 @[expose] public section
 
 /-!
-# `Alg. 2` lines 7-12: one iteration of the main loop
+# `Alg. 3` lines 7-12: one iteration of the main loop
 
-`maxBackReachStep`: [1, Alg. 2], propagating the two particular solutions and assembling
+`maxBackReachStep`: [1, Alg. 3], propagating the two particular solutions and assembling
 `R̂^{∃∀}(-τ_k)` from `P₁` and `P₂`. `ρ` is the caller's support oracle for a polytope — the
-linear program of (9). `Zw` is (26), the constant centre trajectory's contribution over one
+linear program of (9). `Zw` is (27), the constant centre trajectory's contribution over one
 interval.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -46,7 +46,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Lines 7-12: one iteration of [1, Alg. 2]'s main loop, propagating the two
+/-- Lines 7-12: one iteration of [1, Alg. 3]'s main loop, propagating the two
 particular solutions and assembling `R̂^{∃∀}(-τ_k)` from `P₁` and `P₂`. -/
 noncomputable def LinearSys.maxBackReachStep (sys : LinearSys 𝕋 n)
     (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)

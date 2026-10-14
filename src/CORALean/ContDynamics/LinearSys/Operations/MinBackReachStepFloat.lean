@@ -13,9 +13,9 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 @[expose] public section
 
 /-!
-# `Alg. 1` lines 8-11 in floats: one iteration of the main loop
+# `Alg. 2` lines 8-11 in floats: one iteration of the main loop
 
-`minBackReachStep` computed in `𝕋`: [1, Alg. 1] lines 8-11. The exact layer's `e^{-A t_k}` is the
+`minBackReachStep` computed in `𝕋`: [1, Alg. 2] lines 8-11. The exact layer's `e^{-A t_k}` is the
 interval matrix `[e^{-A t_k}]` of `expSquaringFloat` (Taylor order `η`, then `ν` squarings), its
 correction matrix `F` is `intervalCorrectionMatrix`, and every product with either is a set times
 an interval matrix. The outer direction is the exact layer's: each set is enclosed, none is
@@ -27,9 +27,9 @@ stored floats name.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Lines 8-11: one iteration of [1, Alg. 1]'s main loop, propagating the two particular
+/-- Lines 8-11: one iteration of [1, Alg. 2]'s main loop, propagating the two particular
 solutions and the converted target set over `τ_k`. -/
 def LinearSys.minBackReachStepFloat (sys : LinearSys 𝕋 n)
     (CZ : ConZonotope 𝕋 (Vec 𝕋 n)) (W₀ U₀ : Zonotope (Vec 𝕋 n))

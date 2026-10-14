@@ -9,19 +9,19 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.LowerDotLe
 /-!
 # The float support value is an upper bound
 
-`minBackReachSupportFloat`, [1, Alg. 1] lines 12-13, is `ρ(R̂^∃) - ρ(Ẑ_{U₀}, -N_(j,·))` rounded so
+`minBackReachSupportFloat`, [1, Alg. 2] lines 12-13, is `ρ(R̂^∃) - ρ(Ẑ_{U₀}, -N_(j,·))` rounded so
 it comes out *above* the real difference: the first term through `ConZonotope.boundDot`, an upper
 bound on the support of the step's set, the second through `Zonotope.lowerDot`, which some point
 `w` of `Ẑ_{U₀}` meets or exceeds with `-N_(j,·) w`. So for every `x` of the step's set `N_(j,·) x
-+ N_(j,·) w` is at most the float value, which is what eq. (44) asks of `p_(j)` as an upper bound:
++ N_(j,·) w` is at most the float value, which is what eq. (46) asks of `p_(j)` as an upper bound:
 `N_(j,·) x - ρ(Ẑ_{U₀}, -N_(j,·)) ≤ N_(j,·) x + N_(j,·) w`. Needs the error box of `Ẑ_{U₀}` to be
 non-empty, a property of the stored bounds the caller states.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

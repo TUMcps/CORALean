@@ -7,16 +7,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 @[expose] public section
 
 /-!
-# `Alg. 1` lines 12-13: one direction's support value at a step
+# `Alg. 2` lines 12-13: one direction's support value at a step
 
-`minBackReachSupport`: [1, Alg. 1] lines 12-13, eq. (44), `ρ(R̂^∃(-τ_k;u_j(·)), N_(j,·))`,
+`minBackReachSupport`: [1, Alg. 2] lines 12-13, eq. (46), `ρ(R̂^∃(-τ_k;u_j(·)), N_(j,·))`,
 the step's own support value less what the direction's input trajectory takes off it.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -36,7 +36,7 @@ variable {n q : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Lines 12-13, eq. (44): `ρ(R̂^∃(-τ_k;u_j(·)), N_(j,·))`, the step's own support
+/-- Lines 12-13, eq. (46): `ρ(R̂^∃(-τ_k;u_j(·)), N_(j,·))`, the step's own support
 value less what the direction's input trajectory takes off it. -/
 noncomputable def LinearSys.minBackReachSupport (sys : LinearSys 𝕋 n)
     (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c)

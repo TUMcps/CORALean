@@ -5,24 +5,24 @@ public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachRun
 @[expose] public section
 
 /-!
-# `Alg. 2` line 14: the maximal time-interval backward reachable set
+# `Alg. 3` line 14: the EA time-interval backward reachable set
 
-`maxBackReachTimeInterval`: [1, Alg. 2] line 14, `R̂^{∃∀}(-τ)`, the union of the `ω`
+`maxBackReachTimeInterval`: [1, Alg. 3] line 14, `R̂^{∃∀}(-τ)`, the union of the `ω`
 iterations' inner approximated time-interval solutions. Nothing here searches, so no fuel:
 `ω` and `η` are fixed by [1, Assumption 1] and the loop is bounded by `ω`.
 
 Lines 1-2 and 6-14 of it: the two polytopes `P₁`, `P₂` of lines 3-5 are taken here, and
 `LinearSys.maxBackReach` is the whole listing, computing them first. Line 14's union is no
-constrained zonotope, so the result is a `Set`, as in `Alg. 1`.
+constrained zonotope, so the result is a `Set`, as in `Alg. 2`.
 
-`ρ` is the caller's support oracle for a polytope — the linear program of (9). `Zw` is (26),
+`ρ` is the caller's support oracle for a polytope — the linear program of (9). `Zw` is (27),
 the constant centre trajectory's contribution over one interval.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -42,7 +42,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 2] line 14: `R̂^{∃∀}(-τ)`, the union of the `ω` iterations' inner
+/-- [1, Alg. 3] line 14: `R̂^{∃∀}(-τ)`, the union of the `ω` iterations' inner
 approximated time-interval solutions. -/
 noncomputable def LinearSys.maxBackReachTimeInterval (sys : LinearSys 𝕋 n)
     (ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)

@@ -30,9 +30,9 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 @[expose] public section
 
 /-!
-# One iteration of `Alg. 2` in floats stays inside the exact one
+# One iteration of `Alg. 3` in floats stays inside the exact one
 
-`maxBackReachStepFloat` against `maxBackReachStep`, [1, Alg. 2] lines 7-12: the new state stands for
+`maxBackReachStepFloat` against `maxBackReachStep`, [1, Alg. 3] lines 7-12: the new state stands for
 the exact one. The hull part is the stored hull mapped within the rounding of its lower matrix; its
 distance to the exact image, the second summand's, and `Z̲_U`'s excess are carried back by
 `e^{A t_{k+1}}` and held inside the margin the disturbance set was widened by, so the moved
@@ -40,9 +40,9 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -27,13 +27,13 @@ plus an error within `mtimesIntervalMatBox` (`mtimesIntervalMat_subset_add_box`,
 integral, a member of the interval matrix); the float `U` is asked to lie inside the exact one,
 and `Ẑ_{W₀}(t₀)` to hold the exact one, which the caller proves of the float input solution; the
 rest is the origin on both sides.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

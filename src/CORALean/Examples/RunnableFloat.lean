@@ -1299,7 +1299,7 @@ def reachBoxRun : Option (List (Zonotope (Vec D 2))) :=
 
 /-! ## The maximal backward reachable set from the inside, in floats
 
-`Alg. 2` of the backward paper for `ctSys`, the target the box polytope `H` (the box of `Z`), the
+`Alg. 3` of the backward paper for `ctSys`, the target the box polytope `H` (the box of `Z`), the
 conversion box that box's own, the input and the disturbance the same small box `backW`, with
 step `2⁻⁵`, Taylor order `4` and `t₀ = 0`: the state before the first iteration, after it, and
 after two. -/

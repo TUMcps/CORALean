@@ -8,16 +8,16 @@ public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 @[expose] public section
 
 /-!
-# `Alg. 2` lines 1-2: the loop state before the first iteration
+# `Alg. 3` lines 1-2: the loop state before the first iteration
 
-`maxBackReachInit`: [1, Alg. 2] lines 1-2, the two particular solutions accumulated up to
+`maxBackReachInit`: [1, Alg. 3] lines 1-2, the two particular solutions accumulated up to
 `t₀`, before the first iteration.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -46,9 +46,9 @@ first iteration. -/
 noncomputable def LinearSys.maxBackReachInit (sys : LinearSys 𝕋 n)
     (U W₀ : Zonotope (Vec ℝ n)) (t₀ : ℝ) (η : ℕ) : LinearSys.MaxBackReachState n :=
   { t := t₀                                                         -- 1. τ = [t₀, t_end]
-    ZU := Zonotope.mtimes                                           -- 2. Z̲_U(t₀), see (24)
+    ZU := Zonotope.mtimes                                           -- 2. Z̲_U(t₀), see (25)
       (MatExp.expIntegral (toRealMat sys.A) t₀) U
-    ZW₀ := sys.inputSolution (S := 𝒵) t₀ η W₀                       -- 2. Ẑ_{W₀}(t₀), see (23)
+    ZW₀ := sys.inputSolution (S := 𝒵) t₀ η W₀                       -- 2. Ẑ_{W₀}(t₀), see (24)
     ZW := Zonotope.ofPoint 0
     R := (Zonotope.ofPoint 0).conZonotope }
 

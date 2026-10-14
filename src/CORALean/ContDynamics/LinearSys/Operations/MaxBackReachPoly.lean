@@ -8,16 +8,16 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 @[expose] public section
 
 /-!
-# `Alg. 2` lines 4-5: the eroded polytope
+# `Alg. 3` lines 4-5: the eroded polytope
 
-`maxBackReachPoly`: [1, Alg. 2] lines 4-5, `X ⊖ F box(X_end) ⊖ B_μ`, one of the two polytopes
+`maxBackReachPoly`: [1, Alg. 3] lines 4-5, `X ⊖ F box(X_end) ⊖ B_μ`, one of the two polytopes
 of the inner approximated homogeneous time-interval solution (21).
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5

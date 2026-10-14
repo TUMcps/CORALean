@@ -9,7 +9,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
 /-!
 # The float eroded polytope is inside the exact one
 
-[1, Alg. 2] lines 4-5 in floats keep `X ⊖ F box(X_end) ⊖ B_μ` from the inside, which is the
+[1, Alg. 3] lines 4-5 in floats keep `X ⊖ F box(X_end) ⊖ B_μ` from the inside, which is the
 direction an inner approximation needs. Stated against the exact object, with the two things a
 float run gets wrong on purpose bounded the right way: the float zonotope holds every point of the
 exact `F box(X_end)` (an outer enclosure, which only shrinks a difference) and the float radius is
@@ -18,9 +18,9 @@ equality-row condition is asked of both subtrahends.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5.5

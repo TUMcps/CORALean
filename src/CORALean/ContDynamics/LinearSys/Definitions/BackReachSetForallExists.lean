@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
 /-!
 # The states no admissible input can keep out of the target
 
-[1, Def. 6]: the time-point minimal backward reachable set `R^{∀∃}(-t)`. A
+[1, Def. 6]: the time-point AE backward reachable set `R^{∀∃}(-t)`. A
 state `x₀` is in it when, whatever admissible input signal is applied, some
 admissible disturbance signal still drives the perturbed run into `Xend` at
 time `t`. The paper's `U` and `W` are the signals for which the solution
@@ -17,9 +17,9 @@ quantifies over the same signals `Z_U(t)` integrates, no more and no fewer.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 @[expose] public section
 
 /-!
-# `Alg. 2` line 12 in floats: how much the erosion has to leave room for
+# `Alg. 3` line 12 in floats: how much the erosion has to leave room for
 
 Line 12 maps the hull by `e^{-A t_{k+1}}`. In floats the matrix is known to an interval `Φn` and
 the product is rounded, so the mapped set `Φ̄ z`, `Φ̄` the lower matrix of the interval, is within

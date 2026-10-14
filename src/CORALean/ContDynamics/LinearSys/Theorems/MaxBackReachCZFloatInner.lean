@@ -11,13 +11,13 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
 `maxBackReachCZFloat` is `HPolytope.conZonotopeInner` of `P.minkDiffOf Ẑ_W`: the first is inside
 `P ⊖ Ẑ_W` by `minkDiffOf_inner`, whose equality-row condition is asked of the subtrahend, and the
 second is inside the polytope it converts, wherever its box lies.
-The lines are those of [1, Alg. 2].
+The lines are those of [1, Alg. 3].
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5

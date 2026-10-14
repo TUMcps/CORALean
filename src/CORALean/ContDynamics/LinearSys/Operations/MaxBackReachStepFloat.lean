@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 @[expose] public section
 
 /-!
-# `Alg. 2` lines 7-12 in floats: one iteration of the main loop, from the inside
+# `Alg. 3` lines 7-12 in floats: one iteration of the main loop, from the inside
 
 `maxBackReachStep` computed in `𝕋`, inside the exact layer's set (`maxBackReachStepFloat_encloses`).
 What is subtracted rounds towards a larger set and what is kept towards a smaller one; the
@@ -31,9 +31,9 @@ how much of each set the conversion covers.
 
 ## References
 
-* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of
-      Perturbed Continuous-Time Linear Systems Using Set Propagation". arXiv:2310.19083,
-      2023.
+* [1] M. Wetzlinger and M. Althoff. "Backward Reachability Analysis of Perturbed
+      Continuous-Time Linear Systems Using Set Propagation". IEEE Transactions on
+      Automatic Control, 71(1):352-367, 2026.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Lines 7-12: one iteration of [1, Alg. 2]'s main loop from the inside. `Zw tLo tHi` holds
+/-- Lines 7-12: one iteration of [1, Alg. 3]'s main loop from the inside. `Zw tLo tHi` holds
 `Ẑ_W`'s disturbance part at every time of the bracket. -/
 def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
     (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) (U W₀ : Zonotope (Vec 𝕋 n))
