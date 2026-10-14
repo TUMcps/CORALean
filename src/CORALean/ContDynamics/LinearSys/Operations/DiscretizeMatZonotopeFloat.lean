@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
 public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 public import CORALean.ContSet.Zonotope.Float.Zonotope
-public import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 
 @[expose] public section
 

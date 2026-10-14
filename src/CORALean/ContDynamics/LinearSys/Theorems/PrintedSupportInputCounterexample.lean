@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
-public import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
+public import CORALean.Global.Float.Instances.Real.Theorems.Basic
 public import Mathlib.LinearAlgebra.Matrix.Notation
 public import Mathlib.Tactic.FinCases
 

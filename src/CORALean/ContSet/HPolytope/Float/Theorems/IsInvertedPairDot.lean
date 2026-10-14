@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.IsInvertedPair
-public import CORALean.ContSet.HPolytope.Float.Theorems.EqVecEq
+public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 
 @[expose] public section
 

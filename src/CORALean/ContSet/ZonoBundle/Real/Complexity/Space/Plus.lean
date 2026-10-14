@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Basic
 public import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.Analysis.Asymptotics.Defs
 public import Mathlib.Tactic.Positivity

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Theorems.EncloseOuterEval
+public import CORALean.NN.Theorems.Basic
 
 @[expose] public section
 

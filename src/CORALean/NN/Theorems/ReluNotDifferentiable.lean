@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.Relu
-public import CORALean.NN.Layers.Operations.Relu
+public import CORALean.NN.Layers.Operations.Basic
 public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 @[expose] public section

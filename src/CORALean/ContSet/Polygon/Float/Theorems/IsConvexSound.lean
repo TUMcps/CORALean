@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Float.Operations.IsConvex
 public import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
-public import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
 
 @[expose] public section
 

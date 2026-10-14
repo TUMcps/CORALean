@@ -57,8 +57,7 @@ public import CORALean.NN.Operations.RefinementRankLayerBias
 public import CORALean.NN.Operations.RefinementRankSensitivity
 public import CORALean.NN.Operations.RefineWorst
 public import CORALean.NN.Operations.ScheduleCons
-public import CORALean.NN.Operations.ScheduleHead
-public import CORALean.NN.Operations.ScheduleTail
+public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Operations.Backprop
 public import CORALean.NN.Operations.FgsmAttack
 public import CORALean.NN.Operations.PgdAttack
@@ -76,10 +75,6 @@ public import CORALean.NN.Operations.WorstIndex
 public import CORALean.NN.Operations.SnakeOrder
 public import CORALean.NN.Operations.InputNeuronOrder
 public import CORALean.NN.Operations.WeightLayerEval
-public import CORALean.NN.Operations.WeightNetworkEval
-public import CORALean.NN.Operations.WeightAccEval
-public import CORALean.NN.Operations.WeightAccPushLinear
-public import CORALean.NN.Operations.WeightAccPushAffine
 public import CORALean.NN.Operations.WeightAccLayer
 public import CORALean.NN.Operations.WeightNetworkNormalFormAux
 public import CORALean.NN.Operations.WeightNetworkNormalForm
@@ -93,9 +88,6 @@ public import CORALean.NN.Operations.CatMaxSegments
 public import CORALean.NN.Operations.CatMaxPool
 public import CORALean.NN.Operations.IntervalChainFwdFloat
 public import CORALean.NN.Operations.IntervalChainBackpropFloat
-public import CORALean.NN.Operations.ReluEnclosure
-public import CORALean.NN.Operations.ReluDerEnclosure
-public import CORALean.NN.Operations.IdentityDerEnclosure
 
 /-!
 # What a network does, collected

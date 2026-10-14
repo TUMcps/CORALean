@@ -4,7 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
 public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
 public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepTabGetD
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
 
 @[expose] public section

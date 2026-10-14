@@ -1,9 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.Center
-public import CORALean.ContSet.Interval.Float.Operations.Le
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerStep
 public import CORALean.ContSet.PolyZonotope.Float.Operations.PointBox
 public import CORALean.ContSet.PolyZonotope.Float.Operations.PrecondRegular

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
-public import CORALean.ContSet.HPolytope.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 
 @[expose] public section
 

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.PolyBounds
-public import CORALean.ContSet.Taylm.Real.Operations.Degree
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.MulLo
 public import CORALean.ContSet.Interval.Float.Operations.MulHi
 

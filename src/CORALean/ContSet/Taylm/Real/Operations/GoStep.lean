@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.HalveBox
 public import CORALean.ContSet.Taylm.Real.Operations.WidestCoord
-public import CORALean.ContSet.Taylm.Real.Operations.BoxMid
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section
 

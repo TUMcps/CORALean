@@ -27,7 +27,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaOriginSou
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.RepresentsaPointSound
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConvHullOuter
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.OrOuter
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.Basic
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.PolytopeOuter
 

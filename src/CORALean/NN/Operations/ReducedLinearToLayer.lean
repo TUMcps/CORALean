@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.NonemptyHull
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.NN.Definitions.ReducibleNetwork
 public import CORALean.NN.Layers.Operations.LinearWithError
 

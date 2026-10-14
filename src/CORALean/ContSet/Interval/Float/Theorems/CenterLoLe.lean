@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.CenterLo
-public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

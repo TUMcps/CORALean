@@ -1,19 +1,14 @@
 module
 
-public import CORALean.ContSet.LevelSet.Real.Theorems.ForallFinAdd
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 public import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
 public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 public import CORALean.ContSet.LevelSet.Real.Theorems.ContainsIff
-public import CORALean.ContSet.LevelSet.Real.Theorems.ConstructEmpty
-public import CORALean.ContSet.LevelSet.Real.Theorems.ConstructInf
 public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 public import CORALean.ContSet.LevelSet.Real.Theorems.PlusExact
 public import CORALean.ContSet.LevelSet.Real.Theorems.NotExact
 public import CORALean.ContSet.LevelSet.Real.Theorems.RestrictConstruct
 public import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityExact
-public import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualityFstOp
-public import CORALean.ContSet.LevelSet.Real.Theorems.SplitEqualitySndOp
-public import CORALean.ContSet.LevelSet.Real.Theorems.LiftExact
 public import CORALean.ContSet.LevelSet.Real.Theorems.MtimesExact
 public import CORALean.ContSet.LevelSet.Real.Theorems.TaylorSeriesMem
 public import CORALean.ContSet.LevelSet.Real.Theorems.IntersectLevelSetBoxSubset

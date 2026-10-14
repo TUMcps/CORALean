@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.Lift
-public import CORALean.ContSet.Interval.Float.Operations.EBoxConstruct
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

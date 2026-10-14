@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Map
-public import CORALean.ContSet.Zonotope.Real.Operations.Project
+public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 
 @[expose] public section
 

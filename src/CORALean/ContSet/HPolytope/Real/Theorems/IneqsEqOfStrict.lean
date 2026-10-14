@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Data.Matrix.Mul
 public import Mathlib.Order.Filter.Basic
 public import Mathlib.Tactic.FieldSimp

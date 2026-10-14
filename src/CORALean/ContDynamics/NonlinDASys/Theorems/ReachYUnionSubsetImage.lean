@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachUnionOuter
-public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryYEq
+public import CORALean.ContDynamics.NonlinDASys.Theorems.Basic
 
 @[expose] public section
 

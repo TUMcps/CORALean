@@ -21,7 +21,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectsHyperplaneIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsAffineImageIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsBounded
-public import CORALean.ContSet.ConZonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
 public import CORALean.ContSet.ConZonotope.Real.Theorems.KeepRowsMem
@@ -36,7 +36,6 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemIffIsLeast
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftZeroIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatDropIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MinkDiffVExact
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.NonemptyIffIsLeast
 public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMem
@@ -48,7 +47,6 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveLamGMulVec
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroCol
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveZeroRow
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ProjectExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOrder
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepOuter
@@ -85,7 +83,6 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectManyExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
-public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsFullDimCoraCounterexample
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ContainsPointIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreMem

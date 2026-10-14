@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Fullspace.Real.Operations.Radius
+public import CORALean.ContSet.Fullspace.Real.Operations.Basic
 public import Mathlib.Analysis.Normed.Ring.Basic
 
 @[expose] public section

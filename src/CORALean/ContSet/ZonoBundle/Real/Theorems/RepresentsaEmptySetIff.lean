@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaEmptySetIff
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Basic
 
 @[expose] public section
 

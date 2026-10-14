@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDiff
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

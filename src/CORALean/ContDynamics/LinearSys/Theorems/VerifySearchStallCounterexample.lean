@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
 public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSet
 public import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import Mathlib.Analysis.Complex.Exponential

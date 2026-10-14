@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Theorems.ProjectOuter
+public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 
 @[expose] public section

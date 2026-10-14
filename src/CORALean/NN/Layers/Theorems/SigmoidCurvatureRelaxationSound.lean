@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.SigmoidCurvatureRelaxation
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
 public import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
 public import CORALean.NN.Layers.Theorems.OfDerivSound

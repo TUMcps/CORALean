@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.ReduceOverDomain
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
-public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 
 @[expose] public section
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.SplitAt
-public import CORALean.ContSet.Taylm.Float.Operations.Covers
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.HalveBoxCover
 
 @[expose] public section

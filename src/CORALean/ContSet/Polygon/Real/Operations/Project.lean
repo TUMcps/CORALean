@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Real.Polygon
-public import CORALean.ContSet.VPolytope.Real.Operations.Project
+public import CORALean.ContSet.VPolytope.Real.Operations.Basic
 
 @[expose] public section
 

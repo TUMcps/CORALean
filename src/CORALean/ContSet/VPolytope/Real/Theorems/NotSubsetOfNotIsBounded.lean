@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

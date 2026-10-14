@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.PowOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SmulOuter

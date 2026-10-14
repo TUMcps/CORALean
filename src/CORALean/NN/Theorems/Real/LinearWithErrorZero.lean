@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.Instances.Real.Instances
 public import CORALean.NN.Layers.Operations.Linear
 public import CORALean.NN.Layers.Operations.LinearWithError

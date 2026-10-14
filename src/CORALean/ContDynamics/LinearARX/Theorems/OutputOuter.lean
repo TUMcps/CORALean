@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
-public import CORALean.ContDynamics.LinearARX.Theorems.SumBlock
+public import CORALean.ContDynamics.LinearARX.Theorems.Basic
 public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
 public import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
 

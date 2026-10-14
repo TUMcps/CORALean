@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Project
-public import CORALean.ContSet.Zonotope.Real.Theorems.ProjectExact
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 
 @[expose] public section
 

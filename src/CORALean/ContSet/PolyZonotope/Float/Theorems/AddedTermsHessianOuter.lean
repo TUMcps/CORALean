@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTermsHessian
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AddedTermsNominal

@@ -1,9 +1,8 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.MulTerms
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-public import CORALean.ContSet.Interval.Real.Operations.MulLo
-public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

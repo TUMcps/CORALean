@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.NonlinearARX.Operations.Feed
 public import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
 public import CORALean.ContDynamics.NonlinearARX.Operations.OutputSel
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.ComputeGOFloat
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

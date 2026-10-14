@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Theorems.EqConstruct
-public import CORALean.ContSet.ContSet.Theorems.NeOfConstructNe
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.ContSet.Theorems.DependencyPreservingChain
 public import CORALean.ContSet.ContSet.Theorems.DependencyPreservingComp
 public import CORALean.ContSet.ContSet.Theorems.EncloseOuter
@@ -18,13 +17,10 @@ public import CORALean.ContSet.ContSet.Theorems.HausdorffDist2MulVecLinAddLe
 public import CORALean.ContSet.ContSet.Theorems.HausdorffDistAddLe
 public import CORALean.ContSet.ContSet.Theorems.HausdorffDistImageLe
 public import CORALean.ContSet.ContSet.Theorems.HausdorffDistMulVecLinAddLe
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
 public import CORALean.ContSet.ContSet.Theorems.IsCompactSegments
 public import CORALean.ContSet.ContSet.Theorems.SegmentsEqConvexJoin
 public import CORALean.ContSet.ContSet.Theorems.UnionSubsetSegments
 public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSegments
-public import CORALean.ContSet.ContSet.Theorems.LinCombUnionSubset
 public import CORALean.ContSet.ContSet.Theorems.LinCombConvexHullSubset
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddAssoc
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffAddSubset
@@ -51,7 +47,6 @@ public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 public import CORALean.ContSet.ContSet.Theorems.SubsetMinkowskiDiffIff
 public import CORALean.ContSet.ContSet.Theorems.TimesOuter
 public import CORALean.ContSet.ContSet.Theorems.UminusOuter
-public import CORALean.ContSet.ContSet.Theorems.UplusExact
 public import CORALean.ContSet.ContSet.Theorems.IsFullDimIffAffineSpan
 public import CORALean.ContSet.ContSet.Theorems.AddProperties
 public import CORALean.ContSet.ContSet.Theorems.AddPropertiesCounterexample

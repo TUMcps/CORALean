@@ -1,9 +1,7 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.BoxRad
-public import CORALean.ContSet.Taylm.Float.Operations.PolyBoxBounds
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.Reexpand
-public import CORALean.ContSet.Taylm.Float.Operations.Bounds
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Definitions.InputOrderMethod
+public import CORALean.NN.Definitions.Basic
 public import CORALean.NN.Operations.SnakeOrder
 public import CORALean.NN.Operations.Sensitivity
 

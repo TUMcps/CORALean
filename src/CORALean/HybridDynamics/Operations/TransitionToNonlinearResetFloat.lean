@@ -2,8 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
 public import CORALean.HybridDynamics.Definitions.Transition
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 
 @[expose] public section

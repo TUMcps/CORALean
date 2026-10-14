@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.OfCenterRadius
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
 
 @[expose] public section

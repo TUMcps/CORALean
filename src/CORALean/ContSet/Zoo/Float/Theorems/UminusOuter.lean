@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zoo.Float.Operations.Uminus
+public import CORALean.ContSet.Zoo.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.UminusExact
 

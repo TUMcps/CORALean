@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsConZonotope
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
 
 @[expose] public section

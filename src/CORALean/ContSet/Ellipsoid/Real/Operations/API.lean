@@ -8,14 +8,11 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Map
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
 public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
-public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyEqDotProduct
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
-public import CORALean.ContSet.Ellipsoid.Real.Operations.ApplyMulVec
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Project
 public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
-public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaOrigin
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
 public import CORALean.ContSet.Ellipsoid.Real.Operations.ConvHullCora
 public import CORALean.ContSet.Ellipsoid.Real.Operations.ContainsEllipsoidCora

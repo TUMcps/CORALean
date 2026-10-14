@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Taylor
-public import CORALean.ContSet.Taylm.Float.Operations.MagUp
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.EvalList
 public import CORALean.Global.RecList
 public import CORALean.Global.Float.InverseTrig

@@ -4,7 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AreaFormula
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructOfQZero
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousPoint
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.Basic
 
 @[expose] public section
 

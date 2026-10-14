@@ -3,8 +3,7 @@ module
 public import CORALean.HybridDynamics.Operations.AbstractionErrorCora
 public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
 public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
-public import CORALean.ContSet.Interval.Real.Operations.Center
-public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

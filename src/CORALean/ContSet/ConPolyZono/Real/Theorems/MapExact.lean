@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Map
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesMap
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 
 @[expose] public section
 

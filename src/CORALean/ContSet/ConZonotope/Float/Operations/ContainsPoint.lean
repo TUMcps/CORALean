@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
-public import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
+public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
 public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
 public import CORALean.ContSet.Zonotope.Float.Operations.BallB

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.Zonotope.Float.Operations.IntersectStrip

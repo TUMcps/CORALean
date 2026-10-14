@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
 public import CORALean.NN.Graph.Operations.FloatBiasPoint
-public import CORALean.NN.Graph.Operations.LinearBias
+public import CORALean.NN.Graph.Operations.Basic
 
 @[expose] public section
 

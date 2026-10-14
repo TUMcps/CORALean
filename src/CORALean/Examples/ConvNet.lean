@@ -14,7 +14,7 @@ import CORALean.NN.Layers.Operations.LayerRelaxationBox
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.MaxPool
 import CORALean.NN.Layers.Operations.RelaxationBox
-import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Reshape
 import CORALean.NN.Layers.Operations.Softmax

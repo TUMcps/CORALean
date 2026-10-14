@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
-public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
+public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
 

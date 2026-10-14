@@ -2,7 +2,7 @@ module
 
 public import CORALean.Global.Float.Instances.FixedPoint.Operations.RoundDown
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealAlign
-public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMk
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.Basic
 public import Mathlib.Data.Int.ConditionallyCompleteOrder
 
 @[expose] public section

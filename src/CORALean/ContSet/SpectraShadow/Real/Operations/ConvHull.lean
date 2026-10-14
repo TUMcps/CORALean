@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Cone
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
-public import CORALean.ContSet.SpectraShadow.Real.Operations.HyperplaneOne
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Operations.CartProd
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Inter
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Project

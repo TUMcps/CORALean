@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.BnbLoop
-public import CORALean.ContSet.Taylm.Float.Operations.Covers
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.SplitAtCovers
 public import CORALean.ContSet.Taylm.Float.Theorems.ListMinLe
 public import CORALean.ContSet.Taylm.Float.Theorems.LeListMax

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.ConjCoeffsDown
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.ConjCoeffsUp
 
 @[expose] public section

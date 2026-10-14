@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-public import CORALean.ContSet.Interval.Float.Operations.Intersection
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

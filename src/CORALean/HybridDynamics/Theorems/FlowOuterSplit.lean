@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit

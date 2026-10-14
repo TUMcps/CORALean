@@ -28,7 +28,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Theorems.RepresentsaEmptySetSoun
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.EnclosingParallelotopeOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ReduceCombinedOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.ShrinkOuter
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.EncloseTightOuter
 

@@ -1,10 +1,7 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Plus
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.LinComb
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Mtimes
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Basic
 public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MtimesIntervalMat
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MtimesMatZonotope
 public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MatMul
 public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Bilin
 public import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceBy

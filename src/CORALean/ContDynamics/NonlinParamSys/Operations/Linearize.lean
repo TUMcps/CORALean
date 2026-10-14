@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.Linearized
-public import CORALean.ContSet.Interval.Real.Operations.Center
-public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.Global.Jacobian
 
 @[expose] public section

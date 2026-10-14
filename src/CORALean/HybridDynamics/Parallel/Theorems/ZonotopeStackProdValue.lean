@@ -1,7 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd
-public import CORALean.HybridDynamics.Parallel.Theorems.StackApply
+public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 
 @[expose] public section
 

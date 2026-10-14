@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Review a random Lean file",
+      "label": "Review a random Lean file or Basic.lean section",
       "type": "shell",
       "command": "python3 scripts/review.py",
       "problemMatcher": [],

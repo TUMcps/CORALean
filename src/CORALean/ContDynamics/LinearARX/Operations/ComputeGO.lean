@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearARX.Definitions.GO
-public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContDynamics.LinearARX.Operations.Basic
 public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
 public import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 

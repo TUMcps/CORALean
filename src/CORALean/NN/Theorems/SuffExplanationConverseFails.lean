@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
 public import CORALean.ContSet.Interval.Real.Instances
-public import CORALean.ContSet.Interval.Real.Operations.Mtimes
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.Relaxation
 public import CORALean.NN.Layers.Instances

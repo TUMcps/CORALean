@@ -2,9 +2,8 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.IntegrateTerms
 public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-public import CORALean.ContSet.Taylm.Real.Operations.Degree
-public import CORALean.ContSet.Interval.Real.Operations.MulLo
-public import CORALean.ContSet.Interval.Real.Operations.MulHi
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

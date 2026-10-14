@@ -5,7 +5,7 @@ public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.Relaxation
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Operations.Activation
-public import CORALean.NN.Layers.Operations.Relu
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.ActivationSound
 public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 public import CORALean.NN.Operations.CompressionPreprocessing

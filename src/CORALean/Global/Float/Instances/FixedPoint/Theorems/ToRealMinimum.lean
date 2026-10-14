@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.Minimum
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeIff
 
 @[expose] public section

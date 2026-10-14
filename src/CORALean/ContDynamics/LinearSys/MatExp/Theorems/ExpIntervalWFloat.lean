@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalWOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HalfSqBoundsFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermHiFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermLoFloat
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 @[expose] public section

@@ -4,7 +4,7 @@ public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBySubsetAddBox
 public import Mathlib.Analysis.InnerProductSpace.Basic
 

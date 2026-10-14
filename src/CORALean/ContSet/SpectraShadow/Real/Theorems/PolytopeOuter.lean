@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeOuter
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.TranslateMem
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 
 @[expose] public section
 

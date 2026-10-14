@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
 public import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
 public import CORALean.ContSet.ConZonotope.Float.Theorems.CentreBetween
-public import CORALean.ContSet.ConZonotope.Float.Theorems.CornerMem
+public import CORALean.ContSet.ConZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
-public import CORALean.ContSet.Interval.Float.Operations.Origin
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.BlockDiag
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.SpectraShadow.Float.Operations.CenterResidual
 
 @[expose] public section

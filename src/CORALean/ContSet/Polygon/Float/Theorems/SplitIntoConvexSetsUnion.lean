@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Float.Operations.SplitIntoConvexSets
-public import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
 
 @[expose] public section
 

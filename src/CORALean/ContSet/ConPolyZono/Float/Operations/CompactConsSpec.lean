@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsB
-public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsCol
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 
 @[expose] public section
 

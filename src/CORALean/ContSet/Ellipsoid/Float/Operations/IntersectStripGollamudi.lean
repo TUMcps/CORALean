@@ -3,8 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
 public import CORALean.ContSet.Interval.Float.Operations.MulHi
 public import CORALean.ContSet.Interval.Float.Operations.MulLo
-public import CORALean.ContSet.Interval.Float.Operations.Plus
-public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.Sqrt
 
 @[expose] public section

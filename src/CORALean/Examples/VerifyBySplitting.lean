@@ -3,7 +3,7 @@ import CORALean.NN.Layers.Definitions.Enclosure
 import CORALean.NN.Layers.Definitions.Relaxation
 import CORALean.NN.Layers.Definitions.Relu
 import CORALean.NN.Layers.Instances
-import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Theorems.VerifySplitWithSound
 

@@ -58,7 +58,7 @@ theorem Zonotope.aux_section_low (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     have e1 : (fun j : Fin Z.h => decide ((j.val : ℤ) < (a.val : ℤ)))
         = fun j => decide (j.val < a.val) := funext fun j => by simp
     have e2 : (fun j : Fin Z.h => decide ((j.val : ℤ) ≤ (a.val : ℤ)))
-        = fun j => decide (j.val < a.val + 1) := funext fun j => by simp [Nat.lt_succ_iff]
+        = fun j => decide (j.val < a.val + 1) := funext fun j => by simp
     rwa [e1, e2] at hseg
   · -- to the left: the second block, back in decreasing angle
     obtain ⟨a, y, hseg, hy, hmin⟩ := Z.exists_edge_least_section hh h1 (σ := -1) (Or.inr rfl)

@@ -9,7 +9,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 @[expose] public section
 

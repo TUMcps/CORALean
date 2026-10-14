@@ -1,10 +1,10 @@
 module
 
-public import CORALean.Global.Float.Instances.Dyadic.Operations.DivDown
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.MantissaPos
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDivEq
-public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealMk
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
 
 @[expose] public section
 

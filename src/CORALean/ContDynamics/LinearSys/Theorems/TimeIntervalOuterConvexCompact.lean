@@ -4,8 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 
 @[expose] public section

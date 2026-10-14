@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.Dyadic.Operations.ExactMul
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 public import Mathlib.Algebra.Ring.CharZero
 
 @[expose] public section

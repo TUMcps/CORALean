@@ -5,8 +5,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullB
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullG
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullEC
-public import CORALean.ContSet.Interval.Float.Operations.Plus
-public import CORALean.ContSet.Interval.Float.Operations.Residual
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

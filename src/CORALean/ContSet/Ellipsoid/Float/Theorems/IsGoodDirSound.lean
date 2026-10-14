@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBadDirIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 @[expose] public section
 

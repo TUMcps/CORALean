@@ -3,8 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpWApply
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.QuadTermAttained
-public import CORALean.ContSet.Interval.Real.Operations.MulHi
-public import CORALean.ContSet.Interval.Real.Operations.MulLo
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 @[expose] public section

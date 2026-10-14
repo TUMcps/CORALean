@@ -13,14 +13,12 @@ public import CORALean.NN.Definitions.SmoothNetwork
 public import CORALean.NN.Definitions.WeightAcc
 public import CORALean.NN.Definitions.WeightLayer
 public import CORALean.NN.Definitions.WeightNetwork
-public import CORALean.NN.Definitions.InputOrderMethod
+public import CORALean.NN.Definitions.Basic
 public import CORALean.NN.Definitions.ActivationKind
-public import CORALean.NN.Definitions.ActivationKindFn
 public import CORALean.NN.Definitions.Cat
 public import CORALean.NN.Definitions.CatDomain
 public import CORALean.NN.Definitions.SetBasedLoss
 public import CORALean.NN.Definitions.IntervalChainFloat
-public import CORALean.NN.Definitions.ScalarEncloses
 public import CORALean.NN.Definitions.IntervalChainFloatSound
 
 /-!

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.Dyadic.Theorems.CastToRat
+public import CORALean.Global.Float.Instances.Dyadic.Theorems.Basic
 public import CORALean.Global.Float.ToRat
 public import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
 public import CORALean.Global.Float.Instances.Binary64.Theorems.AddDownLeAdd

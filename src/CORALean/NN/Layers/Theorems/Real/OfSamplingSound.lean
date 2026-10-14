@@ -4,7 +4,7 @@ public import CORALean.NN.Layers.Definitions.PolyOfSampling
 public import CORALean.NN.Layers.Theorems.Real.EvalPolyShiftConst
 public import CORALean.NN.Layers.Theorems.Real.HasDerivAtEvalPoly
 public import CORALean.NN.Layers.Theorems.Real.SampleBoundsOfDeriv
-public import CORALean.Global.Float.Instances.Real.Theorems.ToRealReal
+public import CORALean.Global.Float.Instances.Real.Theorems.Basic
 
 @[expose] public section
 

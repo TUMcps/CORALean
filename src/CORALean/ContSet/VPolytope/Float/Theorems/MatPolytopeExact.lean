@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Float.Operations.MatPolytope
-public import CORALean.ContSet.VPolytope.Real.Theorems.MatPolytopeExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

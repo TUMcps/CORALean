@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Theorems.Real.SoftmaxSumEqOne
+public import CORALean.NN.Layers.Theorems.Real.Basic
 
 @[expose] public section
 

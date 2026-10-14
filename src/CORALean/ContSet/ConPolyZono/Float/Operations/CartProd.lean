@@ -1,9 +1,9 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
-public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
-public import CORALean.ContSet.Interval.Float.Operations.Append
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.GenBlockDiag
 
 @[expose] public section

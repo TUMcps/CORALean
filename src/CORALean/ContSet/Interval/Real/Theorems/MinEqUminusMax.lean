@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.Min
 public import CORALean.ContSet.Interval.Real.Operations.Max
-public import CORALean.ContSet.Interval.Real.Operations.Uminus
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

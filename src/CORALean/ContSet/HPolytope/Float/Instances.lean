@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 
 @[expose] public section
 

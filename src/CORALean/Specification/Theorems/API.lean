@@ -7,7 +7,7 @@ public import CORALean.Specification.Theorems.DiffPointMemSub
 public import CORALean.Specification.Theorems.ExistsConvexHullOfVerifyConvexEqUnsafe
 public import CORALean.Specification.Theorems.ExistsSeparatingOfVerifyConvexEqSafe
 public import CORALean.Specification.Theorems.HoldsOfOuter
-public import CORALean.Specification.Theorems.HoldsAllOfOuter
+public import CORALean.Specification.Theorems.Basic
 public import CORALean.Specification.Theorems.HoldsAllSetIntersection
 public import CORALean.Specification.Theorems.HoldsUnion
 public import CORALean.Specification.Theorems.HoldsIUnion

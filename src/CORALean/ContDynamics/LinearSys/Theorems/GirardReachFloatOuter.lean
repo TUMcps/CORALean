@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetAddEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 public import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError

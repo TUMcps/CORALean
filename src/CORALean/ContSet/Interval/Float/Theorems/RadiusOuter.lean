@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Radius
-public import CORALean.ContSet.Interval.Real.Operations.Radius
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

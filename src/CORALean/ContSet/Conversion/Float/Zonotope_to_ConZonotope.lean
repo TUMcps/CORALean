@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemFullspace
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 
 @[expose] public section
 

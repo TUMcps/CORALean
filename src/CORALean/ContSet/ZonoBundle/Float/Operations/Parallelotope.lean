@@ -4,7 +4,7 @@ public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

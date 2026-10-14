@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Halve
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section

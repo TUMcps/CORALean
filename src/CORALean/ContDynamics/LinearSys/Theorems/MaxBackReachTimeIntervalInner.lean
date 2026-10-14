@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachS
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
 public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetExistsForallEq
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.ContSet.Theorems.SegmentsMinkowskiDiffSubset
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner

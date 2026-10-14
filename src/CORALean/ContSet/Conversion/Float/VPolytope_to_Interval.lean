@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
-public import CORALean.ContSet.VPolytope.Float.Operations.BoundProj
-public import CORALean.ContSet.VPolytope.Float.Operations.BoundNegProj
+public import CORALean.ContSet.VPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
 
 @[expose] public section

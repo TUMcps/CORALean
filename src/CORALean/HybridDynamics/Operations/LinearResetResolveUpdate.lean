@@ -1,7 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Definitions.ResolveSource
-public import CORALean.HybridDynamics.Operations.Scatter
+public import CORALean.HybridDynamics.Operations.Basic
 public import CORALean.Global.Tensor
 public import Mathlib.Data.Matrix.Basic
 public import Mathlib.Algebra.BigOperators.Fin

@@ -10,7 +10,7 @@ import CORALean.NN.Layers.Operations.AvgPool
 import CORALean.NN.Layers.Operations.BatchNorm
 import CORALean.NN.Layers.Operations.Conv
 import CORALean.NN.Layers.Operations.MaxPool
-import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Reshape
 import CORALean.NN.Layers.Operations.Softmax

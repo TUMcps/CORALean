@@ -2,9 +2,8 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
 
 @[expose] public section
 

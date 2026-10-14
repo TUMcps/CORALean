@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.BracketShift
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

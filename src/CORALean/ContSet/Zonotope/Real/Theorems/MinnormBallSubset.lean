@@ -4,7 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
 public import CORALean.ContSet.Zonotope.Real.Theorems.HRepEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.FacetNormalDotSelfPos
 public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
-public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetNonneg
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.Exp
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
 public import CORALean.NN.Layers.Theorems.ExpRelaxationSound
 

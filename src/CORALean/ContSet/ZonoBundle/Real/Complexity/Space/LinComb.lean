@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.LinComb
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Basic
 
 @[expose] public section
 

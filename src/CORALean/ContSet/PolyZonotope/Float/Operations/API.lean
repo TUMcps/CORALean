@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestGen
 public import CORALean.ContSet.PolyZonotope.Float.Operations.LongestFactor
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitDepFactor
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Resolve
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDiff
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubsetGDown
@@ -12,7 +12,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.MaxExp
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Isequal
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Centre
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MtimesResidual
@@ -24,7 +23,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
 public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepTab
 public import CORALean.ContSet.PolyZonotope.Float.Operations.TabAt
 public import CORALean.ContSet.PolyZonotope.Float.Operations.FiberDown
-public import CORALean.ContSet.PolyZonotope.Float.Operations.FiberUp
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedCol
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedColUp
 public import CORALean.ContSet.PolyZonotope.Float.Operations.CompactGap
@@ -46,14 +44,12 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapE
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadUp
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDown
-public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGUp
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapGDiff
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinE
 public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDown
 public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGUp
-public import CORALean.ContSet.PolyZonotope.Float.Operations.BilinGDiff
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Bilin
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MixedForm
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
@@ -113,8 +109,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RmId
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReplaceId
 public import CORALean.ContSet.PolyZonotope.Float.Operations.OnlyId
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RepresentsaPoint
-public import CORALean.ContSet.PolyZonotope.Float.Operations.SumErr
-public import CORALean.ContSet.PolyZonotope.Float.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Sum
 public import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOutRadius
 public import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOut
@@ -159,7 +153,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsMul
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPow
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsPoly
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsXprod
-public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsTerms
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsFactor
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDown
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SubsGDiff
@@ -171,7 +164,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MatMap
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestIndepGen
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitGen
-public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitMany
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ZonotopeCora
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
 

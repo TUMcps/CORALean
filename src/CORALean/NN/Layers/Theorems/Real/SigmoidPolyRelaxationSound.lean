@@ -3,7 +3,7 @@ module
 public import CORALean.NN.Layers.Definitions.SigmoidPoly
 public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
 public import CORALean.NN.Layers.Theorems.Real.AbsSubEvalPolyDerivLe
-public import CORALean.NN.Layers.Theorems.Real.LeSigmoidDerivHi
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import CORALean.NN.Layers.Theorems.Real.OfSamplingSound
 public import CORALean.NN.Layers.Theorems.Real.SigmoidDerivLoLe
 

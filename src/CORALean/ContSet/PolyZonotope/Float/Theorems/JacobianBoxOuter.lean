@@ -1,10 +1,10 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianBox
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MonoBoxOuter
-public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 
 @[expose] public section
 

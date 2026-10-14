@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Graph.Operations.LinearBias
+public import CORALean.NN.Graph.Operations.Basic
 public import CORALean.NN.Graph.Operations.LinearLin
 
 @[expose] public section

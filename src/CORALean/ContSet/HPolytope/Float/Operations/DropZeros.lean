@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.IsZeroVec
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Operations.Restrict
 public import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Definitions.ScalarEncloses
+public import CORALean.NN.Definitions.Basic
 
 @[expose] public section
 

@@ -2,9 +2,8 @@ module
 
 public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Plus
 public import CORALean.ContSet.VPolytope.Real.Complexity.Space.LinComb
-public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Mtimes
+public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Basic
 public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Bilin
-public import CORALean.ContSet.VPolytope.Real.Complexity.Space.MtimesMatPolytope
 public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Intersection
 
 /-!

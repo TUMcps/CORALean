@@ -2,9 +2,8 @@ module
 
 public import CORALean.HybridDynamics.Parallel.Theorems.ZonotopeStackProdExact
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
-public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeComapBlockProjExact
+public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 public import CORALean.HybridDynamics.Parallel.Operations.ZonotopeStackProd
-public import CORALean.HybridDynamics.Parallel.Theorems.UnstackStack
 public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
 public import CORALean.ContSet.HPolytope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Instances

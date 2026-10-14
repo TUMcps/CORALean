@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Theorems.MergeErrorWidthLeRow
-public import CORALean.NN.Theorems.Real.MergeRowWeightNonneg
+public import CORALean.NN.Theorems.Real.Basic
 
 @[expose] public section
 

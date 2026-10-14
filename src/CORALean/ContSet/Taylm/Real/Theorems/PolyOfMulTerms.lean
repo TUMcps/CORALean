@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.MulTerms
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section
 

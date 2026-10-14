@@ -7,8 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Operations.Point
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 
 @[expose] public section

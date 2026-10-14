@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.LeIff
-public import CORALean.Global.Float.Instances.Flint.Operations.Maximum
+public import CORALean.Global.Float.Instances.Flint.Operations.Basic
 
 @[expose] public section
 

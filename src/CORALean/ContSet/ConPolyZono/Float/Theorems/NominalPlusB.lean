@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
-public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecAppend
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
 
 @[expose] public section
 

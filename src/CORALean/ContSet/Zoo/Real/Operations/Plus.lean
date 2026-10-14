@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zoo.Real.Zoo
 public import CORALean.ContSet.Taylm.Real.Operations.Plus
-public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

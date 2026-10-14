@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.PolygonPieces
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
 public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope

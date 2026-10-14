@@ -2,11 +2,8 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.BallB
 public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
-public import CORALean.ContSet.Zonotope.Float.Operations.StBeta
-public import CORALean.ContSet.Zonotope.Float.Operations.StDelta
-public import CORALean.ContSet.Zonotope.Float.Operations.StGamma
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.StLeftover
-public import CORALean.ContSet.Zonotope.Float.Operations.StUsed
 
 @[expose] public section
 

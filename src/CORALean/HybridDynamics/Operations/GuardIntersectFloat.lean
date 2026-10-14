@@ -2,8 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
-public import CORALean.ContSet.Interval.Float.Operations.Or
-public import CORALean.ContSet.Interval.Float.Operations.RepresentsaEmptySet
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.HybridDynamics.Definitions.Location
 
 @[expose] public section

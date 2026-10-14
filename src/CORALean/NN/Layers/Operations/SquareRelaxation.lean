@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
-public import CORALean.NN.Layers.Operations.SquareEnclosure
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.SquareSlope
 
 @[expose] public section

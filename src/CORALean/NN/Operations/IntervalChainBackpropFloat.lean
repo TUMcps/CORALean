@@ -1,11 +1,8 @@
 module
 
 public import CORALean.NN.Definitions.IntervalChainFloat
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
-public import CORALean.ContSet.Interval.Float.Operations.Plus
-public import CORALean.ContSet.Interval.Float.Operations.Minus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Times
-public import CORALean.ContSet.Interval.Float.Operations.Halve
 
 @[expose] public section
 

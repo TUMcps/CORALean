@@ -6,8 +6,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemai
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 

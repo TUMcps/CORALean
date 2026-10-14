@@ -243,7 +243,7 @@ public import CORALean.Global.GaussianRoundingLe
 public import CORALean.Global.GaussianSignCorrelation
 public import CORALean.Global.MatrixFunctionalEqSumSingle
 public import CORALean.Global.MatrixFunctionalMulEqSum
-public import CORALean.Global.MatrixTraceTransposeMulEqSum
+public import CORALean.Global.Basic
 public import CORALean.Global.PiLpHolder
 public import CORALean.Global.PiLpNormToLpLeOfAbsLe
 public import CORALean.Global.DotProductLeCoeffNorm

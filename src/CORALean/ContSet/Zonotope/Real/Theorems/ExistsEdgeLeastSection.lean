@@ -4,9 +4,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
 public import CORALean.ContSet.Zonotope.Real.Theorems.EdgePointLeast
 public import CORALean.ContSet.Zonotope.Real.Theorems.SegmentMeetsVlineIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
-public import CORALean.ContSet.Zonotope.Real.Theorems.CornerApply
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottom
-public import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerBottomLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReachLe

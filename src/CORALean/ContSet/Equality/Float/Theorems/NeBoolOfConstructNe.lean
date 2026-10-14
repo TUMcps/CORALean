@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Equality.Float.Operations.NeBool
-public import CORALean.ContSet.Equality.Float.Theorems.EqBoolSound
+public import CORALean.ContSet.Equality.Float.Operations.Basic
+public import CORALean.ContSet.Equality.Float.Theorems.Basic
 
 @[expose] public section
 

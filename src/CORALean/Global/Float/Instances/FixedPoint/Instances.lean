@@ -1,10 +1,7 @@
 module
 
 public import CORALean.Global.Float.ToRat
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.AddDown
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.AddUp
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.MulDown
-public import CORALean.Global.Float.Instances.FixedPoint.Operations.MulUp
+public import CORALean.Global.Float.Instances.FixedPoint.Operations.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.DivDownLeDiv
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeDivUp
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.LeRoundUp
@@ -12,11 +9,9 @@ public import CORALean.Global.Float.Instances.FixedPoint.Theorems.RoundDownLe
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactAdd
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealExactMul
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealHalf
-public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealLeOfLe
+public import CORALean.Global.Float.Instances.FixedPoint.Theorems.Basic
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMaximum
 public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMinimum
-public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealMkZero
-public import CORALean.Global.Float.Instances.FixedPoint.Theorems.ToRealNeg
 
 @[expose] public section
 

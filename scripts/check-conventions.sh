@@ -8,7 +8,8 @@
 # shallow: comments are stripped by a two-character scanner and declarations are
 # matched at the start of a line. It reports what is wrong, never rewrites.
 #
-# POSIX sh and awk, so it runs in CI and in Git Bash on Windows alike.
+# POSIX sh and awk, so it runs in CI and in Git Bash on Windows alike, and one
+# Python helper for the `Basic.lean` bundles, `scripts/check-basic-bundles.py`.
 
 set -eu
 
@@ -219,6 +220,9 @@ BEGIN {
   M_INST  = "-- ======================================  MAIN INSTANCE  ======================================= --"
   M_TYPE  = "-- ========================================  MAIN TYPE  ========================================= --"
   M_INSTS = "-- ========================================  INSTANCES  ========================================= --"
+  # A section of a `Basic.lean` (CONTRIBUTING, "Small declarations"): the
+  # declaration it holds, in backticks, in place of a label.
+  SECTION_BANNER = "^-- =+  `[^`]+`  =+ --$"
 
   markerLabel[M_BEGIN] = "BEGIN CODE"
   markerLabel[M_AUX]   = "AUXILIARY"
@@ -391,6 +395,8 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
       say(f ":" authorLine ": a collector carries no author block")
     if (f ~ /\/API\.lean$/ && codeLine > 0)
       say(f ":" codeLine ": `API.lean` holds nothing but imports")
+  } else if (isBasic) {
+    # every section carries its own block, under its banner
   } else if (authorLine == 0) {
     say(f ":1: no author block — content files carry one, after the module docstring")
   } else if (docLine > 0 && authorLine != docEnd + 2) {
@@ -456,7 +462,9 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   # names those two directories and no others, so `Complexity/Time/` and
   # `Complexity/Space/` may hold an exact statement and its O corollary in one
   # file (issue #136): that is the one exception, and it stays out of the pattern.
-  if (f ~ /\/(Operations|Theorems)\// && !(f ~ /\/API\.lean$/) && npub > MAX_PUBLIC_DECL) {
+  # A `Basic.lean` holds one declaration per section instead, which
+  # `check-basic-bundles.py` checks.
+  if (f ~ /\/(Operations|Theorems)\// && !(f ~ /\/(API|Basic)\.lean$/) && npub > MAX_PUBLIC_DECL) {
     decls = pubList[1]
     for (i = 2; i <= npub; i++) decls = decls ", " pubList[i]
     say(f ":1: " npub " public declarations, over " MAX_PUBLIC_DECL \
@@ -523,14 +531,17 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
       say(f ":1: missing the `END OF CODE` marker, as the last line of the file")
     else if (endCount > 1)
       say(f ":" endFNR ": more than one `END OF CODE` marker")
-    if (mainishCount == 0)
+    if (mainishCount == 0 && !isBasic)
       say(f ":1: missing the `MAIN ...` marker before the main declaration of the file")
+    else if (mainishCount > 0 && isBasic)
+      say(f ":" pendingMainFNR ": a `Basic.lean` carries no `MAIN ...` marker — each" \
+          " section banner names its declaration")
     else if (mainishCount > 1 && f !~ /\/Complexity\/(Time|Space)\//)
       say(f ":" pendingMainFNR ": more than one `MAIN ...`/`INSTANCES` marker")
 
     if (beginFNR > 0 && nsLine > 0 && beginFNR > nsLine)
       say(f ":" beginFNR ": `BEGIN CODE` must come before `namespace`")
-    if (beginFNR > 0 && authorLine > 0 && beginFNR < authorLine)
+    if (beginFNR > 0 && authorLine > 0 && beginFNR < authorLine && !isBasic)
       say(f ":" beginFNR ": `BEGIN CODE` must come after the author block")
     if (endFNR > 0 && endFNR != lastFNR)
       say(f ":" endFNR ": `END OF CODE` must be the last line of the file")
@@ -564,6 +575,7 @@ FNR == 1 {
   afterPending = 0; afterLabel = ""; afterMarkerFNR = 0; afterBlanks = 0
   pendingMain = 0; pendingMainLabel = ""; pendingMainFNR = 0; pendingMainIsInstances = 0
   isModule = ($0 == "module"); line2 = ""; firstImpFNR = 0; lastImpFNR = 0
+  isBasic = (FILENAME ~ /\/Basic\.lean$/)
   exposeCount = 0; exposeFNR = 0
   # `split("", a)` rather than `delete a`, which older mawk does not have
   split("", declAux); split("", useAux); split("", imp); split("", impLine)
@@ -614,6 +626,15 @@ FNR == 1 {
       pendingMainIsInstances = (label == "INSTANCES")
       afterPending = 1; afterLabel = label; afterMarkerFNR = FNR; afterBlanks = 0
     }
+  } else if (isBasic && raw ~ SECTION_BANNER) {
+    # A section of a `Basic.lean` opens with its banner and its own author block,
+    # which the field checks below then read like the block of a file. The exact
+    # banner, and the rest of what a section is, `check-basic-bundles.py` checks.
+    if (priorBlanks != 2)
+      say(FILENAME ":" FNR ": a section banner has " priorBlanks \
+          " blank line(s) before it, not 2")
+    authorLine = 0; revDash = 0; blockEnd = 0
+    endRun(FILENAME)
   } else if (raw ~ /^-- [-=]/) {
     say(FILENAME ":" FNR ": looks like a section marker but does not match the" \
         " canonical form — check the width and the fill either side of the label")
@@ -1371,6 +1392,14 @@ report "$out"
 # warning through to main.
 out=$(grep -nE '^[[:space:]]*-[[:space:]]+"?![[:space:]]' .gitlab-ci.yml |
   sed 's/^\([0-9]*\):.*/.gitlab-ci.yml:\1: a script line negated with `!` cannot fail the job — use `if …; then exit 1; fi`/')
+report "$out"
+
+# A declaration of at most five code lines is a section of its directory's
+# `Basic.lean` (CONTRIBUTING, "Small declarations"). Reading sections, their
+# order and the import cycles that keep a file out takes a real parse, so this
+# rule is the one written in Python; CI's conventions job installs python3 for
+# `check-references.py` already.
+out=$(python3 scripts/check-basic-bundles.py || true)
 report "$out"
 
 if [ "$status" -eq 0 ]; then

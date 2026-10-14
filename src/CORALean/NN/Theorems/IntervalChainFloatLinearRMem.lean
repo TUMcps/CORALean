@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Theorems.HalveMinusMem
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
-public import CORALean.NN.Theorems.ToRealMatMapAbsolute
+public import CORALean.NN.Theorems.Basic
 public import CORALean.NN.Operations.IntervalChainFwdFloat
 
 @[expose] public section

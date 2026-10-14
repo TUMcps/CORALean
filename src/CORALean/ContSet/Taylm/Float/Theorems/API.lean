@@ -25,7 +25,7 @@ public import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.CodeEvalEncloses
 public import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
 public import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.IntrinsicEncloses
@@ -40,8 +40,6 @@ public import CORALean.ContSet.Taylm.Float.Theorems.CosOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.HyperbolicOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SinhOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.CoshOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.MinusOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.PowOuter
@@ -50,12 +48,10 @@ public import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.ToRealTermBounds
 public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.UplusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.EmptyExact
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundDotLe
 public import CORALean.ContSet.Taylm.Float.Theorems.TanOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.TanhOuter
-public import CORALean.ContSet.Taylm.Float.Theorems.TraceOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.ProdOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.DetOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter

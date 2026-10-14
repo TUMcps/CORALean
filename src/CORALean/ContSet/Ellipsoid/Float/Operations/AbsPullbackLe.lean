@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
 public import CORALean.ContSet.InflatedContSet.Operations.Bound
 

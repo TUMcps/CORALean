@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.Uminus
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNeg
 public import Mathlib.Tactic.Linarith
 

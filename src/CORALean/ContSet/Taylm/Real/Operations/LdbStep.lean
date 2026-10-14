@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Real.Operations.LinCoef
 public import CORALean.ContSet.Taylm.Real.Operations.HigherTerms
 public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
-public import CORALean.ContSet.Taylm.Real.Operations.ConstCoef
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section
 

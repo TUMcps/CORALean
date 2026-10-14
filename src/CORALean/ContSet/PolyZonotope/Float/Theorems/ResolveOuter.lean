@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Resolve
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetOuter
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Resolve
 

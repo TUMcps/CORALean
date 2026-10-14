@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.ReexpTerms
-public import CORALean.ContSet.Taylm.Real.Operations.BoxMid
-public import CORALean.ContSet.Taylm.Real.Operations.BoxRad
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 
 @[expose] public section
 

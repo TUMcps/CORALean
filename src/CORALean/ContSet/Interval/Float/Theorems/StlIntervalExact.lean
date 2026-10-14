@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.StlInterval
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

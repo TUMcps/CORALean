@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 
 @[expose] public section

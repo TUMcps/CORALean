@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaOrigin
+public import CORALean.ContSet.Capsule.Float.Operations.Basic
 public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointSound
 public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
 

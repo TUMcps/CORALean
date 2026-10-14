@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ProbZonotope.Real.Operations.PyramidLevels
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Basic
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Zonotope
 
 @[expose] public section

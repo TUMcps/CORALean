@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.EmptySet.Real.Operations.Radius
+public import CORALean.ContSet.EmptySet.Real.Operations.Basic
 public import CORALean.ContSet.EmptySet.Real.Instances
 
 @[expose] public section

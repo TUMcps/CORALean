@@ -6,9 +6,8 @@ public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Operations.AtSchedule
 public import CORALean.NN.Operations.RefinableNetworkEval
 public import CORALean.NN.Operations.ScheduleCons
-public import CORALean.NN.Operations.ScheduleHead
-public import CORALean.NN.Operations.ScheduleTail
-public import CORALean.NN.Theorems.RefinableLayerAtPatternSound
+public import CORALean.NN.Operations.Basic
+public import CORALean.NN.Theorems.Basic
 
 @[expose] public section
 

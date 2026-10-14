@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.ConjOffsetGap
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Operations.ConjSlopeGap
 public import CORALean.NN.Layers.Operations.ConjTBound
 

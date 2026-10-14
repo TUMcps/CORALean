@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.MatrixFunctionalEqSumSingle
-public import CORALean.Global.MatrixTraceTransposeMulEqSum
+public import CORALean.Global.Basic
 
 @[expose] public section
 

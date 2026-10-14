@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Real.Operations.Translate
+public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
 
 @[expose] public section
 

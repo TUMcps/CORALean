@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

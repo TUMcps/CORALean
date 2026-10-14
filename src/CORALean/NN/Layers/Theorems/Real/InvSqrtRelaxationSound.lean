@@ -1,12 +1,11 @@
 module
 
 public import CORALean.NN.Layers.Definitions.InvSqrtRelaxation
-public import CORALean.NN.Layers.Theorems.Real.AntitoneInvSqrt
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import CORALean.NN.Layers.Theorems.Real.ContinuousInvSqrt
 public import CORALean.NN.Layers.Theorems.Real.HasDerivAtInvSqrt
 public import CORALean.NN.Layers.Theorems.Real.InvSqrtDerivMono
 public import CORALean.NN.Layers.Theorems.OfAntitoneSound
-public import CORALean.NN.Layers.Theorems.Real.EnclosureExactSound
 public import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
 public import CORALean.NN.Layers.Theorems.TighterSound
 

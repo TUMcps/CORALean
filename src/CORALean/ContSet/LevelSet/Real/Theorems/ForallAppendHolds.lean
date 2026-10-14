@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.LevelSet.Real.Theorems.ForallFinAdd
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 public import Mathlib.Data.Fin.Tuple.Basic
 
 @[expose] public section

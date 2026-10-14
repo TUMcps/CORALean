@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Polygon
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestGenOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PolygonContains
-public import CORALean.ContSet.Polygon.Float.Theorems.ConstructOfPieces
+public import CORALean.ContSet.Polygon.Float.Theorems.Basic
 
 @[expose] public section
 

@@ -1,10 +1,10 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
-public import CORALean.ContSet.Taylm.Real.Operations.Mtimes
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
-public import CORALean.ContSet.Taylm.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.Global.LinProg.LinProg
 public import Mathlib.Algebra.BigOperators.Pi
 

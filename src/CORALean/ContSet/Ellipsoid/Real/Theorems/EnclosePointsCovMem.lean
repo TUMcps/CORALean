@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 @[expose] public section
 

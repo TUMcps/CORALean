@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.CentreMemConstruct
-public import CORALean.ContSet.ConPolyZono.Float.Operations.Centre
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 
 @[expose] public section
 

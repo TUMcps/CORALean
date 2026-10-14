@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 
 @[expose] public section

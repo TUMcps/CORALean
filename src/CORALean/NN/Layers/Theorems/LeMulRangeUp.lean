@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
-public import CORALean.NN.Layers.Operations.MulRangeUp
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

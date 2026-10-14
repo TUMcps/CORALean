@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.Origin
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 
 @[expose] public section

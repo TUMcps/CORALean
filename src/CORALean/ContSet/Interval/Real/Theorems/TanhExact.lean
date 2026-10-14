@@ -1,7 +1,7 @@
 module
 
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-public import CORALean.ContSet.Interval.Real.Operations.Tanh
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
 
 @[expose] public section

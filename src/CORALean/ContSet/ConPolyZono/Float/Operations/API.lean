@@ -4,18 +4,13 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Isequal
 public import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
-public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionB
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Split
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Intersection
 public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedCol
-public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedColUp
-public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensGap
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGensSpec
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactGens
-public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsCol
-public import CORALean.ContSet.ConPolyZono.Float.Operations.MergedConsColUp
-public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsGap
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsB
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactConsSpec
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactCons
@@ -24,7 +19,6 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
 public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
-public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusB
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 public import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb
 public import CORALean.ContSet.ConPolyZono.Float.Operations.MtimesResidual
@@ -41,13 +35,10 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConsPolyZonotope
 public import CORALean.ContSet.ConPolyZono.Float.Operations.GetSubset
-public import CORALean.ContSet.ConPolyZono.Float.Operations.UnitBox
-public import CORALean.ContSet.ConPolyZono.Float.Operations.RescaleStep
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Rescale
 public import CORALean.ContSet.ConPolyZono.Float.Operations.LongestFactor
 public import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
 public import CORALean.ContSet.ConPolyZono.Float.Operations.SplitLongestGen
-public import CORALean.ContSet.ConPolyZono.Float.Operations.Centre
 public import CORALean.ContSet.ConPolyZono.Float.Operations.RepresentsaPoint
 public import CORALean.ContSet.ConPolyZono.Float.Operations.NominalSupportBound
 public import CORALean.ContSet.ConPolyZono.Float.Operations.SupportBound
@@ -68,7 +59,6 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullB
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullG
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHull
-public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDim
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDimWith
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ZeroMonomials
 

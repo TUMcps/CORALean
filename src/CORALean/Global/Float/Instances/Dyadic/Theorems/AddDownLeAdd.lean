@@ -1,7 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.Dyadic.Operations.AddDown
-public import CORALean.Global.Float.Instances.Dyadic.Operations.AlignExp
+public import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.CoarsenDownLe
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.RoundDownLe
 public import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealExactAdd

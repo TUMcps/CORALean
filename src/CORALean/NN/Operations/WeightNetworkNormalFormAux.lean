@@ -1,8 +1,7 @@
 module
 
 public import CORALean.NN.Operations.WeightAccLayer
-public import CORALean.NN.Operations.WeightAccPushAffine
-public import CORALean.NN.Operations.WeightAccPushLinear
+public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Definitions.WeightNetwork
 
 @[expose] public section

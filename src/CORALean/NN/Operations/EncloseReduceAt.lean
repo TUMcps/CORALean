@@ -1,8 +1,7 @@
 module
 
 public import CORALean.NN.Definitions.RefinableNetwork
-public import CORALean.NN.Operations.ScheduleHead
-public import CORALean.NN.Operations.ScheduleTail
+public import CORALean.NN.Operations.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MrdivideOuter
 public import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasisInv
 

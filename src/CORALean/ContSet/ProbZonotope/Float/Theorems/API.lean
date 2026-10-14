@@ -9,7 +9,7 @@ public import CORALean.ContSet.ProbZonotope.Float.Theorems.MeanOuter
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.MtimesLawsOuter
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.OfGeneratorsLawsOuter
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.PlusLawsOuter
-public import CORALean.ContSet.ProbZonotope.Float.Theorems.ProbReduceOuter
+public import CORALean.ContSet.ProbZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.ProjectLawsOuter
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.ReduceGirardOuter
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.VPolytopeOuter

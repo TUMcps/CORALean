@@ -2,14 +2,13 @@ module
 
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.Convex
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesMatZonotopeOuter
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.OfPointMem
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
 
 @[expose] public section

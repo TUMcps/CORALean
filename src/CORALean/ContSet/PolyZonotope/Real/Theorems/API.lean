@@ -111,7 +111,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PostEvalOn
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceGirardOrderLe
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReduceOrder
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureOuter
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureQ
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureP
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureReduceOuter
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureReduceOrder
@@ -172,7 +172,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PolygonOuter
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestIndepGenCover
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeOfQZero
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.DifferentiablePoint
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructOfQZero
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AreaFormula

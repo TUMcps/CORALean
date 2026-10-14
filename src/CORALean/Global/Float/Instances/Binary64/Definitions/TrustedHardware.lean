@@ -3,8 +3,7 @@ module
 public import CORALean.Global.Float.Instances.Binary64.Operations.AddUp
 public import CORALean.Global.Float.Instances.Binary64.Operations.DivUp
 public import CORALean.Global.Float.Instances.Binary64.Operations.Half
-public import CORALean.Global.Float.Instances.Binary64.Operations.Maximum
-public import CORALean.Global.Float.Instances.Binary64.Operations.Minimum
+public import CORALean.Global.Float.Instances.Binary64.Operations.Basic
 public import CORALean.Global.Float.Instances.Binary64.Operations.MulUp
 
 @[expose] public section

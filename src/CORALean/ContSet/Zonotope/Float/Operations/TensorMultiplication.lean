@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.TensorHDiff
 public import CORALean.ContSet.Zonotope.Float.Operations.Dependent
-public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 
 @[expose] public section
 

@@ -4,16 +4,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
 public import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
 public import CORALean.ContSet.Ellipsoid.Float.Operations.CenterResidual
-public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusG
-public import CORALean.ContSet.Ellipsoid.Float.Operations.PlusGap
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Project
-public import CORALean.ContSet.Ellipsoid.Float.Operations.PullbackAbs
 public import CORALean.ContSet.Ellipsoid.Float.Operations.AbsPullbackLe
 public import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot
 public import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Origin
-public import CORALean.ContSet.Ellipsoid.Float.Operations.Centre
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
 public import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaPoint
 public import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
@@ -27,7 +24,6 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Radius
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose
-public import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose2
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
 public import CORALean.ContSet.Ellipsoid.Float.Operations.EllipsoidNormUb
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Volume

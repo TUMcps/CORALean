@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Equality.Float.Theorems.EqBoolSound
+public import CORALean.ContSet.Equality.Float.Theorems.Basic
 public import CORALean.ContSet.Equality.Float.Theorems.NeBoolOfConstructNe
 
 /-!

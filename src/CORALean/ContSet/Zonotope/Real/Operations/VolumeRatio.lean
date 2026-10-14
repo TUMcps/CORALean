@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Operations.Project
+public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real

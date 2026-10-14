@@ -3,8 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.OrderAdmissibleFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 @[expose] public section

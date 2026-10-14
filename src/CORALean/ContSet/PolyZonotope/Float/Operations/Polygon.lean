@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Operations.PolygonPieces
 public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.Polygon
-public import CORALean.ContSet.Polygon.Float.Operations.OfPieces
+public import CORALean.ContSet.Polygon.Float.Operations.Basic
 
 @[expose] public section
 

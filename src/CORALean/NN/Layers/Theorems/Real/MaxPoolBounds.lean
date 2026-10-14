@@ -1,8 +1,7 @@
 module
 
 public import CORALean.Global.Tensor
-public import CORALean.NN.Layers.Theorems.Real.LeWindowMax
-public import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section

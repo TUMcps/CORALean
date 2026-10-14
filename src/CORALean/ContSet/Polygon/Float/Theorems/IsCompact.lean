@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Float.Polygon
-public import CORALean.ContSet.VPolytope.Float.Theorems.IsCompact
+public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
 
 @[expose] public section
 

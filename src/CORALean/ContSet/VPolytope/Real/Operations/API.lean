@@ -10,16 +10,13 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.VPolytope.Real.Operations.LinComb
 public import CORALean.ContSet.VPolytope.Real.Operations.Map
 public import CORALean.ContSet.VPolytope.Real.Operations.Mtimes
-public import CORALean.ContSet.VPolytope.Real.Operations.MtimesEqMap
+public import CORALean.ContSet.VPolytope.Real.Operations.Basic
 public import CORALean.ContSet.VPolytope.Real.Operations.Bilin
 public import CORALean.ContSet.VPolytope.Real.Operations.ColLin
-public import CORALean.ContSet.VPolytope.Real.Operations.MatPolytope
 public import CORALean.ContSet.VPolytope.Real.Operations.MtimesMatPolytope
 public import CORALean.ContSet.VPolytope.Real.Operations.Plus
 public import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
 public import CORALean.ContSet.VPolytope.Real.Operations.SupportBound
-public import CORALean.ContSet.VPolytope.Real.Operations.Project
-public import CORALean.ContSet.VPolytope.Real.Operations.EnclosePoints
 public import CORALean.ContSet.VPolytope.Real.Operations.ConvHull
 public import CORALean.ContSet.VPolytope.Real.Operations.Or
 public import CORALean.ContSet.VPolytope.Real.Operations.ProjectHighDim

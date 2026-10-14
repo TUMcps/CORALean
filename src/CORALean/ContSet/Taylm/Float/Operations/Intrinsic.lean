@@ -1,14 +1,13 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Definitions.CodeList
-public import CORALean.ContSet.Taylm.Float.Operations.BelowPow
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.Exp
 public import CORALean.ContSet.Taylm.Float.Operations.Log
 public import CORALean.ContSet.Taylm.Float.Operations.Sin
 public import CORALean.ContSet.Taylm.Float.Operations.Cos
 public import CORALean.ContSet.Taylm.Float.Operations.Sinh
 public import CORALean.ContSet.Taylm.Float.Operations.Cosh
-public import CORALean.ContSet.Taylm.Float.Operations.Bounds
 
 @[expose] public section
 

@@ -5,7 +5,7 @@ public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
 public import CORALean.ContSet.Polygon.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.Polygon.Real.Theorems.MinusExact
 public import CORALean.ContSet.Polygon.Real.Theorems.PlusExact
-public import CORALean.ContSet.Polygon.Real.Theorems.TimesExact
+public import CORALean.ContSet.Polygon.Real.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Operations.ConstructPoint
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem

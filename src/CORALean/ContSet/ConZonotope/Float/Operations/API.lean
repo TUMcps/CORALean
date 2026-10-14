@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Float.Operations.Split
 public import CORALean.ContSet.ConZonotope.Float.Operations.Project
-public import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
+public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
 public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
 public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLift
@@ -29,7 +29,6 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Compact
 public import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
 public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
-public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilUp
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDown
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGUp
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDiff
@@ -40,8 +39,6 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
 public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
 public import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.ConZonotope.Float.Operations.CentreLo
-public import CORALean.ContSet.ConZonotope.Float.Operations.CentreHi
 public import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
 public import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
 public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre

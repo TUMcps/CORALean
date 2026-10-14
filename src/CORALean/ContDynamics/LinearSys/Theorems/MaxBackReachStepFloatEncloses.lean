@@ -14,7 +14,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCentreSubse
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesNominalErr
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.ConZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude

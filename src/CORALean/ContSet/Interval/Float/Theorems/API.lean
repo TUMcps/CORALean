@@ -6,7 +6,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.BoundaryPointOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Atan2LoLe
 public import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
 public import CORALean.ContSet.Interval.Float.Theorems.Atan2Outer
-public import CORALean.ContSet.Interval.Float.Theorems.InfExact
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.LiftExact
 public import CORALean.ContSet.Interval.Float.Theorems.StlIntervalExact
 public import CORALean.ContSet.Interval.Float.Theorems.DiracOuter
@@ -20,7 +20,6 @@ public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Float.Theorems.DescProdOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MinkDiffInner
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
@@ -31,19 +30,14 @@ public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
 public import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
-public import CORALean.ContSet.Interval.Float.Theorems.ReindexNominal
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
 public import CORALean.ContSet.Interval.Float.Theorems.UminusExact
-public import CORALean.ContSet.Interval.Float.Theorems.UplusExact
 public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
-public import CORALean.ContSet.Interval.Float.Theorems.InfimumMemConstruct
 public import CORALean.ContSet.Interval.Float.Theorems.IsCompact
-public import CORALean.ContSet.Interval.Float.Theorems.SupremumMemConstruct
 public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
-public import CORALean.ContSet.Interval.Float.Theorems.ConvHullOuter
 public import CORALean.ContSet.Interval.Float.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.Interval.Float.Theorems.AbsExact
@@ -73,13 +67,11 @@ public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
-public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.Interval.Float.Theorems.MaxExact
 public import CORALean.ContSet.Interval.Float.Theorems.MinExact
 public import CORALean.ContSet.Interval.Float.Theorems.IsequalSound
 public import CORALean.ContSet.Interval.Float.Theorems.TransposeExact
-public import CORALean.ContSet.Interval.Float.Theorems.CtransposeExact
 public import CORALean.ContSet.Interval.Float.Theorems.DiagExact
 public import CORALean.ContSet.Interval.Float.Theorems.DiagVecExact
 public import CORALean.ContSet.Interval.Float.Theorems.MaskExact
@@ -87,7 +79,6 @@ public import CORALean.ContSet.Interval.Float.Theorems.TrilExact
 public import CORALean.ContSet.Interval.Float.Theorems.TriuExact
 public import CORALean.ContSet.Interval.Float.Theorems.HorzcatExact
 public import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
-public import CORALean.ContSet.Interval.Float.Theorems.CenterOuter
 public import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Sum1Outer
 public import CORALean.ContSet.Interval.Float.Theorems.Sum2Outer
@@ -99,7 +90,6 @@ public import CORALean.ContSet.Interval.Float.Theorems.Sum1OuterImage
 public import CORALean.ContSet.Interval.Float.Theorems.Sum2OuterImage
 public import CORALean.ContSet.Interval.Float.Theorems.VolumeNominalLe
 public import CORALean.ContSet.Interval.Float.Theorems.NormNominalLe
-public import CORALean.ContSet.Interval.Float.Theorems.NormLe
 public import CORALean.ContSet.Interval.Float.Theorems.Radius2NominalLe
 public import CORALean.ContSet.Interval.Float.Theorems.Norm2SubCenterLe
 public import CORALean.ContSet.Interval.Float.Theorems.Prod1Outer
@@ -126,8 +116,6 @@ public import CORALean.ContSet.Interval.Float.Theorems.SumTermsMatMem
 public import CORALean.ContSet.Interval.Float.Theorems.SubmatrixMem
 public import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
-public import CORALean.ContSet.Interval.Float.Theorems.HalvePlusMem
-public import CORALean.ContSet.Interval.Float.Theorems.HalveMinusMem
 
 /-!
 # What `Interval` guarantees

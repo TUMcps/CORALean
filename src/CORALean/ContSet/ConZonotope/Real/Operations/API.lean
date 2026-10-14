@@ -10,7 +10,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.AgreeMat
 public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Real.Operations.Map
 public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
-public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesEqMap
+public import CORALean.ContSet.ConZonotope.Real.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 public import CORALean.ContSet.ConZonotope.Real.Operations.Reduce

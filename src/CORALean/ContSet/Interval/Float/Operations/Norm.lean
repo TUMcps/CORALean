@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.NormMag
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.EuclideanNorm
 
 @[expose] public section

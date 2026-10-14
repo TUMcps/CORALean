@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Operations.SampleDevUp
-public import CORALean.NN.Layers.Operations.SampleHi
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

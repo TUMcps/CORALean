@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.PolyBounds
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.ToRealTermBounds
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyBoundsMem
 public import CORALean.Global.Float.ListSum

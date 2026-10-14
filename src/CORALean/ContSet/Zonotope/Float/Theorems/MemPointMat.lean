@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
-public import CORALean.ContSet.Zonotope.Float.Operations.PointMat
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 
 @[expose] public section
 

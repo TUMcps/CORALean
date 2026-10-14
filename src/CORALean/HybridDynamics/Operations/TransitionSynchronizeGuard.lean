@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.IntersectionExact
-public import CORALean.ContSet.HPolytope.Float.Operations.MemFullspace
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.HybridDynamics.Definitions.Transition
 
 @[expose] public section

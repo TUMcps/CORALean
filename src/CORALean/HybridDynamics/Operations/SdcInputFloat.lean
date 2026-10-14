@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
 public import CORALean.ContSet.Interval.Float.Operations.MatPow
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Smul
 public import CORALean.ContSet.Interval.Float.Operations.SumTermsMat
 public import CORALean.Global.Float.PowDown

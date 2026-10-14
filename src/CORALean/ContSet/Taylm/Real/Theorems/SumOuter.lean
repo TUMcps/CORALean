@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.Sum
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.PlusOuter
 
 @[expose] public section

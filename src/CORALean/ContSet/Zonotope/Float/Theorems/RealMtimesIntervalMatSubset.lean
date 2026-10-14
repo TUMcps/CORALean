@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
@@ -15,8 +15,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
-public import CORALean.ContSet.Interval.Real.Operations.Radius
-public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 @[expose] public section
 

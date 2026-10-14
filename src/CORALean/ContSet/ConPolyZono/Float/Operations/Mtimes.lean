@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.MtimesResidual
-public import CORALean.ContSet.Interval.Float.Operations.Mtimes
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

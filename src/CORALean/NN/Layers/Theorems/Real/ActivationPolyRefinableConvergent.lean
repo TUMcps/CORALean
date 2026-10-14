@@ -3,7 +3,7 @@ module
 public import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
 public import CORALean.NN.Layers.Definitions.PolyFamily
 public import CORALean.NN.Operations.Convergent
-public import CORALean.NN.Layers.Theorems.PadToError
+public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolySubsetInflate
 public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilyErrorLt
 public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound

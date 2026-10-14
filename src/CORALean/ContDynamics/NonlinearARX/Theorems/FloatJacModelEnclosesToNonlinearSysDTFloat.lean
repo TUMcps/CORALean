@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearARX.Operations.FloatJacModelToNonlinearSysDTFloat
 public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import Mathlib.Analysis.Calculus.FDeriv.Const
 public import Mathlib.Analysis.Calculus.FDeriv.Prod
 

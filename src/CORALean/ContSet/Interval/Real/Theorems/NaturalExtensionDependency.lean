@@ -3,8 +3,7 @@ module
 public import CORALean.ContSet.Interval.Real.Operations.Power
 public import CORALean.ContSet.Interval.Real.Operations.Times
 public import CORALean.ContSet.Interval.Real.Operations.Smul
-public import CORALean.ContSet.Interval.Real.Operations.Minus
-public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import Mathlib.Analysis.SpecialFunctions.Sqrt
 
 @[expose] public section

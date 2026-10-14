@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Polygon.Float.Operations.ConvHull
+public import CORALean.ContSet.Polygon.Float.Operations.Basic
 public import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.Convex
+public import CORALean.ContSet.VPolytope.Float.Theorems.Basic
 
 @[expose] public section
 

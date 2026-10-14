@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Graph.Operations.AdjMax
-public import CORALean.NN.Graph.Theorems.EdgeMatNonneg
+public import CORALean.NN.Graph.Theorems.Basic
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section

@@ -1,18 +1,16 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
-public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.NN.Layers.Definitions.ActivationLayer
 public import CORALean.NN.Layers.Definitions.ActivationPolyLayer
 public import CORALean.NN.Layers.Definitions.AvgPoolLayer
 public import CORALean.NN.Layers.Definitions.BatchNormLayer
 public import CORALean.NN.Layers.Definitions.ConvLayer
-public import CORALean.NN.Layers.Definitions.IdentityLayer
-public import CORALean.NN.Layers.Definitions.LinearLayer
+public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Definitions.LinearWithErrorLayer
 public import CORALean.NN.Layers.Definitions.MaxPoolLayer
 public import CORALean.NN.Layers.Definitions.ReluLayer
-public import CORALean.NN.Layers.Definitions.ReshapeLayer
 public import CORALean.NN.Layers.Definitions.SigmoidLayer
 public import CORALean.NN.Layers.Definitions.SigmoidPolyLayer
 public import CORALean.NN.Layers.Definitions.SoundLayer
@@ -28,10 +26,8 @@ public import CORALean.NN.Layers.Theorems.LinearWithErrorSound
 public import CORALean.NN.Layers.Theorems.MaxPoolSound
 public import CORALean.NN.Layers.Theorems.ReluSound
 public import CORALean.NN.Layers.Theorems.ReshapeSound
-public import CORALean.NN.Layers.Theorems.SigmoidPolySound
-public import CORALean.NN.Layers.Theorems.SigmoidSound
+public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.SoftmaxSound
-public import CORALean.NN.Layers.Theorems.TanhSound
 
 @[expose] public section
 

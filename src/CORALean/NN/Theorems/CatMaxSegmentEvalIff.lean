@@ -1,8 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.WindowMax
-public import CORALean.NN.Layers.Theorems.Real.LeWindowMax
-public import CORALean.NN.Layers.Theorems.Real.WindowMaxLe
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 public import CORALean.NN.Operations.CatMaxSegment
 

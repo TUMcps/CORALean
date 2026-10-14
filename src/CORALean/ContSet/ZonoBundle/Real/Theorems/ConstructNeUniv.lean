@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBounded
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
 public import Mathlib.Analysis.Normed.Module.Basic
 
 @[expose] public section

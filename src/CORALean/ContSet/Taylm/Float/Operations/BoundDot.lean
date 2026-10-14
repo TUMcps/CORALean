@@ -1,9 +1,8 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.Bounds
-public import CORALean.ContSet.Taylm.Float.Operations.Mtimes
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-public import CORALean.ContSet.Taylm.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 public import CORALean.Global.Float.FloatBound
 

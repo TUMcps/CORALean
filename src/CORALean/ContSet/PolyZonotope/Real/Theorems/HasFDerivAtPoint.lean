@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.DifferentiablePoint
-public import CORALean.ContSet.PolyZonotope.Real.Operations.JacobianMat
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
 public import Mathlib.Analysis.Calculus.Deriv.Pi
 public import Mathlib.Analysis.Calculus.Deriv.Comp

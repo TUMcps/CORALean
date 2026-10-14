@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
 public import CORALean.ContSet.ConZonotope.Real.Operations.MemOfMatIff
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
 
 @[expose] public section

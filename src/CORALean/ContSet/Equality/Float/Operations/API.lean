@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.Equality.Float.Operations.EqBool
-public import CORALean.ContSet.Equality.Float.Operations.NeBool
+public import CORALean.ContSet.Equality.Float.Operations.Basic
 
 /-!
 # `eq` and `ne` as runs

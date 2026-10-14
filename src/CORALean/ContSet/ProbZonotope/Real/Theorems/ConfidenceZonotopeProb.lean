@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ProbZonotope.Real.Operations.ConfidenceZonotope
 public import CORALean.ContSet.ProbZonotope.Real.Definitions.GZonotopeLaw
 public import CORALean.ContSet.ProbZonotope.Real.Theorems.StdGaussianBox
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -1,10 +1,9 @@
 module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Intrinsic
-public import CORALean.ContSet.Taylm.Real.Operations.Const
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Operations.Plus
 public import CORALean.ContSet.Taylm.Real.Operations.Times
-public import CORALean.ContSet.Taylm.Real.Operations.Uminus
 
 @[expose] public section
 

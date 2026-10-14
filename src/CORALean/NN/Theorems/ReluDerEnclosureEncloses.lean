@@ -1,7 +1,7 @@
 module
 
-public import CORALean.NN.Operations.ReluDerEnclosure
-public import CORALean.NN.Definitions.ScalarEncloses
+public import CORALean.NN.Operations.Basic
+public import CORALean.NN.Definitions.Basic
 
 @[expose] public section
 

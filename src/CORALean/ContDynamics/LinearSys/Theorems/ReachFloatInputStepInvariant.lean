@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatInputInvaria
 public import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInputStep
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubset
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import Mathlib.Algebra.Order.Ring.Star
 
 @[expose] public section

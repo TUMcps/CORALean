@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinDASys.Definitions.FloatModel
 public import CORALean.ContSet.Interval.Float.Operations.Horzcat
-public import CORALean.ContSet.Interval.Float.Operations.Vertcat
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 

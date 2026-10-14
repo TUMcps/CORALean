@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Operations.IntervalStackProd
+public import CORALean.HybridDynamics.Parallel.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section

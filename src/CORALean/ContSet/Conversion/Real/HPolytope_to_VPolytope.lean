@@ -7,7 +7,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
 public import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-public import CORALean.ContSet.VPolytope.Real.Theorems.IsBounded
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import Mathlib.Analysis.Convex.KreinMilman
 
 @[expose] public section

@@ -1,14 +1,13 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.LinComb
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiff
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiffError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.LinCombGIDiff
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Midpoint
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MidpointResidual
 public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
-public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 
 @[expose] public section
 

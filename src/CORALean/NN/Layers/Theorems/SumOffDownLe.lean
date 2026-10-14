@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Operations.SumOffDown
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.SumIteZero
 public import CORALean.NN.Layers.Theorems.ToRealIteZero
 

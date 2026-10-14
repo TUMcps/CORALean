@@ -1,11 +1,11 @@
-import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
+import CORALean.Global.Float.Instances.Real.Theorems.Basic
 import CORALean.NN.Definitions.Reduction
 import CORALean.NN.Layers.Definitions.Relu
 import CORALean.NN.Layers.Operations.Activation
 import CORALean.NN.Layers.Operations.Conv
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.LinearWithError
-import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluRelaxation
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.TapMat

@@ -2,26 +2,21 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfVolumeLeSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConvHullCoraEmptyCrash
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBounded
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsClosed
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusScalingsAdmissible
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMem
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMemIff
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreMemConstruct
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ProjectExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.RankShape
@@ -44,7 +39,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.DistPointEqMax
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DistPointNonnegCounterexample
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DistEllipsoidEqMax
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DistHyperplaneEq
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestRadius
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsLeastVolumeSupersetParallelotope
@@ -61,7 +55,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsEllipsoidCoraCoun
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkDiffPointExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContainsPointIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SegmentsSubsetOfIsOrOuter
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.Enclose2Outer
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestNorm
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GeneratorsMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.AndPointExact
@@ -119,7 +112,6 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutVolumeRatioLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeMtimes
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.PolygonInner
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBadDirIff
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GoffinSpec
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreOfMinVolume

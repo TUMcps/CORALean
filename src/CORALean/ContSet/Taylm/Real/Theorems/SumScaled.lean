@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Taylm.Real.Operations.Sum
-public import CORALean.ContSet.Taylm.Real.Theorems.WeightAppend
+public import CORALean.ContSet.Taylm.Real.Operations.Basic
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 
 @[expose] public section
 

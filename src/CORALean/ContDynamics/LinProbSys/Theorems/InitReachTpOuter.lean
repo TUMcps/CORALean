@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinProbSys.Operations.InitReach
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegral
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact

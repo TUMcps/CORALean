@@ -5,7 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearWalkEdges
 public import CORALean.ContSet.Zonotope.Real.Theorems.ShearHalfPlane
 public import CORALean.ContSet.Zonotope.Real.Theorems.ShearCross
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import Mathlib.Analysis.Normed.Group.Basic
 public import Mathlib.Topology.MetricSpace.Pseudo.Pi
 

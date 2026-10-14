@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Shear
-public import CORALean.ContSet.Zonotope.Real.Theorems.CombApply
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Algebra.BigOperators.Pi
 public import Mathlib.Algebra.BigOperators.Ring.Finset

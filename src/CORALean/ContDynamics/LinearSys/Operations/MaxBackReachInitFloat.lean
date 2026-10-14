@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 public import CORALean.ContSet.ConZonotope.Float.Operations.Origin
 public import CORALean.ContSet.Interval.Float.Operations.Magnitude
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
-public import CORALean.ContSet.Zonotope.Float.Operations.Origin
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Instances
 
 @[expose] public section

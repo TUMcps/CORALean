@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimePointOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 

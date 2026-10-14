@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Enclose
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.Convex
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
 
 @[expose] public section

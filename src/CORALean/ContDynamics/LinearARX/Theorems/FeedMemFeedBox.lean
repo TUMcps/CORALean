@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearARX.Operations.FeedBox
-public import CORALean.ContDynamics.LinearARX.Operations.Feed
+public import CORALean.ContDynamics.LinearARX.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 @[expose] public section

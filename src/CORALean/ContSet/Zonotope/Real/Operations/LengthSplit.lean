@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Operations.GeneratorLength
+public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.Global.Partition
 public import Mathlib.Data.Fin.Tuple.Sort
 

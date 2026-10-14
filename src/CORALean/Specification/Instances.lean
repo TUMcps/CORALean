@@ -16,7 +16,7 @@ public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
 public import CORALean.ContSet.VPolytope.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.ZonoBundle.Float.Instances
 public import CORALean.ContSet.ConPolyZono.Float.Instances
-public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDim
+public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.ConZonotope.Float.Instances
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound

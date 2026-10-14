@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Real.Operations.Project
 public import CORALean.ContSet.VPolytope.Real.Instances
-public import CORALean.ContSet.VPolytope.Real.Theorems.ProjectExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 
 @[expose] public section
 

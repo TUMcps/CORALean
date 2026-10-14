@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Layers.Definitions.TanhRelaxation
 public import CORALean.NN.Layers.Theorems.OfAffineConjSound
-public import CORALean.NN.Layers.Theorems.Real.ScaleRoundingExactSound
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import CORALean.NN.Layers.Theorems.Real.SigmoidRelaxationSound
 public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 

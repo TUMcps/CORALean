@@ -1,12 +1,9 @@
 import CORALean.Examples.HardwareCheck.Checks
-import CORALean.Global.Float.Instances.Binary64.Operations.AddDown
+import CORALean.Global.Float.Instances.Binary64.Operations.Basic
 import CORALean.Global.Float.Instances.Binary64.Operations.DivDown
-import CORALean.Global.Float.Instances.Binary64.Operations.MulDown
-import CORALean.Global.Float.Instances.IEEE.Operations.AddDown
+import CORALean.Global.Float.Instances.IEEE.Operations.Basic
 import CORALean.Global.Float.Instances.IEEE.Operations.AddUp
-import CORALean.Global.Float.Instances.IEEE.Operations.DivDown
 import CORALean.Global.Float.Instances.IEEE.Operations.DivUp
-import CORALean.Global.Float.Instances.IEEE.Operations.MulDown
 import CORALean.Global.Float.Instances.IEEE.Operations.MulUp
 
 /-!

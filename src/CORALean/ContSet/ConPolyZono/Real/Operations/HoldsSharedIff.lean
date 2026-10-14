@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
-public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusB
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
 

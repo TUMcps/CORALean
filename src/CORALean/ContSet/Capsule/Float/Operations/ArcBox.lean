@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Capsule
-public import CORALean.ContSet.Interval.Float.Operations.Plus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Times
 public import CORALean.ContSet.Interval.Float.Operations.Cos
 public import CORALean.ContSet.Interval.Float.Operations.Sin

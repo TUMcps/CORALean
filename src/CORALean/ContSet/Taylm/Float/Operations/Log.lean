@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Compose
-public import CORALean.ContSet.Taylm.Float.Operations.ConstCoef
-public import CORALean.ContSet.Taylm.Float.Operations.Bounds
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.LogCoef
 
 @[expose] public section

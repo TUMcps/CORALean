@@ -59,7 +59,8 @@ theorem Zonotope.image_subset_meanValueInclusion {n nw : ℕ}
         (fderiv ℝ (fun x => f x w) (X.c + t • d) d i) t := by
       intro t
       have h1 : HasDerivAt (fun t : ℝ => X.c + t • d) d t := by
-        simpa using ((hasDerivAt_id t).smul_const d).const_add X.c
+        simpa only [hasDerivAt_const_add_iff, id_eq, one_smul] using
+          ((hasDerivAt_id t).smul_const d).const_add X.c
       exact hasDerivAt_pi.mp ((hdiff w hw (X.c + t • d)).hasFDerivAt.comp_hasDerivAt t h1) i
     obtain ⟨t, ⟨ht0, ht1⟩, ht⟩ := exists_hasDerivAt_eq_slope
       (fun t : ℝ => f (X.c + t • d) w i) (fun t => fderiv ℝ (fun x => f x w) (X.c + t • d) d i)
@@ -68,8 +69,8 @@ theorem Zonotope.image_subset_meanValueInclusion {n nw : ℕ}
     · -- the segment stays in the zonotope: its coefficients shrink by `t`
       rw [abs_mul, abs_of_pos ht0]
       nlinarith [hβ j, abs_nonneg (β j)]
-    · simp [hd, Finset.smul_sum, mul_smul]
-    · simpa using ht.symm
+    · simp only [hd, Finset.smul_sum, mul_smul]
+    · simpa only [one_smul, zero_smul, add_zero, sub_zero, div_one] using ht.symm
   choose ξ hξ hEq using key
   -- one matrix from the rows `∇ₓf(ξᵢ, w) H`
   set M : Mat ℝ n X.h := Matrix.of fun i j => fderiv ℝ (fun x => f x w) (ξ i) (X.G j) i with hMdef
@@ -80,14 +81,16 @@ theorem Zonotope.image_subset_meanValueInclusion {n nw : ℕ}
       linarith [hEq i]
     rw [Pi.add_apply, h1, add_comm]
     congr 1
-    simp [hMdef, hd, Matrix.mulVec, dotProduct, map_sum, map_smul, Finset.sum_apply, mul_comm]
+    simp only [hd, map_sum, map_smul, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Matrix.mulVec,
+      dotProduct, hMdef, Matrix.of_apply]
+    exact Finset.sum_congr rfl fun j _ => mul_comm _ _
   -- the first term is in the inclusion of the interval matrix, the second in the box
   rw [Zonotope.meanValueInclusion, ← Zonotope.plus_exact]
   refine ⟨M *ᵥ β, ?_, f X.c w, Interval.zonotope_contains I (hI w hw), ?_⟩
   · exact Zonotope.inclusion_outer 0 IM (by
       simp only [Set.mem_iUnion]
-      exact ⟨M, hMmem, β, hβ, by simp⟩)
-  · simp [hfx]
+      exact ⟨M, hMmem, β, hβ, by simp only [zero_add]⟩)
+  · simp only [hfx]
 
 end CORALean.Real
 

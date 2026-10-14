@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.Float.Instances.Real.Theorems.ToRealMatReal
+public import CORALean.Global.Float.Instances.Real.Theorems.Basic
 public import CORALean.NN.Definitions.Reduction
 public import CORALean.NN.Theorems.NeuronMergingOuter
 

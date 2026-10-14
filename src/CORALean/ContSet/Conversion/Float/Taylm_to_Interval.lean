@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Taylm.Float.Operations.Bounds
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Interval.Float.Interval

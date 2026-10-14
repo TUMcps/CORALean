@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.LinComb
-public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 
 @[expose] public section
 

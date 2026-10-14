@@ -3,7 +3,7 @@ module
 public import Mathlib.Data.Matrix.Mul
 public import CORALean.ContSet.Taylm.Real.Operations.Mpower
 public import CORALean.ContSet.Taylm.Real.Theorems.MmulOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.ConstOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 
 @[expose] public section
 

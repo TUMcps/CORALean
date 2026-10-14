@@ -4,7 +4,7 @@ public import CORALean.HybridDynamics.Operations.HitHessianMatZono
 public import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 

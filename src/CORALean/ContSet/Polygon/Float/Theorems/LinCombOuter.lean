@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Polygon.Float.Operations.LinComb
+public import CORALean.ContSet.Polygon.Float.Operations.Basic
 public import CORALean.ContSet.VPolytope.Float.Theorems.LinCombOuter
 
 @[expose] public section

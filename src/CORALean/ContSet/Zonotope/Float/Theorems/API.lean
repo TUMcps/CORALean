@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesMatZonotopeOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.OfEntryBoundsOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.PlusH
+public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectHighDimOuter
@@ -17,13 +17,11 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
-public import CORALean.ContSet.Zonotope.Float.Theorems.LinCombH
 public import CORALean.ContSet.Zonotope.Float.Theorems.PairSumBracket
 public import CORALean.ContSet.Zonotope.Float.Theorems.PairDiffBracket
 public import CORALean.ContSet.Zonotope.Float.Theorems.SumPairMul
 public import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
 public import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesH
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesSubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
@@ -36,12 +34,10 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.RotateOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesError
 public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatError
 public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemPlusError
-public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbErrorH
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsSubMidLeErrorRadius
 public import CORALean.ContSet.Zonotope.Float.Theorems.ShiftBracketsMid
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbErrorOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuterRefines
-public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByH
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsAbsorbedLeRadius
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByCoeff
@@ -51,9 +47,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceCombastelOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceSubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOrder
-public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAndAbsorbByH
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAndAbsorbByOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.ReindexNominal
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Float.Theorems.UnionSubsetLinComb
@@ -81,7 +75,6 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsNominal
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsCornerMemNominalSet
-public import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundNominalSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.MethCResidualBound
 public import CORALean.ContSet.Zonotope.Float.Theorems.MethCQBound
 public import CORALean.ContSet.Zonotope.Float.Theorems.MethCReachBound

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.Minus
-public import CORALean.ContSet.Interval.Real.Operations.Minus
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
 public import Mathlib.Order.BourbakiWitt
 

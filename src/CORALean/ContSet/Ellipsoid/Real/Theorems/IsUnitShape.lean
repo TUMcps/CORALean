@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.DotTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 @[expose] public section
 

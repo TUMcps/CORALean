@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalTaylorTail
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalW
-public import CORALean.ContSet.Interval.Real.Operations.Plus
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.Interval.Real.Operations.Smul
 

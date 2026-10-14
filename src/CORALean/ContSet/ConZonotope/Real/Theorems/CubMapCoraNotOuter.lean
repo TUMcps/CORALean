@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
 public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
-public import CORALean.ContSet.HPolytope.Real.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.LinearAlgebra.Matrix.Notation
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Zoo.Float.Operations.Minus
-public import CORALean.ContSet.Taylm.Float.Theorems.MinusOuter
+public import CORALean.ContSet.Zoo.Float.Operations.Basic
+public import CORALean.ContSet.Taylm.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
 
 @[expose] public section

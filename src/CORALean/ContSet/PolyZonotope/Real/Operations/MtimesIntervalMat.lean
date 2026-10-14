@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.Center
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RadiusReach
 public import Mathlib.Data.Matrix.Mul
 

@@ -5,8 +5,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.InputSolutionOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-public import CORALean.ContSet.ContSet.Theorems.IsBoundedConstruct
-public import CORALean.ContSet.ContSet.Theorems.IsClosedConstruct
+public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 
 @[expose] public section

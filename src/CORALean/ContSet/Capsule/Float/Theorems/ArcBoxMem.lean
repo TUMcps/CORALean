@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Float.Operations.ArcBox
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.CosOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SinOuter
 

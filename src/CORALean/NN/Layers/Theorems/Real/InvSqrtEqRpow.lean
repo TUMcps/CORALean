@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Theorems.Real.InvSqrtEqOfOneLe
+public import CORALean.NN.Layers.Theorems.Real.Basic
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 @[expose] public section

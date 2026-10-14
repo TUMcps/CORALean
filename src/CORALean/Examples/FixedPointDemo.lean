@@ -1,4 +1,4 @@
-import CORALean.ContSet.Interval.Float.Operations.Plus
+import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.Global.Float.Instances.FixedPoint.Instances
 
 /-!

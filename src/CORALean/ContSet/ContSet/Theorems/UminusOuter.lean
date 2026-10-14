@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Operations.Uminus
+public import CORALean.ContSet.ContSet.Operations.Basic
 
 @[expose] public section
 

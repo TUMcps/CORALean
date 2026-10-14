@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
-public import CORALean.ContSet.VPolytope.Real.Theorems.IsCompact
-public import CORALean.ContSet.VPolytope.Real.Theorems.IsClosed
+public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import CORALean.Global.DropIdx
 public import Mathlib.Analysis.Convex.KreinMilman
 public import Mathlib.Analysis.Convex.Join

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.Float.Instances.Binary64.Definitions.Axioms
-public import CORALean.Global.Float.Instances.Binary64.Operations.MulDown
+public import CORALean.Global.Float.Instances.Binary64.Operations.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ProbZonotope.Real.Operations.Mean
+public import CORALean.ContSet.ProbZonotope.Real.Operations.Basic
 
 @[expose] public section
 

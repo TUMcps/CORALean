@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ProbZonotope.Float.Operations.Abs
+public import CORALean.ContSet.ProbZonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsNominal
 public import CORALean.ContSet.ProbZonotope.Real.Operations.Abs
 

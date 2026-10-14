@@ -2,7 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Definitions.HitJacobian
 public import CORALean.HybridDynamics.Operations.HitJacobianFloat
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
 

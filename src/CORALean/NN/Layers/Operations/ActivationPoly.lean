@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
 public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Layers.Operations.LayerRelaxationBox
-public import CORALean.NN.Layers.Operations.LayerRelaxationCoeffList
+public import CORALean.NN.Layers.Operations.Basic
 
 @[expose] public section
 

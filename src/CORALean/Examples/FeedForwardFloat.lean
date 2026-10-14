@@ -8,15 +8,13 @@ import CORALean.NN.Layers.Definitions.SigmoidRelaxation
 import CORALean.NN.Layers.Definitions.TanhRelaxation
 import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
-import CORALean.NN.Layers.Operations.Relu
+import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Sigmoid
 import CORALean.NN.Layers.Operations.SigmoidPoly
 import CORALean.NN.Layers.Operations.Tanh
 import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.SigmoidPolySound
-import CORALean.NN.Layers.Theorems.SigmoidSound
-import CORALean.NN.Layers.Theorems.TanhSound
+import CORALean.NN.Layers.Theorems.Basic
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.EncloseOuter
 import CORALean.NN.Theorems.MarginDir

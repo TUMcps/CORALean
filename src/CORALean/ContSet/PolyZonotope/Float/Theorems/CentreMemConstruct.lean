@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialEqZeroOfNoZeroCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.NoZeroCol
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Centre
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 
 @[expose] public section

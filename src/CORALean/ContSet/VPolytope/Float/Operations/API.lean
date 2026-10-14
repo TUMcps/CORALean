@@ -10,8 +10,7 @@ public import CORALean.ContSet.VPolytope.Float.Operations.Mtimes
 public import CORALean.ContSet.VPolytope.Float.Operations.LinComb
 public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundProj
 public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundNegProj
-public import CORALean.ContSet.VPolytope.Float.Operations.BoundProj
-public import CORALean.ContSet.VPolytope.Float.Operations.BoundNegProj
+public import CORALean.ContSet.VPolytope.Float.Operations.Basic
 public import CORALean.ContSet.VPolytope.Float.Operations.NominalBoundDot
 public import CORALean.ContSet.VPolytope.Float.Operations.Project
 public import CORALean.ContSet.VPolytope.Float.Operations.SupportBound
@@ -21,7 +20,6 @@ public import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
 public import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
 public import CORALean.ContSet.VPolytope.Float.Operations.Origin
 public import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
-public import CORALean.ContSet.VPolytope.Float.Operations.Bordered
 public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDimWith
 public import CORALean.ContSet.VPolytope.Float.Operations.IsFullDim
 

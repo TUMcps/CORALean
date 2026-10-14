@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.BnbLoop
-public import CORALean.ContSet.Taylm.Float.Operations.PolyBoxBounds
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Operations.ReexpBoxBounds
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.SoftplusBox
-public import CORALean.NN.Layers.Operations.SoftplusRelaxation
+public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
 public import CORALean.NN.Layers.Theorems.Real.SoftplusMono
 

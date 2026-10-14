@@ -3,7 +3,7 @@ module
 public import CORALean.HybridDynamics.Operations.LinearResetResolveFloat
 public import CORALean.HybridDynamics.Operations.LinearResetResolve
 public import Mathlib.Data.Fintype.Sigma
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import Mathlib.Algebra.BigOperators.Ring.Finset
 
 @[expose] public section

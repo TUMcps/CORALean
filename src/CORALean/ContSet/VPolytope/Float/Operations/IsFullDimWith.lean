@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.VPolytope.Float.Operations.Bordered
+public import CORALean.ContSet.VPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 public import CORALean.ContSet.Zonotope.Float.Operations.BallB
 

@@ -4,7 +4,7 @@ import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.Examples.Demo.Decimal
 import CORALean.Global.Float.Instances.Binary64.Instances
 import CORALean.Global.Float.Instances.Dyadic.Operations.ExactAdd
-import CORALean.Global.Float.Instances.Dyadic.Operations.Neg
+import CORALean.Global.Float.Instances.Dyadic.Operations.Basic
 import CORALean.Global.Float.NoNaN
 
 /-!

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.Cosh
+public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 public import Mathlib.Topology.Order.IntermediateValue
 

@@ -1,8 +1,7 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.LinComb
-public import CORALean.ContSet.Interval.Float.Operations.Plus
-public import CORALean.ContSet.Zonotope.Float.Operations.GeneratorError
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.LinCombGDiff
 public import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
 public import CORALean.ContSet.Zonotope.Float.Operations.MidpointResidual

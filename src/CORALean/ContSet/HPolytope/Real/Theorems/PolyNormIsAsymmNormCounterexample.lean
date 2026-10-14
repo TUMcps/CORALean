@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormLeIff
-public import CORALean.ContSet.HPolytope.Real.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
+public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Topology.MetricSpace.Bounded

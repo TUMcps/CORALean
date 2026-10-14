@@ -4,7 +4,7 @@ public import CORALean.Global.ConeEdge
 public import CORALean.Global.EqSmulNCross
 public import CORALean.ContSet.Zonotope.Real.Operations.FacetNormal
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsClosed
+public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import Mathlib.Analysis.InnerProductSpace.Basic
 public import Mathlib.Analysis.LocallyConvex.Separation
 

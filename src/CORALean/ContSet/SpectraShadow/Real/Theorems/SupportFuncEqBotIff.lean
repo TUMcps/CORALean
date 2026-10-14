@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.LeSupportFuncOfMem
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 
 @[expose] public section
 

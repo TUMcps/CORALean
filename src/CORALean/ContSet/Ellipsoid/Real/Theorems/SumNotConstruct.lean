@@ -4,7 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
 public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Pullback
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 public import Mathlib.Analysis.Matrix.Order
 public import Mathlib.Analysis.Matrix.PosDef
 public import Mathlib.Tactic.Linarith

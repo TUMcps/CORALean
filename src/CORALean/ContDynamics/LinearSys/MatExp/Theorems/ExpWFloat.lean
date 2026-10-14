@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpW
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpWFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.HalfSqBoundsFloat
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 @[expose] public section

@@ -2,10 +2,8 @@ module
 
 public import CORALean.NN.Operations.IntervalChainBackprop
 public import CORALean.NN.Operations.IntervalChainBackpropFloat
-public import CORALean.ContSet.Interval.Float.Theorems.TimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.NN.Theorems.IntervalChainFwdFloatOuter
-public import CORALean.ContSet.Interval.Float.Theorems.HalveMinusMem
-public import CORALean.ContSet.Interval.Float.Theorems.HalvePlusMem
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesMem
 
 @[expose] public section

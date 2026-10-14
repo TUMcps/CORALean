@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.MatZonotope
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Interval.Float.Theorems.MemMatIff
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import Mathlib.Data.Matrix.Basic
 
 @[expose] public section
