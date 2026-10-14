@@ -5,6 +5,7 @@
       "label": "Review a random Lean file or Basic.lean section",
       "type": "shell",
       "command": "python3 scripts/review.py",
+      "windows": { "command": "python scripts/review.py" },
       "problemMatcher": [],
       "presentation": { "reveal": "always", "panel": "dedicated", "focus": true }
     }

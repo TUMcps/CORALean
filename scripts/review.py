@@ -83,6 +83,14 @@ def today():
     return datetime.date.today().strftime("%d-%B-%Y")
 
 
+def write_like(f, text):
+    """Write `text` (lines joined by `\\n`) to `f` with the line endings `f` has now: a Windows
+    checkout may hold CRLF, and `write_text` would otherwise turn every `\\n` into the platform's."""
+    crlf = b"\r\n" in f.read_bytes()
+    with open(f, "w", encoding="utf-8", newline="\r\n" if crlf else "\n") as h:
+        h.write(text)
+
+
 def git(*a):
     return subprocess.run(["git", *a], cwd=ROOT, capture_output=True, text=True).stdout.strip()
 
@@ -175,8 +183,9 @@ def main():
         rel = str(f.relative_to(ROOT))
         what = f"{rel} `{label}`" if label else rel
         at = f"{f}:{start}"  # 1-based: the banner above the block
-        if shutil.which("code"):
-            subprocess.run(["code", "-g", at] if label else ["code", str(f)])
+        code = shutil.which("code")  # on Windows `code.cmd`, which only its full path launches
+        if code:
+            subprocess.run([code, "-g", at] if label else [code, str(f)])
         else:
             print(f"open: {at if label else f}")
         print(what)
@@ -186,7 +195,7 @@ def main():
         if ans == "g":
             new = add_review(f.read_text(encoding="utf-8"), f"{today()} ({name})", start)
             assert valid(new, start)
-            f.write_text(new, encoding="utf-8")
+            write_like(f, new)
             done += 1
             if "--commit" in a:
                 subprocess.run(["git", "add", rel], cwd=ROOT)
