@@ -42,6 +42,14 @@
       "kind": "other",
       "cex": "SimulateEndTimeCora.lean",
       "fix": null
+    },
+    "initReach": {
+      "description": "constant offset treated as time-varying input; intervals miss start",
+      "kind": "unsound",
+      "cex": "InitReachConstantOffsetCora.lean",
+      "findings": [
+        "LinParamSys `initReach`, constant offset `c`"
+      ]
     }
   },
   "contDynamics/linProbSys": {
@@ -58,11 +66,15 @@
       "cex": "CanonicalFormCNeOne.lean"
     },
     "reach": {
-      "description": "Krylov bound used off hypothesis; Krylov drops constant input c",
+      "description": "Krylov drops c; fromStart, decomp, curvature, adaptive offsets wrong",
       "kind": "unsound",
       "cex": "ReachKrylov.lean",
       "findings": [
-        "LinearSys `reach`, `'krylov'`, dropped terms"
+        "LinearSys `reach`, `'krylov'`, dropped terms",
+        "LinearSys `reach`, `'fromStart'`, constant input with `U = {0}`",
+        "LinearSys `reach`, input curvature `C_input` not propagated",
+        "LinearSys `reach`, `'decomp'`, output offset and `PU` reduction",
+        "LinearSys `reach`, `'adaptive'`, output offset of the next input piece"
       ]
     },
     "verify": {
@@ -159,9 +171,12 @@
       "cex": "LinReachAdaptiveCora1D.lean"
     },
     "reachInner": {
-      "description": "'minkdiff' time-interval sets and 'scale' sets are not inner",
+      "description": "'minkdiff', 'scale' sets not inner; timeStepInner option crashes",
       "kind": "unsound",
-      "cex": "ReachInnerScalingCora1D.lean"
+      "cex": "ReachInnerScalingCora1D.lean",
+      "findings": [
+        "NonlinearSys `reachInner`, `timeStepInner` validation"
+      ]
     }
   },
   "contDynamics/nonlinearSysDT": {
@@ -686,6 +701,15 @@
     "lift_": {
       "description": "project applies the inverse permutation of lift",
       "kind": "other"
+    },
+    "reduce": {
+      "description": "valero loses a generator; five accepted techniques crash",
+      "kind": "unsound",
+      "cex": "ReduceValeroCora.lean",
+      "findings": [
+        "Zonotope `reduce`, `'valero'`, leftover of the last run",
+        "Zonotope `reduce`, techniques accepted by `validateOptions`"
+      ]
     }
   },
   "contSet/zoo": {

@@ -21,7 +21,9 @@ public import CORALean.ContSet.Zonotope.Real.Counterexamples.ParallelotopeEqAbsM
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.QuadTaylorPrinted
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.RaghuramanAlphaMaxCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceRowSum
+public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceTechniqueCrashCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceUnderApproxDispatch
+public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceValeroCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.RepresentsaPolytopeCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitBundleCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitCora
