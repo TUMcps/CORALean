@@ -19,7 +19,7 @@ so the step's order `η` serves every window. No window when no `s` is found.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,8 +39,8 @@ the exponential at order `η` after scaling `t_k` down to the step. -/
 def LinParamSys.reachStepkFloat (sys : LinParamSys ℐ[𝕋] n)
     (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Option (Zonotope (Vec 𝕋 n)) := do
   let tk := LinearSys.sampleTimeFloat Δt k                          -- [t_k], bracketed
-  let sk ← sys.squaringsFloat Δt tk.1 tk.2 η                        -- t_k / 2^s within Δt
-  let eAtk := sys.expSquaringFloat tk.1 tk.2 η sk                   -- [e^{[A] t_k}], squared
+  let sk ← sys.squaringsFloat Δt tk.inf tk.sup η                        -- t_k / 2^s within Δt
+  let eAtk := sys.expSquaringFloat tk.inf tk.sup η sk                   -- [e^{[A] t_k}], squared
   pure (Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- H^R(τ_k)
     (S := 𝒵[𝕋]) eAtk Rτ₀)
 

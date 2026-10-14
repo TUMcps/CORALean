@@ -15,7 +15,7 @@ the previous one of the other function over `k + 1`, which the division encloses
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -75,12 +75,12 @@ theorem Taylm.aux_div_succ_mem {l u : 𝕋} {v : ℝ} (hl : toReal l ≤ v) (hu 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.trigCoef_mem (p : ℕ) (c : 𝕋) (k : ℕ) :
-    (toReal (Taylm.trigCoef p c k).1.1 ≤ iteratedDeriv k Real.sin (toReal c) / (k.factorial : ℝ) ∧
-      iteratedDeriv k Real.sin (toReal c) / (k.factorial : ℝ) ≤ toReal (Taylm.trigCoef p c k).1.2)
-    ∧ (toReal (Taylm.trigCoef p c k).2.1 ≤
+    (toReal (Taylm.trigCoef p c k).1.inf ≤ iteratedDeriv k Real.sin (toReal c) / (k.factorial : ℝ) ∧
+      iteratedDeriv k Real.sin (toReal c) / (k.factorial : ℝ) ≤ toReal (Taylm.trigCoef p c k).1.sup)
+    ∧ (toReal (Taylm.trigCoef p c k).2.inf ≤
         iteratedDeriv k Real.cos (toReal c) / (k.factorial : ℝ) ∧
       iteratedDeriv k Real.cos (toReal c) / (k.factorial : ℝ) ≤
-        toReal (Taylm.trigCoef p c k).2.2) := by -- --- PROOF ---
+        toReal (Taylm.trigCoef p c k).2.sup) := by -- --- PROOF ---
   induction k with
   | zero =>
     simp only [iteratedDeriv_zero, Nat.factorial_zero, Nat.cast_one, div_one, Taylm.trigCoef]
@@ -96,11 +96,11 @@ theorem Taylm.trigCoef_mem (p : ℕ) (c : 𝕋) (k : ℕ) :
     have hc : iteratedDeriv (k + 1) Real.cos (toReal c) =
         -iteratedDeriv k Real.sin (toReal c) := by
       rw [Real.iteratedDeriv_add_one_cos, Pi.neg_apply]
-    have hns : toReal (neg (Taylm.trigCoef p c k).1.2) ≤
+    have hns : toReal (neg (Taylm.trigCoef p c k).1.sup) ≤
         -iteratedDeriv k Real.sin (toReal c) / (k.factorial : ℝ) := by
       rw [toReal_neg, neg_div]; exact neg_le_neg ih.1.2
     have hns' : -iteratedDeriv k Real.sin (toReal c) / (k.factorial : ℝ) ≤
-        toReal (neg (Taylm.trigCoef p c k).1.1) := by
+        toReal (neg (Taylm.trigCoef p c k).1.inf) := by
       rw [toReal_neg, neg_div]; exact neg_le_neg ih.1.1
     rw [hf, hf, hs, hc]
     exact ⟨Taylm.aux_div_succ_mem ih.2.1 ih.2.2 k, Taylm.aux_div_succ_mem hns hns' k⟩

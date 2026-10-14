@@ -15,7 +15,7 @@ condition on the denominator's hull.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.rdivide_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (h₁ : T₁.Encloses f)
     (h₂ : T₂.Encloses g)
-    (hm : 0 < toReal (maximum (minimum T₂.constCoef T₂.bounds.1)
-      (neg (maximum T₂.constCoef T₂.bounds.2)))) :
+    (hm : 0 < toReal (maximum (minimum T₂.constCoef T₂.bounds.inf)
+      (neg (maximum T₂.constCoef T₂.bounds.sup)))) :
     (T₁.rdivide T₂).Encloses fun t => f t / g t := by
   simpa [Taylm.rdivide, div_eq_mul_inv] using Taylm.times_outer h₁ (Taylm.inv_outer h₂ hm)
 

@@ -38,7 +38,7 @@ form does. The miss is the region, not overestimation.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -173,11 +173,11 @@ theorem aux_linReachAdaptiveCora1D_optimal (rerr1 deltat varphimin : ℝ) (hr : 
 
 /-- `priv_abstractionError_adaptive` on a box whose shift by `p` has the Hessian bound `f''` at
 its lower end. -/
-theorem aux_linReachAdaptiveCora1D_abstrErr (f'' : ℝ → ℝ) (hessIv : ℝ → ℝ → ℝ × ℝ)
+theorem aux_linReachAdaptiveCora1D_abstrErr (f'' : ℝ → ℝ) (hessIv : ℝ → ℝ → Real.Interval ℝ)
     (hH : ∀ lo hi, lo ≤ hi → lo ≤ 0 → hi ≤ -lo →
-      max |(hessIv lo hi).1| |(hessIv lo hi).2| = f'' lo)
+      max |(hessIv lo hi).inf| |(hessIv lo hi).sup| = f'' lo)
     (p lo hi : ℝ) (h1 : lo + p ≤ hi + p) (h2 : lo + p ≤ 0) (h3 : hi + p ≤ -(lo + p)) :
-    NonlinearSys.abstrErrAdaptiveCora1D hessIv none p (lo, hi)
+    NonlinearSys.abstrErrAdaptiveCora1D hessIv none p ⟨lo, hi⟩
       = 1 / 2 * max |lo| |hi| * f'' (lo + p) * max |lo| |hi| := by
   simp only [NonlinearSys.abstrErrAdaptiveCora1D, hH _ _ h1 h2 h3]
 
@@ -312,13 +312,13 @@ theorem aux_linReachAdaptiveCora1D_decrLoop₀ (Φ : ℝ → ℝ)
 set_option maxHeartbeats 100000 in
 /-- CORA's first adaptive step on the example: the tuned step is the horizon, and `Rti` ends
 below `1/50000`. -/
-theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → ℝ × ℝ)
-    (hH : ∀ lo hi, lo ≤ hi → lo ≤ 0 → hi ≤ -lo → max |(hessIv lo hi).1| |(hessIv lo hi).2|
+theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → Real.Interval ℝ)
+    (hH : ∀ lo hi, lo ≤ hi → lo ≤ 0 → hi ≤ -lo → max |(hessIv lo hi).inf| |(hessIv lo hi).sup|
       = (fun x : ℝ => 468559 / 7880 * x ^ 4 - 122853 / 1970 * x ^ 5) lo) :
     ∃ R, NonlinearSys.linReachAdaptiveCora1D
       (fun x : ℝ => 1 - 59049 / 39400 * x + 468559 / 236400 * x ^ 6 - 40951 / 27580 * x ^ 7)
       (fun x => -(59049 / 39400) + 468559 / 39400 * x ^ 5 - 40951 / 3940 * x ^ 6)
-      hessIv 0 0 200 2 = some R ∧ R.2.2 = 2 ∧ R.1.2 < 1 / 50000 := by -- --- PROOF ---
+      hessIv 0 0 200 2 = some R ∧ R.2.2 = 2 ∧ R.1.sup < 1 / 50000 := by -- --- PROOF ---
   unfold NonlinearSys.linReachAdaptiveCora1D
   extract_lets decrFactor redFactor zetaphi timeStep_h finitehorizon p_h f0_h A_h zetaP_h Rdelta_h
     Rlintp_h Rlinti_h totalInt₀ H₀ c₀ r₀ H_test hessianConst Φ_h timeStep₁ p₁ f0₁ A₁ Rdelta₁
@@ -329,17 +329,17 @@ theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → ℝ × ℝ)
   have hp : p_h = 1 := by simp only [p_h, hts]; norm_num
   have hA : A_h = 0 := by simp only [A_h, hp]; norm_num
   have hzP : zetaP_h = 1 := by simp only [zetaP_h, hA, zero_mul, Real.exp_zero]
-  have hRl : Rlinti_h = (-165961 / 165480, -1) := by
+  have hRl : Rlinti_h = ⟨-165961 / 165480, -1⟩ := by
     simp only [Rlinti_h, Rdelta_h, Rlintp_h, f0_h, hp, hts]; norm_num
   have hRtp : Rlintp_h = -165961 / 165480 := by
     simp only [Rlintp_h, Rdelta_h, f0_h, hp, hts]; norm_num
   -- the first box and its enlargement read different Hessians: not constant
-  have hH₀ : max |H₀.1| |H₀.2| = 468559 / 7880 * (-481 / 165480) ^ 4
+  have hH₀ : max |H₀.inf| |H₀.sup| = 468559 / 7880 * (-481 / 165480) ^ 4
       - 122853 / 1970 * (-481 / 165480) ^ 5 := by
     have e : H₀ = hessIv (-481 / 165480) 0 := by
       simp only [H₀, totalInt₀, hRl, hp]; norm_num
     rw [e, hH _ _ (by norm_num) (by norm_num) (by norm_num)]
-  have hHt : max |H_test.1| |H_test.2| = 468559 / 7880 * (-10101 / 3309600) ^ 4
+  have hHt : max |H_test.inf| |H_test.sup| = 468559 / 7880 * (-10101 / 3309600) ^ 4
       - 122853 / 1970 * (-10101 / 3309600) ^ 5 := by
     have e : H_test = hessIv (-10101 / 3309600) (481 / 3309600) := by
       simp only [H_test, c₀, r₀, totalInt₀, hRl, hp]; norm_num
@@ -349,7 +349,7 @@ theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → ℝ × ℝ)
     rw [if_neg]
     intro h
     have := hH₀
-    rw [h, hHt] at this
+    rw [h.1, h.2, hHt] at this
     norm_num at this
   -- a pass of the horizon run, in closed form
   have hΦh : ∀ ae : ℝ, 0 ≤ ae → ae ≤ 1 / 1000 → Φ_h ae = 1 / 2 * (165961 / 165480 + 2 * ae)
@@ -371,7 +371,7 @@ theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → ℝ × ℝ)
   have hp₁ : p₁ = 9 / 10 := by simp only [p₁, hts₁]; norm_num
   have hA₁ : A₁ = 0 := by simp only [A₁, hp₁]; norm_num
   -- its linearized run and a pass, in closed form
-  have hRl₁ : Rlinti₁ = (-2510328409443 / 2758000000000, -9 / 10) := by
+  have hRl₁ : Rlinti₁ = ⟨-2510328409443 / 2758000000000, -9 / 10⟩ := by
     simp only [Rlinti₁, Rdelta₁, Rlintp₁, f0₁, hp₁, hts₁]; norm_num
   have hΦ₁ : ∀ ae : ℝ, 0 ≤ ae → ae ≤ 1 / 1000 → Φ₁ ae = 1 / 2 * (2510328409443 / 2758000000000
       + 9 / 5 * ae) * (468559 / 7880 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 4
@@ -407,7 +407,7 @@ theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → ℝ × ℝ)
   have hp₃ : p₃ = 9 / 10 := by simp only [p₃, hts₃]; norm_num
   have hA₃ : A₃ = 0 := by simp only [A₃, hp₃]; norm_num
   -- its linearized run and a pass, in closed form
-  have hRl₃ : Rlinti₃ = (-2510328409443 / 2758000000000, -9 / 10) := by
+  have hRl₃ : Rlinti₃ = ⟨-2510328409443 / 2758000000000, -9 / 10⟩ := by
     simp only [Rlinti₃, Rdelta₃, Rlintp₃, f0₃, hp₃, hts₃]; norm_num
   have hΦ₃ : ∀ ae : ℝ, 0 ≤ ae → ae ≤ 1 / 1000 → Φ₃ ae = 1 / 2 * (2510328409443 / 2758000000000
       + 9 / 5 * ae) * (468559 / 7880 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 4
@@ -424,7 +424,7 @@ theorem aux_linReachAdaptiveCora1D_step (hessIv : ℝ → ℝ → ℝ × ℝ)
   rw [if_neg (not_not.mpr hA₃), hloop₃]
   dsimp (config := { zeta := false }) only
   refine ⟨_, rfl, hfh, ?_⟩
-  show Rlinti_h.2 + p_h + timeStep_h * eh < 1 / 50000
+  show Rlinti_h.sup + p_h + timeStep_h * eh < 1 / 50000
   rw [hRl, hp, hts]
   linarith only [heh1]
 
@@ -526,10 +526,10 @@ theorem NonlinearSys.linReachAdaptiveCora1D_hessianRegion_counterexample :
     (∀ x, HasDerivAt f (f' x) x) ∧ (∀ x, HasDerivAt f' (f'' x) x) ∧
       (∀ lo hi y, y ∈ Icc lo hi → |f'' y| ≤ M lo hi) ∧
       (∀ lo hi, lo ≤ hi → lo ≤ 0 → hi ≤ -lo → M lo hi = f'' lo) ∧
-      (∀ hessIv : ℝ → ℝ → ℝ × ℝ, (∀ lo hi, lo ≤ hi → lo ≤ 0 → hi ≤ -lo →
-          max |(hessIv lo hi).1| |(hessIv lo hi).2| = f'' lo) →
+      (∀ hessIv : ℝ → ℝ → Real.Interval ℝ, (∀ lo hi, lo ≤ hi → lo ≤ 0 → hi ≤ -lo →
+          max |(hessIv lo hi).inf| |(hessIv lo hi).sup| = f'' lo) →
         ∃ R, NonlinearSys.linReachAdaptiveCora1D f f' hessIv 0 0 200 2 = some R ∧
-          R.2.2 = 2 ∧ R.1.2 < 1 / 50000) ∧
+          R.2.2 = 2 ∧ R.1.sup < 1 / 50000) ∧
       ∃ x : ℝ → ℝ, x 0 = 0 ∧
         (∀ t ∈ Icc (0 : ℝ) (1 / 4), HasDerivWithinAt x (f (x t)) (Icc 0 (1 / 4)) t) ∧
         1 / 20 ≤ x (1 / 4) := by -- --- PROOF ---

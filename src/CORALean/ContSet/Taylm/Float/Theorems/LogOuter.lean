@@ -19,7 +19,7 @@ its rounding.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.log_outer (q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hpos : 0 < toReal (minimum T.constCoef T.bounds.1)) :
+    (hpos : 0 < toReal (minimum T.constCoef T.bounds.inf)) :
     (T.log q s).Encloses fun t => Real.log (f t) := by -- --- PROOF ---
   set c := T.constCoef
   set N := T.maxOrder
@@ -45,7 +45,7 @@ theorem Taylm.log_outer (q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (
     (fun k => iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ))
     (fun k _ => Taylm.logCoef_mem q s hc k) fun t ht => ?_
   have hb := Taylm.bounds_mem h ht
-  set L := min (toReal c) (toReal T.bounds.1)
+  set L := min (toReal c) (toReal T.bounds.inf)
   -- Lagrange at the centre, the derivative bounded at the bottom of the hull
   have hL := taylor_remainder_abs_le (g := Real.log) (N := N) (c := toReal c)
     (x := f t) (D := (N.factorial : ℝ) / L ^ (N + 1))
@@ -61,11 +61,11 @@ theorem Taylm.log_outer (q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (
       gcongr
   refine le_trans hL ?_
   -- `N!/Lᴺ⁺¹ · yᴺ⁺¹/(N+1)! = (y/L)ᴺ⁺¹/(N+1)`, then each piece below its rounding
-  set B : 𝕋 := maximum zero (maximum (subUp T.bounds.2 c) (subUp c T.bounds.1))
+  set B : 𝕋 := maximum zero (maximum (subUp T.bounds.sup c) (subUp c T.bounds.inf))
   have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   -- `B / L` rounded up, then its power, then the division by `N + 1`
-  have hLf : toReal (minimum c T.bounds.1) = L := toReal_minimum _ _
-  have hq : |f t - toReal c| / L ≤ toReal (divUp B (minimum c T.bounds.1)) := by
+  have hLf : toReal (minimum c T.bounds.inf) = L := toReal_minimum _ _
+  have hq : |f t - toReal c| / L ≤ toReal (divUp B (minimum c T.bounds.inf)) := by
     refine le_trans ?_ (div_le_divUp _ _ (by rw [hLf]; exact hpos))
     rw [hLf]
     exact div_le_div_of_nonneg_right hB hpos.le

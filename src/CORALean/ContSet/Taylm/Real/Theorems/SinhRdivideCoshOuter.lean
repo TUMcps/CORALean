@@ -22,7 +22,7 @@ Encloses `tanh ∘ f` whenever the denominator's model passes the inverse's cond
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sinh_rdivide_cosh_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hside : 0 < min T.cosh.constCoef T.cosh.bounds.1 ∨ max T.cosh.constCoef T.cosh.bounds.2 < 0) :
+    (hside : 0 < min T.cosh.constCoef T.cosh.bounds.inf ∨
+      max T.cosh.constCoef T.cosh.bounds.sup < 0) :
     (T.sinh.rdivide T.cosh).Encloses fun t => Real.tanh (f t) := by
   simpa only [Real.tanh_eq_sinh_div_cosh] using
     Taylm.rdivide_outer (Taylm.sinh_outer h) (Taylm.cosh_outer h) hside

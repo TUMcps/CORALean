@@ -30,14 +30,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- ======================================  `Zoo.interval`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The intersection of the members' interval enclosures: the Taylor model's range bound `bounds`
 (`Taylm.interval` at one component) meets the stored interval; a missing member leaves the other. -/
 def Zoo.interval (Z : Zoo 𝕋 n) : Option (Interval (Vec 𝕋 1)) :=
   Option.merge Interval.intersection
-    (Z.taylm.map fun T => ⟨fun _ => T.bounds.1, fun _ => T.bounds.2⟩) Z.ivl
+    (Z.taylm.map fun T => ⟨fun _ => T.bounds.inf, fun _ => T.bounds.sup⟩) Z.ivl
 
 
 -- =======================================  `Zoo.minus`  ======================================== --

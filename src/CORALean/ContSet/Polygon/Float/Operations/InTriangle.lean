@@ -16,7 +16,7 @@ triangle with two corners swapped, which a search over corners also tries.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,9 +32,9 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Polygon.inTriangle (a b c x : Vec 𝕋 2) : Bool :=
-  ltStrict zero (Polygon.orientBounds a b c).1 &&
-    le zero (Polygon.orientBounds b c x).1 && le zero (Polygon.orientBounds c a x).1 &&
-      le zero (Polygon.orientBounds a b x).1
+  ltStrict zero (Polygon.orientBounds a b c).inf &&
+    le zero (Polygon.orientBounds b c x).inf && le zero (Polygon.orientBounds c a x).inf &&
+      le zero (Polygon.orientBounds a b x).inf
 
 end CORALean.Float
 

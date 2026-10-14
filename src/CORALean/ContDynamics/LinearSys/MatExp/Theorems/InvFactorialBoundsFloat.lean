@@ -16,7 +16,7 @@ The low bound divides `one` by an upper bound of `k!` and compares reciprocals
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,9 +32,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.invFactorialBounds_mem (k : ℕ) :
-    toReal (MatExp.invFactorialBounds (𝕋 := 𝕋) k).1 ≤ (Nat.factorial k : ℝ)⁻¹
+    toReal (MatExp.invFactorialBounds (𝕋 := 𝕋) k).inf ≤ (Nat.factorial k : ℝ)⁻¹
       ∧ (Nat.factorial k : ℝ)⁻¹
-        ≤ toReal (MatExp.invFactorialBounds (𝕋 := 𝕋) k).2 := by -- --- PROOF ---
+        ≤ toReal (MatExp.invFactorialBounds (𝕋 := 𝕋) k).sup := by -- --- PROOF ---
   have hfpos : (0 : ℝ) < (Nat.factorial k : ℝ) := by exact_mod_cast Nat.factorial_pos k
   have hb := MatExp.factorial_le_factorialUp (𝕋 := 𝕋) k
   have hf := MatExp.factorialDown_mem (𝕋 := 𝕋) k

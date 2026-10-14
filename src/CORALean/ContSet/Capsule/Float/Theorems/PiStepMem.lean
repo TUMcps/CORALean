@@ -12,7 +12,7 @@ The two ends of `piStep` are bounds of the real `π / 499`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,8 +28,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.piStep_mem (p k : ℕ) :
-    toReal (Capsule.piStep (𝕋 := 𝕋) p k).1 ≤ Real.pi / 499 ∧
-      Real.pi / 499 ≤ toReal (Capsule.piStep (𝕋 := 𝕋) p k).2 := by -- --- PROOF ---
+    toReal (Capsule.piStep (𝕋 := 𝕋) p k).inf ≤ Real.pi / 499 ∧
+      Real.pi / 499 ≤ toReal (Capsule.piStep (𝕋 := 𝕋) p k).sup := by -- --- PROOF ---
   have hm : toReal (acosDown p k (zero : 𝕋)) ≤ Real.pi / 2 := by
     have := acosDown_le p k (zero : 𝕋)
     rwa [toReal_zero, Real.arccos_zero] at this

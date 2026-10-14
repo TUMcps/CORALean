@@ -18,7 +18,7 @@ lies in: `corrCoeff i` is in `[corrCoeffLow i, 0]` and `r^i/i!` below
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- `corrCoeff i · r^i/i! · Aⁱ` over the whole box `A`, for a nonnegative `r`. -/
 def MatExp.intervalCorrTerm (A : Interval (Mat 𝕋 n n)) (r : 𝕋) (i : ℕ) :
     Interval (Mat 𝕋 n n) :=
-  let cLo := mulDown (MatExp.corrCoeffLow i) (MatExp.taylorCoeffBounds r i).2  -- κ · r^i/i!
+  let cLo := mulDown (MatExp.corrCoeffLow i) (MatExp.taylorCoeffBounds r i).sup  -- κ · r^i/i!
   (Interval.smul cLo zero (Interval.matPow A i)).materialiseMat               -- [κ r^i/i!, 0] Aⁱ
 
 end CORALean.Float

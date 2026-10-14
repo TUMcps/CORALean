@@ -14,7 +14,7 @@ hypothesis at the magnitude of the model, as `Taylm.exp_outer` keeps it.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.cosh_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hp : toReal (maximum (absolute T.constCoef) (maximum (absolute T.bounds.1)
-      (absolute T.bounds.2))) ≤ 2 ^ p / 2) :
+    (hp : toReal (maximum (absolute T.constCoef) (maximum (absolute T.bounds.inf)
+      (absolute T.bounds.sup))) ≤ 2 ^ p / 2) :
     (T.cosh p).Encloses fun t => Real.cosh (f t) := by
   have := Taylm.hyperbolic_outer p false h hp
   simp only [Bool.false_eq_true, if_false] at this

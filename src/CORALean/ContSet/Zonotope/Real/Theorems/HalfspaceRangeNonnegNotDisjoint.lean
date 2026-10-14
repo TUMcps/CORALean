@@ -21,7 +21,7 @@ strict version that holds.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ open Matrix
 /-- [1, Sec. 5.2] as printed is false: `ω̲ = 0` and the zonotope meets the halfspace. -/
 theorem Zonotope.halfspaceRange_nonneg_not_disjoint :
     ∃ (nv : Vec ℝ 1) (d : ℝ) (Z : Zonotope (Vec ℝ 1)),
-      0 ≤ (Z.halfspaceRange nv d).1 ∧ ∃ x ∈ Z.construct, nv ⬝ᵥ x ≤ d := by
+      0 ≤ (Z.halfspaceRange nv d).inf ∧ ∃ x ∈ Z.construct, nv ⬝ᵥ x ≤ d := by
   refine ⟨fun _ => 1, 0, ⟨0, 0, Fin.elim0⟩, ?_, 0, ⟨Fin.elim0, fun i => i.elim0, ?_⟩, ?_⟩
   · simp [Zonotope.halfspaceRange]
   · simp

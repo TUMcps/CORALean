@@ -35,7 +35,7 @@ The induction is on the search's own fuel; nothing here needs it to terminate.
 
 -- Authors:       Claude Opus 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -81,10 +81,10 @@ theorem aux_optDeltatSearch_descent {le : ℝ → ℝ → Bool}
 estimated set size is at most that of every `λ'` the search passed. -/
 theorem optDeltat_descent {le : ℝ → ℝ → Bool} (hle : ∀ a b : ℝ, le a b = true → a ≤ b)
     (ζδ ζZ ζA φ1 r₀ rabs h : ℝ) (fuel : ℕ) :
-    (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).1
-        = h * ζδ ^ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).2 ∧
-      ∀ j ≤ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).2,
-        reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).2
+    (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).Δt
+        = h * ζδ ^ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent ∧
+      ∀ j ≤ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent,
+        reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent
           ≤ reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs j := by
   obtain ⟨-, hmin⟩ := aux_optDeltatSearch_descent hle (reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs)
     fuel 0

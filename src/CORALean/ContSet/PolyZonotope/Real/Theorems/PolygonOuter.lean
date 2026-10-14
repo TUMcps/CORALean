@@ -18,7 +18,7 @@ much.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,8 +39,8 @@ theorem PolyZonotope.aux_polygonRound_cover (pick : PolyZonotope (Vec ℝ 2) →
   by_cases hp : pick q
   · rw [← PolyZonotope.splitLongestGen_union] at hxq
     rcases hxq with h | h
-    · exact ⟨q.splitLongestGen.1, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, h⟩
-    · exact ⟨q.splitLongestGen.2, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, h⟩
+    · exact ⟨q.splitLongestGen.fst, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, h⟩
+    · exact ⟨q.splitLongestGen.snd, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, h⟩
   · exact ⟨q, List.mem_flatMap.mpr ⟨q, hq, by simp [hp]⟩, hxq⟩
 
 theorem PolyZonotope.aux_polygonPieces_cover (pZ : PolyZonotope (Vec ℝ 2))

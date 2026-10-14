@@ -20,7 +20,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.DirBox
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,8 +37,8 @@ variable {n : ℕ}
 
 /-- The box heuristic's split is exact. -/
 theorem ZonoBundle.splitBox_union (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) (j : Fin n) :
-    (zB.split (ZonoBundle.dirBox n) (zB.enclosingBox (ZonoBundle.dirBox n) i) j).1.construct
-      ∪ (zB.split (ZonoBundle.dirBox n) (zB.enclosingBox (ZonoBundle.dirBox n) i) j).2.construct
+    (zB.split (ZonoBundle.dirBox n) (zB.enclosingBox (ZonoBundle.dirBox n) i) j).fst.construct
+      ∪ (zB.split (ZonoBundle.dirBox n) (zB.enclosingBox (ZonoBundle.dirBox n) i) j).snd.construct
       = zB.construct :=
   ZonoBundle.split_union_enclosingBox _ (by simp [ZonoBundle.dirBox]) zB i j
 

@@ -32,7 +32,7 @@ unchanged: (27), (29), (30), (31) are [2]'s (54), (56), (57), (58).
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -48,22 +48,22 @@ variable {n : ℕ}
 /-- [1, Alg. 2]: the optimal time step size `Δt*` and the gain `φ₁` to hand the
 next step, and `none` where the first step's search for `Δ` gave out. -/
 noncomputable def tuneDeltat (le : ℝ → ℝ → Bool) (dabs : ℝ → Fin n → ℝ) (rabs : ℝ → ℝ)
-    (ζδ ζΔ ζZ ζP r₀ φ1 Δ Δinit : ℝ) (s fuel : ℕ) : Option (ℝ × ℝ) :=
+    (ζδ ζΔ ζZ ζP r₀ φ1 Δ Δinit : ℝ) (s fuel : ℕ) : Option (NonlinearSys.TunedStep ℝ) :=
   if s = 1 then                                                -- 1. if s = 1 then
     let Δ₀ := Δinit                                            -- 2. initialize Δt
     match tuneDeltatInit le dabs ζδ ζΔ Δ₀ fuel with            -- 3.-7. the loop of (32)
     | none => none
-    | some (Δ₁, φ₁) =>
+    | some ⟨Δ₁, φ₁⟩ =>
       let opt := optDeltat le ζδ ζZ ζP φ₁ r₀ (rabs Δ₁) Δ₁ fuel -- 8. Δt* by (31)
-      some (opt.1, φ₁)
+      some ⟨opt.Δt, φ₁⟩
   else                                                         -- 9. else
     let Δk := Δ * (ζδ - ζΔ) / (ζδ - φ1)                        -- 10. Δ ← Δ(ζ_δ-ζ_Δ)/(ζ_δ-φ₁)
     let rabs1 := rabs Δk                                       -- 11. R_abs(Δ), and r_abs,1
     let opt := optDeltat le ζδ ζZ ζP φ1 r₀ rabs1 Δk fuel       -- 12. Δt* by (31)
-    let rabsk := rabs opt.1                                    -- 13. (29)'s r_abs,k, at Δt*
-    let φ₁ := estimateGain le ζδ ((1 / ζδ) ^ opt.2)            -- 13. φ₁ by (29)
-      rabs1 rabsk opt.2 fuel
-    some (opt.1, φ₁)
+    let rabsk := rabs opt.Δt                                    -- 13. (29)'s r_abs,k, at Δt*
+    let φ₁ := estimateGain le ζδ ((1 / ζδ) ^ opt.exponent)            -- 13. φ₁ by (29)
+      rabs1 rabsk opt.exponent fuel
+    some ⟨opt.Δt, φ₁⟩
 
 end CORALean
 

@@ -17,7 +17,7 @@ sine and cosine (`Global/Float/SinCos`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ def Taylm.sin (p : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   let N := T.maxOrder
   let c := T.constCoef
   let ρ := T.unitRemainder
-  T.compose c (fun k => (Taylm.trigCoef p c k).1.1) (fun k => (Taylm.trigCoef p c k).1.2) N ρ
+  T.compose c (fun k => (Taylm.trigCoef p c k).1.inf) (fun k => (Taylm.trigCoef p c k).1.sup) N ρ
 
 end CORALean.Float
 

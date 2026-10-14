@@ -43,7 +43,7 @@ for `τ ∈ [0, tmax]` whenever `nrm ≤ (η + 2)/2`; where that float test fail
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -69,10 +69,10 @@ def LinearSys.trajectoryErrorFloat (sys : LinearSys 𝕋 n) (f₁ f₂ u : Vec �
   let Apow : ℕ → Interval (Mat 𝕋 n n) := fun i =>                -- `A^i`, bracketed
     Interval.matPow (Interval.point sys.A) i
   let M₁ : ℕ → Interval (Mat 𝕋 n n) := fun m =>                  -- `A^(m+2)/(m+2)!`
-    Interval.smul (MatExp.invFactorialBounds (m + 2)).1 (MatExp.invFactorialBounds (m + 2)).2
+    Interval.smul (MatExp.invFactorialBounds (m + 2)).inf (MatExp.invFactorialBounds (m + 2)).sup
       (Apow (m + 2))
   let M₂ : ℕ → Interval (Mat 𝕋 n n) := fun m =>                  -- `A^(m+1)/(m+2)!`
-    Interval.smul (MatExp.invFactorialBounds (m + 2)).1 (MatExp.invFactorialBounds (m + 2)).2
+    Interval.smul (MatExp.invFactorialBounds (m + 2)).inf (MatExp.invFactorialBounds (m + 2)).sup
       (Apow (m + 1))
   let tLo : ℕ → 𝕋 := fun m => powDown tmin (m + 1)              -- tZono{m+1}, down
   let tHi : ℕ → 𝕋 := fun m => powUp tmax (m + 1)                -- and up

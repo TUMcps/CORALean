@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.NonlinearSys.Definitions.TunedStep
 public import CORALean.ContDynamics.NonlinearSys.Operations.GainMaxFloat
 
 @[expose] public section
@@ -20,7 +21,7 @@ guarantees holds for whatever this returns. See [1].
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,14 +39,14 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 /-- Lines 3-7: shrink `Δ` by `ζ_δ` until the gain it yields reaches `ζ_Δ`, and
 `none` once `fuel` shrinkings have not. -/
 def tuneDeltatInitFloat {n : ℕ} (dabs : 𝕋 → Fin n → 𝕋) (ζδ ζΔ : 𝕋) :
-    𝕋 → ℕ → Option (𝕋 × 𝕋)
+    𝕋 → ℕ → Option (NonlinearSys.TunedStep 𝕋)
   | _, 0 => none
   | Δ, k + 1 =>
     let Δnext := mulUp ζδ Δ                                      -- 4. Δ ← ζ_δ Δ
     let dΔ := dabs Δnext                                         -- 5. d(box(R_abs(Δ)))
     let dδΔ := dabs (mulUp ζδ Δnext)                             -- 5. d(box(R_abs(ζ_δ Δ)))
     let φ1 := gainMaxFloat dΔ dδΔ                                -- 6. φ₁ by (25)
-    if le ζΔ φ1 then some (Δnext, φ1)                            -- 3. while φ₁ < ζ_Δ
+    if le ζΔ φ1 then some ⟨Δnext, φ1⟩                            -- 3. while φ₁ < ζ_Δ
     else tuneDeltatInitFloat dabs ζδ ζΔ Δnext k
 
 end CORALean

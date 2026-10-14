@@ -31,7 +31,7 @@ not overestimation; CORA's confinement check, `trueError ≤ appliedError`, pass
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,8 +49,8 @@ open scoped NNReal
 theorem aux_linReachCora1D_step :
     ∃ R, NonlinearSys.linReachCora1D (fun x : ℝ => 1 - 1001 / 750 * x + 1001 / 3000 * x ^ 4)
       (fun x => -(1001 / 750) + 1001 / 750 * x ^ 3)
-      (fun lo hi => 1001 / 250 * max (lo ^ 2) (hi ^ 2)) (0, 0) 2 2 = some R ∧
-      R.1.2 < 1 / 50000 := by
+      (fun lo hi => 1001 / 250 * max (lo ^ 2) (hi ^ 2)) ⟨0, 0⟩ 2 2 = some R ∧
+      R.1.sup < 1 / 50000 := by
   simp only [NonlinearSys.linReachCora1D, abstrErrLoop]
   norm_num
 
@@ -134,7 +134,7 @@ theorem NonlinearSys.linReachCora1D_hessianRegion_counterexample :
     let hess : ℝ → ℝ → ℝ := fun lo hi => 1001 / 250 * max (lo ^ 2) (hi ^ 2)
     (∀ x, HasDerivAt f (f' x) x) ∧ (∀ x, HasDerivAt f' (1001 / 250 * x ^ 2) x) ∧
       (∀ lo hi y, y ∈ Icc lo hi → |1001 / 250 * y ^ 2| ≤ hess lo hi) ∧
-      (∃ R, NonlinearSys.linReachCora1D f f' hess (0, 0) 2 2 = some R ∧ R.1.2 < 1 / 50000) ∧
+      (∃ R, NonlinearSys.linReachCora1D f f' hess ⟨0, 0⟩ 2 2 = some R ∧ R.1.sup < 1 / 50000) ∧
       ∃ x : ℝ → ℝ, x 0 = 0 ∧
         (∀ t ∈ Icc (0 : ℝ) (1 / 4), HasDerivWithinAt x (f (x t)) (Icc 0 (1 / 4)) t) ∧
         1 / 20 ≤ x (1 / 4) := by -- --- PROOF ---

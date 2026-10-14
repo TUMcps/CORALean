@@ -21,7 +21,7 @@ stored upper end. `smul_outer` and `matPow_outer` finish.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -51,7 +51,7 @@ theorem MatExp.constCorrTerm_mem_intervalConstCorrTerm (A : Interval (Mat 𝕋 n
     rwa [zero_pow (by omega : i + 2 ≠ 0), sub_zero] at h
   -- the lower end: a nonpositive `κ` against the upper end of the nonnegative scalar
   have hlo : toReal (mulDown (MatExp.corrCoeffLow (𝕋 := 𝕋) (i + 2))
-        (MatExp.taylorCoeffBounds r (i + 2)).2)
+        (MatExp.taylorCoeffBounds r (i + 2)).sup)
       ≤ Real.MatExp.corrCoeff (i + 2) * ρ :=
     le_trans (mulDown_le_mul _ _) (le_trans
       (mul_le_mul_of_nonpos_left hhi (le_trans hκ hc0))

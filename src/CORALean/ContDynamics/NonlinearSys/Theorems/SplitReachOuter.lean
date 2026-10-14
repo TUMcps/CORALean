@@ -27,7 +27,7 @@ it promises. Induction on the fuel, the two halves as the two hypotheses.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -61,9 +61,9 @@ theorem NonlinearSys.splitReach_outer (step : Real.Zonotope (Vec ℝ n) → Opti
       · rw [hp] at h; exact absurd h (by simp)
       · rw [hp] at h
         simp only at h
-        rcases h₁ : NonlinearSys.splitReach step pick fuel (R.split j).1 with _ | l₁
+        rcases h₁ : NonlinearSys.splitReach step pick fuel (R.split j).fst with _ | l₁
         · rw [h₁] at h; exact absurd h (by simp)
-        rcases h₂ : NonlinearSys.splitReach step pick fuel (R.split j).2 with _ | l₂
+        rcases h₂ : NonlinearSys.splitReach step pick fuel (R.split j).snd with _ | l₂
         · rw [h₁, h₂] at h; exact absurd h (by simp)
         rw [h₁, h₂] at h
         obtain rfl : l₁ ++ l₂ = l := Option.some.inj h

@@ -232,6 +232,11 @@ stays where its two components are two quantities (a value and its error, a sine
 state and an input), and `check-conventions.sh` asks for a reason in `scripts/pair-allowlist.txt`
 for each file that spells one.
 
+A pair of two different quantities is not read with `.1`/`.2` either. Where it is a domain
+concept, it is a small structure with the paper's or CORA's names for its fields (`LinearSys.StepSets`
+with `Rtp` and `Rti`, `NonlinearSys.TunedStep` with `step` and `gain`); where a structure would be
+overkill, such as the two halves of a split, it is read through `.fst` and `.snd`.
+
 ### Notation
 
 | | |

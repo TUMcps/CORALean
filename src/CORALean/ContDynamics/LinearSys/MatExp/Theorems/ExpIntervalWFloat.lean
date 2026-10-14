@@ -23,7 +23,7 @@ The time is a float `t`, read as `toReal t`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -118,11 +118,11 @@ theorem MatExp.expW_mem_expIntervalW (A : Interval (Mat 𝕋 n n)) (t : 𝕋)
     ⟨le_trans (addDown_le_add _ _) (add_le_add (hm i i).1 (hm j j).1),
      le_trans (add_le_add (hm i i).2 (hm j j).2) (add_le_addUp _ _)⟩
   have hsh := Interval.mul_between_corners hh.1 hh.2 hs.1 hs.2
-  have hf : toReal (addDown t (Interval.mulLo ht.1 ht.2 sLo sHi))
+  have hf : toReal (addDown t (Interval.mulLo ht.inf ht.sup sLo sHi))
       ≤ toReal t + toReal t ^ 2 / 2 * (M i i + M j j) :=
     le_trans (addDown_le_add _ _) (by linarith [hsh.1])
   have hf' : toReal t + toReal t ^ 2 / 2 * (M i i + M j j)
-      ≤ toReal (addUp t (Interval.mulHi ht.1 ht.2 sLo sHi)) :=
+      ≤ toReal (addUp t (Interval.mulHi ht.inf ht.sup sLo sHi)) :=
     le_trans (by linarith [hsh.2]) (add_le_addUp _ _)
   -- the leading summand: a single-use product off the diagonal, the parabola on it
   have hfirst := aux_leading_mem A t hm hf hf'

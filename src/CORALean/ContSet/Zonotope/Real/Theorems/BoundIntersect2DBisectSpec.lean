@@ -24,7 +24,7 @@ segment between them. Unlike `Alg. 3` the search needs `Z ∩ L_γ ≠ ∅`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,7 +38,8 @@ namespace CORALean.Real
 theorem Zonotope.boundIntersect2DBisect_spec (Z : Zonotope (Vec ℝ 2)) (γ : ℝ)
     (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) :
     {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} =
-      Set.Icc (Z.boundIntersect2DBisect γ).1 (Z.boundIntersect2DBisect γ).2 := by -- --- PROOF ---
+      Set.Icc (Z.boundIntersect2DBisect γ).inf
+        (Z.boundIntersect2DBisect γ).sup := by -- --- PROOF ---
   -- the lowest point of the section of `Z`, and of its mirror image
   have hm := Z.bisectLow_isLeast γ hne
   have hne' : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.mirrorY.construct := by

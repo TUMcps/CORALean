@@ -21,7 +21,7 @@ each bounded by `abs_polyOf_round_le`, and every sum of the remainder rounded ou
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -82,11 +82,11 @@ theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (
   simp only [List.map_map, Function.comp_def] at hD rK rD hsplit
   -- the dropped terms' bound, widened by their rounding
   have q₁ := subDown_le_sub (Taylm.polyBounds ((P.filter fun p => !pk p).map
-    fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2))).1
+    fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2))).inf
     (listSumUp ((P.filter fun p => !pk p).map
       fun p => subUp (mulUp p.1.1 p.2.1) (mulDown p.1.1 p.2.1)))
   have q₂ := add_le_addUp (Taylm.polyBounds ((P.filter fun p => !pk p).map
-    fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2))).2
+    fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2))).sup
     (listSumUp ((P.filter fun p => !pk p).map
       fun p => subUp (mulUp p.1.1 p.2.1) (mulDown p.1.1 p.2.1)))
   simp only [Taylm.times, Taylm.nominal, Real.Taylm.poly, List.map_map, Function.comp_def]

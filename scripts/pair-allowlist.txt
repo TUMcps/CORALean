@@ -12,31 +12,13 @@
 #              as the empty set, so it cannot hold one.
 #   other:     two different quantities (centre and shape, a pair of parameters, ...).
 #   layering:  interval-like, but the type it needs sits above the file's directory.
-#   pending:   interval-like, in a directory another change is rewriting (#151).
-src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalWFloat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/LinearSys/MatExp/Operations/HalfSqBoundsFloat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/LinearSys/MatExp/Operations/InvFactorialBoundsFloat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/LinearSys/MatExp/Operations/TaylorCoeffBoundsFloat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/LinearSys/Operations/SampleTimeFloat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/LinearSys/Operations/VerifyStepFloat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/LinearSys/Theorems/ClosedFormFlow.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveEsoA1D.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveEsoB1D.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrErrAdaptiveCora1D.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/AbstrErrAdaptiveTensor3Cora2D.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/LinReachAdaptiveCora1D.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/LinReachCora1D.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/LinReachTensor3Cora2D.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/ReachInnerScalingCora1D.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltatFloat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltatInit.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Operations/TuneDeltatInitFloat.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Theorems/AbstrErrAdaptiveTensor3Cora2DFactorCounterexample.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Theorems/LinReachAdaptiveCora1DHessianRegionCounterexample.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Theorems/LinReachTensor3Cora2DIndexCounterexample.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachInnerScalingCora1DCounterexample.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/ContDynamics/NonlinearSys/Theorems/TuneDeltatInitGain.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
+src/CORALean/ContDynamics/LinearSys/Operations/VerifyStepFloat.lean  other: the iteration record and the next step size (two values; the textual hit is `VerifyIterFloat 𝕋 × 𝕋`)
+src/CORALean/ContDynamics/LinearSys/Theorems/ClosedFormFlow.lean  state: the pair of integration variables (s, t) of the double integral
+src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveEsoA1D.lean  state: the estimate, its shape and the scalar sigma-squared, three values and no bounds
+src/CORALean/ContDynamics/LinearSysDT/Operations/ObserveEsoB1D.lean  state: the estimate, its shape and the scalar sigma-squared, three values and no bounds
+src/CORALean/ContDynamics/NonlinearSys/Operations/LinReachAdaptiveCora1D.lean  other: the result triple (Rti, Rtp, time step); the textual hit is `Real.Interval ℝ × ℝ`
+src/CORALean/ContDynamics/NonlinearSys/Operations/ReachInnerScalingCora1D.lean  state: a point (alpha, beta) of the plane, the argument and the result of the optimizer fmincon
+src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachInnerScalingCora1DCounterexample.lean  state: a point (alpha, beta) of the plane, the argument and the result of the optimizer fmincon
 src/CORALean/ContSet/Capsule/Real/Operations/SegDist.lean  other: the two segment parameters (t1, t2)
 src/CORALean/ContSet/Capsule/Real/Theorems/SegDistMem.lean  other: the two segment parameters (t1, t2)
 src/CORALean/ContSet/ContSet/Definitions/DimReduce.lean  state: `Set (ℝ × ℝ)` is a set of points of the plane
@@ -53,16 +35,13 @@ src/CORALean/Global/ForwardInnerReach.lean  improper: the improper interval `]z[
 src/CORALean/Global/KaucherInner.lean  improper: Kaucher products and sums, whose ends cross by design
 src/CORALean/Global/RegionOfAttractionCounterexample.lean  state: a point of the plane
 src/CORALean/Global/SLemmaHomogeneous.lean  state: a point (P z, Q z) of the plane
-src/CORALean/HybridDynamics/Operations/GuardTransitionLevelSet.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/HybridDynamics/Theorems/GuardTransitionLevelSetOuter.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
-src/CORALean/HybridDynamics/TimeTriggered/Theorems/FinalConversionNotErrorLt.lean  pending: ContDynamics/HybridDynamics are rewritten in another change; pairs there are bounds, values and counters
+src/CORALean/HybridDynamics/TimeTriggered/Theorems/FinalConversionNotErrorLt.lean  state: a location state of the automaton, the state and its timer
 src/CORALean/NN/Layers/Definitions/EvaluateSinghNeuronCora.lean  other: centre, generator and error
 src/CORALean/NN/Layers/Operations/FindRegionLeft.lean  other: a region polynomial and its end `RegionPoly 𝕋 × 𝕋`
 src/CORALean/NN/Layers/Operations/FindRegionRight.lean  other: a region polynomial and its end `RegionPoly 𝕋 × 𝕋`
 
 src/CORALean/Specification/STL/Theorems/REncCounterexample.lean  state: a two-dimensional signal value (x1, x2)
 src/CORALean/Specification/STL/Theorems/ZEncCounterexample.lean  state: a two-dimensional signal value (x1, x2)
-src/CORALean/ContSet/Zonotope/Real/Operations/HalfspaceRange.lean  pending: a HybridDynamics counterexample states its result as a literal pair; converted with that directory (#151)
 src/CORALean/Global/Float/DivFact.lean  layering: Global/ may not import ContSet/, where `Float.Interval` lives; converted once the type sits below it (#151)
 src/CORALean/Global/Float/InverseTrig.lean  layering: Global/ may not import ContSet/, where `Float.Interval` lives; converted once the type sits below it (#151)
 src/CORALean/Global/Float/RatUp.lean  layering: Global/ may not import ContSet/, where `Float.Interval` lives; converted once the type sits below it (#151)

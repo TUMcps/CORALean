@@ -30,7 +30,7 @@ variable {n m : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =========================================  `inCone`  ========================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- What the LP of `aux_inCone` decides: `d = N x` for some `x ≥ 0`.
@@ -90,7 +90,7 @@ def PolyZonotope.jacobianMat (pZ : PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → �
 halves along the longest generator, the others are kept. -/
 noncomputable def PolyZonotope.polygonRound (pick : PolyZonotope (Vec ℝ 2) → Bool)
     (L : List (PolyZonotope (Vec ℝ 2))) : List (PolyZonotope (Vec ℝ 2)) :=
-  L.flatMap fun q => if pick q then [q.splitLongestGen.1, q.splitLongestGen.2] else [q]
+  L.flatMap fun q => if pick q then [q.splitLongestGen.fst, q.splitLongestGen.snd] else [q]
 
 
 -- ===============================  `PolyZonotope.polygonPieces`  =============================== --

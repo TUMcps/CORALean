@@ -17,7 +17,7 @@ interval.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,10 +33,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.invCoef_mem (c : 𝕋) (hc : toReal c ≠ 0) (k : ℕ) :
-    toReal (Taylm.invCoef c k).1 ≤
+    toReal (Taylm.invCoef c k).inf ≤
         iteratedDeriv k (fun x : ℝ => x⁻¹) (toReal c) / (k.factorial : ℝ) ∧
       iteratedDeriv k (fun x : ℝ => x⁻¹) (toReal c) / (k.factorial : ℝ) ≤
-        toReal (Taylm.invCoef c k).2 := by -- --- PROOF ---
+        toReal (Taylm.invCoef c k).sup := by -- --- PROOF ---
   -- the coefficient as a signed power
   have hd : iteratedDeriv k (fun x : ℝ => x⁻¹) (toReal c) / (k.factorial : ℝ) =
       (-1) ^ k * (toReal c)⁻¹ ^ (k + 1) := by

@@ -14,7 +14,7 @@ alike; the dropped terms are then bounded at their stored values.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,13 +41,13 @@ def Taylm.times (T₁ T₂ : Taylm 𝕋 n) : Taylm 𝕋 n :=
   let P₁ := Taylm.polyBounds T₁.terms
   let P₂ := Taylm.polyBounds T₂.terms
   { terms := keep.map fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2)
-    remInf := subDown (addDown (addDown (addDown (subDown D.1 errD)
-      (Interval.mulLo P₁.1 P₁.2 T₂.remInf T₂.remSup))
-      (Interval.mulLo P₂.1 P₂.2 T₁.remInf T₁.remSup))
+    remInf := subDown (addDown (addDown (addDown (subDown D.inf errD)
+      (Interval.mulLo P₁.inf P₁.sup T₂.remInf T₂.remSup))
+      (Interval.mulLo P₂.inf P₂.sup T₁.remInf T₁.remSup))
       (Interval.mulLo T₁.remInf T₁.remSup T₂.remInf T₂.remSup)) errK
-    remSup := addUp (addUp (addUp (addUp (addUp D.2 errD)
-      (Interval.mulHi P₁.1 P₁.2 T₂.remInf T₂.remSup))
-      (Interval.mulHi P₂.1 P₂.2 T₁.remInf T₁.remSup))
+    remSup := addUp (addUp (addUp (addUp (addUp D.sup errD)
+      (Interval.mulHi P₁.inf P₁.sup T₂.remInf T₂.remSup))
+      (Interval.mulHi P₂.inf P₂.sup T₁.remInf T₁.remSup))
       (Interval.mulHi T₁.remInf T₁.remSup T₂.remInf T₂.remSup)) errK
     maxOrder := N }
 

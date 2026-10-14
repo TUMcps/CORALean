@@ -24,7 +24,7 @@ the smaller of the centre and the bottom of the range.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,10 +40,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.sqrt_outer (q : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hpos : 0 < toReal (minimum T.constCoef T.bounds.1)) :
+    (hpos : 0 < toReal (minimum T.constCoef T.bounds.inf)) :
     (T.sqrt q).Encloses fun t => Real.sqrt (f t) := by -- --- PROOF ---
-  have hmin : toReal (minimum T.constCoef T.bounds.1) =
-      min (toReal T.constCoef) (toReal T.bounds.1) := toReal_minimum _ _
+  have hmin : toReal (minimum T.constCoef T.bounds.inf) =
+      min (toReal T.constCoef) (toReal T.bounds.inf) := toReal_minimum _ _
   have hc : 0 < toReal T.constCoef :=
     lt_of_lt_of_le (hmin ▸ hpos) (min_le_left _ _)
   refine Taylm.taylor_outer h Real.sqrt T.constCoef _ _ _ _

@@ -11,13 +11,13 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 # Every member's input term lies in the float box
 
 `matPow_outer` puts `Mⁱ` in the power box, `taylorCoeffBounds_mem` the scalar
-in its pair, and `smul_outer` joins them: the float counterpart of the point
+in its interval, and `smul_outer` joins them: the float counterpart of the point
 term `LinearSys.inputTerm` needs nothing more.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

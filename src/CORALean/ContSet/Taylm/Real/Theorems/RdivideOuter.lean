@@ -23,7 +23,7 @@ result encloses `f / g`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 theorem Taylm.rdivide_outer {T₁ T₂ : Taylm n} {f g : Vec ℝ n → ℝ} (h₁ : T₁.Encloses f)
     (h₂ : T₂.Encloses g)
-    (hside : 0 < min T₂.constCoef T₂.bounds.1 ∨ max T₂.constCoef T₂.bounds.2 < 0) :
+    (hside : 0 < min T₂.constCoef T₂.bounds.inf ∨ max T₂.constCoef T₂.bounds.sup < 0) :
     (T₁.rdivide T₂).Encloses fun t => f t / g t := by
   simpa [Taylm.rdivide, div_eq_mul_inv] using Taylm.times_outer h₁ (Taylm.inv_outer h₂ hside)
 

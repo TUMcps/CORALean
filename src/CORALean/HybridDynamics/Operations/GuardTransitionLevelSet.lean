@@ -30,7 +30,7 @@ Real layer only: Step 1 compares real bounds, which no float scalar is supplied 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,12 +45,12 @@ variable {n : ℕ}
 
 /-- [1, Sec. 3.2]: Steps 1-6 on the reachable sets `Rs`, for the guard of `bound`, `contract`
 and `intersect` and the reset of `reset`. -/
-noncomputable def Location.guardTransitionLevelSet {R T : Type} (bound : R → ℝ × ℝ)
+noncomputable def Location.guardTransitionLevelSet {R T : Type} (bound : R → Real.Interval ℝ)
     (box : R → Real.Interval (Vec ℝ n))
     (contract : Real.Interval (Vec ℝ n) → Real.Interval (Vec ℝ n)) (μ : ℕ)
     (intersect : Real.Interval (Vec ℝ n) → T) (reset : T → T) (unify : List T → T)
     (Rs : List R) : T :=
-  let hit := Rs.filter fun Rj => (bound Rj).1 ≤ 0 ∧ 0 ≤ (bound Rj).2  -- 1: l ≤ 0 ∧ u ≥ 0
+  let hit := Rs.filter fun Rj => (bound Rj).inf ≤ 0 ∧ 0 ≤ (bound Rj).sup  -- 1: l ≤ 0 ∧ u ≥ 0
   let I := hit.map box                                                  -- 2: boxes I
   let DI := (chunks μ I).map fun c =>                                   -- 2-3: contracted,
     Location.guardIntersectLevelSet contract c.1 c.2                    --   ≤ μ united

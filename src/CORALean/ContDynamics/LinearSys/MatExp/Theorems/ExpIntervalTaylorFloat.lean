@@ -21,7 +21,7 @@ one exact coefficient.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +40,7 @@ theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat 𝕋 n n))
   induction η with
   | zero =>
     show (∑ i ∈ Finset.range 1, ((Nat.factorial i : ℝ)⁻¹) • M ^ i)
-        ∈ (Interval.smul (MatExp.invFactorialBounds 0).1 (MatExp.invFactorialBounds 0).2
+        ∈ (Interval.smul (MatExp.invFactorialBounds 0).inf (MatExp.invFactorialBounds 0).sup
             (Interval.matPow A 0)).construct
     rw [Finset.sum_range_one]
     exact Interval.smul_outer (MatExp.invFactorialBounds_mem 0).1
@@ -49,8 +49,8 @@ theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat 𝕋 n n))
     -- peel the top term, matching `expIntervalTaylor`'s own right recursion
     show (∑ i ∈ Finset.range (k + 1 + 1), ((Nat.factorial i : ℝ)⁻¹) • M ^ i)
         ∈ (Interval.matPlus
-             (Interval.smul (MatExp.invFactorialBounds (k + 1)).1
-               (MatExp.invFactorialBounds (k + 1)).2 (Interval.matPow A (k + 1)))
+             (Interval.smul (MatExp.invFactorialBounds (k + 1)).inf
+               (MatExp.invFactorialBounds (k + 1)).sup (Interval.matPow A (k + 1)))
              (MatExp.expIntervalTaylor A k)).materialiseMat.construct
     rw [Interval.materialiseMat_eq, Finset.sum_range_succ, add_comm (∑ i ∈ Finset.range (k + 1),
       ((Nat.factorial i : ℝ)⁻¹) • M ^ i) (((Nat.factorial (k + 1) : ℝ)⁻¹) • M ^ (k + 1))]

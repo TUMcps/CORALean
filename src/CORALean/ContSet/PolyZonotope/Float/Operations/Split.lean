@@ -18,7 +18,7 @@ cover `pZ`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- `split(pZ, gen)`: the two halves of the parallelotope along its generator `j`. -/
 def PolyZonotope.split (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ.splitParallelotope.h) :
     PolyZonotope (Vec 𝕋 n) × PolyZonotope (Vec 𝕋 n) :=
-  ((pZ.splitParallelotope.split j).1.polyZonotope,
-    (pZ.splitParallelotope.split j).2.polyZonotope)
+  ((pZ.splitParallelotope.split j).fst.polyZonotope,
+    (pZ.splitParallelotope.split j).snd.polyZonotope)
 
 end CORALean.Float
 

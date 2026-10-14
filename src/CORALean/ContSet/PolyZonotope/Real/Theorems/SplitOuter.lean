@@ -17,7 +17,7 @@ the two halves, along any generator, is an over-approximation of `pZ`, not equal
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,7 @@ variable {n : ℕ}
 
 theorem PolyZonotope.split_outer (pZ : PolyZonotope (Vec ℝ n))
     (j : Fin pZ.splitParallelotope.h) :
-    pZ.construct ⊆ (pZ.split j).1.construct ∪ (pZ.split j).2.construct := by
+    pZ.construct ⊆ (pZ.split j).fst.construct ∪ (pZ.split j).snd.construct := by
   unfold PolyZonotope.split
   rw [← Zonotope.polyZonotope_exact, ← Zonotope.polyZonotope_exact,
     Zonotope.split_union pZ.splitParallelotope j]

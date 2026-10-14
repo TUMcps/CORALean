@@ -32,7 +32,7 @@ row and across every row, by `Fin.foldl_induction`.
 
 -- Authors:       Claude Opus 5
 -- Written:       21-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -59,17 +59,17 @@ theorem ConZonotope.aux_tightenCoeff_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b 
     rcases eq_or_ne k j with rfl | hk
     · -- the tightened coordinate: expose the `Function.update` this is, at its own index
       show Function.update E.inf k (max (E.inf k)
-            (min (ConZonotope.rowBound A b i k E).1 (ConZonotope.rowBound A b i k E).2)) k
+            (min (ConZonotope.rowBound A b i k E).inf (ConZonotope.rowBound A b i k E).sup)) k
             ≤ β k
           ∧ β k ≤ Function.update E.sup k (min (E.sup k)
-            (max (ConZonotope.rowBound A b i k E).1 (ConZonotope.rowBound A b i k E).2)) k
+            (max (ConZonotope.rowBound A b i k E).inf (ConZonotope.rowBound A b i k E).sup)) k
       rw [Function.update_self, Function.update_self]
       obtain ⟨hbin, hbsup⟩ := hβ k
       -- `rowBound`'s own two endpoints, spelled back out from `Finset.sum`
-      have hR1 : (ConZonotope.rowBound A b i k E).1
+      have hR1 : (ConZonotope.rowBound A b i k E).inf
           = (b i - ∑ l ∈ Finset.univ.erase k, max (A i l * E.inf l) (A i l * E.sup l)) / A i k :=
         rfl
-      have hR2 : (ConZonotope.rowBound A b i k E).2
+      have hR2 : (ConZonotope.rowBound A b i k E).sup
           = (b i - ∑ l ∈ Finset.univ.erase k, min (A i l * E.inf l) (A i l * E.sup l)) / A i k :=
         rfl
       -- `Σ_{l≠k} a_il βl` lies inside the interval the same sum bounds entrywise
@@ -94,10 +94,10 @@ theorem ConZonotope.aux_tightenCoeff_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b 
       exact ⟨max_le hbin hlo, le_min hbsup hhi⟩
     · -- every other coordinate: `Function.update` at `j` never touches it
       show Function.update E.inf j (max (E.inf j)
-              (min (ConZonotope.rowBound A b i j E).1 (ConZonotope.rowBound A b i j E).2)) k
+              (min (ConZonotope.rowBound A b i j E).inf (ConZonotope.rowBound A b i j E).sup)) k
             ≤ β k
           ∧ β k ≤ Function.update E.sup j (min (E.sup j)
-              (max (ConZonotope.rowBound A b i j E).1 (ConZonotope.rowBound A b i j E).2)) k
+              (max (ConZonotope.rowBound A b i j E).inf (ConZonotope.rowBound A b i j E).sup)) k
       rw [Function.update_of_ne hk, Function.update_of_ne hk]
       exact hβ k
 

@@ -15,7 +15,7 @@ most `∑ⱼ |nᵀgⱼ| ≤ ρ`, and each `nᵢeᵢ` is between the corner produ
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.halfspaceRange_mem (nv : Vec 𝕋 n) (d : 𝕋) {Z : Zonotope (Vec 𝕋 n)} {x : Vec ℝ n}
     (hx : x ∈ Z.construct) :
-    toReal (Z.halfspaceRange nv d).1 ≤ toRealVec nv ⬝ᵥ x - toReal d ∧
-      toRealVec nv ⬝ᵥ x - toReal d ≤ toReal (Z.halfspaceRange nv d).2 := by -- --- PROOF ---
+    toReal (Z.halfspaceRange nv d).inf ≤ toRealVec nv ⬝ᵥ x - toReal d ∧
+      toRealVec nv ⬝ᵥ x - toReal d ≤ toReal (Z.halfspaceRange nv d).sup := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hx
   obtain ⟨β, hβ, ha⟩ := Zonotope.mem_nominalSet_iff.mp ha
   show toReal _ ≤ toRealVec nv ⬝ᵥ (a + e) - toReal d ∧ toRealVec nv ⬝ᵥ (a + e) - toReal d ≤ _

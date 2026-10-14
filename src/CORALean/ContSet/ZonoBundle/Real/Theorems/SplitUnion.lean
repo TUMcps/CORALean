@@ -26,7 +26,7 @@ The printed `Z_∩¹ ∩ Z_∩² = ∅` is false; `split_inter` says what the ha
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,7 +45,7 @@ variable {n : ℕ}
 theorem ZonoBundle.split_union (Λ : Mat ℝ n n) (hΛ : IsUnit Λ.det) (B : Interval (Vec ℝ n))
     (j : Fin n) (zB : ZonoBundle (Vec ℝ n))
     (hB : (fun x => Λ⁻¹ *ᵥ x) '' zB.construct ⊆ B.construct) :
-    (zB.split Λ B j).1.construct ∪ (zB.split Λ B j).2.construct
+    (zB.split Λ B j).fst.construct ∪ (zB.split Λ B j).snd.construct
       = zB.construct := by -- --- PROOF ---
   -- a one-member bundle denotes its member
   have hconst : ∀ Z : Zonotope (Vec ℝ n), (ZonoBundle.mk 1 fun _ => Z).construct = Z.construct :=

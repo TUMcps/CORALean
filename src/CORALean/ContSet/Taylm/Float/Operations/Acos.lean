@@ -19,7 +19,7 @@ Lagrange bound `Taylm.arcsinBound` at the magnitude `Taylm.magUp`, the same as `
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,10 +39,10 @@ def Taylm.acos (p q : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   T.taylor c
     (fun k => match k with
       | 0 => acosDown p q c
-      | j + 1 => neg (Taylm.arcsinCoef q c j).2)
+      | j + 1 => neg (Taylm.arcsinCoef q c j).sup)
     (fun k => match k with
       | 0 => acosUp p q c
-      | j + 1 => neg (Taylm.arcsinCoef q c j).1)
+      | j + 1 => neg (Taylm.arcsinCoef q c j).inf)
     (Taylm.arcsinBound q T.magUp T.maxOrder)
 
 end CORALean.Float

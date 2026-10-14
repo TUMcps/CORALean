@@ -39,7 +39,7 @@ It first appeared as [2, Prop. 3], whose proof takes the same step.
 
 -- Authors:       Claude Opus 5
 -- Written:       11-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -55,13 +55,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The two halves of a split meet in the zonotope the split generator is
 dropped from, exactly. -/
 theorem Zonotope.split_intersection (Z : Zonotope α) (j : Fin Z.h) :
-    (Z.split j).1.construct ∩ (Z.split j).2.construct
+    (Z.split j).fst.construct ∩ (Z.split j).snd.construct
       = ({Z with G := Function.update Z.G j 0} : Zonotope α).construct := by -- --- PROOF ---
   -- all three sets read over `Fin Z.h`, which they are only up to unfolding
-  have h₁ : (Z.split j).1.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
+  have h₁ : (Z.split j).fst.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c - (2 : ℝ)⁻¹ • Z.G j
         + ∑ k, β k • Function.update Z.G j ((2 : ℝ)⁻¹ • Z.G j) k} := rfl
-  have h₂ : (Z.split j).2.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
+  have h₂ : (Z.split j).snd.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c + (2 : ℝ)⁻¹ • Z.G j
         + ∑ k, β k • Function.update Z.G j ((2 : ℝ)⁻¹ • Z.G j) k} := rfl
   have hO : ({Z with G := Function.update Z.G j 0} : Zonotope α).construct

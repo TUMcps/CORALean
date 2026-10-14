@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveCora1D
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptErrLoopCora1D
 public import CORALean.ContDynamics.NonlinearSys.Operations.OptimalDeltatCora
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -16,8 +17,8 @@ horizon `0.01 (tFinal - tStart)`: run 1 at the horizon (`veryfirststep`), run 1 
 times it, the gain `varphi` against `zetaphi`, `aux_optimaldeltat` (`optimalDeltatCora`), and, the
 tuned step being the horizon (`timeStepequalHorizon`), run 2 at `decrFactor` times it; the result
 is the horizon run's sets. Each run is `linearize` (`p = x0 + f(x0)·Δt/2`), `initReach_adaptive`
-and the error loop `adaptErrLoopCora1D` over `abstrErrAdaptiveCora1D`. Sets are intervals as
-`(inf, sup)`.
+and the error loop `adaptErrLoopCora1D` over `abstrErrAdaptiveCora1D`. Sets are
+`Real.Interval ℝ`.
 
 Only `A = f'(p) = 0` is modelled (else `none`): `aux_expmtie_adaptive` stops at `eta = 2` with
 `E = F = 0`, so `Rhom_tp = Rdelta + Δt f(p)`, `Rhom = enclose(Rdelta, Rhom_tp)`, and
@@ -29,7 +30,7 @@ error. Branches off the path (halving, a small `varphi`, a shorter tuned step) a
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,8 +44,9 @@ namespace CORALean
 /-- The first step of CORA's `linReach_adaptive` (`'lin'`) for `ẋ = f(x)` from the point `x0`,
 Jacobian `f'`, interval Hessian `hessIv`: `(Rti, Rtp, timeStep)`, or `none` off the path on which
 the tuned time step is the finite horizon. -/
-noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ) (hessIv : ℝ → ℝ → ℝ × ℝ)
-    (x0 tStart tFinal : ℝ) (fuel : ℕ) : Option ((ℝ × ℝ) × (ℝ × ℝ) × ℝ) :=
+noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ)
+    (hessIv : ℝ → ℝ → Real.Interval ℝ) (x0 tStart tFinal : ℝ) (fuel : ℕ) :
+    Option (Real.Interval ℝ × (Real.Interval ℝ × ℝ)) :=
   let decrFactor : ℝ := 9 / 10                            -- options.decrFactor = 0.90
   let redFactor : ℝ := 5 / 10000                          -- options.redFactor = 0.0005
   let zetaphi : ℝ := 68 / 100                             -- options.zetaphi(options.minorder+1)
@@ -58,17 +60,19 @@ noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ) (hess
   let zetaP_h := Real.exp (A_h * timeStep_h)              -- zetaP = exp(trace(linsys.A*timeStep))
   let Rdelta_h := x0 - p_h                                -- Rdelta = Rstart + (-p.x)
   let Rlintp_h := Rdelta_h + timeStep_h * f0_h            -- Rhom_tp = eAt*Rstart + Rtrans
-  let Rlinti_h := (min Rdelta_h Rlintp_h, max Rdelta_h Rlintp_h) -- Rhom = enclose(Rstart,Rhom_tp)
-  -- aux_checkIfHessianConst, on the very first call (error_adm = 0, so Rmax = Rlinti)
-  let totalInt₀ := (Rlinti_h.1 + p_h, Rlinti_h.2 + p_h)   -- totalInt_x = IH_x + p.x
-  let H₀ := hessIv totalInt₀.1 totalInt₀.2                -- H = nlnsys.hessian(totalInt_x,..)
-  let c₀ := (totalInt₀.1 + totalInt₀.2) / 2               -- c = center(I)
-  let r₀ := (totalInt₀.2 - totalInt₀.1) / 2               -- r = rad(I)
+  -- Rhom = enclose(Rstart,Rhom_tp)
+  let Rlinti_h : Real.Interval ℝ := ⟨min Rdelta_h Rlintp_h, max Rdelta_h Rlintp_h⟩
+  -- aux_checkIfHessianConst, first call (error_adm = 0, Rmax = Rlinti): totalInt_x = IH_x + p.x
+  let totalInt₀ : Real.Interval ℝ := ⟨Rlinti_h.inf + p_h, Rlinti_h.sup + p_h⟩
+  let H₀ := hessIv totalInt₀.inf totalInt₀.sup                -- H = nlnsys.hessian(totalInt_x,..)
+  let c₀ := (totalInt₀.inf + totalInt₀.sup) / 2               -- c = center(I)
+  let r₀ := (totalInt₀.sup - totalInt₀.inf) / 2               -- r = rad(I)
   let H_test := hessIv (c₀ - r₀ * (11 / 10)) (c₀ + r₀ * (11 / 10)) -- obj.hessian(enlarge(..,1.1))
   let hessianConst : Option ℝ :=                          -- options.isHessianConst
-    if H₀ = H_test then some (max |H₀.1| |H₀.2|) else none --   = all(H{i} == H_test{i})
+    if H₀.inf = H_test.inf ∧ H₀.sup = H_test.sup then       --   = all(H{i} == H_test{i})
+      some (max |H₀.inf| |H₀.sup|) else none
   let Φ_h := fun error_adm => NonlinearSys.abstrErrAdaptiveCora1D hessIv hessianConst p_h
-    (Rlinti_h.1 - timeStep_h * error_adm, Rlinti_h.2 + timeStep_h * error_adm) -- Rmax
+    ⟨Rlinti_h.inf - timeStep_h * error_adm, Rlinti_h.sup + timeStep_h * error_adm⟩ -- Rmax
   match NonlinearSys.adaptErrLoopCora1D Φ_h fuel 1 0 0 with -- error_adm = error_adm_horizon = 0
   | none => none                                          -- ~Lconverged: halve timeStep
   | some trueError_h =>
@@ -84,9 +88,10 @@ noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ) (hess
   if A₁ ≠ 0 then none else
   let Rdelta₁ := x0 - p₁                                  -- Rdelta = Rstart + (-p.x)
   let Rlintp₁ := Rdelta₁ + timeStep₁ * f0₁                -- Rhom_tp = eAt*Rstart + Rtrans
-  let Rlinti₁ := (min Rdelta₁ Rlintp₁, max Rdelta₁ Rlintp₁) -- Rhom = enclose(Rstart,Rhom_tp)
+  -- Rhom = enclose(Rstart,Rhom_tp)
+  let Rlinti₁ : Real.Interval ℝ := ⟨min Rdelta₁ Rlintp₁, max Rdelta₁ Rlintp₁⟩
   let Φ₁ := fun error_adm => NonlinearSys.abstrErrAdaptiveCora1D hessIv hessianConst p₁
-    (Rlinti₁.1 - timeStep₁ * error_adm, Rlinti₁.2 + timeStep₁ * error_adm) -- Rmax
+    ⟨Rlinti₁.inf - timeStep₁ * error_adm, Rlinti₁.sup + timeStep₁ * error_adm⟩ -- Rmax
   match NonlinearSys.adaptErrLoopCora1D Φ₁ fuel 1 error_adm₁ 0 with
   | none => none                                          -- ~Lconverged: halve timeStep
   | some trueError₁ =>
@@ -104,15 +109,16 @@ noncomputable def NonlinearSys.linReachAdaptiveCora1D (f f' : ℝ → ℝ) (hess
   if A₃ ≠ 0 then none else
   let Rdelta₃ := x0 - p₃                                  -- Rdelta = Rstart + (-p.x)
   let Rlintp₃ := Rdelta₃ + timeStep₃ * f0₃                -- Rhom_tp = eAt*Rstart + Rtrans
-  let Rlinti₃ := (min Rdelta₃ Rlintp₃, max Rdelta₃ Rlintp₃) -- Rhom = enclose(Rstart,Rhom_tp)
+  -- Rhom = enclose(Rstart,Rhom_tp)
+  let Rlinti₃ : Real.Interval ℝ := ⟨min Rdelta₃ Rlintp₃, max Rdelta₃ Rlintp₃⟩
   let Φ₃ := fun error_adm => NonlinearSys.abstrErrAdaptiveCora1D hessIv hessianConst p₃
-    (Rlinti₃.1 - timeStep₃ * error_adm, Rlinti₃.2 + timeStep₃ * error_adm) -- Rmax
+    ⟨Rlinti₃.inf - timeStep₃ * error_adm, Rlinti₃.sup + timeStep₃ * error_adm⟩ -- Rmax
   match NonlinearSys.adaptErrLoopCora1D Φ₃ fuel 1 0 0 with -- error_adm = zeros
   | none => none                                          -- ~Lconverged: halve timeStep
   | some _ =>
   -- timeStepequalHorizon: Rti = Rti_h + linx_h, Rtp = Rtp_h + linx_h, Rerror = Rerror_h
-  some ((Rlinti_h.1 + p_h - Rerror_h, Rlinti_h.2 + p_h + Rerror_h), -- Rti = Rti + Rerror
-    (Rlintp_h + p_h - Rerror_h, Rlintp_h + p_h + Rerror_h),        -- Rtp = Rtp + Rerror
+  some (⟨Rlinti_h.inf + p_h - Rerror_h, Rlinti_h.sup + p_h + Rerror_h⟩, -- Rti = Rti + Rerror
+    ⟨Rlintp_h + p_h - Rerror_h, Rlintp_h + p_h + Rerror_h⟩,        -- Rtp = Rtp + Rerror
     finitehorizon)                                        -- options.Δt = finitehorizon
 
 end CORALean

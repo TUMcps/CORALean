@@ -27,7 +27,7 @@ power along instead of rebuilding `Bᵏ` at every order, by `@[csimp]`, exactly 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -49,7 +49,7 @@ def MatExp.expIntervalTaylorTail (B : Interval (Mat 𝕋 n n)) : ℕ → Interva
   | 1 => Interval.point fun _ _ => zero
   | 2 => Interval.point fun _ _ => zero
   | k + 3 => (Interval.matPlus
-      (Interval.smul (MatExp.invFactorialBounds (k + 3)).1 (MatExp.invFactorialBounds (k + 3)).2
+      (Interval.smul (MatExp.invFactorialBounds (k + 3)).inf (MatExp.invFactorialBounds (k + 3)).sup
         (Interval.matPow B (k + 3)))
       (MatExp.expIntervalTaylorTail B (k + 2))).materialiseMat
 
@@ -64,8 +64,8 @@ def MatExp.aux_expIntervalTaylorTailPair (B : Interval (Mat 𝕋 n n)) :
     let PS := MatExp.aux_expIntervalTaylorTailPair B k
     let P := (Interval.matMul B PS.1).materialiseMat
     (P, if k < 2 then Interval.point fun _ _ => zero
-      else (Interval.matPlus (Interval.smul (MatExp.invFactorialBounds (k + 1)).1
-        (MatExp.invFactorialBounds (k + 1)).2 P) PS.2).materialiseMat)
+      else (Interval.matPlus (Interval.smul (MatExp.invFactorialBounds (k + 1)).inf
+        (MatExp.invFactorialBounds (k + 1)).sup P) PS.2).materialiseMat)
 
 /-- The same tail, one product per order rather than `κ` of them. -/
 def MatExp.aux_expIntervalTaylorTailImpl (B : Interval (Mat 𝕋 n n)) (k : ℕ) :

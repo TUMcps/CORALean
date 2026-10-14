@@ -16,7 +16,7 @@ constrained polynomial zonotope.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +30,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.split_union (cPZ : ConPolyZono (Vec ℝ n)) (d : Fin n) :
-    (cPZ.split d).1.construct ∪ (cPZ.split d).2.construct = cPZ.construct := by -- --- PROOF ---
+    (cPZ.split d).fst.construct ∪ (cPZ.split d).snd.construct = cPZ.construct := by -- --- PROOF ---
   unfold ConPolyZono.split
   dsimp only
   rw [← ConPolyZono.intersection_exact, ← ConPolyZono.intersection_exact]

@@ -24,7 +24,7 @@ The box `B` is an argument; `Zonotope.split` is the halving of one generator.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,8 +43,8 @@ variable {n : ℕ}
 noncomputable def ZonoBundle.split (Λ : Mat ℝ n n) (B : Interval (Vec ℝ n)) (j : Fin n)
     (zB : ZonoBundle (Vec ℝ n)) : ZonoBundle (Vec ℝ n) × ZonoBundle (Vec ℝ n) :=
   let Ψ := ZonoBundle.parallelotope Λ B                  -- Ψ = Λ box(Λ⁻¹ Z_∩)
-  let Ψ₁ := (Ψ.split j).1                                -- first half, centre moved by -w⁽ʲ⁾/2
-  let Ψ₂ := (Ψ.split j).2                                -- second half, centre moved by +w⁽ʲ⁾/2
+  let Ψ₁ := (Ψ.split j).fst                                -- first half, centre moved by -w⁽ʲ⁾/2
+  let Ψ₂ := (Ψ.split j).snd                                -- second half, centre moved by +w⁽ʲ⁾/2
   (zB.intersection ⟨1, fun _ => Ψ₁⟩, zB.intersection ⟨1, fun _ => Ψ₂⟩)
 
 end CORALean.Real

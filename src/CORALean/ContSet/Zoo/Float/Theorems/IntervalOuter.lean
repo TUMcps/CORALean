@@ -15,7 +15,7 @@ Taylor model through `Taylm.bounds_mem`, the intersection through `Interval.inte
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ theorem Zoo.interval_outer {Z : Zoo 𝕋 n} {f : Vec ℝ n → ℝ} (h : Z.Enclo
     {I : Interval (Vec 𝕋 1)} (hI : Z.interval = some I) {t : Vec ℝ n}
     (ht : t ∈ Real.Taylm.box n) : (fun _ => f t : Vec ℝ 1) ∈ I.construct := by -- --- PROOF ---
   have hT : ∀ T, Z.taylm = some T → (fun _ => f t : Vec ℝ 1) ∈
-      (⟨fun _ => T.bounds.1, fun _ => T.bounds.2⟩ : Interval (Vec 𝕋 1)).construct :=
+      (⟨fun _ => T.bounds.inf, fun _ => T.bounds.sup⟩ : Interval (Vec 𝕋 1)).construct :=
     fun T hT i => Taylm.bounds_mem (h.1 T hT) ht
   unfold Zoo.interval at hI
   rcases hz : Z.taylm with _ | T <;> rcases hv : Z.ivl with _ | J <;>

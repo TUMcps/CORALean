@@ -16,7 +16,7 @@ Under the members' own conditions on the denominator: the Taylor model's sign co
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,7 @@ variable {n : ℕ}
 theorem Zoo.rdivide_outer {Z₁ Z₂ : Zoo n} {f g : Vec ℝ n → ℝ} (h₁ : Z₁.Encloses f)
     (h₂ : Z₂.Encloses g)
     (hT : ∀ T, Z₂.taylm = some T →
-      0 < min T.constCoef T.bounds.1 ∨ max T.constCoef T.bounds.2 < 0)
+      0 < min T.constCoef T.bounds.inf ∨ max T.constCoef T.bounds.sup < 0)
     (hI : ∀ I, Z₂.ivl = some I → ∀ i, 0 < I.inf i ∨ I.sup i < 0) :
     (Z₁.rdivide Z₂).Encloses fun t => f t / g t := by -- --- PROOF ---
   refine ⟨fun T hT' => ?_, fun I hI' t ht => ?_⟩

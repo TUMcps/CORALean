@@ -13,7 +13,7 @@ so the orientation of the points read as reals lies between the two stored bound
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,12 +29,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.orientBounds_le (p q r : Vec 𝕋 2) :
-    toReal (Polygon.orientBounds p q r).1
+    toReal (Polygon.orientBounds p q r).inf
         ≤ (toReal (q 0) - toReal (p 0)) * (toReal (r 1) - toReal (p 1))
           - (toReal (q 1) - toReal (p 1)) * (toReal (r 0) - toReal (p 0))
       ∧ (toReal (q 0) - toReal (p 0)) * (toReal (r 1) - toReal (p 1))
           - (toReal (q 1) - toReal (p 1)) * (toReal (r 0) - toReal (p 0))
-        ≤ toReal (Polygon.orientBounds p q r).2 := by -- --- PROOF ---
+        ≤ toReal (Polygon.orientBounds p q r).sup := by -- --- PROOF ---
   -- the two bracketing sums, written out term by term
   have lo := sumDown_le_sum ![mulDown (q 0) (r 1), mulDown (p 0) (q 1), mulDown (r 0) (p 1),
     neg (mulUp (q 0) (p 1)), neg (mulUp (p 0) (r 1)), neg (mulUp (r 0) (q 1))]

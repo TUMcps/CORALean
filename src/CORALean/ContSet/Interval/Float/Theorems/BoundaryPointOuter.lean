@@ -21,7 +21,7 @@ the box's boundary; the float result is a box around it, not a point of the boun
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -67,39 +67,39 @@ theorem Interval.boundaryPoint_outer (I : Interval (Vec 𝕋 n)) (dir start : Ve
     · exact ⟨a, rfl⟩
   obtain ⟨a, ha⟩ := hsome'
   obtain ⟨hlow, hup⟩ := hsome a ha
-  have hlo : toReal (maximum zero a.1) = max 0 (toReal a.1) := by
+  have hlo : toReal (maximum zero a.inf) = max 0 (toReal a.inf) := by
     rw [toReal_maximum, toReal_zero]
   -- the clamped lower ratio is on the ray inside the box, so at most the greatest ratio
-  have hA : max 0 (toReal a.1) ≤ g := by
+  have hA : max 0 (toReal a.inf) ≤ g := by
     refine hG.2 ?_
     intro i
-    show toReal (I.inf i) ≤ max 0 (toReal a.1) * toReal (dir i) + toReal (start i) ∧
-      max 0 (toReal a.1) * toReal (dir i) + toReal (start i) ≤ toReal (I.sup i)
+    show toReal (I.inf i) ≤ max 0 (toReal a.inf) * toReal (dir i) + toReal (start i) ∧
+      max 0 (toReal a.inf) * toReal (dir i) + toReal (start i) ≤ toReal (I.sup i)
     by_cases hc : toReal (dir i) = 0
     · rw [hc, mul_zero, zero_add]; exact hs' i
     obtain ⟨x, hx⟩ := hrat i hc
     have h1 := (hlow i x hx).1
-    have hm0 : 0 ≤ max 0 (toReal a.1) := le_max_left _ _
+    have hm0 : 0 ≤ max 0 (toReal a.inf) := le_max_left _ _
     rcases Interval.boundaryRatioAt_mem hx with ⟨hd, hx1, -⟩ | ⟨hd, hx1, -⟩
     · -- positive direction
-      have h2 : toReal a.1 * toReal (dir i) ≤ toReal (I.sup i) - toReal (start i) :=
+      have h2 : toReal a.inf * toReal (dir i) ≤ toReal (I.sup i) - toReal (start i) :=
         (le_div_iff₀ hd).1 (le_trans h1 hx1)
-      have h3 : 0 ≤ max 0 (toReal a.1) * toReal (dir i) := mul_nonneg hm0 hd.le
+      have h3 : 0 ≤ max 0 (toReal a.inf) * toReal (dir i) := mul_nonneg hm0 hd.le
       refine ⟨by linarith [(hs' i).1], ?_⟩
-      rcases le_total 0 (toReal a.1) with h | h
+      rcases le_total 0 (toReal a.inf) with h | h
       · rw [max_eq_right h]; linarith
       · rw [max_eq_left h]; linarith [(hs' i).2]
     · -- negative direction
-      have h2 : toReal a.1 * -toReal (dir i) ≤ toReal (start i) - toReal (I.inf i) :=
+      have h2 : toReal a.inf * -toReal (dir i) ≤ toReal (start i) - toReal (I.inf i) :=
         (le_div_iff₀ (by linarith)).1 (le_trans h1 hx1)
-      have h3 : max 0 (toReal a.1) * toReal (dir i) ≤ 0 :=
+      have h3 : max 0 (toReal a.inf) * toReal (dir i) ≤ 0 :=
         mul_nonpos_of_nonneg_of_nonpos hm0 hd.le
       refine ⟨?_, by linarith [(hs' i).2]⟩
-      rcases le_total 0 (toReal a.1) with h | h
+      rcases le_total 0 (toReal a.inf) with h | h
       · rw [max_eq_right h]; linarith
       · rw [max_eq_left h]; linarith [(hs' i).1]
   -- the greatest ratio is below each coordinate's upper bound, so below the result's
-  have hB : g ≤ toReal a.2 := by
+  have hB : g ≤ toReal a.sup := by
     refine hup g fun i x hx => ?_
     have hgi := hG.1 i
     have hgi' : toReal (I.inf i) ≤ g * toReal (dir i) + toReal (start i) ∧
@@ -112,17 +112,17 @@ theorem Interval.boundaryPoint_outer (I : Interval (Vec 𝕋 n)) (dir start : Ve
         (le_div_iff₀ (by linarith)).2 (by linarith [hgi'.1])
       linarith
   -- the box swept by the ratio bounds holds the point
-  refine ⟨⟨fun i => addDown (Interval.mulLo (maximum zero a.1) a.2 (dir i) (dir i)) (start i),
-    fun i => addUp (Interval.mulHi (maximum zero a.1) a.2 (dir i) (dir i)) (start i)⟩,
+  refine ⟨⟨fun i => addDown (Interval.mulLo (maximum zero a.inf) a.sup (dir i) (dir i)) (start i),
+    fun i => addUp (Interval.mulHi (maximum zero a.inf) a.sup (dir i) (dir i)) (start i)⟩,
     by simp [Interval.boundaryPoint, ha], ?_⟩
   intro i
-  have hmc := Interval.mul_between_corners (a := maximum zero a.1) (b := a.2) (c := dir i)
+  have hmc := Interval.mul_between_corners (a := maximum zero a.inf) (b := a.sup) (c := dir i)
     (d := dir i) (y := g) (x := toReal (dir i)) (by rw [hlo]; exact hA)
     hB le_rfl le_rfl
-  show toReal (addDown (Interval.mulLo (maximum zero a.1) a.2 (dir i) (dir i)) (start i)) ≤
+  show toReal (addDown (Interval.mulLo (maximum zero a.inf) a.sup (dir i) (dir i)) (start i)) ≤
       g * toReal (dir i) + toReal (start i) ∧
     g * toReal (dir i) + toReal (start i) ≤
-      toReal (addUp (Interval.mulHi (maximum zero a.1) a.2 (dir i) (dir i)) (start i))
+      toReal (addUp (Interval.mulHi (maximum zero a.inf) a.sup (dir i) (dir i)) (start i))
   exact ⟨le_trans (addDown_le_add _ _) (by linarith [hmc.1]),
     le_trans (by linarith [hmc.2]) (add_le_addUp _ _)⟩
 

@@ -30,7 +30,7 @@ this is `NonlinDASys.linReach` up to where the error enters (there, in `oneStep`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -65,8 +65,8 @@ noncomputable def NonlinDASys.linReachCora (f₀ : Vec ℝ n) (g₀ : Vec ℝ p)
     NonlinDASys.linErrorCora Hd_c Hd_Δ Ha_c Ha_Δ CF_inv R_Δ
   let Rerror : Zonotope (Vec ℝ n) :=                                      -- Rerror
     linsys.inputSolution (S := 𝒵) Δt η Verror
-  let Rti : Zonotope (Vec ℝ n) := R.2.plus (Zonotope.ofPoint xs)          -- Rti + p.x
-  let Rtp : Zonotope (Vec ℝ n) := R.1.plus (Zonotope.ofPoint xs)          -- Rtp + p.x
+  let Rti : Zonotope (Vec ℝ n) := R.Rti.plus (Zonotope.ofPoint xs)          -- Rti + p.x
+  let Rtp : Zonotope (Vec ℝ n) := R.Rtp.plus (Zonotope.ofPoint xs)          -- Rtp + p.x
   (Rtp.plus Rerror, Rti.plus Rerror)                                      -- + Rerror
 
 end CORALean

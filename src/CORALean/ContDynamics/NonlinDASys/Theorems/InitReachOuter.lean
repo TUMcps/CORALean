@@ -20,7 +20,7 @@ of them, and the induction on the fuel ends in a `linReach` of a set holding it.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,9 +45,9 @@ theorem NonlinDASys.Trajectory.initReach_outer {sys : NonlinDASys n p m} {Δt : 
     (hcert : ∀ Z : Zonotope (Vec ℝ n), x 0 ∈ Z.construct → (lin Z).Certifies sys U Δt q x y u)
     (fuel : ℕ) {Rstart : List (Zonotope (Vec ℝ n))} (hstart : ∃ Z ∈ Rstart, x 0 ∈ Z.construct) :
     ∃ R ∈ sys.initReach lin select U Δt (q + 2) fuel Rstart,
-      x Δt ∈ R.1.construct ∧
+      x Δt ∈ R.fst.construct ∧
         ∀ t ∈ Set.Icc 0 Δt,
-          x t ∈ R.2.1.construct ∧ (x t, y t) ∈ R.2.2.construct := by -- --- PROOF ---
+          x t ∈ R.snd.1.construct ∧ (x t, y t) ∈ R.snd.2.construct := by -- --- PROOF ---
   induction fuel generalizing Rstart with
   | zero =>
     obtain ⟨Z, hZ, hx0⟩ := hstart
@@ -69,9 +69,9 @@ theorem NonlinDASys.Trajectory.initReach_outer {sys : NonlinDASys n p m} {Δt : 
           ⟨hx0, traj.input, traj.flow, traj.constraint⟩ hΔt hF hR hL hLa hus h0 hε
     -- a split: the start lies in one half, and the halves are run again
     | some j =>
-      have hhalf : x 0 ∈ (Z.split j).1.construct ∪ (Z.split j).2.construct := by
+      have hhalf : x 0 ∈ (Z.split j).fst.construct ∪ (Z.split j).snd.construct := by
         rw [Zonotope.split_union]; exact hx0
-      obtain ⟨R, hR, hRx⟩ := ih (Rstart := [(Z.split j).1, (Z.split j).2]) (by
+      obtain ⟨R, hR, hRx⟩ := ih (Rstart := [(Z.split j).fst, (Z.split j).snd]) (by
         rcases hhalf with h | h
         · exact ⟨_, List.mem_cons_self .., h⟩
         · exact ⟨_, List.mem_cons_of_mem _ (List.mem_singleton_self _), h⟩)

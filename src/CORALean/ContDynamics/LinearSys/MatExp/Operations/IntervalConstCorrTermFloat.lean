@@ -25,7 +25,7 @@ lies in: `corrCoeff (i+2)` is in `[corrCoeffLow (i+2), 0]` and `r^{i+2}/(i+2)!` 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 `r`. -/
 def MatExp.intervalConstCorrTerm (A : Interval (Mat 𝕋 n n)) (r : 𝕋) (i : ℕ) :
     Interval (Mat 𝕋 n n) :=
-  let c := MatExp.taylorCoeffBounds r (i + 2)                          -- r^{i+2}/(i+2)! ≤ c.2
-  let cLo := mulDown (MatExp.corrCoeffLow (i + 2)) c.2                 -- κ r^{i+2}/(i+2)!
+  let c := MatExp.taylorCoeffBounds r (i + 2)                          -- r^{i+2}/(i+2)! ≤ c.sup
+  let cLo := mulDown (MatExp.corrCoeffLow (i + 2)) c.sup                 -- κ r^{i+2}/(i+2)!
   (Interval.smul cLo zero (Interval.matPow A (i + 1))).materialiseMat  -- [cLo, 0] A^{i+1}
 
 end CORALean.Float

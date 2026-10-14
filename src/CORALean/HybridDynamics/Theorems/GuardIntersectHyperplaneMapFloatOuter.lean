@@ -51,7 +51,7 @@ boxes of the normalized normal allow (`ContSet.projectOnHyperplaneIntervalFloat_
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -387,10 +387,10 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer
         ⟨y, hy, rfl⟩) (by rw [Zonotope.construct_point]; rfl))
     have hrange : ∀ (Z' : Zonotope (Vec 𝕋 n)) y, y ∈ Z'.construct →
         toReal (((Zonotope.mtimes ℓ.dynamics.A Z').plus (Zonotope.point bI.inf)).halfspaceRange nv
-          zero).1
+          zero).inf
           ≤ nr ⬝ᵥ (Ar *ᵥ y + br) ∧ nr ⬝ᵥ (Ar *ᵥ y + br) ≤
           toReal (((Zonotope.mtimes ℓ.dynamics.A Z').plus (Zonotope.point bI.inf)).halfspaceRange
-            nv zero).2 :=
+            nv zero).sup :=
       fun Z' y hy => by
         have h := Zonotope.halfspaceRange_mem nv zero (hflow Z' y hy)
         rw [toReal_zero, sub_zero] at h
@@ -430,14 +430,14 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer
     have hx₀S := hhull x₀ (hsub x₀ h₀)
     have hΛS := fun y hy => hrange (R0red.recentre.plus (Zonotope.point R0red.c)) y hy
     -- `τ(ξ)` within `τ_g` of `τ_c`
-    have hdξ : toReal ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).1
+    have hdξ : toReal ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).inf
         ≤ nr ⬝ᵥ toRealVec R0red.c - toReal d ∧ nr ⬝ᵥ toRealVec R0red.c - toReal d
-        ≤ toReal ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).2 :=
+        ≤ toReal ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).sup :=
       Zonotope.halfspaceRange_mem nv d hξS
     have hinvξ := aux_hpMapF_recip hcΛ (hΛS _ hξS).1 (hΛS _ hξS).2
     have hτ := Interval.mul_between_corners (y := toReal d - nr ⬝ᵥ toRealVec R0red.c)
-      (a := neg ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).2)
-      (b := neg ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).1)
+      (a := neg ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).sup)
+      (b := neg ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).inf)
       (by rw [toReal_neg]; linarith [hdξ.2]) (by rw [toReal_neg]; linarith [hdξ.1])
       hinvξ.1 hinvξ.2
     -- `Λ ≠ 0` and `1/Λ² ∈ [φ̲, φ̄]` on the hull

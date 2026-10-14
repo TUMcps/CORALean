@@ -13,7 +13,7 @@ Every point of the star set has its neuron `j` between the two bounds.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +30,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 theorem StarSet.rowBounds_mem (s : StarSet 𝕋 n) (j : Fin n) {x : Vec ℝ n}
     (hx : x ∈ construct s) :
-    toReal (s.rowBounds j).1 ≤ x j ∧ x j ≤ toReal (s.rowBounds j).2 := by -- --- PROOF ---
+    toReal (s.rowBounds j).inf ≤ x j ∧ x j ≤ toReal (s.rowBounds j).sup := by -- --- PROOF ---
   obtain ⟨α, hα, -, hxα⟩ := hx
   have hb := fun k => Interval.mul_between_corners (le_refl (toReal (s.G j k)))
     (le_refl (toReal (s.G j k))) (hα k).1 (hα k).2

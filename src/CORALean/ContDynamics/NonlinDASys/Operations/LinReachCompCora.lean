@@ -30,7 +30,7 @@ split decision are left out.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -72,8 +72,8 @@ noncomputable def NonlinDASys.linReachCompCora (f₀ : Vec ℝ n) (g₀ : Vec �
   let Verror : Zonotope (Vec ℝ n) := errorTotal.reduce zonotopeOrder      -- reduce, l. 178
   let Rerror : Zonotope (Vec ℝ n) :=                                      -- Rerror
     linsys.inputSolution (S := 𝒵) Δt η Verror
-  let Rti : Zonotope (Vec ℝ n) := R.2.plus (Zonotope.ofPoint xs)          -- Rti + p.x
-  let Rtp : Zonotope (Vec ℝ n) := R.1.plus (Zonotope.ofPoint xs)          -- Rtp + p.x
+  let Rti : Zonotope (Vec ℝ n) := R.Rti.plus (Zonotope.ofPoint xs)          -- Rti + p.x
+  let Rtp : Zonotope (Vec ℝ n) := R.Rtp.plus (Zonotope.ofPoint xs)          -- Rtp + p.x
   (Rtp.plus Rerror, Rti.plus Rerror)                                      -- + Rerror
 
 end CORALean

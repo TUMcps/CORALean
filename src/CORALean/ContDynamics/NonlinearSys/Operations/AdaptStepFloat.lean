@@ -37,7 +37,7 @@ time step the tuning chose, so `adaptStepFloat_outer` holds of whatever it chose
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -70,16 +70,17 @@ def NonlinearSys.FloatHessModel.adaptStepFloat [SoundFloatArithmetic 𝕋] [ToRa
   let rabs1 := maximum zero (subUp (rad F₁.2) (rad p₁.2.1))         -- 9. r⁽¹⁾_abs,k
   let ζA := expUp prec (mulUp (sumUp fun i => p₁.1 i i) hk)         -- eq. (50)'s e^{tr(A)h}
   let opt := optDeltatFloat prec bis ζδ ζZ ζA s.φ (rad s.R) rabs1 hk fuel  -- 10. optDeltat
-  let p₂ ← fm.toFloatModel.adaptLinPassFloat U (opts opt.1) s.R       -- 3.-6. a = 2, at Δt_k = Δt*
-  let F₁' ← fm.orderStepFloat 1 U (opts opt.1) s.R                    -- 7.-12. the step at κ = 1
-  let F₂' ← fm.orderStepFloat 2 U (opts opt.1) s.R                    -- 7.-12. the step at κ = 2
+  let p₂ ← fm.toFloatModel.adaptLinPassFloat U (opts opt.Δt) s.R       -- 3.-6. a = 2, at Δt_k = Δt*
+  let F₁' ← fm.orderStepFloat 1 U (opts opt.Δt) s.R                    -- 7.-12. the step at κ = 1
+  let F₂' ← fm.orderStepFloat 2 U (opts opt.Δt) s.R                    -- 7.-12. the step at κ = 2
   let dabs₁ := fun i => maximum zero (subUp (dia F₁'.2 i) (dia p₂.2.1 i))  -- 12. d(R_abs), κ = 1
   let dabs₂ := fun i => maximum zero (subUp (dia F₂'.2 i) (dia p₂.2.1 i))  -- 12. d(R_abs), κ = 2
   let F := if s.κ = 1 then F₁' else F₂'                             -- 12. the step at κ_k
   let rabsOpt := maximum zero (subUp (rad F.2) (rad p₂.2.1))        -- 12. r^{(λ*)}_abs,k
   let κ' := tuneAbstrOrderFloat ζK s.φ rabsOpt s.rabs dabs₁ dabs₂ s.κ  -- 13. tuneAbstrOrder
-  let φk := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.2) rabs1 rabsOpt opt.2 fuel  -- 16.
-  pure { t := s.t + ToRat.toRat opt.1,                              -- 17. t_{k+1}
+  let φk := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.exponent) rabs1 rabsOpt  -- 16.
+    opt.exponent fuel
+  pure { t := s.t + ToRat.toRat opt.Δt,                              -- 17. t_{k+1}
          R := Reduce.reduce F.2 options.ρ,              -- 18. redAdaptive
          Rτ := Reduce.reduce F.1 options.ρ,
          h := hk, φ := φk, κ := κ', rabs := rabsOpt }

@@ -15,7 +15,7 @@ outward. `none` when no coordinate of `dir` is certified nonzero.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,9 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Interval.boundaryPoint (I : Interval (Vec 𝕋 n)) (dir start : Vec 𝕋 n) :
     Option (Interval (Vec 𝕋 n)) :=
   (Interval.boundaryRatio I dir start).map fun R =>
-    let lo := maximum zero R.1
-    ⟨fun i => addDown (Interval.mulLo lo R.2 (dir i) (dir i)) (start i),
-      fun i => addUp (Interval.mulHi lo R.2 (dir i) (dir i)) (start i)⟩
+    let lo := maximum zero R.inf
+    ⟨fun i => addDown (Interval.mulLo lo R.sup (dir i) (dir i)) (start i),
+      fun i => addUp (Interval.mulHi lo R.sup (dir i) (dir i)) (start i)⟩
 
 end CORALean.Float
 

@@ -25,7 +25,7 @@ halfspace `{x | nᵀx ≤ d}` is closed, and at `ω̲ = 0` the zonotope touches 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,8 +43,8 @@ variable {n : ℕ}
 /-- [1, Sec. 5.2], corrected: `ω̲ > 0` keeps `Z` out of `{x | nᵀx ≤ d}`, and `ω̄ ≤ 0` puts
 it inside. -/
 theorem Zonotope.halfspaceRange_sound (nv : Vec ℝ n) (d : ℝ) (Z : Zonotope (Vec ℝ n)) :
-    (0 < (Z.halfspaceRange nv d).1 → ∀ x ∈ Z.construct, d < nv ⬝ᵥ x) ∧
-      ((Z.halfspaceRange nv d).2 ≤ 0 → ∀ x ∈ Z.construct, nv ⬝ᵥ x ≤ d) := by -- --- PROOF ---
+    (0 < (Z.halfspaceRange nv d).inf → ∀ x ∈ Z.construct, d < nv ⬝ᵥ x) ∧
+      ((Z.halfspaceRange nv d).sup ≤ 0 → ∀ x ∈ Z.construct, nv ⬝ᵥ x ≤ d) := by -- --- PROOF ---
   -- `nᵀx - d = ω_c + Σᵢ βᵢω⁽ⁱ⁾`, the sum within `Σᵢ |ω⁽ⁱ⁾|`
   have hbound : ∀ x ∈ Z.construct, |nv ⬝ᵥ x - d - (nv ⬝ᵥ Z.c - d)| ≤ ∑ i, |nv ⬝ᵥ Z.G i| := by
     rintro _ ⟨β, hβ, rfl⟩

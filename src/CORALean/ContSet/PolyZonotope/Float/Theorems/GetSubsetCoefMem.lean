@@ -18,7 +18,7 @@ j) · cenᵉ⁻ʲ · radʲ` lies between the two floats `getSubsetCoef` returns.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,10 +35,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.getSubsetCoef_mem (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋)
     (i : Fin pZ.h) (j : ℕ) :
-    toReal (pZ.getSubsetCoef k cen rad i j).1 ≤
+    toReal (pZ.getSubsetCoef k cen rad i j).inf ≤
         ((pZ.E k i).choose j : ℝ) * toReal cen ^ (pZ.E k i - j) * toReal rad ^ j ∧
       ((pZ.E k i).choose j : ℝ) * toReal cen ^ (pZ.E k i - j) * toReal rad ^ j ≤
-        toReal (pZ.getSubsetCoef k cen rad i j).2 := by -- --- PROOF ---
+        toReal (pZ.getSubsetCoef k cen rad i j).sup := by -- --- PROOF ---
   -- the integer between its roundings
   have hI := intDown_le_intUp (𝕋 := 𝕋) ((pZ.E k i).choose j : ℤ)
   simp only [Int.cast_natCast] at hI

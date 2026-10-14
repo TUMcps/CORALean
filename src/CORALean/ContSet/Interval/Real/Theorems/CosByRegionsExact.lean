@@ -24,7 +24,7 @@ holds a point where it is `1` and one where it is `-1`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -150,7 +150,8 @@ theorem aux_cosByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi
 /-- [1, Eq. 13]: every case is the cosine's exact range on `[lo, hi]`. -/
 theorem Interval.cosByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) :
     Real.cos '' Set.Icc lo hi =
-      Set.Icc (Interval.cosByRegions lo hi).1 (Interval.cosByRegions lo hi).2 := by -- --- PROOF ---
+      Set.Icc (Interval.cosByRegions lo hi).inf
+        (Interval.cosByRegions lo hi).sup := by -- --- PROOF ---
   have hpi := Real.pi_pos
   have h2pi : (0 : ℝ) < 2 * Real.pi := by positivity
   simp only [Interval.cosByRegions]

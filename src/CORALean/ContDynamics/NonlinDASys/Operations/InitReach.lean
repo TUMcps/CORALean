@@ -22,7 +22,7 @@ CORA finds by `consistentInitialState` enters through `lin`'s `y*`; the error bo
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -61,7 +61,7 @@ noncomputable def NonlinDASys.initReach (sys : NonlinDASys n p m)
     match select Rinit with                                               -- dimForSplit
     | some j =>
       let Rsplit := Rinit.split j                                         -- split
-      sys.initReach lin select U Δt η fuel [Rsplit.1, Rsplit.2]           -- initReach
+      sys.initReach lin select U Δt η fuel [Rsplit.fst, Rsplit.snd]           -- initReach
     | none => [sys.aux_initReachLin (lin Rinit) U Δt η Rinit]             -- linReach
 
 end CORALean

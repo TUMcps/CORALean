@@ -24,7 +24,7 @@ interval, `inf` down and `sup` up.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,30 +39,30 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The entry `(i, j)` of `W(t)`'s interval, as its two bounds. -/
-def aux_expIntervalWEntry (A : Interval (Mat 𝕋 n n)) (t : 𝕋) (i j : Fin n) : 𝕋 × 𝕋 :=
+/-- The entry `(i, j)` of `W(t)`'s interval, as an interval of floats. -/
+def aux_expIntervalWEntry (A : Interval (Mat 𝕋 n n)) (t : 𝕋) (i j : Fin n) : Interval 𝕋 :=
   let ht := MatExp.halfSqBounds t                                   -- ½ t², bracketed
   let sLo := addDown (A.inf i i) (A.inf j j)                        -- A i i + A j j
   let sHi := addUp (A.sup i i) (A.sup j j)
-  let fLo := addDown t (Interval.mulLo ht.1 ht.2 sLo sHi)           -- t + ½ t² (A i i + A j j)
-  let fHi := addUp t (Interval.mulHi ht.1 ht.2 sLo sHi)
+  let fLo := addDown t (Interval.mulLo ht.inf ht.sup sLo sHi)           -- t + ½ t² (A i i + A j j)
+  let fHi := addUp t (Interval.mulHi ht.inf ht.sup sLo sHi)
   let SLo := sumDown fun k => if k = i ∨ k = j then zero          -- ∑_{k ≠ i, j} A i k A k j
     else Interval.mulLo (A.inf i k) (A.sup i k) (A.inf k j) (A.sup k j)
   let SHi := sumUp fun k => if k = i ∨ k = j then zero
     else Interval.mulHi (A.inf i k) (A.sup i k) (A.inf k j) (A.sup k j)
-  (addDown (if i = j then MatExp.quadTermLo t (A.inf i i) (A.sup i i)
+  ⟨addDown (if i = j then MatExp.quadTermLo t (A.inf i i) (A.sup i i)
       else Interval.mulLo (A.inf i j) (A.sup i j) fLo fHi)
-    (Interval.mulLo ht.1 ht.2 SLo SHi),
+    (Interval.mulLo ht.inf ht.sup SLo SHi),
    addUp (if i = j then MatExp.quadTermHi t (A.inf i i) (A.sup i i)
       else Interval.mulHi (A.inf i j) (A.sup i j) fLo fHi)
-    (Interval.mulHi ht.1 ht.2 SLo SHi))
+    (Interval.mulHi ht.inf ht.sup SLo SHi)⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `W(t)` of [1, Lemma 3.1] as an interval matrix, rounded outward. -/
 def MatExp.expIntervalW (A : Interval (Mat 𝕋 n n)) (t : 𝕋) : Interval (Mat 𝕋 n n) :=
-  ⟨fun i j => (aux_expIntervalWEntry A t i j).1, fun i j => (aux_expIntervalWEntry A t i j).2⟩
+  ⟨fun i j => (aux_expIntervalWEntry A t i j).inf, fun i j => (aux_expIntervalWEntry A t i j).sup⟩
 
 end CORALean.Float
 

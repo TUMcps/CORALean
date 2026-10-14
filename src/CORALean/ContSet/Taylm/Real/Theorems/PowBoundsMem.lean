@@ -16,7 +16,7 @@ an interval holding `0`, at least the smaller; an odd power is monotone.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,7 +28,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.powBounds_mem {l u t : ℝ} (hl : l ≤ t) (hu : t ≤ u) (k : ℕ) :
-    (Taylm.powBounds l u k).1 ≤ t ^ k ∧ t ^ k ≤ (Taylm.powBounds l u k).2 := by -- --- PROOF ---
+    (Taylm.powBounds l u k).inf ≤ t ^ k ∧ t ^ k ≤ (Taylm.powBounds l u k).sup := by -- --- PROOF ---
   unfold Taylm.powBounds
   by_cases hk : k = 0
   · subst hk; simp

@@ -16,7 +16,7 @@ off `iter_deriv_inv`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,9 +45,9 @@ theorem Taylm.aux_log_coef {c : ℝ} (hc : 0 < c) (k : ℕ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.logCoef_mem (q s : ℕ) {c : 𝕋} (hc : 0 < toReal c) (k : ℕ) :
-    toReal (Taylm.logCoef q s c k).1 ≤ iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ)
+    toReal (Taylm.logCoef q s c k).inf ≤ iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ)
       ∧ iteratedDeriv k Real.log (toReal c) / (k.factorial : ℝ)
-        ≤ toReal (Taylm.logCoef q s c k).2 := by -- --- PROOF ---
+        ≤ toReal (Taylm.logCoef q s c k).sup := by -- --- PROOF ---
   have hinvU : 1 / toReal c ≤ toReal (divUp one c) := by
     have := div_le_divUp one c hc; rwa [toReal_one] at this
   have hinv0 : 0 < 1 / toReal c := by positivity

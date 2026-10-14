@@ -18,7 +18,7 @@ independent generators (`Zonotope.polyZonotope`). `Theorems.SplitOuter` says the
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,8 +34,8 @@ variable {n : ℕ}
 /-- `split(pZ, gen)`: the two halves of the parallelotope along its generator `j`. -/
 noncomputable def PolyZonotope.split (pZ : PolyZonotope (Vec ℝ n))
     (j : Fin pZ.splitParallelotope.h) : PolyZonotope (Vec ℝ n) × PolyZonotope (Vec ℝ n) :=
-  ((pZ.splitParallelotope.split j).1.polyZonotope,
-    (pZ.splitParallelotope.split j).2.polyZonotope)
+  ((pZ.splitParallelotope.split j).fst.polyZonotope,
+    (pZ.splitParallelotope.split j).snd.polyZonotope)
 
 end CORALean.Real
 

@@ -15,7 +15,7 @@ By strong induction on `k`: `k = 2 ⌊k/2⌋ + (k mod 2)`, and doubling and addi
 
 -- Authors:       Claude Opus 5.5
 -- Written:       25-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,8 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.sampleTimeFloat_mem (Δt : 𝕋) (k : ℕ) :
-    toReal (LinearSys.sampleTimeFloat Δt k).1 ≤ k * toReal Δt
-      ∧ k * toReal Δt ≤ toReal (LinearSys.sampleTimeFloat Δt k).2 := by -- --- PROOF ---
+    toReal (LinearSys.sampleTimeFloat Δt k).inf ≤ k * toReal Δt
+      ∧ k * toReal Δt ≤ toReal (LinearSys.sampleTimeFloat Δt k).sup := by -- --- PROOF ---
   induction k using Nat.strong_induction_on with
   | _ k ih =>
     cases k with
@@ -41,8 +41,8 @@ theorem LinearSys.sampleTimeFloat_mem (Δt : 𝕋) (k : ℕ) :
       obtain ⟨hlo, hhi⟩ := ih ((k + 1) / 2) (by omega)
       set m := (k + 1) / 2
       set h := LinearSys.sampleTimeFloat Δt m
-      have hd1 := addDown_le_add h.1 h.1
-      have hd2 := add_le_addUp h.2 h.2
+      have hd1 := addDown_le_add h.inf h.inf
+      have hd2 := add_le_addUp h.sup h.sup
       rw [LinearSys.sampleTimeFloat]
       -- `k + 1` is `2m` or `2m + 1`
       split_ifs with hk
@@ -55,8 +55,8 @@ theorem LinearSys.sampleTimeFloat_mem (Δt : 𝕋) (k : ℕ) :
           have : k + 1 = 2 * m + 1 := by omega
           rw [this]; push_cast; ring
         rw [hkm]
-        have h3 := addDown_le_add (addDown h.1 h.1) Δt
-        have h4 := add_le_addUp (addUp h.2 h.2) Δt
+        have h3 := addDown_le_add (addDown h.inf h.inf) Δt
+        have h4 := add_le_addUp (addUp h.sup h.sup) Δt
         exact ⟨by linarith, by linarith⟩
 
 end CORALean

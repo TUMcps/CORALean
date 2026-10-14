@@ -3,6 +3,7 @@ module
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Data.Real.Basic
 public import Mathlib.Order.Interval.Set.Defs
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -28,7 +29,7 @@ The paper's Step 4, the backward simulation (14), is not in the code and not her
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -59,25 +60,25 @@ noncomputable def NonlinearSys.reachInnerScalingCora1D {h q : ℕ} (c : ℝ) (G 
   -- Step 3: factor = 0.99 ('auto') or options.scaleFac
   let factor0 := scaleFac.getD (99 / 100)
   -- one pass of `for j = 1:length(B)`: (I, loop), `none` for `I = []` or an error
-  let pass : ℝ → ℝ × ℝ → Option (Option (ℝ × ℝ) × Bool) := fun factor I =>
+  let pass : ℝ → Real.Interval ℝ → Option (Option (Real.Interval ℝ) × Bool) := fun factor I =>
     -- j = 1, type 1: [~,val] = fmincon(@(x) x(1), ...), val = factor*val
-    let x1 := fmincon (fun x => x.1) conFun1 (I.1, -1) (I.2, 1)
+    let x1 := fmincon (fun x => x.1) conFun1 (I.inf, -1) (I.sup, 1)
     let val1 := factor * x1.1
-    if val1 < I.1 then none else                          -- interval(infimum(I0(1)),val)
-    if isEmptyContract conFun1 (I.1, -1) (val1, 1) then
-      let I1 := (I.1, val1)                               -- I = project(Itemp,1:n)
+    if val1 < I.inf then none else                          -- interval(infimum(I0(1)),val)
+    if isEmptyContract conFun1 (I.inf, -1) (val1, 1) then
+      let I1 : Real.Interval ℝ := ⟨I.inf, val1⟩                            -- I = project(Itemp,1:n)
       -- j = 2, type -1: [~,val] = fmincon(@(x) -x(1), ...), val = factor*val
-      let x2 := fmincon (fun x => -x.1) conFun2 (I1.1, -1) (I1.2, 1)
+      let x2 := fmincon (fun x => -x.1) conFun2 (I1.inf, -1) (I1.sup, 1)
       let val2 := factor * -x2.1
-      if I1.2 < -val2 then none else                      -- interval(-val,supremum(I0(1)))
-      if isEmptyContract conFun2 (-val2, -1) (I1.2, 1) then
-        some (some (-val2, I1.2), false)                  -- I = project(Itemp,1:n)
+      if I1.sup < -val2 then none else                      -- interval(-val,supremum(I0(1)))
+      if isEmptyContract conFun2 (-val2, -1) (I1.sup, 1) then
+        some (some ⟨-val2, I1.sup⟩, false)                  -- I = project(Itemp,1:n)
       else if scaleFac.isNone then some (some I1, true)   -- factor = factor - 0.01; loop = 1
       else some (none, false)                             -- I = []
     else if scaleFac.isNone then some (some I, true)      -- factor = factor - 0.01; loop = 1
     else some (none, false)                               -- I = []
   -- while factor > 0 && loop
-  let loop : ℕ → ℝ → ℝ × ℝ → Option (Option (ℝ × ℝ)) :=
+  let loop : ℕ → ℝ → Real.Interval ℝ → Option (Option (Real.Interval ℝ)) :=
     Nat.rec (fun _ I => some (some I)) fun _ next factor I =>
       if 0 < factor then
         match pass factor I with
@@ -85,8 +86,8 @@ noncomputable def NonlinearSys.reachInnerScalingCora1D {h q : ℕ} (c : ℝ) (G 
         | some (I', _) => some I'
         | none => none
       else some (some I)
-  match loop fuel factor0 (-1, 1) with
-  | some (some I) => some {y | ∃ a ∈ Set.Icc I.1 I.2, y = pR a}  -- polyZonotope(R.c,R.G,[],R.E)
+  match loop fuel factor0 ⟨-1, 1⟩ with
+  | some (some I) => some {y | ∃ a ∈ Set.Icc I.inf I.sup, y = pR a}  -- polyZonotope(R.c,R.G,[],R.E)
   | some none => some ∅                                   -- R = []
   | none => none
 

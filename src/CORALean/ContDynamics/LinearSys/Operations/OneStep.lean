@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Definitions.StepSets
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
@@ -27,7 +28,7 @@ block decomposition (`blocks`, default one block) is not carried.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -52,7 +53,7 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- CORA's `oneStep`, one block: the time-point set `Rtp` and the time-interval set `Rti` of the
 step `Δt`, from `X`, under the constant input `u` and the inputs in `U`, at Taylor order `η`. -/
 noncomputable def LinearSys.oneStep (sys : LinearSys 𝕋 n) (X U : S n) (u : Vec ℝ n) (Δt : ℝ)
-    (η : ℕ) : S n × S n :=
+    (η : ℕ) : LinearSys.StepSets (S n) :=
   let A := toRealMat sys.A
   let PU : S n := sys.inputSolution Δt η U                                -- time-varying input
   let Pu : S n := sys.inputSolution Δt η (OfPoint.ofPoint u)              -- constant input
@@ -61,7 +62,7 @@ noncomputable def LinearSys.oneStep (sys : LinearSys 𝕋 n) (X U : S n) (u : Ve
   let Htp : S n := Mtimes.mtimes (exp (Δt • A)) X ⊞ Pu                    -- `e^{AΔt} X ⊕ Pu`
   let C_state : S n := Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix A Δt η) X   -- `F X`
   let Hti : S n := LinComb.linComb X Htp ⊞ C_state                        -- `CH(X, Htp) ⊕ C_state`
-  (Htp ⊞ PU, Hti ⊞ PU ⊞ C_input)                                         -- `Rtp`, `Rti`
+  ⟨Htp ⊞ PU, Hti ⊞ PU ⊞ C_input⟩                                         -- `Rtp`, `Rti`
 
 end CORALean
 

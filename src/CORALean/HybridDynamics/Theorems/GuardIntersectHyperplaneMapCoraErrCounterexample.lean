@@ -31,7 +31,7 @@ hyperplane at `t = 2`, at `(2, 2, 1)`. CORA's error set is `{0}`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -218,7 +218,7 @@ theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample :
   have hΛ : Zonotope.halfspaceRange ![0, 1, 0] 0
       ((Zonotope.mtimes aux_hpMapCoraCex_A (Zonotope.ofPoint ![0, 0, 1])).plus
         (Zonotope.ofPoint (GuardMap.sdcInput aux_hpMapCoraCex_A (Zonotope.ofPoint 0).c (2 / 2) 3
-          (Zonotope.ofPoint ![0, 0, 1]).c))) = (1, 1) := by
+          (Zonotope.ofPoint ![0, 0, 1]).c))) = ⟨1, 1⟩ := by
     simp only [Zonotope.ofPoint, show (2 : ℝ) / 2 = 1 by norm_num]
     rw [aux_hpMapCoraCex_b]
     simp [Zonotope.halfspaceRange, Zonotope.plus, Zonotope.mtimes, dotProduct,

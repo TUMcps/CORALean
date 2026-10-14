@@ -25,7 +25,7 @@ evaluation, which is what the source demands.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,11 +46,11 @@ def Taylm.times (T₁ T₂ : Taylm n) : Taylm n :=
   let P₁ := Taylm.polyBounds T₁.terms
   let P₂ := Taylm.polyBounds T₂.terms
   { terms := L.filter fun a => Nat.ble (Taylm.degree a.2) N
-    remInf := D.1 + Interval.mulLo P₁.1 P₁.2 T₂.remInf T₂.remSup
-      + Interval.mulLo P₂.1 P₂.2 T₁.remInf T₁.remSup
+    remInf := D.inf + Interval.mulLo P₁.inf P₁.sup T₂.remInf T₂.remSup
+      + Interval.mulLo P₂.inf P₂.sup T₁.remInf T₁.remSup
       + Interval.mulLo T₁.remInf T₁.remSup T₂.remInf T₂.remSup
-    remSup := D.2 + Interval.mulHi P₁.1 P₁.2 T₂.remInf T₂.remSup
-      + Interval.mulHi P₂.1 P₂.2 T₁.remInf T₁.remSup
+    remSup := D.sup + Interval.mulHi P₁.inf P₁.sup T₂.remInf T₂.remSup
+      + Interval.mulHi P₂.inf P₂.sup T₁.remInf T₁.remSup
       + Interval.mulHi T₁.remInf T₁.remSup T₂.remInf T₂.remSup
     maxOrder := N }
 
