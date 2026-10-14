@@ -444,6 +444,10 @@
     }
   },
   "contSet/polytope": {
+    "cartProd_": {
+      "description": "product flagged bounded if either factor is bounded",
+      "kind": "other"
+    },
     "compact_": {
       "description": "aligned zero rows empty; 1-D equality merge drops coefficient",
       "kind": "unsound",
@@ -480,6 +484,10 @@
       "kind": "unsound",
       "fix": null
     },
+    "plus": {
+      "description": "full space plus empty set returns full space",
+      "kind": "other"
+    },
     "representsa_": {
       "description": "empty as point, $\\mathbb{R}^n$ as hyperplane, zero rows, halfspace crash",
       "kind": "other",
@@ -490,10 +498,6 @@
         "Polytope `representsa_`, `'interval'`, infeasible zero row",
         "Polytope `representsa_`, `'halfspace'`, vertex representation"
       ]
-    },
-    "cartProd_": {
-      "description": "product flagged bounded if either factor is bounded",
-      "kind": "other"
     }
   },
   "contSet/probZonotope": {
@@ -531,6 +535,10 @@
       "description": "shortcut declares point shadow empty, not full-dimensional",
       "kind": "other",
       "cex": "FullDimShortcutPointExample.lean"
+    },
+    "mtimes": {
+      "description": "tall full-column-rank matrix keeps full-dimensional flag",
+      "kind": "other"
     },
     "representsa_": {
       "description": "'fullspace' true for any set with infinite axis supports",
@@ -735,13 +743,25 @@
       "description": "error bound skips interior extremum; radius too small",
       "kind": "unsound"
     },
-    "nnLayer": {
-      "description": "interval evaluation uses only end points; non-monotone layers unsound",
+    "nnConv2DLayer": {
+      "description": "batch repair of inverted center bounds collapses other intervals",
       "kind": "unsound"
+    },
+    "nnElementwiseAffineLayer": {
+      "description": "conZonotope evaluation multiplies by column scale; crash",
+      "kind": "other"
     },
     "nnExpLayer": {
       "description": "getDerBounds has one output; error bound crashes",
       "kind": "other"
+    },
+    "nnLayer": {
+      "description": "interval evaluation uses only end points; non-monotone layers unsound",
+      "kind": "unsound"
+    },
+    "nnLinearLayer": {
+      "description": "conZonotope and taylm evaluation drop the additive approximation error",
+      "kind": "unsound"
     },
     "nnRootLayer": {
       "description": "derivative of sqrt is sqrt(x)/2; singh band unsound",
