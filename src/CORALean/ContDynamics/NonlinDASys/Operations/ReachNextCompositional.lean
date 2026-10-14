@@ -28,7 +28,7 @@ split is required.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -53,20 +53,26 @@ def NonlinDASys.reachNextCompositional
       Option ((∀ i, Zonotope (Vec ℝ (e i))) × Zonotope (Vec ℝ n) × (∀ i, Zonotope (Vec ℝ (m i))))
   | 0, _ => none
   | fuel + 1, s =>
-      -- lines 3-8: the subsystems without a confirmed assumption, Û⁽ⁱ⁾ by Eq. 14, Alg. 1 on it
+      -- 3.-8. the subsystems without a confirmed assumption, `Û⁽ⁱ⁾` by Eq. 14, Alg. 1 on it
       let pass : ∀ i, Zonotope (Vec ℝ (m i)) × Zonotope (Vec ℝ (e i)) × Zonotope (Vec ℝ (d i)) :=
         fun i =>
           if s.inputEnclosure i then (s.Uhat i, s.Rnext i, s.Rloc i)
           else
-            let Uhat := NonlinDASys.enlargeInterfaceInput lamU (Λ i) (s.U i).c (s.U i)  -- l. 5
-            (Uhat, subReach i Uhat)                                                     -- l. 6
-      let R : Zonotope (Vec ℝ n) :=                                                     -- l. 9
+            -- 5. `Û⁽ⁱ⁾ ← ` the enlarged interface input, Eq. 14
+            let Uhat := NonlinDASys.enlargeInterfaceInput lamU (Λ i) (s.U i).c (s.U i)
+            -- 6. `R⁽ⁱ⁾ᵈ(t_{k+1}), R⁽ⁱ⁾(τ_k)` by Alg. 1 on subsystem `i`
+            (Uhat, subReach i Uhat)
+      -- 9. `R(τ_k)` composed from the subsystems
+      let R : Zonotope (Vec ℝ n) :=
         NonlinDASys.composeSubsystems Φ fun i => (pass i).2.2
-      let inputEnclosure : Fin ns → Bool := fun i =>                                    -- l. 11-15
+      -- 11.-15. the flag of subsystem `i`: `Υ⁽ⁱ⁾R ⊆ Λ⁽ⁱ⁾Û⁽ⁱ⁾`
+      let inputEnclosure : Fin ns → Bool := fun i =>
         sub (Zonotope.mtimes (Υ i) R) (Zonotope.mtimes (Λ i) (pass i).1)
-      let U : ∀ i, Zonotope (Vec ℝ (m i)) := fun i =>                                   -- l. 16
+      -- 16. the next assumption `U⁽ⁱ⁾ ← Λ⁽ⁱ⁾Û⁽ⁱ⁾ ⊕ (1 - Λ⁽ⁱ⁾)U⁽ⁱ⁾`
+      let U : ∀ i, Zonotope (Vec ℝ (m i)) := fun i =>
         (Zonotope.mtimes (Λ i) (pass i).1).plus (Zonotope.mtimes (1 - Λ i) (s.U i))
-      if ∀ i, inputEnclosure i = true then                                              -- l. 18
+      -- 18. `until` every flag is set
+      if ∀ i, inputEnclosure i = true then
         some (fun i => (pass i).2.1, R, fun i => (pass i).1)
       else
         NonlinDASys.reachNextCompositional subReach Φ Υ Λ lamU sub fuel

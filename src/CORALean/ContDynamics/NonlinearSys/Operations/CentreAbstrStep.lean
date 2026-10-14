@@ -33,7 +33,7 @@ an `Option`.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -62,24 +62,38 @@ noncomputable def NonlinearSys.centreAbstrStep (sys : NonlinearSys n m) (U : S m
     (lin : Vec ℝ n → Vec ℝ m → Mat ℝ n n × Mat ℝ n m) (Φ : S n → S n → S n)
     (sub : S n → S n → Bool) (enlarge : S n → S n) (Δt : ℝ) (ηlin ηabs o fuel : ℕ)
     (s : NonlinearSys.CentreAbstrState S n) : Option (NonlinearSys.CentreAbstrState S n) :=
-  let xs := Recentre.centre s.R                                   -- 3. z✱(t_s) ← center(R(t_s))
-  let us := Recentre.centre U                                     -- 3. the input half of z✱
-  let AB := lin xs us                                             -- 4. taylor
-  let lsys := NonlinearSys.linearize AB.1                         -- 4. the linearized system
-  let Ulin := linInput sys.f AB.1 AB.2 xs us U                    -- 4. w ⊞ B(U ⊖ u✱)
+  -- 3. z✱(t_s) ← center(R(t_s))
+  let xs := Recentre.centre s.R
+  -- 3. the input half of z✱
+  let us := Recentre.centre U
+  -- 4. taylor
+  let AB := lin xs us
+  -- 4. the linearized system
+  let lsys := NonlinearSys.linearize AB.1
+  -- 4. w ⊞ B(U ⊖ u✱)
+  let Ulin := linInput sys.f AB.1 AB.2 xs us U
     (OfPoint.ofPoint (0 : Vec ℝ n))
-  let Rlint := lsys.timePointStep Δt ηlin s.R Ulin                -- 5. linReach, eq. (7)
-  let Rlinτ := (lsys.timeIntervalStep Δt ηlin s.R)                -- 5. linReach, eq. (8)
+  -- 5. linReach, eq. (7)
+  let Rlint := lsys.timePointStep Δt ηlin s.R Ulin
+  -- 5. linReach, eq. (8)
+  let Rlinτ := (lsys.timeIntervalStep Δt ηlin s.R)
     ⊞ lsys.inputSolution Δt ηlin Ulin
-  let Ψ₀ := OfPoint.ofPoint (0 : Vec ℝ n)                         -- 6. Ψ = 0
-  match abstrErrLoop sub enlarge (Φ Rlinτ) Ψ₀ fuel with           -- 7.-10. the do-while
+  -- 6. Ψ = 0
+  let Ψ₀ := OfPoint.ofPoint (0 : Vec ℝ n)
+  -- 7.-10. the do-while
+  match abstrErrLoop sub enlarge (Φ Rlinτ) Ψ₀ fuel with
   | none => none
   | some Ψ =>
-    let Rabs := lsys.inputSolution Δt ηabs Ψ                       -- 11. abstrSol, eq. (6)
-    let Rt := Rlint ⊞ Rabs                                         -- 12. R(t_{s+1})
-    let Rτ := Rlinτ ⊞ Rabs                                         -- 13. R(τ_{s+1})
-    some { t := s.t + Δt,                                          -- 15. t ← t + Δt, s ← s + 1
-           R := Reduce.reduce Rt o, Rτ := Reduce.reduce Rτ o }     -- 14. red
+    -- 11. abstrSol, eq. (6)
+    let Rabs := lsys.inputSolution Δt ηabs Ψ
+    -- 12. R(t_{s+1})
+    let Rt := Rlint ⊞ Rabs
+    -- 13. R(τ_{s+1})
+    let Rτ := Rlinτ ⊞ Rabs
+    -- 15. t ← t + Δt, s ← s + 1
+    some { t := s.t + Δt,
+           -- 14. red
+           R := Reduce.reduce Rt o, Rτ := Reduce.reduce Rτ o }
 
 end CORALean
 

@@ -19,7 +19,7 @@ describes for `k = 1` in prose rather than in the algorithm.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ variable {S : ℕ → Type}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The state [1, Alg. 2] needs before its first step, which [1] describes for
+/-- The state the adaptive step of [1] needs before its first step, which [1] describes for
 `k = 1` in prose rather than in the algorithm. -/
 def NonlinearSys.adaptInit {T τ : Type} [Zero T] (X₀ : S n) (h₀ φ₀ rabs₀ : τ) (κ₀ : ℕ) :
     NonlinearSys.AdaptState S n T τ :=

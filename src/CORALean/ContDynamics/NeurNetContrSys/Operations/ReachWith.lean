@@ -51,13 +51,19 @@ def NeurNetContrSys.reachWith (sys : NeurNetContrSys P S n)
     (pr : S (n + Plant.m sys.plant) → S n)
     (rx : S (n + Plant.m sys.plant) → S (n + Plant.m sys.plant) × List (S (n + Plant.m sys.plant)))
     (X₀ : S n) : ℕ → S n × List (S n)
-  | 0 => (X₀, [])                                              -- 1: R(t₀) ← X₀
+  -- 1. `R(t₀) ← X₀`
+  | 0 => (X₀, [])
   | i + 1 =>
-    let R := NeurNetContrSys.reachWith sys cp pr rx X₀ i         -- the loop so far
-    let Y := sys.contr.enclose R.1                               -- 3: image through the network
-    let R' := cp R.1 Y                                           -- 4: R̂(tᵢ) ← R(tᵢ) × Y
-    let Rx := rx R'                                              -- 6: R̂(tᵢ₊₁), R̂(τᵢ)
-    (pr Rx.1, Rx.2.map pr ++ R.2)                                -- 7: project back
+    -- the loop so far, `i` cycles
+    let R := NeurNetContrSys.reachWith sys cp pr rx X₀ i
+    -- 3. the image `Y` through the network, `enclose`
+    let Y := sys.contr.enclose R.1
+    -- 4. `R̂(tᵢ) ← R(tᵢ) × Y`
+    let R' := cp R.1 Y
+    -- 6. `R̂(tᵢ₊₁), R̂(τᵢ)` by the reachable-set step
+    let Rx := rx R'
+    -- 7. project back, `R(tᵢ₊₁) ← proj(R̂(tᵢ₊₁))`
+    (pr Rx.1, Rx.2.map pr ++ R.2)
 
 end CORALean
 

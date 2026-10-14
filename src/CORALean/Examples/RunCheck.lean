@@ -227,7 +227,7 @@ def ofOptStepOrder (o : Option (Dyadic 24 × ℕ)) : Out :=
   match o with
   | none => ⟨"none", [], true⟩
   | some (Δt, η) => ⟨s!"step={sc Δt} order={η}", [ToF.toF Δt], false⟩
-/-- A step of `Alg. 2`: the time it reached, the step taken and the window. -/
+/-- A step of the adaptive reach loop: the time it reached, the step taken and the window. -/
 def ofAutoStep (o : Option
     (LinearSys.AutoStateFloat (Dyadic 24) 2 × Zonotope (Vec (Dyadic 24) 2))) :
     Out :=
@@ -236,7 +236,7 @@ def ofAutoStep (o : Option
   | some (s, R) =>
     ⟨s!"t={fl (qF s.t)} step={sc s.Δt} eps_a={fl (qF s.εa)} eps_r={fl (qF s.εr)} window: "
       ++ (ofZono R).text, ToF.toF s.Δt :: zonoF R, false⟩
-/-- The windows `Alg. 2` returns, each with the times it covers. -/
+/-- The windows the adaptive reach loop returns, each with the times it covers. -/
 def ofTimedWindows (o : Option (List (ℚ × ℚ × Zonotope (Vec (Dyadic 24) 2)))) : Out :=
   match o with
   | none => ⟨"none", [], true⟩

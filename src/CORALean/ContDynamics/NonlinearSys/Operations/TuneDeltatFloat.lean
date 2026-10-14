@@ -42,19 +42,29 @@ next step, and `none` where the first step's search for `Δ` gave out. -/
 def tuneDeltatFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ} (prec bis : ℕ)
     (dabs : 𝕋 → Fin n → 𝕋) (rabs : 𝕋 → 𝕋) (ζδ ζΔ ζZ ζP r₀ φ1 Δ Δinit : 𝕋) (s fuel : ℕ) :
     Option (NonlinearSys.TunedStep 𝕋) :=
-  if s = 1 then                                                  -- 1. if s = 1 then
-    let Δ₀ := Δinit                                              -- 2. initialize Δt
-    match tuneDeltatInitFloat dabs ζδ ζΔ Δ₀ fuel with            -- 3.-7. the loop of (32)
+  -- 1. if s = 1 then
+  if s = 1 then
+    -- 2. initialize Δt
+    let Δ₀ := Δinit
+    -- 3.-7. the loop of (32)
+    match tuneDeltatInitFloat dabs ζδ ζΔ Δ₀ fuel with
     | none => none
     | some ⟨Δ₁, φ₁⟩ =>
-      let opt := optDeltatFloat prec bis ζδ ζZ ζP φ₁ r₀ (rabs Δ₁) Δ₁ fuel  -- 8. Δt* by (31)
+      -- 8. Δt* by (31)
+      let opt := optDeltatFloat prec bis ζδ ζZ ζP φ₁ r₀ (rabs Δ₁) Δ₁ fuel
       some ⟨opt.Δt, φ₁⟩
-  else                                                           -- 9. else
-    let Δk := divUp (mulUp Δ (subUp ζδ ζΔ)) (subDown ζδ φ1)     -- 10. Δ ← Δ(ζ_δ-ζ_Δ)/(ζ_δ-φ₁)
-    let rabs1 := rabs Δk                                         -- 11. R_abs(Δ), and r_abs,1
-    let opt := optDeltatFloat prec bis ζδ ζZ ζP φ1 r₀ rabs1 Δk fuel  -- 12. Δt* by (31)
-    let rabsk := rabs opt.Δt                                      -- 13. (29)'s r_abs,k, at Δt*
-    let φ₁ := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.exponent)  -- 13. φ₁ by (29)
+  -- 9. else
+  else
+    -- 10. Δ ← Δ(ζ_δ-ζ_Δ)/(ζ_δ-φ₁)
+    let Δk := divUp (mulUp Δ (subUp ζδ ζΔ)) (subDown ζδ φ1)
+    -- 11. R_abs(Δ), and r_abs,1
+    let rabs1 := rabs Δk
+    -- 12. Δt* by (31)
+    let opt := optDeltatFloat prec bis ζδ ζZ ζP φ1 r₀ rabs1 Δk fuel
+    -- 13. (29)'s r_abs,k, at Δt*
+    let rabsk := rabs opt.Δt
+    -- 13. φ₁ by (29)
+    let φ₁ := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.exponent)
       rabs1 rabsk opt.exponent fuel
     some ⟨opt.Δt, φ₁⟩
 

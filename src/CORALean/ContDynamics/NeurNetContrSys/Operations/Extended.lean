@@ -40,7 +40,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 2], equation (4): `ż = (f(x, u, w), 0)` on `z = (x, u)`. -/
+/-- [1], equation (4) of the reach algorithm: `ż = (f(x, u, w), 0)` on `z = (x, u)`. -/
 def NeurNetContrSys.extended (sys : NeurNetContrSys P S n) :
     NonlinearSys (n + Plant.m sys.plant) (Plant.r sys.plant) where
   f z w := Fin.append

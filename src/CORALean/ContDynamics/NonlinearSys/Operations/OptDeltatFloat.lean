@@ -42,9 +42,12 @@ found at. -/
 def optDeltatFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋] (prec bis : ℕ)
     (ζδ ζZ ζA φ1 r₀ rabs h : 𝕋) (fuel : ℕ) :
     NonlinearSys.OptStep 𝕋 :=
-  let cost := reachSizeEstimateFloat prec bis ζδ ζZ ζA φ1 r₀ rabs  -- 57. the cost function
-  let sstar := optDeltatSearchFloat cost 0 fuel                  -- 58. the argmin over λ'
-  ⟨mulUp h (powUp ζδ sstar), sstar⟩                              -- 58. Δt* = h ζ_δ^{λ'}
+  -- 10. eq. (57): the cost function
+  let cost := reachSizeEstimateFloat prec bis ζδ ζZ ζA φ1 r₀ rabs
+  -- 10. eq. (58): the argmin over λ'
+  let sstar := optDeltatSearchFloat cost 0 fuel
+  -- 10. eq. (58): Δt* = h ζ_δ^{λ'}
+  ⟨mulUp h (powUp ζδ sstar), sstar⟩
 
 end CORALean
 

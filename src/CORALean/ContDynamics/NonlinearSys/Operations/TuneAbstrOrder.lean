@@ -33,7 +33,7 @@ search is needed: the criterion is a choice between two values.
 
 -- Authors:       Claude Sonnet 5
 -- Written:       18-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,10 +50,13 @@ variable {n : ℕ}
 error radii of eq. (46) and the two diameter vectors of eq. (47). -/
 noncomputable def tuneAbstrOrder (le : ℝ → ℝ → Bool) (ζK φstar rabs rabsLast : ℝ)
     (d1 d2 : Fin n → ℝ) (κ : ℕ) : ℕ :=
-  if le |φstar * rabs / rabsLast| (1 - ζK) then κ                -- 46. too close to re-tune
+  -- 13. eq. (46): too close to re-tune
+  if le |φstar * rabs / rabsLast| (1 - ζK) then κ
   else if ∀ i : Fin n, le (d1 i) 0 = true ∨ le ζK (d2 i / d1 i) = true
-    then 1                                                       -- 47. quadratic wins too little
-    else 2                                                       -- 47. it is worth its cost
+    -- 13. eq. (47): quadratic wins too little
+    then 1
+    -- 13. eq. (47): it is worth its cost
+    else 2
 
 end CORALean
 

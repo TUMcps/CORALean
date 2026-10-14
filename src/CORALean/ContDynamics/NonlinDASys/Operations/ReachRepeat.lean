@@ -29,7 +29,7 @@ enlargements have not reached an exit. The errors are pairs, the dynamics' and t
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -56,15 +56,20 @@ noncomputable def NonlinDASys.reachRepeat (sys : NonlinDASys n p m)
     ℕ → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p) → Option (NonlinDASys.ErrorLoopResult n p)
   | 0, _ => none
   | fuel + 1, L =>
+      -- the enlargement `ĉ ⊕ λ(L ⊕ (−ĉ))`, Eq. (17)
       let enlarge : ∀ {k : ℕ}, Zonotope (Vec ℝ k) → Zonotope (Vec ℝ k) := fun Z =>
         ((Z.plus (Zonotope.ofPoint (-Z.c))).mtimes (lam • (1 : Mat ℝ _ _))).plus
-          (Zonotope.ofPoint Z.c)                                 -- ĉ ⊕ λ(L ⊕ (−ĉ)), Eq. (17)
-      let Lbar := (enlarge L.1, enlarge L.2)                     -- l. 5
+          (Zonotope.ofPoint Z.c)
+      -- 5. `L̄ ← ` the enlarged `L`
+      let Lbar := (enlarge L.1, enlarge L.2)
+      -- 6.-8. `Ū`, `Rᵈ(t_{k+1})`, `R(τ_k)` by `linReach` at `L̄`
       let R := NonlinDASys.linReach (sys.f taylor.xs taylor.ys taylor.us)
         (sys.g taylor.xs taylor.ys taylor.us) taylor.A taylor.B taylor.C taylor.D taylor.E
-        taylor.F_inv taylor.xs taylor.ys taylor.us Rk U Lbar.1 Lbar.2 r η  -- l. 6-8
-      let Lnew := corollary1 taylor R.2.2 U                      -- l. 9
-      if sub Lnew.1 Lbar.1 && sub Lnew.2 Lbar.2 || !sub Lnew.1 Lmax then   -- l. 10
+        taylor.F_inv taylor.xs taylor.ys taylor.us Rk U Lbar.1 Lbar.2 r η
+      -- 9. `L ← ` the abstraction error by Cor. 1
+      let Lnew := corollary1 taylor R.2.2 U
+      -- 10. `until L ⊆ L̄` (or `L ⊄ L_max`, the exit to the split)
+      if sub Lnew.1 Lbar.1 && sub Lnew.2 Lbar.2 || !sub Lnew.1 Lmax then
         some ⟨Lbar, R.2.1, R.2.2, Lnew⟩
       else
         NonlinDASys.reachRepeat sys taylor corollary1 sub Lmax lam r η Rk U fuel Lnew

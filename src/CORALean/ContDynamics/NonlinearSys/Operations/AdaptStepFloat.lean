@@ -64,24 +64,40 @@ def NonlinearSys.FloatHessModel.adaptStepFloat [SoundFloatArithmetic 𝕋] [ToRa
   let dia := fun (Z : Zonotope (Vec 𝕋 n)) (i : Fin n) =>  -- diameter of the box of Z
     subUp (Z.interval.sup i) (Z.interval.inf i)
   let opts := fun (Δt : 𝕋) => ({ options with Δt := Δt } : LinearSys.ReachOptions 𝕋)
-  let hk := divUp (mulUp s.h (subUp ζδ ζh)) (subDown ζδ s.φ)       -- 1. h_k, eq. (59)
-  let p₁ ← fm.toFloatModel.adaptLinPassFloat U (opts hk) s.R          -- 3.-6. a = 1, at Δt_k = h_k
-  let F₁ ← fm.orderStepFloat s.κ U (opts hk) s.R                      -- 7.-9. the step at κ_k
-  let rabs1 := maximum zero (subUp (rad F₁.2) (rad p₁.2.1))         -- 9. r⁽¹⁾_abs,k
+  -- 1. h_k, eq. (59)
+  let hk := divUp (mulUp s.h (subUp ζδ ζh)) (subDown ζδ s.φ)
+  -- 3.-6. a = 1, at Δt_k = h_k
+  let p₁ ← fm.toFloatModel.adaptLinPassFloat U (opts hk) s.R
+  -- 7.-9. the step at κ_k
+  let F₁ ← fm.orderStepFloat s.κ U (opts hk) s.R
+  -- 9. r⁽¹⁾_abs,k
+  let rabs1 := maximum zero (subUp (rad F₁.2) (rad p₁.2.1))
   let ζA := expUp prec (mulUp (sumUp fun i => p₁.1 i i) hk)         -- eq. (50)'s e^{tr(A)h}
-  let opt := optDeltatFloat prec bis ζδ ζZ ζA s.φ (rad s.R) rabs1 hk fuel  -- 10. optDeltat
-  let p₂ ← fm.toFloatModel.adaptLinPassFloat U (opts opt.Δt) s.R       -- 3.-6. a = 2, at Δt_k = Δt*
-  let F₁' ← fm.orderStepFloat 1 U (opts opt.Δt) s.R                    -- 7.-12. the step at κ = 1
-  let F₂' ← fm.orderStepFloat 2 U (opts opt.Δt) s.R                    -- 7.-12. the step at κ = 2
-  let dabs₁ := fun i => maximum zero (subUp (dia F₁'.2 i) (dia p₂.2.1 i))  -- 12. d(R_abs), κ = 1
-  let dabs₂ := fun i => maximum zero (subUp (dia F₂'.2 i) (dia p₂.2.1 i))  -- 12. d(R_abs), κ = 2
-  let F := if s.κ = 1 then F₁' else F₂'                             -- 12. the step at κ_k
-  let rabsOpt := maximum zero (subUp (rad F.2) (rad p₂.2.1))        -- 12. r^{(λ*)}_abs,k
-  let κ' := tuneAbstrOrderFloat ζK s.φ rabsOpt s.rabs dabs₁ dabs₂ s.κ  -- 13. tuneAbstrOrder
-  let φk := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.exponent) rabs1 rabsOpt  -- 16.
+  -- 10. optDeltat
+  let opt := optDeltatFloat prec bis ζδ ζZ ζA s.φ (rad s.R) rabs1 hk fuel
+  -- 3.-6. a = 2, at Δt_k = Δt*
+  let p₂ ← fm.toFloatModel.adaptLinPassFloat U (opts opt.Δt) s.R
+  -- 7.-12. the step at κ = 1
+  let F₁' ← fm.orderStepFloat 1 U (opts opt.Δt) s.R
+  -- 7.-12. the step at κ = 2
+  let F₂' ← fm.orderStepFloat 2 U (opts opt.Δt) s.R
+  -- 12. d(R_abs), κ = 1
+  let dabs₁ := fun i => maximum zero (subUp (dia F₁'.2 i) (dia p₂.2.1 i))
+  -- 12. d(R_abs), κ = 2
+  let dabs₂ := fun i => maximum zero (subUp (dia F₂'.2 i) (dia p₂.2.1 i))
+  -- 12. the step at κ_k
+  let F := if s.κ = 1 then F₁' else F₂'
+  -- 12. r^{(λ*)}_abs,k
+  let rabsOpt := maximum zero (subUp (rad F.2) (rad p₂.2.1))
+  -- 13. tuneAbstrOrder
+  let κ' := tuneAbstrOrderFloat ζK s.φ rabsOpt s.rabs dabs₁ dabs₂ s.κ
+  -- 16. estimateGain
+  let φk := estimateGainFloat ζδ (powUp (divUp one ζδ) opt.exponent) rabs1 rabsOpt
     opt.exponent fuel
-  pure { t := s.t + ToRat.toRat opt.Δt,                              -- 17. t_{k+1}
-         R := Reduce.reduce F.2 options.ρ,              -- 18. redAdaptive
+  -- 17. t_{k+1}
+  pure { t := s.t + ToRat.toRat opt.Δt,
+         -- 18. redAdaptive
+         R := Reduce.reduce F.2 options.ρ,
          Rτ := Reduce.reduce F.1 options.ρ,
          h := hk, φ := φk, κ := κ', rabs := rabsOpt }
 

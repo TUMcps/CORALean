@@ -44,9 +44,12 @@ namespace CORALean
 found at. -/
 noncomputable def optDeltat (le : ℝ → ℝ → Bool) (ζδ ζZ ζA φ1 r₀ rabs h : ℝ) (fuel : ℕ) :
     NonlinearSys.OptStep ℝ :=
-  let cost := reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs             -- 57. the cost function
-  let sstar := optDeltatSearch le cost 0 fuel                    -- 58. the argmin over λ'
-  ⟨h * ζδ ^ sstar, sstar⟩                                        -- 58. Δt* = h ζ_δ^{λ'}
+  -- 10. eq. (57): the cost function
+  let cost := reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs
+  -- 10. eq. (58): the argmin over λ'
+  let sstar := optDeltatSearch le cost 0 fuel
+  -- 10. eq. (58): Δt* = h ζ_δ^{λ'}
+  ⟨h * ζδ ^ sstar, sstar⟩
 
 end CORALean
 
