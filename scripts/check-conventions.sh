@@ -85,6 +85,46 @@ CLASS_ROOT_EXEMPT=src/CORALean/ContSet/Conversion
 CLASS_ROOT_PENDING="
 "
 
+# Layering (CONTRIBUTING, "Import guards and layering"). One line per importing
+# top-level directory of `src/CORALean/`: `Dir: Dir Dir …`, the directories it
+# may not import. Measured on the tree, not wished for: `ContDynamics`, `NN` and
+# `Specification` import one another (a neural-network controller is a dynamics,
+# a dynamics has a specification), so those pairs are left out until that cycle
+# is cut. `Examples/` imports anything and nothing imports it. Whoever adds a
+# line here has checked that the tree already satisfies it.
+LAYERS="
+Global: ContSet ContDynamics HybridDynamics NN Specification Examples
+ContSet: ContDynamics HybridDynamics NN Specification Examples
+ContDynamics: HybridDynamics Examples
+NN: HybridDynamics Examples
+Specification: NN HybridDynamics Examples
+HybridDynamics: Examples
+"
+
+# The imports the table forbids that the tree has, one per line as
+# `file | directory | reason`; a reason says why the code is not elsewhere. The
+# list only shrinks: an entry whose file no longer imports that directory is
+# reported as stale.
+LAYER_EXCEPTIONS="
+src/CORALean/ContSet/ProbZonotope/Float/Theorems/EncloseMeanOuter.lean | ContDynamics | encloses the mean with the matrix-exponential enclosure that lives with LinearSys
+src/CORALean/ContSet/ProbZonotope/Float/Operations/Enclose.lean | ContDynamics | encloses the mean with the matrix-exponential enclosure that lives with LinearSys
+src/CORALean/ContSet/ProbZonotope/Real/Theorems/GaussPdfExpMulVec.lean | ContDynamics | the Gaussian density under exp(At) uses the determinant of the matrix exponential
+src/CORALean/ContSet/Zonotope/Real/Theorems/FaultObservePRadiusCounterexample.lean | ContDynamics | counterexample to the fault-radius LMI, which is defined with LinearSysDT
+"
+
+# The base files: imported by so much of the tree that what creeps into their
+# closure rebuilds it. Each carries `assert_not_exists` / `assert_not_imported`
+# guards, `file | number of guards`; changing a count is deleting or adding a
+# guard on purpose.
+GUARDED_FILES="
+src/CORALean/Global/Tensor.lean | 8
+src/CORALean/Global/Entrywise.lean | 8
+src/CORALean/Global/Scalar.lean | 8
+src/CORALean/Global/Float/FloatOps.lean | 8
+src/CORALean/ContSet/ContSet/ContSet.lean | 10
+src/CORALean/ContSet/Interval/Real/Interval.lean | 8
+"
+
 status=0
 
 report() {
@@ -1400,6 +1440,59 @@ report "$out"
 # rule is the one written in Python; CI's conventions job installs python3 for
 # `check-references.py` already.
 out=$(python3 scripts/check-basic-bundles.py || true)
+report "$out"
+
+# Layering: no file imports a directory the table forbids it, except the listed
+# exceptions, and no exception outlives its import.
+out=$(awk -v LAYERS="$LAYERS" -v EXC="$LAYER_EXCEPTIONS" '
+BEGIN {
+  n = split(LAYERS, ls, "\n")
+  for (i = 1; i <= n; i++) {
+    if (ls[i] !~ /:/) continue
+    split(ls[i], kv, ":"); m = split(kv[2], ds, " ")
+    for (j = 1; j <= m; j++) forbid[kv[1] "/" ds[j]] = 1
+  }
+  n = split(EXC, es, "\n")
+  for (i = 1; i <= n; i++) {
+    if (es[i] !~ /\|/) continue
+    split(es[i], kv, " [|] ")
+    excline[kv[1] "/" kv[2]] = 1
+    if (kv[3] == "") print "layering: exception for " kv[1] " has no reason"
+  }
+}
+/^(public[ \t]+)?(meta[ \t]+)?import[ \t]+CORALean\./ {
+  split(FILENAME, pp, "/"); from = pp[3]
+  to = $NF; sub(/^CORALean\./, "", to); sub(/\..*/, "", to)
+  if (to == from || !((from "/" to) in forbid)) next
+  key = FILENAME "/" to
+  if (key in excline) { used[key] = 1; next }
+  print FILENAME ": imports CORALean." to ", which " from "/ may not import (LAYERS in check-conventions.sh)"
+}
+END { for (k in excline) if (!(k in used)) print "layering: stale exception " k }
+' $files)
+report "$out"
+
+# Import guards: the base files keep every guard, each with its comment, and
+# `assert_not_imported` names a module that exists (a typo there guards nothing).
+out=$(printf '%s\n' "$GUARDED_FILES" | while IFS='|' read -r gf gn; do
+  gf=$(printf '%s' "$gf" | tr -d ' '); gn=$(printf '%s' "$gn" | tr -d ' ')
+  [ -n "$gf" ] || continue
+  awk -v WANT="$gn" '
+  { prev = cur; cur = $0 }
+  /^-- Import guards/ { marker = 1 }
+  /^assert_not_(exists|imported)[ \t]/ {
+    n++
+    if (prev !~ /^-- /) print FILENAME ":" FNR ": guard without a comment line above it saying why"
+    if ($1 == "assert_not_imported") {
+      mp = "src/" $2; gsub(/\./, "/", mp); mp = mp ".lean"
+      if (system("test -f " mp) != 0) print FILENAME ":" FNR ": " $2 " is not a module of this repository"
+    }
+  }
+  END {
+    if (!marker) print FILENAME ": missing the `-- Import guards` comment"
+    if (n != WANT) print FILENAME ": has " n " import guards, GUARDED_FILES says " WANT " (change both on purpose)"
+  }' "$gf"
+done)
 report "$out"
 
 if [ "$status" -eq 0 ]; then

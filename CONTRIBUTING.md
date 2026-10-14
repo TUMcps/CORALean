@@ -1126,6 +1126,47 @@ which only shrinks; everything under `Examples/` stays non-module too, since
 `#eval` in a module needs `meta import`. `check-conventions.sh` checks the
 header lines and refuses any other file that is not a module.
 
+## Import guards and layering
+
+A handful of files are imported by most of the tree: `Global/Tensor` by about nine
+thousand files, the entrywise and scalar layers, `Float/FloatOps`, the abstract
+`ContSet` class and `Interval/Real/Interval` by thousands each. An import added to
+one of them is added to all of them, so a heavy theory (measure theory, probability,
+determinants and spectra, the analytic special functions, calculus, inner-product
+geometry) that reaches such a file's closure rebuilds the whole tree on every change
+to it. Mathlib guards its base files the same way, and so do we: after the author
+block, under a `-- Import guards` comment, each of these files states what must stay
+out of its closure, one commented line per guard:
+
+```lean
+-- Probability, which sits on top of measure theory.
+assert_not_exists ProbabilityTheory.IndepFun
+-- The abstract set class sits above this file.
+assert_not_imported CORALean.ContSet.ContSet.ContSet
+```
+
+`assert_not_exists D` fails the build if declaration `D` is in the environment,
+`assert_not_imported M` if module `M` is in the closure. A guard holds today, which
+the build proves, and names something that would be a realistic regression. A guard
+on a name that does not exist passes silently, so check a new one with a scratch file
+that imports `Mathlib` and the module and ends in `#check_assertions!`; the
+conventions check does confirm that an `assert_not_imported` module has a file.
+
+`scripts/check-conventions.sh` enforces two things. `GUARDED_FILES` lists the guarded
+files with their guard counts, and a missing guard, a guard without its comment or a
+count that differs is reported. `LAYERS` lists, per top-level directory of
+`src/CORALean/`, the directories it may not import: `Global/` imports no other layer,
+`ContSet/` no dynamics, network or specification code, and nothing but `Examples/`
+imports `HybridDynamics/`. `ContDynamics/`, `NN/` and `Specification/` import one
+another and stay unordered. The imports that break a row are `LAYER_EXCEPTIONS`, each
+with its reason; code is not moved to hide one, and an exception whose import is gone
+is reported.
+
+To change a guard on purpose, edit the file and the count in `GUARDED_FILES` in one
+commit, and say in the commit message why the closure may now contain that theory. To
+guard another file, add the marker comment, the guards and a `GUARDED_FILES` row. To
+add a layering row, first measure that the tree satisfies it.
+
 ## Author blocks
 
 Content files carry a CORA-style block between the module docstring and the

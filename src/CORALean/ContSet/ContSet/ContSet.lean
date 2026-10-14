@@ -34,11 +34,34 @@ operand-dependent one needs an oracle a total `plus : S → S → S` cannot have
 
 -- Authors:       Claude Opus 5
 -- Written:       16-August-2026
--- Last update:   24-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+-- Import guards (CONTRIBUTING, "Import guards and layering"): what must stay out of the closure.
+
+-- Measure theory, whose import closure is larger than this whole layer.
+assert_not_exists MeasureTheory.Measure
+-- Probability, which sits on top of measure theory.
+assert_not_exists ProbabilityTheory.IndepFun
+-- Determinants and the spectral theory built on them.
+assert_not_exists Matrix.det
+-- Calculus, which only the dynamics layers need.
+assert_not_exists HasDerivAt
+-- Inner-product geometry; the sup norm is what this layer uses.
+assert_not_exists InnerProductSpace
+-- A concrete representation sits above this file.
+assert_not_imported CORALean.ContSet.Interval.Real.Interval
+-- A concrete representation sits above this file.
+assert_not_imported CORALean.ContSet.Zonotope.Real.Zonotope
+-- The dynamics layer sits above the sets.
+assert_not_imported CORALean.ContDynamics.LinearSys.LinearSys
+-- The network layer sits above the sets.
+assert_not_imported CORALean.NN.NeuralNetwork
+-- The specification layer sits above the sets.
+assert_not_imported CORALean.Specification.Specification
 
 namespace CORALean
 
