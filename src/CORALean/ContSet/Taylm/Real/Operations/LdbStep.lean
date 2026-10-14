@@ -23,7 +23,7 @@ coordinates with negative `Lᵢ` (step (2)); here their left end is `+1` instead
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,23 +36,23 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.ldbStep (T : Taylm n) : ℝ × ℝ × (Fin n → ℝ × ℝ) :=
+noncomputable def Taylm.ldbStep (T : Taylm n) : Interval ℝ × (Fin n → Interval ℝ) :=
   let c := T.constCoef
   let L := Taylm.linCoef T.terms
   -- the bounds of the linear and the nonlinear part
   let S := ∑ k, |L k|
-  let Ih := ((Taylm.polyBounds (Taylm.higherTerms T.terms)).1 + T.remInf,
-    (Taylm.polyBounds (Taylm.higherTerms T.terms)).2 + T.remSup)
-  let M := c - S + Ih.1
+  let Ih : Interval ℝ := ⟨(Taylm.polyBounds (Taylm.higherTerms T.terms)).inf + T.remInf,
+    (Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.remSup⟩
+  let M := c - S + Ih.inf
   -- the left end, where the linear part is least, and the mid-point
   let p : Vec ℝ n := fun k => if 0 < L k then -1 else 1
-  let Min := min (c + S + Ih.2) (min (T.poly p + T.remSup) (T.poly 0 + T.remSup))
+  let Min := min (c + S + Ih.sup) (min (T.poly p + T.remSup) (T.poly 0 + T.remSup))
   -- (a): keep in each direction the part within `d / Lᵢ` of the left end
   let d := Min - M
-  let R : Fin n → ℝ × ℝ := fun k =>
-    if 0 < L k ∧ d / L k < 2 then (-1, -1 + d / L k)
-    else if L k < 0 ∧ d / -L k < 2 then (1 - d / -L k, 1) else (-1, 1)
-  (M, Min, R)
+  let R : Fin n → Interval ℝ := fun k =>
+    if 0 < L k ∧ d / L k < 2 then ⟨-1, -1 + d / L k⟩
+    else if L k < 0 ∧ d / -L k < 2 then ⟨1 - d / -L k, 1⟩ else ⟨-1, 1⟩
+  (⟨M, Min⟩, R)
 
 end CORALean.Real
 

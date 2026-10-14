@@ -20,7 +20,7 @@ search; this one bisects and takes the box's centre.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,9 +33,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.optLinQuad (T : Taylm n) (ε : ℝ) (ldbFuel fuel : ℕ) : ℝ × ℝ :=
-  ((T.cosyGo (fun _ => (-1, 1)) ε ldbFuel fuel).1,
-    -(T.uminus.cosyGo (fun _ => (-1, 1)) ε ldbFuel fuel).1)
+noncomputable def Taylm.optLinQuad (T : Taylm n) (ε : ℝ) (ldbFuel fuel : ℕ) : Interval ℝ :=
+  ⟨(T.cosyGo (fun _ => ⟨-1, 1⟩) ε ldbFuel fuel).inf,
+    -(T.uminus.cosyGo (fun _ => ⟨-1, 1⟩) ε ldbFuel fuel).inf⟩
 
 end CORALean.Real
 

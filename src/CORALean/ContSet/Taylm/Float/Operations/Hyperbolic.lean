@@ -25,7 +25,7 @@ of the exponentials (`Global/Float/Exp`).
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -45,17 +45,17 @@ def Taylm.hyperbolic (p : ℕ) (first : Bool) (T : Taylm 𝕋 n) : Taylm 𝕋 n 
   let c := T.constCoef
   let b := T.bounds
   -- `|f t - c| ≤ B` on the box, and `|ξ| ≤ m` on the hull of the centre and the box
-  let B := maximum zero (maximum (subUp b.2 c) (subUp c b.1))
-  let m := maximum (absolute c) (maximum (absolute b.1) (absolute b.2))
+  let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
+  let m := maximum (absolute c) (maximum (absolute b.inf) (absolute b.sup))
   let D := coshUp p m
   let ρ := mulUp (mulUp D (powUp B (N + 1))) (divFact (one, one) (N + 1)).2
   -- the `k`-th derivative at `c` is `sinh c` or `cosh c` by parity, over `k!`
-  let base : ℕ → 𝕋 × 𝕋 := fun k =>
-    if (k % 2 == 0) == first then (sinhDown p c, sinhUp p c) else (coshDown p c, coshUp p c)
-  let invFact : ℕ → 𝕋 × 𝕋 := fun k => divFact (one, one) k
+  let base : ℕ → Interval 𝕋 := fun k =>
+    if (k % 2 == 0) == first then ⟨sinhDown p c, sinhUp p c⟩ else ⟨coshDown p c, coshUp p c⟩
+  let invFact : ℕ → Interval 𝕋 := fun k => ⟨(divFact (one, one) k).1, (divFact (one, one) k).2⟩
   T.compose c
-    (fun k => Interval.mulLo (base k).1 (base k).2 (invFact k).1 (invFact k).2)
-    (fun k => Interval.mulHi (base k).1 (base k).2 (invFact k).1 (invFact k).2) N ρ
+    (fun k => Interval.mulLo (base k).inf (base k).sup (invFact k).inf (invFact k).sup)
+    (fun k => Interval.mulHi (base k).inf (base k).sup (invFact k).inf (invFact k).sup) N ρ
 
 end CORALean.Float
 

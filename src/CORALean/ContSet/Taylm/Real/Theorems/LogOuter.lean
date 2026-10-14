@@ -22,7 +22,7 @@ the whole hull, and `log⁽ᴺ⁺¹⁾ = (x⁻¹)⁽ᴺ⁾` is `iter_deriv_inv`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.log_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (hpos : 0 < min T.constCoef T.bounds.1) :
+    (hpos : 0 < min T.constCoef T.bounds.inf) :
     T.log.Encloses fun t => Real.log (f t) := by -- --- PROOF ---
   refine Taylm.taylor_outer h _ _ _ (fun ξ hξ => Real.contDiffAt_log.2
     (ne_of_gt (lt_of_lt_of_le hpos hξ.1))) fun ξ hξ => ?_

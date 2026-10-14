@@ -14,7 +14,7 @@ lies.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,11 +29,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.halveBox_cover {B : Fin n → 𝕋 × 𝕋} (β : Fin n) {t : Vec ℝ n}
+theorem Taylm.halveBox_cover {B : Fin n → Interval 𝕋} (β : Fin n) {t : Vec ℝ n}
     (ht : Taylm.InBox B t) :
     Taylm.InBox (Taylm.halveBox B β).1 t ∨
       Taylm.InBox (Taylm.halveBox B β).2 t := by -- --- PROOF ---
-  rcases le_total (t β) (toReal (half (addUp (B β).1 (B β).2))) with h | h
+  rcases le_total (t β) (toReal (half (addUp (B β).inf (B β).sup))) with h | h
   · left
     intro k
     by_cases hk : k = β

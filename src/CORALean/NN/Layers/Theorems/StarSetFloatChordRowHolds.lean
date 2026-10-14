@@ -16,7 +16,7 @@ rounding of `k` and of its products with the generators is paid by the right-han
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,19 +31,19 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋)
+theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
     (hg : StarSet.chordGuard b = true) (α : Fin s.m → ℝ)
     (hα : ∀ k, toReal (s.l k) ≤ α k ∧ α k ≤ toReal (s.u k))
-    (hy : toReal b.1 ≤ toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ∧
-      toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ≤ toReal b.2) :
+    (hy : toReal b.inf ≤ toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ∧
+      toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ≤ toReal b.sup) :
     ∑ k : Fin (s.m + 1), toReal ((s.chordRow j b).1 k)
         * Fin.snoc (α := fun _ => ℝ) α
           (max (toReal (s.c j) + ∑ k, toReal (s.G j k) * α k) 0) k
       ≤ toReal (s.chordRow j b).2 := by -- --- PROOF ---
   -- the guard gives `l < 0 < u` and a positive rounded `u - l`
   set y := toReal (s.c j) + ∑ k, toReal (s.G j k) * α k with hydef
-  set lf := toReal b.1 with hlf
-  set uf := toReal b.2 with huf
+  set lf := toReal b.inf with hlf
+  set uf := toReal b.sup with huf
   unfold StarSet.chordGuard at hg
   simp only [Bool.and_eq_true] at hg
   obtain ⟨⟨h1, h2⟩, h3⟩ := hg
@@ -51,20 +51,20 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × �
     have := toReal_lt_of_ltStrict h1; rwa [toReal_zero] at this
   have hu0 : 0 < uf := by
     have := toReal_lt_of_ltStrict h2; rwa [toReal_zero] at this
-  have hdL : 0 < toReal (subDown b.2 b.1) := by
+  have hdL : 0 < toReal (subDown b.sup b.inf) := by
     have := toReal_lt_of_ltStrict h3; rwa [toReal_zero] at this
   have hd : 0 < uf - lf := by linarith
-  have hdLle : toReal (subDown b.2 b.1) ≤ uf - lf := subDown_le_sub _ _
-  have hdUge : uf - lf ≤ toReal (subUp b.2 b.1) := sub_le_subUp _ _
-  have hdU : 0 < toReal (subUp b.2 b.1) := lt_of_lt_of_le hd hdUge
+  have hdLle : toReal (subDown b.sup b.inf) ≤ uf - lf := subDown_le_sub _ _
+  have hdUge : uf - lf ≤ toReal (subUp b.sup b.inf) := sub_le_subUp _ _
+  have hdU : 0 < toReal (subUp b.sup b.inf) := lt_of_lt_of_le hd hdUge
   -- the slope `k` is bracketed by its two roundings
   set k := uf / (uf - lf) with hk
-  have hklo : toReal (divDown b.2 (subUp b.2 b.1)) ≤ k :=
+  have hklo : toReal (divDown b.sup (subUp b.sup b.inf)) ≤ k :=
     le_trans (divDown_le_div _ _ hdU) (div_le_div_of_nonneg_left hu0.le hd hdUge)
-  have hkhi : k ≤ toReal (divUp b.2 (subDown b.2 b.1)) :=
+  have hkhi : k ≤ toReal (divUp b.sup (subDown b.sup b.inf)) :=
     le_trans (div_le_div_of_nonneg_left hu0.le hdL hdLle) (div_le_divUp _ _ hdL)
-  set klo := divDown b.2 (subUp b.2 b.1) with hkloD
-  set khi := divUp b.2 (subDown b.2 b.1) with hkhiD
+  set klo := divDown b.sup (subUp b.sup b.inf) with hkloD
+  set khi := divUp b.sup (subDown b.sup b.inf) with hkhiD
   set β := max y 0 with hβ
   -- the chord lies above the ReLU
   have hchord : β ≤ k * (y - lf) := by
@@ -103,10 +103,10 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × �
       _ ≤ _ := mul_le_mulUp _ _
   have hsumterm := le_trans (Finset.sum_le_sum fun i _ => hterm i) (sum_le_sumUp _)
   have hc := Interval.mul_between_corners hklo hkhi
-    (subDown_le_sub (s.c j) b.1 : toReal (subDown (s.c j) b.1) ≤ toReal (s.c j) - lf)
-    (sub_le_subUp (s.c j) b.1 : toReal (s.c j) - lf ≤ toReal (subUp (s.c j) b.1))
+    (subDown_le_sub (s.c j) b.inf : toReal (subDown (s.c j) b.inf) ≤ toReal (s.c j) - lf)
+    (sub_le_subUp (s.c j) b.inf : toReal (s.c j) - lf ≤ toReal (subUp (s.c j) b.inf))
   -- the right-hand side is the two rounded parts added up
-  have hrhs := add_le_addUp (Interval.mulHi klo khi (subDown (s.c j) b.1) (subUp (s.c j) b.1))
+  have hrhs := add_le_addUp (Interval.mulHi klo khi (subDown (s.c j) b.inf) (subUp (s.c j) b.inf))
     (sumUp fun i => mulUp
       (subUp (Interval.mulHi klo khi (s.G j i) (s.G j i))
         (Interval.mulLo klo khi (s.G j i) (s.G j i)))

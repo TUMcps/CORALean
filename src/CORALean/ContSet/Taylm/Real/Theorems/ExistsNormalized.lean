@@ -14,7 +14,7 @@ zero: how a statement about a re-expanded model reaches the box's points.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -27,7 +27,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.exists_normalized {B : Fin n → ℝ × ℝ} {t : Vec ℝ n} (ht : Taylm.InBox B t) :
+theorem Taylm.exists_normalized {B : Fin n → Interval ℝ} {t : Vec ℝ n} (ht : Taylm.InBox B t) :
     ∃ s ∈ Taylm.box n,
       (fun k => Taylm.boxMid B k + Taylm.boxRad B k * s k) = t := by -- --- PROOF ---
   refine ⟨fun k => if Taylm.boxRad B k = 0 then 0 else (t k - Taylm.boxMid B k) / Taylm.boxRad B k,

@@ -16,7 +16,7 @@ is a rounded-up bound `D` of `|g⁽ᴺ⁺¹⁾|` times `Bᴺ⁺¹ / (N+1)!`, `B`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +35,7 @@ def Taylm.taylor (T : Taylm 𝕋 n) (c : 𝕋) (lo hi : ℕ → 𝕋) (D : 𝕋)
   let N := T.maxOrder
   let b := T.bounds
   -- `|f t - c| ≤ B` on the box
-  let B := maximum zero (maximum (subUp b.2 c) (subUp c b.1))
+  let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
   T.compose c lo hi N (mulUp (mulUp D (powUp B (N + 1))) (divFact (one, one) (N + 1)).2)
 
 end CORALean.Float

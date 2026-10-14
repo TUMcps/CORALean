@@ -14,7 +14,7 @@ each step.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,10 +29,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.prodBounds_mem : ∀ {m : ℕ} (f : Fin m → 𝕋 × 𝕋) (x : Fin m → ℝ),
-    (∀ i, toReal (f i).1 ≤ x i ∧ x i ≤ toReal (f i).2) →
-      toReal (Taylm.prodBounds f).1 ≤ ∏ i, x i ∧
-        ∏ i, x i ≤ toReal (Taylm.prodBounds f).2 := by -- --- PROOF ---
+theorem Taylm.prodBounds_mem : ∀ {m : ℕ} (f : Fin m → Interval 𝕋) (x : Fin m → ℝ),
+    (∀ i, toReal (f i).inf ≤ x i ∧ x i ≤ toReal (f i).sup) →
+      toReal (Taylm.prodBounds f).inf ≤ ∏ i, x i ∧
+        ∏ i, x i ≤ toReal (Taylm.prodBounds f).sup := by -- --- PROOF ---
   -- no factors: the point `1`
   intro m
   induction m with

@@ -20,7 +20,7 @@ function over `X` lies between them.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,10 +33,10 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.globalMin (lb : (Fin n → ℝ × ℝ) → ℝ) (ub : Vec ℝ n → ℝ)
-    (X : Fin n → ℝ × ℝ) (fuel : ℕ) : ℝ × ℝ :=
+noncomputable def Taylm.globalMin (lb : (Fin n → Interval ℝ) → ℝ) (ub : Vec ℝ n → ℝ)
+    (X : Fin n → Interval ℝ) (fuel : ℕ) : Interval ℝ :=
   let st := Taylm.goLoop lb ub fuel ([X], ub (Taylm.boxMid X))
-  (min st.2 (Taylm.listMin lb st.1), st.2)
+  ⟨min st.2 (Taylm.listMin lb st.1), st.2⟩
 
 end CORALean.Real
 

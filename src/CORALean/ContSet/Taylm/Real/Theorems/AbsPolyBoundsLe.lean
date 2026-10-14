@@ -13,7 +13,7 @@ ends of `polyBounds` are at most the sum of the magnitudes.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -27,14 +27,14 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.abs_polyBounds_le (L : List (ℝ × (Fin n → ℕ))) :
-    |(Taylm.polyBounds L).1| ≤ (L.map fun a => |a.1|).sum ∧
-      |(Taylm.polyBounds L).2| ≤ (L.map fun a => |a.1|).sum := by -- --- PROOF ---
+    |(Taylm.polyBounds L).inf| ≤ (L.map fun a => |a.1|).sum ∧
+      |(Taylm.polyBounds L).sup| ≤ (L.map fun a => |a.1|).sum := by -- --- PROOF ---
   induction L with
   | nil => simp [Taylm.polyBounds]
   | cons a L ih =>
     simp only [Taylm.polyBounds, List.map_cons, List.sum_cons] at ih ⊢
     -- one term's bounds, by the three cases of `termBounds`
-    have ht : |(Taylm.termBounds a).1| ≤ |a.1| ∧ |(Taylm.termBounds a).2| ≤ |a.1| := by
+    have ht : |(Taylm.termBounds a).inf| ≤ |a.1| ∧ |(Taylm.termBounds a).sup| ≤ |a.1| := by
       unfold Taylm.termBounds
       split_ifs
       · simp

@@ -21,7 +21,7 @@ the remainder is kept. The `reexp` of the advanced branch and bound of [1, Alg. 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.reexpand (B : Fin n → ℝ × ℝ) (T : Taylm n) : Taylm n :=
+noncomputable def Taylm.reexpand (B : Fin n → Interval ℝ) (T : Taylm n) : Taylm n :=
   ⟨Taylm.reexpTerms (Taylm.boxMid B) (Taylm.boxRad B) T.terms, T.remInf, T.remSup, T.maxOrder⟩
 
 end CORALean.Real

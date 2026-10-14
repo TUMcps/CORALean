@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.Definitions.HyperplanePolyhedron
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -22,7 +23,7 @@ with the line `L_γ` by `BOUND_INTERSECT_2D` to get `[m_ℓ; M_ℓ]`, and return
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,11 +37,11 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 2]: the polyhedron of the bounds `bound` returns on each `Π_{n,ℓ}(Z)`. -/
-def ContSet.dimReduce (bound : Set (ℝ × ℝ) → ℝ → ℝ × ℝ) (Z : Set (Vec ℝ n)) (nv : Vec ℝ n)
+def ContSet.dimReduce (bound : Set (ℝ × ℝ) → ℝ → Real.Interval ℝ) (Z : Set (Vec ℝ n)) (nv : Vec ℝ n)
     (γ : ℝ) (D : Finset (Vec ℝ n)) : Set (Vec ℝ n) :=
   ContSet.hyperplanePolyhedron D
-    (fun ℓ => (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).1)
-    (fun ℓ => (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).2)
+    (fun ℓ => (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).inf)
+    (fun ℓ => (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).sup)
 
 end CORALean
 

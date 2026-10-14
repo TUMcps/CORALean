@@ -21,7 +21,7 @@ The logarithm of [1, Def. 3 (log)], eq. (2.5), under its condition that the rang
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 noncomputable def Taylm.log (T : Taylm n) : Taylm n :=
   T.taylor Real.log T.constCoef
-    ((T.maxOrder.factorial : ℝ) / min T.constCoef T.bounds.1 ^ (T.maxOrder + 1))
+    ((T.maxOrder.factorial : ℝ) / min T.constCoef T.bounds.inf ^ (T.maxOrder + 1))
 
 end CORALean.Real
 

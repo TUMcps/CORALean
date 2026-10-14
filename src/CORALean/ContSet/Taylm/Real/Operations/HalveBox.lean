@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Data.Real.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -19,7 +20,7 @@ ends at the midpoint, `x̄_β - rad`; the rest is the second half, from the midp
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,10 +33,10 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.halveBox (B : Fin n → ℝ × ℝ) (β : Fin n) :
-    (Fin n → ℝ × ℝ) × (Fin n → ℝ × ℝ) :=
-  let m := ((B β).1 + (B β).2) / 2
-  (Function.update B β ((B β).1, m), Function.update B β (m, (B β).2))
+noncomputable def Taylm.halveBox (B : Fin n → Interval ℝ) (β : Fin n) :
+    (Fin n → Interval ℝ) × (Fin n → Interval ℝ) :=
+  let m := ((B β).inf + (B β).sup) / 2
+  (Function.update B β ⟨(B β).inf, m⟩, Function.update B β ⟨m, (B β).sup⟩)
 
 end CORALean.Real
 

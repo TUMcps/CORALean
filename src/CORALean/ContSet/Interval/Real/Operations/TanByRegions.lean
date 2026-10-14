@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -26,7 +27,7 @@ multiple of `π`, where the tangent is continuous and rising, and its range is
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +38,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Interval.tanByRegions (lo hi : ℝ) : Option (ℝ × ℝ) :=
+noncomputable def Interval.tanByRegions (lo hi : ℝ) : Option (Interval ℝ) :=
   let z_lo := lo - Real.pi * ⌊lo / Real.pi⌋  -- `mod(x̲, π)`
   let z_hi := hi - Real.pi * ⌊hi / Real.pi⌋  -- `mod(x̅, π)`
   let R₁ := Set.Ico 0 (Real.pi / 2)  -- `R_t1`
@@ -46,9 +47,9 @@ noncomputable def Interval.tanByRegions (lo hi : ℝ) : Option (ℝ × ℝ) :=
       (z_lo ∈ R₂ ∧ z_hi ∈ R₂ ∧ z_hi < z_lo) ∨ (z_lo ∈ R₁ ∧ z_hi ∈ R₂) then
     none
   else if (z_lo ∈ R₁ ∧ z_hi ∈ R₁ ∧ z_lo ≤ z_hi) ∨ (z_lo ∈ R₂ ∧ z_hi ∈ R₂ ∧ z_lo ≤ z_hi) then
-    some (Real.tan z_lo, Real.tan z_hi)
+    some ⟨Real.tan z_lo, Real.tan z_hi⟩
   else
-    some (Real.tan z_lo, Real.tan z_hi)  -- `z̲ ∈ R_t2`, `z̅ ∈ R_t1`: not printed, CORA's
+    some ⟨Real.tan z_lo, Real.tan z_hi⟩  -- `z̲ ∈ R_t2`, `z̅ ∈ R_t1`: not printed, CORA's
 
 end CORALean.Real
 

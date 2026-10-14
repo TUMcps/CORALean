@@ -15,7 +15,7 @@ bounds are assumed to enclose each row's range, as over ℝ.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,12 +31,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.representsa_emptySet_sound (L : CORALean.Real.LevelSet n)
-    (O : Fin L.m → 𝕋 × 𝕋)
-    (hO : ∀ i x, toReal (O i).1 ≤ L.f x i ∧ L.f x i ≤ toReal (O i).2)
+    (O : Fin L.m → Interval 𝕋)
+    (hO : ∀ i x, toReal (O i).inf ≤ L.f x i ∧ L.f x i ≤ toReal (O i).sup)
     (hm : 0 < L.m) (h : LevelSet.representsa_emptySet L O = true) :
     L.construct = ∅ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.representsa_emptySet_sound L
-    (fun i => (((toReal (O i).1 : ℝ) : EReal), ((toReal (O i).2 : ℝ) : EReal)))
+    (fun i => (((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)))
     (fun i x => ⟨EReal.coe_le_coe_iff.mpr (hO i x).1, EReal.coe_le_coe_iff.mpr (hO i x).2⟩)
     hm ?_
   -- each row's certified comparison, read as reals
@@ -58,11 +58,11 @@ theorem LevelSet.representsa_emptySet_sound (L : CORALean.Real.LevelSet n)
     rcases hi with hi | hi
     · have hlt := toReal_lt_of_ltStrict hi
       rw [toReal_zero] at hlt
-      have : toReal (O i).1 ≤ 0 := by exact_mod_cast h₁
+      have : toReal (O i).inf ≤ 0 := by exact_mod_cast h₁
       linarith
     · have hlt := toReal_lt_of_ltStrict hi
       rw [toReal_zero] at hlt
-      have : 0 ≤ toReal (O i).2 := by exact_mod_cast h₂
+      have : 0 ≤ toReal (O i).sup := by exact_mod_cast h₂
       linarith
 
 end CORALean.Float

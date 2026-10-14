@@ -30,7 +30,7 @@ answer `]-∞, ∞[` is an enclosure of `[tan lo, ∞[` but not its hull. As in
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -160,8 +160,9 @@ theorem Interval.tanByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) (hlo : Real.
     (Interval.tanByRegions lo hi = none →
       ¬BddAbove (Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0})) ∧
         ¬BddBelow (Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}))) ∧
-    (∀ a b, Interval.tanByRegions lo hi = some (a, b) →
-      Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}) = Set.Icc a b) := by -- --- PROOF ---
+    (∀ I, Interval.tanByRegions lo hi = some I →
+      Real.tan
+          '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}) = Set.Icc I.inf I.sup) := by -- --- PROOF ---
   have hpi := Real.pi_pos
   simp only [Interval.tanByRegions]
   have hcases := fun hw => Interval.mod_sub_mod_cases hpi hle hw
@@ -190,7 +191,7 @@ theorem Interval.tanByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) (hlo : Real.
   by_cases hw : Real.pi ≤ hi - lo
   · -- at least a period wide: a pole inside
     rw [if_pos (Or.inl hw)]
-    refine ⟨fun _ => ?_, fun a b h => by cases h⟩
+    refine ⟨fun _ => ?_, fun I h => by cases h⟩
     rw [hshift]
     rcases lt_or_gt_of_ne hzl2 with h | h
     · exact Interval.tan_unbounded_of_pole Real.cos_pi_div_two h (by linarith)
@@ -203,15 +204,15 @@ theorem Interval.tanByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) (hlo : Real.
     rcases hcases (not_le.1 hw) with ⟨h1, _⟩ | ⟨_, h2⟩ <;> linarith
   split_ifs with hA hB
   · exact ⟨fun _ => aux_tanByRegions_none hshift hzu2 hb1 hb2 (hA.resolve_left hw),
-      fun a b h => by cases h⟩
-  · refine ⟨fun h => (by cases h), fun a b h => ?_⟩
-    simp only [Option.some.injEq, Prod.mk.injEq] at h
-    obtain ⟨rfl, rfl⟩ := h
+      fun I h => by cases h⟩
+  · refine ⟨fun h => (by cases h), fun I h => ?_⟩
+    obtain rfl := Option.some.inj h
+    dsimp only
     exact aux_tanByRegions_some hshift hzl2 hb1 hB
   · -- the case [1] leaves out
-    refine ⟨fun h => (by cases h), fun a b h => ?_⟩
-    simp only [Option.some.injEq, Prod.mk.injEq] at h
-    obtain ⟨rfl, rfl⟩ := h
+    refine ⟨fun h => (by cases h), fun I h => ?_⟩
+    obtain rfl := Option.some.inj h
+    dsimp only
     obtain ⟨hl, hu⟩ := aux_tanByRegions_wrap hzl hzu hzl2 (fun h => hA (Or.inr h)) hB
     rw [hshift, hb2 (by linarith), aux_image_tan_piece 1 (by linarith) (by push_cast; linarith)
       (by push_cast; linarith), Real.tan_add_pi]

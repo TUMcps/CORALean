@@ -17,7 +17,7 @@ radius formula (`Real.StarSet.rowBounds`), whose centre is not the one CORA comp
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,9 +33,9 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The lower and the upper bound of neuron `j`, each rounded outward. -/
-def StarSet.rowBounds (s : StarSet 𝕋 n) (j : Fin n) : 𝕋 × 𝕋 :=
-  (addDown (s.c j) (sumDown fun k => Interval.mulLo (s.G j k) (s.G j k) (s.l k) (s.u k)),
-   addUp (s.c j) (sumUp fun k => Interval.mulHi (s.G j k) (s.G j k) (s.l k) (s.u k)))
+def StarSet.rowBounds (s : StarSet 𝕋 n) (j : Fin n) : Interval 𝕋 :=
+  ⟨addDown (s.c j) (sumDown fun k => Interval.mulLo (s.G j k) (s.G j k) (s.l k) (s.u k)),
+   addUp (s.c j) (sumUp fun k => Interval.mulHi (s.G j k) (s.G j k) (s.l k) (s.u k))⟩
 
 end CORALean.Float
 

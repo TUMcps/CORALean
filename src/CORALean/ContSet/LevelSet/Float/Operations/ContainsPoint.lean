@@ -17,7 +17,7 @@ interval evaluation, an argument assumed to enclose the value), and each row's c
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,12 +32,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LevelSet.containsPoint (L : CORALean.Real.LevelSet n) (B : Fin L.m → 𝕋 × 𝕋) : Bool :=
+def LevelSet.containsPoint (L : CORALean.Real.LevelSet n) (B : Fin L.m → Interval 𝕋) : Bool :=
   (List.finRange L.m).all fun i =>
     match L.op i with
-    | .le => le (B i).2 zero
-    | .lt => ltStrict (B i).2 zero
-    | .eq => (le (B i).1 zero && le zero (B i).1) && (le (B i).2 zero && le zero (B i).2)
+    | .le => le (B i).sup zero
+    | .lt => ltStrict (B i).sup zero
+    | .eq => (le (B i).inf zero && le zero (B i).inf) && (le (B i).sup zero && le zero (B i).sup)
 
 end CORALean.Float
 

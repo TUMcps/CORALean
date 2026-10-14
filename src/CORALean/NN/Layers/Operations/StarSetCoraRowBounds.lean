@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Definitions.StarSet
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -18,7 +19,7 @@ a step appends have. Read from the source, not run.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,10 +30,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def StarSet.coraRowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : ℝ × ℝ :=
+noncomputable def StarSet.coraRowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : Interval ℝ :=
   let c_ := s.c j + (1 / 2) * ∑ k, s.G j k * (s.u k - s.l k)
   let r := ∑ k, |(1 / 2) * s.G j k * (s.u k - s.l k)|
-  (c_ - r, c_ + r)
+  ⟨c_ - r, c_ + r⟩
 
 end CORALean.Real
 

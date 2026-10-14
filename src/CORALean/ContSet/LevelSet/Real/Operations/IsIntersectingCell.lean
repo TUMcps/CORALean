@@ -22,7 +22,7 @@ and unsound (`Theorems/IsIntersectingCellCounterexample`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,8 +35,8 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LevelSet.isIntersecting_cell (tol : ℝ) (op : Fin m → CompOp) (B : Fin m → ℝ × ℝ) : Prop :=
-  let lb : Fin m → ℝ := fun i => (B i).1
+def LevelSet.isIntersecting_cell (tol : ℝ) (op : Fin m → CompOp) (B : Fin m → Interval ℝ) : Prop :=
+  let lb : Fin m → ℝ := fun i => (B i).inf
   let resVec : Fin m → Prop := fun i =>
     match op i with
     | .le => lb i < 0 ∨ |lb i| ≤ tol

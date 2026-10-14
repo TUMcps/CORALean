@@ -19,7 +19,7 @@ the matching term of `A`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,8 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.subsRel (A : List ((𝕋 × 𝕋) × (Fin p → ℕ))) (A' : List (ℝ × (Fin p → ℕ))) : Prop :=
-  List.Forall₂ (fun s t => s.2 = t.2 ∧ toReal s.1.1 ≤ t.1 ∧ t.1 ≤ toReal s.1.2) A A'
+def PolyZonotope.subsRel (A : List ((Interval 𝕋) × (Fin p → ℕ))) (A' : List (ℝ × (Fin p →
+    ℕ))) : Prop :=
+  List.Forall₂ (fun s t => s.2 = t.2 ∧ toReal s.1.inf ≤ t.1 ∧ t.1 ≤ toReal s.1.sup) A A'
 
 end CORALean.Float
 

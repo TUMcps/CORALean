@@ -20,7 +20,7 @@ running box, and `tighten_outer` is why it is sound to.
 
 -- Authors:       Claude Opus 5
 -- Written:       21-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,11 +33,11 @@ namespace CORALean.Real
 
 /-- Eq. (12)'s two endpoints for `Rⱼ`, from row `i` of `Aξ = b`. -/
 noncomputable def ConZonotope.rowBound {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
-    (i : Fin nc) (j : Fin ng) (E : Interval (Vec ℝ ng)) : ℝ × ℝ :=
+    (i : Fin nc) (j : Fin ng) (E : Interval (Vec ℝ ng)) : Interval ℝ :=
   let Slo := ∑ k ∈ Finset.univ.erase j, min (A i k * E.inf k) (A i k * E.sup k)
   let Shi := ∑ k ∈ Finset.univ.erase j, max (A i k * E.inf k) (A i k * E.sup k)
                                           -- Σ_{k≠j} a_ik Ek, bounded entrywise
-  ((b i - Shi) / A i j, (b i - Slo) / A i j)
+  ⟨(b i - Shi) / A i j, (b i - Slo) / A i j⟩
 
 end CORALean.Real
 

@@ -21,7 +21,7 @@ minimum.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,9 +35,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.exists_le_cosyGo {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    {X : Fin n → ℝ × ℝ} (hX : Taylm.GoodBox X) (hX' : ∀ k, (X k).1 ≤ (X k).2) (ε : ℝ)
+    {X : Fin n → Interval ℝ} (hX : Taylm.GoodBox X) (hX' : ∀ k, (X k).inf ≤ (X k).sup) (ε : ℝ)
     (ldbFuel fuel : ℕ) :
-    ∃ p, Taylm.InBox X p ∧ f p ≤ (T.cosyGo X ε ldbFuel fuel).2 := by -- --- PROOF ---
+    ∃ p, Taylm.InBox X p ∧ f p ≤ (T.cosyGo X ε ldbFuel fuel).sup := by -- --- PROOF ---
   refine Taylm.exists_le_globalMin (fun p hp => ?_) hX' fuel
   have hpbox : p ∈ Taylm.box n := fun k => abs_le.2
     ⟨le_trans (hX k).1 (hp k).1, le_trans (hp k).2 (hX k).2.2.2⟩

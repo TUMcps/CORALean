@@ -12,7 +12,7 @@ The term ranges summed: CORA's `interval` with `opt_method = 'int'`, outer and n
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -25,8 +25,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.polyBounds (L : List (ℝ × (Fin n → ℕ))) : ℝ × ℝ :=
-  ((L.map fun a => (Taylm.termBounds a).1).sum, (L.map fun a => (Taylm.termBounds a).2).sum)
+def Taylm.polyBounds (L : List (ℝ × (Fin n → ℕ))) : Interval ℝ :=
+  ⟨(L.map fun a => (Taylm.termBounds a).inf).sum, (L.map fun a => (Taylm.termBounds a).sup).sum⟩
 
 end CORALean.Real
 

@@ -20,7 +20,7 @@ interval powers.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,9 +33,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.termBoxBounds (B : Fin n → ℝ × ℝ) (a : ℝ × (Fin n → ℕ)) : ℝ × ℝ :=
-  let M := Taylm.prodBounds (List.ofFn fun k => Taylm.powBounds (B k).1 (B k).2 (a.2 k))
-  (Interval.mulLo a.1 a.1 M.1 M.2, Interval.mulHi a.1 a.1 M.1 M.2)
+noncomputable def Taylm.termBoxBounds (B : Fin n → Interval ℝ) (a : ℝ × (Fin n → ℕ)) : Interval ℝ :=
+  let M := Taylm.prodBounds (List.ofFn fun k => Taylm.powBounds (B k).inf (B k).sup (a.2 k))
+  ⟨Interval.mulLo a.1 a.1 M.inf M.sup, Interval.mulHi a.1 a.1 M.inf M.sup⟩
 
 end CORALean.Real
 

@@ -16,7 +16,7 @@ exponent vector; the product's bracket is the pair of directed corner products.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,10 +31,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.subsMul (A B : List ((𝕋 × 𝕋) × (Fin p → ℕ))) :
-    List ((𝕋 × 𝕋) × (Fin p → ℕ)) :=
+def PolyZonotope.subsMul (A B : List ((Interval 𝕋) × (Fin p → ℕ))) :
+    List ((Interval 𝕋) × (Fin p → ℕ)) :=
   A.flatMap fun s => B.map fun t =>
-    ((Interval.mulLo s.1.1 s.1.2 t.1.1 t.1.2, Interval.mulHi s.1.1 s.1.2 t.1.1 t.1.2), s.2 + t.2)
+    (⟨Interval.mulLo s.1.inf s.1.sup t.1.inf t.1.sup, Interval.mulHi s.1.inf s.1.sup t.1.inf
+        t.1.sup⟩, s.2 + t.2)
 
 end CORALean.Float
 

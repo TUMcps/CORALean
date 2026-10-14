@@ -18,7 +18,7 @@ the normalized box, where the original remainder holds.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.reexpand_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    {B : Fin n → ℝ × ℝ} (hB : ∀ k, -1 ≤ (B k).1 ∧ (B k).1 ≤ (B k).2 ∧ (B k).2 ≤ 1) :
+    {B : Fin n → Interval ℝ} (hB : ∀ k, -1 ≤ (B k).inf ∧ (B k).inf ≤ (B k).sup ∧ (B k).sup ≤ 1) :
     (T.reexpand B).Encloses fun s =>
       f fun k => Taylm.boxMid B k + Taylm.boxRad B k * s k := by -- --- PROOF ---
   intro s hs

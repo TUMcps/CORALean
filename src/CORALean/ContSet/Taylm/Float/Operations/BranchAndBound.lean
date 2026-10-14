@@ -14,7 +14,7 @@ sub-box by interval evaluation of the term list (`polyBoxBounds`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.branchAndBound (P : List (𝕋 × (Fin n → ℕ))) (X : Fin n → 𝕋 × 𝕋) (ε : 𝕋) (adv : Bool)
-    (fuel : ℕ) : 𝕋 × 𝕋 :=
+def Taylm.branchAndBound (P : List (𝕋 × (Fin n → ℕ))) (X : Fin n → Interval 𝕋) (ε : 𝕋) (adv : Bool)
+    (fuel : ℕ) : Interval 𝕋 :=
   -- 15-16, 22-23, 28-29: a sub-box's bound, re-expanded first in the advanced setting
   let bnd := fun B => if adv then Taylm.reexpBoxBounds P B else Taylm.polyBoxBounds P B
   -- 2-5: one box, `[x]` itself

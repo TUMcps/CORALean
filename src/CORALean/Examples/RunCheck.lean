@@ -28,7 +28,7 @@ Run: `lake exe runcheck` (links, slow) or `lake env lean --run src/CORALean/Exam
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -586,13 +586,13 @@ def dyadicRows2 : StateT Nat IO Unit := do
   row "interSum" (ofUnion ⟨RunnableFloat.interSum.sets⟩)
   row "lsContainsRun" (ofBool RunnableFloat.lsContainsRun)
   row "tlmI" (ofBox RunnableFloat.tlmI)
-  row "tlmX" (ofScalarBox ⟨RunnableFloat.tlmX.bounds.1, RunnableFloat.tlmX.bounds.2⟩)
-  row "tlmSq" (ofScalarBox ⟨RunnableFloat.tlmSq.bounds.1, RunnableFloat.tlmSq.bounds.2⟩)
-  row "tlmSum" (ofScalarBox ⟨RunnableFloat.tlmSum.bounds.1, RunnableFloat.tlmSum.bounds.2⟩)
+  row "tlmX" (ofScalarBox ⟨RunnableFloat.tlmX.bounds.inf, RunnableFloat.tlmX.bounds.sup⟩)
+  row "tlmSq" (ofScalarBox ⟨RunnableFloat.tlmSq.bounds.inf, RunnableFloat.tlmSq.bounds.sup⟩)
+  row "tlmSum" (ofScalarBox ⟨RunnableFloat.tlmSum.bounds.inf, RunnableFloat.tlmSum.bounds.sup⟩)
   row "tlmSqBox" (ofScalarBox RunnableFloat.tlmSqBox)
   row "tlmSumBox" (ofScalarBox RunnableFloat.tlmSumBox)
   row "tlmExpDeep"
-    (ofScalarBox ⟨RunnableFloat.tlmExpDeep.bounds.1, RunnableFloat.tlmExpDeep.bounds.2⟩)
+    (ofScalarBox ⟨RunnableFloat.tlmExpDeep.bounds.inf, RunnableFloat.tlmExpDeep.bounds.sup⟩)
   row "eqBoolRun" (ofBool RunnableFloat.eqBoolRun)
   row "eqBoolSelf" (ofBool RunnableFloat.eqBoolSelf)
   row "arxModel" (ofBox (RunnableFloat.arxModel.f

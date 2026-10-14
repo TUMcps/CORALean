@@ -21,7 +21,7 @@ box `D`, the code list evaluated in floating-point Taylor model arithmetic, and 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.rangeBound {m : ℕ} (p q s : ℕ) (e : Real.Taylm.CodeList 𝕋 m)
-    (D : Interval (Vec 𝕋 m)) (N : ℕ) : Option (𝕋 × 𝕋) :=
+    (D : Interval (Vec 𝕋 m)) (N : ℕ) : Option (Interval 𝕋) :=
   -- 1. a Taylor model of the identity, with remainder `[0, 0]`
   let TI := D.taylm N
   -- 2. evaluate the code list for `f` in Taylor model arithmetic

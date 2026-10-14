@@ -19,7 +19,7 @@ over `X` is at most the cutoff, [1, Sec. 4].
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,16 +32,17 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.exists_le_globalMin {f : Vec ℝ n → ℝ} {lb : (Fin n → ℝ × ℝ) → ℝ}
-    {ub : Vec ℝ n → ℝ} {X : Fin n → ℝ × ℝ} (hub : ∀ p, Taylm.InBox X p → f p ≤ ub p)
-    (hX : ∀ k, (X k).1 ≤ (X k).2) (fuel : ℕ) :
-    ∃ p, Taylm.InBox X p ∧ f p ≤ (Taylm.globalMin lb ub X fuel).2 := by -- --- PROOF ---
+theorem Taylm.exists_le_globalMin {f : Vec ℝ n → ℝ} {lb : (Fin n → Interval ℝ) → ℝ}
+    {ub : Vec ℝ n → ℝ} {X : Fin n → Interval ℝ} (hub : ∀ p, Taylm.InBox X p → f p ≤ ub p)
+    (hX : ∀ k, (X k).inf ≤ (X k).sup) (fuel : ℕ) :
+    ∃ p, Taylm.InBox X p ∧ f p ≤ (Taylm.globalMin lb ub X fuel).sup := by -- --- PROOF ---
   -- the centre of a proper box lies in it
-  have hmid : ∀ B : Fin n → ℝ × ℝ, (∀ k, (B k).1 ≤ (B k).2) → Taylm.InBox B (Taylm.boxMid B) :=
+  have hmid : ∀ B : Fin n → Interval ℝ, (∀ k, (B k).inf ≤ (B k).sup) →
+      Taylm.InBox B (Taylm.boxMid B) :=
     fun B hB k => by simp only [Taylm.boxMid]; constructor <;> linarith [hB k]
   -- live boxes are proper and inside `X`, and some point of `X` is at most the cutoff
-  have inv : ∀ fuel (st : List (Fin n → ℝ × ℝ) × ℝ),
-      (∀ B ∈ st.1, (∀ k, (B k).1 ≤ (B k).2) ∧ ∀ t, Taylm.InBox B t → Taylm.InBox X t) →
+  have inv : ∀ fuel (st : List (Fin n → Interval ℝ) × ℝ),
+      (∀ B ∈ st.1, (∀ k, (B k).inf ≤ (B k).sup) ∧ ∀ t, Taylm.InBox B t → Taylm.InBox X t) →
       (∃ p, Taylm.InBox X p ∧ f p ≤ st.2) →
       ∃ p, Taylm.InBox X p ∧ f p ≤ (Taylm.goLoop lb ub fuel st).2 := by
     intro fuel

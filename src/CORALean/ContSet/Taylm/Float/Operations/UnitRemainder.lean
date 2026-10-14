@@ -15,7 +15,7 @@ hull from the centre, rounded up, and the product rounded up.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ def Taylm.unitRemainder (T : Taylm 𝕋 n) : 𝕋 :=
   let N := T.maxOrder
   let c := T.constCoef
   let b := T.bounds
-  let B := maximum zero (maximum (subUp b.2 c) (subUp c b.1))      -- |f t - c| ≤ B on the box
+  let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))      -- |f t - c| ≤ B on the box
   mulUp (powUp B (N + 1)) (divFact (one, one) (N + 1)).2
 
 end CORALean.Float

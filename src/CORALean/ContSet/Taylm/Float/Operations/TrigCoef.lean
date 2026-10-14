@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Float.Taylm
 public import CORALean.Global.Float.SinCos
+public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section
 
@@ -16,7 +17,7 @@ Enclosures of the `k`-th Taylor coefficients of `sin` and of `cos` at `c`,
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,16 +32,17 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.trigCoef (p : ℕ) (c : 𝕋) : ℕ → (𝕋 × 𝕋) × (𝕋 × 𝕋)
-  | 0 => ((sinDown p c, sinUp p c), (cosDown p c, cosUp p c))
+def Taylm.trigCoef (p : ℕ) (c : 𝕋) : ℕ → Interval 𝕋 × Interval 𝕋
+  | 0 => (⟨sinDown p c, sinUp p c⟩, ⟨cosDown p c, cosUp p c⟩)
   | k + 1 =>
     let d := Taylm.trigCoef p c k
     let mU := nsmulUp (k + 1) one                                   -- k + 1 from above
     let mD := maximum one (nsmulDown (k + 1) one)                   -- k + 1 from below, ≥ 1
     -- sin⁽ᵏ⁺¹⁾ = cos⁽ᵏ⁾ and cos⁽ᵏ⁺¹⁾ = -sin⁽ᵏ⁾, each over k + 1
-    ((minimum (divDown d.2.1 mU) (divDown d.2.1 mD), maximum (divUp d.2.2 mU) (divUp d.2.2 mD)),
-      (minimum (divDown (neg d.1.2) mU) (divDown (neg d.1.2) mD),
-        maximum (divUp (neg d.1.1) mU) (divUp (neg d.1.1) mD)))
+    (⟨minimum (divDown d.2.inf mU) (divDown d.2.inf mD), maximum (divUp d.2.sup mU) (divUp d.2.sup
+        mD)⟩,
+      ⟨minimum (divDown (neg d.1.sup) mU) (divDown (neg d.1.sup) mD),
+        maximum (divUp (neg d.1.inf) mU) (divUp (neg d.1.inf) mD)⟩)
 
 end CORALean.Float
 

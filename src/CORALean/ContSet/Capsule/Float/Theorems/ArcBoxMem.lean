@@ -18,7 +18,7 @@ operation encloses its exact counterpart (`plus_outer`, `times_outer`, `cos_oute
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.arcBox_mem (p : ℕ) (step : 𝕋 × 𝕋) {s : ℝ}
-    (hs : toReal step.1 ≤ s ∧ s ≤ toReal step.2) (ctr : Interval (Vec 𝕋 2))
+theorem Capsule.arcBox_mem (p : ℕ) (step : Interval 𝕋) {s : ℝ}
+    (hs : toReal step.inf ≤ s ∧ s ≤ toReal step.sup) (ctr : Interval (Vec 𝕋 2))
     (a₀ : Interval (Vec 𝕋 1)) (r : 𝕋) (i : ℕ) {c : Vec ℝ 2} (hc : c ∈ ctr.construct) {a : ℝ}
     (ha : (fun _ => a : Vec ℝ 1) ∈ a₀.construct) :
     (![c 0 + toReal r * Real.cos (a + (i : ℝ) * s), c 1 + toReal r * Real.sin (a + (i : ℝ) * s)] :
@@ -47,11 +47,11 @@ theorem Capsule.arcBox_mem (p : ℕ) (step : 𝕋 × 𝕋) {s : ℝ}
         (i : ℝ) ≤ toReal (intUp (i : ℤ) : 𝕋) from
       ⟨by simpa using hi.1, by simpa using hi.2⟩)
   have hstp : (fun _ => s : Vec ℝ 1) ∈
-      (⟨fun _ => step.1, fun _ => step.2⟩ : Interval (Vec 𝕋 1)).construct := fun _ => hs
+      (⟨fun _ => step.inf, fun _ => step.sup⟩ : Interval (Vec 𝕋 1)).construct := fun _ => hs
   -- the angle, then its cosine and sine
   have hprod := Interval.times_outer
     (⟨fun _ => intDown (i : ℤ), fun _ => intUp (i : ℤ)⟩ : Interval (Vec 𝕋 1))
-    ⟨fun _ => step.1, fun _ => step.2⟩ ⟨_, hidx, _, hstp, rfl⟩
+    ⟨fun _ => step.inf, fun _ => step.sup⟩ ⟨_, hidx, _, hstp, rfl⟩
   have hang := Interval.plus_outer a₀ _ (Set.add_mem_add ha hprod)
   have hcos := Interval.cos_outer p _ ⟨_, hang, rfl⟩
   have hsin := Interval.sin_outer p _ ⟨_, hang, rfl⟩

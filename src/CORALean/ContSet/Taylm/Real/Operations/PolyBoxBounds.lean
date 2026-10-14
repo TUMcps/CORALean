@@ -20,7 +20,7 @@ is `polyBounds`; here the box is any, which is what branch and bound needs for i
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -33,10 +33,10 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Taylm.polyBoxBounds (L : List (ℝ × (Fin n → ℕ))) (B : Fin n → ℝ × ℝ) :
-    ℝ × ℝ :=
-  ((L.map fun a => (Taylm.termBoxBounds B a).1).sum,
-    (L.map fun a => (Taylm.termBoxBounds B a).2).sum)
+noncomputable def Taylm.polyBoxBounds (L : List (ℝ × (Fin n → ℕ))) (B : Fin n → Interval ℝ) :
+    Interval ℝ :=
+  ⟨(L.map fun a => (Taylm.termBoxBounds B a).inf).sum,
+    (L.map fun a => (Taylm.termBoxBounds B a).sup).sum⟩
 
 end CORALean.Real
 

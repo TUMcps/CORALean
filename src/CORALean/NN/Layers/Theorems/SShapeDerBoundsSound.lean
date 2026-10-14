@@ -16,7 +16,7 @@ ends, and for `l ≤ 0 ≤ u` the lower one is `df` at one end.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,7 +31,7 @@ variable {α : Type} [AddCommGroup α] [LinearOrder α] [IsOrderedAddMonoid α]
 
 /-- `df t` lies in `[df_l, df_u]` for every `t ∈ [l, u]`. -/
 theorem sShapeDerBounds_sound {df : α → α} (h : SShape df) {l u t : α} (hl : l ≤ t) (hu : t ≤ u) :
-    (sShapeDerBounds df l u).1 ≤ df t ∧ df t ≤ (sShapeDerBounds df l u).2 := by -- --- PROOF ---
+    (sShapeDerBounds df l u).inf ≤ df t ∧ df t ≤ (sShapeDerBounds df l u).sup := by -- --- PROOF ---
   -- `df` rises towards `0` on the left, by evenness
   have hneg : ∀ {s t : α}, s ≤ t → t ≤ 0 → df s ≤ df t := fun {s t} hst ht => by
     rw [← h.even s, ← h.even t]

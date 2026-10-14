@@ -19,7 +19,7 @@ monomial from its factors' powers.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,10 +30,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.prodBounds : List (ℝ × ℝ) → ℝ × ℝ
-  | [] => (1, 1)
-  | a :: L => (Interval.mulLo a.1 a.2 (Taylm.prodBounds L).1 (Taylm.prodBounds L).2,
-      Interval.mulHi a.1 a.2 (Taylm.prodBounds L).1 (Taylm.prodBounds L).2)
+def Taylm.prodBounds : List (Interval ℝ) → Interval ℝ
+  | [] => ⟨1, 1⟩
+  | a :: L => ⟨Interval.mulLo a.inf a.sup (Taylm.prodBounds L).inf (Taylm.prodBounds L).sup,
+      Interval.mulHi a.inf a.sup (Taylm.prodBounds L).inf (Taylm.prodBounds L).sup⟩
 
 end CORALean.Real
 

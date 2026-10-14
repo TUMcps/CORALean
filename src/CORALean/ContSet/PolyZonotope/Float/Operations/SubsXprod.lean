@@ -15,7 +15,7 @@ over the outputs `ii` of the `e`-th power of output `ii`'s polynomial, `e` the e
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,11 +31,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.subsXprod (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ} (pZin : PolyZonotope (Vec 𝕋 nu))
-    (idu : Fin nu → Fin pZ.p) (i : Fin pZ.h) : List ((𝕋 × 𝕋) × (Fin pZin.p → ℕ)) :=
+    (idu : Fin nu → Fin pZ.p) (i : Fin pZ.h) : List ((Interval 𝕋) × (Fin pZin.p → ℕ)) :=
   (List.finRange nu).foldl
     (fun acc ii => PolyZonotope.subsMul acc
       (PolyZonotope.subsPow (pZin.subsPoly ii) (pZ.E (idu ii) i)))
-    [((one, one), 0)]
+    [(⟨one, one⟩, 0)]
 
 end CORALean.Float
 

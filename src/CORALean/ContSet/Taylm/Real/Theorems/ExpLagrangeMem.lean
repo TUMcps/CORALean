@@ -29,7 +29,7 @@ only the `k = n` that `Taylm.exp` uses.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -103,12 +103,12 @@ theorem Taylm.exp_lagrange_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encl
     Real.exp (f t) - Real.exp T.constCoef
         * ∑ j ∈ Finset.range (k + 1), (f t - T.constCoef) ^ j / (j.factorial : ℝ)
       ∈ (fun r => Real.exp T.constCoef * r / ((k + 1).factorial : ℝ)) ''
-          (Set.Icc (T.bounds.1 - T.constCoef) (T.bounds.2 - T.constCoef) ^ (k + 1)
+          (Set.Icc (T.bounds.inf - T.constCoef) (T.bounds.sup - T.constCoef) ^ (k + 1)
             * Real.exp '' (Set.Icc (0 : ℝ) 1
-              * Set.Icc (T.bounds.1 - T.constCoef)
-                (T.bounds.2 - T.constCoef))) := by -- --- PROOF ---
+              * Set.Icc (T.bounds.inf - T.constCoef)
+                (T.bounds.sup - T.constCoef))) := by -- --- PROOF ---
   set c := T.constCoef
-  set J := Set.Icc (T.bounds.1 - c) (T.bounds.2 - c)
+  set J := Set.Icc (T.bounds.inf - c) (T.bounds.sup - c)
   -- `f̄(t)` lies in `J`, the model's bounds holding `f`
   have hy : f t - c ∈ J := by
     obtain ⟨h1, h2⟩ := Taylm.bounds_mem h ht

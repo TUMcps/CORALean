@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
+public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section
 
@@ -14,7 +15,7 @@ chord: the new factor is then only bounded, which loses precision and not soundn
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,8 +31,8 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `l < 0`, `0 < u` and `0 < u - l` (rounded down), each certified. -/
-def StarSet.chordGuard (b : 𝕋 × 𝕋) : Bool :=
-  ltStrict b.1 zero && ltStrict zero b.2 && ltStrict zero (subDown b.2 b.1)
+def StarSet.chordGuard (b : Interval 𝕋) : Bool :=
+  ltStrict b.inf zero && ltStrict zero b.sup && ltStrict zero (subDown b.sup b.inf)
 
 end CORALean.Float
 

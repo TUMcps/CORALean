@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -23,7 +24,7 @@ another way (`Interval.cos`, through `Interval.maxCos`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,22 +35,22 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Interval.cosByRegions (lo hi : ℝ) : ℝ × ℝ :=
+noncomputable def Interval.cosByRegions (lo hi : ℝ) : Interval ℝ :=
   let y_lo := lo - 2 * Real.pi * ⌊lo / (2 * Real.pi)⌋  -- (11)
   let y_hi := hi - 2 * Real.pi * ⌊hi / (2 * Real.pi)⌋  -- (11)
   let R₁ := Set.Ico 0 Real.pi  -- `R_c1`
   let R₂ := Set.Ico Real.pi (2 * Real.pi)  -- `R_c2`
   if 2 * Real.pi ≤ hi - lo ∨ (y_lo ∈ R₁ ∧ y_hi ∈ R₁ ∧ y_hi < y_lo) ∨
       (y_lo ∈ R₂ ∧ y_hi ∈ R₂ ∧ y_hi < y_lo) then
-    (-1, 1)
+    ⟨-1, 1⟩
   else if y_lo ∈ R₂ ∧ y_hi ∈ R₂ ∧ y_lo ≤ y_hi then
-    (Real.cos y_lo, Real.cos y_hi)
+    ⟨Real.cos y_lo, Real.cos y_hi⟩
   else if y_lo ∈ R₂ ∧ y_hi ∈ R₁ then
-    (min (Real.cos y_lo) (Real.cos y_hi), 1)
+    ⟨min (Real.cos y_lo) (Real.cos y_hi), 1⟩
   else if y_lo ∈ R₁ ∧ y_hi ∈ R₂ then
-    (-1, max (Real.cos y_lo) (Real.cos y_hi))
+    ⟨-1, max (Real.cos y_lo) (Real.cos y_hi)⟩
   else
-    (Real.cos y_hi, Real.cos y_lo)
+    ⟨Real.cos y_hi, Real.cos y_lo⟩
 
 end CORALean.Real
 

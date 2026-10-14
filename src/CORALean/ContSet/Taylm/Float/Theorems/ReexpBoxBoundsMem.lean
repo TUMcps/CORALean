@@ -20,7 +20,7 @@ otherwise the range is `polyBoxBounds`'s.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,22 +35,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.reexpBoxBounds_mem (P : List (𝕋 × (Fin n → ℕ))) {B : Fin n → 𝕋 × 𝕋} {t : Vec ℝ n}
+theorem Taylm.reexpBoxBounds_mem (P : List (𝕋 × (Fin n → ℕ))) {B : Fin n → Interval 𝕋} {t : Vec ℝ n}
     (ht : Taylm.InBox B t) :
-    toReal (Taylm.reexpBoxBounds P B).1 ≤ Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t ∧
+    toReal (Taylm.reexpBoxBounds P B).inf ≤ Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t ∧
       Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) t
-        ≤ toReal (Taylm.reexpBoxBounds P B).2 := by -- --- PROOF ---
+        ≤ toReal (Taylm.reexpBoxBounds P B).sup := by -- --- PROOF ---
   unfold Taylm.reexpBoxBounds
   dsimp only
   split_ifs with hc
   swap
   · exact Taylm.polyBoxBounds_mem P ht
   -- the midpoint and radius reach both ends of the box
-  have hr : ∀ k, toReal (B k).2 - toReal (Taylm.boxMid B k) ≤ toReal (Taylm.boxRad B k) ∧
-      toReal (Taylm.boxMid B k) - toReal (B k).1 ≤ toReal (Taylm.boxRad B k) := by
+  have hr : ∀ k, toReal (B k).sup - toReal (Taylm.boxMid B k) ≤ toReal (Taylm.boxRad B k) ∧
+      toReal (Taylm.boxMid B k) - toReal (B k).inf ≤ toReal (Taylm.boxRad B k) := by
     intro k
-    have h1 := sub_le_subUp (B k).2 (Taylm.boxMid B k)
-    have h2 := sub_le_subUp (Taylm.boxMid B k) (B k).1
+    have h1 := sub_le_subUp (B k).sup (Taylm.boxMid B k)
+    have h2 := sub_le_subUp (Taylm.boxMid B k) (B k).inf
     simp only [Taylm.boxRad, toReal_maximum]
     exact ⟨le_trans h1 (le_max_left _ _), le_trans h2 (le_max_right _ _)⟩
   -- the certified `|m| + |r| ≤ 1`

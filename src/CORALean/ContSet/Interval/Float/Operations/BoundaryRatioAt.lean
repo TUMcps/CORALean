@@ -16,7 +16,7 @@ where `ltStrict` certifies neither sign (the coordinate is then left out, as COR
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -32,13 +32,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.boundaryRatioAt (I : Interval (Vec 𝕋 n)) (dir start : Vec 𝕋 n) (i : Fin n) :
-    Option (𝕋 × 𝕋) :=
+    Option (Interval 𝕋) :=
   if ltStrict zero (dir i) = true then
-    some (divDown (subDown (I.sup i) (start i)) (dir i),
-      divUp (subUp (I.sup i) (start i)) (dir i))
+    some ⟨divDown (subDown (I.sup i) (start i)) (dir i),
+      divUp (subUp (I.sup i) (start i)) (dir i)⟩
   else if ltStrict (dir i) zero = true then
-    some (divDown (subDown (start i) (I.inf i)) (neg (dir i)),
-      divUp (subUp (start i) (I.inf i)) (neg (dir i)))
+    some ⟨divDown (subDown (start i) (I.inf i)) (neg (dir i)),
+      divUp (subUp (start i) (I.inf i)) (neg (dir i))⟩
   else none
 
 end CORALean.Float

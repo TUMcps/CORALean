@@ -21,7 +21,7 @@ the upper one.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,10 +36,10 @@ variable {n : ℕ}
 
 theorem Taylm.optLinQuad_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : ℝ)
     (ldbFuel fuel : ℕ) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
-    (T.optLinQuad ε ldbFuel fuel).1 ≤ f t ∧
-      f t ≤ (T.optLinQuad ε ldbFuel fuel).2 := by -- --- PROOF ---
-  have hX : Taylm.GoodBox (fun _ : Fin n => ((-1 : ℝ), (1 : ℝ))) := fun _ => by norm_num
-  have htX : Taylm.InBox (fun _ : Fin n => ((-1 : ℝ), (1 : ℝ))) t := fun k => abs_le.1 (ht k)
+    (T.optLinQuad ε ldbFuel fuel).inf ≤ f t ∧
+      f t ≤ (T.optLinQuad ε ldbFuel fuel).sup := by -- --- PROOF ---
+  have hX : Taylm.GoodBox (fun _ : Fin n => ⟨(-1 : ℝ), (1 : ℝ)⟩) := fun _ => by norm_num
+  have htX : Taylm.InBox (fun _ : Fin n => ⟨(-1 : ℝ), (1 : ℝ)⟩) t := fun k => abs_le.1 (ht k)
   have h1 := Taylm.cosyGo_le h hX ε ldbFuel fuel htX
   have h2 := Taylm.cosyGo_le (Taylm.uminus_outer h) hX ε ldbFuel fuel htX
   simp only [Taylm.optLinQuad]

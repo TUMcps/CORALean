@@ -20,7 +20,7 @@ the powers and the factorial between their roundings. `h` is the rounded root po
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,10 +37,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Taylm.arcsinCoef_mem (q : ℕ) (c : 𝕋)
     (h : 0 < toReal (sqrtDown q (subDown one (mulUp c c)))) (j : ℕ) :
-    toReal (Taylm.arcsinCoef q c j).1 ≤
+    toReal (Taylm.arcsinCoef q c j).inf ≤
         iteratedDeriv (j + 1) Real.arcsin (toReal c) / ((j + 1).factorial : ℝ) ∧
       iteratedDeriv (j + 1) Real.arcsin (toReal c) / ((j + 1).factorial : ℝ) ≤
-        toReal (Taylm.arcsinCoef q c j).2 := by -- --- PROOF ---
+        toReal (Taylm.arcsinCoef q c j).sup := by -- --- PROOF ---
   -- `c` inside `(-1, 1)`, and `asinPoly` as the integer list
   have hv := invSqrtOneSub_mem q c h
   have hP : ∀ j x, (asinPoly j).eval x =

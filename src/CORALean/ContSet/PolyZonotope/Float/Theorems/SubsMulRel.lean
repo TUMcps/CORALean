@@ -13,7 +13,7 @@ corner products (`Interval.mul_between_corners`), and the exponents add.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.subsMul_rel {A B : List ((𝕋 × 𝕋) × (Fin p → ℕ))}
+theorem PolyZonotope.subsMul_rel {A B : List ((Interval 𝕋) × (Fin p → ℕ))}
     {A' B' : List (ℝ × (Fin p → ℕ))} (hA : PolyZonotope.subsRel A A')
     (hB : PolyZonotope.subsRel B B') :
     PolyZonotope.subsRel (PolyZonotope.subsMul A B)

@@ -15,7 +15,7 @@ bounds are assumed to enclose each row's range, as over ℝ.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,12 +31,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.representsa_fullspace_sound (L : CORALean.Real.LevelSet n)
-    (O : Fin L.m → 𝕋 × 𝕋)
-    (hO : ∀ i x, toReal (O i).1 ≤ L.f x i ∧ L.f x i ≤ toReal (O i).2)
+    (O : Fin L.m → Interval 𝕋)
+    (hO : ∀ i x, toReal (O i).inf ≤ L.f x i ∧ L.f x i ≤ toReal (O i).sup)
     (h : LevelSet.representsa_fullspace L O = true) :
     L.construct = Set.univ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.representsa_fullspace_sound L
-    (fun i => (((toReal (O i).1 : ℝ) : EReal), ((toReal (O i).2 : ℝ) : EReal)))
+    (fun i => (((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)))
     (fun i x => ⟨EReal.coe_le_coe_iff.mpr (hO i x).1, EReal.coe_le_coe_iff.mpr (hO i x).2⟩) ?_
   -- each row's certified comparison, read as reals
   simp only [LevelSet.representsa_fullspace, List.all_eq_true, List.mem_finRange,
@@ -54,10 +54,10 @@ theorem LevelSet.representsa_fullspace_sound (L : CORALean.Real.LevelSet n)
     exact not_le.mpr (by exact_mod_cast hlt)
   · simp only [Bool.and_eq_true] at hi
     obtain ⟨⟨a₁, a₂⟩, b₁, b₂⟩ := hi
-    have e₁ : toReal (O i).1 = 0 :=
+    have e₁ : toReal (O i).inf = 0 :=
       le_antisymm ((toReal_le_of_le a₁).trans_eq toReal_zero)
         (toReal_zero.symm.trans_le (toReal_le_of_le a₂))
-    have e₂ : toReal (O i).2 = 0 :=
+    have e₂ : toReal (O i).sup = 0 :=
       le_antisymm ((toReal_le_of_le b₁).trans_eq toReal_zero)
         (toReal_zero.symm.trans_le (toReal_le_of_le b₂))
     simp [e₁, e₂]

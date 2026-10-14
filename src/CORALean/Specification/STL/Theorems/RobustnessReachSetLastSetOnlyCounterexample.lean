@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.STL.Operations.RobustnessReachSetGloballyCora
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Tactic.Linarith
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -27,7 +28,7 @@ comparison holds by a margin of at least `1/2`. Not run in MATLAB.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,18 +40,19 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.robustnessReachSetGloballyCora_lastSetOnly_counterexample
-    (meets : ℝ × ℝ → ℝ × ℝ → Bool)
-    (hmeets : ∀ a b : ℝ × ℝ, a.1 ≤ b.2 → b.1 ≤ a.2 → meets a b = true)
-    (hsep : ∀ a b : ℝ × ℝ, a.2 + 1 / 2 ≤ b.1 ∨ b.2 + 1 / 2 ≤ a.1 → meets a b = false)
-    (isectApprox isectExact : ℝ × ℝ → ℝ → Bool)
-    (happrox : ∀ S b, S.1 ≤ b → isectApprox S b = true)
-    (hexact : ∀ S b, S.1 ≤ b → isectExact S b = true)
-    (hexact' : ∀ S b, b + 1 / 2 ≤ S.1 → isectExact S b = false)
+    (meets : Real.Interval ℝ → Real.Interval ℝ → Bool)
+    (hmeets : ∀ a b : Real.Interval ℝ, a.inf ≤ b.sup → b.inf ≤ a.sup → meets a b = true)
+    (hsep : ∀ a b : Real.Interval ℝ, a.sup + 1 / 2 ≤ b.inf ∨ b.sup + 1 / 2 ≤ a.inf →
+        meets a b = false)
+    (isectApprox isectExact : Real.Interval ℝ → ℝ → Bool)
+    (happrox : ∀ S b, S.inf ≤ b → isectApprox S b = true)
+    (hexact : ∀ S b, S.inf ≤ b → isectExact S b = true)
+    (hexact' : ∀ S b, b + 1 / 2 ≤ S.inf → isectExact S b = false)
     (ε : ℝ) (hε : 0 ≤ ε) (hε1 : ε < 1 / 2) :
     let tp : List ℝ := [0, 1, 2, 4]                                     -- R.timePoint.time
-    let Xp : List (ℝ × ℝ) := [(-1, -1 / 2), (1, 3 / 2), (3, 7 / 2), (7, 15 / 2)]
-    let ti : List (ℝ × ℝ) := [(0, 1), (1, 2), (2, 4)]                   -- R.timeInterval.time
-    let Xi : List (ℝ × ℝ) := [(-1, 3 / 2), (1, 7 / 2), (3, 15 / 2)]
+    let Xp : List (Real.Interval ℝ) := [⟨-1, -1 / 2⟩, ⟨1, 3 / 2⟩, ⟨3, 7 / 2⟩, ⟨7, 15 / 2⟩]
+    let ti : List (Real.Interval ℝ) := [⟨0, 1⟩, ⟨1, 2⟩, ⟨2, 4⟩]  -- R.timeInterval.time
+    let Xi : List (Real.Interval ℝ) := [⟨-1, 3 / 2⟩, ⟨1, 7 / 2⟩, ⟨3, 15 / 2⟩]
     -- a run of `ẋ = 2` from the initial set stays in the set of `[0,1]` and violates `x > 0`
     (∃ x : ℝ → ℝ, -1 ≤ x 0 ∧ x 0 ≤ -1 / 2 ∧ (∀ s, HasDerivAt x 2 s) ∧
       (∀ s ∈ Set.Icc (0 : ℝ) 1, -1 ≤ x s ∧ x s ≤ 3 / 2) ∧ ¬ 0 < x 0) ∧
@@ -66,19 +68,19 @@ theorem STL.robustnessReachSetGloballyCora_lastSetOnly_counterexample
   · obtain ⟨h0, h1⟩ := hs; constructor <;> linarith
   -- the window is `[0, 3/2]`: time points `0, 1` and time intervals `[0,1]`, `[1,2]` meet it
   have hN : ⌈(3 / 2 : ℝ)⌉₊ = 2 := by rw [Nat.ceil_eq_iff] <;> norm_num
-  have m1 : meets (0, 0) (0, 3 / 2) = true := hmeets _ _ (by norm_num) (by norm_num)
-  have m2 : meets (1, 1) (0, 3 / 2) = true := hmeets _ _ (by norm_num) (by norm_num)
-  have m3 : meets (2, 2) (0, 3 / 2) = false := hsep _ _ (Or.inr (by norm_num))
-  have m4 : meets (4, 4) (0, 3 / 2) = false := hsep _ _ (Or.inr (by norm_num))
-  have m5 : meets (0, 1) (0, 3 / 2) = true := hmeets _ _ (by norm_num) (by norm_num)
-  have m6 : meets (1, 2) (0, 3 / 2) = true := hmeets _ _ (by norm_num) (by norm_num)
-  have m7 : meets (2, 4) (0, 3 / 2) = false := hsep _ _ (Or.inr (by norm_num))
-  have a1 : isectApprox (-1, -2⁻¹) (-ε) = true := happrox _ _ (by simp; linarith)
-  have a2 : isectApprox (-1, 3 / 2) (-ε) = true := happrox _ _ (by simp; linarith)
-  have e1 : isectExact (-1, -2⁻¹) (-ε) = true := hexact _ _ (by simp; linarith)
-  have e2 : isectExact (-1, 3 / 2) (-ε) = true := hexact _ _ (by simp; linarith)
-  have e3 : isectExact (1, 3 / 2) (-ε) = false := hexact' _ _ (by simp; linarith)
-  have e4 : isectExact (1, 7 / 2) (-ε) = false := hexact' _ _ (by simp; linarith)
+  have m1 : meets ⟨0, 0⟩ ⟨0, 3 / 2⟩ = true := hmeets _ _ (by norm_num) (by norm_num)
+  have m2 : meets ⟨1, 1⟩ ⟨0, 3 / 2⟩ = true := hmeets _ _ (by norm_num) (by norm_num)
+  have m3 : meets ⟨2, 2⟩ ⟨0, 3 / 2⟩ = false := hsep _ _ (Or.inr (by norm_num))
+  have m4 : meets ⟨4, 4⟩ ⟨0, 3 / 2⟩ = false := hsep _ _ (Or.inr (by norm_num))
+  have m5 : meets ⟨0, 1⟩ ⟨0, 3 / 2⟩ = true := hmeets _ _ (by norm_num) (by norm_num)
+  have m6 : meets ⟨1, 2⟩ ⟨0, 3 / 2⟩ = true := hmeets _ _ (by norm_num) (by norm_num)
+  have m7 : meets ⟨2, 4⟩ ⟨0, 3 / 2⟩ = false := hsep _ _ (Or.inr (by norm_num))
+  have a1 : isectApprox ⟨-1, -2⁻¹⟩ (-ε) = true := happrox _ _ (by simp; linarith)
+  have a2 : isectApprox ⟨-1, 3 / 2⟩ (-ε) = true := happrox _ _ (by simp; linarith)
+  have e1 : isectExact ⟨-1, -2⁻¹⟩ (-ε) = true := hexact _ _ (by simp; linarith)
+  have e2 : isectExact ⟨-1, 3 / 2⟩ (-ε) = true := hexact _ _ (by simp; linarith)
+  have e3 : isectExact ⟨1, 3 / 2⟩ (-ε) = false := hexact' _ _ (by simp; linarith)
+  have e4 : isectExact ⟨1, 7 / 2⟩ (-ε) = false := hexact' _ _ (by simp; linarith)
   -- unfold, then the loop keeps the robustness of the last set, `[1, 7/2]`
   simp only [STL.robustnessReachSetGloballyCora, tp, Xp, ti, Xi]
   norm_num [hN, List.range_succ]

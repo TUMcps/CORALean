@@ -24,7 +24,7 @@ identity models enclose that map, [1, Thm. 2] carries the enclosure through the 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,8 +36,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.rangeBound_mem {m : ℕ} {e : Taylm.CodeList ℝ m} {D : Interval (Vec ℝ m)} {N : ℕ}
-    {b : ℝ × ℝ} (hb : Taylm.rangeBound e D N = some b) {x : Vec ℝ m} (hx : x ∈ D.construct) :
-    b.1 ≤ e.eval x ∧ e.eval x ≤ b.2 := by -- --- PROOF ---
+    {b : Interval ℝ} (hb : Taylm.rangeBound e D N = some b) {x : Vec ℝ m} (hx : x ∈ D.construct) :
+    b.inf ≤ e.eval x ∧ e.eval x ≤ b.sup := by -- --- PROOF ---
   simp only [Taylm.rangeBound, Option.map_eq_some_iff] at hb
   obtain ⟨T, hT, rfl⟩ := hb
   have hE := Taylm.codeEval_encloses (fun i => Interval.taylm_outer D N i) e hT

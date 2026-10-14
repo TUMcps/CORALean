@@ -15,7 +15,7 @@ all-even one a monomial in `[0, 1]`, any other one in `[-1, 1]`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,8 +29,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.termBounds_mem (a : ℝ × (Fin n → ℕ)) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
-    (Taylm.termBounds a).1 ≤ a.1 * Taylm.monomial a.2 t ∧
-      a.1 * Taylm.monomial a.2 t ≤ (Taylm.termBounds a).2 := by -- --- PROOF ---
+    (Taylm.termBounds a).inf ≤ a.1 * Taylm.monomial a.2 t ∧
+      a.1 * Taylm.monomial a.2 t ≤ (Taylm.termBounds a).sup := by -- --- PROOF ---
   have hm := abs_le.1 (Taylm.abs_monomial_le_one ht a.2)
   unfold Taylm.termBounds
   split_ifs with h0 hev

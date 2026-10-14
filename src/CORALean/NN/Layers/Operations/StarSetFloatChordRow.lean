@@ -18,7 +18,7 @@ is added to the right-hand side, together with `k (c_j - l)` rounded up.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,13 +34,13 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The chord row for neuron `j` with bounds `b = (l, u)`. -/
-def StarSet.chordRow (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋) :
+def StarSet.chordRow (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋) :
     (Fin (s.m + 1) → 𝕋) × 𝕋 :=
-  let klo := divDown b.2 (subUp b.2 b.1)
-  let khi := divUp b.2 (subDown b.2 b.1)
+  let klo := divDown b.sup (subUp b.sup b.inf)
+  let khi := divUp b.sup (subDown b.sup b.inf)
   (Fin.snoc (α := fun _ => 𝕋)
       (fun k => neg (Interval.mulLo klo khi (s.G j k) (s.G j k))) one,
-   addUp (Interval.mulHi klo khi (subDown (s.c j) b.1) (subUp (s.c j) b.1))
+   addUp (Interval.mulHi klo khi (subDown (s.c j) b.inf) (subUp (s.c j) b.inf))
      (sumUp fun k => mulUp
        (subUp (Interval.mulHi klo khi (s.G j k) (s.G j k))
          (Interval.mulLo klo khi (s.G j k) (s.G j k)))

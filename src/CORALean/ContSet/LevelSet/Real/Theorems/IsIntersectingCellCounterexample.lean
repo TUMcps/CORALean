@@ -16,7 +16,7 @@ tests `lb < 0` at `==` with `lb = 0` and answers `false`, which `isIntersecting_
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ def LevelSet.aux_L : LevelSet 1 := ⟨1, fun x => x, fun _ => .eq⟩
 def LevelSet.aux_box : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
 
 /-- The bounds `(0, 1)` of the function over the box. -/
-def LevelSet.aux_B : Fin 1 → ℝ × ℝ := fun _ => (0, 1)
+def LevelSet.aux_B : Fin 1 → Interval ℝ := fun _ => ⟨0, 1⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -44,7 +44,7 @@ def LevelSet.aux_B : Fin 1 → ℝ × ℝ := fun _ => (0, 1)
 theorem LevelSet.isIntersecting_cell_counterexample :
     LevelSet.aux_L.construct ∩ LevelSet.aux_box.construct ≠ ∅ ∧
       (∀ i, IsRangeBound (fun x => LevelSet.aux_L.f x i)
-        LevelSet.aux_box.construct (LevelSet.aux_B i).1 (LevelSet.aux_B i).2) ∧
+        LevelSet.aux_box.construct (LevelSet.aux_B i).inf (LevelSet.aux_B i).sup) ∧
       ¬ LevelSet.isIntersecting_cell 0 LevelSet.aux_L.op LevelSet.aux_B := by -- --- PROOF ---
   refine ⟨?_, ?_, ?_⟩
   · -- the point `0` is in both

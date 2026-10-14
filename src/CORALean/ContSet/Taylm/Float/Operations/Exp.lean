@@ -19,7 +19,7 @@ of the two exponentials (`Global/Float/Exp`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,8 +39,8 @@ def Taylm.exp (p : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   let c := T.constCoef
   let b := T.bounds
   -- `|f t - c| ≤ B` on the box, and `exp` at the top of the hull bounds every derivative
-  let B := maximum zero (maximum (subUp b.2 c) (subUp c b.1))
-  let D := expUp p (maximum c b.2)
+  let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
+  let D := expUp p (maximum c b.sup)
   let ρ := mulUp (mulUp D (powUp B (N + 1))) (divFact (one, one) (N + 1)).2
   T.compose c (fun k => (divFact (expDown p c, expUp p c) k).1)
     (fun k => (divFact (expDown p c, expUp p c) k).2) N ρ

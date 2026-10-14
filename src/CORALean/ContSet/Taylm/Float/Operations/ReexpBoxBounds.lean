@@ -15,7 +15,7 @@ every coordinate, which `le` certifies; where it does not, the range is `polyBox
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.reexpBoxBounds (P : List (𝕋 × (Fin n → ℕ))) (B : Fin n → 𝕋 × 𝕋) : 𝕋 × 𝕋 :=
+def Taylm.reexpBoxBounds (P : List (𝕋 × (Fin n → ℕ))) (B : Fin n → Interval 𝕋) : Interval 𝕋 :=
   let m := Taylm.boxMid B
   let r := Taylm.boxRad B
   if (List.finRange n).all (fun k => le (addUp (absolute (m k)) (absolute (r k))) one) = true then

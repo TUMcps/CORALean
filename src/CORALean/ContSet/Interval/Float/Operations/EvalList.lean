@@ -16,7 +16,7 @@ every operation rounded outward.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,12 +31,12 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Interval.evalList (lo hi : 𝕋) : List ℤ → 𝕋 × 𝕋
-  | [] => (zero, zero)
+def Interval.evalList (lo hi : 𝕋) : List ℤ → Interval 𝕋
+  | [] => ⟨zero, zero⟩
   | a :: l =>
     let r := Interval.evalList lo hi l
-    (addDown (intDown a) (Interval.mulLo lo hi r.1 r.2),
-      addUp (intUp a) (Interval.mulHi lo hi r.1 r.2))
+    ⟨addDown (intDown a) (Interval.mulLo lo hi r.inf r.sup),
+      addUp (intUp a) (Interval.mulHi lo hi r.inf r.sup)⟩
 
 end CORALean.Float
 

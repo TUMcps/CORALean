@@ -21,7 +21,7 @@ function differs from it by the remainder.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,8 +36,8 @@ variable {n : ℕ}
 
 theorem Taylm.optBnbAdv_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (ε : ℝ) (fuel : ℕ)
     {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
-    (T.optBnbAdv ε fuel).1 ≤ f t ∧ f t ≤ (T.optBnbAdv ε fuel).2 := by -- --- PROOF ---
-  have hb := Taylm.branchAndBound_mem T.terms (fun _ => (-1, 1)) ε true fuel (t := t)
+    (T.optBnbAdv ε fuel).inf ≤ f t ∧ f t ≤ (T.optBnbAdv ε fuel).sup := by -- --- PROOF ---
+  have hb := Taylm.branchAndBound_mem T.terms (fun _ => ⟨-1, 1⟩) ε true fuel (t := t)
     fun k => abs_le.1 (ht k)
   have hr := h t ht
   simp only [Taylm.poly] at hr

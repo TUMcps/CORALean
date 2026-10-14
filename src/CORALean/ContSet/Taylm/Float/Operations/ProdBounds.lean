@@ -15,7 +15,7 @@ running interval with the next factor's, rounded outward (`Interval.mulLo`, `Int
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,11 +30,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.prodBounds : {m : ℕ} → (Fin m → 𝕋 × 𝕋) → 𝕋 × 𝕋
-  | 0, _ => (one, one)
+def Taylm.prodBounds : {m : ℕ} → (Fin m → Interval 𝕋) → Interval 𝕋
+  | 0, _ => ⟨one, one⟩
   | _ + 1, f =>
     let rest := Taylm.prodBounds fun i => f i.succ
-    (Interval.mulLo (f 0).1 (f 0).2 rest.1 rest.2, Interval.mulHi (f 0).1 (f 0).2 rest.1 rest.2)
+    ⟨Interval.mulLo (f 0).inf (f 0).sup rest.inf rest.sup, Interval.mulHi (f 0).inf (f 0).sup
+        rest.inf rest.sup⟩
 end CORALean.Float
 
 

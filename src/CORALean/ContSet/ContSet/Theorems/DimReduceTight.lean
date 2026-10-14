@@ -25,7 +25,7 @@ greatest and least `x·ℓ`. It follows from [1, Prop. 1] and the specification 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,21 +39,21 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 2]: for `ℓ ∈ D` the polyhedron's `x·ℓ` ranges over exactly `Z ∩ G`'s. -/
-theorem ContSet.dimReduce_tight {bound : Set (ℝ × ℝ) → ℝ → ℝ × ℝ}
+theorem ContSet.dimReduce_tight {bound : Set (ℝ × ℝ) → ℝ → Real.Interval ℝ}
     (hb : ContSet.IsBoundIntersect2D bound) (Z : Set (Vec ℝ n)) (nv : Vec ℝ n) (γ : ℝ)
     (D : Finset (Vec ℝ n)) (hne : ∃ x ∈ Z, x ⬝ᵥ nv = γ) {ℓ : Vec ℝ n} (hℓ : ℓ ∈ D) :
     IsGreatest ((fun x => x ⬝ᵥ ℓ) '' ContSet.dimReduce bound Z nv γ D)
-        (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).2
+        (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).sup
       ∧ IsLeast ((fun x => x ⬝ᵥ ℓ) '' ContSet.dimReduce bound Z nv γ D)
-        (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).1 := by -- --- PROOF ---
+        (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).inf := by -- --- PROOF ---
   set S := (fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z with hS
   -- the segment is nonempty, so both its ends are in the slice, hence reached by `Z ∩ G`
   obtain ⟨x₀, hx₀, hxn₀⟩ := hne
   have hmem : x₀ ⬝ᵥ ℓ ∈ {y : ℝ | (γ, y) ∈ S} := ⟨x₀, hx₀, by simp [hxn₀]⟩
   rw [hb] at hmem
-  have hMe : (bound S γ).2 ∈ {y : ℝ | (γ, y) ∈ S} := by
+  have hMe : (bound S γ).sup ∈ {y : ℝ | (γ, y) ∈ S} := by
     rw [hb]; exact ⟨hmem.1.trans hmem.2, le_rfl⟩
-  have hme : (bound S γ).1 ∈ {y : ℝ | (γ, y) ∈ S} := by
+  have hme : (bound S γ).inf ∈ {y : ℝ | (γ, y) ∈ S} := by
     rw [hb]; exact ⟨le_rfl, hmem.1.trans hmem.2⟩
   obtain ⟨xM, hxM, hxMn⟩ := hMe
   obtain ⟨xm, hxm, hxmn⟩ := hme

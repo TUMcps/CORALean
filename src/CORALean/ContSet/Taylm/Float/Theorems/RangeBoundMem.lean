@@ -23,7 +23,7 @@ value of an enclosed function.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,9 +39,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.rangeBound_mem {m : ℕ} {p q s N : ℕ} {e : Real.Taylm.CodeList 𝕋 m}
-    {D : Interval (Vec 𝕋 m)} {b : 𝕋 × 𝕋} (hb : Taylm.rangeBound p q s e D N = some b)
+    {D : Interval (Vec 𝕋 m)} {b : Interval 𝕋} (hb : Taylm.rangeBound p q s e D N = some b)
     {x : Vec ℝ m} (hx : x ∈ D.construct) :
-    toReal b.1 ≤ (e.map toReal).eval x ∧ (e.map toReal).eval x ≤ toReal b.2 := by -- --- PROOF ---
+    toReal b.inf ≤ (e.map toReal).eval x ∧
+      (e.map toReal).eval x ≤ toReal b.sup := by -- --- PROOF ---
   simp only [Taylm.rangeBound, Option.map_eq_some_iff] at hb
   obtain ⟨T, hT, rfl⟩ := hb
   obtain ⟨t, ht, hxt⟩ := Interval.taylm_contains D N hx

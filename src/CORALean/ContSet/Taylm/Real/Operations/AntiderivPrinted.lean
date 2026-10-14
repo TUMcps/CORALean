@@ -21,7 +21,7 @@ corrected rule.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -39,7 +39,7 @@ noncomputable def Taylm.antiderivPrinted (i : Fin n) (T : Taylm n) : Taylm n :=
   -- `P_{n-1}`, the rest, and `J = B(P - P_{n-1}) + I`, as in `antideriv`
   let Plow := T.terms.filter fun a => Nat.blt (Taylm.degree a.2) N
   let Prest := T.terms.filter fun a => !Nat.blt (Taylm.degree a.2) N
-  let J := ((Taylm.polyBounds Prest).1 + T.remInf, (Taylm.polyBounds Prest).2 + T.remSup)
+  let J := ((Taylm.polyBounds Prest).inf + T.remInf, (Taylm.polyBounds Prest).sup + T.remSup)
   -- the remainder times the width `bᵢ - aᵢ = 2`
   { terms := Taylm.integrateTerms i Plow
     remInf := J.1 * 2

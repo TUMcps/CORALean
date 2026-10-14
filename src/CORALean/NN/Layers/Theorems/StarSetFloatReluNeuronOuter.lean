@@ -16,7 +16,7 @@ without knowing the bounds straddle `0`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,8 +31,8 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × 𝕋)
-    (hb : ∀ x ∈ construct s, toReal b.1 ≤ x j ∧ x j ≤ toReal b.2) :
+theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
+    (hb : ∀ x ∈ construct s, toReal b.inf ≤ x j ∧ x j ≤ toReal b.sup) :
     (fun (x : Vec ℝ n) => (Function.update x j (max (x j) 0) : Vec ℝ n)) '' construct s
       ⊆ construct (s.reluNeuron j b) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
@@ -41,7 +41,7 @@ theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × �
   obtain ⟨α, hα, hcα, hxα⟩ := hx
   unfold StarSet.reluNeuron
   -- the neuron is nonnegative everywhere: the ReLU is the identity
-  by_cases h0 : le zero b.1 = true
+  by_cases h0 : le zero b.inf = true
   · rw [if_pos h0]
     have h0' := toReal_le_of_le h0
     rw [toReal_zero] at h0'
@@ -50,7 +50,7 @@ theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : 𝕋 × �
     exact ⟨α, hα, hcα, hxα⟩
   rw [if_neg h0]
   -- the neuron is nonpositive everywhere: the ReLU is `0`, the row cleared
-  by_cases h1 : le b.2 zero = true
+  by_cases h1 : le b.sup zero = true
   · rw [if_pos h1]
     have h1' := toReal_le_of_le h1
     rw [toReal_zero] at h1'

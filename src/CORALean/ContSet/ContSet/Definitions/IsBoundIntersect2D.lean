@@ -3,6 +3,7 @@ module
 public import CORALean.Global.Tensor
 public import Mathlib.Data.Real.Basic
 public import Mathlib.Data.Matrix.Mul
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -25,7 +26,7 @@ search, not either algorithm.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,9 +38,9 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Alg. 3]: `bound S γ = (m, M)` has `{γ} × [m; M] = S ∩ L_γ`, for every `S` and `γ`. -/
-def ContSet.IsBoundIntersect2D (bound : Set (ℝ × ℝ) → ℝ → ℝ × ℝ) : Prop :=
+def ContSet.IsBoundIntersect2D (bound : Set (ℝ × ℝ) → ℝ → Real.Interval ℝ) : Prop :=
   ∀ (S : Set (ℝ × ℝ)) (γ : ℝ),
-    {y : ℝ | (γ, y) ∈ S} = Set.Icc (bound S γ).1 (bound S γ).2
+    {y : ℝ | (γ, y) ∈ S} = Set.Icc (bound S γ).inf (bound S γ).sup
 
 end CORALean
 

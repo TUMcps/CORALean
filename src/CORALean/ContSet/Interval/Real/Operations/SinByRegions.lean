@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -24,7 +25,7 @@ and whether they swapped (`y̲ > y̅`, the range wrapping past `2π`). The resul
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +36,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Interval.sinByRegions (lo hi : ℝ) : ℝ × ℝ :=
+noncomputable def Interval.sinByRegions (lo hi : ℝ) : Interval ℝ :=
   let y_lo := lo - 2 * Real.pi * ⌊lo / (2 * Real.pi)⌋  -- (11)
   let y_hi := hi - 2 * Real.pi * ⌊hi / (2 * Real.pi)⌋  -- (11)
   let R₁ := Set.Ico 0 (Real.pi / 2)  -- `R_s1`
@@ -43,16 +44,16 @@ noncomputable def Interval.sinByRegions (lo hi : ℝ) : ℝ × ℝ :=
   let R₃ := Set.Ico (3 * Real.pi / 2) (2 * Real.pi)  -- `R_s3`
   if 2 * Real.pi ≤ hi - lo ∨ (y_lo ∈ R₁ ∧ y_hi ∈ R₁ ∧ y_hi < y_lo) ∨ (y_lo ∈ R₁ ∧ y_hi ∈ R₃) ∨
       (y_lo ∈ R₂ ∧ y_hi ∈ R₂ ∧ y_hi < y_lo) ∨ (y_lo ∈ R₃ ∧ y_hi ∈ R₃ ∧ y_hi < y_lo) then
-    (-1, 1)
+    ⟨-1, 1⟩
   else if (y_lo ∈ R₁ ∧ y_hi ∈ R₁ ∧ y_lo ≤ y_hi) ∨ (y_lo ∈ R₃ ∧ y_hi ∈ R₁) ∨
       (y_lo ∈ R₃ ∧ y_hi ∈ R₃ ∧ y_lo ≤ y_hi) then
-    (Real.sin y_lo, Real.sin y_hi)
+    ⟨Real.sin y_lo, Real.sin y_hi⟩
   else if (y_lo ∈ R₁ ∧ y_hi ∈ R₂) ∨ (y_lo ∈ R₃ ∧ y_hi ∈ R₂) then
-    (min (Real.sin y_lo) (Real.sin y_hi), 1)
+    ⟨min (Real.sin y_lo) (Real.sin y_hi), 1⟩
   else if (y_lo ∈ R₂ ∧ y_hi ∈ R₁) ∨ (y_lo ∈ R₂ ∧ y_hi ∈ R₃) then
-    (-1, max (Real.sin y_lo) (Real.sin y_hi))
+    ⟨-1, max (Real.sin y_lo) (Real.sin y_hi)⟩
   else
-    (Real.sin y_hi, Real.sin y_lo)
+    ⟨Real.sin y_hi, Real.sin y_lo⟩
 
 end CORALean.Real
 

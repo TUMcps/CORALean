@@ -24,7 +24,7 @@ precision of the sine and cosine (`Global/Float/SinCos`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -44,18 +44,18 @@ def Taylm.tan (p : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   let c := T.constCoef
   let b := T.bounds
   -- `|f t - c| ≤ B` on the box, and `|ξ| ≤ m` on the hull of the centre and the box
-  let B := maximum zero (maximum (subUp b.2 c) (subUp c b.1))
-  let m := maximum (absolute c) (maximum (absolute b.1) (absolute b.2))
+  let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
+  let m := maximum (absolute c) (maximum (absolute b.inf) (absolute b.sup))
   -- `|tan⁽ᴺ⁺¹⁾| ≤ odePoly (1 + X²) (N+1)` at `tan m`
-  let D := (Interval.evalList (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).2
+  let D := (Interval.evalList (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).sup
   let ρ := mulUp (mulUp D (powUp B (N + 1))) (divFact (one, one) (N + 1)).2
   -- `tan c` between its roundings, and each `tan⁽ᵏ⁾ c` as the polynomial on that enclosure
-  let t : 𝕋 × 𝕋 := (tanDown p c, tanUp p c)
-  let deriv : ℕ → 𝕋 × 𝕋 := fun k => Interval.evalList t.1 t.2 (odeL [1, 0, 1] k)
-  let invFact : ℕ → 𝕋 × 𝕋 := fun k => divFact (one, one) k
+  let t : Interval 𝕋 := ⟨tanDown p c, tanUp p c⟩
+  let deriv : ℕ → Interval 𝕋 := fun k => Interval.evalList t.inf t.sup (odeL [1, 0, 1] k)
+  let invFact : ℕ → Interval 𝕋 := fun k => ⟨(divFact (one, one) k).1, (divFact (one, one) k).2⟩
   T.compose c
-    (fun k => Interval.mulLo (deriv k).1 (deriv k).2 (invFact k).1 (invFact k).2)
-    (fun k => Interval.mulHi (deriv k).1 (deriv k).2 (invFact k).1 (invFact k).2) N ρ
+    (fun k => Interval.mulLo (deriv k).inf (deriv k).sup (invFact k).inf (invFact k).sup)
+    (fun k => Interval.mulHi (deriv k).inf (deriv k).sup (invFact k).inf (invFact k).sup) N ρ
 
 end CORALean.Float
 

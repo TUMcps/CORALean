@@ -44,6 +44,7 @@ PROJECTION = re.compile(
     r"(?:structure|inductive|class|abbrev)\b"        # the float layer's type names
     r"|MAIN TYPE"                                    # ... and the main type of a representation
     r"|^module\s*$"                                  # the non-module list's stale entries
+    r"|ℝ × ℝ|𝕋 × 𝕋|α × α"                           # the pair list's stale entries
     r"|^assert_not_|^-- Import guards"               # the import guards
 )
 

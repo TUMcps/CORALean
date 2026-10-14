@@ -20,7 +20,7 @@ Read from the source, not run.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +40,7 @@ theorem StarSet.coraRowBounds_unsound :
   let s : StarSet 2 :=
     { m := 1, c := fun _ => 0, G := fun i _ => if i = 0 then 1 else -1, cons := [],
       l := fun _ => -1, u := fun _ => 1 }
-  have hb : s.coraRowBounds 0 = (0, 2) := by
+  have hb : s.coraRowBounds 0 = ⟨0, 2⟩ := by
     simp only [StarSet.coraRowBounds, s]
     norm_num [abs_of_nonneg]
   have hs : s.reluNeuron 0 (s.coraRowBounds 0) = s := by

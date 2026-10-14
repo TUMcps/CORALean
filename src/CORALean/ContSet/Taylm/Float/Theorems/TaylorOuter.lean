@@ -19,7 +19,7 @@ by `D |f t - c|ᴺ⁺¹ / (N+1)!`, and each factor is below its rounded counterp
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,9 +38,11 @@ theorem Taylm.taylor_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enc
     (c : 𝕋) (lo hi : ℕ → 𝕋) (Dup : 𝕋) (D : ℝ)
     (hc : ∀ k ≤ T.maxOrder, toReal (lo k) ≤ iteratedDeriv k g (toReal c) / (k.factorial : ℝ) ∧
       iteratedDeriv k g (toReal c) / (k.factorial : ℝ) ≤ toReal (hi k))
-    (hg : ∀ ξ ∈ Set.Icc (min (toReal c) (toReal T.bounds.1)) (max (toReal c) (toReal T.bounds.2)),
+    (hg : ∀ ξ ∈ Set.Icc (min (toReal c) (toReal T.bounds.inf)) (max (toReal c) (toReal
+        T.bounds.sup)),
       ContDiffAt ℝ (T.maxOrder + 1) g ξ)
-    (hD : ∀ ξ ∈ Set.Icc (min (toReal c) (toReal T.bounds.1)) (max (toReal c) (toReal T.bounds.2)),
+    (hD : ∀ ξ ∈ Set.Icc (min (toReal c) (toReal T.bounds.inf)) (max (toReal c) (toReal
+        T.bounds.sup)),
       |iteratedDeriv (T.maxOrder + 1) g ξ| ≤ D)
     (hDup : D ≤ toReal Dup) :
     (T.taylor c lo hi Dup).Encloses fun t => g (f t) := by -- --- PROOF ---
@@ -50,14 +52,14 @@ theorem Taylm.taylor_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enc
   -- the segment from the centre to `f t` lies in the hull the hypotheses cover
   have hb := Taylm.bounds_mem h ht
   have hsub : Set.uIcc (toReal c) (f t) ⊆
-      Set.Icc (min (toReal c) (toReal T.bounds.1)) (max (toReal c) (toReal T.bounds.2)) :=
+      Set.Icc (min (toReal c) (toReal T.bounds.inf)) (max (toReal c) (toReal T.bounds.sup)) :=
     Set.uIcc_subset_Icc ⟨min_le_left _ _, le_max_left _ _⟩
       ⟨le_trans (min_le_right _ _) hb.1, le_trans hb.2 (le_max_right _ _)⟩
   have hL := taylor_remainder_abs_le (g := g) (N := N) (c := toReal c) (x := f t) (D := D)
     (fun ξ hξ => hg ξ (hsub hξ)) fun ξ hξ => hD ξ (hsub hξ)
   refine le_trans hL ?_
   -- `|f t - c|` below the rounded reach
-  set B : 𝕋 := maximum zero (maximum (subUp T.bounds.2 c) (subUp c T.bounds.1))
+  set B : 𝕋 := maximum zero (maximum (subUp T.bounds.sup c) (subUp c T.bounds.inf))
   have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   have hPow := le_powUp (abs_nonneg _) hB (N + 1)
   -- each factor of the bound below its rounded counterpart

@@ -21,7 +21,7 @@ normalized domain `[-1, 1]²`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -67,14 +67,14 @@ def XY : Taylm D 2 := X.times Y
 def S : Taylm D 2 := XY.plus X
 def E : Taylm D 2 := XY.exp 53
 
-#eval X.bounds.1 |> show'    -- the range of `x`
-#eval X.bounds.2 |> show'
-#eval XY.bounds.1 |> show'   -- the range of `x · y`
-#eval XY.bounds.2 |> show'
-#eval S.bounds.1 |> show'
-#eval S.bounds.2 |> show'
-#eval E.bounds.1 |> show'    -- the range of `exp (x · y)`
-#eval E.bounds.2 |> show'
+#eval X.bounds.inf |> show'    -- the range of `x`
+#eval X.bounds.sup |> show'
+#eval XY.bounds.inf |> show'   -- the range of `x · y`
+#eval XY.bounds.sup |> show'
+#eval S.bounds.inf |> show'
+#eval S.bounds.sup |> show'
+#eval E.bounds.inf |> show'    -- the range of `exp (x · y)`
+#eval E.bounds.sup |> show'
 
 
 /-! ## What the computed models guarantee -/
@@ -121,12 +121,12 @@ theorem E_encloses : E.Encloses fun t => Real.exp
 
 /-- Their ranges on the normalized domain, as the `bounds` the run printed. -/
 theorem S_range {t : Vec ℝ 2} (ht : t ∈ Real.Taylm.box 2) :
-    toReal S.bounds.1 ≤ ((toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j) *
+    toReal S.bounds.inf ≤ ((toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j) *
     (toReal (box.zonotope.c 1) + ∑ j, toReal (box.zonotope.G j 1) * t j) +
     (toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j)) ∧
     ((toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j) *
     (toReal (box.zonotope.c 1) + ∑ j, toReal (box.zonotope.G j 1) * t j) +
-    (toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j)) ≤ toReal S.bounds.2 :=
+    (toReal (box.zonotope.c 0) + ∑ j, toReal (box.zonotope.G j 0) * t j)) ≤ toReal S.bounds.sup :=
   Taylm.bounds_mem S_encloses ht
 
 end CORALean.Examples.TaylmFloat

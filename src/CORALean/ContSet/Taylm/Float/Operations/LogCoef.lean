@@ -4,6 +4,7 @@ public import CORALean.ContSet.Taylm.Float.Taylm
 public import CORALean.Global.Float.Log
 public import CORALean.Global.Float.PowUp
 public import CORALean.Global.Float.PowDown
+public import CORALean.ContSet.Interval.Float.Interval
 
 @[expose] public section
 
@@ -17,7 +18,7 @@ power of `1/c` each way, divided by `k` each way, the ends swapped where the sig
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -34,12 +35,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- An enclosure of the `k`-th coefficient of `log` at `c`: `log c` at `k = 0`, else
 `(-1)^(k+1) / (k cᵏ)`. `q` is the precision of `logUp`'s exponential and `s` its steps. -/
-def Taylm.logCoef (q s : ℕ) (c : 𝕋) : ℕ → 𝕋 × 𝕋
-  | 0 => (neg (logUp q s (divUp one c)), logUp q s c)
+def Taylm.logCoef (q s : ℕ) (c : 𝕋) : ℕ → Interval 𝕋
+  | 0 => ⟨neg (logUp q s (divUp one c)), logUp q s c⟩
   | k + 1 =>
     let lo := divDown (powDown (maximum zero (divDown one c)) (k + 1)) (nsmulUp (k + 1) one)
     let hi := divUp (powUp (divUp one c) (k + 1)) (maximum one (nsmulDown (k + 1) one))
-    if k % 2 = 0 then (lo, hi) else (neg hi, neg lo)
+    if k % 2 = 0 then ⟨lo, hi⟩ else ⟨neg hi, neg lo⟩
 
 end CORALean.Float
 

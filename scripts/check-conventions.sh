@@ -102,6 +102,12 @@ ALLOWLIST=scripts/noncomputable-allowlist.txt
 # that is a module now, or is gone, is reported as stale.
 NONMODULE_LIST=scripts/non-module-allowlist.txt
 
+# Pairs `ℝ × ℝ`, `𝕋 × 𝕋`, `α × α` (CONTRIBUTING, "Bounds of one quantity"): the lower
+# and the upper bound of one quantity are an `Interval`, so a file that still spells such a
+# pair names why in this list, `<path>  <reason>` per line. `Examples/` is exempt: it is
+# input and output, where a pair is a datum. The list only shrinks, as the one above.
+PAIR_LIST=scripts/pair-allowlist.txt
+
 # Rule A. A class root, a directory holding an `Operations/`, `Theorems/` or
 # `Definitions/` folder, holds its class file, `Instances.lean` and `API.lean`
 # and nothing else: every other file has a role folder beside them. Which of
@@ -184,6 +190,7 @@ if [ -n "$STAGED" ]; then
   fi
   ALLOWLIST=$repo/$ALLOWLIST
   NONMODULE_LIST=$repo/$NONMODULE_LIST
+  PAIR_LIST=$repo/$PAIR_LIST
   FAMILY_LONG_FORM_OK=$repo/${FAMILY_LONG_FORM_OK:-scripts/family-notation-exceptions.txt}
   stage=$(mktemp -d)
   printf '%s\n' "$files" | git checkout-index --prefix="$stage/" --stdin
@@ -223,6 +230,7 @@ out=$(awk \
   -v BENCH_DIR="$BENCH_DIR" \
   -v LAKE_ROOTS="$lake_roots" \
   -v NONMOD="$NONMODULE_LIST" \
+  -v PAIRLIST="$PAIR_LIST" \
   -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" \
   -v ALLOWLIST="$ALLOWLIST" '
 # One `Reviewed:` entry: `DD-Month-YYYY (Name)`, a human name.
@@ -280,6 +288,23 @@ BEGIN {
     nonmodLine[p] = nmFNR
   }
   close(NONMOD)
+
+  # The pair list: `<path>  <reason>` per line, as the non-module list above.
+  while ((getline pline < PAIRLIST) > 0) {
+    pairFNR++
+    line = pline
+    sub(/^[ \t]+/, "", line)
+    if (line == "" || line ~ /^#/) continue
+    p = line; sub(/[ \t].*$/, "", p)
+    r = line; sub(/^[^ \t]+[ \t]*/, "", r)
+    if (p in pairOK)
+      say(PAIRLIST ":" pairFNR ": duplicate entry `" p "` (first at line " pairLine[p] ")")
+    if (r == "")
+      say(PAIRLIST ":" pairFNR ": `" p "` carries no reason — say why its pair is not an interval")
+    pairOK[p] = 1
+    pairLine[p] = pairFNR
+  }
+  close(PAIRLIST)
 
   # An import line in any of the forms a module may write it; the prefixes are
   # what `public`/`meta` add, and a non-module may use neither.
@@ -892,6 +917,16 @@ FNR == 1 {
 
   if (code ~ /(^|[^A-Za-z0-9_'"'"'.])sorry([^A-Za-z0-9_'"'"']|$)/)
     say(FILENAME ":" FNR ": `sorry` — finish the proof or drop the declaration")
+  # A pair of one scalar twice: the bounds of one quantity belong in an `Interval`.
+  if (FILENAME !~ /^src\/CORALean\/Examples\// &&
+      (index(code, "ℝ × ℝ") || index(code, "𝕋 × 𝕋") || index(code, "α × α"))) {
+    pairSeen[FILENAME] = 1
+    if (!(FILENAME in pairOK) && !(FILENAME in pairWarned)) {
+      pairWarned[FILENAME] = 1
+      say(FILENAME ":" FNR ": a pair `ℝ × ℝ`/`𝕋 × 𝕋`/`α × α` — bounds of one quantity are an" \
+          " `Interval`; if this pair is two quantities, list the file in " PAIRLIST " with the reason")
+    }
+  }
   if (code ~ /^axiom[ \t]/ && FILENAME == NEAREST_AXIOM_FILE) {
     if (code !~ ("^axiom[ \t]+" NEAREST_AXIOM "([ \t:]|$)"))
       say(FILENAME ":" FNR ": `axiom` — this file assumes `" NEAREST_AXIOM "` and" \
@@ -1072,6 +1107,12 @@ END {
     if (!(name in usedAllow))
       say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
           "` — no longer matches any `noncomputable` declaration the rules do not already allow")
+  for (p in pairOK)
+    if (!(p in seenFile))
+      say(PAIRLIST ":" pairLine[p] ": stale entry `" p "` — no such file")
+    else if (!(p in pairSeen))
+      say(PAIRLIST ":" pairLine[p] ": stale entry `" p "` — the file spells no such pair now;" \
+          " the list only shrinks")
   for (p in nonmodOK) {
     if (p ~ /^src\/CORALean\/Examples\//)
       say(NONMOD ":" nonmodLine[p] ": `" p "` is under `Examples/`, which needs no entry")

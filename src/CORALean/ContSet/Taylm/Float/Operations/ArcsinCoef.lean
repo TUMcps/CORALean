@@ -21,7 +21,7 @@ products. `q` is the precision of the square root.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,15 +36,15 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.arcsinCoef (q : ℕ) (c : 𝕋) (j : ℕ) : 𝕋 × 𝕋 :=
+def Taylm.arcsinCoef (q : ℕ) (c : 𝕋) (j : ℕ) : Interval 𝕋 :=
   let P := Interval.evalList c c (recL [1, 0, -1] (fun j => 2 * (j : ℤ) + 1) j)
   let G := divFact (one, one) (j + 1)
-  let W : 𝕋 × 𝕋 :=
-    (Interval.mulLo (powDown (invSqrtOneSubLo q c) (2 * j + 1))
+  let W : Interval 𝕋 :=
+    ⟨Interval.mulLo (powDown (invSqrtOneSubLo q c) (2 * j + 1))
         (powUp (invSqrtOneSubHi q c) (2 * j + 1)) G.1 G.2,
       Interval.mulHi (powDown (invSqrtOneSubLo q c) (2 * j + 1))
-        (powUp (invSqrtOneSubHi q c) (2 * j + 1)) G.1 G.2)
-  (Interval.mulLo P.1 P.2 W.1 W.2, Interval.mulHi P.1 P.2 W.1 W.2)
+        (powUp (invSqrtOneSubHi q c) (2 * j + 1)) G.1 G.2⟩
+  ⟨Interval.mulLo P.inf P.sup W.inf W.sup, Interval.mulHi P.inf P.sup W.inf W.sup⟩
 
 end CORALean.Float
 

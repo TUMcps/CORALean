@@ -13,7 +13,7 @@ CORA's `Y{i,j}` on the stored floats: the `d`-th power of a sum of monomials, by
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,9 +28,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.subsPow (A : List ((𝕋 × 𝕋) × (Fin p → ℕ))) :
-    ℕ → List ((𝕋 × 𝕋) × (Fin p → ℕ))
-  | 0 => [((one, one), 0)]
+def PolyZonotope.subsPow (A : List ((Interval 𝕋) × (Fin p → ℕ))) :
+    ℕ → List ((Interval 𝕋) × (Fin p → ℕ))
+  | 0 => [(⟨one, one⟩, 0)]
   | d + 1 => PolyZonotope.subsMul A (PolyZonotope.subsPow A d)
 
 end CORALean.Float

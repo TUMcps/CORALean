@@ -22,7 +22,7 @@ is the same number with its sign.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,7 +38,7 @@ variable {n : ℕ}
 noncomputable def Taylm.invSqrt (T : Taylm n) : Taylm n :=
   T.taylor (fun x => x ^ (-(1 / 2) : ℝ)) T.constCoef
     (|(descPochhammer ℝ (T.maxOrder + 1)).eval (-(1 / 2))|
-      * min T.constCoef T.bounds.1 ^ (-(1 / 2) - (T.maxOrder + 1 : ℕ) : ℝ))
+      * min T.constCoef T.bounds.inf ^ (-(1 / 2) - (T.maxOrder + 1 : ℕ) : ℝ))
 
 end CORALean.Real
 

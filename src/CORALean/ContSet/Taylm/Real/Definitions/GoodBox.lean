@@ -1,6 +1,7 @@
 module
 
 public import Mathlib.Data.Real.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -18,7 +19,7 @@ over the normalized box; halving keeps them so.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -31,8 +32,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Taylm.GoodBox (B : Fin n → ℝ × ℝ) : Prop :=
-  ∀ k, -1 ≤ (B k).1 ∧ (B k).1 ≤ 1 ∧ -1 ≤ (B k).2 ∧ (B k).2 ≤ 1
+def Taylm.GoodBox (B : Fin n → Interval ℝ) : Prop :=
+  ∀ k, -1 ≤ (B k).inf ∧ (B k).inf ≤ 1 ∧ -1 ≤ (B k).sup ∧ (B k).sup ≤ 1
 
 end CORALean.Real
 

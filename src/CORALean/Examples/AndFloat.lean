@@ -33,7 +33,7 @@ CORA's `and_` (set intersection) at five representations, each with its own guar
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -132,7 +132,7 @@ def stackOps : Real.LevelSet 2 :=
   Real.LevelSet.and_ ⟨1, fun _ => 0, ![.le]⟩ ⟨1, fun _ => 0, ![.lt]⟩
 
 /-- Row values at `(1/2, 1/4)`: `-11/16` and `-1/2`, exactly. -/
-def Bp : Fin 2 → D × D := ![(d (-11) (-4), d (-11) (-4)), (d (-1) (-1), d (-1) (-1))]
+def Bp : Fin 2 → Interval D := ![⟨d (-11) (-4), d (-11) (-4)⟩, ⟨d (-1) (-1), d (-1) (-1)⟩]
 
 #eval LevelSet.containsPoint (𝕋 := D) stackOps Bp   -- true
 

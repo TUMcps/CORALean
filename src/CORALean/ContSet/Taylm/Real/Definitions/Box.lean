@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.Tensor
 public import Mathlib.Data.Real.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -21,7 +22,7 @@ branch and bound keeps.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,10 +36,11 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `t` lies in the box `B`, coordinate by coordinate. -/
-def Taylm.InBox (B : Fin n → ℝ × ℝ) (t : Vec ℝ n) : Prop := ∀ k, (B k).1 ≤ t k ∧ t k ≤ (B k).2
+def Taylm.InBox (B : Fin n → Interval ℝ) (t : Vec ℝ n) : Prop := ∀ k, (B k).inf ≤ t k ∧
+    t k ≤ (B k).sup
 
 /-- Every point of `X` lies in one of the boxes `l`. -/
-def Taylm.Covers (X : Fin n → ℝ × ℝ) (l : List (Fin n → ℝ × ℝ)) : Prop :=
+def Taylm.Covers (X : Fin n → Interval ℝ) (l : List (Fin n → Interval ℝ)) : Prop :=
   ∀ t, Taylm.InBox X t → ∃ B ∈ l, Taylm.InBox B t
 
 end CORALean.Real

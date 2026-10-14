@@ -16,7 +16,7 @@ exactness is claimed.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -30,9 +30,9 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.isIntersecting_uniform_outer (L : LevelSet n) (op : CompOp)
-    (hop : ∀ i, L.op i = op) (I : Interval (Vec ℝ n)) (B : Fin L.m → ℝ × ℝ) {tol : ℝ}
+    (hop : ∀ i, L.op i = op) (I : Interval (Vec ℝ n)) (B : Fin L.m → Interval ℝ) {tol : ℝ}
     (htol : 0 ≤ tol)
-    (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.construct (B i).1 (B i).2)
+    (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.construct (B i).inf (B i).sup)
     (h : ¬ LevelSet.isIntersecting_uniform tol op B) :
     L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
   classical
@@ -55,10 +55,10 @@ theorem LevelSet.isIntersecting_uniform_outer (L : LevelSet n) (op : CompOp)
   · exact lt_of_le_of_lt h2.1 h1
   · -- eq: `f x i = 0` forces `lb ≤ 0 ≤ ub`
     refine ⟨?_, ?_⟩
-    · rcases lt_or_eq_of_le (h1 ▸ h2.2 : 0 ≤ (B i).2) with h | h
+    · rcases lt_or_eq_of_le (h1 ▸ h2.2 : 0 ≤ (B i).sup) with h | h
       · exact Or.inl h
       · right; rw [← h, abs_zero]; exact htol
-    · rcases lt_or_eq_of_le (h1 ▸ h2.1 : (B i).1 ≤ 0) with h | h
+    · rcases lt_or_eq_of_le (h1 ▸ h2.1 : (B i).inf ≤ 0) with h | h
       · exact Or.inl h
       · right; rw [h, abs_zero]; exact htol
 

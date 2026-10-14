@@ -22,7 +22,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.ldbStep_lower {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Encloses g) {s : Vec ℝ n}
-    (hs : s ∈ Taylm.box n) : T.ldbStep.1 ≤ g s := by -- --- PROOF ---
+    (hs : s ∈ Taylm.box n) : T.ldbStep.1.inf ≤ g s := by -- --- PROOF ---
   have hr := h s hs
   have hdec := Taylm.polyOf_eq_lin_add_higher T.terms s
   have hb := Taylm.polyBounds_mem (Taylm.higherTerms T.terms) hs

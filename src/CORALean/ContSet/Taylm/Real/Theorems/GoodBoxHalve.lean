@@ -14,7 +14,7 @@ The midpoint lies between the two ends.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -27,7 +27,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.goodBox_halve {B : Fin n → ℝ × ℝ} (hB : Taylm.GoodBox B) (β : Fin n) :
+theorem Taylm.goodBox_halve {B : Fin n → Interval ℝ} (hB : Taylm.GoodBox B) (β : Fin n) :
     Taylm.GoodBox (Taylm.halveBox B β).1 ∧
       Taylm.GoodBox (Taylm.halveBox B β).2 := by -- --- PROOF ---
   have hm := hB β

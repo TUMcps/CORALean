@@ -14,7 +14,7 @@ Halving one box of a covering list leaves the list covering.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.splitAt_covers {X : Fin n → 𝕋 × 𝕋} {l : List (Fin n → 𝕋 × 𝕋)} (i : ℕ)
+theorem Taylm.splitAt_covers {X : Fin n → Interval 𝕋} {l : List (Fin n → Interval 𝕋)} (i : ℕ)
     (h : Taylm.Covers X l) : Taylm.Covers X (Taylm.splitAt i l) := by -- --- PROOF ---
   intro t ht
   obtain ⟨B', hB', htB'⟩ := h t ht

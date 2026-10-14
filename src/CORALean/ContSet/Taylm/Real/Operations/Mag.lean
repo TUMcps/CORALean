@@ -14,7 +14,7 @@ the range lies within it. The derivative bounds of `sinh`, `cosh`, `tanh`, `tan`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -28,7 +28,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.mag (T : Taylm n) : ℝ :=
-  max |T.constCoef| (max |T.bounds.1| |T.bounds.2|)
+  max |T.constCoef| (max |T.bounds.inf| |T.bounds.sup|)
 
 end CORALean.Real
 

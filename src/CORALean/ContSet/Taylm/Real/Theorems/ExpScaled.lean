@@ -22,7 +22,7 @@ top of the range is within `2C·h ≤ 2C` of the centre, so `D ≤ exp (3C)`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,7 +50,7 @@ theorem Taylm.exp_scaled {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1) (
     exact Real.exp_le_exp.2 (le_trans (le_abs_self _) hC)
   -- the derivative bound: the top of the range is within `2C·h` of the centre
   · have hr := Taylm.reach_le h0 h1 hT
-    have htop : T.bounds.2 - T.constCoef ≤ 2 * C * h :=
+    have htop : T.bounds.sup - T.constCoef ≤ 2 * C * h :=
       le_trans (le_trans (le_abs_self _) (le_max_right _ _)) hr
     rw [abs_of_pos (Real.exp_pos _)]
     refine Real.exp_le_exp.2 (max_le (by linarith [le_abs_self T.constCoef]) ?_)
