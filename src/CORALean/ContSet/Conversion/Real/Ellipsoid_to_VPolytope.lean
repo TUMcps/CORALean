@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_VPolytope
 
 @[expose] public section
 
@@ -27,9 +28,6 @@ being exact.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Ellipsoid.vPolytope (E : Ellipsoid n) : VPolytope (Vec ℝ n) :=
-  E.zonotope.vPolytope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.HeldSim
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.ContDynamics.LinearSys.Theorems.HeldInputMeasurable
 
 @[expose] public section

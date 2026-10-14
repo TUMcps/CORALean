@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalInputRemainder
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.RemainderEntryLe
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
 public import CORALean.ContSet.Interval.Real.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat

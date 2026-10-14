@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Float.Operations.SpectraShadow_to_ZonoBundle
 
 @[expose] public section
 
@@ -24,10 +25,6 @@ the float `Zonotope.zonoBundle`. `none` when a certificate fails. An enclosure, 
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
-
-def SpectraShadow.zonoBundle (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k) :
-    Option (ZonoBundle (Vec 𝕋 n)) :=
-  (S.zonotope Yup Ylo).map Zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

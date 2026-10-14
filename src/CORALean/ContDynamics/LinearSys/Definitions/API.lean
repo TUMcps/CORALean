@@ -2,7 +2,9 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.AutoInvariantFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBound
 public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
 public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
 public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalForm
@@ -19,6 +21,9 @@ public import CORALean.ContDynamics.LinearSys.Definitions.AutoState
 public import CORALean.ContDynamics.LinearSys.Definitions.ManualState
 public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachState
 public import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
+public import CORALean.ContDynamics.LinearSys.Definitions.TimePointBound
+public import CORALean.ContDynamics.LinearSys.Definitions.TimePointBoundOfInputReach
+public import CORALean.ContDynamics.LinearSys.Definitions.TimePointWitness
 public import CORALean.ContDynamics.LinearSys.Definitions.TunedState
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySpec

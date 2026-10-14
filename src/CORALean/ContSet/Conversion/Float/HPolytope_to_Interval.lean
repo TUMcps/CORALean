@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Float.Operations.DualBound
 public import CORALean.ContSet.Interval.Float.Operations.OfBounds
 public import CORALean.ContSet.Interval.Float.Operations.SubsetOfBounds
+public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_Interval
 
 @[expose] public section
 
@@ -26,10 +27,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P : HPolytope 𝕋 (Vec 𝕋 n)}
-
-def HPolytope.interval (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Interval (Vec 𝕋 n) :=
-  Interval.ofBounds up lo
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

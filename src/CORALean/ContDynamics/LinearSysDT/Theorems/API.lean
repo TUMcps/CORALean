@@ -28,13 +28,11 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersConstEqReach
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOrdersOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuterOn
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetConvex
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetIsCompact
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetWitness
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.API
 public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach

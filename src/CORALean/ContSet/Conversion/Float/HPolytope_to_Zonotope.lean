@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_Zonotope
 
 @[expose] public section
 
@@ -25,10 +26,6 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P : HPolytope 𝕋 (Vec 𝕋 n)}
 
-def HPolytope.zonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Zonotope (Vec 𝕋 n) :=
-  (HPolytope.interval up lo).zonotope
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
@@ -36,7 +33,6 @@ theorem HPolytope.zonotope_contains (up : ∀ j, FloatBound 𝕋 P.construct (Li
     (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.zonotope up lo).construct :=
   subset_trans (HPolytope.interval_contains up lo) (Interval.zonotope_contains _)
-
 
 end CORALean.Float
 

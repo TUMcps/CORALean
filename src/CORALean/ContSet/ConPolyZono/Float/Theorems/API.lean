@@ -19,7 +19,6 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.ExactPlusOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetPointOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionDepOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IsFullDimSound

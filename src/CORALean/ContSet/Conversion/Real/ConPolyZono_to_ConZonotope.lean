@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_ConZonotope
 
 @[expose] public section
 
@@ -31,9 +32,6 @@ piece of mathematics and no tighter enclosure is attempted here.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ConPolyZono.conZonotope (cPZ : ConPolyZono α) : ConZonotope α :=
-  cPZ.polyZonotope.conZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

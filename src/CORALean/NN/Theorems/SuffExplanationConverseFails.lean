@@ -9,8 +9,8 @@ public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Layers.Theorems.LinearSound
 public import CORALean.NN.Layers.Theorems.LinearWithErrorSound
 public import CORALean.NN.Theorems.EncloseOuter
-public import CORALean.NN.Theorems.SuffExplanation
-public import CORALean.NN.Theorems.SuffExplanationAbstract
+public import CORALean.NN.Definitions.SuffExplanation
+public import CORALean.NN.Definitions.SuffExplanationAbstract
 
 @[expose] public section
 

@@ -4,6 +4,7 @@ public import CORALean.Global.BlockDiag
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.Conversion.Real.HPolytope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_SpectraShadow
 
 @[expose] public section
 
@@ -30,15 +31,6 @@ namespace CORALean.Real
 open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ConZonotope.spectraShadow (cZ : ConZonotope α) : SpectraShadow α where
-  k := (cZ.h + cZ.h) + (cZ.P.m + cZ.P.me + cZ.P.me)
-  m := cZ.h
-  A₀ := blockDiag 0 (Zonotope.spectraShadow ⟨cZ.h, cZ.c, cZ.G⟩).A₀ cZ.P.spectraShadow.A₀
-  A := fun j => blockDiag 0 ((Zonotope.spectraShadow ⟨cZ.h, cZ.c, cZ.G⟩).A j)
-    (cZ.P.spectraShadow.A j)
-  c := cZ.c
-  G := cZ.G
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

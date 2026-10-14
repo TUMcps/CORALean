@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 
 @[expose] public section
 

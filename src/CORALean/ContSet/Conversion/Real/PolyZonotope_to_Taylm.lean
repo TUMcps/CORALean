@@ -8,6 +8,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfAppend
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 public import Mathlib.Algebra.BigOperators.Pi
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Taylm
 
 @[expose] public section
 
@@ -30,10 +31,6 @@ no remainder. Exact: the box of variables is the box of factors.
 namespace CORALean.Real
 
 variable {m : ℕ}
-
-def PolyZonotope.taylm (pZ : PolyZonotope (Vec ℝ m)) (N : ℕ) : Fin m → Taylm (pZ.p + pZ.q) :=
-  fun i => ⟨(pZ.c i, 0) :: (List.ofFn (fun j => (pZ.G j i, Fin.append (fun k => pZ.E k j) 0))
-    ++ List.ofFn (fun l => (pZ.GI l i, Pi.single (Fin.natAdd pZ.p l) 1))), 0, 0, N⟩
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

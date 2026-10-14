@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_Capsule
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Capsule
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ capsule is generally a different, often tighter, set), and nothing here claims e
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Zonotope.capsule (Z : Zonotope (Vec ℝ n)) : Capsule n :=
-  Z.interval.capsule
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

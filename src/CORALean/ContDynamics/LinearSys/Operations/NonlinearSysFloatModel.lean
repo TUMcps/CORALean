@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearEmbedding
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinearEmbedding
 public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point

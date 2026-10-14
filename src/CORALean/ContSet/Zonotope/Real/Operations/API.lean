@@ -47,6 +47,8 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 public import CORALean.ContSet.Zonotope.Real.Operations.PCABasis
 public import CORALean.ContSet.Zonotope.Real.Operations.PCACovariance
+public import CORALean.ContSet.Zonotope.Real.Operations.PairCoeffDiff
+public import CORALean.ContSet.Zonotope.Real.Operations.PairCoeffSum
 public import CORALean.ContSet.Zonotope.Real.Operations.PairDiff
 public import CORALean.ContSet.Zonotope.Real.Operations.PairSum
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus

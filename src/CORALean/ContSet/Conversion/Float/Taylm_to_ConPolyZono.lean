@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Float.Taylm_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Taylm_to_ConPolyZono
 
 @[expose] public section
 
@@ -26,10 +27,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
-
-
-def Taylm.conPolyZono (T : Fin m → Taylm 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 m) :=
-  (Taylm.polyZonotope T).conPolyZono
 
 variable [SoundFloatArithmetic 𝕋]
 

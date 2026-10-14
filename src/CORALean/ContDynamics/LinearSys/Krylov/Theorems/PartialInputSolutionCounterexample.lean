@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 public import Mathlib.Analysis.SpecialFunctions.Exponential
 public import Mathlib.Analysis.SpecialFunctions.Exp

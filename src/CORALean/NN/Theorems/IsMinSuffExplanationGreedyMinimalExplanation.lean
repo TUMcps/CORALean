@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Operations.GreedyMinimalExplanation
-public import CORALean.NN.Theorems.MinSuffExplanation
+public import CORALean.NN.Definitions.MinSuffExplanation
 public import CORALean.NN.Theorems.SuffExplanationMono
 
 @[expose] public section

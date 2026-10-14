@@ -6,6 +6,7 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.Global.Corners
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 
@@ -44,15 +45,6 @@ sums back to its own coefficient while the rest sum away.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-/-- The vertex a choice of sign per generator picks out. -/
-def Zonotope.corner (Z : Zonotope α) (σ : Fin Z.h → Bool) : α :=
-  Z.c + ∑ j, (if σ j then (1:ℝ) else -1) • Z.G j
-
-noncomputable def Zonotope.vPolytope (Z : Zonotope α) : VPolytope α where
-  k := 2 ^ Z.h
-  V := fun l => Z.corner (signEquiv Z.h l)
-
 
 theorem Zonotope.vPolytope_contains (Z : Zonotope α) :
     Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---

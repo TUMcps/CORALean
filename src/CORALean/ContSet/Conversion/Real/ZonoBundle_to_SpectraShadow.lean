@@ -4,6 +4,7 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.InfExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_SpectraShadow
 
 @[expose] public section
 
@@ -28,11 +29,6 @@ caches on the result (`bounded`, `emptySet`, `fullDim`, `center`) are not part o
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-def ZonoBundle.spectraShadow (zB : ZonoBundle (Vec ℝ n)) : SpectraShadow (Vec ℝ n) :=
-  match List.ofFn fun i => (zB.Z i).spectraShadow with
-  | [] => SpectraShadow.Inf n                    -- no member: the whole space
-  | S :: Ss => Ss.foldl SpectraShadow.inter S    -- `and_` of the members, in order
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

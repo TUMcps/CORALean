@@ -15,8 +15,6 @@ public import CORALean.ContDynamics.NonlinParamSys.Theorems.LinReachCoraRemainde
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatOuter
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatCheckedEqSome
-public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinParam
-public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinearSys
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryOfNonlinearSys
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryToNonlinParam
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.TrajectoryToNonlinearSys

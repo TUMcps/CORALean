@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Real.Capsule
 public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_Interval
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ ranging over `[-1, 1]` bounds `t * g i` by `|g i|`.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-def Capsule.interval (C : Capsule n) : Interval (Vec ℝ n) :=
-  ⟨fun i => C.c i - (|C.g i| + C.r), fun i => C.c i + (|C.g i| + C.r)⟩
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

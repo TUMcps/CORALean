@@ -47,6 +47,8 @@ def Interval.nominal {α β : Type} [RealImage α β] (I : Interval α) :
     CORALean.Real.Interval β :=
   ⟨RealImage.realImage I.inf, RealImage.realImage I.sup⟩
 
+/-- The set an interval of stored floats stands for: its nominal's. Without an error box there is
+nothing to inflate, so this is the class's `construct`, spelt for `I.construct` to resolve. -/
 def Interval.construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
     [Entrywise β ι] (I : Interval α) : Set β :=
   I.nominal.construct

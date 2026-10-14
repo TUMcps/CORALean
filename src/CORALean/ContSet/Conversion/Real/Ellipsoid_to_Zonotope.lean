@@ -4,6 +4,7 @@ public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Interval
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Zonotope
 
 @[expose] public section
 
@@ -44,21 +45,11 @@ open Matrix
 
 variable {n : ℕ}
 
-noncomputable def Ellipsoid.zonotope (E : Ellipsoid n) : Zonotope (Vec ℝ n) :=
-  E.interval.zonotope
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.zonotope_contains (E : Ellipsoid n) : E.construct ⊆ E.zonotope.construct :=
   subset_trans E.interval_contains (Interval.zonotope_contains _)
-
-/-- [1, Thm. 2]: `Z(r^{-1/2} T⁻¹ S, ē)`, `T⁻¹` the ellipsoid's generator. -/
-noncomputable def Ellipsoid.zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
-    (r : ℝ) : Zonotope (Vec ℝ n) where
-  h := m
-  c := E.c
-  G := fun j => (√r)⁻¹ • (E.G *ᵥ S j)
 
 /-- [1, Thm. 2]: `r ≥ ⌈Z(S, 0)⌉²` puts the scaled zonotope in the ellipsoid. -/
 theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
@@ -76,13 +67,6 @@ theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fi
   · show E.c + ∑ j, β j • ((√r)⁻¹ • (E.G *ᵥ S j)) = E.c + E.G *ᵥ ((√r)⁻¹ • ∑ j, β j • S j)
     rw [Matrix.mulVec_smul, Matrix.mulVec_sum, Finset.smul_sum]
     simp only [Matrix.mulVec_smul, smul_comm (√r)⁻¹]
-
-/-- [1, Thm. 4]: `Z(l^{-1/2} T⁻¹ S, ē)`, `T⁻¹` the ellipsoid's generator. -/
-noncomputable def Ellipsoid.zonotopeNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
-    (l : ℝ) : Zonotope (Vec ℝ n) where
-  h := m
-  c := E.c
-  G := fun j => (√l)⁻¹ • (E.G *ᵥ S j)
 
 /-- [1, Thm. 4]: a ball of radius `√l` inside `Z(S, 0)` — `l ≤ ⌊Z(S, 0)⌋²` — makes the scaled
 zonotope enclose the ellipsoid. -/

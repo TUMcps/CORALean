@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 
@@ -43,10 +44,6 @@ namespace CORALean.Real
 open Entrywise
 
 variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
-
-def Zonotope.interval (Z : Zonotope α) : Interval α where
-  inf := ofEntry fun i => entry Z.c i - ∑ j, |entry (Z.G j) i|
-  sup := ofEntry fun i => entry Z.c i + ∑ j, |entry (Z.G j) i|
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

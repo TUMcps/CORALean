@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 public import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import Mathlib.Analysis.Matrix.Normed
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 

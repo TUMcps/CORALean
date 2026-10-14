@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Theorems.ToLinParam
+public import CORALean.ContDynamics.LinParamSys.Operations.ToLinParam
 
 @[expose] public section
 

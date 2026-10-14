@@ -3,7 +3,6 @@ module
 public import CORALean.NN.Graph.Theorems.AdjAtSupportSubset
 public import CORALean.NN.Graph.Theorems.AdjAtSymm
 public import CORALean.NN.Graph.Theorems.BallEnumBallEnumIdx
-public import CORALean.NN.Graph.Theorems.BallEnumIdx
 public import CORALean.NN.Graph.Theorems.BallEnumInjective
 public import CORALean.NN.Graph.Theorems.BallEqOfSuccEq
 public import CORALean.NN.Graph.Theorems.BallMono

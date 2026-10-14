@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 
@@ -24,12 +25,6 @@ so the empty constraint list denotes the whole coefficient space.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def Zonotope.conZonotope (Z : Zonotope α) : ConZonotope α where
-  h := Z.h
-  c := Z.c
-  G := Z.G
-  P := HPolytope.fullspace _
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

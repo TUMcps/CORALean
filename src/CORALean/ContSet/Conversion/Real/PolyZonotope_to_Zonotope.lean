@@ -7,6 +7,7 @@ public import Mathlib.Algebra.Module.NatInt
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import Mathlib.Data.Nat.SuccPred
 public import Mathlib.Logic.Function.CompTypeclasses
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 
 @[expose] public section
 
@@ -55,11 +56,6 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
-def PolyZonotope.zonotope (pZ : PolyZonotope α) : Zonotope α where
-  h := pZ.h + pZ.q
-  c := pZ.c
-  G := Fin.append pZ.G pZ.GI
-
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
@@ -85,11 +81,6 @@ theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope α) :
     simp only [PolyZonotope.zonotope, Fin.append_left, Fin.append_right]
     abel
 
-/-- How much of a dependent generator is left free: none of a constant column,
-half of an all-even one, all of the rest. -/
-noncomputable def PolyZonotope.aux_evenWeight {p h : ℕ} (E : Fin p → Fin h → ℕ) (i : Fin h) : ℝ :=
-  if ∀ k, E k i = 0 then 0 else if ∀ k, E k i % 2 = 0 then 1 / 2 else 1
-
 /-- The coefficient that free generator is given, so that what the centre already
 holds plus this much of the generator is the monomial. -/
 noncomputable def PolyZonotope.aux_evenCoeff {p h : ℕ} (E : Fin p → Fin h → ℕ)
@@ -114,10 +105,10 @@ theorem PolyZonotope.aux_monomial_nonneg {p h : ℕ} {E : Fin p → Fin h → �
 in each of the three cases. -/
 theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
     (i : Fin h) :
-    (1 - PolyZonotope.aux_evenWeight E i)
-        + PolyZonotope.aux_evenCoeff E a i * PolyZonotope.aux_evenWeight E i
+    (1 - PolyZonotope.evenWeight E i)
+        + PolyZonotope.aux_evenCoeff E a i * PolyZonotope.evenWeight E i
       = PolyZonotope.monomial E a i := by -- --- PROOF ---
-  rw [PolyZonotope.aux_evenWeight, PolyZonotope.aux_evenCoeff]
+  rw [PolyZonotope.evenWeight, PolyZonotope.aux_evenCoeff]
   split_ifs with hz he
   · -- a constant column: the centre takes all of it
     rw [PolyZonotope.aux_monomial_eq_one hz a]
@@ -143,13 +134,6 @@ theorem PolyZonotope.aux_abs_evenCoeff_le_one {p h : ℕ} (E : Fin p → Fin h �
     exact abs_le.mpr ⟨by linarith, by linarith⟩
   · exact PolyZonotope.abs_monomial_le_one E ha i
 
-/-- The paper's `N`, `H` and `K` read off column by column rather than as three
-index sets: a zero weight is a generator the paper drops. -/
-noncomputable def PolyZonotope.zonotopeEven (pZ : PolyZonotope α) : Zonotope α where
-  h := pZ.h + pZ.q
-  c := pZ.c + ∑ i, (1 - PolyZonotope.aux_evenWeight pZ.E i) • pZ.G i
-  G := Fin.append (fun i => PolyZonotope.aux_evenWeight pZ.E i • pZ.G i) pZ.GI
-
 /-- `Fin.sum_univ_add` at the generator count the tighter conversion produces,
 the binder ascribed so that it matches the goal. -/
 theorem PolyZonotope.aux_sum_univ_zonotopeEven {pZ : PolyZonotope α}
@@ -172,9 +156,9 @@ theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope α) :
       simpa using hb j
   · -- the centre's share and the free generator's share add back to the monomial
     have hsum : ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i
-        = ∑ i, (1 - PolyZonotope.aux_evenWeight pZ.E i) • pZ.G i
+        = ∑ i, (1 - PolyZonotope.evenWeight pZ.E i) • pZ.G i
           + ∑ i, PolyZonotope.aux_evenCoeff pZ.E a i
-              • (PolyZonotope.aux_evenWeight pZ.E i • pZ.G i) := by
+              • (PolyZonotope.evenWeight pZ.E i • pZ.G i) := by
       rw [← Finset.sum_add_distrib]
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [smul_smul, ← add_smul, PolyZonotope.aux_evenWeight_smul]

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_VPolytope
 
 @[expose] public section
 
@@ -33,9 +34,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def ConZonotope.vPolytopeBox (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : VPolytope (Vec 𝕋 n) :=
-  Interval.vPolytope cZ.interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -49,8 +49,12 @@ def Taylm.nominal (T : Taylm 𝕋 n) : Real.Taylm n :=
   ⟨T.terms.map fun a => (SoundFloatArithmetic.toReal a.1, a.2),
     SoundFloatArithmetic.toReal T.remInf, SoundFloatArithmetic.toReal T.remSup, T.maxOrder⟩
 
+/-- What a stored model claims: its nominal encloses `f`. The meaning of the float type, as
+`construct` is of a set, and the hypothesis of every float Taylor-model theorem. -/
 def Taylm.Encloses (T : Taylm 𝕋 n) (f : Vec ℝ n → ℝ) : Prop := T.nominal.Encloses f
 
+/-- The set a vector of stored models encloses: its nominals'. There is no error box to inflate,
+so this is the class's `construct`, spelt for `T.construct` to resolve. -/
 def Taylm.construct {m : ℕ} (T : Fin m → Taylm 𝕋 n) : Set (Vec ℝ m) :=
   Real.Taylm.construct fun i => (T i).nominal
 

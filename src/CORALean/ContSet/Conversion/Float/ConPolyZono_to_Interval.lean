@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_Interval
 
 @[expose] public section
 
@@ -24,9 +25,6 @@ namespace CORALean.Float
 open InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def ConPolyZono.interval (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
-  cPZ.polyZonotope.interval
 
 variable [SoundFloatArithmetic 𝕋]
 

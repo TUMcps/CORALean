@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_ZonoBundle
 
 @[expose] public section
 
@@ -23,8 +24,6 @@ sets, so a one-member family denotes that member and nothing else
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Zonotope.zonoBundle (Z : Zonotope (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) := ⟨1, fun _ => Z⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ZonoBundle
 
 @[expose] public section
 
@@ -24,9 +25,6 @@ route's, so this is no worse than `Ellipsoid → Zonotope` already is.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Ellipsoid.zonoBundle (E : Ellipsoid n) : ZonoBundle (Vec ℝ n) :=
-  E.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

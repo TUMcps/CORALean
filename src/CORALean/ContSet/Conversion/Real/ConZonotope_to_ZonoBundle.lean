@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ZonoBundle
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ All the loss is the first leg's, so this is no worse than
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ConZonotope.zonoBundle (cZ : ConZonotope α) : ZonoBundle α :=
-  cZ.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

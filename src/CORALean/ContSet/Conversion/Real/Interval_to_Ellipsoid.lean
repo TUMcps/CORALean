@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Ellipsoid
 
 @[expose] public section
 
@@ -29,9 +30,6 @@ ellipsoid built from it denotes the box with the two swapped.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Interval.ellipsoid (I : Interval (Vec ℝ n)) : Ellipsoid n :=
-  I.zonotope.ellipsoid
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

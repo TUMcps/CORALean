@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.Zonotope.Real.Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 
 @[expose] public section
 
@@ -45,15 +46,6 @@ lemmas match. Composed with `PolyZonotope.quadMap_exact`, this is half of
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def Zonotope.polyZonotope (Z : Zonotope α) : PolyZonotope α where
-  p := Z.h
-  h := Z.h
-  q := 0
-  c := Z.c
-  G := Z.G
-  E := PolyZonotope.identE Z.h
-  GI := Fin.elim0
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

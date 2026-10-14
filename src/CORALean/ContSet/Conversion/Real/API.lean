@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Conversion.Real.Operations.API
 public import CORALean.ContSet.Conversion.Real.Capsule_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Capsule_to_Ellipsoid
 public import CORALean.ContSet.Conversion.Real.Capsule_to_HPolytope

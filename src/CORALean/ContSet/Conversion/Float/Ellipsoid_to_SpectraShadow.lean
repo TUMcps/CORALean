@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_SpectraShadow
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.Ellipsoid_to_SpectraShadow
 
 @[expose] public section
 
@@ -30,15 +31,6 @@ namespace CORALean.Float
 open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def Ellipsoid.spectraShadow (E : Ellipsoid 𝕋 n) : SpectraShadow 𝕋 (Vec 𝕋 n) where
-  k := E.k + 1
-  m := E.k
-  A₀ := fun p q => if p = q then one else zero
-  A := fun i p q => if (p = 0 ∧ q = i.succ) ∨ (p = i.succ ∧ q = 0) then one else zero
-  c := E.c
-  G := fun j i => E.G i j
-  I_error := E.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

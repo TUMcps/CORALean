@@ -4,7 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPoly
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyFactorCount
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyReal
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyStepPoint
 
 @[expose] public section

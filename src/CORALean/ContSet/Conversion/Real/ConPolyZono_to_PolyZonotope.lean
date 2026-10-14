@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 
 @[expose] public section
 
@@ -36,15 +37,6 @@ for a factor. Those are separate operations, not this one.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ConPolyZono.polyZonotope (cPZ : ConPolyZono α) : PolyZonotope α where
-  p := cPZ.p
-  h := cPZ.h
-  q := cPZ.qI
-  c := cPZ.c
-  G := cPZ.G
-  E := cPZ.E
-  GI := cPZ.GI
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

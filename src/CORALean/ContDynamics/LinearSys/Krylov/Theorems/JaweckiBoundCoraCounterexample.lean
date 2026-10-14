@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentPowMulVec
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSmulTsum
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpSmul
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.Global.EuclideanNorm
 
 @[expose] public section

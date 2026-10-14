@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.Interval.Real.Operations.Point
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
 
 @[expose] public section
 
@@ -34,20 +35,6 @@ reason.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def PolyZonotope.conPolyZono (pZ : PolyZonotope α) : ConPolyZono α where
-  p := pZ.p
-  h := pZ.h
-  qI := pZ.q
-  m := 0
-  q := 0
-  c := pZ.c
-  G := pZ.G
-  E := pZ.E
-  GI := pZ.GI
-  A := 0
-  b := Interval.point 0
-  R := fun _ => Fin.elim0
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

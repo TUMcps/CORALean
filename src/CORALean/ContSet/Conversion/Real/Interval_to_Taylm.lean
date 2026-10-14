@@ -6,6 +6,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Taylm
 
 @[expose] public section
 
@@ -39,9 +40,6 @@ interval (`taylm_exact`).
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Interval.taylm (I : Interval (Vec ℝ n)) (N : ℕ) : Fin n → Taylm n :=
-  fun i => ⟨[((I.inf i + I.sup i) / 2, 0), ((I.sup i - I.inf i) / 2, Pi.single i 1)], 0, 0, N⟩
 
 theorem Interval.taylm_outer (I : Interval (Vec ℝ n)) (N : ℕ) (i : Fin n) :
     (I.taylm N i).Encloses fun t =>

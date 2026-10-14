@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_Ellipsoid
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ loss compounds with the zonotope step's.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def ZonoBundle.ellipsoid (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) : Ellipsoid n :=
-  (zB.zonotope i).ellipsoid
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

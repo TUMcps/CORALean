@@ -3,7 +3,7 @@ module
 public import CORALean.HybridDynamics.Definitions.SdcInput
 public import CORALean.HybridDynamics.Operations.SdcFlow
 public import CORALean.ContDynamics.LinearSys.Theorems.WeightedIntegral
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
 

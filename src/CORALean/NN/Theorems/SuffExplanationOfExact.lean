@@ -1,7 +1,7 @@
 module
 
-public import CORALean.NN.Theorems.SuffExplanationExact
-public import CORALean.NN.Theorems.SuffExplanation
+public import CORALean.NN.Definitions.SuffExplanationExact
+public import CORALean.NN.Definitions.SuffExplanation
 
 @[expose] public section
 

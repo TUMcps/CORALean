@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Ellipsoid
 
 @[expose] public section
 
@@ -28,9 +29,6 @@ cube-to-ball inflation.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def PolyZonotope.ellipsoid (pZ : PolyZonotope (Vec ℝ n)) : Ellipsoid n :=
-  pZ.zonotope.ellipsoid
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -4,6 +4,7 @@ public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Conversion.Float.Operations.Ellipsoid_to_ConPolyZono
 
 @[expose] public section
 
@@ -31,23 +32,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-
-def Ellipsoid.conPolyZono (E : Ellipsoid 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n) where
-  p := E.k + 1
-  h := E.k
-  qI := 0
-  m := 1
-  q := E.k + 1
-  c := E.c
-  -- the ellipsoid stores its generators as a matrix, one per column
-  G := fun l i => E.G i l
-  E := Real.ConPolyZono.padE (Real.PolyZonotope.identE E.k) 1
-  GI := Fin.elim0
-  A := fun _ j => if j.val < E.k then one else neg (half one)
-  b := ⟨fun _ => half one, fun _ => half one⟩
-  R := fun r c => if r = c then (if c.val < E.k then 2 else 1) else 0
-  I_error := E.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 

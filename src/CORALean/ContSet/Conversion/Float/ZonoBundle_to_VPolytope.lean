@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.ZonoBundle_to_VPolytope
 
 @[expose] public section
 
@@ -22,9 +23,6 @@ Through `ZonoBundle.zonotope i`, then that zonotope's own sign corners.
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def ZonoBundle.vPolytope (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) : VPolytope (Vec 𝕋 n) :=
-  (zB.zonotope i).vPolytope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

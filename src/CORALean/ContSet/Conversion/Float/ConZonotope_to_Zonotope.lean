@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_Zonotope
 
 @[expose] public section
 
@@ -27,9 +28,6 @@ namespace CORALean.Float
 open SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-def ConZonotope.zonotope (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
-  ⟨cZ.h, cZ.c, cZ.G, cZ.I_error⟩
 
 variable [SoundFloatArithmetic 𝕋]
 

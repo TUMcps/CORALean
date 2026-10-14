@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.SpectraShadow_to_PolyZonotope
 
 @[expose] public section
 
@@ -24,10 +25,6 @@ the float `Zonotope.polyZonotope`. `none` when a certificate fails. An enclosure
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
-
-def SpectraShadow.polyZonotope (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k) :
-    Option (PolyZonotope (Vec 𝕋 n)) :=
-  (S.zonotope Yup Ylo).map Zonotope.polyZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -22,7 +22,6 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
-public import CORALean.ContSet.Zonotope.Real.Theorems.Coefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.CubeExact
@@ -105,8 +104,6 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.PCABasisIsUnitDet
 public import CORALean.ContSet.Zonotope.Real.Theorems.PCACovarianceIsHermitian
-public import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffDiff
-public import CORALean.ContSet.Zonotope.Real.Theorems.PairCoeffSum
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalOuter

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Ellipsoid
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_Ellipsoid
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def ConPolyZono.ellipsoid (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n :=
-  cPZ.polyZonotope.ellipsoid σ
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -580,7 +580,11 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
   # file (issue #136): that is the one exception, and it stays out of the pattern.
   # A `Basic.lean` holds one declaration per section instead, which
   # `check-basic-bundles.py` checks.
-  if (f ~ /\/(Operations|Theorems)\// && !(f ~ /\/(API|Basic)\.lean$/) && npub > MAX_PUBLIC_DECL) {
+  # The `Operations/` of a conversion layer is the exception, as its theorem side is: the unit is
+  # the ordered pair, and what one pair builds (`ellipsoid`, `ellipsoidNorm`, `ellipsoidBox`) is a
+  # file, named `<Source>_to_<Target>`, however many definitions that is.
+  if (f ~ /\/(Operations|Theorems)\// && !(f ~ /\/(API|Basic)\.lean$/) &&
+      f !~ /\/Conversion\/(Real|Float)\/Operations\// && npub > MAX_PUBLIC_DECL) {
     decls = pubList[1]
     for (i = 2; i <= npub; i++) decls = decls ", " pubList[i]
     say(f ":1: " npub " public declarations, over " MAX_PUBLIC_DECL \
@@ -1021,6 +1025,25 @@ FNR == 1 {
     if (FILENAME ~ /\/Complexity\/Time\// && kind == "def" && b !~ /^aux_/ && b !~ /(Cost|Bound)$/)
       say(FILENAME ":" FNR ": a `def` under `Complexity/Time/` is an asserted cost, named" \
           " `...Cost` or `...Bound`, not `" b "`")
+
+    # Rule C (#149). A `Theorems/` file states and proves a guarantee; what it is a guarantee
+    # *about* is declared elsewhere. A `def`, `abbrev`, `instance`, `structure`, `class`,
+    # `inductive` or `opaque` there is a definition in the wrong file: it belongs in
+    # `Definitions/` (a type, a proposition, a set, a specification) or `Operations/` (an
+    # algorithm). Free are the declarations that serve one proof only — `private` and `aux_` —
+    # and `Complexity/Space/`, a claim proved from the definition, is read the same way.
+    # A pair file of a conversion, `Conversion/<Layer>/<Source>_to_<Target>.lean`, is the theorem
+    # file of its pair, the construction being in `Conversion/<Layer>/Operations/`; the two
+    # files that hold the class instances of the pairs whose other side is a variable are the
+    # exception, instances being what they are for.
+    if ((FILENAME ~ /\/Theorems\// || FILENAME ~ /\/Complexity\/Space\// ||
+         (FILENAME ~ /\/Conversion\/(Real|Float)\/[A-Za-z]+_to_[A-Za-z]+\.lean$/ &&
+          FILENAME !~ /\/(ContSet_to_Interval|Interval_to_ContSet)\.lean$/)) &&
+        FILENAME !~ /\/API\.lean$/ && kind != "theorem" && kind != "lemma" &&
+        prefix !~ /private / && b !~ /^aux_/)
+      say(FILENAME ":" FNR ": a `" kind "` in a theorem file — `" qualDecl "` is a definition," \
+          " which belongs in `Definitions/` (a type, proposition, set or specification) or" \
+          " `Operations/` (an algorithm); only `private` and `aux_` helpers of one proof stay")
 
     # `noncomputable` is free in the `Real/` layer of a representation (rule 1),
     # in the instance of the scalar interface at ℝ, `Global/Float/Instances/Real/`
@@ -1590,6 +1613,27 @@ if [ "$bundle_rc" -gt 1 ] || { [ "$bundle_rc" -eq 1 ] && [ -z "$out" ]; }; then
 fi
 rm -f "$bundle_err"
 report "$out"
+
+# Two more rules that read a definition's body, whole-tree only (their allowlists need every
+# file): a float definition that is only the exact operation at `nominal` (#154), and a
+# definition citing a paper's algorithm without its `-- <n>.` step comments (CONTRIBUTING,
+# "Algorithms read like the paper"). Same contract as the helper above: status 1 with findings
+# on stdout is a finding, anything else is the helper failing.
+if [ -z "$STAGED" ]; then
+  for helper in check-float-wrappers.py check-algorithm-steps.py; do
+    helper_err=$(mktemp)
+    out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
+    if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then
+      cat "$helper_err" >&2
+      rm -f "$helper_err"
+      echo "check-conventions.sh: scripts/$helper failed (status $helper_rc) —" \
+        "it was not checked" >&2
+      exit 2
+    fi
+    rm -f "$helper_err"
+    report "$out"
+  done
+fi
 
 # A main-type file holds the type and what it denotes, not what is said or done about
 # it (CONTRIBUTING, "Main-type files"): the file with the `MAIN TYPE` banner at

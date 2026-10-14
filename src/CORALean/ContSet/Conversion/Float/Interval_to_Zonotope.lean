@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.Center
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 
 @[expose] public section
 
@@ -32,10 +33,6 @@ open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-/-- Far enough from the stored centre to reach both ends. -/
-def Interval.radiusFrom (I : Interval (Vec 𝕋 n)) : Vec 𝕋 n :=
-  fun i => maximum (subUp (I.sup i) (I.center i)) (subUp (I.center i) (I.inf i))
-
 theorem Interval.reaches (I : Interval (Vec 𝕋 n)) (i : Fin n) :
     toReal (I.center i) - toReal (I.radiusFrom i) ≤ toReal (I.inf i)
       ∧ toReal (I.sup i) ≤ toReal (I.center i) + toReal (I.radiusFrom i) := by -- --- PROOF ---
@@ -51,13 +48,6 @@ theorem Interval.reaches (I : Interval (Vec 𝕋 n)) (i : Fin n) :
         (toReal (subUp (I.sup i) (I.center i))) (toReal (subUp (I.center i) (I.inf i))) :=
       le_trans hhi (le_max_left _ _)
     linarith
-
--- the stored centre, and one diagonal generator per coordinate
-def Interval.zonotope (I : Interval (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
-  h := n
-  c := I.center
-  G := diagonalBlock I.radiusFrom
-  I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 /-- The generators alone already cover the box, before the error box is even
 consulted — which is what lets a caller read off coefficients directly. -/

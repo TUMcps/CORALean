@@ -23,7 +23,6 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.SmulPowMemInputTermZonoFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.ToLinParam
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryNormDriftLe
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryNormLe
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuter

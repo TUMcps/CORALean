@@ -599,8 +599,9 @@ DECL_LINK = re.compile(r"\[`([^`]+(?<!\.lean))`\]\(([^)\s]+\.lean)\)")
 
 def fix_decl_links(say):
     """`--fix`: re-point a link `[`Name`](….lean)` whose file no longer declares `Name` to the
-    file that does: the `Basic.lean` beside a target that is gone, else the only file declaring
-    it, else the only one beside the old target (a declaration moved out of `Basic.lean`). Links are by declaration name, so this
+    file that does: the `Basic.lean` beside a target that is gone, else the file of the same
+    name in an `Operations/` beside the target (a conversion's construction), else the only file
+    declaring it, else the only one beside the old target (a declaration moved out of `Basic.lean`). Links are by declaration name, so this
     is what keeps them when a declaration moves between its own file and `Basic.lean`."""
     index = {}
     for f in SRC.rglob("*.lean"):
@@ -619,8 +620,11 @@ def fix_decl_links(say):
             homes = index.get(name, set())
             near = [h for h in homes if h.parent == target.parent]
             basic = target.parent / "Basic.lean"
+            sibling = (target.parent / "Operations" / target.name).resolve()
             if not target.exists() and basic.resolve() in homes:
                 home = basic.resolve()  # moved into its directory's bundle
+            elif sibling in homes:
+                home = sibling  # a conversion's construction, in `Operations/` beside its pair file
             elif len(homes) == 1:
                 home = next(iter(homes))
             else:

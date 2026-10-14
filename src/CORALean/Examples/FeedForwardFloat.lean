@@ -17,7 +17,7 @@ import CORALean.NN.Layers.Theorems.LinearSound
 import CORALean.NN.Layers.Theorems.Basic
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.EncloseOuter
-import CORALean.NN.Theorems.MarginDir
+import CORALean.NN.Operations.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
 
 /-!

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_SpectraShadow
 
 @[expose] public section
 
@@ -26,16 +27,12 @@ open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
-def Interval.spectraShadow (I : Interval (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
-  I.zonotope.spectraShadow
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.spectraShadow_contains (I : Interval (Vec 𝕋 n)) :
     I.construct ⊆ I.spectraShadow.construct :=
   subset_trans I.zonotope_contains (Zonotope.spectraShadow_contains _)
-
 
 end CORALean.Float
 

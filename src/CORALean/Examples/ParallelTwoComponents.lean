@@ -1,6 +1,6 @@
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
-import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
+import CORALean.HybridDynamics.Parallel.Operations.BoxLifting
 import CORALean.HybridDynamics.Parallel.Theorems.ReachSetSubsetInvariant
 import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
 import CORALean.ContSet.Interval.Real.Instances

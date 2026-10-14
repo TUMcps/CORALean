@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Interval_to_Capsule
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Capsule
 
 @[expose] public section
 
@@ -26,9 +27,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def Zonotope.capsule (k : ℕ) (Z : Zonotope (Vec 𝕋 n)) : Capsule 𝕋 n :=
-  Z.interval.capsule k
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

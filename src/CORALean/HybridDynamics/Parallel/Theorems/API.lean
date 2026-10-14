@@ -16,7 +16,6 @@ public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdb
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdAe
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdbe
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
-public import CORALean.HybridDynamics.Parallel.Theorems.BoxLifting
 public import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdFloatExact
 public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
@@ -35,13 +34,10 @@ public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsSelfBindCounte
 public import CORALean.HybridDynamics.Parallel.Theorems.ZonotopeStackProdValue
 public import CORALean.HybridDynamics.Parallel.Theorems.ZonotopeStackProdExact
 public import CORALean.HybridDynamics.Parallel.Theorems.ConZonotopeStackProdExact
-public import CORALean.HybridDynamics.Parallel.Theorems.ZonoLifting
 public import CORALean.HybridDynamics.Parallel.Theorems.ZonoLiftingExact
-public import CORALean.HybridDynamics.Parallel.Theorems.ConZonoLifting
 public import CORALean.HybridDynamics.Parallel.Theorems.ConZonoLiftingExact
 public import CORALean.HybridDynamics.Parallel.Theorems.LiftSyncTransitionReset
 public import CORALean.HybridDynamics.Parallel.Theorems.SyncRunToProduct
-public import CORALean.HybridDynamics.Parallel.Theorems.BoxSyncLifting
 public import CORALean.HybridDynamics.Parallel.Theorems.InvariantCutCoraCounterexample
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeTransitionSetsCoraWrongTargetCounterexample
 public import CORALean.HybridDynamics.Parallel.Theorems.SimulateRandomTimesCoraCounterexample

@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
 
 @[expose] public section
 
@@ -33,10 +34,6 @@ itself is visible.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Ellipsoid.interval (E : Ellipsoid n) : Interval (Vec ℝ n) :=
-  Interval.ofBounds (fun j => E.supportBound (LinearMap.proj j))
-    (fun j => E.supportBound (-LinearMap.proj j))
 
 theorem Ellipsoid.interval_contains (E : Ellipsoid n) : E.construct ⊆ E.interval.construct :=
   Interval.subset_ofBounds _ _

@@ -72,7 +72,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadFrontSubsetAt
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulSubsetAt
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyReal
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyStepPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ

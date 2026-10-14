@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_Interval
 
 @[expose] public section
 
@@ -30,9 +31,6 @@ mathematics and no tighter enclosure is attempted here.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-def ConPolyZono.interval (cPZ : ConPolyZono (Vec ℝ n)) : Interval (Vec ℝ n) :=
-  cPZ.polyZonotope.interval
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

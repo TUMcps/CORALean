@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_Interval
 
 @[expose] public section
 
@@ -29,10 +30,6 @@ is exact as soon as every certificate is tight.
 namespace CORALean.Real
 
 variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
-
-def HPolytope.interval (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : Interval (Vec ℝ n) :=
-  Interval.ofBounds up lo
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

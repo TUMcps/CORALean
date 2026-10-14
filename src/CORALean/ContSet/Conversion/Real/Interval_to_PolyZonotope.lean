@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
 public import Mathlib.Analysis.Normed.Ring.Lemmas
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_PolyZonotope
 
 @[expose] public section
 
@@ -38,9 +39,6 @@ ordered for the same reason.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Interval.polyZonotope (I : Interval (Vec ℝ n)) : PolyZonotope (Vec ℝ n) :=
-  I.zonotope.polyZonotope
 
 theorem Interval.polyZonotope_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.polyZonotope.construct :=

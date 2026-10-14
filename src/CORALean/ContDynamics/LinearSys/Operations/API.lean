@@ -122,6 +122,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepCurvatu
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepFloat
+public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalWitness
 public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError

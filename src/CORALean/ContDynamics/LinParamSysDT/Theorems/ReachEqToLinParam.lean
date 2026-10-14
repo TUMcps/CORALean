@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
-public import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
+public import CORALean.ContDynamics.LinParamSysDT.Operations.ToLinParam
 
 @[expose] public section
 

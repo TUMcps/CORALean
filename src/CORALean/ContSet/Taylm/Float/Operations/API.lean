@@ -15,7 +15,6 @@ public import CORALean.ContSet.Taylm.Float.Operations.BranchAndBound
 public import CORALean.ContSet.Taylm.Float.Operations.OptBnb
 public import CORALean.ContSet.Taylm.Float.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.Taylm.Float.Operations.RepresentsaPoint
-public import CORALean.ContSet.Taylm.Float.Operations.GetSyms
 public import CORALean.ContSet.Taylm.Float.Operations.Mmul
 public import CORALean.ContSet.Taylm.Float.Operations.Mpower
 public import CORALean.ContSet.Taylm.Float.Operations.Rdivide

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.VPolytope_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_ZonoBundle
 
 @[expose] public section
 
@@ -23,9 +24,6 @@ loss is the box route's.
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def VPolytope.zonoBundle (P : VPolytope (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) :=
-  P.zonotope.zonoBundle
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

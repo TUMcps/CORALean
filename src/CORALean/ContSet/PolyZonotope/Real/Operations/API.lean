@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyReal
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Isequal
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE

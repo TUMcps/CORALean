@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_HPolytope
 
 @[expose] public section
 
@@ -26,16 +27,12 @@ namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
 
-def ConZonotope.hPolytope (cZ : ConZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) : HPolytope α :=
-  cZ.zonotope.hPolytope Aq
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.hPolytope_contains (cZ : ConZonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
     cZ.construct ⊆ (cZ.hPolytope Aq).construct :=
   subset_trans cZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
-
 
 end CORALean.Real
 

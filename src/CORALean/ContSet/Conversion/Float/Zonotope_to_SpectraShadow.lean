@@ -5,6 +5,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Zonotope.Float.Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_SpectraShadow
 
 @[expose] public section
 
@@ -34,21 +35,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- The diagonal matrix holding `s` at `j` and zero elsewhere, which is the exact
-layer's `diagonal (Pi.single j s)`. -/
-def Zonotope.unitDiag {h : ℕ} (s : 𝕋) (j : Fin h) : Mat 𝕋 h h :=
-  fun p q => if p = q then (if p = j then s else zero) else zero
-
-def Zonotope.spectraShadow (Z : Zonotope (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) where
-  k := Z.h + Z.h
-  m := Z.h
-  A₀ := blockDiag zero (fun i j => if i = j then one else zero)
-    (fun i j => if i = j then one else zero)
-  A := fun j => blockDiag zero (Zonotope.unitDiag one j) (Zonotope.unitDiag (neg one) j)
-  c := Z.c
-  G := Z.G
-  I_error := Z.I_error
 
 variable [SoundFloatArithmetic 𝕋]
 
@@ -97,7 +83,6 @@ theorem Zonotope.posSemidef_spectraShadow (Z : Zonotope (Vec 𝕋 n)) (β : Fin 
     rw [h₀]
     exact congrArg _ (Finset.sum_congr rfl fun j _ => congrArg _ (hA j))
   exact (Iff.of_eq (congrArg Matrix.PosSemidef e)).mpr hP
-
 
 theorem Zonotope.spectraShadow_contains (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.spectraShadow.construct := by -- --- PROOF ---

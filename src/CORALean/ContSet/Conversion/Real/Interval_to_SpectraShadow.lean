@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_SpectraShadow
 
 @[expose] public section
 
@@ -28,16 +29,12 @@ namespace CORALean.Real
 
 variable {n : ℕ}
 
-noncomputable def Interval.spectraShadow (I : Interval (Vec ℝ n)) : SpectraShadow (Vec ℝ n) :=
-  I.zonotope.spectraShadow
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.spectraShadow_contains (I : Interval (Vec ℝ n)) :
     I.construct ⊆ I.spectraShadow.construct :=
   subset_trans I.zonotope_contains (Zonotope.spectraShadow_exact _).subset
-
 
 end CORALean.Real
 

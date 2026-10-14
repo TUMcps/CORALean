@@ -6,6 +6,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependen
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import Mathlib.Analysis.Convex.Join
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_PolyZonotope
 
 @[expose] public section
 
@@ -45,9 +46,6 @@ denoting `∅` where a polynomial zonotope always has a point.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
-
-noncomputable def VPolytope.polyZonotope (P : VPolytope (Vec ℝ n)) : PolyZonotope (Vec ℝ n) :=
-  P.zonotope.polyZonotope
 
 theorem VPolytope.polyZonotope_contains (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.polyZonotope.construct :=

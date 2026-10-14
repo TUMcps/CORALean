@@ -6,6 +6,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotope
 
 @[expose] public section
 
@@ -42,7 +43,6 @@ namespace CORALean.Float
 open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q h : ℕ}
-
 
 /-- A row reads a point as the centre's contribution plus the generators'. -/
 theorem HPolytope.rowSplit (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (c : Vec 𝕋 n) (β : Vec ℝ h)
@@ -87,29 +87,6 @@ theorem HPolytope.prodError (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (β : Vec ℝ 
     exact Finset.sum_congr rfl fun j _ => by ring
   rw [hshape]
   exact abs_sum_le_radius hd hβ i
-
-/-- The rows, carried onto the coefficients and widened by what carrying them
-rounds off. -/
-def HPolytope.onCoefficients (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) : HPolytope
-    𝕋 (Vec 𝕋 Z.h) :=
-  -- how far a row's carried product can be off, and the same for the equality rows
-  let err := radius (matMulDiff P.A (fun i j => Z.G j i))
-  let errE := radius (matMulDiff P.Ae (fun i j => Z.G j i))
-  { m := P.m
-    A := matMulDown P.A (fun i j => Z.G j i)
-    b := fun i => addUp (subUp (P.b i) (dotDown (P.A i) Z.c)) (err i)
-    me := P.me
-    Ae := matMulDown P.Ae (fun i j => Z.G j i)
-    be := ⟨fun i => subDown (subDown (P.be.inf i) (dotUp (P.Ae i) Z.c)) (errE i),
-           fun i => addUp (subUp (P.be.sup i) (dotDown (P.Ae i) Z.c)) (errE i)⟩ }
-
-def HPolytope.conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)) : ConZonotope
-    𝕋 (Vec 𝕋 n) where
-  h := Z.h
-  c := Z.c
-  G := Z.G
-  P := P.onCoefficients Z
-  I_error := Z.I_error
 
 -- the coefficients meet the carried rows because the widening covers the carrying error
 theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n))
@@ -158,12 +135,6 @@ theorem HPolytope.subset_nominal_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
     have h := (heq i).2
     rw [hsplit] at h
     linarith [herr.1, herr.2]
-
--- with certificates in hand: a box from the bounds, a zonotope from the box, these rows on it
-def HPolytope.conZonotope {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
-  P.conZonotopeOf (HPolytope.zonotope up lo)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

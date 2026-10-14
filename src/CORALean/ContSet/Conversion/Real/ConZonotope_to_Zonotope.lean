@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_Zonotope
 
 @[expose] public section
 
@@ -27,11 +28,6 @@ fall back on.
 namespace CORALean.Real
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
-
-def ConZonotope.zonotope (cZ : ConZonotope α) : Zonotope α where
-  h := cZ.h
-  c := cZ.c
-  G := cZ.G
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

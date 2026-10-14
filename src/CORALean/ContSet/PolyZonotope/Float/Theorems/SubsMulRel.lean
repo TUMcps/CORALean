@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubsRel
+public import CORALean.ContSet.PolyZonotope.Float.Definitions.SubsRel
 
 @[expose] public section
 

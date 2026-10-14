@@ -52,8 +52,9 @@ src/CORALean/
                    reachable set: Real/ and Float/, being closed under almost nothing
     Taylm/         a polynomial over `[-1, 1]ⁿ` and a remainder interval, enclosing
                    a function rather than describing a set; Real/ and Float/
-    Conversion/    one file per ordered pair, `<Source>_to_<Target>.lean`;
-                   Real/ and Float/
+    Conversion/    one file per ordered pair, `<Source>_to_<Target>.lean`, for what the
+                   pair guarantees, and one of the same name in `Operations/` for what it
+                   builds; Real/ and Float/
   Specification/   what a computed set is checked against — a safe set or an
                    unsafe one — and why checking it on an outer approximation
                    answers for the exact set
@@ -98,15 +99,18 @@ src/CORALean/
                    evaluated rather than proved
 ```
 
-A conversion goes in `Conversion/`, not in either representation: two
-representations of equal standing cannot each import the other, so
-`VPolytope → HPolytope` inside `VPolytope/` and the reverse inside `HPolytope/`
-is a cycle Lean rejects. One file per ordered pair keeps a new pair to a file
-rather than a directory, and keeps every representation independent of every
-other. `Real/` holds every ordered pair of the nine representations its own
-collector names — 72 files — and `Capsule_to_Interval` and the `Taylm` pairs
-besides; `Float/` holds the pairs written so far. The declaration is named for the target, as in CORA,
-where `interval(zonotope)` is how a zonotope becomes a box.
+A conversion goes in `Conversion/`, not in either representation: two representations of equal
+standing cannot each import the other, so `VPolytope → HPolytope` inside `VPolytope/` and the
+reverse inside `HPolytope/` is a cycle Lean rejects. One file per ordered pair keeps a new
+pair to a file rather than a directory, and keeps every representation independent of every
+other. The pair's file states and proves what the conversion guarantees, as a `Theorems/` file
+does, and what it builds — `Zonotope.polyZonotope`, with the `aux_` definitions only it needs
+— is in the file of the same name in `Operations/` of that layer. The ordered pair is the unit
+there, so that file may declare several definitions (a conversion and its variants) and is
+never a section of a `Basic.lean`. `Real/` holds every ordered pair of the nine
+representations its own collector names — 72 files — and `Capsule_to_Interval` and the `Taylm`
+pairs besides; `Float/` holds the pairs written so far. The declaration is named for the
+target, as in CORA, where `interval(zonotope)` is how a zonotope becomes a box.
 
 Two of those files hold a class instead of a conversion: `ContSet_to_Interval`
 and `Interval_to_ContSet` are the pairs whose other side is a variable, for an
@@ -324,7 +328,11 @@ density above are respected, that every module is reachable from one of the
 target roots, so a file written but never collected is caught rather than
 silently left out of the build, that a declaration of at most five code lines
 is a section of its directory's `Basic.lean` and every section is well formed
-(through `scripts/check-basic-bundles.py`; see "Small declarations"), and that
+(through `scripts/check-basic-bundles.py`; see "Small declarations"), that a theorem file
+defines nothing ("A theorem file defines nothing"), that a float definition is not the exact
+operation at `nominal` under a second name (`scripts/check-float-wrappers.py`; "Float
+definitions earn their name"), that a definition citing a paper's algorithm carries its steps
+(`scripts/check-algorithm-steps.py`; "Algorithms read like the paper"), and that
 `noncomputable` stays where it is legitimate — see below.
 
 `noncomputable` is checked against the rule the float layer exists to keep:
@@ -545,6 +553,16 @@ identity, to `Operations/`. Each goes where its size puts it: a section of `Basi
 is at most five code lines ("Small declarations"), a file of its own otherwise.
 `check-conventions.sh` rejects a `theorem`, `lemma` or `materialise…` definition in a main-type
 file.
+
+### A theorem file defines nothing
+
+A file under `Theorems/` (and `Complexity/Space/`, whose claims are proved from the
+definition) states and proves a guarantee about something declared elsewhere. A `def`,
+`abbrev`, `instance`, `structure`, `class`, `inductive` or `opaque` there is a definition in the
+wrong file: a type, a proposition, a set or a specification goes to `Definitions/`, an
+algorithm to `Operations/`, and a conversion's construction to the `Operations/` of its
+`Conversion/` layer. The one thing a theorem file may declare is a helper of its own proof,
+`private` or `aux_`. `check-conventions.sh` rejects the rest.
 
 ### A size is proved; a running cost is asserted
 
@@ -897,6 +915,18 @@ definition: `Global/Float/Instances/Real` instantiates the scalar interface at �
 with every rounding exact, so a generic algorithm at `𝕋 := ℝ` *is* the exact
 one, and its soundness theorem, stated once, is both layers' guarantee.
 
+### Float definitions earn their name
+
+`X.nominal` is the exact set the stored floats of `X` describe, so a float definition that is
+only `X.nominal.op args` is the exact operation under a second name, and its uses can say what
+it says. A float operation is a definition of its own when it computes something the exact one
+does not: a result in `𝕋` where the exact one is a real number (`nominalSupportBound` is the
+`FloatBound` above `nominal.supportBound`, with every rounding upward), another algorithm
+(`HPolytope.levelSet`, which writes an equation as two inequalities), or the error box. The
+bare form is rejected by `scripts/check-float-wrappers.py`; what stays is listed in
+`scripts/float-wrapper-allowlist.txt` with the reason, which is a class's `construct` or a
+type's meaning (`Taylm.Encloses`), spelt for dot notation to resolve.
+
 **The float layer is part of the work, not a follow-up.** New work carries both
 layers wherever it can, and a contribution that lands only the `Real` half must
 say why in its module docstring — not as an apology, but because the reason is
@@ -1117,6 +1147,16 @@ positively and drop the post-mortem.
 
 There are no per-directory READMEs.
 The module docstring of a directory's `API.lean` is its entry point.
+
+### Algorithms read like the paper
+
+A definition whose docstring cites a paper's algorithm (`Alg. 1`, `Algorithm 2`) is that
+algorithm, so its body reads as the printed one does: one named `let` per printed step, in the
+paper's own symbols, each under a `-- <n>. …` line comment that says what the step does in the
+paper's words (`Taylm.rangeBound` is the model). `scripts/check-algorithm-steps.py` sees the
+form — a citing docstring, a body of three lines or more, no `-- <n>.` comment — and refuses it.
+The definitions that predate the rule are listed in `scripts/algorithm-steps-pending.txt` as
+`pending`; the list only shrinks.
 
 ### Lengths, which `check-conventions.sh` enforces
 

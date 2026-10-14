@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
 
 @[expose] public section
 
@@ -29,16 +30,6 @@ namespace CORALean.Float
 open FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-/-- The dependent generators, then the independent ones, side by side. -/
-def PolyZonotope.zonotope (pZ : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
-  h := pZ.h + pZ.q
-  c := pZ.c
-  G := Fin.append pZ.G pZ.GI
-  I_error := pZ.I_error
-
-def ConPolyZono.zonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
-  cPZ.polyZonotope.zonotope
 
 variable [SoundFloatArithmetic 𝕋]
 

@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionDep
 public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionD
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatIntersectionA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE

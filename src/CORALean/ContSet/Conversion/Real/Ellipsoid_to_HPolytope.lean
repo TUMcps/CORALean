@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_HPolytope
 
 @[expose] public section
 
@@ -27,10 +28,6 @@ directions the caller names, as `Zonotope.hPolytope_contains` already is.
 namespace CORALean.Real
 
 variable {n q : ℕ}
-
-noncomputable def Ellipsoid.hPolytope (E : Ellipsoid n) (Aq : Fin q → (Vec ℝ n →ₗ[ℝ] ℝ)) :
-    HPolytope (Vec ℝ n) :=
-  E.zonotope.hPolytope Aq
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinParamSys.Theorems.ToNonlinParam
+public import CORALean.ContDynamics.NonlinParamSys.Operations.ToNonlinParam
 
 @[expose] public section
 

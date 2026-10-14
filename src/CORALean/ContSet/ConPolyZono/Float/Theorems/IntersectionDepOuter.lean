@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionD
+public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionD
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionDep
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 

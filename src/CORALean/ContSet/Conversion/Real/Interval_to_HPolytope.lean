@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
 
 @[expose] public section
 
@@ -26,14 +27,6 @@ zonotope's domain names it constantly and should not carry an interval around.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-def Interval.hPolytope (I : Interval (Vec ℝ n)) : HPolytope (Vec ℝ n) where
-  m := n + n
-  A := Fin.append (fun j => LinearMap.proj j) (fun j => -LinearMap.proj j)
-  b := Fin.append I.sup fun j => -I.inf j
-  me := 0
-  Ae := Fin.elim0
-  be := Fin.elim0
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

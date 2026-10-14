@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.SpectraShadow_to_ConZonotope
 
 @[expose] public section
 
@@ -24,10 +25,6 @@ the float `Zonotope.conZonotope`. `none` when a certificate fails. An enclosure,
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
-
-def SpectraShadow.conZonotope (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k) :
-    Option (ConZonotope 𝕋 (Vec 𝕋 n)) :=
-  (S.zonotope Yup Ylo).map Zonotope.conZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

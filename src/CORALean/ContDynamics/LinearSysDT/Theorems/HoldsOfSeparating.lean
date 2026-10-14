@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetBound
+public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSetBound
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
 public import CORALean.Specification.Theorems.HoldsOfOuter
 public import CORALean.Specification.Theorems.Separation

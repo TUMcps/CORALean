@@ -16,7 +16,6 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
-public import CORALean.ContDynamics.LinParamSysDT.Theorems.ToLinParam
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.TrajectoryToLinParam
 
 /-!

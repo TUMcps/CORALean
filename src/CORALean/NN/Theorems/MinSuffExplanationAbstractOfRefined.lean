@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Theorems.MinSuffExplanationAbstract
+public import CORALean.NN.Definitions.MinSuffExplanationAbstract
 public import CORALean.NN.Theorems.SuffExplanationRefined
 
 @[expose] public section

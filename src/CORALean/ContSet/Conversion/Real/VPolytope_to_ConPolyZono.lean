@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.VPolytope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConPolyZono
 
 @[expose] public section
 
@@ -25,9 +26,6 @@ the box route's, exactly as in `VPolytope.polyZonotope_contains`.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def VPolytope.conPolyZono (P : VPolytope (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
-  P.polyZonotope.conPolyZono
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

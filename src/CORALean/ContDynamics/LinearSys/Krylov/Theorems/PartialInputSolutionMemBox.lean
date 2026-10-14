@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InputSolutionMemBox
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
-public import CORALean.ContDynamics.LinearSys.Theorems.MulVecL
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 @[expose] public section

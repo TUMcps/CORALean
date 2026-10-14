@@ -9,6 +9,7 @@ public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import Mathlib.Analysis.Convex.KreinMilman
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
 
 @[expose] public section
 
@@ -71,16 +72,6 @@ theorem HPolytope.contains_of_pinned (hc : IsCompact P.construct) (W : VPolytope
     _ = convexHull ℝ (Set.range W.V) := hclosed.closure_eq
     _ = W.construct := W.construct_eq_convexHull.symm
 
-/-- One candidate per subset of the inequality rows, kept when feasible and
-replaced by a point of the polytope when not — so every vertex listed is a point
-of the polytope, which is what makes the conversion exact. -/
-noncomputable def HPolytope.vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
-    VPolytope (Vec ℝ n) where
-  k := 2 ^ P.m
-  V := fun l =>
-    if P.basicPoint (signEquiv P.m l) ∈ P.construct then P.basicPoint (signEquiv P.m l)
-    else hne.choose
-
 theorem HPolytope.contains_vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
     (P.vPolytope hne).construct ⊆ P.construct := by -- --- PROOF ---
   rw [VPolytope.construct_eq_convexHull]
@@ -104,12 +95,6 @@ theorem HPolytope.vPolytope_contains (P : HPolytope (Vec ℝ n)) (hc : IsCompact
 theorem HPolytope.vPolytope_exact (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
     (hne : P.construct.Nonempty) : (P.vPolytope hne).construct = P.construct :=
   Set.Subset.antisymm (P.contains_vPolytope hne) (P.vPolytope_contains hc hne)
-
-/-- The cheap route: a box from `2n` certificates, then its corners. -/
-noncomputable def HPolytope.vPolytopeBox
-    (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : VPolytope (Vec ℝ n) :=
-  Interval.vPolytope (HPolytope.interval up lo)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

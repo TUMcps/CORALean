@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.Conversion.Float.Operations.ZonoBundle_to_Zonotope
 
 @[expose] public section
 
@@ -22,8 +23,6 @@ owes no proof: the guarantee is sound at every one.
 namespace CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-def ZonoBundle.zonotope (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) : Zonotope (Vec 𝕋 n) := zB.Z i
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

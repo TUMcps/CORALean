@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_PolyZonotope
 
 @[expose] public section
 
@@ -27,9 +28,6 @@ Loses whatever the box route loses and nothing further.
 namespace CORALean.Real
 
 variable {n : ℕ}
-
-noncomputable def Ellipsoid.polyZonotope (E : Ellipsoid n) : PolyZonotope (Vec ℝ n) :=
-  E.zonotope.polyZonotope
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

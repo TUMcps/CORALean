@@ -7,7 +7,7 @@ import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.EncloseOuter
-import CORALean.NN.Theorems.MarginDir
+import CORALean.NN.Operations.MarginDir
 import CORALean.NN.Theorems.MemSafeSet
 
 /-!
