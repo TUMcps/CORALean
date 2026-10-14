@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.ShearComb
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

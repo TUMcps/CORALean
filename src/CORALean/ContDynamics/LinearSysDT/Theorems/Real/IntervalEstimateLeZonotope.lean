@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeOfBounds
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachErrorSetSuccSubset
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

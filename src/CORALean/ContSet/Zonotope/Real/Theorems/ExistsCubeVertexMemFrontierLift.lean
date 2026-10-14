@@ -6,6 +6,7 @@ public import Mathlib.Analysis.Convex.Combination
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Topology.MetricSpace.Thickening
 public import Mathlib.Topology.Homeomorph.Lemmas
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

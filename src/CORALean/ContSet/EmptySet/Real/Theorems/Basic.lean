@@ -10,6 +10,7 @@ public import CORALean.ContSet.Fullspace.Real.Instances
 public import CORALean.ContSet.HPolytope.Real.Operations.ConstructEmptySet
 public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
 public import CORALean.ContSet.VPolytope.Real.Operations.ConstructEmptySet
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

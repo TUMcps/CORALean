@@ -10,6 +10,10 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

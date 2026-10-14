@@ -16,6 +16,12 @@ import CORALean.NN.Layers.Theorems.ReluRelaxationSound
 import CORALean.NN.Layers.Theorems.ReluSound
 import CORALean.NN.Layers.Theorems.TapMatMulVec
 import CORALean.NN.Theorems.ReducesAtOuter
+import CORALean.ContSet.Conversion.Float.Operations.Basic
+import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Basic
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # Sound compression by an identity convolution, and [1, Cor. 1]

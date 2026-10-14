@@ -2,11 +2,12 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Definitions.MaxNormSq
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormSumEqGram
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import Mathlib.Analysis.Normed.Module.Convex
 public import Mathlib.Analysis.Convex.Mul
 public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

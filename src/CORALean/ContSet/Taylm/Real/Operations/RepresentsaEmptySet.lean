@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Taylm_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaEmptySet
 
 @[expose] public section

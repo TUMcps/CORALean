@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Real.Operations.BoxPlaneIntersectNaive
 public import CORALean.ContSet.Interval.Real.Theorems.EdgeMemHyperplaneIff
 public import CORALean.ContSet.Interval.Real.Theorems.MemExtremePointsInterHyperplaneIff
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

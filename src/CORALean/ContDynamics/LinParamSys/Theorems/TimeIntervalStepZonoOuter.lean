@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZono
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoEnclosure
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrectionMatrix
 public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

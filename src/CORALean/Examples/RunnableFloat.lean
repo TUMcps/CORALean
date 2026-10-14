@@ -1,4 +1,4 @@
-import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Basic
 import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 import CORALean.ContSet.Zonotope.Float.Operations.CartProd
 import CORALean.ContDynamics.LinearARX.Operations.InputMat
@@ -7,7 +7,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
 import CORALean.ContSet.ProbZonotope.Float.Operations.ProbReduce
 import CORALean.ContSet.SpectraShadow.Float.Operations.ConvHull
 import CORALean.ContSet.SpectraShadow.Float.Operations.Or
-import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_SpectraShadow
 import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
 import CORALean.ContDynamics.LinearARX.Operations.ToLinearSysDT
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
@@ -83,19 +83,14 @@ import CORALean.ContDynamics.LinearSysDT.Operations.ReachOrders
 import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 import CORALean.ContSet.ConPolyZono.Float.Instances
 import CORALean.ContSet.Interval.Float.Instances
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_HPolytope
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_VPolytope
-import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
-import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
-import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
-import CORALean.ContSet.Conversion.Float.VPolytope_to_ConZonotope
-import CORALean.ContSet.Conversion.Float.VPolytope_to_HPolytope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
+import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Ellipsoid
+import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonotope
+import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_ConZonotope
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_VPolytope
 import CORALean.ContSet.Ellipsoid.Float.Instances
 import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
 import CORALean.ContSet.Ellipsoid.Float.Operations.Polygon
@@ -150,7 +145,6 @@ import CORALean.ContSet.LevelSet.Float.Operations.ContainsPoint
 import CORALean.ContSet.Taylm.Float.Operations.Times
 import CORALean.ContSet.Taylm.Float.Operations.Basic
 import CORALean.ContSet.Taylm.Float.Operations.Exp
-import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
 import CORALean.ContSet.Equality.Float.Instances
 import CORALean.ContSet.Equality.Float.Operations.Basic
 import CORALean.ContDynamics.NonlinearARX.Operations.ToNonlinearSysDTFloat
@@ -164,6 +158,23 @@ import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
+import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
+import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Operations.Basic
+import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
+import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation

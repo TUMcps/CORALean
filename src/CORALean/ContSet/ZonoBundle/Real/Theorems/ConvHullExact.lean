@@ -1,6 +1,9 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeZonoBundleRowsExact
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 
 @[expose] public section
 

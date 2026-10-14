@@ -1,10 +1,10 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.Interval.Float.Operations.CentreMat
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
@@ -12,6 +12,10 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.Global.Float.BilinUp
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

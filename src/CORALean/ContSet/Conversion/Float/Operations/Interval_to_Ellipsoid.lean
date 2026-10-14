@@ -1,15 +1,12 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 
 @[expose] public section
 
 /-!
-# A box as an ellipsoid, over a floating-point scalar — the construction
-
-`Interval.ellipsoidG` and `Interval.ellipsoid` are the constructions; `Interval_to_Ellipsoid` states
-and proves what they guarantee.
+# A box as an ellipsoid, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

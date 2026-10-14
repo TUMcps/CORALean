@@ -94,7 +94,7 @@ src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean::ConZ
 src/CORALean/ContSet/ConZonotope/Float/Theorems/CubMapOuter.lean::ConZonotope.cubMap_outer  queued: not named yet (85 characters, 3 times)
 src/CORALean/ContSet/ConZonotope/Float/Theorems/IntersectStripOuter.lean::ConZonotope.intersectStrip_outer  queued: not named yet (113 characters, 3 times)
 src/CORALean/ContSet/Conversion/Float/Operations/Zonotope_to_HPolytope.lean::Zonotope.nominalBoundDot  queued: not named yet (86 characters, 3 times)
-src/CORALean/ContSet/Conversion/Real/Interval_to_Zonotope.lean::Interval.zonotope_exact  queued: not named yet (86 characters, 3 times)
+src/CORALean/ContSet/Conversion/Real/Theorems/IntervalZonotopeExact.lean::Interval.zonotope_exact  queued: not named yet (86 characters, 3 times)
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/IntersectStripGollamudiOuter.lean::Ellipsoid.aux_strip_scalars  queued: not named yet (88 characters, 3 times)
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/CutVolumeRatioLe.lean::Ellipsoid.cut_volume_ratio_le  queued: not named yet (82 characters, 3 times)
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/QuadNonnegOfDominant.lean::Ellipsoid.quad_nonneg_of_dominant  queued: not named yet (74 characters, 3 times)

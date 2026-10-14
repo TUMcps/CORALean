@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.ContSet.Interval.Real.Operations.Point
 
 @[expose] public section

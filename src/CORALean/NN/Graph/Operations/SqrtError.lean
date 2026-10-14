@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Graph.Operations.DegreeInf
+public import CORALean.NN.Graph.Operations.Degree
 public import CORALean.NN.Graph.Operations.DegreeSup
 public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.InvSqrt
@@ -16,7 +16,7 @@ public import CORALean.NN.Layers.Operations.RelaxationBox
 # How far the inverse-square-root relaxation may miss, at an uncertain degree
 
 How far the affine map may miss `invSqrt` over node `j`'s own degree interval
-`[degreeInf, degreeSup]`.
+`[degree, degreeSup]`.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -37,7 +37,7 @@ variable {N m : ℕ}
 /-- How far the affine map may miss `invSqrt` over that interval. -/
 noncomputable def GNN.sqrtError (R : Relaxation ℝ) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (j : Fin N) : ℝ :=
-  R.error (GNN.degreeInf A U j) (GNN.degreeSup A U j)
+  R.error (GNN.degree A j) (GNN.degreeSup A U j)
 
 end CORALean.Real
 

@@ -4,6 +4,8 @@ public import CORALean.ContSet.Zonotope.Real.Operations.EncloseMany
 public import CORALean.ContSet.Zonotope.Real.Theorems.EncloseManyBasisIsUnit
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

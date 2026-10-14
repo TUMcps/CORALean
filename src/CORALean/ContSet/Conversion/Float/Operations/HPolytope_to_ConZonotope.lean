@@ -1,19 +1,20 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 
 /-!
-# A halfspace description as a constrained zonotope, over a floating-point scalar — the construction
-
-`HPolytope.onCoefficients`, `HPolytope.conZonotopeOf` and `HPolytope.conZonotope` are the
-constructions; `HPolytope_to_ConZonotope` states and proves what they guarantee.
+# A halfspace description as a constrained zonotope, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.SpectraShadow_to_Interval
 public import CORALean.ContSet.SpectraShadow.Float.Operations.ContainsPoint
 
 @[expose] public section

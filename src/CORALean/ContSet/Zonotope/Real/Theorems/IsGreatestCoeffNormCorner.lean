@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorne
 public import CORALean.Global.CoeffNorm
 public import Mathlib.Analysis.Convex.Jensen
 public import Mathlib.Tactic.Module
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

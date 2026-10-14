@@ -4,6 +4,12 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
 public import CORALean.ContSet.Polygon.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 
 @[expose] public section
 

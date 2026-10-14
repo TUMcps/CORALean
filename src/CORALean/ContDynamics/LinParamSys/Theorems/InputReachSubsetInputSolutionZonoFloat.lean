@@ -10,6 +10,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUppe
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalContains
 
 @[expose] public section
 

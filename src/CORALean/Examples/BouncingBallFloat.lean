@@ -1,8 +1,9 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.HybridDynamics.Theorems.ReachFloatOuter
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # A bouncing ball, reached in floats

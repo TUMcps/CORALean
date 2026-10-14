@@ -5,6 +5,10 @@ public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 public import CORALean.ContDynamics.LinearSys.Operations.ManualReachFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ManualRunFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

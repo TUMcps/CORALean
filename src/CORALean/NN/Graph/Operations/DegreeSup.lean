@@ -8,7 +8,7 @@ public import CORALean.NN.Graph.Operations.EdgeDegree
 /-!
 # The degree of an uncertain graph, every uncertain edge switched on
 
-The upper end of `degreeAt`'s range, read as a pair with `degreeInf` by
+The upper end of `degreeAt`'s range, read as a pair with `degree` by
 `Theorems/UncertainDegreeBounds.lean`.
 -/
 

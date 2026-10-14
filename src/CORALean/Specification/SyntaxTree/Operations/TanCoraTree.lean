@@ -3,6 +3,7 @@ module
 public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.Operations.TanCora
 public import CORALean.Specification.SyntaxTree.SyntaxTree
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

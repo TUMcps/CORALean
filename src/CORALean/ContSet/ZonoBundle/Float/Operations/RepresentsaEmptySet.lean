@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.ZonoBundle_to_ConZonotope
 
 @[expose] public section
 

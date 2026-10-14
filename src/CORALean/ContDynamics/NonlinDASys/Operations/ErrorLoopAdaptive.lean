@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinReachAt
 public import CORALean.ContDynamics.NonlinDASys.Operations.AbstractionErrorAdaptive
 public import CORALean.ContDynamics.NonlinDASys.Definitions.AdaptTuning
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

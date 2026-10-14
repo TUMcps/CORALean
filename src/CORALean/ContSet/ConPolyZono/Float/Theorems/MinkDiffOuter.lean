@@ -5,6 +5,11 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeConPolyZonoContains
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 
 @[expose] public section
 

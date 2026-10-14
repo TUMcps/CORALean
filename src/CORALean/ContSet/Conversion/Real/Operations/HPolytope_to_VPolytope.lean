@@ -4,8 +4,8 @@ public import CORALean.ContSet.HPolytope.Real.Operations.TightAt
 public import CORALean.ContSet.HPolytope.Real.Operations.BasicPoint
 public import CORALean.ContSet.HPolytope.Real.Operations.BasicPointTightAt
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExtremePoints
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_Interval
-public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import Mathlib.Analysis.Convex.KreinMilman
@@ -13,10 +13,7 @@ public import Mathlib.Analysis.Convex.KreinMilman
 @[expose] public section
 
 /-!
-# Halfspaces to vertices — the construction
-
-`HPolytope.vPolytope` and `HPolytope.vPolytopeBox` are the constructions; `HPolytope_to_VPolytope`
-states and proves what they guarantee.
+# Halfspaces to vertices
 -/
 
 -- Authors:       Claude Opus 5

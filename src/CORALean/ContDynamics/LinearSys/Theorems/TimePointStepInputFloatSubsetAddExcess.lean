@@ -7,6 +7,10 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionFloatSubsetA
 public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputSolutionFloatError
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstInputAddErrorBox
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorBoxSubsetFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

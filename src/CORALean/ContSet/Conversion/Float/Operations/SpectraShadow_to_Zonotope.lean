@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.SpectraShadow_to_Interval
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
@@ -11,14 +11,13 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 
 /-!
-# A spectrahedral shadow as a zonotope, over a floating-point scalar — the construction
-
-`SpectraShadow.zonotope` is the construction; `SpectraShadow_to_Zonotope` states and proves what it
-guarantees.
+# A spectrahedral shadow as a zonotope, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

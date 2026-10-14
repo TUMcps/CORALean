@@ -16,7 +16,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
 public import CORALean.ContSet.Interval.Float.Theorems.AbsMulVecLeMagnitudeMat
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
@@ -26,6 +26,20 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatE
 public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemPlusError
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeAbsNominalConZonotopeInnerOfLe
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

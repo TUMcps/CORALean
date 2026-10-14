@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
+public import CORALean.ContSet.Conversion.Float.Instances
 public import CORALean.NN.Layers.Definitions.Sigmoid
 public import CORALean.NN.Layers.Operations.Activation
 public import CORALean.NN.Layers.Operations.RelaxationOfDeriv

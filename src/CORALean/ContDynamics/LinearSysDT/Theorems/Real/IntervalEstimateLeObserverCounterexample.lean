@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.IntervalEstimateLeIntervalObserver
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import Mathlib.LinearAlgebra.Matrix.Notation
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

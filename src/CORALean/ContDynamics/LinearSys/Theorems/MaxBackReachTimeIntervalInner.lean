@@ -9,6 +9,10 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.ContSet.Theorems.SetLinCombMinkowskiDiffSubset
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 
 @[expose] public section
 

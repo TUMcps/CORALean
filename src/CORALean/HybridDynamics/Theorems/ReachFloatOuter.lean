@@ -6,6 +6,10 @@ public import CORALean.HybridDynamics.Operations.ReachFloat
 public import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
 public import CORALean.HybridDynamics.Theorems.JumpFloatOuter
 public import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

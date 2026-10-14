@@ -1,0 +1,42 @@
+module
+
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePolyZonotopeExact
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
+
+@[expose] public section
+
+/-!
+# A constrained zonotope as a polynomial zonotope
+
+Constraints dropped, then the plain zonotope's exact reading as a polynomial
+zonotope with one factor per generator. Loses exactly the constraints thrown
+away; a direct polynomial zonotope that used the constraints instead is a
+separate piece of mathematics, and its dependent structure would go unused
+here regardless.
+-/
+
+-- Authors:       Claude Opus 5
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem ConZonotope.polyZonotope_contains (cZ : ConZonotope α) :
+    cZ.construct ⊆ cZ.polyZonotope.construct :=
+  subset_trans cZ.zonotope_contains (Zonotope.polyZonotope_exact _).subset
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

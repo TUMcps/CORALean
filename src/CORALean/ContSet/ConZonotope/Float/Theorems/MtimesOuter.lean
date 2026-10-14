@@ -7,6 +7,9 @@ public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

@@ -2,10 +2,10 @@ module
 
 public import CORALean.ContSet.Capsule.Float.Instances
 public import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
-public import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
+public import CORALean.ContSet.Conversion.Float.Instances
 public import CORALean.ContSet.ContSet.Definitions.FullDimTest
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
-public import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.ContSet.HPolytope.Float.Instances
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
@@ -30,6 +30,23 @@ public import CORALean.ContSet.Zonotope.Float.Operations.IsFullDim
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsFullDimSound
 public import CORALean.Global.Float.Instances.Real.Instances
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleIntervalContains
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

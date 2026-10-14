@@ -1,6 +1,7 @@
-import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Basic
 import CORALean.ContSet.Polygon.Float.Theorems.AndOuter
 import CORALean.Global.Float.Instances.Dyadic.Instances
+import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 /-!
 # Intersecting two float polygons

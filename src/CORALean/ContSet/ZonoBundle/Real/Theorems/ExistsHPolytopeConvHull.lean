@@ -1,8 +1,16 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
-public import CORALean.ContSet.Conversion.Real.VPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeConZonotopeExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 
 @[expose] public section
 

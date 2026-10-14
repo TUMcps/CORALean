@@ -6,6 +6,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.LinCombSubset
 public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
 
 @[expose] public section
 

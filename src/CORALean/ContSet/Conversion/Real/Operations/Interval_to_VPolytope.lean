@@ -9,10 +9,7 @@ public import CORALean.Global.Corners
 @[expose] public section
 
 /-!
-# A box as its corners — the construction
-
-`Interval.corner` and `Interval.vPolytope` are the constructions; `Interval_to_VPolytope` states and
-proves what they guarantee.
+# A box as its corners
 -/
 
 -- Authors:       Claude Opus 5

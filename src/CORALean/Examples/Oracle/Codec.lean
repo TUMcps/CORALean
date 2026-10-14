@@ -1,6 +1,8 @@
 import CORALean.ContSet.Zonotope.Float.Zonotope
 import CORALean.Examples.Bench.Rational
 import CORALean.Examples.Oracle.Json
+import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # The wire format: scalars, matrices, intervals, zonotopes

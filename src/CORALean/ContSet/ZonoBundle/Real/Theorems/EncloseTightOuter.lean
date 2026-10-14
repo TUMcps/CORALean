@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 
 @[expose] public section
 

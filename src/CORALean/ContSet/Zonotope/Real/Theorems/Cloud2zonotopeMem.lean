@@ -4,6 +4,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotope
 public import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeCompressMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

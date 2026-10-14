@@ -1,14 +1,15 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 import CORALean.ContSet.Zonotope.Float.Operations.Materialise
 import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 import CORALean.Examples.Oracle.Dtype
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # `"interval"` and `"enclosure"`
 
 `"interval"` is `Zonotope.interval`, the library's own box hull
-(`Conversion/Float/Zonotope_to_Interval.lean`), sound by `Zonotope.interval_contains`.
+(`Conversion/Float/Operations/Zonotope_to_Interval.lean`), sound by `Zonotope.interval_contains`.
 
 `"enclosure"` asks for a zonotope enclosing `Z` with `E` *exactly* `[0, 0]`, for
 every `Z`. `Zonotope.absorbError`, sound by `Zonotope.absorbError_outer`, moves

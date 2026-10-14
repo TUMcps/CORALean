@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
 public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFloat
-public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.HalfspaceRange
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
@@ -15,6 +15,12 @@ public import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
 public import CORALean.HybridDynamics.Operations.HitJacobianFloat
 public import CORALean.HybridDynamics.Operations.HitPointFloat
 public import CORALean.HybridDynamics.Operations.SdcInputFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 
 @[expose] public section
 

@@ -5,6 +5,12 @@ public import CORALean.NN.Layers.Theorems.LeMaxPoolGapUp
 public import CORALean.NN.Layers.Theorems.Real.MaxPoolBounds
 public import CORALean.NN.Layers.Theorems.MaxPoolGapUpNonneg
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

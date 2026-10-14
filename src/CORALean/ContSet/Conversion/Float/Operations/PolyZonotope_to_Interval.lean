@@ -3,14 +3,12 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 
 /-!
-# A polynomial zonotope as a box, over a floating-point scalar — the construction
-
-`PolyZonotope.interval` is the construction; `PolyZonotope_to_Interval` states and proves what it
-guarantees.
+# A polynomial zonotope as a box, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

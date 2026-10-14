@@ -5,10 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 @[expose] public section
 
 /-!
-# A box as a polynomial zonotope, over a floating-point scalar — the construction
-
-`Interval.polyZonotope` is the construction; `Interval_to_PolyZonotope` states and proves what it
-guarantees.
+# A box as a polynomial zonotope, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Graph.Operations.DegreeInf
+public import CORALean.NN.Graph.Operations.Degree
 public import CORALean.NN.Graph.Operations.DegreeSup
 public import CORALean.NN.Graph.Theorems.DegreeAtEq
 public import CORALean.NN.Graph.Theorems.Basic
@@ -12,8 +12,8 @@ public import CORALean.NN.Graph.Theorems.OneLeDegree
 # The uncertain degree is bracketed, and never below `1`
 
 Three bounds in one statement, because they are read together: the degree of a
-node at any admissible choice of edge weights sits between `degreeInf` and
-`degreeSup`, and `degreeInf` is itself at least `1`.
+node at any admissible choice of edge weights sits between `degree` and
+`degreeSup`, and `degree` is itself at least `1`.
 
 The lower bound of `1` is the one that matters beyond arithmetic. [1] encloses
 `D̃^(-1/2)` over the interval the other two bounds give, and an enclosure of
@@ -54,9 +54,9 @@ variable {N m : ℕ}
 end is at least `1`. -/
 theorem GNN.degreeAt_bounds (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) :
-    1 ≤ GNN.degreeInf A U j ∧ GNN.degreeInf A U j ≤ GNN.degreeAt A U lam j
+    1 ≤ GNN.degree A j ∧ GNN.degree A j ≤ GNN.degreeAt A U lam j
       ∧ GNN.degreeAt A U lam j ≤ GNN.degreeSup A U j := by -- --- PROOF ---
-  rw [GNN.degreeAt_eq, GNN.degreeInf, GNN.degreeSup, GNN.edgeDegree]
+  rw [GNN.degreeAt_eq, GNN.degreeSup, GNN.edgeDegree]
   -- the self-loop already puts the lower end at `1`, which is `one_le_degree`
   refine ⟨GNN.one_le_degree A hA j, ?_, ?_⟩
   · -- a nonnegative weight on a nonnegative edge can only raise a degree

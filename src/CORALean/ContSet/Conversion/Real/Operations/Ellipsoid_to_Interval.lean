@@ -7,10 +7,7 @@ public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 @[expose] public section
 
 /-!
-# An ellipsoid as a box — the construction
-
-`Ellipsoid.interval` is the construction; `Ellipsoid_to_Interval` states and proves what it
-guarantees.
+# An ellipsoid as a box
 -/
 
 -- Authors:       Claude Opus 5

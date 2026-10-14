@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 public import Mathlib.Data.Finset.Image
 public import Mathlib.Data.Fintype.Pi
 public import Mathlib.Data.Fintype.Prod

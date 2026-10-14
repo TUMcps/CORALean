@@ -3,9 +3,11 @@ module
 public import CORALean.ContSet.Zonotope.Float.Operations.EncloseManyBasisInv
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.Global.Float.Sqrt
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

@@ -7,6 +7,10 @@ public import CORALean.ContSet.Interval.Real.Theorems.Convex
 public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import Mathlib.Analysis.Convex.Hull
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeContains
 
 @[expose] public section
 

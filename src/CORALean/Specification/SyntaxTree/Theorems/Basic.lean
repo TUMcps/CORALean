@@ -14,6 +14,7 @@ public import CORALean.Specification.SyntaxTree.Theorems.PlusSound
 public import CORALean.Specification.SyntaxTree.Theorems.PowerSound
 public import CORALean.Specification.SyntaxTree.Theorems.TimesSound
 public import CORALean.Specification.SyntaxTree.Theorems.UminusSound
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

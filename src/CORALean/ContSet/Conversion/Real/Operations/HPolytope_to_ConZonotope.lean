@@ -1,18 +1,16 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.GenMap
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 
 /-!
-# A halfspace description as a constrained zonotope — the construction
-
-`HPolytope.conZonotope` is the construction; `HPolytope_to_ConZonotope` states and proves what it
-guarantees.
+# A halfspace description as a constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

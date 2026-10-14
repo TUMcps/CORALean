@@ -3,7 +3,8 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeRowSplit
+public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeProdError
 
 @[expose] public section
 

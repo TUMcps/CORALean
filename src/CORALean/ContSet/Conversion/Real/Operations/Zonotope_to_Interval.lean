@@ -7,10 +7,7 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 @[expose] public section
 
 /-!
-# A zonotope as a box — the construction
-
-`Zonotope.interval` is the construction; `Zonotope_to_Interval` states and proves what it
-guarantees.
+# A zonotope as a box
 -/
 
 -- Authors:       Claude Opus 5

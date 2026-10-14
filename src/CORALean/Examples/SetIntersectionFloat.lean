@@ -1,10 +1,11 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.SetIntersection.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # An intersection of float zonotopes, operated on branch-wise

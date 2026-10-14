@@ -2,11 +2,12 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 public import CORALean.Global.Float.Exp
 public import CORALean.Global.Float.ToRat
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

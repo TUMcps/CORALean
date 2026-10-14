@@ -6,10 +6,7 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 @[expose] public section
 
 /-!
-# A hull as a constrained zonotope — the construction
-
-`VPolytope.simplex` and `VPolytope.conZonotope` are the constructions; `VPolytope_to_ConZonotope`
-states and proves what they guarantee.
+# A hull as a constrained zonotope
 -/
 
 -- Authors:       Claude Opus 5

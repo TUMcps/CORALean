@@ -5,6 +5,12 @@ public import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
 public import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
 public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalVPolytopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
 
 @[expose] public section
 

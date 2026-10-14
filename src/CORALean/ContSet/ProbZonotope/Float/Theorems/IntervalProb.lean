@@ -1,6 +1,15 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Float.Theorems.ZonotopeProb
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

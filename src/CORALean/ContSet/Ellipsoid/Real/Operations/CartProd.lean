@@ -1,7 +1,8 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Ellipsoid_to_Interval
-public import CORALean.ContSet.Conversion.Real.Interval_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
 
 @[expose] public section
 

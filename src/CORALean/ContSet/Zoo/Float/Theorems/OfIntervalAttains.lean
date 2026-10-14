@@ -3,6 +3,9 @@ module
 public import CORALean.ContSet.Zoo.Float.Operations.OfInterval
 public import CORALean.ContSet.Zoo.Float.Theorems.DiagonalBlockSum
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalSubsetNominalZonotope
 
 @[expose] public section
 

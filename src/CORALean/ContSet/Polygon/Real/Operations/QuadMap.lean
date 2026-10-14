@@ -1,9 +1,10 @@
 module
 
 public import CORALean.ContSet.Polygon.Real.Operations.Triangulation
-public import CORALean.ContSet.Conversion.Real.VPolytope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMap
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 
 @[expose] public section
 

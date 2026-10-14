@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Definitions.BoxPlane
-public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
 

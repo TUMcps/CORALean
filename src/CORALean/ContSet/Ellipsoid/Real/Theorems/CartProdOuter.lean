@@ -1,6 +1,9 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProd
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalEllipsoidContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeEllipsoidContains
 
 @[expose] public section
 

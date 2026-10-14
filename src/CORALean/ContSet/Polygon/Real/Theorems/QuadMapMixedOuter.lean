@@ -4,6 +4,9 @@ public import CORALean.ContSet.Polygon.Real.Operations.QuadMapMixed
 public import CORALean.ContSet.Polygon.Real.Theorems.TriangulationExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapMixedExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PolygonOuter
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -3,6 +3,8 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

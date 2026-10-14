@@ -1,100 +1,9 @@
 module
 
+public import CORALean.ContSet.Conversion.Float.Definitions.API
 public import CORALean.ContSet.Conversion.Float.Operations.API
-public import CORALean.ContSet.Conversion.Float.Capsule_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.Capsule_to_Ellipsoid
-public import CORALean.ContSet.Conversion.Float.Capsule_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.Capsule_to_Interval
-public import CORALean.ContSet.Conversion.Float.Capsule_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.Capsule_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Float.Capsule_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.Capsule_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Ellipsoid
-public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_Interval
-public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Interval
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_ZonoBundle
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
-public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
-public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_ConZonotopeInner
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_Ellipsoid
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_Interval
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_ZonoBundle
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Interval_to_Capsule
-public import CORALean.ContSet.Conversion.Float.Interval_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.Interval_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
-public import CORALean.ContSet.Conversion.Float.Interval_to_Ellipsoid
-public import CORALean.ContSet.Conversion.Float.Interval_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.Interval_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.Interval_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
-public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.Interval_to_ZonoBundle
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Ellipsoid
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Interval
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Taylm
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Taylm_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.Taylm_to_Interval
-public import CORALean.ContSet.Conversion.Float.Taylm_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_Ellipsoid
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_ZonoBundle
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Interval
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Capsule
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Ellipsoid
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Taylm
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ZonoBundle
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_LevelSet
-public import CORALean.ContSet.Conversion.Float.ZonoBundle_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Interval
-public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_PolyZonotope
-public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_ZonoBundle
-public import CORALean.ContSet.Conversion.Float.SpectraShadow_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.API
+public import CORALean.ContSet.Conversion.Float.Instances
 
 /-!
 # Conversions over a floating-point scalar, collected
@@ -117,7 +26,7 @@ pairs round nowhere, and the two ellipsoid pairs are where a square root would
 have been: a proposed row length per coordinate one way, a proposed `√n` the
 other, each checked by a multiplication and neither trusted.
 
-`ContSet_to_Interval` and `Interval_to_ContSet` carry `𝕋` as an `outParam`, so a
+`IntervalOuter` and `OfInterval` carry `𝕋` as an `outParam`, so a
 caller still writes only `IntervalOuter S`. `ConZonotope.vPolytopeBox` goes
 through a box, vertex enumeration needing an equality test on reals; `Taylm` reaches a box too.
 -/

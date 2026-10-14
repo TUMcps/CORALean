@@ -5,6 +5,9 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
 
 @[expose] public section
 

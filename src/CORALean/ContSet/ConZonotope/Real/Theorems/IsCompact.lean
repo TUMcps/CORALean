@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
-public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
 
 @[expose] public section

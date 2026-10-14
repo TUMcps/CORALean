@@ -1,6 +1,14 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContains
 
 @[expose] public section
 

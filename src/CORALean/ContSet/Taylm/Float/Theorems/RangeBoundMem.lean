@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.Taylm.Float.Operations.RangeBound
 public import CORALean.ContSet.Taylm.Float.Theorems.CodeEvalEncloses
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalTaylmContains
 
 @[expose] public section
 

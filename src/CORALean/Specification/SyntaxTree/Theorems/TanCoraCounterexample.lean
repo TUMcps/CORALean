@@ -13,6 +13,7 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.BackpropagationBinaryOk
 public import CORALean.Specification.SyntaxTree.Theorems.BackpropagationUnaryOk
 public import CORALean.Specification.SyntaxTree.Theorems.BackpropagationVarOk
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.MaxBackReachState
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 

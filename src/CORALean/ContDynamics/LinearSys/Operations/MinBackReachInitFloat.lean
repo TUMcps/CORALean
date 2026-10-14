@@ -3,10 +3,14 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.MinBackReachState
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContSet.ConZonotope.Float.Instances
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
 public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
 
 @[expose] public section

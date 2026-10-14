@@ -4,16 +4,13 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
 public import CORALean.ContSet.ConZonotope.Real.Operations.MemDomainIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_VPolytope
-public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 
 /-!
-# A constrained zonotope as its vertices — the construction
-
-`ConZonotope.vPolytope` is the construction; `ConZonotope_to_VPolytope` states and proves what it
-guarantees.
+# A constrained zonotope as its vertices
 -/
 
 -- Authors:       Claude Opus 5

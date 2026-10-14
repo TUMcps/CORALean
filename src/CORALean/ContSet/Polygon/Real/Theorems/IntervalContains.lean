@@ -4,6 +4,11 @@ public import CORALean.ContSet.Polygon.Real.Operations.Interval
 public import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
 public import CORALean.ContSet.Interval.Real.Theorems.OrOuter
 public import CORALean.ContSet.VPolytope.Real.Instances
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

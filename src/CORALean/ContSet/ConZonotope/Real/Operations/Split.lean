@@ -1,9 +1,10 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Intersection
-public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Interval
-public import CORALean.ContSet.Conversion.Real.Interval_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.SplitAt
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

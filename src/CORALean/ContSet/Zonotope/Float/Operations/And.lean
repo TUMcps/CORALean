@@ -1,8 +1,10 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_ConZonotope
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 

@@ -3,6 +3,8 @@ module
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinInputFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SlopeRemainderAbstractionError
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

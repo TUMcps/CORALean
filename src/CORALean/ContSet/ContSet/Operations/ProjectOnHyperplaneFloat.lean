@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplane
-public import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Float.Instances
 
 @[expose] public section
 

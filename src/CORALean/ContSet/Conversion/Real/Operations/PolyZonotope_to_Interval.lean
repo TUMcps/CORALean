@@ -1,17 +1,14 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.PolyZonotope_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 public import Mathlib.Order.BourbakiWitt
 
 @[expose] public section
 
 /-!
-# A polynomial zonotope as a box — the construction
-
-`PolyZonotope.interval` and `PolyZonotope.intervalEven` are the constructions;
-`PolyZonotope_to_Interval` states and proves what they guarantee.
+# A polynomial zonotope as a box
 -/
 
 -- Authors:       Claude Opus 5

@@ -1,12 +1,14 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Zonotope.Real.Operations.Mspb
 public import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetOfSignedSums
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

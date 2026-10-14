@@ -6,6 +6,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MatZonoCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalContains
 
 @[expose] public section
 

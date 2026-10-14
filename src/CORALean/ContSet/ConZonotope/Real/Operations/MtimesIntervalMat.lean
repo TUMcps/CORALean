@@ -1,9 +1,10 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

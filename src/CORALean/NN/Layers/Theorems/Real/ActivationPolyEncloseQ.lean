@@ -5,6 +5,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPoly
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Plus
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 
 @[expose] public section
 

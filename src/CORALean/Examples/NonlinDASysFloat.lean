@@ -3,6 +3,8 @@ import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloatChecked
 import CORALean.ContDynamics.NonlinDASys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # A differential-algebraic system, run in floats

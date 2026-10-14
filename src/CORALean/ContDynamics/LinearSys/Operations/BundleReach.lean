@@ -1,9 +1,9 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ZonoBundle
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
 public import Mathlib.Analysis.Normed.Algebra.Exponential

@@ -22,6 +22,8 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

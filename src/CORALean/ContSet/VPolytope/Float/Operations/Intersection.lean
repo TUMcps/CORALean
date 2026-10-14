@@ -1,8 +1,10 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_VPolytope
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

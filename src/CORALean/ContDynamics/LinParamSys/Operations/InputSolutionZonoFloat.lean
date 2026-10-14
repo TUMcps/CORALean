@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.InputTaylorSumTailFlo
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderFloat
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

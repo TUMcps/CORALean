@@ -6,10 +6,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Point
 @[expose] public section
 
 /-!
-# A polynomial zonotope as a constrained one — the construction
-
-`PolyZonotope.conPolyZono` is the construction; `PolyZonotope_to_ConPolyZono` states and proves what
-it guarantees.
+# A polynomial zonotope as a constrained one
 -/
 
 -- Authors:       Claude Opus 5

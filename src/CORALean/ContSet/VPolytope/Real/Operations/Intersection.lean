@@ -3,6 +3,8 @@ module
 public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionH
 public import CORALean.ContSet.VPolytope.Real.Operations.IntersectionHIsCompact
 public import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 

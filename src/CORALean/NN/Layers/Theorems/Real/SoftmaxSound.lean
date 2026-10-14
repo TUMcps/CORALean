@@ -4,6 +4,12 @@ public import CORALean.NN.Layers.Definitions.Softmax
 public import CORALean.NN.Layers.Theorems.Real.RawLeSoftmax
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxLeRaw
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

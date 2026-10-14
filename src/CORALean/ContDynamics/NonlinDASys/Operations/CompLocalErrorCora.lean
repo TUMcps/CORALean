@@ -5,7 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.QuadMap
 public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
 @[expose] public section

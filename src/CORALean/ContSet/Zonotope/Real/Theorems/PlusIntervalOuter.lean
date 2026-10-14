@@ -1,8 +1,9 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import Mathlib.Order.BourbakiWitt
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

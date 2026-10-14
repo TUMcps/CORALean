@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.InflatedContSet.Operations.Bound
 public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 public import CORALean.ContSet.ConPolyZono.Float.Operations.NominalSupportBound
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 
 @[expose] public section
 

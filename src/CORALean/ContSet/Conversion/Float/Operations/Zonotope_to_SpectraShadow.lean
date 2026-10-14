@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
@@ -9,10 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 @[expose] public section
 
 /-!
-# A zonotope as a spectrahedral shadow, over a floating-point scalar — the construction
-
-`Zonotope.unitDiag` and `Zonotope.spectraShadow` are the constructions; `Zonotope_to_SpectraShadow`
-states and proves what they guarantee.
+# A zonotope as a spectrahedral shadow, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

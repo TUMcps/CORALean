@@ -10,6 +10,18 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Polygon
 public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalVPolytopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalVPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContains
 
 @[expose] public section
 

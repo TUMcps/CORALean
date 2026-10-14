@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 @[expose] public section

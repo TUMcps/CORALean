@@ -5,6 +5,8 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZonotopeCoraContains
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.ExcludesPointSound
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeContains
 
 @[expose] public section
 

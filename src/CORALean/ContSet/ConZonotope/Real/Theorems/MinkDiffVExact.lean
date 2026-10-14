@@ -5,6 +5,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersect
 public import CORALean.ContSet.VPolytope.Real.Theorems.MinkowskiDiffEqIInter
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 
 @[expose] public section
 

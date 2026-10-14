@@ -6,6 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
 public import CORALean.ContSet.Zonotope.Float.Theorems.MatSmulOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

@@ -2,8 +2,9 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalStepOuter
 public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 public import CORALean.ContSet.Zonotope.Real.Instances
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

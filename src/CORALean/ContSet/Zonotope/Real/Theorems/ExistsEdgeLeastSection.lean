@@ -11,6 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CornerBottomLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReachLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import Mathlib.Analysis.Convex.Segment
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

@@ -3,6 +3,15 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Split
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.SplitOuter
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoPolyZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopePolyZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeContains
 
 @[expose] public section
 

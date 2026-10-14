@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Real.Operations.VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 
 @[expose] public section
 

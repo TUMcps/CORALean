@@ -6,6 +6,7 @@ public import CORALean.Specification.SyntaxTree.Operations.Basic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 public import CORALean.Specification.SyntaxTree.Theorems.AuxSignedSpec
 public import CORALean.Specification.SyntaxTree.Theorems.MeetContains
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

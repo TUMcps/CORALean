@@ -1,9 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Theorems.AndOuter
 import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # Intersecting two float zonotopes

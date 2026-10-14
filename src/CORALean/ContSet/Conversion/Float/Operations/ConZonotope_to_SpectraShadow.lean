@@ -1,16 +1,17 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.HPolytope_to_SpectraShadow
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 
 @[expose] public section
 
 /-!
-# A constrained zonotope as a spectrahedral shadow, over a floating-point scalar — the construction
-
-`ConZonotope.spectraShadow` is the construction; `ConZonotope_to_SpectraShadow` states and proves
-what it guarantees.
+# A constrained zonotope as a spectrahedral shadow, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

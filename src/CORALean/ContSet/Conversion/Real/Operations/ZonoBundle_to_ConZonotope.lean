@@ -1,16 +1,13 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
 
 @[expose] public section
 
 /-!
-# A bundle's constrained zonotope, at one component — the construction
-
-`ZonoBundle.conZonotope` and `ZonoBundle.conZonotopeAll` are the constructions;
-`ZonoBundle_to_ConZonotope` states and proves what they guarantee.
+# A bundle's constrained zonotope, at one component
 -/
 
 -- Authors:       Claude Opus 5

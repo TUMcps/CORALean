@@ -5,7 +5,10 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

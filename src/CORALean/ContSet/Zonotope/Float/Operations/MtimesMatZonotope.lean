@@ -1,9 +1,10 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

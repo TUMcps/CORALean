@@ -10,6 +10,10 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

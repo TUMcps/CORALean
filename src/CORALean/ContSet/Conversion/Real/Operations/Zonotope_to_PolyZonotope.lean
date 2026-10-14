@@ -7,10 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 @[expose] public section
 
 /-!
-# A zonotope as a polynomial zonotope — the construction
-
-`Zonotope.polyZonotope` is the construction; `Zonotope_to_PolyZonotope` states and proves what it
-guarantees.
+# A zonotope as a polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

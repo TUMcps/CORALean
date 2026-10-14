@@ -7,6 +7,10 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoPolyZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalPolyZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoPolyZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 
 @[expose] public section
 

@@ -3,6 +3,13 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Split
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.Interval.Real.Theorems.SplitAtCover
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalConPolyZonoContains
+public import CORALean.ContSet.Conversion.Real.Theorems.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

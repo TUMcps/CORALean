@@ -1,16 +1,15 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 
 @[expose] public section
 
 /-!
-# A polynomial zonotope as a zonotope, over a floating-point scalar — the construction
-
-`PolyZonotope.zonotope` and `ConPolyZono.zonotope` are the constructions; `PolyZonotope_to_Zonotope`
-states and proves what they guarantee.
+# A polynomial zonotope as a zonotope, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5.5

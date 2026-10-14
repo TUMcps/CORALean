@@ -7,6 +7,8 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesSubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceSubsetAddBox
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

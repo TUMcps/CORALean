@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.ConstrSat
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

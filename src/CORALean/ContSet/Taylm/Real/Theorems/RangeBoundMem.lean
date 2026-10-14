@@ -5,6 +5,9 @@ public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.CodeEvalEncloses
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalTaylmContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalTaylmOuter
 
 @[expose] public section
 

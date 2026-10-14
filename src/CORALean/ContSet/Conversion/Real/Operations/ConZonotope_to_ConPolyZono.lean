@@ -8,10 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 @[expose] public section
 
 /-!
-# A constrained zonotope as a constrained polynomial zonotope — the construction
-
-`ConZonotope.coeffs`, `ConZonotope.conA`, `ConZonotope.conB` and `ConZonotope.conPolyZono` are the
-constructions; `ConZonotope_to_ConPolyZono` states and proves what they guarantee.
+# A constrained zonotope as a constrained polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5

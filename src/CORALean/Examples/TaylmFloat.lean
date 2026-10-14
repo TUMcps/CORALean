@@ -1,8 +1,10 @@
-import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
-import CORALean.ContSet.Conversion.Float.Taylm_to_Interval
+import CORALean.ContSet.Conversion.Float.Theorems.IntervalTaylmContains
+import CORALean.ContSet.Conversion.Float.Operations.Basic
 import CORALean.ContSet.Taylm.Float.Theorems.ExpOuter
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
+import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 /-!
 # A Taylor model, run and bounded

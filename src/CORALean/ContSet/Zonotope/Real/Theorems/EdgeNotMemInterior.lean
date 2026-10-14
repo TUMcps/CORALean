@@ -5,6 +5,7 @@ public import Mathlib.Analysis.Convex.Segment
 public import Mathlib.Topology.MetricSpace.Pseudo.Pi
 public import Mathlib.Data.Fin.VecNotation
 public import Mathlib.Tactic.FinCases
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

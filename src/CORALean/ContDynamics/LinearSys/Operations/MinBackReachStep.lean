@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachInit
 public import CORALean.ContSet.ConZonotope.Real.Operations.LinComb
 public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import Mathlib.Analysis.Normed.Algebra.Exponential
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 

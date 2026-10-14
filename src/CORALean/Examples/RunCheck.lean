@@ -1,9 +1,15 @@
 import CORALean.Examples.RunnableFloat
 import CORALean.Global.Float.Instances.Binary64.API
 import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.ContDynamics.LinearSysDT.Operations.CanonicalFloat
+import CORALean.ContSet.Conversion.Float.Operations.Basic
+import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
+import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Basic
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # Every runnable algorithm of `RunnableFloat`, executed

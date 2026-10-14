@@ -6,6 +6,7 @@ public import CORALean.Global.CoeffNormBallEq
 public import Mathlib.Data.List.GetD
 public import Mathlib.Data.List.NodupEquivFin
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

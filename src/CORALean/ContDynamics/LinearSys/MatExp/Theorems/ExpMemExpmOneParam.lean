@@ -7,10 +7,11 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeNorm
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMatZonoRemainder
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundMono
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSubExpTaylorLe
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 public import CORALean.ContSet.Interval.Real.Theorems.NormLeAbsMax
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Interval.Real.Theorems.NormLe
 public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.CompactZeros
@@ -17,6 +17,7 @@ public import Mathlib.Algebra.BigOperators.Pi
 public import Mathlib.Analysis.InnerProductSpace.Basic
 public import Mathlib.Analysis.RCLike.Lemmas
 public import Mathlib.Data.Matrix.Mul
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

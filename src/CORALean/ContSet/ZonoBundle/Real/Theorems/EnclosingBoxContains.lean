@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingBox
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

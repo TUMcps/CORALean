@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Operations.ObserveInterval
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 public import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

@@ -5,6 +5,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Intersection
 public import CORALean.Specification.SyntaxTree.Operations.Interval
 public import CORALean.Specification.SyntaxTree.Operations.Periodic
 public import CORALean.Specification.SyntaxTree.SyntaxTree
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

@@ -1,8 +1,9 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
-public import CORALean.ContSet.Conversion.Real.ZonoBundle_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

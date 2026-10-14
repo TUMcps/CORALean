@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.InvFactorialBoundsFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.MatPow
 public import CORALean.ContSet.Interval.Float.Operations.PowHi
 public import CORALean.ContSet.Interval.Float.Operations.PowLo
@@ -15,6 +15,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
 public import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
 public import CORALean.Global.Float.PowDown
 public import CORALean.Global.Float.PowUp
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

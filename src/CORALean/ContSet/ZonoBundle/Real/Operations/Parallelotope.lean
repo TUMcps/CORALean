@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 
 @[expose] public section

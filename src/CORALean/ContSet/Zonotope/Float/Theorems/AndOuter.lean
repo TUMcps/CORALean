@@ -2,6 +2,10 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.And
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
+public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeConZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

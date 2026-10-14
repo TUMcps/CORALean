@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumBoxFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

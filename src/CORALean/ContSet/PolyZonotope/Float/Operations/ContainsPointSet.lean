@@ -3,8 +3,9 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ZonotopeCora
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 public import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section
 

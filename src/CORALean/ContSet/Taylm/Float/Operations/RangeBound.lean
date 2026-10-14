@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Float.Operations.CodeEval
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
-public import CORALean.ContSet.Conversion.Float.Interval_to_Taylm
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 
 @[expose] public section
 

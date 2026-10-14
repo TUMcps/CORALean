@@ -8,13 +8,14 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputS
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.ZeroMemMtimesIntervalMatError
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 

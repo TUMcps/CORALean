@@ -4,6 +4,8 @@ public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeEnclosureFloa
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepExcessFloat
 public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

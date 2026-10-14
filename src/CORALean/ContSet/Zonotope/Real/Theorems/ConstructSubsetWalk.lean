@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Operations.Walk
 public import Mathlib.Analysis.LocallyConvex.Separation
 public import Mathlib.Analysis.Convex.Topology
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

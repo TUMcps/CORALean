@@ -3,6 +3,10 @@ module
 public import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
 public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

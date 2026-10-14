@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.NonlinearSysDT.Operations.Linearize
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.LinInput
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.Reach
 public import CORALean.ContDynamics.NonlinearSysDT.Operations.Simulate
-public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Real.Instances
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import Mathlib.Tactic.Ring
 public import Mathlib.Algebra.BigOperators.Pi
 public import Mathlib.Algebra.BigOperators.Ring.Finset

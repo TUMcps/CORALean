@@ -4,7 +4,7 @@ import CORALean.Examples.Bench.Ieee
 import CORALean.Examples.Bench.NearestUnsound.Instances
 import CORALean.Examples.Bench.NnNetwork
 import CORALean.Examples.Bench.Timing
-import CORALean.ContSet.Conversion.Float.Interval_to_ContSet
+import CORALean.ContSet.Conversion.Float.Instances
 import CORALean.Examples.Bench.NearestUnsound.NearestDyadic
 import CORALean.Examples.Bench.NnNaive
 import CORALean.Examples.Bench.Rational
@@ -14,6 +14,15 @@ import CORALean.Global.Float.Instances.IEEE.Instances
 import CORALean.NN.Operations.Enclose
 import CORALean.Specification.Instances
 import CORALean.Specification.Operations.Check
+import CORALean.ContSet.Conversion.Float.Operations.Basic
+import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.Basic
+import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 /-!
 # `lake exe bench nn-float32 [--reps N] [--out DIR]`

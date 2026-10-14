@@ -3,9 +3,10 @@ module
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntervalAllContains
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleZonotopeContains
 
 @[expose] public section
 

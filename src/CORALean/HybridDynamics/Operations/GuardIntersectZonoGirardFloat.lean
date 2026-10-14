@@ -1,9 +1,10 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

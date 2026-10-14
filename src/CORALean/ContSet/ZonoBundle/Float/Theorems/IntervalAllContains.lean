@@ -2,6 +2,10 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
 public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

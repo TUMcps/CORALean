@@ -11,7 +11,11 @@
 #             instance and every `X.construct` in a statement resolve through by dot notation.
 #   meaning:  what a stored value claims, the hypothesis its theorems share, as `construct` is a
 #             set's.
+#   name:     a `Real.op (toReal… x)` read at what the floats denote, kept because the call sites
+#             are statements that would otherwise spell the conversion out each time.
 src/CORALean/ContSet/Capsule/Float/Capsule.lean::Capsule.construct  class: the capsule's set is its nominal's; dot notation `C.construct` and the `ContSet` instance read it
 src/CORALean/ContSet/HPolytope/Float/HPolytope.lean::HPolytope.construct  class: the polytope's set is its nominal's; dot notation `P.construct` and the `ContSet` instance read it
 src/CORALean/ContSet/Interval/Float/Interval.lean::Interval.construct  class: the interval's set is its nominal's; dot notation `I.construct` and the `ContSet` instance read it
 src/CORALean/ContSet/Taylm/Float/Taylm.lean::Taylm.Encloses  meaning: what a stored Taylor model claims, the hypothesis of every float Taylor-model theorem
+src/CORALean/ContSet/ConPolyZono/Float/ConPolyZono.lean::ConPolyZono.satisfies  meaning: what a float constrained polynomial zonotope's own factors must satisfy, the hypothesis of its theorems
+src/CORALean/ContSet/HPolytope/Float/Operations/RowLin.lean::rowLin  name: the direction `boundDot` and `FloatBound` are stated against wherever it is a matrix row, about fifty statements, each of which would spell `Real.HPolytope.rowLin (toRealMat A) i` out

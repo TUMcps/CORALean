@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Real.Zoo
-public import CORALean.ContSet.Conversion.Real.Interval_to_Taylm
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section
 

@@ -7,6 +7,13 @@ public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolySubsetInflate
 public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilyErrorLt
 public import CORALean.NN.Layers.Theorems.Real.PolyRelaxationFamilySound
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeIntervalInfLeSup
 
 @[expose] public section
 

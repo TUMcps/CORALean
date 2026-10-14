@@ -4,6 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Venum
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
 public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetIffZonotopeNormLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

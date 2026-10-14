@@ -2,8 +2,12 @@ import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsPointIff
 import CORALean.ContSet.Interval.Real.Operations.Point
-import CORALean.ContSet.Conversion.Float.ConZonotope_to_ConPolyZono
-import CORALean.ContSet.Conversion.Real.ConZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeConPolyZonoContains
+import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConPolyZonoExact
+import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
+import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeConPolyZonoExact
 
 /-!
 # Cutting a non-convex set by a guard

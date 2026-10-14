@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.HPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
 public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
 public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
 

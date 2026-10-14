@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 public import CORALean.ContSet.Taylm.Real.Taylm
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
@@ -9,10 +9,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 @[expose] public section
 
 /-!
-# An array of Taylor models as a polynomial zonotope — the construction
-
-`Taylm.allTerms` and `Taylm.polyZonotope` are the constructions; `Taylm_to_PolyZonotope` states and
-proves what they guarantee.
+# An array of Taylor models as a polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

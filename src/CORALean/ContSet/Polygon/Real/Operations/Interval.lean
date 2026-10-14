@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.Polygon.Real.Operations.IntervalOfList
 public import CORALean.ContSet.Polygon.Real.Polygon
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

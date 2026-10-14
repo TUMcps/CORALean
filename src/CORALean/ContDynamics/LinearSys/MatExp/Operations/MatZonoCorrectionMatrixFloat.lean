@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 
 @[expose] public section
 

@@ -1,8 +1,9 @@
 module
 
 public import CORALean.ContSet.Polygon.Float.Polygon
-public import CORALean.ContSet.Conversion.Float.VPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section
 

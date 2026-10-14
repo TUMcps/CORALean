@@ -1,10 +1,13 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 public import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
 public import CORALean.ContSet.Zonotope.Float.Operations.UnitIntervalMul
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 
 @[expose] public section
 

@@ -1,7 +1,9 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 
 @[expose] public section
 

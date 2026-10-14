@@ -4,6 +4,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
 public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsStursbergMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

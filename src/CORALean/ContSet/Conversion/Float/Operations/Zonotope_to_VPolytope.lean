@@ -3,18 +3,17 @@ module
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.VPolytope.Float.Operations.ColumnGap
 public import CORALean.ContSet.VPolytope.Float.Operations.MemColumnGap
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 
 @[expose] public section
 
 /-!
-# A zonotope as its corners, over a floating-point scalar — the construction
-
-`Zonotope.signed`, `Zonotope.cornerLo`, `Zonotope.cornerHi` and `Zonotope.vPolytope` are the
-constructions; `Zonotope_to_VPolytope` states and proves what they guarantee.
+# A zonotope as its corners, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

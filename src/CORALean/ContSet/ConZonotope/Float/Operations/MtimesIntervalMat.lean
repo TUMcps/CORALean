@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.ConZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
 public import CORALean.ContSet.Interval.Float.Operations.CentreMat

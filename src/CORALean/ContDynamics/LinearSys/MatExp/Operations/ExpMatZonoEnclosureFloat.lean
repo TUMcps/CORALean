@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemain
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylorFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
-public import CORALean.ContSet.Conversion.Float.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Zonotope.Float.Operations.MatPlusInterval
 
 @[expose] public section

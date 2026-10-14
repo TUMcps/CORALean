@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.Zoo.Real.Operations.OfInterval
 public import Mathlib.Tactic.Linarith
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalTaylmOuter
 
 @[expose] public section
 

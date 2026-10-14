@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
-public import CORALean.ContSet.Conversion.Real.Interval_to_ContSet
+public import CORALean.ContSet.Conversion.Real.Instances
 
 @[expose] public section
 

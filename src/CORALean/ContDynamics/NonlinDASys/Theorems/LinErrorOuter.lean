@@ -7,6 +7,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 public import Mathlib.Data.Matrix.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

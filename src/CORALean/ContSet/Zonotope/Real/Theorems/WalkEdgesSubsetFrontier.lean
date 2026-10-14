@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerSuccAdd
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerNotSuccSub
 public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
 

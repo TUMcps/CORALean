@@ -2,6 +2,14 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoPolyZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.Basic
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopePolyZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeContains
 
 @[expose] public section
 

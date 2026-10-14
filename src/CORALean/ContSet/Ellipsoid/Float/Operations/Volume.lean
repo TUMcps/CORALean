@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Ellipsoid_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Volume
 
 @[expose] public section

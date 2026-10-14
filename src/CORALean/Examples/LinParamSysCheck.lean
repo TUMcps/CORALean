@@ -1,7 +1,7 @@
 import CORALean.ContDynamics.LinParamSys.Instances
 import CORALean.ContDynamics.Reach.Theorems.HoldsOfCheck
-import CORALean.ContSet.Conversion.Float.ContSet_to_Interval
-import CORALean.ContSet.Conversion.Real.ContSet_to_Interval
+import CORALean.ContSet.Conversion.Float.Instances
+import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContSet.SetUnion.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct

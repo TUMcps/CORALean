@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Operations.QuadMapInt
 public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
-public import CORALean.ContSet.Conversion.Real.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import Mathlib.LinearAlgebra.Matrix.BilinearForm
 
 @[expose] public section

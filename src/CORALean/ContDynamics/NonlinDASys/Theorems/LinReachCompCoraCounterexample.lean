@@ -8,6 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 public import Mathlib.Analysis.Calculus.Deriv.Add
 public import Mathlib.Analysis.Calculus.Deriv.Inv
 public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
 

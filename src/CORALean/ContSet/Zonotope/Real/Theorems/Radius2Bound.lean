@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Radius2
 public import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 @[expose] public section
 

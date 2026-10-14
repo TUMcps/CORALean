@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaOrigin
 public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAllExact
 
 @[expose] public section
 

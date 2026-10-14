@@ -6,6 +6,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSu
 public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemDiscretizeEnclosureFloatReachError
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceSubsetAddBox
+public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
 

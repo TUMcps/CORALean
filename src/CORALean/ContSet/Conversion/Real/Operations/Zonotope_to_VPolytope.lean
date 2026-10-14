@@ -10,10 +10,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 @[expose] public section
 
 /-!
-# A zonotope as its corners — the construction
-
-`Zonotope.corner` and `Zonotope.vPolytope` are the constructions; `Zonotope_to_VPolytope` states and
-proves what they guarantee.
+# A zonotope as its corners
 -/
 
 -- Authors:       Claude Opus 5

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepresentsaEmptySetIff
+public import CORALean.ContSet.Conversion.Real.Theorems.TaylmPolyZonotopeExact
 
 @[expose] public section
 

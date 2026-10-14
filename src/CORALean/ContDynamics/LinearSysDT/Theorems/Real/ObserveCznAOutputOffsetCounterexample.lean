@@ -4,8 +4,9 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 public import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConIntersectExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.OfPointMemIff
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
 @[expose] public section
 

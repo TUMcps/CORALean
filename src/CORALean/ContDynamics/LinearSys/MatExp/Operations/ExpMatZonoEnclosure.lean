@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoRemainder
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoTaylor
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderBound
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Interval.Real.Operations.AbsMax
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 

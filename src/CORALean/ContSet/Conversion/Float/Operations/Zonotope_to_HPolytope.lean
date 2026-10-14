@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Float.Zonotope
-public import CORALean.ContSet.Conversion.Real.Zonotope_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.InflatedContSet.Operations.Bound
@@ -10,10 +10,7 @@ public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 @[expose] public section
 
 /-!
-# A zonotope as halfspaces, over a floating-point scalar — the construction
-
-`Zonotope.nominalBoundDot`, `Zonotope.boundDot` and `Zonotope.hPolytope` are the constructions;
-`Zonotope_to_HPolytope` states and proves what they guarantee.
+# A zonotope as halfspaces, over a floating-point scalar
 -/
 
 -- Authors:       Claude Opus 5

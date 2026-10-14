@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
 public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
 
 @[expose] public section
 

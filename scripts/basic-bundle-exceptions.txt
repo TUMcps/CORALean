@@ -33,7 +33,7 @@ src/CORALean/ContSet/Taylm/Real/Theorems/PolyOfCons.lean  cycle once moved in: `
 src/CORALean/ContSet/Taylm/Real/Theorems/PolyOfNil.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Theorems/SmulOuter` → `Basic`
 src/CORALean/ContSet/Taylm/Real/Theorems/TanhOuter.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Real/Theorems/TaylorOuter` → `ContSet/Taylm/Real/Theorems/ComposeOuter` → `Basic`
 src/CORALean/ContSet/VPolytope/Float/Operations/IsFullDim.lean  cycle once moved in: `Basic` → `ContSet/VPolytope/Float/Operations/IsFullDimWith` → `Basic`
-src/CORALean/ContSet/Zonotope/Float/Operations/ConstrSat.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Float/Zonotope_to_Interval` → `ContSet/Zonotope/Float/Theorems/MemGeneratorError` → `Basic`
+src/CORALean/ContSet/Zonotope/Float/Operations/ConstrSat.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Float/Operations/Zonotope_to_Interval` → `ContSet/Zonotope/Float/Theorems/MemGeneratorError` → `Basic`
 src/CORALean/Global/Float/Instances/Dyadic/Operations/Maximum.lean  cycle once moved in: `Basic` → `Global/Float/Instances/Dyadic/Operations/Le` → `Basic`
 src/CORALean/Global/Float/Instances/Dyadic/Operations/Minimum.lean  cycle once moved in: `Basic` → `Global/Float/Instances/Dyadic/Operations/Le` → `Basic`
 src/CORALean/Global/Float/Instances/IEEE/Operations/AddUp.lean  cycle once moved in: `Basic` → `Global/Float/Instances/IEEE/Operations/RoundUp` → `Basic`
@@ -53,3 +53,9 @@ src/CORALean/NN/Layers/Theorems/Real/TanhPolyRelaxationSound.lean  cycle once mo
 src/CORALean/NN/Layers/Theorems/ReluSound.lean  cycle once moved in: `Basic` → `NN/Layers/Theorems/ReluRelaxationSound` → `Basic`
 src/CORALean/Specification/SyntaxTree/Operations/Interval.lean  cycle once moved in: `Basic` → `Specification/SyntaxTree/Operations/FunHanExp` → `Basic`
 src/CORALean/Specification/SyntaxTree/Operations/Nthroot.lean  cycle once moved in: `Basic` → `Specification/SyntaxTree/Operations/FunHanPower` → `Basic`
+src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_Interval.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/PolyZonotope_to_Interval` → `Basic`
+src/CORALean/ContSet/Conversion/Real/Operations/Interval_to_Zonotope.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/Ellipsoid_to_Zonotope` → `Basic`
+src/CORALean/ContSet/Conversion/Real/Operations/ConZonotope_to_VPolytope.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/HPolytope_to_VPolytope` → `Basic`
+src/CORALean/ContSet/Conversion/Real/Operations/Ellipsoid_to_Interval.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/Ellipsoid_to_Zonotope` → `Basic`
+src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidConZonotopeContains.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Theorems/EllipsoidZonotopeContains` → `Basic`
+src/CORALean/ContSet/Conversion/Float/Theorems/ConPolyZonoConZonotopeContains.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Float/Theorems/PolyZonotopeConZonotopeContains` → `Basic`

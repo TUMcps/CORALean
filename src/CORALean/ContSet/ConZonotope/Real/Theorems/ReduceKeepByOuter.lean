@@ -8,6 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
 @[expose] public section
 
