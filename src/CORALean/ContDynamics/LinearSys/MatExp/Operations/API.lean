@@ -95,6 +95,12 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeffS
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveIntegralFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrectionMatrixFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExponentialRemainder
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.DependentTerms
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.Expm
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmTerms
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmFrom
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmMixed
 
 /-!
 # What enclosing a matrix exponential computes

@@ -212,7 +212,7 @@ Rulings on borderline cases:
 | [commonocean2cora](others/commonocean2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [commonroad2cora](others/commonroad2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [cora2spaceex](others/cora2spaceex.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
-| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 5 | 4 | 1 | 19 | 10 | 3 |
+| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 19 | 4 | 1 | 5 | 10 | 3 |
 | [markovchain](others/markovchain.md) | others | 12 | 0 | 0 | 0 | 7 | 5 | 0 |
 | [matPolytope](others/matPolytope.md) | others | 20 | 3 | 0 | 0 | 10 | 7 | 2 |
 | [matZonotope](others/matZonotope.md) | others | 33 | 3 | 2 | 3 | 16 | 9 | 0 |

@@ -182,6 +182,15 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpMulVecImageSubs
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccEqImage
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IUnionImageIccSubsetImageAdd
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowEntryLePowEntry
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExponentialRemainderOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DependentTermsOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.FoldlPlusMem
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmTermsMem
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmFromOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowersIntSqMem
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmMixedOuter
 
 /-!
 # What the exponential enclosures guarantee

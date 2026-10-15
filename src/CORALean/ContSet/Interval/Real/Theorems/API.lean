@@ -177,6 +177,21 @@ public import CORALean.ContSet.Interval.Real.Theorems.BoxPlaneIntersectNaiveEq
 public import CORALean.ContSet.Interval.Real.Theorems.ExploreBNVisitsLengthLeCard
 public import CORALean.ContSet.Interval.Real.Theorems.BoxDiffSubsetDiff
 public import CORALean.ContSet.Interval.Real.Theorems.BoxDiffExample
+public import CORALean.ContSet.Interval.Real.Theorems.ExactSquareOuter
+public import CORALean.ContSet.Interval.Real.Theorems.ExactSquareEntryExact
+public import CORALean.ContSet.Interval.Real.Theorems.AbsMaxIsGreatest
+public import CORALean.ContSet.Interval.Real.Theorems.PowersOuter
+public import CORALean.ContSet.Interval.Real.Theorems.ExistsMemAbsEqAbsMax
+public import CORALean.ContSet.Interval.Real.Theorems.AbsCenterAddRadius
+public import CORALean.ContSet.Interval.Real.Theorems.NormTypeEvalMono
+public import CORALean.ContSet.Interval.Real.Theorems.MatNormIsGreatest
+public import CORALean.ContSet.Interval.Real.Theorems.InfNormIsGreatest
+public import CORALean.ContSet.Interval.Real.Theorems.MatContainsZeroIff
+public import CORALean.ContSet.Interval.Real.Theorems.MatContainsSound
+public import CORALean.ContSet.Interval.Real.Theorems.MatVolumeEq
+public import CORALean.ContSet.Interval.Real.Theorems.ConvexHullVertices
+public import CORALean.ContSet.Interval.Real.Theorems.VecConstruct
+public import CORALean.ContSet.Interval.Real.Theorems.VecRepresentsa
 
 /-!
 # What `Interval` guarantees
