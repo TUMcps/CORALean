@@ -42,7 +42,7 @@ theorem HybridAutomaton.reachSet_subset_reachFloat
     (ℓ : L) :
     (⋃ (T : ℝ) (_ : T ≤ tFinal) (k : ℕ) (_ : k ≤ K),
         {y | ∃ x ∈ construct X₀, HA.RunUntil T k ℓ₀ x ℓ y})
-      ⊆ {y | ∃ p ∈ out, p.1 = ℓ ∧ y ∈ construct p.2} := by
+      ⊆ {y | ∃ p ∈ out, p.1 = ℓ ∧ y ∈ construct p.2} := by -- --- PROOF ---
   intro y hy
   simp only [Set.mem_iUnion, Set.mem_setOf_eq] at hy
   obtain ⟨T, hT, k, hk, x, hx, run⟩ := hy

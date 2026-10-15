@@ -30,7 +30,7 @@ theorem Zonotope.abs_absorbed_le_radius (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h}
     (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
     |∑ l, toReal (Z.G (part.right l) i) * β (part.right l)|
-      ≤ toReal (radius (fun i l => Z.G (part.right l) i) i) := by
+      ≤ toReal (radius (fun i l => Z.G (part.right l) i) i) := by -- --- PROOF ---
   exact abs_sum_le_radius (d := fun i l => Z.G (part.right l) i)
     (fun _ _ => le_refl _) (fun l => hβ (part.right l)) i
 

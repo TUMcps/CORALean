@@ -32,7 +32,7 @@ theorem SpectraShadow.lmi_append {k₁ k₂ m₁ m₂ : ℕ} (A₀ : Mat ℝ k�
     blockDiag 0 A₀ B₀ + ∑ i, β i • (Fin.append (fun i => blockDiag 0 (A i) 0)
         (fun j => blockDiag 0 0 (B j)) : Fin (m₁ + m₂) → Mat ℝ (k₁ + k₂) (k₁ + k₂)) i
       = blockDiag 0 (A₀ + ∑ i, β (Fin.castAdd m₂ i) • A i)
-          (B₀ + ∑ j, β (Fin.natAdd m₁ j) • B j) := by
+          (B₀ + ∑ j, β (Fin.natAdd m₁ j) • B j) := by -- --- PROOF ---
   rw [Fin.sum_univ_add]
   refine blockDiag_ext ?_ ?_ ?_ ?_ <;> intros <;> simp [Matrix.sum_apply]
 

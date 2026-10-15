@@ -104,7 +104,7 @@ theorem Krylov.aux_inputTerm_image_eq (A : Mat ℝ n n) (U : Set (Vec ℝ n)) (�
       = (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>
           (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
             (Krylov.arnoldiHessenberg (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1)
-              ^ (j + 1) *ᵥ Pi.single 0 1)) (Fin.castSucc i)) '' U := by
+              ^ (j + 1) *ᵥ Pi.single 0 1)) (Fin.castSucc i)) '' U := by -- --- PROOF ---
   refine Set.image_congr fun u _ => ?_
   rw [Krylov.augment_arnoldi_pow A u m (Nat.le_add_left 1 j) hj, Nat.add_sub_cancel,
     LinearSys.inputTerm, Matrix.smul_mulVec]

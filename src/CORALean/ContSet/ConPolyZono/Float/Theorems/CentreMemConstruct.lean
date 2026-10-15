@@ -36,7 +36,7 @@ theorem ConPolyZono.centre_mem_construct (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hE : Real.ConPolyZono.NoZeroCol cPZ.E) (hR : Real.ConPolyZono.NoZeroCol cPZ.R)
     (hb : ∀ i, toReal (cPZ.b.inf i) ≤ 0 ∧ 0 ≤ toReal (cPZ.b.sup i))
     (h0 : ∀ i, toReal (cPZ.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (cPZ.I_error.sup i)) :
-    toRealVec cPZ.centre ∈ cPZ.construct := by
+    toRealVec cPZ.centre ∈ cPZ.construct := by -- --- PROOF ---
   -- the nominal part holds its own centre, which is the stored one read as reals
   have hN : toRealVec cPZ.centre ∈ InflatedContSet.nominalSet cPZ :=
     Real.ConPolyZono.centre_mem_construct (InflatedContSet.nominal cPZ) hE hR hb

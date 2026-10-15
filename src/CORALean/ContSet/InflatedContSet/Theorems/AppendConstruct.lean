@@ -41,7 +41,7 @@ theorem append_construct {s₁ : S₁} {s₂ : S₂} {t : T}
       (nominalSet s₁ ×ˢ nominalSet s₂))
     (herror : I_error t = Interval.append (I_error s₁) (I_error s₂)) :
     construct t = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
-      (construct s₁ ×ˢ construct s₂) := by
+      (construct s₁ ×ˢ construct s₂) := by -- --- PROOF ---
   show nominalSet t + (I_error t).construct = _ '' ((nominalSet s₁ + (I_error s₁).construct) ×ˢ
     (nominalSet s₂ + (I_error s₂).construct))
   rw [hnominal, herror, Interval.append_construct, append_image_prod_add]

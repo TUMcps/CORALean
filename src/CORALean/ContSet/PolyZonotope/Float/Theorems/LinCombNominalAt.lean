@@ -102,7 +102,7 @@ theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
         * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
       = lam * (∑ j, toReal (pZ₁.GI j i) * β₁ j)
-        + (1 - lam) * ∑ j, toReal (pZ₂.GI j i) * β₂ j := by
+        + (1 - lam) * ∑ j, toReal (pZ₂.GI j i) * β₂ j := by -- --- PROOF ---
   rw [Fin.sum_univ_add]
   simp only [PolyZonotope.aux_linCombGIReal, Fin.append_left, Fin.append_right]
   exact Zonotope.sum_pair_mul (fun j => toReal (pZ₁.GI j i))

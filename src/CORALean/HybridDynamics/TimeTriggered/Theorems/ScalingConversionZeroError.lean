@@ -46,7 +46,7 @@ theorem DiffInclAutomaton.scalingConversion_zeroError {I : Set X} {f : X → X} 
     (DiffInclAutomaton.singleMode I f).ContOverapprox T
         (DiffInclAutomaton.scalingConversion I f g tb ts) Prod.fst (T + ts) ∧
       ∀ T', Prod.fst '' (DiffInclAutomaton.scalingConversion I f g tb ts).reachLE T' ⊆
-        (DiffInclAutomaton.singleMode I f).reach := by
+        (DiffInclAutomaton.singleMode I f).reach := by -- --- PROOF ---
   refine ⟨DiffInclAutomaton.scalingConversion_contOverapprox hf hg hg0 hF htb hts T, ?_⟩
   rintro T' x' ⟨⟨x, τ⟩, ⟨d, k, _, h⟩, rfl⟩
   obtain ⟨s, _, hs⟩ := DiffInclAutomaton.scalingConversion_exec_subset_reach hf hg hg0 h

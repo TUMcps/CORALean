@@ -89,7 +89,7 @@ theorem TrajectoryAnalyzer.analyzeInterval_spec (obj : TrajectoryAnalyzer 𝕋 S
     (hlh : obj.traj.t.getD (l - 1) 0 < obj.traj.t.getD l 0) :
     ∃ sigs', obj.analyzeInterval s dur sigs l = some sigs' ∧
       TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs'
-        (fun k τ => M k τ ∨ obj.TrueAt s dur k l τ) := by
+        (fun k τ => M k τ ∨ obj.TrueAt s dur k l τ) := by -- --- PROOF ---
   obtain ⟨sigs', h1, h2⟩ := aux_analyzeInterval_loop obj.aps dur (obj.traj.x l s)
     (if obj.traj.loc ≠ [] then obj.traj.loc.getD (l - 1) 0 else 1) _ _ hlh obj.aps
     (fun q hq => hq) sigs M h

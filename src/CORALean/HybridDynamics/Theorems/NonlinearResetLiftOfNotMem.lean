@@ -32,7 +32,7 @@ theorem NonlinearReset.lift_evaluate_of_not_mem (r : NonlinearReset n m n)
     (stateBind : Fin n → Fin N) (inputBind : Fin m → Fin M) (id : Bool) (x : Vec ℝ N)
     (u : Vec ℝ M) (i : Fin N) (hi : ∀ j, stateBind j ≠ i) :
     (r.lift N M stateBind inputBind id).evaluate x u i =
-      if id then x i else 0 := by
+      if id then x i else 0 := by -- --- PROOF ---
   unfold NonlinearReset.evaluate NonlinearReset.lift
   dsimp only
   rw [NonlinearReset.foldl_update_of_not_mem _ _ i _ _ fun j _ => hi j]

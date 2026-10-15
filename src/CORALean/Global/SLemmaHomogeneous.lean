@@ -196,7 +196,7 @@ theorem s_lemma_homogeneous (P Q : V → ℝ) (pP pQ : V → V → ℝ)
     (hP : ∀ (u v : ℝ) (x y : V), P (u • x + v • y) = u ^ 2 * P x + v ^ 2 * P y + u * v * pP x y)
     (hQ : ∀ (u v : ℝ) (x y : V), Q (u • x + v • y) = u ^ 2 * Q x + v ^ 2 * Q y + u * v * pQ x y)
     (h₀ : ∃ z₀, Q z₀ < 0) :
-    (∀ z, Q z < 0 → 0 ≤ P z) ↔ ∃ δ : ℝ, 0 ≤ δ ∧ ∀ z, 0 ≤ P z + δ * Q z := by
+    (∀ z, Q z < 0 → 0 ≤ P z) ↔ ∃ δ : ℝ, 0 ≤ δ ∧ ∀ z, 0 ≤ P z + δ * Q z := by -- --- PROOF ---
   obtain ⟨z₀, hz₀⟩ := h₀
   refine ⟨aux_exists_delta P Q pP pQ hP hQ z₀ hz₀, fun ⟨δ, hδ, h⟩ z hz => ?_⟩
   nlinarith [h z]

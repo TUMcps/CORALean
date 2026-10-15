@@ -104,7 +104,7 @@ theorem ReachSetAnalyzer.analyzeTimeInterval_spec (obj : ReachSetAnalyzer S n) (
     ∃ obj', obj.analyzeTimeInterval (𝕋 := 𝕋) set loc lo hi = some obj' ∧ obj'.aps = obj.aps ∧
       obj'.masks = obj.masks ∧ obj'.Represents d
         (fun k t => PT k t ∨ obj.TrueMark (𝕋 := 𝕋) k set loc lo hi d t)
-        (fun k t => PF k t ∨ obj.FalseMark (𝕋 := 𝕋) k set loc lo hi d t) := by
+        (fun k t => PF k t ∨ obj.FalseMark (𝕋 := 𝕋) k set loc lo hi d t) := by -- --- PROOF ---
   obtain ⟨obj', h, ha, hm, hr⟩ := aux_analyzeTimeInterval_loop (𝕋 := 𝕋) obj d set loc lo hi hlh
     obj.aps (fun q hq => hq) PT PF obj rfl rfl hobj
   exact ⟨obj', h, ha, hm, hr⟩

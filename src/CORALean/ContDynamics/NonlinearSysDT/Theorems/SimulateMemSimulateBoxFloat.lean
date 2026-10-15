@@ -34,7 +34,7 @@ theorem NonlinearSysDT.simulate_mem_simulateBoxFloat (sys : NonlinearSysDT n m)
     {fm : NonlinearSysDT.FloatModel 𝕋 n m} (h : fm.Encloses sys) (x₀ : Vec 𝕋 n)
     (u : ℕ → Vec 𝕋 m) (k : ℕ) :
     sys.simulate (Scalar.toRealVec x₀) (fun j => Scalar.toRealVec (u j)) k ∈
-      construct (NonlinearSysDT.simulateBoxFloat fm x₀ u k) := by
+      construct (NonlinearSysDT.simulateBoxFloat fm x₀ u k) := by -- --- PROOF ---
   induction k with
   | zero => exact Interval.mem_point x₀
   | succ k ih =>

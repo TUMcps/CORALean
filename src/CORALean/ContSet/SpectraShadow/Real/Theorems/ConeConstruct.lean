@@ -101,7 +101,7 @@ theorem SpectraShadow.aux_gen_cone (T : SpectraShadow (Vec ℝ N)) (s t : ℝ) (
           Fin (1 + T.m + 1) → ℝ) i •
         (Fin.append (Fin.append (fun _ : Fin 1 => T.c) T.G) (fun _ : Fin 1 => (0 : Vec ℝ N)) :
           Fin (1 + T.m + 1) → Vec ℝ N) i
-      = s • T.c + ∑ j, β j • T.G j := by
+      = s • T.c + ∑ j, β j • T.G j := by -- --- PROOF ---
   rw [Fin.sum_univ_add, Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right, Fin.sum_univ_one, smul_zero, add_zero, zero_add]
 

@@ -57,7 +57,8 @@ private theorem aux_reach_succ_eq (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (k : ℕ) :
     sys.reach ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ steps
       = (NonlinearSysDT.linearize (steps k).A).reach
-        ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps, (steps k).linInput, 0, 1⟩ ⟨o, ho⟩ := by
+        ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps,
+          (steps k).linInput, 0, 1⟩ ⟨o, ho⟩ := by -- --- PROOF ---
   show Nat.fold (k + 1 - 0) _ R₀ = _
   rw [Nat.sub_zero, Nat.fold_succ]
   rfl

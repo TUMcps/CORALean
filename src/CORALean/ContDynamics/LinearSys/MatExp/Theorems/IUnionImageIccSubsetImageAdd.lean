@@ -42,7 +42,7 @@ theorem MatExp.iUnion_image_Icc_subset_image_add (A : Mat ℝ n n) {r : ℝ} (hr
     (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (k : ℕ) (Z : Set (Vec ℝ n)) :
     (⋃ t ∈ Set.Icc ((k : ℝ) * r) (((k : ℝ) + 1) * r), (fun x => exp (t • A) *ᵥ x) '' Z)
       ⊆ (fun y => exp (((k : ℝ) * r) • A) *ᵥ y) ''
-        (Z + Set.image2 (fun B x => B *ᵥ x) (MatExp.expDiffMatrices A r m) Z) := by
+        (Z + Set.image2 (fun B x => B *ᵥ x) (MatExp.expDiffMatrices A r m) Z) := by -- --- PROOF ---
   rw [MatExp.iUnion_image_Icc_eq_image]
   refine Set.image_mono ?_
   refine Set.iUnion₂_subset fun t ht => ?_

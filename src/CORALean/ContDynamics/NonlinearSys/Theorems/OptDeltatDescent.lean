@@ -85,7 +85,7 @@ theorem optDeltat_descent {le : ℝ → ℝ → Bool} (hle : ∀ a b : ℝ, le a
         = h * ζδ ^ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent ∧
       ∀ j ≤ (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent,
         reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs (optDeltat le ζδ ζZ ζA φ1 r₀ rabs h fuel).exponent
-          ≤ reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs j := by
+          ≤ reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs j := by -- --- PROOF ---
   obtain ⟨-, hmin⟩ := aux_optDeltatSearch_descent hle (reachSizeEstimate ζδ ζZ ζA φ1 r₀ rabs)
     fuel 0
   exact ⟨rfl, fun j hj => hmin j (Nat.zero_le j) hj⟩

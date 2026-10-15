@@ -45,7 +45,7 @@ theorem MatExp.expDiff_mulVec_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (
     (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
     (x : Vec ℝ n) :
     ∃ F ∈ (MatExp.correctionMatrix A r (m + 2)).construct,
-      exp (t • A) *ᵥ x - x = (t / r) • ((exp (r • A) - 1) *ᵥ x) + F *ᵥ x := by
+      exp (t • A) *ᵥ x - x = (t / r) • ((exp (r • A) - 1) *ᵥ x) + F *ᵥ x := by -- --- PROOF ---
   refine ⟨_, MatExp.expDiff_mem_correctionMatrix A hr hε ht0 htr, ?_⟩
   simp only [sub_mulVec, smul_mulVec, one_mulVec]
   abel

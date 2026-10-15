@@ -57,7 +57,7 @@ theorem Polygon.randPointExtremeAll_cora_counterexample :
         [some ![0, 0], some ![1, 0], some ![1, 1], some ![0, 1]] =
       [some ![0, 0], some ![1, 0]] ∧
     Polygon.randPointExtremeAllCora
-        [some ![0, 0], some ![1, 0], some ![1, 1], none, some ![0, 1]] = [] := by
+        [some ![0, 0], some ![1, 0], some ![1, 1], none, some ![0, 1]] = [] := by -- --- PROOF ---
   constructor <;> simp [Polygon.randPointExtremeAllCora]
 
 end CORALean.Real

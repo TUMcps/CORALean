@@ -906,11 +906,13 @@ theorem aux_norm_constTail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ
     ‖…‖ ≤ r * MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---
 ```
 
-A proof of **five lines or more** must carry one, and a shorter proof must
-not: below that the `:= by` is still in view, and a flag on every two-line
-proof would say only what the source already shows. Required and refused on
-either side of one number, so the flag always means the same thing — and it
-lands on roughly two theorems in five. No exact count is quoted here: it moves
+A proof of **five lines or more**, or a signature of **five lines or more**
+(counted from the `theorem` line to the `:= by` line, inclusive), must carry one,
+and a declaration with both shorter must not: below that the `:= by` is still in
+view, and a flag on every two-line proof would say only what the source already
+shows. A long signature hides the seam as well as a long proof does. Required and
+refused on either side of one number, so the flag always means the same thing — and
+it lands on roughly two theorems in five. No exact count is quoted here: it moves
 with every proof written, and a figure CI cannot keep honest goes stale the
 day after it is written.
 
@@ -1025,6 +1027,12 @@ nothing else it could mean.
 left on the class obligations — `Plus.plus_outer`, `IntervalOuter.interval_outer`
 — which quantify over a representation instead of naming a pair, and whose
 suffix is the table above.
+
+No binder is called `temp`, `tmp` or a variant of either (`tmp1`, `temp_`, `tmpX`,
+`temp₁`): a `let`, `have`, `fun`, `obtain`/`rcases` pattern, `intro` or declaration
+argument names the value for what it is — the CORA variable it mirrors, or what it
+holds (`preInf`, `quotient`, `shiftedCentre`). `check-conventions.sh` rejects the
+name in code, and leaves comments and strings alone (#191).
 
 ## The two layers
 

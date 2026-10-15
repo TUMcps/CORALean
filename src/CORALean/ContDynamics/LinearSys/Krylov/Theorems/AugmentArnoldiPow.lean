@@ -58,7 +58,7 @@ theorem Krylov.augment_arnoldi_pow (A : Mat ℝ n n) (u : Vec ℝ n) (m : ℕ) {
     (fun i => (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
         (Krylov.arnoldiHessenberg (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) ^ j *ᵥ
           Pi.single 0 1)) (Fin.castSucc i))
-      = A ^ (j - 1) *ᵥ u := by
+      = A ^ (j - 1) *ᵥ u := by -- --- PROOF ---
   obtain ⟨k, rfl⟩ : ∃ k, j = k + 1 := ⟨j - 1, by omega⟩
   rw [Krylov.arnoldiBasis_mulVec_pow _ _ m hj, Krylov.aux_norm₂_single_last, inv_one, one_smul,
     Nat.add_sub_cancel]

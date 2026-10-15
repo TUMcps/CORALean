@@ -49,7 +49,7 @@ theorem LinearSysDT.aux_sum_fromBlocks {a b c d : Type} [Fintype a] [Fintype b] 
     (M₄ : Fin r → Fin r → Matrix b d ℝ) :
     ∑ i, ∑ j, w i j • fromBlocks (M₁ i j) (M₂ i j) (M₃ i j) (M₄ i j) =
       fromBlocks (∑ i, ∑ j, w i j • M₁ i j) (∑ i, ∑ j, w i j • M₂ i j)
-        (∑ i, ∑ j, w i j • M₃ i j) (∑ i, ∑ j, w i j • M₄ i j) := by
+        (∑ i, ∑ j, w i j • M₃ i j) (∑ i, ∑ j, w i j • M₄ i j) := by -- --- PROOF ---
   ext (x | x) (y | y) <;> simp [Matrix.sum_apply, fromBlocks]
 
 -- the same for columns
@@ -57,7 +57,7 @@ theorem LinearSysDT.aux_sum_fromCols {a c d : Type} [Fintype c] [Fintype d]
     (w : Fin r → Fin r → ℝ) (M₁ : Fin r → Fin r → Matrix a c ℝ)
     (M₂ : Fin r → Fin r → Matrix a d ℝ) :
     ∑ i, ∑ j, w i j • fromCols (M₁ i j) (M₂ i j) =
-      fromCols (∑ i, ∑ j, w i j • M₁ i j) (∑ i, ∑ j, w i j • M₂ i j) := by
+      fromCols (∑ i, ∑ j, w i j • M₁ i j) (∑ i, ∑ j, w i j • M₂ i j) := by -- --- PROOF ---
   ext x (y | y) <;> simp [Matrix.sum_apply]
 
 -- a double sum of `ρᵢρⱼ Kᵢ Mⱼ` factors

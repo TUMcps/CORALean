@@ -42,7 +42,7 @@ theorem STL.model_checking_complete_sampled {c : ℝ≥0} (hc : 0 < c) (s : STL.
       ∀ (T : Finset ℝ≥0) (R : ℝ≥0 → Set X), (∀ t, (R t).Nonempty) →
         ReachSequence.FinRep T R → ReachSequence.CDivisible c T →
           ((cnf.upsilon c).Sat R ↔
-            (s.toFormula c).HoldsOn (ReachSequence.traceSet R)) := by
+            (s.toFormula c).HoldsOn (ReachSequence.traceSet R)) := by -- --- PROOF ---
   refine ⟨s.toCNF true, s.nodup_toCNF true, fun T R hne hT hT' => ?_⟩
   rw [STL.CNF.upsilon_sound_complete hc hne hT hT' (s.toCNF true) (s.nodup_toCNF true)]
   exact forall₂_congr fun ξ _ => by simpa using STL.Samp.sat_toCNF c s true ξ

@@ -35,9 +35,9 @@ noncomputable def SyntaxTree.funHanTanh (int prev : Dom) : Outcome Dom :=
   -- apply inverse function, `atanh(±1) = ±Inf`
   let atanhE := fun (x : ℝ) =>
     (if x = -1 then ⊥ else if x = 1 then ⊤ else ↑(Real.artanh x) : EReal)
-  let temp₁ := atanhE (int.inf 0)
-  let temp₂ := atanhE (int.sup 0)
-  .ok (restrict prev (min temp₁ temp₂) (max temp₁ temp₂))
+  let preInf := atanhE (int.inf 0)
+  let preSup := atanhE (int.sup 0)
+  .ok (restrict prev (min preInf preSup) (max preInf preSup))
 
 end CORALean
 

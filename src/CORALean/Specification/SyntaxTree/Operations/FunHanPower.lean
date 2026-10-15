@@ -37,16 +37,16 @@ noncomputable def SyntaxTree.funHanPower (k : ℕ) (int prev : Dom) : Outcome Do
   else if k % 2 = 0 then
     -- even exponent: the argument has to be able to be nonnegative
     let step := fun (int : Dom) =>
-      let temp₁ := nthroot (int.inf 0) k
-      let temp₂ := nthroot (int.sup 0) k
-      Outcome.ok (Real.Interval.intersection prev (signedRoots prev temp₁ temp₂))
+      let preInf := nthroot (int.inf 0) k
+      let preSup := nthroot (int.sup 0) k
+      Outcome.ok (Real.Interval.intersection prev (signedRoots prev preInf preSup))
     if int.inf 0 < 0 then
       if int.sup 0 < 0 then .outOfDomain else step (interval 0 (int.sup 0))
     else step int
   else
-    let temp₁ := nthroot (int.inf 0) k
-    let temp₂ := nthroot (int.sup 0) k
-    .ok (Real.Interval.intersection prev (interval (min temp₁ temp₂) (max temp₁ temp₂)))
+    let preInf := nthroot (int.inf 0) k
+    let preSup := nthroot (int.sup 0) k
+    .ok (Real.Interval.intersection prev (interval (min preInf preSup) (max preInf preSup)))
 
 end CORALean
 

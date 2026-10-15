@@ -65,7 +65,8 @@ theorem ConZonotope.aux_row_split {h : ℕ} (a m r : Vec 𝕋 h) (δ ξ : Vec �
     (hξ : ∀ j, ξ j = toReal (m j) + toReal (r j) * δ j) :
     ∑ j, toReal (a j) * ξ j = ∑ j, toReal (a j) * toReal (m j)
       + ∑ j, toReal (mulDown (a j) (r j)) * δ j
-      + ∑ j, (toReal (a j) * toReal (r j) - toReal (mulDown (a j) (r j))) * δ j := by
+      + ∑ j, (toReal (a j) * toReal (r j) - toReal (mulDown (a j) (r j)))
+        * δ j := by -- --- PROOF ---
   rw [← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [hξ j]

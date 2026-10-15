@@ -58,7 +58,7 @@ theorem NeurNetContrSys.reachSet_subset_reach (sys : NeurNetContrSys (LinearSys 
     (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ} (R₀ : S n)
     {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π) (W : S 0) {i : ℕ} (hi : i ≤ H) :
     sys.reachSet π ((N : ℝ) * Δt) H R₀ W ((i : ℝ) * ((N : ℝ) * Δt))
-      ⊆ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by
+      ⊆ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
   rintro _ ⟨x, w, traj, rfl⟩
   exact sys.reach_outer o η N ho hΔt hε hπ traj i hi
 

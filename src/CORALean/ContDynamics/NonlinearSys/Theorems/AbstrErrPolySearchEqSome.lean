@@ -46,7 +46,7 @@ theorem NonlinearSys.abstrErrPolySearch_eq_some {sys : NonlinearSys n m}
     (h : sys.abstrErrPolySearch U A B xs us pZ Ba L hp hBa Ws fuel = some step) :
     ∃ k, PolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k) (hp k) (Ws k) ∧
       step.A = A ∧ step.B = B ∧ step.xs = xs ∧ step.us = us ∧
-      step.R = (pZ k).subsetAt (Ba k) ∧ step.L = L k ⊞ Ws k := by
+      step.R = (pZ k).subsetAt (Ba k) ∧ step.L = L k ⊞ Ws k := by -- --- PROOF ---
   unfold NonlinearSys.abstrErrPolySearch at h
   -- the search's `some` is a certified index, and the step is built from it alone
   obtain ⟨⟨k, hk⟩, -, rfl⟩ := Option.map_eq_some_iff.mp h

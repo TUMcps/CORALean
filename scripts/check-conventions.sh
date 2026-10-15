@@ -426,6 +426,28 @@ function strip(line,   out, i, c, n, k) {
   return out
 }
 
+# The first name in `code` that is `tmp` or `temp` or a variant of either (`tmp1`, `temp₂`, `temp_`,
+# `tmpX`, a primed `temp`), or "". A name is read whole: `template` and `temporal` are other words, and
+# a field access (`x.temp`) is not a binder of ours. Called on code with comments removed and
+# string literals blanked, so only code is read. Such a name can only be a binder (`let`, `have`,
+# `fun`, an `obtain`/`rcases` pattern, `intro`, an argument of a declaration) or a use of one.
+function tmpName(line,   rest, off, pre, nxt, nm, b3, p) {
+  rest = line; off = 0
+  while (match(rest, /(tmp|temp)([A-Z0-9_\x27][A-Za-z0-9_\x27]*)?/)) {
+    p = off + RSTART
+    nm = substr(rest, RSTART, RLENGTH)
+    pre = (p > 1) ? substr(line, p - 1, 1) : ""
+    b3 = (p > 3) ? substr(line, p - 3, 3) : ""
+    nxt = substr(rest, RSTART + RLENGTH)
+    while (nxt ~ /^\xe2\x82[\x80-\x89]/) { nm = nm substr(nxt, 1, 3); nxt = substr(nxt, 4) }
+    if (pre !~ /[A-Za-z0-9_.\x27]/ && (pre !~ /[\x80-\xff]/ || b3 == "⟨" || b3 == "⦃") &&
+        nxt !~ /^[A-Za-z0-9_\x27]/)
+      return nm
+    off += RSTART + RLENGTH - 1; rest = substr(rest, RSTART + RLENGTH)
+  }
+  return ""
+}
+
 function base(name,   k) {
   k = split(name, parts, "\\.")
   return parts[k]
@@ -896,6 +918,10 @@ FNR == 1 {
 
   depthBefore = depth
   code = strip(raw)
+  # No binder is called `temp` or `tmp` or a variant (#191): name the value for what it is.
+  noStr = code; gsub(/"([^"\\]|\\.)*"/, "\"\"", noStr)
+  if ((bad = tmpName(noStr)) != "")
+    say(FILENAME ":" FNR ": a binder called `" bad "` — name it for what it holds")
 
   if (depthBefore == 0 && opened != "") { blockKind = opened; blockStart = FNR }
   lineKind = blockKind
@@ -1487,9 +1513,10 @@ fi
 
 # The proof flag. A statement that wraps over several lines does not obviously
 # end, so a declaration's `:= by` carries `-- --- PROOF ---` once its proof runs
-# to five lines or more — the point where the seam stops being visible at a
-# glance. Required there and refused below it, so the flag always means the same
-# thing; and only on the declaration's own `:= by`, never on a nested
+# to five lines or more, or its signature does (from the `theorem`/`lemma` line to
+# the `:= by` line, inclusive) — the point where the seam stops being visible at a
+# glance. Required there and refused when both are shorter, so the flag always
+# means the same thing; and only on the declaration's own `:= by`, never on a nested
 # `have ... := by`, since a flag on every inner block marks nothing.
 out=$(printf '%s\n' "$files" | xargs awk -v MIN=5 '
 function isdecl(s) {
@@ -1502,6 +1529,7 @@ function checkfile(   i, j, k, n, last, end, s, tagged) {
     if (!isdecl(L[i])) { i++; continue }
     end = 0
     for (j = i; j <= nf && j - i < 30; j++) {
+      if (j > i && L[j] ~ /^[^ \t]/) break   # a signature runs on indented: the next declaration or banner ends it
       s = L[j]; sub(/[ \t]+$/, "", s)
       if (s ~ / where$/) break        # proved by a structure instance: no `:= by` of its own
       if (s ~ /:= by$/ || s ~ /:= by -- --- PROOF ---$/) { end = j; break }
@@ -1513,14 +1541,16 @@ function checkfile(   i, j, k, n, last, end, s, tagged) {
       k++
     }
     n = last - end        # the proof, not the blank lines between it and what follows
+    sig = end - i + 1     # the signature, `theorem` line to `:= by` line inclusive
     legit[end] = 1
     s = L[end]; sub(/[ \t]+$/, "", s)
     tagged = (s ~ /:= by -- --- PROOF ---$/)
-    if (n >= MIN && !tagged)
-      print fname ":" end ": a proof of " n " lines needs `-- --- PROOF ---` after its `:= by`" \
-            " — wrap the statement if the line has no room"
-    if (n < MIN && tagged)
-      print fname ":" end ": the proof flag marks a proof of " n " lines — it is for " MIN " or more"
+    if ((n >= MIN || sig >= MIN) && !tagged)
+      print fname ":" end ": a proof of " n " lines after a signature of " sig " lines needs" \
+            " `-- --- PROOF ---` after its `:= by` — wrap the statement if the line has no room"
+    if (n < MIN && sig < MIN && tagged)
+      print fname ":" end ": the proof flag marks a proof of " n " lines after a signature of " sig \
+            " lines — it is for " MIN " or more of either"
     i = k
   }
   for (i = 1; i <= nf; i++) {

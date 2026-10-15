@@ -28,9 +28,9 @@ namespace CORALean
 /-- `aaux_sinh_`: `sinh(int)` met with `intPrev`. -/
 noncomputable def SyntaxTree.funHanAsinh (int prev : Dom) : Outcome Dom :=
   -- apply inverse function
-  let temp₁ := Real.sinh (int.inf 0)
-  let temp₂ := Real.sinh (int.sup 0)
-  .ok (Real.Interval.intersection prev (interval (min temp₁ temp₂) (max temp₁ temp₂)))
+  let preInf := Real.sinh (int.inf 0)
+  let preSup := Real.sinh (int.sup 0)
+  .ok (Real.Interval.intersection prev (interval (min preInf preSup) (max preInf preSup)))
 
 end CORALean
 

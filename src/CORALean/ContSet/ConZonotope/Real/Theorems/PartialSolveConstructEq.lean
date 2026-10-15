@@ -46,7 +46,8 @@ theorem ConZonotope.aux_partialSolve_row {q h : ℕ} (A : Mat ℝ q h) (b : Vec 
     (j : Fin h) (β : Vec ℝ h) (i : Fin q) :
     ((A - ConZonotope.partialSolveΛA A r j * A) *ᵥ β) i
         = (b - ConZonotope.partialSolveΛA A r j *ᵥ b) i ↔
-      (A *ᵥ β) i - A i j * (A r j)⁻¹ * (A *ᵥ β) r = b i - A i j * (A r j)⁻¹ * b r := by
+      (A *ᵥ β) i - A i j * (A r j)⁻¹ * (A *ᵥ β) r
+        = b i - A i j * (A r j)⁻¹ * b r := by -- --- PROOF ---
   rw [Matrix.sub_mulVec, ← Matrix.mulVec_mulVec, Pi.sub_apply, Pi.sub_apply,
     ConZonotope.partialSolveΛA_mulVec, ConZonotope.partialSolveΛA_mulVec]
 

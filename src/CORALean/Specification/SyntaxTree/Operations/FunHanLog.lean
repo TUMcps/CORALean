@@ -27,9 +27,9 @@ namespace CORALean
 
 /-- `aux_log_`: `exp(int)` met with `intPrev`. -/
 noncomputable def SyntaxTree.funHanLog (int prev : Dom) : Outcome Dom :=
-  let temp₁ := Real.exp (int.inf 0)
-  let temp₂ := Real.exp (int.sup 0)
-  .ok (Real.Interval.intersection prev (interval (min temp₁ temp₂) (max temp₁ temp₂)))
+  let preInf := Real.exp (int.inf 0)
+  let preSup := Real.exp (int.sup 0)
+  .ok (Real.Interval.intersection prev (interval (min preInf preSup) (max preInf preSup)))
 
 end CORALean
 

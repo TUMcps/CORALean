@@ -34,7 +34,7 @@ theorem NeurNetContrSys.reachFloatChecked_eq_some
     (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[𝕋] n)
     (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋)
     {R : Zonotope (Vec 𝕋 n)} (h : sys.reachFloatChecked params options = some R) :
-    sys.reachFloat params options = R ∧ noNaN (𝕋 := 𝕋) R = true := by
+    sys.reachFloat params options = R ∧ noNaN (𝕋 := 𝕋) R = true := by -- --- PROOF ---
   obtain ⟨rfl, hx⟩ := ifNoNaN_eq_some h
   exact ⟨rfl, hx⟩
 

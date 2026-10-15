@@ -34,9 +34,9 @@ noncomputable def SyntaxTree.funHanSinhCora (int prev : Dom) : Outcome Dom :=
   -- intersection with valid domain
   let int := Real.Interval.intersection int (interval (-1) 1)
   -- apply inverse function
-  let temp₁ := Real.arsinh (int.inf 0)
-  let temp₂ := Real.arsinh (int.sup 0)
-  .ok (Real.Interval.intersection prev (interval (min temp₁ temp₂) (max temp₁ temp₂)))
+  let preInf := Real.arsinh (int.inf 0)
+  let preSup := Real.arsinh (int.sup 0)
+  .ok (Real.Interval.intersection prev (interval (min preInf preSup) (max preInf preSup)))
 
 end CORALean
 

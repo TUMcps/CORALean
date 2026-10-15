@@ -59,7 +59,7 @@ theorem dmdcAlgorithm_eq (xNext : Fin N → Vec ℝ n) (Vω : Mat ℝ (n + l) r)
     dmdcAlgorithm xNext Vω s Wω p Û W
       = (Ûᵀ * (dmdcBlocks (dmdCandidate (dmdcCols xNext) Vω s Wω p)).1 * Û,
          Ûᵀ * (dmdcBlocks (dmdCandidate (dmdcCols xNext) Vω s Wω p)).2,
-         (dmdcBlocks (dmdCandidate (dmdcCols xNext) Vω s Wω p)).1 * Û * W) := by
+         (dmdcBlocks (dmdCandidate (dmdcCols xNext) Vω s Wω p)).1 * Û * W) := by -- --- PROOF ---
   rw [dmdcBlocks_candidate]
   unfold dmdcAlgorithm
   simp only [Matrix.mul_assoc]

@@ -104,7 +104,7 @@ theorem aux_lmi_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ δ : ℝ) :
       fromBlocks (-(Θᵀ * Θ)) (replicateCol (Fin 1) (-(Θᵀ *ᵥ θ)))
           (replicateRow (Fin 1) (-(Θᵀ *ᵥ θ))) (of fun _ _ => ρ - θ ⬝ᵥ θ)
         + δ • fromBlocks (1 : Mat ℝ m m) (replicateCol (Fin 1) 0) (replicateRow (Fin 1) 0)
-          (of fun _ _ => -1) := by
+          (of fun _ _ => -1) := by -- --- PROOF ---
   ext (i | i) (j | j) <;>
     simp [fromBlocks, replicateCol, replicateRow, Fin.fin_one_eq_zero, mulVec_transpose] <;>
     ring

@@ -36,7 +36,7 @@ theorem NonlinDASys.consistentInitialState_spec (sys : NonlinDASys n p m)
     (u₀ : Vec ℝ m) (y₀ y' : Vec ℝ p)
     (h : sys.consistentInitialState F tol fuel x₀ u₀ y₀ = some y') :
     ∃ y Δ : Vec ℝ p, y' = y + Δ ∧ norm₂ Δ < tol ∧
-      (IsUnit (F x₀ y u₀).det → F x₀ y u₀ *ᵥ Δ = -(sys.g x₀ y u₀)) := by
+      (IsUnit (F x₀ y u₀).det → F x₀ y u₀ *ᵥ Δ = -(sys.g x₀ y u₀)) := by -- --- PROOF ---
   obtain ⟨y, hy, hs⟩ := newtonIterate_spec _ _ fuel y₀ y' h
   refine ⟨y, _, hy, of_decide_eq_true hs, fun hdet => ?_⟩
   -- `F (F⁻¹ v) = v` for an invertible `F`

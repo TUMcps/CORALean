@@ -54,7 +54,7 @@ theorem GNN.evalSteps_row_mask_uncertain (A : Mat ℝ N N) (U : Fin m → Fin N 
     (hXY : ∀ u ∈ GNN.ball (GNN.adjMax A U) v L, X u = Y u) :
     GNN.evalSteps (GNN.messagePassing (GNN.adjAt A U lam)) L W X v
       = GNN.evalSteps (GNN.mask S (GNN.messagePassing (GNN.adjAt A U lam)))
-          L W Y v := by
+          L W Y v := by -- --- PROOF ---
   have hmono : GNN.ball (GNN.adjAt A U lam) v L ⊆ GNN.ball (GNN.adjMax A U) v L :=
     GNN.ball_mono_of_support (fun i j => GNN.adjAt_support_subset A U hA hlam i j) v L
   exact GNN.evalSteps_row_mask (GNN.adjAt A U lam) v S L (hmono.trans hS) W X Y

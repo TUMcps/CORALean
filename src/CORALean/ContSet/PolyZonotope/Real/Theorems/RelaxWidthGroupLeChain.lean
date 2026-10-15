@@ -66,7 +66,8 @@ theorem PolyZonotope.relaxWidthGroup_le_chain (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin k)) (t : Fin d) (l : Fin k)
     (n : ℕ) (c : ℕ → Fin pZ.h) (hfst : c 0 = part.right l) (hlst : c n = part.left t) :
     pZ.relaxWidthGroup part t l
-      ≤ ∑ s ∈ Finset.range n, ∑ i, PolyZonotope.eDiff (pZ.E i (c s)) (pZ.E i (c (s + 1))) := by
+      ≤ ∑ s ∈ Finset.range n,
+          ∑ i, PolyZonotope.eDiff (pZ.E i (c s)) (pZ.E i (c (s + 1))) := by -- --- PROOF ---
   rw [PolyZonotope.relaxWidthGroup, ← hfst, ← hlst, Finset.sum_comm]
   exact Finset.sum_le_sum fun i _ => PolyZonotope.aux_eDiff_chain (fun s => pZ.E i (c s)) n
 

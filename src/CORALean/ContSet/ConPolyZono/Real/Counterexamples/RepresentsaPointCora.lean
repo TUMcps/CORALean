@@ -81,7 +81,7 @@ theorem ConPolyZono.representsa_point_cora_counterexample :
     (ConPolyZono.aux_infeasible.construct = ∅ ∧
         ConPolyZono.aux_infeasible.representsa_point = true) ∧
       (ConPolyZono.aux_pinned.construct = {0} ∧
-        ConPolyZono.aux_pinned.representsa_point = false) := by
+        ConPolyZono.aux_pinned.representsa_point = false) := by -- --- PROOF ---
   refine ⟨⟨ConPolyZono.aux_infeasible_construct, ?_⟩, ⟨ConPolyZono.aux_pinned_construct, ?_⟩⟩
   · simp [ConPolyZono.representsa_point, ConPolyZono.aux_infeasible]
   · simp [ConPolyZono.representsa_point, ConPolyZono.aux_pinned]

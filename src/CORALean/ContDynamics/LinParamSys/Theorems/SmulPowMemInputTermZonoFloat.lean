@@ -35,7 +35,7 @@ theorem LinParamSys.smul_pow_mem_inputTermZonoFloat
     (sys : LinParamSys (fun m n => Zonotope (Mat 𝕋 m n)) n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (i : ℕ) :
     (toReal r ^ (i + 1) / (Nat.factorial (i + 1) : ℝ)) • A ^ i
-      ∈ (sys.inputTermZonoFloat r i).construct := by
+      ∈ (sys.inputTermZonoFloat r i).construct := by -- --- PROOF ---
   show _ ∈ (Zonotope.matSmul _ _ (sys.A.matPow i)).materialiseMat.construct
   rw [Zonotope.materialiseMat_eq]
   exact Zonotope.matSmul_outer (MatExp.taylorCoeffBounds_mem hr (i + 1)).1

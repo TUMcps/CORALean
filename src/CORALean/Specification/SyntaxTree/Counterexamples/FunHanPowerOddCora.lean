@@ -51,10 +51,10 @@ namespace CORALean
 /-- The odd branch of `aux_power_` as printed, for an integer exponent. -/
 noncomputable def SyntaxTree.funHanPowerOddCora (e : ℤ) (int prev : Dom) : Outcome Dom :=
   -- apply inverse function
-  let temp₁ := nthrootZ (int.inf 0) e
-  let temp₂ := nthrootZ (int.sup 0) e
+  let preInf := nthrootZ (int.inf 0) e
+  let preSup := nthrootZ (int.sup 0) e
   -- intersect with previous value
-  .ok (Real.Interval.intersection prev (interval (min temp₁ temp₂) (max temp₁ temp₂)))
+  .ok (Real.Interval.intersection prev (interval (min preInf preSup) (max preInf preSup)))
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -244,7 +244,7 @@ theorem aux_sinByRegions_anti {lo hi yl yu : ℝ}
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu)
     (h1 : yl ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2))
     (h2 : yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2)) (h3 : yl ≤ yu) :
-    Real.sin '' Set.Icc lo hi = Set.Icc (Real.sin yu) (Real.sin yl) := by
+    Real.sin '' Set.Icc lo hi = Set.Icc (Real.sin yu) (Real.sin yl) := by -- --- PROOF ---
   have hab : yl ≤ yl + (hi - lo) := by linarith
   have hb := hb1 h3
   rw [hshift, Real.continuous_sin.continuousOn.image_Icc_of_antitoneOn hab

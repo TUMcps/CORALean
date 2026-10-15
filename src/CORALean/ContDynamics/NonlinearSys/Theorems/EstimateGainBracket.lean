@@ -92,7 +92,7 @@ theorem estimateGain_bracket {le : ℝ → ℝ → Bool} (ζδ lam rabs1 rabsOpt
       le (∏ j ∈ Finset.range scalings, interpGain ζδ b j) (lam * rabsOpt / rabs1) = false ∧
       a ≤ estimateGain le ζδ lam rabs1 rabsOpt scalings fuel ∧
       estimateGain le ζδ lam rabs1 rabsOpt scalings fuel ≤ b ∧
-      b - a = 1 / 2 ^ fuel := by
+      b - a = 1 / 2 ^ fuel := by -- --- PROOF ---
   obtain ⟨a, b, ha, hb, h1, h2, h3⟩ := aux_estimateGainSearch_bracket le
     (fun φ1 => ∏ j ∈ Finset.range scalings, interpGain ζδ φ1 j) (lam * rabsOpt / rabs1)
     fuel 0 1 (by norm_num) hlo hhi

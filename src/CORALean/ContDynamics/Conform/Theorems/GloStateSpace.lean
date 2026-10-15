@@ -81,7 +81,7 @@ theorem Conform.glo_stateSpace (x xb : ℕ → Vec ℝ n) (u ub : ℕ → Vec �
         + ∑ i ∈ Finset.range k, (C k * Conform.prodJac A k (k - i - 1) * B i) *ᵥ (u i - ub i)
         + D k *ᵥ (u k - ub k)
       + (C k *ᵥ ∑ j ∈ Finset.range k, Conform.prodJac A k (k - j - 1) *ᵥ lx j
-        + ly k) := by
+        + ly k) := by -- --- PROOF ---
   rw [hy k, aux_dev_unroll x xb u ub A B lx hx k]
   simp only [mulVec_add, mulVec_sum, ← mulVec_mulVec, Finset.sum_add_distrib]
   abel

@@ -222,7 +222,7 @@ theorem Krylov.aux_arnoldi_succ_fst {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) 
     (Krylov.arnoldi C v (k + 1)).1 (k + 1)
       = ‖(Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k) (Krylov.arnoldi C v k).1
           (k + 1)).1‖₂⁻¹ • (Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k)
-          (Krylov.arnoldi C v k).1 (k + 1)).1 := by
+          (Krylov.arnoldi C v k).1 (k + 1)).1 := by -- --- PROOF ---
   rw [Krylov.arnoldi.eq_2]
   exact Function.update_self ..
 
@@ -232,7 +232,7 @@ theorem Krylov.aux_arnoldi_succ_snd {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) 
       = if i ≤ k then (Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k)
           (Krylov.arnoldi C v k).1 (k + 1)).2 i
         else if i = k + 1 then ‖(Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k)
-          (Krylov.arnoldi C v k).1 (k + 1)).1‖₂ else 0 := by
+          (Krylov.arnoldi C v k).1 (k + 1)).1‖₂ else 0 := by -- --- PROOF ---
   rw [Krylov.arnoldi.eq_2]
   simp
 

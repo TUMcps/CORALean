@@ -89,7 +89,7 @@ theorem ConZonotope.tightenER_succ_refine {nc ng : ℕ} (A : Mat ℝ nc ng) (b :
       (ConZonotope.tightenER A b (k + 1)).1.sup j ≤ (ConZonotope.tightenER A b k).1.sup j ∧
       (ConZonotope.tightenER A b k).2.1 j ≤ (ConZonotope.tightenER A b (k + 1)).2.1 j ∧
       (ConZonotope.tightenER A b (k + 1)).2.2 j
-        ≤ (ConZonotope.tightenER A b k).2.2 j := by
+        ≤ (ConZonotope.tightenER A b k).2.2 j := by -- --- PROOF ---
   unfold ConZonotope.tightenER
   dsimp only
   rw [Function.iterate_succ_apply' _ (k + 1)]

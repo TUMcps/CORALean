@@ -68,7 +68,7 @@ theorem Layer.linearConZonotope_cora_counterexample :
     (∃ x e : ℝ, x ∈ Set.Icc (0 : ℝ) 0 ∧ e ∈ Set.Icc (-1 : ℝ) 1 ∧ (1 : ℝ) = 1 * x + 0 + e) ∧
       ∀ ξ ∈ Set.Icc (-1 : ℝ) 1,
         (1 : ℝ) ≠ Layer.linearConZonotopeCenterCora 1 0 0
-          + Layer.linearConZonotopeGeneratorCora 1 0 * ξ := by
+          + Layer.linearConZonotopeGeneratorCora 1 0 * ξ := by -- --- PROOF ---
   refine ⟨⟨0, 1, by simp, by simp, by norm_num⟩, fun ξ _ => ?_⟩
   simp [Layer.linearConZonotopeCenterCora, Layer.linearConZonotopeGeneratorCora]
 

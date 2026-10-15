@@ -41,7 +41,7 @@ theorem NonlinearSysDT.exactUncertainSet_subset {n nw nv p : ℕ} (sys : Nonline
     (hbar : Set.image2 sys.f Xt W ⊆ Xbar)
     (he : NonlinearSysDT.consistentSet g V (y (k + 1)) ⊆ Xe)
     (hint : Xbar ∩ Xe ⊆ Xt') :
-    sys.exactUncertainSet g W V X₀ y (k + 1) ⊆ Xt' := by
+    sys.exactUncertainSet g W V X₀ y (k + 1) ⊆ Xt' := by -- --- PROOF ---
   -- `X_{k+1} = f(X_k, W) ∩ X_y ⊆ f(X̃_k, W) ∩ X^e ⊆ X̄ ∩ X^e ⊆ X̃_{k+1}`
   rw [NonlinearSysDT.exactUncertainSet_succ]
   rintro x ⟨⟨a, ha, w, hw, rfl⟩, hx⟩

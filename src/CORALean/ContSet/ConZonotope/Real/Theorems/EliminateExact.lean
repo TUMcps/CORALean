@@ -278,7 +278,8 @@ theorem ConZonotope.eliminate_exact_of_dependClosed {ng nc : ℕ} (c : α) (G : 
               (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ∧
           max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
               (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) :
-    (ConZonotope.ofMat c G A b).construct = (ConZonotope.eliminate c G A b r j).construct := by
+    (ConZonotope.ofMat c G A b).construct
+      = (ConZonotope.eliminate c G A b r j).construct := by -- --- PROOF ---
   exact Set.Subset.antisymm (ConZonotope.aux_eliminate_subset c G A b r j hAj)
     (ConZonotope.aux_eliminate_superset c G A b r j hAj S hjS hrS hclosed hR)
 

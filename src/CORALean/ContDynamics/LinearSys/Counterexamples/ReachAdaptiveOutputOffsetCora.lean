@@ -59,7 +59,7 @@ theorem LinearSys.adaptiveVTransCora_counterexample :
       LinearSys.adaptiveVTransCora LinearSys.witnessVVec 0 = 1 ∧
       (0 : ℝ) ∉ ({0 + LinearSys.adaptiveVTransCora LinearSys.witnessVVec 0} : Set ℝ) ∧
       LinearSys.pieceOffset LinearSys.witnessVVec 1 = 1 ∧
-      LinearSys.adaptiveVTransCora LinearSys.witnessVVec 1 = 0 := by
+      LinearSys.adaptiveVTransCora LinearSys.witnessVVec 1 = 0 := by -- --- PROOF ---
   simp [LinearSys.pieceOffset, LinearSys.adaptiveVTransCora, LinearSys.witnessVVec]
 
 end CORALean

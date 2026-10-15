@@ -59,7 +59,7 @@ theorem LinearSys.maxBackReachRunFloat_inner (sys : LinearSys 𝕋 n) (Bx : Inte
     ∃ ηr, sys.reachOrderFloat t₀ t₀ η = some ηr ∧ sys.reachOrderFloat Δt Δt η = some ηr ∧
       s.R ⊆ construct
         (sys.maxBackReachRun ρ P₁r P₂r Ur W₀r Zwr (toReal t₀) (toReal Δt) ηr
-          k).R := by
+          k).R := by -- --- PROOF ---
   obtain ⟨ηr, h₀, h₁, henc⟩ := sys.maxBackReachRunFloat_encloses Bx P₁ P₂ ρ P₁r P₂r Ur W₀r Zwr
     ht₀ hΔt hU0 hU hWE hW₀r hZw hP₁ hP₂ hker₁ hker₂ hkerr₁ hkerr₂ k h
   exact ⟨ηr, h₀, h₁, henc.R⟩

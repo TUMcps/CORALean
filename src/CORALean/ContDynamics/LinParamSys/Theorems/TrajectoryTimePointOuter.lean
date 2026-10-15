@@ -45,7 +45,7 @@ theorem LinParamSys.CanonicalTrajectory.timePoint_outer {sys : LinParamSys ℐ n
     (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) (η : ℕ)
     (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) :
     x t ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η) R₀) := by
+      (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η) R₀) := by -- --- PROOF ---
   obtain ⟨Φ, hΦ, hx⟩ := traj.exists_mem_expIntervalEnclosure ht hT hu η hε
   rw [hx]
   exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion hΦ (Set.mem_image_of_mem _ traj.init))

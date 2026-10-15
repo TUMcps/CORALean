@@ -38,7 +38,7 @@ theorem Taylm.mmul_outer {a b c : ℕ} {A : Fin a → Fin b → Taylm 𝕋 n}
     (hA : ∀ i k, (A i k).Encloses (F i k)) (hB : ∀ k j, (B k j).Encloses (G k j)) (i : Fin a)
     (j : Fin c) :
     (Taylm.mmul A B i j).Encloses fun t =>
-      (Matrix.of (fun i k => F i k t) * Matrix.of (fun k j => G k j t)) i j := by
+      (Matrix.of (fun i k => F i k t) * Matrix.of (fun k j => G k j t)) i j := by -- --- PROOF ---
   simp only [Matrix.mul_apply, Matrix.of_apply]
   exact Taylm.sum_outer fun k => Taylm.times_outer (hA i k) (hB k j)
 

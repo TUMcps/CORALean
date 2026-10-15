@@ -63,7 +63,7 @@ theorem aux_step_frob (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype 
       = ∑ x, (((sys.C * sys.A ^ k) *ᵥ GX x) ⬝ᵥ (P *ᵥ ((sys.C * sys.A ^ k) *ᵥ GX x))) * αX x ^ 2
         + ∑ r, (∑ i : Fin k, ((sys.C * sys.A ^ (i : ℕ)) *ᵥ GW r)
             ⬝ᵥ (P *ᵥ ((sys.C * sys.A ^ (i : ℕ)) *ᵥ GW r))) * αW r ^ 2
-        + ∑ l, (GV l ⬝ᵥ (P *ᵥ GV l)) * αV l ^ 2 := by
+        + ∑ l, (GV l ⬝ᵥ (P *ᵥ GV l)) * αV l ^ 2 := by -- --- PROOF ---
   rw [aux_frobNormSq_smul]
   simp only [Fintype.sum_sum_type, Sum.elim_inl, Sum.elim_inr, Fintype.sum_prod_type,
     Finset.sum_mul]

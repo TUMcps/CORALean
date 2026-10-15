@@ -83,7 +83,7 @@ theorem aux_stripsUpTo_succ (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n
     aux_stripsUpTo C φ y Λ Z (s + 1)
       = (aux_stripsUpTo C φ y Λ Z s).intersectStrip (Matrix.of fun _ => C ⟨s, hs⟩ : Mat ℝ 1 n)
         (fun _ => φ ⟨s, hs⟩) (fun _ => y ⟨s, hs⟩)
-        (Matrix.of fun r _ => Λ r ⟨s, hs⟩ : Mat ℝ n 1) := by
+        (Matrix.of fun r _ => Λ r ⟨s, hs⟩ : Mat ℝ n 1) := by -- --- PROOF ---
   unfold aux_stripsUpTo
   rw [List.take_add_one, List.foldl_append]
   simp [List.getElem?_eq_getElem (by simpa using hs : s < (List.finRange p).length)]

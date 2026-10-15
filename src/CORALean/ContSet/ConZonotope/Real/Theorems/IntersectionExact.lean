@@ -61,7 +61,7 @@ theorem ConZonotope.aux_mulVec_agree (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
     (β : Fin (cZ₁.h + cZ₂.h) → ℝ) (i : Fin n) :
     (ConZonotope.agreeMat cZ₁ cZ₂ *ᵥ β) i
       = (∑ j, cZ₁.G j i * β (Fin.castAdd cZ₂.h j))
-        - ∑ j, cZ₂.G j i * β (Fin.natAdd cZ₁.h j) := by
+        - ∑ j, cZ₂.G j i * β (Fin.natAdd cZ₁.h j) := by -- --- PROOF ---
   show ∑ j : Fin (cZ₁.h + cZ₂.h), ConZonotope.agreeMat cZ₁ cZ₂ i j * β j = _
   rw [Fin.sum_univ_add]
   simp only [ConZonotope.agreeMat, Fin.append_left, Fin.append_right, neg_mul]

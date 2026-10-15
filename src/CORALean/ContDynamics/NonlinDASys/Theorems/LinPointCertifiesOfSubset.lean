@@ -44,7 +44,7 @@ theorem NonlinDASys.LinPoint.certifies_of_subset (T : NonlinDASys.LinPoint n p m
     (h : ({ T with Verror := V, Verror_y := Va } : NonlinDASys.LinPoint n p m).Certifies
       sys U Δt q x y u) :
     ({ T with Verror := V', Verror_y := Va' } : NonlinDASys.LinPoint n p m).Certifies
-      sys U Δt q x y u := by
+      sys U Δt q x y u := by -- --- PROOF ---
   obtain ⟨F, Rz, hF, hR, hL, hLa, hus, h0, hε⟩ := h
   exact ⟨F, Rz, hF, hR, fun x' y' u' hz hg => hV (hL x' y' u' hz hg),
     fun x' y' u' hz hg => hVa (hLa x' y' u' hz hg), hus, hV h0, hε⟩

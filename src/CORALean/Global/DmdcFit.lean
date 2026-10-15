@@ -55,7 +55,7 @@ theorem dmdcKnownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
     (hX : dmdcCols x = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1)
     (hs : ∀ i, s i ≠ 0) (hdata : ∀ k, xNext k = A' *ᵥ x k + B *ᵥ u k) :
     dmdCandidate (dmdcCols xNext - B * dmdcCols u) V s W r * dmdcCols x
-      = dmdcCols xNext - B * dmdcCols u := by
+      = dmdcCols xNext - B * dmdcCols u := by -- --- PROOF ---
   have h := (dmdc_data_sub x xNext u A' B).mp ((dmdc_data_matrix x xNext u A' B).mp hdata)
   exact dmdCandidate_mul_eq (dmdcCols x) _ V s W hX hV hW hs A' h
 
@@ -124,7 +124,7 @@ theorem dmdcBlocks_candidate (X2 : Mat ℝ n N) (V : Mat ℝ (n + l) r) (s : Fin
       = (X2 * W * Matrix.diagonal (fun i : Fin r => if (i : ℕ) < q then (s i)⁻¹ else 0)
           * (Matrix.of fun a j => V (Fin.castAdd l a) j)ᵀ,
          X2 * W * Matrix.diagonal (fun i : Fin r => if (i : ℕ) < q then (s i)⁻¹ else 0)
-          * (Matrix.of fun b j => V (Fin.natAdd n b) j)ᵀ) := by
+          * (Matrix.of fun b j => V (Fin.natAdd n b) j)ᵀ) := by -- --- PROOF ---
   unfold dmdCandidate dmdcBlocks
   ext i j <;> simp [Matrix.mul_apply, Matrix.transpose_apply]
 

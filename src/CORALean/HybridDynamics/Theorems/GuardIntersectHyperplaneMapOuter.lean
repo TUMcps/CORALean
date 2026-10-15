@@ -135,7 +135,7 @@ theorem aux_hpMap_smul_mem_mtimes {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) {Z : 
     s • v ∈ (Zonotope.mtimesIntervalMat ⟨Matrix.of fun j k =>
       Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b,
       Matrix.of fun j k => Interval.mulHi ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b⟩
-        Z).construct := by
+        Z).construct := by -- --- PROOF ---
   have h := Zonotope.mtimesIntervalMat_outer _ Z
     (Set.mem_biUnion (aux_hpMap_smul_one_mem hs) (Set.mem_image_of_mem _ hv))
   rw [Matrix.smul_mulVec, Matrix.one_mulVec] at h

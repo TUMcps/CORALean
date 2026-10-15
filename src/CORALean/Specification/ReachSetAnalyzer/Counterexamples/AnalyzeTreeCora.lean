@@ -85,7 +85,7 @@ theorem ReachSetAnalyzer.analyzeTreeCora_counterexample :
     ReachSetAnalyzer.analyzeTreeCora ReachSetAnalyzer.aux_forkChildren
         ReachSetAnalyzer.aux_visit some 4 0 [] = some [[1, 2], [1, 2]] ∧
       ReachSetAnalyzer.analyzeTree ReachSetAnalyzer.aux_forkChildren
-        ReachSetAnalyzer.aux_visit some 4 0 [] = some [[1, 2], [1, 3]] := by
+        ReachSetAnalyzer.aux_visit some 4 0 [] = some [[1, 2], [1, 3]] := by -- --- PROOF ---
   constructor <;> rfl
 
 end CORALean

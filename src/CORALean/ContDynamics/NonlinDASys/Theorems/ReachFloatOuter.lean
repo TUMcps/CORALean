@@ -42,7 +42,7 @@ theorem NonlinDASys.reachFloat_outer {sys : NonlinDASys n p m} (red : sys.Reduce
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           params.U.construct x y u →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by
+          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
   obtain ⟨N, hN, hlen, hout⟩ := h.reachFloat_outer hR
   exact ⟨N, hN, hlen, fun {x y u} traj => hout (traj.toNonlinearSys red)⟩
 

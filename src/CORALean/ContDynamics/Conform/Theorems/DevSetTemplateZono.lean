@@ -54,7 +54,7 @@ theorem Conform.Plant.devSet_templateZono (sys : Conform.Plant n p q) {ιX ιW �
           ((sys.C * sys.A ^ k) *ᵥ cX + ∑ i : Fin k, (sys.C * sys.A ^ (i : ℕ)) *ᵥ cW + cV)
           (Sum.elim (Sum.elim (fun j => (sys.C * sys.A ^ k) *ᵥ GX j)
             (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2)) GV)
-          (Sum.elim (Sum.elim αX fun r => αW r.2) αV) := by
+          (Sum.elim (Sum.elim αX fun r => αW r.2) αV) := by -- --- PROOF ---
   unfold Conform.Plant.devSet
   simp only [Conform.image_templateZono]
   rw [Conform.sum_templateZono, Conform.templateZono_add, Conform.templateZono_add]

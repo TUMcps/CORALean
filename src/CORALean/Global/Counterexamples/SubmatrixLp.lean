@@ -75,7 +75,7 @@ theorem subLp16_counterexample :
     let μ : ℝ := 1 / 100
     let M : ℝ := ∑ i, ∑ j, A i j
     0 < μ ∧ (∀ k l, ∑ i ∈ univ.erase k, ∑ j, x i j * |A i l| ≤ M + (|A k l| + μ - M) * x k l) ∧
-      (A.submatrix id id).det = 0 := by
+      (A.submatrix id id).det = 0 := by -- --- PROOF ---
   intro A x μ M
   refine ⟨by norm_num [μ], fun k l => ?_, by simp [A, det_fin_two]⟩
   fin_cases k <;> fin_cases l <;>

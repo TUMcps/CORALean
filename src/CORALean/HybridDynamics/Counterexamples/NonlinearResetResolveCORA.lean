@@ -66,7 +66,7 @@ theorem NonlinearReset.resolveCORA_swap :
     ((aux_reset.resolve aux_out aux_stateBinds aux_binds).f (fun _ => 0)
       (fun i => (i : ℝ)) 0 = 1) ∧
     ((aux_reset.resolveCORA aux_out aux_stateBinds aux_binds).f (fun _ => 0)
-      (fun i => (i : ℝ)) 0 = 0) := by
+      (fun i => (i : ℝ)) 0 = 0) := by -- --- PROOF ---
   constructor
   · simp [NonlinearReset.resolve, aux_reset, aux_binds]
   · simp [NonlinearReset.resolveCORA, aux_reset, aux_binds, aux_rank, aux_globalColumns]

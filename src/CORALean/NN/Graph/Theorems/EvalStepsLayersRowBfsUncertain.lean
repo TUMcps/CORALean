@@ -50,7 +50,7 @@ theorem GNN.evalStepsLayers_row_bfs_uncertain {N F m : ℕ} (A : Mat ℝ N N)
         = GNN.evalStepsLayers
             ((GNN.messagePassing ((GNN.adjAt A U lam).submatrix κ κ)).submatrix φ φ) L
             g ((X.submatrix κ id).submatrix φ id)
-            (GNN.ballEnumIdx (GNN.adjAt A U lam) v L) := by
+            (GNN.ballEnumIdx (GNN.adjAt A U lam) v L) := by -- --- PROOF ---
   rw [GNN.bfs_visited] at hκ
   exact GNN.evalStepsLayers_row_ball_of_adjacency_uncertain A U hA hSymm hlam v L κ hinj hκ g X
 

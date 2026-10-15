@@ -53,7 +53,7 @@ theorem LinearSys.exists_autoStep_autoRun (sys : LinearSys 𝕋 n) {le : ℝ →
     (hζ0 : 0 ≤ ζ) (hζ1 : ζ < 1) (hηmax : 1 ≤ ηmax)
     (hrun : sys.autoRun le X₀ U tend εmax ζ ηmax fuel k = some s) (hlt : s.t < tend) :
     ∃ (fuel' : ℕ) (r : LinearSys.AutoState n × Zonotope (Vec ℝ n)),
-      sys.autoStep le X₀ U tend εmax ζ ηmax fuel' s = some r := by
+      sys.autoStep le X₀ U tend εmax ζ ηmax fuel' s = some r := by -- --- PROOF ---
   obtain ⟨-, hΔt, hεa, hεr⟩ := sys.autoRun_budget hle' X₀ U htpos ηmax fuel k s hrun
   exact sys.exists_autoStep hle X₀ U s hn hlt htpos hεmax hζ0 hζ1 hεa hεr hΔt hηmax
 

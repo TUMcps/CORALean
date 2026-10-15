@@ -50,7 +50,7 @@ theorem meanValueAE_outer {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ
     (hd : ∀ i, ∀ y ∈ Icc lo hi, (∀ j, j < i → y j = (lo j + hi j) / 2) →
       |fderiv ℝ f y (Pi.single i 1)| ≤ dhi i) :
     f '' Icc lo hi ⊆ Icc (f0lo - ∑ i, dhi i * ((hi i - lo i) / 2))
-      (f0hi + ∑ i, dhi i * ((hi i - lo i) / 2)) := by
+      (f0hi + ∑ i, dhi i * ((hi i - lo i) / 2)) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   have := abs_le.mp (abs_sub_le_sum_of_abs_partial_le hf dhi hd hx)
   exact ⟨by linarith [hf0.1], by linarith [hf0.2]⟩

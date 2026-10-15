@@ -51,7 +51,7 @@ theorem Zonotope.step_subset_closedBall_of_reduceBoxOrder (A : Mat ℝ n n) (hn 
     (Zonotope.reduce (Zonotope.plus (Zonotope.mtimes A Z) U)
         (Zonotope.reduceBoxOrder (Zonotope.plus (Zonotope.mtimes A Z) U)
           (Metric.closedBall (0 : Vec ℝ n) ε))).construct
-      ⊆ Metric.closedBall (0 : Vec ℝ n) (‖A‖ * r + rU + ε) := by
+      ⊆ Metric.closedBall (0 : Vec ℝ n) (‖A‖ * r + rU + ε) := by -- --- PROOF ---
   apply Zonotope.step_subset_closedBall A hZ hU
   exact Zonotope.reduceBoxOrder_spec (Zonotope.plus (Zonotope.mtimes A Z) U) hn
     (Metric.mem_closedBall_self hε)
