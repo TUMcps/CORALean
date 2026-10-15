@@ -424,7 +424,6 @@ Krylov.arnoldi  real-layer: the Arnoldi iteration over ℝ (Euclidean norm and d
 Krylov.arnoldiBasis  real-layer: the basis V of the Arnoldi iteration over ℝ, read off `Krylov.arnoldi`; no float Krylov reachability yet
 Krylov.arnoldiHessenberg  real-layer: the Hessenberg matrix H of the Arnoldi iteration over ℝ, read off `Krylov.arnoldi`; no float Krylov reachability yet
 STL.CNF.upsilon  real-layer: time is `ℝ≥0` and `X_{c/2}` divides by two, which `NNReal` cannot compute; the transformation acts on reach sequences indexed by real time
-StarSet.rowBounds  real-layer: the star set of CORA's constrained-zonotope propagation is over ℝ, no scalar-generic form yet; bounds of a neuron over the factor box
 StarSet.reluNeuron  real-layer: one ReLU neuron step on the real star set, ℝ-only for the same reason
 Layer.reluStar  real-layer: the ReLU layer on the real star set, a loop of the neuron step, ℝ-only for the same reason
 IntervalChain.fwd  real-layer: the interval forward pass of linear and activation layers over ℝ, whose derivative the backpropagation is the adjoint of

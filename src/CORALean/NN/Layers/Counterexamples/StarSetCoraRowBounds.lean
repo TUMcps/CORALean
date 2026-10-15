@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Definitions.StarSet
+public import CORALean.ContSet.StarSet.Real.Instances
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.NormNum

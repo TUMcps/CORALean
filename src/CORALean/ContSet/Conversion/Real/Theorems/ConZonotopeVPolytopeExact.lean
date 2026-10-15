@@ -30,6 +30,15 @@ those points, the map being affine and the weights summing to one.
 Costs whatever the coefficient domain's enumeration costs, which is `2^m` in its
 constraint count. Every cheaper route out of a constrained zonotope drops the
 constraints first and pays for it in precision instead.
+
+This is the equivalence of polytopes and constrained zonotopes of
+[1, Fig. 1 (Polytopes ↔ Constrained Zonotopes)].
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5

@@ -18,6 +18,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 CORA's `taylm(polyZonotope)`: one variable per dependent factor and one per independent
 generator (CORA's `blkdiag(E, I)`), coordinate `i` the polynomial `cᵢ + Σⱼ Gⱼᵢ αᴱʲ + Σₗ GIₗᵢ βₗ`,
 no remainder. Exact: the box of variables is the box of factors.
+
+This is the equivalence of polynomial zonotopes and Taylor models of
+[1, Fig. 1 (Polynomial Zonotopes ↔ Taylor Models)].
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -27,10 +27,16 @@ constrained zonotope `{c + Gξ | ‖ξ‖∞ ≤ 1, ξ ∈ P}` is the projection
 The constraint on the coefficients is any halfspace description, of which [1]'s `Aξ = b` is
 the equality-only case, so the theorem covers [1]'s Definition 3 and more.
 
+This is the equivalence of polytopes and constrained zonotopes of
+[2, Fig. 1 (Polytopes ↔ Constrained Zonotopes)].
+
 ## References
 
 * [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
       A new tool for set-based estimation and fault detection". Automatica, 69:126-136, 2016.
+* [2] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5.5

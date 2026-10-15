@@ -122,11 +122,9 @@ public import CORALean.NN.Layers.Operations.SquareRelaxation
 public import CORALean.NN.Layers.Operations.SquareSlope
 public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
 public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
-public import CORALean.NN.Layers.Operations.StarSetFloatContSet
+public import CORALean.NN.Layers.Operations.StarSetFloatReluError
 public import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
-public import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
 public import CORALean.NN.Layers.Operations.StarSetReluNeuron
-public import CORALean.NN.Layers.Operations.StarSetRowBounds
 public import CORALean.NN.Layers.Operations.SumOffUp
 public import CORALean.NN.Layers.Operations.Tanh
 public import CORALean.NN.Layers.Operations.TanhPolyRelaxation

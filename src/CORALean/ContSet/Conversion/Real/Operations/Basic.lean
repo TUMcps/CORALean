@@ -21,6 +21,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
@@ -34,6 +35,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependen
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InfExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
+public import CORALean.ContSet.SupportFunction.Real.SupportFunction
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 public import CORALean.ContSet.Taylm.Real.Taylm
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
@@ -126,6 +128,17 @@ noncomputable def Capsule.zonotope (C : Capsule n) : Zonotope (Vec ℝ n) :=
 /-- A constrained polynomial zonotope as a box -/
 def ConPolyZono.interval (cPZ : ConPolyZono (Vec ℝ n)) : Interval (Vec ℝ n) :=
   cPZ.polyZonotope.interval
+
+
+-- ===============================  `Ellipsoid.supportFunction`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- An ellipsoid as a support function, in closed form: `ℓ c + ‖Gᵀ ℓ‖₂` -/
+noncomputable def Ellipsoid.supportFunction (E : Ellipsoid n) : SupportFunction (Vec ℝ n) where
+  h ℓ := ((E.supportBound ℓ).val : EReal)
 
 end
 

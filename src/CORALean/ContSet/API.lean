@@ -15,6 +15,8 @@ public import CORALean.ContSet.ZonoBundle.API
 public import CORALean.ContSet.SpectraShadow.API
 public import CORALean.ContSet.Ellipsoid.API
 public import CORALean.ContSet.Capsule.API
+public import CORALean.ContSet.StarSet.API
+public import CORALean.ContSet.SupportFunction.API
 public import CORALean.ContSet.LevelSet.API
 public import CORALean.ContSet.HPolytope.API
 public import CORALean.ContSet.VPolytope.API

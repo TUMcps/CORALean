@@ -56,6 +56,9 @@ src/CORALean/
                    Real/ and Float/
     Capsule/       a segment thickened by a ball, for an obstacle rather than a
                    reachable set: Real/ and Float/, being closed under almost nothing
+    StarSet/       the star set `{c + G α | C α ≤ d, l ≤ α ≤ u}` of CORA's network
+                   evaluation: a bounded polytope exactly, the form a layer steps
+                   through; Real/ and Float/
     Taylm/         a polynomial over `[-1, 1]ⁿ` and a remainder interval, enclosing
                    a function rather than describing a set; Real/ and Float/
     Conversion/    what an ordered pair of representations builds, in `Operations/`, one

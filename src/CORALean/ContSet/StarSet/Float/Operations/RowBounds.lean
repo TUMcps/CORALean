@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Operations.MulHi
 public import CORALean.ContSet.Interval.Float.Operations.MulLo
-public import CORALean.NN.Layers.Operations.StarSetFloatContSet
+public import CORALean.ContSet.StarSet.Float.StarSet
 
 @[expose] public section
 

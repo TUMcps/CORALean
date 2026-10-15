@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Layers.Operations.ReluStarFloat
 public import CORALean.NN.Layers.Theorems.StarSetFloatReluNeuronOuter
-public import CORALean.NN.Layers.Theorems.StarSetFloatRowBoundsMem
+public import CORALean.ContSet.StarSet.Float.Theorems.RowBoundsMem
 
 @[expose] public section
 

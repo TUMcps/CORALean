@@ -42,8 +42,6 @@ public import CORALean.NN.Layers.Definitions.SoftmaxLayer
 public import CORALean.NN.Layers.Definitions.Softplus
 public import CORALean.NN.Layers.Definitions.SoftplusBox
 public import CORALean.NN.Layers.Definitions.SoundLayer
-public import CORALean.NN.Layers.Definitions.StarSet
-public import CORALean.NN.Layers.Definitions.StarSetFloat
 public import CORALean.NN.Layers.Definitions.TanhLayer
 public import CORALean.NN.Layers.Definitions.TanhRelaxation
 public import CORALean.NN.Layers.Definitions.RootRelaxation
