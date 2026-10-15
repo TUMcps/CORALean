@@ -6,9 +6,9 @@ public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.ConZonotope.Float.Operations.Plus
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
 
 @[expose] public section
 
@@ -17,7 +17,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
 
 The zonotope's argument with one step added, and that step costs nothing: the
 concatenated coefficients satisfy the padded constraints exactly when each half
-satisfies its own, which is `mem_intersection_iff` composed with `blockLeft_append`. Only
+satisfies its own, which is `mem_stackRows_nominal_iff` composed with `blockLeft_append`. Only
 the centre rounds, and its residual is what the box absorbs.
 -/
 
@@ -63,8 +63,8 @@ theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n
     · rw [Fin.append_right]; exact hβ₂ l
   · -- through `mpr` rather than `rw`: the goal spells the count as
     -- `(cZ₁.plus cZ₂).h`, which is the padding lemma's `cZ₁.h + cZ₂.h` only up to defeq
-    refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_padLeft_iff.mpr ?_,
-      HPolytope.mem_padRight_iff.mpr ?_⟩
+    refine HPolytope.mem_stackRows_nominal_iff.mpr ⟨HPolytope.mem_padLeft_nominal_iff.mpr ?_,
+      HPolytope.mem_padRight_nominal_iff.mpr ?_⟩
     · rw [blockLeft_append]; exact hP₁
     · rw [blockRight_append]; exact hP₂
   · exact Interval.sub_mem_residual fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩

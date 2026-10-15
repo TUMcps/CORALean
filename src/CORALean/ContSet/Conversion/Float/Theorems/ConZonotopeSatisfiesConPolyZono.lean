@@ -14,9 +14,9 @@ public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPol
 # A constrained zonotope as a constrained polynomial zonotope, over a: `satisfies_conPolyZono`
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,9 +35,9 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- the polytope's rows read as a constraint system over the factors themselves
 theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {β : Vec ℝ cZ.h}
-    (hβ : ∀ j, |β j| ≤ 1) (hP : β ∈ cZ.P.construct) :
+    (hβ : ∀ j, |β j| ≤ 1) (hP : β ∈ cZ.P.nominal.construct) :
     cZ.conPolyZono.satisfies β := by -- --- PROOF ---
-  obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hP
+  obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hP
   have hm : Real.PolyZonotope.monomial (Real.PolyZonotope.identE cZ.h) β = β :=
     funext fun j => Real.PolyZonotope.monomial_identE β j
   have hlin : ∀ i : Fin cZ.P.m,
@@ -72,7 +72,7 @@ theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {
     · rw [hEq i]
       simp only [ConZonotope.conB, Interval.nominal, RealImage.realImage, toRealVec,
         Fin.append_right]
-      exact heq i
+      exact ⟨(heq i).ge, (heq i).le⟩
   show Real.ConPolyZono.holds (toRealMat (ConZonotope.conA cZ)) (ConZonotope.conB cZ).nominal
     (Real.PolyZonotope.identE cZ.h) β
   intro i

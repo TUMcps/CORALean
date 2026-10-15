@@ -27,9 +27,9 @@ The lines are those of [1, Alg. 3].
       Automatic Control, 71(1):352-367, 2026.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -57,6 +57,7 @@ theorem LinearSys.maxBackReachRunFloat_encloses (sys : LinearSys 𝕋 n) (Bx : I
     (hZw : ∀ (tLo tHi : 𝕋) (t : ℝ), toReal tLo ≤ t → t ≤ toReal tHi →
       construct (Zwr t) ⊆ (Zw tLo tHi).construct)
     (hP₁ : P₁.construct ⊆ P₁r.construct) (hP₂ : P₂.construct ⊆ P₂r.construct)
+    (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.construct) (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.construct)
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
     (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
@@ -84,8 +85,8 @@ theorem LinearSys.maxBackReachRunFloat_encloses (sys : LinearSys 𝕋 n) (Bx : I
     obtain ⟨sk, hsk, hstep⟩ := Option.bind_eq_some_iff.mp h
     obtain ⟨ηr, hη₀, hη, hsr⟩ := ih hsk
     exact ⟨ηr, hη₀, hη, sys.maxBackReachStepFloat_encloses Bx P₁ P₂ hstep hη ρ P₁r P₂r Ur W₀r
-      Zwr _ hsr hΔt hU0 hU hWE hW₀r (hZw _ _ _ hsr.tLo_le hsr.le_tHi) hP₁ hP₂ hker₁ hker₂
-      hkerr₁ hkerr₂⟩
+      Zwr _ hsr hΔt hU0 hU hWE hW₀r (hZw _ _ _ hsr.tLo_le hsr.le_tHi) hP₁ hP₂ hP₁0 hP₂0 hker₁
+      hker₂ hkerr₁ hkerr₂⟩
 
 end CORALean
 

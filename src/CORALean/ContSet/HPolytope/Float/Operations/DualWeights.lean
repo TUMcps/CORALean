@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.Global.Float.RatUp
 public import CORALean.Global.Float.ToRat
 public import CORALean.Global.LinProg.Simplex
@@ -10,27 +10,27 @@ public import CORALean.Global.LinProg.Simplex
 /-!
 # `HPolytope.dualWeights`
 
-The float layer's linear-program driver, and deliberately part of no proof. It
-reads the stored rows back into ℚ through `ToRat`, so the simplex sees exactly
-the program the floats denote, solves its dual there with `dualCandidate`, and
-rounds the weights into `𝕋` with `ratUp`.
+The float layer's linear-program driver, and deliberately part of no proof. It reads the stored
+rows back into ℚ through `ToRat`, so the simplex sees exactly the program the floats denote,
+solves its dual there with `dualCandidate`, and rounds the weights into `𝕋` with `ratUp`.
 
 The program is `max dᵀβ` over the polytope within the unit box `|βⱼ| ≤ 1`, a constrained
 zonotope's coefficient domain. The box rows keep it bounded, so the dual is feasible; their
 weights are then dropped, the checker paying for the box by the residual against `Σ |rⱼ|`. An
-interval equality row is two inequalities, `Ae β ≤ be.sup` and `-Ae β ≤ -be.inf`, a weight each.
+equality row is two inequalities, `Ae β ≤ beU` and `-Ae β ≤ beLN`, a weight each, the
+right-hand sides carrying the error box (`bU`, `beU`, `beLN`).
 
 Nothing here is trusted: a negative, badly rounded or missing (`none`, the pivot
 budget ran out) weight costs tightness only, because the checker clamps every
 weight at zero and encloses the residual it actually has, in rounded arithmetic.
 
-A NaN in the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`: another program, which
-costs tightness only, the checker seeing the NaN in rounded arithmetic.
+A NaN in the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`: another program, at the
+cost of tightness.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -56,14 +56,14 @@ def HPolytope.aux_boxRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
 /-- The right-hand sides matching `aux_boxRows`. -/
 def HPolytope.aux_boxRhs (P : HPolytope 𝕋 (Vec 𝕋 h)) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
   Fin.append
-    (Fin.append (fun i => ToRat.toRat (P.b i))
-      (Fin.append (fun i => ToRat.toRat (P.be.sup i)) fun i => -ToRat.toRat (P.be.inf i)))
+    (Fin.append (fun i => ToRat.toRat (P.bU i))
+      (Fin.append (fun i => ToRat.toRat (P.beU i)) fun i => ToRat.toRat (P.beLN i)))
     fun _ => 1
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Weights `(y, zu, zl)` for the rows `A`, `Ae ≤ be.sup` and `-Ae ≤ -be.inf`,
+/-- Weights `(y, zu, zl)` for the rows `A`, `Ae ≤ beU` and `-Ae ≤ beLN`,
 proposed for the direction `d` over the polytope within the unit box. All zero
 where the simplex returns nothing. A proposal, not a certificate. -/
 def HPolytope.dualWeights (P : HPolytope 𝕋 (Vec 𝕋 h)) (d : Fin h → ℚ) :

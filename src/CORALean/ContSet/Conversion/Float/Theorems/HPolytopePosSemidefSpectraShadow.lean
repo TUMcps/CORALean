@@ -15,14 +15,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraSha
 
 CORA's `@polytope/spectraShadow`: one `1 × 1` block `d_j - C_j x` per row of the stacked
 `C = [A; Ae; -Ae]`, `d = [b; be; -be]`, as the diagonal `A₀ = diag(d)`, `Aᵢ = -diag(C(:,i))`.
-The equality rows are the slab `be.inf ≤ Ae x ≤ be.sup` the float polytope denotes, so the stacked
-right-hand side is `[b; be.sup; -be.inf]`. Every entry is an existing entry, a negation or a
-`zero`, `one`: nothing rounds, so the error box is `0`. The shadow contains the polytope.
+The equality rows are the pair `Ae x ≤ be`, `-Ae x ≤ -be` the float polytope denotes, so the
+stacked right-hand side is `[b; be; -be]`. Every entry is an existing entry, a negation or a
+`zero`, `one`: nothing rounds, and the error box is the polytope's own. The shadow contains the
+polytope.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -54,18 +55,18 @@ theorem HPolytope.aux_lmi_diag {k : ℕ} (d : Fin k → 𝕋) (C : Fin n → Fin
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- At a point of the polytope the stored inequality is positive semidefinite. -/
+/-- At a point of the polytope's nominal part the stored inequality is positive semidefinite. -/
 theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) {x : Vec ℝ n}
-    (hx : x ∈ P.construct) :
+    (hx : x ∈ P.nominal.construct) :
     (toRealMat P.spectraShadow.A₀
       + ∑ i, x i • toRealMat (P.spectraShadow.A i)).PosSemidef := by -- --- PROOF ---
   -- the matrix is the diagonal of the slacks
   have hM := HPolytope.aux_lmi_diag (n := n) (𝕋 := 𝕋)
-    (Fin.append P.b (Fin.append P.be.sup fun r => neg (P.be.inf r)))
+    (Fin.append P.b (Fin.append P.be fun r => neg (P.be r)))
     (fun i => Fin.append (fun r => P.A r i)
       (Fin.append (fun r => P.Ae r i) fun r => neg (P.Ae r i))) x
   refine Eq.mpr (congrArg Matrix.PosSemidef hM) (posSemidef_diagonal_iff.mpr ?_)
-  obtain ⟨hA, hAe⟩ := HPolytope.mem_construct_iff.mp hx
+  obtain ⟨hA, hAe⟩ := HPolytope.mem_nominal_iff.mp hx
   -- the three row groups
   intro p
   refine Fin.addCases (fun r => ?_) (fun p' => Fin.addCases (fun r => ?_) (fun r => ?_) p') p
@@ -73,11 +74,11 @@ theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) {x 
     simp only [Fin.append_left, mulVec, dotProduct, toRealMat] at this ⊢
     simp only [mul_comm (x _)] at this ⊢
     linarith
-  · have := (hAe r).2
+  · have := (hAe r).le
     simp only [Fin.append_left, Fin.append_right, mulVec, dotProduct, toRealMat] at this ⊢
     simp only [mul_comm (x _)] at this ⊢
     linarith
-  · have := (hAe r).1
+  · have := (hAe r).ge
     simp only [Fin.append_right, mulVec, dotProduct, toRealMat, toReal_neg] at this ⊢
     simp only [mul_comm (x _), neg_mul, Finset.sum_neg_distrib] at this ⊢
     linarith

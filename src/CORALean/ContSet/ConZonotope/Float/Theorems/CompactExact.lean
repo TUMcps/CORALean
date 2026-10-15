@@ -10,10 +10,10 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # The float `compact` keeps the set
 
 A dropped generator has every entry of its column of `[G; A; Ae]` certified zero, so no point
-and no row reads its coefficient; a dropped equality row has every entry certified zero and `0`
-in its interval, so every coefficient vector meets it. A point of the set keeps its kept
-coefficients, and a point of the compacted set gets `0` at the dropped ones. Nothing is
-rounded, so this is the float set's own equality, not a claim about the exact layer's.
+and no row reads its coefficient; a dropped equality row has every entry certified zero and its
+right-hand side certified `0`, so every coefficient vector meets it. A point of the set keeps
+its kept coefficients, and a point of the compacted set gets `0` at the dropped ones. Nothing
+is rounded, so this is the float set's own equality, not a claim about the exact layer's.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -68,7 +68,7 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
   set R : Finset (Fin cZ.P.me) := Finset.univ.filter fun r : Fin cZ.P.me =>
     !((List.finRange cZ.h).all (fun j => le (cZ.P.Ae r j) FloatOps.zero
         && le FloatOps.zero (cZ.P.Ae r j))
-      && le (cZ.P.be.inf r) FloatOps.zero && le FloatOps.zero (cZ.P.be.sup r)) with hR
+      && (le (cZ.P.be r) FloatOps.zero && le FloatOps.zero (cZ.P.be r))) with hR
   -- what a dropped generator is: zero, and read by no row
   have hdrop : ∀ j, j ∉ S → (∀ i, toReal (cZ.G j i) = 0) ∧ (∀ k, toReal (cZ.P.A k j) = 0)
       ∧ ∀ k, toReal (cZ.P.Ae k j) = 0 := by
@@ -79,16 +79,14 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     exact ⟨fun i => ConZonotope.aux_toReal_eq_zero (by simpa using hj.1.1 i),
       fun k => ConZonotope.aux_toReal_eq_zero (by simpa using hj.1.2 k),
       fun k => ConZonotope.aux_toReal_eq_zero (by simpa using hj.2 k)⟩
-  -- what a dropped equality row is: zero, with `0` in its interval
-  have hrow : ∀ r, r ∉ R → (∀ j, toReal (cZ.P.Ae r j) = 0)
-      ∧ toReal (cZ.P.be.inf r) ≤ 0 ∧ 0 ≤ toReal (cZ.P.be.sup r) := by
+  -- what a dropped equality row is: zero, with a zero right-hand side
+  have hrow : ∀ r, r ∉ R → (∀ j, toReal (cZ.P.Ae r j) = 0) ∧ toReal (cZ.P.be r) = 0 := by
     intro r hr
     simp only [hR, Finset.mem_filter, Finset.mem_univ, true_and, Bool.not_eq_true',
       Bool.not_eq_false, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
       forall_const] at hr
-    refine ⟨fun j => ConZonotope.aux_toReal_eq_zero (by simpa using hr.1.1 j), ?_, ?_⟩
-    · simpa [toReal_zero] using toReal_le_of_le hr.1.2
-    · simpa [toReal_zero] using toReal_le_of_le hr.2
+    exact ⟨fun j => ConZonotope.aux_toReal_eq_zero (by simpa using hr.1 j),
+      ConZonotope.aux_toReal_eq_zero (by simpa using hr.2)⟩
   show nominalSet cZ.compact + cZ.I_error.construct = nominalSet cZ + cZ.I_error.construct
   congr 1
   ext y
@@ -96,7 +94,7 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
   constructor
   · -- the dropped coefficients set to zero
     rintro ⟨ξ', hξ', hP', hy⟩
-    obtain ⟨hin', heq'⟩ := HPolytope.mem_construct_iff.mp hP'
+    obtain ⟨hin', heq'⟩ := HPolytope.mem_nominal_iff.mp hP'
     set ξ : Vec ℝ cZ.h := fun j =>
       if h : j ∈ S then ξ' ((S.orderIsoOfFin rfl).symm ⟨j, h⟩) else 0 with hξdef
     have hξe : ∀ l, ξ (S.orderEmbOfFin rfl l) = ξ' l := by
@@ -113,7 +111,7 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
         = ∑ l : Fin S.card, g (S.orderEmbOfFin rfl l) * ξ' l := fun g => by
       rw [ConZonotope.aux_sum_kept S _ fun j hj => by rw [hoff j hj, mul_zero]]
       exact Finset.sum_congr rfl fun l _ => by rw [hξe]
-    refine ⟨ξ, fun j => ?_, HPolytope.mem_construct_iff.mpr ⟨fun k => ?_, fun r => ?_⟩,
+    refine ⟨ξ, fun j => ?_, HPolytope.mem_nominal_iff.mpr ⟨fun k => ?_, fun r => ?_⟩,
       fun i => ?_⟩
     · by_cases hj : j ∈ S
       · simp only [hξdef, hj, dite_true]; exact hξ' _
@@ -132,23 +130,22 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
         simp only [mulVec, dotProduct, toRealMat] at this ⊢
         rw [hsum]
         exact this
-      · -- a dropped row is `0 x ∈ be` with `0 ∈ be`
-        obtain ⟨hz, hlo, hhi⟩ := hrow r hr
+      · -- a dropped row is `0 x = be` with `be = 0`
+        obtain ⟨hz, hb⟩ := hrow r hr
         have : (toRealMat cZ.P.Ae *ᵥ ξ) r = 0 := by
           simp only [mulVec, dotProduct, toRealMat]
           exact Finset.sum_eq_zero fun j _ => by rw [hz j, zero_mul]
-        rw [this]
-        exact ⟨hlo, hhi⟩
+        rw [this, hb]
     · rw [hy i, hsum]
       rfl
   · -- the kept coefficients
     rintro ⟨ξ, hξ, hP, hy⟩
-    obtain ⟨hin, heq⟩ := HPolytope.mem_construct_iff.mp hP
+    obtain ⟨hin, heq⟩ := HPolytope.mem_nominal_iff.mp hP
     have hsum : ∀ g : Fin cZ.h → ℝ, (∀ j, j ∉ S → g j = 0) → ∑ j, g j * ξ j
         = ∑ l : Fin S.card, g (S.orderEmbOfFin rfl l) * ξ (S.orderEmbOfFin rfl l) :=
       fun g hg => ConZonotope.aux_sum_kept S _ fun j hj => by rw [hg j hj, zero_mul]
     refine ⟨fun l => ξ (S.orderEmbOfFin rfl l), fun l => hξ _,
-      HPolytope.mem_construct_iff.mpr ⟨fun k => ?_, fun r => ?_⟩, fun i => ?_⟩
+      HPolytope.mem_nominal_iff.mpr ⟨fun k => ?_, fun r => ?_⟩, fun i => ?_⟩
     -- each row reads only the kept coefficients
     · have := hin k
       simp only [mulVec, dotProduct, toRealMat] at this
@@ -158,11 +155,8 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
       exact this
     · have := heq (R.orderEmbOfFin rfl r)
       simp only [mulVec, dotProduct, toRealMat] at this
-      show toReal (cZ.P.be.inf (R.orderEmbOfFin rfl r)) ≤ ∑ l : Fin S.card,
-          toReal (cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l))
-            * ξ (S.orderEmbOfFin rfl l)
-        ∧ ∑ l : Fin S.card, toReal (cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l))
-            * ξ (S.orderEmbOfFin rfl l) ≤ toReal (cZ.P.be.sup (R.orderEmbOfFin rfl r))
+      show ∑ l : Fin S.card, toReal (cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l))
+            * ξ (S.orderEmbOfFin rfl l) = toReal (cZ.P.be (R.orderEmbOfFin rfl r))
       rw [← hsum _ fun j hj => (hdrop j hj).2.2 _]
       exact this
     · rw [hy i, hsum _ fun j hj => (hdrop j hj).1 i]

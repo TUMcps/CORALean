@@ -6,6 +6,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombGDiff
 public import CORALean.ContSet.ConZonotope.Float.Operations.LinComb
 public import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
 public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Float.Operations.Split
 public import CORALean.ContSet.ConZonotope.Float.Operations.Project

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -65,7 +65,7 @@ theorem ConZonotope.dependent_nominal (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
       exact Real.Zonotope.abs_coefficient_le_one
         ((abs_nonneg _).trans (hbound j)) (hbound j)
   -- the constraints read only the old block
-  · refine HPolytope.mem_padLeft_iff.mpr ?_
+  · refine HPolytope.mem_padLeft_nominal_iff.mpr ?_
     rw [blockLeft_append]
     exact hP
   -- and the diagonal block reproduces `e` exactly, coordinate by coordinate

@@ -1,27 +1,26 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.HPolytope
-public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
-public import CORALean.ContSet.HPolytope.Real.Operations.Basic
-public import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 
 @[expose] public section
 
 /-!
-# Membership in a float halfspace description, in the stored fields
+# Membership in an error-free float halfspace description, in the stored fields
 
-What this polytope denotes is the exact layer's `ineqs` intersected with its
-`slab`, so membership arrives as a nesting of three lemmas. This unfolds it once
-into the two blocks the stored matrices state: a bound per inequality row, and
-an interval per equality row.
+What an error-free polytope denotes is its nominal part, the exact layer's `ineqs`
+intersected with its `eqs`, so membership arrives as a nesting of three lemmas. This unfolds
+it once into the two blocks the stored matrices state: a bound per inequality row, and
+a value per equality row.
 
 It is the form every operation and every conversion at this layer states its
-obligation in, which is why `Operations/` here reaches back into `Theorems/`.
+obligation in, which is why `Operations/` here reaches back into `Theorems/`. A polytope
+that carries an error box reads through `HPolytope.mem_rows_of_mem_construct` instead,
+which gives the rows with the box folded in.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,17 +36,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    {x : Vec ℝ n} :
+    (hP : P.ErrFree) {x : Vec ℝ n} :
     x ∈ P.construct ↔
       (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i))
-        ∧ ∀ i, toReal (P.be.inf i) ≤ (toRealMat P.Ae *ᵥ x) i
-               ∧ (toRealMat P.Ae *ᵥ x) i ≤ toReal (P.be.sup i) := by -- --- PROOF ---
-  have hand : x ∈ P.construct ↔
-      x ∈ (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).construct
-        ∧ x ∈ (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be.inf)
-            (toRealVec P.be.sup)).construct := Real.HPolytope.mem_intersection_iff
-  rw [hand, Real.HPolytope.mem_ineqs_iff, Real.HPolytope.mem_slab_iff]
-  exact Iff.rfl
+        ∧ ∀ i, (toRealMat P.Ae *ᵥ x) i = toReal (P.be i) := by -- --- PROOF ---
+  rw [HPolytope.construct_eq_nominal hP]
+  exact HPolytope.mem_nominal_iff
 
 end CORALean.Float
 

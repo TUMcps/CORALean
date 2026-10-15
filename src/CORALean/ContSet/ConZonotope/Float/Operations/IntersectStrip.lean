@@ -1,12 +1,11 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
-public import CORALean.ContSet.HPolytope.Float.Operations.Eqs
-public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
 
 @[expose] public section
 
@@ -21,15 +20,18 @@ rows `C G ξ - φ ν = y - C c`, the centre moves to `c + Λ (y - C c)` and the 
 At float the stored point carries an error `e`, which the exact construction would have to
 carry as `(I - Λ C) e`; it goes into the error box as `e - Λ (C e)`, each product an interval
 image. The strip rows are built from the float image `Zonotope.mtimes C` of the set (as the float
-`conIntersect` does), their right-hand side widened by that image's error box. The new centre and
+`conIntersect` does), their right-hand side widened by that image's error box into an interval;
+they stay equalities, at its upper end, where `ConZonotope.anchorSlab` certifies that every
+coefficient vector can be moved onto them inside the unit box (the point's move paid into the
+error box), and become the slab between the two ends otherwise. The new centre and
 the first generator block are rounded down from interval bounds (`Λ (y - C c)` and `Λ C G` as
 interval images), the second block entry by entry, and what each rounding costs goes into the
 error box. The gain is an argument, as over ℝ; the result is outer, never exact.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -68,13 +70,16 @@ def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C : Mat �
   let bstrip : Interval (Vec 𝕋 s) :=
     ⟨fun k => subDown (subDown (y k) (W.c k)) (W.I_error.sup k),
      fun k => subUp (subUp (y k) (W.c k)) (W.I_error.inf k)⟩
-  { h := cZ.h + s
-    c := cLo
-    G := Fin.append G₁ G₂
-    P := (cZ.P.padLeft s).intersection (HPolytope.eqs Astrip bstrip)
-    I_error := (((cZ.I_error.minus (Interval.mtimes Λ (Interval.mtimes C cZ.I_error))).plus
-        (Interval.residual cLo cHi cLo)).plus (Zonotope.generatorError gap₁)).plus
-      (Zonotope.generatorError gap₂) }
+  -- the strip rows kept as equalities where certified (`anchorSlab`), else as a slab
+  ConZonotope.anchorSlab
+    { h := cZ.h + s
+      c := cLo
+      G := Fin.append G₁ G₂
+      P := cZ.P.padLeft s
+      I_error := (((cZ.I_error.minus (Interval.mtimes Λ (Interval.mtimes C cZ.I_error))).plus
+          (Interval.residual cLo cHi cLo)).plus (Zonotope.generatorError gap₁)).plus
+        (Zonotope.generatorError gap₂) }
+    Astrip bstrip.inf bstrip.sup
 
 end CORALean.Float
 

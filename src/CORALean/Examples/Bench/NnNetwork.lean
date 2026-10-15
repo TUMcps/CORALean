@@ -31,9 +31,9 @@ says what that enclosure is sound for -- the exact map the stored weights denote
 the ReLU exact -- and `network_mem_enclose` is `enclose_outer` read at it.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       27-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -92,7 +92,7 @@ def inputBox (inst : ExactDyadic → 𝕋) : Interval (Vec 𝕋 1) :=
 /-- `y ≤ threshold` as a one-row halfspace, the safe set `Specification.check` tests. -/
 def spec (inst : ExactDyadic → 𝕋) : Specification (HPolytope 𝕋 (Vec 𝕋 1)) :=
   .safeSet ⟨1, fun _ _ => inst ExactDyadic.one, fun _ => inst threshold, 0, fun i => i.elim0,
-    ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
+    fun i => i.elim0, Interval.origin _⟩
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n h : ℕ}

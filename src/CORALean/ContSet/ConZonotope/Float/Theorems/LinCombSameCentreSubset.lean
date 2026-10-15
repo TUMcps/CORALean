@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
 public import CORALean.ContSet.HPolytope.Float.Operations.MemUnitBoxIff
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
@@ -28,9 +28,9 @@ The centres are the same and the interpolation column is zero, so the point is
 `λ(c + G₁β₁) + (1 - λ)(c + G₂β₂)` without a remainder.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -48,13 +48,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A block meeting a polytope's rows and the unit box's at weight `lam` is `lam` times a
 coefficient vector of the polytope inside the unit box, the polytope being nonempty there. -/
 theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
-    (hne : ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.construct) {γ : Vec ℝ k} {lam : ℝ}
-    {Q : HPolytope 𝕋 (Vec 𝕋 k)} (hQ : Q = P.intersection (HPolytope.unitBox 𝕋 k))
+    (hne : ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.construct) {γ : Vec ℝ k} {lam : ℝ}
+    {Q : HPolytope 𝕋 (Vec 𝕋 k)} (hQ : Q = P.stackRows (HPolytope.unitBox 𝕋 k))
     (hl0 : 0 ≤ lam)
     (hA : ∀ i, (toRealMat Q.A *ᵥ γ) i ≤ lam * toReal (Q.b i))
-    (hE : ∀ i, lam * toReal (Q.be.inf i) ≤ (toRealMat Q.Ae *ᵥ γ) i ∧
-        (toRealMat Q.Ae *ᵥ γ) i ≤ lam * toReal (Q.be.sup i)) :
-    ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.construct ∧ lam • β = γ := by -- --- PROOF ---
+    (hE : ∀ i, (toRealMat Q.Ae *ᵥ γ) i = lam * toReal (Q.be i)) :
+    ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.construct ∧ lam • β = γ := by -- --- PROOF ---
   obtain rfl | hpos := hl0.eq_or_lt
   · -- zero weight: the unit-box rows pin the block to the origin
     obtain ⟨β, hβ, hP⟩ := hne
@@ -63,7 +62,7 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
     subst hQ
     have hup := hA (Fin.natAdd P.m (Fin.castAdd k j))
     have hlo := hA (Fin.natAdd P.m (Fin.natAdd k j))
-    simp only [HPolytope.intersection, HPolytope.mulVec_append_right, Fin.append_right,
+    simp only [HPolytope.stackRows, HPolytope.mulVec_append_right, Fin.append_right,
       HPolytope.unitBox, HPolytope.mulVec_append_left, HPolytope.mulVec_single,
       toReal_one, toReal_neg, one_mul, neg_mul, zero_mul] at hup hlo
     simp only [Pi.smul_apply, zero_smul]
@@ -71,27 +70,20 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
   · -- positive weight: divide through, the rows then holding as stated
     refine ⟨lam⁻¹ • γ, ?_⟩
     -- the divided vector meets the rows at weight one, and the unit box
-    have hmem : lam⁻¹ • γ ∈ Q.construct := by
-      refine HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun i => ⟨?_, ?_⟩⟩
+    have hmem : lam⁻¹ • γ ∈ Q.nominal.construct := by
+      refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
       · -- the inequality rows scale by `lam⁻¹`
         rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
         calc lam⁻¹ * (toRealMat Q.A *ᵥ γ) i
             ≤ lam⁻¹ * (lam * toReal (Q.b i)) :=
               mul_le_mul_of_nonneg_left (hA i) (inv_nonneg.mpr hl0)
           _ = _ := by field_simp
-      · rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
-        calc toReal (Q.be.inf i)
-            = lam⁻¹ * (lam * toReal (Q.be.inf i)) := by
-              field_simp
-          _ ≤ _ := mul_le_mul_of_nonneg_left (hE i).1 (inv_nonneg.mpr hl0)
-      · rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
-        calc lam⁻¹ * (toRealMat Q.Ae *ᵥ γ) i
-            ≤ lam⁻¹ * (lam * toReal (Q.be.sup i)) :=
-              mul_le_mul_of_nonneg_left (hE i).2 (inv_nonneg.mpr hl0)
-          _ = _ := by field_simp
+      · rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul, hE i]
+        field_simp
     rw [hQ] at hmem
-    obtain ⟨hP, hbox⟩ := HPolytope.mem_intersection_iff.mp hmem
-    exact ⟨HPolytope.mem_unitBox_iff.mp hbox, hP, by rw [smul_smul, mul_inv_cancel₀ hpos.ne',
+    obtain ⟨hP, hbox⟩ := HPolytope.mem_stackRows_nominal_iff.mp hmem
+    exact ⟨HPolytope.mem_unitBox_iff.mp ((HPolytope.mem_nominal_of_origin rfl).mpr hbox), hP,
+      by rw [smul_smul, mul_inv_cancel₀ hpos.ne',
       one_smul]⟩
 
 
@@ -103,6 +95,7 @@ theorem ConZonotope.linCombSameCentre_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Ve
     nominalSet (cZ₁.linCombSameCentre cZ₂) ⊆
       Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) := by -- --- PROOF ---
   intro x hx
+  -- the nominal point, at its coefficients
   obtain ⟨β, hβ, hP, hval⟩ := ConZonotope.mem_nominalSet_iff.mp hx
   -- the coefficient vector in its three blocks
   set γ₁ : Vec ℝ cZ₁.h := fun j => β (Fin.castAdd 1 (Fin.castAdd cZ₂.h j)) with hγ₁
@@ -117,11 +110,14 @@ theorem ConZonotope.linCombSameCentre_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Ve
     · have : j' = 0 := Subsingleton.elim _ _
       subst this
       simp [hν]
-  have hP' : β ∈ (((cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft
-      cZ₂.h).intersection (HPolytope.halfScaledRight cZ₁.h
-        (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)))).construct := hP
-  obtain ⟨hL, hR⟩ := HPolytope.mem_intersection_iff.mp hP'
+  -- the three row groups of the hull's coefficient polytope
+  have hP' : β ∈ (((cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft
+      cZ₂.h).stackRows (HPolytope.halfScaledRight cZ₁.h
+        (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)))).nominal.construct := hP
+  obtain ⟨hL, hR⟩ := HPolytope.mem_stackRows_nominal_iff.mp hP'
   rw [hβeq] at hL hR
+  replace hL := (HPolytope.mem_nominal_of_origin rfl).mpr hL
+  replace hR := (HPolytope.mem_nominal_of_origin rfl).mpr hR
   obtain ⟨hA₁, hE₁⟩ := HPolytope.mem_halfScaledLeft hL
   obtain ⟨hA₂, hE₂⟩ := HPolytope.mem_halfScaledRight hR
   -- the weight, and the second block's

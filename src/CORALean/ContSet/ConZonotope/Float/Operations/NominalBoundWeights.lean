@@ -13,7 +13,7 @@ The coefficient program `max (Gᵀa)ᵀβ` over `|βⱼ| ≤ 1`, `β ∈ P` is b
 duality at *any* nonnegative weights `y, zu, zl` of `P`'s rows: with the residual
 `r = Gᵀa - Aᵀy - Aeᵀzu + Aeᵀzl`,
 
-  `(Gᵀa)ᵀβ = rᵀβ + yᵀ(Aβ) + zuᵀ(Aeβ) - zlᵀ(Aeβ) ≤ Σ |rⱼ| + yᵀb + zuᵀbe.sup - zlᵀbe.inf`,
+  `(Gᵀa)ᵀβ = rᵀβ + yᵀ(Aβ) + zuᵀ(Aeβ) - zlᵀ(Aeβ) ≤ Σ |rⱼ| + yᵀb + zuᵀbe - zlᵀbe`,
 
 the unit box paying for the residual. Nothing asks the weights to be optimal or
 the residual to vanish: `rⱼ` is enclosed in rounded arithmetic and `|rⱼ|` bounded
@@ -21,9 +21,9 @@ by the larger end, and every weight is clamped at zero, so even its sign is not
 trusted. Sound for every weight vector; tight only for optimal ones.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -124,12 +124,12 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
   let zl : Vec 𝕋 cZ.P.me := fun k => ConZonotope.aux_clamp (zl₀ k)
   let R : Vec 𝕋 cZ.h := fun j =>
     maximum (ConZonotope.aux_resUp cZ a y zu zl j) (neg (ConZonotope.aux_resDown cZ a y zu zl j))
-  { val := addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be.sup)
-      (addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R))))
+  { val := addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be)
+      (addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R))))
     le := by
       intro x hx
       obtain ⟨β, hβ, hP, hxβ⟩ := ConZonotope.mem_nominalSet_iff.mp hx
-      obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hP
+      obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hP
       -- the clamped weights are admissible, whatever was proposed
       have hy : ∀ k, 0 ≤ toReal (y k) := fun k => ConZonotope.aux_clamp_nonneg _
       have hzu : ∀ k, 0 ≤ toReal (zu k) := fun k => ConZonotope.aux_clamp_nonneg _
@@ -162,21 +162,21 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
         refine le_trans (Finset.sum_le_sum fun k _ => ?_) (le_dotUp _ _)
         rw [← hAβ]
         exact mul_le_mul_of_nonneg_left (hle k) (hy k)
-      have hUb : ∑ j, β j * U j ≤ toReal (dotUp zu cZ.P.be.sup) := by
+      have hUb : ∑ j, β j * U j ≤ toReal (dotUp zu cZ.P.be) := by
         rw [hU, ← ConZonotope.aux_sum_swap (fun k => toReal (zu k))
           (fun k j => toReal (cZ.P.Ae k j)) β]
         refine le_trans (Finset.sum_le_sum fun k _ => ?_) (le_dotUp _ _)
         rw [← hAeβ]
-        exact mul_le_mul_of_nonneg_left (heq k).2 (hzu k)
+        exact mul_le_mul_of_nonneg_left (heq k).le (hzu k)
       -- the lower edge of an equality row, read through its negated row
-      have hLb : -toReal (dotUp zl fun k => neg (cZ.P.be.inf k)) ≤ ∑ j, β j * L j := by
+      have hLb : -toReal (dotUp zl fun k => neg (cZ.P.be k)) ≤ ∑ j, β j * L j := by
         rw [hL, ← ConZonotope.aux_sum_swap (fun k => toReal (zl k))
           (fun k j => toReal (cZ.P.Ae k j)) β]
-        have hd := le_dotUp zl fun k => neg (cZ.P.be.inf k)
+        have hd := le_dotUp zl fun k => neg (cZ.P.be k)
         simp only [toReal_neg, mul_neg, Finset.sum_neg_distrib] at hd
         refine le_trans (neg_le.mp hd) (Finset.sum_le_sum fun k _ => ?_)
         rw [← hAeβ]
-        exact mul_le_mul_of_nonneg_left (heq k).1 (hzl k)
+        exact mul_le_mul_of_nonneg_left (heq k).ge (hzl k)
       -- the box pays for the residual
       have hRb : ∑ j, β j * (D j - Y j - U j + L j) ≤ toReal (sumUp R) := by
         refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp R)
@@ -197,13 +197,13 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
           _ ≤ toReal (R j) := by rw [one_mul]; exact habs
       -- the four outer additions, each rounded up
       have hc0 := le_dotUp a cZ.c
-      have r1 := add_le_addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R)
-      have r2 := add_le_addUp (dotUp zu cZ.P.be.sup)
-        (addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R))
-      have r3 := add_le_addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be.sup)
-        (addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R)))
+      have r1 := add_le_addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R)
+      have r2 := add_le_addUp (dotUp zu cZ.P.be)
+        (addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R))
+      have r3 := add_le_addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be)
+        (addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R)))
       have r4 := add_le_addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b)
-        (addUp (dotUp zu cZ.P.be.sup) (addUp (dotUp zl fun k => neg (cZ.P.be.inf k)) (sumUp R))))
+        (addUp (dotUp zu cZ.P.be) (addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R))))
       rw [hcx, hsplit]
       linarith }
 

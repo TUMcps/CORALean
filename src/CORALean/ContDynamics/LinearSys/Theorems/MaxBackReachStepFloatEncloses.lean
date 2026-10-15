@@ -59,9 +59,9 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
       Automatic Control, 71(1):352-367, 2026.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -96,6 +96,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
     (hZw : construct (Zwr sr.t) ⊆ (Zw s.tLo s.tHi).construct)
     (hP₁ : P₁.construct ⊆ P₁r.construct) (hP₂ : P₂.construct ⊆ P₂r.construct)
+    (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.construct) (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.construct)
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
     (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
@@ -323,14 +324,15 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
       rw [toReal_neg]
       exact ⟨h.1, h.2⟩
     have hblock : ∀ (P : HPolytope 𝕋 (Vec 𝕋 n)) (Pr : CORALean.Real.HPolytope (Vec ℝ n)),
-        P.construct ⊆ Pr.construct → (∀ i (y : Vec ℝ n), (toRealMat P.Ae *ᵥ y) i = 0) →
+        P.construct ⊆ Pr.construct → (0 : Vec ℝ n) ∈ P.I_error.construct →
+        (∀ i (y : Vec ℝ n), (toRealMat P.Ae *ᵥ y) i = 0) →
         (∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) →
         ∀ y ∈ nominalSet (LinearSys.maxBackReachCZFloat Bx P ZWe),
           y + δ ∈ (LinearSys.maxBackReachCZ ρ Pr
             (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW).construct := by
-      intro P Pr hP hker hkerr y hy
+      intro P Pr hP hP0 hker hkerr y hy
       have hyc : y ∈ (LinearSys.maxBackReachCZFloat Bx P ZWe).construct :=
-        (ConZonotope.construct_eq_nominal rfl).symm.subset hy
+        ⟨y, hy, 0, hP0, add_zero y⟩
       have hin := LinearSys.maxBackReachCZFloat_inner Bx P ZWe (fun i y _ => hker i y) hyc
       refine LinearSys.minkowskiDiff_subset_maxBackReachCZ ρ Pr _ hkerr (fun w hw => ?_)
       -- the widened disturbance set holds `w` moved by `δ`, which `y` survives
@@ -346,8 +348,8 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
           (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW).construct
         (LinearSys.maxBackReachCZ ρ P₂r
           (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).ZW).construct :=
-      ⟨y₁ + δ, hblock P₁ P₁r hP₁ hker₁ hkerr₁ y₁ hy₁, y₂ + δ,
-        hblock P₂ P₂r hP₂ hker₂ hkerr₂ y₂ hy₂, lam, ⟨hl0, hl1⟩, by rw [hzeq]; module⟩
+      ⟨y₁ + δ, hblock P₁ P₁r hP₁ hP₁0 hker₁ hkerr₁ y₁ hy₁, y₂ + δ,
+        hblock P₂ P₂r hP₂ hP₂0 hker₂ hkerr₂ y₂ hy₂, lam, ⟨hl0, hl1⟩, by rw [hzeq]; module⟩
     have hlin := CORALean.Real.ConZonotope.linComb_outer _ _ hyseg
     -- line 12: the map of the hull and the negated `Z̲_U`, spelled out
     have hR : (sys.maxBackReachStep ρ P₁r P₂r Ur W₀r Zwr Δ η' sr).R

@@ -141,7 +141,7 @@ theorem Polygon.innerHRep_inner {p : VPolytope (Vec 𝕋 2)} {H : HPolytope 𝕋
   simp only [List.all_eq_true, List.mem_finRange, forall_const, Bool.and_eq_true,
     Bool.or_eq_true, beq_iff_eq] at hex hfan horig
   intro x hx
-  obtain ⟨hle, -⟩ := HPolytope.mem_construct_iff.mp hx
+  obtain ⟨hle, -⟩ := (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mp hx
   -- every stored edge difference is the real one
   have hd : ∀ i j, toReal (subDown (p.V (finRotate p.k i) j) (p.V i j))
       = toReal (p.V (finRotate p.k i) j) - toReal (p.V i j) := fun i j =>

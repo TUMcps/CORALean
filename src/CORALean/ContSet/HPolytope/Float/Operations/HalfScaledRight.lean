@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 
 @[expose] public section
@@ -14,9 +15,9 @@ side of the same convex combination. Only the sign of the weighting column
 differs.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,13 +36,13 @@ def HPolytope.halfScaledRight (n₁ : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n₂)) 
     𝕋 (Vec 𝕋 (n₁ + n₂ + 1)) :=
   (HPolytope.ineqs (fun i => Fin.append (Fin.append (fun _ : Fin n₁ => zero) (P.A i))
         fun _ : Fin 1 => half (P.b i))
-      fun i => half (P.b i)).intersection
+      fun i => half (P.b i)).stackRows
     ((HPolytope.ineqs (fun i => Fin.append (Fin.append (fun _ : Fin n₁ => zero) (P.Ae i))
-          fun _ : Fin 1 => half (P.be.sup i))
-        fun i => half (P.be.sup i)).intersection
+          fun _ : Fin 1 => half (P.be i))
+        fun i => half (P.be i)).stackRows
       (HPolytope.ineqs (fun i => Fin.append (Fin.append (fun _ : Fin n₁ => zero)
-            fun k => neg (P.Ae i k)) fun _ : Fin 1 => neg (half (P.be.inf i)))
-        fun i => neg (half (P.be.inf i))))
+            fun k => neg (P.Ae i k)) fun _ : Fin 1 => half (neg (P.be i)))
+        fun i => half (neg (P.be i))))
 
 end CORALean.Float
 

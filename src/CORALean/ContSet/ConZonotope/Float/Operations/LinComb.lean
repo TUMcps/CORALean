@@ -6,6 +6,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
 public import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
+public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 
 @[expose] public section
 
@@ -28,9 +29,9 @@ The blocks are not paired the way a zonotope's are: pairing merges two
 coefficients into one, and each block's constraints have to read them apart.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -50,8 +51,8 @@ def ConZonotope.linComb (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonot
   c := Zonotope.midpoint cZ₁.c cZ₂.c
   G := Fin.append (Fin.append cZ₁.G cZ₂.G)
     fun _ : Fin 1 => fun i => half (subDown (cZ₁.c i) (cZ₂.c i))
-  P := ((cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).intersection
-    (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)))
+  P := ((cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).stackRows
+    (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)))
   I_error := (cZ₁.I_error.linComb cZ₂.I_error).plus
     ((Zonotope.midpointResidual cZ₁.c cZ₂.c).plus
       (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)))

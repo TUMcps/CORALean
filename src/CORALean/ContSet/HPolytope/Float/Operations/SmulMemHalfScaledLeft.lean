@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLast
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
@@ -21,9 +22,9 @@ alone: the weight multiplies the first block and not the second, so no
 membership of the concatenation says it.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -39,16 +40,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.smul_mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {y : Vec ℝ n₁} {z : Vec ℝ n₂}
-    {w t : ℝ} (hw : (t + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct) :
+    {w t : ℝ} (hw : (t + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.nominal.construct) :
     Fin.append (Fin.append (w • y) z) (fun _ : Fin 1 => t)
       ∈ (P.halfScaledLeft n₂).construct := by -- --- PROOF ---
-  obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hy
+  obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hy
   -- the third row group is the equality's lower end, which enters negated
   have hneg : toRealMat (fun i' k => neg (P.Ae i' k)) = -toRealMat P.Ae := by
     funext i' k
     exact toReal_neg _
-  refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
-    HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
+  refine (HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)
+    (HPolytope.errFree_of_origin rfl)).mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
+    (HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)
+      (HPolytope.errFree_of_origin rfl)).mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
       HPolytope.mem_ineqs_iff.mpr fun i => ?_⟩⟩
   -- an inequality row: its own bound, times a nonnegative weight
   · rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padLeft, blockLeft_append,
@@ -59,24 +62,20 @@ theorem HPolytope.smul_mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {
     have hkey : w * toReal (P.b i) + -(toReal (P.b i) / 2) * t = toReal (P.b i) / 2 := by
       rw [← hw]; ring
     linarith
-  -- the upper end of an equality row, weighted the same way
+  -- an equality row: its right-hand side, times the weight
   · rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padLeft, blockLeft_append,
       Matrix.mulVec_smul, toReal_neg, toReal_half]
     simp only [Pi.smul_apply, smul_eq_mul]
-    have hmul : w * (toRealMat P.Ae *ᵥ y) i ≤ w * toReal (P.be.sup i) :=
-      mul_le_mul_of_nonneg_left (heq i).2 hw0
-    have hkey : w * toReal (P.be.sup i) + -(toReal (P.be.sup i) / 2) * t
-        = toReal (P.be.sup i) / 2 := by
+    have hmul : w * (toRealMat P.Ae *ᵥ y) i = w * toReal (P.be i) := by rw [heq i]
+    have hkey : w * toReal (P.be i) + -(toReal (P.be i) / 2) * t = toReal (P.be i) / 2 := by
       rw [← hw]; ring
     linarith
-  -- and its lower end, where the weight multiplies the bound the other way
+  -- and the same row negated, where the weight multiplies the right-hand side the other way
   · rw [HPolytope.mulVec_append_last, HPolytope.mulVec_padLeft, blockLeft_append, hneg,
-      Matrix.neg_mulVec, Matrix.mulVec_smul, toReal_neg, toReal_half]
+      Matrix.neg_mulVec, Matrix.mulVec_smul, toReal_neg, toReal_half, toReal_neg]
     simp only [Pi.neg_apply, Pi.smul_apply, smul_eq_mul]
-    have hmul : w * toReal (P.be.inf i) ≤ w * (toRealMat P.Ae *ᵥ y) i :=
-      mul_le_mul_of_nonneg_left (heq i).1 hw0
-    have hkey : toReal (P.be.inf i) / 2 * t + toReal (P.be.inf i) / 2
-        = w * toReal (P.be.inf i) := by
+    have hmul : w * (toRealMat P.Ae *ᵥ y) i = w * toReal (P.be i) := by rw [heq i]
+    have hkey : w * toReal (P.be i) + -(toReal (P.be i) / 2) * t = toReal (P.be i) / 2 := by
       rw [← hw]; ring
     linarith
 

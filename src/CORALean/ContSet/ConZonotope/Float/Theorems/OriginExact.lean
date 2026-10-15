@@ -38,6 +38,7 @@ theorem ConZonotope.origin_exact (n : ℕ) :
   have hN : InflatedContSet.nominalSet (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)) = {0} := by
     ext x
     constructor
+    -- no generator, so the point is the centre
     · rintro ⟨β, -, -, h⟩
       haveI : IsEmpty (Fin (InflatedContSet.nominal
         (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n))).h) :=
@@ -50,7 +51,8 @@ theorem ConZonotope.origin_exact (n : ℕ) :
     · intro hx
       rw [Set.mem_singleton_iff] at hx
       subst hx
-      refine ⟨fun j => j.elim0, fun j => j.elim0, HPolytope.mem_fullspace _, ?_⟩
+      refine ⟨fun j => j.elim0, fun j => j.elim0,
+        (HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.mem_fullspace _), ?_⟩
       show (0 : Vec ℝ n) = toRealVec (fun _ : Fin n => (zero : 𝕋)) + ∑ j : Fin 0, _
       simp [hc]
   have hE : (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.construct = {0} :=

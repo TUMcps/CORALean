@@ -44,9 +44,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 
 -- =============================  `Interval.center_mem_centerBox`  ============================== --
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- The real midpoint of the stored bounds lies between `centerLo` and `center`. -/
@@ -142,6 +142,19 @@ floats read as reals, so the statement needs no unfolding at the use site. -/
 theorem Interval.mem_mat_iff {I : Interval (Mat 𝕋 m n)} {A : Mat ℝ m n} :
     A ∈ I.construct ↔ ∀ i j, toReal (I.inf i j) ≤ A i j ∧ A i j ≤ toReal (I.sup i j) :=
   ⟨fun h i j => h (i, j), fun h p => h p.1 p.2⟩
+
+
+-- ==================================  `Interval.mem_vec_iff`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A box of vectors, read coordinate by coordinate: both bounds are the stored floats read as
+reals, so the statement needs no unfolding at the use site. -/
+theorem Interval.mem_vec_iff {I : Interval (Vec 𝕋 n)} {x : Vec ℝ n} :
+    x ∈ I.construct ↔ ∀ j, toReal (I.inf j) ≤ x j ∧ x j ≤ toReal (I.sup j) :=
+  Iff.rfl
 
 
 -- ====================================  `Interval.norm_le`  ==================================== --

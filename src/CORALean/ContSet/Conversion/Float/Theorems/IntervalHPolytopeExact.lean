@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 public import CORALean.ContSet.Conversion.Float.Theorems.IdentityMatMulVec
 public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
 # A box as halfspaces, over a floating-point scalar
 
 Two square blocks rather than one stacked matrix: the identity against `sup`,
-its negation against `-inf`, intersected. Nothing rounds — the entries are `one`
+its negation against `-inf`, stacked. Nothing rounds — the entries are `one`
 and `zero` and the bounds are the box's own — and the block form keeps the row
 index out of `Fin.append`, which does not reduce on a variable.
 
@@ -44,7 +44,8 @@ theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) :
     (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
   ext x
   simp only [Interval.hPolytope]
-  rw [HPolytope.mem_intersection_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
+  rw [HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)
+    (HPolytope.errFree_of_origin rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
   constructor
   · rintro ⟨hup, hlo⟩ j
     have h₁ : x j ≤ toReal (I.sup j) := by rw [← identityMat_mulVec (𝕋 := 𝕋) x j]; exact hup j

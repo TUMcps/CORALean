@@ -78,6 +78,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Deviation
 public import CORALean.ContSet.Zonotope.Float.Operations.InteriorPoint
 public import CORALean.ContSet.Zonotope.Float.Operations.IsFullDim
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
+public import CORALean.ContSet.Zonotope.Float.Operations.RightInvGain
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvQ
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.IsFullDimWith

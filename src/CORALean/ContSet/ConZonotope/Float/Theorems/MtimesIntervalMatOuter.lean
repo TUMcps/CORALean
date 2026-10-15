@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesOuter
-public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual
@@ -81,7 +81,7 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
   -- the product's coefficient count is `cZ.h`, definitionally
   let γ : Vec ℝ cZ.h := γ₀
   have hγ : ∀ j, |γ j| ≤ 1 := hγ₀
-  have hPγ : γ ∈ (ConZonotope.mtimes C cZ).P.construct := hPγ₀
+  have hPγ : γ ∈ (ConZonotope.mtimes C cZ).P.nominal.construct := hPγ₀
   have ht₀γ : ∀ i, t₀ i = toReal ((ConZonotope.mtimes C cZ).c i)
       + ∑ j, toReal ((ConZonotope.mtimes C cZ).G j i) * γ j := ht₀γ₀
   set b : Vec 𝕋 m := fun i => sumUp fun j =>
@@ -101,7 +101,7 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
       · simp only [Fin.append_right]
         exact Real.Zonotope.abs_coefficient_le_one (hb0 i) (hbound i)
     · -- the constraints only see the old coefficients
-      refine HPolytope.mem_padLeft_iff.mpr ?_
+      refine HPolytope.mem_padLeft_nominal_iff.mpr ?_
       show blockLeft cZ.h m (Fin.append γ _) ∈ _
       rw [blockLeft_append]
       exact hPγ

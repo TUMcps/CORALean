@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
+public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
@@ -20,9 +21,9 @@ the new error box holds; and `δ` meets the rescaled rows, whose right-hand side
 the same rounding. Outer: the exact layer's `rescale_exact` is an equality, this is not.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -76,10 +77,13 @@ theorem ConZonotope.aux_row_split {h : ℕ} (a m r : Vec 𝕋 h) (δ ξ : Vec �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU : Vec 𝕋 cZ.h)
-    (hB : ∀ ξ : Vec ℝ cZ.h, (∀ j, |ξ j| ≤ 1) → ξ ∈ cZ.P.construct →
+    (hB : ∀ ξ : Vec ℝ cZ.h, (∀ j, |ξ j| ≤ 1) → ξ ∈ cZ.P.nominal.construct →
       ∀ j, toReal (ξL j) ≤ ξ j ∧ ξ j ≤ toReal (ξU j)) :
     cZ.construct ⊆ (cZ.rescale ξL ξU).construct := by -- --- PROOF ---
-  rintro _ ⟨y, hy', e, he, rfl⟩
+  intro x hx
+  -- the equality rows as a slab first, which `anchorSlab` contains
+  refine ConZonotope.anchorSlab_outer _ _ _ _ ?_
+  obtain ⟨y, hy', e, he, rfl⟩ := hx
   obtain ⟨ξ, hξ, hP, hy⟩ := ConZonotope.mem_nominalSet_iff.mp hy'
   set ξm : Vec 𝕋 cZ.h := fun j => half (addDown (ξU j) (ξL j)) with hξm
   set ξr : Vec 𝕋 cZ.h := fun j => maximum (subUp (ξU j) (ξm j)) (subUp (ξm j) (ξL j)) with hξr
@@ -133,7 +137,7 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU 
     have h3 := addDown_le_add (cZ.c i) (dotDown (fun j => cZ.G j i) ξm)
     have h4 := add_le_addUp (cZ.c i) (dotUp (fun j => cZ.G j i) ξm)
     constructor <;> linarith
-  obtain ⟨hin, heq⟩ := HPolytope.mem_construct_iff.mp hP
+  obtain ⟨hin, heq⟩ := HPolytope.mem_nominal_iff.mp hP
   -- the rounding each constraint row pays against `δ`, summed upward
   set gapA : Fin cZ.P.m → 𝕋 := fun k =>
     sumUp fun j => subUp (mulUp (cZ.P.A k j) (ξr j)) (mulDown (cZ.P.A k j) (ξr j))
@@ -141,46 +145,49 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU 
     sumUp fun j => subUp (mulUp (cZ.P.Ae k j) (ξr j)) (mulDown (cZ.P.Ae k j) (ξr j))
   refine ⟨fun i => toReal (addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm))
       + ∑ j, toReal (mulDown (cZ.G j i) (ξr j)) * δ j,
-    ConZonotope.mem_nominalSet_iff.mpr ⟨δ, hδ, HPolytope.mem_construct_iff.mpr
-      ⟨fun k => ?_, fun k => ⟨?_, ?_⟩⟩, fun _ => rfl⟩,
+    ConZonotope.mem_nominalSet_iff.mpr ⟨δ, hδ, ?hP, fun _ => rfl⟩,
     _, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨e, he, _,
       Interval.sub_mem_residual
         (stored := fun i => addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm)) hcen,
       rfl⟩, _, Zonotope.mem_generatorError hgen hδ, rfl⟩, ?_⟩
-  · -- an inequality row: the old row at `ξ`, less the part at `ξm`, plus the rounding
-    have hk := hin k
-    have hs := ConZonotope.aux_row_split (cZ.P.A k) ξm ξr δ ξ hξδ
-    have hg := le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.A k) ξr δ hδ)
-    have hneg := neg_le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.A k) ξr δ hδ)
-    have hd := dotDown_le (cZ.P.A k) ξm
-    have hsub := sub_le_subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)
-    have hadd := add_le_addUp (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k)
-    simp only [mulVec, dotProduct, toRealMat] at hk
-    show ∑ j, toReal (mulDown (cZ.P.A k j) (ξr j)) * δ j ≤ toReal (addUp
-      (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k))
-    linarith
-  · -- an equality row, its lower end
-    have hk := (heq k).1
-    have hs := ConZonotope.aux_row_split (cZ.P.Ae k) ξm ξr δ ξ hξδ
-    have hg := le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.Ae k) ξr δ hδ)
-    have hu := le_dotUp (cZ.P.Ae k) ξm
-    have hsub := subDown_le_sub (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm)
-    have hsub' := subDown_le_sub (subDown (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm)) (gapE k)
-    simp only [mulVec, dotProduct, toRealMat] at hk
-    show toReal (subDown (subDown (cZ.P.be.inf k) (dotUp (cZ.P.Ae k) ξm)) (gapE k))
-      ≤ ∑ j, toReal (mulDown (cZ.P.Ae k j) (ξr j)) * δ j
-    linarith
-  · -- an equality row, its upper end
-    have hk := (heq k).2
-    have hs := ConZonotope.aux_row_split (cZ.P.Ae k) ξm ξr δ ξ hξδ
-    have hneg := neg_le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.Ae k) ξr δ hδ)
-    have hd := dotDown_le (cZ.P.Ae k) ξm
-    have hsub := sub_le_subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm)
-    have hadd := add_le_addUp (subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm)) (gapE k)
-    simp only [mulVec, dotProduct, toRealMat] at hk
-    show ∑ j, toReal (mulDown (cZ.P.Ae k j) (ξr j)) * δ j ≤ toReal (addUp
-      (subUp (cZ.P.be.sup k) (dotDown (cZ.P.Ae k) ξm)) (gapE k))
-    linarith
+  case hP =>
+    refine HPolytope.mem_stackRows_nominal_iff.mpr
+      ⟨HPolytope.mem_nominal_iff.mpr ⟨fun k => ?_, fun k => k.elim0⟩,
+        HPolytope.mem_slab_nominal_iff.mpr fun k => ⟨?_, ?_⟩⟩
+    · -- an inequality row: the old row at `ξ`, less the part at `ξm`, plus the rounding
+      have hk := hin k
+      have hs := ConZonotope.aux_row_split (cZ.P.A k) ξm ξr δ ξ hξδ
+      have hg := le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.A k) ξr δ hδ)
+      have hneg := neg_le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.A k) ξr δ hδ)
+      have hd := dotDown_le (cZ.P.A k) ξm
+      have hsub := sub_le_subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)
+      have hadd := add_le_addUp (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k)
+      simp only [mulVec, dotProduct, toRealMat] at hk
+      show ∑ j, toReal (mulDown (cZ.P.A k j) (ξr j)) * δ j ≤ toReal (addUp
+        (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k))
+      linarith
+    · -- an equality row, read from below
+      have hk := (heq k).ge
+      have hs := ConZonotope.aux_row_split (cZ.P.Ae k) ξm ξr δ ξ hξδ
+      have hg := le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.Ae k) ξr δ hδ)
+      have hu := le_dotUp (cZ.P.Ae k) ξm
+      have hsub := subDown_le_sub (cZ.P.be k) (dotUp (cZ.P.Ae k) ξm)
+      have hsub' := subDown_le_sub (subDown (cZ.P.be k) (dotUp (cZ.P.Ae k) ξm)) (gapE k)
+      simp only [mulVec, dotProduct, toRealMat] at hk
+      show toReal (subDown (subDown (cZ.P.be k) (dotUp (cZ.P.Ae k) ξm)) (gapE k))
+        ≤ ∑ j, toReal (mulDown (cZ.P.Ae k j) (ξr j)) * δ j
+      linarith
+    · -- and from above
+      have hk := (heq k).le
+      have hs := ConZonotope.aux_row_split (cZ.P.Ae k) ξm ξr δ ξ hξδ
+      have hneg := neg_le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.Ae k) ξr δ hδ)
+      have hd := dotDown_le (cZ.P.Ae k) ξm
+      have hsub := sub_le_subUp (cZ.P.be k) (dotDown (cZ.P.Ae k) ξm)
+      have hadd := add_le_addUp (subUp (cZ.P.be k) (dotDown (cZ.P.Ae k) ξm)) (gapE k)
+      simp only [mulVec, dotProduct, toRealMat] at hk
+      show ∑ j, toReal (mulDown (cZ.P.Ae k j) (ξr j)) * δ j ≤ toReal (addUp
+        (subUp (cZ.P.be k) (dotDown (cZ.P.Ae k) ξm)) (gapE k))
+      linarith
   · -- the point: the rescaled one plus the old error and the two roundings
     funext i
     have hs := ConZonotope.aux_row_split (fun j => cZ.G j i) ξm ξr δ ξ hξδ

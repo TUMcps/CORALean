@@ -34,9 +34,9 @@ what this file proves about it, and neither is read back into
 gap in what runs.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   08-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -85,16 +85,20 @@ theorem ConZonotope.aux_abs_linCombCoeff {h₁ h₂ : ℕ} {β₁ : Vec ℝ h₁
 /-- Each block answers to its own constraints, and to its own unit box, at the
 weight the trailing coefficient names. -/
 theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) {β₁ : Vec ℝ cZ₁.h}
-    {β₂ : Vec ℝ cZ₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ cZ₁.P.construct)
-    (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.construct) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
-    ConZonotope.aux_linCombCoeff β₁ β₂ lam ∈ (cZ₁.linComb cZ₂).P.construct := by -- --- PROOF ---
-  have hd₁ : β₁ ∈ (cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).construct :=
-    HPolytope.mem_intersection_iff.mpr ⟨hP₁, HPolytope.mem_unitBox_iff.mpr hβ₁⟩
-  have hd₂ : β₂ ∈ (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)).construct :=
-    HPolytope.mem_intersection_iff.mpr ⟨hP₂, HPolytope.mem_unitBox_iff.mpr hβ₂⟩
-  refine HPolytope.mem_intersection_iff.mpr
-    ⟨HPolytope.smul_mem_halfScaledLeft (by ring) hl0 hd₁,
-      HPolytope.smul_mem_halfScaledRight (by ring) (by linarith) hd₂⟩
+    {β₂ : Vec ℝ cZ₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ cZ₁.P.nominal.construct)
+    (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.nominal.construct) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
+    ConZonotope.aux_linCombCoeff β₁ β₂ lam
+      ∈ (cZ₁.linComb cZ₂).P.nominal.construct := by -- --- PROOF ---
+  have hd₁ : β₁ ∈ (cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).nominal.construct :=
+    HPolytope.mem_stackRows_nominal_iff.mpr
+      ⟨hP₁, (HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.mem_unitBox_iff.mpr hβ₁)⟩
+  have hd₂ : β₂ ∈ (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)).nominal.construct :=
+    HPolytope.mem_stackRows_nominal_iff.mpr
+      ⟨hP₂, (HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.mem_unitBox_iff.mpr hβ₂)⟩
+  exact HPolytope.mem_stackRows_nominal_iff.mpr
+    ⟨(HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.smul_mem_halfScaledLeft (by ring) hl0 hd₁),
+      (HPolytope.mem_nominal_of_origin rfl).mp
+        (HPolytope.smul_mem_halfScaledRight (by ring) (by linarith) hd₂)⟩
 
 /-- What the stored generators are wrong by, entrywise: nothing on the copied
 blocks, and on the centre generator the gap `linCombGDiff` records. -/

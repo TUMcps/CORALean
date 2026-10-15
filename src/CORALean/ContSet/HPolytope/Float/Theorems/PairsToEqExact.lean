@@ -33,8 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
     Q.pairsToEq.construct = Q.construct := by -- --- PROOF ---
+  refine HPolytope.construct_congr ?_ rfl
   ext x
-  rw [HPolytope.mem_construct_iff, HPolytope.mem_construct_iff]
+  rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
   -- the rows of the result, read in `Q`
   have hkA : ∀ k, (toRealMat Q.pairsToEq.A *ᵥ x) k = (toRealMat Q.A *ᵥ x) (Q.keptRows.get k) :=
     fun k => rfl
@@ -46,16 +47,11 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
       = (toRealMat Q.A *ᵥ x) (Q.leadRows.get k) := by
     intro k
     simp [mulVec, dotProduct, toRealMat, HPolytope.pairsToEq, Fin.append_right]
-  have hbinf : ∀ k, toReal (Q.pairsToEq.be.inf (Fin.natAdd Q.me k))
+  have hbnew : ∀ k, toReal (Q.pairsToEq.be (Fin.natAdd Q.me k))
       = toReal (Q.b (Q.leadRows.get k)) := by
     intro k
     simp [HPolytope.pairsToEq, Fin.append_right]
-  have hbsup : ∀ k, toReal (Q.pairsToEq.be.sup (Fin.natAdd Q.me k))
-      = toReal (Q.b (Q.leadRows.get k)) := by
-    intro k
-    simp [HPolytope.pairsToEq, Fin.append_right]
-  have hbold : ∀ r, Q.pairsToEq.be.inf (Fin.castAdd _ r) = Q.be.inf r
-      ∧ Q.pairsToEq.be.sup (Fin.castAdd _ r) = Q.be.sup r := by
+  have hbold : ∀ r, Q.pairsToEq.be (Fin.castAdd _ r) = Q.be r := by
     intro r
     simp [HPolytope.pairsToEq, Fin.append_left]
   -- every row with a partner is, or is the negation of, a row listed as a lead
@@ -83,11 +79,11 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
       · -- the lead's equality gives both bounds
         obtain ⟨j, -, hj⟩ := List.any_eq_true.mp hm
         obtain ⟨k, hk | hk⟩ := hlead i j hj
-        · have e1 := (h2 (Fin.natAdd Q.me k)).2
-          rw [hnew, hbsup, hk.1] at e1
-          exact e1
-        · have e1 := (h2 (Fin.natAdd Q.me k)).1
-          rw [hnew, hbinf, hk.1] at e1
+        · have e1 := h2 (Fin.natAdd Q.me k)
+          rw [hnew, hbnew, hk.1] at e1
+          exact e1.le
+        · have e1 := h2 (Fin.natAdd Q.me k)
+          rw [hnew, hbnew, hk.1] at e1
           obtain ⟨d1, d2⟩ := HPolytope.isInvertedPair_dot hj x
           linarith
       · have hmem : i ∈ Q.keptRows := List.mem_filter.mpr ⟨List.mem_finRange i, by simpa using hm⟩
@@ -99,7 +95,7 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
         rw [hkA, hk, hb] at this
         exact this
     · have := h2 (Fin.castAdd _ r)
-      rw [hold, (hbold r).1, (hbold r).2] at this
+      rw [hold, hbold r] at this
       exact this
   · -- `Q` implies the result: a listed pair is squeezed to an equality
     rintro ⟨h1, h2⟩
@@ -107,7 +103,7 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
     · rw [hkA]
       exact h1 _
     · refine Fin.addCases (fun r => ?_) (fun k => ?_) r
-      · rw [hold, (hbold r).1, (hbold r).2]
+      · rw [hold, hbold r]
         exact h2 r
       · -- the lead row has a partner, whose value is its negative
         have hmem := List.get_mem Q.leadRows k
@@ -117,8 +113,8 @@ theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
         obtain ⟨d1, d2⟩ := HPolytope.isInvertedPair_dot hj.1 x
         have e1 := h1 (Q.leadRows.get k)
         have e2 := h1 j
-        rw [hnew, hbinf, hbsup]
-        constructor <;> linarith
+        rw [hnew, hbnew]
+        exact le_antisymm e1 (by linarith)
 
 end CORALean.Float
 

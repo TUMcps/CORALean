@@ -24,8 +24,9 @@ computed upward in absolute value, which makes it a bound rather than a cut.
 Not routed through the exact layer's conversion. There a constraint is a
 functional and the coefficients have to be read back off it; here they are
 already a matrix, and the exact layer's `HPolytope` reading of a float one
-turns each interval-valued equality into a pair of inequalities, so the two
-constructions do not agree row for row even though they denote the same set.
+keeps an equality a single row, where the interval `b` of the constrained polynomial zonotope
+has the degenerate interval `[be, be]`, so the two constructions do not agree row for row even
+though they denote the same set.
 Membership is the shorter argument.
 -/
 

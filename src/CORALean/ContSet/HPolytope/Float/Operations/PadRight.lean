@@ -10,9 +10,9 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 The mirror of `padLeft`, with the new coordinates padded in front.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
@@ -35,6 +35,8 @@ def HPolytope.padRight (n₁ : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n₂)) : HPoly
   me := P.me
   Ae := fun i => Fin.append (fun _ => FloatOps.zero) (P.Ae i)
   be := P.be
+  I_error := ⟨Fin.append (fun _ => FloatOps.zero) P.I_error.inf,
+    Fin.append (fun _ => FloatOps.zero) P.I_error.sup⟩
 
 end CORALean.Float
 

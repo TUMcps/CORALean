@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
 public import CORALean.ContSet.ConZonotope.Float.Theorems.DependentNominal
-public import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
+public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
 
 @[expose] public section
@@ -46,12 +46,12 @@ theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n) (cZ : Co
       (Real.Zonotope.cubIdx (cZ.dependent.h + 1) (cZ.dependent.h + 1)
         (cZ.dependent.h + 1)).symm ((0, 0), j.succ) :=
     fun a b hab => Fin.succ_injective _ (by simpa using hab)
-  have hP' : γ ∈ ((cZ.cubMap T).P).construct := by
+  have hP' : γ ∈ ((cZ.cubMap T).P).nominal.construct := by
     show γ ∈ (cZ.dependent.P.lift_ fun j : Fin cZ.dependent.h =>
       (Real.Zonotope.cubIdx (cZ.dependent.h + 1) (cZ.dependent.h + 1)
-        (cZ.dependent.h + 1)).symm ((0, 0), j.succ)).construct
-    rw [HPolytope.lift_exact cZ.dependent.P hdims]
-    show (fun j => γ _) ∈ cZ.dependent.P.construct
+        (cZ.dependent.h + 1)).symm ((0, 0), j.succ)).nominal.construct
+    refine (HPolytope.mem_lift_nominal_iff cZ.dependent.P hdims).mpr ?_
+    show (fun j => γ _) ∈ cZ.dependent.P.nominal.construct
     have : (fun j : Fin cZ.dependent.h => γ ((Real.Zonotope.cubIdx (cZ.dependent.h + 1)
         (cZ.dependent.h + 1) (cZ.dependent.h + 1)).symm ((0, 0), j.succ))) = β := funext hlin
     rw [this]

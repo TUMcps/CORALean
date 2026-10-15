@@ -13,9 +13,8 @@ The same shape as the exact layer's: rows the caller names, right-hand sides
 that certificates supply. What changes is that a right-hand side is now a float,
 which is why the certificates are `FloatBound`s.
 
-No equality rows, so `be` stays empty and the layer's interval right-hand side
-never comes into it. An enclosure has no equalities to state: it is slack by
-construction.
+No equality rows, so `be` stays empty, and the error box is the origin. An enclosure has no
+equalities to state: it is slack by construction.
 -/
 
 -- Authors:       Claude Opus 5

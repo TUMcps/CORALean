@@ -9,14 +9,15 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 
 A candidate margin for a coefficient vector `β₀` strictly inside a float constrained zonotope's
 coefficient polytope: half the least of one, the unit box's slack `1 - |β₀ⱼ|` and each constraint
-row's slack over the row's absolute sum (the slack rounded down, the quotient rounded down), so
-that a ball of that radius in the supremum norm stays inside. Nothing is trusted about it:
+inequality row's slack over the row's absolute sum (the slack rounded down, the quotient rounded
+down), so that a ball of that radius in the supremum norm stays inside. An equality row has no
+ball inside it, so a polytope with one gets margin zero. Nothing is trusted about it:
 `ConZonotope.interiorCert` checks the margin it is given, and a bad candidate costs the `true`.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -43,11 +44,8 @@ def ConZonotope.interiorMargin (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec
   let ineq := (List.finRange cZ.P.m).foldl
     (fun acc i => minimum acc (ConZonotope.aux_ratio
       (subDown (cZ.P.b i) (dotUp (cZ.P.A i) β₀)) (radius cZ.P.A i))) box
-  let eq := (List.finRange cZ.P.me).foldl
-    (fun acc i => minimum (minimum acc (ConZonotope.aux_ratio
-        (subDown (cZ.P.be.sup i) (dotUp (cZ.P.Ae i) β₀)) (radius cZ.P.Ae i)))
-      (ConZonotope.aux_ratio
-        (subDown (dotDown (cZ.P.Ae i) β₀) (cZ.P.be.inf i)) (radius cZ.P.Ae i))) ineq
+  -- an equality row has no ball around `β₀` inside it: with one, no margin is certified
+  let eq := if cZ.P.me = 0 then ineq else zero
   half eq
 
 end CORALean.Float

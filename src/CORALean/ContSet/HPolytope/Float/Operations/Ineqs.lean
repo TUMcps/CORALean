@@ -10,9 +10,9 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 CORA's inequality constructor. Absorbs its rounding by raising `b`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,8 @@ def HPolytope.ineqs (A : Mat 𝕋 q n) (b : Vec 𝕋 q) : HPolytope 𝕋 (Vec �
   b := b
   me := 0
   Ae := fun i => i.elim0
-  be := ⟨fun i => i.elim0, fun i => i.elim0⟩
+  be := fun i => i.elim0
+  I_error := Interval.origin n
 
 end CORALean.Float
 

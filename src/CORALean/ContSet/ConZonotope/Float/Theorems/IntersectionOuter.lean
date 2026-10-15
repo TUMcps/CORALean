@@ -2,10 +2,10 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter
+public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
 
 @[expose] public section
 
@@ -15,16 +15,18 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MemPadRightIff
 A point of both sets is `y₁ + e₁ = y₂ + e₂` with `yₖ` nominal and `eₖ` in its box.
 The witness is `y₁` at the coefficients `[β₁; β₂]` with the first box's `e₁`:
 each half satisfies its own constraints, as for `plus`, and the agreement row
-reads `G₁ β₁ - G₂ β₂ = c₂ - c₁ + e₂ - e₁`, which the stored interval holds because
-its ends were rounded outward from the extreme values of `e₂ - e₁`.
+reads `G₁ β₁ - G₂ β₂ = c₂ - c₁ + e₂ - e₁`, which the stored slab holds because
+its ends were rounded outward from the extreme values of `e₂ - e₁`. The result
+contains that slab version (`ConZonotope.anchorSlab_outer`).
 
-Outer only. At zero error boxes the stored interval still has the width of the
-rounding of `c₂ - c₁`, so the result can hold points of neither operand.
+Outer only. At zero error boxes the two ends still differ by the rounding of
+`c₂ - c₁`, which the result pays for in its rows or its box, so it can hold
+points of neither operand.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -41,7 +43,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConZonotope.intersection_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     cZ₁.construct ∩ cZ₂.construct ⊆ (cZ₁.intersection cZ₂).construct := by -- --- PROOF ---
-  rintro x ⟨⟨y₁, hy₁', e₁, he₁, hx₁⟩, y₂, hy₂', e₂, he₂, hx₂⟩
+  intro x hx
+  -- the rows as a slab first, which `anchorSlab` contains
+  refine ConZonotope.anchorSlab_outer _ _ _ _ ?_
+  obtain ⟨⟨y₁, hy₁', e₁, he₁, hx₁⟩, y₂, hy₂', e₂, he₂, hx₂⟩ := hx
   obtain ⟨β₁, hβ₁, hP₁, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hP₂, hy₂⟩ := ConZonotope.mem_nominalSet_iff.mp hy₂'
   have hx₁' : ∀ i, y₁ i + e₁ i = x i := fun i => congrFun hx₁ i
@@ -51,9 +56,9 @@ theorem ConZonotope.intersection_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋
     · rw [Fin.append_left]; exact hβ₁ l
     · rw [Fin.append_right]; exact hβ₂ l
   -- each half its own constraints, then the agreement rows
-  · refine HPolytope.mem_intersection_iff.mpr
-      ⟨HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_padLeft_iff.mpr ?_,
-        HPolytope.mem_padRight_iff.mpr ?_⟩, HPolytope.mem_eqs_iff.mpr fun i => ?_⟩
+  · refine HPolytope.mem_stackRows_nominal_iff.mpr
+      ⟨HPolytope.mem_stackRows_nominal_iff.mpr ⟨HPolytope.mem_padLeft_nominal_iff.mpr ?_,
+        HPolytope.mem_padRight_nominal_iff.mpr ?_⟩, HPolytope.mem_slab_nominal_iff.mpr fun i => ?_⟩
     · rw [blockLeft_append]; exact hP₁
     · rw [blockRight_append]; exact hP₂
     -- the agreement row: the two nominal points differ by exactly `e₂ - e₁`

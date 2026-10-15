@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
 
@@ -50,16 +50,16 @@ theorem aux_mem_foldl_contractHalfspace {x : Vec ℝ n} :
 theorem HPolytope.contractBox_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (I : Interval (Vec 𝕋 n)) :
     I.construct ∩ P.construct ⊆ (P.contractBox I).construct := by -- --- PROOF ---
   rintro x ⟨hI, hP⟩
-  obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hP
+  obtain ⟨hle, heq⟩ := HPolytope.rows_of_mem_construct hP
   -- each row of `P`, read as the sum the contraction asks for, is one `hle`/`heq` gives
   refine aux_mem_foldl_contractHalfspace _ (fun r hr => ?_) I hI
   simp only [List.mem_append, List.mem_map, List.mem_finRange, true_and] at hr
   rcases hr with (⟨i, rfl⟩ | ⟨i, rfl⟩) | ⟨i, rfl⟩
   · exact hle i
-  · exact (heq i).2
+  · exact (heq i).1
   · -- the lower half of an equality row, negated into an upper one
-    have h := (heq i).1
-    simp only [toReal_neg, neg_mul, Finset.sum_neg_distrib, neg_le_neg_iff]
+    have h := (heq i).2
+    simp only [toReal_neg, neg_mul, Finset.sum_neg_distrib]
     exact h
 
 end CORALean.Float

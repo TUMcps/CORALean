@@ -47,6 +47,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContain
 public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -71,9 +73,9 @@ representation below is what makes those fire.
 interior point of the set, certified by `ltStrict`.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       24-September-2026
--- Last update:   04-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -149,11 +151,13 @@ theorem aux_neg_bound {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
   rw [toReal_neg]
   linarith
 
-/-- Every row of `P` bounded on the set by `bnd`, an equality row from both sides. -/
+/-- Every row of `P` bounded on the set by `bnd`, an equality row from both sides, and the origin
+in the error box, so that the nominal part the rows describe is inside the polytope. -/
 def aux_containsRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
   (List.finRange P.m).all (fun i => le (bnd (P.A i)) (P.b i)) &&
-    (List.finRange P.me).all fun i =>
-      le (bnd (P.Ae i)) (P.be.sup i) && le (P.be.inf i) (neg (bnd fun j => neg (P.Ae i j)))
+    (List.finRange P.me).all (fun i =>
+      le (bnd (P.Ae i)) (P.be i) && le (P.be i) (neg (bnd fun j => neg (P.Ae i j)))) &&
+    (List.finRange n).all fun j => le (P.I_error.inf j) zero && le zero (P.I_error.sup j)
 
 theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
@@ -161,14 +165,20 @@ theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec �
   simp only [aux_containsRows, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   intro x hx
-  refine HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun i => ⟨?_, ?_⟩⟩
-  · exact le_trans (hb (P.A i) x hx) (toReal_le_of_le (h.1 i))
-  · exact le_trans (toReal_le_of_le (h.2 i).2) (aux_neg_bound hb (P.Ae i) hx)
-  · exact le_trans (hb (P.Ae i) x hx) (toReal_le_of_le (h.2 i).1)
+  obtain ⟨⟨hA, hE⟩, hbox⟩ := h
+  refine ⟨x, HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩, 0, ?_, add_zero x⟩
+  · exact le_trans (hb (P.A i) x hx) (toReal_le_of_le (hA i))
+  · exact le_antisymm (le_trans (hb (P.Ae i) x hx) (toReal_le_of_le (hE i).1))
+      (le_trans (toReal_le_of_le (hE i).2) (aux_neg_bound hb (P.Ae i) hx))
+  · refine Interval.mem_vec_iff.mpr fun j => ?_
+    have h₁ := toReal_le_of_le (hbox j).1
+    have h₂ := toReal_le_of_le (hbox j).2
+    rw [toReal_zero] at h₁ h₂
+    exact ⟨h₁, h₂⟩
 
 /-- One row of `P` the whole set lies strictly beyond. -/
 def aux_disjointRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
-  (List.finRange P.m).any fun i => ltStrict (P.b i) (neg (bnd fun j => neg (P.A i j)))
+  (List.finRange P.m).any fun i => ltStrict (P.bU i) (neg (bnd fun j => neg (P.A i j)))
 
 theorem aux_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
@@ -177,8 +187,8 @@ theorem aux_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec �
   obtain ⟨i, hi⟩ := h
   rw [Set.disjoint_left]
   intro x hX hP
-  have hrow : ∑ j, toReal (P.A i j) * x j ≤ toReal (P.b i) :=
-    (HPolytope.mem_construct_iff.mp hP).1 i
+  have hrow : ∑ j, toReal (P.A i j) * x j ≤ toReal (P.bU i) :=
+    (HPolytope.rows_of_mem_construct hP).1 i
   linarith [aux_neg_bound hb (P.A i) hX, toReal_lt_of_ltStrict hi]
 
 

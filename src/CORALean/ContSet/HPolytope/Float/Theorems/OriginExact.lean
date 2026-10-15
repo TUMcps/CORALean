@@ -8,7 +8,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 /-!
 # `HPolytope.origin` denotes exactly the origin, over a floating-point scalar
 
-The stored identity reads as ℝ's, so the equality rows pin every coordinate to `[0, 0]`.
+The stored identity reads as ℝ's, so the equality rows pin every coordinate to `0`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -39,14 +39,14 @@ theorem HPolytope.origin_exact (n : ℕ) :
     · exact toReal_one
     · exact toReal_zero
   ext x
-  rw [HPolytope.mem_construct_iff, Set.mem_singleton_iff, hA]
-  simp only [HPolytope.origin, Interval.origin, toReal_zero, Matrix.one_mulVec]
+  rw [(HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)), Set.mem_singleton_iff, hA]
+  simp only [HPolytope.origin, toReal_zero, Matrix.one_mulVec]
   constructor
   · rintro ⟨-, h⟩
     funext i
-    exact le_antisymm (h i).2 (h i).1
+    exact h i
   · rintro rfl
-    exact ⟨fun i => i.elim0, fun i => ⟨le_rfl, le_rfl⟩⟩
+    exact ⟨fun i => i.elim0, fun i => rfl⟩
 
 end CORALean.Float
 

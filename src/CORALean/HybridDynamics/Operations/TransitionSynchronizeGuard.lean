@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.HybridDynamics.Definitions.Transition
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 
 @[expose] public section
 
@@ -10,7 +11,8 @@ public import CORALean.HybridDynamics.Definitions.Transition
 
 The guard of the synchronized transition in CORA's `transition/synchronize`: `fullspace`
 intersected with each guard in turn, as `and_(guard, transList(i).guard, 'exact')` does, here at
-polytope guards (the stacked-rows `HPolytope.intersection`).
+polytope guards (`HPolytope.intersection`, the stacked rows after each error box has been folded
+into them).
 -/
 
 -- Authors:       Claude Opus 5.5

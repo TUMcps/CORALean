@@ -199,7 +199,7 @@ here, bar `varInputs` (`pending #1`), which has no float refinement yet;
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -1256,7 +1256,7 @@ def safeBox : Specification (Interval (Vec D 2)) := .safeSet ⟨fun _ => d (-10)
 /-- `x₀ ≥ t` as one row, `-x₀ ≤ -t`, with no equality rows. -/
 def halfAbove (t : ℤ) : HPolytope D (Vec D 2) :=
   ⟨1, fun _ j => if j = 0 then d (-1) 0 else d 0 0, fun _ => d (-t) 0, 0, fun i => i.elim0,
-    ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
+    fun i => i.elim0, Interval.origin _⟩
 
 def checkSafe : Bool := safeBox.check encloseRun
 
@@ -1376,7 +1376,8 @@ def cZ_eqs : ConZonotope D (Vec D 2) where
   c := ![d 1 0, d 0 0]
   G := ![![d 1 0, d 0 0], ![d 0 0, d 1 0], ![d 1 (-1), d 1 (-1)], ![d 1 (-2), d (-1) (-1)]]
   P := { m := 1, A := ![![d 1 0, d 0 0, d 0 0, d 0 0]], b := ![d 1 (-1)],
-         me := 1, Ae := ![![d 0 0, d 0 0, d 1 0, d 1 0]], be := zbox 1 }
+         me := 1, Ae := ![![d 0 0, d 0 0, d 1 0, d 1 0]], be := ![d 0 0],
+         I_error := Interval.origin 4 }
   I_error := zbox 2
 
 def cZ_reduceLift : ConZonotope D (Vec D 2) := cZ_eqs.reduceLift 1

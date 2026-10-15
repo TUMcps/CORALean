@@ -15,7 +15,7 @@ answer is `false`.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -38,16 +38,15 @@ def square (P : HPolytope D (Vec D 2)) : ConZonotope D (Vec D 2) where
   P := P
   I_error := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
-/-- `β₁ + β₂ = 0`, an equality row with a point interval as its right-hand side:
+/-- `β₁ + β₂ = 0`, an equality row:
 the segment `{(t, -t)}`. -/
 def eqRow : HPolytope D (Vec D 2) :=
-  ⟨0, fun i => i.elim0, fun i => i.elim0, 1, fun _ _ => d 1 0,
-    ⟨fun _ => d 0 0, fun _ => d 0 0⟩⟩
+  ⟨0, fun i => i.elim0, fun i => i.elim0, 1, fun _ _ => d 1 0, fun _ => d 0 0, Interval.origin _⟩
 
 /-- `β₁ + β₂ ≤ 0`, an inequality row: a triangle. -/
 def ineqRow : HPolytope D (Vec D 2) :=
-  ⟨1, fun _ _ => d 1 0, fun _ => d 0 0, 0, fun i => i.elim0,
-    ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
+  ⟨1, fun _ _ => d 1 0, fun _ => d 0 0, 0, fun i => i.elim0, fun i => i.elim0,
+    Interval.origin _⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

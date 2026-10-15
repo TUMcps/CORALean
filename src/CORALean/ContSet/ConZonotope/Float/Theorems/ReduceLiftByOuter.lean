@@ -16,7 +16,7 @@ A point `y + e` of `cZ`, `y` nominal at `β`: `Zonotope.reduceBy_coeff` on the l
 gives coefficients `ξ` that agree with `β` on the kept generators and reproduce every
 coordinate of the lifted sum. The upper coordinates are `y`, so the point is the result's
 nominal point at `ξ` plus the same `e`. The lower coordinates are `Aₑ β`, which the new
-equality rows read at `ξ` as the same number, inside the unchanged interval `bₑ`. An
+equality rows read at `ξ` as the same number, equal to the unchanged `bₑ`. An
 inequality row at `ξ` is the row at `β` on the kept generators, which is the full row less
 what the dropped ones contribute, at most their reach, and `radius` rounded up covers it.
 
@@ -49,10 +49,10 @@ theorem ConZonotope.reduceLiftBy_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     cZ.construct ⊆ (cZ.reduceLiftBy part).construct := by -- --- PROOF ---
   rintro x ⟨y, hy', e, he, hx⟩
   obtain ⟨β, hβ, hP, hy⟩ := ConZonotope.mem_nominalSet_iff.mp hy'
-  obtain ⟨hPin, hPeq⟩ := HPolytope.mem_construct_iff.mp hP
+  obtain ⟨hPin, hPeq⟩ := HPolytope.mem_nominal_iff.mp hP
   obtain ⟨ξ, hξ, hξl, hsum⟩ := Zonotope.reduceBy_coeff cZ.liftEq part β hβ
   refine ⟨y, ConZonotope.mem_nominalSet_iff.mpr ⟨ξ, hξ, ?_, fun k => ?_⟩, e, he, hx⟩
-  · refine HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
+  · refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
     · -- the row at the kept coefficients, against the full row and the dropped reach
       have hfull := hPin i
       simp only [mulVec, dotProduct, toRealMat] at hfull ⊢

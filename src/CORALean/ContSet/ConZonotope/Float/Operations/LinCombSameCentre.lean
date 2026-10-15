@@ -3,9 +3,9 @@ module
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
-public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
 public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 
 @[expose] public section
 
@@ -21,9 +21,9 @@ Nothing is computed, so nothing rounds, and the error box is the point `0`: what
 is exactly the set its stored numbers describe, which an inner approximation needs of it.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -45,8 +45,8 @@ def ConZonotope.linCombSameCentre (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) 
   h := cZ₁.h + cZ₂.h + 1
   c := cZ₁.c
   G := Fin.append (Fin.append cZ₁.G cZ₂.G) fun _ : Fin 1 => fun _ => zero
-  P := ((cZ₁.P.intersection (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).intersection
-    (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.intersection (HPolytope.unitBox 𝕋 cZ₂.h)))
+  P := ((cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft cZ₂.h).stackRows
+    (HPolytope.halfScaledRight cZ₁.h (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)))
   I_error := Interval.point fun _ => zero
 
 end CORALean.Float

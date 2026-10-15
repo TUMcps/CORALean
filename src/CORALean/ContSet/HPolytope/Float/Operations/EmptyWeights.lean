@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.Global.Float.RatUp
 public import CORALean.Global.Float.ToRat
 public import CORALean.Global.LinProg.Simplex
@@ -11,7 +11,7 @@ public import CORALean.Global.LinProg.Simplex
 # `HPolytope.emptyWeights`
 
 Weights proposing a Farkas certificate that a polytope within the unit box is empty. The program
-is the margin program `max t` over `A β + t ≤ b`, `Ae β + t ≤ be.sup`, `-Ae β + t ≤ -be.inf`,
+is the margin program `max t` over `A β + t ≤ bU`, `Ae β + t ≤ beU`, `-Ae β + t ≤ beLN`,
 `±βⱼ + t ≤ 1`: it is feasible and bounded, and its optimum is negative exactly when the polytope is
 empty. Its dual is bounded too, the weights summing to one, which is what lets the simplex return
 a certificate where the plain feasibility dual (unbounded for an empty polytope) returns nothing.
@@ -24,9 +24,9 @@ A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the p
 is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -57,14 +57,14 @@ def HPolytope.aux_marginRows (P : HPolytope 𝕋 (Vec 𝕋 h)) :
 /-- The right-hand sides matching `aux_marginRows`. -/
 def HPolytope.aux_marginRhs (P : HPolytope 𝕋 (Vec 𝕋 h)) : Fin (P.m + (P.me + P.me) + (h + h)) → ℚ :=
   Fin.append
-    (Fin.append (fun i => ToRat.toRat (P.b i))
-      (Fin.append (fun i => ToRat.toRat (P.be.sup i)) fun i => -ToRat.toRat (P.be.inf i)))
+    (Fin.append (fun i => ToRat.toRat (P.bU i))
+      (Fin.append (fun i => ToRat.toRat (P.beU i)) fun i => ToRat.toRat (P.beLN i)))
     fun _ => 1
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Weights `(y, zu, zl)` for the rows `A`, `Ae ≤ be.sup` and `-Ae ≤ -be.inf`. All zero where the
+/-- Weights `(y, zu, zl)` for the rows `A`, `Ae ≤ beU` and `-Ae ≤ beLN`. All zero where the
 simplex returns nothing. A proposal, not a certificate. -/
 def HPolytope.emptyWeights (P : HPolytope 𝕋 (Vec 𝕋 h)) :
     Vec 𝕋 P.m × Vec 𝕋 P.me × Vec 𝕋 P.me :=
