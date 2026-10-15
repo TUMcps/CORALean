@@ -14,7 +14,7 @@ c + Σ G(:,i)·prod(x₁.^E(:,i)) + GI·x₂`, as a polynomial zonotope without 
 generators: the independent generators become dependent ones, each with a factor of its own to
 the first power, after the dependent factors. Nothing is rounded and the error box is kept, so
 the dependent point map of the result at `(α, β)` is the nominal set's point at `(α, β)`. Unlike
-`dependent`, the error box is not turned into generators, which would enlarge the set.
+`absorbRounding`, the error box is not turned into generators, which would enlarge the set.
 -/
 
 -- Authors:       Claude Opus 5.5

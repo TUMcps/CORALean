@@ -21,7 +21,7 @@ bracket it directly, and the gap between them goes into the error box, which
 `generatorError` prices exactly as it does for `mtimes`.
 
 The guarantee is stated over the nominal sets, so this is an operation for a
-caller that has run `dependent` — the one thing here that empties both the
+caller that has run `absorbRounding` — the one thing here that empties both the
 independent block and the box — and run it once, so that a repeated factor's
 freed coefficients stay identified.
 -/

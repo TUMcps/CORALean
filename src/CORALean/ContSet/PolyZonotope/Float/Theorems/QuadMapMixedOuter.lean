@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapMixed
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 
 @[expose] public section
@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.QuadMapDepExact
 # `PolyZonotope.quadMapMixed` over-approximates the pairwise image
 
 Every pair `(x₁, x₂)` of the two sets lies, appended, in the nominal part of the product of the
-two dependent forms (`dependent_nominal`, then the product's nominal part as the append of the
+two dependent forms (`absorbRounding_nominal`, then the product's nominal part as the append of the
 two). The mixed form read at an appended pair is `x₁ᵀ Q x₂`, so the image is the exact layer's
 `quadMapDep` of that nominal product (`quadMapDep_exact`), which `bilin_refines` puts inside the
 float one. Outer only.
@@ -56,14 +56,14 @@ theorem PolyZonotope.quadMapMixed_outer (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ�
   rintro _ ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩
   -- the pair, appended, is a nominal point of the product of the dependent forms
   have hz : (Fin.append x y : Vec ℝ (n + n)) ∈
-      InflatedContSet.nominalSet (pZ₁.dependent.cartProd pZ₂.dependent) := by
+      InflatedContSet.nominalSet (pZ₁.absorbRounding.cartProd pZ₂.absorbRounding) := by
     rw [PolyZonotope.nominalSet_cartProd]
-    exact ⟨(x, y), ⟨PolyZonotope.dependent_nominal pZ₁ hx, PolyZonotope.dependent_nominal pZ₂ hy⟩,
-      rfl⟩
+    exact ⟨(x, y), ⟨PolyZonotope.absorbRounding_nominal pZ₁ hx,
+      PolyZonotope.absorbRounding_nominal pZ₂ hy⟩, rfl⟩
   -- the exact layer's quadratic map of that nominal part, then the float refinement
   have hq := (Real.PolyZonotope.quadMapDep_exact
     (fun k => toRealMat (PolyZonotope.mixedForm Q k))
-    (nominal (pZ₁.dependent.cartProd pZ₂.dependent)) rfl).subset ⟨_, hz, rfl⟩
+    (nominal (pZ₁.absorbRounding.cartProd pZ₂.absorbRounding)) rfl).subset ⟨_, hz, rfl⟩
   rw [PolyZonotope.aux_mixedForm_eval] at hq
   exact PolyZonotope.bilin_refines (PolyZonotope.mixedForm Q) _ _ rfl hq
 

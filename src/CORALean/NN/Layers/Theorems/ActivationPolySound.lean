@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
@@ -33,8 +33,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 # What the polynomial activation layer encloses
 
 `σ` coordinatewise, where every neuron's relaxation is sound for it — which is where `σ` first
-appears: `dependent` leaves no independent generator, so a point of the input is a nominal point
-at some factors, the fits' outward evaluation holds the polynomial there, and the box the
+appears: `absorbRounding` leaves no independent generator, so a point of the input is a nominal
+point at some factors, the fits' outward evaluation holds the polynomial there, and the box the
 deviation from it.
 -/
 
@@ -60,11 +60,11 @@ theorem Layer.activationPoly_sound {P : LayerRelaxation 𝕋 n m}
     (Layer.activationPoly P).Sound (fun x i => σ (x i)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
   have hbox := PolyZonotope.interval_contains s hx
-  -- `dependent` leaves no independent generator, so `x` is a nominal point
-  obtain ⟨a, ha, hxa⟩ := (InflatedContSet.nominal s.dependent).exists_point_of_q_zero rfl
-    (PolyZonotope.dependent_nominal s hx)
-  have hpt : Real.PolyZonotope.point (InflatedContSet.nominal s.dependent) a = x := hxa.symm
-  have hpmem := PolyZonotope.evalPoly_outer s.dependent (P.coeffList s.interval)
+  -- `absorbRounding` leaves no independent generator, so `x` is a nominal point
+  obtain ⟨a, ha, hxa⟩ := (InflatedContSet.nominal s.absorbRounding).exists_point_of_q_zero rfl
+    (PolyZonotope.absorbRounding_nominal s hx)
+  have hpt : Real.PolyZonotope.point (InflatedContSet.nominal s.absorbRounding) a = x := hxa.symm
+  have hpmem := PolyZonotope.evalPoly_outer s.absorbRounding (P.coeffList s.interval)
     ⟨a, ha, rfl⟩
   -- the polynomial part, one value per coordinate
   set pv : Vec ℝ n := fun i =>
@@ -72,7 +72,7 @@ theorem Layer.activationPoly_sound {P : LayerRelaxation 𝕋 n m}
   -- each neuron's own fit, evaluated at the box's point
   have hpval : (fun i => Real.PolyZonotope.evalPolyReal
         ((P.coeffList s.interval).map fun v => toReal (v i))
-        (Real.PolyZonotope.point (InflatedContSet.nominal s.dependent) a i))
+        (Real.PolyZonotope.point (InflatedContSet.nominal s.absorbRounding) a i))
       = pv := by
     funext i
     rw [LayerRelaxation.coeffList_coord, Real.PolyZonotope.evalPolyReal_ofFn, congrFun hpt i]

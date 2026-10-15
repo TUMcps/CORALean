@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
 
 @[expose] public section
@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
 # `ConPolyZono.quadMap` over a floating-point scalar
 
 CORA's `@conPolyZono/quadMap` on the stored floats: as over ℝ, the map is expanded on a set
-whose coefficients are all dependent, here the float `PolyZonotope.dependent` of the generator
+whose coefficients are all dependent, here the float `PolyZonotope.absorbRounding` of the generator
 part, which also frees the error box into one fresh factor per coordinate; then the float
 `PolyZonotope.quadMapDep`, each generator `Gᵢᵀ Q Gⱼ` rounded down and its gap to the rounded-up
 one charged to the error box. The constraints are kept on the original factors, widened by zero
@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
 def ConPolyZono.quadMap (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono
     𝕋 (Vec 𝕋 k) :=
   -- every coefficient dependent, the error box included
-  let pZ := cPZ.toPolyZonotope.dependent
+  let pZ := cPZ.toPolyZonotope.absorbRounding
   -- the image of the generator part, its rounding in the error box
   let qZ := PolyZonotope.quadMapDep Q pZ
   { p := qZ.p, h := qZ.h, qI := 0, m := cPZ.m, q := cPZ.q, c := qZ.c, G := qZ.G, E := qZ.E,

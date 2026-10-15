@@ -130,7 +130,8 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ListQuadBracket
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubFoldBracket
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapCBetween
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapGClose
-public import CORALean.ContSet.Zonotope.Float.Theorems.DependentOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.TensorHBracket

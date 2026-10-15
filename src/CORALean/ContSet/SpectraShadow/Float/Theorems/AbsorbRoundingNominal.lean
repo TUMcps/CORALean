@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
+public import CORALean.ContSet.SpectraShadow.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.LmiBlockDiagDiagonal
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
@@ -8,7 +8,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
 @[expose] public section
 
 /-!
-# `SpectraShadow.absorb` holds the whole set in its nominal shadow
+# `SpectraShadow.absorbRounding` holds the whole set in its nominal shadow
 
 A point `c + Gβ + e`, `e` in the box, is the absorbed shadow's nominal point at the variables
 `(β, e)`: the old inequality holds at `β`, and the box constraints at `e` are the box's own
@@ -33,8 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.construct_subset_absorb (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    S.construct ⊆ nominalSet S.absorb := by -- --- PROOF ---
+theorem SpectraShadow.absorbRounding_nominal (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
+    S.construct ⊆ nominalSet S.absorbRounding := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨β, hP, hyβ⟩ := SpectraShadow.mem_nominalSet_iff.mp hy
   have hd : ∀ {b : ℕ} (w : Vec 𝕋 b),

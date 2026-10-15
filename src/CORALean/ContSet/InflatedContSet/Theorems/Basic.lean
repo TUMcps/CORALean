@@ -35,6 +35,18 @@ theorem isBounded_construct [CompactSet N (Vec ℝ n)] (s : S) :
     Bornology.IsBounded (construct s) :=
   (isCompact_construct s).isBounded
 
+
+-- ==============================  `nominalSet_subset_construct`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A box that holds the origin leaves the nominal set inside the whole: what an operation that
+has moved its box into its parameters (`absorbRounding`) leaves behind. -/
+theorem nominalSet_subset_construct {s : S} (h : (0 : Vec ℝ n) ∈ (I_error s).construct) :
+    nominalSet s ⊆ construct s := fun x hx => ⟨x, hx, 0, h, add_zero x⟩
+
 end CORALean.Float.InflatedContSet
 
 

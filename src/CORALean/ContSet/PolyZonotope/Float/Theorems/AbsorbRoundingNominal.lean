@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
@@ -14,7 +14,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 @[expose] public section
 
 /-!
-# `dependent` empties the box without losing a point, over the nominal set
+# `absorbRounding` empties the box without losing a point, over the nominal set
 
 The witness is `Fin.append a (Fin.append β γ)`: the old factors, the old
 independent coefficients now dependent, and one coefficient per coordinate
@@ -40,12 +40,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
-/-- `Fin.sum_univ_add` at `dependent`'s generator count, stated through the
+/-- `Fin.sum_univ_add` at `absorbRounding`'s generator count, stated through the
 projection because that is the form the goal has and simp will not rewrite a
 binder's type. -/
-theorem PolyZonotope.aux_sum_univ_dependent {pZ : PolyZonotope (Vec 𝕋 n)}
+theorem PolyZonotope.aux_sum_univ_absorbRounding {pZ : PolyZonotope (Vec 𝕋 n)}
     (f : Fin (pZ.h + (pZ.q + n)) → ℝ) :
-    ∑ l : Fin pZ.dependent.h, f l
+    ∑ l : Fin pZ.absorbRounding.h, f l
       = ∑ l, f (Fin.castAdd (pZ.q + n) l) + ∑ l, f (Fin.natAdd pZ.h l) :=
   Fin.sum_univ_add f
 
@@ -53,8 +53,8 @@ theorem PolyZonotope.aux_sum_univ_dependent {pZ : PolyZonotope (Vec 𝕋 n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the error box is freed into `n` fresh factors, one per coordinate
-theorem PolyZonotope.dependent_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ nominalSet pZ.dependent := by -- --- PROOF ---
+theorem PolyZonotope.absorbRounding_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
+    pZ.construct ⊆ nominalSet pZ.absorbRounding := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hz'
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.I_error i) :=
@@ -76,8 +76,8 @@ theorem PolyZonotope.dependent_nominal (pZ : PolyZonotope (Vec 𝕋 n)) :
       rw [Real.Zonotope.sum_diagonal_mul]
       exact Real.Zonotope.mul_coefficient (hbound i)
     show z i + e i = _
-    rw [PolyZonotope.aux_sum_univ_dependent]
-    simp only [PolyZonotope.dependent, Real.PolyZonotope.monomial_plusE_left,
+    rw [PolyZonotope.aux_sum_univ_absorbRounding]
+    simp only [PolyZonotope.absorbRounding, Real.PolyZonotope.monomial_plusE_left,
       Real.PolyZonotope.monomial_plusE_right, Real.PolyZonotope.monomial_identE,
       Fin.append_left, Fin.append_right, Finset.univ_eq_empty, Finset.sum_empty, add_zero]
     rw [Fin.sum_univ_add]

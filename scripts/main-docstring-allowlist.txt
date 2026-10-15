@@ -738,7 +738,7 @@ src/CORALean/ContSet/ConZonotope/Float/Operations/Compact.lean
 src/CORALean/ContSet/ConZonotope/Float/Operations/ConIntersect.lean
 src/CORALean/ContSet/ConZonotope/Float/Operations/ContainsPoint.lean
 src/CORALean/ContSet/ConZonotope/Float/Operations/CubMap.lean
-src/CORALean/ContSet/ConZonotope/Float/Operations/Dependent.lean
+src/CORALean/ContSet/ConZonotope/Float/Operations/AbsorbRounding.lean
 src/CORALean/ContSet/ConZonotope/Float/Operations/Empty.lean
 src/CORALean/ContSet/ConZonotope/Float/Operations/InteriorCert.lean
 src/CORALean/ContSet/ConZonotope/Float/Operations/InteriorMargin.lean
@@ -771,7 +771,7 @@ src/CORALean/ContSet/ConZonotope/Float/Theorems/ConIntersectOuter.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/ConstructEqNominal.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/ContainsPointSound.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/CubMapOuter.lean
-src/CORALean/ContSet/ConZonotope/Float/Theorems/DependentNominal.lean
+src/CORALean/ContSet/ConZonotope/Float/Theorems/AbsorbRoundingNominal.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/EmptyExact.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/IntersectStripOuter.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/IntersectionOuter.lean
@@ -2014,7 +2014,7 @@ src/CORALean/ContSet/PolyZonotope/Float/Operations/CubMapDep.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/CubMapGDiff.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/CubMapGDown.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/CubMapGUp.lean
-src/CORALean/ContSet/PolyZonotope/Float/Operations/Dependent.lean
+src/CORALean/ContSet/PolyZonotope/Float/Operations/AbsorbRounding.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/ExactPlus.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/GeneratorError.lean
 src/CORALean/ContSet/PolyZonotope/Float/Operations/GetSubset.lean
@@ -2075,8 +2075,8 @@ src/CORALean/ContSet/PolyZonotope/Float/Theorems/ContainsSetApproxSound.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/ConvHullOuter.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/CubMapDepPoint.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/CubMapOuter.lean
-src/CORALean/ContSet/PolyZonotope/Float/Theorems/DependentNominal.lean
-src/CORALean/ContSet/PolyZonotope/Float/Theorems/DependentOuter.lean
+src/CORALean/ContSet/PolyZonotope/Float/Theorems/AbsorbRoundingNominal.lean
+src/CORALean/ContSet/PolyZonotope/Float/Theorems/AbsorbRoundingOuter.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/EvalPolyOuter.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/ExactPlusOuter.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/FiberDownLe.lean
@@ -2440,7 +2440,7 @@ src/CORALean/ContSet/SetUnion/Theorems/MtimesOuter.lean
 src/CORALean/ContSet/SetUnion/Theorems/PlusOuter.lean
 src/CORALean/ContSet/SetUnion/Theorems/ReduceOuter.lean
 src/CORALean/ContSet/SpectraShadow/Float/Definitions/ESumRep.lean
-src/CORALean/ContSet/SpectraShadow/Float/Operations/Absorb.lean
+src/CORALean/ContSet/SpectraShadow/Float/Operations/AbsorbRounding.lean
 src/CORALean/ContSet/SpectraShadow/Float/Operations/ArrowMat.lean
 src/CORALean/ContSet/SpectraShadow/Float/Operations/Base.lean
 src/CORALean/ContSet/SpectraShadow/Float/Operations/CartProd.lean
@@ -2469,7 +2469,7 @@ src/CORALean/ContSet/SpectraShadow/Float/Operations/TieInter.lean
 src/CORALean/ContSet/SpectraShadow/Float/SpectraShadow.lean
 src/CORALean/ContSet/SpectraShadow/Float/Theorems/CartProdOuter.lean
 src/CORALean/ContSet/SpectraShadow/Float/Theorems/ConeOuter.lean
-src/CORALean/ContSet/SpectraShadow/Float/Theorems/ConstructSubsetAbsorb.lean
+src/CORALean/ContSet/SpectraShadow/Float/Theorems/AbsorbRoundingNominal.lean
 src/CORALean/ContSet/SpectraShadow/Float/Theorems/ContainsPointSound.lean
 src/CORALean/ContSet/SpectraShadow/Float/Theorems/ConvHullOuter.lean
 src/CORALean/ContSet/SpectraShadow/Float/Theorems/Convex.lean
@@ -3126,7 +3126,7 @@ src/CORALean/ContSet/Zonotope/Float/Operations/CubMapDep.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/CubMapGDiff.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/CubMapGDown.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/CubMapGUp.lean
-src/CORALean/ContSet/Zonotope/Float/Operations/Dependent.lean
+src/CORALean/ContSet/Zonotope/Float/Operations/AbsorbRounding.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/Deviation.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/EntryDeviation.lean
 src/CORALean/ContSet/Zonotope/Float/Operations/ErrBound.lean
@@ -3191,7 +3191,7 @@ src/CORALean/ContSet/Zonotope/Float/Theorems/CubMapCBetween.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/CubMapDepCoeff.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/CubMapGClose.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/CubMapOuter.lean
-src/CORALean/ContSet/Zonotope/Float/Theorems/DependentOuter.lean
+src/CORALean/ContSet/Zonotope/Float/Theorems/AbsorbRoundingNominal.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/DeviationBound.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/DominantDirectionsMem.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/DominantDirectionsOuter.lean

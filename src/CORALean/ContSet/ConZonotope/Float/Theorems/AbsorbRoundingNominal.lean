@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.ConZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
@@ -12,7 +12,7 @@ public import CORALean.Global.Block
 @[expose] public section
 
 /-!
-# `dependent` empties the box without losing a point, over the nominal set
+# `absorbRounding` empties the box without losing a point, over the nominal set
 
 The witness is `Fin.append β γ`: the old coefficients, which keep meeting the constraints, and one
 coefficient per coordinate placing that coordinate's error in its new generator. The new block is
@@ -38,18 +38,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
-/-- `Fin.sum_univ_add` at `dependent`'s generator count, stated through the projection because
+/-- `Fin.sum_univ_add` at `absorbRounding`'s generator count, stated through the projection because
 that is the form the goal has. -/
-theorem ConZonotope.aux_sum_univ_dependent {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} (f : Fin (cZ.h + n) → ℝ) :
-    ∑ l : Fin cZ.dependent.h, f l
+theorem ConZonotope.aux_sum_univ_absorbRounding {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
+    (f : Fin (cZ.h + n) → ℝ) :
+    ∑ l : Fin cZ.absorbRounding.h, f l
       = ∑ l, f (Fin.castAdd n l) + ∑ l, f (Fin.natAdd cZ.h l) :=
   Fin.sum_univ_add f
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.dependent_nominal (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    cZ.construct ⊆ nominalSet cZ.dependent := by -- --- PROOF ---
+theorem ConZonotope.absorbRounding_nominal (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+    cZ.construct ⊆ nominalSet cZ.absorbRounding := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hP, hz⟩ := ConZonotope.mem_nominalSet_iff.mp hz'
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound cZ.I_error i) :=
@@ -75,8 +76,8 @@ theorem ConZonotope.dependent_nominal (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
       rw [Real.Zonotope.sum_diagonal_mul']
       exact Real.Zonotope.mul_coefficient (hbound i)
     show z i + e i = _
-    rw [ConZonotope.aux_sum_univ_dependent]
-    simp only [ConZonotope.dependent, Fin.append_left, Fin.append_right, toReal_diagonalBlock]
+    rw [ConZonotope.aux_sum_univ_absorbRounding]
+    simp only [ConZonotope.absorbRounding, Fin.append_left, Fin.append_right, toReal_diagonalBlock]
     rw [hd, hz i]
     ring
 

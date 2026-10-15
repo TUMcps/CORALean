@@ -28,6 +28,8 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.Merge
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MinkDiffOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalDependent
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionDep

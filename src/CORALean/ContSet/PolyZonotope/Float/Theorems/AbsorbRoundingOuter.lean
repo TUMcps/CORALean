@@ -1,13 +1,16 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemAbsorbRoundingErr
 
 @[expose] public section
 
 /-!
-# `dependent`'s error box denotes the origin alone
+# `absorbRounding` loses no point
 
-So nothing is left outside its nominal set.
+Read back through `ContSet`, for a caller that only wants the inclusion:
+`absorbRounding_nominal` places every point in the nominal set, and the box denotes
+the origin alone.
 -/
 
 -- Authors:       Claude Opus 5
@@ -27,12 +30,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The result's box denotes the origin alone, so nothing is left outside its
-nominal set. -/
-theorem PolyZonotope.zero_mem_dependent_err (pZ : PolyZonotope (Vec 𝕋 n)) :
-    (0 : Vec ℝ n) ∈ (pZ.dependent.I_error).construct := fun i =>
-  ⟨le_of_eq (by rw [PolyZonotope.dependent]; exact toReal_zero),
-   le_of_eq (by rw [PolyZonotope.dependent]; exact toReal_zero.symm)⟩
+theorem PolyZonotope.absorbRounding_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
+    pZ.construct ⊆ pZ.absorbRounding.construct := fun x hx =>
+  ⟨x, PolyZonotope.absorbRounding_nominal pZ hx, 0,
+    PolyZonotope.zero_mem_absorbRounding_err pZ, add_zero x⟩
 
 end CORALean.Float
 

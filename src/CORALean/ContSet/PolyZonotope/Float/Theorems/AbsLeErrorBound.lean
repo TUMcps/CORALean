@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 
 @[expose] public section
 

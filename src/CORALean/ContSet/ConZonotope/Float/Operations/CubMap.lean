@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.ConZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.HPolytope.Float.Operations.Lift
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
 
@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
 # `ConZonotope.cubMap`, over a floating-point scalar
 
 CORA's `@conZonotope/cubMap` (`aux_cubMapSingle`) for a single constrained zonotope on the stored
-floats: the error box made into coefficients (`dependent`), then the generators of
+floats: the error box made into coefficients (`absorbRounding`), then the generators of
 `Zonotope.cubMapDep` on the center and generators, with the constraints kept on the *linear*
 monomials, the generators `(0, 0, j)` whose factor is the old `βⱼ`, and every other monomial factor
 (`βⱼβₖ`, `2βⱼ² - 1`, the cubes, ...) unconstrained: `lift_` writes the operand's constraints on
@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 def ConZonotope.cubMap (T : Fin m → Fin n → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     ConZonotope 𝕋 (Vec 𝕋 m) :=
-  let d := cZ.dependent
+  let d := cZ.absorbRounding
   -- the zonotope `Zonotope.cubMapDep` maps
   let Z : Zonotope (Vec 𝕋 n) := ⟨d.h, d.c, d.G, d.I_error⟩
   { h := (Zonotope.cubMapDep T Z).h

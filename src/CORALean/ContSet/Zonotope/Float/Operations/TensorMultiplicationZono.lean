@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def Zonotope.tensorMultiplication_zono (Z : Zonotope (Vec 𝕋 n))
     (M : Zonotope (Zonotope.Tensor3 𝕋 n))
-    (L : Real.Zonotope.TensorLists Z.dependent.h) : Zonotope (Vec 𝕋 n) :=
+    (L : Real.Zonotope.TensorLists Z.absorbRounding.h) : Zonotope (Vec 𝕋 n) :=
   let Zres := Z.tensorMultiplication M.c L
   -- `for i = 1:M.numgens, Zres = Zres + tensorMultiplication(Z, M.generator{i})`
   (List.finRange M.h).foldl (fun Zres i => Zres.plus (Z.tensorMultiplication (M.G i) L)) Zres

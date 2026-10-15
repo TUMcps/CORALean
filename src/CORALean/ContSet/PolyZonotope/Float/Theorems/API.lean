@@ -21,8 +21,8 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsSetApproxSoun
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ConvHullOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapDepPoint
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapOuter
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
@@ -116,7 +116,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SupportBoundLe
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtFilter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ToRealExtG
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemDependentErr
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemAbsorbRoundingErr
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemMatGeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMapOuter
@@ -128,11 +128,11 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointSetSound
 # What `PolyZonotope` guarantees
 
 The exact layer's `plus`, `linComb`, `map` and `quadMap` read as enclosures. `plus`, `linComb`
-and `mtimes` keep their ℝ counts, rounding going into the error box; `dependent_nominal` moves
+and `mtimes` keep their ℝ counts, rounding going into the error box; `absorbRounding_nominal` moves
 the other way, trading the box for generators so `quadMap` has a box-free set to work on.
 
 `mul_outer` encloses the exact product over shared factors, its input the two *nominal* sets,
-reached by running `dependent` once; `evalPoly_outer` prices the chain of `mul`s Horner runs.
+reached by running `absorbRounding` once; `evalPoly_outer` prices the chain of `mul`s Horner runs.
 
 `reduce_outer` holds at every pair of partitions, which is what lets the ranking be a heuristic
 — and what lets it be computed at all here. It goes through `compact_outer`, so the order

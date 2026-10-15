@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
 
 @[expose] public section
@@ -20,7 +20,7 @@ an interval by `Gᵢ` cannot round in one direction without knowing the sign of
 and pick per term with `minimum`/`maximum`, which is `Interval.mtimes`'s shape.
 
 `quadMapDep` needs an empty independent block *and* an empty error box — a
-quadratic map is not additive — which `dependent` supplies, and which is why it
+quadratic map is not additive — which `absorbRounding` supplies, and which is why it
 is the first thing `quadMap` does. The error box then holds `(h+1)²` terms per
 coordinate where `mtimes` holds `h`, which is a reason to `compact` before
 mapping rather than after.
@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n)) :
-    PolyZonotope (Vec 𝕋 m) := PolyZonotope.quadMapDep Q pZ.dependent
+    PolyZonotope (Vec 𝕋 m) := PolyZonotope.quadMapDep Q pZ.absorbRounding
 
 end CORALean.Float
 

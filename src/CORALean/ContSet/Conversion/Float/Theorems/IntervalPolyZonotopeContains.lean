@@ -15,7 +15,7 @@ round the center and then reach both ends from wherever it landed, as
 unchanged.
 
 Nothing downstream can tell the two apart. `err` and an independent generator
-block are equally excluded from `mul` and `evalPoly`, and `dependent` frees both
+block are equally excluded from `mul` and `evalPoly`, and `absorbRounding` frees both
 into fresh factors, so the choice costs no precision at any later step.
 -/
 

@@ -1132,6 +1132,27 @@ has a genuine design choice behind it. A real definition alone is a specificatio
 of something no machine runs, and it is far cheaper to refine an operation while
 its proof is still in hand than to come back to it.
 
+### The error box and `absorbRounding`
+
+Every float set records its rounding explicitly in an `I_error` box (`InflatedContSet`: the set
+denotes `nominal ⊕ I_error`); rounding is never folded silently into a parameter. Each float
+representation provides a sound `absorbRounding`, which moves `I_error` into the parameters where
+the representation can hold it (a zonotope into box generators, a polyhedron into the right-hand
+side `b`, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
+model into its remainder), with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
+`absorbRounding` may itself round, so it does **not** promise an empty `I_error` afterwards: the
+result's box holds only the rounding of the absorption step, often exactly zero, and a caller
+must not assume `I_error = 0` after absorbing; where it is cheap, a lemma bounds the residual
+(`Zonotope.absorbError` is the midpoint-centred variant that leaves one). A theorem about the nominal
+part alone is `absorbRounding_nominal : S.construct ⊆ nominalSet S.absorbRounding`, which
+`absorbRounding_outer` follows from when the box left is the origin
+(`InflatedContSet.nominalSet_subset_construct`). A representation that cannot hold the box, or has
+none of its own, is listed in `scripts/absorb-rounding-allowlist.txt` with the reason, and says so in
+its main-type docstring; `scripts/check-absorb-rounding.py` (run by `check-conventions.sh`, #185)
+requires the rest to have an `I_error` field, a `def X.absorbRounding` and a
+`theorem X.absorbRounding_outer` under `ContSet/X/Float/`, and rejects the former name
+`dependent_outer`.
+
 ### Two scalars a definition can be run at
 
 `SoundFloatArithmetic` fixes no format, so the float layer has more than one

@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 @[expose] public section
 
 /-!
-# `PolyZonotope.dependent`
+# `PolyZonotope.absorbRounding`
 
 Every free coefficient made dependent, by giving it a fresh factor that appears
 in it alone and to the first power. The exact layer frees the independent
@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def PolyZonotope.dependent (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
+def PolyZonotope.absorbRounding (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p + (pZ.q + n)
   h := pZ.h + (pZ.q + n)
   q := 0
