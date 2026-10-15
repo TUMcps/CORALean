@@ -10,6 +10,7 @@ public import CORALean.ContSet.Zoo.Float.Theorems.RdivideOuter
 public import CORALean.ContSet.Zoo.Float.Theorems.TimesOuter
 public import CORALean.ContSet.Zoo.Float.Theorems.UminusOuter
 public import CORALean.ContSet.Zoo.Float.Theorems.Basic
+public import CORALean.ContSet.Zoo.Float.Theorems.EnclosesIff
 
 /-!
 # Float zoos: the guarantees

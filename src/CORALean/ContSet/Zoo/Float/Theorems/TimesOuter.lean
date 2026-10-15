@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Float.Operations.Basic
+public import CORALean.ContSet.Zoo.Float.Theorems.EnclosesIff
 public import CORALean.ContSet.Taylm.Float.Theorems.TimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
@@ -34,6 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Zoo.times_outer {Z₁ Z₂ : Zoo 𝕋 n} {f g : Vec ℝ n → ℝ} (h₁ : Z₁.Encloses f)
     (h₂ : Z₂.Encloses g) :
     (Z₁.times Z₂).Encloses fun t => f t * g t := by -- --- PROOF ---
+  rw [Zoo.encloses_iff] at h₁ h₂ ⊢
   refine ⟨fun T hT => ?_, fun I hI t ht => ?_⟩
   · obtain ⟨a, b, ha, hb, rfl⟩ := Option.map₂_eq_some_iff.1 hT
     exact Taylm.times_outer (h₁.1 a ha) (h₂.1 b hb)

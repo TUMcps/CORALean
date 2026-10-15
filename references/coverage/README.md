@@ -219,8 +219,8 @@ Rulings on borderline cases:
 | [cora2spaceex](others/cora2spaceex.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [intervalMatrix](others/intervalMatrix.md) | others | 39 | 19 | 4 | 1 | 5 | 10 | 3 |
 | [markovchain](others/markovchain.md) | others | 12 | 5 | 0 | 0 | 2 | 5 | 1 |
-| [matPolytope](others/matPolytope.md) | others | 20 | 11 | 0 | 0 | 1 | 8 | 2 |
-| [matZonotope](others/matZonotope.md) | others | 33 | 14 | 2 | 4 | 3 | 10 | 0 |
+| [matPolytope](others/matPolytope.md) | others | 20 | 11 | 0 | 0 | 1 | 8 | 5 |
+| [matZonotope](others/matZonotope.md) | others | 33 | 14 | 2 | 4 | 3 | 10 | 3 |
 | [matrixSet](others/matrixSet.md) | others | 3 | 0 | 0 | 0 | 0 | 3 | 0 |
 | [neuralnetwork2cora](others/neuralnetwork2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [partition](others/partition.md) | others | 12 | 10 | 0 | 0 | 0 | 2 | 0 |

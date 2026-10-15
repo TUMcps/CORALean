@@ -8,5 +8,6 @@ public import CORALean.ContSet.Zoo.Real.Theorems.API
 # Zoos, collected
 
 The representation in `Zoo`, the operations in `Operations` and their guarantees in
-`Theorems`. No interface instances: like `Taylm`, a zoo encloses a function, not a set.
+`Theorems`. A zoo encloses a function, not a point: its `ContSet` instance is over
+functions, the `SetIntersection` of its members.
 -/

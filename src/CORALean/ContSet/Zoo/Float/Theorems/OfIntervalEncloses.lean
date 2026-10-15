@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Float.Operations.OfInterval
+public import CORALean.ContSet.Zoo.Float.Theorems.EnclosesIff
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Zoo.Float.Theorems.DiagonalBlockSum
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
@@ -44,6 +45,7 @@ theorem Zoo.aux_ofInterval_poly (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n
 theorem Zoo.ofInterval_encloses (I : Interval (Vec 𝕋 n)) (N : ℕ) (i : Fin n) :
     (Zoo.ofInterval I N i).Encloses
       fun t => toReal (I.center i) + toReal (I.radiusFrom i) * t i := by -- --- PROOF ---
+  rw [Zoo.encloses_iff]
   refine ⟨fun T hT => ?_, fun J hJ t ht => ?_⟩
   · -- the Taylor model: remainder zero, polynomial the variable
     obtain rfl : I.taylm N i = T := Option.some.inj hT

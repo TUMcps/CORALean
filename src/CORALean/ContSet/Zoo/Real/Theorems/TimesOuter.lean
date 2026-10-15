@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Real.Operations.Times
+public import CORALean.ContSet.Zoo.Real.Theorems.EnclosesIff
 public import CORALean.ContSet.Taylm.Real.Theorems.TimesOuter
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
@@ -31,6 +32,7 @@ variable {n : ℕ}
 theorem Zoo.times_outer {Z₁ Z₂ : Zoo n} {f g : Vec ℝ n → ℝ} (h₁ : Z₁.Encloses f)
     (h₂ : Z₂.Encloses g) :
     (Z₁.times Z₂).Encloses fun t => f t * g t := by -- --- PROOF ---
+  rw [Zoo.encloses_iff] at h₁ h₂ ⊢
   refine ⟨fun T hT => ?_, fun I hI t ht => ?_⟩
   · obtain ⟨a, b, ha, hb, rfl⟩ := Option.map₂_eq_some_iff.1 hT
     exact Taylm.times_outer (h₁.1 a ha) (h₂.1 b hb)

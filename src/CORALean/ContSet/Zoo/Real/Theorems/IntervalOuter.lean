@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Real.Operations.Interval
+public import CORALean.ContSet.Zoo.Real.Theorems.EnclosesIff
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
@@ -34,6 +35,7 @@ variable {n : ℕ}
 theorem Zoo.interval_outer {Z : Zoo n} {f : Vec ℝ n → ℝ} (h : Z.Encloses f) {I : Interval (Vec ℝ 1)}
     (hI : Z.interval = some I) {t : Vec ℝ n} (ht : t ∈ Taylm.box n) :
     (fun _ => f t : Vec ℝ 1) ∈ I.construct := by -- --- PROOF ---
+  rw [Zoo.encloses_iff] at h
   have hT : ∀ T, Z.taylm = some T → (fun _ => f t : Vec ℝ 1) ∈
       (Taylm.interval fun _ : Fin 1 => T).construct := fun T hT i => by
     exact Taylm.bounds_mem (h.1 T hT) ht
