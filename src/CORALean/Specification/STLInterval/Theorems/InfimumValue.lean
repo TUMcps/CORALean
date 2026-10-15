@@ -30,8 +30,8 @@ theorem STLInterval.infimum_value (I : STLInterval) (hI : I ≠ .empty) :
     I.infimum.value = some (⨅ t ∈ I.set, (t : EReal)) := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI
-  | nonempty l u lc rc a b c =>
-    have hne := set_nonempty _ _ _ _ a b c
+  | nonempty l u lc rc a b c _ =>
+    have hne := rawSet_nonempty_of _ _ _ _ a b c
     show some l = _
     congr 1
     refine le_antisymm (le_iInf₂ fun t ht => ?_) ?_

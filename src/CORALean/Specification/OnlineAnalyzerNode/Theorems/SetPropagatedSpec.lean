@@ -2,7 +2,6 @@ module
 
 public import CORALean.Specification.FourValuedSignal.Theorems.SetSpec
 public import CORALean.Specification.OnlineAnalyzerNode.Operations.SetPropagated
-public import CORALean.Specification.STLInterval.Theorems.LowerStlInterval
 
 @[expose] public section
 
@@ -49,13 +48,7 @@ theorem OnlineAnalyzerNode.setPropagated_spec (eps : ℝ) (n n' : OnlineAnalyzer
       · -- the signal is made inconclusive on everything propagated
         simp only [hd, if_true, Option.some.injEq] at h
         subst h
-        have hI : ∀ f, ((OnlineAnalyzerNode.getAllProp eps
-            { n with prop := n.prop.set (n.parents.idxOf parent) int }).fieldsOf = some f) →
-            0 ≤ f.lower := by
-          intro f hf
-          unfold OnlineAnalyzerNode.getAllProp at hf
-          exact (STLInterval.lower_stlInterval _ _ _ _ f hf).symm.le
-        obtain ⟨hv', hset⟩ := FourValuedSignal.set_spec n.signal hv _ hI FourValued.ii
+        obtain ⟨hv', hset⟩ := FourValuedSignal.set_spec n.signal hv _ FourValued.ii
         exact ⟨hv', rfl, fun h => absurd h (by simp [hd]), fun _ t ht => hset t ht⟩
       · have hd' : n.dropPropagated = false := by simpa using hd
         simp only [hd', Bool.false_eq_true, if_false, Option.some.injEq] at h

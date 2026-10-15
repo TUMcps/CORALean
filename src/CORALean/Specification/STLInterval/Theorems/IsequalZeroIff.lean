@@ -34,24 +34,24 @@ theorem STLInterval.isequal_zero_iff (I J : STLInterval) :
     -- the empty interval against empty or nonempty
     cases J with
     | empty => simp [STLInterval.isequal, STLInterval.set]
-    | nonempty l u lc rc a b c =>
+    | nonempty l u lc rc a b c _ =>
       simp only [STLInterval.isequal, STLInterval.set]
       exact iff_of_false id (fun h => Set.nonempty_iff_ne_empty.1
-        (set_nonempty _ _ _ _ a b c) h.symm)
-  | nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ =>
+        (rawSet_nonempty_of _ _ _ _ a b c) h.symm)
+  | nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ _ =>
     -- a nonempty interval against empty, or against a nonempty one
     cases J with
     | empty =>
       simp only [STLInterval.isequal, STLInterval.set]
       exact iff_of_false id (fun h => Set.nonempty_iff_ne_empty.1
-        (set_nonempty _ _ _ _ a₁ b₁ c₁) h)
-    | nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ =>
+        (rawSet_nonempty_of _ _ _ _ a₁ b₁ c₁) h)
+    | nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ _ =>
       simp only [STLInterval.isequal, withinTol_zero]
       constructor
       · rintro ⟨rfl, rfl, rfl, rfl⟩; rfl
       · intro h
-        have : STLInterval.nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ =
-            STLInterval.nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ := set_injective h
+        have : STLInterval.nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ _ =
+            STLInterval.nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ _ := set_injective h
         simpa only [STLInterval.nonempty.injEq] using this
 
 end CORALean

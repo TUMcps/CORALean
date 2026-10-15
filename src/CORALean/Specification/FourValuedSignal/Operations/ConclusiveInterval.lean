@@ -7,6 +7,7 @@ public import CORALean.Specification.PointSegmentSignal.Operations.CutAtFirstFal
 public import CORALean.Specification.PointSegmentSignal.Operations.FindLast
 public import CORALean.Specification.PointSegmentSignal.Operations.Set
 public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 
 @[expose] public section
 

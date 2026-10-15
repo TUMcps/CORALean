@@ -107,12 +107,12 @@ theorem SyntaxTree.tanCora_counterexample :
   · simp [tanCoraTree, SyntaxTree.minus, SyntaxTree.tanCora, eval, Binary.fn, Unary.fn,
       interval, Dom.contains, Real.tan_pi_div_three]
   · rintro ⟨r, hr, hxr⟩
-    -- the root asks its first operand, `tan(x₁)`, for the target `(funHanMinus ...).first`
+    -- the root asks its first operand, `tan(x₁)`, for the target `(funHanMinus ...).left`
     obtain ⟨r₁, h₁, hx₁⟩ := backpropagation_binary_ok hr
     obtain ⟨val, hval, h₂⟩ := backpropagation_unary_ok h₁
     have hfirst : (funHanMinus (interval 0 0)
         (value (SyntaxTree.tanCora (SyntaxTree.var (0 : Fin 2) (interval 0 (Real.pi / 3)))))
-        (value (SyntaxTree.var (1 : Fin 2) (interval 0 2)))).first =
+        (value (SyntaxTree.var (1 : Fin 2) (interval 0 2)))).left =
         interval 0 (Real.sqrt 3) := by
       simp only [funHanMinus, SyntaxTree.tanCora, value, Real.Interval.intersection,
         Real.Interval.tan, Real.Interval.plus, interval]

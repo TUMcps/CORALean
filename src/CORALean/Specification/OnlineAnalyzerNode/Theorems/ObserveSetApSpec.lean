@@ -18,7 +18,7 @@ observes `val` in the interval (`TentativeKleeneSignal.observe`).
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +42,7 @@ theorem OnlineAnalyzerNode.observeSet_ap_spec (eps : ℝ)
     (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val) :
     (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false =
         some { n with signal := n.signal.set interval (FourValued.fromKleene val) } ∧
-      (n.signal.IsValid → (∀ f, interval.fieldsOf = some f → 0 ≤ f.lower) →
+      (n.signal.IsValid →
         (n.signal.set interval (FourValued.fromKleene val)).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
           (t ∈ interval.set →
             (n.signal.set interval (FourValued.fromKleene val)).at t =
@@ -51,10 +51,10 @@ theorem OnlineAnalyzerNode.observeSet_ap_spec (eps : ℝ)
             (n.signal.set interval (FourValued.fromKleene val)).at t = n.signal.at t))) ∧
     (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc true =
         some { n with tentative := some (tent.observe interval val) } ∧
-      (tent.IsValid → (∀ f, interval.fieldsOf = some f → 0 ≤ f.lower) →
+      (tent.IsValid →
         (tent.observe interval val).IsValid)) := by -- --- PROOF ---
-  refine ⟨⟨?_, fun hs hI => FourValuedSignal.set_spec n.signal hs interval hI _⟩,
-    ⟨?_, fun hs hI => (tent.observe_spec hs interval hI val).1⟩⟩
+  refine ⟨⟨?_, fun hs => FourValuedSignal.set_spec n.signal hs interval _⟩,
+    ⟨?_, fun hs => (tent.observe_spec hs interval val).1⟩⟩
   -- a final observation sets the satisfaction signal
   · simp [OnlineAnalyzerNode.observeSet, hk, hnc, hap, hval]
   -- a tentative one is stored in the tentative signal

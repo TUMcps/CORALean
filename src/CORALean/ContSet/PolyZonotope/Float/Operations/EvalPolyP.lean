@@ -7,8 +7,10 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyStep
 /-!
 # `evalPoly`'s recursion, over a floating-point scalar
 
-Split out of `EvalPoly.lean` (issue #62): read again by
-`Theorems/EvalPolyOuter.lean`, outside this file.
+Not merged into `EvalPoly.lean`: the recursion cannot be written without its proof. Every
+`evalPolyStep` needs `hp : R.p = pZ.p` for the accumulated `R`, so the recursion returns the set
+together with that proof. `evalPoly` is its first projection, `evalPoly_p` its second, and
+`Theorems/EvalPolyOuter.lean` unfolds the recursion itself, so it has users outside `evalPoly`.
 -/
 
 -- Authors:       Claude Opus 5

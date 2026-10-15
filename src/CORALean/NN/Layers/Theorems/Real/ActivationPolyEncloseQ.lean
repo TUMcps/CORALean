@@ -1,9 +1,10 @@
 module
 
 public import CORALean.NN.Layers.Definitions.ActivationPoly
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Dependent
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.EvalPoly
-public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Plus
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.DependentP
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.Basic
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.EvalPolyH
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Space.Theorems.PlusP
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope

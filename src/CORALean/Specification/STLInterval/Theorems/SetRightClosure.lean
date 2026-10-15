@@ -40,8 +40,8 @@ theorem STLInterval.set_rightClosure (I : STLInterval) :
       I.set ∪ {t : ℝ | I.supremum.value = some (t : EReal)} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.rightClosure, STLInterval.supremum, STLInterval.set]
-  | nonempty l u lc rc a b c =>
-    obtain ⟨x, hx⟩ := set_nonempty _ _ _ _ a b c
+  | nonempty l u lc rc a b c _ =>
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
     -- an unbounded upper end stays as it is, and `⊤` is no real time
     by_cases hu : u = ⊤
     · simp [STLInterval.rightClosure, STLInterval.supremum, hu, STLInterval.set]

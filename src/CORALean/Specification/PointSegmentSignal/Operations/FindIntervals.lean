@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.PointSegmentSignal.Operations.FindIntervalsBounds
 public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 
 @[expose] public section
 

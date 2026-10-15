@@ -1,0 +1,102 @@
+module
+
+public import CORALean.NN.Graph.Complexity.Space.Theorems.GcnSharedH
+public import CORALean.NN.Graph.Complexity.Space.Theorems.Basic
+public import CORALean.NN.Graph.Operations.GcnSteps
+public import Mathlib.Data.Int.ConditionallyCompleteOrder
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadBack
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PadFront
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Asymptotics.Defs
+public import Mathlib.Tactic.Positivity
+public import CORALean.NN.Graph.Complexity.Space.Theorems.MessagePassingEnclosureHLe
+public import CORALean.NN.Graph.Complexity.Space.Theorems.GcnStepsHLe
+
+@[expose] public section
+
+/-!
+# `GNN.gcnSteps_h_isBigO`
+
+[1, Thm. 1] for the graph layers: `L` message-passing steps at an uncertain
+graph are polynomial of degree `3L` in the number of uncertain edges.
+
+## References
+
+* [1] T. Ladner, M. Eichelbeck and M. Althoff. "Formal Verification of Graph
+      Convolutional Networks with Uncertain Node Features and Uncertain Graph
+      Structure". TMLR, 2025. arXiv:2404.15065.
+-/
+
+-- Authors:       Claude Opus 5
+-- Written:       12-September-2026
+-- Last update:   13-October-2026
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {N F m : ℕ}
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The chain's count against the cubic in `m`, before any cast: the constant
+collects the node count and the input set, the growth is the power of `m`. -/
+theorem aux_gcnSteps_h_le_pow (R : Relaxation ℝ) (A : Mat ℝ N N)
+    (U : Fin m → Fin N × Fin N) (L : ℕ) (W : Fin L → Mat ℝ F F)
+    (X : PolyZonotope (Mat ℝ N F)) (hm : 1 ≤ m) :
+    (GNN.gcnSteps ((GNN.messagePassingEnclosure R A U).padBack X.p) L W
+        (X.padFront (GNN.messagePassingEnclosure R A U).p) rfl).h
+      ≤ (((N + 2) * (N + 2) + 1) * (N + 2) + 2) ^ L * (X.h + 1) * m ^ (3 * L) := by -- --- PROOF ---
+  -- the base of the power: `𝒫`'s own cubic, with the `+2` a step costs folded in
+  have hmpe : (GNN.messagePassingEnclosure R A U).h + 2
+      ≤ (((N + 2) * (N + 2) + 1) * (N + 2) + 2) * m ^ 3 := by
+    have h := GNN.messagePassingEnclosure_h_le R A U hm
+    have hc : 1 ≤ m ^ 3 := Nat.one_le_pow 3 m (by omega)
+    calc (GNN.messagePassingEnclosure R A U).h + 2
+        ≤ ((N + 2) * (N + 2) + 1) * (N + 2) * m ^ 3 + 2 * m ^ 3 := by linarith
+      _ = (((N + 2) * (N + 2) + 1) * (N + 2) + 2) * m ^ 3 := by ring
+  -- padding moves the factor count only, so the chain's bound reads off `𝒫` and `X`
+  have hP : ((GNN.messagePassingEnclosure R A U).padBack X.p).h
+      = (GNN.messagePassingEnclosure R A U).h := rfl
+  have hH : (X.padFront (GNN.messagePassingEnclosure R A U).p).h = X.h := rfl
+  have hchain := GNN.gcnSteps_h_le ((GNN.messagePassingEnclosure R A U).padBack X.p) L W
+    (X.padFront (GNN.messagePassingEnclosure R A U).p) rfl
+  rw [hP, hH] at hchain
+  calc (GNN.gcnSteps ((GNN.messagePassingEnclosure R A U).padBack X.p) L W
+          (X.padFront (GNN.messagePassingEnclosure R A U).p) rfl).h
+      ≤ ((GNN.messagePassingEnclosure R A U).h + 2) ^ L * (X.h + 1) :=
+        le_trans (Nat.le_succ _) hchain
+    _ ≤ ((((N + 2) * (N + 2) + 1) * (N + 2) + 2) * m ^ 3) ^ L * (X.h + 1) :=
+        Nat.mul_le_mul (Nat.pow_le_pow_left hmpe L) (le_refl _)
+    _ = (((N + 2) * (N + 2) + 1) * (N + 2) + 2) ^ L * (X.h + 1) * m ^ (3 * L) := by
+        rw [mul_pow, ← pow_mul]
+        ring
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- [1, Thm. 1] for the graph layers: `L` message-passing steps at an uncertain
+graph are polynomial of degree `3L` in the number of uncertain edges. -/
+theorem GNN.gcnSteps_h_isBigO (R : Relaxation ℝ) (A : Mat ℝ N N)
+    (U : ∀ m : ℕ, Fin m → Fin N × Fin N) (L : ℕ) (W : Fin L → Mat ℝ F F)
+    (X : PolyZonotope (Mat ℝ N F)) :
+    (fun m : ℕ => (((GNN.gcnSteps ((GNN.messagePassingEnclosure R A (U m)).padBack X.p) L W
+        (X.padFront (GNN.messagePassingEnclosure R A (U m)).p) rfl).h : ℕ) : ℝ))
+      =O[Filter.atTop] fun m : ℕ => (m : ℝ) ^ (3 * L) := by -- --- PROOF ---
+  apply Asymptotics.IsBigO.of_bound
+    (((((N + 2) * (N + 2) + 1) * (N + 2) + 2) ^ L * (X.h + 1) : ℕ) : ℝ)
+  filter_upwards [Filter.eventually_ge_atTop 1] with m hm
+  -- the whole bound is a statement about naturals, so the cast is the last step
+  have h := aux_gcnSteps_h_le_pow R A (U m) L W X hm
+  rw [Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity)]
+  exact_mod_cast h
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

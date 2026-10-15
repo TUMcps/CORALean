@@ -29,12 +29,12 @@ namespace CORALean
 noncomputable def STLInterval.minusInterval :
     STLInterval → Real.Interval (Vec ℝ 1) → STLInterval
   | .empty, _ => .empty
-  | .nonempty l u lc rc _ _ _, J =>
+  | .nonempty l u lc rc _ _ _ _, J =>
     if J.sup 0 < J.inf 0 then .empty
     else
       let lb := l - J.sup 0
       let ub := u - J.inf 0
-      if lb < 0 then stlInterval 0 ub true rc else stlInterval lb ub lc rc
+      if h : lb < 0 then stlInterval 0 ub true rc le_rfl else stlInterval lb ub lc rc (not_lt.1 h)
 
 end CORALean
 

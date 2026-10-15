@@ -32,11 +32,11 @@ theorem STLInterval.set_toLeft (I : STLInterval) (hI : I ≠ .empty) :
       J.set = {t | 0 ≤ t ∧ t ∉ I.set ∧ ∀ s ∈ I.set, t ≤ s} := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI
-  | nonempty l u lc rc a b c =>
+  | nonempty l u lc rc a b c _ =>
     -- the interval to the left is `[0, lower)` or `[0, lower]`
     refine ⟨_, rfl, ?_⟩
     rw [set_stlInterval]
-    obtain ⟨x, hx⟩ := set_nonempty _ _ _ _ a b c
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
     ext t
     simp only [rawSet, STLInterval.set, Set.mem_setOf_eq]
     -- a time in it is `≥ 0`, outside `I`, and no later than `I`

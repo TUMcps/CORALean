@@ -26,7 +26,7 @@ namespace CORALean
 
 noncomputable def STLInterval.toLeft : STLInterval → Option STLInterval
   | .empty => none
-  | .nonempty l _ lc _ _ _ _ => some (stlInterval 0 l true (!lc))
+  | .nonempty l _ lc _ _ _ _ _ => some (stlInterval 0 l true (!lc) le_rfl)
 
 end CORALean
 

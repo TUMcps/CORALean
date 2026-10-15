@@ -12,6 +12,7 @@ public import CORALean.Specification.STLInterval.Operations.Plus
 public import CORALean.Specification.STLInterval.Operations.PlusInterval
 public import CORALean.Specification.STLInterval.Operations.PlusNum
 public import CORALean.Specification.STLInterval.Operations.StlInterval
+public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 public import CORALean.Specification.STLInterval.Operations.Supremum
 public import CORALean.Specification.STLInterval.Operations.ToLeft
 

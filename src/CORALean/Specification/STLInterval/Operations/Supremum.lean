@@ -25,7 +25,7 @@ namespace CORALean
 
 def STLInterval.supremum : STLInterval → STLInterval.Endpoint
   | .empty => ⟨none, true⟩
-  | .nonempty _ u _ rc _ _ _ => ⟨some u, rc⟩
+  | .nonempty _ u _ rc _ _ _ _ => ⟨some u, rc⟩
 
 end CORALean
 

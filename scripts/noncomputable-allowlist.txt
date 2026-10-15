@@ -403,6 +403,7 @@ Layer.lipConstrScale  real-layer: an ℝ-only part of NN (the weight norm divide
 Layer.lipConstrLinear  real-layer: an ℝ-only part of NN, `Layer.linear` at the rescaled real weights `N W`; see `Layer.lipConstrScale`
 SmoothNetwork.eval  real-layer: an ℝ-only part of NN, the exact function of the networks CORA's `nonlinearSysDT` accepts (the real `tanh`, `relu` and `sigmoid`), never run
 SmoothNetwork.outputFn  real-layer: an ℝ-only part of NN, the output function of CORA's `nonlinearSysDT` over the real activations, never run
+SmoothNetwork.toNonlinearSysDT  real-layer: an ℝ-only part of NN, CORA's `nonlinearSysDT` system, whose output is the noncomputable `outputFn`, never run
 Chain.fgsmAttack  real-layer: the signed step of the transposed-Jacobian pull-back `Chain.backprop`, ℝ-only for the same reason
 Chain.pgdStep  real-layer: one pass of `Chain.pgdAttack`, built on `Chain.fgsmAttack`, ℝ-only for the same reason
 Chain.pgdAttack  real-layer: iterated `Chain.fgsmAttack`, ℝ-only for the same reason

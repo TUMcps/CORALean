@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.Reach
-public import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.ReachBound
+public import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.Operations.API
+public import CORALean.ContDynamics.NonlinearSysDT.Complexity.Time.Theorems.API
 
 /-!
 # What running `NonlinearSysDT.reach` costs
@@ -11,8 +11,8 @@ The second worked composition, and the one that shows the arrangement nests.
 this directory assembles an algorithm's bound out of *that algorithm*, used
 whole at one step, and never reaches past it to a leaf count.
 
-`Reach.lean` says which run a step is and at what sizes, its recursion
-mirroring `Operations.lean` line for line. `ReachBound.lean` proves the run
+`Operations/ReachCost.lean` says which run a step is and at what sizes, its recursion
+mirroring `Operations.lean` line for line. `Theorems/ReachCostLe.lean` proves the run
 costs at most `k` worst-case linear steps, and the bound it proves that against
 is `LinearSysDT.reachStepBound` itself rather than a number of its own: a
 re-linearized step runs the same three operations, so it costs the same.

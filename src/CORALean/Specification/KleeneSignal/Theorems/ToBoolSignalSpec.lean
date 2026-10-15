@@ -44,13 +44,13 @@ theorem KleeneSignal.toBoolSignal_spec (s : KleeneSignal ℝ) (hs : s.IsValid) (
     (s.toBoolSignal v).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (s.at t = Kleene.uu → (s.toBoolSignal v).at t = v) ∧
       (s.at t ≠ Kleene.uu → (s.toBoolSignal v).at t = (s.at t).toBool) := by -- --- PROOF ---
-  obtain ⟨h0, h1, -⟩ := s.isUnknown.findIntervals_spec hs.2 id
+  obtain ⟨h1, -⟩ := s.isUnknown.findIntervals_spec hs.2 id
   -- the intervals are set in turn
   obtain ⟨hv, h2⟩ := List.foldl_set_spec (fun sig : PointSegmentSignal ℝ => sig.IsValid)
     (fun sig t => sig.at t) (s.isUnknown.findIntervals) (fun I => I.set) v
     (fun sig I => sig.set I v)
-    (fun sig I hI hsig => by
-      obtain ⟨hv, h⟩ := PointSegmentSignal.set_spec sig hsig I (h0 I hI) v
+    (fun sig I _ hsig => by
+      obtain ⟨hv, h⟩ := PointSegmentSignal.set_spec sig hsig I v
       exact ⟨hv, fun t ht => h t ht⟩) s.signal hs.1
   refine ⟨hv, fun t ht => ⟨fun hu => ?_, fun hu => ?_⟩⟩
   · -- unknown: the time is in an interval

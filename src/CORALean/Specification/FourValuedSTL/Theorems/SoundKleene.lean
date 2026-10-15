@@ -57,7 +57,7 @@ theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R 
   induction φ with
   | tt =>
     -- `true` is `True` everywhere
-    obtain ⟨hv, h⟩ := KleeneSignal.indicator_spec STLInterval.empty (fun f h => by cases h) .tt .tt
+    obtain ⟨hv, h⟩ := KleeneSignal.indicator_spec STLInterval.empty .tt .tt
     refine ⟨hv, fun t => ?_⟩
     have := (h t t.2).2 (by simp [STLInterval.set_empty])
     simp only [FourValuedSTL.Formula.kleeneSat, this]
@@ -102,11 +102,11 @@ theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R 
     · rintro (h | h)
       · exact fun hh => a1.2 h hh.1
       · exact fun hh => a2.2 h hh.2
-  | «until» I hI φ ψ ihφ ihψ =>
+  | «until» I φ ψ ihφ ihψ =>
     -- until: the witness `t'` of the `U₁`-semantics is one for every covered execution
     obtain ⟨hv₁, h₁⟩ := ihφ (fun a ha => hS a (Or.inl ha))
     obtain ⟨hv₂, h₂⟩ := ihψ (fun a ha => hS a (Or.inr ha))
-    obtain ⟨hv, h⟩ := KleeneSignal.until_spec _ _ hv₁ hv₂ I hI
+    obtain ⟨hv, h⟩ := KleeneSignal.until_spec _ _ hv₁ hv₂ I
     refine ⟨hv, fun t => ?_⟩
     obtain ⟨htt, hff⟩ := h t t.2
     simp only [FourValuedSTL.Formula.kleeneSat]
@@ -118,7 +118,7 @@ theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R 
     constructor
     -- `True`: the witness `t'` is a time of `ℝ≥0`, since `I` is over `ℝ≥0`
     · rintro ⟨t', hu, hr, hl⟩
-      have hd := STLInterval.zero_le_of_mem_set I hI _ hu
+      have hd := STLInterval.zero_le_of_mem_set I _ hu
       have ht' : 0 ≤ t' := by have := NNReal.coe_nonneg t; linarith
       refine ⟨⟨t', ht'⟩, hu, (a2 ⟨t', ht'⟩).1 hr, fun t'' h1 h2 => (a1 t'').1 (hl t'' ?_ ?_)⟩
       · exact_mod_cast h1

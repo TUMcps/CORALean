@@ -27,13 +27,12 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem KleeneSignal.indicator_spec (I : STLInterval)
-    (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (val default : Kleene) :
+theorem KleeneSignal.indicator_spec (I : STLInterval) (val default : Kleene) :
     (KleeneSignal.indicator I val default).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (KleeneSignal.indicator I val default).at t = val) ∧
       (t ∉ I.set → (KleeneSignal.indicator I val default).at t = default) := by -- --- PROOF ---
-  obtain ⟨hv1, h1⟩ := PointSegmentSignal.indicator_spec I hI val.toBool default.toBool
-  obtain ⟨hv2, h2⟩ := PointSegmentSignal.indicator_spec I hI val.isUnknown default.isUnknown
+  obtain ⟨hv1, h1⟩ := PointSegmentSignal.indicator_spec I val.toBool default.toBool
+  obtain ⟨hv2, h2⟩ := PointSegmentSignal.indicator_spec I val.isUnknown default.isUnknown
   refine ⟨⟨hv1, hv2⟩, fun t ht => ⟨fun hm => ?_, fun hm => ?_⟩⟩
   · -- inside: the value is `val`, rebuilt from its parts
     have e1 := (h1 t ht).1 hm

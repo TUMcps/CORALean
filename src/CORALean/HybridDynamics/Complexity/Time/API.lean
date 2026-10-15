@@ -1,7 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Complexity.Time.Jump
-public import CORALean.HybridDynamics.Complexity.Time.JumpIntersection
+public import CORALean.HybridDynamics.Complexity.Time.Operations.API
 
 /-!
 # What a hybrid automaton's discrete step costs

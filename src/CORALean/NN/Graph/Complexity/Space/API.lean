@@ -1,16 +1,6 @@
 module
 
-public import CORALean.NN.Graph.Complexity.Space.Conv
-public import CORALean.NN.Graph.Complexity.Space.ConvUncertain
-public import CORALean.NN.Graph.Complexity.Space.GcnSteps
-public import CORALean.NN.Graph.Complexity.Space.MessagePassingEnclosure
-public import CORALean.NN.Graph.Complexity.Space.Pooling
-public import CORALean.NN.Graph.Complexity.Space.GcnActSteps
-public import CORALean.NN.Graph.Complexity.Space.GcnActStepsQ
-public import CORALean.NN.Graph.Complexity.Space.TailEnclose
-public import CORALean.NN.Graph.Complexity.Space.Alg1Node
-public import CORALean.NN.Graph.Complexity.Space.Alg1Graph
-public import CORALean.NN.Graph.Complexity.Space.Alg1
+public import CORALean.NN.Graph.Complexity.Space.Theorems.API
 
 /-!
 # How large a graph layer's result is

@@ -34,16 +34,16 @@ theorem STLInterval.set_minus (I J : STLInterval) :
     (I.minus J).set = (I.set - J.set) ∩ Set.Ici 0 := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.minus, STLInterval.set]
-  | nonempty l₁ u₁ lc₁ rc₁ a b c =>
+  | nonempty l₁ u₁ lc₁ rc₁ a b c _ =>
     cases J with
     | empty => simp [STLInterval.minus, STLInterval.set]
-    | nonempty l₂ u₂ lc₂ rc₂ d e f =>
+    | nonempty l₂ u₂ lc₂ rc₂ d e f _ =>
       simp only [STLInterval.minus]
-      have h := rawSet_sub (set_nonempty _ _ _ _ a b c)
-        (set_nonempty _ _ _ _ d e f)
+      have h := rawSet_sub (rawSet_nonempty_of _ _ _ _ a b c)
+        (rawSet_nonempty_of _ _ _ _ d e f)
       show _ = (rawSet l₁ u₁ lc₁ rc₁ - rawSet l₂ u₂ lc₂ rc₂) ∩ Set.Ici 0
       rw [← h, rawSet_clamp]
-      split_ifs <;> exact set_stlInterval _ _ _ _
+      split_ifs <;> exact set_stlInterval _ _ _ _ _
 
 end CORALean
 

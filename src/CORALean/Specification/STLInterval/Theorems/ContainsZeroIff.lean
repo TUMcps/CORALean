@@ -33,14 +33,14 @@ theorem STLInterval.contains_zero_iff (I J : STLInterval) :
   | empty =>
     cases J with
     | empty => simp [STLInterval.contains_, STLInterval.set]
-    | nonempty l u lc rc a b c =>
+    | nonempty l u lc rc a b c _ =>
       simp only [STLInterval.contains_, STLInterval.set]
       exact iff_of_false (by simp) (fun h => Set.nonempty_iff_ne_empty.1
-        (set_nonempty _ _ _ _ a b c) (Set.subset_empty_iff.1 h))
-  | nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ =>
+        (rawSet_nonempty_of _ _ _ _ a b c) (Set.subset_empty_iff.1 h))
+  | nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ _ =>
     cases J with
     | empty => simp [STLInterval.contains_, STLInterval.set]
-    | nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ =>
+    | nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ _ =>
       rw [nonempty_set_subset_iff a₁ b₁ c₁ a₂ b₂ c₂]
       simp only [STLInterval.contains_, withinTol_zero, gt_iff_lt]
 

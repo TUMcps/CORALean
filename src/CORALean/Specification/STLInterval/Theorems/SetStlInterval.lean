@@ -14,7 +14,7 @@ the empty set.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -25,8 +25,8 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STLInterval.set_stlInterval (lb ub : EReal) (lc rc : Bool) :
-    (STLInterval.stlInterval lb ub lc rc).set =
+theorem STLInterval.set_stlInterval (lb ub : EReal) (lc rc : Bool) (hlb : 0 ≤ lb) :
+    (STLInterval.stlInterval lb ub lc rc hlb).set =
       STLInterval.rawSet lb ub lc rc := by -- --- PROOF ---
   unfold STLInterval.stlInterval
   by_cases h : lb < ub ∨ (lb = ub ∧ (if lb = ⊥ ∨ lb = ⊤ then false else lc) = true ∧
@@ -36,7 +36,7 @@ theorem STLInterval.set_stlInterval (lb ub : EReal) (lc rc : Bool) :
     simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq]
     -- the flags forced open leave the denoted reals alone
     by_cases h1 : lb = ⊥ <;> by_cases h2 : lb = ⊤ <;> by_cases h3 : ub = ⊥ <;>
-      by_cases h4 : ub = ⊤ <;> simp_all [EReal.bot_lt_coe, EReal.coe_lt_top]
+      by_cases h4 : ub = ⊤ <;> simp_all [EReal.coe_lt_top]
   · -- no real time fits between the bounds
     rw [dif_neg h]
     ext t

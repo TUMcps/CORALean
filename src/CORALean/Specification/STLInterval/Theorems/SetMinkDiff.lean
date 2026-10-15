@@ -39,22 +39,22 @@ theorem STLInterval.set_minkDiff (I J : STLInterval) :
       false_imp_iff, implies_true, and_true]
     simp only [EReal.coe_lt_top, true_or, and_true, true_and, EReal.coe_pos, le_iff_lt_or_eq]
     exact or_congr_right ⟨fun h => (EReal.coe_eq_zero.1 h.symm).symm, fun h => by rw [← h]; rfl⟩
-  | nonempty l₂ u₂ lc₂ rc₂ d e f =>
+  | nonempty l₂ u₂ lc₂ rc₂ d e f _ =>
     -- a nonempty `J` against an empty or a nonempty `I`
     cases I with
     | empty =>
-      obtain ⟨y, hy⟩ := set_nonempty _ _ _ _ d e f
+      obtain ⟨y, hy⟩ := rawSet_nonempty_of _ _ _ _ d e f
       ext t
       simp only [STLInterval.minkDiff, STLInterval.set, Set.mem_empty_iff_false, Set.mem_setOf_eq,
         false_iff, not_and]
       exact fun _ h => h y hy
-    | nonempty l₁ u₁ lc₁ rc₁ a b c =>
+    | nonempty l₁ u₁ lc₁ rc₁ a b c _ =>
       simp only [STLInterval.minkDiff]
-      have h := rawSet_minkDiff (set_nonempty _ _ _ _ a b c)
-        (set_nonempty _ _ _ _ d e f)
+      have h := rawSet_minkDiff (rawSet_nonempty_of _ _ _ _ a b c)
+        (rawSet_nonempty_of _ _ _ _ d e f)
       show _ = {t | 0 ≤ t ∧ ∀ y ∈ rawSet l₂ u₂ lc₂ rc₂, t + y ∈ rawSet l₁ u₁ lc₁ rc₁}
       rw [h]
-      split_ifs <;> exact set_stlInterval _ _ _ _
+      split_ifs <;> exact set_stlInterval _ _ _ _ _
 
 end CORALean
 

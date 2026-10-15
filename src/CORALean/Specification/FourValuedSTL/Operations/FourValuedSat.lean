@@ -45,7 +45,7 @@ noncomputable def FourValuedSTL.Formula.fourValuedSat {X : Type}
   | .not φ => (φ.fourValuedSat S).map FourValuedSignal.not
   | .and φ ψ => (φ.fourValuedSat S).bind fun l => (ψ.fourValuedSat S).bind fun r =>
       FourValuedSignal.and_ ![l, r]
-  | .until I _ φ ψ => (φ.fourValuedSat S).bind fun l => (ψ.fourValuedSat S).bind fun r =>
+  | .until I φ ψ => (φ.fourValuedSat S).bind fun l => (ψ.fourValuedSat S).bind fun r =>
       FourValuedSignal.until l I r
 
 end CORALean

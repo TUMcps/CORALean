@@ -34,7 +34,7 @@ noncomputable def OnlineAnalyzerNode.getAllProp (eps : ℝ) (n : OnlineAnalyzerN
     STLInterval :=
   -- ub = inf; rc = true; the loop; allProp = stlInterval(0,ub,true,rc)
   let b := OnlineAnalyzerNode.propBound eps n.prop (⊤, true)
-  STLInterval.stlInterval 0 b.1 true b.2
+  STLInterval.stlInterval 0 b.1 true b.2 le_rfl
 
 end CORALean
 

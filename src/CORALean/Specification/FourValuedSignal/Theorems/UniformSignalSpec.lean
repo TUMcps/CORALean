@@ -30,8 +30,7 @@ theorem FourValuedSignal.uniformSignal_spec
     (val : FourValued) :
     (FourValuedSignal.uniformSignal val : FourValuedSignal ℝ).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (FourValuedSignal.uniformSignal val : FourValuedSignal ℝ).at t = val := by
-  obtain ⟨hv, hat⟩ := FourValuedSignal.indicator_spec STLInterval.empty (fun f h => by cases h)
-      val val
+  obtain ⟨hv, hat⟩ := FourValuedSignal.indicator_spec STLInterval.empty val val
   exact ⟨hv, fun t ht =>
     (hat t ht).2 (by simp [STLInterval.set_empty])⟩
 

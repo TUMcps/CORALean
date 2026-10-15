@@ -43,7 +43,7 @@ noncomputable def FourValuedSTL.Formula.kleeneSat {X : Type}
   | .atom a => S a
   | .not φ => (φ.kleeneSat S).not
   | .and φ ψ => KleeneSignal.and_ ![φ.kleeneSat S, ψ.kleeneSat S]
-  | .until I _ φ ψ => (φ.kleeneSat S).until I (ψ.kleeneSat S)
+  | .until I φ ψ => (φ.kleeneSat S).until I (ψ.kleeneSat S)
 
 end CORALean
 

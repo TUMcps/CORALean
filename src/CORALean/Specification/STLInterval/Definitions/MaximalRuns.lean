@@ -16,7 +16,7 @@ it too (so two intervals never touch). It is what the `findIntervals` of the sig
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +29,6 @@ namespace CORALean
 
 /-- The intervals of `L` are the maximal runs of times with the property `P`. -/
 def STLInterval.MaximalRuns (L : List STLInterval) (P : ℝ → Prop) : Prop :=
-  (∀ I ∈ L, ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) ∧
   (∀ t : ℝ, 0 ≤ t → ((∃ I ∈ L, t ∈ I.set) ↔ P t)) ∧
   (∀ I ∈ L, ∀ t₁ ∈ I.set, ∀ t₂ : ℝ, 0 ≤ t₂ →
     (∀ t, 0 ≤ t → min t₁ t₂ ≤ t → t ≤ max t₁ t₂ → P t) → t₂ ∈ I.set)

@@ -33,14 +33,14 @@ theorem STLInterval.set_plus (I J : STLInterval) :
     (I.plus J).set = I.set + J.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.plus, STLInterval.set]
-  | nonempty l₁ u₁ lc₁ rc₁ a b c =>
+  | nonempty l₁ u₁ lc₁ rc₁ a b c _ =>
     cases J with
     | empty => simp [STLInterval.plus, STLInterval.set]
-    | nonempty l₂ u₂ lc₂ rc₂ d e f =>
+    | nonempty l₂ u₂ lc₂ rc₂ d e f _ =>
       simp only [STLInterval.plus]
       rw [STLInterval.set_stlInterval]
-      exact rawSet_add (set_nonempty _ _ _ _ a b c)
-        (set_nonempty _ _ _ _ d e f)
+      exact rawSet_add (rawSet_nonempty_of _ _ _ _ a b c)
+        (rawSet_nonempty_of _ _ _ _ d e f)
 
 end CORALean
 

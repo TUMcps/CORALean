@@ -29,7 +29,7 @@ proof is the paper's: `t ∈ cll(I⁺_{λ₁})` and `t' ∈ clr(I⁺_{λ₁})` f
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -158,39 +158,36 @@ theorem PointSegmentSignal.aux_mem_rightClosure (J : STLInterval) (t t' : ℝ) (
 
 /-- The unitary until of `Eq. 1` is `true` exactly where the until semantics says. -/
 theorem PointSegmentSignal.intervalUntil_unitary (l₁ l₂ : PointSegmentSignal ℝ)
-    (J₁ J₂ U : STLInterval) (h₁ : l₁.IsUnitary J₁) (h₂ : l₂.IsUnitary J₂)
-    (hU : ∀ f, U.fieldsOf = some f → 0 ≤ f.lower) :
+    (J₁ J₂ U : STLInterval) (h₁ : l₁.IsUnitary J₁) (h₂ : l₂.IsUnitary J₂) :
     (PointSegmentSignal.intervalUntil [J₁] U [J₂]).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((PointSegmentSignal.intervalUntil [J₁] U [J₂]).at t = true ↔
         ∃ t', t' - t ∈ U.set ∧ l₂.at t' = true ∧
           ∀ x, t < x → x < t' → l₁.at x = true) := by -- --- PROOF ---
   obtain ⟨hv, h⟩ := PointSegmentSignal.intervalUntil_spec [J₁] [J₂] U
-    (fun I hI => by rw [List.mem_singleton.1 hI]; exact h₁.1)
-    (fun I hI => by rw [List.mem_singleton.1 hI]; exact h₂.1) hU
   refine ⟨hv, fun t ht => ?_⟩
   rw [h t ht]
   simp only [List.mem_singleton, exists_eq_left]
   constructor
   -- a witness `t'` of the pair of intervals, or `t` itself in `I⁺_{λ₂}`
   · rintro (⟨t', ht'J, ht'cl, htcl, hu, hne⟩ | ⟨h0, htJ⟩)
-    · have hd := STLInterval.zero_le_of_mem_set U hU _ hu
+    · have hd := STLInterval.zero_le_of_mem_set U _ hu
       have htt : t < t' := lt_of_le_of_ne (by linarith) (Ne.symm hne)
-      refine ⟨t', hu, (h₂.2 t' (by linarith)).2 ht'J, fun x hx1 hx2 => ?_⟩
+      refine ⟨t', hu, (h₂ t' (by linarith)).2 ht'J, fun x hx1 hx2 => ?_⟩
       obtain ⟨s, hs, hsx⟩ := PointSegmentSignal.aux_exists_lt J₁ t x htcl hx1
       obtain ⟨s', hs', hxs⟩ := PointSegmentSignal.aux_exists_gt J₁ t' x ht'cl hx2
-      exact (h₁.2 x (by linarith)).2
+      exact (h₁ x (by linarith)).2
         ((STLInterval.set_ordConnected J₁).out hs hs' ⟨hsx.le, hxs.le⟩)
-    · exact ⟨t, by simpa using h0, (h₂.2 t ht).2 htJ, fun x hx1 hx2 => absurd hx2 (by linarith)⟩
+    · exact ⟨t, by simpa using h0, (h₂ t ht).2 htJ, fun x hx1 hx2 => absurd hx2 (by linarith)⟩
   -- conversely, `t' = t` is the second case, and `t < t'` puts `(t,t')` into `I⁺_{λ₁}`
   · rintro ⟨t', hu, h2, h1⟩
-    have hd := STLInterval.zero_le_of_mem_set U hU _ hu
+    have hd := STLInterval.zero_le_of_mem_set U _ hu
     have ht'0 : 0 ≤ t' := by linarith
-    have ht'J : t' ∈ J₂.set := (h₂.2 t' ht'0).1 h2
+    have ht'J : t' ∈ J₂.set := (h₂ t' ht'0).1 h2
     rcases eq_or_lt_of_le (show t ≤ t' by linarith) with heq | htt
     · subst heq
       exact Or.inr ⟨by simpa using hu, ht'J⟩
     · have hJ : ∀ x, t < x → x < t' → x ∈ J₁.set := fun x hx1 hx2 =>
-        (h₁.2 x (by linarith)).1 (h1 x hx1 hx2)
+        (h₁ x (by linarith)).1 (h1 x hx1 hx2)
       exact Or.inl ⟨t', ht'J, PointSegmentSignal.aux_mem_rightClosure J₁ t t' htt hJ,
         PointSegmentSignal.aux_mem_leftClosure J₁ t t' htt hJ, hu, ne_of_gt htt⟩
 

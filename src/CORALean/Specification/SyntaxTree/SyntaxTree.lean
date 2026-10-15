@@ -47,8 +47,8 @@ inductive SyntaxTree.Outcome (α : Type)
 
 /-- The two intervals a binary `funHan` returns, one for each operand. -/
 structure SyntaxTree.Pair where
-  first : SyntaxTree.Dom
-  second : SyntaxTree.Dom
+  left : SyntaxTree.Dom
+  right : SyntaxTree.Dom
 
 /-- The unary `operator`s; `power` carries its exponent. -/
 inductive SyntaxTree.Unary

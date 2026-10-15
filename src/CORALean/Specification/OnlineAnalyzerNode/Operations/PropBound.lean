@@ -33,7 +33,7 @@ noncomputable def OnlineAnalyzerNode.propBound (eps : ℝ) :
   | [], st => st
   -- isemptyobject(obj.prop(i)): ub = 0; rc = false; break
   | .empty :: _, _ => (0, false)
-  | .nonempty _ u _ nRc _ _ _ :: rest, (ub, rc) =>
+  | .nonempty _ u _ nRc _ _ _ _ :: rest, (ub, rc) =>
     open Classical in
     -- if nUb < ub || withinTol(nUb,ub,eps) && ~nRc
     if u < ub ∨ (STLInterval.withinTol eps u ub ∧ nRc = false) then

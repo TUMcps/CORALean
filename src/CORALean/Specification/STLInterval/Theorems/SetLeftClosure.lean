@@ -39,8 +39,8 @@ theorem STLInterval.set_leftClosure (I : STLInterval) :
     I.leftClosure.set = I.set ∪ {t : ℝ | I.infimum.value = some (t : EReal)} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.leftClosure, STLInterval.infimum, STLInterval.set]
-  | nonempty l u lc rc a b c =>
-    obtain ⟨x, hx⟩ := set_nonempty _ _ _ _ a b c
+  | nonempty l u lc rc a b c _ =>
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
     -- an unbounded lower end stays as it is, and `⊥` is no real time
     by_cases hl : l = ⊥
     · simp [STLInterval.leftClosure, STLInterval.infimum, hl, STLInterval.set]

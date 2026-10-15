@@ -21,7 +21,7 @@ may be empty, the signal then `false` throughout.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ namespace CORALean
 
 /-- `s` is unitary with `I⁺_s = J`. -/
 def PointSegmentSignal.IsUnitary (s : PointSegmentSignal ℝ) (J : STLInterval) : Prop :=
-  (∀ f, J.fieldsOf = some f → 0 ≤ f.lower) ∧ ∀ t : ℝ, 0 ≤ t → (s.at t = true ↔ t ∈ J.set)
+  ∀ t : ℝ, 0 ≤ t → (s.at t = true ↔ t ∈ J.set)
 
 end CORALean
 

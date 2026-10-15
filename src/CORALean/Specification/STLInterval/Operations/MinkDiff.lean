@@ -27,14 +27,14 @@ namespace CORALean
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def STLInterval.minkDiff : STLInterval → STLInterval → STLInterval
-  | _, .empty => stlInterval 0 ⊤ true false
+  | _, .empty => stlInterval 0 ⊤ true false le_rfl
   | .empty, _ => .empty
-  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
+  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ _ =>
     let lb := l₁ - l₂
     let ub := if u₁ = ⊤ ∧ u₂ = ⊤ then ⊤ else u₁ - u₂
     let lc := lc₁ || !lc₂
     let rc := rc₁ || !rc₂
-    if lb < 0 then stlInterval 0 ub true rc else stlInterval lb ub lc rc
+    if h : lb < 0 then stlInterval 0 ub true rc le_rfl else stlInterval lb ub lc rc (not_lt.1 h)
 
 end CORALean
 

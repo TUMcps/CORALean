@@ -1,13 +1,7 @@
 module
 
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.Plus
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.PlusVec
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.Mtimes
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.Radius
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.ConvHull
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.Enclose
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.SupportBound
-public import CORALean.ContSet.Capsule.Real.Complexity.Time.EnclosePoints
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.Operations.API
+public import CORALean.ContSet.Capsule.Real.Complexity.Time.Theorems.API
 
 /-!
 # What running `Capsule`'s operations costs

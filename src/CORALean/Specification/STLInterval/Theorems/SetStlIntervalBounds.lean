@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.STLInterval.Definitions.MemBounds
 public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 public import CORALean.Specification.STLInterval.Theorems.SetStlInterval
 public import Mathlib.Data.EReal.Operations
 
@@ -16,7 +17,7 @@ its flag says, contains `t` exactly when `STLInterval.memBounds` holds.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -28,9 +29,11 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The times of `stlInterval(lb,ub,lc,rc)` are those between the bounds. -/
-theorem STLInterval.mem_set_stlIntervalBounds (lb : ℝ) (ub : WithTop ℝ) (lc rc : Bool) (t : ℝ) :
-    t ∈ (STLInterval.stlIntervalBounds lb ub lc rc).set ↔ STLInterval.memBounds lb ub lc rc t := by
-  rw [STLInterval.stlIntervalBounds, STLInterval.set_stlInterval]
+theorem STLInterval.mem_set_stlIntervalBounds (lb : ℝ) (ub : WithTop ℝ) (lc rc : Bool)
+    (hlb : 0 ≤ lb) (t : ℝ) :
+    t ∈ (STLInterval.stlIntervalBounds lb ub lc rc).set ↔
+      STLInterval.memBounds lb ub lc rc t := by
+  rw [STLInterval.stlIntervalBounds, dif_pos hlb, STLInterval.set_stlInterval]
   induction ub using WithTop.recTopCoe with
   | top => simp [STLInterval.rawSet, STLInterval.memBounds, eq_comm]
   | coe u => simp [STLInterval.rawSet, STLInterval.memBounds, eq_comm]

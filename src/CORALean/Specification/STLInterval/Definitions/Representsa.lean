@@ -33,9 +33,9 @@ def STLInterval.representsa_ (tol : ℝ) : STLInterval → STLInterval.Represent
   | .empty, _ => False
   | .nonempty .., .stlInterval => True
   | .nonempty .., .emptySet => False
-  | .nonempty l u lc rc _ _ _, .point =>
+  | .nonempty l u lc rc _ _ _ _, .point =>
     lc = true ∧ rc = true ∧ ∃ x y : ℝ, l = x ∧ u = y ∧ withinTol tol ((y - x) / 2 : ℝ) 0
-  | .nonempty l u lc rc _ _ _, .origin =>
+  | .nonempty l u lc rc _ _ _ _, .origin =>
     lc = true ∧ rc = true ∧ withinTol tol l 0 ∧ withinTol tol u 0
 
 end CORALean

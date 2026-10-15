@@ -639,10 +639,9 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
 
   # One public declaration per file under `Operations/` or `Theorems/`
   # (`API.lean` excepted): the mechanism that keeps `aux_` from drifting into
-  # a name promoted for reuse without earning its own file (issue #62). The rule
-  # names those two directories and no others, so `Complexity/Time/` and
-  # `Complexity/Space/` may hold an exact statement and its O corollary in one
-  # file (issue #136): that is the one exception, and it stays out of the pattern.
+  # a name promoted for reuse without earning its own file (issue #62). It holds in
+  # `Complexity/Time/` and `Complexity/Space/` as everywhere: a cost is a file of
+  # `Operations/`, its monotonicity and its O corollary are files of `Theorems/` (issue #187).
   # A `Basic.lean` holds one declaration per section instead, which
   # `check-basic-bundles.py` checks.
   # The `Operations/` of a conversion layer is the exception: the unit is the ordered pair, and
@@ -722,7 +721,7 @@ function check(f,   i, n, collector, want, dir, cap, nroot, rootList, isRoot) {
     else if (mainishCount > 0 && isBasic)
       say(f ":" pendingMainFNR ": a `Basic.lean` carries no `MAIN ...` marker — each" \
           " section banner names its declaration")
-    else if (mainishCount > 1 && f !~ /\/Complexity\/(Time|Space)\//)
+    else if (mainishCount > 1)
       say(f ":" pendingMainFNR ": more than one `MAIN ...`/`INSTANCES` marker")
 
     if (beginFNR > 0 && nsLine > 0 && beginFNR > nsLine)
@@ -1144,9 +1143,8 @@ FNR == 1 {
     # *about* is declared elsewhere. A `def`, `abbrev`, `instance`, `structure`, `class`,
     # `inductive` or `opaque` there is a definition in the wrong file: it belongs in
     # `Definitions/` (a type, a proposition, a set, a specification) or `Operations/` (an
-    # algorithm). Free are the declarations that serve one proof only — `private` and `aux_` —
-    # and `Complexity/Space/`, a claim proved from the definition, is read the same way.
-    if ((FILENAME ~ /\/Theorems\// || FILENAME ~ /\/Complexity\/Space\//) &&
+    # algorithm). Free are the declarations that serve one proof only — `private` and `aux_`.
+    if (FILENAME ~ /\/Theorems\// &&
         FILENAME !~ /\/API\.lean$/ && kind != "theorem" && kind != "lemma" &&
         prefix !~ /private / && b !~ /^aux_/)
       say(FILENAME ":" FNR ": a `" kind "` in a theorem file — `" qualDecl "` is a definition," \
@@ -1323,16 +1321,23 @@ BEGIN {
   while ((getline f < LIST) > 0) {
     if (f == "") continue
     d = dirOf(f); b = baseOf(f)
-    # Complexity is `Complexity/Time/<Op>.lean` (the exact cost and its O corollary) and
-    # `Complexity/Space/<Op>.lean` (the exact result size and its O corollary), nothing else
-    # (issue #136). The exact statement and the O one share a file there and only there.
+    # Complexity is laid out as everywhere else (issue #187): `Complexity/Time/Operations/` holds
+    # the asserted costs, `Complexity/Time/Theorems/` what is proved of them (monotonicity, the
+    # `O` corollary), and `Complexity/Space/Theorems/` the sizes, which are theorems and so have
+    # no `Operations/`. Small declarations are sections of the `Basic.lean` of those directories.
     if (f ~ /\/Cost\//)
       print f ": a `Cost/` directory no longer exists; the cost of an operation is" \
-            " `Complexity/Time/<Op>.lean`"
+            " a file of `Complexity/Time/Operations/`"
     if (f ~ /\/Complexity\/[^\/]*\.lean$/ && b != "API.lean")
-      print f ": a file directly in `Complexity/` — the cost of an operation goes in" \
-            " `Complexity/Time/`, the size of its result in `Complexity/Space/`; only" \
-            " `API.lean` sits directly in `Complexity/`"
+      print f ": a file directly in `Complexity/` — only `API.lean` sits there; costs are in" \
+            " `Complexity/Time/Operations/`, what is proved of them in `Complexity/Time/Theorems/`," \
+            " sizes in `Complexity/Space/Theorems/`"
+    if (f ~ /\/Complexity\/(Time|Space)\/[^\/]*\.lean$/ && b != "API.lean")
+      print f ": a file directly in `Complexity/Time/` or `Complexity/Space/` — only `API.lean`" \
+            " sits there; the files are in `Operations/` (Time only) and `Theorems/`"
+    if (f ~ /\/Complexity\/Space\/Operations\//)
+      print f ": `Complexity/Space/` has no `Operations/`: a size is a theorem about the result," \
+            " in `Complexity/Space/Theorems/`"
     if (b != "API.lean" && b != "Instances.lean") { nextra[d]++; extra[d] = extra[d] " `" b "`" }
     # A directory is a class root once any role folder sits directly in it.
     cur = d
@@ -1731,11 +1736,12 @@ report "$out"
 # citing a paper's algorithm without its `-- <n>.` step comments (CONTRIBUTING, "Algorithms
 # read like the paper"), a long subterm spelled out three times in one declaration, and a
 # discrete-time class whose fields differ from its continuous twin's without a reason in
-# scripts/dt-twin-allowlist.txt (#172). Same contract as the helper above: status 1 with
+# scripts/dt-twin-allowlist.txt (#172), and a public theorem that exactly one other file reads
+# and nothing outward-facing names (#189). Same contract as the helper above: status 1 with
 # findings on stdout is a finding, anything else is the helper failing.
 if [ -z "$STAGED" ]; then
   for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
-    check-dt-twins.py; do
+    check-dt-twins.py check-single-use.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

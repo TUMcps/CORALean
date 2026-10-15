@@ -28,7 +28,7 @@ which nothing here uses.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -48,7 +48,7 @@ inductive FourValuedSTL.Formula (X : Type)
   | atom (a : X → Prop)
   | not (φ : Formula X)
   | and (φ ψ : Formula X)
-  | until (I : STLInterval) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (φ ψ : Formula X)
+  | until (I : STLInterval) (φ ψ : Formula X)
 
 /-- `⟦φ⟧_ξ(t) = ⊤`, [1, Sec. 2.5]; `t' ∈ t ⊕ I` is `t' - t ∈ I`. -/
 def FourValuedSTL.Formula.Sat : FourValuedSTL.Formula X → (ℝ≥0 → X) → ℝ≥0 → Prop
@@ -56,7 +56,7 @@ def FourValuedSTL.Formula.Sat : FourValuedSTL.Formula X → (ℝ≥0 → X) → 
   | .atom a, ξ, t => a (ξ t)
   | .not φ, ξ, t => ¬ φ.Sat ξ t
   | .and φ ψ, ξ, t => φ.Sat ξ t ∧ ψ.Sat ξ t
-  | .until I _ φ ψ, ξ, t =>
+  | .until I φ ψ, ξ, t =>
       ∃ t' : ℝ≥0, (t' : ℝ) - t ∈ I.set ∧ ψ.Sat ξ t' ∧ ∀ t'' : ℝ≥0, t < t'' → t'' < t' → φ.Sat ξ t''
 
 end CORALean

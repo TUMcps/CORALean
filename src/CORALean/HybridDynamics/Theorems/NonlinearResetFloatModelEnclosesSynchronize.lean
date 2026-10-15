@@ -1,7 +1,8 @@
 module
 
 public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronizeFloat
-public import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateSynchronize
+public import CORALean.HybridDynamics.Operations.NonlinearResetSynchronize
+public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
 public import Mathlib.Algebra.BigOperators.Pi
 
 @[expose] public section
@@ -45,8 +46,8 @@ theorem NonlinearReset.FloatModel.Encloses.synchronize
     by_cases hi : i ∈ idStates
     · simpa [hi] using (show toReal (X.inf i) ≤ x i ∧ x i ≤ toReal (X.sup i) from hx i)
     · simp [hi, toReal_zero]
-  show toReal (addDown _ _) ≤ (NonlinearReset.synchronize rs idStates).evaluate x u i ∧ _
-  rw [NonlinearReset.evaluate_synchronize]
+  -- the synchronized reset at a point is the sum of the component resets plus the pre-jump value
+  show toReal (addDown _ _) ≤ (if i ∈ idStates then x i else 0) + ∑ j, (rs j).evaluate x u i ∧ _
   exact ⟨le_trans (addDown_le_add _ _) (add_le_add hd.1 (le_trans (sumDown_le_sum _)
       (Finset.sum_le_sum fun j _ => (hj j i).1))),
     le_trans (add_le_add hd.2 (le_trans (Finset.sum_le_sum fun j _ => (hj j i).2)

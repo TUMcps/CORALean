@@ -26,10 +26,10 @@ namespace CORALean
 
 noncomputable def STLInterval.minusNum : STLInterval → ℝ → STLInterval
   | .empty, _ => .empty
-  | .nonempty l u lc rc _ _ _, c =>
+  | .nonempty l u lc rc _ _ _ _, c =>
     let lb := l - c
     let ub := u - c
-    if lb < 0 then stlInterval 0 ub true rc else stlInterval lb ub lc rc
+    if h : lb < 0 then stlInterval 0 ub true rc le_rfl else stlInterval lb ub lc rc (not_lt.1 h)
 
 end CORALean
 

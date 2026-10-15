@@ -18,7 +18,7 @@ made invalid on the interval.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ variable {A : Type}
 theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
     (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk : n.kind = .ap)
     (tent : TentativeKleeneSignal ℝ) (ht : n.tentative = some tent) (hs : n.signal.IsValid)
-    (htv : tent.IsValid) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (hne : I ≠ .empty) :
+    (htv : tent.IsValid) (hne : I ≠ .empty) :
     ∃ n', n.propagate eps ch I = some (n', ch) ∧ n'.signal.IsValid ∧
       n'.tentative = some (tent.setInvalid I) ∧ (tent.setInvalid I).IsValid ∧
       ∀ t : ℝ, 0 ≤ t →
@@ -42,15 +42,15 @@ theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode
         (¬ (t ∈ I.set ∧ tent.at t ≠ FourValued.ii) →
           n'.signal.at t = n.signal.at t) := by -- --- PROOF ---
   -- the tentative values on the interval, and the signal they are merged into
-  obtain ⟨hfv, hf⟩ := tent.getInterval_spec htv I hI
+  obtain ⟨hfv, hf⟩ := tent.getInterval_spec htv I
   obtain ⟨hmv, hm⟩ := n.signal.merge_spec (tent.getInterval I) hs hfv
-  obtain ⟨hsv, -⟩ := tent.setInvalid_spec htv I hI
+  obtain ⟨hsv, -⟩ := tent.setInvalid_spec htv I
   -- the interval is nonempty, so the node does merge
-  have hIne : ∃ l u lc rc a b c, I = STLInterval.nonempty l u lc rc a b c := by
+  have hIne : ∃ l u lc rc a b c z, I = STLInterval.nonempty l u lc rc a b c z := by
     cases I with
     | empty => exact absurd rfl hne
-    | nonempty l u lc rc a b c => exact ⟨l, u, lc, rc, a, b, c, rfl⟩
-  obtain ⟨l, u, lc, rc, a, b, c, hIeq⟩ := hIne
+    | nonempty l u lc rc a b c z => exact ⟨l, u, lc, rc, a, b, c, z, rfl⟩
+  obtain ⟨l, u, lc, rc, a, b, c, z, hIeq⟩ := hIne
   have hprop : n.propagate eps ch I = some ({ n with
       signal := n.signal.merge (tent.getInterval I),
       tentative := some (tent.setInvalid I) }, ch) := by

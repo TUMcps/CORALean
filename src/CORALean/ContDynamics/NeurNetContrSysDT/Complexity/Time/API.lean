@@ -1,16 +1,17 @@
 module
 
-public import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.Reach
-public import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.ReachBound
+public import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.Operations.API
+public import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.Time.Theorems.API
 
 /-!
 # What running `NeurNetContrSysDT.reach` costs
 
-`Reach.lean` says which operations a step runs and at what sizes, mirroring
+`Operations/ReachCost.lean` says which operations a step runs and at what sizes, mirroring
 `Operations.lean`'s alternation line for line: one `NeuralNetwork.encloseCost`
-and one `LinearSysDT` step, at `𝒵`. `ReachBound.lean` proves the run's cost is
+and one `LinearSysDT` step, at `𝒵`. `Theorems/ReachCostLe.lean` proves the run's cost is
 at most `k` worst-case steps, out of the per-operation counts in
-`ContSet/Zonotope/Real/Complexity/Time/` and `NN/Complexity/Time/Enclose.lean`, the size fact
+`ContSet/Zonotope/Real/Complexity/Time/` and
+`NN/Complexity/Time/Operations/EncloseCost.lean`, the size fact
 `NeurNetContrSysDT.reach_order_le`, and a caller-supplied bound `hEnc` on the
 controller's own output; nothing in it is asserted.
 

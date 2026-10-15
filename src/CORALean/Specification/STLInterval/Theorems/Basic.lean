@@ -78,16 +78,17 @@ theorem STLInterval.representsa_stlInterval (tol : ℝ) (I : STLInterval) :
 theorem STLInterval.set_empty : STLInterval.empty.set = ∅ := rfl
 
 
--- ================================  `STLInterval.set_nonempty`  ================================ --
+-- =============================  `STLInterval.zero_le_lowerBound`  ============================= --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
-/-- A `nonempty` interval denotes some time. -/
-theorem STLInterval.set_nonempty (l u : EReal) (lc rc : Bool) (h1 h2 h3) :
-    (STLInterval.nonempty l u lc rc h1 h2 h3).set.Nonempty :=
-  rawSet_nonempty_of l u lc rc h1 h2 h3
+/-- The real `lowerBound` of an interval is `≥ 0`, as CORA's constructor checks. -/
+theorem STLInterval.zero_le_lowerBound (I : STLInterval) : 0 ≤ I.lowerBound := by
+  cases I with
+  | empty => exact le_rfl
+  | nonempty l u lc rc h1 h2 h3 z => exact EReal.toReal_nonneg z
 
 end CORALean
 

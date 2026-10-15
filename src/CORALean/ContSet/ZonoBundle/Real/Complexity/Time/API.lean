@@ -1,11 +1,7 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Plus
-public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Mtimes
-public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Map
-public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.LinComb
-public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Intersection
-public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Reduce
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Operations.API
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Theorems.API
 
 /-!
 # What running `ZonoBundle`'s operations costs

@@ -29,8 +29,8 @@ theorem STLInterval.representsa_emptySet_iff (tol : ℝ) (I : STLInterval) :
     I.representsa_ tol .emptySet ↔ I.set = ∅ := by
   cases I with
   | empty => simp [STLInterval.representsa_, STLInterval.set]
-  | nonempty l u lc rc a b c =>
-    exact iff_of_false id (Set.nonempty_iff_ne_empty.1 (set_nonempty _ _ _ _ a b c))
+  | nonempty l u lc rc a b c _ =>
+    exact iff_of_false id (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of _ _ _ _ a b c))
 
 end CORALean
 

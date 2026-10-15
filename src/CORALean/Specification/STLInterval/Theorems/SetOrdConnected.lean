@@ -33,7 +33,7 @@ namespace CORALean
 theorem STLInterval.set_ordConnected (J : STLInterval) : J.set.OrdConnected := by
   cases J with
   | empty => exact Set.ordConnected_empty
-  | nonempty l u lc rc a b c => exact STLInterval.rawSet_ordConnected l u lc rc
+  | nonempty l u lc rc a b c _ => exact STLInterval.rawSet_ordConnected l u lc rc
 
 end CORALean
 

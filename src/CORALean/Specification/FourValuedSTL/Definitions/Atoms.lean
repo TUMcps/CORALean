@@ -38,7 +38,7 @@ def FourValuedSTL.Formula.atoms {X : Type} : FourValuedSTL.Formula X → Set (X 
   | .atom a => {a}
   | .not φ => φ.atoms
   | .and φ ψ => φ.atoms ∪ ψ.atoms
-  | .until _ _ φ ψ => φ.atoms ∪ ψ.atoms
+  | .until _ φ ψ => φ.atoms ∪ ψ.atoms
 
 end CORALean
 

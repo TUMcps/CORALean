@@ -1,11 +1,7 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Map
-public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Mtimes
-public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Plus
-public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Dependent
-public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.QuadMap
-public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Intersection
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Operations.API
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Theorems.API
 
 /-!
 # What running `ConPolyZono`'s operations costs
@@ -24,7 +20,7 @@ map at the sizes `dependent` leaves, the second the agreement rows'
 negations and the bound's arithmetic once both operands are dependent.
 
 `reduce` is **not** counted. It runs `compact` and its own `reduceGirard`, a
-distinct Girard ranking with no `Complexity/Space/Reduce.lean` proving how large the
+distinct Girard ranking with no theorem in `Complexity/Space/Theorems/` proving how large the
 result is — the same gap the issue's own notes record for
 `Zonotope.reduceGirard`. `compact` and the `Union*` convex-hull family are left
 out for the same reason: no `Complexity/Space/` size to compose against.

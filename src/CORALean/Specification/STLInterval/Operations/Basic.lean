@@ -50,7 +50,7 @@ def STLInterval.emptyBounds {T : Type} [LinearOrder T] (lb : T) (ub : WithTop T)
 /-- The stored fields of an interval object: none for the empty interval. -/
 def STLInterval.fieldsOf : STLInterval → Option STLInterval.Fields
   | .empty => none
-  | .nonempty l u lc rc _ _ _ => some ⟨l, some u, lc, rc⟩
+  | .nonempty l u lc rc _ _ _ _ => some ⟨l, some u, lc, rc⟩
 
 
 -- ================================  `STLInterval.leftClosure`  ================================= --
@@ -63,7 +63,7 @@ def STLInterval.fieldsOf : STLInterval → Option STLInterval.Fields
 unbounded below. -/
 noncomputable def STLInterval.leftClosure : STLInterval → STLInterval
   | .empty => .empty
-  | I@(.nonempty l u _ rc _ _ _) => if l = ⊥ then I else stlInterval l u true rc
+  | I@(.nonempty l u _ rc _ _ _ z) => if l = ⊥ then I else stlInterval l u true rc z
 
 
 -- =================================  `STLInterval.lowerBound`  ================================= --
@@ -75,7 +75,7 @@ noncomputable def STLInterval.leftClosure : STLInterval → STLInterval
 /-- The lower bound as a real; the empty interval gets `0`. -/
 noncomputable def STLInterval.lowerBound : STLInterval → ℝ
   | .empty => 0
-  | .nonempty l _ _ _ _ _ _ => l.toReal
+  | .nonempty l _ _ _ _ _ _ _ => l.toReal
 
 
 -- ================================  `STLInterval.lowerClosed`  ================================= --
@@ -87,7 +87,7 @@ noncomputable def STLInterval.lowerBound : STLInterval → ℝ
 /-- Whether the lower end is closed; the empty interval gets `false`. -/
 def STLInterval.lowerClosed : STLInterval → Bool
   | .empty => false
-  | .nonempty _ _ lc _ _ _ _ => lc
+  | .nonempty _ _ lc _ _ _ _ _ => lc
 
 
 -- ================================  `STLInterval.rightClosure`  ================================ --
@@ -100,32 +100,20 @@ def STLInterval.lowerClosed : STLInterval → Bool
 unbounded above. -/
 noncomputable def STLInterval.rightClosure : STLInterval → STLInterval
   | .empty => .empty
-  | I@(.nonempty l u lc _ _ _ _) => if u = ⊤ then I else stlInterval l u lc true
-
-
--- =============================  `STLInterval.stlIntervalBounds`  ============================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       14-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- `stlInterval(lb,ub,lc,rc)` for real bounds, `ub` possibly `inf`. -/
-noncomputable def STLInterval.stlIntervalBounds (lb : ℝ) (ub : WithTop ℝ) (lc rc : Bool) :
-    STLInterval :=
-  STLInterval.stlInterval (lb : EReal) (ub.recTopCoe (⊤ : EReal) (fun r => (r : EReal))) lc rc
+  | I@(.nonempty l u lc _ _ _ _ z) => if u = ⊤ then I else stlInterval l u lc true z
 
 
 -- ==================================  `STLInterval.toRight`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- `@stlInterval/toRight.m`: `(upper, ∞)`, or `[upper, ∞)` when the upper end is open. `none` is
 CORA's `CORA:emptySet` error on the empty interval. -/
 noncomputable def STLInterval.toRight : STLInterval → Option STLInterval
   | .empty => none
-  | .nonempty _ u _ rc _ _ _ => some (stlInterval u ⊤ (!rc) false)
+  | .nonempty l u _ rc _ _ hlt z => some (stlInterval u ⊤ (!rc) false (z.trans (by grind)))
 
 
 -- =================================  `STLInterval.upperBound`  ================================= --
@@ -137,7 +125,7 @@ noncomputable def STLInterval.toRight : STLInterval → Option STLInterval
 /-- The upper bound as a real or `inf`; the empty interval gets `0`. -/
 noncomputable def STLInterval.upperBound : STLInterval → WithTop ℝ
   | .empty => ((0 : ℝ) : WithTop ℝ)
-  | .nonempty _ u _ _ _ _ _ => if u = ⊤ then ⊤ else ((u.toReal : ℝ) : WithTop ℝ)
+  | .nonempty _ u _ _ _ _ _ _ => if u = ⊤ then ⊤ else ((u.toReal : ℝ) : WithTop ℝ)
 
 
 -- ================================  `STLInterval.upperClosed`  ================================= --
@@ -149,7 +137,7 @@ noncomputable def STLInterval.upperBound : STLInterval → WithTop ℝ
 /-- Whether the upper end is closed; the empty interval gets `false`. -/
 def STLInterval.upperClosed : STLInterval → Bool
   | .empty => false
-  | .nonempty _ _ _ rc _ _ _ => rc
+  | .nonempty _ _ _ rc _ _ _ _ => rc
 
 
 end CORALean

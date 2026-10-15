@@ -30,7 +30,7 @@ variable {S : ℕ → Type} {d : ℕ}
 /-- `forcePropagation(obj)`. -/
 noncomputable def OnlineReachSetAnalyzer.forcePropagation (eps : ℝ)
     (obj : OnlineReachSetAnalyzer S d) : Option (OnlineReachSetAnalyzer S d) :=
-  obj.propagate eps (STLInterval.stlInterval 0 ⊤ true true)
+  obj.propagate eps (STLInterval.stlInterval 0 ⊤ true true le_rfl)
 
 end CORALean
 

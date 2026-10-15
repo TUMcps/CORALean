@@ -32,8 +32,8 @@ theorem STLInterval.containsPoint_zero_iff (I : STLInterval) (t : ℝ) :
     I.containsPoint 0 t ↔ t ∈ I.set := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.containsPoint, STLInterval.set]
-  | nonempty l u lc rc a b c =>
-    obtain ⟨x, hx⟩ := set_nonempty _ _ _ _ a b c
+  | nonempty l u lc rc a b c _ =>
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
     simp only [STLInterval.containsPoint, withinTol_zero]
     show _ ↔ (_ ∧ _)
     constructor

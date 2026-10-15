@@ -30,9 +30,8 @@ namespace CORALean
 theorem KleeneSignal.fromBoolSignal_spec
     (bSig : PointSegmentSignal ℝ) (hb : bSig.IsValid) :
     (KleeneSignal.fromBoolSignal bSig).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
-      (KleeneSignal.fromBoolSignal bSig).at t = Kleene.fromBool (bSig.at t) := by -- --- PROOF ---
-  obtain ⟨hv, hat⟩ := PointSegmentSignal.indicator_spec STLInterval.empty (fun f h => by cases h)
-      false false
+      (KleeneSignal.fromBoolSignal bSig).at t = Kleene.fromBool (bSig.at t) := by
+  obtain ⟨hv, hat⟩ := PointSegmentSignal.indicator_spec STLInterval.empty false false
   refine ⟨⟨hb, hv⟩, fun t ht => ?_⟩
   have := (hat t ht).2 (by simp [STLInterval.set_empty])
   simp [KleeneSignal.at, KleeneSignal.fromBoolSignal, this]

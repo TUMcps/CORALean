@@ -31,8 +31,8 @@ theorem STLInterval.infimum_closed_iff (I : STLInterval) (hI : I ≠ .empty) :
     I.infimum.closed = true ↔ ∃ t ∈ I.set, I.infimum.value = some (t : EReal) := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI
-  | nonempty l u lc rc a b c =>
-    obtain ⟨x, hx⟩ := set_nonempty _ _ _ _ a b c
+  | nonempty l u lc rc a b c _ =>
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
     show lc = true ↔ ∃ t ∈ rawSet l u lc rc, some l = some (t : EReal)
     constructor
     · intro hc

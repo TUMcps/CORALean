@@ -33,7 +33,7 @@ theorem PointSegmentSignal.findIntervals_stretch (s : PointSegmentSignal ℝ) (h
     (t t' : ℝ) (ht : 0 ≤ t) (htt : t < t') :
     (∀ x, t < x → x < t' → s.at x = true) ↔
       ∃ I ∈ s.findIntervals, t ∈ I.leftClosure.set ∧ t' ∈ I.rightClosure.set := by -- --- PROOF ---
-  obtain ⟨-, h1, h2⟩ := s.findIntervals_spec hs id
+  obtain ⟨h1, h2⟩ := s.findIntervals_spec hs id
   constructor
   · intro hall
     -- the midpoint is in an interval, and so is everything between `t` and `t'`
@@ -44,7 +44,7 @@ theorem PointSegmentSignal.findIntervals_stretch (s : PointSegmentSignal ℝ) (h
         hall y (lt_of_lt_of_le (lt_min hx0.1 hx1) hy1) (lt_of_le_of_lt hy2 (max_lt hx0.2 hx2))
     cases I with
     | empty => exact absurd hx0I (by simp [STLInterval.set])
-    | nonempty l u lc rc a b c =>
+    | nonempty l u lc rc a b c _ =>
       simp only [STLInterval.set, STLInterval.rawSet, Set.mem_setOf_eq] at hx0I hsub
       have hlx : l ≤ (((t + t') / 2 : ℝ) : EReal) := by
         rcases hx0I.1 with h | ⟨-, h⟩ <;> [exact h.le; exact h.le]
@@ -85,7 +85,7 @@ theorem PointSegmentSignal.findIntervals_stretch (s : PointSegmentSignal ℝ) (h
   · rintro ⟨I, hI, htl, htr⟩ x hx1 hx2
     cases I with
     | empty => exact absurd htl (by simp [STLInterval.leftClosure, STLInterval.set])
-    | nonempty l u lc rc a b c =>
+    | nonempty l u lc rc a b c _ =>
       -- the interval reaches from `t` to `t'`, so it contains everything between
       rw [STLInterval.set_leftClosure] at htl
       rw [STLInterval.set_rightClosure] at htr

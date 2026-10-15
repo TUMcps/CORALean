@@ -26,7 +26,7 @@ namespace CORALean
 
 def STLInterval.containsPoint (tol : ℝ) : STLInterval → ℝ → Prop
   | .empty, _ => False
-  | .nonempty l u lc rc _ _ _, t =>
+  | .nonempty l u lc rc _ _ _ _, t =>
     (l < t ∧ (t : EReal) < u) ∨ (lc = true ∧ withinTol tol l t) ∨
       (rc = true ∧ withinTol tol u t)
 

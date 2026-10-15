@@ -32,16 +32,16 @@ theorem STLInterval.set_injective : Function.Injective STLInterval.set := by -- 
   | empty =>
     cases J with
     | empty => rfl
-    | nonempty l u lc rc a b c =>
-      exact absurd h.symm (Set.nonempty_iff_ne_empty.1 (set_nonempty _ _ _ _ a b c))
-  | nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ =>
+    | nonempty l u lc rc a b c _ =>
+      exact absurd h.symm (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of _ _ _ _ a b c))
+  | nonempty l₁ u₁ lc₁ rc₁ a₁ b₁ c₁ z₁ =>
     -- two nonempty intervals include each other, so the bounds and flags agree
     cases J with
     | empty =>
-      exact absurd h (Set.nonempty_iff_ne_empty.1 (set_nonempty _ _ _ _ a₁ b₁ c₁))
-    | nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ =>
-      have h12 := (nonempty_set_subset_iff a₁ b₁ c₁ a₂ b₂ c₂).1 h.symm.subset
-      have h21 := (nonempty_set_subset_iff a₂ b₂ c₂ a₁ b₁ c₁).1 h.subset
+      exact absurd h (Set.nonempty_iff_ne_empty.1 (rawSet_nonempty_of _ _ _ _ a₁ b₁ c₁))
+    | nonempty l₂ u₂ lc₂ rc₂ a₂ b₂ c₂ z₂ =>
+      have h12 := (nonempty_set_subset_iff a₁ b₁ c₁ a₂ b₂ c₂ z₁ z₂).1 h.symm.subset
+      have h21 := (nonempty_set_subset_iff a₂ b₂ c₂ a₁ b₁ c₁ z₂ z₁).1 h.subset
       have hl : l₁ = l₂ := by
         rcases h12.1 with h1 | ⟨e, _⟩
         · rcases h21.1 with h2 | ⟨e, _⟩

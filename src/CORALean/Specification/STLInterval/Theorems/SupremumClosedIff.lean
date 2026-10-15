@@ -32,8 +32,8 @@ theorem STLInterval.supremum_closed_iff (I : STLInterval) (hI : I ≠ .empty) :
       ∃ t ∈ I.set, I.supremum.value = some (t : EReal) := by -- --- PROOF ---
   cases I with
   | empty => exact absurd rfl hI
-  | nonempty l u lc rc a b c =>
-    obtain ⟨x, hx⟩ := set_nonempty _ _ _ _ a b c
+  | nonempty l u lc rc a b c _ =>
+    obtain ⟨x, hx⟩ := rawSet_nonempty_of _ _ _ _ a b c
     show rc = true ↔ ∃ t ∈ rawSet l u lc rc, some u = some (t : EReal)
     constructor
     · intro hc

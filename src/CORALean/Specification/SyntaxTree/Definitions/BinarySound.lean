@@ -32,10 +32,10 @@ def SyntaxTree.BinarySound (f : ℝ → ℝ → ℝ) (prev₁ prev₂ v : Dom)
     (funHan : Dom → Dom → Dom → Pair) : Prop :=
   ∀ int : Dom, Dom.within int v → ∀ s₁ s₂, Dom.contains prev₁ s₁ → Dom.contains prev₂ s₂ →
     Dom.contains int (f s₁ s₂) →
-      Dom.contains (funHan int prev₁ prev₂).first s₁ ∧
-      Dom.contains (funHan int prev₁ prev₂).second s₂ ∧
-      Dom.within (funHan int prev₁ prev₂).first prev₁ ∧
-      Dom.within (funHan int prev₁ prev₂).second prev₂
+      Dom.contains (funHan int prev₁ prev₂).left s₁ ∧
+      Dom.contains (funHan int prev₁ prev₂).right s₂ ∧
+      Dom.within (funHan int prev₁ prev₂).left prev₁ ∧
+      Dom.within (funHan int prev₁ prev₂).right prev₂
 
 end CORALean
 

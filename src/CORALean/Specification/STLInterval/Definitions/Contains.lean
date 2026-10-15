@@ -29,7 +29,7 @@ namespace CORALean
 def STLInterval.contains_ (tol : ℝ) : STLInterval → STLInterval → Prop
   | .empty, S => S = .empty
   | .nonempty .., .empty => True
-  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
+  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ _ =>
     let upperIncluded := u₁ > u₂ ∨ (withinTol tol u₁ u₂ ∧ (rc₁ = true ∨ rc₂ = false))
     let lowerIncluded := l₁ < l₂ ∨ (withinTol tol l₁ l₂ ∧ (lc₁ = true ∨ lc₂ = false))
     lowerIncluded ∧ upperIncluded
