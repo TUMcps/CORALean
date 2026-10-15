@@ -24,7 +24,8 @@ Neither is made by `mergeInvariants` here, which does not cut (#40).
 
 A polytope guard whose label is not merged (an unlabeled transition's included): CORA cuts the
 invariant by its complement, the documented condition does not. Read from
-`@parallelHybridAutomaton/mergeInvariants.m`, not run (#40, `FINDINGS.md`).
+`@parallelHybridAutomaton/mergeInvariants.m`, not run (#40,
+`references/coverage/hybridDynamics/parallelHybridAutomaton.md`, row `mergeInvariants`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -20,7 +20,8 @@ for the MATLAB error. Read from the source, not run.
 
 `check(spec, R)` for `R = reach(linsysDT, ...)` (or `nonlinearSysDT`) reads `R(k).timeInterval.set`
 of `timeInterval = []` and errors, whatever the specification and the sets, although the
-`timePoint` sets are there to check. Read from `check.m` l. 143-148, not run (`FINDINGS.md`).
+`timePoint` sets are there to check. Read from `check.m` l. 143-148, not run
+(`references/coverage/specification/specification.md`, row `check`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

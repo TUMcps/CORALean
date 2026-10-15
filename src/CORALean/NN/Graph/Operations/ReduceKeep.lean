@@ -10,7 +10,8 @@ CORA's `reduceGNNForNode` [1, §4.3] keeps, before message-passing step `k` (`k 
 nodes at distance at most `L - k + 1` from the node of interest `n0`, the extra hop being its
 normalisation margin; after the last step it keeps `n0` alone. `ball A v r` is that distance
 neighbourhood. CORA's code returns early for no step only in a comment, so at `L = 0` the
-nodes within distance `1` are kept (see [FINDINGS](../../../../../FINDINGS.md)).
+nodes within distance `1` are kept (see `references/coverage/nn/neuralNetwork.md`, row
+`reduceGNNForNode`).
 
 ## References
 

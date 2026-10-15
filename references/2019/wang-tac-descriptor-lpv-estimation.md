@@ -15,7 +15,7 @@ solution, so Thm. 2 is vacuous as printed, and with the condition its proof deri
 its Eq. 19 merges two generator blocks that do not share coefficients, which fails; Lemma 2 and
 Cor. 2 quote the relaxation for `i < j` and with `≽`, which fails; Remark 1's `‖d‖_∞` is not the
 worst case it is used as. Each is proved in corrected form, with a counterexample. CORA's `PRad-D`
-imposes Eq. 20 as printed (FINDINGS.md).
+imposes Eq. 20 as printed ([`linearSysDT` `executeObserver`](../coverage/contDynamics/linearSysDT.md)).
 
 ## Results
 

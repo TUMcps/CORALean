@@ -15,7 +15,7 @@ Cor. 1). Everything from the Taylor expansion to the error enclosure is formaliz
 overall algorithm with its soundness for runs that stay in the region the errors are taken over.
 The remainder sets of Eqs. 10, 11 and 20 take one Lagrange point `ξ` for all rows, which is false; one per row, as Eq. 8 has it, is right, and every later step holds with
 it. CORA's `nonlinDASys` adds `C F⁻¹` times the algebraic error where Cor. 1 subtracts it
-(FINDINGS).
+([`nonlinDASys` `linReach_adaptive`](../coverage/contDynamics/nonlinDASys.md)).
 
 ## Results
 
@@ -81,7 +81,7 @@ linearization theorems do.
 **`Cor. 1` — the proof's sign.** The statement has `L_c = ½(d - CF⁻¹e, H - CF⁻¹V)`; the proof
 ends "`L_c ⊆ (d + CF⁻¹e, H + CF⁻¹V)`", which drops the `½` and flips the sign. The statement is
 what follows from Eq. 15's `σ - CF⁻¹φ`, and what is proved. CORA's `nonlinDASys` computes the
-proof's `+` (FINDINGS.md).
+proof's `+` ([`nonlinDASys` `linReach_adaptive`](../coverage/contDynamics/nonlinDASys.md)).
 
 **`Alg. 1` — the horizon, the region and the loop bound.** Three things the listing leaves open
 are supplied. The `while t_k < t_f` loop steps by `r` and stops at the first `t_k ≥ t_f`, so unless

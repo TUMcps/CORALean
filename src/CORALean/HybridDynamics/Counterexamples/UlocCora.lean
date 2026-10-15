@@ -20,7 +20,7 @@ empty `[]`; locations are 0-based, so MATLAB's `i = numLoc` is `numLoc - 1`.
 With `numLoc ≥ 2` locations and the default cell `params.U`, a numeric `params.u` leaves location 0
 with the empty input and gives the last location a cell of `numLoc` copies of `u` instead of `u`;
 with one location it gives `{u}` instead of `u`. Read from `postProcessing.m` l. 617, not run
-(`FINDINGS.md`).
+(`references/coverage/hybridDynamics/hybridAutomaton.md`, row `reach`).
 -/
 
 -- Authors:       Claude Opus 5.5

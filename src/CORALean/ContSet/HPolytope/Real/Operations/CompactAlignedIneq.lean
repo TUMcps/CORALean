@@ -21,10 +21,10 @@ The test for equal normals is exact equality; CORA's is `sum(abs(a - a')) < tol`
 default `tol = 1e-9` also merges normals that are merely close, under the smaller `b`.
 The equality rows are untouched.
 
-The equality half of `'aligned'`, and `'Ae'`, is not formalized, as CORA's
-`priv_compact_alignedEq` is wrong when an equality row is zero (FINDINGS.md): its alignment test
-`Ae(i,:) - (Ae*Ae(i,:)')*Ae(i,:) = 0` holds for every row `j` once `Ae(i,:) = 0`, so a zero row
-is "aligned" with all rows; `Ae = [0 0; 1 0]`, `be = [0; 1]`, the set `x₁ = 1`, comes out empty.
+The equality half of `'aligned'`, and `'Ae'`, is not formalized: CORA's `priv_compact_alignedEq` is
+wrong when an equality row is zero (`references/coverage/contSet/polytope.md`). Its alignment test
+`Ae(i,:) - (Ae*Ae(i,:)')*Ae(i,:) = 0` holds for every row `j` once `Ae(i,:) = 0`, so a zero row is
+"aligned" with all rows; `Ae = [0 0; 1 0]`, `be = [0; 1]`, the set `x₁ = 1`, comes out empty.
 `'all'` removes zero rows first (`compactZeros`).
 -/
 

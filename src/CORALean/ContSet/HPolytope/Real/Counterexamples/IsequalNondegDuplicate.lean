@@ -15,7 +15,8 @@ The test lets an unmatched row pass when it is redundant in its own polytope, on
 A row listed twice is redundant by its copy, so `[0, 1] = {x ≤ 1, x ≤ 1, -x ≤ 0}` passes against
 `{x ≥ 0} = {-x ≤ 0}`: both copies of `x ≤ 1` are redundant, `-x ≤ 0` is matched. [1, Alg. 1]
 requires a minimal representation, which rules this out; CORA's `aux_isequal_nondeg` in
-`@polytope/isequal.m` runs the same test on the constraints as given (see `FINDINGS.md`).
+`@polytope/isequal.m` runs the same test on the constraints as given (see
+`references/coverage/contSet/polytope.md`, row `isequal`).
 
 ## References
 

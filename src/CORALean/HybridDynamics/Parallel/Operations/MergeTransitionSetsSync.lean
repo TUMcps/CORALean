@@ -16,7 +16,8 @@ this is what `mergeTransitionSets` cannot say.
 
 CORA also cuts a component's invariant by the complement of the guards of the merged labels
 (`mergeInvariants`); that cut is not made here, so the product's invariant is the larger,
-uncut one. See `FINDINGS.md` for what the cut does in CORA's code.
+uncut one. See `references/coverage/hybridDynamics/parallelHybridAutomaton.md`, row
+`mergeInvariants` for what the cut does in CORA's code.
 -/
 
 -- Authors:       Claude Sonnet 5.5

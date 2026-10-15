@@ -74,8 +74,7 @@ No equation of this paper has the `+ CF⁻¹` that the proof of Cor. 1 of
 `priv_linError_mixed_noInt_comp.m` takes the other sign, `error_mid = Z_err_x_mid +
 Z_err_x_add_mid` with `Z_err_x_add_mid = [CFsub_inv*error_y_mid.c, CFsub_inv*error_y_mid.G]` and
 `error_rad = error_x_rad_zono + CFsub_inv*error_y_rad_zono`, the sign bug of the other four
-`nonlinDASys` linearization errors (FINDINGS.md, "`NonlinDASys` linearization error, sign of
-`C F⁻¹`"), while the same file's algebraic set `R_y_cor = -F_inv*(f0_con + D*R)` has the
+`nonlinDASys` linearization errors ([`nonlinDASys` `linReach_adaptive`](../coverage/contDynamics/nonlinDASys.md)), while the same file's algebraic set `R_y_cor = -F_inv*(f0_con + D*R)` has the
 minus. Read from the source, not run; the file is the compositional version of the formalized
 `NonlinDASys.linErrorCora`, to which it reduces for one subsystem.
 

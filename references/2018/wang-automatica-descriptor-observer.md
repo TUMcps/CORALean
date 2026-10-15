@@ -14,7 +14,7 @@ and its optimal gain (Thms. 5, 6), the stability of the nominal observer (Prop. 
 equivalence of the two approaches (Thm. 7). The gain optimality is proved by completing the
 square rather than by the paper's matrix derivatives. `Thm. 4`'s bound is false as printed and
 proved in corrected form; `Prop. 1`'s proof assumes a limit exists; several dimensions are
-misprinted. CORA's `'wang-FRad'` gain applies the dynamics twice (FINDINGS).
+misprinted. CORA's `'wang-FRad'` gain applies the dynamics twice ([`zonotope` `intersectStrip`](../coverage/contSet/zonotope.md)).
 
 ## Results
 

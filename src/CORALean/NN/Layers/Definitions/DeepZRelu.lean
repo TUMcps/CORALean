@@ -12,7 +12,8 @@ public import CORALean.NN.Layers.Definitions.Relaxation
 `l > 0`, `0` when `u ≤ 0`, and otherwise `λ x̂ + μ + μ ε_new` with `λ = u / (u - l)` and
 `μ = -u l / (2 (u - l))`, as a `Relaxation`: slope `λ`, offset `μ`, error `μ`. The interval
 coefficients `[λl, λu]`, `[μl, μu]` the paper rounds to are left out, the tree paying rounding
-into the error instead (FINDINGS.md); at ℝ they are the point values.
+into the error instead (the departures table of `references/coverage/README.md`); at ℝ they are the
+point values.
 
 ## References
 

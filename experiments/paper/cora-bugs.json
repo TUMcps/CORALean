@@ -1,13 +1,10 @@
 {
-  "_comment": "One entry per coverage row of references/coverage/**/*.md whose note has a `cora-issue —` part, keyed by coverage file (group/class) and method as printed in the row (without backticks). `description`: at most ten words on what CORA gets wrong, from the row's `cora-issue —` text and the FINDINGS.md row it cites; LaTeX-escaped by the generator except inside $...$. `kind`: `unsound` when CORA's result can miss reachable states, is not the enclosure it claims to be, or is a wrong verdict a verification relies on; `other` for a bug that is too large, a wrong flag, a crash or error path, or a documented behaviour that is not the code's. Optional `cex` / `fix`: name of a Lean file (or its repository path) the row or its FINDINGS.md row links, replacing the default pick; optional `findings`: further FINDINGS.md subjects that belong to the row. Read by scripts/cora-bugs-table.py for experiments/paper/latex/appendix-cora-bugs.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry.",
+  "_comment": "One entry per coverage row of references/coverage/**/*.md whose note has a `cora-issue —` part, keyed by coverage file (group/class) and method as printed in the row (without backticks). `description`: at most ten words on what CORA gets wrong, from the row's `cora-issue —` text; LaTeX-escaped by the generator except inside $...$. `kind`: `unsound` when CORA's result can miss reachable states, is not the enclosure it claims to be, or is a wrong verdict a verification relies on; `other` for a bug that is too large, a wrong flag, a crash or error path, or a documented behaviour that is not the code's. Optional `cex` / `fix`: name of a Lean file (or its repository path) the row links, in its third column or its note, replacing the default pick. Read by scripts/cora-bugs-table.py for experiments/paper/latex/appendix-cora-bugs.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry, and scripts/check-findings.py checks that the entry names a row that exists.",
   "contDynamics/contDynamics": {
     "linReach": {
       "description": "Hessian region misses linearization point; tensor-3 remainder misindexed",
       "kind": "unsound",
-      "cex": "LinReachCora1D.lean",
-      "findings": [
-        "Third-order remainder indexes the tensor list by position"
-      ]
+      "cex": "LinReachCora1D.lean"
     },
     "linReachInner": {
       "description": "inner approximation is not inside the reachable set",
@@ -16,13 +13,6 @@
     "observe": {
       "description": "Hinf-G misses initial state; observers drop U, c, k, E",
       "kind": "unsound",
-      "findings": [
-        "LinearSysDT `observe`, `'Hinf-G'`",
-        "LinearSysDT `observe`, input set `U`",
-        "LinearSysDT `observe`, output offset `k` and feedthrough `D u`",
-        "LinearSysDT `observe`, state offset `c`",
-        "LinearSysDT `observe`, disturbance matrices `E`, `F`"
-      ],
       "cex": "ObserveIntervalCora.lean",
       "fix": "ObserveInterval.lean"
     },
@@ -46,10 +36,7 @@
     "initReach": {
       "description": "constant offset treated as time-varying input; intervals miss start",
       "kind": "unsound",
-      "cex": "InitReachConstantOffsetCora.lean",
-      "findings": [
-        "LinParamSys `initReach`, constant offset `c`"
-      ]
+      "cex": "InitReachConstantOffsetCora.lean"
     }
   },
   "contDynamics/linProbSys": {
@@ -68,74 +55,41 @@
     "reach": {
       "description": "Krylov drops c; fromStart, decomp, curvature, adaptive offsets wrong",
       "kind": "unsound",
-      "cex": "ReachKrylov.lean",
-      "findings": [
-        "LinearSys `reach`, `'krylov'`, dropped terms",
-        "LinearSys `reach`, `'fromStart'`, constant input with `U = {0}`",
-        "LinearSys `reach`, input curvature `C_input` not propagated",
-        "LinearSys `reach`, `'decomp'`, output offset and `PU` reduction",
-        "LinearSys `reach`, `'adaptive'`, output offset of the next input piece"
-      ]
+      "cex": "ReachKrylov.lean"
     },
     "verify": {
       "description": "STL union keeps last set; RA accepts touching unsafe set",
       "kind": "unsound",
-      "cex": "VerifySTLKochdumperGloballyCora.lean",
-      "findings": [
-        "LinearSys `verify`, `reachavoid:zonotope`, touching unsafe set"
-      ]
+      "cex": "VerifySTLKochdumperGloballyCora.lean"
     }
   },
   "contDynamics/linearSysDT": {
     "executeObserver": {
       "description": "Hinf-G, ESO-A/B miss state; observers drop U, c, k, E",
       "kind": "unsound",
-      "findings": [
-        "LinearSysDT `observe`, `'Hinf-G'`",
-        "LinearSysDT `observe`, `'ESO-A'`",
-        "LinearSysDT `observe`, `'ESO-B'`",
-        "LinearSysDT `observe`, input set `U`",
-        "LinearSysDT `observe`, output offset `k` and feedthrough `D u`",
-        "LinearSysDT `observe`, state offset `c`",
-        "LinearSysDT `observe`, disturbance matrices `E`, `F`"
-      ],
       "cex": "ObserveEsoA1D.lean",
       "fix": "ObserveEsoA.lean"
     },
     "reach": {
       "description": "last output set unchecked; violation at tFinal missed",
       "kind": "unsound",
-      "cex": "ReachSpecCora.lean",
-      "findings": [
-        "LinearSysDT `reach`, specification at `tFinal`"
-      ]
+      "cex": "ReachSpecCora.lean"
     }
   },
   "contDynamics/nonlinDASys": {
     "initReach": {
       "description": "inherits linReach's wrong sign; split path crashes (unset iter)",
       "kind": "unsound",
-      "findings": [
-        "`NonlinDASys` linearization error, sign of `C F⁻¹`",
-        "`NonlinDASys` `initReach`, `iter` never passed"
-      ],
       "cex": "LinReachCora.lean"
     },
     "linReach": {
       "description": "wrong algebraic-error sign; compositional local pinv(Fsub) drops coupling",
       "kind": "unsound",
-      "findings": [
-        "`NonlinDASys` linearization error, sign of `C F⁻¹`",
-        "`NonlinDASys` compositional linearization error, local `pinv(Fsub)`"
-      ],
       "cex": "LinReachCora.lean"
     },
     "linReach_adaptive": {
       "description": "algebraic linearization error added, not subtracted",
       "kind": "unsound",
-      "findings": [
-        "`NonlinDASys` linearization error, sign of `C F⁻¹`"
-      ],
       "cex": "LinErrorCora.lean"
     },
     "outputSet": {
@@ -145,9 +99,6 @@
     "reach_adaptive": {
       "description": "inherits wrong sign of algebraic linearization error",
       "kind": "unsound",
-      "findings": [
-        "`NonlinDASys` linearization error, sign of `C F⁻¹`"
-      ],
       "cex": "LinErrorCora.lean"
     }
   },
@@ -173,28 +124,19 @@
     "reachInner": {
       "description": "'minkdiff', 'scale' sets not inner; timeStepInner option crashes",
       "kind": "unsound",
-      "cex": "ReachInnerScalingCora1D.lean",
-      "findings": [
-        "NonlinearSys `reachInner`, `timeStepInner` validation"
-      ]
+      "cex": "ReachInnerScalingCora1D.lean"
     }
   },
   "contDynamics/nonlinearSysDT": {
     "executeObserver": {
       "description": "input set U accepted, never used in prediction",
       "kind": "unsound",
-      "findings": [
-        "LinearSysDT `observe`, input set `U`"
-      ],
       "cex": "ObservePropagationInputSet.lean"
     },
     "reach": {
       "description": "initial set never checked against specification",
       "kind": "unsound",
-      "cex": "ReachSpecCora.lean",
-      "findings": [
-        "NonlinearSysDT `reach`, initial set not checked"
-      ]
+      "cex": "ReachSpecCora.lean"
     }
   },
   "contSet/capsule": {
@@ -257,10 +199,7 @@
   "contSet/conZonotope": {
     "contains_": {
       "description": "point container, set operand: output never assigned",
-      "kind": "other",
-      "findings": [
-        "zonotope and constrained zonotope `contains_`, point container and a set operand"
-      ]
+      "kind": "other"
     },
     "cubMap": {
       "description": "constraint columns lost; image [0,8] returned as [0,5]",
@@ -273,10 +212,7 @@
     "supportFunc_": {
       "description": "all-zero A read as unconstrained; empty set gets finite value",
       "kind": "other",
-      "cex": "SupportFuncUpperCora.lean",
-      "findings": [
-        "ConZonotope `supportFunc_`, `'upper'`, infeasible zero constraint"
-      ]
+      "cex": "SupportFuncUpperCora.lean"
     },
     "representsa_": {
       "description": "1-D test is n == 1; segment accepted as hyperplane",
@@ -292,9 +228,6 @@
     "contains_": {
       "description": "degenerate ellipsoid ignores centre offset; disjoint sets reported contained",
       "kind": "unsound",
-      "findings": [
-        "Ellipsoid `contains_`, point operand"
-      ],
       "cex": "ContainsEllipsoidCora.lean"
     },
     "convHull_": {
@@ -375,9 +308,6 @@
     "contains_": {
       "description": "centre accepted outside set; exact uses zonotope enclosure",
       "kind": "unsound",
-      "findings": [
-        "polyZonotope `contains_`, `'exact'` in dimension one"
-      ],
       "cex": "ContainsExactCora1D.lean"
     },
     "convHull_": {
@@ -390,10 +320,7 @@
     },
     "isIntersecting_": {
       "description": "interval operand: three arguments to a four-argument function",
-      "kind": "other",
-      "findings": [
-        "polyZonotope `isIntersecting_`, interval operand"
-      ]
+      "kind": "other"
     },
     "isPolytope": {
       "description": "wrong for exponents above one; accepts non-convex sets",
@@ -474,10 +401,7 @@
     },
     "compact_": {
       "description": "aligned zero rows empty; 1-D equality merge drops coefficient",
-      "kind": "unsound",
-      "findings": [
-        "polytope `priv_compact_1D`, repeated equality rows"
-      ]
+      "kind": "unsound"
     },
     "convHull_": {
       "description": "empty operand returns the empty set, not the other operand",
@@ -515,13 +439,7 @@
     "representsa_": {
       "description": "empty as point, $\\mathbb{R}^n$ as hyperplane, zero rows, halfspace crash",
       "kind": "other",
-      "cex": "RepresentsaIntervalCora.lean",
-      "findings": [
-        "Polytope `representsa_`, `'point'`, empty polytope",
-        "Polytope `representsa_`, `'hyperplane'`, unconstrained polytope",
-        "Polytope `representsa_`, `'interval'`, infeasible zero row",
-        "Polytope `representsa_`, `'halfspace'`, vertex representation"
-      ]
+      "cex": "RepresentsaIntervalCora.lean"
     }
   },
   "contSet/probZonotope": {
@@ -642,11 +560,7 @@
     "minkDiff": {
       "description": "'approx' not inner; 'exact' oversize; scaling, degenerate lose offsets",
       "kind": "unsound",
-      "cex": "MinkDiffApproxNotInner.lean",
-      "findings": [
-        "Zonotope `minkDiff`, 2-D `'exact'`",
-        "Zonotope `minkDiff`, degenerate minuend"
-      ]
+      "cex": "MinkDiffApproxNotInner.lean"
     },
     "norm_": {
       "description": "'exact' omits centre from program; norm under-estimated",
@@ -670,33 +584,21 @@
     },
     "isIntersecting_": {
       "description": "point operand: six arguments to a seven-argument function",
-      "kind": "other",
-      "findings": [
-        "zonotope `isIntersecting_`, point operand"
-      ]
+      "kind": "other"
     },
     "contains_": {
       "description": "point container, set operand: output never assigned",
-      "kind": "other",
-      "findings": [
-        "zonotope and constrained zonotope `contains_`, point container and a set operand"
-      ]
+      "kind": "other"
     },
     "split": {
       "description": "coordinate used as box generator index; bundle calls missing get",
       "kind": "other",
-      "cex": "SplitCoraSegmentCrash.lean",
-      "findings": [
-        "Zonotope `split`, `'bundle'`"
-      ]
+      "cex": "SplitCoraSegmentCrash.lean"
     },
     "splitFirstGen": {
       "description": "generator index passed as coordinate of the box",
       "kind": "other",
-      "cex": "SplitFirstGenCora.lean",
-      "findings": [
-        "Zonotope `split` and `splitFirstGen`, generator index of the box"
-      ]
+      "cex": "SplitFirstGenCora.lean"
     },
     "lift_": {
       "description": "project applies the inverse permutation of lift",
@@ -705,11 +607,7 @@
     "reduce": {
       "description": "valero loses a generator; five accepted techniques crash",
       "kind": "unsound",
-      "cex": "ReduceValeroCora.lean",
-      "findings": [
-        "Zonotope `reduce`, `'valero'`, leftover of the last run",
-        "Zonotope `reduce`, techniques accepted by `validateOptions`"
-      ]
+      "cex": "ReduceValeroCora.lean"
     }
   },
   "contSet/zoo": {
@@ -738,10 +636,7 @@
     },
     "guardIntersect_pancake": {
       "description": "input check uses || for &&; any polytope guard passes",
-      "kind": "other",
-      "findings": [
-        "Location `guardIntersect`, `'pancake'`, guard validation"
-      ]
+      "kind": "other"
     },
     "guardIntersect_zonoGirard": {
       "description": "coordinate pinned wrongly for non-unit normals",
@@ -756,7 +651,8 @@
   "hybridDynamics/nonlinearReset": {
     "resolve": {
       "description": "global inputs numbered by occurrence; reaches parallel automaton resets",
-      "kind": "unsound"
+      "kind": "unsound",
+      "cex": "NonlinearResetSynchronizeResolveCORA.lean"
     },
     "evaluate": {
       "description": "second-order bound reads output 1 for all; expansion point crash",
@@ -771,6 +667,11 @@
     }
   },
   "nn/layers": {
+    "evaluateConZonotope": {
+      "description": "ReLU star-set bounds shift the factor-box centre",
+      "kind": "unsound",
+      "fix": "ReluStarSound.lean"
+    },
     "computeApproxPoly": {
       "description": "DeepZ S-shape unsound at $x^3$; reaches network output",
       "kind": "unsound",
@@ -858,10 +759,7 @@
     "eliminateTrueFalse": {
       "description": "until with true right operand rewritten to true",
       "kind": "other",
-      "cex": "TreeEliminateTrueFalseCora.lean",
-      "findings": [
-        "`stl/eliminateTrueFalse`, constant right operand of `until`"
-      ]
+      "cex": "TreeEliminateTrueFalseCora.lean"
     },
     "negationNormalForm": {
       "description": "negated comparison keeps strictness; boundary case changes",

@@ -19,7 +19,7 @@ not run.
 
 With two rows in `R` (a split reach set) and a guard met by the first row, the jump time of
 `R.timeInterval.time{minInd(j)}` is a MATLAB error, where the time is that of row 1. Read from
-`reach.m` l. 76-79, not run (`FINDINGS.md`).
+`reach.m` l. 76-79, not run (`references/coverage/hybridDynamics/location.md`, row `reach`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

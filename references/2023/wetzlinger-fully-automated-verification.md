@@ -389,8 +389,7 @@ sentence of the proof argues from it. Nothing here says the conclusion is false;
 is that the printed argument reaches the per-iteration claim and stops there, which is why the row
 above carries the per-iteration claim and names the gap rather than the headline. The row's
 *other* reason for not claiming "terminates" is this repository's own, and prior: every tuning
-search here takes an explicit `fuel` and returns `Option` (root `FINDINGS.md`, "Adaptive tuning's
-searches"), so `autoRun` terminates by construction and a termination theorem about it would be a
+search here takes an explicit `fuel` and returns `Option` ([the coverage README, departures from CORA](../coverage/README.md#departures-from-cora-that-belong-to-no-single-method)), so `autoRun` terminates by construction and a termination theorem about it would be a
 theorem about the `fuel` rather than about [1].
 
 ## Cited without a result

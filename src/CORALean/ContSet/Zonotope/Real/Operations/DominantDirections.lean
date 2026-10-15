@@ -17,7 +17,8 @@ Both lengths are clamped to the number of non-zero generators, as CORA does.
 
 CORA errors where fewer than `n` generators are left (`combinator` of more rows than columns);
 here that is `none`. The guarantee "encloses" holds only if the answer is invertible
-(`dominantDirections_outer`), which is not always the case (FINDINGS.md).
+(`dominantDirections_outer`), which is not always the case
+(`references/coverage/contSet/zonotope.md`, row `dominantDirections`).
 
 ## References
 

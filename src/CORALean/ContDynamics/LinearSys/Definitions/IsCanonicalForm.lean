@@ -11,7 +11,8 @@ CORA's `isCanonicalForm` [1] asks whether `x' = Ax + B u + c + E w`, `y = Cx + D
 is `x' = Ax + u`, `y = Cx + v`: as many inputs as states (`m = n`) with `B = I`, as many
 noises as outputs (`s = q`), and `c`, `k`, `E`, `D` zero, at the real values the entries
 denote. `C` is left free, as the docstring (`y = Cx + v`) and `canonicalForm`'s own output have
-it; CORA's code also tests `C == eye(nrOfOutputs)`, see FINDINGS.md.
+it; CORA's code also tests `C == eye(nrOfOutputs)`, see
+`references/coverage/contDynamics/linearSys.md`, row `isCanonicalForm`.
 
 ## References
 

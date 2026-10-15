@@ -11,7 +11,8 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.LineExampleNotMem
 What CORA's `aux_containsPoint` answers: when the solver reports the program infeasible
 (status `1`) it sets `t = 0` and answers `true`, on the stated ground that the problem cannot be
 infeasible. It can: `c + G β = p` has no solution for `p` outside `c + range G`. Formalized as the
-code computes it, to state `SpectraShadow.containsPointCora_line`; see `FINDINGS.md`.
+code computes it, to state `SpectraShadow.containsPointCora_line`; see
+`references/coverage/contSet/spectraShadow.md`, row `contains_`.
 
 # `SpectraShadow.containsPointCora_line`
 

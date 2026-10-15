@@ -22,11 +22,12 @@ CORA's `guardIntersect_hyperplaneMap` [1] for `ẋ = Ax + Bu + c + Ew` onto `{x 
 [2, Prop. 1] at `th = tmax/2`, Girard-reduced and projected onto the normalized hyperplane.
 Departures: `ψ_c`, `ψ_g` are the one-factor `−n − τ_c Υᵀ`, `−τ_g Υᵀ` from an interval of `τ =
 (d − nᵀx)/Λ(x)`, the reading of [2, Prop. 3] that holds, where CORA encloses `Θ/Λ` coordinatewise
-(FINDINGS.md, `Location guardIntersect_hyperplaneMap, coordinatewise ψ`); `err1` and the slices
-of `Q⁽ⁱ⁾` as the code means (FINDINGS.md, `... abstraction error and quadratic map`); `none` when
-a divisor interval holds `0`. `aux_refinedIntersectionTime`, a second `reach` with the guard's
-halfspace as invariant, enters as its outputs `R₀` and `tmax`; `aux_systemParams`'s `B U + c`
-is `inputSet`, which adds `E W`; its nonlinear branch is not modelled.
+(`references/coverage/hybridDynamics/location.md`, row `guardIntersect_hyperplaneMap`); `err1` and
+the slices of `Q⁽ⁱ⁾` as the code means (`references/coverage/hybridDynamics/location.md`, row
+`guardIntersect_hyperplaneMap`); `none` when a divisor interval holds `0`.
+`aux_refinedIntersectionTime`, a second `reach` with the guard's halfspace as invariant, enters as
+its outputs `R₀` and `tmax`; `aux_systemParams`'s `B U + c` is `inputSet`, which adds `E W`; its
+nonlinear branch is not modelled.
 
 ## References
 

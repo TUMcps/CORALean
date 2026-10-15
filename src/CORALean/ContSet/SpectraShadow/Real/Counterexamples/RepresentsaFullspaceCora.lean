@@ -14,7 +14,7 @@ CORA's test for `'fullspace'` in `@spectraShadow/representsa_`,
 `representsa_(interval(SpS), 'fullspace')`: every coordinate range is the whole line, that is
 every axis support in both directions is `Inf`. A line in the plane passes. Formalized as the
 code computes it, to state the counterexample `SpectraShadow.representsa_fullspaceCora_line`;
-see `FINDINGS.md`.
+see `references/coverage/contSet/spectraShadow.md`, row `representsa_`.
 
 # `SpectraShadow.representsa_fullspaceCora_line`
 

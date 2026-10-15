@@ -145,9 +145,9 @@ corrected version (`---` where there is none). `python3 scripts/formalization-st
 through `scripts/cora-bugs-table.py`, which documents how the two files are picked. The data is
 committed beside it, `experiments/paper/cora-bugs.json`: per coverage file and method, the
 `description`, the `kind` (`unsound` or `other`), and optionally `cex` / `fix` (a linked file's
-name, or `null` for none) and `findings` (further FINDINGS.md subjects). The run, and `--check`,
+name, or `null` for none). The run, and `--check`,
 fail when a `cora-issue` row has no entry, an entry matches no such row, or a `cex`/`fix` names a
-file neither the row nor its FINDINGS.md row links. There is no bibliography; the paper needs the
+file the row does not link. There is no bibliography; the paper needs the
 same packages and the same `longtable`-after-`arydshln` order as for the errors table, and
 `\input{appendix-cora-bugs}` where the table goes.
 

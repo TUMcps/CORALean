@@ -11,7 +11,8 @@ Two equal cells each have the other as the cover that empties their remainder, s
 survives, and the kept list is empty although each cell is a nonempty set. The union of the kept
 cells is not the union of all of them, which is what "deletes parallelotopes that are covered by
 other parallelotopes" is used for. The statement is for CORA's intended criterion
-(`Zonotope.filterOut`); CORA's code does not run (FINDINGS.md).
+(`Zonotope.filterOut`); CORA's code does not run (`references/coverage/contSet/zonotope.md`, row
+`filterOut`).
 
 Source: [1].
 

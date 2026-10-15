@@ -15,7 +15,8 @@ takes the eigendecomposition `A = V Λ V⁻¹`, `Λ = diag(λ)` with real eigenv
 `Σ_ij = D_ij/(λ_i + λ_j) (e^{(λ_i+λ_j) r} - 1)`, which is `∫₀ʳ D_ij e^{(λ_i+λ_j)s} ds`, the
 limit `D_ij r` where `λ_i + λ_j = 0`, and returns `V Σ Vᵀ`. CORA writes
 `(1 - e^{-(λ_i+λ_j) r})` instead, the covariance for the drift `-A` (`initReachCov`, see
-FINDINGS.md), and divides by `λ_i + λ_j` with no case for `0`.
+`references/coverage/contDynamics/linProbSys.md`, row `initReach`), and divides by `λ_i + λ_j` with
+no case for `0`.
 
 The eigendecomposition is an argument, as `[V,W] = eig(A)` is CORA's: what ties it to `A` is
 the hypothesis of `inputCov_eq_noiseCovariance`. CORA's `aux_generators` then factors the

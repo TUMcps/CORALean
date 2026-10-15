@@ -18,7 +18,7 @@ assigned`, here `none`. Read from the source, not run.
 `aux_expansionPoint` tests `isnumeric(x)` where `isnumeric(u)` is meant, so for a set `x` and a
 numeric `u` (also the default `u = zeros(m, 1)`) `pu` is never assigned and MATLAB raises `Output
 argument 'pu' ... not assigned`; the expansion point is `(center x, u)`. Read from `evaluate.m`
-l. 91-95, not run (`FINDINGS.md`).
+l. 91-95, not run (`references/coverage/hybridDynamics/nonlinearReset.md`, row `evaluate`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

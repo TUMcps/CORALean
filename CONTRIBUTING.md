@@ -588,6 +588,18 @@ containment test of `PolyZonotope` is stated with) stays where it is, listed wit
 The `**Counterexample:**` links of `references/`, the appendix tables `scripts/errors-table.py` and
 `scripts/cora-bugs-table.py` and the paper's statistics find a counterexample by that folder.
 
+**Recording a bug in CORA.** A bug found in CORA's code is recorded in two places and nowhere else:
+the `cora-issue — …` part of the note of its row in `references/coverage/<group>/<class>.md`, and an
+entry of `experiments/paper/cora-bugs.json` (a description of at most ten words, the `kind`, and a
+`cex` / `fix` file only where the default pick is wrong). The note is the whole account: what the
+CORA code does, a case in which it goes wrong (`read from the source, not run`, unless it was run),
+what the formalization does instead, and the Lean witness, a link to the file in `Counterexamples/`,
+or the reason there is none (`no Lean witness: …`). There is no further file to enter it in. A way the
+formalization parts from CORA that belongs to no single method is a row of the table "Departures from
+CORA that belong to no single method" at the end of `references/coverage/README.md`. An error in a
+paper goes on that paper's page, under its `## Findings`. `python3 scripts/check-findings.py` checks
+the notes, the table and the entries.
+
 ### Main-type files
 
 The file that holds a `MAIN TYPE` banner at `<Name>/<Name>.lean` or
@@ -799,7 +811,7 @@ would close no cycle any more is reported as stale. Only `Basic.lean` is a bundl
 file of its own, and a file that shrinks to five moves in; `check-conventions.sh`
 reports both. Dependents import `…/Basic` (the exact module, never a collector),
 and `python3 scripts/check-references.py --fix` re-points the declaration links
-of `references/` and `FINDINGS.md`, which name the declaration and so find it in
+of `references/`, which name the declaration and so find it in
 its new file.
 
 **What a bundle changes.** Importing one section imports all of them, and a

@@ -13,8 +13,9 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 
 CORA's `polygon/quadMap(pgon₁, pgon₂, Q)`: the map `(x₁, x₂) ↦ (x₁ᵀ Q₁ x₂, x₁ᵀ Q₂ x₂)` of a
 point of each polygon, over every pair of triangles of the two triangulations. CORA's loop over
-`j` builds the second polytope from `list2{i}` where `list2{j}` is meant (FINDINGS.md); here the
-pair is `(list1{i}, list2{j})`. Otherwise as `Polygon.quadMap`.
+`j` builds the second polytope from `list2{i}` where `list2{j}` is meant
+(`references/coverage/contSet/polygon.md`, row `quadMap`); here the pair is `(list1{i}, list2{j})`.
+Otherwise as `Polygon.quadMap`.
 -/
 
 -- Authors:       Claude Sonnet 5.5

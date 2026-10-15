@@ -128,7 +128,7 @@ minimal representation the algorithm requires can be. So the printed test never 
 CORA's `aux_isNonredundantConstraint` tests exactly that, and so does `isequalNondeg`. With that
 reading the test decides equality, by the uniqueness of the normalized facet rows of a
 non-degenerate polytope. The minimal representation is needed: a repeated row passes as
-redundant by its copy, which CORA does not exclude (`FINDINGS.md`). [`IsequalNondegPrinted.lean`](../../src/CORALean/ContSet/HPolytope/Real/Counterexamples/IsequalNondegPrinted.lean), [`IsequalNondegIff.lean`](../../src/CORALean/ContSet/HPolytope/Real/Theorems/IsequalNondegIff.lean), [`IsequalNondegDuplicate.lean`](../../src/CORALean/ContSet/HPolytope/Real/Counterexamples/IsequalNondegDuplicate.lean)
+redundant by its copy, which CORA does not exclude ([`polytope` `isequal`](../coverage/contSet/polytope.md)). [`IsequalNondegPrinted.lean`](../../src/CORALean/ContSet/HPolytope/Real/Counterexamples/IsequalNondegPrinted.lean), [`IsequalNondegIff.lean`](../../src/CORALean/ContSet/HPolytope/Real/Theorems/IsequalNondegIff.lean), [`IsequalNondegDuplicate.lean`](../../src/CORALean/ContSet/HPolytope/Real/Counterexamples/IsequalNondegDuplicate.lean)
 
 **`Eq. 9` — the optimal value.** `min bᵀ y` over the cone `Aᵀ y = 0`, `y ≥ 0` is `0` or `-∞`, so
 "feasible with `y* < 0`" is read as Farkas' alternative: some feasible `y` has `bᵀ y < 0`. [`IneqsEqEmptyIff.lean`](../../src/CORALean/ContSet/HPolytope/Real/Theorems/IneqsEqEmptyIff.lean)
@@ -141,7 +141,7 @@ the correct test. `[0, 1]` admits the radius `1/2` and has an interior. [`Interi
 column space of `V̄` only when the first `r` columns of `V̄` are independent, which a QR
 decomposition with column pivoting arranges. For the points `±e₁, ±e₃` the mean is `0`,
 `V̄ = [e₁ -e₁ e₃ -e₃]` has rank `2`, and `Q = I`, `R = V̄` is a QR decomposition whose first two
-columns miss `e₃`. CORA's `priv_isFullDim_V` takes `qr` without pivoting (`FINDINGS.md`). [`SpanQrCols.lean`](../../src/CORALean/ContSet/VPolytope/Real/Counterexamples/SpanQrCols.lean), [`SpanQrColsEqOfIndep.lean`](../../src/CORALean/ContSet/VPolytope/Real/Theorems/SpanQrColsEqOfIndep.lean)
+columns miss `e₃`. CORA's `priv_isFullDim_V` takes `qr` without pivoting ([`polytope` `isFullDim`](../coverage/contSet/polytope.md)). [`SpanQrCols.lean`](../../src/CORALean/ContSet/VPolytope/Real/Counterexamples/SpanQrCols.lean), [`SpanQrColsEqOfIndep.lean`](../../src/CORALean/ContSet/VPolytope/Real/Theorems/SpanQrColsEqOfIndep.lean)
 
 **`Alg. 2` — orthonormal.** Line 8 appends `x_iter` itself, a maximizer of `‖x‖∞`, so the columns
 are orthogonal, not orthonormal as the comment says; nothing downstream needs more. The maximizer

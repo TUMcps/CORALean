@@ -18,8 +18,9 @@ returns only full-dimensional pieces, so a lower-dimensional remainder is droppe
 What is formalized is that criterion: the indices of the cells whose remainder after the union of
 all the others has nonempty interior. CORA's sort by volume only orders the output list and is
 not modelled. The method does not run in CORA (`chebyball` is not a function of the toolbox) and
-its criterion does not preserve the union (FINDINGS.md); `filterOut_covered` is what a deletion
-does guarantee, `filterOut_pair` what it does not.
+its criterion does not preserve the union (`references/coverage/contSet/zonotope.md`, row
+`filterOut`); `filterOut_covered` is what a deletion does guarantee, `filterOut_pair` what it does
+not.
 
 ## References
 

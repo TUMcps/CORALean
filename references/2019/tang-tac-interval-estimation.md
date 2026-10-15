@@ -16,7 +16,7 @@ Thm. 3 is false as printed (strict) and proved with `≤`; Lemma 5's `A I = [A a
 and its hull version true; Remark 2's reduction omits absolute values; Thms. 7 and 8 omit the
 hypothesis that makes the compared observer one. Alg. 1 seeds the error set correctly with
 `⟨0, H₀⟩`, where CORA's `priv_observe_interval` seeds it with the initial set itself
-(FINDINGS.md).
+([`linearSysDT` `executeObserver`](../coverage/contDynamics/linearSysDT.md)).
 
 ## Results
 
@@ -100,6 +100,6 @@ Both are the conditions under which the compared method is an interval observer 
 
 **`Alg. 1` seeds the error correctly; CORA does not.** Line 3 starts `S_x` at `⟨0, H₀⟩`, the
 initial error set for `x̂₀ = p₀`. CORA's `priv_observe_interval`, which cites this paper for
-`Hinf-G`, starts it at `R0` itself (FINDINGS.md, `LinearSysDT.observeInterval_cora_counterexample`),
+`Hinf-G`, starts it at `R0` itself ([`linearSysDT` `executeObserver`](../coverage/contDynamics/linearSysDT.md)),
 as does the restatement in Althoff's ARCH21 paper ([Althoff 2021](../2021/althoff-arch-state-estimation.md));
 the paper is not the source of that error.

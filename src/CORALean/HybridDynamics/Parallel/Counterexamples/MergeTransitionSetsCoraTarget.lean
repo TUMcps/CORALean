@@ -20,7 +20,8 @@ Two components share a label; in the current locations their `a`-labeled transit
 and `3`. A synchronized jump (`SyncRun.sync`, the target of `liftSyncTransition`, which
 `SyncRun.toProductSync` embeds into `productSync`) lands in `(2, 3)`. The merged transition CORA
 builds for the label (`mergeTransitionSets.m:140`, through `synchronize`) targets `(3, 3)`.
-Read from the MATLAB code, not run (#40, `FINDINGS.md`).
+Read from the MATLAB code, not run (#40, `references/coverage/hybridDynamics/transition.md`, row
+`synchronize`).
 -/
 
 -- Authors:       Claude Opus 5.5

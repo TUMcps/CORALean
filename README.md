@@ -307,9 +307,9 @@ are of the paper, so they do not move when we do more work.
 
 Formalizing turns things up. An error found in a paper is recorded on that
 paper's page under [references/](references/README.md), beside the result it is
-about. [FINDINGS.md](FINDINGS.md) is the other half: the places this
-formalization parts from CORA on purpose, each pointing at the file that argues
-it.
+about. Where the formalization finds a bug in CORA, or parts from it on purpose, the
+[coverage tables](references/coverage/README.md) say so: a `cora-issue` note on the
+method's row, or a row of the table of departures that belong to no single method.
 
 
 ## Contributing

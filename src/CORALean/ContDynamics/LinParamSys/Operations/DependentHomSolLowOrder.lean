@@ -18,8 +18,9 @@ The time orders above `A² r²` (state) and `A² r³` (input) are left to the hi
 matrices, which CORA adds afterwards and which are not modelled here.
 
 It is defined to be refuted: the second-order input terms are incomplete
-(`dependentHomSolLowOrder_counterexample`, FINDINGS.md). The mixed generators are indexed
-by all pairs `(i, j)`, zero unless `i < j`, where CORA lists the pairs `i < j`.
+(`dependentHomSolLowOrder_counterexample`, `references/coverage/contDynamics/linParamSys.md`, row
+`initReach_inputDependence`). The mixed generators are indexed by all pairs `(i, j)`, zero unless
+`i < j`, where CORA lists the pairs `i < j`.
 -/
 
 -- Authors:       Claude Opus 5.5

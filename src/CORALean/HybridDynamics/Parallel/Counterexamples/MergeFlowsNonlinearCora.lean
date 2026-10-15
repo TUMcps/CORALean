@@ -24,7 +24,8 @@ input `v`, bound to the global input `g`. Read from the source, not run.
 
 Component A has the output `y = x_A + u_A` with `u_A` the global input, component B has
 `ẋ_B = u_B` with `u_B` bound to `y`. The merged flow should have `ẋ_B = x_A + g`; CORA's gives
-`ẋ_B = 0`. Read from `mergeFlows.m` l. 280-306, not run (`FINDINGS.md`).
+`ẋ_B = 0`. Read from `mergeFlows.m` l. 280-306, not run
+(`references/coverage/hybridDynamics/parallelHybridAutomaton.md`, row `mergeFlows`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

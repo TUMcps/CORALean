@@ -15,7 +15,8 @@ singular value). Here the bound is the Frobenius norm, `sqrt (∑ᵢⱼ Mᵢⱼ�
 largest singular value and needs no eigenvalue computation.
 
 CORA scales by `max(eig(M Mᵀ))`, the *square* of the largest singular value, which is too small
-whenever that value is under `1`; see `Capsule.mtimes_cora_counterexample` and FINDINGS.
+whenever that value is under `1`; see `Capsule.mtimes_cora_counterexample` and
+`references/coverage/contSet/capsule.md`, row `mtimes`.
 -/
 
 -- Authors:       Claude Sonnet 5.5

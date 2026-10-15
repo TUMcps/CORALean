@@ -33,7 +33,7 @@ row, so the reason travels with the result:
 * something that **is not a claim to formalize** — a remark, an experiment, a
   discussion of when to prefer one method to another;
 * a result we have **decided to do differently on purpose**, which means there is
-  a row in [FINDINGS.md](../FINDINGS.md) saying why;
+  a row in the [departures table](coverage/README.md#departures-from-cora-that-belong-to-no-single-method) saying why;
 * a result **about a subject CORALean does not cover** — several papers are cited
   for one thing and spend the rest elsewhere, and Grönwall's 1919 note is the
   clearest case: we use its inequality and have no use for the differentiability
@@ -159,8 +159,7 @@ per CORA class (`contSet`, `contDynamics`, `hybridDynamics`, `nn`), one row per 
   "Hard" is never a reason.
 
 A `proved` row without a float refinement is the float backlog. A row may carry a
-`cora-issue` note where [FINDINGS.md](../FINDINGS.md) records that CORA's own implementation
-is wrong. `scripts/check-references.py` checks the tables: every method file has a row,
+`cora-issue` note, which says in full where CORA's own implementation is wrong and links the Lean witness. `scripts/check-references.py` checks the tables: every method file has a row,
 every link resolves to a declaration the file has, a `proved` row links a theorem, a `float`
 row a float-layer theorem, a `bound` row a theorem and a note, and the counts are the tables' counts.
 
@@ -223,7 +222,7 @@ simplified pseudocode: a correction there counts as `underspecified`, never `fix
 result, not a neighbour of it. Where the formalization went another way, the row is settled
 one of three ways: the printed statement is proved as well and linked (a stronger theorem
 gets its one-line corollary in the printed form); or the row moves out of the count as
-`done-differently`, with its [FINDINGS.md](../FINDINGS.md) row, when the printed statement
+`done-differently`, with its row in the [departures table](coverage/README.md#departures-from-cora-that-belong-to-no-single-method), when the printed statement
 cannot reasonably be proved or proving it adds nothing; or, when only part of the printed
 result is formalized, the row is `—` (or is split into its parts, each classed on its own)
 until the rest is done. `scripts/check-references.py` holds the note of every `correct` row
@@ -259,111 +258,20 @@ states it as a result in its own right, a Proposition or Theorem whose statement
 (Althoff et al. NAHS'10 `Prop. 10`, `Prop. 11`), and then it is in scope and formalized under
 `Complexity/Time/` like those two.
 
-## Findings
+## Where a paper is wrong
 
 Formalizing a paper turns things up. Where a printed result is wrong or a proof
 does not follow, the paper's own page says so, under its own `## Findings`
-heading — beside the result, where someone checking that result will be. These
-pages carry one:
-
-<!-- findings -->
-* [A Comprehensive Method for Reachability Analysis of Uncertain Nonlinear Hybrid Systems](2016/maiga-tac-hybrid-reachability.md)
-* [Efficient Computation of Reachable Sets of Linear Time-Invariant Systems with Inputs](2006/girard-hscc-lti-inputs.md)
-* [Interval predictor models: Identification and reliability](2009/campi-automatica-interval-predictor-models.md)
-* [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md)
-* [Ellipsoidal Toolbox (ET)](2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md)
-* [Reachability of Uncertain Linear Systems Using Zonotopes](2005/girard-hscc-reachability-zonotopes.md)
-* [Guaranteed state estimation by zonotopes](2005/alamo-automatica-guaranteed-estimation.md)
-* [Bounded error identification of systems with time-varying parameters](2006/bravo-tac-bounded-error-identification.md)
-* [Taylor Models and Other Validated Functional Inclusion Methods](2003/makino-ijpam-taylor-models.md)
-* [Implementation of Taylor Models in CORA 2018](2018/althoff-arch-taylor-models.md)
-* [An embedding theorem for spaces of convex sets](1952/radstrom-embedding.md)
-* [Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization](2008/althoff-cdc-conservative-linearization.md)
-* [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md)
-* [Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes](2010/althoff-nahs-zonotopes-polytopes.md)
-* [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md)
-* [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md)
-* [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md)
-* [Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets](2013/althoff-hscc-conservative-polynomialization.md)
-* [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md)
-* [Methods for Order Reduction of Zonotopes](2017/kopetzki-cdc-order-reduction.md)
-* [Linear Encodings for Polytope Containment Problems](2019/sadraddini-cdc-polytope-containment.md)
-* [Scalable Zonotope-Ellipsoid Conversions using the Euclidean Zonotope Norm](2020/gassmann-acc-zonotope-ellipsoid.md)
-* [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md)
-* [Robust Under-Approximations and Application to Reachability of Non-Linear Control Systems With Disturbances](2020/goubault-lcss-robust-underapproximations.md)
-* [Forward Inner-Approximated Reachability of Non-Linear Continuous Systems](2017/goubault-hscc-forward-inner-reachability.md)
-* [On the co-NP-Completeness of the Zonotope Containment Problem](2021/kulmburg-ejc-zonotope-containment.md)
-* [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md)
-* [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md)
-* [Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems](2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md)
-* [Adaptive Reachability Algorithms for Nonlinear Systems Using Abstraction Error Analysis](2022/wetzlinger-nahs-abstraction-error.md)
-* [Set operations and order reductions for constrained zonotopes](2022/raghuraman-koeln-constrained-zonotopes.md)
-* [Scalable Zonotopic Under-approximation of Backward Reachable Sets for Uncertain Linear Systems](2022/yang-lcss-zonotopic-underapproximation.md)
-* [Constrained Polynomial Zonotopes](2023/kochdumper-constrained-polyzonotopes.md)
-* [Automatic Abstraction Refinement in Neural Network Verification using Sensitivity Analysis](2023/ladner-hscc-abstraction-refinement.md)
-* [Fully Automatic Neural Network Reduction for Formal Verification](2023/ladner-tmlr-network-reduction.md)
-* [Backward Reachability Analysis of Perturbed Continuous-Time Linear Systems Using Set Propagation](2026/wetzlinger-tac-backward-reachability.md)
-* [Fully-Automated Verification of Linear Systems Using Inner- and Outer-Approximations of Reachable Sets](2023/wetzlinger-fully-automated-verification.md)
-* [Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions](2023/wetzlinger-hscc-support-functions.md)
-* [Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems](2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)
-* [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md)
-* [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md)
-* [Zonotopic guaranteed state estimation for uncertain systems](2013/le-automatica-zonotopic-estimation.md)
-* [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md)
-* [Guarantees for Real Robotic Systems: Unifying Formal Controller Synthesis and Reachset-Conformant Identification](2023/liu-tro-guarantees-real-robotic.md)
-* [Checking and Establishing Reachset Conformance in CORA 2023](2023/althoff-arch-reachset-conformance.md)
-* [Reachset-Conformant System Identification](2026/luetzow-tac-reachset-conformant-identification.md)
-* [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md)
-* [Formal Verification of Graph Convolutional Networks with Uncertain Node Features and Uncertain Graph Structure](2025/ladner-tmlr-gcn.md)
-* [Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets](2020/kochdumper-hscc-nonlinear-guards.md)
-* [Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions](2009/althoff-ecc-enclosing-hulls.md)
-* [Reachability Analysis of ARMAX Models](2023/luetzow-cdc-armax.md)
-* [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md)
-* [Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems](2020/kochdumper-cdc-nonconvex-inner.md)
-* [Reachability Analysis of Large Linear Systems with Uncertain Inputs in the Krylov Subspace](2020/althoff-tac-krylov.md)
-* [Computable upper error bounds for Krylov approximations to matrix exponentials and associated φ-functions](2020/jawecki-bit-krylov-error-bounds.md)
-* [Reachability Analysis of Nonlinear Differential-Algebraic Systems](2014/althoff-tac-nonlinear-dae.md)
-* [Formal and Compositional Analysis of Power Systems using Reachable Sets](2014/althoff-tps-power-systems.md)
-* [Implementation of Interval Arithmetic in CORA 2016](2017/althoff-arch-interval-arithmetic.md)
-* [Guaranteed State Estimation in CORA 2021](2021/althoff-arch-state-estimation.md)
-* [General Inner Approximation of Vector-valued Functions](2013/mullier-rc-general-inner-approximation.md)
-* [Zono-Conformal Prediction: Zonotope-Based Uncertainty Quantification for Regression and Classification Tasks](2025/luetzow-jmlr-zono-conformal-prediction.md)
-* [Underapproximative Methods for the Order Reduction of Zonotopes](2025/luetzow-lcss-underapprox-order-reduction.md)
-* [Robust Identification of Hybrid Automata from Noisy Data](2025/kochdumper-hscc-hybrid-automata-identification.md)
-* [Interval estimation methods for discrete-time linear time-invariant systems](2019/tang-tac-interval-estimation.md)
-* [Zonotopic set-membership state estimation for discrete-time descriptor LPV systems](2019/wang-tac-descriptor-lpv-estimation.md)
-* [AI2: Safety and Robustness Certification of Neural Networks with Abstract Interpretation](2018/gehr-sp-ai2.md)
-* [Fast and Effective Robustness Certification](2018/singh-neurips-deepz.md)
-* [Dynamic mode decomposition with control](2016/proctor-siads-dmd-control.md)
-* [Discovering governing equations from data by sparse identification of nonlinear dynamical systems](2016/brunton-pnas-sindy.md)
-* [A Box-Consistency Contractor Based on Extremal Functions](2010/trombettoni-cp-box-consistency.md)
-* [Inner approximation of the range of vector-valued functions](2010/goldsztejn-rc-inner-range.md)
-* [On the Hyperbox – Hyperplane Intersection Problem](2009/lara-infocomp-hyperbox-hyperplane.md)
-* [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md)
-* [Benchmarks for the Formal Verification of Power Systems](2022/althoff-arch-power-systems.md)
-* [Zonotopic Fault Detection Observer with H− Performance](2017/wang-ccc-fault-detection-observer.md)
-* [Error bounds for the Krylov subspace methods for computations of matrix exponentials](2017/wang-simax-krylov-error-bounds.md)
-* [A distributed set-membership approach based on zonotopes for interconnected systems](2018/wang-cdc-distributed-set-membership.md)
-* [Set-Based Training for Neural Network Verification](2025/koller-tmlr-set-based-training.md)
-* [Goffin's algorithm for zonotopes](2012/cerny-kybernetika-goffin-zonotopes.md)
-* [On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids](2018/halder-cdc-minkowski-sum-ellipsoids.md)
-* [Distributed Set-Based Observers Using Diffusion Strategies](2023/alanwar-jfi-diffusion-observers.md)
-* [Approximability of the Containment Problem for Zonotopes and Ellipsotopes](2025/kulmburg-tac-approximability-containment.md)
-* [Privacy-Preserving Set-Based Estimation Using Partially Homomorphic Encryption](2023/alanwar-ejc-privacy-preserving-estimation.md)
-* [Constrained zonotopes: A new tool for set-based estimation and fault detection](2016/scott-automatica-constrained-zonotopes.md)
-* [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md)
-* [Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata](2017/bak-formats-time-triggered-conversion.md)
-* [Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis](2024/kochdumper-nahs-stl-lti-verification.md)
-* [Using Four-Valued Signal Temporal Logic for Incremental Verification of Hybrid Systems](2024/lercher-cav-four-valued-stl.md)
-* [Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed Over Bounded Regions](1984/smith-or-uniform-points.md)
-* [Billiard walk - a new sampling algorithm for control and optimization](2014/polyak-ifac-billiard-walk.md)
-
-[FINDINGS.md](../FINDINGS.md) is the other half, and stays at the root: the
-places this formalization parts from CORA on purpose, which belong to no paper.
+heading — beside the result, where someone checking that result will be. There is
+no index of those pages: a page has the section exactly when one of its rows is not
+`correct`, which `scripts/check-references.py` checks. Where
+the formalization parts from CORA on purpose, the coverage tables say so, in the
+method's own `cora-issue` note or, for a departure that belongs to no one method, in
+the [departures table](coverage/README.md#departures-from-cora-that-belong-to-no-single-method).
 
 ## Citing
 
 Cite as the papers are cited in the source — `[1]`, or `[1, Prop. 3.1]` — and see
 [CONTRIBUTING.md](../CONTRIBUTING.md#references) for what belongs in a `##
-References` block. [FINDINGS.md](../FINDINGS.md) records where a source turned
-out to be wrong; the row for such a result says so and points there.
+References` block. Where a source turned out to be wrong, the row for such a result
+says so and the page's `## Findings` argues it.

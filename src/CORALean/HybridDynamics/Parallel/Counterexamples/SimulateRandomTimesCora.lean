@@ -18,7 +18,7 @@ public import CORALean.HybridDynamics.Operations.SimulateRandomTimes
 For `nrConstInp = n` the loop `for g = 1:length(time)-1` runs `n - 1` times for the parallel
 automaton, `n` times for the hybrid automaton. With `nrConstInp = 1` the parallel automaton
 simulates nothing, so every returned trajectory is empty. Read from the source, not run
-(`FINDINGS.md`).
+(`references/coverage/hybridDynamics/parallelHybridAutomaton.md`, row `simulateRandom`).
 -/
 
 -- Authors:       Claude Opus 5.5
