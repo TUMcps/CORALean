@@ -20,9 +20,9 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.Rela
       Applications in Formal Neural Network Verification". AAAI, 2024.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       11-October-2026
--- Last update:   13-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,15 +33,22 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The count itself, at most four times the bound, from `p = 1` on. -/
+/-- The count itself, at most eight times the bound, from `p = 1` on. -/
 theorem aux_relaxGreedyCost_ops_le (h q n p : ℕ) (hp : 1 ≤ p) :
     (PolyZonotope.relaxGreedyCost h q n p).ops
-      ≤ 4 * ((h + q) * h * n + h ^ 2 * p) := by -- --- PROOF ---
+      ≤ 8 * ((h + q) * h * n + h ^ 2 * p) := by -- --- PROOF ---
   simp only [PolyZonotope.relaxGreedyCost, Cost.ops_add, Cost.ops_smul]
   have h1 : h ^ 2 ≤ h ^ 2 * p := Nat.le_mul_of_pos_right _ hp
-  have h2 : h * (h + ((h + q) * n + h * p)) = h ^ 2 + (h + q) * h * n + h ^ 2 * p := by ring
-  rw [h2]
-  linarith [h1, Nat.zero_le ((h + q) * h * n)]
+  have h2 : h * (h + (n * (1 + 2 * h + q) + h * p)) =
+      h ^ 2 + h * n + 2 * (h ^ 2 * n) + h * q * n + h ^ 2 * p := by ring
+  have h3 : h * n ≤ h ^ 2 * n := by
+    rcases Nat.eq_zero_or_pos h with rfl | hh
+    · simp
+    · exact Nat.mul_le_mul_right n (by nlinarith)
+  have h4 : (h + q) * h * n = h ^ 2 * n + h * q * n := by ring
+  rw [h2, h4]
+  linarith [h1, h3, Nat.zero_le (h ^ 2 * n), Nat.zero_le (h * q * n), Nat.zero_le (h ^ 2),
+    Nat.zero_le (h * n), Nat.zero_le (h ^ 2 * p)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -52,7 +59,7 @@ theorem PolyZonotope.relaxGreedyCost_isBigO :
       =O[Filter.atTop]
         fun x : ℕ × ℕ × ℕ × ℕ =>
           (((x.1 + x.2.1) * x.1 * x.2.2.1 + x.1 ^ 2 * x.2.2.2 : ℕ) : ℝ) := by -- --- PROOF ---
-  apply Asymptotics.IsBigO.of_bound 4
+  apply Asymptotics.IsBigO.of_bound 8
   filter_upwards [Filter.eventually_ge_atTop ((0, 0, 0, 1) : ℕ × ℕ × ℕ × ℕ)] with x hx
   have hp : 1 ≤ x.2.2.2 := hx.2.2.2
   rw [Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity)]

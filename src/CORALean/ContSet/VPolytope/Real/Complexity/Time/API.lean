@@ -11,10 +11,10 @@ operation, every one **asserted**. `Complexity/Space/` is the other directory an
 other kind of claim: how large a *result* is, which is proved.
 
 `plus` pays `n * k₁ * k₂` for pairing and adding every vertex against every
-other; `mtimes` a matrix-vector product per vertex; `linComb` nothing, its
-vertex lists only concatenating.
+other; `mtimes` a matrix-vector product per vertex; `linComb` only the writes of its concatenated
+vertex lists.
 
-`intersection` is **not** counted. It goes out to `HPolytope` — free there —
+`intersection` is **not** counted. It goes out to `HPolytope` — no arithmetic there —
 and comes back by `HPolytope.vPolytope`, whose own docstring reads `2^m`: an
 exponential enumeration over subsets of rows, each candidate a linear solve
 this model has no unit price for. A number here would guess at both the

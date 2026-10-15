@@ -9,7 +9,8 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 # `ZonoBundle.plusCost`
 
 Asserted, not proved: `Operations/Plus.lean` runs `Zonotope.plus` once per pair
-of members, `k₁ * k₂` of them, and does nothing of its own.
+of members, `k₁ * k₂` of them, and does nothing of its own; the sums write their own results, inside
+`Zonotope.plusCost`.
 
 The product is the whole point of the count. A bundle sum is not a bundle of
 sums — each member of one has to be added to each member of the other for the
@@ -19,9 +20,9 @@ again. `Complexity/Space/Theorems/Plus*.lean` is the same fact about the *size* 
 result, in `O`-notation.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,9 +33,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `ZonoBundle.plus` costs at `Vec ℝ n` on bundles of `k₁` and `k₂`
-members: one zonotope sum per pair. -/
-def ZonoBundle.plusCost (n k₁ k₂ : ℕ) : Cost := (k₁ * k₂) • Zonotope.plusCost n
+/-- What `ZonoBundle.plus` costs at `Vec ℝ n` on bundles of `k₁` and `k₂` members, none over `h₁`
+and `h₂` generators: one zonotope sum per pair. -/
+def ZonoBundle.plusCost (n k₁ k₂ h₁ h₂ : ℕ) : Cost := (k₁ * k₂) • Zonotope.plusCost n h₁ h₂
 
 end CORALean.Real
 

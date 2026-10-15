@@ -8,15 +8,16 @@ public import CORALean.Global.Cost
 /-!
 # `HPolytope.mtimesOfCost`
 
-Asserted, and asserted to be zero: `Operations/Mtimes.lean` builds each row from
-`SupportBound.image`, which carries `u.val` over unchanged — the direction is
-pulled back through `M` before the certificate is ever asked for, so nothing
-here recomputes a bound.
+Asserted, not proved, and no longer zero: `Operations/Mtimes.lean` builds each row from
+`SupportBound.image`, which carries `u.val` over unchanged — the direction is pulled back through
+`M` before the certificate is ever asked for, so nothing here recomputes a bound. The result is
+`q` inequality rows, each a functional of `d` coefficients and a right-hand side, and writing them
+is the cost.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -27,9 +28,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `HPolytope.mtimesOf` costs: nothing. `SupportBound.image` relabels a
-certificate's value rather than recomputing it. -/
-def HPolytope.mtimesOfCost : Cost := 0
+/-- What `HPolytope.mtimesOf` costs for `q` rows over a coefficient space of dimension `d`: one
+write for each of the `q * (d + 1)` entries of the result. -/
+def HPolytope.mtimesOfCost (d q : ℕ) : Cost := ⟨q * (d + 1)⟩
 
 end CORALean.Real
 

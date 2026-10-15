@@ -15,11 +15,11 @@ every count is the zonotope count times a member count and this directory adds
 no arithmetic of its own. Two shapes come out of that: `plus` and `linComb` pair
 the members and pay `k₁ * k₂`, while `mtimes` walks one family and pays `k`.
 
-`intersection` and `reduce` cost nothing — concatenation and truncation — which is the
-bargain the representation is built on and what makes the member count the thing
-to watch. `mapCost` prices a general map at what one application costs, run
-over every member, the same parameter `Zonotope.mapCost` takes. `mtimesMatZonotope`
-is left out: `Zonotope/Real/Complexity/Time/` does not price it either.
+`intersection` and `reduce` compute nothing — concatenation and truncation — and pay only the
+writes of the members they keep, which is the bargain the representation is built on and what
+makes the member count the thing to watch. `mapCost` prices a general map at what one
+application costs, run over every member, the same parameter `Zonotope.mapCost` takes.
+`mtimesMatZonotope` is left out: `Zonotope/Real/Complexity/Time/` does not price it either.
 
 A generator count here bounds *every* member rather than naming one, since the
 structure carries a family and no common width.

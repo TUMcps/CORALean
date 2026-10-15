@@ -11,7 +11,8 @@ operation, every one **asserted**: read off the definition by hand, since a Lean
 `def` never says what computing it costs. `Complexity/Space/` is the other kind of
 claim, how large a *result* is, and a theorem. Each count is an upper bound and
 monotone in the operand sizes, which is what lets `LinearSysDT.reachCost_le`
-assemble out of these plus `Complexity/Space/`'s sizes.
+assemble out of these plus `Complexity/Space/`'s sizes. A count is the arithmetic and one
+write per scalar of the result, so `plusCost` takes the operands' generator counts.
 
 `mapCost` and `bilinCost` take what one application of their map costs as a
 parameter; `mtimesCost` and `mtimesMatZonotopeCost` are them at known maps.

@@ -38,14 +38,14 @@ theorem HPolytope.comapCost_mono {m m' me me' : ℕ} (cr : Cost) (hm : m ≤ m')
 -- =============================  `HPolytope.halfScaledCost_mono`  ============================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in the row counts and the dimension, so a bound on the operand's
 size gives a bound on the cost. -/
 theorem HPolytope.halfScaledCost_mono {m m' me me' d d' : ℕ} (hm : m ≤ m') (hme : me ≤ me')
-    (hd : d ≤ d') : HPolytope.halfScaledCost m me d ≤ HPolytope.halfScaledCost m' me' d' :=
-  Nat.mul_le_mul (Nat.add_le_add hm hme) (Nat.succ_le_succ (Nat.mul_le_mul_left _ hd))
+    (hd : d ≤ d') : HPolytope.halfScaledCost m me d ≤ HPolytope.halfScaledCost m' me' d' := by
+  cost_mono [HPolytope.halfScaledCost]
 
 end CORALean.Real
 

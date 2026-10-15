@@ -52,19 +52,6 @@ theorem ZonoBundle.mtimesCost_mono {k k' h h' : ℕ} (m n : ℕ) (hk : k ≤ k')
     ZonoBundle.mtimesCost m n k h ≤ ZonoBundle.mtimesCost m n k' h' :=
   Nat.mul_le_mul hk (Cost.le_iff.mp (Zonotope.mtimesCost_mono m n hh))
 
-
--- ================================  `ZonoBundle.plusCost_mono`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       07-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- Monotone in both member counts, so bounds on the operands' sizes give a
-bound on the cost. -/
-theorem ZonoBundle.plusCost_mono {k₁ k₁' k₂ k₂' : ℕ} (n : ℕ) (h1 : k₁ ≤ k₁') (h2 : k₂ ≤ k₂') :
-    ZonoBundle.plusCost n k₁ k₂ ≤ ZonoBundle.plusCost n k₁' k₂' :=
-  Nat.mul_le_mul_right _ (Nat.mul_le_mul h1 h2)
-
 end CORALean.Real
 
 

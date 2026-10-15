@@ -10,11 +10,10 @@ Scalar-operation counts against `Global/Cost.lean`'s model, one `def` per
 operation, every one **asserted**. `Complexity/Space/` is the other directory and the
 other kind of claim: how large a *result* is, which is proved.
 
-`map`, `mtimes` and `plus` cost exactly what their `PolyZonotope` counterparts
-do — the constraint system, `A`, `b` and `R`, is untouched by any of the
-three, so the extra fields a constrained set carries never enter. `dependent`
-is zero, for the same reason `PolyZonotope.dependentCost` is: concatenation,
-an identity block and a padded constraint block, nothing computed. `quadMap`
+`map`, `mtimes` and `plus` cost what their `PolyZonotope` counterparts do, plus the writes of the
+constraint system, `A`, `b` and `R`, which the result carries and no operation computes.
+`dependent` computes nothing, as `PolyZonotope.dependentCost` does not: it is the writes of a
+concatenation, an identity block and a padded constraint block. `quadMap`
 and `intersection` compose from that: the first is `PolyZonotope`'s quadratic
 map at the sizes `dependent` leaves, the second the agreement rows'
 negations and the bound's arithmetic once both operands are dependent.

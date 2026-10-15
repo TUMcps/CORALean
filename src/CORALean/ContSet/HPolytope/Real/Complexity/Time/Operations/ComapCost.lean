@@ -13,9 +13,10 @@ inequality rows and `me` equality rows with `f` and leaves the right-hand sides
 alone. What one precomposition costs depends on `f` and on how a row is held,
 so it is a parameter, as `mapCost` takes what one application of `f` costs.
 
-At a coordinate embedding such as `blockLeft` it is zero under the dense-row
-reading `HPolytope.halfScaledCost` states: the new row is the old one copied
-into a longer vector of zeros, which is data movement.
+`cr` counts everything one precomposition does, the write of the new row included. At a
+coordinate embedding such as `blockLeft` it is the writes of the dense-row reading
+`HPolytope.halfScaledCost` states: the new row is the old one copied into a longer vector of
+zeros, `d' + 1` writes at the new dimension `d'`.
 -/
 
 -- Authors:       Claude Sonnet 5.5

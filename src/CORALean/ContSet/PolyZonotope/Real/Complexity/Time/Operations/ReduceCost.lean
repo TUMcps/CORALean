@@ -24,9 +24,9 @@ Quadratic in `h`, from the merge and the sorts alike, against a `Zonotope`'s
 that can repeat.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,10 +37,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.reduce`, at any order, costs at `Vec ℝ n` over `p`
-factors, `h` dependent and `q` independent generators. -/
+/-- What `PolyZonotope.reduce`, at any order, costs at `Vec ℝ n` over `p` factors, `h` dependent
+and `q` independent generators. -/
 def PolyZonotope.reduceCost (n p h q : ℕ) : Cost :=
-  PolyZonotope.compactCost n p h + PolyZonotope.reduceGirardCost n h q
+  PolyZonotope.compactCost n p h q + PolyZonotope.reduceGirardCost n p h q
 
 end CORALean.Real
 

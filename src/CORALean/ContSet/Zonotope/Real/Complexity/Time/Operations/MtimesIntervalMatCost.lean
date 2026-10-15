@@ -18,12 +18,13 @@ Asserted, not proved, by reading `Operations/MtimesIntervalMat.lean`:
   so `2 * m * n`;
 * the center and the `h` generators through `center *ᵥ ·`: `h + 1` products of
   `Cost.matVec m n`;
-* the diagonal generator block places data and is free.
+* the diagonal generator block is `m * m` writes, its zeros included. The products write their
+  own results, inside `Cost.matVec`.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,10 +35,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `Zonotope.mtimesIntervalMat` costs at `IM : Interval (Mat ℝ m n)` and
-`h` generators. -/
+/-- What `Zonotope.mtimesIntervalMat` costs at `IM : Interval (Mat ℝ m n)` and `h` generators:
+the radius, the `h + 1` products, and `m * m` writes for the diagonal block of new generators. -/
 def Zonotope.mtimesIntervalMatCost (m n h : ℕ) : Cost :=
-  ⟨6 * (m * n) + n * (2 * h + 1)⟩ + (h + 1) • Cost.matVec m n
+  ⟨6 * (m * n) + n * (2 * h + 1) + m * m⟩ + (h + 1) • Cost.matVec m n
 
 end CORALean.Real
 

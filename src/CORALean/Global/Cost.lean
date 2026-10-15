@@ -1,32 +1,34 @@
 module
 
 public import Mathlib.Data.Nat.Log
+public import Mathlib.Tactic.GCongr
 
 @[expose] public section
 
 /-!
 # What running an operation costs
 
-A `Cost` counts **scalar operations**: one `+`, `-`, `*`, `/`, comparison,
-`min`, `max` or absolute value on the scalar a layer computes in, at unit
-price. Indexing, copying a generator block and allocating are free — which is
-why `Zonotope.plusCost` never mentions the operands' generator counts, and why
-a caller bound by data movement needs a model other than this one.
+A `Cost` counts, at unit price, **scalar arithmetic** (one `+`, `-`, `*`, `/`, comparison, `min`,
+`max` or absolute value on the scalar a layer computes in) and **writes** (one unit for every
+scalar of the result: computed, copied, padded with a zero or placed alike, exponents and
+constraint coefficients included). One convention throughout: **a computed entry costs its
+arithmetic plus one write, a copied or padded entry costs one write.** Reading is free:
+indexing, taking a field and passing a value on cost nothing, and a value held only in a
+register, feeding the next operation directly, is not written. A called subroutine is charged
+its own cost, which includes the writes of its own result, so a result is not charged again by
+its caller. That is why `Zonotope.plusCost` takes the operands' generator counts: the sum writes
+`n (1 + h₁ + h₂)` scalars.
 
-A cost is **asserted**, never derived. A Lean `def` says what an operation
-computes and never what computing it costs, so every `…Cost` under a `Cost/`
-directory is a `def` read off an operation's definition by hand, and is exactly
-as trustworthy as that reading. Nothing here is `rfl` against an operation;
-that is `Complexity/`'s job, for sizes, which are the other kind of claim.
-
-Every cost is an **upper** bound, so bounds compose: a sequence costs at most
-the sum of its steps, at any bound on each step's input. No enclosure guarantee
-mentions a `Cost`, so a count read wrong makes a bound wrong, never a set.
+A cost is **asserted**, never derived: a Lean `def` says what is computed and never what
+computing it costs, so every `…Cost` is read off an operation's definition by hand. Every cost is
+an **upper** bound, so bounds compose; one needing the size of the result takes the operand
+sizes as arguments. No enclosure guarantee mentions a `Cost`: a count read wrong makes a bound
+wrong, never a set.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -63,13 +65,13 @@ instance : Preorder Cost := Preorder.lift Cost.ops
 theorem add_le_add {a b c d : Cost} (h₁ : a ≤ b) (h₂ : c ≤ d) : a + c ≤ b + d :=
   Nat.add_le_add h₁ h₂
 
-/-- One matrix-vector product `M *ᵥ v` at `m × n`: `m * n` multiplications and
-`m * (n - 1)` additions, rounded up to `2 * m * n`. -/
-def matVec (m n : ℕ) : Cost := ⟨2 * (m * n)⟩
+/-- One matrix-vector product `M *ᵥ v` at `m × n`: `m * n` multiplications, `m * (n - 1)`
+additions and `m` writes, rounded up to `2 * m * n + m` so that `n = 0` is bounded too. -/
+def matVec (m n : ℕ) : Cost := ⟨2 * (m * n) + m⟩
 
-/-- A comparison sort on `k` keys, at `k * (log₂ k + 1)`: the merge sort behind
-`Tuple.sort` does at most `k * ⌈log₂ k⌉`, and `Nat.log 2` floors, so the `+ 1`
-covers the ceiling and keeps `k = 0` and `k = 1` bounded. -/
+/-- A comparison sort on `k` keys, at `k * (log₂ k + 1)`: merge sort does at most `k * ⌈log₂ k⌉`
+comparisons, `Nat.log 2` floors, and the `+ 1` covers the ceiling, `k = 0` and `k = 1`, and the
+`k` writes of the sorted indices. -/
 def sort (k : ℕ) : Cost := ⟨k * (Nat.log 2 k + 1)⟩
 
 /-- Sorting more keys costs more, which is what lets a bound on an operand's
@@ -82,6 +84,14 @@ an asymptotic bound off a cost goes through this rather than the definition, so
 tightening the model again stops at this file. -/
 theorem sort_le_mul_succ (k : ℕ) : (sort k).ops ≤ k * (k + 1) :=
   Nat.mul_le_mul_left _ (Nat.succ_le_succ (Nat.log_le_self 2 k))
+
+/-- Closes a goal `f x ≤ f y` between costs by unfolding the named definitions to their `ops`
+and comparing term by term, so each monotonicity theorem is one line. -/
+syntax "cost_mono " "[" Lean.Parser.Tactic.simpLemma,* "]" : tactic
+
+macro_rules
+  | `(tactic| cost_mono [$ds,*]) =>
+    `(tactic| (simp only [$ds,*, Cost.le_iff, Cost.ops_add, Cost.ops_smul, Cost.matVec]; gcongr))
 
 end Cost
 

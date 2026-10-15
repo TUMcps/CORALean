@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Theorems.Basic
+public import CORALean.ContSet.ZonoBundle.Real.Complexity.Time.Theorems.PlusCostMono
 
 /-!
 # `ContSet/ZonoBundle/Real/Complexity/Time/Theorems`

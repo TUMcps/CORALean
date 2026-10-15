@@ -10,11 +10,15 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/MinkDiffAligned.lean` subtracts the centers
 and the `h` generators pairwise, `n * (h + 1)` subtractions at `Vec ℝ n`.
+
+Under `Global/Cost.lean`'s model every scalar of the result is also a write, one unit each, and the
+result's `n * (h + 1)` entries are
+written once each.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -25,8 +29,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `Zonotope.minkDiffAligned` costs at `Vec ℝ n` and `h` generators. -/
-def Zonotope.minkDiffAlignedCost (n h : ℕ) : Cost := ⟨n * (h + 1)⟩
+/-- What `Zonotope.minkDiffAligned` costs at `Vec ℝ n` and `h` generators: `n * (h + 1)`
+subtractions and as many writes. -/
+def Zonotope.minkDiffAlignedCost (n h : ℕ) : Cost := ⟨2 * (n * (h + 1))⟩
 
 end CORALean.Real
 

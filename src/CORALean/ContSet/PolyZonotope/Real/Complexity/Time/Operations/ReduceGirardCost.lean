@@ -15,19 +15,19 @@ descending sort key: at most `4 * n + 2` each, as in `Zonotope`'s own file. It
 is evaluated on the concatenation for the joint rank and again on each block for
 its split, so twice over `h + q` bounds it.
 
-Three sorts follow — the joint one and one per block — each bounded by
-`Cost.sort` at the joint width; `aux_girardKeptDep` then counts the dependent
-ranks, `h` comparisons and a `min`. Last is `reduceBy`, absorbing at most the
-whole of either block.
+Three sorts follow — the joint one and one per block — each bounded by `Cost.sort` at the joint
+width; `aux_girardKeptDep` then counts the dependent ranks, `h` comparisons and a `min`.
 
 No order argument: below `o * n` the operation is the identity and costs
 nothing, and above it the absorbed blocks are `h` and `q` wide at worst either
 way, so this bounds every `o` at once.
+
+`reduceBy` is charged at the most it can keep and absorb and writes its own result.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -38,11 +38,12 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.reduceGirard` costs at `Vec ℝ n` on `h` dependent and
-`q` independent generators: the metrics, the sorts, the count, the absorption. -/
-def PolyZonotope.reduceGirardCost (n h q : ℕ) : Cost :=
+/-- What `PolyZonotope.reduceGirard` costs at `Vec ℝ n` over `p` factors on `h` dependent and `q`
+independent generators: the metrics, the sorts, the count, and the absorption at most `h` and `q`
+kept and `h` and `q` absorbed. -/
+def PolyZonotope.reduceGirardCost (n p h q : ℕ) : Cost :=
   ⟨(h + q) * (8 * n + 4) + (h + q) + 1⟩ + 3 • Cost.sort (h + q)
-    + PolyZonotope.reduceByCost n h q
+    + PolyZonotope.reduceByCost n p h q h q
 
 end CORALean.Real
 

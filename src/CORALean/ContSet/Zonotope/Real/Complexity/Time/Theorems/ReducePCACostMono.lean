@@ -15,7 +15,7 @@ Monotone in the generator count.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,7 +31,7 @@ theorem Zonotope.reducePCACost_mono {h h' : ℕ} (n : ℕ) (eig inv : Cost) (hle
     Zonotope.reducePCACost n h eig inv ≤
       Zonotope.reducePCACost n h' eig inv := by -- --- PROOF ---
   have a := Cost.sort_mono hle
-  have b := Zonotope.reduceByBasisCost_mono n inv hle
+  have b := Zonotope.reduceByBasisCost_mono n inv hle hle
   have c := Nat.mul_le_mul_right (4 * n + 2) hle
   have d := Nat.mul_le_mul_left (2 * (n * n)) hle
   simp only [Zonotope.reducePCACost, Cost.le_iff, Cost.ops_add] at a b ⊢

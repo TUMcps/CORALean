@@ -26,9 +26,9 @@ the operations a step runs are the same operations, so the count is the same
 count and the re-linearization is free in it.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   13-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -73,7 +73,8 @@ theorem NonlinearSysDT.aux_reach_h_le (sys : NonlinearSysDT n m) {U : Zonotope (
 is what lets one `hU` stand for every step's own input set. -/
 theorem NonlinearSysDT.aux_stepBound_mono (n o : ℕ) {hU hU' : ℕ} (h : hU ≤ hU') :
     LinearSysDT.reachStepBound n hU o ≤ LinearSysDT.reachStepBound n hU' o :=
-  Cost.add_le_add le_rfl (Zonotope.reduceGirardCost_mono n (Nat.add_le_add_left h _))
+  Cost.add_le_add (Cost.add_le_add le_rfl (Zonotope.plusCost_mono n le_rfl h))
+    (Zonotope.reduceGirardCost_mono n (Nat.add_le_add_left h _))
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

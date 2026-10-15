@@ -36,16 +36,16 @@ theorem Ellipsoid.mtimesCost_mono {k k' : ℕ} (m n : ℕ) (hle : k ≤ k') :
 
 
 -- ================================  `Ellipsoid.plusCost_mono`  ================================= --
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in both generator counts, so bounds on the operands' sizes give a
 bound on the cost. -/
 theorem Ellipsoid.plusCost_mono {q₁ q₁' q₂ q₂' : ℕ} (n : ℕ) (h1 : q₁ ≤ q₁') (h2 : q₂ ≤ q₂') :
-    Ellipsoid.plusCost n q₁ q₂ ≤ Ellipsoid.plusCost n q₁' q₂' :=
-  Nat.mul_le_mul_left _ (Nat.add_le_add h1 h2)
+    Ellipsoid.plusCost n q₁ q₂ ≤ Ellipsoid.plusCost n q₁' q₂' := by
+  cost_mono [Ellipsoid.plusCost]
 
 end CORALean.Real
 

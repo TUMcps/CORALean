@@ -14,7 +14,8 @@ Asserted, not proved: `Operations/Map.lean` sends the center and each of the
 What one `f` costs is a parameter, as in `PolyZonotope.mapCost` and for the
 same reason: `f` is any linear map. `mtimesCost` is this at `Cost.matVec m n`,
 the cost of `f := M *ᵥ ·`, though it is stated as its own `def` rather than
-through this one.
+through this one. `cf` counts everything one application does, the writes of the vector it
+returns included, so no write is added here.
 -/
 
 -- Authors:       Claude Opus 5.5

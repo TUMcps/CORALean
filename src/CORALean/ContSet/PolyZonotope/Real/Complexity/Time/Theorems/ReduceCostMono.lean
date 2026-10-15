@@ -14,9 +14,9 @@ Monotone in both generator counts, so bounds on the operand's sizes give a
 bound on the cost.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,8 +31,8 @@ namespace CORALean.Real
 bound on the cost. -/
 theorem PolyZonotope.reduceCost_mono {h h' q q' : ℕ} (n p : ℕ) (hh : h ≤ h') (hq : q ≤ q') :
     PolyZonotope.reduceCost n p h q ≤ PolyZonotope.reduceCost n p h' q' :=
-  Cost.add_le_add (PolyZonotope.compactCost_mono n p hh)
-    (PolyZonotope.reduceGirardCost_mono n hh hq)
+  Cost.add_le_add (PolyZonotope.compactCost_mono n p hh hq)
+    (PolyZonotope.reduceGirardCost_mono n p hh hq)
 
 end CORALean.Real
 

@@ -16,11 +16,14 @@ rule by a constant factor, not an order.
 
 No order argument: below order `o` the operation is the identity and costs
 nothing, and above it the absorbed block is at most `h` wide.
+
+`reduceBy` is charged at `h` kept and `h` absorbed generators, each at most `h`, and writes its
+own result.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,9 +34,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `Zonotope.reduceCombastel` costs at `Vec ℝ n` on `h` generators. -/
+/-- What `Zonotope.reduceCombastel` costs at `Vec ℝ n` on `h` generators: the sort and `reduceBy`
+at most `h` kept and `h` absorbed. -/
 def Zonotope.reduceCombastelCost (n h : ℕ) : Cost :=
-  ⟨h * (2 * n)⟩ + Cost.sort h + Zonotope.reduceByCost n h
+  ⟨h * (2 * n)⟩ + Cost.sort h + Zonotope.reduceByCost n h h
 
 end CORALean.Real
 

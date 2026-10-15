@@ -15,7 +15,7 @@ very much costs something to compute, and the count is what says how much.
 `reduce` is not among them, a box being at order one already.
 
 Every count is a fixed polynomial in the ambient dimensions, since no operand
-size can vary: `plus`, `linComb` and `intersection` are `2 * n`, `mtimes` at
-most `6 * m * n`, which is where a box beats a zonotope and why
+size can vary: `plus`, `linComb` and `intersection` are `4 * n` (`2 * n` operations and as many
+writes), `mtimes` at most `6 * m * n + 2 * m`, which is where a box beats a zonotope and why
 `LinearSysDT.reach` over boxes would pay no reduction at all.
 -/

@@ -14,7 +14,7 @@ Monotone in the factor count.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -25,11 +25,13 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Monotone in the factor count. -/
-theorem PolyZonotope.relaxExpMidCost_mono {p p' : ℕ} (n : ℕ) (h : p ≤ p') :
-    PolyZonotope.relaxExpMidCost n p ≤ PolyZonotope.relaxExpMidCost n p' := by
+/-- Monotone in the factor and independent counts, and in the kept dependent count. -/
+theorem PolyZonotope.relaxExpMidCost_mono {p p' d d' q q' : ℕ} (n : ℕ) (h : p ≤ p')
+    (hd : d ≤ d') (hq : q ≤ q') :
+    PolyZonotope.relaxExpMidCost n p d q ≤ PolyZonotope.relaxExpMidCost n p' d' q' := by
   have := PolyZonotope.relaxDriftCost_mono h
   simp only [PolyZonotope.relaxExpMidCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul] at this ⊢
+  have g : n * (d + q + 3) + p * (d + 1) ≤ n * (d' + q' + 3) + p' * (d' + 1) := by gcongr
   omega
 
 end CORALean.Real

@@ -19,14 +19,13 @@ is any bilinear map, so a caller with no bound on it has no bound here. `mulCost
 is this at the entrywise product and `quadMapDepCost` at the quadratic form
 family.
 
-The `p` exponent additions are counted at unit price alongside the scalar work.
-They are arithmetic, not indexing, and counting them can only make the bound
-larger — which is the safe direction for an upper bound.
+The `p` exponent additions are counted at unit price alongside the scalar work, each with its
+write (`2 * p` per column); the zero center is `nOut` writes.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,10 +36,11 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.bilin` costs at a pairing costing at most `cf` per
-application: one `f` and `p` exponent additions per pair of extended columns. -/
-def PolyZonotope.bilinCost (cf : Cost) (p h₁ h₂ : ℕ) : Cost :=
-  ((h₁ + 1) * (h₂ + 1)) • (cf + ⟨p⟩)
+/-- What `PolyZonotope.bilin` costs into `Vec ℝ nOut` at a pairing costing at most `cf` per
+application, the write of its value included: one `f` and `p` exponent additions, each computed
+and written, per pair of extended columns, and `nOut` writes for the zero center. -/
+def PolyZonotope.bilinCost (cf : Cost) (nOut p h₁ h₂ : ℕ) : Cost :=
+  ((h₁ + 1) * (h₂ + 1)) • (cf + ⟨2 * p⟩) + ⟨nOut⟩
 
 end CORALean.Real
 

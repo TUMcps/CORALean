@@ -13,12 +13,13 @@ Asserted, not proved, at `Vec ℝ n`: `Operations/RelaxExpGreedy.lean` runs at m
 `relaxExpMulti` to it. The selection is a parameter of the operation, so its
 price `csel` is one here: a round costs at most `csel + relaxExpMultiCost n p`,
 and the factor count `p` never changes, a merge keeping it. The generator count
-falls by one a round, which the bound ignores.
+falls by one a round and the independent one grows by one, so every round is charged at the
+start's `h` dependent and at most `q + N` independent generators.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -29,10 +30,11 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.relaxExpGreedy` costs at `Vec ℝ n` and `p` factors over
-`N` rounds, the selection costing at most `csel` per round. -/
-def PolyZonotope.relaxExpGreedyCost (n p N : ℕ) (csel : Cost) : Cost :=
-  N • (csel + PolyZonotope.relaxExpMultiCost n p)
+/-- What `PolyZonotope.relaxExpGreedy` costs at `Vec ℝ n` and `p` factors over `N` rounds from
+`h` dependent and `q` independent generators, the selection costing at most `csel` per round:
+each round merges at `h` and `q + N` at most. -/
+def PolyZonotope.relaxExpGreedyCost (n p h q N : ℕ) (csel : Cost) : Cost :=
+  N • (csel + PolyZonotope.relaxExpMultiCost n p h (q + N))
 
 end CORALean.Real
 

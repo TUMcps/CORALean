@@ -20,9 +20,9 @@ zonotope's linear pass, for a set a zonotope cannot represent at all. The
 steps.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,10 +33,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.quadMapDep` costs at `m` matrices of size `n × n` over
-`p` factors and `h` dependent generators: one pairing per pair of columns. -/
+/-- What `PolyZonotope.quadMapDep` costs at `m` matrices of size `n × n` over `p` factors and `h`
+dependent generators: one pairing per pair of columns, into `Vec ℝ m`. -/
 def PolyZonotope.quadMapDepCost (m n p h : ℕ) : Cost :=
-  PolyZonotope.bilinCost (PolyZonotope.quadBilinCost m n) p h h
+  PolyZonotope.bilinCost (PolyZonotope.quadBilinCost m n) m p h h
 
 end CORALean.Real
 

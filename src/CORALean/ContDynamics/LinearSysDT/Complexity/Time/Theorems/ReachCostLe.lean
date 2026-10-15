@@ -28,9 +28,9 @@ The bound is linear in `k` because `reduce` runs every step; without it the
 `plus` would carry `U`'s generators forward and the run would be quadratic.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -54,11 +54,12 @@ theorem LinearSysDT.aux_reach_h_le (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 <
   | k + 1 => sys.reach_order_le ho R₀ U k
 
 /-- One step at any input size within the order bound costs at most
-`reachStepBound`, by monotonicity of the two counts that see a size. -/
+`reachStepBound`, by monotonicity of the three counts that see a size. -/
 theorem LinearSysDT.aux_step_le (n hU o hIn : ℕ) (h : hIn ≤ o * n) :
-    Zonotope.mtimesCost n n hIn + Zonotope.plusCost n
+    Zonotope.mtimesCost n n hIn + Zonotope.plusCost n hIn hU
         + Zonotope.reduceGirardCost n (hIn + hU) ≤ LinearSysDT.reachStepBound n hU o :=
-  Cost.add_le_add (Cost.add_le_add (Zonotope.mtimesCost_mono n n h) le_rfl)
+  Cost.add_le_add (Cost.add_le_add (Zonotope.mtimesCost_mono n n h)
+      (Zonotope.plusCost_mono n h le_rfl))
     (Zonotope.reduceGirardCost_mono n (Nat.add_le_add_right h hU))
 
 

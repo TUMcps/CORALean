@@ -9,7 +9,8 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.LinCombC
 # `ZonoBundle.linCombCost`
 
 Asserted, not proved: `Operations/LinComb.lean` runs `Zonotope.linComb` once
-per pair of members, as `plus` does, and does nothing of its own.
+per pair of members, as `plus` does, and does nothing of its own; each writes its result, inside
+`Zonotope.linCombCost`.
 
 `h₁` and `h₂` bound every member of the respective bundle rather than naming
 one member's count, for the reason `mtimesCost` gives.

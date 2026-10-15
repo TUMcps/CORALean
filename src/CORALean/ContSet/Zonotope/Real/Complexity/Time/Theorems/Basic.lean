@@ -15,6 +15,8 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.MtimesCost
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesMatZonotope
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.MtimesMatZonotopeCost
+public import CORALean.ContSet.Zonotope.Real.Operations.Plus
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ImageEnclosureCost
 public import CORALean.ContSet.Zonotope.Real.Definitions.SetBasedNetForward
 public import CORALean.ContSet.Zonotope.Real.Operations.SetBasedNetDepth
@@ -59,13 +61,13 @@ theorem SetBasedNet.mul_mul_le_of_le {a b h N Q : ℕ} (ha : a ≤ N) (hb : b �
 -- =================================  `Zonotope.absCost_mono`  ================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in the generator count. -/
 theorem Zonotope.absCost_mono {h h' : ℕ} (n : ℕ) (hh : h ≤ h') :
-    Zonotope.absCost n h ≤ Zonotope.absCost n h' :=
-  Nat.mul_le_mul_left _ (Nat.succ_le_succ hh)
+    Zonotope.absCost n h ≤ Zonotope.absCost n h' := by
+  cost_mono [Zonotope.absCost]
 
 
 -- ================================  `Zonotope.bilinCost_mono`  ================================= --
@@ -79,6 +81,18 @@ theorem Zonotope.bilinCost_mono {h₁ h₁' h₂ h₂' : ℕ} (cf : Cost) (h : h
     Zonotope.bilinCost cf h₁ h₂ ≤ Zonotope.bilinCost cf h₁' h₂' :=
   Nat.mul_le_mul_right _ (Nat.add_le_add (Nat.add_le_add (Nat.add_le_add_left h _) h')
     (Nat.mul_le_mul h h'))
+
+
+-- ============================  `Zonotope.imageEnclosureCost_mono`  ============================ --
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
+-- Written:       11-October-2026
+-- Last update:   15-October-2026
+-- Reviewed:      ---
+
+/-- Monotone in the generator count. -/
+theorem Zonotope.imageEnclosureCost_mono {q q' : ℕ} (n : ℕ) (cNeuron : Cost) (hq : q ≤ q') :
+    Zonotope.imageEnclosureCost n q cNeuron ≤ Zonotope.imageEnclosureCost n q' cNeuron := by
+  cost_mono [Zonotope.imageEnclosureCost, Zonotope.mtimesCost, Zonotope.plusCost]
 
 
 -- =================================  `Zonotope.mapCost_mono`  ================================== --
@@ -97,25 +111,25 @@ theorem Zonotope.mapCost_mono {h h' : ℕ} (cf : Cost) (hh : h ≤ h') :
 -- ===========================  `Zonotope.minkDiffAlignedCost_mono`  ============================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in the generator count. -/
 theorem Zonotope.minkDiffAlignedCost_mono {h h' : ℕ} (n : ℕ) (hh : h ≤ h') :
-    Zonotope.minkDiffAlignedCost n h ≤ Zonotope.minkDiffAlignedCost n h' :=
-  Nat.mul_le_mul_left _ (Nat.succ_le_succ hh)
+    Zonotope.minkDiffAlignedCost n h ≤ Zonotope.minkDiffAlignedCost n h' := by
+  cost_mono [Zonotope.minkDiffAlignedCost]
 
 
 -- ===========================  `Zonotope.minkDiffStretchCost_mono`  ============================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in the generator count. -/
 theorem Zonotope.minkDiffStretchCost_mono {h h' : ℕ} (n : ℕ) (hh : h ≤ h') :
-    Zonotope.minkDiffStretchCost n h ≤ Zonotope.minkDiffStretchCost n h' :=
-  Nat.mul_le_mul_left _ (Nat.succ_le_succ hh)
+    Zonotope.minkDiffStretchCost n h ≤ Zonotope.minkDiffStretchCost n h' := by
+  cost_mono [Zonotope.minkDiffStretchCost]
 
 
 -- ================================  `Zonotope.mtimesCost_mono`  ================================ --
@@ -143,29 +157,41 @@ theorem Zonotope.mtimesMatZonotopeCost_mono {m n hM hM' h h' : ℕ} (a : hM ≤ 
   Zonotope.bilinCost_mono _ a b
 
 
+-- =================================  `Zonotope.plusCost_mono`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Monotone in both generator counts. -/
+theorem Zonotope.plusCost_mono {h₁ h₁' h₂ h₂' : ℕ} (n : ℕ) (h1 : h₁ ≤ h₁') (h2 : h₂ ≤ h₂') :
+    Zonotope.plusCost n h₁ h₂ ≤ Zonotope.plusCost n h₁' h₂' := by
+  cost_mono [Zonotope.plusCost]
+
+
 -- ===============================  `Zonotope.quadMapCost_mono`  ================================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in the generator count. -/
 theorem Zonotope.quadMapCost_mono {h h' : ℕ} (m n : ℕ) (hh : h ≤ h') :
-    Zonotope.quadMapCost m n h ≤ Zonotope.quadMapCost m n h' :=
-  Nat.mul_le_mul_left _ (Nat.mul_le_mul_right _ (Nat.pow_le_pow_left (Nat.succ_le_succ hh) 2))
+    Zonotope.quadMapCost m n h ≤ Zonotope.quadMapCost m n h' := by
+  cost_mono [Zonotope.quadMapCost]
 
 
 -- ===============================  `Zonotope.reduceByCost_mono`  =============================== --
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
-/-- Monotone in the absorbed count, so a bound on how many generators a split
-throws away gives a bound on the cost. -/
-theorem Zonotope.reduceByCost_mono {r r' : ℕ} (n : ℕ) (hle : r ≤ r') :
-    Zonotope.reduceByCost n r ≤ Zonotope.reduceByCost n r' :=
-  Nat.mul_le_mul_left _ (Nat.mul_le_mul_left _ hle)
+/-- Monotone in the kept and the absorbed count, so a bound on how many generators a split keeps
+and throws away gives a bound on the cost. -/
+theorem Zonotope.reduceByCost_mono {q q' r r' : ℕ} (n : ℕ) (hq : q ≤ q') (hr : r ≤ r') :
+    Zonotope.reduceByCost n q r ≤ Zonotope.reduceByCost n q' r' := by
+  cost_mono [Zonotope.reduceByCost]
 
 
 -- ================================  `Zonotope.rotateCost_mono`  ================================ --

@@ -14,9 +14,9 @@ Monotone in both generator counts, so bounds on the operand's sizes give a
 bound on the cost.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -29,11 +29,15 @@ namespace CORALean.Real
 
 /-- Monotone in both generator counts, so bounds on the operand's sizes give a
 bound on the cost. -/
-theorem ConPolyZono.quadMapCost_mono {h h' qI q' : ℕ} (m n p : ℕ) (hh : h ≤ h') (hq : qI ≤ q') :
-    ConPolyZono.quadMapCost m n p h qI ≤ ConPolyZono.quadMapCost m n p h' q' := by
-  -- `dependent` is free, so the comparison is the quadratic map's at the counts it leaves
-  have h := PolyZonotope.quadMapDepCost_mono m n (Nat.add_le_add_left hq p) (Nat.add_le_add hh hq)
-  simpa [ConPolyZono.quadMapCost, ConPolyZono.dependentCost] using h
+theorem ConPolyZono.quadMapCost_mono {h h' qI q' : ℕ} (m n p mC q : ℕ) (hh : h ≤ h')
+    (hq : qI ≤ q') :
+    ConPolyZono.quadMapCost m n p h qI mC q ≤
+      ConPolyZono.quadMapCost m n p h' q' mC q := by -- --- PROOF ---
+  -- `dependent` writes the result; the comparison is the map's at the counts it leaves
+  have a := PolyZonotope.quadMapDepCost_mono m n (Nat.add_le_add_left hq p) (Nat.add_le_add hh hq)
+  simp only [ConPolyZono.quadMapCost, ConPolyZono.dependentCost, PolyZonotope.dependentCost,
+    Cost.le_iff, Cost.ops_add] at a ⊢
+  gcongr
 
 end CORALean.Real
 

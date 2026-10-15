@@ -17,11 +17,13 @@ is `d` products and the subtraction from `A` is `d` more: `2 * d + 1`.
 
 A row held as an unevaluated composition would pay nothing here and more when
 read; that cost is the reader's, not this operation's.
+
+Each row is also written, `d + 1` entries: the new functional and the new right-hand side.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,9 +34,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `HPolytope.halfScaled` costs on `m` inequality and `me` equality rows
-over a coefficient space of dimension `d`, rows dense: `2 * d + 1` each. -/
-def HPolytope.halfScaledCost (m me d : ℕ) : Cost := ⟨(m + me) * (2 * d + 1)⟩
+/-- What `HPolytope.halfScaled` costs on `m` inequality and `me` equality rows over a coefficient
+space of dimension `d`, rows dense: `2 * d + 1` each, and `d + 1` writes each. -/
+def HPolytope.halfScaledCost (m me d : ℕ) : Cost := ⟨(m + me) * (2 * d + 1) + (m + me) * (d + 1)⟩
 
 end CORALean.Real
 

@@ -13,11 +13,14 @@ generators into one of `d` kept ones. Summing the `k` merged generators is
 `n * k` additions and adding that to the target `n`; the `d` kept generators
 are each compared against the target index; and each of the `k` merged
 generators gets its width over `p` factors and a scaling (`n`).
+
+The result is the center, the `d` kept dependent generators with their exponent columns, and the
+`q + k` independent generators: `n * (1 + d + q + k) + p * d` writes.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -28,10 +31,11 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.relaxExpGroup` costs at `Vec ℝ n`, `p` factors, `d` kept
-and `k` merged generators. -/
-def PolyZonotope.relaxExpGroupCost (n p d k : ℕ) : Cost :=
-  ⟨n * (k + 1) + d + k * n⟩ + k • PolyZonotope.relaxWidthGroupCost p
+/-- What `PolyZonotope.relaxExpGroup` costs at `Vec ℝ n`, `p` factors, `d` kept and `k` merged
+generators, over `q` independent ones, and `n * (1 + d + q + k) + p * d` writes for the result. -/
+def PolyZonotope.relaxExpGroupCost (n p d q k : ℕ) : Cost :=
+  ⟨n * (k + 1) + d + k * n⟩ + k • PolyZonotope.relaxWidthGroupCost p +
+    ⟨n * (1 + d + q + k) + p * d⟩
 
 end CORALean.Real
 
