@@ -17,9 +17,9 @@ real one: `step` witnesses the exact `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 is the exact one, at the real time `toReal Δt` the float denotes.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -46,7 +46,7 @@ theorem LinearSys.CanonicalTrajectory.discretizeEnclosureFloat {sys : LinearSys 
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) :
-    (sys.discretizeEnclosureFloat Δt η).Trajectory R₀ Ud
+    (sys.discretizeEnclosureFloat Δt η).CanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) where
   init := by simpa using traj.init
   input k := hUd k

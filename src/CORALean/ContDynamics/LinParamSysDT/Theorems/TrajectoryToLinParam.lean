@@ -13,9 +13,9 @@ repackaged as `LinParamSysDT.CanonicalTrajectory.step`'s existential: the witnes
 membership `rfl`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem LinearSysDT.CanonicalTrajectory.toLinParam {sys : LinearSysDT 𝕋 n} {R₀ U : S n}
     {x u : ℕ → Vec ℝ n} (traj : sys.CanonicalTrajectory R₀ U x u) :
-    sys.toLinParam.Trajectory R₀ U x u where
+    sys.toLinParam.CanonicalTrajectory R₀ U x u where
   init := traj.init
   input := traj.input
   step k := ⟨toRealMat sys.A, rfl, traj.step k⟩

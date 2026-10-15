@@ -352,7 +352,9 @@ operation at `nominal` under a second name (`scripts/check-float-wrappers.py`; "
 definitions earn their name"), that a definition citing a paper's algorithm carries its steps
 (`scripts/check-algorithm-steps.py`; "Algorithms read like the paper"), that a long subterm
 is not spelled out three times in one declaration (`scripts/check-repeated-subterms.py`;
-"Name what repeats"), and that
+"Name what repeats"), that a discrete-time class (`<X>DT`) has the fields of its continuous twin
+`<X>` (`scripts/check-dt-twins.py`; a difference such as `dt` is listed with its reason in
+`scripts/dt-twin-allowlist.txt`), and that
 `noncomputable` stays where it is legitimate — see below.
 
 `noncomputable` is checked against the rule the float layer exists to keep:

@@ -7,15 +7,15 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
 /-!
 # `simulate` samples a trajectory
 
-`simulate A x₀ u` satisfies `Trajectory R₀ U` given `x₀ ∈ construct R₀`, `u`
+`simulate A x₀ u` satisfies `CanonicalTrajectory R₀ U` given `x₀ ∈ construct R₀`, `u`
 staying in `construct U`, and `A k ∈ construct sys.A` at every `k`: `init` and
 `input` are the hypotheses handed in, `step` is `⟨A k, hA k, rfl⟩`, since
-`simulate`'s equation at `A k` is one witness of `Trajectory.step`'s `∃ A`.
+`simulate`'s equation at `A k` is one witness of `CanonicalTrajectory.step`'s `∃ A`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinParamSysDT.simulate_trajectory (sys : LinParamSysDT 𝕄 n) {A : ℕ → Mat ℝ n n}
     (hA : ∀ k, A k ∈ construct sys.A) {R₀ U : S n} {x₀ : Vec ℝ n}
     (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U) :
-    sys.Trajectory R₀ U (sys.simulate A x₀ u) u where
+    sys.CanonicalTrajectory R₀ U (sys.simulate A x₀ u) u where
   init := hx₀
   input := hu
   step k := ⟨A k, hA k, rfl⟩

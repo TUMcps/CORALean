@@ -43,9 +43,9 @@ guarantee after one rewrite. It is here rather than in `Operations/` because thi
 is where a set is handed back to a caller that may loop.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       18-August-2026
--- Last update:   24-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -137,6 +137,22 @@ instance : Mtimes ℐ[𝕋] ℐ𝒱[𝕋] where
 instance : OfScalarPoint 𝕋 ℐ𝒱[𝕋] where
   ofVec v := Interval.point v
   mem_ofVec v := Interval.mem_point v
+
+omit [SoundFloatArithmetic 𝕋] in
+/-- The stored identity block as a zero-width box. -/
+instance : OfIdentity ℐ[𝕋] where
+  identity n := Interval.point (diagonalBlock fun _ : Fin n => (FloatOps.one : 𝕋))
+
+open FloatOps SoundFloatArithmetic in
+/-- The stored identity block reads back as the real `1`. -/
+instance : IdentityMem ℐ[𝕋] where
+  one_mem_identity n := by
+    have h : toRealMat (diagonalBlock fun _ : Fin n => (one : 𝕋)) = (1 : Mat ℝ n n) := by
+      funext i j
+      rw [toRealMat, toReal_diagonalBlock]
+      simp [toRealVec, toReal_one, Matrix.one_apply, Matrix.diagonal_apply]
+    rw [← h]
+    exact Interval.mem_point (diagonalBlock fun _ : Fin n => (one : 𝕋))
 
 /-- The rounded midpoint: any point of the box would do, as `enlarge` is sound about any. -/
 instance : ScalarCentre 𝕋 ℐ𝒱[𝕋] where

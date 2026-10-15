@@ -1,3 +1,4 @@
+import CORALean.ContDynamics.LinParamSysDT.Operations.Canonical
 import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
@@ -20,7 +21,7 @@ in `reach`'s output through `reach_outer` at each representation, with no line o
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,21 +36,21 @@ open Matrix ContSet
 /-- The contraction `0.9 · I`, bounded within `0.1` of itself on the diagonal, and exactly on
 the off-diagonal. -/
 def Example.sysI : LinParamSysDT ℐ 2 :=
-  ⟨⟨!![(0.8:ℝ), 0; 0, 0.8], !![(1.0:ℝ), 0; 0, 1.0]⟩⟩
+  .canonical ⟨!![(0.8:ℝ), 0; 0, 0.8], !![(1.0:ℝ), 0; 0, 1.0]⟩
 
 /-- The same contraction, `0.9 · I` plus one generator of radius `0.1` on the diagonal. -/
 def Example.sysZ : LinParamSysDT 𝕄𝒵 2 :=
-  ⟨⟨1, (0.9 : ℝ) • (1 : Mat ℝ 2 2), fun _ => !![(0.1:ℝ), 0; 0, 0.1]⟩⟩
+  .canonical ⟨1, (0.9 : ℝ) • (1 : Mat ℝ 2 2), fun _ => !![(0.1:ℝ), 0; 0, 0.1]⟩
 
 /-- The nominal matrix `0.9 · I` sits in both: entrywise within the interval's bounds, and at
 the matrix zonotope's own centre. -/
 theorem Example.nominal_mem_sysI : (0.9 : ℝ) • (1 : Mat ℝ 2 2) ∈ construct Example.sysI.A := by
   rintro ⟨i, j⟩
   fin_cases i <;> fin_cases j <;>
-    norm_num [Entrywise.entry_mat, Matrix.one_apply, Example.sysI]
+    norm_num [Entrywise.entry_mat, Matrix.one_apply, Example.sysI, LinParamSysDT.canonical]
 
 theorem Example.nominal_mem_sysZ : (0.9 : ℝ) • (1 : Mat ℝ 2 2) ∈ construct Example.sysZ.A :=
-  ⟨fun _ => 0, fun _ => by norm_num, by simp [Example.sysZ]⟩
+  ⟨fun _ => 0, fun _ => by norm_num, by simp [Example.sysZ, LinParamSysDT.canonical]⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -72,7 +73,7 @@ theorem Example.lpX_succ (k : ℕ) :
 
 /-- A trajectory at the interval-matrix uncertainty: the nominal matrix at every
 step, witnessed by `nominal_mem_sysI`. -/
-theorem Example.trajI : Example.sysI.Trajectory (S := 𝒵) Example.lpR0 Example.lpU
+theorem Example.trajI : Example.sysI.CanonicalTrajectory (S := 𝒵) Example.lpR0 Example.lpU
     Example.lpX (fun _ => 0) where
   init := by rw [Example.lpX_zero]; exact Zonotope.mem_ofPoint Example.lpX0
   input _ := Zonotope.mem_ofPoint 0
@@ -80,7 +81,7 @@ theorem Example.trajI : Example.sysI.Trajectory (S := 𝒵) Example.lpR0 Example
 
 /-- The same trajectory at the matrix-zonotope uncertainty, witnessed by
 `nominal_mem_sysZ` instead. -/
-theorem Example.trajZ : Example.sysZ.Trajectory (S := 𝒵) Example.lpR0 Example.lpU
+theorem Example.trajZ : Example.sysZ.CanonicalTrajectory (S := 𝒵) Example.lpR0 Example.lpU
     Example.lpX (fun _ => 0) where
   init := by rw [Example.lpX_zero]; exact Zonotope.mem_ofPoint Example.lpX0
   input _ := Zonotope.mem_ofPoint 0

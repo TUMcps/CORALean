@@ -23,9 +23,9 @@ here is `‖Δt • A‖` — `norm_absMax_ofPoint` — so a caller supplies exa
 the interval version already asks of them.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -50,7 +50,7 @@ theorem LinearSys.CanonicalTrajectory.discretizeMatZonotope {sys : LinearSys �
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) :
-    (sys.discretizeMatZonotope Δt η).Trajectory R₀ Ud
+    (sys.discretizeMatZonotope Δt η).CanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) where
   init := by simpa using traj.init
   input k := hUd k

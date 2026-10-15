@@ -1705,13 +1705,16 @@ fi
 rm -f "$bundle_err"
 report "$out"
 
-# Two more rules that read a definition's body, whole-tree only (their allowlists need every
-# file): a float definition that is only the exact operation at `nominal` (#154), and a
-# definition citing a paper's algorithm without its `-- <n>.` step comments (CONTRIBUTING,
-# "Algorithms read like the paper"). Same contract as the helper above: status 1 with findings
-# on stdout is a finding, anything else is the helper failing.
+# More rules that read a definition's body, whole-tree only (their allowlists need every
+# file): a float definition that is only the exact operation at `nominal` (#154), a definition
+# citing a paper's algorithm without its `-- <n>.` step comments (CONTRIBUTING, "Algorithms
+# read like the paper"), a long subterm spelled out three times in one declaration, and a
+# discrete-time class whose fields differ from its continuous twin's without a reason in
+# scripts/dt-twin-allowlist.txt (#172). Same contract as the helper above: status 1 with
+# findings on stdout is a finding, anything else is the helper failing.
 if [ -z "$STAGED" ]; then
-  for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py; do
+  for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
+    check-dt-twins.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

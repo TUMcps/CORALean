@@ -32,9 +32,9 @@ operand-dependent one needs an oracle a total `plus : S → S → S` cannot have
       Control, 2021.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       16-August-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -200,6 +200,16 @@ class OfPoint (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   ofPoint : α → S
   mem_ofPoint (v : α) : v ∈ construct (ofPoint v)
+
+-- Data and law are two classes, so a float operation builds the identity without a `ContSet`.
+/-- The identity matrix as a set of the family, data only (`IdentityMem` says it is one). -/
+class OfIdentity (𝕄 : ℕ → ℕ → Type) where
+  identity (n : ℕ) : 𝕄 n n
+
+/-- `OfIdentity.identity` denotes a set holding the real identity matrix. -/
+class IdentityMem (𝕄 : ℕ → ℕ → Type) [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [OfIdentity 𝕄] :
+    Prop where
+  one_mem_identity (n : ℕ) : (1 : Mat ℝ n n) ∈ construct (OfIdentity.identity (𝕄 := 𝕄) n)
 
 /-- A singleton, from a point *of the representation's own scalar*. `OfPoint` takes a real
 point, which a float representation cannot store; this takes what it can, and says it holds the

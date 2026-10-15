@@ -20,9 +20,9 @@ that the generalization is faithful, so that call can be made on cost rather
 than on doubt.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,8 +37,9 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `LinearSysDT`, as the point-matrix instantiation `𝕄 := Mat 𝕋`. -/
-def LinearSysDT.toLinParam (sys : LinearSysDT 𝕋 n) : LinParamSysDT (Mat 𝕋) n := ⟨sys.A⟩
+/-- `LinearSysDT`, as the point-matrix instantiation `𝕄 := Mat 𝕋`, `B` and `c` kept. -/
+def LinearSysDT.toLinParam (sys : LinearSysDT 𝕋 n) : LinParamSysDT (Mat 𝕋) n :=
+  ⟨sys.A, sys.m, sys.B, toRealVec sys.c⟩
 
 end CORALean
 

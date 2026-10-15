@@ -22,9 +22,9 @@ on this trajectory does not exploit that constancy, so the enclosure is looser
 than an exact discretization would be if the exponential could be computed.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -54,7 +54,7 @@ theorem LinearSys.CanonicalTrajectory.discretizeEnclosure {sys : LinearSys 𝕋 
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) :
-    (sys.discretizeEnclosure Δt η).Trajectory R₀ Ud
+    (sys.discretizeEnclosure Δt η).CanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) where
   init := by simpa using traj.init
   input k := hUd k

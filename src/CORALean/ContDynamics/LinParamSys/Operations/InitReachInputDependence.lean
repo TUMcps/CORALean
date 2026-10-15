@@ -20,12 +20,13 @@ input's curvature over the step at its centre only, but `Rhom_tp` integrates all
 here `inputF*Uconst`.
 
 Not modelled: the time-varying input `params.U` (`sys.RV`, added to both sets by CORA), `B`
-(identity), `uTrans` (zero) and the final `reduce` (an outer step).
+(`Uconst` is taken in state coordinates, where CORA multiplies the matrix set `sys.B` in, as
+`inputSet` does elsewhere), `uTrans` (zero) and the final `reduce` (an outer step).
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

@@ -15,9 +15,9 @@ sys.A`, which `OfPoint` alone does not give: `mem_ofPoint` says the point is
 in the set, never that the set is only the point. Not stated.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   10-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -28,7 +28,8 @@ namespace CORALean
 open Matrix ContSet Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [OfPoint (𝕄 n n) (Mat ℝ n n)]
+variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
+variable [∀ m n, OfPoint (𝕄 m n) (Mat ℝ m n)]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 

@@ -13,9 +13,9 @@ set: `holds_of_reach` at the output rather than the state, for the same
 reason `LinearSysDT`'s pair exists — `C` is in general not invertible.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   30-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 
 theorem LinParamSysDT.holds_of_output (sys : LinParamSysDT 𝕄 n) (out : OutputEq 𝕋 n n r) {o : ℕ}
     (ho : 0 < o) (R₀ U : S n) (spec : Specification ContSet) {x u : ℕ → Vec ℝ n}
-    (traj : sys.Trajectory R₀ U x u) (k : ℕ)
+    (traj : sys.CanonicalTrajectory R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct (out.outputSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U))) :
     spec.Holds {out.eval (x k) (u k)} :=
   spec.holds_of_outer

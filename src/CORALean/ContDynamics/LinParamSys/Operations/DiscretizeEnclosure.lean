@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.LinParamSys
-public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Canonical
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosure
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.Interval.Real.Operations.Smul
@@ -28,9 +28,9 @@ than with this definition.
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       12-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -50,7 +50,7 @@ variable {n : ℕ}
 that was a set already: `e^{AΔt}` enclosed over the whole box, as the loop of [1] uses it. -/
 noncomputable def LinParamSys.discretizeEnclosure (sys : LinParamSys ℐ n) (Δt : ℝ) (η : ℕ) :
     LinParamSysDT ℐ n :=
-  ⟨MatExp.expIntervalEnclosure (Interval.smul Δt sys.A) η⟩
+  .canonical (MatExp.expIntervalEnclosure (Interval.smul Δt sys.A) η)
 
 end CORALean
 

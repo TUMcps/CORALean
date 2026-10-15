@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosure
-public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Canonical
+public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 
 @[expose] public section
@@ -31,9 +32,9 @@ family is written out here, as `discretizeEnclosure` writes out `ℐ`.
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -53,7 +54,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 zonotope: the Taylor truncation at order `η` widened by the tail bound. -/
 noncomputable def LinearSys.discretizeMatZonotope (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) :
     LinParamSysDT 𝕄𝒵 n :=
-  ⟨Real.MatExp.expMatZonoEnclosure (Real.Zonotope.ofPoint (Δt • toRealMat sys.A)) η⟩
+  .canonical (Real.MatExp.expMatZonoEnclosure (Real.Zonotope.ofPoint (Δt • toRealMat sys.A)) η)
 
 end CORALean
 

@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Canonical
+public import CORALean.ContDynamics.LinParamSysDT.Operations.InputSet
 public import CORALean.ContDynamics.LinParamSysDT.Operations.Reach
 public import CORALean.ContDynamics.LinParamSysDT.Operations.ReachUnion
 public import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
