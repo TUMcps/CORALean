@@ -17,7 +17,7 @@ zonotope again, with the `(h₁+1)(h₂+1)` generators `Gᵢᵀ Q Gⱼ` rounded 
 added one, and the rounding paid into the error box.
 
 Sound only where both operands have an empty independent block and an empty error box, a bilinear
-map being no more additive than a quadratic one, so `dependent` comes first at every caller:
+map being no more additive than a quadratic one, so `absorbRounding` comes first at every caller:
 `quadMapDep` is this at one set paired with itself, `quadMapMixed` at a product of two.
 -/
 

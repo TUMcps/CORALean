@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.CubMap
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CubMapDepPoint
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingNominal
 
 @[expose] public section
 
@@ -10,9 +10,10 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentNominal
 # `PolyZonotope.cubMap` over-approximates the cubic map, over a floating-point scalar
 
 Every point of the operand, independent generators and box included, is a point of the nominal set
-of `dependent` (`dependent_nominal`), which has no independent generators and no box. At its factors
-the stored result's nominal point plus the shortfalls in the error box is the cubic image
-(`cubMapDep_point`). The result is an enclosure, not the image: the rounding is paid into the box.
+of `absorbRounding` (`absorbRounding_nominal`), which has no independent generators and no box. At
+its factors the stored result's nominal point plus the shortfalls in the error box is the cubic
+image (`cubMapDep_point`). The result is an enclosure, not the image: the rounding is paid into the
+box.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -37,18 +38,19 @@ theorem PolyZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n) (pZ : P
       ⊆ (pZ.cubMap T).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ :=
-    PolyZonotope.mem_nominalSet_iff.mp (PolyZonotope.dependent_nominal pZ hx)
-  obtain ⟨e, he, heq⟩ := PolyZonotope.cubMapDep_point T pZ.dependent ha
+    PolyZonotope.mem_nominalSet_iff.mp (PolyZonotope.absorbRounding_nominal pZ hx)
+  obtain ⟨e, he, heq⟩ := PolyZonotope.cubMapDep_point T pZ.absorbRounding ha
   -- the independent block of the dependent form is empty
-  have hx' : x = fun i => toReal (pZ.dependent.c i)
-      + ∑ l, toReal (pZ.dependent.G l i) * Real.PolyZonotope.monomial pZ.dependent.E a l := by
+  have hx' : x = fun i => toReal (pZ.absorbRounding.c i)
+      + ∑ l, toReal (pZ.absorbRounding.G l i)
+        * Real.PolyZonotope.monomial pZ.absorbRounding.E a l := by
     funext i
-    have h0 : ∑ j, toReal (pZ.dependent.GI j i) * β j = 0 :=
+    have h0 : ∑ j, toReal (pZ.absorbRounding.GI j i) * β j = 0 :=
       Finset.sum_eq_zero fun j _ => (Nat.not_lt_zero _ j.isLt).elim
     rw [hz i, h0, add_zero]
   -- the nominal point at the same factors, and the shortfall in the box
-  refine ⟨fun i => ∑ l, toReal ((pZ.dependent.cubMapDep T).G l i)
-      * Real.PolyZonotope.monomial (pZ.dependent.cubMapDep T).E a l,
+  refine ⟨fun i => ∑ l, toReal ((pZ.absorbRounding.cubMapDep T).G l i)
+      * Real.PolyZonotope.monomial (pZ.absorbRounding.cubMapDep T).E a l,
     PolyZonotope.mem_nominalSet_iff.mpr ⟨a, Fin.elim0, ha, fun j => j.elim0, fun i => ?_⟩, e, he,
     ?_⟩
   · have h0 : ∑ j, toReal ((PolyZonotope.cubMap T pZ).GI j i) * (Fin.elim0 : Fin 0 → ℝ) j = 0 :=

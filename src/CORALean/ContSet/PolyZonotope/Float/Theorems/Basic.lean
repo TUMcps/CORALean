@@ -4,7 +4,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Operations.LinComb
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Materialise
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
@@ -14,7 +14,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Restructure
 public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.DependentOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
 public import CORALean.ContSet.PolyZonotope.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapE
@@ -40,6 +40,18 @@ open FloatOps SoundFloatArithmetic InflatedContSet
 variable {p h : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 
+-- =============================  `PolyZonotope.absorbRounding_q`  ============================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+omit [SoundFloatArithmetic 𝕋] in
+/-- Every one of them was made dependent. -/
+@[simp] theorem PolyZonotope.absorbRounding_q (pZ : PolyZonotope (Vec 𝕋 n)) :
+    pZ.absorbRounding.q = 0 := rfl
+
+
 -- ===========================  `PolyZonotope.compactFactors_outer`  ============================ --
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
@@ -51,17 +63,6 @@ theorem PolyZonotope.compactFactors_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.compactFactors.construct :=
   InflatedContSet.mono_subset (PolyZonotope.compactFactors_nominal pZ).subset
     (subset_refl _)
-
-
--- ================================  `PolyZonotope.dependent_q`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-omit [SoundFloatArithmetic 𝕋] in
-/-- Every one of them was made dependent. -/
-@[simp] theorem PolyZonotope.dependent_q (pZ : PolyZonotope (Vec 𝕋 n)) : pZ.dependent.q = 0 := rfl
 
 
 -- ============================  `PolyZonotope.isCompact_construct`  ============================ --
@@ -184,7 +185,7 @@ theorem PolyZonotope.repTab_getD (E : Fin p → Fin h → ℕ) (l : Fin h) :
 a zero to the error box. -/
 theorem PolyZonotope.restructure_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
     pZ.construct ⊆ pZ.restructure.construct :=
-  (PolyZonotope.reduceBy_outer pZ _ _).trans (PolyZonotope.dependent_outer _)
+  (PolyZonotope.reduceBy_outer pZ _ _).trans (PolyZonotope.absorbRounding_outer _)
 
 end
 

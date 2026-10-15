@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapDep
-public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.ConZonotope.Float.Operations.AbsorbRounding
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
 # `ConZonotope.quadMap`
 
 CORA's `@conZonotope/quadMap` for a single constrained zonotope on the stored floats: the
-error box made into coefficients (`dependent`), then `quadMapDep`. The constraints stay on the
+error box made into coefficients (`absorbRounding`), then `quadMapDep`. The constraints stay on the
 linear block of coefficients, the factors that are the old ones, so the squares and products
 are free and the result is an outer approximation, never the exact image. CORA's preliminary
 `rescale 'iter'` only tightens it and is not modelled.
@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 def ConZonotope.quadMap (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope
     𝕋 (Vec 𝕋 m) :=
-  ConZonotope.quadMapDep Q cZ.dependent
+  ConZonotope.quadMapDep Q cZ.absorbRounding
 
 end CORALean.Float
 

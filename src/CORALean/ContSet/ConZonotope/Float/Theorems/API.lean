@@ -12,7 +12,8 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConvexHullSubsetLinComb
 public import CORALean.ContSet.ConZonotope.Float.Theorems.CubMapOuter
-public import CORALean.ContSet.ConZonotope.Float.Theorems.DependentNominal
+public import CORALean.ContSet.ConZonotope.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.ConZonotope.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.EmptyExact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectStripOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter

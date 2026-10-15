@@ -3,7 +3,8 @@ module
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.Basic
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.CartProdOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConeOuter
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConvHullOuter
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex

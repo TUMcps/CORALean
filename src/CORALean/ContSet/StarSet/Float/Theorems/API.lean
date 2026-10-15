@@ -1,10 +1,12 @@
 module
 
+public import CORALean.ContSet.StarSet.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.StarSet.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.StarSet.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.StarSet.Float.Theorems.RowBoundsMem
 
 /-!
 # What a float star set guarantees, collected
 
-The bounds of a coordinate hold.
+The error box absorbed into the factors loses no point; the bounds of a coordinate hold.
 -/

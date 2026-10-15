@@ -19,6 +19,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactorsSpec
 public import CORALean.ContSet.ConPolyZono.Float.Operations.CompactFactors
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Compact
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Dependent
+public import CORALean.ContSet.ConPolyZono.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Plus
 public import CORALean.ContSet.ConPolyZono.Float.Operations.LinComb

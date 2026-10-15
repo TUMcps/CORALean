@@ -2,7 +2,7 @@ module
 
 public import CORALean.Global.BlockDiag
 public import CORALean.ContSet.Interval.Float.Operations.Basic
-public import CORALean.ContSet.SpectraShadow.Float.Operations.Absorb
+public import CORALean.ContSet.SpectraShadow.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.SpectraShadow.Float.Operations.ArrowMat
 
 @[expose] public section
@@ -13,9 +13,9 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.ArrowMat
 The conic hull `aux_conicHull` of `@spectraShadow/convHull_.m`, as the exact layer has it
 (`Real.SpectraShadow.cone`): the shadow's own matrices scaled by the free variable `s`, the
 generators and the center as columns of the homogenised point, and the arrowhead block. The error
-box is absorbed into the inequality first (`absorb`), as the cone of a box-inflated shadow is not
-the cone of its nominal part. Every stored entry is a stored float, `zero` or `one`, so nothing
-rounds and the box left over is the origin.
+box is absorbed into the inequality first (`absorbRounding`), as the cone of a box-inflated shadow
+is not the cone of its nominal part. Every stored entry is a stored float, `zero` or `one`, so
+nothing rounds and the box left over is the origin.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {N : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def SpectraShadow.cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : SpectraShadow 𝕋 (Vec 𝕋 N) :=
-  let T' : SpectraShadow 𝕋 (Vec 𝕋 N) := T.absorb
+  let T' : SpectraShadow 𝕋 (Vec 𝕋 N) := T.absorbRounding
   { k := T'.k + (N + 1)
     m := 1 + T'.m + 1
     A₀ := fun _ _ => zero

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceBy
 
 @[expose] public section
@@ -40,7 +40,7 @@ made dependent: what comes back has an empty independent block. -/
 def PolyZonotope.restructure (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
   let reduced := pZ.reduceBy (Partition.split pZ.h 0)
     ((Partition.split 0 pZ.q).reindex (finCongr (Nat.zero_add pZ.q).symm))
-  reduced.dependent
+  reduced.absorbRounding
 
 end CORALean.Float
 

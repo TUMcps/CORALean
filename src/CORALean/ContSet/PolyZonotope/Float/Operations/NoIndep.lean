@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 # `PolyZonotope.noIndep` over a floating-point scalar
 
 CORA's `noIndep`: `GI = zeros(n, 0)`, the independent generators dropped and nothing else
-changed, the error box included. Nothing rounds. It is not `PolyZonotope.dependent`, which
+changed, the error box included. Nothing rounds. It is not `PolyZonotope.absorbRounding`, which
 turns the independent block into dependent generators and keeps the set: `noIndep` keeps
 only what the dependent factors reach, a subset.
 -/

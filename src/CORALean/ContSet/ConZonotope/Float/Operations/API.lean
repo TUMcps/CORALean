@@ -28,7 +28,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
 public import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
 public import CORALean.ContSet.ConZonotope.Float.Operations.Compact
 public import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
-public import CORALean.ContSet.ConZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.ConZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadBilDown
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGDown
 public import CORALean.ContSet.ConZonotope.Float.Operations.QuadMapGUp

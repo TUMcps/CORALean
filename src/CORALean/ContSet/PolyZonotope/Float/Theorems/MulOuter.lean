@@ -14,7 +14,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 The exact layer proves what the operation is — the image of the shared factors
 under `a ↦ point pZ₁ a ⊙ point pZ₂ a` — and this file adds only what rounding
 costs. The input is the two nominal sets: `mul` is an operation on sets whose
-independent block and error box `dependent` has already emptied, and from there
+independent block and error box `absorbRounding` has already emptied, and from there
 the two layers differ in their generator entries alone, which `generatorError`
 prices exactly as it does for `mtimes` and `quadMap`.
 

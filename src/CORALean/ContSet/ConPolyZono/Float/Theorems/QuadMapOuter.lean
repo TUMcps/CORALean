@@ -65,8 +65,9 @@ theorem ConPolyZono.aux_dependent_point (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fi
     (hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.I_error i)) (i : Fin n) :
     toReal (pZ.c i) + (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
         + (∑ j, toReal (pZ.GI j i) * β j) + e i
-      = toReal (pZ.dependent.c i) + ∑ l : Fin pZ.dependent.h, toReal (pZ.dependent.G l i)
-        * Real.PolyZonotope.monomial pZ.dependent.E (Fin.append a (Fin.append β
+      = toReal (pZ.absorbRounding.c i)
+        + ∑ l : Fin pZ.absorbRounding.h, toReal (pZ.absorbRounding.G l i)
+        * Real.PolyZonotope.monomial pZ.absorbRounding.E (Fin.append a (Fin.append β
           fun i => Real.Zonotope.coefficient (toReal (PolyZonotope.errorBound pZ.I_error i)) (e i)))
           l := by -- --- PROOF ---
   -- the diagonal block reproduces `e` exactly, coordinate by coordinate
@@ -75,11 +76,11 @@ theorem ConPolyZono.aux_dependent_point (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fi
         = e i := by
     rw [Real.Zonotope.sum_diagonal_mul]
     exact Real.Zonotope.mul_coefficient (hbound i)
-  have hsplit : ∀ f : Fin (pZ.h + (pZ.q + n)) → ℝ, ∑ l : Fin pZ.dependent.h, f l
+  have hsplit : ∀ f : Fin (pZ.h + (pZ.q + n)) → ℝ, ∑ l : Fin pZ.absorbRounding.h, f l
       = ∑ l, f (Fin.castAdd (pZ.q + n) l) + ∑ l, f (Fin.natAdd pZ.h l) :=
     fun f => Fin.sum_univ_add f
   rw [hsplit]
-  simp only [PolyZonotope.dependent, Real.PolyZonotope.monomial_plusE_left,
+  simp only [PolyZonotope.absorbRounding, Real.PolyZonotope.monomial_plusE_left,
     Real.PolyZonotope.monomial_plusE_right, Real.PolyZonotope.monomial_identE,
     Fin.append_left, Fin.append_right]
   rw [Fin.sum_univ_add]
@@ -95,7 +96,7 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
       ⊆ (cPZ.quadMap Q).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨z, hz', e, he, rfl⟩, rfl⟩
   obtain ⟨a, β, ha, hβ, hs, hz⟩ := ConPolyZono.mem_nominalSet_iff.mp hz'
-  set D := cPZ.toPolyZonotope.dependent with hD
+  set D := cPZ.toPolyZonotope.absorbRounding with hD
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound cPZ.I_error i) :=
     fun i => PolyZonotope.abs_le_errorBound he i
   -- the factors of the dependent form: `a`, then `β`, then the error box's coordinates

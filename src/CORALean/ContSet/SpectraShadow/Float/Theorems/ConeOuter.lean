@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
-public import CORALean.ContSet.SpectraShadow.Float.Theorems.ConstructSubsetAbsorb
+public import CORALean.ContSet.SpectraShadow.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
@@ -13,7 +13,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 # The float cone encloses the perspective cone
 
 The nominal part of `Float.SpectraShadow.cone T` is the exact layer's `cone` of the nominal part
-of `T.absorb`: every stored entry is a stored float, `zero` or `one`, and reads as it. So
+of `T.absorbRounding`: every stored entry is a stored float, `zero` or `one`, and reads as it. So
 `Real.SpectraShadow.cone_construct` describes it, and the box is the origin. Every point `s x` of
 `T`'s set, `s > 0`, and the origin are in it: outer, as the set of `T` is inside the absorbed
 nominal shadow.
@@ -46,7 +46,7 @@ theorem aux_toRealMat_arrowMat (s t : 𝕋) (w : Vec 𝕋 N) :
 
 theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) :
     InflatedContSet.nominal T.cone
-      = Real.SpectraShadow.cone (InflatedContSet.nominal T.absorb) := by -- --- PROOF ---
+      = Real.SpectraShadow.cone (InflatedContSet.nominal T.absorbRounding) := by -- --- PROOF ---
   -- the six fields: the sizes agree, the matrices, center and generators entry by entry
   unfold SpectraShadow.cone Real.SpectraShadow.cone
   show Real.SpectraShadow.mk _ _ _ _ _ _ = Real.SpectraShadow.mk _ _ _ _ _ _
@@ -99,11 +99,11 @@ theorem SpectraShadow.cone_outer (hN : 0 < N) (T : SpectraShadow 𝕋 (Vec 𝕋 
   have hnom : z ∈ InflatedContSet.nominalSet T.cone := by
     change z ∈ ContSet.construct (InflatedContSet.nominal T.cone)
     rw [SpectraShadow.aux_nominal_cone]
-    change z ∈ (Real.SpectraShadow.cone (InflatedContSet.nominal T.absorb)).construct
+    change z ∈ (Real.SpectraShadow.cone (InflatedContSet.nominal T.absorbRounding)).construct
     rw [Real.SpectraShadow.cone_construct hN]
     rcases hz with rfl | ⟨s, hs, x, hx, rfl⟩
     · exact Or.inl rfl
-    · exact Or.inr ⟨s, hs, x, T.construct_subset_absorb hx, rfl⟩
+    · exact Or.inr ⟨s, hs, x, T.absorbRounding_nominal hx, rfl⟩
   have hE : T.cone.I_error.construct = {0} := Interval.origin_exact N
   refine ⟨z, hnom, 0, ?_, add_zero z⟩
   rw [show T.cone.I_error = Interval.origin N from rfl] at hE

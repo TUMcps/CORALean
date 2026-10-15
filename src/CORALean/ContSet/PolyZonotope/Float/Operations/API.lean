@@ -30,7 +30,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.CompactGens
 public import CORALean.ContSet.PolyZonotope.Float.Operations.CompactFactors
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Compact
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
-public import CORALean.ContSet.PolyZonotope.Float.Operations.Dependent
+public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Midpoint
 public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiff
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MidpointResidual
@@ -173,7 +173,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Materialise
 `plus`, `exactPlus`, `linComb` and `mtimes` pay their rounding into the error box rather than
 into new generators. `linComb` pays nothing on the dependent side: halving and negation are
 exact, so all three dependent blocks are copies. `quadMap` cannot: a quadratic map is not
-additive, so a box cannot travel through it beside the nominal part, and `dependent` empties
+additive, so a box cannot travel through it beside the nominal part, and `absorbRounding` empties
 the box into generators first.
 
 `mul` carries that past degree two, spending it on one rounded product per

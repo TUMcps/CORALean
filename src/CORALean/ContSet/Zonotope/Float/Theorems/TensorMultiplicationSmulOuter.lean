@@ -33,10 +33,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.tensorMultiplication_smul_outer (Z : Zonotope (Vec 𝕋 n)) (M : Zonotope.Tensor3 𝕋 n)
-    (L : Real.Zonotope.TensorLists Z.dependent.h) (hc : ∀ i, toReal (Z.c i) = 0)
+    (L : Real.Zonotope.TensorLists Z.absorbRounding.h) (hc : ∀ i, toReal (Z.c i) = 0)
     (hperm : Function.Bijective fun p : Fin L.P => (L.perm p 0, L.perm p 1, L.perm p 2))
     (hmap : ∀ p q, L.map p = L.map q →
-      ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.dependent.h)) =
+      ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.absorbRounding.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
     {x : Vec ℝ n} (hx : x ∈ Z.construct) {t : ℝ} (ht : |t| ≤ 1) :
     t • Real.Zonotope.tensorEval (fun i a b c => toReal (M i a b c)) x
@@ -49,13 +49,13 @@ theorem Zonotope.tensorMultiplication_smul_outer (Z : Zonotope (Vec 𝕋 n)) (M 
   -- the nominal point at the scaled coefficients, and the shortfalls in the box
   refine ⟨fun i => ∑ m, toReal ((Z.tensorMultiplication M L).G m i) * (t * γ m),
     Zonotope.mem_nominalSet_iff.mpr ⟨fun m => t * γ m, hγt, fun i => ?_⟩, _,
-    Zonotope.mem_generatorError (G := Zonotope.tensorHDiff M Z.dependent L) hΔ hγt, ?_⟩
+    Zonotope.mem_generatorError (G := Zonotope.tensorHDiff M Z.absorbRounding L) hΔ hγt, ?_⟩
   · show _ = toReal (zero : 𝕋) + _
     rw [toReal_zero, zero_add]
   · funext i
     have e := congrFun heq i
     simp only [Pi.smul_apply, smul_eq_mul, e]
-    change (∑ m, toReal (Zonotope.tensorHDown M Z.dependent L i m) * (t * γ m))
+    change (∑ m, toReal (Zonotope.tensorHDown M Z.absorbRounding L i m) * (t * γ m))
         + ∑ j, Δ i j * (t * γ j) = _
     rw [← Finset.sum_add_distrib, Finset.mul_sum]
     exact Finset.sum_congr rfl fun m _ => by ring
