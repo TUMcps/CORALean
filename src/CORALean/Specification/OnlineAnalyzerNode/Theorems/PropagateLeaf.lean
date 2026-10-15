@@ -20,12 +20,14 @@ A `true` or `false` node propagates nothing: the node and its children stay as t
 
 namespace CORALean
 
+variable {A : Type}
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A `true` or `false` node propagates nothing. -/
-theorem OnlineAnalyzerNode.propagate_leaf (eps : ℝ) (n : OnlineAnalyzerNode)
-    (ch : List OnlineAnalyzerNode) (I : STLInterval) (h : n.kind = .true ∨ n.kind = .false) :
+theorem OnlineAnalyzerNode.propagate_leaf (eps : ℝ) (n : OnlineAnalyzerNode A)
+    (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (h : n.kind = .true ∨ n.kind = .false) :
     n.propagate eps ch I = some (n, ch) := by
   unfold OnlineAnalyzerNode.propagate
   rcases h with h | h <;> rw [h]

@@ -1,0 +1,41 @@
+module
+
+public import CORALean.Specification.FiniteKleeneSignalBuilder.Operations.Mk
+public import CORALean.Specification.ReachSetAnalyzer.ReachSetAnalyzer
+
+@[expose] public section
+
+/-!
+# The constructor
+
+`obj = reachSetAnalyzer(aps,dur,masks)`: every proposition in `aps` gets a
+`finiteKleeneSignalBuilder(dur)`, and `masks` defaults to the empty map. CORA throws in the
+builder's constructor for a negative `dur`; here `none`.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {S : ℕ → Type} {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `obj = reachSetAnalyzer(aps,dur,masks)`. -/
+noncomputable def ReachSetAnalyzer.mk? (aps : List (String × AtomicProposition S n)) (dur : ℝ)
+    (masks : List (String × FiniteSignal ℝ Bool) := []) : Option (ReachSetAnalyzer S n) :=
+  -- obj.sigBuilder(k{i}) = finiteKleeneSignalBuilder(dur) for every key
+  (aps.mapM fun p => (FiniteKleeneSignalBuilder.mk? dur).map fun builder => (p.1, builder)).map
+    fun sigBuilder => ⟨aps, sigBuilder, masks⟩
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

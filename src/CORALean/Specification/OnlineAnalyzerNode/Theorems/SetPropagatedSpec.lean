@@ -24,10 +24,12 @@ node and unchanged elsewhere.
 
 namespace CORALean
 
+variable {A : Type}
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineAnalyzerNode.setPropagated_spec (eps : ℝ) (n n' : OnlineAnalyzerNode)
+theorem OnlineAnalyzerNode.setPropagated_spec (eps : ℝ) (n n' : OnlineAnalyzerNode A)
     (hv : n.signal.IsValid) (parent : ℕ) (int : STLInterval)
     (h : n.setPropagated eps parent int = some n') :
     n'.signal.IsValid ∧ n'.prop = n.prop.set (n.parents.idxOf parent) int ∧

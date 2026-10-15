@@ -26,11 +26,13 @@ made invalid on the interval.
 
 namespace CORALean
 
+variable {A : Type}
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode)
-    (ch : List OnlineAnalyzerNode) (I : STLInterval) (hk : n.kind = .ap)
+theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
+    (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk : n.kind = .ap)
     (tent : TentativeKleeneSignal ℝ) (ht : n.tentative = some tent) (hs : n.signal.IsValid)
     (htv : tent.IsValid) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (hne : I ≠ .empty) :
     ∃ n', n.propagate eps ch I = some (n', ch) ∧ n'.signal.IsValid ∧
@@ -55,7 +57,7 @@ theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode
     subst hIeq
     unfold OnlineAnalyzerNode.propagate
     rw [hk, ht]
-  obtain ⟨n', hn'⟩ : ∃ n' : OnlineAnalyzerNode, n' = { n with
+  obtain ⟨n', hn'⟩ : ∃ n' : OnlineAnalyzerNode A, n' = { n with
       signal := n.signal.merge (tent.getInterval I),
       tentative := some (tent.setInvalid I) } := ⟨_, rfl⟩
   have hsig : n'.signal = n.signal.merge (tent.getInterval I) := by rw [hn']

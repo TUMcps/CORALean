@@ -26,18 +26,20 @@ throws otherwise, here `none`.
 
 namespace CORALean
 
+variable {A : Type}
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `obj = onlineAnalyzerNode(type,idx,parents,dropPropagated,varargin)`. -/
 noncomputable def OnlineAnalyzerNode.mk? (kind : OnlineAnalyzerNode.Kind) (idx : ℕ)
-    (parents : List ℕ) (dropPropagated : Bool) (interval : Option STLInterval) :
-    Option OnlineAnalyzerNode :=
-  -- narginchk: an `until` node gets its interval, no other node does
-  if decide (kind = .until) = interval.isSome then
+    (parents : List ℕ) (dropPropagated : Bool) (interval : Option STLInterval) (ap : Option A) :
+    Option (OnlineAnalyzerNode A) :=
+  -- narginchk: an `until` node gets its interval, an `AP` node its proposition, no other one
+  if decide (kind = .until) = interval.isSome ∧ decide (kind = .ap) = ap.isSome then
     some { kind := kind, signal := OnlineAnalyzerNode.initSignal kind,
            prop := parents.map (fun _ => STLInterval.empty), dropPropagated := dropPropagated,
-           idx := idx, parents := parents, children := [], interval := interval,
+           idx := idx, parents := parents, children := [], interval := interval, ap := ap,
            tentative := if kind = .ap then some TentativeKleeneSignal.emptySignal else none }
   else none
 

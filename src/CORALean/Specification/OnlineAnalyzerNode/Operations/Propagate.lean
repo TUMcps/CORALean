@@ -31,13 +31,15 @@ conclusive given what is already propagated to its parents, and tells the childr
 
 namespace CORALean
 
+variable {A : Type}
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `propagate(obj,childNodes,makeValid)`. -/
-noncomputable def OnlineAnalyzerNode.propagate (eps : ℝ) (n : OnlineAnalyzerNode)
-    (childNodes : List OnlineAnalyzerNode) (makeValid : STLInterval) :
-    Option (OnlineAnalyzerNode × List OnlineAnalyzerNode) :=
+noncomputable def OnlineAnalyzerNode.propagate (eps : ℝ) (n : OnlineAnalyzerNode A)
+    (childNodes : List (OnlineAnalyzerNode A)) (makeValid : STLInterval) :
+    Option ((OnlineAnalyzerNode A) × List (OnlineAnalyzerNode A)) :=
   match n.kind with
   | .true | .false => some (n, childNodes)
   | .ap =>
@@ -56,7 +58,7 @@ noncomputable def OnlineAnalyzerNode.propagate (eps : ℝ) (n : OnlineAnalyzerNo
       -- concInt = conclusiveInterval(obj.signal,obj.getAllProp())
       let concInt := m.signal.conclusiveInterval (m.getAllProp eps)
       -- for i = 1:length(childNodes), childNodes(i).setPropagated(obj.idx,concInt)
-      (childNodes.mapM fun (c : OnlineAnalyzerNode) => c.setPropagated eps m.idx concInt).map
+      (childNodes.mapM fun (c : OnlineAnalyzerNode A) => c.setPropagated eps m.idx concInt).map
         fun cs => (m, cs)
 
 end CORALean

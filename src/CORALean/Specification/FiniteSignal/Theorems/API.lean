@@ -13,6 +13,7 @@ public import CORALean.Specification.FiniteSignal.Theorems.FindIntervalsSpec
 public import CORALean.Specification.FiniteSignal.Theorems.IndicatorSpec
 public import CORALean.Specification.FiniteSignal.Theorems.MaxSpec
 public import CORALean.Specification.FiniteSignal.Theorems.MkEqSomeIff
+public import CORALean.Specification.FiniteSignal.Theorems.MkSingletonSpec
 public import CORALean.Specification.FiniteSignal.Theorems.PairsOfValid
 public import CORALean.Specification.FiniteSignal.Theorems.SetSpec
 public import CORALean.Specification.FiniteSignal.Theorems.TakeWhileGetElem

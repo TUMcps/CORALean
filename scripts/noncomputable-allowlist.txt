@@ -636,3 +636,29 @@ FiniteSignal.untilStep  real-layer: takes the extended-real bounds of an interva
 FiniteSignal.until?  real-layer: takes the extended-real bounds of an interval, so it is not computable
 FourValuedSTL.Formula.kleeneSat  real-layer: built from the noncomputable `KleeneSignal` operators over the real-layer `STLInterval`
 FourValuedSTL.Formula.fourValuedSat  real-layer: built from the noncomputable `FourValuedSignal` operators over the real-layer `STLInterval`
+FiniteKleeneSignalBuilder.mk?  real-layer: builds a `finiteSignal` over the reals, whose order is classical, so it is not computable
+FiniteKleeneSignalBuilder.setPossiblyTrue?  real-layer: takes extended-real bounds, so it is not computable
+FiniteKleeneSignalBuilder.setPossiblyFalse?  real-layer: takes extended-real bounds, so it is not computable
+FiniteKleeneSignalBuilder.kleeneSignal?  real-layer: combines `finiteSignal`s over the reals, whose order is classical, so it is not computable
+ReachSetAnalyzer.mk?  real-layer: builds `finiteKleeneSignalBuilder`s over the reals, so it is not computable
+ReachSetAnalyzer.maskOk  real-layer: reads a mask `finiteSignal` over the reals through its extended-real bounds, so it is not computable
+ReachSetAnalyzer.analyzeKey  real-layer: updates `finiteKleeneSignalBuilder`s over the reals, so it is not computable
+ReachSetAnalyzer.analyzeTimeInterval  real-layer: updates `finiteKleeneSignalBuilder`s over the reals, so it is not computable
+ReachSetAnalyzer.analyzeSingle  real-layer: updates `finiteKleeneSignalBuilder`s over the reals, so it is not computable
+ReachSetAnalyzer.signals  real-layer: combines `finiteSignal`s over the reals, so it is not computable
+ReachSetAnalyzer.analyze  real-layer: updates `finiteKleeneSignalBuilder`s over the reals, so it is not computable
+TrajectoryAnalyzer.markKey  real-layer: takes real time bounds and builds `finiteSignal`s over the reals, so it is not computable
+TrajectoryAnalyzer.analyzeInterval  real-layer: builds `finiteSignal`s over the reals, so it is not computable
+TrajectoryAnalyzer.analyze  real-layer: builds `finiteSignal`s over the reals, so it is not computable
+Rtl.toFormula  real-layer: tests the sign of a real time shift, so it is not computable
+Rtl.next?  real-layer: tests a real time against the multiples of `0.5`, so it is not computable
+OnlineAnalyzerNode.conflicts  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+OnlineAnalyzerNode.observeSet  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+OnlineReachSetAnalyzer.parse  real-layer: builds nodes over the real-layer `STLInterval` and `FourValuedSignal ℝ`, so it is not computable
+OnlineReachSetAnalyzer.parseNew  real-layer: builds nodes over the real-layer `STLInterval` and `FourValuedSignal ℝ`, so it is not computable
+OnlineReachSetAnalyzer.mk?  real-layer: builds nodes over the real-layer `STLInterval` and `FourValuedSignal ℝ`, so it is not computable
+OnlineReachSetAnalyzer.propagateRec  real-layer: propagates real-layer nodes over `STLInterval`, so it is not computable
+OnlineReachSetAnalyzer.propagate  real-layer: propagates real-layer nodes over `STLInterval`, so it is not computable
+OnlineReachSetAnalyzer.forcePropagation  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+OnlineReachSetAnalyzer.observeSet  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+OnlineReachSetAnalyzer.getVerdict  real-layer: reads a real-layer `FourValuedSignal ℝ`, so it is not computable
