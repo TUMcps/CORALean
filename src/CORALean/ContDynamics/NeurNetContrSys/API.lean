@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.API
 /-!
 # A neural network in the loop of a plant, collected
 
-CORA's one `neurNetContrSys` over every plant: the plant interface, the controller and what a
+CORA's one `neurNetContrSys` over every plant, any `ContDynamics`: the controller and what a
 zero-order-hold run of the two is in `NeurNetContrSys`, [1, Alg. 2] over the control periods in
 `Operations` (`reachWith` at any plant, `reach` at a linear one), the set a run reaches in
 `ReachSet`, its guarantee in `Theorems`, and `Instances`, the linear loop's `Reach`: one period

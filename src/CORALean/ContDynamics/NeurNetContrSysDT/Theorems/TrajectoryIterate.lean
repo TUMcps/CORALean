@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryOfMap
 
 @[expose] public section
 
@@ -17,7 +17,7 @@ runs here is a set of initial states, and the enclosure is still loose,
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,12 +35,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every point of `R₀` starts a run, so the runs of a closed loop are exactly
 its initial states. -/
-theorem NeurNetContrSysDT.trajectory_iterate (sys : NeurNetContrSysDT 𝕋 S n)
-    (π : Vec ℝ n → Vec ℝ sys.plant.m) {R₀ : S n}
+theorem NeurNetContrSysDT.trajectory_iterate (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
+    (π : Vec ℝ n → Vec ℝ sys.plant.m) {R₀ : S n} {W : Set (Vec ℝ sys.plant.r)} (hW : 0 ∈ W)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
-    sys.Trajectory π R₀ (fun k => (sys.map π)^[k] x₀) where
-  init := hx₀
-  step k := Function.iterate_succ_apply' (sys.map π) k x₀
+    sys.Trajectory π R₀ W (fun k => (sys.map π)^[k] x₀) 0 :=
+  NeurNetContrSysDT.trajectory_of_map hW hx₀ fun k => Function.iterate_succ_apply' (sys.map π) k x₀
 
 end CORALean
 

@@ -3,12 +3,12 @@ module
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.WithInputReachUnionOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.WithInputSplitReachUnionOuter
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
 
 @[expose] public section
 
 /-!
-# `LinParamSys ℐ`, `LinParamSys.WithInput` and `WithInputSplit` instantiate `Reach`
+# `LinParamSys` instantiates `ContDynamics`, and with its input wrappers `Reach`
 
 `params` is `Reach.Params` at real time, `options` `LinearSys.ReachStepOptions`, the
 point case's. `reachExact` is `reachUnionExact` on `[0, tFinal - tStart]`, the system
@@ -20,6 +20,10 @@ system's rather than `params`', and asks the representation to be convex and com
 what `inputSolution`'s enclosure needs of `U`; `LinParamSys.WithInputSplit` drops
 `0 ∈ U` and asks for `Recentre` too — [1, Alg. 4]'s split case.
 
+`LinParamSys` is a `ContDynamics`: `m` inputs and no disturbance, a run a `Trajectory` —
+`'varParam'`, a fresh `A t` and `B t` at every instant, which every `'constParam'` run is too —
+at some such matrices.
+
 ## References
 
 * [1] M. Althoff. "Reachability Analysis and its Application to the Safety
@@ -28,7 +32,7 @@ what `inputSolution`'s enclosure needs of `U`; `LinParamSys.WithInputSplit` drop
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -82,6 +86,15 @@ noncomputable instance LinParamSys.WithInputSplit.reachInstance
     split_ifs at hR with h
     cases hR
     exact sys.reachUnion_outer params h
+
+/-- CORA's `linParamSys` as a `ContDynamics`, its runs the time-varying-parameter ones. -/
+instance LinParamSys.contDynamics {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
+    {n : ℕ} : ContDynamics (LinParamSys 𝕄 n) n where
+  nrOfInputs sys := sys.m
+  nrOfDisturbances _ := 0
+  Trajectory sys T X₀ U W x u w :=
+    (∃ A B, LinParamSys.Trajectory (S := 𝒮) sys T X₀ U x u A B) ∧
+      ∀ t ∈ T, w t ∈ W
 
 end CORALean
 

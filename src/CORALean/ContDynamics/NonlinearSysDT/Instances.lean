@@ -1,12 +1,12 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachUnionOuter
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
 
 @[expose] public section
 
 /-!
-# `NonlinearSysDT.WithSteps` instantiates `Reach`
+# `NonlinearSysDT.WithSteps` instantiates `ContDynamicsDT` and `Reach`
 
 `params` is `Reach.Params` counted in sampling periods, `options`
 `NonlinearSysDT.ReachOptions`; `U` stays the system's, since each step's
@@ -16,11 +16,14 @@ certificate is issued for it. `reachExact` is `reachUnionExact` over
 as `NonlinearSys`'s can: each step's linearization is trusted only once the set it
 starts from is shown, at run time, inside that step's region, which is what lets
 `reach_outer` hold with no confinement hypothesis on any run.
+
+`NonlinearSysDT` is a `ContDynamicsDT`: every one of the `m` arguments of `f` an input, no
+disturbance, a run a `Trajectory`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -46,6 +49,13 @@ instance NonlinearSysDT.reachInstance :
     (construct params.X₀)
   reach sys params options := sys.reachUnion params options
   reach_outer sys params options _ h := sys.reachUnion_outer params options h
+
+/-- CORA's `nonlinearSysDT` as a `ContDynamicsDT`: `x(k+1) = f(x(k), u(k))`. -/
+instance NonlinearSysDT.contDynamicsDT {n m : ℕ} : ContDynamicsDT (NonlinearSysDT n m) n where
+  nrOfInputs _ := m
+  nrOfDisturbances _ := 0
+  Trajectory sys X₀ U W x u w :=
+    NonlinearSysDT.Trajectory (S := 𝒮) sys X₀ U x u ∧ ∀ k, w k ∈ W
 
 end CORALean
 

@@ -14,7 +14,7 @@ stated once so nothing downstream redoes the induction on `reach`.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,11 +32,13 @@ variable [OfScalarPoint 𝕋 S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSysDT.simulate_mem_reach (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o)
+theorem NeurNetContrSysDT.simulate_mem_reach (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n) {o : ℕ}
+    (ho : 0 < o)
     (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) (k : ℕ) :
     sys.simulate π x₀ k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
-  sys.reach_outer ho R₀ hπ (sys.simulate_trajectory π hx₀) k
+  sys.reach_outer ho R₀ hπ (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])
+    (sys.simulate_trajectory π (Set.mem_singleton 0) hx₀) k
 
 end CORALean
 

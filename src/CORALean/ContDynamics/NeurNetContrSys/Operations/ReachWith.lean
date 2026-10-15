@@ -27,7 +27,7 @@ whose union is the paper's `R`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -36,9 +36,9 @@ whose union is the paper's `R`.
 namespace CORALean
 
 open Matrix ContSet
-open NeurNetContrSys (Plant)
+open ContDynamics
 
-variable {n : ℕ} {P : Type} [Plant P n]
+variable {n : ℕ} {P : Type} [ContDynamics P n]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
@@ -47,9 +47,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Alg. 2] over `H` control cycles from `X₀`: the set at the end of the last cycle and the
 sets over the cycles, newest first. -/
 def NeurNetContrSys.reachWith (sys : NeurNetContrSys P S n)
-    (cp : S n → S (Plant.m sys.plant) → S (n + Plant.m sys.plant))
-    (pr : S (n + Plant.m sys.plant) → S n)
-    (rx : S (n + Plant.m sys.plant) → S (n + Plant.m sys.plant) × List (S (n + Plant.m sys.plant)))
+    (cp : S n → S (nrOfInputs sys.plant) → S (n + nrOfInputs sys.plant))
+    (pr : S (n + nrOfInputs sys.plant) → S n)
+    (rx : S (n + nrOfInputs sys.plant) → S (n + nrOfInputs sys.plant) × List (S
+        (n + nrOfInputs sys.plant)))
     (X₀ : S n) : ℕ → S n × List (S n)
   -- 1. `R(t₀) ← X₀`
   | 0 => (X₀, [])

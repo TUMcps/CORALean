@@ -34,7 +34,8 @@ variable [OfScalarPoint 𝕋 S]
 
 /-- The steps `0` through `tFinal - tStart` of `reach`, from `R0`, one `SetUnion`
 branch each. -/
-def NeurNetContrSysDT.reachUnion (sys : NeurNetContrSysDT 𝕋 S n) (params : Reach.Params (S n) ℕ)
+def NeurNetContrSysDT.reachUnion (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
+    (params : Reach.Params (S n) ℕ)
     (options : NeurNetContrSysDT.ReachOptions) : SetUnion (S n) :=
   let R₀ := params.X₀                                               -- the paper's symbols
   let K := params.tFinal - params.tStart                           -- steps

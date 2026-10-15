@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NeurNetContrSys.Definitions.WithPeriod
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
 
 @[expose] public section
 
@@ -16,12 +16,13 @@ loop reaches depends on it and `reachExact` reads no options. `params` is
 closed loop being time-invariant; `reach` is `reachUnion`, `none` unless
 `0 < Δt` and the `N` steps of `Δt` make up exactly `dt` — CORA's check
 that `Δt` divides `dt`, decided in ℝ; the guarantee is `reachUnion_outer`.
-No input set: the closed loop reads its own input off the controller.
+No input set: the closed loop reads its own input off the controller; and no disturbance,
+`W = {0}`, as CORA's loop at a linear plant drops `E`.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -44,7 +45,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 noncomputable instance NeurNetContrSys.WithPeriod.reachInstance :
     Reach (NeurNetContrSys.WithPeriod 𝕋 S) (fun n => Reach.Params (S n) ℕ)
       (NeurNetContrSys.ReachOptions ℝ) S where
-  reachExact sys params := sys.sys.reachUnionExact sys.dt (params.tFinal - params.tStart)
+  reachExact sys params := sys.sys.reachUnionExact sys.dt (params.tFinal - params.tStart) {0}
     (construct params.X₀)
   reach sys params options :=
     if 0 < options.Δt ∧ (options.N : ℝ) * options.Δt = sys.dt then

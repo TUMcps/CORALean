@@ -20,7 +20,7 @@ admissible by `reachOrder_admissible` and the raise, and `sound_eval` place it i
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -48,14 +48,13 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
     (params : Reach.Params (S n) ℕ) {options : NeurNetContrSys.ReachOptions ℝ}
     (hΔt : 0 < options.Δt) :
-    sys.reachUnionExact ((options.N : ℝ) * options.Δt) (params.tFinal - params.tStart)
+    sys.reachUnionExact ((options.N : ℝ) * options.Δt) (params.tFinal - params.tStart) {0}
       (construct params.X₀) ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
   intro y hy
-  obtain ⟨i, hi, x, hx0, hflow, rfl⟩ := Set.mem_iUnion₂.mp hy
-  -- no disturbance at a linear plant: any set of `Vec ℝ 0` holds the one there is
+  obtain ⟨i, hi, x, w, hx0, hflow, rfl⟩ := Set.mem_iUnion₂.mp hy
+  -- the disturbance is `0`, which `E` sends to `0`
   have traj : sys.Trajectory sys.contr.eval.out ((options.N : ℝ) * options.Δt)
-      (params.tFinal - params.tStart) params.X₀ (OfPoint.ofPoint 0) x (fun _ => 0) :=
-    ⟨hx0, fun _ _ => OfPoint.mem_ofPoint _, hflow⟩
+      (params.tFinal - params.tStart) params.X₀ {0} x w := ⟨hx0, hflow⟩
   -- the order `reachUnion` runs at clears the step, as `reachOrder`'s own does
   have hε : ‖options.Δt • sys.augment.A‖
       / (((max options.η (sys.reachOrder options.Δt) : ℕ) : ℝ) + 2) < 1 := by
@@ -67,7 +66,8 @@ theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys (LinearSys 𝕋 
   refine SetUnion.mem_construct.mpr
     ⟨_, List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hi)), ?_⟩
   exact sys.reach_outer options.ρ _ options.N options.hZonotopeOrder hΔt hε
-    sys.contr.sound_eval traj i hi
+    sys.contr.sound_eval
+      (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj i hi
 
 end CORALean
 

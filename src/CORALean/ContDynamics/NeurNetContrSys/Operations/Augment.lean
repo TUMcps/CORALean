@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Instances
 public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 
 @[expose] public section

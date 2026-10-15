@@ -14,7 +14,7 @@ content sits in the other half, `reachSet_subset_reach`.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -22,9 +22,9 @@ content sits in the other half, `reachSet_subset_reach`.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSet ContDynamicsDT
 
-variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {n : ℕ} {P : Type} [ContDynamicsDT P n]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
@@ -32,11 +32,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Reach for this to say where a run *is*; reach for `reachSet_subset_reach`
 to say what encloses it. -/
-theorem NeurNetContrSysDT.Trajectory.reachSet_outer {sys : NeurNetContrSysDT 𝕋 S n}
-    {π : Vec ℝ n → Vec ℝ sys.plant.m} {R₀ : S n} {x : ℕ → Vec ℝ n}
-    (traj : sys.Trajectory π R₀ x) (k : ℕ) :
-    x k ∈ sys.reachSet π R₀ k :=
-  ⟨x, traj, rfl⟩
+theorem NeurNetContrSysDT.Trajectory.reachSet_outer {sys : NeurNetContrSysDT P S n}
+    {π : Vec ℝ n → Vec ℝ (nrOfInputs sys.plant)} {R₀ : S n}
+    {W : Set (Vec ℝ (nrOfDisturbances sys.plant))} {x : ℕ → Vec ℝ n}
+    {w : ℕ → Vec ℝ (nrOfDisturbances sys.plant)} (traj : sys.Trajectory π R₀ W x w) (k : ℕ) :
+    x k ∈ sys.reachSet π R₀ W k :=
+  ⟨x, w, traj, rfl⟩
 
 end CORALean
 

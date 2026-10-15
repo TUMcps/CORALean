@@ -20,7 +20,7 @@ arise in the purely discrete loop.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -40,11 +40,14 @@ variable [OfScalarPoint 𝕋 S]
 
 /-- Reach for this at every step; the guarantee attaches to the reachable set,
 not to a run of it. -/
-theorem NeurNetContrSysDT.reachSet_subset_reach (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ}
-    (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π) (k : ℕ) :
-    sys.reachSet π R₀ k ⊆ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by
-  rintro _ ⟨x, traj, rfl⟩
-  exact sys.reach_outer ho R₀ hπ traj k
+theorem NeurNetContrSysDT.reachSet_subset_reach (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
+    {o : ℕ} (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.plant.m}
+    (hπ : sys.contr.Sound π) (W : Set (Vec ℝ sys.plant.r))
+    (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) (k : ℕ) :
+    sys.reachSet π R₀ W k ⊆
+      construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+  rintro _ ⟨x, w, traj, rfl⟩
+  exact sys.reach_outer ho R₀ hπ hW traj k
 
 end CORALean
 

@@ -15,14 +15,16 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemSimulateBoxFloat
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryLinear
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryOfMap
 
 /-!
 # What a network in the loop guarantees
 
 `ReachOuter` is the composition of the two halves, `HoldsOfReach` what checking
-a specification on it buys, and `TrajectoryIterate`/`EqOfInit` the reading of a
-run that a determined input forces: an orbit, not a family, settled by where
-it started.
+a specification on it buys, and `TrajectoryLinear`/`TrajectoryOfMap`/`TrajectoryIterate`/
+`EqOfInit` the reading of a run at a linear plant that a determined input forces: an orbit of
+`map`, settled by where it started.
 
 `ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable
 set; `Real/` bounds its generator count at `𝒵`, `ReachOrderLe` only holding at ℝ.

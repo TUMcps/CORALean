@@ -4,13 +4,13 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachAdmissibleOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.WithInputReachOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.WithInputSplitReachOuter
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
 public import CORALean.ContSet.Interval.Real.Instances
 
 @[expose] public section
 
 /-!
-# `LinearSys` and `LinearSys.WithInput` instantiate `Reach`
+# `LinearSys` and `LinearSys.WithInput` instantiate `ContDynamics` and `Reach`
 
 `params` is `Reach.Params` at real time, `options` `ReachStepOptions`; `reachExact` is
 each system's own on `[0, tFinal - tStart]`, the system being time-invariant. All of it is the
@@ -36,7 +36,7 @@ raised until admissible. `LinearSys.reachWrappingFreeInstance` is the same inter
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -107,6 +107,13 @@ noncomputable instance LinearSys.WithInputSplit.reachInstance
     split_ifs at hR with h
     cases hR
     exact sys.reach_outer params h
+
+/-- CORA's `linearSys` as a `ContDynamics`: `B u` the input, `E w` the disturbance. -/
+instance LinearSys.contDynamics {n : ℕ} : ContDynamics (LinearSys 𝕋 n) n where
+  nrOfInputs sys := sys.m
+  nrOfDisturbances sys := sys.r
+  Trajectory sys T X₀ U W x u w :=
+    ∃ v y, LinearSys.Trajectory (S := 𝒮) sys T X₀ U W Set.univ x u w v y
 
 end CORALean
 

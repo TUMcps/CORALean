@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
 
 @[expose] public section
 
 /-!
-# `LinearSysDT` instantiates `Reach`
+# `LinearSysDT` instantiates `ContDynamicsDT` and `Reach`
 
 `params` is `Reach.InputParams` counted in sampling periods, `U` among them as in
 CORA, the combined input `B U ⊕ c ⊕ E W` of the canonical form in state coordinates, which
@@ -16,11 +16,14 @@ over `tFinal - tStart` steps, the system being time-invariant, `reach` is
 `reachUnion` (always `some`: nothing here can fail at run time), and the guarantee
 is `reachUnion_outer` — nothing new, every field already proved for its own
 sake in `Definitions`, `Operations` and `Theorems`.
+
+`LinearSysDT` is a `ContDynamicsDT`: `m` inputs and `r` disturbances, a run a `Trajectory` of
+the whole equation under any noise, its output what the output equation makes it.
 -/
 
 -- Authors:       Claude Sonnet 5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -44,6 +47,13 @@ instance LinearSysDT.reachInstance :
     -- the one set returned is `reachUnion`'s
     cases h
     exact sys.reachUnion_outer params options
+
+/-- CORA's `linearSysDT` as a `ContDynamicsDT`: `B u` the input, `E w` the disturbance. -/
+instance LinearSysDT.contDynamicsDT {n : ℕ} : ContDynamicsDT (LinearSysDT 𝕋 n) n where
+  nrOfInputs sys := sys.m
+  nrOfDisturbances sys := sys.r
+  Trajectory sys X₀ U W x u w :=
+    ∃ v y, LinearSysDT.Trajectory (S := 𝒮) sys X₀ U W Set.univ x u w v y
 
 end CORALean
 

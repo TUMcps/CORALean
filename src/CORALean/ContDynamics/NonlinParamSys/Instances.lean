@@ -1,12 +1,12 @@
 module
 
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
 
 @[expose] public section
 
 /-!
-# `NonlinParamSys.WithSteps` instantiates `Reach`
+# `NonlinParamSys.WithSteps` instantiates `ContDynamics` and `Reach`
 
 `params` and `options` are the augmented `NonlinearSys.WithSteps` run's own,
 `Reach.Params` at real time and `LinearSys.ReachOptions`, `X₀` lifted to `X₀ × P`
@@ -17,11 +17,15 @@ where the augmented run does: a horizon no multiple of `Δt`, or some step's
 start, inflated by `2MΔt`, not shown inside its region, tested in dimension `n + q`,
 the parameter's coordinates with the state's. `ConvexSet` and `CompactSet` are asked
 of the representation for the same reason as there.
+
+`NonlinParamSys` is a `ContDynamics`: `m` inputs, and the `q` parameters as the disturbance, a
+fresh `p t` in the parameter set at every instant, as `Trajectory` reads them; a constant-
+parameter run is one.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -48,6 +52,13 @@ noncomputable instance NonlinParamSys.reachInstance :
     (construct params.X₀)
   reach sys params options := sys.reachUnion params options
   reach_outer sys params options _ h := sys.reachUnion_outer params options h
+
+/-- CORA's `nonlinParamSys` as a `ContDynamics`: `ẋ = f(x, u, p)`, `p` the disturbance. -/
+instance NonlinParamSys.contDynamics {n m q : ℕ} : ContDynamics (NonlinParamSys n m q) n where
+  nrOfInputs _ := m
+  nrOfDisturbances _ := q
+  Trajectory sys T X₀ U W x u w :=
+    NonlinParamSys.Trajectory (S := 𝒮) sys T X₀ U W x u w
 
 end CORALean
 

@@ -1,21 +1,23 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachWith
-public import CORALean.ContDynamics.NeurNetContrSys.Theorems.Period
+public import CORALean.NN.Theorems.EncloseOuter
+public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 
 /-!
 # `Alg. 2` encloses the reachable set of the closed loop
 
-[1, Alg. 2], "Ensure: tight enclosure `R ⊇ R([0, tF])`": every run of the plant under the
-network is, at the end of each of the first `i` control cycles, in the set `reachWith` holds, and
-at every instant of those cycles in one of the sets over a cycle. Induction on the cycle: the
-network's guarantee puts the held input in `Y`, so the state and the input are in the product,
-the cycle is a run of the extended system (`Trajectory.period`), and the reachability algorithm
-`rx` for it, the product `cp` and the projection `pr` each satisfy the enclosure the algorithm
-asks of them. `reachWith_timePoint_outer` is the cycle ends alone, for an `rx` with no sets over
-a cycle.
+[1, Alg. 2], "Ensure: tight enclosure `R ⊇ R([0, tF])`": every run of the plant under the network
+is, at the end of each of the first `i` control cycles, in the set `reachWith` holds, and at every
+instant of those cycles in one of the sets over a cycle. Induction on the cycle: the network's
+guarantee puts the held input in `Y`, so the state and the input are in the product, the cycle is a
+run of the plant under that held input (`Trajectory.flow`), and the reachability algorithm `rx` for
+the extended state `[x; u]`, the product `cp` and the projection `pr` each satisfy the enclosure the
+algorithm asks of them. At any plant: `rx` is asked to enclose the plant's own runs, read through
+`ContDynamics.Trajectory`. `reachWith_timePoint_outer` is the cycle ends alone, for an `rx` with no
+sets over a cycle.
 
 ## References
 
@@ -25,7 +27,7 @@ a cycle.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,9 +36,9 @@ a cycle.
 namespace CORALean
 
 open Matrix ContSet
-open NeurNetContrSys (Plant)
+open ContDynamics
 
-variable {n : ℕ} {P : Type} [Plant P n]
+variable {n : ℕ} {P : Type} [ContDynamics P n]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
@@ -45,17 +47,21 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Alg. 2]: a run is, at each cycle end and in each cycle, inside the sets `reachWith`
 holds. -/
 theorem NeurNetContrSys.reachWith_outer (sys : NeurNetContrSys P S n)
-    (cp : S n → S (Plant.m sys.plant) → S (n + Plant.m sys.plant))
-    (pr : S (n + Plant.m sys.plant) → S n)
-    (rx : S (n + Plant.m sys.plant) → S (n + Plant.m sys.plant) × List (S (n + Plant.m sys.plant)))
-    {X₀ : S n} {W : S (Plant.r sys.plant)} {Δtc : ℝ}
+    (cp : S n → S (nrOfInputs sys.plant) → S (n + nrOfInputs sys.plant))
+    (pr : S (n + nrOfInputs sys.plant) → S n)
+    (rx : S (n + nrOfInputs sys.plant) → S (n + nrOfInputs sys.plant) × List (S
+        (n + nrOfInputs sys.plant)))
+    {X₀ : S n} {W : Set (Vec ℝ (nrOfDisturbances sys.plant))} {Δtc : ℝ}
     (hcp : ∀ X Y x u, x ∈ construct X → u ∈ construct Y →
       (Fin.append x u : Vec ℝ (n + _)) ∈ construct (cp X Y))
     (hpr : ∀ Z z, z ∈ construct Z → (fun k => z (Fin.castAdd _ k)) ∈ construct (pr Z))
-    (hrx : ∀ R z w, sys.extended.Trajectory (Set.Icc 0 Δtc) R W z w →
-      z Δtc ∈ construct (rx R).1 ∧ ∀ t ∈ Set.Icc 0 Δtc, ∃ T ∈ (rx R).2, z t ∈ construct T)
-    {π : Vec ℝ n → Vec ℝ (Plant.m sys.plant)} (hπ : sys.contr.Sound π) {H : ℕ}
-    {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ (Plant.r sys.plant)}
+    (hrx : ∀ R (z : ℝ → Vec ℝ n) (u : Vec ℝ (nrOfInputs sys.plant)) w,
+      (Fin.append (z 0) u : Vec ℝ (n + _)) ∈ construct R →
+      ContDynamics.Trajectory sys.plant (Set.Icc 0 Δtc) Set.univ Set.univ W z (fun _ => u) w →
+      (Fin.append (z Δtc) u : Vec ℝ (n + _)) ∈ construct (rx R).1 ∧
+        ∀ t ∈ Set.Icc 0 Δtc, ∃ T ∈ (rx R).2, (Fin.append (z t) u : Vec ℝ (n + _)) ∈ construct T)
+    {π : Vec ℝ n → Vec ℝ (nrOfInputs sys.plant)} (hπ : sys.contr.Sound π) {H : ℕ}
+    {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
     (traj : sys.Trajectory π Δtc H X₀ W x w) :
     ∀ i ≤ H, x ((i : ℝ) * Δtc) ∈ construct (sys.reachWith cp pr rx X₀ i).1 ∧
       ∀ j < i, ∀ t ∈ Set.Icc ((j : ℝ) * Δtc) (((j : ℝ) + 1) * Δtc),
@@ -74,7 +80,7 @@ theorem NeurNetContrSys.reachWith_outer (sys : NeurNetContrSys P S n)
     -- the network puts the held input in `Y`, and the state and input in the product
     have hY := hπ.enclose_outer _ _ hend
     have hz := hcp _ _ _ _ hend hY
-    obtain ⟨hnext, htube⟩ := hrx _ _ _ (traj.period i hiH _ hz)
+    obtain ⟨hnext, htube⟩ := hrx _ _ _ _ (by simpa only [add_zero] using hz) (traj.flow i hiH)
     have hΔ : (i : ℝ) * Δtc + Δtc = ((i + 1 : ℕ) : ℝ) * Δtc := by push_cast; ring
     refine ⟨?_, fun j hj t ht => ?_⟩
     · -- the end of the cycle, projected

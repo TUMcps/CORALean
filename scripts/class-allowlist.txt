@@ -1,0 +1,32 @@
+# Files under `src/` that declare a `class` and are not an `Interfaces.lean`.
+#
+# `check-conventions.sh` refuses any other file that does (CONTRIBUTING, "Interfaces"): a class is
+# an interface, and a directory's interfaces sit in its `Interfaces.lean`, as its instances sit in
+# `Instances.lean`. An entry here says why the class in that file is elsewhere; the list only
+# shrinks, and an entry whose file declares no class any more is reported as stale.
+#
+# One line per file: `<path>  <reason>`. A reason starts with one of:
+#   base:      a base file of `Global/`, below every `Interfaces.lean` and held small by its import
+#              guards; the class is the file's whole subject, and `Global/` has no class roots.
+#   imports:   the class's law needs what the guarded `ContSet/ContSet/Interfaces.lean` keeps out of
+#              its closure, which most of the tree imports.
+#   example:   a worked example's own helper, outside the library.
+src/CORALean/Global/Scalar.lean  base: the scalar interface every layer is written over; guarded to Mathlib's order and algebra, below `ContSet/`
+src/CORALean/Global/ExactScalar.lean  base: a mixin of `Scalar`, exact `0` and `1`, kept beside it so that an algorithm asks for exactly the scalar facts it uses
+src/CORALean/Global/ExactAdd.lean  base: a mixin of `Scalar`, exact addition, kept beside it as `ExactScalar` is
+src/CORALean/Global/NegScalar.lean  base: a mixin of `Scalar`, exact negation, kept beside it as `ExactScalar` is
+src/CORALean/Global/Entrywise.lean  base: entrywise order on an ambient type, below `ContSet/`; guarded so that no set representation enters its closure
+src/CORALean/Global/Float/FloatOps.lean  base: the rounded operations of the float layer, guarded to stay below every representation
+src/CORALean/Global/Float/SoundFloatArithmetic.lean  base: the soundness laws of `FloatOps`, and `RealImage`, the reading of a stored value as a real, which every float representation instantiates
+src/CORALean/Global/Float/ToRat.lean  base: the exact rational reading of a float, a mixin of `SoundFloatArithmetic`
+src/CORALean/Global/Float/NoNaN.lean  base: the finiteness test over stored tensors, a mixin of `ToRat` over `Global/Tensor`
+src/CORALean/ContSet/ContSet/Definitions/CompactSet.lean  imports: its law is `IsCompact`, stated with Mathlib's normed spaces
+src/CORALean/ContSet/ContSet/Definitions/ConvexSet.lean  imports: its law is `Convex`, which needs Mathlib's convexity
+src/CORALean/ContSet/ContSet/Definitions/ExactVertices.lean  imports: its law is stated with `VPolytope`, a representation, which sits above the interfaces
+src/CORALean/ContSet/ContSet/Definitions/FullDimTest.lean  imports: its law is `IsFullDim`, an interior point, which needs Mathlib's topology
+src/CORALean/ContSet/Conversion/Real/Definitions/IntervalOuter.lean  imports: a conversion whose other side is a variable (CONTRIBUTING, "Conversion"); it imports the representations whose instances discharge it, so it cannot sit below them
+src/CORALean/ContSet/Conversion/Real/Definitions/OfInterval.lean  imports: a conversion whose other side is a variable, as `IntervalOuter`; it imports the representations it is instantiated at
+src/CORALean/ContSet/Conversion/Float/Definitions/IntervalOuter.lean  imports: the float layer's `IntervalOuter`, which imports the float representations, as the real one does
+src/CORALean/ContSet/Conversion/Float/Definitions/OfInterval.lean  imports: the float layer's `OfInterval`, which imports the float representations, as the real one does
+src/CORALean/ContSet/InflatedContSet/InflatedContSet.lean  imports: its error box is a `Float.Interval`, a representation, which sits above the interfaces; the file is the class root's class file
+src/CORALean/Examples/RunCheck.lean  example: `ToF`, the conversion the run checker prints values through, which no library file needs

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.Definitions.IntersectStrip
+public import CORALean.ContSet.ContSet.ContSet
 
 @[expose] public section
 

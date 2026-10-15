@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Reach
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryLinear
 public import CORALean.NN.Theorems.EncloseOuter
 
 @[expose] public section
@@ -28,7 +29,7 @@ reachable set rather than on one run.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -46,12 +47,16 @@ variable [OfScalarPoint 𝕋 S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) {o : ℕ} (ho : 0 < o)
+theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n) {o : ℕ}
+    (ho : 0 < o)
     (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {x : ℕ → Vec ℝ n} (traj : sys.Trajectory π R₀ x) (k : ℕ) :
+    {W : Set (Vec ℝ sys.plant.r)}
+    (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {w : ℕ → Vec ℝ sys.plant.r}
+    (traj : sys.Trajectory π R₀ W x w) (k : ℕ) :
     x k ∈ construct (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+  obtain ⟨hinit, hstep⟩ := traj.linear hW
   induction k with
-  | zero => exact traj.init
+  | zero => exact hinit
   | succ k ih =>
     set R := sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩
     show x (k + 1) ∈ construct (sys.plant.reach
@@ -63,7 +68,9 @@ theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT 𝕋 S n) {o : �
           (OfScalarPoint.ofVec (S := S) sys.plant.c)) :=
       plus_outer _ _ ⟨_, mtimes_outer sys.plant.B _ (Set.mem_biUnion (Set.mem_singleton _)
         ⟨_, hπ.enclose_outer _ _ ih, rfl⟩), _, OfScalarPoint.mem_ofVec sys.plant.c, rfl⟩
-    rw [traj.step k, add_assoc]
+    rw [hstep k]
+    unfold NeurNetContrSysDT.map
+    rw [add_assoc]
     exact sys.plant.reach_one_outer ho _ _ ih hu
 
 end CORALean

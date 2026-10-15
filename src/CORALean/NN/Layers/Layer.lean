@@ -1,7 +1,6 @@
 module
 
-public import CORALean.ContSet.ContSet.ContSet
-public import Mathlib.Data.Erased
+public import CORALean.NN.Layers.Interfaces
 
 @[expose] public section
 
@@ -15,14 +14,8 @@ No field of `Layer` mentions `ℝ`: a structure with a noncomputable field is no
 to construct, so every mention of `ℝ` lives in a `Prop` and a float layer is a plain `def`.
 A layer is a structure, not a class: a network holds many, told apart by their weights.
 
-The class is one level up, per *kind*: `Enclose L S` is to the weights `l : L n m` of a
-kind what `Mtimes` is to a matrix. `enclose` propagates, `eval` is the function over ℝ it
-encloses, and `enclose_outer` is proved once per kind for all weights, a hypothesis on the
-weights riding along as a `Prop` field of them. `eval` is `Erased`: `Erased.mk` is
-`macro_inline`, so its argument lands in a closure returning a `Prop`, is erased, and is
-never compiled, and only the noncomputable `Erased.out`, in proofs, reads it back. So an
-instance whose `eval` is `Real.exp`-built still runs. `Enclose.toLayer` forgets the kind,
-which is how a chain mixes kinds and is read off a file at run time.
+The class is one level up, per *kind*, `Enclose` in `Interfaces.lean`. `Enclose.toLayer`
+forgets the kind, which is how a chain mixes kinds and is read off a file at run time.
 
 ## References
 
@@ -85,14 +78,6 @@ def Layer.comp (L₂ : Layer S m k) (L₁ : Layer S n m) : Layer S n k where
 theorem Layer.comp_sound {L₂ : Layer S m k} {L₁ : Layer S n m} (h₂ : L₂.Sound g)
     (h₁ : L₁.Sound f) : (L₂.comp L₁).Sound (g ∘ f) :=
   ⟨fun s x hx => h₂.enclose_outer _ _ (h₁.enclose_outer s x hx)⟩
-
-/-- A kind's enclosure: `enclose` on its weights, the function `eval` it encloses, held `Erased`,
-and the guarantee, proved once for all weights. -/
-class Enclose (L : ℕ → ℕ → Type u) (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
-  eval {n m : ℕ} : L n m → Erased (Vec ℝ n → Vec ℝ m)
-  enclose {n m : ℕ} : L n m → S n → S m
-  enclose_outer {n m : ℕ} (l : L n m) (s : S n) :
-    (eval l).out '' construct s ⊆ construct (enclose l s)
 
 /-- One layer of a kind, the kind forgotten, which is how a network holds it. -/
 def Enclose.toLayer {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) : Layer S n m where

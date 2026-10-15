@@ -21,8 +21,7 @@ indexed by — nothing between them, the same silence `ReachOuter` names.
 `Theorems.ReachSetOuter` puts every run into it.
 
 [1, Def. 3]'s `ξ(t, x0, uc(·), w(·))` is `x t` here, at whichever `x` and disturbance `w` a
-`Trajectory` supplies, at any plant; a linear plant takes no disturbance (`r = 0`), so there
-`R(t)` has none to quantify over.
+`Trajectory` supplies, at any plant, the disturbance in `W`.
 
 ## References
 
@@ -32,7 +31,7 @@ indexed by — nothing between them, the same silence `ReachOuter` names.
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -41,9 +40,9 @@ indexed by — nothing between them, the same silence `ReachOuter` names.
 namespace CORALean
 
 open ContSet
-open NeurNetContrSys (Plant)
+open ContDynamics
 
-variable {n : ℕ} {P : Type} [Plant P n]
+variable {n : ℕ} {P : Type} [ContDynamics P n]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
@@ -53,9 +52,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 from `R₀`, under a disturbance in `W`, is at, at time `t`: the exact reachable set, not an
 enclosure of it. -/
 def NeurNetContrSys.reachSet (sys : NeurNetContrSys P S n)
-    (π : Vec ℝ n → Vec ℝ (Plant.m sys.plant)) (Δtc : ℝ) (H : ℕ) (R₀ : S n)
-    (W : S (Plant.r sys.plant)) (t : ℝ) : Set (Vec ℝ n) :=
-  {y | ∃ x : ℝ → Vec ℝ n, ∃ w : ℝ → Vec ℝ (Plant.r sys.plant),
+    (π : Vec ℝ n → Vec ℝ (nrOfInputs sys.plant)) (Δtc : ℝ) (H : ℕ) (R₀ : S n)
+    (W : Set (Vec ℝ (nrOfDisturbances sys.plant))) (t : ℝ) : Set (Vec ℝ n) :=
+  {y | ∃ x : ℝ → Vec ℝ n, ∃ w : ℝ → Vec ℝ (nrOfDisturbances sys.plant),
     sys.Trajectory π Δtc H R₀ W x w ∧ x t = y}
 
 end CORALean

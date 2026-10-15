@@ -48,7 +48,8 @@ variable {n : ℕ}
 
 /-- Every set the run holds is at order `o`: `reach_order_le` past the first
 step, and the caller's hypothesis at it. -/
-theorem NeurNetContrSysDT.aux_reach_h_le (sys : NeurNetContrSysDT ℝ 𝒵 n) {o : ℕ} (ho : 0 < o)
+theorem NeurNetContrSysDT.aux_reach_h_le (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n) {o : ℕ}
+    (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) :
     ∀ k, (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩).h ≤ o * n
   | 0 => hR₀
@@ -68,7 +69,8 @@ theorem NeurNetContrSysDT.aux_step_le (n hEnc o hIn hOut : ℕ) (hi : hIn ≤ o 
 
 /-- `k` steps cost at most `k` worst-case steps, at a per-layer bound `LC` and a
 bound `hEnc` on what the controller's enclosure carries into each step. -/
-theorem NeurNetContrSysDT.reachCost_le (sys : NeurNetContrSysDT ℝ 𝒵 n) {o : ℕ} (ho : 0 < o)
+theorem NeurNetContrSysDT.reachCost_le (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n) {o : ℕ}
+    (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost)
     (hEnc : ℕ) (hE : ∀ k, (sys.contr.enclose (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h ≤ hEnc)
     (k : ℕ) :

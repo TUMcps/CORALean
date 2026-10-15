@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
+public import CORALean.ContDynamics.NonlinearARX.Instances
 public import CORALean.ContDynamics.NonlinearARX.Definitions.FloatModel
 public import CORALean.ContDynamics.NonlinearARX.Definitions.FloatJacModel
 public import CORALean.ContDynamics.NonlinearARX.Operations.API
