@@ -14,6 +14,13 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+`IsRefinedBy` is `Λ ≺ Λ̃` of [1, Sec. 4.3 (refinements)]: the Kleene signal takes the value of the
+four-valued one wherever that is not inconclusive.
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 
@@ -68,6 +75,18 @@ noncomputable def FourValuedSignal.indicator (I : STLInterval) (val default : Fo
 /-- `fourValuedSignal.fromKleeneSignal(kSig)`: a Kleene signal with nothing inconclusive. -/
 noncomputable def FourValuedSignal.fromKleeneSignal (kSig : KleeneSignal ℝ) : FourValuedSignal ℝ :=
   ⟨kSig, PointSegmentSignal.indicator STLInterval.empty false false⟩
+
+
+-- ==============================  `FourValuedSignal.IsRefinedBy`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Λ ≺ Λ̃`, [1, Sec. 4.3 (refinements)]: the Kleene signal refines `s` if at every time `t ≥ 0`
+it takes the value of `s` wherever that is not `Inconclusive`. -/
+def FourValuedSignal.IsRefinedBy (s : FourValuedSignal ℝ) (k : KleeneSignal ℝ) : Prop :=
+  ∀ t : ℝ, 0 ≤ t → (s.at t).IsRefinedBy (k.at t)
 
 
 -- ==================================  `FourValuedSignal.not`  ================================== --

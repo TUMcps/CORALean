@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.Kleene.Kleene
+public import CORALean.Specification.Kleene.Instances
 public import CORALean.Specification.Kleene.Operations.API
 public import CORALean.Specification.Kleene.Theorems.API
 

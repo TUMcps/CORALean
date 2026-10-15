@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Basic
 public import CORALean.Specification.KleeneSignal.Theorems.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueEqFalseOfAt
@@ -15,7 +16,7 @@ part: if the signal is nowhere unknown at times `t ≥ 0`, `toBoolSignal?` is `s
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

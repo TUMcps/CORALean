@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.Merge
 public import CORALean.Specification.FourValuedSignal.Theorems.FindIntervalsSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.SetSpec
@@ -24,7 +25,7 @@ This is `Merge` in line 9 of [1, Alg. 2]: `n.signal` is overwritten where the ne
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

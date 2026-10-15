@@ -612,8 +612,10 @@ an instance, `materialise_eq`, `mem_construct` — to `Theorems/`, and the stora
 `materialise`, which rebuilds a float set's function-typed fields as vectors and is the
 identity, to `Operations/`. Each goes where its size puts it: a section of `Basic.lean` when it
 is at most five code lines ("Small declarations"), a file of its own otherwise.
-`check-conventions.sh` rejects a `theorem`, `lemma` or `materialise…` definition in a main-type
-file.
+A validity predicate (`IsValid`, `WellFormed` and the like) is no part of the type: it is a
+definition in `Definitions/IsValid.lean` of the same class, like any other proposition about the type.
+`check-conventions.sh` rejects a `theorem`, `lemma`, validity predicate or `materialise…` definition
+in a main-type file.
 
 ### A theorem file defines nothing
 

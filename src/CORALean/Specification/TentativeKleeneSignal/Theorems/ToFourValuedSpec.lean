@@ -1,9 +1,11 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.CombineSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotIsValid
+public import CORALean.Specification.TentativeKleeneSignal.Definitions.IsValid
 public import CORALean.Specification.TentativeKleeneSignal.Operations.ToFourValued
 
 @[expose] public section
@@ -18,7 +20,7 @@ that can.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

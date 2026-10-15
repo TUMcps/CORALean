@@ -1,0 +1,53 @@
+module
+
+public import CORALean.Specification.PointSegmentSignal.Theorems.UntilSpec
+public import Mathlib.Data.Bool.Basic
+
+@[expose] public section
+
+/-!
+# The until of Boolean signals is monotone
+
+If `λ₁ ⊑ₜ λ₁'` and `λ₂ ⊑ₜ λ₂'` at every time `t ≥ 0` (a signal that is `true` at a time is `true`
+there in the primed one too), then `λ₁ U_I λ₂ ⊑ₜ λ₁' U_I λ₂'`: if the inputs are `true` at more
+times, the output is `true` more often. This is the monotonicity of `U_I` of
+[1, Sec. 4.2 (monotonicity)], which the paper derives from [1, Lemma 2] (`until_spec` here).
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PointSegmentSignal.until_mono (l l' r r' : PointSegmentSignal ℝ) (hl : l.IsValid)
+    (hl' : l'.IsValid) (hr : r.IsValid) (hr' : r'.IsValid) (U : STLInterval)
+    (hU : ∀ f, U.fieldsOf = some f → 0 ≤ f.lower)
+    (h1 : ∀ t : ℝ, 0 ≤ t → l.at t ≤ l'.at t) (h2 : ∀ t : ℝ, 0 ≤ t → r.at t ≤ r'.at t) :
+    ∀ t : ℝ, 0 ≤ t → (l.until U r).at t ≤ (l'.until U r').at t := by -- --- PROOF ---
+  intro t ht
+  obtain ⟨-, h⟩ := PointSegmentSignal.until_spec l r hl hr U hU
+  obtain ⟨-, h'⟩ := PointSegmentSignal.until_spec l' r' hl' hr' U hU
+  rw [Bool.le_iff_imp, h t ht, h' t ht]
+  rintro ⟨t', hu, hr0, hl0⟩
+  have hpos : 0 ≤ t' := by
+    have := STLInterval.zero_le_of_mem_set U hU _ hu; linarith
+  refine ⟨t', hu, Bool.le_iff_imp.1 (h2 t' hpos) hr0, fun x hx1 hx2 => ?_⟩
+  exact Bool.le_iff_imp.1 (h1 x (by linarith)) (hl0 x hx1 hx2)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

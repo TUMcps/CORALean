@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.FourValued.Theorems.Basic
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.ToKleeneSignal
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
 public import CORALean.Specification.KleeneSignal.Theorems.SetSpec
@@ -27,7 +28,7 @@ With `False` and `True` this is the underapproximation `⌊Λ̃⌋` and the over
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

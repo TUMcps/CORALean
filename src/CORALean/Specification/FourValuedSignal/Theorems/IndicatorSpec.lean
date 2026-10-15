@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.Basic
 public import CORALean.Specification.KleeneSignal.Theorems.IndicatorSpec
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorSpec
@@ -16,7 +17,7 @@ and `default` elsewhere: both parts are indicators, and `val` is recovered from 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

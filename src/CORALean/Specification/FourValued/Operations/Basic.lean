@@ -10,6 +10,14 @@ public import CORALean.Specification.Kleene.Kleene
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+`floor`, `ceil`, `join` and `IsRefinedBy` are `⌊·⌋`, `⌈·⌉`, `⊔₂` and `≺` of
+[1, Sec. 4.3 (refinements)]: a Kleene value refines a four-valued one.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 
@@ -17,6 +25,32 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 
 namespace CORALean
+
+
+-- ====================================  `FourValued.ceil`  ===================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `⌈v⌉`, [1, Sec. 4.3 (refinements)]: `Inconclusive` replaced by `True`. -/
+def FourValued.ceil : FourValued → Kleene
+  | .ff => .ff
+  | .uu => .uu
+  | _ => .tt
+
+
+-- ====================================  `FourValued.floor`  ==================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `⌊v⌋`, [1, Sec. 4.3 (refinements)]: `Inconclusive` replaced by `False`. -/
+def FourValued.floor : FourValued → Kleene
+  | .tt => .tt
+  | .uu => .uu
+  | _ => .ff
 
 
 -- ==================================  `FourValued.fromBool`  =================================== --
@@ -52,6 +86,28 @@ def FourValued.fromKleene : Kleene → FourValued
 def FourValued.isInconclusive : FourValued → Bool
   | .ii => true
   | _ => false
+
+
+-- =================================  `FourValued.IsRefinedBy`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `k ≺ v`, [1, Sec. 4.3 (refinements)]: `v` is refined by the Kleene value `k` if `v` is not
+`Inconclusive` only when `k` is `v`. -/
+def FourValued.IsRefinedBy (v : FourValued) (k : Kleene) : Prop :=
+  v ≠ .ii → FourValued.fromKleene k = v
+
+
+-- ====================================  `FourValued.join`  ===================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `v ⊔₂ v'`, [1, Sec. 4.3 (refinements)]: `v` if `v = v'`, else `Inconclusive`. -/
+def FourValued.join (v v' : Kleene) : FourValued := if v = v' then FourValued.fromKleene v else .ii
 
 
 -- =================================  `FourValued.ofKleeneInc`  ================================= --

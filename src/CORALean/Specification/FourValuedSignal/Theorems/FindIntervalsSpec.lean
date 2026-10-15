@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.FindIntervals
 public import CORALean.Specification.STLInterval.Theorems.MaximalRunsCongr
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
@@ -19,7 +20,7 @@ extended through times where the signal is `match`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

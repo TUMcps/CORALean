@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Theorems.IndicatorSpec
 public import CORALean.Specification.KleeneSignal.Theorems.Basic
 public import CORALean.Specification.STLInterval.Operations.Basic
@@ -17,7 +18,7 @@ signal `a` that is `Unknown` throughout have the same value everywhere but are n
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

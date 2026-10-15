@@ -16,9 +16,9 @@
   "totals": {
     "papers": 96,
     "papers_with_findings": 88,
-    "in_scope": 1257,
-    "formalized": 1185,
-    "not_formalized": 72,
+    "in_scope": 1258,
+    "formalized": 1202,
+    "not_formalized": 56,
     "out_of_scope": 1072,
     "out_of_scope_by_reason": {
       "restated": 397,
@@ -28,26 +28,26 @@
       "not-covered": 86
     },
     "by_class": {
-      "correct": 788,
-      "underspecified": 243,
+      "correct": 798,
+      "underspecified": 250,
       "proof-gap": 37,
       "fixed": 106,
       "false": 11
     },
     "claims": {
       "in_scope": 478,
-      "formalized": 448,
-      "correct": 268,
-      "underspecified": 87,
+      "formalized": 454,
+      "correct": 270,
+      "underspecified": 91,
       "proof-gap": 37,
       "fixed": 49,
       "false": 7
     },
     "definitions": {
-      "in_scope": 779,
-      "formalized": 737,
-      "correct": 520,
-      "underspecified": 156,
+      "in_scope": 780,
+      "formalized": 748,
+      "correct": 528,
+      "underspecified": 159,
       "proof-gap": 0,
       "fixed": 57,
       "false": 4
@@ -5427,9 +5427,9 @@
       "label": "Lercher 2024",
       "year": 2024,
       "title": "Using Four-Valued Signal Temporal Logic for Incremental Verification of Hybrid Systems",
-      "in_scope": 28,
-      "formalized": 9,
-      "not_formalized": 19,
+      "in_scope": 29,
+      "formalized": 26,
+      "not_formalized": 3,
       "out_of_scope": 9,
       "out_of_scope_by_reason": {
         "restated": 0,
@@ -5439,26 +5439,26 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 7,
-        "underspecified": 2,
+        "correct": 17,
+        "underspecified": 9,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "claims": {
         "in_scope": 7,
-        "formalized": 1,
-        "correct": 0,
-        "underspecified": 1,
+        "formalized": 7,
+        "correct": 2,
+        "underspecified": 5,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "definitions": {
-        "in_scope": 21,
-        "formalized": 8,
-        "correct": 7,
-        "underspecified": 1,
+        "in_scope": 22,
+        "formalized": 19,
+        "correct": 15,
+        "underspecified": 4,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -5470,9 +5470,44 @@
           "reason": "the Lean signals are those of finite variability, which `Lemma 2` and the theorems need and `Sec. 2.3` does not ask for"
         },
         {
+          "result": "Sec. 2.3 (decomposition)",
+          "class": "underspecified",
+          "reason": "the decomposition into finitely many unitary signals exists only for finite variability, which `every Boolean signal` does not assume (see the findings): the Lean signals have it"
+        },
+        {
           "result": "Lemma 2",
           "class": "underspecified",
           "reason": "the decomposition into `n₁`, `n₂` unitary signals exists only for finite variability, which the lemma does not assume: the Lean signals have it"
+        },
+        {
+          "result": "Lemma 2 (STL)",
+          "class": "underspecified",
+          "reason": "the signals `⟦φᵢ⟧_ξ` are required valid (finite variability), as for `Lemma 2`, which the paper's executions have by the limit of `Sec. 2.5`"
+        },
+        {
+          "result": "Sec. 4.2 (satisfaction)",
+          "class": "underspecified",
+          "reason": "the signals `t ↦ â(R(t))` of the atoms are arbitrary functions in the paper, and its operators on `U₁`-signals are defined for finite variability only: `FourValuedSTL.IsAtomSignal R a (S a)` asks them valid"
+        },
+        {
+          "result": "Thm. 1",
+          "class": "underspecified",
+          "reason": "the satisfaction signal needs the finite variability the paper does not ask of `R` (see the findings): the Lean theorem asks the atomic signals valid"
+        },
+        {
+          "result": "Sec. 4.3 (satisfaction)",
+          "class": "underspecified",
+          "reason": "as `Sec. 4.2 (satisfaction)`: the atomic signals must have finite variability"
+        },
+        {
+          "result": "Thm. 2",
+          "class": "underspecified",
+          "reason": "as `Thm. 1`: the satisfaction signals need finite variability, so the Lean theorem asks the atomic signals valid"
+        },
+        {
+          "result": "Cor. 1",
+          "class": "underspecified",
+          "reason": "`⊥` implies `H ⊭ φ` fails for a system with no executions, the empty case the paper's setting leaves open (so not `fixed`), and the Lean statement assumes an execution; the signals of the atoms are valid, as for `Thm. 1`"
         }
       ]
     },
@@ -7751,8 +7786,8 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 7,
-          "underspecified": 4,
+          "correct": 17,
+          "underspecified": 11,
           "proof-gap": 0,
           "fixed": 0,
           "false": 0
@@ -8418,8 +8453,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 31,
-          "underspecified": 14,
+          "correct": 41,
+          "underspecified": 21,
           "proof-gap": 2,
           "fixed": 9,
           "false": 1
@@ -8469,8 +8504,8 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 704,
-        "underspecified": 212,
+        "correct": 714,
+        "underspecified": 219,
         "proof-gap": 33,
         "fixed": 89,
         "false": 10
@@ -8493,11 +8528,11 @@
       }
     },
     "theorems": {
-      "paper": 1751,
+      "paper": 1827,
       "float": 1909,
-      "helper": 1753,
-      "lemma": 3243,
-      "total": 8656,
+      "helper": 1757,
+      "lemma": 3217,
+      "total": 8710,
       "examples": 129
     }
   }

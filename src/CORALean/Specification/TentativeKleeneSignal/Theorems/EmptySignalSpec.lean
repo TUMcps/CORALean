@@ -2,6 +2,7 @@ module
 
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorSpec
 public import CORALean.Specification.STLInterval.Theorems.LowerStlInterval
+public import CORALean.Specification.TentativeKleeneSignal.Definitions.IsValid
 public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
 
 @[expose] public section
@@ -14,7 +15,7 @@ public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

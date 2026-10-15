@@ -7,6 +7,9 @@ public import CORALean.Specification.FourValued.Operations.Or
 public import CORALean.Specification.Kleene.Operations.And
 public import CORALean.Specification.Kleene.Operations.Basic
 public import CORALean.Specification.Kleene.Operations.Or
+public import CORALean.Specification.FourValued.Instances
+public import CORALean.Specification.Kleene.Instances
+public import CORALean.Specification.Kleene.Theorems.Basic
 
 @[expose] public section
 
@@ -15,6 +18,16 @@ public import CORALean.Specification.Kleene.Operations.Or
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+`le_iff` and `fromKleene_le_iff` are the truth order of [1, Sec. 2.2 (order)], with
+`truthOrder_spec` in its own file;
+`and_eq_join`, `or_eq_join`, `not_eq_join` and `uu_and_ii` are [1, Fig. 3], and `join_floor_ceil`
+and `isRefinedBy_iff` the characterization of `≺` in [1, Sec. 4.3 (refinements)].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 
@@ -43,6 +56,19 @@ theorem FourValued.and_assoc (a b c : FourValued) : (a.and b).and c = a.and (b.a
 
 /-- `&` is commutative. -/
 theorem FourValued.and_comm (a b : FourValued) : a.and b = b.and a := by
+  cases a <;> cases b <;> rfl
+
+
+-- =================================  `FourValued.and_eq_join`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Fig. 3`: `a & b` is the `⊔₂` of the Kleene conjunction of the underapproximations
+`⌊a⌋ ∧ ⌊b⌋` and that of the overapproximations `⌈a⌉ ∧ ⌈b⌉`. -/
+theorem FourValued.and_eq_join (a b : FourValued) :
+    a.and b = FourValued.join (a.floor.and b.floor) (a.ceil.and b.ceil) := by
   cases a <;> cases b <;> rfl
 
 
@@ -186,6 +212,54 @@ theorem FourValued.fromKleene_or (a b : Kleene) :
   cases a <;> cases b <;> rfl
 
 
+-- ===============================  `FourValued.isRefinedBy_iff`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `v` is refined by `k` iff `⌊v⌋ ⊑ₜ k ⊑ₜ ⌈v⌉`, [1, Sec. 4.3 (refinements)]. -/
+theorem FourValued.isRefinedBy_iff (v : FourValued) (k : Kleene) :
+    v.IsRefinedBy k ↔ v.floor ≤ k ∧ k ≤ v.ceil := by
+  cases v <;> cases k <;> simp [FourValued.IsRefinedBy, FourValued.floor, FourValued.ceil,
+    FourValued.fromKleene, Kleene.le_iff_code, Kleene.code]
+
+
+-- ===============================  `FourValued.join_floor_ceil`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `v = ⌊v⌋ ⊔₂ ⌈v⌉`, [1, Sec. 4.3 (refinements)]. -/
+theorem FourValued.join_floor_ceil (v : FourValued) : FourValued.join v.floor v.ceil = v := by
+  cases v <;> rfl
+
+
+-- ===================================  `FourValued.le_iff`  ==================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `v ⊑ₜ v'` iff `v = v'`, or `v` is `False`, or `v'` is `True`. -/
+theorem FourValued.le_iff (a b : FourValued) :
+    a ≤ b ↔ a = b ∨ a = FourValued.ff ∨ b = FourValued.tt := Iff.rfl
+
+
+-- ==============================  `FourValued.fromKleene_le_iff`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The order on `U₂` restricts to that on `U₁`, [1, Sec. 2.2 (order)]. -/
+theorem FourValued.fromKleene_le_iff (a b : Kleene) :
+    FourValued.fromKleene a ≤ FourValued.fromKleene b ↔ a ≤ b := by
+  cases a <;> cases b <;> simp [FourValued.le_iff, Kleene.le_iff_code, Kleene.code,
+    FourValued.fromKleene]
+
+
 -- ===================================  `FourValued.not_and`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
@@ -195,6 +269,18 @@ theorem FourValued.fromKleene_or (a b : Kleene) :
 /-- De Morgan: `~(a & b) = ~a | ~b`. -/
 theorem FourValued.not_and (a b : FourValued) : (a.and b).not = a.not.or b.not := by
   cases a <;> cases b <;> rfl
+
+
+-- =================================  `FourValued.not_eq_join`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Fig. 3`: `~a` is the `⊔₂` of `~⌊a⌋` and `~⌈a⌉`. -/
+theorem FourValued.not_eq_join (a : FourValued) :
+    a.not = FourValued.join a.floor.not a.ceil.not := by
+  cases a <;> rfl
 
 
 -- ===================================  `FourValued.not_not`  =================================== --
@@ -288,6 +374,19 @@ theorem FourValued.or_comm (a b : FourValued) : a.or b = b.or a := by
   cases a <;> cases b <;> rfl
 
 
+-- =================================  `FourValued.or_eq_join`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Fig. 3`: `a | b` is the `⊔₂` of the Kleene disjunctions of the under- and the
+overapproximations. -/
+theorem FourValued.or_eq_join (a b : FourValued) :
+    a.or b = FourValued.join (a.floor.or b.floor) (a.ceil.or b.ceil) := by
+  cases a <;> cases b <;> rfl
+
+
 -- ====================================  `FourValued.or_ff`  ==================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
@@ -331,6 +430,18 @@ theorem FourValued.or_self (a : FourValued) : a.or a = a := by
 /-- `True` absorbs under `|`. -/
 theorem FourValued.or_tt (a : FourValued) : a.or .tt = .tt := by
   cases a <;> rfl
+
+
+-- ==================================  `FourValued.uu_and_ii`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Fig. 3`: `⊣₁ ∧ ⊣₂ = ⊣₂`, the join of `⊣₁ ∧ ⊥ = ⊥` and `⊣₁ ∧ ⊤ = ⊣₁`. -/
+theorem FourValued.uu_and_ii :
+    FourValued.uu.and .ii = .ii ∧
+      FourValued.uu.and .ii = FourValued.join (Kleene.uu.and .ff) (Kleene.uu.and .tt) := ⟨rfl, rfl⟩
 
 
 end CORALean

@@ -39,6 +39,7 @@ public import CORALean.Specification.STLInterval.Theorems.SetMinkDiff
 public import CORALean.Specification.STLInterval.Theorems.SetMinus
 public import CORALean.Specification.STLInterval.Theorems.SetMinusInterval
 public import CORALean.Specification.STLInterval.Theorems.SetMinusNum
+public import CORALean.Specification.STLInterval.Theorems.SetOrdConnected
 public import CORALean.Specification.STLInterval.Theorems.SetPlus
 public import CORALean.Specification.STLInterval.Theorems.SetPlusInterval
 public import CORALean.Specification.STLInterval.Theorems.SetPlusNum

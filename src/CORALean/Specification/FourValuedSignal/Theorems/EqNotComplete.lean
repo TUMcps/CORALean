@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Theorems.UniformSignalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.AtNot
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
@@ -16,7 +17,7 @@ that is `Inconclusive` throughout have the same value everywhere but are not `==
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

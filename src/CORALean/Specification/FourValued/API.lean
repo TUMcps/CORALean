@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.FourValued.FourValued
+public import CORALean.Specification.FourValued.Instances
 public import CORALean.Specification.FourValued.Operations.API
 public import CORALean.Specification.FourValued.Theorems.API
 

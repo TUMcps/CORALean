@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.Kleene.Operations.Basic
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.KleeneSignal
 public import CORALean.Specification.KleeneSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.CombineSpec
@@ -27,7 +28,7 @@ signal is valid, `True` where both are `true` and `False` where both are `false`
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

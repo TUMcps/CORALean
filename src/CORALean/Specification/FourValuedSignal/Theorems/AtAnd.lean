@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.And
 public import CORALean.Specification.FourValuedSignal.Theorems.MinMaxSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalAtIff
@@ -20,7 +21,7 @@ none is `False` and one is `Inconclusive`; otherwise `Unknown`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

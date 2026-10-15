@@ -1,6 +1,8 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Theorems.AndIsRefinedBy
 public import CORALean.Specification.FourValuedSignal.Theorems.AtAnd
+public import CORALean.Specification.FourValuedSignal.Theorems.AtEqJoin
 public import CORALean.Specification.FourValuedSignal.Theorems.AtNot
 public import CORALean.Specification.FourValuedSignal.Theorems.AtOr
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
@@ -10,13 +12,18 @@ public import CORALean.Specification.FourValuedSignal.Theorems.EqNotComplete
 public import CORALean.Specification.FourValuedSignal.Theorems.FindIntervalsSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.FromKleeneSignalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.IndicatorSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.IsRefinedByIff
 public import CORALean.Specification.FourValuedSignal.Theorems.MergeSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.MinMaxSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.NotIsRefinedBy
 public import CORALean.Specification.FourValuedSignal.Theorems.SetSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalAt
 public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalAtIff
 public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalEqNoneIff
+public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalIsRefinedBy
 public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.UniformSignalSpec
+public import CORALean.Specification.FourValuedSignal.Theorems.UntilIsRefinedBy
 public import CORALean.Specification.FourValuedSignal.Theorems.UntilSpec
 
 /-!

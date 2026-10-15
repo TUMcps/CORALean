@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetSpec
+public import CORALean.Specification.TentativeKleeneSignal.Definitions.IsValid
 public import CORALean.Specification.TentativeKleeneSignal.Operations.Observe
 
 @[expose] public section
@@ -16,7 +17,7 @@ Nothing is ever removed.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

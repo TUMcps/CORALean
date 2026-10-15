@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Until
 public import CORALean.Specification.KleeneSignal.Theorems.MinMaxSpec
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalAtIff
@@ -26,7 +27,7 @@ This is the direct semantics of `U_I` in [1, Eq. 2], the unknown case being the 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

@@ -3,6 +3,8 @@ module
 public import CORALean.Specification.Kleene.Operations.And
 public import CORALean.Specification.Kleene.Operations.Basic
 public import CORALean.Specification.Kleene.Operations.Or
+public import CORALean.Specification.Kleene.Instances
+public import Mathlib.Data.Bool.Basic
 
 @[expose] public section
 
@@ -11,6 +13,12 @@ public import CORALean.Specification.Kleene.Operations.Or
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+`le_iff_code`, `le_iff_tt_ff` and `truthOrder_spec` are the truth order of
+[1, Sec. 2.2 (order)] on the three values (`le_iff_tt_ff` is the form [1, Lemma 3] uses);
+`and_eq_join`, `or_eq_join` and `not_eq_join` are the `U₁` layer of [1, Fig. 3], and
+`join_floor_ceil`, `isRefinedBy_iff` and `isRefinedBy_iff_tt_ff` the characterization of `≺` in
+[1, Sec. 4.2 (refinements)].
 
 `code_and`, `code_or` and `code_not` say that on three values `&` is the minimum, `|` the maximum
 and `~` the reversal of the stored codes, which is the truth order ⊥ ⊑ₜ ⊣₁ ⊑ₜ ⊤ of
@@ -48,6 +56,19 @@ theorem Kleene.and_assoc (a b c : Kleene) : (a.and b).and c = a.and (b.and c) :=
 
 /-- `&` is commutative. -/
 theorem Kleene.and_comm (a b : Kleene) : a.and b = b.and a := by
+  cases a <;> cases b <;> rfl
+
+
+-- ===================================  `Kleene.and_eq_join`  =================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Fig. 3`, the `U₁` layer: `a & b` is the `⊔₁` of the conjunction of the underapproximations
+`⌊a⌋ ∧ ⌊b⌋` and that of the overapproximations `⌈a⌉ ∧ ⌈b⌉`. -/
+theorem Kleene.and_eq_join (a b : Kleene) :
+    a.and b = Kleene.join (a.floor && b.floor) (a.ceil && b.ceil) := by
   cases a <;> cases b <;> rfl
 
 
@@ -188,6 +209,65 @@ theorem Kleene.fromBool_or (a b : Bool) :
   cases a <;> cases b <;> rfl
 
 
+-- =================================  `Kleene.isRefinedBy_iff`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `k` is refined by `b` iff `⌊k⌋ ⊑ₜ b ⊑ₜ ⌈k⌉`, [1, Sec. 4.2 (refinements)]. -/
+theorem Kleene.isRefinedBy_iff (k : Kleene) (b : Bool) :
+    k.IsRefinedBy b ↔ k.floor ≤ b ∧ b ≤ k.ceil := by
+  cases k <;> cases b <;> simp [Kleene.IsRefinedBy, Kleene.floor, Kleene.ceil, Kleene.fromBool,
+    Bool.le_iff_imp]
+
+
+-- ==============================  `Kleene.isRefinedBy_iff_tt_ff`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `k` is refined by `b` iff `True` of `k` gives `true` and `False` of `k` gives `false`. -/
+theorem Kleene.isRefinedBy_iff_tt_ff (k : Kleene) (b : Bool) :
+    k.IsRefinedBy b ↔ (k = Kleene.tt → b = true) ∧ (k = Kleene.ff → b = false) := by
+  cases k <;> cases b <;> simp [Kleene.IsRefinedBy, Kleene.fromBool]
+
+
+-- =================================  `Kleene.join_floor_ceil`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `k = ⌊k⌋ ⊔₁ ⌈k⌉`, [1, Sec. 4.2 (refinements)]. -/
+theorem Kleene.join_floor_ceil (k : Kleene) : Kleene.join k.floor k.ceil = k := by
+  cases k <;> rfl
+
+
+-- ===================================  `Kleene.le_iff_code`  =================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- On `U₁` the order is that of the stored codes, [1, Sec. 2.2 (order)]. -/
+theorem Kleene.le_iff_code (a b : Kleene) : a ≤ b ↔ a.code ≤ b.code := Iff.rfl
+
+
+-- ==================================  `Kleene.le_iff_tt_ff`  =================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `a ⊑ₜ b` iff `True` of `a` gives `True` of `b` and `False` of `b` gives `False` of `a`: the form
+in which [1, Lemma 3] is proved from the direct semantics [1, Eq. 2]. -/
+theorem Kleene.le_iff_tt_ff (a b : Kleene) :
+    a ≤ b ↔ (a = Kleene.tt → b = Kleene.tt) ∧ (b = Kleene.ff → a = Kleene.ff) := by
+  cases a <;> cases b <;> simp [Kleene.le_iff_code, Kleene.code]
+
+
 -- =====================================  `Kleene.not_and`  ===================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
@@ -197,6 +277,17 @@ theorem Kleene.fromBool_or (a b : Bool) :
 /-- De Morgan: `~(a & b) = ~a | ~b`. -/
 theorem Kleene.not_and (a b : Kleene) : (a.and b).not = a.not.or b.not := by
   cases a <;> cases b <;> rfl
+
+
+-- ===================================  `Kleene.not_eq_join`  =================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Fig. 3`, the `U₁` layer: `~a` is the `⊔₁` of `¬⌊a⌋` and `¬⌈a⌉`. -/
+theorem Kleene.not_eq_join (a : Kleene) : a.not = Kleene.join (!a.floor) (!a.ceil) := by
+  cases a <;> rfl
 
 
 -- =====================================  `Kleene.not_not`  ===================================== --
@@ -289,6 +380,19 @@ theorem Kleene.or_comm (a b : Kleene) : a.or b = b.or a := by
   cases a <;> cases b <;> rfl
 
 
+-- ===================================  `Kleene.or_eq_join`  ==================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Fig. 3`, the `U₁` layer: `a | b` is the `⊔₁` of the disjunctions of the under- and the
+overapproximations. -/
+theorem Kleene.or_eq_join (a b : Kleene) :
+    a.or b = Kleene.join (a.floor || b.floor) (a.ceil || b.ceil) := by
+  cases a <;> cases b <;> rfl
+
+
 -- =====================================  `Kleene.or_self`  ===================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
@@ -298,6 +402,17 @@ theorem Kleene.or_comm (a b : Kleene) : a.or b = b.or a := by
 /-- `|` is idempotent. -/
 theorem Kleene.or_self (a : Kleene) : a.or a = a := by
   cases a <;> rfl
+
+
+-- =================================  `Kleene.truthOrder_spec`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `⊥ ⊑ₜ ⊣₁ ⊑ₜ ⊤`, [1, Sec. 2.2 (order)]. -/
+theorem Kleene.truthOrder_spec : Kleene.ff ≤ Kleene.uu ∧ Kleene.uu ≤ Kleene.tt := by
+  simp [Kleene.le_iff_code, Kleene.code]
 
 
 end CORALean
