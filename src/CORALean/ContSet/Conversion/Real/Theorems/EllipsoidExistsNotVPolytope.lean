@@ -19,9 +19,9 @@ A polytope is a convex hull of finitely many points, and the closed unit disc is
 d`. Every unit vector would then be a vertex, and there are infinitely many of them.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -30,22 +30,24 @@ d`. Every unit vector would then be a vertex, and there are infinitely many of t
 namespace CORALean.Real
 
 open Matrix
+open scoped MatrixOrder
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The points of the unit ellipsoid in the plane: the closed unit disc. -/
 theorem Ellipsoid.aux_mem_disc (x : Vec ℝ 2) :
-    x ∈ (⟨2, 0, 1⟩ : Ellipsoid 2).construct ↔ x 0 ^ 2 + x 1 ^ 2 ≤ 1 := by -- --- PROOF ---
+    x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ↔ x 0 ^ 2 + x 1 ^ 2 ≤ 1 := by -- --- PROOF ---
+  have hG : (⟨1, 0, .one⟩ : Ellipsoid 2).G = 1 := CFC.sqrt_one
+  have hball : x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ↔ ‖x‖₂ ≤ 1 :=
+    ⟨fun ⟨u, hu, hx⟩ => by rw [hx, hG, Matrix.one_mulVec, zero_add]; exact hu,
+      fun h => ⟨x, h, by rw [hG, Matrix.one_mulVec, zero_add]⟩⟩
   have hsq : ‖x‖₂ ^ 2 = x 0 ^ 2 + x 1 ^ 2 := by rw [norm₂_sq, Fin.sum_univ_two]
+  rw [hball, ← hsq]
   constructor
-  · rintro ⟨u, hu, rfl⟩
-    have h2 : ‖u‖₂ ^ 2 ≤ 1 := by nlinarith [norm₂_nonneg u]
-    rw [norm₂_sq, Fin.sum_univ_two] at h2
-    simpa using h2
   · intro h
-    refine ⟨x, ?_, by simp⟩
-    have : ‖x‖₂ ^ 2 ≤ 1 := hsq ▸ h
+    nlinarith [norm₂_nonneg x]
+  · intro h
     nlinarith [norm₂_nonneg x]
 
 /-- The unit vectors `((1 - t²)/(1 + t²), 2t/(1 + t²))`, one for each natural number `t`. -/
@@ -64,7 +66,7 @@ theorem Ellipsoid.aux_unit_family (t : ℕ) :
 
 theorem Ellipsoid.exists_not_vPolytope :
     ∃ E : Ellipsoid 2, ¬ ∃ V : VPolytope (Vec ℝ 2), V.construct = E.construct := by -- --- PROOF ---
-  refine ⟨⟨2, 0, 1⟩, ?_⟩
+  refine ⟨⟨1, 0, .one⟩, ?_⟩
   rintro ⟨V, hV⟩
   -- every vertex is in the disc
   have hvert : ∀ j, V.V j 0 ^ 2 + V.V j 1 ^ 2 ≤ 1 := fun j => by

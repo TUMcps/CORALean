@@ -7,6 +7,7 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 @[expose] public section
 
@@ -42,6 +43,7 @@ theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ 
     (hF : IsUnit F.det)
     (hr : (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r) :
     Z.construct ⊆ (Z.ellipsoidNorm F r).construct := by -- --- PROOF ---
+  rw [Zonotope.ellipsoidNorm, Ellipsoid.construct_ofFactor]
   rintro _ ⟨β, hβ, rfl⟩
   -- the transformed point `v = F⁻¹ ∑ βⱼ gⱼ` is no longer than `√r`
   set v : Vec ℝ n := ∑ j, β j • (F⁻¹ *ᵥ Z.G j) with hv
@@ -59,7 +61,6 @@ theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ 
       nlinarith [norm₂_nonneg v]
     refine ⟨0, by rw [norm₂_zero]; exact zero_le_one, ?_⟩
     rw [Matrix.mulVec_zero, ← hFv, hv0, Matrix.mulVec_zero]
-    rfl
   -- otherwise `u = v / √r` is in the unit ball and `√r F u = F v`
   · have hs : 0 < √r := Real.sqrt_pos.mpr hrpos
     refine ⟨(√r)⁻¹ • v, ?_, ?_⟩

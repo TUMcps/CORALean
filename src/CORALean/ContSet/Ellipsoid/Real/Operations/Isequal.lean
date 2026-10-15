@@ -8,16 +8,14 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 # `Ellipsoid.isequal`
 
 CORA's `@ellipsoid/isequal.m` for two ellipsoids: both empty, or neither and the shape matrices
-`Q` and the centers `c` agree to the tolerance (`withinTol`). Here the ellipsoid is stored by its
-generators `G` with `Q = G Gᵀ`, and the tolerance is `0`: the test compares the representation,
-the same number of generators, the same center and the same `G`. That is stricter than CORA's on
-`Q` (two generator matrices with `G Gᵀ = H Hᵀ` denote the same ellipsoid), so the test is sound,
-not exact. An ellipsoid here always contains its center, so CORA's emptiness case does not arise.
+`Q` and the centers `q` agree to the tolerance (`withinTol`). Here the tolerance is `0`: the same
+`Q` and the same `q`, which is exact, the stored pair determining the set and conversely. An
+ellipsoid here always contains its center, so CORA's emptiness case does not arise.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -30,9 +28,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `ellipsoid/isequal` at tolerance `0`, on the generator form: same count, center and `G`. -/
+/-- `ellipsoid/isequal` at tolerance `0`: the same shape matrix and center. -/
 def Ellipsoid.isequal (E S : Ellipsoid n) : Prop :=
-  ∃ e : E.k = S.k, E.c = S.c ∧ ∀ i j, E.G i j = S.G i (Fin.cast e j)
+  E.Q = S.Q ∧ E.q = S.q
 
 end CORALean.Real
 

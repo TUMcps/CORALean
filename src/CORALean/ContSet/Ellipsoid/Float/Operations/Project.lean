@@ -8,13 +8,14 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 /-!
 # `Ellipsoid.project` over a floating-point scalar
 
-The center and the rows of the generator matrix at the chosen coordinates, and the error box
-projected with `Interval.project`. Selecting coordinates does no arithmetic, so nothing rounds.
+CORA's `@ellipsoid/project`: the shape matrix at the chosen rows and columns, `E.Q(dims, dims)`,
+the center at the chosen coordinates, and the error box projected with `Interval.project`.
+Selecting entries does no arithmetic, so nothing rounds.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -28,9 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Ellipsoid.project (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) : Ellipsoid 𝕋 m where
-  k := E.k
-  c := fun i => E.c (dims i)
-  G := fun i j => E.G (dims i) j
+  Q := fun i j => E.Q (dims i) (dims j)
+  q := fun i => E.q (dims i)
   I_error := E.I_error.project dims
 
 end CORALean.Float

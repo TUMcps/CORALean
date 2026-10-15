@@ -136,7 +136,7 @@ def ConPolyZono.interval (cPZ : ConPolyZono (Vec ℝ n)) : Interval (Vec ℝ n) 
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- An ellipsoid as a support function, in closed form: `ℓ c + ‖Gᵀ ℓ‖₂` -/
+/-- An ellipsoid as a support function, in closed form: `ℓ q + √(ℓᵀ Q ℓ)` -/
 noncomputable def Ellipsoid.supportFunction (E : Ellipsoid n) : SupportFunction (Vec ℝ n) where
   h ℓ := ((E.supportBound ℓ).val : EReal)
 
@@ -260,13 +260,13 @@ variable {n : ℕ}
 -- ===================================  `Ellipsoid.levelSet`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
-/-- `levelSet(E)`: the single constraint `(x - q)ᵀ (G Gᵀ)⁻¹ (x - q) - 1 ≤ 0`. -/
+/-- `levelSet(E)`: the single constraint `(x - q)ᵀ Q⁻¹ (x - q) - 1 ≤ 0`. -/
 noncomputable def Ellipsoid.levelSet (E : Ellipsoid n) : LevelSet n where
   m := 1
-  f x := fun _ => (x - E.c) ⬝ᵥ ((E.G * E.Gᵀ)⁻¹ *ᵥ (x - E.c)) - 1
+  f x := fun _ => (x - E.q) ⬝ᵥ (E.Q⁻¹ *ᵥ (x - E.q)) - 1
   op := fun _ => .le
 
 end

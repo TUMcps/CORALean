@@ -11,12 +11,14 @@ public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidPosSemidefSpect
 /-!
 # An ellipsoid as a spectrahedral shadow
 
-`Ellipsoid.spectraShadow_exact`: its `spectraShadow` is exactly it.
+`Ellipsoid.spectraShadow_exact`: its `spectraShadow` is exactly it. The free variables are the
+point itself (`c = 0`, `G = I`), and the Schur form at a point is positive semi-definite iff the
+point is in the ellipsoid (`posSemidef_spectraShadow_iff`).
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,19 +35,17 @@ variable {n : ℕ}
 
 theorem Ellipsoid.spectraShadow_exact (E : Ellipsoid n) :
     E.construct = E.spectraShadow.construct := by -- --- PROOF ---
-  apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨u, hu, rfl⟩
-    refine ⟨u, (Ellipsoid.posSemidef_spectraShadow_iff E u).mpr hu, ?_⟩
+  -- the shadow's point is its free variable
+  have hx : ∀ u : Vec ℝ n, E.spectraShadow.c + ∑ i, u i • E.spectraShadow.G i = u := fun u => by
     funext r
-    simp only [Ellipsoid.spectraShadow, Matrix.mulVec, dotProduct, Pi.add_apply,
-      Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
-    exact congrArg _ (Finset.sum_congr rfl fun _ _ => mul_comm _ _)
-  · rintro _ ⟨u, hu, rfl⟩
-    refine ⟨u, (Ellipsoid.posSemidef_spectraShadow_iff E u).mp hu, ?_⟩
-    funext r
-    simp only [Ellipsoid.spectraShadow, Matrix.mulVec, dotProduct, Pi.add_apply,
-      Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
-    exact congrArg _ (Finset.sum_congr rfl fun _ _ => mul_comm _ _)
+    simp [Ellipsoid.spectraShadow, Finset.sum_apply, Pi.single_apply]
+  ext x
+  constructor
+  · intro hxE
+    exact ⟨x, (Ellipsoid.posSemidef_spectraShadow_iff E x).mpr hxE, (hx x).symm⟩
+  · rintro ⟨u, hu, rfl⟩
+    have h := (Ellipsoid.posSemidef_spectraShadow_iff E u).mp hu
+    rwa [← hx u] at h
 
 end CORALean.Real
 

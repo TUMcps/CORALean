@@ -3,7 +3,12 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.InflateSubPosSemidef
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsPsdSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.QuadLeQuadUp
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.QuadDownLeQuad
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
 public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
@@ -18,18 +23,19 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 
 Outer: every point of `E` with `|c x - y| ≤ φ` lies in
 `Ellipsoid.intersectStripGollamudi steps E c φ y λ`, for every `λ`, `steps` and input, with no
-positive-definiteness or invertibility hypothesis; a `λ` outside `[0, 1)` or a failed generator
-check returns `E` itself. A point `x = E.c + G u + e` of `E` satisfies `|vᵀ u - δ| ≤ φ'` for the
-stored `v`, `δ` and the widened `φ'` (the box and the two rounding gaps), so
-`Ellipsoid.exists_ball_of_strip` writes `u = κ v + α w + β (vᵀ w) v` with `‖w‖₂ ≤ 1`, every
-hypothesis of it read off a directed rounding. Then `x` is the stored center and generators at
-`w`, plus the center's and the generators' rounding gaps, plus `e`, each in its part of the new box.
-Not exact.
+positive-definiteness or invertibility hypothesis; a `Q` not certified positive semi-definite, a
+`λ` outside `[0, 1)` or a failed check returns `E` itself. A point `x = q + G u + e` of `E`,
+`G = Q^(1/2)`, satisfies `|vᵀ u - δ| ≤ φ'` for `v = G cᵀ`, the stored `δ` and the widened `φ'`,
+so `Ellipsoid.exists_ball_of_strip` writes `u = κ v + α w + β (vᵀ w) v` with `‖w‖₂ ≤ 1`, every
+hypothesis of it read off a directed rounding (`ν = vᵀ v = c Q cᵀ` through `quadUp`/`quadDown`).
+Then `x = q + κ W + G N w + e`, `W = G v = Q cᵀ`: the stored center plus its rounding, a point of
+the ellipsoid of `G N (G N)ᵀ = α² Q + (2αβ + β²ν) W Wᵀ`, which the stored shape dominates
+(`inflate_sub_posSemidef`), and `e`. Not exact.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -87,36 +93,26 @@ theorem Ellipsoid.aux_le_sq_mul {S a q r : ℝ} (ha : 0 < a) (hq : S / a ≤ q)
   exact h2
 
 
-/-- The strip in the factor vector: `x = E.c + G u + e` with `|c x - y| ≤ φ` gives
-`|vᵀ u - δ| ≤ φ'` for the stored `v` and `δ`, `φ` widened by the box and the two rounding gaps. -/
-theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y : 𝕋) {u : Vec ℝ E.k}
-    {e : Vec ℝ n} (hu : ‖u‖₂ ≤ 1)
+/-- The strip in the factor vector: `x = q + G u + e` with `|c x - y| ≤ φ` gives
+`|vᵀ u - δ| ≤ φ'` for `v = G cᵀ` (`G` symmetric) and the stored `δ`, `φ` widened by the box and
+the rounding gap of `δ`. -/
+theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y : 𝕋) {G : Mat ℝ n n}
+    (hG : Gᵀ = G) {u e : Vec ℝ n}
     (he : ∀ i, toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i))
-    (hx : |∑ i, toReal (c i) * (toReal (E.c i) + ∑ j, toReal (E.G i j) * u j + e i)
-      - toReal y| ≤ toReal φ)
-    {v ev : Vec 𝕋 E.k} (hv : ∀ j, v j = dotDown (fun i => E.G i j) c)
-    (hev : ∀ j, ev j = subUp (dotUp (fun i => E.G i j) c) (v j)) :
+    (hx : |∑ i, toReal (c i) * (toReal (E.q i) + (G *ᵥ u) i + e i) - toReal y| ≤ toReal φ) :
     let box := dotUp (fun i => absolute (c i))
       (fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i)))
-    let δs := subDown y (dotUp c E.c)
-    |toRealVec v ⬝ᵥ u - toReal δs|
-      ≤ toReal (addUp (addUp (addUp φ box) (sumUp ev))
-          (subUp (subUp y (dotDown c E.c)) δs)) := by -- --- PROOF ---
+    let δs := subDown y (dotUp c E.q)
+    |(G *ᵥ toRealVec c) ⬝ᵥ u - toReal δs|
+      ≤ toReal (addUp (addUp φ box) (subUp (subUp y (dotDown c E.q)) δs)) := by -- --- PROOF ---
   intro box δs
-  -- the exact `v` and its rounding gap
-  set vt : Vec ℝ E.k := fun j => ∑ i, toReal (E.G i j) * toReal (c i) with hvt
-  have hvt₁ : ∀ j, toRealVec v j ≤ vt j := fun j => by
-    simp only [toRealVec, hvt, hv j]; exact dotDown_le _ _
-  have hvt₂ : ∀ j, vt j - toRealVec v j ≤ toReal (ev j) := fun j => by
-    rw [hev j]
-    exact le_trans (sub_le_sub_right (le_dotUp (fun i => E.G i j) c) _) (sub_le_subUp _ _)
   -- the exact `δ` and its rounding gap
-  set δt := toReal y - ∑ i, toReal (c i) * toReal (E.c i) with hδt
-  have hδ₁ : toReal (subDown y (dotUp c E.c)) ≤ δt :=
-    le_trans (subDown_le_sub _ _) (sub_le_sub_left (le_dotUp c E.c) _)
-  have hδ₂ : δt - toReal (subDown y (dotUp c E.c))
-      ≤ toReal (subUp (subUp y (dotDown c E.c)) (subDown y (dotUp c E.c))) := le_trans
-    (sub_le_sub_right (le_trans (sub_le_sub_left (dotDown_le c E.c) _) (sub_le_subUp _ _)) _)
+  set δt := toReal y - ∑ i, toReal (c i) * toReal (E.q i) with hδt
+  have hδ₁ : toReal (subDown y (dotUp c E.q)) ≤ δt :=
+    le_trans (subDown_le_sub _ _) (sub_le_sub_left (le_dotUp c E.q) _)
+  have hδ₂ : δt - toReal (subDown y (dotUp c E.q))
+      ≤ toReal (subUp (subUp y (dotDown c E.q)) (subDown y (dotUp c E.q))) := le_trans
+    (sub_le_sub_right (le_trans (sub_le_sub_left (dotDown_le c E.q) _) (sub_le_subUp _ _)) _)
     (sub_le_subUp _ _)
   -- the box through `c`
   set ce := ∑ i, toReal (c i) * e i with hce
@@ -127,77 +123,47 @@ theorem Ellipsoid.aux_strip_widen (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n) (φ y 
     refine mul_le_mul_of_nonneg_left ?_ (abs_nonneg _)
     rw [toReal_maximum, toReal_absolute, toReal_absolute]
     exact abs_le_max_abs_abs (he i).1 (he i).2
-  -- the gap of `v` through `u`, whose entries are in `[-1, 1]`
-  have hev : |∑ j, (vt j - toRealVec v j) * u j| ≤ toReal (sumUp ev) := by
-    refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (sum_le_sumUp _))
-    refine Finset.sum_le_sum fun j _ => ?_
-    have h0 : 0 ≤ vt j - toRealVec v j := sub_nonneg.mpr (hvt₁ j)
-    rw [abs_mul, abs_of_nonneg h0]
-    have hu1 : |u j| ≤ 1 := le_trans (abs_le_norm₂ u j) hu
-    calc (vt j - toRealVec v j) * |u j| ≤ (vt j - toRealVec v j) * 1 :=
-          mul_le_mul_of_nonneg_left hu1 h0
-      _ ≤ toReal (ev j) := by rw [mul_one]; exact hvt₂ j
-  -- `vᵀ u - δ = (c x - y) - c e - (vt - v)ᵀ u + (δt - δ)`
-  have hsw : ∑ i, toReal (c i) * ∑ j, toReal (E.G i j) * u j = ∑ j, vt j * u j := by
-    simp only [hvt, Finset.mul_sum, Finset.sum_mul]
-    rw [Finset.sum_comm]
-    exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun i _ => by ring
-  have hcx : ∑ i, toReal (c i) * (toReal (E.c i) + ∑ j, toReal (E.G i j) * u j + e i)
-      - toReal y = (∑ j, vt j * u j) - δt + ce := by
-    simp only [mul_add, Finset.sum_add_distrib, hsw, hδt, hce]
+  -- `vᵀ u = c G u`, `G` symmetric
+  have hvu : (G *ᵥ toRealVec c) ⬝ᵥ u = ∑ i, toReal (c i) * (G *ᵥ u) i := by
+    rw [dotProduct_comm, dotProduct_mulVec, ← mulVec_transpose, hG, dotProduct_comm]
+    rfl
+  have hcx : ∑ i, toReal (c i) * (toReal (E.q i) + (G *ᵥ u) i + e i) - toReal y
+      = (G *ᵥ toRealVec c) ⬝ᵥ u - δt + ce := by
+    rw [hvu]
+    simp only [mul_add, Finset.sum_add_distrib, hδt, hce]
     ring
-  have hsplit : toRealVec v ⬝ᵥ u - toReal (subDown y (dotUp c E.c))
-      = (∑ i, toReal (c i) * (toReal (E.c i) + ∑ j, toReal (E.G i j) * u j + e i) - toReal y)
-        - ce - ∑ j, (vt j - toRealVec v j) * u j + (δt - toReal (subDown y (dotUp c E.c))) := by
-    rw [hcx]
-    simp only [dotProduct, sub_mul, Finset.sum_sub_distrib]
-    ring
-  -- `φ'` is above the three widenings, and each part is bounded
+  -- `φ'` is above the two widenings, and each part is bounded
   have hφ₁ := add_le_addUp φ box
-  have hφ₂ := add_le_addUp (addUp φ box) (sumUp ev)
-  have hφ₃ := add_le_addUp (addUp (addUp φ box) (sumUp ev))
-    (subUp (subUp y (dotDown c E.c)) δs)
-  rw [hsplit, abs_le]
+  have hφ₂ := add_le_addUp (addUp φ box) (subUp (subUp y (dotDown c E.q)) δs)
   have a1 := abs_le.mp hx
   have a2 := abs_le.mp hce₁
-  have a3 := abs_le.mp hev
+  rw [hcx] at a1
+  rw [abs_le]
   constructor <;> linarith
 
-/-- `λ`, `ν = vᵀ v`, `s = 1 - λ + λ ν` and `sigma_sq` against their directed roundings. -/
-theorem Ellipsoid.aux_strip_scalars {k : ℕ} (v : Vec 𝕋 k) {lam δ φ' om omHi νLo νHi sLo sHi corr
+
+/-- `λ`, `s = 1 - λ + λ ν` and `sigma_sq` against their directed roundings, `ν` between its
+own. -/
+theorem Ellipsoid.aux_strip_scalars {ν : ℝ} {lam δ φ' om omHi νLo νHi sLo sHi corr
     S : 𝕋} (hl0 : 0 ≤ toReal lam) (hom : 0 < toReal om) (h_om : om = subDown FloatOps.one lam)
-    (h_omHi : omHi = subUp FloatOps.one lam)
-    (h_νLo : νLo = maximum FloatOps.zero (dotDown v v))
-    (h_νHi : νHi = sqSumUp fun j => absolute (v j))
+    (h_omHi : omHi = subUp FloatOps.one lam) (hν0 : 0 ≤ ν) (hνLo : toReal νLo ≤ ν)
+    (hνHi : ν ≤ toReal νHi)
     (h_sLo : sLo = maximum om (addDown om (mulDown lam νLo)))
     (h_sHi : sHi = addUp omHi (mulUp lam νHi))
     (h_corr : corr = divDown (mulDown (maximum FloatOps.zero (mulDown lam om))
       (maximum FloatOps.zero (mulDown δ δ))) sHi)
     (h_S : S = subUp (addUp omHi (mulUp lam (mulUp φ' φ'))) corr) :
-    toReal om ≤ 1 - toReal lam ∧ toRealVec v ⬝ᵥ toRealVec v ≤ toReal νHi
-      ∧ 0 < toReal sLo ∧ toReal sLo ≤ 1 - toReal lam + toReal lam * (toRealVec v ⬝ᵥ toRealVec v)
-      ∧ 1 - toReal lam + toReal lam * (toRealVec v ⬝ᵥ toRealVec v) ≤ toReal sHi
+    toReal om ≤ 1 - toReal lam
+      ∧ 0 < toReal sLo ∧ toReal sLo ≤ 1 - toReal lam + toReal lam * ν
+      ∧ 1 - toReal lam + toReal lam * ν ≤ toReal sHi
       ∧ 1 - toReal lam + toReal lam * toReal φ' ^ 2 - toReal lam * (1 - toReal lam)
-          * toReal δ ^ 2 / (1 - toReal lam + toReal lam * (toRealVec v ⬝ᵥ toRealVec v))
+          * toReal δ ^ 2 / (1 - toReal lam + toReal lam * ν)
         ≤ toReal S := by -- --- PROOF ---
   set l := toReal lam with hl
-  set ν := toRealVec v ⬝ᵥ toRealVec v with hν
-  have hν0 : 0 ≤ ν := by rw [hν, dotProduct_self]; positivity
   have hom₁ : toReal om ≤ 1 - l := by
     have := subDown_le_sub FloatOps.one lam; rwa [toReal_one, ← h_om] at this
   have hom₂ : 1 - l ≤ toReal omHi := by
     have := sub_le_subUp FloatOps.one lam; rwa [toReal_one, ← h_omHi] at this
-  -- `ν` between its roundings
-  have hνHi : ν ≤ toReal νHi := by
-    have h := sq_sum_le_sqSumUp (v := toRealVec v) (m := fun j => absolute (v j))
-      fun j => by rw [toReal_absolute]; rfl
-    rw [hν, dotProduct_self, norm₂_sq, h_νHi]
-    exact h
-  have hνLo : toReal νLo ≤ ν := by
-    rw [h_νLo, toReal_maximum, toReal_zero]
-    exact max_le hν0 (dotDown_le v v)
-  have hνLo0 : 0 ≤ toReal νLo := by
-    rw [h_νLo, toReal_maximum, toReal_zero]; exact le_max_left _ _
   -- `s` between its roundings
   set s := 1 - l + l * ν with hs
   have hlν : 0 ≤ l * ν := mul_nonneg hl0 hν0
@@ -217,7 +183,7 @@ theorem Ellipsoid.aux_strip_scalars {k : ℕ} (v : Vec 𝕋 k) {lam δ φ' om om
     linarith
   have hs0 : 0 < s := lt_of_lt_of_le hsLo₀ hsLo
   have hsH0 : 0 < toReal sHi := lt_of_lt_of_le hs0 hsHi
-  refine ⟨hom₁, hνHi, hsLo₀, hsLo, hsHi, ?_⟩
+  refine ⟨hom₁, hsLo₀, hsLo, hsHi, ?_⟩
   -- `sigma_sq ≤ S`
   have hφ2 : l * toReal φ' ^ 2 ≤ toReal (mulUp lam (mulUp φ' φ')) := by
     refine le_trans ?_ (mul_le_mulUp _ _)
@@ -282,46 +248,45 @@ theorem Ellipsoid.aux_strip_factor {S om sLo νHi g α β γLo : 𝕋} {l ν s :
     exact Ellipsoid.aux_le_sq_mul hs0 hq
       (le_trans (by rw [h_g]; exact le_sqrtUp steps _) (le_trans hgγ hγ₁))
 
-/-- The factored point through `G`: `G (κ v + a w + b (vᵀ w) v) = κ G v + (a G + b (G v) vᵀ) w`,
-row by row. -/
-theorem Ellipsoid.aux_strip_row {k : ℕ} (G : Mat ℝ n k) {v w u : Vec ℝ k} {κ a b : ℝ}
-    (h : u = κ • v + a • w + (b * (v ⬝ᵥ w)) • v) (i : Fin n) :
-    ∑ j, G i j * u j = κ * (∑ j, G i j * v j)
-      + ∑ j, (a * G i j + b * (∑ l, G i l * v l) * v j) * w j := by -- --- PROOF ---
-  subst h
-  have e1 : ∑ j, G i j * ((b * (v ⬝ᵥ w)) * v j) = (b * (v ⬝ᵥ w)) * ∑ j, G i j * v j := by
-    rw [Finset.mul_sum]
-    exact Finset.sum_congr rfl fun j _ => by ring
-  have e2 : ∑ j, (b * (∑ l, G i l * v l) * v j) * w j
-      = (b * (∑ l, G i l * v l)) * (v ⬝ᵥ w) := by
-    rw [dotProduct, Finset.mul_sum _ (fun j => v j * w j)]
-    exact Finset.sum_congr rfl fun j _ => by ring
-  have e3 : ∑ j, G i j * (κ * v j) = κ * ∑ j, G i j * v j := by
-    rw [Finset.mul_sum]
-    exact Finset.sum_congr rfl fun j _ => by ring
-  have e4 : ∑ j, G i j * (a * w j) = ∑ j, a * G i j * w j :=
-    Finset.sum_congr rfl fun j _ => by ring
-  simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul, mul_add, Finset.sum_add_distrib, add_mul]
-  rw [e1, e2, e3, e4]
-  ring
-
-/-- One stored generator entry `α G + β (G v) v`, against its two roundings. -/
-theorem Ellipsoid.aux_strip_gen {α β Gij vj wLo wHi : 𝕋} {W : ℝ} (hW₁ : toReal wLo ≤ W)
-    (hW₂ : W ≤ toReal wHi) :
-    let lo := Interval.mulLo (Interval.mulLo β β wLo wHi) (Interval.mulHi β β wLo wHi) vj vj
-    let hi := Interval.mulHi (Interval.mulLo β β wLo wHi) (Interval.mulHi β β wLo wHi) vj vj
-    |toReal α * toReal Gij + toReal β * W * toReal vj - toReal (addDown (mulDown α Gij) lo)|
-      ≤ toReal (subUp (addUp (mulUp α Gij) hi) (addDown (mulDown α Gij) lo)) := by -- --- PROOF ---
-  intro lo hi
-  have hb := Ellipsoid.aux_mul_mem_corners (le_refl (toReal β)) (le_refl _) hW₁ hW₂
-  have hc := Ellipsoid.aux_mul_mem_corners (x := toReal vj) hb.1 hb.2 (le_refl _) (le_refl _)
-  have m1 := mulDown_le_mul α Gij
-  have m2 := mul_le_mulUp α Gij
-  have a1 := addDown_le_add (mulDown α Gij) lo
-  have a2 := add_le_addUp (mulUp α Gij) hi
-  have s1 := sub_le_subUp (addUp (mulUp α Gij) hi) (addDown (mulDown α Gij) lo)
-  rw [abs_le]
-  constructor <;> linarith
+/-- The factor `G N`, `N = α I + β v vᵀ`, `v = G cᵀ`: its value at `w` is `α G w + β (vᵀ w) W`,
+and its Gram matrix `α² Q + (2αβ + β² vᵀv) W Wᵀ`, `W = G v = Q cᵀ`. -/
+theorem Ellipsoid.aux_strip_shape {G Q : Mat ℝ n n} (hG : Gᵀ = G) (hGG : G * G = Q)
+    (cr : Vec ℝ n) (α β : ℝ) :
+    let v := G *ᵥ cr
+    let W := Q *ᵥ cr
+    let N : Mat ℝ n n := α • 1 + β • vecMulVec v v
+    (∀ w, (G * N) *ᵥ w = α • (G *ᵥ w) + (β * (v ⬝ᵥ w)) • W)
+      ∧ ∀ i j, ((G * N) * (G * N)ᵀ) i j
+        = α * α * Q i j + (α * β + α * β + β * β * (v ⬝ᵥ v)) * (W i * W j) := by -- --- PROOF ---
+  intro v W N
+  have hGv : G *ᵥ v = W := by rw [mulVec_mulVec, hGG]
+  -- `G N = α G + β W vᵀ`
+  have hGN : G * N = α • G + β • vecMulVec W v := by
+    rw [Matrix.mul_add, Matrix.mul_smul, Matrix.mul_one, Matrix.mul_smul, ← hGv]
+    congr 1
+    ext i j
+    simp [Matrix.mul_apply, vecMulVec_apply, Matrix.mulVec, dotProduct, Finset.sum_mul, mul_assoc]
+  refine ⟨fun w => ?_, fun i j => ?_⟩
+  · rw [hGN, Matrix.add_mulVec, Matrix.smul_mulVec, Matrix.smul_mulVec]
+    congr 1
+    funext i
+    simp [vecMulVec_apply, Matrix.mulVec, dotProduct, Finset.mul_sum, mul_comm]
+    exact Finset.sum_congr rfl fun k _ => by ring
+  · -- the Gram matrix, entry by entry
+    have hQ : ∀ i j, ∑ k, G i k * G j k = Q i j := fun i j => by
+      rw [← hGG, Matrix.mul_apply]
+      exact Finset.sum_congr rfl fun k _ => by
+        rw [show G j k = G k j from congrFun (congrFun hG k) j]
+    have hW : ∀ i, ∑ k, G i k * v k = W i := fun i => by rw [← hGv]; rfl
+    rw [hGN]
+    simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.add_apply, Matrix.smul_apply,
+      smul_eq_mul, vecMulVec_apply]
+    have e : ∀ k, (α * G i k + β * (W i * v k)) * (α * G j k + β * (W j * v k))
+        = α * α * (G i k * G j k) + α * β * W j * (G i k * v k) + α * β * W i * (G j k * v k)
+          + β * β * (W i * W j) * (v k * v k) := fun k => by ring
+    simp only [e, Finset.sum_add_distrib, ← Finset.mul_sum, hQ, hW]
+    simp only [dotProduct]
+    ring
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -332,34 +297,55 @@ theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid �
       ⊆ (Ellipsoid.intersectStripGollamudi steps E c φ y lam).construct := by -- --- PROOF ---
   rintro x ⟨hxE, hxS⟩
   unfold Ellipsoid.intersectStripGollamudi
-  extract_lets vV v ev δ eδ mag φ' νLo νHi om omHi sLo sHi corr S α g β γLo aLo aHi κLo κHi
-    wLoV wHiV wLo wHi qLo qHi bLo bHi GLo GHi GD
+  extract_lets wLoV wHiV wLo wHi δ eδ mag φ' νLo νHi om omHi sLo sHi corr S α g β γLo aLo aHi
+    κLo κHi qLo qHi b2νLo b2νHi μLo μHi X
   split_ifs with hc
   swap
   · exact hxE
-  obtain ⟨hl0, hom, hγLo, hgγ⟩ := hc
+  obtain ⟨hl0, hom, hγLo, hgγ, hpsd⟩ := hc
   rw [Ellipsoid.materialise_eq]
-  -- the four checks, read as reals
+  -- the checks, read as reals
   have hl0' : 0 ≤ toReal lam := by
     have := toReal_le_of_le hl0; rwa [toReal_zero] at this
   have hom' : 0 < toReal om := by
     have := toReal_lt_of_ltStrict hom; rwa [toReal_zero] at this
   have hγLo' : 0 < toReal γLo := by
     have := toReal_lt_of_ltStrict hγLo; rwa [toReal_zero] at this
-  -- the point: `x = E.c + G u + e`
+  have hQ := Ellipsoid.posSemidef_of_isPsd hpsd
+  -- the point: `x = q + G u + e`, `G = Q^(1/2)`
+  set Er : Real.Ellipsoid n := ⟨toRealMat E.Q, toRealVec E.q, hQ⟩ with hEr
+  set G := Er.G with hGdef
+  have hGt : Gᵀ = G := Er.G_transpose
+  have hGG : G * G = toRealMat E.Q := by
+    have h := Er.G_mul_transpose
+    rwa [Er.G_transpose] at h
   obtain ⟨xn, hxn, e, he, rfl⟩ := hxE
-  obtain ⟨u, hu, hxu⟩ := Ellipsoid.mem_nominalSet_iff.mp hxn
+  have hxn' : xn ∈ Er.construct := by
+    have h : xn ∈ (nominal E).ellipsoid.construct := hxn
+    rwa [Ellipsoid.nominal_of_psd hQ] at h
+  obtain ⟨u, hu, rfl⟩ := hxn'
   have he' : ∀ i, toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i) := fun i => he i
-  have hxS' : |∑ i, toReal (c i) * (toReal (E.c i) + ∑ j, toReal (E.G i j) * u j + e i)
-      - toReal y| ≤ toReal φ := by
-    have h : |∑ i, toReal (c i) * (xn + e) i - toReal y| ≤ toReal φ := hxS
-    simpa only [Pi.add_apply, hxu] using h
+  have hxS' : |∑ i, toReal (c i) * (toReal (E.q i) + (G *ᵥ u) i + e i) - toReal y|
+      ≤ toReal φ := hxS
+  -- `v = G cᵀ`, `ν = vᵀ v = c Q cᵀ` between its roundings, and `W = G v = Q cᵀ`
+  obtain ⟨hNw, hNN⟩ := Ellipsoid.aux_strip_shape hGt hGG (toRealVec c) (toReal α) (toReal β)
+  set v := G *ᵥ toRealVec c with hv
+  set ν := v ⬝ᵥ v with hν
+  set W := toRealMat E.Q *ᵥ toRealVec c with hWdef
+  have hν0 : 0 ≤ ν := by rw [hν, dotProduct_self]; positivity
+  have hνQ : ν = toRealVec c ⬝ᵥ (toRealMat E.Q *ᵥ toRealVec c) := by
+    rw [hν, hv, dotProduct_mulVec, ← mulVec_transpose, hGt, mulVec_mulVec, hGG, dotProduct_comm]
+  have hνHi : ν ≤ toReal νHi := by rw [hνQ]; exact E.quad_le_quadUp c
+  have hνLo : toReal νLo ≤ ν := by
+    simp only [νLo, toReal_maximum, toReal_zero]
+    exact max_le hν0 (by rw [hνQ]; exact E.quadDown_le_quad c)
+  have hW₁ : ∀ i, toReal (wLo i) ≤ W i ∧ W i ≤ toReal (wHi i) := fun i => by
+    simp only [wLo, wHi, wLoV, wHiV, Vector.getElem_ofFn]
+    exact ⟨dotDown_le (E.Q i) c, le_dotUp (E.Q i) c⟩
   -- the strip in the factor vector, and the scalars
-  have hstrip := Ellipsoid.aux_strip_widen E c φ y hu he' hxS'
-    (v := v) (ev := ev) (fun j => by simp [v, vV]) (fun _ => rfl)
-  obtain ⟨hom₁, hνHi, hsLo₀, hsLo, hsHi, hσ⟩ := Ellipsoid.aux_strip_scalars v (δ := δ)
-    (φ' := φ') hl0' hom' rfl rfl rfl rfl rfl rfl rfl rfl
-  have hν0 : 0 ≤ toRealVec v ⬝ᵥ toRealVec v := by rw [dotProduct_self]; positivity
+  have hstrip := Ellipsoid.aux_strip_widen E c φ y hGt he' hxS'
+  obtain ⟨hom₁, hsLo₀, hsLo, hsHi, hσ⟩ := Ellipsoid.aux_strip_scalars (δ := δ)
+    (φ' := φ') hl0' hom' rfl rfl hν0 hνLo hνHi rfl rfl rfl rfl
   have hβ : toReal β ≤ 0 := by
     simp only [β]
     split_ifs
@@ -367,11 +353,10 @@ theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid �
     · rw [toReal_zero]
   obtain ⟨hα, hγ, hSα, hSγ⟩ := Ellipsoid.aux_strip_factor (S := S) steps hom' hom₁ hν0 hνHi
     hsLo₀ hsLo rfl rfl hβ rfl hγLo' (toReal_le_of_le hgγ)
-  obtain ⟨w, hw, huw⟩ := Ellipsoid.exists_ball_of_strip (v := toRealVec v) (u := u) hl0'
+  obtain ⟨w, hw, huw⟩ := Ellipsoid.exists_ball_of_strip (v := v) (u := u) hl0'
     (by linarith) hu hstrip hσ hα hγ hSα hSγ
-  -- `κ = λ δ / s` and `G v`, between their roundings
-  set κ := toReal lam * toReal δ / (1 - toReal lam + toReal lam * (toRealVec v ⬝ᵥ toRealVec v))
-    with hκ
+  -- `κ = λ δ / s`, between its roundings
+  set κ := toReal lam * toReal δ / (1 - toReal lam + toReal lam * ν) with hκ
   have hsHi₀ := lt_of_lt_of_le (lt_of_lt_of_le hsLo₀ hsLo) hsHi
   have hκ₁ : toReal κLo ≤ κ ∧ κ ≤ toReal κHi := by
     have hb := Ellipsoid.aux_div_between hsLo₀ hsLo hsHi (mulDown_le_mul lam δ)
@@ -382,33 +367,75 @@ theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid �
     have d4 := div_le_divUp aHi sHi hsHi₀
     simp only [κLo, κHi, toReal_minimum, toReal_maximum]
     exact ⟨le_trans (min_le_min d1 d2) hb.1, le_trans hb.2 (max_le_max d3 d4)⟩
-  set W : Vec ℝ n := fun i => ∑ j, toReal (E.G i j) * toRealVec v j with hW
-  have hW₁ : ∀ i, toReal (wLo i) ≤ W i ∧ W i ≤ toReal (wHi i) := fun i => by
-    simp only [wLo, wHi, wLoV, wHiV, Vector.getElem_ofFn]
-    exact ⟨dotDown_le _ _, le_dotUp _ _⟩
-  -- the exact generators `α G + β (G v) vᵀ`
-  set Gt : Mat ℝ n E.k := fun i j => toReal α * toReal (E.G i j) + toReal β * W i * toRealVec v j
-    with hGt
-  have hGt₁ : ∀ i j, |Gt i j - toReal (GLo i j)| ≤ toReal (GD i j) := fun i j =>
-    Ellipsoid.aux_strip_gen (hW₁ i).1 (hW₁ i).2
-  -- the point, as the new nominal point plus the three remainders
-  refine ⟨fun i => toReal (qLo i) + ∑ j, toReal (GLo i j) * w j,
-    Ellipsoid.mem_nominalSet_iff.mpr ⟨w, hw, fun _ => rfl⟩,
-    fun i => (e i + ((toReal (E.c i) + κ * W i) - toReal (qLo i)))
-      + ∑ j, (Gt i j - toReal (GLo i j)) * w j,
-    Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨e, he, _,
-      Interval.sub_mem_residual (x := fun i => toReal (E.c i) + κ * W i) (fun i => ?_), rfl⟩,
-      _, Ellipsoid.mem_generatorError hGt₁ hw, rfl⟩, ?_⟩
-  · have hm := Ellipsoid.aux_mul_mem_corners hκ₁.1 hκ₁.2 (hW₁ i).1 (hW₁ i).2
-    have a1 := addDown_le_add (E.c i) (Interval.mulLo κLo κHi (wLo i) (wHi i))
-    have a2 := add_le_addUp (E.c i) (Interval.mulHi κLo κHi (wLo i) (wHi i))
+  -- the new nominal point `G N w`, in the ellipsoid of `G N (G N)ᵀ`
+  set N : Mat ℝ n n := toReal α • 1 + toReal β • vecMulVec v v with hN
+  set F := Real.Ellipsoid.ofFactor (G * N) 0 with hF
+  have hyF : (G * N) *ᵥ w ∈ F.construct := by
+    rw [hF, Real.Ellipsoid.construct_ofFactor]
+    exact ⟨w, hw, by rw [zero_add]⟩
+  -- the interval matrix holds `F.Q`, entry by entry
+  have hμ : toReal μLo ≤ toReal α * toReal β + toReal α * toReal β + toReal β * toReal β * ν
+      ∧ toReal α * toReal β + toReal α * toReal β + toReal β * toReal β * ν ≤ toReal μHi := by
+    have hb2 := Ellipsoid.aux_mul_mem_corners (mulDown_le_mul β β) (mul_le_mulUp β β) hνLo hνHi
+    have m1 := mulDown_le_mul α β
+    have m2 := mul_le_mulUp α β
+    have a1 := addDown_le_add (mulDown α β) (mulDown α β)
+    have a2 := addDown_le_add (addDown (mulDown α β) (mulDown α β)) b2νLo
+    have a3 := add_le_addUp (mulUp α β) (mulUp α β)
+    have a4 := add_le_addUp (addUp (mulUp α β) (mulUp α β)) b2νHi
+    exact ⟨by simp only [μLo, b2νLo] at *; linarith, by simp only [μHi, b2νHi] at *; linarith⟩
+  have hX : ∀ i j, toReal (X.inf i j) ≤ F.Q i j ∧ F.Q i j ≤ toReal (X.sup i j) := by
+    intro i j
+    -- `α² Q + μ W Wᵀ`, each product between its corners
+    have hFQ : F.Q i j = toReal α * toReal α * toReal (E.Q i j)
+        + (toReal α * toReal β + toReal α * toReal β + toReal β * toReal β * ν)
+          * (W i * W j) := hNN i j
+    rw [hFQ]
+    have h1 := Ellipsoid.aux_mul_mem_corners (mulDown_le_mul α α) (mul_le_mulUp α α)
+      (le_refl (toReal (E.Q i j))) (le_refl (toReal (E.Q i j)))
+    have hWW := Ellipsoid.aux_mul_mem_corners (hW₁ i).1 (hW₁ i).2 (hW₁ j).1 (hW₁ j).2
+    have h2 := Ellipsoid.aux_mul_mem_corners hμ.1 hμ.2 hWW.1 hWW.2
+    have a1 := addDown_le_add
+      (Interval.mulLo (mulDown α α) (mulUp α α) (E.Q i j) (E.Q i j))
+      (Interval.mulLo μLo μHi (Interval.mulLo (wLo i) (wHi i) (wLo j) (wHi j))
+        (Interval.mulHi (wLo i) (wHi i) (wLo j) (wHi j)))
+    have a2 := add_le_addUp
+      (Interval.mulHi (mulDown α α) (mulUp α α) (E.Q i j) (E.Q i j))
+      (Interval.mulHi μLo μHi (Interval.mulLo (wLo i) (wHi i) (wLo j) (wHi j))
+        (Interval.mulHi (wLo i) (wHi i) (wLo j) (wHi j)))
+    exact ⟨by simp only [X]; linarith, by simp only [X]; linarith⟩
+  -- `F.Q` symmetric, so the inflated matrix dominates it and `F` lies in the nominal part
+  have hsym : ∀ i j, F.Q i j = F.Q j i := fun i j => by
+    have h := F.psd.isHermitian.eq
+    simp only [conjTranspose_eq_transpose_of_trivial] at h
+    exact (congrFun (congrFun h i) j).symm
+  have hdom := Ellipsoid.inflate_sub_posSemidef hX hsym
+  have hmem := Ellipsoid.add_sub_mem_nominalSet
+    (E := ⟨Ellipsoid.inflate X, qLo, E.I_error.plus (Interval.residual qLo qHi qLo)⟩)
+    (Or.inr hdom) hyF
+  -- the center's rounding, which the residual box holds
+  have hr : (fun i => toReal (E.q i) + κ * W i - toReal (qLo i))
+      ∈ (Interval.residual qLo qHi qLo).construct := by
+    refine Interval.sub_mem_residual (x := fun i => toReal (E.q i) + κ * W i) fun i => ?_
+    have hm := Ellipsoid.aux_mul_mem_corners hκ₁.1 hκ₁.2 (hW₁ i).1 (hW₁ i).2
+    have a1 := addDown_le_add (E.q i) (Interval.mulLo κLo κHi (wLo i) (wHi i))
+    have a2 := add_le_addUp (E.q i) (Interval.mulHi κLo κHi (wLo i) (wHi i))
     exact ⟨by simp only [qLo]; linarith, by simp only [qHi]; linarith⟩
-  · funext i
-    have hrow := Ellipsoid.aux_strip_row (fun i j => toReal (E.G i j)) huw i
-    simp only [Pi.add_apply, hxu, Finset.sum_sub_distrib, sub_mul]
-    rw [hrow]
-    simp only [hGt, hW]
-    ring
+  refine ⟨_, hmem, _, Interval.plus_outer _ _ ⟨e, he, _, hr, rfl⟩, ?_⟩
+  -- `q + G u = q + κ W + G N w`
+  have hGu : G *ᵥ u = κ • W + (G * N) *ᵥ w := by
+    rw [hNw w, huw, Matrix.mulVec_add, Matrix.mulVec_add, Matrix.mulVec_smul, Matrix.mulVec_smul,
+      Matrix.mulVec_smul]
+    have hGv : G *ᵥ v = W := by rw [hv, mulVec_mulVec, hGG]
+    rw [hGv, add_assoc]
+  funext i
+  have hi := congrFun hGu i
+  simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul, Pi.sub_apply] at hi ⊢
+  show toReal (qLo i) + ((G * N) *ᵥ w - 0) i + (e i + (toReal (E.q i) + κ * W i - toReal (qLo i)))
+    = toReal (E.q i) + (G *ᵥ u) i + e i
+  rw [hi]
+  simp only [Pi.sub_apply, Pi.zero_apply, sub_zero]
+  ring
 
 end CORALean.Float
 

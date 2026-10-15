@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormPullbackEq
 public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 public import Mathlib.Analysis.Matrix.Order
@@ -18,7 +18,7 @@ public import Mathlib.Tactic.Ring
 # The Minkowski sum of two ellipsoids is not an ellipsoid
 
 [1, Sec. I (Fig. 1)]. The ellipses with shape matrices `diag(4, 1)` and `diag(1, 4)` have a
-sum whose support function `‖Gᵀℓ‖₂` would have to satisfy the parallelogram law, which
+sum whose support function `√(ℓᵀQℓ) = ‖Gᵀℓ‖₂` would have to satisfy the parallelogram law, which
 `ℓ ↦ √(ℓᵀQ₁ℓ) + √(ℓᵀQ₂ℓ)` breaks at `ℓ = (1, ±1)` against `e₁, e₂`: `20 + 20 ≠ 2·9 + 2·9`.
 The statement quantifies over every ellipsoid of the plane, degenerate ones included.
 
@@ -31,7 +31,7 @@ The statement quantifies over every ellipsoid of the plane, degenerate ones incl
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -94,53 +94,39 @@ theorem aux_parallelogram (E : Ellipsoid n) (u v : Vec ℝ n) :
     Finset.sum_sub_distrib]
   ring
 
+/-- `diag(4, 1)` is positive definite. -/
+theorem aux_posDef_41 : (diagonal ![(4 : ℝ), 1]).PosDef := by
+  rw [posDef_diagonal_iff]
+  intro i
+  fin_cases i <;> simp
+
+/-- `diag(1, 4)` is positive definite. -/
+theorem aux_posDef_14 : (diagonal ![(1 : ℝ), 4]).PosDef := by
+  rw [posDef_diagonal_iff]
+  intro i
+  fin_cases i <;> simp
+
 /-- The first ellipse: semi-axes `2` and `1`. -/
-def aux_E₁ : Ellipsoid 2 where
-  k := 2
-  c := 0
-  G := !![2, 0; 0, 1]
+noncomputable def aux_E₁ : Ellipsoid 2 := ⟨diagonal ![4, 1], 0, aux_posDef_41.posSemidef⟩
 
 /-- The second ellipse: semi-axes `1` and `2`. -/
-def aux_E₂ : Ellipsoid 2 where
-  k := 2
-  c := 0
-  G := !![1, 0; 0, 2]
-
-theorem aux_E₁_shape : aux_E₁.shape.PosDef := by -- --- PROOF ---
-  have : aux_E₁.shape = diagonal ![4, 1] := by
-    show (!![(2:ℝ), 0; 0, 1]) *
-      (!![(2:ℝ), 0; 0, 1])ᵀ = _
-    ext i j
-    fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
-    all_goals norm_num
-  rw [this, posDef_diagonal_iff]
-  intro i
-  fin_cases i <;> simp
-
-theorem aux_E₂_shape : aux_E₂.shape.PosDef := by -- --- PROOF ---
-  have : aux_E₂.shape = diagonal ![1, 4] := by
-    show (!![(1:ℝ), 0; 0, 2]) *
-      (!![(1:ℝ), 0; 0, 2])ᵀ = _
-    ext i j
-    fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
-    all_goals norm_num
-  rw [this, posDef_diagonal_iff]
-  intro i
-  fin_cases i <;> simp
+noncomputable def aux_E₂ : Ellipsoid 2 := ⟨diagonal ![1, 4], 0, aux_posDef_14.posSemidef⟩
 
 /-- The first ellipse's support length. -/
 theorem aux_len₁ (d : Vec ℝ 2) :
     ‖aux_E₁.pullback (aux_dotFun d)‖₂ = √((2 * d 0) ^ 2 + d 1 ^ 2) := by
-  simp only [Ellipsoid.pullback, aux_dualVec_dotFun, norm₂]
-  refine congrArg Real.sqrt ((Fin.sum_univ_two _).trans ?_)
-  simp [aux_E₁, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
+  rw [Ellipsoid.norm₂_pullback, aux_dualVec_dotFun]
+  congr 1
+  simp [aux_E₁, Matrix.mulVec, dotProduct, Fin.sum_univ_two, diagonal]
+  ring
 
 /-- The second ellipse's support length. -/
 theorem aux_len₂ (d : Vec ℝ 2) :
     ‖aux_E₂.pullback (aux_dotFun d)‖₂ = √(d 0 ^ 2 + (2 * d 1) ^ 2) := by
-  simp only [Ellipsoid.pullback, aux_dualVec_dotFun, norm₂]
-  refine congrArg Real.sqrt ((Fin.sum_univ_two _).trans ?_)
-  simp [aux_E₂, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
+  rw [Ellipsoid.norm₂_pullback, aux_dualVec_dotFun]
+  congr 1
+  simp [aux_E₂, Matrix.mulVec, dotProduct, Fin.sum_univ_two, diagonal]
+  ring
 
 /-- The support length of the sum is the sum of the support lengths: the center cancels in
 `d` and `-d`. -/
@@ -150,10 +136,10 @@ theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
       ‖aux_E₁.pullback (aux_dotFun d)‖₂ + ‖aux_E₂.pullback (aux_dotFun d)‖₂ := by -- --- PROOF ---
   have h1 := aux_support_sum_eq E aux_E₁ aux_E₂ h (aux_dotFun d)
   have h2 := aux_support_sum_eq E aux_E₁ aux_E₂ h (aux_dotFun (-d))
-  have hq₁ : aux_E₁.c = 0 := rfl
-  have hq₂ : aux_E₂.c = 0 := rfl
-  have hl : aux_dotFun (-d) E.c = -aux_dotFun d E.c := by
-    show (-d) ⬝ᵥ E.c = -(d ⬝ᵥ E.c)
+  have hq₁ : aux_E₁.q = 0 := rfl
+  have hq₂ : aux_E₂.q = 0 := rfl
+  have hl : aux_dotFun (-d) E.q = -aux_dotFun d E.q := by
+    show (-d) ⬝ᵥ E.q = -(d ⬝ᵥ E.q)
     exact neg_dotProduct _ _
   have hn : ∀ F : Ellipsoid 2, ‖F.pullback (aux_dotFun (-d))‖₂ = ‖F.pullback (aux_dotFun d)‖₂ := by
     intro F
@@ -161,7 +147,8 @@ theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
       simp [Ellipsoid.pullback, aux_dualVec_dotFun, Matrix.mulVec_neg]
     rw [this, norm₂_smul]
     simp
-  simp only [Ellipsoid.supportBound, hq₁, hq₂, map_zero, zero_add, hl, hn] at h1 h2
+  simp only [Ellipsoid.supportBound, ← Ellipsoid.norm₂_pullback, hq₁, hq₂, map_zero, zero_add, hl,
+    hn] at h1 h2
   linarith
 
 
@@ -169,9 +156,9 @@ theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
 
 /-- [1, Sec. I (Fig. 1)]: the sum of two nondegenerate ellipses is no ellipsoid. -/
 theorem Ellipsoid.exists_sum_not_construct :
-    ∃ E₁ E₂ : Ellipsoid 2, E₁.shape.PosDef ∧ E₂.shape.PosDef ∧
+    ∃ E₁ E₂ : Ellipsoid 2, E₁.Q.PosDef ∧ E₂.Q.PosDef ∧
       ∀ E : Ellipsoid 2, E₁.construct + E₂.construct ≠ E.construct := by -- --- PROOF ---
-  refine ⟨aux_E₁, aux_E₂, aux_E₁_shape, aux_E₂_shape, fun E h => ?_⟩
+  refine ⟨aux_E₁, aux_E₂, aux_posDef_41, aux_posDef_14, fun E h => ?_⟩
   -- the squared lengths at `(1, 1)`, `(1, -1)`, `e₁`, `e₂` would obey the parallelogram law
   have hp := aux_parallelogram E ![1, 0] ![0, 1]
   have e1 := aux_support_length_sum ![1, 0] E h

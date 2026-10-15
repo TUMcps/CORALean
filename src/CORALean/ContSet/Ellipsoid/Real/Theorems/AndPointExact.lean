@@ -29,13 +29,15 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The ellipsoid without generators denotes the single point. -/
+/-- The ellipsoid of zero shape denotes the single point. -/
 theorem Ellipsoid.aux_construct_ofPoint (p : Vec ℝ n) :
     (Ellipsoid.ofPoint p).construct = {p} := by -- --- PROOF ---
+  have hG : (Ellipsoid.ofPoint p).G = 0 := (Ellipsoid.G_eq_zero_iff _).2 rfl
   ext x
   constructor
   · rintro ⟨u, -, rfl⟩
-    simp [Ellipsoid.ofPoint]
+    rw [hG, Matrix.zero_mulVec, add_zero]
+    rfl
   · rintro rfl
     exact Ellipsoid.mem_ofPoint x
 

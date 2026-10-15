@@ -7,13 +7,12 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Isequal
 /-!
 # Ellipsoids passing `isequal` denote the same set
 
-Sound, not exact: `isequal` compares the generator matrices, and different `G` with the same
-`G Gᵀ` denote the same ellipsoid.
+`isequal` compares the shape matrices and the centers, which is all `construct` reads.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -28,13 +27,11 @@ variable {n : ℕ}
 
 theorem Ellipsoid.isequal_construct {E S : Ellipsoid n} (h : E.isequal S) :
     E.construct = S.construct := by -- --- PROOF ---
-  obtain ⟨e, hq, hG⟩ := h
-  obtain ⟨k₁, q₁, G₁⟩ := E
-  obtain ⟨k₂, q₂, G₂⟩ := S
-  simp only at e hq hG
-  subst e hq
-  have : G₁ = G₂ := funext fun i => funext fun j => hG i j
-  subst this
+  obtain ⟨hQ, hq⟩ := h
+  obtain ⟨Q₁, q₁, h₁⟩ := E
+  obtain ⟨Q₂, q₂, h₂⟩ := S
+  simp only at hQ hq
+  subst hQ hq
   rfl
 
 end CORALean.Real

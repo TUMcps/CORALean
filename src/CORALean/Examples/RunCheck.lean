@@ -32,7 +32,7 @@ scalar. `Dyadic 24` is the software scalar. The numbers are the demo's: compare,
 Run: `lake exe runcheck` (links, slow) or `lake env lean --run src/CORALean/Examples/RunCheck.lean`.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -134,7 +134,8 @@ def ofCPZ {n : ℕ} (P : ConPolyZono 𝕋 (Vec 𝕋 n)) : Out :=
 
 -- the remaining representations, and the containers of sets
 def ofEll {n : ℕ} (E : Ellipsoid 𝕋 n) : Out :=
-  ⟨s!"k={E.k} c={vecS E.c} err={boxS E.I_error}", vecF E.c ++ matF E.G ++ boxF E.I_error, false⟩
+  ⟨s!"q={vecS E.q} Q={matS E.Q} err={boxS E.I_error}",
+    vecF E.q ++ matF E.Q ++ boxF E.I_error, false⟩
 
 def ofBundle {n : ℕ} (B : ZonoBundle (Vec 𝕋 n)) : Out :=
   let hulls := (List.range B.k).filterMap fun i =>

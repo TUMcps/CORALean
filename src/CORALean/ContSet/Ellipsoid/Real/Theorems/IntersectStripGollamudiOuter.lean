@@ -6,6 +6,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
 public import Mathlib.Tactic.Abel
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Ring
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 
 @[expose] public section
 
@@ -165,6 +166,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer {Q : Mat ℝ n n} (hQ : Q.PosDef
       have := hPpd.dotProduct_mulVec_pos hne
       simp only [star_trivial] at this
       linarith
+    rw [Ellipsoid.ofShape_eq (by rw [← hzero, zero_smul]; exact .zero)]
     refine ⟨0, by rw [norm₂_zero]; exact zero_le_one, ?_⟩
     rw [mulVec_zero, add_zero]
     exact sub_eq_zero.1 (hd.symm.trans hd')

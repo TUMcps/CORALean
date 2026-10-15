@@ -4,6 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
 
@@ -35,24 +36,24 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Ellipsoid.aux_quad_eq_norm_sq (E : Ellipsoid n) (v : Vec ℝ n) :
-    v ⬝ᵥ (E.shape *ᵥ v) = ‖E.Gᵀ *ᵥ v‖₂ ^ 2 := by
-  rw [← dotProduct_self, Ellipsoid.dot_transpose, Ellipsoid.shape, ← Matrix.mulVec_mulVec]
+    v ⬝ᵥ (E.Q *ᵥ v) = ‖E.Gᵀ *ᵥ v‖₂ ^ 2 := by
+  rw [← dotProduct_self, Ellipsoid.dot_transpose, ← E.G_mul_transpose, ← Matrix.mulVec_mulVec]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank = n) :
     E₁.isBigger E₂ ↔
-      (fun x => x - E₂.c) '' E₂.construct ⊆
-        (fun x => x - E₁.c) '' E₁.construct := by -- --- PROOF ---
+      (fun x => x - E₂.q) '' E₂.construct ⊆
+        (fun x => x - E₁.q) '' E₁.construct := by -- --- PROOF ---
   constructor
   · rintro h _ ⟨x, ⟨u, hu, rfl⟩, rfl⟩
     -- the centered point `p = G₂ u`
     simp only [add_sub_cancel_left]
     set p : Vec ℝ n := E₂.G *ᵥ u with hp
     have hU := E₁.isUnit_shape hr
-    set w : Vec ℝ n := E₁.shape⁻¹ *ᵥ p with hw
-    have hQw : E₁.shape *ᵥ w = p := by
+    set w : Vec ℝ n := E₁.Q⁻¹ *ᵥ p with hw
+    have hQw : E₁.Q *ᵥ w = p := by
       rw [hw, Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv _
         ((Matrix.isUnit_iff_isUnit_det _).mp hU), Matrix.one_mulVec]
     -- `s = pᵀ w` is `‖G₁ᵀ w‖²`, and `s ≤ ‖G₂ᵀ w‖ ≤ sqrt s`
@@ -70,7 +71,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
     have hs0 : 0 ≤ p ⬝ᵥ w := by rw [hs]; positivity
     have hle : p ⬝ᵥ w ≤ 1 := by nlinarith
     -- so the centered point is in `E₁ - q₁`
-    refine ⟨E₁.c + p, ?_, add_sub_cancel_left _ _⟩
+    refine ⟨E₁.q + p, ?_, add_sub_cancel_left _ _⟩
     refine (E₁.ellipsoidNorm_le_one_iff hr p).mp ?_
     unfold Ellipsoid.ellipsoidNorm
     simp only
@@ -83,10 +84,10 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
     · rw [ha, zero_pow two_ne_zero]; exact sq_nonneg _
     · have hpos : 0 < ‖E₂.Gᵀ *ᵥ v‖₂ := lt_of_le_of_ne (norm₂_nonneg _) (Ne.symm ha)
       -- the support point of `E₂ - q₂` in direction `v`
-      set u : Vec ℝ E₂.k := ‖E₂.Gᵀ *ᵥ v‖₂⁻¹ • (E₂.Gᵀ *ᵥ v) with hu
+      set u : Vec ℝ n := ‖E₂.Gᵀ *ᵥ v‖₂⁻¹ • (E₂.Gᵀ *ᵥ v) with hu
       have hun : ‖u‖₂ = 1 := by
         rw [hu, norm₂_smul, abs_of_pos (inv_pos.mpr hpos), inv_mul_cancel₀ ha]
-      obtain ⟨_, ⟨u', hu', rfl⟩, hy⟩ := hsub ⟨E₂.c + E₂.G *ᵥ u, Ellipsoid.mem_construct hun.le,
+      obtain ⟨_, ⟨u', hu', rfl⟩, hy⟩ := hsub ⟨E₂.q + E₂.G *ᵥ u, Ellipsoid.mem_construct hun.le,
         add_sub_cancel_left _ _⟩
       have hGu : E₁.G *ᵥ u' = E₂.G *ᵥ u := by simpa using hy
       -- `a = vᵀ G₂ u` on one side, at most `‖G₁ᵀ v‖` on the other

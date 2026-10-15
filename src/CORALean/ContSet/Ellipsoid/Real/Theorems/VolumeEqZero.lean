@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.RankShape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
 public import Mathlib.LinearAlgebra.Matrix.ToLin
 
@@ -10,14 +11,15 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 /-!
 # A rank-deficient ellipsoid has volume zero
 
-With `rank G < n` the ellipsoid lies in the translate of the range of `G`, a proper subspace,
-which has Haar measure zero (`Measure.addHaar_submodule`); and `det(G Gᵀ) = 0`, as `G Gᵀ` has
-the rank of `G` (`Ellipsoid.rank_shape`), so `Ellipsoid.volume` is `0` too. For every `k`.
+With `rank Q < n`, `det Q = 0`, so `Ellipsoid.volume` is `0`; and the ellipsoid lies in the
+translate of the range of `G = Q^(1/2)`, which has the rank of `G Gᵀ = Q`
+(`Matrix.rank_self_mul_transpose`), a proper subspace and so of Haar measure zero
+(`Measure.addHaar_submodule`).
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,11 +35,12 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Ellipsoid.aux_det_shape_eq_zero (E : Ellipsoid n) (hr : E.rank < n) :
-    E.shape.det = 0 := by -- --- PROOF ---
+    E.Q.det = 0 := by -- --- PROOF ---
   by_contra hdet
-  have hu : IsUnit E.shape := (Matrix.isUnit_iff_isUnit_det _).mpr (isUnit_iff_ne_zero.mpr hdet)
-  have := Matrix.rank_of_isUnit E.shape hu
-  rw [Ellipsoid.rank_shape, Fintype.card_fin] at this
+  have hu : IsUnit E.Q := (Matrix.isUnit_iff_isUnit_det _).mpr (isUnit_iff_ne_zero.mpr hdet)
+  have := Matrix.rank_of_isUnit E.Q hu
+  rw [Fintype.card_fin] at this
+  change E.Q.rank < n at hr
   omega
 
 
@@ -52,10 +55,12 @@ theorem Ellipsoid.volume_eq_of_rank_lt (E : Ellipsoid n) (hr : E.rank < n) :
   have hne : LinearMap.range (Matrix.mulVecLin E.G) ≠ ⊤ := by
     intro h
     have : E.rank = n := by
-      unfold Ellipsoid.rank Matrix.rank
+      unfold Ellipsoid.rank
+      rw [← E.G_mul_transpose, Matrix.rank_self_mul_transpose]
+      unfold Matrix.rank
       rw [h, finrank_top, Module.finrank_fin_fun]
     omega
-  refine measure_mono_null (t := (fun v => -E.c + v) ⁻¹'
+  refine measure_mono_null (t := (fun v => -E.q + v) ⁻¹'
     (LinearMap.range (Matrix.mulVecLin E.G) : Set (Vec ℝ n))) ?_ ?_
   · rintro x ⟨u, -, rfl⟩
     simp only [Set.mem_preimage, neg_add_cancel_left, SetLike.mem_coe]

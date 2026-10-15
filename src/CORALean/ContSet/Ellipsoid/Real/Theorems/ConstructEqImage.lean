@@ -15,9 +15,9 @@ Both directions are the same destructuring, the image and the set-builder
 agreeing definitionally.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.construct_eq_image (E : Ellipsoid n) :
-    E.construct = (fun u : Vec ℝ E.k => E.c + E.G *ᵥ u) '' unitBall₂ E.k := by -- --- PROOF ---
+    E.construct = (fun u : Vec ℝ n => E.q + E.G *ᵥ u) '' unitBall₂ n := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨u, hu, rfl⟩

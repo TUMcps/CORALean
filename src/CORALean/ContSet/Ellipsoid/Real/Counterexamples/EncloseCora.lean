@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 @[expose] public section
 
@@ -42,12 +43,14 @@ theorem Ellipsoid.enclose_cora_counterexample :
   -- a point ellipsoid is the singleton of its center
   have hpt : ∀ v : Vec ℝ 1, (Ellipsoid.ofPoint v).construct = {v} := by
     intro v
+    have hG : (Ellipsoid.ofPoint v).G = 0 := (Ellipsoid.G_eq_zero_iff _).2 rfl
     ext x
     constructor
     · rintro ⟨u, -, rfl⟩
-      simp [Ellipsoid.ofPoint]
+      rw [hG, Matrix.zero_mulVec, add_zero]
+      rfl
     · rintro rfl
-      exact ⟨0, by simp [CORALean.norm₂], by simp [Ellipsoid.ofPoint]⟩
+      exact ⟨0, by simp [CORALean.norm₂], by rw [Matrix.mulVec_zero, add_zero]; rfl⟩
   -- the documented set contains `1`, at `a = 0`
   have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ Set.linComb (Ellipsoid.ofPoint (0 : Vec ℝ 1)).construct
       ((fun y => (0 : Mat ℝ 1 1) *ᵥ y) '' (Ellipsoid.ofPoint (0 : Vec ℝ 1)).construct +
@@ -60,6 +63,9 @@ theorem Ellipsoid.enclose_cora_counterexample :
   rw [hpt] at h₁
   have h₂' : y₂ = 0 := by
     obtain ⟨u, -, rfl⟩ := h₂
+    have hG : (Ellipsoid.mtimes (0 : Mat ℝ 1 1) (Ellipsoid.ofPoint (fun _ => (1 : ℝ)))).G = 0 :=
+      (Ellipsoid.G_eq_zero_iff _).2 (by simp [Ellipsoid.mtimes])
+    rw [hG, Matrix.zero_mulVec, add_zero]
     simp [Ellipsoid.mtimes, Ellipsoid.ofPoint]
   rw [Set.mem_singleton_iff] at h₁
   subst h₁ h₂'

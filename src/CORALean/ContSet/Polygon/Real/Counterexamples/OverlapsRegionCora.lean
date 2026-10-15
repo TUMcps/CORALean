@@ -32,6 +32,8 @@ ellipsoid 50) and calls the polygon method. Read from the source, not run.
 
 namespace CORALean.Real
 
+open scoped MatrixOrder
+
 
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- `overlaps(P, S')`. -/
@@ -49,12 +51,15 @@ theorem Polygon.isIntersectingEllipsoid_cora_counterexample (V : Set (Vec ℝ 2)
     (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) :
     ∃ (z : Vec ℝ 2) (δ : ℝ), 0 < δ ∧
       ¬ Polygon.overlapsRegionCora (Metric.closedBall z δ) (Polygon.sampledHullCora V) ∧
-      (Metric.closedBall z δ ∩ (⟨2, 0, 1⟩ : Ellipsoid 2).construct).Nonempty := by -- --- PROOF ---
+      (Metric.closedBall z δ ∩ (⟨1, 0, .one⟩ : Ellipsoid 2).construct).Nonempty
+    := by -- --- PROOF ---
   obtain ⟨z, hz, hzn⟩ := Polygon.exists_circle_notMem_sampledHull V hV hc
   have hclosed : IsClosed (Polygon.sampledHullCora V) := (hV.isCompact_convexHull ℝ).isClosed
   obtain ⟨ε, hε, hball⟩ := Metric.isOpen_iff.mp hclosed.isOpen_compl z hzn
   refine ⟨z, ε / 2, by positivity, fun ⟨x, hxP, hxH⟩ => ?_,
-    ⟨z, Metric.mem_closedBall_self (by positivity), z, ?_, by simp⟩⟩
+    ⟨z, Metric.mem_closedBall_self (by positivity), z, ?_,
+      by rw [show (⟨1, 0, .one⟩ : Ellipsoid 2).G = 1 from CFC.sqrt_one, Matrix.one_mulVec,
+        zero_add]⟩⟩
   -- the square is inside the ball `ε` about `z` that misses the closed hull
   · exact hball (lt_of_le_of_lt (Metric.mem_closedBall.mp hxP) (by linarith)) hxH
   · show Real.sqrt (∑ i, z i ^ 2) ≤ 1

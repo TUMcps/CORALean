@@ -1,24 +1,20 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 
 @[expose] public section
 
 /-!
-# Membership in the nominal ellipsoid, in the stored fields
+# The points of the nominal part
 
-The form every enclosure proof at this layer reads the nominal half of a point
-in: the ball coefficient `u` kept as it is, and the stored center and generator
-entries put through `toReal`, coordinate by coordinate.
-
-Proofs use it rather than going through `nominal` because through it the count
-is `E.k`, where the instance gives the equal-but-distinct `(nominal E).k` that
-`rw` and `linarith` read apart.
+`q + G u` for `u` in the unit ball, `G` the square root of the nominal shape matrix: `Q` read as
+reals where it is positive semi-definite, `0` where CORA's constructor refuses it, and the center
+the stored one either way (`nominal_q`).
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -26,7 +22,7 @@ is `E.k`, where the instance gives the equal-but-distinct `(nominal E).k` that
 
 namespace CORALean.Float
 
-open FloatOps SoundFloatArithmetic
+open FloatOps SoundFloatArithmetic Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
@@ -35,14 +31,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 theorem Ellipsoid.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {E : Ellipsoid 𝕋 n}
     {x : Vec ℝ n} :
-    x ∈ InflatedContSet.nominalSet E ↔ ∃ u : Vec ℝ E.k, ‖u‖₂ ≤ 1 ∧
-      ∀ i, x i = toReal (E.c i) + ∑ j, toReal (E.G i j) * u j := by -- --- PROOF ---
-  constructor
-  · rintro ⟨u, hu, rfl⟩
-    exact ⟨u, hu, fun _ => rfl⟩
-  -- back, the pointwise equalities collected into one by `funext`
-  · rintro ⟨u, hu, hx⟩
-    exact ⟨u, hu, funext hx⟩
+    x ∈ InflatedContSet.nominalSet E ↔ ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧
+      x = toRealVec E.q + (InflatedContSet.nominal E).ellipsoid.G *ᵥ u := by
+  rw [← E.nominal_q]
+  rfl
 
 end CORALean.Float
 

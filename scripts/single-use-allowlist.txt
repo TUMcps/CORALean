@@ -126,10 +126,8 @@ src/CORALean/ContSet/Conversion/Real/Theorems/ConZonotopeSatisfiesConPolyZonoIff
 src/CORALean/ContSet/Conversion/Real/Theorems/HPolytopeContainsOfPinned.lean::HPolytope.contains_of_pinned  pending review-pattern 15 cleanup
 src/CORALean/ContSet/Conversion/Real/Theorems/IntervalMemHPolytopeIff.lean::Interval.mem_hPolytope_iff  pending review-pattern 15 cleanup
 src/CORALean/ContSet/Conversion/Real/Theorems/PolyZonotopeVPolytopeCornersContainsOfBinary.lean::PolyZonotope.vPolytopeCorners_contains_of_binary  pending review-pattern 15 cleanup
-src/CORALean/ContSet/Ellipsoid/Float/Operations/AbsPullbackLe.lean::Ellipsoid.abs_pullback_le  pending review-pattern 15 cleanup
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/OfPointExact.lean::Ellipsoid.ofPoint_exact  pending review-pattern 15 cleanup
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/HalderInvSumPos.lean::Ellipsoid.halderInvSum_pos  pending review-pattern 15 cleanup
-src/CORALean/ContSet/Ellipsoid/Real/Theorems/QuadNonnegOfDominant.lean::Ellipsoid.quad_nonneg_of_dominant  pending review-pattern 15 cleanup
 src/CORALean/ContSet/HPolytope/Float/Operations/MulVecLiftCols.lean::HPolytope.mulVec_liftCols  pending review-pattern 15 cleanup
 src/CORALean/ContSet/HPolytope/Float/Operations/TranslateOuter.lean::HPolytope.translate_outer  pending review-pattern 15 cleanup
 src/CORALean/ContSet/HPolytope/Float/Theorems/IsInvertedPairDot.lean::HPolytope.isInvertedPair_dot  pending review-pattern 15 cleanup
@@ -226,9 +224,11 @@ src/CORALean/ContSet/Taylm/Real/Theorems/PolyOfQuadTerms.lean::Taylm.polyOf_quad
 src/CORALean/ContSet/Taylm/Real/Theorems/TaylorMaxOrder.lean::Taylm.taylor_maxOrder  pending review-pattern 15 cleanup
 src/CORALean/ContSet/Taylm/Real/Theorems/TermBoundsMem.lean::Taylm.termBounds_mem  pending review-pattern 15 cleanup
 src/CORALean/ContSet/VPolytope/Float/Theorems/NominalLinComb.lean::VPolytope.nominal_linComb  pending review-pattern 15 cleanup
+src/CORALean/ContSet/VPolytope/Real/Complexity/Space/Theorems/Basic.lean::VPolytope.mtimes_k  pending review-pattern 15 cleanup (counted as used through `Ellipsoid.mtimes_k` until #169 removed it)
 src/CORALean/ContSet/VPolytope/Real/Complexity/Space/Theorems/LinCombK.lean::VPolytope.linComb_k  pending review-pattern 15 cleanup
 src/CORALean/ContSet/VPolytope/Real/Operations/IntersectionHIsCompact.lean::VPolytope.intersectionH_isCompact  pending review-pattern 15 cleanup
 src/CORALean/ContSet/ZonoBundle/Real/Complexity/Space/Theorems/LinCombK.lean::ZonoBundle.linComb_k  pending review-pattern 15 cleanup
+src/CORALean/ContSet/ZonoBundle/Real/Complexity/Space/Theorems/MtimesK.lean::ZonoBundle.mtimes_k  pending review-pattern 15 cleanup (counted as used through `Ellipsoid.mtimes_k` until #169 removed it)
 src/CORALean/ContSet/ZonoBundle/Real/Theorems/EnclosingBoxContains.lean::ZonoBundle.enclosingBox_contains  pending review-pattern 15 cleanup
 src/CORALean/ContSet/Zonotope/Float/Theorems/AbsAbsorbedLeRadius.lean::Zonotope.abs_absorbed_le_radius  pending review-pattern 15 cleanup
 src/CORALean/ContSet/Zonotope/Float/Theorems/AbsCornerMemNominalSet.lean::Zonotope.abs_corner_mem_nominalSet  pending review-pattern 15 cleanup
@@ -308,6 +308,7 @@ src/CORALean/Global/LinProg/Duality.lean::eq_empty_of_dual  pending review-patte
 src/CORALean/Global/LinProg/Farkas.lean::exists_dual_of_forall_le  pending review-pattern 15 cleanup
 src/CORALean/Global/MapFstReplaceKey.lean::map_fst_replaceKey  pending review-pattern 15 cleanup
 src/CORALean/Global/NoRetractionClosedBall.lean::no_contDiff_retraction_closedBall  pending review-pattern 15 cleanup
+src/CORALean/Global/OrthogonalFirstColumn.lean::exists_orthogonal_firstCol  general linear algebra (the Householder reflection), used so far by the zonotope bundle of a polytope
 src/CORALean/Global/Partition.lean::Partition.ofPred_left  pending review-pattern 15 cleanup
 src/CORALean/Global/StackSelectMulVec.lean::stackFst_mulVec  pending review-pattern 15 cleanup
 src/CORALean/Global/StackSelectMulVec.lean::stackSnd_mulVec  pending review-pattern 15 cleanup
@@ -433,4 +434,3 @@ src/CORALean/Specification/Theorems/ExistsConvexHullOfVerifyConvexEqUnsafe.lean:
 src/CORALean/Specification/Theorems/ExistsSeparatingOfVerifyConvexEqSafe.lean::exists_separating_of_verifyConvex_eq_safe  pending review-pattern 15 cleanup
 src/CORALean/Specification/Theorems/HoldsUnion.lean::Specification.holds_union  pending review-pattern 15 cleanup
 src/CORALean/Specification/Theorems/Violation.lean::Specification.not_holds_safeSet_of_mem  pending review-pattern 15 cleanup
-src/CORALean/Global/OrthogonalFirstColumn.lean::exists_orthogonal_firstCol  general linear algebra (the Householder reflection), used so far by the zonotope bundle of a polytope

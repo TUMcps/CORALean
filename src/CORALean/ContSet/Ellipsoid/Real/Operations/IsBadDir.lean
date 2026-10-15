@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import Mathlib.Order.ConditionallyCompleteLattice.Indexed
 
 @[expose] public section
@@ -18,9 +18,9 @@ semidefinite (it throws otherwise); the tolerance `TOL` is `0`. `L` is a matrix 
 and the result one verdict per column, so this is the verdict of one column.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -38,11 +38,11 @@ variable {n : ℕ}
 noncomputable def Ellipsoid.isBadDir (E₁ E₂ : Ellipsoid n) (l : Vec ℝ n) : Prop :=
   -- `max(diag(D))` for `[~,D] = simdiag(Q1,Q2)`: the largest `vᵀ Q2 v / vᵀ Q1 v`
   let maxD : ℝ := ⨆ v : {v : Vec ℝ n // v ≠ 0},
-    (v.1 ⬝ᵥ (E₂.shape *ᵥ v.1)) / (v.1 ⬝ᵥ (E₁.shape *ᵥ v.1))
+    (v.1 ⬝ᵥ (E₂.Q *ᵥ v.1)) / (v.1 ⬝ᵥ (E₁.Q *ᵥ v.1))
   -- `r = 1/max(diag(D))`
   let r : ℝ := 1 / maxD
   -- `res(i) = sqrt(l'*E1.Q*l)/sqrt(l'*E2.Q*l) > r+TOL`, with `TOL = 0`
-  r < Real.sqrt (l ⬝ᵥ (E₁.shape *ᵥ l)) / Real.sqrt (l ⬝ᵥ (E₂.shape *ᵥ l))
+  r < Real.sqrt (l ⬝ᵥ (E₁.Q *ᵥ l)) / Real.sqrt (l ⬝ᵥ (E₂.Q *ᵥ l))
 
 end CORALean.Real
 

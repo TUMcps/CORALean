@@ -7,6 +7,7 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 @[expose] public section
 
@@ -44,6 +45,7 @@ theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat
     (hball : ∀ x : Vec ℝ n, ‖x‖₂ ≤ √l → F⁻¹ *ᵥ Z.c + x ∈
       (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).construct) :
     (Z.ellipsoidInnerNorm F l).construct ⊆ Z.construct := by -- --- PROOF ---
+  rw [Zonotope.ellipsoidInnerNorm, Ellipsoid.construct_ofFactor]
   rintro _ ⟨u, hu, rfl⟩
   -- `√l u` is in the ball, so a point of `F⁻¹ Z`; map it back with `F`
   have hx : ‖√l • u‖₂ ≤ √l := by
@@ -55,7 +57,7 @@ theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat
   simp only [Matrix.mulVec_add, Matrix.mulVec_sum, Matrix.mulVec_smul, Matrix.mulVec_mulVec,
     Matrix.mul_nonsing_inv F hF, Matrix.one_mulVec] at hmap
   show Z.c + (√l • F) *ᵥ u = Z.c + ∑ j, β j • Z.G j
-  rw [Matrix.smul_mulVec, ← Matrix.mulVec_smul]
+  rw [Matrix.smul_mulVec]
   exact hmap
 
 end CORALean.Real

@@ -38,17 +38,17 @@ noncomputable def Ellipsoid.zonotope (E : Ellipsoid n) : Zonotope (Vec ℝ n) :=
   E.interval.zonotope
 
 /-- [1, Thm. 2]: `Z(r^{-1/2} T⁻¹ S, ē)`, `T⁻¹` the ellipsoid's generator. -/
-noncomputable def Ellipsoid.zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
+noncomputable def Ellipsoid.zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ n)
     (r : ℝ) : Zonotope (Vec ℝ n) where
   h := m
-  c := E.c
+  c := E.q
   G := fun j => (√r)⁻¹ • (E.G *ᵥ S j)
 
 /-- [1, Thm. 4]: `Z(l^{-1/2} T⁻¹ S, ē)`, `T⁻¹` the ellipsoid's generator. -/
-noncomputable def Ellipsoid.zonotopeNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
+noncomputable def Ellipsoid.zonotopeNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ n)
     (l : ℝ) : Zonotope (Vec ℝ n) where
   h := m
-  c := E.c
+  c := E.q
   G := fun j => (√l)⁻¹ • (E.G *ᵥ S j)
 
 end CORALean.Real

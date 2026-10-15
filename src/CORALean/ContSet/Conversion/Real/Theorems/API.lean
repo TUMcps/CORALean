@@ -30,6 +30,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExac
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonoBundleContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoExact
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorConstruct
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidContainsZonotopeInnerNorm
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidHPolytopeContains

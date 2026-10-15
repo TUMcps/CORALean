@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 public import Mathlib.Data.Real.Basic
 
 @[expose] public section
@@ -9,10 +9,10 @@ public import Mathlib.Data.Real.Basic
 # The approximate Löwner-John ellipse
 
 [1, Def. 1.2]: for `ε > 0` the ellipse `E(E, s)` is an `ε`-approximate Löwner-John ellipse of a
-convex set `C ⊆ ℝⁿ` if `E(E/n², s) ⊆ C ⊆ E((1+ε) E, s)`. Scaling the shape matrix `E` by `c²`
-scales the generator by `c`, so in the generator form the inner ellipse has the generator `G/n`
-and the outer one `√(1+ε) G`, about the same center. For `ε = 0` and the Löwner-John ellipse of
-[1, Thm. 1.1] that is `E(E/n², s) ⊆ C ⊆ E(E, s)`.
+convex set `C ⊆ ℝⁿ` if `E(E/n², s) ⊆ C ⊆ E((1+ε) E, s)`, stated as printed, at the shape
+matrices `E/n²` and `(1+ε) E` about the same center (`ofShape`, the checked constructor, as
+`1 + ε` could be negative for `ε ≤ -1`, where the paper's `ε > 0` does not hold). For `ε = 0` and
+the Löwner-John ellipse of [1, Thm. 1.1] that is `E(E/n², s) ⊆ C ⊆ E(E, s)`.
 
 ## References
 
@@ -21,7 +21,7 @@ and the outer one `√(1+ε) G`, about the same center. For `ε = 0` and the Lö
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,10 +34,11 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Def. 1.2]: `E(E/n², s) ⊆ C ⊆ E((1+ε)E, s)`, as generators `G/n` and `√(1+ε) G`. -/
-def Ellipsoid.IsApproxLownerJohn (ε : ℝ) (C : Set (Vec ℝ n)) (E : Ellipsoid n) : Prop :=
-  (⟨E.k, E.c, (1 / (n : ℝ)) • E.G⟩ : Ellipsoid n).construct ⊆ C
-    ∧ C ⊆ (⟨E.k, E.c, Real.sqrt (1 + ε) • E.G⟩ : Ellipsoid n).construct
+/-- [1, Def. 1.2]: `E(E/n², s) ⊆ C ⊆ E((1+ε)E, s)`. -/
+noncomputable def Ellipsoid.IsApproxLownerJohn (ε : ℝ) (C : Set (Vec ℝ n)) (E : Ellipsoid n) :
+    Prop :=
+  (Ellipsoid.ofShape ((1 / (n : ℝ) ^ 2) • E.Q) E.q).construct ⊆ C
+    ∧ C ⊆ (Ellipsoid.ofShape ((1 + ε) • E.Q) E.q).construct
 
 end CORALean.Real
 

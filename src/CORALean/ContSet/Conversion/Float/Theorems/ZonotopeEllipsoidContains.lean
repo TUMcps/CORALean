@@ -1,34 +1,34 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Ellipsoid
-public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.InflateSubPosSemidef
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 
 /-!
 # A zonotope as an ellipsoid, over a floating-point scalar
 
-The exact layer scales the generators by `√h` and the cube `‖β‖∞ ≤ 1` then sits
-inside the unit ball. This layer has no square root, so, as for the box, the caller
-proposes `σ` and the check `h ≤ σ·σ` is all that is used of it: the classical `√h`
-is the tightest admissible value rather than a required one.
+The exact layer scales the generators by `√h` and the cube `‖β‖∞ ≤ 1` then sits inside the unit
+ball. Here the caller proposes `σ` and the check `h ≤ σ·σ` is all that is used of it: a point
+`c + G β` is `c + (σ G)(β/σ)`, a point of the ellipsoid of shape `σ² G Gᵀ`
+(`construct_ofFactor`), which the stored rounded shape dominates (`inflate_sub_posSemidef`,
+`σ² G Gᵀ` lying in the interval matrix), so the rounding costs the error box nothing.
 
-What differs from the exact layer is the rounding. A generator `σ·G` cannot be
-stored exactly, and unlike a box's diagonal the rounded generators are shared by
-several coordinates, so the ball point `β/σ` no longer reproduces the point
-exactly. The generators round up, and the residual `Σⱼ (σ Gᵢⱼ - G'ᵢⱼ) βⱼ / σ` is
-bounded by the width of each product's rounding bracket, summed by `radius`, divided
-by `σ` upward and added to the error box. It is a few ulps and nothing a caller has
-to supply.
-
-CORA's `ellipsoid(zonotope)` is the minimum-volume or minimum-trace enclosure, an
-optimisation, and is not what this is: this is the `√h` ball, as over ℝ.
+CORA's `ellipsoid(zonotope)` for more generators than dimensions is the minimum-volume or
+minimum-trace enclosure, an optimisation, and is not what this is: this is the `√h` ball, as over
+ℝ.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -40,41 +40,9 @@ open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
-open Pointwise SoundFloatArithmetic InflatedContSet
+open Pointwise SoundFloatArithmetic InflatedContSet Matrix
 
 variable [SoundFloatArithmetic 𝕋]
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The rounding of a generator, against the bracket that stores it. -/
-theorem Zonotope.aux_ellipsoid_round_le (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) (i : Fin n) (j : Fin Z.h) :
-    |toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j)|
-      ≤ |toReal (Z.ellipsoidGap σ i j)| := by -- --- PROOF ---
-  have h1 := mul_le_mulUp σ (Z.G j i)
-  have h2 := mulDown_le_mul σ (Z.G j i)
-  have h3 := sub_le_subUp (mulUp σ (Z.G j i)) (mulDown σ (Z.G j i))
-  have hG : toReal (Z.ellipsoidG σ i j) = toReal (mulUp σ (Z.G j i)) := rfl
-  have hgap : toReal (Z.ellipsoidGap σ i j)
-      ≥ toReal (mulUp σ (Z.G j i)) - toReal (mulDown σ (Z.G j i)) := h3
-  rw [hG]
-  refine le_trans ?_ (le_abs_self _)
-  rw [abs_le]
-  constructor <;> linarith
-
-/-- The residual the rounding leaves, at most the slack. -/
-theorem Zonotope.aux_ellipsoid_slack (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
-    {β : Vec ℝ Z.h} (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
-    |(∑ j, (toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ|
-      ≤ toReal (Z.ellipsoidSlack σ i) := by -- --- PROOF ---
-  have hS := abs_sum_le_radius (d := Z.ellipsoidGap σ)
-    (Δ := fun i j => toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j))
-    (fun i j => Z.aux_ellipsoid_round_le σ i j) hβ i
-  rw [abs_div, abs_of_pos hσ, div_le_iff₀ hσ]
-  refine le_trans hS ?_
-  have hd := div_le_divUp (radius (Z.ellipsoidGap σ) i) σ hσ
-  have := (div_le_iff₀ hσ).mp hd
-  exact this
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -106,37 +74,35 @@ theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec 𝕋 n)) (σ : 𝕋) (hσ
             exact hσ2
     calc ‖fun j => β j / toReal σ‖₂ ≤ Real.sqrt 1 := Real.sqrt_le_sqrt hsum
       _ = 1 := Real.sqrt_one
-  -- what the rounded generators leave over
-  set S : Vec ℝ n := fun i => (∑ j, (toReal σ * toReal (Z.G j i)
-      - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ with hSdef
-  have hSle : ∀ i, |S i| ≤ toReal (Z.ellipsoidSlack σ i) := fun i =>
-    Z.aux_ellipsoid_slack σ hσ hβ i
-  have hres : ∀ i, z i - (toReal (Z.c i) + ∑ j, toReal (Z.ellipsoidG σ i j) * (β j / toReal σ))
-      = S i := fun i => by
+  -- `z` in the ellipsoid generated by `σ G`
+  set Gr : Mat ℝ n Z.h := fun i j => toReal (Z.G j i) with hGr
+  set F := Real.Ellipsoid.ofFactor (toReal σ • Gr) (toRealVec Z.c) with hF
+  have hzF : z ∈ F.construct := by
+    rw [hF, Real.Ellipsoid.construct_ofFactor]
+    refine ⟨fun j => β j / toReal σ, hnorm, funext fun i => ?_⟩
     rw [hz i]
-    show _ - (_ + ∑ j, toReal (Z.ellipsoidG σ i j) * (β j / toReal σ))
-      = (∑ j, (toReal σ * toReal (Z.G j i) - toReal (Z.ellipsoidG σ i j)) * β j) / toReal σ
-    rw [Finset.sum_div, add_sub_add_left_eq_sub, ← Finset.sum_sub_distrib]
+    simp only [Pi.add_apply, Matrix.mulVec, dotProduct, Matrix.smul_apply, smul_eq_mul, hGr,
+      toRealVec]
+    congr 1
     refine Finset.sum_congr rfl fun j _ => ?_
     field_simp
-  -- the witness: the ball point `β/σ`, and the box point that absorbs `S`
-  refine ⟨fun i => toReal (Z.c i) + ∑ j, toReal (Z.ellipsoidG σ i j) * (β j / toReal σ),
-    Ellipsoid.mem_nominalSet_iff.mpr ⟨fun j => β j / toReal σ, hnorm, fun i => rfl⟩,
-    fun i => e i + S i, fun i => ?_, funext fun i => ?_⟩
-  -- the shifted error stays in the widened box
-  · have h1 := subDown_le_sub (Z.I_error.inf i) (Z.ellipsoidSlack σ i)
-    have h2 := add_le_addUp (Z.I_error.sup i) (Z.ellipsoidSlack σ i)
-    have h3 : toReal (Z.I_error.inf i) ≤ e i := (he i).1
-    have h4 : e i ≤ toReal (Z.I_error.sup i) := (he i).2
-    have h5 := abs_le.mp (hSle i)
-    constructor
-    · show toReal (subDown (Z.I_error.inf i) (Z.ellipsoidSlack σ i)) ≤ e i + S i
-      linarith
-    · show e i + S i ≤ toReal (addUp (Z.I_error.sup i) (Z.ellipsoidSlack σ i))
-      linarith
-  · show _ + (e i + S i) = z i + e i
-    have := hres i
-    linarith
+  -- the stored shape dominates `σ² G Gᵀ`
+  have hX : F.Q ∈ (Z.ellipsoidShape σ).construct := by
+    have hQ : F.Q = (toReal σ * toReal σ) • (Gr * Grᵀ) := by
+      show (toReal σ • Gr) * (toReal σ • Gr)ᵀ = _
+      rw [Matrix.transpose_smul, Matrix.smul_mul, Matrix.mul_smul, smul_smul]
+    rw [hQ]
+    exact Interval.smul_outer (mulDown_le_mul σ σ) (mul_le_mulUp σ σ) _
+      (Interval.matMul_outer _ _ (Interval.mem_point _) (Interval.mem_point _))
+  have hsym : ∀ i j, F.Q i j = F.Q j i := fun i j => by
+    have h := F.psd.isHermitian.eq
+    simp only [conjTranspose_eq_transpose_of_trivial] at h
+    exact (congrFun (congrFun h i) j).symm
+  have hdom := Ellipsoid.inflate_sub_posSemidef (Interval.mem_mat_iff.mp hX) hsym
+  have hmem := Ellipsoid.add_sub_mem_nominalSet (E := Z.ellipsoid σ) (Or.inr hdom) hzF
+  have hq : toRealVec (Z.ellipsoid σ).q = F.q := rfl
+  rw [hq, add_sub_cancel] at hmem
+  exact ⟨z, hmem, e, he, rfl⟩
 
 end CORALean.Float
 

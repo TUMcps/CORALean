@@ -1,33 +1,34 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
-public import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.InflateSubPosSemidef
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
+public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
+public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
+public import CORALean.ContSet.InflatedContSet.Theorems.MapSubset
 
 @[expose] public section
 
 /-!
 # `Ellipsoid.mtimes` over-approximates the image under a linear map
 
-`InflatedContSet.map_subset` splits this into the nominal part and the box, and
-the split is a zonotope's: the center is wrong by a fixed vector, which
-`residual` holds, and the generators by an entrywise amount the coefficients
-scale, which `generatorError` sums.
-
-The unit ball enters only through `‖u‖₂ ≤ 1`, and only to say `|uⱼ| ≤ 1`. The
-same ball point works on both sides, so the exact layer's equality survives as
-an inclusion whose entire loss is the rounding.
+`InflatedContSet.map_subset` splits this into the nominal part and the box. The image of the
+nominal ellipsoid is exactly `Real.Ellipsoid.mtimes` (`M Q Mᵀ`, `M q`), and the stored shape
+dominates `M Q Mᵀ` (`inflate_sub_posSemidef`, `M Q Mᵀ` lying in the interval matrix and symmetric
+with `Q`), so the image about the stored center lies in the nominal part
+(`add_sub_mem_nominalSet`). Where `Q` is refused the nominal part is a point and so is its
+image. What is left is the center's rounding, which `mtimesResidual` holds.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
--- Reviewed:      14-October-2026 (Tobias Ladner)
+-- Last update:   15-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -41,67 +42,45 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The exact image, regrouped so the center and each generator appear once. -/
-theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (u : Vec ℝ E.k)
-    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (E.c k) + ∑ j, toReal (E.G k j) * u j) (i : Fin m) :
-    (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (E.c k))
-      + ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)) * u j := by -- --- PROOF ---
-  show ∑ k, toReal (M i k) * x k = _
-  calc ∑ k, toReal (M i k) * x k
-      = ∑ k, (toReal (M i k) * toReal (E.c k)
-              + ∑ j, toReal (M i k) * toReal (E.G k j) * u j) := by
-        refine Finset.sum_congr rfl fun k _ => ?_
-        rw [hx k, mul_add, Finset.mul_sum]
-        exact congrArg _ (Finset.sum_congr rfl fun j _ => by ring)
-    _ = (∑ k, toReal (M i k) * toReal (E.c k))
-        + ∑ k, ∑ j, toReal (M i k) * toReal (E.G k j) * u j := Finset.sum_add_distrib
-    _ = (∑ k, toReal (M i k) * toReal (E.c k))
-        + ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)) * u j := by
-        rw [Finset.sum_comm]
-        exact congrArg _ (Finset.sum_congr rfl fun j _ => (Finset.sum_mul _ _ _).symm)
-
--- the image's nominal part, with the generator rounding charged to a box
+/-- The image's nominal part, with the center's rounding charged to a box. -/
 theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
     (toRealMat M *ᵥ ·) '' nominalSet E ⊆
       nominalSet (Ellipsoid.mtimes M E)
         + (Ellipsoid.mtimesResidual M E).construct := by -- --- PROOF ---
-  rintro _ ⟨x, hx', rfl⟩
-  obtain ⟨u, hu, hx⟩ := Ellipsoid.mem_nominalSet_iff.mp hx'
-  -- the generators are wrong by this much, entrywise
-  have hgen : ∀ i j, |(∑ k, toReal (M i k) * toReal (E.G k j))
-      - toReal (matMulDown M E.G i j)| ≤ toReal (matMulDiff M E.G i j) := by
-    intro i j
-    -- ascribed, so these are about `matMul*` rather than the `dot*` they unfold to
-    have hlo : toReal (matMulDown M E.G i j) ≤ ∑ k, toReal (M i k) * toReal (E.G k j) :=
-      dotDown_le (M i) (fun k => E.G k j)
-    have hhi : ∑ k, toReal (M i k) * toReal (E.G k j) ≤ toReal (matMulUp M E.G i j) :=
-      le_dotUp (M i) (fun k => E.G k j)
-    have hgap := sub_le_subUp (matMulUp M E.G i j) (matMulDown M E.G i j)
-    rw [abs_le]
-    exact ⟨by simp only [matMulDiff]; linarith, by simp only [matMulDiff]; linarith⟩
-  refine ⟨fun i => toReal ((Ellipsoid.mtimes M E).c i)
-            + ∑ j : Fin E.k, toReal ((Ellipsoid.mtimes M E).G i j) * u j,
-          Ellipsoid.mem_nominalSet_iff.mpr ⟨u, hu, fun _ => rfl⟩,
-          _, Interval.plus_outer _ _
-            ⟨_, Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) E.c, le_dotUp (M i) E.c⟩),
-             _, Ellipsoid.mem_generatorError hgen hu, rfl⟩, ?_⟩
+  rintro _ ⟨x, hx, rfl⟩
+  set Mr : Mat ℝ m n := toRealMat M with hMr
+  set F : Real.Ellipsoid m := Real.Ellipsoid.mtimes Mr (nominal E).ellipsoid with hFdef
+  have hxF : Mr *ᵥ x ∈ F.construct := by
+    rw [hFdef, ← Real.Ellipsoid.mtimes_exact]
+    exact ⟨x, hx, rfl⟩
+  -- the stored shape dominates `M Q Mᵀ`, or the nominal part is a point
+  have hF : F.Q = 0 ∨ (toRealMat (Ellipsoid.mtimes M E).Q - F.Q).PosSemidef := by
+    show Mr * (nominal E).ellipsoid.Q * Mrᵀ = 0
+      ∨ (toRealMat (Ellipsoid.mtimes M E).Q - Mr * (nominal E).ellipsoid.Q * Mrᵀ).PosSemidef
+    rw [Ellipsoid.nominal_Q_eq]
+    split_ifs with h
+    · refine Or.inr (Ellipsoid.inflate_sub_posSemidef (Interval.mem_mat_iff.mp ?_) ?_)
+      · exact Interval.matMul_outer _ _ (Interval.matMul_outer _ _ (Interval.mem_point M)
+          (Interval.mem_point E.Q)) (Interval.mem_point Mᵀ)
+      · intro i j
+        have hQt : (toRealMat E.Q)ᵀ = toRealMat E.Q := by
+          simpa [conjTranspose_eq_transpose_of_trivial] using h.isHermitian.eq
+        have ht : (Mr * toRealMat E.Q * Mrᵀ)ᵀ = Mr * toRealMat E.Q * Mrᵀ := by
+          rw [transpose_mul, transpose_mul, transpose_transpose, hQt, Matrix.mul_assoc]
+        exact (congrFun (congrFun ht j) i)
+    · exact Or.inl (by rw [Matrix.mul_zero, Matrix.zero_mul])
+  have hmem := Ellipsoid.add_sub_mem_nominalSet hF hxF
+  -- the center's rounding
+  have hq : F.q = Mr *ᵥ toRealVec E.q := by
+    show Mr *ᵥ (nominal E).ellipsoid.q = _
+    rw [Ellipsoid.nominal_q]
+  refine ⟨_, hmem, fun i => (Mr *ᵥ toRealVec E.q) i - toReal (mulVecDown M E.q i),
+    Interval.sub_mem_residual fun i => ⟨dotDown_le (M i) E.q, le_dotUp (M i) E.q⟩, ?_⟩
   funext i
-  -- the stored generators and their errors recombine into the exact ones
-  have hsum : (∑ j, toReal (matMulDown M E.G i j) * u j)
-      + (∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)
-          - toReal (matMulDown M E.G i j)) * u j)
-      = ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)) * u j := by
-    rw [← Finset.sum_add_distrib]
-    exact Finset.sum_congr rfl fun j _ => by ring
-  show toReal ((Ellipsoid.mtimes M E).c i)
-        + ∑ j : Fin E.k, toReal ((Ellipsoid.mtimes M E).G i j) * u j
-      + ((∑ k, toReal (M i k) * toReal (E.c k) - toReal (mulVecDown M E.c i))
-        + ∑ j, (∑ k, toReal (M i k) * toReal (E.G k j)
-            - toReal (matMulDown M E.G i j)) * u j)
-    = (toRealMat M *ᵥ x) i
-  rw [Ellipsoid.aux_mulVec_nominal M E u hx i]
-  simp only [Ellipsoid.mtimes]
-  linarith [hsum]
+  rw [hq]
+  simp only [Pi.add_apply, Pi.sub_apply, toRealVec]
+  show toReal (mulVecDown M E.q i) + _ + _ = _
+  ring
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 theorem Ellipsoid.aux_mtimes_error (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :

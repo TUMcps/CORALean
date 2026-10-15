@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import Mathlib.Analysis.Matrix.Spectrum
 
 @[expose] public section
@@ -9,16 +9,16 @@ public import Mathlib.Analysis.Matrix.Spectrum
 # `Ellipsoid.generators`
 
 CORA's `@ellipsoid/generators.m`: `[U,D,~] = svd(Q); G = U * sqrt(D)`, a square generator matrix
-of the shape matrix `Q = G Gᵀ`. `Q` is symmetric positive semi-definite, so its singular value
+of the shape matrix `Q`. `Q` is symmetric positive semi-definite, so its singular value
 decomposition is its eigendecomposition `Q = U D Uᵀ`; here `U` is Mathlib's orthonormal
 eigenvector matrix and `D` the diagonal of eigenvalues, in Mathlib's order (CORA's `svd` sorts
 them in decreasing order, an order that does not enter `G Gᵀ = Q`). The result differs from the
-stored `E.G`, a generator matrix with the same `Q` and not in general `n × n`.
+symmetric square root `E.G` in general, by the orthogonal factor `Uᵀ`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,8 +35,7 @@ variable {n : ℕ}
 
 /-- `generators(E)`: `U * sqrt(D)` from the eigendecomposition `Q = U D Uᵀ`. -/
 noncomputable def Ellipsoid.generators (E : Ellipsoid n) : Mat ℝ n n :=
-  let hQ : E.shape.IsHermitian := by
-    simpa [Ellipsoid.shape] using Matrix.isHermitian_mul_conjTranspose_self E.G
+  let hQ : E.Q.IsHermitian := E.psd.isHermitian
   let U : Mat ℝ n n := (hQ.eigenvectorUnitary : Matrix (Fin n) (Fin n) ℝ)
   let D := Matrix.diagonal (fun i => Real.sqrt (hQ.eigenvalues i))
   let G := U * D

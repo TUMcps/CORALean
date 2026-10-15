@@ -11,16 +11,17 @@ public import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
 
 CORA's `@ellipsoid/polygon` as an inner polygon of a float ellipsoid. A float vertex cannot be
 read off the boundary: rounding moves it, and there is no direction to move it that stays inside.
-So the caller proposes the unit factors `u = Gᵀ l / ‖Gᵀ l‖₂` of the support points (a float
-`sqrt` and division, unchecked), each gives the vertex `q + G u` rounded up, and a vertex is kept
-only if `Ellipsoid.containsPoint` certifies it with its own factor. That test needs the rounding
-remainder inside the error box and `‖u‖₂ ≤ 1` upward, so factors are best shrunk slightly. The
-polygon is the hull of the kept vertices, with no error box.
+So the caller proposes, for each support direction `l`, the scaled direction
+`w = l / √(lᵀ Q l)` (a float `sqrt` and division, unchecked), each gives the vertex `q + Q w`,
+CORA's `q + Q l / √(lᵀ Q l)`, rounded up, and a vertex is kept only if `Ellipsoid.containsPoint`
+certifies it with its own `w`. That test needs the rounding remainder inside the error box and
+`wᵀ Q w ≤ 1` upward, so the `w` are best shrunk slightly. The polygon is the hull of the kept
+vertices, with no error box.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,12 +35,12 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The polygon spanned by the vertices of the factors that the ellipsoid certifies. -/
-def Ellipsoid.polygon (E : Ellipsoid 𝕋 2) (U : List (Vec 𝕋 E.k)) : Polygon 𝕋 :=
-  -- the candidate vertex of a factor `u`: `q + G u`, rounded up
-  let vertex : Vec 𝕋 E.k → Vec 𝕋 2 := fun u i => addUp (E.c i) (dotUp (fun j => E.G i j) u)
-  -- the factors whose vertex `containsPoint` certifies
-  let kept : List (Vec 𝕋 E.k) := U.filter fun u => E.containsPoint (vertex u) u
+/-- The polygon spanned by the vertices `q + Q w` that the ellipsoid certifies. -/
+def Ellipsoid.polygon (E : Ellipsoid 𝕋 2) (W : List (Vec 𝕋 2)) : Polygon 𝕋 :=
+  -- the candidate vertex of a scaled direction `w`: `q + Q w`, rounded up
+  let vertex : Vec 𝕋 2 → Vec 𝕋 2 := fun w i => addUp (E.q i) (mulVecUp E.Q w i)
+  -- the directions whose vertex `containsPoint` certifies
+  let kept : List (Vec 𝕋 2) := W.filter fun w => E.containsPoint (vertex w) w
   let Y : Fin kept.length → Vec 𝕋 2 := fun j => vertex kept[j]
   Polygon.ofPieces [VPolytope.enclosePoints Y]
 

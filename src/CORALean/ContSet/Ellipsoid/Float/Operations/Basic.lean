@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.Global.Float.FloatOps
 
 @[expose] public section
 
@@ -28,8 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `@ellipsoid/center` returns the field `q`, here `c`: the stored center, in `𝕋`. -/
-def Ellipsoid.center (E : Ellipsoid 𝕋 n) : Vec 𝕋 n := E.c
+/-- CORA's `@ellipsoid/center` returns the field `q`: the stored center, in `𝕋`. -/
+def Ellipsoid.center (E : Ellipsoid 𝕋 n) : Vec 𝕋 n := E.q
 
 
 -- ===================================  `Ellipsoid.enclose₂`  =================================== --
@@ -45,40 +46,39 @@ def Ellipsoid.enclose₂ (orOA : Ellipsoid 𝕋 n → Ellipsoid 𝕋 n → Ellip
   orOA E E2
 
 
--- ====================================  `Ellipsoid.plusG`  ===================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
+-- ====================================  `Ellipsoid.isSymm`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
 -- Reviewed:      ---
 
-/-- The two scaled generator blocks side by side, each rounded down. -/
-def Ellipsoid.plusG (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) : Mat 𝕋 n (E₁.k + E₂.k) :=
-  fun i => Fin.append (fun j => mulDown s₁ (E₁.G i j)) (fun j => mulDown s₂ (E₂.G i j))
+/-- The stored matrix is symmetric: each pair of mirrored entries `le` both ways. -/
+def Ellipsoid.isSymm (Q : Mat 𝕋 n n) : Bool :=
+  (List.finRange n).all fun i => (List.finRange n).all fun j => le (Q i j) (Q j i)
 
 
--- ===================================  `Ellipsoid.plusGap`  ==================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
+-- ===================================  `Ellipsoid.quadDown`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
 -- Reviewed:      ---
 
-/-- How far each stored generator can be from its exact scaling. -/
-def Ellipsoid.plusGap (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) : Mat 𝕋 n (E₁.k + E₂.k) :=
-  fun i => Fin.append
-    (fun j => subUp (mulUp s₁ (E₁.G i j)) (mulDown s₁ (E₁.G i j)))
-    (fun j => subUp (mulUp s₂ (E₂.G i j)) (mulDown s₂ (E₂.G i j)))
+/-- `aᵀ Q a` rounded down, as `quadUp` from the other side. -/
+def Ellipsoid.quadDown (E : Ellipsoid 𝕋 n) (a : Vec 𝕋 n) : 𝕋 :=
+  sumDown fun i =>
+    minimum (mulDown (a i) (mulVecDown E.Q a i)) (mulDown (a i) (mulVecUp E.Q a i))
 
 
--- =================================  `Ellipsoid.pullbackAbs`  ================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
+-- ====================================  `Ellipsoid.quadUp`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
 -- Reviewed:      ---
 
-/-- The magnitude of the direction pulled back into generator space, coordinate
-by coordinate. `sqSumUp` of this is what a candidate is checked against. -/
-def Ellipsoid.pullbackAbs (E : Ellipsoid 𝕋 n) (a : Vec 𝕋 n) (j : Fin E.k) : 𝕋 :=
-  maximum (dotUp a fun i => E.G i j) (neg (dotDown a fun i => E.G i j))
+/-- `aᵀ Q a` rounded up: `Q a` between its two roundings, each coordinate's product with `aᵢ` at
+the end of the bracket that makes it larger. -/
+def Ellipsoid.quadUp (E : Ellipsoid 𝕋 n) (a : Vec 𝕋 n) : 𝕋 :=
+  sumUp fun i => maximum (mulUp (a i) (mulVecDown E.Q a i)) (mulUp (a i) (mulVecUp E.Q a i))
 
 end CORALean.Float
 

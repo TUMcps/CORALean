@@ -1,10 +1,11 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Project
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SetLinCombSubsetOfIsOrOuter
@@ -25,6 +26,7 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 namespace CORALean.Real
 
 open Matrix
+open scoped MatrixOrder
 
 variable {n m : ℕ}
 
@@ -52,6 +54,29 @@ theorem Ellipsoid.enclose₂_outer (orOA : Ellipsoid n → Ellipsoid n → Ellip
     (hor : ∀ E₁ E₂, Ellipsoid.IsOrOuter E₁ E₂ (orOA E₁ E₂)) (E E2 : Ellipsoid n) :
     Set.linComb E.construct E2.construct ⊆ (Ellipsoid.enclose₂ orOA E E2).construct :=
   Ellipsoid.setLinComb_subset_of_isOrOuter (hor _ _)
+
+
+-- =====================================  `Ellipsoid.ext`  ====================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Two ellipsoids with the same shape matrix and center are equal, the remaining field a proof. -/
+theorem Ellipsoid.ext {E F : Ellipsoid n} (hQ : E.Q = F.Q) (hq : E.q = F.q) : E = F := by
+  cases E; cases F; subst hQ hq; rfl
+
+
+-- ================================  `Ellipsoid.G_eq_zero_iff`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The generator `Q^(1/2)` vanishes iff the shape matrix does (`CFC.sqrt_eq_zero_iff`): a point,
+and only a point, has the zero square root. -/
+theorem Ellipsoid.G_eq_zero_iff (E : Ellipsoid n) : E.G = 0 ↔ E.Q = 0 :=
+  CFC.sqrt_eq_zero_iff E.Q E.psd.nonneg
 
 
 -- =============================  `Ellipsoid.isBounded_construct`  ============================== --
@@ -87,8 +112,8 @@ theorem Ellipsoid.isClosed_construct (E : Ellipsoid n) : IsClosed E.construct :=
 /-- An introduction rather than a characterisation: any affine image of a unit
 ball point is a point the ellipsoid contains. `Theorems/QMemConstruct` is the
 same statement at `u = 0`, the center. -/
-theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ E.k} (hu : ‖u‖₂ ≤ 1) :
-    E.c + E.G *ᵥ u ∈ E.construct := ⟨u, hu, rfl⟩
+theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ n} (hu : ‖u‖₂ ≤ 1) :
+    E.q + E.G *ᵥ u ∈ E.construct := ⟨u, hu, rfl⟩
 
 
 -- =============================  `Ellipsoid.center_mem_construct`  ============================= --
@@ -99,8 +124,8 @@ theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ E.k} (hu : ‖u�
 
 /-- CORA's `center` is the field `q`; it is the image of the zero coefficient vector,
 whatever the generators. -/
-theorem Ellipsoid.center_mem_construct (E : Ellipsoid n) : E.c ∈ E.construct := by
-  have hu : ‖(0 : Vec ℝ E.k)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
+theorem Ellipsoid.center_mem_construct (E : Ellipsoid n) : E.q ∈ E.construct := by
+  have hu : ‖(0 : Vec ℝ n)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
   simpa using Ellipsoid.mem_construct (E := E) hu
 
 
@@ -110,10 +135,9 @@ theorem Ellipsoid.center_mem_construct (E : Ellipsoid n) : E.c ∈ E.construct :
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `ofPoint v` reuses `mem_construct` at `u = 0 : Vec ℝ 0`, the only coefficient
-vector a `0`-column `G` admits, in `unitBall₂` because `norm₂_zero ≤ 1`. -/
+/-- `ofPoint v` reuses `mem_construct` at `u = 0`, in `unitBall₂` because `norm₂_zero ≤ 1`. -/
 theorem Ellipsoid.mem_ofPoint (v : Vec ℝ n) : v ∈ (Ellipsoid.ofPoint v).construct := by
-  have hu : ‖(0 : Vec ℝ 0)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
+  have hu : ‖(0 : Vec ℝ n)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
   simpa [Ellipsoid.ofPoint] using Ellipsoid.mem_construct (E := Ellipsoid.ofPoint v) hu
 
 
@@ -138,8 +162,20 @@ theorem Ellipsoid.project_exact (E : Ellipsoid n) (dims : Fin m → Fin n) :
 
 /-- `vᵀ Q v = (Gᵀ v)ᵀ (Gᵀ v)` for `Q = G Gᵀ`, so it is `‖Gᵀ v‖₂²` and nonnegative. -/
 theorem Ellipsoid.quad_eq (E : Ellipsoid n) (v : Vec ℝ n) :
-    v ⬝ᵥ (E.shape *ᵥ v) = (E.Gᵀ *ᵥ v) ⬝ᵥ (E.Gᵀ *ᵥ v) := by
-  rw [Ellipsoid.shape, ← Matrix.mulVec_mulVec, Ellipsoid.dot_transpose]
+    v ⬝ᵥ (E.Q *ᵥ v) = (E.Gᵀ *ᵥ v) ⬝ᵥ (E.Gᵀ *ᵥ v) := by
+  rw [← E.G_mul_transpose, ← Matrix.mulVec_mulVec, Ellipsoid.dot_transpose]
+
+
+-- ================================  `Ellipsoid.rank_eq_rank_G`  ================================ --
+-- Authors:       Claude Opus 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `rank(E)`, the rank of `Q`, is that of `G = Q^(1/2)`: the dimension of the subspace the
+ellipsoid spans about its center. -/
+theorem Ellipsoid.rank_eq_rank_G (E : Ellipsoid n) : E.rank = E.G.rank := by
+  rw [Ellipsoid.rank, ← E.G_mul_transpose, Matrix.rank_self_mul_transpose]
 
 end CORALean.Real
 

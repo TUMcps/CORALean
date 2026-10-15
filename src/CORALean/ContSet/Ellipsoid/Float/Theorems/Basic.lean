@@ -2,8 +2,11 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Materialise
-public import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
-public import CORALean.ContSet.Ellipsoid.Float.Operations.Plus
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalQEq
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalCenterEq
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalDominated
 public import CORALean.ContSet.Ellipsoid.Real.Instances
 public import CORALean.ContSet.InflatedContSet.Theorems.Convex
 public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
@@ -56,29 +59,6 @@ theorem Ellipsoid.isCompact_construct (E : Ellipsoid 𝕋 n) : IsCompact E.const
   InflatedContSet.isCompact_construct E
 
 
--- ===================================  `Ellipsoid.mtimes_k`  =================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-omit [SoundFloatArithmetic 𝕋] in
-/-- `mtimes` does not change the ball's dimension -/
-@[simp] theorem Ellipsoid.mtimes_k (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
-    (Ellipsoid.mtimes M E).k = E.k := rfl
-
-
--- ====================================  `Ellipsoid.plus_k`  ==================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-omit [SoundFloatArithmetic 𝕋] in
-/-- `plus`'s ball dimension is the sum of the two incoming ones -/
-@[simp] theorem Ellipsoid.plus_k (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) :
-    (Ellipsoid.plus s₁ s₂ E₁ E₂).k = E₁.k + E₂.k := rfl
-
 end
 
 
@@ -101,37 +81,17 @@ omit [FloatOps 𝕋] in
   simp [Ellipsoid.materialise]
 
 
--- ==================================  `Ellipsoid.nominal_G`  =================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   14-October-2026
+-- ================================  `Ellipsoid.nominal_of_psd`  ================================ --
+-- Authors:       Claude Opus 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
 -- Reviewed:      ---
 
-/-- The nominal Ellipsoid's field `G`, so proofs can see through the instance. -/
-theorem Ellipsoid.nominal_G [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
-    (InflatedContSet.nominal E).G = toRealMat E.G := rfl
-
-
--- ==================================  `Ellipsoid.nominal_k`  =================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   14-October-2026
--- Reviewed:      ---
-
-/-- The nominal ellipsoid's fields, so proofs can see through the instance. -/
-theorem Ellipsoid.nominal_k [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
-    (InflatedContSet.nominal E).k = E.k := rfl
-
-
--- ==================================  `Ellipsoid.nominal_q`  =================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   14-October-2026
--- Reviewed:      ---
-
-/-- The nominal Ellipsoid's field `c`, so proofs can see through the instance. -/
-theorem Ellipsoid.nominal_q [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) :
-    (InflatedContSet.nominal E).c = toRealVec E.c := rfl
+/-- At a positive semi-definite `Q` the nominal part is the ellipsoid of the stored floats. -/
+theorem Ellipsoid.nominal_of_psd [SoundFloatArithmetic 𝕋] {E : Ellipsoid 𝕋 n}
+    (h : (toRealMat E.Q).PosSemidef) :
+    (InflatedContSet.nominal E).ellipsoid = ⟨toRealMat E.Q, toRealVec E.q, h⟩ :=
+  Real.Ellipsoid.ofShape_eq h _
 
 end
 

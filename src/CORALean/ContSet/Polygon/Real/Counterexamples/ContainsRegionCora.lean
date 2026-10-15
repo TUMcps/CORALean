@@ -35,6 +35,8 @@ not run; the modelled and abstracted parts are in `Polygon.sampledHullCora`.
 
 namespace CORALean.Real
 
+open scoped MatrixOrder
+
 
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- The area of `P` equals that of `union(P, S')` within `tol`. -/
@@ -52,11 +54,12 @@ accepts `E` while `E ⊄ P`. -/
 theorem Polygon.containsEllipsoid_cora_counterexample (V : Set (Vec ℝ 2)) (hV : V.Finite)
     (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) (tol : ℝ) (htol : 0 ≤ tol) :
     Polygon.containsRegionCora tol (Polygon.sampledHullCora V) (Polygon.sampledHullCora V) ∧
-      ¬ (⟨2, 0, 1⟩ : Ellipsoid 2).construct ⊆ Polygon.sampledHullCora V := by -- --- PROOF ---
+      ¬ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ⊆ Polygon.sampledHullCora V := by -- --- PROOF ---
   refine ⟨by simpa [Polygon.containsRegionCora] using htol, fun hsub => ?_⟩
   obtain ⟨z, hz, hzn⟩ := Polygon.exists_circle_notMem_sampledHull V hV hc
   refine hzn (hsub ?_)
-  refine ⟨z, ?_, by simp⟩
+  have hG : (⟨1, 0, .one⟩ : Ellipsoid 2).G = 1 := CFC.sqrt_one
+  refine ⟨z, ?_, by rw [hG, Matrix.one_mulVec, zero_add]⟩
   show Real.sqrt (∑ i, z i ^ 2) ≤ 1
   rw [Fin.sum_univ_two, hz]
   simp

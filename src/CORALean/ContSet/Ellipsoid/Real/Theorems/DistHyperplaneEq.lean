@@ -41,18 +41,18 @@ variable {n : ℕ}
 
 theorem Ellipsoid.dist_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ) (hv : v ≠ 0) :
     ((E.construct ∩ {x | v ⬝ᵥ x = c}).Nonempty ↔
-        |c - v ⬝ᵥ E.c| - √(v ⬝ᵥ (E.shape *ᵥ v)) ≤ 0) ∧
-    (0 < |c - v ⬝ᵥ E.c| - √(v ⬝ᵥ (E.shape *ᵥ v)) →
+        |c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.Q *ᵥ v)) ≤ 0) ∧
+    (0 < |c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.Q *ᵥ v)) →
       IsLeast {t | ∃ x ∈ E.construct, ∃ y : Vec ℝ n, v ⬝ᵥ y = c ∧ t = ‖x - y‖₂}
-        ((|c - v ⬝ᵥ E.c| - √(v ⬝ᵥ (E.shape *ᵥ v))) / ‖v‖₂)) := by -- --- PROOF ---
-  obtain ⟨m, hm⟩ : ∃ m : ℝ, m = v ⬝ᵥ E.c := ⟨_, rfl⟩
-  obtain ⟨σ, hσ⟩ : ∃ σ : ℝ, σ = √(v ⬝ᵥ (E.shape *ᵥ v)) := ⟨_, rfl⟩
+        ((|c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.Q *ᵥ v))) / ‖v‖₂)) := by -- --- PROOF ---
+  obtain ⟨m, hm⟩ : ∃ m : ℝ, m = v ⬝ᵥ E.q := ⟨_, rfl⟩
+  obtain ⟨σ, hσ⟩ : ∃ σ : ℝ, σ = √(v ⬝ᵥ (E.Q *ᵥ v)) := ⟨_, rfl⟩
   rw [← hm, ← hσ]
   have hσ0 : 0 ≤ σ := by rw [hσ]; exact Real.sqrt_nonneg _
   -- the largest value `m + σ` and, along `-v`, the least value `m - σ` of `vᵀ x` on `E`
   obtain ⟨⟨xp, hxp, hxpv⟩, hub⟩ := E.isGreatest_dot v
   obtain ⟨⟨xm, hxm, hxmv⟩, hlb⟩ := E.isGreatest_dot (-v)
-  have hsq : (-v) ⬝ᵥ (E.shape *ᵥ -v) = v ⬝ᵥ (E.shape *ᵥ v) := by
+  have hsq : (-v) ⬝ᵥ (E.Q *ᵥ -v) = v ⬝ᵥ (E.Q *ᵥ v) := by
     rw [Matrix.mulVec_neg, neg_dotProduct, dotProduct_neg, neg_neg]
   rw [hsq, ← hσ, neg_dotProduct, ← hm] at hxmv hlb
   rw [← hσ, ← hm] at hxpv hub

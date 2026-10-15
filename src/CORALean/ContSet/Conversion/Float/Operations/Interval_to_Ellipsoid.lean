@@ -7,11 +7,14 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 
 /-!
 # A box as an ellipsoid, over a floating-point scalar
+
+CORA's `ellipsoid(I)` of a box: the shape `diag(σ r)²`, `r` the box's radius and `σ ≥ √n` a
+proposed scaling, each entry rounded up, about the box's center.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -26,15 +29,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One generator per coordinate, the box's own radius scaled by the proposed
-`√n` and rounded up. -/
+/-- The diagonal generator: the box's own radius scaled by the proposed `√n`, rounded up. -/
 def Interval.ellipsoidG (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Mat 𝕋 n n :=
   diagonalBlock fun i => mulUp σ (I.radiusFrom i)
 
 def Interval.ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋) : Ellipsoid 𝕋 n where
-  k := n
-  c := I.center
-  G := I.ellipsoidG σ
+  Q := diagonalBlock fun i => mulUp (I.ellipsoidG σ i i) (I.ellipsoidG σ i i)
+  q := I.center
   I_error := ⟨fun _ => zero, fun _ => zero⟩
 
 end CORALean.Float

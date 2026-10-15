@@ -16,9 +16,9 @@ ellipsoid is convex, and the polygon is the hull of the kept vertices (`encloseP
 origin error box adding nothing). Nothing is claimed of the vertices dropped.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,16 +32,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.polygon_inner (E : Ellipsoid 𝕋 2) (U : List (Vec 𝕋 E.k)) :
-    ContSet.construct (E.polygon U) ⊆ E.construct := by -- --- PROOF ---
+theorem Ellipsoid.polygon_inner (E : Ellipsoid 𝕋 2) (W : List (Vec 𝕋 2)) :
+    ContSet.construct (E.polygon W) ⊆ E.construct := by -- --- PROOF ---
   rw [Ellipsoid.polygon, Polygon.construct_ofPieces]
   simp only [List.mem_singleton, Set.iUnion_iUnion_eq_left]
   rw [VPolytope.enclosePoints_exact]
   refine convexHull_min ?_ E.convex_construct
   rintro _ ⟨l, rfl⟩
-  -- the kept factor `kept[l]` passed the test with its own vertex
-  have hmem := List.getElem_mem (l := U.filter fun u => E.containsPoint
-    (fun i => addUp (E.c i) (dotUp (fun j => E.G i j) u)) u) l.isLt
+  -- the kept direction `kept[l]` passed the test with its own vertex
+  have hmem := List.getElem_mem (l := W.filter fun w => E.containsPoint
+    (fun i => addUp (E.q i) (mulVecUp E.Q w i)) w) l.isLt
   exact Ellipsoid.containsPoint_sound (List.mem_filter.mp hmem).2
 
 end CORALean.Float

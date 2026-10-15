@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
 
@@ -10,8 +11,8 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 # The first radius is the largest distance from the center
 
 CORA's `radius(E)` (`i = 1`) is the radius of the smallest hyperball around the center that
-holds the ellipsoid: `sqrt` of the largest eigenvalue `λ₀` of `Q = G Gᵀ` is the greatest
-distance `‖x - q‖₂` over the ellipsoid. Bound: for `v = G u`, `‖v‖² ≤ ‖Gᵀ v‖ ‖u‖` and
+holds the ellipsoid: `sqrt` of the largest eigenvalue `λ₀` of `Q` is the greatest
+distance `‖x - q‖₂` over the ellipsoid. Bound: for `v = G u`, `G = Q^(1/2)`, `‖v‖² ≤ ‖Gᵀ v‖ ‖u‖` and
 `‖Gᵀ v‖² = vᵀ Q v ≤ λ₀ ‖v‖²` (Rayleigh, from the spectral theorem). Attained: at `q + G u*`,
 `u* = Gᵀ v / sqrt λ₀`, `v` the unit eigenvector of `λ₀`.
 -/
@@ -69,30 +70,29 @@ theorem Ellipsoid.aux_rayleigh (A : Mat ℝ n n) (hA : A.IsHermitian) (h0 : 0 < 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
-    IsGreatest ((fun x => ‖x - E.c‖₂) '' E.construct)
+    IsGreatest ((fun x => ‖x - E.q‖₂) '' E.construct)
       (E.radius 1 hn ⟨0, one_pos⟩) := by -- --- PROOF ---
   -- the shape matrix, its first eigenvalue `l0`
-  have hQ : E.shape.IsHermitian := by
-    simpa [Ellipsoid.shape] using Matrix.isHermitian_mul_conjTranspose_self E.G
+  have hQ : E.Q.IsHermitian := E.psd.isHermitian
   have h0 : 0 < Fintype.card (Fin n) := by rw [Fintype.card_fin]; exact hn
   set l0 := hQ.eigenvalues₀ ⟨0, h0⟩ with hl0
   have hrad : E.radius 1 hn ⟨0, one_pos⟩ = Real.sqrt l0 := rfl
   rw [hrad]
   -- `‖Gᵀ v‖² = vᵀ Q v`
-  have hGt : ∀ v : Vec ℝ n, ‖E.Gᵀ *ᵥ v‖₂ ^ 2 = v ⬝ᵥ (E.shape *ᵥ v) := fun v => by
-    rw [← dotProduct_self, Ellipsoid.dot_transpose, Ellipsoid.shape, ← Matrix.mulVec_mulVec]
+  have hGt : ∀ v : Vec ℝ n, ‖E.Gᵀ *ᵥ v‖₂ ^ 2 = v ⬝ᵥ (E.Q *ᵥ v) := fun v => by
+    rw [← dotProduct_self, Ellipsoid.dot_transpose, ← E.G_mul_transpose, ← Matrix.mulVec_mulVec]
   refine ⟨?_, ?_⟩
   · -- attained at `q + G u*`
     by_cases hl : l0 ≤ 0
     · -- no spread: the center itself
-      refine ⟨E.c, E.q_mem_construct, ?_⟩
+      refine ⟨E.q, E.q_mem_construct, ?_⟩
       have : Real.sqrt l0 = 0 := Real.sqrt_eq_zero_of_nonpos hl
       simp [this, norm₂_zero]
     · have hl := not_le.mp hl
       -- a unit eigenvector `v` of `l0`
       set j0 : Fin n := Fintype.equivOfCardEq (Fintype.card_fin _) ⟨0, h0⟩ with hj0
       set v : Vec ℝ n := ⇑(hQ.eigenvectorBasis j0) with hv
-      have hQv : E.shape *ᵥ v = l0 • v := by
+      have hQv : E.Q *ᵥ v = l0 • v := by
         have := hQ.mulVec_eigenvectorBasis j0
         simpa [Matrix.IsHermitian.eigenvalues, hj0, hl0] using this
       have hvn : ‖v‖₂ = 1 := by
@@ -101,10 +101,9 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
       -- `u* = Gᵀ v / sqrt l0` has unit length and `G u* = sqrt l0 • v`
       have hsq : Real.sqrt l0 ^ 2 = l0 := Real.sq_sqrt hl.le
       have hpos : 0 < Real.sqrt l0 := Real.sqrt_pos.mpr hl
-      set u : Vec ℝ E.k := (Real.sqrt l0)⁻¹ • (E.Gᵀ *ᵥ v) with hu
+      set u : Vec ℝ n := (Real.sqrt l0)⁻¹ • (E.Gᵀ *ᵥ v) with hu
       have hGu : E.G *ᵥ u = Real.sqrt l0 • v := by
-        rw [hu, Matrix.mulVec_smul, Matrix.mulVec_mulVec]
-        change (Real.sqrt l0)⁻¹ • (E.shape *ᵥ v) = _
+        rw [hu, Matrix.mulVec_smul, Matrix.mulVec_mulVec, E.G_mul_transpose]
         rw [hQv, smul_smul]
         congr 1
         calc (Real.sqrt l0)⁻¹ * l0 = (Real.sqrt l0)⁻¹ * (Real.sqrt l0 * Real.sqrt l0) := by
@@ -118,7 +117,7 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
         have h3 : ‖E.Gᵀ *ᵥ v‖₂ = Real.sqrt l0 := by
           rw [← h2]; exact (Real.sqrt_sq (norm₂_nonneg _)).symm
         rw [h3, inv_mul_cancel₀ hpos.ne']
-      refine ⟨E.c + E.G *ᵥ u, Ellipsoid.mem_construct hun, ?_⟩
+      refine ⟨E.q + E.G *ᵥ u, Ellipsoid.mem_construct hun, ?_⟩
       simp only [add_sub_cancel_left, hGu]
       rw [norm₂_smul, hvn, mul_one, abs_of_pos hpos]
   · -- the bound
@@ -133,7 +132,7 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
         _ = _ := mul_one _
     have h2 : ‖E.Gᵀ *ᵥ v‖₂ ^ 2 ≤ l0 * ‖v‖₂ ^ 2 := by
       rw [hGt, ← dotProduct_self]
-      exact Ellipsoid.aux_rayleigh E.shape hQ h0 v
+      exact Ellipsoid.aux_rayleigh E.Q hQ h0 v
     -- `‖v‖⁴ ≤ ‖Gᵀ v‖² ≤ l0 ‖v‖²`
     rcases (norm₂_nonneg v).eq_or_lt with h | h
     · rw [← h]; exact Real.sqrt_nonneg _

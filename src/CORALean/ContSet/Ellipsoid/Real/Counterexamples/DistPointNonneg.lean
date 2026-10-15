@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.Data.Fin.VecNotation
@@ -33,23 +33,19 @@ it positive (`dist_point_eq_max`), so its maximum is `0`. Touching sets give `0`
 namespace CORALean.Real
 
 open Matrix
+open scoped MatrixOrder
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.dist_point_nonneg_counterexample :
     ∃ (E : Ellipsoid 1) (a l : Vec ℝ 1), a ∈ E.construct ∧ ‖l‖₂ = 1 ∧
-      l ⬝ᵥ a - l ⬝ᵥ E.c - √(l ⬝ᵥ (E.shape *ᵥ l)) = 0 := by -- --- PROOF ---
-  have hsh : (⟨1, 0, !![1]⟩ : Ellipsoid 1).shape = 1 := by
-    ext i j
-    fin_cases i
-    fin_cases j
-    simp [Ellipsoid.shape, Matrix.mul_apply]
-  refine ⟨⟨1, 0, !![1]⟩, ![1], ![1], ⟨![1], by simp [norm₂], ?_⟩, by simp [norm₂], ?_⟩
-  · funext i
-    fin_cases i
-    simp
-  · rw [hsh, Matrix.one_mulVec]
+      l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l)) = 0 := by -- --- PROOF ---
+  have hG : (⟨1, 0, .one⟩ : Ellipsoid 1).G = 1 := CFC.sqrt_one
+  refine ⟨⟨1, 0, .one⟩, ![1], ![1], ⟨![1], by simp [norm₂], ?_⟩, by simp [norm₂], ?_⟩
+  · rw [hG, Matrix.one_mulVec, zero_add]
+  · show _ - _ - √(_ ⬝ᵥ ((1 : Mat ℝ 1 1) *ᵥ _)) = 0
+    rw [Matrix.one_mulVec]
     simp [dotProduct]
 
 end CORALean.Real

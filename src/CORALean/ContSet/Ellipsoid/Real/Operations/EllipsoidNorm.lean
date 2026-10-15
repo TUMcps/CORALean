@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
@@ -18,7 +18,7 @@ definition reads `Matrix`'s junk inverse and means nothing.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,9 +33,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `ellipsoid/ellipsoidNorm` for a full-rank `E`: `sqrt(|pᵀ Q⁻¹ p|)` at `Q = G Gᵀ`. -/
+/-- `ellipsoid/ellipsoidNorm` for a full-rank `E`: `sqrt(|pᵀ Q⁻¹ p|)`. -/
 noncomputable def Ellipsoid.ellipsoidNorm (E : Ellipsoid n) (p : Vec ℝ n) : ℝ :=
-  let q : Vec ℝ n := E.shape⁻¹ *ᵥ p                -- `Q \ p`
+  let q : Vec ℝ n := E.Q⁻¹ *ᵥ p                -- `Q \ p`
   Real.sqrt |p ⬝ᵥ q|
 
 end CORALean.Real
