@@ -19,7 +19,8 @@ calls `linearize` [1] (`NonlinParamSys.linearize`), translates the initial set b
 linearization point, and, as `isa(sys,'nonlinParamSys') && isa(params.paramInt,'interval')`,
 runs `initReach_inputDependence` on the `linParamSys` of `zA` with the constant input `zf`
 (`LinParamSys.initReachInputDependence`, corrected where CORA's `inputCorr` is too small; for the
-zero matrix `zA` of the counterexample the two coincide), then translates back and adds the
+zero matrix `zA` and `B = 1`, which has no deviation from its center, of the counterexample
+the two coincide), then translates back and adds the
 abstraction error `Rerror`.
 
 Not modelled: the time-varying input `zB (U + uTrans - p.u)` (`linParams.U`), the choice of the
@@ -46,7 +47,7 @@ zero (`linReachCora_remainder_zero`), `Rerror = {0}`. The linearized system here
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -86,6 +87,73 @@ open CORALean.Real ContSet Matrix
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The zero zonotope in `ℝ¹`: center and every generator `0`. -/
+def LinParamSys.IsNullZono (Z : Zonotope (Vec ℝ 1)) : Prop := Z.c = 0 ∧ ∀ l, Z.G l = 0
+
+theorem LinParamSys.IsNullZono.plus {Z₁ Z₂ : Zonotope (Vec ℝ 1)} (h₁ : IsNullZono Z₁)
+    (h₂ : IsNullZono Z₂) : IsNullZono (Z₁ ⊞ Z₂) := by
+  refine ⟨by show Z₁.c + Z₂.c = 0; rw [h₁.1, h₂.1]; simp, fun l => ?_⟩
+  show Fin.append Z₁.G Z₂.G l = 0
+  refine Fin.addCases (fun i => ?_) (fun j => ?_) l <;>
+    simp [Fin.append_left, Fin.append_right, h₁.2, h₂.2]
+
+theorem LinParamSys.IsNullZono.mtimesInterval {Z : Zonotope (Vec ℝ 1)} (hZ : IsNullZono Z)
+    (IM : Interval (Mat ℝ 1 1)) :
+    IsNullZono (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z) := by -- --- PROOF ---
+  refine ⟨by show IM.center *ᵥ Z.c = 0; rw [hZ.1]; simp, fun l => ?_⟩
+  show Fin.append (fun l => IM.center *ᵥ Z.G l)
+    (Matrix.diagonal fun i => Zonotope.radiusReach IM Z i) l = 0
+  refine Fin.addCases (fun i => ?_) (fun j => ?_) l
+  · simp [Fin.append_left, hZ.2]
+  · simp only [Fin.append_right]
+    ext k
+    simp [Matrix.diagonal_apply, Zonotope.radiusReach, Zonotope.absBound, hZ.1, hZ.2]
+
+theorem LinParamSys.IsNullZono.mtimesMatZonotope {Z : Zonotope (Vec ℝ 1)} (hZ : IsNullZono Z)
+    (M : Zonotope (Mat ℝ 1 1)) :
+    IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
+  refine ⟨by simp [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin, hZ.1], fun l => ?_⟩
+  simp only [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin]
+  refine Fin.addCases (fun i => ?_) (fun k => ?_) l
+  · refine Fin.addCases (fun a => ?_) (fun b => ?_) i <;>
+      simp [Fin.append_left, Fin.append_right, hZ.1, hZ.2]
+  · simp [Fin.append_right, hZ.2]
+
+theorem LinParamSys.IsNullZono.mtimesMatZonotope_zero {Z : Zonotope (Vec ℝ 1)}
+    {M : Zonotope (Mat ℝ 1 1)} (hc : M.c = 0) (hh : M.h = 0) :
+    IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
+  refine ⟨by simp [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin, hc], fun l => ?_⟩
+  simp only [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin]
+  refine Fin.addCases (fun i => ?_) (fun k => ?_) l
+  · refine Fin.addCases (fun a => ?_) (fun b => ?_) i
+    · exact absurd a.2 (by omega)
+    · simp [Fin.append_left, Fin.append_right, hc]
+  · exact absurd (finProdFinEquiv.symm k).1.2 (by omega)
+
+/-- For the identity `B`, the deviation of `B` from its center is the zero zonotope, so the
+independent input `initReachInputDependence` adds for it is the zero set. -/
+theorem LinParamSys.aux_inputSolutionZono_null (zA : Zonotope (Mat ℝ 1 1))
+    (UG : Fin zA.h → Vec ℝ 1) (Uc : Vec ℝ 1) (r : ℝ) (S : Zonotope (Vec ℝ 1) → ℝ)
+    (hS : ∀ Z, S Z = Z.c 0 + ∑ l, |Z.G l 0|) :
+    let X := (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).inputSolutionZono (S := 𝒵) r 2
+      (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵)
+        (⟨(LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.h, 0,
+          (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.G⟩ : Zonotope (Mat ℝ 1 1))
+        (⟨zA.h, Uc, UG⟩ : Zonotope (Vec ℝ 1)))
+    X.c 0 = 0 ∧ S X = 0 := by -- --- PROOF ---
+  intro X
+  have hV := LinParamSys.IsNullZono.mtimesMatZonotope_zero (Z := (⟨zA.h, Uc, UG⟩ :
+    Zonotope (Vec ℝ 1))) (M := (⟨(LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.h, 0,
+      (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.G⟩ : Zonotope (Mat ℝ 1 1))) rfl rfl
+  have hX : IsNullZono X := by
+    simp only [X, LinParamSys.inputSolutionZono]
+    exact ((hV.mtimesMatZonotope _ |>.plus (hV.mtimesMatZonotope _)).plus
+      (hV.mtimesInterval _)).plus (hV.mtimesInterval _)
+  simp [hS, hX.1, hX.2]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -174,8 +242,13 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
         simp
     have hfst : ((LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).initReachInputDependence
         r 2 Rd Uc UG).1 = (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).dependentHomSol
-          r 2 Rd Uc UG := by
+          r 2 Rd Uc UG ⊞ (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).inputSolutionZono
+            (S := 𝒵) r 2 (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵)
+              (⟨(LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.h, 0,
+                (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.G⟩ : Zonotope (Mat ℝ 1 1))
+              (⟨zA.h, Uc, UG⟩ : Zonotope (Vec ℝ 1))) := by
       simp only [LinParamSys.initReachInputDependence, hVc, hVG]
+    have hextS' := LinParamSys.aux_inputSolutionZono_null zA UG Uc r S hS
     subst hA
     -- the second-order `R_lowOrder`: center `d + 3 r / 2`, one generator `r / 2`
     have hlow : S (LinParamSys.dependentLowOrder (0 : Mat ℝ 1 1) (fun _ => 0) Rd.c Uc UG r)
@@ -295,10 +368,15 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
             0 + 2 * r := by
       simp only [LinParamSys.initReachInputDependence, hVc, hVG, hSplus, hB, hZ _ _ hFz,
         hZ _ _ hFiz]
-      have h := (hlin Rd _ hh hctp).trans htp.le
       change S (Zonotope.linComb _ _) + 0 + 0 ≤ _
-      linarith
-    exact ⟨by rw [hfst]; exact htp.le, hti⟩
+      rw [add_zero, add_zero]
+      refine (hlin Rd _ hh ?_).trans ?_
+      · rw [show ∀ Z₁ Z₂ : Zonotope (Vec ℝ 1), (Z₁ ⊞ Z₂).c 0 = Z₁.c 0 + Z₂.c 0 from fun _ _ => rfl,
+          hextS'.1]
+        simpa using hctp
+      · rw [hSplus, hextS'.2]
+        simpa using htp.le
+    exact ⟨by rw [hfst, hSplus, hextS'.2]; simpa using htp.le, hti⟩
   -- the linearization of `ẋ = p²` over `[1, 2]`: `zA = 0`, `zf = [1, 2]`
   have hA : (sys.linearize (fun _ => x₀) 0 I).zA = ⟨1, 0, fun _ => 0⟩ := by
     simp [sys, I, NonlinParamSys.linearize, jacobianMat, Interval.center, Interval.radius]
