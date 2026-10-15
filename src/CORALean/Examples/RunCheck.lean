@@ -34,7 +34,7 @@ Run: `lake exe runcheck` (links, slow) or `lake env lean --run src/CORALean/Exam
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -114,7 +114,8 @@ def ofZono {n : ℕ} (Z : Zonotope (Vec 𝕋 n)) : Out :=
 
 -- the polytopes and constrained sets
 def ofHP {n : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 n)) : Out :=
-  ⟨s!"m={P.m} me={P.me} b={vecS P.b}", matF P.A ++ vecF P.b ++ matF P.Ae ++ boxF P.be, false⟩
+  ⟨s!"m={P.m} me={P.me} b={vecS P.b}",
+    matF P.A ++ vecF P.b ++ matF P.Ae ++ vecF P.be ++ boxF P.I_error, false⟩
 
 def ofVP {n : ℕ} (P : VPolytope (Vec 𝕋 n)) : Out :=
   ⟨s!"k={P.k} E={boxS P.I_error}", matF P.V ++ boxF P.I_error, false⟩

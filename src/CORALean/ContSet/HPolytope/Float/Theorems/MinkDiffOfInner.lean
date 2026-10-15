@@ -11,12 +11,14 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 The exact layer's argument, with one rounding to account for: a point `x` of the
 result and any `y` of the subtrahend give `A (x + y) ≤ (b ⊖ u) + u ≤ b`, the
 stored bound having been rounded downward. Equality rows need the subtrahend in
-their kernel, as over ℝ.
+their kernel, as over ℝ. The error box rides along: a point of the result is a point of the
+nominal result plus a box point, and the nominal one shifted by the subtrahend is a nominal
+point of `P`.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -24,7 +26,7 @@ their kernel, as over ℝ.
 
 namespace CORALean.Float
 
-open Matrix FloatOps SoundFloatArithmetic
+open Pointwise Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
@@ -36,9 +38,11 @@ theorem HPolytope.minkDiffOf_inner (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (V
     (hker : ∀ i, ∀ y ∈ T, (toRealMat P.Ae *ᵥ y) i = 0) :
     (P.minkDiffOf T u).construct ⊆ minkowskiDiff P.construct T := by -- --- PROOF ---
   intro x hx y hy
-  obtain ⟨hle, heq⟩ := HPolytope.mem_construct_iff.mp hx
-  refine HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
-  · have h1 : (toRealMat P.A *ᵥ x) i ≤ toReal (subDown (P.b i) (u i).val) := hle i
+  obtain ⟨z, hz, e, he, rfl⟩ := Set.mem_add.mp hx
+  obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hz
+  refine Set.mem_add.mpr ⟨z + y, HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩, e, he,
+    add_right_comm _ _ _⟩
+  · have h1 : (toRealMat P.A *ᵥ z) i ≤ toReal (subDown (P.b i) (u i).val) := hle i
     have h2 : (toRealMat P.A *ᵥ y) i ≤ toReal (u i).val := (u i).le y hy
     have h3 := subDown_le_sub (P.b i) (u i).val
     rw [mulVec_add, Pi.add_apply]

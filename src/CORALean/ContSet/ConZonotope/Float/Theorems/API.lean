@@ -15,6 +15,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.CubMapOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.DependentNominal
 public import CORALean.ContSet.ConZonotope.Float.Theorems.EmptyExact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectStripOuter
+public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IsDisjointLPSound
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound

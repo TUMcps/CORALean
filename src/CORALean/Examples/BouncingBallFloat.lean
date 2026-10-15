@@ -22,9 +22,9 @@ velocity the first stay meets the floor with, `-√(2 g p₀)` for `p₀` near `
 about `-4.4`.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -46,7 +46,8 @@ def floorGuard : HPolytope D (Vec D 2) where
   b := ![d 0 0]
   me := 1
   Ae := ![![d 1 0, d 0 0]]
-  be := ⟨![d 0 0], ![d 0 0]⟩
+  be := ![d 0 0]
+  I_error := Interval.origin 2
 
 /-- Above the floor, `-p ≤ 0`. -/
 def aboveFloor : HPolytope D (Vec D 2) where
@@ -55,7 +56,8 @@ def aboveFloor : HPolytope D (Vec D 2) where
   b := ![d 0 0]
   me := 0
   Ae := ![]
-  be := ⟨![], ![]⟩
+  be := ![]
+  I_error := Interval.origin 2
 
 /-- The bounce: keep the position, reverse the velocity and damp it by `3/4`. -/
 def bounce : Transition (fun k => HPolytope D (Vec D k)) Unit D 2 where

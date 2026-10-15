@@ -16,9 +16,9 @@ zonotope keeps outside its `P`; an operation that weights the coefficients has
 to put the two back together and reads the box from here.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +40,8 @@ def HPolytope.unitBox (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 (
   b := fun _ => one
   me := 0
   Ae := fun i => i.elim0
-  be := ⟨fun i => i.elim0, fun i => i.elim0⟩
+  be := fun i => i.elim0
+  I_error := Interval.origin n
 
 end CORALean.Float
 

@@ -3,12 +3,24 @@ module
 public import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
 public import CORALean.ContSet.HPolytope.Float.Operations.Isequal
 public import CORALean.ContSet.HPolytope.Float.Operations.Not
+public import CORALean.ContSet.HPolytope.Float.Operations.AnchorEqs
+public import CORALean.ContSet.HPolytope.Float.Operations.AnchorEqsInBox
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.AbsorbRounding
+public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemIneqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Slab
+public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MulVecNeg
+public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.PlusOf
 public import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
 public import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
@@ -19,7 +31,6 @@ public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
-public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
 public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.PadRight
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecPadLeft
@@ -72,24 +83,24 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Materialise
 /-!
 # What the float `HPolytope` computes
 
-Three groups.
+Exactly and without arithmetic: `stackRows` concatenates constraint lists (the nominal
+intersection, which reads no box), `padLeft`, `padRight` and `lift_` widen the coefficient space
+and carry the box along, `halfScaledLeft` and its mirror widen it by one weighting coordinate and
+halve every right-hand side into it, and the constructors copy matrices. None of them rounds.
 
-Exactly and without arithmetic: `intersection` concatenates constraint lists, `padLeft`
-and `padRight` widen the coefficient space with zeros, `halfScaledLeft` and its
-mirror widen it by one weighting coordinate and halve every right-hand side into
-it, and the constructors copy matrices. None of them rounds: halving and
-negation are exact, and the rest computes nothing.
+Moving the error box into the rows: `absorbRounding` raises each right-hand side by the box's
+support in that row's direction and writes each equality as the two inequalities it stands for;
+the normalizations of a polytope with a box and `not` read a polytope through it, a box not being
+a halfspace.
 
-Rounding, and where it goes: `translate` moves each bound by what its row reads
-off the shift, an inequality absorbing that upward and an equality outward at
-both ends of its interval. This is what the interval right-hand side is for, and
-the only operation here that needs it. `minkDiffOf` shifts each inequality bound
-inward by a certified support bound of the subtrahend, rounding downward so the
-result stays inside the exact difference.
+Rounding, and where it goes: an inequality is raised; a rounded equality is kept, the certified step
+onto it paid into the box (`anchorEqs`, which `intersection`, `translate` and `scaleRows` use;
+`anchorEqsInBox` for unit-box coefficients), or written as two inequalities without a certificate.
+`minkDiffOf` shifts each inequality bound inward by a certified support bound of the subtrahend,
+rounding downward so the result stays inside the exact one.
 
-Enclosing on chosen directions: `plusOf`, `linCombOf`, `mtimesOf` and
-`intervalOf`, whose rows nobody can predict from the inputs' — `ofBounds` is
-their shared shape and `DualBound` is where a halfspace description certifies a
-direction for itself. `dualWeights` proposes the weights such a certificate needs,
-by the exact simplex at ℚ on the floats' own values; it is the driver, never a proof.
+Enclosing on chosen directions: `plusOf`, `linCombOf`, `mtimesOf` and `intervalOf`, whose rows
+nobody can predict from the inputs' — `ofBounds` is their shared shape and `DualBound` is where
+a halfspace description certifies a direction for itself. `dualWeights` proposes the weights such
+a certificate needs, by the exact simplex at ℚ; it is the driver, never a proof.
 -/

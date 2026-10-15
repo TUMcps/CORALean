@@ -12,9 +12,9 @@ The rows of a polytope picked by two Boolean tests, in their order: CORA's `A(id
 `mem_restrict_iff` says what is left. Nothing rounds.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -38,8 +38,8 @@ def HPolytope.restrict (P : HPolytope 𝕋 (Vec 𝕋 n)) (keepA : Fin P.m → Bo
   b := fun k => P.b (((List.finRange P.m).filter keepA).get k)
   me := ((List.finRange P.me).filter keepE).length
   Ae := fun k => P.Ae (((List.finRange P.me).filter keepE).get k)
-  be := ⟨fun k => P.be.inf (((List.finRange P.me).filter keepE).get k),
-    fun k => P.be.sup (((List.finRange P.me).filter keepE).get k)⟩
+  be := fun k => P.be (((List.finRange P.me).filter keepE).get k)
+  I_error := P.I_error
 
 end CORALean.Float
 

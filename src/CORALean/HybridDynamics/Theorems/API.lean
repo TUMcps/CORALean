@@ -78,10 +78,12 @@ public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
 public import CORALean.HybridDynamics.Theorems.CheckFlowDropped
 public import CORALean.HybridDynamics.Theorems.CheckFlowFloatDropped
 public import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact
+public import CORALean.HybridDynamics.Theorems.TransitionConvGuardOuter
 public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeExact
 public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeInterval
 public import CORALean.HybridDynamics.Theorems.TransitionGuard2PolytopeOuter
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeGuardExact
+public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeGuardOuter
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeReset
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeTargetApply
 public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeFloatEncloses

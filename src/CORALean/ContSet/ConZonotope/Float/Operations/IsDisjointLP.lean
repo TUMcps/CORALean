@@ -22,9 +22,9 @@ A NaN among the stored data reads through `ToRat` as `1.5 · 2 ^ 1024`, so the p
 is another one. That costs tightness only: the checker sees the NaN in rounded arithmetic.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -45,15 +45,15 @@ def ConZonotope.aux_place {h : ℕ} (f : Fin h → ℚ) (off v : ℕ) : ℚ :=
   if hv : off ≤ v ∧ v - off < h then f ⟨v - off, hv.2⟩ else 0
 
 /-- A constraint polytope's rows on the coefficients at offset `off`: `A ≤ b`,
-`Ae ≤ be.sup`, `-Ae ≤ -be.inf`, and the unit box both ways. -/
+`Ae ≤ be`, `-Ae ≤ -be`, and the unit box both ways. -/
 def ConZonotope.aux_coeffRows (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (off : ℕ) : List ((ℕ → ℚ) × ℚ) :=
   let A := fun k j => ToRat.toRat (cZ.P.A k j)
   let Ae := fun k j => ToRat.toRat (cZ.P.Ae k j)
   (List.finRange cZ.P.m).map (fun k => (ConZonotope.aux_place (A k) off, ToRat.toRat (cZ.P.b k)))
     ++ (List.finRange cZ.P.me).map (fun k =>
-      (ConZonotope.aux_place (Ae k) off, ToRat.toRat (cZ.P.be.sup k)))
+      (ConZonotope.aux_place (Ae k) off, ToRat.toRat (cZ.P.be k)))
     ++ (List.finRange cZ.P.me).map (fun k =>
-      (fun v => -ConZonotope.aux_place (Ae k) off v, -ToRat.toRat (cZ.P.be.inf k)))
+      (fun v => -ConZonotope.aux_place (Ae k) off v, -ToRat.toRat (cZ.P.be k)))
     ++ (List.finRange cZ.h).map (fun j =>
       (ConZonotope.aux_place (fun l => if l = j then 1 else 0) off, 1))
     ++ (List.finRange cZ.h).map (fun j =>

@@ -28,9 +28,9 @@ whole box. A `false` carries nothing: it says only that this depth did not find 
 all depth `0` says here, since the specification holds.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -56,8 +56,8 @@ def Example.input : Interval (Vec Example.D 1) := ⟨fun _ => ⟨-1, 0⟩, fun _
 
 /-- Safe: `y ≤ 1`, as the one-row halfspace polytope. -/
 def Example.spec : Specification (HPolytope Example.D (Vec Example.D 1)) :=
-  .safeSet ⟨1, fun _ _ => ⟨1, 0⟩, fun _ => ⟨1, 0⟩, 0, fun i => i.elim0,
-    ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
+  .safeSet ⟨1, fun _ _ => ⟨1, 0⟩, fun _ => ⟨1, 0⟩, 0, fun i => i.elim0, fun i => i.elim0,
+    Interval.origin _⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

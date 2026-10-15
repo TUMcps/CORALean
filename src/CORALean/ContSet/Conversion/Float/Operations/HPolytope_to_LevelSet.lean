@@ -9,9 +9,9 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 # A float polytope as a level set
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -26,12 +26,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `levelSet(P)`: `A x - b ≤ 0`, then `Ae x - be.sup ≤ 0` and `be.inf - Ae x ≤ 0`. -/
+/-- `levelSet(P)`: `A x - b ≤ 0`, then `Ae x - be ≤ 0` and `be - Ae x ≤ 0`. The rows are the
+nominal part's: the error box is not read. -/
 def HPolytope.levelSet (P : HPolytope 𝕋 (Vec 𝕋 n)) : Real.LevelSet n where
   m := P.m + (P.me + P.me)
   f x := Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i))
-    (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be.sup r))
-      fun r => toReal (P.be.inf r) - (toRealMat P.Ae *ᵥ x) r)
+    (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be r))
+      fun r => toReal (P.be r) - (toRealMat P.Ae *ᵥ x) r)
   op := Fin.append (fun _ => .le) (Fin.append (fun _ => .le) fun _ => .le)
 
 end CORALean.Float

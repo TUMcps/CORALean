@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.HybridDynamics.Definitions.Transition
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 
 @[expose] public section
 
@@ -9,8 +10,9 @@ public import CORALean.HybridDynamics.Definitions.Transition
 # `Transition.convGuard`
 
 CORA's `convGuard` at `options.guardIntersect = 'polytope'`: the guard is replaced by its
-exact intersection with the location's invariant, both polytopes, so that a later guard
-intersection already respects the invariant. The stacked-rows `HPolytope.intersection` is
+intersection with the location's invariant, both polytopes, so that a later guard
+intersection already respects the invariant. `HPolytope.intersection` stacks the rows after
+folding each polytope's error box into them, so the result contains the intersection; it is
 generic over the scalar, so this runs at any float and at `ℝ`.
 
 Not modelled: the `'conZonotope'` branch, which converts a polytope guard to a conZonotope and

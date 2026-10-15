@@ -1,9 +1,14 @@
 module
 
+public import CORALean.ContSet.HPolytope.Float.Definitions.Basic
 public import CORALean.ContSet.HPolytope.Float.HPolytope
 public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
 public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
 public import CORALean.ContSet.HPolytope.Float.Operations.Materialise
+public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructCongr
+public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
@@ -18,34 +23,40 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
+
 namespace CORALean.Float
 
 section
 
-open Matrix FloatOps SoundFloatArithmetic
-
-variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
-
-
--- ================================  `HPolytope.materialise_eq`  ================================ --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   14-October-2026
--- Reviewed:      ---
-
-omit [FloatOps 𝕋] in
-/-- `materialise` is the identity: it changes only what running the definition costs. -/
-@[simp] theorem HPolytope.materialise_eq (P : HPolytope 𝕋 (Vec 𝕋 n)) : P.materialise = P := by
-  simp [HPolytope.materialise]
-
-end
-
-
-section
-
-open FloatOps SoundFloatArithmetic
+open Pointwise Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ==============================  `HPolytope.errFree_of_origin`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   15-October-2026
+-- Reviewed:      ---
+
+/-- A polytope whose box is the origin box is error-free. -/
+theorem HPolytope.errFree_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)}
+    (h : P.I_error = Interval.origin n) : P.ErrFree := fun j => by
+  rw [h]
+  exact ⟨toReal_zero, toReal_zero⟩
+
+
+-- ============================  `HPolytope.mem_nominal_of_origin`  ============================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A polytope with the origin box is read at its nominal part. -/
+theorem HPolytope.mem_nominal_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)}
+    (h : P.I_error = Interval.origin n) {x : Vec ℝ n} :
+    x ∈ P.construct ↔ x ∈ P.nominal.construct :=
+  Set.ext_iff.mp (HPolytope.construct_eq_nominal (HPolytope.errFree_of_origin h)) x
 
 
 -- ============================  `HPolytope.toReal_eq_of_eqScalar`  ============================= --
@@ -71,6 +82,27 @@ theorem HPolytope.toReal_eq_of_eqScalar {a b : 𝕋} (h : HPolytope.eqScalar a b
 theorem HPolytope.toReal_eq_of_eqVec {u v : Vec 𝕋 n} (h : HPolytope.eqVec u v = true) (j : Fin n) :
     toReal (u j) = toReal (v j) :=
   HPolytope.toReal_eq_of_eqScalar (List.all_eq_true.mp h j (List.mem_finRange j))
+
+end
+
+
+section
+
+open Matrix FloatOps SoundFloatArithmetic
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
+
+
+-- ================================  `HPolytope.materialise_eq`  ================================ --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+omit [FloatOps 𝕋] in
+/-- `materialise` is the identity: it changes only what running the definition costs. -/
+@[simp] theorem HPolytope.materialise_eq (P : HPolytope 𝕋 (Vec 𝕋 n)) : P.materialise = P := by
+  simp [HPolytope.materialise]
 
 end
 

@@ -53,8 +53,8 @@ theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat �
     (hy : ∀ i, |y i - (toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))| ≤ toReal B) :
     y ∈ nominalSet cZ := by -- --- PROOF ---
   simp only [ConZonotope.interiorCert, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
-    forall_const] at hc
-  obtain ⟨⟨⟨⟨hδ0, hbox⟩, hineq⟩, heq⟩, hball⟩ := hc
+    forall_const, beq_iff_eq] at hc
+  obtain ⟨⟨⟨⟨hδ0, hbox⟩, hineq⟩, hme⟩, hball⟩ := hc
   have hδ : 0 ≤ toReal δ := by simpa [toReal_zero] using toReal_le_of_le hδ0
   obtain ⟨-, hreach⟩ := Zonotope.ballCert_reach hball
   obtain ⟨β', hβ', hβδ⟩ := hreach (fun i => y i - (toReal (cZ.c i)
@@ -69,7 +69,7 @@ theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat �
     calc |toReal (β₀ j) + β' j| ≤ |toReal (β₀ j)| + |β' j| := abs_add_le _ _
       _ ≤ 1 := by linarith [hβδ j]
   · -- the constraint rows
-    rw [HPolytope.mem_construct_iff]
+    rw [HPolytope.mem_nominal_iff]
     have hsplit : ∀ {m : ℕ} (M : Mat 𝕋 m cZ.h) (i : Fin m),
         (toRealMat M *ᵥ fun j => toReal (β₀ j) + β' j) i
           = ∑ j, toReal (M i j) * toReal (β₀ j) + (toRealMat M *ᵥ β') i := by
@@ -77,31 +77,15 @@ theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat �
       simp only [Matrix.mulVec, dotProduct, toRealMat]
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun j _ => by ring
-    -- the inequality rows, then the lower and the upper end of each slab row
-    refine ⟨fun i => ?_, fun i => ⟨?_, ?_⟩⟩
-    · have h1 := toReal_le_of_le (hineq i)
-      have h2 := add_le_addUp (dotUp (cZ.P.A i) β₀) (mulUp δ (radius cZ.P.A i))
-      have h3 := le_dotUp (cZ.P.A i) β₀
-      have h4 := mul_le_mulUp δ (radius cZ.P.A i)
-      have h5 := (abs_le.mp (ConZonotope.aux_row_move cZ.P.A β' hδ hβδ i)).2
-      rw [hsplit]
-      linarith
-    · -- the slab's lower end
-      have h1 := toReal_le_of_le (heq i).2
-      have h2 := subDown_le_sub (dotDown (cZ.P.Ae i) β₀) (mulUp δ (radius cZ.P.Ae i))
-      have h3 := dotDown_le (cZ.P.Ae i) β₀
-      have h4 := mul_le_mulUp δ (radius cZ.P.Ae i)
-      have h5 := (abs_le.mp (ConZonotope.aux_row_move cZ.P.Ae β' hδ hβδ i)).1
-      rw [hsplit]
-      linarith
-    · -- the slab's upper end
-      have h1 := toReal_le_of_le (heq i).1
-      have h2 := add_le_addUp (dotUp (cZ.P.Ae i) β₀) (mulUp δ (radius cZ.P.Ae i))
-      have h3 := le_dotUp (cZ.P.Ae i) β₀
-      have h4 := mul_le_mulUp δ (radius cZ.P.Ae i)
-      have h5 := (abs_le.mp (ConZonotope.aux_row_move cZ.P.Ae β' hδ hβδ i)).2
-      rw [hsplit]
-      linarith
+    -- the inequality rows; there is no equality row
+    refine ⟨fun i => ?_, fun i => absurd i.isLt (by omega)⟩
+    have h1 := toReal_le_of_le (hineq i)
+    have h2 := add_le_addUp (dotUp (cZ.P.A i) β₀) (mulUp δ (radius cZ.P.A i))
+    have h3 := le_dotUp (cZ.P.A i) β₀
+    have h4 := mul_le_mulUp δ (radius cZ.P.A i)
+    have h5 := (abs_le.mp (ConZonotope.aux_row_move cZ.P.A β' hδ hβδ i)).2
+    rw [hsplit]
+    linarith
   · -- the point: `y = c + G β` since `G β' = y - y₀`
     have := congrFun hβ' i
     simp only [Matrix.mulVec, dotProduct] at this

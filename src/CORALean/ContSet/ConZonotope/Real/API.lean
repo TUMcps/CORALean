@@ -21,10 +21,10 @@ represent.
 
 Both layers are specified. `Float` pays two different roundings in two
 different places: the centre and generators into an ambient error box, as the
-float zonotope does, and the constraints into the polytope itself, whose float
-form carries an interval right-hand side — `HPolytope` records why an ambient box
-cannot pay for those. One error box, not two, and no nested float polytope
-carrying a box of its own.
+float zonotope does, and the constraints into the polytope's rows, an equality that must be
+rounded being written as two inequalities — `HPolytope` records why an ambient box cannot pay
+for those. One error box, not two: the coefficient polytope is read at its nominal part, and
+its own box is not.
 
 The general rule the two cases share: pay rounding where the representation
 already has slack of the same kind. An interval's bounds are slack, and a

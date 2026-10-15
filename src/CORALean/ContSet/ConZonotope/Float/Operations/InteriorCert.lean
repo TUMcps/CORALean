@@ -10,19 +10,20 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 
 The check that a float constrained zonotope contains a whole box of points around
 `y₀ = c + G β₀`, for a coefficient vector `β₀` and a right inverse `H` of the generator matrix the
-caller proposes. With a margin `δ`: the unit box, every inequality row and both ends of every
-equality row's interval keep their slack under a perturbation of `β₀` by at most `δ` in every
-coefficient (each row's absolute sum times `δ`, rounded upward), and `Zonotope.ballCert` reaches
+caller proposes. With a margin `δ`: the unit box and every inequality row keep their slack
+under a perturbation of `β₀` by at most `δ` in every coefficient (each row's absolute sum times
+`δ`, rounded upward), and `Zonotope.ballCert` reaches
 every vector within `B` with coefficients of size at most `δ`. Then every point whose distance to
 `y₀` is at most `B` in every entry is in the nominal set (`ConZonotope.aux_box_subset`).
 
-The equalities of the real layer are the slab rows `be.inf ≤ Ae β ≤ be.sup` here, which is what
-makes a strict margin possible; a `be` with `inf = sup` leaves none and the check fails.
+An equality row leaves no slack to perturb into, so a polytope with one fails the check, as
+does every result whose rounded rows `ConZonotope.anchorSlab` kept as equalities; those it
+wrote as inequality pairs (`HPolytope.slab`) keep their slack.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -43,9 +44,7 @@ def ConZonotope.interiorCert (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (H : Mat 𝕋 
     && (List.finRange cZ.h).all (fun j => le (addUp (absolute (β₀ j)) δ) one)
     && (List.finRange cZ.P.m).all (fun i =>
       le (addUp (dotUp (cZ.P.A i) β₀) (mulUp δ (radius cZ.P.A i))) (cZ.P.b i))
-    && (List.finRange cZ.P.me).all (fun i =>
-      le (addUp (dotUp (cZ.P.Ae i) β₀) (mulUp δ (radius cZ.P.Ae i))) (cZ.P.be.sup i)
-        && le (cZ.P.be.inf i) (subDown (dotDown (cZ.P.Ae i) β₀) (mulUp δ (radius cZ.P.Ae i))))
+    && (cZ.P.me == 0)
     && Zonotope.ballCert (fun i j => cZ.G j i) H B δ
 
 end CORALean.Float

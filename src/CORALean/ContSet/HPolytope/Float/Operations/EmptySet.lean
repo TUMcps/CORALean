@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 
@@ -11,9 +12,9 @@ The single constraint `0 ≤ -1`, which no point satisfies, as over ℝ. `neg on
 exact, so reading it back gives `-1` and nothing is rounded.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +35,8 @@ def HPolytope.emptySet (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 
   b := fun _ => neg one
   me := 0
   Ae := fun i => i.elim0
-  be := ⟨fun i => i.elim0, fun i => i.elim0⟩
+  be := fun i => i.elim0
+  I_error := Interval.origin n
 
 end CORALean.Float
 

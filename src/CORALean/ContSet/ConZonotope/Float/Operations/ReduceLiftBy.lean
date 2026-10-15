@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 
@@ -10,8 +11,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 
 CORA's `@conZonotope/reduce` [1, Sec. 4.3] at a given partition, on the stored floats. The
 lifted zonotope `liftEq` is reduced by the float `Zonotope.reduceBy`, whose diagonal block
-rounds up, and its lower rows are read back as the equality system, the interval `bₑ` carried
-over unchanged. The inequality rows follow the kept generators, zero on the fresh ones, with
+rounds up, and its lower rows are read back as the equality system, the right-hand side `bₑ`
+carried over unchanged. The inequality rows follow the kept generators, zero on the fresh ones, with
 the bound raised by the dropped generators' reach `radius` (the float `keepSlack`), rounded
 up. The error box is the operand's: nothing is charged to it.
 
@@ -24,7 +25,7 @@ up. The error box is the operand's: nothing is charged to it.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -56,7 +57,8 @@ def ConZonotope.reduceLiftBy (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     c := cZ.c
     G := Gnew
     P := { m := cZ.P.m, A := Aineq, b := fun i => addUp (cZ.P.b i) (slack i),
-           me := cZ.P.me, Ae := Anew, be := cZ.P.be }
+           me := cZ.P.me, Ae := Anew, be := cZ.P.be,
+           I_error := Interval.origin Zred.h }
     I_error := cZ.I_error }
 
 end CORALean.Float

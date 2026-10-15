@@ -74,8 +74,9 @@ theorem HPolytope.dropAligned_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
     exact absurd hmem (not_le.mpr hlt)
   -- the result keeps the rows with no dominator; the others follow from `key`
   unfold HPolytope.dropAligned
+  refine HPolytope.construct_congr ?_ rfl
   ext x
-  rw [HPolytope.mem_restrict_iff, HPolytope.mem_construct_iff]
+  rw [HPolytope.mem_restrict_iff, HPolytope.mem_nominal_iff]
   constructor
   · -- a deleted row is its kept dominator, whose value is the same
     rintro ⟨h1, h2⟩

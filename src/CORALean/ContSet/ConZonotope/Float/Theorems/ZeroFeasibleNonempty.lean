@@ -10,7 +10,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 # A constrained zonotope that passes `zeroFeasible` is nonempty
 
 Coefficients `0` meet the unit box, and meet every row because each bound is at least `0` and
-each equality's interval holds `0`; the point they name is the centre.
+each equality's right-hand side is `0`; the point they name is the centre.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -37,14 +37,12 @@ theorem ConZonotope.zeroFeasible_nonempty {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
     List.mem_finRange, true_implies, Bool.and_eq_true] at h
   obtain ⟨hA, hE⟩ := h
   refine ⟨fun i => toReal (cZ.c i), ConZonotope.mem_nominalSet_iff.mpr
-    ⟨0, fun j => by simp, HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun i => ⟨?_, ?_⟩⟩,
+    ⟨0, fun j => by simp, HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩,
       fun i => by simp⟩⟩
   · rw [Matrix.mulVec_zero]
     simpa [toReal_zero] using toReal_le_of_le (hA i)
   · rw [Matrix.mulVec_zero]
-    simpa [toReal_zero] using toReal_le_of_le (hE i).1
-  · rw [Matrix.mulVec_zero]
-    simpa [toReal_zero] using toReal_le_of_le (hE i).2
+    simpa [toReal_zero] using le_antisymm (toReal_le_of_le (hE i).2) (toReal_le_of_le (hE i).1)
 
 end CORALean.Float
 

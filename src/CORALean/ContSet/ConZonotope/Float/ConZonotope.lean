@@ -13,18 +13,18 @@ CORA's `conZonotope` with its centre, generators and coefficient constraints all
 held in `𝕋`, plus the error box that makes it an `InflatedContSet`. `ConZonotope 𝕋 α`
 is generic over its ambient type, generators a family, as the exact layer's
 `ConZonotope α` is; `𝕋` stays, the constraints living on the coefficient space
-`Vec 𝕋 h` at every ambient type. The vector case is
-`ConZonotope 𝕋 (Vec 𝕋 n)`.
+`Vec 𝕋 h` at every ambient type. The vector case is `ConZonotope 𝕋 (Vec 𝕋 n)`.
 
 Two roundings, in two different places, and the rule is the same one the other
 representations follow: pay where the representation already has slack of the
 same kind. The centre and the generators have none — paying into them would grow
 the order at every operation — so their rounding goes into the ambient box. The
-constraints have slack in their bounds, so theirs goes into `P`, whose float form
-carries an interval right-hand side.
+constraints have slack in their bounds, so theirs goes into `P`'s rows; a rounded
+equality is kept where a certificate pays the move onto it into the ambient box
+(`ConZonotope.anchorSlab`), and becomes two inequalities (`HPolytope.slab`) otherwise.
 
-One box, therefore, not two: `P` is a float `HPolytope` and does not nest a box
-of its own.
+One box, therefore, not two: `P` is a float `HPolytope`, but only its nominal part is
+read, and the operations leave its own box at the origin.
 -/
 
 -- Authors:       Claude Opus 5

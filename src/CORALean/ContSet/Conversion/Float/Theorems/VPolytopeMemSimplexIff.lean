@@ -4,8 +4,9 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.VPolytope.Float.VPolytope
 public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
-public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_ConZonotope
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructIff
 
 @[expose] public section
 
@@ -41,8 +42,9 @@ theorem VPolytope.aux_ones_mulVec (β : Vec ℝ k) (i : Fin 1) :
 theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} :
     β ∈ (VPolytope.simplex 𝕋 k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
   simp only [VPolytope.simplex]
-  rw [HPolytope.mem_intersection_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
-  -- both directions: a nonnegativity row each, and the two ends of the ones-row equality
+  rw [HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)
+    (HPolytope.errFree_of_origin rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
+  -- both directions: a nonnegativity row each, and the ones-row equality
   constructor
   · rintro ⟨hle, heq⟩
     refine ⟨fun j => ?_, ?_⟩
@@ -50,17 +52,13 @@ theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} :
       rw [negIdentityMat_mulVec, toReal_zero] at h
       linarith
     · have h := heq 0
-      rw [VPolytope.aux_ones_mulVec] at h
-      have h₁ : toReal (one : 𝕋) ≤ ∑ j, β j := h.1
-      have h₂ : ∑ j, β j ≤ toReal (one : 𝕋) := h.2
-      rw [toReal_one] at h₁ h₂
-      linarith
+      rw [VPolytope.aux_ones_mulVec, toReal_one] at h
+      exact h
   · rintro ⟨hnn, hsum⟩
     refine ⟨fun j => ?_, fun i => ?_⟩
     · rw [negIdentityMat_mulVec, toReal_zero]
       linarith [hnn j]
     · rw [VPolytope.aux_ones_mulVec, hsum, toReal_one]
-      exact ⟨le_refl 1, le_refl 1⟩
 
 end CORALean.Float
 

@@ -43,7 +43,8 @@ theorem Zonotope.conZonotope_contains (Z : Zonotope (Vec 𝕋 n)) :
     Z.construct ⊆ Z.conZonotope.construct := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx
-  exact ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ, HPolytope.mem_fullspace β, hx⟩
+  exact ConZonotope.mem_nominalSet_iff.mpr
+    ⟨β, hβ, (HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.mem_fullspace β), hx⟩
 
 end CORALean.Float
 

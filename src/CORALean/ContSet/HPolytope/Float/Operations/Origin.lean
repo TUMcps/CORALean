@@ -12,9 +12,9 @@ CORA's `polytope.origin(n)` in its halfspace form: no inequalities and the `n` e
 `xᵢ = 0`, the identity matrix against the point box `[0, 0]`. The entries are `one` and `zero`.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +35,8 @@ def HPolytope.origin (n : ℕ) : HPolytope 𝕋 (Vec 𝕋 n) where
   b := fun i => i.elim0
   me := n
   Ae := fun i j => if i = j then one else zero
-  be := Interval.origin n
+  be := fun _ => zero
+  I_error := Interval.origin n
 
 end CORALean.Float
 

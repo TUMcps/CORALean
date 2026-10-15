@@ -23,7 +23,7 @@ nothing.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -43,17 +43,17 @@ def box0 : Interval (Vec D 2) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 /-- `β₁ + β₂ ≤ 1`. -/
 def sumLeOne : HPolytope D (Vec D 2) :=
-  ⟨1, fun _ _ => d 1 0, fun _ => d 1 0, 0, fun i => i.elim0, ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
+  ⟨1, fun _ _ => d 1 0, fun _ => d 1 0, 0, fun i => i.elim0, fun i => i.elim0,
+    Interval.origin _⟩
 
 /-- `-β₁ ≤ -3`, unsatisfiable within the unit box. -/
 def beyondBox : HPolytope D (Vec D 2) :=
   ⟨1, fun _ j => if j = 0 then d (-1) 0 else d 0 0, fun _ => d (-3) 0, 0, fun i => i.elim0,
-    ⟨fun i => i.elim0, fun i => i.elim0⟩⟩
+    fun i => i.elim0, Interval.origin _⟩
 
-/-- `β₁ + β₂ ∈ [-1/2, 1/2]`, an equality row with slack. -/
+/-- `β₁ + β₂ ∈ [-1/2, 1/2]`, an equality row with slack, written as the two inequalities. -/
 def slab : HPolytope D (Vec D 2) :=
-  ⟨0, fun i => i.elim0, fun i => i.elim0, 1, fun _ _ => d 1 0,
-    ⟨fun _ => d (-1) (-1), fun _ => d 1 (-1)⟩⟩
+  HPolytope.slab (q := 1) (fun _ _ => d 1 0) (fun _ => d (-1) (-1)) (fun _ => d 1 (-1))
 
 /-- The unit square's generators with the constraint `P`. -/
 def square (P : HPolytope D (Vec D 2)) : ConZonotope D (Vec D 2) :=

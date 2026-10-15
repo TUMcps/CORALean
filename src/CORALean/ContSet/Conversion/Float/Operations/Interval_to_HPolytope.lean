@@ -1,9 +1,9 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 
 @[expose] public section
 
@@ -11,9 +11,9 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 # A box as halfspaces, over a floating-point scalar
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ def negIdentityMat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : Mat 𝕋 n n :=
   fun i j => if i = j then neg one else zero
 
 def Interval.hPolytope (I : Interval (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
-  (HPolytope.ineqs (identityMat 𝕋 n) I.sup).intersection
+  (HPolytope.ineqs (identityMat 𝕋 n) I.sup).stackRows
     (HPolytope.ineqs (negIdentityMat 𝕋 n) fun j => neg (I.inf j))
 
 end CORALean.Float

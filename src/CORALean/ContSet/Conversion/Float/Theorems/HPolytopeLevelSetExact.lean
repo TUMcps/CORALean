@@ -16,9 +16,9 @@ The level set holds its constraint function as data and nothing is rounded: the 
 are read as reals, and the conversion denotes exactly the float polytope's set.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,21 +34,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.levelSet_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) :
-    P.levelSet.construct = P.construct := by -- --- PROOF ---
+    P.levelSet.construct = P.nominal.construct := by -- --- PROOF ---
   ext x
   show (∀ i, Real.CompOp.holds (Fin.append (fun _ => .le) (Fin.append (fun _ => .le)
     fun _ => .le) i) (Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i))
-      (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be.sup r))
-        fun r => toReal (P.be.inf r) - (toRealMat P.Ae *ᵥ x) r) i)) ↔ _
+      (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be r))
+        fun r => toReal (P.be r) - (toRealMat P.Ae *ᵥ x) r) i)) ↔ _
   -- the three blocks of components, each its own family of rows
   rw [Real.LevelSet.forall_append_holds, Real.LevelSet.forall_append_holds,
-    HPolytope.mem_construct_iff]
+    HPolytope.mem_nominal_iff]
   simp only [Real.CompOp.holds, sub_nonpos]
   constructor
   · rintro ⟨h1, h2, h3⟩
-    exact ⟨h1, fun r => ⟨h3 r, h2 r⟩⟩
+    exact ⟨h1, fun r => le_antisymm (h2 r) (h3 r)⟩
   · rintro ⟨h1, h2⟩
-    exact ⟨h1, fun r => (h2 r).2, fun r => (h2 r).1⟩
+    exact ⟨h1, fun r => (h2 r).le, fun r => (h2 r).ge⟩
 
 end CORALean.Float
 

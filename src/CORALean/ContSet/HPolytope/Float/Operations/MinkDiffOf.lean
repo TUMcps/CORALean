@@ -11,7 +11,7 @@ public import CORALean.Global.Float.FloatBound
 
 CORA's `@polytope/minkDiff` over a floating-point scalar, as the exact layer has
 it: each inequality row shifts inward by the subtrahend's support in that row's
-own direction, and the equality rows are copied unchanged.
+own direction, and the equality rows and the error box are copied unchanged.
 
 The support bounds are certificates, `FloatBound`s against the rows the stored
 matrix denotes, as `plusOf` takes them. The one subtraction rounds downward:
@@ -21,7 +21,7 @@ never larger, and the result stays inside the exact difference.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -44,6 +44,7 @@ def HPolytope.minkDiffOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
   me := P.me
   Ae := P.Ae
   be := P.be
+  I_error := P.I_error
 
 end CORALean.Float
 

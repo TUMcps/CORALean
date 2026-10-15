@@ -13,9 +13,9 @@ over the one it was given. `materialise` stores them and `materialise_eq` says i
 is the identity; `Global/Tensor` says why the vectors are built here.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,12 +34,14 @@ def HPolytope.materialise (P : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Ve
   let A : Vector (Vector 𝕋 n) P.m := Vector.ofFn fun i => Vector.ofFn fun j => P.A i j
   let b : Vector 𝕋 P.m := Vector.ofFn P.b
   let Ae : Vector (Vector 𝕋 n) P.me := Vector.ofFn fun i => Vector.ofFn fun j => P.Ae i j
+  let be : Vector 𝕋 P.me := Vector.ofFn P.be
   { m := P.m
     A := fun i j => (A[i.val]'i.isLt)[j.val]'j.isLt
     b := fun i => b[i.val]'i.isLt
     me := P.me
     Ae := fun i j => (Ae[i.val]'i.isLt)[j.val]'j.isLt
-    be := P.be.materialise }
+    be := fun i => be[i.val]'i.isLt
+    I_error := P.I_error.materialise }
 
 end CORALean.Float
 

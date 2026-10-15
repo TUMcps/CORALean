@@ -2,14 +2,15 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Operations.MemEqsIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemIntersectionIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
 public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
+public import CORALean.ContSet.ConZonotope.Float.Theorems.AnchorSlabOuter
+public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
 
 @[expose] public section
 
@@ -27,7 +28,7 @@ gain `Λ`; outer only.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -83,7 +84,10 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
     (Λ : Mat 𝕋 n s) :
     cZ.construct ∩ {x | ∀ k, |(toRealMat C *ᵥ x) k - toReal (y k)| ≤ toReal (φ k)}
       ⊆ (cZ.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
-  rintro x ⟨⟨y₁, hy₁', e, he, hx⟩, hstrip⟩
+  intro x hx'
+  -- the strip rows as a slab first, which `anchorSlab` contains
+  refine ConZonotope.anchorSlab_outer _ _ _ _ ?_
+  obtain ⟨⟨y₁, hy₁', e, he, hx⟩, hstrip⟩ := hx'
   obtain ⟨ξ, hξ, hP, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
   have hxk : ∀ k, x k = toReal (cZ.c k) + ∑ j, toReal (cZ.G j k) * ξ j + e k := by
     intro k
@@ -206,12 +210,12 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
     Interval.minus_outer _ _ ⟨e, he, _, Interval.mtimes_outer Λ _
       ⟨_, Interval.mtimes_outer C cZ.I_error ⟨e, he, rfl⟩, rfl⟩, rfl⟩
   -- the strip rows, and the old ones on the first block
-  have hPnew : Fin.append ξ ν ∈ ((cZ.P.padLeft s).intersection (HPolytope.eqs
+  have hPnew : Fin.append ξ ν ∈ ((cZ.P.padLeft s).stackRows (HPolytope.slab
       (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k) else zero)
-      ⟨fun k => subDown (subDown (y k) (W.c k)) (W.I_error.sup k),
-       fun k => subUp (subUp (y k) (W.c k)) (W.I_error.inf k)⟩)).construct := by
-    refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_padLeft_iff.mpr ?_,
-      HPolytope.mem_eqs_iff.mpr fun k => ?_⟩
+      (fun k => subDown (subDown (y k) (W.c k)) (W.I_error.sup k))
+      (fun k => subUp (subUp (y k) (W.c k)) (W.I_error.inf k)))).nominal.construct := by
+    refine HPolytope.mem_stackRows_nominal_iff.mpr ⟨HPolytope.mem_padLeft_nominal_iff.mpr ?_,
+      HPolytope.mem_slab_nominal_iff.mpr fun k => ?_⟩
     · rw [blockLeft_append]; exact hP
     · have hrow : (toRealMat (fun k => Fin.append (fun j => W.G j k) fun l =>
             if l = k then neg (φ k) else zero) *ᵥ Fin.append ξ ν) k

@@ -10,7 +10,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
 /-!
 # `dropZeros` denotes the same set, exactly
 
-A zero row `0 ≤ b` with `b ≥ 0` or `0 ∈ [lo, hi]` holds at every point, so deleting it changes
+A zero row `0 ≤ b` with `b ≥ 0` or `0 = be` holds at every point, so deleting it changes
 nothing; a certified infeasible one empties the set, and the empty set is what is returned.
 -/
 
@@ -24,7 +24,7 @@ nothing; a certified infeasible one empties the set, and the empty set is what i
 
 namespace CORALean.Float
 
-open Matrix FloatOps SoundFloatArithmetic
+open Pointwise Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
@@ -40,30 +40,35 @@ theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
   have hzE : ∀ r, HPolytope.isZeroVec (Q.Ae r) = true → ∀ x : Vec ℝ n,
       (toRealMat Q.Ae *ᵥ x) r = 0 := fun r h x => HPolytope.isZeroVec_dot h x
   split_ifs with h
-  · -- infeasible: both sets are empty
+  · -- infeasible: the nominal part is empty, so both sets are
+    have hN : Q.nominal.construct = ∅ := by
+      refine Set.eq_empty_of_forall_notMem fun x hx => ?_
+      obtain ⟨h1, h2⟩ := HPolytope.mem_nominal_iff.mp hx
+      -- the certified row is violated at every point
+      simp only [Bool.or_eq_true, List.any_eq_true, Bool.and_eq_true] at h
+      rcases h with ⟨i, -, hz, hl⟩ | ⟨r, -, hz, hl⟩
+      · have := toReal_lt_of_ltStrict hl
+        have h3 := h1 i
+        rw [hzA i hz x] at h3
+        rw [toReal_zero] at this
+        linarith
+      · have h3 := h2 r
+        rw [hzE r hz x] at h3
+        rcases hl with hl | hl
+        · have := toReal_lt_of_ltStrict hl
+          rw [toReal_zero] at this
+          linarith
+        · have := toReal_lt_of_ltStrict hl
+          rw [toReal_zero] at this
+          linarith
     rw [HPolytope.construct_emptySet]
-    refine (Set.eq_empty_of_forall_notMem fun x hx => ?_).symm
-    obtain ⟨h1, h2⟩ := HPolytope.mem_construct_iff.mp hx
-    simp only [Bool.or_eq_true, List.any_eq_true, Bool.and_eq_true] at h
-    rcases h with ⟨i, -, hz, hl⟩ | ⟨r, -, hz, hl⟩
-    · have := toReal_lt_of_ltStrict hl
-      have h3 := h1 i
-      rw [hzA i hz x] at h3
-      rw [toReal_zero] at this
-      linarith
-    · have h3 := h2 r
-      rw [hzE r hz x] at h3
-      rcases hl with hl | hl
-      · have := toReal_lt_of_ltStrict hl
-        rw [toReal_zero] at this
-        linarith [h3.1]
-      · have := toReal_lt_of_ltStrict hl
-        rw [toReal_zero] at this
-        linarith [h3.2]
+    show _ = Q.nominal.construct + Q.I_error.construct
+    rw [hN, Set.empty_add]
   · -- no certified infeasible row: the deleted rows hold everywhere
+    refine HPolytope.construct_congr ?_ rfl
     ext x
     -- membership in the restriction, against membership in `Q`
-    rw [HPolytope.mem_restrict_iff, HPolytope.mem_construct_iff]
+    rw [HPolytope.mem_restrict_iff, HPolytope.mem_nominal_iff]
     constructor
     · -- a dropped row is a certified zero row that holds
       rintro ⟨h1, h2⟩
@@ -74,15 +79,11 @@ theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
           rw [hzA i hk.1 x]
           have := toReal_le_of_le hk.2
           rwa [toReal_zero] at this
-      · by_cases hk : (!(HPolytope.isZeroVec (Q.Ae r) && le (Q.be.inf r) FloatOps.zero &&
-            le FloatOps.zero (Q.be.sup r))) = true
+      · by_cases hk : (!(HPolytope.isZeroVec (Q.Ae r) && HPolytope.eqScalar (Q.be r) FloatOps.zero))
+            = true
         · exact h2 r hk
         · simp only [Bool.not_eq_true', Bool.not_eq_false, Bool.and_eq_true] at hk
-          rw [hzE r hk.1.1 x]
-          have h3 := toReal_le_of_le hk.1.2
-          have h4 := toReal_le_of_le hk.2
-          rw [toReal_zero] at h3 h4
-          exact ⟨h3, h4⟩
+          rw [hzE r hk.1 x, HPolytope.toReal_eq_of_eqScalar hk.2, toReal_zero]
     · rintro ⟨h1, h2⟩
       exact ⟨fun i _ => h1 i, fun r _ => h2 r⟩
 

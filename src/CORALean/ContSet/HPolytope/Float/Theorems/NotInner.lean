@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Not
+public import CORALean.ContSet.HPolytope.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 
 @[expose] public section
@@ -14,7 +15,7 @@ inner approximation, not the complement (which is open).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,19 +32,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.not_inner {P Q : HPolytope 𝕋 (Vec 𝕋 n)} {ε : 𝕋} (hε : 0 < toReal ε)
     (h : P.not ε = some Q) : Q.construct ⊆ P.construct ᶜ := by -- --- PROOF ---
-  obtain ⟨m, A, b, me, Ae, be⟩ := P
   unfold HPolytope.not at h
+  dsimp only at h
   split at h
   · rename_i hm
-    simp only at hm
-    obtain ⟨rfl, rfl⟩ := hm
     cases h
-    -- a point in both would satisfy `-a x ≤ -b - ε` and `a x ≤ b`
+    -- a point in both would satisfy `-a x ≤ -bU - ε` and `a x ≤ bU`
     intro x hx hxP
-    have h1 := (HPolytope.mem_construct_iff.mp hx).1 0
-    have h2 := (HPolytope.mem_construct_iff.mp hxP).1 0
-    simp only [Fin.cast_eq_self] at h1
-    have hd := subDown_le_sub (neg (b 0)) ε
+    have hxQ := HPolytope.absorbRounding_outer P hxP
+    have hE : (P.absorbRounding).ErrFree := HPolytope.errFree_of_origin rfl
+    have h1 := ((HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mp hx).1 0
+    have h2 := ((HPolytope.mem_construct_iff hE).mp hxQ).1 (Fin.cast hm.1.symm 0)
+    have hd := subDown_le_sub (neg (P.absorbRounding.b (Fin.cast hm.1.symm 0))) ε
     simp only [toReal_neg] at hd
     -- the negated row sums to the negated sum
     have hsum : ∀ (f : Fin n → 𝕋), ∑ j, toReal (neg (f j)) * x j = -∑ j, toReal (f j) * x j := by

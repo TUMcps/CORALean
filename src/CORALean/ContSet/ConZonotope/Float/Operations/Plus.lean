@@ -3,9 +3,9 @@ module
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.Global.Block
-public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.PadRight
+public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 
 @[expose] public section
 
@@ -17,9 +17,9 @@ coefficient space, so only the centre rounds and its `residual` goes into the
 box — exactly as for a zonotope, the constraints adding nothing to pay for.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -38,7 +38,7 @@ def ConZonotope.plus (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope
   h := cZ₁.h + cZ₂.h
   c := fun i => addDown (cZ₁.c i) (cZ₂.c i)
   G := Fin.append cZ₁.G cZ₂.G
-  P := (cZ₁.P.padLeft cZ₂.h).intersection (HPolytope.padRight cZ₁.h cZ₂.P)
+  P := (cZ₁.P.padLeft cZ₂.h).stackRows (HPolytope.padRight cZ₁.h cZ₂.P)
   I_error := (cZ₁.I_error.plus cZ₂.I_error).plus (Zonotope.centerResidual cZ₁.c cZ₂.c)
 
 end CORALean.Float

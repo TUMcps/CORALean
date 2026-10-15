@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 
@@ -8,16 +9,16 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 # `ConZonotope.compact` over a floating-point scalar
 
 CORA's `@conZonotope/compact_` with method `'zeros'` (also what `'all'` does) on the stored
-floats: delete the equality rows that are `0 x ∈ be` with `0` in the interval, then the
+floats: delete the equality rows that are `0 x = be` with `be = 0`, then the
 generators whose column of `[G; A; Ae]` is zero. A row or column goes only when every entry is
 certified zero by `le` both ways, so a `le` that fails keeps it: nothing rounds, and the set is
 the same (`compact_exact`). Inequality rows stay, as over ℝ; the kept generators and rows keep
 their order. Tolerance `0`; CORA's `eps` removes columns below it as well.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -40,10 +41,9 @@ def ConZonotope.compact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 
     !((List.finRange n).all (fun i => isZero (cZ.G j i))
       && (List.finRange cZ.P.m).all (fun k => isZero (cZ.P.A k j))
       && (List.finRange cZ.P.me).all (fun k => isZero (cZ.P.Ae k j)))
-  -- the equality rows kept: all but the certified `0 x ∈ be` with `0 ∈ be`
+  -- the equality rows kept: all but the certified `0 x = be` with `be = 0`
   let R := Finset.univ.filter fun r : Fin cZ.P.me =>
-    !((List.finRange cZ.h).all (fun j => isZero (cZ.P.Ae r j))
-      && le (cZ.P.be.inf r) zero && le zero (cZ.P.be.sup r))
+    !((List.finRange cZ.h).all (fun j => isZero (cZ.P.Ae r j)) && isZero (cZ.P.be r))
   { h := S.card
     c := cZ.c
     G := fun l => cZ.G (S.orderEmbOfFin rfl l)
@@ -53,8 +53,8 @@ def ConZonotope.compact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 
         b := cZ.P.b
         me := R.card
         Ae := fun r l => cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l)
-        be := ⟨fun r => cZ.P.be.inf (R.orderEmbOfFin rfl r),
-               fun r => cZ.P.be.sup (R.orderEmbOfFin rfl r)⟩ }
+        be := fun r => cZ.P.be (R.orderEmbOfFin rfl r)
+        I_error := Interval.origin S.card }
     I_error := cZ.I_error }
 
 end CORALean.Float

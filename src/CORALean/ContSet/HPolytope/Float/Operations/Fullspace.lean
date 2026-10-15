@@ -11,9 +11,9 @@ No constraints, so every point qualifies: what a zonotope's coefficients
 answer to beyond the unit box.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,8 @@ def HPolytope.fullspace (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋
   b := fun i => i.elim0
   me := 0
   Ae := fun i => i.elim0
-  be := ⟨fun i => i.elim0, fun i => i.elim0⟩
+  be := fun i => i.elim0
+  I_error := Interval.origin n
 
 end CORALean.Float
 

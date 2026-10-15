@@ -34,7 +34,7 @@ theorem HPolytope.construct_emptySet : (HPolytope.emptySet 𝕋 n).construct = �
   intro hx
   have h : (toRealMat (HPolytope.emptySet 𝕋 n).A *ᵥ x) (0 : Fin 1)
       ≤ toReal ((HPolytope.emptySet 𝕋 n).b (0 : Fin 1)) :=
-    (HPolytope.mem_construct_iff.mp hx).1 (0 : Fin 1)
+    ((HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mp hx).1 (0 : Fin 1)
   have h0 : (toRealMat (HPolytope.emptySet 𝕋 n).A *ᵥ x) (0 : Fin 1) = 0 := by
     simp [Matrix.mulVec, dotProduct, toRealMat, HPolytope.emptySet, toReal_zero]
   have h1 : toReal ((HPolytope.emptySet 𝕋 n).b (0 : Fin 1)) = -1 := by

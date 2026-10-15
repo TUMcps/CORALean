@@ -13,12 +13,13 @@ For a point of the domain under the reduced row with the lower bound, every row 
 its positive `rowScale` is the reduced row plus a deviation that `reduceOverDomain_rows` bounds
 from above, so it stays under the lower end of the scaled right-hand sides, which is under row
 `i`'s own scaled right-hand side; dividing by the scale gives the row. Inner over the domain,
-as over ℝ, for a polytope without equality rows.
+as over ℝ, for a polytope without equality rows and without an error box: a box would enlarge the
+polytope, and an inner statement cannot read it as an outer one.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,12 +34,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (hme : P.me = 0)
+theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.ErrFree)
+    (hme : P.me = 0)
     (dom : Interval (Vec 𝕋 n)) :
     (P.reduceOverDomain p dom false).construct ∩ dom.construct ⊆
       P.construct ∩ dom.construct := by -- --- PROOF ---
   rintro x ⟨hR, hd⟩
-  refine ⟨HPolytope.mem_construct_iff.mpr ⟨fun i => ?_, fun r => absurd r.isLt (by omega)⟩, hd⟩
+  refine ⟨(HPolytope.mem_construct_iff hP).mpr ⟨fun i => ?_, fun r => absurd r.isLt (by omega)⟩, hd⟩
   set Ainf : Vec 𝕋 n := fun j => minimumOver fun i => mulDown (P.A i j) (P.rowScale p i)
   set Asup : Vec 𝕋 n := fun j => maximumOver fun i => mulUp (P.A i j) (P.rowScale p i)
   set bInf : 𝕋 := minimumOver fun i => mulDown (P.b i) (P.rowScale p i)
@@ -48,7 +50,8 @@ theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋
   obtain ⟨-, hhi⟩ := HPolytope.reduceOverDomain_rows p P dom hd i
   -- the reduced row, under its stored lower bound
   have hred : ∑ j, toReal (Ared j) * x j ≤ toReal (subDown bInf prodSup) :=
-    (HPolytope.mem_construct_iff.mp hR).1 (⟨0, Nat.one_pos⟩ : Fin 1)
+    ((HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mp hR).1
+      (⟨0, Nat.one_pos⟩ : Fin 1)
   have hsub := subDown_le_sub bInf prodSup
   -- the scaled right-hand side is above the hull's bottom
   have hS := HPolytope.rowScale_pos p P i

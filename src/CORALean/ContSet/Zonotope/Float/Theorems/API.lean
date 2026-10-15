@@ -105,6 +105,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.RepresentsaOriginSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.RepresentsaPointSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.RightInvQBound
+public import CORALean.ContSet.Zonotope.Float.Theorems.RightInvGainSolve
 public import CORALean.ContSet.Zonotope.Float.Theorems.RotMatMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.RotateOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ShiftBracketsMid

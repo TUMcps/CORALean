@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapCBetween
 public import CORALean.ContSet.ConZonotope.Float.Theorems.QuadMapGClose
 public import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
-public import CORALean.ContSet.HPolytope.Float.Operations.MemPadLeftIff
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
@@ -52,14 +52,14 @@ theorem ConZonotope.quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n) (cZ : ConZon
     (nominal cZ) ⟨z, hz, rfl⟩
   -- the same coefficients, spelt at this layer's index type
   obtain ⟨β', hβ', hP', hx'⟩ : ∃ β' : Fin (cZ.h + cZ.h + cZ.h * cZ.h) → ℝ, (∀ j, |β' j| ≤ 1)
-      ∧ β' ∈ (ConZonotope.quadMapDep Q cZ).P.construct
+      ∧ β' ∈ (ConZonotope.quadMapDep Q cZ).P.nominal.construct
       ∧ ∀ i, (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) z i
         = R.c i
           + ∑ l, β' l
             * R.G l i := by
     refine ⟨β, hβ, ?_, fun i => ?_⟩
     -- the constraints of the exact form are the operand's, pulled back through two blocks
-    · exact HPolytope.mem_padLeft_iff.mpr (HPolytope.mem_padLeft_iff.mpr hP)
+    · exact HPolytope.mem_padLeft_nominal_iff.mpr (HPolytope.mem_padLeft_nominal_iff.mpr hP)
     · have := congrFun hx i
       simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul] at this
       exact this

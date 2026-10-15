@@ -39,16 +39,12 @@ variable [SoundFloatArithmetic 𝕋]
 
 theorem HPolytope.spectraShadow_contains (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     P.construct ⊆ P.spectraShadow.construct := by -- --- PROOF ---
-  intro x hx
-  -- the error box is the origin, so the nominal part carries the point
-  refine ⟨x, SpectraShadow.mem_nominalSet_iff.mpr ⟨x, HPolytope.posSemidef_spectraShadow P hx,
-    fun i => ?_⟩, 0, ?_, add_zero x⟩
-  · simp [HPolytope.spectraShadow, apply_ite (toReal : 𝕋 → ℝ), toReal_zero, toReal_one,
+  rintro _ ⟨y, hy, e, he, rfl⟩
+  -- the error box is the polytope's own, the nominal part carries the point
+  refine ⟨y, SpectraShadow.mem_nominalSet_iff.mpr ⟨y, HPolytope.posSemidef_spectraShadow P hy,
+    fun i => ?_⟩, e, he, rfl⟩
+  simp [HPolytope.spectraShadow, apply_ite (toReal : 𝕋 → ℝ), toReal_zero, toReal_one,
     Finset.sum_ite_eq]
-  · -- the origin is the point `zero`
-    have h0 : (0 : Vec ℝ n) = toRealVec (fun _ => (zero : 𝕋)) := funext fun i => toReal_zero.symm
-    rw [h0]
-    exact Interval.mem_point _
 
 end CORALean.Float
 

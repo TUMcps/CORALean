@@ -35,7 +35,7 @@ theorem ConZonotope.empty_exact (n : ℕ) :
     ext x
     simp only [Set.mem_empty_iff_false, iff_false]
     rintro ⟨β, -, hβ, -⟩
-    have h : β ∈ (HPolytope.emptySet 𝕋 0).construct := hβ
+    have h : β ∈ (HPolytope.emptySet 𝕋 0).construct := (HPolytope.mem_nominal_of_origin rfl).mpr hβ
     rw [HPolytope.construct_emptySet] at h
     exact h
   show InflatedContSet.nominalSet (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n))
