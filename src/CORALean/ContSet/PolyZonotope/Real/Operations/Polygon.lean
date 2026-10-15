@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
@@ -39,7 +39,7 @@ namespace CORALean.Real
 /-- The union of the polygons of the zonotopes of the final pieces. -/
 noncomputable def PolyZonotope.polygon (pZ : PolyZonotope (Vec ℝ 2)) (splits : ℕ)
     (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) : Polygon :=
-  Polygon.ofPieces ((pZ.polygonPieces splits pick).map fun q => q.zonotopeCora.vPolytope)
+  Polygon.ofPieces ((pZ.polygonPieces splits pick).map fun q => q.zonotopeEven.vPolytope)
 
 end CORALean.Real
 

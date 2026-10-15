@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
 public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
 public import CORALean.ContSet.Polygon.Real.Operations.Basic
 public import CORALean.ContSet.Polygon.Real.Operations.Plus

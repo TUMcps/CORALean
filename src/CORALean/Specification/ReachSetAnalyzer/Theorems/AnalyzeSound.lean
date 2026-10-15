@@ -37,7 +37,8 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 theorem ReachSetAnalyzer.analyze_sound (aps : List (String × AtomicProposition S n)) (dur : ℝ)
     (masks : List (String × FiniteSignal ℝ Bool)) (obj : ReachSetAnalyzer S n) (hd : 0 ≤ dur)
     (hnd : (aps.map Prod.fst).Nodup) (hobj : ReachSetAnalyzer.mk? aps dur masks = some obj)
-    (R : List (ReachSetAnalyzer.Entry S n)) (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.lo < s.hi)
+    (R : List (ReachSetAnalyzer.Entry S n))
+    (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup)
     (outs : List (List (String × FiniteSignal ℝ Kleene)))
     (h : obj.analyze (𝕋 := 𝕋) R = some outs) :
     ∀ out ∈ outs, ∃ w, ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w ∧

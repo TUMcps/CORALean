@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraNormalCone
+public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.IsPolytopeCexCoraVertex
+public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.IsPolytopeCexCoraNormalCone
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Basic
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Ring

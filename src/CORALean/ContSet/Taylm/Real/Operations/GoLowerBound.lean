@@ -42,7 +42,7 @@ noncomputable def Taylm.goLowerBound (T : Taylm n) (ε : ℝ) (fuel : ℕ) (B : 
     :=
   let TB := T.reexpand B
   -- the mere interval bound
-  let lIN := (Taylm.polyBoxBounds T.terms B).inf + T.remInf
+  let lIN := (Taylm.polyBoxBounds T.terms B).inf + T.rem.inf
   -- the naive Taylor model bound, from the model re-expanded on the box
   let lTM := TB.bounds.inf
   -- LDB

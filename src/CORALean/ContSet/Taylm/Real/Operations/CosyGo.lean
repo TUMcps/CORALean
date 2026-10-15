@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 noncomputable def Taylm.cosyGo (T : Taylm n) (X : Fin n → Interval ℝ) (ε : ℝ) (ldbFuel fuel : ℕ) :
     Interval ℝ :=
-  Taylm.globalMin (T.goLowerBound ε ldbFuel) (fun p => T.poly p + T.remSup) X fuel
+  Taylm.globalMin (T.goLowerBound ε ldbFuel) (fun p => T.poly p + T.rem.sup) X fuel
 
 end CORALean.Real
 

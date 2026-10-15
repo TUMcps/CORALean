@@ -273,7 +273,7 @@ variable {n m : ℕ}
 
 /-- CORA's `conPolyZono(taylm)`, which goes through `polyZonotope` and adds no constraint;
 exact where that is. -/
-theorem Taylm.conPolyZono_exact (T : Fin m → Taylm n) (hT : ∀ i, (T i).remInf ≤ (T i).remSup) :
+theorem Taylm.conPolyZono_exact (T : Fin m → Taylm n) (hT : ∀ i, (T i).rem.inf ≤ (T i).rem.sup) :
     (Taylm.conPolyZono T).construct = Taylm.construct T :=
   ((Taylm.polyZonotope T).conPolyZono_exact).symm.trans (Taylm.polyZonotope_exact T hT)
 

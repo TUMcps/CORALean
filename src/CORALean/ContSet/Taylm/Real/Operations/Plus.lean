@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.plus (T₁ T₂ : Taylm n) : Taylm n :=
-  ⟨T₁.terms ++ T₂.terms, T₁.remInf + T₂.remInf, T₁.remSup + T₂.remSup,
+  ⟨T₁.terms ++ T₂.terms, ⟨T₁.rem.inf + T₂.rem.inf, T₁.rem.sup + T₂.rem.sup⟩,
     max T₁.maxOrder T₂.maxOrder⟩
 
 end CORALean.Real

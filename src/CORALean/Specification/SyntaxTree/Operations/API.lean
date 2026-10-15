@@ -17,10 +17,8 @@ public import CORALean.Specification.SyntaxTree.Operations.FunHanPlus
 public import CORALean.Specification.SyntaxTree.Operations.FunHanPower
 public import CORALean.Specification.SyntaxTree.Operations.FunHanSin
 public import CORALean.Specification.SyntaxTree.Operations.FunHanSinh
-public import CORALean.Specification.SyntaxTree.Operations.FunHanSinhCora
 public import CORALean.Specification.SyntaxTree.Operations.FunHanSqrt
 public import CORALean.Specification.SyntaxTree.Operations.FunHanTan
-public import CORALean.Specification.SyntaxTree.Operations.FunHanTanCora
 public import CORALean.Specification.SyntaxTree.Operations.FunHanTanh
 public import CORALean.Specification.SyntaxTree.Operations.FunHanTimes
 public import CORALean.Specification.SyntaxTree.Operations.Interval

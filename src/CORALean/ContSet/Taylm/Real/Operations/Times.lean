@@ -46,12 +46,12 @@ def Taylm.times (T₁ T₂ : Taylm n) : Taylm n :=
   let P₁ := Taylm.polyBounds T₁.terms
   let P₂ := Taylm.polyBounds T₂.terms
   { terms := L.filter fun a => Nat.ble (Taylm.degree a.2) N
-    remInf := D.inf + Interval.mulLo P₁.inf P₁.sup T₂.remInf T₂.remSup
-      + Interval.mulLo P₂.inf P₂.sup T₁.remInf T₁.remSup
-      + Interval.mulLo T₁.remInf T₁.remSup T₂.remInf T₂.remSup
-    remSup := D.sup + Interval.mulHi P₁.inf P₁.sup T₂.remInf T₂.remSup
-      + Interval.mulHi P₂.inf P₂.sup T₁.remInf T₁.remSup
-      + Interval.mulHi T₁.remInf T₁.remSup T₂.remInf T₂.remSup
+    rem := ⟨D.inf + Interval.mulLo P₁.inf P₁.sup T₂.rem.inf T₂.rem.sup
+        + Interval.mulLo P₂.inf P₂.sup T₁.rem.inf T₁.rem.sup
+        + Interval.mulLo T₁.rem.inf T₁.rem.sup T₂.rem.inf T₂.rem.sup,
+      D.sup + Interval.mulHi P₁.inf P₁.sup T₂.rem.inf T₂.rem.sup
+        + Interval.mulHi P₂.inf P₂.sup T₁.rem.inf T₁.rem.sup
+        + Interval.mulHi T₁.rem.inf T₁.rem.sup T₂.rem.inf T₂.rem.sup⟩
     maxOrder := N }
 
 end CORALean.Real

@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
+public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
+public import CORALean.ContSet.Zonotope.Real.Operations.IsBox
 public import Mathlib.Data.Finset.Lattice.Fold
 
 @[expose] public section

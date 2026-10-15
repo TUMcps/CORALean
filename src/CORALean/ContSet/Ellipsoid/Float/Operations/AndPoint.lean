@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.OptEmpty.OptEmpty
 public import CORALean.ContSet.Ellipsoid.Float.Operations.OfPoint
 public import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
 public import CORALean.ContSet.Ellipsoid.Float.Operations.ExcludesPoint
@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `and_(E, p)` for a point `p`: certified in, the point; certified out, `∅`; undecided, the
 point again, an outer answer. -/
 def Ellipsoid.andPoint (E : Ellipsoid 𝕋 n) (p : Vec 𝕋 n) (u : Vec 𝕋 E.k) (a : Vec 𝕋 n) (s : 𝕋) :
-    WithEmpty (Ellipsoid 𝕋 n) :=
+    OptEmpty (Ellipsoid 𝕋 n) :=
   if E.containsPoint p u then .of (Ellipsoid.ofPoint p)
   else if E.excludesPoint p a s then .empty
   else .of (Ellipsoid.ofPoint p)

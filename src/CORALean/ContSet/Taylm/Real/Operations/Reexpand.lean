@@ -35,7 +35,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.reexpand (B : Fin n → Interval ℝ) (T : Taylm n) : Taylm n :=
-  ⟨Taylm.reexpTerms (Taylm.boxMid B) (Taylm.boxRad B) T.terms, T.remInf, T.remSup, T.maxOrder⟩
+  ⟨Taylm.reexpTerms (Taylm.boxMid B) (Taylm.boxRad B) T.terms, T.rem, T.maxOrder⟩
 
 end CORALean.Real
 

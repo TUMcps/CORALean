@@ -34,10 +34,10 @@ noncomputable def Taylm.polyZonotope (T : Fin m → Taylm n) : PolyZonotope (Vec
   p := n
   h := (Taylm.allTerms T).length
   q := m
-  c := fun i => ((T i).remInf + (T i).remSup) / 2
+  c := fun i => ((T i).rem.inf + (T i).rem.sup) / 2
   G := fun j => Pi.single ((Taylm.allTerms T).get j).1 ((Taylm.allTerms T).get j).2.1
   E := fun k j => ((Taylm.allTerms T).get j).2.2 k
-  GI := fun l => Pi.single l (((T l).remSup - (T l).remInf) / 2)
+  GI := fun l => Pi.single l (((T l).rem.sup - (T l).rem.inf) / 2)
 
 end CORALean.Real
 

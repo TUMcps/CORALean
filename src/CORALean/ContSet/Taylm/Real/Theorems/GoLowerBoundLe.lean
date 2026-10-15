@@ -48,7 +48,7 @@ theorem Taylm.goLowerBound_le {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Enclo
   have htbox : t ∈ Taylm.box n := fun k => abs_le.2
     ⟨le_trans (hB k).1 (ht k).1, le_trans (ht k).2 (hB k).2.2.2⟩
   -- each bounder is sound on its own
-  have hIN : (Taylm.polyBoxBounds T.terms B).inf + T.remInf ≤ f t := by
+  have hIN : (Taylm.polyBoxBounds T.terms B).inf + T.rem.inf ≤ f t := by
     have := Taylm.polyBoxBounds_mem T.terms ht
     have hr := h t htbox
     simp only [Taylm.poly] at hr

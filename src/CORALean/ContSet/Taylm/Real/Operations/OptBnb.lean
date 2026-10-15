@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 noncomputable def Taylm.optBnb (T : Taylm n) (ε : ℝ) (fuel : ℕ) : Interval ℝ :=
   let b := Taylm.branchAndBound T.terms (fun _ => ⟨-1, 1⟩) ε false fuel
-  ⟨b.inf + T.remInf, b.sup + T.remSup⟩
+  ⟨b.inf + T.rem.inf, b.sup + T.rem.sup⟩
 
 end CORALean.Real
 

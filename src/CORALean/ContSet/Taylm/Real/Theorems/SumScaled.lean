@@ -36,8 +36,8 @@ variable {n : ℕ}
 theorem Taylm.sum_scaled {m : ℕ} {T : Fin m → Taylm n} {h : ℝ} {C : Fin m → ℝ} {N : ℕ}
     (hN : ∀ i, (T i).maxOrder = N) (hT : ∀ i, (T i).Scaled h (C i)) :
     Taylm.weight (Taylm.sum T).terms h ≤ ∑ i, C i ∧
-      |(Taylm.sum T).remInf| ≤ (∑ i, C i) * h ^ (N + 1) ∧
-      |(Taylm.sum T).remSup| ≤ (∑ i, C i) * h ^ (N + 1) ∧
+      |(Taylm.sum T).rem.inf| ≤ (∑ i, C i) * h ^ (N + 1) ∧
+      |(Taylm.sum T).rem.sup| ≤ (∑ i, C i) * h ^ (N + 1) ∧
       (Taylm.sum T).maxOrder ≤ N := by -- --- PROOF ---
   induction m with
   | zero => simp [Taylm.sum, Taylm.weight]

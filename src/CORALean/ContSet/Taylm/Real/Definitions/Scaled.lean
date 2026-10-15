@@ -40,8 +40,8 @@ noncomputable def Taylm.weight (L : List (ℝ × (Fin n → ℕ))) (h : ℝ) : �
 
 /-- The polynomial's weight is at most `C` and both remainder ends at most `C·hᴺ⁺¹`. -/
 def Taylm.Scaled (T : Taylm n) (h C : ℝ) : Prop :=
-  Taylm.weight T.terms h ≤ C ∧ |T.remInf| ≤ C * h ^ (T.maxOrder + 1) ∧
-    |T.remSup| ≤ C * h ^ (T.maxOrder + 1)
+  Taylm.weight T.terms h ≤ C ∧ |T.rem.inf| ≤ C * h ^ (T.maxOrder + 1) ∧
+    |T.rem.sup| ≤ C * h ^ (T.maxOrder + 1)
 
 end CORALean.Real
 

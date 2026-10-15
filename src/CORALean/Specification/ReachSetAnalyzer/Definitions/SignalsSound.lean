@@ -45,10 +45,12 @@ def ReachSetAnalyzer.SignalsSound (obj : ReachSetAnalyzer S n) (d : ℝ)
   ∀ k s, (k, s) ∈ out → ∀ ap, (k, ap) ∈ obj.aps → s.IsValid ∧ s.duration = d ∧
     ∀ t : ℝ, 0 ≤ t → t ≤ d → ∃ v, s.at? t = some v ∧
       (v = Kleene.tt → ∀ j ∈ w, ∀ e, R[j - 1]? = some e → ∀ st ∈ e.timeInterval,
-        obj.maskOk k st.lo st.hi = true → FiniteKleeneSignalBuilder.Covers d t st.lo st.hi →
+        obj.maskOk k st.time.inf st.time.sup = true →
+          FiniteKleeneSignalBuilder.Covers d t st.time.inf st.time.sup →
           ∀ x ∈ construct st.set, ap.Holds x e.loc) ∧
       (v = Kleene.ff → ∀ j ∈ w, ∀ e, R[j - 1]? = some e → ∀ st ∈ e.timeInterval,
-        obj.maskOk k st.lo st.hi = true → FiniteKleeneSignalBuilder.Covers d t st.lo st.hi →
+        obj.maskOk k st.time.inf st.time.sup = true →
+          FiniteKleeneSignalBuilder.Covers d t st.time.inf st.time.sup →
           ∀ x ∈ construct st.set, ¬ ap.Holds x e.loc)
 
 end CORALean

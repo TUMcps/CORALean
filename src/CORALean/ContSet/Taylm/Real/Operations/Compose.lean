@@ -30,7 +30,7 @@ variable {n : ℕ}
 
 def Taylm.compose (T : Taylm n) (c : ℝ) (a : ℕ → ℝ) (N : ℕ) (ρ : ℝ) : Taylm n :=
   (Taylm.sum fun k : Fin (N + 1) =>
-    ((T.minus (Taylm.const n c T.maxOrder)).pow k).smul (a k)).plus ⟨[], -ρ, ρ, 0⟩
+    ((T.minus (Taylm.const n c T.maxOrder)).pow k).smul (a k)).plus ⟨[], ⟨-ρ, ρ⟩, 0⟩
 
 end CORALean.Real
 

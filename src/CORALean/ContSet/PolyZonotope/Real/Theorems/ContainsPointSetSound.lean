@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ContainsPointSet
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitGenCover
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeEvenContains
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 
@@ -56,7 +56,7 @@ theorem PolyZonotope.containsPointSet_sound (pZ : PolyZonotope (Vec ℝ n)) {N :
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_splitMany_cover pZ splits (points i) (h i)
   refine ⟨_, List.mem_append_left _ (List.mem_map.mpr ⟨q, hq, rfl⟩), ?_⟩
   rw [Zonotope.vPolytope_exact]
-  exact Zonotope.reduceGirard_outer _ _ (PolyZonotope.zonotopeCora_contains q hxq)
+  exact Zonotope.reduceGirard_outer _ _ (PolyZonotope.zonotopeEven_contains q hxq)
 
 end CORALean.Real
 

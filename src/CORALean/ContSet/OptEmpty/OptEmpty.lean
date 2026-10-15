@@ -5,7 +5,7 @@ public import CORALean.ContSet.ContSet.ContSet
 @[expose] public section
 
 /-!
-# `WithEmpty`: what a representation denotes, or nothing at all
+# `OptEmpty`: what a representation denotes, or nothing at all
 
 An operation whose result can be empty has no answer inside a representation
 that denotes only nonempty sets: a zonotope always holds its centre, so no
@@ -14,7 +14,7 @@ that denotes only nonempty sets: a zonotope always holds its centre, so no
 
 `Option S` in shape and deliberately not in meaning. An `Option` here says a
 *candidate the caller supplied* failed its check, as `Zonotope.minkDiffRep`'s
-does — a statement about the input. `WithEmpty.empty` is a statement about the
+does — a statement about the input. `OptEmpty.empty` is a statement about the
 set: it denotes `∅`, and a wrapper keeps the two from being read as one.
 
 A wrapper rather than a sum with `EmptySet`: `S` already fixes the ambient
@@ -39,16 +39,16 @@ variable {S α : Type}
 
 /-- A representation extended by an explicit empty set, for an operation whose
 result can be empty where `S` has no way to say so. -/
-inductive WithEmpty (S : Type) where
+inductive OptEmpty (S : Type) where
   | empty
   | of (s : S)
 
 /-- `∅` at `empty`, and what `S` denotes at everything else. -/
-def WithEmpty.construct [ContSet S α] : WithEmpty S → Set α
+def OptEmpty.construct [ContSet S α] : OptEmpty S → Set α
   | .empty => ∅
   | .of s => ContSet.construct s
 
-instance [ContSet S α] : ContSet (WithEmpty S) α := ⟨WithEmpty.construct⟩
+instance [ContSet S α] : ContSet (OptEmpty S) α := ⟨OptEmpty.construct⟩
 
 end CORALean
 

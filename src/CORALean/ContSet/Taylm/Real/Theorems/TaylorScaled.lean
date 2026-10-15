@@ -51,7 +51,7 @@ theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |
   obtain ⟨w, i, s⟩ := hT
   have hC : 0 ≤ C := le_trans (abs_nonneg _) hc
   have hp : 0 ≤ C * h ^ (T.maxOrder + 1) := by
-    nlinarith [abs_nonneg T.remInf]
+    nlinarith [abs_nonneg T.rem.inf]
   refine ⟨?_, ?_, ?_⟩ <;>
     simp only [Taylm.minus, Taylm.plus, Taylm.uminus, Taylm.const, max_self, Taylm.weight_append,
       neg_zero, add_zero] at *

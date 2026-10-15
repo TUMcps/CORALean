@@ -33,7 +33,8 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 noncomputable def ReachSetAnalyzer.analyzeSingle (obj : ReachSetAnalyzer S n)
     (R : ReachSetAnalyzer.Entry S n) : Option (ReachSetAnalyzer S n) :=
   -- for i = 1:length(R.timeInterval.time), with the set and the time interval of the i-th
-  R.timeInterval.foldlM (fun obj t => obj.analyzeTimeInterval (𝕋 := 𝕋) t.set R.loc t.lo t.hi) obj
+  R.timeInterval.foldlM
+    (fun obj t => obj.analyzeTimeInterval (𝕋 := 𝕋) t.set R.loc t.time.inf t.time.sup) obj
 
 end CORALean
 

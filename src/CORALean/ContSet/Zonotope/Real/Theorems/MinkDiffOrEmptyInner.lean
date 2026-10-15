@@ -39,7 +39,7 @@ theorem Zonotope.minkDiffOrEmpty_inner (Z₁ Z₂ : Zonotope α) {D : Zonotope �
   unfold Zonotope.minkDiffOrEmpty at hD
   split_ifs at hD with h
   -- `D` is what the chosen candidate returned, and that candidate checked out
-  obtain rfl : (Z₁.minkDiffRep Z₂ h.choose).get h.choose_spec = D := WithEmpty.of.inj hD
+  obtain rfl : (Z₁.minkDiffRep Z₂ h.choose).get h.choose_spec = D := OptEmpty.of.inj hD
   exact Zonotope.minkDiffRep_inner Z₁ Z₂ h.choose (Option.some_get h.choose_spec).symm
 
 end CORALean.Real

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Polygon
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitLongestGenUnion
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeEvenContains
 public import CORALean.ContSet.Polygon.Real.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
@@ -69,9 +69,9 @@ theorem PolyZonotope.polygon_outer (pZ : PolyZonotope (Vec ℝ 2)) (splits : ℕ
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_polygonPieces_cover pZ pick splits hx
   rw [PolyZonotope.polygon, Polygon.construct_ofPieces]
   refine Set.mem_biUnion (List.mem_map.mpr ⟨q, hq, rfl⟩) ?_
-  show x ∈ q.zonotopeCora.vPolytope.construct
+  show x ∈ q.zonotopeEven.vPolytope.construct
   rw [Zonotope.vPolytope_exact]
-  exact PolyZonotope.zonotopeCora_contains q hxq
+  exact PolyZonotope.zonotopeEven_contains q hxq
 
 end CORALean.Real
 

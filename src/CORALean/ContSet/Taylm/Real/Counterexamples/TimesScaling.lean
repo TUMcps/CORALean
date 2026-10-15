@@ -49,14 +49,14 @@ theorem Taylm.times_scaling_counterexample :
         ∧ (T₁ h).Encloses (fun t => f (xh h + h * t 0))
         ∧ (T₂ h).Encloses (fun t => g (xh h + h * t 0))) →
       (∃ C, ∀ h, 0 < h → h ≤ 1 →
-        |(T₁ h).remInf| ≤ C * h ^ 2 ∧ |(T₁ h).remSup| ≤ C * h ^ 2
-        ∧ |(T₂ h).remInf| ≤ C * h ^ 2 ∧ |(T₂ h).remSup| ≤ C * h ^ 2) →
+        |(T₁ h).rem.inf| ≤ C * h ^ 2 ∧ |(T₁ h).rem.sup| ≤ C * h ^ 2
+        ∧ |(T₂ h).rem.inf| ≤ C * h ^ 2 ∧ |(T₂ h).rem.sup| ≤ C * h ^ 2) →
       ∃ C, ∀ h, 0 < h → h ≤ 1 →
-        |((T₁ h).times (T₂ h)).remInf| ≤ C * h ^ 2
-          ∧ |((T₁ h).times (T₂ h)).remSup| ≤ C * h ^ 2 := by -- --- PROOF ---
+        |((T₁ h).times (T₂ h)).rem.inf| ≤ C * h ^ 2
+          ∧ |((T₁ h).times (T₂ h)).rem.sup| ≤ C * h ^ 2 := by -- --- PROOF ---
   intro H
   -- the order-1 model of `(x_h + h t)²` and of `x_h + h t`, both at `x_h = 1/h`
-  have hE1 : ∀ h : ℝ, 0 < h → (⟨[(1 / h ^ 2, fun _ => 0), (2, fun _ => 1)], 0, h ^ 2, 1⟩ :
+  have hE1 : ∀ h : ℝ, 0 < h → (⟨[(1 / h ^ 2, fun _ => 0), (2, fun _ => 1)], ⟨0, h ^ 2⟩, 1⟩ :
       Taylm 1).Encloses (fun t => (fun x : ℝ => x ^ 2) ((fun h : ℝ => 1 / h) h + h * t 0)) := by
     intro h h0 t ht
     simp only [Taylm.poly, Taylm.polyOf_cons, Taylm.polyOf_nil, Taylm.monomial]
@@ -70,21 +70,21 @@ theorem Taylm.times_scaling_counterexample :
     · field_simp
       nlinarith [mul_nonneg (pow_nonneg h0.le 4) (sub_nonneg.mpr ht2)]
   -- the order-1 model of `x_h + h t`, exact
-  have hE2 : ∀ h : ℝ, 0 < h → (⟨[(1 / h, fun _ => 0), (h, fun _ => 1)], 0, 0, 1⟩ :
+  have hE2 : ∀ h : ℝ, 0 < h → (⟨[(1 / h, fun _ => 0), (h, fun _ => 1)], ⟨0, 0⟩, 1⟩ :
       Taylm 1).Encloses (fun t => id ((fun h : ℝ => 1 / h) h + h * t 0)) := by
     intro h h0 t ht
     simp only [Taylm.poly, Taylm.polyOf_cons, Taylm.polyOf_nil, Taylm.monomial]
     simp
   -- the hypotheses hold with `C = 1`, so the conclusion is asked of the product
   obtain ⟨C, hC⟩ := H (fun x => x ^ 2) id (fun h => 1 / h)
-    (fun h => ⟨[(1 / h ^ 2, fun _ => 0), (2, fun _ => 1)], 0, h ^ 2, 1⟩)
-    (fun h => ⟨[(1 / h, fun _ => 0), (h, fun _ => 1)], 0, 0, 1⟩)
+    (fun h => ⟨[(1 / h ^ 2, fun _ => 0), (2, fun _ => 1)], ⟨0, h ^ 2⟩, 1⟩)
+    (fun h => ⟨[(1 / h, fun _ => 0), (h, fun _ => 1)], ⟨0, 0⟩, 1⟩)
     (ContDiff.pow (contDiff_id : ContDiff ℝ 2 (id : ℝ → ℝ)) 2) contDiff_id
     (fun h h0 _ => ⟨rfl, rfl, hE1 h h0, hE2 h h0⟩)
     ⟨1, fun h h0 h1 => by simp [abs_of_pos h0, h0.le]⟩
   -- the product's upper remainder is at least `h`
-  have hge : ∀ h : ℝ, 0 < h → h ≤ ((⟨[(1 / h ^ 2, fun _ => 0), (2, fun _ => 1)], 0, h ^ 2, 1⟩ :
-      Taylm 1).times ⟨[(1 / h, fun _ => 0), (h, fun _ => 1)], 0, 0, 1⟩).remSup := by
+  have hge : ∀ h : ℝ, 0 < h → h ≤ ((⟨[(1 / h ^ 2, fun _ => 0), (2, fun _ => 1)], ⟨0, h ^ 2⟩, 1⟩ :
+      Taylm 1).times ⟨[(1 / h, fun _ => 0), (h, fun _ => 1)], ⟨0, 0⟩, 1⟩).rem.sup := by
     intro h h0
     simp [Taylm.times, Taylm.mulTerms, Taylm.polyBounds, Taylm.termBounds, Taylm.degree,
       Interval.mulHi, Interval.mulLo, Pi.add_apply, Nat.ble]

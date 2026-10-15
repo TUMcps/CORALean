@@ -32,15 +32,16 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 theorem ReachSetAnalyzer.analyzeBranch_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
     (R : List (ReachSetAnalyzer.Entry S n)) :
-    ∀ (w : List ℕ), (∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∀ s ∈ e.timeInterval, s.lo < s.hi) →
+    ∀ (w : List ℕ), (∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧
+      ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup) →
     ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer S n), obj0.aps = obj.aps →
       obj0.masks = obj.masks → obj0.Represents d PT PF →
       ∃ obj', w.foldlM (fun o j => (R[j - 1]?).bind fun e => o.analyzeSingle (𝕋 := 𝕋) e) obj0 =
         some obj' ∧ obj'.aps = obj.aps ∧ obj'.masks = obj.masks ∧ obj'.Represents d
           (fun k t => PT k t ∨ ∃ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∃ s ∈ e.timeInterval,
-            obj.TrueMark (𝕋 := 𝕋) k s.set e.loc s.lo s.hi d t)
+            obj.TrueMark (𝕋 := 𝕋) k s.set e.loc s.time.inf s.time.sup d t)
           (fun k t => PF k t ∨ ∃ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∃ s ∈ e.timeInterval,
-            obj.FalseMark (𝕋 := 𝕋) k s.set e.loc s.lo s.hi d t) := by -- --- PROOF ---
+            obj.FalseMark (𝕋 := 𝕋) k s.set e.loc s.time.inf s.time.sup d t) := by -- --- PROOF ---
   intro w
   induction w with
   | nil =>

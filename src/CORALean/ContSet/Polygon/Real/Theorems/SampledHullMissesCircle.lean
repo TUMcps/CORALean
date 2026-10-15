@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Polygon.Real.Operations.SampledHullCora
+public import CORALean.ContSet.Polygon.Real.Polygon
 public import Mathlib.Analysis.Real.Pi.Bounds
 
 @[expose] public section
@@ -55,7 +55,7 @@ theorem Polygon.aux_circle_infinite :
 /-- Some point of the unit circle is outside the hull of any finite set of circle points. -/
 theorem Polygon.exists_circle_notMem_sampledHull (V : Set (Vec ℝ 2)) (hV : V.Finite)
     (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) :
-    ∃ z : Vec ℝ 2, z 0 ^ 2 + z 1 ^ 2 = 1 ∧ z ∉ Polygon.sampledHullCora V := by -- --- PROOF ---
+    ∃ z : Vec ℝ 2, z 0 ^ 2 + z 1 ^ 2 = 1 ∧ z ∉ convexHull ℝ V := by -- --- PROOF ---
   obtain ⟨z, hz, hzV⟩ := Polygon.aux_circle_infinite.exists_notMem_finset hV.toFinset
   have hz' : z 0 ^ 2 + z 1 ^ 2 = 1 := hz
   refine ⟨z, hz', fun hmem => ?_⟩

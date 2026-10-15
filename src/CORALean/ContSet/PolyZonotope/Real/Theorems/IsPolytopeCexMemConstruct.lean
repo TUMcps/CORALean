@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
+public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.IsPolytopeCexCoraVertex
 
 @[expose] public section
 

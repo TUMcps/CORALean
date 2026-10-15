@@ -36,7 +36,6 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
 public import CORALean.ContSet.ZonoBundle.Real.Operations.AllMembersFullDim
 public import CORALean.ContSet.ZonoBundle.Real.Operations.IsCentre
 public import CORALean.ContSet.ZonoBundle.Real.Operations.ContainsAll
-public import CORALean.ContSet.ZonoBundle.Real.Operations.IsIntervalCora
 public import CORALean.ContSet.ZonoBundle.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTight

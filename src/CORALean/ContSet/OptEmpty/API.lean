@@ -1,15 +1,15 @@
 module
 
-public import CORALean.ContSet.WithEmpty.WithEmpty
-public import CORALean.ContSet.WithEmpty.Instances
-public import CORALean.ContSet.WithEmpty.Theorems.API
+public import CORALean.ContSet.OptEmpty.OptEmpty
+public import CORALean.ContSet.OptEmpty.Instances
+public import CORALean.ContSet.OptEmpty.Theorems.API
 
 /-!
 # A representation or nothing, collected
 
-`WithEmpty S` is what an operation returns when its result can be empty and `S`
+`OptEmpty S` is what an operation returns when its result can be empty and `S`
 cannot say so — the Minkowski difference of two zonotopes is the case that
-forced it. The type and what it denotes are in `WithEmpty`, the transfers of
+forced it. The type and what it denotes are in `OptEmpty`, the transfers of
 `S`'s own classes in `Instances`.
 
 It is not `EmptySet`, and neither replaces the other: `EmptySet n` is a

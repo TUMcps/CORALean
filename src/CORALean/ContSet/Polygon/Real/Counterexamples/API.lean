@@ -7,6 +7,7 @@ public import CORALean.ContSet.Polygon.Real.Counterexamples.OverlapsRegionCora
 public import CORALean.ContSet.Polygon.Real.Counterexamples.RandPointExtremeCora
 public import CORALean.ContSet.Polygon.Real.Counterexamples.RemoveCollinearPoints
 public import CORALean.ContSet.Polygon.Real.Counterexamples.RepresentsaOriginCora
+public import CORALean.ContSet.Polygon.Real.Counterexamples.SampledHullCora
 
 /-!
 # Counterexamples of `Polygon.Real`, collected

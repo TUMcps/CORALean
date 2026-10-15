@@ -4,7 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExcludesPointSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.OfPointExact
-public import CORALean.ContSet.WithEmpty.Theorems.Basic
+public import CORALean.ContSet.OptEmpty.Theorems.Basic
 
 @[expose] public section
 
@@ -40,8 +40,8 @@ theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p : Vec 𝕋 n) (u : Ve
     E.construct ∩ {toRealVec p} ⊆ ContSet.construct (E.andPoint p u a s) := by -- --- PROOF ---
   -- the point ellipsoid holds every point of `E ∩ {p}`
   have hpt : E.construct ∩ {toRealVec p}
-      ⊆ ContSet.construct (WithEmpty.of (Ellipsoid.ofPoint p) : WithEmpty (Ellipsoid 𝕋 n)) := by
-    rw [WithEmpty.construct_of]
+      ⊆ ContSet.construct (OptEmpty.of (Ellipsoid.ofPoint p) : OptEmpty (Ellipsoid 𝕋 n)) := by
+    rw [OptEmpty.construct_of]
     change _ ⊆ (Ellipsoid.ofPoint p).construct
     rw [Ellipsoid.ofPoint_exact]
     exact Set.inter_subset_right

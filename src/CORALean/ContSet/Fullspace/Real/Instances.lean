@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.Fullspace.Real.Operations.Centre
 public import CORALean.ContSet.Fullspace.Real.Theorems.ReindexLinExact
-public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.OptEmpty.OptEmpty
 
 @[expose] public section
 
@@ -87,9 +87,9 @@ instance {S : Type} [ContSet S (Vec ℝ n)] : Contains (Fullspace n) S where
   contains_sound _ _ _ := Set.subset_univ _
 
 /-- CORA's `isIntersecting_` answers `~isemptyobject(S)`: the whole space meets every nonempty set.
-The wrapper `WithEmpty` is the representation that can say it: disjoint (`true`) exactly at its own
+The wrapper `OptEmpty` is the representation that can say it: disjoint (`true`) exactly at its own
 `empty` member; an `of s` answers `false`, which refutes nothing (`s` may denote `∅`). -/
-instance {S : Type} [ContSet S (Vec ℝ n)] : IsDisjoint (Fullspace n) (WithEmpty S) where
+instance {S : Type} [ContSet S (Vec ℝ n)] : IsDisjoint (Fullspace n) (OptEmpty S) where
   isDisjoint _ s := match s with
     | .empty => true
     | .of _ => false

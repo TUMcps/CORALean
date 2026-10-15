@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.EmptySet.Real.EmptySet
-public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.OptEmpty.OptEmpty
 public import Mathlib.Analysis.InnerProductSpace.Basic
 
 @[expose] public section
@@ -82,10 +82,10 @@ instance {S : Type} [ContSet S (Vec ℝ n)] : IsDisjoint (EmptySet n) S where
   isDisjoint _ _ := true
   isDisjoint_sound _ _ _ := Set.disjoint_empty _
 
-/-- CORA's `contains_` answers `isemptyobject(S)`. The wrapper `WithEmpty` is the representation
+/-- CORA's `contains_` answers `isemptyobject(S)`. The wrapper `OptEmpty` is the representation
 that can say it: `true` exactly at its own `empty` member, which `∅` contains; an `of s` answers
 `false`, which refutes nothing (`s` may denote `∅` too). -/
-instance {S : Type} [ContSet S (Vec ℝ n)] : Contains (EmptySet n) (WithEmpty S) where
+instance {S : Type} [ContSet S (Vec ℝ n)] : Contains (EmptySet n) (OptEmpty S) where
   contains _ s := match s with
     | .empty => true
     | .of _ => false

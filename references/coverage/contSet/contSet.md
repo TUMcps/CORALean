@@ -2,7 +2,7 @@
 
 CORA methods of `contSet/@contSet/`, one row each, and where CORALean answers them. Conventions, states and the out-of-scope reasons are in [../README.md](../README.md).
 
-**CORALean counterpart:** `ContSet`, `SetIntersection`, `SetUnion`, `InflatedContSet`, `WithEmpty`, `CompactSet`, `ConvexSet`.
+**CORALean counterpart:** `ContSet`, `SetIntersection`, `SetUnion`, `InflatedContSet`, `OptEmpty`, `CompactSet`, `ConvexSet`.
 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
