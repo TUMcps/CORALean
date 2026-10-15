@@ -130,8 +130,9 @@ CLASS_ROOT_PENDING="
 # is cut. `Examples/` imports anything and nothing imports it. Whoever adds a
 # line here has checked that the tree already satisfies it.
 LAYERS="
-Global: ContSet ContDynamics HybridDynamics NN Specification Examples
-ContSet: ContDynamics HybridDynamics NN Specification Examples
+Global: ContSet ContDynamics DiscrDynamics HybridDynamics NN Specification Examples
+ContSet: ContDynamics DiscrDynamics HybridDynamics NN Specification Examples
+DiscrDynamics: ContDynamics HybridDynamics NN Specification Examples
 ContDynamics: HybridDynamics Examples
 NN: HybridDynamics Examples
 Specification: NN HybridDynamics Examples

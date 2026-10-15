@@ -14,6 +14,14 @@ public import Mathlib.Data.Fin.VecNotation
 `sig = until(lhs,interval,rhs)` of `kleeneSignal.m`: the until of the minimal refinements (unknown
 as false) is the Boolean part, and the value is unknown where it differs from the until of the
 maximal refinements (unknown as true).
+
+This is `Λ₁ U_I Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the untils of the under- and
+overapproximations `⌊Λ⌋` and `⌈Λ⌉`.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

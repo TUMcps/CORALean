@@ -17,6 +17,7 @@ public import CORALean.Global.BlockDiag
 public import CORALean.Global.AppendProdAdd
 public import CORALean.Global.AppendLinear
 public import CORALean.Global.Corners
+public import CORALean.Global.MatVec
 public import CORALean.Global.DropIdx
 public import CORALean.Global.FoldInduction
 public import CORALean.Global.CrossProduct

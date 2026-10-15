@@ -33,6 +33,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_Zonotope
 
 /-!
 # The constructions of the Real conversions, collected

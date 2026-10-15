@@ -3,15 +3,18 @@ module
 public import CORALean.Specification.Definitions.API
 public import CORALean.Specification.Instances
 public import CORALean.Specification.FourValued.API
+public import CORALean.Specification.FiniteSignal.API
 public import CORALean.Specification.FourValuedSignal.API
 public import CORALean.Specification.Kleene.API
 public import CORALean.Specification.KleeneSignal.API
 public import CORALean.Specification.PointSegmentSignal.API
+public import CORALean.Specification.OnlineAnalyzerNode.API
 public import CORALean.Specification.Operations.API
 public import CORALean.Specification.Specification
 public import CORALean.Specification.STL.API
 public import CORALean.Specification.STLInterval.API
 public import CORALean.Specification.SyntaxTree.API
+public import CORALean.Specification.TentativeKleeneSignal.API
 public import CORALean.Specification.Theorems.API
 public import CORALean.Specification.Counterexamples.API
 

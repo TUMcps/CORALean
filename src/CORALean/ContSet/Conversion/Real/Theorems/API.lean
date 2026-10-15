@@ -140,6 +140,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContain
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeZonoBundleExact
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalMatPolytopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalMatrixContains
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeMatZonotopeContains
 
 /-!
 # The guarantees of the Real conversions, collected

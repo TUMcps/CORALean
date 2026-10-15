@@ -15,6 +15,14 @@ denoted.
 
 Bounds are `EReal`, MATLAB's doubles with `±Inf`. CORA throws on `lb < 0` when `CHECKS_ENABLED`
 (the default); the type is the unchecked class, which agrees with CORA wherever it does not throw.
+
+The intervals are those of [1, Sec. 2.1 (intervals)]: bounds in `ℝ` or infinite, and an infinite
+one is open.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

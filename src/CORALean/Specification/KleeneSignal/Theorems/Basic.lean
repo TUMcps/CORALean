@@ -11,6 +11,13 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.NotIsValid
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+`at_not` is the direct semantics of `¬` in [1, Eq. 2].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 

@@ -413,6 +413,13 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SignedSumsAppend
 public import CORALean.ContSet.Zonotope.Real.Theorems.MspbSetExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MspbOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsMaigaMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.ConvexHullVertices
+public import CORALean.ContSet.Zonotope.Real.Theorems.MatNormLe
+public import CORALean.ContSet.Zonotope.Real.Theorems.MpowerOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.PowersOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.VecRepresentsa
+public import CORALean.ContSet.Zonotope.Real.Theorems.VecVolumeEqOfHEq
+public import CORALean.ContSet.Zonotope.Real.Theorems.VecVolumeEqZero
 
 /-!
 # What `Zonotope` guarantees

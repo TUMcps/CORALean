@@ -20,6 +20,7 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.MinFace
 public import CORALean.ContSet.Zonotope.Real.Definitions.BisectInv
 public import CORALean.ContSet.Zonotope.Real.Definitions.WalkEdges
 public import CORALean.ContSet.Zonotope.Real.Definitions.ColsSnoc
+public import CORALean.ContSet.Zonotope.Real.Definitions.MatContains
 
 /-!
 # What a zonotope means beyond its own construction

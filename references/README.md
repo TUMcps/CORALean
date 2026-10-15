@@ -129,6 +129,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis](2024/kochdumper-nahs-stl-lti-verification.md) | Kochdumper, Bak | Nonlinear Analysis: Hybrid Systems, 53:101491 | 2024 | 🟡 11/15 \| 15 |
 | [Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems](2024/kulmburg-ecc-zonotope-ellipsotope-containment.md) | Kulmburg, Brkan, Althoff | ECC | 2024 | 🟢 18/18 \| 10 |
 | [Exponent Relaxation of Polynomial Zonotopes and Its Applications in Formal Neural Network Verification](2024/ladner-aaai-exponent-relaxation.md) | Ladner, Althoff | AAAI | 2024 | 🟢 9/9 \| 6 |
+| [Using Four-Valued Signal Temporal Logic for Incremental Verification of Hybrid Systems](2024/lercher-cav-four-valued-stl.md) | Lercher, Althoff | CAV, LNCS 14683, pp. 259-281 | 2024 | 🟡 9/28 \| 9 |
 | [Implementation of Polyhedral Operations in CORA 2024](2024/wetzlinger-arch-polyhedral-operations.md) | Wetzlinger, Kotsev, Kulmburg, Althoff | ARCH24, EPiC Series in Computing 103, pp. 163-181 | 2024 | 🟢 49/49 \| 16 |
 | [Inner Approximations of Reachable Sets for Nonlinear Systems using the Minkowski Difference](2024/wetzlinger-lcss-inner-minkowski-difference.md) | Wetzlinger, Kulmburg, Althoff | IEEE Control Systems Letters, 8:2033-2038 | 2024 | 🟢 7/7 \| 16 |
 | [Explaining Fast and Slow: Abstraction and Refinement of Provable Explanations](2025/bassan-icml-explaining-fast-and-slow.md) | Bassan, Elboher, Ladner, Althoff, Katz | ICML | 2025 | 🟢 14/14 \| 2 |
@@ -353,6 +354,7 @@ pages carry one:
 * [Zonotope/Hyperplane Intersection for Hybrid Systems Reachability Analysis](2008/girard-hscc-zonotope-hyperplane.md)
 * [Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata](2017/bak-formats-time-triggered-conversion.md)
 * [Fully Automated Verification of Linear Time-Invariant Systems against Signal Temporal Logic Specifications via Reachability Analysis](2024/kochdumper-nahs-stl-lti-verification.md)
+* [Using Four-Valued Signal Temporal Logic for Incremental Verification of Hybrid Systems](2024/lercher-cav-four-valued-stl.md)
 * [Efficient Monte Carlo Procedures for Generating Points Uniformly Distributed Over Bounded Regions](1984/smith-or-uniform-points.md)
 * [Billiard walk - a new sampling algorithm for control and optimization](2014/polyak-ifac-billiard-walk.md)
 

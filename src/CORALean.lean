@@ -5,6 +5,7 @@ public import CORALean.Global.Float.API
 public import CORALean.ContSet.API
 public import CORALean.Specification.API
 public import CORALean.ContDynamics.API
+public import CORALean.DiscrDynamics.API
 public import CORALean.HybridDynamics.API
 public import CORALean.NN.API
 

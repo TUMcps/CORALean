@@ -15,6 +15,14 @@ For valid signals over `ℝ` and an until interval with lower bound `≥ 0`, `un
 is valid and, at a time `t ≥ 0`, `true` iff there is a time `t'` with `t' - t` in the interval, the
 right-hand side `true` at `t'` and the left-hand side `true` strictly between `t` and `t'`. The
 left-hand side is not asked to hold at `t` itself.
+
+This is [1, Lemma 2] for signals of finite variability, with the strict until of [1, Sec. 2.5];
+it contains [1, Lemma 1], the unitary signals being among them.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

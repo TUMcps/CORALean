@@ -12,6 +12,13 @@ public import CORALean.Specification.FourValued.Theorems.Basic
 For a valid signal, `set(obj,interval,value)` is valid and has `value` at the times of the interval
 and the signal's own value elsewhere: the Kleene part and the inconclusive part are set to the
 parts of `value`, and a value is recovered from its parts.
+
+This is `Set(c.irr, ⊣₂)` in line 12 of [1, Alg. 2], which drops the irrelevant prefix of a child.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

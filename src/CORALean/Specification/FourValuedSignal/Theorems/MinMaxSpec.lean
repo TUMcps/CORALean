@@ -17,6 +17,14 @@ operation on the refinements with inconclusive mapped to `False`, and `mx`, with
 `True`: the Kleene part is `mn`, and the value is inconclusive where they differ. For valid `mn`,
 `mx`, the conversion `toBoolSignal()` of the difference succeeds, the signal is valid, inconclusive
 exactly where `mn` and `mx` differ and `mn`'s value elsewhere.
+
+`mn` and `mx` are `⌊Λ̃⌋` and `⌈Λ̃⌉` of the result, which is their `⊔₂`, as
+[1, Sec. 4.3 (refinements)] recovers `Λ̃(t)`.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

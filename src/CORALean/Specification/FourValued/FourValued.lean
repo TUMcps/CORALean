@@ -11,6 +11,14 @@ CORA's `fourValued` (`specification/fourValued.m`) is an enumeration on `uint32`
 `Unknown(1)`, `Inconclusive(2)` and `True(3)`. `FourValued` has the same four members, and
 `FourValued.code` is the stored integer. The operators are in `Operations/`; MATLAB's elementwise
 extension to arrays (and its `dimensionMismatch` check) is not modelled.
+
+`Inconclusive` is the value ⊣₂ of [1, Sec. 2.2 (values)], "we don't know whether we don't know":
+the uncertainty of a computation that is not finished.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

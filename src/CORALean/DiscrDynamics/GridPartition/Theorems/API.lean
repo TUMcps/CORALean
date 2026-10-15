@@ -1,0 +1,35 @@
+module
+
+public import CORALean.DiscrDynamics.GridPartition.Theorems.Basic
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellCenterMem
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellIndicesCellSegments
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellIntervalsCover
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellPolytopesExact
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellSegmentsCellIndices
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellSubsetIntervals
+public import CORALean.DiscrDynamics.GridPartition.Theorems.CellZonotopesExact
+public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCellsExact
+public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCellsOfVolumeLe
+public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCellsSum
+public import CORALean.DiscrDynamics.GridPartition.Theorems.ExactIntersectingCellsSupport
+public import CORALean.DiscrDynamics.GridPartition.Theorems.ExistsMemCell
+public import CORALean.DiscrDynamics.GridPartition.Theorems.FilterIntersectingCells
+public import CORALean.DiscrDynamics.GridPartition.Theorems.I2sMem
+public import CORALean.DiscrDynamics.GridPartition.Theorems.I2sS2i
+public import CORALean.DiscrDynamics.GridPartition.Theorems.IntersectingCellsInner
+public import CORALean.DiscrDynamics.GridPartition.Theorems.IntersectingCellsOfOuter
+public import CORALean.DiscrDynamics.GridPartition.Theorems.IntersectingCellsOuter
+public import CORALean.DiscrDynamics.GridPartition.Theorems.MemCellIntervalsIff
+public import CORALean.DiscrDynamics.GridPartition.Theorems.MemIntersectingCellsLe
+public import CORALean.DiscrDynamics.GridPartition.Theorems.MemIntersectingCellsOfCellVolumePos
+public import CORALean.DiscrDynamics.GridPartition.Theorems.OfDividersIntervals
+public import CORALean.DiscrDynamics.GridPartition.Theorems.OfIntervalCellWidth
+public import CORALean.DiscrDynamics.GridPartition.Theorems.OfIntervalIntervals
+public import CORALean.DiscrDynamics.GridPartition.Theorems.OfIntervalWellFormed
+public import CORALean.DiscrDynamics.GridPartition.Theorems.S2iI2s
+public import CORALean.DiscrDynamics.GridPartition.Theorems.S2iMem
+public import CORALean.DiscrDynamics.GridPartition.Theorems.ZeroMemIntersectingCells
+
+/-!
+# The grid partition: theorems, collected
+-/

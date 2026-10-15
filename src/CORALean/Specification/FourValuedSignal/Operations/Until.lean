@@ -18,6 +18,14 @@ public import Mathlib.Data.Fin.VecNotation
 inconclusive mapped to `False` is the Kleene part, and the value is inconclusive where it differs
 from the until of the refinements with inconclusive mapped to `True`. `toBoolSignal()` throws if a
 value is unknown; `none` is that error, which `until_spec` shows does not occur.
+
+This is `Λ̃₁ U_I Λ̃₂` of [1, Sec. 4.3 (operators)]: the `⊔₂` of the untils of the under- and
+overapproximations `⌊Λ̃⌋` and `⌈Λ̃⌉`.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

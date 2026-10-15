@@ -11,6 +11,13 @@ public import CORALean.Specification.FourValued.FourValued
 CORA's `fourValuedSignal` (`specification/signals/fourValuedSignal.m`): a four-valued signal stored
 as a `kleeneSignal` and a Boolean `pointSegmentSignal` `isInconclusive` that overrides it. `IsValid`
 asks both parts to be valid; `FourValuedSignal.at` is the value it denotes.
+
+These are the `U₂`-signals Λ̃ of [1, Sec. 2.3 (signals)], here with finitely many pieces.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

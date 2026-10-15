@@ -14,6 +14,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerTerm
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.PeanoBakerInputTerm
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.DependentTerms
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpmMixed
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.DependentTermsMatZono
+public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpmMixedMatZono
 
 /-!
 # What enclosing a matrix exponential means

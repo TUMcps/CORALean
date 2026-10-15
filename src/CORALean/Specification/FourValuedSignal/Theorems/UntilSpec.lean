@@ -18,6 +18,14 @@ untils of the two Kleene refinements (inconclusive as `False`, as `True`) differ
 value otherwise; it is `True` iff some `t'` with `t' - t` in the interval has the right-hand side
 `True` and the left-hand side `True` strictly between, and `False` iff at every such `t'` the
 right-hand side is `False` or the left-hand side is `False` somewhere strictly between.
+
+The `True` and `False` clauses are the direct semantics of `U_I` on four-valued signals that
+[1, Sec. 4.3 (operators)] describes by the pattern of [1, Eq. 2].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

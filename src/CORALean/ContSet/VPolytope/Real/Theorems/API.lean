@@ -35,6 +35,8 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.SupportFuncEq
 public import CORALean.ContSet.VPolytope.Real.Theorems.HausdorffDistEq
 public import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
 public import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
+public import CORALean.ContSet.VPolytope.Real.Theorems.MpowerOuter
+public import CORALean.ContSet.VPolytope.Real.Theorems.VecRepresentsa
 
 /-!
 # What `VPolytope` guarantees

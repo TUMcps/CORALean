@@ -12,6 +12,13 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.CombineSpec
 
 For valid three-valued signals, `and_(varargin)` is valid and, at a time `t ≥ 0`, `True` iff every
 one is `True`, and `False` iff one is `False`.
+
+This is the direct semantics of `∧` in [1, Eq. 2].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

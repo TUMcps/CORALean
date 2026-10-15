@@ -23,6 +23,13 @@ public import Mathlib.Data.List.GetD
 The signal `combine(op,sig)(i)` is valid and, at every time `t ≥ 0`, has output `i` of `op`
 applied to the values of the inputs at `t`. The proof runs the loop with an invariant: the output
 built so far agrees with `op` at every time below the next unconsumed time point of the inputs.
+
+With `¬` and `∧` as `op` this is their point-wise lift to Boolean signals of [1, Sec. 4.1].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Interval.Real.Theorems.NormLe
+public import CORALean.ContSet.Zonotope.Real.Definitions.MatContains
 public import CORALean.ContSet.Zonotope.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.CompactZeros
 public import CORALean.ContSet.Zonotope.Real.Operations.MinnormOffset
@@ -142,6 +143,43 @@ theorem Zonotope.rank_eq_iff (Z : Zonotope (Vec ℝ n)) :
     Z.rank = n ↔ (interior Z.construct).Nonempty := by
   rw [← Zonotope.rank_eq_finrank_iff]
   simp
+
+
+-- ================================  `Zonotope.transpose_exact`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Exact: the transposes of the members are the members of the transpose. -/
+theorem Zonotope.transpose_exact (Z : Zonotope (Mat ℝ m n)) :
+    Matrix.transpose '' Z.construct = Z.transpose.construct :=
+  Zonotope.map_exact (Matrix.transposeLinearEquiv (Fin m) (Fin n) ℝ ℝ).toLinearMap Z
+
+
+-- =================================  `Zonotope.vec_construct`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Exact: the vectorisation of the members are the members of `vec`. -/
+theorem Zonotope.vec_construct (Z : Zonotope (Mat ℝ m n)) :
+    matVecEquiv '' Z.construct = Z.vec.construct :=
+  Zonotope.map_exact matVecEquiv.toLinearMap Z
+
+
+-- ================================  `Zonotope.matContains_iff`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The matrices lie in the zonotope iff their stackings lie in `zonotope(matZ)`. -/
+theorem Zonotope.matContains_iff {p : ℕ} (Z : Zonotope (Mat ℝ m n)) (S : Fin p → Mat ℝ m n) :
+    Z.matContains S ↔ ∀ k, matVecEquiv (S k) ∈ Z.vec.construct :=
+  forall_congr' fun k => by
+    rw [← Zonotope.vec_construct]; exact matVecEquiv.injective.mem_set_image.symm
 
 end
 

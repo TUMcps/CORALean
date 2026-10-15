@@ -15,6 +15,14 @@ public import CORALean.Specification.PointSegmentSignal.Theorems.SetSpec
 For a valid three-valued signal, `toBoolSignal(obj,mapUnknownTo)` is valid and has the value
 `mapUnknownTo` at every time `t ≥ 0` where the signal is unknown, and the Boolean value of the
 signal elsewhere.
+
+With `false` and `true` this is the underapproximation `⌊Λ⌋` and the overapproximation `⌈Λ⌉` of
+[1, Sec. 4.2 (refinements)].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

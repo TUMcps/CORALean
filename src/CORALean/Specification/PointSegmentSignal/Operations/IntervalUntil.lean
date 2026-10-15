@@ -20,6 +20,13 @@ is `true` at the times `t` for which an interval of `lhsInt`, closed at the left
 interval of `rhsInt`, closed at the right, at a time `t'` with `t' - t` in the until interval, minus
 zero; and, if the until interval contains `0`, at the times of `rhsInt`. `contains(0)` and
 `representsa` are taken at tolerance `0`; CORA's default tolerance of `contains` is a few `eps`.
+
+With one interval on each side this is the unitary until of [1, Eq. 1].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5
