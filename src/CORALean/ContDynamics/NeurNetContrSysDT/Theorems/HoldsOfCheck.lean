@@ -13,7 +13,7 @@ set `reach` computed, through the pair's `Contains` or `IsDisjoint`: a `true`, f
 evaluation, is the specification on the exact state, with nothing left to prove by hand.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       24-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -35,13 +35,13 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.holds_of_check [Contains ContSet (S n)] [IsDisjoint ContSet (S n)]
-    (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n) {o : ℕ} (ho : 0 < o) (R₀ : S n)
-    (spec : Specification ContSet) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {W : Set (Vec ℝ sys.plant.r)}
-    (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {w : ℕ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π R₀ W x w) (k : ℕ) :
-    spec.check (sys.reach ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
-  fun h => sys.holds_of_reach ho R₀ spec hπ hW traj k (spec.check_sound _ h)
+    (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n) (U_ext : S sys.nExt) {o : ℕ} (ho : 0 < o)
+    (R₀ : S n) (spec : Specification ContSet) {π : Vec ℝ n → Vec ℝ sys.m}
+    (hπ : sys.contr.Sound π) {W : Set (Vec ℝ sys.plant.r)}
+    (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
+    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.Trajectory π R₀ (construct U_ext) W x v w) (k : ℕ) :
+    spec.check (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
+  fun h => sys.holds_of_reach U_ext ho R₀ spec hπ hW traj k (spec.check_sound _ h)
 
 end CORALean
 

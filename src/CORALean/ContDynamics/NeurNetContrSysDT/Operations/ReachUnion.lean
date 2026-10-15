@@ -12,9 +12,9 @@ The steps `0` through `K = tFinal - tStart` of `reach`, one per branch of the
 `SetUnion` — the `Reach.reach` field of the instance, computable wherever `reach` is.
 -/
 
--- Authors:       Claude Sonnet 5, Claude Opus 5.5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,11 +35,11 @@ variable [OfScalarPoint 𝕋 S]
 /-- The steps `0` through `tFinal - tStart` of `reach`, from `R0`, one `SetUnion`
 branch each. -/
 def NeurNetContrSysDT.reachUnion (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
-    (params : Reach.Params (S n) ℕ)
+    (U_ext : S sys.nExt) (params : Reach.Params (S n) ℕ)
     (options : NeurNetContrSysDT.ReachOptions) : SetUnion (S n) :=
   let R₀ := params.X₀                                               -- the paper's symbols
   let K := params.tFinal - params.tStart                           -- steps
-  ⟨(List.range (K + 1)).map (fun k => sys.reach ⟨R₀, 0, k⟩ options)⟩  -- ⋃_{k ≤ K} R(k)
+  ⟨(List.range (K + 1)).map (fun k => sys.reach U_ext ⟨R₀, 0, k⟩ options)⟩  -- ⋃_{k ≤ K} R(k)
 
 end CORALean
 

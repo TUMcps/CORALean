@@ -8,14 +8,14 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.AugmentFloat
 /-!
 # `augmentFloat` reads as `augment`
 
-Entry by entry: the plant's own entries read as themselves, and the zeros as `0` by
-`toReal_zero`. So the float reachability of the augmented system in `𝕋` reaches the real
-augmented system, which `augment_flow` ties to the closed loop.
+Entry by entry: the plant's own entries read as themselves (`B_nn` and `B_ext` being columns of
+`B`), and the zeros as `0` by `toReal_zero`. So the float reachability of the augmented system in
+`𝕋` reaches the real augmented system, which `augment_flow` ties to the closed loop.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,18 +33,28 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem NeurNetContrSys.toRealMat_augmentFloat (sys : NeurNetContrSys (LinearSys 𝕋 n) S n) :
     Scalar.toRealMat sys.augmentFloat.A = sys.augment.A ∧
-      Scalar.toRealVec sys.augmentFloat.c = sys.augment.c := by -- --- PROOF ---
-  constructor
+      Scalar.toRealVec sys.augmentFloat.c = sys.augment.c ∧
+      Scalar.toRealMat sys.augmentFloat.B = sys.augment.B := by -- --- PROOF ---
+  refine ⟨?_, ?_, ?_⟩
   · funext i j
     refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;>
       refine Fin.addCases (fun j => ?_) (fun j => ?_) j <;>
-      simp [NeurNetContrSys.augmentFloat, NeurNetContrSys.augment, Scalar.toRealMat_apply] <;>
+      simp [NeurNetContrSys.augmentFloat, NeurNetContrSys.augment, leftCols,
+        Scalar.toRealMat_apply] <;>
       exact toReal_zero
   · funext i
     refine Fin.addCases (fun i => ?_) (fun i => ?_) i
     · simp [NeurNetContrSys.augmentFloat, NeurNetContrSys.augment, Scalar.toRealVec_apply]
     · simp only [NeurNetContrSys.augmentFloat, NeurNetContrSys.augment, Scalar.toRealVec_apply,
         Fin.append_right]
+      exact toReal_zero
+  · -- the input matrix: `B_ext` above the zeros
+    funext i j
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) i
+    · simp [NeurNetContrSys.augmentFloat, NeurNetContrSys.augment, rightCols,
+        Scalar.toRealMat_apply]
+    · simp only [NeurNetContrSys.augmentFloat, NeurNetContrSys.augment, Scalar.toRealMat_apply,
+        Matrix.of_apply, Fin.append_right]
       exact toReal_zero
 
 end CORALean

@@ -33,7 +33,7 @@ set.
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Opus 5, Claude Opus 5.5
+-- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -58,33 +58,38 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every zero-order-hold run of `H` control periods, under a disturbance `E` sends to `0`, is
-inside `reach` at every period boundary.
-`Δt` is the reachability step, `N Δt` the control period, and the two are related only here. -/
-theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) S n) (o η N : ℕ)
-    (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1)
-    {H : ℕ} {R₀ : S n} {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
+/-- Every zero-order-hold run of `H` control periods, under external inputs in `U_ext` and a
+disturbance `E` sends to `0`, is inside `reach` at every period boundary.
+`Δt` is the reachability step, `N Δt = sys.dt` the control period, related only here. -/
+theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
+    (U_ext : S sys.nExt) (o η N : ℕ) (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt)
+    (hdt : sys.dt = (N : ℝ) * Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1)
+    {H : ℕ} {R₀ : S n} {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0)
-    {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ W x w) :
+    {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
+    (traj : sys.Trajectory π H R₀ (construct U_ext) W x v w) :
     ∀ i ≤ H,
-      x ((i : ℝ) * ((N : ℝ) * Δt)) ∈
-        construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
+      x ((i : ℝ) * sys.dt) ∈
+        construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
   refine sys.reachWith_timePoint_outer _ _ _
     (fun X Y _ _ hx hu => NeurNetContrSys.cartProd_outer X Y hx hu)
     (fun Z _ hz => NeurNetContrSys.project_outer Z hz) ?_ hπ traj
   -- a period of the plant is a run of the augmented linear system, `N` steps of `Δt`
-  intro Z z u w' hz hzt
-  obtain ⟨hcont, hflow⟩ := sys.augment_flow hW hzt
-  have hc : sys.augment.CanonicalTrajectory (Set.Icc 0 ((N : ℝ) * Δt)) Z
-      (OfPoint.ofPoint sys.augment.c) (fun t => Fin.append (z t) u) (fun _ => sys.augment.c) :=
-    ⟨hz, fun _ _ => OfPoint.mem_ofPoint _, MeasureTheory.aestronglyMeasurable_const, hcont,
-      hflow⟩
+  intro Z z u v' w' hz hzt
+  obtain ⟨hcont, hvU, hmeas, hflow⟩ :=
+    sys.augment_flow (CompactSet.isBounded_construct U_ext) hW hzt
+  have hc : sys.augment.CanonicalTrajectory (Set.Icc 0 sys.dt) Z
+      (Plus.plus (Mtimes.mtimes (𝕄 := Mat ℝ) sys.augment.B U_ext) (OfPoint.ofPoint sys.augment.c))
+      (fun t => Fin.append (z t) u) (fun t => sys.augment.B *ᵥ v' t + sys.augment.c) :=
+    ⟨hz, fun t ht => Plus.plus_outer _ _ (Set.add_mem_add (Mtimes.mtimes_outer _ _ (by
+        simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+        exact Set.mem_image_of_mem _ (hvU t ht))) (OfPoint.mem_ofPoint _)), hmeas, hcont, hflow⟩
   have key := hc.reach_outer_horizon_inputSolution
-    (K := N) hΔt subset_rfl η hε
+    (K := N) hΔt (Set.Icc_subset_Icc_right hdt.ge) η hε
     (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
     (CompactSet.isBounded_construct _) (ConvexSet.convex_construct _)
     (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _) ho N le_rfl
+  rw [hdt]
   exact key
 
 end CORALean

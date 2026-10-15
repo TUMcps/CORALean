@@ -18,8 +18,9 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Project
 
 `NeurNetContrSys.reach` computed in `𝕋`, at float zonotopes: each control period stacks the
 network's image under the period's initial set (`Zonotope.cartProd`), runs `N` steps of the
-augmented system `[A B; 0 0]`, `[c; 0]` (`augmentFloat`) sampled by `discretizeEnclosureFloat`
-under `inputSolutionFloat` of the point `[c; 0]`, and projects back (`Zonotope.project`) — the
+augmented system `[A B_nn; 0 0]`, `[B_ext; 0]`, `[c; 0]` (`augmentFloat`) sampled by
+`discretizeEnclosureFloat` under `inputSolutionFloat` of `B_aug U_ext ⊕ [c; 0]`, the external
+inputs `U_ext` entering as in `reach`, and projects back (`Zonotope.project`) — the
 exact `discretize` and `inputSolution` replaced by their float enclosures. The order `η` is the
 caller's; `reachFloat_outer` asks it to be admissible for the augmented matrix. It is
 [1, Alg. 2] at a linear plant.
@@ -30,9 +31,9 @@ caller's; `reachFloat_outer` asks it to be admissible for the augmented matrix. 
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       01-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -48,9 +49,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The reachable set at the end of `params.tFinal - params.tStart` control periods, each
-`options.N` float steps of `options.Δt` of the augmented system. -/
+`options.N` float steps of `options.Δt` of the augmented system, under the external inputs
+`U_ext`. -/
 def NeurNetContrSys.reachFloat (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[𝕋] n)
-    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋) :
+    (U_ext : Zonotope (Vec 𝕋 sys.nExt)) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ)
+    (options : NeurNetContrSys.ReachOptions 𝕋) :
     Zonotope (Vec 𝕋 n) :=
   let R₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
@@ -58,14 +61,16 @@ def NeurNetContrSys.reachFloat (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[�
   let η := options.η
   let o := options.ρ
   let H := params.tFinal - params.tStart                           -- control periods
-  let ext := sys.augmentFloat                                       -- [A B; 0 0], [c; 0]
-  let cp := fun (X : Zonotope (Vec 𝕋 n)) (Y : Zonotope (Vec 𝕋 sys.plant.m)) =>
+  let ext := sys.augmentFloat                                       -- [A B_nn; 0 0], [B_ext; 0]
+  let U : Zonotope (Vec 𝕋 (n + sys.m)) :=                           -- B_aug U_ext ⊕ [c; 0]
+    Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ext.B U_ext) (Zonotope.point ext.c)
+  let cp := fun (X : Zonotope (Vec 𝕋 n)) (Y : Zonotope (Vec 𝕋 sys.m)) =>
     X.cartProd Y                                                    -- R × Y
-  let pr := fun (Z : Zonotope (Vec 𝕋 (n + sys.plant.m))) =>
-    Z.project (Fin.castAdd sys.plant.m)                             -- the first n coordinates
+  let pr := fun (Z : Zonotope (Vec 𝕋 (n + sys.m))) =>
+    Z.project (Fin.castAdd sys.m)                             -- the first n coordinates
   let rx := fun Z =>                                                -- N steps of ext from Z
     ((ext.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
-      ⟨Z, ext.inputSolutionFloat Δt η (Zonotope.point ext.c), 0, N⟩ ⟨o, options.hZonotopeOrder⟩,
+      ⟨Z, ext.inputSolutionFloat Δt η U, 0, N⟩ ⟨o, options.hZonotopeOrder⟩,
       [])
   (sys.reachWith cp pr rx R₀ H).1                                   -- R(HNΔt)
 

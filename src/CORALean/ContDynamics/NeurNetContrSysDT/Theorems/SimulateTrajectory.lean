@@ -8,14 +8,13 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryOfMap
 /-!
 # `simulate` samples a trajectory
 
-`simulate x₀` satisfies `Trajectory R₀` whenever `x₀ ∈ construct R₀`: `init` is
-the hypothesis handed in and `step` is `rfl`, since `simulate` is
-`Trajectory.step`'s equation read as a recursive definition rather than a
-predicate. Two obligations, not three: the controller supplies the input, so a
-run is determined by its initial state alone, with nothing for `input` to say.
+`simulate v x₀` satisfies `Trajectory R₀ U_ext` whenever `x₀ ∈ construct R₀` and the external
+input `v` stays in `U_ext`: `init` and `v` are the hypotheses handed in and `step` is `rfl`, since
+`simulate` is `Trajectory.step`'s equation read as a recursive definition rather than a
+predicate.
 -/
 
--- Authors:       Claude Opus 5, Claude Opus 5.5
+-- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       06-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -34,10 +33,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.simulate_trajectory (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
-    (π : Vec ℝ n → Vec ℝ sys.plant.m) {R₀ : S n} {W : Set (Vec ℝ sys.plant.r)} (hW : 0 ∈ W)
+    (π : Vec ℝ n → Vec ℝ sys.m) {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
+    {W : Set (Vec ℝ sys.plant.r)} (hW : 0 ∈ W) {v : ℕ → Vec ℝ sys.nExt} (hv : ∀ k, v k ∈ U_ext)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
-    sys.Trajectory π R₀ W (sys.simulate π x₀) 0 :=
-  NeurNetContrSysDT.trajectory_of_map hW hx₀ fun _ => rfl
+    sys.Trajectory π R₀ U_ext W (sys.simulate π v x₀) v 0 :=
+  NeurNetContrSysDT.trajectory_of_map hW hx₀ hv fun _ => rfl
 
 end CORALean
 

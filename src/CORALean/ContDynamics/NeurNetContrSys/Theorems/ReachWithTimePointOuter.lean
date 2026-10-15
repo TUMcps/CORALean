@@ -21,7 +21,7 @@ being a run of the plant over the cycle (`Trajectory.flow`) and the three enclos
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -42,27 +42,26 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- A run is, at each of the first `H` cycle ends, inside the set `reachWith` ends at. -/
 theorem NeurNetContrSys.reachWith_timePoint_outer (sys : NeurNetContrSys P S n)
-    (cp : S n → S (nrOfInputs sys.plant) → S (n + nrOfInputs sys.plant))
-    (pr : S (n + nrOfInputs sys.plant) → S n)
-    (rx : S (n + nrOfInputs sys.plant) → S (n + nrOfInputs sys.plant) × List (S
-        (n + nrOfInputs sys.plant)))
-    {X₀ : S n} {W : Set (Vec ℝ (nrOfDisturbances sys.plant))} {Δtc : ℝ}
+    (cp : S n → S sys.m → S (n + sys.m)) (pr : S (n + sys.m) → S n)
+    (rx : S (n + sys.m) → S (n + sys.m) × List (S (n + sys.m)))
+    {X₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)} {W : Set (Vec ℝ (nrOfDisturbances sys.plant))}
     (hcp : ∀ X Y x u, x ∈ construct X → u ∈ construct Y →
       (Fin.append x u : Vec ℝ (n + _)) ∈ construct (cp X Y))
     (hpr : ∀ Z z, z ∈ construct Z → (fun k => z (Fin.castAdd _ k)) ∈ construct (pr Z))
-    (hrx : ∀ R (z : ℝ → Vec ℝ n) (u : Vec ℝ (nrOfInputs sys.plant)) w,
+    (hrx : ∀ R (z : ℝ → Vec ℝ n) (u : Vec ℝ sys.m) (v' : ℝ → Vec ℝ sys.nExt) w,
       (Fin.append (z 0) u : Vec ℝ (n + _)) ∈ construct R →
-      ContDynamics.Trajectory sys.plant (Set.Icc 0 Δtc) Set.univ Set.univ W z (fun _ => u) w →
-      (Fin.append (z Δtc) u : Vec ℝ (n + _)) ∈ construct (rx R).1)
-    {π : Vec ℝ n → Vec ℝ (nrOfInputs sys.plant)} (hπ : sys.contr.Sound π) {H : ℕ}
-    {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
-    (traj : sys.Trajectory π Δtc H X₀ W x w) :
-    ∀ i ≤ H, x ((i : ℝ) * Δtc) ∈ construct (sys.reachWith cp pr rx X₀ i).1 := by -- --- PROOF ---
+      ContDynamics.Trajectory sys.plant (Set.Icc 0 sys.dt) Set.univ (sys.inputSet {u} U_ext) W z
+        (fun t => sys.input u (v' t)) w →
+      (Fin.append (z sys.dt) u : Vec ℝ (n + _)) ∈ construct (rx R).1)
+    {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π) {H : ℕ}
+    {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
+    (traj : sys.Trajectory π H X₀ U_ext W x v w) :
+    ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈ construct (sys.reachWith cp pr rx X₀ i).1 := by -- --- PROOF ---
   intro i
   induction i with
   | zero =>
     intro _
-    show x (((0 : ℕ) : ℝ) * Δtc) ∈ construct X₀
+    show x (((0 : ℕ) : ℝ) * sys.dt) ∈ construct X₀
     simpa using traj.init
   | succ i ih =>
     intro hi
@@ -70,9 +69,9 @@ theorem NeurNetContrSys.reachWith_timePoint_outer (sys : NeurNetContrSys P S n)
     have hend := ih hiH.le
     -- the network puts the held input in `Y`, and the state and input in the product
     have hz := hcp _ _ _ _ hend (hπ.enclose_outer _ _ hend)
-    have h := hpr _ _ (hrx _ _ _ _ (by simpa only [add_zero] using hz) (traj.flow i hiH))
+    have h := hpr _ _ (hrx _ _ _ _ _ (by simpa only [add_zero] using hz) (traj.flow i hiH))
     simp only [Fin.append_left] at h
-    rw [show (i : ℝ) * Δtc + Δtc = ((i + 1 : ℕ) : ℝ) * Δtc by push_cast; ring] at h
+    rw [show (i : ℝ) * sys.dt + sys.dt = ((i + 1 : ℕ) : ℝ) * sys.dt by push_cast; ring] at h
     exact h
 
 end CORALean

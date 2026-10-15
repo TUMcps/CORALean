@@ -9,12 +9,13 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
 # One step of the closed loop at a linear plant
 
 CORA's closed loop `aux_augmentLinear` at a `linearSysDT`, read one step at a time:
-`x(k+1) = A x(k) + B π(x(k)) + c`, `E` dropped as CORA drops it. A function: the controller
-reads the state, so nothing along a run is chosen. `Trajectory.linear` says that a run with no
-disturbance is its orbit.
+`x(k+1) = A x(k) + B [π(x(k)); u_ext(k)] + c = A x + B_nn π(x) + B_ext u_ext + c`, `E` dropped as
+CORA drops it. A function of the state and the external input: the controller reads the state, so
+the external input is the only thing along a run that is chosen. `Trajectory.linear` says that a
+run with no disturbance steps by it.
 -/
 
--- Authors:       Claude Opus 5, Claude Opus 5.5
+-- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -32,10 +33,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One step of the closed loop at a linear plant, under the controller `π`. -/
+/-- One step of the closed loop at a linear plant, under the controller `π` and the external
+input `e`. -/
 def NeurNetContrSysDT.map (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
-    (π : Vec ℝ n → Vec ℝ sys.plant.m) (x : Vec ℝ n) : Vec ℝ n :=
-  toRealMat sys.plant.A *ᵥ x + toRealMat sys.plant.B *ᵥ π x + toRealVec sys.plant.c
+    (π : Vec ℝ n → Vec ℝ sys.m) (x : Vec ℝ n) (e : Vec ℝ sys.nExt) : Vec ℝ n :=
+  toRealMat sys.plant.A *ᵥ x + toRealMat sys.plant.B *ᵥ sys.input (π x) e +
+    toRealVec sys.plant.c
 
 end CORALean
 

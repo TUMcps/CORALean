@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfCheck
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfOutput
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.NotHoldsOfSimulate
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OfFullTrajectoryIff
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
@@ -14,7 +15,6 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.API
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemSimulateBoxFloat
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryIterate
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryLinear
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryOfMap
 
@@ -22,24 +22,24 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryOfMap
 # What a network in the loop guarantees
 
 `ReachOuter` is the composition of the two halves, `HoldsOfReach` what checking
-a specification on it buys, and `TrajectoryLinear`/`TrajectoryOfMap`/`TrajectoryIterate`/
-`EqOfInit` the reading of a run at a linear plant that a determined input forces: an orbit of
-`map`, settled by where it started.
+a specification on it buys, and `TrajectoryLinear`/`TrajectoryOfMap`/`EqOfInit` the reading of a
+run at a linear plant that a determined input forces: a sequence stepping by `map` under the
+external input, settled by where it started and that input.
 
 `ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable
 set; `Real/` bounds its generator count at `𝒵`, `ReachOrderLe` only holding at ℝ.
 
 `OutputOuter`/`HoldsOfOutput` are those two at an `OutputEq`, read at the
-controller's own enclosure in place of a free input set — none here, `map` already reading it off.
+controller's own enclosure of its part of the input, with the external inputs `U_ext`.
 
 `SimulateTrajectory`/`SimulateMemReach` are `simulate` sampling one run and
 landing inside `reach`, with two obligations rather than three: the controller
-supplies the input, so nothing needs stating about it. `NotHoldsOfSimulate` is
+supplies the network's part of the input, so nothing needs stating about it. `NotHoldsOfSimulate` is
 the falsification corollary: one sampled run violating a specification settles
 it, where an enclosure can only ever fail to prove safety.
 
 No `reach_outer_on`: there is no `TrajectoryOn` here to hand it a bounded run
-from, since a run is already the orbit of `map` from its start
-(`TrajectoryIterate`) — nothing a horizon leaves unknown that `reach_outer`
+from, since a run is already a sequence stepping by `map` from its start
+(`TrajectoryLinear`) — nothing a horizon leaves unknown that `reach_outer`
 does not cover at every `k`. `ReachUnionOuter` is `Instances`' guarantee.
 -/
