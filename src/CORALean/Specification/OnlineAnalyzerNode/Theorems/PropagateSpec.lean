@@ -26,6 +26,8 @@ the old one where not; and every child gets the conclusive interval of the new s
 
 namespace CORALean
 
+variable {A : Type}
+
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
@@ -44,11 +46,12 @@ theorem aux_mapM_forall₂ {α β : Type} (f : α → Option β) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineAnalyzerNode.propagate_spec (eps : ℝ) (n : OnlineAnalyzerNode)
-    (ch : List OnlineAnalyzerNode) (I : STLInterval) (hk1 : n.kind ≠ .true) (hk2 : n.kind ≠ .false)
+theorem OnlineAnalyzerNode.propagate_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
+    (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk1 : n.kind ≠ .true)
+    (hk2 : n.kind ≠ .false)
     (hk3 : n.kind ≠ .ap) (hs : n.signal.IsValid) (delta : FourValuedSignal ℝ)
-    (hd : n.combine ch = some delta) (hdv : delta.IsValid) (n' : OnlineAnalyzerNode)
-    (ch' : List OnlineAnalyzerNode) (h : n.propagate eps ch I = some (n', ch')) :
+    (hd : n.combine ch = some delta) (hdv : delta.IsValid) (n' : OnlineAnalyzerNode A)
+    (ch' : List (OnlineAnalyzerNode A)) (h : n.propagate eps ch I = some (n', ch')) :
     n' = { n with signal := n.signal.merge delta } ∧ n'.signal.IsValid ∧
       (∀ t : ℝ, 0 ≤ t → (delta.at t ≠ FourValued.ii → n'.signal.at t = delta.at t) ∧
         (delta.at t = FourValued.ii → n'.signal.at t = n.signal.at t)) ∧

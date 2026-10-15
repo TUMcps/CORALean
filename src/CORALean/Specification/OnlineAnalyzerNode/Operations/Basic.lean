@@ -18,6 +18,30 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean
 
+variable {A : Type}
+
+
+-- ==============================  `OnlineAnalyzerNode.addChild`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `addChild(obj,child)`: registers a new child in the graph structure. -/
+def OnlineAnalyzerNode.addChild (n : OnlineAnalyzerNode A) (child : ℕ) : OnlineAnalyzerNode A :=
+  { n with children := n.children ++ [child] }
+
+
+-- ==============================  `OnlineAnalyzerNode.addParent`  ============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `addParent(obj,parent)`: registers a new parent, with nothing propagated to it yet. -/
+def OnlineAnalyzerNode.addParent (n : OnlineAnalyzerNode A) (parent : ℕ) : OnlineAnalyzerNode A :=
+  { n with parents := n.parents ++ [parent], prop := n.prop ++ [STLInterval.empty] }
+
 
 -- ===========================  `OnlineAnalyzerNode.Kind.initValue`  ============================ --
 -- Authors:       Claude Sonnet 5.5

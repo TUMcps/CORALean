@@ -1,0 +1,66 @@
+module
+
+public import CORALean.Specification.FourValuedSignal.Theorems.SetSpec
+public import CORALean.Specification.OnlineAnalyzerNode.Operations.ObserveSet
+public import CORALean.Specification.TentativeKleeneSignal.Theorems.ObserveSpec
+
+@[expose] public section
+
+/-!
+# What an `AP` node observes
+
+An `AP` node with its proposition `ap`, observing a set whose value for `ap` is `val` (`apValue`)
+at a time not yet propagated: if the observation is final (`tentative = false`), its satisfaction
+signal becomes `val` on the interval and stays as it was elsewhere, and the tentative signal is
+untouched; if it is tentative, the satisfaction signal is untouched and the tentative signal
+observes `val` in the interval (`TentativeKleeneSignal.observe`).
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : ℕ}
+  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  [∀ k, IsDisjoint (S k) (S k)]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem OnlineAnalyzerNode.observeSet_ap_spec (eps : ℝ)
+    (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval)
+    (loc : ℕ) (hk : n.kind = .ap) (ap : AtomicProposition S d) (hap : n.ap = some ap)
+    (tent : TentativeKleeneSignal ℝ) (ht : n.tentative = some tent)
+    (hnc : OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed
+      n.prop = some false) (val : Kleene)
+    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val) :
+    (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false =
+        some { n with signal := n.signal.set interval (FourValued.fromKleene val) } ∧
+      (n.signal.IsValid → (∀ f, interval.fieldsOf = some f → 0 ≤ f.lower) →
+        (n.signal.set interval (FourValued.fromKleene val)).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
+          (t ∈ interval.set →
+            (n.signal.set interval (FourValued.fromKleene val)).at t =
+              FourValued.fromKleene val) ∧
+          (t ∉ interval.set →
+            (n.signal.set interval (FourValued.fromKleene val)).at t = n.signal.at t))) ∧
+    (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc true =
+        some { n with tentative := some (tent.observe interval val) } ∧
+      (tent.IsValid → (∀ f, interval.fieldsOf = some f → 0 ≤ f.lower) →
+        (tent.observe interval val).IsValid)) := by -- --- PROOF ---
+  refine ⟨⟨?_, fun hs hI => FourValuedSignal.set_spec n.signal hs interval hI _⟩,
+    ⟨?_, fun hs hI => (tent.observe_spec hs interval hI val).1⟩⟩
+  -- a final observation sets the satisfaction signal
+  · simp [OnlineAnalyzerNode.observeSet, hk, hnc, hap, hval]
+  -- a tentative one is stored in the tentative signal
+  · simp [OnlineAnalyzerNode.observeSet, hk, hnc, hap, hval, ht]
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

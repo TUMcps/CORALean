@@ -98,6 +98,10 @@ public import CORALean.Global.ShenmaierHalfspaceProb
 public import CORALean.Global.ShenmaierVertex
 public import CORALean.Global.ShenmaierVertexNotSubset
 public import CORALean.Global.RecList
+public import CORALean.Global.LookupMapConst
+public import CORALean.Global.LookupReplaceKey
+public import CORALean.Global.MapFstReplaceKey
+public import CORALean.Global.ReplaceKey
 public import CORALean.Global.SqrtDeriv
 public import CORALean.Global.IteratedDerivArccos
 public import CORALean.Global.TaylorLagrangeConvex

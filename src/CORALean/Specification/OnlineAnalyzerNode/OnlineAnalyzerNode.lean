@@ -14,8 +14,8 @@ an STL formula in the online analysis. A node has a `kind` (CORA's `type`: `true
 `~`, `|`, `&`, `until`), the four-valued `signal` known for its subformula, for each parent the
 interval `prop` already propagated to it, and, for an atomic proposition, a `tentative` signal.
 CORA's node is a handle object that its methods mutate; here it is a value and a method returns
-the new one. `ap`, the atomic proposition of an `AP` node, is not stored: `atomicProposition` is
-not formalized (its `canBeTrue` and `canBeFalse` only enter `observeSet`).
+the new one. `ap`, the atomic proposition of an `AP` node, is of a type `A` that the node leaves
+open (`atomicProposition`, `AtomicProposition S n`, in the analyzer); only `observeSet` uses it.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -41,7 +41,7 @@ inductive OnlineAnalyzerNode.Kind
   | until
   deriving DecidableEq
 
-structure OnlineAnalyzerNode where
+structure OnlineAnalyzerNode (A : Type) where
   kind : OnlineAnalyzerNode.Kind
   signal : FourValuedSignal ℝ
   prop : List STLInterval
@@ -50,6 +50,7 @@ structure OnlineAnalyzerNode where
   parents : List ℕ
   children : List ℕ
   interval : Option STLInterval
+  ap : Option A
   tentative : Option (TentativeKleeneSignal ℝ)
 
 end CORALean

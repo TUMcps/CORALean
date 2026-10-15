@@ -1,0 +1,50 @@
+module
+
+public import CORALean.Specification.STLInterval.Definitions.WithinTol
+public import CORALean.Specification.STLInterval.Operations.Infimum
+public import CORALean.Specification.STLInterval.Operations.Supremum
+
+@[expose] public section
+
+/-!
+# New observations for already propagated times
+
+The check at the start of `observeSet`: for every interval `prop(i)` propagated to a parent with
+upper bound `pUb` and closedness `pRc`, an observation from `lb` (closed if `lc`) on must not
+reach back before it, `pUb > lb || (withinTol(pUb,lb,eps) && pRc && lc)`; otherwise CORA throws
+`CORA:specialError` ("New observation for already propagated time is not allowed"). Empty intervals
+(`pUb` empty) are skipped. If the observed interval is empty its `lb` is empty too, and comparing
+with it is a MATLAB error. `some true` is the former throw, `none` the latter.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- Whether some propagated interval conflicts with an observation from `lb` on. -/
+noncomputable def OnlineAnalyzerNode.conflicts (eps : ℝ) (lb : Option EReal) (lc : Bool) :
+    List STLInterval → Option Bool
+  | [] => some false
+  | p :: rest =>
+    match p.supremum.value, lb with
+    -- if ~isempty(pUb) && ...
+    | none, _ => OnlineAnalyzerNode.conflicts eps lb lc rest
+    | some _, none => none
+    | some pUb, some lb' =>
+      open Classical in
+      if pUb > lb' ∨ (STLInterval.withinTol eps pUb lb' ∧ p.supremum.closed = true ∧ lc = true)
+      then some true else OnlineAnalyzerNode.conflicts eps lb lc rest
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

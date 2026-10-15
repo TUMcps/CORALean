@@ -1,0 +1,38 @@
+module
+
+public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Propagate
+public import CORALean.Specification.STLInterval.Operations.StlInterval
+
+@[expose] public section
+
+/-!
+# Forcing a propagation
+
+`forcePropagation(obj)`: propagates regardless of the propagation frequency, with every
+observation final, `makeValid = stlInterval(0,inf)`.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+variable {S : ℕ → Type} {d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- `forcePropagation(obj)`. -/
+noncomputable def OnlineReachSetAnalyzer.forcePropagation (eps : ℝ)
+    (obj : OnlineReachSetAnalyzer S d) : Option (OnlineReachSetAnalyzer S d) :=
+  obj.propagate eps (STLInterval.stlInterval 0 ⊤ true true)
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

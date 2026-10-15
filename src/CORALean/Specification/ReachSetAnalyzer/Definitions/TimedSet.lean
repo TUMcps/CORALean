@@ -1,0 +1,35 @@
+module
+
+public import Mathlib.Data.Real.Basic
+
+@[expose] public section
+
+/-!
+# A set reachable in a time interval
+
+One element `R.timeInterval.set{i}` of a reach set together with its time interval
+`R.timeInterval.time{i}` = `interval(lo,hi)`.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- ========================================  MAIN TYPE  ========================================= --
+
+structure ReachSetAnalyzer.TimedSet (S : ℕ → Type) (n : ℕ) where
+  set : S n
+  lo : ℝ
+  hi : ℝ
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

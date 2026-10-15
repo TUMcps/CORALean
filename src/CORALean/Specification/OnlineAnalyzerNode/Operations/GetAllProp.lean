@@ -24,11 +24,14 @@ parent at all `[0,∞)`.
 
 namespace CORALean
 
+variable {A : Type}
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `allProp = getAllProp(obj)`. -/
-noncomputable def OnlineAnalyzerNode.getAllProp (eps : ℝ) (n : OnlineAnalyzerNode) : STLInterval :=
+noncomputable def OnlineAnalyzerNode.getAllProp (eps : ℝ) (n : OnlineAnalyzerNode A) :
+    STLInterval :=
   -- ub = inf; rc = true; the loop; allProp = stlInterval(0,ub,true,rc)
   let b := OnlineAnalyzerNode.propBound eps n.prop (⊤, true)
   STLInterval.stlInterval 0 b.1 true b.2
