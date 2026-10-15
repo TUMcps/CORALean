@@ -7,17 +7,17 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 /-!
 # `Ellipsoid.normUb`
 
-CORA's `@ellipsoid/norm_.m` (type `2` only, and only for the center `c = 0`): `sqrt(max(eig(Q)))`,
-the largest singular value of the generator matrix. What is defined here is an upper bound of it:
-the Frobenius norm of `G`, plus `‖c‖₂` (zero when `c = 0`, so that the statement needs no side
-condition). The Frobenius norm is at least the largest singular value, with equality for rank
-one, so this is outer, not CORA's exact value; no eigenvalue is computed. CORA's `-Inf` for an
-empty ellipsoid does not arise, an `Ellipsoid` here always holds its center.
+CORA's `@ellipsoid/norm_.m` (type `2` only, and only for the center `q = 0`): `sqrt(max(eig(Q)))`.
+What is defined here is an upper bound of it: `sqrt(trace(Q))`, plus `‖q‖₂` (zero when `q = 0`, so
+that the statement needs no side condition). The trace is the sum of the eigenvalues, all
+nonnegative, so it is at least the largest, with equality for rank one: this is outer, not CORA's
+exact value, and no eigenvalue is computed. CORA's `-Inf` for an empty ellipsoid does not arise,
+an `Ellipsoid` here always holds its center.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,7 +31,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Ellipsoid.normUb (E : Ellipsoid n) : ℝ :=
-  ‖E.c‖₂ + Real.sqrt (∑ i, ∑ j, E.G i j ^ 2)
+  ‖E.q‖₂ + Real.sqrt E.Q.trace
 
 end CORALean.Real
 

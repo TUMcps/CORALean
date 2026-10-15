@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 public import Mathlib.Analysis.Matrix.Order
 public import Mathlib.Analysis.Matrix.PosDef
 public import Mathlib.Tactic.Abel

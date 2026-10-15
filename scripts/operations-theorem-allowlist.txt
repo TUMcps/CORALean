@@ -44,7 +44,6 @@ src/CORALean/ContSet/ConZonotope/Real/Operations/Basic.lean
 src/CORALean/ContSet/ConZonotope/Real/Operations/MemDomainIff.lean
 src/CORALean/ContSet/ConZonotope/Real/Operations/MemOfMatIff.lean
 src/CORALean/ContSet/Conversion/Real/Operations/ZonoBundle_to_VPolytope.lean
-src/CORALean/ContSet/Ellipsoid/Float/Operations/AbsPullbackLe.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/NominalBoundDot.lean
 src/CORALean/ContSet/Ellipsoid/Real/Operations/Basic.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/Basic.lean

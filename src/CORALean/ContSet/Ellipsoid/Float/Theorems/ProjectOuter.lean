@@ -4,6 +4,8 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.Project
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.InflatedContSet.Theorems.ImageSubset
 public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapSelection
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 
 @[expose] public section
 
@@ -11,15 +13,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
 # `Ellipsoid.project` over-approximates the projection
 
 Selecting coordinates is linear and rounds nothing, so `InflatedContSet.image_subset` splits
-this into the nominal ellipsoid and the box. The exact layer states `project` as `mtimes` at
-the selection matrix, so the nominal ellipsoid of the projection has to be shown to be that
-product, which is `aux_nominal_project`; after it `project_exact` gives the nominal obligation
-as an equality, and the box is `Interval.project_outer`.
+this into the nominal ellipsoid and the box. At a positive semi-definite `Q` the projection's
+nominal ellipsoid is the exact layer's `project`, `Q(dims, dims)` (`aux_nominal_project`), and
+`project_exact` gives the nominal obligation as an equality; where `Q` is refused the nominal
+part is its center, whose projection is the projection's center. The box is
+`Interval.project_outer`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,34 +37,41 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The selection matrix times a stored matrix reads the stored rows. -/
-theorem Ellipsoid.aux_nominal_project (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) :
-    nominal (E.project dims) = Real.Ellipsoid.project (nominal E) dims := by -- --- PROOF ---
-  have hM : ∀ i k, LinearMap.toMatrix' (LinearMap.funLeft ℝ ℝ dims) i k
-      = if dims i = k then (1 : ℝ) else 0 := by
-    intro i k
-    rw [LinearMap.toMatrix'_apply]
-    simp [LinearMap.funLeft, Pi.single_apply, eq_comm]
-  show Real.Ellipsoid.mk _ _ _ = Real.Ellipsoid.mk _ _ _
-  congr 1
-  · funext i
-    simp [Matrix.mulVec, dotProduct, hM, toRealVec]
+/-- At a positive semi-definite `Q` the projection's nominal ellipsoid is the exact projection. -/
+theorem Ellipsoid.aux_nominal_project (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n)
+    (h : (toRealMat E.Q).PosSemidef) :
+    (nominal (E.project dims)).ellipsoid = Real.Ellipsoid.project (nominal E).ellipsoid dims
+    := by -- --- PROOF ---
+  have hsel :=
+    (nominal E).ellipsoid.map_selection dims (LinearMap.funLeft ℝ ℝ dims) (fun _ _ => rfl)
+  have h' : (toRealMat (E.project dims).Q).PosSemidef := h.submatrix dims
+  refine Real.Ellipsoid.ext ?_ ?_
+  · show _ = (Real.Ellipsoid.map _ _).Q
+    rw [hsel.1, Ellipsoid.nominal_of_psd h', Ellipsoid.nominal_of_psd h]
     rfl
-  · funext i j
-    simp [Matrix.mul_apply, hM, toRealMat]
+  · show _ = (Real.Ellipsoid.map _ _).q
+    rw [hsel.2, Ellipsoid.nominal_q, Ellipsoid.nominal_q]
     rfl
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.project_outer (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' E.construct ⊆ (E.project dims).construct :=
-  image_subset (fun _ _ => rfl)
-    (le_of_eq (by
-      have h := Real.Ellipsoid.project_exact (nominal E) dims
-      rw [← Ellipsoid.aux_nominal_project] at h
-      exact h))
-    (Interval.project_outer E.I_error dims)
+    (fun x k => x (dims k)) '' E.construct ⊆ (E.project dims).construct := by -- --- PROOF ---
+  refine image_subset (fun _ _ => rfl) ?_ (Interval.project_outer E.I_error dims)
+  by_cases h : (toRealMat E.Q).PosSemidef
+  · -- the exact projection, at a positive semi-definite `Q`
+    have he := Real.Ellipsoid.project_exact (nominal E).ellipsoid dims
+    rw [← Ellipsoid.aux_nominal_project E dims h] at he
+    exact le_of_eq he
+  · -- a refused `Q`: the center alone, whose projection is the projection's center
+    rintro _ ⟨x, hx, rfl⟩
+    obtain ⟨u, -, rfl⟩ := Ellipsoid.mem_nominalSet_iff.mp hx
+    have hG : (nominal E).ellipsoid.G = 0 := by
+      rw [Real.Ellipsoid.G_eq_zero_iff, Ellipsoid.nominal_Q_eq, if_neg h]
+    rw [hG, Matrix.zero_mulVec, add_zero]
+    exact Ellipsoid.mem_nominalSet_iff.mpr ⟨0, by rw [norm₂_zero]; exact zero_le_one,
+      by rw [Matrix.mulVec_zero, add_zero]; rfl⟩
 
 end CORALean.Float
 

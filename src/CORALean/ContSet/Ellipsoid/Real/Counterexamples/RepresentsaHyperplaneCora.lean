@@ -25,7 +25,7 @@ so every one-dimensional set is answered `true`. In one dimension a hyperplane `
 
 The branch `'hyperplane'` (l. 143-146) is `res = n == 1`. The ellipsoid
 `[-1, 1] = {q + G u | |u| ≤ 1}`
-with `q = 0`, `G = (1)` is one-dimensional, so CORA answers `true`, though in one dimension a
+with `q = 0`, `Q = (1)` is one-dimensional, so CORA answers `true`, though in one dimension a
 hyperplane `{x | a x = b}`, `a ≠ 0`, is a single point and `[-1, 1]` holds `0` and `1`. A wrong
 answer, not unsound. Read from the source, not run.
 -/
@@ -56,22 +56,28 @@ end CORALean.Real
 namespace CORALean.Real
 
 open Matrix
+open scoped MatrixOrder
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `q = 0`, `G = (1)`: the interval `[-1, 1]`. -/
-def Ellipsoid.aux_unitSegment : Ellipsoid 1 := ⟨1, fun _ => 0, fun _ _ => 1⟩
+/-- `q = 0`, `Q = (1)`: the interval `[-1, 1]`. -/
+def Ellipsoid.aux_unitSegment : Ellipsoid 1 := ⟨1, fun _ => 0, .one⟩
+
+/-- Its generator is `(1)`. -/
+theorem Ellipsoid.aux_unitSegment_G : Ellipsoid.aux_unitSegment.G = 1 := CFC.sqrt_one
 
 theorem Ellipsoid.aux_zero_mem : (fun _ => (0 : ℝ)) ∈ Ellipsoid.aux_unitSegment.construct := by
   refine ⟨fun _ => 0, ?_, ?_⟩
-  · simp [Ellipsoid.aux_unitSegment, CORALean.norm₂]
-  · ext i; simp [Ellipsoid.aux_unitSegment, Matrix.mulVec, dotProduct]
+  · simp [CORALean.norm₂]
+  · rw [Ellipsoid.aux_unitSegment_G, Matrix.one_mulVec]
+    ext i; simp [Ellipsoid.aux_unitSegment]
 
 theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.aux_unitSegment.construct := by
   refine ⟨fun _ => 1, ?_, ?_⟩
-  · simp [Ellipsoid.aux_unitSegment, CORALean.norm₂]
-  · ext i; simp [Ellipsoid.aux_unitSegment, Matrix.mulVec, dotProduct]
+  · simp [CORALean.norm₂]
+  · rw [Ellipsoid.aux_unitSegment_G, Matrix.one_mulVec]
+    ext i; simp [Ellipsoid.aux_unitSegment]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

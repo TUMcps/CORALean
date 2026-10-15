@@ -4,6 +4,7 @@ public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ContSet.Theorems.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Definitions.Unchecked
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
@@ -35,9 +36,9 @@ At `Vec ℝ n` only: an ellipsoid is described by a Euclidean norm, which a
 general real module has none of.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   07-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -83,16 +84,28 @@ instance : Mtimes (Mat ℝ) (fun n => Ellipsoid n) where
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Ellipsoid.mtimes_exact M E).subset
 
-/-- `map_exact` carries no hypothesis at all — a generator matrix has no rank
-condition to preserve — so a reindexing needs no more than any other map does. -/
+/-- `map_exact` carries no hypothesis at all — `M Q Mᵀ` is exact for every `M`, singular ones
+included — so a reindexing needs no more than any other map does. -/
 noncomputable instance : Reindex (fun n => Ellipsoid n) where
   reindex e E := Ellipsoid.map (reindexLin e) E
   reindex_exact e E := (Ellipsoid.map_exact (reindexLin e) E).symm
 
-/-- `Ellipsoid.isequal`, structural at tolerance `0`: sound, not exact. -/
+/-- `Ellipsoid.isequal`, the same `Q` and `q` at tolerance `0`. -/
 instance : Isequal (Ellipsoid n) where
   isequal := Ellipsoid.isequal
   isequal_construct _ _ := Ellipsoid.isequal_construct
+
+/-- Unchecked fields denote what CORA's constructor makes of them (`Ellipsoid.ofShape`). -/
+noncomputable instance : ContSet (Ellipsoid.Unchecked n) (Vec ℝ n) :=
+  ⟨fun D => D.ellipsoid.construct⟩
+
+/-- Convex as the ellipsoid they denote is. -/
+instance : ConvexSet (Ellipsoid.Unchecked n) (Vec ℝ n) :=
+  ⟨fun D => ConvexSet.convex_construct D.ellipsoid⟩
+
+/-- Compact as the ellipsoid they denote is. -/
+instance : CompactSet (Ellipsoid.Unchecked n) (Vec ℝ n) :=
+  ⟨fun D => CompactSet.isCompact_construct D.ellipsoid⟩
 
 end CORALean.Real
 

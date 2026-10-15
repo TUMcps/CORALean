@@ -1,6 +1,9 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Float.Operations.Inflate
+public import CORALean.ContSet.Interval.Float.Operations.MatMul
+public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Operations.Materialise
 public import CORALean.Global.Float.Sqrt
 
@@ -12,7 +15,8 @@ public import CORALean.Global.Float.Sqrt
 CORA's `@ellipsoid/enclosePoints.m`, method `'cov'`, the real layer's
 `Real.Ellipsoid.enclosePointsCov` step for step: the mean `c`, the points rotated by the caller's
 `T` and `U` (CORA: `svd(points)` and `svd(cov(.))`), the scalings `nt`, the radius `maxDist`, and
-the generators `T U diag(nt · sqrt maxDist)`. None of it is trusted. The real layer's proof needs
+the generators `G = T U diag(nt · sqrt maxDist)`, whose `G Gᵀ`, CORA's `T U B Uᵀ Tᵀ`, is stored
+rounded upward (`inflate`) as the shape matrix. None of it is trusted. The real layer's proof needs
 `T` and `U` orthogonal and every step exact; a float rotation is neither, and an inverse or an
 eigen-decomposition would have to be certified. Instead every point is placed explicitly: its
 factor vector `u` is the rotated point divided by the scalings, shrunk by `1 - 2⁻³⁰` against
@@ -26,7 +30,7 @@ are rounding errors.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +38,7 @@ are rounding errors.
 
 namespace CORALean.Float
 
-open FloatOps
+open FloatOps Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n N : ℕ}
 
@@ -60,7 +64,7 @@ def Ellipsoid.enclosePointsCov (steps : ℕ) (pts : Fin N → Vec 𝕋 n) (T U :
   -- `maxDist = max_j Σᵢ (orientedMatrix(i,j) / ntᵢ)²`
   let maxDist : 𝕋 := maximumOver fun j =>
     sqSumUp fun i => absolute (divUp (orientedMatrix j i) (nt i))
-  -- `diag(nt · sqrt maxDist)` and the generators `T U diag(nt · sqrt maxDist)`
+  -- `diag(nt · sqrt maxDist)` and the generators `G = T U diag(nt · sqrt maxDist)`
   let r : 𝕋 := sqrtUp steps maxDist
   let D : Vec 𝕋 n := fun i => mulUp (nt i) r
   let TUV : Vector (Vector 𝕋 n) n :=
@@ -80,7 +84,8 @@ def Ellipsoid.enclosePointsCov (steps : ℕ) (pts : Fin N → Vec 𝕋 n) (T U :
   let err : Interval (Vec 𝕋 n) :=
     Interval.materialise
       ⟨fun i => minimumOver fun j => lo j i, fun i => maximumOver fun j => hi j i⟩
-  ⟨n, c, G, err⟩
+  -- the shape `G Gᵀ`, stored rounded upward
+  ⟨Ellipsoid.inflate (Interval.matMul (Interval.point G) (Interval.point Gᵀ)), c, err⟩
 
 end CORALean.Float
 

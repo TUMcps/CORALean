@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
 public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
@@ -144,8 +144,8 @@ theorem Ellipsoid.center_of_min_volume {K : ℕ} (Qs : Fin K → Mat ℝ n n) (q
   have hn : n ≠ 0 := by
     rintro rfl
     exact hp0 (Subsingleton.elim _ _)
-  simp only [Ellipsoid.volume, Ellipsoid.shape_ofShape hQ.posSemidef,
-    Ellipsoid.shape_ofShape hQ'.posSemidef, Matrix.det_smul, Fintype.card_fin] at hvol
+  simp only [Ellipsoid.volume, Ellipsoid.ofShape_eq hQ.posSemidef,
+    Ellipsoid.ofShape_eq hQ'.posSemidef, Matrix.det_smul, Fintype.card_fin] at hvol
   -- the unit ball volume and `det Q` are positive
   have hV : 0 < Real.pi ^ ((n : ℝ) / 2) / Real.Gamma ((n : ℝ) / 2 + 1) :=
     div_pos (Real.rpow_pos_of_pos Real.pi_pos _) (Real.Gamma_pos_of_pos (by positivity))

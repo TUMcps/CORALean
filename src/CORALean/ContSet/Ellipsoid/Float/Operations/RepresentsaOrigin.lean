@@ -8,13 +8,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Ellipsoid.representsa_origin`, over a floating-point scalar
 
-CORA's `@ellipsoid/representsa_` at type `origin` with tolerance `0`: every generator and the
+CORA's `@ellipsoid/representsa_` at type `origin` with tolerance `0`: the shape matrix and the
 center are `0`, and the error box is `{0}`. A `true` is sound, a `false` decides nothing.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -30,9 +30,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Ellipsoid.representsa_origin (E : Ellipsoid 𝕋 n) : Bool :=
-  (((List.finRange E.k).all fun j => (List.finRange n).all fun i =>
-    FloatOps.le (E.G i j) zero && FloatOps.le zero (E.G i j)) &&
-    (List.finRange n).all (fun i => FloatOps.le (E.c i) zero && FloatOps.le zero (E.c i)) &&
+  (((List.finRange n).all fun i => (List.finRange n).all fun j =>
+    FloatOps.le (E.Q i j) zero && FloatOps.le zero (E.Q i j)) &&
+    (List.finRange n).all (fun i => FloatOps.le (E.q i) zero && FloatOps.le zero (E.q i)) &&
     E.I_error.representsa_origin)
 
 end CORALean.Float

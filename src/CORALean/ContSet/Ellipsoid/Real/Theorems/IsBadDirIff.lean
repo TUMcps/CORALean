@@ -4,6 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBadDir
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
 
@@ -37,47 +38,47 @@ variable {n : ℕ}
 
 /-- The quadratic form of a shape is nonnegative. -/
 theorem Ellipsoid.aux_quad_nonneg (E : Ellipsoid n) (v : Vec ℝ n) :
-    0 ≤ v ⬝ᵥ (E.shape *ᵥ v) := by
+    0 ≤ v ⬝ᵥ (E.Q *ᵥ v) := by
   rw [Ellipsoid.quad_eq, dotProduct_self]
   positivity
 
 /-- At full rank it is positive off zero. -/
 theorem Ellipsoid.aux_quad_pos (E : Ellipsoid n) (hr : E.rank = n) {v : Vec ℝ n} (hv : v ≠ 0) :
-    0 < v ⬝ᵥ (E.shape *ᵥ v) := by -- --- PROOF ---
+    0 < v ⬝ᵥ (E.Q *ᵥ v) := by -- --- PROOF ---
   refine (Ellipsoid.aux_quad_nonneg E v).lt_of_ne fun h => hv ?_
   -- a zero form gives `Gᵀ v = 0`, so `Q v = 0`, and `Q` is injective
   rw [Ellipsoid.quad_eq, eq_comm, dotProduct_self_eq_zero] at h
   have hinj := Matrix.mulVec_injective_iff_isUnit.mpr (E.isUnit_shape hr)
   apply hinj
-  rw [Ellipsoid.shape, ← Matrix.mulVec_mulVec, h, Matrix.mulVec_zero, Matrix.mulVec_zero]
+  rw [← E.G_mul_transpose, ← Matrix.mulVec_mulVec, h, Matrix.mulVec_zero, Matrix.mulVec_zero]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isBadDir_iff (E₁ E₂ : Ellipsoid n) (l : Vec ℝ n) (p : ℝ)
-    (hr : E₁.rank = n) (hbig : E₁.isBigger E₂) (hl : 0 < l ⬝ᵥ (E₂.shape *ᵥ l))
-    (hp : p = Real.sqrt (l ⬝ᵥ (E₁.shape *ᵥ l)) / Real.sqrt (l ⬝ᵥ (E₂.shape *ᵥ l))) :
-    E₁.isBadDir E₂ l ↔ ¬ ∀ v : Vec ℝ n, 0 ≤ (1 - 1 / p) * (v ⬝ᵥ (E₁.shape *ᵥ v))
-      + (1 - p) * (v ⬝ᵥ (E₂.shape *ᵥ v)) := by -- --- PROOF ---
+    (hr : E₁.rank = n) (hbig : E₁.isBigger E₂) (hl : 0 < l ⬝ᵥ (E₂.Q *ᵥ l))
+    (hp : p = Real.sqrt (l ⬝ᵥ (E₁.Q *ᵥ l)) / Real.sqrt (l ⬝ᵥ (E₂.Q *ᵥ l))) :
+    E₁.isBadDir E₂ l ↔ ¬ ∀ v : Vec ℝ n, 0 ≤ (1 - 1 / p) * (v ⬝ᵥ (E₁.Q *ᵥ v))
+      + (1 - p) * (v ⬝ᵥ (E₂.Q *ᵥ v)) := by -- --- PROOF ---
   -- `l` is nonzero, as its form is positive
   have hl0 : l ≠ 0 := fun h => by simp [h] at hl
-  have hal : 0 < l ⬝ᵥ (E₁.shape *ᵥ l) := Ellipsoid.aux_quad_pos E₁ hr hl0
+  have hal : 0 < l ⬝ᵥ (E₁.Q *ᵥ l) := Ellipsoid.aux_quad_pos E₁ hr hl0
   haveI : Nonempty {v : Vec ℝ n // v ≠ 0} := ⟨⟨l, hl0⟩⟩
   -- the Rayleigh quotients lie in `(0, 1]` for `l`, in `[0, 1]` throughout
   have hle : ∀ v : {v : Vec ℝ n // v ≠ 0},
-      (v.1 ⬝ᵥ (E₂.shape *ᵥ v.1)) / (v.1 ⬝ᵥ (E₁.shape *ᵥ v.1)) ≤ 1 := fun v =>
+      (v.1 ⬝ᵥ (E₂.Q *ᵥ v.1)) / (v.1 ⬝ᵥ (E₁.Q *ᵥ v.1)) ≤ 1 := fun v =>
     (div_le_one (Ellipsoid.aux_quad_pos E₁ hr v.2)).mpr (hbig v.1)
   have hbdd : BddAbove (Set.range fun v : {v : Vec ℝ n // v ≠ 0} =>
-      (v.1 ⬝ᵥ (E₂.shape *ᵥ v.1)) / (v.1 ⬝ᵥ (E₁.shape *ᵥ v.1))) := ⟨1, by
+      (v.1 ⬝ᵥ (E₂.Q *ᵥ v.1)) / (v.1 ⬝ᵥ (E₁.Q *ᵥ v.1))) := ⟨1, by
     rintro _ ⟨v, rfl⟩; exact hle v⟩
   set lam : ℝ := ⨆ v : {v : Vec ℝ n // v ≠ 0},
-    (v.1 ⬝ᵥ (E₂.shape *ᵥ v.1)) / (v.1 ⬝ᵥ (E₁.shape *ᵥ v.1)) with hlam
+    (v.1 ⬝ᵥ (E₂.Q *ᵥ v.1)) / (v.1 ⬝ᵥ (E₁.Q *ᵥ v.1)) with hlam
   have hlam1 : lam ≤ 1 := ciSup_le hle
   have hlampos : 0 < lam :=
     lt_of_lt_of_le (div_pos hl hal) (le_ciSup hbdd (⟨l, hl0⟩ : {v : Vec ℝ n // v ≠ 0}))
   -- `p ≥ 1`
-  have hsa : 0 < Real.sqrt (l ⬝ᵥ (E₁.shape *ᵥ l)) := Real.sqrt_pos.mpr hal
-  have hsb : 0 < Real.sqrt (l ⬝ᵥ (E₂.shape *ᵥ l)) := Real.sqrt_pos.mpr hl
+  have hsa : 0 < Real.sqrt (l ⬝ᵥ (E₁.Q *ᵥ l)) := Real.sqrt_pos.mpr hal
+  have hsb : 0 < Real.sqrt (l ⬝ᵥ (E₂.Q *ᵥ l)) := Real.sqrt_pos.mpr hl
   have hp1 : 1 ≤ p := by
     rw [hp, le_div_iff₀ hsb, one_mul]
     exact Real.sqrt_le_sqrt (hbig l)
@@ -97,13 +98,13 @@ theorem Ellipsoid.isBadDir_iff (E₁ E₂ : Ellipsoid n) (l : Vec ℝ n) (p : �
   · -- `p > 1`
     have hp0 : 0 < p - 1 := by linarith
     -- the form factors as `(p - 1) (vᵀ Q₁ v / p - vᵀ Q₂ v)`
-    have hform : ∀ v : Vec ℝ n, (1 - 1 / p) * (v ⬝ᵥ (E₁.shape *ᵥ v))
-        + (1 - p) * (v ⬝ᵥ (E₂.shape *ᵥ v))
-        = (p - 1) * ((v ⬝ᵥ (E₁.shape *ᵥ v)) / p - (v ⬝ᵥ (E₂.shape *ᵥ v))) := fun v => by
+    have hform : ∀ v : Vec ℝ n, (1 - 1 / p) * (v ⬝ᵥ (E₁.Q *ᵥ v))
+        + (1 - p) * (v ⬝ᵥ (E₂.Q *ᵥ v))
+        = (p - 1) * ((v ⬝ᵥ (E₁.Q *ᵥ v)) / p - (v ⬝ᵥ (E₂.Q *ᵥ v))) := fun v => by
       field_simp
       ring
-    have hiff : (∀ v : Vec ℝ n, 0 ≤ (1 - 1 / p) * (v ⬝ᵥ (E₁.shape *ᵥ v))
-        + (1 - p) * (v ⬝ᵥ (E₂.shape *ᵥ v))) ↔ lam ≤ 1 / p := by
+    have hiff : (∀ v : Vec ℝ n, 0 ≤ (1 - 1 / p) * (v ⬝ᵥ (E₁.Q *ᵥ v))
+        + (1 - p) * (v ⬝ᵥ (E₂.Q *ᵥ v))) ↔ lam ≤ 1 / p := by
       simp only [hform]
       constructor
       · -- a nonnegative form bounds every quotient by `1/p`, so their supremum
@@ -124,8 +125,8 @@ theorem Ellipsoid.isBadDir_iff (E₁ E₂ : Ellipsoid n) (l : Vec ℝ n) (p : �
           have hapos := Ellipsoid.aux_quad_pos E₁ hr hv
           rw [div_le_iff₀ hapos, one_div] at hq
           rw [sub_nonneg]
-          calc v ⬝ᵥ (E₂.shape *ᵥ v) ≤ p⁻¹ * (v ⬝ᵥ (E₁.shape *ᵥ v)) := by linarith
-            _ = (v ⬝ᵥ (E₁.shape *ᵥ v)) / p := by rw [inv_mul_eq_div]
+          calc v ⬝ᵥ (E₂.Q *ᵥ v) ≤ p⁻¹ * (v ⬝ᵥ (E₁.Q *ᵥ v)) := by linarith
+            _ = (v ⬝ᵥ (E₁.Q *ᵥ v)) / p := by rw [inv_mul_eq_div]
     -- bad is `1/λ < p`, that is `1/p < λ`, the negation of `λ ≤ 1/p`
     rw [hiff, not_le]
     rw [div_lt_iff₀ hlampos, one_div, inv_lt_iff_one_lt_mul₀ hppos]

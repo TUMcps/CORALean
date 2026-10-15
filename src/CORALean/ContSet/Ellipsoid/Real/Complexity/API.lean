@@ -1,10 +1,10 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Complexity.Time.API
-public import CORALean.ContSet.Ellipsoid.Real.Complexity.Space.API
 
 /-!
 # Complexity
 
-`Time/` holds the cost of each operation, `Space/` the size of its result.
+`Time/` holds the cost of each operation. There is no `Space/`: an ellipsoid's size is its
+dimension, fixed by the type, which no operation changes beyond `mtimes`'s `m`.
 -/

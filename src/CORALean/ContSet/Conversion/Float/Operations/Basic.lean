@@ -33,7 +33,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Operations.DualBound
 public import CORALean.ContSet.HPolytope.Float.Operations.OfBounds
@@ -258,15 +258,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
 -- ===================================  `Ellipsoid.interval`  =================================== --
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
-/-- The box, given one proposed length per coordinate. -/
+/-- CORA's `q ± sqrt(diag(Q))`, given one proposed length `s ≥ √Qᵢᵢ` per coordinate. -/
 def Ellipsoid.interval (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Interval (Vec 𝕋 n) where
-  inf := fun i => addDown (subDown (E.c i) (absolute (s i))) (E.I_error.inf i)
-  sup := fun i => addUp (addUp (E.c i) (absolute (s i))) (E.I_error.sup i)
+  inf := fun i => addDown (subDown (E.q i) (absolute (s i))) (E.I_error.inf i)
+  sup := fun i => addUp (addUp (E.q i) (absolute (s i))) (E.I_error.sup i)
 
 end
 

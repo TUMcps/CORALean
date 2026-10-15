@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormUbLe
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -15,7 +16,7 @@ length of its largest magnitudes. The roundings are all upward.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,9 +36,9 @@ theorem Ellipsoid.norm₂_le_normUb (k : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec �
   obtain ⟨y, hy, e, he, rfl⟩ := hx
   -- the nominal part, by the exact layer
   have hy' := CORALean.Real.Ellipsoid.norm₂_le_normUb _ hy
-  -- the error box's largest magnitudes, and the rounded Frobenius norm of the generators
+  -- the error box's largest magnitudes, and the rounded root of the floored trace
   set mg : Fin n → 𝕋 := fun i => maximum (absolute (E.I_error.inf i)) (absolute (E.I_error.sup i))
-  set fr := sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (E.G i j))
+  set fr := sqrtUp k (sumUp fun i => maximum zero (E.Q i i))
   have herr : ∀ i, |e i| ≤ |toReal (mg i)| := by
     intro i
     have h : toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i) := he i
@@ -46,19 +47,28 @@ theorem Ellipsoid.norm₂_le_normUb (k : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec �
     exact le_trans h' (le_abs_self _)
   -- the error box, by the length of its largest magnitudes
   have hErr := norm₂_le_normUp k herr
-  have hq : ‖toRealVec E.c‖₂ ≤ toReal (normUp k E.c) := norm₂_le_normUp k fun j => le_refl _
-  -- the Frobenius norm of the stored generator matrix, rounded up
-  have hF : Real.sqrt (∑ i, ∑ j, toReal (E.G i j) ^ 2) ≤
-      toReal fr := by
+  have hq : ‖toRealVec E.q‖₂ ≤ toReal (normUp k E.q) := norm₂_le_normUp k fun j => le_refl _
+  -- the nominal trace is the stored one or `0`, at most the floored sum, rounded up
+  have hF : Real.sqrt (InflatedContSet.nominal E).ellipsoid.Q.trace ≤ toReal fr := by
     refine le_trans (Real.sqrt_le_sqrt ?_) (le_sqrtUp k _)
-    refine le_trans (Finset.sum_le_sum fun i _ => ?_) (sum_le_sumUp _)
-    exact sq_sum_le_sqSumUp (v := fun j => toReal (E.G i j)) (m := fun j => absolute (E.G i j))
-      fun j => by rw [toReal_absolute]
+    refine le_trans ?_ (sum_le_sumUp _)
+    rw [Ellipsoid.nominal_Q_eq]
+    split_ifs
+    · exact Finset.sum_le_sum fun i _ => by
+        rw [toReal_maximum, toReal_zero]
+        exact le_max_right _ _
+    · rw [Matrix.trace_zero]
+      exact Finset.sum_nonneg fun i _ => by
+        rw [toReal_maximum, toReal_zero]
+        exact le_max_left _ _
   -- the two upward additions
-  have s₁ := add_le_addUp (normUp k E.c) fr
-  have s₂ := add_le_addUp (addUp (normUp k E.c) fr) (normUp k mg)
-  have hnom : ‖y‖₂ ≤ ‖toRealVec E.c‖₂ + Real.sqrt (∑ i, ∑ j, toReal (E.G i j) ^ 2) := hy'
-  show ‖y + e‖₂ ≤ toReal (addUp (addUp (normUp k E.c) fr) (normUp k mg))
+  have s₁ := add_le_addUp (normUp k E.q) fr
+  have s₂ := add_le_addUp (addUp (normUp k E.q) fr) (normUp k mg)
+  have hnom :
+      ‖y‖₂ ≤ ‖toRealVec E.q‖₂ + Real.sqrt (InflatedContSet.nominal E).ellipsoid.Q.trace := by
+    have h := hy'
+    rwa [CORALean.Real.Ellipsoid.normUb, E.nominal_q] at h
+  show ‖y + e‖₂ ≤ toReal (addUp (addUp (normUp k E.q) fr) (normUp k mg))
   have := norm₂_add_le y e
   linarith
 

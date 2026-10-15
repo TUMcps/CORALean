@@ -1355,7 +1355,7 @@ def polyTriangulation : Polygon D := Polygon.triangulation polyP
 def polyQuadMap : Polygon D := polyS.quadMap polyQ 0 fun _ _ => false
 def polyQuadMapMixed : Polygon D := polyS.quadMapMixed polyPt polyQ 0 fun _ _ => false
 def E_polygon : Polygon D :=
-  E.polygon [![d 1 0, d 0 0], ![d 0 0, d 1 0], ![d (-1) 0, d 0 0], ![d 0 0, d (-1) 0]]
+  E.polygon [![d 1 2, d 0 0], ![d 0 0, d 1 2], ![d (-1) 2, d 0 0], ![d 0 0, d (-1) 2]]
 
 
 /-! ## An ellipsoid's bad directions
@@ -1363,8 +1363,8 @@ def E_polygon : Polygon D :=
 `Q₁ = 4 I` against `Q₂ = I`: the eigenvalue bound `1/4` certifies the direction `(1, 0)` good
 (`sqrt(4)/sqrt(1) = 2` is below `1/λ = 4`). -/
 
-def goodE₁ : Ellipsoid D 2 := ⟨2, ![d 0 0, d 0 0], !![d 2 0, d 0 0; d 0 0, d 2 0], zbox 2⟩
-def goodE₂ : Ellipsoid D 2 := ⟨2, ![d 0 0, d 0 0], !![d 1 0, d 0 0; d 0 0, d 1 0], zbox 2⟩
+def goodE₁ : Ellipsoid D 2 := ⟨!![d 1 2, d 0 0; d 0 0, d 1 2], ![d 0 0, d 0 0], zbox 2⟩
+def goodE₂ : Ellipsoid D 2 := ⟨!![d 1 0, d 0 0; d 0 0, d 1 0], ![d 0 0, d 0 0], zbox 2⟩
 def isGoodDirRun : Bool := goodE₁.isGoodDir goodE₂ ![d 1 0, d 0 0] (d 1 (-2))
 
 /-! ## `ConZonotope.reduceLift`, constraints kept

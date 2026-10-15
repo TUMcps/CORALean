@@ -1,14 +1,13 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Complexity.Time.Operations.API
-public import CORALean.ContSet.Ellipsoid.Real.Complexity.Time.Theorems.API
 
 /-!
 # What running `Ellipsoid`'s operations costs
 
 Scalar-operation counts against `Global/Cost.lean`'s model, one `def` per
-operation, every one **asserted**. `Complexity/Space/` is the other directory and the
-other kind of claim: how large a *result* is, which is proved.
+operation, every one **asserted**. With the shape matrix stored, every cost is a function of the
+dimension alone, so there is no operand size to be monotone in and no `Theorems/`.
 
 Two operations, and the omission is the point: an ellipsoid has no `linComb`,
 `reduce` or `intersection`, none of the three being exact or even standard on

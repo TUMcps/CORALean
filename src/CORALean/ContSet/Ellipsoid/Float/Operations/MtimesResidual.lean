@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Float.Operations.GeneratorError
+public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
@@ -8,13 +8,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Ellipsoid.mtimesResidual`
 
-What `mtimes` owes beyond its nominal part: the center, rounded, and the
-generators, each entry known only to within `matMulDiff`'s rounding gap.
+What `mtimes` owes beyond its nominal part: the center `M q`, stored at its lower rounding. The
+shape matrix's rounding is not here, `inflate` having paid it into `Q`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -29,11 +29,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `mtimes` owes beyond its nominal part: the center, and the
-generators. -/
+/-- What `mtimes` owes beyond its nominal part: the center's rounding. -/
 def Ellipsoid.mtimesResidual (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Interval (Vec 𝕋 m) :=
-  (Interval.residual (mulVecDown M E.c) (mulVecUp M E.c) (mulVecDown M E.c)).plus
-    (Ellipsoid.generatorError (matMulDiff M E.G))
+  Interval.residual (mulVecDown M E.q) (mulVecUp M E.q) (mulVecDown M E.q)
 
 end CORALean.Float
 

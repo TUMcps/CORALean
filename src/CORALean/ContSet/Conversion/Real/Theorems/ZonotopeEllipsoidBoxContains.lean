@@ -7,6 +7,7 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 @[expose] public section
 
@@ -39,6 +40,7 @@ variable {n : ℕ}
 `Z ⊆ [c − β, c + β] ⊆ E(n diag(β²), c)`. -/
 theorem Zonotope.ellipsoidBox_contains (Z : Zonotope (Vec ℝ n)) :
     Z.construct ⊆ Z.ellipsoidBox.construct := by -- --- PROOF ---
+  rw [Zonotope.ellipsoidBox, Ellipsoid.construct_ofFactor]
   rintro _ ⟨β, hβ, rfl⟩
   -- the offset in coordinate `i` is at most the box radius `bᵢ = ∑ⱼ |Gⱼᵢ|`
   set b : Fin n → ℝ := fun i => ∑ j, |Z.G j i| with hb

@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SignSumCovariance
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.LinearAlgebra.Matrix.Trace
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 @[expose] public section
 
@@ -26,7 +27,7 @@ in [1, Sec. III-A (Remark a)], and, at equality, behind its uniqueness.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -44,8 +45,9 @@ variable {n : ℕ}
 theorem Ellipsoid.normSq_add_trace_le_of_superset_parallelotope {G F : Mat ℝ n n}
     (hFu : IsUnit F.det) {z q : Vec ℝ n}
     (hsub : {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-      (⟨n, q, F⟩ : Ellipsoid n).construct) :
+      (Ellipsoid.ofFactor F q).construct) :
     ∑ i, (F⁻¹ *ᵥ (z - q)) i ^ 2 + ((F⁻¹ * G) * (F⁻¹ * G)ᵀ).trace ≤ 1 := by -- --- PROOF ---
+  rw [Ellipsoid.construct_ofFactor] at hsub
   have hvert : ∀ β : Vec ℝ n, (∀ j, |β j| ≤ 1) → ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧
       z + G *ᵥ β = q + F *ᵥ u := fun β hβ => hsub ⟨β, hβ, rfl⟩
   -- `M = F⁻¹G`, `w = F⁻¹(z - q)`: every `w + Mσ` has `‖·‖₂ ≤ 1`

@@ -1,25 +1,26 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemGeneratorError
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-public import CORALean.Global.Float.EuclideanNorm
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.PsdCheckSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.SymmOfIsSymm
 
 @[expose] public section
 
 /-!
 # A `true` from `Ellipsoid.isBigger` proves the inclusion up to the centers
 
-A point `q₂ + G₂ u + e` of `E₂`, moved by `-q₂`, is `G₁ (T u) + (Δ u + e)` with
-`Δ = G₂ - G₁ T`: `T u` is in the unit ball (Cauchy–Schwarz per row, the Frobenius norm at most
-`1`), `Δ u` within `generatorError` of the bracketed residual (`Ellipsoid.mem_generatorError`),
-and `Δ u + e` in `E₁`'s box by the checked corners. So it is a point of `E₁` moved by `-q₁`:
+`Q₁ - Q₂`, read as reals, is symmetric and lies in the checked interval matrix, so it is positive
+semi-definite (`posSemidef_of_psdCheck`): `Q₁` dominates `E₂`'s nominal shape (`Q₂`, or `0` where
+`Q₂` is refused), so a point `q₂ + y` of `E₂`'s nominal part gives the point `q₁ + y` of `E₁`'s
+(`add_sub_mem_nominalSet`), and `E₂`'s error box lies in `E₁`'s by the checked corners. So
 `E₂ - q₂ ⊆ E₁ - q₁`, the inclusion the exact layer's `isBigger_iff_subset` characterises.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -54,76 +55,35 @@ theorem Ellipsoid.aux_norm₂_mulVec_le_one {a b : ℕ} (T : Mat ℝ a b) (u : V
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n} {T : Mat 𝕋 E₁.k E₂.k}
-    (h : E₁.isBigger E₂ T = true) :
-    (fun x => x - toRealVec E₂.c) '' E₂.construct
-      ⊆ (fun x => x - toRealVec E₁.c) '' E₁.construct := by -- --- PROOF ---
+theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n} (h : E₁.isBigger E₂ = true) :
+    (fun x => x - toRealVec E₂.q) '' E₂.construct
+      ⊆ (fun x => x - toRealVec E₁.q) '' E₁.construct := by -- --- PROOF ---
   simp only [Ellipsoid.isBigger, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
-  obtain ⟨hT, hbox⟩ := h
+  obtain ⟨⟨⟨hs₁, hs₂⟩, hc⟩, hbox⟩ := h
+  -- `Q₁ - Q₂` is positive semi-definite
+  have hD : (toRealMat E₁.Q - toRealMat E₂.Q).PosSemidef := by
+    refine Ellipsoid.posSemidef_of_psdCheck hc (fun i j => ⟨?_, ?_⟩) fun i j => ?_
+    · exact subDown_le_sub (E₁.Q i j) (E₂.Q i j)
+    · exact sub_le_subUp (E₁.Q i j) (E₂.Q i j)
+    · show toReal (E₁.Q i j) - toReal (E₂.Q i j) = toReal (E₁.Q j i) - toReal (E₂.Q j i)
+      rw [Ellipsoid.symm_of_isSymm hs₁, Ellipsoid.symm_of_isSymm hs₂]
+  -- so `Q₁` dominates `E₂`'s nominal shape
+  have hF : (nominal E₂).ellipsoid.Q = 0
+      ∨ (toRealMat E₁.Q - (nominal E₂).ellipsoid.Q).PosSemidef := by
+    rw [Ellipsoid.nominal_Q_eq]
+    split_ifs
+    · exact Or.inr hD
+    · exact Or.inl rfl
   rintro _ ⟨_, ⟨y, hy, e, he, rfl⟩, rfl⟩
-  obtain ⟨u, hu, hyu⟩ := Ellipsoid.mem_nominalSet_iff.mp hy
-  -- the factor `T u` stays in the unit ball
-  set v : Vec ℝ E₁.k := fun l => ∑ j, toReal (T l j) * u j with hv
-  have hvn : ‖v‖₂ ≤ 1 := by
-    refine Ellipsoid.aux_norm₂_mulVec_le_one (fun l j => toReal (T l j)) u ?_ hu
-    refine le_trans ?_ ((toReal_le_of_le hT).trans_eq toReal_one)
-    refine le_trans (Finset.sum_le_sum fun i _ => ?_) (sum_le_sumUp _)
-    exact sq_sum_le_sqSumUp fun j => by rw [toReal_absolute]
-  -- the residual `Δ = G₂ - G₁ T`, entrywise within its rounded magnitude
-  set Δ : Mat ℝ n E₂.k := fun i j =>
-    toReal (E₂.G i j) - ∑ l, toReal (E₁.G i l) * toReal (T l j) with hΔ
-  -- the rounded magnitude of each residual entry
-  set gapF : Mat 𝕋 n E₂.k := fun i j => maximum
-      (subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j))
-      (neg (subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j))) with hgapF
-  have hgap : ∀ i j, |Δ i j| ≤ toReal (gapF i j) := fun i j => by
-    -- the entry's two roundings, below and above `G₂ - G₁ T`
-    set dn := subDown (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j) with hdn
-    set up := subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j) with hup
-    show |Δ i j| ≤ toReal (maximum up (neg dn))
-    rw [toReal_maximum, toReal_neg]
-    have d₁ := le_dotUp (fun l => E₁.G i l) fun l => T l j
-    have d₂ := dotDown_le (fun l => E₁.G i l) fun l => T l j
-    have s₁ := subDown_le_sub (E₂.G i j) (dotUp (fun l => E₁.G i l) fun l => T l j)
-    have s₂ := sub_le_subUp (E₂.G i j) (dotDown (fun l => E₁.G i l) fun l => T l j)
-    have m₁ := le_max_left (toReal up) (-toReal dn)
-    have m₂ := le_max_right (toReal up) (-toReal dn)
-    exact abs_le.mpr ⟨by simp only [hΔ]; linarith, by simp only [hΔ]; linarith⟩
-  have hres := Ellipsoid.mem_generatorError (G := gapF) hgap hu
-  -- the residual's reach plus `E₂`'s box lies in `E₁`'s box
-  have hbox' : (fun i => (∑ j, Δ i j * u j) + e i) ∈ E₁.I_error.construct := fun i => by
-    have hr : toReal (neg (radius gapF i)) ≤ ∑ j, Δ i j * u j
-        ∧ ∑ j, Δ i j * u j ≤ toReal (radius gapF i) := hres i
-    have he' : toReal (E₂.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E₂.I_error.sup i) := he i
-    rw [toReal_neg] at hr
-    have b₁ := toReal_le_of_le (hbox i).1
-    have b₂ := toReal_le_of_le (hbox i).2
-    have r₁ := subDown_le_sub (E₂.I_error.inf i) (radius gapF i)
-    have r₂ := add_le_addUp (E₂.I_error.sup i) (radius gapF i)
-    show toReal (E₁.I_error.inf i) ≤ (∑ j, Δ i j * u j) + e i
-      ∧ (∑ j, Δ i j * u j) + e i ≤ toReal (E₁.I_error.sup i)
-    exact ⟨by linarith, by linarith⟩
-  -- the moved point is `G₁ v` plus that remainder, moved from `q₁`
-  refine ⟨toRealVec E₁.c + ((fun i => ∑ l, toReal (E₁.G i l) * v l)
-      + fun i => (∑ j, Δ i j * u j) + e i), ⟨fun i => toReal (E₁.c i)
-      + ∑ l, toReal (E₁.G i l) * v l, Ellipsoid.mem_nominalSet_iff.mpr ⟨v, hvn, fun _ => rfl⟩,
-      _, hbox', ?_⟩, ?_⟩
-  · funext i
-    simp only [Pi.add_apply, toRealVec]
-    ring
-  · funext i
-    -- `G₁ (T u) + Δ u = G₂ u`, the two sums exchanged
-    have hswap : ∑ l, toReal (E₁.G i l) * v l
-        = ∑ j, (∑ l, toReal (E₁.G i l) * toReal (T l j)) * u j := by
-      simp only [hv, Finset.mul_sum, Finset.sum_mul]
-      rw [Finset.sum_comm]
-      exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun l _ => by ring
-    have hres' : ∑ j, Δ i j * u j = ∑ j, toReal (E₂.G i j) * u j
-        - ∑ j, (∑ l, toReal (E₁.G i l) * toReal (T l j)) * u j := by
-      simp only [hΔ, sub_mul, Finset.sum_sub_distrib]
-    simp only [Pi.add_apply, Pi.sub_apply, toRealVec, hyu i, hswap, hres']
-    ring
+  have hy' := Ellipsoid.add_sub_mem_nominalSet hF hy
+  refine ⟨_, ⟨_, hy', e, fun i => ?_, rfl⟩, ?_⟩
+  · -- `E₂`'s box inside `E₁`'s
+    obtain ⟨h₁, h₂⟩ := hbox i
+    exact ⟨le_trans (toReal_le_of_le h₁) (he i).1, le_trans (he i).2 (toReal_le_of_le h₂)⟩
+  · rw [E₂.nominal_q]
+    show toRealVec E₁.q + (y - toRealVec E₂.q) + e - toRealVec E₁.q = y + e - toRealVec E₂.q
+    abel
 
 end CORALean.Float
 

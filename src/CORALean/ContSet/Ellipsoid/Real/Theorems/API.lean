@@ -1,5 +1,16 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.AddMulVecMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapSelection
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructSubsetOfLe
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.AbsSubLeSqrtDiag
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqPinv
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormPullbackEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfVolumeLeSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
@@ -18,17 +29,15 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaOriginIff
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.RankShape
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdOuter
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdVecExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsFullDimIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalConstruct
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VerticesExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormUbLe
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqZero
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeMtimes
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SupportFuncEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.AffineImageExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MinkowskiDiffNonemptyIff
@@ -90,8 +99,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.KurzhanskiEqHalder
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.LogDetHalderEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadraticFormEquiv
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapePlus
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumePlusHalderLeIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeSetOfQuadLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsApproxLownerJohnOfSandwich
@@ -115,6 +123,8 @@ enclosing there — at every admissible pair of scalings, of which
 sweeps. `SupportBoundAttained` is what says the certificates give nothing away,
 and convexity, compactness and boundedness are what the reachability theorems
 consume. `ConstructEqImage` is what all three of those last transfer from the
-unit ball through. `mem_ofPoint` reuses `mem_construct` at the empty
-coefficient vector.
+unit ball through. `mem_ofPoint` reuses `mem_construct` at the zero
+coefficient vector. `ConstructEqOfFactor` is how a statement about the shape matrix is proved on
+generators — any `F` with `F Fᵀ = Q` generates the ellipsoid — and `ConstructEqPinv` is CORA's own
+description of the set through the pseudo-inverse.
 -/

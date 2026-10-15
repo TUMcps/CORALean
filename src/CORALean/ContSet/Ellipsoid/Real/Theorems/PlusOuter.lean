@@ -1,33 +1,33 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 
 @[expose] public section
 
 /-!
 # `Ellipsoid.plus` encloses the Minkowski sum
 
-Given `u₁` and `u₂` in their unit balls, the point of the enclosure's ball that
+The shape `s₁² Q₁ + s₂² Q₂` is `H Hᵀ` for `H = [s₁ G₁ | s₂ G₂]`, the two square roots side by
+side, so the enclosure is the image of the unit ball of `ℝ²ⁿ` under `H`
+(`construct_eq_of_factor`). Given `u₁` and `u₂` in their unit balls, the point of that ball that
 reproduces `G₁u₁ + G₂u₂` is `(u₁/s₁, u₂/s₂)`, whose squared length is at most
 `1/s₁² + 1/s₂²` — which is exactly the hypothesis. Nothing else about the pair
 is used, so soundness holds at every admissible pair and which one a caller
-picks is a precision choice owing no proof, the way `ConPolyZono.reduceBy_outer`
-holds at every partition and `Relaxation.ofDeriv` at every slope in its bracket.
-
-Kurzhanski and Varaiya's `l` sweeps the boundary, where the bound is met with
-equality; `plus_scalings_admissible` discharges all three hypotheses from it.
+picks is a precision choice owing no proof; Kurzhanski and Varaiya's `l` sweeps the boundary,
+where the bound is met with equality (`plus_scalings_admissible`).
 
 Division appears in that ball point and only there. The scalings are non-zero
 because the hypothesis gives their reciprocals a finite sum, so the caller
 states that separately — `1/0` is `0` in Lean and would otherwise satisfy the
-bound vacuously, at a `plus` whose generators are all zero.
+bound vacuously, at a `plus` whose shape matrix is zero.
 
 Only `_outer`: the sum is not an ellipsoid, so no member of the family is exact.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -42,37 +42,37 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `Fin.sum_univ_add` at `plus`'s generator count, stated through the
-projection because that is the form the goal has and simp will not rewrite a
-binder's type. -/
-theorem Ellipsoid.aux_sum_univ_plus {s₁ s₂ : ℝ} {E₁ E₂ : Ellipsoid n}
-    (f : Fin (E₁.k + E₂.k) → ℝ) :
-    ∑ j : Fin (Ellipsoid.plus s₁ s₂ E₁ E₂).k, f j
-      = ∑ j, f (Fin.castAdd E₂.k j) + ∑ j, f (Fin.natAdd E₁.k j) :=
-  Fin.sum_univ_add f
+/-- The two scaled square roots side by side, a factor of `plus`'s shape matrix. -/
+private noncomputable def aux_H (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) : Mat ℝ n (n + n) :=
+  Matrix.of fun i => Fin.append (fun j => s₁ * E₁.G i j) (fun j => s₂ * E₂.G i j)
+
+/-- `H Hᵀ = s₁² G₁ G₁ᵀ + s₂² G₂ G₂ᵀ`, block by block. -/
+private theorem aux_H_mul_transpose (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) :
+    aux_H s₁ s₂ E₁ E₂ * (aux_H s₁ s₂ E₁ E₂)ᵀ = (Ellipsoid.plus s₁ s₂ E₁ E₂).Q := by -- --- PROOF ---
+  show _ = s₁ ^ 2 • E₁.Q + s₂ ^ 2 • E₂.Q
+  rw [← E₁.G_mul_transpose, ← E₂.G_mul_transpose]
+  ext i k
+  simp only [Matrix.mul_apply, Matrix.transpose_apply, aux_H, Matrix.of_apply, Fin.sum_univ_add,
+    Fin.append_left, Fin.append_right, Matrix.add_apply, Matrix.smul_apply, smul_eq_mul,
+    Finset.mul_sum]
+  congr 1 <;> exact Finset.sum_congr rfl fun j _ => by ring
 
 /-- The scalings cancel against the divisions, so the enclosure's ball point
 reproduces the summands exactly. -/
-theorem Ellipsoid.aux_value_plus {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ : s₂ ≠ 0)
-    (E₁ E₂ : Ellipsoid n) (u₁ : Vec ℝ E₁.k) (u₂ : Vec ℝ E₂.k) :
-    (Ellipsoid.plus s₁ s₂ E₁ E₂).c + (Ellipsoid.plus s₁ s₂ E₁ E₂).G *ᵥ
-        Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂)
-      = (E₁.c + E₁.G *ᵥ u₁) + (E₂.c + E₂.G *ᵥ u₂) := by -- --- PROOF ---
-  have hmul : (Ellipsoid.plus s₁ s₂ E₁ E₂).G *ᵥ
-      Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂)
+private theorem aux_value_plus {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ : s₂ ≠ 0)
+    (E₁ E₂ : Ellipsoid n) (u₁ u₂ : Vec ℝ n) :
+    (E₁.q + E₂.q) + aux_H s₁ s₂ E₁ E₂ *ᵥ Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂)
+      = (E₁.q + E₁.G *ᵥ u₁) + (E₂.q + E₂.G *ᵥ u₂) := by -- --- PROOF ---
+  have hmul : aux_H s₁ s₂ E₁ E₂ *ᵥ Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂)
       = E₁.G *ᵥ u₁ + E₂.G *ᵥ u₂ := by
     -- coordinate by coordinate, each scaling cancelling its own division
     funext i
-    show ∑ j : Fin (Ellipsoid.plus s₁ s₂ E₁ E₂).k, (Ellipsoid.plus s₁ s₂ E₁ E₂).G i j *
-        Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂) j
-      = (∑ j, E₁.G i j * u₁ j) + ∑ j, E₂.G i j * u₂ j
-    rw [Ellipsoid.aux_sum_univ_plus]
-    simp only [Ellipsoid.plus, Matrix.of_apply, Fin.append_left, Fin.append_right]
+    simp only [Matrix.mulVec, dotProduct, aux_H, Matrix.of_apply, Fin.sum_univ_add,
+      Fin.append_left, Fin.append_right, Pi.add_apply]
     refine congrArg₂ (· + ·) (Finset.sum_congr rfl fun j _ => ?_)
       (Finset.sum_congr rfl fun j _ => ?_)
     · field_simp
     · field_simp
-  show (E₁.c + E₂.c) + (Ellipsoid.plus s₁ s₂ E₁ E₂).G *ᵥ _ = _
   rw [hmul]
   abel
 
@@ -86,6 +86,7 @@ theorem Ellipsoid.plus_outer (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) (hne₁
   have hsq₁ : (0:ℝ) < s₁ ^ 2 := lt_of_le_of_ne (sq_nonneg _) (Ne.symm (pow_ne_zero 2 hne₁))
   have hsq₂ : (0:ℝ) < s₂ ^ 2 := lt_of_le_of_ne (sq_nonneg _) (Ne.symm (pow_ne_zero 2 hne₂))
   -- each summand's ball point squared-sums to at most one
+  rw [(Ellipsoid.plus s₁ s₂ E₁ E₂).construct_eq_of_factor _ (aux_H_mul_transpose s₁ s₂ E₁ E₂)]
   rintro _ ⟨_, ⟨u₁, hu₁, rfl⟩, _, ⟨u₂, hu₂, rfl⟩, rfl⟩
   have hn₁ : ∑ j, u₁ j ^ 2 ≤ 1 := by
     rw [← norm₂_sq, pow_two]
@@ -96,11 +97,11 @@ theorem Ellipsoid.plus_outer (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) (hne₁
     calc ‖u₂‖₂ * ‖u₂‖₂ ≤ 1 * 1 := mul_le_mul hu₂ hu₂ (norm₂_nonneg u₂) zero_le_one
       _ = 1 := one_mul 1
   refine ⟨Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂), ?_,
-    (Ellipsoid.aux_value_plus hne₁ hne₂ E₁ E₂ u₁ u₂).symm⟩
+    (aux_value_plus hne₁ hne₂ E₁ E₂ u₁ u₂).symm⟩
   -- the appended coefficient's squared sum, one block at a time
-  have hsum : ∑ j : Fin (Ellipsoid.plus s₁ s₂ E₁ E₂).k,
+  have hsum : ∑ j : Fin (n + n),
       Fin.append (fun j => u₁ j / s₁) (fun j => u₂ j / s₂) j ^ 2 ≤ 1 := by
-    rw [Ellipsoid.aux_sum_univ_plus]
+    rw [Fin.sum_univ_add]
     simp only [Fin.append_left, Fin.append_right]
     have hd₁ : ∑ j, (u₁ j / s₁) ^ 2 = (∑ j, u₁ j ^ 2) * (s₁ ^ 2)⁻¹ := by
       rw [Finset.sum_mul]

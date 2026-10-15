@@ -4,6 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
 
@@ -34,16 +35,16 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.ellipsoidNorm_le_one_iff (E : Ellipsoid n) (hr : E.rank = n) (p : Vec ℝ n) :
-    E.ellipsoidNorm p ≤ 1 ↔ E.c + p ∈ E.construct := by -- --- PROOF ---
+    E.ellipsoidNorm p ≤ 1 ↔ E.q + p ∈ E.construct := by -- --- PROOF ---
   have hU := E.isUnit_shape hr
   -- the minimum-norm solution `u = Gᵀ Q⁻¹ p` of `G u = p`
-  set w : Vec ℝ n := E.shape⁻¹ *ᵥ p with hw
-  set u : Vec ℝ E.k := E.Gᵀ *ᵥ w with hu
-  have hSw : E.shape *ᵥ w = p := by
+  set w : Vec ℝ n := E.Q⁻¹ *ᵥ p with hw
+  set u : Vec ℝ n := E.Gᵀ *ᵥ w with hu
+  have hSw : E.Q *ᵥ w = p := by
     rw [hw, Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv _
       ((Matrix.isUnit_iff_isUnit_det _).mp hU), Matrix.one_mulVec]
   have hGu : E.G *ᵥ u = p := by
-    rw [hu, Matrix.mulVec_mulVec]
+    rw [hu, Matrix.mulVec_mulVec, E.G_mul_transpose]
     exact hSw
   have huu : u ⬝ᵥ u = p ⬝ᵥ w :=
     calc u ⬝ᵥ u = (E.Gᵀ *ᵥ w) ⬝ᵥ u := rfl

@@ -31,7 +31,7 @@ variable {n : ℕ}
 
 /-- Never empty, which is what the support function's maximum is attained at
 when the direction is one `G` collapses. -/
-theorem Ellipsoid.q_mem_construct (E : Ellipsoid n) : E.c ∈ E.construct :=
+theorem Ellipsoid.q_mem_construct (E : Ellipsoid n) : E.q ∈ E.construct :=
   ⟨0, by rw [norm₂_zero]; exact zero_le_one, by rw [Matrix.mulVec_zero, add_zero]⟩
 
 end CORALean.Real

@@ -9,14 +9,14 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Ellipsoid.minkDiffPoint`, over a floating-point scalar
 
-CORA's `@ellipsoid/minkDiff` with a vector subtrahend, `ellipsoid(E.Q, E.c - s)`: the center
-moves, the generators stay. The new center is rounded down, and what that leaves is paid into
+CORA's `@ellipsoid/minkDiff` with a vector subtrahend, `ellipsoid(E.Q, E.q - s)`: the center
+moves, the shape matrix stays. The new center is rounded down, and what that leaves is paid into
 the error box (`centerResidual`, the same box `plus` pays).
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,10 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def Ellipsoid.minkDiffPoint (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Ellipsoid 𝕋 n :=
   -- `neg` is exact, so the difference is the sum with `-s`
   let negS : Vec 𝕋 n := (-s)
-  { k := E.k
-    c := fun i => addDown (E.c i) (negS i)
-    G := E.G
-    I_error := E.I_error.plus (Ellipsoid.centerResidual E.c negS) }
+  { Q := E.Q
+    q := fun i => addDown (E.q i) (negS i)
+    I_error := E.I_error.plus (Ellipsoid.centerResidual E.q negS) }
 
 end CORALean.Float
 

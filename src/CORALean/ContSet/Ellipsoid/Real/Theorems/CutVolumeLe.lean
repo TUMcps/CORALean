@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeDetLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ShapeOfShape
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
 public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 public import Mathlib.Tactic.Abel
@@ -77,7 +77,7 @@ theorem Ellipsoid.cut_volume_le {ε : ℝ} (hε : 0 < ε) :
     have hQ := Ellipsoid.cutShape_posDef hc hn hγ0 hγn
     -- the volumes are `V_n √det` of the shapes, and the root of the determinant is below `κ`
     simp only [Ellipsoid.volume]
-    rw [Ellipsoid.shape_ofShape hQ.posSemidef, Ellipsoid.shape_ofShape Matrix.PosSemidef.one,
+    rw [Ellipsoid.ofShape_eq hQ.posSemidef, Ellipsoid.ofShape_eq Matrix.PosSemidef.one,
       det_one, Real.sqrt_one, mul_one, ← ENNReal.ofReal_mul (Real.exp_pos _).le]
     refine ENNReal.ofReal_le_ofReal ?_
     have hV : 0 ≤ Real.pi ^ ((n : ℝ) / 2) / Real.Gamma ((n : ℝ) / 2 + 1) := by

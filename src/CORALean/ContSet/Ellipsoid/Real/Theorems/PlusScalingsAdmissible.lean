@@ -12,11 +12,11 @@ which is a two-dimensional set of admissible pairs. The classical family
 
   `Q(l) = (1 + 1/l) Q₁ + (1 + l) Q₂`,   `l > 0`,
 
-is one curve through it: in generator form its scalings are `√(1+1/l)` and
+is one curve through it: its scalings are `√(1+1/l)` and
 `√(1+l)`, and this is the computation — one line — that they meet the bound
 with *equality*, so `l` sweeps the boundary and nothing else. What lies inside
 it is out of `l`'s reach, as is every pair with a negative scaling, which names
-the same enclosure with a column of `G` flipped in sign.
+the same enclosure, `s²` being all `plus` reads.
 
 A caller holding an `l` therefore discharges `plus_outer`'s three hypotheses
 here, and loses nothing to the wider parametrisation.

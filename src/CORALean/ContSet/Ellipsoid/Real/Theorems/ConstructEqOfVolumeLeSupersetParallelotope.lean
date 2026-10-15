@@ -2,9 +2,10 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEq
 public import CORALean.Global.DetLeTraceDivPow
 public import CORALean.Global.EqSmulOneOfDetEqTraceDivPow
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 @[expose] public section
 
@@ -27,7 +28,7 @@ Equal volume makes every inequality behind `isLeast_volume_superset_parallelotop
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -59,23 +60,24 @@ theorem aux_norm₂_mulVec_of_orth {K : Mat ℝ n n} (hK : Kᵀ * K = 1) (v : Ve
 theorem Ellipsoid.construct_eq_of_volume_le_superset_parallelotope {G F : Mat ℝ n n}
     (hG : IsUnit G.det) {z q : Vec ℝ n}
     (hsub : {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-      (⟨n, q, F⟩ : Ellipsoid n).construct)
-    (hvol : MeasureTheory.volume (⟨n, q, F⟩ : Ellipsoid n).construct ≤
-      MeasureTheory.volume (⟨n, z, Real.sqrt n • G⟩ : Ellipsoid n).construct) :
-    (⟨n, q, F⟩ : Ellipsoid n).construct
-      = (⟨n, z, Real.sqrt n • G⟩ : Ellipsoid n).construct := by -- --- PROOF ---
+      (Ellipsoid.ofFactor F q).construct)
+    (hvol : MeasureTheory.volume (Ellipsoid.ofFactor F q).construct ≤
+      MeasureTheory.volume (Ellipsoid.ofFactor (Real.sqrt n • G) z).construct) :
+    (Ellipsoid.ofFactor F q).construct
+      = (Ellipsoid.ofFactor (Real.sqrt n • G) z).construct := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos n with rfl | hn
   -- `ℝ⁰` is a point
-  · ext x
-    exact ⟨fun _ => ⟨0, by simp [norm₂_zero], Subsingleton.elim _ _⟩,
-      fun _ => ⟨0, by simp [norm₂_zero], Subsingleton.elim _ _⟩⟩
+  · rw [Ellipsoid.construct_ofFactor, Ellipsoid.construct_ofFactor]
+    ext x
+    exact ⟨fun _ => ⟨0, by simp [norm₂], Subsingleton.elim _ _⟩,
+      fun _ => ⟨0, by simp [norm₂], Subsingleton.elim _ _⟩⟩
   have hn' : (0 : ℝ) < n := by exact_mod_cast hn
   have hFu : IsUnit F.det :=
     isUnit_iff_ne_zero.mpr (Ellipsoid.det_ne_zero_of_superset_parallelotope hG hsub)
   -- the volumes: `det(F)² ≤ nⁿ det(G)²`
   have hdetF : F.det ^ 2 ≤ (n : ℝ) ^ n * G.det ^ 2 := by
-    rw [Ellipsoid.volume_eq_of_k_eq _ rfl, Ellipsoid.volume_eq_of_k_eq _ rfl] at hvol
-    unfold Ellipsoid.volume Ellipsoid.shape at hvol
+    rw [Ellipsoid.volume_eq _, Ellipsoid.volume_eq _] at hvol
+    unfold Ellipsoid.volume Ellipsoid.ofFactor at hvol
     have hV : 0 < Real.pi ^ ((n : ℝ) / 2) / Real.Gamma ((n : ℝ) / 2 + 1) :=
       div_pos (Real.rpow_pos_of_pos Real.pi_pos _) (Real.Gamma_pos_of_pos (by positivity))
     simp only [det_mul, det_transpose, det_smul, Fintype.card_fin] at hvol
@@ -143,6 +145,7 @@ theorem Ellipsoid.construct_eq_of_volume_le_superset_parallelotope {G F : Mat �
   have hKT : (Kᵀ)ᵀ * Kᵀ = 1 := by rw [transpose_transpose]; exact hKK
   -- the two images of the unit ball agree
   subst hq
+  rw [Ellipsoid.construct_ofFactor, Ellipsoid.construct_ofFactor]
   ext x
   constructor
   · rintro ⟨u, hu, rfl⟩

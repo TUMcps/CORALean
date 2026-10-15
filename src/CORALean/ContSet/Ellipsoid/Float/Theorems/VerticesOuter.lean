@@ -1,20 +1,20 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeBoxRadius
 
 @[expose] public section
 
 /-!
 # A one-dimensional float ellipsoid lies in the hull of its vertices
 
-`x = q + G₀ u + e` with `|G₀ u| ≤ ‖G₀‖₂ ‖u‖₂ ≤ ρ` (Cauchy-Schwarz) and `e` in the error box: so `x`
-is between the two rounded ends, which is a point of the segment joining them. Outer only.
+`x = y + e` with `|y - q| ≤ ρ` (`abs_sub_le_boxRadius`) and `e` in the error box: so `x` is
+between the two rounded ends, which is a point of the segment joining them. Outer only.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,25 +33,17 @@ theorem Ellipsoid.vertices_outer (k : ℕ) (E : Ellipsoid 𝕋 1) :
     E.construct ⊆ convexHull ℝ {y | ∃ v ∈ E.vertices k, toRealVec v = y} := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   show y + e ∈ _
-  obtain ⟨u, hu, hyu⟩ := Ellipsoid.mem_nominalSet_iff.mp hy
-  -- Cauchy-Schwarz bounds the generator row's contribution by the rounded-up length
-  set ρ := normUp k fun j => E.G 0 j with hρ
-  have hρ' : ‖fun j => toReal (E.G 0 j)‖₂ ≤ toReal ρ := norm₂_le_normUp k fun j => le_refl _
-  have hcs : |∑ j, toReal (E.G 0 j) * u j| ≤ toReal ρ := by
-    have := abs_dotProduct_le_norm₂_mul_norm₂ (fun j => toReal (E.G 0 j)) u
-    have h2 : ‖fun j => toReal (E.G 0 j)‖₂ * ‖u‖₂ ≤ toReal ρ :=
-      le_trans (mul_le_of_le_one_right (norm₂_nonneg _) hu) hρ'
-    exact le_trans this h2
-  rw [abs_le] at hcs
+  -- the nominal point is within the rounded-up half-width of the center
+  set ρ := Ellipsoid.boxRadius k E 0 with hρ
+  have hcs := abs_le.mp (Ellipsoid.abs_sub_le_boxRadius hy k 0)
   -- the two ends, each rounded in the outward direction
   have he0 : toReal (E.I_error.inf 0) ≤ e 0 ∧ e 0 ≤ toReal (E.I_error.sup 0) := he 0
-  have hy0 := hyu 0
-  have h1 := addDown_le_add (subDown (E.c 0) ρ) (E.I_error.inf 0)
-  have h2 := subDown_le_sub (E.c 0) ρ
-  have h3 := add_le_addUp (addUp (E.c 0) ρ) (E.I_error.sup 0)
-  have h4 := add_le_addUp (E.c 0) ρ
-  set lo := toReal (addDown (subDown (E.c 0) ρ) (E.I_error.inf 0)) with hlo
-  set hi := toReal (addUp (addUp (E.c 0) ρ) (E.I_error.sup 0)) with hhi
+  have h1 := addDown_le_add (subDown (E.q 0) ρ) (E.I_error.inf 0)
+  have h2 := subDown_le_sub (E.q 0) ρ
+  have h3 := add_le_addUp (addUp (E.q 0) ρ) (E.I_error.sup 0)
+  have h4 := add_le_addUp (E.q 0) ρ
+  set lo := toReal (addDown (subDown (E.q 0) ρ) (E.I_error.inf 0)) with hlo
+  set hi := toReal (addUp (addUp (E.q 0) ρ) (E.I_error.sup 0)) with hhi
   have hl : lo ≤ (y + e) 0 := by
     simp only [Pi.add_apply]; linarith [he0.1]
   have hh : (y + e) 0 ≤ hi := by

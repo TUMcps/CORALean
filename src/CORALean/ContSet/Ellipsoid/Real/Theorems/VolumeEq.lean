@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
 public import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
 public import Mathlib.LinearAlgebra.Matrix.ToLin
@@ -8,17 +9,17 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 @[expose] public section
 
 /-!
-# The volume of an ellipsoid with a square generator matrix
+# The volume of an ellipsoid
 
-With `k = n` the ellipsoid is `q` plus the image of the unit ball under the square matrix `G`,
+The ellipsoid is `q` plus the image of the unit ball under the square matrix `G = Q^(1/2)`,
 so its volume is `|det G|` times the ball's (`Measure.addHaar_image_linearMap`), and
-`sqrt(det(G Gᵀ)) = |det G|`. This is `Ellipsoid.volume` exactly, for `k = n`: the
-case `k > n` of full rank (where `Q^(1/2)` replaces `G`) is not proved.
+`sqrt(det Q) = sqrt(det(G Gᵀ)) = |det G|`. This is `Ellipsoid.volume` exactly, for every
+ellipsoid, degenerate ones included.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -62,14 +63,12 @@ theorem Ellipsoid.aux_volume_unitBall :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.volume_eq_of_k_eq (E : Ellipsoid n) (hk : E.k = n) :
+/-- The Lebesgue volume of the ellipsoid is CORA's `volume_`, `V_n √det Q`. -/
+theorem Ellipsoid.volume_eq (E : Ellipsoid n) :
     MeasureTheory.volume E.construct = E.volume := by -- --- PROOF ---
-  obtain ⟨k, q, G⟩ := E
-  simp only at hk
-  subst hk
   -- the ellipsoid is a translate of the image of the unit ball
-  have hcon : (Ellipsoid.mk k q G).construct =
-      (fun v => -q + v) ⁻¹' ((Matrix.toLin' G) '' {u : Vec ℝ k | ‖u‖₂ ≤ 1}) := by
+  have hcon : E.construct =
+      (fun v => -E.q + v) ⁻¹' ((Matrix.toLin' E.G) '' {u : Vec ℝ n | ‖u‖₂ ≤ 1}) := by
     ext x
     simp only [Ellipsoid.construct, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image]
     constructor
@@ -77,13 +76,14 @@ theorem Ellipsoid.volume_eq_of_k_eq (E : Ellipsoid n) (hk : E.k = n) :
       exact ⟨u, hu, by simp⟩
     · rintro ⟨u, hu, hx⟩
       refine ⟨u, hu, ?_⟩
-      have : x = q + Matrix.toLin' G u := by rw [hx]; abel
+      have : x = E.q + Matrix.toLin' E.G u := by rw [hx]; abel
       rw [this]
       rfl
   -- translation keeps the volume; the image scales it by `|det G|`
   rw [hcon, measure_preimage_add, Measure.addHaar_image_linearMap,
     Ellipsoid.aux_volume_unitBall, LinearMap.det_toLin']
-  unfold Ellipsoid.volume Ellipsoid.shape
+  unfold Ellipsoid.volume
+  rw [← E.G_mul_transpose]
   simp only [Matrix.det_mul, Matrix.det_transpose]
   rw [Real.sqrt_mul_self_eq_abs, ← ENNReal.ofReal_mul (abs_nonneg _), mul_comm]
 

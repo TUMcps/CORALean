@@ -8,12 +8,12 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 # `Ellipsoid.representsa_point`
 
 CORA's `@ellipsoid/representsa_` at type `point` with tolerance `0`: the shape matrix vanishes,
-`Q = 0`. CORALean stores the generator matrix, and `Q = G Gᵀ = 0` iff `G = 0`.
+`Q = 0`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -27,7 +27,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `ellipsoid/representsa_` at `point`. -/
-def Ellipsoid.representsa_point (E : Ellipsoid n) : Prop := E.G = 0
+def Ellipsoid.representsa_point (E : Ellipsoid n) : Prop := E.Q = 0
 
 end CORALean.Real
 

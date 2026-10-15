@@ -49,7 +49,7 @@ src/CORALean/
                    what makes intersection exact; Real/ and Float/
     ZonoBundle/    a family of zonotopes denoting their intersection, exactly;
                    Real/ and Float/
-    Ellipsoid/     a center and a generator matrix, the one representation whose
+    Ellipsoid/     CORA's shape matrix `Q` and center `q`, the one representation whose
                    support function is closed form; Real/ and Float/
     SpectraShadow/ the projection of a spectrahedron: exact under sum, image and
                    product, the representation a semidefinite program lands in;

@@ -39,25 +39,25 @@ theorem apply_eq_dotProduct (c : Vec ℝ n →ₗ[ℝ] ℝ) (x : Vec ℝ n) : c 
 
 
 -- ===================================  `Ellipsoid.pullback`  =================================== --
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- The direction pulled back into generator space, which is what the support
 value is the length of. -/
-noncomputable def Ellipsoid.pullback (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : Vec ℝ E.k :=
+noncomputable def Ellipsoid.pullback (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : Vec ℝ n :=
   E.Gᵀ *ᵥ dualVec c
 
 
 -- =================================  `Ellipsoid.apply_mulVec`  ================================= --
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- A functional applied to a generator-space image is the dot product with its pullback -/
-theorem Ellipsoid.apply_mulVec (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) (u : Vec ℝ E.k) :
+theorem Ellipsoid.apply_mulVec (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) (u : Vec ℝ n) :
     c (E.G *ᵥ u) = E.pullback c ⬝ᵥ u := by
   rw [apply_eq_dotProduct, dotProduct_mulVec, Ellipsoid.pullback, mulVec_transpose]
 
@@ -71,7 +71,7 @@ theorem Ellipsoid.apply_mulVec (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ)
 /-- `ellipsoid/representsa_` at `origin`.
 
 CORA's `@ellipsoid/representsa_` at type `origin` with tolerance `0`: a point at `q = 0`. -/
-def Ellipsoid.representsa_origin (E : Ellipsoid n) : Prop := E.c = 0 ∧ E.representsa_point
+def Ellipsoid.representsa_origin (E : Ellipsoid n) : Prop := E.q = 0 ∧ E.representsa_point
 
 end CORALean.Real
 

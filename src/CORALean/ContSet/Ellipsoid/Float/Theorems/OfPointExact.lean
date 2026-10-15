@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Operations.OfPoint
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 
 @[expose] public section
 
@@ -15,7 +16,7 @@ error box is the origin box.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,15 +33,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Ellipsoid.ofPoint_exact (p : Vec 𝕋 n) :
     (Ellipsoid.ofPoint p).construct = {toRealVec p} := by -- --- PROOF ---
-  have h : InflatedContSet.nominal (Ellipsoid.ofPoint p)
+  have hQ : toRealMat (fun _ _ : Fin n => (zero : 𝕋)) = 0 :=
+    funext fun _ => funext fun _ => toReal_zero
+  have h : (InflatedContSet.nominal (Ellipsoid.ofPoint p)).ellipsoid
       = Real.Ellipsoid.ofPoint (toRealVec p) := by
-    unfold Real.Ellipsoid.ofPoint
-    show (⟨0, toRealVec p, toRealMat (fun _ j => j.elim0)⟩ : Real.Ellipsoid n) = ⟨0, _, 0⟩
-    congr 1
-    funext i j
-    exact j.elim0
+    show Real.Ellipsoid.ofShape (toRealMat (fun _ _ : Fin n => (zero : 𝕋))) (toRealVec p) = _
+    rw [hQ, Real.Ellipsoid.ofShape_eq .zero]
+    rfl
   have hN : InflatedContSet.nominalSet (Ellipsoid.ofPoint p) = {toRealVec p} := by
-    unfold InflatedContSet.nominalSet
+    show (InflatedContSet.nominal (Ellipsoid.ofPoint p)).ellipsoid.construct = _
     rw [h]
     exact Set.ext fun x =>
       (Real.Ellipsoid.mem_ofPoint_iff (toRealVec p) x).trans Set.mem_singleton_iff.symm

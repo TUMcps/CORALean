@@ -7,6 +7,7 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 @[expose] public section
 
@@ -15,9 +16,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
 
 The coefficient domains differ only in the norm they bound: a zonotope's cube is
 `‖β‖∞ ≤ 1`, an ellipsoid's ball is `‖u‖₂ ≤ 1`, and the cube sits inside `√h`
-times the ball. So the same generators scaled by `√h` enclose, and the only
-square root is that one scalar — which is the whole reason the generator form is
-worth storing.
+times the ball. So the same generators scaled by `√h` enclose, as the ellipsoid of shape
+`h G Gᵀ`, CORA's `fac*(G*G')` (`construct_ofFactor`).
 
 Loose by a factor of `√h` in the worst direction and exact in none, since a
 zonotope is not an ellipsoid. Tighter enclosures exist — CORA's are the
@@ -75,6 +75,7 @@ theorem Zonotope.aux_coeff_sq_le {Z : Zonotope (Vec ℝ n)} {β : Fin Z.h → �
 
 theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec ℝ n)) :
     Z.construct ⊆ Z.ellipsoid.construct := by -- --- PROOF ---
+  rw [Zonotope.ellipsoid, Ellipsoid.construct_ofFactor]
   intro x hx
   obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_construct_iff.mp hx
   refine ⟨fun j => β j / Real.sqrt Z.h, ?_, ?_⟩

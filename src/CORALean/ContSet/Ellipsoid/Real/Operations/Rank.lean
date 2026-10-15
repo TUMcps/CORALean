@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import Mathlib.LinearAlgebra.Matrix.Rank
 
 @[expose] public section
@@ -8,16 +8,15 @@ public import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 # `Ellipsoid.rank`
 
-CORA's `@ellipsoid/rank`: the number of singular values of the shape matrix `Q = G Gᵀ` above the
-tolerance `d(1) * E.TOL`. Here the exact rank, the tolerance being `0` (as for `Zonotope.rank`):
-the rank of the stored generator matrix `G`, which `Ellipsoid.rank_shape` shows equals that of `Q`.
-CORA's `rank` of an empty ellipsoid is `0`; an `Ellipsoid` here is never empty (`k = 0` is the
-point `q`), so that case does not arise.
+CORA's `@ellipsoid/rank`: the number of singular values of the shape matrix `Q` above the
+tolerance `d(1) * E.TOL`. Here the exact rank of `Q`, the tolerance being `0` (as for
+`Zonotope.rank`). CORA's `rank` of an empty ellipsoid is `0`; an `Ellipsoid` here is never empty
+(`Q = 0` is the point `q`), so that case does not arise.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,8 +31,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `ellipsoid/rank`: the rank of the generator matrix. -/
-noncomputable def Ellipsoid.rank (E : Ellipsoid n) : ℕ := E.G.rank
+/-- `ellipsoid/rank`: the rank of the shape matrix. -/
+noncomputable def Ellipsoid.rank (E : Ellipsoid n) : ℕ := E.Q.rank
 
 end CORALean.Real
 

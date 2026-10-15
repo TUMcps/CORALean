@@ -36,8 +36,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 2]: `r ≥ ⌈Z(S, 0)⌉²` puts the scaled zonotope in the ellipsoid. -/
-theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
-    {r : ℝ} (hr : 0 < r) (hS : (⟨m, 0, S⟩ : Zonotope (Vec ℝ E.k)).maxNormSq ≤ r) :
+theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ n)
+    {r : ℝ} (hr : 0 < r) (hS : (⟨m, 0, S⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r) :
     (E.zonotopeInnerNorm S r).construct ⊆ E.construct := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   change ∀ j : Fin m, |β j| ≤ 1 at hβ
@@ -48,7 +48,7 @@ theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fi
   · rw [norm₂_smul, abs_of_pos (inv_pos.mpr hs), inv_mul_le_iff₀ hs, mul_one]
     calc ‖∑ j, β j • S j‖₂ = √(‖∑ j, β j • S j‖₂ ^ 2) := (Real.sqrt_sq (norm₂_nonneg _)).symm
       _ ≤ √r := Real.sqrt_le_sqrt hle
-  · show E.c + ∑ j, β j • ((√r)⁻¹ • (E.G *ᵥ S j)) = E.c + E.G *ᵥ ((√r)⁻¹ • ∑ j, β j • S j)
+  · show E.q + ∑ j, β j • ((√r)⁻¹ • (E.G *ᵥ S j)) = E.q + E.G *ᵥ ((√r)⁻¹ • ∑ j, β j • S j)
     rw [Matrix.mulVec_smul, Matrix.mulVec_sum, Finset.smul_sum]
     simp only [Matrix.mulVec_smul, smul_comm (√r)⁻¹]
 

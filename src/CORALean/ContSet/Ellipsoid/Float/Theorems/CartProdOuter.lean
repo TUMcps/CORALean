@@ -20,7 +20,7 @@ two ellipsoids is not an ellipsoid.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem Ellipsoid.cartProd_outer (E₁ : Ellipsoid 𝕋 n) (E₂ : Ellipsoid 𝕋 m) (s₁ : Vec 𝕋 n)
     (s₂ : Vec 𝕋 m) (σ : 𝕋)
-    (hs₁ : ∀ i, toReal (sqSumUp fun j => absolute (E₁.G i j)) ≤ toReal (mulDown (s₁ i) (s₁ i)))
-    (hs₂ : ∀ i, toReal (sqSumUp fun j => absolute (E₂.G i j)) ≤ toReal (mulDown (s₂ i) (s₂ i)))
+    (hs₁ : ∀ i, toReal (E₁.Q i i) ≤ toReal (mulDown (s₁ i) (s₁ i)))
+    (hs₂ : ∀ i, toReal (E₂.Q i i) ≤ toReal (mulDown (s₂ i) (s₂ i)))
     (hσ : 0 < toReal σ) (hn : ((n + m : ℕ) : ℝ) ≤ toReal (mulDown σ σ)) :
     (fun p : Vec ℝ n × Vec ℝ m => (Fin.append p.1 p.2 : Vec ℝ (n + m))) ''
         (E₁.construct ×ˢ E₂.construct) ⊆ (E₁.cartProd E₂ s₁ s₂ σ).construct := by -- --- PROOF ---

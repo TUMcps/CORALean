@@ -15,8 +15,8 @@ arbitrary one need not (as for `Zonotope.center_mem_construct`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      14-October-2026 (Tobias Ladner)
+-- Last update:   15-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -34,8 +34,9 @@ theorem Ellipsoid.center_mem_construct (E : Ellipsoid 𝕋 n)
     (h0 : ∀ i, toReal (E.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (E.I_error.sup i)) :
     toRealVec E.center ∈ E.construct :=
   ⟨toRealVec E.center,
-    Ellipsoid.mem_nominalSet_iff.mpr ⟨0, by simp [norm₂_zero], fun i => by
-      simp [Ellipsoid.center, toRealVec]⟩,
+    Ellipsoid.mem_nominalSet_iff.mpr ⟨0, by simp [norm₂_zero], by
+      rw [Matrix.mulVec_zero, add_zero]
+      rfl⟩,
     0, h0, add_zero _⟩
 
 end CORALean.Float

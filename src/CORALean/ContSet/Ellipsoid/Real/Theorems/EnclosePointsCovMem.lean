@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 
 @[expose] public section
 
@@ -17,7 +18,7 @@ by the definition of `maxDist`. Not exact: the ellipsoid is larger than the hull
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -103,6 +104,8 @@ theorem Ellipsoid.enclosePointsCov_mem [NeZero N] (pts : Fin N → Vec ℝ n) {T
       rw [div_le_one hpos]
       exact hle
   -- the point is the center plus the generators applied to the coefficients
+  rw [Ellipsoid.construct_eq_of_factor _
+    (T * U * (Matrix.diagonal fun i => nt i * Real.sqrt md : Mat ℝ n n)) rfl]
   refine ⟨u, hu1, ?_⟩
   change pts j = c + (T * U * (Matrix.diagonal fun i => nt i * Real.sqrt md : Mat ℝ n n)) *ᵥ u
   rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, hGu, hback]

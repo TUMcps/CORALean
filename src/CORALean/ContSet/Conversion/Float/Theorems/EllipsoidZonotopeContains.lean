@@ -21,7 +21,7 @@ rounding outward.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,8 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.zonotope_contains (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
-    (hs : ∀ i, toReal (sqSumUp fun j => absolute (E.G i j))
-      ≤ toReal (mulDown (s i) (s i))) :
+    (hs : ∀ i, toReal (E.Q i i) ≤ toReal (mulDown (s i) (s i))) :
     E.construct ⊆ (E.zonotope s).construct :=
   subset_trans (E.interval_contains s hs) (Interval.zonotope_contains _)
 

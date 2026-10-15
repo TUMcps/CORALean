@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 
 @[expose] public section
 
@@ -16,7 +16,7 @@ tolerance `0`, is the Loewner order `Q₂ ⪯ Q₁`, stated here as the quadrati
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Ellipsoid.isBigger (E₁ E₂ : Ellipsoid n) : Prop :=
-  ∀ v : Vec ℝ n, v ⬝ᵥ (E₂.shape *ᵥ v) ≤ v ⬝ᵥ (E₁.shape *ᵥ v)
+  ∀ v : Vec ℝ n, v ⬝ᵥ (E₂.Q *ᵥ v) ≤ v ⬝ᵥ (E₁.Q *ᵥ v)
 
 end CORALean.Real
 

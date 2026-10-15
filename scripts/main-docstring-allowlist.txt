@@ -896,7 +896,6 @@ src/CORALean/ContSet/Conversion/Float/Operations/ConPolyZono_to_PolyZonotope.lea
 src/CORALean/ContSet/Conversion/Float/Operations/ConZonotope_to_ConPolyZono.lean
 src/CORALean/ContSet/Conversion/Float/Operations/ConZonotope_to_SpectraShadow.lean
 src/CORALean/ContSet/Conversion/Float/Operations/Ellipsoid_to_ConPolyZono.lean
-src/CORALean/ContSet/Conversion/Float/Operations/Ellipsoid_to_SpectraShadow.lean
 src/CORALean/ContSet/Conversion/Float/Operations/HPolytope_to_ConZonotope.lean
 src/CORALean/ContSet/Conversion/Float/Operations/HPolytope_to_SpectraShadow.lean
 src/CORALean/ContSet/Conversion/Float/Operations/Interval_to_Ellipsoid.lean
@@ -1017,7 +1016,6 @@ src/CORALean/ContSet/Conversion/Real/Operations/VPolytope_to_SupportFunction.lea
 src/CORALean/ContSet/Conversion/Real/Operations/ZonoBundle_to_ConZonotope.lean
 src/CORALean/ContSet/Conversion/Real/Operations/ZonoBundle_to_VPolytope.lean
 src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_ConZonotope.lean
-src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_Ellipsoid.lean
 src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_Interval.lean
 src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_PolyZonotope.lean
 src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_SpectraShadow.lean
@@ -1058,7 +1056,6 @@ src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidExistsNotVPolytope.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidHPolytopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidLevelSetExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidPolyZonotopeContains.lean
-src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidPosSemidefSpectraShadowIff.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidSpectraShadowExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidSupportFunctionExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidVPolytopeContains.lean
@@ -1159,13 +1156,11 @@ src/CORALean/ContSet/Conversion/Real/Theorems/ZonotopeVPolytopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/ZonotopeVPolytopeExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/ZonotopeZonoBundleExact.lean
 src/CORALean/ContSet/Ellipsoid/Float/Ellipsoid.lean
-src/CORALean/ContSet/Ellipsoid/Float/Operations/AbsPullbackLe.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/CartProd.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/CartProdVec.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/ContainsPoint.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/Enclose.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/ExcludesPoint.lean
-src/CORALean/ContSet/Ellipsoid/Float/Operations/GeneratorError.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/IsBigger.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/IsFullDim.lean
 src/CORALean/ContSet/Ellipsoid/Float/Operations/Isequal.lean
@@ -1200,7 +1195,6 @@ src/CORALean/ContSet/Ellipsoid/Float/Theorems/IsBiggerSound.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/IsFullDimSound.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/IsGoodDirSound.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/IsequalSound.lean
-src/CORALean/ContSet/Ellipsoid/Float/Theorems/MemGeneratorError.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/MemNominalSet.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/MinkDiffPointOuter.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/MtimesOuter.lean
@@ -1233,7 +1227,6 @@ src/CORALean/ContSet/Ellipsoid/Real/Operations/NormUb.lean
 src/CORALean/ContSet/Ellipsoid/Real/Operations/Plus.lean
 src/CORALean/ContSet/Ellipsoid/Real/Operations/Project.lean
 src/CORALean/ContSet/Ellipsoid/Real/Operations/Radius.lean
-src/CORALean/ContSet/Ellipsoid/Real/Operations/Shape.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/AffineImageExact.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/AndPointExact.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/CartProdOuter.lean
@@ -1276,11 +1269,9 @@ src/CORALean/ContSet/Ellipsoid/Real/Theorems/QuadNonnegOfDominant.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/RepresentsaOriginIff.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/RepresentsaPointIff.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/SetLinCombSubsetOfIsOrOuter.lean
-src/CORALean/ContSet/Ellipsoid/Real/Theorems/ShapeMtimes.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/SupportBoundAttained.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/SupportFuncEq.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/VerticesExact.lean
-src/CORALean/ContSet/Ellipsoid/Real/Theorems/VolumeEqSquare.lean
 src/CORALean/ContSet/Ellipsoid/Real/Theorems/VolumeEqZero.lean
 src/CORALean/ContSet/EmptySet/Real/Operations/IsBounded.lean
 src/CORALean/ContSet/EmptySet/Real/Operations/IsFullDimTest.lean

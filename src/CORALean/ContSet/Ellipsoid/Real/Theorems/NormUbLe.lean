@@ -1,19 +1,21 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
 
 /-!
 # The Euclidean norm of a point of an ellipsoid is at most `Ellipsoid.normUb`
 
-`‖q + G u‖₂ ≤ ‖q‖₂ + ‖G u‖₂`, and the Frobenius norm of `G` bounds `‖G u‖₂` for `‖u‖₂ ≤ 1`
-(Cauchy-Schwarz on each row). An outer bound; it is not tight in general.
+`‖q + G u‖₂ ≤ ‖q‖₂ + ‖G u‖₂`, and the Frobenius norm of `G = Q^(1/2)`, which is `sqrt(trace Q)`,
+bounds `‖G u‖₂` for `‖u‖₂ ≤ 1` (Cauchy-Schwarz on each row). An outer bound; it is not tight in
+general.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -47,11 +49,16 @@ theorem aux_norm₂_mulVec_le_frobenius_ellipsoid (M : Mat ℝ m n) (y : Vec ℝ
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.norm₂_le_normUb (E : Ellipsoid n) {x : Vec ℝ n} (hx : x ∈ E.construct) :
-    ‖x‖₂ ≤ E.normUb := by
+    ‖x‖₂ ≤ E.normUb := by -- --- PROOF ---
   obtain ⟨u, hu, rfl⟩ := hx
   refine le_trans (norm₂_add_le _ _) (add_le_add le_rfl ?_)
-  exact le_trans (aux_norm₂_mulVec_le_frobenius_ellipsoid E.G u)
-    (mul_le_of_le_one_right (Real.sqrt_nonneg _) hu)
+  -- the squared Frobenius norm of `G` is `trace (G Gᵀ) = trace Q`
+  have htr : ∑ i, ∑ j, E.G i j ^ 2 = E.Q.trace := by
+    rw [← E.G_mul_transpose]
+    simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, Matrix.transpose_apply, sq]
+  refine le_trans (aux_norm₂_mulVec_le_frobenius_ellipsoid E.G u) ?_
+  rw [htr]
+  exact mul_le_of_le_one_right (Real.sqrt_nonneg _) hu
 
 end CORALean.Real
 

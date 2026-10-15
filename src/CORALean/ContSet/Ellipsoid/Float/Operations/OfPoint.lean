@@ -8,13 +8,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Ellipsoid.ofPoint`, over a floating-point scalar
 
-A point as an ellipsoid with no generators: the center stored as given, the error box at zero.
-Nothing is computed, so nothing rounds.
+A point as an ellipsoid, CORA's `ellipsoid(zeros(n), p)`: the zero shape matrix, the center
+stored as given, the error box at zero. Nothing is computed, so nothing rounds.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -30,9 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Ellipsoid.ofPoint (p : Vec 𝕋 n) : Ellipsoid 𝕋 n where
-  k := 0
-  c := p
-  G := fun _ j => j.elim0
+  Q := fun _ _ => zero
+  q := p
   I_error := Interval.origin n
 
 end CORALean.Float

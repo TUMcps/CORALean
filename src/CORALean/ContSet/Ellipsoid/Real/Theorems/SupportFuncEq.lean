@@ -1,9 +1,10 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestSupport
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
+public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
 
@@ -11,8 +12,8 @@ public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 # The support function of an ellipsoid
 
 [1, Sec. II (support function)]: `ρ(l | E(q, Q)) = ⟨l, q⟩ + ⟨l, Q l⟩^{1/2}`, the paper's definition
-of the ellipsoid. In the generator form `q + G B`, `Q = G Gᵀ` and `⟨l, Q l⟩^{1/2} = ‖Gᵀ l‖₂`, the
-value `Ellipsoid.supportBound` stores and attains.
+of the ellipsoid: the value `Ellipsoid.supportBound` stores, as CORA's `supportFunc_` does, and
+attains (`isGreatest_support`).
 
 ## References
 
@@ -22,7 +23,7 @@ value `Ellipsoid.supportBound` stores and attains.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -38,19 +39,12 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.supportFunc_eq (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    supportFunc E.construct c = ((dualVec c ⬝ᵥ E.c +
-      √(dualVec c ⬝ᵥ (E.shape *ᵥ dualVec c)) : ℝ) : EReal) := by -- --- PROOF ---
-  -- `‖Gᵀ l‖₂ = √(lᵀ G Gᵀ l)`
-  have hnorm : ‖E.pullback c‖₂ = √(dualVec c ⬝ᵥ (E.shape *ᵥ dualVec c)) := by
-    rw [norm₂, Ellipsoid.shape, ← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec,
-      ← Matrix.mulVec_transpose]
-    congr 1
-    simp only [dotProduct, sq]
-    rfl
+    supportFunc E.construct c = ((dualVec c ⬝ᵥ E.q +
+      √(dualVec c ⬝ᵥ (E.Q *ᵥ dualVec c)) : ℝ) : EReal) := by -- --- PROOF ---
   have hval :
-      (E.supportBound c).val = dualVec c ⬝ᵥ E.c + √(dualVec c ⬝ᵥ (E.shape *ᵥ dualVec c)) := by
-    show c E.c + ‖E.pullback c‖₂ = _
-    rw [apply_eq_dotProduct, hnorm]
+      (E.supportBound c).val = dualVec c ⬝ᵥ E.q + √(dualVec c ⬝ᵥ (E.Q *ᵥ dualVec c)) := by
+    show c E.q + _ = _
+    rw [apply_eq_dotProduct]
   rw [← hval]
   obtain ⟨⟨x, hx, hcx⟩, hub⟩ := E.isGreatest_support c
   refine le_antisymm (supportFunc_le_coe_iff.mpr fun y hy => hub ⟨y, hy, rfl⟩) ?_

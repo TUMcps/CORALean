@@ -2,8 +2,9 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEqSquare
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEq
 public import CORALean.Global.DetLeTraceDivPow
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 @[expose] public section
 
@@ -32,7 +33,7 @@ of `E(nGGᵀ, z̄)` over that of the unit ball. That no other ellipsoid attains 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -50,7 +51,7 @@ variable {n : ℕ}
 /-- An ellipsoid with a square generator `F` around the parallelotope has `nⁿ det(G)² ≤ det(F)²`. -/
 theorem aux_parallelotope_det_sq_le {G F : Mat ℝ n n} (hG : IsUnit G.det) {z q : Vec ℝ n}
     (hsub : {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-      (⟨n, q, F⟩ : Ellipsoid n).construct) :
+      (Ellipsoid.ofFactor F q).construct) :
     (n : ℝ) ^ n * G.det ^ 2 ≤ F.det ^ 2 := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · simp
@@ -93,15 +94,16 @@ theorem Ellipsoid.isLeast_volume_superset_parallelotope (G : Mat ℝ n n) (hG : 
     (z : Vec ℝ n) :
     IsLeast {v | ∃ (q : Vec ℝ n) (F : Mat ℝ n n),
         {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-          (⟨n, q, F⟩ : Ellipsoid n).construct ∧
-        v = MeasureTheory.volume (⟨n, q, F⟩ : Ellipsoid n).construct}
+          (Ellipsoid.ofFactor F q).construct ∧
+        v = MeasureTheory.volume (Ellipsoid.ofFactor F q).construct}
       (MeasureTheory.volume
-        (⟨n, z, Real.sqrt n • G⟩ : Ellipsoid n).construct) := by -- --- PROOF ---
+        (Ellipsoid.ofFactor (Real.sqrt n • G) z).construct) := by -- --- PROOF ---
   refine ⟨⟨z, Real.sqrt n • G, ?_, rfl⟩, ?_⟩
   -- the enclosure: `u = β/√n`, `‖β‖₂ ≤ √n`
-  · rintro _ ⟨β, hβ, rfl⟩
+  · rw [Ellipsoid.construct_ofFactor]
+    rintro _ ⟨β, hβ, rfl⟩
     rcases Nat.eq_zero_or_pos n with rfl | hn
-    · exact ⟨0, by simp [norm₂_zero], by funext i; exact i.elim0⟩
+    · exact ⟨0, by simp [norm₂], by funext i; exact i.elim0⟩
     have hs : 0 < Real.sqrt n := Real.sqrt_pos.mpr (by exact_mod_cast hn)
     refine ⟨(Real.sqrt n)⁻¹ • β, ?_, ?_⟩
     · rw [norm₂_smul, abs_inv, abs_of_pos hs, inv_mul_le_iff₀ hs, mul_one]
@@ -114,8 +116,8 @@ theorem Ellipsoid.isLeast_volume_superset_parallelotope (G : Mat ℝ n n) (hG : 
     · rw [smul_mulVec, mulVec_smul, smul_smul, mul_inv_cancel₀ hs.ne', one_smul]
   -- least volume: `V_n |det F| ≥ V_n nⁿᐟ² |det G|`
   · rintro v ⟨q, F, hsub, rfl⟩
-    rw [Ellipsoid.volume_eq_of_k_eq _ rfl, Ellipsoid.volume_eq_of_k_eq _ rfl]
-    unfold Ellipsoid.volume Ellipsoid.shape
+    rw [Ellipsoid.volume_eq _, Ellipsoid.volume_eq _]
+    unfold Ellipsoid.volume Ellipsoid.ofFactor
     have hV : 0 ≤ Real.pi ^ ((n : ℝ) / 2) / Real.Gamma ((n : ℝ) / 2 + 1) :=
       div_nonneg (Real.rpow_nonneg Real.pi_pos.le _) (Real.Gamma_nonneg_of_nonneg (by positivity))
     refine ENNReal.ofReal_le_ofReal (mul_le_mul_of_nonneg_left (Real.sqrt_le_sqrt ?_) hV)

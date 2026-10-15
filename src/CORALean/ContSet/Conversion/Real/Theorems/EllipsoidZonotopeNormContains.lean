@@ -37,9 +37,9 @@ variable {n : ℕ}
 
 /-- [1, Thm. 4]: a ball of radius `√l` inside `Z(S, 0)` — `l ≤ ⌊Z(S, 0)⌋²` — makes the scaled
 zonotope enclose the ellipsoid. -/
-theorem Ellipsoid.zonotopeNorm_contains (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ E.k)
+theorem Ellipsoid.zonotopeNorm_contains (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ n)
     {l : ℝ} (hl : 0 < l)
-    (hball : ∀ u : Vec ℝ E.k, ‖u‖₂ ≤ √l → u ∈ (⟨m, 0, S⟩ : Zonotope (Vec ℝ E.k)).construct) :
+    (hball : ∀ u : Vec ℝ n, ‖u‖₂ ≤ √l → u ∈ (⟨m, 0, S⟩ : Zonotope (Vec ℝ n)).construct) :
     E.construct ⊆ (E.zonotopeNorm S l).construct := by -- --- PROOF ---
   rintro _ ⟨u, hu, rfl⟩
   have hs : 0 < √l := Real.sqrt_pos.mpr hl
@@ -50,7 +50,7 @@ theorem Ellipsoid.zonotopeNorm_contains (E : Ellipsoid n) {m : ℕ} (S : Fin m �
   rw [zero_add] at heq
   change ∀ j : Fin m, |β j| ≤ 1 at hβ
   refine ⟨(β : Fin m → ℝ), hβ, ?_⟩
-  show E.c + E.G *ᵥ u = E.c + ∑ j, β j • ((√l)⁻¹ • (E.G *ᵥ S j))
+  show E.q + E.G *ᵥ u = E.q + ∑ j, β j • ((√l)⁻¹ • (E.G *ᵥ S j))
   have hu' : u = (√l)⁻¹ • ∑ j, β j • S j := by
     rw [← heq, smul_smul, inv_mul_cancel₀ hs.ne', one_smul]
   rw [hu', Matrix.mulVec_smul, Matrix.mulVec_sum, Finset.smul_sum]

@@ -20,7 +20,7 @@ branch may return the point for an `E` that misses it.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -35,9 +35,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p : Vec 𝕋 n) (u : Vec 𝕋 E.k)
+theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p w : Vec 𝕋 n)
     (a : Vec 𝕋 n) (s : 𝕋) :
-    E.construct ∩ {toRealVec p} ⊆ ContSet.construct (E.andPoint p u a s) := by -- --- PROOF ---
+    E.construct ∩ {toRealVec p} ⊆ ContSet.construct (E.andPoint p w a s) := by -- --- PROOF ---
   -- the point ellipsoid holds every point of `E ∩ {p}`
   have hpt : E.construct ∩ {toRealVec p}
       ⊆ ContSet.construct (OptEmpty.of (Ellipsoid.ofPoint p) : OptEmpty (Ellipsoid 𝕋 n)) := by

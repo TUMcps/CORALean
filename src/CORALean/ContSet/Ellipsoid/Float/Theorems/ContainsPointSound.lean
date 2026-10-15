@@ -1,21 +1,24 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsPsdSound
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.QuadLeQuadUp
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.AddMulVecMemConstruct
 
 @[expose] public section
 
 /-!
 # A `true` from `Ellipsoid.containsPoint` proves membership
 
-The certificate read as reals has `‖u‖₂ ≤ 1` (its square sum is at most `1`), so `c + G u` is in
-the nominal ellipsoid, and the remainder `p - c - G u` lies between the two directed roundings
-the test compared with the error box, so in the box.
+The certified `Q` makes the nominal part the ellipsoid of `Q`; `wᵀ Q w ≤ quadUp w ≤ 1` puts
+`q + Q w` in it (`Real.Ellipsoid.add_mulVec_mem_construct`), and the remainder `p - q - Q w` lies
+between the two directed roundings the test compared with the error box, so in the box.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -23,51 +26,41 @@ the test compared with the error box, so in the box.
 
 namespace CORALean.Float
 
-open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
+open Pointwise FloatOps SoundFloatArithmetic InflatedContSet Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.containsPoint_sound {E : Ellipsoid 𝕋 n} {p : Vec 𝕋 n} {u : Vec 𝕋 E.k}
-    (h : E.containsPoint p u = true) : toRealVec p ∈ E.construct := by -- --- PROOF ---
+theorem Ellipsoid.containsPoint_sound {E : Ellipsoid 𝕋 n} {p w : Vec 𝕋 n}
+    (h : E.containsPoint p w = true) : toRealVec p ∈ E.construct := by -- --- PROOF ---
   simp only [Ellipsoid.containsPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
-  obtain ⟨hu, hbox⟩ := h
-  -- the certificate has length at most one
-  have hsq : ∑ j, toReal (u j) ^ 2 ≤ 1 :=
-    le_trans (sq_sum_le_sqSumUp fun j => by rw [toReal_absolute])
-      ((toReal_le_of_le hu).trans_eq toReal_one)
-  have hnorm : ‖toRealVec u‖₂ ≤ 1 := by
-    have h2 : ‖toRealVec u‖₂ ^ 2 ≤ 1 ^ 2 := by
-      rw [norm₂_sq, one_pow]
-      exact hsq
-    exact (pow_le_pow_iff_left₀ (norm₂_nonneg _) zero_le_one two_ne_zero).mp h2
-  -- the nominal point `c + G u`, and the remainder in the box
-  refine ⟨fun i => toReal (E.c i) + ∑ j, toReal (E.G i j) * toRealVec u j,
-    Ellipsoid.mem_nominalSet_iff.mpr ⟨toRealVec u, hnorm, fun _ => rfl⟩,
-    fun i => toReal (p i) - (toReal (E.c i) + ∑ j, toReal (E.G i j) * toRealVec u j),
-    fun i => ?_, ?_⟩
-  · -- the remainder lies between the two roundings the test compared with the box
-    obtain ⟨hlo, hhi⟩ := hbox i
-    have d₁ := le_dotUp (fun j => E.G i j) u
-    have d₂ := dotDown_le (fun j => E.G i j) u
-    have a₁ := add_le_addUp (E.c i) (dotUp (fun j => E.G i j) u)
-    have a₂ := addDown_le_add (E.c i) (dotDown (fun j => E.G i j) u)
-    have s₁ := subDown_le_sub (p i) (addUp (E.c i) (dotUp (fun j => E.G i j) u))
-    have s₂ := sub_le_subUp (p i) (addDown (E.c i) (dotDown (fun j => E.G i j) u))
-    have l₁ := toReal_le_of_le hlo
-    have l₂ := toReal_le_of_le hhi
-    show toReal (E.I_error.inf i)
-        ≤ toReal (p i) - (toReal (E.c i) + ∑ j, toReal (E.G i j) * toReal (u j))
-      ∧ toReal (p i) - (toReal (E.c i) + ∑ j, toReal (E.G i j) * toReal (u j))
-        ≤ toReal (E.I_error.sup i)
-    constructor <;> linarith
-  · -- the point is the nominal point plus the remainder
-    funext i
-    simp only [Pi.add_apply, toRealVec]
-    ring
+  obtain ⟨⟨hpsd, hw⟩, hbox⟩ := h
+  have hpsd' := Ellipsoid.posSemidef_of_isPsd hpsd
+  -- the nominal point `q + Q w`
+  have hq : toRealVec w ⬝ᵥ (toRealMat E.Q *ᵥ toRealVec w) ≤ 1 :=
+    le_trans (E.quad_le_quadUp w) ((toReal_le_of_le hw).trans_eq toReal_one)
+  have hy : toRealVec E.q + toRealMat E.Q *ᵥ toRealVec w ∈ nominalSet E := by
+    show _ ∈ (nominal E).ellipsoid.construct
+    rw [Ellipsoid.nominal_of_psd hpsd']
+    exact Real.Ellipsoid.add_mulVec_mem_construct ⟨toRealMat E.Q, toRealVec E.q, hpsd'⟩ hq
+  refine ⟨_, hy, toRealVec p - (toRealVec E.q + toRealMat E.Q *ᵥ toRealVec w), fun i => ?_,
+    by abel⟩
+  -- the remainder lies between the two roundings the test compared with the box
+  obtain ⟨hlo, hhi⟩ := hbox i
+  have d₁ : (toRealMat E.Q *ᵥ toRealVec w) i ≤ toReal (mulVecUp E.Q w i) := le_dotUp (E.Q i) w
+  have d₂ : toReal (mulVecDown E.Q w i) ≤ (toRealMat E.Q *ᵥ toRealVec w) i := dotDown_le (E.Q i) w
+  have a₁ := add_le_addUp (E.q i) (mulVecUp E.Q w i)
+  have a₂ := addDown_le_add (E.q i) (mulVecDown E.Q w i)
+  have s₁ := subDown_le_sub (p i) (addUp (E.q i) (mulVecUp E.Q w i))
+  have s₂ := sub_le_subUp (p i) (addDown (E.q i) (mulVecDown E.Q w i))
+  have l₁ := toReal_le_of_le hlo
+  have l₂ := toReal_le_of_le hhi
+  show toReal (E.I_error.inf i) ≤ toReal (p i) - (toReal (E.q i) + _)
+    ∧ toReal (p i) - (toReal (E.q i) + _) ≤ toReal (E.I_error.sup i)
+  constructor <;> linarith
 
 end CORALean.Float
 

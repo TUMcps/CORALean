@@ -2,19 +2,20 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
 
 /-!
 # The shape matrix of a full-rank ellipsoid is invertible
 
-`Q z = 0` gives `‖Gᵀ z‖₂ = 0`, so `z` is orthogonal to everything `G` reaches, which at full rank
-is the whole space.
+`Q z = 0` gives `‖Gᵀ z‖₂ = 0` (`Q = G Gᵀ`, `G = Q^(1/2)`), so `z` is orthogonal to everything `G`
+reaches, which at full rank is the whole space, `G` having the rank of `G Gᵀ = Q`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,18 +32,20 @@ variable {n : ℕ}
 
 /-- At full rank the shape matrix is invertible. -/
 theorem Ellipsoid.isUnit_shape (E : Ellipsoid n) (hr : E.rank = n) :
-    IsUnit E.shape := by -- --- PROOF ---
+    IsUnit E.Q := by -- --- PROOF ---
   -- injective: `Q z = 0` gives `‖Gᵀ z‖₂ = 0`, so `z` is orthogonal to everything `G` reaches
   rw [← Matrix.mulVec_injective_iff_isUnit]
   intro z z' hzz
   have hrange : LinearMap.range (Matrix.mulVecLin E.G) = ⊤ := by
-    unfold Ellipsoid.rank Matrix.rank at hr
+    unfold Ellipsoid.rank at hr
+    rw [← E.G_mul_transpose, Matrix.rank_self_mul_transpose] at hr
+    unfold Matrix.rank at hr
     exact Submodule.eq_top_of_finrank_eq (by rw [hr]; simp)
   -- one vector `d = z - z'` with `Q d = 0`
-  have hd : E.shape *ᵥ (z - z') = 0 := by rw [Matrix.mulVec_sub, hzz, sub_self]
+  have hd : E.Q *ᵥ (z - z') = 0 := by rw [Matrix.mulVec_sub, hzz, sub_self]
   set d := z - z' with hdd
   have hd' : E.G *ᵥ (E.Gᵀ *ᵥ d) = 0 := by
-    rw [Matrix.mulVec_mulVec]
+    rw [Matrix.mulVec_mulVec, E.G_mul_transpose]
     exact hd
   have h1 : (E.Gᵀ *ᵥ d) ⬝ᵥ (E.Gᵀ *ᵥ d) = 0 := by
     rw [Ellipsoid.dot_transpose, hd', dotProduct_zero]

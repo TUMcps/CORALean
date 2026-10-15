@@ -2,20 +2,25 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Float.Operations.CartProdVec
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdVecExact
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 
 @[expose] public section
 
 /-!
 # `Ellipsoid.cartProdVec` is the product with a point, exactly
 
-The padded center plus the padded generators at `u` is the original point with the point appended,
-as the padding rows are zero; the error box is the original's with a zero-width box on the appended
-coordinates, so a point of it is a point of the original's with nothing added there.
+The nominal ellipsoid is the exact layer's `cartProdVec` of the nominal one: `blkdiag(Q, 0)` is
+positive semi-definite exactly when `Q` is, being `P Q Pᵀ` for the embedding `P` and having `Q`
+as a principal block, so both refuse the same `Q`, and `Real.Ellipsoid.cartProdVec_exact` appends
+the point. The error box is the original's with a zero-width box on the appended coordinates, so
+a point of it is a point of the original's with nothing added there.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -23,7 +28,7 @@ coordinates, so a point of it is a point of the original's with nothing added th
 
 namespace CORALean.Float
 
-open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
+open Pointwise FloatOps SoundFloatArithmetic InflatedContSet Matrix
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
@@ -34,100 +39,93 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) :
     (E.cartProdVec v).construct =
       (fun x : Vec ℝ n => (Fin.append x (toRealVec v) : Vec ℝ (n + m))) ''
         E.construct := by -- --- PROOF ---
-  -- the stored fields on the two parts of the coordinates
-  have hql : ∀ i : Fin n, (E.cartProdVec v).c (Fin.castAdd m i) = E.c i := fun i => by
-    simp only [Ellipsoid.cartProdVec, Fin.append_left]
-  have hqr : ∀ i : Fin m, (E.cartProdVec v).c (Fin.natAdd n i) = v i := fun i => by
-    simp only [Ellipsoid.cartProdVec, Fin.append_right]
-  have hGl : ∀ (i : Fin n) (j : Fin E.k), (E.cartProdVec v).G (Fin.castAdd m i) j = E.G i j :=
-    fun i j => by simp only [Ellipsoid.cartProdVec, Fin.addCases_left]
-  have hGr : ∀ (i : Fin m) (j : Fin E.k), (E.cartProdVec v).G (Fin.natAdd n i) j = zero :=
-    fun i j => by simp only [Ellipsoid.cartProdVec, Fin.addCases_right]
-  have hil : ∀ i : Fin n, (E.cartProdVec v).I_error.inf (Fin.castAdd m i) = E.I_error.inf i := fun
-      i => by
-    simp only [Ellipsoid.cartProdVec, Fin.append_left]
-  have hsl : ∀ i : Fin n, (E.cartProdVec v).I_error.sup (Fin.castAdd m i) = E.I_error.sup i := fun
-      i => by
-    simp only [Ellipsoid.cartProdVec, Fin.append_left]
-  have hir : ∀ i : Fin m, (E.cartProdVec v).I_error.inf (Fin.natAdd n i) = zero := fun i => by
-    simp only [Ellipsoid.cartProdVec, Fin.append_right]
-  have hsr : ∀ i : Fin m, (E.cartProdVec v).I_error.sup (Fin.natAdd n i) = zero := fun i => by
-    simp only [Ellipsoid.cartProdVec, Fin.append_right]
-  -- the two directions, a point of the product and a point of the factor
+  -- the nominal ellipsoid is the exact layer's product
+  set B : Mat ℝ (n + m) (n + m) := toRealMat (E.cartProdVec v).Q with hB
+  set P : Mat ℝ (n + m) n := Matrix.of fun i j => Fin.addCases (fun i => if i = j then 1 else 0)
+    (fun _ => 0) i with hP
+  -- `P A Pᵀ` is `A` padded with zeros
+  have hPAP : ∀ A : Mat ℝ n n, P * A * Pᵀ = Matrix.of fun i j =>
+      Fin.addCases (fun i => Fin.addCases (fun j => A i j) (fun _ => 0) j) (fun _ => 0) i := by
+    intro A
+    ext i j
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;>
+      refine Fin.addCases (fun j => ?_) (fun j => ?_) j <;>
+      simp [hP, Matrix.mul_apply]
+  -- the stored product's shape is `P Q Pᵀ`
+  have hBeq : B = P * toRealMat E.Q * Pᵀ := by
+    rw [hPAP]
+    ext i j
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;>
+      refine Fin.addCases (fun j => ?_) (fun j => ?_) j <;>
+      simp [hB, toRealMat, Ellipsoid.cartProdVec, toReal_zero]
+  -- positive semi-definite exactly when `Q` is
+  have hiff : B.PosSemidef ↔ (toRealMat E.Q).PosSemidef := by
+    constructor
+    · intro h
+      have := h.submatrix (Fin.castAdd m)
+      convert this using 1
+      ext i j
+      simp [hB, toRealMat, Ellipsoid.cartProdVec]
+    · intro h
+      rw [hBeq]
+      simpa [conjTranspose_eq_transpose_of_trivial] using h.mul_mul_conjTranspose_same P
+  -- so the nominal ellipsoids agree, in both cases of `ofShape`
+  have hN : (nominal (E.cartProdVec v)).ellipsoid
+      = (nominal E).ellipsoid.cartProdVec (toRealVec v) := by
+    refine Real.Ellipsoid.ext ?_ ?_
+    · show (nominal (E.cartProdVec v)).ellipsoid.Q = P * (nominal E).ellipsoid.Q * Pᵀ
+      rw [Ellipsoid.nominal_Q_eq, Ellipsoid.nominal_Q_eq]
+      by_cases h : (toRealMat E.Q).PosSemidef
+      · rw [if_pos (hiff.2 h), if_pos h, ← hBeq]
+      · rw [if_neg (mt hiff.1 h), if_neg h, Matrix.mul_zero, Matrix.zero_mul]
+    · show (nominal (E.cartProdVec v)).ellipsoid.q
+        = Fin.append (nominal E).ellipsoid.q (toRealVec v)
+      rw [Ellipsoid.nominal_q, Ellipsoid.nominal_q]
+      funext i
+      refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;> simp [toRealVec, Ellipsoid.cartProdVec]
+  have hNs : nominalSet (E.cartProdVec v)
+      = (fun x : Vec ℝ n => (Fin.append x (toRealVec v) : Vec ℝ (n + m))) '' nominalSet E := by
+    show (nominal (E.cartProdVec v)).ellipsoid.construct = _ '' (nominal E).ellipsoid.construct
+    rw [hN]
+    exact Real.Ellipsoid.cartProdVec_exact _ _
+  -- the error box: the original's on the first coordinates, zero on the rest
+  have hI : ∀ e : Vec ℝ (n + m), e ∈ (E.cartProdVec v).I_error.construct ↔
+      (fun i => e (Fin.castAdd m i)) ∈ E.I_error.construct ∧ ∀ i, e (Fin.natAdd n i) = 0 := by
+    intro e
+    rw [Interval.mem_vec_iff, Interval.mem_vec_iff]
+    constructor
+    · intro he
+      refine ⟨fun i => ?_, fun i => ?_⟩
+      · have h := he (Fin.castAdd m i)
+        simpa [Ellipsoid.cartProdVec] using h
+      · have h := he (Fin.natAdd n i)
+        simp only [Ellipsoid.cartProdVec, Fin.append_right, toReal_zero] at h
+        exact le_antisymm h.2 h.1
+    · rintro ⟨h₁, h₂⟩ i
+      refine Fin.addCases (fun i => ?_) (fun i => ?_) i
+      · simpa [Ellipsoid.cartProdVec] using h₁ i
+      · simp only [Ellipsoid.cartProdVec, Fin.append_right, toReal_zero, h₂ i]
+        exact ⟨le_rfl, le_rfl⟩
+  -- the two sums, the padding moved between the summands
+  show nominalSet (E.cartProdVec v) + (E.cartProdVec v).I_error.construct = _
+  rw [hNs]
   ext x
   constructor
-  · rintro ⟨z, hz, e, he, rfl⟩
-    obtain ⟨u, hu, hz⟩ := Ellipsoid.mem_nominalSet_iff.mp hz
-    -- the first `n` coordinates are the original's, the rest the point
-    have he₁ : ∀ i : Fin n, toReal (E.I_error.inf i) ≤ e (Fin.castAdd m i)
-        ∧ e (Fin.castAdd m i) ≤ toReal (E.I_error.sup i) := fun i => by
-      have h : toReal ((E.cartProdVec v).I_error.inf (Fin.castAdd m i)) ≤ e (Fin.castAdd m i)
-          ∧ e (Fin.castAdd m i) ≤ toReal ((E.cartProdVec v).I_error.sup (Fin.castAdd m i)) :=
-        he (Fin.castAdd m i)
-      rw [hil, hsl] at h
-      exact h
-    have he₂ : ∀ i : Fin m, e (Fin.natAdd n i) = 0 := fun i => by
-      have h : toReal ((E.cartProdVec v).I_error.inf (Fin.natAdd n i)) ≤ e (Fin.natAdd n i)
-          ∧ e (Fin.natAdd n i) ≤ toReal ((E.cartProdVec v).I_error.sup (Fin.natAdd n i)) :=
-        he (Fin.natAdd n i)
-      rw [hir, hsr, toReal_zero] at h
-      exact le_antisymm h.2 h.1
-    -- the same for the generator sum, whose appended rows are zero
-    have hz₁ : ∀ i : Fin n, z (Fin.castAdd m i)
-        = toReal (E.c i) + ∑ j, toReal (E.G i j) * u j := fun i => by
-      have h := hz (Fin.castAdd m i)
-      simp only [hql, hGl] at h
-      exact h
-    have hz₂ : ∀ i : Fin m, z (Fin.natAdd n i) = toReal (v i) := fun i => by
-      have h := hz (Fin.natAdd n i)
-      simp only [hqr, hGr, toReal_zero, zero_mul, Finset.sum_const_zero, add_zero] at h
-      exact h
-    -- the original's point is the first coordinates, its error those of the box
-    refine ⟨fun i => z (Fin.castAdd m i) + e (Fin.castAdd m i),
-      ⟨fun i => z (Fin.castAdd m i), Ellipsoid.mem_nominalSet_iff.mpr ⟨u, hu, hz₁⟩,
-        fun i => e (Fin.castAdd m i), he₁, rfl⟩, ?_⟩
+  · rintro ⟨_, ⟨y, hy, rfl⟩, e, he, rfl⟩
+    obtain ⟨he₁, he₂⟩ := (hI e).1 he
+    refine ⟨y + fun i => e (Fin.castAdd m i), ⟨y, hy, _, he₁, rfl⟩, ?_⟩
     funext i
     refine Fin.addCases (fun i => ?_) (fun i => ?_) i
+    · simp
+    · simp [he₂ i]
+  · rintro ⟨_, ⟨y, hy, e, he, rfl⟩, rfl⟩
+    refine ⟨Fin.append y (toRealVec v), ⟨y, hy, rfl⟩, Fin.append e 0,
+      (hI _).2 ⟨?_, fun i => ?_⟩, ?_⟩
     · simp only [Fin.append_left]
-      rfl
-    · simp only [Fin.append_right]
-      show toReal (v i) = z (Fin.natAdd n i) + e (Fin.natAdd n i)
-      rw [hz₂, he₂, add_zero]
-  · -- the other way: a point of the factor, with the point appended and nothing added
-    rintro ⟨_, ⟨z, hz, e, he, rfl⟩, rfl⟩
-    obtain ⟨u, hu, hz⟩ := Ellipsoid.mem_nominalSet_iff.mp hz
-    refine ⟨Fin.append z (toRealVec v), Ellipsoid.mem_nominalSet_iff.mpr ⟨u, hu, fun i => ?_⟩,
-      Fin.append e 0, fun i => ?_, ?_⟩
-    · refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-      · show Fin.append z (toRealVec v) (Fin.castAdd m i) = toReal ((E.cartProdVec v).c
-          (Fin.castAdd m i)) + ∑ j, toReal ((E.cartProdVec v).G (Fin.castAdd m i) j) * u j
-        simp only [hql, hGl, Fin.append_left]
-        exact hz i
-      · show Fin.append z (toRealVec v) (Fin.natAdd n i) = toReal ((E.cartProdVec v).c
-          (Fin.natAdd n i)) + ∑ j, toReal ((E.cartProdVec v).G (Fin.natAdd n i) j) * u j
-        simp only [hqr, hGr, toReal_zero, zero_mul, Finset.sum_const_zero, add_zero,
-          Fin.append_right]
-        rfl
-    -- the appended error is zero, the first coordinates' the original's
-    · refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-      · show toReal ((E.cartProdVec v).I_error.inf (Fin.castAdd m i)) ≤ Fin.append e 0
-          (Fin.castAdd m i)
-          ∧ Fin.append e 0 (Fin.castAdd m i) ≤ toReal
-              ((E.cartProdVec v).I_error.sup (Fin.castAdd m i))
-        rw [hil, hsl, Fin.append_left]
-        exact he i
-      · show toReal ((E.cartProdVec v).I_error.inf (Fin.natAdd n i)) ≤ Fin.append e 0
-          (Fin.natAdd n i)
-          ∧ Fin.append e 0 (Fin.natAdd n i) ≤ toReal
-              ((E.cartProdVec v).I_error.sup (Fin.natAdd n i))
-        rw [hir, hsr, Fin.append_right, toReal_zero]
-        exact ⟨le_refl _, le_refl _⟩
+      exact he
+    · simp
     · funext i
-      refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-      · simp only [Pi.add_apply, Fin.append_left]
-      · simp only [Pi.add_apply, Fin.append_right]
-        show toReal (v i) + 0 = toReal (v i)
-        rw [add_zero]
+      refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;> simp
 
 end CORALean.Float
 

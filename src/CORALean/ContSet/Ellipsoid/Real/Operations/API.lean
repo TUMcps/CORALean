@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
 public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProd
 public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
@@ -10,6 +9,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
 public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
+public import CORALean.ContSet.Ellipsoid.Real.Operations.OfFactor
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Project
 public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
@@ -55,9 +55,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.GoffinCut
 /-!
 # What an ellipsoid computes, collected
 
-`mtimes` and the `map` it is, exact and the reason the generator form is stored;
-`supportBound`, closed form in every direction; and `plus`, which encloses and
-takes the parameter that enclosure needs. `Shape` is CORA's `Q`, read back off
-the generators so the correspondence can be checked. `ofPoint` is the
-degenerate case, `G` with no columns.
+`mtimes` and the `map` it is, `M Q Mᵀ` and exact; `supportBound`, closed form in every
+direction; and `plus`, which encloses and takes the parameter that enclosure needs. `ofFactor`
+is the shape `F Fᵀ` of a generator matrix `F`, and `ofPoint` the degenerate case, `Q = 0`.
 -/

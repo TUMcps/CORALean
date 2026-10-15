@@ -8,14 +8,13 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 /-!
 # `Ellipsoid.reindex` over a floating-point scalar
 
-Center, generator rows and error box relabelled, and nothing rounds: a permutation
-moves stored floats without arithmetic. The generator index is untouched, only
-the coordinate axis moves.
+The shape matrix's rows and columns, the center and the error box relabelled, and nothing rounds:
+a permutation moves stored floats without arithmetic.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -30,9 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Ellipsoid.reindex (e : Fin m ≃ Fin n) (E : Ellipsoid 𝕋 n) : Ellipsoid 𝕋 m where
-  k := E.k
-  c := fun i => E.c (e i)
-  G := fun i j => E.G (e i) j
+  Q := fun i j => E.Q (e i) (e j)
+  q := fun i => E.q (e i)
   I_error := E.I_error.reindex e
 
 end CORALean.Float

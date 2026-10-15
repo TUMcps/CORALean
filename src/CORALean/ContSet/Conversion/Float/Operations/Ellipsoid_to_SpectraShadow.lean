@@ -12,7 +12,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.MemNominalSet
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -27,13 +27,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- The exact layer's Schur form `[[1, (x - q)ᵀ], [x - q, Q]] ⪰ 0` with the stored `Q` and `q` as
+its entries and `one`, `zero` elsewhere; negation is exact, so nothing rounds. -/
 def Ellipsoid.spectraShadow (E : Ellipsoid 𝕋 n) : SpectraShadow 𝕋 (Vec 𝕋 n) where
-  k := E.k + 1
-  m := E.k
-  A₀ := fun p q => if p = q then one else zero
-  A := fun i p q => if (p = 0 ∧ q = i.succ) ∨ (p = i.succ ∧ q = 0) then one else zero
-  c := E.c
-  G := fun j i => E.G i j
+  k := n + 1
+  m := n
+  A₀ := fun p r =>
+    Fin.cases (Fin.cases one (-E.q) r) (fun i => Fin.cases ((-E.q) i) (E.Q i) r) p
+  A := fun i p r => if (p = 0 ∧ r = i.succ) ∨ (p = i.succ ∧ r = 0) then one else zero
+  c := fun _ => zero
+  G := fun i j => if j = i then one else zero
   I_error := E.I_error
 
 end CORALean.Float
