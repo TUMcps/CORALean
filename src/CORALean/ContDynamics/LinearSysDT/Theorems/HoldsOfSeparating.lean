@@ -43,7 +43,7 @@ two, so no trajectory meets it at step `k`. -/
 theorem LinearSysDT.holds_unsafeSet_of_separating (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
     (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct R₀) d)
     (bU : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct U) d)
-    {x u : ℕ → Vec ℝ n} (traj : sys.CanonicalTrajectory R₀ U x u) (k : ℕ)
+    {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ)
     {c : Vec ℝ n →ₗ[ℝ] ℝ} {X : Set (Vec ℝ n)} (v : SupportBound X (-c))
     (h : (sys.reachSetBound R₀ U b₀ bU k c).val + v.val < 0) :
     (Specification.unsafeSet X).Holds {x k} :=

@@ -11,7 +11,7 @@ public import CORALean.HybridDynamics.Parallel.Operations.Product
 # The product reaches exactly the stacks of what the parallel automaton reaches
 
 `reachSet_productWith_eq` at `mergeFlowsLinearSys`, whose flow laws hold at `ℝ` under the
-conditions of `Run.ofProduct`. An *equality of reachable sets*; the outer theorems
+conditions of `IsRun.ofProduct`. An *equality of reachable sets*; the outer theorems
 (`reachSet_subset_invariant`) enclose either side and are inclusions only.
 -/
 

@@ -78,7 +78,7 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
     (h : sys.manualReachFloat params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.CanonicalTrajectory (S := 𝒮)
+        sys.IsCanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
             params.U.construct) x u →

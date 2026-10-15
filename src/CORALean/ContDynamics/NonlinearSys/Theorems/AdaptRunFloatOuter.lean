@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 # The adaptive float loop holds every run of the real system
 
 A run of `ẋ = f(x, u)` from `R` under inputs in `U` over the whole horizon is, over each step, a
-run of that step re-anchored at the step's start (`Trajectory.shift`), so `adaptStepFloat_outer`
+run of that step re-anchored at the step's start (`IsTrajectory.shift`), so `adaptStepFloat_outer`
 applies to each in turn. The steps' lengths are whatever the tuning chose; only their sum, the
 horizon, enters. See [1].
 
@@ -51,7 +51,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
       fm.adaptRunFloat U options ζδ ζh ζZ ζK prec bis fuel tend k s = some ss →
       s.t ≤ ((s :: ss).getLast (List.cons_ne_nil _ _)).t ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-          sys.Trajectory (S := 𝒮)
+          sys.IsTrajectory (S := 𝒮)
             (Set.Icc 0 ((((s :: ss).getLast (List.cons_ne_nil _ _)).t - s.t : ℚ) : ℝ))
             s.R.construct U.construct x u →
           ∀ (j : ℕ) (hj : j < ss.length), ∀ t ∈ Set.Icc

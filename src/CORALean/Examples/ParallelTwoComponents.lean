@@ -155,9 +155,9 @@ theorem PTC.feedthroughFree : PTC.parallel.FeedthroughFree := by
   fin_cases c <;> rfl
 
 /-- A parallel run is a run of the product, stacked. -/
-theorem PTC.run_toProduct {ℓ ℓ' : ∀ _ : Fin 2, Unit} {x y : ∀ _ : Fin 2, Vec ℝ 1}
-    (run : PTC.parallel.Run ℓ x ℓ' y) : PTC.product.Run ℓ (stack x) ℓ' (stack y) :=
-  ParallelHybridAutomaton.Run.toProduct (P := PTC.parallel) PTC.feedthroughFree
+theorem PTC.isRun_toProduct {ℓ ℓ' : ∀ _ : Fin 2, Unit} {x y : ∀ _ : Fin 2, Vec ℝ 1}
+    (run : PTC.parallel.IsRun ℓ x ℓ' y) : PTC.product.IsRun ℓ (stack x) ℓ' (stack y) :=
+  ParallelHybridAutomaton.IsRun.toProduct (P := PTC.parallel) PTC.feedthroughFree
     ParallelHybridAutomaton.boxLifting run
 
 /-- Every tuple of states the parallel automaton reaches from the box, stacked, is in the box. -/

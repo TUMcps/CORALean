@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 
 @[expose] public section
 
@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReac
 A run of `ẋ = Ax + u` with `u(t) ∈ B U + c`, any such signal the run is a solution
 for, at `t = t_k + τ` of window `k`: its free motion plus the constant's
 contribution is in `H(τ_k)`, and the rest is one `Ũ`-input's contribution by
-`t` (`Trajectory.sub_mem_inputReach_recenter`), which is in `P^R(t_{k+1})`
+`t` (`IsTrajectory.sub_mem_inputReach_recenter`), which is in `P^R(t_{k+1})`
 since `0 ∈ Ũ` lets the later window end bound it (`inputReach_mono`). No
 `0 ∈ U` is asked: the split took the center out.
 -/
@@ -45,7 +45,7 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
     (h : sys.reachFloatInput params options = some (Rti, Rtp)) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.CanonicalTrajectory (S := 𝒮)
+        sys.IsCanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
             params.U.construct) x u →

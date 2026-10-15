@@ -58,7 +58,7 @@ theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : 
     {t₀ : ℚ} {R : Zonotope (Vec 𝕋 n)} {F : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)} {κ : ℕ}
     (hF : fm.orderStepFloat κ U { options with Δt := Δ } R = some F) :
     t₀ < t₀ + ToRat.toRat Δ ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := 𝒮) (Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ))
+      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ))
         R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ),
           x t ∈ (Reduce.reduce F.1 options.ρ).construct) ∧
@@ -90,7 +90,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptStepFloat_outer
     {prec bis fuel : ℕ} {s s' : NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋}
     (hstep : fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s = some s') :
     s.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := 𝒮) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ))
+      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ))
         s.R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ), x t ∈ s'.Rτ.construct) ∧
         x ((s'.t - s.t : ℚ) : ℝ) ∈ s'.R.construct := by -- --- PROOF ---

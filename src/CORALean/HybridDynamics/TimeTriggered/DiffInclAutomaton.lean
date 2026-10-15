@@ -11,7 +11,7 @@ public import Mathlib.Analysis.Calculus.Deriv.Basic
 continuous parts, flows `ẋ ∈ f_m(x)`, and their semantics: a continuous successor [1, Def. 4] is
 a differentiable `g : [0, t] → X` with `g(δ) ∈ Inv(m)` and `ġ(δ) ∈ Flow(m)(g(δ))` on the open
 interval, a discrete successor [1, Def. 5] takes a transition whose guard holds, and an execution
-[1, Def. 6] is a finite chain of both from an initial state. `Exec d m x` says `(m, x)` ends an
+[1, Def. 6] is a finite chain of both from an initial state. `IsExec d m x` says `(m, x)` ends an
 execution of duration `d`; `reachLE T` is [1, Def. 7]'s `Reach≤T`.
 
 This is not `HybridAutomaton`: the flow is any set-valued map, and a run carries its duration.
@@ -63,21 +63,21 @@ def DiffInclAutomaton.Flows (H : DiffInclAutomaton M X) (m : M) (x : X) (t : ℝ
     ∀ δ ∈ Set.Ioo 0 t, g δ ∈ H.inv m ∧ deriv g δ ∈ H.flow m (g δ)
 
 /-- `(m, x)` ends an execution of duration `d` ([1, Def. 6]): initial, flowed or jumped to. -/
-inductive DiffInclAutomaton.Exec (H : DiffInclAutomaton M X) : ℝ → M → X → Prop where
-  | init {m : M} {x : X} (hx : x ∈ H.init m) : H.Exec 0 m x
-  | flow {d t : ℝ} {m : M} {x x' : X} (h : H.Exec d m x) (hf : H.Flows m x t x') :
-      H.Exec (d + t) m x'
-  | jump {d : ℝ} {m : M} {x : X} (h : H.Exec d m x) (e : DiffInclTransition M X)
+inductive DiffInclAutomaton.IsExec (H : DiffInclAutomaton M X) : ℝ → M → X → Prop where
+  | init {m : M} {x : X} (hx : x ∈ H.init m) : H.IsExec 0 m x
+  | flow {d t : ℝ} {m : M} {x x' : X} (h : H.IsExec d m x) (hf : H.Flows m x t x') :
+      H.IsExec (d + t) m x'
+  | jump {d : ℝ} {m : M} {x : X} (h : H.IsExec d m x) (e : DiffInclTransition M X)
       (he : e ∈ H.trans) (hm : e.source = m) (hx : x ∈ e.guard) :
-      H.Exec d e.target (e.reset x)
+      H.IsExec d e.target (e.reset x)
 
 /-- `Reach(H)`, the continuous parts of the end states of all executions, [1, Def. 7]. -/
 def DiffInclAutomaton.reach (H : DiffInclAutomaton M X) : Set X :=
-  {x | ∃ d m, H.Exec d m x}
+  {x | ∃ d m, H.IsExec d m x}
 
 /-- `Reach≤T(H)`: those of executions of duration at most `T`, [1, Def. 7]. -/
 def DiffInclAutomaton.reachLE (H : DiffInclAutomaton M X) (T : ℝ) : Set X :=
-  {x | ∃ d m, d ≤ T ∧ H.Exec d m x}
+  {x | ∃ d m, d ≤ T ∧ H.IsExec d m x}
 
 end CORALean
 

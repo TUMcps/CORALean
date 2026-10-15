@@ -15,10 +15,10 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateMemReach
-public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateIsTrajectory
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.MemInputSet
-public import CORALean.ContDynamics.LinParamSysDT.Theorems.TrajectoryCanonical
-public import CORALean.ContDynamics.LinParamSysDT.Theorems.TrajectoryToLinParam
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.IsTrajectoryCanonical
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.IsTrajectoryToLinParam
 
 /-!
 # What `LinParamSysDT` guarantees

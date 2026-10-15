@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryStepInputOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryStepInputOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachEvalOn
 

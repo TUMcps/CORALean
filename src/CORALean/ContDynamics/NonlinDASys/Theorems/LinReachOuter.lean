@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
-public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToLinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryToLinearSys
 public import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepTimePointOuter
@@ -22,7 +22,7 @@ holds the dynamics' linearization error `ℓᵈ - C F⁻¹ ℓᵃ` and `Verror_y
 at every consistent point, is in `linReach`'s time-point set at `Δt`, in its time-interval set
 throughout, and with its algebraic variable in the joint set. Outer.
 
-`NonlinDASys.Trajectory.toLinearSys` makes the shifted run a run of the linear system, and
+`NonlinDASys.IsTrajectory.toLinearSys` makes the shifted run a run of the linear system, and
 `oneStep`'s two theorems do the rest; [1, Prop. 2] (`jointReachSet_outer`) places `y`. The
 side conditions are `oneStep`'s: `u* ∈ U` and `0 ∈ Verror`, so that the time-varying input
 holds `0`, and `F⁻¹ F = I`. Where `Verror` comes from `NonlinDASys.linError`,
@@ -58,10 +58,10 @@ variable {n p m : ℕ}
 /-- A run confined to `R^z`, over which `Verror` and `Verror_y` hold every consistent point's
 errors, is in `linReach`'s time-point set at `Δt`, and its `x` and `(x, y)` in the
 time-interval and joint sets throughout `[0, Δt]`. -/
-theorem NonlinDASys.Trajectory.linReach_outer {sys : NonlinDASys n p m} {Δt : ℝ}
+theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt : ℝ}
     {Rinit : Zonotope (Vec ℝ n)} {U : Zonotope (Vec ℝ m)} {x : ℝ → Vec ℝ n}
     {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
-    (traj : sys.Trajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y u) (hΔt : 0 < Δt)
+    (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y u) (hΔt : 0 < Δt)
     {xs : Vec ℝ n} {ys : Vec ℝ p} {us : Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m}
     {C : Mat ℝ n p} {D : Mat ℝ p n} {E : Mat ℝ p m} {F F_inv : Mat ℝ p p}
     (hF : F_inv * F = 1) {Verror : Zonotope (Vec ℝ n)} {Verror_y : Zonotope (Vec ℝ p)}

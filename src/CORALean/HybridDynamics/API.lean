@@ -28,9 +28,9 @@ alone ask the guard to be in `S`. Without one there is still `Theorems.JumpOuter
 `hinter` bargain, lossless where exact, as `Theorems.JumpOuterConZonotope` shows.
 
 Time-triggered only in the sense that nothing here is: a stay runs for a dwell
-time the run chooses, and a bounded-horizon reading is `RunOn`/`InvariantOn`,
+time the run chooses, and a bounded-horizon reading is `IsRunOn`/`InvariantOn`,
 the same run and invariant indexed by the jump count — `Invariant.invariantOn`
-its constant-family case. `ReachSet` names what `Run` quantifies over: `reachSet`
+its constant-family case. `ReachSet` names what `IsRun` quantifies over: `reachSet`
 at a location, `reachLocations` over all, [1, Def. 3.4]'s two reachable sets.
 
 ## References

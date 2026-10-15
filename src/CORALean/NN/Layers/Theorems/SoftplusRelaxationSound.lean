@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Definitions.SoftplusBox
+public import CORALean.NN.Layers.Definitions.IsSoftplusBox
 public import CORALean.NN.Layers.Operations.Basic
 public import CORALean.NN.Layers.Theorems.OfMonotoneSoundWhere
 public import CORALean.NN.Layers.Theorems.Real.SoftplusMono
@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : SoftplusBox β k nl l u) :
+theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : IsSoftplusBox β k nl l u) :
     toReal ((softplusEnclosure β k nl kl).lo l) ≤
       Real.softplus (toReal β) (toReal l) := by -- --- PROOF ---
   obtain ⟨hβ, -, hD⟩ := h
@@ -56,7 +56,7 @@ theorem aux_softplus_lo_le {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : Softplu
   show toReal (divDown (logDown nl kl D) β) ≤ _
   exact le_trans hdiv (div_le_div_of_nonneg_right hlog hβ.le)
 
-theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : SoftplusBox β k nl l u) :
+theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : IsSoftplusBox β k nl l u) :
     Real.softplus (toReal β) (toReal u) ≤
       toReal ((softplusEnclosure β k nl kl).hi u) := by -- --- PROOF ---
   obtain ⟨hβ, hU, -⟩ := h
@@ -79,7 +79,7 @@ theorem aux_softplus_le_hi {β : 𝕋} {k nl kl : ℕ} {l u : 𝕋} (h : Softplu
 
 theorem softplusRelaxation_sound (β : 𝕋) (k nl kl : ℕ) :
     (softplusRelaxation β k nl kl).SoundWhere (Real.softplus (toReal β))
-      (SoftplusBox β k nl) :=
+      (IsSoftplusBox β k nl) :=
   Relaxation.ofMonotone_soundWhere (E := softplusEnclosure β k nl kl)
     (fun _ _ h => Real.softplus_mono h.1) (fun _ _ h => aux_softplus_lo_le h)
     fun _ _ h => aux_softplus_le_hi h

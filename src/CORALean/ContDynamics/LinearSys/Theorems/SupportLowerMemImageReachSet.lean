@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
 public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimSupportCounterexample
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 
 @[expose] public section
 
@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
 
 [1, Alg. 1 (lower bounds)], line 15: `ρ(Ř(t_k), ℓ)` is `ℓ` at a state some run of
 the system is in at `t_k` — the run from `supportCounterexample`'s initial state
-under its held inputs, which `trajectory_heldInput` makes a `Trajectory`,
+under its held inputs, which `isTrajectory_heldInput` makes a `IsTrajectory`,
 `closedForm_heldInput` samples as [1]'s Eq. (18), and
 `heldSim_supportCounterexample` evaluates along `ℓ`. So it is at most
 `ρ(R(t_k), ℓ)`, and `Ř(t_k)` is reached rather than enclosed.
@@ -56,7 +56,7 @@ theorem LinearSys.supportLower_mem_image_reachSet (sys : LinearSys 𝕋 n) (R₀
   set cex := sys.supportCounterexample Δt ν₀ νU ℓ k
   have hv : ∀ j, cex.2 j ∈ construct U := fun _ => hνU _
   refine ⟨sys.closedForm cex.1 (LinearSys.heldInput Δt cex.2) (k * Δt),
-    ⟨_, _, sys.trajectory_heldInput R₀ U hU (mul_nonneg k.cast_nonneg hΔt.le) Δt (hν₀ _) hv,
+    ⟨_, _, sys.isTrajectory_heldInput R₀ U hU (mul_nonneg k.cast_nonneg hΔt.le) Δt (hν₀ _) hv,
       rfl⟩, ?_⟩
   rw [sys.closedForm_heldInput hU hΔt cex.1 hv k]
   exact sys.heldSim_supportCounterexample Δt ν₀ νU c ℓ k

@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.HoldsOfReach
-public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateIsTrajectory
 
 @[expose] public section
 
 /-!
 # One sampled run can falsify what reachability can only fail to prove
 
-The contrapositive of `holds_of_reach` at `simulate_trajectory`, exactly
+The contrapositive of `holds_of_reach` at `simulate_isTrajectory`, exactly
 `LinearSysDT.not_holds_of_simulate`'s statement at a re-linearized step: a
 specification violated along one sampled run cannot have held on the
 reachable set either. Confinement (`hR`) is asked of `simulate` itself, as
@@ -44,7 +44,7 @@ theorem NonlinearSysDT.not_holds_of_simulate (sys : NonlinearSysDT n m) {U : S m
     (hR : ∀ k, sys.simulate x₀ u k ∈ (steps k).R) (k : ℕ)
     (hbad : ¬ spec.Holds {sys.simulate x₀ u k}) :
     ¬ spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps)) :=
-  fun h => hbad (sys.holds_of_reach ho steps R₀ spec (sys.simulate_trajectory hx₀ hu) hR k h)
+  fun h => hbad (sys.holds_of_reach ho steps R₀ spec (sys.simulate_isTrajectory hx₀ hu) hR k h)
 
 end CORALean
 

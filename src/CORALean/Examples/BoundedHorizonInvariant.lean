@@ -1,6 +1,6 @@
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
-import CORALean.HybridDynamics.Theorems.RunOnOuter
+import CORALean.HybridDynamics.Theorems.IsRunOnOuter
 
 /-!
 # An invariant family that genuinely depends on how many jumps a run has taken
@@ -12,10 +12,10 @@ constant family would prove nothing about the index `InvariantOn` carries.
 `hinv` is proved outright — `flow` from `(HA.loc ℓ).inv`, the radius-`1` box,
 sitting inside every wider `R k ℓ`; `jump` from the identity reset carrying a
 radius-`(k+1)` point into the radius-`(k+2)` box it lands in. What is *not*
-attempted is an actual flowing run: `Location.Trajectory.flow` asks for a
+attempted is an actual flowing run: `Location.IsTrajectory.flow` asks for a
 `HasDerivWithinAt` witness, real-analysis machinery this file does not build,
 so `run` below is taken as a hypothesis, exactly as round one's `BouncingBall`
-already does for `Run`.
+already does for `IsRun`.
 -/
 
 -- Authors:       Claude Opus 5
@@ -98,7 +98,7 @@ theorem BHI.hinv : BHI.HA.InvariantOn BHI.R where
 
 /-- The one thing the whole file is for: a run known only through its jump
 count lands where `InvariantOn`, read at the count reached, says it must. -/
-example {m k : ℕ} {ℓ ℓ' : Bool} {x y : Vec ℝ 1} (run : BHI.HA.RunOn m ℓ x ℓ' y)
+example {m k : ℕ} {ℓ ℓ' : Bool} {x y : Vec ℝ 1} (run : BHI.HA.IsRunOn m ℓ x ℓ' y)
     (hx : x ∈ construct (BHI.R k ℓ)) : y ∈ construct (BHI.R (k + m) ℓ') :=
   run.mem_of_invariantOn BHI.hinv hx
 

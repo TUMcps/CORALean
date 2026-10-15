@@ -13,12 +13,12 @@ CORA's `nonlinParamSys`: `ẋ(t) = f(x(t), u(t), p(t))` with the output equation
 `y = g(x, u, p)`, `NonlinearSys` with a third argument ranging over a parameter set of
 dimension `q`, the output dimension `r` a field as `NonlinearSys`'s is.
 
-Two trajectory readings, as CORA distinguishes them: `Trajectory` lets `p` vary
+Two trajectory readings, as CORA distinguishes them: `IsTrajectory` lets `p` vary
 freely over time, a fresh element of `P` at every instant, mirroring
-`LinParamSysDT.Trajectory`'s fresh system matrix each step; `ConstTrajectory`
+`LinParamSysDT.IsTrajectory`'s fresh system matrix each step; `IsConstTrajectory`
 fixes one `p ∈ construct P` for the whole run, the uncertain-but-constant
 reading. Every constant trajectory is a time-varying one,
-`constTrajectory_toTrajectory` below; the converse fails — a time-varying
+`isConstTrajectory_toIsTrajectory` below; the converse fails — a time-varying
 trajectory need not hold at any single `p` — but is not stated here, no
 counterexample having been constructed.
 
@@ -50,7 +50,7 @@ structure NonlinParamSys (n m q : ℕ) where
   r : ℕ
   g : Vec ℝ n → Vec ℝ m → Vec ℝ q → Vec ℝ r
 
-structure NonlinParamSys.Trajectory (sys : NonlinParamSys n m q) (T : Set ℝ)
+structure NonlinParamSys.IsTrajectory (sys : NonlinParamSys n m q) (T : Set ℝ)
     (R₀ : S n) (U : S m) (P : S q) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m)
     (p : ℝ → Vec ℝ q) : Prop where
   init : x 0 ∈ construct R₀
@@ -60,7 +60,7 @@ structure NonlinParamSys.Trajectory (sys : NonlinParamSys n m q) (T : Set ℝ)
 
 /-- The uncertain-but-constant reading: one `p ∈ construct P` for the whole run,
 rather than a fresh one at every instant. -/
-structure NonlinParamSys.ConstTrajectory (sys : NonlinParamSys n m q) (T : Set ℝ)
+structure NonlinParamSys.IsConstTrajectory (sys : NonlinParamSys n m q) (T : Set ℝ)
     (R₀ : S n) (U : S m) (P : S q) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m)
     (p : Vec ℝ q) : Prop where
   init : x 0 ∈ construct R₀

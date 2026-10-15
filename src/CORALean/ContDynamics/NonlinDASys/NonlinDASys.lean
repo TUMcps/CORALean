@@ -13,13 +13,13 @@ and the output equation `z = h(x, y, u)`. `n` states, `p` constraints (CORA's `n
 the dimension of `y`) and `m` inputs; the output dimension `q` is a field, as CORA's
 `nrOfOutputs` is a property. Absent an output equation CORA's is the state, `h x y u = x`.
 Time-invariant as CORA's is. The output of a run is `h (x t) (y t) (u t)`, a function of it,
-so `Trajectory` does not repeat it.
+so `IsTrajectory` does not repeat it.
 
-A `Trajectory` is `(x, y, u)` with `x` differentiable along `f`, and the constraint holding on
+A `IsTrajectory` is `(x, y, u)` with `x` differentiable along `f`, and the constraint holding on
 all of `T`; there is no separate consistency condition on `y 0`, which the constraint at `0`
 already imposes (`0 ∈ T` is the caller's). CORA assumes the system is of differentiation index 1,
 that `∂g/∂y` is invertible along solutions; the class does not carry it, as CORA's does not, and
-`Index1` in `Definitions/` states it, to be assumed where a theorem needs it.
+`IsIndex1` in `Definitions/` states it, to be assumed where a theorem needs it.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -46,7 +46,7 @@ structure NonlinDASys (n p m : ℕ) where
   q : ℕ
   h : Vec ℝ n → Vec ℝ p → Vec ℝ m → Vec ℝ q
 
-structure NonlinDASys.Trajectory (sys : NonlinDASys n p m) (T : Set ℝ) (R₀ : S n)
+structure NonlinDASys.IsTrajectory (sys : NonlinDASys n p m) (T : Set ℝ) (R₀ : S n)
     (U : S m) (x : ℝ → Vec ℝ n) (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m) : Prop where
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U

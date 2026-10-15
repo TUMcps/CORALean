@@ -40,14 +40,14 @@ public import CORALean.NN.Layers.Definitions.Softmax
 public import CORALean.NN.Layers.Definitions.SoftmaxExactLayer
 public import CORALean.NN.Layers.Definitions.SoftmaxLayer
 public import CORALean.NN.Layers.Definitions.Softplus
-public import CORALean.NN.Layers.Definitions.SoftplusBox
+public import CORALean.NN.Layers.Definitions.IsSoftplusBox
 public import CORALean.NN.Layers.Definitions.SoundLayer
 public import CORALean.NN.Layers.Definitions.TanhLayer
 public import CORALean.NN.Layers.Definitions.TanhRelaxation
 public import CORALean.NN.Layers.Definitions.RootRelaxation
 public import CORALean.NN.Layers.Definitions.TaylmArray
 public import CORALean.NN.Layers.Definitions.WindowMax
-public import CORALean.NN.Layers.Definitions.SShape
+public import CORALean.NN.Layers.Definitions.IsSShape
 public import CORALean.NN.Layers.Definitions.DeepZRelu
 public import CORALean.NN.Layers.Definitions.DeepZSShape
 public import CORALean.NN.Layers.Definitions.SShapedPrinted

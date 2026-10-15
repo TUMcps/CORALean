@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Definitions.SShape
+public import CORALean.NN.Layers.Definitions.IsSShape
 public import Mathlib.Order.Monotone.Basic
 public import Mathlib.Order.Interval.Set.Basic
 
@@ -34,7 +34,7 @@ variable {α : Type} [AddCommGroup α] [LinearOrder α] [IsOrderedAddMonoid α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SShape.unimodal {df : α → α} (h : SShape df) :
+theorem IsSShape.unimodal {df : α → α} (h : IsSShape df) :
     MonotoneOn df (Set.Iic 0) ∧ AntitoneOn df (Set.Ici 0) := by -- --- PROOF ---
   refine ⟨fun s hs t ht hst => ?_, fun s hs t ht hst => h.anti hs hst⟩
   -- the mirror image of `0 ≤ -t ≤ -s`

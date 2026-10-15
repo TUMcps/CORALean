@@ -33,11 +33,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Reach for this to say where a run *is*; reach for `reachSet_subset_reach`
 to say what encloses it. -/
-theorem NeurNetContrSys.Trajectory.reachSet_outer {sys : NeurNetContrSys P S n}
+theorem NeurNetContrSys.IsTrajectory.reachSet_outer {sys : NeurNetContrSys P S n}
     {π : Vec ℝ n → Vec ℝ sys.m} {H : ℕ} {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {W : Set (Vec ℝ (nrOfDisturbances sys.plant))} {x : ℝ → Vec ℝ n}
     {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
-    (traj : sys.Trajectory π H R₀ U_ext W x v w) (t : ℝ) :
+    (traj : sys.IsTrajectory π H R₀ U_ext W x v w) (t : ℝ) :
     x t ∈ sys.reachSet π H R₀ U_ext W t :=
   ⟨x, v, w, traj, rfl⟩
 

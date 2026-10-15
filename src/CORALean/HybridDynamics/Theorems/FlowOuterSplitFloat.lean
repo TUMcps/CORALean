@@ -1,11 +1,11 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.Basic
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
@@ -52,9 +52,9 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 
 /-- Every state a stay passes through by time `r` lies in the split float step
 from `R₀`, with no assumption on where `ℓ.inputSetFloat` sits. -/
-theorem Location.Trajectory.timeIntervalSplitFloat_outer
+theorem Location.IsTrajectory.timeIntervalSplitFloat_outer
     {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w}
-    (traj : ℓ.Trajectory τ x u w)
+    (traj : ℓ.IsTrajectory τ x u w)
     {R₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
     (hη : ℓ.dynamics.OrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)
     (htr : t ≤ toReal r) :

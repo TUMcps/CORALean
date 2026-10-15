@@ -19,7 +19,7 @@ returns the true error vector `trueError` and the abstraction error set `VerrorD
 linearization point and a region. `𝓛` is the type of `VerrorDyn`, a zonotope in CORA.
 
 None of the fields carries a specification: a theorem about the step states what it needs of
-them as a hypothesis (`NonlinearSys.LinReachInnerCert`).
+them as a hypothesis (`NonlinearSys.IsLinReachInnerCert`).
 
 ## References
 

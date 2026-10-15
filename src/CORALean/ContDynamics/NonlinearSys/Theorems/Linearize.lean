@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.NonlinearSys.Operations.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
-public import CORALean.ContDynamics.LinearSys.Definitions.CanonicalClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalClassicalTrajectory
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ The handoff conservative linearization exists for: the same state function `x`,
 the linear system `linearize A`, and the input signal
 `ũ(t) = f(x(t), u(t)) - A x(t)`, which lies in `linInput` wherever the
 certificate holds. The flow condition is then an identity — `A x + ũ = f(x,u)`
-— and the run is a `LinearSys.CanonicalClassicalTrajectory`, handed on by `.trajectory`.
+— and the run is a `LinearSys.IsCanonicalClassicalTrajectory`, handed on by `.trajectory`.
 
 The confinement `hR` stays a hypothesis here, the certificate saying nothing
 outside `R`. It is discharged one level up, by `confinement_of_subset`, from a
@@ -56,13 +56,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S
 
 /-- Every trajectory of `sys` confined to `R` over its own time domain is a
 trajectory of `linearize A` over that same domain, with input in `linInput`. -/
-theorem NonlinearSys.Trajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n}
+theorem NonlinearSys.IsTrajectory.linearize {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n}
     {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n}
-    (traj : sys.Trajectory T R₀ U x u)
+    (traj : sys.IsTrajectory T R₀ U x u)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hR : ∀ t ∈ T, x t ∈ R) :
-    (NonlinearSys.linearize A).CanonicalClassicalTrajectory T R₀ (linInput sys.f A B xs us U L) x
+    (NonlinearSys.linearize A).IsCanonicalClassicalTrajectory T R₀ (linInput sys.f A B xs us U L) x
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) where
   init := traj.init
   input t ht := linInput_outer cert (hR t ht) (traj.input t ht)

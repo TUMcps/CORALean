@@ -36,7 +36,7 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 /-- Every execution of duration below `t₁` ends in mode `m₁ = 0`. -/
 def DiffInclAutomaton.FirstDwell (H : DiffInclAutomaton (Fin 2) X) (t₁ : ℝ) : Prop :=
-  ∀ d, d < t₁ → ∀ m x, H.Exec d m x → m = 0
+  ∀ d, d < t₁ → ∀ m x, H.IsExec d m x → m = 0
 
 end CORALean
 

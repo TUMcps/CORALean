@@ -110,7 +110,7 @@ theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys 𝕋 n) {U 
     rw [Set.uIcc_of_le ht] at hs
     rw [hu'def, Set.piecewise_eq_of_mem _ _ _ hs]
   refine ⟨fun r => sys.closedForm x₀ u' r + sys.closedForm 0 w r,
-    sys.perturbedTrajectory_closedForm (le_trans ht hle) hU hW x₀ hu'adm hu'meas hw hwmeas,
+    sys.isPerturbedTrajectory_closedForm (le_trans ht hle) hU hW x₀ hu'adm hu'meas hw hwmeas,
     by simp only [LinearSys.closedForm_zero, add_zero], t, hτ, ?_⟩
   -- the two runs agree at `t`, since `u'` agrees with `u` there
   have hend : sys.closedForm x₀ u' t + sys.closedForm 0 w t = x t := by

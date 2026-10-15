@@ -9,9 +9,9 @@ public import CORALean.ContDynamics.NonlinearSysDT.Definitions.WithSteps
 
 `Reach.reachExact` at `NonlinearSysDT.WithSteps`: every state some run is at,
 at a step `k ≤ K`, from a bare initial set under inputs in `U`. A run need be
-known only for its first `K` steps, `TrajectoryOn`, so no input is asked for
+known only for its first `K` steps, `IsTrajectoryOn`, so no input is asked for
 past the horizon. The bare set is the representation `Set` itself, which
-`TrajectoryOn` accepts as it accepts any other. Nothing here mentions the
+`IsTrajectoryOn` accepts as it accepts any other. Nothing here mentions the
 linearizations: they are how `reach` encloses this set, not part of it.
 Positional, as the mathematics: `Reach` reads `K = tFinal - tStart` off `params`.
 -/
@@ -39,7 +39,7 @@ initial set `X` under inputs in `sys.U`. -/
 def NonlinearSysDT.WithSteps.reachUnionExact (sys : NonlinearSysDT.WithSteps S Rg 𝕋 m n) (K : ℕ)
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ k ≤ K, {y | ∃ (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m),
-    sys.sys.TrajectoryOn (S := 𝒮) X (construct sys.U) K x u ∧ x k = y}
+    sys.sys.IsTrajectoryOn (S := 𝒮) X (construct sys.U) K x u ∧ x k = y}
 
 end CORALean
 

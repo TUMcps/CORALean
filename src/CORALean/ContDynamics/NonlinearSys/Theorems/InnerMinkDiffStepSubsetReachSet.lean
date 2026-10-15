@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsInnerMinkDiffCert
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
 
@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubset
 
 Line 15 of [1, Alg. 1]: the time-point set `R̂(t_{k+1}) = R_aff(Δt) ⊖ R̂_err(L̂) + 2c` a step
 computes from `X = R̂(t_k)` holds only states some run from `X` reaches at `Δt`, given
-[1, Prop. 1]'s hypotheses for the step (`InnerMinkDiffCert`). This is
+[1, Prop. 1]'s hypotheses for the step (`IsInnerMinkDiffCert`). This is
 `NonlinearSys.minkowskiDiff_add_subset_reachSet` with `R_aff(Δt)` written as the image of the
 affine map `x₀ ↦ e^{AΔt}x₀ + (x* - e^{AΔt}x* + R_con(Δt))`, its matrix invertible.
 
@@ -49,7 +49,7 @@ theorem NonlinearSys.innerMinkDiffStep_subset_reachSet (ops : NonlinearSys.Inner
     (sys : NonlinearSys n m) (u₀ : Vec ℝ m) {Δt : ℝ} (hΔt : 0 ≤ Δt) (μ : ℝ) (fuel : ℕ)
     {X : Set (Vec ℝ n)} {st : NonlinearSys.InnerMinkDiffState n 𝓛}
     (h : NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X = some st)
-    (cert : NonlinearSys.InnerMinkDiffCert sys u₀ Δt X st) :
+    (cert : NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st) :
     st.Rtk1 ⊆ sys.reachSet (S := 𝒮) (Icc 0 Δt) X {u₀}
       Δt := by -- --- PROOF ---
   -- what line 15 and lines 7-8 computed

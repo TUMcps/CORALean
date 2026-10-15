@@ -9,8 +9,8 @@ public import CORALean.HybridDynamics.Parallel.Operations.Product
 
 `liftTransition` puts a component's reset on its block of the stack and the identity everywhere
 else, so the product's reset of a stack is the stack of the states with that one component's
-replaced. That is the update `ParallelHybridAutomaton.Run.jump` writes, and it is what lets
-`Run.toProduct` take the product's jump to the parallel one.
+replaced. That is the update `ParallelHybridAutomaton.IsRun.jump` writes, and it is what lets
+`IsRun.toProduct` take the product's jump to the parallel one.
 -/
 
 -- Authors:       Claude Opus 5.5

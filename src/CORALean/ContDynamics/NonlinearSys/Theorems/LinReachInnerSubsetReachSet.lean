@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsLinReachInnerCert
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
 
@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubset
 The time-point set `Rtp.set = minkDiff(Rlintp__ + p, Rerror)` CORA's
 `contDynamics/linReachInner.m` computes from `X = Rinit`, with the exact Minkowski difference,
 holds only states some run from `X` reaches at `Δt`, given [1, Prop. 1]'s hypotheses for the
-step (`LinReachInnerCert`). This is `NonlinearSys.minkowskiDiff_add_subset_reachSet` with the
+step (`IsLinReachInnerCert`). This is `NonlinearSys.minkowskiDiff_add_subset_reachSet` with the
 center `c = 0` (CORA's `Rerror` is symmetric about the origin, so `Prop. 1`'s shift `2c`
 vanishes) and `Rlintp__ + p` written as the image of the affine map
 `x₀ ↦ e^{AΔt}x₀ + (p - e^{AΔt}p + Rcon)`, its matrix invertible.
@@ -51,7 +51,7 @@ theorem NonlinearSys.linReachInner_subset_reachSet (ops : NonlinearSys.LinReachI
     (sys : NonlinearSys n m) (u₀ : Vec ℝ m) {Δt : ℝ} (hΔt : 0 ≤ Δt) (fuel : ℕ)
     {X : Set (Vec ℝ n)} {e : Vec ℝ n} {st : NonlinearSys.LinReachInnerState n 𝓛}
     (h : NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st))
-    (cert : NonlinearSys.LinReachInnerCert sys u₀ Δt X st) :
+    (cert : NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st) :
     st.Rtp ⊆ sys.reachSet (S := 𝒮) (Icc 0 Δt) X {u₀}
       Δt := by -- --- PROOF ---
   -- what `Rtp.set` and `Rlintp__ + p` are

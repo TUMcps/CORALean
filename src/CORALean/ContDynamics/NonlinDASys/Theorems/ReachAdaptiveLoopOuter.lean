@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachAdaptiveLoop
 public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachAtOuter
-public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryShift
 
 @[expose] public section
 
@@ -46,7 +46,7 @@ theorem NonlinDASys.reachAdaptiveLoop_outer (sys : NonlinDASys n p m)
     (k fuelErr fuelHalf : ℕ)
     {R0 : Zonotope (Vec ℝ n)} {Tmax : ℝ} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p}
     {u : ℝ → Vec ℝ m}
-    (traj : sys.Trajectory (S := 𝒵) (Set.Icc 0 Tmax) R0 U x y u) (hT : tFinal ≤ Tmax)
+    (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Tmax) R0 U x y u) (hT : tFinal ≤ Tmax)
     (hcert : ∀ (st : NonlinDASys.AdaptState n p) (h : ℝ) (lastStep : Bool)
       (pass : NonlinDASys.AdaptPass n p), 0 ≤ st.t → x st.t ∈ st.R.construct →
       sys.linReachAdaptive T st.R U (k + 2) fuelErr fuelHalf st.adm_x st.adm_y h lastStep
@@ -82,7 +82,7 @@ theorem NonlinDASys.reachAdaptiveLoop_outer (sys : NonlinDASys n p m)
           -- the run counted from `t`, started in `R`, is a run on `[0, Δt]` the certificate covers
           have hab : st.t + pass.Δt ≤ Tmax := by linarith [hguard.2]
           have run := traj.shift (a := st.t) (b := pass.Δt) h0 hab hx
-          obtain ⟨hnext, hint⟩ := NonlinDASys.Trajectory.linReachAt_outer run hguard.1
+          obtain ⟨hnext, hint⟩ := NonlinDASys.IsTrajectory.linReachAt_outer run hguard.1
             (hcert st _ _ pass h0 hx hpass hguard.1 hguard.2)
           -- the loop from `t + Δt`, with the time-interval set joined to the union
           refine ih _ _ (by simp only; linarith [hguard.1]) ?_ ?_ (by

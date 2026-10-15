@@ -55,7 +55,7 @@ example :
 
 /-- A trajectory the identity leaves fixed: the input held at `0`, witnessed by
 `Zonotope`'s own `OfPoint`. -/
-theorem Example.rosTraj : Example.rosSys.CanonicalTrajectory (S := 𝒵) Example.rosR0 Example.rosU
+theorem Example.rosTraj : Example.rosSys.IsCanonicalTrajectory (S := 𝒵) Example.rosR0 Example.rosU
     (fun _ => Example.rosX0) (fun _ => 0) where
   init := Zonotope.mem_ofPoint Example.rosX0
   input _ := Zonotope.mem_ofPoint 0

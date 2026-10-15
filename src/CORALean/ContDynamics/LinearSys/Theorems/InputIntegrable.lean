@@ -45,8 +45,8 @@ theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp 
   exp_continuous.comp (continuous_neg.smul continuous_const)
 
 /-- A continuous matrix times the measurable input is measurable. -/
-theorem LinearSys.CanonicalTrajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.CanonicalTrajectory T R₀ U x u)
+theorem LinearSys.IsCanonicalTrajectory.aux_aestronglyMeasurable {sys : LinearSys 𝕋 n} {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
     (hT : Set.Icc a b ⊆ T) :
     AEStronglyMeasurable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       (volume.restrict (Set.Ioc a b)) :=
@@ -60,8 +60,8 @@ theorem LinearSys.CanonicalTrajectory.aux_aestronglyMeasurable {sys : LinearSys 
 
 /-- What `variation_of_constants` asks for, given only that the input set is
 bounded — which every representation of a set of points is. -/
-theorem LinearSys.CanonicalTrajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.CanonicalTrajectory T R₀ U x u)
+theorem LinearSys.IsCanonicalTrajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
     (hT : Set.Icc a b ⊆ T) (hab : a ≤ b) (hU : Bornology.IsBounded (construct U)) :
     IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       volume a b := by -- --- PROOF ---

@@ -67,7 +67,7 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer
     (hU : construct scaled.aug.U = construct sys.U)
     {p : Vec ℝ 1} (hp : p ∈ construct scaled.P) (hp0 : 0 < p 0)
     {T : ℝ} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.sys.Trajectory (Icc 0 T) R₀ sys.U x u)
+    (traj : sys.sys.IsTrajectory (Icc 0 T) R₀ sys.U x u)
     {tf : ℝ} (htf : 0 ≤ tf) (hδ : 0 ≤ δ) (htfT : tf + δ ≤ T)
     (hpos : ∀ s ∈ Icc 0 tf, 0 < nv ⬝ᵥ x s - d)
     (hclock : ∫ r in (0 : ℝ)..tf, ((nv ⬝ᵥ x r - d) / p 0)⁻¹ = tScaled)

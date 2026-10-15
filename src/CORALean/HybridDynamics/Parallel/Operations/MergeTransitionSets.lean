@@ -9,7 +9,7 @@ public import CORALean.HybridDynamics.Parallel.Operations.LiftTransition
 
 CORA's `mergeTransitionSets`: every outgoing transition of every component's current location,
 lifted. Without synchronization labels each transition is its own product transition, which
-is all `Transition` can say. One component jumps at a time; `Run` has simultaneous jumps
+is all `Transition` can say. One component jumps at a time; `IsRun` has simultaneous jumps
 as consecutive ones.
 -/
 

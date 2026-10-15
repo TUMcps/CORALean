@@ -22,7 +22,7 @@ representation, as `NeurNetContrSys`'s instance asks them, and discharge every s
 condition the linear step would otherwise put in `options`.
 
 `NonlinearSys` is a `ContDynamics`: every one of the `m` arguments of `f` an input, no
-disturbance, a run a `Trajectory`.
+disturbance, a run a `IsTrajectory`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -59,8 +59,8 @@ noncomputable instance NonlinearSys.reachInstance :
 instance NonlinearSys.contDynamics {n m : ℕ} : ContDynamics (NonlinearSys n m) n where
   nrOfInputs _ := m
   nrOfDisturbances _ := 0
-  Trajectory sys T X₀ U W x u w :=
-    NonlinearSys.Trajectory (S := 𝒮) sys T X₀ U x u ∧ ∀ t ∈ T, w t ∈ W
+  IsTrajectory sys T X₀ U W x u w :=
+    NonlinearSys.IsTrajectory (S := 𝒮) sys T X₀ U x u ∧ ∀ t ∈ T, w t ∈ W
 
 end CORALean
 

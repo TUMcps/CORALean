@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearARX.Operations.SimulateBoxFloat
-public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateIsTrajectory
 public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateBoxFloat
 

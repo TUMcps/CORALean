@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsInnerMinkDiffCert
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
@@ -17,9 +17,9 @@ lines 10-13 is there to establish: when `R̂_err(L̂)` is (13) at the enlarged r
 (`inputSolution Δt η L̂`), `L̂` an `AbstractionError` certificate for the linearization `A` at
 `x*` on a region `R` that the solutions from `X` do not leave over `[0, Δt]`, every solution
 satisfies `x(Δt) - (x* + e^{AΔt}(x(0) - x*) + R_con(Δt)) ∈ R̂_err(L̂)`
-(`Trajectory.sub_mem_inputSolution`, with `e^{AΔt}x(0) + ∫ e^{A(Δt-s)}(w - Ax*) ds` rewritten
+(`IsTrajectory.sub_mem_inputSolution`, with `e^{AΔt}x(0) + ∫ e^{A(Δt-s)}(w - Ax*) ds` rewritten
 about `x*` by `A ∫₀^Δt e^{As} ds = e^{AΔt} - I`). With [1, Prop. 1]'s other hypotheses, passed
-through, that is `InnerMinkDiffCert`.
+through, that is `IsInnerMinkDiffCert`.
 
 What stays assumed is what conservative linearization assumes: the confinement `hconf`, which
 the box (25) of line 12 is meant to provide, and the properties of `L̂` and of (13) at it.
@@ -56,7 +56,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 
 /-- [1, Alg. 1]: a remainder `L̂` certified on a region the solutions keep to gives the step
 from `X` [1, Prop. 1]'s hypotheses, (21) among them. -/
-theorem NonlinearSys.InnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
+theorem NonlinearSys.IsInnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
     (ops : NonlinearSys.InnerMinkDiffOps n (S n)) (sys : NonlinearSys n m) (u₀ : Vec ℝ m)
     (U : S m) (hu₀ : u₀ ∈ construct U) {Δt : ℝ} (hΔt : 0 < Δt) (μ : ℝ) (fuel η : ℕ)
     (herr : ∀ A L, ops.err Δt A L = construct ((NonlinearSys.linearize A).inputSolution Δt η L))
@@ -81,7 +81,7 @@ theorem NonlinearSys.InnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
     {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) :
-    NonlinearSys.InnerMinkDiffCert sys u₀ Δt X st := by -- --- PROOF ---
+    NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st := by -- --- PROOF ---
   -- what lines 5, 7 and 14 computed
   have hst : st.w = sys.f st.xstar u₀ ∧
       st.Rcon = (∫ θ in (0:ℝ)..Δt, exp ((Δt - θ) • st.A) *ᵥ st.w) ∧
@@ -91,7 +91,7 @@ theorem NonlinearSys.InnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
     exact ⟨rfl, rfl, rfl⟩
   refine ⟨hEc, hEcv, hEne, hEs, ⟨Ω, K, hLip, hex⟩, fun x₀ hx₀ x hx0 hder => ?_⟩
   -- the solution as a run from the point interval at `x₀`
-  have traj : sys.Trajectory (Icc 0 Δt) (OfInterval.ofInterval (⟨x₀, x₀⟩ : Interval (Vec ℝ n)))
+  have traj : sys.IsTrajectory (Icc 0 Δt) (OfInterval.ofInterval (⟨x₀, x₀⟩ : Interval (Vec ℝ n)))
       U x fun _ => u₀ :=
     ⟨OfInterval.ofInterval_outer _ (by rw [hx0]; exact fun _ => ⟨le_rfl, le_rfl⟩),
       fun _ _ => hu₀, hder⟩

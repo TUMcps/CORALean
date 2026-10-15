@@ -2,7 +2,7 @@ module
 
 public import CORALean.HybridDynamics.Definitions.ReachSet
 public import CORALean.HybridDynamics.Definitions.UrgentReachSetAt
-public import CORALean.HybridDynamics.Theorems.UrgentRunToRun
+public import CORALean.HybridDynamics.Theorems.IsUrgentRunToIsRun
 
 @[expose] public section
 
@@ -41,7 +41,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- An urgent run of a given duration is an urgent run. -/
 theorem aux_urgentRunAt_toUrgentRun {HA : HybridAutomaton S G L 𝕋 n} {r : ℝ} {ℓ ℓ' : L}
-    {x y : Vec ℝ n} (h : HA.UrgentRunAt r ℓ x ℓ' y) : HA.UrgentRun ℓ x ℓ' y := by
+    {x y : Vec ℝ n} (h : HA.IsUrgentRunAt r ℓ x ℓ' y) : HA.IsUrgentRun ℓ x ℓ' y := by
   induction h with
   | flow h hfree => exact .flow h hfree
   | jump h hfree hmem hguard _ ih => exact .jump h hfree hmem hguard ih
@@ -54,7 +54,7 @@ theorem HybridAutomaton.urgentReachSetAt_subset_reachSet (HA : HybridAutomaton S
     (X₀ : S n) (v₀ vᵢ : L) (r : ℝ) :
     HA.urgentReachSetAt X₀ v₀ vᵢ r ⊆ HA.reachSet X₀ v₀ vᵢ := by
   rintro y ⟨x, hx, hrun⟩
-  exact ⟨x, hx, (aux_urgentRunAt_toUrgentRun hrun).toRun⟩
+  exact ⟨x, hx, (aux_urgentRunAt_toUrgentRun hrun).toIsRun⟩
 
 end CORALean
 

@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.NonlinDASys.Operations.ReachLoop
 public import CORALean.ContDynamics.NonlinDASys.Theorems.LinPointCertifiesOfSubset
 public import CORALean.ContDynamics.NonlinDASys.Theorems.LinReachOuter
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachRepeatSpec
-public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryShift
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryShift
 
 @[expose] public section
 
@@ -57,7 +57,7 @@ theorem NonlinDASys.reachLoop_outer (sys : NonlinDASys n p m)
     (splitFn : Zonotope (Vec ℝ n) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n))
     (hsplit : ∀ Z, Z.construct ⊆ (splitFn Z).1.construct ∪ (splitFn Z).2.construct)
     {R0 : Zonotope (Vec ℝ n)} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m} {K : ℕ}
-    (traj : sys.Trajectory (S := 𝒵) (Set.Icc 0 ((K : ℝ) * r)) R0 U x y u)
+    (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 ((K : ℝ) * r)) R0 U x y u)
     (hcert : ∀ j : ℕ, j < K → ∀ (fuel : ℕ) (Z : Zonotope (Vec ℝ n))
       (L₀ : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) (rr : NonlinDASys.ErrorLoopResult n p),
       x ((j : ℝ) * r) ∈ Z.construct →
@@ -161,10 +161,10 @@ theorem NonlinDASys.reachLoop_outer (sys : NonlinDASys n p m)
             (hsub _ _ hLsub.1) (hsub _ _ hLsub.2) hcr
           -- `linReach_outer` at `L`, for the state at `t_{k+1}`, and at `L̄`, for `Rᵈ(τ_k)`
           obtain ⟨F, Rz, hF, hR, hL, hLa, hus, h0, hε⟩ := hcr
-          obtain ⟨hnext, -⟩ := NonlinDASys.Trajectory.linReach_outer (Rinit := Rk) run hr hF hR hL
+          obtain ⟨hnext, -⟩ := NonlinDASys.IsTrajectory.linReach_outer (Rinit := Rk) run hr hF hR hL
             hLa hus h0 hε
           obtain ⟨F', Rz', hF', hR', hL', hLa', hus', h0', hε'⟩ := hcrb
-          obtain ⟨-, hint⟩ := NonlinDASys.Trajectory.linReach_outer (Rinit := Rk) run hr hF' hR'
+          obtain ⟨-, hint⟩ := NonlinDASys.IsTrajectory.linReach_outer (Rinit := Rk) run hr hF' hR'
             hL' hLa' hus' h0' hε'
           -- the loop from `t_{k+1}`, with `Rᵈ(τ_k)` joined to the union
           refine ih k₀ N (k + 1) (tk + r) tf _ rr.L (Runion ∪ rr.Rti.construct)

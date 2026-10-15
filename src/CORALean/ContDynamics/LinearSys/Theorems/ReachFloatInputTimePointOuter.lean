@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
@@ -12,7 +12,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 `R_0 = X₀` holds `x(0)`; at `t_{k+1}` the free motion plus the constant's
 contribution is in `H(t_{k+1})`, and the rest is one `Ũ`-input's contribution
-by `t_{k+1}` (`Trajectory.sub_mem_inputReach_recenter`), in `P^R(t_{k+1})`.
+by `t_{k+1}` (`IsTrajectory.sub_mem_inputReach_recenter`), in `P^R(t_{k+1})`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -43,7 +43,7 @@ theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n)
     (h : sys.reachFloatInput params options = some (Rti, Rtp)) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rtp.length = N + 1 ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.CanonicalTrajectory (S := 𝒮)
+        sys.IsCanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
             params.U.construct) x u →

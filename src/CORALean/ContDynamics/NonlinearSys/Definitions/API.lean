@@ -24,10 +24,10 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.AdmissibleLinError
 public import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
 public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps
 public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffState
-public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsInnerMinkDiffCert
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerOps
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerState
-public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsLinReachInnerCert
 
 /-!
 # What `NonlinearSys` means beyond the system itself

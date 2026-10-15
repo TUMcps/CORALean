@@ -114,7 +114,7 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
     sys.M_pos.le (fun i _ => sys.norm_f_le i) (by nlinarith [sys.M_pos, hΔt]) ho hsub
   -- a run from the bare set `construct R0` is a run from the representation `R0`
   obtain ⟨t, ht, x, u, traj, rfl⟩ := by simpa [NonlinearSys.WithSteps.reachUnionExact] using hy
-  have traj' : sys.sys.Trajectory (Set.Icc 0 ((N : ℝ) * Δt)) params.X₀ sys.U x u :=
+  have traj' : sys.sys.IsTrajectory (Set.Icc 0 ((N : ℝ) * Δt)) params.X₀ sys.U x u :=
     ⟨traj.init, traj.input, traj.flow⟩
   have hx := sys.sys.reachSet_subset_relinTimeInterval_horizon params.X₀ sys.U hΔt hN
     subset_rfl hconf' q hε hconv hclosed hbdd (fun i _ => sys.zero_mem_linInput i) hRconv

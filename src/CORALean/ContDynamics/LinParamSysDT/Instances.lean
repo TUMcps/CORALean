@@ -14,7 +14,7 @@ over `tFinal - tStart` steps, the system being time-invariant, `reach` is
 `reachUnion` (always `some`: nothing here can fail at run time), and the guarantee
 is `reachUnion_outer`.
 
-`LinParamSysDT` is a `ContDynamicsDT`: `m` inputs and no disturbance, a run a `Trajectory`, a
+`LinParamSysDT` is a `ContDynamicsDT`: `m` inputs and no disturbance, a run a `IsTrajectory`, a
 fresh `A k` and `B k` at every step, at some such matrices.
 -/
 
@@ -49,8 +49,8 @@ instance LinParamSysDT.reachInstance :
 instance LinParamSysDT.contDynamicsDT {n : ℕ} : ContDynamicsDT (LinParamSysDT 𝕄 n) n where
   nrOfInputs sys := sys.m
   nrOfDisturbances _ := 0
-  Trajectory sys X₀ U W x u w :=
-    (∃ A B, LinParamSysDT.Trajectory (S := 𝒮) sys X₀ U x u A B) ∧
+  IsTrajectory sys X₀ U W x u w :=
+    (∃ A B, LinParamSysDT.IsTrajectory (S := 𝒮) sys X₀ U x u A B) ∧
       ∀ k, w k ∈ W
 
 end CORALean

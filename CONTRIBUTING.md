@@ -556,7 +556,7 @@ models and systems follow the same shape:
 
 | File | Holds |
 | --- | --- |
-| `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `Trajectory` — no theorem, and no storage helper (see "Main-type files") |
+| `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `IsTrajectory` — no theorem, and no storage helper (see "Main-type files") |
 | `Operations/*.lean` | one operation each, as CORA gives it a file each |
 | `Theorems/*.lean` | one guarantee each, stated and proved together |
 | `Counterexamples/*.lean` | a refutation of a printed statement or of CORA's code, with the model of CORA's code it refutes (see "Counterexamples") |
@@ -960,7 +960,7 @@ of *theorems*, and a proof living in a `def` is invisible to it.
 
 Its length is what it spans: from the `:= by` to the proof's last line, blank
 lines inside it counted and the blank lines between it and whatever follows
-not. A theorem proved by a structure instance — `... : sys.Trajectory … where`
+not. A theorem proved by a structure instance — `... : sys.IsTrajectory … where`
 — has no `:= by` of its own and so carries no flag; the fields' own `by` blocks
 are not it.
 
@@ -1069,6 +1069,22 @@ No binder is called `temp`, `tmp` or a variant of either (`tmp1`, `temp_`, `tmpX
 argument names the value for what it is — the CORA variable it mirrors, or what it
 holds (`preInf`, `quotient`, `shiftedCenter`). `check-conventions.sh` rejects the
 name in code, and leaves comments and strings alone (#191).
+
+A `Prop`-valued definition (a `def`, `abbrev`, `structure`, `inductive` or `class` whose type is
+`Prop` or ends in `→ Prop`) is named so that `X.Name args` reads as a statement (#196):
+
+* a property is `Is…` or `Has…`, or an adjective (`IsCompact`, `HasDerivAt`, `Admissible`):
+  `sys.IsTrajectory …`, `IsRun`, `IsStay`, `IsCanonicalConstTrajectory`;
+* a relation is a verb form (`Encloses`, `Holds`, `Reaches`, `Refines`);
+* a predicate that mirrors a CORA method keeps CORA's name (`representsa_point`, `isequal`,
+  `containsPoint`), and the model of CORA's code ends in `Cora`.
+
+A theorem that embeds the name follows Lean's rule, `IsTrajectory` as `isTrajectory` in a snake-case
+name (`simulate_isTrajectory`, `ofFull_isTrajectory_iff`). `check-conventions.sh` runs
+`scripts/check-prop-names.py`, which rejects a new Prop-valued definition that starts with neither
+`Is` nor `Has` and is not in `scripts/prop-name-allowlist.txt`; the list holds the CORA mirrors, the
+verb forms and adjectives under reason headers, and only shrinks: an entry that no declaration
+carries any more is reported as stale.
 
 CORA's spelling is `center`: `center`, `centerMat`, `recenter`, `IsCenter`, never `centre`, in
 identifiers, file names, docstrings and comments alike. `check-conventions.sh` rejects `centre`

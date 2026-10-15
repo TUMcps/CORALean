@@ -40,7 +40,7 @@ theorem NonlinearARX.output_outer (sys : NonlinearARX dy du p) (hp : 0 < p) {o :
       (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ construct U) →
         v ∈ construct V)
     (steps : ℕ → sys.toNonlinearSysDT.LinStep 𝕋 V)
-    {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.Trajectory Y₀ U y u)
+    {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.IsTrajectory Y₀ U y u)
     (hR : ∀ k, NonlinearARX.stack p y k ∈ (steps k).R) (k : ℕ) :
     y k ∈ construct (mtimes (𝕄 := Mat 𝕋) (sys.outputSel (𝕋 := 𝕋))
       (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps)) := by -- --- PROOF ---

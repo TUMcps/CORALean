@@ -9,7 +9,7 @@ public import CORALean.HybridDynamics.Operations.InputSet
 
 For every input `u ∈ U` and disturbance `w ∈ W` of a location, the combined input `B u + c + E w`
 of its canonical form lies in `inputSet`: `B u` in the product `B U`, `c` in the point, `E w` in
-`E W`, each by its operation's guarantee. So `Trajectory.linearSys` can name `inputSet` for every
+`E W`, each by its operation's guarantee. So `IsTrajectory.linearSys` can name `inputSet` for every
 stay.
 -/
 

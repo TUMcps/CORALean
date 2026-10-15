@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Definitions.SShape
+public import CORALean.NN.Layers.Definitions.IsSShape
 public import CORALean.NN.Layers.Definitions.Sigmoid
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 
@@ -56,7 +56,7 @@ theorem aux_sigmoidDeriv_eq (t : ℝ) : sigmoidDeriv t = (aux_derivDenom t)⁻¹
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `sigmoidDeriv` is even and non-increasing on `[0, ∞)`. -/
-theorem sigmoidDeriv_sShape : SShape sigmoidDeriv where
+theorem sigmoidDeriv_sShape : IsSShape sigmoidDeriv where
   even t := by rw [aux_sigmoidDeriv_eq, aux_sigmoidDeriv_eq, aux_derivDenom_neg]
   anti {s t} hs hst := by
     rw [aux_sigmoidDeriv_eq, aux_sigmoidDeriv_eq]

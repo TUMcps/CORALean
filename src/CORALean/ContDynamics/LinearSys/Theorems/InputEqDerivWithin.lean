@@ -10,8 +10,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
 `u` as a derivative minus the drift. The flow states the sum; this is the
 rearrangement that leaves `u` alone on one side, which is what carries
 measurability to a classical run's `u` on a window `[a, b]` that need not reach
-back to `0` — where `CanonicalClassicalTrajectory.trajectory` cannot hand the run to
-`Trajectory`, whose integral equation is anchored there.
+back to `0` — where `IsCanonicalClassicalTrajectory.trajectory` cannot hand the run to
+`IsTrajectory`, whose integral equation is anchored there.
 -/
 
 -- Authors:       Claude Opus 5
@@ -32,9 +32,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.CanonicalClassicalTrajectory.input_eq_derivWithin {sys : LinearSys 𝕋 n}
+theorem LinearSys.IsCanonicalClassicalTrajectory.input_eq_derivWithin {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
-        (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
+        (traj : sys.IsCanonicalClassicalTrajectory T R₀ U x u)
     {a b t : ℝ} (hT : Set.Icc a b ⊆ T) (ht : t ∈ Set.Ico a b) :
     u t = derivWithin x (Set.Ici t) t - toRealMat sys.A *ᵥ x t := by -- --- PROOF ---
   rw [(traj.flow_Ici hT ht).derivWithin (uniqueDiffWithinAt_Ici t)]

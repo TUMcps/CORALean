@@ -14,13 +14,13 @@ time `dt`. Runs and reachable sets are indexed by the step `k`, the time `k dt`,
 `reach` and `simulate` step through `tStart:dt:tFinal`; `dt` is what a conversion to
 continuous time reads (`toLinearSys`) and what a discretization stores (`LinearSys.discretize`).
 
-`Trajectory` is a run of the whole equation. `CanonicalTrajectory` is a run of the canonical
+`IsTrajectory` is a run of the whole equation. `IsCanonicalTrajectory` is a run of the canonical
 form, `x(k+1) = A x(k) + u'(k)` with the combined input `u' = B u + c + E w` in state
 coordinates, as in [1, Sec. 3.2]: what the reachability algorithms, which read `A` and an input
-set in state coordinates, are proved against. `Trajectory.canonical` turns every run into one.
-`CanonicalTrajectoryOn K` is the canonical run known only for `k < K` — what sampling on
+set in state coordinates, are proved against. `IsTrajectory.canonical` turns every run into one.
+`IsCanonicalTrajectoryOn K` is the canonical run known only for `k < K` — what sampling on
 `[0, KΔt]` gives, so `discretize_horizon` produces it and `reach_outer_horizon` consumes it;
-`toTrajectoryOn` gives it at any `K` from a total run. `CanonicalHeldTrajectory` holds one
+`toIsTrajectoryOn` gives it at any `K` from a total run. `IsCanonicalHeldTrajectory` holds one
 input for the whole run.
 
 ## References
@@ -64,7 +64,7 @@ structure LinearSysDT (𝕋 : Type) (n : ℕ) where
 
 /-- A run of the whole equation: the state from `X₀` under inputs in `U` and disturbances in
 `W`, and the output under noise in `V`. -/
-structure LinearSysDT.Trajectory (sys : LinearSysDT 𝕋 n) (X₀ : S n) (U : S sys.m)
+structure LinearSysDT.IsTrajectory (sys : LinearSysDT 𝕋 n) (X₀ : S n) (U : S sys.m)
     (W : S sys.r) (V : S sys.s) (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ sys.m)
     (w : ℕ → Vec ℝ sys.r) (v : ℕ → Vec ℝ sys.s) (y : ℕ → Vec ℝ sys.q) : Prop where
   init : x 0 ∈ construct X₀
@@ -77,24 +77,24 @@ structure LinearSysDT.Trajectory (sys : LinearSysDT 𝕋 n) (X₀ : S n) (U : S 
     y k = toRealMat sys.C *ᵥ x k + toRealMat sys.D *ᵥ u k + toRealVec sys.k + toRealMat sys.F *ᵥ v k
 
 /-- A run of the canonical form, its combined input in state coordinates drawn from `U`. -/
-structure LinearSysDT.CanonicalTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
+structure LinearSysDT.IsCanonicalTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
     (x u : ℕ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
   input (k : ℕ) : u k ∈ construct U
   step (k : ℕ) : x (k + 1) = toRealMat sys.A *ᵥ x k + u k
 
 /-- A run known only for its first `K` steps: `x` and `u` past that point are
-unconstrained, exactly as `LinearSys.CanonicalTrajectory`'s `x` and `u` are unconstrained
+unconstrained, exactly as `LinearSys.IsCanonicalTrajectory`'s `x` and `u` are unconstrained
 outside `T`. -/
-structure LinearSysDT.CanonicalTrajectoryOn (sys : LinearSysDT 𝕋 n) (R₀ U : S n) (K : ℕ)
+structure LinearSysDT.IsCanonicalTrajectoryOn (sys : LinearSysDT 𝕋 n) (R₀ U : S n) (K : ℕ)
     (x u : ℕ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
   input (k : ℕ) (hk : k < K) : u k ∈ construct U
   step (k : ℕ) (hk : k < K) : x (k + 1) = toRealMat sys.A *ᵥ x k + u k
 
 /-- A zero-order hold: one point `u` of `U`, reused at every step, unlike
-`CanonicalTrajectory` where `input` lets a fresh point be picked each time. -/
-structure LinearSysDT.CanonicalHeldTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
+`IsCanonicalTrajectory` where `input` lets a fresh point be picked each time. -/
+structure LinearSysDT.IsCanonicalHeldTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
     (x : ℕ → Vec ℝ n) (u : Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
   input : u ∈ construct U

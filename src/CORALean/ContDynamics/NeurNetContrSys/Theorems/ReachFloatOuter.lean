@@ -48,7 +48,7 @@ theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys (LinearSys 𝕋 
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, Scalar.toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π H R₀ (construct U_ext) W x v w) :
+    (traj : sys.IsTrajectory π H R₀ (construct U_ext) W x v w) :
     ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈
       construct (sys.reachFloat U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
   obtain ⟨hA, hc, hB⟩ := sys.toRealMat_augmentFloat
@@ -74,7 +74,7 @@ theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys (LinearSys 𝕋 
       rw [Zonotope.construct_point]
       rfl
   -- the period as a canonical run of the float system, its input read back through `hB`, `hc`
-  have hcl : sys.augmentFloat.CanonicalTrajectory (S := 𝒵[𝕋])
+  have hcl : sys.augmentFloat.IsCanonicalTrajectory (S := 𝒵[𝕋])
       (Set.Icc 0 sys.dt) Z
       (Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.augmentFloat.B U_ext)
         (Zonotope.point sys.augmentFloat.c))

@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
-public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryCanonical
-public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryCanonical
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLinearSys
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagateFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
@@ -61,7 +61,7 @@ theorem LinParamSys.reachFloatInput_outer
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {A : Mat ℝ n n} {B : Mat ℝ n sys.m} {x : ℝ → Vec ℝ n}
         {u : ℝ → Vec ℝ sys.m},
-        sys.ConstTrajectory (S := 𝒵[𝕋])
+        sys.IsConstTrajectory (S := 𝒵[𝕋])
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
           params.X₀ params.U x u A B →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
@@ -88,7 +88,7 @@ theorem LinParamSys.reachFloatInput_outer
   set ũ : Vec ℝ n := Scalar.toRealVec uc with hũ
   have hũc : ũ = Recenter.center V := rfl
   -- the run's combined input `B u` lies in `V = B U`: a run of the canonical form under `V`
-  obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.CanonicalConstTrajectory (S := 𝒵[𝕋])
+  obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.IsCanonicalConstTrajectory (S := 𝒵[𝕋])
       (Set.Icc 0 ((tFinal : ℝ) - tStart)) X₀ V x u A := by
     refine ⟨_, trajB.canonical fun s hs => ?_⟩
     rw [hc, add_zero]

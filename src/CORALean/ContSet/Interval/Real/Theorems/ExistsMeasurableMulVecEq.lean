@@ -18,7 +18,7 @@ them, so it is one convex combination of the two corner rows, with a weight that
 is a quotient of measurable functions. Off the set where a member exists, any
 fixed member of the box serves.
 
-What lets a time-varying parameter that `Trajectory` asks nothing of be replaced
+What lets a time-varying parameter that `IsTrajectory` asks nothing of be replaced
 by one an integral can take.
 -/
 

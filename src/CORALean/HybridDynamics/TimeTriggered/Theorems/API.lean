@@ -1,7 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.DirectConversionOverapprox
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.ExecFlowTimer
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.IsExecFlowTimer
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FinalConversionContOverapprox
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FinalConversionNotErrorLt
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
@@ -21,9 +21,9 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScalingConversionCo
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScalingConversionNotZeroError
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScalingConversionSubsetReach
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScalingConversionZeroError
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExecOfSolution
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfExec
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredExecOrbit
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeIsExecOfSolution
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfIsExec
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredIsExecOrbit
 
 /-!
 # What the time-triggered conversion guarantees

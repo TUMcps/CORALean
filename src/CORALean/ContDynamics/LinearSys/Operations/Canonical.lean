@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 # The canonical-form system at a given `A`
 
 `ẋ = A x + u`, `y = x`: the system `(A, I, 0, I, 0, 0, 0, I)`, which is what CORA's
-`canonicalForm` returns at `C = I`. Its `Trajectory` is its `CanonicalTrajectory`, `B = I` and
+`canonicalForm` returns at `C = I`. Its `IsTrajectory` is its `IsCanonicalTrajectory`, `B = I` and
 `c = E = 0` adding nothing to the input in state coordinates, so it is the system an operation
 handed only a state matrix builds: a linearization, a time inversion, the point matrix of a
 parametric system.

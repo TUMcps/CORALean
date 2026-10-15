@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplit
 
 `LinearSys.WithInput.reachExact`'s set, with the input set anywhere:
 `timeIntervalReachSet` over the horizon `[0, tFinal]`, every state some
-`Trajectory` on it, from a bare initial set and under inputs in `sys.U`, is at,
+`IsTrajectory` on it, from a bare initial set and under inputs in `sys.U`, is at,
 at some time of it. The split of `U` and the windows are how `reach` encloses
 this set, not part of it.
 -/

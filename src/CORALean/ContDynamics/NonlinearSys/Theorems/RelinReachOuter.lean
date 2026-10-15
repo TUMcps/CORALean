@@ -22,8 +22,8 @@ the run re-anchored at `iΔt`, with what the induction hypothesis encloses as it
 initial set. Nothing about step `i` reaches past its own window.
 
 Time is handled by re-anchoring rather than by absolute windows. Every statement
-in `LinearSys` reads `Set.Icc 0 r ⊆ T` and `Trajectory.init` pins `x 0`, so
-`Trajectory.shift` moves the run and the one-step theorems apply unchanged. The
+in `LinearSys` reads `Set.Icc 0 r ⊆ T` and `IsTrajectory.init` pins `x 0`, so
+`IsTrajectory.shift` moves the run and the one-step theorems apply unchanged. The
 price is a shifted trajectory, paid once for the flow in `Shift` and once for the
 input integral in `LinearSys.stepInput_shift`.
 
@@ -61,10 +61,10 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 /-- A run confined step by step is inside `relinReach` at every step boundary of
 the horizon. Each step asks for confinement on its own window only, so a chain
 of `N` steps never speaks about the run past `NΔt`. -/
-theorem NonlinearSys.Trajectory.relinReach_outer {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.relinReach_outer {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {steps : ℕ → sys.LinStep U} {Ud : ℕ → S n} {Δt : ℝ} {N : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
+    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))

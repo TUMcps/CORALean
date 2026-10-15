@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.OneStep
 /-!
 # What makes a linearization sound for one run over one step
 
-The hypotheses of `NonlinDASys.Trajectory.linReach_outer`, bundled for a `LinPoint`: a left
+The hypotheses of `NonlinDASys.IsTrajectory.linReach_outer`, bundled for a `LinPoint`: a left
 inverse `F⁻¹ F = I` of the constraint's `y`-block, a region `R^z` the run `(x, y, u)` stays in
 over `[0, Δt]`, the two error zonotopes holding every consistent point's linearization errors
 over `R^z`, `u* ∈ U`, `0 ∈ Verror`, and the step admissible for `oneStep` at order `q + 2`.

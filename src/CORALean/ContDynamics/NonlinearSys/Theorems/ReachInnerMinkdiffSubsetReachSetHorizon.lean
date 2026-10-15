@@ -46,7 +46,7 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSet_horizon
     (hcert : ∀ (T : ℝ) (X : Set (Vec ℝ n)) (e : Vec ℝ n) (st : NonlinearSys.LinReachInnerState n 𝓛),
       X ⊆ sys.reachSet (S := 𝒮) (Icc 0 T) X₀ {u₀} T →
       NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st) →
-      NonlinearSys.LinReachInnerCert sys u₀ Δt X st)
+      NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st)
     {timePoint timeInt : ℕ → Set (Vec ℝ n)}
     (h : NonlinearSys.reachInnerMinkdiff ops (fun x => sys.f x u₀) X₀ Δt steps fuel =
       some (timePoint, timeInt)) :

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Theorems.RunMemOfInvariant
+public import CORALean.HybridDynamics.Parallel.Theorems.IsRunMemOfInvariant
 public import CORALean.HybridDynamics.Parallel.Definitions.ReachSet
 
 @[expose] public section

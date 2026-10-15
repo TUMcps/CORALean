@@ -21,7 +21,7 @@ public import CORALean.Specification.STL.Definitions.MilpPrinted
 public import CORALean.Specification.STL.Definitions.DepReachConsts
 public import CORALean.Specification.STL.Definitions.DepReachState
 public import CORALean.Specification.STL.Definitions.DependencyPreservedBy
-public import CORALean.Specification.STL.Definitions.VerificationProblem
+public import CORALean.Specification.STL.Definitions.IsVerificationProblem
 public import CORALean.Specification.STL.Definitions.Cmp
 public import CORALean.Specification.STL.Definitions.Expr
 public import CORALean.Specification.STL.Definitions.Tree
@@ -41,5 +41,5 @@ sound and complete, and the normal form `Υ` is defined on; STL itself is `STL.l
 its mixed-integer encodings force. `MilpPrinted` and `MilpCorrected` are the program (26) of
 Kochdumper and Bak's automated verifier, as printed and with its strict inequality repaired.
 `DepReachConsts` and `DepReachState` are what its Alg. 1 carries, `DependencyPreservedBy` its
-Def. 4, `VerificationProblem` its Sec. 3.
+Def. 4, `IsVerificationProblem` its Sec. 3.
 -/

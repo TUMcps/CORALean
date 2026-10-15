@@ -18,7 +18,7 @@ not stored: it is computed from this one (`Aext`, `Btilde`). No `B`-versus-`c` c
 offset folds into the input set, as it does for every system here.
 
 `stack y k` is the window `(y(k), …, y(k+p-1))`, block `a` holding `y(k+a)`, the
-state the conversion to `LinearSysDT` carries. `Trajectory` is the ARX recursion
+state the conversion to `LinearSysDT` carries. `IsTrajectory` is the ARX recursion
 for every `k ≥ p`, the first window `stack y 0` in `Y₀`, as CORA's `y0`, and every
 input in `U`; the conversion is not used to state it.
 
@@ -56,7 +56,7 @@ structure LinearARX (𝕋 : Type) (dy du p : ℕ) where
 def LinearARX.stack (p : ℕ) (y : ℕ → Vec ℝ dy) (k : ℕ) : Vec ℝ (p * dy) :=
   fun r => y (k + (finProdFinEquiv.symm r).1) (finProdFinEquiv.symm r).2
 
-structure LinearARX.Trajectory (sys : LinearARX 𝕋 dy du p) (Y₀ : S (p * dy)) (U : S du)
+structure LinearARX.IsTrajectory (sys : LinearARX 𝕋 dy du p) (Y₀ : S (p * dy)) (U : S du)
     (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) : Prop where
   init : LinearARX.stack p y 0 ∈ construct Y₀
   input (k : ℕ) : u k ∈ construct U

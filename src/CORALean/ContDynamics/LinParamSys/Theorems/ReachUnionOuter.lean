@@ -2,13 +2,13 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
-public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryCanonical
-public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryCanonical
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLinearSys
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolution
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagate
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpEnclosure
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolution
-public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryMemInputSet
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryMemInputSet
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
@@ -77,7 +77,7 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
   rintro _ ⟨A, B, x, uIn, trajB, t, ht, rfl⟩
   -- the combined input `B u + c` lies in `V = B U ⊕ c`, which makes the run canonical under `V`
   set V := sys.inputSet params.U with hV
-  obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.CanonicalConstTrajectory (S := 𝒮)
+  obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.IsCanonicalConstTrajectory (S := 𝒮)
       (Set.Icc 0 (params.tFinal - params.tStart)) (construct params.X₀) (construct V) x u A :=
     ⟨_, trajB.canonical fun s hs => sys.mem_inputSet trajB.paramB (trajB.input s hs)⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht

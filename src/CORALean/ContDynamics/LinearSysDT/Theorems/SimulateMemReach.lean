@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
-public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateIsTrajectory
 
 @[expose] public section
 
 /-!
 # A sampled run stays inside the reachable set
 
-`simulate_trajectory` handed to `reach_outer`: the one fact `simulate` is for,
+`simulate_isTrajectory` handed to `reach_outer`: the one fact `simulate` is for,
 stated once so nothing downstream redoes the induction on `reach`.
 -/
 
@@ -35,7 +35,7 @@ theorem LinearSysDT.simulate_mem_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho 
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n}
     (hu : ∀ k, u k ∈ construct U) (k : ℕ) :
     sys.simulate x₀ u k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
-  sys.reach_outer ho R₀ U (sys.simulate_trajectory hx₀ hu) k
+  sys.reach_outer ho R₀ U (sys.simulate_isTrajectory hx₀ hu) k
 
 end CORALean
 

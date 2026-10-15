@@ -20,7 +20,7 @@ the prerequisite: `{x | ∀ u ∈ U, A x + u ∈ B}` is the preimage under `A` o
 A preimage rather than an image under `A⁻¹`: this asks nothing of `A` at all,
 and producing an inverse is the computed version's problem, not this one's.
 
-`Theorems.BackReachSetForallTrajectory` proves what the name claims, against
+`Theorems.BackReachSetForallIsTrajectory` proves what the name claims, against
 the dynamics; `Theorems.BackReachForallInner` puts a computed set inside it.
 -/
 

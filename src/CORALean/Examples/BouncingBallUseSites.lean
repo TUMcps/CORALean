@@ -38,14 +38,14 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 /-- A run that starts inside the invariant ends inside it, however many bounces
 it took and wherever it stopped. -/
 example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
-    (hinv : HA.Invariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.Run ℓ x ℓ' y)
+    (hinv : HA.Invariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
     (hx : x ∈ construct (R ℓ)) : y ∈ construct (R ℓ') :=
   run.mem_of_invariant hinv hx
 
 /-- The floor as a requirement rather than as a guard: checked on the invariant
 of the location a run ends in, it is answered for the state it ends at. -/
 example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
-    (hinv : HA.Invariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.Run ℓ x ℓ' y)
+    (hinv : HA.Invariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
     (hx : x ∈ construct (R ℓ))
     (h : (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds (construct (R ℓ'))) :
     (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds {y} :=
@@ -54,7 +54,7 @@ example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (V
 /-- A stay is enclosed by the linear time-interval step, which is what holding
 `LinearSys` dynamics in a location buys. -/
 example (ℓ : Location 𝒵 ℋ𝒫 Unit ℝ 2) {τ : ℝ} {x : ℝ → Vec ℝ 2} {u w}
-    (traj : ℓ.Trajectory τ x u w) {R₀ Ud : Zonotope (Vec ℝ 2)}
+    (traj : ℓ.IsTrajectory τ x u w) {R₀ Ud : Zonotope (Vec ℝ 2)}
     (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.inputSet))

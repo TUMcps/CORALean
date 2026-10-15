@@ -32,8 +32,8 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- Reach for this to say a location is visited at all; reach for
 `reachSet_outer` to say by which state. -/
-theorem HybridAutomaton.Run.reachLocations_outer {HA : HybridAutomaton S G L 𝕋 n} {R₀ : S n}
-    {ℓ₀ ℓ : L} {x y : Vec ℝ n} (run : HA.Run ℓ₀ x ℓ y) (hx : x ∈ construct R₀) :
+theorem HybridAutomaton.IsRun.reachLocations_outer {HA : HybridAutomaton S G L 𝕋 n} {R₀ : S n}
+    {ℓ₀ ℓ : L} {x y : Vec ℝ n} (run : HA.IsRun ℓ₀ x ℓ y) (hx : x ∈ construct R₀) :
     ℓ ∈ HA.reachLocations R₀ ℓ₀ :=
   ⟨y, run.reachSet_outer hx⟩
 

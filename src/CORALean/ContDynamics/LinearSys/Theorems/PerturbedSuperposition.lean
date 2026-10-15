@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.IsPerturbedTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
 
 @[expose] public section
@@ -48,10 +48,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- The endpoint of a perturbed run splits into the moved start point, the
 input's integral and the disturbance's own. -/
-theorem LinearSys.PerturbedTrajectory.superposition {sys : LinearSys 𝕋 n} {U W : S n}
+theorem LinearSys.IsPerturbedTrajectory.superposition {sys : LinearSys 𝕋 n} {U W : S n}
     {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
     (hW : Bornology.IsBounded (construct W)) {x u w : ℝ → Vec ℝ n}
-    (traj : sys.PerturbedTrajectory (Set.Icc 0 t) U W x u w) :
+    (traj : sys.IsPerturbedTrajectory (Set.Icc 0 t) U W x u w) :
     x t = exp (t • toRealMat sys.A) *ᵥ x 0
         + (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
         + ∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ w s := by -- --- PROOF ---

@@ -31,7 +31,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.OptDeltatDescent
 public import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorGetSubset
 public import CORALean.ContDynamics.NonlinearSys.Theorems.PolyAbstractionErrorOfQuadRemainder
 public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorPoint
-public import CORALean.ContDynamics.NonlinearSys.Theorems.PancakeTrajectory
+public import CORALean.ContDynamics.NonlinearSys.Theorems.PancakeIsTrajectory
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
@@ -54,7 +54,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionOfAnal
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetAbstrReach
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetCenterAbstrReach
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ClassicalTrajectoryIffNonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsClassicalTrajectoryIffNonlinearSys
 public import CORALean.ContDynamics.NonlinearSys.Theorems.TuneDeltatInitGain
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter

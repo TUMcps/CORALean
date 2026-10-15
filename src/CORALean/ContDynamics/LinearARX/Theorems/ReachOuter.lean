@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTIsTrajectory
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOuter
 
 @[expose] public section
@@ -34,10 +34,10 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearARX.reach_outer (sys : LinearARX 𝕋 dy du p) {o : ℕ} (ho : 0 < o)
     (Y₀ : S (p * dy)) (U : S du) {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du}
-    (traj : sys.Trajectory Y₀ U y u) (k : ℕ) :
+    (traj : sys.IsTrajectory Y₀ U y u) (k : ℕ) :
     LinearARX.stack p y k ∈ construct
       (sys.toLinearSysDT.reach ⟨Y₀, sys.inputSet U, 0, k⟩ ⟨o, ho⟩) :=
-  sys.toLinearSysDT.reach_outer ho Y₀ (sys.inputSet U) (sys.toLinearSysDT_trajectory traj) k
+  sys.toLinearSysDT.reach_outer ho Y₀ (sys.inputSet U) (sys.toLinearSysDT_isTrajectory traj) k
 
 end CORALean
 

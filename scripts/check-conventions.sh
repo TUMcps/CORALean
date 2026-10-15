@@ -1832,11 +1832,13 @@ report "$out"
 # read like the paper"), a long subterm spelled out three times in one declaration, and a
 # discrete-time class whose fields differ from its continuous twin's without a reason in
 # scripts/dt-twin-allowlist.txt (#172), and a public theorem that exactly one other file reads
-# and nothing outward-facing names (#189). Same contract as the helper above: status 1 with
-# findings on stdout is a finding, anything else is the helper failing.
+# and nothing outward-facing names (#189), and a Prop-valued definition whose name does not read
+# as a statement (`Is…`/`Has…`, or an entry of scripts/prop-name-allowlist.txt, #196). Same
+# contract as the helper above: status 1 with findings on stdout is a finding, anything else is
+# the helper failing.
 if [ -z "$STAGED" ]; then
   for helper in check-float-wrappers.py check-algorithm-steps.py check-repeated-subterms.py \
-    check-dt-twins.py check-single-use.py; do
+    check-dt-twins.py check-single-use.py check-prop-names.py; do
     helper_err=$(mktemp)
     out=$($PYTHON "scripts/$helper" 2> "$helper_err") && helper_rc=0 || helper_rc=$?
     if [ "$helper_rc" -gt 1 ] || { [ "$helper_rc" -eq 1 ] && [ -z "$out" ]; }; then

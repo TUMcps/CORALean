@@ -11,7 +11,7 @@ The product's input set is a set of global-input vectors, built from the compone
 When two inputs are bound to the same global input `a`, the lifted set can only take `a`'s range
 from one of them, and so may admit a value the other component's set rules out: the product then
 has behaviours the parallel automaton lacks. `GlobalsDistinct` rules that out, each global input
-feeding at most one input, and is what the converse of `Run.toProduct` assumes.
+feeding at most one input, and is what the converse of `IsRun.toProduct` assumes.
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

@@ -12,8 +12,8 @@ public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViol
 `ρ(Ř(τ_k), H_(i,·)ᵀ)` at the step `Δt = t_end / 2^r` of round `r` — answers
 `violated` only from a round, step and row whose lower bound crossed `f_(i)`
 (`exists_round_of_verifyHalfspace_eq_violated`). There the counterexample of
-[1]'s Sec. 5.1, `supportCounterexample` at `t_k` or `t_{k+1}`, is a `Trajectory` of
-the system on the whole horizon `[0, t_end]` (`trajectory_heldInput`) whose state
+[1]'s Sec. 5.1, `supportCounterexample` at `t_k` or `t_{k+1}`, is a `IsTrajectory` of
+the system on the whole horizon `[0, t_end]` (`isTrajectory_heldInput`) whose state
 at that time violates row `i` of the safe set (`supportCounterexample_violates`).
 
 So the answer is not only sound, as `not_holds_safeSet_of_verifyHalfspace_violated`
@@ -46,7 +46,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 2]: an `unsafe` answer on [1, Alg. 1 (lower bounds)]'s bounds names a round `r'`, a
-row `i` and a step `j`, and the counterexample run there is a `Trajectory` on `[0, t_end]` whose
+row `i` and a step `j`, and the counterexample run there is a `IsTrajectory` on `[0, t_end]` whose
 state at `t_j ∈ [0, t_end]` violates `H_(i,·) x ≤ f_(i)`. -/
 theorem LinearSys.counterexample_of_verifyHalfspace_violated (sys : LinearSys 𝕋 n)
     (R₀ U : S n) (hU : Bornology.IsBounded (construct U)) {tEnd : ℝ} (htEnd : 0 < tEnd)
@@ -58,7 +58,7 @@ theorem LinearSys.counterexample_of_verifyHalfspace_violated (sys : LinearSys �
       (fun r k i => (sys.supportLower (tEnd / 2 ^ r) ν₀ νU c (H i) (k + 1)).ρRτ) f r fuel
         = .violated) :
     ∃ (r' j : ℕ) (i : ι), (j : ℝ) * (tEnd / 2 ^ r') ∈ Set.Icc 0 tEnd ∧
-      sys.CanonicalTrajectory (Set.Icc 0 tEnd) R₀ U
+      sys.IsCanonicalTrajectory (Set.Icc 0 tEnd) R₀ U
         (sys.closedForm (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).1
           (LinearSys.heldInput (tEnd / 2 ^ r')
             (sys.supportCounterexample (tEnd / 2 ^ r') ν₀ νU (H i) j).2))
@@ -79,7 +79,7 @@ theorem LinearSys.counterexample_of_verifyHalfspace_violated (sys : LinearSys �
     have : j ≤ 2 ^ r' := by omega
     exact_mod_cast this
   refine ⟨r', j, i, ⟨mul_nonneg j.cast_nonneg hΔt.le, ?_⟩,
-    sys.trajectory_heldInput R₀ U hU htEnd.le _ (hν₀ _) (fun _ => hνU _), hviol⟩
+    sys.isTrajectory_heldInput R₀ U hU htEnd.le _ (hν₀ _) (fun _ => hνU _), hviol⟩
   calc (j : ℝ) * (tEnd / 2 ^ r') ≤ 2 ^ r' * (tEnd / 2 ^ r') :=
         mul_le_mul_of_nonneg_right hjle hΔt.le
     _ = tEnd := mul_div_cancel₀ tEnd hpow.ne'

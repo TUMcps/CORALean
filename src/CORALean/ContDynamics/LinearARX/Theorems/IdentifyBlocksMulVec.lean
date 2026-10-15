@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearARX.Operations.IdentifyRegressor
 # The blocks of a matrix act on the regressor as the ARX recursion
 
 `[A B]` applied to the regressor of step `k` is `∑ A_i y(k-1-i) + ∑ B_j u(k-j)`, the right-hand
-side of `LinearARX.Trajectory.step`: `identifyBlocks` cuts the columns where `identifyRegressor`
+side of `LinearARX.IsTrajectory.step`: `identifyBlocks` cuts the columns where `identifyRegressor`
 stacks them.
 -/
 

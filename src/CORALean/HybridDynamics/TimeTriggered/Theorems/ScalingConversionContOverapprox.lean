@@ -8,7 +8,7 @@ public import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionUnique
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnscale
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfExec
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfIsExec
 
 @[expose] public section
 
@@ -61,8 +61,8 @@ theorem DiffInclAutomaton.scalingConversion_contOverapprox {I : Set X} {f : X �
   have step : ∀ (k : Fin 3) {w V : ℝ → X} {r τ d : ℝ}, 0 < r →
       (∀ u ∈ Icc 0 r, HasDerivAt w (V u) u) →
       (∀ u ∈ Ioo 0 r, V u ∈ (if k = 1 then {g (w u) • f (w u)} else {f (w u)} : Set X)) →
-      (∀ u ∈ Ioo 0 r, (w u, τ + u) ∈ H'.inv k) → H'.Exec d k (w 0, τ) →
-      H'.Exec (d + r) k (w r, τ + r) := by
+      (∀ u ∈ Ioo 0 r, (w u, τ + u) ∈ H'.inv k) → H'.IsExec d k (w 0, τ) →
+      H'.IsExec (d + r) k (w r, τ + r) := by
     intro k w V r τ d hr hw hV hinv h
     have hy : ∀ u ∈ Icc 0 r, HasDerivAt (fun u => (w u, τ + u)) (V u, 1) u := fun u hu =>
       (hw u hu).prodMk
@@ -74,16 +74,16 @@ theorem DiffInclAutomaton.scalingConversion_contOverapprox {I : Set X} {f : X �
     simp only [add_zero] at this
     exact h.flow this
   -- the jumps at the two time-triggered guards, which reset the timer
-  have jump01 : ∀ {d : ℝ} {x : X}, H'.Exec d 0 (x, tb) → H'.Exec d 1 (x, 0) := fun h =>
+  have jump01 : ∀ {d : ℝ} {x : X}, H'.IsExec d 0 (x, tb) → H'.IsExec d 1 (x, 0) := fun h =>
     h.jump ⟨0, {p | p.2 = tb}, fun p => (p.1, 0), 1⟩
       (by simp [hH', DiffInclAutomaton.scalingConversion]) rfl rfl
-  have jump12 : ∀ {d : ℝ} {x : X}, H'.Exec d 1 (x, ts) → H'.Exec d 2 (x, 0) := fun h =>
+  have jump12 : ∀ {d : ℝ} {x : X}, H'.IsExec d 1 (x, ts) → H'.IsExec d 2 (x, 0) := fun h =>
     h.jump ⟨1, {p | p.2 = ts}, fun p => (p.1, 0), 2⟩
       (by simp [hH', DiffInclAutomaton.scalingConversion]) rfl rfl
   rintro x ⟨s, m, hsT, hex⟩
-  obtain ⟨hs0, z, hz0, hz, hzs⟩ := DiffInclAutomaton.singleMode_exists_solution_of_exec hf hex
-  have e00 : H'.Exec 0 0 (z 0, 0) :=
-    DiffInclAutomaton.Exec.init (by simp [hH', DiffInclAutomaton.scalingConversion, hz0])
+  obtain ⟨hs0, z, hz0, hz, hzs⟩ := DiffInclAutomaton.singleMode_exists_solution_of_isExec hf hex
+  have e00 : H'.IsExec 0 0 (z 0, 0) :=
+    DiffInclAutomaton.IsExec.init (by simp [hH', DiffInclAutomaton.scalingConversion, hz0])
   -- the state `x` is `z s`, reached after `s ≤ T`
   rcases le_or_gt s tb with hstb | hstb
   · -- `s ≤ t_begin`: the execution stays in `m`
@@ -130,8 +130,8 @@ theorem DiffInclAutomaton.scalingConversion_contOverapprox {I : Set X} {f : X �
       rw [← hγt]
       exact lipschitzSolution_unique hf hγ hzs' (by simp [hγ0, hyy0]) _ ⟨hσ0, le_rfl⟩
     -- the scaled solution as an execution of `H'`, from `(z t_begin, 0)` in `m_scaling`
-    have hyystep : ∀ {r d : ℝ}, 0 < r → r ≤ ts → H'.Exec d 1 (z tb, 0) →
-        H'.Exec (d + r) 1 (yy r, 0 + r) := fun hr hrts h =>
+    have hyystep : ∀ {r d : ℝ}, 0 < r → r ≤ ts → H'.IsExec d 1 (z tb, 0) →
+        H'.IsExec (d + r) 1 (yy r, 0 + r) := fun hr hrts h =>
       step 1 (w := yy) (V := fun u => g (yy u) • f (yy u)) hr
         (fun u hu => hyy u ⟨hu.1, hu.2.trans hrts⟩) (fun u _ => by simp) (fun u hu => by
           simp [hH', DiffInclAutomaton.scalingConversion]

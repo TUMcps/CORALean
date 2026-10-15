@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryStepInputOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryStepInputOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 
 @[expose] public section
@@ -38,10 +38,10 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NonlinearSys.Trajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
+theorem NonlinearSys.IsTrajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
     {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt)
+    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 < Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (η : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / ((η : ℝ) + 2) < 1)

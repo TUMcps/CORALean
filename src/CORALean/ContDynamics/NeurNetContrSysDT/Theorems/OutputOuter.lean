@@ -46,7 +46,7 @@ theorem NeurNetContrSysDT.output_outer (sys : NeurNetContrSysDT (LinearSysDT �
     (U_ext : S sys.nExt) {o : ℕ} (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m}
     (hπ : sys.contr.Sound π) {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
-    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.Trajectory π R₀ (construct U_ext) W x v w) (k : ℕ) :
+    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (construct U_ext) W x v w) (k : ℕ) :
     sys.plant.outputEq.eval (x k) (sys.input (π (x k)) (v k)) ∈ construct
       (sys.outputSet U_ext (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)) := by -- --- PROOF ---
   have hx := sys.reach_outer U_ext ho R₀ hπ hW traj k

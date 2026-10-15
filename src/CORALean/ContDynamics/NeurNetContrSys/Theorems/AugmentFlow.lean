@@ -4,6 +4,8 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.Augment
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.JoinInputInj
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.MulVecJoinInput
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.IsTrajectory
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 
 @[expose] public section
 
@@ -65,7 +67,7 @@ theorem NeurNetContrSys.augment_flow (sys : NeurNetContrSys (LinearSys 𝕋 n) S
     {U_ext : Set (Vec ℝ sys.nExt)} (hU : Bornology.IsBounded U_ext)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {a : Vec ℝ sys.m} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : ContDynamics.Trajectory sys.plant (Set.Icc 0 τ) Set.univ (sys.inputSet {a} U_ext) W x
+    (traj : ContDynamics.IsTrajectory sys.plant (Set.Icc 0 τ) Set.univ (sys.inputSet {a} U_ext) W x
       (fun t => sys.input a (v t)) w) :
     ContinuousOn (fun t => (Fin.append (x t) a : Vec ℝ (n + sys.m))) (Set.Icc 0 τ) ∧
       (∀ t ∈ Set.Icc 0 τ, v t ∈ U_ext) ∧

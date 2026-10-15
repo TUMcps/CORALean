@@ -5,9 +5,9 @@ public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
 public import CORALean.HybridDynamics.TimeTriggered.Definitions.OverapproxErrorLE
 public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
 public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.ExecFlowTimer
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.IsExecFlowTimer
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredExecOrbit
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredIsExecOrbit
 
 @[expose] public section
 
@@ -50,9 +50,9 @@ open Set
 /-- Every execution of the counterexample ends in `[-100, 0]`, in `m₂` at `0` after `10` or more. -/
 theorem aux_exec_char {d x : ℝ} {m : Fin 2}
     (h : (DiffInclAutomaton.spaceTriggered ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
-      (fun _ => (0 : ℝ)) (1 : ℝ) 0).Exec d m x) :
+      (fun _ => (0 : ℝ)) (1 : ℝ) 0).IsExec d m x) :
     (m = 0 → -100 ≤ x ∧ x ≤ 0 ∧ d ≤ 100) ∧ (m = 1 → x = 0 ∧ 10 ≤ d) := by -- --- PROOF ---
-  obtain ⟨hd0, h0, h1⟩ := DiffInclAutomaton.spaceTriggered_exec_orbit
+  obtain ⟨hd0, h0, h1⟩ := DiffInclAutomaton.spaceTriggered_isExec_orbit
     (LipschitzWith.const (1 : ℝ)) (LipschitzWith.const (0 : ℝ)) h
   refine ⟨fun hm => ?_, fun hm => ?_⟩
   · -- in `m₁`, `x = x₀ + d` for the initial state `x₀`, and `x₀ + u ≤ 0` up to `d`
@@ -85,35 +85,35 @@ theorem aux_reaches_fifty {ts : ℝ} (hts : 0 ≤ ts) :
   set Hf := DiffInclAutomaton.finalConversion ({-100, -10} : Set ℝ) (fun _ => (1 : ℝ))
     (fun _ => (0 : ℝ)) (fun _ => Icc (0 : ℝ) 1) (1 : ℝ) 0 10 100 ts with hHf
   -- the same state at another duration or timer
-  have cast : ∀ {k : Fin 4} {d d' : ℝ} {p p' : ℝ × ℝ}, Hf.Exec d k p → d = d' → p = p' →
-      Hf.Exec d' k p' := by
+  have cast : ∀ {k : Fin 4} {d d' : ℝ} {p p' : ℝ × ℝ}, Hf.IsExec d k p → d = d' → p = p' →
+      Hf.IsExec d' k p' := by
     intro k d d' p p' h hd hp
     subst hd; subst hp; exact h
   -- the run from `-10`: `m₁` for `10`, `m_scaling` at the guard, `m_either` for `50`
-  have e0 : Hf.Exec 0 0 (-10, 0) :=
-    DiffInclAutomaton.Exec.init (by simp [hHf, DiffInclAutomaton.finalConversion])
-  have e1 := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 0) (w := fun u => -10 + u)
+  have e0 : Hf.IsExec 0 0 (-10, 0) :=
+    DiffInclAutomaton.IsExec.init (by simp [hHf, DiffInclAutomaton.finalConversion])
+  have e1 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 0) (w := fun u => -10 + u)
     (V := fun _ => (1 : ℝ)) (τ := 0) (d := 0) (r := 10) (by norm_num)
     (fun u _ => by simpa using (hasDerivAt_id u).const_add (-10 : ℝ))
     (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (fun u hu => by
       simp [hHf, DiffInclAutomaton.finalConversion]
       linarith [hu.2]) (by simpa using e0)
-  have e2 : Hf.Exec 10 1 (0, 0) :=
-    (cast e1 (by norm_num) (by norm_num) : Hf.Exec 10 0 (0, 10)).jump
+  have e2 : Hf.IsExec 10 1 (0, 0) :=
+    (cast e1 (by norm_num) (by norm_num) : Hf.IsExec 10 0 (0, 10)).jump
       ⟨0, {p | p.2 = 10}, fun p => (p.1, 0), 1⟩
       (by simp [hHf, DiffInclAutomaton.finalConversion]) rfl (by simp)
   -- at the guard `g = 0`, so the scaled solution stays
-  have e3 := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 1) (w := fun _ => (0 : ℝ))
+  have e3 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 1) (w := fun _ => (0 : ℝ))
     (V := fun _ => (0 : ℝ)) (τ := 0) (d := 10) (r := ts) hts
     (fun u _ => hasDerivAt_const u (0 : ℝ))
     (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (fun u hu => by
       simp [hHf, DiffInclAutomaton.finalConversion]
       linarith [hu.2]) e2
-  have e4 : Hf.Exec (10 + ts) 2 (0, 0) :=
-    (cast e3 rfl (by simp) : Hf.Exec (10 + ts) 1 (0, ts)).jump
+  have e4 : Hf.IsExec (10 + ts) 2 (0, 0) :=
+    (cast e3 rfl (by simp) : Hf.IsExec (10 + ts) 1 (0, ts)).jump
       ⟨1, {p | p.2 = ts}, fun p => (p.1, 0), 2⟩
       (by simp [hHf, DiffInclAutomaton.finalConversion]) rfl (by simp)
-  have e5 := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 2) (w := fun u => u)
+  have e5 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 2) (w := fun u => u)
     (V := fun _ => (1 : ℝ)) (τ := 0) (d := 10 + ts) (r := 50) (by norm_num)
     (fun u _ => hasDerivAt_id' u)
     (fun u _ => by simp [hHf, DiffInclAutomaton.finalConversion]) (fun u hu => by

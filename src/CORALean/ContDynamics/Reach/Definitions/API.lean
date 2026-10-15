@@ -20,6 +20,6 @@ exactly (`Reach.steps`, through `ToRat`), and is `none` unless it is a natural
 number, CORA's integer-steps check. A side condition on the options a caller can
 decide is a field with a default proof (`hZonotopeOrder`); one a run can check it
 checks, returning `none` (`0 < timeStep`); what needs the system stays a theorem
-hypothesis. The sets the runs enclose (`reachSet`, `Trajectory`) stay positional:
+hypothesis. The sets the runs enclose (`reachSet`, `IsTrajectory`) stay positional:
 they are the mathematics, not CORA's interface.
 -/

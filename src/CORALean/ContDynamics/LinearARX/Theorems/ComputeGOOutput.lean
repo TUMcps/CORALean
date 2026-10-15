@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearARX.Operations.ComputeGO
 public import CORALean.ContDynamics.LinearARX.Theorems.OutputPowInputMat
-public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
-public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTIsTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.IsTrajectoryStateEq
 
 @[expose] public section
 
@@ -36,7 +36,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.computeGO_output (sys : LinearARX 𝕋 dy du p) (hp : 0 < p) {Y₀ : S (p * dy)}
-    {U : S du} {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.Trajectory Y₀ U y u)
+    {U : S du} {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.IsTrajectory Y₀ U y u)
     {nk : ℕ} (k : Fin nk) :
     y k.val = (sys.computeGO nk).C k *ᵥ LinearARX.stack p y 0
       + ∑ i : Fin nk, (sys.computeGO nk).D k i *ᵥ u i := by -- --- PROOF ---
@@ -45,7 +45,7 @@ theorem LinearARX.computeGO_output (sys : LinearARX 𝕋 dy du p) (hp : 0 < p) {
     funext r
     rw [LinearARX.outputEq_C_mulVec sys hp]
     simp [LinearARX.stack]
-  rw [hy, (sys.toLinearSysDT_trajectory traj).state_eq k.val]
+  rw [hy, (sys.toLinearSysDT_isTrajectory traj).state_eq k.val]
   simp only [LinearARX.computeGO, Matrix.mulVec_add, Matrix.mulVec_mulVec, Matrix.mulVec_sum,
     LinearARX.feed, Matrix.sum_mulVec]
   congr 1

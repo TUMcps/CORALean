@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 # The canonical-form system at a given set of matrices
 
 `x(k+1) = A(k) x(k) + u(k)` with `A(k)` in the set: `B` the point set `{I}` and `c = 0`, so its
-`Trajectory` is its `CanonicalTrajectory`. It is the system an operation handed only the matrix
+`IsTrajectory` is its `IsCanonicalTrajectory`. It is the system an operation handed only the matrix
 set builds: the discretization `e^{AΔt}` of a `LinearSys` or `LinParamSys`, enclosed, whose input
 is already in state coordinates; `LinParamSys.canonical` in discrete time.
 -/

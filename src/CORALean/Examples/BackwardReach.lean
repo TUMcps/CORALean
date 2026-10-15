@@ -1,6 +1,6 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachForallInnerZonotope
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
-import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallIsTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateIsTrajectory
 import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
 /-!
@@ -112,7 +112,7 @@ theorem BReach.backOne :
     BReach.run BReach.mem
 
 /-- `0.3` is in the target itself as well, which is what lets one run start
-there: `simulate_trajectory` asks for a set the start lies in. -/
+there: `simulate_isTrajectory` asks for a set the start lies in. -/
 theorem BReach.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.T.construct := by -- --- PROOF ---
   refine ⟨fun _ => 0.3, fun j => by norm_num, ?_⟩
   show (![(0.3:ℝ)] : Vec ℝ 1) = ![(0:ℝ)] + ∑ _i : Fin 1, (0.3:ℝ) • (![(1:ℝ)] : Vec ℝ 1)
@@ -125,8 +125,8 @@ theorem BReach.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.T.construct := by --
 is inside the target one step later. -/
 example (u : ℕ → Vec ℝ 1) (hu : ∀ k, u k ∈ construct BReach.U) :
     BReach.sys.simulate ![(0.3:ℝ)] u 1 ∈ construct BReach.T :=
-  BReach.sys.backReachSetForall_trajectory (S := 𝒵) BReach.T BReach.U
-    (BReach.sys.simulate_trajectory (S := 𝒵) (R₀ := BReach.T) BReach.memT hu) 1 BReach.backOne
+  BReach.sys.backReachSetForall_isTrajectory (S := 𝒵) BReach.T BReach.U
+    (BReach.sys.simulate_isTrajectory (S := 𝒵) (R₀ := BReach.T) BReach.memT hu) 1 BReach.backOne
 
 end CORALean.Real
 

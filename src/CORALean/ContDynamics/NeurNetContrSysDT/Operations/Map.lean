@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Instances
 public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Basic
 
 @[expose] public section
 
@@ -11,7 +12,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
 CORA's closed loop `aux_augmentLinear` at a `linearSysDT`, read one step at a time:
 `x(k+1) = A x(k) + B [π(x(k)); u_ext(k)] + c = A x + B_nn π(x) + B_ext u_ext + c`, `E` dropped as
 CORA drops it. A function of the state and the external input: the controller reads the state, so
-the external input is the only thing along a run that is chosen. `Trajectory.linear` says that a
+the external input is the only thing along a run that is chosen. `IsTrajectory.linear` says that a
 run with no disturbance steps by it.
 -/
 

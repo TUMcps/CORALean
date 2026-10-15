@@ -14,7 +14,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 `LinearSys.timeIntervalStep` with both matrices replaced by the sets that hold
 them: `e^{Ar}` by `expIntervalEnclosure` of the box `r • sys.A`, and `F` by
 `intervalCorrectionMatrix`. Neither is computed at a member — a member is what a
-`ConstTrajectory` fixes and an implementation never sees.
+`IsConstTrajectory` fixes and an implementation never sees.
 
 At `ℐ`, not at any matrix representation: both enclosures are interval matrices,
 and the step multiplies by them. `𝕄𝒵` would keep the correlations between a

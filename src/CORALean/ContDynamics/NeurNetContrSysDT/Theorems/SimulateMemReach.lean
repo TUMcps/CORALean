@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateIsTrajectory
 
 @[expose] public section
 
 /-!
 # A sampled run stays inside the reachable set
 
-`simulate_trajectory` handed to `reach_outer`: the one fact `simulate` is for,
+`simulate_isTrajectory` handed to `reach_outer`: the one fact `simulate` is for,
 stated once so nothing downstream redoes the induction on `reach`.
 -/
 
@@ -40,7 +40,7 @@ theorem NeurNetContrSysDT.simulate_mem_reach (sys : NeurNetContrSysDT (LinearSys
     sys.simulate π v x₀ k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer U_ext ho R₀ hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])
-    (sys.simulate_trajectory π (Set.mem_singleton 0) hv hx₀) k
+    (sys.simulate_isTrajectory π (Set.mem_singleton 0) hv hx₀) k
 
 end CORALean
 

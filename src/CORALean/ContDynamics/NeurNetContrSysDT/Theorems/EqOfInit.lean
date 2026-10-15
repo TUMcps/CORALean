@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryLinear
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.IsTrajectoryLinear
 
 @[expose] public section
 
 /-!
 # Determinism: the initial state and the external input settle the run
 
-The controller is a function, so the loop is deterministic up to its external input: `Trajectory`
+The controller is a function, so the loop is deterministic up to its external input: `IsTrajectory`
 carries no information beyond `x 0 ∈ R₀` and `v ∈ U_ext`. Stated in the form normally wanted:
 whichever initial sets and disturbance sets the two runs were taken from, agreeing at step zero
 and under the same external input they agree everywhere, via `aux_eq_simulate` identifying each
@@ -33,11 +33,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem NeurNetContrSysDT.Trajectory.aux_eq_simulate
+theorem NeurNetContrSysDT.IsTrajectory.aux_eq_simulate
     {sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n} {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {π : Vec ℝ n → Vec ℝ sys.m} {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
-    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.Trajectory π R₀ U_ext W x v w) (k : ℕ) :
+    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ U_ext W x v w) (k : ℕ) :
     x k = sys.simulate π v (x 0) k := by -- --- PROOF ---
   induction k with
   | zero => rfl
@@ -50,13 +50,13 @@ theorem NeurNetContrSysDT.Trajectory.aux_eq_simulate
 
 /-- Determinism, in the form it is normally wanted: the initial state settles the run under a
 given external input, whichever initial sets the two runs were taken from. -/
-theorem NeurNetContrSysDT.Trajectory.eq_of_init
+theorem NeurNetContrSysDT.IsTrajectory.eq_of_init
     {sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n} {R₀ R₁ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {π : Vec ℝ n → Vec ℝ sys.m} {W₀ W₁ : Set (Vec ℝ sys.plant.r)}
     (hW₀ : ∀ v ∈ W₀, toRealMat sys.plant.E *ᵥ v = 0)
         (hW₁ : ∀ v ∈ W₁, toRealMat sys.plant.E *ᵥ v = 0)
     {x y : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt} {w₀ w₁ : ℕ → Vec ℝ sys.plant.r}
-    (hx : sys.Trajectory π R₀ U_ext W₀ x v w₀) (hy : sys.Trajectory π R₁ U_ext W₁ y v w₁)
+    (hx : sys.IsTrajectory π R₀ U_ext W₀ x v w₀) (hy : sys.IsTrajectory π R₁ U_ext W₁ y v w₁)
     (h : x 0 = y 0) : x = y := by -- --- PROOF ---
   funext k
   rw [hx.aux_eq_simulate hW₀ k, hy.aux_eq_simulate hW₁ k, h]

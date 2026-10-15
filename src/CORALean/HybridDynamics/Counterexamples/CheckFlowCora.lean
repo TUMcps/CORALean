@@ -111,7 +111,7 @@ theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hc : ℓ.dynamics.c = ![0, -g])
     (hU : 0 ∈ ContSet.construct ℓ.U) (hW : 0 ∈ ContSet.construct ℓ.W)
     (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) :
-    ∃ τ x u w, ℓ.Trajectory τ x u w ∧
+    ∃ τ x u w, ℓ.IsTrajectory τ x u w ∧
       (∀ t ∈ Set.Icc 0 τ, x t ∈ (⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩ :
         Real.Zonotope (Vec ℝ 2)).construct) ∧ (![-1, 0] : Vec ℝ 2) ⬝ᵥ x τ = 0 := by -- --- PROOF ---
   have hg0 : 0 < g := by linarith
@@ -192,7 +192,7 @@ theorem Location.checkFlowCora_drops_hit_counterexample
     let c : Vec ℝ 2 := ![-1, 0]
     R ∉ ℓ.checkFlowCora 0 0 c 0 [R] ∧
       R ∈ ℓ.checkFlow c 0 [R] ∧
-      ∃ τ x u w, ℓ.Trajectory τ x u w ∧ (∀ t ∈ Set.Icc 0 τ, x t ∈ R.construct) ∧
+      ∃ τ x u w, ℓ.IsTrajectory τ x u w ∧ (∀ t ∈ Set.Icc 0 τ, x t ∈ R.construct) ∧
         c ⬝ᵥ x τ = 0 := by -- --- PROOF ---
   intro R c
   have hg0 : 0 < g := by linarith

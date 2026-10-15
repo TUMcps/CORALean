@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearARX.Operations.Simulate
 # The first window of a simulated run is the start window
 
 `stack` at `0` reads the first `p` outputs, which `simulate` defines as the start
-window's blocks. Shared by `simulate_trajectory` (real sets) and
+window's blocks. Shared by `simulate_isTrajectory` (real sets) and
 `simulate_mem_simulateBox` (float boxes).
 -/
 

@@ -59,9 +59,9 @@ variable [∀ n, Intersection (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes �
 /-- Every state a stay passes through lies in the location's invariant-cut
 time-interval enclosure, the initial set and the input contribution named by
 the caller. -/
-theorem Location.Trajectory.timeIntervalInv_outer [∀ n, OfPoint (S n) (Vec ℝ n)]
+theorem Location.IsTrajectory.timeIntervalInv_outer [∀ n, OfPoint (S n) (Vec ℝ n)]
     {ℓ : Location S S L 𝕋 n} {τ : ℝ}
-    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w) {R₀ Ud : S n}
+    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) {R₀ Ud : S n}
     (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.inputSet))

@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.NonlinearARX.NonlinearARX
 `simulate` samples one run rather than enclosing all of them: a point computation, carrying
 none of `reach`'s set instances. CORA's `nonlinearARX/simulate`: the first `p` outputs are the
 initial window `y₀`, whose block `k` holds `y(k)`, and every later one is
-`y(k) = f(y(k-1), …, y(k-p), u(k), …, u(k-p))`, which `Trajectory.step` states.
+`y(k) = f(y(k-1), …, y(k-p), u(k), …, u(k-p))`, which `IsTrajectory.step` states.
 -/
 
 -- Authors:       Claude Sonnet 5.5

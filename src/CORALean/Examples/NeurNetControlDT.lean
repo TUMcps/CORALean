@@ -1,7 +1,7 @@
 import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.EqOfInit
 import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OfFullTrajectoryIff
+import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OfFullIsTrajectoryIff
 import CORALean.Examples.NeurNetControl
 
 /-!
@@ -52,7 +52,7 @@ example (sys : NeurNetContrSysDT (LinearSysDT ℝ 2) 𝒵 2) (U_ext : Zonotope (
     (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
     {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ 2} {v : ℕ → Vec ℝ sys.nExt} {w : ℕ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ) :
+    (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ) :
     x k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer U_ext ho R₀ hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj k
@@ -63,7 +63,7 @@ example (sys : NeurNetContrSysDT (LinearSysDT ℝ 2) 𝒵 2) (U_ext : Zonotope (
     (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {x : ℕ → Vec ℝ 2} {v : ℕ → Vec ℝ sys.nExt} {w : ℕ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ)
+    (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ)
     (h : (Specification.safeSet safe).Holds
       (construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩))) :
     (Specification.safeSet safe).Holds {x k} :=
@@ -75,7 +75,7 @@ input. -/
 example (sys : NeurNetContrSysDT (LinearSysDT ℝ 2) 𝒵 2) (U_ext : Set (Vec ℝ sys.nExt))
     (R₀ : Zonotope (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} {x y : ℕ → Vec ℝ 2}
     {v : ℕ → Vec ℝ sys.nExt} {w₀ w₁ : ℕ → Vec ℝ sys.plant.r}
-    (hx : sys.Trajectory π R₀ U_ext {0} x v w₀) (hy : sys.Trajectory π R₀ U_ext {0} y v w₁)
+    (hx : sys.IsTrajectory π R₀ U_ext {0} x v w₀) (hy : sys.IsTrajectory π R₀ U_ext {0} y v w₁)
     (h : x 0 = y 0) : x = y :=
   hx.eq_of_init (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) hy h
@@ -87,10 +87,10 @@ example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat �
     (U_ext : Set (Vec ℝ (Example.nnControlledDT A W₁ b₁ W₂ b₂ dt).nExt)) (hU : U_ext.Nonempty)
     (x : ℕ → Vec ℝ 2) (v : ℕ → Vec ℝ (Example.nnControlledDT A W₁ b₁ W₂ b₂ dt).nExt)
     (w : ℕ → Vec ℝ 2) :
-    (Example.nnControlledDT A W₁ b₁ W₂ b₂ dt).Trajectory π R₀ U_ext {0} x v w ↔
-      ContDynamicsDT.Trajectory (LinearSysDT.canonical A) (construct R₀) Set.univ {0} x
+    (Example.nnControlledDT A W₁ b₁ W₂ b₂ dt).IsTrajectory π R₀ U_ext {0} x v w ↔
+      ContDynamicsDT.IsTrajectory (LinearSysDT.canonical A) (construct R₀) Set.univ {0} x
         (fun k => π (x k)) w :=
-  NeurNetContrSysDT.ofFull_trajectory_iff _ _ _ hU
+  NeurNetContrSysDT.ofFull_isTrajectory_iff _ _ _ hU
 
 /-- The loop above is one of those, which is the only thing left to check: with no external input,
 its `U_ext` is a set of `Vec ℝ 0`s. -/

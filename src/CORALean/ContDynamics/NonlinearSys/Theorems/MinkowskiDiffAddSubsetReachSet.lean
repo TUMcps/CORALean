@@ -19,7 +19,7 @@ The proof's representation (21), `x(Δt) = R_con + e^{AΔt} x(0) + z(x(0))` with
 `R̂_err`, is restated from the conservative-linearization papers and is a hypothesis here
 (`herr`, for `M = e^{AΔt}` invertible and `v = R_con`), as are the solutions themselves
 (`hex`, from each `x₀`, under one admissible input `u₀`) and the Lipschitz constant of the
-field along them (`hLip`); `Trajectory.sub_mem_inputSolution` derives (21) from a
+field along them (`hLip`); `IsTrajectory.sub_mem_inputSolution` derives (21) from a
 linearization (`minkowskiDiff_inputSolution_subset_reachSet`). What [1] adds is proved:
 Grönwall makes `x₀ ↦ x(Δt)` continuous, so `z` is, and
 `minkowskiDiff_subset_of_continuous_of_convex` gives the inclusion. The printed proof applies

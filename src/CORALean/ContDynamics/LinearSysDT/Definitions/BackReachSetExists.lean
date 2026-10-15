@@ -19,7 +19,7 @@ asymmetry with the `∀` reading sits — a sum is what `Plus` computes, outer,
 while a difference is a guarantee and only ever inner.
 
 Like `reachSet` and `backReachSetForall` this names no operation class and
-nothing may widen it. `Theorems.BackReachSetExistsTrajectory` builds the run the
+nothing may widen it. `Theorems.BackReachSetExistsIsTrajectory` builds the run the
 name promises; `Theorems.BackReachExistsOuter` puts a computed set around it.
 -/
 

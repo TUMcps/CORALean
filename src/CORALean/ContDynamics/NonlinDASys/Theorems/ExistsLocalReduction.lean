@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinDASys.Definitions.Index1
+public import CORALean.ContDynamics.NonlinDASys.Definitions.IsIndex1
 public import Mathlib.Analysis.Calculus.ImplicitFunction.Bivariate
 
 @[expose] public section
@@ -10,7 +10,7 @@ public import Mathlib.Analysis.Calculus.ImplicitFunction.Bivariate
 
 The algebraic variable as a function of state and input, near a consistent point: Mathlib's
 implicit function theorem for a curried bivariate function (`implicitFunctionOfBivariate`) at
-`G (x, u) y = g x y u`, whose partial in `y` is invertible by `Index1At`. What it gives is local:
+`G (x, u) y = g x y u`, whose partial in `y` is invertible by `IsIndex1At`. What it gives is local:
 `ψ` solves the constraint near `(x₀, u₀)`, and `ψ (x, u) = y` is equivalent to the constraint
 near `((x₀, u₀), y₀)`, so `ψ` is the unique solution there. A `ReducedModel` asks that
 for all `x`, `u`, `y`; this is why one is data. `G₁`, `G₂` are the partial derivatives, continuous
@@ -37,7 +37,7 @@ variable {n p m : ℕ}
 
 theorem NonlinDASys.exists_localReduction (sys : NonlinDASys n p m)
     {x₀ : Vec ℝ n} {y₀ : Vec ℝ p} {u₀ : Vec ℝ m} (h₀ : sys.g x₀ y₀ u₀ = 0)
-    (hI : sys.Index1At x₀ y₀ u₀)
+    (hI : sys.IsIndex1At x₀ y₀ u₀)
     {G₁ : Vec ℝ n × Vec ℝ m → Vec ℝ p → (Vec ℝ n × Vec ℝ m) →L[ℝ] Vec ℝ p}
     {G₂ : Vec ℝ n × Vec ℝ m → Vec ℝ p → Vec ℝ p →L[ℝ] Vec ℝ p}
     (d₁ : ∀ᶠ v in 𝓝 ((x₀, u₀), y₀),

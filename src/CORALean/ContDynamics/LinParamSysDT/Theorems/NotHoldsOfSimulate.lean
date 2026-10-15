@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.HoldsOfReach
-public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateIsTrajectory
 
 @[expose] public section
 
 /-!
 # One sampled run can falsify what reachability can only fail to prove
 
-The contrapositive of `holds_of_reach` at `simulate_trajectory`, exactly
+The contrapositive of `holds_of_reach` at `simulate_isTrajectory`, exactly
 `LinearSysDT.not_holds_of_simulate`'s statement at a matrix chosen per step:
 a specification violated along one sampled run cannot have held on the
 reachable set either. An enclosure is a superset, so a specification holding
@@ -43,7 +43,7 @@ theorem LinParamSysDT.not_holds_of_simulate (sys : LinParamSysDT 𝕄 n) {o : �
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U)
     (k : ℕ) (hbad : ¬ spec.Holds {sys.simulate A x₀ u k}) :
     ¬ spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) :=
-  fun h => hbad (sys.holds_of_reach ho R₀ U spec (sys.simulate_trajectory hA hx₀ hu) k h)
+  fun h => hbad (sys.holds_of_reach ho R₀ U spec (sys.simulate_isTrajectory hA hx₀ hu) k h)
 
 end CORALean
 

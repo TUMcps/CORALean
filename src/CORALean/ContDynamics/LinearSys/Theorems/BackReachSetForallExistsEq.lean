@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetForallExis
 public import CORALean.ContDynamics.LinearSys.Operations.InputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 public import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
-public import CORALean.ContDynamics.LinearSys.Theorems.PerturbedTrajectoryClosedForm
+public import CORALean.ContDynamics.LinearSys.Theorems.IsPerturbedTrajectoryClosedForm
 public import CORALean.ContDynamics.LinearSys.Theorems.PerturbedSuperposition
 
 @[expose] public section
@@ -83,7 +83,7 @@ theorem LinearSys.backReachSetForallExists_eq (sys : LinearSys 𝕋 n) (U W Xend
       (hx₀ _ (⟨u, hu, humeas, rfl⟩ : _ ∈ sys.inputReach U t))
     rw [Set.mem_neg] at hb
     obtain ⟨w, hw, hwmeas, hqb⟩ := hb
-    have traj := sys.perturbedTrajectory_closedForm ht hU hW x₀ hu humeas hw hwmeas
+    have traj := sys.isPerturbedTrajectory_closedForm ht hU hW x₀ hu humeas hw hwmeas
     have hx0 : sys.closedForm x₀ u 0 + sys.closedForm 0 w 0 = x₀ := by
       rw [sys.closedForm_zero, sys.closedForm_zero, add_zero]
     have hsup := traj.superposition ht hU hW

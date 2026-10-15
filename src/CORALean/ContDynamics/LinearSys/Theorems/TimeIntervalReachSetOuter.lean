@@ -32,8 +32,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Reach for this to say where a run is over the whole interval; reach for
 `timeIntervalReachSet_eq_iUnion` to read it as a union of `reachSet`. -/
-theorem LinearSys.CanonicalTrajectory.timeIntervalReachSet_outer {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.CanonicalTrajectory T R₀ U x u) {r t : ℝ}
+theorem LinearSys.IsCanonicalTrajectory.timeIntervalReachSet_outer {sys : LinearSys 𝕋 n} {T : Set ℝ}
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory T R₀ U x u) {r t : ℝ}
     (ht : t ∈ Set.Icc (0:ℝ) r) :
     x t ∈ sys.timeIntervalReachSet T R₀ U r :=
   ⟨x, u, traj, t, ht, rfl⟩

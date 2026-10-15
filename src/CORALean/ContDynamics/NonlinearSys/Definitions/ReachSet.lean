@@ -64,7 +64,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 at, at time `t`: the exact reachable set, and not an enclosure of it. -/
 def NonlinearSys.reachSet (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : S n) (U : S m) (t : ℝ) :
     Set (Vec ℝ n) :=
-  {y | ∃ (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m), sys.Trajectory T R₀ U x u ∧ x t = y}
+  {y | ∃ (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m), sys.IsTrajectory T R₀ U x u ∧ x t = y}
 
 end CORALean
 

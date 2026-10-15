@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinTimeInterval
@@ -15,7 +15,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 
 `relinReach_outer_inputSolution` places `x (iΔt)` at the start of step `i`; the
 run re-anchored there is a run of the linearized system on `[0, Δt]`, which is
-`Trajectory.linearize`, and `timeInterval_outer_inputSolution` covers every time
+`IsTrajectory.linearize`, and `timeInterval_outer_inputSolution` covers every time
 of that run at once. The extra cost beyond the discrete chain is `η ≥ 2` (the
 time-interval correction matrix needs it) and `0 ∈ linInput` (`inputReach_mono`'s
 own price), neither asked of `relinReach` at all.
@@ -52,10 +52,10 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S]
 
 /-- A run confined step by step is inside `relinTimeInterval` at every time of
 every step, not only at the step boundaries `relinReach` covers. -/
-theorem NonlinearSys.Trajectory.relinTimeInterval_outer {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.relinTimeInterval_outer {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt)
+    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 < Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (q : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1)

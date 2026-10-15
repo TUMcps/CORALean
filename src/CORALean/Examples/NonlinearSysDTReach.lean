@@ -104,7 +104,7 @@ def Example.quadraticLinStep (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
 reused throughout — `reach_outer` asks for nothing else once the certificate is
 in hand. -/
 example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) {x u : ℕ → Vec ℝ 1}
-    (traj : Example.quadraticStep.Trajectory (S := ℐ𝒱) R₀ U x u)
+    (traj : Example.quadraticStep.IsTrajectory (S := ℐ𝒱) R₀ U x u)
     (hR : ∀ k, x k ∈ Example.quadraticRegion p r) (k : ℕ) :
     x k ∈ construct (Example.quadraticStep.reach (S := ℐ𝒱)
       ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ (fun _ => Example.quadraticLinStep p q r U)) :=
@@ -113,7 +113,7 @@ example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) {x 
 /-- The bounded-horizon form, for a run known only up to step `K`. -/
 example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) (K : ℕ)
     {x u : ℕ → Vec ℝ 1}
-    (traj : Example.quadraticStep.TrajectoryOn (S := ℐ𝒱)
+    (traj : Example.quadraticStep.IsTrajectoryOn (S := ℐ𝒱)
       R₀ U K x u)
     (hR : ∀ k < K, x k ∈ Example.quadraticRegion p r) (k : ℕ) (hk : k ≤ K) :
     x k ∈ construct (Example.quadraticStep.reach (S := ℐ𝒱)

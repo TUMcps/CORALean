@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContDynamics.NonlinDASys.Definitions.ReachUnionExact
-public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryOfNonlinearSys
-public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryOfNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryToNonlinearSys
 public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
 
 @[expose] public section

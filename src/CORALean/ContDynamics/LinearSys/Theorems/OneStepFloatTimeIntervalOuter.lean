@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachShift
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachShift
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
@@ -55,10 +55,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The state at every time of the step is in `oneStepFloat`'s time-interval set. -/
-theorem LinearSys.CanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
+theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : LinearSys 𝕋 n}
+    {Δt : 𝕋}
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋 n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
-    (traj : sys.CanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
+    (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
     (h0 : (0 : Vec ℝ n) ∈ U.construct) {t : ℝ} (ht0 : 0 ≤ t) (htΔ : t ≤ toReal Δt)
     (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) :

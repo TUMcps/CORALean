@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.IsTrajectory
 
 @[expose] public section
 
@@ -42,7 +43,7 @@ disturbance in `W`, is at after `k` steps: the exact reachable set, not an enclo
 def NeurNetContrSysDT.reachSet (sys : NeurNetContrSysDT P S n)
     (π : Vec ℝ n → Vec ℝ sys.m) (R₀ : S n) (U_ext : Set (Vec ℝ sys.nExt))
     (W : Set (Vec ℝ (nrOfDisturbances sys.plant))) (k : ℕ) : Set (Vec ℝ n) :=
-  {y | ∃ x : ℕ → Vec ℝ n, ∃ v w, sys.Trajectory π R₀ U_ext W x v w ∧ x k = y}
+  {y | ∃ x : ℕ → Vec ℝ n, ∃ v w, sys.IsTrajectory π R₀ U_ext W x v w ∧ x k = y}
 
 end CORALean
 

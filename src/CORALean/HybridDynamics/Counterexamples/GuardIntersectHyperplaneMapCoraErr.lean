@@ -279,7 +279,7 @@ theorem aux_hpMapCoraCex_inputSet (inv : Zonotope (Vec ℝ 3)) :
 theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample :
     ∃ (ℓ : Location 𝒵 𝒵 Unit ℝ 3) (nv : Vec ℝ 3) (d : ℝ) (R₀ : Zonotope (Vec ℝ 3))
       (tmax τ t : ℝ) (x : ℝ → Vec ℝ 3) (u : ℝ → Vec ℝ ℓ.dynamics.m)
-      (w : ℝ → Vec ℝ ℓ.dynamics.r), ℓ.Trajectory τ x u w ∧ x 0 ∈ R₀.construct ∧
+      (w : ℝ → Vec ℝ ℓ.dynamics.r), ℓ.IsTrajectory τ x u w ∧ x 0 ∈ R₀.construct ∧
       t ∈ Set.Icc 0 τ ∧ t ≤ tmax ∧ nv ⬝ᵥ x t = d ∧
       ∀ guardOrder zonotopeOrder : ℕ, ∃ Z,
         ℓ.guardIntersectHyperplaneMapCoraErr nv d R₀ tmax 3 guardOrder zonotopeOrder = some Z ∧

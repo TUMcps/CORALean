@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachExistsOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsIsTrajectory
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
@@ -97,7 +97,7 @@ theorem BReachE.mem :
     norm_num [BReachE.sys, Matrix.mulVec, dotProduct]
 
 /-- `0.3` is in the target as well, which is what lets a run start there:
-`backReachSetExists_trajectory` asks for a set the start lies in. -/
+`backReachSetExists_isTrajectory` asks for a set the start lies in. -/
 theorem BReachE.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ construct BReachE.T := by
   intro i
   show (![(-1:ℝ)] : Vec ℝ 1) i ≤ (![(0.3:ℝ)] : Vec ℝ 1) i ∧
@@ -107,10 +107,10 @@ theorem BReachE.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ construct BReachE.T := by
 /-- And the set spent the other way: from `0.3` there *is* an admissible signal
 whose run is in the target one step on. -/
 example : ∃ u : ℕ → Vec ℝ 1,
-    BReachE.sys.CanonicalTrajectoryOn (S := ℐ𝒱) BReachE.T BReachE.U 1
+    BReachE.sys.IsCanonicalTrajectoryOn (S := ℐ𝒱) BReachE.T BReachE.U 1
       (BReachE.sys.simulate ![(0.3:ℝ)] u) u ∧
     BReachE.sys.simulate ![(0.3:ℝ)] u 1 ∈ construct BReachE.T :=
-  BReachE.sys.backReachSetExists_trajectory (S := ℐ𝒱) BReachE.T BReachE.U
+  BReachE.sys.backReachSetExists_isTrajectory (S := ℐ𝒱) BReachE.T BReachE.U
     BReachE.memT 1 BReachE.mem
 
 end CORALean.Real

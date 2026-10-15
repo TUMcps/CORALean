@@ -15,9 +15,9 @@ induction is over the steps: the start of step `k` lies in `R(k Δt)`, its `Rtp`
 `R((k+1) Δt)` (`linReachInner_subset_reachSet`, then `reachSet_subset_reachSet_add`) and its
 `Rti` in `R([k Δt, (k+1) Δt])` (`linReachInner_Rti_subset_reachSet`); `R0` is reached at `0`.
 
-What each step needs is [1, Prop. 1]'s hypotheses (`LinReachInnerCert`), asked for every step
+What each step needs is [1, Prop. 1]'s hypotheses (`IsLinReachInnerCert`), asked for every step
 started from reachable states: the solutions exist, (21), which the abstraction error loop
-certifies (`LinReachInnerCert.of_abstractionError`), and `Rerror` convex, compact, nonempty and
+certifies (`IsLinReachInnerCert.of_abstractionError`), and `Rerror` convex, compact, nonempty and
 symmetric about the origin.
 
 Runs are under the constant input `u₀` (CORA's `params.u`), so under any `U ∋ u₀`.
@@ -55,7 +55,7 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSet (ops : NonlinearSys.LinR
     (hcert : ∀ (T : ℝ) (X : Set (Vec ℝ n)) (e : Vec ℝ n) (st : NonlinearSys.LinReachInnerState n 𝓛),
       X ⊆ sys.reachSet (S := 𝒮) (Icc 0 T) X₀ {u₀} T →
       NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st) →
-      NonlinearSys.LinReachInnerCert sys u₀ Δt X st)
+      NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st)
     {timePoint timeInt : ℕ → Set (Vec ℝ n)}
     (h : NonlinearSys.reachInnerMinkdiff ops (fun x => sys.f x u₀) X₀ Δt steps fuel =
       some (timePoint, timeInt)) :

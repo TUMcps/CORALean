@@ -13,7 +13,7 @@ public import Mathlib.MeasureTheory.Integral.DominatedConvergence
 `exp` is continuous and a primitive is continuous in its upper limit for any
 interval-integrable integrand, regardless of the integrand's own continuity —
 so `closedForm`, `exp(ρA)` applied to a substituted primitive, is continuous
-on `[0, t]` even for a merely bounded measurable input. `Trajectory`'s `cont`
+on `[0, t]` even for a merely bounded measurable input. `IsTrajectory`'s `cont`
 field needs exactly this when the closed form itself is the witness run.
 -/
 

@@ -7,8 +7,8 @@ public import CORALean.ContDynamics.LinParamSys.LinParamSys
 /-!
 # The canonical-form system at a given set of matrices
 
-`ẋ = A x + u` with `A` in the set: `B` the point set `{I}` and `c = 0`, so its `Trajectory` is its
-`CanonicalTrajectory`. It is the system an operation handed only the matrix set builds: an
+`ẋ = A x + u` with `A` in the set: `B` the point set `{I}` and `c = 0`, so its `IsTrajectory` is its
+`IsCanonicalTrajectory`. It is the system an operation handed only the matrix set builds: an
 enclosure of a parametric matrix, the linearization of a parametric nonlinear system, a
 `LinearSys`'s point matrix.
 -/

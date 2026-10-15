@@ -99,7 +99,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     let R := sys.linReachCora (fun _ => x₀) 0 I (Zonotope.ofPoint fun _ => x₀)
       (Zonotope.ofPoint 0) r 2
     ∃ x u : ℝ → Vec ℝ 1,
-      sys.ConstTrajectory (S := 𝒵) (Set.Icc 0 r) (Zonotope.ofPoint fun _ => x₀)
+      sys.IsConstTrajectory (S := 𝒵) (Set.Icc 0 r) (Zonotope.ofPoint fun _ => x₀)
         (Zonotope.ofPoint 0) P x u (fun _ => 2) ∧
       x r ∉ construct R.1 ∧ x r ∉ construct R.2 := by -- --- PROOF ---
   intro sys P I R

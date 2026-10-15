@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 /-!
 # A sampled trajectory of the float matrix-zonotope system
 
-`Trajectory.discretizeMatZonotope` with the float enclosure: `step` witnesses the exact
+`IsTrajectory.discretizeMatZonotope` with the float enclosure: `step` witnesses the exact
 `e^{AΔt}`, whose argument lies in the rounded `AΔt` (`smul_outer` at `mem_point`), so the
 exponential lies in its float enclosure by `exp_mem_expMatZonoEnclosure`. `hε` is that
 theorem's side condition, a float comparison a caller can check before running.
@@ -42,14 +42,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A run of `sys`, sampled at `toReal Δt`, is a run of the float-sampled system. -/
-theorem LinearSys.CanonicalTrajectory.discretizeMatZonotopeFloat {sys : LinearSys 𝕋 n} {T : Set ℝ}
+theorem LinearSys.IsCanonicalTrajectory.discretizeMatZonotopeFloat {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η : ℕ}
-    (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hε : toReal (MatExp.normUpperBound
       (Zonotope.matSmul Δt Δt (Zonotope.pointMat sys.A)).matInterval) / ((η : ℝ) + 2) ≤ 1 / 2) :
-    (sys.discretizeMatZonotopeFloat Δt η).CanonicalTrajectory R₀ Ud
+    (sys.discretizeMatZonotopeFloat Δt η).IsCanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) where
   init := by simpa using traj.init
   input k := hUd k

@@ -46,7 +46,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 attaches to the reachable set, not to a run of it. -/
 theorem LinearSys.reachSet_subset_reach (sys : LinearSys 𝕋 n) {T : Set ℝ} (R₀ U Ud : S n)
     {Δt : ℝ} (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ x u : ℝ → Vec ℝ n, sys.CanonicalTrajectory T R₀ U x u →
+    (hUd : ∀ x u : ℝ → Vec ℝ n, sys.IsCanonicalTrajectory T R₀ U x u →
       ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     sys.reachSet T R₀ U ((k : ℝ) * Δt)
       ⊆ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---

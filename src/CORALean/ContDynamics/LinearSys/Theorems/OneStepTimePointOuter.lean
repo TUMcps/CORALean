@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.OneStep
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachShift
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachShift
 
 @[expose] public section
 
@@ -49,11 +49,11 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The state at the end of the step is in `oneStep`'s time-point set. -/
-theorem LinearSys.CanonicalTrajectory.oneStep_timePoint_outer {sys : LinearSys 𝕋 n} {Δt : ℝ}
+theorem LinearSys.IsCanonicalTrajectory.oneStep_timePoint_outer {sys : LinearSys 𝕋 n} {Δt : ℝ}
     (hΔt : 0 < Δt) {m : ℕ}
     (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {X U W : S n}
     {x w : ℝ → Vec ℝ n} {u : Vec ℝ n}
-    (traj : sys.CanonicalTrajectory (Set.Icc 0 Δt) X W x w)
+    (traj : sys.IsCanonicalTrajectory (Set.Icc 0 Δt) X W x w)
     (hWU : ∀ v ∈ construct W, v - u ∈ construct U) (hW : Bornology.IsBounded (construct W))
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))

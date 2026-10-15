@@ -12,7 +12,7 @@ public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 [1, Prop. 1] with its representation (21) derived rather than assumed: for a linearization whose
 `AbstractionError` certificate `L` holds on a region `R` that the solutions under `u₀` do not
 leave over the step, `R̂(Δt) = (e^{AΔt} X₀ + R_con) ⊖ R̂_err + 2c ⊆ R(Δt)` with
-`R̂_err = inputSolution Δt η L` (`Trajectory.sub_mem_inputSolution`, then
+`R̂_err = inputSolution Δt η L` (`IsTrajectory.sub_mem_inputSolution`, then
 `NonlinearSys.minkowskiDiff_add_subset_reachSet`). This is the time-point set of [1, Alg. 1]
 with `Prop. 1`'s shift `2 cen(R̂_err)` (line 15 writes another center), and `Rtp` of CORA's
 `linReachInner`, `minkDiff(e^{AΔt}(R₀ - p) + R_con + p, Rerror)` with `Rerror` the
@@ -83,7 +83,7 @@ theorem NonlinearSys.minkowskiDiff_inputSolution_subset_reachSet [Mtimes ℐ S]
     ((Matrix.isUnit_iff_isUnit_det _).mp (Matrix.isUnit_exp _)) _ hEc hEcv hEne hEs hu₀ hLip hex
     fun x₀ hx₀ x hx0 hder => ?_
   -- each solution is a run under `u₀` confined to `R`, so (21) holds for it
-  have traj : sys.Trajectory (Set.Icc 0 Δt) R₀ U x fun _ => u₀ :=
+  have traj : sys.IsTrajectory (Set.Icc 0 Δt) R₀ U x fun _ => u₀ :=
     ⟨by rw [hx0]; exact hx₀, fun _ _ => hu₀, hder⟩
   have h := traj.sub_mem_inputSolution cert (hconf x₀ hx₀ x hx0 hder) hΔt η hε hconv hclosed
     hbdd hRconv hRclosed hRbdd

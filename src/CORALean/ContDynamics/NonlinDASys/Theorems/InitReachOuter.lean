@@ -37,9 +37,9 @@ variable {n p m : ℕ}
 
 /-- A run starting in a set of `Rstart`, certified by the linearization of every set holding its
 start, lies in the sets of one entry of `initReach` over the step. -/
-theorem NonlinDASys.Trajectory.initReach_outer {sys : NonlinDASys n p m} {Δt : ℝ}
+theorem NonlinDASys.IsTrajectory.initReach_outer {sys : NonlinDASys n p m} {Δt : ℝ}
     {R₀ : Zonotope (Vec ℝ n)} {U : Zonotope (Vec ℝ m)} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p}
-    {u : ℝ → Vec ℝ m} (traj : sys.Trajectory (S := 𝒵) (Set.Icc 0 Δt) R₀ U x y u)
+    {u : ℝ → Vec ℝ m} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) R₀ U x y u)
     (hΔt : 0 < Δt) {lin : Zonotope (Vec ℝ n) → NonlinDASys.LinPoint n p m}
     {select : (Z : Zonotope (Vec ℝ n)) → Option (Fin Z.h)} {q : ℕ}
     (hcert : ∀ Z : Zonotope (Vec ℝ n), x 0 ∈ Z.construct → (lin Z).Certifies sys U Δt q x y u)
@@ -54,7 +54,7 @@ theorem NonlinDASys.Trajectory.initReach_outer {sys : NonlinDASys n p m} {Δt : 
     obtain ⟨F, Rz, hF, hR, hL, hLa, hus, h0, hε⟩ := hcert Z hx0
     -- no fuel left: the entry is `linReach` of `Z`
     refine ⟨_, List.mem_map.mpr ⟨Z, hZ, rfl⟩, ?_⟩
-    exact NonlinDASys.Trajectory.linReach_outer (Rinit := Z)
+    exact NonlinDASys.IsTrajectory.linReach_outer (Rinit := Z)
       ⟨hx0, traj.input, traj.flow, traj.constraint⟩ hΔt hF hR hL hLa hus h0 hε
   | succ k ih =>
     obtain ⟨Z, hZ, hx0⟩ := hstart
@@ -65,7 +65,7 @@ theorem NonlinDASys.Trajectory.initReach_outer {sys : NonlinDASys n p m} {Δt : 
       obtain ⟨F, Rz, hF, hR, hL, hLa, hus, h0, hε⟩ := hcert Z hx0
       refine ⟨_, List.mem_flatMap.mpr ⟨Z, hZ, by simp only [hs]; exact List.mem_singleton_self _⟩,
         ?_⟩
-      exact NonlinDASys.Trajectory.linReach_outer (Rinit := Z)
+      exact NonlinDASys.IsTrajectory.linReach_outer (Rinit := Z)
           ⟨hx0, traj.input, traj.flow, traj.constraint⟩ hΔt hF hR hL hLa hus h0 hε
     -- a split: the start lies in one half, and the halves are run again
     | some j =>

@@ -32,20 +32,20 @@ public import CORALean.HybridDynamics.Theorems.ReachFloatOuter
 public import CORALean.HybridDynamics.Theorems.ReachFloatCheckedEqSome
 public import CORALean.HybridDynamics.Theorems.ReachLocationsOuter
 public import CORALean.HybridDynamics.Theorems.ReachSetOuter
-public import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionRunUntil
+public import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionIsRunUntil
 public import CORALean.HybridDynamics.Theorems.ReachSetSubsetInvariant
 public import CORALean.HybridDynamics.Theorems.ReachSetSubsetReachFloat
 public import CORALean.HybridDynamics.Theorems.ResetImageSubset
-public import CORALean.HybridDynamics.Theorems.RunExistsRunOn
-public import CORALean.HybridDynamics.Theorems.RunIffExistsRunUntil
-public import CORALean.HybridDynamics.Theorems.RunOnOuter
-public import CORALean.HybridDynamics.Theorems.RunOnToRun
-public import CORALean.HybridDynamics.Theorems.RunOuter
-public import CORALean.HybridDynamics.Theorems.RunUntilMono
-public import CORALean.HybridDynamics.Theorems.RunUntilToRunOn
+public import CORALean.HybridDynamics.Theorems.IsRunExistsIsRunOn
+public import CORALean.HybridDynamics.Theorems.IsRunIffExistsIsRunUntil
+public import CORALean.HybridDynamics.Theorems.IsRunOnOuter
+public import CORALean.HybridDynamics.Theorems.IsRunOnToIsRun
+public import CORALean.HybridDynamics.Theorems.IsRunOuter
+public import CORALean.HybridDynamics.Theorems.IsRunUntilMono
+public import CORALean.HybridDynamics.Theorems.IsRunUntilToIsRunOn
 public import CORALean.HybridDynamics.Theorems.TimeIntervalInvOuter
 public import CORALean.HybridDynamics.Theorems.TimeIntervalInvFloatOuter
-public import CORALean.HybridDynamics.Theorems.TrajectoryMemIccRight
+public import CORALean.HybridDynamics.Theorems.IsTrajectoryMemIccRight
 public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateMemEvaluateFloat
 public import CORALean.HybridDynamics.Theorems.TransitionToNonlinearResetFloatEncloses
@@ -98,7 +98,7 @@ public import CORALean.HybridDynamics.Theorems.NonlinearResetResolveApply
 public import CORALean.HybridDynamics.Theorems.NonlinearResetFloatModelEnclosesResolve
 public import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORASharedInputs
 public import CORALean.HybridDynamics.Theorems.UrgentReachSetAtSubsetReachSet
-public import CORALean.HybridDynamics.Theorems.UrgentRunToRun
+public import CORALean.HybridDynamics.Theorems.IsUrgentRunToIsRun
 public import CORALean.HybridDynamics.Theorems.ReachGuardOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectLevelSetOuter
 public import CORALean.HybridDynamics.Theorems.GuardTransitionLevelSetOuter
@@ -130,9 +130,9 @@ case where one discharges it. `RunOuter` chains the two by induction on the run,
 `HoldsOfRun`/`HoldsAllOfInvariant` turn the result into an answer, one specification or a list of
 them. `ReachSetOuter`, `ReachLocationsOuter`, `ReachSetSubsetInvariant`: the same at run sets.
 
-The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `RunOn` to `Run`, `RunOnOuter`
+The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `IsRunOn` to `IsRun`, `RunOnOuter`
 is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and `InvariantOnOfInvariant` reads an
-`Invariant` as the constant-family case. By `RunIffExistsRunUntil`, `RunUntil` is a `Run` with a
+`Invariant` as the constant-family case. By `RunIffExistsRunUntil`, `IsRunUntil` is a `IsRun` with a
 duration bound; `ReachFloatOuter`/`ReachSetSubsetReachFloat` enclose such runs in floats.
 
 `FlowOuterInputSolution` computes `FlowOuter`'s input contribution rather than

@@ -19,7 +19,7 @@ Left out: CORA's cached Jacobian, Hessian and third-order tensor, which
 `NonlinearSysDT.LinStep` already supplies at the converted system.
 
 `stack y k` is the window `(y(k), …, y(k+p-1))`, block `a` holding `y(k+a)`, the
-state the conversion to `NonlinearSysDT` carries. `Trajectory` is the ARX
+state the conversion to `NonlinearSysDT` carries. `IsTrajectory` is the ARX
 recursion for every `k ≥ p`, the first window `stack y 0` in `Y₀` as CORA's `y0`,
 and every input in `U`; the conversion is not used to state it.
 
@@ -62,7 +62,7 @@ def NonlinearARX.pastOut (p : ℕ) (y : ℕ → Vec ℝ dy) (k : ℕ) : Vec ℝ 
 def NonlinearARX.pastIn (p : ℕ) (u : ℕ → Vec ℝ du) (k : ℕ) : Vec ℝ ((p + 1) * du) :=
   fun r => u (k - (finProdFinEquiv.symm r).1) (finProdFinEquiv.symm r).2
 
-structure NonlinearARX.Trajectory (sys : NonlinearARX dy du p) (Y₀ : S (p * dy)) (U : S du)
+structure NonlinearARX.IsTrajectory (sys : NonlinearARX dy du p) (Y₀ : S (p * dy)) (U : S du)
     (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) : Prop where
   init : NonlinearARX.stack p y 0 ∈ construct Y₀
   input (k : ℕ) : u k ∈ construct U

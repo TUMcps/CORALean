@@ -7,7 +7,7 @@ public import CORALean.HybridDynamics.Parallel.ParallelHybridAutomaton
 /-!
 # The states a parallel run actually reaches
 
-`HybridAutomaton.reachSet` at a `ParallelHybridAutomaton.Run`: every tuple of component states
+`HybridAutomaton.reachSet` at a `ParallelHybridAutomaton.IsRun`: every tuple of component states
 some run from `ℓ₀`, with each component's initial state in that component's `R₀ i`, reaches at
 `ℓ`. The exact set, not an enclosure; `Theorems.ReachSetSubsetInvariant` bounds it.
 -/
@@ -34,7 +34,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 at `ℓ`: the exact reachable set. -/
 def ParallelHybridAutomaton.reachSet (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (R₀ : ∀ i, S (n i)) (ℓ₀ ℓ : ∀ i, L i) : Set (∀ i, Vec ℝ (n i)) :=
-  {y | ∃ x, (∀ i, x i ∈ construct (R₀ i)) ∧ P.Run ℓ₀ x ℓ y}
+  {y | ∃ x, (∀ i, x i ∈ construct (R₀ i)) ∧ P.IsRun ℓ₀ x ℓ y}
 
 end CORALean
 

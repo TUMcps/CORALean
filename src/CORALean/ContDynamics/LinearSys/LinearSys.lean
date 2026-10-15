@@ -14,11 +14,11 @@ matrix stored. The dimensions beside `n` are fields, as CORA's `nrOfInputs`, `nr
 `s` noises, the letters CORA's property comments use. `LinearSys 𝕋 n` is the type of every
 system with `n` states, which is what `Reach` indexes a class by.
 
-`Trajectory` is a run of the whole equation. `CanonicalTrajectory` is a run of CORA's
+`IsTrajectory` is a run of the whole equation. `IsCanonicalTrajectory` is a run of CORA's
 `canonicalForm` [1], `ẋ = A x + u'` with the combined input `u' = B u + c + E w` in state
 coordinates, as in [2, Sec. 3.2]: what the reachability algorithms, which read `A` and an input
 set in state coordinates, are proved against, as CORA's `reach` runs on `canonicalForm`.
-`Trajectory.canonical` turns every run into one of those. Both are Carathéodory runs, stated
+`IsTrajectory.canonical` turns every run into one of those. Both are Carathéodory runs, stated
 by the integral equation [2, Def. 3.1] writes, not by a derivative at every point: a
 zero-order-hold input has none at a jump (Sontag, *Math. Control Theory*, Def. C.2.1). `meas`
 is the input's own regularity, restricted to `T`; `cont` is Def. C.2.1's continuity, without
@@ -65,7 +65,7 @@ structure LinearSys (𝕋 : Type) (n : ℕ) where
 
 /-- A Carathéodory run of the whole equation on `T`: the state from `X₀` under inputs in `U`
 and disturbances in `W`, and the output under noise in `V`. -/
-structure LinearSys.Trajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (X₀ : S n) (U : S sys.m)
+structure LinearSys.IsTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (X₀ : S n) (U : S sys.m)
     (W : S sys.r) (V : S sys.s) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ sys.m)
     (w : ℝ → Vec ℝ sys.r) (v : ℝ → Vec ℝ sys.s) (y : ℝ → Vec ℝ sys.q) : Prop where
   init : x 0 ∈ construct X₀
@@ -82,7 +82,7 @@ structure LinearSys.Trajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (X₀ : S 
 
 /-- A Carathéodory run of `sys`'s canonical form on `T` from `R₀`, its combined input in state
 coordinates drawn from `U`: `B`, `c` and `E` are already in `u`. -/
-structure LinearSys.CanonicalTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
+structure LinearSys.IsCanonicalTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
     (x u : ℝ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U

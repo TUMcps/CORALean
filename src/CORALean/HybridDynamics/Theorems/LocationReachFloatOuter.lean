@@ -3,10 +3,10 @@ module
 public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.HybridDynamics.Operations.LocationReachFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 
@@ -66,9 +66,9 @@ theorem aux_window {N : ℕ} {Δ t : ℝ} (hΔ : 0 < Δ) (hN : 0 < N) (ht0 : 0 �
 
 /-- Every state a stay of length `τ ≤ tFinal` from `X₀` passes through lies in
 one of the computed time-interval sets. -/
-theorem Location.Trajectory.reachFloat_outer
+theorem Location.IsTrajectory.reachFloat_outer
     {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ}
-    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w) {tFinal : ℚ}
+    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) {tFinal : ℚ}
     {options : LinearSys.ReachOptions 𝕋} {X₀ : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))}
     (h : ℓ.reachFloat tFinal options X₀ = some Rs) (h₀ : x 0 ∈ construct X₀)
     (hτ : τ ≤ tFinal) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :

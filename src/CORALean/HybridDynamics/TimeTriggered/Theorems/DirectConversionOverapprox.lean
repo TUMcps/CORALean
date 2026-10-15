@@ -62,11 +62,11 @@ theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X
   have flowK : ∀ {m : Fin 2} {k : Fin 3} {c d t τ : ℝ} {x x' : X},
       (∀ y τ', ∀ v ∈ Hs.flow m y, (v, (1 : ℝ)) ∈ Ht.flow k (y, τ')) →
       (∀ y ∈ Hs.inv m, ∀ τ' ≤ c, (y, τ') ∈ Ht.inv k) → Hs.Flows m x t x' →
-      Ht.Exec d k (x, τ) → τ + t ≤ c → Ht.Exec (d + t) k (x', τ + t) :=
+      Ht.IsExec d k (x, τ) → τ + t ≤ c → Ht.IsExec (d + t) k (x', τ + t) :=
     fun hfl hin hf h hc => h.flow (DiffInclAutomaton.flows_timer hf hfl hin hc)
   -- the three modes of `Ht` and the flows of `Hs` they receive
-  have flow0 : ∀ {d t τ : ℝ} {x x' : X}, Hs.Flows 0 x t x' → Ht.Exec d 0 (x, τ) →
-      τ + t ≤ t₁ → Ht.Exec (d + t) 0 (x', τ + t) := by
+  have flow0 : ∀ {d t τ : ℝ} {x x' : X}, Hs.Flows 0 x t x' → Ht.IsExec d 0 (x, τ) →
+      τ + t ≤ t₁ → Ht.IsExec (d + t) 0 (x', τ + t) := by
     intro d t τ x x' hf h hc
     refine flowK (c := t₁) ?_ ?_ hf h hc
     · intro y τ' v hv
@@ -75,8 +75,8 @@ theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X
     · intro y _ τ' hτ
       simp [hHt, directConversion, hτ]
   -- `m_either` takes the flows of both modes, its flow containing `f₁` and `f₂`
-  have flow1 : ∀ {m : Fin 2} {d t τ : ℝ} {x x' : X}, Hs.Flows m x t x' → Ht.Exec d 1 (x, τ) →
-      τ + t ≤ t₂ → Ht.Exec (d + t) 1 (x', τ + t) := by
+  have flow1 : ∀ {m : Fin 2} {d t τ : ℝ} {x x' : X}, Hs.Flows m x t x' → Ht.IsExec d 1 (x, τ) →
+      τ + t ≤ t₂ → Ht.IsExec (d + t) 1 (x', τ + t) := by
     intro m d t τ x x' hf h hc
     refine flowK (c := t₂) ?_ ?_ hf h hc
     · intro y τ' v hv
@@ -88,8 +88,8 @@ theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X
     · intro y _ τ' hτ
       simp [hHt, directConversion, hτ]
   -- `m₂` of `Ht` has no timer bound, so the timer is the one it ends at
-  have flow2 : ∀ {d t τ : ℝ} {x x' : X}, Hs.Flows 1 x t x' → Ht.Exec d 2 (x, τ) →
-      Ht.Exec (d + t) 2 (x', τ + t) := by
+  have flow2 : ∀ {d t τ : ℝ} {x x' : X}, Hs.Flows 1 x t x' → Ht.IsExec d 2 (x, τ) →
+      Ht.IsExec (d + t) 2 (x', τ + t) := by
     intro d t τ x x' hf h
     refine flowK (c := τ + t) ?_ ?_ hf h le_rfl
     · intro y τ' v hv
@@ -98,11 +98,11 @@ theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X
     · intro y _ τ' _
       simp [hHt, directConversion]
   -- the two time-triggered jumps
-  have jump01 : ∀ {d : ℝ} {x : X}, Ht.Exec d 0 (x, t₁) → Ht.Exec d 1 (x, 0) := by
+  have jump01 : ∀ {d : ℝ} {x : X}, Ht.IsExec d 0 (x, t₁) → Ht.IsExec d 1 (x, 0) := by
     intro d x h
     exact h.jump ⟨0, {p | p.2 = t₁}, fun p => (p.1, 0), 1⟩ (by simp [hHt, directConversion])
       rfl rfl
-  have jump12 : ∀ {d : ℝ} {x : X}, Ht.Exec d 1 (x, t₂) → Ht.Exec d 2 (x, 0) := by
+  have jump12 : ∀ {d : ℝ} {x : X}, Ht.IsExec d 1 (x, t₂) → Ht.IsExec d 2 (x, 0) := by
     intro d x h
     exact h.jump ⟨1, {p | p.2 = t₂}, fun p => (p.1, 0), 2⟩ (by simp [hHt, directConversion])
       rfl rfl
@@ -115,15 +115,15 @@ theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X
     · obtain ⟨y, h1, h2⟩ := DiffInclAutomaton.flows_split hf hs hlt
       exact ⟨y, h1, Or.inr ⟨hlt, h2⟩⟩
   -- the same state at another duration or timer
-  have cast : ∀ {k : Fin 3} {d d' τ τ' : ℝ} {x : X}, Ht.Exec d k (x, τ) → d = d' → τ = τ' →
-      Ht.Exec d' k (x, τ') := by
+  have cast : ∀ {k : Fin 3} {d d' τ τ' : ℝ} {x : X}, Ht.IsExec d k (x, τ) → d = d' → τ = τ' →
+      Ht.IsExec d' k (x, τ') := by
     intro k d d' τ τ' x h hd hτ
     subst hd; subst hτ; exact h
   -- every state of `H` has the `H_tt` execution of the same duration, in the mode its duration says
-  have key : ∀ {d : ℝ} {m : Fin 2} {x : X}, Hs.Exec d m x → 0 ≤ d ∧
-      (m = 0 → (d < t₁ → Ht.Exec d 0 (x, d)) ∧ (t₁ ≤ d → Ht.Exec d 1 (x, d - t₁))) ∧
-      (m = 1 → t₁ ≤ d ∧ (d < t₁ + t₂ → Ht.Exec d 1 (x, d - t₁)) ∧
-        (t₁ + t₂ ≤ d → ∃ s, Ht.Exec d 2 (x, s))) := by
+  have key : ∀ {d : ℝ} {m : Fin 2} {x : X}, Hs.IsExec d m x → 0 ≤ d ∧
+      (m = 0 → (d < t₁ → Ht.IsExec d 0 (x, d)) ∧ (t₁ ≤ d → Ht.IsExec d 1 (x, d - t₁))) ∧
+      (m = 1 → t₁ ≤ d ∧ (d < t₁ + t₂ → Ht.IsExec d 1 (x, d - t₁)) ∧
+        (t₁ + t₂ ≤ d → ∃ s, Ht.IsExec d 2 (x, s))) := by
     intro d m x h
     induction h with
     | init hx =>
@@ -133,8 +133,8 @@ theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X
         by_contra hne
         simp [hHs, spaceTriggered, hne] at hx
       subst hm
-      have e0 : Ht.Exec 0 0 (x, 0) :=
-        DiffInclAutomaton.Exec.init (by
+      have e0 : Ht.IsExec 0 0 (x, 0) :=
+        DiffInclAutomaton.IsExec.init (by
           simp only [hHs, spaceTriggered, if_true] at hx
           simp [hHt, directConversion, hx])
       refine ⟨le_rfl, fun _ => ⟨fun _ => e0, fun ht => ?_⟩, fun h01 => absurd h01 (by decide)⟩
@@ -179,7 +179,7 @@ theorem DiffInclAutomaton.directConversion_overapprox {I : Set X} {f₁ f₂ : X
     | jump h e he hm hx ih =>
       -- the one transition of `Hs` leaves `m₁`, after at least `t₁` and before `t₁ + t₂`
       rename_i d m x
-      have hE := DiffInclAutomaton.Exec.jump h e he hm hx
+      have hE := DiffInclAutomaton.IsExec.jump h e he hm hx
       obtain rfl : e = ⟨0, {x | inner ℝ a x = b}, id, 1⟩ := by simpa [hHs, spaceTriggered] using he
       have hm0 : (0 : Fin 2) = m := hm
       subst hm0

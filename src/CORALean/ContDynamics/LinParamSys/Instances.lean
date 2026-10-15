@@ -17,7 +17,7 @@ system's own `nrOfInputs`, which is why `Reach`'s `P` reads the system. `options
 `inputSolution`'s enclosure needs of `V = B U ⊕ c`, and for `Recenter` and `OfPoint`, which
 split `V` at its center: no `0 ∈ U` is asked.
 
-`LinParamSys` is a `ContDynamics`: `m` inputs and no disturbance, a run a `Trajectory` —
+`LinParamSys` is a `ContDynamics`: `m` inputs and no disturbance, a run a `IsTrajectory` —
 `'varParam'`, a fresh `A t` and `B t` at every instant, which every `'constParam'` run is too —
 at some such matrices.
 
@@ -66,8 +66,8 @@ instance LinParamSys.contDynamics {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSe
     {n : ℕ} : ContDynamics (LinParamSys 𝕄 n) n where
   nrOfInputs sys := sys.m
   nrOfDisturbances _ := 0
-  Trajectory sys T X₀ U W x u w :=
-    (∃ A B, LinParamSys.Trajectory (S := 𝒮) sys T X₀ U x u A B) ∧
+  IsTrajectory sys T X₀ U W x u w :=
+    (∃ A B, LinParamSys.IsTrajectory (S := 𝒮) sys T X₀ U x u A B) ∧
       ∀ t ∈ T, w t ∈ W
 
 end CORALean

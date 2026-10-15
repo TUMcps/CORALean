@@ -15,7 +15,7 @@ The last two are what CORA computes from the automaton and the caller supplies h
 `Lifting` is supplied, since a location type `L i` is not enumerable.
 
 A labeled transition is never taken alone: it fires together with the `λ`-labeled transition of
-every component in `parts λ`, or not at all (`SyncRun`, `mergeTransitionSetsSync`).
+every component in `parts λ`, or not at all (`IsSyncRun`, `mergeTransitionSetsSync`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

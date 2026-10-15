@@ -62,7 +62,7 @@ theorem aux_flows_one {x x' t : ℝ}
 
 /-- Every state of the original automaton is its duration. -/
 theorem aux_exec_eq {d x : ℝ} {m : Unit}
-    (h : (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).Exec d m x) :
+    (h : (DiffInclAutomaton.singleMode ({0} : Set ℝ) (fun _ => (1 : ℝ))).IsExec d m x) :
     x = d := by
   induction h with
   | init hx => simpa [DiffInclAutomaton.singleMode] using hx
@@ -95,8 +95,8 @@ theorem aux_reaches_two :
   set H := DiffInclAutomaton.scalingConversion ({0} : Set ℝ) (fun _ => (1 : ℝ))
     (fun _ => (1 : ℝ)) 1 1 with hH
   -- init, flow in `m`, jump, flow in `m_scaling`, jump
-  have e0 : H.Exec 0 0 (0, 0) :=
-    DiffInclAutomaton.Exec.init (by simp [hH, DiffInclAutomaton.scalingConversion])
+  have e0 : H.IsExec 0 0 (0, 0) :=
+    DiffInclAutomaton.IsExec.init (by simp [hH, DiffInclAutomaton.scalingConversion])
   have e1 := e0.flow (aux_scaling_flow (Or.inl rfl) 0)
   have e2 := e1.jump ⟨0, {p | p.2 = 1}, fun p => (p.1, 0), 1⟩
     (by simp [hH, DiffInclAutomaton.scalingConversion]) rfl (by simp)

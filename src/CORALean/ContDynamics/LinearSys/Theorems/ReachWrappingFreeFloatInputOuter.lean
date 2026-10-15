@@ -13,7 +13,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolu
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
@@ -25,7 +25,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # `reachWrappingFreeFloatInput` holds every run over every window
 
 At `t = τ + t_k`: the run less its free motion and the constant's share is one
-`Ũ`-input's contribution by `t` (`Trajectory.sub_mem_inputReach_recenter`),
+`Ũ`-input's contribution by `t` (`IsTrajectory.sub_mem_inputReach_recenter`),
 inside `e^{A t_k} P^R(Δt) ⊕ P^R(t_k)` (`inputReach_mono`, then
 `inputReach_separation_subset` at `Δt + t_k`); the free motion and the constant
 come apart the same way (`expIntegral_add_mulVec`). So the run is
@@ -62,7 +62,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
     (h : sys.reachWrappingFreeFloatInput params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.CanonicalTrajectory (S := 𝒮)
+        sys.IsCanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
             params.U.construct) x u →

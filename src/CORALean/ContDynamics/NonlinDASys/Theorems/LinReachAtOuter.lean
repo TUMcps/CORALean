@@ -38,11 +38,11 @@ variable {n p m q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A run certified by `L` over `[0, Δt]` is in `linReachAt`'s sets. -/
-theorem NonlinDASys.Trajectory.linReachAt_outer {sys : NonlinDASys n p m}
+theorem NonlinDASys.IsTrajectory.linReachAt_outer {sys : NonlinDASys n p m}
     {L : NonlinDASys.LinPoint n p m}
     {Δt : ℝ} {Rinit : Zonotope (Vec ℝ n)} {U : Zonotope (Vec ℝ m)} {x : ℝ → Vec ℝ n}
     {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
-    (traj : sys.Trajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y u) (hΔt : 0 < Δt) {k : ℕ}
+    (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y u) (hΔt : 0 < Δt) {k : ℕ}
     (hc : L.Certifies sys U Δt k x y u) :
     x Δt ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).1.construct ∧
       ∀ t ∈ Set.Icc 0 Δt,
@@ -50,7 +50,7 @@ theorem NonlinDASys.Trajectory.linReachAt_outer {sys : NonlinDASys n p m}
         (x t, y t)
           ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.2.construct := by -- --- PROOF ---
   obtain ⟨F, Rz, hF, hR, hL, hLa, hus, h0, hε⟩ := hc
-  exact NonlinDASys.Trajectory.linReach_outer traj hΔt hF hR hL hLa hus h0 hε
+  exact NonlinDASys.IsTrajectory.linReach_outer traj hΔt hF hR hL hLa hus h0 hε
 
 end CORALean
 
