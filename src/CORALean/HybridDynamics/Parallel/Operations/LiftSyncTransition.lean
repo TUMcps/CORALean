@@ -37,8 +37,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 
 def ParallelHybridAutomaton.liftSyncTransition [ExactScalar 𝕋] [DecidableEq Λ]
     (P : ParallelHybridAutomaton S G k L 𝕋 n m)
-    {binds : ∀ i, Fin (n i) → InputSource k n m}
-    (slift : ParallelHybridAutomaton.SyncLifting S G n m binds)
+    (slift : ParallelHybridAutomaton.SyncLifting S G n m)
     (lab : ParallelHybridAutomaton.SyncLabels G L 𝕋 n Λ) (ℓ : ∀ i, L i) (a : Λ) :
     Transition G (∀ i, L i) 𝕋 (∑ i, n i) where
   guard := slift.guardAll fun c => (lab.pick P ℓ a c).map (·.guard)

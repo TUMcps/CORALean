@@ -31,7 +31,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 /-- The state a jump reads, packaged as the membership the endpoint always has. -/
 theorem Location.Trajectory.mem_Icc_right {ℓ : Location S G L 𝕋 n} {τ : ℝ}
-    {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) : τ ∈ Set.Icc 0 τ :=
+    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w) : τ ∈ Set.Icc 0 τ :=
   ⟨traj.nonneg, le_refl τ⟩
 
 end CORALean

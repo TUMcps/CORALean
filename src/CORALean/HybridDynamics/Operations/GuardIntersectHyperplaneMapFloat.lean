@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Float.Operations.QuadMapMatZono
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
 public import CORALean.Global.Float.Sqrt
-public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.InputSetFloat
 public import CORALean.HybridDynamics.Operations.AbstractionErrorFloat
 public import CORALean.HybridDynamics.Operations.HitHessianMatZonoFloat
 public import CORALean.HybridDynamics.Operations.HitJacobianFloat
@@ -28,16 +28,16 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 # `Location.guardIntersectHyperplaneMapFloat`, the guard mapping at floats
 
 `Location.guardIntersectHyperplaneMap`, CORA's `guardIntersect_hyperplaneMap` [1], at float
-zonotopes, one `let` per line of the code: `k ⊕ L(R₀ ⊖ ξ) ⊕ ½[φ̲, φ̄] R_quad ⊕ I (AR₀ ⊕ b) ⊕ E`
-of [2, Sec. 5.4], reduced and projected. What rounds is an interval, and what an interval
-cannot stand in for is charged to a set: `b` is the lower end of the box
-`GuardMap.sdcInputFloat`, the rest `t(b − b̲)` added to the error; `k`, `L` are a box and an
-interval matrix; `Q⁽ⁱ⁾` is taken at the centre `τ_c` and radius `τ_g` of `τ`'s interval and
-`R_quad` at interval centres; `Λ` and `nᵀx − d` range over `R₀red ⊖ ξ ⊕ ξ`, which holds the stored
-centre `ξ` even when the error box of `R₀red` does not hold `0`; `n/‖n‖` and `d/‖n‖` are boxes
-(`sqrtDown`/`sqrtUp` at precision `p`) for `projectOnHyperplaneIntervalFloat`. `none` when a
-float test fails: `Λ`, `nᵀ(Ax + b)`, `Λ²` or `‖n‖` not certified away from `0`, the float
-`‖tmax A‖` above `(η + 2)/2`, or `k`, `L` not computed.
+zonotopes, one `let` per line of the code: `k ⊕ L(R₀ ⊖ ξ) ⊕ ½[φ̲, φ̄] R_quad ⊕ I (AR₀ ⊕ b) ⊕ E` of
+[2, Sec. 5.4], reduced and projected. What rounds is an interval, and what an interval cannot stand
+in for is charged to a set: `b` is the lower end of the box `GuardMap.sdcInputFloat`, the rest `t(b
+− b̲)` added to the error; `k`, `L` are a box and an interval matrix; `aux_systemParams`'s `B U + c`
+is `inputSetFloat`, with `E W`; `Q⁽ⁱ⁾` is taken at the centre `τ_c` and radius `τ_g` of `τ`'s
+interval and `R_quad` at interval centres; `Λ` and `nᵀx − d` range over `R₀red ⊖ ξ ⊕ ξ`, which holds
+the stored centre `ξ` even when the error box of `R₀red` does not hold `0`; `n/‖n‖` and `d/‖n‖` are
+boxes (`sqrtDown`/`sqrtUp` at precision `p`) for `projectOnHyperplaneIntervalFloat`. `none` when a
+float test fails: `Λ`, `nᵀ(Ax + b)`, `Λ²` or `‖n‖` not certified away from `0`, the float `‖tmax A‖`
+above `(η + 2)/2`, or `k`, `L` not computed.
 
 ## References
 
@@ -78,7 +78,7 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
   -- `1/[lo, hi]`, for an interval certified to exclude `0`
   let recipI : 𝕋 → 𝕋 → Interval (Vec 𝕋 1) := fun lo hi => Interval.recip ⟨fun _ => lo, fun _ => hi⟩
   let A : Mat 𝕋 n n := ℓ.dynamics.A                                -- [A,U] = aux_systemParams
-  let U : Zonotope (Vec 𝕋 n) := ℓ.U
+  let U : Zonotope (Vec 𝕋 n) := ℓ.inputSetFloat                    -- U = B*U + c, and E*W
   let th : 𝕋 := half tmax                                           -- th = tmax/2
   let bI := GuardMap.sdcInputFloat A U.c th η R₀.c                  -- b = aux_constantFlow, a box
   let b : Vec 𝕋 n := bI.inf                                         -- its lower end

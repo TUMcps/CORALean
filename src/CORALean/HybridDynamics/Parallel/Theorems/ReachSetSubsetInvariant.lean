@@ -16,7 +16,7 @@ the product's `Invariant` is in hand.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   01-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -27,21 +27,21 @@ namespace CORALean
 open Matrix ContSet Scalar
 
 variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
-variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
+variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The stacks of the reachable tuples at `ℓ` lie in the invariant's set at `ℓ`. -/
-theorem ParallelHybridAutomaton.reachSet_subset_invariant [ExactScalar 𝕋]
-    {P : ParallelHybridAutomaton S G k L 𝕋 n m} (hself : P.SelfBindFree)
-    {lift : ParallelHybridAutomaton.Lifting S G n m P.binds} {R₀ : ∀ i, S (n i)}
+theorem ParallelHybridAutomaton.reachSet_subset_invariant
+    {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.FeedthroughFree)
+    {lift : ParallelHybridAutomaton.Lifting S G n m} {R₀ : ∀ i, S (n i)}
     {ℓ₀ : ∀ i, L i} {R : (∀ i, L i) → S (∑ i, n i)} (hinv : (P.product lift).Invariant R)
     (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), (∀ i, x i ∈ construct (R₀ i)) →
       stack x ∈ construct (R ℓ₀)) (ℓ : ∀ i, L i) :
     stack '' P.reachSet R₀ ℓ₀ ℓ ⊆ construct (R ℓ) := by
   rintro _ ⟨y, ⟨x, hx, run⟩, rfl⟩
-  exact run.mem_of_invariant hself hinv (hR₀ x hx)
+  exact run.mem_of_invariant hfeed hinv (hR₀ x hx)
 
 end CORALean
 

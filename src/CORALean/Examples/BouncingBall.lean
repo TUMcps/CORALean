@@ -1,5 +1,5 @@
 import CORALean.ContSet.Conversion.Real.Instances
-import CORALean.ContDynamics.LinearSys.Operations.Canonical
+import CORALean.ContDynamics.LinearSys.Operations.OfABc
 import CORALean.ContSet.HPolytope.Real.Instances
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 import CORALean.ContSet.Zonotope.Real.Instances
@@ -15,9 +15,9 @@ import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 # A bouncing ball, as a hybrid automaton
 
 The textbook automaton: one location, one transition back into it. The state is
-`(position, velocity)`, the dynamics are `ṗ = v`, `v̇ = -g` written as a constant
-input, `LinearSys` having no offset. The reset flips the velocity and damps it
-by `d`. Two representations at once (#39): the reachable set is a `Zonotope`, the
+`(position, velocity)`, the dynamics are CORA's `linearSys(A, B, c)` with `A = [0 1; 0 0]`,
+`B = 0` and `c = [0; -g]`: `ṗ = v`, `v̇ = -g`, gravity the offset. The reset flips the velocity
+and damps it by `d`. Two representations at once (#39): the reachable set is a `Zonotope`, the
 guard and the invariant are `HPolytope`s — the guard the *unbounded* halfspace
 description `p = 0 ∧ v ≤ 0`, the floor met from above, which no zonotope states.
 
@@ -79,8 +79,9 @@ the only location back into it. -/
 noncomputable def Example.bouncingBall (g d p v : ℝ) : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2 where
   loc _ :=
     { inv := Example.ballBox p v
-      dynamics := LinearSys.canonical !![0, 1; 0, 0]
-      U := ⟨0, ![0, -g], ![]⟩
+      dynamics := LinearSys.ofABc !![0, 1; 0, 0] (0 : Mat ℝ 2 1) ![0, -g]
+      U := ⟨0, ![0], ![]⟩
+      W := ⟨0, ![0], ![]⟩
       trans := [Example.bounce d] }
 
 /-- The same box as `ballBox`, in the state's representation: what `R` has to

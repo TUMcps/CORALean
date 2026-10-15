@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Definitions.OutputSource
+public import CORALean.HybridDynamics.Definitions.ResolveSource
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import Mathlib.Algebra.BigOperators.Fin
 
@@ -19,8 +19,8 @@ the output is the state. Two departures, in `Fmerged` alone: CORA assigns each t
 input bound to the same component overwrites the first), where this adds, and numbers the noise
 blocks by the disturbance counts, where this stacks the noises. CORA keeps the bound outputs'
 noise in the merged output equation although it acts on the state, so the flow theorem
-`mergeFlowsLinearSys_flow` is for noise-free bound outputs. The product automaton runs the
-canonical-form `mergeFlows`.
+`mergeFlowsLinearSys_flow` is for noise-free bound outputs. It is the product automaton's flow
+(`locationProduct`); `mergeFlows` assembles it without arithmetic at state-bound components.
 
 ## References
 
@@ -46,7 +46,7 @@ variable {k m : ℕ} {n : Fin k → ℕ} {𝕋 : Type} [CommRing 𝕋]
 
 /-- `sys_merged = aux_mergeFlowsLinearSys(pHA, flowList)`. -/
 def ParallelHybridAutomaton.mergeFlowsLinearSys (sys : ∀ i, LinearSys 𝕋 (n i))
-    (binds : ∀ i, Fin (sys i).m → OutputSource k (fun i => (sys i).q) m) :
+    (binds : ∀ i, Fin (sys i).m → ResolveSource k (fun i => (sys i).q) m) :
     LinearSys 𝕋 (∑ i, n i) :=
   let Amerged : Mat 𝕋 (∑ i, n i) (∑ i, n i) :=                     -- A, plus B(:,j) C(s,:)
     Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv <| Matrix.of fun p q =>

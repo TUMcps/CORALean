@@ -9,12 +9,14 @@ public import Mathlib.Data.Real.Basic
 
 CORA's `inputBinds{i}`: row `j` of `inputBinds{i}` is `[c l]`, and input `j` of component `i` is
 either the `l`-th global input (`c = 0`) or the `l`-th output of component `c`. `resolve` of a
-reset (`linearReset/resolve`, `nonlinearReset/resolve`) substitutes the second kind away.
+reset (`linearReset/resolve`, `nonlinearReset/resolve`) substitutes the second kind away;
+`ParallelHybridAutomaton.binds` is CORA's `bindsInputs`, and `mergeFlowsLinearSys` merges the
+components' flows through it.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 

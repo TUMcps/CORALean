@@ -31,7 +31,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ParallelHybridAutomaton.mergeInvariants (P : ParallelHybridAutomaton S G k L 𝕋 n m)
-    (lift : ParallelHybridAutomaton.Lifting S G n m P.binds) (ℓ : ∀ i, L i) : G (∑ i, n i) :=
+    (lift : ParallelHybridAutomaton.Lifting S G n m) (ℓ : ∀ i, L i) : G (∑ i, n i) :=
   lift.inv fun i => ((P.comp i).loc (ℓ i)).inv
 
 end CORALean

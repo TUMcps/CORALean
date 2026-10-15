@@ -14,9 +14,9 @@ stay, every participant resetting and moving, the rest standing still. `Run` is 
 labels (`labels = []`, every `label = none`).
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -36,19 +36,19 @@ inductive ParallelHybridAutomaton.SyncRun [DecidableEq Λ] [∀ n, ContSet (S n)
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (lab : ParallelHybridAutomaton.SyncLabels G L 𝕋 n Λ) :
     (∀ i, L i) → (∀ i, Vec ℝ (n i)) → (∀ i, L i) → (∀ i, Vec ℝ (n i)) → Prop where
-  | flow {ℓ : ∀ i, L i} {τ : ℝ} {x u : ∀ i, ℝ → Vec ℝ (n i)} {g : ℝ → Vec ℝ m}
-      (h : P.Stay ℓ τ x u g) : P.SyncRun lab ℓ (fun i => x i 0) ℓ (fun i => x i τ)
+  | flow {ℓ : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
+      (h : P.Stay ℓ τ x u w g) : P.SyncRun lab ℓ (fun i => x i 0) ℓ (fun i => x i τ)
   -- an unlabeled transition of one component, the others standing still
-  | jump {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x u : ∀ i, ℝ → Vec ℝ (n i)} {g : ℝ → Vec ℝ m}
+  | jump {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
       {y : ∀ i, Vec ℝ (n i)} {c : Fin k} {e : Transition G (L c) 𝕋 (n c)}
-      (h : P.Stay ℓ τ x u g) (hmem : e ∈ ((P.comp c).loc (ℓ c)).trans)
+      (h : P.Stay ℓ τ x u w g) (hmem : e ∈ ((P.comp c).loc (ℓ c)).trans)
       (hlab : lab.label c e = none) (hguard : x c τ ∈ construct e.guard)
       (rest : P.SyncRun lab (Function.update ℓ c e.target)
         (Function.update (fun i => x i τ) c (e.reset (x c τ))) ℓ' y) :
       P.SyncRun lab ℓ (fun i => x i 0) ℓ' y
   -- the transitions of label `a`, all together
-  | sync {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x u : ∀ i, ℝ → Vec ℝ (n i)} {g : ℝ → Vec ℝ m}
-      {y : ∀ i, Vec ℝ (n i)} {a : Λ} (ha : a ∈ lab.labels) (h : P.Stay ℓ τ x u g)
+  | sync {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
+      {y : ∀ i, Vec ℝ (n i)} {a : Λ} (ha : a ∈ lab.labels) (h : P.Stay ℓ τ x u w g)
       (havail : ∀ c, lab.parts a c = true → (lab.pick P ℓ a c).isSome)
       (hguard : ∀ c e, lab.pick P ℓ a c = some e → x c τ ∈ construct e.guard)
       (rest : P.SyncRun lab

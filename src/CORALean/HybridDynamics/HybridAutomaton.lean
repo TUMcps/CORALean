@@ -62,10 +62,10 @@ inductive HybridAutomaton.Run {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec �
     [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     L → Vec ℝ n → L → Vec ℝ n → Prop where
-  | flow {ℓ : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} (h : (HA.loc ℓ).Trajectory τ x u) :
+  | flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).Trajectory τ x u w) :
       HA.Run ℓ (x 0) ℓ (x τ)
-  | jump {ℓ ℓ' : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} {y : Vec ℝ n} {e : Transition G L 𝕋 n}
-      (h : (HA.loc ℓ).Trajectory τ x u) (hmem : e ∈ (HA.loc ℓ).trans)
+  | jump {ℓ ℓ' : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} {y : Vec ℝ n} {e : Transition G L 𝕋 n}
+      (h : (HA.loc ℓ).Trajectory τ x u w) (hmem : e ∈ (HA.loc ℓ).trans)
       (hguard : x τ ∈ construct e.guard)
       (rest : HA.Run e.target (e.reset (x τ)) ℓ' y) :
       HA.Run ℓ (x 0) ℓ' y
@@ -75,10 +75,10 @@ inductive HybridAutomaton.RunOn {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec 
     [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     ℕ → L → Vec ℝ n → L → Vec ℝ n → Prop where
-  | flow {ℓ : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} (h : (HA.loc ℓ).Trajectory τ x u) :
+  | flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).Trajectory τ x u w) :
       HA.RunOn 0 ℓ (x 0) ℓ (x τ)
-  | jump {k : ℕ} {ℓ ℓ' : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} {y : Vec ℝ n}
-      {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).Trajectory τ x u)
+  | jump {k : ℕ} {ℓ ℓ' : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} {y : Vec ℝ n}
+      {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).Trajectory τ x u w)
       (hmem : e ∈ (HA.loc ℓ).trans) (hguard : x τ ∈ construct e.guard)
       (rest : HA.RunOn k e.target (e.reset (x τ)) ℓ' y) :
       HA.RunOn (k + 1) ℓ (x 0) ℓ' y

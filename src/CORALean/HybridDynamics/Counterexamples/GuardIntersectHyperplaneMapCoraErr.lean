@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.InputSet
 public import CORALean.HybridDynamics.Definitions.HitPoint
 public import CORALean.HybridDynamics.Definitions.HitJacobian
 public import CORALean.HybridDynamics.Definitions.SdcInput
@@ -82,7 +82,7 @@ noncomputable def Location.guardIntersectHyperplaneMapCoraErr (ℓ : Location �
     ⟨Matrix.of fun j k => Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b,
       Matrix.of fun j k => Interval.mulHi ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b⟩
   let A : Mat ℝ n n := ℓ.dynamics.A                                -- [A,U] = aux_systemParams
-  let U : Zonotope (Vec ℝ n) := ℓ.U
+  let U : Zonotope (Vec ℝ n) := ℓ.inputSet                         -- U = B*U + c, and E*W
   let th : ℝ := tmax / 2                                           -- th = tmax/2
   let b : Vec ℝ n := GuardMap.sdcInput A U.c th η R₀.c             -- b = aux_constantFlow
   let R0red := R₀.reduceGirard guardOrder                          -- R0red = reduce(R0,..)
@@ -262,25 +262,38 @@ theorem aux_hpMapCoraCex_proj {R : Zonotope (Vec ℝ n)} (h : ∀ j, R.G j = 0) 
   simpa [Zonotope.plus, Zonotope.mtimes, Zonotope.ofPoint] using this
 
 
+/-- The location's combined input set is the point `0`: `B = I` at `U = {0}`, `c = 0`, `E = 0`. -/
+theorem aux_hpMapCoraCex_inputSet (inv : Zonotope (Vec ℝ 3)) :
+    (⟨inv, LinearSys.canonical aux_hpMapCoraCex_A, Zonotope.ofPoint 0, Zonotope.ofPoint 0, []⟩ :
+      Location 𝒵 𝒵 Unit ℝ 3).inputSet = Zonotope.ofPoint 0 := by
+  simp only [Location.inputSet, Plus.plus, Mtimes.mtimes, OfPoint.ofPoint, Zonotope.plus,
+    Zonotope.mtimes, Zonotope.ofPoint, Scalar.toRealMat_real, Scalar.toRealVec_real,
+    Matrix.mulVec_zero, add_zero, Zonotope.mk.injEq, true_and]
+  exact heq_of_eq (funext fun j => j.elim0)
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A run of a linear location from `R₀` hits `nᵀx = d` at `t ≤ tmax` outside the set
 `Location.guardIntersectHyperplaneMapCoraErr` returns, `η = 3`, for all reduction orders. -/
 theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample :
     ∃ (ℓ : Location 𝒵 𝒵 Unit ℝ 3) (nv : Vec ℝ 3) (d : ℝ) (R₀ : Zonotope (Vec ℝ 3))
-      (tmax τ t : ℝ) (x u : ℝ → Vec ℝ 3), ℓ.Trajectory τ x u ∧ x 0 ∈ R₀.construct ∧
+      (tmax τ t : ℝ) (x : ℝ → Vec ℝ 3) (u : ℝ → Vec ℝ ℓ.dynamics.m)
+      (w : ℝ → Vec ℝ ℓ.dynamics.r), ℓ.Trajectory τ x u w ∧ x 0 ∈ R₀.construct ∧
       t ∈ Set.Icc 0 τ ∧ t ≤ tmax ∧ nv ⬝ᵥ x t = d ∧
       ∀ guardOrder zonotopeOrder : ℕ, ∃ Z,
         ℓ.guardIntersectHyperplaneMapCoraErr nv d R₀ tmax 3 guardOrder zonotopeOrder = some Z ∧
         x t ∉ Z.construct := by -- --- PROOF ---
   set x : ℝ → Vec ℝ 3 := fun t => ![t ^ 2 / 2, t, 1] with hx
   set inv : Zonotope (Vec ℝ 3) := ⟨2, ![1, 1, 1], ![![1, 0, 0], ![0, 1, 0]]⟩
-  refine ⟨⟨inv, LinearSys.canonical aux_hpMapCoraCex_A, Zonotope.ofPoint 0, []⟩, ![0, 1, 0], 2,
-    Zonotope.ofPoint ![0, 0, 1], 2, 2, 2, x, fun _ => 0, ⟨by norm_num, ?_, ?_, ?_⟩, ?_,
-    ⟨by norm_num, le_rfl⟩, le_rfl, ?_, ?_⟩
-  -- the run: `ẋ = Ax`, inside the box `inv`
+  refine ⟨⟨inv, LinearSys.canonical aux_hpMapCoraCex_A, Zonotope.ofPoint 0, Zonotope.ofPoint 0,
+    []⟩, ![0, 1, 0], 2, Zonotope.ofPoint ![0, 0, 1], 2, 2, 2, x, fun _ => 0, fun _ => 0,
+    ⟨by norm_num, ?_, ?_, ?_, ?_⟩, ?_, ⟨by norm_num, le_rfl⟩, le_rfl, ?_, ?_⟩
+  -- the run: `ẋ = Ax`, no input and no disturbance, inside the box `inv`
+  · intro t _; exact Zonotope.mem_ofPoint (0 : Vec ℝ 3)
   · intro t _; exact Zonotope.mem_ofPoint (0 : Vec ℝ 3)
   · intro t _
+    simp only [Matrix.mulVec_zero, add_zero, Scalar.toRealVec_real]
     refine hasDerivWithinAt_pi.2 fun i => ?_
     fin_cases i
     · exact ((HasDerivAt.div_const (hasDerivAt_pow 2 t) 2).hasDerivWithinAt).congr_deriv
@@ -300,7 +313,7 @@ theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample :
   obtain ⟨hc, hG⟩ := GuardMap.abstractionErrorCora_eq_zero aux_hpMapCoraCex_A ![0, 0, 1]
     (2 / 2) 2 aux_hpMapCoraCex_cube aux_hpMapCoraCex_W
   dsimp only [Location.guardIntersectHyperplaneMapCoraErr]
-  rw [aux_hpMapCoraCex_reduceGirard_ofPoint]
+  rw [aux_hpMapCoraCex_inputSet, aux_hpMapCoraCex_reduceGirard_ofPoint]
   -- `Λ = nᵀ(Ax₀ + b) = 1` on the point `R₀`
   have hΛ : Zonotope.halfspaceRange ![0, 1, 0] 0
       ((Zonotope.mtimes aux_hpMapCoraCex_A (Zonotope.ofPoint ![0, 0, 1])).plus

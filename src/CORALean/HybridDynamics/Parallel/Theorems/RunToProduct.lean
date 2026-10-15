@@ -1,7 +1,8 @@
 module
 
 public import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
-public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlowLaw
+public import CORALean.HybridDynamics.Parallel.Operations.Product
 public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
 
 @[expose] public section
@@ -9,14 +10,14 @@ public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
 /-!
 # Every parallel run is a run of the product
 
-`Run.toProductWith` at `mergeFlows`, whose flow law holds under `SelfBindFree`. The soundness
-direction only: the converse is `Run.ofProduct`, under more conditions, since a run of the product
-may let the components disagree on a bound input (#40).
+`Run.toProductWith` at `mergeFlowsLinearSys`, whose flow law holds at `ℝ` under `FeedthroughFree`,
+CORA's own check against algebraic loops. The soundness direction; the converse is
+`Run.ofProduct`, under more conditions.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   01-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -27,18 +28,17 @@ namespace CORALean
 open Matrix ContSet Scalar
 
 variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
-variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
+variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A run of the parallel automaton, its states stacked, is a run of its product. -/
-theorem ParallelHybridAutomaton.Run.toProduct [ExactScalar 𝕋]
-    {P : ParallelHybridAutomaton S G k L 𝕋 n m} (hself : P.SelfBindFree)
-    (lift : ParallelHybridAutomaton.Lifting S G n m P.binds) {ℓ ℓ' : ∀ i, L i}
-    {x y : ∀ i, Vec ℝ (n i)} (run : P.Run ℓ x ℓ' y) :
+theorem ParallelHybridAutomaton.Run.toProduct {P : ParallelHybridAutomaton S G k L ℝ n m}
+    (hfeed : P.FeedthroughFree) (lift : ParallelHybridAutomaton.Lifting S G n m)
+    {ℓ ℓ' : ∀ i, L i} {x y : ∀ i, Vec ℝ (n i)} (run : P.Run ℓ x ℓ' y) :
     (P.product lift).Run ℓ (stack x) ℓ' (stack y) :=
-  ParallelHybridAutomaton.Run.toProductWith (P.mergeFlows_flowLaw hself) lift run
+  ParallelHybridAutomaton.Run.toProductWith (P.mergeFlowsLinearSys_flowLaw hfeed lift) lift run
 
 end CORALean
 

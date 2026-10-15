@@ -18,7 +18,7 @@ the runs the automaton defines.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,8 +50,8 @@ theorem HybridAutomaton.run_iff_exists_runUntil {HA : HybridAutomaton S G L 𝕋
   constructor
   · intro run
     induction run with
-    | @flow _ τ _ _ h => exact ⟨τ, 0, .flow h le_rfl⟩
-    | @jump _ _ τ _ _ _ _ h hmem hguard _ ih =>
+    | @flow _ τ _ _ _ h => exact ⟨τ, 0, .flow h le_rfl⟩
+    | @jump _ _ τ _ _ _ _ _ h hmem hguard _ ih =>
       -- the stay's dwell time added to the rest's duration
       obtain ⟨T, k, rest⟩ := ih
       refine ⟨τ + T, k + 1, .jump h (by linarith [aux_runUntil_nonneg rest]) hmem hguard ?_⟩

@@ -4,19 +4,20 @@ public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneFloat
 public import CORALean.ContSet.Conversion.Float.Instances
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 public import CORALean.ContSet.Zonotope.Float.Instances
-public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.InputSetFloat
 
 @[expose] public section
 
 /-!
 # `Location.checkFlowFloat`
 
-CORA's `checkFlow` for a linear flow `ẋ = A x + u`, `u ∈ U`, at float zonotopes. Each reach set is
-projected onto the guard hyperplane `{x | c·x = d}` (`projectOnHyperplaneFloat`, `c` the unit
-normal pointing out of the invariant); it is kept if the flow at the projection's centre
-points out (`c·(A m + u_c) > 0`, evaluated in plain float arithmetic, which can only keep a
-set), or else if the rounded-up support function of the flow set `A·proj ⊞ U` along `c` is not
-certified `≤ 0`. Only a set that is certified to have no outward flow is dropped.
+CORA's `checkFlow` for a linear flow `ẋ = A x + B u + c₀ + E w` at float zonotopes, its combined
+input in `inputSetFloat = B U ⊕ c₀ ⊕ E W`, written `V` below. Each reach set is projected onto the
+guard hyperplane `{x | c·x = d}` (`projectOnHyperplaneFloat`, `c` the unit normal pointing out of
+the invariant); it is kept if the flow at the projection's centre points out (`c·(A m + v_c) > 0`,
+`v_c` the centre of `V`, evaluated in plain float arithmetic, which can only keep a set), or else if
+the rounded-up support function of the flow set `A·proj ⊞ V` along `c` is not certified `≤ 0`. Only
+a set that is certified to have no outward flow is dropped.
 
 CORA bounds the flow over the projection reduced by `'pca'` to a box (and rotated by
 `gramSchmidt`); the box encloses the projection, so CORA's supremum is no smaller and it keeps at
@@ -24,9 +25,9 @@ least what this keeps. The orientation of the normal by the invariant (`aux_adap
 caller's.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -51,12 +52,12 @@ def Location.checkFlowFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     let Rproj := ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d
     -- fast check: the flow at the centre of the projection, with the centre input
     let m := ScalarCentre.centreVec (S := 𝒵[𝕋]) Rproj
-    let uc := ScalarCentre.centreVec (S := 𝒵[𝕋]) ℓ.U
+    let uc := ScalarCentre.centreVec (S := 𝒵[𝕋]) ℓ.inputSetFloat
     let flowC := sumUp fun i =>
       mulUp (c i) (addUp (sumUp fun j => mulUp (ℓ.dynamics.A i j) (m j)) (uc i))
-    -- the flow set `A proj ⊞ U`, bounded from above along `c`
+    -- the flow set `A proj ⊞ V`, bounded from above along `c`
     let flowSet := Plus.plus
-      (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A Rproj) ℓ.U
+      (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A Rproj) ℓ.inputSetFloat
     let flowUp := (flowSet.boundDot (c := rowLin (fun _ : Fin 1 => c) 0) c fun _ => rfl).val
     !le flowC zero || !le flowUp zero
 

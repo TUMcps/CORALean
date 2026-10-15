@@ -14,9 +14,9 @@ of `reachFloat` holds of it, and the NaN test that the trust base asks of the ca
 been made.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,10 +35,8 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 /-- `reachFloat`, or `none` if a float of its result is a NaN. The location tuples carry no
 floats. -/
 def ParallelHybridAutomaton.reachFloatChecked
-    (P : ParallelHybridAutomaton 𝒵[𝕋]
-    (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m)
-    (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋]
-    (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m P.binds)
+    (P : ParallelHybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m)
+    (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m)
     (tFinal : ℚ) (options : LinearSys.ReachOptions 𝕋) (K : ℕ) (ℓ : ∀ i, L i)
     (X₀ : Zonotope (Vec 𝕋 (∑ i, n i))) : Option (List ((∀ i, L i) × Zonotope (Vec 𝕋 (∑ i, n i)))) :=
   checkNoNaN (𝕋 := 𝕋) (P.reachFloat lift tFinal options K ℓ X₀)

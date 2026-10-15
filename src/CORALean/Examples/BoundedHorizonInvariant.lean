@@ -20,7 +20,7 @@ already does for `Run`.
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,6 +43,7 @@ def BHI.loc (b : Bool) : Location ℐ𝒱 ℐ𝒱 Bool ℝ 1 where
   inv := ⟨![(-1:ℝ)], ![1]⟩
   dynamics := LinearSys.canonical 0
   U := ⟨![(0:ℝ)], ![0]⟩
+  W := ⟨![(0:ℝ)], ![0]⟩
   trans := [BHI.trans b]
 
 def BHI.HA : HybridAutomaton ℐ𝒱 ℐ𝒱 Bool ℝ 1 := ⟨BHI.loc⟩
@@ -62,7 +63,7 @@ theorem BHI.R_ne : BHI.R 0 false ≠ BHI.R 1 false := by
 -- `flow` reads off the location's fixed invariant; `jump`, the identity reset.
 
 theorem BHI.hinv : BHI.HA.InvariantOn BHI.R where
-  flow {k ℓ τ x u} h h₀ {t} ht := by
+  flow {k ℓ τ x u w} h h₀ {t} ht := by
     intro i
     rw [show i = 0 from Subsingleton.elim i 0]
     have hb : (BHI.loc ℓ).inv.inf 0 ≤ x t 0 ∧ x t 0 ≤ (BHI.loc ℓ).inv.sup 0 :=

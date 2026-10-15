@@ -33,8 +33,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ParallelHybridAutomaton.liftTransition [ExactScalar 𝕋]
-    {binds : ∀ i, Fin (n i) → InputSource k n m}
-    (lift : ParallelHybridAutomaton.Lifting S G n m binds) (ℓ : ∀ i, L i) (c : Fin k)
+    (lift : ParallelHybridAutomaton.Lifting S G n m) (ℓ : ∀ i, L i) (c : Fin k)
     (e : Transition G (L c) 𝕋 (n c)) : Transition G (∀ i, L i) 𝕋 (∑ i, n i) where
   guard := lift.guard c e.guard
   W := Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv <| Matrix.of fun a b =>

@@ -64,7 +64,7 @@ theorem aux_reindex_mulVec {d : Fin k → ℕ} (M : Matrix (Σ i, Fin (d i)) (Fi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flow (sys : ∀ i, LinearSys ℝ (n i))
-    (binds : ∀ i, Fin (sys i).m → OutputSource k (fun i => (sys i).q) m)
+    (binds : ∀ i, Fin (sys i).m → ResolveSource k (fun i => (sys i).q) m)
     (hD : ∀ i j c s, binds i j = .output c s →
       ∀ j' c' s', binds c j' = .output c' s' → (sys c).D s j' = 0)
     (x : ∀ i, Vec ℝ (n i)) (g : Vec ℝ m) (w : ∀ i, Vec ℝ (sys i).r)

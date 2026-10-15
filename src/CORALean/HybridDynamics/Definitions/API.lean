@@ -29,8 +29,8 @@ public import CORALean.HybridDynamics.Definitions.HitEnclosure
 /-!
 # What a hybrid automaton means
 
-A location is an invariant, `LinearSys` dynamics and a list of outgoing
-transitions; a transition is a guard, an affine reset and a target.
-`Invariant`/`InvariantOn` state that a family of sets holds it, the latter
-per jump count; `ReachSet` names what a run quantifies over.
+A location is an invariant, `LinearSys` dynamics with their whole equation, the input and
+disturbance sets they draw from, and a list of outgoing transitions; a transition is a guard, an
+affine reset and a target. `Invariant`/`InvariantOn` state that a family of sets holds it, the
+latter per jump count; `ReachSet` names what a run quantifies over.
 -/

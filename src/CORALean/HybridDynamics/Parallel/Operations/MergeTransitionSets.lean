@@ -33,7 +33,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 
 def ParallelHybridAutomaton.mergeTransitionSets [ExactScalar 𝕋]
     (P : ParallelHybridAutomaton S G k L 𝕋 n m)
-    (lift : ParallelHybridAutomaton.Lifting S G n m P.binds) (ℓ : ∀ i, L i) :
+    (lift : ParallelHybridAutomaton.Lifting S G n m) (ℓ : ∀ i, L i) :
     List (Transition G (∀ i, L i) 𝕋 (∑ i, n i)) :=
   (List.finRange k).flatMap fun c =>
     ((P.comp c).loc (ℓ c)).trans.map (ParallelHybridAutomaton.liftTransition lift ℓ c)

@@ -72,7 +72,7 @@ theorem HybridAutomaton.reachFloat_outer
     (h : HA.reachFloat tFinal options K ℓ X₀ = some out) :
     ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ construct p.2 := by -- --- PROOF ---
   induction run generalizing K X₀ out with
-  | @flow T ℓ τ x u traj hτ =>
+  | @flow T ℓ τ x u w traj hτ =>
     -- the stay itself, held by one of the location's sets whatever `K` is
     unfold HybridAutomaton.reachFloat at h
     obtain ⟨Rs, hRs, h⟩ := Option.bind_eq_some_iff.mp h
@@ -87,7 +87,7 @@ theorem HybridAutomaton.reachFloat_outer
       obtain ⟨next, -, h⟩ := Option.bind_eq_some_iff.mp h
       cases h
       exact ⟨_, List.mem_append_left _ hhere, rfl, hy⟩
-  | @jump T k ℓ ℓ' τ x u y e traj hτ hmem hguard rest ih =>
+  | @jump T k ℓ ℓ' τ x u w y e traj hτ hmem hguard rest ih =>
     obtain ⟨K, rfl⟩ : ∃ K', K = K' + 1 := ⟨K - 1, by omega⟩
     unfold HybridAutomaton.reachFloat at h
     obtain ⟨Rs, hRs, h⟩ := Option.bind_eq_some_iff.mp h

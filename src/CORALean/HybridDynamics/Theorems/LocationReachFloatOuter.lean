@@ -1,5 +1,6 @@
 module
 
+public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
@@ -17,8 +18,9 @@ public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 `LinearSys.reachFloatInput_outer`, read at a stay rather than at a run over the
 whole horizon: the windows' enclosures are statements about states, not about
 trajectories, so a stay of length `τ ≤ tFinal` is held at each of its times
-`t` by the window `k` with `t ∈ [k Δt, (k + 1) Δt]`. The location's inputs lie
-in `ℓ.U`, and so in the identity's image of it.
+`t` by the window `k` with `t ∈ [k Δt, (k + 1) Δt]`. The location's combined inputs
+`B u + c + E w` lie in `ℓ.inputSetFloat` (`inputSetFloat_outer`), and so in the identity's image
+of it.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -66,7 +68,7 @@ theorem aux_window {N : ℕ} {Δ t : ℝ} (hΔ : 0 < Δ) (hN : 0 < N) (ht0 : 0 �
 one of the computed time-interval sets. -/
 theorem Location.Trajectory.reachFloat_outer
     {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ}
-    {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {tFinal : ℚ}
+    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w) {tFinal : ℚ}
     {options : LinearSys.ReachOptions 𝕋} {X₀ : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))}
     (h : ℓ.reachFloat tFinal options X₀ = some Rs) (h₀ : x 0 ∈ construct X₀)
     (hτ : τ ≤ tFinal) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :
@@ -78,7 +80,7 @@ theorem Location.Trajectory.reachFloat_outer
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, -, hinv⟩ :=
     (LinearSys.canonicalFloat ℓ.dynamics.A).reachFloatInput_invariant hreach
   set Δ := toReal options.Δt with hΔ
-  set V := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat ℓ.U with hV
+  set V := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat ℓ.inputSetFloat with hV
   simp only [Rat.cast_zero, sub_zero] at hNΔt
   -- the horizon holds `t`, and has at least one window
   have htf' : (0 : ℝ) < tFinal := by exact_mod_cast not_le.mp htf
@@ -90,13 +92,14 @@ theorem Location.Trajectory.reachFloat_outer
   obtain ⟨k, hk, hkt, htk⟩ := aux_window hΔt hN ht.1 (by rw [hNΔt]; linarith [ht.2])
   have hk' : k < S.length := by rw [hlen]; exact hk
   obtain ⟨-, h2, h3, -⟩ := hinv k hk'
-  -- the location's inputs are in `ℓ.U`'s enclosure, the canonical form's `B = I`, `c = 0`
-  have hUV : construct ℓ.U ⊆ construct V := by
-    have h := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat_outer ℓ.U
+  -- the combined inputs are in `inputSetFloat`'s enclosure, the canonical form's `B = I`, `c = 0`
+  have hUV : construct ℓ.inputSetFloat ⊆ construct V := by
+    have h := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat_outer ℓ.inputSetFloat
     rw [LinearSys.canonicalFloat_input, Set.image_id] at h
     exact h
-  have hd := ((traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, ht.1.trans ht.2⟩
-    (CompactSet.isBounded_construct ℓ.U)).sub_mem_inputReach_recentre
+  have hd := ((traj.linearSys h₀ traj.inputSetFloat_mem).trajectory (convex_Icc 0 τ)
+    ⟨le_rfl, ht.1.trans ht.2⟩
+    (CompactSet.isBounded_construct ℓ.inputSetFloat)).sub_mem_inputReach_recentre
       (S' := 𝒵[𝕋]) hUV ht
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
   have hy := h3 (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)

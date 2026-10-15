@@ -1,5 +1,5 @@
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
-import CORALean.ContDynamics.LinearSys.Operations.CanonicalFloat
+import CORALean.ContDynamics.LinearSys.Operations.OfABc
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.HybridDynamics.Theorems.ReachFloatOuter
@@ -24,7 +24,7 @@ about `-4.4`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -64,13 +64,19 @@ def bounce : Transition (fun k => HPolytope D (Vec D k)) Unit D 2 where
   w := ![d 0 0, d 0 0]
   target := ()
 
-/-- `ṗ = v`, `v̇ = -g`, the gravity a constant input `{(0, -g)}`. -/
+/-- The point `0` of one coordinate. -/
+def zero1 : Zonotope (Vec D 1) := ⟨0, ![d 0 0], fun j => j.elim0, ⟨![d 0 0], ![d 0 0]⟩⟩
+
+/-- CORA's `linearSys(A, B, c)`: `ṗ = v`, `v̇ = -g`, the gravity the offset `c = (0, -g)`, no
+input (`B = 0`, `U = {0}`), no disturbance. -/
 def ball : HybridAutomaton 𝒵[D] (fun k => HPolytope D (Vec D k))
     Unit D 2 where
   loc _ :=
     { inv := aboveFloor
-      dynamics := LinearSys.canonicalFloat !![d 0 0, d 1 0; d 0 0, d 0 0]
-      U := ⟨0, ![d 0 0, d (-157) (-4)], fun j => j.elim0, ⟨![d 0 0, d 0 0], ![d 0 0, d 0 0]⟩⟩
+      dynamics := LinearSys.ofABc !![d 0 0, d 1 0; d 0 0, d 0 0] (fun _ _ => d 0 0)
+        ![d 0 0, d (-157) (-4)]
+      U := zero1
+      W := zero1
       trans := [bounce] }
 
 /-- `(1, 0) ± 1/16` in each coordinate. -/

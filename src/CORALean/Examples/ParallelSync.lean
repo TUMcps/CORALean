@@ -15,9 +15,9 @@ transitions one by one and so has two product transitions, which is what a label
 must not have; `mergeTransitionSetsSync` has exactly one, the synchronized transition of both.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,11 @@ def PSY.integrator : HybridAutomaton ℐ𝒱 ℋ𝒫 Unit ℝ 1 where
 def PSY.parallel :
     ParallelHybridAutomaton ℐ𝒱 ℋ𝒫 2 (fun _ => Unit) ℝ (fun _ => 1) 1 where
   comp := ![PTC.decay, PSY.integrator]
+  p _ := 1
+  q _ := 1
   binds := PTC.binds
+  inputs_eq i _ := by fin_cases i <;> rfl
+  outputs_eq i _ := by fin_cases i <;> rfl
 
 /-- Every transition carries the label `()`, which both components share. -/
 def PSY.labels : ParallelHybridAutomaton.SyncLabels ℋ𝒫 (fun _ : Fin 2 => Unit) ℝ (fun _ => 1)
@@ -51,14 +55,14 @@ def PSY.labels : ParallelHybridAutomaton.SyncLabels ℋ𝒫 (fun _ : Fin 2 => Un
 
 /-- Without labels the two transitions are lifted alone: two product transitions. -/
 theorem PSY.unsynchronized_length (ℓ : ∀ _ : Fin 2, Unit) :
-    (PSY.parallel.mergeTransitionSets (ParallelHybridAutomaton.boxLifting PTC.binds) ℓ).length =
+    (PSY.parallel.mergeTransitionSets ParallelHybridAutomaton.boxLifting ℓ).length =
       2 := by
   simp [ParallelHybridAutomaton.mergeTransitionSets, PSY.parallel,
     PTC.decay, PSY.integrator, PTC.integrator, List.finRange, List.ofFn_succ]
 
 /-- With the label they are lifted together: one product transition. -/
 theorem PSY.synchronized_length (ℓ : ∀ _ : Fin 2, Unit) :
-    (PSY.parallel.mergeTransitionSetsSync (ParallelHybridAutomaton.boxSyncLifting PTC.binds)
+    (PSY.parallel.mergeTransitionSetsSync ParallelHybridAutomaton.boxSyncLifting
       PSY.labels ℓ).length = 1 := by
   simp [ParallelHybridAutomaton.mergeTransitionSetsSync, PSY.parallel, PSY.labels,
     ParallelHybridAutomaton.SyncLabels.pick, PTC.decay, PSY.integrator, PTC.integrator,

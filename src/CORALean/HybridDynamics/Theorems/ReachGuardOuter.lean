@@ -28,7 +28,7 @@ being one way to meet its obligation at linear location dynamics.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -77,7 +77,7 @@ theorem aux_reachGuard_while (RH : ℕ → G n) (isEmpty : G n → Bool) (N : �
 /-- [1, Alg. 5] encloses a stay before `t^end_inv` and where it meets the guard, and a loop
 stopped before `t_f = N r` means the stay ended before `t^end_inv`. -/
 theorem Location.Trajectory.reachGuard_outer [∀ n, Intersection (G n) (Vec ℝ n)]
-    {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u)
+    {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w)
     (e : Transition G L 𝕋 n) {r : ℝ} (hr : 0 < r) (N : ℕ) {reach : ℕ → S n}
     (hreach : ∀ (k : ℕ) (t : ℝ), t ∈ Set.Icc (k * r) ((k + 1) * r) → t ∈ Set.Icc 0 τ →
       x t ∈ construct (reach k))

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
@@ -29,7 +30,7 @@ it in its float input solution.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -50,37 +51,40 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every state a stay passes through by time `r` lies in the split float step
-from `R₀`, with no assumption on where `ℓ.U` sits. -/
+from `R₀`, with no assumption on where `ℓ.inputSetFloat` sits. -/
 theorem Location.Trajectory.timeIntervalSplitFloat_outer
-    {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x u : ℝ → Vec ℝ n}
-    (traj : ℓ.Trajectory τ x u)
+    {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w}
+    (traj : ℓ.Trajectory τ x u w)
     {R₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
     (hη : ℓ.dynamics.OrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)
     (htr : t ≤ toReal r) :
     x t ∈ construct (ℓ.timeIntervalStepSplitFloat r η R₀) := by -- --- PROOF ---
   set A := Scalar.toRealMat ℓ.dynamics.A with hA
-  set ũ := Recentre.centre ℓ.U with hũ
+  set ũ := Recentre.centre ℓ.inputSetFloat with hũ
   -- `x t` less its free motion and the constant's share is one `Ũ`-input's share
-  have hrest := ((traj.linearSys h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, ht0.trans htτ⟩
-    (CompactSet.isBounded_construct ℓ.U)).sub_mem_inputReach_recentre
-      (S' := 𝒵[𝕋]) (V := ℓ.U)
+  have hrest := ((traj.linearSys h₀ traj.inputSetFloat_mem).trajectory (convex_Icc 0 τ)
+    ⟨le_rfl, ht0.trans htτ⟩
+    (CompactSet.isBounded_construct ℓ.inputSetFloat)).sub_mem_inputReach_recentre
+      (S' := 𝒵[𝕋]) (V := ℓ.inputSetFloat)
       subset_rfl
     ⟨ht0, htτ⟩
   -- `{ũ}` and `[0, ũ]` hold what they are built from
-  have hpt : ũ ∈ (Interval.point ℓ.U.c).zonotope.construct :=
-    Interval.zonotope_contains _ (Interval.mem_point ℓ.U.c)
+  have hpt : ũ ∈ (Interval.point ℓ.inputSetFloat.c).zonotope.construct :=
+    Interval.zonotope_contains _ (Interval.mem_point ℓ.inputSetFloat.c)
   have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
   set seg := LinComb.linComb (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
-    (Interval.point ℓ.U.c).zonotope with hseg
+    (Interval.point ℓ.inputSetFloat.c).zonotope with hseg
   have h0seg : (0 : Vec ℝ n) ∈ seg.construct :=
     LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
-      (Interval.point ℓ.U.c).zonotope ⟨0, hzero, ũ, hpt, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
+      (Interval.point ℓ.inputSetFloat.c).zonotope
+      ⟨0, hzero, ũ, hpt, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
   have hũseg : ũ ∈ seg.construct :=
     LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
-      (Interval.point ℓ.U.c).zonotope ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
+      (Interval.point ℓ.inputSetFloat.c).zonotope
+      ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, t]` is an admissible input of `[0, ũ]`
   have hconst : Real.MatExp.expIntegral A t *ᵥ ũ
       ∈ ℓ.dynamics.inputReach (S := 𝒵[𝕋]) seg t :=
@@ -89,9 +93,10 @@ theorem Location.Trajectory.timeIntervalSplitFloat_outer
   have hc := ℓ.dynamics.inputReach_subset_inputSolutionFloat hr hη seg
     (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct seg) h0seg ht0 htr hconst)
   -- the recentred input's share, lifted from `t` to `r`
-  have hU := ℓ.dynamics.inputReach_subset_inputSolutionFloat hr hη (Recentre.recentre ℓ.U)
+  have hU := ℓ.dynamics.inputReach_subset_inputSolutionFloat hr hη
+    (Recentre.recentre ℓ.inputSetFloat)
     (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)
-      (Recentre.zero_mem_recentre ℓ.U) ht0 htr hrest)
+      (Recentre.zero_mem_recentre ℓ.inputSetFloat) ht0 htr hrest)
   have hH := ℓ.dynamics.timeIntervalStepFloat_outer hr hη R₀ h₀ ht0 htr
   have hx : x t = (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ)
       + (x t - (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ)) := by abel

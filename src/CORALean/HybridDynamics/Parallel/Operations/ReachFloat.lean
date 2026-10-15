@@ -1,6 +1,9 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Operations.Product
+public import CORALean.HybridDynamics.Parallel.Operations.ProductWith
+public import CORALean.HybridDynamics.Parallel.Operations.MergeFlows
+public import CORALean.HybridDynamics.Parallel.Operations.MergeInputSets
+public import CORALean.HybridDynamics.Parallel.Operations.MergeDistSets
 public import CORALean.HybridDynamics.Operations.ReachFloat
 public import CORALean.ContSet.HPolytope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Instances
@@ -10,16 +13,17 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 /-!
 # Parallel hybrid automata in floats: CORA's `parallelHybridAutomaton/reach`
 
-CORA computes the reachable set of a parallel automaton as that of its product. Here the product
-(`ParallelHybridAutomaton.product`, generic over the scalar) is run by
+CORA computes the reachable set of a parallel automaton as that of its product. Here the product is
+`productWith` at `mergeFlows`, the merged flow assembled without arithmetic (exact at a float scalar
+where the components are state-bound), with `mergeInputSets` and `mergeDistSets`; it is run by
 `HybridAutomaton.reachFloat`, from the float zonotope of the stacked initial states, at the float
-zonotope and halfspace families; the `Lifting` that stacks the components' invariants, guards and
-inputs is supplied. Soundness is `ParallelHybridAutomaton.reachFloat_outer`.
+zonotope and halfspace families; the `Lifting` that stacks the components' invariants, guards,
+inputs and disturbances is supplied. Soundness is `ParallelHybridAutomaton.reachFloat_outer`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -38,13 +42,12 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 /-- The time-interval sets of every run of the product from `X₀` at `ℓ` with at most `K` jumps and
 stays of at most `tFinal`, each paired with its location tuple. -/
 def ParallelHybridAutomaton.reachFloat
-    (P : ParallelHybridAutomaton 𝒵[𝕋]
-    (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m)
-    (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋]
-    (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m P.binds)
+    (P : ParallelHybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m)
+    (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m)
     (tFinal : ℚ) (options : LinearSys.ReachOptions 𝕋) (K : ℕ) (ℓ : ∀ i, L i)
     (X₀ : Zonotope (Vec 𝕋 (∑ i, n i))) : Option (List ((∀ i, L i) × Zonotope (Vec 𝕋 (∑ i, n i)))) :=
-  (P.product lift).reachFloat tFinal options K ℓ X₀
+  (P.productWith lift P.mergeFlows (P.mergeInputSets lift) (P.mergeDistSets lift)).reachFloat
+    tFinal options K ℓ X₀
 
 end CORALean
 
