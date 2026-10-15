@@ -10,16 +10,17 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 /-!
 # `mtimes` reaches no further than the image of its operand plus `mtimesBox`
 
-The reverse of `mtimes_outer`. `mtimes` keeps `Z`'s own generator count, one
-rounded value per generator plus one for the centre, so the same coefficients
-`Z`'s point used reproduce the exact image up to exactly `mtimesBox`'s
-generators — the same regrouping `mtimes_outer`'s own proof does, run in the
-other direction, and the same `matMulDiff` bound `mtimes_outer` itself proves
-for `mtimesResidual`, at the opposite sign. `Z`'s own error box is absorbed at
-`0`, spent the same way `plus_subset_add_box` spends it.
+The reverse of `mtimes_outer`. Every point of `mtimes M Z` is a point of `M Z` plus a point of
+`mtimesBox M Z`.
+
+The proof takes a point of `mtimes M Z` with its coefficients. The same coefficients give a
+point of `Z`, and `M` maps it to a point of `M Z`. What is left over is the rounding error of the
+centre and of each generator, and `mtimesBox` contains it. This is the argument of
+`mtimes_outer` read backwards, with the same `matMulDiff` bound at the opposite sign. The error
+box of `Z` is not needed here: its zero point is used, as in `plus_subset_add_box`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       08-September-2026
 -- Last update:   ---
 -- Reviewed:      ---
@@ -77,8 +78,9 @@ theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `mtimes` reaches no further than the image of `Z.construct`, widened by
-`mtimesBox`, provided `Z` already brackets `0` in its own box. -/
+/-- Every point of `mtimes M Z` is a point of `M Z` plus a point of `mtimesBox M Z`.
+
+This needs `0` to lie in the error box of `Z`. -/
 theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n))
     (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) :
     (Zonotope.mtimes M Z).construct ⊆

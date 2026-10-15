@@ -18,6 +18,13 @@ every float representation here follows: the factors, the rows and the generator
 their own, so paying into them would change the shape of the set. What the stored numbers
 describe is `nominal`, the same tuple read as reals; what the set denotes is the points of the
 nominal star set, each moved by a point of the box.
+
+The star set is the generalized star set of [1, Def. 1]; see `Real.StarSet`.
+
+## References
+
+* [1] P. S. Duggirala and M. Viswanathan. "Parsimonious, Simulation Based Verification of Linear
+      Systems". CAV, 2016.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Taylm.Real.Definitions.Basic
 public import CORALean.ContSet.Taylm.Real.Definitions.Box
 public import CORALean.ContSet.Taylm.Real.Definitions.CodeList
 public import CORALean.ContSet.Taylm.Real.Definitions.CodeScale

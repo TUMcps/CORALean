@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.Tensor
 public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.Taylm.Real.Definitions.Basic
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 public import Mathlib.Data.Real.Basic
@@ -28,7 +29,7 @@ the shared variables. `construct` is the range set of an array of models over th
 variables, CORA's `[p₁(t) + e₁; …]` with `t ∈ [-1, 1]ⁿ`, for the conversions.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
@@ -50,9 +51,6 @@ structure Taylm (n : ℕ) where
   /-- The order `times` truncates to, CORA's `max_order`. -/
   maxOrder : ℕ
 
-/-- CORA's normalized domain. -/
-def Taylm.box (n : ℕ) : Set (Vec ℝ n) := {t | ∀ k, |t k| ≤ 1}
-
 def Taylm.monomial (e : Fin n → ℕ) (t : Vec ℝ n) : ℝ := ∏ k, t k ^ e k
 
 /-- A term list evaluated, stated over the list so an operation can name the value of a
@@ -70,9 +68,6 @@ def Taylm.Encloses (T : Taylm n) (f : Vec ℝ n → ℝ) : Prop :=
 def Taylm.construct {m : ℕ} (T : Fin m → Taylm n) : Set (Vec ℝ m) :=
   {x | ∃ t ∈ Taylm.box n, ∀ i,
     (T i).rem.inf ≤ x i - (T i).poly t ∧ x i - (T i).poly t ≤ (T i).rem.sup}
-
-
--- the monomial is a product, so it splits over a sum of exponents
 
 end CORALean.Real
 
