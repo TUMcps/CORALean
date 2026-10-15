@@ -36,9 +36,9 @@ and `RecentreSubMem` carry the nonemptiness this class refuses to ask for.
 max of the lower bounds and the pointwise min of the upper ones.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       18-August-2026
--- Last update:   06-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -78,6 +78,13 @@ instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
     OfPoint (Interval α) α where
   ofPoint := Interval.point
   mem_ofPoint := Interval.mem_point
+
+/-- `1` as the point interval matrix. -/
+instance : OfIdentity ℐ where
+  identity _ := OfPoint.ofPoint 1
+
+instance : IdentityMem ℐ where
+  one_mem_identity _ := OfPoint.mem_ofPoint 1
 
 instance : Plus (Interval (Vec ℝ n)) (Vec ℝ n) where
   plus := Interval.plus

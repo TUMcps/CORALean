@@ -41,9 +41,9 @@ meets that class's obligation; at `WithEmpty (Zonotope α)` it does, `empty`
 being the answer where no generator representation certifies one.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       18-August-2026
--- Last update:   06-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -156,6 +156,13 @@ scoped notation "𝕄𝒵" => fun m n => Zonotope (Mat ℝ m n)
 noncomputable instance : Mtimes 𝕄𝒵 𝒵 where
   mtimes := Zonotope.mtimesMatZonotope
   mtimes_outer M Z := Zonotope.mtimesMatZonotope_outer M Z
+
+/-- `1` as the point matrix zonotope. -/
+instance : OfIdentity 𝕄𝒵 where
+  identity _ := OfPoint.ofPoint 1
+
+instance : IdentityMem 𝕄𝒵 where
+  one_mem_identity _ := OfPoint.mem_ofPoint 1
 
 /-- Not at `Zonotope α`: `{0} ⊖ [-1, 1]` is `∅`, which no zonotope denotes, so
 the wrapper is where a total difference can live. -/

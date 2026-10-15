@@ -68,6 +68,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.InitReachInputDependenc
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryInitReachInputDependenceOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryCanonical
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryCanonical
+public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryMemInputSet
 
 /-!
 # What `LinParamSys` gives, collected

@@ -19,9 +19,9 @@ exponential lies in its float enclosure by `exp_mem_expMatZonoEnclosure`. `hε` 
 theorem's side condition, a float comparison a caller can check before running.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -49,7 +49,7 @@ theorem LinearSys.CanonicalTrajectory.discretizeMatZonotopeFloat {sys : LinearSy
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hε : toReal (MatExp.normUpperBound
       (Zonotope.matSmul Δt Δt (Zonotope.pointMat sys.A)).matInterval) / ((η : ℝ) + 2) ≤ 1 / 2) :
-    (sys.discretizeMatZonotopeFloat Δt η).Trajectory R₀ Ud
+    (sys.discretizeMatZonotopeFloat Δt η).CanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) where
   init := by simpa using traj.init
   input k := hUd k

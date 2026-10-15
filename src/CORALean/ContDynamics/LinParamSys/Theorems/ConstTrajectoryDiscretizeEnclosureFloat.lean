@@ -20,9 +20,9 @@ the frozen member's `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 the real time `toReal Δt` the float denotes.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -52,7 +52,7 @@ theorem LinParamSys.CanonicalConstTrajectory.discretizeEnclosureFloat
     (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ construct
         Ud)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) :
-    (sys.discretizeEnclosureFloat Δt η).Trajectory R₀ Ud
+    (sys.discretizeEnclosureFloat Δt η).CanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * toReal Δt))
           ((LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt))
     where

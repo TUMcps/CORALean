@@ -20,9 +20,9 @@ being one admissible input's contribution (`stepInput_mem_inputReach`). Only the
 steps inside the horizon are spoken about.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -58,7 +58,7 @@ theorem LinearSys.CanonicalTrajectory.discretizeEnclosureFloat_mem_reach_horizon
       sys.inputReach_subset_inputSolutionFloat hΔt hη U
         (traj.stepInput_mem_inputReach j (step_subset_horizon hΔt.le hT hj))
   -- the same run, its matrix only enclosed
-  have hon : (sys.discretizeEnclosureFloat Δt η).TrajectoryOn (S := 𝒵[𝕋]) R₀
+  have hon : (sys.discretizeEnclosureFloat Δt η).CanonicalTrajectoryOn (S := 𝒵[𝕋]) R₀
     (sys.inputSolutionFloat Δt η U) K
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) :=
     { init := hdt.init

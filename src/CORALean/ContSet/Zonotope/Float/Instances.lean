@@ -11,6 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 public import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesMatZonotopeOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
@@ -44,9 +45,9 @@ would have to guess which of them a loop calls — `NeuralNetwork.enclose` calls
 neither `reduce` nor `linComb`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       18-August-2026
--- Last update:   01-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -111,6 +112,22 @@ instance : OfScalarPoint 𝕋 𝒵[𝕋] where
     show toRealVec v ∈ (Zonotope.point v).construct
     rw [h]
     exact Set.mem_singleton _
+
+omit [SoundFloatArithmetic 𝕋] in
+/-- The stored identity block as a point matrix zonotope. -/
+instance : OfIdentity 𝕄𝒵[𝕋] where
+  identity n := Zonotope.pointMat (diagonalBlock fun _ : Fin n => (FloatOps.one : 𝕋))
+
+open FloatOps SoundFloatArithmetic in
+/-- The stored identity block reads back as the real `1`. -/
+instance : IdentityMem 𝕄𝒵[𝕋] where
+  one_mem_identity n := by
+    have h : toRealMat (diagonalBlock fun _ : Fin n => (one : 𝕋)) = (1 : Mat ℝ n n) := by
+      funext i j
+      rw [toRealMat, toReal_diagonalBlock]
+      simp [toRealVec, toReal_one, Matrix.one_apply, Matrix.diagonal_apply]
+    rw [← h]
+    exact Zonotope.mem_pointMat (diagonalBlock fun _ : Fin n => (one : 𝕋))
 
 /-- The stored centre. -/
 instance : ScalarCentre 𝕋 𝒵[𝕋] where

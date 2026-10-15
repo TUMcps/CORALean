@@ -25,7 +25,7 @@ generators, and the step is tighter for it.
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -65,7 +65,7 @@ noncomputable def DMZ.R0 : Zonotope (Vec ℝ 1) := Zonotope.ofPoint DMZ.x0
 noncomputable def DMZ.U : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (0 : Vec ℝ 1)
 
 /-- The run at the true exponential, `x(k) = (e^{-Δt})ᵏ x₀`: the decay itself. -/
-theorem DMZ.traj : DMZ.sysD.Trajectory (S := 𝒵) DMZ.R0 DMZ.U
+theorem DMZ.traj : DMZ.sysD.CanonicalTrajectory (S := 𝒵) DMZ.R0 DMZ.U
     (fun k => DMZ.A0 ^ k *ᵥ DMZ.x0) (fun _ => 0) where
   init := by rw [pow_zero, Matrix.one_mulVec]; exact Zonotope.mem_ofPoint _
   input _ := Zonotope.mem_ofPoint 0

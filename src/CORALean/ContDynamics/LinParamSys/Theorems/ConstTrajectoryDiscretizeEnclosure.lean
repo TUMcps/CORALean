@@ -27,9 +27,9 @@ propagated it is fixed by the run.
 `hε` is stated at the box, so it is checkable before a member is fixed.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       12-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -57,7 +57,7 @@ theorem LinParamSys.CanonicalConstTrajectory.discretizeEnclosure {sys : LinParam
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u Δt k ∈ construct Ud)
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1) :
-    (sys.discretizeEnclosure Δt η).Trajectory R₀ Ud
+    (sys.discretizeEnclosure Δt η).CanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * Δt)) ((LinearSys.canonical A : LinearSys ℝ n).stepInput u Δt) where
   init := by simpa using traj.init
   input k := hUd k

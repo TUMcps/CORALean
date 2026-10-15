@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloat
-public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
+public import CORALean.ContDynamics.LinParamSysDT.Operations.Canonical
+public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 
@@ -23,9 +24,9 @@ instance `Zonotope.mtimesMatZonotope`.
       Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -46,7 +47,7 @@ def LinearSys.discretizeMatZonotopeFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (
     LinParamSysDT (fun m n => Zonotope (Mat 𝕋 m n)) n :=
   let AΔt := Zonotope.matSmul Δt Δt (Zonotope.pointMat sys.A)     -- AΔt, rounded
   let eAΔt := MatExp.expMatZonoEnclosure AΔt η                      -- [e^{AΔt}]
-  ⟨eAΔt⟩                                                            -- x_{k+1} ∈ [e^{AΔt}] x_k + u_k
+  .canonical eAΔt                                                   -- x_{k+1} ∈ [e^{AΔt}] x_k + u_k
 
 end CORALean
 

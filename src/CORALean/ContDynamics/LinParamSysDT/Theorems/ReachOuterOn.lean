@@ -12,9 +12,9 @@ for the `A` and the membership `reach_one_outer` now asks for, in place of
 reading `toRealMat sys.A` straight off the equation.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       06-September-2026
--- Last update:   30-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +34,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 /-- `reach` contains every trajectory of a run known only up to step `K`, at
 every step within it. -/
 theorem LinParamSysDT.reach_outer_on (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
-    {K : ℕ} {x u : ℕ → Vec ℝ n} (traj : sys.TrajectoryOn R₀ U K x u) :
+    {K : ℕ} {x u : ℕ → Vec ℝ n} (traj : sys.CanonicalTrajectoryOn R₀ U K x u) :
     ∀ k ≤ K, x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   intro k
   induction k with

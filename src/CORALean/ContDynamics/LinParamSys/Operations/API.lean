@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolution
 public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagate
 public import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosure
 public import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
+public import CORALean.ContDynamics.LinParamSys.Operations.InputSet
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZono
 public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionZonoFloat
