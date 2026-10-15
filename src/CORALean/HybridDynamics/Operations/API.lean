@@ -50,6 +50,7 @@ public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTarget
 public import CORALean.HybridDynamics.Operations.TransitionSynchronizeTargetCORA
 public import CORALean.HybridDynamics.Operations.TransitionSynchronizeFloat
 public import CORALean.HybridDynamics.Operations.IdentGuard
+public import CORALean.HybridDynamics.Operations.IdentPolytope
 public import CORALean.HybridDynamics.Operations.SplitTreeRegions
 public import CORALean.HybridDynamics.Operations.LinearResetResolveUpdate
 public import CORALean.HybridDynamics.Operations.LinearResetResolve
