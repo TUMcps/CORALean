@@ -49,7 +49,7 @@ theorem PolyZonotope.aux_sum_indep_exactPlus (pZ₁ pZ₂ : PolyZonotope α) (hp
     (β : Fin (pZ₁.q + pZ₂.q) → ℝ) :
     ∑ j : Fin (pZ₁.exactPlus pZ₂ hp).q, β j • (pZ₁.exactPlus pZ₂ hp).GI j
       = ∑ j, β (Fin.castAdd pZ₂.q j) • pZ₁.GI j
-        + ∑ j, β (Fin.natAdd pZ₁.q j) • pZ₂.GI j := by
+        + ∑ j, β (Fin.natAdd pZ₁.q j) • pZ₂.GI j := by -- --- PROOF ---
   show ∑ j : Fin (pZ₁.q + pZ₂.q), β j • Fin.append pZ₁.GI pZ₂.GI j = _
   rw [Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right]

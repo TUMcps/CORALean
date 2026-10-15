@@ -33,7 +33,7 @@ theorem ConPolyZono.holds_congr {p p' m q s' : ℕ} {A : Mat ℝ m q} {A' : Mat 
     {b : Interval (Vec ℝ m)} {R : Fin p → Fin q → ℕ} {R' : Fin p' → Fin s' → ℕ}
     {a : Fin p → ℝ} {a' : Fin p' → ℝ}
     (h : A' *ᵥ PolyZonotope.monomial R' a' = A *ᵥ PolyZonotope.monomial R a) :
-    ConPolyZono.holds A b R a ↔ ConPolyZono.holds A' b R' a' := by
+    ConPolyZono.holds A b R a ↔ ConPolyZono.holds A' b R' a' := by -- --- PROOF ---
   rw [ConPolyZono.holds, ConPolyZono.holds, h]
 
 end CORALean.Real

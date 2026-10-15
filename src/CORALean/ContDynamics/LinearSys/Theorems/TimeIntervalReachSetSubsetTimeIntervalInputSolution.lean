@@ -54,7 +54,7 @@ theorem LinearSys.timeIntervalReachSet_subset_timeInterval_inputSolution
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (h0 : (0 : Vec ℝ n) ∈ construct U) :
     sys.timeIntervalReachSet T R₀ U r ⊆ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
-      (sys.inputSolution r (m + 2) U)) := by
+      (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   rw [sys.timeIntervalReachSet_eq_iUnion]
   refine Set.iUnion₂_subset fun t ht => ?_
   exact sys.reachSet_subset_timeInterval_inputSolution R₀ U hr hT hε hconv hclosed hbdd

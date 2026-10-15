@@ -77,7 +77,7 @@ theorem LinearSysDT.backReachSetExists_trajectory (sys : LinearSysDT 𝕋 n) (T 
     {R₀ : S n} {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) (k : ℕ)
     (hx : x₀ ∈ sys.backReachSetExists T U k) :
     ∃ u : ℕ → Vec ℝ n, sys.CanonicalTrajectoryOn R₀ U k (sys.simulate x₀ u) u ∧
-      sys.simulate x₀ u k ∈ construct T := by
+      sys.simulate x₀ u k ∈ construct T := by -- --- PROOF ---
   obtain ⟨u, hu, hT⟩ := sys.aux_backReachSetExists_input T U k x₀ hx
   exact ⟨u, ⟨hx₀, hu, fun _ _ => rfl⟩, hT⟩
 

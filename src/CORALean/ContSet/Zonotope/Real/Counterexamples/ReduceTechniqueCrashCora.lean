@@ -91,7 +91,7 @@ theorem Zonotope.reduceCrashCora_crash :
         aux_accepted t = true) ∧
       reduceCrashCora .methB true false = true ∧ reduceCrashCora .cluster true false = true ∧
       reduceCrashCora .methD false false = true ∧ reduceCrashCora .methE false false = true ∧
-      reduceCrashCora .redistribute true true = true := by
+      reduceCrashCora .redistribute true true = true := by -- --- PROOF ---
   refine ⟨fun t _ => rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 /-- The witness of `redistribute`: four generators, one zero, `ind = 1`. -/

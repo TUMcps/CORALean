@@ -49,7 +49,7 @@ theorem Zonotope.aux_mulVec_interHalfspace (Z : Zonotope (Vec ℝ n)) (h : Vec �
     ((fun _ : Fin 1 => Fin.append (fun i => h (Z.G i))
         (fun _ : Fin 1 => (f - h Z.c + ∑ i, |h (Z.G i)|) / 2)) *ᵥ ξ) 0
       = (∑ i, h (Z.G i) * ξ (Fin.castAdd 1 i))
-        + (f - h Z.c + ∑ i, |h (Z.G i)|) / 2 * ξ (Fin.natAdd Z.h 0) := by
+        + (f - h Z.c + ∑ i, |h (Z.G i)|) / 2 * ξ (Fin.natAdd Z.h 0) := by -- --- PROOF ---
   show ∑ j : Fin (Z.h + 1), Fin.append (fun i => h (Z.G i))
       (fun _ : Fin 1 => (f - h Z.c + ∑ i, |h (Z.G i)|) / 2) j * ξ j = _
   rw [Fin.sum_univ_add, Fin.sum_univ_one]

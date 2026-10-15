@@ -119,7 +119,7 @@ theorem ConZonotope.aux_tightenRow_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng) 
     (i : Fin nc) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
     (hβS : ∀ k ∈ S, E.inf k ≤ β k ∧ β k ≤ E.sup k) (hrow : (A *ᵥ β) i = b i) :
     ∀ k ∈ S, (ConZonotope.tightenRow A b i E).inf k ≤ β k ∧
-        β k ≤ (ConZonotope.tightenRow A b i E).sup k := by
+        β k ≤ (ConZonotope.tightenRow A b i E).sup k := by -- --- PROOF ---
   unfold ConZonotope.tightenRow
   exact Fin.foldl_induction (P := fun y => ∀ k ∈ S, y.inf k ≤ β k ∧ β k ≤ y.sup k) ng
     (fun E j => ConZonotope.tightenCoeff A b i j E) E hβS

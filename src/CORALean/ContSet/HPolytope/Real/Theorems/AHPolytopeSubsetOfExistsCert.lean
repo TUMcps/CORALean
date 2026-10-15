@@ -47,7 +47,7 @@ theorem HPolytope.ahPolytope_subset_of_exists_cert {xbar ybar : Vec ℝ n} {X : 
         ybar - xbar = Y *ᵥ β ∧ (∀ i j, 0 ≤ Λ i j) ∧ Λ * Hx = Hy * Γ ∧
         Λ *ᵥ hx ≤ hy + Hy *ᵥ β) :
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
-      ⊆ HPolytope.ahPolytope ybar Y (HPolytope.ineqs Hy hy) := by
+      ⊆ HPolytope.ahPolytope ybar Y (HPolytope.ineqs Hy hy) := by -- --- PROOF ---
   obtain ⟨_, _, _, hX, hβ, hΛ, h1, h2⟩ := h
   exact HPolytope.ahPolytope_subset_of_cert hX hβ hΛ h1 h2
 

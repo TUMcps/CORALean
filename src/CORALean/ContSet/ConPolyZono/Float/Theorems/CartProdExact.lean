@@ -40,7 +40,7 @@ theorem ConPolyZono.aux_realG_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
     (l : Fin cPZ₁.h) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).G
-      (Fin.castAdd cPZ₂.h l) = ((InflatedContSet.nominal cPZ₁).G l, 0) := by
+      (Fin.castAdd cPZ₂.h l) = ((InflatedContSet.nominal cPZ₁).G l, 0) := by -- --- PROOF ---
   dsimp only [Real.ConPolyZono.cartProd]
   exact Fin.append_left (m := cPZ₁.h) (n := cPZ₂.h) _ _ l
 
@@ -48,7 +48,7 @@ theorem ConPolyZono.aux_realG_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
     (l : Fin cPZ₂.h) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).G
-      (Fin.natAdd cPZ₁.h l) = (0, (InflatedContSet.nominal cPZ₂).G l) := by
+      (Fin.natAdd cPZ₁.h l) = (0, (InflatedContSet.nominal cPZ₂).G l) := by -- --- PROOF ---
   dsimp only [Real.ConPolyZono.cartProd]
   exact Fin.append_right (m := cPZ₁.h) (n := cPZ₂.h) _ _ l
 
@@ -57,7 +57,7 @@ theorem ConPolyZono.aux_realGI_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
     (l : Fin cPZ₁.qI) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).GI
-      (Fin.castAdd cPZ₂.qI l) = ((InflatedContSet.nominal cPZ₁).GI l, 0) := by
+      (Fin.castAdd cPZ₂.qI l) = ((InflatedContSet.nominal cPZ₁).GI l, 0) := by -- --- PROOF ---
   dsimp only [Real.ConPolyZono.cartProd]
   exact Fin.append_left (m := cPZ₁.qI) (n := cPZ₂.qI) _ _ l
 
@@ -65,7 +65,7 @@ theorem ConPolyZono.aux_realGI_right (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
     (l : Fin cPZ₂.qI) :
     (Real.ConPolyZono.cartProd (InflatedContSet.nominal cPZ₁) (InflatedContSet.nominal cPZ₂)).GI
-      (Fin.natAdd cPZ₁.qI l) = (0, (InflatedContSet.nominal cPZ₂).GI l) := by
+      (Fin.natAdd cPZ₁.qI l) = (0, (InflatedContSet.nominal cPZ₂).GI l) := by -- --- PROOF ---
   dsimp only [Real.ConPolyZono.cartProd]
   exact Fin.append_right (m := cPZ₁.qI) (n := cPZ₂.qI) _ _ l
 

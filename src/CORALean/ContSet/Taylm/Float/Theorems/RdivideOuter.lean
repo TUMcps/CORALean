@@ -34,7 +34,7 @@ theorem Taylm.rdivide_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ}
     (h₂ : T₂.Encloses g)
     (hm : 0 < toReal (maximum (minimum T₂.constCoef T₂.bounds.inf)
       (neg (maximum T₂.constCoef T₂.bounds.sup)))) :
-    (T₁.rdivide T₂).Encloses fun t => f t / g t := by
+    (T₁.rdivide T₂).Encloses fun t => f t / g t := by -- --- PROOF ---
   simpa [Taylm.rdivide, div_eq_mul_inv] using Taylm.times_outer h₁ (Taylm.inv_outer h₂ hm)
 
 end CORALean.Float

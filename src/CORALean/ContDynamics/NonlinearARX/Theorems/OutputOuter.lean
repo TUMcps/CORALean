@@ -43,7 +43,7 @@ theorem NonlinearARX.output_outer (sys : NonlinearARX dy du p) (hp : 0 < p) {o :
     {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.Trajectory Y₀ U y u)
     (hR : ∀ k, NonlinearARX.stack p y k ∈ (steps k).R) (k : ℕ) :
     y k ∈ construct (mtimes (𝕄 := Mat 𝕋) (sys.outputSel (𝕋 := 𝕋))
-      (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps)) := by
+      (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps)) := by -- --- PROOF ---
   rw [← sys.outputSel_mulVec (𝕋 := 𝕋) hp y k]
   exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (sys.outputSel (𝕋 := 𝕋)) _
     (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (sys.reach_outer ho hV steps traj hR k)))

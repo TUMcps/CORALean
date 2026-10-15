@@ -53,7 +53,7 @@ theorem Zonotope.aligned_subset_minkowskiDiff_of_cert (Z : Zonotope (Vec ℝ n))
     (hX : ∀ j, ((Z.aligned c a).plus (W.mtimes E)).G j = ∑ k, Γ k j • Z.G k)
     (hγ : Z.c - (c + E *ᵥ W.c) = ∑ k, γ k • Z.G k) (hn : ∀ k, ∑ j, |Γ k j| + |γ k| ≤ 1) :
     (Z.aligned c a).construct
-      ⊆ minkowskiDiff Z.construct ((E *ᵥ ·) '' W.construct) := by
+      ⊆ minkowskiDiff Z.construct ((E *ᵥ ·) '' W.construct) := by -- --- PROOF ---
   rw [subset_minkowskiDiff_iff, Zonotope.mtimes_exact, Zonotope.plus_exact]
   -- [2, Thm. 3] at the aligned zonotope plus `EW` inside `Z`
   exact Zonotope.construct_subset_of_cert _ Z Γ γ hX hγ hn

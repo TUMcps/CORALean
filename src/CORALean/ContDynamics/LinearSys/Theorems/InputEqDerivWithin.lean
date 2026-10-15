@@ -36,7 +36,7 @@ theorem LinearSys.CanonicalClassicalTrajectory.input_eq_derivWithin {sys : Linea
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
         (traj : sys.CanonicalClassicalTrajectory T R₀ U x u)
     {a b t : ℝ} (hT : Set.Icc a b ⊆ T) (ht : t ∈ Set.Ico a b) :
-    u t = derivWithin x (Set.Ici t) t - toRealMat sys.A *ᵥ x t := by
+    u t = derivWithin x (Set.Ici t) t - toRealMat sys.A *ᵥ x t := by -- --- PROOF ---
   rw [(traj.flow_Ici hT ht).derivWithin (uniqueDiffWithinAt_Ici t)]
   abel
 

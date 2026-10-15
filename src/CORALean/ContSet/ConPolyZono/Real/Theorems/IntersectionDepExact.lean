@@ -51,7 +51,8 @@ theorem ConPolyZono.aux_value_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono (Vec 
     (∑ l : Fin (cPZ₁.h + cPZ₂.h),
         PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.E cPZ₂.E) a l
           • Fin.append cPZ₁.G (0 : Fin cPZ₂.h → Vec ℝ n) l)
-      = ∑ l, PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l • cPZ₁.G l := by
+      = ∑ l, PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l
+          • cPZ₁.G l := by -- --- PROOF ---
   rw [Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right, Pi.zero_apply, smul_zero,
     Finset.sum_const_zero, add_zero, PolyZonotope.monomial_plusE_left]

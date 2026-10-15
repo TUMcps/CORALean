@@ -49,7 +49,7 @@ theorem Zonotope.aux_sum_append3 {a b c : ℕ} (δ : Fin (a + b + c) → ℝ) (A
     ∑ j, δ j • Fin.append (Fin.append A B) C j =
       ∑ i, δ (Fin.castAdd c (Fin.castAdd b i)) • A i
       + ∑ i, δ (Fin.castAdd c (Fin.natAdd a i)) • B i
-      + ∑ i, δ (Fin.natAdd (a + b) i) • C i := by
+      + ∑ i, δ (Fin.natAdd (a + b) i) • C i := by -- --- PROOF ---
   rw [Fin.sum_univ_add, Fin.sum_univ_add]
   simp [Fin.append_left, Fin.append_right, add_assoc]
 

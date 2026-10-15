@@ -111,7 +111,7 @@ theorem aux_tendsto_remainderCofactor (sys : LinearSys 𝕋 n) (U : Zonotope (Ve
     {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 < μ) (hμ1 : μ < 1) :
     Tendsto (fun k : ℕ => 2 * (∑ j, U.absBound j)
       * MatExp.expRemainderBound ((Δt * μ ^ k) • toRealMat sys.A) 2)
-      atTop (𝓝 0) := by
+      atTop (𝓝 0) := by -- --- PROOF ---
   have h := (MatExp.tendsto_expRemainderBound_zero (toRealMat sys.A) 2).comp
     (aux_tendsto_geometric_nhdsGT hΔt hμ0 hμ1)
   simpa using h.const_mul (2 * ∑ j, U.absBound j)

@@ -53,7 +53,7 @@ theorem LinParamSys.CanonicalTrajectory.exists_mem_expIntervalEnclosure {sys : L
     (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) (η : ℕ)
     (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) :
     ∃ Φ ∈ construct (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η),
-      x t = Φ *ᵥ x 0 := by
+      x t = Φ *ᵥ x 0 := by -- --- PROOF ---
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq ht hT hu
   have hxc : ContinuousOn x (Set.Icc 0 t) := traj.cont.mono hT
   exact MatExp.exists_mem_expIntervalEnclosure_of_integral hÂi hÂB ht hxc hx η hε

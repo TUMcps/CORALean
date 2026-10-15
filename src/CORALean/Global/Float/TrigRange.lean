@@ -121,7 +121,7 @@ private theorem midpoint_form {g : ℝ → ℝ} (hg : ∀ x y, |g x - g y| ≤ |
     (hlo : toReal lo ≤ g (toReal (midOf l u))) (hhi : g (toReal (midOf l u)) ≤ toReal hi)
     {x : ℝ} (h1 : toReal l ≤ x) (h2 : x ≤ toReal u) :
     toReal (maximum (neg one) (subDown lo (radOf l u))) ≤ g x ∧
-      g x ≤ toReal (minimum one (addUp hi (radOf l u))) := by
+      g x ≤ toReal (minimum one (addUp hi (radOf l u))) := by -- --- PROOF ---
   rw [toReal_maximum, toReal_minimum, toReal_neg, toReal_one]
   exact ⟨max_le (hg1 x).1 (lip_lower hg hlo h1 h2),
     le_min (hg1 x).2 (lip_upper hg hhi h1 h2)⟩

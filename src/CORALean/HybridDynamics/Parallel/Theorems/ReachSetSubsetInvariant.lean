@@ -39,7 +39,7 @@ theorem ParallelHybridAutomaton.reachSet_subset_invariant
     {ℓ₀ : ∀ i, L i} {R : (∀ i, L i) → S (∑ i, n i)} (hinv : (P.product lift).Invariant R)
     (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), (∀ i, x i ∈ construct (R₀ i)) →
       stack x ∈ construct (R ℓ₀)) (ℓ : ∀ i, L i) :
-    stack '' P.reachSet R₀ ℓ₀ ℓ ⊆ construct (R ℓ) := by
+    stack '' P.reachSet R₀ ℓ₀ ℓ ⊆ construct (R ℓ) := by -- --- PROOF ---
   rintro _ ⟨y, ⟨x, hx, run⟩, rfl⟩
   exact run.mem_of_invariant hfeed hinv (hR₀ x hx)
 

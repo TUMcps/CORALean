@@ -49,7 +49,7 @@ theorem LinearSys.reachSet_subset_reach (sys : LinearSys 𝕋 n) {T : Set ℝ} (
     (hUd : ∀ x u : ℝ → Vec ℝ n, sys.CanonicalTrajectory T R₀ U x u →
       ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
     sys.reachSet T R₀ U ((k : ℝ) * Δt)
-      ⊆ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) := by
+      ⊆ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   rintro _ ⟨x, u, traj, rfl⟩
   exact traj.reach_outer hΔt hT hU (hUd x u traj) ho k
 

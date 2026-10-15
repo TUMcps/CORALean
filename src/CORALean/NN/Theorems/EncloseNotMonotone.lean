@@ -94,7 +94,7 @@ theorem aux_encloseNotMonotone_enclose (I : Real.Interval (Vec ℝ 1)) :
           ⟨fun i => aux_encloseNotMonotone_R.offset (I.inf i) (I.sup i)
               - aux_encloseNotMonotone_R.error (I.inf i) (I.sup i),
             fun i => aux_encloseNotMonotone_R.offset (I.inf i) (I.sup i)
-              + aux_encloseNotMonotone_R.error (I.inf i) (I.sup i)⟩ := by
+              + aux_encloseNotMonotone_R.error (I.inf i) (I.sup i)⟩ := by -- --- PROOF ---
   -- every rounding at `ℝ` is the exact operation, and both conversions are the identity
   show Real.Interval.plus _ ⟨fun i => _ + -_, fun i => _ + _⟩ = _
   simp only [sub_eq_add_neg]
@@ -135,7 +135,7 @@ theorem Layer.enclose_not_monotone :
         construct s ⊆ construct t →
           construct ((Layer.activation (S := ℐ𝒱) R).enclose s)
             ⊆ construct ((Layer.activation (S := ℐ𝒱)
-              R).enclose t) := by
+              R).enclose t) := by -- --- PROOF ---
   intro h
   exact aux_encloseNotMonotone_not_mem_t
     (h aux_encloseNotMonotone_R aux_encloseNotMonotone_R_sound aux_encloseNotMonotone_s

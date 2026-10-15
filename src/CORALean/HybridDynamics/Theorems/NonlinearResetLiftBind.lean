@@ -52,7 +52,7 @@ theorem NonlinearReset.lift_evaluate_bind (r : NonlinearReset n m n)
     (stateBind : Fin n → Fin N) (hinj : Function.Injective stateBind)
     (inputBind : Fin m → Fin M) (id : Bool) (x : Vec ℝ N) (u : Vec ℝ M) (j : Fin n) :
     (r.lift N M stateBind inputBind id).evaluate x u (stateBind j) =
-      r.evaluate (fun k => x (stateBind k)) (fun k => u (inputBind k)) j := by
+      r.evaluate (fun k => x (stateBind k)) (fun k => u (inputBind k)) j := by -- --- PROOF ---
   exact NonlinearReset.aux_foldl_update_mem hinj _ j _ _ (List.nodup_finRange n)
     (List.mem_finRange j)
 

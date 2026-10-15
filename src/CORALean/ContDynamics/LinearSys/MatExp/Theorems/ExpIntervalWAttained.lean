@@ -83,7 +83,7 @@ theorem aux_diag_choice (A : Interval (Mat ℝ n n)) (t : ℝ) (i j : Fin n) {x 
       ∨ x = t + t ^ 2 / 2 * (A.sup i i + A.sup j j))
     (hA : ∀ p q, A.inf p q ≤ A.sup p q) :
     ∃ u : Fin n → ℝ, (∀ p, A.inf p p ≤ u p ∧ u p ≤ A.sup p p) ∧
-      t + t ^ 2 / 2 * (u i + u j) = x := by
+      t + t ^ 2 / 2 * (u i + u j) = x := by -- --- PROOF ---
   rcases hx with rfl | rfl
   · exact ⟨fun p => A.inf p p, fun p => ⟨le_rfl, hA p p⟩, rfl⟩
   · exact ⟨fun p => A.sup p p, fun p => ⟨hA p p, le_rfl⟩, rfl⟩

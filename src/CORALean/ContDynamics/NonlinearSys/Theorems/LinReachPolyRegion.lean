@@ -40,7 +40,7 @@ theorem aux_abstrErrPolyCandidates_q (A : Mat ℝ n n) (xs : Vec ℝ n) (us : Ve
     (Δt : ℝ) (η errorOrder intermediateOrder : ℕ) (U : PolyZonotope (Vec ℝ m))
     (Rinit Rdiff VerrorStat : PolyZonotope (Vec ℝ n)) (abstrerr : Vec ℝ n) (k : ℕ) :
     (NonlinearSys.abstrErrPolyCandidates A xs us H E Δt η errorOrder intermediateOrder U Rinit
-      Rdiff VerrorStat abstrerr k).1.q = 0 := by
+      Rdiff VerrorStat abstrerr k).1.q = 0 := by -- --- PROOF ---
   induction k generalizing abstrerr with
   | zero => rfl
   | succ k ih => exact ih _

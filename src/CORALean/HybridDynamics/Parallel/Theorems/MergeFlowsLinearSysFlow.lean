@@ -46,7 +46,7 @@ theorem aux_reindex_mulVec_stack {d e : Fin k → ℕ}
     (M : Matrix (Σ i, Fin (d i)) (Σ i, Fin (e i)) ℝ) (z : ∀ i, Vec ℝ (e i))
     (p : Σ i, Fin (d i)) :
     (Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv M *ᵥ stack z) (finSigmaFinEquiv p) =
-      ∑ c, ∑ b, M p ⟨c, b⟩ * z c b := by
+      ∑ c, ∑ b, M p ⟨c, b⟩ * z c b := by -- --- PROOF ---
   simp only [Matrix.mulVec, dotProduct, Matrix.reindex_apply, Matrix.submatrix_apply,
     Equiv.symm_apply_apply]
   rw [← finSigmaFinEquiv.sum_comp, Fintype.sum_sigma]

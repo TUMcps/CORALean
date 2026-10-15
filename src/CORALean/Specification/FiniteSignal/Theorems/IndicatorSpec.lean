@@ -35,7 +35,7 @@ theorem aux_indicator_finish (dur : ℝ) (L : List ℝ) (W : List Bool) (F : ℝ
     (hd : (⟨L, W⟩ : FiniteSignal ℝ Bool).duration = dur)
     (hat : ∀ t : ℝ, 0 ≤ t → t ≤ dur → FiniteSignal.valueAt (L.zip W) t = some (F t)) :
     ∃ r, FiniteSignal.mk? L W = some r ∧ r.IsValid ∧ r.duration = dur ∧
-      ∀ t : ℝ, 0 ≤ t → t ≤ dur → r.at? t = some (F t) := by
+      ∀ t : ℝ, 0 ≤ t → t ≤ dur → r.at? t = some (F t) := by -- --- PROOF ---
   refine ⟨⟨L, W⟩, (FiniteSignal.mk?_eq_some_iff _ _ _).mpr ⟨rfl, rfl, hv⟩, hv, hd,
     fun t h0 h1 => ?_⟩
   rw [FiniteSignal.at?_eq_valueAt _ hv.2.1 t, if_pos ⟨h0, hd ▸ h1⟩]

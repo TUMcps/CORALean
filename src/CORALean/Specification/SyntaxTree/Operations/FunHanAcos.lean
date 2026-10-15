@@ -31,9 +31,9 @@ namespace CORALean
 noncomputable def SyntaxTree.funHanAcos (int prev : Dom) : Outcome Dom :=
   let step := fun (int : Dom) =>
     -- apply inverse function
-    let temp₁ := Real.cos (int.inf 0)
-    let temp₂ := Real.cos (int.sup 0)
-    Outcome.ok (Real.Interval.intersection prev (interval (min temp₁ temp₂) (max temp₁ temp₂)))
+    let preInf := Real.cos (int.inf 0)
+    let preSup := Real.cos (int.sup 0)
+    Outcome.ok (Real.Interval.intersection prev (interval (min preInf preSup) (max preInf preSup)))
   -- intersection with valid domain
   if int.inf 0 < 0 then
     if int.sup 0 < 0 then .outOfDomain else step (interval 0 (int.sup 0))

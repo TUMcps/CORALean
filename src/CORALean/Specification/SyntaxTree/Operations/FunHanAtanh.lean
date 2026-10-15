@@ -28,9 +28,9 @@ namespace CORALean
 /-- `aaux_tanh_`: `tanh(int)` met with `intPrev`. -/
 noncomputable def SyntaxTree.funHanAtanh (int prev : Dom) : Outcome Dom :=
   -- apply inverse function
-  let temp₁ := Real.tanh (int.inf 0)
-  let temp₂ := Real.tanh (int.sup 0)
-  .ok (Real.Interval.intersection prev (interval (min temp₁ temp₂) (max temp₁ temp₂)))
+  let preInf := Real.tanh (int.inf 0)
+  let preSup := Real.tanh (int.sup 0)
+  .ok (Real.Interval.intersection prev (interval (min preInf preSup) (max preInf preSup)))
 
 end CORALean
 

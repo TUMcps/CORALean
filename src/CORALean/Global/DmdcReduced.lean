@@ -50,7 +50,7 @@ theorem dmdc_reducedA_eq (X2 : Mat ℝ n N) (V : Mat ℝ (n + l) p) (s : Fin p �
     (Û : Mat ℝ n r) :
     Ûᵀ * (dmdcBlocks (dmdCandidate X2 V s W p)).1 * Û
       = Ûᵀ * X2 * W * Matrix.diagonal (fun i : Fin p => if (i : ℕ) < p then (s i)⁻¹ else 0)
-        * (Matrix.of fun a j => V (Fin.castAdd l a) j)ᵀ * Û := by
+        * (Matrix.of fun a j => V (Fin.castAdd l a) j)ᵀ * Û := by -- --- PROOF ---
   rw [dmdcBlocks_candidate]
   simp only [Matrix.mul_assoc]
 
@@ -59,7 +59,7 @@ theorem dmdc_reducedB_eq (X2 : Mat ℝ n N) (V : Mat ℝ (n + l) p) (s : Fin p �
     (Û : Mat ℝ n r) :
     Ûᵀ * (dmdcBlocks (dmdCandidate X2 V s W p)).2
       = Ûᵀ * X2 * W * Matrix.diagonal (fun i : Fin p => if (i : ℕ) < p then (s i)⁻¹ else 0)
-        * (Matrix.of fun b j => V (Fin.natAdd n b) j)ᵀ := by
+        * (Matrix.of fun b j => V (Fin.natAdd n b) j)ᵀ := by -- --- PROOF ---
   rw [dmdcBlocks_candidate]
   simp only [Matrix.mul_assoc]
 

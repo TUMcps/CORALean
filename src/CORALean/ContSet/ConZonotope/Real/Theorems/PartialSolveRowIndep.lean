@@ -36,7 +36,7 @@ theorem ConZonotope.partialSolve_row_indep {n q h : ℕ} (c : Vec ℝ n) (G : Fi
     (A : Mat ℝ q h) (b : Vec ℝ q) (r r' : Fin q) (j : Fin h) (hAj : A r j ≠ 0)
     (hAj' : A r' j ≠ 0) :
     (ConZonotope.partialSolve c G A b r j).construct
-      = (ConZonotope.partialSolve c G A b r' j).construct := by
+      = (ConZonotope.partialSolve c G A b r' j).construct := by -- --- PROOF ---
   rw [ConZonotope.partialSolve_construct_eq c G A b r j hAj,
     ConZonotope.partialSolve_construct_eq c G A b r' j hAj']
 

@@ -34,7 +34,7 @@ theorem aux_cell_data {T : Type} [LinearOrder T] [Zero T] (s : PointSegmentSigna
     ∃ p a, 1 ≤ p ∧ p ≤ s.timePoints.length ∧ s.timePoints[p - 1]? = some a ∧ a ≤ t ∧
       (∀ b, s.timePoints[p]? = some b → t < b) ∧
       s.cell t = (if a = t then 2 * (p - 1) else 2 * (p - 1) + 1) ∧
-      p = (s.timePoints.takeWhile (· ≤ t)).length := by
+      p = (s.timePoints.takeWhile (· ≤ t)).length := by -- --- PROOF ---
   obtain ⟨h1, h2, ⟨a, ha, hale⟩, hnext⟩ := PointSegmentSignal.takeWhile_le_pos s hs t ht
   refine ⟨_, a, h1, h2, ha, hale, hnext, ?_, rfl⟩
   unfold PointSegmentSignal.cell

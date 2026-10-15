@@ -39,7 +39,7 @@ theorem Zonotope.mem_walkEdges_iff (Z : Zonotope α) (x : α) :
       x ∈ segment ℝ (Z.corner fun j => decide (j.val < k.val))
           (Z.corner fun j => decide (j.val < k.val + 1)) ∨
       x ∈ segment ℝ (Z.corner fun j => !decide (j.val < k.val))
-          (Z.corner fun j => !decide (j.val < k.val + 1)) := by
+          (Z.corner fun j => !decide (j.val < k.val + 1)) := by -- --- PROOF ---
   simp only [Zonotope.walkEdges, Set.mem_iUnion, Set.mem_union, Zonotope.walk,
     Fin.append_left, Fin.append_right, Fin.val_castSucc, Fin.val_succ]
   rfl

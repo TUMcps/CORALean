@@ -35,7 +35,7 @@ theorem ProbZonotope.gaussPdf_le_max (P : ProbZonotope 𝕋 n) (m : 𝕋) (p k :
     (hv : P.max m p k = some v) {S : Mat ℝ n n} (hS : S ∈ P.cov.construct)
     (hSh : S.IsHermitian) (c : Vec ℝ n) (x : EuclideanSpace ℝ (Fin n))
     (hx : toReal m ^ 2 ≤ (ofLp x - c) ⬝ᵥ S⁻¹ *ᵥ (ofLp x - c)) :
-    Real.gaussPdf c S x ≤ toReal v := by
+    Real.gaussPdf c S x ≤ toReal v := by -- --- PROOF ---
   obtain ⟨hdet, hle⟩ := P.max_le m p k hv ⟨0, 0, Fin.elim0⟩ hS hSh
   exact le_trans
     ((Real.ProbZonotope.gaussPdf_le_max_iff ⟨⟨0, 0, Fin.elim0⟩, S⟩ hdet c x (toReal m)).mpr hx)

@@ -50,7 +50,7 @@ theorem aux_rev_rev {a b : ℕ} (c : Fin (a * b)) :
     finProdFinEquiv (Fin.rev (finProdFinEquiv.symm (finProdFinEquiv (Fin.rev
       (finProdFinEquiv.symm c).1, (finProdFinEquiv.symm c).2))).1,
       (finProdFinEquiv.symm (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1,
-        (finProdFinEquiv.symm c).2))).2) = c := by
+        (finProdFinEquiv.symm c).2))).2) = c := by -- --- PROOF ---
   simp only [Equiv.symm_apply_apply, Fin.rev_rev, Prod.mk.eta, Equiv.apply_symm_apply]
 
 /-- The reindexing, as a continuous linear map, sends a unit vector to a unit vector. -/

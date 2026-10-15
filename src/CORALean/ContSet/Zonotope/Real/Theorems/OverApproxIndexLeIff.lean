@@ -39,7 +39,7 @@ theorem Zonotope.overApproxIndex_le_iff (hn : n ≠ 0) {Sorig : Zonotope (Vec �
     (hV : 0 < (MeasureTheory.volume Sorig.construct).toReal) (S₁ S₂ : Zonotope (Vec ℝ n)) :
     S₁.overApproxIndex Sorig ≤ S₂.overApproxIndex Sorig
       ↔ (MeasureTheory.volume S₁.construct).toReal
-        ≤ (MeasureTheory.volume S₂.construct).toReal := by
+        ≤ (MeasureTheory.volume S₂.construct).toReal := by -- --- PROOF ---
   simp only [Zonotope.overApproxIndex]
   have hexp : 0 < (n : ℝ)⁻¹ := inv_pos.mpr (Nat.cast_pos.mpr (Nat.pos_of_ne_zero hn))
   rw [Real.rpow_le_rpow_iff (div_nonneg ENNReal.toReal_nonneg hV.le)

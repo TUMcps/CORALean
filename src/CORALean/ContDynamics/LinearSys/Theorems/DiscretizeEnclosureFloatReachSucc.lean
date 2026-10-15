@@ -39,7 +39,7 @@ theorem LinearSys.discretizeEnclosureFloat_reach_succ (sys : LinearSys 𝕋 n) (
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k + 1⟩ ⟨o, ho⟩
       = (sys.timePointStepInputFloat Δt η
           ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
-            ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) U).reduce o := by
+            ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) U).reduce o := by -- --- PROOF ---
   show Reduce.reduce (sys.timePointStepInputFloat Δt η ((sys.discretizeEnclosureFloat Δt η).reach
     (S := 𝒵[𝕋]) ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) U) o = _
   exact Zonotope.materialise_eq _

@@ -52,7 +52,7 @@ theorem aux_output_sub_nominal (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
     (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) :
     sys.output (x0 + xt) u w k - sys.nominal x0 u k
       = (sys.C * sys.A ^ k) *ᵥ xt
-        + ∑ i : Fin k, (sys.C * sys.A ^ (i : ℕ)) *ᵥ w (k - 1 - i) := by
+        + ∑ i : Fin k, (sys.C * sys.A ^ (i : ℕ)) *ᵥ w (k - 1 - i) := by -- --- PROOF ---
   simp only [Conform.Plant.output, Conform.Plant.nominal, sys.state_add_dev, mulVec_add,
     mulVec_sum, ← mulVec_mulVec]
   abel

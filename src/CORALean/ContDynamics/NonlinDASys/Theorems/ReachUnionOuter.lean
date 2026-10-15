@@ -42,7 +42,7 @@ theorem NonlinDASys.WithSteps.reachUnion_outer (sys : NonlinDASys.WithSteps S Rg
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ)
     {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) :
     sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-      ⊆ construct R := by
+      ⊆ construct R := by -- --- PROOF ---
   -- the run is the reduced one, and so is the set it reaches
   rw [sys.reachUnionExact_eq]
   exact sys.ode.reachUnion_outer params options hR

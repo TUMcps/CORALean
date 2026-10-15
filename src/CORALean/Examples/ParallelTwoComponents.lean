@@ -91,7 +91,7 @@ theorem PTC.flow_entries :
     A (finSigmaFinEquiv ⟨0, 0⟩) (finSigmaFinEquiv ⟨0, 0⟩) = -1 ∧
     A (finSigmaFinEquiv ⟨0, 0⟩) (finSigmaFinEquiv ⟨1, 0⟩) = 1 ∧
     A (finSigmaFinEquiv ⟨1, 0⟩) (finSigmaFinEquiv ⟨0, 0⟩) = 0 ∧
-    A (finSigmaFinEquiv ⟨1, 0⟩) (finSigmaFinEquiv ⟨1, 0⟩) = 0 := by
+    A (finSigmaFinEquiv ⟨1, 0⟩) (finSigmaFinEquiv ⟨1, 0⟩) = 0 := by -- --- PROOF ---
   intro A
   simp [A, PTC.product, ParallelHybridAutomaton.product, ParallelHybridAutomaton.locationProduct,
     ParallelHybridAutomaton.mergeFlowsLinearSys, ParallelHybridAutomaton.bindsAt,

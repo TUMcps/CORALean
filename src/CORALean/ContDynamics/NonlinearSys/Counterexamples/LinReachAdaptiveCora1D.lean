@@ -388,7 +388,7 @@ theorem aux_linReachAdaptiveCora1D_abstrErr (f'' : ℝ → ℝ) (hessIv : ℝ �
       max |(hessIv lo hi).inf| |(hessIv lo hi).sup| = f'' lo)
     (p lo hi : ℝ) (h1 : lo + p ≤ hi + p) (h2 : lo + p ≤ 0) (h3 : hi + p ≤ -(lo + p)) :
     NonlinearSys.abstrErrAdaptiveCora1D hessIv none p ⟨lo, hi⟩
-      = 1 / 2 * max |lo| |hi| * f'' (lo + p) * max |lo| |hi| := by
+      = 1 / 2 * max |lo| |hi| * f'' (lo + p) * max |lo| |hi| := by -- --- PROOF ---
   simp only [NonlinearSys.abstrErrAdaptiveCora1D, hH _ _ h1 h2 h3]
 
 /-- A pass in closed form is monotone in the applied error. -/
@@ -412,7 +412,7 @@ theorem aux_linReachAdaptiveCora1D_horizon (G : ℝ → ℝ)
       * (468559 / 7880 * (-(481 / 165480 + 2 * ae)) ^ 4
         - 122853 / 1970 * (-(481 / 165480 + 2 * ae)) ^ 5) * (165961 / 165480 + 2 * ae)) :
     0 < G 0 ∧ 11 / 10 * G 0 ≤ 3 / 10 ^ 9 ∧ G (3 / 10 ^ 9) ≤ 11 / 10 * G 0 ∧
-      G (3 / 10 ^ 9) ≤ 22 / 10 ^ 10 := by
+      G (3 / 10 ^ 9) ≤ 22 / 10 ^ 10 := by -- --- PROOF ---
   subst hG
   norm_num
 
@@ -423,7 +423,7 @@ theorem aux_linReachAdaptiveCora1D_decr (G : ℝ → ℝ)
         - 122853 / 1970 * (-(28128409443 / 2758000000000 + 9 / 5 * ae)) ^ 5)
       * (2510328409443 / 2758000000000 + 9 / 5 * ae)) :
     1 / 10 ^ 7 ≤ G 0 ∧ 11 / 10 * G 0 ≤ 297 / 10 ^ 9 ∧ G (9 / 10 * (22 / 10 ^ 10)) ≤ 27 / 10 ^ 8 ∧
-      G (297 / 10 ^ 9) ≤ 11 / 10 * G 0 := by
+      G (297 / 10 ^ 9) ≤ 11 / 10 * G 0 := by -- --- PROOF ---
   subst hG
   norm_num
 

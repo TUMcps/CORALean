@@ -72,7 +72,7 @@ theorem taylor_remainder_abs_le {g : ℝ → ℝ} {N : ℕ} {c x D : ℝ}
     (hg : ∀ ξ ∈ Set.uIcc c x, ContDiffAt ℝ (N + 1) g ξ)
     (hD : ∀ ξ ∈ Set.uIcc c x, |iteratedDeriv (N + 1) g ξ| ≤ D) :
     |g x - ∑ k ∈ Finset.range (N + 1), iteratedDeriv k g c / (k.factorial : ℝ) * (x - c) ^ k|
-      ≤ D * |x - c| ^ (N + 1) / ((N + 1).factorial : ℝ) := by
+      ≤ D * |x - c| ^ (N + 1) / ((N + 1).factorial : ℝ) := by -- --- PROOF ---
   have h := aux_taylor_remainder_abs_le (g := g) (N := N) (c := c) (y := x - c) (D := D)
     (by rwa [add_sub_cancel]) (by rwa [add_sub_cancel])
   rwa [add_sub_cancel] at h

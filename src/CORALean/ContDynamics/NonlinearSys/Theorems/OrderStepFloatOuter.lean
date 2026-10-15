@@ -47,7 +47,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.orderStepFloat_outer
       sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-        x (toReal options.Δt) ∈ Rt.construct := by
+        x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
   unfold NonlinearSys.FloatHessModel.orderStepFloat at hstep
   split at hstep
   · exact h.toEncloses.relinStepFloat_outer hstep

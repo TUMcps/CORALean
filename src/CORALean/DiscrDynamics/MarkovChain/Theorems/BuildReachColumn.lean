@@ -35,7 +35,7 @@ theorem MarkovChain.buildReach_column_sum (M : MarkovChain n m)
     (R : List (MarkovChain.ReachEntry S n)) (iInput : Fin m)
     {iState : Fin (M.field.nrOfCells + 1)} (hs : iState ≠ 0) (tranFrac : List ℝ) :
     ∑ r, (M.buildReach R iInput iState tranFrac).T.T iInput r iState =
-      (tranFrac.take R.length).sum := by
+      (tranFrac.take R.length).sum := by -- --- PROOF ---
   rw [← MarkovChain.reachProbability_T_sum M.field R tranFrac]
   exact Finset.sum_congr rfl fun r _ =>
     (MarkovChain.withColumn_column M _ iInput hs r).1

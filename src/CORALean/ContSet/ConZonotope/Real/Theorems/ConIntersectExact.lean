@@ -69,7 +69,7 @@ theorem ConZonotope.aux_value_conIntersect (cZ₁ : ConZonotope (Vec ℝ n))
     (cZ₂ : ConZonotope (Vec ℝ m)) (M : Mat ℝ m n) (β : Fin (cZ₁.h + cZ₂.h) → ℝ) :
     (cZ₁.conIntersect cZ₂ M).c
         + ∑ j : Fin (cZ₁.conIntersect cZ₂ M).h, β j • (cZ₁.conIntersect cZ₂ M).G j
-      = cZ₁.c + ∑ j, β (Fin.castAdd cZ₂.h j) • cZ₁.G j := by
+      = cZ₁.c + ∑ j, β (Fin.castAdd cZ₂.h j) • cZ₁.G j := by -- --- PROOF ---
   show cZ₁.c + ∑ j : Fin (cZ₁.h + cZ₂.h), β j • (cZ₁.conIntersect cZ₂ M).G j = _
   rw [Fin.sum_univ_add]
   simp only [ConZonotope.conIntersect, Fin.append_left, Fin.append_right, Pi.zero_apply,

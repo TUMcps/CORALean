@@ -59,7 +59,7 @@ theorem PolyZonotope.aux_realGI_right (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
     (pZ₂ : PolyZonotope (Vec 𝕋 n₂))
     (l : Fin pZ₂.q) :
     (Real.PolyZonotope.cartProd (InflatedContSet.nominal pZ₁) (InflatedContSet.nominal pZ₂)).GI
-      (Fin.natAdd pZ₁.q l) = (0, (InflatedContSet.nominal pZ₂).GI l) := by
+      (Fin.natAdd pZ₁.q l) = (0, (InflatedContSet.nominal pZ₂).GI l) := by -- --- PROOF ---
   dsimp only [Real.PolyZonotope.cartProd]
   exact Fin.append_right (m := pZ₁.q) (n := pZ₂.q) _ _ l
 

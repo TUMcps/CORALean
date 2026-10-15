@@ -63,7 +63,7 @@ theorem holds_safeSet_of_verifyHalfspace_safe {ℓ : ι → α →ₗ[ℝ] ℝ} 
     (u : ∀ (r : ℕ) (k : Fin (2 ^ r)) (i : ι), SupportBound (S r k) (ℓ i))
     (hcover : ∀ r : ℕ, R ⊆ ⋃ k, S r k) {r fuel : ℕ}
     (h : verifyHalfspace (fun r k i => (u r k i).val) bndLo d r fuel = .safe) :
-    (Specification.safeSet {x | ∀ i, ℓ i x ≤ d i}).Holds R := by
+    (Specification.safeSet {x | ∀ i, ℓ i x ≤ d i}).Holds R := by -- --- PROOF ---
   obtain ⟨r', hr', hb⟩ := aux_exists_safe_round h
   refine Set.Subset.trans (hcover r') ?_
   exact Specification.holds_iUnion (Specification.safeSet _)

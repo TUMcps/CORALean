@@ -45,7 +45,7 @@ theorem PolyZonotope.bilin_subsetAt_subset_image2 (f : α →ₗ[ℝ] β →ₗ[
     (B : Set (Fin pZ₁.p → ℝ)) :
     (pZ₁.bilin f pZ₂ hp).subsetAt B
       ⊆ Set.image2 (fun x y => f x y) (pZ₁.subsetAt B)
-          (pZ₂.subsetAt ((fun a k => a (Fin.cast hp.symm k)) '' B)) := by
+          (pZ₂.subsetAt ((fun a k => a (Fin.cast hp.symm k)) '' B)) := by -- --- PROOF ---
   rw [PolyZonotope.bilin_subsetAt]
   rintro _ ⟨a, ha, rfl⟩
   exact Set.mem_image2_of_mem ⟨a, ha, rfl⟩ ⟨fun k => a (Fin.cast hp.symm k), ⟨a, ha, rfl⟩, rfl⟩

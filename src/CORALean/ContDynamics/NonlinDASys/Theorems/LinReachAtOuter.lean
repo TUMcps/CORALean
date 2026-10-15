@@ -47,7 +47,8 @@ theorem NonlinDASys.Trajectory.linReachAt_outer {sys : NonlinDASys n p m}
     x Δt ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).1.construct ∧
       ∀ t ∈ Set.Icc 0 Δt,
         x t ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.1.construct ∧
-        (x t, y t) ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.2.construct := by
+        (x t, y t)
+          ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.2.construct := by -- --- PROOF ---
   obtain ⟨F, Rz, hF, hR, hL, hLa, hus, h0, hε⟩ := hc
   exact NonlinDASys.Trajectory.linReach_outer traj hΔt hF hR hL hLa hus h0 hε
 

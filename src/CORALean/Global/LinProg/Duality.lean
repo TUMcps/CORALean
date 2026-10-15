@@ -46,7 +46,8 @@ theorem le_dual_bound (A : Fin m → (α →ₗ[ℝ] ℝ)) (b : Fin m → ℝ)
     (Ae : Fin me → (α →ₗ[ℝ] ℝ)) (be : Fin me → ℝ)
     (y : Fin m → ℝ) (z : Fin me → ℝ) (hy : ∀ i, 0 ≤ y i)
     {x : α} (hle : ∀ i, A i x ≤ b i) (heq : ∀ i, Ae i x = be i) :
-    (∑ i, y i * A i x) + (∑ i, z i * Ae i x) ≤ (∑ i, y i * b i) + ∑ i, z i * be i := by
+    (∑ i, y i * A i x) + (∑ i, z i * Ae i x)
+      ≤ (∑ i, y i * b i) + ∑ i, z i * be i := by -- --- PROOF ---
   refine add_le_add (Finset.sum_le_sum fun i _ => mul_le_mul_of_nonneg_left (hle i) (hy i)) ?_
   exact le_of_eq (Finset.sum_congr rfl fun i _ => by rw [heq i])
 

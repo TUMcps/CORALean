@@ -31,9 +31,9 @@ namespace CORALean
 noncomputable def SyntaxTree.funHanExp (int prev : Dom) : Outcome Dom :=
   let step := fun (int : Dom) =>
     -- `log(0) = -Inf`
-    let temp₁ : EReal := if int.inf 0 = 0 then ⊥ else (Real.log (int.inf 0) : ℝ)
-    let temp₂ : EReal := if int.sup 0 = 0 then ⊥ else (Real.log (int.sup 0) : ℝ)
-    Outcome.ok (restrict prev (min temp₁ temp₂) (max temp₁ temp₂))
+    let preInf : EReal := if int.inf 0 = 0 then ⊥ else (Real.log (int.inf 0) : ℝ)
+    let preSup : EReal := if int.sup 0 = 0 then ⊥ else (Real.log (int.sup 0) : ℝ)
+    Outcome.ok (restrict prev (min preInf preSup) (max preInf preSup))
   if int.inf 0 < 0 then
     if int.sup 0 < 0 then .outOfDomain else step (interval 0 (int.sup 0))
   else step int

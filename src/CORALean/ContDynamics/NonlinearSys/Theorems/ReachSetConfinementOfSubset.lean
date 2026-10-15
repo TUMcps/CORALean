@@ -69,7 +69,7 @@ theorem NonlinearSys.reachSet_confinement_of_subset [Mtimes ℐ S] (sys : Nonlin
       (NonlinearSys.linearize (steps i).A).inputSolution Δt η (steps i).linInput)),
       Metric.closedBall y ρ ⊆ (steps i).R) :
     ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt),
-      sys.reachSet T R₀ U t ⊆ (steps i).R := by
+      sys.reachSet T R₀ U t ⊆ (steps i).R := by -- --- PROOF ---
   rintro i hi t ht _ ⟨x, u, traj, rfl⟩
   exact traj.confinement_of_subset hΔt hT η hε hconv hclosed hbdd hRconv hRclosed hRbdd
     hM₀ hM hρ ho hsub i hi t ht

@@ -54,7 +54,7 @@ theorem aux_hom_expand (A : Mat ℝ n n) (a : Fin n → ℝ) (α u v : ℝ)
       u ^ 2 * (z.1 ⬝ᵥ A *ᵥ z.1 + 2 * z.2 * (a ⬝ᵥ z.1) + z.2 ^ 2 * α)
         + v ^ 2 * (w.1 ⬝ᵥ A *ᵥ w.1 + 2 * w.2 * (a ⬝ᵥ w.1) + w.2 ^ 2 * α)
         + u * v * (z.1 ⬝ᵥ A *ᵥ w.1 + w.1 ⬝ᵥ A *ᵥ z.1 + 2 * z.2 * (a ⬝ᵥ w.1)
-          + 2 * w.2 * (a ⬝ᵥ z.1) + 2 * z.2 * w.2 * α) := by
+          + 2 * w.2 * (a ⬝ᵥ z.1) + 2 * z.2 * w.2 * α) := by -- --- PROOF ---
   simp only [Prod.fst_add, Prod.snd_add, Prod.smul_fst, Prod.smul_snd, smul_eq_mul, mulVec_add,
     mulVec_smul, dotProduct_add, add_dotProduct, dotProduct_smul, smul_dotProduct]
   ring

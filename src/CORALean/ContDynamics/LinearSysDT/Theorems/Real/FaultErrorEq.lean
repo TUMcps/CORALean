@@ -48,7 +48,7 @@ theorem LinearSysDT.faultError_eq (A : Mat ℝ n n) (B : Mat ℝ n nu) (C : Mat 
     let xh_plus := A *ᵥ xh + B *ᵥ u + L *ᵥ (y - C *ᵥ xh)                     -- Eq. 7
     let e := x - xh
     x_plus - xh_plus = (A - L * C) *ᵥ e + Dx *ᵥ w - (L * Dy) *ᵥ v - (L * E) *ᵥ f ∧  -- Eq. 8
-      M *ᵥ (y - C *ᵥ xh) = (M * C) *ᵥ e + (M * Dy) *ᵥ v + (M * E) *ᵥ f := by
+      M *ᵥ (y - C *ᵥ xh) = (M * C) *ᵥ e + (M * Dy) *ᵥ v + (M * E) *ᵥ f := by -- --- PROOF ---
   intro y x_plus xh_plus e
   simp only [y, x_plus, xh_plus, e, sub_mulVec, ← mulVec_mulVec, mulVec_add, mulVec_sub]
   constructor <;> abel

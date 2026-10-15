@@ -46,7 +46,7 @@ theorem Zonotope.diffusionPropStep_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n)
     (hα : ∀ i a, 0 < ∑ s, ∑ l,
       ((Zonotope.diffusionPropLuenberger F Q Γ r yb Zh (nb i a)).G l s) ^ 2) (i : Fin N) :
     F *ᵥ x + Q *ᵥ β ∈
-      (Zonotope.diffusionPropStep F Q Γ r yb nb o Zh i).construct := by
+      (Zonotope.diffusionPropStep F Q Γ r yb nb o Zh i).construct := by -- --- PROOF ---
   unfold Zonotope.diffusionPropStep
   exact Zonotope.diffusionUpdate_outer o _ (hα i) (Set.mem_iInter.mpr fun a =>
     Zonotope.diffusionPropLuenberger_outer F Q Γ r yb Zh x β hβ (nb i a) (hx (nb i a))

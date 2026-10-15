@@ -88,7 +88,7 @@ theorem approxError_relu (m l u : ℝ) (hlu : l ≤ u) :
     IsLeast ((fun x => relu x - (fun x => m * x) x) '' (({0, l, u} : Set ℝ) ∩ Set.Icc l u))
         (approxErrorLow relu (fun x => m * x) l u) ∧
       IsGreatest ((fun x => relu x - (fun x => m * x) x) '' (({0, l, u} : Set ℝ) ∩ Set.Icc l u))
-        (approxErrorUp relu (fun x => m * x) l u) := by
+        (approxErrorUp relu (fun x => m * x) l u) := by -- --- PROOF ---
   exact approxError_isExtreme relu (fun x => m * x) {0, l, u} l u
     (Set.toFinite _) ⟨l, by simp, le_rfl, hlu⟩
     (fun x hx => aux_relu_dominated_below m l u x hx.1 hx.2)

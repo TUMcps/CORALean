@@ -130,7 +130,7 @@ theorem Partition.mulVec_split₂ {ι R : Type*} [Fintype α] [Fintype βₗ] [F
     [NonUnitalNonAssocSemiring R] (P : Split α into βₗ ⊕ βᵣ) (W : Matrix ι α R) (v : α → R) :
     W.mulVec v
       = (W.submatrix id P.left).mulVec (v ∘ P.left)
-        + (W.submatrix id P.right).mulVec (v ∘ P.right) := by
+        + (W.submatrix id P.right).mulVec (v ∘ P.right) := by -- --- PROOF ---
   funext i
   simp only [Pi.add_apply, Matrix.mulVec, dotProduct, Matrix.submatrix_apply, id,
     Function.comp]

@@ -41,7 +41,7 @@ theorem optimalDiscard_none_example :
     (∀ G H : Finset (Fin 4), G ⊆ H → w G ≤ w H) ∧
     (∀ G : Finset (Fin 4), w (supportConstraints w G).toFinset = w G) ∧
     optimalDiscard w Finset.univ 2 = none ∧
-    ∃ F : Finset (Fin 4), F.card = 2 ∧ w F = 0 := by
+    ∃ F : Finset (Fin 4), F.card = 2 ∧ w F = 0 := by -- --- PROOF ---
   intro w
   exact ⟨of_decide_eq_true rfl, of_decide_eq_true rfl, of_decide_eq_true rfl,
     {1, 2}, of_decide_eq_true rfl, of_decide_eq_true rfl⟩

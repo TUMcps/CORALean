@@ -85,7 +85,7 @@ theorem aux_lowOrder_split (Ac G : Mat ℝ n n) (c Uc w : Vec ℝ n) (r : ℝ) :
         + r • w + (r ^ 2 / 2) • (Ac *ᵥ w) + (r ^ 3 / 6) • (Ac *ᵥ (Ac *ᵥ w)))
       + ((r ^ 2 / 2) • (G *ᵥ (G *ᵥ c)) + (r ^ 3 / 6) • (G *ᵥ (G *ᵥ Uc))
         + (r ^ 2 / 2) • (G *ᵥ w) + (r ^ 3 / 6) • (Ac *ᵥ (G *ᵥ w) + G *ᵥ (Ac *ᵥ w)))
-      + (r ^ 3 / 6) • (G *ᵥ (G *ᵥ w)) := by
+      + (r ^ 3 / 6) • (G *ᵥ (G *ᵥ w)) := by -- --- PROOF ---
   simp only [Matrix.add_mulVec, Matrix.mulVec_add]
   module
 
@@ -113,7 +113,7 @@ theorem aux_lowOrder_second (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n) (c U
         + (r ^ 2 / 2) • (G *ᵥ w) + (r ^ 3 / 6) • (Ac *ᵥ (G *ᵥ w) + G *ᵥ (Ac *ᵥ w))
       = ∑ i, ∑ j, (p i * p j) • ((r ^ 2 / 2) • (Ag i *ᵥ (Ag j *ᵥ c))
           + (r ^ 3 / 6) • (Ag i *ᵥ (Ag j *ᵥ Uc)) + (r ^ 2 / 2) • (Ag i *ᵥ UG j)
-          + (r ^ 3 / 6) • (Ac *ᵥ (Ag i *ᵥ UG j) + Ag i *ᵥ (Ac *ᵥ UG j))) := by
+          + (r ^ 3 / 6) • (Ac *ᵥ (Ag i *ᵥ UG j) + Ag i *ᵥ (Ac *ᵥ UG j))) := by -- --- PROOF ---
   simp only [hG, hw, Matrix.mulVec_sum, Matrix.mulVec_smul,
     Finset.smul_sum, ← Finset.sum_add_distrib, smul_add, smul_smul]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_

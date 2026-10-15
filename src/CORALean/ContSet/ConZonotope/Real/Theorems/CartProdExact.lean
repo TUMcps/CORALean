@@ -51,7 +51,7 @@ theorem ConZonotope.aux_value_cartProd (cZ₁ : ConZonotope α) (cZ₂ : ConZono
     (γ : Fin (cZ₁.h + cZ₂.h) → ℝ) :
     (cZ₁.cartProd cZ₂).c + ∑ j : Fin (cZ₁.cartProd cZ₂).h, γ j • (cZ₁.cartProd cZ₂).G j
       = (cZ₁.c + ∑ j, γ (Fin.castAdd cZ₂.h j) • cZ₁.G j,
-         cZ₂.c + ∑ j, γ (Fin.natAdd cZ₁.h j) • cZ₂.G j) := by
+         cZ₂.c + ∑ j, γ (Fin.natAdd cZ₁.h j) • cZ₂.G j) := by -- --- PROOF ---
   rw [ConZonotope.aux_sum_univ_cartProd]
   simp only [ConZonotope.cartProd, Fin.append_left, Fin.append_right, Prod.smul_mk, smul_zero]
   refine Prod.ext ?_ ?_ <;> simp [Prod.fst_sum, Prod.snd_sum]

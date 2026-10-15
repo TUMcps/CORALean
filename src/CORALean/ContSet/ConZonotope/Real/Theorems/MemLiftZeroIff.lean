@@ -37,7 +37,7 @@ theorem ConZonotope.mem_lift_zero_iff {n m h : ℕ} (c : Vec ℝ n) (G : Fin h �
     x ∈ (ConZonotope.lift (m₂ := 0) c G A b).construct ↔
       ∃ β : Fin h → ℝ, (∀ j, |β j| ≤ 1) ∧
         x = Fin.append c (-fun i => b (Fin.castAdd 0 i))
-          + ∑ j, β j • Fin.append (G j) fun i => A (Fin.castAdd 0 i) j := by
+          + ∑ j, β j • Fin.append (G j) fun i => A (Fin.castAdd 0 i) j := by -- --- PROOF ---
   unfold ConZonotope.lift
   rw [ConZonotope.mem_ofMat_iff]
   -- the empty constraint block holds of every `β`

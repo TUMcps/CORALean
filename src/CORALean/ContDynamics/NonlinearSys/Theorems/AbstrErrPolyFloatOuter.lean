@@ -85,7 +85,7 @@ theorem aux_polyErr_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Inte
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
         (fun i j => neg (A i j)))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
-          (fun i => neg (ys i))))).construct := by
+          (fun i => neg (ys i))))).construct := by -- --- PROOF ---
   have hM := Interval.matPlus_outer IJ _ hJ (aux_polyErr_neg_mat A)
   rw [← sub_eq_add_neg] at hM
   exact Interval.mtimesIntervalMat_outer _ _

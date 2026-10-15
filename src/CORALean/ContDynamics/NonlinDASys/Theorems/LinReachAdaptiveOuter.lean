@@ -54,7 +54,7 @@ theorem NonlinDASys.Trajectory.linReachAdaptive_outer {sys : NonlinDASys n p m}
         x t ∈ (NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt
           (k + 2)).2.1.construct ∧
         (x t, y t) ∈ (NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt
-          (k + 2)).2.2.construct := by
+          (k + 2)).2.2.construct := by -- --- PROOF ---
 
   exact traj.linReachAt_outer hΔt hc
 

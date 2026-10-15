@@ -46,7 +46,7 @@ theorem ParallelHybridAutomaton.reachFloat_outer
     {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ construct X₀) (run : P.Run ℓ₀ x ℓ y) :
     ∃ (T : ℝ) (j : ℕ), (P.productWith lift P.mergeFlows (P.mergeInputSets lift)
       (P.mergeDistSets lift)).RunUntil T j ℓ₀ (stack x) ℓ (stack y) ∧
-      (T ≤ tFinal → j ≤ K → ∃ p ∈ out, p.1 = ℓ ∧ stack y ∈ construct p.2) := by
+      (T ≤ tFinal → j ≤ K → ∃ p ∈ out, p.1 = ℓ ∧ stack y ∈ construct p.2) := by -- --- PROOF ---
   -- the parallel run is a run of the product, which has a duration and a jump count
   obtain ⟨T, j, hrun⟩ := HybridAutomaton.run_iff_exists_runUntil.mp
     (run.toProductWith (P.mergeFlows_flowLaw hst hself lift) lift)

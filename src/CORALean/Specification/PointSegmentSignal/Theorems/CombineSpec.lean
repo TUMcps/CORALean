@@ -455,7 +455,7 @@ theorem aux_combineLoop_spec [Nonempty ι] (op : (ι → Bool) → Bool) (sig : 
       ∀ t : T, 0 ≤ t → (PointSegmentSignal.mk
         (PointSegmentSignal.combineLoop op sig fuel inIdx tp val).1
         (PointSegmentSignal.combineLoop op sig fuel inIdx tp val).2).at t =
-          op fun k => (sig k).at t := by
+          op fun k => (sig k).at t := by -- --- PROOF ---
   -- at time `0` no time is below the first point
   induction fuel with
   | zero =>
@@ -515,7 +515,8 @@ theorem PointSegmentSignal.combine_spec {T : Type} [LinearOrder T] [Zero T] {ι 
     (op : (ι → Bool) → κ → Bool) (sig : ι → PointSegmentSignal T)
     (hv : ∀ k, (sig k).IsValid) (i : κ) :
     (PointSegmentSignal.combine op sig i).IsValid ∧ ∀ t : T, 0 ≤ t →
-      (PointSegmentSignal.combine op sig i).at t = op (fun k => (sig k).at t) i := by
+      (PointSegmentSignal.combine op sig i).at t
+        = op (fun k => (sig k).at t) i := by -- --- PROOF ---
   have hinit := aux_loopInv_init (fun a => op a i) sig hv
   exact aux_combineLoop_spec (fun a => op a i) sig hv _ _ _ _ hinit
 

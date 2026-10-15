@@ -101,7 +101,7 @@ theorem aux_blocks_add (A B : Mat ℝ n n) (a b : Fin n → ℝ) (α β δ : ℝ
     fromBlocks A (replicateCol (Fin 1) a) (replicateRow (Fin 1) a) (of fun _ _ => α)
         + δ • fromBlocks B (replicateCol (Fin 1) b) (replicateRow (Fin 1) b) (of fun _ _ => β) =
       fromBlocks (A + δ • B) (replicateCol (Fin 1) (a + δ • b)) (replicateRow (Fin 1) (a + δ • b))
-        (of fun _ _ => α + δ * β) := by
+        (of fun _ _ => α + δ * β) := by -- --- PROOF ---
   rw [fromBlocks_smul, fromBlocks_add]
   congr 1
 

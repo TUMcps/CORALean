@@ -46,7 +46,7 @@ theorem ConZonotope.construct_eq_comap_of_lift {n m h : ℕ} (c : Vec ℝ n)
     (P : HPolytope (Vec ℝ (n + m)))
     (hP : P.construct = (ConZonotope.lift (m₂ := 0) c G A b).construct) :
     (ConZonotope.ofMat c G A b).construct
-      = (P.comap (blockPadLeft n m)).construct := by
+      = (P.comap (blockPadLeft n m)).construct := by -- --- PROOF ---
   ext z
   rw [HPolytope.comap_exact, Set.mem_preimage, hP]
   exact ConZonotope.mem_iff_append_mem_lift c G A b z

@@ -125,7 +125,7 @@ theorem ConZonotope.aux_value_intersectMany (cs : Fin (d + 1) → ConZonotope (V
     (ConZonotope.intersectMany cs).c
         + ∑ l : Fin ((cs 0).h + ∑ j : Fin d, (cs j.succ).h),
             β l • (ConZonotope.intersectMany cs).G l
-      = (cs 0).c + ∑ t, β (Fin.castAdd _ t) • (cs 0).G t := by
+      = (cs 0).c + ∑ t, β (Fin.castAdd _ t) • (cs 0).G t := by -- --- PROOF ---
   rw [Fin.sum_univ_add]
   simp only [ConZonotope.intersectMany, Fin.append_left, Fin.append_right, Pi.zero_apply,
     smul_zero, Finset.sum_const_zero, add_zero]

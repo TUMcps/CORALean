@@ -48,7 +48,7 @@ theorem LinProbSys.initReach_cov (sys : LinProbSys n m) (Veig : Mat ℝ n n)
         = noiseCovariance sys.A sys.C r ∧
       (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma
           originContained).2.2.1.Rpar_prob.cov
-        = noiseCovariance sys.A sys.C 0 := by
+        = noiseCovariance sys.A sys.C 0 := by -- --- PROOF ---
   refine ⟨LinProbSys.inputCov_eq_noiseCovariance sys.A Veig lambda hV hA sys.C r, ?_⟩
   funext i j
   simp [LinProbSys.initReach, noiseCovariance]

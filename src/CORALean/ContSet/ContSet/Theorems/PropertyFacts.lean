@@ -39,7 +39,7 @@ theorem property_facts (S : Set (Vec ℝ n₁)) (S₁ : Set (Vec ℝ n₁)) (S�
     Bornology.IsBounded (∅ : Set (Vec ℝ n₁)) ∧ interior (∅ : Set (Vec ℝ n₁)) = ∅ ∧
       ((interior S).Nonempty → S.Nonempty) ∧ (¬ Bornology.IsBounded S → S.Nonempty) ∧
       (S₁.Nonempty → interior S₂ = ∅ → ¬ Bornology.IsBounded S₂ →
-        interior (S₁ ×ˢ S₂) = ∅ ∧ ¬ Bornology.IsBounded (S₁ ×ˢ S₂)) := by
+        interior (S₁ ×ˢ S₂) = ∅ ∧ ¬ Bornology.IsBounded (S₁ ×ˢ S₂)) := by -- --- PROOF ---
   refine ⟨Bornology.isBounded_empty, interior_empty, fun h => h.mono interior_subset,
     fun h => Set.nonempty_iff_ne_empty.mpr fun he => h (he ▸ Bornology.isBounded_empty),
     fun h₁ hd hnb => ⟨(prod_properties S₁ S₂).2.2.1 (Or.inr hd),

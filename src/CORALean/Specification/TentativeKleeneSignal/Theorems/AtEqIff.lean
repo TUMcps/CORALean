@@ -28,7 +28,7 @@ theorem TentativeKleeneSignal.at_eq_iff {T : Type} [LinearOrder T] (s : Tentativ
     (t : T) : (s.at t = .tt ↔ s.canBeTrue.at t = true ∧ s.canBeFalse.at t = false) ∧
       (s.at t = .ff ↔ s.canBeTrue.at t = false ∧ s.canBeFalse.at t = true) ∧
       (s.at t = .uu ↔ s.canBeTrue.at t = true ∧ s.canBeFalse.at t = true) ∧
-      (s.at t = .ii ↔ s.canBeTrue.at t = false ∧ s.canBeFalse.at t = false) := by
+      (s.at t = .ii ↔ s.canBeTrue.at t = false ∧ s.canBeFalse.at t = false) := by -- --- PROOF ---
   unfold TentativeKleeneSignal.at
   rcases Bool.eq_false_or_eq_true (s.canBeTrue.at t) with hA | hA <;>
     rcases Bool.eq_false_or_eq_true (s.canBeFalse.at t) with hB | hB <;> simp [hA, hB]

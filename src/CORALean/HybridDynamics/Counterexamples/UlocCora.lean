@@ -47,7 +47,7 @@ theorem HybridAutomaton.ulocCora_counterexample {α : Type} (numLoc : Nat) (hn :
     HybridAutomaton.ulocCora numLoc (numLoc - 1) u 0 = none ∧
       HybridAutomaton.uloc numLoc u 0 = some u ∧
       HybridAutomaton.ulocCora numLoc (numLoc - 1) u (numLoc - 1) =
-        some (List.replicate numLoc u) := by
+        some (List.replicate numLoc u) := by -- --- PROOF ---
   refine ⟨?_, ?_, ?_⟩
   · simp [HybridAutomaton.ulocCora]; omega
   · simp [HybridAutomaton.uloc]; omega

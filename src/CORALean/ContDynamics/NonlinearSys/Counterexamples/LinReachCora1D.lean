@@ -111,7 +111,7 @@ theorem aux_linReachCora1D_step :
     ∃ R, NonlinearSys.linReachCora1D (fun x : ℝ => 1 - 1001 / 750 * x + 1001 / 3000 * x ^ 4)
       (fun x => -(1001 / 750) + 1001 / 750 * x ^ 3)
       (fun lo hi => 1001 / 250 * max (lo ^ 2) (hi ^ 2)) ⟨0, 0⟩ 2 2 = some R ∧
-      R.1.sup < 1 / 50000 := by
+      R.1.sup < 1 / 50000 := by -- --- PROOF ---
   simp only [NonlinearSys.linReachCora1D, abstrErrLoop]
   norm_num
 

@@ -62,7 +62,7 @@ theorem LinearSys.girardReach_eq (sys : LinearSys 𝕋 n) (I : Zonotope (Vec ℝ
             (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖)
               * Finset.univ.fold max 0 I.absBound
               + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖
-                * μ))) := by
+                * μ))) := by -- --- PROOF ---
   simp only [LinearSys.girardReach]
   exact congrArg Prod.snd (aux_foldl_iterate (fun Q : Zonotope (Vec ℝ n) =>
     (Q.mtimes (exp (r • toRealMat sys.A))).plus

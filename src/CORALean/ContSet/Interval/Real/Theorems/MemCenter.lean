@@ -38,7 +38,7 @@ theorem Interval.mem_center (I : Interval α) (hI : I.IsNonempty (ι := ι)) :
     I.center ∈ I.construct := fun i => by
   have h : entry I.inf i ≤ entry I.sup i := hI i
   -- the midpoint read at one coordinate, which is where the two bounds compare
-  have hc : entry I.center i = (2:ℝ)⁻¹ * (entry I.inf i + entry I.sup i) := by
+  have hc : entry I.center i = (2:ℝ)⁻¹ * (entry I.inf i + entry I.sup i) := by -- --- PROOF ---
     show entry ((2:ℝ)⁻¹ • (I.inf + I.sup)) i = _
     rw [entry_smul, entry_add]
   rw [hc]
