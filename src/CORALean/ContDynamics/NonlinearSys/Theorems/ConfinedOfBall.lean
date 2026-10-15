@@ -46,9 +46,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- A run whose field is bounded by `M` on `R` stays in `R` over `[a, b]` once a
 ball of radius `ρ > M(b - a)` about `x a` lies in `R`. -/
-theorem NonlinearSys.Trajectory.confined_of_ball {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.confined_of_ball {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {R : Set (Vec ℝ n)}
-    {a b M ρ : ℝ} (traj : sys.Trajectory T R₀ U x u) (hab : a ≤ b) (hT : Set.Icc a b ⊆ T)
+    {a b M ρ : ℝ} (traj : sys.IsTrajectory T R₀ U x u) (hab : a ≤ b) (hT : Set.Icc a b ⊆ T)
     (hM₀ : 0 ≤ M) (hM : ∀ y ∈ R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M)
     (hρ : M * (b - a) < ρ) (hball : Metric.closedBall (x a) ρ ⊆ R) :
     ∀ t ∈ Set.Icc a b, x t ∈ R := by -- --- PROOF ---

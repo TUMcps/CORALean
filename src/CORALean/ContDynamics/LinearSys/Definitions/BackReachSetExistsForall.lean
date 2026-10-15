@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.IsPerturbedTrajectory
 
 @[expose] public section
 
@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
 state `x₀` is in it when some admissible input signal drives the perturbed
 run into `Xend` at time `t` whatever admissible disturbance occurs. The `∀w`
 guard ranges over the measurable admissible disturbances, the signals `Z_W(t)`
-integrates and the ones a `PerturbedTrajectory` exists for.
+integrates and the ones a `IsPerturbedTrajectory` exists for.
 
 `∃x` inside `∀w`, not `∀x`: quantifying the run itself universally would hold
 vacuously for a `w` no run witnesses, and would silently enlarge the set.
@@ -49,7 +49,7 @@ def LinearSys.backReachSetExistsForall (sys : LinearSys 𝕋 n) (T : Set ℝ)
       AEStronglyMeasurable u (volume.restrict T) ∧
       ∀ w : ℝ → Vec ℝ n, (∀ s ∈ T, w s ∈ construct W) →
         AEStronglyMeasurable w (volume.restrict T) →
-        ∃ x : ℝ → Vec ℝ n, sys.PerturbedTrajectory T U W x u w ∧
+        ∃ x : ℝ → Vec ℝ n, sys.IsPerturbedTrajectory T U W x u w ∧
           x 0 = x₀ ∧ x t ∈ construct Xend}
 
 end CORALean

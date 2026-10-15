@@ -11,7 +11,7 @@ The set `V = B*U + c` of CORA's `priv_inputSolution` [1] that `linParamSys/post`
 step, as `LinParamSys.inputSet` has it for the continuous twin: `B` the system's matrix set —
 CORA's `intervalMatrix` or `matZonotope` times a set — `U` in input coordinates and `c` the
 offset as a point. It is the `U'` the canonical form of a run is driven from
-(`Trajectory.canonical`); soundness is `Trajectory.mem_inputSet`.
+(`IsTrajectory.canonical`); soundness is `IsTrajectory.mem_inputSet`.
 
 ## References
 

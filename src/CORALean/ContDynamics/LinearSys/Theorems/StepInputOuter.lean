@@ -56,9 +56,9 @@ omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- What a step's input contributed lies in `inputSolution`, for every step.
 Reflecting about the step's end is what the substitution inside
 `inputSolution_outer` leaves behind, and only step `k` is spoken about. -/
-theorem LinearSys.CanonicalTrajectory.stepInput_outer [Mtimes ℐ S]
+theorem LinearSys.IsCanonicalTrajectory.stepInput_outer [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.CanonicalTrajectory T R₀ U x u)
+    {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
     (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))

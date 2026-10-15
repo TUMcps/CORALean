@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachOptions
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Map
 public import CORALean.ContDynamics.Reach.Definitions.Params
 public import CORALean.NN.Operations.Enclose
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 
 @[expose] public section
 

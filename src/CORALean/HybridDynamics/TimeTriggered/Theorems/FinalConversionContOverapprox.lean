@@ -7,12 +7,12 @@ public import CORALean.HybridDynamics.TimeTriggered.Definitions.FinalConversion
 public import CORALean.HybridDynamics.TimeTriggered.Definitions.FirstDwell
 public import CORALean.HybridDynamics.TimeTriggered.Definitions.SecondDwell
 public import CORALean.HybridDynamics.TimeTriggered.Operations.SpaceTriggered
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.ExecFlowTimer
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.IsExecFlowTimer
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolution
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionClockLe
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionEqOrbit
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionNonneg
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredExecOrbit
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredIsExecOrbit
 
 @[expose] public section
 
@@ -22,7 +22,7 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.SpaceTriggeredExecO
 [1, Cor. 1]: for every `t_scaling ≥ 0`, `H_final` with time bound `T + t_scaling` overapproximates
 `H` with time bound `T`. The paper reads it off `Lemma 1` and `Lemma 2`; the execution of `H_final`
 is built from the end state of one of `H` here, whose f₁-orbit `z` (and, in `m₂`, the f₂-orbit from
-the guard point `z(τ)`) `spaceTriggered_exec_orbit` gives. `H_final` follows `z` to `t₁`, then the
+the guard point `z(τ)`) `spaceTriggered_isExec_orbit` gives. `H_final` follows `z` to `t₁`, then the
 scaled solution `y` from `z(t₁)` for `t_scaling`, which is `z(t₁ + σ)` for the clock `σ`, and `σ`
 stops at the guard point `z(τ)` (`scaledSolution_clock_le`, the step the paper does not mention:
 the scaled run does not cross `G`). What is left of the orbit, `z` from `t₁ + σ` to `τ` and the
@@ -73,45 +73,45 @@ theorem DiffInclAutomaton.finalConversion_contOverapprox {I : Set X} {f₁ f₂ 
   have hg : Continuous g :=
     (continuous_const.sub (continuous_const.inner continuous_id)).div_const _
   -- the same state at another duration or timer
-  have cast : ∀ {k : Fin 4} {d d' : ℝ} {p p' : X × ℝ}, Hf.Exec d k p → d = d' → p = p' →
-      Hf.Exec d' k p' := by
+  have cast : ∀ {k : Fin 4} {d d' : ℝ} {p p' : X × ℝ}, Hf.IsExec d k p → d = d' → p = p' →
+      Hf.IsExec d' k p' := by
     intro k d d' p p' h hd hp
     subst hd; subst hp; exact h
   -- the three time-triggered jumps
-  have jump01 : ∀ {d : ℝ} {x : X}, Hf.Exec d 0 (x, t₁) → Hf.Exec d 1 (x, 0) := fun h =>
+  have jump01 : ∀ {d : ℝ} {x : X}, Hf.IsExec d 0 (x, t₁) → Hf.IsExec d 1 (x, 0) := fun h =>
     h.jump ⟨0, {p | p.2 = t₁}, fun p => (p.1, 0), 1⟩
       (by simp [hHf, finalConversion]) rfl rfl
-  have jump12 : ∀ {d : ℝ} {x : X}, Hf.Exec d 1 (x, ts) → Hf.Exec d 2 (x, 0) := fun h =>
+  have jump12 : ∀ {d : ℝ} {x : X}, Hf.IsExec d 1 (x, ts) → Hf.IsExec d 2 (x, 0) := fun h =>
     h.jump ⟨1, {p | p.2 = ts}, fun p => (p.1, 0), 2⟩
       (by simp [hHf, finalConversion]) rfl rfl
-  have jump23 : ∀ {d : ℝ} {x : X}, Hf.Exec d 2 (x, t₂) → Hf.Exec d 3 (x, 0) := fun h =>
+  have jump23 : ∀ {d : ℝ} {x : X}, Hf.IsExec d 2 (x, t₂) → Hf.IsExec d 3 (x, 0) := fun h =>
     h.jump ⟨2, {p | p.2 = t₂}, fun p => (p.1, 0), 3⟩
       (by simp [hHf, finalConversion]) rfl rfl
   -- an initial state followed by the orbit of `f₁` in `m₁`, up to the timer bound `t₁`
   have mode0 : ∀ {z : ℝ → X} {s : ℝ}, 0 ≤ s → s ≤ t₁ → z 0 ∈ I →
-      (∀ u ∈ Icc 0 s, HasDerivAt z (f₁ (z u)) u) → Hf.Exec s 0 (z s, s) := by
+      (∀ u ∈ Icc 0 s, HasDerivAt z (f₁ (z u)) u) → Hf.IsExec s 0 (z s, s) := by
     intro z s hs hst hz0 hz
-    have e0 : Hf.Exec 0 0 (z 0, 0) :=
-      DiffInclAutomaton.Exec.init (by simp [hHf, finalConversion, hz0])
-    have := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 0) (V := fun u => f₁ (z u)) hs hz
+    have e0 : Hf.IsExec 0 0 (z 0, 0) :=
+      DiffInclAutomaton.IsExec.init (by simp [hHf, finalConversion, hz0])
+    have := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 0) (V := fun u => f₁ (z u)) hs hz
       (fun u _ => by simp [hHf, finalConversion]) (fun u hu => by
         simp [hHf, finalConversion]
         linarith [hu.2]) e0
     simpa using this
   -- the scaled solution from a state of `m_scaling`, with its executions of any length up to `ts`
-  have scale : ∀ {p : X} {d₀ : ℝ}, 0 ≤ g p → Hf.Exec d₀ 1 (p, 0) → ∃ y : ℝ → X, y 0 = p ∧
+  have scale : ∀ {p : X} {d₀ : ℝ}, 0 ≤ g p → Hf.IsExec d₀ 1 (p, 0) → ∃ y : ℝ → X, y 0 = p ∧
       (∀ u ∈ Icc 0 ts, HasDerivAt y (g (y u) • f₁ (y u)) u) ∧ (∀ u ∈ Icc 0 ts, 0 ≤ g (y u)) ∧
-      ∀ r, 0 ≤ r → r ≤ ts → Hf.Exec (d₀ + r) 1 (y r, 0 + r) := by
+      ∀ r, 0 ≤ r → r ≤ ts → Hf.IsExec (d₀ + r) 1 (y r, 0 + r) := by
     intro p d₀ hp he
     obtain ⟨y, hy0, hy⟩ := lipschitzSolution hF p ts
     refine ⟨y, hy0, hy, scaledSolution_nonneg hg hF hy (by rw [hy0]; exact hp), fun r hr hrts => ?_⟩
-    refine DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 1)
+    refine DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 1)
       (V := fun u => g (y u) • f₁ (y u)) hr (fun u hu => hy u ⟨hu.1, hu.2.trans hrts⟩)
       (fun u _ => by simp [hHf, finalConversion, hgdef]) (fun u hu => by
         simp [hHf, finalConversion]
         linarith [hu.2]) (by rw [hy0]; exact he)
   rintro x ⟨d, m, hdT, hex⟩
-  obtain ⟨hd0, h0, h1⟩ := DiffInclAutomaton.spaceTriggered_exec_orbit hf₁ hf₂ hex
+  obtain ⟨hd0, h0, h1⟩ := DiffInclAutomaton.spaceTriggered_isExec_orbit hf₁ hf₂ hex
   have hdT' : d ≤ T + ts := by linarith
   fin_cases m
   · -- `x` is in `m₁`: it is `z d` on the orbit of `f₁` from an initial state
@@ -176,7 +176,7 @@ theorem DiffInclAutomaton.finalConversion_contOverapprox {I : Set X} {f₁ f₂ 
           have := (hzd (t₁ + σ + u) ⟨by linarith [hu.1], by linarith [hu.2]⟩).comp_const_add
             (t₁ + σ) u
           simpa using this
-        have e5 := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 2) (τ := 0) (d := t₁ + ts)
+        have e5 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 2) (τ := 0) (d := t₁ + ts)
           (w := fun v => z (t₁ + σ + v)) (V := fun u => f₁ (z (t₁ + σ + u))) hr hw
           (fun u _ => by simp [hHf, finalConversion, hfe₁]) (fun u hu => by
             simp [hHf, finalConversion]
@@ -193,7 +193,7 @@ theorem DiffInclAutomaton.finalConversion_contOverapprox {I : Set X} {f₁ f₂ 
     obtain ⟨w, hw0, hwd⟩ := lipschitzSolution hf₂ (z τ) (d - τ)
     obtain ⟨hwx, hga, hle, hexτ⟩ := hQ z w hz0 hzd hw0 hwd
     -- the transition is taken between the two dwell times
-    have hjump : Hs.Exec τ 1 (z τ) := hexτ.jump ⟨0, {x | inner ℝ a x = b}, id, 1⟩
+    have hjump : Hs.IsExec τ 1 (z τ) := hexτ.jump ⟨0, {x | inner ℝ a x = b}, id, 1⟩
       (by simp [spaceTriggered]) rfl hga
     have hτt₁ : t₁ ≤ τ := by
       by_contra hc
@@ -235,17 +235,17 @@ theorem DiffInclAutomaton.finalConversion_contOverapprox {I : Set X} {f₁ f₂ 
         have := (hzd (t₁ + σ + u) ⟨by linarith [hu.1], by linarith [hu.2]⟩).comp_const_add
           (t₁ + σ) u
         simpa using this
-    have e5 := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 2) (τ := 0) (d := t₁ + ts)
+    have e5 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 2) (τ := 0) (d := t₁ + ts)
       (w := fun v => z (t₁ + σ + v)) (V := fun u => f₁ (z (t₁ + σ + u))) hρ0 hw₁
       (fun u _ => by simp [hHf, finalConversion, hfe₁]) (fun u hu => by
         simp [hHf, finalConversion]
         linarith [hu.2]) (by simpa [hyts] using e4)
     -- at its end the state is `z τ = w 0`
-    have e5' : Hf.Exec (t₁ + ts + ρ) 2 (w 0, ρ) := cast e5 rfl (by simp [hw0, hρ])
+    have e5' : Hf.IsExec (t₁ + ts + ρ) 2 (w 0, ρ) := cast e5 rfl (by simp [hw0, hρ])
     have hwd' : ∀ u ∈ Icc 0 r, HasDerivAt w (f₂ (w u)) u := hwd
     by_cases hρr : ρ + r ≤ t₂
     · -- the rest of `w` fits in `m_either`
-      have e6 := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 2) (w := w)
+      have e6 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 2) (w := w)
         (V := fun u => f₂ (w u)) hr0 hwd' (fun u _ => by simp [hHf, finalConversion, hfe₂])
         (fun u hu => by
           simp [hHf, finalConversion]
@@ -257,7 +257,7 @@ theorem DiffInclAutomaton.finalConversion_contOverapprox {I : Set X} {f₁ f₂ 
       set r₁ : ℝ := t₂ - ρ with hr₁
       have hr₁0 : 0 ≤ r₁ := by linarith
       have hr₁r : r₁ ≤ r := by linarith
-      have e6 := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 2) (w := w)
+      have e6 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 2) (w := w)
         (V := fun u => f₂ (w u)) hr₁0 (fun u hu => hwd' u ⟨hu.1, hu.2.trans hr₁r⟩)
         (fun u _ => by simp [hHf, finalConversion, hfe₂]) (fun u hu => by
           simp [hHf, finalConversion]
@@ -268,7 +268,7 @@ theorem DiffInclAutomaton.finalConversion_contOverapprox {I : Set X} {f₁ f₂ 
         fun u hu => by
           have := (hwd' (r₁ + u) ⟨by linarith [hu.1], by linarith [hu.2]⟩).comp_const_add r₁ u
           simpa using this
-      have e8 := DiffInclAutomaton.exec_flow_timer (H := Hf) (k := 3) (τ := 0)
+      have e8 := DiffInclAutomaton.isExec_flow_timer (H := Hf) (k := 3) (τ := 0)
         (w := fun v => w (r₁ + v)) (V := fun u => f₂ (w (r₁ + u))) (by linarith) hw₃
         (fun u _ => by simp [hHf, finalConversion]) (fun u _ => by simp [hHf, finalConversion])
         (by simpa using e7)

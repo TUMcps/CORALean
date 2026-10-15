@@ -11,7 +11,7 @@ CORA's `contDynamics` and its `reach`, as classes; each system's `Instances.lean
 and every system class does but `LinProbSys`, which defines no run yet.
 
 `ContDynamics`: `n` states (CORA's `nrOfDims`), `nrOfInputs`, `nrOfDisturbances`, and
-`Trajectory sys T X₀ U W x u w`, the class's own run on `T` over its whole equation, under the
+`IsTrajectory sys T X₀ U W x u w`, the class's own run on `T` over its whole equation, under the
 input `u` in `U` and the disturbance `w` in `W`, what else it carries (outputs, noise, parameters,
 algebraic variables) quantified away. `ContDynamicsDT` is the same over steps, a class of its own
 because every discrete-time class constrains every step, with no `T` to give.
@@ -43,21 +43,21 @@ open ContSet
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- CORA's `contDynamics` in continuous time: `n` states, `nrOfInputs` inputs, `nrOfDisturbances`
-disturbances, and `Trajectory sys T X₀ U W x u w`: `x` is a run of `sys` on `T` from `X₀` under
+disturbances, and `IsTrajectory sys T X₀ U W x u w`: `x` is a run of `sys` on `T` from `X₀` under
 the input `u` in `U` and the disturbance `w` in `W`. -/
 class ContDynamics (Sys : Type u) (n : outParam ℕ) where
   nrOfInputs : Sys → ℕ
   nrOfDisturbances : Sys → ℕ
-  Trajectory (sys : Sys) (T : Set ℝ) (X₀ : Set (Vec ℝ n)) (U : Set (Vec ℝ (nrOfInputs sys)))
+  IsTrajectory (sys : Sys) (T : Set ℝ) (X₀ : Set (Vec ℝ n)) (U : Set (Vec ℝ (nrOfInputs sys)))
     (W : Set (Vec ℝ (nrOfDisturbances sys))) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ (nrOfInputs sys))
     (w : ℝ → Vec ℝ (nrOfDisturbances sys)) : Prop
 
 /-- `ContDynamics` over sampling steps: a run is indexed by ℕ and constrained at every step, so
-`Trajectory` takes no time set. -/
+`IsTrajectory` takes no time set. -/
 class ContDynamicsDT (Sys : Type u) (n : outParam ℕ) where
   nrOfInputs : Sys → ℕ
   nrOfDisturbances : Sys → ℕ
-  Trajectory (sys : Sys) (X₀ : Set (Vec ℝ n)) (U : Set (Vec ℝ (nrOfInputs sys)))
+  IsTrajectory (sys : Sys) (X₀ : Set (Vec ℝ n)) (U : Set (Vec ℝ (nrOfInputs sys)))
     (W : Set (Vec ℝ (nrOfDisturbances sys))) (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ (nrOfInputs sys))
     (w : ℕ → Vec ℝ (nrOfDisturbances sys)) : Prop
 

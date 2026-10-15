@@ -45,7 +45,7 @@ check a caller can actually run against the computed sets. -/
 theorem NonlinearSysDT.reach_outer_of_subset (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n)
     (hsub : ∀ k, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
-    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
+    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.IsTrajectory R₀ U x u) (k : ℕ) :
     x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.reach_outer ho steps R₀ traj (sys.confinement_of_subset ho steps R₀ hsub traj) k
 

@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinParamSys.LinParamSys
 The set `V = B*U + c` of CORA's `priv_inputSolution` [1], with `B` the system's matrix set —
 CORA's `intervalMatrix` or `matZonotope` times a set — `U` in input coordinates and `c` the
 offset as a point. It is the `U'` the canonical form of a run is driven from
-(`Trajectory.canonical`), and what `reachUnion` forms from `params.U` before splitting it at its
+(`IsTrajectory.canonical`), and what `reachUnion` forms from `params.U` before splitting it at its
 center; soundness is `mem_inputSet`.
 
 ## References

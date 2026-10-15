@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.Interfaces
 # `LinearARX` instantiates `ContDynamicsDT`
 
 An ARX model has no state but its outputs, so the state is what CORA's `linearARX` takes it to
-be, `p * dy` numbers: the window of the last `p` outputs. A run is a `Trajectory` of the
+be, `p * dy` numbers: the window of the last `p` outputs. A run is a `IsTrajectory` of the
 outputs, the state at step `k` the window `stack p y k` starting there; `du` inputs, no
 disturbance.
 -/
@@ -33,8 +33,8 @@ variable {𝕋 : Type} [Scalar 𝕋] {dy du p : ℕ}
 instance LinearARX.contDynamicsDT : ContDynamicsDT (LinearARX 𝕋 dy du p) (p * dy) where
   nrOfInputs _ := du
   nrOfDisturbances _ := 0
-  Trajectory sys X₀ U W x u w := ∃ y,
-    LinearARX.Trajectory (S := 𝒮) sys X₀ U y u ∧
+  IsTrajectory sys X₀ U W x u w := ∃ y,
+    LinearARX.IsTrajectory (S := 𝒮) sys X₀ U y u ∧
       (∀ k, x k = LinearARX.stack p y k) ∧ ∀ k, w k ∈ W
 
 end CORALean

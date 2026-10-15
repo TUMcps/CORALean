@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.IsTrajectory
 
 @[expose] public section
 
@@ -13,7 +14,7 @@ than over `reach`'s enclosure. So "the trajectory is in the reachable set"
 holds by construction, and the content of a reachability claim sits in the
 other inclusion, of this set in a computed one.
 
-Stated at every `t`, as in the continuous classes: `Trajectory` constrains `x`
+Stated at every `t`, as in the continuous classes: `IsTrajectory` constrains `x`
 only within the `H` periods it names, so the set stays large outside them.
 `ReachSetSubsetReach` only reaches content at the period boundaries `reach` is
 indexed by — nothing between them, the same silence `ReachOuter` names.
@@ -21,7 +22,7 @@ indexed by — nothing between them, the same silence `ReachOuter` names.
 `Theorems.ReachSetOuter` puts every run into it.
 
 [1, Def. 3]'s `ξ(t, x0, uc(·), w(·))` is `x t` here, at whichever `x`, external input `v` and
-disturbance `w` a `Trajectory` supplies, at any plant, the external input in `U_ext`, the
+disturbance `w` a `IsTrajectory` supplies, at any plant, the external input in `U_ext`, the
 disturbance in `W`.
 
 ## References
@@ -58,7 +59,7 @@ def NeurNetContrSys.reachSet (sys : NeurNetContrSys P S n)
     Set (Vec ℝ n) :=
   {y | ∃ x : ℝ → Vec ℝ n, ∃ v : ℝ → Vec ℝ sys.nExt,
     ∃ w : ℝ → Vec ℝ (nrOfDisturbances sys.plant),
-    sys.Trajectory π H R₀ U_ext W x v w ∧ x t = y}
+    sys.IsTrajectory π H R₀ U_ext W x v w ∧ x t = y}
 
 end CORALean
 

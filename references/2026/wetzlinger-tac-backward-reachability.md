@@ -21,7 +21,7 @@ CORALean's discrete-time backward reachability — `LinearSysDT.backReachSetFora
 and `Def. 7` with the disturbance set dropped, over the discrete-time dynamics this
 paper continuizes. The continuous-time sets themselves are `LinearSys.
 backReachSetForallExists` and `backReachSetExistsForall`, each with a `timeInterval...`
-sibling, over a two-input Carathéodory run `LinearSys.PerturbedTrajectory` that keeps the
+sibling, over a two-input Carathéodory run `LinearSys.IsPerturbedTrajectory` that keeps the
 input and disturbance separately quantified, as the paper's `∀u∃w` and `∃u∀w` require —
 the reading `Prop. 3` and `Prop. 5` are equalities in; see the findings below.
 
@@ -60,8 +60,8 @@ likewise, with no regularity asked of either; but `ξ(t;x_0,u(·),w(·))` is int
 "a solution to (30)", and for an arbitrary — in particular non-measurable — signal there
 is none. The gap is not cosmetic. A pointwise derivative is a pointwise limit of
 difference quotients and so measurable — which is what
-[`ClassicalTrajectoryAestronglyMeasurableInput.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/ClassicalTrajectoryAestronglyMeasurableInput.lean)
-proves of a one-input `CanonicalClassicalTrajectory` — so `ẋ = Ax + Bu + Ew` holding at every point
+[`ClassicalTrajectoryAestronglyMeasurableInput.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryAestronglyMeasurableInput.lean)
+proves of a one-input `IsCanonicalClassicalTrajectory` — so `ẋ = Ax + Bu + Ew` holding at every point
 of `[0,t]` forces `Bu + Ew` measurable there. Two consequences for `t > 0`, both in the
 strong direction:
 
@@ -77,7 +77,7 @@ strong direction:
 The repair is the paper's own implicit one: read `U` and `W` as the signals a solution
 exists for, which for (30) is Carathéodory's class — measurable and bounded — and the runs
 as solutions of the integral equation rather than of the differential one. That is
-`LinearSys.PerturbedTrajectory` and the `backReach...` sets over it, and both identities
+`LinearSys.IsPerturbedTrajectory` and the `backReach...` sets over it, and both identities
 then hold exactly, with no hypothesis beyond `U` and `W` bounded (the paper's zonotopes
 are). It is the same repair `LinearSys.reachSet` makes for the
 forward `Def. 5`, and for the same reason: every point of a particular solution `Z_S(t)`

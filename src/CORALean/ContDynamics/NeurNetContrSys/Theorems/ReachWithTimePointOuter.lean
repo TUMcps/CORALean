@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachWith
 public import CORALean.NN.Theorems.EncloseOuter
 public import Mathlib.Tactic.Linarith
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.IsTrajectory
 
 @[expose] public section
 
@@ -12,8 +13,8 @@ public import Mathlib.Tactic.Linarith
 `reachWith_outer`'s first half on its own, asking of the extended system's reachability algorithm
 `rx` only the set at the end of a cycle: a plant whose reachability computes the sampled sets alone,
 as `LinearSys`'s does here, has no sets over a cycle to vouch for. Induction on the cycle, the step
-being a run of the plant over the cycle (`Trajectory.flow`) and the three enclosures `cp`, `rx` and
-`pr`: [1, Alg. 2] at the cycle ends.
+being a run of the plant over the cycle (`IsTrajectory.flow`) and the three enclosures `cp`, `rx`
+and `pr`: [1, Alg. 2] at the cycle ends.
 
 ## References
 
@@ -50,12 +51,12 @@ theorem NeurNetContrSys.reachWith_timePoint_outer (sys : NeurNetContrSys P S n)
     (hpr : ∀ Z z, z ∈ construct Z → (fun k => z (Fin.castAdd _ k)) ∈ construct (pr Z))
     (hrx : ∀ R (z : ℝ → Vec ℝ n) (u : Vec ℝ sys.m) (v' : ℝ → Vec ℝ sys.nExt) w,
       (Fin.append (z 0) u : Vec ℝ (n + _)) ∈ construct R →
-      ContDynamics.Trajectory sys.plant (Set.Icc 0 sys.dt) Set.univ (sys.inputSet {u} U_ext) W z
+      ContDynamics.IsTrajectory sys.plant (Set.Icc 0 sys.dt) Set.univ (sys.inputSet {u} U_ext) W z
         (fun t => sys.input u (v' t)) w →
       (Fin.append (z sys.dt) u : Vec ℝ (n + _)) ∈ construct (rx R).1)
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π) {H : ℕ}
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
-    (traj : sys.Trajectory π H X₀ U_ext W x v w) :
+    (traj : sys.IsTrajectory π H X₀ U_ext W x v w) :
     ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈ construct (sys.reachWith cp pr rx X₀ i).1 := by -- --- PROOF ---
   intro i
   induction i with

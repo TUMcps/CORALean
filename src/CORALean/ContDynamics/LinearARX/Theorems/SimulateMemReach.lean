@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.LinearARX.Theorems.ReachOuter
-public import CORALean.ContDynamics.LinearARX.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.LinearARX.Theorems.SimulateIsTrajectory
 
 @[expose] public section
 
 /-!
 # A simulated window lies in the reach set
 
-`simulate_trajectory` composed with `reach_outer`: the window of simulated outputs
+`simulate_isTrajectory` composed with `reach_outer`: the window of simulated outputs
 `(y(k), …, y(k+p-1))` lies in the reachable set at step `k`.
 -/
 
@@ -36,7 +36,7 @@ theorem LinearARX.simulate_mem_reach (sys : LinearARX 𝕋 dy du p) {o : ℕ} (h
     {u : ℕ → Vec ℝ du} (hu : ∀ k, u k ∈ construct U) (k : ℕ) :
     LinearARX.stack p (sys.simulate y₀ u) k ∈ construct
       (sys.toLinearSysDT.reach ⟨Y₀, sys.inputSet U, 0, k⟩ ⟨o, ho⟩) :=
-  sys.reach_outer ho Y₀ U (sys.simulate_trajectory hy₀ hu) k
+  sys.reach_outer ho Y₀ U (sys.simulate_isTrajectory hy₀ hu) k
 
 end CORALean
 

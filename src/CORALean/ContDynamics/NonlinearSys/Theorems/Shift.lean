@@ -10,7 +10,7 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # A trajectory re-anchored at a later time
 
-`Trajectory.init` pins the state at `0` and every guarantee in `LinearSys` is
+`IsTrajectory.init` pins the state at `0` and every guarantee in `LinearSys` is
 written from `0`, so a method that takes a second step has to move the clock.
 This is the move: `fun t => x (t₀ + t)` is a trajectory on any domain the shift
 carries into `T`, with the input shifted alongside it.
@@ -45,11 +45,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every run on `T` is a run on `T'` re-anchored at `t₀`, given a set holding
 the state it starts from. -/
-theorem NonlinearSys.Trajectory.shift {sys : NonlinearSys n m} {T T' : Set ℝ}
+theorem NonlinearSys.IsTrajectory.shift {sys : NonlinearSys n m} {T T' : Set ℝ}
     {R₀ R₀' : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {t₀ : ℝ}
-    (traj : sys.Trajectory T R₀ U x u) (hT : Set.MapsTo (fun t => t₀ + t) T' T)
+    (traj : sys.IsTrajectory T R₀ U x u) (hT : Set.MapsTo (fun t => t₀ + t) T' T)
     (h₀ : x t₀ ∈ construct R₀') :
-    sys.Trajectory T' R₀' U (fun t => x (t₀ + t)) (fun t => u (t₀ + t)) where
+    sys.IsTrajectory T' R₀' U (fun t => x (t₀ + t)) (fun t => u (t₀ + t)) where
   init := by simpa using h₀
   input t ht := traj.input _ (hT ht)
   flow t ht := by

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearARX.Operations.OutputEq
 public import CORALean.ContDynamics.LinearARX.Theorems.Basic
-public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTTrajectory
+public import CORALean.ContDynamics.LinearARX.Theorems.ToLinearSysDTIsTrajectory
 public import CORALean.ContDynamics.LinearSysDT.Theorems.OutputOuter
 
 @[expose] public section
@@ -75,13 +75,13 @@ theorem LinearARX.aux_outputEq_eval (sys : LinearARX 𝕋 dy du p) (hp : 0 < p) 
 
 theorem LinearARX.output_outer (sys : LinearARX 𝕋 dy du p) (hp : 0 < p) {o : ℕ} (ho : 0 < o)
     (Y₀ : S (p * dy)) (U : S du) {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du}
-    (traj : sys.Trajectory Y₀ U y u) (k : ℕ) :
+    (traj : sys.IsTrajectory Y₀ U y u) (k : ℕ) :
     y k ∈ construct (sys.outputEq.outputSet
       (sys.toLinearSysDT.reach ⟨Y₀, sys.inputSet U, 0, k⟩ ⟨o, ho⟩)
       (sys.inputSet U)) := by -- --- PROOF ---
   rw [← sys.aux_outputEq_eval hp y (sys.feed u k) k]
   exact sys.toLinearSysDT.output_outer sys.outputEq ho Y₀ (sys.inputSet U)
-    (sys.toLinearSysDT_trajectory traj) k
+    (sys.toLinearSysDT_isTrajectory traj) k
 
 end CORALean
 

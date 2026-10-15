@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 /-!
 # A continuous-time system paired with its input set
 
-The input set `U` a `Trajectory` draws from is bundled with the system rather
+The input set `U` a `IsTrajectory` draws from is bundled with the system rather
 than taken from CORA's `params.U`, because `0 ∈ U` is a proof about it that
 `params` cannot carry; `Reach LinearSys.WithInput` reads it off the system it is
 asked about, exactly as it reads `sys.A`.

@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Instances
 public import CORALean.ContDynamics.LinearSysDT.Operations.Basic
 public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 public import CORALean.ContDynamics.OutputEq.Operations.OutputSet
 public import CORALean.NN.Operations.Enclose
 

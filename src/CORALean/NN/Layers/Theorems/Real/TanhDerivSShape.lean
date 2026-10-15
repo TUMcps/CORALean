@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Definitions.SShape
+public import CORALean.NN.Layers.Definitions.IsSShape
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 public import Mathlib.Analysis.Complex.Trigonometric
 
@@ -27,7 +27,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `1 - tanh²` is even and non-increasing on `[0, ∞)`. -/
-theorem tanhDeriv_sShape : SShape fun t : ℝ => 1 - Real.tanh t ^ 2 where
+theorem tanhDeriv_sShape : IsSShape fun t : ℝ => 1 - Real.tanh t ^ 2 where
   even t := by simp [Real.tanh_neg]
   anti {s t} hs hst := by
     -- `1 - tanh² x = (cosh x)⁻² `

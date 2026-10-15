@@ -1,7 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.ReachFloatOuter
-public import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionRunUntil
+public import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionIsRunUntil
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionRunUntil
 # `HybridAutomaton.reachFloat` encloses the reachable set up to its horizon
 
 `reachFloat_outer` at the level of `reachSet`: of the slices
-`reachSet_eq_iUnion_runUntil` cuts the reachable set into, every one with a
+`reachSet_eq_iUnion_isRunUntil` cuts the reachable set into, every one with a
 duration bound `T ≤ tFinal` and at most `K` jumps lies in the computed sets of
 the location `ℓ`. Runs longer than the horizon, or with more jumps, are not
 claimed, as CORA's `reach` claims none past `tFinal`.
@@ -41,7 +41,7 @@ theorem HybridAutomaton.reachSet_subset_reachFloat
     {out : List (L × Zonotope (Vec 𝕋 n))} (h : HA.reachFloat tFinal options K ℓ₀ X₀ = some out)
     (ℓ : L) :
     (⋃ (T : ℝ) (_ : T ≤ tFinal) (k : ℕ) (_ : k ≤ K),
-        {y | ∃ x ∈ construct X₀, HA.RunUntil T k ℓ₀ x ℓ y})
+        {y | ∃ x ∈ construct X₀, HA.IsRunUntil T k ℓ₀ x ℓ y})
       ⊆ {y | ∃ p ∈ out, p.1 = ℓ ∧ y ∈ construct p.2} := by -- --- PROOF ---
   intro y hy
   simp only [Set.mem_iUnion, Set.mem_setOf_eq] at hy

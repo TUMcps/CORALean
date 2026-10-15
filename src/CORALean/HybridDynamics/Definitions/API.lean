@@ -5,8 +5,8 @@ public import CORALean.HybridDynamics.Definitions.Location
 public import CORALean.HybridDynamics.Definitions.Invariant
 public import CORALean.HybridDynamics.Definitions.InvariantOn
 public import CORALean.HybridDynamics.Definitions.ReachSet
-public import CORALean.HybridDynamics.Definitions.RunUntil
-public import CORALean.HybridDynamics.Definitions.UrgentRun
+public import CORALean.HybridDynamics.Definitions.IsRunUntil
+public import CORALean.HybridDynamics.Definitions.IsUrgentRun
 public import CORALean.HybridDynamics.Definitions.UrgentReachSetAt
 public import CORALean.HybridDynamics.Definitions.NonlinearResetArg
 public import CORALean.HybridDynamics.Definitions.NonlinearReset

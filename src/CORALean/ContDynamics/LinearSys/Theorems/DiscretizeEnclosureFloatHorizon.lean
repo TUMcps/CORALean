@@ -43,10 +43,10 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Every sample `x (k Δt)`, `k ≤ K`, of a run on `[0, K Δt]` lies in the float-sampled
 system's `reach` under the float input solution of `U`. -/
-theorem LinearSys.CanonicalTrajectory.discretizeEnclosureFloat_mem_reach_horizon
+theorem LinearSys.IsCanonicalTrajectory.discretizeEnclosureFloat_mem_reach_horizon
     {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : Zonotope (Vec 𝕋 n)} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η K : ℕ}
-    (traj : sys.CanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u) (hΔt : 0 < toReal Δt)
+    (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u) (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 ((K : ℝ) * toReal Δt) ⊆ T) (hη : sys.OrderAdmissibleFloat Δt Δt η)
     {o : ℕ} (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * toReal Δt) ∈ construct
@@ -58,7 +58,7 @@ theorem LinearSys.CanonicalTrajectory.discretizeEnclosureFloat_mem_reach_horizon
       sys.inputReach_subset_inputSolutionFloat hΔt hη U
         (traj.stepInput_mem_inputReach j (step_subset_horizon hΔt.le hT hj))
   -- the same run, its matrix only enclosed
-  have hon : (sys.discretizeEnclosureFloat Δt η).CanonicalTrajectoryOn (S := 𝒵[𝕋]) R₀
+  have hon : (sys.discretizeEnclosureFloat Δt η).IsCanonicalTrajectoryOn (S := 𝒵[𝕋]) R₀
     (sys.inputSolutionFloat Δt η U) K
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) :=
     { init := hdt.init

@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
 public import CORALean.ContSet.Interval.Float.Instances
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.NN.Operations.Enclose
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 
 @[expose] public section
 

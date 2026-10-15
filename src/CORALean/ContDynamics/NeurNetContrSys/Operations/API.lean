@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Augment
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.AugmentFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.CartProd
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Project
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
@@ -21,7 +22,9 @@ supplies, and projected back. `Reach` is it at a linear plant, the period reache
 `LinearSys`'s own machinery on the `Augment`ed system, the external inputs `U_ext` entering through
 its input matrix, the product and projection `CartProd`
 and `Project`; `ReachFloat` is `Reach` at float zonotopes, on `AugmentFloat`.
-`ReachOrder`/`ReachUnion` are `Instances`' Taylor order and `SetUnion`.
+`ReachOrder`/`ReachUnion` are `Instances`' Taylor order and `SetUnion`. `Basic` holds the plant's
+input `[a; e]` (`input`, built by `joinInput`), the split of an input matrix (`leftCols`,
+`rightCols`) and the loop in which the network drives every input (`ofFull`).
 
 ## References
 

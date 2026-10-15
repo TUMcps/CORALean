@@ -30,15 +30,15 @@ variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet
   [Scalar 𝕋] {n : ℕ}
 
 
--- ============================  `Location.Trajectory.inputSet_mem`  ============================ --
+-- ===========================  `Location.IsTrajectory.inputSet_mem`  =========================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- The combined input of a stay lies in `inputSet` at every time of the stay. -/
-theorem Location.Trajectory.inputSet_mem {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x u w}
-    (traj : ℓ.Trajectory τ x u w) : ∀ t ∈ Set.Icc 0 τ, toRealMat ℓ.dynamics.B *ᵥ u t +
+theorem Location.IsTrajectory.inputSet_mem {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x u w}
+    (traj : ℓ.IsTrajectory τ x u w) : ∀ t ∈ Set.Icc 0 τ, toRealMat ℓ.dynamics.B *ᵥ u t +
       toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t ∈ construct ℓ.inputSet :=
   fun t ht => ℓ.inputSet_outer (traj.input t ht) (traj.dist t ht)
 
@@ -53,15 +53,15 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [
   [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- =========================  `Location.Trajectory.inputSetFloat_mem`  ========================== --
+-- ========================  `Location.IsTrajectory.inputSetFloat_mem`  ========================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- The combined input of a stay lies in `inputSetFloat` at every time of the stay. -/
-theorem Location.Trajectory.inputSetFloat_mem {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x u w}
-    (traj : ℓ.Trajectory τ x u w) : ∀ t ∈ Set.Icc 0 τ, toRealMat ℓ.dynamics.B *ᵥ u t +
+theorem Location.IsTrajectory.inputSetFloat_mem {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x u w}
+    (traj : ℓ.IsTrajectory τ x u w) : ∀ t ∈ Set.Icc 0 τ, toRealMat ℓ.dynamics.B *ᵥ u t +
       toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t ∈ construct ℓ.inputSetFloat :=
   fun t ht => ℓ.inputSetFloat_outer (traj.input t ht) (traj.dist t ht)
 

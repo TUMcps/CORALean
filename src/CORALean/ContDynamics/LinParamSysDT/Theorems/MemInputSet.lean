@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.InputSet
 # The combined input of a step lies in `inputSet`
 
 A value `B u + c`, `B` from `sys.B` and `u` from `U`, lies in `sys.inputSet U`: the step's input in
-state coordinates, as `LinParamSys.mem_inputSet` has it. With `Trajectory.canonical` this puts
+state coordinates, as `LinParamSys.mem_inputSet` has it. With `IsTrajectory.canonical` this puts
 every run into the canonical form at CORA's `V = B*U + c`.
 -/
 

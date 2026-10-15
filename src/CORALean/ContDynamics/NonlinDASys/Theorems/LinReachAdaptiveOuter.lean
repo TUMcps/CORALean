@@ -40,13 +40,13 @@ variable {n p m q : ℕ}
 
 /-- An accepted pass of `linReachAdaptive`: a run certified by its errors at its step size is in
 its sets. -/
-theorem NonlinDASys.Trajectory.linReachAdaptive_outer {sys : NonlinDASys n p m}
+theorem NonlinDASys.IsTrajectory.linReachAdaptive_outer {sys : NonlinDASys n p m}
     {T : NonlinDASys.AdaptTuning n p m q} {Rstart : Zonotope (Vec ℝ n)}
     {U : Zonotope (Vec ℝ m)} {fuelErr fuelHalf : ℕ} {adm_x : Vec ℝ n} {adm_y : Vec ℝ p}
     {k : ℕ} {h : ℝ} {lastStep : Bool} {pass : NonlinDASys.AdaptPass n p}
     (_hpass : sys.linReachAdaptive T Rstart U (k + 2) fuelErr fuelHalf adm_x adm_y h lastStep
       = some pass) {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
-    (traj : sys.Trajectory (S := 𝒵) (Set.Icc 0 pass.Δt) Rstart U x y u) (hΔt : 0 < pass.Δt)
+    (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 pass.Δt) Rstart U x y u) (hΔt : 0 < pass.Δt)
     (hc : (pass.linPoint (T.taylor Rstart)).Certifies sys U pass.Δt k x y u) :
     x pass.Δt ∈ (NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt
         (k + 2)).1.construct ∧

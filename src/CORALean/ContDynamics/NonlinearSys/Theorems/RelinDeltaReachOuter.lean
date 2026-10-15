@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinDeltaReach
@@ -15,7 +15,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 
 `relinTimeIntervalOuter` at the differences instead of the states, and by the
 same route: `relinReach_outer_inputSolution` places `x (iΔt)` at the start of
-step `i`, `Shift` re-anchors the run there, `Trajectory.linearize` makes it a
+step `i`, `Shift` re-anchors the run there, `IsTrajectory.linearize` makes it a
 run of the linearized system on `[0, Δt]`, and `deltaReach_outer_inputSolution`
 covers every difference that run spans.
 
@@ -51,10 +51,10 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S]
 
 /-- A run confined step by step moves no further within step `i` than
 `relinDeltaReach` allows, at every time of the step. -/
-theorem NonlinearSys.Trajectory.relinDeltaReach_outer {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.relinDeltaReach_outer {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt)
+    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 < Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (q : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1)

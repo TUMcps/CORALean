@@ -4,7 +4,7 @@ public import CORALean.HybridDynamics.TimeTriggered.Operations.ScalingConversion
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.FlowsOfHasDerivAt
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.HasDerivWithinAtIciOfDeriv
 public import CORALean.HybridDynamics.TimeTriggered.Theorems.ScaledSolutionUnscale
-public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfExec
+public import CORALean.HybridDynamics.TimeTriggered.Theorems.SingleModeExistsSolutionOfIsExec
 
 @[expose] public section
 
@@ -65,9 +65,9 @@ theorem aux_scaling_flows_proj {I : Set X} {f : X → X} {g : X → ℝ} {tb ts 
 omit [CompleteSpace X] in
 /-- A solution from the end of an execution of the original automaton extends it. -/
 theorem aux_single_append {I : Set X} {f : X → X} {s σ : ℝ} {x : X} {γ : ℝ → X}
-    (h : (DiffInclAutomaton.singleMode I f).Exec s () x) (hσ : 0 ≤ σ) (h0 : γ 0 = x)
+    (h : (DiffInclAutomaton.singleMode I f).IsExec s () x) (hσ : 0 ≤ σ) (h0 : γ 0 = x)
     (hγ : ∀ u ∈ Icc 0 σ, HasDerivAt γ (f (γ u)) u) :
-    (DiffInclAutomaton.singleMode I f).Exec (s + σ) () (γ σ) := by -- --- PROOF ---
+    (DiffInclAutomaton.singleMode I f).IsExec (s + σ) () (γ σ) := by -- --- PROOF ---
   rcases hσ.eq_or_lt with rfl | hpos
   · simpa [h0] using h
   · rw [← h0] at h
@@ -80,17 +80,17 @@ theorem aux_single_append {I : Set X} {f : X → X} {s σ : ℝ} {x : X} {γ : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every state the scaled automaton reaches, in any duration and mode, the original reaches. -/
-theorem DiffInclAutomaton.scalingConversion_exec_subset_reach {I : Set X} {f : X → X} {K : ℝ≥0}
+theorem DiffInclAutomaton.scalingConversion_isExec_subset_reach {I : Set X} {f : X → X} {K : ℝ≥0}
     (hf : LipschitzWith K f) {g : X → ℝ} (hg : Continuous g) (hg0 : ∀ x, 0 ≤ g x)
     {tb ts d τ : ℝ} {k : Fin 3} {x : X}
-    (h : (DiffInclAutomaton.scalingConversion I f g tb ts).Exec d k (x, τ)) :
-    ∃ s, 0 ≤ s ∧ (DiffInclAutomaton.singleMode I f).Exec s () x := by -- --- PROOF ---
+    (h : (DiffInclAutomaton.scalingConversion I f g tb ts).IsExec d k (x, τ)) :
+    ∃ s, 0 ≤ s ∧ (DiffInclAutomaton.singleMode I f).IsExec s () x := by -- --- PROOF ---
   -- the induction over the execution, with the state's `X`-component and the timer kept apart
   generalize hp : (x, τ) = p at h
   induction h generalizing x τ with
   | @init m p0 hx =>
     subst hp
-    refine ⟨0, le_rfl, DiffInclAutomaton.Exec.init ?_⟩
+    refine ⟨0, le_rfl, DiffInclAutomaton.IsExec.init ?_⟩
     by_cases hm0 : m = 0
     · subst hm0
       simp only [DiffInclAutomaton.scalingConversion, if_true, Set.mem_prod,

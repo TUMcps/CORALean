@@ -16,7 +16,7 @@ public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 # `NeurNetContrSys.reach` contains every sampled run at the period boundaries
 
 [1, Alg. 2] at a linear plant: `reachWith_timePoint_outer` at the plant's own reachability. A
-control period is a run of the plant under the held input (`Trajectory.flow`), at a linear plant
+control period is a run of the plant under the held input (`IsTrajectory.flow`), at a linear plant
 whose disturbance `E` sends to `0` one of the augmented system `[A B; 0 0]`, `[c; 0]` under the
 constant input `[c; 0]` (`augment_flow`), handed to `reach_outer_horizon_inputSolution` for `N`
 steps; `cartProd_outer` and `project_outer` are the product and the projection. The horizon is
@@ -67,7 +67,7 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) S 
     {H : ℕ} {R₀ : S n} {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π H R₀ (construct U_ext) W x v w) :
+    (traj : sys.IsTrajectory π H R₀ (construct U_ext) W x v w) :
     ∀ i ≤ H,
       x ((i : ℝ) * sys.dt) ∈
         construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
@@ -78,7 +78,7 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) S 
   intro Z z u v' w' hz hzt
   obtain ⟨hcont, hvU, hmeas, hflow⟩ :=
     sys.augment_flow (CompactSet.isBounded_construct U_ext) hW hzt
-  have hc : sys.augment.CanonicalTrajectory (Set.Icc 0 sys.dt) Z
+  have hc : sys.augment.IsCanonicalTrajectory (Set.Icc 0 sys.dt) Z
       (Plus.plus (Mtimes.mtimes (𝕄 := Mat ℝ) sys.augment.B U_ext) (OfPoint.ofPoint sys.augment.c))
       (fun t => Fin.append (z t) u) (fun t => sys.augment.B *ᵥ v' t + sys.augment.c) :=
     ⟨hz, fun t ht => Plus.plus_outer _ _ (Set.add_mem_add (Mtimes.mtimes_outer _ _ (by

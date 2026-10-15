@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
-import CORALean.ContDynamics.NeurNetContrSys.Theorems.OfFullTrajectoryIff
+import CORALean.ContDynamics.NeurNetContrSys.Theorems.OfFullIsTrajectoryIff
 import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
 import CORALean.NN.Layers.Definitions.Enclosure
@@ -90,7 +90,7 @@ example (sys : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2) (U_ext : Zonotope (Vec 
     (hdt : sys.dt = (N : ℝ) * Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ 2} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π H R₀ (construct U_ext) {0} x v w) (i : ℕ)
+    (traj : sys.IsTrajectory π H R₀ (construct U_ext) {0} x v w) (i : ℕ)
     (hi : i ≤ H) :
     x ((i : ℝ) * sys.dt) ∈
       construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) :=
@@ -104,7 +104,7 @@ example (sys : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2) (U_ext : Zonotope (Vec 
     (hdt : sys.dt = (N : ℝ) * Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {x : ℝ → Vec ℝ 2} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π H R₀ (construct U_ext) {0} x v w) (i : ℕ)
+    (traj : sys.IsTrajectory π H R₀ (construct U_ext) {0} x v w) (i : ℕ)
     (hi : i ≤ H)
     (h : (Specification.safeSet safe).Holds
       (construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :
@@ -119,11 +119,11 @@ example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat �
     (U_ext : Set (Vec ℝ (Example.nnControlled A W₁ b₁ W₂ b₂ dt).nExt)) (hU : U_ext.Nonempty)
     (x : ℝ → Vec ℝ 2) (v : ℝ → Vec ℝ (Example.nnControlled A W₁ b₁ W₂ b₂ dt).nExt)
     (w : ℝ → Vec ℝ 2) :
-    (Example.nnControlled A W₁ b₁ W₂ b₂ dt).Trajectory π H R₀ U_ext {0} x v w ↔
-      x 0 ∈ construct R₀ ∧ ∀ i < H, ContDynamics.Trajectory (LinearSys.canonical A)
+    (Example.nnControlled A W₁ b₁ W₂ b₂ dt).IsTrajectory π H R₀ U_ext {0} x v w ↔
+      x 0 ∈ construct R₀ ∧ ∀ i < H, ContDynamics.IsTrajectory (LinearSys.canonical A)
         (Set.Icc 0 dt) Set.univ {π (x ((i : ℝ) * dt))} {0} (fun t => x ((i : ℝ) * dt + t))
         (fun _ => π (x ((i : ℝ) * dt))) (fun t => w ((i : ℝ) * dt + t)) :=
-  NeurNetContrSys.ofFull_trajectory_iff _ _ _ hU
+  NeurNetContrSys.ofFull_isTrajectory_iff _ _ _ hU
 
 /-- The loop above is one of those, which is the only thing left to check: with no external input,
 its `U_ext` is a set of `Vec ℝ 0`s. -/

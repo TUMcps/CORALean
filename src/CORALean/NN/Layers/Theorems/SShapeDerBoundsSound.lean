@@ -30,7 +30,7 @@ variable {α : Type} [AddCommGroup α] [LinearOrder α] [IsOrderedAddMonoid α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `df t` lies in `[df_l, df_u]` for every `t ∈ [l, u]`. -/
-theorem sShapeDerBounds_sound {df : α → α} (h : SShape df) {l u t : α} (hl : l ≤ t) (hu : t ≤ u) :
+theorem sShapeDerBounds_sound {df : α → α} (h : IsSShape df) {l u t : α} (hl : l ≤ t) (hu : t ≤ u) :
     (sShapeDerBounds df l u).inf ≤ df t ∧ df t ≤ (sShapeDerBounds df l u).sup := by -- --- PROOF ---
   -- `df` rises towards `0` on the left, by evenness
   have hneg : ∀ {s t : α}, s ≤ t → t ≤ 0 → df s ≤ df t := fun {s t} hst ht => by

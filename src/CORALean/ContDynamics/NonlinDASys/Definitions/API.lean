@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinDASys.Definitions.Index1
+public import CORALean.ContDynamics.NonlinDASys.Definitions.IsIndex1
 public import CORALean.ContDynamics.NonlinDASys.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NonlinDASys.Definitions.ReducedModel
 public import CORALean.ContDynamics.NonlinDASys.Definitions.WithSteps
@@ -19,7 +19,7 @@ public import CORALean.ContDynamics.NonlinDASys.Definitions.CompositionalState
 /-!
 # What `NonlinDASys` means beyond the system itself
 
-`Index1` is CORA's index-1 assumption, `∂g/∂y` invertible; `ReducedModel` is the algebraic
+`IsIndex1` is CORA's index-1 assumption, `∂g/∂y` invertible; `ReducedModel` is the algebraic
 variable solved for, as data; `WithSteps` bundles the system, a reduced model and the
 `NonlinearSys.WithSteps` data of the reduced system; `ReachUnionExact` is the reachable set
 that run encloses. `FloatModel` is what a float run evaluates in place of `f` and `g`.

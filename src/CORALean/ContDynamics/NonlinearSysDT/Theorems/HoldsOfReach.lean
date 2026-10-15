@@ -39,7 +39,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 theorem NonlinearSysDT.holds_of_reach (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
     (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (spec : Specification ContSet)
-    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u)
+    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.IsTrajectory R₀ U x u)
     (hR : ∀ k, x k ∈ (steps k).R) (k : ℕ)
     (h : spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps))) : spec.Holds {x k} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (sys.reach_outer ho steps R₀ traj hR k)) h

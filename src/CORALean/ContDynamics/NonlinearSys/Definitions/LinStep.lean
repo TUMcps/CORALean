@@ -17,7 +17,7 @@ certifies or the wrong `L` reaches the wrong `A`.
 A chain of steps is a function `ℕ → LinStep`: `relinReach` recurses on the step
 index and looks nothing up, the composition theorem is `Nat.rec` with one
 hypothesis family `∀ i < N` per obligation, and a chain longer than the horizon
-costs nothing. Not an inductive chain as `HybridAutomaton.Run` is: a hybrid run is
+costs nothing. Not an inductive chain as `HybridAutomaton.IsRun` is: a hybrid run is
 a datum of the *system*, a chain of linearizations one of the *analysis*, and
 inductive would put the enclosures inside the proof.
 -/

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Theorems.RunOnOuter
+public import CORALean.HybridDynamics.Theorems.IsRunOnOuter
 public import CORALean.Specification.Theorems.HoldsOfOuter
 
 @[expose] public section
@@ -36,7 +36,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 ends at. -/
 theorem HybridAutomaton.holds_of_invariantOn {HA : HybridAutomaton S G L 𝕋 n}
     {R : ℕ → L → S n} (hinv : HA.InvariantOn R) (spec : Specification ContSet) {m k : ℕ}
-    {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.RunOn m ℓ x ℓ' y) (hx : x ∈ construct (R k ℓ))
+    {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRunOn m ℓ x ℓ' y) (hx : x ∈ construct (R k ℓ))
     (h : spec.Holds (construct (R (k + m) ℓ'))) : spec.Holds {y} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (run.mem_of_invariantOn hinv hx)) h
 

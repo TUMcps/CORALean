@@ -17,8 +17,8 @@ the gathered transitions to `transition/synchronize`, whose target loop is
 # CORA's `mergeTransitionSets` sends a synchronized jump to the wrong location
 
 Two components share a label; in the current locations their `a`-labeled transitions go to `2`
-and `3`. A synchronized jump (`SyncRun.sync`, the target of `liftSyncTransition`, which
-`SyncRun.toProductSync` embeds into `productSync`) lands in `(2, 3)`. The merged transition CORA
+and `3`. A synchronized jump (`IsSyncRun.sync`, the target of `liftSyncTransition`, which
+`IsSyncRun.toProductSync` embeds into `productSync`) lands in `(2, 3)`. The merged transition CORA
 builds for the label (`mergeTransitionSets.m:140`, through `synchronize`) targets `(3, 3)`.
 Read from the MATLAB code, not run (#40, `references/coverage/hybridDynamics/transition.md`, row
 `synchronize`).

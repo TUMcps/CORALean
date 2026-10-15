@@ -13,7 +13,7 @@ proof is the pair itself. All the content then sits in the other half, the
 inclusion of this set in a computed one, where it reads as one set inside
 another rather than as a claim about a run.
 
-Stated at every `t`, including outside `T`: there `Trajectory` constrains
+Stated at every `t`, including outside `T`: there `IsTrajectory` constrains
 nothing beyond `x 0 ∈ R₀`, so the set is large and the theorems that consume it
 ask for the window they speak about.
 -/
@@ -38,9 +38,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Reach for this to say where a run *is*; reach for a `reachSet_subset_`
 theorem to say what encloses it. -/
-theorem NonlinearSys.Trajectory.reachSet_outer {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.reachSet_outer {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.Trajectory T R₀ U x u) (t : ℝ) :
+    (traj : sys.IsTrajectory T R₀ U x u) (t : ℝ) :
     x t ∈ sys.reachSet T R₀ U t :=
   ⟨x, u, traj, rfl⟩
 

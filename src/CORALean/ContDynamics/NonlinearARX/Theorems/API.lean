@@ -5,11 +5,11 @@ public import CORALean.ContDynamics.NonlinearARX.Theorems.ComputeGOFloatOuter
 public import CORALean.ContDynamics.NonlinearARX.Theorems.OutputOuter
 public import CORALean.ContDynamics.NonlinearARX.Theorems.OutputSelMulVec
 public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
-public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateIsTrajectory
 public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemSimulateBoxFloat
 public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
-public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTTrajectory
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTIsTrajectory
 public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatModelEnclosesToNonlinearSysDTFloat
 public import CORALean.ContDynamics.NonlinearARX.Theorems.FloatJacModelEnclosesToNonlinearSysDTFloat
 

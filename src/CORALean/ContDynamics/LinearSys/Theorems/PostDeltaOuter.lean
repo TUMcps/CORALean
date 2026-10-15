@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolut
 /-!
 # `postΔ` contains every state difference a step can span
 
-[1, Sec. 4.1]: `post∆(R(ts), Ψ(τs), A)` names what `Trajectory.deltaReach_outer_inputSolution`
+[1, Sec. 4.1]: `post∆(R(ts), Ψ(τs), A)` names what `IsTrajectory.deltaReach_outer_inputSolution`
 already proves, at the constant input set `Ψ` standing for the linearization
 error `Ψ(τs)` a run's own input is confined to over the step. No new argument —
 the hypotheses are that theorem's, unchanged, and this file is the citation
@@ -48,8 +48,9 @@ variable [Mtimes ℐ S]
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- Every state difference a run confined to `Ψ`'s input over `[0, r]` spans is
 in `postΔ`, from the initial set `R₀` alone. -/
-theorem LinearSys.CanonicalTrajectory.postDelta_outer {sys : LinearSys 𝕋 n}
-    {T : Set ℝ} {R₀ Ψ : S n} {x u : ℝ → Vec ℝ n} {r : ℝ} (traj : sys.CanonicalTrajectory T R₀ Ψ x u)
+theorem LinearSys.IsCanonicalTrajectory.postDelta_outer {sys : LinearSys 𝕋 n}
+    {T : Set ℝ} {R₀ Ψ : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
+    (traj : sys.IsCanonicalTrajectory T R₀ Ψ x u)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r)

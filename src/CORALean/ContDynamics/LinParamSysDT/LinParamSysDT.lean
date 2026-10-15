@@ -16,9 +16,9 @@ parameters are those of the continuous twin `LinParamSys` (`A`, `B` matrix sets,
 `LinParamSys.discretizeEnclosure` (and its float twin) produce one, `LinearSys.discretize…` from
 a `LinearSys`, and `LinearSysDT.toLinParam` embeds the point case `𝕄 := Mat 𝕋`. The reach takes
 the input in state coordinates, `U' ⊇ B U ⊕ c` (`inputSet`), so it reads neither `B` nor `c`:
-`CanonicalTrajectory` is the run of that form, `Trajectory.canonical` takes every run into it.
-`LinearSysDT` stays separate, a decision left open on #29. `Trajectory` picks a fresh `A k`,
-`B k` at every `k`, as `LinearSysDT.reachHeld` a fresh input; `CanonicalTrajectoryOn K` is the
+`IsCanonicalTrajectory` is the run of that form, `IsTrajectory.canonical` takes every run into it.
+`LinearSysDT` stays separate, a decision left open on #29. `IsTrajectory` picks a fresh `A k`,
+`B k` at every `k`, as `LinearSysDT.reachHeld` a fresh input; `IsCanonicalTrajectoryOn K` is the
 canonical run known for `k < K`.
 
 ## References
@@ -53,7 +53,7 @@ structure LinParamSysDT (𝕄 : ℕ → ℕ → Type) (n : ℕ) where
 
 /-- A run of the whole equation: a fresh `A k ∈ construct sys.A` and `B k ∈ construct sys.B` at
 every step, under inputs in `U`. -/
-structure LinParamSysDT.Trajectory (sys : LinParamSysDT 𝕄 n) (R₀ : S n) (U : S sys.m)
+structure LinParamSysDT.IsTrajectory (sys : LinParamSysDT 𝕄 n) (R₀ : S n) (U : S sys.m)
     (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ sys.m) (A : ℕ → Mat ℝ n n) (B : ℕ → Mat ℝ n sys.m) :
     Prop where
   init : x 0 ∈ construct R₀
@@ -64,15 +64,15 @@ structure LinParamSysDT.Trajectory (sys : LinParamSysDT 𝕄 n) (R₀ : S n) (U 
 
 /-- A run of the canonical form, its combined input `B u + c` in state coordinates drawn from
 `U`. -/
-structure LinParamSysDT.CanonicalTrajectory (sys : LinParamSysDT 𝕄 n) (R₀ U : S n)
+structure LinParamSysDT.IsCanonicalTrajectory (sys : LinParamSysDT 𝕄 n) (R₀ U : S n)
     (x u : ℕ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
   input (k : ℕ) : u k ∈ construct U
   step (k : ℕ) : ∃ A ∈ construct sys.A, x (k + 1) = A *ᵥ x k + u k
 
 /-- A canonical run known only for its first `K` steps: `x` and `u` past that point are
-unconstrained, exactly as `LinearSysDT.CanonicalTrajectoryOn`'s are. -/
-structure LinParamSysDT.CanonicalTrajectoryOn (sys : LinParamSysDT 𝕄 n) (R₀ U : S n) (K : ℕ)
+unconstrained, exactly as `LinearSysDT.IsCanonicalTrajectoryOn`'s are. -/
+structure LinParamSysDT.IsCanonicalTrajectoryOn (sys : LinParamSysDT 𝕄 n) (R₀ U : S n) (K : ℕ)
     (x u : ℕ → Vec ℝ n) : Prop where
   init : x 0 ∈ construct R₀
   input (k : ℕ) (hk : k < K) : u k ∈ construct U

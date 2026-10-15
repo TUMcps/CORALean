@@ -63,7 +63,7 @@ def Example.R0 : Interval (Vec ℝ 1) := Interval.point Example.x0
 def Example.U : Interval (Vec ℝ 1) := Interval.point (0 : Vec ℝ 1)
 
 /-- The run at the true exponential, `x(k) = (e^{-Δt})ᵏ x₀`: the decay itself. -/
-theorem Example.traj : Example.sysD.CanonicalTrajectory (S := ℐ𝒱) Example.R0 Example.U
+theorem Example.traj : Example.sysD.IsCanonicalTrajectory (S := ℐ𝒱) Example.R0 Example.U
     (fun k => Example.A0 ^ k *ᵥ Example.x0) (fun _ => 0) where
   init := by rw [pow_zero, Matrix.one_mulVec]; exact Interval.mem_point _
   input _ := Interval.mem_point 0

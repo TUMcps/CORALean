@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryDiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryDiscretizeStep
 public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PostEvalOn
@@ -54,10 +54,10 @@ variable {n m : ℕ}
 
 /-- [1, Thm. 1]: a run of the nonlinear system started inside the evaluated
 initial set stays inside the computed set's evaluation, at every step. -/
-theorem NonlinearSys.Trajectory.relinReach_evalOn {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.relinReach_evalOn {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : 𝒫𝒵 n} {U : 𝒫𝒵 m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {steps : ℕ → sys.LinStep (S := 𝒫𝒵) U} {Ud : ℕ → 𝒫𝒵 n} {Δt : ℝ} {N o : ℕ} (ho : 0 < o)
-    (traj : sys.Trajectory (S := 𝒫𝒵) T R₀ U x u) (hΔt : 0 ≤ Δt)
+    (traj : sys.IsTrajectory (S := 𝒫𝒵) T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.IsPerturbedTrajectory
 
 @[expose] public section
 
@@ -48,7 +48,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 `τ`, the input being held at the one signal `u`. -/
 def LinearSys.timeIntervalBackReachSetOfInput (sys : LinearSys 𝕋 n) (T : Set ℝ)
     (U W Xend : S n) (τ : Set ℝ) (u : ℝ → Vec ℝ n) : Set (Vec ℝ n) :=
-  {x₀ | ∃ w x : ℝ → Vec ℝ n, sys.PerturbedTrajectory T U W x u w ∧
+  {x₀ | ∃ w x : ℝ → Vec ℝ n, sys.IsPerturbedTrajectory T U W x u w ∧
       x 0 = x₀ ∧ ∃ t ∈ τ, x t ∈ construct Xend}
 
 end CORALean

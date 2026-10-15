@@ -52,11 +52,11 @@ certified region, instead of assuming confinement of the trajectory. -/
 theorem NonlinearSysDT.confinement_of_subset (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n)
     (hsub : ∀ k, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
-    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.Trajectory R₀ U x u) (k : ℕ) :
+    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.IsTrajectory R₀ U x u) (k : ℕ) :
     x k ∈ (steps k).R := by -- --- PROOF ---
   induction k using Nat.strong_induction_on with
   | _ k ih =>
-    have hOn : sys.TrajectoryOn R₀ U k x u :=
+    have hOn : sys.IsTrajectoryOn R₀ U k x u :=
       ⟨traj.init, fun j _ => traj.input j, fun j _ => traj.step j⟩
     exact hsub k (sys.reach_outer_on ho steps R₀ hOn ih k le_rfl)
 

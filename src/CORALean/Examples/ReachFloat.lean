@@ -65,7 +65,7 @@ def Example.reachIntervalFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
 /-- Every run of the system is enclosed, by the exact layer's theorem read at a
 float representation. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec 𝕋 n))
-    {x u : ℕ → Vec ℝ n} (traj : sys.CanonicalTrajectory (S := 𝒵[𝕋]) R₀ U
+    {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) R₀ U
     x u) (k : ℕ) :
     x k ∈ construct (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer (S := 𝒵[𝕋]) ho R₀ U traj k
@@ -80,7 +80,7 @@ example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R U : Zonotope (Vec �
 /-- A specification checked on the computed set answers for the state. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec 𝕋 n))
     (spec : Specification (Set (Vec ℝ n))) {x u : ℕ → Vec ℝ n}
-    (traj : sys.CanonicalTrajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ)
+    (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct
     (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩))) :
     spec.Holds {x k} :=
@@ -90,7 +90,7 @@ example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Ve
 computed zonotope by `Specification.check`, which runs. -/
 example (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec 𝕋 n))
     (spec : Specification (HPolytope 𝕋 (Vec 𝕋 n))) {x u : ℕ → Vec ℝ n}
-    (traj : sys.CanonicalTrajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ) :
+    (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ) :
     spec.check (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) →
     (spec.Holds {x k}) :=
   sys.holds_of_check (S := 𝒵[𝕋]) ho R₀ U spec traj k
@@ -112,7 +112,7 @@ def Example.outputZonotopeFloat (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 
 question this repository could not ask before. -/
 example (sys : LinearSysDT 𝕋 n) (out : OutputEq 𝕋 n n r) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec 𝕋 n)) (spec : Specification (Set (Vec ℝ r))) {x u : ℕ → Vec ℝ n}
-    (traj : sys.CanonicalTrajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ)
+    (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) R₀ U x u) (k : ℕ)
     (h : spec.Holds (construct
       (out.outputSet (S := 𝒵[𝕋])
         (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) U))) :

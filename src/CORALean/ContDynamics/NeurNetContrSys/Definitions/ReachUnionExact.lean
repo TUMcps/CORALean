@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.IsTrajectory
 public import CORALean.NN.Operations.Eval
 
 @[expose] public section
@@ -10,7 +11,7 @@ public import CORALean.NN.Operations.Eval
 
 Every state some zero-order-hold run over at most `H` periods of length `sys.dt`
 reaches, at a period boundary, run at the controller's own `eval` in place of a
-free `π` — `NeurNetContrSys.Trajectory`'s fields, over a bare initial set, at any plant, the
+free `π` — `NeurNetContrSys.IsTrajectory`'s fields, over a bare initial set, at any plant, the
 external input in `U_ext` and the disturbance in `W`; `Reach`'s instance takes `W = {0}`, as
 CORA's loop at a linear plant drops the disturbance.
 Positional, as the mathematics: `Reach` reads `sys.dt` off the system, as CORA does,
@@ -43,7 +44,7 @@ def NeurNetContrSys.reachUnionExact (sys : NeurNetContrSys P S n) (H : ℕ)
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ i ≤ H, {y | ∃ x : ℝ → Vec ℝ n, ∃ v : ℝ → Vec ℝ sys.nExt,
     ∃ w : ℝ → Vec ℝ (nrOfDisturbances sys.plant), x 0 ∈ X ∧
-    (∀ j < H, ContDynamics.Trajectory sys.plant (Set.Icc 0 sys.dt) Set.univ
+    (∀ j < H, ContDynamics.IsTrajectory sys.plant (Set.Icc 0 sys.dt) Set.univ
       (sys.inputSet {sys.contr.eval.out (x ((j : ℝ) * sys.dt))} U_ext) W
       (fun t => x ((j : ℝ) * sys.dt + t))
       (fun t => sys.input (sys.contr.eval.out (x ((j : ℝ) * sys.dt))) (v ((j : ℝ) * sys.dt + t)))

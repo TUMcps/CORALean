@@ -1,7 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Operations.SShapeDerBoundsFloat
-public import CORALean.NN.Layers.Definitions.SShape
+public import CORALean.NN.Layers.Definitions.IsSShape
 
 @[expose] public section
 
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `df t` lies in the float bounds for every `t` in `[l, u]`. -/
-theorem sShapeDerBoundsFloat_sound {df : ℝ → ℝ} (h : SShape df) {dfLo dfHi : 𝕋 → 𝕋}
+theorem sShapeDerBoundsFloat_sound {df : ℝ → ℝ} (h : IsSShape df) {dfLo dfHi : 𝕋 → 𝕋}
     (hlo : ∀ a, toReal (dfLo a) ≤ df (toReal a)) (hhi : ∀ a, df (toReal a) ≤ toReal (dfHi a))
     {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
     toReal (sShapeDerBoundsFloat dfLo dfHi l u).inf ≤ df t ∧

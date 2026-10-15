@@ -65,7 +65,7 @@ noncomputable def DMZ.R0 : Zonotope (Vec ℝ 1) := Zonotope.ofPoint DMZ.x0
 noncomputable def DMZ.U : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (0 : Vec ℝ 1)
 
 /-- The run at the true exponential, `x(k) = (e^{-Δt})ᵏ x₀`: the decay itself. -/
-theorem DMZ.traj : DMZ.sysD.CanonicalTrajectory (S := 𝒵) DMZ.R0 DMZ.U
+theorem DMZ.traj : DMZ.sysD.IsCanonicalTrajectory (S := 𝒵) DMZ.R0 DMZ.U
     (fun k => DMZ.A0 ^ k *ᵥ DMZ.x0) (fun _ => 0) where
   init := by rw [pow_zero, Matrix.one_mulVec]; exact Zonotope.mem_ofPoint _
   input _ := Zonotope.mem_ofPoint 0

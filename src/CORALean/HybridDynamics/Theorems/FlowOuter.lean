@@ -1,8 +1,8 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.Basic
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryTimeIntervalOuter
 public import CORALean.HybridDynamics.Operations.TimeIntervalStep
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 
@@ -56,9 +56,9 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- Every state a stay passes through lies in the location's time-interval
 enclosure, the initial set and the input contribution named by the caller. -/
-theorem Location.Trajectory.timeInterval_outer [∀ n, OfPoint (S n) (Vec ℝ n)]
+theorem Location.IsTrajectory.timeInterval_outer [∀ n, OfPoint (S n) (Vec ℝ n)]
     {ℓ : Location S G L 𝕋 n} {τ : ℝ}
-    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w) {R₀ Ud : S n}
+    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) {R₀ Ud : S n}
     (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.inputSet))

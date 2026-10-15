@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinParamSys.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NonlinParamSys.Operations.ReachUnion
-public import CORALean.ContDynamics.NonlinParamSys.Theorems.ConstTrajectoryToAugment
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.IsConstTrajectoryToAugment
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
 
 @[expose] public section
@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
 
 The reduction, spent in three steps. A constant-parameter run from `X₀` read
 with its parameter appended is a run of `augment` from `X₀ × P`,
-`ConstTrajectory.toAugment`, once `plus_outer` and `mtimes_outer` put every
+`IsConstTrajectory.toAugment`, once `plus_outer` and `mtimes_outer` put every
 pair `(x₀, p)` into the product computed; `aug_sys` makes that a run of the
 bundled augmented system, whose union encloses it at every time of the horizon,
 `NonlinearSys.WithSteps.reachUnion_outer`, with no confinement assumed; the

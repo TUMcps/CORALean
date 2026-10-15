@@ -13,12 +13,12 @@ CORA's `location`: the invariant that holds while the run is here, the dynamics 
 and the outgoing transitions, with the input and disturbance sets of CORA's `params.Uloc` and
 `params.Wloc` at this location. The dynamics are CORA's `contDynamics`, a `LinearSys` with its
 whole equation `ẋ = A x + B u + c + E w`, `U` in its input space and `W` in its disturbance
-space, as `LinearSys.Trajectory` reads them. The output equation plays no part in a stay; the
+space, as `LinearSys.IsTrajectory` reads them. The output equation plays no part in a stay; the
 parallel automaton reads it where it binds an input to an output.
 
 `inv` is in the guard's representation `G`, `U` and `W` in the state's `S` (#39).
 
-`Trajectory` is what a location denotes — one admissible stay, on a *local* clock from `0` to the
+`IsTrajectory` is what a location denotes — one admissible stay, on a *local* clock from `0` to the
 dwell time `τ`, so global time never appears. The initial state is the point `x 0`;
 `Theorems.LinearEmbedding` hands a stay to `LinearSys` as a run of its canonical form, the
 combined input `B u + c + E w` drawn from any set holding it.
@@ -54,7 +54,7 @@ structure Location (S G : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
 
 /-- A stay of length `τ`: the state under inputs in `U` and disturbances in `W`, by the whole
 state equation, inside the invariant throughout. -/
-structure Location.Trajectory (ℓ : Location S G L 𝕋 n) (τ : ℝ) (x : ℝ → Vec ℝ n)
+structure Location.IsTrajectory (ℓ : Location S G L 𝕋 n) (τ : ℝ) (x : ℝ → Vec ℝ n)
     (u : ℝ → Vec ℝ ℓ.dynamics.m) (w : ℝ → Vec ℝ ℓ.dynamics.r) : Prop where
   nonneg : 0 ≤ τ
   input (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : u t ∈ construct ℓ.U

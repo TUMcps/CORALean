@@ -15,7 +15,7 @@ Flowing keeps the index; jumping raises it — the only difference from
 This generalises `Invariant` rather than replacing it:
 `Theorems.InvariantOnOfInvariant` reads an unbounded invariant as the constant
 family at every index. A bound on the horizon is then a statement about `k`,
-`RunOn k` for `k ≤ K`, that a caller states for itself — nothing here builds an
+`IsRunOn k` for `k ≤ K`, that a caller states for itself — nothing here builds an
 inequality into the index.
 
 Both fields are the same obligations `Invariant` states, discharged the same way
@@ -44,7 +44,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 structure HybridAutomaton.InvariantOn (HA : HybridAutomaton S G L 𝕋 n) (R : ℕ → L → S n) :
     Prop where
-  flow {k : ℕ} {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).Trajectory τ x u w)
+  flow {k : ℕ} {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w)
     (h₀ : x 0 ∈ construct (R k ℓ)) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :
     x t ∈ construct (R k ℓ)
   jump {k : ℕ} {ℓ : L} {e : Transition G L 𝕋 n} (hmem : e ∈ (HA.loc ℓ).trans)

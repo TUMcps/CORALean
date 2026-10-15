@@ -1,9 +1,9 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryPostDeltaFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryPostDeltaFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
@@ -121,7 +121,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
     {R Rτ Rt : Zonotope (Vec 𝕋 n)} (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt)) :
     0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
         x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
@@ -142,7 +142,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
   have husU' := (aux_linReach_mem_hull U.interval U.c).2
   -- a run stays in `Ω`, so in `X`
   have hconf : 0 < toReal Δt → ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct
+      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct
         U.construct x u → ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.construct :=
     fun hΔt {x u} traj t ht => (aux_linReach_mem_hull Ω xs).1
       (h.regionFloat_confined hΩ hΔt.le traj (Zonotope.interval_contains U) (a := 0)
@@ -175,8 +175,8 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
         ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
     -- `x - x✱` is a run of the `'lin'` linearization, so its differences are in `Rdiff`
-    have ltrajC : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).CanonicalClassicalTrajectory (S := 𝒮)
-        (Set.Icc 0 (toReal Δt)) Rdelta.construct
+    have ltrajC : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalClassicalTrajectory
+        (S := 𝒮) (Set.Icc 0 (toReal Δt)) Rdelta.construct
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
           Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
             (fm.hessRemainder A B xs U.c X U').zonotope).construct

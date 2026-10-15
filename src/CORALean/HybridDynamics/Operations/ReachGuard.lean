@@ -13,7 +13,7 @@ operators are arguments, as the listing leaves them to other sections of [1]: `r
 over-approximative conversions of sections 2.5.6 and 3.5.4 (the latter enclosing several
 polytopes at once), and `intersectionTimes` returns the first and last position of
 `R^H([0, t^end_inv])` that may meet the guard. `isEmpty` is the test `R^H = ∅`, `true` only
-when it is. `Location.Trajectory.reachGuard_outer` states what each must guarantee.
+when it is. `Location.IsTrajectory.reachGuard_outer` states what each must guarantee.
 
 Two readings of the listing: the loop runs while `R^H([(k-1)r, kr]) ≠ ∅` *and* `t < t_f`,
 where it prints "or", which would not stop before `t_f`; and `t`, never assigned, is `kr`.

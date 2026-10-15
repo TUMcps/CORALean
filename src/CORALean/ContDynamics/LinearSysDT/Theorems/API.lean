@@ -3,12 +3,12 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachExistsOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachForallInner
 public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsPreimage
-public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsTrajectory
-public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsIsTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallIsTrajectory
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOFloatOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOOutput
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ComputeGOState
-public import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.HeldToIsTrajectory
 public import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfCheck
 public import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfOutput
 public import CORALean.ContDynamics.LinearSysDT.Theorems.HoldsOfReach
@@ -37,8 +37,8 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.API
 public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateMemSimulateBoxFloat
-public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateTrajectory
-public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryStateEq
+public import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateIsTrajectory
+public import CORALean.ContDynamics.LinearSysDT.Theorems.IsTrajectoryStateEq
 public import CORALean.ContDynamics.LinearSysDT.Theorems.IdentifyCandidateFit
 public import CORALean.ContDynamics.LinearSysDT.Theorems.IdentifyLeCandidate
 public import CORALean.ContDynamics.LinearSysDT.Theorems.DiscretizeToLinearSys
@@ -49,8 +49,8 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ObservePropagationFloat
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveIntervalFloatOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStepOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ObserveStripBasedOuter
-public import CORALean.ContDynamics.LinearSysDT.Theorems.TrajectoryCanonical
-public import CORALean.ContDynamics.LinearSysDT.Theorems.CanonicalTrajectoryTrajectoryCanonical
+public import CORALean.ContDynamics.LinearSysDT.Theorems.IsTrajectoryCanonical
+public import CORALean.ContDynamics.LinearSysDT.Theorems.IsCanonicalTrajectoryIsTrajectoryCanonical
 
 /-!
 # What `LinearSysDT` guarantees

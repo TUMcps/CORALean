@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.IsPerturbedTrajectory
 
 @[expose] public section
 
@@ -46,7 +46,7 @@ def LinearSys.backReachSetForallExists (sys : LinearSys 𝕋 n) (T : Set ℝ)
     (U W Xend : S n) (t : ℝ) : Set (Vec ℝ n) :=
   {x₀ | ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ construct U) →
       AEStronglyMeasurable u (volume.restrict T) →
-      ∃ w x : ℝ → Vec ℝ n, sys.PerturbedTrajectory T U W x u w ∧
+      ∃ w x : ℝ → Vec ℝ n, sys.IsPerturbedTrajectory T U W x u w ∧
         x 0 = x₀ ∧ x t ∈ construct Xend}
 
 end CORALean

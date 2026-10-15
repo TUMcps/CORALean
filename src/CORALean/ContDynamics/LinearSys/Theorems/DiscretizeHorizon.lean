@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 # The run sampled from a bounded horizon alone
 
 `discretize_step` iterated, each step at the prefix `[0, (k+1)Δt]` of the horizon. A
-`TrajectoryOn K`, not a total `Trajectory` — nothing pins `x` or `u` past step
+`IsTrajectoryOn K`, not a total `IsTrajectory` — nothing pins `x` or `u` past step
 `K`, which is what lets `reach_outer_horizon` answer for a run over `[0, KΔt]`
 without asking for all of forward time.
 -/
@@ -31,12 +31,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.CanonicalTrajectory.discretize_horizon {sys : LinearSys 𝕋 n} {T : Set ℝ}
+theorem LinearSys.IsCanonicalTrajectory.discretize_horizon {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
-    (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
+    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) :
-    (sys.discretize Δt).CanonicalTrajectoryOn R₀ Ud K
+    (sys.discretize Δt).IsCanonicalTrajectoryOn R₀ Ud K
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) where
   init := by simpa using traj.init
   input k hk := hUd k hk

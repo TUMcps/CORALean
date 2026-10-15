@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 public import Mathlib.Analysis.Convex.Combination
 
 @[expose] public section
@@ -72,7 +72,7 @@ theorem aux_heldSim_sum (sys : LinearSys 𝕋 n) (Δt : ℝ) {ι : Type} (s : Fi
 
 /-- [1, Alg. 3 (exits)]: with convex weights `w_j` (the paper's `λ_j`) and
 `∑ w_j (x_j(k) - y_j) = 0`, the run from `∑ w_j x_j` under the held inputs `∑ w_j v_j` is a
-`Trajectory` whose state at `t_k` lies in `L`. -/
+`IsTrajectory` whose state at `t_k` lies in `L`. -/
 theorem LinearSys.interpolated_run_mem (sys : LinearSys 𝕋 n) (R₀ U : S n)
     (hR₀ : Convex ℝ (construct R₀)) (hUconv : Convex ℝ (construct U))
     (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) {L : Set (Vec ℝ n)}
@@ -81,7 +81,7 @@ theorem LinearSys.interpolated_run_mem (sys : LinearSys 𝕋 n) (R₀ U : S n)
     {v : ι → ℕ → Vec ℝ n} (hv : ∀ j ∈ s, ∀ i, v j i ∈ construct U) {y : ι → Vec ℝ n}
     (hy : ∀ j ∈ s, y j ∈ L) {k : ℕ}
     (h0 : ∑ j ∈ s, w j • (sys.heldSim Δt (x j) (v j) k - y j) = 0) :
-    sys.CanonicalTrajectory (Set.Icc 0 (k * Δt)) R₀ U
+    sys.IsCanonicalTrajectory (Set.Icc 0 (k * Δt)) R₀ U
         (sys.closedForm (∑ j ∈ s, w j • x j)
           (LinearSys.heldInput Δt fun i => ∑ j ∈ s, w j • v j i))
         (LinearSys.heldInput Δt fun i => ∑ j ∈ s, w j • v j i) ∧
@@ -90,7 +90,7 @@ theorem LinearSys.interpolated_run_mem (sys : LinearSys 𝕋 n) (R₀ U : S n)
   have hx₀ : ∑ j ∈ s, w j • x j ∈ construct R₀ := hR₀.sum_mem hw₀ hw₁ hx
   have hu : ∀ i, ∑ j ∈ s, w j • v j i ∈ construct U :=
     fun i => hUconv.sum_mem hw₀ hw₁ fun j hj => hv j hj i
-  refine ⟨sys.trajectory_heldInput R₀ U hU (mul_nonneg k.cast_nonneg hΔt.le) Δt hx₀ hu, ?_⟩
+  refine ⟨sys.isTrajectory_heldInput R₀ U hU (mul_nonneg k.cast_nonneg hΔt.le) Δt hx₀ hu, ?_⟩
   -- the interpolated state is `∑ w_j x_j(k)`, which `h0` makes `∑ w_j y_j`
   have hsum : ∑ j ∈ s, w j • sys.heldSim Δt (x j) (v j) k = ∑ j ∈ s, w j • y j := by
     simp only [smul_sub, Finset.sum_sub_distrib] at h0

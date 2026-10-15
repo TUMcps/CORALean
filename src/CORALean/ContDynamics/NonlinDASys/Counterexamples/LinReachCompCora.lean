@@ -234,7 +234,7 @@ theorem NonlinDASys.linReachCompCora_misses_counterexample {Δt : ℝ} (hΔt : 0
     let X : Fin 2 → Mat ℝ 1 2 := ![!![1, 0], !![0, 1]]
     let x : ℝ → Vec ℝ 2 := fun t => ![1 - (1 + t)⁻¹, -(1 + t)⁻¹]
     let y : ℝ → Vec ℝ 2 := fun t => ![(1 + t)⁻¹ ^ 2, (1 + t)⁻¹ ^ 2]
-    sys.Trajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y (fun _ => 0) ∧
+    sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y (fun _ => 0) ∧
       x Δt ∉ (NonlinDASys.linReachCompCora (sys.f 0 0 0) (sys.g 0 0 0) 0 0 1 0 0 F_inv 0 0
         Rinit U X ![0, Hf₂] ![0, Hf₂'] ![0, Hg₂] ![0, Hg₂'] Csub Fsub R_xyu o Δt η).1.construct
       := by -- --- PROOF ---

@@ -8,7 +8,7 @@ public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
 # A `Lifting` that loses nothing
 
 `Lifting` asks only that the lifted sets contain what the components' sets put together: an outer
-bargain, which is all `Run.toProduct` needs. The converse of `toProduct` needs the opposite
+bargain, which is all `IsRun.toProduct` needs. The converse of `toProduct` needs the opposite
 inclusions, and this structure is them: a point of a lifted set has the components' blocks in the
 components' sets. The input set is read where no global input feeds two inputs (`hb`) and every
 component's set is nonempty (`hne`): a product of boxes cannot say which of two feeders a global

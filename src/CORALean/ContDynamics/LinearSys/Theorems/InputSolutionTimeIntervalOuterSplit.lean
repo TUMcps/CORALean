@@ -82,11 +82,11 @@ theorem aux_mtimesIM_mem [Mtimes ℐ S]
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- The input's contribution at every time of the step, split along
 `U ⊆ {c} ⊕ U₀`. Neither piece needs `0 ∈ U`. -/
-theorem LinearSys.CanonicalTrajectory.inputSolution_timeInterval_outer_split
+theorem LinearSys.IsCanonicalTrajectory.inputSolution_timeInterval_outer_split
     [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U U₀ P Sg : S n} {x u : ℝ → Vec ℝ n}
     {c : Vec ℝ n} {r : ℝ}
-    (traj : sys.CanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
+    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     -- the split, and the two sets the constant part is enclosed against
     (hsplit : ∀ y ∈ construct U, y - c ∈ construct U₀)

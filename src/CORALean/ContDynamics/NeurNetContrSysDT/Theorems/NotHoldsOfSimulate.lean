@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateIsTrajectory
 
 @[expose] public section
 
 /-!
 # One sampled run can falsify what reachability can only fail to prove
 
-The contrapositive of `holds_of_reach` at `simulate_trajectory`: a specification
+The contrapositive of `holds_of_reach` at `simulate_isTrajectory`: a specification
 violated along one sampled run cannot have held on the reachable set either.
 This is the point of simulation. An enclosure is a superset, so a specification
 holding on it proves safety and one violated on it proves nothing — the
@@ -47,7 +47,7 @@ theorem NeurNetContrSysDT.not_holds_of_simulate (sys : NeurNetContrSysDT (Linear
     ¬ spec.Holds (construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)) :=
   fun h => hbad (sys.holds_of_reach U_ext ho R₀ spec hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])
-    (sys.simulate_trajectory π (Set.mem_singleton 0) hv hx₀) k h)
+    (sys.simulate_isTrajectory π (Set.mem_singleton 0) hv hx₀) k h)
 
 end CORALean
 

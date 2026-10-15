@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.PerturbedTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.IsPerturbedTrajectory
 
 @[expose] public section
 
@@ -49,7 +49,7 @@ def LinearSys.timeIntervalBackReachSetExistsForall (sys : LinearSys 𝕋 n) (T :
       AEStronglyMeasurable u (volume.restrict T) ∧
       ∀ w : ℝ → Vec ℝ n, (∀ s ∈ T, w s ∈ construct W) →
         AEStronglyMeasurable w (volume.restrict T) →
-        ∃ x : ℝ → Vec ℝ n, sys.PerturbedTrajectory T U W x u w ∧
+        ∃ x : ℝ → Vec ℝ n, sys.IsPerturbedTrajectory T U W x u w ∧
           x 0 = x₀ ∧ ∃ t ∈ τ, x t ∈ construct Xend}
 
 end CORALean

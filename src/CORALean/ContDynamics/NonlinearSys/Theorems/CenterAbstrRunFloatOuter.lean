@@ -36,7 +36,7 @@ theorem NonlinearSys.FloatModel.Encloses.centerAbstrRunFloat_outer
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
       fm.centerAbstrRunFloat U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-          sys.Trajectory (S := 𝒮)
+          sys.IsTrajectory (S := 𝒮)
             (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u →
           ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
             (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].construct :=

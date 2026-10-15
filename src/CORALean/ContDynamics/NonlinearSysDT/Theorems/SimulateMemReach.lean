@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
-public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateIsTrajectory
 
 @[expose] public section
 
 /-!
 # A sampled run stays inside the reachable set
 
-`simulate_trajectory` handed to `reach_outer`, at whatever confinement
+`simulate_isTrajectory` handed to `reach_outer`, at whatever confinement
 `reach_outer` itself asks for: a re-linearized step needs its own certified
 region, and a sampled run supplies no shortcut around checking it stayed
 there.
@@ -40,7 +40,7 @@ theorem NonlinearSysDT.simulate_mem_reach (sys : NonlinearSysDT n m) {U : S m} {
     {u : ℕ → Vec ℝ m} (hu : ∀ k, u k ∈ construct U)
     (hR : ∀ k, sys.simulate x₀ u k ∈ (steps k).R) (k : ℕ) :
     sys.simulate x₀ u k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) :=
-  sys.reach_outer ho steps R₀ (sys.simulate_trajectory hx₀ hu) hR k
+  sys.reach_outer ho steps R₀ (sys.simulate_isTrajectory hx₀ hu) hR k
 
 end CORALean
 

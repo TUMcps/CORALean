@@ -15,7 +15,7 @@ location of component `i` has `p i` inputs and `q i` outputs (`inputs_eq`, `outp
 `bindsAt ℓ` is `binds` read at the dimensions of the locations `ℓ`, and `boundInput` the value it
 gives an input: the global input, or the feeding component's output `C x + D u + k`, noise-free.
 
-`Run` is the semantics, and the product never enters it. A `Stay` is the shared time axis: one
+`IsRun` is the semantics, and the product never enters it. A `IsStay` is the shared time axis: one
 dwell time `τ`, every component flowing by its own equation in its location's invariant, its
 disturbances in its `W`, inputs as bound. The input set constrains only the global inputs, as in
 CORA: the global inputs fed to component `i` are the corresponding coordinates of a point of its
@@ -77,7 +77,7 @@ def stack {d : Fin k → ℕ} (x : ∀ i, Vec ℝ (d i)) : Vec ℝ (∑ i, d i) 
   fun p => x (finSigmaFinEquiv.symm p).1 (finSigmaFinEquiv.symm p).2
 
 -- One shared dwell time; the input set constrains only the global inputs, as CORA's `bindsInputs`.
-structure ParallelHybridAutomaton.Stay [∀ n, ContSet (S n) (Vec ℝ n)]
+structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (ℓ : ∀ i, L i) (τ : ℝ) (x : ∀ i, ℝ → Vec ℝ (n i)) (u : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).m)
     (w : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).r) (g : ℝ → Vec ℝ m) : Prop where
@@ -93,19 +93,19 @@ structure ParallelHybridAutomaton.Stay [∀ n, ContSet (S n) (Vec ℝ n)]
   bound (i : Fin k) (j : Fin (P.sys ℓ i).m) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
     u i t j = P.boundInput ℓ (fun c => x c t) (fun c => u c t) (g t) i j
 
-inductive ParallelHybridAutomaton.Run [∀ n, ContSet (S n) (Vec ℝ n)]
+inductive ParallelHybridAutomaton.IsRun [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m) :
     (∀ i, L i) → (∀ i, Vec ℝ (n i)) → (∀ i, L i) → (∀ i, Vec ℝ (n i)) → Prop where
   | flow {ℓ : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
-      (h : P.Stay ℓ τ x u w g) : P.Run ℓ (fun i => x i 0) ℓ (fun i => x i τ)
+      (h : P.IsStay ℓ τ x u w g) : P.IsRun ℓ (fun i => x i 0) ℓ (fun i => x i τ)
   -- one component `c` takes a transition at the end of the stay, the others stand still
   | jump {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
       {y : ∀ i, Vec ℝ (n i)} {c : Fin k} {e : Transition G (L c) 𝕋 (n c)}
-      (h : P.Stay ℓ τ x u w g) (hmem : e ∈ ((P.comp c).loc (ℓ c)).trans)
+      (h : P.IsStay ℓ τ x u w g) (hmem : e ∈ ((P.comp c).loc (ℓ c)).trans)
       (hguard : x c τ ∈ construct e.guard)
-      (rest : P.Run (Function.update ℓ c e.target)
+      (rest : P.IsRun (Function.update ℓ c e.target)
         (Function.update (fun i => x i τ) c (e.reset (x c τ))) ℓ' y) :
-      P.Run ℓ (fun i => x i 0) ℓ' y
+      P.IsRun ℓ (fun i => x i 0) ℓ' y
 
 end CORALean
 

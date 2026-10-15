@@ -13,15 +13,16 @@ CORA's `nonlinearSys`: `ẋ(t) = f(x(t), u(t))` with the output equation `y = g(
 time-invariant as CORA's is — a time-varying field is this with time in the state. The output
 dimension `q` is a field, as CORA's `nrOfOutputs` is a property; absent an output equation
 CORA's is the state, `g x u = x`. The output of a run is `g (x t) (u t)`, a function of it, so
-`Trajectory` does not repeat it. A run reaches `LinearSys` through `linearize` and an
+`IsTrajectory` does not repeat it. A run reaches `LinearSys` through `linearize` and an
 `AbstractionError` certificate.
 
 State and input dimensions are separate, as CORA's are; a run is linearized to `LinearSys`'s
 canonical form, whose input is in state coordinates.
 
-`Trajectory` is classical and mirrors `LinearSys.CanonicalClassicalTrajectory` field for
-field — `LinearSys.classicalTrajectory_iff_nonlinearSys`; `CanonicalClassicalTrajectory.trajectory`
-carries a run to `LinearSys.CanonicalTrajectory`. A bounded `T` makes `linearize` one step.
+`IsTrajectory` is classical and mirrors `LinearSys.IsCanonicalClassicalTrajectory` field for
+field — `LinearSys.isCanonicalClassicalTrajectory_iff_nonlinearSys`;
+`IsCanonicalClassicalTrajectory.trajectory` carries a run to `LinearSys.IsCanonicalTrajectory`. A
+bounded `T` makes `linearize` one step.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
@@ -47,7 +48,7 @@ structure NonlinearSys (n m : ℕ) where
   q : ℕ
   g : Vec ℝ n → Vec ℝ m → Vec ℝ q
 
-structure NonlinearSys.Trajectory (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : S n)
+structure NonlinearSys.IsTrajectory (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : S n)
     (U : S m) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) : Prop where
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U

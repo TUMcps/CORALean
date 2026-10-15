@@ -36,9 +36,9 @@ def Example.arx : LinearARX ℝ 1 1 2 where
   dt := 1
 
 /-- The steady state `y ≡ 2` under `u ≡ 1` is a run for any boxes containing `(2, 2)` and `1`. -/
-theorem Example.arx_steady_trajectory (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1))
+theorem Example.arx_steady_isTrajectory (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1))
     (hY : ![(2 : ℝ), 2] ∈ construct Y₀) (hU : (![1] : Vec ℝ 1) ∈ construct U) :
-    Example.arx.Trajectory (S := ℐ𝒱) Y₀ U (fun _ => ![2]) (fun _ => ![1])
+    Example.arx.IsTrajectory (S := ℐ𝒱) Y₀ U (fun _ => ![2]) (fun _ => ![1])
     where
   init := by
     convert hY using 1
@@ -58,7 +58,7 @@ example (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1)) (hY : ![(2 : �
       (Example.arx.toLinearSysDT.reach (S := ℐ𝒱)
         ⟨Y₀, Example.arx.inputSet (S := ℐ𝒱) U, 0, k⟩ ⟨o, ho⟩) :=
   Example.arx.reach_outer (S := ℐ𝒱) ho Y₀ U
-    (Example.arx_steady_trajectory Y₀ U hY hU) k
+    (Example.arx_steady_isTrajectory Y₀ U hY hU) k
 
 end CORALean.Real
 

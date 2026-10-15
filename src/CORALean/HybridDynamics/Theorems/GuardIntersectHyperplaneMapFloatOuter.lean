@@ -10,7 +10,7 @@ public import CORALean.HybridDynamics.Theorems.HitPointAddEq
 public import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 public import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
@@ -318,7 +318,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer
     (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (nv : Vec 𝕋 n) (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) {η : ℕ}
     (guardOrder zonotopeOrder p : ℕ) (hη : 1 ≤ η) {τ : ℝ} {x : ℝ → Vec ℝ n} {u w}
-    (traj : ℓ.Trajectory τ x u w) (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ)
+    (traj : ℓ.IsTrajectory τ x u w) (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ)
     (htmax : t ≤ toReal tmax) (hhit : toRealVec nv ⬝ᵥ x t = toReal d) {Z : Zonotope (Vec 𝕋 n)}
     (hZ : ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p = some Z) :
     x t ∈ Z.construct := by -- --- PROOF ---

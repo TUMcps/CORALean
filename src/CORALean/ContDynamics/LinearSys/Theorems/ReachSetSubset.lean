@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
 @[expose] public section
 
 /-!
-# Every `Trajectory` run is a witness in `e^{tA} R₀ ⊕ inputReach U t`
+# Every `IsTrajectory` run is a witness in `e^{tA} R₀ ⊕ inputReach U t`
 
 The `⊆` half. `eq_closedForm_of_flow` does the work: the run `x` and
 `closedForm (x 0) u` agree everywhere on `[0, t]`, so `x t` is exactly the point

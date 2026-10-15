@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTTrajectory
+public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTIsTrajectory
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
 
 @[expose] public section
@@ -40,11 +40,11 @@ theorem NonlinearARX.reach_outer (sys : NonlinearARX dy du p) {o : ℕ} (ho : 0 
       (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ construct U) →
         v ∈ construct V)
     (steps : ℕ → sys.toNonlinearSysDT.LinStep 𝕋 V)
-    {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.Trajectory Y₀ U y u)
+    {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.IsTrajectory Y₀ U y u)
     (hR : ∀ k, NonlinearARX.stack p y k ∈ (steps k).R) (k : ℕ) :
     NonlinearARX.stack p y k ∈ construct
       (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps) :=
-  sys.toNonlinearSysDT.reach_outer ho steps Y₀ (sys.toNonlinearSysDT_trajectory hV traj) hR k
+  sys.toNonlinearSysDT.reach_outer ho steps Y₀ (sys.toNonlinearSysDT_isTrajectory hV traj) hR k
 
 end CORALean
 

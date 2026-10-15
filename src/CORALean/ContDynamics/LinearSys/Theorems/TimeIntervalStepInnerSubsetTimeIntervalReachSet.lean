@@ -23,7 +23,7 @@ any input set `U`. The inner approximation lies in `X₀` itself
 (`timeIntervalStep_subset_initial_add_error` measures against `X₀`), and every
 point of `X₀` is the state at `t = 0` of a Carathéodory run on `[0, r]`: hold
 the input at `U`'s center and take `closedForm`, which `closedForm_flow` makes
-a `Trajectory`.
+a `IsTrajectory`.
 
 `timeIntervalStep` carries no input, so `U` enters only through that witness;
 a zonotope is never empty, so no hypothesis on `U` is needed.
@@ -71,7 +71,7 @@ theorem LinearSys.timeIntervalStepInner_subset_timeIntervalReachSet
     fun _ _ => Zonotope.center_mem_construct U
   have hmeas : AEStronglyMeasurable (fun _ : ℝ => U.c) (volume.restrict (Set.Icc 0 r)) :=
     aestronglyMeasurable_const
-  have traj : sys.CanonicalTrajectory (S := 𝒵) (Set.Icc 0 r) X₀ U
+  have traj : sys.IsCanonicalTrajectory (S := 𝒵) (Set.Icc 0 r) X₀ U
       (sys.closedForm y fun _ => U.c) (fun _ => U.c) :=
     ⟨by rw [sys.closedForm_zero]; exact hinner hy, hu, hmeas,
       sys.closedForm_continuousOn (S := 𝒵) y hr.le hU hu hmeas,

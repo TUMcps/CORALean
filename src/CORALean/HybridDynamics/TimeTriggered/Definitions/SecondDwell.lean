@@ -37,7 +37,7 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 /-- Every execution of duration at least `t₁ + t₂` ends in mode `m₂ = 1`. -/
 def DiffInclAutomaton.SecondDwell (H : DiffInclAutomaton (Fin 2) X) (t₁ t₂ : ℝ) : Prop :=
-  ∀ d, t₁ + t₂ ≤ d → ∀ m x, H.Exec d m x → m = 1
+  ∀ d, t₁ + t₂ ≤ d → ∀ m x, H.IsExec d m x → m = 1
 
 end CORALean
 

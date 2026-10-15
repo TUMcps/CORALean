@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Float.Instances
 /-!
 # A sampled trajectory of the float-enclosed system
 
-`discretizeEnclosure`'s `Trajectory` with the float enclosure in place of the
+`discretizeEnclosure`'s `IsTrajectory` with the float enclosure in place of the
 real one: `step` witnesses the exact `e^{AΔt}`, which lies in `[e^{AΔt}]` by
 `exp_mem_expIntervalFloat` at an order admissible for `[Δt, Δt]`. The sampling
 is the exact one, at the real time `toReal Δt` the float denotes.
@@ -40,13 +40,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A run of `sys`, sampled at `toReal Δt`, is a run of the float-sampled system. -/
-theorem LinearSys.CanonicalTrajectory.discretizeEnclosureFloat {sys : LinearSys 𝕋 n} {T : Set ℝ}
+theorem LinearSys.IsCanonicalTrajectory.discretizeEnclosureFloat {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η : ℕ}
-    (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
+    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
     (hη : sys.OrderAdmissibleFloat Δt Δt η) :
-    (sys.discretizeEnclosureFloat Δt η).CanonicalTrajectory R₀ Ud
+    (sys.discretizeEnclosureFloat Δt η).IsCanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * toReal Δt)) (sys.stepInput u (toReal Δt)) where
   init := by simpa using traj.init
   input k := hUd k

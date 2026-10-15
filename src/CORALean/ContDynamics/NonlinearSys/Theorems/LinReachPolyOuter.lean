@@ -42,13 +42,13 @@ variable {n m : ℕ}
 
 /-- A run from `Rinit` confined to the region `linReachPoly` certified is, at `Δt`,
 inside the reachable set of the system linearized at `A`. -/
-theorem NonlinearSys.Trajectory.linReachPoly_outer {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.linReachPoly_outer {sys : NonlinearSys n m} {T : Set ℝ}
     {U : PolyZonotope (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {H : Fin n → Mat ℝ (n + m) (n + m)}
     {E : Fin n → Fin (n + m) → Mat ℝ (n + m) (n + m)} {Δt : ℝ}
     {η errorOrder intermediateOrder : ℕ} {Rinit Ud : PolyZonotope (Vec ℝ n)}
     {abstrerr : Vec ℝ n} {fuel : ℕ} {step : sys.LinStep (S := 𝒫𝒵) U}
-    (traj : sys.Trajectory (S := 𝒫𝒵) T Rinit U x u)
+    (traj : sys.IsTrajectory (S := 𝒫𝒵) T Rinit U x u)
     (h : sys.linReachPoly U A B xs us H E Δt η errorOrder intermediateOrder Rinit abstrerr fuel
       = some step)
     (hT : Set.Icc 0 Δt ⊆ T) (hR : ∀ t ∈ Set.Icc 0 Δt, x t ∈ step.R) (hΔt : 0 ≤ Δt)

@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # What the softplus layer encloses
 
 `Real.softplus` at the stored sharpness, coordinatewise, for every point of a set whose box
-satisfies `SoftplusBox` at each coordinate: the sharpness positive and the arguments of `expUp`
+satisfies `IsSoftplusBox` at each coordinate: the sharpness positive and the arguments of `expUp`
 and `logDown` in the ranges those enclosures cover.
 -/
 
@@ -40,7 +40,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.softplus_outer (β : 𝕋) (k nl kl : ℕ) (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s)
-    (hs : ∀ i, SoftplusBox β k nl ((Float.IntervalOuter.interval s).inf i)
+    (hs : ∀ i, IsSoftplusBox β k nl ((Float.IntervalOuter.interval s).inf i)
       ((Float.IntervalOuter.interval s).sup i)) :
     (fun i => Real.softplus (toReal β) (x i)) ∈
       construct ((Layer.softplus (S := S) (n := n) β k nl kl).enclose s) :=

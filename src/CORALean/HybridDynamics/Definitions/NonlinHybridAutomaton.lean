@@ -13,7 +13,7 @@ transitions `Tᵢ = ⟨Gᵢ, rᵢ(·), sᵢ, dᵢ⟩` with a guard set, a reset 
 target modes. `HybridAutomaton` is the linear case CORA's reachability runs on; here every part
 is a set or a function, which is all the definition asks.
 
-`RunAt` is the evolution [1] describes in words, with the time it lasts: flow in mode `m` with
+`IsRunAt` is the evolution [1] describes in words, with the time it lasts: flow in mode `m` with
 inputs in `U`, staying in `S_m`, until the state is in the guard of a transition out of `m`;
 that transition is taken at once, its reset applied, and the flow goes on in its target mode.
 Urgency is the "is taken" of the text: a stay meets no guard out of its mode before its end.
@@ -58,7 +58,7 @@ variable {n m p q : ℕ}
 
 /-- A stay of length `τ` in mode `i`: the flow `fᵢ` under inputs in `U`, inside `Sᵢ`, meeting
 no guard out of `i` before its end. -/
-structure NonlinHybridAutomaton.Stay (H : NonlinHybridAutomaton n m p q) (U : Set (Vec ℝ m))
+structure NonlinHybridAutomaton.IsStay (H : NonlinHybridAutomaton n m p q) (U : Set (Vec ℝ m))
     (i : Fin p) (τ : ℝ) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) : Prop where
   nonneg : 0 ≤ τ
   input (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : u t ∈ U
@@ -68,20 +68,20 @@ structure NonlinHybridAutomaton.Stay (H : NonlinHybridAutomaton n m p q) (U : Se
   urgent (t : ℝ) (ht : t ∈ Set.Ico 0 τ) (j : Fin q) (hj : (H.T j).s = i) : x t ∉ (H.T j).G
 
 /-- A run from `x` in mode `i` to `y` in mode `i'`, lasting `t` in all. -/
-inductive NonlinHybridAutomaton.RunAt (H : NonlinHybridAutomaton n m p q) (U : Set (Vec ℝ m)) :
+inductive NonlinHybridAutomaton.IsRunAt (H : NonlinHybridAutomaton n m p q) (U : Set (Vec ℝ m)) :
     ℝ → Fin p → Vec ℝ n → Fin p → Vec ℝ n → Prop where
-  | flow {i : Fin p} {τ : ℝ} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} (h : H.Stay U i τ x u) :
-      H.RunAt U τ i (x 0) i (x τ)
+  | flow {i : Fin p} {τ : ℝ} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} (h : H.IsStay U i τ x u) :
+      H.IsRunAt U τ i (x 0) i (x τ)
   | jump {t τ : ℝ} {i i' : Fin p} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : Vec ℝ n}
-      {j : Fin q} (h : H.Stay U i τ x u) (hs : (H.T j).s = i) (hguard : x τ ∈ (H.T j).G)
-      (rest : H.RunAt U t (H.T j).d ((H.T j).r (x τ)) i' y) :
-      H.RunAt U (τ + t) i (x 0) i' y
+      {j : Fin q} (h : H.IsStay U i τ x u) (hs : (H.T j).s = i) (hguard : x τ ∈ (H.T j).G)
+      (rest : H.IsRunAt U t (H.T j).d ((H.T j).r (x τ)) i' y) :
+      H.IsRunAt U (τ + t) i (x 0) i' y
 
 /-- [1, Def. 2]: `Rᵉ(t)`, every state `ξ(t, x₀, m₀, u(·))` of a run from `x₀ ∈ X₀` in mode
 `m₀` with inputs in `U`, in whichever mode it is at time `t`. -/
 def NonlinHybridAutomaton.reachSet (H : NonlinHybridAutomaton n m p q) (X₀ : Set (Vec ℝ n))
     (m₀ : Fin p) (U : Set (Vec ℝ m)) (t : ℝ) : Set (Vec ℝ n) :=
-  {y | ∃ x₀ ∈ X₀, ∃ i, H.RunAt U t m₀ x₀ i y}
+  {y | ∃ x₀ ∈ X₀, ∃ i, H.IsRunAt U t m₀ x₀ i y}
 
 end CORALean
 

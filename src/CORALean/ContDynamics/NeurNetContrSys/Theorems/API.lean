@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheckFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.JoinInputInj
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.MulVecJoinInput
-public import CORALean.ContDynamics.NeurNetContrSys.Theorems.OfFullTrajectoryIff
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.OfFullIsTrajectoryIff
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ProjectOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatCheckedEqSome
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
@@ -27,7 +27,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ToRealMatRightCols
 # What a sampled network in the loop guarantees
 
 `ReachWithOuter`, at every plant, chains the control periods — each a run of the plant under
-the held input, read through `ContDynamics.Trajectory` — for any reachability algorithm of the
+the held input, read through `ContDynamics.IsTrajectory` — for any reachability algorithm of the
 extended state `[x; u]` that encloses those runs ([1, Alg. 2]); `ReachWithTimePointOuter` at the
 period ends alone. At a linear plant `AugmentFlow` reads a period as a run of the augmented linear
 system, the external inputs `U_ext` entering through `B_ext` (`JoinInputInj` returns them from the

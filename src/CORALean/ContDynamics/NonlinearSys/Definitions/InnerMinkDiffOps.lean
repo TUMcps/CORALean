@@ -18,7 +18,7 @@ domain around the linearization point. `L` and `L̂` are intervals in the paper;
 `[0ₙ, 0ₙ]`, the scaling `μL` and the containment test `L ⊆ L̂`, a `Bool` so the loop runs.
 
 None of the fields carries a specification: a theorem about [1, Alg. 1] states what it needs
-of them as a hypothesis (`NonlinearSys.InnerMinkDiffCert`).
+of them as a hypothesis (`NonlinearSys.IsInnerMinkDiffCert`).
 
 ## References
 

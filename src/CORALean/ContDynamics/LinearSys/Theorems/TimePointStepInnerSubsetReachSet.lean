@@ -17,7 +17,7 @@ runs reach (`reachSet_eq`): the integral equation admits every measurable input
 
 So nothing needs the derivative of `MatExp.expIntegral`: the held input the
 inner approximation is built on is one admissible input, and its run is a
-`Trajectory` by `closedForm_flow`.
+`IsTrajectory` by `closedForm_flow`.
 -/
 
 -- Authors:       Claude Opus 5.5

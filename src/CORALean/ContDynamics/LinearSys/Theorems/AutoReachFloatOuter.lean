@@ -75,7 +75,7 @@ theorem LinearSys.autoReachFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonoto
     {εmax ζ : ℚ} {ηmax fuel K : ℕ} {Rs : List (ℚ × ℚ × Zonotope (Vec 𝕋 n))}
     (h : sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K = some Rs) :
     ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-      sys.CanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
+      sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
       U ⊆ V.construct → ∀ t ∈ Set.Icc (0 : ℝ) (ToRat.toRat tend), t ≤ T →
         ∃ w ∈ Rs, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.construct := by -- --- PROOF ---
   unfold LinearSys.autoReachFloat at h

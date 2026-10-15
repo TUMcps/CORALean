@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubse
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -65,7 +65,7 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     sys.AdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
       r.tEnd = t₀ + min s'.t tf ∧
       ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.CanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
+        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
         U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ tf →
           x t ∈ r.R.construct := by -- --- PROOF ---
   obtain ⟨h0, hlo, hhi, hP⟩ := hinv

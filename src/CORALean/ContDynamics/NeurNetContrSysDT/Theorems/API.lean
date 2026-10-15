@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfCheck
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfOutput
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.HoldsOfReach
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.NotHoldsOfSimulate
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OfFullTrajectoryIff
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OfFullIsTrajectoryIff
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
@@ -14,9 +14,9 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.API
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemSimulateBoxFloat
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateTrajectory
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryLinear
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryOfMap
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateIsTrajectory
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.IsTrajectoryLinear
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.IsTrajectoryOfMap
 
 /-!
 # What a network in the loop guarantees
@@ -38,7 +38,7 @@ supplies the network's part of the input, so nothing needs stating about it. `No
 the falsification corollary: one sampled run violating a specification settles
 it, where an enclosure can only ever fail to prove safety.
 
-No `reach_outer_on`: there is no `TrajectoryOn` here to hand it a bounded run
+No `reach_outer_on`: there is no `IsTrajectoryOn` here to hand it a bounded run
 from, since a run is already a sequence stepping by `map` from its start
 (`TrajectoryLinear`) — nothing a horizon leaves unknown that `reach_outer`
 does not cover at every `k`. `ReachUnionOuter` is `Instances`' guarantee.

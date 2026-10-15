@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOfSubset
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuterOn
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemReach
-public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateIsTrajectory
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.SimulateMemSimulateBoxFloat
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOOutput

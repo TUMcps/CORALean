@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
@@ -11,8 +11,8 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 # The nonlinear reachable set is the linearized one
 
 The payoff, [1, Sec. IV-A]: nothing new is computed for a nonlinear system. Once `linearize` has
-turned the run into a classical linear one, `CanonicalClassicalTrajectory.trajectory` and
-`LinearSys.CanonicalTrajectory.reach_outer` are the whole proof, the enclosing set the linear
+turned the run into a classical linear one, `IsCanonicalClassicalTrajectory.trajectory` and
+`LinearSys.IsCanonicalTrajectory.reach_outer` are the whole proof, the enclosing set the linear
 system's `reach`.
 
 The nonlinearity is paid for entirely in `linInput`, which is why
@@ -59,10 +59,10 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 /-- A confined nonlinear run is inside the linearized system's reachable set at
 every sample time. -/
-theorem NonlinearSys.Trajectory.reach_outer {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.reach_outer {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ Ud L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
-    {R : Set (Vec ℝ n)} {Δt : ℝ} (traj : sys.Trajectory T R₀ U x u)
+    {R : Set (Vec ℝ n)} {Δt : ℝ} (traj : sys.IsTrajectory T R₀ U x u)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Ici 0 ⊆ T) (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) (hΔt : 0 ≤ Δt)
     (hU : Bornology.IsBounded (construct (linInput sys.f A B xs us U L)))

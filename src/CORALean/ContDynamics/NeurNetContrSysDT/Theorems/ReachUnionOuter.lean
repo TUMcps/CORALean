@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.ReachUnion
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryOfMap
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.IsTrajectoryOfMap
 public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.NN.Theorems.SoundEval
 
@@ -12,7 +12,7 @@ public import CORALean.NN.Theorems.SoundEval
 /-!
 # `reachUnion` encloses `reachUnionExact`
 
-`trajectory_of_map` at the controller's own `eval` is a `Trajectory`,
+`isTrajectory_of_map` at the controller's own `eval` is a `IsTrajectory`,
 `sound_eval` needing no hypothesis; `reach_outer` places it in `reach`'s
 step, and every step lands in its own branch of the `SetUnion`.
 -/
@@ -47,7 +47,7 @@ theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT (LinearSysDT
   refine SetUnion.mem_construct.mpr ⟨sys.reach U_ext ⟨params.X₀, 0, k⟩ options, ?_,
     sys.reach_outer U_ext options.hZonotopeOrder params.X₀ sys.contr.sound_eval
       (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])
-      (sys.trajectory_of_map (Set.mem_singleton 0) hx₀ hv hstep) k⟩
+      (sys.isTrajectory_of_map (Set.mem_singleton 0) hx₀ hv hstep) k⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hk))
 
 end CORALean

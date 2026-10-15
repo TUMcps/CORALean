@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 # The canonical-form system at a given `A`
 
 `x(k+1) = A x(k) + u(k)`, `y(k) = x(k)`: the system `(A, I, 0, I, 0, 0, 0, I)`, as
-`LinearSys.canonical` is in continuous time. Its `Trajectory` is its `CanonicalTrajectory`, so
+`LinearSys.canonical` is in continuous time. Its `IsTrajectory` is its `IsCanonicalTrajectory`, so
 it is the system an operation handed only a state matrix builds: a discretization, a
 linearization, an observer's error dynamics.
 -/

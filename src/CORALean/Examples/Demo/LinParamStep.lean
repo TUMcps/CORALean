@@ -14,8 +14,8 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 `[[-1, 1]; [0, -2]]`, one step of `Δt = 1/8` at Taylor order `4`, from the
 initial box `R0` with inputs in `U`. The float step `timeIntervalStepFloat` and
 input solution `inputSolutionFloat` are the sets both readings get:
-`'constParam'` by `ConstTrajectory`, `'varParam'`, a fresh member at every
-instant, by `Trajectory.timeIntervalStepFloat_outer` and its input counterpart.
+`'constParam'` by `IsConstTrajectory`, `'varParam'`, a fresh member at every
+instant, by `IsTrajectory.timeIntervalStepFloat_outer` and its input counterpart.
 Proved the same set, so there is nothing to compare between the readings.
 
 What is shown is what the matrix uncertainty costs: the same step at the point

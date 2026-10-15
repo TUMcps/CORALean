@@ -18,7 +18,7 @@ starts from is shown, at run time, inside that step's region, which is what lets
 `reach_outer` hold with no confinement hypothesis on any run.
 
 `NonlinearSysDT` is a `ContDynamicsDT`: every one of the `m` arguments of `f` an input, no
-disturbance, a run a `Trajectory`.
+disturbance, a run a `IsTrajectory`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -54,8 +54,8 @@ instance NonlinearSysDT.reachInstance :
 instance NonlinearSysDT.contDynamicsDT {n m : ℕ} : ContDynamicsDT (NonlinearSysDT n m) n where
   nrOfInputs _ := m
   nrOfDisturbances _ := 0
-  Trajectory sys X₀ U W x u w :=
-    NonlinearSysDT.Trajectory (S := 𝒮) sys X₀ U x u ∧ ∀ k, w k ∈ W
+  IsTrajectory sys X₀ U W x u w :=
+    NonlinearSysDT.IsTrajectory (S := 𝒮) sys X₀ U x u ∧ ∀ k, w k ∈ W
 
 end CORALean
 

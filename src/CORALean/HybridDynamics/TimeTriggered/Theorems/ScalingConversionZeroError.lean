@@ -49,7 +49,7 @@ theorem DiffInclAutomaton.scalingConversion_zeroError {I : Set X} {f : X → X} 
         (DiffInclAutomaton.singleMode I f).reach := by -- --- PROOF ---
   refine ⟨DiffInclAutomaton.scalingConversion_contOverapprox hf hg hg0 hF htb hts T, ?_⟩
   rintro T' x' ⟨⟨x, τ⟩, ⟨d, k, _, h⟩, rfl⟩
-  obtain ⟨s, _, hs⟩ := DiffInclAutomaton.scalingConversion_exec_subset_reach hf hg hg0 h
+  obtain ⟨s, _, hs⟩ := DiffInclAutomaton.scalingConversion_isExec_subset_reach hf hg hg0 h
   exact ⟨s, (), hs⟩
 
 end CORALean

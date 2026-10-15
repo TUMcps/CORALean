@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 # The float `linReach` loop holds every run over every step
 
 Induction on the step count. The first step places the run over `[0, Δt]` and
-at `Δt` (`linReachFloat_outer`); the run re-anchored at `Δt` (`Trajectory.shift`)
+at `Δt` (`linReachFloat_outer`); the run re-anchored at `Δt` (`IsTrajectory.shift`)
 starts in the set that step returned, which is what the rest of the loop was run
 from, so the hypothesis places it over every later step.
 -/
@@ -41,7 +41,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachRunFloat_outer
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
       fm.linReachRunFloat alg U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-          sys.Trajectory (S := 𝒮)
+          sys.IsTrajectory (S := 𝒮)
             (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u →
           ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
             (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].construct := by -- --- PROOF ---

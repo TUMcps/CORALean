@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLinearSys
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetInputSolution
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
@@ -61,10 +61,10 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 -- a three-way `plus` in the conclusion, every factor an interval matrix at `ℐ`
 /-- The input's contribution at every time of the step, split along
 `U ⊆ {c} ⊞ U₀`. Neither piece needs `0 ∈ U`. -/
-theorem LinParamSys.CanonicalConstTrajectory.inputSolution_timeInterval_outer_split
+theorem LinParamSys.IsCanonicalConstTrajectory.inputSolution_timeInterval_outer_split
     {sys : LinParamSys ℐ n} {T : Set ℝ} {R₀ U U₀ P Sg : S n} {x u : ℝ → Vec ℝ n}
     {A : Mat ℝ n n} {c : Vec ℝ n} {r : ℝ}
-    (traj : sys.CanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
+    (traj : sys.IsCanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     -- the split, then the segment, the constant, and the part holding the origin
     (hsplit : ∀ y ∈ construct U, y - c ∈ construct U₀) (hcP : c ∈ construct P)

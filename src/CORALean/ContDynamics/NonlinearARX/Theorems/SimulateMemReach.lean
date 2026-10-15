@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.NonlinearARX.Theorems.ReachOuter
-public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateTrajectory
+public import CORALean.ContDynamics.NonlinearARX.Theorems.SimulateIsTrajectory
 
 @[expose] public section
 
 /-!
 # A simulated window lies in the reach set
 
-`simulate_trajectory` composed with `reach_outer`, under the same hypotheses: the window of
+`simulate_isTrajectory` composed with `reach_outer`, under the same hypotheses: the window of
 simulated outputs `(y(k), …, y(k+p-1))` lies in the reachable set at step `k`.
 -/
 
@@ -44,7 +44,7 @@ theorem NonlinearARX.simulate_mem_reach (sys : NonlinearARX dy du p) {o : ℕ} (
     (hR : ∀ k, NonlinearARX.stack p (sys.simulate y₀ u) k ∈ (steps k).R) (k : ℕ) :
     NonlinearARX.stack p (sys.simulate y₀ u) k ∈ construct
       (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps) :=
-  sys.reach_outer ho hV steps (sys.simulate_trajectory hy₀ hu) hR k
+  sys.reach_outer ho hV steps (sys.simulate_isTrajectory hy₀ hu) hR k
 
 end CORALean
 

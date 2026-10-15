@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinDASys.Operations.ReachFloat
-public import CORALean.ContDynamics.NonlinDASys.Theorems.TrajectoryToNonlinearSys
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryToNonlinearSys
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 
 @[expose] public section
@@ -38,7 +38,7 @@ theorem NonlinDASys.reachFloat_outer {sys : NonlinDASys n p m} (red : sys.Reduce
     (hR : NonlinDASys.reachFloat red fm params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m},
-        sys.Trajectory (S := 𝒮)
+        sys.IsTrajectory (S := 𝒮)
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
           params.U.construct x y u →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)

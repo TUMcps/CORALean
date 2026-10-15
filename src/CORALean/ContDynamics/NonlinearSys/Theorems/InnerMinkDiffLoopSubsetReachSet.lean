@@ -17,9 +17,9 @@ continued by a run from it is a run from `X₀` (`reachSet_subset_reachSet_add`)
 is reached at `0` by the run that starts there. `innerMinkDiffLoop_add` makes this a statement
 about every time-point set a run of `ω ≥ k` steps computes.
 
-What each step needs is `Prop. 1`'s hypotheses (`InnerMinkDiffCert`), asked for every step
+What each step needs is `Prop. 1`'s hypotheses (`IsInnerMinkDiffCert`), asked for every step
 started from reachable states, which is every step: solutions that exist, (21), which the
-remainder loop certifies (`InnerMinkDiffCert.of_abstractionError`), and `R̂_err(L̂)` convex,
+remainder loop certifies (`IsInnerMinkDiffCert.of_abstractionError`), and `R̂_err(L̂)` convex,
 compact, nonempty and symmetric about line 14's `c = cen(C) + cen(R̂_err(L̂))`. A bounded set
 has one center of symmetry, so with `cen(R̂_err(L̂))` that center this needs `cen(C) = 0`;
 `Prop. 1` shifts by `2 cen(R̂_err)` alone.
@@ -58,7 +58,7 @@ theorem NonlinearSys.innerMinkDiffLoop_subset_reachSet (ops : NonlinearSys.Inner
     (hcert : ∀ (T : ℝ) (X : Set (Vec ℝ n)) (st : NonlinearSys.InnerMinkDiffState n 𝓛),
       X ⊆ sys.reachSet (S := 𝒮) (Icc 0 T) X₀ {u₀} T →
       NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X = some st →
-      NonlinearSys.InnerMinkDiffCert sys u₀ Δt X st)
+      NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st)
     {k : ℕ} {Rtk Rτ : Set (Vec ℝ n)}
     (h : NonlinearSys.innerMinkDiffLoop ops (fun x => sys.f x u₀) Δt μ fuel k X₀ ∅ =
       some (Rtk, Rτ)) :

@@ -19,7 +19,7 @@ the parameter's coordinates with the state's. `ConvexSet` and `CompactSet` are a
 of the representation for the same reason as there.
 
 `NonlinParamSys` is a `ContDynamics`: `m` inputs, and the `q` parameters as the disturbance, a
-fresh `p t` in the parameter set at every instant, as `Trajectory` reads them; a constant-
+fresh `p t` in the parameter set at every instant, as `IsTrajectory` reads them; a constant-
 parameter run is one.
 -/
 
@@ -57,8 +57,8 @@ noncomputable instance NonlinParamSys.reachInstance :
 instance NonlinParamSys.contDynamics {n m q : ℕ} : ContDynamics (NonlinParamSys n m q) n where
   nrOfInputs _ := m
   nrOfDisturbances _ := q
-  Trajectory sys T X₀ U W x u w :=
-    NonlinParamSys.Trajectory (S := 𝒮) sys T X₀ U W x u w
+  IsTrajectory sys T X₀ U W x u w :=
+    NonlinParamSys.IsTrajectory (S := 𝒮) sys T X₀ U W x u w
 
 end CORALean
 

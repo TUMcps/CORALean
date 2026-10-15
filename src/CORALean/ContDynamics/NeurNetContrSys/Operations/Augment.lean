@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Instances
 public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
+public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 
@@ -37,10 +37,10 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NonlinearSys.Trajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
+theorem NonlinearSys.IsTrajectory.reach_outer_horizon_inputSolution [Mtimes ℐ S]
     {sys : NonlinearSys n m} {T : Set ℝ} {R₀ L : S n} {U : S m} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n}
-    {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ} {K : ℕ} (traj : sys.Trajectory T R₀ U x u)
+    {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ} {K : ℕ} (traj : sys.IsTrajectory T R₀ U x u)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T)
     (hR : ∀ t ∈ Set.Icc (0 : ℝ) ((K : ℝ) * Δt), x t ∈ R) (hΔt : 0 < Δt) (η : ℕ)

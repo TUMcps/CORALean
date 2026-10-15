@@ -48,7 +48,7 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer
     {options : LinearSys.ReachOptions 𝕋} {R Rt Rτ : Zonotope (Vec 𝕋 n)} {A : Mat 𝕋 n n}
     (hpass : fm.adaptLinPassFloat U options R = some (A, Rt, Rτ)) :
     0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.Trajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt),
         sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ

@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
 public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetConvex
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
+public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryHeldInput
 [1, Sec. 4.2]: for template directions `ℓ_1, …, ℓ_w`, the vertex polytope
 `⟨[ν(Ř(t_k), ℓ_1), …, ν(Ř(t_k), ℓ_w)]⟩_V` lies in `R(t_k)`. Each vertex is
 [1]'s Eq. (18)'s `x(k)` from `supportCounterexample`, hence the state at `t_k` of a
-held-input `Trajectory`, and `reachSet_convex` takes the hull. Along its own
+held-input `IsTrajectory`, and `reachSet_convex` takes the hull. Along its own
 direction each vertex attains line 15's bound (`heldSim_supportCounterexample`).
 
 ## References
@@ -54,7 +54,7 @@ theorem LinearSys.convexHull_supportCounterexample_subset_reachSet (sys : Linear
         (sys.supportCounterexample Δt ν₀ νU (ℓ j) k).2 k)
       ⊆ sys.reachSet (Set.Icc 0 (k * Δt)) R₀ U (k * Δt) :=
   convexHull_min (Set.range_subset_iff.mpr fun _ =>
-      ⟨_, _, sys.trajectory_heldInput R₀ U hU (mul_nonneg k.cast_nonneg hΔt.le) Δt (hν₀ _)
+      ⟨_, _, sys.isTrajectory_heldInput R₀ U hU (mul_nonneg k.cast_nonneg hΔt.le) Δt (hν₀ _)
         (fun _ => hνU _),
         sys.closedForm_heldInput hU hΔt _ (fun _ => hνU _) k⟩)
     (sys.reachSet_convex (mul_nonneg k.cast_nonneg hΔt.le) hR₀ hUconv hU)

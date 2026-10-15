@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.IsLinReachInnerCert
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachInner
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
@@ -17,9 +17,9 @@ from what its abstraction error loop is there to establish: when `Rerror` is
 `particularSolution_timeVarying` of `VerrorDyn` (`inputSolution Δt η VerrorDyn`), and
 `VerrorDyn` an `AbstractionError` certificate for the linearization `A` at `p` on a region `R`
 the solutions from `Rinit` do not leave over `[0, Δt]` (CORA's `Rmax`), every solution satisfies
-`x(Δt) - (p + e^{AΔt}(x(0) - p) + Rcon) ∈ Rerror` (`Trajectory.sub_mem_inputSolution`, with
+`x(Δt) - (p + e^{AΔt}(x(0) - p) + Rcon) ∈ Rerror` (`IsTrajectory.sub_mem_inputSolution`, with
 `A ∫₀^Δt e^{As} ds = e^{AΔt} - I`). With [1, Prop. 1]'s other hypotheses, passed through, that
-is `LinReachInnerCert`. The argument is `InnerMinkDiffCert.of_abstractionError`'s.
+is `IsLinReachInnerCert`. The argument is `IsInnerMinkDiffCert.of_abstractionError`'s.
 
 What stays assumed is what conservative linearization assumes: the confinement `hconf`, and
 the properties of `VerrorDyn` and of `Rerror` at it.
@@ -56,7 +56,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 
 /-- CORA's `linReachInner`: an abstraction error `VerrorDyn` certified on a region the solutions
 keep to gives the step from `X` [1, Prop. 1]'s hypotheses, (21) among them. -/
-theorem NonlinearSys.LinReachInnerCert.of_abstractionError [Mtimes ℐ S]
+theorem NonlinearSys.IsLinReachInnerCert.of_abstractionError [Mtimes ℐ S]
     (ops : NonlinearSys.LinReachInnerOps n (S n)) (sys : NonlinearSys n m) (u₀ : Vec ℝ m)
     (U : S m) (hu₀ : u₀ ∈ construct U) {Δt : ℝ} (hΔt : 0 < Δt) (fuel η : ℕ)
     (herr : ∀ A L, ops.inputSol Δt A L =
@@ -82,7 +82,7 @@ theorem NonlinearSys.LinReachInnerCert.of_abstractionError [Mtimes ℐ S]
     {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) :
-    NonlinearSys.LinReachInnerCert sys u₀ Δt X st := by -- --- PROOF ---
+    NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st := by -- --- PROOF ---
   -- what the linearization, `particularSolution_constant` and `Rerror` computed
   have hst : st.u = sys.f st.p u₀ ∧
       st.Rcon = (∫ θ in (0:ℝ)..Δt, exp ((Δt - θ) • st.A) *ᵥ st.u) ∧
@@ -96,7 +96,7 @@ theorem NonlinearSys.LinReachInnerCert.of_abstractionError [Mtimes ℐ S]
     exact ⟨rfl, rfl, rfl⟩
   refine ⟨hEc, hEcv, hEne, hEs, ⟨Ω, K, hLip, hex⟩, fun x₀ hx₀ x hx0 hder => ?_⟩
   -- the solution as a run from the point interval at `x₀`
-  have traj : sys.Trajectory (Icc 0 Δt) (OfInterval.ofInterval (⟨x₀, x₀⟩ : Interval (Vec ℝ n)))
+  have traj : sys.IsTrajectory (Icc 0 Δt) (OfInterval.ofInterval (⟨x₀, x₀⟩ : Interval (Vec ℝ n)))
       U x fun _ => u₀ :=
     ⟨OfInterval.ofInterval_outer _ (by rw [hx0]; exact fun _ => ⟨le_rfl, le_rfl⟩),
       fun _ _ => hu₀, hder⟩

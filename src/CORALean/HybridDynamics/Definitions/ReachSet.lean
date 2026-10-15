@@ -7,13 +7,13 @@ public import CORALean.HybridDynamics.HybridAutomaton
 /-!
 # The states and locations a hybrid run actually reaches
 
-The definition is [1, Def. 3.4], `LinearSys.reachSet`'s shape at a `Run`
-instead of a `Trajectory`: `reachSet` is every state some run from `ℓ₀` with an
+The definition is [1, Def. 3.4], `LinearSys.reachSet`'s shape at a `IsRun`
+instead of a `IsTrajectory`: `reachSet` is every state some run from `ℓ₀` with an
 initial state in `R₀` reaches at `ℓ`, the continuous part; `reachLocations` is
 every `ℓ` it reaches at all, the discrete part — read off `reachSet` rather
 than built separately, since a location is reached exactly when something is.
 
-Not indexed by the thesis's real `r`: no `Run` here carries elapsed global
+Not indexed by the thesis's real `r`: no `IsRun` here carries elapsed global
 time at all, so both sets are read across every run, unbounded, the way
 `Invariant` is rather than the way `InvariantOn` indexes by jump count.
 
@@ -53,7 +53,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 reaches at `ℓ`: the exact reachable set, and not an enclosure of it. -/
 def HybridAutomaton.reachSet (HA : HybridAutomaton S G L 𝕋 n) (R₀ : S n) (ℓ₀ ℓ : L) :
     Set (Vec ℝ n) :=
-  {y | ∃ x, x ∈ construct R₀ ∧ HA.Run ℓ₀ x ℓ y}
+  {y | ∃ x, x ∈ construct R₀ ∧ HA.IsRun ℓ₀ x ℓ y}
 
 /-- Every location some run from `ℓ₀` with an initial state in `R₀` reaches:
 [1, Def. 3.4]'s discrete reachable set, as the locations `reachSet` is

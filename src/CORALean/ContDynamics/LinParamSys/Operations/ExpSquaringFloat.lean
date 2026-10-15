@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
 `LinearSys.expSquaringFloat` at the system's interval matrix: `expIntervalFloat`
 at the range halved `s` times, then `s` interval squarings, each stored. A
 squaring of the box holds `e^{2tA}` for every member `A` because the member is
-the same in both factors — the constant-parameter reading, `ConstTrajectory`.
+the same in both factors — the constant-parameter reading, `IsConstTrajectory`.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,8 +10,8 @@ public import CORALean.ContDynamics.LinParamSys.Counterexamples.API
 /-!
 # Continuous-time linear systems with a set-valued system matrix, collected
 
-The system and its two trajectory predicates, `Trajectory` and
-`ConstTrajectory`, in `LinParamSys`; one step of the flow and of the input, at
+The system and its two trajectory predicates, `IsTrajectory` and
+`IsConstTrajectory`, in `LinParamSys`; one step of the flow and of the input, at
 every matrix the set holds, in `Operations`; the guarantees relating the two
 readings and enclosing a run in `Theorems`.
 
@@ -26,5 +26,5 @@ hold at every time of a window, the input's through the frozen member's own
 with an input by freezing one member and paying the mismatch into the input set.
 
 `Instances` is `Reach`'s, at `ℐ`: `LinearSys`'s windowed instances,
-`ConstTrajectory` in place of `Trajectory`.
+`IsConstTrajectory` in place of `IsTrajectory`.
 -/

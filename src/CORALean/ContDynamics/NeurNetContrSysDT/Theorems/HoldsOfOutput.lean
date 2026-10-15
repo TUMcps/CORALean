@@ -39,7 +39,7 @@ theorem NeurNetContrSysDT.holds_of_output (sys : NeurNetContrSysDT (LinearSysDT 
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
-    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.Trajectory π R₀ (construct U_ext) W x v w) (k : ℕ)
+    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (construct U_ext) W x v w) (k : ℕ)
     (h : spec.Holds (construct (sys.outputSet U_ext (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)))) :
     spec.Holds {sys.plant.outputEq.eval (x k) (sys.input (π (x k)) (v k))} :=
   spec.holds_of_outer

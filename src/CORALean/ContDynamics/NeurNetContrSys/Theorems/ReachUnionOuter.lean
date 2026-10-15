@@ -12,7 +12,7 @@ public import CORALean.NN.Theorems.SoundEval
 /-!
 # `reachUnion` encloses `reachUnionExact`
 
-A `reachUnionExact` witness's fields are `NeurNetContrSys.Trajectory`'s own, run at
+A `reachUnionExact` witness's fields are `NeurNetContrSys.IsTrajectory`'s own, run at
 the controller's own `eval`, the period `N · Δt`; `reach_outer`, at an order
 admissible by `reachOrder_admissible` and the raise, and `sound_eval` place it in
 `reach`'s period, landing in its own branch of the `SetUnion`.
@@ -54,7 +54,7 @@ theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys (LinearSys 𝕋 
   intro y hy
   obtain ⟨i, hi, x, v, w, hx0, hflow, rfl⟩ := Set.mem_iUnion₂.mp hy
   -- the disturbance is `0`, which `E` sends to `0`
-  have traj : sys.Trajectory sys.contr.eval.out
+  have traj : sys.IsTrajectory sys.contr.eval.out
       (params.tFinal - params.tStart) params.X₀ (construct U_ext) {0} x v w := ⟨hx0, hflow⟩
   -- the order `reachUnion` runs at clears the step, as `reachOrder`'s own does
   have hε : ‖options.Δt • sys.augment.A‖

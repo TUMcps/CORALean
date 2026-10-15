@@ -45,10 +45,10 @@ variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 /-- Everything the input contributed up to any time in the step lies in the
 enclosure computed for the whole step, once `U` contains the origin. -/
-theorem LinearSys.CanonicalTrajectory.inputSolution_timeInterval_outer
+theorem LinearSys.IsCanonicalTrajectory.inputSolution_timeInterval_outer
     [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
-    (traj : sys.CanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
+    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U))

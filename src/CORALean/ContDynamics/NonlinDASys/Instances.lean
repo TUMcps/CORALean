@@ -14,7 +14,7 @@ trajectories; `reach` is `reachUnion`, the reduced run; the guarantee is `reachU
 `reach` returns `none` exactly where the reduced run does.
 
 `NonlinDASys` is a `ContDynamics`: `m` inputs and no disturbance, a run the state of a
-`Trajectory` at some algebraic variable `y`.
+`IsTrajectory` at some algebraic variable `y`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -51,8 +51,8 @@ noncomputable instance NonlinDASys.reachInstance :
 instance NonlinDASys.contDynamics {n p m : ℕ} : ContDynamics (NonlinDASys n p m) n where
   nrOfInputs _ := m
   nrOfDisturbances _ := 0
-  Trajectory sys T X₀ U W x u w :=
-    (∃ y, NonlinDASys.Trajectory (S := 𝒮) sys T X₀ U x y u) ∧
+  IsTrajectory sys T X₀ U W x u w :=
+    (∃ y, NonlinDASys.IsTrajectory (S := 𝒮) sys T X₀ U x y u) ∧
       ∀ t ∈ T, w t ∈ W
 
 end CORALean

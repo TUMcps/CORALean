@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Instances
-public import CORALean.HybridDynamics.Definitions.RunUntil
+public import CORALean.HybridDynamics.Definitions.IsRunUntil
 public import CORALean.HybridDynamics.Operations.ReachFloat
 public import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
 public import CORALean.HybridDynamics.Theorems.JumpFloatOuter
@@ -19,7 +19,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 Every run from `X₀` at `ℓ` with `k ≤ K` jumps and a duration of at most
 `tFinal` ends in one of the computed sets, paired with the location it ends at.
 By induction on the run, one case per constructor as `RunOuter`'s: a stay is
-held by `Location.Trajectory.reachFloat_outer`, its duration being at most the
+held by `Location.IsTrajectory.reachFloat_outer`, its duration being at most the
 whole budget; a jump leaves the stay in one of its time-interval sets, in the
 invariant and in the guard, so `Location.guardIntersectFloat_outer` and
 `Transition.jumpFloat_outer` put the reset state in the set the recursive call
@@ -60,14 +60,14 @@ theorem aux_mapM_some {α β : Type} {f : α → Option β} :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Every run (`run_iff_exists_runUntil`: a `Run` with a duration) from `X₀` at `ℓ`, with at
+/-- Every run (`isRun_iff_exists_isRunUntil`: a `IsRun` with a duration) from `X₀` at `ℓ`, with at
 most `K` jumps and lasting at most `tFinal`, ends in a computed set of its final location;
 at `reachSet` this is `reachSet_subset_reachFloat`. -/
 theorem HybridAutomaton.reachFloat_outer
     (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
     n) {tFinal : ℚ}
     {options : LinearSys.ReachOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
-    (run : HA.RunUntil T k ℓ x ℓ' y) (hT : T ≤ tFinal) {K : ℕ} (hk : k ≤ K)
+    (run : HA.IsRunUntil T k ℓ x ℓ' y) (hT : T ≤ tFinal) {K : ℕ} (hk : k ≤ K)
     {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ construct X₀) {out : List (L × Zonotope (Vec 𝕋 n))}
     (h : HA.reachFloat tFinal options K ℓ X₀ = some out) :
     ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ construct p.2 := by -- --- PROOF ---

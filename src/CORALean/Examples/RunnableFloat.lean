@@ -174,6 +174,7 @@ import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
+import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 
 /-!
 # Every runnable algorithm, instantiated at a concrete float representation

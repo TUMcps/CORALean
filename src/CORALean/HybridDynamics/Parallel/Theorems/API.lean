@@ -1,9 +1,9 @@
 module
 
 public import CORALean.HybridDynamics.Parallel.Theorems.LiftTransitionReset
-public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectory
-public import CORALean.HybridDynamics.Parallel.Theorems.RunToProduct
-public import CORALean.HybridDynamics.Parallel.Theorems.RunMemOfInvariant
+public import CORALean.HybridDynamics.Parallel.Theorems.IsStayTrajectory
+public import CORALean.HybridDynamics.Parallel.Theorems.IsRunToProduct
+public import CORALean.HybridDynamics.Parallel.Theorems.IsRunMemOfInvariant
 public import CORALean.HybridDynamics.Parallel.Theorems.ReachSetSubsetInvariant
 public import CORALean.HybridDynamics.Parallel.Theorems.ReachFloatOuter
 public import CORALean.HybridDynamics.Parallel.Theorems.ReachFloatCheckedEqSome
@@ -16,12 +16,12 @@ public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdAe
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdbe
 public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
 public import CORALean.HybridDynamics.Parallel.Theorems.IntervalStackProdFloatExact
-public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
+public import CORALean.HybridDynamics.Parallel.Theorems.IsStayTrajectoryWith
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
-public import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
-public import CORALean.HybridDynamics.Parallel.Theorems.StayOfTrajectoryWith
-public import CORALean.HybridDynamics.Parallel.Theorems.RunOfProductWith
-public import CORALean.HybridDynamics.Parallel.Theorems.RunOfProduct
+public import CORALean.HybridDynamics.Parallel.Theorems.IsRunToProductWith
+public import CORALean.HybridDynamics.Parallel.Theorems.IsStayOfTrajectoryWith
+public import CORALean.HybridDynamics.Parallel.Theorems.IsRunOfProductWith
+public import CORALean.HybridDynamics.Parallel.Theorems.IsRunOfProduct
 public import CORALean.HybridDynamics.Parallel.Theorems.ReachSetProductWithEq
 public import CORALean.HybridDynamics.Parallel.Theorems.ReachSetProductEq
 public import CORALean.HybridDynamics.Parallel.Theorems.BoxLiftingExact
@@ -31,7 +31,7 @@ public import CORALean.HybridDynamics.Parallel.Theorems.ConZonotopeStackProdExac
 public import CORALean.HybridDynamics.Parallel.Theorems.ZonoLiftingExact
 public import CORALean.HybridDynamics.Parallel.Theorems.ConZonoLiftingExact
 public import CORALean.HybridDynamics.Parallel.Theorems.LiftSyncTransitionReset
-public import CORALean.HybridDynamics.Parallel.Theorems.SyncRunToProduct
+public import CORALean.HybridDynamics.Parallel.Theorems.IsSyncRunToProduct
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlow
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlowLaw
 public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlowLawConverse
@@ -52,8 +52,8 @@ outer-approximation theorems, stated against the parallel one. `StackUnstack` an
 relate `stack` to `unstack`, the `…StackProdExact` say the Cartesian products are exact.
 `BoxLifting`, `ZonoLifting` and `ConZonoLifting` are `Lifting`s, exact (`…LiftingExact`) where no
 global input feeds two inputs (`SelectGlobal…`); `BoxSyncLifting` adds the guard conjunction that
-synchronized transitions need. `Run.ofProduct` is the converse of `Run.toProduct` and
+synchronized transitions need. `IsRun.ofProduct` is the converse of `IsRun.toProduct` and
 `reachSet_product_eq` the equality of reachable sets they give, under `Lifting.Exact`,
-`GlobalsDistinct` and nonempty input sets. `SyncRunToProduct` is `Run.toProduct` with
+`GlobalsDistinct` and nonempty input sets. `SyncRunToProduct` is `IsRun.toProduct` with
 synchronization labels; `ReachFloatOuter` the float reach's soundness.
 -/

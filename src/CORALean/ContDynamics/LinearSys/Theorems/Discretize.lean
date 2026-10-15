@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.StepSubset
 Reading a continuous run at `0, Δt, 2Δt, ...` gives a run of `discretize`, so
 every guarantee `LinearSysDT` already carries applies at the sample times.
 Every step at once, so the domain has to be all of forward time: the discrete
-trajectory produced is indexed by all of `ℕ`, and `LinearSysDT.CanonicalTrajectory` has
+trajectory produced is indexed by all of `ℕ`, and `LinearSysDT.IsCanonicalTrajectory` has
 no partial form. A bounded domain goes through `reach_outer_horizon` instead.
 -/
 
@@ -41,11 +41,11 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.CanonicalTrajectory.discretize {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U Ud : S n}
-    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.CanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
+theorem LinearSys.IsCanonicalTrajectory.discretize {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U Ud : S n}
+    {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) :
-    (sys.discretize Δt).CanonicalTrajectory R₀ Ud (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt)
+    (sys.discretize Δt).IsCanonicalTrajectory R₀ Ud (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt)
         where
   init := by simpa using traj.init
   input k := hUd k

@@ -32,10 +32,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every run on `T` is a run on any smaller domain. -/
-theorem NonlinearSys.Trajectory.restrict {sys : NonlinearSys n m} {T T' : Set ℝ}
+theorem NonlinearSys.IsTrajectory.restrict {sys : NonlinearSys n m} {T T' : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.Trajectory T R₀ U x u) (hT : T' ⊆ T) :
-    sys.Trajectory T' R₀ U x u where
+    (traj : sys.IsTrajectory T R₀ U x u) (hT : T' ⊆ T) :
+    sys.IsTrajectory T' R₀ U x u where
   init := traj.init
   input t ht := traj.input t (hT ht)
   flow t ht := (traj.flow t (hT ht)).mono hT

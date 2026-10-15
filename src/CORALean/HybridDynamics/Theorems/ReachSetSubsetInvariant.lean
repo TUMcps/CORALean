@@ -1,15 +1,15 @@
 module
 
 public import CORALean.HybridDynamics.Definitions.ReachSet
-public import CORALean.HybridDynamics.Theorems.RunOuter
+public import CORALean.HybridDynamics.Theorems.IsRunOuter
 
 @[expose] public section
 
 /-!
 # `reachSet` is inside what an invariant supplies
 
-`Run.mem_of_invariant` with the run quantifier moved off the front, as
-`LinearSys.reachSet_subset_reach` does to `Trajectory.reach_outer`: what that
+`IsRun.mem_of_invariant` with the run quantifier moved off the front, as
+`LinearSys.reachSet_subset_reach` does to `IsTrajectory.reach_outer`: what that
 says of every run into `ℓ`, this says of the set of them at once.
 
 `Invariant` is a hypothesis here, not something computed — there is no `reach`

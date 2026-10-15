@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinParamSys.LinParamSys
 
 Every state a `'constParam'` run on the horizon `[0, tFinal]` is at, at some time of it: one
 `A` of `sys.A` and one `B` of `sys.B` fixed over the whole run, the initial state in a bare set
-`X`, the input `u t` in `U` in input coordinates, and the offset `sys.c` — `ConstTrajectory`
+`X`, the input `u t` in `U` in input coordinates, and the offset `sys.c` — `IsConstTrajectory`
 at the representation `Set` itself. The windows `reachUnion` covers the horizon with, and the
 `B U ⊕ c` it computes, are how it encloses this set, not part of it.
 -/
@@ -36,7 +36,7 @@ inputs in `U` (input coordinates), is at, at some time of that horizon. -/
 def LinParamSys.reachUnionExact (sys : LinParamSys 𝕄 n) (tFinal : ℝ) (X : Set (Vec ℝ n))
     (U : Set (Vec ℝ sys.m)) : Set (Vec ℝ n) :=
   {y | ∃ (A : Mat ℝ n n) (B : Mat ℝ n sys.m) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ sys.m),
-    sys.ConstTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X U x u A B ∧
+    sys.IsConstTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X U x u A B ∧
       ∃ t ∈ Set.Icc (0 : ℝ) tFinal, x t = y}
 
 end CORALean

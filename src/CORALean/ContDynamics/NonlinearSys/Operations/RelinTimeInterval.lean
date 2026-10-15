@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 `relinReach` reaches the state at `iΔt` only; this is the set it is in at every
 time of step `i`: `LinearSys.timeIntervalStep` of the linearized system at
 `(steps i).A`, applied to what `relinReach` reaches at the step's start, plus
-step `i`'s own input enclosure — the shape `Trajectory.timeInterval_outer`
+step `i`'s own input enclosure — the shape `IsTrajectory.timeInterval_outer`
 proves, not one invented ahead of it.
 
 `R(τ_s)` of [1, Alg. 1], its line 13, and what its line 22 collects into the

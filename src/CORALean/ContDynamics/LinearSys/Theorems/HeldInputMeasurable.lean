@@ -10,7 +10,7 @@ public import Mathlib.MeasureTheory.Function.Floor
 
 `heldInput Δt v` reads `v` at `⌈s / Δt⌉₊ - 1`, a measurable function into `ℕ`,
 whose every function out of is measurable: the admissibility a Carathéodory
-`Trajectory` asks of its input, for the piecewise-constant inputs of
+`IsTrajectory` asks of its input, for the piecewise-constant inputs of
 [1, Sec. 4.2] whatever the values held.
 
 ## References

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Definitions.SShape
+public import CORALean.NN.Layers.Definitions.IsSShape
 public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section

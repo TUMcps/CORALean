@@ -73,7 +73,7 @@ theorem Example.lpX_succ (k : ℕ) :
 
 /-- A trajectory at the interval-matrix uncertainty: the nominal matrix at every
 step, witnessed by `nominal_mem_sysI`. -/
-theorem Example.trajI : Example.sysI.CanonicalTrajectory (S := 𝒵) Example.lpR0 Example.lpU
+theorem Example.trajI : Example.sysI.IsCanonicalTrajectory (S := 𝒵) Example.lpR0 Example.lpU
     Example.lpX (fun _ => 0) where
   init := by rw [Example.lpX_zero]; exact Zonotope.mem_ofPoint Example.lpX0
   input _ := Zonotope.mem_ofPoint 0
@@ -81,7 +81,7 @@ theorem Example.trajI : Example.sysI.CanonicalTrajectory (S := 𝒵) Example.lpR
 
 /-- The same trajectory at the matrix-zonotope uncertainty, witnessed by
 `nominal_mem_sysZ` instead. -/
-theorem Example.trajZ : Example.sysZ.CanonicalTrajectory (S := 𝒵) Example.lpR0 Example.lpU
+theorem Example.trajZ : Example.sysZ.IsCanonicalTrajectory (S := 𝒵) Example.lpR0 Example.lpU
     Example.lpX (fun _ => 0) where
   init := by rw [Example.lpX_zero]; exact Zonotope.mem_ofPoint Example.lpX0
   input _ := Zonotope.mem_ofPoint 0

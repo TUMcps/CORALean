@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachWith
 public import CORALean.NN.Theorems.EncloseOuter
 public import Mathlib.Tactic.Linarith
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.IsTrajectory
 
 @[expose] public section
 
@@ -13,11 +14,11 @@ public import Mathlib.Tactic.Linarith
 is, at the end of each of the first `i` control cycles, in the set `reachWith` holds, and at every
 instant of those cycles in one of the sets over a cycle. Induction on the cycle: the network's
 guarantee puts the held input in `Y`, so the state and the input are in the product, the cycle is a
-run of the plant under that held input (`Trajectory.flow`), and the reachability algorithm `rx` for
-the extended state `[x; u]`, the product `cp` and the projection `pr` each satisfy the enclosure the
-algorithm asks of them. At any plant: `rx` is asked to enclose the plant's own runs, read through
-`ContDynamics.Trajectory`. `reachWith_timePoint_outer` is the cycle ends alone, for an `rx` with no
-sets over a cycle.
+run of the plant under that held input (`IsTrajectory.flow`), and the reachability algorithm `rx`
+for the extended state `[x; u]`, the product `cp` and the projection `pr` each satisfy the enclosure
+the algorithm asks of them. At any plant: `rx` is asked to enclose the plant's own runs, read
+through `ContDynamics.IsTrajectory`. `reachWith_timePoint_outer` is the cycle ends alone, for an
+`rx` with no sets over a cycle.
 
 ## References
 
@@ -55,13 +56,13 @@ theorem NeurNetContrSys.reachWith_outer (sys : NeurNetContrSys P S n)
     (hpr : ∀ Z z, z ∈ construct Z → (fun k => z (Fin.castAdd _ k)) ∈ construct (pr Z))
     (hrx : ∀ R (z : ℝ → Vec ℝ n) (u : Vec ℝ sys.m) (v' : ℝ → Vec ℝ sys.nExt) w,
       (Fin.append (z 0) u : Vec ℝ (n + _)) ∈ construct R →
-      ContDynamics.Trajectory sys.plant (Set.Icc 0 sys.dt) Set.univ (sys.inputSet {u} U_ext) W z
+      ContDynamics.IsTrajectory sys.plant (Set.Icc 0 sys.dt) Set.univ (sys.inputSet {u} U_ext) W z
         (fun t => sys.input u (v' t)) w →
       (Fin.append (z sys.dt) u : Vec ℝ (n + _)) ∈ construct (rx R).1 ∧
         ∀ t ∈ Set.Icc 0 sys.dt, ∃ T ∈ (rx R).2, (Fin.append (z t) u : Vec ℝ (n + _)) ∈ construct T)
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π) {H : ℕ}
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
-    (traj : sys.Trajectory π H X₀ U_ext W x v w) :
+    (traj : sys.IsTrajectory π H X₀ U_ext W x v w) :
     ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈ construct (sys.reachWith cp pr rx X₀ i).1 ∧
       ∀ j < i, ∀ t ∈ Set.Icc ((j : ℝ) * sys.dt) (((j : ℝ) + 1) * sys.dt),
         ∃ T ∈ (sys.reachWith cp pr rx X₀ i).2, x t ∈ construct T := by -- --- PROOF ---

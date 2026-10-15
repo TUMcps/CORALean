@@ -1,10 +1,10 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableInput
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryAestronglyMeasurableReflected
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryAestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryAestronglyMeasurableReflected
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryVariationOfConstants
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryVariationOfConstants
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 
 @[expose] public section
@@ -16,7 +16,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 `x(Δt) = e^{AΔt} x(0) + R_con + z(x(0))`, `z(x(0)) ∈ R̂_err` (21). Here it is derived from the
 linearization: a run under the constant input `u₀` that stays in the region `R` of an
 `AbstractionError` certificate `L` solves `ẋ = Ax + w + l(t)`, `w = f(x✱,u✱) - Ax✱ + B(u₀ - u✱)`,
-`l(t) ∈ L` (`Trajectory.linearize`); the variation of constants splits off
+`l(t) ∈ L` (`IsTrajectory.linearize`); the variation of constants splits off
 `R_con = ∫₀^Δt e^{A(Δt-s)} w ds`, and what `l` contributes lies in `inputSolution Δt η L`
 (`inputSolution_outer`), CORA's `particularSolution_timeVarying(linsys, VerrorDyn, Δt)`, which
 is `R̂_err`. The confinement of the run to `R` is the hypothesis `hR`, as everywhere in
@@ -54,10 +54,10 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 
 /-- (21) of [1, Prop. 1]'s proof: `x(Δt) - (e^{AΔt} x(0) + R_con)` lies in what the abstraction
 error contributes over the step. -/
-theorem NonlinearSys.Trajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : NonlinearSys n m}
+theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : NonlinearSys n m}
     {R₀ L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u₀ : Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ}
-    (traj : sys.Trajectory (Set.Icc 0 Δt) R₀ U x fun _ => u₀)
+    (traj : sys.IsTrajectory (Set.Icc 0 Δt) R₀ U x fun _ => u₀)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hR : ∀ t ∈ Set.Icc 0 Δt, x t ∈ R) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)

@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSo
 
 `NonlinearSysDT.confinement_of_subset` gets confinement at step `k` from
 `reach_outer_on`, which places `x k` asking confinement strictly below `k`. No
-continuous statement does that: `Trajectory.linearize` spends the certificate at
+continuous statement does that: `IsTrajectory.linearize` spends the certificate at
 every time of the window it is given, so `relinTimeInterval_outer` needs step
 `i`'s own confinement to place `x t` inside step `i`. Checking CORA's
 `R([iΔt, (i+1)Δt]) ⊆ R_i` therefore closes no induction on its own.
@@ -53,10 +53,10 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 /-- Confinement on every step's window, discharged from the computed sets: a
 caller checks that each step's computed set, inflated by `ρ > MΔt`, lies in that
 step's certified region, instead of assuming confinement of the trajectory. -/
-theorem NonlinearSys.Trajectory.confinement_of_subset [Mtimes ℐ S]
+theorem NonlinearSys.IsTrajectory.confinement_of_subset [Mtimes ℐ S]
     {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ} {M ρ : ℝ}
-    (traj : sys.Trajectory T R₀ U x u) (hΔt : 0 < Δt)
+    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 < Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (η : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / ((η : ℝ) + 2) < 1)
     (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))

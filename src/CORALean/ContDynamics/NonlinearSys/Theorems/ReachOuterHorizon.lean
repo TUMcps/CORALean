@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 
@@ -40,10 +40,10 @@ variable [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 /-- The one-step statement: confinement on `[0, KΔt]` alone puts the run inside
 the linearized reachable set at every sample time of that horizon, assuming
 nothing past `KΔt` — which is what re-linearizing from there needs. -/
-theorem NonlinearSys.Trajectory.reach_outer_horizon {sys : NonlinearSys n m} {T : Set ℝ}
+theorem NonlinearSys.IsTrajectory.reach_outer_horizon {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ Ud L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
-    {R : Set (Vec ℝ n)} {Δt : ℝ} {K : ℕ} (traj : sys.Trajectory T R₀ U x u)
+    {R : Set (Vec ℝ n)} {Δt : ℝ} {K : ℕ} (traj : sys.IsTrajectory T R₀ U x u)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T)
     (hR : ∀ t ∈ Set.Icc (0 : ℝ) ((K : ℝ) * Δt), x t ∈ R) (hΔt : 0 ≤ Δt)

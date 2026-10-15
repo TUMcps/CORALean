@@ -42,7 +42,7 @@ theorem NeurNetContrSys.holds_of_checkFloat [Contains ContSet (Zonotope (Vec �
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, Scalar.toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.Trajectory π H R₀ (construct U_ext) W x v w)
+    (traj : sys.IsTrajectory π H R₀ (construct U_ext) W x v w)
     (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H) :
     spec.check (sys.reachFloat U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) →
       (spec.Holds {x ((i : ℝ) * sys.dt)}) :=

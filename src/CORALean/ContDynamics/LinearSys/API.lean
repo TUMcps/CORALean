@@ -27,8 +27,8 @@ per `Δt`, carried by `e^{A t_k}`, plus at `WithInput` the input accumulated so 
 
 A trajectory is Carathéodory — the integral equation — so `reachSet` *is*
 `e^{tA} R₀ ⊕ inputReach U t` (`reachSet_eq`) and a witness there is reached;
-`CanonicalClassicalTrajectory.trajectory` admits every derivative-everywhere run.
-Backward, `PerturbedTrajectory` is `Trajectory` with a second, independently
+`IsCanonicalClassicalTrajectory.trajectory` admits every derivative-everywhere run.
+Backward, `IsPerturbedTrajectory` is `IsTrajectory` with a second, independently
 quantified signal `w`: `backReachSetForallExists` and `backReachSetExistsForall`
 are Wetzlinger and Althoff's Def. 6 and Def. 7, each with a `timeInterval...`
 sibling, the reading in which Prop. 3 and Prop. 5 are equalities.

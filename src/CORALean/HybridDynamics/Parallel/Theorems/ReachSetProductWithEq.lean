@@ -1,7 +1,7 @@
 module
 
-public import CORALean.HybridDynamics.Parallel.Theorems.RunOfProductWith
-public import CORALean.HybridDynamics.Parallel.Theorems.RunToProductWith
+public import CORALean.HybridDynamics.Parallel.Theorems.IsRunOfProductWith
+public import CORALean.HybridDynamics.Parallel.Theorems.IsRunToProductWith
 public import CORALean.HybridDynamics.Parallel.Definitions.ReachSet
 public import CORALean.HybridDynamics.Definitions.ReachSet
 
@@ -10,11 +10,11 @@ public import CORALean.HybridDynamics.Definitions.ReachSet
 /-!
 # The product reaches exactly the stacks of what the parallel automaton reaches
 
-`Run.toProductWith` and `Run.ofProductWith` together: the product's exact reachable set, from an
+`IsRun.toProductWith` and `IsRun.ofProductWith` together: the product's exact reachable set, from an
 initial set whose stacks are exactly the tuples of the components' initial sets, is the image under
 `stack` of the parallel automaton's exact reachable set. An *equality of reachable sets*, under the
-conditions of `Run.toProductWith` and `Run.ofProductWith`; the outer theorems (`reachFloat_outer`,
-`reachSet_subset_invariant`) enclose either side and are inclusions only.
+conditions of `IsRun.toProductWith` and `IsRun.ofProductWith`; the outer theorems
+(`reachFloat_outer`, `reachSet_subset_invariant`) enclose either side and are inclusions only.
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
@@ -50,11 +50,11 @@ theorem ParallelHybridAutomaton.reachSet_productWith_eq [ExactScalar 𝕋]
   constructor
   · rintro ⟨z, hz, run⟩
     refine ⟨unstack w,
-      ⟨unstack z, ?_, ParallelHybridAutomaton.Run.ofProductWith hF' hex run⟩,
+      ⟨unstack z, ?_, ParallelHybridAutomaton.IsRun.ofProductWith hF' hex run⟩,
       stack_unstack w⟩
     exact (hR₀ _).mp (by rwa [stack_unstack])
   · rintro ⟨y, ⟨x, hx, run⟩, rfl⟩
-    exact ⟨stack x, (hR₀ x).mpr hx, ParallelHybridAutomaton.Run.toProductWith hF lift run⟩
+    exact ⟨stack x, (hR₀ x).mpr hx, ParallelHybridAutomaton.IsRun.toProductWith hF lift run⟩
 
 end CORALean
 
