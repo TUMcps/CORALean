@@ -16,6 +16,13 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+`IsRefinedBy` is `λ ≺ Λ` of [1, Sec. 4.2 (refinements)]: the Boolean signal takes the value of the
+three-valued one wherever that is not unknown.
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 
@@ -69,6 +76,18 @@ noncomputable def KleeneSignal.indicator (I : STLInterval) (val default : Kleene
 /-- `kleeneSignal.fromBoolSignal(bSig)`: a Boolean signal with nothing unknown. -/
 noncomputable def KleeneSignal.fromBoolSignal (bSig : PointSegmentSignal ℝ) : KleeneSignal ℝ :=
   ⟨bSig, PointSegmentSignal.indicator STLInterval.empty false false⟩
+
+
+-- ================================  `KleeneSignal.IsRefinedBy`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `λ ≺ Λ`, [1, Sec. 4.2 (refinements)]: the Boolean signal refines `s` if at every time `t ≥ 0`
+it takes the value of `s` wherever that is not `Unknown`. -/
+def KleeneSignal.IsRefinedBy (s : KleeneSignal ℝ) (l : PointSegmentSignal ℝ) : Prop :=
+  ∀ t : ℝ, 0 ≤ t → (s.at t).IsRefinedBy (l.at t)
 
 
 -- ====================================  `KleeneSignal.not`  ==================================== --

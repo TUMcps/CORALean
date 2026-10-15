@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.FourValued.Theorems.Basic
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.Until
 public import CORALean.Specification.FourValuedSignal.Theorems.MinMaxSpec
 public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalAtIff
@@ -30,7 +31,7 @@ The `True` and `False` clauses are the direct semantics of `U_I` on four-valued 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

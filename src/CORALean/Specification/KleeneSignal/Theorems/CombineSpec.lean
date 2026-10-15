@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Combine
 public import CORALean.Specification.KleeneSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.CombineSpec
@@ -17,7 +18,7 @@ of an output are two outputs of the underlying Boolean combination.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

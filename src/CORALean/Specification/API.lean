@@ -5,6 +5,7 @@ public import CORALean.Specification.Instances
 public import CORALean.Specification.FourValued.API
 public import CORALean.Specification.FiniteSignal.API
 public import CORALean.Specification.FourValuedSignal.API
+public import CORALean.Specification.FourValuedSTL.API
 public import CORALean.Specification.Kleene.API
 public import CORALean.Specification.KleeneSignal.API
 public import CORALean.Specification.PointSegmentSignal.API

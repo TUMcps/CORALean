@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.Kleene.Theorems.Basic
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Basic
 public import CORALean.Specification.KleeneSignal.Operations.ToBoolSignal
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsSpec
@@ -27,7 +28,7 @@ With `false` and `true` this is the underapproximation `⌊Λ⌋` and the overap
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

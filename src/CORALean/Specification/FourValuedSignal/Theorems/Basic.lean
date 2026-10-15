@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.Basic
 public import CORALean.Specification.KleeneSignal.Theorems.Basic
 
@@ -22,7 +23,7 @@ namespace CORALean
 -- =============================  `FourValuedSignal.at_eq_ii_iff`  ============================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- The signal is `Inconclusive` at a time exactly when `isInconclusive` holds there. -/

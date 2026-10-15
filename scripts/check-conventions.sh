@@ -1729,14 +1729,15 @@ fi
 # A main-type file holds the type and what it denotes, not what is said or done about
 # it (CONTRIBUTING, "Main-type files"): the file with the `MAIN TYPE` banner at
 # `<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` has no `theorem`/`lemma`, and no
-# `def`/`abbrev` named `materialise…`, the storage helper of the float sets. Those go to
-# `Theorems/` and `Operations/`, where the small ones share a `Basic.lean`.
+# `def`/`abbrev` named `materialise…`, the storage helper of the float sets, and no validity
+# predicate (a declaration named `…Valid…`, `…WellFormed…`, `…Wf…`). Those go to
+# `Theorems/`, `Operations/` and `Definitions/`, where the small ones share a `Basic.lean`.
 out=$(awk '
 function flush(   i) {
   if (banner && isMain)
     for (i = 1; i <= nh; i++)
-      print file ":" hl[i] ": " hw[i] " in a main-type file — move it to `Theorems/` or" \
-            " `Operations/` (a `Basic.lean` section when it is small)"
+      print file ":" hl[i] ": " hw[i] " in a main-type file — move it to `Theorems/`, `Operations/` or" \
+            " `Definitions/` (a `Basic.lean` section when it is small)"
   nh = 0
 }
 FNR == 1 {
@@ -1755,6 +1756,8 @@ FNR == 1 {
     nh++; hl[nh] = FNR; hw[nh] = "a theorem"
   } else if (s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec)[ \t]+)*(def|abbrev)[ \t]+([A-Za-z0-9_.]*[.])?materialise/) {
     nh++; hl[nh] = FNR; hw[nh] = "storage (`materialise`)"
+  } else if (s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec)[ \t]+)*(def|abbrev|structure|inductive|class)[ \t]+([A-Za-z0-9_.]*[.])?[A-Za-z0-9_]*(Valid|WellFormed|Wf)[A-Za-z0-9_]*([ \t:({\[]|$)/) {
+    nh++; hl[nh] = FNR; hw[nh] = "a validity predicate (`IsValid`, `WellFormed`, ...)"
   }
 }
 END { flush() }

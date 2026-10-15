@@ -1,0 +1,41 @@
+module
+
+public import CORALean.Specification.STLInterval.Theorems.RawSetOrdConnected
+
+@[expose] public section
+
+/-!
+# The times of an interval are order connected
+
+An `stlInterval` denotes a contiguous set of times: `Set.OrdConnected` (`rawSet_ordConnected` for
+the nonempty ones). It is what makes a Boolean signal that is `true` exactly on one interval a
+unitary signal in the sense of [1, Sec. 2.3 (unitary)].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem STLInterval.set_ordConnected (J : STLInterval) : J.set.OrdConnected := by
+  cases J with
+  | empty => exact Set.ordConnected_empty
+  | nonempty l u lc rc a b c => exact STLInterval.rawSet_ordConnected l u lc rc
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Theorems.ToKleeneSignalSpec
 
 @[expose] public section
@@ -14,7 +15,7 @@ Mapping inconclusive to `False` gives the signal that is `True` where the four-v
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

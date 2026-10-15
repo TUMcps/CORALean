@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.Basic
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.AnyTrueSpec
@@ -16,7 +17,7 @@ public import CORALean.Specification.STLInterval.Definitions.MemBounds
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

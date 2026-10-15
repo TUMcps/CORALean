@@ -9,8 +9,8 @@ public import CORALean.Specification.FourValued.FourValued
 # Four-valued signals
 
 CORA's `fourValuedSignal` (`specification/signals/fourValuedSignal.m`): a four-valued signal stored
-as a `kleeneSignal` and a Boolean `pointSegmentSignal` `isInconclusive` that overrides it. `IsValid`
-asks both parts to be valid; `FourValuedSignal.at` is the value it denotes.
+as a `kleeneSignal` and a Boolean `pointSegmentSignal` `isInconclusive` that overrides it.
+`FourValuedSignal.at` is the value it denotes.
 
 These are the `U₂`-signals Λ̃ of [1, Sec. 2.3 (signals)], here with finitely many pieces.
 
@@ -22,7 +22,7 @@ These are the `U₂`-signals Λ̃ of [1, Sec. 2.3 (signals)], here with finitely
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,10 +37,6 @@ structure FourValuedSignal (T : Type) where
   signal : KleeneSignal T
   isInconclusive : PointSegmentSignal T
   deriving DecidableEq
-
-/-- Both parts are valid signals. -/
-def FourValuedSignal.IsValid {T : Type} [LinearOrder T] [Zero T] (s : FourValuedSignal T) : Prop :=
-  s.signal.IsValid ∧ s.isInconclusive.IsValid
 
 end CORALean
 

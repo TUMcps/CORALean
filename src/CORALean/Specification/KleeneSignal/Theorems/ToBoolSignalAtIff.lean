@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Specification.Kleene.Operations.Basic
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalSpec
 
 @[expose] public section
@@ -14,7 +15,7 @@ mapping unknown to true gives the signal that is `true` where it is not `False`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

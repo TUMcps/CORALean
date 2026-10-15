@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetSpec
 public import CORALean.Specification.Kleene.Theorems.Basic
@@ -16,7 +17,7 @@ recovered from its parts.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

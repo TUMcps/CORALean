@@ -634,3 +634,5 @@ FiniteSignal.setLower  real-layer: compares real times, so it is not computable
 FiniteSignal.untilPiece  real-layer: takes the extended-real bounds of an interval, so it is not computable
 FiniteSignal.untilStep  real-layer: takes the extended-real bounds of an interval, so it is not computable
 FiniteSignal.until?  real-layer: takes the extended-real bounds of an interval, so it is not computable
+FourValuedSTL.Formula.kleeneSat  real-layer: built from the noncomputable `KleeneSignal` operators over the real-layer `STLInterval`
+FourValuedSTL.Formula.fourValuedSat  real-layer: built from the noncomputable `FourValuedSignal` operators over the real-layer `STLInterval`

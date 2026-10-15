@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.FourValuedSignal.Definitions.IsValid
 public import CORALean.Specification.FourValuedSignal.Operations.ConclusiveInterval
 public import CORALean.Specification.FourValuedSignal.Theorems.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.CutAtFirstFallingEdgeAt
@@ -31,7 +32,7 @@ This is `ConclusiveInterval` in line 11 of [1, Alg. 2], with `ignore` the irrele
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

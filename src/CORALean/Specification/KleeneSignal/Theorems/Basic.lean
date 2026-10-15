@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Basic
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotAt
 public import CORALean.Specification.PointSegmentSignal.Theorems.NotIsValid
@@ -30,7 +31,7 @@ namespace CORALean
 -- ===============================  `KleeneSignal.at_eq_uu_iff`  ================================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- The signal is `Unknown` at a time exactly when `isUnknown` holds there. -/

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.Specification.KleeneSignal.Definitions.IsValid
 public import CORALean.Specification.KleeneSignal.Operations.Or
 public import CORALean.Specification.KleeneSignal.Theorems.MinMaxSpec
 public import CORALean.Specification.KleeneSignal.Theorems.ToBoolSignalAtIff
@@ -16,7 +17,7 @@ For valid three-valued signals, `or_(varargin)` is valid and, at a time `t ≥ 0
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
