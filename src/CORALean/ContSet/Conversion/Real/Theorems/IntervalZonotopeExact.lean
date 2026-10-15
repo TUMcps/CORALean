@@ -11,6 +11,14 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 /-!
 # A box as a zonotope
+
+This is the arrow from intervals to zonotopes of [1, Fig. 1 (Intervals → Zonotopes)].
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5

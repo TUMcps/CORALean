@@ -142,6 +142,28 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeZonoBundleExact
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalMatPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalMatrixContains
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeMatZonotopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeStarSetExact
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeStarSetExact
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeStarSetRowsIff
+public import CORALean.ContSet.Conversion.Real.Theorems.StarSetConZonotopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.StarSetExistsHPolytopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidExistsNotHPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidExistsNotStarSet
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidExistsNotVPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidSupportFunctionExact
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeExistsNotZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeExistsZonoBundleExact
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeSupportFunctionExact
+public import CORALean.ContSet.Conversion.Real.Theorems.LevelSetExistsNotPolyZonotope
+public import CORALean.ContSet.Conversion.Real.Theorems.LevelSetExistsNotStarSet
+public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeExistsNotHPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.SupportFunctionExistsNotEllipsoid
+public import CORALean.ContSet.Conversion.Real.Theorems.SupportFunctionExistsNotHPolytope
+public import CORALean.ContSet.Conversion.Real.Theorems.SupportFunctionExistsNotStarSet
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeSupportFunctionExact
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleExistsHPolytopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeExistsHPolytopeExact
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeExistsNotInterval
 
 /-!
 # The guarantees of the Real conversions, collected

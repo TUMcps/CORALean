@@ -1,7 +1,8 @@
 module
 
-public import CORALean.NN.Layers.Operations.StarSetRowBounds
+public import CORALean.ContSet.StarSet.Real.Operations.RowBounds
 public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section
@@ -23,13 +24,11 @@ plus `Σ G_jk (α_k - mid_k)`, and each factor is within its radius of the middl
 
 namespace CORALean.Real
 
-open ContSet
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem StarSet.rowBounds_mem {n : ℕ} (s : StarSet n) (j : Fin n) {x : Vec ℝ n}
-    (hx : x ∈ construct s) :
+    (hx : x ∈ s.construct) :
     (s.rowBounds j).inf ≤ x j ∧ x j ≤ (s.rowBounds j).sup := by -- --- PROOF ---
   obtain ⟨α, hα, -, hxα⟩ := hx
   -- each factor is within its radius of the middle of its box

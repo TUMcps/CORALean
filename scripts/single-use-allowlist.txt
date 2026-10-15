@@ -437,3 +437,4 @@ src/CORALean/Specification/Theorems/ExistsConvexHullOfVerifyConvexEqUnsafe.lean:
 src/CORALean/Specification/Theorems/ExistsSeparatingOfVerifyConvexEqSafe.lean::exists_separating_of_verifyConvex_eq_safe  pending review-pattern 15 cleanup
 src/CORALean/Specification/Theorems/HoldsUnion.lean::Specification.holds_union  pending review-pattern 15 cleanup
 src/CORALean/Specification/Theorems/Violation.lean::Specification.not_holds_safeSet_of_mem  pending review-pattern 15 cleanup
+src/CORALean/Global/OrthogonalFirstColumn.lean::exists_orthogonal_firstCol  general linear algebra (the Householder reflection), used so far by the zonotope bundle of a polytope

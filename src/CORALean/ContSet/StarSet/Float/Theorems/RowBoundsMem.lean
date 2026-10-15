@@ -1,14 +1,15 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
-public import CORALean.NN.Layers.Operations.StarSetFloatRowBounds
+public import CORALean.ContSet.StarSet.Float.Operations.RowBounds
 
 @[expose] public section
 
 /-!
 # The float bounds of a neuron hold
 
-Every point of the star set has its neuron `j` between the two bounds.
+Every point of the nominal star set has its neuron `j` between the two bounds. The bounds are
+those of the stored numbers and leave `I_error` out, which a caller adds.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -21,7 +22,7 @@ Every point of the star set has its neuron `j` between the two bounds.
 
 namespace CORALean.Float
 
-open ContSet Float Float.SoundFloatArithmetic
+open Float Float.SoundFloatArithmetic
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
 
@@ -29,7 +30,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem StarSet.rowBounds_mem (s : StarSet 𝕋 n) (j : Fin n) {x : Vec ℝ n}
-    (hx : x ∈ construct s) :
+    (hx : x ∈ s.nominal.construct) :
     toReal (s.rowBounds j).inf ≤ x j ∧ x j ≤ toReal (s.rowBounds j).sup := by -- --- PROOF ---
   obtain ⟨α, hα, -, hxα⟩ := hx
   have hb := fun k => Interval.mul_between_corners (le_refl (toReal (s.G j k)))

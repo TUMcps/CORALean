@@ -1,0 +1,47 @@
+module
+
+public import CORALean.ContSet.ContSet.Definitions.SupportFunc
+
+@[expose] public section
+
+/-!
+# Support functions: the representation
+
+A set held as its support function `h(ℓ) = sup {ℓ x | x ∈ S}` over the linear functionals `ℓ`, the
+set being what every functional allows: `{x | ∀ ℓ, ℓ x ≤ h ℓ}`. `h` takes values in the extended
+reals, `+∞` for a functional the set is unbounded in and `-∞` everywhere for the empty set, so every
+closed convex set has one, and the sets a support function denotes are exactly the closed convex
+ones (`SupportFunction.ofSet_exact`). Over any real module, the functionals being those of
+`HPolytope`'s rows, and `supportFunc` of a set is the function itself.
+
+A function on all functionals is nothing finite to store, which is why this representation has no
+`Float/` layer: what an algorithm computes of a support function is its value in a given direction,
+`SupportBound`, and every conversion that needs one asks for it as a certificate.
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- ========================================  MAIN TYPE  ========================================= --
+
+structure SupportFunction (α : Type) [AddCommGroup α] [Module ℝ α] where
+  h : (α →ₗ[ℝ] ℝ) → EReal
+
+/-- The points the support function allows under every functional. -/
+def SupportFunction.construct (S : SupportFunction α) : Set α :=
+  {x | ∀ ℓ : α →ₗ[ℝ] ℝ, (ℓ x : EReal) ≤ S.h ℓ}
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

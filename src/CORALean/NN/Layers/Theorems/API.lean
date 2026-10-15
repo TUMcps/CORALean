@@ -91,9 +91,7 @@ public import CORALean.NN.Layers.Theorems.SoftplusSound
 public import CORALean.NN.Layers.Theorems.SquareRelaxationSound
 public import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
 public import CORALean.NN.Layers.Theorems.StarSetFloatReluNeuronOuter
-public import CORALean.NN.Layers.Theorems.StarSetFloatRowBoundsMem
 public import CORALean.NN.Layers.Theorems.StarSetReluNeuronOuter
-public import CORALean.NN.Layers.Theorems.StarSetRowBoundsMem
 public import CORALean.NN.Layers.Theorems.SumEraseLeSumOffUp
 public import CORALean.NN.Layers.Theorems.SumIteZero
 public import CORALean.NN.Layers.Theorems.SumOffDownLe

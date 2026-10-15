@@ -21,6 +21,15 @@ an independent generator about its centre. CORA also folds the constant terms in
 centre; here they stay generators at the zero exponent, the same set. Exact when every
 remainder is a nonempty interval (`polyZonotope_exact`); the range set is always contained
 (`polyZonotope_contains`), a point of it having a remainder value in each interval.
+
+This is [1, Prop. 4] and, with `PolyZonotope.taylm_exact`, the equivalence of polynomial zonotopes
+and Taylor models of [1, Fig. 1 (Polynomial Zonotopes ↔ Taylor Models)].
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5.5

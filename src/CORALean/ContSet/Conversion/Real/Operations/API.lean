@@ -4,6 +4,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_StarSet
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
@@ -11,6 +12,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_SpectraSh
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_SpectraShadow
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_StarSet
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_SupportFunction
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ZonoBundle
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule
@@ -23,6 +26,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_VPolyt
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.StarSet_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
@@ -34,6 +38,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonoto
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_Interval
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_SupportFunction
 public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_Zonotope
 
 /-!

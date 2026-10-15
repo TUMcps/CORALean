@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Definitions.StarSet
+public import CORALean.ContSet.StarSet.Real.StarSet
 public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section

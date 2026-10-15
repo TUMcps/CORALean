@@ -25,7 +25,8 @@ counts grow with the vertex list, so the construction is a recursion and no one
 type holds its results.
 
 `0 < P.k` is what *bounded polytope* means here, a vertex list of length zero
-denoting `∅` where a polynomial zonotope always has a point.
+denoting `∅` where a polynomial zonotope always has a point. The arrow of
+[1, Fig. 1 (Polytopes → Polynomial Zonotopes)].
 
 ## References
 

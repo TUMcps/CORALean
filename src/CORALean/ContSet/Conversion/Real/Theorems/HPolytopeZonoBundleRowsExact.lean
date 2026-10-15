@@ -22,6 +22,15 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 /-!
 # A halfspace description as a bundle of one
+
+This is the equivalence of polytopes and zonotope bundles of
+[1, Fig. 1 (Polytopes ↔ Zonotope Bundles)].
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5

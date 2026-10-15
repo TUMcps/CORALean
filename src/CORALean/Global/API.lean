@@ -201,6 +201,7 @@ public import CORALean.Global.DiscardTree
 public import CORALean.Global.OptimalDiscard
 public import CORALean.Global.OptimalDiscardLe
 public import CORALean.Global.OptimalDiscardNoneExample
+public import CORALean.Global.OrthogonalFirstColumn
 public import CORALean.Global.PosDefSchurComplementFirst
 public import CORALean.Global.RankOneKroneckerGe
 public import CORALean.Global.SupportConstraints

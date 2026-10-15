@@ -24,6 +24,15 @@ would do — and the rows are then carried onto the coefficients by composing wi
 the generator map, after shifting by the centre. What the coefficients must
 satisfy is exactly what the original rows said, so nothing is lost; the box is
 only there to supply generators, and drops out.
+
+This is the equivalence of polytopes and constrained zonotopes of
+[1, Fig. 1 (Polytopes ↔ Constrained Zonotopes)].
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5
