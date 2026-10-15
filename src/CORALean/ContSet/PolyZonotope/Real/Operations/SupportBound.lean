@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Interval
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.LinearAlgebra.Pi
 
 @[expose] public section

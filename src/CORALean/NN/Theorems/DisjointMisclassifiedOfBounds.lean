@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Operations.MarginDir
 public import CORALean.NN.Definitions.Misclassified
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section
@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Linarith
 
 `m - 1` bounds discharge it, one per rival label, each in the direction
 `eⱼ - e_l` — the objective "how much closer can `j` get to `l`". Negative means
-it never catches up. Those are the objects `Global.LinProg` already produces,
+it never catches up. Those are the objects `Global.SupportFunction` already produces,
 so a classifier is verified with no machinery beyond a bound per rival.
 
 Needed by both `Robustness` and `Classifies`, so it is public rather than

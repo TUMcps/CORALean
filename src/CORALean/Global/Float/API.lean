@@ -44,7 +44,7 @@ got, and the three answers differ: `exp` is a construction, because no
 expression in `+`, `*`, `min`, `max` and halving dominates it; a square root is
 dominated by one, so `‖·‖₂` needs only a *check* — a candidate `s` and
 `x ≤ s·s`; and `log` inverts a construction, so a bisection whose every step is
-a check turns `Exp` into a value, adding no operation either. `FloatBound` is `LinProg`'s
+a check turns `Exp` into a value, adding no operation either. `FloatBound` is `SupportFunction`'s
 `SupportBound` stored in the scalar, its composition rules rounded upward.
 
 Not reachable through `Global.API`: a float representation imports this

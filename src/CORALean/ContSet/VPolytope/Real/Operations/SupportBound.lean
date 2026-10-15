@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.VPolytope.Real.Operations.LeOfForallLe
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 @[expose] public section

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceMulNonneg
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.TraceLmiMul
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.Specification.Theorems.ExistsRoundOfVerifyHalfspaceEqViolated
 public import CORALean.Specification.Theorems.Violation
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 

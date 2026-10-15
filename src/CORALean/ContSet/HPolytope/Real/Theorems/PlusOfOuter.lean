@@ -10,7 +10,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 
 One line: `plusOf` is `ofBounds` over directions the caller chose, `ofBounds`
 states exactly what its certificates say, and the certificates were composed to
-speak about the sum. The work is in `Global.LinProg`, and none of it is repeated
+speak about the sum. The work is in `Global.SupportFunction`, and none of it is repeated
 here.
 
 Not exact, and the loss is not in the proof but in the choice of directions —

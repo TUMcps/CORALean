@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.Specification
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section
@@ -11,7 +11,7 @@ public import Mathlib.Tactic.Linarith
 
 Checking `Disjoint O U` by inspecting the two sets is a feasibility problem;
 producing one direction along which they do not overlap turns it into two bounds
-that `Global.LinProg` already knows how to obtain and to compose. The bound on
+that `Global.SupportFunction` already knows how to obtain and to compose. The bound on
 `U` runs against `-c`, a linear program bounding only from above, exactly as
 `Interval.ofBounds` takes its lower bounds.
 

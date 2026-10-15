@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
-public import CORALean.Global.LinProg.Composition
+public import CORALean.Global.SupportFunction.Composition
 
 @[expose] public section
 
 /-!
 # A support bound propagated along the steps
 
-The whole recursion is two lines of `Global.LinProg.Composition`: `image` for
+The whole recursion is two lines of `Global.SupportFunction.Composition`: `image` for
 the matrix and `add` for the input set. `image` is the one that carries the
 matrix, and it does so by moving the *direction* — the value is unchanged and
 `c` becomes `c ∘ A` — so what a caller must be able to answer is one direction

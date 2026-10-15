@@ -8,7 +8,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.SubsetOfBoundsOpt
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
-public import CORALean.Global.LinProg.Composition
+public import CORALean.Global.SupportFunction.Composition
 
 @[expose] public section
 

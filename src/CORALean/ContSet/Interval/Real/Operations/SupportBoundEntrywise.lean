@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenEndpoints
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section

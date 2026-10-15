@@ -44,6 +44,7 @@ public import CORALean.Global.ErrorConvergesToZero
 public import CORALean.Global.HorizonErrorBudget
 public import CORALean.Global.ConvergenceOrder
 public import CORALean.Global.LinProg.API
+public import CORALean.Global.SupportFunction.API
 public import CORALean.Global.TaylorRemainder
 public import CORALean.Global.CoordinatePath
 public import CORALean.Global.MeanValueAE

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Real.Capsule
 public import CORALean.Global.EuclideanNorm
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 

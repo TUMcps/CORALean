@@ -54,7 +54,7 @@ among them.
 
 ## Findings
 
-**`Prop. 7` and `Prop. 8` are characterizations, and `Global/LinProg` is not where their `ν` comes
+**`Prop. 7` and `Prop. 8` are characterizations, and `Global/SupportFunction` is not where their `ν` comes
 from.** That directory carries `SupportBound`/`SupportWitness` — a bound with its dual reason, and a
 value some point attains — plus a simplex trusted for nothing; neither is *the optimum*, which is
 what both propositions are about. So both rows are stated against `IsGreatest`/`IsLeast` over the

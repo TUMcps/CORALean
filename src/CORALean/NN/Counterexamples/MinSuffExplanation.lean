@@ -11,7 +11,7 @@ What [1, Alg. 2] accumulates while it runs: for each feature it refuses to free,
 a concrete input in the box one feature wider on which some rival catches the
 target. That collection *is* minimality — the equivalence below — so the loop
 returns a certificate rather than an appeal to how it searched, which is the
-same trade `Global.LinProg` makes for a bound.
+same trade `Global.SupportFunction` makes for a bound.
 
 The counterexample is checked on `nn` itself, never on an abstraction: one found
 against a enclosed set may be spurious, and [1, Alg. 2, l. 9] is exactly that

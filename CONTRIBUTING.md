@@ -13,7 +13,8 @@ src/CORALean/
                    every running cost is stated against, Mathlib
     Float/         the floating-point scalar, models of it, and the support
                    bound stored in it
-    LinProg/       bounds on a linear objective, and what certifies them
+    LinProg/       linear programming: duality, Farkas, the simplex solver
+    SupportFunction/  bounds on a linear objective, and how they compose
   ContSet/         set representations, over whichever ambient type they suit
     ContSet/       the interface every representation instantiates
     InflatedContSet/  nominal part + error box, what a float representation adds
@@ -1081,7 +1082,7 @@ arbitrary precision without `Dyadic`'s big-integer cost. `trustedFlint`
 Several operations have no definition — a Minkowski sum of halfspace
 descriptions, a bounding box, a conversion. What they have in common is one
 question: how far does this set reach in direction `c`? For a polytope that is a
-linear program, and `Global/LinProg` answers it once.
+linear program, and `Global/SupportFunction` answers it once.
 
 A `SupportBound S c` is a real number together with the fact that no point of
 `S` exceeds it in direction `c`. It says nothing about where the number came
@@ -1127,7 +1128,7 @@ The converse fails, and that is the method's whole cost: a specification that
 fails on the computed set is not a counterexample, and the answer to it is a
 tighter enclosure rather than an argument about the system.
 
-Discharging the check is `Global.LinProg` again — a separating direction proves
+Discharging the check is `Global.SupportFunction` again — a separating direction proves
 disjointness from an unsafe set, a bound per halfspace proves containment in a
 safe one, and `m - 1` bounds prove a classifier picks the same label across a
 whole input set.
