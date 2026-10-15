@@ -97,7 +97,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 omit [FloatOps 𝕋] in
 /-- `materialise` is the identity: it changes only what running the definition costs. -/

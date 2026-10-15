@@ -27,7 +27,7 @@ whoever knows what was rounded (`Interval.residual`, `Interval.symmetric`,
 -- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   09-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

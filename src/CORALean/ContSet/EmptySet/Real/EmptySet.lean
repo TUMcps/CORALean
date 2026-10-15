@@ -25,7 +25,7 @@ scalar to round, so a `Float` copy would be the same type twice.
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

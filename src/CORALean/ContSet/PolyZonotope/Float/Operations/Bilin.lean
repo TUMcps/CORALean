@@ -24,7 +24,7 @@ map being no more additive than a quadratic one, so `dependent` comes first at e
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

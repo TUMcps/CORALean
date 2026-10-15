@@ -22,7 +22,7 @@ either, which is the honest reading of a cost at an arbitrary map.
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

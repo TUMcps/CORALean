@@ -35,7 +35,7 @@ rounded, which is harmless: any vector with a nonzero entry at the dropped axis 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

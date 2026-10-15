@@ -19,7 +19,7 @@ automaton (#40).
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

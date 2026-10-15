@@ -33,7 +33,7 @@ outputs, the one a step takes being fixed by the controller. At a `LinearSysDT` 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-September-2026
 -- Last update:   15-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

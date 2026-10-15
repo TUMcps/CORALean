@@ -93,7 +93,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- The derivative is the constant `1`, and `1` reads as `1`. -/
 theorem identityDerEnclosure_encloses :

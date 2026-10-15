@@ -287,7 +287,7 @@ theorem FourValued.not_eq_join (a : FourValued) :
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- `~~a = a`. -/
 theorem FourValued.not_not (a : FourValued) : a.not.not = a := by
@@ -298,7 +298,7 @@ theorem FourValued.not_not (a : FourValued) : a.not.not = a := by
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- Negation negates the Kleene part and keeps the inconclusive flag. -/
 theorem FourValued.not_ofKleeneInc (k : Kleene) (inc : Bool) :
@@ -333,7 +333,7 @@ theorem FourValued.ofKleeneInc_toKleene_isInconclusive (a : FourValued) :
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- `|` does not distribute over `&`: `Unknown | (False & Inconclusive) = Unknown`. -/
 theorem FourValued.or_and_distrib_ne :

@@ -20,7 +20,7 @@ automaton, one for each time (empty if the system is not hybrid).
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

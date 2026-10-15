@@ -26,7 +26,7 @@ Real layer only: it holds no scalar, so a float layer would be the same type.
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

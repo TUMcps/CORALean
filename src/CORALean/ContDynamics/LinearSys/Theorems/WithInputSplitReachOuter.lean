@@ -37,7 +37,7 @@ in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recentre`'s.
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   30-September-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

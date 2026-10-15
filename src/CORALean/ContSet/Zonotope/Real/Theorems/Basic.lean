@@ -72,7 +72,7 @@ theorem Zonotope.comb_apply (Z : Zonotope (Vec ℝ 2)) (β : Fin Z.h → ℝ) (k
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- Exact: the dropped generators are zero, and `Zonotope.filterGen_construct` says dropping zero
 generators denotes the same set. -/

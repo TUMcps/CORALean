@@ -25,7 +25,7 @@ amount, so the truncation plus the remainder brackets every entry of `exp x`.
 -- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

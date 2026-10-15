@@ -88,6 +88,22 @@ conventions:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
+# The human-review progress toward the 5% goal, as `review.py --status` prints it locally, so a
+# large merge request shows where it leaves the goal. Informational: it reads the headers only, and
+# never fails the pipeline.
+review-status:
+  image: debian:bookworm-slim
+  interruptible: true
+  needs: []
+  allow_failure: true
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends python3
+  script:
+    - python3 scripts/review.py --status
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
 # The toolchain setup that `build` and `release-oracle-build` share: the image, the Mathlib
 # fetch and elan in `before_script`, and `lake exe cache get` as `script`, which each job pulls in
 # with `!reference`.

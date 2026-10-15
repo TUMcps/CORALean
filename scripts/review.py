@@ -9,7 +9,7 @@
 #   answers: [g]ood stamps `Reviewed:`; [w]rong prints a pre-filled issue link; [m]inor does
 #   both (accepted as it is, but worth an issue, titled `Review (minor): …`)
 #   --main: only main-type files, <Dir>/<Layer>/<Dir>.lean or <Dir>/<Dir>.lean
-#           holding the `MAIN TYPE` banner of check-conventions.sh
+#           holding the `MAIN TYPE` banner of check-conventions.sh, outside Examples/
 #   --updated: only reviewed units whose `Last update:` is later than their last review, with
 #           the diff printed from the review day to the update day; [g]ood adds a new review
 #           line below the old one
@@ -150,9 +150,10 @@ MAIN_TYPE = ("-- ========================================  MAIN TYPE  "
 
 
 def is_main_type(f, text):
-    """`<Dir>/<Layer>/<Dir>.lean` or `<Dir>/<Dir>.lean` with the `MAIN TYPE` banner."""
+    """`<Dir>/<Layer>/<Dir>.lean` or `<Dir>/<Dir>.lean` with the `MAIN TYPE` banner, outside
+    `Examples/`, whose types serve one example only."""
     return (f.stem in (f.parent.name, f.parent.parent.name)
-            and MAIN_TYPE in text.split("\n"))
+            and "Examples" not in f.parts and MAIN_TYPE in text.split("\n"))
 
 
 def units(any_, frag, main=False, updated=False):
@@ -273,12 +274,17 @@ def self_test():
     sel = {u[0].relative_to(ROOT).as_posix() for u in units(True, None, main=True)}
     assert "src/CORALean/ContSet/Zonotope/Real/Zonotope.lean" in sel
     assert "src/CORALean/ContDynamics/LinearSys/LinearSys.lean" in sel
-    assert not any("/Operations/" in x for x in sel)
+    assert not any("/Operations/" in x or "/Examples/" in x for x in sel)
     print("review.py self-test: ok")
 
 
 def main():
     a = sys.argv[1:]
+    # a mistyped flag would otherwise silently review from every file
+    known = {"--any", "--in", "--main", "--updated", "--commit", "--status", "--self-test"}
+    bad = [x for i, x in enumerate(a) if x not in known and (i == 0 or a[i - 1] != "--in")]
+    if bad:
+        sys.exit(f"unknown argument(s): {' '.join(bad)}; see the header of scripts/review.py")
     if "--self-test" in a:
         return self_test()
     if "--status" in a:

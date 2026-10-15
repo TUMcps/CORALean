@@ -1142,7 +1142,7 @@ variable {n : ℕ}
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- A hull as a bundle of one -/
 noncomputable def VPolytope.zonoBundle (P : VPolytope (Vec ℝ n)) : ZonoBundle (Vec ℝ n) :=

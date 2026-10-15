@@ -211,7 +211,7 @@ def Interval.linComb (I₁ I₂ : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n)
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- `Interval.residual` at `Mat 𝕋 m n`: the box an operation owes when it stores a
 rounded matrix, entrywise `[lo - stored, hi - stored]`. -/

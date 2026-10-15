@@ -21,7 +21,7 @@ after it and in `stretch` one matrix over the pairs of cell and input (`Stacked`
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

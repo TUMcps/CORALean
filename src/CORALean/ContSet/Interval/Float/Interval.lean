@@ -25,7 +25,7 @@ definition rather than by a lemma. Each operation then owes only enclosure.
 -- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

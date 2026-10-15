@@ -25,7 +25,7 @@ through `toDyadic`, so the exact steps and their proofs are `Dyadic`'s too.
 -- Authors:       Claude Opus 5.5
 -- Written:       28-September-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
