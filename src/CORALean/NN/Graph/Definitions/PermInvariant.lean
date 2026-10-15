@@ -25,7 +25,7 @@ is that condition; the layer is `ψ` itself. Eq. (1)'s sum is one such `ψ`, `GN
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

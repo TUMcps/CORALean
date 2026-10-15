@@ -14,7 +14,7 @@ The total case of `reach_outer_on`, `K := k` and `le_rfl` away via
 -- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   13-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

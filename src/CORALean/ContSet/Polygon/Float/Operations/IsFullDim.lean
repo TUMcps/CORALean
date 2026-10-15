@@ -17,7 +17,7 @@ of `0`; the box's `inf ≤ sup` by `le`. Only `true` is certain; CORA's count of
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

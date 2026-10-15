@@ -61,7 +61,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- `ScalarEncloses E f`: for every box `I` and every real `x` in it, `f x` lies in the box `E I`.
 It is what an activation's stored enclosure owes the real activation or derivative it stands for. -/

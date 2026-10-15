@@ -36,7 +36,7 @@ def Ellipsoid.centre (E : Ellipsoid 𝕋 n) : Vec 𝕋 n := E.c
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- CORA's `enclose(E, E2)`, `convHull(E, E2)`: the hull `orOA` of the two ellipsoids, an argument
 owing the contract that its result contains both (CORA's SDP-solver `or(E, E2, 'outer')`). -/

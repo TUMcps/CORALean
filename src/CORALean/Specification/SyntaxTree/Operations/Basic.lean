@@ -112,7 +112,7 @@ noncomputable def SyntaxTree.atan (obj : SyntaxTree n) : SyntaxTree n :=
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- `atanh(obj)`: the node `'atanh'` with `funHan = funHanAtanh`. -/
 noncomputable def SyntaxTree.atanh (obj : SyntaxTree n) : SyntaxTree n :=

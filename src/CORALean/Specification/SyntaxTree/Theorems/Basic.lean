@@ -82,7 +82,7 @@ theorem SyntaxTree.eval_acos (t : SyntaxTree n) (x : Fin n → ℝ) :
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- `acosh(obj)` denotes acosh of the operand. -/
 theorem SyntaxTree.eval_acosh (t : SyntaxTree n) (x : Fin n → ℝ) :
@@ -137,7 +137,7 @@ theorem SyntaxTree.eval_atanh (t : SyntaxTree n) (x : Fin n → ℝ) :
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- `cos(obj)` denotes cos of the operand. -/
 theorem SyntaxTree.eval_cos (t : SyntaxTree n) (x : Fin n → ℝ) :

@@ -317,7 +317,7 @@ noncomputable def Interval.sin (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n)
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- CORA's `@interval/supremum`: the upper bound. -/
 def Interval.supremum (I : Interval α) : α := I.sup
@@ -382,7 +382,7 @@ noncomputable def Interval.quadMapMixed (Q : Fin m → Mat ℝ n n) (I₁ I₂ :
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 /-- CORA's `@interval/transpose`: transpose both bound matrices. -/
 def Interval.transpose (I : Interval (Mat ℝ m n)) : Interval (Mat ℝ n m) where

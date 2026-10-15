@@ -34,7 +34,7 @@ This is how [1, Eq. 1] and [1, Eq. 2] model a hybrid automaton's guards and inva
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

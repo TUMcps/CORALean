@@ -20,7 +20,7 @@ by `D |f t - c|ᴺ⁺¹ / (N+1)!`, and each factor is below its rounded counterp
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

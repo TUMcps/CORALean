@@ -25,7 +25,7 @@ that `∂g/∂y` is invertible along solutions; the class does not carry it, as 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

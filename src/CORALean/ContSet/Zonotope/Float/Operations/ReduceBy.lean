@@ -16,7 +16,7 @@ copied exactly, and the diagonal block rounds *up*, which only enlarges.
 -- Authors:       Claude Opus 5
 -- Written:       18-August-2026
 -- Last update:   05-September-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

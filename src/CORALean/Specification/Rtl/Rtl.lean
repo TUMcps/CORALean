@@ -21,7 +21,7 @@ no `until` and `release` nodes of [1, Def. 1]: `stl2rtl` produces only the four.
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

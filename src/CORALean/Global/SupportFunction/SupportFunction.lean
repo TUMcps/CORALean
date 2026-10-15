@@ -29,7 +29,7 @@ operations rather than along any particular description of them —
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   15-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

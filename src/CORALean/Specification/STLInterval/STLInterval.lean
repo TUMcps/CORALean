@@ -33,7 +33,7 @@ The intervals are those of [1, Sec. 2.1 (intervals)]: real or infinite bounds, i
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   15-October-2026
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

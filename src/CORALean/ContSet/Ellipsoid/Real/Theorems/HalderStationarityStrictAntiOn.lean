@@ -23,7 +23,7 @@ Each term `(1 − β²λ)/(1 + βλ)` of [1, Eq. 18] is strictly decreasing in `
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

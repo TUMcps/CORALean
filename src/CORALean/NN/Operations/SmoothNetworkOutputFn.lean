@@ -19,7 +19,7 @@ CORA's elementwise-affine layer contributes `(f) + offset` and drops its scale, 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

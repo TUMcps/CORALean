@@ -16,6 +16,20 @@
       }
     },
     {
+      "label": "Review a random main type (Zonotope, LinearSys, ...)",
+      "type": "shell",
+      "command": "python3 scripts/review.py --main",
+      "windows": {
+        "command": "python scripts/review.py --main"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    },
+    {
       "label": "Review status (how much is reviewed, how much to the 5% goal)",
       "type": "shell",
       "command": "python3 scripts/review.py --status",
