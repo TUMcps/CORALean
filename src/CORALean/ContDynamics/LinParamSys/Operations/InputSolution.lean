@@ -15,7 +15,8 @@ the box, so the tail costs a second product rather than a second argument about
 convergence.
 
 Every factor is an interval matrix here, where the point case multiplies by a
-plain matrix for the exact orders and by an interval one for the tail alone.
+plain matrix for the exact orders and by an interval one for the tail alone. The input set is
+the state-space `V = B U ⊕ c` (`inputSet`) that `reachUnion` forms from CORA's `params.U`.
 
 ## References
 

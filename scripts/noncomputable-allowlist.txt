@@ -131,17 +131,12 @@ LinParamSys.inputTaylorSumTail  real-layer: the interval-matrix orders past the 
 LinParamSys.inputTerm  real-layer: `[A]ⁱ r^{i+1}/(i+1)!` at `ℐ`; runs in floats as `Float.MatExp.intervalInputTerm` at `sys.A`
 LinParamSys.inputTermZono  real-layer: a matrix-zonotope order of the input solution at `r : ℝ`; runs in floats as `LinParamSys.inputTermZonoFloat` (`smul_pow_mem_inputTermZonoFloat`)
 LinParamSys.particularSolution  real-layer: the input's accumulation across windows at `ℐ`; runs in floats as `LinParamSys.particularSolutionFloat` (`inputReach_subset_particularSolutionFloat`)
-LinParamSys.reachInstance  real-layer: the `Reach` instance over `reachUnion`; runs in floats as `LinParamSys.reachFloat`
+LinParamSys.reachInstance  real-layer: the `Reach` instance over `reachUnion`; runs in floats as `LinParamSys.reachFloatInput` (`reachFloatInput_outer`)
 LinParamSys.reachOrder  real-layer: an admissible order by `⌈‖[A]r‖⌉`; runs in floats as `LinParamSys.reachOrderFloat`
 LinParamSys.reachStepk  real-layer: one window at `ℐ`; runs in floats as `LinParamSys.reachStepkFloat` (`reachStepkFloat_outer`)
-LinParamSys.reachUnion  real-layer: the homogeneous windows at `ℐ`; runs in floats as `LinParamSys.reachFloat` (`reachFloat_outer`)
+LinParamSys.reachStepkInput  real-layer: one window with the input set split at `ℐ`; runs in floats as `LinParamSys.reachStepkFloatInput`, an entry of `LinParamSys.reachFloatInput`'s list (`reachFloatInput_outer`)
+LinParamSys.reachUnion  real-layer: the windows with inputs `params.U` in input coordinates at `ℐ`; runs in floats as `LinParamSys.reachFloatInput` (`reachFloatInput_outer`)
 LinParamSys.timeIntervalStep  real-layer: one step at the real interval-matrix family `ℐ`; runs in floats as `LinParamSys.timeIntervalStepFloat` (`timeIntervalStepFloat_outer`)
-LinParamSys.WithInput.reachInstance  real-layer: the `Reach` instance over `WithInput.reachUnion`; runs in floats as `LinParamSys.reachFloatInput` (`reachFloatInput_outer`)
-LinParamSys.WithInput.reachStepk  real-layer: one window with inputs at `ℐ`; runs in floats as `LinParamSys.reachStepkFloatInput`, an entry of `LinParamSys.reachFloatInput`'s list (`reachFloatInput_outer`)
-LinParamSys.WithInput.reachUnion  real-layer: the windows with inputs at `ℐ`; runs in floats as `LinParamSys.reachFloatInput` (`reachFloatInput_outer`)
-LinParamSys.WithInputSplit.reachInstance  real-layer: the `Reach` instance over `WithInputSplit.reachUnion`; runs in floats as `LinParamSys.reachFloatInputSplit` (`reachFloatInputSplit_outer`)
-LinParamSys.WithInputSplit.reachStepk  real-layer: one window with the input split at `ℐ`; runs in floats as `LinParamSys.reachStepkFloatInputSplit`, an entry of `LinParamSys.reachFloatInputSplit`'s list (`reachFloatInputSplit_outer`)
-LinParamSys.WithInputSplit.reachUnion  real-layer: the windows with the input split at `ℐ`; runs in floats as `LinParamSys.reachFloatInputSplit` (`reachFloatInputSplit_outer`)
 LinParamSys.timeIntervalStepZono  real-layer: one step at the real matrix-zonotope family `𝕄𝒵`; runs in floats as `LinParamSys.timeIntervalStepZonoFloat` (`timeIntervalStepZonoFloat_outer`)
 LinearSys.adaptTimeStep  real-layer: a tuning selector, CDC'20 `Alg. 2`, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepFloat`, and `adaptiveStepFloat_outer` holds for whatever it picks
 LinearSys.adaptTimeStepOrder  real-layer: a tuning selector, Alg. 2's order sweep, in ℝ arithmetic; runs in floats as `LinearSys.adaptTimeStepOrderFloat`, measuring `ε_H`, `ε_P` by `errOp` of the float sets, and `adaptiveStepFloat_outer` holds for whatever it picks

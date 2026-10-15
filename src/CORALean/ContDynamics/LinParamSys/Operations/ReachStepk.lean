@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
 @[expose] public section
 
 /-!
-# One window of `reachUnion`: the homogeneous set over `τ_k = [t_k, t_k + Δt]`
+# The homogeneous part of one window of `reachUnion`, over `τ_k = [t_k, t_k + Δt]`
 
 `LinearSys.reachStepkWrappingFree` at a set of matrices: `H^R(τ_k) = e^{A t_k} H^R(τ_0)`,
 with `H^R(τ_0)` the step `timeIntervalStep` and `e^{A t_k}` the interval

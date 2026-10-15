@@ -20,12 +20,12 @@ because every discrete-time class constrains every step, with no `T` to give.
 `reach sys params options` what an algorithm computes, `none` where it could not certify its
 soundness conditions at run time, where CORA raises an error; `reach_outer` the enclosure, at
 `reach … = some R` only, so a failed run proves nothing. A positive zonotope order is a field with
-a default proof, refused at elaboration as CORA's `validateOptions` refuses it. `P n` is CORA's
-`params` (`X₀`, `[tStart, tFinal]`, `U` where the system does not bind it), `O` its `options`, both
-`outParam`s as CORA dispatches on `sys` alone; `Sys` may sit in `Type 1`, as a closed loop does.
+a default proof, refused at elaboration as CORA's `validateOptions` refuses it. `P n sys` is CORA's
+`params` (`X₀`, `[tStart, tFinal]`, `U` in the system's own input dimension), `O` its `options`,
+both `outParam`s as CORA dispatches on `sys` alone; `Sys` may sit in `Type 1`, as a loop does.
 -/
 
--- Authors:       Claude Sonnet 5, Claude Opus 5.5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       24-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -64,11 +64,12 @@ class ContDynamicsDT (Sys : Type u) (n : outParam ℕ) where
 /-- `reachExact sys params` is the exact set the problem `params` asks for; `reach sys params
 options` is what an algorithm computes for it, `none` if it could not certify itself;
 `reach_outer` is the enclosure between them, at a set `reach` returned and at nothing else. -/
-class Reach (Sys : ℕ → Type u) (P : outParam (ℕ → Type)) (O : outParam Type) (S : ℕ → Type)
+class Reach (Sys : ℕ → Type u) (P : outParam ((n : ℕ) → Sys n → Type)) (O : outParam Type)
+    (S : ℕ → Type)
     [∀ n, ContSet (S n) (Vec ℝ n)] where
-  reachExact {n : ℕ} : Sys n → P n → Set (Vec ℝ n)
-  reach {n : ℕ} : Sys n → P n → O → Option (SetUnion (S n))
-  reach_outer {n : ℕ} (sys : Sys n) (params : P n) (options : O) {R : SetUnion (S n)}
+  reachExact {n : ℕ} : (sys : Sys n) → P n sys → Set (Vec ℝ n)
+  reach {n : ℕ} : (sys : Sys n) → P n sys → O → Option (SetUnion (S n))
+  reach_outer {n : ℕ} (sys : Sys n) (params : P n sys) (options : O) {R : SetUnion (S n)}
     (h : reach sys params options = some R) : reachExact sys params ⊆ construct R
 
 end CORALean

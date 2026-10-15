@@ -13,8 +13,8 @@ public import CORALean.Global.Float.ToRat
 /-!
 # Reachability of a set-valued-matrix system in floats, window by window
 
-`LinParamSys.reachUnion` computed in `𝕋`, homogeneous, as [1, Alg. 4] reads at a
-constant parameter: the first window `H^R(τ_0)` by `timeIntervalStepFloat`,
+The homogeneous windows `reachStepk` over the horizon, computed in `𝕋`, as [1, Alg. 4] reads at a
+constant parameter, `U = {0}`: the first window `H^R(τ_0)` by `timeIntervalStepFloat`,
 reduced to order `ρ` as `LinearSys.reachWrappingFreeFloat` reduces it, and window
 `k` by `reachStepkFloat`, `[e^{[A] t_k}]` applied to the first — never a power of
 `[e^{[A]Δt}]`, so no window pays for the ones before it. `N = (tFinal - tStart) / Δt`

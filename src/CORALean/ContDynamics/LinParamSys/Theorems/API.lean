@@ -29,8 +29,6 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalO
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryTimeIntervalOuterInputSolution
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinearSys
 public import CORALean.ContDynamics.LinParamSys.Theorems.TrajectoryToLinParam
-public import CORALean.ContDynamics.LinParamSys.Theorems.WithInputReachUnionOuter
-public import CORALean.ContDynamics.LinParamSys.Theorems.WithInputSplitReachUnionOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
@@ -44,7 +42,6 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticu
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatInputOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagateFloat
-public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatInputSplitOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ExpMemExpSquaringFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachStepkFloatOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
@@ -90,7 +87,7 @@ a whole horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
 `ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` convert: `'constParam'`
 is `'varParam'` at a constant, `LinearSys` `LinParamSys` at a point. `InputSolutionZonoOuter`
 is `InputSolutionOuter` at a matrix zonotope instead, `…ZonoOuter` the step there, and
-`ReachOrderAdmissible`/`ReachUnionOuter`/`WithInputReachUnionOuter` are `Instances`'.
+`ReachOrderAdmissible`/`ReachUnionOuter` are `Instances`'.
 `…Float…` are the same guarantees of the float operations, at float interval matrices.
 `InitReachInputDependenceOuter` (`DependentHomSolOuter`, `MemDependentLowOrder`, a run's
 `ConstTrajectory…`) is CORA's step corrected, `DependentHomSolLowOrder` CORA's.

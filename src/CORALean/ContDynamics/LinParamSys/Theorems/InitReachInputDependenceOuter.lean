@@ -14,8 +14,9 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 
 `LinParamSys.initReachInputDependence_outer`: for every parameter `p ∈ [-1, 1]ᵏ` shared by the
 system matrix and the constant input, every `x₀ ∈ Rinit` and every `t ∈ [0, r]`, the solution
-`x(t) = e^{A(p) t} x₀ + ∫₀ᵗ e^{A(p)(t-s)} u(p) ds` lies in the time-interval set, and `x(r)` in
-the time-point set (`dependentHomSol_outer`).
+`x(t) = e^{A(p) t} x₀ + ∫₀ᵗ e^{A(p)(t-s)} (B u(p) + c) ds`, `u(p)` in input coordinates and `B` the
+centre of `sys.B`, lies in the time-interval set, and `x(r)` in the time-point set
+(`dependentHomSol_outer`), at the state-space constant input `B u(p) + c`.
 
 The time-interval argument is `timeIntervalStep_outer`'s with an input: `x(t)` is the point
 `(1 - t/r) x₀ + (t/r) x(r)` of `enclose(Rinit, Rhom_tp)` plus the state's curvature
@@ -24,9 +25,9 @@ The time-interval argument is `timeIntervalStep_outer`'s with an input: `x(t)` i
 `inputF*center(Uconst)` falls short: `u(p)` ranges over `Uconst`, not its centre.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -50,19 +51,26 @@ at every time of it the time-interval set. -/
 theorem LinParamSys.initReachInputDependence_outer (sys : LinParamSys 𝕄𝒵 n) {r : ℝ}
     (hr : 0 < r) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (Rinit : Zonotope (Vec ℝ n)) (Uc : Vec ℝ n) (UG : Fin sys.A.h → Vec ℝ n)
+    (Rinit : Zonotope (Vec ℝ n)) (Uc : Vec ℝ sys.m) (UG : Fin sys.A.h → Vec ℝ sys.m)
     {p : Fin sys.A.h → ℝ} (hp : ∀ i, |p i| ≤ 1) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct Rinit)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     let A := sys.A.c + ∑ i, p i • sys.A.G i
-    let u := Uc + ∑ i, p i • UG i
+    let u := sys.B.c *ᵥ (Uc + ∑ i, p i • UG i) + sys.c
     exp (r • A) *ᵥ x₀ + ∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ u
         ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 ∧
       exp (t • A) *ᵥ x₀ + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u
         ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).2 := by -- --- PROOF ---
   intro A u
+  -- the input in the state space, `Vc + Σ pᵢ VG i`, as `initReachInputDependence` carries it
+  set Vc : Vec ℝ n := sys.B.c *ᵥ Uc + sys.c with hVc
+  set VG : Fin sys.A.h → Vec ℝ n := fun i => sys.B.c *ᵥ UG i with hVG
+  have hu : u = Vc + ∑ i, p i • VG i := by
+    simp only [u, hVc, hVG, Matrix.mulVec_add, Matrix.mulVec_sum, Matrix.mulVec_smul]
+    abel
   have htp : exp (r • A) *ᵥ x₀ + ∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ u
-      ∈ construct (sys.dependentHomSol r (m + 2) Rinit Uc UG) :=
-    sys.dependentHomSol_outer hr hε Rinit Uc UG hp hx₀
+      ∈ construct (sys.dependentHomSol r (m + 2) Rinit Vc VG) := by
+    rw [hu]
+    exact sys.dependentHomSol_outer hr hε Rinit Vc VG hp hx₀
   refine ⟨htp, ?_⟩
   have hAbox : A ∈ sys.A.interval.construct := Zonotope.interval_contains _ ⟨p, hp, rfl⟩
   rw [MatExp.expIntegral_constInput A u ht0]
@@ -86,7 +94,7 @@ theorem LinParamSys.initReachInputDependence_outer (sys : LinParamSys 𝕄𝒵 n
   · -- `inputF Uconst`: over the whole constant input (corrected)
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion
       (MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix _ hr (m + 2) hε hAbox ht0 htr)
-      (Set.mem_image_of_mem _ ⟨p, hp, rfl⟩))
+      (Set.mem_image_of_mem _ ⟨p, hp, hu⟩))
 
 end CORALean
 

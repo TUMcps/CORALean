@@ -43,7 +43,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- ========================================  INSTANCES  ========================================= --
 
 noncomputable instance NeurNetContrSys.Linear.reachInstance :
-    Reach (NeurNetContrSys.Linear 𝕋 S) (fun n => Reach.Params (S n) ℕ)
+    Reach (NeurNetContrSys.Linear 𝕋 S) (fun n _ => Reach.Params (S n) ℕ)
       (NeurNetContrSys.ReachOptions ℝ) S where
   reachExact sys params := sys.sys.reachUnionExact (params.tFinal - params.tStart)
     (construct sys.U) {0} (construct params.X₀)

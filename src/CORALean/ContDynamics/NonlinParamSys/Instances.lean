@@ -46,7 +46,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- ========================================  INSTANCES  ========================================= --
 
 noncomputable instance NonlinParamSys.reachInstance :
-    Reach (NonlinParamSys.WithSteps S Rg m q) (fun n => Reach.Params (S n) ℝ)
+    Reach (NonlinParamSys.WithSteps S Rg m q) (fun n _ => Reach.Params (S n) ℝ)
       (LinearSys.ReachOptions ℝ) S where
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (construct params.X₀)

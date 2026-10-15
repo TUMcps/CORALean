@@ -21,13 +21,13 @@ matrix widened by a tenth. Every member still contracts, so the safe box is
 
 As there, `reach` names `exp` and cannot be evaluated here: what is shown is
 that `Reach.holds_of_check` applies at `LinParamSys ℐ`, so a `true` would
-answer for every member of the matrix set. Inputs are `LinParamSysInputCheck`'s
-business.
+answer for every member of the matrix set. The input set is the origin, in the
+system's two input coordinates; other inputs are `LinParamSysInputCheck`'s business.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 namespace CORALean.Real
@@ -42,14 +42,16 @@ example :
       (LinParamSys.canonical
           ⟨!![-11 / 10, 9 / 10; 0, -21 / 10], !![-9 / 10, 11 / 10; 0, -19 / 10]⟩ :
         LinParamSys ℐ 2)
-      ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
+      ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)),
+        (⟨0, 0, ![]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
       (Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵)
         (LinParamSys.canonical
             ⟨!![-11 / 10, 9 / 10; 0, -21 / 10], !![-9 / 10, 11 / 10; 0, -19 / 10]⟩ :
           LinParamSys ℐ 2)
-        ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
+        ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)),
+          (⟨0, 0, ![]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
   Reach.holds_of_check (S := 𝒵) _ _ _ _
 
 end CORALean.Real

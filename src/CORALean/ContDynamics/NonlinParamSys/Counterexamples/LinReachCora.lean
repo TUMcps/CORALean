@@ -44,7 +44,7 @@ zero (`linReachCora_remainder_zero`), `Rerror = {0}`. The linearized system here
 * [2] `contDynamics/@contDynamics/linReach.m`
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
@@ -139,12 +139,12 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     linarith
   -- the step of `initReach_inputDependence` for `A = 0`, `Uconst = [1, 2]` stays below `d + 2 r`
   have core : ∀ (r : ℝ) (hr : 0 ≤ r) (Uc : Vec ℝ 1) (hUc : Uc = fun _ => 3 / 2)
-      (sys : LinParamSys 𝕄𝒵 1) (hA : sys.A = ⟨1, 0, fun _ => 0⟩)
-      (UG : Fin sys.A.h → Vec ℝ 1) (hUG : ∀ i, UG i = fun _ => 1 / 2)
+      (zA : Zonotope (Mat ℝ 1 1)) (hA : zA = ⟨1, 0, fun _ => 0⟩)
+      (UG : Fin zA.h → Vec ℝ 1) (hUG : ∀ i, UG i = fun _ => 1 / 2)
       (Rd : Zonotope (Vec ℝ 1)) (hh : Rd.h = 0),
-      S (sys.initReachInputDependence r 2 Rd Uc UG).1 ≤ Rd.c 0 + 2 * r ∧
-      S (sys.initReachInputDependence r 2 Rd Uc UG).2 ≤ Rd.c 0 + 2 * r := by
-    intro r hr Uc hUc sys hA UG hUG Rd hh
+      S ((LinParamSys.canonical zA).initReachInputDependence r 2 Rd Uc UG).1 ≤ Rd.c 0 + 2 * r ∧
+      S ((LinParamSys.canonical zA).initReachInputDependence r 2 Rd Uc UG).2 ≤ Rd.c 0 + 2 * r := by
+    intro r hr Uc hUc zA hA UG hUG Rd hh
     have hSRd : S Rd = Rd.c 0 := by
       haveI : IsEmpty (Fin Rd.h) := by rw [hh]; infer_instance
       simp [hS]
@@ -163,7 +163,19 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       simp [Zonotope.pairSum, Zonotope.pairDiff]
       rw [abs_of_nonpos (sub_nonpos.2 hc)]
       linarith
-    obtain ⟨A⟩ := sys
+    -- the identity `B` and `c = 0` carry the input to the state space unchanged
+    have hVc : (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.c *ᵥ Uc
+        + (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).c = Uc := by
+      show (1 : Mat ℝ 1 1) *ᵥ Uc + 0 = Uc
+      simp
+    have hVG : ∀ i, (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.c *ᵥ UG i = UG i :=
+      fun i => by
+        show (1 : Mat ℝ 1 1) *ᵥ UG i = UG i
+        simp
+    have hfst : ((LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).initReachInputDependence
+        r 2 Rd Uc UG).1 = (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).dependentHomSol
+          r 2 Rd Uc UG := by
+      simp only [LinParamSys.initReachInputDependence, hVc, hVG]
     subst hA
     -- the second-order `R_lowOrder`: centre `d + 3 r / 2`, one generator `r / 2`
     have hlow : S (LinParamSys.dependentLowOrder (0 : Mat ℝ 1 1) (fun _ => 0) Rd.c Uc UG r)
@@ -281,11 +293,12 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     have hti : S (LinParamSys.initReachInputDependence
         (LinParamSys.canonical (⟨1, 0, fun _ => 0⟩ : Zonotope (Mat ℝ 1 1))) r 2 Rd Uc UG).2 ≤ Rd.c
             0 + 2 * r := by
-      simp only [LinParamSys.initReachInputDependence, hSplus, hB, hZ _ _ hFz, hZ _ _ hFiz]
+      simp only [LinParamSys.initReachInputDependence, hVc, hVG, hSplus, hB, hZ _ _ hFz,
+        hZ _ _ hFiz]
       have h := (hlin Rd _ hh hctp).trans htp.le
       change S (Zonotope.linComb _ _) + 0 + 0 ≤ _
       linarith
-    exact ⟨htp.le, hti⟩
+    exact ⟨by rw [hfst]; exact htp.le, hti⟩
   -- the linearization of `ẋ = p²` over `[1, 2]`: `zA = 0`, `zf = [1, 2]`
   have hA : (sys.linearize (fun _ => x₀) 0 I).zA = ⟨1, 0, fun _ => 0⟩ := by
     simp [sys, I, NonlinParamSys.linearize, jacobianMat, Interval.center, Interval.radius]
@@ -299,8 +312,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     fin_cases i
     simp [sys, I, NonlinParamSys.linearize, Interval.center, Interval.radius]
     norm_num
-  have hc := core r hr.le _ hUc (LinParamSys.canonical (sys.linearize (fun _ => x₀) 0 I).zA) hA _
-      hUG
+  have hc := core r hr.le _ hUc (sys.linearize (fun _ => x₀) 0 I).zA hA _ hUG
     (Zonotope.ofPoint (fun _ => x₀) ⊞ Zonotope.ofPoint (-(sys.linearize (fun _ => x₀) 0 I).xs))
     rfl
   have hSRdc : (Zonotope.ofPoint (fun _ : Fin 1 => x₀)

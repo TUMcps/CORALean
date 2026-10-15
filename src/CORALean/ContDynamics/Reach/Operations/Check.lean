@@ -15,9 +15,9 @@ nothing and the answer is `false`, the "not shown" a conservative `Contains`
 gives.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       24-September-2026
--- Last update:   30-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -27,7 +27,8 @@ universe u
 
 namespace CORALean
 
-variable {Sys : ℕ → Type u} {P : ℕ → Type} {O : Type} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {Sys : ℕ → Type u} {P : (n : ℕ) → Sys n → Type} {O : Type} {S : ℕ → Type}
+variable [∀ n, ContSet (S n) (Vec ℝ n)]
 variable {n : ℕ} {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 
@@ -35,7 +36,7 @@ variable {n : ℕ} {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 /-- `spec` checked on `reach sys params options`; `false` if `reach` returned `none`. -/
 def Reach.check [Reach Sys P O S] [Contains ContSet (SetUnion (S n))]
-    [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (params : P n) (options : O)
+    [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (params : P n sys) (options : O)
     (spec : Specification ContSet) : Bool :=
   match Reach.reach (S := S) sys params options with
   | some R => spec.check R

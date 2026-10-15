@@ -43,7 +43,7 @@ variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋] [∀ n, Contai
 -- ========================================  INSTANCES  ========================================= --
 
 instance NonlinearSysDT.reachInstance :
-    Reach (NonlinearSysDT.WithSteps S Rg 𝕋 m) (fun n => Reach.Params (S n) ℕ)
+    Reach (NonlinearSysDT.WithSteps S Rg 𝕋 m) (fun n _ => Reach.Params (S n) ℕ)
       NonlinearSysDT.ReachOptions S where
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (construct params.X₀)
