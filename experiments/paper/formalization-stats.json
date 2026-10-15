@@ -7951,12 +7951,12 @@
         "group": "others",
         "class": "intervalMatrix",
         "methods": 39,
-        "proved": 5,
+        "proved": 19,
         "float": 4,
         "bound": 1,
-        "not_yet": 19,
+        "not_yet": 5,
         "out_of_scope": 10,
-        "needs_float": 5,
+        "needs_float": 19,
         "out_of_scope_by_reason": {
           "plotting/display": 3,
           "random/sampling": 2,
@@ -8373,12 +8373,12 @@
       },
       "others": {
         "methods": 212,
-        "proved": 11,
+        "proved": 25,
         "float": 6,
         "bound": 4,
-        "not_yet": 96,
+        "not_yet": 82,
         "out_of_scope": 95,
-        "needs_float": 11,
+        "needs_float": 25,
         "cora_issues": 5,
         "out_of_scope_by_reason": {
           "plotting/display": 27,
@@ -8399,12 +8399,12 @@
     },
     "totals": {
       "methods": 1696,
-      "proved": 195,
+      "proved": 209,
       "float": 750,
       "bound": 52,
-      "not_yet": 184,
+      "not_yet": 170,
       "out_of_scope": 515,
-      "needs_float": 195,
+      "needs_float": 209,
       "cora_issues": 163,
       "out_of_scope_by_reason": {
         "plotting/display": 129,
@@ -8441,9 +8441,9 @@
     "theorems": {
       "paper": 1707,
       "float": 1907,
-      "helper": 1709,
-      "lemma": 3158,
-      "total": 8481,
+      "helper": 1718,
+      "lemma": 3183,
+      "total": 8515,
       "examples": 129
     }
   }

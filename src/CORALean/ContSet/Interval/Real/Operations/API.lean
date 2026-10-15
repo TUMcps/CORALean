@@ -87,6 +87,14 @@ public import CORALean.ContSet.Interval.Real.Operations.ExploreBN
 public import CORALean.ContSet.Interval.Real.Operations.BoxPlaneIntersectNaive
 public import CORALean.ContSet.Interval.Real.Operations.BoxDiff
 public import CORALean.ContSet.Interval.Real.Operations.BoxDiffBounds
+public import CORALean.ContSet.Interval.Real.Operations.ExactSquare
+public import CORALean.ContSet.Interval.Real.Operations.Powers
+public import CORALean.ContSet.Interval.Real.Operations.NormTypeEval
+public import CORALean.ContSet.Interval.Real.Operations.MatNorm
+public import CORALean.ContSet.Interval.Real.Operations.InfNorm
+public import CORALean.ContSet.Interval.Real.Operations.MatVolume
+public import CORALean.ContSet.Interval.Real.Operations.Vertices
+public import CORALean.ContSet.Interval.Real.Operations.Vec
 
 /-!
 # What `Interval` computes

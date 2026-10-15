@@ -587,3 +587,9 @@ FourValuedSignal.until  real-layer: takes the real-layer `STLInterval` (extended
 FourValuedSignal.and_  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 FourValuedSignal.or_  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
 FourValuedSignal.conclusiveInterval  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+MatExp.dependentTerms  real-layer: the exact square and second-order terms at real interval matrices; no float counterpart yet
+MatExp.expm  real-layer: dependent evaluation of the exponential of a real interval matrix; no float counterpart yet
+MatExp.expmFrom  real-layer: the five-argument `expm` at real interval matrices; no float counterpart yet
+MatExp.expmMixed  real-layer: the mixed dependent evaluation at real interval matrices; no float counterpart yet
+MatExp.expmTerms  real-layer: the finite Taylor part of `expm` at real interval matrices; no float counterpart yet
+MatExp.exponentialRemainder  real-layer: `[-W, W]` with `W = e^M - Σ Mⁱ/i!` at the real exponential; no float counterpart yet
