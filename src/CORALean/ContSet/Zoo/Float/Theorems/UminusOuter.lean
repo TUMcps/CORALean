@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Float.Operations.Basic
+public import CORALean.ContSet.Zoo.Float.Theorems.EnclosesIff
 public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.UminusExact
 
@@ -32,6 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zoo.uminus_outer {Z : Zoo 𝕋 n} {f : Vec ℝ n → ℝ} (h : Z.Encloses f) :
     Z.uminus.Encloses fun t => -f t := by -- --- PROOF ---
+  rw [Zoo.encloses_iff] at h ⊢
   refine ⟨fun T hT => ?_, fun I hI t ht => ?_⟩
   · obtain ⟨a, ha, rfl⟩ := Option.map_eq_some_iff.1 hT
     exact Taylm.uminus_outer (h.1 a ha)

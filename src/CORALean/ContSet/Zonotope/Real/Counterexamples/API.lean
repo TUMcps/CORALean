@@ -20,15 +20,18 @@ public import CORALean.ContSet.Zonotope.Real.Counterexamples.PRadiusLtOfLmi
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.ParallelotopeEqAbsMulVecLe
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.QuadTaylorPrinted
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.RaghuramanAlphaMaxCora
+public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceMatZonotopeCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceRowSum
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceTechniqueCrashCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceUnderApproxDispatch
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReduceValeroCora
+public import CORALean.ContSet.Zonotope.Real.Counterexamples.ReplaceIdMatZonotopeCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.RepresentsaPolytopeCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitBundleCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitCora
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitCoraSegmentCrash
 public import CORALean.ContSet.Zonotope.Real.Counterexamples.SplitFirstGenCora
+public import CORALean.ContSet.Zonotope.Real.Counterexamples.VerticesMatZonotopeCora
 
 /-!
 # Counterexamples of `Zonotope.Real`, collected

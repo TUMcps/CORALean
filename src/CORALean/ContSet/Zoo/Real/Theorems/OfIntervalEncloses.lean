@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Real.Operations.OfInterval
+public import CORALean.ContSet.Zoo.Real.Theorems.EnclosesIff
 public import Mathlib.Tactic.Linarith
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalTaylmOuter
@@ -32,6 +33,7 @@ theorem Zoo.ofInterval_encloses (I : Interval (Vec ℝ n)) (N : ℕ) (i : Fin n)
     (hI : I.inf i ≤ I.sup i) :
     (Zoo.ofInterval I N i).Encloses fun t => (I.inf i + I.sup i) / 2 + (I.sup i - I.inf i) / 2 * t i
     := by -- --- PROOF ---
+  rw [Zoo.encloses_iff]
   refine ⟨fun T hT => ?_, fun J hJ t ht => ?_⟩
   · obtain rfl : I.taylm N i = T := Option.some.inj hT
     exact Interval.taylm_outer I N i

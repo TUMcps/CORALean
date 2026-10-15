@@ -827,6 +827,18 @@
     "simplePlus": {
       "description": "size of undefined variable Z1; crash",
       "kind": "other"
+    },
+    "plus": {
+      "description": "convhulln gets vertices as columns; wrong vertices kept",
+      "kind": "unsound"
+    },
+    "expm": {
+      "description": "plus prunes matrix entries instead of vertices",
+      "kind": "unsound"
+    },
+    "expmInd": {
+      "description": "plus prunes matrix entries instead of vertices",
+      "kind": "unsound"
     }
   },
   "contSet/fullspace": {
@@ -838,6 +850,20 @@
   "others/markovchain": {
     "build_reach": {
       "description": "zero-volume set adds a scalar to every transition entry",
+      "kind": "other"
+    }
+  },
+  "others/matZonotope": {
+    "reduce": {
+      "description": "three-argument call errors; result loses n x m shape",
+      "kind": "other"
+    },
+    "replaceId": {
+      "description": "reads property id that matZonotope lacks; always errors",
+      "kind": "other"
+    },
+    "vertices": {
+      "description": "one-argument vec2mat assumes square; wrong shape or error",
       "kind": "other"
     }
   }

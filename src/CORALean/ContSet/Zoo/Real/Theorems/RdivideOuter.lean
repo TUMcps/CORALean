@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Real.Operations.Rdivide
+public import CORALean.ContSet.Zoo.Real.Theorems.EnclosesIff
 public import CORALean.ContSet.Taylm.Real.Theorems.RdivideOuter
 public import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
 
@@ -35,6 +36,7 @@ theorem Zoo.rdivide_outer {Z₁ Z₂ : Zoo n} {f g : Vec ℝ n → ℝ} (h₁ : 
       0 < min T.constCoef T.bounds.inf ∨ max T.constCoef T.bounds.sup < 0)
     (hI : ∀ I, Z₂.ivl = some I → ∀ i, 0 < I.inf i ∨ I.sup i < 0) :
     (Z₁.rdivide Z₂).Encloses fun t => f t / g t := by -- --- PROOF ---
+  rw [Zoo.encloses_iff] at h₁ h₂ ⊢
   refine ⟨fun T hT' => ?_, fun I hI' t ht => ?_⟩
   · obtain ⟨a, b, ha, hb, rfl⟩ := Option.map₂_eq_some_iff.1 hT'
     exact Taylm.rdivide_outer (h₁.1 a ha) (h₂.1 b hb) (hT b hb)
