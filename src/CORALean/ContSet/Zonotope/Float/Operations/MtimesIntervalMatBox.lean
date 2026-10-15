@@ -20,7 +20,7 @@ residual on the nominal part reach `|M - mid(M)| (|c| + Σ|G|)`; both go into on
 symmetric box. The result's own error box is kept whole.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `mtimesIntervalMat IM Z` holds beyond `A Z`, for any `A` in `IM`: `mid(M) Z`'s
-rounding, `|M - mid(M)|` over all of `Z` and over the diagonal generators, and the error box. -/
+/-- A box for everything `mtimesIntervalMat IM Z` holds beyond `A Z`, for any `A` in `IM`: the
+rounding error of `mid(M) Z`, the spread `|M - mid(M)|` applied to `Z`, and the error box. -/
 def Zonotope.mtimesIntervalMatBox (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope (Vec 𝕋 n)) :
     Interval (Vec 𝕋 m) :=
   let C := Interval.centreMat IM                                    -- mid(M), stored

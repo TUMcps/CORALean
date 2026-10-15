@@ -18,17 +18,22 @@ denotation: CORA's conversion computes them from the constraints, so for a set i
 implied and change nothing, and a bound a step relies on is then the bound the set already
 satisfies.
 
-The predicate on the factors is linear, so the set is convex, and in fact a bounded polytope: the
-conversions to and from `ConZonotope` (`Conversion/`) are exact, and a star set whose predicate
-may be nonlinear, as the notion is used elsewhere, is not this class.
+This is the generalized star set of [1, Def. 1] (centre, basis, predicate on the coefficients)
+with a linear predicate. The set is then convex, in fact a bounded polytope: the conversions to
+and from `ConZonotope` (`Conversion/`) are exact. A nonlinear predicate is not this class.
 
 At `Vec ℝ n`, with the generators stored row-wise (`G i k` is the `i`-th coordinate of the
 `k`-th generator), as the neural-network layers read them.
+
+## References
+
+* [1] P. S. Duggirala and M. Viswanathan. "Parsimonious, Simulation Based Verification of Linear
+      Systems". CAV, 2016.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 

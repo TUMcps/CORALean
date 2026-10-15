@@ -79,6 +79,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Model Predictive Control with Signal Temporal Logic Specifications](2014/raman-cdc-mpc-stl.md) | Raman, Donzé, Maasoumy, Murray, Sangiovanni-Vincentelli, Seshia | CDC, pp. 81-87 | 2014 | 🟢 16/16 \| 17 |
 | [On Computing the Minkowski Difference of Zonotopes](2015/althoff-arxiv-minkowski-difference.md) | Althoff | arXiv | 2015 | 🟢 16/16 \| 2 |
 | [Discovering governing equations from data by sparse identification of nonlinear dynamical systems](2016/brunton-pnas-sindy.md) | Brunton, Proctor, Kutz | Proceedings of the National Academy of Sciences, 113(15):3932-3937 | 2016 | 🟢 9/9 \| 12 |
+| [Parsimonious, Simulation Based Verification of Linear Systems](2016/duggirala-cav-parsimonious-verification.md) | Duggirala, Viswanathan | CAV | 2016 | 🟢 1/1 \| 13 |
 | [A Comprehensive Method for Reachability Analysis of Uncertain Nonlinear Hybrid Systems](2016/maiga-tac-hybrid-reachability.md) | Maïga, Ramdani, Travé-Massuyès, Combastel | IEEE Transactions on Automatic Control, 61(9):2341-2356 | 2016 | 🟡 12/14 \| 13 |
 | [Dynamic mode decomposition with control](2016/proctor-siads-dmd-control.md) | Proctor, Brunton, Kutz | SIAM Journal on Applied Dynamical Systems, 15(1):142-161 | 2016 | 🟢 24/24 \| 17 |
 | [STL Model Checking of Continuous and Hybrid Systems](2016/roehm-atva-stl-model-checking.md) | Roehm, Oehlerking, Heinz, Althoff | ATVA, LNCS 9938, pp. 412-427 | 2016 | 🟢 19/19 \| 3 |

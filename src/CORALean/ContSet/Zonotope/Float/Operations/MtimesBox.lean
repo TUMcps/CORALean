@@ -8,17 +8,21 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 /-!
 # `Zonotope.mtimesBox`
 
-What `mtimes` can add beyond the image of its operand's `construct`, computed
-in `𝕋` with directed rounding: the centre's rounding gap, bounded the same way
-`plusBox`'s is, and the generators' — each entry known only to within
-`matMulDiff`'s rounding gap, which `generatorError` turns into a box exactly as
-`mtimesResidual` does — together with the result's own error box.
+A box that holds everything `mtimes M Z` may contain beyond `M` applied to `Z`.
 
-Not an operation `Reduce`-style, for the same reason `plusBox` is not: only
-`mtimes`'s own definition can say how far it may overshoot its operand.
+The float `mtimes` rounds the centre and every generator of the result. This box collects
+those rounding errors. It adds up three parts.
+
+* The rounding error of the new centre, bounded as in `plusBox`.
+* The rounding error of the new generators. Each entry is off by at most `matMulDiff`, and
+  `generatorError` turns these bounds into a box, as `mtimesResidual` does.
+* The error box of `mtimes M Z`.
+
+It is computed in `𝕋` with directed rounding. It is not a reduction, for the reason `plusBox`
+is not: only the definition of `mtimes` says how far the result can stray from `M Z`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       08-September-2026
 -- Last update:   23-September-2026
 -- Reviewed:      ---
@@ -35,9 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The centre's rounding gap, bounded as `plusBox`'s is, together with what
-inexact generators cost — `matMulDiff`'s rounding gap read through
-`generatorError` — and the result's own error box. -/
+/-- Input: a matrix `M` and a zonotope `Z`. Output: a box holding the rounding errors of
+`mtimes M Z`, the sum of the three parts named in the module docstring. -/
 def Zonotope.mtimesBox (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 m) :=
   (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => zero⟩ :
       Interval (Vec 𝕋 m)).plus
