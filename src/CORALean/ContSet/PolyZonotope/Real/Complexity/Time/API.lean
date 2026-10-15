@@ -17,9 +17,9 @@ are quadratic in a count that `plus` grows and only `reduce` brings down.
 columns. `bilinCost` and `mapCost` take one application's price as a parameter.
 
 The relax family is counted at `Vec ℝ n`. `eDiffCost` and `eDriftCost` price
-exponent arithmetic, comparisons and parities on `ℕ`, at unit. No relaxation
-depends on the generator count `h`: each merges a named pair or group, and what
-it copies is free. `relaxExpGreedyCost` takes the selection's price as a
-parameter, `sel` being an argument of the operation; `cartProd` only places data.
+exponent arithmetic, comparisons and parities on `ℕ`, at unit. A relaxation
+merges a named pair or group, but writes the whole relaxed set, so `h` and `q` enter its
+count. `relaxExpGreedyCost` takes the selection's price as a parameter, `sel` being an argument
+of the operation; `cartProd` and `dependent` only place data, and cost their writes.
 Each count is monotone in the sizes it takes.
 -/

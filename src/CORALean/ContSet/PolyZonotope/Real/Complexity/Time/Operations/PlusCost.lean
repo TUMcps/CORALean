@@ -8,20 +8,15 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.plusCost`
 
-Asserted, not proved: `Operations/Plus.lean` adds the two centers — `n`
-additions at `Vec ℝ n` — and concatenates all three generator blocks, which is
-index work and free under `Global/Cost.lean`'s model.
-
-`plusE` is free for the same reason. It lays the two exponent matrices out
-block-diagonally, and every entry it produces is either one the operand already
-held or the literal `0`; nothing is computed, so neither the factor counts nor
-the generator counts enter. That the *result* carries `p₁ + p₂` factors is a
-size claim and lives in `Complexity/Space/Theorems/PlusP.lean`, where it is proved.
+Asserted, not proved: `Operations/Plus.lean` adds the two centers, `n` additions at `Vec ℝ n`, and
+concatenates the generator blocks and lays the exponent matrices out block-diagonally. That
+computes nothing, but every entry of the result is a write: the center and both generator blocks,
+and the `p₁ + p₂` by `h₁ + h₂` exponent matrix, zeros included. So the operands' sizes enter.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,9 +27,11 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.plus` costs at `Vec ℝ n`: `n` additions for the center,
-and nothing for the three concatenations or for the exponent matrix. -/
-def PolyZonotope.plusCost (n : ℕ) : Cost := ⟨n⟩
+/-- What `PolyZonotope.plus` costs at `Vec ℝ n`, `pᵢ` factors, `hᵢ` dependent and `qᵢ`
+independent generators: `n` additions for the center and
+`n * (1 + h₁ + h₂ + q₁ + q₂) + (p₁ + p₂) * (h₁ + h₂)` writes for the result. -/
+def PolyZonotope.plusCost (n p₁ p₂ h₁ h₂ q₁ q₂ : ℕ) : Cost :=
+  ⟨n + (n * (1 + h₁ + h₂ + q₁ + q₂) + (p₁ + p₂) * (h₁ + h₂))⟩
 
 end CORALean.Real
 

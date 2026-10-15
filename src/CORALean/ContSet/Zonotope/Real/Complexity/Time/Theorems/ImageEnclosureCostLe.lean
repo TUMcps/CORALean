@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ImageEnc
 /-!
 # `Zonotope.imageEnclosureCost_le`
 
-[1, Prop. 15]: `O(n² q)`, at most `(cNeuron + 10) n² q` for `n, q ≥ 1`.
+[1, Prop. 15]: `O(n² q)`, at most `(cNeuron + 17) n² q` for `n, q ≥ 1`.
 
 ## References
 
@@ -18,9 +18,9 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ImageEnc
       Transactions on Machine Learning Research (TMLR), 2025.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,14 +31,15 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Prop. 15]: `O(n² q)`, at most `(cNeuron + 10) n² q` for `n, q ≥ 1`. -/
+/-- [1, Prop. 15]: `O(n² q)`, at most `(cNeuron + 17) n² q` for `n, q ≥ 1`. -/
 theorem Zonotope.imageEnclosureCost_le (n q : ℕ) (cNeuron : Cost) (hn : 1 ≤ n) (hq : 1 ≤ q) :
     (Zonotope.imageEnclosureCost n q cNeuron).ops ≤
-      (cNeuron.ops + 10) * (n * n * q) := by -- --- PROOF ---
+      (cNeuron.ops + 17) * (n * n * q) := by -- --- PROOF ---
   simp only [Zonotope.imageEnclosureCost, Zonotope.mtimesCost, Zonotope.plusCost, Cost.matVec,
     Cost.ops_add, Cost.ops_smul]
   have h1 : n ≤ n * n * q := by nlinarith
   have h2 : n * q ≤ n * n * q := by nlinarith
+  have h4 : n * n ≤ n * n * q := by nlinarith
   have h3 : n * cNeuron.ops ≤ cNeuron.ops * (n * n * q) := by nlinarith
   nlinarith
 

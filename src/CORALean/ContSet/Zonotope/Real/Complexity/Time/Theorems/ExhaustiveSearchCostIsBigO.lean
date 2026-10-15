@@ -23,9 +23,9 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.Exhaustive
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       03-October-2026
--- Last update:   13-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -41,7 +41,7 @@ namespace CORALean.Real
 theorem Zonotope.exhaustiveSearchCost_isBigO (n : ℕ) :
     (fun p : ℕ => ((Zonotope.exhaustiveSearchCost n p).ops : ℝ))
       =O[Filter.atTop] fun p : ℕ => ((p.choose n * p : ℕ) : ℝ) := by
-  apply Asymptotics.IsBigO.of_bound 3
+  apply Asymptotics.IsBigO.of_bound 4
   filter_upwards [Filter.eventually_ge_atTop 1] with p hp
   rw [Real.norm_of_nonneg (by positivity), Real.norm_of_nonneg (by positivity)]
   exact_mod_cast Zonotope.exhaustiveSearchCost_ops_le n p hp

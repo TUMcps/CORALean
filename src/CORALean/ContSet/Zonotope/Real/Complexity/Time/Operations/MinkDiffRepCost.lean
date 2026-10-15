@@ -15,11 +15,15 @@ represents `Z₂`'s generators forms `∑ i, M i j • Z₁.G i` for each `j`
 the result recomputes the row sums, subtracts them from one and scales the
 generator (`h₁ * (2 * h₂ + 1 + n)`), and the center is `n` subtractions. The
 `none` branch pays for the checks only, which this bounds.
+
+Under `Global/Cost.lean`'s model every scalar of the result is also a write, one unit each, and the
+result's center and `h₁` generators are `n * (h₁ + 1)` writes. The
+`none` branch writes nothing, which this bounds.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -30,9 +34,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `Zonotope.minkDiffRep` costs at `Vec ℝ n`. -/
+/-- What `Zonotope.minkDiffRep` costs at `Vec ℝ n`: the checks and the new generators, and
+`n * (h₁ + 1)` writes for the result's center and generator matrix. -/
 def Zonotope.minkDiffRepCost (n h₁ h₂ : ℕ) : Cost :=
-  ⟨h₂ * (2 * h₁ * n + n) + 2 * h₁ * h₂ + h₁ * (2 * h₂ + 1 + n) + n⟩
+  ⟨h₂ * (2 * h₁ * n + n) + 2 * h₁ * h₂ + h₁ * (2 * h₂ + 1 + n) + n + n * (h₁ + 1)⟩
 
 end CORALean.Real
 

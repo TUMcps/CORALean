@@ -14,7 +14,7 @@ Asserted, not proved: `Operations/Radius.lean` is `‖g‖₂ + r`: the squared 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -25,8 +25,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `Capsule.radius` costs at `Vec ℝ n`. -/
-def Capsule.radiusCost (n : ℕ) : Cost := ⟨2 * n + 2⟩
+/-- What `Capsule.radius` costs at `Vec ℝ n`: the squared length, its root, the sum, and one write
+of the scalar. -/
+def Capsule.radiusCost (n : ℕ) : Cost := ⟨2 * n + 3⟩
 
 end CORALean.Real
 

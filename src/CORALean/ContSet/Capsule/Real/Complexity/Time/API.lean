@@ -17,7 +17,7 @@ Not counted: the predicates (`containsPoint`, `isIntersecting`, `isequal`,
 `empty`, `representsa*`), which decide a `Prop` rather than compute a set;
 `volume`, which is `Gamma` and a power, outside a model of `+ - * /`;
 `segDist`, an infimum over a set rather than an algorithm; `vertices`; and
-`ofPoint`, `project` and `reindex`, which place or read data and are free.
+`ofPoint`, `project` and `reindex`, which place or read data and are not priced here.
 `mtimesCora` takes the eigenvalue as an argument, so computing it is the
 caller's.
 -/

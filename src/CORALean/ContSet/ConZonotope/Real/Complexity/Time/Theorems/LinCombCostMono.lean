@@ -15,7 +15,7 @@ Monotone in the operands' sizes, so a bound on them gives a bound on the cost.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,11 +32,8 @@ theorem ConZonotope.linCombCost_mono {n h₁ h₁' m₁ m₁' me₁ me₁' h₂ 
     (hh₂ : h₂ ≤ h₂') (hm₂ : m₂ ≤ m₂') (hme₂ : me₂ ≤ me₂') :
     ConZonotope.linCombCost n h₁ m₁ me₁ h₂ m₂ me₂ ≤
       ConZonotope.linCombCost n h₁' m₁' me₁' h₂' m₂' me₂' := by -- --- PROOF ---
-  have hd : h₁ + h₂ + 1 ≤ h₁' + h₂' + 1 := by omega
-  have a := HPolytope.halfScaledCost_mono (by omega : 2 * h₁ + m₁ ≤ 2 * h₁' + m₁') hme₁ hd
-  have b := HPolytope.halfScaledCost_mono (by omega : 2 * h₂ + m₂ ≤ 2 * h₂' + m₂') hme₂ hd
-  simp only [ConZonotope.linCombCost, Cost.le_iff, Cost.ops_add] at a b ⊢
-  omega
+  cost_mono [ConZonotope.linCombCost, HPolytope.comapCost, HPolytope.halfScaledCost,
+    HPolytope.intersectionCost]
 
 end CORALean.Real
 

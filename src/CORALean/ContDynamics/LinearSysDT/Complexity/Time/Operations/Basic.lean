@@ -30,15 +30,15 @@ variable {n : ℕ}
 
 
 -- ===============================  `LinearSysDT.reachStepBound`  =============================== --
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- The same three costs at a step's worst case: `o * n` generators reaching
 the `mtimes`, `o * n + hU` reaching the `reduce`. -/
 def LinearSysDT.reachStepBound (n hU o : ℕ) : Cost :=
-  Zonotope.mtimesCost n n (o * n) + Zonotope.plusCost n
+  Zonotope.mtimesCost n n (o * n) + Zonotope.plusCost n (o * n) hU
     + Zonotope.reduceGirardCost n (o * n + hU)
 
 end CORALean

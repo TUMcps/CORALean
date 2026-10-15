@@ -36,16 +36,16 @@ theorem VPolytope.mtimesCost_mono {k k' : ℕ} (m n : ℕ) (hle : k ≤ k') :
 
 
 -- ================================  `VPolytope.plusCost_mono`  ================================= --
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in both vertex counts, so bounds on the operands' sizes give a
 bound on the cost. -/
 theorem VPolytope.plusCost_mono {k₁ k₁' k₂ k₂' : ℕ} (n : ℕ) (h1 : k₁ ≤ k₁') (h2 : k₂ ≤ k₂') :
-    VPolytope.plusCost n k₁ k₂ ≤ VPolytope.plusCost n k₁' k₂' :=
-  Nat.mul_le_mul_left _ (Nat.mul_le_mul h1 h2)
+    VPolytope.plusCost n k₁ k₂ ≤ VPolytope.plusCost n k₁' k₂' := by
+  cost_mono [VPolytope.plusCost]
 
 end CORALean.Real
 

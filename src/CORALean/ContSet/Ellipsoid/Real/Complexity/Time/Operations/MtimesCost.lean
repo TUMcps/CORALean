@@ -10,7 +10,7 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/Mtimes.lean` sends the shape vector `q` and
 each of the `k` generator columns through one matrix-vector product at
-`m × n`, `M *ᵥ ·` and `M * E.G` being the same operation column by column.
+`m × n`, `M *ᵥ ·` and `M * E.G` being the same operation column by column, each writing its result.
 -/
 
 -- Authors:       Claude Opus 5.5

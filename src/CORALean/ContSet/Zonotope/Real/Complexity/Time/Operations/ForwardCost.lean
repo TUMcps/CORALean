@@ -17,11 +17,14 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 Asserted, not proved, as [1, Prop. 16]'s proof counts `SetBasedNet.forward`: a linear layer
 `W H + b` at `Zonotope.mtimesCost m n h` and `Zonotope.plusCost m`, a nonlinear one at
 `Zonotope.imageEnclosureCost`, whose `n` new generators the next layer then carries. The proved
-part is [1, Prop. 16]'s `O(n_max² q κ)`: at most `(cNeuron + 10) N² Q κ` for `N` at least every
+part is [1, Prop. 16]'s `O(n_max² q κ)`: at most `(cNeuron + 17) N² Q κ` for `N` at least every
 width and `Q` at least the generator count `h + Σₖ nₖ`. `N` has to cover the input width `n₀`
 too: the first layer costs `n₀ n₁ q`, and with `n_max` over `k ∈ [κ]` alone, as printed, a wide
 input and a narrow network (`n₀ = N`, one linear layer to `n₁ = 1`, `q = N`) cost `2N(N + 1) + 1`
 against `n_max² q κ = N`, so no constant independent of `n₀` bounds it.
+
+The sum `W H + b` is a zonotope of `h` generators and a point, so `plusCost m h 0`: the writes of
+its `m * (h + 1)` entries are counted there.
 
 ## References
 
@@ -29,9 +32,9 @@ against `n_max² q κ = N`, so no constant independent of `n₀` bounds it.
       Transactions on Machine Learning Research (TMLR), 2025.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -46,7 +49,7 @@ namespace CORALean.Real
 def SetBasedNet.forwardCost (cNeuron : Cost) : {n k : ℕ} → SetBasedNet n k → ℕ → Cost
   | _, _, .output, _ => 0
   | n, _, @SetBasedNet.linear _ m _ _ _ tail, h =>
-      Zonotope.mtimesCost m n h + Zonotope.plusCost m + tail.forwardCost cNeuron h
+      Zonotope.mtimesCost m n h + Zonotope.plusCost m h 0 + tail.forwardCost cNeuron h
   | n, _, .nonlinear _ _ _ tail, h =>
       Zonotope.imageEnclosureCost n h cNeuron + tail.forwardCost cNeuron (h + n)
 

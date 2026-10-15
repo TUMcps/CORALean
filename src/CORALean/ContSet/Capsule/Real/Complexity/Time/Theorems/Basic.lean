@@ -56,24 +56,26 @@ theorem Capsule.encloseCost_mono {n n' m m' : ℕ} (hn : n ≤ n') (hm : m ≤ m
 -- =============================  `Capsule.enclosePointsCost_mono`  ============================= --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in both. -/
 theorem Capsule.enclosePointsCost_mono {n n' N N' : ℕ} (hn : n ≤ n') (hN : N ≤ N') :
-    Capsule.enclosePointsCost n N ≤ Capsule.enclosePointsCost n' N' :=
-  Nat.add_le_add (Nat.mul_le_mul hN (Nat.add_le_add_right (Nat.mul_le_mul_left _ hn) _)) hn
+    Capsule.enclosePointsCost n N ≤ Capsule.enclosePointsCost n' N' := by
+  cost_mono [Capsule.enclosePointsCost]
 
 
 -- =================================  `Capsule.plusCost_mono`  ================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 /-- Monotone in the dimension. -/
-theorem Capsule.plusCost_mono {n n' : ℕ} (h : n ≤ n') : Capsule.plusCost n ≤ Capsule.plusCost n' :=
-  Nat.add_le_add_right (Nat.mul_le_mul_left _ h) _
+theorem Capsule.plusCost_mono {n n' : ℕ} (h : n ≤ n') :
+    Capsule.plusCost n ≤ Capsule.plusCost n' := by
+  simp only [Capsule.plusCost, Cost.le_iff]
+  omega
 
 end CORALean.Real
 

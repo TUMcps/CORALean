@@ -1,0 +1,9 @@
+# `...Cost` definitions under `Complexity/Time/` that are `0`.
+#
+# `check-conventions.sh` refuses any other: under `Global/Cost.lean`'s model every scalar of an
+# operation's result costs one write, so an operation that builds a result is never free, and a
+# cost of `0` is claimed only by an operation that neither computes nor writes anything. An entry
+# says which, and why; the list only shrinks, and an entry whose definition is no longer `0` is
+# reported as stale.
+#
+# One line per definition: `<qualified name>  <reason>`.

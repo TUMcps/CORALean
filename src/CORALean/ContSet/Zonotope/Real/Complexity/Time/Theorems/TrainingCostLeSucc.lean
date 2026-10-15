@@ -16,9 +16,9 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.Training
 Every iteration, `κ + 1` terms each at most `C N² Q`.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -29,38 +29,49 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A linear layer's forward and backward steps, at most `17 N² Q`. -/
+/-- A linear layer's forward and backward steps, at most `25 N² Q`. -/
 theorem SetBasedNet.aux_linear_le {m n h N Q : ℕ} (hN : 1 ≤ N) (hh : 1 ≤ h) (hmN : m ≤ N)
     (hnN : n ≤ N) (hhQ : h ≤ Q) :
-    (Zonotope.mtimesCost m n h + Zonotope.plusCost m + Zonotope.mtimesCost n m h +
-      (⟨2 * (m * n * (h + 1)) + 2 * (m * n)⟩ : Cost) + (⟨2 * m⟩ : Cost)).ops ≤
-        17 * (N * N * Q) := by -- --- PROOF ---
+    (Zonotope.mtimesCost m n h + Zonotope.plusCost m h 0 + Zonotope.mtimesCost n m h +
+      (⟨2 * (m * n * (h + 1)) + 2 * (m * n) + m * n⟩ : Cost) + (⟨2 * m + m⟩ : Cost)).ops ≤
+        25 * (N * N * Q) := by -- --- PROOF ---
   have hp := SetBasedNet.mul_mul_le_of_le hmN hnN hhQ
   have hmn : m * n ≤ m * n * h := Nat.le_mul_of_pos_right _ hh
   have hm' : m * 1 * 1 ≤ N * N * Q := SetBasedNet.mul_mul_le_of_le hmN hN (hh.trans hhQ)
+  have hn' : n * 1 * 1 ≤ N * N * Q := SetBasedNet.mul_mul_le_of_le hnN hN (hh.trans hhQ)
+  have hmh : m * 1 * h ≤ N * N * Q := SetBasedNet.mul_mul_le_of_le hmN hN hhQ
+  have hnh : n * 1 * h ≤ N * N * Q := SetBasedNet.mul_mul_le_of_le hnN hN hhQ
   simp only [Zonotope.mtimesCost, Zonotope.plusCost, Cost.matVec, Cost.ops_add, Cost.ops_smul]
   have e1 : (h + 1) * (2 * (m * n)) = 2 * (m * n * h) + 2 * (m * n) := by ring
   have e2 : (h + 1) * (2 * (n * m)) = 2 * (m * n * h) + 2 * (m * n) := by ring
   have e3 : 2 * (m * n * (h + 1)) = 2 * (m * n * h) + 2 * (m * n) := by ring
   have e4 : m * 1 * 1 = m := by ring
+  have e5 : n * 1 * 1 = n := by ring
+  have e6 : m * 1 * h = m * h := by ring
+  have e7 : n * 1 * h = n * h := by ring
+  have e8 : (h + 1) * (2 * (m * n) + m) = (h + 1) * (2 * (m * n)) + (h + 1) * m := by ring
+  have e9 : (h + 1) * (2 * (n * m) + n) = (h + 1) * (2 * (n * m)) + (h + 1) * n := by ring
+  have e10 : (h + 1) * m = m * h + m := by ring
+  have e11 : (h + 1) * n = n * h + n := by ring
+  have e12 : m * (1 + h + 0) = m + m * h := by ring
   omega
 
 /-- A nonlinear layer's forward and backward steps. -/
 theorem SetBasedNet.aux_nonlinear_le (cNeuron cBack : Cost) {n h N Q : ℕ} (hN : 1 ≤ N)
     (hh : 1 ≤ h) (hnN : n ≤ N) (hhQ : h ≤ Q) :
-    (Zonotope.imageEnclosureCost n h cNeuron + (⟨n * (2 * h + 2) + 10 * (n * (h + 1))⟩ : Cost) +
+    (Zonotope.imageEnclosureCost n h cNeuron + (⟨n * (2 * h + 2) + n + 11 * (n * (h + 1))⟩ : Cost) +
       (n * (h + 1)) • cBack).ops ≤
-        (cNeuron.ops + 10) * (N * N * Q) + 24 * (N * N * Q) +
+        (cNeuron.ops + 17) * (N * N * Q) + 27 * (N * N * Q) +
           2 * (N * N * Q) * cBack.ops := by -- --- PROOF ---
   have hp : n * 1 * h ≤ N * N * Q := SetBasedNet.mul_mul_le_of_le hnN hN hhQ
   have hnh : n ≤ n * h := Nat.le_mul_of_pos_right _ hh
   have hlay : (Zonotope.imageEnclosureCost n h cNeuron).ops ≤
-      (cNeuron.ops + 10) * (N * N * Q) := by
+      (cNeuron.ops + 17) * (N * N * Q) := by
     rcases Nat.eq_zero_or_pos n with rfl | hn
     · simp [Zonotope.imageEnclosureCost, Zonotope.mtimesCost, Zonotope.plusCost, Cost.matVec]
     · exact (Zonotope.imageEnclosureCost_le n h cNeuron hn hh).trans
         (Nat.mul_le_mul_left _ (SetBasedNet.mul_mul_le_of_le hnN hnN hhQ))
-  have e1 : n * (2 * h + 2) + 10 * (n * (h + 1)) = 12 * (n * h) + 12 * n := by ring
+  have e1 : n * (2 * h + 2) + n + 11 * (n * (h + 1)) = 13 * (n * h) + 14 * n := by ring
   have e2 : n * 1 * h = n * h := by ring
   have hb2 : n * (h + 1) ≤ 2 * (N * N * Q) := by
     have : n * (h + 1) = n * h + n := by ring
@@ -89,7 +100,7 @@ theorem SetBasedNet.trainingCost_le_succ (cNeuron cGrad cBack : Cost) {N Q : ℕ
     {n k : ℕ} (net : SetBasedNet n k) :
     ∀ h, 1 ≤ h → net.maxWidth ≤ N → h + net.neurons ≤ Q →
       (net.trainingCost cNeuron cGrad cBack h).ops ≤
-        (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 40) * (N * N * Q) *
+        (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 50) * (N * N * Q) *
           (net.depth + 1) := by -- --- PROOF ---
   induction net with
   | @output n =>
@@ -98,8 +109,8 @@ theorem SetBasedNet.trainingCost_le_succ (cNeuron cGrad cBack : Cost) {N Q : ℕ
       have hg := SetBasedNet.aux_output_le cGrad (Q := Q) hN hh (hw : n ≤ N)
         (by have : h + 0 ≤ Q := hq; omega)
       show ((n * (h + 1)) • cGrad).ops ≤ _ * (0 + 1)
-      have hsplit : (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 40) * (N * N * Q) * (0 + 1) =
-          2 * (N * N * Q) * cGrad.ops + (cNeuron.ops + 2 * cBack.ops + 40) * (N * N * Q) := by
+      have hsplit : (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 50) * (N * N * Q) * (0 + 1) =
+          2 * (N * N * Q) * cGrad.ops + (cNeuron.ops + 2 * cBack.ops + 50) * (N * N * Q) := by
         ring
       rw [hsplit]
       exact hg.trans (Nat.le_add_right _ _)
@@ -116,15 +127,15 @@ theorem SetBasedNet.trainingCost_le_succ (cNeuron cGrad cBack : Cost) {N Q : ℕ
         | nonlinear => exact (le_max_left _ _).trans (le_of_max_le_right hw')
       have hlay := SetBasedNet.aux_linear_le (Q := Q) hN hh hmN (le_of_max_le_left hw')
         (by omega)
-      show (Zonotope.mtimesCost m n h + Zonotope.plusCost m + Zonotope.mtimesCost n m h +
-          ⟨2 * (m * n * (h + 1)) + 2 * (m * n)⟩ + ⟨2 * m⟩ +
+      show (Zonotope.mtimesCost m n h + Zonotope.plusCost m h 0 + Zonotope.mtimesCost n m h +
+          ⟨2 * (m * n * (h + 1)) + 2 * (m * n) + m * n⟩ + ⟨2 * m + m⟩ +
           tail.trainingCost cNeuron cGrad cBack h).ops ≤ _ * (tail.depth + 1 + 1)
       rw [Cost.ops_add]
-      -- `C N² Q` more than the tail's bound, of which the layer takes `17 N² Q`
-      have hsplit : (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 40) * (N * N * Q) *
+      -- `C N² Q` more than the tail's bound, of which the layer takes `25 N² Q`
+      have hsplit : (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 50) * (N * N * Q) *
           (tail.depth + 1 + 1) =
-          (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 40) * (N * N * Q) * (tail.depth + 1) +
-            (17 * (N * N * Q) + (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 23) * (N * N * Q))
+          (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 50) * (N * N * Q) * (tail.depth + 1) +
+            (25 * (N * N * Q) + (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 25) * (N * N * Q))
           := by ring
       rw [hsplit]
       omega
@@ -137,13 +148,13 @@ theorem SetBasedNet.trainingCost_le_succ (cNeuron cGrad cBack : Cost) {N Q : ℕ
       have hlay := SetBasedNet.aux_nonlinear_le cNeuron cBack (Q := Q) hN hh
         (le_of_max_le_left hw') (by omega)
       show (Zonotope.imageEnclosureCost n h cNeuron +
-          ⟨n * (2 * h + 2) + 10 * (n * (h + 1))⟩ + (n * (h + 1)) • cBack +
+          ⟨n * (2 * h + 2) + n + 11 * (n * (h + 1))⟩ + (n * (h + 1)) • cBack +
           tail.trainingCost cNeuron cGrad cBack (h + n)).ops ≤ _ * (tail.depth + 1 + 1)
       rw [Cost.ops_add]
-      have hsplit : (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 40) * (N * N * Q) *
+      have hsplit : (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 50) * (N * N * Q) *
           (tail.depth + 1 + 1) =
-          (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 40) * (N * N * Q) * (tail.depth + 1) +
-            ((cNeuron.ops + 10) * (N * N * Q) + 24 * (N * N * Q) + 2 * (N * N * Q) * cBack.ops +
+          (cNeuron.ops + 2 * cBack.ops + 2 * cGrad.ops + 50) * (N * N * Q) * (tail.depth + 1) +
+            ((cNeuron.ops + 17) * (N * N * Q) + 27 * (N * N * Q) + 2 * (N * N * Q) * cBack.ops +
               2 * cGrad.ops * (N * N * Q) + 6 * (N * N * Q)) := by ring
       rw [hsplit]
       omega

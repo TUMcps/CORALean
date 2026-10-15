@@ -19,11 +19,14 @@ Everything here is bounded at the *full* width rather than the class's, which
 is what keeps it an upper bound without a hypothesis on how the columns
 happen to collide. Quadratic in `h` either way: this is a pairwise merge, and a
 sorted or hashed one would be a different definition and a different count.
+
+The result has at most as many generators as the operand, so the writes are those of the
+operand's size: the center, both generator blocks and the exponent matrix.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,9 +37,11 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.compact` costs at `Vec ℝ n` over `p` factors and `h`
-dependent generators: the pairwise merge, the class sums and the factor scan. -/
-def PolyZonotope.compactCost (n p h : ℕ) : Cost := ⟨(p + n + 1) * (h * h) + (p + n) * h⟩
+/-- What `PolyZonotope.compact` costs at `Vec ℝ n` over `p` factors, `h` dependent and `q`
+independent generators: the pairwise merge, the class sums and the factor scan, and
+`n * (1 + h + q) + p * h` writes for the result. -/
+def PolyZonotope.compactCost (n p h q : ℕ) : Cost :=
+  ⟨(p + n + 1) * (h * h) + (p + n) * h + (n * (1 + h + q) + p * h)⟩
 
 end CORALean.Real
 

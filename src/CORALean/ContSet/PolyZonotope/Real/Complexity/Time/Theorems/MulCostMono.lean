@@ -13,9 +13,9 @@ Monotone in both generator counts, so bounds on the operands' sizes give a
 bound on the cost.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,7 +31,7 @@ bound on the cost. -/
 theorem PolyZonotope.mulCost_mono {h₁ h₁' h₂ h₂' : ℕ} (n p : ℕ)
     (h1 : h₁ ≤ h₁') (h2 : h₂ ≤ h₂') :
     PolyZonotope.mulCost n p h₁ h₂ ≤ PolyZonotope.mulCost n p h₁' h₂' :=
-  PolyZonotope.bilinCost_mono _ le_rfl h1 h2
+  PolyZonotope.bilinCost_mono _ le_rfl le_rfl h1 h2
 
 end CORALean.Real
 

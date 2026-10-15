@@ -1,6 +1,8 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Theorems.Basic
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Theorems.IntersectionCostMono
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Theorems.MapCostMono
+public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Theorems.MtimesCostMono
 public import CORALean.ContSet.ConPolyZono.Real.Complexity.Time.Theorems.QuadMapCostMono
 
 /-!

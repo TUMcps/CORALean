@@ -10,17 +10,16 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 
 Asserted, not proved: `Operations/Mtimes.lean` sends the center and each of the
 `h` generators through `M *ᵥ ·` and carries the constraint polytope over
-unchanged, so it pays `h + 1` matrix-vector products and nothing else.
+unchanged, so it pays `h + 1` matrix-vector products and the writes of the polytope.
 
-The same count as `Zonotope.mtimesCost`, which is the useful thing to be able
-to say: a linear map is exactly as cheap on a constrained zonotope as on an
-unconstrained one, because the constraints live over the coefficients and a
-linear map does not move those.
+The same count as `Zonotope.mtimesCost` plus the polytope's writes, which stay: a linear map
+needs no computation on the constraints, because they live over the coefficients and a linear
+map does not move those.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -31,9 +30,11 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `ConZonotope.mtimes` costs at `M : Mat ℝ m n` and `h` generators: one
-matrix-vector product for the center and one per generator. -/
-def ConZonotope.mtimesCost (m n h : ℕ) : Cost := ConZonotope.mapCost (Cost.matVec m n) h
+/-- What `ConZonotope.mtimes` costs at `M : Mat ℝ m n` and `h` generators, a constraint polytope
+of `r` inequality and `re` equality rows: one matrix-vector product for the center and one per
+generator, and the writes of the polytope. -/
+def ConZonotope.mtimesCost (m n h r re : ℕ) : Cost :=
+  ConZonotope.mapCost (Cost.matVec m n) h r re
 
 end CORALean.Real
 

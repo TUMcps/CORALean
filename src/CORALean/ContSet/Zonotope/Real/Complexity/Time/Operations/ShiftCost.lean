@@ -14,7 +14,7 @@ Asserted, not proved: `Operations/Shift.lean` subtracts `w` from the center,
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -25,8 +25,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `Zonotope.shift` costs at `Vec ℝ n`. -/
-def Zonotope.shiftCost (n : ℕ) : Cost := ⟨n⟩
+/-- What `Zonotope.shift` costs at `Vec ℝ n` on `h` generators: `n` subtractions for the center
+and `n * (h + 1)` writes for the result. -/
+def Zonotope.shiftCost (n h : ℕ) : Cost := ⟨n + n * (h + 1)⟩
 
 end CORALean.Real
 

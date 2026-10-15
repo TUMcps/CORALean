@@ -50,25 +50,22 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `reach` costs over `k` steps at `𝒵`, at a per-layer bound `LC`: per
-step one `NeuralNetwork.encloseCost`, the input map's two `mtimes` and two `plus`es, and the
-plant's `mtimes`, `plus` and `reduce`. -/
+step one `NeuralNetwork.encloseCost`, the input map's two `mtimes` and two `plus`es (the second
+adding the point `c`, without generators), and the plant's `mtimes`, `plus` and `reduce`. -/
 noncomputable def NeurNetContrSysDT.reachCost (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
     (U_ext : Zonotope (Vec ℝ sys.nExt)) (o : ℕ) (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost) : ℕ → Cost
   | 0 => 0
   | k + 1 =>
+      -- the set reached so far, and what the controller's enclosure of it carries
+      let hR := (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
+      let hE := (sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
       sys.reachCost U_ext o ho R₀ LC k
         + (NeuralNetwork.encloseCost LC sys.contr
-            + (Zonotope.mtimesCost n sys.m
-                  (sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
-                + Zonotope.plusCost n)
-            + (Zonotope.mtimesCost n sys.nExt U_ext.h + Zonotope.plusCost n)
-            + (Zonotope.mtimesCost n n (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
-                + Zonotope.plusCost n
-                + Zonotope.reduceGirardCost n
-                    ((sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
-                      + ((sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
-                        + U_ext.h))))
+            + (Zonotope.mtimesCost n sys.m hE + Zonotope.plusCost n hE U_ext.h)
+            + (Zonotope.mtimesCost n sys.nExt U_ext.h + Zonotope.plusCost n (hE + U_ext.h) 0)
+            + (Zonotope.mtimesCost n n hR + Zonotope.plusCost n hR (hE + U_ext.h)
+                + Zonotope.reduceGirardCost n (hR + (hE + U_ext.h))))
 
 end CORALean
 

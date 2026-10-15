@@ -9,7 +9,8 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.MapCost
 # `ZonoBundle.mapCost`
 
 Asserted, not proved: `Operations/Map.lean` runs `Zonotope.map` once per member
-and does nothing of its own, so the count is `k` copies of the zonotope one.
+and does nothing of its own, so the count is `k` copies of the zonotope one, each writing its
+result.
 
 `h` bounds *every* member's generator count, as in `ZonoBundle.mtimesCost`,
 since the structure carries a family with no common width.

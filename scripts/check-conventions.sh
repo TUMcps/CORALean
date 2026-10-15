@@ -96,6 +96,13 @@ BENCH_DIR=src/CORALean/Examples/Bench/
 # does, because the whole point of the float layer is that it runs.
 ALLOWLIST=scripts/noncomputable-allowlist.txt
 
+# A `...Cost` under `Complexity/Time/` that is `0` says the operation writes nothing and computes
+# nothing (CONTRIBUTING, "Complexity"): under `Global/Cost.lean`'s model every scalar of a result
+# is a write, so building an object is never free. An operation that really does neither names
+# itself in this list, `<qualified name>  <reason>` per line. The list only shrinks: an entry
+# whose definition is no longer a zero cost is reported as stale.
+ZEROCOST_LIST=scripts/zero-cost-allowlist.txt
+
 # Every file under `src/` is a Lean `module` (CONTRIBUTING, "The module
 # header") except the worked examples under `Examples/`, whose `#eval`s would
 # need `meta import`, and the files listed here with a reason: proofs that
@@ -225,6 +232,7 @@ if [ -n "$STAGED" ]; then
     exit 0
   fi
   ALLOWLIST=$repo/$ALLOWLIST
+  ZEROCOST_LIST=$repo/$ZEROCOST_LIST
   NONMODULE_LIST=$repo/$NONMODULE_LIST
   PAIR_LIST=$repo/$PAIR_LIST
   CLASS_LIST=$repo/$CLASS_LIST
@@ -271,6 +279,7 @@ out=$(awk \
   -v LAKE_ROOTS="$lake_roots" \
   -v NONMOD="$NONMODULE_LIST" \
   -v PAIRLIST="$PAIR_LIST" \
+  -v ZEROLIST="$ZEROCOST_LIST" \
   -v CEXLIST="$cexlist" \
   -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" \
   -v ALLOWLIST="$ALLOWLIST" '
@@ -312,6 +321,24 @@ BEGIN {
     allowLine[name] = allowFNR
   }
   close(ALLOWLIST)
+
+  # The zero-cost list: `<qualified name>  <reason>` per line, as the allowlist above.
+  while ((getline zline < ZEROLIST) > 0) {
+    zeroFNR++
+    line = zline
+    sub(/^[ \t]+/, "", line)
+    if (line == "" || line ~ /^#/) continue
+    zn = line; sub(/[ \t].*$/, "", zn)
+    zr = line; sub(/^[^ \t]+[ \t]*/, "", zr)
+    if (zn in zeroOK)
+      say(ZEROLIST ":" zeroFNR ": duplicate entry `" zn "` (first at line " zeroLine[zn] ")")
+    if (zr == "")
+      say(ZEROLIST ":" zeroFNR ": `" zn "` carries no reason — say what the operation neither" \
+          " computes nor writes")
+    zeroOK[zn] = 1
+    zeroLine[zn] = zeroFNR
+  }
+  close(ZEROLIST)
 
   # The non-module list: `<path>  <reason>` per line, as the allowlist above.
   while ((getline nline < NONMOD) > 0) {
@@ -864,6 +891,24 @@ FNR == 1 {
         " canonical form — check the width and the fill either side of the label")
   }
 
+  # No asserted cost is `0` (CONTRIBUTING, "Complexity"): the result of an operation is written
+  # scalar by scalar, so a `def ... : Cost := 0` under `Complexity/Time/` needs a reason in the
+  # zero-cost list. The body may sit on the next line.
+  if (FILENAME ~ /\/Complexity\/Time\// && raw !~ /^[ \t]*--/) {
+    zname = ""
+    if (raw ~ /^(noncomputable )?def [^ ]+.*Cost :=[ \t]*(0|⟨0⟩)[ \t]*$/) zname = raw
+    else if (zheadFNR > 0 && FNR == zheadFNR + 1 && raw ~ /^[ \t]+(0|⟨0⟩)[ \t]*$/) zname = zhead
+    zheadFNR = 0
+    if (raw ~ /^(noncomputable )?def [^ ]+.*Cost :=[ \t]*$/) { zhead = raw; zheadFNR = FNR }
+    if (zname != "") {
+      sub(/^(noncomputable )?def /, "", zname); sub(/[ \t([{:].*$/, "", zname)
+      if (zname in zeroOK) zeroUsed[zname] = 1
+      else say(FILENAME ":" FNR ": `" zname "` is a cost of `0`, but an operation that builds" \
+               " a result writes it; count the writes, or list the name in " ZEROLIST \
+               " with the reason it writes nothing")
+    }
+  }
+
   # An import cannot be wrapped, so the `public `/`meta ` a module adds to one
   # is not counted: `import <name>` alone must fit, as it did before.
   lenLine = raw
@@ -1285,6 +1330,10 @@ END {
     if (!(name in usedAllow))
       say(ALLOWLIST ":" allowLine[name] ": stale allowlist entry `" name \
           "` — no longer matches any `noncomputable` declaration the rules do not already allow")
+  for (zn in zeroOK)
+    if (!(zn in zeroUsed))
+      say(ZEROLIST ":" zeroLine[zn] ": stale entry `" zn "` — no longer a `Cost` of `0` under" \
+          " `Complexity/Time/`; the list only shrinks")
   for (p in cexOK)
     if (!(p in cexUsed))
       say("scripts/check-conventions.sh: stale COUNTEREXAMPLE_EXCEPTIONS entry `" p \

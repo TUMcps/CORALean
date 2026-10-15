@@ -366,7 +366,8 @@ nothing is `sorry` or a search tactic, that nothing outside the three files
 named in the script is an `axiom` — the second holding `nearestUnsound` alone
 and imported from nowhere outside `Examples/Bench/`, the third holding
 `trustedFlint` alone — that every `maxHeartbeats` bump
-carries a reason, that a `def` under `Complexity/Time/` is named for the cost it asserts,
+carries a reason, that a `def` under `Complexity/Time/` is named for the cost it asserts and is
+not `0` unless `scripts/zero-cost-allowlist.txt` says what the operation neither computes nor writes,
 that every `[N]` cited resolves, that the comment lengths and the comment
 density above are respected, that every module is reachable from one of the
 target roots, so a file written but never collected is caught rather than
@@ -704,7 +705,10 @@ result, so `Zonotope.plus_h` is a `theorem` and its proof is `rfl` against the
 structure instance in `Operations/`. A **running cost** is not derivable at all:
 a Lean `def` says what is computed and never what computing it costs. So a cost
 is stated against an explicit model, `Global/Cost.lean`, and justified in the
-file's docstring by reading the operation's definition by hand. It is an axiom
+file's docstring by reading the operation's definition by hand. The model counts scalar
+arithmetic and one write for every scalar of the result, copied or padded entries included, so an
+operation that builds a result is never free and a cost needing the result's size takes the operand
+sizes as arguments. It is an axiom
 in the informal sense, and must never be dressed as a theorem about the
 definition.
 

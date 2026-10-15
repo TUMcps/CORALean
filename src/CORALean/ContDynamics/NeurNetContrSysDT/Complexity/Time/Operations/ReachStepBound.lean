@@ -41,8 +41,8 @@ carry into the `reduce`. -/
 def NeurNetContrSysDT.reachStepBound (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
     (o hEnc hU : ℕ) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost) : Cost :=
   NeuralNetwork.encloseCost LC sys.contr
-    + (Zonotope.mtimesCost n sys.m hEnc + Zonotope.plusCost n)
-    + (Zonotope.mtimesCost n sys.nExt hU + Zonotope.plusCost n)
+    + (Zonotope.mtimesCost n sys.m hEnc + Zonotope.plusCost n hEnc hU)
+    + (Zonotope.mtimesCost n sys.nExt hU + Zonotope.plusCost n (hEnc + hU) 0)
     + LinearSysDT.reachStepBound n (hEnc + hU) o
 
 end CORALean

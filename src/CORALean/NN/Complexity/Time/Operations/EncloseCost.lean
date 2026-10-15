@@ -10,8 +10,8 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/Enclose.lean` hands the set to the first
 layer and the result to the rest, one call to `Layer.enclose` per layer and
-nothing of its own — `output` costs nothing, `layer` costs that layer plus the
-rest, the recursion `enclose`'s own.
+nothing of its own — `output` returns the set it was handed and writes nothing, `layer` costs
+that layer, its writes included, plus the rest, the recursion `enclose`'s own.
 
 What one layer costs is a parameter, `LC`, the way `PolyZonotope.mapCost` and
 `ConZonotope.mapCost` take what one application of an arbitrary map costs: a
@@ -38,7 +38,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `NeuralNetwork.enclose` costs at a per-layer bound `LC`: one
-application of `LC` per layer, `output` free and `layer` paying that layer
+application of `LC` per layer, `output` writing nothing and `layer` paying that layer
 plus the rest — `enclose`'s own recursion. -/
 def NeuralNetwork.encloseCost (LC : ∀ {a b : ℕ}, Layer S a b → Cost) :
     ∀ {n m : ℕ}, NeuralNetwork S n m → Cost

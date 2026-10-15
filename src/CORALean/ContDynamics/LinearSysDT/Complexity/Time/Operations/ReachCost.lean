@@ -28,10 +28,10 @@ the instance is. `reach`'s own generality is untouched.
 where the two meet.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       07-September-2026
--- Last update:   30-September-2026
--- Reviewed:      15-October-2026 (Tobias Ladner)
+-- Last update:   15-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -53,7 +53,7 @@ noncomputable def LinearSysDT.reachCost (sys : LinearSysDT ℝ n) (o : ℕ) (ho 
   | k + 1 =>
       sys.reachCost o ho R₀ U k
         + (Zonotope.mtimesCost n n (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h
-            + Zonotope.plusCost n
+            + Zonotope.plusCost n (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h U.h
             + Zonotope.reduceGirardCost n ((sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h + U.h))
 
 end CORALean

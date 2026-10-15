@@ -12,11 +12,15 @@ Asserted, not proved, at `Vec ℝ n`: `Operations/RelaxExpMid.lean` evaluates
 `relaxDrift` twice, once for the center's shift (`n` products, `n` additions)
 and once for the new generator's radius (`n` products), and adds the two named
 generators (`n`).
+
+The result is written once, and the result's `n * (d + q + 3) + p * (d + 1)` entries are written:
+the center, the `d + 1`
+dependent and `q + 1` independent generators, and the `d + 1` exponent columns.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -27,9 +31,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.relaxExpMid` costs at `Vec ℝ n` and `p` factors. -/
-def PolyZonotope.relaxExpMidCost (n p : ℕ) : Cost :=
-  ⟨4 * n⟩ + (2 : ℕ) • PolyZonotope.relaxDriftCost p
+/-- What `PolyZonotope.relaxExpMid` costs at `Vec ℝ n` over `p` factors, keeping `d` dependent
+generators with `q` independent ones, and `n * (d + q + 3) + p * (d + 1)` writes for the result. -/
+def PolyZonotope.relaxExpMidCost (n p d q : ℕ) : Cost :=
+  ⟨4 * n⟩ + (2 : ℕ) • PolyZonotope.relaxDriftCost p + ⟨n * (d + q + 3) + p * (d + 1)⟩
 
 end CORALean.Real
 

@@ -10,7 +10,7 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/Mtimes.lean` sends the center and each of the
 `h` generators through `M *ᵥ ·`, so it pays `h + 1` matrix-vector products at
-`m × n` and nothing else.
+`m × n`, each of which writes its `m` result entries (`Cost.matVec`), and nothing else.
 
 `mtimesCost_mono` is what lets a caller use a *bound* on `h` rather than `h`
 itself, which is how the reachability bound in `ContDynamics/` is assembled.

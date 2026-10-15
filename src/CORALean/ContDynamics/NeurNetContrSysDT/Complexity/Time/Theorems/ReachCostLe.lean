@@ -59,9 +59,10 @@ theorem NeurNetContrSysDT.aux_reach_h_le (sys : NeurNetContrSysDT (LinearSysDT �
 within `hEnc`, costs at most `reachStepBound`. -/
 theorem NeurNetContrSysDT.aux_step_le (n hEnc o hIn hOut : ℕ) (hi : hIn ≤ o * n)
     (houu : hOut ≤ hEnc) :
-    Zonotope.mtimesCost n n hIn + Zonotope.plusCost n
+    Zonotope.mtimesCost n n hIn + Zonotope.plusCost n hIn hOut
         + Zonotope.reduceGirardCost n (hIn + hOut) ≤ LinearSysDT.reachStepBound n hEnc o :=
-  Cost.add_le_add (Cost.add_le_add (Zonotope.mtimesCost_mono n n hi) le_rfl)
+  Cost.add_le_add (Cost.add_le_add (Zonotope.mtimesCost_mono n n hi)
+      (Zonotope.plusCost_mono n hi houu))
     (Zonotope.reduceGirardCost_mono n (Nat.add_le_add hi houu))
 
 
@@ -84,13 +85,18 @@ theorem NeurNetContrSysDT.reachCost_le (sys : NeurNetContrSysDT (LinearSysDT ℝ
     -- the input map's `mtimes` is at the enclosure's size, at most `hEnc`
     have hin : Zonotope.mtimesCost n sys.m
         (sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
-          + Zonotope.plusCost n ≤
-        Zonotope.mtimesCost n sys.m hEnc + Zonotope.plusCost n :=
-      Cost.add_le_add (Zonotope.mtimesCost_mono n sys.m (hE k)) le_rfl
+          + Zonotope.plusCost n
+            (sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h U_ext.h ≤
+        Zonotope.mtimesCost n sys.m hEnc + Zonotope.plusCost n hEnc hU :=
+      Cost.add_le_add (Zonotope.mtimesCost_mono n sys.m (hE k))
+        (Zonotope.plusCost_mono n (hE k) hUe)
     -- and the external inputs' at theirs, at most `hU`
-    have hext : Zonotope.mtimesCost n sys.nExt U_ext.h + Zonotope.plusCost n ≤
-        Zonotope.mtimesCost n sys.nExt hU + Zonotope.plusCost n :=
-      Cost.add_le_add (Zonotope.mtimesCost_mono n sys.nExt hUe) le_rfl
+    have hext : Zonotope.mtimesCost n sys.nExt U_ext.h
+        + Zonotope.plusCost n
+          ((sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h + U_ext.h) 0 ≤
+        Zonotope.mtimesCost n sys.nExt hU + Zonotope.plusCost n (hEnc + hU) 0 :=
+      Cost.add_le_add (Zonotope.mtimesCost_mono n sys.nExt hUe)
+        (Zonotope.plusCost_mono n (Nat.add_le_add (hE k) hUe) le_rfl)
     have h := Nat.add_le_add (Cost.le_iff.mp ih)
       (Nat.add_le_add (Nat.add_le_add (Nat.add_le_add
         (le_refl (NeuralNetwork.encloseCost LC sys.contr).ops) (Cost.le_iff.mp hin))

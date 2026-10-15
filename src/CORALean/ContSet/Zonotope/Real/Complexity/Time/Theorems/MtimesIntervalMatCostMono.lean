@@ -15,7 +15,7 @@ bound on the cost.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -30,12 +30,8 @@ namespace CORALean.Real
 bound on the cost. -/
 theorem Zonotope.mtimesIntervalMatCost_mono {h h' : ℕ} (m n : ℕ) (hh : h ≤ h') :
     Zonotope.mtimesIntervalMatCost m n h ≤
-      Zonotope.mtimesIntervalMatCost m n h' := by -- --- PROOF ---
-  show 6 * (m * n) + n * (2 * h + 1) + (h + 1) * (2 * (m * n)) ≤
-    6 * (m * n) + n * (2 * h' + 1) + (h' + 1) * (2 * (m * n))
-  exact Nat.add_le_add
-    (Nat.add_le_add_left (Nat.mul_le_mul_left n (Nat.succ_le_succ (Nat.mul_le_mul_left 2 hh))) _)
-    (Nat.mul_le_mul_right _ (Nat.succ_le_succ hh))
+      Zonotope.mtimesIntervalMatCost m n h' := by
+  cost_mono [Zonotope.mtimesIntervalMatCost]
 
 end CORALean.Real
 

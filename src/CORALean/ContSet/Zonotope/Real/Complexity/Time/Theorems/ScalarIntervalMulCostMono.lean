@@ -16,7 +16,7 @@ Monotone in the generator count.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -29,10 +29,12 @@ namespace CORALean.Real
 
 /-- Monotone in the generator count. -/
 theorem Zonotope.scalarIntervalMulCost_mono {h h' : ℕ} (n : ℕ) (hh : h ≤ h') :
-    Zonotope.scalarIntervalMulCost n h ≤ Zonotope.scalarIntervalMulCost n h' := by
+    Zonotope.scalarIntervalMulCost n h ≤ Zonotope.scalarIntervalMulCost n h' := by -- --- PROOF ---
   have := Zonotope.mtimesCost_mono n n hh
-  simp only [Zonotope.scalarIntervalMulCost, Cost.le_iff, Cost.ops_add, Cost.ops_smul] at this ⊢
-  omega
+  simp only [Zonotope.scalarIntervalMulCost, Zonotope.plusCost, Zonotope.unitIntervalMulCost,
+    Cost.le_iff, Cost.ops_add, Cost.ops_smul] at this ⊢
+  have := Nat.mul_le_mul_left n hh
+  nlinarith
 
 end CORALean.Real
 

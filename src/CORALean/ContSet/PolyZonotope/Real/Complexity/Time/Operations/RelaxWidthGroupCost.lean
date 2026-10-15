@@ -9,12 +9,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.EDif
 # `PolyZonotope.relaxWidthGroupCost`
 
 Asserted, not proved: `Operations/RelaxWidthGroup.lean` is the same sum as
-`relaxWidthMulti`, `p` `eDiff`s and `p` additions, for one grouped generator.
+`relaxWidthMulti`, `p` `eDiff`s and `p` additions, for one grouped generator, and one write of the
+sum.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -25,8 +26,9 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `PolyZonotope.relaxWidthGroup` costs at `p` factors. -/
-def PolyZonotope.relaxWidthGroupCost (p : ℕ) : Cost := p • PolyZonotope.eDiffCost + ⟨p⟩
+/-- What `PolyZonotope.relaxWidthGroup` costs at `p` factors: `p` calls of `eDiff`, `p` additions
+and one write. -/
+def PolyZonotope.relaxWidthGroupCost (p : ℕ) : Cost := p • PolyZonotope.eDiffCost + ⟨p + 1⟩
 
 end CORALean.Real
 

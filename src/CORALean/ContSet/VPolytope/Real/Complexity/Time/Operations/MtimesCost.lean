@@ -9,7 +9,9 @@ public import CORALean.Global.Cost
 # `VPolytope.mtimesCost`
 
 Asserted, not proved: `Operations/Mtimes.lean` sends each of the `k` vertices
-through `M *ᵥ ·`, one matrix-vector product per vertex and nothing else.
+through `M *ᵥ ·`, one matrix-vector product per vertex, each writing its result inside
+`Cost.matVec`, and nothing
+else.
 -/
 
 -- Authors:       Claude Opus 5.5
