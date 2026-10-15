@@ -20,8 +20,9 @@ cubes, ...) unconstrained. CORA reaches this through the polynomial zonotope `cu
 generator column that is zero in all outputs. A linear monomial whose coefficient vanishes (a factor
 the cubic map does not depend on) disappears, and with it that factor's column of the constraint
 matrix: `A β = b` is imposed on the remaining factors alone, which is unsound
-(`ConZonotope.cubMapCora_not_outer`, `FINDINGS.md`). Here every linear generator is kept, zero or
-not, as the single-set `quadMap` does. `rescale` (it only tightens) and `ind` are not modelled.
+(`ConZonotope.cubMapCora_not_outer`, `references/coverage/contSet/conZonotope.md`, row `cubMap`).
+Here every linear generator is kept, zero or not, as the single-set `quadMap` does. `rescale` (it
+only tightens) and `ind` are not modelled.
 -/
 
 -- Authors:       Claude Opus 5.5

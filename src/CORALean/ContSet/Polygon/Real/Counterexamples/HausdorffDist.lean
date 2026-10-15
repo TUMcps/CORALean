@@ -13,7 +13,7 @@ The docstring promises the Hausdorff distance between a polygon and a point, and
 `0` for a point the polygon contains. For the unit square and its centre the Hausdorff distance
 is the distance of a corner to the centre, `√2 / 2`: it is at least that, as a corner of the
 square has to be within the bound of the point (`hausdorffDist₂_exists_mem_dist_le` with the point
-as the compact set). Entered in FINDINGS.md.
+as the compact set). Entered in `references/coverage/contSet/polygon.md`, row `hausdorffDist`.
 -/
 
 -- Authors:       Claude Sonnet 5.5

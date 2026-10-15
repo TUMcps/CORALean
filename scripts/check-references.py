@@ -608,7 +608,7 @@ def fix_decl_links(say):
         for n, _, priv in lean_decls(f):
             if not priv:
                 index.setdefault(n, set()).add(f.resolve())
-    pages = sorted(REFS.rglob("*.md")) + [ROOT / "FINDINGS.md"]
+    pages = sorted(REFS.rglob("*.md"))
     for page in pages:
         text = page.read_text(encoding="utf-8")
 
@@ -681,7 +681,7 @@ class CoraTable:
                 self.issues += 1
             elif CORA_ISSUE_PART.search(note):
                 say(f"{self.rel}: `{method}`: a note part starting `cora-issue` reads "
-                    "`cora-issue — <what CORA gets wrong, and where FINDINGS.md says so>`")
+                    "`cora-issue — <what CORA gets wrong, with its Lean witness>`")
 
     @property
     def rel(self):
@@ -1246,37 +1246,23 @@ def main():
 
     # --- findings ------------------------------------------------------------ #
 
-    # An error in a paper lives on that paper's page, beside the result. The
-    # index lists which pages have one, so the overview survives the split.
-    with_findings = {p.rel.relative_to(REFS.name).as_posix() for p in papers
-                     if re.search(r"^## Findings\s*$", p.path.read_text(encoding="utf-8"),
-                                  re.M)}
+    # An error in a paper lives on that paper's page, beside the result. There is
+    # no index of the pages that have one: the pages are the record.
     readme_text = (REFS / "README.md").read_text(encoding="utf-8") if \
         (REFS / "README.md").exists() else ""
-    m = re.search(r"^## Findings\s*$(.*?)(?=^## |\Z)", readme_text, re.S | re.M)
-    # links out of `references/` in that section are prose, not entries
-    listed_findings = {l for l in (LINK.findall(m.group(1)) if m else [])
-                       if not l.startswith("../")}
+    if re.search(r"^## Findings\s*$|<!-- findings -->", readme_text, re.M):
+        say("references/README.md: a list of the pages with findings is redundant; "
+            "each paper's page carries its own `## Findings`")
     # A paper error is recorded beside the result, so a page claiming one has to
-    # have the section the README indexes.
+    # have the section that says why.
     for paper in papers:
         bad = sorted(r for r, (k, _) in paper.verdicts.items()
                      if k in VERDICTS and k != "correct")
-        if bad and paper.rel.relative_to(REFS.name).as_posix() not in with_findings:
+        has_section = re.search(r"^## Findings\s*$", paper.path.read_text(encoding="utf-8"),
+                                re.M)
+        if bad and not has_section:
             say(f"{paper.rel}: {', '.join('`' + b + '`' for b in bad[:3])} is not "
                 "`correct`, and the page has no `## Findings` section to say why")
-    for miss in sorted(with_findings - listed_findings):
-        say(f"references/README.md: {miss} has a `## Findings` section and is not "
-            "listed under `## Findings` here")
-    for extra in sorted(listed_findings - with_findings):
-        say(f"references/README.md: lists {extra} under `## Findings`, but that page "
-            "has no `## Findings` section")
-
-    findings = ROOT / "FINDINGS.md"
-    if findings.exists() and "## Errors and omissions in the sources" in \
-            findings.read_text(encoding="utf-8"):
-        say("FINDINGS.md: an error in a paper belongs on that paper's page under "
-            "references/, not here")
 
     # --- the README against both -------------------------------------------- #
 

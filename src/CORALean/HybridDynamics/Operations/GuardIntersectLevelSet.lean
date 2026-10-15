@@ -12,9 +12,9 @@ box `interval(R{i})`, tightened by the contractor `tightenDomain` against the gu
 hull `|` of all of them. CORA wraps the contractor in a `try`, which keeps the box for a guard
 with `<=`; the identity is a contractor for every guard, so `contract` covers both. Step 4,
 `and_(guard, polyZonotope(I), 'approx')`, drops mixed second-order terms of the guard
-(FINDINGS.md, `LevelSet and_, solvable polynomial zonotope`), and is replaced by [1, Prop. 1]
-(`guardIntersectSolvable`) or [1, Prop. 2] (`guardIntersectUnsolvable`) on this box. The
-reach sets come as their boxes.
+(`references/coverage/hybridDynamics/location.md`, row `guardIntersect_levelSet`), and is replaced
+by [1, Prop. 1] (`guardIntersectSolvable`) or [1, Prop. 2] (`guardIntersectUnsolvable`) on this box.
+The reach sets come as their boxes.
 
 ## References
 

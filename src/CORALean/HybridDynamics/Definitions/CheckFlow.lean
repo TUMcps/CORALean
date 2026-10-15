@@ -23,8 +23,9 @@ orientation of the normal by the invariant (`aux_adaptGuard`), the caller's; the
 and the nonlinear flow, which evaluate Taylor models.
 
 CORA's linear branch adds `sys.c`, an `n×1` vector, to the scalar flow component where `c*sys.c`
-is meant, so for `n > 1` its test is a vector comparison (see FINDINGS.md). Here the offset is
-part of `inputSet`, and the component along `c` is taken of everything.
+is meant, so for `n > 1` its test is a vector comparison (see
+`references/coverage/hybridDynamics/location.md`, row `checkFlow`). Here the offset is part of
+`inputSet`, and the component along `c` is taken of everything.
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

@@ -69,5 +69,5 @@ the box must be nonempty (`lo ≤ hi`): for an empty `x` the radii are negative,
 `π : {1, …, m} → ({1, …, n} \ I_A)`, which subtracts the input set `I_A` from the set of output
 indices; it is read as `π : {1, …, m} \ I_A → {1, …, n}`, as the sentence after it says. The
 requirement that `π` be a map — each input existential in one component only — is what CORA's
-`'parallelo'` loses ([FINDINGS.md](../../FINDINGS.md), "NonlinearSys `reachInner`, `'parallelo'`";
+`'parallelo'` loses ([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md);
 `prod_inner_ranges_not_subset_image`).

@@ -19,7 +19,7 @@ tmax]`, for a run of `ẋ = Ax + u`, `u ∈ U`, from `x₀ ∈ R₀` and the flo
 `W = |e^{|A|tmax} − ∑ᵢ₌₀^η (|A|tmax)ⁱ/i!|`. Interval products are CORA's (`Interval.mulLo`,
 `Interval.mulHi`, `Zonotope.mtimesIntervalMat`; `[a, b] Z` as `[a, b] I` times `Z`). `err1`
 accumulates its summands, which CORA's assignment `err1 = M * (...)` in the loop does not
-(FINDINGS.md, `Location guardIntersect_hyperplaneMap, abstraction error and quadratic map`).
+(`references/coverage/hybridDynamics/location.md`, row `guardIntersect_hyperplaneMap`).
 
 ## References
 

@@ -13,7 +13,8 @@ public import CORALean.HybridDynamics.Operations.NonlinearResetGlobalRank
 
 `nonlinearReset/resolve` as CORA's code does it: the last step `subs(f_sym, u_sym(idxGlobalInput),
 u_sym(1:numGlobalInputs))` numbers the globally bound inputs `1, 2, ...` in the order they occur
-and ignores the global index they are bound to (FINDINGS.md).
+and ignores the global index they are bound to
+(`references/coverage/hybridDynamics/nonlinearReset.md`, row `resolve`).
 -/
 
 -- Authors:       Claude Opus 5.5

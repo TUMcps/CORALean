@@ -17,7 +17,8 @@ the hull vertices given as corner assignments (`convhulln` is not modelled).
 # CORA's `isPolytope` accepts a non-polytope
 
 `PolyZonotope.coraAccepts` holds for `PolyZonotope.isPolytopeCex` and its four hull vertices,
-so the `true` path of `isPolytope` [1] fires, though the set is not convex (FINDINGS.md).
+so the `true` path of `isPolytope` [1] fires, though the set is not convex
+(`references/coverage/contSet/polyZonotope.md`, row `isPolytope`).
 
 ## References
 

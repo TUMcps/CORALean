@@ -12,8 +12,7 @@ class, then method. Four columns:
 * the CORA function, `\\texttt{<class>/<method>}`, from the coverage file and the row's method
   cell; a row whose result is unsound is marked with an asterisk;
 * a few words on what CORA gets wrong, from `experiments/paper/cora-bugs.json` (written by hand
-  from the row's `cora-issue —` text and the FINDINGS.md row it cites; LaTeX-escaped here outside
-  `$...$`), with the `kind` of the bug: `unsound` (the result can miss reachable states, is not
+  from the row's `cora-issue —` text; LaTeX-escaped here outside `$...$`), with the `kind` of the bug: `unsound` (the result can miss reachable states, is not
   the enclosure it claims to be, or is a wrong verdict a verification relies on) or `other` (too
   large, a wrong flag, a crash or error path, a documented behaviour that is not the code's);
 * the Lean counterexample: the entry's `cex` if it has one (`null`: none), else the first linked file in a `Counterexamples/` folder or named
@@ -23,16 +22,14 @@ class, then method. Four columns:
   links that is not a counterexample and does not transcribe CORA (`Cora` in its name); a row
   whose state is `—` has none.
 
-The files a row links are those of its third column and of its note, plus those of the FINDINGS.md
-rows whose subject names the row's class and method (and the subjects the entry lists under
-`findings`). A `cex` or `fix` override is a file's name (or its path when two linked files share
+The files a row links are those of its third column and of its note (the note carries the full
+text of what CORA gets wrong and the Lean files that witness it). A `cex` or `fix` override is a file's name (or its path when two linked files share
 the name) and must be one of them. A cell without a file is `---`. Links go to
 `\\coraleanrepo/<path>`, a macro the table `\\providecommand`s as the repository's `main`.
 
 Problems reported: a `cora-issue` row without an entry, an entry that matches no such row, a
 `kind` that is neither `unsound` nor `other`, a description over ten words, a `cex`/`fix` that is
-not a linked file, a `fix` on a row whose state is `—`, a `findings` subject that is no FINDINGS.md
-row.
+not a linked file, a `fix` on a row whose state is `—`.
 """
 
 # Authors:       Tobias Ladner
@@ -56,28 +53,6 @@ MAX_WORDS = 10
 
 def json_path(cr):
     return cr.ROOT / "experiments" / "paper" / "cora-bugs.json"
-
-
-def findings_rows(cr):
-    """`[(subject, [linked Lean files])]` of the FINDINGS.md table."""
-    out = []
-    for cells in cr.rows_of((cr.ROOT / "FINDINGS.md").read_text(encoding="utf-8")):
-        if len(cells) != 3 or cells[0] == "Subject":
-            continue
-        files = []
-        for link in cr.LINK.findall(cells[2]):
-            target = (cr.ROOT / link).resolve()
-            if link.endswith(".lean") and target.exists() and target not in files:
-                files.append(target)
-        out.append((cells[0], files))
-    return out
-
-
-def names_in(subject, cls, method):
-    """Whether a FINDINGS.md subject is about `cls`'s `method`."""
-    s = subject.lower().replace("@", "")
-    word = rf"(?<![A-Za-z]){re.escape(method)}(?![A-Za-z])"
-    return cls.lower() in s and re.search(word, subject) is not None
 
 
 def coverage_rows(cr):
@@ -142,8 +117,6 @@ def table(cr):
     jrel = jp.relative_to(cr.ROOT).as_posix()
     problems = []
     data = json.loads(jp.read_text(encoding="utf-8"))
-    frows = findings_rows(cr)
-    subjects = {s for s, _ in frows}
     rows = coverage_rows(cr)
     seen = set()
     body = []
@@ -156,14 +129,9 @@ def table(cr):
         if entry is None:
             problems.append(f"{where} has a `cora-issue` note and no entry in {jrel}")
             entry = {}
-        extra = entry.get("findings", [])
-        for s in extra:
-            if s not in subjects:
-                problems.append(f"{where}: `findings` subject `{s}` is no FINDINGS.md row")
+        if "findings" in entry:
+            problems.append(f"{where}: `findings` is obsolete; the row's note carries the text and the links")
         files = list(row["links"])
-        for subject, ffiles in frows:
-            if names_in(subject, row["cls"], row["method"]) or subject in extra:
-                files += [f for f in ffiles if f not in files]
         kind = entry.get("kind")
         if kind not in KINDS:
             problems.append(f"{where}: `kind` is `{kind}`, not one of {', '.join(KINDS)}")
@@ -175,8 +143,7 @@ def table(cr):
         elif "cex" in entry:
             cex = find_file(cr, entry["cex"], files)
             if cex is None:
-                problems.append(f"{where}: cex `{entry['cex']}` is not a Lean file the row or "
-                                "its FINDINGS.md row links")
+                problems.append(f"{where}: cex `{entry['cex']}` is not a Lean file the row links")
         else:
             cex = next((p for p in files if is_cex(p)), None)
             if cex is None:
@@ -189,8 +156,7 @@ def table(cr):
         elif "fix" in entry:
             fix = find_file(cr, entry["fix"], files)
             if fix is None:
-                problems.append(f"{where}: fix `{entry['fix']}` is not a Lean file the row or "
-                                "its FINDINGS.md row links")
+                problems.append(f"{where}: fix `{entry['fix']}` is not a Lean file the row links")
             elif row["state"] == "—":
                 problems.append(f"{where}: state is `—`, so there is no fix, but its entry names one")
         elif row["state"] != "—":

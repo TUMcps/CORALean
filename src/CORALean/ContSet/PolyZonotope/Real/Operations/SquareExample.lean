@@ -11,7 +11,8 @@ public import CORALean.ContSet.Interval.Real.Interval
 The polynomial zonotope `{α² | α ∈ [-1, 1]}` in `ℝ¹`: one dependent factor, one generator `1`
 at the exponent `2`, no independent generators. CORA's `isPolytope` [1] answers `false` for it at
 its first test, "a variable appears with exponent greater than 1", while the set is the
-interval `[0, 1]` (`squareExample_construct`), a polytope (FINDINGS.md).
+interval `[0, 1]` (`squareExample_construct`), a polytope
+(`references/coverage/contSet/polyZonotope.md`, row `isPolytope`).
 
 ## References
 

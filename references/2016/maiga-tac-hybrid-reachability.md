@@ -56,7 +56,7 @@ along u", computed "by the scalar product u · rad". `u · rad` is signed in `u`
 (`Σⱼ (u · xⱼ)² = Σⱼ ‖xⱼ‖² = 4`), but `rad = (1, 1)`, so `u · rad = 0` and `g = 0` for every ratio. Step 2 of
 `compress` is then `u = g/‖g‖ = 0/0`. The largest projection is bounded by `|u| · rad` (componentwise absolute
 value), not `|u · rad|`. CORA's `aux_cloud2zonotope` copies the step and divides `0/0` in MATLAB, so the points
-become `NaN` (read from the source, not run); see [FINDINGS.md](../../FINDINGS.md). The same `0/0` is reached
+become `NaN` (read from the source, not run); see [`zonotope` `enclosePoints`](../coverage/contSet/zonotope.md). The same `0/0` is reached
 whenever the cloud is a single point (`rad = 0`) and, in Alg. 5, at `ratio = 0`, the first value of the printed
 grid. Lean's `x/0 = 0` makes `cloud2zonotopeCompress` the identity at `g = 0`, so the formalized
 algorithm is total, and encloses all the same (`Zonotope.cloud2zonotope_mem`); it simply does not compress.

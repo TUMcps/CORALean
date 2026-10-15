@@ -22,7 +22,8 @@ For `f(x, u) = (x₁ + u, x₂²)`, `x = zonotope([0; 1], eye(2))` and `u = zono
 `(0, 1, 0)`, `dz = (1, 1, 0)`, the Hessian of output 1 is `0` and that of output 2 is `2` at
 `(x₂, x₂)`. Output 2 is `1 + 2 (x₂ - 1)`, range `[-1, 3]`, plus the second-order term. CORA's
 term is `0`, so it returns `[-1, 3]`, but `x₂ = 2` gives `4`. With its own Hessian the term is `1`
-and `[-2, 4]` holds `4`. Read from `evaluate.m` l. 117-121, 132-137, not run (`FINDINGS.md`).
+and `[-2, 4]` holds `4`. Read from `evaluate.m` l. 117-121, 132-137, not run
+(`references/coverage/hybridDynamics/nonlinearReset.md`, row `evaluate`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

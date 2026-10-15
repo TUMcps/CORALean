@@ -16,7 +16,8 @@ is `frontier`, which the segments of a single boundary loop cover; the loop's `N
 (several regions, holes) are not modelled. The distance is taken in the Euclidean norm, through
 `toEuclidean`, as `Vec` carries the supremum norm. The polygon–polygon branch reads vertices of
 boundary loops (R-PG) and is not defined here. The value is the largest distance from a point
-to the polygon, one direction of the Hausdorff distance, not both (FINDINGS.md).
+to the polygon, one direction of the Hausdorff distance, not both
+(`references/coverage/contSet/polygon.md`, row `hausdorffDist`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

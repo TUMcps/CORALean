@@ -14,7 +14,8 @@ of all components; input `col` is the global input it is bound to or the `l`-th 
 component it is bound to, which is that component's interval extension at the boxes of its states
 and of its globally bound inputs (a locally bound one is the origin, as in the real `resolve`). It
 places existing bounds, so no rounding enters beyond the extensions'. CORA numbers the global
-inputs differently, see `NonlinearReset.resolveCORA` and FINDINGS.md.
+inputs differently, see `NonlinearReset.resolveCORA` and
+`references/coverage/hybridDynamics/nonlinearReset.md`, row `resolve`.
 -/
 
 -- Authors:       Claude Opus 5.5

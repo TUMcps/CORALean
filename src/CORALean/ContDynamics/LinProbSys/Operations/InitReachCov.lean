@@ -10,7 +10,8 @@ public import CORALean.ContDynamics.LinProbSys.LinProbSys
 `priv_inputSolution` of `linProbSys/initReach` [1] takes the eigendecomposition `A = V Λ V⁻¹`,
 `D = (V⁻¹C)(V⁻¹C)ᵀ`, `Σ_ij = D_ij/(λ_i + λ_j) (1 - e^{-(λ_i+λ_j) r})` and returns `V Σ Vᵀ`. At a
 diagonal `A = diag(l)`, `V = I`, this is `D_ij/(l_i + l_j) (1 - e^{-(l_i+l_j) r})`: the form
-[2, Sec. II] prints. It is the covariance for the drift `-A`, not `A`, see FINDINGS.md.
+[2, Sec. II] prints. It is the covariance for the drift `-A`, not `A`, see
+`references/coverage/contDynamics/linProbSys.md`, row `initReach`.
 
 ## References
 

@@ -14,7 +14,8 @@ passes the loop anyway.
 
 CORA's `supportFunc_` returns `Inf` whenever every `Aᵢ` is zero and `A₀ ⪰ 0`, whatever `G` is
 (`SpectraShadow.supportFuncCoraAllZero`), so CORA calls the point `{c}` of `G = 0` unbounded;
-`isBounded` here is the loop over the true support values. See `FINDINGS.md`.
+`isBounded` here is the loop over the true support values. See
+`references/coverage/contSet/spectraShadow.md`, row `isBounded`.
 -/
 
 -- Authors:       Claude Opus 5.5

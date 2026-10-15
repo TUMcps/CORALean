@@ -18,7 +18,7 @@ semantics, with a counterexample in Lean, and so do two other claims at their ed
 
 CORA's `robustnessEncodingMILP` encodes the until directly as the robust semantics, a maximum over
 `t'` of the minimum of `r^{φ₂}_{t'}` and `r^{φ₁}` on `[t, t']` (`rTmp = [r2(index(i)); r1(cnt:index(i))]`),
-not by the printed decomposition; it does not have the finding below, and no FINDINGS row is
+not by the printed decomposition; it does not have the finding below, and no coverage note is
 needed. Its minimum gadget keeps (3), (4) and the lower half of (5), the upper half being implied
 by (4).
 

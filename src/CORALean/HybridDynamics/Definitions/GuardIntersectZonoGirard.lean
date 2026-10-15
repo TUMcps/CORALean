@@ -21,7 +21,8 @@ is returned. Linear-programming duality makes it the scan's number, but only the
 is proved (`guardIntersectZonoGirard_outer`).
 
 Left out: `aux_tightenSet` (the guard's inequality constraints) and `aux_robustProjection`, which
-pins a coordinate to `γ n_ind`, the hyperplane value only for `‖n‖ = 1` (see FINDINGS.md).
+pins a coordinate to `γ n_ind`, the hyperplane value only for `‖n‖ = 1` (see
+`references/coverage/hybridDynamics/location.md`, row `guardIntersect_zonoGirard`).
 
 ## References
 

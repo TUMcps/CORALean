@@ -19,7 +19,8 @@ starts from the caller's `adm_x`, `adm_y`, not line 1's `{0}`. Lines 6-7 are one
 at `Ū`. Line 10: `L ⊆ L̄` part by part, `errorInt ≤ adm` — CORA's `perfInd <= 1` without the
 division, which in Lean (`x/0 = 0`) would accept any error where `adm` is `0`; there is no
 `L_max` exit and no split (lines 11-16), `fuel` replacing both with `none`. `L̄ᵃ` enters with
-`-CF⁻¹` where CORA adds it (FINDINGS.md).
+`-CF⁻¹` where CORA adds it (`references/coverage/contDynamics/nonlinDASys.md`, row
+`linReach_adaptive`).
 
 ## References
 

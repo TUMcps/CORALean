@@ -12,7 +12,8 @@ CORA's `reduce(probZ, 'girard', order)`: the mean zonotope is reduced as a zonot
 `reduce(zonotope(probZ.Z), 'girard', order)`, and the covariance is kept (CORA's `probReduce`,
 for a `probZ` whose `gauss` flag is not set, only reorders the generators of the same
 covariance). CORA's second option `'althoff'` ("order set to 1") is not formalized: the zonotope
-`reduce` it calls has no such method and throws (FINDINGS.md).
+`reduce` it calls has no such method and throws (`references/coverage/contSet/probZonotope.md`, row
+`reduce`).
 -/
 
 -- Authors:       Claude Opus 5.5

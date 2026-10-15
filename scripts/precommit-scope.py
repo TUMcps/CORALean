@@ -131,7 +131,7 @@ def main():
             if path.endswith(".lean") or status != "M":
                 conv_full = refs = True      # a file appears, goes or changes type
         else:
-            refs = True                      # references/, FINDINGS.md, scripts/, ...
+            refs = True                      # references/, scripts/, ...
             if path.startswith(CONVENTION_INPUTS):
                 conv_full = True
     if edited:

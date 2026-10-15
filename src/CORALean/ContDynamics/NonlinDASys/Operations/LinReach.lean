@@ -19,12 +19,12 @@ set. The Jacobian blocks, `F⁻¹`, `f(z*)`, `g(z*)` and the error sets are data
 
 Departures from CORA, on purpose. The error sets `Verror` (the dynamics', `ℓᵈ - C F⁻¹ ℓᵃ`)
 and `Verror_y` (the constraint's, `ℓᵃ`) are arguments: CORA's `priv_linError_mixed_noInt` adds
-`CF_inv` times the algebraic error where [1, Cor. 1] subtracts it (FINDINGS.md), and
-`NonlinDASys.linError` is the corrected set. The `while` loop that grows the assumed error
-until it covers the computed one becomes the region the theorem confines the run to.
-`Verror` joins the time-varying input of `oneStep`, where CORA adds
-`particularSolution_timeVarying(Verror)` to both sets afterwards; the algebraic set is the
-second component of the joint set, which CORA builds as `R_xy` and projects.
+`CF_inv` times the algebraic error where [1, Cor. 1] subtracts it
+(`references/coverage/contDynamics/nonlinDASys.md`, row `linReach`), and `NonlinDASys.linError` is
+the corrected set. The `while` loop that grows the assumed error until it covers the computed one
+becomes the region the theorem confines the run to. `Verror` joins the time-varying input of
+`oneStep`, where CORA adds `particularSolution_timeVarying(Verror)` to both sets afterwards; the
+algebraic set is the second component of the joint set, which CORA builds as `R_xy` and projects.
 
 ## References
 

@@ -29,7 +29,8 @@ second step is `e^{AΔt}` applied to the first, curvature included, so the box h
 Modelled in `ℝⁿ` for `R0 = {0}`, `U = {0}`: `e` is `e^{AΔt}` (a map), `Pu` the constant-input
 solution of the first step, `C` the box `C_input`. The time-interval hull of step 1 is the segment
 `[0, Pu]` (`enclose({0}, {Pu})`, `C_state = F * {0} = {0}`). Read from the source, not run; the
-`x₁`-extent below is also reproduced numerically in `ℝ²` (see `FINDINGS.md`).
+`x₁`-extent below is also reproduced numerically in `ℝ²` (see
+`references/coverage/contDynamics/linearSys.md`, row `reach`).
 
 # CORA's `reach` with `linAlg = 'standard'` misses a state of the second step
 

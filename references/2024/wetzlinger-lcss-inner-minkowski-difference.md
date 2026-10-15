@@ -85,8 +85,7 @@ and the constant input `w = f(x*) - Ax*` is `0`, so `C = 0` (17); hence `c = 0` 
 its first coordinate is in `[-1/10, 1/10]` (`convexHull_timeInterval_convex_counterexample`).
 The convex correction is therefore no correction, and the row stays `false`: what `Lemma 1`
 gives, for each fixed `t` and a convex X₀, is the shrunk image of the convex
-`((1 - t/Δt)I + (t/Δt)e^{AΔt})X₀ + (t/Δt)R_con` (where that matrix is invertible), and the union of these over `t` is not the hull. CORA's `linReachInner` computes (23) (FINDINGS.md,
-"NonlinearSys `reachInner`, `'minkdiff'`").
+`((1 - t/Δt)I + (t/Δt)e^{AΔt})X₀ + (t/Δt)R_con` (where that matrix is invertible), and the union of these over `t` is not the hull. CORA's `linReachInner` computes (23) ([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md)).
 [`ConvexHullTimeIntervalConvex.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ConvexHullTimeIntervalConvex.lean)
 
 **`Alg. 1` — the output is `Prop. 2`'s.** The listing ensures that R̂(τ) = ⋃_k R̂(τ_k) (line

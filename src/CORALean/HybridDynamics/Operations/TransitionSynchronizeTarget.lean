@@ -10,7 +10,7 @@ public import CORALean.HybridDynamics.Definitions.Transition
 The target tuple of CORA's `transition/synchronize`: `locID` with component `compIdx i` moved to
 the target of transition `i`. The targets are typed by the component (`L (compIdx i)`), so the
 component is `compIdx i`, which CORA's loop does not use (`Transition.synchronizeTargetCORA`,
-`FINDINGS.md`).
+`references/coverage/hybridDynamics/transition.md`, row `synchronize`).
 -/
 
 -- Authors:       Claude Opus 5.5

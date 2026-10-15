@@ -23,7 +23,8 @@ segment). So the points of the shifted minuend off that region are those whose t
 subtrahend does not meet the boundary, and a convex set that meets no boundary and starts inside
 stays inside. Hence `Polygon.minkDiff` lies in the Minkowski difference `{x | x + B ⊆ A}` and
 contains its interior: exact up to boundary points, an inner approximation as it stands.
-A non-convex subtrahend is not covered: `linComb` then also fills its gaps (FINDINGS.md).
+A non-convex subtrahend is not covered: `linComb` then also fills its gaps
+(`references/coverage/contSet/polygon.md`, row `minkDiff`).
 -/
 
 -- Authors:       Claude Sonnet 5.5

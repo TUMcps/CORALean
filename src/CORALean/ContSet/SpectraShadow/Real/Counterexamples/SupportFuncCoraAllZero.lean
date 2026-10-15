@@ -13,7 +13,8 @@ The `'upper'` value CORA's `@spectraShadow/supportFunc_` returns when every `A�
 are. With every `Aᵢ` zero the inequality does not involve `β`, so the set is `c + range G` or
 empty, and the support in direction `d` is `dᵀc` when `dᵀG = 0`, in particular for `G = 0`.
 Formalized as the code computes it, to state the counterexample
-`SpectraShadow.supportFuncCoraAllZero_ne_supportFunc`; see `FINDINGS.md`.
+`SpectraShadow.supportFuncCoraAllZero_ne_supportFunc`; see
+`references/coverage/contSet/spectraShadow.md`, row `supportFunc_`.
 
 # `SpectraShadow.supportFuncCoraAllZero_ne_supportFunc`
 

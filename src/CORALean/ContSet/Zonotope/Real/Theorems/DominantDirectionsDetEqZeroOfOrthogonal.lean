@@ -12,7 +12,8 @@ If the generators the length filter keeps all lie in a hyperplane (are orthogona
 `y`), then every subset the volume filter can pick spans less than `n` dimensions and the answer
 is singular, whatever the remaining generators of `Z` do. The stated guarantee, a parallelotope
 enclosing `Z`, then fails although `Z` may be full-dimensional: a zonotope with `n + 5` long
-generators along one axis and a few short transversal ones has this shape (FINDINGS.md).
+generators along one axis and a few short transversal ones has this shape
+(`references/coverage/contSet/zonotope.md`, row `dominantDirections`).
 
 Source: [1].
 

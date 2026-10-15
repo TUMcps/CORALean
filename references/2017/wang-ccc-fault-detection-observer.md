@@ -17,7 +17,7 @@ zonotope's it holds. The `H₋` condition is printed with an unsquared norm. The
 Eqs. 16 and 17, 24 and 25, 25 and 26, and 26 and 27 are each proved, the Schur complement of Eq. 26
 in both directions; the direction the design uses, from Eq. 27 to the `H₋` performance, is proved
 directly as well. CORA's `PRad-E` assembles Eq. 17 with a block untransposed
-(FINDINGS).
+([`linearSysDT` `executeObserver`](../coverage/contDynamics/linearSysDT.md)).
 
 ## Results
 

@@ -20,9 +20,10 @@ vanishes (`Lemma 3`, `Lemma 4`) while its share `ε^{n,τ}_k` (eq. 38) approache
 *positive* constant, `t_k < t_end` being what makes it positive.
 
 What is not formalizable here is [1]'s word "terminates": its `Δt_k` loop searches without
-a bound, ours takes a `fuel` and returns `Option` (root `FINDINGS.md`), so `autoTuneDeltaT`
-terminates by construction and that would prove nothing. What transfers is that the search
-is not vacuous — some fuel suffices — and that is what is stated.
+a bound, ours takes a `fuel` and returns `Option` (the departures table of
+`references/coverage/README.md`), so `autoTuneDeltaT` terminates by construction and that would
+prove nothing. What transfers is that the search is not vacuous — some fuel suffices — and that is
+what is stated.
 
 The check must be complete here, `a ≤ b → le a b = true`: a check that gives up early is
 sound but need never report anything.

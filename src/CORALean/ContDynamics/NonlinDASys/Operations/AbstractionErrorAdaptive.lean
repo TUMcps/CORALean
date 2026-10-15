@@ -13,10 +13,11 @@ public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 CORA's `private/priv_abstractionError_adaptive` for `tensorOrder == 2`: the errors of
 [1, Cor. 1] over `dz = [dx; dy; du]`, the dynamics' `Z_error_x`, the constraint's `Z_error_y`, and
 `Z_error`, with the sizes `errorInt_x`, `errorInt_y`, `errorInt`. CORA's `Z_error = Z_error_x +
-CF_inv Z_error_y` adds the algebraic error where the linearized DAE subtracts it (FINDINGS.md);
-here it is `Z_error_x - CF_inv Z_error_y`, `NonlinDASys.linError`. The Hessian intervals are
-data (`nlnsysDA.hessian`), `R_y` the joint set of the pass run with `Z_error_y`, the third-order
-branch is not formalized. CORA's tuning.
+CF_inv Z_error_y` adds the algebraic error where the linearized DAE subtracts it
+(`references/coverage/contDynamics/nonlinDASys.md`, row `linReach_adaptive`); here it is
+`Z_error_x - CF_inv Z_error_y`, `NonlinDASys.linError`. The Hessian intervals are data
+(`nlnsysDA.hessian`), `R_y` the joint set of the pass run with `Z_error_y`, the third-order branch
+is not formalized. CORA's tuning.
 
 ## References
 

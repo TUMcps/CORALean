@@ -11,7 +11,7 @@ public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 `{α² | α ∈ [-1, 1]} = [0, 1]`: a square lies in `[0, 1]` there, and `√x` is the factor reaching `x`.
 So the set is a polytope although it has an exponent of two, which CORA's `isPolytope` [1] takes
-as proof that it is not (FINDINGS.md).
+as proof that it is not (`references/coverage/contSet/polyZonotope.md`, row `isPolytope`).
 
 ## References
 

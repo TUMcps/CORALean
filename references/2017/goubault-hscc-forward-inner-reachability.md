@@ -55,7 +55,7 @@ enclosures, both components are `[-1, 1]` while the reachable set is the diamond
 argument of Goubault and Putot's 2020 `Thm. 3` (Brouwer), see
 [that page](../2020/goubault-lcss-robust-underapproximations.md). CORA's `'proj'` stores the
 box as its inner approximation, and writes `(-∞, ∞)` for a component whose (18) is proper
-([FINDINGS.md](../../FINDINGS.md), "NonlinearSys `reachInner`, `'proj'`").
+([`nonlinearSys` `reachInner`](../coverage/contDynamics/nonlinearSys.md)).
 
 **`Alg. 1` — the Taylor models are an argument.** Steps 1 and 2 compute enclosures by the interval
 Picard-Lindelöf iteration and the Taylor models (15)-(17), whose validity is that of the

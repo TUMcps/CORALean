@@ -15,7 +15,8 @@ of component `i` bound to the `l`-th output `y_c(x_c, u_c)` of component `c` is 
 where `u_c` is `c`'s input, of which only the globally bound entries may enter (CORA throws if the
 output depends on a locally bound one), and a globally bound input is the global input it is bound
 to: input `a` of the product is `v a`. CORA numbers the global inputs differently, see
-`NonlinearReset.resolveCORA` and FINDINGS.md.
+`NonlinearReset.resolveCORA` and `references/coverage/hybridDynamics/nonlinearReset.md`, row
+`resolve`.
 -/
 
 -- Authors:       Claude Opus 5.5
