@@ -30,8 +30,8 @@ theorem STLInterval.representsa_point_zero_iff (I : STLInterval) :
     I.representsa_ 0 .point ↔ ∃ x : ℝ, I.set = {x} := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.representsa_, STLInterval.set]
-  | nonempty l u lc rc a b c =>
-    simp only [STLInterval.representsa_, withinTol_zero, set_eq_singleton_iff a b c]
+  | nonempty l u lc rc a b c z =>
+    simp only [STLInterval.representsa_, withinTol_zero, set_eq_singleton_iff a b c z]
     constructor
     · rintro ⟨hc, hr, x, y, rfl, rfl, h⟩
       have : y = x := by

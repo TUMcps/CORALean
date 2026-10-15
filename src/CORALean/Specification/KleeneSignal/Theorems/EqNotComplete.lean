@@ -35,8 +35,7 @@ theorem KleeneSignal.eq_not_complete :
   -- the signal that is `Unknown` throughout, and its negation
   let a : KleeneSignal ℝ := KleeneSignal.indicator STLInterval.empty .uu .uu
   have ha : a.IsValid ∧ ∀ t : ℝ, 0 ≤ t → a.at t = .uu := by
-    obtain ⟨hv, hat⟩ := KleeneSignal.indicator_spec STLInterval.empty (fun f h => by cases h) .uu
-        .uu
+    obtain ⟨hv, hat⟩ := KleeneSignal.indicator_spec STLInterval.empty .uu .uu
     exact ⟨hv, fun t ht =>
       (hat t ht).2 (by simp [STLInterval.set_empty])⟩
   refine ⟨a, a.not, ha.1, KleeneSignal.not_isValid _ ha.1, fun t ht => ?_, ?_⟩

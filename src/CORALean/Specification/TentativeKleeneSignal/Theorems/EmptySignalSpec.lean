@@ -1,7 +1,6 @@
 module
 
 public import CORALean.Specification.PointSegmentSignal.Theorems.IndicatorSpec
-public import CORALean.Specification.STLInterval.Theorems.LowerStlInterval
 public import CORALean.Specification.TentativeKleeneSignal.Definitions.IsValid
 public import CORALean.Specification.TentativeKleeneSignal.Operations.Basic
 
@@ -29,12 +28,11 @@ namespace CORALean
 theorem TentativeKleeneSignal.emptySignal_spec :
     TentativeKleeneSignal.emptySignal.IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       TentativeKleeneSignal.emptySignal.at t = FourValued.ii := by -- --- PROOF ---
-  have hI : ∀ f, (STLInterval.stlInterval 0 ⊤ true true).fieldsOf = some f → 0 ≤ f.lower :=
-    fun f hf => (STLInterval.lower_stlInterval _ _ _ _ f hf).symm.le
-  obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec _ hI false false
+  obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (STLInterval.stlInterval 0 ⊤ true true le_rfl)
+    false false
   refine ⟨⟨hv, hv⟩, fun t ht => ?_⟩
   simp only [TentativeKleeneSignal.emptySignal, TentativeKleeneSignal.at]
-  by_cases hm : t ∈ (STLInterval.stlInterval 0 ⊤ true true).set
+  by_cases hm : t ∈ (STLInterval.stlInterval 0 ⊤ true true le_rfl).set
   · rw [(h t ht).1 hm]
   · rw [(h t ht).2 hm]
 

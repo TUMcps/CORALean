@@ -35,17 +35,17 @@ namespace CORALean
 
 -- The model: CORA's code as printed, kept only to be refuted.
 noncomputable def STLInterval.minkDiffCora : STLInterval → STLInterval → Option STLInterval.Fields
-  | _, .empty => fieldsOf (stlInterval 0 ⊤ true false)
+  | _, .empty => fieldsOf (stlInterval 0 ⊤ true false le_rfl)
   | .empty, _ => none
-  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
+  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ _ =>
     let lb := l₁ - l₂
     let ub : Option EReal := if u₁ = ⊤ ∧ u₂ = ⊤ then none else some (u₁ - u₂)
     let lc := lc₁ || !lc₂
     let rc := rc₁ || !rc₂
     match ub with
     | none => if lb < 0 then some ⟨0, none, true, rc⟩ else some ⟨lb, none, lc, rc⟩
-    | some ub => if lb < 0 then fieldsOf (stlInterval 0 ub true rc)
-      else fieldsOf (stlInterval lb ub lc rc)
+    | some ub => if h : lb < 0 then fieldsOf (stlInterval 0 ub true rc le_rfl)
+      else fieldsOf (stlInterval lb ub lc rc (not_lt.1 h))
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -54,7 +54,7 @@ theorem STLInterval.minkDiffCora_counterexample :
     ∃ (I J : STLInterval) (t : ℝ), (0 ≤ t ∧ ∀ y ∈ J.set, t + y ∈ I.set) ∧
       ¬ STLInterval.fieldsContainsPoint (STLInterval.minkDiffCora I J) t := by -- --- PROOF ---
   -- the operands are `[0, ∞)`, `stlInterval(0,inf)`
-  let I : STLInterval := .nonempty 0 ⊤ true false (by simp) (by simp) (Or.inl (by simp))
+  let I : STLInterval := .nonempty 0 ⊤ true false (by simp) (by simp) (Or.inl (by simp)) le_rfl
   refine ⟨I, I, 1, ⟨zero_le_one, fun y hy => ?_⟩, ?_⟩
   · -- `1 + y ≥ 0` for `y ≥ 0`
     have hy0 : 0 ≤ y := by

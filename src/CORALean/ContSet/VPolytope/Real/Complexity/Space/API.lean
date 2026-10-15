@@ -1,10 +1,6 @@
 module
 
-public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Plus
-public import CORALean.ContSet.VPolytope.Real.Complexity.Space.LinComb
-public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Basic
-public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Bilin
-public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Intersection
+public import CORALean.ContSet.VPolytope.Real.Complexity.Space.Theorems.API
 
 /-!
 # What `VPolytope` costs
@@ -16,7 +12,8 @@ instance in `Operations/`.
 
 `intersection` is the exception: it goes out to halfspaces and enumerates vertices back,
 so its count is `2 ^ m` on the rows the round trip built, or zero if that
-turned out infeasible — `Intersection.lean` states both, since no single formula covers
+turned out infeasible — `Theorems/IntersectionKOfNonempty.lean` and
+`Theorems/IntersectionKOfEmpty.lean` state both, since no single formula covers
 the branch the operation's own `Nonempty` check decides.
 
 `bilin_k_isBigO` puts `bilin`'s quadratic count in `O`-notation, the shape the

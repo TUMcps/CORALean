@@ -15,7 +15,7 @@ public import CORALean.Specification.STLInterval.Theorems.Basic
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -29,17 +29,18 @@ open scoped Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `plusInterval` denotes the sum with the closed interval `[inf, sup]`. -/
-theorem STLInterval.set_plusInterval (I : STLInterval) (J : Real.Interval (Vec ℝ 1)) :
-    (I.plusInterval J).set = I.set + Set.Icc (J.inf 0) (J.sup 0) := by -- --- PROOF ---
+theorem STLInterval.set_plusInterval (I : STLInterval) (J : Real.Interval (Vec ℝ 1))
+    (hc : I ≠ .empty → ¬ J.sup 0 < J.inf 0 → 0 ≤ I.lowerBound + J.inf 0) :
+    (I.plusInterval J hc).set = I.set + Set.Icc (J.inf 0) (J.sup 0) := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.plusInterval, STLInterval.set]
-  | nonempty l u lc rc a b c =>
+  | nonempty l u lc rc a b c _ =>
     simp only [STLInterval.plusInterval]
     by_cases h : J.sup 0 < J.inf 0
-    · rw [if_pos h]
+    · rw [dif_pos h]
       simp [STLInterval.set, Set.Icc_eq_empty_of_lt h]
-    · rw [if_neg h, set_stlInterval, ← rawSet_closed_coe]
-      have := rawSet_add (set_nonempty _ _ _ _ a b c) (rawSet_closed_nonempty (not_lt.1 h))
+    · rw [dif_neg h, set_stlInterval, ← rawSet_closed_coe]
+      have := rawSet_add (rawSet_nonempty_of _ _ _ _ a b c) (rawSet_closed_nonempty (not_lt.1 h))
       simpa [STLInterval.set] using this
 
 end CORALean

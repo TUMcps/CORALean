@@ -47,10 +47,11 @@ open Classical in
 noncomputable def PointSegmentSignal.intervalUntil (lhsInt : List STLInterval)
     (untilInt : STLInterval) (rhsInt : List STLInterval) : PointSegmentSignal ℝ :=
   -- 1. out = pointSegmentSignal.indicator(stlInterval(0,inf),false,false)
-  let out := PointSegmentSignal.indicator (STLInterval.stlInterval 0 ⊤ true true) false false
+  let out := PointSegmentSignal.indicator (STLInterval.stlInterval 0 ⊤ true true le_rfl) false false
   -- 2. untilIntNoZero: if untilInt.contains(0), the interval `(0,ub]` or `(0,ub)` of its supremum
   let untilIntNoZero := if untilInt.containsPoint 0 0 then
     STLInterval.stlInterval 0 (untilInt.supremum.value.getD 0) false untilInt.supremum.closed
+      le_rfl
     else untilInt
   -- 3. for each pair, the times `t` with a witness `t'`: set them to true unless there are none
   let out := lhsInt.foldl (fun out lhs => rhsInt.foldl (fun out rhs =>

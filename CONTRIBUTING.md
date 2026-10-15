@@ -28,8 +28,9 @@ src/CORALean/
                    Theorems/ (one per guarantee),
                    Counterexamples/ (what refutes a printed statement, and the
                    model of CORA's code it refutes),
-                   Complexity/Space/ (how large a result is, proved),
-                   Complexity/Time/ (what running it costs, asserted),
+                   Complexity/Space/Theorems/ (how large a result is, proved),
+                   Complexity/Time/Operations/ (what running it costs, asserted)
+                   and Complexity/Time/Theorems/ (what is proved of the costs),
                    Instances.lean (the interface, instantiated),
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
@@ -356,7 +357,9 @@ definitions earn their name"), that a definition citing a paper's algorithm carr
 is not spelled out three times in one declaration (`scripts/check-repeated-subterms.py`;
 "Name what repeats"), that a discrete-time class (`<X>DT`) has the fields of its continuous twin
 `<X>` (`scripts/check-dt-twins.py`; a difference such as `dt` is listed with its reason in
-`scripts/dt-twin-allowlist.txt`), and that
+`scripts/dt-twin-allowlist.txt`), that a public theorem that exactly one other file reads is
+that file's `private` lemma unless something outward-facing names it
+(`scripts/check-single-use.py`; "A theorem used once is a lemma of its user"), and that
 `noncomputable` stays where it is legitimate — see below.
 
 `noncomputable` is checked against the rule the float layer exists to keep:
@@ -533,8 +536,9 @@ models and systems follow the same shape:
 | `Operations/*.lean` | one operation each, as CORA gives it a file each |
 | `Theorems/*.lean` | one guarantee each, stated and proved together |
 | `Counterexamples/*.lean` | a refutation of a printed statement or of CORA's code, with the model of CORA's code it refutes (see "Counterexamples") |
-| `Complexity/Space/*.lean` | how large a result is — a theorem, proved from the definition — and its `O` corollary where there is one |
-| `Complexity/Time/*.lean` | how much running it costs — a `def`, asserted against a model — its monotonicity and bounds, and its `O` corollary where there is one |
+| `Complexity/Space/Theorems/*.lean` | how large a result is — a theorem, proved from the definition, one per count — and its `O` corollary, a file of its own |
+| `Complexity/Time/Operations/*.lean` | how much running it costs — a `def`, asserted against a model, one per operation |
+| `Complexity/Time/Theorems/*.lean` | what is proved of the asserted costs: monotonicity in the operand sizes, bounds, and the `O` corollary, one per file |
 | `Instances.lean` | the class instances, whose fields *are* the guarantees |
 
 A file is named after what it declares, not after the role it plays:
@@ -551,15 +555,18 @@ that thing is small, it is a section of the directory's `Basic.lean` (see
 "Small declarations" below). What it
 needs and nothing else uses is `aux_`; what the tree needs earns a file of its
 own. `<Name>.lean` and `Instances.lean` sit outside the rule — a type is
-declared with what it denotes, and instances have no names to collect — and so
-do `Complexity/Time/` and `Complexity/Space/`, whose files hold a claim per
-operation rather than an operation, and are read as a table. There the rule is
-relaxed on purpose: one file per operation holds the exact statement (`plus_h`,
-`plusCost`) *and* its `O` corollary (`..._isBigO`), the corollary being derived
-from the exact one. Nowhere else may two public declarations share a file.
-Nothing sits directly in `Complexity/` but `API.lean`, and no `Cost/` directory
-exists; `check-conventions.sh` rejects both. `Counterexamples/` is the other
-exception, and says why below.
+declared with what it denotes, and instances have no names to collect.
+`Complexity/` follows the same layout as every other directory (issue #187): the
+exact count (`plusCost`) is a file of `Complexity/Time/Operations/`, its
+monotonicity and its `O` corollary (`..._mono`, `..._isBigO`) are files of
+`Complexity/Time/Theorems/`, and a size (`plus_h`) is a file of
+`Complexity/Space/Theorems/`, which has no `Operations/` because a size is a
+theorem about the result, not a definition. The small ones are sections of the
+`Basic.lean` of those directories, so most of a Complexity directory is its
+`Basic.lean`. Nothing sits directly in `Complexity/`, `Complexity/Time/` or
+`Complexity/Space/` but `API.lean`, and no `Cost/` directory exists;
+`check-conventions.sh` rejects all three. `Counterexamples/` is the one
+exception to "one each", and says why below.
 
 The rule is what keeps the table above true, and it is checked because a
 convention nobody tests is one the tree drifts out of: a helper that quietly
@@ -624,10 +631,31 @@ definition in `Definitions/IsValid.lean` of the same class, like any other propo
 `check-conventions.sh` rejects a `theorem`, `lemma`, validity predicate or `materialise…` definition
 in a main-type file.
 
+### A theorem used once is a lemma of its user
+
+A public `theorem` that exactly one other file reads, and that nothing outward-facing points
+at, is an auxiliary lemma of that file: it goes there as a `private` one (and an `rfl` lemma
+used once is inlined at its use, and deleted). `scripts/check-single-use.py` reports it. A file
+counts as a user when the last component of the theorem's name occurs in its code, whatever the
+namespace or the dot notation in front, so the count errs towards "more users". The theorem is
+outward-facing, and stays public, when
+
+* a page of `references/` or the paper sources under `experiments/paper/` name it or link the
+  file that declares it (a ledger row is a promise about it);
+* another file's comment or docstring mentions it;
+* one of its users is an `Examples/` file or an `Instances.lean`, where a theorem is the
+  guarantee an instance or a demonstration shows;
+* it carries an attribute (`@[simp]`, ...), which reads it without naming it; or
+* `scripts/single-use-allowlist.txt` lists it, with the reason, as `<path>::<name>  <reason>`.
+  An entry that no longer matches is reported as stale, so the list only shrinks.
+
+A theorem with no other user at all is not reported: that is a guarantee nobody builds on yet,
+which a ledger row or a `Counterexamples/` folder may well want.
+
 ### A theorem file defines nothing
 
-A file under `Theorems/` (and `Complexity/Space/`, whose claims are proved from the
-definition) states and proves a guarantee about something declared elsewhere. A `def`,
+A file under `Theorems/` (which includes `Complexity/Space/Theorems/`, whose claims are
+proved from the definition) states and proves a guarantee about something declared elsewhere. A `def`,
 `abbrev`, `instance`, `structure`, `class`, `inductive` or `opaque` there is a definition in the
 wrong file: a type, a proposition, a set or a specification goes to `Definitions/`, an
 algorithm to `Operations/`, and a conversion's construction to the `Operations/` of its
@@ -636,8 +664,8 @@ algorithm to `Operations/`, and a conversion's construction to the `Operations/`
 
 ### A size is proved; a running cost is asserted
 
-`Complexity/Space/` and `Complexity/Time/` look alike from outside and only one of them can be
-wrong, so they are kept apart deliberately.
+`Complexity/Space/Theorems/` and `Complexity/Time/Operations/` look alike from outside and only
+one of them can be wrong, so they are kept apart deliberately.
 
 A **size** — how many generators an operation's result has — is a field of the
 result, so `Zonotope.plus_h` is a `theorem` and its proof is `rfl` against the
@@ -650,13 +678,13 @@ definition.
 
 Three things say which a reader is looking at, and the third is checked:
 
-* the directory — `Complexity/Space/` or `Complexity/Time/`;
+* the directory — `Complexity/Space/Theorems/` or `Complexity/Time/Operations/`;
 * the form — a `theorem` about `.h`, or a `def` returning a `Cost`, a type that
   is not `ℕ` and so cannot be equated with a size by accident;
 * the name — a public `def` under `Complexity/Time/` is `...Cost` or `...Bound`, which
   `check-conventions.sh` enforces.
 
-Nothing under `Complexity/Time/` is proved `rfl` against an operation. What *is* proved
+Nothing under `Complexity/Time/Operations/` is proved `rfl` against an operation. What *is* proved
 there is everything above the assertions: that each count is monotone in the
 operand sizes it takes, and that an algorithm's cost is the sum of its
 operations' — `LinearSysDT.reachCost_le` assembles `reach`'s bound out of the
@@ -774,11 +802,9 @@ A section is its banner, 100 characters with the declaration's name in backticks
 where two layers' declarations of one name share a bundle), its own author block
 directly under it, one blank line, and then the declaration with its `/-- … -/`:
 nothing of `namespace`, `open` or `variable`, and no `section` … `end` of its own.
-One declaration per section; under `Complexity/Time/` and
-`Complexity/Space/` one operation, its exact statement and `O` corollary together,
-as in `<Op>.lean`. There is no per-section module docstring: the declaration's own
-`/-- … -/` is its description, and every section's declaration (under `Complexity/`,
-its first, the exact statement whose justification it carries) has one. Moving a
+One declaration per section, in `Complexity/` as everywhere else. There is
+no per-section module docstring: the declaration's own `/-- … -/` is its description, and
+every section's declaration has one. Moving a
 file in moves its module docstring there, less the title line: it becomes the
 docstring of a declaration that had none, and is appended, paragraph by paragraph
 where not already said, to one that had. Since a docstring counts as code, a file

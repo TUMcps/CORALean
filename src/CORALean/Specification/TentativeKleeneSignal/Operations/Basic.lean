@@ -29,8 +29,8 @@ namespace CORALean
 
 /-- `emptySignal`: nothing observed, `canBeTrue` and `canBeFalse` false on `[0,∞)`. -/
 noncomputable def TentativeKleeneSignal.emptySignal : TentativeKleeneSignal ℝ :=
-  ⟨PointSegmentSignal.indicator (STLInterval.stlInterval 0 ⊤ true true) false false,
-    PointSegmentSignal.indicator (STLInterval.stlInterval 0 ⊤ true true) false false⟩
+  ⟨PointSegmentSignal.indicator (STLInterval.stlInterval 0 ⊤ true true le_rfl) false false,
+    PointSegmentSignal.indicator (STLInterval.stlInterval 0 ⊤ true true le_rfl) false false⟩
 
 
 -- ============================  `TentativeKleeneSignal.setInvalid`  ============================ --

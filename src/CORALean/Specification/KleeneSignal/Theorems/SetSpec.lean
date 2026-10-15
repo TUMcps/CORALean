@@ -29,13 +29,13 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem KleeneSignal.set_spec (s : KleeneSignal ℝ)
-    (hs : s.IsValid) (I : STLInterval) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (value :
+    (hs : s.IsValid) (I : STLInterval) (value :
         Kleene) :
     (s.set I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.set I value).at t = value) ∧
       (t ∉ I.set → (s.set I value).at t = s.at t) := by -- --- PROOF ---
-  obtain ⟨hv1, h1⟩ := PointSegmentSignal.set_spec s.signal hs.1 I hI value.toBool
-  obtain ⟨hv2, h2⟩ := PointSegmentSignal.set_spec s.isUnknown hs.2 I hI value.isUnknown
+  obtain ⟨hv1, h1⟩ := PointSegmentSignal.set_spec s.signal hs.1 I value.toBool
+  obtain ⟨hv2, h2⟩ := PointSegmentSignal.set_spec s.isUnknown hs.2 I value.isUnknown
   refine ⟨⟨hv1, hv2⟩, fun t ht => ⟨fun hm => ?_, fun hm => ?_⟩⟩
   · -- inside: the value is `value`, rebuilt from its parts
     have : (s.set I value).at t = Kleene.ofBoolUnk value.toBool value.isUnknown := by

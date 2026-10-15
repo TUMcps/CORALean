@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Operations.ToNonlinearSysDT
+public import CORALean.NN.Operations.SmoothNetworkOutputFn
 
 @[expose] public section
 

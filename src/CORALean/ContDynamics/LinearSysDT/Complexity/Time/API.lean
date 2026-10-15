@@ -1,18 +1,17 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Reach
-public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.ReachBound
-public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.ReachStepBound
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Operations.API
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Time.Theorems.API
 
 /-!
 # What running `LinearSysDT.reach` costs
 
-The worked composition the rest of `Complexity/Time/` exists for. `Reach.lean` says which
-operations a step runs and at what sizes, its recursion mirroring
-`Operations.lean` line for line. `ReachBound.lean` proves the run's cost is at most
-`k` worst-case steps, out of the per-operation counts in
+The worked composition the rest of `Complexity/Time/` exists for.
+`Operations/ReachCost.lean` says which operations a step runs and at what sizes, its
+recursion mirroring `Operations.lean` line for line. `Theorems/ReachCostLe.lean` proves the
+run's cost is at most `k` worst-case steps, out of the per-operation counts in
 `ContSet/Zonotope/Real/Complexity/Time/` and the generator-count bound `reach_order_le` in
-`Theorems/`; nothing in it is asserted. `ReachStepBound.lean` reads a step
+`Theorems/`; nothing in it is asserted. `Theorems/ReachStepBoundIsBigO.lean` reads a step
 off as `O(n ^ 3)`.
 
 The bound is stated at `𝒵` and `𝕋 = ℝ`, not at the classes `reach` is written

@@ -1,0 +1,42 @@
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.BilinCost
+public import CORALean.ContSet.PolyZonotope.Real.Operations.Mul
+
+@[expose] public section
+
+/-!
+# `PolyZonotope.mulCost`
+
+Asserted, not proved: `Operations/Mul.lean` is `bilin` at the entrywise
+product, which is `n` multiplications at `Vec ℝ n` and nothing else, so the
+whole count is `bilinCost` at `⟨n⟩`.
+
+Quadratic in the generator counts, and that is the operation's own doing rather
+than the model's: `Complexity/Space/Theorems/Bilin*.lean` proves the result carries
+`(h₁+1)(h₂+1)` generators, and each of them is computed. A caller who repeats
+`mul` to reach a higher order pays this at the previous product's count, which
+is why `compact` and `reduce` sit between the factors in practice.
+-/
+
+-- Authors:       Claude Opus 5
+-- Written:       07-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- What `PolyZonotope.mul` costs at `Vec ℝ n` over `p` shared factors: `n`
+multiplications and `p` exponent additions per pair of extended columns. -/
+def PolyZonotope.mulCost (n p h₁ h₂ : ℕ) : Cost := PolyZonotope.bilinCost ⟨n⟩ p h₁ h₂
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

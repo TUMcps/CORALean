@@ -28,7 +28,7 @@ namespace CORALean
 
 noncomputable def STLInterval.interval : STLInterval → Real.Interval (Vec ℝ 1)
   | .empty => ⟨fun _ => 1, fun _ => 0⟩
-  | .nonempty l u _ _ _ _ _ => ⟨fun _ => l.toReal, fun _ => u.toReal⟩
+  | .nonempty l u _ _ _ _ _ _ => ⟨fun _ => l.toReal, fun _ => u.toReal⟩
 
 end CORALean
 

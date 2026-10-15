@@ -48,11 +48,11 @@ theorem FourValuedSignal.merge_spec (obj other : FourValuedSignal ℝ) (ho : obj
       (F w sig).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
         (other.at t = w → (F w sig).at t = w) ∧ (other.at t ≠ w → (F w sig).at t = sig.at t) := by
     intro w sig hsig
-    obtain ⟨h0, h1, -⟩ := other.findIntervals_spec ht w
+    obtain ⟨h1, -⟩ := other.findIntervals_spec ht w
     obtain ⟨hv, h2⟩ := List.foldl_set_spec (fun sig : FourValuedSignal ℝ => sig.IsValid)
       (fun sig t => sig.at t) (other.findIntervals w) (fun I => I.set) w (fun sig I => sig.set I w)
-      (fun sig I hI hs' => by
-        obtain ⟨hv, h⟩ := FourValuedSignal.set_spec sig hs' I (h0 I hI) w
+      (fun sig I _ hs' => by
+        obtain ⟨hv, h⟩ := FourValuedSignal.set_spec sig hs' I w
         exact ⟨hv, fun t ht => h t ht⟩) sig hsig
     -- inside the intervals the value is `w`, outside it is unchanged
     refine ⟨hv, fun t htt => ⟨fun h => (h2 t htt).1 ((h1 t htt).2 h), fun h => (h2 t htt).2 ?_⟩⟩

@@ -45,11 +45,11 @@ namespace CORALean
 
 /-- The conclusive interval is the longest initial stretch without inconclusive times. -/
 theorem FourValuedSignal.conclusiveInterval_spec (obj : FourValuedSignal ℝ) (hobj : obj.IsValid)
-    (ignore : STLInterval) (hI : ∀ f, ignore.fieldsOf = some f → 0 ≤ f.lower) (t : ℝ) :
+    (ignore : STLInterval) (t : ℝ) :
     t ∈ (obj.conclusiveInterval ignore).set ↔ 0 ≤ t ∧ ∀ x, 0 ≤ x → x ≤ t →
       x ∈ ignore.set ∨ obj.at x ≠ FourValued.ii := by -- --- PROOF ---
   -- the conclusive times: in `ignore`, or not inconclusive
-  obtain ⟨hvs, hset⟩ := PointSegmentSignal.set_spec obj.isInconclusive hobj.2 ignore hI false
+  obtain ⟨hvs, hset⟩ := PointSegmentSignal.set_spec obj.isInconclusive hobj.2 ignore false
   unfold FourValuedSignal.conclusiveInterval
   dsimp only
   have hCv := PointSegmentSignal.not_isValid _ hvs
@@ -84,7 +84,7 @@ theorem FourValuedSignal.conclusiveInterval_spec (obj : FourValuedSignal ℝ) (h
       ⟨0, le_rfl, (hP 0 le_rfl).2 fun y hy hy0 => by rw [le_antisymm hy0 hy]; exact h0'⟩
     obtain ⟨hlub, hincl⟩ := (C.cutAtFirstFallingEdge.findLast_spec hvc true).1 hex
     -- the end of the cut signal is the end of the interval
-    rw [STLInterval.mem_set_stlIntervalBounds]
+    rw [STLInterval.mem_set_stlIntervalBounds _ _ _ _ le_rfl]
     simp only [STLInterval.memBounds]
     have hrhs : (0 ≤ t ∧ ∀ x : ℝ, 0 ≤ x → x ≤ t → x ∈ ignore.set ∨ obj.at x ≠ FourValued.ii) ↔
         0 ≤ t ∧ ∀ y, 0 ≤ y → y ≤ t → C.at y = true :=

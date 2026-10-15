@@ -71,7 +71,7 @@ public import CORALean.NN.Operations.VerifySplitWith
 public import CORALean.NN.Operations.SmoothNetworkEval
 public import CORALean.NN.Operations.SmoothNetworkNu
 public import CORALean.NN.Operations.SmoothNetworkToNonlinearSysDT
-public import CORALean.NN.Operations.ToNonlinearSysDT
+public import CORALean.NN.Operations.SmoothNetworkOutputFn
 public import CORALean.NN.Operations.WorstIndex
 public import CORALean.NN.Operations.SnakeOrder
 public import CORALean.NN.Operations.InputNeuronOrder

@@ -17,8 +17,8 @@ sections or the import graph:
   only blank lines between `BEGIN CODE`, the blocks, the sections and `END OF CODE`;
   each section opens with its banner, naming the declaration,
   with its own author block directly under it and one blank line under that; one declaration
-  per section (in `Complexity/Time|Space/`, one operation: every declaration of the old
-  `<Op>.lean`), at most `MAX_CODE` code lines, a docstring on the (first) declaration, no
+  per section (`Complexity/` included: its `Operations/` and `Theorems/` are directories like any
+  other), at most `MAX_CODE` code lines, a docstring on the (first) declaration, no
   `MAIN`/`AUXILIARY` marker, no CORA model or witness; sections in order within a group
   (`order_problems`: alphabetical, after the sections they use) and groups in order by their
   first section (`group_order_problems`);
@@ -244,10 +244,6 @@ class Region:
         return toks
 
 
-def is_complexity(rel):
-    return "/Complexity/Time/" in rel or "/Complexity/Space/" in rel
-
-
 class LeanFile:
     def __init__(self, path, text=None):
         self.path = Path(path)
@@ -273,12 +269,10 @@ class LeanFile:
         return []
 
     def single(self):
-        """Whether the code region is one declaration (one operation under `Complexity/`)."""
+        """Whether the code region is one declaration."""
         r = self.region
         if r is None or r.others or not r.decls:
             return False
-        if is_complexity(self.rel):
-            return all(not d.name.split(".")[-1].startswith("aux_") for d in r.decls)
         return len(r.decls) == 1
 
 
@@ -357,6 +351,8 @@ def first_doc(lf):
     L = lf.lines
     d = lf.region.decls[0]
     i = d.start
+    while i < len(L) and DOC_PREFIX.match(L[i]):
+        i += 1
     if L[i].startswith("/--"):
         j = i
         while "-/" not in L[j]:
@@ -364,8 +360,6 @@ def first_doc(lf):
         text = "\n".join(L[i:j + 1])
         text = text[len("/--"):text.rindex("-/")]
         return i, j + 1, [l.rstrip() for l in text.strip().split("\n")]
-    while i < len(L) and DOC_PREFIX.match(L[i]):
-        i += 1
     return i, i, None
 
 
@@ -822,7 +816,6 @@ def check_basic(lf, say):
         if a.context and a.signature() == b.signature():
             say(f"{where(b.start)}: this block repeats the one at line {a.start + 1} — the two"
                 " groups are one, with their sections ordered together")
-    cx = is_complexity(rel)
     seen = {}
     for s in secs:
         tag = where(s.start)
@@ -851,9 +844,9 @@ def check_basic(lf, say):
         if not r.decls:
             say(f"{tag}: section `{s.label}` declares nothing")
             continue
-        if not cx and len(r.decls) > 1:
+        if len(r.decls) > 1:
             say(f"{tag}: section `{s.label}` declares {len(r.decls)} things — one declaration per"
-                " section (`Complexity/Time|Space/` excepted: one operation)")
+                " section")
         if not s.label_ok():
             say(f"{tag}: the banner names `{s.label}`, the section declares `{r.decls[0].name}`")
         elif s.label != s.names[0] and sum(t.names[:1] == s.names[:1] for t in secs) < 2:

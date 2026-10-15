@@ -4,7 +4,6 @@ public import CORALean.Specification.PointSegmentSignal.Operations.FindIntervals
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsMaximal
 public import CORALean.Specification.PointSegmentSignal.Theorems.FindIntervalsBoundsSpec
 public import CORALean.Specification.STLInterval.Definitions.MaximalRuns
-public import CORALean.Specification.STLInterval.Theorems.FieldsStlIntervalBounds
 public import CORALean.Specification.STLInterval.Theorems.SetStlIntervalBounds
 
 @[expose] public section
@@ -19,7 +18,7 @@ interval cannot be extended: a time reached from it through times that all satis
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,23 +36,19 @@ theorem PointSegmentSignal.findIntervals_spec (s : PointSegmentSignal ℝ) (hs :
       (fun t => cond (s.at t) = true) := by -- --- PROOF ---
   unfold STLInterval.MaximalRuns
   obtain ⟨h0, h1⟩ := s.findIntervalsBounds_spec hs cond
-  refine ⟨?_, fun t ht => ?_, ?_⟩
-  · -- the lower bounds are those of `findIntervalsBounds`
-    intro I hI
-    obtain ⟨b, hb, rfl⟩ := List.mem_map.1 hI
-    exact STLInterval.fields_stlIntervalBounds _ _ _ _ (h0 b hb)
+  refine ⟨fun t ht => ?_, ?_⟩
   · show _ ↔ cond (s.at t) = true
     rw [← h1 t ht]
     constructor
     · rintro ⟨I, hI, hmem⟩
       obtain ⟨b, hb, rfl⟩ := List.mem_map.1 hI
-      exact ⟨b, hb, (STLInterval.mem_set_stlIntervalBounds _ _ _ _ _).1 hmem⟩
+      exact ⟨b, hb, (STLInterval.mem_set_stlIntervalBounds _ _ _ _ (h0 b hb) _).1 hmem⟩
     · rintro ⟨b, hb, hmem⟩
       exact ⟨_, List.mem_map.2 ⟨b, hb, rfl⟩,
-        (STLInterval.mem_set_stlIntervalBounds _ _ _ _ _).2 hmem⟩
+        (STLInterval.mem_set_stlIntervalBounds _ _ _ _ (h0 b hb) _).2 hmem⟩
   · intro I hI t₁ ht₁ t₂ ht₂ hpath
     obtain ⟨b, hb, rfl⟩ := List.mem_map.1 hI
-    rw [STLInterval.mem_set_stlIntervalBounds] at ht₁ ⊢
+    rw [STLInterval.mem_set_stlIntervalBounds _ _ _ _ (h0 b hb)] at ht₁ ⊢
     exact s.findIntervalsBounds_maximal hs cond b hb t₁ t₂ ht₂ ht₁ hpath
 
 end CORALean

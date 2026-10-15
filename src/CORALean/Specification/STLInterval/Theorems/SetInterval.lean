@@ -18,7 +18,7 @@ both ends closed, the same bounds.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -30,18 +30,18 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The box of a bounded STL interval is the closure of its times. -/
-theorem STLInterval.set_interval (l u : EReal) (lc rc : Bool) (a b c) (hl : l ≠ ⊥) (hu : u ≠ ⊤) :
+theorem STLInterval.set_interval (l u : EReal) (lc rc : Bool) (a b c z) (hl : l ≠ ⊥) (hu : u ≠ ⊤) :
     (fun x : Vec ℝ 1 => x 0) ''
-      (STLInterval.nonempty l u lc rc a b c).interval.construct =
-        closure (STLInterval.nonempty l u lc rc a b c).set := by -- --- PROOF ---
-  have hne := set_nonempty _ _ _ _ a b c
+      (STLInterval.nonempty l u lc rc a b c z).interval.construct =
+        closure (STLInterval.nonempty l u lc rc a b c z).set := by -- --- PROOF ---
+  have hne := rawSet_nonempty_of _ _ _ _ a b c
   have hlt := (rawSet_bounds_ne hne).1
   have hub := (rawSet_bounds_ne hne).2
   -- the bounds are real: name them
   obtain ⟨x, rfl⟩ : ∃ x : ℝ, l = x := ⟨l.toReal, (EReal.coe_toReal hlt hl).symm⟩
   obtain ⟨y, rfl⟩ : ∃ y : ℝ, u = y := ⟨u.toReal, (EReal.coe_toReal hu hub).symm⟩
   have himg : (fun x : Vec ℝ 1 => x 0) ''
-      (STLInterval.nonempty (x : EReal) y lc rc a b c).interval.construct = Set.Icc x y :=
+      (STLInterval.nonempty (x : EReal) y lc rc a b c z).interval.construct = Set.Icc x y :=
     (Real.Interval.stlInterval_exact _).symm
   rw [himg]
   show _ = closure (rawSet x y lc rc)

@@ -1,8 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Complexity.Space.ReachError
-public import CORALean.ContDynamics.LinearSysDT.Complexity.Space.ReachErrorReduced
-public import CORALean.ContDynamics.LinearSysDT.Complexity.Space.ReachOrders
+public import CORALean.ContDynamics.LinearSysDT.Complexity.Space.Theorems.API
 
 /-!
 # How large `LinearSysDT`'s computed sets are

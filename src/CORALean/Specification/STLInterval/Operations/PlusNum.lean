@@ -1,19 +1,20 @@
 module
 
-public import CORALean.Specification.STLInterval.Operations.StlInterval
+public import CORALean.Specification.STLInterval.Operations.Basic
+public import CORALean.Specification.STLInterval.Theorems.ZeroLeAddCoe
 
 @[expose] public section
 
 /-!
 # `plus` with a number
 
-`@stlInterval/plus.m`, the numeric branch: both bounds move by the summand, the flags stay. With
-`CHECKS_ENABLED` CORA throws if the lower bound becomes negative; see `STLInterval`.
+`@stlInterval/plus.m`, the numeric branch: both bounds move by the summand, the flags stay. CORA
+throws if the lower bound becomes negative; here that is the hypothesis `hc` (see `STLInterval`).
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -24,12 +25,14 @@ namespace CORALean
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def STLInterval.plusNum : STLInterval → ℝ → STLInterval
+noncomputable def STLInterval.plusNum (I : STLInterval) (c : ℝ)
+    (hc : I ≠ .empty → 0 ≤ I.lowerBound + c) : STLInterval :=
+  match I, hc with
   | .empty, _ => .empty
-  | .nonempty l u lc rc _ _ _, c =>
+  | .nonempty l u lc rc _ hu hlt hz, hc =>
     let lb := l + c
     let ub := u + c
-    stlInterval lb ub lc rc
+    stlInterval lb ub lc rc (STLInterval.zero_le_add_coe hu hlt hz c (hc (by simp)))
 
 end CORALean
 

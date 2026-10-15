@@ -24,7 +24,7 @@ which is then their common value.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,10 +37,9 @@ namespace CORALean
 
 theorem FourValuedSignal.until_isRefinedBy (l r : FourValuedSignal ℝ) (kl kr : KleeneSignal ℝ)
     (hl : l.IsValid) (hr : r.IsValid) (hkl : kl.IsValid) (hkr : kr.IsValid)
-    (h₁ : l.IsRefinedBy kl) (h₂ : r.IsRefinedBy kr) (U : STLInterval)
-    (hU : ∀ f, U.fieldsOf = some f → 0 ≤ f.lower) :
+    (h₁ : l.IsRefinedBy kl) (h₂ : r.IsRefinedBy kr) (U : STLInterval) :
     ∃ s, l.until U r = some s ∧ s.IsValid ∧ s.IsRefinedBy (kl.until U kr) := by -- --- PROOF ---
-  obtain ⟨s, hs, hvs, hc⟩ := FourValuedSignal.until_spec l r hl hr U hU
+  obtain ⟨s, hs, hvs, hc⟩ := FourValuedSignal.until_spec l r hl hr U
   refine ⟨s, hs, hvs, fun t ht => ?_⟩
   obtain ⟨c1, c2, -⟩ := hc t ht
   -- the underapproximations and overapproximations bound the refinements
@@ -50,9 +49,9 @@ theorem FourValuedSignal.until_isRefinedBy (l r : FourValuedSignal ℝ) (kl kr :
   have f₂ := (r.toKleeneSignal_spec hr Kleene.ff).1
   have c₁ := (l.toKleeneSignal_spec hl Kleene.tt).1
   have c₂ := (r.toKleeneSignal_spec hr Kleene.tt).1
-  have lo := KleeneSignal.until_mono _ _ _ _ f₁ hkl f₂ hkr U hU (fun x hx => (h₁ x hx).1)
+  have lo := KleeneSignal.until_mono _ _ _ _ f₁ hkl f₂ hkr U (fun x hx => (h₁ x hx).1)
     (fun x hx => (h₂ x hx).1) t ht
-  have hi := KleeneSignal.until_mono _ _ _ _ hkl c₁ hkr c₂ U hU (fun x hx => (h₁ x hx).2)
+  have hi := KleeneSignal.until_mono _ _ _ _ hkl c₁ hkr c₂ U (fun x hx => (h₁ x hx).2)
     (fun x hx => (h₂ x hx).2) t ht
   -- if the result is conclusive, the two bounds agree, and squeeze the refinement
   intro hne

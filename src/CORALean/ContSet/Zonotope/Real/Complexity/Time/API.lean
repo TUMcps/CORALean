@@ -1,33 +1,7 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Plus
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.LinComb
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Mtimes
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MtimesIntervalMat
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Map
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceBy
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceGirard
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.CartProd
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Abs
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Shift
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Rotate
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Project
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.UnitIntervalMul
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ScalarIntervalMul
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceCombastel
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReduceByBasis
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ReducePCA
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffAligned
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffStretch
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MinkDiffRep
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Bilin
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.MtimesMatZonotope
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.QuadMap
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ExhaustiveSearch
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ExhaustiveSearchFiltered
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.ImageEnclosure
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.SetBasedNetForward
-public import CORALean.ContSet.Zonotope.Real.Complexity.Time.SetBasedTraining
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.API
+public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Theorems.API
 
 /-!
 # What running `Zonotope`'s operations costs

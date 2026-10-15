@@ -61,7 +61,7 @@ theorem FourValuedSTL.sound_fourValued {X : Type} (φ : FourValuedSTL.Formula X)
   | tt =>
     -- `true` is `True` in both
     obtain ⟨hv, h⟩ := FourValuedSignal.uniformSignal_spec FourValued.tt
-    obtain ⟨hv', h'⟩ := KleeneSignal.indicator_spec STLInterval.empty (fun f h => by cases h)
+    obtain ⟨hv', h'⟩ := KleeneSignal.indicator_spec STLInterval.empty
       .tt .tt
     refine ⟨_, rfl, hv, fun t ht => ?_⟩
     simp only [FourValuedSTL.Formula.kleeneSat]
@@ -101,7 +101,7 @@ theorem FourValuedSTL.sound_fourValued {X : Type} (φ : FourValuedSTL.Formula X)
         FourValuedSTL.kleeneSat_isValid ψ S fun a ha => (hS a (Or.inr ha)).1⟩)
       (Fin.forall_fin_two.2 ⟨h₁, h₂⟩)
     exact ⟨r, by simp [FourValuedSTL.Formula.fourValuedSat, hr₁, hr₂, hr], hv, h⟩
-  | «until» I hI φ ψ ihφ ihψ =>
+  | «until» I φ ψ ihφ ihψ =>
     -- and the until, by the monotonicity of [1, Lemma 3]
     obtain ⟨r₁, hr₁, hv₁, h₁⟩ := ihφ (fun a ha => hS a (Or.inl ha))
       (fun a ha => hS' a (Or.inl ha))
@@ -109,7 +109,7 @@ theorem FourValuedSTL.sound_fourValued {X : Type} (φ : FourValuedSTL.Formula X)
       (fun a ha => hS' a (Or.inr ha))
     obtain ⟨r, hr, hv, h⟩ := FourValuedSignal.until_isRefinedBy r₁ r₂ _ _ hv₁ hv₂
       (FourValuedSTL.kleeneSat_isValid φ S fun a ha => (hS a (Or.inl ha)).1)
-      (FourValuedSTL.kleeneSat_isValid ψ S fun a ha => (hS a (Or.inr ha)).1) h₁ h₂ I hI
+      (FourValuedSTL.kleeneSat_isValid ψ S fun a ha => (hS a (Or.inr ha)).1) h₁ h₂ I
     exact ⟨r, by simp [FourValuedSTL.Formula.fourValuedSat, hr₁, hr₂, hr], hv, h⟩
 
 end CORALean

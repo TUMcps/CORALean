@@ -25,7 +25,7 @@ namespace CORALean
 
 def STLInterval.infimum : STLInterval → STLInterval.Endpoint
   | .empty => ⟨none, true⟩
-  | .nonempty l _ lc _ _ _ _ => ⟨some l, lc⟩
+  | .nonempty l _ lc _ _ _ _ _ => ⟨some l, lc⟩
 
 end CORALean
 

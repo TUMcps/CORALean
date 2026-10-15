@@ -25,7 +25,7 @@ of [1, Lemma 2]). It is `PointSegmentSignal.until_spec` read against the Boolean
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -39,25 +39,25 @@ open scoped NNReal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSTL.Formula.satBool_until {X : Type} (φ₁ φ₂ : FourValuedSTL.Formula X)
-    (I : STLInterval) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (ξ : ℝ≥0 → X)
+    (I : STLInterval) (ξ : ℝ≥0 → X)
     (l₁ l₂ : PointSegmentSignal ℝ) (hl₁ : l₁.IsValid) (hl₂ : l₂.IsValid)
     (h₁ : ∀ t : ℝ≥0, l₁.at t = φ₁.satBool ξ t) (h₂ : ∀ t : ℝ≥0, l₂.at t = φ₂.satBool ξ t) :
     (l₁.until I l₂).IsValid ∧ ∀ t : ℝ≥0,
       (l₁.until I l₂).at t =
-        (FourValuedSTL.Formula.until I hI φ₁ φ₂).satBool ξ t := by -- --- PROOF ---
-  obtain ⟨hv, h⟩ := PointSegmentSignal.until_spec l₁ l₂ hl₁ hl₂ I hI
+        (FourValuedSTL.Formula.until I φ₁ φ₂).satBool ξ t := by -- --- PROOF ---
+  obtain ⟨hv, h⟩ := PointSegmentSignal.until_spec l₁ l₂ hl₁ hl₂ I
   refine ⟨hv, fun t => ?_⟩
   -- the two Boolean values are equal iff the two conditions are equivalent
   have e₁ := fun t' => (iff_of_eq (congrArg (· = true) (h₁ t'))).trans
     (FourValuedSTL.Formula.satBool_eq_true_iff φ₁ ξ t')
   have e₂ := fun t' => (iff_of_eq (congrArg (· = true) (h₂ t'))).trans
     (FourValuedSTL.Formula.satBool_eq_true_iff φ₂ ξ t')
-  have key : (l₁.until I l₂).at t = true ↔ (FourValuedSTL.Formula.until I hI φ₁ φ₂).Sat ξ t := by
+  have key : (l₁.until I l₂).at t = true ↔ (FourValuedSTL.Formula.until I φ₁ φ₂).Sat ξ t := by
     rw [h t t.2]
     simp only [FourValuedSTL.Formula.Sat]
     constructor
     · rintro ⟨t', hu, hr, hl⟩
-      have hd := STLInterval.zero_le_of_mem_set I hI _ hu
+      have hd := STLInterval.zero_le_of_mem_set I _ hu
       have ht' : 0 ≤ t' := by have := NNReal.coe_nonneg t; linarith
       refine ⟨⟨t', ht'⟩, hu, (e₂ ⟨t', ht'⟩).1 hr, fun t'' h1 h2 => ?_⟩
       exact (e₁ t'').1 (hl t'' (by exact_mod_cast h1) (by exact_mod_cast h2))

@@ -1,8 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Complexity.Space.Intersection
-public import CORALean.ContSet.HPolytope.Real.Complexity.Space.Mtimes
-public import CORALean.ContSet.HPolytope.Real.Complexity.Space.MinkDiffOf
+public import CORALean.ContSet.HPolytope.Real.Complexity.Space.Theorems.API
 
 /-!
 # What `HPolytope` costs

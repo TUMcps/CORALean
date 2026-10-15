@@ -20,7 +20,7 @@ and the second overapproximates every `λ₁ U_I λ₂` ([1, Sec. 4.2 (monotonic
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,8 +33,7 @@ namespace CORALean
 
 theorem KleeneSignal.until_between_refinements (s₁ s₂ : KleeneSignal ℝ) (h₁ : s₁.IsValid)
     (h₂ : s₂.IsValid) (l₁ l₂ : PointSegmentSignal ℝ) (hl₁ : l₁.IsValid) (hl₂ : l₂.IsValid)
-    (hr₁ : s₁.IsRefinedBy l₁) (hr₂ : s₂.IsRefinedBy l₂) (U : STLInterval)
-    (hU : ∀ f, U.fieldsOf = some f → 0 ≤ f.lower) :
+    (hr₁ : s₁.IsRefinedBy l₁) (hr₂ : s₂.IsRefinedBy l₂) (U : STLInterval) :
     ∀ t : ℝ, 0 ≤ t →
       ((s₁.toBoolSignal false).until U (s₂.toBoolSignal false)).at t ≤ (l₁.until U l₂).at t ∧
       (l₁.until U l₂).at t ≤
@@ -46,9 +45,9 @@ theorem KleeneSignal.until_between_refinements (s₁ s₂ : KleeneSignal ℝ) (h
   have c₁ := (KleeneSignal.toBoolSignal_spec s₁ h₁ true).1
   have c₂ := (KleeneSignal.toBoolSignal_spec s₂ h₂ true).1
   intro t ht
-  exact ⟨PointSegmentSignal.until_mono _ _ _ _ f₁ hl₁ f₂ hl₂ U hU (fun x hx => (hr₁ x hx).1)
+  exact ⟨PointSegmentSignal.until_mono _ _ _ _ f₁ hl₁ f₂ hl₂ U (fun x hx => (hr₁ x hx).1)
       (fun x hx => (hr₂ x hx).1) t ht,
-    PointSegmentSignal.until_mono _ _ _ _ hl₁ c₁ hl₂ c₂ U hU (fun x hx => (hr₁ x hx).2)
+    PointSegmentSignal.until_mono _ _ _ _ hl₁ c₁ hl₂ c₂ U (fun x hx => (hr₁ x hx).2)
       (fun x hx => (hr₂ x hx).2) t ht⟩
 
 end CORALean

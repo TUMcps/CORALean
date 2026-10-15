@@ -7,9 +7,10 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyStep
 /-!
 # `evalPoly`'s recursion, paired with its factor-count proof
 
-Split out of `EvalPoly.lean` (issue #62): read again by the float layer's own
-`evalPoly` and by `Theorems/EvalPolyOuter.lean` and
-`Theorems/EvalPolyExact.lean`, all outside this file.
+Not merged into `EvalPoly.lean`: every `mul` step needs the factor-count proof of the previous
+step, so the recursion returns the set together with that proof, and `evalPoly` is its first
+projection. It has users of its own: the float layer's `evalPoly`, `EvalPolySortP`, `PowSort`,
+`Theorems/EvalPolyOuter.lean` and `Theorems/EvalPolyExact.lean`.
 -/
 
 -- Authors:       Claude Opus 5

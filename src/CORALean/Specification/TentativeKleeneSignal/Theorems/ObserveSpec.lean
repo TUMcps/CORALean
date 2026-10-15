@@ -29,7 +29,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem TentativeKleeneSignal.observe_spec (s : TentativeKleeneSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (value : Kleene) :
+    (I : STLInterval) (value : Kleene) :
     (s.observe I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((s.observe I value).canBeTrue.at t = true ↔
         s.canBeTrue.at t = true ∨ (t ∈ I.set ∧ value ≠ Kleene.ff)) ∧
@@ -39,7 +39,7 @@ theorem TentativeKleeneSignal.observe_spec (s : TentativeKleeneSignal ℝ) (hs :
   have key : ∀ (p : PointSegmentSignal ℝ) (hp : p.IsValid), (p.set I true).IsValid ∧
       ∀ t : ℝ, 0 ≤ t → ((p.set I true).at t = true ↔ p.at t = true ∨ t ∈ I.set) := by
     intro p hp
-    obtain ⟨hv, h⟩ := PointSegmentSignal.set_spec p hp I hI true
+    obtain ⟨hv, h⟩ := PointSegmentSignal.set_spec p hp I true
     refine ⟨hv, fun t ht => ?_⟩
     by_cases hm : t ∈ I.set
     · simp [(h t ht).1 hm, hm]

@@ -40,7 +40,7 @@ namespace CORALean
 
 /-- The until of Kleene signals is `True` and `False` as Kleene's quantified connectives say. -/
 theorem KleeneSignal.until_spec (lhs rhs : KleeneSignal ℝ) (hl : lhs.IsValid) (hr : rhs.IsValid)
-    (U : STLInterval) (hU : ∀ f, U.fieldsOf = some f → 0 ≤ f.lower) :
+    (U : STLInterval) :
     (lhs.until U rhs).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((lhs.until U rhs).at t = Kleene.tt ↔ ∃ t', t' - t ∈ U.set ∧ rhs.at t' = Kleene.tt ∧
         ∀ x, t < x → x < t' → lhs.at x = Kleene.tt) ∧
@@ -51,8 +51,8 @@ theorem KleeneSignal.until_spec (lhs rhs : KleeneSignal ℝ) (hl : lhs.IsValid) 
   have hrf := (KleeneSignal.toBoolSignal_spec rhs hr false).1
   have hlt := (KleeneSignal.toBoolSignal_spec lhs hl true).1
   have hrt := (KleeneSignal.toBoolSignal_spec rhs hr true).1
-  obtain ⟨hvm, hm⟩ := PointSegmentSignal.until_spec _ _ hlf hrf U hU
-  obtain ⟨hvx, hx⟩ := PointSegmentSignal.until_spec _ _ hlt hrt U hU
+  obtain ⟨hvm, hm⟩ := PointSegmentSignal.until_spec _ _ hlf hrf U
+  obtain ⟨hvx, hx⟩ := PointSegmentSignal.until_spec _ _ hlt hrt U
   obtain ⟨hv, h⟩ := KleeneSignal.minMax_spec _ _ hvm hvx
   refine ⟨hv, fun t ht => ?_⟩
   obtain ⟨h1, h2⟩ := h t ht
@@ -60,7 +60,7 @@ theorem KleeneSignal.until_spec (lhs rhs : KleeneSignal ℝ) (hl : lhs.IsValid) 
   rw [hm t ht, hx t ht] at h1 h2
   -- a witness `t'` lies after `t`, so the refinements are read there by `toBoolSignal_at_iff`
   have hpos : ∀ t', t' - t ∈ U.set → 0 ≤ t' := fun t' hu => by
-    have := STLInterval.zero_le_of_mem_set U hU _ hu; linarith
+    have := STLInterval.zero_le_of_mem_set U _ hu; linarith
   have hM : (∃ t', t' - t ∈ U.set ∧ (rhs.toBoolSignal false).at t' = true ∧
       ∀ x, t < x → x < t' → (lhs.toBoolSignal false).at x = true) ↔
       ∃ t', t' - t ∈ U.set ∧ rhs.at t' = Kleene.tt ∧

@@ -3,7 +3,7 @@ module
 public import CORALean.Specification.PointSegmentSignal.Operations.Set
 public import CORALean.Specification.PointSegmentSignal.Theorems.SetBoundsSpec
 public import CORALean.Specification.STLInterval.Theorems.SetIffMemBounds
-public import CORALean.Specification.STLInterval.Theorems.ZeroLeLowerBound
+public import CORALean.Specification.STLInterval.Theorems.Basic
 
 @[expose] public section
 
@@ -17,7 +17,7 @@ real bounds are those of `setBounds_spec`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -29,14 +29,14 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.set_spec (s : PointSegmentSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (value : Bool) :
+    (I : STLInterval) (value : Bool) :
     (s.set I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.set I value).at t = value) ∧
       (t ∉ I.set → (s.set I value).at t = s.at t) := by -- --- PROOF ---
   obtain ⟨hv, h⟩ := PointSegmentSignal.setBounds_spec s hs I.lowerBound I.upperBound
-    I.lowerClosed I.upperClosed (STLInterval.zero_le_lowerBound I hI) value
+    I.lowerClosed I.upperClosed (STLInterval.zero_le_lowerBound I) value
   refine ⟨hv, fun t ht => ?_⟩
-  rw [STLInterval.set_iff_memBounds I hI t]
+  rw [STLInterval.set_iff_memBounds I t]
   exact h t ht
 
 end CORALean

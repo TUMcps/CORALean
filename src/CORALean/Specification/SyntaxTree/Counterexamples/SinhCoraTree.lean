@@ -94,7 +94,7 @@ theorem SyntaxTree.sinhCora_counterexample :
   · simp [sinhCoraTree, SyntaxTree.minus, SyntaxTree.sinhCora, eval, Binary.fn, Unary.fn,
       interval, Dom.contains]
   · rintro ⟨r, hr, hxr⟩
-    -- the root asks its first operand, `sinh(x₁)`, for the target `(funHanMinus ...).first`
+    -- the root asks its first operand, `sinh(x₁)`, for the target `(funHanMinus ...).left`
     obtain ⟨r₁, h₁, hx₁⟩ := backpropagation_binary_ok hr
     obtain ⟨val, hval, h₂⟩ := backpropagation_unary_ok h₁
     have key : ∀ int prev val, int.inf 0 ≤ 1 → funHanSinhCora int prev = .ok val →

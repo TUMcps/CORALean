@@ -53,7 +53,6 @@ public import CORALean.HybridDynamics.Theorems.NonlinearResetFoldlUpdateOfNotMem
 public import CORALean.HybridDynamics.Theorems.NonlinearResetLiftOfNotMem
 public import CORALean.HybridDynamics.Theorems.NonlinearResetLiftBind
 public import CORALean.HybridDynamics.Theorems.NonlinearResetFloatModelEnclosesLift
-public import CORALean.HybridDynamics.Theorems.NonlinearResetEvaluateSynchronize
 public import CORALean.HybridDynamics.Theorems.NonlinearResetFloatModelEnclosesSynchronize
 public import CORALean.HybridDynamics.Theorems.LinearResetLiftBind
 public import CORALean.HybridDynamics.Theorems.LinearResetLiftOfNotMem

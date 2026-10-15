@@ -20,7 +20,7 @@ it is `True` only if every state of the set satisfies `a` and `False` only if no
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -46,7 +46,7 @@ theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
     (hp : N.prop = [STLInterval.empty]) (hch : N.children = [])
     (hsig : N.signal = OnlineAnalyzerNode.initSignal .ap) (set : S d) (loc : ℕ) (val : Kleene)
     (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) (I : STLInterval)
-    (hne : I ≠ .empty) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (h0 : (0 : ℝ) ∈ I.set) :
+    (hne : I ≠ .empty) (h0 : (0 : ℝ) ∈ I.set) :
     ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc none = some obj1 ∧
       obj1.getVerdict = some (FourValued.fromKleene val) ∧
       (val = .tt → ∀ x ∈ construct set, a.Holds x loc) ∧
@@ -57,7 +57,7 @@ theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
   have hsv : N.signal.IsValid := by
     rw [hsig]
     exact (FourValuedSignal.uniformSignal_spec FourValued.ii).1
-  obtain ⟨hv, hat⟩ := FourValuedSignal.set_spec _ hsv I hI (FourValued.fromKleene val)
+  obtain ⟨hv, hat⟩ := FourValuedSignal.set_spec _ hsv I (FourValued.fromKleene val)
   refine ⟨obj1, hobs, ?_, ?_, ?_⟩
   · simp [OnlineReachSetAnalyzer.getVerdict, hnodes, (hat 0 le_rfl).1 h0]
   · intro h
@@ -73,7 +73,7 @@ theorem OnlineReachSetAnalyzer.getVerdict_ap (label : String) (a : AtomicProposi
     (hmk : OnlineReachSetAnalyzer.mk? (OnlineReachSetAnalyzer.Formula.ap label a) 1 dp =
       some obj0) (eps : ℝ) (set : S d) (loc : ℕ) (val : Kleene)
     (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) (I : STLInterval)
-    (hne : I ≠ .empty) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (h0 : (0 : ℝ) ∈ I.set) :
+    (hne : I ≠ .empty) (h0 : (0 : ℝ) ∈ I.set) :
     ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj0 set I loc none = some obj1 ∧
       obj1.getVerdict = some (FourValued.fromKleene val) ∧
       (val = .tt → ∀ x ∈ construct set, a.Holds x loc) ∧
@@ -85,7 +85,7 @@ theorem OnlineReachSetAnalyzer.getVerdict_ap (label : String) (a : AtomicProposi
     OnlineReachSetAnalyzer.Formula.ap?] at hmk
   obtain ⟨-, rfl⟩ := hmk
   exact aux_getVerdict_single_ap (𝕋 := 𝕋) eps _ _ a rfl rfl rfl rfl rfl rfl rfl rfl rfl rfl set loc
-    val hval I hne hI h0
+    val hval I hne h0
 
 end CORALean
 

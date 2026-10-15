@@ -44,7 +44,7 @@ namespace CORALean
 
 /-- The until of four-valued signals is inconclusive where the refinements differ. -/
 theorem FourValuedSignal.until_spec (lhs rhs : FourValuedSignal ℝ) (hl : lhs.IsValid)
-    (hr : rhs.IsValid) (U : STLInterval) (hU : ∀ f, U.fieldsOf = some f → 0 ≤ f.lower) :
+    (hr : rhs.IsValid) (U : STLInterval) :
     let minU := (lhs.toKleeneSignal Kleene.ff).until U (rhs.toKleeneSignal Kleene.ff)
     let maxU := (lhs.toKleeneSignal Kleene.tt).until U (rhs.toKleeneSignal Kleene.tt)
     ∃ r, lhs.until U rhs = some r ∧ r.IsValid ∧ ∀ t : ℝ, 0 ≤ t →
@@ -57,9 +57,9 @@ theorem FourValuedSignal.until_spec (lhs rhs : FourValuedSignal ℝ) (hl : lhs.I
   intro minU maxU
   -- the refinements are valid, and so are their untils
   obtain ⟨hvm, hm⟩ := KleeneSignal.until_spec _ _ (lhs.toKleeneSignal_spec hl Kleene.ff).1
-    (rhs.toKleeneSignal_spec hr Kleene.ff).1 U hU
+    (rhs.toKleeneSignal_spec hr Kleene.ff).1 U
   obtain ⟨hvx, hx⟩ := KleeneSignal.until_spec _ _ (lhs.toKleeneSignal_spec hl Kleene.tt).1
-    (rhs.toKleeneSignal_spec hr Kleene.tt).1 U hU
+    (rhs.toKleeneSignal_spec hr Kleene.tt).1 U
   obtain ⟨inc, hinc, hvr, hmm⟩ := FourValuedSignal.minMax_spec _ _ _ hvm hvx rfl
   refine ⟨⟨_, inc⟩, ?_, hvr, fun t ht => ?_⟩
   · unfold FourValuedSignal.until
@@ -71,7 +71,7 @@ theorem FourValuedSignal.until_spec (lhs rhs : FourValuedSignal ℝ) (hl : lhs.I
   obtain ⟨hxt, hxf⟩ := hx t ht
   -- a witness `t'` lies after `t`, so the refinements are read there
   have hpos : ∀ t', t' - t ∈ U.set → 0 ≤ t' := fun t' hu => by
-    have := STLInterval.zero_le_of_mem_set U hU _ hu; linarith
+    have := STLInterval.zero_le_of_mem_set U _ hu; linarith
   have hat := fun x (hx0 : 0 ≤ x) => lhs.toKleeneSignal_at_iff hl x hx0
   have hat' := fun x (hx0 : 0 ≤ x) => rhs.toKleeneSignal_at_iff hr x hx0
   -- the four conditions on the refinements, in terms of the four-valued signals

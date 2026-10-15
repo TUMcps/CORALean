@@ -1,15 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Basic
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MtimesIntervalMat
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.MatMul
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Bilin
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceBy
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceBox
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.BackReachAligned
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.ReduceScottStep
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.QuadMapTri
-public import CORALean.ContSet.Zonotope.Real.Complexity.Space.SetBasedNetForward
+public import CORALean.ContSet.Zonotope.Real.Complexity.Space.Theorems.API
 
 /-!
 # How large `Zonotope`'s results are

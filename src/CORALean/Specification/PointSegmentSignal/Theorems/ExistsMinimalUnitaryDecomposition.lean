@@ -48,7 +48,7 @@ theorem PointSegmentSignal.exists_minimal_unitary_decomposition (s : PointSegmen
           Fintype.card ι ≤ Fintype.card κ := by -- --- PROOF ---
   classical
   -- the maximal runs of `true`, without the empty ones and the repeated ones
-  obtain ⟨hnn, hcov, hmax⟩ := s.findIntervals_spec hs id
+  obtain ⟨hcov, hmax⟩ := s.findIntervals_spec hs id
   set L := s.findIntervals id with hL
   let F : Finset (Set ℝ) := (L.map STLInterval.set).toFinset.filter fun S => S.Nonempty
   have hF : ∀ S ∈ F, ∃ I ∈ L, I.set = S ∧ S.Nonempty := by
@@ -69,14 +69,12 @@ theorem PointSegmentSignal.exists_minimal_unitary_decomposition (s : PointSegmen
     exact hmax (J S) (hJL S hS) t₁ ht₁ t₂ ht₂ (fun t ht h1 h2 => by simpa using h t ht h1 h2)
   have hnnS : ∀ S ∈ F, ∀ t ∈ S, 0 ≤ t := fun S hS t ht => by
     rw [← hJS S hS] at ht
-    exact STLInterval.zero_le_of_mem_set (J S) (hnn (J S) (hJL S hS)) t ht
+    exact STLInterval.zero_le_of_mem_set (J S) t ht
   refine ⟨↥F, inferInstance, fun i => PointSegmentSignal.indicator (J i.1) true false,
     fun i => J i.1, fun i => ?_, fun t ht => ?_, fun κ _ v K hK hcov' => ?_⟩
   · -- a unitary signal on the run
-    obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (J i.1) (hnn (J i.1) (hJL i.1 i.2)) true
-      false
-    refine ⟨hv, ⟨hnn (J i.1) (hJL i.1 i.2), fun t ht => ⟨fun hat => ?_, fun hx => (h t ht).1 hx⟩⟩,
-      ?_⟩
+    obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (J i.1) true false
+    refine ⟨hv, fun t ht => ⟨fun hat => ?_, fun hx => (h t ht).1 hx⟩, ?_⟩
     · by_contra hx
       rw [(h t ht).2 hx] at hat
       exact absurd hat (by simp)
@@ -89,12 +87,10 @@ theorem PointSegmentSignal.exists_minimal_unitary_decomposition (s : PointSegmen
         simp only [F, Finset.mem_filter, List.mem_toFinset, List.mem_map]
         exact ⟨⟨I, hI, rfl⟩, ⟨t, htI⟩⟩
       refine ⟨⟨I.set, hIF⟩, ?_⟩
-      obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (J I.set) (hnn (J I.set) (hJL I.set hIF))
-        true false
+      obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (J I.set) true false
       exact (h t ht).1 (by rw [hJS I.set hIF]; exact htI)
     · rintro ⟨i, hi⟩
-      obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (J i.1) (hnn (J i.1) (hJL i.1 i.2)) true
-        false
+      obtain ⟨hv, h⟩ := PointSegmentSignal.indicator_spec (J i.1) true false
       have hx : t ∈ (J i.1).set := by
         by_contra hx
         rw [(h t ht).2 hx] at hi
@@ -107,7 +103,7 @@ theorem PointSegmentSignal.exists_minimal_unitary_decomposition (s : PointSegmen
     have hex : ∀ i : ↥F, ∃ j, p i ∈ (K j).set := fun i => by
       have hst := hrun i.1 i.2 (p i) (hnnS i.1 i.2 _ (hp' i)) (hp' i)
       obtain ⟨j, hj⟩ := (hcov' _ (hnnS i.1 i.2 _ (hp' i))).1 hst
-      exact ⟨j, ((hK j).2 _ (hnnS i.1 i.2 _ (hp' i))).1 hj⟩
+      exact ⟨j, ((hK j) _ (hnnS i.1 i.2 _ (hp' i))).1 hj⟩
     choose g hg using hex
     -- two runs sharing a unitary signal are connected through times where `s` is `true`
     have hshare : ∀ i i' : ↥F, g i = g i' → p i' ∈ i.1 := by
@@ -117,7 +113,7 @@ theorem PointSegmentSignal.exists_minimal_unitary_decomposition (s : PointSegmen
       refine hmaxS i.1 i.2 (p i) (hp' i) (p i') (hnnS i'.1 i'.2 _ (hp' i')) fun t ht h1 h2 => ?_
       have hord : (K (g i)).set.OrdConnected := STLInterval.set_ordConnected _
       have hmem : t ∈ (K (g i)).set := hord.uIcc_subset hK1 hK2 ⟨h1, h2⟩
-      exact (hcov' t ht).2 ⟨g i, ((hK (g i)).2 t ht).2 hmem⟩
+      exact (hcov' t ht).2 ⟨g i, ((hK (g i)) t ht).2 hmem⟩
     -- two maximal runs that meet are equal
     have hsub : ∀ i i' : ↥F, p i ∈ i'.1 → i.1 ⊆ i'.1 := by
       intro i i' hpi q hq

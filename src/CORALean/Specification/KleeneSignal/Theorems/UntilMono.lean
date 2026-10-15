@@ -21,7 +21,7 @@ If `Λ₁ ⊑ₜ Λ₁'` and `Λ₂ ⊑ₜ Λ₂'` at every time `t ≥ 0`, then
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -34,14 +34,13 @@ namespace CORALean
 
 theorem KleeneSignal.until_mono (l l' r r' : KleeneSignal ℝ) (hl : l.IsValid) (hl' : l'.IsValid)
     (hr : r.IsValid) (hr' : r'.IsValid) (U : STLInterval)
-    (hU : ∀ f, U.fieldsOf = some f → 0 ≤ f.lower)
     (h1 : ∀ t : ℝ, 0 ≤ t → l.at t ≤ l'.at t) (h2 : ∀ t : ℝ, 0 ≤ t → r.at t ≤ r'.at t) :
     ∀ t : ℝ, 0 ≤ t → (l.until U r).at t ≤ (l'.until U r').at t := by -- --- PROOF ---
   intro t ht
-  obtain ⟨-, h⟩ := KleeneSignal.until_spec l r hl hr U hU
-  obtain ⟨-, h'⟩ := KleeneSignal.until_spec l' r' hl' hr' U hU
+  obtain ⟨-, h⟩ := KleeneSignal.until_spec l r hl hr U
+  obtain ⟨-, h'⟩ := KleeneSignal.until_spec l' r' hl' hr' U
   have hpos : ∀ t', t' - t ∈ U.set → 0 ≤ t' := fun t' hu => by
-    have := STLInterval.zero_le_of_mem_set U hU _ hu; linarith
+    have := STLInterval.zero_le_of_mem_set U _ hu; linarith
   rw [Kleene.le_iff_tt_ff]
   refine ⟨fun htt => ?_, fun hff => ?_⟩
   · obtain ⟨t', hu, hr0, hl0⟩ := ((h t ht).1).1 htt

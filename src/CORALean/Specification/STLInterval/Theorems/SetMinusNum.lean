@@ -34,14 +34,14 @@ theorem STLInterval.set_minusNum (I : STLInterval) (c : ℝ) :
     (I.minusNum c).set = ((fun t => t - c) '' I.set) ∩ Set.Ici 0 := by -- --- PROOF ---
   cases I with
   | empty => simp [STLInterval.minusNum, STLInterval.set]
-  | nonempty l u lc rc a b c' =>
+  | nonempty l u lc rc a b c' _ =>
     simp only [STLInterval.minusNum]
-    have := rawSet_sub (set_nonempty _ _ _ _ a b c') (rawSet_closed_nonempty (le_refl c))
+    have := rawSet_sub (rawSet_nonempty_of _ _ _ _ a b c') (rawSet_closed_nonempty (le_refl c))
     rw [rawSet_closed_coe, Set.Icc_self, Set.sub_singleton] at this
     simp only [Bool.and_true] at this
     show _ = (fun t => t - c) '' rawSet l u lc rc ∩ Set.Ici 0
     rw [← this, rawSet_clamp]
-    split_ifs <;> exact set_stlInterval _ _ _ _
+    split_ifs <;> exact set_stlInterval _ _ _ _ _
 
 end CORALean
 

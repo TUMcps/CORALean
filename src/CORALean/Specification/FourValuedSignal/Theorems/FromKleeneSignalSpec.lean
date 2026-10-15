@@ -31,9 +31,8 @@ theorem FourValuedSignal.fromKleeneSignal_spec
     (kSig : KleeneSignal ℝ) (hk : kSig.IsValid) :
     (FourValuedSignal.fromKleeneSignal kSig).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (FourValuedSignal.fromKleeneSignal kSig).at t =
-        FourValued.fromKleene (kSig.at t) := by -- --- PROOF ---
-  obtain ⟨hv, hat⟩ := PointSegmentSignal.indicator_spec STLInterval.empty (fun f h => by cases h)
-      false false
+        FourValued.fromKleene (kSig.at t) := by
+  obtain ⟨hv, hat⟩ := PointSegmentSignal.indicator_spec STLInterval.empty false false
   refine ⟨⟨hk, hv⟩, fun t ht => ?_⟩
   have := (hat t ht).2 (by simp [STLInterval.set_empty])
   simp [FourValuedSignal.at, FourValuedSignal.fromKleeneSignal, this]

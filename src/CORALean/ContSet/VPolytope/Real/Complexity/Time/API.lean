@@ -1,8 +1,7 @@
 module
 
-public import CORALean.ContSet.VPolytope.Real.Complexity.Time.Plus
-public import CORALean.ContSet.VPolytope.Real.Complexity.Time.Mtimes
-public import CORALean.ContSet.VPolytope.Real.Complexity.Time.LinComb
+public import CORALean.ContSet.VPolytope.Real.Complexity.Time.Operations.API
+public import CORALean.ContSet.VPolytope.Real.Complexity.Time.Theorems.API
 
 /-!
 # What running `VPolytope`'s operations costs

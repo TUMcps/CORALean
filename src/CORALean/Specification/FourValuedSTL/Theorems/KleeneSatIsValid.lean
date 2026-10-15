@@ -43,16 +43,16 @@ theorem FourValuedSTL.kleeneSat_isValid {X : Type} (φ : FourValuedSTL.Formula X
     (S : (X → Prop) → KleeneSignal ℝ) (hS : ∀ a ∈ φ.atoms, (S a).IsValid) :
     (φ.kleeneSat S).IsValid := by -- --- PROOF ---
   induction φ with
-  | tt => exact (KleeneSignal.indicator_spec STLInterval.empty (fun f h => by cases h) .tt .tt).1
+  | tt => exact (KleeneSignal.indicator_spec STLInterval.empty .tt .tt).1
   | atom a => exact hS a (by simp [FourValuedSTL.Formula.atoms])
   | not φ ih => exact KleeneSignal.not_isValid _ (ih hS)
   | and φ ψ ihφ ihψ =>
     exact (KleeneSignal.at_and ![φ.kleeneSat S, ψ.kleeneSat S]
       (Fin.forall_fin_two.2 ⟨ihφ fun a ha => hS a (Or.inl ha),
         ihψ fun a ha => hS a (Or.inr ha)⟩)).1
-  | «until» I hI φ ψ ihφ ihψ =>
+  | «until» I φ ψ ihφ ihψ =>
     exact (KleeneSignal.until_spec _ _ (ihφ fun a ha => hS a (Or.inl ha))
-      (ihψ fun a ha => hS a (Or.inr ha)) I hI).1
+      (ihψ fun a ha => hS a (Or.inr ha)) I).1
 
 end CORALean
 

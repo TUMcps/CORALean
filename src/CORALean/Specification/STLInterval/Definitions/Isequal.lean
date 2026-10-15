@@ -28,7 +28,7 @@ def STLInterval.isequal (tol : ℝ) : STLInterval → STLInterval → Prop
   | .empty, .empty => True
   | .nonempty .., .empty => False
   | .empty, .nonempty .. => False
-  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ =>
+  | .nonempty l₁ u₁ lc₁ rc₁ _ _ _ _, .nonempty l₂ u₂ lc₂ rc₂ _ _ _ _ =>
     withinTol tol l₁ l₂ ∧ withinTol tol u₁ u₂ ∧ lc₁ = lc₂ ∧ rc₁ = rc₂
 
 end CORALean

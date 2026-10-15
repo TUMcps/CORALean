@@ -1,6 +1,7 @@
 module
 
-public import CORALean.NN.Complexity.Time.Enclose
+public import CORALean.NN.Complexity.Time.Operations.API
+public import CORALean.NN.Complexity.Time.Theorems.API
 
 /-!
 # What running a network's `enclose` costs

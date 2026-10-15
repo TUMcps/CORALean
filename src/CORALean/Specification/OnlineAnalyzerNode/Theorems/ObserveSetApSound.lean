@@ -16,7 +16,7 @@ none does: the four-valued semantics of an atomic proposition on a set of states
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +40,7 @@ theorem OnlineAnalyzerNode.observeSet_ap_sound (eps : ℝ)
     (hnc : OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed
       n.prop = some false) (val : Kleene)
     (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val)
-    (hs : n.signal.IsValid) (hI : ∀ f, interval.fieldsOf = some f → 0 ≤ f.lower)
+    (hs : n.signal.IsValid)
     (n' : OnlineAnalyzerNode (AtomicProposition S d))
     (h : OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false = some n')
     (t : ℝ) (h0 : 0 ≤ t) (hti : t ∈ interval.set) :
@@ -50,7 +50,7 @@ theorem OnlineAnalyzerNode.observeSet_ap_sound (eps : ℝ)
     hk ap hap tent ht hnc val hval).1
   obtain rfl : { n with signal := n.signal.set interval (FourValued.fromKleene val) } = n' :=
     Option.some.inj (hm.symm.trans h)
-  have hat := ((hsig hs hI).2 t h0).1 hti
+  have hat := ((hsig hs).2 t h0).1 hti
   obtain ⟨htt, hff, -⟩ := OnlineAnalyzerNode.apValue_spec (𝕋 := 𝕋) ap set loc
   refine ⟨fun h1 => htt ?_, fun h1 => hff ?_⟩
   · -- the value is true

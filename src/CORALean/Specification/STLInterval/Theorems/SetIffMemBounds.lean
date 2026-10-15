@@ -17,7 +17,7 @@ the empty `[0,0)`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -28,8 +28,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STLInterval.set_iff_memBounds (I : STLInterval)
-    (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (t : ℝ) :
+theorem STLInterval.set_iff_memBounds (I : STLInterval) (t : ℝ) :
     t ∈ I.set ↔ STLInterval.memBounds I.lowerBound I.upperBound I.lowerClosed I.upperClosed t
       := by -- --- PROOF ---
   induction I with
@@ -38,9 +37,8 @@ theorem STLInterval.set_iff_memBounds (I : STLInterval)
     simp [STLInterval.set, STLInterval.memBounds, STLInterval.lowerBound, STLInterval.upperBound,
       STLInterval.lowerClosed, STLInterval.upperClosed, not_lt]
     exact fun h => h.le
-  | nonempty l u lc rc h1 h2 h3 =>
+  | nonempty l u lc rc h1 h2 h3 h0 =>
     -- the lower end is finite and nonnegative, the upper end is infinite or a real
-    have h0 : 0 ≤ l := hI _ rfl
     induction l using EReal.rec with
     | bot => exact absurd h0 (by simp)
     | top =>

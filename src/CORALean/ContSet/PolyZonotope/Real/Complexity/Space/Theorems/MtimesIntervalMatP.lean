@@ -1,0 +1,40 @@
+module
+
+public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
+
+@[expose] public section
+
+/-!
+# `PolyZonotope.mtimesIntervalMat`'s counts
+
+Multiplying by an interval matrix keeps the dependent factors and generators
+and boxes the radius into one fresh *independent* generator per output
+coordinate: `m` more, the matrix's row count, unrelated to the operand's own
+size. `rfl` against the structure instance in `Operations/MtimesIntervalMat.lean`.
+-/
+
+-- Authors:       Claude Opus 5
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open Matrix
+
+variable {m n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- The `p` count of `mtimesIntervalMat`'s result. -/
+theorem PolyZonotope.mtimesIntervalMat_p (IM : Interval (Mat ℝ m n))
+    (pZ : PolyZonotope (Vec ℝ n)) : (PolyZonotope.mtimesIntervalMat IM pZ).p = pZ.p := rfl
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

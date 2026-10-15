@@ -1,12 +1,7 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Map
-public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Mtimes
-public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Reduce
-public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Plus
-public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Intersection
-public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.LinComb
-public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.MtimesIntervalMat
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Operations.API
+public import CORALean.ContSet.ConZonotope.Real.Complexity.Time.Theorems.API
 
 /-!
 # What running `ConZonotope`'s operations costs

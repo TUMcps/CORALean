@@ -1,0 +1,36 @@
+module
+
+public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
+public import CORALean.Global.Cost
+
+@[expose] public section
+
+/-!
+# `Ellipsoid.plusCost`
+
+Asserted, not proved: `Operations/Plus.lean` scales every entry of both
+generator matrices before laying them side by side — `n * q₁` multiplications
+for `s₁ • G₁`, `n * q₂` for `s₂ • G₂` — and `Fin.append` is free.
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       23-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- What `Ellipsoid.plus` costs at `Vec ℝ n` on `q₁`, `q₂` generators: one
+multiplication per generator entry, either scaling. -/
+def Ellipsoid.plusCost (n q₁ q₂ : ℕ) : Cost := ⟨n * (q₁ + q₂)⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

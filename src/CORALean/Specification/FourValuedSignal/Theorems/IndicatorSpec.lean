@@ -29,13 +29,13 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSignal.indicator_spec
-    (I : STLInterval) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (val default : FourValued) :
+    (I : STLInterval) (val default : FourValued) :
     (FourValuedSignal.indicator I val default).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (FourValuedSignal.indicator I val default).at t = val) ∧
       (t ∉ I.set → (FourValuedSignal.indicator I val default).at t = default) := by -- --- PROOF ---
-  obtain ⟨hv1, h1⟩ := KleeneSignal.indicator_spec I hI val.toKleene default.toKleene
+  obtain ⟨hv1, h1⟩ := KleeneSignal.indicator_spec I val.toKleene default.toKleene
   obtain ⟨hv2, h2⟩ :=
-    PointSegmentSignal.indicator_spec I hI val.isInconclusive default.isInconclusive
+    PointSegmentSignal.indicator_spec I val.isInconclusive default.isInconclusive
   refine ⟨⟨hv1, hv2⟩, fun t ht => ⟨fun hm => ?_, fun hm => ?_⟩⟩
   · -- inside: the value is `val`, rebuilt from its parts
     have e1 := (h1 t ht).1 hm

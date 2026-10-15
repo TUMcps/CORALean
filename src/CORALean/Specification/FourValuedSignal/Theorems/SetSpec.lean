@@ -36,13 +36,13 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSignal.set_spec (s : FourValuedSignal ℝ)
-    (hs : s.IsValid) (I : STLInterval) (hI : ∀ f, I.fieldsOf = some f → 0 ≤ f.lower) (value :
+    (hs : s.IsValid) (I : STLInterval) (value :
         FourValued) :
     (s.set I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.set I value).at t = value) ∧
       (t ∉ I.set → (s.set I value).at t = s.at t) := by -- --- PROOF ---
-  obtain ⟨hv1, h1⟩ := KleeneSignal.set_spec s.signal hs.1 I hI value.toKleene
-  obtain ⟨hv2, h2⟩ := PointSegmentSignal.set_spec s.isInconclusive hs.2 I hI value.isInconclusive
+  obtain ⟨hv1, h1⟩ := KleeneSignal.set_spec s.signal hs.1 I value.toKleene
+  obtain ⟨hv2, h2⟩ := PointSegmentSignal.set_spec s.isInconclusive hs.2 I value.isInconclusive
   refine ⟨⟨hv1, hv2⟩, fun t ht => ⟨fun hm => ?_, fun hm => ?_⟩⟩
   · -- inside: the value is `value`, rebuilt from its parts
     have : (s.set I value).at t = FourValued.ofKleeneInc value.toKleene value.isInconclusive := by

@@ -45,13 +45,13 @@ theorem FourValuedSignal.toKleeneSignal_spec (s : FourValuedSignal ℝ) (hs : s.
       (s.at t = FourValued.ii → (s.toKleeneSignal v).at t = v) ∧
       (s.at t ≠ FourValued.ii →
         (s.toKleeneSignal v).at t = (s.at t).toKleene) := by -- --- PROOF ---
-  obtain ⟨h0, h1, -⟩ := s.isInconclusive.findIntervals_spec hs.2 id
+  obtain ⟨h1, -⟩ := s.isInconclusive.findIntervals_spec hs.2 id
   -- the intervals are set in turn
   obtain ⟨hv, h2⟩ := List.foldl_set_spec (fun sig : KleeneSignal ℝ => sig.IsValid)
     (fun sig t => sig.at t) (s.isInconclusive.findIntervals) (fun I => I.set) v
     (fun sig I => sig.set I v)
-    (fun sig I hI hsig => by
-      obtain ⟨hv, h⟩ := KleeneSignal.set_spec sig hsig I (h0 I hI) v
+    (fun sig I _ hsig => by
+      obtain ⟨hv, h⟩ := KleeneSignal.set_spec sig hsig I v
       exact ⟨hv, fun t ht => h t ht⟩) s.signal hs.1
   have hcond : ∀ t : ℝ, 0 ≤ t → ((∃ I ∈ s.isInconclusive.findIntervals, t ∈ I.set) ↔
       s.isInconclusive.at t = true) := fun t ht => by simpa using h1 t ht

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Complexity.Space.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Complexity.Space.Theorems.API
 
 /-!
 # What `Ellipsoid` costs
