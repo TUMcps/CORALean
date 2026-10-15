@@ -12,12 +12,12 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachUnionOuter
 `params` is `Reach.Params` counted in sampling periods, `options` `NeurNetContrSysDT.ReachOptions`.
 `reachExact` is `reachUnionExact` over `tFinal - tStart` steps, the closed loop being
 time-invariant, `reach` is `reachUnion` (always `some`: nothing here can fail at run time), and the
-guarantee is `reachUnion_outer`, at a `LinearSysDT` plant, the family `NeurNetContrSysDT.Linear`. No
-input set: the closed loop reads its own input off the controller; and no disturbance, as CORA's
-loop at a linear plant drops `E`.
+guarantee is `reachUnion_outer`, at a `LinearSysDT` plant, the family `NeurNetContrSysDT.Linear`.
+The input set is the external `U` the system carries (`U_ext`), the network's part being read off
+the controller; and no disturbance, as CORA's loop at a linear plant drops `E`.
 -/
 
--- Authors:       Claude Sonnet 5, Claude Opus 5.5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       24-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -40,13 +40,13 @@ variable [OfScalarPoint 𝕋 S]
 instance NeurNetContrSysDT.reachInstance :
     Reach (NeurNetContrSysDT.Linear 𝕋 S) (fun n => Reach.Params (S n) ℕ)
       NeurNetContrSysDT.ReachOptions S where
-  reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
-    (construct params.X₀)
-  reach sys params options := some (sys.reachUnion params options)
+  reachExact sys params := sys.sys.reachUnionExact (params.tFinal - params.tStart)
+    (construct sys.U) (construct params.X₀)
+  reach sys params options := some (sys.sys.reachUnion sys.U params options)
   reach_outer sys params options _ h := by
     -- the one set returned is `reachUnion`'s
     cases h
-    exact sys.reachUnion_outer params options
+    exact sys.sys.reachUnion_outer sys.U params options
 
 end CORALean
 

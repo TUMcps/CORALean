@@ -19,7 +19,7 @@ enclosure. `Theorems.ReachSetOuter` puts every run into it,
 `ReachSetSubsetReach` puts it inside `reach`.
 -/
 
--- Authors:       Claude Sonnet 5, Claude Opus 5.5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       07-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -37,12 +37,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every state some run of `sys` under `π` from `R₀`, its disturbance in `W`, is at after `k`
-steps: the exact reachable set, not an enclosure of it. -/
+/-- Every state some run of `sys` under `π` from `R₀`, its external input in `U_ext` and its
+disturbance in `W`, is at after `k` steps: the exact reachable set, not an enclosure of it. -/
 def NeurNetContrSysDT.reachSet (sys : NeurNetContrSysDT P S n)
-    (π : Vec ℝ n → Vec ℝ (nrOfInputs sys.plant)) (R₀ : S n)
+    (π : Vec ℝ n → Vec ℝ sys.m) (R₀ : S n) (U_ext : Set (Vec ℝ sys.nExt))
     (W : Set (Vec ℝ (nrOfDisturbances sys.plant))) (k : ℕ) : Set (Vec ℝ n) :=
-  {y | ∃ x : ℕ → Vec ℝ n, ∃ w, sys.Trajectory π R₀ W x w ∧ x k = y}
+  {y | ∃ x : ℕ → Vec ℝ n, ∃ v w, sys.Trajectory π R₀ U_ext W x v w ∧ x k = y}
 
 end CORALean
 

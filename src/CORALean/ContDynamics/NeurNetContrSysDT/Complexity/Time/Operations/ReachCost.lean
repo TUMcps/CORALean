@@ -16,8 +16,9 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.ReduceGi
 
 What running `reach` costs, assembled: `Operations.lean` alternates one call to
 `enclose` with one step of `LinearSysDT.reach`, so a step here is one
-`encloseCost`, the `mtimes` by `B` and the `plus` of `c` that make the input set `B N(R) ⊕ c`,
-and the `mtimes`, `plus` and `reduce` the plant's step unfolds to — the `Zonotope` costs
+`encloseCost`, the `mtimes` by `B_nn`, the `mtimes` by `B_ext` of the external inputs `U_ext` and
+the two `plus`es (with `c`) that make the input set `B_nn N(R) ⊕ B_ext U_ext ⊕ c`, and the
+`mtimes`, `plus` and `reduce` the plant's step unfolds to — the `Zonotope` costs
 `LinearSysDT.reachCost` uses, at the sizes the alternation itself carries. `LC` is the
 per-layer bound `encloseCost` takes.
 
@@ -31,9 +32,9 @@ caller-supplied bound
 gives, an activation layer's relaxation being free to grow it.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -49,23 +50,25 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `reach` costs over `k` steps at `𝒵`, at a per-layer bound `LC`: per
-step one `NeuralNetwork.encloseCost`, the input map's `mtimes` and `plus`, and the plant's
-`mtimes`, `plus` and `reduce`. -/
+step one `NeuralNetwork.encloseCost`, the input map's two `mtimes` and two `plus`es, and the
+plant's `mtimes`, `plus` and `reduce`. -/
 noncomputable def NeurNetContrSysDT.reachCost (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
-    (o : ℕ) (ho : 0 < o)
+    (U_ext : Zonotope (Vec ℝ sys.nExt)) (o : ℕ) (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost) : ℕ → Cost
   | 0 => 0
   | k + 1 =>
-      sys.reachCost o ho R₀ LC k
+      sys.reachCost U_ext o ho R₀ LC k
         + (NeuralNetwork.encloseCost LC sys.contr
-            + (Zonotope.mtimesCost n sys.plant.m
-                  (sys.contr.enclose (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
+            + (Zonotope.mtimesCost n sys.m
+                  (sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
                 + Zonotope.plusCost n)
-            + (Zonotope.mtimesCost n n (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
+            + (Zonotope.mtimesCost n sys.nExt U_ext.h + Zonotope.plusCost n)
+            + (Zonotope.mtimesCost n n (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
                 + Zonotope.plusCost n
                 + Zonotope.reduceGirardCost n
-                    ((sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
-                      + (sys.contr.enclose (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h)))
+                    ((sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩).h
+                      + ((sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
+                        + U_ext.h))))
 
 end CORALean
 

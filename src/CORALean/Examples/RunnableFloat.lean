@@ -808,13 +808,16 @@ def findRegionPolysRun : Option (List (RegionPoly D)) :=
 #eval propagateBoundsRun.sup 0
 #eval findRegionPolysRun.map List.length
 
-/-- `ctSys` closed around `net`, two control periods of two float steps of `r` each (#1). -/
-def nnContrSys : NeurNetContrSys (LinearSys D 2) 𝒵[D] 2 := ⟨ctSys, net⟩
-def nnContrReachRun : Zonotope (Vec D 2) := nnContrSys.reachFloat ⟨Z, 0, 2⟩
-    ⟨stepR, 2, 4, 2, two_pos⟩
+/-- `ctSys` closed around `net`, two control periods of two float steps of `r` each (#1). The
+network drives both inputs, so the external input set is a point set of dimension `0`. -/
+def nnContrSys : NeurNetContrSys (LinearSys D 2) 𝒵[D] 2 :=
+  NeurNetContrSys.ofFull ctSys net (2 * Scalar.toReal stepR)
+def nnContrReachRun : Zonotope (Vec D 2) :=
+  nnContrSys.reachFloat (Zonotope.point fun i => i.elim0) ⟨Z, 0, 2⟩ ⟨stepR, 2, 4, 2, two_pos⟩
 /-- The same loop's set at every period boundary `0, 1, 2`, at an order `reachOrderFloat` finds. -/
 def nnContrUnionRun : Option (List (Zonotope (Vec D 2))) :=
-  nnContrSys.reachUnionFloat ⟨Z, 0, 2⟩ ⟨stepR, 2, 4, 2, two_pos⟩
+  nnContrSys.reachUnionFloat (Zonotope.point fun i => i.elim0) ⟨Z, 0, 2⟩
+    ⟨stepR, 2, 4, 2, two_pos⟩
 
 #eval reachRun.h
 #eval reachRun.c 0

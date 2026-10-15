@@ -16,7 +16,7 @@ been made.
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,9 +33,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- `reachFloat`, or `none` if a float of its result is a NaN. -/
 def NeurNetContrSys.reachFloatChecked (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[𝕋] n)
-    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ) (options : NeurNetContrSys.ReachOptions 𝕋) :
+    (U_ext : Zonotope (Vec 𝕋 sys.nExt)) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ)
+    (options : NeurNetContrSys.ReachOptions 𝕋) :
     Option (Zonotope (Vec 𝕋 n)) :=
-  ifNoNaN (𝕋 := 𝕋) (sys.reachFloat params options)
+  ifNoNaN (𝕋 := 𝕋) (sys.reachFloat U_ext params options)
 
 end CORALean
 

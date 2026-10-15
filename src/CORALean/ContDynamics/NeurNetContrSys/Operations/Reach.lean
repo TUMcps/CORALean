@@ -16,15 +16,17 @@ public import CORALean.ContDynamics.Reach.Definitions.Params
 # The sampled loop at a linear plant: reachability at two rates
 
 [1, Alg. 2] (`reachWith`) at a `LinearSys` plant, CORA's `neurNetContrSys/reach` with
-`aux_reachability` choosing `linearSys`'s own. The outer recursion is on the control period:
-the network's image `Y` of the set reached so far is stacked under it (`cartProd`, CORA's
-`aux_appendU2X`), the pair reached as one state of the augmented system `[A B; 0 0]`, `[c; 0]`
-(`augment`, CORA's `aux_augmentLinear`) and projected back (`project`). The inner level is `N`
-steps of length `Δt` of that system by `LinearSys`'s own machinery: `discretize`, `reach ... N`,
-and `inputSolution` of the constant `[c; 0]`.
+`aux_reachability` choosing `linearSys`'s own. The outer recursion is on the control period: the
+network's image `Y` of the set reached so far is stacked under it (`cartProd`, CORA's
+`aux_appendU2X`), the pair reached as one state of the augmented system `[A B_nn; 0 0]`, `[B_ext;
+0]`, `[c; 0]` (`augment`, CORA's `aux_augmentLinear`) and projected back (`project`). The inner
+level is `N` steps of length `Δt` of that system by `LinearSys`'s own machinery: `discretize`,
+`reach ... N`, and `inputSolution` of `B_aug U_ext ⊕ [c; 0]`, the external inputs `U_ext` (CORA's
+`params.U`) entering through `B_ext` as `aux_augmentLinear` has them.
 
-The input is a state, so its constancy over the period is kept and the same input acts at all
-`N` steps; only the dependence of `Y` on the state is lost, the product being the plain one.
+The network's input is a state, so its constancy over the period is kept and the same input acts
+at all `N` steps; only the dependence of `Y` on the state is lost, the product being the plain
+one. The external input is free in `U_ext` at every instant.
 Only the period boundaries are reached (`rx` returns no sets over a period), the gap
 `relinReach` has. Time is counted in control periods, `tStart` and `tFinal` being ℕ as in
 `LinearSysDT.reach`; every guarantee is stated at `tStart = 0`.
@@ -35,9 +37,9 @@ Only the period boundaries are reached (`rx` returns no sets over a period), the
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Sonnet 5, Claude Opus 5.5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -58,18 +60,21 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 /-- The reachable set at the end of `params.tFinal - params.tStart` control periods, each
 `options.N` steps of length `options.Δt` of the augmented system from the state set stacked over
-the network's image. -/
+the network's image, under the external inputs `U_ext`. -/
 noncomputable def NeurNetContrSys.reach (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
-    (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions ℝ) : S n :=
+    (U_ext : S sys.nExt) (params : Reach.Params (S n) ℕ)
+    (options : NeurNetContrSys.ReachOptions ℝ) : S n :=
   let R₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
   let N := options.N
   let η := options.η
   let o := options.ρ
   let H := params.tFinal - params.tStart                           -- control periods
-  let ext := sys.augment                                            -- [A B; 0 0], [c; 0]
+  let ext := sys.augment                                            -- [A B_nn; 0 0], [B_ext; 0]
+  let U := Plus.plus (Mtimes.mtimes (𝕄 := Mat ℝ) ext.B U_ext)      -- B_aug U_ext ⊕ [c; 0]
+    (OfPoint.ofPoint ext.c)
   let rx := fun Z =>                                                -- N steps of ext from Z
-    ((ext.discretize Δt).reach ⟨Z, ext.inputSolution Δt η (OfPoint.ofPoint ext.c), 0, N⟩
+    ((ext.discretize Δt).reach ⟨Z, ext.inputSolution Δt η U, 0, N⟩
       ⟨o, options.hZonotopeOrder⟩, [])
   (sys.reachWith NeurNetContrSys.cartProd NeurNetContrSys.project rx R₀ H).1  -- R(HNΔt)
 

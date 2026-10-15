@@ -12,7 +12,7 @@ what runs reach by construction, so the proof is the pair itself. All the
 content sits in the other half, `reachSet_subset_reach`.
 -/
 
--- Authors:       Claude Opus 5, Claude Opus 5.5
+-- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       07-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -34,12 +34,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Reach for this to say where a run *is*; reach for `reachSet_subset_reach`
 to say what encloses it. -/
 theorem NeurNetContrSys.Trajectory.reachSet_outer {sys : NeurNetContrSys P S n}
-    {π : Vec ℝ n → Vec ℝ (nrOfInputs sys.plant)} {Δtc : ℝ} {H : ℕ} {R₀ : S n}
+    {π : Vec ℝ n → Vec ℝ sys.m} {H : ℕ} {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {W : Set (Vec ℝ (nrOfDisturbances sys.plant))} {x : ℝ → Vec ℝ n}
-    {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
-    (traj : sys.Trajectory π Δtc H R₀ W x w) (t : ℝ) :
-    x t ∈ sys.reachSet π Δtc H R₀ W t :=
-  ⟨x, w, traj, rfl⟩
+    {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
+    (traj : sys.Trajectory π H R₀ U_ext W x v w) (t : ℝ) :
+    x t ∈ sys.reachSet π H R₀ U_ext W t :=
+  ⟨x, v, w, traj, rfl⟩
 
 end CORALean
 

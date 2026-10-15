@@ -3,14 +3,15 @@ module
 public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachSet
 public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachUnionExact
-public import CORALean.ContDynamics.NeurNetContrSys.Definitions.WithPeriod
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.Linear
 
 /-!
 # What `NeurNetContrSys` means
 
 `ReachSet`: every state some zero-order-hold run reaches, quantified over the
-runs themselves — the exact set, not an enclosure of it. `WithPeriod` is
-the system with its control period, CORA's `sys.dt`, and `ReachUnionExact` what
+runs themselves — the exact set, not an enclosure of it. `Linear` is
+the system with its external input set, as the family `Reach` is instantiated at, and
+`ReachUnionExact` what
 `Reach` asks of it, at the controller's own `eval`;
 `ReachOptions` is CORA's `options` for `NeurNetContrSys.reach`.
 -/

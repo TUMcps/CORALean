@@ -26,7 +26,7 @@ restate here — the gap sits in what the class proves, not only in this file.
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Opus 5, Claude Opus 5.5
+-- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       07-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -54,14 +54,15 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 /-- Reach for this at the period boundaries; the guarantee attaches to the
 reachable set, not to a run of it. -/
 theorem NeurNetContrSys.reachSet_subset_reach (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
-    (o η N : ℕ) (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt)
+    (U_ext : S sys.nExt)
+    (o η N : ℕ) (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt) (hdt : sys.dt = (N : ℝ) * Δt)
     (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ} (R₀ : S n)
-    {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π) (W : Set (Vec ℝ sys.plant.r))
+    {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π) (W : Set (Vec ℝ sys.plant.r))
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {i : ℕ} (hi : i ≤ H) :
-    sys.reachSet π ((N : ℝ) * Δt) H R₀ W ((i : ℝ) * ((N : ℝ) * Δt))
-      ⊆ construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
-  rintro _ ⟨x, w, traj, rfl⟩
-  exact sys.reach_outer o η N ho hΔt hε hπ hW traj i hi
+    sys.reachSet π H R₀ (construct U_ext) W ((i : ℝ) * sys.dt)
+      ⊆ construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
+  rintro _ ⟨x, v, w, traj, rfl⟩
+  exact sys.reach_outer U_ext o η N ho hΔt hdt hε hπ hW traj i hi
 
 end CORALean
 

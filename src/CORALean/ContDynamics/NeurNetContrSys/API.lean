@@ -15,6 +15,9 @@ zero-order-hold run of the two is in `NeurNetContrSys`, [1, Alg. 2] over the con
 `ReachSet`, its guarantee in `Theorems`, and `Instances`, the linear loop's `Reach`: one period
 boundary per branch, at a derived Taylor order.
 
+The network drives the first `m` inputs of the plant and the rest are external, CORA's `n_ext`
+(`NeurNetContrSys.nExt`), in `U_ext`; the plant receives `U_nn × U_ext`.
+
 The input is held exactly: a period is reached as one state of the extended system `[x; u]`
 with `u̇ = 0`, so the same input acts over the whole period. The dependence of the network's
 output on the state at the period's start is not kept, the product of the two being the plain

@@ -14,13 +14,13 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 # `NeurNetContrSysDT.reachStepBound`
 
 The same costs at a step's worst case: `o * n` generators reaching the
-`mtimes`, and `hEnc` a bound on what the controller's enclosure carries into
-the `reduce`.
+`mtimes`, `hEnc` a bound on what the controller's enclosure and `hU` on what the external inputs
+carry into the `reduce`.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -36,13 +36,14 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The same costs at a step's worst case: `o * n` generators reaching the
-`mtimes`, and `hEnc` a bound on what the controller's enclosure carries into
-the `reduce`. -/
+`mtimes`, `hEnc` a bound on what the controller's enclosure and `hU` on what the external inputs
+carry into the `reduce`. -/
 def NeurNetContrSysDT.reachStepBound (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
-    (o hEnc : ℕ) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost) : Cost :=
+    (o hEnc hU : ℕ) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost) : Cost :=
   NeuralNetwork.encloseCost LC sys.contr
-    + (Zonotope.mtimesCost n sys.plant.m hEnc + Zonotope.plusCost n)
-    + LinearSysDT.reachStepBound n hEnc o
+    + (Zonotope.mtimesCost n sys.m hEnc + Zonotope.plusCost n)
+    + (Zonotope.mtimesCost n sys.nExt hU + Zonotope.plusCost n)
+    + LinearSysDT.reachStepBound n (hEnc + hU) o
 
 end CORALean
 

@@ -29,9 +29,9 @@ depends on which layers the controller runs, which no `Complexity/Space/` fact
 states for `NeuralNetwork.enclose` in general.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -48,12 +48,12 @@ variable {n : ℕ}
 
 /-- Every set the run holds is at order `o`: `reach_order_le` past the first
 step, and the caller's hypothesis at it. -/
-theorem NeurNetContrSysDT.aux_reach_h_le (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n) {o : ℕ}
-    (ho : 0 < o)
+theorem NeurNetContrSysDT.aux_reach_h_le (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
+    (U_ext : Zonotope (Vec ℝ sys.nExt)) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) :
-    ∀ k, (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩).h ≤ o * n
+    ∀ k, (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩).h ≤ o * n
   | 0 => hR₀
-  | k + 1 => sys.reach_order_le ho R₀ k
+  | k + 1 => sys.reach_order_le U_ext ho R₀ k
 
 /-- One step at any input size within the order bound, and any enclosure size
 within `hEnc`, costs at most `reachStepBound`. -/
@@ -69,26 +69,32 @@ theorem NeurNetContrSysDT.aux_step_le (n hEnc o hIn hOut : ℕ) (hi : hIn ≤ o 
 
 /-- `k` steps cost at most `k` worst-case steps, at a per-layer bound `LC` and a
 bound `hEnc` on what the controller's enclosure carries into each step. -/
-theorem NeurNetContrSysDT.reachCost_le (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n) {o : ℕ}
-    (ho : 0 < o)
+theorem NeurNetContrSysDT.reachCost_le (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
+    (U_ext : Zonotope (Vec ℝ sys.nExt)) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost)
-    (hEnc : ℕ) (hE : ∀ k, (sys.contr.enclose (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h ≤ hEnc)
-    (k : ℕ) :
-    sys.reachCost o ho R₀ LC k ≤ k • sys.reachStepBound o hEnc LC := by -- --- PROOF ---
+    (hEnc hU : ℕ) (hE : ∀ k, (sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
+      ≤ hEnc) (hUe : U_ext.h ≤ hU) (k : ℕ) :
+    sys.reachCost U_ext o ho R₀ LC k ≤ k • sys.reachStepBound o hEnc hU LC := by -- --- PROOF ---
   induction k with
   | zero => simp [NeurNetContrSysDT.reachCost]
   | succ k ih =>
     -- the step's input is the set reached so far, at order `o`; its enclosure is at most `hEnc`
-    have hstep := NeurNetContrSysDT.aux_step_le n hEnc o _ _
-      (sys.aux_reach_h_le ho R₀ hR₀ k) (hE k)
+    have hstep := NeurNetContrSysDT.aux_step_le n (hEnc + hU) o _ _
+      (sys.aux_reach_h_le U_ext ho R₀ hR₀ k) (Nat.add_le_add (hE k) hUe)
     -- the input map's `mtimes` is at the enclosure's size, at most `hEnc`
-    have hin : Zonotope.mtimesCost n sys.plant.m
-        (sys.contr.enclose (sys.reach (S := 𝒵) ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h + Zonotope.plusCost n ≤
-        Zonotope.mtimesCost n sys.plant.m hEnc + Zonotope.plusCost n :=
-      Cost.add_le_add (Zonotope.mtimesCost_mono n sys.plant.m (hE k)) le_rfl
+    have hin : Zonotope.mtimesCost n sys.m
+        (sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
+          + Zonotope.plusCost n ≤
+        Zonotope.mtimesCost n sys.m hEnc + Zonotope.plusCost n :=
+      Cost.add_le_add (Zonotope.mtimesCost_mono n sys.m (hE k)) le_rfl
+    -- and the external inputs' at theirs, at most `hU`
+    have hext : Zonotope.mtimesCost n sys.nExt U_ext.h + Zonotope.plusCost n ≤
+        Zonotope.mtimesCost n sys.nExt hU + Zonotope.plusCost n :=
+      Cost.add_le_add (Zonotope.mtimesCost_mono n sys.nExt hUe) le_rfl
     have h := Nat.add_le_add (Cost.le_iff.mp ih)
-      (Nat.add_le_add (Nat.add_le_add (le_refl (NeuralNetwork.encloseCost LC sys.contr).ops)
-        (Cost.le_iff.mp hin)) (Cost.le_iff.mp hstep))
+      (Nat.add_le_add (Nat.add_le_add (Nat.add_le_add
+        (le_refl (NeuralNetwork.encloseCost LC sys.contr).ops) (Cost.le_iff.mp hin))
+        (Cost.le_iff.mp hext)) (Cost.le_iff.mp hstep))
     refine Cost.le_iff.mpr ?_
     simpa [NeurNetContrSysDT.reachCost, NeurNetContrSysDT.reachStepBound, Nat.succ_mul,
       Nat.add_assoc] using h

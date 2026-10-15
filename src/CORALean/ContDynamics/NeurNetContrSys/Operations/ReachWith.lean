@@ -17,7 +17,8 @@ algorithm for the extended system `rx` are arguments, as [1] runs "arbitrary rea
 algorithms for nonlinear systems" and CORA's `aux_reachability` chooses the plant's own by its
 class. `rx` returns the set at the end of the cycle and the sets over it (CORA's `timePoint` and
 `timeInterval`); the result is the set at the end and the sets over the cycles, newest first,
-whose union is the paper's `R`.
+whose union is the paper's `R`. The extended state `[x; u]` stacks the network's `m` outputs, not
+the plant's inputs: the external ones (`nExt`) stay inputs of `rx`, which holds `U_ext`.
 
 ## References
 
@@ -25,7 +26,7 @@ whose union is the paper's `R`.
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       11-October-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -47,10 +48,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Alg. 2] over `H` control cycles from `X₀`: the set at the end of the last cycle and the
 sets over the cycles, newest first. -/
 def NeurNetContrSys.reachWith (sys : NeurNetContrSys P S n)
-    (cp : S n → S (nrOfInputs sys.plant) → S (n + nrOfInputs sys.plant))
-    (pr : S (n + nrOfInputs sys.plant) → S n)
-    (rx : S (n + nrOfInputs sys.plant) → S (n + nrOfInputs sys.plant) × List (S
-        (n + nrOfInputs sys.plant)))
+    (cp : S n → S sys.m → S (n + sys.m))
+    (pr : S (n + sys.m) → S n)
+    (rx : S (n + sys.m) → S (n + sys.m) × List (S (n + sys.m)))
     (X₀ : S n) : ℕ → S n × List (S n)
   -- 1. `R(t₀) ← X₀`
   | 0 => (X₀, [])

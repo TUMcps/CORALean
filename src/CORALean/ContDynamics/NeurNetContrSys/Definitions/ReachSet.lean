@@ -20,8 +20,9 @@ indexed by — nothing between them, the same silence `ReachOuter` names.
 
 `Theorems.ReachSetOuter` puts every run into it.
 
-[1, Def. 3]'s `ξ(t, x0, uc(·), w(·))` is `x t` here, at whichever `x` and disturbance `w` a
-`Trajectory` supplies, at any plant, the disturbance in `W`.
+[1, Def. 3]'s `ξ(t, x0, uc(·), w(·))` is `x t` here, at whichever `x`, external input `v` and
+disturbance `w` a `Trajectory` supplies, at any plant, the external input in `U_ext`, the
+disturbance in `W`.
 
 ## References
 
@@ -29,7 +30,7 @@ indexed by — nothing between them, the same silence `ReachOuter` names.
       using Polynomial Zonotopes". arXiv:2207.02715, 2022.
 -/
 
--- Authors:       Claude Sonnet 5, Claude Opus 5.5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       07-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -48,14 +49,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every state some zero-order-hold run of `sys` under `π` over `H` periods of length `Δtc`
-from `R₀`, under a disturbance in `W`, is at, at time `t`: the exact reachable set, not an
-enclosure of it. -/
+/-- Every state some zero-order-hold run of `sys` under `π` over `H` periods of length `sys.dt`
+from `R₀`, under an external input in `U_ext` and a disturbance in `W`, is at, at time `t`: the
+exact reachable set, not an enclosure of it. -/
 def NeurNetContrSys.reachSet (sys : NeurNetContrSys P S n)
-    (π : Vec ℝ n → Vec ℝ (nrOfInputs sys.plant)) (Δtc : ℝ) (H : ℕ) (R₀ : S n)
-    (W : Set (Vec ℝ (nrOfDisturbances sys.plant))) (t : ℝ) : Set (Vec ℝ n) :=
-  {y | ∃ x : ℝ → Vec ℝ n, ∃ w : ℝ → Vec ℝ (nrOfDisturbances sys.plant),
-    sys.Trajectory π Δtc H R₀ W x w ∧ x t = y}
+    (π : Vec ℝ n → Vec ℝ sys.m) (H : ℕ) (R₀ : S n)
+    (U_ext : Set (Vec ℝ sys.nExt)) (W : Set (Vec ℝ (nrOfDisturbances sys.plant))) (t : ℝ) :
+    Set (Vec ℝ n) :=
+  {y | ∃ x : ℝ → Vec ℝ n, ∃ v : ℝ → Vec ℝ sys.nExt,
+    ∃ w : ℝ → Vec ℝ (nrOfDisturbances sys.plant),
+    sys.Trajectory π H R₀ U_ext W x v w ∧ x t = y}
 
 end CORALean
 

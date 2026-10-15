@@ -35,7 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- An order admissible for the step `Δt` at the augmented matrix `[A B; 0 0]`, `η` in
+/-- An order admissible for the step `Δt` at the augmented matrix `[A B_nn; 0 0]`, `η` in
 `NeurNetContrSys.reach`'s own naming. -/
 noncomputable def NeurNetContrSys.reachOrder (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
     (Δt : ℝ) : ℕ :=

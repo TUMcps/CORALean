@@ -13,12 +13,12 @@ public import CORALean.ContSet.SetUnion.SetUnion
 The periods `0` through `H = tFinal - tStart` of `reach`, one per branch of the
 `SetUnion` — the `Reach.reach` field of the instance. `η` is a floor,
 raised to `reachOrder`'s order where that is higher, since only an order admissible
-for `Δt` and the augmented matrix `[A B; 0 0]` makes `reach_outer` hold.
+for `Δt` and the augmented matrix `[A B_nn; 0 0]` makes `reach_outer` hold.
 -/
 
--- Authors:       Claude Sonnet 5, Claude Opus 5.5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -40,13 +40,14 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 /-- The periods `0` through `tFinal - tStart` of `reach`, from `R0`, at `η`
 raised to `reachOrder`'s order. -/
 noncomputable def NeurNetContrSys.reachUnion (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
-    (params : Reach.Params (S n) ℕ) (options : NeurNetContrSys.ReachOptions ℝ) : SetUnion (S n) :=
+    (U_ext : S sys.nExt) (params : Reach.Params (S n) ℕ)
+    (options : NeurNetContrSys.ReachOptions ℝ) : SetUnion (S n) :=
   let R₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
   let H := params.tFinal - params.tStart                           -- control periods
   let η := max options.η (sys.reachOrder Δt)             -- raised until admissible
   ⟨(List.range (H + 1)).map (fun i =>                               -- ⋃_{i ≤ H} R(iNΔt)
-    sys.reach ⟨R₀, 0, i⟩ ⟨Δt, options.N, η, options.ρ, options.hZonotopeOrder⟩)⟩
+    sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, options.N, η, options.ρ, options.hZonotopeOrder⟩)⟩
 
 end CORALean
 
