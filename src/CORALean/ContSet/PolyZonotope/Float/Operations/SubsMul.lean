@@ -31,6 +31,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- The product of two float term lists: every term of `A` times every term of `B`, with the
+exponent vectors added and the coefficient interval the directed-rounding product
+(`Interval.mulLo`, `Interval.mulHi`) of the two coefficient intervals. -/
 def PolyZonotope.subsMul (A B : List ((Interval 𝕋) × (Fin p → ℕ))) :
     List ((Interval 𝕋) × (Fin p → ℕ)) :=
   A.flatMap fun s => B.map fun t =>

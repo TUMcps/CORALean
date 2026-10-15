@@ -1793,6 +1793,46 @@ if [ -z "$STAGED" ]; then
   done
 fi
 
+# Every declaration in a section under a `MAIN THEOREM`, `MAIN DEFINITION`, `MAIN TYPE` or
+# `MAIN INSTANCE` banner carries a `/--` docstring, which is what a reader meets first: a
+# main declaration without one makes the reader work out what it states or computes from the
+# signature. Attributes (`@[simp]`) between the docstring and the declaration are fine.
+# Files not yet brought up to this are listed in `scripts/main-docstring-allowlist.txt`, one
+# path per line; the list only shrinks, and an entry whose file has no such declaration left
+# is reported as stale.
+out=$(awk -v LIST=scripts/main-docstring-allowlist.txt -v STALE="${STAGED:-}" '
+BEGIN {
+  while ((getline l < LIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++n }
+  close(LIST)
+}
+FNR == 1 { inb = 0; sect = 0; doc = 0; isdoc = 0; seen[FILENAME] = 1 }
+{
+  s = $0
+  if (inb) { if (s ~ /-\//) { inb = 0; if (isdoc) doc = 1 }; next }
+  if (s ~ /^[ \t]*\/-/) {
+    isdoc = (s ~ /^[ \t]*\/--/)
+    if (s !~ /-\//) inb = 1; else if (isdoc) doc = 1
+    next
+  }
+  if (s ~ /^-- [-=]+  .*  [-=]+ --$/) { sect = (s ~ /MAIN (THEOREM|DEFINITION|TYPE|INSTANCE)/); doc = 0; next }
+  if (s ~ /^[ \t]*--/ || s ~ /^[ \t]*$/) next
+  if (s ~ /^@\[[^]]*\][ \t]*$/) next
+  if (sect && s ~ /^(@\[[^]]*\][ \t]*)?((private|protected|noncomputable|nonrec|partial|scoped)[ \t]+)*(theorem|lemma|def|abbrev|structure|inductive|instance)[ \t]/ && !doc) {
+    if (FILENAME in allow) hit[FILENAME] = 1
+    else
+      print FILENAME ":" FNR ": a main declaration without a `/--` docstring — say in words what it" \
+            " states or computes"
+  }
+  doc = 0
+}
+END {
+  if (STALE != "") exit
+  for (f in allow)
+    if (!(f in seen)) print LIST ":" aln[f] ": stale entry `" f "` — no such file"
+    else if (!(f in hit)) print LIST ":" aln[f] ": stale entry `" f "` — no undocumented main declaration; the list only shrinks"
+}' $files | sort)
+report "$out"
+
 # A main-type file holds the type and what it denotes, not what is said or done about
 # it (CONTRIBUTING, "Main-type files"): the file with the `MAIN TYPE` banner at
 # `<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` has no `theorem`/`lemma`, and no

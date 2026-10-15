@@ -46,15 +46,17 @@ variable {n : ℕ}
 
 /-- A boundary point of a polytope is on one of its bounding hyperplanes. -/
 theorem aux_eq_of_mem_frontier (cs : List (Vec ℝ n × ℝ)) {x : Vec ℝ n}
-    (hx : x ∈ frontier (IdentHA.polySet cs)) : ∃ p ∈ cs, p.1 ⬝ᵥ x = p.2 := by -- --- PROOF ---
+    (hx : x ∈ frontier ((IdentHA.polytope cs).construct)) :
+    ∃ p ∈ cs, p.1 ⬝ᵥ x = p.2 := by -- --- PROOF ---
   have hcont : ∀ c : Vec ℝ n, Continuous fun y : Vec ℝ n => c ⬝ᵥ y := fun c =>
     continuous_finsetSum _ fun i _ => continuous_const.mul (continuous_apply i)
-  have hclosed : IsClosed (IdentHA.polySet cs) := by
-    have : IdentHA.polySet cs = ⋂ p ∈ cs, {y : Vec ℝ n | p.1 ⬝ᵥ y ≤ p.2} := by
-      ext y; simp [IdentHA.polySet]
+  have hclosed : IsClosed ((IdentHA.polytope cs).construct) := by
+    have : (IdentHA.polytope cs).construct = ⋂ p ∈ cs, {y : Vec ℝ n | p.1 ⬝ᵥ y ≤ p.2} := by
+      ext y; rw [IdentHA.mem_polytope_construct_iff]; simp
     rw [this]
     exact isClosed_biInter fun p _ => isClosed_le (hcont p.1) continuous_const
-  have hxs : x ∈ IdentHA.polySet cs := hclosed.frontier_subset hx
+  have hxs : x ∈ (IdentHA.polytope cs).construct := hclosed.frontier_subset hx
+  rw [IdentHA.mem_polytope_construct_iff] at hxs
   by_contra hne
   push Not at hne
   -- all inequalities strict: an open neighbourhood inside the polytope
@@ -63,30 +65,34 @@ theorem aux_eq_of_mem_frontier (cs : List (Vec ℝ n × ℝ)) {x : Vec ℝ n}
       ext y; simp
     rw [this]
     exact (List.finite_toSet cs).isOpen_biInter fun p _ => isOpen_lt (hcont p.1) continuous_const
-  have hsub : {y : Vec ℝ n | ∀ p ∈ cs, p.1 ⬝ᵥ y < p.2} ⊆ IdentHA.polySet cs :=
-    fun y hy p hp => (hy p hp).le
-  have hin : x ∈ interior (IdentHA.polySet cs) :=
+  have hsub : {y : Vec ℝ n | ∀ p ∈ cs, p.1 ⬝ᵥ y < p.2} ⊆ (IdentHA.polytope cs).construct :=
+    fun y hy => (IdentHA.mem_polytope_construct_iff _ _).2 fun p hp => (hy p hp).le
+  have hin : x ∈ interior ((IdentHA.polytope cs).construct) :=
     interior_maximal hsub hopen fun p hp => lt_of_le_of_ne (hxs p hp) (hne p hp)
   exact hx.2 hin
 
 /-- The leaves' invariants cover the state space. -/
 theorem aux_exists_region (T : IdentHA.SplitTree n) (x : Vec ℝ n) :
-    ∃ cs ∈ T.regions, x ∈ IdentHA.polySet cs := by -- --- PROOF ---
+    ∃ cs ∈ T.regions, x ∈ (IdentHA.polytope cs).construct := by -- --- PROOF ---
   induction T with
-  | leaf => exact ⟨[], List.mem_singleton_self _, fun p hp => by simp at hp⟩
+  | leaf =>
+    exact ⟨[], List.mem_singleton_self _,
+      (IdentHA.mem_polytope_construct_iff _ _).2 fun p hp => by simp at hp⟩
   | node a b l r ihl ihr =>
     -- the split puts `x` on one side or the other
     by_cases hab : a ⬝ᵥ x ≤ b
     · obtain ⟨cs, hcs, hx⟩ := ihl
-      refine ⟨(a, b) :: cs, List.mem_append_left _ (List.mem_map_of_mem hcs), fun p hp => ?_⟩
+      refine ⟨(a, b) :: cs, List.mem_append_left _ (List.mem_map_of_mem hcs),
+        (IdentHA.mem_polytope_construct_iff _ _).2 fun p hp => ?_⟩
       rcases List.mem_cons.mp hp with rfl | hp
       · exact hab
-      · exact hx p hp
+      · exact (IdentHA.mem_polytope_construct_iff _ _).1 hx p hp
     · obtain ⟨cs, hcs, hx⟩ := ihr
-      refine ⟨(-a, -b) :: cs, List.mem_append_right _ (List.mem_map_of_mem hcs), fun p hp => ?_⟩
+      refine ⟨(-a, -b) :: cs, List.mem_append_right _ (List.mem_map_of_mem hcs),
+        (IdentHA.mem_polytope_construct_iff _ _).2 fun p hp => ?_⟩
       rcases List.mem_cons.mp hp with rfl | hp
       · simp only [neg_dotProduct]; linarith
-      · exact hx p hp
+      · exact (IdentHA.mem_polytope_construct_iff _ _).1 hx p hp
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -95,12 +101,13 @@ theorem aux_exists_region (T : IdentHA.SplitTree n) (x : Vec ℝ n) :
 a guard leaving it, and every guard maps into its target invariant. -/
 theorem IdentHA.SplitTree.executable (T : IdentHA.SplitTree n)
     (reset : Vec ℝ n × ℝ → Mat ℝ n n × Vec ℝ n) :
-    (∀ x, ∃ cs ∈ T.regions, x ∈ IdentHA.polySet cs) ∧
-    (∀ cs ∈ T.regions, ∀ x ∈ frontier (IdentHA.polySet cs), ∃ p ∈ cs, ∃ cs' ∈ T.regions,
+    (∀ x, ∃ cs ∈ T.regions, x ∈ (IdentHA.polytope cs).construct) ∧
+    (∀ cs ∈ T.regions, ∀ x ∈ frontier ((IdentHA.polytope cs).construct), ∃ p ∈ cs,
+      ∃ cs' ∈ T.regions,
       x ∈ IdentHA.conHyperplane p.1 p.2 (IdentHA.identGuard (reset p).1 (reset p).2 cs')) ∧
     (∀ cs ∈ T.regions, ∀ p ∈ cs, ∀ cs' ∈ T.regions,
       ∀ x ∈ IdentHA.conHyperplane p.1 p.2 (IdentHA.identGuard (reset p).1 (reset p).2 cs'),
-        (reset p).1 *ᵥ x + (reset p).2 ∈ IdentHA.polySet cs') := by -- --- PROOF ---
+        (reset p).1 *ᵥ x + (reset p).2 ∈ (IdentHA.polytope cs').construct) := by -- --- PROOF ---
   refine ⟨aux_exists_region T, fun cs _ x hx => ?_, fun cs _ p _ cs' _ x hx => ?_⟩
   · -- the surface `x` is on, and the leaf its reset lands in
     obtain ⟨p, hp, hpx⟩ := aux_eq_of_mem_frontier cs hx

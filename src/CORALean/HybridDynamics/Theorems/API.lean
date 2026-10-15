@@ -90,6 +90,8 @@ public import CORALean.HybridDynamics.Theorems.TransitionSynchronizeFloatEnclose
 public import CORALean.HybridDynamics.Theorems.ResetTaylorMem
 public import CORALean.HybridDynamics.Theorems.TrajectoryErrorOuter
 public import CORALean.HybridDynamics.Theorems.IdentGuardEq
+public import CORALean.HybridDynamics.Theorems.IdentGuardMapsInto
+public import CORALean.HybridDynamics.Theorems.IdentPolytopeMem
 public import CORALean.HybridDynamics.Theorems.SplitTreeExecutable
 public import CORALean.HybridDynamics.Theorems.LinearResetResolveApply
 public import CORALean.HybridDynamics.Theorems.NonlinearResetResolveApply

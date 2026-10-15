@@ -112,8 +112,9 @@ def Zonotope.shiftUp (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- The approximate coefficients of the centres, `H (c₁ - c₂ - e₂)`, with `e₂` the lower corner of
-the second error box. -/
+/-- β of CORA's `'approx:st'` test (Sadraddini-Tedrake; `containsZonotope`), with `c₁ - c₂ = G₂ β`:
+`H (c₁ - c₂ - e₂)` rounded down, `H` the proposed inverse of `G₂`, `e₂` the lower corner of
+`Z₂`'s error box. -/
 def Zonotope.stBeta (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) : Vec 𝕋 Z₂.h :=
   fun k => dotDown (H k) fun l => subDown (subDown (Z₁.c l) (Z₂.c l)) (Z₂.I_error.inf l)
 
@@ -124,7 +125,9 @@ def Zonotope.stBeta (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) 
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- The approximate coefficients of the generators, `H G₁`. -/
+/-- Γ of the `'approx:st'` containment test `Z₁ ⊆ Z₂` (Sadraddini and Tedrake, see
+`containsZonotope`), the matrix with `G₁ = G₂ Γ`: here `H G₁` rounded down, `H` the proposed
+inverse of `G₂`. `st` is CORA's name for the test (S. and T.). -/
 def Zonotope.stGamma (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) : Mat 𝕋 Z₂.h Z₁.h :=
   fun k j => dotDown (H k) (Z₁.G j)
 
@@ -135,7 +138,8 @@ def Zonotope.stGamma (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n)
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What the two kinds of coefficient use of the unit budget, rounded up. -/
+/-- Row `k` of `‖[Γ, β]‖∞` in the `'approx:st'` test (`st`: Sadraddini-Tedrake), rounded up: the
+sum `|βₖ| + ∑ⱼ |Γₖⱼ|` of `stBeta` and `stGamma`, which the test needs at most `1`. -/
 def Zonotope.stUsed (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) (k : Fin Z₂.h) : 𝕋 :=
   addUp (absolute (Z₂.stBeta Z₁ H k)) (sumUp fun j => absolute (Z₂.stGamma Z₁ H k j))
 
@@ -146,7 +150,8 @@ def Zonotope.stUsed (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) 
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- Half of the budget's slack, rounded down: the size of correction the box may use. -/
+/-- The slack of the `'approx:st'` test (`st`: Sadraddini-Tedrake), rounded down: half of
+`1 - max ₖ stUsed`, the size of coefficient the rounding residuals may still use. -/
 def Zonotope.stDelta (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) : 𝕋 :=
   half (subDown one (maximumOver (Z₂.stUsed Z₁ H)))
 

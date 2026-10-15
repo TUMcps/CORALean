@@ -34,6 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- `subsRel A A'` says the float term list `A` encloses the real term list `A'` term by term:
+the lists have the same length, and matching terms have the same exponent vector and the real
+coefficient lies inside the float interval (between its `inf` and `sup`). -/
 def PolyZonotope.subsRel (A : List ((Interval 𝕋) × (Fin p → ℕ))) (A' : List (ℝ × (Fin p →
     ℕ))) : Prop :=
   List.Forall₂ (fun s t => s.2 = t.2 ∧ toReal s.1.inf ≤ t.1 ∧ t.1 ≤ toReal s.1.sup) A A'

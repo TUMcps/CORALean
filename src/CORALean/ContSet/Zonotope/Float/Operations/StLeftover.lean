@@ -30,6 +30,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
+/-- Entry `i` of what the rounded `β` (`stBeta`) and `Γ` (`stGamma`) of the `'approx:st'` test
+(`st`: Sadraddini-Tedrake) leave over, rounded up: the centre and generator residuals of
+`c₂ - c₁ = G₂ β`, `G₁ = G₂ Γ`, plus `Z₁`'s error box. The box of `ballCert` must absorb it. -/
 def Zonotope.stLeftover (Z₂ Z₁ : Zonotope (Vec 𝕋 n)) (H : Mat 𝕋 Z₂.h n) (i : Fin n) : 𝕋 :=
   addUp (addUp
     (Zonotope.entryDeviation Z₁.c Z₂.I_error.inf (Z₂.pointLo (Z₂.stBeta Z₁ H))
