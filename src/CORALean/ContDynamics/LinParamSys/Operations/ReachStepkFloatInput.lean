@@ -1,17 +1,19 @@
 module
 
+public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
 
 @[expose] public section
 
 /-!
-# One window with inputs at every member, in floats
+# One window with the input set split, at every member, in floats
 
-`LinParamSys.WithInput.reachStepk` computed in `𝕋`, `0 ∈ U`, as [1, Alg. 4] reads it:
-`R(τ_k) = H^R(τ_k) ⊕ P^R(t_{k+1})`, the homogeneous window `reachStepkFloat` carries
-to `τ_k`, plus everything the input can have contributed by the window's right end,
-`particularSolutionFloat`. No window when either has none.
+`LinParamSys.reachStepkInput` computed in `𝕋`, `V = ũ ⊕ Ũ` the input set of the state space
+split at its stored centre [1, Alg. 4]:
+`R(τ_k) = [e^{[A]t_k}](H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R_Ũ(t_{k+1})`. The first
+window's set `Rτ₀ = (H^R ⊕ P̃^R)(τ_0)` is taken, as `reachStepkFloat` takes `H^R(τ_0)`,
+so no window pays for it again.
 
 ## References
 
@@ -21,7 +23,7 @@ to `τ_k`, plus everything the input can have contributed by the window's right 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -36,14 +38,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The window `τ_k = [k Δt, (k + 1) Δt]` from the first one `Rτ₀`, inputs in `U`,
-at every member of `sys.A`: `R(τ_k) = H^R(τ_k) ⊕ P^R(t_{k+1})`. -/
-def LinParamSys.reachStepkFloatInput (sys : LinParamSys ℐ[𝕋] n)
-    (U : Zonotope (Vec 𝕋 n)) (ρ : ℕ) (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
-    Option (Zonotope (Vec 𝕋 n)) := do
-  let HRτk ← sys.reachStepkFloat Δt η Rτ₀ k                  -- H^R(τ_k) = [e^{[A] t_k}] H^R(τ_0)
-  let PRtk ← sys.particularSolutionFloat Δt η ρ U k          -- P^R(t_{k+1})
-  pure (HRτk ⊞ PRtk)                                          -- R(τ_k) = H^R(τ_k) ⊕ P^R(t_{k+1})
+/-- The window `τ_k = [k Δt, (k + 1) Δt]` from the first one `Rτ₀`, the input set `V` of the
+state space split at its centre, at every member of `sys.A`. -/
+def LinParamSys.reachStepkFloatInput
+    (sys : LinParamSys ℐ[𝕋] n) (V : Zonotope (Vec 𝕋 n)) (ρ : ℕ)
+    (Δt : 𝕋) (η : ℕ) (Rτ₀ : Zonotope (Vec 𝕋 n)) (k : ℕ) : Option (Zonotope (Vec 𝕋 n)) := do
+  let uc := ScalarCentre.centreVec (S := 𝒵[𝕋]) V           -- ũ, the constant
+  let U₀ := Recentre.recentre V                                    -- Ũ = V - ũ, holding 0
+  let Hτk ← sys.reachStepkFloat Δt η Rτ₀ k                         -- [e^{[A]t_k}](H^R ⊕ P̃^R)(τ_0)
+  let Pctk := sys.constPropagateFloat Δt η ρ uc k                  -- P̃(t_k)
+  let PRtk ← sys.particularSolutionFloat Δt η ρ U₀ k               -- P^R_Ũ(t_{k+1})
+  pure ((Hτk ⊞ Pctk) ⊞ PRtk)                                       -- R(τ_k)
 
 end CORALean
 

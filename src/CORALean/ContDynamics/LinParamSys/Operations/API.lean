@@ -17,13 +17,10 @@ public import CORALean.ContDynamics.LinParamSys.Operations.InputTermZonoFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
+public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkInput
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachUnion
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStep
 public import CORALean.ContDynamics.LinParamSys.Operations.ToLinParam
-public import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachStepk
-public import CORALean.ContDynamics.LinParamSys.Operations.WithInputReachUnion
-public import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachStepk
-public import CORALean.ContDynamics.LinParamSys.Operations.WithInputSplitReachUnion
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
@@ -41,8 +38,6 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInput
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
 public import CORALean.ContDynamics.LinParamSys.Operations.ConstInputSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ConstPropagateFloat
-public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInputSplit
-public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepZonoFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.DependentHomSolLowOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.DependentLowOrder
@@ -56,11 +51,11 @@ public import CORALean.ContDynamics.LinParamSys.Operations.Canonical
 Two enclosures of what happens inside a step, at every matrix the system's set
 holds at once: `InputSolution` for what the input adds, `TimeIntervalStep` for
 where the homogeneous flow goes. `InputTerm` and `InputTaylorSum` are the exact
-orders the first is built from. `ReachOrder`/`ReachUnion`/`WithInputReachUnion`/
-`WithInputSplitReachUnion` are `Instances`', over windows: `ReachStepk` and
-`ParticularSolution` carry the first window's sets to later ones by
-`ExpEnclosure`, `e^{At_k}` at every member at once; `ConstInputSolution` and
-`ConstPropagate` do the same for a split input set's constant half.
+orders the first is built from. `ReachOrder`/`ReachUnion` are `Instances`', over windows,
+`ReachUnion` forming `B U ⊕ c` (`InputSet`) from CORA's `params.U` and `ReachStepkInput`
+splitting it at its centre: `ReachStepk` and `ParticularSolution` carry the first window's sets to
+later ones by `ExpEnclosure`, `e^{At_k}` at every member at once; `ConstInputSolution` and
+`ConstPropagate` do the same for the split input set's constant half.
 
 `DiscretizeEnclosure` is the step taken over a whole horizon instead: the
 exponential of the box, handed to `LinParamSysDT` so its recursion runs it. `…Float` compute

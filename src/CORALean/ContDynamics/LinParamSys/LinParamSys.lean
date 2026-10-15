@@ -18,7 +18,8 @@ their sets at every instant; `ConstTrajectory` is `'constParam'` (CORA's default
 the parameters sit inside the integral, so a jumping input or parameter is admissible.
 `CanonicalTrajectory` and `CanonicalConstTrajectory` are the same runs of the canonical form
 `ẋ = A x + u'`, the combined input `u' = B u + c` in state coordinates (CORA's `V = B*U + c`,
-`inputSet`), which the reachability algorithms read and are proved against;
+`inputSet`), which the proofs of the reachability algorithms run on: the algorithms themselves
+take `U` in input coordinates and form `inputSet` themselves;
 `Trajectory.canonical` and `ConstTrajectory.canonical` turn every run into one.
 `constTrajectory_toTrajectory` holds always; its converse fails (a run free to vary need not
 settle on one matrix) and is not stated.

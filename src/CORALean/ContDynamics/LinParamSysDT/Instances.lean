@@ -36,7 +36,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- ========================================  INSTANCES  ========================================= --
 
 instance LinParamSysDT.reachInstance :
-    Reach (LinParamSysDT 𝕄) (fun n => Reach.InputParams (S n) (S n) ℕ)
+    Reach (LinParamSysDT 𝕄) (fun n _ => Reach.InputParams (S n) (S n) ℕ)
       LinParamSysDT.ReachOptions S where
   reachExact sys params := sys.reachUnionExact params.X₀ params.U (params.tFinal - params.tStart)
   reach sys params options := some (sys.reachUnion params options)

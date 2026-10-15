@@ -63,7 +63,6 @@ import CORALean.ContDynamics.LinParamSys.Operations.DiscretizeEnclosureFloat
 import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
-import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInputSplit
 import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalStepFloat
 import CORALean.HybridDynamics.Operations.CheckFlowFloat
@@ -552,17 +551,17 @@ def lpReachRun : Zonotope (Vec D 2) :=
 def lpWindowsRun : Option (List (Zonotope (Vec D 2))) := lpSys.reachFloat
     ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 
-/-- The same four windows with an input: `Z` re-centred at the origin, whose contribution
-`P^R(t_{k+1})` accumulates by `particularSolutionFloat`; then `Z` itself, split at its centre,
-the constant half carried across windows by `constPropagateFloat`. -/
+/-- The same four windows with an input `params.U`: `Z` re-centred at the origin, whose
+contribution `P^R(t_{k+1})` accumulates by `particularSolutionFloat`; then `Z` itself, split at
+its centre, the constant half carried across windows by `constPropagateFloat`. -/
 def lpInputSet : Zonotope (Vec D 2) := Recentre.recentre Z
 def lpParticularRun : Option (Zonotope (Vec D 2)) := lpSys.particularSolutionFloat stepR 4
     2 lpInputSet 2
 def lpConstRun : Zonotope (Vec D 2) := lpSys.constPropagateFloat stepR 4 2 (Z.c) 3
 def lpInputWindowsRun : Option (List (Zonotope (Vec D 2))) :=
-  lpSys.reachFloatInput lpInputSet ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+  lpSys.reachFloatInput ⟨Z, lpInputSet, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 def lpSplitWindowsRun : Option (List (Zonotope (Vec D 2))) :=
-  lpSys.reachFloatInputSplit Z ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+  lpSys.reachFloatInput ⟨Z, Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 
 
 /-! ## The continuous-time inner approximation in floats (#129)

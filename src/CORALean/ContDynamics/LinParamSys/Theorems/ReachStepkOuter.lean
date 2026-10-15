@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 @[expose] public section
 
 /-!
-# One window of `reachUnion` encloses every member's flow over it
+# The homogeneous part of a window of `reachUnion` encloses every member's flow over it
 
 `LinearSys.reachStepkWrappingFree_outer` at a member `A` of `sys.A`: at `t ∈ τ_k`,
 `e^{At} x₀ = e^{A t_k} (e^{A(t - t_k)} x₀)`; the inner point is in `H^R(τ_0)`

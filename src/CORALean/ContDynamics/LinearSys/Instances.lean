@@ -56,7 +56,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- ========================================  INSTANCES  ========================================= --
 
 noncomputable instance LinearSys.reachInstance :
-    Reach (LinearSys 𝕋) (fun n => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
+    Reach (LinearSys 𝕋) (fun n _ => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
     if 0 < params.tFinal - params.tStart ∧ 0 < options.Δt then
@@ -71,7 +71,7 @@ noncomputable instance LinearSys.reachInstance :
 /-- Kept as a named `def` rather than an `instance`, so instance resolution stays
 unambiguous between it and `LinearSys.reachInstance`. -/
 @[reducible] noncomputable def LinearSys.reachWrappingFreeInstance :
-    Reach (LinearSys 𝕋) (fun n => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
+    Reach (LinearSys 𝕋) (fun n _ => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reachWrappingFree params options) else none
@@ -83,7 +83,7 @@ unambiguous between it and `LinearSys.reachInstance`. -/
 
 noncomputable instance LinearSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
-    Reach (LinearSys.WithInput 𝕋 S) (fun n => Reach.Params (S n) ℝ)
+    Reach (LinearSys.WithInput 𝕋 S) (fun n _ => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=
@@ -97,7 +97,7 @@ noncomputable instance LinearSys.WithInput.reachInstance
 noncomputable instance LinearSys.WithInputSplit.reachInstance
     [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
-    Reach (LinearSys.WithInputSplit 𝕋 S) (fun n => Reach.Params (S n) ℝ)
+    Reach (LinearSys.WithInputSplit 𝕋 S) (fun n _ => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
   reach sys params options :=

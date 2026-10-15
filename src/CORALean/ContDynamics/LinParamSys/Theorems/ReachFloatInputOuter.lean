@@ -1,31 +1,39 @@
 module
 
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachFloatInput
+public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryCanonical
 public import CORALean.ContDynamics.LinParamSys.Theorems.ConstTrajectoryToLinearSys
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstInputSolutionFloat
+public import CORALean.ContDynamics.LinParamSys.Theorems.ExpIntegralMemConstPropagateFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.InputReachSubsetParticularSolutionFloat
 public import CORALean.ContDynamics.LinParamSys.Theorems.MapMEqSome
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
 
 /-!
 # `LinParamSys.reachFloatInput` holds every member's run at every time of every window
 
-`reachFloat_outer` with an input: a constant-parameter run fixes one member `A`, and is
-the point system `⟨A⟩`'s run (`toLinearSys`), so at `t = t_k + s` it is at
-`e^{At} x(0) + ∫₀ᵗ e^{A(t-σ)} u(σ) dσ`. The first term is `e^{A t_k}` of `e^{As} x(0)`,
-in the first window by `timeIntervalStepFloat_outer` and carried by `reachStepkFloat_outer`;
-the second is in `P^R(t_{k+1})` (`inputReach_subset_particularSolutionFloat`, where `0 ∈ U`
-is spent), both at `A`.
+A run fixes `A` and `B`, and its combined input `B u` (`sys.c = 0`: the float run has no `c`) lies
+in `V = B U`, so it is a run of the canonical form under `V`, the point system `⟨A⟩`'s run
+(`toLinearSys`): at `t` it is at `e^{At} x(0) + ∫₀ᵗ e^{A(t-σ)} u'(σ) dσ`.
+With `u' = ũ + (u' - ũ)` the integral is `∫₀ᵗ e^{Aσ}dσ ũ` plus one admissible `Ũ`-input's
+contribution, and with `t = t_k + s` both the free motion and the constant's part are `e^{A t_k}`
+of their values at `s`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`). At
+`s ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
+`expIntegral_mem_constPropagateFloat`, and the `Ũ` part is in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being
+`Recentre`'s: nothing asks `U` to hold the origin.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +41,7 @@ is spent), both at `A`.
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet
+open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -43,18 +51,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n)
-    {U : Zonotope (Vec 𝕋 n)} (h0 : (0 : Vec ℝ n) ∈ U.construct)
-    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInput U params options = some Rs) :
+/-- The windows `reachFloatInput` returns hold every constant-parameter run of the system, at
+every time of the window, under inputs in `params.U` (input coordinates) anywhere. -/
+theorem LinParamSys.reachFloatInput_outer
+    (sys : LinParamSys ℐ[𝕋] n) (hc : sys.c = 0)
+    {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋}
+    {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInput params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N ∧ ∀ {A : Mat ℝ n n} {x u : ℝ → Vec ℝ n},
-        sys.CanonicalConstTrajectory (S := 𝒵[𝕋])
+      Rs.length = N ∧ ∀ {A : Mat ℝ n n} {B : Mat ℝ n sys.m} {x : ℝ → Vec ℝ n}
+        {u : ℝ → Vec ℝ sys.m},
+        sys.ConstTrajectory (S := 𝒵[𝕋])
           (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
-          params.X₀ U x u A →
+          params.X₀ params.U x u A B →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
           (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
-  obtain ⟨X₀, tStart, tFinal⟩ := params
+  obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinParamSys.reachFloatInput, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
@@ -63,47 +75,103 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n)
   have hadm := (LinParamSys.reachOrderFloat_spec hη').1
   obtain ⟨hlen, hget⟩ := LinParamSys.mapM_eq_some hRs
   rw [List.length_range] at hlen
-  refine ⟨N, hNΔt, hlen, fun {A x u} traj k hk t ht => ?_⟩
+  refine ⟨N, hNΔt, hlen, fun {A B x uIn} trajB k hk t ht => ?_⟩
   have hwin := hget k hk
   simp only [List.getElem_range, LinParamSys.reachStepkFloatInput, Option.bind_eq_bind,
     Option.bind_eq_some_iff, Option.pure_def, Option.some.injEq] at hwin
-  obtain ⟨H, hH, P, hP, hRk⟩ := hwin
+  obtain ⟨Hτk, hH, PRtk, hP, hRk⟩ := hwin
+  -- the input set of the state space, `B U`
+  set V : Zonotope (Vec 𝕋 n) := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U with hV
+  set Δ := toReal Δt with hΔ
+  -- the split's centre `ũ`, the stored one
+  set uc : Vec 𝕋 n := ScalarCentre.centreVec (S := 𝒵[𝕋]) V with huc
+  set ũ : Vec ℝ n := Scalar.toRealVec uc with hũ
+  have hũc : ũ = Recentre.centre V := rfl
+  -- the run's combined input `B u` lies in `V = B U`: a run of the canonical form under `V`
+  obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.CanonicalConstTrajectory (S := 𝒵[𝕋])
+      (Set.Icc 0 ((tFinal : ℝ) - tStart)) X₀ V x u A := by
+    refine ⟨_, trajB.canonical fun s hs => ?_⟩
+    rw [hc, add_zero]
+    have hBu : B *ᵥ uIn s ∈ (B *ᵥ ·) '' construct U := ⟨uIn s, trajB.input s hs, rfl⟩
+    exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U
+      (Set.mem_iUnion₂.mpr ⟨B, trajB.paramB, hBu⟩)
   -- window `k` lies inside the horizon
-  have hkN : ((k : ℝ) + 1) * toReal Δt ≤ (tFinal : ℝ) - tStart := by
+  have hkN : ((k : ℝ) + 1) * Δ ≤ (tFinal : ℝ) - tStart := by
     rw [← hNΔt]
     have : (k : ℝ) + 1 ≤ N := by exact_mod_cast hlen ▸ hk
     exact mul_le_mul_of_nonneg_right this hΔt.le
-  have hk0 : (0 : ℝ) ≤ (k : ℝ) * toReal Δt := by positivity
-  have ht0 : 0 ≤ t := le_trans hk0 ht.1
-  have hτ : t - k * toReal Δt ∈ Set.Icc 0 (toReal Δt) := ⟨sub_nonneg.mpr ht.1, by linarith [ht.2]⟩
+  have htk0 : (0 : ℝ) ≤ (k : ℝ) * Δ := by positivity
+  have ht0 : 0 ≤ t := le_trans htk0 ht.1
+  have hτ0 : 0 ≤ t - k * Δ := sub_nonneg.mpr ht.1
+  have htk : t - k * Δ ≤ Δ := by linarith [ht.2]
+  have htk1 : t ≤ ((k + 1 : ℕ) : ℝ) * Δ := by push_cast; linarith [ht.2]
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 ((tFinal : ℝ) - tStart) :=
     Set.Icc_subset_Icc_right (ht.2.trans hkN)
   -- the run is the point system `⟨A⟩`'s, split into its free motion and its input's integral
   have lin := traj.toLinearSys
-  have hvoc := lin.variation_of_constants hTt le_rfl ht0
-    (CompactSet.isBounded_construct U)
+  have hU : Bornology.IsBounded (construct (construct V)) := CompactSet.isBounded_construct V
+  have hvoc := lin.variation_of_constants hTt le_rfl ht0 hU
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
-  -- that integral is one admissible input's contribution by `t`, under `A`
-  have hin : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
-      ∈ (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t :=
-    ⟨u, fun s hs => traj.input s (hTt hs), lin.aestronglyMeasurable_input hTt, by
-      simp only [Scalar.toRealMat_real]⟩
-  -- `e^{At} = e^{A t_k} e^{Aτ}`, both powers of the same member
+  -- the input, split along `V ⊆ {ũ} ⊞ Ũ`
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - ũ ∈ construct (Recentre.recentre V) :=
+    fun s hs => Recentre.sub_centre_mem_recentre (traj.input s (hTt hs))
+  have hmeas₀ : AEStronglyMeasurable (fun s => u s - ũ) (volume.restrict (Set.Icc 0 t)) :=
+    (lin.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
+  have hint₁ := intervalIntegrable_expSub_mulVec (S := 𝒵[𝕋])
+    (A := A) (c := t) ht0
+    (CompactSet.isBounded_construct
+      (OfScalarPoint.ofVec (S := 𝒵[𝕋]) uc : Zonotope (Vec 𝕋 n)))
+    (fun _ _ => OfScalarPoint.mem_ofVec (S := 𝒵[𝕋]) uc)
+      aestronglyMeasurable_const
+  have hint₀ := intervalIntegrable_expSub_mulVec (S := 𝒵[𝕋])
+    (A := A) (c := t) ht0
+    (CompactSet.isBounded_construct (Recentre.recentre V)) hmem₀ hmeas₀
+  have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
+      = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ ũ)
+        + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ) := by
+    rw [← intervalIntegral.integral_add hint₁ hint₀]
+    refine intervalIntegral.integral_congr fun s _ => ?_
+    rw [← Matrix.mulVec_add, add_sub_cancel]
+  -- `t = t_k + s`: the constant's part, carried across `t_k`
+  have hconst : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ ũ)
+      = exp (((k : ℝ) * Δ) • A) *ᵥ (Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ)
+        + Real.MatExp.expIntegral A ((k : ℝ) * Δ) *ᵥ ũ := by
+    rw [Real.MatExp.expIntegral_constInput A ũ ht0]
+    have h := Real.MatExp.expIntegral_add_mulVec A ũ hτ0 htk0
+    rwa [sub_add_cancel] at h
+  -- `e^{At} = e^{A t_k} e^{As}`, both powers of the same member
   have hexp : exp (t • A) *ᵥ x 0
-      = exp (((k : ℝ) * toReal Δt) • A) *ᵥ (exp ((t - k * toReal Δt) • A) *ᵥ x 0) := by
-    have hc : Commute (((k : ℝ) * toReal Δt) • A) ((t - k * toReal Δt) • A) :=
+      = exp (((k : ℝ) * Δ) • A) *ᵥ (exp ((t - k * Δ) • A) *ᵥ x 0) := by
+    have hc : Commute (((k : ℝ) * Δ) • A) ((t - k * Δ) • A) :=
       ((Commute.refl _).smul_left _).smul_right _
     have h := exp_add_of_commute hc
     rw [← add_smul, add_sub_cancel] at h
     rw [Matrix.mulVec_mulVec]
     exact congrArg (· *ᵥ x 0) h
-  have hτ₀ := Reduce.reduce_outer (sys.timeIntervalStepFloat Δt η' X₀) ρ
-    (sys.timeIntervalStepFloat_outer hΔt hadm X₀ traj.param traj.init hτ.1 hτ.2)
-  have hfree := sys.reachStepkFloat_outer hadm.1 hH traj.param hτ₀
-  have hinput := sys.inputReach_subset_particularSolutionFloat hΔt hadm traj.param h0 hP ht0
-    (by push_cast; linarith [ht.2]) hin
-  rw [← hRk, hvoc, hexp]
-  exact Plus.plus_outer H P (Set.add_mem_add hfree hinput)
+  -- regrouped as the window's summands
+  have hx : x t = (exp (((k : ℝ) * Δ) • A) *ᵥ (exp ((t - k * Δ) • A) *ᵥ x 0
+            + Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ)
+          + Real.MatExp.expIntegral A ((k : ℝ) * Δ) *ᵥ ũ)
+        + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ) := by
+    rw [hvoc, hsum, hconst, hexp, Matrix.mulVec_add]
+    abel
+  -- the first window holds the free motion and the constant's share at `s`
+  have hfirst : exp ((t - k * Δ) • A) *ᵥ x 0 + Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ
+      ∈ construct (Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀
+        ⊞ sys.constInputSolutionFloat Δt η' uc) ρ) :=
+    Reduce.reduce_outer _ ρ (Plus.plus_outer (sys.timeIntervalStepFloat Δt η' X₀)
+      (sys.constInputSolutionFloat Δt η' uc) (Set.add_mem_add
+        (sys.timeIntervalStepFloat_outer hΔt hadm X₀ traj.param traj.init hτ0 htk)
+        (sys.expIntegral_mem_constInputSolutionFloat hΔt hadm traj.param uc hτ0 htk)))
+  have hHτ := sys.reachStepkFloat_outer hadm.1 hH traj.param hfirst
+  have hPc := sys.expIntegral_mem_constPropagateFloat ρ hΔt hadm traj.param uc k
+  have hPR : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ)) ∈ PRtk.construct :=
+    sys.inputReach_subset_particularSolutionFloat hΔt hadm traj.param
+    (Recentre.zero_mem_recentre V) hP ht0 htk1
+    ⟨fun s => u s - ũ, hmem₀, hmeas₀, by simp only [Scalar.toRealMat_real]⟩
+  rw [← hRk, hx]
+  exact Plus.plus_outer _ PRtk (Set.add_mem_add
+    (Plus.plus_outer Hτk _ (Set.add_mem_add hHτ hPc)) hPR)
 
 end CORALean
 

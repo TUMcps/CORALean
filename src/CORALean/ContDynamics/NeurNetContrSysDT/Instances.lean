@@ -38,7 +38,7 @@ variable [OfScalarPoint 𝕋 S]
 -- ========================================  INSTANCES  ========================================= --
 
 instance NeurNetContrSysDT.reachInstance :
-    Reach (NeurNetContrSysDT.Linear 𝕋 S) (fun n => Reach.Params (S n) ℕ)
+    Reach (NeurNetContrSysDT.Linear 𝕋 S) (fun n _ => Reach.Params (S n) ℕ)
       NeurNetContrSysDT.ReachOptions S where
   reachExact sys params := sys.sys.reachUnionExact (params.tFinal - params.tStart)
     (construct sys.U) (construct params.X₀)

@@ -48,7 +48,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- ========================================  INSTANCES  ========================================= --
 
 noncomputable instance NonlinearSys.reachInstance :
-    Reach (NonlinearSys.WithSteps S Rg m) (fun n => Reach.Params (S n) ℝ)
+    Reach (NonlinearSys.WithSteps S Rg m) (fun n _ => Reach.Params (S n) ℝ)
       (LinearSys.ReachOptions ℝ) S where
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (construct params.X₀)
