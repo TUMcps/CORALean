@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.Specification
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.Global.LinProg.LinProg
 # Bounds certify that a safe set is stayed inside
 
 A safe set given by halfspaces is checked one halfspace at a time, and each is a
-bound in that halfspace's own direction — the same object `Global.LinProg`
+bound in that halfspace's own direction — the same object `Global.SupportFunction`
 returns, so nothing new is needed to discharge the check.
 -/
 

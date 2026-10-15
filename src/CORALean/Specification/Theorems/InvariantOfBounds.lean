@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Specification.Specification
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 

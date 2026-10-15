@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 

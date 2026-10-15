@@ -5,7 +5,7 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportBound
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
 public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ContainsPointZeroIff
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 

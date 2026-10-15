@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 

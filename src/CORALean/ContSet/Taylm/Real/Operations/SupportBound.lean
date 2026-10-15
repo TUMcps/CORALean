@@ -5,7 +5,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Algebra.BigOperators.Pi
 
 @[expose] public section

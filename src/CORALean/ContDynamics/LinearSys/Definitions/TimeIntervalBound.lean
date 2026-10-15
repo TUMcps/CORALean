@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSetLinCombSum
 public import CORALean.ContSet.ContSet.Operations.SupportBoundSetLinComb
-public import CORALean.Global.LinProg.Composition
+public import CORALean.Global.SupportFunction.Composition
 
 @[expose] public section
 

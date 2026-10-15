@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Analysis.Convex.Hull
 public import Mathlib.Tactic.Linarith
 

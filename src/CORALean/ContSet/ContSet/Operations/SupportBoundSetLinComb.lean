@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section
@@ -9,7 +9,7 @@ public import Mathlib.Tactic.Linarith
 /-!
 # The support bound across `Set.linComb`
 
-`Global.LinProg.Composition` carries a bound across the operations Mathlib
+`Global.SupportFunction.Composition` carries a bound across the operations Mathlib
 names. `Set.linComb` is ours — CORA's `linComb`, which is the convex hull only when
 both sets already are — so its case belongs here, computing the combined bound
 rather than beside the definition.

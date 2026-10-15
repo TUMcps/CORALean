@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetImageInputSolution
-public import CORALean.Global.LinProg.Composition
+public import CORALean.Global.SupportFunction.Composition
 
 @[expose] public section
 

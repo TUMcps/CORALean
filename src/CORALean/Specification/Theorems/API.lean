@@ -33,7 +33,7 @@ which is what makes verification by splitting the input sound.
 `HoldsAllSetIntersection` reads `HoldsAll` over safe sets alone as `Holds` on
 their `SetIntersection`.
 `Separation`, `Containment`, `InvariantOfBounds` and `SubsetHPolytope`
-discharge the check itself, each turning it into bounds `Global.LinProg`
+discharge the check itself, each turning it into bounds `Global.SupportFunction`
 supplies; `Violation` and `Intersection` are the falsification exits of the
 same two algorithms. `VerifyHalfspaceSafe`/`VerifyHalfspaceUnsafe` and
 `VerifyConvexSafe` assemble those exits into the decision procedures'

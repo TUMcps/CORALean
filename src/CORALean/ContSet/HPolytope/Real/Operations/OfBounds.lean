@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.HPolytope
-public import CORALean.Global.LinProg.LinProg
+public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
 

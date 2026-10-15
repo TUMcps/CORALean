@@ -1,6 +1,6 @@
 module
 
-public import CORALean.Global.LinProg.Composition
+public import CORALean.Global.SupportFunction.Composition
 public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
