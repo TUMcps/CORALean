@@ -100,7 +100,7 @@ theorem ConZonotope.aux_rowBound_dep {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec 
   rw [hR1, hR2]
   exact Interval.div_between_endpoints hAj h1 h2
 
-/-- The value identity behind `eliminate`: the centre and generator `j`'s term, read
+/-- The value identity behind `eliminate`: the center and generator `j`'s term, read
 either from the original system (`t = β j`) or from any `t` solving row `r` the same
 way — both directions below read this once each way. -/
 theorem ConZonotope.aux_eliminate_value {ng nc : ℕ} (c : α) (G : Fin ng → α)

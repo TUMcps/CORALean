@@ -31,8 +31,8 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- For each dimension `i` the centre and every generator's `i`-th entry, times the new factor
-`lᵢ`; the centre's column has the all-zero exponent. -/
+/-- For each dimension `i` the center and every generator's `i`-th entry, times the new factor
+`lᵢ`; the center's column has the all-zero exponent. -/
 def PolyZonotope.addedTerms (pZ : PolyZonotope (Vec ℝ n)) : PolyZonotope ℝ where
   p := pZ.p + n
   h := n * (pZ.h + 1)

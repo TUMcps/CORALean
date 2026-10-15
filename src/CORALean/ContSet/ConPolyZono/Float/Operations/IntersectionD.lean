@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionAgree
 /-!
 # The exact layer's tolerance the stored agreement rows amount to
 
-What is left of the stored agreement interval once the centre difference the
+What is left of the stored agreement interval once the center difference the
 rows also carry is subtracted. The two error boxes already fit inside it, which
 is the whole argument for `intersection`'s soundness.
 -/

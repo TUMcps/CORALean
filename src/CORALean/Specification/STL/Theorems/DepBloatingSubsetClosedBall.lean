@@ -77,7 +77,7 @@ theorem STL.depBloating_subset_closedBall (A : Mat ℝ n n) (U₀ : Zonotope (Ve
   have h2 := STL.aux_foldl_subset_closedBall A U₀ Δt r hU κ
   have hρ : 0 ≤ ∑ i : Fin n, ∑ j : Fin n, |(2 * Δt) * MatExp.expRemainderMat A Δt κ i j| :=
     Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => abs_nonneg _
-  -- the third term, `2Δt E U₀`: the interval matrix has centre `0` and radius `2Δt E`
+  -- the third term, `2Δt E U₀`: the interval matrix has center `0` and radius `2Δt E`
   have h3 := Zonotope.mtimesIntervalMat_subset_closedBall
     (⟨-((2 * Δt) • MatExp.expRemainderMat A Δt κ), (2 * Δt) • MatExp.expRemainderMat A Δt κ⟩ :
       Interval (Mat ℝ n n)) U₀ (le_refl 0) hρ

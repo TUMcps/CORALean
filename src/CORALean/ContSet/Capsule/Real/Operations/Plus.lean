@@ -8,7 +8,7 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 # `Capsule.plus`
 
 CORA's `@capsule/plus.m` for two capsules. The sum is not a capsule, and CORA encloses it: the
-centres add, the longer of the two generators is kept, and the shorter one is absorbed into the
+centers add, the longer of the two generators is kept, and the shorter one is absorbed into the
 radius, `r = r₁ + r₂ + ‖shorter g‖₂`.
 -/
 

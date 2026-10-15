@@ -12,7 +12,7 @@ public import Mathlib.Data.Matrix.Basic
 /-!
 # `Zonotope.ofIntervalMat` contains the interval matrix
 
-A member's distance from the centre is within the entry's radius (`sub_mem_matResidual`),
+A member's distance from the center is within the entry's radius (`sub_mem_matResidual`),
 so the entry's own generator reaches it with coefficient `Zonotope.coefficient`, and no
 other generator touches that entry.
 -/
@@ -37,13 +37,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 theorem Zonotope.ofIntervalMat_outer (I : Interval (Mat 𝕋 m n)) :
     I.construct ⊆ (Zonotope.ofIntervalMat I).construct := by -- --- PROOF ---
   intro X hX
-  set C := Interval.centreMat I
+  set C := Interval.centerMat I
   set Rs := Interval.matResidual I.inf I.sup C
   set r : Mat 𝕋 m n := fun i j => maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j))
   set D : Mat ℝ m n := fun i j => X i j - toReal (C i j)
   have hD := Interval.mem_mat_iff.mp
     (Interval.sub_mem_matResidual (stored := C) fun i j => Interval.mem_mat_iff.mp hX i j)
-  -- each entry's distance from the centre, within that entry's radius
+  -- each entry's distance from the center, within that entry's radius
   have hDr : ∀ i j, |D i j| ≤ toReal (r i j) := by
     intro i j
     simp only [r, toReal_maximum, toReal_absolute]

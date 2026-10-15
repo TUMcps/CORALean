@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.exactPlus`
 
 CORA's `@zonotope/exactPlus`: the sum of two zonotopes whose first `m = min(h₁, h₂, k)` generators
-share their coefficients. Centres add, the first `m` generator columns add pairwise, and the
+share their coefficients. Centers add, the first `m` generator columns add pairwise, and the
 remaining columns of each operand follow. That is *not* `plus`, which concatenates all generators
 and so lets every coefficient move independently: here a coefficient that moves `Z₁`'s `j`-th
 generator moves `Z₂`'s too, and the dependency survives. The result is a subset of `plus`'s, and a

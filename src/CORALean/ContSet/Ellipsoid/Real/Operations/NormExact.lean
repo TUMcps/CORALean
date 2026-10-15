@@ -8,12 +8,12 @@ public import Mathlib.Analysis.Matrix.Spectrum
 /-!
 # `Ellipsoid.normExact`
 
-CORA's `@ellipsoid/norm_.m` (type `2` only, and only for the centre `q = 0`):
+CORA's `@ellipsoid/norm_.m` (type `2` only, and only for the center `q = 0`):
 `lmax = max(eig(E.Q)); val = sqrt(lmax)`, the square root of the largest eigenvalue of
 the shape matrix `Q = G Gᵀ` (Mathlib's `eigenvalues₀`, sorted in decreasing order, so the first
-one). The other norm types and a non-zero centre are errors in CORA (`CORA:noExactAlg`,
+one). The other norm types and a non-zero center are errors in CORA (`CORA:noExactAlg`,
 `CORA:notSupported`); CORA's `-Inf` for an empty ellipsoid does not arise, an `Ellipsoid` here
-always holds its centre. The dimension is positive, as the largest eigenvalue of a `0 × 0` matrix
+always holds its center. The dimension is positive, as the largest eigenvalue of a `0 × 0` matrix
 is not defined.
 -/
 
@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `norm_(E, 2)`: `sqrt(max(eig(Q)))`. The centre is not read, CORA requires it to be `0`. -/
+/-- `norm_(E, 2)`: `sqrt(max(eig(Q)))`. The center is not read, CORA requires it to be `0`. -/
 noncomputable def Ellipsoid.normExact (E : Ellipsoid n) (hn : 1 ≤ n) : ℝ :=
   let hQ : E.shape.IsHermitian := by
     simpa [Ellipsoid.shape] using Matrix.isHermitian_mul_conjTranspose_self E.G

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
@@ -19,7 +19,7 @@ original. `reduceBy_outer` is the other direction, so the two bracket `Z`
 between two computed zonotopes.
 
 Every hypothesis the bridge asks for is already proved of a zonotope: the box is
-nonempty by `centre_mem_construct`, bounded and closed because a
+nonempty by `center_mem_construct`, bounded and closed because a
 zonotope is compact, and `Z` is convex.
 
 Stated at `reduceBy` rather than at `reduceGirard` or `reduce`, which is where
@@ -50,7 +50,7 @@ theorem Zonotope.minkowskiDiff_reduceBy_box_inner (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     minkowskiDiff (Z.reduceBy part).construct (Z.reduceByBox part).construct
       ⊆ Z.construct :=
-  minkowskiDiff_inner_of_outer ⟨_, Zonotope.centre_mem_construct _⟩
+  minkowskiDiff_inner_of_outer ⟨_, Zonotope.center_mem_construct _⟩
     (Zonotope.isBounded_construct _) (Zonotope.convex_construct Z)
     (Zonotope.isClosed_construct Z) (Z.reduceBy_subset_add_box part)
 

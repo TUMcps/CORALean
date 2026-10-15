@@ -11,7 +11,7 @@ public import CORALean.NN.Layers.Definitions.EvalPoly
 polynomial half of it, over ℝ: `evalPolyDeriv` bracketed around its linear coefficient — the
 derivative's constant term, which no box widens — by a radius, every other monomial at the end
 of the box furthest from zero and every sign taken against itself; `polyDerivDiff` is that
-bracket against one for `σ'`, at the worse end. A centre and a radius keep order 1 exact: the
+bracket against one for `σ'`, at the worse end. A center and a radius keep order 1 exact: the
 radius is zero there, and the bracket is the one `Relaxation.ofDeriv` works with.
 -/
 
@@ -32,7 +32,7 @@ namespace CORALean.Real
 noncomputable def polyDerivCenter {n : ℕ} (c : Fin (n + 1) → ℝ) : ℝ :=
   ∑ i : Fin (n + 1), if (i : ℕ) = 1 then c i else 0
 
-/-- How far the remaining monomials move that centre over `[l, u]`. -/
+/-- How far the remaining monomials move that center over `[l, u]`. -/
 noncomputable def polyDerivRadius {n : ℕ} (c : Fin (n + 1) → ℝ) (l u : ℝ) : ℝ :=
   ∑ i : Fin (n + 1), if (i : ℕ) = 1 then 0
     else |c i| * (i : ℕ) * max |l| |u| ^ ((i : ℕ) - 1)

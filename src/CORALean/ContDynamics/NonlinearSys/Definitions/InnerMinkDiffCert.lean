@@ -14,7 +14,7 @@ public import Mathlib.Topology.EMetricSpace.Lipschitz
 
 [1, Prop. 1]'s hypotheses for one step of [1, Alg. 1] from the start set `X = R̂(t_k)`, in the
 form its proof spends them: the abstraction error `R̂_err(L̂)` is convex, compact, nonempty and
-symmetric about the centre `c` line 14 computes; solutions from `X` exist over `[0, Δt]` with
+symmetric about the center `c` line 14 computes; solutions from `X` exist over `[0, Δt]` with
 the field Lipschitz along them (the paper's standing assumption); and every solution from `X`
 satisfies the representation (21), `x(Δt) ∈ x* + e^{AΔt}(x(0) - x*) + R_con(Δt) + R̂_err(L̂)`,
 which is what the remainder loop of lines 10-13 is there to certify (written about `x*`, as

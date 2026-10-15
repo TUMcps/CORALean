@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Real.Operations.OfCenterRadius
 `x` is in `[c - r, c + r]` iff each entry is within the matching entry of `r` of the one of `c`.
 This is the meaning of CORA's `intervalMatrix(C, Δ)`.
 
-[1, Sec. 2]: `[x] = mid([x]) ⊕ rad([x]) ⊗ [-1, 1]`, membership read off the centre and radius.
+[1, Sec. 2]: `[x] = mid([x]) ⊕ rad([x]) ⊗ [-1, 1]`, membership read off the center and radius.
 
 ## References
 

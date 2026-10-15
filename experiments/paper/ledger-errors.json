@@ -99,7 +99,7 @@
   },
   "2012/cerny-kybernetika-goffin-zonotopes": {
     "Sec. 1.1 (ellipse)": {
-      "description": "ellipse centred at $-E^{1/2}s$ instead of $s$"
+      "description": "ellipse centered at $-E^{1/2}s$ instead of $s$"
     }
   },
   "2013/althoff-hscc-conservative-polynomialization": {
@@ -271,7 +271,7 @@
   },
   "2020/gassmann-acc-zonotope-ellipsoid": {
     "Lemma 5": {
-      "description": "axis test must be measured from the centre"
+      "description": "axis test must be measured from the center"
     }
   },
   "2020/kochdumper-hscc-nonlinear-guards": {
@@ -299,7 +299,7 @@
       "description": "unit ball is $P$ only if every $h_i > 0$"
     },
     "Remark 2": {
-      "description": "$S_Z$ does not exist for degenerate $Z$ centred at $0$"
+      "description": "$S_Z$ does not exist for degenerate $Z$ centered at $0$"
     },
     "Eq. 29": {
       "description": "halfspace set is the parallelotope of $Z^{-1}$, not $Z$"
@@ -400,7 +400,7 @@
   },
   "2024/ladner-aaai-exponent-relaxation": {
     "Thm. 1": {
-      "description": "centre shift sign flipped; evenness condition omitted"
+      "description": "center shift sign flipped; evenness condition omitted"
     }
   },
   "2024/wetzlinger-arch-polyhedral-operations": {

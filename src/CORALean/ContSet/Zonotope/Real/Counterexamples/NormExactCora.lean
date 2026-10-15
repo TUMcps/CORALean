@@ -14,7 +14,7 @@ public import Mathlib.Tactic.Linarith
 `private/priv_norm_exact.m`. It solves `min_{b ∈ {0,1}ᵐ} 4 (b - ½)ᵀ M (b - ½)` with
 `M = λ_max I - GᵀG` (l. 52-54; YALMIP at l. 126-132, MOSEK's equivalent cone program at l. 99-114
 has the same minimisers), i.e. maximises `‖G u‖` over `u = 2b - 1 ∈ {-1, 1}ᵐ`, ignoring the
-centre, and then returns `‖G u* + c‖` (l. 124/133, 140). `binprog` is the solver, a caller's
+center, and then returns `‖G u* + c‖` (l. 124/133, 140). `binprog` is the solver, a caller's
 argument; `lmax` too, since the minimisers do not depend on it. `G = []` (l. 44-47) gives `‖c‖`
 either way. One `let` per line of the source.
 

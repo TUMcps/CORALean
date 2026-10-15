@@ -13,8 +13,8 @@ public import CORALean.HybridDynamics.Operations.TimeIntervalStep
 
 The stay enclosure with the input contribution computed rather than named, at a
 location whose combined input set `ℓ.inputSet = B U ⊕ c ⊕ E W` need not hold the origin.
-`Recentre` takes it apart into a centre and a remainder around zero, as CORA's `canonicalForm`
-does: the centre travels as a constant through `expIntegral` and `constCorrectionMatrix`, and
+`Recenter` takes it apart into a center and a remainder around zero, as CORA's `canonicalForm`
+does: the center travels as a constant through `expIntegral` and `constCorrectionMatrix`, and
 `inputSolution` sees only the remainder, which does hold the origin.
 
 `timeIntervalStep ⊞ inputSolution ℓ.inputSet` is the same set where `0 ∈ ℓ.inputSet` already;
@@ -43,21 +43,21 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The stay enclosure over `X₀`, the input contribution split into the centre
+/-- The stay enclosure over `X₀`, the input contribution split into the center
 of `ℓ.inputSet` and the remainder around zero. -/
 noncomputable def Location.timeIntervalStepSplit [∀ n, OfPoint (S n) (Vec ℝ n)]
-    [∀ n, Recentre (S n) (Vec ℝ n)] (ℓ : Location S G L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
+    [∀ n, Recenter (S n) (Vec ℝ n)] (ℓ : Location S G L 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
   Plus.plus (ℓ.timeIntervalStep r η X₀)
     (Plus.plus
       (Plus.plus
         (Mtimes.mtimes (𝕄 := Mat ℝ)
           (MatExp.expIntegral (toRealMat ℓ.dynamics.A) r)
           (LinComb.linComb (OfPoint.ofPoint (0 : Vec ℝ n))
-            (OfPoint.ofPoint (Recentre.centre ℓ.inputSet))))
+            (OfPoint.ofPoint (Recenter.center ℓ.inputSet))))
         (Mtimes.mtimes (𝕄 := ℐ)
           (MatExp.constCorrectionMatrix (toRealMat ℓ.dynamics.A) r η)
-          (OfPoint.ofPoint (Recentre.centre ℓ.inputSet))))
-      (ℓ.dynamics.inputSolution r η (Recentre.recentre ℓ.inputSet)))
+          (OfPoint.ofPoint (Recenter.center ℓ.inputSet))))
+      (ℓ.dynamics.inputSolution r η (Recenter.recenter ℓ.inputSet)))
 
 end CORALean
 

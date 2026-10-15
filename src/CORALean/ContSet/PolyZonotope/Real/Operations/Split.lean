@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Split
 
 CORA's `split(pZ, gen)`: over-approximate the polynomial zonotope by the parallelotope
 `P = reduce(zonotope(pZ), 'methC', 1)` (`splitParallelotope`) and halve `P` along the generator
-`gen` (`Zonotope.split`: the generator halved in both halves, the centre moved by `∓g/2`); the
+`gen` (`Zonotope.split`: the generator halved in both halves, the center moved by `∓g/2`); the
 halves are polynomial zonotopes `polyZonotope(c ∓ g/2, G', [])` with identity exponents and no
 independent generators (`Zonotope.polyZonotope`). `Theorems.SplitOuter` says the halves cover `pZ`.
 -/

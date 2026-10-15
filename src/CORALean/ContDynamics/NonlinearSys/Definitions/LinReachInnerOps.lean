@@ -10,7 +10,7 @@ public import Mathlib.Data.Real.Basic
 
 What CORA's `contDynamics/linReachInner.m` computes by representation-specific routines,
 supplied rather than fixed: the enclosing box `interval(·)` (`box`), the emptiness test
-`representsa_(·, 'emptySet', 1e-12)` (`isEmpty`, a `Bool` so the step branches), the box centre
+`representsa_(·, 'emptySet', 1e-12)` (`isEmpty`, a `Bool` so the step branches), the box center
 `center(·)` (`cen`), the Jacobian of `linearize` (`jac`), the curvature error
 `F * zonotope(·) + G * u` of `taylorMatrices` (`curv`), the box zonotope
 `zonotope(0 * a, diag(a))` (`diagZono`), the particular solution

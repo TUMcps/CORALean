@@ -74,7 +74,7 @@ theorem PolyZonotope.aux_evalTerms_subsPow {p : ℕ} (A : List (ℝ × (Fin p �
 theorem PolyZonotope.aux_evalTerms_subsPoly {nu : ℕ} (pZin : PolyZonotope (Vec ℝ nu))
     (β : Fin pZin.p → ℝ) (ii : Fin nu) :
     PolyZonotope.aux_evalTerms (pZin.subsPoly ii) β = pZin.point β ii := by -- --- PROOF ---
-  -- the centre term, then the generators one by one
+  -- the center term, then the generators one by one
   unfold PolyZonotope.aux_evalTerms PolyZonotope.subsPoly PolyZonotope.point
   rw [List.map_cons, List.sum_cons, List.map_map, Pi.add_apply, Finset.sum_apply]
   simp only [Pi.zero_apply, pow_zero, Finset.prod_const_one, mul_one]

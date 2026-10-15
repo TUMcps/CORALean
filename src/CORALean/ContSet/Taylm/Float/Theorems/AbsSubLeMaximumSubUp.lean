@@ -5,10 +5,10 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 @[expose] public section
 
 /-!
-# The reach of a point from the centre, below its rounded bound
+# The reach of a point from the center, below its rounded bound
 
 A real `x` between `lo` and `hi` is within `max 0 (max (hi ⊖ c) (c ⊖ lo))`, rounded up, of
-the centre `c`: the radius every Taylor remainder bound of `Taylm` starts from.
+the center `c`: the radius every Taylor remainder bound of `Taylm` starts from.
 -/
 
 -- Authors:       Claude Opus 5.5

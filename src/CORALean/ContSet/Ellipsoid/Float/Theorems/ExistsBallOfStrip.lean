@@ -12,7 +12,7 @@ public import Mathlib.Tactic.LinearCombination
 The coefficient-space core of the float `intersectStripGollamudi`, for one strip. A factor vector
 `u` with `‖u‖₂ ≤ 1` and `|vᵀ u - δ| ≤ φ` satisfies the Gollamudi combination
 `(1 - λ)‖u‖₂² + λ (vᵀ u - δ)² ≤ 1 - λ + λ φ²`, which completes (with `ν = vᵀ v`,
-`s = 1 - λ + λ ν`, the centre `κ v`, `κ = λ δ / s`, and `d = u - κ v`) to
+`s = 1 - λ + λ ν`, the center `κ v`, `κ = λ δ / s`, and `d = u - κ v`) to
 
   `(1 - λ)‖d‖₂² + λ (vᵀ d)² ≤ σ² = 1 - λ + λ φ² - λ (1 - λ) δ² / s`.
 
@@ -55,7 +55,7 @@ theorem Ellipsoid.aux_strip_factor_le {D p ν lam α β S : ℝ} (h0 : 0 ≤ lam
   have hl : 0 < 1 - lam := by linarith
   have hp2 : 0 ≤ p ^ 2 := sq_nonneg p
   rcases le_or_gt S 0 with hS | hS
-  · -- an empty strip, or one touching in the centre: `d = 0`
+  · -- an empty strip, or one touching in the center: `d = 0`
     have hD0 : D = 0 := by nlinarith
     have hp0 : p ^ 2 = 0 := by rw [hD0, mul_zero] at hCS; linarith
     rw [hD0, hp0]
@@ -109,7 +109,7 @@ theorem Ellipsoid.exists_ball_of_strip {v u : Vec ℝ k} {δ φ lam α β S : �
   have hs0 : 0 < 1 - lam + lam * ν := by nlinarith
   set κ := lam * δ / (1 - lam + lam * ν) with hκdef
   have hκ : κ * (1 - lam + lam * ν) = lam * δ := by rw [hκdef]; field_simp
-  -- the factor vector from the centre `κ v`
+  -- the factor vector from the center `κ v`
   set d := u - κ • v with hd
   have hud : u = d + κ • v := by rw [hd]; abel
   set D := d ⬝ᵥ d with hDdef

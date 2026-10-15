@@ -80,7 +80,7 @@ def aux_isBlowup (e : Float) : Bool := decide (e > 1.0) || aux_notFinite e
 #guard aux_isBlowup 2.0 = true
 #guard aux_isBlowup 0.5 = false
 
-/-- Whether any number `Z` stores is past the type's range: centre, generators, error box. -/
+/-- Whether any number `Z` stores is past the type's range: center, generators, error box. -/
 def zonoOverflows (overflows : 𝕋 → Bool) (Z : Zonotope (Vec 𝕋 2)) : Bool :=
   (List.finRange 2).any fun i => overflows (Z.c i) || overflows (Z.I_error.inf i) ||
     overflows (Z.I_error.sup i) || (List.finRange Z.h).any fun j => overflows (Z.G j i)

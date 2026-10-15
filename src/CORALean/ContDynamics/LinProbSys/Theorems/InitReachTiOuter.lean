@@ -61,7 +61,7 @@ variable {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `0` is in every confidence zonotope, its centre. -/
+/-- `0` is in every confidence zonotope, its center. -/
 theorem LinProbSys.aux_zero_mem_confidenceZonotope (G : Mat ℝ n n) (γ : ℝ) :
     (0 : Vec ℝ n) ∈ (confidenceZonotope G γ).construct :=
   ⟨fun _ => 0, fun _ => by simp, by simp [confidenceZonotope]⟩

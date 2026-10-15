@@ -16,7 +16,7 @@ generators the closed form is exact, so the containment check of `Zonotope.minkD
 no slack at all, and fails it even where every entry rounds exactly (`minkDiffAlignedOpt` in
 `Examples/RunnableFloat.lean`). `ρ = 1` is CORA's own computation; `ρ < 1` is the slack.
 
-Nothing here is trusted: rounding the centre may move the candidate off the real result, and
+Nothing here is trusted: rounding the center may move the candidate off the real result, and
 the operands need not be aligned at all. `Zonotope.minkDiffAligned` returns it only once
 certified.
 

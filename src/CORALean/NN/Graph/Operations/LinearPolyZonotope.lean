@@ -9,7 +9,7 @@ public import CORALean.NN.Graph.Operations.Linear
 /-!
 # CORA's `nnGNNLinearLayer` on a matrix polynomial zonotope
 
-`evaluatePolyZonotope`: the affine map with bias on the centre `c`, and without the bias on both
+`evaluatePolyZonotope`: the affine map with bias on the center `c`, and without the bias on both
 generator blocks `G` and `GI`. That is `PolyZonotope.map` at the linear part, then `shift` by the
 bias: the layer induces no outer approximation.
 -/

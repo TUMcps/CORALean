@@ -14,7 +14,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 # The halves of `Zonotope.split` cover the zonotope, over a floating-point scalar
 
 The nominal part is the exact layer's `split_union` at the nominal zonotope. A real half
-differs from the stored half only in its centre, by the rounding of `c ∓ g_j/2`; that
+differs from the stored half only in its center, by the rounding of `c ∓ g_j/2`; that
 difference lies in the `centerResidual`, which the half's box has absorbed. The generators
 match entry by entry, the halved one because halving is exact (`toReal_half`).
 -/
@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A point of a real half, its centre read off with the shift `s`, plus a point of the box,
-lies in the stored half: same coefficients, and the centre rounding in the box. -/
+/-- A point of a real half, its center read off with the shift `s`, plus a point of the box,
+lies in the stored half: same coefficients, and the center rounding in the box. -/
 theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s : Vec 𝕋 n)
     {zn e : Vec ℝ n}
     (he : e ∈ Z.I_error.construct) (β : Vec ℝ Z.h) (hβ : ∀ k, |β k| ≤ 1)
@@ -58,7 +58,7 @@ theorem Zonotope.aux_splitHalf_mem (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) (s 
     (lo := fun i => addDown (Z.c i) (s i)) (hi := fun i => addUp (Z.c i) (s i))
     (x := fun i => toReal (Z.c i) + toReal (s i))
     fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
-  -- the box point is the incoming one plus the centre rounding, inside the plus of the boxes
+  -- the box point is the incoming one plus the center rounding, inside the plus of the boxes
   refine ⟨fun i => toReal ((Z.splitHalf j s).c i)
             + ∑ k, toReal ((Z.splitHalf j s).G k i) * β k,
     Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩, _,
@@ -93,7 +93,7 @@ theorem Zonotope.split_outer (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) :
       ring
     · rw [Function.update_of_ne hk, Function.update_of_ne hk]; rfl
   rcases hmem with ⟨β, hβ, hx⟩ | ⟨β, hβ, hx⟩
-  -- first half, centre `c - g_j/2`
+  -- first half, center `c - g_j/2`
   · refine Or.inl (Zonotope.aux_splitHalf_mem Z j _ he β hβ fun i => ?_)
     have hx' : zn = ((nominal Z).c - (2 : ℝ)⁻¹ • (nominal Z).G j)
         + ∑ k, β k • Function.update (nominal Z).G j ((2 : ℝ)⁻¹ • (nominal Z).G j) k := hx
@@ -105,9 +105,9 @@ theorem Zonotope.split_outer (Z : Zonotope (Vec 𝕋 n)) (j : Fin Z.h) :
       show (nominal Z).G j i = toReal (Z.G j i) from rfl] at h
     rw [h]
     congr 1
-    rw [toReal_neg, toReal_half]
+    rw [Pi.neg_apply, toReal_neg', toReal_half]
     ring
-  -- second half, centre `c + g_j/2`
+  -- second half, center `c + g_j/2`
   · refine Or.inr (Zonotope.aux_splitHalf_mem Z j _ he β hβ fun i => ?_)
     have hx' : zn = ((nominal Z).c + (2 : ℝ)⁻¹ • (nominal Z).G j)
         + ∑ k, β k • Function.update (nominal Z).G j ((2 : ℝ)⁻¹ • (nominal Z).G j) k := hx

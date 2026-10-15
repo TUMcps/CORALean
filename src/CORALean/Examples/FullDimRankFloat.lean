@@ -36,7 +36,7 @@ def d (m e : ℤ) : D := ⟨m, e⟩
 /-- No rounding error. -/
 def box0 : Interval (Vec D 2) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
-/-- Zonotopes centred at the origin: invertible, rank one, wide, and nearly singular. -/
+/-- Zonotopes centered at the origin: invertible, rank one, wide, and nearly singular. -/
 def zInv : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d 1 0, d 1 0]], box0⟩
 def zRank1 : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 1 0], ![d 1 0, d 1 0]], box0⟩
 def zWide : Zonotope (Vec D 2) :=

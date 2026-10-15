@@ -50,7 +50,7 @@ theorem toReal_genBlockDiag_right [SoundFloatArithmetic 𝕋] (A : Mat 𝕋 n₁
   funext i
   refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;> simp [genBlockDiag, toReal_zero]
 
-/-- Stacked centres, read as reals, are the stacked readings. -/
+/-- Stacked centers, read as reals, are the stacked readings. -/
 theorem toRealVec_append [SoundFloatArithmetic 𝕋] (c₁ : Vec 𝕋 n₁) (c₂ : Vec 𝕋 n₂) :
     toRealVec (Fin.append c₁ c₂) = Fin.append (toRealVec c₁) (toRealVec c₂) := by
   refine funext (Fin.addCases (fun i => ?_) (fun i => ?_)) <;>

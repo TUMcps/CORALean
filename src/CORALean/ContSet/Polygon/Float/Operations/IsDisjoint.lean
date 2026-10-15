@@ -42,7 +42,7 @@ def Polygon.isDisjoint (P Q : Polygon 𝕋) : Bool :=
       ![subDown (r.V l 1) (r.V m 1), subDown (r.V m 0) (r.V l 0)]
   -- `d` keeps `p` certainly below `q`
   let separates : VPolytope (Vec 𝕋 2) → VPolytope (Vec 𝕋 2) → Vec 𝕋 2 → Bool := fun p q d =>
-    let negD : Vec 𝕋 2 := fun j => neg (d j)
+    let negD : Vec 𝕋 2 := (-d)
     let hiP := (p.boundDot (c := rowLin (fun _ : Fin 1 => d) 0) d fun _ => rfl).val
     let hiQ := (q.boundDot (c := rowLin (fun _ : Fin 1 => negD) 0) negD fun _ => rfl).val
     ltStrict hiP (neg hiQ)

@@ -47,7 +47,7 @@ theorem ConZonotope.aux_family_eq_stacked (cZ : ConZonotope (Vec ℝ n)) (H : Fi
         (fun q => y (finProdFinEquiv.symm q).1 (finProdFinEquiv.symm q).2)
         (Matrix.of fun a q =>
           lam (finProdFinEquiv.symm q).1 a (finProdFinEquiv.symm q).2) := by -- --- PROOF ---
-  -- the same constraints and generator count; the centre and old generators are sums over `j`
+  -- the same constraints and generator count; the center and old generators are sums over `j`
   have hsum : ∀ (M : Fin (m * p) → Fin n → ℝ) (f : Fin m → Fin p → ℝ) (a : Fin n),
       (∑ j, ∑ k, M (finProdFinEquiv (j, k)) a * f j k) =
         ∑ q, M q a * f (finProdFinEquiv.symm q).1 (finProdFinEquiv.symm q).2 := by

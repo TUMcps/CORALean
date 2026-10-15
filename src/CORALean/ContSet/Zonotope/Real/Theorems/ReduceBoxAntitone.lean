@@ -26,7 +26,7 @@ matching sorted rank; `congr` cancels the shared permutation without this file
 ever naming it, since `aux_girardMetric` belongs to `GirardSplit.lean` alone.
 Below the threshold on both sides this is the ranking argument; at or past it
 on either side the box is `ofPoint 0`, a subset of everything a zonotope's own
-centre already reaches.
+center already reaches.
 
 ## References
 

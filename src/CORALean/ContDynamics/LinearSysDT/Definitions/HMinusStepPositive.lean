@@ -9,7 +9,7 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 # The `H₋` step condition of the fault-detection observer
 
 [1, Eq. 24]: with the fault-only error `e` following `e⁺ = (A - LC) e - LE f` [1, Eq. 19], the
-residual centre `p = MCe + MEf` [1, Eq. 20] and the Lyapunov function `V = eᵀQe` [1, Eq. 22], the
+residual center `p = MCe + MEf` [1, Eq. 20] and the Lyapunov function `V = eᵀQe` [1, Eq. 22], the
 quantity `pᵀp - β²fᵀf - (V⁺ - V)` is positive for every `(e, f) ≠ 0`. It is the form
 `≻ 0` of [1, Eq. 24] read at the pair `(e, f)` it is a function of.
 

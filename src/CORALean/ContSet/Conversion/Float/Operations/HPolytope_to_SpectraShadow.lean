@@ -35,7 +35,7 @@ def HPolytope.spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) : SpectraShadow �
   m := n
   -- `A₀ = diag(d)` with `d = [b; be; -be]`
   A₀ := fun p q => if p = q then
-    Fin.append P.b (Fin.append P.be fun r => neg (P.be r)) p else zero
+    Fin.append P.b (Fin.append P.be (-P.be)) p else zero
   -- `Aᵢ = diag(-C(:,i))` with `C = [A; Ae; -Ae]`
   A := fun i p q => if p = q then neg (Fin.append (fun r => P.A r i)
     (Fin.append (fun r => P.Ae r i) fun r => neg (P.Ae r i)) p) else zero

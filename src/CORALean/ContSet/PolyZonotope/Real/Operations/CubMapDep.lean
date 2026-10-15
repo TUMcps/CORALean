@@ -14,7 +14,7 @@ CORA's `@polyZonotope/cubMap` on a set whose coefficients are all dependent: the
 for the reason `quadMap` is: the factors are shared, so `mᵢ mⱼ mₖ` is a monomial, in the
 exponent column `Eᵢ + Eⱼ + Eₖ`.
 
-CORA's `aux_cubMapSingle` extends the generators by the centre, builds the exponents of the
+CORA's `aux_cubMapSingle` extends the generators by the center, builds the exponents of the
 pairs `(a ≤ b)` and of the triples `(j; a ≤ b)`, and the generators of the pairs (`quadMat` with
 both orders added) times the `k`-th entry of the `j`-th extended column, summed over `k`. Here
 the pairs are all the ordered ones (as in `quadMap`: the same polynomial, symmetrization and

@@ -10,8 +10,8 @@ public import Mathlib.Data.Finset.Sort
 # `PolyZonotope.onlyId`, over a floating-point scalar
 
 CORA's `@polyZonotope/onlyId`: the part that depends on the identifiers in `S` alone (a generator
-belongs to it when its exponent column is `0` outside `S`; it keeps the centre and drops the
-independent block) and the remainder (the other generators, centre `0`, the independent block).
+belongs to it when its exponent column is `0` outside `S`; it keeps the center and drops the
+independent block) and the remainder (the other generators, center `0`, the independent block).
 The generator columns of the other part are zeroed, not deleted. The error box goes to the
 remainder, the first part carries the empty box `Interval.origin`. Nothing rounds.
 -/

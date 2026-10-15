@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # What `nonlinParamSys/linearize` hands on
 
 The linearization of the `paramInt` branch [1]: the point `(p.x, p.u)` it expands about, the
-centre `p.p` of the parameter box, the zonotope `zf` of the constant term `f(p.x, p.u, p)`, and
+center `p.p` of the parameter box, the zonotope `zf` of the constant term `f(p.x, p.u, p)`, and
 the matrix zonotopes `zA`, `zB` of the Jacobians in the state and in the input, each over the
 parameter box. CORA wraps them into a `linParamSys`, the input set `U = zB (U + uTrans - p.u)`
 and the constant input `zf + Ucenter`; that packaging is not carried.

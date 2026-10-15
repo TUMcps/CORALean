@@ -8,7 +8,7 @@ public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
 # `ProbZonotope.representsaEmptySet`
 
 CORA's `representsa_(probZ, 'emptySet')`: `isempty(probZ.Z) && isempty(probZ.g)`, the empty matrix
-pair. The mean zonotope here has a centre, so the answer is always `false`.
+pair. The mean zonotope here has a center, so the answer is always `false`.
 -/
 
 -- Authors:       Claude Opus 5.5

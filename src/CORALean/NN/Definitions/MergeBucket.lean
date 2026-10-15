@@ -53,7 +53,7 @@ noncomputable def mergeSplit {n : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : �
 
 /-- [1]'s two ways (Sec. 3.2) to initialise a layer's buckets: `static` at the activation's
 asymptotic values, eq. (5) — `[0, 1]` for sigmoid, `[-1, 1]` for tanh, `[0]` for ReLU — and
-`dynamic` at every neuron's own centre, eq. (6). The values are stored, so either layer runs it. -/
+`dynamic` at every neuron's own center, eq. (6). The values are stored, so either layer runs it. -/
 inductive MergeBuckets (𝕂 : Type) where
   | static (ys : List 𝕂)
   | dynamic

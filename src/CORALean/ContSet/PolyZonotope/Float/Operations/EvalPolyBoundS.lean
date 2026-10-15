@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- A sound bound on `|nominal pZ|`, entrywise: the centre plus every generator's
+/-- A sound bound on `|nominal pZ|`, entrywise: the center plus every generator's
 magnitude, since every monomial is at most `1` in absolute value. -/
 def PolyZonotope.evalPolyBoundS (pZ : PolyZonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
   fun i => addUp (absolute (pZ.c i)) (radius (fun i l => pZ.G l i) i)

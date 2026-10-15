@@ -34,8 +34,8 @@ An exact representation is one at `𝕋 := ℝ`, through its own class: that is 
 algorithm written once over the scalar run on `Real.Zonotope` as well as on a float one.
 
 Nothing here rounds. The box arrives already in `𝕋`, and each conversion pays
-whatever its own centring costs — `Interval.zonotope` measures its radius from
-the centre it actually stored, so the box is covered by the generators alone.
+whatever its own centering costs — `Interval.zonotope` measures its radius from
+the center it actually stored, so the box is covered by the generators alone.
 
 An exact representation is one at `𝕋 := ℝ`, through its own class, as in
 the exact layer.

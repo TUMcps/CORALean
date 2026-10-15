@@ -7,7 +7,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 /-!
 # The magnitude of a Taylor model
 
-The largest `|x|` over the constant part and the range: every point between the centre and
+The largest `|x|` over the constant part and the range: every point between the center and
 the range lies within it. The derivative bounds of `sinh`, `cosh`, `tanh`, `tan`, `atan`,
 `asin` and `acos` are stated at this one number.
 -/

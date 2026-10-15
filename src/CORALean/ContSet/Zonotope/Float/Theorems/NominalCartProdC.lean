@@ -6,9 +6,9 @@ public import CORALean.Global.AppendLinear
 @[expose] public section
 
 /-!
-# The nominal centre of `Zonotope.cartProd`
+# The nominal center of `Zonotope.cartProd`
 
-The stored centre of the product, read as reals, is the pair of the operands' nominal centres
+The stored center of the product, read as reals, is the pair of the operands' nominal centers
 appended.
 -/
 
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The nominal centre of the product is the exact pair, appended. -/
+/-- The nominal center of the product is the exact pair, appended. -/
 theorem Zonotope.nominal_cartProd_c (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂)) :
     (InflatedContSet.nominal (Z₁.cartProd Z₂)).c =
       appendLinear n₁ n₂

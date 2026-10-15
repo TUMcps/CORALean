@@ -17,7 +17,7 @@ public import CORALean.ContSet.Taylm.Float.Operations.Cosh
 The float layer's share of the source's intrinsics (its Def. 3), for [1, Thm. 3]: `exp`, `log`,
 `sin`, `cos`, `sinh` and `cosh`, each under the condition its outer theorem needs, checked in
 floats. `exp`, `sinh` and `cosh` need their argument's hull at most `2ᵖ/2`, read as halving it
-`p` times and comparing with `1/2`, which is exact; `log` a positive centre and range bottom.
+`p` times and comparing with `1/2`, which is exact; `log` a positive center and range bottom.
 The other intrinsics have no float counterpart here and give `none`, as does a failed check.
 
 ## References

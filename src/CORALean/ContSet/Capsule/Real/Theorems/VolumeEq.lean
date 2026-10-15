@@ -52,7 +52,7 @@ theorem aux_slice_eq (L r : ℝ) (w : Fin m → ℝ) :
   simp only [aux_P, mem_preimage, mem_setOf_eq]
   constructor <;> intro h <;> linarith
 
--- that slice is an interval, centred, of half-length `L + sqrt ρ`
+-- that slice is an interval, centered, of half-length `L + sqrt ρ`
 theorem aux_slice_icc {L ρ : ℝ} (hρ : 0 ≤ ρ) :
     {s : ℝ | (max (|s| - L) 0) ^ 2 ≤ ρ} = Icc (-(L + √ρ)) (L + √ρ) := by -- --- PROOF ---
   ext s

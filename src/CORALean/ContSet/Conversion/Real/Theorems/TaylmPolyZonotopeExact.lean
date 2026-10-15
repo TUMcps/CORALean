@@ -17,8 +17,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.TaylmPolyZonotopeContain
 
 CORA's `polyZonotope(taylm)`: the variables are the dependent factors, every term of every
 coordinate a generator along that coordinate with the term's exponents, and each remainder
-an independent generator about its centre. CORA also folds the constant terms into the
-centre; here they stay generators at the zero exponent, the same set. Exact when every
+an independent generator about its center. CORA also folds the constant terms into the
+center; here they stay generators at the zero exponent, the same set. Exact when every
 remainder is a nonempty interval (`polyZonotope_exact`); the range set is always contained
 (`polyZonotope_contains`), a point of it having a remainder value in each interval.
 

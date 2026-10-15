@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ExactPlusGap
 
 CORA's `@zonotope/exactPlus`: the first `m = min(h₁, h₂, k)` generator columns of the two operands
 share their coefficients and are added pairwise, the remaining columns of each follow, and the
-centres add. Only the added entries round: the centre as in `plus` (its residual goes into the
+centers add. Only the added entries round: the center as in `plus` (its residual goes into the
 box), and each pairwise column sum, stored rounded down, whose gap to the sum rounded up
 (`exactPlusGap`) is a generator error, paid into the box by `generatorError` since the
 coefficients range over `[-1, 1]`. A copied column costs nothing.

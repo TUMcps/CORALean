@@ -8,8 +8,8 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.signedSums`
 
 [1, Def. 1]: `Z±(R) = {R σ : σ ∈ {-1, 1}ᵖ}`, the images by `R` of the `2ᵖ` vertices of the
-unit cube, for the generators `R` as a family of columns. Centred; the centre is added by the caller
-(`c + Z±(R)`, [1, Eq. 41]).
+unit cube, for the generators `R` as a family of columns. Centered; the center is added by the
+caller (`c + Z±(R)`, [1, Eq. 41]).
 
 ## References
 

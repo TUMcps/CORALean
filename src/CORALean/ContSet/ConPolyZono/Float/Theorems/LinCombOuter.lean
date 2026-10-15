@@ -84,7 +84,7 @@ theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec �
   · rw [funext hy₁, funext hy₂]
     exact hx
 
-/-- The box absorbs the two incoming boxes, both centre roundings and the
+/-- The box absorbs the two incoming boxes, both center roundings and the
 independent block's, exactly as for the unconstrained set. -/
 theorem ConPolyZono.aux_linComb_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     Set.linComb cPZ₁.I_error.construct cPZ₂.I_error.construct

@@ -95,7 +95,7 @@ theorem Zonotope.pRadius_predict_strip_le (A P : Mat ℝ n n) (F : Mat ℝ n m) 
     simp [η]
     ring
   simp only [β₁, γ] at h1 h2
-  -- the point's offset from the new centre is that sum
+  -- the point's offset from the new center is that sum
   beta_reduce
   rw [add_sub_cancel_left, Fin.sum_univ_add, Fin.sum_univ_add]
   simp only [Xk, W, Zonotope.intersectStrip, Zonotope.plus, Zonotope.mtimes, Fin.append_left,

@@ -14,7 +14,7 @@ public import Mathlib.LinearAlgebra.Matrix.Diagonal
 `X̃ = {[T(I + diag|r|)], c}`, and "using the standard formula for the volume of a zonotope ...
 and standard properties of the determinant, `v(X̃) = 2ⁿ|det T det(I + diag|r|)| =
 2ⁿ|det T| Πᵢ(1 + |rᵢ|)`". A parallelotope is the image of the box `[-1, 1]ⁿ`, of volume `2ⁿ`,
-under its generator matrix, translated by the centre: the volume is `2ⁿ` times the absolute
+under its generator matrix, translated by the center: the volume is `2ⁿ` times the absolute
 determinant, and `det(I + diag|r|) = Πᵢ(1 + |rᵢ|)`.
 
 ## References

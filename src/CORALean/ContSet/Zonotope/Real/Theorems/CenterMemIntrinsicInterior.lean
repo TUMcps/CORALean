@@ -7,13 +7,13 @@ public import Mathlib.Analysis.Normed.Module.FiniteDimension
 @[expose] public section
 
 /-!
-# The centre of a zonotope is in its relative interior
+# The center of a zonotope is in its relative interior
 
 `c` is in the interior of `Z = c + ∑ βⱼgⱼ, |βⱼ| ≤ 1` relative to its affine hull, whatever the
 dimension of `Z`: the map `β ↦ ∑ βⱼgⱼ` onto the span of the generators is open (both
 finite-dimensional), so it carries the open cube `|βⱼ| < 1` to an open neighbourhood of `0` in that
 span, which is the direction of the affine hull (`vectorSpan_construct`). Applied to a facet `Z.face
-u`, its centre `c + ∑ sign(u gⱼ)gⱼ` is a point "in the interior of `F`" as [1, Cor. 3.5] asks. Over
+u`, its center `c + ∑ sign(u gⱼ)gⱼ` is a point "in the interior of `F`" as [1, Cor. 3.5] asks. Over
 any real normed space; `isFullDim_iff` is the full-dimensional case.
 
 ## References
@@ -38,7 +38,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Cor. 3.5]: the centre of a zonotope is in its relative interior. -/
+/-- [1, Cor. 3.5]: the center of a zonotope is in its relative interior. -/
 theorem Zonotope.center_mem_intrinsicInterior (Z : Zonotope α) :
     Z.c ∈ intrinsicInterior ℝ Z.construct := by -- --- PROOF ---
   let L : (Fin Z.h → ℝ) →ₗ[ℝ] α := Fintype.linearCombination ℝ Z.G

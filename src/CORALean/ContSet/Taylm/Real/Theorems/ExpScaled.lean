@@ -11,8 +11,8 @@ public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 
 [1, Thm. 1], eq. (2.9), at the source's first intrinsic ([1, Def. 3 (exp)]). `taylor_scaled`
 asks for a bound on the coefficients and one on the derivative bound; for `exp` both come from
-the scaling itself: the centre is at most `C`, so each `exp(c)/k!` is at most `exp C`, and the
-top of the range is within `2C·h ≤ 2C` of the centre, so `D ≤ exp (3C)`.
+the scaling itself: the center is at most `C`, so each `exp(c)/k!` is at most `exp C`, and the
+top of the range is within `2C·h ≤ 2C` of the center, so `D ≤ exp (3C)`.
 
 ## References
 
@@ -48,7 +48,7 @@ theorem Taylm.exp_scaled {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1) (
     have hf : (1 : ℝ) ≤ (Nat.factorial k : ℝ) := by exact_mod_cast Nat.factorial_pos _
     refine le_trans (div_le_self (Real.exp_pos _).le hf) ?_
     exact Real.exp_le_exp.2 (le_trans (le_abs_self _) hC)
-  -- the derivative bound: the top of the range is within `2C·h` of the centre
+  -- the derivative bound: the top of the range is within `2C·h` of the center
   · have hr := Taylm.reach_le h0 h1 hT
     have htop : T.bounds.sup - T.constCoef ≤ 2 * C * h :=
       le_trans (le_trans (le_abs_self _) (le_max_right _ _)) hr

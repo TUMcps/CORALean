@@ -5,7 +5,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 @[expose] public section
 
 /-!
-# The stored shifted centres of `absorbError` bracket the exact one
+# The stored shifted centers of `absorbError` bracket the exact one
 -/
 
 -- Authors:       Claude Opus 5
@@ -25,7 +25,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The stored centres bracket the exact shifted one, which is what is left. -/
+/-- The stored centers bracket the exact shifted one, which is what is left. -/
 theorem Zonotope.shift_brackets_mid (Z : Zonotope (Vec 𝕋 n)) (i : Fin n) :
     let mid := toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2
     toReal (Z.shiftDown i) ≤ mid ∧ mid ≤ toReal (Z.shiftUp i) := by -- --- PROOF ---

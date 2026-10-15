@@ -19,7 +19,7 @@ public import Mathlib.Analysis.Real.Pi.Bounds
 
 # `Taylm.asinPolyCora`: the polynomial of CORA's `asin(taylm)`
 
-`@taylm/asin.m`, `aux_s_asin`, for the variable (centre `c_f = 0`, so `T = obj`):
+`@taylm/asin.m`, `aux_s_asin`, for the variable (center `c_f = 0`, so `T = obj`):
 
 ```
 for i = 1:obj.max_order

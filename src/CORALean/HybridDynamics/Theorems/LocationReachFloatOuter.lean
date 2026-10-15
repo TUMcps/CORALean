@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 public import CORALean.HybridDynamics.Operations.LocationReachFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 
@@ -99,11 +99,11 @@ theorem Location.Trajectory.reachFloat_outer
     exact h
   have hd := ((traj.linearSys h₀ traj.inputSetFloat_mem).trajectory (convex_Icc 0 τ)
     ⟨le_rfl, ht.1.trans ht.2⟩
-    (CompactSet.isBounded_construct ℓ.inputSetFloat)).sub_mem_inputReach_recentre
+    (CompactSet.isBounded_construct ℓ.inputSetFloat)).sub_mem_inputReach_recenter
       (S' := 𝒵[𝕋]) hUV ht
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
   have hy := h3 (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)
-    (Recentre.zero_mem_recentre _) ht.1 (by push_cast; exact htk) hd)
+    (Recenter.zero_mem_recenter _) ht.1 (by push_cast; exact htk) hd)
   -- the free motion and the constant's share at `t = t_k + (t - t_k)`, inside `H(τ_k)`
   have hx := h2 (x 0) h₀ (t - k * Δ) ⟨sub_nonneg.mpr hkt, by linarith⟩
   rw [add_sub_cancel] at hx

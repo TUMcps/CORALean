@@ -20,7 +20,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 `ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, computed in `𝕋`: `X₀`, `U` (in
 input space), `Δt`, `η`, `ρ` and `N` read as `reachFloat` reads them, `B` and `c`
 the system's. `V = B U ⊕ c` (`inputSetFloat`, CORA's `canonicalForm` at `W = {0}`)
-is split at its stored centre into the constant `ũ` and `Ũ = V - ũ ∋ 0`, as
+is split at its stored center into the constant `ũ` and `Ũ = V - ũ ∋ 0`, as
 CORA's `canonicalForm` splits it, so `0 ∈ U` is not asked.
 
 The constant contributes `P̃(Δt)` per step, and `P̃^R(τ_0)` within the first
@@ -62,8 +62,8 @@ def LinearSys.reachFloatInput (sys : LinearSys 𝕋 n) (params : Reach.InputPara
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let V := sys.inputSetFloat params.U                               -- B U ⊕ c, in the state space
-  let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored centre
-  let Ũ := Recentre.recentre V                                      -- Ũ = V - ũ, holding 0
+  let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored center
+  let Ũ := Recenter.recenter V                                      -- Ũ = V - ũ, holding 0
   let eAΔt := sys.expIntervalFloat Δt Δt η'                         -- [e^{AΔt}], once
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η'   -- [F], once
   let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{AΔt}] ·

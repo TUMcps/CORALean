@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 /-!
 # `ConZonotope.map`
 
-A linear map applies to centre and generators [1, Prop. 1]; the constraints are on the
+A linear map applies to center and generators [1, Prop. 1]; the constraints are on the
 coefficients and so are untouched. This is why every multiplication a
 constrained zonotope carries is as exact as a zonotope's.
 

@@ -17,7 +17,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 As over ℝ, `Real.PolyZonotope.union_subset_convHull`: a point of either operand is a point of its
 dependent part, which the two chord sets of `linComb_outer` put in the result, plus a point of its
 independent zonotope, which `Zonotope.linComb_outer` puts in `enclose(Z1, Z2)`. The sum is a point
-of the result because the zonotope's generators are its independent block, and its rounded centre
+of the result because the zonotope's generators are its independent block, and its rounded center
 and its error box are in the error box.
 
 Both operands must denote a point: the chord of a set with the empty one is empty, and CORA returns
@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The zero-centred zonotope of the independent block, as `convHull` builds it. -/
+/-- The zero-centered zonotope of the independent block, as `convHull` builds it. -/
 abbrev PolyZonotope.aux_Z (P : PolyZonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   ⟨P.q, fun _ => zero, P.GI, Interval.origin n⟩
 

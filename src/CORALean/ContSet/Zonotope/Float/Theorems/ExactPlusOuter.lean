@@ -15,7 +15,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 
 The exact layer's `exactPlus` of the stored operands' nominal parts, plus the two error boxes, lies
 in the rounded `exactPlus`. The shared columns' stored sums sit within the gap `subUp` computes of
-the exact sums, the copied columns are exact, and the centre's rounding is its residual, as in
+the exact sums, the copied columns are exact, and the center's rounding is its residual, as in
 `Zonotope.plus_outer`.
 -/
 
@@ -108,7 +108,7 @@ theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
   -- the stored nominal point on the same coefficients
   have hp : (fun i => toReal (F.c i) + ∑ j, toReal (F.G j i) * δ j) ∈ nominalSet F :=
     Zonotope.mem_nominalSet_iff.mpr ⟨δ, hδ, fun _ => rfl⟩
-  -- the centre's rounding, and the shared columns' rounding
+  -- the center's rounding, and the shared columns' rounding
   have hr₁ : (fun i => (toReal (Z₁.c i) + toReal (Z₂.c i)) - toReal (F.c i)) ∈
       (Zonotope.centerResidual Z₁.c Z₂.c).construct :=
     Interval.sub_mem_residual (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
@@ -124,7 +124,7 @@ theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
   refine ⟨_, hp, _, hE, ?_⟩
   funext i
   simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
-  -- the exact centre and the exact sum of columns, split at the stored ones
+  -- the exact center and the exact sum of columns, split at the stored ones
   have hc : ((nominal Z₁).exactPlus (nominal Z₂) k).c i = toReal (Z₁.c i) + toReal (Z₂.c i) :=
     rfl
   have hs : ∑ x, δ x * ((nominal Z₁).exactPlus (nominal Z₂) k).G x i =

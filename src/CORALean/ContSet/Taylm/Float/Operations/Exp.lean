@@ -12,7 +12,7 @@ public import CORALean.Global.Float.DivFact
 # `Taylm.exp`
 
 The exact layer's `exp` with every number enclosed: the coefficients `exp c / k!` by
-`divFact` from `expDown`/`expUp` at the centre, the reach `B` rounded up, and the Lagrange
+`divFact` from `expDown`/`expUp` at the center, the reach `B` rounded up, and the Lagrange
 bound `exp(max(c, hi)) Bᴺ⁺¹ / (N+1)!` as a product of upward roundings. `p` is the precision
 of the two exponentials (`Global/Float/Exp`).
 -/

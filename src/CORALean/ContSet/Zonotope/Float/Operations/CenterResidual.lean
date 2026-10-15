@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.centerResidual`
 
-Storing the lower of the two directed roundings of a centre sum leaves this
+Storing the lower of the two directed roundings of a center sum leaves this
 much to pay into the box.
 -/
 

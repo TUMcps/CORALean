@@ -13,7 +13,7 @@ The time-point set `Rtp.set = minkDiff(Rlintp__ + p, Rerror)` CORA's
 `contDynamics/linReachInner.m` computes from `X = Rinit`, with the exact Minkowski difference,
 holds only states some run from `X` reaches at `Δt`, given [1, Prop. 1]'s hypotheses for the
 step (`LinReachInnerCert`). This is `NonlinearSys.minkowskiDiff_add_subset_reachSet` with the
-centre `c = 0` (CORA's `Rerror` is symmetric about the origin, so `Prop. 1`'s shift `2c`
+center `c = 0` (CORA's `Rerror` is symmetric about the origin, so `Prop. 1`'s shift `2c`
 vanishes) and `Rlintp__ + p` written as the image of the affine map
 `x₀ ↦ e^{AΔt}x₀ + (p - e^{AΔt}p + Rcon)`, its matrix invertible.
 
@@ -72,7 +72,7 @@ theorem NonlinearSys.linReachInner_subset_reachSet (ops : NonlinearSys.LinReachI
     refine image_congr fun x _ => ?_
     simp only [v, Matrix.mulVec_sub]
     abel
-  -- `Prop. 1` for the affine map at the centre `0`, (21) rewritten about `p`
+  -- `Prop. 1` for the affine map at the center `0`, (21) rewritten about `p`
   obtain ⟨Ω, K, hLip, hex⟩ := cert.flow
   have key := NonlinearSys.minkowskiDiff_add_subset_reachSet (S := 𝒮) sys
     X {u₀} hΔt M ((Matrix.isUnit_iff_isUnit_det _).mp (Matrix.isUnit_exp _)) v cert.compact

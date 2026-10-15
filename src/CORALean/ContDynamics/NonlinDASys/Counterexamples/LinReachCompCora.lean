@@ -39,7 +39,7 @@ split decision are left out.
 
 `ẋ₁ = y₁`, `0 = y₁ - y₂` (subsystem 1, input `y₂`), `ẋ₂ = y₂`, `0 = y₂ - x₂²` (subsystem 2),
 `x(0) ∈ {0} × [-1, 1]`, run with `options.index` through `linReach` (`linReachCompCora`). At the
-centre `0` CORA linearizes (`p.x = 0`, `p.y = 0`): `A = B = D = E = 0`, `C = I`, `f0 = 0`, so
+center `0` CORA linearizes (`p.x = 0`, `p.y = 0`): `A = B = D = E = 0`, `C = I`, `f0 = 0`, so
 `Ã = B̃ = 0` whatever `pinv(F)` returns. Subsystem 1 is linear: its Hessians are `0` and its
 local error ([1, Sec. V-B]) `error{1}` is `{0}` for every `R_xyu`, `Csub`, `Fsub`; `index{2}.X'`
 has a zero first row, and `reduce` keeps a zero row. So `x₁` of CORA's time-point set is
@@ -181,7 +181,7 @@ theorem NonlinDASys.aux_linReachCompCora_inputSolution {sys : LinearSys ℝ n} (
   rw [NonlinDASys.aux_linReachCompCora_remainder_eq_zero (by simpa using hA) r η Z hb, add_zero]
   exact hsum η a ha
 
-/-- A zonotope whose centre and generators vanish at `i` has only points vanishing at `i`. -/
+/-- A zonotope whose center and generators vanish at `i` has only points vanishing at `i`. -/
 theorem NonlinDASys.aux_linReachCompCora_mem_coord {Z : Zonotope (Vec ℝ n)} {i : Fin n}
     (hc : Z.c i = 0) (hG : ∀ j, Z.G j i = 0) {v : Vec ℝ n} (hv : v ∈ Z.construct) :
     v i = 0 := by
@@ -189,7 +189,7 @@ theorem NonlinDASys.aux_linReachCompCora_mem_coord {Z : Zonotope (Vec ℝ n)} {i
   rw [h i, hc]
   simp [hG]
 
-/-- Girard's `reduce` keeps a coordinate at which centre and generators vanish. -/
+/-- Girard's `reduce` keeps a coordinate at which center and generators vanish. -/
 theorem NonlinDASys.aux_linReachCompCora_reduce_coord {Z : Zonotope (Vec ℝ n)} (o : ℕ)
     {i : Fin n} (hc : Z.c i = 0) (hG : ∀ j, Z.G j i = 0) :
     (Z.reduce o).c i = 0 ∧ ∀ j, (Z.reduce o).G j i = 0 := by -- --- PROOF ---

@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
 public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoxSubset
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
@@ -87,8 +87,8 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.RadiusLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.RealMtimesIntervalMatSubset
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterZeroMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAndAbsorbByOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByCoeff
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuter

@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 /-!
 # `Ellipsoid.project` over a floating-point scalar
 
-The centre and the rows of the generator matrix at the chosen coordinates, and the error box
+The center and the rows of the generator matrix at the chosen coordinates, and the error box
 projected with `Interval.project`. Selecting coordinates does no arithmetic, so nothing rounds.
 -/
 

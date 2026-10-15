@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.HPolytope.Float.Operations.PadLeft
-public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 
@@ -12,8 +12,8 @@ public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 /-!
 # `ConZonotope.mtimesIntervalMat`, over a floating-point scalar
 
-`Zonotope.mtimesIntervalMat` with the constraints carried along: the centre matrix
-`Interval.centreMat` acts through `ConZonotope.mtimes`, and what any member of `M` does beyond
+`Zonotope.mtimesIntervalMat` with the constraints carried along: the center matrix
+`Interval.centerMat` acts through `ConZonotope.mtimes`, and what any member of `M` does beyond
 it, a matrix known only to within `Interval.matResidual`, is `|M - mid(M)| (|c| + Σ|G|)` per
 coordinate on the nominal part, rounded up and kept as `m` new diagonal generators; the
 constraints are padded on the right, so the new coefficients answer to nothing, as over `ℝ`.
@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 what it does to the error box. -/
 def ConZonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     ConZonotope 𝕋 (Vec 𝕋 m) :=
-  let C := Interval.centreMat IM                                    -- mid(M), stored
+  let C := Interval.centerMat IM                                    -- mid(M), stored
   let Rs := Interval.matResidual IM.inf IM.sup C                    -- M - mid(M), a box
   let MZ := ConZonotope.mtimes C cZ                                 -- mid(M) cZ
   let b : Vec 𝕋 m := fun i => sumUp fun j =>                        -- |M - mid(M)| (|c| + Σ|G|)

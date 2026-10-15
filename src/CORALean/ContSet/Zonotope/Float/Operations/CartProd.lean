@@ -9,7 +9,7 @@ public import CORALean.Global.Float.GenBlockDiag
 /-!
 # `Zonotope.cartProd`, over a floating-point scalar
 
-CORA's `@zonotope/cartProd_`: the centres stack, the generators are block diagonal, and the error
+CORA's `@zonotope/cartProd_`: the centers stack, the generators are block diagonal, and the error
 boxes stack (`Interval.append`). Nothing is added or multiplied, so nothing rounds: `G` is
 `genBlockDiag` of the two stored matrices, each padded with zeros on the side of the other operand.
 -/

@@ -14,7 +14,7 @@ public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 leave over the step, `R̂(Δt) = (e^{AΔt} X₀ + R_con) ⊖ R̂_err + 2c ⊆ R(Δt)` with
 `R̂_err = inputSolution Δt η L` (`Trajectory.sub_mem_inputSolution`, then
 `NonlinearSys.minkowskiDiff_add_subset_reachSet`). This is the time-point set of [1, Alg. 1]
-with `Prop. 1`'s shift `2 cen(R̂_err)` (line 15 writes another centre), and `Rtp` of CORA's
+with `Prop. 1`'s shift `2 cen(R̂_err)` (line 15 writes another center), and `Rtp` of CORA's
 `linReachInner`, `minkDiff(e^{AΔt}(R₀ - p) + R_con + p, Rerror)` with `Rerror` the
 `particularSolution_timeVarying` of the abstraction error, in coordinates not shifted by the
 linearization point `p`. What remains assumed is what conservative linearization assumes: the

@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatSubsetReachSetAddError
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
@@ -22,7 +22,7 @@ The bridge is `reachSet_inner_of_outer` again, discharged the same way:
 `reach_float_subset_reachSet_add_error` supplies the enclosure, and every
 further hypothesis is a fact about the *nominal* zonotopes `R₀` and `U`
 denote, already in the tree at `Real`. `reachErrorFloat k` is a real zonotope,
-so nonempty and bounded come from `centre_mem_construct` and
+so nonempty and bounded come from `center_mem_construct` and
 `isBounded_construct` exactly as at `reachInner_inner`.
 
 What is new relative to `Real` is `hR₀`, `hU`: a float run's own error box has
@@ -61,7 +61,7 @@ theorem LinearSysDT.reachInnerFloat_inner (sys : LinearSysDT 𝕋 n) {o : ℕ} (
   sys.reachSet_inner_of_outer (S := 𝒵)
     (Real.Zonotope.convex_construct _) (Real.Zonotope.isCompact_construct _)
     (Real.Zonotope.convex_construct _) (Real.Zonotope.isCompact_construct _) k
-    ⟨_, Real.Zonotope.centre_mem_construct _⟩ (Real.Zonotope.isBounded_construct _)
+    ⟨_, Real.Zonotope.center_mem_construct _⟩ (Real.Zonotope.isBounded_construct _)
     (sys.reach_float_subset_reachSet_add_error ho hR₀ hU k)
 
 end CORALean

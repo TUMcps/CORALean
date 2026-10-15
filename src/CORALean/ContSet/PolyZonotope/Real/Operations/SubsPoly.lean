@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 # `PolyZonotope.subsPoly`
 
 Output `ii` of `pZin` as a sum of monomials: CORA's `Gin0 = [cin, Gin]` with `eMin0 = [0, eMin]`,
-the centre being the term with exponent `0`.
+the center being the term with exponent `0`.
 -/
 
 -- Authors:       Claude Opus 5.5

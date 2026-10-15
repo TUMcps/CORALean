@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
 public import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
-public import CORALean.ContSet.ConZonotope.Float.Theorems.CentreBetween
+public import CORALean.ContSet.ConZonotope.Float.Theorems.CenterBetween
 public import CORALean.ContSet.ConZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
 
@@ -42,10 +42,10 @@ theorem ConZonotope.containsPoint_sound {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H 
   have hdev := toReal_le_of_le hd
   have hx : (fun i => toReal (p i) - toReal (cZ.I_error.inf i)) ∈ nominalSet cZ :=
     ConZonotope.box_subset hc _ fun i =>
-      le_trans (Zonotope.deviation_bound p cZ.I_error.inf (cZ.centreLo β₀) (cZ.centreHi β₀)
+      le_trans (Zonotope.deviation_bound p cZ.I_error.inf (cZ.centerLo β₀) (cZ.centerHi β₀)
         (fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (β₀ j))
-        (fun i => (ConZonotope.centre_between cZ β₀ i).1)
-        (fun i => (ConZonotope.centre_between cZ β₀ i).2) i) hdev
+        (fun i => (ConZonotope.center_between cZ β₀ i).1)
+        (fun i => (ConZonotope.center_between cZ β₀ i).2) i) hdev
   have hsum : toRealVec p = (fun i => toReal (p i) - toReal (cZ.I_error.inf i))
       + fun i => toReal (cZ.I_error.inf i) := by
     funext i

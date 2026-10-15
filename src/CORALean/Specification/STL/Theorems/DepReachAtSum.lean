@@ -15,7 +15,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 [1, Alg. 1]: with the factors `α̃ = [α_x; α_{u,1}; ...]` of [1, Prop. 1] — the first `γ_x` weights
 the generators of `H(t_i)`, the next `γ_u` those of the first step of `P_c(t_i)`, and so on — the
-centre and the weighted generators of `H(t_i)` and `P_c(t_i)` add up to the state of
+center and the weighted generators of `H(t_i)` and `P_c(t_i)` add up to the state of
 `x(k+1) = e^{AΔt}x(k) + T B u(k)` from `x₀ = c_x + G_xα_x` under the inputs
 `u(j) = c_u + G_uα_{u,j+1}`: the dependency of the reachable state on `x₀` and `u(·)` that
 [1, Prop. 1] reads off.

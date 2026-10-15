@@ -64,7 +64,7 @@ theorem Taylm.invCoef_mem (c : 𝕋) (hc : toReal c ≠ 0) (k : ℕ) :
   unfold Taylm.invCoef
   simp only []
   by_cases hp : ltStrict zero c = true
-  · -- a certified positive centre
+  · -- a certified positive center
     have h0 : 0 < toReal c := by simpa [toReal_zero] using toReal_lt_of_ltStrict hp
     rw [abs_of_pos h0] at hpl hph
     rw [if_pos hp, hd]
@@ -75,7 +75,7 @@ theorem Taylm.invCoef_mem (c : 𝕋) (hc : toReal c ≠ 0) (k : ℕ) :
     · rw [(Nat.odd_iff.mpr (by omega)).neg_one_pow, hcc, toReal_neg, toReal_neg]
       constructor <;> linarith
   · by_cases hn : ltStrict c zero = true
-    · -- a certified negative centre
+    · -- a certified negative center
       have h0 : toReal c < 0 := by simpa [toReal_zero] using toReal_lt_of_ltStrict hn
       rw [abs_of_neg h0] at hpl hph
       rw [if_neg hp, if_pos hn, hd, toReal_neg, toReal_neg]

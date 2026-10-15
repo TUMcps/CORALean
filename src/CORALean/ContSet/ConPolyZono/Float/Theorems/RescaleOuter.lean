@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def ConPolyZono.aux_rescaleSub (cen rad : ℕ → 𝕋) (t : ℕ) (a : ℕ → ℝ) : ℕ → ℝ :=
   fun k => if k < t then toReal (cen k) + toReal (rad k) * a k else a k
 
-/-- What `t` steps of `rescaleStep` leave: the factor counts, the centre and the independent
+/-- What `t` steps of `rescaleStep` leave: the factor counts, the center and the independent
 block, and, at every factor vector in `[-1,1]ᵖ` whose substitution is in `[-1,1]ᵖ` and meets
 the original constraint, the constraint and the generator sum up to the error boxes. -/
 def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)) (cen rad : ℕ → 𝕋)
@@ -108,7 +108,7 @@ theorem ConPolyZono.aux_rescaleInv_succ (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n)
   have h : t < acc.p := hp ▸ ht
   unfold ConPolyZono.rescaleStep
   rw [dif_pos h]
-  -- the counts, the centre and the independent block are untouched
+  -- the counts, the center and the independent block are untouched
   refine ⟨hp, hq, hc, fun β i => hGI β i, fun a ha hb hs => ?_⟩
   -- the vector the previous set is read at: factor `t` sent to `cen ± rad`
   have hsub := ConPolyZono.aux_rescaleSub_succ cen rad t a
@@ -226,7 +226,7 @@ theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋
     show |(if h : (j : ℕ) < cPZ.qI then β ⟨j, h⟩ else 0)| ≤ 1
     rw [dif_pos hj]
     exact hβ _
-  · -- the point: the invariant at `δ`, the centre and the independent block unchanged
+  · -- the point: the invariant at `δ`, the center and the independent block unchanged
     funext i
     have hi := heq i
     rw [hsubx] at hi

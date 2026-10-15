@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Map
 /-!
 # `Zonotope.projectHighDim_`
 
-CORA's `@zonotope/projectHighDim_`: the centre and every generator written into the
+CORA's `@zonotope/projectHighDim_`: the center and every generator written into the
 coordinates `proj` of a zero vector of length `N`. `embed proj` is the zero-padding map, the
 selection matrix transposed; it is linear, so this is `map` at it. CORA's assignment
 `cnew(proj,:) = Z.c` overwrites on a repeated index, which `embed` sums instead, so the

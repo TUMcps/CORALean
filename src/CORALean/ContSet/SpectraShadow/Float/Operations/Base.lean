@@ -9,7 +9,7 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 # `SpectraShadow.base`, over a floating-point scalar
 
 CORA's `spectraShadow(SpS.A)`: the base spectrahedron, the variables `β` themselves as the
-points, centre `0`, identity generators and the origin box. The stored matrices are the shadow's
+points, center `0`, identity generators and the origin box. The stored matrices are the shadow's
 own, so nothing rounds.
 -/
 

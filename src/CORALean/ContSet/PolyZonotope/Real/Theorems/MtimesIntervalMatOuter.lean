@@ -23,7 +23,7 @@ Outer and never exact: the boxed generators are one per coordinate, so what the
 radius does to different coordinates is allowed to vary independently, which
 the matrices denoted do not.
 
-The centre part is `mtimes` exactly on every block; the leftover `(A - centre)
+The center part is `mtimes` exactly on every block; the leftover `(A - center)
 x` fits in the fresh independent generators because `x`, read through the
 enclosing zonotope's coefficients (the dependent monomials appended to the
 independent ones), never exceeds `pZ.zonotope.absBound`.
@@ -65,7 +65,7 @@ theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat_dep {IM : Interval (Mat ℝ 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the image sits in the centre's polynomial zonotope widened by what the radius can reach
+-- the image sits in the center's polynomial zonotope widened by what the radius can reach
 theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (pZ : PolyZonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' pZ.construct)
@@ -103,19 +103,19 @@ theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
       PolyZonotope.aux_sum_univ_mtimesIntervalMat_dep]
     simp only [PolyZonotope.mtimesIntervalMat, Fin.append_left, Fin.append_right]
     rw [Zonotope.sum_diagonal_mul', Zonotope.mul_coefficient (herrb i)]
-    -- centre acts exactly on the dependent block and on the old independent one
-    have hcentreG : ∑ l, (IM.center *ᵥ pZ.G l) i * PolyZonotope.monomial pZ.E a l
+    -- center acts exactly on the dependent block and on the old independent one
+    have hcenterG : ∑ l, (IM.center *ᵥ pZ.G l) i * PolyZonotope.monomial pZ.E a l
         = ∑ j, IM.center i j * (∑ l, pZ.G l j * PolyZonotope.monomial pZ.E a l) := by
       simp_rw [Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum]
       rw [Finset.sum_comm]
       simp_rw [mul_assoc]
-    have hcentreGI : ∑ k, (IM.center *ᵥ pZ.GI k) i * β k
+    have hcenterGI : ∑ k, (IM.center *ᵥ pZ.GI k) i * β k
         = ∑ j, IM.center i j * (∑ k, pZ.GI k j * β k) := by
       simp_rw [Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum]
       rw [Finset.sum_comm]
       simp_rw [mul_assoc]
-    rw [hcentreG, hcentreGI]
-    -- what remains is `x`'s own decomposition, weighted by the centre and split off `err`
+    rw [hcenterG, hcenterGI]
+    -- what remains is `x`'s own decomposition, weighted by the center and split off `err`
     have hsplit : (A *ᵥ x) i = (∑ j, IM.center i j * x j) + err i := by
       simp only [herr, Matrix.mulVec, dotProduct]
       rw [← Finset.sum_add_distrib]

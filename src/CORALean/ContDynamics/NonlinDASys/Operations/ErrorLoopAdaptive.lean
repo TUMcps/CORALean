@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 [1, Alg. 1] lines 4-10, `repeat … until L ⊆ L̄`, as CORA's `linReach_adaptive` runs it (the
 tuning of [2] applied to [1]); each step carries its line number. Line 3's `taylor` is the
 argument. Where it departs from the listing, it follows CORA. Line 5: the guess is not
-`ĉ ⊕ λ(L̃ ⊕ (-ĉ))` (17) but the origin-centred boxes `L̄ᵈ`, `L̄ᵃ` of `expFactor` (`λ`) times the
+`ĉ ⊕ λ(L̃ ⊕ (-ĉ))` (17) but the origin-centered boxes `L̄ᵈ`, `L̄ᵃ` of `expFactor` (`λ`) times the
 last error's size `errorInt`, joined through `-CF⁻¹` as (15) joins `σ` and `φ`; the first pass
 starts from the caller's `adm_x`, `adm_y`, not line 1's `{0}`. Lines 6-7 are one `linReachAt`
 at `Ū`. Line 10: `L ⊆ L̄` part by part, `errorInt ≤ adm` — CORA's `perfInd <= 1` without the

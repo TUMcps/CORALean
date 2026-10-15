@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.mulGens`
 
 The reduced generator matrix `Ĝ = G T` of [1, Eq. (1)]: generator `ĝⱼ = Σᵢ T(i,j) gᵢ`, with
-`T ∈ ℝ^{ν×ν̂}`, `ν̂` generators, and the centre unchanged ([1, Sec. II-D]).
+`T ∈ ℝ^{ν×ν̂}`, `ν̂` generators, and the center unchanged ([1, Sec. II-D]).
 
 ## References
 

@@ -20,7 +20,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
@@ -32,7 +32,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 `LinearSys.trajectoryError_outer` at floats: for `t ∈ [tmin, tmax]`, `0 ≤ tmin`, `x₀ ∈ R₀` and
 `η ≥ 1`, the solution `e^{At}x₀ + Γ(t)u` of `ẋ = Ax + u` minus the state-dependent constant flow
-`x₀ + (Ax₀ + b)t`, `b` the exact `GuardMap.sdcInput` at `tc` and the stored centre of `R₀`, is
+`x₀ + (Ax₀ + b)t`, `b` the exact `GuardMap.sdcInput` at `tc` and the stored center of `R₀`, is
 a point of the float `E_err` whenever `LinearSys.trajectoryErrorFloat` returns one, that is
 whenever the float bound of `‖tmax A‖` passes `(η + 2)/2`. At `f₁ = f₂`, as the exact theorem.
 
@@ -227,7 +227,7 @@ theorem LinearSys.trajectoryErrorFloat_outer (sys : LinearSys 𝕋 n) (f u : Vec
     have h2 := Interval.powLo_le tc (m + 1)
     linarith [htHi m]
   -- the points of `Y`, `x0zono` and `uzono`
-  have hY : x₀ - toRealVec R₀.c ∈ R₀.recentre.construct := Zonotope.sub_centre_mem_recentre hx₀
+  have hY : x₀ - toRealVec R₀.c ∈ R₀.recenter.construct := Zonotope.sub_center_mem_recenter hx₀
   have hξ : toRealVec R₀.c ∈ (Zonotope.point R₀.c).construct := by
     rw [Zonotope.construct_point]
     exact Set.mem_singleton _

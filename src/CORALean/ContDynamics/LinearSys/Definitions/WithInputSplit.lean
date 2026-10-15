@@ -9,10 +9,10 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 
 `LinearSys.WithInput` without `0 ∈ U`: [1, Alg. 3]'s case, the input set taken
 apart into a constant `ũ` and a remainder `Ũ` holding the origin before any
-window is computed. The split is the representation's, by `Recentre`, so no
+window is computed. The split is the representation's, by `Recenter`, so no
 field here names it; `Reach LinearSys.WithInputSplit` asks the representation
-for `Recentre` and `OfPoint` instead. `WithInput` stays for representations
-without a centre, where `0 ∈ U` is the precondition [1, Alg. 2] asks.
+for `Recenter` and `OfPoint` instead. `WithInput` stays for representations
+without a center, where `0 ∈ U` is the precondition [1, Alg. 2] asks.
 
 ## References
 

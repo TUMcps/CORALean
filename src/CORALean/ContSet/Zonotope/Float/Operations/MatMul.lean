@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 # `Zonotope.matMul`
 
 The exact layer's `Zonotope.matMul`, which is `bilin` at the matrix product [1, Eq. (10)]:
-centre `C₁C₂`, then `G₁ᵢC₂`, `C₁G₂ⱼ` and every cross product `G₁ᵢG₂ⱼ`, each bracketed by
+center `C₁C₂`, then `G₁ᵢC₂`, `C₁G₂ⱼ` and every cross product `G₁ᵢG₂ⱼ`, each bracketed by
 `matMulDown`/`matMulUp` and stored low by `ofEntryBoundsMat`. The boxes cannot be multiplied
 as generators, so for `(a + e)(b + f) = ab + af + e(b + f)` the two error terms are taken
 as interval products: `a` in the box around the first nominal part, `b + f` in the second
@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {p q r : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `bilin`'s centre and generators at the matrix product, bracketed, plus the two error
+/-- `bilin`'s center and generators at the matrix product, bracketed, plus the two error
 terms as interval products. -/
 def Zonotope.matMul (M : Zonotope (Mat 𝕋 p q)) (N : Zonotope (Mat 𝕋 q r)) :
     Zonotope (Mat 𝕋 p r) :=

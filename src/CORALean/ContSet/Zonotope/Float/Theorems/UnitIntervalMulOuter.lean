@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 # `[-1, 1] ⊗ Z` holds every `s z`, `|s| ≤ 1`, `z ∈ Z`
 
 The nominal part `c + ∑ βⱼ gⱼ` scales to the factors `s, sβ₁, …` of the generators `c, g₁, …`,
-all in `[-1, 1]`, about the centre `0`; a point `e` of the box scales to `se`, `|seᵢ| ≤ |eᵢ|`,
+all in `[-1, 1]`, about the center `0`; a point `e` of the box scales to `se`, `|seᵢ| ≤ |eᵢ|`,
 inside the symmetric hull.
 -/
 
@@ -36,7 +36,7 @@ theorem Zonotope.unitIntervalMul_outer (Z : Zonotope (Vec 𝕋 n)) {s : ℝ} (hs
   obtain ⟨β, hβ, ha⟩ := Zonotope.mem_nominalSet_iff.mp ha
   refine ⟨s • a, Zonotope.mem_nominalSet_iff.mpr ⟨Fin.cons s (fun j => s * β j), fun j => ?_,
     fun i => ?_⟩, s • e, fun i => ?_, (smul_add s a e).symm⟩
-  · -- the factors: `s` for the centre, `sβⱼ` for each generator
+  · -- the factors: `s` for the center, `sβⱼ` for each generator
     refine Fin.cases ?_ (fun j => ?_) j
     · simpa using hs
     · simp only [Fin.cons_succ, abs_mul]

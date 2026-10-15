@@ -9,7 +9,7 @@ public import CORALean.Global.DropIdx
 # `ConZonotope.eliminate`
 
 [1, Thm. 2]'s own construction: row `r` of `Aξ = b` is solved for coefficient `j`, and
-that solution is substituted into every generator, every row and the centre. `Λ_G` and
+that solution is substituted into every generator, every row and the center. `Λ_G` and
 `Λ_A` are the paper's rank-one correction matrices, kept here to their one nonzero
 column — the `r`-th — since every other column of both is zero by construction and
 never read.
@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Thm. 2]: row `r` of `Aξ = b` solved for coefficient `j` and substituted into the
-generators, the constraints and the centre, then generator `j` and constraint `r` —
+generators, the constraints and the center, then generator `j` and constraint `r` —
 both zero once substituted — dropped. -/
 noncomputable def ConZonotope.eliminate {ng nc : ℕ} (c : α) (G : Fin ng → α)
     (A : Mat ℝ nc ng) (b : Vec ℝ nc) (r : Fin nc) (j : Fin ng) : ConZonotope α :=

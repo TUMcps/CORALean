@@ -63,7 +63,7 @@ theorem aux_mem_translates (A : Set α) (v x : α) :
   · rintro ⟨h1, h2⟩
     exact ⟨⟨x - v, h1, v, rfl, by simp⟩, x + v, h2, v, rfl, by simp⟩
 
-/-- The zero-centred zonotope on `n + 1` generators splits its head off: the
+/-- The zero-centered zonotope on `n + 1` generators splits its head off: the
 segment generator `0` spans, plus the zonotope on the remaining generators. -/
 theorem aux_construct_succ (n : ℕ) (g : Fin (n + 1) → α) :
     (⟨n + 1, (0 : α), g⟩ : Zonotope α).construct
@@ -153,15 +153,15 @@ exactly, not merely an enclosure of it. -/
 theorem Zonotope.minkDiffGenRec_exact (Zm Zs : Zonotope α) :
     Zm.minkDiffGenRec Zs = minkowskiDiff Zm.construct Zs.construct := by -- --- PROOF ---
   have hA : Convex ℝ (Zm.construct - {Zs.c}) := Zm.convex_construct.sub (convex_singleton Zs.c)
-  -- the subtrahend is its centre plus the zonotope its generators span
-  have hcentre : Zs.construct = {Zs.c} + (⟨Zs.h, (0 : α), Zs.G⟩ : Zonotope α).construct := by
+  -- the subtrahend is its center plus the zonotope its generators span
+  have hcenter : Zs.construct = {Zs.c} + (⟨Zs.h, (0 : α), Zs.G⟩ : Zonotope α).construct := by
     ext y
     constructor
     · rintro ⟨β, hβ, rfl⟩
       exact ⟨Zs.c, rfl, ∑ j, β j • Zs.G j, ⟨β, hβ, (zero_add _).symm⟩, rfl⟩
     · rintro ⟨_, rfl, _, ⟨β, hβ, rfl⟩, rfl⟩
       exact ⟨β, hβ, by rw [zero_add]⟩
-  -- and subtracting a centre is the `Z_int⁽¹⁾` the recursion starts from
+  -- and subtracting a center is the `Z_int⁽¹⁾` the recursion starts from
   have hsingle : minkowskiDiff Zm.construct ({Zs.c} : Set α) = Zm.construct - {Zs.c} := by
     ext x
     constructor
@@ -171,7 +171,7 @@ theorem Zonotope.minkDiffGenRec_exact (Zm Zs : Zonotope α) :
       rw [Set.mem_singleton_iff.mp hy, Set.mem_singleton_iff.mp hb]
       simpa using ha
   rw [Zonotope.minkDiffGenRec, aux_fold_eq_minkDiff Zs.h Zs.G _ hA, ← hsingle,
-    ← minkowskiDiff_add_assoc, ← hcentre]
+    ← minkowskiDiff_add_assoc, ← hcenter]
 
 end CORALean.Real
 

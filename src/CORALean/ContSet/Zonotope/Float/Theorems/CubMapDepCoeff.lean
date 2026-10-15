@@ -16,7 +16,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 The exact layer's coefficients (`Real.Zonotope.cubMap_coeff`) on the read-back operand give, at the
 point `c + Σ pⱼ gⱼ`, coefficients `γ` in `[-1, 1]` whose linear block `(0, 0, j)` is the `pⱼ`. At
 those coefficients the stored zonotope's nominal point differs from the exact one by the shortfall
-of the stored centre and, per coefficient, that of the stored generators, which the box
+of the stored center and, per coefficient, that of the stored generators, which the box
 `cubMapDep` returns holds. The linear block is stated for `ConZonotope.cubMap`, which ties it to
 the constraints.
 -/

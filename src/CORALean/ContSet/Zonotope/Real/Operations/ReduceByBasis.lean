@@ -23,7 +23,7 @@ behind that rule was confirmed, so its source file is what is cited.
 pseudoinverse; a caller passes an invertible `P` or gets no enclosure, which is
 `reduceMethC`'s reason for testing the determinant before it calls this.
 
-Kept and dropped are [2, Prop. 9]'s `Ž` and `Z̃`, the centre going with `Ž`.
+Kept and dropped are [2, Prop. 9]'s `Ž` and `Z̃`, the center going with `Ž`.
 
 ## References
 

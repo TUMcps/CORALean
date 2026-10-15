@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.abs`
 
-CORA's `@zonotope/abs.m`: the zonotope `(|c|, |g₁|, ..., |g_m|)` whose centre and generators are
+CORA's `@zonotope/abs.m`: the zonotope `(|c|, |g₁|, ..., |g_m|)` whose center and generators are
 the entrywise absolute values of the input's. It is a different set, not an enclosure of the
 input (see `Zonotope.abs_corner_mem` for what it does keep).
 -/

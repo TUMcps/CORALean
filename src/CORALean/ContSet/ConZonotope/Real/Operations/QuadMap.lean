@@ -10,7 +10,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Comap
 # `ConZonotope.quadMap`
 
 CORA's `@conZonotope/quadMap` for a single constrained zonotope (`aux_quadMapSingle`) [2]: the
-generators of `Zonotope.quadMap` [1, Lemma 1] on the centre and generators, with the constraint
+generators of `Zonotope.quadMap` [1, Lemma 1] on the center and generators, with the constraint
 `A β = b` kept on the *linear* block, the factors that are the old ones, and the new factors for
 the squares `2βⱼ² - 1` and the products `βⱼβₖ` unconstrained. The new factors do not satisfy the
 constraints on the old ones, which is what makes the result an outer approximation and no more.

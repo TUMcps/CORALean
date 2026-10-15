@@ -67,7 +67,7 @@ theorem VPolytope.aux_setLinComb_eq_convexJoin (X Y : Set α) :
 theorem VPolytope.aux_ofPoint_construct (v : α) :
     (PolyZonotope.ofPoint v).construct = {v} := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
-  · -- neither generator block has a column, so nothing is added to the centre
+  · -- neither generator block has a column, so nothing is added to the center
     rintro _ ⟨a, β, -, -, rfl⟩
     show (PolyZonotope.ofPoint v).c + ∑ i : Fin 0, PolyZonotope.monomial _ a i • _
         + ∑ j : Fin 0, β j • _ ∈ ({v} : Set α)

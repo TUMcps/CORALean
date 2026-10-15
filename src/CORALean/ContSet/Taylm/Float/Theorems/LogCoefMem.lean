@@ -10,7 +10,7 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 /-!
 # `logCoef` encloses the Taylor coefficients of `log`
 
-At a positive centre. `aux_log_coef` reads `log⁽ᵏ⁺¹⁾(c)/(k+1)!` as `(-1)ᵏ (1/c)ᵏ⁺¹/(k+1)`
+At a positive center. `aux_log_coef` reads `log⁽ᵏ⁺¹⁾(c)/(k+1)!` as `(-1)ᵏ (1/c)ᵏ⁺¹/(k+1)`
 off `iter_deriv_inv`.
 -/
 

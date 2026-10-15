@@ -16,7 +16,7 @@ CORA's `@conZonotope/intersectStrip` [1, Lemma 2] with a numeric
 gain, `aux_conZonotopeFromLambda`: the intersection of a constrained zonotope with the strip
 `{x | |C x - y| ≤ φ}` of `s` parallel slabs, in CG-Rep, the gain form being Alamo et al.'s for
 zonotopes. The strip enters as `s` new factors `ν` and `s` equality rows
-`C G ξ - φ ν = y - C c`; the centre moves to `c + Λ (y - C c)`, the generators become
+`C G ξ - φ ν = y - C c`; the center moves to `c + Λ (y - C c)`, the generators become
 `[(I - Λ C) G, φ₁ Λ₁, …, φₛ Λₛ]`, and the old constraints keep acting on the old factors.
 
 The gain `Λ` is an argument and any `Λ` works. CORA's `'normGen'`, `'alamo-FRad'` and

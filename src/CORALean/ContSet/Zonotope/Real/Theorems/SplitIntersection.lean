@@ -129,7 +129,7 @@ theorem Zonotope.split_intersection (Z : Zonotope α) (j : Fin Z.h) :
           _ = x := by rw [hone, hzero, one_smul, zero_smul, sub_zero]
       rw [← hx]
       exact hconv hp₁ hp₂ hl0 (by linarith) (by ring)
-  -- back: `±1` on the halved generator undoes the centre shift
+  -- back: `±1` on the halved generator undoes the center shift
   · rintro ⟨δ, hδ, rfl⟩
     refine ⟨⟨Function.update δ j 1, fun k => ?_, ?_⟩,
       Function.update δ j (-1), fun k => ?_, ?_⟩

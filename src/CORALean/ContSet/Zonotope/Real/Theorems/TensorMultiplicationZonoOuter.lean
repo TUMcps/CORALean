@@ -12,11 +12,11 @@ public import Mathlib.Tactic.Ring
 /-!
 # `tensorMultiplication_zono` encloses the images under a tensor zonotope
 
-Outer: for a zonotope `Z` centred at the origin, every tensor `M'` of the matrix zonotope `M`
+Outer: for a zonotope `Z` centered at the origin, every tensor `M'` of the matrix zonotope `M`
 and every `x ∈ Z`, `Mᵢⱼₖₗ' xⱼ xₖ xₗ` lies in `Z.tensorMultiplication_zono M L`, under the
 conditions of `tensorMultiplication_outer` on the lists. The tensor product is linear in the
-tensor, so it splits into the centre and the generators, each scaled by `γᵢ ∈ [-1, 1]`, which a
-zonotope centred at the origin absorbs. Not exact: `x` is taken independently for the centre and
+tensor, so it splits into the center and the generators, each scaled by `γᵢ ∈ [-1, 1]`, which a
+zonotope centered at the origin absorbs. Not exact: `x` is taken independently for the center and
 for each generator.
 -/
 
@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A zonotope centred at the origin is closed under scaling by `[-1, 1]`. -/
+/-- A zonotope centered at the origin is closed under scaling by `[-1, 1]`. -/
 theorem Zonotope.aux_smul_mem {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0) {z : Vec ℝ n}
     (hz : z ∈ Z.construct) {γ : ℝ} (hγ : |γ| ≤ 1) : γ • z ∈ Z.construct := by
   obtain ⟨β, hβ, rfl⟩ := hz

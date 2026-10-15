@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 
 CORA's `aux_scaledSystem` (`guardIntersect_pancake`): `F(x, u, p) = g(x, p) f(x, u)` with the
 scaling `g(x, p) = (nᵀx − d)/p`, `nᵀx = d` the guard hyperplane, oriented as CORA orients it
-(`nᵀx − d > 0` on the invariant side of the reach set's centre). CORA writes `F` to a file with
+(`nᵀx − d > 0` on the invariant side of the reach set's center). CORA writes `F` to a file with
 `matlabFunction`; here it is the function itself. The parameter is one-dimensional.
 -/
 

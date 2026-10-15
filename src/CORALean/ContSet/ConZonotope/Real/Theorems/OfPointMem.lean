@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.OfPoint
 @[expose] public section
 
 /-!
-# A generator-free, constraint-free constrained zonotope contains its centre
+# A generator-free, constraint-free constrained zonotope contains its center
 
 `ofPoint v` states its own `h` and `P`, that count only up to unfolding, so
 the coefficient carries a `show` before the sum and the constraint discharges

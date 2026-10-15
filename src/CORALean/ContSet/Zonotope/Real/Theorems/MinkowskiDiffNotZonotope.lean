@@ -17,7 +17,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.FaceCentrallySymmetric
 it is not centrally symmetric. That face is named here: the difference is
 bounded by `x₂ ≤ 4/3`, `x₂ - x₁ ≤ 2/3`, `x₁ - x₃ ≤ 2/3` and `x₃ ≤ 4/3`, and
 `(2/3, 4/3, 0)`, `(2/3, 4/3, 4/3)` and `(4/3, 4/3, 4/3)` all lie on `x₂ = 4/3`.
-Reflecting those three in any centre drives one of them out, so the face is not
+Reflecting those three in any center drives one of them out, so the face is not
 symmetric — and `face_centrally_symmetric` says a zonotope has no such face.
 
 ## References

@@ -1,0 +1,41 @@
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxShiftMid
+
+@[expose] public section
+
+/-!
+# `relaxExpMid`'s shifted center, as stored
+
+Split out of `RelaxExpMid.lean` (issue #62): read again by `relaxGapMid` in
+this directory and by `Theorems/RelaxExpMidOuter.lean`, both outside this
+file.
+-/
+
+-- Authors:       Claude Opus 5
+-- Written:       06-September-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open FloatOps
+
+variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The shifted center as stored, the shift added at its lower rounding, so the
+stored center stays below the exact one. -/
+def PolyZonotope.relaxCenterMid (pZ : PolyZonotope (Vec 𝕋 n))
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
+  fun i => addDown (pZ.c i) (pZ.relaxShiftMid part k₀ i)
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

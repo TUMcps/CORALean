@@ -12,7 +12,7 @@ public import CORALean.NN.Layers.Operations.ReluSlope
 At ℝ, on every box `l ≤ u`, [1, Thm. 3.1]'s Eq. (5) and `reluRelaxation reluSlope` agree in
 slope, offset and error: both are exact on a stable neuron and take the secant `u / (u - l)`
 on a crossing one, where ReLU's gap above the secant is the same at both ends, `-u l / (u - l)`,
-and recentring halves it into DeepZ's `μ`. At `l = 0 < u` the two take different branches to
+and recentering halves it into DeepZ's `μ`. At `l = 0 < u` the two take different branches to
 the same values. So the soundness of the tree's relaxation, stated once for every scalar, is
 DeepZ's at ℝ and its float counterpart elsewhere.
 

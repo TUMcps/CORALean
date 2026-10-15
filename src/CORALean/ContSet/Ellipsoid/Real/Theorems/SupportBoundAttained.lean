@@ -16,7 +16,7 @@ bounds is as tight as the direction allows.
 
 The attaining point is `q + G (Gᵀd)/‖Gᵀd‖₂`, the unit-ball point Cauchy–Schwarz
 is tight at. When `Gᵀd` vanishes the direction is one `G` collapses, the value
-is `⟨d, q⟩`, and the centre attains it — which is why the centre's membership is
+is `⟨d, q⟩`, and the center attains it — which is why the center's membership is
 what the degenerate case needs.
 
 This is what makes [1, Def. 4] an equality here and not merely a bound; the

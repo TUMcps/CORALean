@@ -9,7 +9,7 @@ public import Mathlib.Data.Fin.Tuple.Sort
 # `Zonotope.sortByLength`
 
 The sorted generator matrix `G_s` of [1, Sec. III-B, Step 1) and Sec. III-C, Step 1)]: the
-generators of `Z` in order of decreasing 2-norm, `‖g_{s,i}‖₂ ≥ ‖g_{s,i+1}‖₂`. The centre is kept.
+generators of `Z` in order of decreasing 2-norm, `‖g_{s,i}‖₂ ≥ ‖g_{s,i+1}‖₂`. The center is kept.
 
 ## References
 

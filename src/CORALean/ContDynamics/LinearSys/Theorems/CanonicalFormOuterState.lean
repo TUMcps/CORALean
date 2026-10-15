@@ -9,7 +9,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 # The canonical form holds every state input
 
 `Ax + B(uVec + u) + c + E w` with `u ∈ U`, `w ∈ W` is `Ax + u'` [1] with `u' - u_` in `U_`: the
-centred sets carry what moves, `u_` the rest. Outer only, as the set operations are.
+centered sets carry what moves, `u_` the rest. Outer only, as the set operations are.
 
 ## References
 
@@ -31,7 +31,7 @@ open Matrix ContSet Scalar Plus Mtimes
 variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-variable [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
+variable [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -43,7 +43,7 @@ theorem LinearSys.canonicalForm_state_outer (sys : LinearSys ℝ n) (U : S sys.m
       ∈ construct (sys.canonicalForm U uVec W V vVec).2.1 := by -- --- PROOF ---
   -- the offset cancels, leaving `B (u - centerU) + E (w - centerW)`
   have heq : sys.B *ᵥ (uVec + u) + sys.c + sys.E *ᵥ w - (sys.canonicalForm U uVec W V vVec).2.2.1
-      = sys.B *ᵥ (u - Recentre.centre U) + sys.E *ᵥ (w - Recentre.centre W) := by
+      = sys.B *ᵥ (u - Recenter.center U) + sys.E *ᵥ (w - Recenter.center W) := by
     simp only [LinearSys.canonicalForm, Matrix.mulVec_add, Matrix.mulVec_sub]
     abel
   rw [heq]
@@ -51,11 +51,11 @@ theorem LinearSys.canonicalForm_state_outer (sys : LinearSys ℝ n) (U : S sys.m
   · -- `B (u - centerU)` is in `B U₀`
     refine Mtimes.mtimes_outer _ _ ?_
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
-    exact Set.mem_image_of_mem _ (Recentre.sub_centre_mem_recentre hu)
+    exact Set.mem_image_of_mem _ (Recenter.sub_center_mem_recenter hu)
   · -- `E (w - centerW)` is in `E W₀`
     refine Mtimes.mtimes_outer _ _ ?_
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
-    exact Set.mem_image_of_mem _ (Recentre.sub_centre_mem_recentre hw)
+    exact Set.mem_image_of_mem _ (Recenter.sub_center_mem_recenter hw)
 
 end CORALean
 

@@ -13,7 +13,7 @@ The exact layer's enclosure (`Real.Zonotope.tensorMultiplication_outer`) on the 
 `dependent`, which holds every point of `Z` (`dependent_outer`), gives coefficients `γ` in `[-1, 1]`
 and the exact columns `H`. Each exact column differs from the stored one by at most its gap
 (`tensorH_bracket`), so the stored columns with that shortfall, per coefficient, reproduce the image
-of the point exactly. The hypotheses are the exact layer's: the centre is the origin, and `perm`
+of the point exactly. The hypotheses are the exact layer's: the center is the origin, and `perm`
 lists every ordered triple of generator indices once, two permutations mapped to one column being
 reorderings of each other.
 -/
@@ -66,7 +66,7 @@ theorem Zonotope.tensorMultiplication_coeff (Z : Zonotope (Vec 𝕋 n)) (M : Zon
     rw [hx']
     funext i
     simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, add_sub_cancel]
-    -- the centre of the exact result is the origin
+    -- the center of the exact result is the origin
     have h0 : ((nominal Z.dependent : Real.Zonotope (Vec ℝ n)).tensorMultiplication
         (fun i a b c => toReal (M i a b c)) L).c i = 0 := rfl
     rw [h0, zero_add]

@@ -9,7 +9,7 @@ public import CORALean.Global.EuclideanNorm
 # A point of a capsule, in the Euclidean norm
 
 `construct` states the bound as a square root of a sum; this is the same statement in `‖·‖₂`,
-at the offset `p - c` from the centre.
+at the offset `p - c` from the center.
 -/
 
 -- Authors:       Claude Opus 5.5

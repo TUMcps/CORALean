@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Taylm_to_PolyZonotope
 # An array of Taylor models as a polynomial zonotope, over a floating-point scalar
 
 CORA's `polyZonotope(taylm)`: the variables are the dependent factors, every term of every
-coordinate a generator along that coordinate, and the remainders independent. The centre is `0`
+coordinate a generator along that coordinate, and the remainders independent. The center is `0`
 and the constant terms stay generators at the zero exponent. The remainder box `[remInf, remSup]`
 is carried over as the error box, so nothing rounds, no midpoint is formed and nothing is paid.
 The range set is contained; an inverted remainder is `∅` on both sides, so no hypothesis is

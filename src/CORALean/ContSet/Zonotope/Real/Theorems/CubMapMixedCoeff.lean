@@ -63,8 +63,8 @@ theorem Zonotope.aux_cubMapMixed_expand (T : Fin m → Fin n → Mat ℝ n n) {N
   exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun b _ =>
     Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun k _ => by ring
 
-/-- With every extended factor `1` at index `0`, the `((0, 0), 0)` term is the centre. -/
-theorem Zonotope.aux_cubMapMixed_centre {h₁ h₂ h₃ : ℕ} (β₁ : Fin (h₁ + 1) → ℝ)
+/-- With every extended factor `1` at index `0`, the `((0, 0), 0)` term is the center. -/
+theorem Zonotope.aux_cubMapMixed_center {h₁ h₂ h₃ : ℕ} (β₁ : Fin (h₁ + 1) → ℝ)
     (β₂ : Fin (h₂ + 1) → ℝ) (β₃ : Fin (h₃ + 1) → ℝ) (e₁ : β₁ 0 = 1) (e₂ : β₂ 0 = 1)
     (e₃ : β₃ 0 = 1) (Q : Fin (h₃ + 1) → Fin (h₂ + 1) → Fin (h₁ + 1) → ℝ) :
     ∑ j, ∑ b, ∑ a, β₃ j * β₂ b * β₁ a * Q j b a
@@ -91,7 +91,7 @@ theorem Zonotope.aux_cubMapMixed_centre {h₁ h₂ h₃ : ℕ} (β₁ : Fin (h�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The cubic image of the point `(x₁, x₂, x₃)` is the centre plus the generators of `cubMapMixed`
+/-- The cubic image of the point `(x₁, x₂, x₃)` is the center plus the generators of `cubMapMixed`
 at the products `β₃ⱼ β₂ᵦ β₁ₐ` of the extended factors, those of the linear generators of each
 family being that family's `p`. -/
 theorem Zonotope.cubMapMixed_coeff (T : Fin m → Fin n → Mat ℝ n n)
@@ -157,11 +157,11 @@ theorem Zonotope.cubMapMixed_coeff (T : Fin m → Fin n → Mat ℝ n n)
             ∑ k, (u₁ t.2 ⬝ᵥ (T i k *ᵥ u₂ t.1.2)) * u₃ t.1.1 k))
       fun l => by subst hu₁ hu₂ hu₃; rfl))).trans ?_
     simp only [Fintype.sum_prod_type]
-    -- the centre is the `((0, 0), 0)` entry, the generators the rest
+    -- the center is the `((0, 0), 0)` entry, the generators the rest
     have hc : (Z₁.cubMapMixed T Z₂ Z₃).c i = ∑ k, (u₁ 0 ⬝ᵥ (T i k *ᵥ u₂ 0)) * u₃ 0 k := by
       subst hu₁ hu₂ hu₃; rfl
     rw [hc]
-    exact (Zonotope.aux_cubMapMixed_centre β₁ β₂ β₃ rfl rfl rfl
+    exact (Zonotope.aux_cubMapMixed_center β₁ β₂ β₃ rfl rfl rfl
       (fun j b a => ∑ k, (u₁ a ⬝ᵥ (T i k *ᵥ u₂ b)) * u₃ j k)).symm
 
 end CORALean.Real

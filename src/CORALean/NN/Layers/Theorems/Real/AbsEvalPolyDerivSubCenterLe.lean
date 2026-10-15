@@ -8,7 +8,7 @@ public import Mathlib.Tactic.Ring
 @[expose] public section
 
 /-!
-# A fit's derivative around its centre
+# A fit's derivative around its center
 
 ℝ-only, the bracket being exact: the linear coefficient exactly, every other monomial at the
 end of the box furthest from zero.
@@ -41,7 +41,7 @@ theorem abs_evalPolyDeriv_sub_center_le {n : ℕ} (c : Fin (n + 1) → ℝ) {l u
         ≤ (if (i : ℕ) = 1 then 0 else |c i| * (i : ℕ) * max |l| |u| ^ ((i : ℕ) - 1)) := by
     intro i
     by_cases hi : (i : ℕ) = 1
-    · -- the linear term is its own coefficient, so the centre absorbs it
+    · -- the linear term is its own coefficient, so the center absorbs it
       rw [if_pos hi, if_pos hi, hi]
       norm_num
     · have habs : |c i * ((i : ℕ) * t ^ ((i : ℕ) - 1))|

@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.BoxOutRadius
 
 The tail of CORA's `outerApprox`: the `removed` dependent generators leave `G` and `E` for a
 diagonal box appended to the independent block, which also covers the `taken` independent ones.
-The radius is `boxOutRadius`, at least the exact one; centre, error box and the kept columns are
+The radius is `boxOutRadius`, at least the exact one; center, error box and the kept columns are
 copied, the kept columns being read off in order by `orderEmbOfFin`.
 -/
 

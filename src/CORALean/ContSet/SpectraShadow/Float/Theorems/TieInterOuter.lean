@@ -77,7 +77,7 @@ theorem SpectraShadow.tieInter_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n
           Finset.sum_congr rfl fun _ _ => mul_comm _ _ <;>
         simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, toRealVec,
           Fin.append_left, Fin.append_right] <;>
-        simp [toReal_zero, toReal_neg, hunit, Finset.sum_neg_distrib] <;>
+        simp [toReal_zero, toReal_neg', hunit, Finset.sum_neg_distrib] <;>
         linarith
   · -- the point is the tied variable
     show x r = toReal (zero : 𝕋) + ∑ l : Fin ((S₁.m + S₂.m) + n),

@@ -18,7 +18,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.SumTermsMem
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
@@ -30,7 +30,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 `GuardMap.abstractionError_outer` at floats: for `t ∈ [0, tmax]`, `η ≥ 1`, `th ≥ 0`, `x₀ ∈ R₀`
 and a measurable input with values in `U`, the run of `ẋ = Ax + u` minus the constant flow
-`x₀ + (Ax₀ + b)t`, `b` the exact `GuardMap.sdcInput` at the stored centres, is a point of
+`x₀ + (Ax₀ + b)t`, `b` the exact `GuardMap.sdcInput` at the stored centers, is a point of
 `GuardMap.abstractionErrorFloat`, provided the float bound `nrm` of `‖tmax A‖` passes
 `nrm ≤ (η + 2)/2`, the test under which `MatExp.expRemainderBound` bounds the remainders.
 
@@ -213,10 +213,10 @@ theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n)
       · rw [Zonotope.construct_point]
         exact Set.mem_singleton _
     · -- `err₃`: `(w₀ − u_c) + ∑ (tᵐ⁺¹ Aᵐ⁺¹/(m + 2)!)(wₘ₊₁ − u_c)`
-      refine Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_centre_mem_recentre (hw 0))
+      refine Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_center_mem_recenter (hw 0))
         (Zonotope.sum_mem_sumTerms _ _ _ fun m _ => aux_absErrFloat_mulVec_mem
           (Interval.smul_outer (by rw [toReal_zero]; positivity) (htHi m) _ (hM (m + 1) m))
-          (Zonotope.sub_centre_mem_recentre (hw (m + 1)))))
+          (Zonotope.sub_center_mem_recenter (hw (m + 1)))))
   · -- `R(t)x₀ ∈ Ê R₀`
     exact aux_absErrFloat_mulVec_mem (hWmem _ (hW t ht)) hx₀
 

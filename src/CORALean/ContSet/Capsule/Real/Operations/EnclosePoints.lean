@@ -10,7 +10,7 @@ public import Mathlib.Data.Fintype.Basic
 /-!
 # `Capsule.enclosePoints`
 
-CORA's `@capsule/enclosePoints.m`: the centre is the mean, the generator runs to the point
+CORA's `@capsule/enclosePoints.m`: the center is the mean, the generator runs to the point
 farthest from it (`[~,idxMax] = max(dist)`, here the first such by `List.argmax`), and the radius
 is the largest distance of a point from the axis. No points give the empty capsule, as CORA's
 `capsule.empty(n)`; one point gives `g = 0` and `r = 0` (CORA special-cases it).
@@ -38,7 +38,7 @@ variable {n N : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- A capsule enclosing the points `pts`: mean centre, generator to the farthest point, radius
+/-- A capsule enclosing the points `pts`: mean center, generator to the farthest point, radius
 the largest distance from the axis. -/
 noncomputable def Capsule.enclosePoints (pts : Fin N → Vec ℝ n) : Capsule n :=
   let c := (1 / (N : ℝ)) • ∑ j, pts j

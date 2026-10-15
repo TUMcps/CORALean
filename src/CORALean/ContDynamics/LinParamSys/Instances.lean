@@ -14,8 +14,8 @@ system's own `nrOfInputs`, which is why `Reach`'s `P` reads the system. `options
 `[0, tFinal - tStart]`, the system being time-invariant, `reach` is `reachUnion`, `none` unless
 `0 < Δt`, and the guarantee is `reachUnion_outer` [1, Alg. 4], constant-parameter, in
 `⌈(tFinal - tStart) / Δt⌉` windows. The representation is asked to be convex and compact, what
-`inputSolution`'s enclosure needs of `V = B U ⊕ c`, and for `Recentre` and `OfPoint`, which
-split `V` at its centre: no `0 ∈ U` is asked.
+`inputSolution`'s enclosure needs of `V = B U ⊕ c`, and for `Recenter` and `OfPoint`, which
+split `V` at its center: no `0 ∈ U` is asked.
 
 `LinParamSys` is a `ContDynamics`: `m` inputs and no disturbance, a run a `Trajectory` —
 `'varParam'`, a fresh `A t` and `B t` at every instant, which every `'constParam'` run is too —
@@ -42,7 +42,7 @@ open ContSet
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)] [Mtimes ℐ S]
+variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes ℐ S]
 variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
 
 

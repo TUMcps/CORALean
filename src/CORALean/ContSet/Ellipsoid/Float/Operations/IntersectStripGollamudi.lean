@@ -15,15 +15,15 @@ public import CORALean.Global.Float.Sqrt
 The real layer's corrected Gollamudi update (CORA's `@ellipsoid/intersectStrip`) for **one**
 strip `|c x - y| ≤ φ`, worked in the coefficient space of the stored generators, so neither `Q⁻¹`
 nor a matrix square root is formed. For `x = E.c + G u` the strip is `|vᵀ u - δ| ≤ φ` with
-`v = Gᵀ cᵀ`, `δ = y - c E.c`; with `ν = vᵀ v`, `s = 1 - λ + λ ν` the result has centre
-`E.c + κ G v`, `κ = λ δ / s` (the real centre), and generators `α G + β (G v) vᵀ`, the image of
+`v = Gᵀ cᵀ`, `δ = y - c E.c`; with `ν = vᵀ v`, `s = 1 - λ + λ ν` the result has center
+`E.c + κ G v`, `κ = λ δ / s` (the real center), and generators `α G + β (G v) vᵀ`, the image of
 `N = α I + β v vᵀ` with `N² ⪰ σ² ((1 - λ) I + λ v vᵀ)⁻¹`; for `Q = G Gᵀ`, `G` invertible, that is
 the real shape `σ² invQ⁻¹` (`Theorems/ExistsBallOfStrip`).
 
 Nothing is trusted: `α`, `g` are `sqrtUp` of `σ²/(1 - λ)` and `σ²/s`, `β ≤ 0` aims at
 `α + β ν = g`, and the proof uses only the checks `0 < γ_lo`, `g ≤ γ_lo` on a lower bound of
 `α + β ν`. The input's box widens `φ` by `Σᵢ |cᵢ| max(|infᵢ|, |supᵢ|)`, with the rounding gaps of
-`v` and `δ`, and is carried over; centre and generators are stored at their lower roundings and
+`v` and `δ`, and is carried over; center and generators are stored at their lower roundings and
 the gaps paid into the box. A failed check, or `λ` not certified in `[0, 1)`, returns `E`.
 -/
 
@@ -83,7 +83,7 @@ def Ellipsoid.intersectStripGollamudi (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : 
   let wHiV : Vector 𝕋 n := Vector.ofFn fun i => dotUp (E.G i) v
   let wLo : Vec 𝕋 n := fun i => wLoV[i.val]'i.isLt
   let wHi : Vec 𝕋 n := fun i => wHiV[i.val]'i.isLt
-  -- the centre `E.c + κ G v`
+  -- the center `E.c + κ G v`
   let qLo : Vec 𝕋 n := fun i => addDown (E.c i) (Interval.mulLo κLo κHi (wLo i) (wHi i))
   let qHi : Vec 𝕋 n := fun i => addUp (E.c i) (Interval.mulHi κLo κHi (wLo i) (wHi i))
   -- the generators `α G + β (G v) vᵀ`

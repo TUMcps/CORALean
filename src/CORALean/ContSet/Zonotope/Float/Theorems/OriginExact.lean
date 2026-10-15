@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 /-!
 # `Zonotope.origin` is exactly the origin
 
-`zero` reads as `0`, so the stored centre is the exact layer's origin and the
+`zero` reads as `0`, so the stored center is the exact layer's origin and the
 point theorem gives `{0}`.
 -/
 

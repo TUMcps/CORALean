@@ -42,7 +42,7 @@ theorem PolyZonotope.nominal_blockPadRight (n₁ : ℕ) (pZ : PolyZonotope (Vec 
         toReal_zero]
     · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec]
       rfl
-  -- each generator of either block, padded as the centre is
+  -- each generator of either block, padded as the center is
   · funext l j
     refine Fin.addCases (fun i => ?_) (fun i => ?_) j
     · simp [PolyZonotope.blockPadRight, CORALean.blockPadRight, RealImage.realImage, toRealVec,

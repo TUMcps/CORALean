@@ -12,7 +12,7 @@ The values lines 4-16 of [1, Alg. 1] name in one step `k`, kept so that a theore
 of them: the linearization point `x*(t_k)` (`xstar`), `w` and `A` of (6), the curvature error
 `C`, the constant-input solution `R_con(Δt)` (`Rcon`), the affine time-point solution
 `R_aff(Δt)` (`Raff`), the enlarged remainder `L̂` (`Lhat`) the loop of lines 10-13 settles on,
-the abstraction error `R̂_err(L̂)` (`Rerr`), the centre `c` of line 14, and the two inner sets,
+the abstraction error `R̂_err(L̂)` (`Rerr`), the center `c` of line 14, and the two inner sets,
 `R̂(t_{k+1})` (`Rtk1`) and `R̂(τ_k)` (`Rtauk`).
 
 ## References

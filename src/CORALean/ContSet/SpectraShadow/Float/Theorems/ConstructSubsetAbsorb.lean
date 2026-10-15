@@ -61,7 +61,7 @@ theorem SpectraShadow.construct_subset_absorb (S : SpectraShadow 𝕋 (Vec 𝕋 
         have hb : toReal (S.I_error.inf r') ≤ e r' ∧ e r' ≤ toReal (S.I_error.sup r') := he r' <;>
         simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, toRealVec,
           Fin.append_left, Fin.append_right] <;>
-        simp [toReal_zero, toReal_neg, hunit] <;> linarith [hb.1, hb.2]
+        simp [toReal_zero, toReal_neg', hunit] <;> linarith [hb.1, hb.2]
   · -- the point is the old one plus the error
     show y r + e r = toReal (S.c r) + ∑ l : Fin (S.m + n),
       toReal (Fin.append S.G (fun (i r' : Fin n) => if r' = i then (one : 𝕋) else zero) l r)

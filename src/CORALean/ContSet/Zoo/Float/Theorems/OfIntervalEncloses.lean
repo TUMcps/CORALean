@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `Zoo.ofInterval` encloses
 
-The variable `c + r tᵢ` of the box's float zonotope (stored centre `c`, generator `r`) is enclosed
+The variable `c + r tᵢ` of the box's float zonotope (stored center `c`, generator `r`) is enclosed
 by both members.
 -/
 
@@ -50,7 +50,7 @@ theorem Zoo.ofInterval_encloses (I : Interval (Vec 𝕋 n)) (N : ℕ) (i : Fin n
   · -- the Taylor model: remainder zero, polynomial the variable
     obtain rfl : I.taylm N i = T := Option.some.inj hT
     intro t _
-    -- the stored polynomial is the zonotope's centre plus its generators
+    -- the stored polynomial is the zonotope's center plus its generators
     have hp : (I.taylm N i).nominal.poly t = toReal (I.zonotope.c i) +
         ∑ j, toReal (I.zonotope.G j i) * t j := Zoo.aux_ofInterval_poly I.zonotope N i t
     have hs : ∑ j, toReal (I.zonotope.G j i) * t j = toReal (I.radiusFrom i) * t i :=

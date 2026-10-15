@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 `postDelta` computed in `𝕋`, [1, Sec. 4.1]'s `R∆(τs) = post∆(R(ts), Ψ(τs), A)` and
 CORA's `Rdelta = Rhom + RV`: `deltaReachFloat` for the homogeneous part, and for the
 input set `V` what it contributes up to any time of the step. `V` is split at its
-stored centre as `reachFloatInput` splits it, so `0 ∈ V` is not asked: the
+stored center as `reachFloatInput` splits it, so `0 ∈ V` is not asked: the
 constant `ũ` contributes `inputSolutionFloat` of the segment `[0, ũ]`, the rest
 `Ũ = V - ũ ∋ 0` its own `inputSolutionFloat`, each covering every time up to `Δt`.
 
@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 `deltaReachFloat R ⊕ P̃^R([0, ũ]) ⊕ P^R(V - ũ)` at Taylor order `η`. -/
 def LinearSys.postDeltaFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (R V : Zonotope (Vec 𝕋 n)) :
     Zonotope (Vec 𝕋 n) :=
-  let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored centre
-  let Ũ := Recentre.recentre V                                      -- Ũ = V - ũ, holding 0
+  let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored center
+  let Ũ := Recenter.recenter V                                      -- Ũ = V - ũ, holding 0
   let seg := LinComb.linComb (Interval.point fun _ => zero).zonotope ũ    -- [0, ũ]
   sys.deltaReachFloat Δt η R ⊞                                      -- Rhom
     (sys.inputSolutionFloat Δt η seg ⊞ sys.inputSolutionFloat Δt η Ũ)    -- RV

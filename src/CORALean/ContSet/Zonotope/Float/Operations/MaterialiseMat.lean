@@ -28,7 +28,7 @@ variable {m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The same storage at `Mat 𝕋 m n`, the matrix zonotope: centre, every generator and the
+/-- The same storage at `Mat 𝕋 m n`, the matrix zonotope: center, every generator and the
 interval-matrix box. `matPow` and the Taylor sum apply it at each step. -/
 def Zonotope.materialiseMat (Z : Zonotope (Mat 𝕋 m n)) : Zonotope (Mat 𝕋 m n) :=
   let c : Vector (Vector 𝕋 n) m := Vector.ofFn fun i => Vector.ofFn (Z.c i)

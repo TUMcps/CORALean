@@ -27,8 +27,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The exponent matrix widened to match, the centre's column being zero — its
-monomial is `1`, which is what the centre needs to be. -/
+/-- The exponent matrix widened to match, the center's column being zero — its
+monomial is `1`, which is what the center needs to be. -/
 def PolyZonotope.extE (pZ : PolyZonotope α) : Fin pZ.p → Fin (pZ.h + 1) → ℕ :=
   fun k => Fin.cons 0 (pZ.E k)
 

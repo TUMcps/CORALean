@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Norm
 # `nonlinDASys.consistentInitialState` in floats
 
 CORA's loop, step for step, on a `FloatModel`: `l = g(x₀, y, u₀)` and `F = ∂g/∂y` are the
-centres of the model's enclosures at the point `(x₀, y, u₀)`, `delta_y = F \ (-l)` is the midpoint
+centers of the model's enclosures at the point `(x₀, y, u₀)`, `delta_y = F \ (-l)` is the midpoint
 of the outward product of an approximate inverse (`Zonotope.basisInverse`) with `-l`, the test is
 `‖delta_y‖₂ < tol` (`tol² ≤ ‖delta_y‖₂²` failing, the square rounded up) and the update
 `y + delta_y` rounds down. None of this is trusted: it only finds a candidate, as `newtonIterate`
@@ -52,9 +52,9 @@ def NonlinDASys.FloatModel.consistentInitialStateFloat (fm : NonlinDASys.FloatMo
   let step : Vector 𝕋 p → Vector 𝕋 p := fun yv =>
     let Y : Interval (Vec 𝕋 p) := Interval.point fun i => yv[i]
     let l : Vec 𝕋 p := (fm.g X₀ Y U₀).materialise.center
-    let F : Mat 𝕋 p p := (fm.jacF X₀ Y U₀).materialiseMat.centreMat
+    let F : Mat 𝕋 p p := (fm.jacF X₀ Y U₀).materialiseMat.centerMat
     let Finv : Mat 𝕋 p p := (Interval.point (Zonotope.basisInverse F)).materialiseMat.inf
-    let delta_y : Vec 𝕋 p := (Interval.mtimes Finv (Interval.point fun i => neg (l i))).center
+    let delta_y : Vec 𝕋 p := (Interval.mtimes Finv (Interval.point (-l))).center
     Vector.ofFn delta_y
   -- the convergence check `norm(delta_y) < 1e-10`
   let converged : Vector 𝕋 p → Bool := fun delta_y =>

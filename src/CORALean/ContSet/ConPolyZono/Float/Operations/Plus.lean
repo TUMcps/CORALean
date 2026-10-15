@@ -15,7 +15,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 and the reason it refines is that the carrying is pure bookkeeping: `plusA`
 places the two matrices block-diagonally with `zero` in the off-blocks and `b`
 concatenates, so not one entry of the constraint system is computed. Only the
-centre rounds, exactly as for an unconstrained polynomial zonotope.
+center rounds, exactly as for an unconstrained polynomial zonotope.
 -/
 
 -- Authors:       Claude Opus 5

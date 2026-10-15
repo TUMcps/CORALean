@@ -12,8 +12,8 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Zonotope.cubMapDep`
 
 CORA's `@zonotope/cubMap` (`aux_cubMapSingle`) at a set whose box is empty, on the stored floats:
-the enclosing zonotope of `Real.Zonotope.cubMap`, with centre and generators rounded down and what
-that leaves to pay in the box (the centre's gap to its upper rounding, the generators' gaps, which
+the enclosing zonotope of `Real.Zonotope.cubMap`, with center and generators rounded down and what
+that leaves to pay in the box (the center's gap to its upper rounding, the generators' gaps, which
 a coefficient in `[-1, 1]` spreads either way). Sound only where the operand's own box is empty,
 so nothing outside `cubMap` calls it.
 -/

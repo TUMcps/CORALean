@@ -24,7 +24,7 @@ segment between the two incoming boxes.
 
 The nominal obligation is the exact `linComb` argument at the same coefficients
 — `pairCoeffSum`, `pairCoeffDiff` and `2λ-1` — with every stored value displaced
-from the one ℝ would have. Nothing stored is unfolded: the centre cancels
+from the one ℝ would have. Nothing stored is unfolded: the center cancels
 against its own residual and the generators against `linCombGDiff`, leaving the
 identity the exact proof closes with, which `Zonotope.sum_pair` supplies.
 
@@ -60,7 +60,7 @@ noncomputable def Zonotope.aux_linCombGReal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) 
     (fun _ : Fin 1 => (toReal (Z₁.c i) - toReal (Z₂.c i)) / 2)
 
 /-- Every stored generator sits at the low end of a bracket around its exact
-value: the two blocks pair, and the centre generator is one directed
+value: the two blocks pair, and the center generator is one directed
 difference. -/
 theorem Zonotope.aux_linCombG_bracket (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n) :
     ∀ j : Fin (Z₁.h + Z₂.h + 1),
@@ -98,7 +98,7 @@ theorem Zonotope.aux_linCombG_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin
   constructor <;> linarith
 
 /-- One row of the exact generators against the coefficients the segment
-supplies: the paired blocks give back the two sets' own sums, and the centre
+supplies: the paired blocks give back the two sets' own sums, and the center
 generator carries what is left. -/
 theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
     (β₁ : Fin Z₁.h → ℝ) (β₂ : Fin Z₂.h → ℝ) (lam : ℝ) :
@@ -114,7 +114,7 @@ theorem Zonotope.aux_linComb_row (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (i : Fin n)
     β₁ β₂ lam]
   ring
 
-/-- The nominal part spills only by what the centre and the generators
+/-- The nominal part spills only by what the center and the generators
 rounded. -/
 theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
     Set.linComb (nominalSet Z₁) (nominalSet Z₂) ⊆
@@ -171,7 +171,7 @@ theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
   rw [Zonotope.aux_linComb_row Z₁ Z₂ i β₁ β₂ lam] at hsum
   linarith [hsum]
 
-/-- The box absorbs the two incoming boxes, the centre rounding and the
+/-- The box absorbs the two incoming boxes, the center rounding and the
 generator roundings. -/
 theorem Zonotope.aux_linComb_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
     Set.linComb Z₁.I_error.construct Z₂.I_error.construct

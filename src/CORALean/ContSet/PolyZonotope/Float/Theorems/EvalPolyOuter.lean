@@ -20,7 +20,7 @@ The gap `evalPoly_p`'s exactness argument never has to close: at the exact
 layer, `R`'s point is `pZ`'s multiplied in without residue. Here `R` is already
 only an enclosure, so the same product costs the extra term `evalPolyStep`'s
 box already carries, `errorBound R.err * evalPolyBoundS pZ`. `mulG_close`
-prices what `mul` itself rounds, `Interval.sub_mem_residual` what the centre
+prices what `mul` itself rounds, `Interval.sub_mem_residual` what the center
 shift rounds, and the two combine with that extra term through `Interval.plus`.
 
 The induction carries a single admissible factor vector `b` through every
@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `|nominal pZ|` is at most its centre plus every generator's magnitude, since
+/-- `|nominal pZ|` is at most its center plus every generator's magnitude, since
 every monomial is at most `1`. -/
 theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope (Vec 𝕋 n)) (b : Fin pZ.p → ℝ)
     (hb : ∀ k, |b k| ≤ 1) (i : Fin n) :
@@ -159,7 +159,7 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs
       simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, hRmulC,
         toReal_zero, zero_add]
       rfl
-    -- the exact product of nominals, as one sum: `mul_point`, `mul`'s centre being `0`
+    -- the exact product of nominals, as one sum: `mul_point`, `mul`'s center being `0`
     have hmulPointE : (nominal (PolyZonotope.mul R pZ hR)).E = PolyZonotope.mulE R pZ hR := rfl
     have hmulPointG : (nominal (PolyZonotope.mul R pZ hR)).G
         = fun l i => toReal (PolyZonotope.mulGDown R pZ i l) := rfl
@@ -271,7 +271,7 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs
               (PolyZonotope.evalPolyBoundS pZ i))) ≤ _
           rw [toReal_neg]; exact habs.1,
         habs.2⟩
-    -- term residual: `a₀`'s centre shift, priced by `Interval.sub_mem_residual`
+    -- term residual: `a₀`'s center shift, priced by `Interval.sub_mem_residual`
     have hresidualMem : (fun i => toReal (a0 i)
           - toReal (FloatOps.addDown ((PolyZonotope.mul R pZ hR).c i) (a0 i)))
         ∈ (PolyZonotope.centerResidual (PolyZonotope.mul R pZ hR).c a0).construct := by
@@ -290,7 +290,7 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs
             + Real.PolyZonotope.point (nominal (PolyZonotope.mul R pZ hR))
                 (fun k => b (Fin.cast hR k)) i))
       ∈ (PolyZonotope.evalPolyStep R pZ hR a0).I_error.construct
-    -- regroup as (mul's rounding) + (centre residual) + (`R`'s own propagated gap)
+    -- regroup as (mul's rounding) + (center residual) + (`R`'s own propagated gap)
     have hsplit : (fun i => toReal (a0 i) + X.point (fun k => b (Fin.cast hXS k)) i
           * Real.PolyZonotope.point (nominal pZ) b i
         - (toReal (FloatOps.addDown ((PolyZonotope.mul R pZ hR).c i) (a0 i))

@@ -77,7 +77,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
     show B *ᵥ (U.c + -U.c) = 0
     simp
   have hDc : dc.D.c = 0 := STL.depBloating_c _ _ _ _ hU0c
-  -- the layout of `R(t_i)`: the sizes of the blocks and where each is centred
+  -- the layout of `R(t_i)`: the sizes of the blocks and where each is centered
   have hHh := STL.depReachAt_H_h A Δt dc X₀ i
   have hPh : (STL.depReachAt A Δt dc X₀ i).Pc.h = i * U.h :=
     STL.depReachAt_Pc_h A Δt dc X₀ i
@@ -123,7 +123,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
       have : ¬ si.H.h + (si.Pc.h + (k : ℕ)) < X₀.h + i * U.h := by omega
       rw [if_neg this, zero_smul]
     rw [e1, e2, e3, add_zero]
-  -- the centre of `R(t_i)` is that of `H(t_i)`
+  -- the center of `R(t_i)` is that of `H(t_i)`
   have hc : (si.H.plus (si.Pc.plus si.D)).c = si.H.c := by
     show si.H.c + (si.Pc.c + si.D.c) = _
     rw [hPcc, hDcc]; simp

@@ -10,7 +10,7 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 
 The same entries in every block: `a` copies of a vector side by side, read
 through `finProdFinEquiv` exactly as `blkDiag`'s blocks are. It is what carries
-the centre, the generators and the constraint bound of [1, Prop. 9] into each of
+the center, the generators and the constraint bound of [1, Prop. 9] into each of
 the `a` copies of the linear combination.
 
 ## References

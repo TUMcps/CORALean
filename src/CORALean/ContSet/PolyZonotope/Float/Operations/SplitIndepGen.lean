@@ -8,8 +8,8 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 # `PolyZonotope.splitIndepGen`, over a floating-point scalar
 
 The independent branch of `aux_splitLongestGen_` in CORA's `@polyZonotope/contains_`: the
-independent generator `j` halved, one half with centre `c + GI(:,j)/2`, the other with
-centre `c - GI(:,j)/2`. Halving is exact; the two centres are rounded down and the gap to the
+independent generator `j` halved, one half with center `c + GI(:,j)/2`, the other with
+center `c - GI(:,j)/2`. Halving is exact; the two centers are rounded down and the gap to the
 upper rounding is added to the top of each error box.
 -/
 

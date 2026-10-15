@@ -52,7 +52,7 @@ theorem Zonotope.quadMapMatZono_not_outer :
     fun i _ => if i = 0 then 1 else -1, fun i _ => by dsimp only; split_ifs <;> simp, fun i => by
       fin_cases i <;> simp [Matrix.mulVec, dotProduct]⟩
   obtain ⟨γ, -, hγ⟩ := hmem
-  -- the enclosure's one generator is `(1, 1)` and its centre the origin
+  -- the enclosure's one generator is `(1, 1)` and its center the origin
   have hh : Zr.h = 1 := rfl
   have : Subsingleton (Fin Zr.h) := by rw [hh]; infer_instance
   let j0 : Fin Zr.h := ⟨0, by rw [hh]; exact Nat.one_pos⟩

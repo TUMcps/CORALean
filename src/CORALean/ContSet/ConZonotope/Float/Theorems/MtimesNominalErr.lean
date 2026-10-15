@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeProdError
 # A point of `mtimesNominal` is within `mtimesNominalErr` of the exact image of a nominal point
 
 A coefficient vector of the rounded product names the same coefficients in `cZ`, and the point
-they name there is mapped by the matrix: the rounded centre and the rounded generators are each
+they name there is mapped by the matrix: the rounded center and the rounded generators are each
 within a directed rounding of the exact ones, the generators' over the unit box
 (`HPolytope.prodError`).
 -/

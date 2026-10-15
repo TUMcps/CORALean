@@ -13,8 +13,8 @@ public import Mathlib.Analysis.Calculus.Deriv.Mul
 /-!
 # The gradient of the F-radius
 
-[1, Prop. 8]: the gradient of the F-radius of `Y = ⟨c, G⟩ ⊂ ℝⁿ` is a zonotope with centre `0`, the
-F-radius ignoring the centre, and generator matrix `G / (n² ‖Y‖_F)`, for `Y ≠ ⟨c, 0⟩`. The paper
+[1, Prop. 8]: the gradient of the F-radius of `Y = ⟨c, G⟩ ⊂ ℝⁿ` is a zonotope with center `0`, the
+F-radius ignoring the center, and generator matrix `G / (n² ‖Y‖_F)`, for `Y ≠ ⟨c, 0⟩`. The paper
 prints `G / (n ‖Y‖_F)` Eq. 13 of [1, Prop. 8]; that is the gradient of `(1/n) √(Σ G²)` only with
 `‖Y‖_F` read as the unnormalized Frobenius norm `√(Σ G²) = n ‖Y‖_F`, while [1, Prop. 5] defines
 `‖Y‖_F` with the factor `1/n`: `∂/∂G(i,j) (1/n) √S = (1/n) G(i,j) / √S = G(i,j) / (n² ‖Y‖_F)`.

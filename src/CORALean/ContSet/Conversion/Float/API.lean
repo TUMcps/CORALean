@@ -12,7 +12,7 @@ Every ordered pair the exact layer has, bar the polynomial zonotope's, which
 reaches a box and comes back exactly, the box riding in `err`. Where the
 rounding goes elsewhere differs by pair, and is the interesting part.
 
-A box reaching a zonotope measures its radius *from the centre actually stored*,
+A box reaching a zonotope measures its radius *from the center actually stored*,
 upward on both sides, so half a rounded width never leaves an edge short. A
 zonotope reaching halfspaces bounds each generator's contribution by the larger
 of its rounded-up dot product and its negated rounded-down one. A zonotope

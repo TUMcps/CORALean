@@ -10,7 +10,7 @@ public import CORALean.Global.Partition
 
 `eDrift` at the pair a partition names, read as an interval's midpoint and
 half-width rather than as its two ends. That is the form a relaxation consumes:
-the midpoint is a constant the centre absorbs and the half-width is what the new
+the midpoint is a constant the center absorbs and the half-width is what the new
 independent generator has to carry, so a drift of `[-ξ_E, 0]` costs half of what
 the symmetric `[-ξ_E, ξ_E]` does.
 

@@ -97,7 +97,7 @@ theorem Capsule.isIntersecting_cora_counterexample :
         ¬ Capsule.isIntersectingCora quadprog C₁ C₂ := by -- --- PROOF ---
   intro C₁ C₂ IsQuadprog
   refine ⟨?_, ?_, ?_⟩
-  · -- `(0.5, 0)` is the centre of `C₂` and the point `t = 0.5` of the axis of `C₁`
+  · -- `(0.5, 0)` is the center of `C₂` and the point `t = 0.5` of the axis of `C₁`
     refine ⟨![1 / 2, 0], ⟨1 / 2, by norm_num, ?_⟩, ⟨0, by norm_num, ?_⟩⟩ <;>
       simp [C₁, C₂, Fin.sum_univ_two]
   · -- a continuous objective attains its minimum on a nonempty compact box

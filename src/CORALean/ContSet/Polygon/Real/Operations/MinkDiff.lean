@@ -14,7 +14,7 @@ public import CORALean.ContSet.SetUnion.Instances
 # `Polygon.minkDiff`
 
 CORA's `polygon/minkDiff(pgon, subtrahend)` for a polygon subtrahend. Both operands are moved by
-the centre `c` of the subtrahend, the subtrahend is mirrored, and its translates are swept along
+the center `c` of the subtrahend, the subtrahend is mirrored, and its translates are swept along
 the boundary of the minuend: for each edge `(Vi, Vi1)` of `vertices_(pgon)`, the
 `linComb` of the mirrored subtrahend shifted to `Vi` and to `Vi1`. The region swept is cut out of
 the minuend with `subtract`. The boundary vertex loop `V` of the shifted minuend is the argument

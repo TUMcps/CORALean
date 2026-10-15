@@ -10,7 +10,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeMemSimplexIff
 /-!
 # A hull as a constrained zonotope
 
-Exact, and cheap: the vertices become the generators, the centre is the origin,
+Exact, and cheap: the vertices become the generators, the center is the origin,
 and the constraint polytope is the standard simplex — coefficients nonnegative
 and summing to one.
 
@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the vertices become generators at a zero centre, so the two sets coincide
+-- the vertices become generators at a zero center, so the two sets coincide
 theorem VPolytope.conZonotope_exact (P : VPolytope α) :
     P.construct = P.conZonotope.construct := by -- --- PROOF ---
   ext x

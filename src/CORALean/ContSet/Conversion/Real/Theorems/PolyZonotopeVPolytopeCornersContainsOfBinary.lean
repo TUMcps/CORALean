@@ -112,7 +112,7 @@ theorem PolyZonotope.vPolytopeCorners_contains_of_binary (pZ : PolyZonotope α)
     intro j
     rw [sum_prod_bool_mul t (fun _ => 1) (fun _ => -1) (Fin.natAdd pZ.p j), htb j]
     ring
-  -- one corner's contribution, split into centre, dependent and independent parts
+  -- one corner's contribution, split into center, dependent and independent parts
   have hR : ∀ σ : Fin (pZ.p + pZ.q) → Bool,
       (∏ l, (if σ l then t l else 1 - t l)) • pZ.corner σ
         = (∏ l, (if σ l then t l else 1 - t l)) • pZ.c

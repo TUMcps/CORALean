@@ -7,7 +7,7 @@ import CORALean.Specification.Instances
 
 At `Dyadic 53`. `Contains.contains` on zonotopes, by Sadraddini and Tedrake's coefficients
 with the rounding absorbed. `[-2, 2]²` is certified to contain the unit square shifted by
-`(1/2, 0)` and a diagonal segment through the origin, and not the unit square centred at
+`(1/2, 0)` and a diagonal segment through the origin, and not the unit square centered at
 `(3, 0)`. It is also not certified to contain itself: a set touching the boundary leaves no
 margin for the rounding, so that `false` decides nothing.
 -/
@@ -35,7 +35,8 @@ def box0 : Interval (Vec D 2) := ⟨fun _ => d 0 0, fun _ => d 0 0⟩
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `[-2, 2]²`, a unit square shifted by `(1/2, 0)`, one centred at `(3, 0)`, a diagonal segment. -/
+/-- `[-2, 2]²`, a unit square shifted by `(1/2, 0)`, one centered at `(3, 0)`, a diagonal
+segment. -/
 def big : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 2 0, d 0 0], ![d 0 0, d 2 0]], box0⟩
 def inside : Zonotope (Vec D 2) :=
     ⟨2, ![d 1 (-1), d 0 0], ![![d 1 0, d 0 0], ![d 0 0, d 1 0]], box0⟩

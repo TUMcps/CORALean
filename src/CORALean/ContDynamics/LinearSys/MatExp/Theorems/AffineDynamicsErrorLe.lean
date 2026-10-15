@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- An interval matrix whose two endpoints are both under `ρ` has centre and radius under `ρ`
+/-- An interval matrix whose two endpoints are both under `ρ` has center and radius under `ρ`
 too, which is the form `mtimesIntervalMat_subset_closedBall` asks for. -/
 theorem MatExp.aux_center_radius_le {m : ℕ} {ρ : ℝ} {IM : Interval (Mat ℝ m m)}
     (h : ∀ j k, |IM.inf j k| ≤ ρ ∧ |IM.sup j k| ≤ ρ) :

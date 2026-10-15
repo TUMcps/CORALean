@@ -18,8 +18,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 /-!
 # The float `quadMapMatZono` encloses the quadratic map over the matrix zonotopes
 
-`Real.Zonotope.quadMapMatZono_outer` at float zonotopes and interval-matrix centres: for
-`x ∈ Z`, centres `Dᵣ⁽ⁱ⁾` in the interval matrices `D⁽ⁱ⁾` and one factor `βⱼ ∈ [-1, 1]` per
+`Real.Zonotope.quadMapMatZono_outer` at float zonotopes and interval-matrix centers: for
+`x ∈ Z`, centers `Dᵣ⁽ⁱ⁾` in the interval matrices `D⁽ⁱ⁾` and one factor `βⱼ ∈ [-1, 1]` per
 generator shared by all `i` [1, Thm. 1], `(xᵀ(Dᵣ⁽ⁱ⁾ + ∑ⱼ βⱼK⁽ⁱ'ʲ⁾)x)ᵢ` is in the result: it is
 `xᵀD̲⁽ⁱ⁾x`, a point of `Z_D` (`Zonotope.quadMap_outer`), plus `∑ⱼ βⱼ xᵀK⁽ⁱ'ʲ⁾x`, a point of the
 sum of the `[-1, 1] ⊗ Z_K(j)` (`Zonotope.unitIntervalMul_outer`), plus `xᵀ(Dᵣ⁽ⁱ⁾ − D̲⁽ⁱ⁾)x`,
@@ -80,7 +80,7 @@ theorem aux_quadMapMatZono_abs_le {x : Vec ℝ n} {Δ : Mat ℝ n n} {r : Vec �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Thm. 1], at float zonotopes and interval-matrix centres. -/
+/-- [1, Thm. 1], at float zonotopes and interval-matrix centers. -/
 theorem Zonotope.quadMapMatZono_outer (D : Fin m → Interval (Mat 𝕋 n n))
     (K : Fin ν → Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) :
     {l : Vec ℝ m | ∃ x ∈ Z.construct, ∃ Dr : Fin m → Mat ℝ n n,

@@ -51,7 +51,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
-variable [∀ n, Recentre (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -71,7 +71,7 @@ noncomputable def LinearSys.verifySearchLoop (sys : LinearSys 𝕋 n) (X₀ U : 
       let ρRhat := (sys.supportUpper s.Δt η X₀ U ρ s.ℓ s.k).ρR
       -- 3. ρ(Ř(t), ℓ_i), the lower bound of Alg. 1 with Δt
       let ρRcheck :=
-        (sys.supportLower s.Δt ν₀ νU (Recentre.centre U) s.ℓ s.k).ρR
+        (sys.supportLower s.Δt ν₀ νU (Recenter.center U) s.ℓ s.k).ρR
       -- 4.-6. return safe
       if ρRhat + ρL (-s.ℓ) < 0 then .safe
       else

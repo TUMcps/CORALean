@@ -7,7 +7,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.MatPow
 public import CORALean.ContSet.Interval.Float.Operations.Smul
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
-public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Float.Operations.Recenter
 public import CORALean.ContSet.Zonotope.Float.Operations.SumTerms
 public import CORALean.Global.Float.PowDown
 public import CORALean.Global.Float.PowUp
@@ -71,10 +71,10 @@ def GuardMap.abstractionErrorFloat (A : Mat 𝕋 n n) (U R₀ : Zonotope (Vec �
   let thHi : ℕ → 𝕋 := fun m => powUp th (m + 1)                 -- and up
   let nrm := MatExp.normUpperBound (Interval.smul tmax tmax (Interval.point A))  -- `‖tmax A‖`
   let W : Mat 𝕋 n n := fun _ _ => MatExp.expRemainderBound nrm η  -- W, entrywise
-  let What : Interval (Mat 𝕋 n n) := ⟨fun j k => neg (W j k), W⟩ -- e_hat = interval(-W,W)
+  let What : Interval (Mat 𝕋 n n) := ⟨-W, W⟩ -- e_hat = interval(-W,W)
   let xi := R₀.c                                                  -- xi = center(R0)
   let u := U.c                                                    -- u = center(U)
-  let U_ := U.recentre                                            -- U_ = U - u
+  let U_ := U.recenter                                            -- U_ = U - u
   let err1 := Zonotope.sumTerms (fun m =>                         -- for i = 2:order
     Zonotope.mtimesIntervalMat (M₁ m)
       ((Zonotope.mtimesIntervalMat (mulI zero (tmaxHi m)) R₀).plus

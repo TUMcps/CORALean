@@ -145,9 +145,9 @@ theorem aux_disjointBox_sound {I B : Interval (Vec 𝕋 n)} (h : aux_disjointBox
 theorem aux_neg_bound {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a)) (a : Vec 𝕋 n)
     {x : Vec ℝ n} (hx : x ∈ X) :
-    toReal (neg (bnd fun j => neg (a j))) ≤ ∑ j, toReal (a j) * x j := by
-  have h := hb (fun j => neg (a j)) x hx
-  simp only [toReal_neg, neg_mul, Finset.sum_neg_distrib] at h
+    toReal (neg (bnd (-a))) ≤ ∑ j, toReal (a j) * x j := by
+  have h := hb (-a) x hx
+  simp only [Pi.neg_apply, toReal_neg', neg_mul, Finset.sum_neg_distrib] at h
   rw [toReal_neg]
   linarith
 
@@ -156,7 +156,7 @@ in the error box, so that the nominal part the rows describe is inside the polyt
 def aux_containsRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
   (List.finRange P.m).all (fun i => le (bnd (P.A i)) (P.b i)) &&
     (List.finRange P.me).all (fun i =>
-      le (bnd (P.Ae i)) (P.be i) && le (P.be i) (neg (bnd fun j => neg (P.Ae i j)))) &&
+      le (bnd (P.Ae i)) (P.be i) && le (P.be i) (neg (bnd (-(P.Ae i))))) &&
     (List.finRange n).all fun j => le (P.I_error.inf j) zero && le zero (P.I_error.sup j)
 
 theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
@@ -178,7 +178,7 @@ theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec �
 
 /-- One row of `P` the whole set lies strictly beyond. -/
 def aux_disjointRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → 𝕋) : Bool :=
-  (List.finRange P.m).any fun i => ltStrict (P.bU i) (neg (bnd fun j => neg (P.A i j)))
+  (List.finRange P.m).any fun i => ltStrict (P.bU i) (neg (bnd (-(P.A i))))
 
 theorem aux_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
@@ -357,14 +357,14 @@ instance containsZonotopeZonotope : Contains (Zonotope (Vec 𝕋 n)) (Zonotope (
   contains Z₂ Z₁ := Z₂.containsZonotope Z₁ (Zonotope.rightInvCandidate fun i j => Z₂.G j i)
   contains_sound _ _ h := Zonotope.containsZonotope_sound h
 
-/-- A checked right inverse of the generator matrix: a box of positive radius around the centre
+/-- A checked right inverse of the generator matrix: a box of positive radius around the center
 is reached with coefficients in `[-1, 1]`. -/
 instance fullDimTestZonotope : FullDimTest (Zonotope (Vec 𝕋 n)) where
   isFullDim := Zonotope.isFullDim
   isFullDim_sound _ h := Zonotope.isFullDim_sound h
 
 /-- The origin proposed as the interior point: `true` where every row is strictly slack there. A
-caller with a better point (a Chebyshev centre) calls `HPolytope.isFullDim` itself. -/
+caller with a better point (a Chebyshev center) calls `HPolytope.isFullDim` itself. -/
 instance fullDimTestHPolytope : FullDimTest (HPolytope 𝕋 (Vec 𝕋 n)) where
   isFullDim P := P.isFullDim fun _ => zero
   isFullDim_sound _ h := HPolytope.isFullDim_sound h
@@ -392,7 +392,7 @@ instance fullDimTestConPolyZono : FullDimTest (ConPolyZono 𝕋 (Vec 𝕋 n)) wh
   isFullDim := ConPolyZono.isFullDim
   isFullDim_sound _ h := ConPolyZono.isFullDim_sound h
 
-/-- The default right inverse of every member, and the first member's centre as the common point:
+/-- The default right inverse of every member, and the first member's center as the common point:
 `true` where it is strictly inside every member. A bundle without members is the whole space. -/
 instance fullDimTestZonoBundle : FullDimTest (ZonoBundle (Vec 𝕋 n)) where
   isFullDim zB := zB.isFullDim (fun i => Zonotope.rightInvCandidate fun r j => (zB.Z i).G j r)

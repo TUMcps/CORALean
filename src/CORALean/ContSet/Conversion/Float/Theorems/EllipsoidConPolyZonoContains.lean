@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConPolyZo
 # An ellipsoid as a constrained polynomial zonotope, over a floating-point scalar
 
 The exact layer's construction with `one` and `neg (half one)` as the constraint entries and the
-point `half one` as the right-hand side, all stored exactly; the centre and the generators are
+point `half one` as the right-hand side, all stored exactly; the center and the generators are
 copied and the error box is carried over: nothing rounds, so nothing is paid.
 
 Not routed through the exact layer's set but through its *nominal* reading, which is the exact

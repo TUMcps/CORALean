@@ -10,7 +10,7 @@ public import CORALean.HybridDynamics.TimeTriggered.Theorems.LipschitzSolutionLo
 [1, Def. 2] asks every flow to be Lipschitz, which gives the solutions the paper uses without
 saying so: through every point, on `[0, T]` for every `T`. The window of
 `lipschitzSolutionLocal` has the same length at every point, so a solution on `(-h, T)` is
-extended to `(-h, T + h/2)` by a local one centred at `T - h/2`, which equals it on the overlap
+extended to `(-h, T + h/2)` by a local one centered at `T - h/2`, which equals it on the overlap
 by uniqueness.
 
 ## References
@@ -48,7 +48,7 @@ theorem aux_extend {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {h T : �
   set c : ℝ := T - h / 2 with hc
   have hcpos : 0 < c := by linarith
   obtain ⟨α, hα0, hα⟩ := hloc (γ c)
-  -- the local solution, centred at `c`, agrees with `γ` on the overlap by uniqueness
+  -- the local solution, centered at `c`, agrees with `γ` on the overlap by uniqueness
   have hcmem : c ∈ Ioo (-h) T := ⟨by linarith, by linarith⟩
   have hα' : ∀ u ∈ Ioo (c - h) (c + h), HasDerivAt (fun v => α (v - c)) (f (α (u - c))) u :=
     fun u hu => by
@@ -101,7 +101,7 @@ theorem lipschitzSolution {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) (
       obtain ⟨α, h0, hα⟩ := lipschitzSolutionLocal hf y
       exact ⟨α, h0, fun u hu => hα u ⟨by simpa [hh] using hu.1, by simpa [hh] using hu.2⟩⟩
     | succ n ih =>
-      -- the step glues a local window centred inside the solution so far
+      -- the step glues a local window centered inside the solution so far
       intro y
       obtain ⟨γ, hγ0, hγ⟩ := ih y
       obtain ⟨γ', hγ'0, hγ'⟩ := aux_extend hf hpos (T := h + n * (h / 2))

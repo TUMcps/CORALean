@@ -28,9 +28,9 @@ that read their topological hypotheses off the representation instead of taking
 them per use. Convexity holds at every ambient type with coordinates;
 compactness only at `Vec`, which is where boundedness is stated.
 
-No `Recentre`: it asks `0 ∈ construct (recentre s)` unconditionally, and a
-crossed box denotes `∅`, holding nothing at all. `Theorems/RecentreZeroMem`
-and `RecentreSubMem` carry the nonemptiness this class refuses to ask for.
+No `Recenter`: it asks `0 ∈ construct (recenter s)` unconditionally, and a
+crossed box denotes `∅`, holding nothing at all. `Theorems/RecenterZeroMem`
+and `RecenterSubMem` carry the nonemptiness this class refuses to ask for.
 
 `Intersection` too, coordinatewise and exact: intersecting two boxes takes the pointwise
 max of the lower bounds and the pointwise min of the upper ones.

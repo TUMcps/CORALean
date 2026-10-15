@@ -80,7 +80,7 @@ theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n�
   show (⟨_, _, _, _, _, _, _, _, _, _, _, _⟩ : Real.ConPolyZono (Vec ℝ (n₁ + n₂))) =
     ⟨_, _, _, _, _, _, _, _, _, _, _, _⟩
   congr 1
-  · -- the centres
+  · -- the centers
     rw [appendLinear_apply]
     exact toRealVec_append cPZ₁.c cPZ₂.c
   · -- the dependent generators, column by column

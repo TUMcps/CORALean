@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Ellipsoid.origin`, over a floating-point scalar
 
-The point `0` as an ellipsoid with no generators, the centre stored as `zero` and
+The point `0` as an ellipsoid with no generators, the center stored as `zero` and
 the error box at zero.
 -/
 

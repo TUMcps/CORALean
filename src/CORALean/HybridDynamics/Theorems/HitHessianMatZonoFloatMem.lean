@@ -11,12 +11,12 @@ public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 @[expose] public section
 
 /-!
-# The float matrix zonotope holds `Q⁽ⁱ⁾` at the centre's factors
+# The float matrix zonotope holds `Q⁽ⁱ⁾` at the center's factors
 
 For `|κ| ≤ 1`, the point `C̃⁽ⁱ⁾ + κG̃^(i,1)` of the exact layer's matrix zonotope
 (`GuardMap.hitHessianMatZono`, at the floats read as reals, `ψ_c = −n − τ_cΥᵀ` and
 `ψ_g = −τ_gΥᵀ`) is the float one's point at the same factors, `(κ, 0, 0)`, plus a point `E` of
-its error box: the factors `(κ, 0, 0)` are those of the centre `c_x` of `R(0)`
+its error box: the factors `(κ, 0, 0)` are those of the center `c_x` of `R(0)`
 (`GuardMap.hitHessianNum_eq_hitHessianMatZono`), the only point the guard mapping needs.
 
 Each printed formula is a product and sum of row and column matrices, so `C̃⁽ⁱ⁾` and
@@ -180,7 +180,7 @@ theorem GuardMap.hitHessianMatZonoFloat_mem (A : Mat 𝕋 n n) (b nv : Vec 𝕋 
       simp [Matrix.mul_apply, Matrix.mulVec, Matrix.vecMul, dotProduct, rowR, colR, Ar, nr, cr,
         br, hT]
       ring
-  · -- the float centre and first generator are the lower ends
+  · -- the float center and first generator are the lower ends
     dsimp only [GuardMap.hitHessianMatZonoFloat]
     rw [Fin.append_left, Fin.append_left, Matrix.cons_val_zero]
 

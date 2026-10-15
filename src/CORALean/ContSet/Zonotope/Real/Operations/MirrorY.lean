@@ -9,7 +9,7 @@ public import Mathlib.Data.Fin.VecNotation
 /-!
 # A planar zonotope mirrored in the x-axis
 
-`(x, y) ↦ (x, -y)` on the centre and the generators. Its lowest vertex is the highest vertex of
+`(x, y) ↦ (x, -y)` on the center and the generators. Its lowest vertex is the highest vertex of
 the original, which is how [1, Alg. 4] finds the upper end `M` of the section: "the same thing
 starting from the upper vertex of `Z`" (line 29) is the lower search on the mirror image.
 

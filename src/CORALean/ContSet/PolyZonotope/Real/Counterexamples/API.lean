@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.CentreNotMem
+public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.CenterNotMem
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.ContainsExactCora1D
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.ConvHullCora
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.CoraAccepts

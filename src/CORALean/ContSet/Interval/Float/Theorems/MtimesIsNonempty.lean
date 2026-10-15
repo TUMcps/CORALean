@@ -13,7 +13,7 @@ say it: the lower bound rounds down and the upper one rounds up, so the gap the
 exact `min ≤ max` leaves only widens.
 
 Stated of `nominal`, which is the interval this one denotes and the only one a
-layer's committed centre is measured in — `Layer.linearWithError` over floats
+layer's committed center is measured in — `Layer.linearWithError` over floats
 asks for exactly this of the box a neuron merge computes.
 -/
 

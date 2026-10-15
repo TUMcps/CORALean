@@ -35,14 +35,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def SpectraShadow.generateESumRep (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow.ESumRep 𝕋 n where
   k := S.k + (n + n)
   q := S.m
-  B₀ := blockDiag zero S.A₀ (blockDiag zero (diagonalBlock fun i => neg (S.c i))
-    (diagonalBlock fun i => neg (neg (S.c i))))
+  B₀ := blockDiag zero S.A₀ (blockDiag zero (diagonalBlock (-S.c))
+    (diagonalBlock (-(-S.c))))
   B := fun i => blockDiag zero (fun _ _ => zero)
     (blockDiag zero (diagonalBlock fun r => if r = i then one else zero)
-      (diagonalBlock fun r => neg (if r = i then one else zero)))
+      (diagonalBlock (-(fun r => if r = i then one else zero))))
   C := fun j => blockDiag zero (S.A j)
-    (blockDiag zero (diagonalBlock fun i => neg (S.G j i))
-      (diagonalBlock fun i => neg (neg (S.G j i))))
+    (blockDiag zero (diagonalBlock (-(S.G j)))
+      (diagonalBlock (-(-(S.G j)))))
 
 end CORALean.Float
 

@@ -38,7 +38,7 @@ theorem ConZonotope.separatesAlong_sound {cZ₁ cZ₂ : ConZonotope 𝕋 (Vec �
   rw [toReal_neg] at hlt
   have h₁ := cZ₁.boundDot_le (c := rowLin (fun (_ : Fin 1) => a) 0) a (fun _ => rfl) x hx₁
   have h₂ := cZ₂.boundDot_le (c := rowLin (fun (_ : Fin 1) j => neg (a j)) 0)
-    (fun j => neg (a j)) (fun _ => rfl) x hx₂
+    (-a) (fun _ => rfl) x hx₂
   have hneg : rowLin (fun (_ : Fin 1) j => neg (a j)) 0 x
       = -rowLin (fun (_ : Fin 1) => a) 0 x := by
     show ∑ j, toReal (neg (a j)) * x j = -∑ j, toReal (a j) * x j

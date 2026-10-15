@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 # `PolyZonotope.blockPadRight` over a floating-point scalar
 
 A set put into the last coordinates of a larger space, zero in the `n₁` above: the exact layer's
-`map` at the embedding `blockPadRight`. A zero row has no rounding, so the centre, the generators
+`map` at the embedding `blockPadRight`. A zero row has no rounding, so the center, the generators
 and the error box are only padded.
 -/
 

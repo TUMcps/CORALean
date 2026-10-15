@@ -22,8 +22,8 @@ positive-definiteness or invertibility hypothesis; a `λ` outside `[0, 1)` or a 
 check returns `E` itself. A point `x = E.c + G u + e` of `E` satisfies `|vᵀ u - δ| ≤ φ'` for the
 stored `v`, `δ` and the widened `φ'` (the box and the two rounding gaps), so
 `Ellipsoid.exists_ball_of_strip` writes `u = κ v + α w + β (vᵀ w) v` with `‖w‖₂ ≤ 1`, every
-hypothesis of it read off a directed rounding. Then `x` is the stored centre and generators at
-`w`, plus the centre's and the generators' rounding gaps, plus `e`, each in its part of the new box.
+hypothesis of it read off a directed rounding. Then `x` is the stored center and generators at
+`w`, plus the center's and the generators' rounding gaps, plus `e`, each in its part of the new box.
 Not exact.
 -/
 

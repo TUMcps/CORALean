@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 # `NonlinDASys.enlargeInterfaceInput`
 
 [1, Eq. 14]: the assumed input set of a subsystem, its input set `U⁽ⁱ⁾` enlarged by the factor
-`λ_U` about its centre `ĉ_U⁽ⁱ⁾` in the interface coordinates only:
+`λ_U` about its center `ĉ_U⁽ⁱ⁾` in the interface coordinates only:
 
 `Û⁽ⁱ⁾ = ĉ_U⁽ⁱ⁾ ⊕ ((λ_U - 1) Λ⁽ⁱ⁾ + I) (U⁽ⁱ⁾ ⊕ (-ĉ_U⁽ⁱ⁾))`,
 

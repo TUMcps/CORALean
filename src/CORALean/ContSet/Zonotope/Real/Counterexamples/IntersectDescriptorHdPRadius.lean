@@ -114,7 +114,7 @@ theorem Zonotope.aux_pRadiusCounterexample_points :
     fin_cases i
     simp
     ring
-  -- the centre is `0`, and `3` is the point at `b = (0, -1, 1)`
+  -- the center is `0`, and `3` is the point at `b = (0, -1, 1)`
   have hc : Z.c = 0 := by simp [Z, Zonotope.intersectDescriptor]
   refine ⟨hc, ⟨fun j => if j.val = 1 then -1 else if j.val = 2 then 1 else 0, fun j => ?_, ?_⟩, ?_⟩
   · dsimp only

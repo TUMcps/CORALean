@@ -15,8 +15,8 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesMatZonotopeOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterZeroMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReindexExact
 public import CORALean.Global.Float.NoNaN
@@ -95,13 +95,13 @@ instance {n : ℕ} : Reduce (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
     rw [Zonotope.materialise_eq]
     exact Zonotope.reduce_outer Z o
 
-/-- `centre` is the stored centre read as reals: a field projection, and
-exactly the point `recentre` takes out, so nothing rounds. -/
-instance {n : ℕ} : Recentre (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
-  centre Z := toRealVec Z.c
-  recentre := Zonotope.recentre
-  zero_mem_recentre := Zonotope.zero_mem_recentre
-  sub_centre_mem_recentre := Zonotope.sub_centre_mem_recentre
+/-- `center` is the stored center read as reals: a field projection, and
+exactly the point `recenter` takes out, so nothing rounds. -/
+instance {n : ℕ} : Recenter (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
+  center Z := toRealVec Z.c
+  recenter := Zonotope.recenter
+  zero_mem_recenter := Zonotope.zero_mem_recenter
+  sub_center_mem_recenter := Zonotope.sub_center_mem_recenter
 
 /-- The point zonotope: no generators and the origin error box, exactly the stored point. -/
 instance : OfScalarPoint 𝕋 𝒵[𝕋] where
@@ -128,9 +128,9 @@ instance : IdentityMem 𝕄𝒵[𝕋] where
     rw [← h]
     exact Zonotope.mem_pointMat (diagonalBlock fun _ : Fin n => (one : 𝕋))
 
-/-- The stored centre. -/
-instance : ScalarCentre 𝕋 𝒵[𝕋] where
-  centreVec Z := Z.c
+/-- The stored center. -/
+instance : ScalarCenter 𝕋 𝒵[𝕋] where
+  centerVec Z := Z.c
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and
 computes nothing, so the error box is carried across rather than grown. -/
@@ -171,7 +171,7 @@ instance : Mtimes 𝕄𝒵[𝕋] 𝒵[𝕋] where
     rw [Zonotope.materialise_eq]
     exact Zonotope.mtimesMatZonotope_outer M Z
 
-/-- Centre, generators and error box, for `ifNoNaN`. -/
+/-- Center, generators and error box, for `ifNoNaN`. -/
 instance {n : ℕ} : Floats 𝕋 (Zonotope (Vec 𝕋 n)) :=
   ⟨fun Z => Floats.floats Z.c ++ Floats.floats Z.G ++ Floats.floats Z.I_error⟩
 

@@ -173,7 +173,7 @@ theorem LinearSys.timePointStep_subset_constInput_add_error (sys : LinearSys �
     simp only [hterm]
     rw [hb]
     exact MatExp.norm_expIntegral_sub_taylor_le A hr.le η hε
-  -- and what the remainder box adds, its centre being the origin
+  -- and what the remainder box adds, its center being the origin
   have hbox : ∀ w ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) U).construct,
       ‖w‖ ≤ (0 + r * b) * B := by
     intro w hw

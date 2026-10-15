@@ -38,7 +38,7 @@ enclosure, `[1, 5]` and `[-1, 3]`, hold `∂R = {±1}`. At the default `scaleFac
 and `(-1, -1)` solves the constraint in that box: no contractor that [1, Def. 3] admits proves it
 empty. Each pass lowers `factor`, the `while` ends at `factor ≤ 0`, `I` is still `[-1, 1]`, and
 CORA returns `2 + [-1, 1] = [1, 3]`. Whatever `fmincon` returns, whatever the contractor and the
-number of passes: `3` is in it and unreachable, and the centre `2` fails [1]'s Step 4, (14),
+number of passes: `3` is in it and unreachable, and the center `2` fails [1]'s Step 4, (14),
 which the code never runs.
 
 ## References
@@ -182,7 +182,7 @@ private theorem aux_reachInnerScalingCora1D_eq
 
 /-- CORA's `'scale'` at `ẋ = 0` from `[-1, 1]`, outer approximation `2 + α + 2β`, returns `[1, 3]`
 for every `fmincon` that returns a feasible point and every sound contractor: `3` is not
-reachable, and the centre `2` fails (14). -/
+reachable, and the center `2` fails (14). -/
 theorem NonlinearSys.reachInnerScalingCora1D_counterexample
     (fmincon : (ℝ × ℝ → ℝ) → (ℝ × ℝ → ℝ) → ℝ × ℝ → ℝ × ℝ → ℝ × ℝ)
     (isEmptyContract : (ℝ × ℝ → ℝ) → ℝ × ℝ → ℝ × ℝ → Bool) (fuel : ℕ)
@@ -222,7 +222,7 @@ theorem NonlinearSys.reachInnerScalingCora1D_counterexample
   · -- `3 ∉ [-1, 1]`
     rw [hR]
     norm_num [X₀]
-  · -- (14): the time-inverted run from the centre `2` stays at `2 ∉ X₀`
+  · -- (14): the time-inverted run from the center `2` stays at `2 ∉ X₀`
     intro x hx hx0
     rw [aux_const hx, hx0]
     norm_num [X₀]

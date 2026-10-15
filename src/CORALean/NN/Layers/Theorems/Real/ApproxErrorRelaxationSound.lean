@@ -11,7 +11,7 @@ public import CORALean.NN.Layers.Theorems.Real.ApproxErrorEnclosure
 [1, Alg. 1]: for a continuous activation `ϕ`, `m x ⊕ [e_low, e_up]` encloses `ϕ([l, u])` at every
 box, so the relaxation `approxErrorRelaxation ϕ` is sound for `ϕ`, and so is the layer built on it
 (`Layer.activation_sound`). The proof is [1, Def. 6]'s enclosure: `e_low ≤ ϕ(t) - m t ≤ e_up`,
-recentred.
+recentered.
 
 ## References
 

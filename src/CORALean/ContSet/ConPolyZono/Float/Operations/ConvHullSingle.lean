@@ -14,7 +14,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 CORA's `aux_convHullSingle`, [1, Prop. 9] applied to one set: `a` copies of it, each over
 its own block of factors and its own copy of the constraint system, weighted by `a` fresh factors
-whose sum one extra row fixes. The centre `a c` is the only thing that rounds, stored from below
+whose sum one extra row fixes. The center `a c` is the only thing that rounds, stored from below
 with its shortfall in the box; the box of the operand is kept, a convex combination of points of a
 box being in it.
 

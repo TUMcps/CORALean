@@ -11,7 +11,7 @@ public import CORALean.NN.Layers.Definitions.SecantSlope
 
 [1, Alg. 1] with its lines as printed, for `n = 1`: the bounds of `H` [1, Prop. 2], the secant
 slope [1, Def. 7], the errors `e`, `ē` [1, Def. 6]; line 6 `H̃ = m H + ½(e + ē)` and line 7
-`H = H̃ ⊕ [e, ē]`, which by [1, Prop. 3] has centre `c̃ + ½(e + ē)` and the generators of `H̃`
+`H = H̃ ⊕ [e, ē]`, which by [1, Prop. 3] has center `c̃ + ½(e + ē)` and the generators of `H̃`
 and `½(ē - e)`. The midpoint is added by both lines.
 
 ## References

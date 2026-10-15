@@ -13,7 +13,7 @@ public import Mathlib.LinearAlgebra.Matrix.PosDef
 
 [1, Sec. 4]'s hierarchy for the Taylor model optimizer: the mere interval bound, the naive Taylor
 model bound (the model re-expanded on the box, its polynomial by interval evaluation), LDB, and QFB
-where the quadratic part is positive semidefinite, here at the box's centre. The source stops at
+where the quadratic part is positive semidefinite, here at the box's center. The source stops at
 the first that eliminates the box; their maximum is what the hierarchy can reach.
 
 ## References
@@ -47,7 +47,7 @@ noncomputable def Taylm.goLowerBound (T : Taylm n) (ε : ℝ) (fuel : ℕ) (B : 
   let lTM := TB.bounds.inf
   -- LDB
   let lLDB := TB.ldb ε fuel
-  -- QFB at the box's centre, where the quadratic part is positive semidefinite
+  -- QFB at the box's center, where the quadratic part is positive semidefinite
   let H := Taylm.hessian TB.terms
   let lQFB := if H.PosSemidef then TB.qfbLower H 0 else lTM
   max (max lIN lTM) (max lLDB lQFB)

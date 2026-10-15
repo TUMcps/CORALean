@@ -10,10 +10,10 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 @[expose] public section
 
 /-!
-# [1, Alg. 1 (lower bounds)]'s line 16 is no lower bound for a centre outside `U`
+# [1, Alg. 1 (lower bounds)]'s line 16 is no lower bound for a center outside `U`
 
 For `A = 0`, `X₀ = {0}`, the simplex `U = conv{0, e₁, e₂, e₃} ⊂ ℝ³`, `ℓ = (1, 1, 1)` and `Δt = 1`
-the centre of the enclosing box `[0, 1]³` is `ũ = (1/2, 1/2, 1/2)`, which is outside `U`. Line 16
+the center of the enclosing box `[0, 1]³` is `ũ = (1/2, 1/2, 1/2)`, which is outside `U`. Line 16
 reads `ρ(Ř(τ₀), ℓ) = 3/2` there (`supportLower` at `k = 1`), while the exact reachable set at
 `t ∈ [0, 1]` is `tU` (`reachSet_eq` with `e^{0} = I`), whose support function along `ℓ` over
 `τ₀ = [0, 1]` is `1`: a "lower bound" above the support function.

@@ -13,7 +13,7 @@ public import CORALean.NN.Layers.Operations.LinearWithError
 ℝ-only: the box's sum `b + 0` is exact at ℝ, where a machine scalar rounding outward on every
 operation widens the point `b` to an interval, and the two layers then differ.
 
-At `E = Interval.point 0` the committed centre is `0` and the added box is a
+At `E = Interval.point 0` the committed center is `0` and the added box is a
 point, so the two layers compute and enclose identically: a plain linear
 layer is the error-free case of the adapted one, not a different construction.
 That is [1, Eq. 2]'s initialization, `I'_k = [0, 0]`: a network adapted to carry the

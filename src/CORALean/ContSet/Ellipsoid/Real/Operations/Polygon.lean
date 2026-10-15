@@ -15,7 +15,7 @@ two-dimensional ellipsoid. A boundary point is the support point `Q l / sqrt(l'Q
 direction `l`; with `Q = G Gᵀ` it is `q + G (Gᵀ l / ‖Gᵀ l‖₂)`. The directions `L` are the
 argument (CORA's are `N = 1000` equal-area points of the circle, `eq_point_set`), and the polygon
 is the one convex piece spanned by the points: CORA's `polyshape` of the same vertices in order is
-a boundary representation (R-PG) not modelled. A direction with `Gᵀ l = 0` gives the centre
+a boundary representation (R-PG) not modelled. A direction with `Gᵀ l = 0` gives the center
 `q`, as does every direction of a point-ellipsoid (CORA's `representsa_(E,'point')` branch).
 -/
 

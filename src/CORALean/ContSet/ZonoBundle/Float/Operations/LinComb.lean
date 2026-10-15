@@ -12,7 +12,7 @@ Every pair of members combined by `Zonotope.linComb` and indexed through
 `finProdFinEquiv`, exactly as `plus` sums pairs.
 
 Computable, unlike the exact layer's, which is `noncomputable` only because
-`Zonotope.linComb` halves a centre in ℝ. The interpolation weight is still
+`Zonotope.linComb` halves a center in ℝ. The interpolation weight is still
 shared across every pair — only the endpoints vary — which is what
 `Theorems.LinCombOuter` turns into the enclosure.
 -/

@@ -14,7 +14,7 @@ public import Mathlib.Topology.Algebra.Module.Basic
 # The scaled outer approximation is inside a closed set when its factor box is not flat
 
 [1, Thm. 3], corrected: `C = C(α̲, ᾱ)` from [1, Alg. 1] is inside `R` when `R` is closed, `B`
-encloses `∂R`, the contractor is one [1, Def. 3] admits, the centre is in `R` — what (14) of
+encloses `∂R`, the contractor is one [1, Def. 3] admits, the center is in `R` — what (14) of
 [1, Thm. 3] establishes — and the final box is not flat, `α̲ < ᾱ`. Line 6 stores [1, Prop. 3]'s
 half-open slab closed, so `C` can meet `B` on the face it shares with the contraction, and
 [1, Thm. 1] is applied to the image of the open box instead, which every pass keeps away from
@@ -155,7 +155,7 @@ private theorem aux_foldl (pZ : PolyZonotope V) (hp : 0 < pZ.p)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Thm. 3], corrected: with `R` closed, `∂R ⊆ B`, the centre in `R` and `α̲ < ᾱ`, the set
+/-- [1, Thm. 3], corrected: with `R` closed, `∂R ⊆ B`, the center in `R` and `α̲ < ᾱ`, the set
 `C(α̲, ᾱ)` of [1, Alg. 1] is inside `R`. -/
 theorem PolyZonotope.innerScaling_subset_of_lt (pZ : PolyZonotope V) (B : List (PolyZonotope V))
     (contract : ∀ m : ℕ, ((Fin m → ℝ) → V) → (Fin m → ℝ) × (Fin m → ℝ) →
@@ -170,7 +170,7 @@ theorem PolyZonotope.innerScaling_subset_of_lt (pZ : PolyZonotope V) (B : List (
   set hi := (pZ.innerScaling B contract).2
   set mid : Fin pZ.p → ℝ := fun i => (lo i + hi i) / 2
   rcases Nat.eq_zero_or_pos pZ.p with hp | hp
-  · -- no factors: `C` is the centre alone
+  · -- no factors: `C` is the center alone
     rintro _ ⟨a, -, rfl⟩
     have : a = mid := funext fun i => absurd i.2 (by omega)
     rwa [this]

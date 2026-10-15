@@ -8,7 +8,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # A value in the bracket is within its radius of the shift
 
-Which makes the recentred relaxation sound however the shift rounded: each end of the max
+Which makes the recentered relaxation sound however the shift rounded: each end of the max
 covers one end of the moved bracket.
 -/
 

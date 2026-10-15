@@ -72,7 +72,7 @@ def NonlinearSys.FloatModel.relinStepAtFloat (fm : NonlinearSys.FloatModel 𝕋 
   let pt := fun v => (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))
   let lin : LinearSys 𝕋 n := LinearSys.canonicalFloat AB.1  -- δ̇ = A δ + ũ, ũ ∈ V
   let S ← lin.reachFloatInput                                       -- one step from R - x✱
-    ⟨R ⊞ pt fun i => neg (xs i), V, 0, ToRat.toRat Δt⟩ options
+    ⟨R ⊞ pt (-xs), V, 0, ToRat.toRat Δt⟩ options
   let Δτ ← S.1.head?                                                -- 13. R(τ_k) - x✱
   let Δ₁ ← S.2[1]?                                                  -- R(t_{k+1}) - x✱
   pure (Δτ ⊞ pt xs, Δ₁ ⊞ pt xs)

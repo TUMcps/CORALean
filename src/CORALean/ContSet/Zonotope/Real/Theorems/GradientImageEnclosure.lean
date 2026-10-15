@@ -19,7 +19,7 @@ set of a set loss is `∇_{H_{k-1}} L = backpropEnclose(ϕ_k, 𝒢_k)` (`Zonotop
 `𝒢_k = ∇_{H_k} L` the output's. As in the paper's proof (Eq. 19-25), entry by entry the chain
 rule reads `Σᵢ c'(i) ∂c_k(i) + Σᵢ Σⱼ G'(i,j) ∂G_k(i,j)`; only row `i` of the output moves with
 an entry of row `i` of the input, through `m(i)` and the errors, which the product rule
-differentiates. That needs the loss differentiable at the layer's output in the centre and
+differentiates. That needs the loss differentiable at the layer's output in the center and
 generator entries together, and `m(i)`, `e(i)`, `ē(i)` differentiable in the row `H(i)`: the
 statement assumes neither, and the secant slope of Def. 7 is not differentiable where a
 generator entry is `0`, the bounds `c ∓ Σⱼ |G(i,j)|` having a kink there.
@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The scalar functions of a row, along its centre and along a generator entry. -/
+/-- The scalar functions of a row, along its center and along a generator entry. -/
 theorem aux_hasDerivAt_row (f : Zonotope (Vec ℝ 1) → ℝ) (R : Zonotope (Vec ℝ 1))
     (hf : DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin R.h → Vec ℝ 1) => f ⟨R.h, p.1, p.2⟩)
       (R.c, R.G)) :
@@ -104,7 +104,7 @@ theorem aux_sum_univ_imageEnclosure (m eLo eUp : Zonotope (Vec ℝ 1) → ℝ) (
       ∑ j : Fin H.h, f (Fin.castAdd n j) + ∑ i : Fin n, f (Fin.natAdd H.h i) :=
   Fin.sum_univ_add f
 
-/-- A centre entry of the gradient set: the chain rule through the output's row `i`. -/
+/-- A center entry of the gradient set: the chain rule through the output's row `i`. -/
 theorem aux_gradient_c (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotope (Vec ℝ 1) → ℝ)
     (H : Zonotope (Vec ℝ n))
     (hF : DifferentiableAt ℝ (fun p : Vec ℝ n × (Fin (H.h + n) → Vec ℝ n) =>
@@ -127,7 +127,7 @@ theorem aux_gradient_c (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotop
   set Dm := (R.gradient m).c 0
   set DL := (R.gradient eLo).c 0
   set DU := (R.gradient eUp).c 0
-  -- the input with centre entry `i` moved to `t`, and its rows
+  -- the input with center entry `i` moved to `t`, and its rows
   let Ht : ℝ → Zonotope (Vec ℝ n) := fun t => { H with c := Function.update H.c i t }
   have hr1 : ∀ t, (Ht t).row i = ⟨H.h, fun _ => t, R.G⟩ := fun t => by
     simp only [Ht, Zonotope.row, Function.update_self]; rfl
@@ -145,7 +145,7 @@ theorem aux_gradient_c (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotop
         (fun i' => Pi.single i' (if i' = i then (DU - DL) / 2 else 0)))
   have hP : HasDerivAt P P' (H.c i) := by
     refine HasDerivAt.prodMk ?_ ?_
-    -- the centre: only row `i` moves, by the product rule
+    -- the center: only row `i` moves, by the product rule
     · rw [hasDerivAt_pi]
       intro i'
       by_cases h : i' = i
@@ -266,7 +266,7 @@ theorem aux_gradient_G (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotop
         (fun i' => Pi.single i' (if i' = i then (DU - DL) / 2 else 0)))
   have hP : HasDerivAt P P' (H.G j i) := by
     refine HasDerivAt.prodMk ?_ ?_
-    -- the centre: only row `i` moves, through the slope and the errors
+    -- the center: only row `i` moves, through the slope and the errors
     · rw [hasDerivAt_pi]
       intro i'
       by_cases h : i' = i

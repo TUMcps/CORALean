@@ -112,7 +112,7 @@ theorem Layer.activationPoly_subset_inflate {P : LayerRelaxation ℝ n m}
   have hueq : u = fun i => evalPoly ((P i).coeffs (s.interval.inf i) (s.interval.sup i))
       (s.dependent.point a' i) := by
     rw [hua, ← hpval, ha']
-  -- the residual box, centred at zero, reaches no further than half the budget
+  -- the residual box, centered at zero, reaches no further than half the budget
   have hbox : ∀ i, |(P.box J).nominal.inf i| ≤ ε / 2 ∧ |(P.box J).nominal.sup i| ≤ ε / 2 := by
     intro i
     constructor

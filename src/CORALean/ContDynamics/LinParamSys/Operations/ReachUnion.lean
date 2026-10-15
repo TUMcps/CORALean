@@ -16,7 +16,7 @@ public import CORALean.ContSet.SetUnion.SetUnion
 the windows `τ_0, …, τ_{N-1}`, one `reachStepkInput` each, collected as a `SetUnion`,
 `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one. The state-space input set
 `V = B U ⊕ c` is formed here, as CORA's `priv_inputSolution` forms it, and each window splits
-it at its centre, so `0 ∈ U` is not asked: the remainder `V - ũ` holds the origin by
+it at its center, so `0 ∈ U` is not asked: the remainder `V - ũ` holds the origin by
 construction. No `box()` on the accumulated input set: that bounds a zonotope's order and is a
 reduction, which an enclosure need not make.
 
@@ -46,7 +46,7 @@ open ContSet
 variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)] [Mtimes ℐ S]
+variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

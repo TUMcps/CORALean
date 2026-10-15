@@ -13,10 +13,10 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # `Zonotope.enclosePointsStursberg`, over a floating-point scalar
 
 CORA's `@zonotope/enclosePoints.m` at `method = 'stursberg'`, on the stored floats: the points are
-centred on their mean, rotated by `Uᵀ`, boxed per rotated coordinate by the minimum and maximum
+centered on their mean, rotated by `Uᵀ`, boxed per rotated coordinate by the minimum and maximum
 over the points, and the box is rotated back by `U` and moved to the mean.
 
-The mean is rounded up from the sum (the count is the float sum of ones), and each centred point
+The mean is rounded up from the sum (the count is the float sum of ones), and each centered point
 is held in the interval between its two directed differences, so the rotation `Uᵀ` is the interval
 `mtimes`. Nothing in the enclosure depends on the mean or on the basis being the SVD's: the
 points lie in the result whenever `U Uᵀ = 1` over the reals. As at the real layer `U` is an
@@ -45,7 +45,7 @@ def Zonotope.enclosePointsStursberg [NeZero N] (pts : Fin N → Vec 𝕋 n) (U :
     Zonotope (Vec 𝕋 n) :=
   let count : 𝕋 := sumUp fun _ : Fin N => one
   let mean : Vec 𝕋 n := fun i => divUp (sumUp fun j => pts j i) count
-  -- the centred points, each between its two directed differences
+  -- the centered points, each between its two directed differences
   let sampleMatrix : Fin N → Interval (Vec 𝕋 n) := fun j =>
     ⟨fun i => subDown (pts j i) (mean i), fun i => subUp (pts j i) (mean i)⟩
   let orientedMatrix : Fin N → Interval (Vec 𝕋 n) := fun j =>

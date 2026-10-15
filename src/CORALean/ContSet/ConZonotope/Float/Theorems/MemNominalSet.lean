@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
 # Membership in the nominal constrained zonotope, in the stored fields
 
 The form every enclosure proof at this layer reads the nominal half of a point
-in: the centre and the generators through `toReal`, and the constraint as
+in: the center and the generators through `toReal`, and the constraint as
 membership in the float polytope's nominal part: the coefficient polytope's own error box is
 not read, its rounding having been paid into its rows.
 

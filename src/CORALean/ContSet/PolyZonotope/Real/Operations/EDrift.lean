@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
 `eDiff` is a symmetric radius, and the drift of one monomial from another is not
 symmetric. This splits the radius into a downward and an upward reach, so that
 the pair reads `[-fst, snd]` rather than `[-ξ_E, ξ_E]`, and a relaxation can
-absorb the difference into its centre instead of paying for it twice.
+absorb the difference into its center instead of paying for it twice.
 
 What makes a reach vanish is a sign that never changes. The factors the two
 columns share are `∏_{k ≠ k₀} α_k^{E_{k,i}}`, nonnegative exactly when every

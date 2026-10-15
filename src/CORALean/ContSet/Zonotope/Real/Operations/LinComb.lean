@@ -10,8 +10,8 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # Zonotopes: the linear combination of two
 
 CORA's `@zonotope/enclose`, which is where a zonotope's `linComb` comes from.
-The centre is the midpoint, one fresh generator spans the half-difference of the
-centres — which is what lets the combination slide from one set to the other —
+The center is the midpoint, one fresh generator spans the half-difference of the
+centers — which is what lets the combination slide from one set to the other —
 and the two generator blocks are paired column by column, by `pairSum` and
 `pairDiff`, the longer block keeping its surplus at full width.
 
@@ -21,8 +21,8 @@ count `h₁ + h₂ + 1`. Over a paired column the result reaches
 the whole box: the coefficients come out as `λ β₁ⱼ ± (1-λ) β₂ⱼ`, which records
 that the two sides share one `λ`.
 
-The columns come out as `sum ++ difference ++ centre` rather than CORA's
-`sum ++ centre ++ difference ++ surplus`; a zonotope does not depend on the
+The columns come out as `sum ++ difference ++ center` rather than CORA's
+`sum ++ center ++ difference ++ surplus`; a zonotope does not depend on the
 order of its generators.
 -/
 

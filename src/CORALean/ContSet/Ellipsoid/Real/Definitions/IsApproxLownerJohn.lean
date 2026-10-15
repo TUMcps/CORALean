@@ -11,7 +11,7 @@ public import Mathlib.Data.Real.Basic
 [1, Def. 1.2]: for `ε > 0` the ellipse `E(E, s)` is an `ε`-approximate Löwner-John ellipse of a
 convex set `C ⊆ ℝⁿ` if `E(E/n², s) ⊆ C ⊆ E((1+ε) E, s)`. Scaling the shape matrix `E` by `c²`
 scales the generator by `c`, so in the generator form the inner ellipse has the generator `G/n`
-and the outer one `√(1+ε) G`, about the same centre. For `ε = 0` and the Löwner-John ellipse of
+and the outer one `√(1+ε) G`, about the same center. For `ε = 0` and the Löwner-John ellipse of
 [1, Thm. 1.1] that is `E(E/n², s) ⊆ C ⊆ E(E, s)`.
 
 ## References

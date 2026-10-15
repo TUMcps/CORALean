@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 /-!
 # `ConPolyZono.project` over a floating-point scalar
 
-The centre and the rows of both generator blocks at the chosen coordinates; the exponent
+The center and the rows of both generator blocks at the chosen coordinates; the exponent
 matrices and the constraint system constrain the factors, not the coordinates, and are copied.
 The error box is projected with `Interval.project`. Selecting coordinates does no arithmetic,
 so nothing rounds.

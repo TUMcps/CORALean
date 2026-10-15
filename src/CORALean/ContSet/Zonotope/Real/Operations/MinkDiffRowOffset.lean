@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRowNormal
 # The offset of one signed row of [1, Thm. 3]
 
 `d = C (c⁽ᵐ⁾ − c⁽ˢ⁾) + Δd − Δd_trans` at the row `(b, T)` of `Zonotope.minkDiffRowNormal`: the
-normal paired with the centre difference, plus the minuend's reach in that direction less the
+normal paired with the center difference, plus the minuend's reach in that direction less the
 subtrahend's.
 
 ## References
@@ -30,7 +30,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The offset of the signed row `(b, T)` of `Z_m ⊖ Z_s`: the normal at the centre difference plus
+/-- The offset of the signed row `(b, T)` of `Z_m ⊖ Z_s`: the normal at the center difference plus
 `Δd − Δd_trans`. -/
 noncomputable def Zonotope.minkDiffRowOffset {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2)))
     (j : Bool × Finset (Fin Zm.h)) : ℝ :=

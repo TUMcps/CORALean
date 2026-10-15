@@ -34,7 +34,7 @@ contribution, and with `t = t_k + τ` both the free motion and the constant's pa
 `e^{A t_k}` of their values at `τ`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`).
 At `τ ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
 `expIntegral_mem_constPropagate`, and the `Ũ` part is in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being
-`Recentre`'s: no hypothesis on `U` holds the origin.
+`Recenter`'s: no hypothesis on `U` holds the origin.
 
 ## References
 
@@ -61,7 +61,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)] [Mtimes ℐ S]
+variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes ℐ S]
 variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
 
 
@@ -93,7 +93,7 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
       exact_mod_cast hm ▸ le_max_right _ _
     exact lt_of_le_of_lt (div_le_div_of_nonneg_left (norm_nonneg _) (by positivity)
       (by linarith)) hadm
-  set uc := Recentre.centre V with huc
+  set uc := Recenter.center V with huc
   -- the run is the point system `⟨A⟩`'s, split into its free motion and its input's integral
   have trajL := traj.toLinearSys
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 (params.tFinal - params.tStart) :=
@@ -103,15 +103,15 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
   have hvoc := trajL.variation_of_constants hTt le_rfl ht.1 hU
   simp only [sub_zero, Scalar.toRealMat_real] at hvoc
   -- the input, split along `U ⊆ {ũ} ⊞ Ũ`
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct (Recentre.recentre V) :=
-    fun s hs => Recentre.sub_centre_mem_recentre (traj.input s (hTt hs))
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct (Recenter.recenter V) :=
+    fun s hs => Recenter.sub_center_mem_recenter (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - uc) (volume.restrict (Set.Icc 0 t)) :=
     (trajL.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
   have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht.1
     (CompactSet.isBounded_construct (OfPoint.ofPoint uc : S n))
     (fun _ _ => OfPoint.mem_ofPoint uc) aestronglyMeasurable_const
   have hint₀ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht.1
-    (CompactSet.isBounded_construct (Recentre.recentre V)) hmem₀ hmeas₀
+    (CompactSet.isBounded_construct (Recenter.recenter V)) hmem₀ hmeas₀
   have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
       = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ uc)
         + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - uc) := by
@@ -164,7 +164,7 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
       exact sys.expIntegral_mem_constPropagate hΔt (m + 2) hε traj.param uc k
     · -- one admissible `Ũ`-input's contribution by `t`, in `P^R_Ũ(t_{k+1})`
       exact sys.inputReach_subset_particularSolution hΔt hε traj.param
-        (Recentre.zero_mem_recentre V) k ht.1 htk1
+        (Recenter.zero_mem_recenter V) k ht.1 htk1
         ⟨fun s => u s - uc, hmem₀, hmeas₀, by simp only [Scalar.toRealMat_real]⟩
 
 end CORALean

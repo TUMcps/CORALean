@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # Constrained zonotopes over a floating-point scalar: the representation
 
-CORA's `conZonotope` with its centre, generators and coefficient constraints all
+CORA's `conZonotope` with its center, generators and coefficient constraints all
 held in `𝕋`, plus the error box that makes it an `InflatedContSet`. `ConZonotope 𝕋 α`
 is generic over its ambient type, generators a family, as the exact layer's
 `ConZonotope α` is; `𝕋` stays, the constraints living on the coefficient space
@@ -17,7 +17,7 @@ is generic over its ambient type, generators a family, as the exact layer's
 
 Two roundings, in two different places, and the rule is the same one the other
 representations follow: pay where the representation already has slack of the
-same kind. The centre and the generators have none — paying into them would grow
+same kind. The center and the generators have none — paying into them would grow
 the order at every operation — so their rounding goes into the ambient box. The
 constraints have slack in their bounds, so theirs goes into `P`'s rows; a rounded
 equality is kept where a certificate pays the move onto it into the ambient box

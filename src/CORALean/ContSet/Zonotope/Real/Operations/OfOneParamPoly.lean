@@ -10,8 +10,8 @@ public import Mathlib.Order.Interval.Finset.Nat
 
 A zonotope enclosing the polynomial `β ↦ Σ_{k=0}^N βᵏ v_k` over `β ∈ [-1, 1]`, by the device of
 the proof of [1, Thm. 1]: an odd power ranges over `[-1, 1]`, so `v_k` is a generator; an even
-power over `[0, 1]`, so `½ v_k` goes to the centre and `½ v_k` is the generator. Generator `j`
-belongs to the power `j + 1`; the centre is `v_0 + Σ_{l=1}^{⌊N/2⌋} ½ v_{2l}`. The powers are
+power over `[0, 1]`, so `½ v_k` goes to the center and `½ v_k` is the generator. Generator `j`
+belongs to the power `j + 1`; the center is `v_0 + Σ_{l=1}^{⌊N/2⌋} ½ v_{2l}`. The powers are
 treated as independent, which is where the enclosure gives something away.
 
 ## References

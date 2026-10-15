@@ -14,7 +14,7 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 At `α ≥ 0`, `n^T z` with `n = [0, ∑_k ω_k σ^T G̃(I_m, t_k)]` (15) is
 `∑_{k=0}^K ω_k ‖R(t_k) - ỹ(t_k)‖_{I,σ}` (13), the norm taken of the generators
 `G(t_k)` of (21) — `|M diag(α)| 1 = |M| α` (32) once per block
-(`intervalNorm_smul`). The centre
+(`intervalNorm_smul`). The center
 `c` does not enter: [1, Eq. 11] moves it to the origin first, which is `n`'s zero block.
 
 ## References

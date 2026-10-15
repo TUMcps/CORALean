@@ -9,7 +9,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule
 /-!
 # A box as a capsule
 
-CORA's `capsule(interval)`: the centre, the segment along the widest edge of
+CORA's `capsule(interval)`: the center, the segment along the widest edge of
 the box, and the thickness the ball must have to cover the rest of the box,
 which is the Euclidean norm of the other half-widths. An enclosure, not an
 equality: a box is a capsule only in the degenerate cases (at most one
@@ -39,7 +39,7 @@ variable {n : ℕ}
 theorem Interval.capsuleAlong_contains (I : Interval (Vec ℝ n)) (k : Fin n) :
     I.construct ⊆ (I.capsuleAlong k).construct := by -- --- PROOF ---
   intro x hx
-  -- every coordinate lies within its half-width of the centre
+  -- every coordinate lies within its half-width of the center
   have hlo : ∀ i, I.inf i ≤ x i := fun i => (hx i).1
   have hhi : ∀ i, x i ≤ I.sup i := fun i => (hx i).2
   have hk : |x k - (I.inf k + I.sup k) / 2| ≤ (I.sup k - I.inf k) / 2 :=

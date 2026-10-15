@@ -6,7 +6,7 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 @[expose] public section
 
 /-!
-# What storing `plus`'s centre leaves to pay
+# What storing `plus`'s center leaves to pay
 
 Split out of `Plus.lean` (issue #62): read again by `evalPoly`, by
 `ConPolyZono.plus`, and by their matching `Theorems/PlusOuter.lean` and

@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.DeviationBound
 /-!
 # A `true` from `Zonotope.containsPoint` proves membership
 
-The point minus the error box's lower corner is within `B` of the centre, so in the nominal set
+The point minus the error box's lower corner is within `B` of the center, so in the nominal set
 (`Zonotope.box_subset`); adding the corner, a member of the nonempty box, gives the point.
 -/
 

@@ -10,7 +10,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A zonotope as a box
 
-CORA's `interval(zonotope)`: the centre give or take the generators' total reach
+CORA's `interval(zonotope)`: the center give or take the generators' total reach
 in each coordinate. Not exact — a zonotope is generally not a box — but tight,
 since each coordinate's extreme is attained by taking every generator at its own
 sign.
@@ -48,7 +48,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Prop. 1]: the box built from a zonotope's centre and generator widths
+/-- [1, Prop. 1]: the box built from a zonotope's center and generator widths
 contains it. -/
 theorem Zonotope.interval_contains (Z : Zonotope α) :
     Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---

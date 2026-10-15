@@ -22,14 +22,14 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ====================================  `Ellipsoid.centre`  ==================================== --
+-- ====================================  `Ellipsoid.center`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `@ellipsoid/center` returns the field `q`, here `c`: the stored centre, in `𝕋`. -/
-def Ellipsoid.centre (E : Ellipsoid 𝕋 n) : Vec 𝕋 n := E.c
+/-- CORA's `@ellipsoid/center` returns the field `q`, here `c`: the stored center, in `𝕋`. -/
+def Ellipsoid.center (E : Ellipsoid 𝕋 n) : Vec 𝕋 n := E.c
 
 
 -- ===================================  `Ellipsoid.enclose₂`  =================================== --

@@ -5,9 +5,9 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxDrift
 @[expose] public section
 
 /-!
-# `relaxExpMid`'s centre shift, as stored
+# `relaxExpMid`'s center shift, as stored
 
-Split out of `RelaxExpMid.lean` (issue #62): read again by `relaxCentreMid` in
+Split out of `RelaxExpMid.lean` (issue #62): read again by `relaxCenterMid` in
 this directory and by `Theorems/RelaxExpMidOuter.lean`, both outside this file.
 -/
 
@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The centre shift as stored: half the upward reach less half the downward
+/-- The center shift as stored: half the upward reach less half the downward
 one, in copies of the relaxed generator, rounded down. -/
 def PolyZonotope.relaxShiftMid (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=

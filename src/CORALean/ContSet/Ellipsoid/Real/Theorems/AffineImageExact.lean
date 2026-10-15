@@ -9,7 +9,7 @@ public import Mathlib.Data.Matrix.Mul
 # The affine image of an ellipsoid
 
 [1, Sec. II (affine map)]: `A E(q, Q) + b = E(A q + b, A Q Aᵀ)`, for any `A ∈ ℝ^{m×n}`. In the
-generator form the image has centre `A q + b` and generator `A G`, whose shape is `A Q Aᵀ`
+generator form the image has center `A q + b` and generator `A G`, whose shape is `A Q Aᵀ`
 (`Ellipsoid.shape_mtimes`). A matrix with orthonormal rows and `b = 0` is the projection onto the
 subspace those rows span, as the paper adds.
 

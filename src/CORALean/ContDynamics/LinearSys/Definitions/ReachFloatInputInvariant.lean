@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The four enclosures the loop state `s` owes after `k` passes, steps `Δt`,
-initial states `X₀`, constant input `ũ` and recentred input set `Ũ`. -/
+initial states `X₀`, constant input `ũ` and recentered input set `Ũ`. -/
 def LinearSys.ReachFloatInputInvariant (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : Set (Vec ℝ n))
     (ũ : Vec ℝ n) (Ũ : Float.Zonotope (Vec 𝕋 n)) (k : ℕ)
     (s : Float.Zonotope (Vec 𝕋 n) × Float.Zonotope (Vec 𝕋 n) × Float.Zonotope (Vec 𝕋 n) ×

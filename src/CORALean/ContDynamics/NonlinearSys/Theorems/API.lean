@@ -53,7 +53,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionOfAnalytic
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetAbstrReach
-public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetCentreAbstrReach
+public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetCenterAbstrReach
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ClassicalTrajectoryIffNonlinearSys
 public import CORALean.ContDynamics.NonlinearSys.Theorems.TuneDeltatInitGain
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
@@ -87,8 +87,8 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptLinPassFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptRunFloatOuter
-public import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrStepFloatOuter
-public import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrRunFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrStepFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrRunFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
@@ -120,7 +120,7 @@ the steps. `RelinTimeIntervalOuter` covers a step's interval; `RelinDeltaReachOu
 the run cannot cross a ball of radius `ρ > MΔt` about a step's start, so inflating the computed set
 and checking it discharges it, which `ReachUnionOuter` does at run time for `Reach`. The `ReachSet`
 files say that of the reachable set rather than of a run. `AbstractionErrorOfHessian` is one
-supplier, `AbstrErrLinCenterSubset` minimises what it gives at the centre,
+supplier, `AbstrErrLinCenterSubset` minimises what it gives at the center,
 `AbstractionErrorOfLagrange` is the same one order up, and the `PolyAbstractionError` files are the
 polynomialization variant's: `OfQuadRemainder` builds one, `GetSubset` splits it, `...OfPoly`
 forgets it; `AbstrErrPolySearchEqSome`, `LinReachPolyRegion` and `LinReachPolyOuter` read back what
@@ -129,6 +129,6 @@ Rådström cancellation — `GlobalAbstrErrLeLocalAbstrErr` reads a run's off it
 `BoxDiameterAbstrSolInf` closes that at a zonotope, `RowNormExpansionOfAnalytic` expands its
 coefficients, `GainDimTendstoPow` is the limit gain, `GainDimLePow` its bound, `GainOrderEqTopIff`
 the gain order's point; and `AbstrErrLoopFixed`, `SubsetAbstrReach`, `OptDeltatDescent`,
-`EstimateGainBracket`, `AdaptStepInvariant`, `SubsetCentreAbstrReach` and `TuneDeltatInitGain` are
+`EstimateGainBracket`, `AdaptStepInvariant`, `SubsetCenterAbstrReach` and `TuneDeltatInitGain` are
 what both papers' algorithms are held to. `ReachFloatOuter` is the float run's guarantee.
 -/

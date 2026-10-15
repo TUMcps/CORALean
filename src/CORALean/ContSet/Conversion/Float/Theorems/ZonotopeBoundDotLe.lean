@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 # A zonotope as halfspaces, over a floating-point scalar
 
 A zonotope answers a direction without a linear program, and this layer computes
-that answer with directed rounding: the centre's dot product rounded up, and
+that answer with directed rounding: the center's dot product rounded up, and
 each generator's contribution bounded in absolute value.
 
 The absolute value is where a rounding mode has to be chosen twice. A generator's

@@ -32,7 +32,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- No edge points at `w` and `w` is not the centre, so `w` never joins the ball. -/
+/-- No edge points at `w` and `w` is not the center, so `w` never joins the ball. -/
 theorem GNN.not_mem_ball_of_isolated {N : ℕ} (A : Mat ℝ N N) (v : Fin N) {w : Fin N}
     (hw : ∀ i, A i w = 0) (hwv : w ≠ v) (r : ℕ) : w ∉ GNN.ball A v r := by -- --- PROOF ---
   induction r with

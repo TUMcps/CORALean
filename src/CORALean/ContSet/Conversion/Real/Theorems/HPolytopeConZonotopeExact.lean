@@ -21,7 +21,7 @@ approximated.
 
 The generators come from a box enclosure — anything containing the polytope
 would do — and the rows are then carried onto the coefficients by composing with
-the generator map, after shifting by the centre. What the coefficients must
+the generator map, after shifting by the center. What the coefficients must
 satisfy is exactly what the original rows said, so nothing is lost; the box is
 only there to supply generators, and drops out.
 

@@ -11,7 +11,7 @@ public import Mathlib.Analysis.Calculus.Deriv.Basic
 CORA's `neuralNetwork/backpropIntervalBatch` runs `layer.backpropIntervalBatch` from the last
 layer to the first, each on the interval `[l, u]` the layer received in the forward pass. Two
 layer kinds have the rule written out in the sources read for this row: the linear layer
-(interval bound propagation: centre `W μ + b`, radius `|W| r`) and the activation layer (`gl ←
+(interval bound propagation: center `W μ + b`, radius `|W| r`) and the activation layer (`gl ←
 f'(l) ⊙ gl`, `gu ← f'(u) ⊙ gu`, which is the rule of a monotonically increasing activation, the
 images of `l` and `u` being its bounds). A chain of those two is `IntervalChain`. The activation
 carries its function and its derivative as data, `σ'` being what CORA's `df` is.

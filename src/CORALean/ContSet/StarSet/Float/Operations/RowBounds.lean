@@ -11,8 +11,8 @@ public import CORALean.ContSet.StarSet.Float.StarSet
 
 The neuron `j` is `c_j + Σ_k G_jk α_k` with each factor in `[l_k, u_k]`. Each term is bounded by
 the corner hull of `G_jk` against `[l_k, u_k]`, the lower bounds summed rounding down and the
-upper ones rounding up. These bounds are certified by the rounding alone, not by CORA's centre and
-radius formula (`Real.StarSet.rowBounds`), whose centre is not the one CORA computes.
+upper ones rounding up. These bounds are certified by the rounding alone, not by CORA's center and
+radius formula (`Real.StarSet.rowBounds`), whose center is not the one CORA computes.
 -/
 
 -- Authors:       Claude Opus 5.5

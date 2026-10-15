@@ -10,7 +10,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Comap
 /-!
 # `ConZonotope.cubMap`
 
-CORA's `@conZonotope/cubMap` (`aux_cubMapSingle`): the generators of `Zonotope.cubMap` on the centre
+CORA's `@conZonotope/cubMap` (`aux_cubMapSingle`): the generators of `Zonotope.cubMap` on the center
 and generators, with the constraint `A β = b` kept on the *linear* monomials, the generators
 `(0, 0, j)` whose factor is the old `βⱼ`, and every other monomial factor (`βⱼβₖ`, `2βⱼ² - 1`, the
 cubes, ...) unconstrained. CORA reaches this through the polynomial zonotope `cubMap` of

@@ -23,7 +23,7 @@ them; `ξ ∈ R^z` puts them in the intervals.
 
 By the printed proof. The midpoint part: `σ_c - CF⁻¹φ_c` is the quadratic map of the one
 family `Hᵈ_c⁽ⁱ⁾ - Σⱼ (CF⁻¹)ᵢⱼ Hᵃ_c⁽ʲ⁾` at `ν`, which [1, Lemma 1] encloses in a zonotope whose
-centre and generators are `d - CF⁻¹e` and `H - CF⁻¹V`, the map being linear in the matrices.
+center and generators are `d - CF⁻¹e` and `H - CF⁻¹V`, the map being linear in the matrices.
 The radius part: `|νᵀ(Hᵈ⁽ⁱ⁾ - Hᵈ_c⁽ⁱ⁾)ν| ≤ |ν|ᵀHᵈ_Δ⁽ⁱ⁾|ν| ≤ ζᵢ` as in [1, Thm. 1], the same for
 `φ` and `ϱ`. The printed proof ends with `L_c ⊆ (d + CF⁻¹e, H + CF⁻¹V)`, the sign flipped
 against the statement; the statement's `-` is what holds.
@@ -71,7 +71,7 @@ theorem NonlinDASys.aux_linError_form_sub (A : Mat ℝ q q) (B : Fin p → Mat �
   rw [Matrix.sub_mulVec, dotProduct_sub, Matrix.sum_mulVec, dotProduct_sum]
   simp only [Matrix.smul_mulVec, dotProduct_smul, smul_eq_mul]
 
-/-- The centre of `quad(Hᵈ_c - CF⁻¹Hᵃ_c, R)` is `d - CF⁻¹e`. -/
+/-- The center of `quad(Hᵈ_c - CF⁻¹Hᵃ_c, R)` is `d - CF⁻¹e`. -/
 theorem NonlinDASys.aux_linError_quadMap_sub_c (Hd : Fin n → Mat ℝ q q)
     (Ha : Fin p → Mat ℝ q q) (M : Mat ℝ n p) (R : Zonotope (Vec ℝ q)) :
     (R.quadMap (fun i => Hd i - ∑ j, M i j • Ha j)).c
@@ -163,7 +163,7 @@ theorem NonlinDASys.linError_outer (Hd_c Hd_Δ : Fin n → Mat ℝ q q)
   refine ⟨(1 / 2 : ℝ) • (σc - CF_inv *ᵥ φc), ⟨β, hβ, ?_⟩,
     (1 / 2 : ℝ) • ((fun i => ν ⬝ᵥ ((Hd i - Hd_c i) *ᵥ ν))
       - CF_inv *ᵥ (fun j => ν ⬝ᵥ ((Ha j - Ha_c j) *ᵥ ν))), ?_, ?_⟩
-  -- the midpoint part: `L_c`'s centre and generators are half those of the one family
+  -- the midpoint part: `L_c`'s center and generators are half those of the one family
   · rw [hβeq, NonlinDASys.aux_linError_quadMap_sub_c]
     simp only [smul_add, Finset.smul_sum]
     congr 1

@@ -108,7 +108,7 @@ theorem eq_sum_single [Fintype ι] [DecidableEq ι] (x : α) :
   rw [entry_sum]
   simp [entry_smul, Pi.single_apply]
 
-/-- A centre plus a scaled family, read coordinatewise, with the scalar on the
+/-- A center plus a scaled family, read coordinatewise, with the scalar on the
 right — the form every generator-based representation states its membership in.
 Shared so that each of them states it once. -/
 theorem entry_add_sum_smul {m : ℕ} (c : α) (G : Fin m → α) (β : Fin m → ℝ) (i : ι) :

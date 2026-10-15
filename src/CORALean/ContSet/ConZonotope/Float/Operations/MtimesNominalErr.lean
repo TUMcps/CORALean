@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 /-!
 # `ConZonotope.mtimesNominalErr`: how far `mtimesNominal` can be from the exact product
 
-At every coefficient vector in the unit box, in each coordinate: the centre's rounding, the
+At every coefficient vector in the unit box, in each coordinate: the center's rounding, the
 gap between the rounded-up and rounded-down dot product, plus the generators' rounding summed
 over a row, `radius (matMulDiff M G)`, all rounded up.
 -/

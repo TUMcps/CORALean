@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # The box a layer's fits leave
 
-Each neuron's deviation from its own polynomial is confined to `[-error, error]`: centred at
+Each neuron's deviation from its own polynomial is confined to `[-error, error]`: centered at
 zero, where `neg` is exact, so this box rounds nowhere.
 -/
 

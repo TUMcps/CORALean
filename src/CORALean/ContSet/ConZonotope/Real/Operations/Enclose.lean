@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The centre and generator average and half-difference, CORA's `enclose`
+/-- The center and generator average and half-difference, CORA's `enclose`
 construction. `hh` casts `cZ₂`'s generators and constraints against `cZ₁`'s
 own index. -/
 noncomputable def ConZonotope.enclose (cZ₁ cZ₂ : ConZonotope α) (hh : cZ₁.h = cZ₂.h) :

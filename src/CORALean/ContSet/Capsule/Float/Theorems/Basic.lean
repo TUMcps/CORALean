@@ -4,7 +4,7 @@ public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Float.Operations.Reduce
 public import CORALean.ContSet.Capsule.Float.Operations.Reindex
 public import CORALean.ContSet.Capsule.Real.Instances
-public import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
+public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemConstructIff
 public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
 
 @[expose] public section
@@ -27,16 +27,16 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 
--- ============================  `Capsule.centre_mem_construct_iff`  ============================ --
+-- ============================  `Capsule.center_mem_construct_iff`  ============================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- It is in the capsule exactly when the stored radius is non-negative. -/
-theorem Capsule.centre_mem_construct_iff (C : Capsule 𝕋 n) :
+theorem Capsule.center_mem_construct_iff (C : Capsule 𝕋 n) :
     toRealVec C.c ∈ C.construct ↔ 0 ≤ toReal C.r :=
-  CORALean.Real.Capsule.centre_mem_construct_iff C.nominal
+  CORALean.Real.Capsule.center_mem_construct_iff C.nominal
 
 
 -- ================================  `Capsule.convex_construct`  ================================ --

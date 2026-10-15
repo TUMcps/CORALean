@@ -10,13 +10,13 @@ public import Mathlib.Tactic.FinCases
 /-!
 # `PolyZonotope.sumCora`: `sum` as CORA's code computes it
 
-`@polyZonotope/sum.m` accumulates the centre in a loop over the list, and the body reads
-`c = c + pZlist{1}.c` where it means `pZlist{i}.c`: the first summand's centre is added once
-per summand, and no other. Everything else is `sum`; only the centre differs, and it is wrong
+`@polyZonotope/sum.m` accumulates the center in a loop over the list, and the body reads
+`c = c + pZlist{1}.c` where it means `pZlist{i}.c`: the first summand's center is added once
+per summand, and no other. Everything else is `sum`; only the center differs, and it is wrong
 as soon as the list has two entries that differ (`sum_cora_counterexample`). Read from the
 source, not run.
 
-# CORA's `polyZonotope/sum` has the wrong centre
+# CORA's `polyZonotope/sum` has the wrong center
 
 For `pZ = {0}` and the list `{1}, {2}` (all three are points) the Minkowski sum is `{3}`, and
 `sum` returns it. CORA's loop adds `pZlist{1}.c` twice and returns `{0 + 1 + 1} = {2}`.
@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 
 -- The model: CORA's code as printed, kept only to be refuted.
-/-- `sum` with CORA's centre: `pZ.c` plus `(L 0).c` once for each summand. -/
+/-- `sum` with CORA's center: `pZ.c` plus `(L 0).c` once for each summand. -/
 def PolyZonotope.sumCora {m : ℕ} (pZ : PolyZonotope α) (L : Fin m → PolyZonotope α)
     (hp : ∀ i, (L i).p = pZ.p) : PolyZonotope α :=
   { pZ.sum L hp with
@@ -50,7 +50,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- With no generators of either kind the set is its centre. -/
+/-- With no generators of either kind the set is its center. -/
 theorem PolyZonotope.aux_mem_of_noGens (Z : PolyZonotope ℝ) (hh : Z.h = 0) (hq : Z.q = 0)
     (x : ℝ) : x ∈ Z.construct ↔ x = Z.c := by -- --- PROOF ---
   haveI : IsEmpty (Fin Z.h) := by rw [hh]; infer_instance
@@ -65,12 +65,12 @@ theorem PolyZonotope.aux_mem_of_noGens (Z : PolyZonotope ℝ) (hh : Z.h = 0) (hq
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- CORA's centre is not the sum's, and the sets differ: `{2}` against `{3}`. -/
+/-- CORA's center is not the sum's, and the sets differ: `{2}` against `{3}`. -/
 theorem PolyZonotope.sum_cora_counterexample :
     ∃ (pZ : PolyZonotope ℝ) (L : Fin 2 → PolyZonotope ℝ) (hp : ∀ i, (L i).p = pZ.p),
       (pZ.sumCora L hp).construct ≠ (pZ.sum L hp).construct := by -- --- PROOF ---
   refine ⟨.ofPoint 0, ![.ofPoint 1, .ofPoint 2], fun i => by fin_cases i <;> rfl, fun h => ?_⟩
-  -- both sums are the point at their own centre, `2` against `3`
+  -- both sums are the point at their own center, `2` against `3`
   have h2 : (2 : ℝ) ∈ (PolyZonotope.sumCora (.ofPoint 0) ![.ofPoint 1, .ofPoint 2]
       fun i => by fin_cases i <;> rfl).construct :=
     (PolyZonotope.aux_mem_of_noGens _

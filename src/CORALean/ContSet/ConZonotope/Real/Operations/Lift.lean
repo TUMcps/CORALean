@@ -33,7 +33,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Prop. 3]: the first `m₁` constraint rows move into the generators and the centre. -/
+/-- [1, Prop. 3]: the first `m₁` constraint rows move into the generators and the center. -/
 noncomputable def ConZonotope.lift {n m₁ m₂ h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
     (A : Mat ℝ (m₁ + m₂) h) (b : Vec ℝ (m₁ + m₂)) : ConZonotope (Vec ℝ (n + m₁)) :=
   let A₁ : Mat ℝ m₁ h := fun i => A (Fin.castAdd m₂ i)           -- first m₁ rows of A

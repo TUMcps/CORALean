@@ -9,7 +9,7 @@ public import Mathlib.Data.Fin.VecNotation
 /-!
 # A planar zonotope sheared along the x-axis
 
-`(x, y) ↦ (x - κ y, y)` on the centre and the generators. It fixes the height of every point and
+`(x, y) ↦ (x - κ y, y)` on the center and the generators. It fixes the height of every point and
 the direction of the x-axis, keeps the upper half-plane and the angle order of generators (the
 cross product is unchanged), and takes the line `x - κ y = γ` to the vertical line `x = γ`. So the
 section of `Z` by that line is the vertical section of the sheared zonogon, which is how the

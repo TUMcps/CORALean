@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q m : ℕ}
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `abs(probZ)`: the mean zonotope becomes the float `Zonotope.abs` of itself (centre column
+/-- CORA's `abs(probZ)`: the mean zonotope becomes the float `Zonotope.abs` of itself (center column
 and generators in absolute value, exact) and the covariance interval is kept. As at the real
 layer this is a different set of laws, not an enclosure of the input's. -/
 def ProbZonotope.abs (P : ProbZonotope 𝕋 n) : ProbZonotope 𝕋 n :=
@@ -154,7 +154,7 @@ def ProbZonotope.vPolytope (P : ProbZonotope 𝕋 n) : VPolytope (Vec 𝕋 n) :=
 
 /-- The mean zonotope plus the box `[-ρ, ρ]` of `confidenceRadius`, as diagonal generators. -/
 def ProbZonotope.zonotope (p : ℕ) (P : ProbZonotope 𝕋 n) (m : 𝕋) : Zonotope (Vec 𝕋 n) :=
-  P.Z.plus (Interval.zonotope ⟨fun i => neg (P.confidenceRadius p m i), P.confidenceRadius p m⟩)
+  P.Z.plus (Interval.zonotope ⟨(-(P.confidenceRadius p m)), P.confidenceRadius p m⟩)
 
 
 -- =================================  `ProbZonotope.interval`  ================================== --

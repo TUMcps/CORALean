@@ -56,7 +56,7 @@ def Location.guardIntersectZonoGirardFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zo
     let B := Bs[i]
     -- the cut of one reach set along each column `ℓ` of `B`, `[-U(-ℓ), U(ℓ)]`
     let cut : Zonotope (Vec 𝕋 n) → Interval (Vec 𝕋 n) := fun R =>
-      ⟨fun k => neg (Location.zonoGirardUpperFloat R nv γ fun r => neg (Bᵀ k r)),
+      ⟨fun k => neg (Location.zonoGirardUpperFloat R nv γ (-(Bᵀ k))),
         fun k => Location.zonoGirardUpperFloat R nv γ (Bᵀ k)⟩
     -- `I`, the cuts joined
     let I := (Rs.map cut).foldl Interval.or (cut R₀)

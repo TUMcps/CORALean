@@ -40,13 +40,13 @@ variable {q n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A Euclidean ball lies in a halfspace exactly when its centre does with `r ‖a‖₂` to spare. -/
+/-- A Euclidean ball lies in a halfspace exactly when its center does with `r ‖a‖₂` to spare. -/
 theorem aux_ball_subset_iff (a c : Vec ℝ n) {r : ℝ} (hr : 0 ≤ r) (β : ℝ) :
     (∀ x : Vec ℝ n, ‖x‖₂ ≤ r → a ⬝ᵥ (c + x) ≤ β) ↔ a ⬝ᵥ c + r * ‖a‖₂ ≤ β := by -- --- PROOF ---
   constructor
   · intro h
     rcases (norm₂_nonneg a).eq_or_lt with ha | ha
-    -- a zero normal: the centre alone
+    -- a zero normal: the center alone
     · have := h 0 (by rw [norm₂_zero]; exact hr)
       rw [add_zero] at this
       rw [← ha, mul_zero, add_zero]

@@ -12,7 +12,7 @@ public import Mathlib.Topology.EMetricSpace.Lipschitz
 /-!
 # A Newton test proves a unique zero in a ball
 
-`g : ℝᵏ → ℝᵏ`, a centre `c`, a radius `r` and a matrix `R`, an approximate inverse of the
+`g : ℝᵏ → ℝᵏ`, a center `c`, a radius `r` and a matrix `R`, an approximate inverse of the
 Jacobian trusted for nothing. Between any two points of the sup-norm ball `B` of radius `r`
 about `c`, `g` has a slope `J` (`g a - g a' = J (a - a')`) whose rows of `|1 - R J|` sum to at
 most `qᵢ < 1`, and `qᵢ r + |(R g(c))ᵢ| ≤ r` in every coordinate. Then `g` has exactly one zero
@@ -64,7 +64,7 @@ theorem aux_injective (R J : Mat ℝ k k) (q : Vec ℝ k) (hJ : ∀ i, ∑ j, |(
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A centre, a radius and an approximate inverse `R` passing the test certify exactly one zero of
+/-- A center, a radius and an approximate inverse `R` passing the test certify exactly one zero of
 `g` in the closed sup-norm ball. -/
 theorem existsUnique_zero_of_newtonTest (g : Vec ℝ k → Vec ℝ k) (c : Vec ℝ k) {r : ℝ}
     (hr : 0 ≤ r) (R : Mat ℝ k k) (q : Vec ℝ k)

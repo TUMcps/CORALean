@@ -10,9 +10,9 @@ public import Mathlib.Data.Finset.Sort
 
 CORA's `@polyZonotope/onlyId`: the polynomial zonotope is split into the part that depends on the
 identifiers in `S` alone and a remainder. A dependent generator belongs to the first part when its
-exponent column is `0` outside `S`; that part keeps the centre, drops the independent block and
+exponent column is `0` outside `S`; that part keeps the center, drops the independent block and
 keeps only the exponent rows of `S` (read through `orderIsoOfFin`, as in `rmId`). The remainder
-has the other generators, the centre `0`, all exponent rows and the independent block.
+has the other generators, the center `0`, all exponent rows and the independent block.
 
 CORA deletes the generator columns that do not belong to a part; here they stay as zero generators,
 which changes the representation and not the set.

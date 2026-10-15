@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 [1, Alg. 3]: the zonotope returned contains the whole cloud, "guaranteed to contain all the
 point-vectors". Invariant of the loop: each original point minus its current residual lies in the
-zonotope built so far. A round recentres the residual by `mid`, which `c := c + mid` takes up,
+zonotope built so far. A round recenters the residual by `mid`, which `c := c + mid` takes up,
 and compressing moves it by `t g` with `|t| ≤ 1` (`cloud2zonotopeCompress_mem`), which the segment
 `⟨mid, g⟩` takes up. The residual left at the end lies in its interval hull, a zonotope.
 
@@ -47,7 +47,7 @@ variable {n : ℕ} {κ : Type}
 theorem Zonotope.cloud2zonotope_mem [Fintype κ] [Nonempty κ] (dir : (κ → Vec ℝ n) → Vec ℝ n)
     (ratio : ℝ) (s₁ : ℕ) (s₂ : ℝ) (X : κ → Vec ℝ n) (j : κ) :
     X j ∈ (Zonotope.cloud2zonotope dir ratio s₁ s₂ X).construct := by -- --- PROOF ---
-  -- one round: recentre by `mid`, compress along `g`, add the segment `⟨mid, g⟩`
+  -- one round: recenter by `mid`, compress along `g`, add the segment `⟨mid, g⟩`
   have step : ∀ (Z : Zonotope (Vec ℝ n)) (Y : κ → Vec ℝ n) (mid g : Vec ℝ n),
       (∀ j, X j - Y j ∈ Z.construct) →
       ∀ j, X j - Zonotope.cloud2zonotopeCompress (fun j => Y j - mid) g j ∈

@@ -37,7 +37,7 @@ theorem HPolytope.isInvertedPair_dot {Q : HPolytope 𝕋 (Vec 𝕋 n)} {i j : Fi
   refine ⟨?_, (HPolytope.toReal_eq_of_eqScalar h.1.1.2).trans (toReal_neg _)⟩
   simp only [mulVec, dotProduct, toRealMat, ← Finset.sum_neg_distrib]
   refine Finset.sum_congr rfl fun c _ => ?_
-  rw [HPolytope.toReal_eq_of_eqVec h.1.1.1 c, toReal_neg, neg_mul]
+  rw [HPolytope.toReal_eq_of_eqVec h.1.1.1 c, Pi.neg_apply, toReal_neg', neg_mul]
 
 end CORALean.Float
 

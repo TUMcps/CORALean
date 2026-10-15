@@ -51,14 +51,14 @@ theorem Zonotope.aux_abs_le_nominal {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}
 /-- What the residual does to the nominal part stays within the new generators' radius. -/
 theorem Zonotope.abs_residual_le (IM : Interval (Mat 𝕋 m n)) {Z : Zonotope (Vec 𝕋 n)}
     {R : Mat ℝ m n}
-    (hR : R ∈ (Interval.matResidual IM.inf IM.sup (Interval.centreMat IM)).construct)
+    (hR : R ∈ (Interval.matResidual IM.inf IM.sup (Interval.centerMat IM)).construct)
     {z : Vec ℝ n} (hz : z ∈ nominalSet Z) (i : Fin m) :
     |(R *ᵥ z) i| ≤ toReal (sumUp fun j =>
       mulUp (maximum (absolute ((Interval.matResidual IM.inf IM.sup
-          (Interval.centreMat IM)).inf i j))
-        (absolute ((Interval.matResidual IM.inf IM.sup (Interval.centreMat IM)).sup i j)))
+          (Interval.centerMat IM)).inf i j))
+        (absolute ((Interval.matResidual IM.inf IM.sup (Interval.centerMat IM)).sup i j)))
       (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))) := by -- --- PROOF ---
-  set Rs := Interval.matResidual IM.inf IM.sup (Interval.centreMat IM)
+  set Rs := Interval.matResidual IM.inf IM.sup (Interval.centerMat IM)
   show |∑ j, R i j * z j| ≤ _
   refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans ?_ (sum_le_sumUp _))
   refine Finset.sum_le_sum fun j _ => ?_

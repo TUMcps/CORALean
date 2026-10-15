@@ -149,7 +149,7 @@ LinearSys.autoTuneDeltaT  real-layer: a tuning selector, TAC'23 `Alg. 2` lines 5
 LinearSys.autoTuneOrder  real-layer: a tuning selector, TAC'23 `Alg. 2` lines 9-15, in ℝ arithmetic; runs in floats as `LinearSys.autoTuneOrderFloat`, and `autoStepFloat_outer` holds for whatever it picks
 LinearSys.autoTuneSearch  real-layer: a tuning selector, TAC'23 `Alg. 2` lines 6-15, in ℝ arithmetic; runs in floats as `LinearSys.autoTuneSearchFloat`, and `autoStepFloat_outer` holds for whatever it picks
 LinearSys.bundleReach  real-layer: [1, Alg. 1] at the real exponential `e^{Ar}`, over `Real.ZonoBundle`; runs in floats as `LinearSys.bundleReachFloat` (`bundleReachFloat_outer`)
-LinearSys.canonicalForm  real-layer: the canonical form at real vectors and `Recentre`; runs in floats as `LinearSys.canonicalFormFloat`, the offsets as boxes (`canonicalFormFloat_state_outer`, `canonicalFormFloat_output_outer`)
+LinearSys.canonicalForm  real-layer: the canonical form at real vectors and `Recenter`; runs in floats as `LinearSys.canonicalFormFloat`, the offsets as boxes (`canonicalFormFloat_state_outer`, `canonicalFormFloat_output_outer`)
 LinearSys.constInputSolution  real-layer: a constant input's contribution via `∫e^{Aσ}dσ` and `F̃`; the float layer encloses it as `inputSolutionFloat` at `[0, ũ]` (`reachFloatInput`)
 LinearSys.deltaReach  real-layer: the step's state differences at the real exponential; runs in floats as `LinearSys.deltaReachFloat` (`deltaReachFloat_outer`)
 LinearSys.discretize  real-layer: the exact sampled system `e^{AΔt}`, transcendental; its float refinement is `LinearSys.discretizeEnclosureFloat`
@@ -228,7 +228,7 @@ LinearSys.verifyStep  real-layer: one iteration of the verification loop over `R
 LinearSys.WithInput.reach  real-layer: the reach with inputs; runs in floats as `LinearSys.reachWrappingFreeFloatInput` (or `reachFloatInput`)
 LinearSys.WithInput.reachInstance  real-layer: the `Reach` instance over `WithInput.reach`; runs in floats as `LinearSys.reachWrappingFreeFloatInput`
 LinearSys.WithInput.reachStepk  real-layer: one window with inputs; in floats, an entry of `LinearSys.reachWrappingFreeFloatInput`'s list
-LinearSys.WithInputSplit.reach  real-layer: the reach with the input split at its centre; runs in floats as `LinearSys.reachWrappingFreeFloatInput`, which splits the same way
+LinearSys.WithInputSplit.reach  real-layer: the reach with the input split at its center; runs in floats as `LinearSys.reachWrappingFreeFloatInput`, which splits the same way
 LinearSys.WithInputSplit.reachInstance  real-layer: the `Reach` instance over `WithInputSplit.reach`; runs in floats as `LinearSys.reachWrappingFreeFloatInput`
 LinearSys.WithInputSplit.reachStepk  real-layer: one split window; in floats, an entry of `LinearSys.reachWrappingFreeFloatInput`'s list
 LinearSysDT.conformAdd  real-layer: the conformance check's nominal run and deviation sets at real matrices; no float counterpart yet
@@ -321,9 +321,9 @@ NonlinearSys.abstrStep  real-layer: [Wetzlinger et al. 2022, Alg. 1]'s step at a
 NonlinearSys.adaptLinPass  real-layer: [Wetzlinger et al. 2022, Alg. 2] lines 3-6 at a real `lin` callback; runs in floats as `NonlinearSys.FloatModel.adaptLinPassFloat`, a tuning pass whose sets only feed `adaptStepFloat`'s radii
 NonlinearSys.adaptRun  real-layer: [Wetzlinger et al. 2022]'s adaptive loop at real tuning and a real `lin` callback; runs in floats as `NonlinearSys.FloatHessModel.adaptRunFloat` (`Encloses.adaptRunFloat_outer`)
 NonlinearSys.adaptStep  real-layer: [Wetzlinger et al. 2022, Alg. 2] at real tuning and a real `lin` callback; runs in floats as `NonlinearSys.FloatHessModel.adaptStepFloat` (`Encloses.adaptStepFloat_outer`)
-NonlinearSys.centreAbstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
-NonlinearSys.centreAbstrRun  real-layer: [Wetzlinger et al. HSCC 2021, Alg. 1]'s loop at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.centreAbstrRunFloat` (`Encloses.centreAbstrRunFloat_outer`)
-NonlinearSys.centreAbstrStep  real-layer: [Wetzlinger et al. HSCC 2021, Alg. 1]'s step at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.centreAbstrStepFloat` (`Encloses.centreAbstrStepFloat_outer`)
+NonlinearSys.centerAbstrReach  spec: the `Set` a run's windows denote, a union for theorems; what runs is the `…Run` it unions
+NonlinearSys.centerAbstrRun  real-layer: [Wetzlinger et al. HSCC 2021, Alg. 1]'s loop at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.centerAbstrRunFloat` (`Encloses.centerAbstrRunFloat_outer`)
+NonlinearSys.centerAbstrStep  real-layer: [Wetzlinger et al. HSCC 2021, Alg. 1]'s step at a real `lin` callback and real `Δt`; runs in floats as `NonlinearSys.FloatModel.centerAbstrStepFloat` (`Encloses.centerAbstrStepFloat_outer`)
 NonlinearSys.innerMinkDiff  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] over exact sets, the Minkowski difference and convex hull of `Set`s at the real exponential; no float counterpart, which would need the paper's polytopes, constrained zonotopes and linear programs
 NonlinearSys.innerMinkDiffLoop  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 2-17 over exact sets, the steps of `innerMinkDiffStep`; no float counterpart, see `NonlinearSys.innerMinkDiff`
 NonlinearSys.innerMinkDiffStep  real-layer: [Wetzlinger et al. L-CSS 2024, Alg. 1] lines 3-16 over exact sets at the real exponential and the integral (12); no float counterpart, see `NonlinearSys.innerMinkDiff`

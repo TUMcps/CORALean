@@ -125,7 +125,7 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
   let R : Vec 𝕋 cZ.h := fun j =>
     maximum (ConZonotope.aux_resUp cZ a y zu zl j) (neg (ConZonotope.aux_resDown cZ a y zu zl j))
   { val := addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be)
-      (addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R))))
+      (addUp (dotUp zl (-cZ.P.be)) (sumUp R))))
     le := by
       intro x hx
       obtain ⟨β, hβ, hP, hxβ⟩ := ConZonotope.mem_nominalSet_iff.mp hx
@@ -144,7 +144,7 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
       set Y : Fin cZ.h → ℝ := fun j => ∑ k, toReal (y k) * toReal (cZ.P.A k j) with hY
       set U : Fin cZ.h → ℝ := fun j => ∑ k, toReal (zu k) * toReal (cZ.P.Ae k j) with hU
       set L : Fin cZ.h → ℝ := fun j => ∑ k, toReal (zl k) * toReal (cZ.P.Ae k j) with hL
-      -- `c x` is the centre's reading plus the coefficients against `Gᵀa`
+      -- `c x` is the center's reading plus the coefficients against `Gᵀa`
       have hcx : c x = (∑ i, toReal (a i) * toReal (cZ.c i)) + ∑ j, β j * D j := by
         rw [hc x]
         simp_rw [hxβ, mul_add, Finset.sum_add_distrib]
@@ -169,11 +169,11 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
         rw [← hAeβ]
         exact mul_le_mul_of_nonneg_left (heq k).le (hzu k)
       -- the lower edge of an equality row, read through its negated row
-      have hLb : -toReal (dotUp zl fun k => neg (cZ.P.be k)) ≤ ∑ j, β j * L j := by
+      have hLb : -toReal (dotUp zl (-cZ.P.be)) ≤ ∑ j, β j * L j := by
         rw [hL, ← ConZonotope.aux_sum_swap (fun k => toReal (zl k))
           (fun k j => toReal (cZ.P.Ae k j)) β]
-        have hd := le_dotUp zl fun k => neg (cZ.P.be k)
-        simp only [toReal_neg, mul_neg, Finset.sum_neg_distrib] at hd
+        have hd := le_dotUp zl (-cZ.P.be)
+        simp only [Pi.neg_apply, toReal_neg', mul_neg, Finset.sum_neg_distrib] at hd
         refine le_trans (neg_le.mp hd) (Finset.sum_le_sum fun k _ => ?_)
         rw [← hAeβ]
         exact mul_le_mul_of_nonneg_left (heq k).ge (hzl k)
@@ -197,13 +197,13 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
           _ ≤ toReal (R j) := by rw [one_mul]; exact habs
       -- the four outer additions, each rounded up
       have hc0 := le_dotUp a cZ.c
-      have r1 := add_le_addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R)
+      have r1 := add_le_addUp (dotUp zl (-cZ.P.be)) (sumUp R)
       have r2 := add_le_addUp (dotUp zu cZ.P.be)
-        (addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R))
+        (addUp (dotUp zl (-cZ.P.be)) (sumUp R))
       have r3 := add_le_addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be)
-        (addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R)))
+        (addUp (dotUp zl (-cZ.P.be)) (sumUp R)))
       have r4 := add_le_addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b)
-        (addUp (dotUp zu cZ.P.be) (addUp (dotUp zl fun k => neg (cZ.P.be k)) (sumUp R))))
+        (addUp (dotUp zu cZ.P.be) (addUp (dotUp zl (-cZ.P.be)) (sumUp R))))
       rw [hcx, hsplit]
       linarith }
 

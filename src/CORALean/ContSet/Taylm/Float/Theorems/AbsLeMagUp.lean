@@ -7,8 +7,8 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 /-!
 # `Taylm.magUp` bounds the hull
 
-Every point of the hull of the centre and the range has absolute value at most
-`Taylm.magUp`, and so has the centre itself.
+Every point of the hull of the center and the range has absolute value at most
+`Taylm.magUp`, and so has the center itself.
 -/
 
 -- Authors:       Claude Opus 5.5

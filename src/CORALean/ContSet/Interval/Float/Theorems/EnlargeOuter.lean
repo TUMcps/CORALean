@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Enlarge
 # `Interval.enlarge` holds the exact layer's enlargement
 
 For a nonnegative factor `f`, the real box `[c - f·r, c + f·r]` of the stored box's reading sits
-inside the stored one: the centre is rounded away on each side, the half-width is rounded up, and a
+inside the stored one: the center is rounded away on each side, the half-width is rounded up, and a
 nonnegative factor keeps the product's rounding in the outward direction. Not exact.
 -/
 

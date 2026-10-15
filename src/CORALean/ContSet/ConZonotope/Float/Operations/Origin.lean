@@ -10,7 +10,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
 # `ConZonotope.origin`, over a floating-point scalar
 
 The point `0` as a constrained zonotope with no generators and no constraints, the
-centre stored as `zero` and the error box at zero.
+center stored as `zero` and the error box at zero.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -5,10 +5,10 @@ public import CORALean.ContSet.Interval.Real.Theorems.IntervalMatrixEq
 @[expose] public section
 
 /-!
-# The corner `sup` is `radius` from the centre
+# The corner `sup` is `radius` from the center
 
-The upper corner minus the centre is the half-width, so the corner is at distance `‖radius‖₂`
-from the centre.
+The upper corner minus the center is the half-width, so the corner is at distance `‖radius‖₂`
+from the center.
 -/
 
 -- Authors:       Claude Opus 5.5

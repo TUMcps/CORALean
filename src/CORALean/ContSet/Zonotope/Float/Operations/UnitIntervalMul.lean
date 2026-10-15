@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.unitIntervalMul`, `[-1, 1] ⊗ Z` at a float zonotope
 
-`Real.Zonotope.unitIntervalMul`, [1, Eq. 11]: the centre becomes a generator and the new centre
+`Real.Zonotope.unitIntervalMul`, [1, Eq. 11]: the center becomes a generator and the new center
 is `0`. The error box `I_error` scales by `s ∈ [-1, 1]` too, so it becomes its symmetric hull
 `[-m, m]`, `mᵢ = max(|E̲ᵢ|, |Ēᵢ|)`; `neg`, `absolute` and `maximum` are exact, so nothing rounds.
 
@@ -42,7 +42,7 @@ def Zonotope.unitIntervalMul (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n)
   { h := Z.h + 1
     c := fun _ => zero
     G := Fin.cons Z.c Z.G
-    I_error := ⟨fun i => neg (m i), m⟩ }
+    I_error := ⟨-m, m⟩ }
 
 end CORALean.Float
 

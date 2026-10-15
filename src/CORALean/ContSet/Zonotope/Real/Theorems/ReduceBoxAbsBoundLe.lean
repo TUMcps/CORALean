@@ -35,7 +35,7 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The box's own `absBound`, read off its diagonal generators at a
-coordinate: the dropped rows' `1`-norm there, and nothing from the centre. -/
+coordinate: the dropped rows' `1`-norm there, and nothing from the center. -/
 theorem aux_reduceByBox_absBound {n q r : ℕ} (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (j : Fin n) :
     (Z.reduceByBox part).absBound j = ∑ l, |Z.G (part.right l) j| := by -- --- PROOF ---
@@ -54,7 +54,7 @@ theorem aux_reduceByBox_absBound {n q r : ℕ} (Z : Zonotope (Vec ℝ n))
 
 /-- `reduceBox`'s own `absBound` never exceeds the source zonotope's: a
 dropped generator is one of `Z`'s own, and the origin at an order already met
-is no further than `Z`'s own centre, `absBound` being non-negative. -/
+is no further than `Z`'s own center, `absBound` being non-negative. -/
 theorem Zonotope.reduceBox_absBound_le (Z : Zonotope (Vec ℝ n)) (o : ℕ) (j : Fin n) :
     (Z.reduceBox o).absBound j ≤ Z.absBound j := by -- --- PROOF ---
   unfold Zonotope.reduceBox

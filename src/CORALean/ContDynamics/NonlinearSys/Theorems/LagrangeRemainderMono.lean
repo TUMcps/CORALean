@@ -48,7 +48,7 @@ variable {d n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- One coordinate of a zonotope's point, written as its centre plus what the
+/-- One coordinate of a zonotope's point, written as its center plus what the
 generators contribute there. -/
 theorem aux_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) (zs : Vec ℝ d) (j : Fin d) :
     (Z.c + ∑ k, β k • Z.G k) j - zs j = (Z.c j - zs j) + ∑ k, β k * Z.G k j := by

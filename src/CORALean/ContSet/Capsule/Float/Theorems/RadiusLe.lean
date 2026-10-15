@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.Basic
-public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCenterLe
 
 @[expose] public section
 
 /-!
-# Every point of a float capsule is within `radius` of the nominal centre
+# Every point of a float capsule is within `radius` of the nominal center
 
-The exact layer's `norm₂_sub_centre_le` at the nominal capsule, with `√(Σ g²)` replaced by its
+The exact layer's `norm₂_sub_center_le` at the nominal capsule, with `√(Σ g²)` replaced by its
 rounded-up `normUp` and the sum by `addUp`.
 -/
 
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Capsule.radius_le (k : ℕ) (C : Capsule 𝕋 n) {x : Vec ℝ n} (hx : x ∈ C.construct) :
     ‖x - toRealVec C.c‖₂ ≤ toReal (C.radius k) := by -- --- PROOF ---
-  have h₁ := CORALean.Real.Capsule.norm₂_sub_centre_le (C := C.nominal) hx
+  have h₁ := CORALean.Real.Capsule.norm₂_sub_center_le (C := C.nominal) hx
   have h₂ : ‖toRealVec C.g‖₂ ≤ toReal (normUp k C.g) :=
     norm₂_le_normUp k fun j => le_rfl
   have h₃ := add_le_addUp (normUp k C.g) C.r

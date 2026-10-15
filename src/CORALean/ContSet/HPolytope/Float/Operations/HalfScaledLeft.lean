@@ -52,7 +52,7 @@ def HPolytope.halfScaledLeft (P : HPolytope 𝕋 (Vec 𝕋 n₁)) (n₂ : ℕ) :
     ((HPolytope.ineqs (fun i => Fin.append (Fin.append (P.Ae i) fun _ : Fin n₂ => zero)
           fun _ : Fin 1 => neg (half (P.be i)))
         fun i => half (P.be i)).stackRows
-      (HPolytope.ineqs (fun i => Fin.append (Fin.append (fun k => neg (P.Ae i k))
+      (HPolytope.ineqs (fun i => Fin.append (Fin.append (-(P.Ae i))
             fun _ : Fin n₂ => zero) fun _ : Fin 1 => neg (half (neg (P.be i))))
         fun i => half (neg (P.be i))))
 

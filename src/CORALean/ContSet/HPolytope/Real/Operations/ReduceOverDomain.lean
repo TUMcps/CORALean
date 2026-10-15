@@ -13,7 +13,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.DualVec
 CORA's `reduceOverDomain`: the constraints of `P` replaced by the single halfspace
 `A_reduced' x ≤ b_reduced`. The normalized rows `A_` are enclosed by the interval vector `A`
 (`min`/`max` over the rows) and the right-hand sides by the interval `b`; `A_reduced` is the
-centre of `A`, and `b_reduced = b - (A - A_reduced)' * dom`, an interval, of which type `'outer'`
+center of `A`, and `b_reduced = b - (A - A_reduced)' * dom`, an interval, of which type `'outer'`
 takes the supremum and the other type the infimum. Equality constraints are not read.
 -/
 

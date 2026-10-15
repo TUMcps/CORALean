@@ -52,7 +52,7 @@ theorem lagrangeRemainderFloat_outer {d n : ℕ} {Ef : Fin n → Fin d → Mat �
     (lagrangeRemainder E Zr (toRealVec zs)).construct ⊆
       (lagrangeRemainderFloat Ef Z zs).construct := by -- --- PROOF ---
   intro y hy i
-  set γ : Vec 𝕋 d := (Interval.plus Z.interval (Interval.point fun j => neg (zs j))).normMag
+  set γ : Vec 𝕋 d := (Interval.plus Z.interval (Interval.point (-zs))).normMag
     with hγ
   set γr : Vec ℝ d := fun j => |Zr.c j - toRealVec zs j| + ∑ k, |Zr.G k j| with hγr
   -- the exact radius is attained inside the float zonotope's box, so the float one bounds it
@@ -60,10 +60,10 @@ theorem lagrangeRemainderFloat_outer {d n : ℕ} {Ef : Fin n → Fin d → Mat �
     obtain ⟨z, hz, hat⟩ := Real.Zonotope.radius_attained Zr (toRealVec zs) j
     refine le_trans hat ?_
     -- `z - z✱` is in the box `Z' - z✱`, whose largest magnitude is `normMag`
-    have hbox := Interval.plus_outer Z.interval (Interval.point fun j => neg (zs j))
+    have hbox := Interval.plus_outer Z.interval (Interval.point (-zs))
       (Set.add_mem_add (Zonotope.interval_contains Z (hZ hz))
-        (Interval.mem_point (α := Vec 𝕋 d) fun j => neg (zs j)))
-    have hneg : (RealImage.realImage (α := Vec 𝕋 d) fun j => neg (zs j) : Vec ℝ d) =
+        (Interval.mem_point (α := Vec 𝕋 d) (-zs)))
+    have hneg : (RealImage.realImage (α := Vec 𝕋 d) (-zs) : Vec ℝ d) =
         -toRealVec zs := funext fun j => toReal_neg (zs j)
     rw [hneg, ← sub_eq_add_neg] at hbox
     obtain ⟨h1, h2⟩ := hbox j

@@ -5,9 +5,9 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
 @[expose] public section
 
 /-!
-# [1, Thm. 1]'s printed centre shift `+ξ_E/2` does not enclose
+# [1, Thm. 1]'s printed center shift `+ξ_E/2` does not enclose
 
-[1, Thm. 1] recentres the relaxed polynomial zonotope by `+ξ_E/2` of the dropped generator
+[1, Thm. 1] recenters the relaxed polynomial zonotope by `+ξ_E/2` of the dropped generator
 `g_i` where `relaxExpEven` shifts by `-ξ_E/2`. Under the orientation `E_{k₀,j} ≤ E_{k₀,i}`
 that `Alg. 2`'s edges have, both exponents even, the drift `α^{E_i} - α^{E_j}` is
 non-positive, so the printed sign moves the set off the drift. One dimension is enough:
@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Thm. 1] as printed: the relaxation recentred by `+ξ_E/2` does not enclose, even
+/-- [1, Thm. 1] as printed: the relaxation recentered by `+ξ_E/2` does not enclose, even
 with the evenness of `E_{k₀,j}` and the orientation `E_{k₀,j} ≤ E_{k₀,i}` supplied. -/
 theorem PolyZonotope.relaxExpEven_printed_counterexample :
     ¬ ∀ (pZ : PolyZonotope ℝ) (d : ℕ) (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2))

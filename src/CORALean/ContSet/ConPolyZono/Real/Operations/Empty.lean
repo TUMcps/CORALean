@@ -27,7 +27,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `conPolyZono.empty(n)`: the centre `0`, no generators, and the unsatisfiable row `1 ≤ 0`. -/
+/-- `conPolyZono.empty(n)`: the center `0`, no generators, and the unsatisfiable row `1 ≤ 0`. -/
 def ConPolyZono.empty (n : ℕ) : ConPolyZono (Vec ℝ n) :=
   ⟨0, 0, 0, 1, 0, 0, Fin.elim0, Fin.elim0, Fin.elim0, 0, ⟨fun _ => 1, fun _ => 0⟩, Fin.elim0⟩
 

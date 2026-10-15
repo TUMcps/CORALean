@@ -13,7 +13,7 @@ CORA's `polytope` with `isVRep` set, its vertices held in `𝕋`, plus the error
 that makes it an `InflatedContSet`.
 
 The box is the only sound place to pay. Rounding a vertex moves a point, and
-there is no direction to move it that enlarges the hull — a hull has no centre
+there is no direction to move it that enlarges the hull — a hull has no center
 to move away from — so what rounding costs cannot be absorbed into the vertices
 the way an interval absorbs it into its bounds.
 

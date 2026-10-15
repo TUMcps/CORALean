@@ -21,7 +21,7 @@ matrix is copied, so the two layers relax by the same width. At `ξ_E ≤ 1` tha
 column folds against `zero` alone, which no format moves and only the axioms
 leave open; the paper's graph selects exactly those pairs.
 
-The centre is untouched, `ξ_c` being zero at `ξ_G = ξ_E`, so this operation adds
+The center is untouched, `ξ_c` being zero at `ξ_G = ξ_E`, so this operation adds
 nothing to the box beyond the two gaps.
 -/
 

@@ -62,7 +62,7 @@ directly as well. CORA's `PRad-E` assembles Eq. 17 with a block untransposed
 ## Findings
 
 **`Eq. 10` — the enclosure is for the fault-free output.** The zonotope bounds `x_{k+1}` of the
-system with sensor faults, but the fault `E f_k` enters only through `y_k`, into the centre. With
+system with sensor faults, but the fault `E f_k` enters only through `y_k`, into the center. With
 `f_k = 0` the enclosure holds for every gain
 ([`FaultObserveOuter.lean`](../../src/CORALean/ContDynamics/LinearSysDT/Theorems/Real/FaultObserveOuter.lean));
 with a fault it can fail: in one dimension with `A = 0`, `C = L = E = 1`, no noise, `X̂_k = {0}`,

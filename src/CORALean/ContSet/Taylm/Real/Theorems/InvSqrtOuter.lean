@@ -11,7 +11,7 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 /-!
 # `Taylm.invSqrt` encloses `1 / sqrt ∘ f`
 
-[1, Def. 3 (1/sqrt)] where, as the source asks, the range and the centre are positive. The
+[1, Def. 3 (1/sqrt)] where, as the source asks, the range and the center are positive. The
 derivatives are `iter_deriv_rpow_const`'s; a negative power decreases, so the bottom of the
 range bounds them, and `x^(-1/2) = 1/√x` for positive `x`.
 

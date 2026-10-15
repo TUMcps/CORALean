@@ -15,7 +15,7 @@ part plus a point of its independent zonotope. The first is a chord of the part 
 `linComb_outer` puts in the inner `linComb`, and a chord of that set with anything of the other
 side's, which puts it in the outer one (the parameter `1` for the first operand, `0` for the
 second).
-The second is a chord of the two zero-centred zonotopes, `Zonotope.linComb_outer`. The outer
+The second is a chord of the two zero-centered zonotopes, `Zonotope.linComb_outer`. The outer
 `linComb` has no independent generators, so replacing them by the zonotope's loses nothing.
 
 The statement is an enclosure of the *union*. It is not the convex hull of the union: the set the
@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- Where `R` has no independent generators, a point of `R` and a point of a zero-centred zonotope
+/-- Where `R` has no independent generators, a point of `R` and a point of a zero-centered zonotope
 add to a point of `R` with the zonotope's generators in its independent block. -/
 theorem PolyZonotope.aux_replaceGI_mem (R : PolyZonotope α) (hq : R.q = 0) (Z : Zonotope α)
     (hc : Z.c = 0) {d z : α} (hd : d ∈ R.construct) (hz : z ∈ Z.construct) :
@@ -57,7 +57,7 @@ theorem PolyZonotope.aux_point_mem_linComb (P : PolyZonotope α) {a : Fin P.p �
     P.point_mem_construct ha, 1, ⟨zero_le_one, le_rfl⟩, ?_⟩
   simp
 
-/-- A zero-centred zonotope is in the chords with another one. -/
+/-- A zero-centered zonotope is in the chords with another one. -/
 theorem PolyZonotope.aux_mem_linComb_left {Z₁ Z₂ : Zonotope α} (h₂ : (0 : α) ∈ Z₂.construct)
     {z : α} (hz : z ∈ Z₁.construct) : z ∈ (Z₁.linComb Z₂).construct :=
   Zonotope.linComb_outer Z₁ Z₂ ⟨z, hz, 0, h₂, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩

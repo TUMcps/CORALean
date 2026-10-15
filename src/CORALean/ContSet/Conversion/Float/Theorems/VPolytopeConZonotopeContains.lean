@@ -15,7 +15,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 # A hull as a constrained zonotope, over a floating-point scalar
 
 Exact, and nothing rounds: the vertices become the generators unchanged, the
-centre is zero, the error box is carried over, and the constraint polytope is
+center is zero, the error box is carried over, and the constraint polytope is
 the standard simplex — whose entries are `one` and `zero` and whose right-hand
 side is `one`.
 

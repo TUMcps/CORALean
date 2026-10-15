@@ -15,8 +15,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 float zonotope. `linInput`'s `- A x✱` is gone with the shift, which is what keeps
 the constant input small: it is the field at the expansion point, not that minus
 a matrix times a state of any size. `f(x✱,u✱)` enters as the model's box at the
-point; `U ⊖ u✱` is `recentre U`, the input set with its stored centre taken out,
-so `u✱` is that centre and nothing is rounded there; `L` is `slopeRemainder`.
+point; `U ⊖ u✱` is `recenter U`, the input set with its stored center taken out,
+so `u✱` is that center and nothing is rounded there; `L` is `slopeRemainder`.
 
 `X` and `U'` are boxes the caller certifies: `X` has to hold every state of the
 step and `x✱`, `U'` every input and `u✱`.
@@ -48,7 +48,7 @@ def NonlinearSys.FloatModel.linInputFloat (fm : NonlinearSys.FloatModel 𝕋 n m
   let f₀ := fm.f (Interval.point xs) (Interval.point us)            -- [f(x✱, u✱)]
   let L := fm.slopeRemainder A B xs us X U'                         -- L, the abstraction error
   (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
-    (Recentre.recentre U)) ⊞ L.zonotope
+    (Recenter.recenter U)) ⊞ L.zonotope
 
 end CORALean
 

@@ -53,7 +53,7 @@ def HPolytope.anchorEqs (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec 𝕋 P.me) :
   | none =>
     -- each equality as its two inequalities, widened by its residual
     { m := P.m + (P.me + P.me)
-      A := Fin.append P.A (Fin.append P.Ae fun i j => neg (P.Ae i j))
+      A := Fin.append P.A (Fin.append P.Ae (-P.Ae))
       b := Fin.append P.b
         (Fin.append (fun i => addUp (P.be i) (ε i)) fun i => addUp (neg (P.be i)) (ε i))
       me := 0

@@ -21,7 +21,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # `ConZonotope.mtimesIntervalMat` over-approximates every image
 
 `Zonotope.mtimesIntervalMat_outer`'s argument with the constraints along. A point `x = z + e`
-of the set has coefficients `β` of the constraints; the centre matrix `mid(M)` maps it through
+of the set has coefficients `β` of the constraints; the center matrix `mid(M)` maps it through
 `ConZonotope.mtimes_outer`, which keeps `β`, and what any `A` of the interval matrix does
 beyond `mid(M)` is `R = A - mid(M)`, a matrix in `matResidual`. On the nominal part `R z` is
 within the new generators' radius, so one new coefficient per coordinate absorbs it, and those
@@ -63,14 +63,14 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
   obtain ⟨z, hz, e, he, rfl⟩ := hxmem
-  set C := Interval.centreMat IM
+  set C := Interval.centerMat IM
   set Rs := Interval.matResidual IM.inf IM.sup C
   set R : Mat ℝ m n := fun i j => A i j - toReal (C i j)
-  -- the centre matrix acts through `mtimes`, already proven sound
+  -- the center matrix acts through `mtimes`, already proven sound
   obtain ⟨t₀, ht₀, e₀, he₀, hsum⟩ :=
     ConZonotope.mtimes_outer C cZ ⟨z + e, ⟨z, hz, e, he, rfl⟩, rfl⟩
   have hsum' : t₀ + e₀ = toRealMat C *ᵥ (z + e) := hsum
-  -- `A` known only to within `matResidual` of the centre matrix
+  -- `A` known only to within `matResidual` of the center matrix
   have hR : R ∈ Rs.construct := Interval.sub_mem_matResidual fun i j => hA (i, j)
   -- the residual on the error box, box times box
   have hRe : R *ᵥ e ∈ (Interval.mtimesIntervalMat Rs cZ.I_error).construct :=
@@ -105,7 +105,7 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
       show blockLeft cZ.h m (Fin.append γ _) ∈ _
       rw [blockLeft_append]
       exact hPγ
-    · -- the stored centre and generators recombine into the image
+    · -- the stored center and generators recombine into the image
       show t₀ i + (R *ᵥ z) i = toReal (mulVecDown C cZ.c i)
         + ∑ j : Fin (cZ.h + m), toReal (Fin.append (fun j => mulVecDown C (cZ.G j))
           (diagonalBlock b) j i) * Fin.append (m := cZ.h) γ

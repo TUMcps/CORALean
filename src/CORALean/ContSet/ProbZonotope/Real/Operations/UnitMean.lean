@@ -7,7 +7,7 @@ public import CORALean.ContSet.ProbZonotope.Real.ProbZonotope
 /-!
 # The mean zonotope `[-1, 1]` with no covariance
 
-In `ℝ¹`, centre `0`, one generator `1`, covariance `0`: the example on which CORA's `interval` and
+In `ℝ¹`, center `0`, one generator `1`, covariance `0`: the example on which CORA's `interval` and
 `sup`, which read the covariance's eigen factor alone, return the point `0` (`IntervalCoraNotMem`,
 `SupCoraLt`).
 -/

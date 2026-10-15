@@ -48,13 +48,13 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 def lagrangeRemainderFloat {d n : ℕ} (E : Fin n → Fin d → Mat 𝕋 d d) (Z : Zonotope (Vec 𝕋 d))
     (zs : Vec 𝕋 d) : Interval (Vec 𝕋 n) :=
   let Z' := Z.interval                                              -- Z's box
-  let γ : Vec 𝕋 d := (Interval.plus Z' (Interval.point fun j => neg (zs j))).normMag  -- |z - z✱|
+  let γ : Vec 𝕋 d := (Interval.plus Z' (Interval.point (-zs))).normMag  -- |z - z✱|
   let Eabs := fun i j (k l : Fin d) => absolute (E i j k l)         -- |Eᵢⱼ|
   let eighth := half (half (half one))                              -- 1/8
   let sixth := addUp eighth (addUp (half (half eighth)) (half (half (half eighth))))  -- 11/64
   let l : Vec 𝕋 n := fun i =>                                       -- (1/6) Σⱼ γⱼ (γᵀ Eᵢⱼ γ)
     mulUp (sumUp fun j => mulUp (γ j) (bilinUp γ (Eabs i j) γ)) sixth
-  ⟨fun i => neg (l i), l⟩                                           -- [-l, l]
+  ⟨-l, l⟩                                           -- [-l, l]
 
 end CORALean
 

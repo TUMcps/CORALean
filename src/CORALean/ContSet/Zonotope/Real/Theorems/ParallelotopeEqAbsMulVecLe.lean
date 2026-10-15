@@ -13,7 +13,7 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 rows that cut out `∑ᵢ [-1, 1] wᵢ` are those of the inverse of the matrix `W` of the `wᵢ`.
 So `{x | |zᵢᵀ x| ≤ 1}` is the parallelotope spanned by the columns of `Z⁻¹`, `Z` the matrix
 with rows `zᵢ`, which is the reading the rest of the reduction needs: its polar is
-`conv(±zᵢ)`. Centred anywhere.
+`conv(±zᵢ)`. Centered anywhere.
 
 ## References
 

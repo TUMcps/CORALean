@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 /-!
 # The `minnorm` ball lies in the zonotope
 
-For a zonotope whose generators span the space, the Euclidean ball around the centre of radius
+For a zonotope whose generators span the space, the Euclidean ball around the center of radius
 `minnorm Z` is inside `Z`: every point of it satisfies each facet inequality, by Cauchy-Schwarz
 against the unit row, and the facet inequalities are the zonotope (`hRep_eq` [1, Thm. 2]).
 

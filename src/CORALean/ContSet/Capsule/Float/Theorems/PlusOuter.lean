@@ -10,8 +10,8 @@ public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
 # `Capsule.plus` encloses the sum
 
 The exact layer's `plus_outer_keep_left` gives the sum inside the capsule that keeps one
-generator, with the centre added exactly. `construct_subset_of_dist_le` moves it to the stored
-capsule: the centre is `‖c₁ + c₂ - c‖₂` away, which `rounding` bounds, and the generator is the
+generator, with the center added exactly. `construct_subset_of_dist_le` moves it to the stored
+capsule: the center is `‖c₁ + c₂ - c‖₂` away, which `rounding` bounds, and the generator is the
 same.
 -/
 
@@ -32,8 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The stored centre is within `rounding` of the exact sum of the stored centres. -/
-private theorem aux_centre_gap_le (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) :
+/-- The stored center is within `rounding` of the exact sum of the stored centers. -/
+private theorem aux_center_gap_le (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) :
     ‖(toRealVec C₁.c + toRealVec C₂.c) - toRealVec (fun i => addDown (C₁.c i) (C₂.c i))‖₂ ≤
       toReal (normUp k fun i =>
         subUp (addUp (C₁.c i) (C₂.c i)) (addDown (C₁.c i) (C₂.c i))) := by -- --- PROOF ---
@@ -53,8 +53,8 @@ private theorem aux_centre_gap_le (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) :
 theorem Capsule.plus_outer (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) :
     C₁.construct + C₂.construct ⊆ (C₁.plus k C₂).construct := by -- --- PROOF ---
   rintro _ ⟨x₁, h₁, x₂, h₂, rfl⟩
-  -- the rounding of the centre, and the generators' lengths
-  have hr := aux_centre_gap_le k C₁ C₂
+  -- the rounding of the center, and the generators' lengths
+  have hr := aux_center_gap_le k C₁ C₂
   set gap := normUp k fun i => subUp (addUp (C₁.c i) (C₂.c i)) (addDown (C₁.c i) (C₂.c i))
   have hg₁ : ‖toRealVec C₁.g‖₂ ≤ toReal (normUp k C₁.g) := norm₂_le_normUp k fun j => le_rfl
   have hg₂ : ‖toRealVec C₂.g‖₂ ≤ toReal (normUp k C₂.g) := norm₂_le_normUp k fun j => le_rfl

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.EmptySet.Real.Theorems.IsequalIff
 public import CORALean.ContSet.EmptySet.Real.Theorems.RadiusEq
-public import CORALean.ContSet.EmptySet.Real.Theorems.CentreIsSomeIff
+public import CORALean.ContSet.EmptySet.Real.Theorems.CenterIsSomeIff
 public import CORALean.ContSet.EmptySet.Real.Theorems.AndExact
 public import CORALean.ContSet.EmptySet.Real.Theorems.Basic
 public import CORALean.ContSet.EmptySet.Real.Theorems.ConstructNeSingleton

@@ -20,8 +20,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 # The float interval observer holds the true state
 
 [1, Alg. 1]: every run `x_{k+1} = A x_k + u_k + ω_k` with `ω_k ∈ W`, measurements
-`y_k = C x_k + v_k`, `v_k ∈ V` and initial error `x_0 - c ∈ R₀`, `c` the centre of `R₀`, is in the
-box `observeIntervalFloat` returns at every step. (The initial error is `x_0` minus the centre,
+`y_k = C x_k + v_k`, `v_k ∈ V` and initial error `x_0 - c ∈ R₀`, `c` the center of `R₀`, is in the
+box `observeIntervalFloat` returns at every step. (The initial error is `x_0` minus the center,
 which is what the real `observeInterval_outer` assumes, and which CORA's `Hinf-G` omits.) The
 error obeys `e_{k+1} = (A - L C) e_k + (ω_k - L v_k)`; the three parts of its closed form are in
 `R_x`, `R_wv`, and the nominal estimate is in its own box, with every quantity the real value of a
@@ -72,7 +72,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (L : M
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
     {d : Vec ℝ n}
-    (hd : d ∈ ((Zonotope.mtimes (fun i j => neg (L i j)) V).plus W).construct) (k : ℕ) :
+    (hd : d ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) :
     (M ^ k) *ᵥ d ∈
       (sys.observeIntervalStateFloat L R₀ W V u y k).D.construct := by -- --- PROOF ---
   induction k with
@@ -87,7 +87,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (L :
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
     (d : ℕ → Vec ℝ n)
-    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (fun i j => neg (L i j)) V).plus W).construct) (k : ℕ) :
+    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) :
     ∑ m ∈ Finset.range k, (M ^ m) *ᵥ d m ∈
       (sys.observeIntervalStateFloat L R₀ W V u y k).Rwv.construct := by -- --- PROOF ---
   induction k with
@@ -122,18 +122,16 @@ theorem LinearSysDT.observeIntervalFloat_outer (sys : LinearSysDT 𝕋 n) (L : M
   have hM := LinearSysDT.errMatFloat_mem sys.A L sys.C
   -- the disturbance terms `ω_j - L v_j` lie in `D`'s initial set `(-L) V ⊕ W`
   have hd : ∀ j, w j - toRealMat L *ᵥ v j ∈
-      ((Zonotope.mtimes (fun i j => neg (L i j)) V).plus W).construct := fun j => by
-    have hneg : toRealMat (fun i j => neg (L i j)) = -toRealMat L := by
-      funext i l
-      simp [toRealMat, toReal_neg]
-    refine Zonotope.plus_outer _ _ ⟨toRealMat (fun i j => neg (L i j)) *ᵥ v j,
+      ((Zonotope.mtimes (-L) V).plus W).construct := fun j => by
+    have hneg : toRealMat (-L) = -toRealMat L := toRealMat_neg _
+    refine Zonotope.plus_outer _ _ ⟨toRealMat (-L) *ᵥ v j,
       Zonotope.mtimes_outer _ V ⟨v j, hv j, rfl⟩, w j, hw j, ?_⟩
     rw [hneg, Matrix.neg_mulVec]
     abel_nf
   -- the nominal estimate and the error's closed form, carried together
   have key : ∀ k, ∃ xh ∈ (sys.observeIntervalStateFloat L R₀ W V u y k).x.construct,
       ∃ ds : ℕ → Vec ℝ n,
-        (∀ m, ds m ∈ ((Zonotope.mtimes (fun i j => neg (L i j)) V).plus W).construct) ∧
+        (∀ m, ds m ∈ ((Zonotope.mtimes (-L) V).plus W).construct) ∧
         x k = xh + ((M ^ k) *ᵥ (x 0 - toRealVec R₀.c) +
           ∑ m ∈ Finset.range k, (M ^ m) *ᵥ ds m) := by
     intro k

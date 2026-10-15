@@ -10,8 +10,8 @@ public import Mathlib.Data.Matrix.Basic
 /-!
 # A point of the prediction, from a point of the old estimate and the disturbance
 
-[1, Eq. 2]: the prediction `A X̂ ⊕ F Bᵐ` has, around its centre, the points `A θ + F γ`, with
-`p + θ` a point of the old estimate `X̂` (centre `p`) and `γ` in the unit box. The first step of
+[1, Eq. 2]: the prediction `A X̂ ⊕ F Bᵐ` has, around its center, the points `A θ + F γ`, with
+`p + θ` a point of the old estimate `X̂` (center `p`) and `γ` in the unit box. The first step of
 every P-radius bound of [1, Eq. 4] to [1, Alg. 2].
 
 ## References
@@ -37,7 +37,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A point of `A X ⊕ F Bᵐ` is its centre plus `A θ + F γ`. -/
+/-- A point of `A X ⊕ F Bᵐ` is its center plus `A θ + F γ`. -/
 theorem Zonotope.predict_dev (A : Mat ℝ n n) (F : Mat ℝ n m) (X : Zonotope (Vec ℝ n))
     {z : Vec ℝ n}
     (hz : z ∈ ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))).construct) :

@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.UnitIntervalMul
 # An interval scalar times a zonotope
 
 `[a, b] ⊗ Z`: the scalar `matZonotope(c, g)` of CORA, `c = (a + b)/2`, `g = (b - a)/2`, times a
-zonotope [1]. Its centre is `c z`, and the generators are `c G`, `g z` and every `g G` of `Z`,
+zonotope [1]. Its center is `c z`, and the generators are `c G`, `g z` and every `g G` of `Z`,
 each with a coefficient in `[-1, 1]`: `[a, b] ⊗ Z = c Z ⊕ [-1, 1] ⊗ (g Z)`, `[-1, 1] ⊗ ·` being
 `unitIntervalMul`, [2, Eq. 11].
 

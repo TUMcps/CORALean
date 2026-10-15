@@ -48,7 +48,7 @@ theorem aux_expmOneParam_eq (C G : Mat ℝ n n) (r : ℝ) (η : ℕ) :
       η := by -- --- PROOF ---
   simp only [MatExp.expmOneParam, Zonotope.ofOneParamPoly]
   congr 1
-  · -- the centre: an even index is never odd, and never `0` from `l ≥ 1`
+  · -- the center: an even index is never odd, and never `0` from `l ≥ 1`
     rw [if_pos trivial]
     congr 1
     refine Finset.sum_congr rfl fun l hl => ?_

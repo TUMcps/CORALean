@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
+public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Theorems.AnchorEqsOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
@@ -71,7 +71,7 @@ theorem HPolytope.intersection_outer (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) :
       exact hA₁ i
     · show (toRealMat (Fin.append P₁.A P₂.A) *ᵥ x) (Fin.natAdd P₁.m i)
         ≤ toReal (Fin.append P₁.bU P₂.bU (Fin.natAdd P₁.m i))
-      rw [HPolytope.mulVec_append_right, Fin.append_right]
+      rw [toRealMat_append_mulVec_natAdd, Fin.append_right]
       exact hA₂ i
   -- the equalities, each half within its own residual
   · refine Fin.addCases (fun i => ?_) (fun i => ?_) k
@@ -83,7 +83,7 @@ theorem HPolytope.intersection_outer (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) :
     · show |(toRealMat (Fin.append P₁.Ae P₂.Ae) *ᵥ x) (Fin.natAdd P₁.me i)
           - toReal (Fin.append P₁.be P₂.be (Fin.natAdd P₁.me i))|
         ≤ toReal (Fin.append P₁.beRes P₂.beRes (Fin.natAdd P₁.me i))
-      rw [HPolytope.mulVec_append_right, Fin.append_right, Fin.append_right]
+      rw [toRealMat_append_mulVec_natAdd, Fin.append_right, Fin.append_right]
       exact hres P₂ hE₂ i
   -- the stacked rows carry the origin box
   · show toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)

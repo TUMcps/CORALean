@@ -18,7 +18,7 @@ In the first example the input box is `[-1/10, 1/10]²`, and a `true` would answ
 member of the matrix set and every run under it.
 
 In the second the input box moves off the origin, to `[9/10, 11/10] × [-1/10, 1/10]`: the same
-algorithm splits `B U ⊕ c` at its centre, so `0 ∈ U` is asked of nobody. As there, `reach` names
+algorithm splits `B U ⊕ c` at its center, so `0 ∈ U` is asked of nobody. As there, `reach` names
 `exp` and cannot be evaluated here; what is shown is that `Reach.holds_of_check` applies at
 both.
 -/
@@ -53,7 +53,7 @@ example :
           (⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
   Reach.holds_of_check (S := 𝒵) _ _ _ _
 
-/-- With inputs in a box off the origin, split at its centre: the same answer. -/
+/-- With inputs in a box off the origin, split at its center: the same answer. -/
 example :
     Reach.check (S := 𝒵)
       (LinParamSys.canonical

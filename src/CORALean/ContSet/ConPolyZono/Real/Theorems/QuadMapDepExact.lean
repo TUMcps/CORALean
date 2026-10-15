@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZon
 # `quadMapDep` is exact where every coefficient is dependent
 
 The expansion is `PolyZonotope`'s, at a fixed factor vector: a point is one sum
-once the centre is generator zero, and the product of two monomials is the
+once the center is generator zero, and the product of two monomials is the
 monomial of the added exponent columns. That is why the two lemmas it needs are
 public there — a set equality would not do, since the constraint has to survive
 with the *same* factor vector on both sides.

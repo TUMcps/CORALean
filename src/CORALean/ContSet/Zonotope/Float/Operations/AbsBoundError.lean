@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 `Real.Zonotope.absBound`, rounded, and widened by the error box: how far
 coordinate `j` can reach from the origin over the whole `construct`, nominal
-part and box together — the centre and the generators' absolute sum, `radius`, plus
+part and box together — the center and the generators' absolute sum, `radius`, plus
 whichever corner of the box is farther out.
 -/
 

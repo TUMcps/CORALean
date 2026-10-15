@@ -38,7 +38,7 @@ def negIdentityMat (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : Mat 𝕋 n n :=
 
 def Interval.hPolytope (I : Interval (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
   (HPolytope.ineqs (identityMat 𝕋 n) I.sup).stackRows
-    (HPolytope.ineqs (negIdentityMat 𝕋 n) fun j => neg (I.inf j))
+    (HPolytope.ineqs (negIdentityMat 𝕋 n) (-I.inf))
 
 end CORALean.Float
 

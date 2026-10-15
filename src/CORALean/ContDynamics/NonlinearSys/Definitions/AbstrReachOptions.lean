@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
 /-!
 # CORA's `options` for the adaptive abstraction algorithms
 
-One record for `abstrReach` and `centreAbstrReach`, whose arguments coincide. CORA's
+One record for `abstrReach` and `centerAbstrReach`, whose arguments coincide. CORA's
 options where CORA has one, under the paper's names (`timeStep`, `taylorTerms`,
 `zonotopeOrder`): `Δt`, the step the loop starts from; `η`,
 the order of the linearized system's own enclosures (the paper's `η_lin`);
@@ -37,7 +37,7 @@ open Matrix ContSet
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The options of `NonlinearSys.abstrReach` and `NonlinearSys.centreAbstrReach`. -/
+/-- The options of `NonlinearSys.abstrReach` and `NonlinearSys.centerAbstrReach`. -/
 structure NonlinearSys.AbstrReachOptions (S : ℕ → Type) (n m : ℕ) where
   Δt : ℝ
   η : ℕ

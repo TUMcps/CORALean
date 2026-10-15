@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
 # `ConPolyZono.exactPlus` over a floating-point scalar
 
 CORA's `@conPolyZono/exactPlus` [1] on the stored floats: the float `PolyZonotope.exactPlus` of
-the two generator parts (the centres added downward, the rounding in the error box, the two
+the two generator parts (the centers added downward, the rounding in the error box, the two
 error boxes summed), and the first operand's constraints kept once, as over ℝ.
 
 ## References

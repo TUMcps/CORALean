@@ -19,7 +19,7 @@ instant, by `Trajectory.timeIntervalStepFloat_outer` and its input counterpart.
 Proved the same set, so there is nothing to compare between the readings.
 
 What is shown is what the matrix uncertainty costs: the same step at the point
-box, the centre matrix alone, beside it, and the widths of each.
+box, the center matrix alone, beside it, and the widths of each.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -39,7 +39,7 @@ def paramA : Interval (Mat D 2 2) :=
   ⟨!![dy (-17) (-4), dy 15 (-4); dy (-1) (-4), dy (-33) (-4)],
    !![dy (-15) (-4), dy 17 (-4); dy 1 (-4), dy (-31) (-4)]⟩
 
-/-- The centre matrix alone, as a point box. -/
+/-- The center matrix alone, as a point box. -/
 def pointA : Interval (Mat D 2 2) :=
   ⟨!![dy (-1) 0, dy 1 0; dy 0 0, dy (-2) 0], !![dy (-1) 0, dy 1 0; dy 0 0, dy (-2) 0]⟩
 
@@ -73,7 +73,7 @@ def paramRow (name : String) (Z : Zonotope (Vec D 2)) : String :=
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The report: the step at the box and at its centre, homogeneous part and input. -/
+/-- The report: the step at the box and at its center, homogeneous part and input. -/
 def paramReport : String :=
   let box := paramStep paramA
   let pt := paramStep pointA

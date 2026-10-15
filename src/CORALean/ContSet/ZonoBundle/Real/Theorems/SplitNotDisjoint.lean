@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitInter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
@@ -50,7 +50,7 @@ theorem ZonoBundle.split_not_disjoint : ∃ (B : Interval (Vec ℝ 1)) (zB : Zon
     simp only [h1, Matrix.one_mulVec, Entrywise.entry, Fin.sum_univ_one, Pi.add_apply,
       Pi.smul_apply, smul_eq_mul]
     exact ⟨by linarith [this.1], by linarith [this.2]⟩
-  · -- `0` is the centre of both the bundle and the parallelotope, so it is in the shared cut
+  · -- `0` is the center of both the bundle and the parallelotope, so it is in the shared cut
     rw [ZonoBundle.split_inter]
     refine ⟨(fun _ => 0 : Vec ℝ 1), ?_, ?_⟩
     · exact Set.mem_iInter.2 fun i => ⟨fun _ => 0, fun _ => by simp, by simp⟩

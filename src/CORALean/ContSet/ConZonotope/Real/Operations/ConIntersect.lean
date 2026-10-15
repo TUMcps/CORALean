@@ -11,7 +11,7 @@ CORA's `@conZonotope/conIntersect` [1, Prop. 1]: the points of `cZ₁` whose ima
 in `cZ₂`, `{z ∈ cZ₁ | M z ∈ cZ₂}`. The coefficient vectors of the two sets are stacked and each
 keeps its own constraints, as in `intersection`; the one new constraint pins the image to the
 second set, `M G₁ β₁ - G₂ β₂ = c₂ - M c₁`, one row per coordinate of the image. The first set's
-centre and generators are kept, the second block of generators being zero.
+center and generators are kept, the second block of generators being zero.
 
 `intersection` is the case `M = I`; this takes the second set in the image space.
 

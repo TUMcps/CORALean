@@ -11,7 +11,7 @@ public import Mathlib.Data.Fin.Tuple.Basic
 [1, Prop. 6]'s reduction step: remove two generators `gᵢ`, `gⱼ` and append
 `gᵢ + gⱼ` (`G₁`) or `gᵢ - gⱼ` (`G₂`), one generator fewer. `i` indexes `Z`'s
 `m + 2` generators and `j` the `m + 1` left once `gᵢ` is out, so the pair is
-distinct by construction; `hm` only lines the count up. The centre is kept.
+distinct by construction; `hm` only lines the count up. The center is kept.
 
 Real layer only: a rounded `gᵢ ± gⱼ` is no combination of `gᵢ` and `gⱼ`, and the float
 zonotope pays rounding outward, which an inner approximation cannot use.

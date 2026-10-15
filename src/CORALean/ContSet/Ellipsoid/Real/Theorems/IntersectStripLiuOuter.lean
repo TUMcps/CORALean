@@ -19,14 +19,14 @@ For positive-definite `Q` and `V` and `λ ∈ (0, 1)`, every point `x` with
 `intersectStripLiu Q c C V y σ²_prev λ`. With `T = V/λ + C Q Cᵀ/(1 - λ)` (the code's `Q_tmp`),
 `w = T⁻¹ δ`, `u = Cᵀ w` and `P = (1 - λ) Q⁻¹ + λ Cᵀ V⁻¹ C`, one has
 `P Q Cᵀ = λ (1 - λ) Cᵀ V⁻¹ T`, so `P K = λ Cᵀ V⁻¹` and `P (I - K C) Q / (1 - λ) = I`: the
-corrected shape is `P⁻¹`. The centre is `c* = c + Q u/(1 - λ)`, `y - C c* = V w/λ - C d` for
+corrected shape is `P⁻¹`. The center is `c* = c + Q u/(1 - λ)`, `y - C c* = V w/λ - C d` for
 `d = x - c*`, and
 
   `(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ (y - C x)ᵀ V⁻¹ (y - C x) = dᵀ P d + δᵀ w`,
 
 the cross terms `2 dᵀ u` cancelling. The left side is at most `(1 - λ) σ²_prev + λ`, so
 `dᵀ P d ≤ σ²`, which is membership in the ellipsoid of shape `σ² P⁻¹`; when `σ² = 0` it forces
-`d = 0`, the centre. CORA's shape is `(1 - λ)² P⁻¹`, without `σ²`
+`d = 0`, the center. CORA's shape is `(1 - λ)² P⁻¹`, without `σ²`
 (`intersectStripLiu1D_counterexample`).
 -/
 
@@ -111,7 +111,7 @@ theorem Ellipsoid.intersectStripLiu_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c :
   rw [← hu] at hKδ
   have hδu : δ = (1 / lam) • (V *ᵥ w) + (1 / (1 - lam)) • (C *ᵥ (Q *ᵥ u)) := by
     rw [← hTw, hT, add_mulVec, smul_mulVec, smul_mulVec, hu, mulVec_mulVec, mulVec_mulVec]
-  -- the goal, at the shape `σ² P⁻¹` and the centre `c + Q u / (1 - λ)`
+  -- the goal, at the shape `σ² P⁻¹` and the center `c + Q u / (1 - λ)`
   show x ∈ (Ellipsoid.ofShape
     (((1 - lam) * σsqPrev + lam - δ ⬝ᵥ T⁻¹ *ᵥ δ) •
       ((1 / (1 - lam)) • ((1 - (1 / (1 - lam)) • (Q * Cᵀ * T⁻¹) * C) * Q)))
@@ -178,7 +178,7 @@ theorem Ellipsoid.intersectStripLiu_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c :
     rw [Ellipsoid.mem_ofShape_iff (hPpd.inv.smul hpos), inv_eq_right_inv hinv, ← hd,
       smul_mulVec, dotProduct_smul, smul_eq_mul, inv_mul_le_iff₀ hpos, mul_one]
     exact hquad
-  · -- `σ² = 0`: the form vanishes, so `x` is the centre
+  · -- `σ² = 0`: the form vanishes, so `x` is the center
     have hd' : d = 0 := by
       by_contra hne
       have := hPpd.dotProduct_mulVec_pos hne

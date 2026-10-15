@@ -43,7 +43,7 @@ def Taylm.tan (p : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   let N := T.maxOrder
   let c := T.constCoef
   let b := T.bounds
-  -- `|f t - c| ≤ B` on the box, and `|ξ| ≤ m` on the hull of the centre and the box
+  -- `|f t - c| ≤ B` on the box, and `|ξ| ≤ m` on the hull of the center and the box
   let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
   let m := maximum (absolute c) (maximum (absolute b.inf) (absolute b.sup))
   -- `|tan⁽ᴺ⁺¹⁾| ≤ odePoly (1 + X²) (N+1)` at `tan m`

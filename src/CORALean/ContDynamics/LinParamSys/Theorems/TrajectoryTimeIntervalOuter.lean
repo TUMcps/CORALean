@@ -23,7 +23,7 @@ mismatch; `Trajectory.timeIntervalStep_outer` proves *that* set sound for an
 input-free run, through a Peano–Baker expansion. This is the enclosure freezing
 gives, sound at every `Â` at once and with an input, which that one is not.
 
-`Â` is a free choice; the box's centre makes the drift smallest, its radius
+`Â` is a free choice; the box's center makes the drift smallest, its radius
 bounding `‖A s - Â‖` uniformly.
 -/
 

@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A zonotope as a box, over a floating-point scalar
 
-The centre give or take the generators' total reach, each end rounded away from
+The center give or take the generators' total reach, each end rounded away from
 the zonotope.
 
 `Zonotope.matInterval` is the same entry by entry at `Mat`, CORA's

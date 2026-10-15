@@ -59,7 +59,7 @@ def HPolytope.errUp (P : HPolytope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
 bound of the row `-Aeᵢ`, so that the equality reads as the two inequalities `Aeᵢ x ≤ beU i` and
 `-Aeᵢ x ≤ beLN i`. -/
 def HPolytope.beLN (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
-  addUp (neg (P.be i)) (P.errUp fun j => neg (P.Ae i j))
+  addUp (neg (P.be i)) (P.errUp (-(P.Ae i)))
 
 
 -- =====================================  `HPolytope.beU`  ====================================== --
@@ -131,7 +131,7 @@ def HPolytope.isErrFree (P : HPolytope 𝕋 (Vec 𝕋 n)) : Bool :=
 /-- The translation by `-v`. Negation is exact, so the subtrahend costs no rounding
 of its own; the shift rounds as `translate` does. -/
 def HPolytope.minus (P : HPolytope 𝕋 (Vec 𝕋 n)) (v : Vec 𝕋 n) : HPolytope 𝕋 (Vec 𝕋 n) :=
-  HPolytope.translate (fun i => neg (v i)) P
+  HPolytope.translate (-v) P
 
 end
 

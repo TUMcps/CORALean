@@ -8,8 +8,8 @@ public import Mathlib.Analysis.Calculus.Deriv.Basic
 /-!
 # The gradient of a function with respect to a zonotope
 
-[1, Def. 3]: `∇_Z f(Z) = ⟨∇_c f(Z), ∇_G f(Z)⟩_Z`, the zonotope whose centre is the derivative of
-`f` with respect to the centre and whose generator matrix is its derivative with respect to the
+[1, Def. 3]: `∇_Z f(Z) = ⟨∇_c f(Z), ∇_G f(Z)⟩_Z`, the zonotope whose center is the derivative of
+`f` with respect to the center and whose generator matrix is its derivative with respect to the
 generator matrix, `(∇_c f)(i) = ∂f/∂c(i)` and `(∇_G f)(i,j) = ∂f/∂G(i,j)`. Each entry is the
 derivative of `f` along that one entry, the others held fixed, so the generator count stays that
 of `Z`. `deriv` is zero where `f` is not differentiable along an entry, so what the gradient is
@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The zonotope of `f`'s partial derivatives along the centre and generator entries of `Z`. -/
+/-- The zonotope of `f`'s partial derivatives along the center and generator entries of `Z`. -/
 noncomputable def Zonotope.gradient (f : Zonotope (Vec ℝ n) → ℝ) (Z : Zonotope (Vec ℝ n)) :
     Zonotope (Vec ℝ n) where
   h := Z.h

@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZo
 # `PolyZonotope.split`, over a floating-point scalar
 
 CORA's `split(pZ, gen)`: the parallelotope `splitParallelotope` halved along its generator `gen`
-(`Zonotope.split`: the generator halved in both halves, the centre moved by `∓g/2`, each centre
+(`Zonotope.split`: the generator halved in both halves, the center moved by `∓g/2`, each center
 paying its rounding into the box), the halves read as polynomial zonotopes with identity exponents
 and no independent generators (`Zonotope.polyZonotope`). `Theorems.SplitOuter` says the halves
 cover `pZ`.

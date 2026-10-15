@@ -15,9 +15,9 @@ The update of CORA's `@ellipsoid/intersectStrip` (method `'Liu2016'`, `aux_metho
 `λ = (1 - β)/2` if `withinTol(g,1)` (here exact equality) else `(1 - √(g/ω))/(1 - g)` (Thm. 3),
 `Q_tmp = V/λ + C Q C/(1 - λ)` (Eq. 27), `K = Q C Q_tmp⁻¹/(1 - λ)` (Eq. 26),
 `σ² = (1 - λ) σ²_prev + λ - δ Q_tmp⁻¹ δ` (Eq. 25), the shape `(1 - λ)(1 - K C) Q` (Eq. 24) and
-the centre `c + K δ` (Eq. 23).
+the center `c + K δ` (Eq. 23).
 
-It returns the new centre, the new shape `Q` of `{x | (x - c)² / Q ≤ 1}` and `σ²`; the trigger
+It returns the new center, the new shape `Q` of `{x | (x - c)² / Q ≤ 1}` and `σ²`; the trigger
 `σ²_prev + δ² > 1` is the caller's. The shape is `(1 - λ)²` times the one the fusion needs
 (`intersectStripLiu1D_counterexample`, `intersectStripLiu`).
 -/
@@ -47,7 +47,7 @@ noncomputable def Ellipsoid.intersectStripLiu1D (Q c C V barV y σsqPrev : ℝ) 
   let K := 1 / (1 - lam) * Q * C * QtmpInv  -- `K`, eq. (26)
   let σsq := (1 - lam) * σsqPrev + lam - δ * QtmpInv * δ  -- `sigma_sq`, eq. (25)
   let Q' := (1 - lam) * (1 - K * C) * Q  -- new shape, eq. (24)
-  let c' := c + K * δ  -- new centre, eq. (23)
+  let c' := c + K * δ  -- new center, eq. (23)
   (c', Q', σsq)
 
 end CORALean.Real

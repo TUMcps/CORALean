@@ -16,5 +16,5 @@ halfspaces; the two are separate representations here, converting either way
 only by vertex enumeration, an algorithm in its own right.
 
 The specification. `Float` pays its rounding into an error box rather than
-into the vertices — a hull has no centre to move a rounded vertex away from.
+into the vertices — a hull has no center to move a rounded vertex away from.
 -/

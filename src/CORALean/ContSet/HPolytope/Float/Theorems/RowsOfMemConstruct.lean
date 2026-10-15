@@ -77,11 +77,11 @@ theorem HPolytope.rows_of_mem_construct {P : HPolytope 𝕋 (Vec 𝕋 n)} {x : V
     linarith
   -- the lower half, as the row negated
   · rw [hrow]
-    have h := add_le_addUp (neg (P.be i)) (P.errUp fun j => neg (P.Ae i j))
-    have h' := P.le_errUp (fun j => neg (P.Ae i j)) he
+    have h := add_le_addUp (neg (P.be i)) (P.errUp (-(P.Ae i)))
+    have h' := P.le_errUp (-(P.Ae i)) he
     have := heq i
-    simp only [toReal_neg, neg_mul, Finset.sum_neg_distrib] at h h'
-    show _ ≤ toReal (addUp (neg (P.be i)) (P.errUp fun j => neg (P.Ae i j)))
+    simp only [toReal_neg, Pi.neg_apply, toReal_neg', neg_mul, Finset.sum_neg_distrib] at h h'
+    show _ ≤ toReal (addUp (neg (P.be i)) (P.errUp (-(P.Ae i))))
     linarith
 
 end CORALean.Float

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Mpower
 public import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 
 @[expose] public section
 
@@ -34,7 +34,7 @@ theorem Zonotope.mpower_outer (Z : Zonotope (Mat ℝ n n)) {M : Mat ℝ n n} (hM
     (k : ℕ) : M ^ k ∈ (Zonotope.mpower Z k).construct := by -- --- PROOF ---
   rcases k with _ | k
   · rw [pow_zero]
-    exact Zonotope.centre_mem_construct (Zonotope.ofPoint 1)
+    exact Zonotope.center_mem_construct (Zonotope.ofPoint 1)
   · induction k with
     | zero => rw [zero_add, pow_one]; exact hM
     | succ k ih =>

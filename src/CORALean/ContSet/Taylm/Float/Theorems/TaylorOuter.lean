@@ -12,7 +12,7 @@ public import CORALean.Global.TaylorRemainder
 # `Taylm.taylor` encloses `g ∘ f`
 
 The Lagrange remainder lemma at a float Taylor model: `g` smooth to order `N + 1` between the
-centre and the model's range, `|g⁽ᴺ⁺¹⁾| ≤ D` there for a real `D` below the rounded `Dup`, and
+center and the model's range, `|g⁽ᴺ⁺¹⁾| ≤ D` there for a real `D` below the rounded `Dup`, and
 the coefficient enclosures around `g⁽ᵏ⁾(c) / k!`. `taylor_remainder_abs_le` bounds the remainder
 by `D |f t - c|ᴺ⁺¹ / (N+1)!`, and each factor is below its rounded counterpart.
 -/
@@ -49,7 +49,7 @@ theorem Taylm.taylor_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enc
   set N := T.maxOrder
   refine Taylm.compose_outer h g c lo hi N _
     (fun k => iteratedDeriv k g (toReal c) / (k.factorial : ℝ)) hc fun t ht => ?_
-  -- the segment from the centre to `f t` lies in the hull the hypotheses cover
+  -- the segment from the center to `f t` lies in the hull the hypotheses cover
   have hb := Taylm.bounds_mem h ht
   have hsub : Set.uIcc (toReal c) (f t) ⊆
       Set.Icc (min (toReal c) (toReal T.bounds.inf)) (max (toReal c) (toReal T.bounds.sup)) :=

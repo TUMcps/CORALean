@@ -11,7 +11,7 @@ public import CORALean.Global.TaylorRemainder
 # `Taylm.taylor` encloses `g ∘ f`
 
 The Lagrange remainder lemma at a Taylor model: for `g` smooth to order `N + 1`
-between the centre and the model's range, with `|g⁽ᴺ⁺¹⁾| ≤ D` there, the expansion encloses
+between the center and the model's range, with `|g⁽ᴺ⁺¹⁾| ≤ D` there, the expansion encloses
 `g ∘ f`. `taylor_remainder_abs_le` bounds the remainder by `D |f t - c|ᴺ⁺¹ / (N+1)!` and
 `reach` bounds `|f t - c|`. This is the one lemma every elementary function reduces to: what
 is left for each is its derivatives.
@@ -42,7 +42,7 @@ theorem Taylm.taylor_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses
   unfold Taylm.taylor
   refine Taylm.compose_outer h g c _ _ _ fun t ht => ?_
   have hb := Taylm.bounds_mem h ht
-  -- the segment from the centre to `f t` lies in the hull the hypotheses cover
+  -- the segment from the center to `f t` lies in the hull the hypotheses cover
   have hsub : Set.uIcc c (f t) ⊆ Set.Icc (min c T.bounds.inf) (max c T.bounds.sup) :=
     Set.uIcc_subset_Icc ⟨min_le_left _ _, le_max_left _ _⟩
       ⟨le_trans (min_le_right _ _) hb.1, le_trans hb.2 (le_max_right _ _)⟩

@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Module
 /-!
 # The points of `linComb Z (EZ)`, by their coefficients
 
-`Zonotope.linComb Z (Z.mtimes E)` is the `P` of [1, Lemma 2] (eq. 5): centre `(c + Ec)/2`,
+`Zonotope.linComb Z (Z.mtimes E)` is the `P` of [1, Lemma 2] (eq. 5): center `(c + Ec)/2`,
 generators `(gⱼ + Egⱼ)/2`, `(gⱼ - Egⱼ)/2` and `(c - Ec)/2`, the two blocks pairing column for
 column since `Z` and `EZ` have the same number of generators. Its points are exactly
 `(z + Ez)/2 + (z' - Ez')/2` for `z = c + Σ βⱼgⱼ` and `z' = m c + Σ γⱼgⱼ`, every coefficient in
@@ -80,7 +80,7 @@ theorem Zonotope.aux_linComb_mtimes_eq (Z : Zonotope (Vec ℝ n)) (E : Mat ℝ n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Lemma 2], eq. 5: a point of `P = linComb Z (EZ)` is `(z + Ez)/2 + (z' - Ez')/2`, `z`, `z'`
-spanned by `Z`'s generators — `z'` with its centre scaled by `m` — at coefficients in
+spanned by `Z`'s generators — `z'` with its center scaled by `m` — at coefficients in
 `[-1, 1]`, and every such point is in `P`. -/
 theorem Zonotope.mem_linComb_mtimes_iff {Z : Zonotope (Vec ℝ n)} {E : Mat ℝ n n}
     {p : Vec ℝ n} :

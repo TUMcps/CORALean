@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 /-!
 # `Ellipsoid.reindex` over a floating-point scalar
 
-Centre, generator rows and error box relabelled, and nothing rounds: a permutation
+Center, generator rows and error box relabelled, and nothing rounds: a permutation
 moves stored floats without arithmetic. The generator index is untouched, only
 the coordinate axis moves.
 -/

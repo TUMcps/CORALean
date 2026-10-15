@@ -10,7 +10,7 @@ public import CORALean.Global.Float.DivFact
 
 The Lagrange bound `Bᴺ⁺¹ / (N+1)!` of an expansion at the constant part whose `(N+1)`-th
 derivative is at most one in magnitude, as for `sin` and `cos`: `B` the reach of the range
-hull from the centre, rounded up, and the product rounded up.
+hull from the center, rounded up, and the product rounded up.
 -/
 
 -- Authors:       Claude Opus 5.5

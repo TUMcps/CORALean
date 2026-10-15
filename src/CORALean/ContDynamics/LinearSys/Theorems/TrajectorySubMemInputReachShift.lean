@@ -13,8 +13,8 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 /-!
 # A run is its free motion, a named constant input, and the rest's share
 
-The split of `sub_mem_inputReach_recentre`, with the constant a vector `u₀` the caller
-names and the rest a set `U`, rather than the centre and recentring of one set `V`: a
+The split of `sub_mem_inputReach_recenter`, with the constant a vector `u₀` the caller
+names and the rest a set `U`, rather than the center and recentering of one set `V`: a
 run whose inputs satisfy `w(s) - u₀ ∈ U` has `x(t) = e^{At} x(0) + ∫₀ᵗ e^{Aσ}dσ u₀ +
 ∫₀ᵗ e^{A(t-s)} (w(s) - u₀) ds`, and the last term is one admissible `U`-input's
 contribution, `inputReach U t`. This is how CORA's `oneStep` takes its input [1, Sec. 3.3]: a
@@ -62,7 +62,7 @@ theorem LinearSys.CanonicalTrajectory.sub_mem_inputReach_shift {sys : LinearSys 
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 T := Set.Icc_subset_Icc_right ht.2
   have hvoc := traj.variation_of_constants hTt le_rfl ht.1 hW
   rw [sub_zero] at hvoc
-  -- the input, less the centre, is an admissible input of `Ũ`
+  -- the input, less the center, is an admissible input of `Ũ`
   have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct U :=
     fun s hs => hWU _ (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - uc) (volume.restrict (Set.Icc 0 t)) :=

@@ -15,8 +15,8 @@ coefficients. `Fin.addCases` and `Fin.sum_univ_add` split the bound and the sum
 the same way, and splitting a coefficient vector the other way gives the
 converse, so concatenation loses nothing.
 
-No `plus_outer` here: the float `plus` displaces the centre, so it reproves this
-against the displaced centre rather than composing with it.
+No `plus_outer` here: the float `plus` displaces the center, so it reproves this
+against the displaced center rather than composing with it.
 
 ## References
 

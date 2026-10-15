@@ -16,7 +16,7 @@ public import Mathlib.Data.Matrix.Basic
 `θ, s₁, s₂` (which [1, Eq. 16] derives and [1, Eq. 17] gives,
 `LinearSysDT.quadForm_le_of_faultRadiusLmi`), then the zonotope of [1, Eq. 10]
 (`Zonotope.faultObserve`) has P-radius at most `γ ℓ + ε` for every bound `ℓ` of the P-radius
-of `X`, the zonotope **after** the reduction `↓_q`: a point of the new zonotope is its centre
+of `X`, the zonotope **after** the reduction `↓_q`: a point of the new zonotope is its center
 plus `(A - LC)θ + D_xH_w s₁ - L D_yH_v s₂` with `p + θ` a point of `X`.
 `θ` ranges over `↓_q(H_k)`'s span, not `H_k`'s, and the reduction can enlarge the P-radius,
 so `ℓ_k` of [1, Eq. 14] has to be read as `↓_q(H_k)`'s; as printed, with `H_k`'s, it fails

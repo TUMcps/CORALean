@@ -16,7 +16,7 @@ Asserted, not proved, by reading `Operations/MtimesIntervalMat.lean`:
   absolute values and `h` additions, at most `2 * h + 1` each;
 * `radiusReach`, `∑ j, radius i j * absBound j` per output row: `2 * n` each,
   so `2 * m * n`;
-* the centre and the `h` generators through `center *ᵥ ·`: `h + 1` products of
+* the center and the `h` generators through `center *ᵥ ·`: `h + 1` products of
   `Cost.matVec m n`;
 * the diagonal generator block places data and is free.
 -/

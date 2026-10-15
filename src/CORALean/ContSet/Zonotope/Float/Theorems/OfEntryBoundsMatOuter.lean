@@ -12,7 +12,7 @@ public import Mathlib.Data.Matrix.Basic
 # `Zonotope.ofEntryBoundsMat` contains the exact matrix zonotope it brackets
 
 The exact zonotope's coefficients are the witness, unchanged: the stored generators
-reach the nominal part, and what they miss — the centre's gap and each generator's gap
+reach the nominal part, and what they miss — the center's gap and each generator's gap
 times its coefficient — lands in the box, the second within the summed widths because
 every gap is nonnegative and below its width.
 -/

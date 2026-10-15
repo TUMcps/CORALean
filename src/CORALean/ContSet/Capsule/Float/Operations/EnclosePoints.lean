@@ -7,14 +7,14 @@ public import CORALean.ContSet.Capsule.Float.Operations.Basic
 /-!
 # `Capsule.enclosePoints`, over a floating-point scalar
 
-CORA's `@capsule/enclosePoints.m`, as the exact layer reads it: the centre is the mean, the
+CORA's `@capsule/enclosePoints.m`, as the exact layer reads it: the center is the mean, the
 generator runs to the point farthest from it, and the radius is the largest distance of a point from
 the axis. No points give the empty capsule.
 
 At float each step is rounded and the result is checked rather than assumed: the mean is the rounded
 sum over a rounded-up count, the farthest point is picked by comparing squared lengths with the
 certified `le` (a wrong pick only costs radius), and the radius is the largest rounded-up length of
-the residual `p - (c + t g)` of each point against the stored centre and generator, at the
+the residual `p - (c + t g)` of each point against the stored center and generator, at the
 projection parameter `t` clamped to `[-1, 1]`, so the capsule holds every point whatever the
 roundings. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
 -/

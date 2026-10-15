@@ -42,7 +42,7 @@ variable {n : ℕ}
 theorem Zonotope.scalarIntervalMul_outer (a b : ℝ) (Z : Zonotope (Vec ℝ n)) {s : ℝ}
     (hs : s ∈ Set.Icc a b) {z : Vec ℝ n} (hz : z ∈ Z.construct) :
     s • z ∈ (Zonotope.scalarIntervalMul a b Z).construct := by -- --- PROOF ---
-  -- the centre's part `c z`
+  -- the center's part `c z`
   have hmid : ((a + b) / 2) • z
       ∈ (Zonotope.mtimes (((a + b) / 2) • (1 : Mat ℝ n n)) Z).construct := by
     rw [← Zonotope.mtimes_exact]

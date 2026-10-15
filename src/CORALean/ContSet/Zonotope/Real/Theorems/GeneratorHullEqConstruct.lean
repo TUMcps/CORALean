@@ -11,12 +11,12 @@ public import Mathlib.Tactic.Ring
 @[expose] public section
 
 /-!
-# A zonotope of the evolution, about its centre
+# A zonotope of the evolution, about its center
 
-[1, Sec. 3 (centre)]: the centre of `Z(s; g₁, …, g_m)` is `s + ½ ∑ gᵢ`, and about it the zonotope is
+[1, Sec. 3 (center)]: the center of `Z(s; g₁, …, g_m)` is `s + ½ ∑ gᵢ`, and about it the zonotope is
 the symmetric box of the halved generators, `{c + ∑ βᵢ (gᵢ/2) | β ∈ [−1, 1]^m}`: the coefficient
 `αᵢ ∈ [0, 1]` of `gᵢ` is `(1 + βᵢ)/2`. So the evolution is a zonotope in the sense of
-`Zonotope.construct`, with centre `c` and generators `gᵢ/2`.
+`Zonotope.construct`, with center `c` and generators `gᵢ/2`.
 
 ## References
 
@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Sec. 3 (centre)]: `{s} ⊕ g₁ ⊕ ⋯ ⊕ g_m` has centre `s + ½ ∑ gᵢ`, generators `gᵢ/2`. -/
+/-- [1, Sec. 3 (center)]: `{s} ⊕ g₁ ⊕ ⋯ ⊕ g_m` has center `s + ½ ∑ gᵢ`, generators `gᵢ/2`. -/
 theorem Zonotope.generatorHull_eq_construct (s : Vec ℝ n) (m : ℕ) (g : Fin m → Vec ℝ n) :
     Zonotope.generatorHull s m g
       = (Zonotope.mk m (s + (1 / 2 : ℝ) • ∑ i, g i)

@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 /-!
 # `Ellipsoid.isequal`, over a floating-point scalar
 
-The structural test at tolerance `0`, as over ℝ: the same number of generators, and the centre,
+The structural test at tolerance `0`, as over ℝ: the same number of generators, and the center,
 the generator matrix and the two ends of the error box equal entry by entry, each by the certified
 `le` in both directions. Certified in one direction only: `true` is a proof, `false` refutes
 nothing. Stricter than CORA's test on `Q = G Gᵀ`.

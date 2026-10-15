@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 # `ConZonotope.liftEq`
 
 The zonotope CORA's `@conZonotope/reduce` reduces: the equality rows of `P` move into
-the generators and the centre, `Z⁺ = [G; Aₑ]` with centre `[c; -bₑ]` in `ℝ^{n + mₑ}`
+the generators and the center, `Z⁺ = [G; Aₑ]` with center `[c; -bₑ]` in `ℝ^{n + mₑ}`
 [1, Sec. 4.3]. Row `i` of the lower block holds `Aₑ i` read at the unit vector of
 each generator, so the lifted generator `j` is `[G j; (Aₑ i e_j)ᵢ]`.
 

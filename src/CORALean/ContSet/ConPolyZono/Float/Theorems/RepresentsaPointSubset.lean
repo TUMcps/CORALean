@@ -6,7 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.RepresentsaPoint
 @[expose] public section
 
 /-!
-# A float constrained polynomial zonotope without generators lies in its centre's box
+# A float constrained polynomial zonotope without generators lies in its center's box
 
 The exact layer's `construct_subset_of_representsa_point` puts the nominal set in `{c}`; the
 error box is added to every point, so the float set lies in `c` plus the error box. Not a

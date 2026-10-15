@@ -19,7 +19,7 @@ times.
 `0 ∈ U` stays a hypothesis: it is a fact about where the input set sits, not
 about its shape, so no class can supply it. The first case of [1, Alg. 2], the only one
 with a single enclosure for the whole step; the second case splits `U` instead
-and needs a representation that can recentre itself.
+and needs a representation that can recenter itself.
 
 ## References
 

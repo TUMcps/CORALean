@@ -26,7 +26,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `capsule/representsa_` at `origin`, tolerance `0`: a point whose centre is `0`. -/
+/-- `capsule/representsa_` at `origin`, tolerance `0`: a point whose center is `0`. -/
 def Capsule.representsa_origin (C : Capsule n) : Prop := C.c = 0 ∧ C.representsa_point
 
 end CORALean.Real

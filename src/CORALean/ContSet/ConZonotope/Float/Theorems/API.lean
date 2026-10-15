@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotLe
 public import CORALean.ContSet.ConZonotope.Float.Theorems.BoundDotWeightsLe
 public import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
 public import CORALean.ContSet.ConZonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.ConZonotope.Float.Theorems.CentreBetween
+public import CORALean.ContSet.ConZonotope.Float.Theorems.CenterBetween
 public import CORALean.ContSet.ConZonotope.Float.Theorems.CompactExact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConIntersectOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
@@ -21,7 +21,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.IsDisjointLPSound
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IsequalSound
 public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombOuter
-public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCentreSubset
+public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCenterSubset
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemInterior
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MinkDiffVOuter
@@ -53,6 +53,6 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
 Each operation encloses what the exact one does. The constraints cost nothing to
 carry through `plus`, padding being exact, nor through `linComb`, where
 weighting a row halves its right-hand side and halving is exact too; in both the
-only rounding is the centre's, and the box absorbs it as a zonotope's does.
+only rounding is the center's, and the box absorbs it as a zonotope's does.
 `MemNominalSet` is how each of them reads the nominal half of a point.
 -/

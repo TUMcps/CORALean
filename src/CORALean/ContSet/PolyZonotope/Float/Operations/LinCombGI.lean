@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The independent block at one rounding: CORA's `zonotope/enclose` on the two
-independent blocks, which is the exact layer's pairing at a zero centre. -/
+independent blocks, which is the exact layer's pairing at a zero center. -/
 def PolyZonotope.linCombGI (add sub : 𝕋 → 𝕋 → 𝕋) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     Mat 𝕋 n (pZ₁.q + pZ₂.q) :=
   fun i => Fin.append (Zonotope.pairSum add (fun j => pZ₁.GI j i) (fun j => pZ₂.GI j i))

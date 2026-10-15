@@ -9,12 +9,12 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 @[expose] public section
 
 /-!
-# The recentred relaxation over-approximates, at any parity
+# The recentered relaxation over-approximates, at any parity
 
 `[1, Thm. 1]` with one hypothesis, the similarity of `[1, Def. 4]`, and none of
 the evenness `relaxExpEven_outer` asks for. `sub_monomial_mem_eDrift` brackets
 the drift on both sides, and a bracket has a midpoint and a half-width whatever
-its ends are, so the centre shift is sound at every exponent pair and only its
+its ends are, so the center shift is sound at every exponent pair and only its
 size depends on parity.
 
 That is where the operation goes past `[1]` and past CORA: both shift only when
@@ -48,7 +48,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Merging two generators whose exponent columns agree off `k₀`
-over-approximates, with the drift's midpoint moved into the centre. -/
+over-approximates, with the drift's midpoint moved into the center. -/
 theorem PolyZonotope.relaxExpMid_outer (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) :
@@ -105,7 +105,7 @@ theorem PolyZonotope.relaxExpMid_outer (pZ : PolyZonotope α)
     Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_two]
   simp only [Fin.sum_univ_one, hmono, hlast]
   simp only [PolyZonotope.relaxExpMid, Fin.append_left, Fin.append_right]
-  -- the midpoint sits in the centre and the rest of the drift in the new generator
+  -- the midpoint sits in the center and the rest of the drift in the new generator
   rw [smul_add, smul_smul, hcoef]
   simp only [sub_smul]
   abel

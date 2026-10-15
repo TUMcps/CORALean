@@ -103,7 +103,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.PolygonInner
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBadDirIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GoffinSpec
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.CentreOfMinVolume
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.CenterOfMinVolume
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.SumNotConstruct
 
 /-!

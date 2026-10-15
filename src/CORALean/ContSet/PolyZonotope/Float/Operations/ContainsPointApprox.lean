@@ -9,16 +9,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.InnerGeneral
 /-!
 # `PolyZonotope.containsPointApprox`
 
-The point branch of CORA's `@polyZonotope/contains_` with `'approx'`: a point equal to the centre
+The point branch of CORA's `@polyZonotope/contains_` with `'approx'`: a point equal to the center
 is contained; otherwise `aux_containsInterval`, [1, Alg. 3] (`innerGeneral`), tries to prove the
 point box `Y = interval(S(:,i))` inside the image of `[-1, 1]ᵖ⁺ᵍ` under `aux_funcPoly`
 (`indepFactors`), from the box `X_ = x ± 1e-10` around a start point `x`. CORA finds `x` by
 `fmincon` (`aux_getFactorDomain`); here it is the caller's `start`, which soundness does not
 depend on.
 
-CORA's centre shortcut is `withinTol(S(:,i), pZ.c)`, which accepts a point `1e-8` away from the
-centre, and the centre itself where an exponent column is zero, though the centre is then not
-in the set; here the point must equal the centre and no column of `E` be zero. `true` is only
+CORA's center shortcut is `withinTol(S(:,i), pZ.c)`, which accepts a point `1e-8` away from the
+center, and the center itself where an exponent column is zero, though the center is then not
+in the set; here the point must equal the center and no column of `E` be zero. `true` is only
 returned where the error box holds `0`. `false` decides nothing, as in CORA (`cert = false`).
 
 ## References
@@ -51,8 +51,8 @@ def PolyZonotope.containsPointApprox (pZ : PolyZonotope (Vec 𝕋 n)) (s : Vec �
   let pZd : PolyZonotope (Vec 𝕋 n) := pZ.indepFactors
   -- X = interval(-onesVec, onesVec)
   let X : Interval (Vec 𝕋 (pZ.p + pZ.q)) := ⟨fun _ => neg one, fun _ => one⟩
-  -- res(i) = all(withinTol(S(:,i), pZ.c)), exactly, and the centre in the set
-  let atCentre : Bool := ((List.finRange n).all fun i => le (s i) (pZ.c i) && le (pZ.c i) (s i))
+  -- res(i) = all(withinTol(S(:,i), pZ.c)), exactly, and the center in the set
+  let atCenter : Bool := ((List.finRange n).all fun i => le (s i) (pZ.c i) && le (pZ.c i) (s i))
     && (List.finRange pZ.h).all fun l => (List.finRange pZ.p).any fun k => pZ.E k l != 0
   -- Y = interval(S(:,i))
   let Y : Interval (Vec 𝕋 n) := Interval.point s
@@ -62,7 +62,7 @@ def PolyZonotope.containsPointApprox (pZ : PolyZonotope (Vec 𝕋 n)) (s : Vec �
     ⟨fun k => subDown (start k) δ, fun k => addUp (start k) δ⟩
   -- the error box holds `0`
   ((List.finRange n).all fun i => le (pZ.I_error.inf i) zero && le zero (pZ.I_error.sup i)) &&
-    (atCentre || PolyZonotope.innerGeneral pZd X X₀ Y inv iter)
+    (atCenter || PolyZonotope.innerGeneral pZd X X₀ Y inv iter)
 
 end CORALean.Float
 

@@ -8,7 +8,7 @@ public import Mathlib.Algebra.Module.Prod
 /-!
 # `Zonotope.cartProd`
 
-CORA's `@zonotope/cartProd_`: the centres pair, `c = [c1; c2]`, and the generator matrix is
+CORA's `@zonotope/cartProd_`: the centers pair, `c = [c1; c2]`, and the generator matrix is
 `blkdiag(G1, G2)`. Here every generator embeds into the product ambient type at zero in the
 other coordinate, as `ConPolyZono.cartProd` does; at `Vec` the product is `blkdiag`.
 -/

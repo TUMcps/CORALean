@@ -12,7 +12,7 @@ CORA's `zonoBundle`/`plus` at float zonotopes: every pair of members, one from
 each bundle, summed by `Zonotope.plus` and indexed through `finProdFinEquiv`.
 
 Two losses, and only the first is the float layer's: each pairwise sum rounds
-its centre into the member's own error box, and — already over ℝ — a sum of
+its center into the member's own error box, and — already over ℝ — a sum of
 intersections is not an intersection of sums.
 -/
 

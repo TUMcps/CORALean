@@ -14,17 +14,17 @@ public import Mathlib.Data.Fin.VecNotation
 
 `GuardMap.hitHessianMatZono`, [1, Prop. 3]'s `(C̃⁽ⁱ⁾, G̃^(i,1), …, G̃^(i,1+2p))` from
 `R(0) = ⟨c_x, g_x^(1), …, g_x^(p)⟩` and the one-factor enclosure `ψ_c ⊕ [-1, 1]ψ_g` of `Θ/Λ`,
-taken here as `ψ_c = −n − τ_c Υᵀ`, `ψ_g = −τ_g Υᵀ` from the centre `τ_c` and radius `τ_g` of an
+taken here as `ψ_c = −n − τ_c Υᵀ`, `ψ_g = −τ_g Υᵀ` from the center `τ_c` and radius `τ_g` of an
 interval of `τ = (d − nᵀx)/Λ(x)`, the reading of [1, Prop. 3] under which it holds
 (`Location.guardIntersectHyperplaneMap`). Every printed formula is one `let`, an interval matrix
 built from point matrices by the float `matMul`, `matPlus` and `smul`: vectors are columns
 `n × 1` or rows `1 × n` as the formula indexes them, so `A_il Θ_m` is `A_{i·} Θ_c` and
 `A_im Θ_l` is `Θ_cᵀ A_{i·}ᵀ`.
 
-The centre is `C̃⁽ⁱ⁾`'s lower end and `G̃^(i,1)` its first generator, and the error box holds
+The center is `C̃⁽ⁱ⁾`'s lower end and `G̃^(i,1)` its first generator, and the error box holds
 what the rest of their intervals adds at a factor in `[-1, 1]`: `[0, C̄ − C̲] + [-1, 1](Ḡ − G̲)`.
 That is the enclosure `GuardMap.hitHessianMatZonoFloat_mem` states, at the factors `(κ, 0, 0)`
-of the centre `c_x`, the only point the guard mapping evaluates `Q⁽ⁱ⁾` at. The generators
+of the center `c_x`, the only point the guard mapping evaluates `Q⁽ⁱ⁾` at. The generators
 `G̃^(i,1+α)` and `G̃^(i,1+p+α)` are kept, as CORA keeps them, at the lower ends of their
 intervals; nothing is claimed of them.
 
@@ -102,7 +102,7 @@ def GuardMap.hitHessianMatZonoFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 
   let wC : Mat 𝕋 n n := fun l m => subUp (C.sup l m) (C.inf l m)    -- what `C̃` adds
   let w₁ : Mat 𝕋 n n := fun l m => subUp (G₁.sup l m) (G₁.inf l m)  -- and `G̃^(i,1)`
   ⟨1 + R₀.h + R₀.h, C.inf, Fin.append (Fin.append ![G₁.inf] Gβ) Gκβ,
-    ⟨fun l m => neg (w₁ l m), fun l m => addUp (wC l m) (w₁ l m)⟩⟩
+    ⟨-w₁, fun l m => addUp (wC l m) (w₁ l m)⟩⟩
 
 end CORALean
 

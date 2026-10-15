@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
 /-!
 # `Ellipsoid.isequal` is sound
 
-A `true` answer says the stored centres, generators and error boxes agree as real numbers, so the
+A `true` answer says the stored centers, generators and error boxes agree as real numbers, so the
 nominal ellipsoids are the same and the error boxes are the same, and the denoted sets are equal.
 `false` refutes nothing.
 -/

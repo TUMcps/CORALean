@@ -9,7 +9,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
 # `Capsule.representsa_point` is sound
 
 `true` makes the nominal generator and radius `0`, so by the exact layer's
-`representsa_point_iff` (for `0 < n`) the capsule is the single point, its stored centre.
+`representsa_point_iff` (for `0 < n`) the capsule is the single point, its stored center.
 -/
 
 -- Authors:       Claude Opus 5.5

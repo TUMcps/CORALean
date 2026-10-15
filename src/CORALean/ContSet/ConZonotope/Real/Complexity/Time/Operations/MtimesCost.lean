@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 /-!
 # `ConZonotope.mtimesCost`
 
-Asserted, not proved: `Operations/Mtimes.lean` sends the centre and each of the
+Asserted, not proved: `Operations/Mtimes.lean` sends the center and each of the
 `h` generators through `M *ᵥ ·` and carries the constraint polytope over
 unchanged, so it pays `h + 1` matrix-vector products and nothing else.
 
@@ -32,7 +32,7 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `ConZonotope.mtimes` costs at `M : Mat ℝ m n` and `h` generators: one
-matrix-vector product for the centre and one per generator. -/
+matrix-vector product for the center and one per generator. -/
 def ConZonotope.mtimesCost (m n h : ℕ) : Cost := ConZonotope.mapCost (Cost.matVec m n) h
 
 end CORALean.Real

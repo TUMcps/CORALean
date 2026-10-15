@@ -10,7 +10,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 The interval hull of the confidence set, `interval(zonotope(probZ, m))`: the box that
 `@probZonotope/interval.m` says it computes, "overapproximates a probabilistic zonotope by an
-interval". CORA's code boxes only the covariance's eigen factor around the centre and drops the
+interval". CORA's code boxes only the covariance's eigen factor around the center and drops the
 deterministic generators (`intervalCora`); the confidence set `Z ⊕ m g [-1, 1]ⁿ` carries both,
 and every law puts probability at least `erf(m/√2)ⁿ` on its box (`Theorems.IntervalProb`).
 -/

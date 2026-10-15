@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
 /-!
 # [1, Alg. 2]'s recursion, paired with its factor-count proof
 
-The constant term is line 15's `a_0 +`, a shift of the centre, and everything
+The constant term is line 15's `a_0 +`, a shift of the center, and everything
 above it is the tail. Split off from `evalPolySort` the way `evalPolyP` is, so
 that the factor count travels with the set rather than being reproved.
 
@@ -41,7 +41,7 @@ noncomputable def PolyZonotope.evalPolySortP (pZ : PolyZonotope (Vec ℝ n)) :
   | a0 :: rest =>
       -- 15. `sortPlus(a₁ PZ¹, …, a_o PZ^o)`, lines 1-14 of the tail, from degree `1`
       let S := PolyZonotope.evalPolySortTailP pZ rest 0
-      -- 15. `gPZ ← a₀ + …`: the constant term shifts the centre
+      -- 15. `gPZ ← a₀ + …`: the constant term shifts the center
       ⟨S.1.shift a0, S.2⟩
 
 end CORALean.Real

@@ -11,7 +11,7 @@ CORA's `@polyZonotope/isequal.m` for two polynomial zonotopes: both are `compact
 the identifier vectors are aligned (`mergeExpMatrix`), and `[G; E]`, `GI` and `c` agree to the
 tolerance up to the order of the columns (`compareMatrices`). Here the tolerance is `0` and the
 data are compared as they are: the same factor, generator and independent-generator counts, and
-the same centre, generators, exponent matrix and independent generators, in order. That is
+the same center, generators, exponent matrix and independent generators, in order. That is
 stricter than CORA, which neither reorders columns, compacts nor aligns identifiers here, so the
 test is sound, not exact.
 -/

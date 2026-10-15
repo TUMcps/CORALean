@@ -16,7 +16,7 @@ public import Mathlib.Tactic.Abel
 the unit boxes [1, Eq. 4], [1, Eq. 5], **provided `f_k = 0`**: the output `y_k = C x_k + D_y v_k`
 the observer reads carries no fault. [1, Eq. 10] states it for the system [1, Eq. 3] with its
 sensor fault `E f_k`, which the zonotope does not account for; a fault moves `y_k` and with it
-the centre, which is what the test [1, Eq. 31] detects. A point of `X̂_k` is `p_k + θ`, and
+the center, which is what the test [1, Eq. 31] detects. A point of `X̂_k` is `p_k + θ`, and
 `x_{k+1} = p_{k+1} + (A - LC) θ + D_x H_w s₁ - L D_y H_v s₂`.
 
 ## References

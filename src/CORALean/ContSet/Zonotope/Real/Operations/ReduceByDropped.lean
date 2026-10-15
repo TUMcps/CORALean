@@ -8,7 +8,7 @@ public import CORALean.Global.Partition
 /-!
 # `Zonotope.reduceByDropped`
 
-The generators a partition drops, kept as a zonotope of their own and centred
+The generators a partition drops, kept as a zonotope of their own and centered
 at the origin: `⟨0, G_red⟩_Z` in [1, Prop. 4], whose `err` is the price one
 reduction step pays.
 
@@ -43,7 +43,7 @@ variable {n q r : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Prop. 4]'s `⟨0, G_red⟩_Z`: the generators the partition drops, centred
+/-- [1, Prop. 4]'s `⟨0, G_red⟩_Z`: the generators the partition drops, centered
 at the origin. -/
 def Zonotope.reduceByDropped (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope (Vec ℝ n) where

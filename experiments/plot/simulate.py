@@ -15,7 +15,7 @@ sanity check `experiments/README.md` describes. Computed in plain Python
 `float` (binary64): plenty for a plot overlay, and this file makes no
 soundness claim the way the Lean side's own arithmetic does.
 
-The trajectories: `X0`'s own centre, every one of its `2^h` sign-combination
+The trajectories: `X0`'s own center, every one of its `2^h` sign-combination
 corners (`h` the number of generator columns; `4` for this harness's
 2-generator configs), and a handful of fixed-seed pseudo-random interior
 points (`random.Random(1234)`, reproducible run to run) -- about ten in all.
@@ -65,7 +65,7 @@ def load_config(path: Path) -> dict:
 
 def start_points(center: list[float], gens: list[list[float]],
                   n_interior: int) -> list[tuple[float, float]]:
-    """The centre, every `2^h` sign-combination corner of `X0`, and
+    """The center, every `2^h` sign-combination corner of `X0`, and
     `n_interior` fixed-seed pseudo-random interior points (each coordinate a
     random combination of the generators with coefficients in `(-1, 1)`)."""
     h = len(gens[0]) if gens and gens[0] else 0

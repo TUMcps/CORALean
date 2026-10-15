@@ -12,9 +12,9 @@ public import Mathlib.Algebra.Group.Pi.Basic
 The image enclosure of a nonlinear layer, [1, Alg. 1] lines 6 and 7 as [1, Prop. 12]'s proof
 reads them: per dimension a slope `m(i)` and approximation errors `e(i) ≤ ē(i)` (Def. 7 and
 Prop. 10), each a function of that dimension's row `H(i)` (`Zonotope.row`) through its bounds,
-give `Diag(m) H ⊕ [e, ē]`: centre `m(i) c(i) + ½(e(i) + ē(i))`, the generators `m(i) G(i, j)`
+give `Diag(m) H ⊕ [e, ē]`: center `m(i) c(i) + ½(e(i) + ē(i))`, the generators `m(i) G(i, j)`
 and after them `n` axis-aligned ones `½(ē(i) - e(i)) eᵢ`. The midpoint is added once (the
-printed line 6 adds it before line 7 adds the interval, centre and all; see the `Alg. 1` row).
+printed line 6 adds it before line 7 adds the interval, center and all; see the `Alg. 1` row).
 The slope and errors are parameters, so the enclosure is that of whichever activation and
 linear approximation supply them.
 

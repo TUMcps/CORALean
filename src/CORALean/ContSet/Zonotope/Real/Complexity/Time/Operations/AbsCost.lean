@@ -9,7 +9,7 @@ public import CORALean.Global.Cost
 # `Zonotope.absCost`
 
 Asserted, not proved: `Operations/Abs.lean` takes the absolute value of the
-`n` centre coordinates and of the `n * h` generator entries.
+`n` center coordinates and of the `n * h` generator entries.
 -/
 
 -- Authors:       Claude Sonnet 5.5

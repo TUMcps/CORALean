@@ -191,7 +191,7 @@ theorem Zonotope.aux_cubMap_expand (T : Fin m → Fin n → Mat ℝ n n) {N : �
   exact Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun a _ =>
     Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun k _ => by ring
 
-/-- The sorted triples as the centre, the halved squares and the generators of `cubMap`. -/
+/-- The sorted triples as the center, the halved squares and the generators of `cubMap`. -/
 theorem Zonotope.aux_cubMap_assemble (h : ℕ) (β : Fin (h + 1) → ℝ) (hβ : β 0 = 1)
     (F : Fin (h + 1) → Fin (h + 1) → Fin (h + 1) → ℝ) :
     ∑ x, ∑ y, ∑ z, (if x ≤ y ∧ y ≤ z then β x * β y * β z * F x y z else 0)
@@ -278,7 +278,7 @@ theorem Zonotope.aux_cubMap_fold (T : Fin m → Fin n → Mat ℝ n n) (Z : Zono
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The cubic image of the point `c + Σ pⱼ g⁽ʲ⁾` is the centre plus the generators of `Z.cubMap T`
+/-- The cubic image of the point `c + Σ pⱼ g⁽ʲ⁾` is the center plus the generators of `Z.cubMap T`
 at coefficients in `[-1, 1]`, those of the linear generators `(0, 0, j)` being the `pⱼ`. -/
 theorem Zonotope.cubMap_coeff (T : Fin m → Fin n → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
     (p : Fin Z.h → ℝ) (hp : ∀ j, |p j| ≤ 1) :

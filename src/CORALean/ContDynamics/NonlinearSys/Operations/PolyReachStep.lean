@@ -22,7 +22,7 @@ abstraction error, are `abstrErrLoop` — the very loop [1] introduces, later
 renumbered by the HSCC'21 and NAHS'22 papers' own `Alg. 1`.
 
 `taylor` (line 3) stands for the derivative bundle `(z✱, A, w, B, D, E)` no
-automatic differentiation here computes, as `CentreAbstrStep`'s own `lin`
+automatic differentiation here computes, as `CenterAbstrStep`'s own `lin`
 stands for `taylor`'s first two. `combine` is `×` (lines 9, 11-12) at the
 *stacked* dimension `D`/`E` are sized for, matching how `VarInputsOuter`
 already takes that pairing as a hypothesis rather than a construction. `post`

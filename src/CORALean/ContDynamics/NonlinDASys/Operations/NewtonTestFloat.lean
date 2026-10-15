@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Operations.Basic
-public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Interval.Float.Operations.Magnitude
 public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
@@ -16,7 +16,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse
 
 What turns a float Newton iterate `c` into a certificate. `G` and `J` are interval extensions of a
 map `g : ℝᵏ → ℝᵏ` and of its slope; the test takes an approximate inverse `R` of the Jacobian at
-`c` (`Zonotope.basisInverse` of the centre of `J` at the point `c`, trusted for nothing, and
+`c` (`Zonotope.basisInverse` of the center of `J` at the point `c`, trusted for nothing, and
 stored, as `materialiseMat` does, so it is eliminated once rather than per entry read), the box
 `B = c ± r`, and checks in outward rounding that every row of `|1 - R J(B)|` sums to some `qᵢ < 1`
 and that `qᵢ r + |R g(c)|ᵢ ≤ r`: Krawczyk's operator over `B`, bounded by magnitudes, lies in `B`.
@@ -45,9 +45,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {k : ℕ}
 extension `G` with slope enclosure `J`. -/
 def NonlinDASys.newtonTestFloat (G : Interval (Vec 𝕋 k) → Interval (Vec 𝕋 k))
     (J : Interval (Vec 𝕋 k) → Interval (Mat 𝕋 k k)) (c : Vec 𝕋 k) (r : 𝕋) : Bool :=
-  -- approximate inverse of the Jacobian at the centre
+  -- approximate inverse of the Jacobian at the center
   let R : Mat 𝕋 k k :=
-    (Interval.point (Zonotope.basisInverse (J (Interval.point c)).centreMat)).materialiseMat.inf
+    (Interval.point (Zonotope.basisInverse (J (Interval.point c)).centerMat)).materialiseMat.inf
   -- the box `c ± r`, rounded outward
   let B : Interval (Vec 𝕋 k) := ⟨fun i => subDown (c i) r, fun i => addUp (c i) r⟩
   -- `R J(B)`, and the row sums of `|R J(B) - 1|`

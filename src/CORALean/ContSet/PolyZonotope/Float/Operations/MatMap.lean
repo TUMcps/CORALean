@@ -42,7 +42,7 @@ def PolyZonotope.matMap (pZ₁ : PolyZonotope (Mat 𝕋 n k)) (pZ₂ : PolyZonot
   -- the rounding of every stored product, dependent then independent
   let gap := PolyZonotope.matGeneratorError
     (Fin.append (PolyZonotope.pairG matMulDiff pZ₁ pZ₂) (PolyZonotope.pairGI matMulDiff pZ₁ pZ₂))
-  -- the operands' hulls: every generator, centre included, at a coefficient in `[-1, 1]`
+  -- the operands' hulls: every generator, center included, at a coefficient in `[-1, 1]`
   let H₁ := PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.extGens pZ₁) pZ₁.GI)
   let H₂ := PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.extGens pZ₂) pZ₂.GI)
   -- the operands' error boxes: `N₁ e₂ + e₁ (N₂ + e₂)`

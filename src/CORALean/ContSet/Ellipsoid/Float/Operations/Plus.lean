@@ -23,7 +23,7 @@ approximating it. It is a real hypothesis the caller discharges, in the shape of
 `HPolytope.boundOfDual`'s dual feasibility: an unverified routine proposes the
 two scalings and the inequality is what makes them a bound.
 
-Both blocks concatenate as over ℝ and the generator count adds. Only the centre
+Both blocks concatenate as over ℝ and the generator count adds. Only the center
 and the two scalings round, the first into a `residual` and the second into a
 `generatorError`, `u` reaching `[-1,1]` in every coordinate.
 -/

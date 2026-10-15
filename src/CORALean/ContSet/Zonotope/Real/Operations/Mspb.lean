@@ -16,7 +16,7 @@ encloses them for `ratio = 0, 0.1, ..., 1` with `s₁ = n`, `s₂ = 0`; the one 
 `µ` ([1, Eq. 45], [1, Eq. 44], `Zonotope.volume`) is kept, the first of equal ones.
 `svd(X)(:, 1)` has no algorithm here, so `dir` is an argument. The MSPB attributes `A`, `[r]`,
 `[v]` of the result are not split off: the zonotope `c ⊕ Z(R)` is returned, from which they are its
-first `n` and last `n` generators and centre.
+first `n` and last `n` generators and center.
 
 ## References
 

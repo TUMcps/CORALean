@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 
 The diffusion update of one node, Step 2 of [1, Alg. 1] and of [1, Alg. 2]: the weights `𝔴` of
 [1, Prop. 1] (`averagingWeights`, the minimizer of `‖Ǵ‖_F` among weights of sum one), the weighted
-average of the `m_i` shared zonotopes `Z̄ʲ` of its neighbourhood (`andAveraging`, the centre and
+average of the `m_i` shared zonotopes `Z̄ʲ` of its neighbourhood (`andAveraging`, the center and
 generators of [1, Thm. 1]), and the order reduction `↓_q`, here CORA's `reduce` to order `o`, as
 [1] leaves the rule open.
 

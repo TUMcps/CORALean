@@ -84,6 +84,10 @@ open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
 
+/-- A float negates itself, exactly. Low priority, so that a scalar with a `Neg` of its own
+(`ℝ`) keeps it; the vectors and matrices of floats negate entrywise through `Pi.instNeg`. -/
+instance (priority := low) : Neg 𝕋 := ⟨neg⟩
+
 /-! ## Subtraction
 
 Derived, not assumed: negation is exact, so a directed difference is a directed
@@ -174,7 +178,7 @@ def maximumOverImpl {n : ℕ} (f : Fin n → 𝕋) : 𝕋 :=
 
 /-- The smallest of `n` values, `zero` only for none. `neg` and `maximum` are both
 exact, so the reflection costs nothing and no second fold is needed. -/
-def minimumOver {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := neg (maximumOver fun i => neg (f i))
+def minimumOver {n : ℕ} (f : Fin n → 𝕋) : 𝕋 := neg (maximumOver (-f))
 
 /-- Exact. Not named `abs`, which would make `|·|` ambiguous wherever this
 namespace is open. -/
@@ -199,7 +203,7 @@ def dotDown {n : ℕ} (a b : Vec 𝕋 n) : 𝕋 := sumDown fun k => mulDown (a k
 def dotUp {n : ℕ} (a b : Vec 𝕋 n) : 𝕋 := sumUp fun k => mulUp (a k) (b k)
 
 /-- Row sums of absolute values, rounded up: the half-width of the hull of a
-zonotope centred at zero with these generators. -/
+zonotope centered at zero with these generators. -/
 def radius {n h : ℕ} (G : Mat 𝕋 n h) : Vec 𝕋 n := fun i => sumUp fun j => absolute (G i j)
 
 /-- One generator per coordinate. Not `Matrix.diagonal`, which needs `Zero 𝕋`,

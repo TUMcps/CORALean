@@ -18,7 +18,7 @@ admissible factors under `a ↦ evalPolyReal coeffs (point pZ a)`.
 
 `evalPolyReal` is the same recursion over `ℝ` that `evalPoly` runs over the set,
 so the induction matches it step for step — `mul_point` turns the multiplied set
-into a product of points, and the centre shift matches `evalPolyReal`'s own step.
+into a product of points, and the center shift matches `evalPolyReal`'s own step.
 It is scalar, so coordinate `i` reads the coefficient list at `i`; that the
 polynomials differ between coordinates costs the induction nothing.
 -/

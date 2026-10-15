@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 rounding error of `mid(M) Z`, the spread `|M - mid(M)|` applied to `Z`, and the error box. -/
 def Zonotope.mtimesIntervalMatBox (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope (Vec 𝕋 n)) :
     Interval (Vec 𝕋 m) :=
-  let C := Interval.centreMat IM                                    -- mid(M), stored
+  let C := Interval.centerMat IM                                    -- mid(M), stored
   let Rs := Interval.matResidual IM.inf IM.sup C                    -- M - mid(M), a box
   let r : Mat 𝕋 m n := fun i j =>                                   -- |M - mid(M)|
     maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j))

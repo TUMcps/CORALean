@@ -18,8 +18,8 @@ point attaining it is a state at `t_k` or at `t_{k+1}`, not one inside the step.
 
 The hypothesis `hc` is that `ũ` lies in `U` as `νU` sees it: no point `νU d` is
 below `ũ` along `d`. A support vector of a set containing `ũ` satisfies it; the
-centre of `U`'s bounding box, which [1]'s Sec. 3 offers in place of the geometric
-centre, need not lie in `U`, and then line 16 can exceed both ends.
+center of `U`'s bounding box, which [1]'s Sec. 3 offers in place of the geometric
+center, need not lie in `U`, and then line 16 can exceed both ends.
 
 ## References
 

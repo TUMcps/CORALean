@@ -10,8 +10,8 @@ public import Mathlib.Data.Real.Basic
 # The sizes a conformance synthesis minimizes
 
 `intervalNorm σ G = σᵀ|G| 1`, the weighted sum of the interval hull's edge lengths of a
-zonotope with generators `G`, its centre left out: [2, Eq. 11], [3, Def. 3] at `σ = 1`,
-and [1, Def. 2], whose `∑ᵢ |δᵢ|` with `δ = ∑ₕ |g⁽ʰ⁾|` is the same sum. With the centre
+zonotope with generators `G`, its center left out: [2, Eq. 11], [3, Def. 3] at `σ = 1`,
+and [1, Def. 2], whose `∑ᵢ |δᵢ|` with `δ = ∑ₕ |g⁽ʰ⁾|` is the same sum. With the center
 put back as one more generator it is Sec. 3.1's `‖·‖_{Ĩ,σ}`.
 
 `frobNormSq P G = trace(Gᵀ P G) = ∑ⱼ gⱼᵀ P gⱼ`, the square of [2, Eq. 22]'s `‖·‖_{F,P}`.

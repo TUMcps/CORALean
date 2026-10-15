@@ -8,7 +8,7 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 # `HPolytope.isFullDim`, over a floating-point scalar
 
 CORA's `@polytope/isFullDim` solves a Chebyshev linear program, which rounding cannot decide. A
-sound test checks instead a point `x₀` the caller proposes (a Chebyshev centre computed anywhere):
+sound test checks instead a point `x₀` the caller proposes (a Chebyshev center computed anywhere):
 there is no equality row (an equality pins the set to a hyperplane), every inequality row is
 strictly slack, `A x₀ < b`, with `A x₀` rounded upward and the gap certified by `ltStrict`, and the
 error box is not empty, `inf ≤ sup` in every coordinate. `true` proves an interior point; `false`

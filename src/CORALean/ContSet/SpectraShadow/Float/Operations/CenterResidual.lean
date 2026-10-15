@@ -8,7 +8,7 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 /-!
 # `SpectraShadow.centerResidual`
 
-Storing the lower of the two directed roundings of a centre sum leaves this
+Storing the lower of the two directed roundings of a center sum leaves this
 much to pay into the box. The same box a zonotope pays, written again here rather
 than imported, so that the two representations stay independent of each other.
 -/

@@ -14,7 +14,7 @@ CORA's `guardIntersect_pancake` [1], one `let` per step: the scaled system `F = 
 (`NonlinearSys.pancakeScaled`, `aux_scaledSystem`), its reach set (`aux_reachTimeScaled`), a
 single jump of the original system across the guard (`aux_jump`) and the projection onto the
 hyperplane. Departures: the guard `nᵀx = d` is oriented by the caller (`nᵀx > d` where the reach
-set's centre is; CORA flips the halfspace when it holds the centre); the scaled reach is the union
+set's center is; CORA flips the halfspace when it holds the center); the scaled reach is the union
 of its time-point sets over `[0, tScaled]` and the jump runs from every member (CORA takes
 the last time-point set, `timePoint.set{end}`, and stops at the specification), so the result is
 a union, outer where CORA's is one set; the jump's step `δ` (the loop of `aux_jump` that bisects

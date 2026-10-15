@@ -29,7 +29,7 @@ CORA's `evaluatePolyZonotopeNeuron` [1]: a fit per neuron at its order in the pa
 the precision refinement spends. Pinned to the polynomial zonotope, no other representation
 being closed under `evalPoly`; `dependent` runs first, so the input's independent generators
 become dependent ones and the cross terms [2, Prop. 2] spends a factor on are kept. The box is
-centred at zero, so the layer rounds nowhere of its own.
+centered at zero, so the layer rounds nowhere of its own.
 
 ## References
 

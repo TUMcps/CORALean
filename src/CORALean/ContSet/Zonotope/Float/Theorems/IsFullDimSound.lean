@@ -10,9 +10,9 @@ public import Mathlib.Topology.Algebra.Group.Pointwise
 /-!
 # A `true` from `Zonotope.isFullDim` proves an interior point
 
-The checked rows put every vector within `B` of the centre in the nominal zonotope
-(`Zonotope.mem_interior`), so the open box of radius `B` around the centre lies inside it and
-the centre is an interior point. Adding the error box's lower corner, a member of the nonempty
+The checked rows put every vector within `B` of the center in the nominal zonotope
+(`Zonotope.mem_interior`), so the open box of radius `B` around the center lies inside it and
+the center is an interior point. Adding the error box's lower corner, a member of the nonempty
 box, keeps an interior point (`subset_interior_add_left`).
 -/
 

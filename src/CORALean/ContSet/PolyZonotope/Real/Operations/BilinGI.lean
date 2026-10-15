@@ -10,7 +10,7 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 # The independent generators of `bilinOuter`
 
 CORA's `matMap` keeps what `bilin` drops: each independent generator of one set paired with
-every generator of the other, centre included, and the dependent generators of one with the
+every generator of the other, center included, and the dependent generators of one with the
 independent ones of the other. The three blocks, in this order: independent of the first with
 the extended generators of the second, independent with independent, extended generators of the
 first with the independent ones of the second. (CORA lists the same pairs as five blocks.)

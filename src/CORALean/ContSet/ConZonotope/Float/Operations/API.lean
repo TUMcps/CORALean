@@ -42,7 +42,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorMargin
 public import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.ConZonotope.Float.Operations.IsFullDim
 public import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
-public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCenter
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
 public import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
@@ -53,12 +53,12 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Materialise
 # What the float `ConZonotope` computes
 
 `plus` keeps the constraints, padding each onto the wider coefficient space, and
-rounds only the centre. `linComb` keeps them too, weighting each side's rows and
+rounds only the center. `linComb` keeps them too, weighting each side's rows and
 unit box by the interpolation parameter; halving is exact, so the only rounding
-is the centre's and the centre generator's. `reduce` goes through the enclosing
+is the center's and the center generator's. `reduce` goes through the enclosing
 zonotope and gives the constraints up, as it does over ℝ.
 
-`mtimes` keeps the constraints, which sit on the coefficients, and pays the rounding of centre and
+`mtimes` keeps the constraints, which sit on the coefficients, and pays the rounding of center and
 generators into the box as `Zonotope.mtimes` does. `intersection` copies both
 operands' constraints and writes the agreement rows, whose right-hand side is the
 one thing it computes: an interval holding every difference of the two nominal

@@ -51,7 +51,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- Every state a stay passes through lies in the location's split
 time-interval enclosure, wherever the location's input set sits. -/
 theorem Location.Trajectory.timeInterval_outer_split [∀ n, OfPoint (S n) (Vec ℝ n)]
-    [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
+    [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)]
     {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w)
     {R₀ : S n} (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}

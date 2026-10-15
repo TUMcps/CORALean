@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MinnormOffsetGe
 /-!
 # No larger ball fits
 
-A Euclidean ball around the centre that lies in the zonotope the stored floats describe has radius
+A Euclidean ball around the center that lies in the zonotope the stored floats describe has radius
 at most the `Zonotope.minnorm` that is computed: the radius is at most every rounded offset
 (`minnormOffset_ge`), hence at most their minimum. This is the float counterpart of
 `Zonotope.le_minnorm_of_ball_subset`, and needs no spanning hypothesis: it is a statement about

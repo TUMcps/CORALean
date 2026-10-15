@@ -15,7 +15,7 @@ public import Mathlib.Algebra.Order.Ring.Star
 # The matrix exponential lies in the sharper interval enclosure
 
 [1, Thm. 3.2]. Entry by entry as `exp_mem_expIntervalEnclosure` does, and with
-the same tail bound: only the centre differs, `expIntervalTaylorExact` having
+the same tail bound: only the center differs, `expIntervalTaylorExact` having
 orders one and two exactly where the other has them by interval arithmetic.
 
 `hε` is stated at `(t • A).absMax`, not at `t • M`, for the same reason it is

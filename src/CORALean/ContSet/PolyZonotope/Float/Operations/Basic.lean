@@ -44,16 +44,16 @@ def PolyZonotope.bilinGDiff (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZono
   fun k l => subUp (PolyZonotope.bilinGUp Q pZ₁ pZ₂ k l) (PolyZonotope.bilinGDown Q pZ₁ pZ₂ k l)
 
 
--- ==================================  `PolyZonotope.centre`  =================================== --
+-- ==================================  `PolyZonotope.center`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `center` for a polynomial zonotope returns the field `c`: the stored centre,
-unchanged. It carries no guarantee of its own; `centre_mem_construct` says when it lies in
+/-- CORA's `center` for a polynomial zonotope returns the field `c`: the stored center,
+unchanged. It carries no guarantee of its own; `center_mem_construct` says when it lies in
 the set. -/
-def PolyZonotope.centre (pZ : PolyZonotope (Vec 𝕋 n)) : Vec 𝕋 n := pZ.c
+def PolyZonotope.center (pZ : PolyZonotope (Vec 𝕋 n)) : Vec 𝕋 n := pZ.c
 
 
 -- ==================================  `PolyZonotope.fiberUp`  ================================== --

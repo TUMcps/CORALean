@@ -21,7 +21,7 @@ box is easy: the old one travels through the map as a box, by
 `Interval.mtimes_outer`, and the spill is added on.
 
 The nominal obligation is where the float layer pays for arithmetic rather than
-bookkeeping. The centre is wrong by a fixed vector, which `residual` holds; each
+bookkeeping. The center is wrong by a fixed vector, which `residual` holds; each
 generator block is wrong by an entrywise amount its coefficients then scale,
 which `generatorError` sums. The dependent block's coefficients are monomials
 and the independent block's are free, and the two obligations differ only in

@@ -8,7 +8,7 @@ public import Mathlib.Algebra.Module.LinearMap.Defs
 /-!
 # `ConPolyZono.map`
 
-A linear map applies to the centre and to both generator blocks and touches
+A linear map applies to the center and to both generator blocks and touches
 nothing else — not the exponent matrix, not the counts, and above all not the
 constraints.
 

@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubse
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetSplitFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
@@ -85,8 +85,8 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
   obtain ⟨rfl, rfl⟩ := h
   set A := Scalar.toRealMat sys.A with hA
   set eAtk := sys.expSquaringFloat s.tLo s.tHi (max ηmax 2) sq with heAtk
-  set ũ := Recentre.centre V with hũ
-  set Ũ := Recentre.recentre V with hŨ
+  set ũ := Recenter.center V with hũ
+  set Ũ := Recenter.recenter V with hŨ
   set tk : ℝ := (s.t : ℝ) with htk
   have htk0 : 0 ≤ tk := by rw [htk]; exact_mod_cast h0
   have hΔr : 0 < toReal Δt := by rw [← ToRat.toReal_toRat]; exact_mod_cast hΔ
@@ -196,11 +196,11 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     have hτ0 : 0 ≤ τ := sub_nonneg.mpr ht.1
     have hτΔ : τ ≤ toReal Δt := by linarith [ht.2]
     -- the run's departure from the affine flow by `t`, inside the input's share by `t_{k+1}`
-    have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) (V := V)
+    have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) (V := V)
       hUV ⟨ht0, htT⟩
     have hd' := sys.inputReach_mono (S := 𝒵[𝕋])
       (CompactSet.isBounded_construct Ũ)
-      (Recentre.zero_mem_recentre V) ht0 ht.2 hd
+      (Recenter.zero_mem_recenter V) ht0 ht.2 hd
     obtain ⟨d0, hd0, di, hdi, hdeq⟩ := hPU' _ hd'
     -- the affine flow from `H(t_k)`: where its point `x_k` is one step on is in `H(t_{k+1})`
     have hxk := hH (x 0) traj.init

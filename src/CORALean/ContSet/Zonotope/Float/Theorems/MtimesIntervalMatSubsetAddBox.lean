@@ -89,7 +89,7 @@ theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
       (A *ᵥ ·) '' Z.construct
         + (Zonotope.mtimesIntervalMatBox IM Z).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e', he', rfl⟩
-  set C := Interval.centreMat IM with hC
+  set C := Interval.centerMat IM with hC
   set Rs := Interval.matResidual IM.inf IM.sup C with hRs
   set R : Mat ℝ m n := fun i j => A i j - toReal (C i j) with hRdef
   set r : Mat 𝕋 m n := fun i j => maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j))
@@ -100,7 +100,7 @@ theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
     with hξdef
   set b : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ν j) with hbdef
   set a : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ξ j) with hadef
-  -- `A` is within `matResidual` of the centre matrix, entry by entry
+  -- `A` is within `matResidual` of the center matrix, entry by entry
   have hR : R ∈ Rs.construct := Interval.sub_mem_matResidual fun i j => hA (i, j)
   have hr : ∀ i j, |R i j| ≤ toReal (r i j) := fun i j => by
     have hRij := hR (i, j)

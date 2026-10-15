@@ -46,7 +46,7 @@ theorem deepZSShape_sound {f df : ℝ → ℝ} {x' : ℝ} (hd : ∀ x, HasDerivA
     have ht : t = l := le_antisymm hu hl
     subst ht
     simp [deepZSShape]
-  · -- the two lines of the band, recentred
+  · -- the two lines of the band, recentered
     obtain ⟨h1, h2⟩ := sShape_band_sound (lam := min (df l) (df u)) hd hmono hanti le_rfl hl hu
     simp only [deepZSShape, if_neg hlu]
     rw [abs_le]

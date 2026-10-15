@@ -14,7 +14,7 @@ A run of `priv_observe_ESO_A` on `x_{k+1} = x_k + w_k`, `y_k = 2 x_k + v_k`, wit
 `0.3 + δ² = 0.3 + 3.6² ≤ 220`, so the initial update does not fire and the first estimate is
 `R0` with `sigma_sq = 0.3`. The disturbance `w = 1/2` gives `x₁ = 23/10`, measured as `y₂ = 17`
 (`v = 12.4`). The step predicts `p = 1/3`, `Q_next = 15/2`, fires (`0.3 + 17² > 220`), takes
-`λ = 1e-4` (`g = 30`, `√(g/ω) = 170/149`, `ν = 21/4321`) and returns the centre `51/2000` and
+`λ = 1e-4` (`g = 30`, `√(g/ω) = 170/149`, `ν = 21/4321`) and returns the center `51/2000` and
 the shape `12500000/9713231` (`sigma_sq ≈ 5.81`), which misses `x₁`:
 `(x₁ - c)² / Q ≈ 4.0 > 1`. The cause is the update's division by `sigma_sq`
 (`Ellipsoid.intersectStripGollamudi1D_counterexample`). Read from the source, not run.

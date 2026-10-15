@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
 # `PolyZonotope.sum`, over a floating-point scalar
 
 CORA's `@polyZonotope/sum`: `pZ` summed with the sets `L 0, ..., L (m-1)` over `pZ`'s factors; the
-generators and exponent columns are appended, the centres added. The float centre is the lower of
+generators and exponent columns are appended, the centers added. The float center is the lower of
 the directed sums and its rounding, with the error boxes of all the summands, goes into the error
 box (`sumErr`, `Interval.residual`). The correct sum, not CORA's loop (see the real layer's
 `sumCora`).

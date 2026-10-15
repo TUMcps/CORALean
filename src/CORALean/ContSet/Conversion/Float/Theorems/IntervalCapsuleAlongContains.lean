@@ -14,8 +14,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule
 /-!
 # A box as a capsule, over a floating-point scalar
 
-CORA's `capsule(interval)`: the centre, the segment along a widest edge, and a ball thick enough
-for the other half-widths. The stored centre and generator are rounded, and their distances from
+CORA's `capsule(interval)`: the center, the segment along a widest edge, and a ball thick enough
+for the other half-widths. The stored center and generator are rounded, and their distances from
 the exact ones (`cGap`, `gGap`: the gap between the upward and downward roundings, per entry) are
 added to the radius as lengths, with `‖hw‖₂` for the other half-widths, all rounded up
 (`Global/Float/Sqrt`, `k` Newton steps).
@@ -52,7 +52,7 @@ theorem Interval.capsuleAlong_contains (k : ℕ) (I : Interval (Vec 𝕋 n)) (a 
     le_trans (hx i).1 (hx i).2
   have hK := CORALean.Real.Interval.capsuleAlong_contains I.nominal a hx
   refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := ⟨_, _, _⟩) ?_ hK
-  -- the centre is within the gap of its two roundings
+  -- the center is within the gap of its two roundings
   have hc : ‖(fun i => (toReal (I.inf i) + toReal (I.sup i)) / 2) -
       toRealVec (fun i => half (addDown (I.inf i) (I.sup i)))‖₂ ≤
       toReal (normUp k fun i => subUp (half (addUp (I.inf i) (I.sup i)))

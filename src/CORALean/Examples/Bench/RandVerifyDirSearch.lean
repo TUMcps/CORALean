@@ -24,7 +24,7 @@ namespace CORALean.Bench
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A window as `Float`s: its centre and generators. -/
+/-- A window as `Float`s: its center and generators. -/
 def aux_windowFloat (Y : RandOutZono) : (Float × Float) × Array (Float × Float) :=
   ((quotFloat Y.c.1 Y.den, quotFloat Y.c.2 Y.den),
     Y.gens.map fun (a, b) => (quotFloat a Y.den, quotFloat b Y.den))

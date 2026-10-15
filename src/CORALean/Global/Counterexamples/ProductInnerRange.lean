@@ -21,7 +21,7 @@ For `f(x) = (x₀, x₀ + x₁/100)` on `[-1, 1]²` both components reach their 
 the box of the two is not in the image: `(1, -0.99)` would need `x₁ = -199`. CORA's
 `priv_reachInnerParallelotope` (`aux_innerApprox`) picks the existential input per
 component independently and returns this box; `f` is the time-`1` flow of a linear
-system, and the Jacobian centre has condition number over `100`, so CORA skips the
+system, and the Jacobian center has condition number over `100`, so CORA skips the
 preconditioning (read from the source, not run).
 
 ## References

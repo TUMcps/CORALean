@@ -7,7 +7,7 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # The weights of a linear layer with an error box
 
-CORA's `W h + b ⊕ E` as an `Enclose` kind. The function it encloses commits to the centre of
+CORA's `W h + b ⊕ E` as an `Enclose` kind. The function it encloses commits to the center of
 the box, which a box needs to be nonempty to have; the instance runs on `E.nonemptyHull`
 rather than asking for a proof, since a reduction computes `E` at run time with none to hand.
 The hull is `E` itself whenever `E` is nonempty, so nothing it computes changes.

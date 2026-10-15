@@ -11,7 +11,7 @@ public import Mathlib.Data.Real.Basic
 What a polynomial relaxation's coefficients mean, over ℝ: `evalPoly c t = ∑ c i tⁱ`, its
 derivative written out so that a caller bounds it without unfolding anything, and the three
 exact reshapings the pipeline performs on coefficients — the constant moved by `s` (the
-recentring `computeApproxError` does), `t ↦ a · p (b · t)` (an affine conjugation, `b` folding
+recentering `computeApproxError` does), `t ↦ a · p (b · t)` (an affine conjugation, `b` folding
 into the monomials one power at a time and `a` multiplying every coefficient once), and
 padding to a higher degree with zeros (how the neurons of one layer meet at a common degree).
 A machine scalar stores coefficients and performs the same reshapings rounded; these are what

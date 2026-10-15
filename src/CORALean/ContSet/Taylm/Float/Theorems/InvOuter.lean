@@ -10,8 +10,8 @@ public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
 /-!
 # `Taylm.inv` encloses `1 / f`, over a floating-point scalar
 
-Where the hull of the centre and the range stays at a positive distance `m` from zero, `x ↦ 1/x`
-is smooth on it, its Taylor coefficients at the centre lie in the rounded interval `invCoef`
+Where the hull of the center and the range stays at a positive distance `m` from zero, `x ↦ 1/x`
+is smooth on it, its Taylor coefficients at the center lie in the rounded interval `invCoef`
 (`invCoef_mem`), and its `(N+1)`-th derivative is below the rounded `invBound` (`invBound_ge`).
 `Taylm.taylor_outer` does the rest. Outer.
 -/
@@ -60,7 +60,7 @@ theorem Taylm.inv_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enclos
         max_eq_right (by linarith [hξ.1, hξ.2])
       rw [hM, abs_of_neg h0]
       exact ⟨by linarith [hξ.2], ne_of_lt h0⟩
-  -- the centre is itself in the hull, so not zero
+  -- the center is itself in the hull, so not zero
   have hc0 : toReal T.constCoef ≠ 0 :=
     (hξ _ ⟨min_le_left _ _, le_max_left _ _⟩).2
   refine Taylm.taylor_outer h Inv.inv T.constCoef _ _ _ _

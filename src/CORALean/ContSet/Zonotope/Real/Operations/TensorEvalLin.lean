@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Ring
 # `Zonotope.tensorEvalLin`
 
 The tensor product at a fixed point `x` is linear in the tensor, which is what lets
-`tensorMultiplication_zono` treat the centre and the generators of a matrix zonotope of tensors one
+`tensorMultiplication_zono` treat the center and the generators of a matrix zonotope of tensors one
 by one.
 -/
 

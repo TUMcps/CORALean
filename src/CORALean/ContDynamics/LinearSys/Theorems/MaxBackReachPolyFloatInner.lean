@@ -56,7 +56,7 @@ theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 (Vec
   set ball : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, maximum zero μ⟩ with hball
   -- the exact ball sits inside the float one
   have hyball : y ∈ ball.construct := by
-    -- the witness `t` is kept, the zero centre and segment vanish, the radius grows
+    -- the witness `t` is kept, the zero center and segment vanish, the radius grows
     obtain ⟨t, ht, hle⟩ := hy
     have hc : ∀ i, toReal (ball.c i) = 0 := fun i => toReal_zero
     have hg : ∀ i, toReal (ball.g i) = 0 := fun i => toReal_zero

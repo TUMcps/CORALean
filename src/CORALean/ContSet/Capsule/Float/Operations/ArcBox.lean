@@ -13,7 +13,7 @@ public import CORALean.Global.Float.IntRound
 /-!
 # `Capsule.arcBox`: a box around one sampled boundary point
 
-The sample `ctr + r (cos a, sin a)` of `a = a₀ + i * step`, with the centre `ctr` and the base
+The sample `ctr + r (cos a, sin a)` of `a = a₀ + i * step`, with the center `ctr` and the base
 angle `a₀` known only in boxes and the step `π / 499` in bounds: the index `i` enclosed by
 `intDown`, `intUp`, the angle by the interval plus and times, the cosine and sine by
 `Interval.cos`, `Interval.sin`, the coordinates by the interval plus and times again.

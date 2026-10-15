@@ -9,7 +9,7 @@ public import CORALean.ContSet.ContSet.Theorems.EnlargeOuter
 # Each member of an enlarged bundle encloses the scaling of its own member
 
 The bundle denotes an intersection of its members, and each member is scaled about its own
-centre. So the statement is per member: the image of member `i` under `x ↦ cᵢ + f ⊙ (x - cᵢ)`
+center. So the statement is per member: the image of member `i` under `x ↦ cᵢ + f ⊙ (x - cᵢ)`
 lies in member `i` of the result, and the result is the intersection of those members
 (`construct_enlarge`). It is not a statement about the image of the intersection: the maps differ
 from member to member, so the image of the intersection need not lie in the intersection of the

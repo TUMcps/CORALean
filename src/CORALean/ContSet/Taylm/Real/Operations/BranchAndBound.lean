@@ -12,7 +12,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.ReexpBoxBounds
 [1, Alg. 1], `BranchAndBound(P, [x], ε)`: lines 2-5 start from the one box `[x]` bounded by
 interval arithmetic, eq. (12), and the loop splits until the union settles. `adv` chooses the
 source's two settings: `standard` bounds each sub-box by interval arithmetic directly, `advanced`
-re-expands `P` at the sub-box's centre first (lines 15, 22, 28).
+re-expands `P` at the sub-box's center first (lines 15, 22, 28).
 
 ## References
 

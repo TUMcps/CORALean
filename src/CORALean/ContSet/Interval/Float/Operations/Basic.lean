@@ -447,7 +447,7 @@ def Interval.sum₂ (I : Interval (Mat 𝕋 m n)) : Interval (Vec 𝕋 m) where
 -- Reviewed:      14-October-2026 (Tobias Ladner)
 
 /-- The box `[-r, r]`, which is what a bound known only in magnitude gives. -/
-def Interval.symmetric (r : Vec 𝕋 n) : Interval (Vec 𝕋 n) := ⟨fun i => neg (r i), r⟩
+def Interval.symmetric (r : Vec 𝕋 n) : Interval (Vec 𝕋 n) := ⟨-r, r⟩
 
 
 -- =====================================  `Interval.tanh`  ====================================== --
@@ -493,8 +493,8 @@ def Interval.triu (K : ℕ) (I : Interval (Mat 𝕋 m n)) : Interval (Mat 𝕋 m
 
 /-- Negation is exact, `neg` flipping a sign bit, so the bounds swap and negate with no rounding. -/
 def Interval.uminus (I : Interval (Vec 𝕋 n)) : Interval (Vec 𝕋 n) where
-  inf := fun i => neg (I.sup i)
-  sup := fun i => neg (I.inf i)
+  inf := (-I.sup)
+  sup := (-I.inf)
 
 
 -- =========================================  `prodUp`  ========================================= --

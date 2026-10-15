@@ -46,7 +46,7 @@ def aux_conZonotopeObjective (cZ : ConZonotope α) (c : α →ₗ[ℝ] ℝ) : Ve
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `c` of the centre plus a certified bound of the coefficient program. -/
+/-- `c` of the center plus a certified bound of the coefficient program. -/
 noncomputable def ConZonotope.supportBound (cZ : ConZonotope α) (c : α →ₗ[ℝ] ℝ) :
     Option (SupportBound cZ.construct c) :=
   (cZ.domain.supportBound (aux_conZonotopeObjective cZ c)).map fun u =>

@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.PropagateInputSolutionMono
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ContSet.Theorems.Basic
@@ -22,7 +22,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 [1, Alg. 1 (upper bounds)]: line 12's `ρ(R̂(t_k), ℓ)` is at least `ℓ` at every state of the exact
 reachable set `R(t_k)`, and line 13's `ρ(R̂(τ_k), ℓ)` at least `ℓ` at every state `R(t)` reaches
 at a time `t` of `τ_k`. A state splits as `e^{tA}x(0)`, the constant input `ũ`'s share `Γ(t)ũ`
-(`Pu`, line 9) and one admissible `U₀`-input's `inputReach U₀ t` (`Recentre`); the last is
+(`Pu`, line 9) and one admissible `U₀`-input's `inputReach U₀ t` (`Recenter`); the last is
 propagated `k` times from the one step `inputReach U₀ Δt`, which line 4's `P̂_U(Δt)` encloses
 (line 11). On `τ_k` the first two interpolate between `H(t_k)` and `H(t_{k+1})` up to
 `e^{At_k}(F X₀ ⊕ G ũ)` (`C`, line 5), and `0 ∈ U₀` carries `inputReach U₀ t` into
@@ -55,7 +55,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
-variable [∀ n, Recentre (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -78,7 +78,7 @@ theorem aux_supportUpper_Pu (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ �
     (X₀ U : S n) (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
     (sys.supportUpper Δt η X₀ U ρ ℓ k).Pu
       = MatExp.expIntegral (toRealMat sys.A) ((k : ℝ) * Δt)
-        *ᵥ Recentre.centre U := by -- --- PROOF ---
+        *ᵥ Recenter.center U := by -- --- PROOF ---
   induction k with
   | zero =>
     show (0 : Vec ℝ n) = _
@@ -86,7 +86,7 @@ theorem aux_supportUpper_Pu (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ �
       intervalIntegral.integral_same]
   | succ k ih =>
     show exp (Δt • toRealMat sys.A) *ᵥ (sys.supportUpper Δt η X₀ U ρ ℓ k).Pu
-      + MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ Recentre.centre U = _
+      + MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ Recenter.center U = _
     rw [ih, Nat.cast_succ, add_one_mul, MatExp.expIntegral_add_mulVec _ _
       (mul_nonneg k.cast_nonneg hΔt) hΔt]
 
@@ -94,13 +94,13 @@ theorem aux_supportUpper_Pu (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 ≤ �
 theorem aux_supportUpper_ρP (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ U : S n)
     (ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
     (sys.supportUpper Δt η X₀ U ρ ℓ k).ρP
-      = ∑ j ∈ Finset.range k, ρ (sys.inputSolution Δt η (Recentre.recentre U))
+      = ∑ j ∈ Finset.range k, ρ (sys.inputSolution Δt η (Recenter.recenter U))
           (ℓ.comp (mulVecLin (exp (Δt • toRealMat sys.A) ^ j))) := by -- --- PROOF ---
   induction k with
   | zero => rfl
   | succ k ih =>
     show (sys.supportUpper Δt η X₀ U ρ ℓ k).ρP
-      + ρ (sys.inputSolution Δt η (Recentre.recentre U))
+      + ρ (sys.inputSolution Δt η (Recenter.recenter U))
         (sys.supportUpper Δt η X₀ U ρ ℓ k).d = _
     rw [ih, aux_supportUpper_d, Finset.sum_range_succ]
 
@@ -171,11 +171,11 @@ theorem LinearSys.supportUpper_outer
       ∀ x ∈ sys.reachSet (Set.Icc 0 t) X₀ U t,
         ℓ x ≤ (sys.supportUpper Δt (m + 2) X₀ U ρ ℓ (k + 1)).ρRτ) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
-  set c := Recentre.centre U with hc
-  set U₀ := Recentre.recentre U with hU₀
+  set c := Recenter.center U with hc
+  set U₀ := Recenter.recenter U with hU₀
   set PU := sys.inputSolution Δt (m + 2) U₀ with hPU
   have hbdd₀ : Bornology.IsBounded (construct U₀) := CompactSet.isBounded_construct U₀
-  have h0 : (0 : Vec ℝ n) ∈ construct U₀ := Recentre.zero_mem_recentre U
+  have h0 : (0 : Vec ℝ n) ∈ construct U₀ := Recenter.zero_mem_recenter U
   -- line 4: one step of the input is inside `P̂_U(Δt)`
   have hΔ : sys.inputReach U₀ Δt ⊆ construct PU :=
     sys.inputReach_subset_inputSolution hΔt (m + 2) hε (ConvexSet.convex_construct U₀)
@@ -202,7 +202,7 @@ theorem LinearSys.supportUpper_outer
   · -- line 12
     rintro _ ⟨x, u, traj, rfl⟩
     have hk0 : (0 : ℝ) ≤ (k : ℝ) * Δt := mul_nonneg k.cast_nonneg hΔt.le
-    have hmem := traj.sub_mem_inputReach_recentre (V := U) subset_rfl ⟨hk0, le_rfl⟩
+    have hmem := traj.sub_mem_inputReach_recenter (V := U) subset_rfl ⟨hk0, le_rfl⟩
     rw [aux_supportUpper_ρR, aux_supportUpper_ρP, ← sub_add_cancel (x ((k : ℝ) * Δt))
       (exp (((k : ℝ) * Δt) • A) *ᵥ x 0 + MatExp.expIntegral A ((k : ℝ) * Δt) *ᵥ c),
       add_comm (x _ - _), map_add]
@@ -211,7 +211,7 @@ theorem LinearSys.supportUpper_outer
     rintro t ht _ ⟨x, u, traj, rfl⟩
     have hk0 : (0 : ℝ) ≤ (k : ℝ) * Δt := mul_nonneg k.cast_nonneg hΔt.le
     have ht0 : 0 ≤ t := le_trans hk0 ht.1
-    have hmem := traj.sub_mem_inputReach_recentre (V := U) subset_rfl ⟨ht0, le_rfl⟩
+    have hmem := traj.sub_mem_inputReach_recenter (V := U) subset_rfl ⟨ht0, le_rfl⟩
     -- the particular solution of `U₀` up to `t` is inside the one up to `t_{k+1}`, as `0 ∈ U₀`
     have hmem' := sys.inputReach_mono hbdd₀ h0 ht0 ht.2 hmem
     have hP : ℓ (x t - (exp (t • A) *ᵥ x 0 + MatExp.expIntegral A t *ᵥ c))

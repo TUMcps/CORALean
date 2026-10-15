@@ -11,7 +11,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
 One step of CORA's ellipsoidal observer `ESO-B` (`priv_observe_ESO_B`), corrected so that it
 encloses the true state (`LinearSysDT.observeEsoB_outer`), on `E(Q, c)` at the level `1`:
 
-* `post`: the shape `A Q Aᵀ` and the centre `A c + B u + c_sys` (`B` and the offset `c_sys`
+* `post`: the shape `A Q Aᵀ` and the center `A c + B u + c_sys` (`B` and the offset `c_sys`
   the system's, as CORA's `post` adds them; `C` too is the system's);
 * the prediction `Q_next = (1 - p)⁻¹ A Q Aᵀ + p⁻¹ W` at any `p ∈ (0, 1)`, where the code has
   `(σ² p)⁻¹ W`, the prediction of the level-`σ²` set (Eq. 21 of Liu, Zhao and Wu, IET Control
@@ -47,7 +47,7 @@ noncomputable def LinearSysDT.observeEsoB (sys : LinearSysDT ℝ n)
     (y : Vec ℝ sys.q)
     (Q : Mat ℝ n n) (c : Vec ℝ n) : Ellipsoid n :=
   let Qhom := sys.A * Q * sys.Aᵀ  -- `Rnext_hom = post(...)`: the shape of `A*Rnext.tp`
-  let chom := sys.A *ᵥ c + (sys.B *ᵥ u + sys.c)  -- its centre, `A c + B u + c`
+  let chom := sys.A *ᵥ c + (sys.B *ᵥ u + sys.c)  -- its center, `A c + B u + c`
   let Qnext := (1 - p)⁻¹ • Qhom + p⁻¹ • W  -- `Q_next`; the code has `(sigma_sq*p)^-1`
   let δ := y - sys.C *ᵥ chom  -- `delta` of `aux_methodLiu2016`
   if σsqPrev + δ ⬝ᵥ δ > 1 then  -- Theorem 3 of Liu et al.

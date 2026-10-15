@@ -9,7 +9,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 # With a sensor fault the observer zonotope misses the state
 
 [1, Eq. 10] bounds `x_{k+1}` of the system [1, Eq. 3], whose output carries the sensor fault
-`E f_k`. The fault enters the centre through `y_k` and is accounted for nowhere else, so the
+`E f_k`. The fault enters the center through `y_k` and is accounted for nowhere else, so the
 enclosure needs `f_k = 0` (`LinearSysDT.faultObserve_outer`). In one dimension with `A = B = 0`,
 `C = L = E = 1`, no disturbance or noise, `X̂_k = {0}` and `x_k = 0`, a fault `f_k = 1` gives
 `y_k = 1` and `X̂_{k+1} = {1}`, which misses `x_{k+1} = 0`.
@@ -54,7 +54,7 @@ theorem LinearSysDT.faultObserve_counterexample :
       (X.faultObserve A B C L Dx Hw Dy Hv 0 y).construct := by -- --- PROOF ---
   intro A B C L E Dx Hw Dy Hv X x f y
   refine ⟨⟨Fin.elim0, fun j => j.elim0, by simp [X, x]⟩, ?_⟩
-  -- the zonotope has no generators and centre `1`
+  -- the zonotope has no generators and center `1`
   rintro ⟨b, -, hb⟩
   have := congrFun hb 0
   simp [Zonotope.faultObserve, A, B, C, L, E, X, x, f, y] at this

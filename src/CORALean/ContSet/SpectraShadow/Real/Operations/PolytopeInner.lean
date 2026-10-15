@@ -10,7 +10,7 @@ public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 
 CORA's `polytope(SpS, 'inner', splits)`, its default: the hull of the points `v` that `[~, v] =
 supportFunc(dir)` returns as maximisers along a grid of directions, taken in the shadow shifted by
-its `center`, and shifted back. The centre `c` and the maximisers `v` are the solver's, so they are
+its `center`, and shifted back. The center `c` and the maximisers `v` are the solver's, so they are
 arguments; `Theorems.PolytopeInner` holds whichever points of the shifted shadow they are. CORA's
 `polytope.Inf` when no direction has a maximiser is not modelled: the vertex list is then empty.
 -/

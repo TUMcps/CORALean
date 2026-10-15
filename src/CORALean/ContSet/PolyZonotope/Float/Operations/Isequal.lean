@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 # `PolyZonotope.isequal`, over a floating-point scalar
 
 The structural test at tolerance `0`, as over ℝ: the same numbers of factors and generators, the
-centre, the generators, the exponent matrix and the two ends of the error box equal, each stored
+center, the generators, the exponent matrix and the two ends of the error box equal, each stored
 number by the certified `le` in both directions. Certified in one direction only: `true` is a
 proof, `false` refutes nothing. Not CORA's test, which compacts and reorders first.
 -/

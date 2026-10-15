@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
 # `PolyZonotope.padBack`
 
 The set read over `r` further factors, appended after its own. Only the factor
-count and the exponent matrix move; the centre, both generator blocks and the
+count and the exponent matrix move; the center, both generator blocks and the
 counts of them stay, so `padBack` changes no point and denotes the same set.
 
 It exists for the product of two sets over *independent* factors, which `bilin`

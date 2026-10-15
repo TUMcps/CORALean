@@ -11,7 +11,7 @@ public import Mathlib.Topology.Algebra.Group.Pointwise
 # A `true` from `PolyZonotope.isFullDim` proves an interior point
 
 At the factors `α = 0` the nominal set contains `y₀ + GI β` for every `|βⱼ| ≤ 1`, where `y₀` is
-the centre plus the dependent generators weighted by their monomials at `0`. The checked rows put
+the center plus the dependent generators weighted by their monomials at `0`. The checked rows put
 every vector within `B` of zero in that zonotope's span with such coefficients
 (`Zonotope.ballCert_reach`), so the open box of radius `B` around `y₀` lies inside the set.
 Adding the error box's lower corner keeps an interior point (`subset_interior_add_left`).

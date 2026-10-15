@@ -15,17 +15,17 @@ public import Mathlib.Tactic.Positivity
 
 How far the result of `mtimesIntervalMat` reaches, measured against the entries
 of the interval matrix rather than against the matrices it denotes: a bound on
-the centre and one on the radius, each against the operand's `ℓ¹` reach
-`∑ⱼ absBound j`, which is what both the boxed generators and the centre's rows
+the center and one on the radius, each against the operand's `ℓ¹` reach
+`∑ⱼ absBound j`, which is what both the boxed generators and the center's rows
 are summed over.
 
 The direction is the one an error measure needs — `mtimesIntervalMat_outer`
 bounds the operation from below, and a caller asking how much an enclosure
 exceeds an exact set is asking how large this product is.
 
-The radius is what the boxed generators carry and the centre what the ordinary
+The radius is what the boxed generators carry and the center what the ordinary
 ones do, so the two bounds enter the total additively and neither is dropped:
-`inputRemainder` has centre zero and pays only `ρr`, while `correctionMatrix`
+`inputRemainder` has center zero and pays only `ρr`, while `correctionMatrix`
 pays both.
 -/
 
@@ -63,7 +63,7 @@ theorem Zonotope.aux_sum_diagonal_abs (v : Vec ℝ m) (i : Fin m) :
   · intro hi
     exact absurd (Finset.mem_univ i) hi
 
-/-- A row of the centre against a vector, in terms of that vector's `ℓ¹` size. -/
+/-- A row of the center against a vector, in terms of that vector's `ℓ¹` size. -/
 theorem Zonotope.aux_abs_center_mulVec_le {ρc : ℝ} {IM : Interval (Mat ℝ m n)}
     (hc : ∀ i j, |IM.center i j| ≤ ρc) (v : Vec ℝ n) (i : Fin m) :
     |(IM.center *ᵥ v) i| ≤ ρc * ∑ j, |v j| := by -- --- PROOF ---
@@ -95,7 +95,7 @@ theorem Zonotope.aux_absBound_mtimesIntervalMat_le {ρc ρr : ℝ} {IM : Interva
           rw [abs_mul, abs_of_nonneg (habs j)]
           exact mul_le_mul_of_nonneg_right (hr i j) (habs j)
       _ = ρr * ∑ j, Z.absBound j := by rw [Finset.mul_sum]
-  -- the ordinary block is the centre acting on the operand's own data
+  -- the ordinary block is the center acting on the operand's own data
   have hsplit : (Zonotope.mtimesIntervalMat IM Z).absBound i
       = |(IM.center *ᵥ Z.c) i| + ((∑ l, |(IM.center *ᵥ Z.G l) i|)
         + |Zonotope.radiusReach IM Z i|) := by
@@ -103,7 +103,7 @@ theorem Zonotope.aux_absBound_mtimesIntervalMat_le {ρc ρr : ℝ} {IM : Interva
       (fun l => |(Zonotope.mtimesIntervalMat IM Z).G l i|)]
     simp only [Zonotope.mtimesIntervalMat, Fin.append_left, Fin.append_right]
     rw [hdiag]
-  have hcentre : |(IM.center *ᵥ Z.c) i| + ∑ l, |(IM.center *ᵥ Z.G l) i|
+  have hcenter : |(IM.center *ᵥ Z.c) i| + ∑ l, |(IM.center *ᵥ Z.G l) i|
       ≤ ρc * ∑ j, Z.absBound j := by
     have hrows : ∑ l, |(IM.center *ᵥ Z.G l) i| ≤ ∑ l, ρc * ∑ j, |Z.G l j| :=
       Finset.sum_le_sum fun l _ => Zonotope.aux_abs_center_mulVec_le hc _ i

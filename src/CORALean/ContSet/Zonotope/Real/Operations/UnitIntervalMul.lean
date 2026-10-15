@@ -8,8 +8,8 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.unitIntervalMul`
 
 [1, Eq. 11]: the scalar interval multiplication `[-1, 1] ⊗ Z`, enclosed by the zonotope
-`(0, c, g⁽¹⁾, ..., g⁽ᵖ⁾)` — the centre made a generator of its own and the new centre the
-origin. Not exact: `s(c + Σ βⱼg⁽ʲ⁾)` ties the centre's coefficient `s` to the others',
+`(0, c, g⁽¹⁾, ..., g⁽ᵖ⁾)` — the center made a generator of its own and the new center the
+origin. Not exact: `s(c + Σ βⱼg⁽ʲ⁾)` ties the center's coefficient `s` to the others',
 `sβⱼ`, and the zonotope frees them, which `unitIntervalMul_outer` spends.
 
 Over any real module, like `Zonotope` itself: [1, Thm. 1] applies it to vectors.

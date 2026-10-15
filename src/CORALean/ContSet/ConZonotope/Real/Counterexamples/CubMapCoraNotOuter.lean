@@ -19,7 +19,7 @@ and `A β = b` is imposed on the remaining factors alone.
 For `z = x₁² · x₁` and `c = (1, 0)`, `G = I`, `A = [1 1]`, `b = 0` (`rescale` is the identity: both
 factors reach `±1`) the image is `(1 + β₁)³ = [0, 8]`. CORA's polynomial zonotope is
 `1 + 3β₁ + 3β₁² + β₁³`, the linear monomial `β₁` alone, so `A = [1 0 0]`, and `β₁²` moves half into
-the centre: `c = 5/2`, `G = (3, 3/2, 1)`, `γ₁ = 0`: the set `[0, 5]`, which misses `z = 8` at
+the center: `c = 5/2`, `G = (3, 3/2, 1)`, `γ₁ = 0`: the set `[0, 5]`, which misses `z = 8` at
 `β₁ = 1` (read from the source, not run). `ConZonotope.cubMap` keeps every linear generator.
 -/
 
@@ -49,7 +49,7 @@ def ConZonotope.aux_cubCexIn : ConZonotope (Vec ℝ 2) where
 def ConZonotope.aux_cubCexTensor : Fin 1 → Fin 2 → Mat ℝ 2 2 :=
   fun _ k => if k = 0 then !![1, 0; 0, 0] else 0
 
-/-- What `aux_cubMapSingle` returns for them, traced by hand: centre `5/2`, generators
+/-- What `aux_cubMapSingle` returns for them, traced by hand: center `5/2`, generators
 `(3, 3/2, 1)` and the constraint `γ₁ = 0` on the one linear monomial left. -/
 noncomputable def ConZonotope.aux_cubCexCora : ConZonotope (Vec ℝ 1) where
   h := 3

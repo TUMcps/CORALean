@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # Zonotopes over a floating-point scalar: the representation
 
-CORA's `zonotope` with its centre and generators, plus the error box that makes
+CORA's `zonotope` with its center and generators, plus the error box that makes
 it an `InflatedContSet`. The nominal part is the zonotope those stored floats
 describe; the box holds what rounding has cost.
 

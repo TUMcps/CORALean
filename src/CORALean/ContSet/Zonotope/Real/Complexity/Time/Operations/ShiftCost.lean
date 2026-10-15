@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.shiftCost`
 
-Asserted, not proved: `Operations/Shift.lean` subtracts `w` from the centre,
+Asserted, not proved: `Operations/Shift.lean` subtracts `w` from the center,
 `n` subtractions at `Vec ℝ n`; the generators are untouched.
 -/
 

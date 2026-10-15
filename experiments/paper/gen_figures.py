@@ -140,14 +140,14 @@ def gen_paper_ti_union(results_dir: Path, config: str, scheme: str, type_stem: s
 def gen_simulate_paper(results_dir: Path, config: str, config_json: Path) -> bool:
     """`<config>/simulate-paper.dat`: six fixed-seed (`random.Random({seed})`,
     `simulate.py`'s own `start_points`, the same one its own interior points
-    use) pseudo-random INTERIOR points of `X0` -- not the centre, not the
+    use) pseudo-random INTERIOR points of `X0` -- not the center, not the
     corners -- every second sample time. The seed is repeated in this file's
     own header comment, for a reader who has not read this docstring."""
     if not config_json.exists():
         return False
     cfg = simulate_mod.load_config(config_json)
     pts = simulate_mod.start_points(cfg["center"], cfg["gens"], 6)
-    interior = pts[-6:]  # start_points: [centre] + 2^h corners + n_interior, in that order
+    interior = pts[-6:]  # start_points: [center] + 2^h corners + n_interior, in that order
     trajectories = [simulate_mod.trajectory(cfg["a"], cfg["b"], cfg["dt"], cfg["steps"], p0)[::2]
                     for p0 in interior]
     out_path = results_dir / config / "simulate-paper.dat"

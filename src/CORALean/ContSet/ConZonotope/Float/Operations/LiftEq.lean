@@ -11,7 +11,7 @@ The zonotope CORA's `@conZonotope/reduce` reduces [1, Sec. 4.3], on the stored f
 generators `[G; Aₑ]` in `𝕋^{n + mₑ}`, the equality rows copied as they are (entry `Aₑ i j` is
 generator `j`'s lower coordinate `i`), so nothing is rounded. As over ℝ, with two differences.
 Only the zonotope is returned, the inequality rows being `reduceLiftBy`'s to carry; and the
-lower centre is `0`, not `-bₑ`, because the right-hand side `bₑ` is an interval here: the row
+lower center is `0`, not `-bₑ`, because the right-hand side `bₑ` is an interval here: the row
 `Aₑ β ∈ bₑ` keeps it on the constraint, where the lifted coordinate is `Aₑ β` itself. The
 error box is the first operand's, with `0` below, and `reduceBy` never reads it.
 

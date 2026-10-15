@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Mtimes
 # `PolyZonotope.mtimesCost`
 
 Asserted, not proved: `Operations/Mtimes.lean` is `map` at `M *ᵥ ·`, so it pays
-one matrix-vector product for the centre and one for each generator of either
+one matrix-vector product for the center and one for each generator of either
 block, and nothing for the exponent matrix.
 
 Written as `mapCost` at `Cost.matVec m n` rather than spelt out again, which is

@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.shiftDown`
 
-The box midpoint added to the centre, rounded down. The exact midpoint need
+The box midpoint added to the center, rounded down. The exact midpoint need
 not be a float — `[5, 6]` gives 5.5 — so the gap between the two roundings is
 what `absorbError` leaves behind.
 -/
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The box midpoint added to the centre, rounded each way. The exact midpoint
+/-- The box midpoint added to the center, rounded each way. The exact midpoint
 need not be a float — `[5, 6]` gives 5.5 — so the gap between the two roundings
 is what `absorbError` leaves behind. -/
 def Zonotope.shiftDown (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=

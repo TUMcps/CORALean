@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.binomCoef (e j : ℕ) (m r : 𝕋) : Interval 𝕋 :=
-  -- the integer, then the power of the centre, then the power of the radius
+  -- the integer, then the power of the center, then the power of the radius
   let A : Interval 𝕋 := ⟨Interval.mulLo (intDown (e.choose j : ℤ)) (intUp (e.choose j : ℤ))
     (Interval.powLo m (e - j)) (Interval.powHi m (e - j)),
     Interval.mulHi (intDown (e.choose j : ℤ)) (intUp (e.choose j : ℤ))

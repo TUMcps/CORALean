@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
 /-!
 # One step of the float re-linearization loop, at the half-step point
 
-`relinStepAtFloat` at the expansion point `linPointFloat` computes: the centre of the set the
+`relinStepAtFloat` at the expansion point `linPointFloat` computes: the center of the set the
 step starts from, carried half a step along the field.
 -/
 

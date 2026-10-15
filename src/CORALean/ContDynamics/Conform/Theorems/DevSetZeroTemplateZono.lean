@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
 # `R_a(k)` of stretched templates, from an exact initial state
 
 With the initial state known (`X̃₀ = {0}`) and `W`, `V` stretched templates, `R_a(k)` is
-the zonotope with centre `∑_{i<k} Eᵢ c_W + c_V` [1, Eq. 17] and generators
+the zonotope with center `∑_{i<k} Eᵢ c_W + c_V` [1, Eq. 17] and generators
 `[E₀ G'_W ⋯ E_{k-1} G'_W  G'_V]` [1, Eq. 18], `Eᵢ = C Aⁱ`, stretched by `α_W` once per step
 and by `α_V`. An equality, as the paper's `=` says.
 
@@ -39,7 +39,7 @@ variable {n p q : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Eq. 17], [1, Eq. 18]: the centre and generators of `R_a(k)`. -/
+/-- [1, Eq. 17], [1, Eq. 18]: the center and generators of `R_a(k)`. -/
 theorem Conform.Plant.devSet_zero_templateZono (sys : Conform.Plant n p q) {ιW ιV : Type}
     [Fintype ιW] [Fintype ιV] (cW : Vec ℝ n) (GW : ιW → Vec ℝ n) (αW : ιW → ℝ) (cV : Vec ℝ q)
     (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (k : ℕ) :

@@ -53,7 +53,7 @@ theorem Interval.polyZonotope_mono {I₁ I₂ : Interval (Vec ℝ n)}
     show ((fun i => (I₁.inf i + I₁.sup i) / 2 : Vec ℝ n) + ∑ j : Fin n, β j •
       (fun i => if i = j then (I₁.sup i - I₁.inf i) / 2 else 0 : Vec ℝ n)) i = _
     rw [Pi.add_apply, hsum]
-  -- the coordinate is its own centre plus at most its own radius, either way
+  -- the coordinate is its own center plus at most its own radius, either way
   obtain ⟨hb1, hb2⟩ := abs_le.1 (hβ i)
   have hrad : 0 ≤ (I₁.sup i - I₁.inf i) / 2 := by linarith [hord i]
   rw [hval, Entrywise.entry_vec, Entrywise.entry_vec]

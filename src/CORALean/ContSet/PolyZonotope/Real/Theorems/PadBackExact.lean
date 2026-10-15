@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set over `p + r` factors is the set over `p`: the appended rows stand at
-exponent zero, and the centre and both generator blocks never moved. -/
+exponent zero, and the center and both generator blocks never moved. -/
 theorem PolyZonotope.padBack_exact (r : ℕ) (pZ : PolyZonotope α) :
     pZ.construct = (pZ.padBack r).construct := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset

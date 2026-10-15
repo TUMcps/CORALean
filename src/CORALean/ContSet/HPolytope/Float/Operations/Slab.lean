@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {q n : ℕ}
 
 def HPolytope.slab (A : Mat 𝕋 q n) (lo hi : Vec 𝕋 q) : HPolytope 𝕋 (Vec 𝕋 n) :=
   (HPolytope.ineqs A hi).stackRows
-    (HPolytope.ineqs (fun i j => neg (A i j)) fun i => neg (lo i))
+    (HPolytope.ineqs (-A) (-lo))
 
 end CORALean.Float
 

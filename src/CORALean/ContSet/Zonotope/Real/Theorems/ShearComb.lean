@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Ring
 /-!
 # The sheared combination is the shear of the combination
 
-`(c' + ∑ βⱼ g'ⱼ) = S (c + ∑ βⱼ gⱼ)` for the sheared centre and generators: the shear is linear,
+`(c' + ∑ βⱼ g'ⱼ) = S (c + ∑ βⱼ gⱼ)` for the sheared center and generators: the shear is linear,
 which carries a section of the zonogon of [1, Alg. 3] to a vertical one.
 
 ## References

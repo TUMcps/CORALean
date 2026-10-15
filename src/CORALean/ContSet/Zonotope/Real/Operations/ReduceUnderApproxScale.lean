@@ -33,7 +33,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Sec. IV-C]: `Ẑ = ⟨c, G_o diag(λ)⟩`, with the centre of `Z`. -/
+/-- [1, Sec. IV-C]: `Ẑ = ⟨c, G_o diag(λ)⟩`, with the center of `Z`. -/
 def Zonotope.reduceUnderApproxScale (Z Zo : Zonotope α) (lam : Fin Zo.h → ℝ) : Zonotope α :=
   ⟨Zo.h, Z.c, fun i => lam i • Zo.G i⟩
 

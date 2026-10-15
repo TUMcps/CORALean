@@ -9,7 +9,7 @@ public import Mathlib.Algebra.BigOperators.Ring.Finset
 # A linear image of a zonotope from approximate images of its generators
 
 [1, Thm. III.1] and [1, Thm. IV.1]: if a linear map `M` (`e^{At}`, resp. `∫₀^δ e^{At}dt`) is
-known at the centre and at each generator only up to an error box — `M c ∈ ĉ ⊕ [-1, 1]ⁿ e_c`,
+known at the center and at each generator only up to an error box — `M c ∈ ĉ ⊕ [-1, 1]ⁿ e_c`,
 `M gᵢ ∈ ĝᵢ ⊕ [-1, 1]ⁿ eᵢ`, Lemmas III.1 and IV.1 — then `M⟨c, g⟩ ⊆ ⟨ĉ, ĝ⟩ ⊕ [-1, 1]ⁿ(e_c + Σ eᵢ)`.
 By linearity, `M(c + Σ βᵢgᵢ) = ĉ + Σ βᵢĝᵢ` plus an error at most `e_c + Σ |βᵢ| eᵢ` in each
 coordinate. One error per vector, as Thm. IV.1 writes it: Thm. III.1's single `ε_norm` is
@@ -46,7 +46,7 @@ theorem Krylov.image_subset_of_approx (M : Mat ℝ n m) (c : Vec ℝ m) (g : Fin
           y = chat + ∑ i, β i • ghat i + r} := by -- --- PROOF ---
   rintro _ ⟨x, ⟨β, hβ, rfl⟩, rfl⟩
   refine ⟨β, hβ, M *ᵥ (c + ∑ i, β i • g i) - (chat + ∑ i, β i • ghat i), fun j => ?_, by abel⟩
-  -- the error splits into the centre's and each generator's, scaled by `|βᵢ| ≤ 1`
+  -- the error splits into the center's and each generator's, scaled by `|βᵢ| ≤ 1`
   have hsplit : M *ᵥ (c + ∑ i, β i • g i) - (chat + ∑ i, β i • ghat i)
       = (M *ᵥ c - chat) + ∑ i, β i • (M *ᵥ g i - ghat i) := by
     rw [mulVec_add, mulVec_sum]

@@ -50,11 +50,11 @@ guarantee needs `Ŝ ⊇ Ŝ_1 ∩ … ∩ Ŝ_m`. CORA never forms `Ŝ` on its own
 with the strips and over-approximates that (`intersectStrip_outer`, `intersectStripSeq_outer`),
 which is eqs. (3)-(4) in the right direction.
 
-**`Alg. 1` seeds the error set with the initial set.** The estimate starts at the centre,
+**`Alg. 1` seeds the error set with the initial set.** The estimate starts at the center,
 `x̂_0 ← center(X_0)`, and the box is `x̂_k + box(S_{x,k}) ⊕ S_{wv,k}`, so `S_{x,k}` bounds the error
 `x_k - x̂_k`, which starts at `x_0 - x̂_0 ∈ X_0 - x̂_0`. Line 2 sets `S_{x,0} ← X_0` instead: at
-`k = 0` the box is `x̂_0 + box(X_0)`, the initial box moved by its own centre, and for
-`X_0 = {1}` it is `{2}`, which misses `x_0 = 1`. Only an `X_0` centred at the origin is unaffected.
+`k = 0` the box is `x̂_0 + box(X_0)`, the initial box moved by its own center, and for
+`X_0 = {1}` it is `{2}`, which misses `x_0 = 1`. Only an `X_0` centered at the origin is unaffected.
 CORA's `priv_observe_interval` (`Hinf-G`) does the same, and is recorded in
 [`linearSysDT` `executeObserver`](../coverage/contDynamics/linearSysDT.md) with the counterexample
 `LinearSysDT.observeInterval_cora_counterexample`; `observeInterval_outer` proves the enclosure

@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `Zonotope.mtimesMatZonotope`, over a floating-point scalar
 
 `Real.Zonotope.mtimesMatZonotope` rounded: `bilin` at the matrix-vector product, so the
-centre `C c`, then `Gᵢ c`, `C gⱼ` and every cross product `Gᵢ gⱼ`, each bracketed by
+center `C c`, then `Gᵢ c`, `C gⱼ` and every cross product `Gᵢ gⱼ`, each bracketed by
 `mulVecDown`/`mulVecUp` and stored low by `ofEntryBounds`. The two error boxes are taken
 as interval products: for `(a + e)(z + f) = az + af + e(z + f)`, `a` in the box around
 the matrix zonotope's nominal part and `z + f` in the zonotope's `interval`.
@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `bilin`'s centre and generators at the matrix-vector product, bracketed, plus the two
+/-- `bilin`'s center and generators at the matrix-vector product, bracketed, plus the two
 error terms as interval products. -/
 def Zonotope.mtimesMatZonotope (M : Zonotope (Mat 𝕋 m n)) (Z : Zonotope (Vec 𝕋 n)) :
     Zonotope (Vec 𝕋 m) :=

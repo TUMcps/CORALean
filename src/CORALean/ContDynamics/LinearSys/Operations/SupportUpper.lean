@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 
 Lines 1-5, 7-13 of `[1, Alg. 1 (upper bounds)]`, for one direction `ℓ` and a step `Δt`. The system
 is `ẋ = Ax + u`, `u ∈ U`, so `[1]`'s `B` is the identity and `p` is zero, and every set is a
-set of the representation `S`: the representation's own `Recentre` splits `U` into `ũ`, a
+set of the representation `S`: the representation's own `Recenter` splits `U` into `ũ`, a
 point, and `U₀`, a set holding the origin (line 2); `P̂_U(Δt)` is `inputSolution` at `U₀`
 (Eq. 16), and `C = F X₀ ⊕ G ũ` (Eq. 14-15) the two correction matrices applied to `X₀` and to
 `ũ`, with `X₀` itself where `[1]` encloses it by `box(X₀)` for a representation that cannot
@@ -49,7 +49,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
-variable [∀ n, Recentre (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -73,9 +73,9 @@ noncomputable def LinearSys.supportUpper (sys : LinearSys 𝕋 n) (Δt : ℝ) (�
       let s := sys.supportUpper Δt η X₀ U ρ ℓ k                         -- step `k`
       let A := toRealMat sys.A
       -- 2. ũ ← center(U)
-      let ũ := Recentre.centre U
+      let ũ := Recenter.center U
       -- 2. U₀ ← U - ũ
-      let U₀ := Recentre.recentre U
+      let U₀ := Recenter.recenter U
       let T := MatExp.expIntegral A Δt                                  -- (13)
       -- 4. P_u(Δt), eq. (12)
       let PuΔt := T *ᵥ ũ

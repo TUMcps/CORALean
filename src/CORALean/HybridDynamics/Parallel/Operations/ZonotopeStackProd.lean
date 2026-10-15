@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.stackProd`
 
 The Cartesian product of one zonotope per component, as a zonotope of the stacked space: the
-centres stacked, and the generators those of every component, each embedded at zero in the other
+centers stacked, and the generators those of every component, each embedded at zero in the other
 blocks. The generator count is the sum of the components', indexed through `finSigmaFinEquiv` as
 `stack` is. CORA's `cartProd_` of two zonotopes is the same, `blkdiag(G1, G2)`;
 `Theorems.ZonotopeStackProdExact` says it is exactly the product.

@@ -7,9 +7,9 @@ public import CORALean.NN.Layers.Theorems.EvalPolyShiftConst
 @[expose] public section
 
 /-!
-# A recentred bracket is a sound relaxation
+# A recentered bracket is a sound relaxation
 
-What the bracket buys, and the only place `σ` appears: the recentred fit encloses it wherever
+What the bracket buys, and the only place `σ` appears: the recentered fit encloses it wherever
 the two ends did. The fit is free and the bracket owes everything.
 -/
 

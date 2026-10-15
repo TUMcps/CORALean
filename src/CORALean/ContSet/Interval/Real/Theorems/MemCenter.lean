@@ -6,14 +6,14 @@ public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 @[expose] public section
 
 /-!
-# The centre of a box lies in it
+# The center of a box lies in it
 
 Nonemptiness is the whole hypothesis, and it is not decoration: `center` is the
 midpoint of bounds that are allowed to cross, and on a box whose bounds have
 crossed it lies outside both of them.
 
 This is what lets a layer commit its nominal value to a box it was handed —
-`Layer.linearWithError` does, an approximation error rarely being centred at
+`Layer.linearWithError` does, an approximation error rarely being centered at
 zero — without knowing anything about where the box came from.
 -/
 

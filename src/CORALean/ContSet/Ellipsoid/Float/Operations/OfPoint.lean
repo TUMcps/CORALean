@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Ellipsoid.ofPoint`, over a floating-point scalar
 
-A point as an ellipsoid with no generators: the centre stored as given, the error box at zero.
+A point as an ellipsoid with no generators: the center stored as given, the error box at zero.
 Nothing is computed, so nothing rounds.
 -/
 

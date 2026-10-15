@@ -10,7 +10,7 @@ public import Mathlib.Tactic.Positivity
 @[expose] public section
 
 /-!
-# A scaled model's range is within `O(h)` of its centre
+# A scaled model's range is within `O(h)` of its center
 
 What [1, Thm. 1]'s proof says of the intrinsics' remainder term: it is a power of "a bound `B` of a
 function that scales at least linearly with `h`". Here that function is `f - c_f`: the constant

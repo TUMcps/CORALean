@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.NonlinParamSys.Definitions.FloatModel
 /-!
 # What the float `nonlinParamSys/linearize` hands on
 
-`NonlinParamSys.Linearized` in `𝕋`: the point `(p.x, p.u)` it expands about, the centre `p.p`
+`NonlinParamSys.Linearized` in `𝕋`: the point `(p.x, p.u)` it expands about, the center `p.p`
 of the parameter box, and in place of the zonotopes `zf`, `zA`, `zB` the interval enclosures of
 the constant term and of the two Jacobians over the box.
 -/

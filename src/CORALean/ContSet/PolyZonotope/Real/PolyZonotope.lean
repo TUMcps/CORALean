@@ -7,7 +7,7 @@ public import CORALean.Global.Entrywise
 /-!
 # Sparse polynomial zonotopes: the representation
 
-CORA's `polyZonotope`, and [1, Def. 1]: a centre, dependent generators `G` scaled by
+CORA's `polyZonotope`, and [1, Def. 1]: a center, dependent generators `G` scaled by
 monomials in factors `α ∈ [-1,1]ᵖ` read off the exponent matrix `E`, and
 independent generators `GI` scaled by their own `β ∈ [-1,1]ᵍ`. The `α` are
 *shared*, so the denoted set is generally neither convex nor a zonotope and a

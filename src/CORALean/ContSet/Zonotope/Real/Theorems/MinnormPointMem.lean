@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormBallSubset
 /-!
 # `minnormPoint` lies in the zonotope
 
-The point lies in the ball of radius `minnorm Z` about the centre (`minnormPoint_dist`), which is
+The point lies in the ball of radius `minnorm Z` about the center (`minnormPoint_dist`), which is
 inside the zonotope (`minnorm_ball_subset`).
 
 Source: [1].

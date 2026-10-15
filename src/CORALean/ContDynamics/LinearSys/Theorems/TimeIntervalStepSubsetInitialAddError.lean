@@ -135,7 +135,7 @@ theorem aux_linComb_paired_subset {h : ℕ} (c₁ c₂ : Vec ℝ n) (G₁ G₂ :
   · rw [Metric.mem_closedBall, dist_zero_right]
     refine (norm_add_le _ _).trans (add_le_add ?_ ?_)
     · rw [norm_smul, Real.norm_eq_abs, ← norm_neg (c₂ - c₁), neg_sub]
-      -- the two coefficients of the centre are free, so their spread is at most two
+      -- the two coefficients of the center are free, so their spread is at most two
       refine mul_le_of_le_one_left (norm_nonneg _) ?_
       rw [abs_mul, abs_of_nonneg (by norm_num : (0:ℝ) ≤ (2:ℝ)⁻¹)]
       rw [abs_le] at hδb
@@ -218,7 +218,7 @@ theorem LinearSys.timeIntervalStep_subset_initial_add_error (sys : LinearSys �
       have hval : (MatExp.correctionMatrix A r η).center i j
           = (2:ℝ)⁻¹ * ((MatExp.correctionMatrix A r η).inf i j
             + (MatExp.correctionMatrix A r η).sup i j) := rfl
-      -- the centre is the midpoint, so it is under whichever endpoint is larger
+      -- the center is the midpoint, so it is under whichever endpoint is larger
       have habs := abs_add_le ((MatExp.correctionMatrix A r η).inf i j)
         ((MatExp.correctionMatrix A r η).sup i j)
       rw [hval, abs_mul, abs_of_nonneg (by norm_num : (0:ℝ) ≤ (2:ℝ)⁻¹)]

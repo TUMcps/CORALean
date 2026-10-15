@@ -16,7 +16,7 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 
 The time-point solution after one step `r` when the matrix zonotope `sys.A` (`A_c + Σ pᵢ A_g⁽ⁱ⁾`)
 and the constant input `U_c + Σ pᵢ U_G⁽ⁱ⁾` share `pᵢ ∈ [-1, 1]`, in CORA's three parts:
-`R_lowOrder`, the orders up to `A²` from the centre `c` of `Rinit`, dependent on `p` and
+`R_lowOrder`, the orders up to `A²` from the center `c` of `Rinit`, dependent on `p` and
 **corrected** (`dependentLowOrder`); `R_rem`, orders `3 … η` and the remainder past `η`, of the
 state at `c` and of the input, independent of `p` (`priv_highOrderMappingMatrix`'s `eI`,
 `eI_input`); `R_hom_state`, the exponential on `Rinit - c`.
@@ -71,7 +71,7 @@ noncomputable def LinParamSys.dependentHomSol (sys : LinParamSys 𝕄𝒵 n) (r 
     Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) eIhigh (Zonotope.ofPoint c)
   let R_rem_input : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) eIhigh_input Uconst
   let R_rem : Zonotope (Vec ℝ n) := R_rem_state ⊞ R_rem_input
-  -- state solution without centre
+  -- state solution without center
   let Rinit_noCenter : Zonotope (Vec ℝ n) := Rinit ⊞ Zonotope.ofPoint (-c)
   let R_hom_state : Zonotope (Vec ℝ n) :=
     Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) (MatExp.expIntervalEnclosure Ar η) Rinit_noCenter

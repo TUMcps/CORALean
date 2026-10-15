@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemOfCenterRadius
 /-!
 # `Interval.ofCenterRadius` contains the exact box, over a floating-point scalar
 
-The exact box of the stored centre and radius read as reals: an entry within `r` of `c` lies
+The exact box of the stored center and radius read as reals: an entry within `r` of `c` lies
 above `subDown c r ≤ c - r` and below `addUp c r ≥ c + r`.
 -/
 

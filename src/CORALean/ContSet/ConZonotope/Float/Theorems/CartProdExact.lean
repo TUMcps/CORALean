@@ -13,7 +13,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
 # `ConZonotope.cartProd` is exact
 
 The stored operands' sets, paired and read through `Fin.append`, are the product's set. Nothing
-rounds. The nominal part is the exact layer's `cartProd` mapped through the append: its centre and
+rounds. The nominal part is the exact layer's `cartProd` mapped through the append: its center and
 generators are `Zonotope.cartProd`'s, and its coefficient polytope has the same points as the
 exact product of the two (`HPolytope.cartProd_nominal_exact`). The error box is the stack of the
 two.
@@ -40,7 +40,7 @@ theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁))
     (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n₂)) :
     (cZ₁.cartProd cZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
       (cZ₁.construct ×ˢ cZ₂.construct) := by -- --- PROOF ---
-  -- the zonotope parts, whose nominal centre and generators the product shares
+  -- the zonotope parts, whose nominal center and generators the product shares
   set Z₁ : Zonotope (Vec 𝕋 n₁) := ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G j i, cZ₁.I_error⟩
   set Z₂ : Zonotope (Vec 𝕋 n₂) := ⟨cZ₂.h, cZ₂.c, fun j i => cZ₂.G j i, cZ₂.I_error⟩
   -- the nominal part: the exact product, mapped through the append
@@ -62,7 +62,7 @@ theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁))
         ((InflatedContSet.nominal cZ₂).P.comap (blockRight cZ₁.h cZ₂.h))).construct
       rw [HPolytope.cartProd_nominal_exact, Real.HPolytope.mem_intersection_iff]
       exact Iff.rfl
-    -- the centre and the generators are the zonotope product's
+    -- the center and the generators are the zonotope product's
     have hc := Zonotope.nominal_cartProd_c Z₁ Z₂
     have hG := fun j => Zonotope.nominal_cartProd_G Z₁ Z₂ j
     ext x

@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloatInput
 
 `LinParamSys.reachUnion` computed in `𝕋`, the input set `params.U` in input coordinates anywhere,
 [1, Alg. 4]: `V = B U` is formed here, as `LinearSys.reachFloatInput` forms `B U ⊕ c`, and
-taken apart at its centre, `ũ` carried across windows by `constPropagateFloat` and the rest,
+taken apart at its center, `ũ` carried across windows by `constPropagateFloat` and the rest,
 holding the origin, by `particularSolutionFloat`, window by window as `reachStepkFloatInput` has
 it. The offset `sys.c` is a real vector, which no float run can add: it is left out, and
 `reachFloatInput_outer` asks it to be `0`. `none` when the order, a window's squaring count or
@@ -53,7 +53,7 @@ def LinParamSys.reachFloatInput (sys : LinParamSys ℐ[𝕋] n)
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let V := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B params.U    -- V = B U, in the state space
-  let uc := ScalarCentre.centreVec (S := 𝒵[𝕋]) V                    -- ũ, the constant
+  let uc := ScalarCenter.centerVec (S := 𝒵[𝕋]) V                    -- ũ, the constant
   let HRτ₀ := sys.timeIntervalStepFloat Δt η' X₀                    -- H^R(τ_0)
   let PcRτ₀ := sys.constInputSolutionFloat Δt η' uc                 -- P̃^R(τ_0), ũ over τ_0
   let Rτ₀ := Reduce.reduce (HRτ₀ ⊞ PcRτ₀) ρ                         -- (H^R ⊕ P̃^R)(τ_0), to order ρ

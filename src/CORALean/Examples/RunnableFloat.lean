@@ -72,7 +72,7 @@ import CORALean.HybridDynamics.Operations.TimeIntervalStepSplitFloat
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptRunFloatOuter
-import CORALean.ContDynamics.NonlinearSys.Theorems.CentreAbstrRunFloatOuter
+import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrRunFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainderFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.TuneDeltatFloat
 import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
@@ -445,11 +445,11 @@ def ctReachRun : Zonotope (Vec D 2) := ctSysD.reach (S := 𝒵[D])
 def ctErrorBoxRun : Zonotope (Vec D 2) := ctSys.timePointStepErrorBoxFloat stepR 4 Z
 def ctInputErrorRun : Zonotope (Vec D 2) := ctSys.reachInputErrorFloat stepR 4 Z 5
 
--- CORA's `oneStep` from `Z`: `Z` re-centred as the inputs `U`, `Z`'s centre as the constant `u`
+-- CORA's `oneStep` from `Z`: `Z` re-centered as the inputs `U`, `Z`'s center as the constant `u`
 def oneStepTpRun : Zonotope (Vec D 2) :=
-  (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).Rtp
+  (ctSys.oneStepFloat Z (Recenter.recenter Z) Z.c stepR 4).Rtp
 def oneStepTiRun : Zonotope (Vec D 2) :=
-  (ctSys.oneStepFloat Z (Recentre.recentre Z) Z.c stepR 4).Rti
+  (ctSys.oneStepFloat Z (Recenter.recenter Z) Z.c stepR 4).Rti
 
 /-- The float Minkowski difference at a checked representation: the box `[-2, 2]²` minus a box of
 half-width `½` at `x₀ = ⅛`, its generators written in the minuend's by `M = ¼ I`, certified with
@@ -551,10 +551,10 @@ def lpReachRun : Zonotope (Vec D 2) :=
 def lpWindowsRun : Option (List (Zonotope (Vec D 2))) := lpSys.reachFloat
     ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 
-/-- The same four windows with an input `params.U`: `Z` re-centred at the origin, whose
+/-- The same four windows with an input `params.U`: `Z` re-centered at the origin, whose
 contribution `P^R(t_{k+1})` accumulates by `particularSolutionFloat`; then `Z` itself, split at
-its centre, the constant half carried across windows by `constPropagateFloat`. -/
-def lpInputSet : Zonotope (Vec D 2) := Recentre.recentre Z
+its center, the constant half carried across windows by `constPropagateFloat`. -/
+def lpInputSet : Zonotope (Vec D 2) := Recenter.recenter Z
 def lpParticularRun : Option (Zonotope (Vec D 2)) := lpSys.particularSolutionFloat stepR 4
     2 lpInputSet 2
 def lpConstRun : Zonotope (Vec D 2) := lpSys.constPropagateFloat stepR 4 2 (Z.c) 3
@@ -628,7 +628,7 @@ fixed step `r`, order `4` and zonotope order `2`; the four `ℝ`-valued estimate
 schemes tune against, rounded up at `r`, order `4` and `Z`; a step whose order is searched
 for against an admissible remainder; Girard's scheme over `[0, 2⁻³]` at inputs of norm at
 most `2⁻⁴`; CORA's `errorSolution_adaptive` with its order, `Z` dynamic and static; and the
-input solution's orders `1 … 4` and `H(t_{k+1})` from `Z`, under the constant `Z`'s centre. -/
+input solution's orders `1 … 4` and `H(t_{k+1})` from `Z`, under the constant `Z`'s center. -/
 
 def manualReachRun : Option (List (Zonotope (Vec D 2))) :=
   ctSys.manualReachFloat { X₀ := Z, U := Z, tFinal := 1 / 8 } ⟨stepR, 4, 2⟩
@@ -651,7 +651,7 @@ def timePointNextRun : Zonotope (Vec D 2) := ctSys.affineTimePointNextFloat Z Z.
 
 `ctSys` under the input `Z` and horizon `2⁻³`: the curvature enclosure of eq. (15)-(16) with its
 integrated correction `G`, and eq. (22)'s set, at `r` and order `4` from `Z` and the constant
-`Z`'s centre; the Euclidean radius of `Z`'s box; the three tuning quantities, at `[e^{A r}]`
+`Z`'s center; the Euclidean radius of `Z`'s box; the three tuning quantities, at `[e^{A r}]`
 for `e^{A t_k}`; the zonotope order, the step size and order searched for, one iteration and
 the whole loop. -/
 
@@ -685,7 +685,7 @@ def autoReachRun : Option (List (ℚ × ℚ × Zonotope (Vec D 2))) :=
 `ctSys` once more. `bundleReachFloat` propagates a one-member bundle and `Z` through three steps
 of `[e^{Ar}]` at order `4`. The minimal backward reachable set's algorithm runs from the
 state before the first iteration, through one step and two, with `cZ` as the target set, `Z` for
-both input sets and a constant `Z` as the centre trajectory's contribution; its support value
+both input sets and a constant `Z` as the center trajectory's contribution; its support value
 and `p` are read in the direction of the first coordinate, `N = I`. The Taylor order is `4`
 and the matrix exponentials are squared twice. -/
 
@@ -728,9 +728,9 @@ def mtimesIntervalMatBoxRun : Interval (Vec D 2) :=
 
 `dominantDirections` (the two generators of `Z`, if their parallelotope ranks first), `filterOut`
 of `Z` and a larger cell holding it (the small one is deleted), `minnorm` (an upper bound on the
-radius of the ball around the centre, `1/4` for `Z`) and `encloseMany` along the diagonal. -/
+radius of the ball around the center, `1/4` for `Z`) and `encloseMany` along the diagonal. -/
 
-/-- A cell holding `Z`: the same centre, generators four times as long. -/
+/-- A cell holding `Z`: the same center, generators four times as long. -/
 def Zbig : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]
@@ -1150,24 +1150,24 @@ example {alg : NonlinearSys.LinReachAlg} {Rs : List (Zonotope (Vec D 2))}
 #eval (vdpReachAlg .lin).map (·.map fun Z =>
   (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
 
-/-! ### The rest of the nonlinear block: centre linearization, adaptive tuning, cubic remainder
+/-! ### The rest of the nonlinear block: center linearization, adaptive tuning, cubic remainder
 
-`centreAbstrRunFloat` linearizes at the centre of each step's start set, as [Wetzlinger et al.,
+`centerAbstrRunFloat` linearizes at the center of each step's start set, as [Wetzlinger et al.,
 HSCC 2021, Alg. 1] does. `adaptRunFloat` is [Wetzlinger et al., 2022, Alg. 1-2]'s loop: each step
 chooses its own size from the gain of the last one (`tuneDeltat`'s `optDeltatFloat`,
 `estimateGainFloat`, `tuneAbstrOrderFloat`), whatever it chooses `adaptRunFloat_outer` holds. The
 tuning constants are `ζ_δ = 1/2`, `ζ_h = ζ_φ = 1/4`, `ζ_Z = 1/8`, `ζ_K = 1/2`. -/
 
-/-- Four steps of `1/32`, each linearized at its start set's centre. -/
-def vdpCentreReach : Option (List (Zonotope (Vec D 2))) :=
-  vdpModel.centreAbstrRunFloat vdpU { Δt := d 1 (-5), η := 4, ρ := 10 }
+/-- Four steps of `1/32`, each linearized at its start set's center. -/
+def vdpCenterReach : Option (List (Zonotope (Vec D 2))) :=
+  vdpModel.centerAbstrRunFloat vdpU { Δt := d 1 (-5), η := 4, ρ := 10 }
     4 vdpX₀
 
 /-- What a successful run is worth: every run of the real system, over every window. -/
-example {Rs : List (Zonotope (Vec D 2))} (h : vdpCentreReach = some Rs) :=
-  vdpModel_encloses.centreAbstrRunFloat_outer 4 h
+example {Rs : List (Zonotope (Vec D 2))} (h : vdpCenterReach = some Rs) :=
+  vdpModel_encloses.centerAbstrRunFloat_outer 4 h
 
-#eval vdpCentreReach.map (·.map fun Z =>
+#eval vdpCenterReach.map (·.map fun Z =>
   (vdpF ((Zonotope.interval Z).inf 1), vdpF ((Zonotope.interval Z).sup 1)))
 
 /-- The adaptive loop from `vdpX₀` to `t = 1/8`: first horizon `1/32` (a step of `1/16` fails the
@@ -1193,7 +1193,7 @@ and `0` elsewhere; `f₁ = x₂` has none. -/
 def vdpThird : Fin 2 → Fin 3 → Mat D 3 3 := fun i j k l =>
   if i = 1 ∧ j.val + k.val + l.val = 1 then d 2 0 else zero
 
-/-- The cubic box over the start set about its centre, in the second coordinate alone. -/
+/-- The cubic box over the start set about its center, in the second coordinate alone. -/
 def vdpLagrange : Interval (Vec D 2) :=
   lagrangeRemainderFloat vdpThird (n := 2) (Zonotope.cartProd vdpX₀ vdpU)
     (Fin.append vdpX₀.c vdpU.c)
@@ -1310,7 +1310,7 @@ def softmaxBoxRun : Interval (Vec D 3) := softmaxBox 10 softmaxIn
 
 /-! ## The wrapping-free reach with `box()` in floats
 
-The thesis's `Alg. 2` for `ctSys` from `Z` under the re-centred input `lpInputSet`, at step
+The thesis's `Alg. 2` for `ctSys` from `Z` under the re-centered input `lpInputSet`, at step
 `2⁻⁵`, Taylor order `4` and `3` further windows after the first, NaN-gated. -/
 
 def reachBoxRun : Option (List (Zonotope (Vec D 2))) :=

@@ -14,7 +14,7 @@ inputs `π⁻¹(i)` existential and the others universal, is inside `range(f, x)
 The extension of component `i` is the inner interval of `Thm. 2`, so the hypotheses are
 `Thm. 2`'s for each component: `f₀ᵢ ∋ fᵢ(c(x))`, `|∂ⱼfᵢ| ≥ ∇̲ᵢⱼ` on the box for the inputs
 `j ∈ π⁻¹(i)`, and `|∂ⱼfᵢ| ≤ ∇̄ᵢⱼ` for the other inputs at the points whose `π⁻¹(i)` inputs
-are at the centre. `f` is `C¹`, the standing assumption of [1], and the box is nonempty
+are at the center. `f` is `C¹`, the standing assumption of [1], and the box is nonempty
 (`lo ≤ hi`). The proof does not go through Goldsztejn's continuous selections, see
 [`RobustUnderApproxBox.lean`](RobustUnderApproxBox.lean). A `π` that is not surjective is
 no case of its own: a component without existential input has `∇̲`-sum zero.

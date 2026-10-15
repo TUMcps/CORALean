@@ -8,12 +8,12 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumM
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatMono
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRemainderInterval
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.ScalarIntervalMulOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumTermsMem
 
@@ -160,7 +160,7 @@ theorem LinearSys.trajectoryError_outer (sys : LinearSys ℝ n) (f u : Vec ℝ n
     ⟨pow_le_pow_left₀ hmin ht.1 k, pow_le_pow_left₀ ht0 ht.2 k⟩
   have hpow' : ∀ k : ℕ, t ^ k - tc ^ k ∈ Set.Icc (tmin ^ k - tc ^ k) (tmax ^ k - tc ^ k) :=
     fun k => ⟨sub_le_sub_right (hpow k).1 _, sub_le_sub_right (hpow k).2 _⟩
-  have hY : x₀ - R₀.c ∈ R₀.recentre.construct := Zonotope.sub_centre_mem_recentre hx₀
+  have hY : x₀ - R₀.c ∈ R₀.recenter.construct := Zonotope.sub_center_mem_recenter hx₀
   refine Set.add_mem_add (Set.add_mem_add (Set.add_mem_add ?_ ?_) ?_) ?_
   · -- the exact orders: `t` times the two sums, each a sum of members of its terms
     refine Zonotope.scalarIntervalMul_outer _ _ _ ht ?_

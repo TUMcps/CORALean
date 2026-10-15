@@ -5,7 +5,7 @@ module
 
 `Interval` carries no generator or constraint count: it is `inf`/`sup` at a
 fixed ambient index, so every entrywise operation (`plus`, `linComb`, `mtimes`,
-`mtimesIntervalMat`, `minkDiff`, `smul`, `recentre`, ...) keeps that index by its
+`mtimesIntervalMat`, `minkDiff`, `smul`, `recenter`, ...) keeps that index by its
 very signature, `Interval α → Interval α → Interval α` or a fixed `Fin n`,
 with no runtime-computed field left to state an equality about. Restating a
 signature already visible at the call site is not what issue #5 asks for.

@@ -16,7 +16,7 @@ term itself, as a function of the factors, which is what makes the abstraction
 error dependency-preserving.
 
 `quadMapDep_point` does the work; all this adds is the shift by the linearization
-point, which moves the centre and leaves every monomial alone.
+point, which moves the center and leaves every monomial alone.
 -/
 
 -- Authors:       Claude Opus 5
@@ -40,7 +40,7 @@ variable {n : ℕ}
 theorem precompStatError_point (Q : Fin n → Mat ℝ n n) (xs : Vec ℝ n)
     (pZ : Real.PolyZonotope (Vec ℝ n)) (a : Fin pZ.p → ℝ) :
     (precompStatError Q xs pZ).point a = quadEval Q (pZ.point a - xs) := by -- --- PROOF ---
-  -- the shifted set has `pZ`'s monomials and generators, so only the centre moves
+  -- the shifted set has `pZ`'s monomials and generators, so only the center moves
   have hshift : ({ pZ with c := pZ.c - xs } : Real.PolyZonotope (Vec ℝ n)).point a
       = pZ.point a - xs := by
     show pZ.c - xs + ∑ i, Real.PolyZonotope.monomial pZ.E a i • pZ.G i

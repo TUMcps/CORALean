@@ -19,8 +19,8 @@ exactly, `Reindex`'s obligation being the only equality among them.
 `Mtimes` and `Reindex` take the family `fun n => EmptySet n`, which is what
 lets an algorithm that changes dimension carry an empty set along.
 
-No `OfPoint` and no `Recentre`: each asks for a point of the set — a named one
-in the first case, the origin after recentring in the second — and this
+No `OfPoint` and no `Recenter`: each asks for a point of the set — a named one
+in the first case, the origin after recentering in the second — and this
 representation has none to give.
 -/
 

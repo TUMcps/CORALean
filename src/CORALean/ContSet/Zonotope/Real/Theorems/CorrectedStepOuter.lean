@@ -72,7 +72,7 @@ theorem Zonotope.correctedStep_outer (Λ : Mat ℝ n ny) (A : Mat ℝ n n) (B : 
     have hΛ : Λ *ᵥ y = Λ *ᵥ (C *ᵥ x') + (Λ * Dv) *ᵥ σ := by
       rw [hy, mulVec_add, ← mulVec_mulVec]
     rw [hΛ]
-    -- the state as the centre, its offset and the disturbance
+    -- the state as the center, its offset and the disturbance
     have hxe : x' = (A *ᵥ X.c + B *ᵥ u) + A *ᵥ θ + Dw *ᵥ ϖ := by
       simp only [hx', mulVec_add]; abel
     have key : (1 - Λ * C) *ᵥ (A *ᵥ X.c + B *ᵥ u) + (1 - Λ * C) *ᵥ A *ᵥ θ +

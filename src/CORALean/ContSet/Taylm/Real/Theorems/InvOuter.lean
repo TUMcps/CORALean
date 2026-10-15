@@ -10,7 +10,7 @@ public import Mathlib.Analysis.Calculus.Deriv.ZPow
 # `Taylm.inv` encloses `1 / f`
 
 [1, Def. 3 (inverse)] under its condition that `0` is outside the range, read as the hull of
-the centre and the range bound lying strictly on one side of zero. `|ξ| ≥ m` on that hull, so
+the center and the range bound lying strictly on one side of zero. `|ξ| ≥ m` on that hull, so
 `(N+1)! / |ξ|ᴺ⁺²` is at most `(N+1)! / mᴺ⁺²`.
 
 ## References

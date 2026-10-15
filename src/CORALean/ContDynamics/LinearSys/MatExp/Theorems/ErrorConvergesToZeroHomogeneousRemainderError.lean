@@ -73,7 +73,7 @@ theorem aux_tendsto_taylor_term {k : ℕ} (hk : k ≠ 0) (b : ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 3]: `ε_H([t_i,t_i+Δt]) = err(e^{At_i} F_x(Δt,η) X_0 ⊕ e^{At_i} F_u(Δt,η) c_u)`
-converges to `0` as `Δt → 0⁺`, at every step start `t_i`, order `η` and input centre `c_u` —
+converges to `0` as `Δt → 0⁺`, at every step start `t_i`, order `η` and input center `c_u` —
 `Assumption 1` for `ε_H`. -/
 theorem MatExp.errorConvergesToZero_homogeneousRemainderError (A : Mat ℝ n n) (ti : ℝ)
     {X₀ : Set (Vec ℝ n)} (hX₀ : Bornology.IsBounded X₀) (cu : Vec ℝ n) (η : ℕ) :

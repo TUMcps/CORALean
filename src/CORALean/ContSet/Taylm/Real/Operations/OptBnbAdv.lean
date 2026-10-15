@@ -9,7 +9,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.BranchAndBound
 
 CORA's `optBnbAdv`: the bounds of a model's polynomial over the normalized box by branch and
 bound, [1, Alg. 1] in its advanced setting, plus the remainder. CORA's loop re-expands the model
-at each sub-box's centre first, and stops on an absolute change of `2ε`; this one is the
+at each sub-box's center first, and stops on an absolute change of `2ε`; this one is the
 source's listing, stopped by `fuel` when it does not settle.
 
 ## References

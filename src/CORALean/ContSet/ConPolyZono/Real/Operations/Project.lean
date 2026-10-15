@@ -8,7 +8,7 @@ public import Mathlib.Algebra.Module.Equiv.Basic
 /-!
 # `ConPolyZono.project`
 
-CORA's `@conPolyZono/project`: the centre and both generator matrices at the chosen coordinates,
+CORA's `@conPolyZono/project`: the center and both generator matrices at the chosen coordinates,
 with exponents, factors and constraint untouched. `dims` may repeat or reorder coordinates.
 Reading coordinates is linear, so this is `map` at the selection map, and `project_exact` is
 `map_exact`.

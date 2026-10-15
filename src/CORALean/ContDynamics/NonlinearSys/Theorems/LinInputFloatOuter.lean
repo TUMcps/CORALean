@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinInputFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SlopeRemainderAbstractionError
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Where `fm` encloses `sys`, `X` holds `x` and `x✱`, and `U'` holds `U` and its
-centre, `f(x, u) - A(x - x✱)` lies in `linInputFloat`. -/
+center, `f(x, u) - A(x - x✱)` lies in `linInputFloat`. -/
 theorem NonlinearSys.FloatModel.Encloses.linInputFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {X : Interval (Vec 𝕋 n)}
@@ -50,13 +50,13 @@ theorem NonlinearSys.FloatModel.Encloses.linInputFloat_outer
   -- `f(x✱, u✱)`, from the model at the point
   have hf₀ : sys.f (toRealVec xs) us ∈ (fm.f (Interval.point xs) (Interval.point U.c)).construct :=
     h.f_mem _ _ _ (Interval.mem_point (α := Vec 𝕋 n) xs) _ (Interval.mem_point (α := Vec 𝕋 m) U.c)
-  -- `B(u - u✱)`, `u - u✱` being in `U`'s recentred set
+  -- `B(u - u✱)`, `u - u✱` being in `U`'s recentered set
   have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ construct
     (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
-      (Recentre.recentre U)) :=
+      (Recenter.recenter U)) :=
     Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B _
       (Set.mem_biUnion (Set.mem_singleton _)
-      (Set.mem_image_of_mem _ (Zonotope.sub_centre_mem_recentre hu)))
+      (Set.mem_image_of_mem _ (Zonotope.sub_center_mem_recenter hu)))
   have hsplit : sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs)
       = (sys.f (toRealVec xs) us + Scalar.toRealMat B *ᵥ (u - us))
         + (sys.f x u - (sys.f (toRealVec xs) us + Scalar.toRealMat A *ᵥ (x - toRealVec xs)

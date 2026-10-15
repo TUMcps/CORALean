@@ -11,11 +11,11 @@ public import Mathlib.Analysis.Calculus.Deriv.MeanValue
 
 [1, Thm. 3] (via [1, Thm. 2]) needs the *corner* of a box, not just some point of it: when
 `|∂ⱼf| ≥ d` on the whole box, `∂ⱼf` keeps one sign there (a continuous function that does
-not vanish on a connected set), so moving coordinate `j` from the centre to one end of its
+not vanish on a connected set), so moving coordinate `j` from the center to one end of its
 interval raises `f` by at least `d rⱼ` from wherever the other coordinates are, and moving
 to the other end lowers it by as much. The end does not depend on the other coordinates,
 which is what makes the parametrization of `Thm. 3`'s fixed-point argument continuous.
-`d ≤ 0` asks nothing, and the centre is both ends.
+`d ≤ 0` asks nothing, and the center is both ends.
 
 ## References
 
@@ -42,7 +42,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- With `|∂ⱼf| ≥ d` on the box, the ends `b` and `a` of coordinate `j` raise and lower `f`
-from the centre of that coordinate by at least `d rⱼ`, for every position of the others. -/
+from the center of that coordinate by at least `d rⱼ`, for every position of the others. -/
 theorem exists_coord_ends_gain {f : (Fin m → ℝ) → ℝ} (hf : ContDiff ℝ 1 f) {lo hi : Fin m → ℝ}
     (hlh : lo ≤ hi) (j : Fin m) (d : ℝ)
     (hd : ∀ y ∈ Icc lo hi, d ≤ |fderiv ℝ f y (Pi.single j 1)|) :

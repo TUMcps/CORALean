@@ -8,7 +8,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Basic
 /-!
 # `Taylm.reexpand`
 
-CORA's `reexpand(obj, int)`: the model re-expanded at the centre of a sub-box `B` of the
+CORA's `reexpand(obj, int)`: the model re-expanded at the center of a sub-box `B` of the
 normalized box and rescaled by its radius, so that the new variables again range over `[-1, 1]`;
 the remainder is kept. The `reexp` of the advanced branch and bound of [1, Alg. 1].
 

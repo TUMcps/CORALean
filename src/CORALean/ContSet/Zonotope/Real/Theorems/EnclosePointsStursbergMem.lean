@@ -11,7 +11,7 @@ public import Mathlib.Tactic.Ring
 # `Zonotope.enclosePointsStursberg` contains every point
 
 Writing `w = Uᵀ (p - mean)` for the rotated point, `U w = p - mean` as `U Uᵀ = 1`, and each
-coordinate `wᵢ` lies in `[m2ᵢ, m1ᵢ]`, so `wᵢ` is the box centre plus a coefficient `βᵢ` in
+coordinate `wᵢ` lies in `[m2ᵢ, m1ᵢ]`, so `wᵢ` is the box center plus a coefficient `βᵢ` in
 `[-1, 1]` times the half-width, the generator's factor. Outer only: the box is an enclosure, and
 the result does not depend on `U` being the SVD's.
 -/
@@ -45,7 +45,7 @@ theorem Zonotope.enclosePointsStursberg_mem [NeZero N] (pts : Fin N → Vec ℝ 
     Finset.le_sup' (fun j => w j i) (Finset.mem_univ j)
   have hle2 : ∀ i, m2 i ≤ w j i := fun i =>
     Finset.inf'_le (fun j => w j i) (Finset.mem_univ j)
-  -- the coefficient: the offset from the box centre, over the half-width
+  -- the coefficient: the offset from the box center, over the half-width
   refine ⟨fun i => (w j i - (m1 i + m2 i) / 2) / ((m1 i - m2 i) * (1 / 2)), ?_, ?_⟩
   · intro (i : Fin n)
     show |(w j i - (m1 i + m2 i) / 2) / ((m1 i - m2 i) * (1 / 2))| ≤ 1

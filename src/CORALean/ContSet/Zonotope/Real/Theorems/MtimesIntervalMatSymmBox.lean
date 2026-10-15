@@ -115,7 +115,7 @@ theorem Zonotope.mtimesIntervalMat_symm_box {IM : Interval (Mat ℝ m n)}
     show (∑ j, IM.radius i j * Z.absBound j)
         = ∑ j, IM.radius i j * (Z.interval.zonotope).absBound j
     rw [aux_absBound_interval_zonotope]
-  -- a zero centre also zeroes the leading (image-of-`Z`'s-own) generator block
+  -- a zero center also zeroes the leading (image-of-`Z`'s-own) generator block
   have hL : Zonotope.mtimesIntervalMat IM Z
       = (⟨Z.h + m, 0, Fin.append (fun _ => (0 : Vec ℝ m))
           (Matrix.diagonal (Zonotope.radiusReach IM Z))⟩ : Zonotope (Vec ℝ m)) := by

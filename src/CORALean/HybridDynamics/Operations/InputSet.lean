@@ -9,7 +9,7 @@ public import CORALean.HybridDynamics.Definitions.Location
 
 The input set of a location's canonical form, CORA's `canonicalForm` [1] at the location's
 dynamics and sets: `B U ⊕ c ⊕ E W`, the combined input `B u + c + E w` of every stay, in the
-state space. `canonicalForm` keeps the centres apart (`u_ = B c_U + c + E c_W`, `U_ = B(U - c_U) ⊕
+state space. `canonicalForm` keeps the centers apart (`u_ = B c_U + c + E c_W`, `U_ = B(U - c_U) ⊕
 E(W - c_W)`); their sum is this set. The reachability steps of a location read their input
 here, as CORA's `linearSys/reach` runs on the canonical form. Soundness is `inputSet_outer`.
 

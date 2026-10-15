@@ -10,8 +10,8 @@ public import Mathlib.Tactic.Abel
 # `sum` is the sum over shared factors, exactly
 
 The point of the sum at a factor vector `a` is `pZ`'s point plus the point of every summand at
-that same `a`: the dependency the Minkowski sum drops survives. The centre in particular is
-the plain sum of the centres, which CORA's centre is not for three summands or more
+that same `a`: the dependency the Minkowski sum drops survives. The center in particular is
+the plain sum of the centers, which CORA's center is not for three summands or more
 (`sum_cora_counterexample`).
 -/
 

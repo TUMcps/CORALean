@@ -44,7 +44,7 @@ theorem Taylm.unitRemainder_le {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T
   have hL := taylor_remainder_abs_le (g := g) (N := N) (c := toReal c) (x := f t) (D := 1)
     (fun ξ _ => hg ξ) fun ξ _ => hD ξ
   refine le_trans hL ?_
-  -- the reach of the hull from the centre, below its rounding
+  -- the reach of the hull from the center, below its rounding
   set B : 𝕋 := maximum zero (maximum (subUp T.bounds.sup c) (subUp c T.bounds.inf))
   have hB : |f t - toReal c| ≤ toReal B := abs_sub_le_maximum_subUp c hb.1 hb.2
   have hPow := le_powUp (abs_nonneg _) hB (N + 1)

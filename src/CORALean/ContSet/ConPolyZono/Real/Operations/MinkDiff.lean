@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 
 CORA's `@conPolyZono/minkDiff` with a zonotope subtrahend [1, Thm. 1], type `'exact'`: the
 independent generators of the minuend become dependent ones (`dependent`), the subtrahend's
-centre is subtracted, and for every generator `g` of the subtrahend the set `P` is replaced by
+center is subtracted, and for every generator `g` of the subtrahend the set `P` is replaced by
 `(P + g) ∩ (P - g)`.
 
 For a convex minuend each step is exact, `{x | x ± g ∈ P} = {x | x + [-g, g] ⊆ P}`, and the result
@@ -48,7 +48,7 @@ def ConPolyZono.minkDiff (cPZ₁ : ConPolyZono (Vec ℝ n)) (Z : Zonotope (Vec �
     ConPolyZono (Vec ℝ n) :=
   -- the independent generators become dependent ones
   let P₁ := cPZ₁.dependent
-  -- the centre is subtracted, and each generator `g` cuts `(P + g) ∩ (P - g)`
+  -- the center is subtracted, and each generator `g` cuts `(P + g) ∩ (P - g)`
   Fin.foldl Z.h
     (fun cPZ i => (cPZ.plus (ConPolyZono.ofPoint (Z.G i))).intersection
       (cPZ.plus (ConPolyZono.ofPoint (-Z.G i))))

@@ -13,9 +13,9 @@ public import Mathlib.Tactic.Ring
 /-!
 # A zonotope of the evolution is centrally symmetric
 
-[1, Sec. 3 (centre)]: the zonotope `Z(s; g₁, …, g_m)` is centrally symmetric about `s + ½ ∑ gᵢ`
+[1, Sec. 3 (center)]: the zonotope `Z(s; g₁, …, g_m)` is centrally symmetric about `s + ½ ∑ gᵢ`
 ("the operation ⊕ preserves central symmetry"): a point `y` is in it iff its reflection
-`2c − y` is. About the centre the coefficients of `y` are `β`, and those of `2c − y` are `−β`.
+`2c − y` is. About the center the coefficients of `y` are `β`, and those of `2c − y` are `−β`.
 
 ## References
 
@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Sec. 3 (centre)]: `y ∈ Z(s; g)` iff `2c − y ∈ Z(s; g)` for the centre `c = s + ½ ∑ gᵢ`. -/
+/-- [1, Sec. 3 (center)]: `y ∈ Z(s; g)` iff `2c − y ∈ Z(s; g)` for the center `c = s + ½ ∑ gᵢ`. -/
 theorem Zonotope.generatorHull_symm (s : Vec ℝ n) (m : ℕ) (g : Fin m → Vec ℝ n)
     (y : Vec ℝ n) : y ∈ Zonotope.generatorHull s m g ↔
       (2 : ℝ) • (s + (1 / 2 : ℝ) • ∑ i, g i) - y

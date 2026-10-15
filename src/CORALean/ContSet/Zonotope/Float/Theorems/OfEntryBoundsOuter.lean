@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 # `Zonotope.ofEntryBounds` contains the exact zonotope it brackets
 
 The exact zonotope's coefficients are the witness: the stored generators reach the
-nominal part, the centre's gap is `sub_mem_residual`, and each generator's gap, being
+nominal part, the center's gap is `sub_mem_residual`, and each generator's gap, being
 nonnegative and below its width, is `mem_generatorError`.
 -/
 

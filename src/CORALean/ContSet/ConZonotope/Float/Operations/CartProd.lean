@@ -10,7 +10,7 @@ public import CORALean.Global.Float.GenBlockDiag
 /-!
 # `ConZonotope.cartProd`, over a floating-point scalar
 
-CORA's `@conZonotope/cartProd_`: the centres stack, the generators are block diagonal
+CORA's `@conZonotope/cartProd_`: the centers stack, the generators are block diagonal
 (`genBlockDiag`), and the constraints of the two operands stay on their own coefficients, the
 polytope being the product of the two coefficient polytopes (`HPolytope.cartProd`). Nothing is
 added or multiplied, so nothing rounds, and the error boxes stack (`Interval.append`).

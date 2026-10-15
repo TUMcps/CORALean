@@ -15,7 +15,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 `quadMap` at a set whose box is empty, on its factors: the enclosing zonotope of
 [1, Lemma 1], whose first block of coefficients is the point's own and so meets the
 constraints, and whose squares `2βⱼ² - 1` and products `βⱼβₖ` are free. The constraints are
-therefore the operand's, padded by the two new blocks. The box holds what storing the centre and the
+therefore the operand's, padded by the two new blocks. The box holds what storing the center and the
 generators from below leaves to pay. Sound only where the operand's own box is empty, so nothing
 outside `quadMap` calls it.
 

@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 
 The zonotope inclusion of [1, Prop. 4], which is [2, Thm. 4]: the family `p ⊕ [M] Bᵐ`, one zonotope
 for every matrix `M` of the interval matrix `[M]`, lies in `p ⊕ [mid[M] rs(rad[M])] Bᵐ⁺ⁿ`, the
-centre matrix's columns and then one axis-aligned generator per row, of length that row's radius
+center matrix's columns and then one axis-aligned generator per row, of length that row's radius
 sum (`rs`, the row-sum diagonal matrix of [1, Sec. 2]). The enclosure is `inclusion_outer`.
 
 ## References

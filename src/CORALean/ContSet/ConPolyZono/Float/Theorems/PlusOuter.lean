@@ -13,7 +13,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 # `ConPolyZono.plus` over-approximates the Minkowski sum
 
 `PolyZonotope.plus_outer`'s argument at one more field, carried across the
-layer by `satisfies_plus_iff`. Only the centre rounds, so the box holds the two
+layer by `satisfies_plus_iff`. Only the center rounds, so the box holds the two
 incoming boxes and one `centerResidual`, and all five counts are the exact
 layer's.
 -/
@@ -91,7 +91,7 @@ theorem ConPolyZono.aux_plus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋
       hx₁ i, hx₂ i]
     ring
 
-/-- The box absorbs the two incoming boxes and the centre rounding. -/
+/-- The box absorbs the two incoming boxes and the center rounding. -/
 theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ₁.I_error.construct + cPZ₂.I_error.construct
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct ⊆

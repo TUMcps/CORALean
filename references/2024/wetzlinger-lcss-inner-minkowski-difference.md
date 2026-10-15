@@ -92,11 +92,11 @@ gives, for each fixed `t` and a convex X₀, is the shrunk image of the convex
 18) is an inner approximation of the reachable set over [0, t_end], and line 16 computes R̂(τ_k)
 by (23). The convex counterexample to `Prop. 2` is an input of the algorithm: for the shear
 `ẋ = (x₂, 0)` from the box `X₀ = [-1/10, 1/10] × [-1, 1]`, a polytope as line 1 asks, with
-`t_end = 1` and `ω = 1`, line 4 gives `x* = 0` (the box's centre is a Chebyshev centre), line 5
+`t_end = 1` and `ω = 1`, line 4 gives `x* = 0` (the box's center is a Chebyshev center), line 5
 `w = 0` and `A = [0 1; 0 0]`, line 6 `C = 0`, the remainder loop stops at its first pass with
 `L̂ = 0`, so `R̂_err = 0` and `c = 0`, and line 16 is `conv(X₀, e^{A}X₀)`, holding `(1/2, 0)`,
 which no run reaches at any `t ∈ [0, 1]` (`NonlinearSys.innerMinkDiff_timeInterval_counterexample`,
-the subroutines entering only through what (6), (9), (13), (17) and the centre give there).
+the subroutines entering only through what (6), (9), (13), (17) and the center give there).
 No correction is known that keeps line 16's hull, so the row is `false`, not `underspecified`.
 The time-point sets are sound: by induction over the steps, every R̂(t_k) lies in R(t_k)
 (`NonlinearSys.innerMinkDiffLoop_subset_reachSet`), a step from R̂(t_k) reaching only states
@@ -109,13 +109,13 @@ certificate for `L̂` on a region the solutions do not leave
 [`InnerMinkDiffTimeInterval.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/InnerMinkDiffTimeInterval.lean),
 [`InnerMinkDiffLoopSubsetReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/InnerMinkDiffLoopSubsetReachSet.lean)
 
-**`Alg. 1`, line 15 — which centre.** `Prop. 1` shifts R_aff ⊖ R̂_err by 2 cen(R̂_err); line 15
-shifts it by 2c with c = cen(C) + cen(R̂_err) from line 14, the centre `Prop. 2` uses. The two
-agree only when C is centred at the origin. CORA's `linReachInner` shifts the time-point set by
-nothing (its R̂_err is centred at the origin) and the time-interval sets by 2 cen(C), which is
+**`Alg. 1`, line 15 — which center.** `Prop. 1` shifts R_aff ⊖ R̂_err by 2 cen(R̂_err); line 15
+shifts it by 2c with c = cen(C) + cen(R̂_err) from line 14, the center `Prop. 2` uses. The two
+agree only when C is centered at the origin. CORA's `linReachInner` shifts the time-point set by
+nothing (its R̂_err is centered at the origin) and the time-interval sets by 2 cen(C), which is
 `Prop. 1` and `Prop. 2` as printed, not line 15. `NonlinearSys.innerMinkDiffLoop_subset_reachSet` takes line 15
 as printed and asks R̂_err to be symmetric about line 14's c; a bounded nonempty set has one
-centre of symmetry, so with cen(R̂_err) that centre this is cen(C) = 0, and with `Prop. 1`'s
+center of symmetry, so with cen(R̂_err) that center this is cen(C) = 0, and with `Prop. 1`'s
 shift it is `Prop. 1`'s own hypothesis. For a linear field, where R̂_err = 0, line 15 is
 R(t_{k+1}) + 2 cen(C), outside R(t_{k+1}) whenever cen(C) ≠ 0, which (17) gives in general
 (`F(Δt)` has interval entries `[a, 0]`, `a < 0`); not written in Lean, as the row's class rests

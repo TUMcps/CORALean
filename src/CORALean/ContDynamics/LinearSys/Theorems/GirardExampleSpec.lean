@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetSubsetLinCombPlusCube
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemLinCombMtimesIff
 public import Mathlib.Analysis.Complex.ExponentialBounds
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
@@ -139,7 +139,7 @@ theorem LinearSys.girardExample_spec :
     rw [sys.reachSet_eq (S := 𝒵) Z U le_rfl (Zonotope.isBounded_construct U)]
     have h0 := sys.expIntegral_mem_inputReach (S := 𝒵) (le_refl (0:ℝ)) hU0'
     rw [Matrix.mulVec_zero] at h0
-    exact ⟨_, ⟨Z.c, Zonotope.centre_mem_construct Z, rfl⟩, 0, h0, rfl⟩
+    exact ⟨_, ⟨Z.c, Zonotope.center_mem_construct Z, rfl⟩, 0, h0, rfl⟩
   -- bounded: inside the enclosure of Lemma 2
   have hRb : Bornology.IsBounded R := by
     have hs : ∀ z ∈ Z.construct, ‖z‖ ≤ 2 := by

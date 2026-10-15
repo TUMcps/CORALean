@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.Fullspace.Real.Operations.Centre
+public import CORALean.ContSet.Fullspace.Real.Operations.Center
 public import CORALean.ContSet.Fullspace.Real.Theorems.ReindexLinExact
 public import CORALean.ContSet.OptEmpty.OptEmpty
 
@@ -12,7 +12,7 @@ public import CORALean.ContSet.OptEmpty.OptEmpty
 
 Everything whose obligation `Set.univ` on the right meets, which is every class
 here bar one: convexity, a sum, a combination, a difference, a reduction, a
-product and a point all land in the whole space, and `Recentre` has the origin
+product and a point all land in the whole space, and `Recenter` has the origin
 to hand as well.
 
 No `CompactSet`: the whole of `Vec ℝ n` is unbounded at `0 < n`, so the class's
@@ -67,12 +67,12 @@ instance : OfPoint (Fullspace n) (Vec ℝ n) where
   ofPoint _ := ⟨⟩
   mem_ofPoint v := Set.mem_univ v
 
-/-- Centred at the origin, which recentring then leaves where it is. -/
-instance : Recentre (Fullspace n) (Vec ℝ n) where
-  centre := Fullspace.centre
-  recentre _ := ⟨⟩
-  zero_mem_recentre _ := Set.mem_univ 0
-  sub_centre_mem_recentre _ := Set.mem_univ _
+/-- Centered at the origin, which recentering then leaves where it is. -/
+instance : Recenter (Fullspace n) (Vec ℝ n) where
+  center := Fullspace.center
+  recenter _ := ⟨⟩
+  zero_mem_recenter _ := Set.mem_univ 0
+  sub_center_mem_recenter _ := Set.mem_univ _
 
 /-- At every scalar `𝕋` with a matrix denotation (`Mat 𝕋`), not only `ℝ`: the guarantee
 is over what the matrix denotes, and the result ignores it. -/

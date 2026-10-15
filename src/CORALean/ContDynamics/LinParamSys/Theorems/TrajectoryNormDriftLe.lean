@@ -18,7 +18,7 @@ The bound is taken at the far end of the window, `gronwallBound` being monotone
 there, so one radius serves the whole step — which is what the enlarged input
 set has to be, being one set for all of it.
 
-`δ` is smallest at the box's centre, where it is the box's radius.
+`δ` is smallest at the box's center, where it is the box's radius.
 -/
 
 -- Authors:       Claude Opus 5

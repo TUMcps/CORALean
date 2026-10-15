@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
+public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Theorems.AnchorEqsInBoxSound
 
 @[expose] public section
@@ -74,7 +74,7 @@ theorem ConZonotope.anchorSlab_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (A : M
               - toReal (Fin.append cZ.P.be hi (Fin.natAdd cZ.P.me i))|
             ≤ toReal (Fin.append (fun _ => (zero : 𝕋)) (fun i => subUp (hi i) (lo i))
               (Fin.natAdd cZ.P.me i))
-          rw [HPolytope.mulVec_append_right, Fin.append_right, Fin.append_right, abs_le]
+          rw [toRealMat_append_mulVec_natAdd, Fin.append_right, Fin.append_right, abs_le]
           have h := sub_le_subUp (hi i) (lo i)
           constructor <;> linarith [(hslab i).1, (hslab i).2])
     -- the point `β''` describes, and the move from `y` to it

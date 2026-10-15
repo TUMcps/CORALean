@@ -8,7 +8,7 @@ public import CORALean.NN.Graph.Theorems.RowEqMask
 @[expose] public section
 
 /-!
-# Masking outside a large enough ball changes nothing at the centre, with a layer per step
+# Masking outside a large enough ball changes nothing at the center, with a layer per step
 
 `[1, Sec. 4.3]` for the network with its activations: row `v` of `L` message-passing steps with a
 per-node layer after each is the same whether or not the graph is masked to `S`, provided `S`
@@ -37,7 +37,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Masking outside a ball at least as large as the radius run leaves the centre's row of the
+/-- Masking outside a ball at least as large as the radius run leaves the center's row of the
 layered chain untouched, provided the two inputs agree on that ball. -/
 theorem GNN.evalStepsLayers_row_mask {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (S : Finset (Fin N))
     (L : ℕ) (hS : GNN.ball A v L ⊆ S) (g : Fin L → Vec ℝ F → Vec ℝ F) (X Y : Mat ℝ N F)

@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Shift
 /-!
 # `shift`'s point is the point moved
 
-The centre is the first summand of `point`, so the translation comes straight
+The center is the first summand of `point`, so the translation comes straight
 back out; `add_right_comm` is the whole argument.
 -/
 

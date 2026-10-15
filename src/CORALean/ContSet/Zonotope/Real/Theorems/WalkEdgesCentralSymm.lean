@@ -7,7 +7,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 @[expose] public section
 
 /-!
-# The zonogon and its walk edges are symmetric about the centre
+# The zonogon and its walk edges are symmetric about the center
 
 `x ↦ 2c - x` negates every coefficient, so it maps the zonotope to itself, and it maps the sign
 corner `s` to the corner `¬ s`, so it swaps the two blocks of the walk and maps the walk edges to

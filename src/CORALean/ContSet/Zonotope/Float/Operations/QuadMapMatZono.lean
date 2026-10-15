@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 
 `Real.Zonotope.quadMapMatZono`, [1, Thm. 1]: the quadratic map `{λ | λᵢ = xᵀQ⁽ⁱ⁾x, x ∈ Z}` with
 each `Q⁽ⁱ⁾` ranging over a matrix zonotope `(D⁽ⁱ⁾, K⁽ⁱ'¹⁾, ..., K⁽ⁱ'ᵛ⁾)`, enclosed by
-`Z_D ⊕ ([-1, 1] ⊗ Z_K(1)) ⊕ ... ⊕ ([-1, 1] ⊗ Z_K(ν))`. The centres `D⁽ⁱ⁾` are interval
+`Z_D ⊕ ([-1, 1] ⊗ Z_K(1)) ⊕ ... ⊕ ([-1, 1] ⊗ Z_K(ν))`. The centers `D⁽ⁱ⁾` are interval
 matrices here: a caller computing them with directed rounding knows them only to within a box.
 The map is taken at the lower ends `D̲⁽ⁱ⁾`, and what the rest of the box adds,
 `xᵀ(D⁽ⁱ⁾ − D̲⁽ⁱ⁾)x`, is bounded by `∑ₗₖ rₗ wₗₖ rₖ`, `r` the float bound of `|x|` over `Z`
@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m ν : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Thm. 1] at interval-matrix centres: `Z_D̲ ⊕ ([-1, 1] ⊗ Z_K(1)) ⊕ ... ⊕ [-e, e]`. -/
+/-- [1, Thm. 1] at interval-matrix centers: `Z_D̲ ⊕ ([-1, 1] ⊗ Z_K(1)) ⊕ ... ⊕ [-e, e]`. -/
 def Zonotope.quadMapMatZono (D : Fin m → Interval (Mat 𝕋 n n))
     (K : Fin ν → Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 m) :=
   let ZD := Z.quadMap fun i => (D i).inf                 -- `Z_D` at the lower ends
@@ -59,7 +59,7 @@ def Zonotope.quadMapMatZono (D : Fin m → Interval (Mat 𝕋 n n))
     subUp ((D i).sup l k) ((D i).inf l k)
   let e : Vec 𝕋 m := fun i =>                            -- `∑ₗₖ rₗ wₗₖ rₖ`, up
     sumUp fun l => sumUp fun k => mulUp (mulUp (r l) (w i l k)) (r k)
-  let ZE := (⟨fun i => neg (e i), e⟩ : Interval (Vec 𝕋 m)).zonotope
+  let ZE := (⟨-e, e⟩ : Interval (Vec 𝕋 m)).zonotope
   (ZD.plus (Zonotope.sumTerms ZK ν)).plus ZE
 
 end CORALean.Float

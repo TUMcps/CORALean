@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.EmptySet.Real.Operations.Isequal
 public import CORALean.ContSet.EmptySet.Real.Operations.Basic
-public import CORALean.ContSet.EmptySet.Real.Operations.Centre
+public import CORALean.ContSet.EmptySet.Real.Operations.Center
 public import CORALean.ContSet.EmptySet.Real.Operations.And
 public import CORALean.ContSet.EmptySet.Real.Operations.HPolytope
 public import CORALean.ContSet.EmptySet.Real.Operations.Lift

@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 /-!
 # `Ellipsoid.cartProdVec` is the product with a point, exactly
 
-The padded centre plus the padded generators at `u` is the original point with the point appended,
+The padded center plus the padded generators at `u` is the original point with the point appended,
 as the padding rows are zero; the error box is the original's with a zero-width box on the appended
 coordinates, so a point of it is a point of the original's with nothing added there.
 -/

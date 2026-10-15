@@ -14,7 +14,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
 
 CORA's `@conZonotope/intersectStrip` with a numeric gain (`aux_conZonotopeFromLambda`) on the
 stored floats: the strip `{x | |C x - y| ≤ φ}` enters as `s` new factors `ν` and `s` equality
-rows `C G ξ - φ ν = y - C c`, the centre moves to `c + Λ (y - C c)` and the generators become
+rows `C G ξ - φ ν = y - C c`, the center moves to `c + Λ (y - C c)` and the generators become
 `[(I - Λ C) G, φ₁ Λ₁, …, φₛ Λₛ]`, the old constraints acting on the old factors, as over ℝ.
 
 At float the stored point carries an error `e`, which the exact construction would have to
@@ -23,7 +23,7 @@ image. The strip rows are built from the float image `Zonotope.mtimes C` of the 
 `conIntersect` does), their right-hand side widened by that image's error box into an interval;
 they stay equalities, at its upper end, where `ConZonotope.anchorSlab` certifies that every
 coefficient vector can be moved onto them inside the unit box (the point's move paid into the
-error box), and become the slab between the two ends otherwise. The new centre and
+error box), and become the slab between the two ends otherwise. The new center and
 the first generator block are rounded down from interval bounds (`Λ (y - C c)` and `Λ C G` as
 interval images), the second block entry by entry, and what each rounding costs goes into the
 error box. The gain is an argument, as over ℝ; the result is outer, never exact.
@@ -48,9 +48,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n s : ℕ}
 
 def ConZonotope.intersectStrip (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C : Mat 𝕋 s n) (φ y : Vec 𝕋 s)
     (Λ : Mat 𝕋 n s) : ConZonotope 𝕋 (Vec 𝕋 n) :=
-  -- C (c + G ξ + e): centre and generators rounded down, the rest in a box
+  -- C (c + G ξ + e): center and generators rounded down, the rest in a box
   let W := Zonotope.mtimes C ⟨cZ.h, cZ.c, cZ.G, cZ.I_error⟩
-  -- c + Λ (y - C c), as bounds around the stored centre
+  -- c + Λ (y - C c), as bounds around the stored center
   let w : Interval (Vec 𝕋 s) :=
     ⟨fun k => subDown (y k) (dotUp (C k) cZ.c), fun k => subUp (y k) (dotDown (C k) cZ.c)⟩
   let shift := Interval.mtimes Λ w

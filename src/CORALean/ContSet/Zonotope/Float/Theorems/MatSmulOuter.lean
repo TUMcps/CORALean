@@ -13,7 +13,7 @@ public import Mathlib.LinearAlgebra.BilinearMap
 # `Zonotope.matSmul` over-approximates scaling by every scalar in `[cLo, cHi]`
 
 At one scalar `c` in the range, the nominal part scales inside the exact
-`Zonotope.map (c • ·)` (`map_exact`), whose centre and generators `mul_between_corners`
+`Zonotope.map (c • ·)` (`map_exact`), whose center and generators `mul_between_corners`
 brackets entry by entry; the box scales by `Interval.smul_outer`.
 -/
 

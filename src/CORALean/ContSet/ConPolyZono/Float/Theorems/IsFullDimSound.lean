@@ -12,7 +12,7 @@ public import Mathlib.Topology.Algebra.Group.Pointwise
 
 The factors `α = 0` satisfy the constraints, since each row `A μ(0)` lies between its bounds (its
 two directed roundings do), and `μ(0)` is the zero-exponent-column indicator. So the nominal set
-contains `y₀ + GI β` for every `|βⱼ| ≤ 1`, with `y₀` the centre plus the dependent generators
+contains `y₀ + GI β` for every `|βⱼ| ≤ 1`, with `y₀` the center plus the dependent generators
 weighted by their monomials at `0`; the checked rows then put the open box of radius `B` around
 `y₀` inside it (`Zonotope.ballCert_reach`), and the error box's lower corner keeps an interior
 point.

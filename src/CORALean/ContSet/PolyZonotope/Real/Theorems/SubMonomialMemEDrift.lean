@@ -14,7 +14,7 @@ The two-sided reading of `[1, Prop. 3]`: `abs_sub_monomial_le` says the drift of
 two monomials agreeing off `k₀` stays within `ξ_E` of zero, and this says which
 half of that interval it can actually reach. Where a sign never changes the
 opposite reach is `0`, and a relaxation can then put the interval's midpoint in
-its centre and only its half-width in a generator.
+its center and only its half-width in a generator.
 
 One hypothesis, the agreement off `k₀`, and no evenness: `eDrift` reads the
 parity out of the exponent matrix itself, so the caller is never asked for it

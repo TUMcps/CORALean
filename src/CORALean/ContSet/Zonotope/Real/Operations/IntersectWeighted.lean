@@ -9,7 +9,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 # `Zonotope.intersectWeighted`
 
 The zonotope that [1, Lemma 3] gives for the intersection of `d` zonotopes `Zᵢ = ⟨cᵢ, Gᵢ⟩`: the
-weighted mean `(Σ wᵢ)⁻¹ Σ wᵢ cᵢ` of the centres and the weighted generators
+weighted mean `(Σ wᵢ)⁻¹ Σ wᵢ cᵢ` of the centers and the weighted generators
 `(Σ wᵢ)⁻¹ [w₁ G₁, …, w_d G_d]` side by side. The generator counts need not agree, so the
 generators are indexed by the sigma type of the `d` families, `finSigmaFinEquiv` order. The weights
 are arguments; the lemma only asks that they do not sum to zero.

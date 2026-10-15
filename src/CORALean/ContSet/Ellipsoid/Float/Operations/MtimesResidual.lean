@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Ellipsoid.mtimesResidual`
 
-What `mtimes` owes beyond its nominal part: the centre, rounded, and the
+What `mtimes` owes beyond its nominal part: the center, rounded, and the
 generators, each entry known only to within `matMulDiff`'s rounding gap.
 -/
 
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `mtimes` owes beyond its nominal part: the centre, and the
+/-- What `mtimes` owes beyond its nominal part: the center, and the
 generators. -/
 def Ellipsoid.mtimesResidual (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : Interval (Vec 𝕋 m) :=
   (Interval.residual (mulVecDown M E.c) (mulVecUp M E.c) (mulVecDown M E.c)).plus

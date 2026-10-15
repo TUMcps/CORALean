@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Zonotope.Float.Zonotope
@@ -10,10 +10,10 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.ofIntervalMat`
 
-CORA's `matZonotope(intervalMatrix)`: the centre matrix, and one generator per entry
+CORA's `matZonotope(intervalMatrix)`: the center matrix, and one generator per entry
 carrying that entry's radius there and zero elsewhere, so that a product of matrix
-zonotopes keeps each entry's dependence on itself. The centre is `centreMat`, whose
-rounding the radius absorbs: the radius is the larger magnitude of `I - centre`'s
+zonotopes keeps each entry's dependence on itself. The center is `centerMat`, whose
+rounding the radius absorbs: the radius is the larger magnitude of `I - center`'s
 bounds (`matResidual`), and `maximum`/`absolute` are exact, so the box stays zero.
 -/
 
@@ -34,9 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The centre matrix, and one generator per entry holding that entry's radius. -/
+/-- The center matrix, and one generator per entry holding that entry's radius. -/
 def Zonotope.ofIntervalMat (I : Interval (Mat 𝕋 m n)) : Zonotope (Mat 𝕋 m n) :=
-  let C := Interval.centreMat I                                   -- the centre, stored
+  let C := Interval.centerMat I                                   -- the center, stored
   let Rs := Interval.matResidual I.inf I.sup C                    -- I - C, a box
   let r : Mat 𝕋 m n := fun i j => maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j))
   { h := m * n

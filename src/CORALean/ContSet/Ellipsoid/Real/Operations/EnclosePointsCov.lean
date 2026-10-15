@@ -10,7 +10,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsMaxDist
 # `Ellipsoid.enclosePointsCov`
 
 CORA's `@ellipsoid/enclosePoints.m` at `method = 'cov'` (the default), for points that span the
-whole space (`n_nd = n`, so no projection to a subspace and `n_d = 0`): the points are centred
+whole space (`n_nd = n`, so no projection to a subspace and `n_d = 0`): the points are centered
 on their mean `c`, rotated by `T'` (`T` from `svd(points)`), the covariance of the result gives a
 basis `U` (`svd(C)`), and in the rotated coordinates `orientedMatrix = U' * points` the ellipsoid
 is `diag(nt²) * maxDist`, `nt = max([m1, m2], [], 2)` the larger of the per-coordinate extremes

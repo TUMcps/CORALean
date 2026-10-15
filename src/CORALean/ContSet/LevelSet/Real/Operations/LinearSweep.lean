@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 /-!
 # `LevelSet.linearSweep`
 
-One pass of the loop of `aux_contractorLinear` in CORA's `@levelSet/tightenDomain`: the centre `m`
+One pass of the loop of `aux_contractorLinear` in CORA's `@levelSet/tightenDomain`: the center `m`
 of the box, the interval gradient `k` on it and the value `f(m)` are computed once, then the
 coordinates are tightened in turn, each seeing the box the earlier ones have narrowed.
 -/

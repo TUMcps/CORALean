@@ -41,7 +41,7 @@ def HPolytope.halfScaledRight (n₁ : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n₂)) 
           fun _ : Fin 1 => half (P.be i))
         fun i => half (P.be i)).stackRows
       (HPolytope.ineqs (fun i => Fin.append (Fin.append (fun _ : Fin n₁ => zero)
-            fun k => neg (P.Ae i k)) fun _ : Fin 1 => half (neg (P.be i)))
+            (-(P.Ae i))) fun _ : Fin 1 => half (neg (P.be i)))
         fun i => half (neg (P.be i))))
 
 end CORALean.Float

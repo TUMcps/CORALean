@@ -14,7 +14,7 @@ kept in its own module. With `A = c₁ + Σᵢ αᵢ • g₁ᵢ` and `x = c₂ 
 
     f A x = f c₁ c₂ + Σᵢ αᵢ f(g₁ᵢ, c₂) + Σⱼ βⱼ f(c₁, g₂ⱼ) + Σᵢⱼ αᵢβⱼ f(g₁ᵢ, g₂ⱼ)
 
-which is the centre and the three generator blocks below, the cross block
+which is the center and the three generator blocks below, the cross block
 flattened by `finProdFinEquiv`. Unlike `PolyZonotope.bilin`, there is nowhere
 here to record that a cross coefficient really is `αᵢβⱼ`: a zonotope's
 coefficients are free in `[-1, 1]`, so the cross block only over-approximates —

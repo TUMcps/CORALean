@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 /-!
 # What the state of a float run of `Alg. 1` owes
 
-With the input set `V` split `ũ ⊕ Ũ` at its stored centre, as [1, Alg. 1] line 1 splits it:
+With the input set `V` split `ũ ⊕ Ũ` at its stored center, as [1, Alg. 1] line 1 splits it:
 `t_k` is nonnegative and inside its float bracket, `H` holds the free motion plus the
 constant's share `P^u(t_k)` from every initial state, `Pu` holds `P^u(t_k)`, and `PU` holds
 anything an admissible `Ũ`-input contributes by `t_k`.
@@ -48,9 +48,9 @@ def LinearSys.ManualInvariantFloat (sys : LinearSys 𝕋 n) (X₀ V : Float.Zono
     (s : LinearSys.ManualStateFloat 𝕋 n) : Prop :=
   0 ≤ s.t ∧ toReal s.tLo ≤ (s.t : ℝ) ∧ (s.t : ℝ) ≤ toReal s.tHi ∧
     (∀ x ∈ X₀.construct, exp ((s.t : ℝ) • Scalar.toRealMat sys.A) *ᵥ x
-      + MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V ∈ s.H.construct) ∧
-    MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V ∈ s.Pu.construct ∧
-    ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recentre.recentre V) s.t, y ∈
+      + MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V ∈ s.H.construct) ∧
+    MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V ∈ s.Pu.construct ∧
+    ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recenter.recenter V) s.t, y ∈
       s.PU.construct
 
 end CORALean

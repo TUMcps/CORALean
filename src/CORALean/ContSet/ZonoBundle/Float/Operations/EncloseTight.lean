@@ -19,7 +19,7 @@ and one more, `zonotope.enclosePoints(V, 'stursberg')`. Without vertex enumerati
 (`intervalAll` of each mapped bundle), which holds it. `pinv(W{i})` is a candidate
 `Zonotope.basisInverse` and the Stursberg basis `U` is undone by `Uᵀ`; `parallelotope` pays what
 either inverse misses, for points within the two bundles' boxes, so neither an invertible `W{i}`
-nor an orthogonal `U` is assumed. The Stursberg box centred on the points' mean is the same set
+nor an orthogonal `U` is assumed. The Stursberg box centered on the points' mean is the same set
 as the box in `U`'s coordinates, so the mean is not formed.
 -/
 

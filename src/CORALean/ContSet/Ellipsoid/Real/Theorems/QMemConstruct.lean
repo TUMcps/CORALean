@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 /-!
 # `Ellipsoid.q_mem_construct`
 
-`mem_construct` at `u = 0`, the centre — what makes the representation never
+`mem_construct` at `u = 0`, the center — what makes the representation never
 empty, and where the support function's maximum is attained when the
 direction is one `G` collapses.
 -/

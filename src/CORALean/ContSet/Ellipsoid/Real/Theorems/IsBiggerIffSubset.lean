@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
 @[expose] public section
 
 /-!
-# `isBigger` is containment of the centred ellipsoids
+# `isBigger` is containment of the centered ellipsoids
 
 For `E₁` of full rank, `Q₂ ⪯ Q₁` holds iff `E₂ - q₂ ⊆ E₁ - q₁`.
 Containment gives `‖G₂ᵀ v‖ ≤ ‖G₁ᵀ v‖` for every `v` through the support point `G₂ G₂ᵀ v`
@@ -47,7 +47,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
         (fun x => x - E₁.c) '' E₁.construct := by -- --- PROOF ---
   constructor
   · rintro h _ ⟨x, ⟨u, hu, rfl⟩, rfl⟩
-    -- the centred point `p = G₂ u`
+    -- the centered point `p = G₂ u`
     simp only [add_sub_cancel_left]
     set p : Vec ℝ n := E₂.G *ᵥ u with hp
     have hU := E₁.isUnit_shape hr
@@ -69,7 +69,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
       exact h w
     have hs0 : 0 ≤ p ⬝ᵥ w := by rw [hs]; positivity
     have hle : p ⬝ᵥ w ≤ 1 := by nlinarith
-    -- so the centred point is in `E₁ - q₁`
+    -- so the centered point is in `E₁ - q₁`
     refine ⟨E₁.c + p, ?_, add_sub_cancel_left _ _⟩
     refine (E₁.ellipsoidNorm_le_one_iff hr p).mp ?_
     unfold Ellipsoid.ellipsoidNorm

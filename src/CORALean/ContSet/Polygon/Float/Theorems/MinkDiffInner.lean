@@ -13,7 +13,7 @@ public import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
 A point of the result lies in one shifted piece; that piece, unshifted, holds the point plus
 any point of the subtrahend (`HPolytope.minkDiffOf_inner`, with no equality rows to keep in a
 kernel), and lies in its minuend piece (`Polygon.innerHRep_inner`), which lies in the minuend.
-Nothing is assumed of the subtrahend: no convexity, no centre, no boundary loop.
+Nothing is assumed of the subtrahend: no convexity, no center, no boundary loop.
 -/
 
 -- Authors:       Claude Opus 5.5

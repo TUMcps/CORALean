@@ -19,7 +19,7 @@ W⁻¹ Y` the W-radius of the intersection zonotope Eq. 7 of [1, Thm. 1] satisfi
 Eq. 17 of [1, Thm. 3], `ℓ_W` that of `⟨p̂, H̄⟩`; any bound `ℓ` of it does, and `γ ≥ 0` suffices. The
 W-radius is `Zonotope.pRadius` at `W` [1, Def. 5].
 
-As in the paper's proof. A point of the zonotope is its centre plus `Ĥ₊ ẑ = W⁻¹ R̃ (H̄z̄, b₁, b₂,
+As in the paper's proof. A point of the zonotope is its center plus `Ĥ₊ ẑ = W⁻¹ R̃ (H̄z̄, b₁, b₂,
 b₃)` (`Y = WΛ`, Eq. 22 of [1, Thm. 3]), so `‖Ĥ₊ ẑ‖²_W = vᵀ R̃ᵀ W⁻¹ R̃ v`, and the Schur complement
 of the block `W` (`posDef_schur_of_fromBlocks`) bounds that by `γ ‖H̄z̄‖²_W + b₁ᵀΓb₁ + b₂ᵀΥb₂ +
 b₃ᵀΩb₃ ≤ γ ℓ_W + tr Γ + tr Υ + tr Ω < γ ℓ_W + ε`, Eq. 24 of [1, Thm. 3]. The blocks are sized by

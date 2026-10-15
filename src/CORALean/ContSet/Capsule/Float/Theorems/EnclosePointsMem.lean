@@ -7,7 +7,7 @@ public import CORALean.ContSet.Capsule.Float.Operations.EnclosePoints
 /-!
 # `Capsule.enclosePoints` holds every point
 
-For a point `p`, the stored centre `c`, generator `g` and the clamped parameter `t`, the
+For a point `p`, the stored center `c`, generator `g` and the clamped parameter `t`, the
 residual `p - (c + t g)` is bounded entry by entry between two directed roundings, so its length is
 at most `normUp` of the larger absolute bound, which the stored radius takes the maximum of.
 Nothing here depends on the mean, the farthest point or the projection being computed accurately:
@@ -66,7 +66,7 @@ theorem Capsule.range_subset_construct (k : ℕ) {N : ℕ} (pts : Fin N → Vec 
   unfold Capsule.enclosePoints
   rw [dif_pos hN]
   dsimp only
-  -- name the stored centre, farthest point, generator and parameter
+  -- name the stored center, farthest point, generator and parameter
   set c : Vec 𝕋 n := fun i => divUp (sumUp fun j => pts j i) (nsmulUp N one) with hc
   set d : Fin N → Vec 𝕋 n := fun j i => subUp (pts j i) (c i) with hd
   set jmax := (List.finRange N).foldl (fun b j =>

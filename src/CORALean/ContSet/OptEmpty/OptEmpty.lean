@@ -8,7 +8,7 @@ public import CORALean.ContSet.ContSet.ContSet
 # `OptEmpty`: what a representation denotes, or nothing at all
 
 An operation whose result can be empty has no answer inside a representation
-that denotes only nonempty sets: a zonotope always holds its centre, so no
+that denotes only nonempty sets: a zonotope always holds its center, so no
 `Zonotope → Zonotope → Zonotope` returns the Minkowski difference of `{0}` and
 `[-1, 1]`, which is `∅`. Wrapping the result is what gives it one.
 

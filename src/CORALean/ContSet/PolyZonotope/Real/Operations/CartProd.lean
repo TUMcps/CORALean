@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 /-!
 # `PolyZonotope.cartProd`
 
-CORA's `@polyZonotope/cartProd`: the centres pair, and every generator embeds
+CORA's `@polyZonotope/cartProd`: the centers pair, and every generator embeds
 into the product ambient type at zero in the other coordinate, rather than
 concatenating within one ambient type the way `plus` does — the two operands
 no longer share an ambient type, so there is nothing to add.

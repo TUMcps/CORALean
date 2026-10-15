@@ -27,8 +27,8 @@ public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Interval.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.Interval.Real.Theorems.MemCenter
 public import CORALean.ContSet.Interval.Real.Theorems.MemPoint
-public import CORALean.ContSet.Interval.Real.Theorems.RecentreZeroMem
-public import CORALean.ContSet.Interval.Real.Theorems.RecentreSubMem
+public import CORALean.ContSet.Interval.Real.Theorems.RecenterZeroMem
+public import CORALean.ContSet.Interval.Real.Theorems.RecenterSubMem
 public import CORALean.ContSet.Interval.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Interval.Real.Theorems.MatMulOuter
 public import CORALean.ContSet.Interval.Real.Theorems.MatMulSymmPoint
@@ -201,7 +201,7 @@ unconditionally — and the topological facts a set-valued integral needs:
 convex, closed, bounded, and the two last combined into the compactness an
 interface field asks for. `MemMat` is membership at an interval matrix, read by
 row and column, and `MemCenter` is the one point a box always offers a layer
-that has to commit to a value. `RecentreZeroMem`/`RecentreSubMem` need that
+that has to commit to a value. `RecenterZeroMem`/`RecenterSubMem` need that
 same nonemptiness to place the origin, a crossed box denoting `∅` instead.
 `MtimesIsNonempty`/`MtimesWidth`: an image box is non-empty, and how wide it is.
 `DivBetweenEndpoints` solves `MulBetweenEndpoints` back for the point. `MulBetweenCorners` is

@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 # `PolyZonotope.exactPlus`
 
 CORA's `@polyZonotope/exactPlus` and [1, Prop. 10]: the sum of two sets written
-over *one* factor list. Centres add and all three blocks concatenate, and the
+over *one* factor list. Centers add and all three blocks concatenate, and the
 exponent matrices concatenate too — side by side, not block-diagonally, which is
 the whole difference from `plus`.
 

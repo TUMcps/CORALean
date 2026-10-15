@@ -7,11 +7,11 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CubMap
 @[expose] public section
 
 /-!
-# The exact centre of `cubMap` lies between the two stored roundings
+# The exact center of `cubMap` lies between the two stored roundings
 
-The exact centre `cubFold (0, 0, 0) + ½ Σⱼ cubFold (0, j, j)` on the read-back operand is bracketed
+The exact center `cubFold (0, 0, 0) + ½ Σⱼ cubFold (0, j, j)` on the read-back operand is bracketed
 term by term (`cubFold_bracket`), the sum by `sumDown_le_sum` and `sum_le_sumUp`, and halving is
-exact. The stored centre is the lower end, and the gap to the upper is what the box is charged.
+exact. The stored center is the lower end, and the gap to the upper is what the box is charged.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -57,7 +57,7 @@ theorem Zonotope.cubMapC_between (T : Fin m → Fin n → Mat 𝕋 n n)
           (nominal Z : Real.Zonotope (Vec ℝ n)) i 0 y.succ y.succ
       ≤ ∑ y : Fin Z.h, toReal (Zonotope.cubFoldUp T Z i 0 y.succ y.succ) :=
     Finset.sum_le_sum fun y _ => (Zonotope.cubFold_bracket T Z i 0 y.succ y.succ).2
-  -- the centre, rounded each way, with halving exact
+  -- the center, rounded each way, with halving exact
   have hd := addDown_le_add (Zonotope.cubFoldDown T Z i 0 0 0)
     (half (sumDown fun y : Fin Z.h => Zonotope.cubFoldDown T Z i 0 y.succ y.succ))
   have hu := add_le_addUp (Zonotope.cubFoldUp T Z i 0 0 0)

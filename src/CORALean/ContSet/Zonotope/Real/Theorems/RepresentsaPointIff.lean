@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import Mathlib.Algebra.Module.BigOperators
 
 @[expose] public section
@@ -10,8 +10,8 @@ public import Mathlib.Algebra.Module.BigOperators
 # A zonotope is a point iff every generator vanishes
 
 If `c + Gⱼ` (the coefficient `βⱼ = 1`, the others `0`) lies in `{c}` then `Gⱼ = 0`; conversely
-with no generator the combination is `0`. The origin is the point whose centre is `0`. The empty
-set is never represented: `Zonotope.centre_mem_construct` puts the centre in every zonotope.
+with no generator the combination is `0`. The origin is the point whose center is `0`. The empty
+set is never represented: `Zonotope.center_mem_construct` puts the center in every zonotope.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -44,7 +44,7 @@ theorem Zonotope.representsa_point_iff (Z : Zonotope α) :
     · rintro ⟨β, -, rfl⟩
       simp [h _]
     · rintro rfl
-      exact Zonotope.centre_mem_construct Z
+      exact Zonotope.center_mem_construct Z
 
 end CORALean.Real
 

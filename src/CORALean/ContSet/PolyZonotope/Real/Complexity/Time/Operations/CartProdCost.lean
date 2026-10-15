@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.cartProdCost`
 
-Asserted, not proved: `Operations/CartProd.lean` pairs the centres, pads each
+Asserted, not proved: `Operations/CartProd.lean` pairs the centers, pads each
 operand's generators with a zero in the other component and assembles the
 exponent matrix block-diagonally with `plusE`, whose off-diagonal blocks are
 literal zeros. Everything is placed and nothing computed.

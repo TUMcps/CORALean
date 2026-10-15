@@ -13,7 +13,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 # `PolyZonotope.containsExactCora1D`
 
 `contains(pZ, p, 'exact')` of CORA's `@polyZonotope/contains_.m` for a point `p` and a
-one-dimensional `pZ` with a generator (so the centre-only branch, l. 172, is not taken). The
+one-dimensional `pZ` with a generator (so the center-only branch, l. 172, is not taken). The
 `'exact'` method returns at once into `aux_exactContainment` (ll. 100-102), which asks
 `representsa_(pZ,'zonotope',1e-12)` (l. 184). For `n = 1` that answers `true` whatever `pZ`
 is (`@polyZonotope/representsa_.m` l. 128: `res = n == 1 || aux_isZonotope(pZ,tol)`), with

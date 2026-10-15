@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.shift`
 
-Translation by `-w`, the generators kept and only the centre moved: what
+Translation by `-w`, the generators kept and only the center moved: what
 [1, Prop. 6]'s `Z − vᵢ` is, ahead of taking any Minkowski difference.
 Not `Plus.plus (Zonotope.ofPoint (-w))`, which only encloses — a plain field
 update is exact by construction and needs no theorem to say so at the call
@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `Z` translated by `-w`: same generators, centre moved. -/
+/-- `Z` translated by `-w`: same generators, center moved. -/
 def Zonotope.shift (Z : Zonotope α) (w : α) : Zonotope α := { Z with c := Z.c - w }
 
 end CORALean.Real

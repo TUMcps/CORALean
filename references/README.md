@@ -95,7 +95,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [AI2: Safety and Robustness Certification of Neural Networks with Abstract Interpretation](2018/gehr-sp-ai2.md) | Gehr, Mirman, Drachsler-Cohen, Tsankov, Chaudhuri, Vechev | IEEE S&P, pp. 3-18 | 2018 | 🟢 11/11 \| 4 |
 | [On the parameterized computation of minimum volume outer ellipsoid of Minkowski sum of ellipsoids](2018/halder-cdc-minkowski-sum-ellipsoids.md) | Halder | CDC, pp. 4040-4045 | 2018 | 🟢 30/30 \| 13 |
 | [Fast and Effective Robustness Certification](2018/singh-neurips-deepz.md) | Singh, Gehr, Mirman, Püschel, Vechev | NeurIPS | 2018 | 🟢 8/8 \| 6 |
-| [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md) | Wang, Puig, Cembrano | Automatica, 93:435-443 | 2018 | 🟢 18/18 \| 9 |
+| [Set-membership approach and Kalman observer based on zonotopes for discrete-time descriptor systems](2018/wang-automatica-descriptor-observer.md) | Wang, Puig, Cembrano | Automatica, 93:435-443 | 2018 | 🟢 19/19 \| 9 |
 | [A distributed set-membership approach based on zonotopes for interconnected systems](2018/wang-cdc-distributed-set-membership.md) | Wang, Alamo, Puig, Cembrano | IEEE CDC, pp. 668-673 | 2018 | 🟢 4/4 \| 12 |
 | [Linear Encodings for Polytope Containment Problems](2019/sadraddini-cdc-polytope-containment.md) | Sadraddini, Tedrake | CDC, pp. 4367-4372 | 2019 | 🟢 23/23 \| 17 |
 | [Interval estimation methods for discrete-time linear time-invariant systems](2019/tang-tac-interval-estimation.md) | Tang, Wang, Wang, Raïssi, Shen | IEEE Transactions on Automatic Control, 64(11):4717-4724 | 2019 | 🟢 18/18 \| 22 |

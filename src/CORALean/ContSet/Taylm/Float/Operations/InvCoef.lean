@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Float.Interval
 @[expose] public section
 
 /-!
-# The coefficients of `1/x` at the centre, from both sides
+# The coefficients of `1/x` at the center, from both sides
 
 The Taylor coefficient `(-1)ᵏ c⁻⁽ᵏ⁺¹⁾` of `x ↦ 1/x` at `c`, between `1/|c|` rounded each way and
 raised to `k + 1` by the directed powers. The sign is read off only where `ltStrict` certifies it;

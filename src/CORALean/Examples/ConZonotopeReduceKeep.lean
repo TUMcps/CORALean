@@ -65,7 +65,7 @@ theorem reduceKeepExample_le : (reduceKeepExample.reduceKeepBy reduceKeepExample
       {x : Vec ℝ 1 | x 0 ≤ 2} := by
     show (_ + ∑ j : Fin (1 + 1), γ j • _ : Vec ℝ 1) 0 ≤ 2
     rw [Entrywise.add_sum_smul_apply, Fin.sum_univ_two]
-    -- both generator entries and the centre, read off the definition
+    -- both generator entries and the center, read off the definition
     have hG0 : (reduceKeepExample.reduceKeepBy reduceKeepExampleSplit).G
         (0 : Fin (1 + 1)) 0 = 2 := rfl
     have hG1 : (reduceKeepExample.reduceKeepBy reduceKeepExampleSplit).G

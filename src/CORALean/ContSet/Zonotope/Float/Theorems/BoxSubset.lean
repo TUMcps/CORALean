@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 /-!
 # A passed `Zonotope.ballCert` puts a box of points in the nominal set
 
-The checked rows reach every vector within `B` of the centre with coefficients of size at most
+The checked rows reach every vector within `B` of the center with coefficients of size at most
 `δ = 1` (`Zonotope.ballCert_reach`), which is the unit cube of the nominal zonotope.
 -/
 
@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The box of radius `B` around the centre lies in the nominal set. -/
+/-- The box of radius `B` around the center lies in the nominal set. -/
 theorem Zonotope.box_subset {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n} {B : 𝕋}
     (hc : Zonotope.ballCert (fun i j => Z.G j i) H B one = true) (y : Vec ℝ n)
     (hy : ∀ i, |y i - toReal (Z.c i)| ≤ toReal B) : y ∈ nominalSet Z := by -- --- PROOF ---

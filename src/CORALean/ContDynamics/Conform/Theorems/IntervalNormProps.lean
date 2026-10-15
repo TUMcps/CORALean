@@ -13,7 +13,7 @@ Sec. 3.1 lists, for `‖⟨c, G⟩‖_{Ĩ,σ} = σ^T |[c, G]| 1` with `σ > 0`: 
 non-negative, b) it vanishes at `⟨0⟩`, c) it is absolutely homogeneous, d) it is
 subadditive under adding the matrices `[c, G]`. All four are properties of `σ^T |M| 1` as
 a function of the matrix `M`, so they are stated here for any generator family — `[c, G]`
-being the family with the centre as one more column, and `intervalNorm` itself, [1,
+being the family with the center as one more column, and `intervalNorm` itself, [1,
 Eq. 11]'s `‖·‖_{I,σ}`, the family without it. Only `σ ≥ 0` is used. Property d) prints
 its first right-hand term as `‖⟨[c, G₁]⟩‖`, the `c` there being `c₁`.
 

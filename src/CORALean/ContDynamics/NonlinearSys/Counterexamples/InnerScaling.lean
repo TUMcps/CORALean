@@ -16,7 +16,7 @@ public import Mathlib.Topology.Order.Basic
 [1, Eq. 8]'s, the reach-subsets of the faces `α₁ = ±1`. The contractor is the identity, which
 [1, Def. 3] admits. Each contraction is then the whole box, all margins of [1, Prop. 3] are `0`,
 its slab `[l₁(1), l₂(1)[` is empty, and line 6 stores it closed as the face `α₁ = -1`. So
-`C = {-1 + α₂/2} = [-3/2, -1/2]`: its centre `-1` passes (14), and `-3/2 ∈ C` is not reachable.
+`C = {-1 + α₂/2} = [-3/2, -1/2]`: its center `-1` passes (14), and `-3/2 ∈ C` is not reachable.
 It is in the second piece of `B` too, so the answer is not feasible for [1]'s (10) either.
 `PolyZonotope.innerScaling_subset_of_lt` is the statement corrected, at a box that is not flat.
 
@@ -137,14 +137,14 @@ theorem innerScaling_counterexample :
         refine ⟨![a 1], fun k => ?_, ?_⟩
         · fin_cases k; simpa using ha 1
         · rw [hpt, hpt1, ha0]; simp
-  · -- `∂R = {-1, 1}`, the centres of the two pieces
+  · -- `∂R = {-1, 1}`, the centers of the two pieces
     rw [hR, frontier_Icc (by norm_num)]
     rintro y (rfl | rfl) <;> simp only [mem_iUnion]
     · refine ⟨_, List.mem_cons_of_mem _ List.mem_cons_self, 0, fun _ => by simp, ?_⟩
       simp [PolyZonotope.point, PolyZonotope.monomial]
     · refine ⟨_, List.mem_cons_self, 0, fun _ => by simp, ?_⟩
       simp [PolyZonotope.point, PolyZonotope.monomial]
-  · -- (14): the centre `(-1, 0)` is `-1`, and the time-inverted run stays there
+  · -- (14): the center `(-1, 0)` is `-1`, and the time-inverted run stays there
     intro y hy hy0
     rw [aux_const hy, hy0, hpt, hlo, hhi]
     norm_num [X₀]

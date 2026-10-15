@@ -15,7 +15,7 @@ the hypothesis a spectral decomposition needs, and `pcaCovariance_isHermitian`
 is where it is discharged.
 
 CORA builds the point cloud `[G, -G]` and calls `cov` on its transpose [1], as
-[2, Alg. 2] does. That cloud has zero mean, as the file's own comment records, so the centring
+[2, Alg. 2] does. That cloud has zero mean, as the file's own comment records, so the centering
 `cov` performs subtracts nothing and what remains is `V Vᵀ / (2r - 1)`, which
 is `2 / (2r - 1)` times the matrix here. The factor is dropped: it is positive
 wherever CORA reaches this line — CORA returns early when nothing is dropped —

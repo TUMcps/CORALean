@@ -249,7 +249,7 @@ theorem ConZonotope.interval_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- Through the zonotope. The generators absorb the centre's rounding there, and the
+/-- Through the zonotope. The generators absorb the center's rounding there, and the
 constraint list stays empty here, so nothing further is paid. -/
 theorem Interval.conZonotope_contains (I : Interval (Vec 𝕋 n)) :
     I.construct ⊆ I.conZonotope.construct :=
@@ -262,7 +262,7 @@ theorem Interval.conZonotope_contains (I : Interval (Vec 𝕋 n)) :
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- Through the zonotope. The generators absorb the centre's rounding there, and the
+/-- Through the zonotope. The generators absorb the center's rounding there, and the
 inequality is the exact diagonal one here, so nothing further is paid. -/
 theorem Interval.spectraShadow_contains (I : Interval (Vec 𝕋 n)) :
     I.construct ⊆ I.spectraShadow.construct :=

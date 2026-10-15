@@ -11,7 +11,7 @@ public import Mathlib.LinearAlgebra.Matrix.DotProduct
 
 [1, Sec. II (hyperplane intersection)]: if nonempty, `E(q, Q) ∩ H(v, c)` is an ellipsoid. With
 `E = q + G B`, the cut is `q + G S` for the slice `S = {u ∈ B | wᵀ u = t}`, `w = Gᵀ v`,
-`t = c - vᵀ q`, of the unit ball; a slice of a ball is a ball of the hyperplane, centred at
+`t = c - vᵀ q`, of the unit ball; a slice of a ball is a ball of the hyperplane, centered at
 `u₀ = (t / ‖w‖²) w` with radius `√(1 - ‖u₀‖²)`, the image of the unit ball under the projection
 `P = I - w wᵀ / ‖w‖²` scaled by that radius. When `w = 0` the hyperplane contains all of `E` or
 none of it.

@@ -11,7 +11,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Minus
 
 [1, Def. 3 (arccos)] as printed: `arccos f = π/2 - arcsin f`, the constant model `π/2` minus
 the model `Taylm.asin` gives of `arcsin f`. `Taylm.acos` is CORA's `acos`, which expands
-`arccos` at the centre directly; this is the source's own reduction to `arcsin`.
+`arccos` at the center directly; this is the source's own reduction to `arcsin`.
 
 ## References
 

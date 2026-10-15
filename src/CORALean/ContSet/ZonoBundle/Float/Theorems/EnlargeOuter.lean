@@ -8,7 +8,7 @@ public import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
 /-!
 # Each member of a float enlarged bundle encloses the scaling of its own member
 
-Per member, as over ℝ: the image of member `i` under `x ↦ cᵢ + f ⊙ (x - cᵢ)` (the centre and `f`
+Per member, as over ℝ: the image of member `i` under `x ↦ cᵢ + f ⊙ (x - cᵢ)` (the center and `f`
 as the floats read) lies in member `i` of the result, and the result is the intersection of those
 members (`construct_enlarge`). Nothing is claimed for the image of the intersection.
 -/
@@ -32,9 +32,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.enlarge_outer (zB : ZonoBundle (Vec 𝕋 n)) (f : Vec 𝕋 n) (i : Fin zB.k) :
     (fun x : Vec ℝ n =>
-        toRealVec (ScalarCentre.centreVec (𝕋 := 𝕋) (S := 𝒵[𝕋]) (zB.Z i)) +
+        toRealVec (ScalarCenter.centerVec (𝕋 := 𝕋) (S := 𝒵[𝕋]) (zB.Z i)) +
           fun j => toReal (f j) *
-            (x j - toRealVec (ScalarCentre.centreVec (𝕋 := 𝕋) (S := 𝒵[𝕋])
+            (x j - toRealVec (ScalarCenter.centerVec (𝕋 := 𝕋) (S := 𝒵[𝕋])
               (zB.Z i)) j)) ''
       (zB.Z i).construct ⊆ ((zB.enlarge f).Z i).construct :=
   ContSet.enlargeScalar_outer (S := 𝒵[𝕋]) (𝕋 := 𝕋) (zB.Z i) f

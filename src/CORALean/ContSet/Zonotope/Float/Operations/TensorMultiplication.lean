@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 # `Zonotope.tensorMultiplication`, over a floating-point scalar
 
 CORA's `@zonotope/tensorMultiplication.m` for a third-order tensor `M = {M₁, ..., Mₙ}`: an
-enclosure of `{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z }` by a zonotope `(0, H)`, when the centre of `Z` is the
+enclosure of `{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z }` by a zonotope `(0, H)`, when the center of `Z` is the
 origin (otherwise CORA leaves `H` undefined and errors). The error box of `Z` is made into
 generators first (`dependent`), so the lists `options.list` are those of the `Z.h + n` generators
 of `Z.dependent`; the generators of `H` are stored rounded down and the gap to rounding up is

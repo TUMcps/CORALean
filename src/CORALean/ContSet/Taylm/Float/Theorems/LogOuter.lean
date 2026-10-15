@@ -12,7 +12,7 @@ public import CORALean.Global.TaylorRemainder
 /-!
 # `Taylm.log` encloses `log ∘ f`
 
-Where the centre and the bottom of the range are positive, as at the exact layer, here read
+Where the center and the bottom of the range are positive, as at the exact layer, here read
 off the stored floats: `taylor_remainder_abs_le` at `log`, then every piece of the bound below
 its rounding.
 -/
@@ -46,7 +46,7 @@ theorem Taylm.log_outer (q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (
     (fun k _ => Taylm.logCoef_mem q s hc k) fun t ht => ?_
   have hb := Taylm.bounds_mem h ht
   set L := min (toReal c) (toReal T.bounds.inf)
-  -- Lagrange at the centre, the derivative bounded at the bottom of the hull
+  -- Lagrange at the center, the derivative bounded at the bottom of the hull
   have hL := taylor_remainder_abs_le (g := Real.log) (N := N) (c := toReal c)
     (x := f t) (D := (N.factorial : ℝ) / L ^ (N + 1))
     (fun ξ hξ => Real.contDiffAt_log.2 (ne_of_gt (lt_of_lt_of_le hpos

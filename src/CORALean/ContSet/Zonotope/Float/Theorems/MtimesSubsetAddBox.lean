@@ -15,7 +15,7 @@ The reverse of `mtimes_outer`. Every point of `mtimes M Z` is a point of `M Z` p
 
 The proof takes a point of `mtimes M Z` with its coefficients. The same coefficients give a
 point of `Z`, and `M` maps it to a point of `M Z`. What is left over is the rounding error of the
-centre and of each generator, and `mtimesBox` contains it. This is the argument of
+center and of each generator, and `mtimesBox` contains it. This is the argument of
 `mtimes_outer` read backwards, with the same `matMulDiff` bound at the opposite sign. The error
 box of `Z` is not needed here: its zero point is used, as in `plus_subset_add_box`.
 -/
@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The exact image, regrouped so the centre and each generator appear once —
+/-- The exact image, regrouped so the center and each generator appear once —
 `Zonotope.aux_mulVec_nominal` in `MtimesOuter`, restated here for this file's
 own use. -/
 theorem Zonotope.aux_mulVec_nominal_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (β : Vec ℝ Z.h)
@@ -95,12 +95,12 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
     have hh : x + (0 : Vec ℝ n) ∈ nominalSet Z + Z.I_error.construct :=
       Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩) h
     rwa [add_zero] at hh
-  -- the centre and each generator's rounding gap, at the same coefficients
+  -- the center and each generator's rounding gap, at the same coefficients
   set g : Vec ℝ m := fun i => (toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k))
       + ∑ j, (toReal (matMulDown M (fun i j => Z.G j i) i j)
         - ∑ k, toReal (M i k) * toReal (Z.G j k)) * β j
     with hgdefeq
-  -- the centre's rounding gap, bounded in `𝕋` as `plusBox`'s is
+  -- the center's rounding gap, bounded in `𝕋` as `plusBox`'s is
   have hg1 : (fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)) ∈
       (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => (zero : 𝕋)⟩ :
         Interval (Vec 𝕋 m)).construct := fun i =>
@@ -131,7 +131,7 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
       (Set.add_mem_add hg1 (Interval.plus_outer _ _ (Set.add_mem_add hg2 hy₂)))
   refine ⟨_, hxmem, _, hgmem, ?_⟩
   funext i
-  -- the exact image at `x`, regrouped so the centre and each generator appear once
+  -- the exact image at `x`, regrouped so the center and each generator appear once
   have himg : (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (Z.G j k)) * β j :=
     Zonotope.aux_mulVec_nominal_box M Z β (fun k => by rw [hxdefeq]) i

@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 [1, Alg. 2] on zonotopes and interval products, one `let` per printed line: `X₀ = Ω₀`,
 `V₀ = U`, `S₀ = {0}`, and then, `N` times, `X_{i+1} = ΦXᵢ`, `S_{i+1} = Sᵢ ⊕ Box(Vᵢ)`,
 `V_{i+1} = ΦVᵢ` and `Ω̄_{i+1} = Box(X_{i+1}) ⊕ S_{i+1}`. `Xᵢ` and `Vᵢ` are zonotopes, `Sᵢ`
-and `Ω̄ᵢ` interval products, `Box` of a zonotope is `Zonotope.interval`, its centre plus and
+and `Ω̄ᵢ` interval products, `Box` of a zonotope is `Zonotope.interval`, its center plus and
 minus the sums of the generators' absolute entries. The box is only ever taken of an
 exact set, so nothing compounds: [1, Prop. 1], `LinearSysDT.glmReachBox_eq_hull`, says
 `Ω̄ᵢ` is the interval hull of `Ωᵢ`.

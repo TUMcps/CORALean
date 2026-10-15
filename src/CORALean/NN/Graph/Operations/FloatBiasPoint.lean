@@ -9,7 +9,7 @@ public import CORALean.NN.Graph.Operations.Flatten
 # The bias `1 bᵀ` as a point
 
 The bias row repeated at every node, stacked (`GNN.flatten`), as a polynomial zonotope with no
-generators: the origin with its centre replaced by it.
+generators: the origin with its center replaced by it.
 -/
 
 -- Authors:       Claude Opus 5.5

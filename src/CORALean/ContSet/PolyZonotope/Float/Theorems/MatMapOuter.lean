@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A point of the nominal set lies in the box of all its generators, the centre included. -/
+/-- A point of the nominal set lies in the box of all its generators, the center included. -/
 theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat 𝕋 n k))
     {a : Fin pZ.p → ℝ} (ha : ∀ i, |a i| ≤ 1) {β : Fin pZ.q → ℝ} (hβ : ∀ j, |β j| ≤ 1) :
     (PolyZonotope.nominal pZ).point a + ∑ j, β j • (PolyZonotope.nominal pZ).GI j
@@ -146,7 +146,7 @@ theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
   convert h using 1
   rw [hX, Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right]
-  -- both sides at the same index types, the exact centre `0`, the stored one `zero`
+  -- both sides at the same index types, the exact center `0`, the stored one `zero`
   change (0 + (∑ l : Fin ((pZ₁.h + 1) * (pZ₂.h + 1)),
         Real.PolyZonotope.monomial (PolyZonotope.bilinE pZ₁ pZ₂ hp) a l
           • Real.PolyZonotope.bilinG matMulBilin (PolyZonotope.nominal pZ₁)

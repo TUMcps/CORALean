@@ -37,7 +37,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfInterval S �
 /-- The input set this step's linear system has to be given. -/
 def NonlinearSysDT.LinStep.linInput {sys : NonlinearSysDT n m} {U : S m}
     (step : sys.LinStep 𝕋 U) : S n :=
-  let negUs := Interval.point fun i => FloatOps.neg (step.us i)       -- the box at `-u✱`
+  let negUs := Interval.point (-step.us)       -- the box at `-u✱`
   ofInterval step.c ⊞ mtimes (𝕄 := Mat 𝕋) step.B (U ⊞ ofInterval negUs) ⊞ step.L
 
 end CORALean

@@ -14,7 +14,7 @@ The zonotopic observer of [1, Eq. 10], for `x_{k+1} = A x_k + B u_k + D_x w_k`,
 `X̂_k = ⟨p_k, H_k⟩`, the input `u_k`, the output `y_k` and the gain `L`,
 `p_{k+1} = A p_k + B u_k + L(y_k - C p_k)` (10a) and
 `H_{k+1} = [(A - LC) ↓_q(H_k)  D_x H_w  -L D_y H_v]` (10b). `X` is the zonotope after the
-reduction `↓_q`, which encloses `⟨p_k, H_k⟩` and keeps its centre; which reduction it was does
+reduction `↓_q`, which encloses `⟨p_k, H_k⟩` and keeps its center; which reduction it was does
 not enter. `L` is any matrix.
 
 ## References

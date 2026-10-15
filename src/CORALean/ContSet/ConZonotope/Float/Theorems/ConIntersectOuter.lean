@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The exact image of `c + G β + e`, regrouped so the centre and each generator appear once. -/
+/-- The exact image of `c + G β + e`, regrouped so the center and each generator appear once. -/
 theorem ConZonotope.aux_mulVec_regroup {h : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
     (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
     (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G j k) * β j + e k) (i : Fin m) :
@@ -103,7 +103,7 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n))
       change _ ≤ toReal (subUp (mulVecUp M (cZ₁.G j) i) (mulVecDown M (cZ₁.G j) i))
       rw [abs_le]
       exact ⟨by linarith, by linarith⟩
-    -- the box's image, then the centre's and the generators' rounding
+    -- the box's image, then the center's and the generators' rounding
     refine Interval.plus_outer _ _
         ⟨toRealMat M *ᵥ e₁, Interval.mtimes_outer M cZ₁.I_error ⟨e₁, he₁, rfl⟩,
       _, Interval.plus_outer _ _

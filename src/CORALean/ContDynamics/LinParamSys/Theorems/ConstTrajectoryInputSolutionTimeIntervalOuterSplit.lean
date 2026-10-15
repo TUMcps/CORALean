@@ -27,7 +27,7 @@ segment, an exact matrix no machine holds. Here `A` is a box, so the same
 encloses — applied to the segment rather than to an input set. Distributing the
 product over that sum is the tightness this costs.
 
-The split itself is a hypothesis, `ContSet` being unable to name a centre.
+The split itself is a hypothesis, `ContSet` being unable to name a center.
 
 ## References
 
@@ -134,7 +134,7 @@ theorem LinParamSys.CanonicalConstTrajectory.inputSolution_timeInterval_outer_sp
         (MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix sys.A hr η hε
           traj.param ht0 htr)
         (Set.mem_image_of_mem _ hcP))
-  · -- the centred part: Prop. 3.3 at the member, unchanged
+  · -- the centered part: Prop. 3.3 at the member, unchanged
     exact sys.inputReach_subset_inputSolution hr η hε traj.param hconv₀ hclosed₀ hbdd₀
       hRconv₀ hRclosed₀ hRbdd₀
       ((LinearSys.canonical A : LinearSys ℝ n).inputReach_mono hbdd₀ h0₀ ht0 htr

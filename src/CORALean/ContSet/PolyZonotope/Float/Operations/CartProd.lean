@@ -11,7 +11,7 @@ public import CORALean.Global.Float.GenBlockDiag
 # `PolyZonotope.cartProd`, over a floating-point scalar
 
 CORA's `@polyZonotope/cartProd_`: the factors of the two operands stay disjoint, so the exponent
-matrix is block diagonal (`PolyZonotope.plusE`), the centres stack, and the dependent and the
+matrix is block diagonal (`PolyZonotope.plusE`), the centers stack, and the dependent and the
 independent generators are each `genBlockDiag` of the two. The error boxes stack
 (`Interval.append`). Nothing is added or multiplied, so nothing rounds.
 -/

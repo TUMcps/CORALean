@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
@@ -14,7 +14,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 /-!
 # The float canonical form holds every state input
 
-`B (uVec + u) + c + E w` with `u ∈ U`, `w ∈ W` is in `U_ ⊕ u_` [1]: the centred zonotopes carry
+`B (uVec + u) + c + E w` with `u ∈ U`, `w ∈ W` is in `U_ ⊕ u_` [1]: the centered zonotopes carry
 what moves, the box `u_` the rest. All quantities are the real values of stored floats; an outer
 statement.
 
@@ -54,8 +54,8 @@ theorem LinearSys.canonicalFormFloat_state_outer (sys : LinearSys 𝕋 n)
       toRealMat sys.E *ᵥ toRealVec W.c, ?_, ?_⟩
   · -- `B (u - centerU)` is in `B U₀` and `E (w - centerW)` in `E W₀`
     exact Zonotope.plus_outer _ _ (Set.add_mem_add
-      (Zonotope.mtimes_outer sys.B _ ⟨_, Zonotope.sub_centre_mem_recentre hu, rfl⟩)
-      (Zonotope.mtimes_outer sys.E _ ⟨_, Zonotope.sub_centre_mem_recentre hw, rfl⟩))
+      (Zonotope.mtimes_outer sys.B _ ⟨_, Zonotope.sub_center_mem_recenter hu, rfl⟩)
+      (Zonotope.mtimes_outer sys.E _ ⟨_, Zonotope.sub_center_mem_recenter hw, rfl⟩))
   · -- the offset, four boxes
     exact Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _
       ⟨_, Interval.mtimes_outer sys.B _ ⟨_, Interval.mem_point uVec, rfl⟩, _,

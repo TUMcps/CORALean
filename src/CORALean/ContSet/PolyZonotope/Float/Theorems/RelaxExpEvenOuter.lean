@@ -14,20 +14,20 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 @[expose] public section
 
 /-!
-# The recentred relaxation over-approximates, at the stored columns
+# The recentered relaxation over-approximates, at the stored columns
 
 The exact layer's argument at this layer's stored fields, with three roundings
 charged instead of two. `abs_sub_monomial_le` and `sub_monomial_nonpos` are the
 exact layer's and are what put the drift in `[-ξ_E, 0]`; the width bounding it
 is a natural number both layers read off the same exponent matrix.
 
-The third gap is the centre's. It is charged at coefficient `1` rather than at a
+The third gap is the center's. It is charged at coefficient `1` rather than at a
 monomial, which is what a constant offset costs and what makes `generatorError`
 the right box for it: the box already sums a row with no cancellation.
 
 Storing the shift at its upward rounding is what keeps that gap one-sided —
-the stored centre is then below the exact one, so the same `subUp` difference
-that bounds a column's gap bounds the centre's.
+the stored center is then below the exact one, so the same `subUp` difference
+that bounds a column's gap bounds the center's.
 -/
 
 -- Authors:       Claude Opus 5
@@ -87,22 +87,22 @@ theorem PolyZonotope.aux_relaxGenEven_gap (pZ : PolyZonotope (Vec 𝕋 n))
   rw [abs_le]
   constructor <;> linarith
 
-/-- The recentred centre is stored below the exact one, and the gap between the
+/-- The recentered center is stored below the exact one, and the gap between the
 two roundings of that same subtraction bounds the difference. -/
-theorem PolyZonotope.aux_relaxCentreEven_gap (pZ : PolyZonotope (Vec 𝕋 n))
+theorem PolyZonotope.aux_relaxCenterEven_gap (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) :
     |toReal (pZ.c i) - (pZ.relaxWidth part k₀ : ℝ) / 2 * toReal (pZ.G (part.right 0) i)
-      - toReal (pZ.relaxCentreEven part k₀ i)|
+      - toReal (pZ.relaxCenterEven part k₀ i)|
         ≤ toReal (pZ.relaxGapEven part k₀ i 2) := by -- --- PROOF ---
-  -- the shift is taken off at its upper rounding, so the stored centre is low
+  -- the shift is taken off at its upper rounding, so the stored center is low
   have hhi : (pZ.relaxWidth part k₀ : ℝ) / 2 * toReal (pZ.G (part.right 0) i)
       ≤ toReal (pZ.relaxGenEvenUp part k₀ i) := by
     rw [PolyZonotope.relaxGenEvenUp, toReal_half]
     have h := le_nsmulUp (pZ.relaxWidth part k₀) (pZ.G (part.right 0) i)
     linarith
-  have hstore : toReal (pZ.relaxCentreEven part k₀ i)
+  have hstore : toReal (pZ.relaxCenterEven part k₀ i)
       ≤ toReal (pZ.c i) - toReal (pZ.relaxGenEvenUp part k₀ i) := subDown_le_sub _ _
-  -- and the same subtraction rounded up lies above the exact centre
+  -- and the same subtraction rounded up lies above the exact center
   have hlo : toReal (pZ.relaxGenEven part k₀ i)
       ≤ (pZ.relaxWidth part k₀ : ℝ) / 2 * toReal (pZ.G (part.right 0) i) := by
     rw [PolyZonotope.relaxGenEven, toReal_half]
@@ -111,7 +111,7 @@ theorem PolyZonotope.aux_relaxCentreEven_gap (pZ : PolyZonotope (Vec 𝕋 n))
   have hup : toReal (pZ.c i) - toReal (pZ.relaxGenEven part k₀ i)
       ≤ toReal (subUp (pZ.c i) (pZ.relaxGenEven part k₀ i)) := sub_le_subUp _ _
   have hgap : toReal (subUp (pZ.c i) (pZ.relaxGenEven part k₀ i))
-      - toReal (pZ.relaxCentreEven part k₀ i)
+      - toReal (pZ.relaxCenterEven part k₀ i)
       ≤ toReal (pZ.relaxGapEven part k₀ i 2) := sub_le_subUp _ _
   rw [abs_le]
   constructor <;> linarith
@@ -163,7 +163,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     simp only [Real.PolyZonotope.monomial, PolyZonotope.relaxExpEven, Fin.append_right]
     rfl
   -- the point at the stored fields, and what the three gaps still owe it
-  refine ⟨fun i => toReal (pZ.relaxCentreEven part k₀ i)
+  refine ⟨fun i => toReal (pZ.relaxCenterEven part k₀ i)
       + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
             * Real.PolyZonotope.monomial pZ.E a (part.left l)
           + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))
@@ -175,7 +175,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (pZ : PolyZonotope (Vec 𝕋 n))
         (pZ.relaxWidth part k₀ : ℝ) / 2 * toReal (pZ.G (part.right 0) i)
           - toReal (pZ.relaxGenEven part k₀ i),
         toReal (pZ.c i) - (pZ.relaxWidth part k₀ : ℝ) / 2 * toReal (pZ.G (part.right 0) i)
-          - toReal (pZ.relaxCentreEven part k₀ i)])
+          - toReal (pZ.relaxCenterEven part k₀ i)])
       (t := ![Real.PolyZonotope.monomial pZ.E a (part.right 1), t, 1]) ?_ ?_, ?_⟩
   -- the fresh independent coefficient is what half the drift asks of the column
   · refine Fin.addCases (fun j => ?_) fun _ => ?_
@@ -191,7 +191,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     · exact PolyZonotope.mergedGen_gap pZ part i
     · exact PolyZonotope.aux_relaxGenEven_gap pZ part k₀ i
     · rw [Subsingleton.elim l'' 0]
-      exact PolyZonotope.aux_relaxCentreEven_gap pZ part k₀ i
+      exact PolyZonotope.aux_relaxCenterEven_gap pZ part k₀ i
   · refine Fin.cases ?_ (fun l' => Fin.cases ?_ (fun l'' => ?_) l')
     · exact Real.PolyZonotope.abs_monomial_le_one pZ.E ha _
     · rw [ht]
@@ -200,7 +200,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (pZ : PolyZonotope (Vec 𝕋 n))
       exact le_of_eq abs_one
   -- the three gaps and the split drift recombine into the exact sums
   · funext i
-    show toReal (pZ.relaxCentreEven part k₀ i)
+    show toReal (pZ.relaxCenterEven part k₀ i)
           + (∑ l : Fin d, toReal (pZ.G (part.left l) i)
               * Real.PolyZonotope.monomial pZ.E a (part.left l)
             + toReal (pZ.mergedGen part i) * Real.PolyZonotope.monomial pZ.E a (part.right 1))

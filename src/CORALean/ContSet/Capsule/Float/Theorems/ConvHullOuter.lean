@@ -10,7 +10,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
 # `Capsule.convHull` encloses the hull
 
 The exact layer's `convHull_outer` at the nominal capsules gives the segments inside the exact
-hull capsule; `construct_subset_of_dist_le` moves that to the stored one. Its centre and generator
+hull capsule; `construct_subset_of_dist_le` moves that to the stored one. Its center and generator
 are each at most `normUp` of the half-gaps away (`aux_half_gap_le`), and the stored radius adds
 both to the larger rounded-up radius. Outer only, as the exact hull.
 -/
@@ -60,7 +60,7 @@ theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) :
   have hK := CORALean.Real.Capsule.convHull_outer C.nominal S.nominal hz
   refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := C.nominal.convHull S.nominal)
     ?_ hK
-  -- the centre's and the generator's half-gaps, rounded up
+  -- the center's and the generator's half-gaps, rounded up
   set gc := normUp k fun i => half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i)))
   set gg := normUp k fun i => half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i)))
   have hc : ‖(C.nominal.convHull S.nominal).c - (Capsule.convHull k C S).nominal.c‖₂ ≤

@@ -14,7 +14,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 Any choice of removed dependent and taken independent generators gives an enclosure: the removed
 generators reach at most the sum of their absolute values in a coordinate, the box radius is
 that sum rounded up and the taken independent ones only widen it, so one coefficient per coordinate
-in `[-1, 1]` reproduces what they contributed; the kept columns, the centre and the error box are
+in `[-1, 1]` reproduces what they contributed; the kept columns, the center and the error box are
 as before.
 -/
 

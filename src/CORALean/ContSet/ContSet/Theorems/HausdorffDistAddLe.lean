@@ -21,7 +21,7 @@ not `Plus.plus`, which only encloses and so carries no distance bound at all.
 `hausdorffDist` is a real number that is `0` wherever `hausdorffEDist` is `⊤`,
 so without those two the statement would be about that junk value on the sets
 where it is one. `CompactSet` discharges compactness at every
-representation here, and a centre or a vertex the nonemptiness. An empty `S`
+representation here, and a center or a vertex the nonemptiness. An empty `S`
 makes both sums empty and the bound reads `0 ≤ d_H(V, W)`, which holds.
 
 ## References

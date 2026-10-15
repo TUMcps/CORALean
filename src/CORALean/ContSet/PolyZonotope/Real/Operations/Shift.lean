@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # `PolyZonotope.shift`
 
-The set moved by a vector: the centre takes it and nothing else changes, a
+The set moved by a vector: the center takes it and nothing else changes, a
 translation being the one map that needs no generator. CORA writes it `pZ + v`.
 
 `map` cannot do it — a translation is affine and not linear — and `plus`
@@ -30,7 +30,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The set translated by `v`: the centre moves, the generators do not. -/
+/-- The set translated by `v`: the center moves, the generators do not. -/
 def PolyZonotope.shift (pZ : PolyZonotope α) (v : α) : PolyZonotope α where
   p := pZ.p
   h := pZ.h

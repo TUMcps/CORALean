@@ -17,7 +17,7 @@ public import Mathlib.Tactic.Ring
 
 [1, Sec. 3.4]: if the normals of the polyhedron `{x | ∀ ℓ ∈ D, m_ℓ ≤ x·ℓ ≤ M_ℓ}` are the
 rows `ℓᵢ` of an orthogonal matrix `L`, it is a hyper-rectangle, hence a zonotope: with
-`yᵢ = x·ℓᵢ` the coordinates of `x` in that basis, it is the zonotope of centre
+`yᵢ = x·ℓᵢ` the coordinates of `x` in that basis, it is the zonotope of center
 `∑ ((m + M)/2) ℓᵢ` and generators `((M − m)/2) ℓᵢ`. The paper chooses the normals so that the
 over-approximation can be used as the next initial set, which needs a zonotope.
 

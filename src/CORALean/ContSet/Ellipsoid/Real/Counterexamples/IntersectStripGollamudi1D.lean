@@ -9,7 +9,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
 
 The ellipsoid `[-1, 1]` (`Q = 1`, `c = 0`) and the strip `|x - 2| ≤ 3`, that is `[-1, 5]`,
 which contains it: the intersection is `[-1, 1]`. CORA's update, at any weight `λ ∈ (0, 1)`
-(the code takes `min(1e-4, ν)`), returns the ellipsoid with centre `2λ` and shape
+(the code takes `min(1e-4, ν)`), returns the ellipsoid with center `2λ` and shape
 `1 / (1 + 2λ)²`, which misses `x = -1`: `(-1 - 2λ)² / Q' = (1 + 2λ)⁴ > 1`. The shape
 is divided by `σ² = 1 + 4λ + 4λ² > 1` where the enclosure needs `σ² Q'`: from
 `(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ |C x - y|² ≤ 1 - λ + λ φ²` one gets
@@ -33,7 +33,7 @@ theorem Ellipsoid.intersectStripGollamudi1D_counterexample (lam : ℝ) (h0 : 0 <
       1 < (-1 - (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).1) ^ 2 /
         (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).2 := by -- --- PROOF ---
   refine ⟨by norm_num, by norm_num [abs_of_neg], ?_⟩
-  -- the update in closed form: centre `2 lam`, shape `1 / (1 + 2 lam)^2`
+  -- the update in closed form: center `2 lam`, shape `1 / (1 + 2 lam)^2`
   have hc : (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).1 = 2 * lam := by
     simp [Ellipsoid.intersectStripGollamudi1D, mul_comm]
   have hq : (Ellipsoid.intersectStripGollamudi1D 1 0 1 3 2 lam).2 = ((1 + 2 * lam) ^ 2)⁻¹ := by

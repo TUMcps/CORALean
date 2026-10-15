@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Capsule.vertices`, over a floating-point scalar
 
 CORA's `vertices_` (planar): the `1001` sampled boundary points, each as a box around the exact
-sample, or the centre of a point capsule. The generator angle is bounded by the corner values
+sample, or the center of a point capsule. The generator angle is bounded by the corner values
 `atan2Lo`, `atan2Hi`; the two half circles of `500` points, around `c + g` from `θ - π/2` and
 around `c - g` from `θ + π/2` in steps of `π / 499`, then the first point again. The boxes bound
 sampled points on the boundary, not vertices (a capsule has none), and a box is not a point of the

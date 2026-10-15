@@ -27,7 +27,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `cellCenter(P, cellNrs)`: the centre of each cell, `(left + right) / 2` per dimension. -/
+/-- `cellCenter(P, cellNrs)`: the center of each cell, `(left + right) / 2` per dimension. -/
 noncomputable def GridPartition.cellCenter (P : GridPartition n) (cellNrs : List ℕ) :
     List (Vec ℝ n) :=
   if ∀ c ∈ cellNrs, 0 < c ∧ c ≤ P.nrOfCells then

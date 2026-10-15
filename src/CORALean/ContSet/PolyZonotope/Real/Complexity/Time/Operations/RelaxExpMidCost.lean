@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.Rela
 # `PolyZonotope.relaxExpMidCost`
 
 Asserted, not proved, at `Vec ℝ n`: `Operations/RelaxExpMid.lean` evaluates
-`relaxDrift` twice, once for the centre's shift (`n` products, `n` additions)
+`relaxDrift` twice, once for the center's shift (`n` products, `n` additions)
 and once for the new generator's radius (`n` products), and adds the two named
 generators (`n`).
 -/

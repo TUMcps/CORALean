@@ -4,7 +4,7 @@ public import CORALean.ContSet.Interval.Real.Operations.BoundaryRatio
 public import CORALean.ContSet.Interval.Real.Operations.BoundaryPoint
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.ContSet.Interval.Real.Operations.Recentre
+public import CORALean.ContSet.Interval.Real.Operations.Recenter
 public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 public import CORALean.ContSet.Interval.Real.Operations.Intersection
 public import CORALean.ContSet.Interval.Real.Operations.IntersectionExact
@@ -110,8 +110,8 @@ a box by a real, corner-swapped for a negative one. `AbsMax` is a single matrix
 dominating every member of the box, for bounding its norm uniformly.
 
 `Point` and `Center`/`Radius` are the degenerate reading of a box and the
-centre-plus-deviation split the enclosure proofs elsewhere want.
-`Recentre` shifts by that same centre, sound only on a nonempty box — see
+center-plus-deviation split the enclosure proofs elsewhere want.
+`Recenter` shifts by that same center, sound only on a nonempty box — see
 `Instances.lean` for why that keeps the class itself uninstantiated.
 `IsNonempty` is the predicate `Theorems/IsNonempty` characterises. `SplitAt` bisects
 one coordinate at the midpoint, the splitter `NeuralNetwork.holds_of_split` is

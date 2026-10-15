@@ -15,7 +15,7 @@ public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 # The step enclosure at a set whose input set misses the origin
 
 `timeInterval_outer_convexCompact` needs `0 ∈ U`, which no representation has
-to satisfy. `Recentre` takes the input set apart into a centre and a
+to satisfy. `Recenter` takes the input set apart into a center and a
 remainder holding the origin, and `OfPoint` gives the constant its own
 singleton; `linComb (ofPoint 0) (ofPoint c)` is then the segment the constant
 is enclosed against, so no representation-specific development is needed.
@@ -23,7 +23,7 @@ is enclosed against, so no representation-specific development is needed.
 So [1, Alg. 3] — the extension of [1, Alg. 2] to an input set not containing
 the origin, split into a constant part and a zero-containing remainder —
 assumes nothing at all about where the input set sits, at every representation
-with a centre.
+with a center.
 
 ## References
 
@@ -60,7 +60,7 @@ omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 wherever the input set sits. -/
 theorem LinearSys.CanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
     [∀ n, OfPoint (S n) (Vec ℝ n)]
-    [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
+    [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
     (traj : sys.CanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
@@ -73,28 +73,28 @@ theorem LinearSys.CanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
           (Mtimes.mtimes (𝕄 := Mat ℝ)
             (MatExp.expIntegral (toRealMat sys.A) r)
             (LinComb.linComb (OfPoint.ofPoint (0 : Vec ℝ n))
-              (OfPoint.ofPoint (Recentre.centre U))))
+              (OfPoint.ofPoint (Recenter.center U))))
           (Mtimes.mtimes (𝕄 := ℐ)
             (MatExp.constCorrectionMatrix (toRealMat sys.A) r (m + 2))
-            (OfPoint.ofPoint (Recentre.centre U))))
-        (sys.inputSolution r (m + 2) (Recentre.recentre U)))) :=
-  -- every hypothesis comes off `Recentre`/`OfPoint`, which is why this needs no representation
+            (OfPoint.ofPoint (Recenter.center U))))
+        (sys.inputSolution r (m + 2) (Recenter.recenter U)))) :=
+  -- every hypothesis comes off `Recenter`/`OfPoint`, which is why this needs no representation
   traj.timeInterval_outer hr hT hε ht0 htr (CompactSet.isBounded_construct U)
     (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε
-      (fun _ hy => Recentre.sub_centre_mem_recentre hy)
-      (OfPoint.mem_ofPoint (Recentre.centre U))
-      (fun _ hlam => smul_mem_linComb_ofPoint (Recentre.centre U) hlam)
-      (CompactSet.isBounded_construct (OfPoint.ofPoint (Recentre.centre U)))
-      (Recentre.zero_mem_recentre U)
-      (ConvexSet.convex_construct (Recentre.recentre U))
-      (CompactSet.isClosed_construct (Recentre.recentre U))
-      (CompactSet.isBounded_construct (Recentre.recentre U))
+      (fun _ hy => Recenter.sub_center_mem_recenter hy)
+      (OfPoint.mem_ofPoint (Recenter.center U))
+      (fun _ hlam => smul_mem_linComb_ofPoint (Recenter.center U) hlam)
+      (CompactSet.isBounded_construct (OfPoint.ofPoint (Recenter.center U)))
+      (Recenter.zero_mem_recenter U)
+      (ConvexSet.convex_construct (Recenter.recenter U))
+      (CompactSet.isClosed_construct (Recenter.recenter U))
+      (CompactSet.isBounded_construct (Recenter.recenter U))
       (ConvexSet.convex_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recentre.recentre U)))
+        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recenter.recenter U)))
       (CompactSet.isClosed_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recentre.recentre U)))
+        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recenter.recenter U)))
       (CompactSet.isBounded_construct (Mtimes.mtimes (𝕄 := ℐ)
-        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recentre.recentre U)))
+        (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) (Recenter.recenter U)))
       ht0 htr)
 
 end CORALean

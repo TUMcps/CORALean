@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.minkDiffStretch`
 
 The generator representation [1, Thm. 4], [1, Thm. 5] and [1, Prop. 6] all
-return: the centres subtracted, and each generator of the minuend stretched by
+return: the centers subtracted, and each generator of the minuend stretched by
 its own factor `μ`. They differ only in what picks `μ` — a linear program
 pushing it up until the halfspaces of the stretched minuend sit inside those of
 the difference, one pushing it down until they sit outside, or (22) solved

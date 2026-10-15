@@ -18,7 +18,7 @@ linear combination, one per block of factors, the weight of block `j` being
 
 The three auxiliary lemmas are the three kinds of column — a weight on its own,
 a copy's monomial, and that monomial weighted — and the sum is those three
-blocks recombined, `a` copies of the centre absorbed into the result's own.
+blocks recombined, `a` copies of the center absorbed into the result's own.
 
 ## References
 
@@ -114,7 +114,7 @@ theorem ConPolyZono.sum_convHullE {a p h : ℕ} (c : α) (G : Fin h → α) (E :
         • ConPolyZono.convHullG a c G i)
       = ∑ j, (1 + v (Fin.natAdd (a * p) j)) • (c + ∑ i, PolyZonotope.monomial E
           (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) i • G i) := by -- --- PROOF ---
-  -- the result's own centre is `a` copies of the combination's, one per weight
+  -- the result's own center is `a` copies of the combination's, one per weight
   have hc : (a : ℝ) • c = ∑ _j : Fin a, c := by
     rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin]
     exact (Nat.cast_smul_eq_nsmul ℝ a c)

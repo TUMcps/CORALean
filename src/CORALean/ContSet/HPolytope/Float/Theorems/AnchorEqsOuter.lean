@@ -1,9 +1,8 @@
 module
 
+public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.AnchorEqs
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecNeg
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 public import CORALean.ContSet.Zonotope.Float.Theorems.RightInvGainSolve
 
@@ -103,12 +102,13 @@ theorem HPolytope.anchorEqs_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec �
       exact hA i
     · have hab := fun i => abs_le.mp (hE i)
       refine Fin.addCases (fun i => ?_) (fun i => ?_) k
-      · simp only [HPolytope.mulVec_append_right, HPolytope.mulVec_append_left, Fin.append_left,
+      · simp only [toRealMat_append_mulVec_natAdd, HPolytope.mulVec_append_left, Fin.append_left,
           Fin.append_right]
         have h := add_le_addUp (P.be i) (ε i)
         linarith [(hab i).2]
-      · simp only [HPolytope.mulVec_append_right, HPolytope.mulVec_neg, Fin.append_right,
-          Pi.neg_apply]
+      · simp only [toRealMat_append_mulVec_natAdd, Fin.append_right]
+        have hneg : (toRealMat (-P.Ae : Fin P.me → Fin n → 𝕋) *ᵥ y) i = -(toRealMat P.Ae *ᵥ y) i :=
+          congrFun (toRealMat_neg_mulVec P.Ae y) i
         have h := add_le_addUp (neg (P.be i)) (ε i)
         rw [toReal_neg] at h
         linarith [(hab i).1]

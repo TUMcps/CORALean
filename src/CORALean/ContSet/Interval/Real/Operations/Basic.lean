@@ -68,7 +68,7 @@ noncomputable def Interval.asin (I : Interval (Vec ℝ n)) : Interval (Vec ℝ n
 -- Reviewed:      ---
 
 /-- The midpoint: CORA's `center`, one half of the split an enclosure proof reads
-a box's point through — a centre plus a bounded deviation `Interval.radius`
+a box's point through — a center plus a bounded deviation `Interval.radius`
 gives, related to it by `Theorems/AbsSubCenterLe`. -/
 noncomputable def Interval.center (I : Interval α) : α := (2:ℝ)⁻¹ • (I.inf + I.sup)
 
@@ -272,7 +272,7 @@ def Interval.project (I : Interval (Vec ℝ n)) (dims : Fin m → Fin n) : Inter
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- Half the width: CORA's `rad`, the other half of the centre-deviation split
+/-- Half the width: CORA's `rad`, the other half of the center-deviation split
 `Interval.center` gives a box's point. `Theorems/AbsSubCenterLe` is the bound
 relating the two. -/
 noncomputable def Interval.radius (I : Interval α) : α := (2:ℝ)⁻¹ • (I.sup - I.inf)

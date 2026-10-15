@@ -1,9 +1,8 @@
 module
 
+public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecNeg
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
 
 @[expose] public section
@@ -42,12 +41,11 @@ theorem HPolytope.absorbRounding_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) :
   · simp only [HPolytope.absorbRounding, HPolytope.mulVec_append_left, Fin.append_left]
     exact hA i
   · refine Fin.addCases (fun i => ?_) (fun i => ?_) k
-    · simp only [HPolytope.absorbRounding, HPolytope.mulVec_append_right,
+    · simp only [HPolytope.absorbRounding, toRealMat_append_mulVec_natAdd,
         HPolytope.mulVec_append_left, Fin.append_left, Fin.append_right]
       exact (hE i).1
-    · simp only [HPolytope.absorbRounding, HPolytope.mulVec_append_right,
-        HPolytope.mulVec_neg, Fin.append_right, Pi.neg_apply]
-      exact (hE i).2
+    · simp only [HPolytope.absorbRounding, toRealMat_append_mulVec_natAdd, Fin.append_right]
+      exact (congrFun (toRealMat_neg_mulVec P.Ae x) i).trans_le (hE i).2
 
 end CORALean.Float
 

@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
 
 CORA's `@zonotope/tensorMultiplication.m` for a third-order tensor, `M = {M₁, ..., Mₙ}` with
 `Mᵢ` an `n × n × n` array (CORA's `tensorOrder = length(size(M{1})) = 3`): an enclosure of
-`{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z }` by a zonotope, when the centre of `Z` is the origin (otherwise CORA
+`{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z }` by a zonotope, when the center of `Z` is the origin (otherwise CORA
 leaves `H` undefined and errors; the theorem assumes `Z.c = 0`).
 
 For every permutation `p` of generator indices `(perm p 0, perm p 1, perm p 2)` the product of the
@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `tensorMultiplication(Z, M, options)` for a third-order tensor and a centred zonotope. -/
+/-- `tensorMultiplication(Z, M, options)` for a third-order tensor and a centered zonotope. -/
 noncomputable def Zonotope.tensorMultiplication (Z : Zonotope (Vec ℝ n)) (M : Zonotope.Tensor3 n)
     (L : Zonotope.TensorLists Z.h) : Zonotope (Vec ℝ n) :=
   let G := Z.G

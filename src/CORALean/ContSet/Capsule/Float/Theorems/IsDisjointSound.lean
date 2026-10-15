@@ -8,9 +8,9 @@ public import CORALean.ContSet.Capsule.Float.Theorems.RadiusLe
 /-!
 # `Capsule.isDisjoint` is sound
 
-A `true` answer exhibits a coordinate `i` whose centre gap, rounded down, exceeds the sum of the
-radii bounds. A common point `x` would be within the first radius of one centre and the second of
-the other, so by the triangle inequality the Euclidean distance of the centres, which is at least
+A `true` answer exhibits a coordinate `i` whose center gap, rounded down, exceeds the sum of the
+radii bounds. A common point `x` would be within the first radius of one center and the second of
+the other, so by the triangle inequality the Euclidean distance of the centers, which is at least
 their gap in coordinate `i`, would be at most the sum. `false` refutes nothing.
 -/
 
@@ -44,7 +44,7 @@ theorem Capsule.isDisjoint_sound (k : ℕ) {C₁ C₂ : Capsule 𝕋 n} (h : C�
     Disjoint C₁.construct C₂.construct := by -- --- PROOF ---
   rw [Set.disjoint_left]
   intro x hx₁ hx₂
-  -- the two bounding radii, and the coordinate that separates the centres
+  -- the two bounding radii, and the coordinate that separates the centers
   have h₁ := Capsule.radius_le k C₁ hx₁
   have h₂ := Capsule.radius_le k C₂ hx₂
   have hR := add_le_addUp (C₁.radius k) (C₂.radius k)

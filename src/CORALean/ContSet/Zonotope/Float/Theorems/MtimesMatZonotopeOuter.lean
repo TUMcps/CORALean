@@ -18,7 +18,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 # `Zonotope.mtimesMatZonotope` over-approximates every member's image
 
 `(a + e)(z + f) = az + (af + e(z + f))`. The nominal image `az` lies in the exact
-`mtimesMatZonotope` (`Real.Zonotope.mtimesMatZonotope_outer`), whose centre and
+`mtimesMatZonotope` (`Real.Zonotope.mtimesMatZonotope_outer`), whose center and
 generators `dotDown_le`/`le_dotUp` bracket; `af` and `e(z + f)` are
 `Interval.mtimesIntervalMat_outer` at the boxes `matInterval_contains` and
 `interval_contains` supply.

@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpTaylor
 /-!
 # Enclosing the matrix exponential
 
-`expEnclosure`: [1, Eq. (3.2)–(3.3)], `expTaylor` as the centre and `expRemainderBound` as the
+`expEnclosure`: [1, Eq. (3.2)–(3.3)], `expTaylor` as the center and `expRemainderBound` as the
 radius.
 
 `exp` needs a norm on `Mat`, which is a choice rather than an instance, so every

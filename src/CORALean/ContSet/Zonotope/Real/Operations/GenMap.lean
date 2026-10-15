@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Module.LinearMap.Defs
 # `Zonotope.genMap`
 
 The generators read as a linear map from coefficients to the ambient space, so
-that `construct` is the centre plus this map's image of the unit box.
+that `construct` is the center plus this map's image of the unit box.
 
 Named because a constraint on points becomes a constraint on coefficients by
 composing with it, which is how a halfspace description turns into a constrained

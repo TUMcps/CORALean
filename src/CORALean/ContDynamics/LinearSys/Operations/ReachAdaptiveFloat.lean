@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 `ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, from `X₀` over `[tStart, tFinal]`,
 in `𝕋`, every step size, truncation order and reduction order chosen against
 [1]'s three error budgets. `B` and `c` are the system's; `V = B U ⊕ c`
-(`inputSetFloat`) is split at its stored centre, so `0 ∈ U` is not asked. The time is shifted
+(`inputSetFloat`) is split at its stored center, so `0 ∈ U` is not asked. The time is shifted
 to start at `0`, as CORA shifts it, and `Δt_{-1} = t_f μ` (line 2) makes the first step try
 the whole horizon.
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ManualRunTEq
 public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2ReduceLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
@@ -67,7 +67,7 @@ theorem aux_isCompact_sum_range_mulVec (Z : Zonotope (Vec ℝ n)) (Φ : ℕ → 
   | succ k ih =>
     rw [Finset.sum_range_succ]
     exact ⟨ih.1.add (Z.isCompact_construct.image (mulVecL (Φ k)).continuous),
-      ih.2.add (Set.Nonempty.image _ ⟨Z.c, Zonotope.centre_mem_construct Z⟩)⟩
+      ih.2.add (Set.Nonempty.image _ ⟨Z.c, Zonotope.center_mem_construct Z⟩)⟩
 
 /-- `d_H` ignores a summand both sides share: `hausdorffDist₂_add_le` at `d_H(X,X) = 0`. -/
 theorem aux_hausdorffDist₂_add_right {S T X : Set (Vec ℝ n)} (hS : IsCompact S)
@@ -124,15 +124,15 @@ theorem LinearSys.hausdorffDist₂_manualRun_reduce_le (sys : LinearSys 𝕋 n)
     have hXne : ((fun x => exp (((k : ℝ) * Δt) • toRealMat sys.A) *ᵥ x)
         '' (sys.inputSolution (S := 𝒵) Δt η
             ({ h := U.h, c := 0, G := U.G } : Zonotope (Vec ℝ n))).construct).Nonempty :=
-      Set.Nonempty.image _ ⟨_, Zonotope.centre_mem_construct _⟩
+      Set.Nonempty.image _ ⟨_, Zonotope.center_mem_construct _⟩
     rw [Finset.sum_range_succ, Finset.sum_range_succ, hstep]
     -- through the unreduced sum: the step's own accumulation, then line 10's reduction of it
     refine (hausdorffDist₂_triangle ((hsum k).1.add hXc).isBounded ((hsum k).2.add hXne)
-      (Zonotope.isBounded_construct _) ⟨_, Zonotope.centre_mem_construct _⟩).trans
+      (Zonotope.isBounded_construct _) ⟨_, Zonotope.center_mem_construct _⟩).trans
       (add_le_add ?_ (Zonotope.hausdorffDist₂_reduce_le _ ρ))
     rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact]
     exact (aux_hausdorffDist₂_add_right (hsum k).1 (hsum k).2
-      (Zonotope.isCompact_construct _) ⟨_, Zonotope.centre_mem_construct _⟩ hXc hXne).trans ih
+      (Zonotope.isCompact_construct _) ⟨_, Zonotope.center_mem_construct _⟩ hXc hXne).trans ih
 
 end CORALean
 

@@ -12,7 +12,7 @@ identifier become one factor, their exponent rows added. An identifier is an ind
 (factor identity is positional, as in `exactPlus`), so the renaming is a map `f : Fin p → Fin p'`
 sending each factor to its new identifier, and the new exponent row of an identifier is the sum of
 the old rows of the factors sent to it. CORA's replacement of a subset of the identifiers is `f`
-the identity elsewhere. The generators, the centre and the independent block are untouched.
+the identity elsewhere. The generators, the center and the independent block are untouched.
 -/
 
 -- Authors:       Claude Opus 5.5

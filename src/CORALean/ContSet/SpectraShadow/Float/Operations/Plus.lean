@@ -10,7 +10,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.CenterResidual
 # `SpectraShadow.plus`
 
 Generators and matrices concatenate exactly, the inequality's blocks along a
-diagonal with `zero` between them, so only the centre rounds and its `residual`
+diagonal with `zero` between them, so only the center rounds and its `residual`
 goes into the box, leaving the sizes at `k₁ + k₂` and `m₁ + m₂` as over ℝ. Paying
 into new generators instead is not an option here: a generator of a shadow
 multiplies a variable nothing bounds.

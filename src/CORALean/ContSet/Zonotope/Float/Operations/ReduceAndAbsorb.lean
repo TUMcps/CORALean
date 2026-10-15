@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbError
 Each alone ends in a diagonal block, and two merge into one with summed radii,
 since per coordinate they are independent. Doing both therefore costs the `q + n`
 generators `reduceBy` alone would; run separately they cost `q + n + n`. What
-remains in the box is only what the rounded centre shift owes.
+remains in the box is only what the rounded center shift owes.
 -/
 
 -- Authors:       Claude Opus 5

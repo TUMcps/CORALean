@@ -9,7 +9,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
 /-!
 # `ConZonotope.empty`, over a floating-point scalar
 
-The centre `zero`, no generators, and `HPolytope.emptySet` as constraint, as over ℝ.
+The center `zero`, no generators, and `HPolytope.emptySet` as constraint, as over ℝ.
 -/
 
 -- Authors:       Claude Opus 5.5

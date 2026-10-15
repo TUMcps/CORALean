@@ -41,15 +41,15 @@ def ConPolyZono.affine (cPZ : ConPolyZono α) (ab : (Fin cPZ.p → ℝ) × (Fin 
   cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E ab.1 i • cPZ.G i + ∑ j, ab.2 j • cPZ.GI j
 
 
--- ===================================  `ConPolyZono.centre`  =================================== --
+-- ===================================  `ConPolyZono.center`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- CORA's `@conPolyZono/center`: the field `c`, with no guarantee that it lies in the set.
-`centre_mem_construct` says when it does. -/
-def ConPolyZono.centre (cPZ : ConPolyZono α) : α := cPZ.c
+`center_mem_construct` says when it does. -/
+def ConPolyZono.center (cPZ : ConPolyZono α) : α := cPZ.c
 
 
 -- ==================================  `ConPolyZono.consCol`  =================================== --

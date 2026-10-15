@@ -8,7 +8,7 @@ public import CORALean.ContSet.ProbZonotope.Real.Counterexamples.UnitMeanInterva
 # CORA's `interval` of a probabilistic zonotope ignores the deterministic generators
 
 `interval.m` boxes `center(probZ) ± Σ|G|` with `G = generators(probZ)`, the covariance's eigen
-factor, so a probabilistic zonotope without covariance is boxed to its centre: in `ℝ¹` the mean
+factor, so a probabilistic zonotope without covariance is boxed to its center: in `ℝ¹` the mean
 zonotope `[-1, 1]` with covariance `0` has the mean `1`, outside the box `{0}`. The help says it
 overapproximates the probabilistic zonotope.
 -/

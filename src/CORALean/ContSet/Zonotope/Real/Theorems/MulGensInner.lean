@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- [1, Eq. (1)]: `‖T‖∞ ≤ 1` gives `⟨c, G T⟩ ⊆ ⟨c, G⟩`. -/
 theorem Zonotope.mulGens_inner (Z : Zonotope α) {r : ℕ} (T : Mat ℝ Z.h r)
     (hT : ∀ i, ∑ j, |T i j| ≤ 1) : (Z.mulGens T).construct ⊆ Z.construct := by -- --- PROOF ---
-  -- [2, Thm. 3] at `Γ := T`, `β := 0`: the centres agree
+  -- [2, Thm. 3] at `Γ := T`, `β := 0`: the centers agree
   refine Zonotope.construct_subset_of_cert (Z.mulGens T) Z T 0 (fun j => ?_) ?_ (fun k => ?_)
   · simp [Zonotope.mulGens]
   · simp [Zonotope.mulGens]

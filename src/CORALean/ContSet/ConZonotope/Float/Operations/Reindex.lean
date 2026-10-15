@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 /-!
 # `ConZonotope.reindex` over a floating-point scalar
 
-Centre, generator rows and error box relabelled, and nothing rounds: a permutation
+Center, generator rows and error box relabelled, and nothing rounds: a permutation
 moves stored floats without arithmetic. The constraints live on the coefficient
 space, which a relabelling of the coordinates does not touch, so `P` is kept.
 -/

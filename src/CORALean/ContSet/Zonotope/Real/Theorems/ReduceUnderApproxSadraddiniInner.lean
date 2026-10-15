@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxSadraddini
 public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 
 @[expose] public section
 
@@ -10,8 +10,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
 # `reduceUnderApproxSadraddini` is an inner approximation
 
 Whatever the solver proposes: a kept proposal meets `[1, Thm. 3]` against `Z` at `β = 0`
-(the centre is shared), which is the containment half of `[1, Cor. 6]`; otherwise the
-result is the centre, a point of `Z`.
+(the center is shared), which is the containment half of `[1, Cor. 6]`; otherwise the
+result is the center, a point of `Z`.
 
 ## References
 
@@ -39,10 +39,10 @@ theorem Zonotope.reduceUnderApproxSadraddini_inner
     (opt : (Z : Zonotope (Vec ℝ n)) → Option (Σ h : ℕ, (Fin h → Vec ℝ n) × Mat ℝ Z.h h))
     (Z : Zonotope (Vec ℝ n)) :
     (Zonotope.reduceUnderApproxSadraddini opt Z).construct ⊆ Z.construct := by -- --- PROOF ---
-  -- the centre alone lies in `Z`
+  -- the center alone lies in `Z`
   have hc : (⟨0, Z.c, Fin.elim0⟩ : Zonotope (Vec ℝ n)).construct ⊆ Z.construct := by
     rintro _ ⟨β, -, rfl⟩
-    simpa using Z.centre_mem_construct
+    simpa using Z.center_mem_construct
   unfold Zonotope.reduceUnderApproxSadraddini
   split
   · exact hc

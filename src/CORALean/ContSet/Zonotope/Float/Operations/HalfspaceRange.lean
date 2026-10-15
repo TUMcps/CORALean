@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Float.Operations.MulHi
 # `Zonotope.halfspaceRange`, over a floating-point scalar
 
 `Real.Zonotope.halfspaceRange`, [1, Sec. 5.2]: `[ω̲, ω̄]`, the range of `nᵀx − d` over `Z`. The
-centre's `nᵀc − d` is bracketed by `dotDown`/`dotUp` and the directed differences, the
+center's `nᵀc − d` is bracketed by `dotDown`/`dotUp` and the directed differences, the
 generators' `∑ⱼ |nᵀgⱼ|` is rounded up from `max(⌈nᵀgⱼ⌉, −⌊nᵀgⱼ⌋)`, and the error box adds
 `∑ᵢ nᵢeᵢ`, each `nᵢeᵢ` between the corner products of `nᵢ` and `[E̲ᵢ, Ēᵢ]`.
 
@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 /-- [1, Sec. 5.2]: `[ω̲, ω̄]`, the range of `nᵀx − d` over `Z`, rounded outward. -/
 def Zonotope.halfspaceRange (nv : Vec 𝕋 n) (d : 𝕋) (Z : Zonotope (Vec 𝕋 n)) : Interval 𝕋 :=
-  let ωcLo := subDown (dotDown nv Z.c) d                  -- the centre `nᵀc − d`, down
+  let ωcLo := subDown (dotDown nv Z.c) d                  -- the center `nᵀc − d`, down
   let ωcHi := subUp (dotUp nv Z.c) d                      -- and up
   let ρ := sumUp fun j =>                                 -- `∑ⱼ |nᵀgⱼ|`, up
     maximum (dotUp nv (Z.G j)) (neg (dotDown nv (Z.G j)))

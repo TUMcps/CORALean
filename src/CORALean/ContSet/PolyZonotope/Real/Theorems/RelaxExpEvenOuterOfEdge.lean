@@ -6,7 +6,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuter
 @[expose] public section
 
 /-!
-# An edge of the generator graph recentres
+# An edge of the generator graph recenters
 
 What `[1, Def. 5]` is for, and the only thing soundness ever asks of a selection
 rule. `relaxExpEven_outer` wants three facts the drift's one-sidedness rests on,
@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Merging along an edge of the generator graph over-approximates with the
-centre shifted, given that the relaxed column is even. -/
+center shifted, given that the relaxed column is even. -/
 theorem PolyZonotope.relaxExpEven_outer_of_edge (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) {η : ℕ} {k₀ : Fin pZ.p}
     (hedge : PolyZonotope.ExpEdgeAt pZ.E η k₀ (part.right 0) (part.right 1))

@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 CORA's `priv_observe_interval` (the observer `Hinf-G`) seeds the estimate with `x = center(R0)`
 and the error set with `R_x = R0`, and returns `x + box(R_x) + R_wv`: at the initial time the
-box of `R0` moved by its own centre. [1, Alg. 1] prints the same lines 1-2 (`x̂_0 ← center(X_0)`,
+box of `R0` moved by its own center. [1, Alg. 1] prints the same lines 1-2 (`x̂_0 ← center(X_0)`,
 `S_{x,0} ← X_0`). For `R0 = {1}` in `ℝ¹` that is `{2}`, which misses the initial state `1`; the
 error set must start as `R0 - center(R0)`, which is the hypothesis `x_0 - center(R0) ∈ R0` that
 `LinearSysDT.observeInterval_outer` carries. Read from the source, not run.

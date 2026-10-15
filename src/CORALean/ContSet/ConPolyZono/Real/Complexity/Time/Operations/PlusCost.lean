@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `ConPolyZono.plusCost`
 
-Asserted, not proved: `Operations/Plus.lean` adds the two centres — `n`
+Asserted, not proved: `Operations/Plus.lean` adds the two centers — `n`
 additions at `Vec ℝ n` — and lays every other field block-diagonally, by
 `Fin.append`, `plusA` or `PolyZonotope.plusE`, all of them index and
 allocation work and free under `Global/Cost.lean`'s model.
@@ -27,7 +27,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `ConPolyZono.plus` costs at `Vec ℝ n`: `n` additions for the centre,
+/-- What `ConPolyZono.plus` costs at `Vec ℝ n`: `n` additions for the center,
 and nothing for the six block-diagonal concatenations. -/
 def ConPolyZono.plusCost (n : ℕ) : Cost := ⟨n⟩
 

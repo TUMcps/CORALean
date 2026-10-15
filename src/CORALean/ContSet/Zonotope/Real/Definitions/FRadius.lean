@@ -11,7 +11,7 @@ public import Mathlib.Data.Matrix.Mul
 
 [1, Prop. 5]: `‖Z‖_F = (1/n) √(Σᵢ Σⱼ G(i,j)²)` for `Z = ⟨c, G⟩ ⊂ ℝⁿ`, the Frobenius norm of the
 generator matrix, from Combastel's F-radius with a normalization factor `1/n`. It ignores the
-centre. At `n = 0` the factor `1/n` is zero in Lean, and so is the radius, as the zonotope is a
+center. At `n = 0` the factor `1/n` is zero in Lean, and so is the radius, as the zonotope is a
 point.
 
 ## References

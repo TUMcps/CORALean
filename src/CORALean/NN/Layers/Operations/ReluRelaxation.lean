@@ -11,7 +11,7 @@ public import CORALean.NN.Layers.Operations.ReluGapUp
 
 Convexity gives the whole relaxation: ReLU lies above any line of slope in `[0, 1]` through the
 origin and below it raised by the gap, so the relaxation at a clamped slope is that line
-recentred, `± gap / 2`. Halving only moves the exponent, so only the gap rounds, and up.
+recentered, `± gap / 2`. Halving only moves the exponent, so only the gap rounds, and up.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Recentred, so that the error is half the gap in each direction. -/
+/-- Recentered, so that the error is half the gap in each direction. -/
 def reluRelaxation (lam : 𝕋 → 𝕋 → 𝕋) : Relaxation 𝕋 where
   slope l u := clampUnit (lam l u)
   offset l u := half (reluGapUp (clampUnit (lam l u)) l u)

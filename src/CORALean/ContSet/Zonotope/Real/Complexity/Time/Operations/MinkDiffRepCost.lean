@@ -13,7 +13,7 @@ Asserted, not proved: `Operations/MinkDiffRep.lean` at `Vec ℝ n`, a minuend of
 represents `Z₂`'s generators forms `∑ i, M i j • Z₁.G i` for each `j`
 (`2 * h₁ * n`) and compares `n` entries; the row-sum check is `2 * h₂` per row;
 the result recomputes the row sums, subtracts them from one and scales the
-generator (`h₁ * (2 * h₂ + 1 + n)`), and the centre is `n` subtractions. The
+generator (`h₁ * (2 * h₂ + 1 + n)`), and the center is `n` subtractions. The
 `none` branch pays for the checks only, which this bounds.
 -/
 

@@ -8,7 +8,7 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 /-!
 # `SpectraShadow.project` over a floating-point scalar
 
-The centre and every generator read at the chosen coordinates, the inequality untouched, and
+The center and every generator read at the chosen coordinates, the inequality untouched, and
 the error box projected with `Interval.project`. Selecting coordinates moves stored floats
 without arithmetic, so nothing rounds. `dims` may repeat or reorder coordinates.
 -/

@@ -9,7 +9,7 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # `Zonotope.quadMapTri`
 
-[1, Lemma 1 (generators)] with its generators as printed: the centre
+[1, Lemma 1 (generators)] with its generators as printed: the center
 `dᵢ = cᵀQ⁽ⁱ⁾c + 0.5 Σₛ g⁽ˢ⁾ᵀQ⁽ⁱ⁾g⁽ˢ⁾`, the `p` linear generators `h⁽ʲ⁾ᵢ = cᵀQ⁽ⁱ⁾g⁽ʲ⁾ + g⁽ʲ⁾ᵀQ⁽ⁱ⁾c`,
 the `p` squares `h⁽ᵖ⁺ʲ⁾ᵢ = 0.5 g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾`, and one generator
 `h⁽²ᵖ⁺ˡ⁾ᵢ = g⁽ʲ⁾ᵀQ⁽ⁱ⁾g⁽ᵏ⁾ + g⁽ᵏ⁾ᵀQ⁽ⁱ⁾g⁽ʲ⁾` for each pair `j < k` alone, numbered by

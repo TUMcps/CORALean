@@ -34,12 +34,12 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.Materialise
 # What a float spectrahedral shadow computes, collected
 
 `plus`, which lays the two inequalities along a diagonal and rounds only the
-centre, with `centerResidual` the box that rounding costs.
+center, with `centerResidual` the box that rounding costs.
 
 `Inf` and `empty`, the two constant `1 × 1` inequalities with the origin box, and
-`project`, which reads the stored centre and generator rows at the chosen coordinates.
+`project`, which reads the stored center and generator rows at the chosen coordinates.
 
 `mtimes` ties the point to new free variables and multiplies only the error box, so no stored
 generator is rounded; `cartProd`, `inter` and `convHull_` (and `or`) are built from the same
-exact pieces, with `plus` rounding the centre alone.
+exact pieces, with `plus` rounding the center alone.
 -/

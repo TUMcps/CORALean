@@ -10,7 +10,7 @@ generator count `k`, since `Ellipsoid` stores its shape as a generator matrix
 rather than a shape matrix precisely so a linear image costs nothing. Each
 theorem is `rfl` against the structure instance in `Operations/`.
 
-Centre and generator matrix themselves, `q` and `G`, are not counted here: an
+Center and generator matrix themselves, `q` and `G`, are not counted here: an
 equation restating what `Operations/Plus.lean` and `Operations/Mtimes.lean`
 already show at the call site is not what issue #5 asks for, any more than
 restating `c` and `G` is in `Zonotope`'s directory.

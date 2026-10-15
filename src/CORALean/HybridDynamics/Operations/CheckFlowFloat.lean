@@ -14,8 +14,8 @@ public import CORALean.HybridDynamics.Operations.InputSetFloat
 CORA's `checkFlow` for a linear flow `ẋ = A x + B u + c₀ + E w` at float zonotopes, its combined
 input in `inputSetFloat = B U ⊕ c₀ ⊕ E W`, written `V` below. Each reach set is projected onto the
 guard hyperplane `{x | c·x = d}` (`projectOnHyperplaneFloat`, `c` the unit normal pointing out of
-the invariant); it is kept if the flow at the projection's centre points out (`c·(A m + v_c) > 0`,
-`v_c` the centre of `V`, evaluated in plain float arithmetic, which can only keep a set), or else if
+the invariant); it is kept if the flow at the projection's center points out (`c·(A m + v_c) > 0`,
+`v_c` the center of `V`, evaluated in plain float arithmetic, which can only keep a set), or else if
 the rounded-up support function of the flow set `A·proj ⊞ V` along `c` is not certified `≤ 0`. Only
 a set that is certified to have no outward flow is dropped.
 
@@ -50,9 +50,9 @@ def Location.checkFlowFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
   Rs.filter fun R =>
     -- project the reach set onto the hyperplane
     let Rproj := ContSet.projectOnHyperplaneFloat (S := 𝒵[𝕋]) R c d
-    -- fast check: the flow at the centre of the projection, with the centre input
-    let m := ScalarCentre.centreVec (S := 𝒵[𝕋]) Rproj
-    let uc := ScalarCentre.centreVec (S := 𝒵[𝕋]) ℓ.inputSetFloat
+    -- fast check: the flow at the center of the projection, with the center input
+    let m := ScalarCenter.centerVec (S := 𝒵[𝕋]) Rproj
+    let uc := ScalarCenter.centerVec (S := 𝒵[𝕋]) ℓ.inputSetFloat
     let flowC := sumUp fun i =>
       mulUp (c i) (addUp (sumUp fun j => mulUp (ℓ.dynamics.A i j) (m j)) (uc i))
     -- the flow set `A proj ⊞ V`, bounded from above along `c`

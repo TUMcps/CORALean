@@ -9,7 +9,7 @@ public import CORALean.Global.JacobianMatParam
 /-!
 # The matrix zonotope of the Jacobians holds the Jacobian at every parameter of the box
 
-The Jacobian of a map affine in `p` in the variable `z` is affine in `p` as well: centre
+The Jacobian of a map affine in `p` in the variable `z` is affine in `p` as well: center
 `J f_0 + ∑ cᵢ J fᵢ`, generators `rᵢ J fᵢ`, with `J fᵢ = J f(·, eᵢ) - J f(·, 0)` as CORA's
 `aux_parametric` forms it. So for every `p` of the box the Jacobian lies in the matrix zonotope
 `linearize` builds. `z` is the state or the input: `zA` and `zB` are the two cases.
@@ -51,7 +51,7 @@ theorem NonlinParamSys.jacobianFamily_mem (F : Vec ℝ k → Vec ℝ q → Vec �
     fun i => (hd _).sub (hd 0)
   rw [hmap, jacobianMat_param _ _ p z (hd 0) hdi]
   simp only [jacobianMat_sub _ _ z (hd _) (hd 0)]
-  -- split each parameter into the centre's part and the generator's
+  -- split each parameter into the center's part and the generator's
   have hsum : ∀ i, p i • (jacobianMat (fun w => F w (Pi.single i 1)) z
         - jacobianMat (fun w => F w 0) z)
       = I.center i • (jacobianMat (fun w => F w (Pi.single i 1)) z

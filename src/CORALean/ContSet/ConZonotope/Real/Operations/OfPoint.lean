@@ -8,7 +8,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
 /-!
 # `ConZonotope.ofPoint`
 
-CORA's `conZonotope` at a centre, no generators and no constraints: a single
+CORA's `conZonotope` at a center, no generators and no constraints: a single
 point, as the representation. What `OfPoint` asks every representation with a
 point operation to supply.
 -/

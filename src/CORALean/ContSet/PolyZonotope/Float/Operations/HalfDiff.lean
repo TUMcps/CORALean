@@ -5,7 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 @[expose] public section
 
 /-!
-# The stored half-difference of two centres
+# The stored half-difference of two centers
 
 Split out of `LinComb.lean` (issue #62): read again by
 `Theorems/LinCombOuter.lean`, outside this file.
@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The stored half-difference of the two centres: the generator the fresh
+/-- The stored half-difference of the two centers: the generator the fresh
 factor slides along. -/
 def PolyZonotope.halfDiff (a b : Vec 𝕋 n) : Vec 𝕋 n := fun i => half (subDown (a i) (b i))
 

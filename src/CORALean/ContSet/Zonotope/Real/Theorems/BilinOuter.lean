@@ -58,14 +58,14 @@ theorem Zonotope.aux_sum_univ_bilin (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (Z₁
       + ∑ i, ∑ j, g (Fin.natAdd (Z₁.h + Z₂.h) (finProdFinEquiv (i, j))) :=
   Zonotope.aux_sum_univ_add3 g
 
-/-- `f` applied at a fixed second point distributes over a centre-plus-generators
+/-- `f` applied at a fixed second point distributes over a center-plus-generators
 sum in the first argument. -/
 theorem Zonotope.aux_bilin_left (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) {h : ℕ} (c : α) (G : Fin h → α)
     (p : Fin h → ℝ) (x : β) : f (c + ∑ i, p i • G i) x = f c x + ∑ i, p i • f (G i) x := by
   rw [map_add, LinearMap.add_apply, map_sum, LinearMap.sum_apply]
   exact congrArg _ (Finset.sum_congr rfl fun i _ => by rw [map_smul, LinearMap.smul_apply])
 
-/-- Any linear map distributes over a centre-plus-generators sum. -/
+/-- Any linear map distributes over a center-plus-generators sum. -/
 theorem Zonotope.aux_bilin_right (g : β →ₗ[ℝ] γ) {h : ℕ} (c : β) (G : Fin h → β)
     (q : Fin h → ℝ) : g (c + ∑ j, q j • G j) = g c + ∑ j, q j • g (G j) := by
   rw [map_add, map_sum]

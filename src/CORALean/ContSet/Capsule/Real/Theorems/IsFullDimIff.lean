@@ -128,7 +128,7 @@ theorem Capsule.isFullDim_iff (C : Capsule n) :
         exact (key ⟨1, by omega⟩).1 (h1 ⟨1, by omega⟩ (by simp [Fin.ext_iff]))
     · exact Or.inl hr
   · rintro (hr | ⟨hr, hn | ⟨hn, hg⟩⟩)
-    · -- a thick capsule contains the open ball about the centre
+    · -- a thick capsule contains the open ball about the center
       refine ⟨C.c, mem_interior.mpr ⟨{x | ∑ i, (x i - C.c i) ^ 2 < C.r ^ 2}, ?_, ?_, ?_⟩⟩
       · intro x hx
         refine ⟨0, by simp, ?_⟩

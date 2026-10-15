@@ -10,7 +10,7 @@ public import Mathlib.LinearAlgebra.Matrix.BilinearForm
 
 [1, Lemma 1], by the printed proof: insert `x = c + Σⱼ βⱼg⁽ʲ⁾` into `xᵀQ⁽ⁱ⁾x`, split the
 double sum into its diagonal and its pairs `j < k`, and read each `βⱼ²` as
-`0.5 + 0.5(2βⱼ² - 1)` — the constant half into the centre, the rest onto the square's
+`0.5 + 0.5(2βⱼ² - 1)` — the constant half into the center, the rest onto the square's
 generator. The coefficients `βⱼ`, `2βⱼ² - 1` and `βⱼβₖ` all lie in `[-1, 1]`, which is
 where the enclosure is lost: they are tied to each other, and a zonotope frees them.
 

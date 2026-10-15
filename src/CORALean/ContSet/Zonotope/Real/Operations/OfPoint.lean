@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.ofPoint`
 
-CORA's `zonotope` at a centre and no generators: a single point, as the
+CORA's `zonotope` at a center and no generators: a single point, as the
 representation. What `OfPoint` asks every representation with a point
 operation to supply.
 -/

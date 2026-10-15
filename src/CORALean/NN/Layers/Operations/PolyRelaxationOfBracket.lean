@@ -7,7 +7,7 @@ public import CORALean.NN.Layers.Operations.ShiftConst
 @[expose] public section
 
 /-!
-# A polynomial relaxation out of a bracket, recentred
+# A polynomial relaxation out of a bracket, recentered
 
 `computeApproxError`'s last step [1]: a bracket for `σ - p` over the box, its two ends averaged
 into the constant coefficient, and what is left is a radius. The bracket is a hypothesis of
@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- A relaxation out of any bracket for `σ` minus the fit, recentred. -/
+/-- A relaxation out of any bracket for `σ` minus the fit, recentered. -/
 def PolyRelaxation.ofBracket (c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋) (lo hi : 𝕋 → 𝕋 → 𝕋) :
     PolyRelaxation 𝕋 m where
   coeffs l u := shiftConst (c l u) (bracketShift (lo l u) (hi l u))

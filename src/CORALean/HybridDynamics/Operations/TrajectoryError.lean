@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdaptiveRemainder
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Real.Operations.Recenter
 public import CORALean.ContSet.Zonotope.Real.Operations.ScalarIntervalMul
 public import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
 
@@ -15,10 +15,10 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
 
 CORA's `linearSys/trajectoryError` [1], `E_err`: the set of `x(t) - y(t)`, `t ∈ [tmin, tmax]`,
 where `x` is the solution of `ẋ = Ax + u` from `x₀ ∈ R₀` and `y` the state-dependent constant
-flow `y₀ + (Ay₀ + b)t` of [2, Eq. 3] with `b` the input of its `Prop. 1` at the "centre time"
+flow `y₀ + (Ay₀ + b)t` of [2, Eq. 3] with `b` the input of its `Prop. 1` at the "center time"
 `tc`, and the Taylor series of both cut at `η`: [2, Eq. 13],
 `T(⊕ᵢ₌₂^η (Aⁱ/i!)(Tⁱ⁻¹ (ξ ⊕ Y) ⊖ tcⁱ⁻¹ ξ) ⊕ ⊕ᵢ₌₁^η (Aⁱ/(i+1)!)(Tⁱ ⊖ tcⁱ) u) ⊕ Ê R₀ ⊕ Ê tmax u`
-with `ξ` the centre of `R₀`, `Y = R₀ ⊖ ξ`, `T = [tmin, tmax]`, `Ê = [-W, W]`,
+with `ξ` the center of `R₀`, `Y = R₀ ⊖ ξ`, `T = [tmin, tmax]`, `Ê = [-W, W]`,
 `W = |e^{|A|tmax} − ∑ᵢ₌₀^η |A|ⁱtmaxⁱ/i!|`, and the flow correction `T (f₁ − f₂)`. Only `E_err`: the
 outputs `c_tilde` and `d_tilde`, which CORA documents as `?`, are not defined here.
 
@@ -54,7 +54,7 @@ noncomputable def LinearSys.trajectoryError (sys : LinearSys ℝ n) (f₁ f₂ u
   let x0 := R₀.c                                                     -- x0 = center(R0)
   let x0zono := Zonotope.ofPoint x0                                  -- x0zono = zonotope(x0)
   let uzono := Zonotope.ofPoint u                                    -- uzono = zonotope(u)
-  let Y := R₀.recentre                                               -- Y = R0 + (-x0)
+  let Y := R₀.recenter                                               -- Y = R0 + (-x0)
   let E_state := Zonotope.sumTerms (fun m =>                         -- for i = 2:order
     Zonotope.mtimes (((Nat.factorial (m + 2) : ℝ)⁻¹) • sys.A ^ (m + 2))
       ((Zonotope.scalarIntervalMul (tmin ^ (m + 1)) (tmax ^ (m + 1)) Y).plus

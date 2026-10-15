@@ -6,7 +6,7 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 public import CORALean.ContSet.Fullspace.Real.Operations.And
 public import CORALean.ContSet.Fullspace.Real.Operations.Basic
 public import CORALean.ContSet.Fullspace.Real.Operations.Box
-public import CORALean.ContSet.Fullspace.Real.Operations.Centre
+public import CORALean.ContSet.Fullspace.Real.Operations.Center
 public import CORALean.ContSet.Fullspace.Real.Operations.EnclosePoints
 public import CORALean.ContSet.Fullspace.Real.Operations.HPolytope
 public import CORALean.ContSet.Fullspace.Real.Operations.Isequal
@@ -59,14 +59,14 @@ theorem Fullspace.and_exact {S : Type} [ContSet S (Vec ℝ n)] (F : Fullspace n)
 theorem Fullspace.box_exact (F : Fullspace n) : F.box.construct = F.construct := rfl
 
 
--- =============================  `Fullspace.centre_mem_construct`  ============================= --
+-- =============================  `Fullspace.center_mem_construct`  ============================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- Trivially, as it contains everything. -/
-theorem Fullspace.centre_mem_construct (F : Fullspace n) : F.centre ∈ F.construct :=
+theorem Fullspace.center_mem_construct (F : Fullspace n) : F.center ∈ F.construct :=
   Set.mem_univ _
 
 

@@ -5,7 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 @[expose] public section
 
 /-!
-# The exact image, regrouped so the centre and each generator appear once
+# The exact image, regrouped so the center and each generator appear once
 
 Over the three blocks rather than over a `PolyZonotope`, since a constrained one
 has the same three and regrouping them knows nothing about a constraint. Stated

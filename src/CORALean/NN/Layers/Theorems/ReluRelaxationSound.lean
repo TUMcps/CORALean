@@ -12,7 +12,7 @@ public import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
 
 At whatever slope the caller chose: clamped into `[0, 1]`, ReLU lies between the line and the
 line raised by the exact gap, the stored gap bounds the exact one, and halving is exact, so the
-recentred line is within half the stored gap of ReLU everywhere on the box.
+recentered line is within half the stored gap of ReLU everywhere on the box.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Group.Fin.Tuple
 # `ConPolyZono.ofPoint` denotes exactly one point
 
 The converse to `mem_ofPoint`: no generator of either kind leaves nothing to add to
-the centre.
+the center.
 -/
 
 -- Authors:       Claude Opus 5.5

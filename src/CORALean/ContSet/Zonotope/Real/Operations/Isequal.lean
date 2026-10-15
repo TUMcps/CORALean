@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.isequal`
 
-CORA's `@zonotope/isequal.m` for two zonotopes: the centres agree to the tolerance, and the
+CORA's `@zonotope/isequal.m` for two zonotopes: the centers agree to the tolerance, and the
 generator matrices, each `compact_(.,'all')`ed, are equal up to the order of the columns
 (`compareMatrices`). Here the tolerance is `0` and the generators are compared as they are,
 column by column, which is stricter than CORA on both counts: neither the reordering of columns
@@ -31,7 +31,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `zonotope/isequal` at tolerance `0`, without compaction: the same number of generators, the
-same centre, and the same generators in the same order. -/
+same center, and the same generators in the same order. -/
 def Zonotope.isequal (Z S : Zonotope α) : Prop :=
   ∃ e : Z.h = S.h, Z.c = S.c ∧ ∀ j, Z.G j = S.G (Fin.cast e j)
 

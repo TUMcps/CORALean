@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n k : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `mtimes` owes beyond its nominal part: the centre, and both generator
+/-- What `mtimes` owes beyond its nominal part: the center, and both generator
 blocks. The constraints owe nothing, being copied. -/
 def ConPolyZono.mtimesResidual (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     Interval (Vec 𝕋 k) :=

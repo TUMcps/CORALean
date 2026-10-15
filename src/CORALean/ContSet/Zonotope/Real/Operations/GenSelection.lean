@@ -8,9 +8,9 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # `Zonotope.genSelection`
 
 `(c, g_sort⁽¹⁾, …, g_sort⁽ˣⁱ⁾)`: the first `ξ` generators of `Z` in the order a
-permutation puts them, at a centre of the caller's choosing. [1, Alg. 1] builds
+permutation puts them, at a center of the caller's choosing. [1, Alg. 1] builds
 one at each step of its second loop, to test at `c⁽ˢ⁾`, and returns the last at
-`c⁽ᵐ⁾` — so the centre is an argument rather than `Z`'s own.
+`c⁽ᵐ⁾` — so the center is an argument rather than `Z`'s own.
 
 `min ξ Z.h`, not `ξ`: the count is what a loop carries and a loop may be asked
 for more generators than there are. Capping keeps the operation total, and
@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The first `ξ` generators of `Z` under `σ`, at the centre `c`. -/
+/-- The first `ξ` generators of `Z` under `σ`, at the center `c`. -/
 def Zonotope.genSelection (Z : Zonotope α) (σ : Equiv.Perm (Fin Z.h)) (c : α)
     (ξ : ℕ) : Zonotope α where
   h := min ξ Z.h

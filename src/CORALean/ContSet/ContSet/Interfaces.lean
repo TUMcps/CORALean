@@ -182,22 +182,22 @@ class OfScalarPoint (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
   ofVec {n : ℕ} : Vec 𝕋 n → S n
   mem_ofVec {n : ℕ} (v : Vec 𝕋 n) : Scalar.toRealVec v ∈ construct (ofVec v)
 
-/-- A point of the representation's scalar the set is centred on, as CORA's `center`. No law:
-what an algorithm does with the point (CORA's `enlarge`) is sound for any point, the centre only
+/-- A point of the representation's scalar the set is centered on, as CORA's `center`. No law:
+what an algorithm does with the point (CORA's `enlarge`) is sound for any point, the center only
 decides how tight the result is. -/
-class ScalarCentre (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
+class ScalarCenter (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
     [∀ n, ContSet (S n) (Vec ℝ n)] where
-  centreVec {n : ℕ} : S n → Vec 𝕋 n
+  centerVec {n : ℕ} : S n → Vec 𝕋 n
 
 /-- A set taken apart into a point of the ambient space and a set holding the
-origin. Every representation with a centre has this; no class offered it. -/
-class Recentre (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
+origin. Every representation with a center has this; no class offered it. -/
+class Recenter (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
-  centre : S → α
-  recentre : S → S
-  zero_mem_recentre (s : S) : (0 : α) ∈ construct (recentre s)
-  sub_centre_mem_recentre {s : S} {y : α} (hy : y ∈ construct s) :
-    y - centre s ∈ construct (recentre s)
+  center : S → α
+  recenter : S → S
+  zero_mem_recenter (s : S) : (0 : α) ∈ construct (recenter s)
+  sub_center_mem_recenter {s : S} {y : α} (hy : y ∈ construct s) :
+    y - center s ∈ construct (recenter s)
 
 /-- To a maximum order, read in the representation's own terms. Sound for any
 target, so the order is a precision knob and never a correctness one. -/

@@ -5,10 +5,10 @@ public import CORALean.Specification.STL.Operations.DepBloating
 @[expose] public section
 
 /-!
-# The bloating is centred at the origin
+# The bloating is centered at the origin
 
-[1, Prop. 1]: every term of `D` is a map of `U₀` (by a matrix or an interval matrix), centred
-at the image of the centre of `U₀`, so `D` is centred at `0` when `U₀` is, as `B(U ⊕ (-c_u))` is.
+[1, Prop. 1]: every term of `D` is a map of `U₀` (by a matrix or an interval matrix), centered
+at the image of the center of `U₀`, so `D` is centered at `0` when `U₀` is, as `B(U ⊕ (-c_u))` is.
 
 ## References
 
@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The centre of the Minkowski sum of the images, folded from a centre-`0` start. -/
+/-- The center of the Minkowski sum of the images, folded from a center-`0` start. -/
 theorem STL.aux_foldl_c (A : Mat ℝ n n) (U₀ : Zonotope (Vec ℝ n)) (Δt : ℝ) (hU : U₀.c = 0)
     (l : List ℕ) (Z : Zonotope (Vec ℝ n)) (hZ : Z.c = 0) :
     (l.foldl (fun Z j => Z.plus (Zonotope.mtimes (MatExp.particularCoeff A Δt (j + 1)) U₀))

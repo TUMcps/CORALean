@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `ConPolyZono.empty`, over a floating-point scalar
 
 No generators and one constraint row that cannot hold: the empty constraint matrix and the
-crossed bound `[one, zero]`. The centre is `zero` and the error box the point `0`.
+crossed bound `[one, zero]`. The center is `zero` and the error box the point `0`.
 -/
 
 -- Authors:       Claude Opus 5.5

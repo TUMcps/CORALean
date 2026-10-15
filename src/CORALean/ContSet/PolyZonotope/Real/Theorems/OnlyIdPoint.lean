@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 At every factor vector the point of `pZ` is the sum of the point of the `S`-part at the factors of
 `S` and the point of the remainder: a generator of the first part has exponent `0` outside `S`, so
 its monomial reads the factors of `S` only, and every other generator is in the remainder, with
-the centre `0` there so that the centre is counted once. The independent block belongs to the
+the center `0` there so that the center is counted once. The independent block belongs to the
 remainder and is not part of `point`.
 -/
 
@@ -65,7 +65,7 @@ theorem PolyZonotope.onlyId_point (pZ : PolyZonotope α) (S : Finset (Fin pZ.p))
       + ((pZ.onlyId S).2.c + ∑ i, PolyZonotope.monomial (pZ.onlyId S).2.E a i
         • (pZ.onlyId S).2.G i)
   rw [Finset.sum_congr rfl fun i _ => hsplit i, Finset.sum_add_distrib]
-  -- the remainder's centre is `0` and the first part's is `c`
+  -- the remainder's center is `0` and the first part's is `c`
   show pZ.c + _ = (pZ.c + _) + ((0 : α) + _)
   rw [zero_add]
   exact (add_assoc _ _ _).symm

@@ -16,7 +16,7 @@ Taylor terms in one loop. `sq` is `exactSquare`. `H` is the loop's `H` before th
 `(i, j)` is `A i j (r + ½ r² (A i i + A j j)) + ½ r² ∑_{k ≠ i, j} A i k A k j` off the diagonal, and
 on it `∑_{k ≠ i} A i k A k i` plus the range `[g, κ]` of `a r + ½ a² r²` over `A i i`, with `g = -½`
 when `-1/r` is in `A i i` and the smaller end value otherwise: this is `expIntervalW`
-(Lemma 3.1 of the thesis), term for term. Both results are rebuilt as centre and radius, as CORA
+(Lemma 3.1 of the thesis), term for term. Both results are rebuilt as center and radius, as CORA
 does.
 -/
 

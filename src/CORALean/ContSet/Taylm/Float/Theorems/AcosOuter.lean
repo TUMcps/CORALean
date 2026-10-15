@@ -15,7 +15,7 @@ public import CORALean.Global.IteratedDerivArccos
 `Taylm.taylor_outer` at `arccos`: the zeroth coefficient between `acosDown` and `acosUp`, the others
 the negations of `Taylm.arcsinCoef_mem` (`arccos⁽ᵏ⁾ = -arcsin⁽ᵏ⁾`, `iteratedDeriv_arccos_succ`),
 the derivative bound `Taylm.arcsinBound_ge`, the same in magnitude. The hypotheses are the rounded
-root `√(1 - c²)` positive at the centre and `√(1 - m²)` at the magnitude `Taylm.magUp`, which put
+root `√(1 - c²)` positive at the center and `√(1 - m²)` at the magnitude `Taylm.magUp`, which put
 the range inside `(-1, 1)`.
 -/
 

@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Operations.PlusBox
 public import CORALean.ContSet.Zonotope.Float.Operations.Project
 public import CORALean.ContSet.Zonotope.Float.Operations.ProjectHighDim
-public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Float.Operations.Recenter
 public import CORALean.ContSet.Zonotope.Float.Operations.Midpoint
 public import CORALean.ContSet.Zonotope.Float.Operations.MidpointResidual
 public import CORALean.ContSet.Zonotope.Float.Operations.PairSum

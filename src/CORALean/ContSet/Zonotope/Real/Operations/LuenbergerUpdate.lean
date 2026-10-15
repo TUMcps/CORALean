@@ -14,7 +14,7 @@ zonotope `⟨ĉ, Ĝ⟩` of the previous state, the gain `Λ`, the stacked measur
 process-noise generators `Q` (`n_k ∈ ⟨0, Q⟩`) and the measurement-noise generators `R`
 (`v̄ ∈ ⟨0, R⟩`), `c̄ = F ĉ + Λ (ȳ - Γ ĉ)` Eq. 28 of [1, Thm. 2] and
 `Ḡ = [(F - Λ Γ) Ĝ, -Λ R, Q]` Eq. 29 of [1, Thm. 2]. `Q` and `R` are matrices of generator
-columns, as the zonotopes `⟨0, Q⟩` and `⟨0, R⟩` have no centre; `Λ` is any matrix.
+columns, as the zonotopes `⟨0, Q⟩` and `⟨0, R⟩` have no center; `Λ` is any matrix.
 
 ## References
 

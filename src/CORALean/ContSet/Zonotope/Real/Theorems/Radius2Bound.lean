@@ -8,11 +8,11 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 @[expose] public section
 
 /-!
-# A zonotope lies in the ball of radius `radius₂` about its centre
+# A zonotope lies in the ball of radius `radius₂` about its center
 
 Each of the two radii bounds the distance `‖x - c‖₂` of a member. For the sum of generator lengths,
 `x - c = ∑ βⱼ Gⱼ` with `|βⱼ| ≤ 1`, by the triangle inequality. For the box, the box of a zonotope
-is centred at `c` (the half-sum of its bounds), so `Interval.norm₂_sub_center_le` applies. An
+is centered at `c` (the half-sum of its bounds), so `Interval.norm₂_sub_center_le` applies. An
 upper bound, not the smallest ball: that is a different quantity, as `radius₂`'s docstring says.
 -/
 

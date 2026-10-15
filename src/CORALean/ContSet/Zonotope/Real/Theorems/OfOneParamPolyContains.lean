@@ -15,7 +15,7 @@ public import Mathlib.Tactic.Linarith
 
 For every `β ∈ [-1, 1]`, `Σ_{k=0}^N βᵏ v_k` is a point of the zonotope: generator `j` takes the
 coefficient `β^{j+1}` when `j + 1` is odd and `2β^{j+1} - 1` when it is even, both in `[-1, 1]`,
-and `βᵏ v_k = (2βᵏ - 1)(½ v_k) + ½ v_k` puts the rest of an even power in the centre. This is the
+and `βᵏ v_k = (2βᵏ - 1)(½ v_k) + ½ v_k` puts the rest of an even power in the center. This is the
 step of the proof of [1, Thm. 1] that turns the Taylor polynomial into a matrix zonotope.
 
 ## References
@@ -61,7 +61,7 @@ theorem aux_sum_range_even (f : ℕ → α) (N : ℕ) :
         · omega
         · exact absurd ⟨t + 1, by omega⟩ h]
 
-/-- One power: `βᵏ v = (coefficient) • (generator) + (its share of the centre)`. -/
+/-- One power: `βᵏ v = (coefficient) • (generator) + (its share of the center)`. -/
 theorem aux_pow_smul_split (v : α) (β : ℝ) (k : ℕ) :
     β ^ k • v = (if Odd k then β ^ k else 2 * β ^ k - 1) •
         (if Odd k then v else (1 / 2 : ℝ) • v) +
@@ -90,7 +90,7 @@ theorem Zonotope.ofOneParamPoly_contains (v : ℕ → α) (N : ℕ) {β : ℝ} (
       have h0 : 0 ≤ β ^ (j.val + 1) := (Nat.not_odd_iff_even.1 h).pow_nonneg β
       rw [abs_of_nonneg h0] at h1
       rw [abs_le]; constructor <;> linarith
-  · -- split every power into its generator's part and its centre's part
+  · -- split every power into its generator's part and its center's part
     show _ = v 0 + ∑ l ∈ Finset.Icc 1 (N / 2), (1 / 2 : ℝ) • v (2 * l) + ∑ j : Fin N,
       (if Odd (j.val + 1) then β ^ (j.val + 1) else 2 * β ^ (j.val + 1) - 1) •
         (if Odd (j.val + 1) then v (j.val + 1) else (1 / 2 : ℝ) • v (j.val + 1))

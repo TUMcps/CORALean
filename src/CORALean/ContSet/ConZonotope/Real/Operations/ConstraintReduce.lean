@@ -33,7 +33,7 @@ open Matrix
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Prop. 5]: the constraints folded back into the generators and the centre by `ΛG` and
+/-- [1, Prop. 5]: the constraints folded back into the generators and the center by `ΛG` and
 `ΛA`; the result encloses `ofMat c G A b` for every choice. -/
 noncomputable def ConZonotope.constraintReduce {n q h : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ q h) (b : Vec ℝ q) (ΛG : Mat ℝ n q) (ΛA : Mat ℝ q q) :

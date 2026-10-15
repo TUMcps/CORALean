@@ -8,7 +8,7 @@ public import Mathlib.Analysis.Normed.Module.Basic
 /-!
 # A zonotope is bounded
 
-Coefficients run over `[-1,1]`, so a point reaches at most the centre plus the
+Coefficients run over `[-1,1]`, so a point reaches at most the center plus the
 sum of the generator norms — the quantity `radius` computes at `Vec ℝ n`, here
 only as a bound and never stored.
 -/

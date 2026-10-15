@@ -37,7 +37,7 @@ theorem Zonotope.matZonotope_contains (Z : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n
   obtain ⟨a, ha, e, he, rfl⟩ := hz
   obtain ⟨β, hβ, hai⟩ := Zonotope.mem_nominalSet_iff.mp ha
   refine ⟨fun i _ => a i, ⟨β, hβ, ?_⟩, fun i _ => e i, ?_, rfl⟩
-  · -- the column of the nominal point is the nominal centre plus the combination
+  · -- the column of the nominal point is the nominal center plus the combination
     ext i j
     simp only [Matrix.add_apply, Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul]
     rw [hai i]

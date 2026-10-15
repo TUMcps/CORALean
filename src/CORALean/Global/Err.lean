@@ -13,8 +13,8 @@ public import Mathlib.Algebra.Order.Group.Pointwise.CompleteLattice
 centered at the origin and enclosing a set" and `box(S)` "the tightest axis-aligned interval
 outer-approximation of `S`" (Sec. II-A, Notation) — a *hypersphere* is Euclidean by construction,
 matching [1, Def. 5]'s own `‖·‖₂` for the Hausdorff distance `err` bounds via eq. (12). This is the
-ORIGIN-centred reading, not `Interval.radius`'s own-centre one (which would instead be
-`‖boxDiameter S / 2‖₂` and gives a different number whenever `box(S)` is not centred at `0`):
+ORIGIN-centered reading, not `Interval.radius`'s own-center one (which would instead be
+`‖boxDiameter S / 2‖₂` and gives a different number whenever `box(S)` is not centered at `0`):
 `box(S)`'s farthest corner has magnitude `max |inf_i S| |sup_i S|` per coordinate, matching CDC'20
 `Prop. 1`'s `hausdorffDist₂_add_le_box_radius`, already in this tree, read off a bare `Set` rather
 than a fixed `Interval`.

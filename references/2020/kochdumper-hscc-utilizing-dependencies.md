@@ -86,7 +86,7 @@ as hypotheses. `zono` returns a function of the representation and not of the
 set: `zonotope_not_mono` exhibits the polynomial zonotopes `α²` and `1 + α`,
 the first denoting a subset of what the second denotes while its own enclosure,
 `[-1,1]`, is not inside the other's `[0,2]`. `postΔ` has none either, for the same reason one
-level down — its `linComb` and its interval-matrix product read centres and
+level down — its `linComb` and its interval-matrix product read centers and
 generators rather than points — though that one is read off the definitions
 rather than refuted in Lean. So `abstrErr` takes the region its
 remainder is computed over as a parameter, as `lagrangeRemainder` and

@@ -10,7 +10,7 @@ public import Mathlib.Order.Lattice
 # The largest ball around the origin in an H-polytope
 
 [1, Def. 4] defines `⌊Z⌋² = min(b²)` from the halfspace representation `{A z ≤ b}` of `Z(G, 0)`
-and derives it, [1, Eq. 10], as the squared radius of the largest ball around the centre inside
+and derives it, [1, Eq. 10], as the squared radius of the largest ball around the center inside
 `Z`. That needs unit rows, which the derivation assumes ("if we assume that `aᵢ` is normed") and
 the definition leaves out: a ball of radius `s` lies in `aᵀ x ≤ b` iff `s ‖a‖₂ ≤ b`. With unit
 rows and `b ≥ 0` — the origin inside — the largest radius is `min b`, and its square `min(b²)`.

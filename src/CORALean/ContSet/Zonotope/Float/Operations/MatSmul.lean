@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 # `Zonotope.matSmul`, by a scalar known only to lie in `[cLo, cHi]`
 
 `Real.Zonotope.map` at `c • ·`, for every `c ∈ [cLo, cHi]` at once, as `Interval.smul`
-scales a box: each entry of the centre and of every generator is bracketed by the corner
+scales a box: each entry of the center and of every generator is bracketed by the corner
 hull `mulLo`/`mulHi`, and the box is scaled by `Interval.smul`. At `cLo = cHi` this is a
 rounded scaling by one exact scalar, which is what `1/i!` and `Δt` need; for a wide
 `[cLo, cHi]` the brackets widen with it, and the width lands in the box rather than in a
@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Every entry of the centre and the generators scaled by `[cLo, cHi]`, bracketed. -/
+/-- Every entry of the center and the generators scaled by `[cLo, cHi]`, bracketed. -/
 def Zonotope.matSmul (cLo cHi : 𝕋) (Z : Zonotope (Mat 𝕋 m n)) : Zonotope (Mat 𝕋 m n) :=
   let lo : Mat 𝕋 m n → Mat 𝕋 m n := fun A i j => Interval.mulLo cLo cHi (A i j) (A i j)
   let hi : Mat 𝕋 m n → Mat 𝕋 m n := fun A i j => Interval.mulHi cLo cHi (A i j) (A i j)

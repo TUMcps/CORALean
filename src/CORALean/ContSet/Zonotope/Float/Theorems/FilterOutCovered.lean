@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
 # A deleted cell lies in another cell
 
 A cell `Zonotope.filterOut` deletes is certified by `Zonotope.containsZonotope` to lie in one other
-cell, so its set (centre, generators and error box) is inside that cell's. This is the float
+cell, so its set (center, generators and error box) is inside that cell's. This is the float
 counterpart of `Zonotope.filterOut_covered`, with the cover a single cell rather than the union of
 all the others, and without the interior hypothesis: the certificate covers the cell itself.
 

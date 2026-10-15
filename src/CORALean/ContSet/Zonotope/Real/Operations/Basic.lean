@@ -71,7 +71,7 @@ theorem Zonotope.mtimes_eq_map (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) :
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `@zonotope/project`: the centre and every generator at the chosen coordinates. `dims` may
+/-- CORA's `@zonotope/project`: the center and every generator at the chosen coordinates. `dims` may
 repeat or reorder coordinates. Reading coordinates is linear, so this is `map` at the selection
 map, and `project_exact` is `map_exact`. -/
 def Zonotope.project (Z : Zonotope (Vec ℝ n)) (dims : Fin m → Fin n) : Zonotope (Vec ℝ m) :=
@@ -96,7 +96,7 @@ def Zonotope.representsa_origin (Z : Zonotope α) : Prop := Z.c = 0 ∧ Z.repres
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `@matZonotope/transpose`: the centre and every generator transposed. -/
+/-- CORA's `@matZonotope/transpose`: the center and every generator transposed. -/
 def Zonotope.transpose (Z : Zonotope (Mat ℝ m n)) : Zonotope (Mat ℝ n m) :=
   Z.map (Matrix.transposeLinearEquiv (Fin m) (Fin n) ℝ ℝ).toLinearMap
 
@@ -107,7 +107,7 @@ def Zonotope.transpose (Z : Zonotope (Mat ℝ m n)) : Zonotope (Mat ℝ n m) :=
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `zonotope(matZ)`: the centre and the generators stacked column by column
+/-- CORA's `zonotope(matZ)`: the center and the generators stacked column by column
 (`reshape(·, [], 1)`), a zonotope in the space of `n * m` entries. -/
 def Zonotope.vec (Z : Zonotope (Mat ℝ m n)) : Zonotope (Vec ℝ (n * m)) :=
   Z.map matVecEquiv.toLinearMap

@@ -30,7 +30,7 @@ carrying a difference plus the cubic remainder, [1, Sec. 4.1]'s `mu`, `sq` and
 `k + 1` is candidate `k`'s estimate enlarged, the source's schedule, not `1.1ᵏ`.
 Candidate `k` is `(Rdiff + RallError, VerrorDyn)`, checked by a certificate, never trusted.
 
-`params.U` is `U` centred at `us`; a Cartesian product lands in `Vec ℝ (n + m)`
+`params.U` is `U` centered at `us`; a Cartesian product lands in `Vec ℝ (n + m)`
 through `blockPadLeft`/`blockPadRight`; `interval` is CORA's, `intervalEven`.
 Three departures: `Rdiff + RallError` runs `dependent`, so a region names all of it
 by `point`; `E` bounds the third derivative over the region as `lagrangeRemainder`

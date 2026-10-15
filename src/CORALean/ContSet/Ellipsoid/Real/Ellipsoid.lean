@@ -7,7 +7,7 @@ public import CORALean.Global.EuclideanNorm
 /-!
 # Ellipsoids: the representation
 
-The definition is [1, Def. 4]: CORA's `ellipsoid` stores a shape matrix `Q` and a centre, which
+The definition is [1, Def. 4]: CORA's `ellipsoid` stores a shape matrix `Q` and a center, which
 [1] calls `c` and so does the field. CORALean stores the *generator* matrix `G` instead and
 denotes the same family as the affine image of a Euclidean unit ball,
 

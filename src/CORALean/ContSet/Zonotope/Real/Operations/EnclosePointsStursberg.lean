@@ -11,8 +11,8 @@ public import Mathlib.Data.Matrix.Mul
 # `Zonotope.enclosePointsStursberg`
 
 CORA's `@zonotope/enclosePoints.m` at `method = 'stursberg'`, `aux_enclosePointsStursberg`: the
-points are centred on their mean, rotated by `Uᵀ`, boxed per rotated coordinate (`m1` the
-maximum, `m2` the minimum), and the box is rotated back: centre `mean + U (m1 + m2) / 2`,
+points are centered on their mean, rotated by `Uᵀ`, boxed per rotated coordinate (`m1` the
+maximum, `m2` the minimum), and the box is rotated back: center `mean + U (m1 + m2) / 2`,
 generators `(m1ᵢ - m2ᵢ) / 2 · U[:, i]`.
 
 CORA takes `U` from `svd(cov(sampleMatrix'))`, the principal axes of the sample. A singular value

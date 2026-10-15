@@ -53,9 +53,9 @@ def SpectraShadow.pointExample : SpectraShadow (Vec ℝ 1) :=
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- A shadow shifted by a vector: only the centre moves, the inequality is untouched. CORA's
+/-- A shadow shifted by a vector: only the center moves, the inequality is untouched. CORA's
 `SpS - c` and `SpS + c` for a numeric `c` (`@spectraShadow/plus.m` with a point), as the
-shift of the set by `v` is the centre `c + v`. -/
+shift of the set by `v` is the center `c + v`. -/
 def SpectraShadow.translate (S : SpectraShadow α) (v : α) : SpectraShadow α :=
   { S with c := S.c + v }
 

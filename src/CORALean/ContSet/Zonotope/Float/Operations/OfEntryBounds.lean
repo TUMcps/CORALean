@@ -8,10 +8,10 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 /-!
 # `Zonotope.ofEntryBounds`
 
-How an operation whose exact result is a zonotope with its own centre and generators —
+How an operation whose exact result is a zonotope with its own center and generators —
 a matrix zonotope's product with a zonotope is one — rounds it: floats either side of
-each exact coordinate of the centre and of every generator, the lower ones stored. The
-centre's gap is `residual`, the generators' is `generatorError` at their widths, and both
+each exact coordinate of the center and of every generator, the lower ones stored. The
+center's gap is `residual`, the generators' is `generatorError` at their widths, and both
 join the box `I_error` the operation already owes; the generator count is the exact one's.
 -/
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.Global.EuclideanHausdorffDist
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
@@ -20,7 +20,7 @@ bound implies the other.
 
 Where the sup-norm twin reads off one coordinate at a time, the whole
 displacement is bounded at once: a point of the box is within the columnwise
-sum of generator magnitudes of the centre, which `norm₂_sum_le` prices.
+sum of generator magnitudes of the center, which `norm₂_sum_le` prices.
 
 No finiteness hypothesis is needed: `hausdorffDist₂_le_of_mem_dist` bounds the
 distance from above, and the junk value a `⊤` edistance would give is `0`,
@@ -58,10 +58,10 @@ theorem aux_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i, |x i| ≤ |y i|) 
   have hi := mul_self_le_mul_self (abs_nonneg (x i)) (h i)
   rwa [abs_mul_abs_self, abs_mul_abs_self, ← pow_two, ← pow_two] at hi
 
-/-- A point of the box is within the generators' total length of the centre:
+/-- A point of the box is within the generators' total length of the center:
 coordinatewise it is within their columnwise magnitude sum, and that vector is
 no longer than the generators are. -/
-theorem aux_norm₂_sub_centre_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
+theorem aux_norm₂_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
     (hx : x ∈ Z.interval.construct) : ‖x - Z.c‖₂ ≤ ∑ p, ‖Z.G p‖₂ := by -- --- PROOF ---
   -- one vector per generator, read entrywise in magnitude
   let A : Fin Z.h → Vec ℝ n := fun j i => |Z.G j i|
@@ -91,9 +91,9 @@ theorem Zonotope.hausdorffDist₂_interval_le (Z : Zonotope (Vec ℝ n)) :
   have hr : (0 : ℝ) ≤ ∑ p, ‖Z.G p‖₂ := Finset.sum_nonneg fun _ _ => norm₂_nonneg _
   refine hausdorffDist₂_le_of_mem_dist hr
     (fun x hx => ⟨x, Z.interval_contains hx, by rw [sub_self, norm₂_zero]; exact hr⟩) ?_
-  -- the other way the box is reached from the centre, which the zonotope holds
+  -- the other way the box is reached from the center, which the zonotope holds
   intro x hx
-  exact ⟨Z.c, Z.centre_mem_construct, aux_norm₂_sub_centre_le hx⟩
+  exact ⟨Z.c, Z.center_mem_construct, aux_norm₂_sub_center_le hx⟩
 
 end CORALean.Real
 

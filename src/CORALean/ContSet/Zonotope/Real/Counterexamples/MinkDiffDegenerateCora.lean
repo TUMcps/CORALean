@@ -18,7 +18,7 @@ check that both projections agree (l. 176-177, else an error, l. 188-192), then 
 the projected sets in `ℝ^newDim` (l. 179-183) mapped back by `pinv(P_minuend)` (l. 186).
 
 Two slips: `U(1:newDim, :)` takes the first rows of `U` where the range of the generators is
-spanned by its first columns, and the projection forgets the component of the minuend's centre
+spanned by its first columns, and the projection forgets the component of the minuend's center
 outside that range, which `pinv` cannot bring back: every result lies in the row space of
 `P_minuend`, a subspace through the origin, wherever the minuend lies.
 

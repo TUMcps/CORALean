@@ -7,7 +7,7 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 /-!
 # `Capsule.project`
 
-CORA's `@capsule/project.m`: centre and generator at the chosen coordinates, the radius unchanged,
+CORA's `@capsule/project.m`: center and generator at the chosen coordinates, the radius unchanged,
 `C.c(dims)`, `C.g(dims)`, `C.r`. `Capsule.reindex` is the case where `dims` is a permutation.
 -/
 
@@ -26,7 +26,7 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Centre and generator read at `dims`, the radius unchanged. -/
+/-- Center and generator read at `dims`, the radius unchanged. -/
 def Capsule.project (C : Capsule n) (dims : Fin m → Fin n) : Capsule m where
   c := fun i => C.c (dims i)
   g := fun i => C.g (dims i)

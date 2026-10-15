@@ -12,9 +12,9 @@ public import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
 public import CORALean.ContSet.Capsule.Real.Theorems.IsFullDimIff
 public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
-public import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
+public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemConstructIff
 public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
-public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCenterLe
 public import CORALean.ContSet.Capsule.Real.Theorems.RadiusExact
 public import CORALean.ContSet.Capsule.Real.Theorems.ProjectExact
 public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuterKeepLeft

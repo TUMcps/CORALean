@@ -77,8 +77,8 @@ theorem aux_abs_nominal_le (V : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
   rw [hval j]
   exact le_trans (abs_add_le _ _) (by linarith)
 
-/-- The two ends of the exact interval at a residual `Rs` of the float one: the centre's distance
-from the stored centre plus the radius is at most the residual's larger end. -/
+/-- The two ends of the exact interval at a residual `Rs` of the float one: the center's distance
+from the stored center plus the radius is at most the residual's larger end. -/
 theorem aux_mid_add_rad_le {lo hi C M : ℝ} (hlo : |lo - C| ≤ M) (hhi : |hi - C| ≤ M) :
     |(lo + hi) / 2 - C| + (hi - lo) / 2 ≤ M := by
   obtain ⟨h1, h2⟩ := abs_le.mp hlo
@@ -141,8 +141,8 @@ theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Ma
       rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul, mul_comm]
     rw [h, hmv, hrr]
     ring
-  -- the stored centre, the float residual, and what a point of `V` can be
-  set C := Interval.centreMat IMf with hC
+  -- the stored center, the float residual, and what a point of `V` can be
+  set C := Interval.centerMat IMf with hC
   set Rs := Interval.matResidual IMf.inf IMf.sup C with hRs
   have hV0 : (0 : Vec ℝ n) ∈ V.I_error.construct := fun i => by
     show toReal (V.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (V.I_error.sup i)
@@ -171,7 +171,7 @@ theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Ma
     show _ ≤ toReal (maximum (absolute (Rs.inf i j)) (absolute (Rs.sup i j)))
     rw [toReal_maximum, toReal_absolute, toReal_absolute]
     exact abs_le_max_abs_abs h.1 h.2
-  -- the exact centre's distance from the stored one plus the radius is under the magnitude
+  -- the exact center's distance from the stored one plus the radius is under the magnitude
   have hterm : ∀ i j, |IMr.center i j - toReal (C i j)| + IMr.radius i j ≤ toReal (mag i j) :=
     fun i j => by
       have h := aux_mid_add_rad_le (hbl i j) (hbh i j)
@@ -228,7 +228,7 @@ theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Ma
   have h0 : (0 : Vec ℝ m) ∈ (Interval.mtimesIntervalMat Rs V.I_error).construct := by
     have := Interval.mtimesIntervalMat_outer Rs V.I_error (Set.mem_biUnion hRl ⟨0, hV0, rfl⟩)
     simpa using this
-  -- the stored centre's image, then one coefficient per coordinate for what is left
+  -- the stored center's image, then one coefficient per coordinate for what is left
   obtain ⟨γ, hγ, ht₀γ⟩ := Zonotope.mem_nominalSet_iff.mp ht₀
   refine ⟨t₀ + v, ?_, e₀ + 0, Interval.plus_outer _ _ (Set.add_mem_add he₀ h0), ?_⟩
   · -- the witness: `mid(M) V`'s coefficients, then one per coordinate scaled to the radius
@@ -248,7 +248,7 @@ theorem Zonotope.real_mtimesIntervalMat_subset {IMr : CORALean.Real.Interval (Ma
       rw [CORALean.Real.Zonotope.sum_diagonal_mul', toRealVec,
         CORALean.Real.Zonotope.mul_coefficient (hvb i), ht₀γ i, add_assoc]
       rfl
-  · -- the exact point is the stored centre's image plus `v`
+  · -- the exact point is the stored center's image plus `v`
     funext i
     show (t₀ + v + (e₀ + 0)) i = x i
     have hx' := hxw i

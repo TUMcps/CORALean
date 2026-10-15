@@ -7,9 +7,9 @@ public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 @[expose] public section
 
 /-!
-# Every member of a box is within `Interval.radius₂` of the centre
+# Every member of a box is within `Interval.radius₂` of the center
 
-In `‖·‖₂`: coordinatewise a member's distance to the centre is at most the half-width
+In `‖·‖₂`: coordinatewise a member's distance to the center is at most the half-width
 (`abs_sub_center_le`), and the Euclidean norm is monotone in magnitudes.
 -/
 

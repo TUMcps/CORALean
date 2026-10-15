@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
 # A box as an ellipsoid
 
 Through the zonotope, which loses nothing: a box is a zonotope with `n`
-axis-aligned generators, so what comes out is the centre with generator matrix
+axis-aligned generators, so what comes out is the center with generator matrix
 `√n · diag(radius)` — the smallest ellipsoid containing the box, `√n` times the
 inscribed one, and the classical bound is met rather than approached.
 

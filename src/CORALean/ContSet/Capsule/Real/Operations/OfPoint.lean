@@ -7,7 +7,7 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 /-!
 # `Capsule.ofPoint`
 
-CORA's `capsule` at a centre, no direction and no radius: a single point, as
+CORA's `capsule` at a center, no direction and no radius: a single point, as
 the representation. What `OfPoint` asks every representation with a point
 operation to supply.
 -/

@@ -15,7 +15,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 # `Ellipsoid.mtimes` over-approximates the image under a linear map
 
 `InflatedContSet.map_subset` splits this into the nominal part and the box, and
-the split is a zonotope's: the centre is wrong by a fixed vector, which
+the split is a zonotope's: the center is wrong by a fixed vector, which
 `residual` holds, and the generators by an entrywise amount the coefficients
 scale, which `generatorError` sums.
 
@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The exact image, regrouped so the centre and each generator appear once. -/
+/-- The exact image, regrouped so the center and each generator appear once. -/
 theorem Ellipsoid.aux_mulVec_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) (u : Vec ℝ E.k)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (E.c k) + ∑ j, toReal (E.G k j) * u j) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (E.c k))

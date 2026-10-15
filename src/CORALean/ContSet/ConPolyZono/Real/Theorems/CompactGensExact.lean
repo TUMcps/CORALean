@@ -17,7 +17,7 @@ The result is [1, Prop. 1].
 by definition and only the generator sum moves. An equality of sets with no
 hypothesis, which is what makes this stage bookkeeping.
 
-The `key` is stated with the *original* centre and independent block on both
+The `key` is stated with the *original* center and independent block on both
 sides. They are the compacted ones up to unfolding, and writing them so keeps
 the equation to the one sum that actually changes.
 

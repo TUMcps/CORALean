@@ -16,7 +16,7 @@ The radius of the bounding box of a zonotope at coordinate `i`, `∑ⱼ |G j i|`
 
 `@interval/zonotope.m` ends with `G = diag(r); Z = zonotope([c, G(:,r ~= 0)])`: the generators of
 zero radius are dropped, so the box has one generator per coordinate of non-zero radius, in
-order. Its centre is the centre of `Z`. Read from the source, not run.
+order. Its center is the center of `Z`. Read from the source, not run.
 
 # `Zonotope.splitCora`: `split(Z, N)` as CORA's code runs
 

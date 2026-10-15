@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ParticularCoeff
 
 CORA's `eAtInt = Asum + E Δt` of `errorSolution_adaptive`, where `Asum` is `Δt I` plus
 `Aⁱ Δt^{i+1}/(i+1)!` for `i = 1, …, η` and `E Δt = [-ΔtW, ΔtW]`: the matrix a *static*
-uncertain input is multiplied by, centred on the exact orders, the remainder being [1, Lemma 1]'s.
+uncertain input is multiplied by, centered on the exact orders, the remainder being [1, Lemma 1]'s.
 
 ## References
 

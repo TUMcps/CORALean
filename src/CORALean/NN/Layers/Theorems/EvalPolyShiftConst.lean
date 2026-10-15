@@ -9,7 +9,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # A stored shift moves the polynomial by what it landed
 
-Read as reals it is the exact recentring, at whatever the rounded sum actually moved the
+Read as reals it is the exact recentering, at whatever the rounded sum actually moved the
 constant coefficient by.
 -/
 

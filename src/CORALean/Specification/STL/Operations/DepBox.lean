@@ -12,7 +12,7 @@ public import Mathlib.Data.Matrix.Diagonal
 
 [1, Alg. 1] encloses `C_i` and `D_i` by intervals "to reduce the number of generators": the
 interval hull of a zonotope `⟨c, G⟩_Z`, `[c - r, c + r]` with `r_i = Σ_l |G_{i,l}|`, which is
-the zonotope with the centre `c` and the `n` generators `r_i e_i`.
+the zonotope with the center `c` and the `n` generators `r_i e_i`.
 
 ## References
 
@@ -41,7 +41,7 @@ variable {n : ℕ}
 /-- `interval(Z)` of [1, Alg. 1], as a zonotope with `n` axis-aligned generators. -/
 noncomputable def STL.depBox (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ n) where
   h := n
-  -- 3. `interval(Z) = [c − r, c + r]`: the centre of `Z` is the centre of the box
+  -- 3. `interval(Z) = [c − r, c + r]`: the center of `Z` is the center of the box
   c := Z.c
   -- 3. … with `r_i = Σ_l |G_{i,l}|`, the generator `r_i e_i` along each axis
   G := Matrix.diagonal fun i => ∑ l, |Z.G l i|

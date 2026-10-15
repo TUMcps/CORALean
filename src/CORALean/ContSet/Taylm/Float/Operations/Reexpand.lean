@@ -7,9 +7,9 @@ public import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
 /-!
 # `Taylm.reexpand`, over a floating-point scalar
 
-CORA's `reexpand(obj, int)`: the model re-expanded at the centre `m` of a sub-box of the normalized
+CORA's `reexpand(obj, int)`: the model re-expanded at the center `m` of a sub-box of the normalized
 box and rescaled by its radius `r`, so that the new variables again range over `[-1, 1]`; the
-remainder is kept, and widened by what storing each new coefficient costs. The centre and radius are
+remainder is kept, and widened by what storing each new coefficient costs. The center and radius are
 the floats the caller supplies (a sub-box's `(lo + hi)/2` and `(hi - lo)/2` are not exact in the
 scalar); the expansion substitutes one variable after another, in order.
 -/

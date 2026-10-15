@@ -9,13 +9,13 @@ public import Mathlib.Algebra.BigOperators.Fin
 # `PolyZonotope.sum`
 
 CORA's `@polyZonotope/sum`: the sum of `pZ` and a list of sets, all written over one factor
-list, so every factor shared by two of them stays shared. Centres add, the generator and
+list, so every factor shared by two of them stays shared. Centers add, the generator and
 exponent blocks concatenate side by side: `exactPlus` many times over, as one definition so
 that the factor count stays `pZ.p`. `hp` says every summand has that count, factor identity
 being positional.
 
 CORA then runs `removeRedundantExponents`, which merges equal exponent columns and denotes the
-same set (`compact_exact`); it is left out. CORA's centre adds `pZlist{1}.c` on every pass of
+same set (`compact_exact`); it is left out. CORA's center adds `pZlist{1}.c` on every pass of
 its loop, not `pZlist{i}.c`: see `sumCora`.
 -/
 

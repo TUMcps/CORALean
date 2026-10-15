@@ -13,8 +13,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 CORA's `conZonotope/rescale` and [1, Prop. 4]'s eq. 24 on the stored floats: the coefficient
 box `[ξL, ξU]` is mapped back onto `[-1, 1]` by `ξ = ξm + diag(ξr) δ`. Here `ξm` is the
 rounded midpoint and `ξr` a radius rounded up from it to both ends, so the box around `ξm`
-covers `[ξL, ξU]` whatever the rounding did. The new centre `c + G ξm` and generators
-`G diag(ξr)` are rounded down, what that costs going into the error box (the centre's as a
+covers `[ξL, ξU]` whatever the rounding did. The new center `c + G ξm` and generators
+`G diag(ξr)` are rounded down, what that costs going into the error box (the center's as a
 residual, the generators' as a generator error against `|δ| ≤ 1`); the constraint rows
 `A diag(ξr)` are rounded down too, their right-hand sides `b − A ξm` rounded outward and
 widened by the same generator error, so every rescaled coefficient vector stays feasible. An

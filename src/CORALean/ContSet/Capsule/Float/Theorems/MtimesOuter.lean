@@ -10,7 +10,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
 # `Capsule.mtimes` encloses the image
 
 The exact layer's `mtimes_outer` at the nominal capsule and the matrix the floats denote, then
-`construct_subset_of_dist_le` to the stored capsule: the centre and the generator are each
+`construct_subset_of_dist_le` to the stored capsule: the center and the generator are each
 within the length of their per-entry gap, and the radius times the exact Frobenius norm is under
 the radius times its rounded-up bound. A negative radius denotes `∅`, so a point in the capsule
 has `0 ≤ r`, which the product with the bound needs.
@@ -67,11 +67,11 @@ theorem Capsule.mtimes_outer (k : ℕ) (M : Mat 𝕋 m n) (C : Capsule 𝕋 n) :
     obtain ⟨t, _, hle⟩ := hx
     exact le_trans (CORALean.norm₂_nonneg _) hle
   refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := ⟨_, _, _⟩) ?_ hK
-  -- the rounded radius, and the two rounding gaps of the centre and of the generator
+  -- the rounded radius, and the two rounding gaps of the center and of the generator
   set rad := mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j)))
   set gC := normUp k fun i => subUp (dotUp (M i) C.c) (mulVecDown M C.c i)
   set gG := normUp k fun i => subUp (dotUp (M i) C.g) (mulVecDown M C.g i)
-  -- the three lengths: the centre's gap, the generator's gap, and the scaled radius
+  -- the three lengths: the center's gap, the generator's gap, and the scaled radius
   have h₁ := aux_mulVec_gap_le k M C.c
   have h₂ := aux_mulVec_gap_le k M C.g
   have h₃ : toReal C.r * Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤ toReal rad :=

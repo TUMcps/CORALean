@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
 @[expose] public section
 
 /-!
-# A constrained polynomial zonotope without generators lies in its centre
+# A constrained polynomial zonotope without generators lies in its center
 
 With no generator column the points are `c` or nothing: the constraints can only remove it. CORA
 answers `true` and returns `S = c` without looking at them, so for an infeasible constraint

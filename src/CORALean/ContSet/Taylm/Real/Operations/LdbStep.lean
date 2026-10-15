@@ -10,7 +10,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
 # One step of the linear dominated bounder
 
 Steps (2)-(3) of [1, Sec. 2]'s LDB algorithm on a model over the normalized box, re-expanded at
-the box's centre (step (1)): the bound `[M, Min]` of the linear part plus the nonlinear one,
+the box's center (step (1)): the bound `[M, Min]` of the linear part plus the nonlinear one,
 `Min` lowered by the value at the left end and at the mid-point, and in each direction `i` with
 `Lᵢ ≠ 0` the part within `d/|Lᵢ|` of the left end kept, `d = Min - M`. The source flips the
 coordinates with negative `Lᵢ` (step (2)); here their left end is `+1` instead.

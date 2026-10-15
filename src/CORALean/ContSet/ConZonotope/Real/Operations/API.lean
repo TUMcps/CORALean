@@ -62,7 +62,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
 public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.ConZonotope.Real.Operations.ContainsPoint
-public import CORALean.ContSet.ConZonotope.Real.Operations.IsCentre
+public import CORALean.ContSet.ConZonotope.Real.Operations.IsCenter
 public import CORALean.ContSet.ConZonotope.Real.Operations.Stack
 public import CORALean.ContSet.ConZonotope.Real.Operations.NullPolytope
 public import CORALean.ContSet.ConZonotope.Real.Operations.CubLinearAt
@@ -87,7 +87,7 @@ it, which asks for the equality system CORA's constraints are and this represent
 need not be.
 
 `OfMat` is CORA's constructor, whose constraints are an equality system, `Domain` is the
-coefficient polytope the unit box and `P` make together, and `OfPoint` is the centre alone, at
+coefficient polytope the unit box and `P` make together, and `OfPoint` is the center alone, at
 `HPolytope.fullspace`. `MinkDiffV` folds `intersection` over a zonotope translated by each of a
 polytope's vertices — Wetzlinger et al.'s Prop. 6, exact where every other difference here encloses.
 `rowBound`, `tightenCoeff`, `tightenRow` and `tighten` are Raghuraman and Koeln's Algorithm 1;

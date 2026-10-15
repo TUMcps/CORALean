@@ -84,12 +84,12 @@ theorem Zonotope.correctedStepDistributed_outer (Λ : Mat ℝ n ny) (A : ∀ a, 
     have hΛ : Λ *ᵥ y = Λ *ᵥ (C *ᵥ x') + (Λ * Dv) *ᵥ σ := by
       rw [hy, mulVec_add, ← mulVec_mulVec]
     rw [hΛ]
-    -- every neighbour's state is its centre plus its offset
+    -- every neighbour's state is its center plus its offset
     have hxs : ∑ a, A a *ᵥ x a = ∑ a, A a *ᵥ (X a).c + θ := by
       rw [hθ, ← Finset.sum_add_distrib]
       refine Finset.sum_congr rfl fun a _ => ?_
       rw [hxa a, mulVec_add]
-    -- the state as the centre, its offset and the disturbance
+    -- the state as the center, its offset and the disturbance
     have hxe : x' = (∑ a, A a *ᵥ (X a).c + B *ᵥ u) + θ + Dw *ᵥ ϖ := by
       rw [hx', hxs]; abel
     have key : (1 - Λ * C) *ᵥ (∑ a, A a *ᵥ (X a).c + B *ᵥ u) + (1 - Λ * C) *ᵥ θ +

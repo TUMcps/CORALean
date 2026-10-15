@@ -234,7 +234,7 @@ def panel(name, entries, segments, height, xlabel, legend, title=None, at=None, 
         opts.append(f"yticklabel style={{font={font}}}")
     if title:
         opts.append(f"title={{{title}}}")
-        # as the paper's other figures: \\footnotesize, upright, centred over the plot
+        # as the paper's other figures: \\footnotesize, upright, centered over the plot
         opts.append(f"title style={{{title_at}, anchor=south, font=\\footnotesize}}")
     if xtick:
         opts.append(f"xtick={{{xtick}}}")
@@ -339,7 +339,7 @@ def tikz(data):
     wa = 0.50 * LINEWIDTH_CM - lab_a
     # cm right of the bar of (b) for its "+n", and no more: the node's 3pt inner sep and the
     # text at CHAR_W per monospace character, so that bar and "+n" together fill the column.
-    # The title and legend of (b) are centred on bar and tail together; (c) has no "+n", so
+    # The title and legend of (b) are centered on bar and tail together; (c) has no "+n", so
     # its bar fills the whole column.
     TAIL = 3 / 28.45 + CHAR_W * len(f"+{results[0][2]}") + 0.03
     xb = 0.59  # (b) and (c) start at this fraction of the line: a clear gap after (a)

@@ -9,7 +9,7 @@ public import CORALean.Global.Partition
 # `Zonotope.splitKept`
 
 The part `Z_a = ⟨c, G_a⟩` of [1, Sec. IV-B, Step 1)]: the generators
-a partition keeps (`part.left`), with the centre of `Z`.
+a partition keeps (`part.left`), with the center of `Z`.
 
 ## References
 

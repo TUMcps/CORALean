@@ -55,10 +55,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 def NonlinearSys.FloatModel.slopeRemainder (fm : NonlinearSys.FloatModel 𝕋 n m)
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) (xs : Vec 𝕋 n) (us : Vec 𝕋 m) (X : Interval (Vec 𝕋 n))
     (U : Interval (Vec 𝕋 m)) : Interval (Vec 𝕋 n) :=
-  let ΔJx := Interval.matPlus (fm.jacX X U) (Interval.point fun i j => neg (A i j))  -- [J_x] - A
-  let ΔJu := Interval.matPlus (fm.jacU X U) (Interval.point fun i j => neg (B i j))  -- [J_u] - B
-  let dx := Interval.plus X (Interval.point fun i => neg (xs i))                     -- X - x✱
-  let du := Interval.plus U (Interval.point fun i => neg (us i))                     -- U - u✱
+  let ΔJx := Interval.matPlus (fm.jacX X U) (Interval.point (-A))  -- [J_x] - A
+  let ΔJu := Interval.matPlus (fm.jacU X U) (Interval.point (-B))  -- [J_u] - B
+  let dx := Interval.plus X (Interval.point (-xs))                     -- X - x✱
+  let du := Interval.plus U (Interval.point (-us))                     -- U - u✱
   Interval.plus (Interval.mtimesIntervalMat ΔJx dx) (Interval.mtimesIntervalMat ΔJu du)
 
 end CORALean

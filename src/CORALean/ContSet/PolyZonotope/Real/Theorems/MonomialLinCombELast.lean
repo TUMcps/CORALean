@@ -6,7 +6,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 @[expose] public section
 
 /-!
-# The centre-difference generator of `linComb` carries only the fresh factor
+# The center-difference generator of `linComb` carries only the fresh factor
 
 Split out of `Operations/LinComb.lean` (issue #62): a proof device rather than
 an operation, hence in `Theorems/`, reused by `LinCombOuter.lean` at both

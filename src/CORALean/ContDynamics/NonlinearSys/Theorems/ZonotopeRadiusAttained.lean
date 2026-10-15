@@ -11,7 +11,7 @@ public import Mathlib.Tactic.Ring
 
 `|c - z✱| + Σ|G|` is `max |z - z✱|` over the set a zonotope denotes, coordinate by coordinate:
 the point that attains it takes each generator with the sign that makes its contribution
-agree with the centre's offset. This is what makes the radius `lagrangeRemainder` reads off a
+agree with the center's offset. This is what makes the radius `lagrangeRemainder` reads off a
 zonotope a property of the set and not of its generators.
 -/
 
@@ -34,7 +34,7 @@ variable {d : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- One coordinate of a zonotope's point, written as its centre plus what the
+/-- One coordinate of a zonotope's point, written as its center plus what the
 generators contribute there. -/
 theorem aux_attained_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) (zs : Vec ℝ d)
     (j : Fin d) :
@@ -50,7 +50,7 @@ theorem aux_attained_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) 
 in each coordinate. -/
 theorem Real.Zonotope.radius_attained (Z₁ : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) (j : Fin d) :
     ∃ z ∈ Z₁.construct, |Z₁.c j - zs j| + ∑ k, |Z₁.G k j| ≤ |z j - zs j| := by -- --- PROOF ---
-  -- the sign that turns coordinate `j` of the centre offset into its absolute value
+  -- the sign that turns coordinate `j` of the center offset into its absolute value
   set s : ℝ := if 0 ≤ Z₁.c j - zs j then 1 else -1 with hsdef
   have hs1 : s = 1 ∨ s = -1 := by rw [hsdef]; split_ifs <;> simp
   have hsabs : |s| = 1 := by rcases hs1 with h | h <;> simp [h]
@@ -66,7 +66,7 @@ theorem Real.Zonotope.radius_attained (Z₁ : Zonotope (Vec ℝ d)) (zs : Vec �
     intro k
     simp only [hβdef]
     split_ifs <;> simp
-  -- and each generator's contribution there is its own magnitude, signed like the centre's
+  -- and each generator's contribution there is its own magnitude, signed like the center's
   have hg : ∀ k, s * (β k * Z₁.G k j) = |Z₁.G k j| := by
     intro k
     have habs : |s * Z₁.G k j| = |Z₁.G k j| := by rw [abs_mul, hsabs, one_mul]

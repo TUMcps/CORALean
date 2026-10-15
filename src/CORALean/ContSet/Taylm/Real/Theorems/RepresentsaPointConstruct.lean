@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.TaylmPolyZonotopeExact
 # `Taylm.representsa_point` is sufficient
 
 When the test holds, and every remainder is a nonempty interval, the range set of the models is
-the one point, the polynomial zonotope's centre. One direction: the test is sufficient only.
+the one point, the polynomial zonotope's center. One direction: the test is sufficient only.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,7 +14,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ExistsFacetSuperset
 (`intrinsicInterior`), a facet having no interior in `ℝⁿ`. For a full-dimensional `Z`, which a
 facet needs. [1] iterates Lemma 3.4 `n - 1` times; here the least face through `x`, proper as its
 dimension is below `n`, lies in a facet `F = Z.face u` (`exists_facet_superset`,
-`construct_face`), and `x*` is that zonotope's centre (`center_mem_intrinsicInterior`). For
+`construct_face`), and `x*` is that zonotope's center (`center_mem_intrinsicInterior`). For
 `n = 0` the zonotope is a point and its own facet. "Found in polynomial time" is a running time,
 not stated here.
 
@@ -60,7 +60,7 @@ theorem Zonotope.exists_facet_mem_intrinsicInterior (Z : Zonotope (Vec ℝ n))
     subst hprop
     exact ⟨Z.c, Z.construct, IsExposed.refl _, by omega, hx,
       ⟨0, fun _ => by simp, by simp⟩, Z.center_mem_intrinsicInterior⟩
-  · -- a facet over it, and the facet's centre
+  · -- a facet over it, and the facet's center
     obtain ⟨F', hF', hdim', hsub⟩ := Z.exists_facet_superset hfull hF0 ⟨x, hxF0⟩ hprop
     obtain ⟨l', rfl⟩ := hF' ⟨x, hsub hxF0⟩
     have hface := Z.construct_face (l' : Vec ℝ n →ₗ[ℝ] ℝ)

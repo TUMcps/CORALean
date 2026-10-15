@@ -16,7 +16,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumExtEqPoint
 over pairs of generators, and the monomial arithmetic that makes each pair a
 monomial again, are the shared pairing's and are not redone here. `quadEval` at
 one point is `quadBilin` at it twice, definitionally, and `quadMapDep`'s own
-point is the sum on the right with an empty centre.
+point is the sum on the right with an empty center.
 
 Pointwise in the factor vector, and public for that reason: the constrained
 representation needs it at a fixed `a`, which a set equality cannot give.
@@ -40,7 +40,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The map of a sum, expanded over pairs: `bilin_point` at `quadBilin`, whose
-point is the same sum with an empty centre. -/
+point is the same sum with an empty center. -/
 theorem PolyZonotope.quadEval_sum_ext (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n))
     (a : Fin pZ.p → ℝ) :
     quadEval Q (∑ l, extM pZ a l • extG pZ l)

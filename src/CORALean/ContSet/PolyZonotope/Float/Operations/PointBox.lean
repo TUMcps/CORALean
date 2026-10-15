@@ -14,7 +14,7 @@ The interval evaluation of the dependent point map `α ↦ c + Σₗ Gₗ αᴱ�
 values: CORA's `aux_funcPoly` of `@polyZonotope/innerApprox` (`val = c + Σ G(:,i)·prod(x.^E(:,i))`)
 called on an interval, which is how `innerApproxImage` encloses `f(X_)` and `f(center(X_))`.
 The monomials come from `monoBox`, the stored generators multiply them by `Interval.mtimes`, the
-centre is added by `Interval.plus`. The independent generators and the error box are not part of
+center is added by `Interval.plus`. The independent generators and the error box are not part of
 the map.
 -/
 

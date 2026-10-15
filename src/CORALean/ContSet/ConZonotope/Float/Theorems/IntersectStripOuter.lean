@@ -22,7 +22,7 @@ A point `x = c + G ξ + e` of the set with `|C x - y| ≤ φ` gets the strip fac
 `C x` is the float image's nominal point at `ξ` plus a point of its box, as in `conIntersect`.
 The point is the new nominal point at `[ξ; ν]` plus the error the box holds: over ℝ,
 `c' + (I - Λ C) G ξ + Λ φ ν = c + G ξ + Λ C e` exactly, because `C G ξ - φ ν = y - C c - C e`;
-so `x` is that plus `e - Λ C e`, plus the rounding of the new centre and generators. For every
+so `x` is that plus `e - Λ C e`, plus the rounding of the new center and generators. For every
 gain `Λ`; outer only.
 -/
 
@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n s : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The exact image of `c + G ξ + e`, regrouped so the centre and each generator appear once. -/
+/-- The exact image of `c + G ξ + e`, regrouped so the center and each generator appear once. -/
 theorem ConZonotope.aux_strip_regroup {h : ℕ} (M : Mat 𝕋 s n) (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
     (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
     (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G j k) * β j + e k) (i : Fin s) :
@@ -133,7 +133,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
       change _ ≤ toReal (subUp (mulVecUp C (cZ.G j) k) (mulVecDown C (cZ.G j) k))
       rw [abs_le]
       exact ⟨by linarith, by linarith⟩
-    -- the box's image, then the centre's and the generators' rounding
+    -- the box's image, then the center's and the generators' rounding
     refine Interval.plus_outer _ _
         ⟨toRealMat C *ᵥ e, Interval.mtimes_outer C cZ.I_error ⟨e, he, rfl⟩,
       _, Interval.plus_outer _ _
@@ -195,7 +195,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
     constructor <;> linarith
   have hgen₂ : ∀ i k, |toReal (Λ i k) * toReal (φ k) - toReal (G₂ k i)| ≤ toReal (gap₂ i k) :=
     fun i k => ConZonotope.aux_strip_mulDown_gap _ _
-  -- the new centre's rounding
+  -- the new center's rounding
   have hcen : ∀ i, toReal (cLo i) ≤ toReal (cZ.c i) + (toRealMat Λ *ᵥ wR) i
       ∧ toReal (cZ.c i) + (toRealMat Λ *ᵥ wR) i ≤ toReal (cHi i) := by
     intro i

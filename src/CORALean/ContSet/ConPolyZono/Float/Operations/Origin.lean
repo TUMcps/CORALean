@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `ConPolyZono.origin`, over a floating-point scalar
 
 The point `0` as a constrained polynomial zonotope with no generators and an empty
-constraint system, the centre stored as `zero` and both boxes at zero.
+constraint system, the center stored as `zero` and both boxes at zero.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -23,7 +23,7 @@ the spectral norm, `P₁ = X_end ⊖ F box(X_end) ⊖ B_μ` and `P₂ = e^{AΔt}
 the preimage under `e^{-AΔt}`. Lines 1-2 and 6-14 are `maxBackReachTimeInterval`, which takes
 the two polytopes. Line 14's union is no constrained zonotope, so the result is a `Set`.
 
-`Zw` is (27), the constant centre trajectory's contribution over one interval.
+`Zw` is (27), the constant center trajectory's contribution over one interval.
 
 ## References
 

@@ -18,7 +18,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.AdaptSetOrderBudget
 public import CORALean.ContSet.Zonotope.Real.Theorems.AlignedWithOfSmul
 public import CORALean.ContSet.Zonotope.Real.Theorems.AutoTuneSetOrderLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.BilinOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
 public import CORALean.ContSet.Zonotope.Real.Theorems.ContinuousAffine
@@ -103,8 +103,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusIntervalOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusSubsetClosedBall
 public import CORALean.ContSet.Zonotope.Real.Theorems.ProjectHighDimExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.QuadTaylorOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
-public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecenterSubMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecenterZeroMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAbsBoundLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxAntitone
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceBoxEqOfPoint
@@ -158,7 +158,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.ExactPlusExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.Radius2Bound
-public import CORALean.ContSet.Zonotope.Real.Theorems.NormSubCentreLeSumGeneratorLength
+public import CORALean.ContSet.Zonotope.Real.Theorems.NormSubCenterLeSumGeneratorLength
 public import CORALean.ContSet.Zonotope.Real.Theorems.ConstrSatSound
 public import CORALean.ContSet.Zonotope.Real.Theorems.CartProdExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitFirstGenUnion
@@ -427,7 +427,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.VecVolumeEqZero
 `plus` and `map` exactly, `reduce` and the interval hull as enclosures, plus what a set-valued
 integral needs. `MemConstruct` reads membership coordinatewise, `Coefficient` holds the proof
 devices the float layer shares; `BilinOuter`, `MtimesMatZonotopeOuter`, `QuadTaylorOuter` are a
-matrix zonotope on a set, never exact — `OfPointMem`/`Recentre`/`AbsMaxOfPoint` are what those ask.
+matrix zonotope on a set, never exact — `OfPointMem`/`Recenter`/`AbsMaxOfPoint` are what those ask.
 `MinkDiffAlignedInner` and `MinkDiffRepInner` run the reverse, at aligned and at represented
 generators; `MinkDiffAlignedOuter` closes the first to `MinkDiffAlignedExact`, whose scaling
 `MinkDiffAlignedNotInner` holds to `[0, 1]` and whose pairing `AlignedWithOfSmul` reads back as the
@@ -440,7 +440,7 @@ the minuend that `MinkowskiDiffApplyLe` does without — `MinkowskiDiffHRepEq` i
 product, `MtimesIntervalMatSymmBox` it at a symmetric matrix. `ReduceBySubsetAddBox` is
 `ReduceByOuter` backwards — the reduced set sits inside the original plus its box — carried to
 `reduce` by `ReduceSubsetAddBox`, cancelled again by `MinkowskiDiffReduceByBoxInner` on
-`CentreMemConstruct`'s nonemptiness, and priced by `HausdorffDistIntervalLe` at the sup norm and the
+`CenterMemConstruct`'s nonemptiness, and priced by `HausdorffDistIntervalLe` at the sup norm and the
 `HausdorffDist2*` group at `‖·‖₂`. `SubsetClosedBallOfAbsBoundLe` and its converse tie `absBound` to
 a sup-norm ball, which `MtimesSubsetClosedBall`, `PlusSubsetClosedBall` and `ReduceBoxAbsBoundLe`
 carry through their operations, `StepSubsetClosedBall` composes at `reach`'s shape, and

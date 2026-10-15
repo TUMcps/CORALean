@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Ellipsoid
 # Membership in the nominal ellipsoid, in the stored fields
 
 The form every enclosure proof at this layer reads the nominal half of a point
-in: the ball coefficient `u` kept as it is, and the stored centre and generator
+in: the ball coefficient `u` kept as it is, and the stored center and generator
 entries put through `toReal`, coordinate by coordinate.
 
 Proofs use it rather than going through `nominal` because through it the count

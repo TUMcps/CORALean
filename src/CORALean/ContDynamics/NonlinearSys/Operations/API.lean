@@ -33,10 +33,10 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptInit
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPass
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStep
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRun
-public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrInit
-public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStep
-public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRun
-public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrReach
+public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrInit
+public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrStep
+public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrRun
+public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrReach
 public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGainSearch
 public import CORALean.ContDynamics.NonlinearSys.Operations.EstimateGain
 public import CORALean.ContDynamics.NonlinearSys.Operations.InterpGain
@@ -88,8 +88,8 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPassFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRunFloat
-public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrStepFloat
-public import CORALean.ContDynamics.NonlinearSys.Operations.CentreAbstrRunFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrStepFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrRunFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainderFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffRemainder
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep

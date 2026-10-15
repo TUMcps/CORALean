@@ -9,7 +9,7 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 /-!
 # `Taylm.log` encloses `log ∘ f`
 
-Where the range and the centre are positive, CORA's domain check: there `log` is smooth on
+Where the range and the center are positive, CORA's domain check: there `log` is smooth on
 the whole hull, and `log⁽ᴺ⁺¹⁾ = (x⁻¹)⁽ᴺ⁾` is `iter_deriv_inv`.
 
 [1, Def. 3 (log)]: the result is a Taylor model of `log ∘ f`.

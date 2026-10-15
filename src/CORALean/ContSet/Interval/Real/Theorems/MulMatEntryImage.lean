@@ -13,7 +13,7 @@ public import Mathlib.Tactic.Ring
 /-!
 # The product of an interval matrix and a real matrix, entry by entry
 
-[1, Prop. 5]: for an interval matrix `[M]` and a real matrix `N`, the product `[M] N` has centre
+[1, Prop. 5]: for an interval matrix `[M]` and a real matrix `N`, the product `[M] N` has center
 `mid[M] N` and radius `rad[M] |N|`. Read as the interval hull of `{M N | M ∈ [M]}`, entry by
 entry, and proved exact: entry `(i, j)` of `M N` ranges over exactly
 `[(mid[M] N)ᵢⱼ - (rad[M] |N|)ᵢⱼ, (mid[M] N)ᵢⱼ + (rad[M] |N|)ᵢⱼ]` as `M` ranges over `[M]`. The
@@ -55,7 +55,7 @@ theorem Interval.image_mul_apply_eq (IM : Interval (Mat ℝ n p))
     simp only [Interval.radius, Matrix.smul_apply, Matrix.sub_apply, smul_eq_mul]; ring
   have hmem : ∀ M : Mat ℝ n p, M ∈ IM.construct ↔ ∀ a k, IM.inf a k ≤ M a k ∧ M a k ≤ IM.sup a k :=
     fun M => ⟨fun h a k => h (a, k), fun h ak => h ak.1 ak.2⟩
-  -- the spread of the entry about the centre's
+  -- the spread of the entry about the center's
   have hdev : ∀ M : Mat ℝ n p, (M * N) i j - (IM.center * N) i j
       = ∑ k, (M i k - IM.center i k) * N k j := fun M => by
     simp only [Matrix.mul_apply, ← Finset.sum_sub_distrib]
@@ -106,7 +106,7 @@ theorem Interval.image_mul_apply_eq (IM : Interval (Mat ℝ n p))
       · simp only [M, ha, if_false]
         rw [hc]
         constructor <;> linarith [hIM a k]
-    · -- the moved entry is the centre's plus `t r`, which is `v`
+    · -- the moved entry is the center's plus `t r`, which is `v`
       have hdM := hdev M
       have hsum : ∑ k, (M i k - IM.center i k) * N k j = t * r := by
         rw [hrsum, Finset.mul_sum]

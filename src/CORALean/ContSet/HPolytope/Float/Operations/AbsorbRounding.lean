@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def HPolytope.absorbRounding (P : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) where
   m := P.m + (P.me + P.me)
-  A := Fin.append P.A (Fin.append P.Ae fun i j => neg (P.Ae i j))
+  A := Fin.append P.A (Fin.append P.Ae (-P.Ae))
   b := Fin.append P.bU (Fin.append P.beU P.beLN)
   me := 0
   Ae := fun i => i.elim0

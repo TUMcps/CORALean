@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 /-!
 # `PolyZonotope.ofPoint`
 
-CORA's `polyZonotope` at a centre and no generators of either block: a single
+CORA's `polyZonotope` at a center and no generators of either block: a single
 point, as the representation. What `OfPoint` asks every representation with a
 point operation to supply — `PolyZonotope.point` runs the other way, reading a
 factor vector off an existing set, so it cannot stand in for this.

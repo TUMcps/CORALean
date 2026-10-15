@@ -25,7 +25,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 CORA's `zonotope(SpS)`: `G Z + c`, `Z` the interval hull of the base spectrahedron as a
 zonotope. The hull is the certified one (`SpectraShadow.interval` of `SpectraShadow.base`, the
 `2m` dual certificates the caller's), the image by `G` the float `Zonotope.mtimes`, and the
-centre with the error box a box added by `Zonotope.plus`. `none` when a certificate fails. An
+center with the error box a box added by `Zonotope.plus`. `none` when a certificate fails. An
 enclosure, as over ℝ.
 -/
 
@@ -59,7 +59,7 @@ theorem SpectraShadow.zonotope_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
   have hβ := (Interval.zonotope_contains B) (SpectraShadow.interval_contains hB
     (SpectraShadow.mem_base hP))
   have hGβ := Zonotope.mtimes_outer (fun r j => S.G j r) B.zonotope ⟨β, hβ, rfl⟩
-  -- the centre plus the error is in the box zonotope
+  -- the center plus the error is in the box zonotope
   have hce : toRealVec S.c + e ∈ ((Interval.point S.c).plus S.I_error).zonotope.construct :=
     Interval.zonotope_contains _ (Interval.plus_outer _ _ ⟨_, Interval.mem_point S.c, e, he, rfl⟩)
   refine Zonotope.plus_outer _ _ ⟨_, hGβ, _, hce, ?_⟩

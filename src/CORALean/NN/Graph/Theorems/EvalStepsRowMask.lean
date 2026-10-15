@@ -11,7 +11,7 @@ public import CORALean.NN.Graph.Theorems.RowEqMask
 @[expose] public section
 
 /-!
-# Masking outside a large enough ball changes nothing at the centre
+# Masking outside a large enough ball changes nothing at the center
 
 `[1, §4.3]`'s locality argument, stated at last: row `v` of an `L`-step chain
 is the same whether or not the graph is masked to `S`, provided `S` already
@@ -47,7 +47,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Masking outside a ball at least as large as the radius run leaves the
-centre's row untouched, provided the two inputs already agree on that ball. -/
+center's row untouched, provided the two inputs already agree on that ball. -/
 theorem GNN.evalSteps_row_mask {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (S : Finset (Fin N))
     (L : ℕ) (hS : GNN.ball A v L ⊆ S) (W : Fin L → Mat ℝ F F) (X Y : Mat ℝ N F)
     (hXY : ∀ u ∈ GNN.ball A v L, X u = Y u) :

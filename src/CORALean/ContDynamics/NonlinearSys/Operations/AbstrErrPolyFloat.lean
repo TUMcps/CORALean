@@ -5,7 +5,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonotope
-public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Interval.Float.Operations.MatPlus
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Interval.Float.Operations.Basic
@@ -31,7 +31,7 @@ set's factors and only then enclosed, and the products carrying a `δz`. Those a
 Hessian box over the step leaves of `H(z✱)`: CORA bounds that by the third-order
 tensor, which the model does not carry, so this is the second-order Lagrange form.
 
-`A`, `B` are centres, not the Jacobian, so `hessRemainder`'s first-order slack is
+`A`, `B` are centers, not the Jacobian, so `hessRemainder`'s first-order slack is
 added. `Zdelta`'s input block is `0`, CORA's `Ustat`, so `errorStat` needs the state
 block of `H(z✱)` alone.
 
@@ -64,16 +64,16 @@ def NonlinearSys.FloatHessModel.abstrErrPolyFloat (fm : NonlinearSys.FloatHessMo
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) (xs : Vec 𝕋 n) (us : Vec 𝕋 m) (X : Interval (Vec 𝕋 n))
     (U : Interval (Vec 𝕋 m)) (Rdelta Rdiff : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   -- priv_precompStatError: half the Hessian at `z✱`, on the start set
-  let Hs := fun i => (fm.hess (Interval.point xs) (Interval.point us) i).centreMat  -- H(z✱)
+  let Hs := fun i => (fm.hess (Interval.point xs) (Interval.point us) i).centerMat  -- H(z✱)
   let Q : Fin n → Mat 𝕋 n n := fun i j k => half (Hs i (Fin.castAdd m j) (Fin.castAdd m k))
   let errorStat := (PolyZonotope.quadMap Q Rdelta.polyZonotope).zonotope    -- 0.5*quadMap(Zdelta,H)
-  -- the first-order slack of linearizing at centres
+  -- the first-order slack of linearizing at centers
   let Jx := fm.jacX (Interval.point xs) (Interval.point us)          -- [∂f/∂x (z✱)]
   let Ju := fm.jacU (Interval.point xs) (Interval.point us)          -- [∂f/∂u (z✱)]
-  let ΔJx := Interval.matPlus Jx (Interval.point fun i j => neg (A i j))  -- [∂f/∂x (z✱)] - A
-  let ΔJu := Interval.matPlus Ju (Interval.point fun i j => neg (B i j))  -- [∂f/∂u (z✱)] - B
-  let IHx := Interval.plus X (Interval.point fun i => neg (xs i))   -- X - x✱
-  let IHu := Interval.plus U (Interval.point fun i => neg (us i))   -- du = U - u✱
+  let ΔJx := Interval.matPlus Jx (Interval.point (-A))  -- [∂f/∂x (z✱)] - A
+  let ΔJu := Interval.matPlus Ju (Interval.point (-B))  -- [∂f/∂u (z✱)] - B
+  let IHx := Interval.plus X (Interval.point (-xs))   -- X - x✱
+  let IHu := Interval.plus U (Interval.point (-us))   -- du = U - u✱
   -- priv_abstrerr_poly: the products carrying a difference, and the Hessian's spread
   let dδ : Vec 𝕋 (n + m) := Fin.append Rdelta.interval.normMag fun _ => zero  -- |Zdelta|
   let dd : Vec 𝕋 (n + m) := Fin.append Rdiff.interval.normMag IHu.normMag    -- |Z_diff|
@@ -85,7 +85,7 @@ def NonlinearSys.FloatHessModel.abstrErrPolyFloat (fm : NonlinearSys.FloatHessMo
     (addUp (bilinUp dδ (Hdev i) dδ) (bilinUp dδ (Habs i) dd))
     (addUp (bilinUp dd (Habs i) dδ) (bilinUp dd (Habs i) dd)))
   errorStat ⊞ (Interval.plus (Interval.plus (Interval.mtimesIntervalMat ΔJx IHx)
-    (Interval.mtimesIntervalMat ΔJu IHu)) ⟨fun i => neg (l i), l⟩).zonotope
+    (Interval.mtimesIntervalMat ΔJu IHu)) ⟨-l, l⟩).zonotope
 
 end CORALean
 

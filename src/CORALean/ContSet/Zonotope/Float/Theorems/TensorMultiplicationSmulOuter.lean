@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 /-!
 # A scaled tensor image is enclosed by `tensorMultiplication`, over a floating-point scalar
 
-A zonotope centred at the origin and with a symmetric box is closed under scaling by `[-1, 1]`: the
+A zonotope centered at the origin and with a symmetric box is closed under scaling by `[-1, 1]`: the
 coefficients and the shortfalls of `tensorMultiplication_coeff` scale together, so
 `γ • { Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z } ⊆ Z.tensorMultiplication M L` for `|γ| ≤ 1`. It is what the sum over
 the generators of a matrix zonotope of tensors (`tensorMultiplication_zono`) needs.

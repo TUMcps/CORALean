@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
 # Membership in the nominal constrained polynomial zonotope
 
 The form every enclosure proof at this layer reads the nominal half of a point
-in: the centre and the two generator blocks through `toReal`, the exponent
+in: the center and the two generator blocks through `toReal`, the exponent
 matrices unrounded, and the constraint as this set's own `satisfies`.
 
 Proofs use it rather than going through `nominal` because through it every count

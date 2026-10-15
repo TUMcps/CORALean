@@ -11,7 +11,7 @@ public import Mathlib.Tactic.FinCases
 # [1, Prop. 2] with eq. (11) as printed misses part of the guard
 
 The guard `g(x) = x₂ + x₁² = 0` on `I = [-1, 1] × [-2, 2]`, solved for `x₂` (`k = 2`). Its
-order-`2` expansion at the box's centre `c = 0` is exact: `b = 0`, `a = (0, 1)`,
+order-`2` expansion at the box's center `c = 0` is exact: `b = 0`, `a = (0, 1)`,
 `v(x) = x₁²` and remainder `[0, 0]` — [1, Def. 7]'s values, read off by hand here, since `g` is
 quadratic. Eq. (11) as printed, `(−b + aᵀc − Σ_{i≠k} a(i)x(i) + v(x)) / a(k)`, is `x₁²`, all of
 it free of `x₂`, so `p_k = x₁²`, `D_p = 0` and eq. (12) gives `[D_l, D_u] = [0, 0]`. The model is

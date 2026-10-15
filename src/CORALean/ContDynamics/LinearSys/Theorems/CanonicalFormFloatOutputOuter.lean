@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreSubMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
@@ -53,14 +53,14 @@ theorem LinearSys.canonicalFormFloat_output_outer (sys : LinearSys 𝕋 n)
     toRealMat sys.D *ᵥ toRealVec uVec + toRealVec sys.k +
       toRealMat sys.F *ᵥ (toRealVec V.c + toRealVec vVec), ?_, ?_⟩
   · -- `u` is `(u - centerU) + centerU`, in `U₀ ⊕ {centerU}`, and `v - centerV` is in `V₀`
-    have hu' : u ∈ (Zonotope.plus U.recentre (Zonotope.point U.c)).construct := by
-      have := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_centre_mem_recentre hu)
+    have hu' : u ∈ (Zonotope.plus U.recenter (Zonotope.point U.c)).construct := by
+      have := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_center_mem_recenter hu)
         (show toRealVec U.c ∈ (Zonotope.point U.c).construct by
           rw [Zonotope.construct_point]; exact rfl))
       rwa [sub_add_cancel] at this
     exact Zonotope.plus_outer _ _ (Set.add_mem_add
       (Zonotope.mtimes_outer sys.D _ ⟨_, hu', rfl⟩)
-      (Zonotope.mtimes_outer sys.F _ ⟨_, Zonotope.sub_centre_mem_recentre hv, rfl⟩))
+      (Zonotope.mtimes_outer sys.F _ ⟨_, Zonotope.sub_center_mem_recenter hv, rfl⟩))
   · -- the offset, three boxes
     exact Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _
       ⟨_, Interval.mtimes_outer sys.D _ ⟨_, Interval.mem_point uVec, rfl⟩, _,

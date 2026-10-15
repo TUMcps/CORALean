@@ -15,7 +15,7 @@ for every `j`, so the matrix has `h` entries of each kind, `2h` in all, laid alo
 the diagonal of one block-diagonal matrix: `1 + βⱼ` in the first `h` rows and
 `1 - βⱼ` in the last `h`. A diagonal matrix is positive semidefinite exactly when
 its entries are nonnegative, so the inequality holds exactly on the cube, and the
-centre and generators are the zonotope's own.
+center and generators are the zonotope's own.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The nominal part never leaves the centre-plus-generators bound, rounded up. -/
+/-- The nominal part never leaves the center-plus-generators bound, rounded up. -/
 theorem Zonotope.aux_abs_nominal_le (Z : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n}
     (hx : x ∈ nominalSet Z) (j : Fin n) :
     |x j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) := by -- --- PROOF ---

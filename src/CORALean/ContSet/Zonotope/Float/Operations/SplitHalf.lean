@@ -8,8 +8,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 /-!
 # `Zonotope.splitHalf`, over a floating-point scalar
 
-One half of `Zonotope.split`: the centre moved by the vector `s`, the `j`-th generator halved
-(exact in a binary format), and the rounding of the new centre paid into the error box through
+One half of `Zonotope.split`: the center moved by the vector `s`, the `j`-th generator halved
+(exact in a binary format), and the rounding of the new center paid into the error box through
 `centerResidual`. The two halves of `split` are this at `∓ g_j/2`.
 -/
 

@@ -8,7 +8,7 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.Map
 # `SpectraShadow.project`
 
 CORA's `@spectraShadow/project`: `spectraShadow(SpS.A, SpS.c(dims,:), SpS.G(dims,:))`, the
-centre and every generator at the chosen coordinates and the inequality untouched. `dims` may
+center and every generator at the chosen coordinates and the inequality untouched. `dims` may
 repeat or reorder coordinates. Reading coordinates is linear, so this is `map` at the selection
 map, and `project_exact` is `map_exact`.
 -/

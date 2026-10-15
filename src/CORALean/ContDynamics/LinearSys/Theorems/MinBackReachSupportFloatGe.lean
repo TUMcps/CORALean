@@ -52,15 +52,15 @@ theorem LinearSys.minBackReachSupportFloat_ge (sys : LinearSys 𝕋 n)
         (toRealMat N *ᵥ x) j + (toRealMat N *ᵥ w) j
           ≤ toReal (sys.minBackReachSupportFloat CZ W₀ U₀ Zw N t₀ Δt η ν k j) := by -- --- PROOF ---
   set s := sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k
-  obtain ⟨w, hw, hlow⟩ := Zonotope.lowerDot_le s.ZU₀ (fun i => neg (N j i)) hE
+  obtain ⟨w, hw, hlow⟩ := Zonotope.lowerDot_le s.ZU₀ (-(N j)) hE
   refine ⟨w, hw, fun x hx => ?_⟩
   have hR := s.R.boundDot_le (c := rowLin N j) (N j) (fun _ => rfl) x hx
   have hsub := sub_le_subUp (s.R.boundDot (c := rowLin N j) (N j) fun _ => rfl).val
-    (s.ZU₀.lowerDot fun i => neg (N j i))
-  have hneg : ∑ i, toReal (neg (N j i)) * w i = -(toRealMat N *ᵥ w) j := by
+    (s.ZU₀.lowerDot (-(N j)))
+  have hneg : ∑ i, toReal ((-N j) i) * w i = -(toRealMat N *ᵥ w) j := by
     show _ = -∑ i, toReal (N j i) * w i
     rw [← Finset.sum_neg_distrib]
-    exact Finset.sum_congr rfl fun i _ => by rw [toReal_neg]; ring
+    exact Finset.sum_congr rfl fun i _ => by rw [Pi.neg_apply, toReal_neg']; ring
   rw [hneg] at hlow
   unfold LinearSys.minBackReachSupportFloat
   have hR' : (toRealMat N *ᵥ x) j

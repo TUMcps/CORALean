@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
@@ -12,7 +12,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 `R_0 = X₀` holds `x(0)`; at `t_{k+1}` the free motion plus the constant's
 contribution is in `H(t_{k+1})`, and the rest is one `Ũ`-input's contribution
-by `t_{k+1}` (`Trajectory.sub_mem_inputReach_recentre`), in `P^R(t_{k+1})`.
+by `t_{k+1}` (`Trajectory.sub_mem_inputReach_recenter`), in `P^R(t_{k+1})`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -69,7 +69,7 @@ theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n)
       rw [← hNΔt]
       have : ((k + 1 : ℕ) : ℝ) ≤ N := by rw [← hlen]; exact_mod_cast hk'
       exact mul_le_mul_of_nonneg_right this hΔt.le
-    have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) hUV
+    have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) hUV
       ⟨by positivity, hkN⟩
     have hsum := Plus.plus_outer S[k].1 S[k].2.2.1 (Set.add_mem_add (h1 (x 0) traj.init) (h3 hd))
     rw [add_sub_cancel] at hsum

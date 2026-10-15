@@ -31,12 +31,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.minus_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (v : Vec 𝕋 n) :
     (· - toRealVec v) '' P.construct ⊆ (P.minus v).construct := by -- --- PROOF ---
-  have h := HPolytope.translate_outer (fun i => neg (v i)) P
-  have hneg : toRealVec (fun i => neg (v i)) = -toRealVec v := by
-    funext i
-    simp [toRealVec, toReal_neg]
+  have h := HPolytope.translate_outer (-v) P
+  have hneg : toRealVec (-v) = -toRealVec v := toRealVec_neg _
   rw [hneg] at h
-  show _ ⊆ (HPolytope.translate (fun i => neg (v i)) P).construct
+  show _ ⊆ (HPolytope.translate (-v) P).construct
   simpa only [sub_eq_add_neg, add_comm _ (-toRealVec v)] using h
 
 end CORALean.Float

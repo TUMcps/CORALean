@@ -25,7 +25,7 @@ the other direction.
 `Mathlib.Analysis.CStarAlgebra.Matrix`'s `Matrix.Norms.L2Operator` instance. The witness for `Ŝ`'s
 far side is elementary rather than [1]'s own Bauer-maximum-principle argument: writing `Ŝ`'s
 coefficients as `βSum, βDiff` (`linComb`'s paired blocks; no surplus since `H.h = H'.h` here) and
-`βExtra` (the fresh centre generator): `λ := (1+βExtra)/2` and the *same* `βSum` on both endpoints
+`βExtra` (the fresh center generator): `λ := (1+βExtra)/2` and the *same* `βSum` on both endpoints
 of `S`'s segment cancels every term but one, landing on `v := βDiff - βExtra • βSum` with
 `‖v‖₂ ≤ 2√γ_h` by the triangle inequality — the same constant [1]'s convexity argument reaches.
 
@@ -130,7 +130,7 @@ theorem Zonotope.hausdorffDist₂_linComb_le (A : Mat ℝ n n) (Δtk : ℝ) (H :
   have hsmem : lam • x1 + (1 - lam) • x2 ∈ Set.linComb H.construct H'.construct :=
     ⟨x1, hx1mem, x2, hx2mem, lam, ⟨hlam0, hlam1⟩, rfl⟩
   refine ⟨lam • x1 + (1 - lam) • x2, hsmem, ?_⟩
-  -- unwind `ŝ`'s own coordinates: `linComb`'s centre and its three generator blocks
+  -- unwind `ŝ`'s own coordinates: `linComb`'s center and its three generator blocks
   have hŝeq2 : ŝ = (2:ℝ)⁻¹ • (H.c + H'.c) + ∑ j, βSum j • ((2:ℝ)⁻¹ • (H.G j + M.mulVec (H.G j)))
       + ∑ j, βDiff j • ((2:ℝ)⁻¹ • (H.G j - M.mulVec (H.G j)))
       + βExtra • ((2:ℝ)⁻¹ • (H.c - H'.c)) := by
@@ -159,8 +159,8 @@ theorem Zonotope.hausdorffDist₂_linComb_le (A : Mat ℝ n n) (Δtk : ℝ) (H :
     match_scalars <;> ring
   have hdiff : ŝ - (lam • x1 + (1 - lam) • x2)
       = (2:ℝ)⁻¹ • ∑ j, (βExtra * βSum j - βDiff j) • ((M - 1).mulVec (H.G j)) := by
-    -- the centre terms of `ŝ` and of `lam•x1+(1-lam)•x2` cancel exactly, on their own
-    have hcentre : (2:ℝ)⁻¹ • (H.c + H'.c) + βExtra • ((2:ℝ)⁻¹ • (H.c - H'.c))
+    -- the center terms of `ŝ` and of `lam•x1+(1-lam)•x2` cancel exactly, on their own
+    have hcenter : (2:ℝ)⁻¹ • (H.c + H'.c) + βExtra • ((2:ℝ)⁻¹ • (H.c - H'.c))
         - (lam • H.c + (1 - lam) • H'.c) = 0 := by rw [hlam]; module
     -- and the generator terms fold to `hterm`'s target sum, index by index
     have hgen : ∑ j, βSum j • ((2:ℝ)⁻¹ • (H.G j + M.mulVec (H.G j)))
@@ -178,14 +178,14 @@ theorem Zonotope.hausdorffDist₂_linComb_le (A : Mat ℝ n n) (Δtk : ℝ) (H :
         = (1 - lam) • H'.c + ∑ j, (1 - lam) • (βSum j • M.mulVec (H.G j)) := by
       rw [hx2, smul_add, Finset.smul_sum]
     rw [hŝeq2, hx1lam, hx2lam]
-    -- each generalize turns a sum this equality and `hgen`/`hcentre` both name into one shared atom
+    -- each generalize turns a sum this equality and `hgen`/`hcenter` both name into one shared atom
     generalize hSA : ∑ j, βSum j • ((2:ℝ)⁻¹ • (H.G j + M.mulVec (H.G j))) = SA at *
     generalize hSB : ∑ j, βDiff j • ((2:ℝ)⁻¹ • (H.G j - M.mulVec (H.G j))) = SB at *
     generalize hSC : ∑ j, lam • (βSum j • H.G j) = SC at *
     generalize hSD : ∑ j, (1 - lam) • (βSum j • M.mulVec (H.G j)) = SD at *
     generalize hSR : (2:ℝ)⁻¹ • ∑ j, (βExtra * βSum j - βDiff j) • ((M - 1).mulVec (H.G j)) = SR at *
     rw [← hgen]
-    linear_combination (norm := module) hcentre
+    linear_combination (norm := module) hcenter
   -- fold `hdiff`'s bound back into the Cauchy–Schwarz bound `genOpNorm₂` carries, then `2√γ_h`
   rw [hdiff, norm₂_smul]
   have h1 : |(2:ℝ)⁻¹| = (2:ℝ)⁻¹ := by norm_num

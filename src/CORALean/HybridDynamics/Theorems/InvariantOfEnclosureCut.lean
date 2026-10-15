@@ -56,7 +56,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S] [Mtimes (Mat 𝕋) S] [OfInterval S
 time and the enclosure cut to `ℓ.inv`; `Invariant.jump` is `JumpOuter` at
 `hjump`, one enclosure per transition met. -/
 theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec ℝ n)]
-    [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
+    [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)]
     (HA : HybridAutomaton S G L 𝕋 n) (R : L → S n)
     (hflow : ∀ (ℓ : L) (τ : ℝ), 0 < τ → ∃ m : ℕ,

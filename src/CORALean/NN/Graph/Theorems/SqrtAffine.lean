@@ -49,7 +49,7 @@ theorem GNN.sqrt_affine (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m → Fi
   -- an edge's contribution to the degree is its weight times its column sum
   have hc : ∀ e, ∑ i, lam e * GNN.edgeMat (U e) i j = lam e * GNN.degreeCoeff U e j :=
     fun e => (Finset.mul_sum _ _ _).symm
-  -- split into the half the centre carries and the half the factor scales
+  -- split into the half the center carries and the half the factor scales
   have hsum : ∑ e, GNN.sqrtSlope R A U j * (lam e * GNN.degreeCoeff U e j)
       = GNN.sqrtSlope R A U j * ∑ e, GNN.degreeCoeff U e j / 2
         + ∑ e, GNN.sqrtEdgeCoeff R A U j e * (2 * lam e - 1) := by

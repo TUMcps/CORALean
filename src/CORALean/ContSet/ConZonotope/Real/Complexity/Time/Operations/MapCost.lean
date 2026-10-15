@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `ConZonotope.mapCost`
 
-Asserted, not proved: `Operations/Map.lean` sends the centre and each of the
+Asserted, not proved: `Operations/Map.lean` sends the center and each of the
 `h` generators through `f` and carries the constraint polytope over as the
 field it already is — `P := cZ.P`, untouched — so nothing the polytope holds
 enters the count.
@@ -37,7 +37,7 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `ConZonotope.map` costs at a map costing at most `cf` per application:
-one per generator and one for the centre, and nothing for the constraints. -/
+one per generator and one for the center, and nothing for the constraints. -/
 def ConZonotope.mapCost (cf : Cost) (h : ℕ) : Cost := (h + 1) • cf
 
 end CORALean.Real

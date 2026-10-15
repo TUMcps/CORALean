@@ -8,7 +8,7 @@ public import Mathlib.Data.Finset.Sort
 /-!
 # `Zonotope.filterGen`
 
-The zonotope that keeps the generators a predicate selects, in their order, and the centre.
+The zonotope that keeps the generators a predicate selects, in their order, and the center.
 The building block of `compact_`: CORA's `nonzeroFilter(Z.G, tol)` is a column filter, and
 dropping a generator whose column is zero changes no point (`filterGen_construct`).
 -/
@@ -28,7 +28,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The generators `j` with `keep j`, in order; the centre is unchanged. -/
+/-- The generators `j` with `keep j`, in order; the center is unchanged. -/
 def Zonotope.filterGen (Z : Zonotope α) (keep : Fin Z.h → Bool) : Zonotope α where
   h := (Finset.univ.filter fun j => keep j = true).card
   c := Z.c

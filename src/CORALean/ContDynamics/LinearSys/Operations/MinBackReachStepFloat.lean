@@ -57,7 +57,7 @@ def LinearSys.minBackReachStepFloat (sys : LinearSys 𝕋 n)
     (Zw : 𝕋 → Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (η ν : ℕ) (s : LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n))) :
     LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n)) :=
-  let Ā : LinearSys 𝕋 n := { sys with A := fun i j => neg (sys.A i j) }  -- time-inverted dynamics
+  let Ā : LinearSys 𝕋 n := { sys with A := (-sys.A) }  -- time-inverted dynamics
   -- 8. t_{k+1} ← t_k + Δt
   let tk1 := addUp s.t Δt
   -- 8. [e^{-A t_k}]

@@ -16,7 +16,7 @@ public import Mathlib.Topology.Algebra.Group.Basic
 /-!
 # Goffin's separator separates
 
-[1, Sec. 4.5]: for a full-dimensional zonotope `Z` centred at `0` and `x₀ ∉ Z`, with `β*` the
+[1, Sec. 4.5]: for a full-dimensional zonotope `Z` centered at `0` and `x₀ ∉ Z`, with `β*` the
 largest `β` with `βx₀ ∈ Z` (Step 1) and `H = (h₁, …, h_{n-1})` a basis of a facet `F` through
 `x* = β*x₀` (Steps 2 and 3, from Cor. 3.5 and Thm. 3.3(d)), the output `a` of Step 4 and
 `b = aᵀx*` satisfy `Z ⊆ {aᵀx ≤ b}`, `aᵀx₀ > b` and `{aᵀx = b} ∩ Z = F`. The facet is

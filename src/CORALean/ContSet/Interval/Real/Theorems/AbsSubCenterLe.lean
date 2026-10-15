@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 # `Interval.abs_sub_center_le`
 
 What makes `center` and `radius` a genuine split of a box's point rather than
-two unrelated readings: every point the box denotes is off from the centre by
+two unrelated readings: every point the box denotes is off from the center by
 at most the radius, coordinate by coordinate — how every enclosure proof off a
 box reads it.
 -/
@@ -30,7 +30,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A point the box denotes is the centre off by at most the radius, which is
+/-- A point the box denotes is the center off by at most the radius, which is
 how every enclosure proof splits it. -/
 theorem Interval.abs_sub_center_le {I : Interval α} {x : α} (hx : x ∈ I.construct) (i : ι) :
     |entry x i - entry I.center i| ≤ entry I.radius i := by

@@ -58,7 +58,7 @@ theorem Zonotope.minkDiffStretch_inner {ι : Type} (Z₁ Z₂ : Zonotope α)
   obtain ⟨β, hβ, rfl⟩ := hx
   obtain ⟨a, ha, rfl⟩ := hz
   refine hCm fun i => ?_
-  -- both operands' offsets from the minuend's centre, in one sum each
+  -- both operands' offsets from the minuend's center, in one sum each
   have hexp : Z₁.c - Z₂.c + (∑ υ, β υ • μ υ • Z₁.G υ) + (Z₂.c + ∑ j, a j • Z₂.G j) - Z₁.c
       = (∑ υ, (β υ * μ υ) • Z₁.G υ) + ∑ j, a j • Z₂.G j := by
     rw [Finset.sum_congr rfl fun υ _ => smul_smul (β υ) (μ υ) (Z₁.G υ)]

@@ -18,7 +18,7 @@ public import Mathlib.Order.Interval.Set.Pi
 reachable set over `[0, t_end]`; line 16 computes `R̂(τ_k)` by `Prop. 2`, which is false for a
 convex initial set as well (`convexHull_timeInterval_convex_counterexample`), and the algorithm
 inherits it. One step, `t_end = 1`, `ω = 1`, of the shear `ẋ = (x₂, 0)` from the box
-`X₀ = [-1/10, 1/10] × [-1, 1]`, a polytope as line 1 requires: with the box's centre `0` as
+`X₀ = [-1/10, 1/10] × [-1, 1]`, a polytope as line 1 requires: with the box's center `0` as
 `cen(X₀)`, line 4 gives `x* = 0`, line 5 `w = 0` and `A = [0 1; 0 0]`, line 6 `C = 0`
 (`F(1) = 0` and `w = 0`, since `A² = 0`), the field has no Lagrange remainder, so lines 9-13
 stop at `L̂ = 0` and line 14 gives `R̂_err(L̂) = 0` and `c = 0`. Line 16 is then
@@ -26,7 +26,7 @@ stop at `L̂ = 0` and line 14 gives `R̂_err(L̂) = 0` and `c = 0`. Line 16 is t
 and no run from `X₀` passes through `(1/2, 0)` in `[0, 1]`: one through it starts on `x₂ = 0`,
 where `ẋ = 0`, so its first coordinate stays in `[-1/10, 1/10]`.
 
-The subroutines enter only through what (6), (9), (13), (17) and the centre give for this
+The subroutines enter only through what (6), (9), (13), (17) and the center give for this
 system, stated as hypotheses on `ops`.
 
 ## References

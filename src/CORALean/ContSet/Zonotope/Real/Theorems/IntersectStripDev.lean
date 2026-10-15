@@ -12,8 +12,8 @@ public import Mathlib.Tactic.Ring
 # A point of one strip intersection, from the deviation of a point before it
 
 [1, Eq. 3], one strip: a point of `intersectStrip` at the output row `c`, gain `λ`, half-width `φ`
-sits at the new centre plus `κ (z₁ - p) + φ η λ` with `κ = I - λ cᵀ`, for a point `z₁` of the
-zonotope before it, centre `p`, and a coefficient `η ∈ [-1, 1]` of the strip's own generator.
+sits at the new center plus `κ (z₁ - p) + φ η λ` with `κ = I - λ cᵀ`, for a point `z₁` of the
+zonotope before it, center `p`, and a coefficient `η ∈ [-1, 1]` of the strip's own generator.
 The step the P-radius bounds of `[1, Eq. 4]` to `[1, Alg. 2]` are chains of.
 
 ## References

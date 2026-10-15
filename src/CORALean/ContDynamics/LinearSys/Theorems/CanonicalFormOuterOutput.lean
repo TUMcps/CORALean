@@ -32,7 +32,7 @@ open Matrix ContSet Scalar Plus Mtimes
 variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-variable [∀ n, Recentre (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
+variable [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -46,14 +46,14 @@ theorem LinearSys.canonicalForm_output_outer (sys : LinearSys ℝ n) (U : S sys.
   -- the offset cancels, leaving `D u + F (v - centerV)`
   have heq : sys.D *ᵥ (uVec + u) + sys.k + sys.F *ᵥ (vVec + v)
         - (sys.canonicalForm U uVec W V vVec).2.2.2.2
-      = sys.D *ᵥ u + sys.F *ᵥ (v - Recentre.centre V) := by
+      = sys.D *ᵥ u + sys.F *ᵥ (v - Recenter.center V) := by
     simp only [LinearSys.canonicalForm, Matrix.mulVec_add, Matrix.mulVec_sub]
     abel
   rw [heq]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · -- `D u` is in `D (U₀ + centerU)`, `u` being `(u - centerU) + centerU`
-    have hu' := Plus.plus_outer _ _ (Set.add_mem_add (Recentre.sub_centre_mem_recentre hu)
-      (OfPoint.mem_ofPoint (Recentre.centre U)))
+    have hu' := Plus.plus_outer _ _ (Set.add_mem_add (Recenter.sub_center_mem_recenter hu)
+      (OfPoint.mem_ofPoint (Recenter.center U)))
     rw [sub_add_cancel] at hu'
     refine Mtimes.mtimes_outer _ _ ?_
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -61,7 +61,7 @@ theorem LinearSys.canonicalForm_output_outer (sys : LinearSys ℝ n) (U : S sys.
   · -- `F (v - centerV)` is in `F V₀`
     refine Mtimes.mtimes_outer _ _ ?_
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
-    exact Set.mem_image_of_mem _ (Recentre.sub_centre_mem_recentre hv)
+    exact Set.mem_image_of_mem _ (Recenter.sub_center_mem_recenter hv)
 
 end CORALean
 
