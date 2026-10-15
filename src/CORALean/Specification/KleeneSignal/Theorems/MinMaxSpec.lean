@@ -15,6 +15,14 @@ public import Mathlib.Data.Fin.VecNotation
 operation on the refinements with unknown mapped to false, and `mx`, with unknown mapped to true:
 the Boolean part is `mn`, and the value is unknown where they differ. For valid `mn`, `mx` the
 signal is valid, `True` where both are `true` and `False` where both are `false`.
+
+`mn` and `mx` are `⌊Λ⌋` and `⌈Λ⌉` of the result, which is their `⊔₁`, as
+[1, Sec. 4.2 (refinements)] recovers `Λ(t)`.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

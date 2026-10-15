@@ -5,6 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import CORALean.Global.EuclideanNorm
+public import CORALean.Global.MatVec
 public import Mathlib.Algebra.Module.Equiv.Basic
 public import Mathlib.LinearAlgebra.Matrix.ToLin
 
@@ -87,6 +88,30 @@ def Zonotope.project (Z : Zonotope (Vec ℝ n)) (dims : Fin m → Fin n) : Zonot
 
 CORA's `@zonotope/representsa_` at type `origin` with tolerance `0`: a point at `0`. -/
 def Zonotope.representsa_origin (Z : Zonotope α) : Prop := Z.c = 0 ∧ Z.representsa_point
+
+
+-- ===================================  `Zonotope.transpose`  =================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `@matZonotope/transpose`: the centre and every generator transposed. -/
+def Zonotope.transpose (Z : Zonotope (Mat ℝ m n)) : Zonotope (Mat ℝ n m) :=
+  Z.map (Matrix.transposeLinearEquiv (Fin m) (Fin n) ℝ ℝ).toLinearMap
+
+
+-- ======================================  `Zonotope.vec`  ====================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `zonotope(matZ)`: the centre and the generators stacked column by column
+(`reshape(·, [], 1)`), a zonotope in the space of `n * m` entries. -/
+def Zonotope.vec (Z : Zonotope (Mat ℝ m n)) : Zonotope (Vec ℝ (n * m)) :=
+  Z.map matVecEquiv.toLinearMap
+
 
 end CORALean.Real
 

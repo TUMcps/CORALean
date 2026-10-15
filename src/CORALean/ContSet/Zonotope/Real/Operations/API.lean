@@ -210,6 +210,9 @@ public import CORALean.ContSet.Zonotope.Real.Operations.SignedSums
 public import CORALean.ContSet.Zonotope.Real.Operations.SegmentLength
 public import CORALean.ContSet.Zonotope.Real.Operations.Mspb
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclosePointsMaiga
+public import CORALean.ContSet.Zonotope.Real.Operations.Mpower
+public import CORALean.ContSet.Zonotope.Real.Operations.Powers
+public import CORALean.ContSet.Zonotope.Real.Operations.Vertices
 
 /-!
 # What `Zonotope` computes

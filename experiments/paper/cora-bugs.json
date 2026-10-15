@@ -929,5 +929,11 @@
       "description": "rank-deficient matrix maps to the whole space",
       "kind": "other"
     }
+  },
+  "others/markovchain": {
+    "build_reach": {
+      "description": "zero-volume set adds a scalar to every transition entry",
+      "kind": "other"
+    }
   }
 }

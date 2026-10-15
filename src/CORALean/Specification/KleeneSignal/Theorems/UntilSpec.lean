@@ -15,6 +15,13 @@ For valid signals over `ℝ` and an until interval with lower bound `≥ 0`, `un
 is valid. At a time `t ≥ 0` it is `True` iff some `t'` with `t' - t` in the interval has the
 right-hand side `True` and the left-hand side `True` strictly between, and `False` iff at every such
 `t'` the right-hand side is `False` or the left-hand side is `False` somewhere strictly between.
+
+This is the direct semantics of `U_I` in [1, Eq. 2], the unknown case being the remaining one.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

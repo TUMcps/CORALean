@@ -13,6 +13,13 @@ public import CORALean.Specification.Theorems.FoldlSetSpec
 For valid four-valued signals, `merge(obj,other)` is valid and, at every time `t ≥ 0`, has the value
 of `other` where that is conclusive or `Unknown`, and the value of `obj` where `other` is
 inconclusive.
+
+This is `Merge` in line 9 of [1, Alg. 2]: `n.signal` is overwritten where the new signal is not ⊣₂.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

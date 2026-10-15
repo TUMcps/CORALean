@@ -15,6 +15,14 @@ public import CORALean.Specification.Theorems.FoldlSetSpec
 For a valid four-valued signal, `toKleeneSignal(obj,mapInconclusiveTo)` is valid and has the value
 `mapInconclusiveTo` at every time `t ≥ 0` where the signal is inconclusive, and the Kleene value of
 the signal elsewhere.
+
+With `False` and `True` this is the underapproximation `⌊Λ̃⌋` and the overapproximation `⌈Λ̃⌉` of
+[1, Sec. 4.3 (refinements)].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

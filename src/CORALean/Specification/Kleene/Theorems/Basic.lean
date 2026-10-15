@@ -11,6 +11,15 @@ public import CORALean.Specification.Kleene.Operations.Or
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+`code_and`, `code_or` and `code_not` say that on three values `&` is the minimum, `|` the maximum
+and `~` the reversal of the stored codes, which is the truth order ⊥ ⊑ₜ ⊣₁ ⊑ₜ ⊤ of
+[1, Sec. 2.2 (order)].
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 

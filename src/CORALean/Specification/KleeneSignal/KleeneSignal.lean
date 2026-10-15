@@ -12,6 +12,13 @@ CORA's `kleeneSignal` (`specification/signals/kleeneSignal.m`): a Kleene-valued 
 two Boolean `pointSegmentSignal`s, the Boolean part `signal` and `isUnknown`, where `isUnknown`
 overrides `signal` (whose value is then irrelevant). `IsValid` asks both to be valid, as the
 constructor of `pointSegmentSignal` makes them; `KleeneSignal.at` is the value it denotes.
+
+These are the `U₁`-signals Λ of [1, Sec. 2.3 (signals)], here with finitely many pieces.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

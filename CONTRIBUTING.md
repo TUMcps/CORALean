@@ -85,6 +85,9 @@ src/CORALean/
                    what NN encloses; NeurNetContrSysDT/ steps a discrete plant
     OutputEq/      y = C x + D u, kept out of the system classes so that it
                    applies to all of them
+  DiscrDynamics/   CORA's discrDynamics, written over ℝ: GridPartition/ cuts a box
+                   into cells numbered from 1 and says which cells a set meets;
+                   MarkovChain/ holds the transition probabilities between them
   HybridDynamics/  locations, transitions and the automaton; a run alternates
                    flowing inside a location with jumping between them
   NN/              neural network verification: propagating an input set through

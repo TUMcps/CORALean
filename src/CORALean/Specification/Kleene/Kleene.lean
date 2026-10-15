@@ -11,6 +11,14 @@ CORA's `kleene` (`specification/kleene.m`) is an enumeration on `uint32` with `F
 `Unknown(1)` and `True(2)`. `Kleene` has the same three members, and `Kleene.code` is the stored
 integer. The operators of the class are in `Operations/`; MATLAB's elementwise extension to arrays
 (and its `dimensionMismatch` check) is not modelled, a value being a single member.
+
+`Unknown` is the value ⊣₁ of [1, Sec. 2.2 (values)]: Kleene's third value, for a statement that
+could be true or false.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

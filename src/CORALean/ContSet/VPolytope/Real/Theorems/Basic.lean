@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.VPolytope.Real.Operations.Basic
 public import CORALean.ContSet.VPolytope.Real.Operations.Or
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvHullExact
+public import CORALean.ContSet.VPolytope.Real.Theorems.BilinOuter
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
 public import Mathlib.Analysis.Convex.Topology
@@ -41,6 +42,43 @@ theorem VPolytope.enclosePoints_exact {N : ℕ} (pts : Fin N → Vec ℝ n) :
   VPolytope.construct_eq_convexHull _
 
 
+-- =================================  `VPolytope.matMul_outer`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The product of a member of each factor lies in the polytope of vertex products. -/
+theorem VPolytope.matMul_outer {p q r : ℕ} (P : VPolytope (Mat ℝ p q)) (Q : VPolytope (Mat ℝ q r))
+    {A : Mat ℝ p q} {B : Mat ℝ q r} (hA : A ∈ P.construct) (hB : B ∈ Q.construct) :
+    A * B ∈ (VPolytope.matMul P Q).construct :=
+  VPolytope.bilin_outer matMulBilin P Q (Set.mem_iUnion₂.mpr ⟨A, hA, Set.mem_image_of_mem _ hB⟩)
+
+
+-- ===============================  `VPolytope.matMulLeft_exact`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `numeric * matPolytope`: the vertices multiplied from the left, exactly. -/
+theorem VPolytope.matMulLeft_exact {p q r : ℕ} (A : Mat ℝ p q) (P : VPolytope (Mat ℝ q r)) :
+    (A * ·) '' P.construct = (P.map (matMulLeft A)).construct :=
+  VPolytope.map_exact (matMulLeft A) P
+
+
+-- ==============================  `VPolytope.matMulRight_exact`  =============================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `matPolytope * numeric`: the vertices multiplied from the right, exactly. -/
+theorem VPolytope.matMulRight_exact {p q r : ℕ} (B : Mat ℝ q r) (P : VPolytope (Mat ℝ p q)) :
+    (· * B) '' P.construct = (P.map (matMulRight B)).construct :=
+  VPolytope.map_exact (matMulRight B) P
+
+
 -- ==============================  `VPolytope.matPolytope_exact`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
@@ -77,6 +115,18 @@ without injectivity, so nothing is added and nothing lost. -/
 theorem VPolytope.project_exact (P : VPolytope (Vec ℝ n)) (dims : Fin m → Fin n) :
     (fun x k => x (dims k)) '' P.construct = (P.project dims).construct :=
   VPolytope.map_exact (LinearMap.funLeft ℝ ℝ dims) P
+
+
+-- ==================================  `VPolytope.vec_exact`  =================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       15-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Exact: the stacked members are the members of `vec`. -/
+theorem VPolytope.vec_exact (P : VPolytope (Mat ℝ n m)) :
+    matVecEquiv '' P.construct = P.vec.construct :=
+  VPolytope.map_exact matVecEquiv.toLinearMap P
 
 end
 

@@ -593,3 +593,44 @@ MatExp.expmFrom  real-layer: the five-argument `expm` at real interval matrices;
 MatExp.expmMixed  real-layer: the mixed dependent evaluation at real interval matrices; no float counterpart yet
 MatExp.expmTerms  real-layer: the finite Taylor part of `expm` at real interval matrices; no float counterpart yet
 MatExp.exponentialRemainder  real-layer: `[-W, W]` with `W = e^M - Σ Mⁱ/i!` at the real exponential; no float counterpart yet
+MatExp.dependentTermsMatZono  real-layer: the dependent square and second-order terms at a real matrix zonotope; no float counterpart yet
+MatExp.expmIndPolytope  real-layer: the Taylor sum and remainder box of a real matrix polytope; no float counterpart yet
+MatExp.expmMixedMatZono  real-layer: the mixed dependent evaluation at a real matrix zonotope; no float counterpart yet
+
+# DiscrDynamics: the grid partition and the Markov chain over it, written over ℝ
+GridPartition.cellZonotopes  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+GridPartition.tol  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+GridPartition.cellCenter  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+GridPartition.intersectingCells  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+GridPartition.intersectingCellsOf  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+GridPartition.meetingSubscripts  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+GridPartition.ofInterval  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+MarkovChain.gammaFull  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+MarkovChain.gamma  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+MarkovChain.transitionProbability  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+MarkovChain.build  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+MarkovChain.buildReach  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+MarkovChain.convertTransitionMatrix  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+MarkovChain.reachProbability  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+MarkovChain.stretch  real-layer: an ℝ-valued grid or matrix computation (real division and order tests), proved and never run
+GridPartition.volumeOf  spec: Lebesgue volumes of the denoted sets, a real-valued specification
+GridPartition.cellVolume  spec: Lebesgue volumes of the denoted sets, a real-valued specification
+GridPartition.exactIntersectingCells  spec: Lebesgue volumes of the denoted sets, a real-valued specification
+TentativeKleeneSignal.emptySignal  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+TentativeKleeneSignal.setInvalid  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+TentativeKleeneSignal.observe  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+TentativeKleeneSignal.getInterval  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+FiniteSignal.indicator?  real-layer: takes extended-real bounds, so it is not computable
+FiniteSignal.max  real-layer: takes extended-real bounds, so it is not computable
+OnlineAnalyzerNode.initSignal  real-layer: builds a real-layer `FourValuedSignal ℝ` over `STLInterval`, so it is not computable
+OnlineAnalyzerNode.mk?  real-layer: builds a real-layer `FourValuedSignal ℝ` over `STLInterval`, so it is not computable
+OnlineAnalyzerNode.propBound  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+OnlineAnalyzerNode.getAllProp  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+OnlineAnalyzerNode.setPropagated  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+OnlineAnalyzerNode.combine  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+OnlineAnalyzerNode.propagate  real-layer: takes the real-layer `STLInterval` (extended-real endpoints), so it is not computable
+FiniteSignal.set?  real-layer: takes extended-real bounds, so it is not computable
+FiniteSignal.setLower  real-layer: compares real times, so it is not computable
+FiniteSignal.untilPiece  real-layer: takes the extended-real bounds of an interval, so it is not computable
+FiniteSignal.untilStep  real-layer: takes the extended-real bounds of an interval, so it is not computable
+FiniteSignal.until?  real-layer: takes the extended-real bounds of an interval, so it is not computable

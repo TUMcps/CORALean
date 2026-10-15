@@ -11,6 +11,14 @@ CORA's `pointSegmentSignal` (`specification/signals/@pointSegmentSignal`): a sig
 stored as strictly increasing `timePoints` and, for each, the `values` at the point itself and on
 the open interval up to the next point (the last one to infinity). CORA's constructor checks the
 array shape (`IsValid`); here the data is a pair of lists, over any ordered time type `T`.
+
+A signal stored this way has finitely many changes, the finite variability that
+[1, Sec. 2.3 (signals)] needs for the unitary decomposition of a Boolean signal.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

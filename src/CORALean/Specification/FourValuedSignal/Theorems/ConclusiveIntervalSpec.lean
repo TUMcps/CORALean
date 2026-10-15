@@ -20,6 +20,13 @@ For a valid four-valued signal and an `ignore` interval with lower bound `≥ 0`
 `conclusiveInterval(obj,ignore)` iff `t ≥ 0` and at every time up to `t` the signal is conclusive or
 the time is in `ignore`: the interval is the longest initial stretch with that property, closed at
 its end if the property holds there.
+
+This is `ConclusiveInterval` in line 11 of [1, Alg. 2], with `ignore` the irrelevant prefix `n.irr`.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

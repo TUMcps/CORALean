@@ -25,6 +25,14 @@ For lists of intervals with lower bounds `≥ 0`, `aux_intervalUntil` is a valid
 ≥ 0` iff some interval of `lhsInt` and some `t'` in an interval of `rhsInt` have `t` in the left
 closure and `t'` in the right closure of the first, and `t' - t` in the until interval, not `0`; or
 `0` is in the until interval and `t` is in an interval of `rhsInt`.
+
+With one interval on each side this is the unitary until `t ∈ I₁ ∪ I₂` of [1, Eq. 1], which
+[1, Lemma 1] shows to be the until.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5

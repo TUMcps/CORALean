@@ -191,6 +191,9 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmTermsMem
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmFromOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.PowersIntSqMem
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmMixedOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DependentTermsMatZonoOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmIndPolytopeOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmMixedMatZonoOuter
 
 /-!
 # What the exponential enclosures guarantee

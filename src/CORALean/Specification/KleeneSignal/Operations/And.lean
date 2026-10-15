@@ -13,6 +13,14 @@ public import Mathlib.Data.Fin.VecNotation
 `sig = kleeneSignal.and_(varargin)`: the Boolean combination `@all` of the minimal refinements
 (unknown as false) is the Boolean part, and the value is unknown where it differs from that of the
 maximal refinements (unknown as true).
+
+This is `Λ₁ ∧ Λ₂` of [1, Sec. 4.2 (operators)]: the `⊔₁` of the conjunctions of the under- and
+overapproximations `⌊Λ⌋` and `⌈Λ⌉`.
+
+## References
+
+* [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental
+      Verification of Hybrid Systems". CAV, LNCS 14683, pp. 259-281, 2024.
 -/
 
 -- Authors:       Claude Sonnet 5.5
