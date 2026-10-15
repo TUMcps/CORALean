@@ -50,26 +50,45 @@ theorem LinParamSys.IsConstTrajectory.initReachInputDependence_outer {sys : LinP
     (traj : sys.IsConstTrajectory (S := 𝒵) T Rinit (⟨sys.A.h, Uc, UG⟩ : Zonotope (Vec ℝ sys.m))
         x u A B)
     {p : Fin sys.A.h → ℝ} (hp : ∀ i, |p i| ≤ 1) (hA : A = sys.A.c + ∑ i, p i • sys.A.G i)
-    (hB : B = sys.B.c) (hu : ∀ s ∈ T, u s = Uc + ∑ i, p i • UG i)
+    (hu : ∀ s ∈ T, u s = Uc + ∑ i, p i • UG i)
     {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
     x r ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 ∧
       x t ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).2 := by -- --- PROOF ---
-  -- the combined input `B u + c` is the state-space constant `u(p)` carries
-  have hv : ∀ s ∈ T, B *ᵥ u s + sys.c = (sys.B.c *ᵥ Uc + sys.c) + ∑ i, p i • (sys.B.c *ᵥ UG i) := by
+  -- the combined input `B u + c` is in `B_c Uconst ⊕ c` plus the deviation `B_Δ Uconst`
+  obtain ⟨β, hβ, hBβ⟩ := traj.paramB
+  set Uconst : Zonotope (Vec ℝ sys.m) := ⟨sys.A.h, Uc, UG⟩ with hUconst
+  set BΔ : Zonotope (Mat ℝ n sys.m) := ⟨sys.B.h, 0, sys.B.G⟩ with hBΔ
+  have hu0 : Uc + ∑ i, p i • UG i ∈ construct Uconst := ⟨p, hp, rfl⟩
+  -- the run's `B` deviates from the center by a member of `B_Δ`
+  have hD : B - sys.B.c ∈ construct BΔ := ⟨β, hβ, by
+    show B - sys.B.c = 0 + ∑ j, β j • sys.B.G j
+    rw [hBβ]; abel⟩
+  have hwmem : (B - sys.B.c) *ᵥ (Uc + ∑ i, p i • UG i)
+      ∈ construct (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst) :=
+    Mtimes.mtimes_outer (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst
+      (Set.mem_iUnion₂.mpr ⟨_, hD, _, hu0, rfl⟩)
+  -- the combined input, split into the shared-parameter part and the deviation
+  have hv : ∀ s ∈ T, B *ᵥ u s + sys.c = (sys.B.c *ᵥ Uc + sys.c) + ∑ i, p i • (sys.B.c *ᵥ UG i)
+      + (B - sys.B.c) *ᵥ (Uc + ∑ i, p i • UG i) := by
     intro s hs
-    simp only [hB, hu s hs, Matrix.mulVec_add, Matrix.mulVec_sum, Matrix.mulVec_smul]
+    simp only [hu s hs, Matrix.sub_mulVec, Matrix.mulVec_add, Matrix.mulVec_sum,
+      Matrix.mulVec_smul, smul_sub, Finset.sum_sub_distrib]
     abel
+  -- the run is a run of the canonical form under that input set
   have trajC := traj.canonical (U' := (⟨sys.A.h, sys.B.c *ᵥ Uc + sys.c,
-    fun i => sys.B.c *ᵥ UG i⟩ : Zonotope (Vec ℝ n))) fun s hs => ⟨p, hp, hv s hs⟩
+    fun i => sys.B.c *ᵥ UG i⟩ : Zonotope (Vec ℝ n))
+      ⊞ Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst) fun s hs => by
+    rw [hv s hs]
+    exact Plus.plus_outer _ _ (Set.add_mem_add ⟨p, hp, rfl⟩ hwmem)
   have trajL := trajC.toLinearSys
-  have hU : Bornology.IsBounded (construct
-      (⟨sys.A.h, sys.B.c *ᵥ Uc + sys.c, fun i => sys.B.c *ᵥ UG i⟩ : Zonotope (Vec ℝ n))) :=
-    CompactSet.isBounded_construct _
+  have hU := CompactSet.isBounded_construct ((⟨sys.A.h, sys.B.c *ᵥ Uc + sys.c,
+    fun i => sys.B.c *ᵥ UG i⟩ : Zonotope (Vec ℝ n))
+      ⊞ Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst)
   -- each time as variation of constants, the input the constant `B u(p) + c`
   have hclosed : ∀ τ, 0 ≤ τ → τ ≤ r → x τ = exp (τ • A) *ᵥ x 0
-      + ∫ s in (0:ℝ)..τ, exp ((τ - s) • A) *ᵥ (sys.B.c *ᵥ (Uc + ∑ i, p i • UG i) + sys.c) := by
+      + ∫ s in (0:ℝ)..τ, exp ((τ - s) • A) *ᵥ (B *ᵥ (Uc + ∑ i, p i • UG i) + sys.c) := by
     intro τ hτ0 hτr
     have hvoc := trajL.variation_of_constants ((Set.Icc_subset_Icc_right hτr).trans hT)
       le_rfl hτ0 hU
@@ -78,8 +97,8 @@ theorem LinParamSys.IsConstTrajectory.initReachInputDependence_outer {sys : LinP
     congr 1
     refine intervalIntegral.integral_congr fun s hs => ?_
     rw [Set.uIcc_of_le hτ0] at hs
-    simp only [hB, hu s (hT ⟨hs.1, hs.2.trans hτr⟩)]
-  have h := sys.initReachInputDependence_outer hr hε Rinit Uc UG hp traj.init ht0 htr
+    simp only [hu s (hT ⟨hs.1, hs.2.trans hτr⟩)]
+  have h := sys.initReachInputDependence_outer hr hε Rinit Uc UG hp traj.paramB traj.init ht0 htr
   subst hA
   rw [hclosed r hr.le le_rfl, hclosed t ht0 htr]
   exact h

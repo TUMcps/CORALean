@@ -560,9 +560,9 @@ def lpParticularRun : Option (Zonotope (Vec D 2)) := lpSys.particularSolutionFlo
     2 lpInputSet 2
 def lpConstRun : Zonotope (Vec D 2) := lpSys.constPropagateFloat stepR 4 2 (Z.c) 3
 def lpInputWindowsRun : Option (List (Zonotope (Vec D 2))) :=
-  lpSys.reachFloatInput ⟨Z, lpInputSet, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+  lpSys.reachFloatInput (fun _ => FloatOps.zero) ⟨Z, lpInputSet, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 def lpSplitWindowsRun : Option (List (Zonotope (Vec D 2))) :=
-  lpSys.reachFloatInput ⟨Z, Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+  lpSys.reachFloatInput (fun _ => FloatOps.zero) ⟨Z, Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
 
 
 /-! ## The continuous-time inner approximation in floats (#129)

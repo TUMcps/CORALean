@@ -14,22 +14,22 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
 
 @[expose] public section
 
 /-!
 # `LinParamSys.reachFloatInput` holds every member's run at every time of every window
 
-A run fixes `A` and `B`, and its combined input `B u` (`sys.c = 0`: the float run has no `c`) lies
-in `V = B U`, so it is a run of the canonical form under `V`, the point system `⟨A⟩`'s run
-(`toLinearSys`): at `t` it is at `e^{At} x(0) + ∫₀ᵗ e^{A(t-σ)} u'(σ) dσ`.
-With `u' = ũ + (u' - ũ)` the integral is `∫₀ᵗ e^{Aσ}dσ ũ` plus one admissible `Ũ`-input's
-contribution, and with `t = t_k + s` both the free motion and the constant's part are `e^{A t_k}`
-of their values at `s`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`). At
-`s ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
+A run fixes `A` and `B`, and its combined input `B u + sys.c` lies in `V = B U ⊕ c` (`c` the float
+vector that is `sys.c` through `toRealVec`, as `LinearSys.inputSetFloat_outer` has it), so it is a
+run of the canonical form under `V`, the point system `⟨A⟩`'s run (`toLinearSys`): at `t` it is at
+`e^{At} x(0) + ∫₀ᵗ e^{A(t-σ)} u'(σ) dσ`. With `u' = ũ + (u' - ũ)` the integral is `∫₀ᵗ e^{Aσ}dσ ũ`
+plus one admissible `Ũ`-input's contribution, and with `t = t_k + s` both the free motion and the
+constant's part are `e^{A t_k}` of their values at `s`, the constant's plus `P̃(t_k)`
+(`expIntegral_add_mulVec`). At `s ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
 `expIntegral_mem_constPropagateFloat`, and the `Ũ` part is in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being
-`Recenter`'s: nothing asks `U` to hold the origin.
--/
+`Recenter`'s: nothing asks `U` to hold the origin. -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       08-October-2026
@@ -54,10 +54,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- The windows `reachFloatInput` returns hold every constant-parameter run of the system, at
 every time of the window, under inputs in `params.U` (input coordinates) anywhere. -/
 theorem LinParamSys.reachFloatInput_outer
-    (sys : LinParamSys ℐ[𝕋] n) (hc : sys.c = 0)
+    (sys : LinParamSys ℐ[𝕋] n) {c : Vec 𝕋 n} (hc : Scalar.toRealVec c = sys.c)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋}
-    {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInput params options = some Rs) :
+    {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloatInput c params options = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {A : Mat ℝ n n} {B : Mat ℝ n sys.m} {x : ℝ → Vec ℝ n}
         {u : ℝ → Vec ℝ sys.m},
@@ -81,7 +81,8 @@ theorem LinParamSys.reachFloatInput_outer
     Option.bind_eq_some_iff, Option.pure_def, Option.some.injEq] at hwin
   obtain ⟨Hτk, hH, PRtk, hP, hRk⟩ := hwin
   -- the input set of the state space, `B U`
-  set V : Zonotope (Vec 𝕋 n) := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U with hV
+  set V : Zonotope (Vec 𝕋 n) := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U
+    ⊞ Zonotope.point c with hV
   set Δ := toReal Δt with hΔ
   -- the split's center `ũ`, the stored one
   set uc : Vec 𝕋 n := ScalarCenter.centerVec (S := 𝒵[𝕋]) V with huc
@@ -91,10 +92,12 @@ theorem LinParamSys.reachFloatInput_outer
   obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.IsCanonicalConstTrajectory (S := 𝒵[𝕋])
       (Set.Icc 0 ((tFinal : ℝ) - tStart)) X₀ V x u A := by
     refine ⟨_, trajB.canonical fun s hs => ?_⟩
-    rw [hc, add_zero]
     have hBu : B *ᵥ uIn s ∈ (B *ᵥ ·) '' construct U := ⟨uIn s, trajB.input s hs, rfl⟩
-    exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U
-      (Set.mem_iUnion₂.mpr ⟨B, trajB.paramB, hBu⟩)
+    exact Plus.plus_outer _ _ (Set.add_mem_add
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U
+        (Set.mem_iUnion₂.mpr ⟨B, trajB.paramB, hBu⟩))
+      (show sys.c ∈ (Zonotope.point c).construct by
+        rw [Zonotope.construct_point, Set.mem_singleton_iff]; exact hc.symm))
   -- window `k` lies inside the horizon
   have hkN : ((k : ℝ) + 1) * Δ ≤ (tFinal : ℝ) - tStart := by
     rw [← hNΔt]
