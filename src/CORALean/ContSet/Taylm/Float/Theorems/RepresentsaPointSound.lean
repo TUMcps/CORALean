@@ -81,8 +81,8 @@ theorem Taylm.representsa_point_sound {T : Fin m → Taylm 𝕋 n}
   have a := ht i
   have e1 : toReal (T i).remInf = 0 := abs_nonpos_iff.1 hlo'
   have e2 : toReal (T i).remSup = 0 := abs_nonpos_iff.1 hhi'
-  have : (T i).nominal.remInf = 0 := e1
-  have : (T i).nominal.remSup = 0 := e2
+  have : (T i).nominal.rem.inf = 0 := e1
+  have : (T i).nominal.rem.sup = 0 := e2
   show x i = (T i).nominal.poly 0
   rw [← hpoly]
   have b1 := a.1

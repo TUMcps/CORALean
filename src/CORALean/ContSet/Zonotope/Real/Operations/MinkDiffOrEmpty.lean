@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.OptEmpty.OptEmpty
 public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 
 @[expose] public section
@@ -14,7 +14,7 @@ centre — while `{0} ⊖ [-1, 1]` is `∅`, so a total `Zonotope → Zonotope �
 Zonotope` cannot meet `MinkDiff`'s obligation and this one can.
 
 Two readings of "nothing", kept apart by two types. `minkDiffRep`'s `none`
-says the caller's `M` failed its check, about the input; `WithEmpty.empty`
+says the caller's `M` failed its check, about the input; `OptEmpty.empty`
 says the returned *set* is `∅`. As `MinkDiff` is inner, `∅` is sound whatever
 the true difference is, and this returns it exactly when no `M` certifies —
 which claims the difference is empty no more than the class ever does.
@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The difference at some certified generator representation, and the explicit
 empty set where none certifies. -/
-noncomputable def Zonotope.minkDiffOrEmpty (Z₁ Z₂ : Zonotope α) : WithEmpty (Zonotope α) :=
+noncomputable def Zonotope.minkDiffOrEmpty (Z₁ Z₂ : Zonotope α) : OptEmpty (Zonotope α) :=
   if h : ∃ M, (Z₁.minkDiffRep Z₂ M).isSome then
     .of ((Z₁.minkDiffRep Z₂ h.choose).get h.choose_spec)
   else .empty

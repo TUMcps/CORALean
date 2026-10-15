@@ -526,10 +526,8 @@ SyntaxTree.funHanPlus  real-layer: the `funHan` of CORA's `syntaxTree.m` for thi
 SyntaxTree.funHanPower  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanSin  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanSinh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
-SyntaxTree.funHanSinhCora  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanSqrt  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanTan  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
-SyntaxTree.funHanTanCora  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanTanh  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanTimes  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions
 SyntaxTree.funHanUminus  real-layer: the `funHan` of CORA's `syntaxTree.m` for this operator, over real-layer intervals with the real elementary functions

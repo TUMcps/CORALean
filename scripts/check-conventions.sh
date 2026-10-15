@@ -104,7 +104,8 @@ ALLOWLIST=scripts/noncomputable-allowlist.txt
 # that is a module now, or is gone, is reported as stale.
 NONMODULE_LIST=scripts/non-module-allowlist.txt
 
-# Pairs `ℝ × ℝ`, `𝕋 × 𝕋`, `α × α`, `EReal × EReal` (CONTRIBUTING, "Bounds of one quantity"): the lower
+# Pairs `ℝ × ℝ`, `𝕋 × 𝕋`, `α × α`, `EReal × EReal`, and structures with sibling fields named
+# `…Inf`/`…Sup`, `…Lo`/`…Hi` or `lo…`/`hi…` (CONTRIBUTING, "Bounds of one quantity"): the lower
 # and the upper bound of one quantity are an `Interval`, so a file that still spells such a
 # pair names why in this list, `<path>  <reason>` per line. `Examples/` is exempt: it is
 # input and output, where a pair is a datum. The list only shrinks, as the one above.
@@ -171,24 +172,13 @@ src/CORALean/ContSet/Interval/Real/Interval.lean | 8
 # Counterexamples (#148). A refutation and a model of CORA's code as printed live in a `Counterexamples/`
 # folder, which holds nothing else, and no file name ends in `Counterexample` (the folder says it). A
 # file that the rule would send there but the library imports stays where it is, listed here as
-# `file | reason`: a CORA model that library code uses (the conversion `zonotopeCora` of `containsPointSet`),
-# or a theorem about the corrected counterexample of the paper. The list only shrinks.
+# `file | reason`: a CORA model that a library theorem states on purpose (CORA's rank test of
+# `isFullDim`, which `IsFullDimRank` proves necessary), or a theorem about the corrected counterexample
+# of the paper. Where the library has a better or exact version it uses that, and the CORA model lives in
+# `Counterexamples/`. The list only shrinks.
 COUNTEREXAMPLE_EXCEPTIONS="
-src/CORALean/ContSet/ConPolyZono/Real/Operations/IsFullDimCora.lean | the library imports it (IsFullDimRank)
-src/CORALean/ContSet/PolyZonotope/Float/Operations/ZonotopeCora.lean | the library imports it (ContainsPointSet)
-src/CORALean/ContSet/PolyZonotope/Float/Theorems/ZonotopeCoraContains.lean | the library imports it (ContainsPointSetSound)
-src/CORALean/ContSet/PolyZonotope/Real/Operations/CoraNormalCone.lean | the library imports it (IsPolytopeCexCoraNormalCone)
-src/CORALean/ContSet/PolyZonotope/Real/Operations/CoraVertex.lean | the library imports it (IsPolytopeCexCoraVertex)
-src/CORALean/ContSet/PolyZonotope/Real/Operations/CoraWeight.lean | the library imports it (ZonotopeCora)
-src/CORALean/ContSet/PolyZonotope/Real/Operations/IsFullDimCora.lean | the library imports it (IsFullDimRank)
-src/CORALean/ContSet/PolyZonotope/Real/Operations/ZonotopeCora.lean | the library imports it (ContainsPointSet, Polygon)
-src/CORALean/ContSet/PolyZonotope/Real/Theorems/IsPolytopeCexCoraNormalCone.lean | the library imports it (IsPolytopeCexInCone)
-src/CORALean/ContSet/PolyZonotope/Real/Theorems/IsPolytopeCexCoraVertex.lean | the library imports it (IsPolytopeCexInCone, IsPolytopeCexMemConstruct)
-src/CORALean/ContSet/PolyZonotope/Real/Theorems/ZonotopeCoraContains.lean | the library imports it (ContainsPointSetSound, PolygonOuter)
-src/CORALean/ContSet/Polygon/Real/Operations/SampledHullCora.lean | the library imports it (SampledHullMissesCircle)
-src/CORALean/ContSet/ZonoBundle/Real/Operations/IsIntervalCora.lean | the library imports it (IsBoxOfForall)
-src/CORALean/Specification/SyntaxTree/Operations/FunHanSinhCora.lean | the library imports it (Basic)
-src/CORALean/Specification/SyntaxTree/Operations/FunHanTanCora.lean | the library imports it (Basic)
+src/CORALean/ContSet/ConPolyZono/Real/Operations/IsFullDimCora.lean | IsFullDimRank proves CORA's rank test necessary for a set with an interior point (the same test, via the polynomial zonotope's): a theorem about CORA's own test, on purpose, so no other version can take its place
+src/CORALean/ContSet/PolyZonotope/Real/Operations/IsFullDimCora.lean | IsFullDimRank proves CORA's rank test necessary for a set with an interior point (the test is necessary): a theorem about CORA's own test, on purpose, so no other version can take its place
 src/CORALean/ContDynamics/LinearSys/Operations/SupportCounterexample.lean | the corrected counterexample of [1, Sec. 4.2], which the verification search extracts a run from; a repair, not a refutation
 src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimSupportCounterexample.lean | the corrected counterexample reaches the lower bound exactly; a repair that other theorems use
 src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimLeSupportCounterexample.lean | the corrected counterexample is a support vector; a repair that other theorems use
@@ -767,6 +757,7 @@ FNR == 1 {
   firstDeclSeen = 0; firstBodyFound = 0; firstBodyLine = 0
   npub = 0; nDeclTotal = 0; lastFNR = 0; defPending = 0; nh1 = 0; cexWord = 0; cexNeg = 0; cexDecl = ""; sigOpen = 0
   beginCount = 0; endCount = 0; auxCount = 0; mainishCount = 0
+  inStruct = 0; split("", sField)
   beginFNR = 0; endFNR = 0
   afterPending = 0; afterLabel = ""; afterMarkerFNR = 0; afterBlanks = 0
   pendingMain = 0; pendingMainLabel = ""; pendingMainFNR = 0; pendingMainIsInstances = 0
@@ -1013,6 +1004,36 @@ FNR == 1 {
       pairWarned[FILENAME] = 1
       say(FILENAME ":" FNR ": a pair `ℝ × ℝ`/`𝕋 × 𝕋`/`α × α`/`EReal × EReal` — bounds of one quantity are an" \
           " `Interval`; if this pair is two quantities, list the file in " PAIRLIST " with the reason")
+    }
+  }
+  # Sibling fields that are the two bounds of one quantity (`remInf`/`remSup`, `tLo`/`tHi`,
+  # `loX`/`hiX`): the same rule as the pair above, spelt as two fields. Listed files carry the
+  # same entry in PAIR_LIST.
+  if (FILENAME !~ /^src\/CORALean\/Examples\// && code ~ /^(structure|class)[ \t]/ &&
+      code !~ /^class[ \t]+inductive/) {
+    inStruct = 1; split("", sField)
+  } else if (inStruct && code ~ /^[^ \t]/) {
+    inStruct = 0
+  } else if (inStruct && code ~ /^  [A-Za-z_][^:=()\[\]{}]*:/ && code !~ /^  [A-Za-z_][^:]*:=/) {
+    fl = code; sub(/^[ \t]+/, "", fl); sub(/[ \t]*:.*$/, "", fl)
+    nfl = split(fl, fnames, /[ \t]+/)
+    for (fi = 1; fi <= nfl; fi++) {
+      fn = fnames[fi]; sField[fn] = 1; fp = ""
+      if (fn ~ /^.+Inf$/) fp = substr(fn, 1, length(fn) - 3) "Sup"
+      else if (fn ~ /^.+Sup$/) fp = substr(fn, 1, length(fn) - 3) "Inf"
+      else if (fn ~ /^.+Lo$/) fp = substr(fn, 1, length(fn) - 2) "Hi"
+      else if (fn ~ /^.+Hi$/) fp = substr(fn, 1, length(fn) - 2) "Lo"
+      else if (fn ~ /^lo($|[A-Z])/) fp = "hi" substr(fn, 3)
+      else if (fn ~ /^hi($|[A-Z])/) fp = "lo" substr(fn, 3)
+      if (fp != "" && (fp in sField)) {
+        pairSeen[FILENAME] = 1
+        if (!(FILENAME in pairOK) && !(FILENAME in pairWarned)) {
+          pairWarned[FILENAME] = 1
+          say(FILENAME ":" FNR ": the fields `" fn "` and `" fp "` are the two bounds of one quantity —" \
+              " hold them as one `Interval` field; if they are two quantities, list the file in " \
+              PAIRLIST " with the reason")
+        }
+      }
     }
   }
   # A guarantee about an `Option` result is stated at `… = some R` (CONTRIBUTING,

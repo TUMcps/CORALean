@@ -27,9 +27,10 @@ variable {S : ℕ → Type} {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSetAnalyzer.branch_proper (R : List (ReachSetAnalyzer.Entry S n))
-    (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.lo < s.hi) (w : List ℕ)
+    (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup) (w : List ℕ)
     (hw : ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w) :
-    ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∀ s ∈ e.timeInterval, s.lo < s.hi := fun j hj => by
+    ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧
+      ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup := fun j hj => by
   obtain ⟨e, he⟩ := ReachSetAnalyzer.branch_entries R 0 w hw (Or.inl rfl) j hj
   exact ⟨e, he, hR e (List.mem_of_getElem? he)⟩
 

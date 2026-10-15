@@ -40,7 +40,7 @@ theorem Taylm.antiderivPrinted_counterexample :
     ∃ (T : Taylm 1) (f : Vec ℝ 1 → ℝ), Continuous f ∧ T.Encloses f ∧
       ¬ (T.antiderivPrinted 0).Encloses fun t =>
         ∫ s in (0 : ℝ)..t 0, f (Function.update t 0 s) := by -- --- PROOF ---
-  refine ⟨⟨[(1, 0)], 0, 1, 1⟩, fun t => 1 + t 0 ^ 2, by fun_prop, ?_, fun hE => ?_⟩
+  refine ⟨⟨[(1, 0)], ⟨0, 1⟩, 1⟩, fun t => 1 + t 0 ^ 2, by fun_prop, ?_, fun hE => ?_⟩
   · intro t ht
     have := abs_le.1 (ht 0)
     simp [Taylm.poly, Taylm.monomial_zero]

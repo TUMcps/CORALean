@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Real.Polygon
 public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+public import CORALean.ContSet.Polygon.Real.Counterexamples.SampledHullCora
 public import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 

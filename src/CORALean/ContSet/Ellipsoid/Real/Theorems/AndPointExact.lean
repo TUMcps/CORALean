@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
-public import CORALean.ContSet.WithEmpty.Theorems.Basic
+public import CORALean.ContSet.OptEmpty.Theorems.Basic
 
 @[expose] public section
 
@@ -46,7 +46,7 @@ theorem Ellipsoid.andPoint_exact (E : Ellipsoid n) (p : Vec ℝ n) :
     ContSet.construct (E.andPoint p) = E.construct ∩ {p} := by -- --- PROOF ---
   unfold Ellipsoid.andPoint
   split_ifs with h
-  · rw [WithEmpty.construct_of]
+  · rw [OptEmpty.construct_of]
     change (Ellipsoid.ofPoint p).construct = _
     rw [Ellipsoid.aux_construct_ofPoint]
     ext x
@@ -54,7 +54,7 @@ theorem Ellipsoid.andPoint_exact (E : Ellipsoid n) (p : Vec ℝ n) :
     constructor
     · rintro rfl; exact ⟨h, rfl⟩
     · exact fun hx => hx.2
-  · rw [WithEmpty.construct_empty]
+  · rw [OptEmpty.construct_empty]
     ext x
     simp only [Set.mem_empty_iff_false, Set.mem_inter_iff, Set.mem_singleton_iff, false_iff,
       not_and]

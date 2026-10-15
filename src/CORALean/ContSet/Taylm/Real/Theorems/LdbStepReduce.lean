@@ -66,10 +66,10 @@ theorem Taylm.ldbStep_reduce {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Enclos
   simp only [Taylm.poly] at hr
   set L := Taylm.linCoef T.terms
   set Min := min
-    (T.constCoef + ∑ k, |L k| + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.remSup))
-    (min ((T.poly fun k => if 0 < L k then -1 else 1) + T.remSup) (T.poly 0 + T.remSup))
+    (T.constCoef + ∑ k, |L k| + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.rem.sup))
+    (min ((T.poly fun k => if 0 < L k then -1 else 1) + T.rem.sup) (T.poly 0 + T.rem.sup))
   set M := T.constCoef - ∑ k, |L k| + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).inf +
-      T.remInf)
+      T.rem.inf)
   -- `g s` is at least `M` plus the share of coordinate `k`
   have hgs : M + (L k * s k + |L k|) ≤ g s := by
     simp only [M, Taylm.constCoef]

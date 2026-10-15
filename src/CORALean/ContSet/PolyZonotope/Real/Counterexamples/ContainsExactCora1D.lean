@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 public import Mathlib.Tactic.NormNum
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Data.Fin.VecNotation
@@ -17,7 +17,8 @@ one-dimensional `pZ` with a generator (so the centre-only branch, l. 172, is not
 `'exact'` method returns at once into `aux_exactContainment` (ll. 100-102), which asks
 `representsa_(pZ,'zonotope',1e-12)` (l. 184). For `n = 1` that answers `true` whatever `pZ`
 is (`@polyZonotope/representsa_.m` l. 128: `res = n == 1 || aux_isZonotope(pZ,tol)`), with
-`S = zonotope(pZ)`, an outer enclosure only, and `contains_` of that zonotope decides (l. 186).
+`S = zonotope(pZ)` (`zonotopeEven`, which agrees with CORA here: no exponent column is zero), an
+outer enclosure only, and `contains_` of that zonotope decides (l. 186).
 
 # CORA's exact `contains` for a 1-D polynomial zonotope uses its zonotope enclosure
 
@@ -41,7 +42,7 @@ namespace CORALean.Real
 /-- The verdict of `contains(pZ, p, 'exact')` for `n = 1`. -/
 noncomputable def PolyZonotope.containsExactCora1D (pZ : PolyZonotope (Vec ℝ 1))
     (p : Vec ℝ 1) : Prop :=
-  let Z := pZ.zonotopeCora        -- 184. [isZonotope, Z] = representsa_(pZ,'zonotope',1e-12)
+  let Z := pZ.zonotopeEven        -- 184. [isZonotope, Z] = representsa_(pZ,'zonotope',1e-12)
   p ∈ Z.construct                 -- 186. contains_(Z,S,method,tol,0,false,false)
 
 
@@ -62,7 +63,7 @@ theorem PolyZonotope.containsExactCora1D_counterexample :
         norm_num
       · show |(0 : ℝ)| ≤ 1
         norm_num
-    · simp [PolyZonotope.zonotopeCora, PolyZonotope.coraWeight, Fin.sum_univ_succ,
+    · simp [PolyZonotope.zonotopeEven, PolyZonotope.evenWeight, Fin.sum_univ_succ,
         Fin.append, Fin.addCases]
       erw [Fin.sum_univ_two]
       simp

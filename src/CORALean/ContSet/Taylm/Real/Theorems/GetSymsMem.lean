@@ -29,7 +29,7 @@ variable {n : ℕ}
 
 theorem Taylm.getSyms_mem {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) {t : Vec ℝ n}
     (ht : t ∈ Taylm.box n) :
-    T.getSyms t + T.remInf ≤ f t ∧ f t ≤ T.getSyms t + T.remSup := by
+    T.getSyms t + T.rem.inf ≤ f t ∧ f t ≤ T.getSyms t + T.rem.sup := by
   obtain ⟨h1, h2⟩ := h t ht
   have hp : T.getSyms t = T.poly t := rfl
   rw [hp]

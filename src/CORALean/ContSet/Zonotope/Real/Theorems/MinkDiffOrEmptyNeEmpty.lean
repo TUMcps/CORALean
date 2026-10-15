@@ -32,7 +32,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.minkDiffOrEmpty_ne_empty (Z₁ Z₂ : Zonotope α)
-    (h : ∃ M, (Z₁.minkDiffRep Z₂ M).isSome) : Z₁.minkDiffOrEmpty Z₂ ≠ WithEmpty.empty := by
+    (h : ∃ M, (Z₁.minkDiffRep Z₂ M).isSome) : Z₁.minkDiffOrEmpty Z₂ ≠ OptEmpty.empty := by
   rw [Zonotope.minkDiffOrEmpty, dif_pos h]
   intro hc
   cases hc

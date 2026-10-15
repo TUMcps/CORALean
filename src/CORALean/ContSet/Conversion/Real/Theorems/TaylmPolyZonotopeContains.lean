@@ -37,7 +37,7 @@ theorem Taylm.polyZonotope_contains (T : Fin m → Taylm n) :
     Taylm.construct T ⊆ (Taylm.polyZonotope T).construct := by -- --- PROOF ---
   rintro x ⟨t, ht, hx⟩
   -- the remainder values form a point of the remainder box, which its zonotope reaches
-  set R : Interval (Vec ℝ m) := ⟨fun i => (T i).remInf, fun i => (T i).remSup⟩
+  set R : Interval (Vec ℝ m) := ⟨fun i => (T i).rem.inf, fun i => (T i).rem.sup⟩
   have hR : (fun i => x i - (T i).poly t) ∈ R.construct := fun i => hx i
   obtain ⟨β, hβ, hxβ⟩ := R.zonotope_contains hR
   refine ⟨t, β, ht, hβ, funext fun i => ?_⟩

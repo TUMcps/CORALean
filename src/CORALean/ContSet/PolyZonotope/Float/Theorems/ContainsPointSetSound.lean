@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZonotopeCoraContains
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeContains
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.ExcludesPointSound
 public import CORALean.ContSet.Conversion.Float.Theorems.Basic
@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeContain
 # `containsPointSet` never rejects a point set the polynomial zonotope contains
 
 As over ℝ: every point is in some piece (`splitGen_cover`), whose zonotope
-(`zonotopeCora_contains`), reduced (`reduceGirard_outer`), lies in its polytope
+(`zonotope_contains`), reduced (`reduceGirard_outer`), lies in its polytope
 (`hPolytope_contains`), which therefore cannot certify the point outside
 (`excludesPoint_sound`). Contrapositively, `false` proves that some point is outside the set.
 The converse fails and is not claimed: `true` says only that no enclosure excludes any point.
@@ -61,9 +61,9 @@ theorem PolyZonotope.containsPointSet_sound (pZ : PolyZonotope (Vec 𝕋 n)) {N 
   -- the point is in some piece, whose reduced zonotope's polytope contains it
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_splitMany_cover pZ splits _ (h i)
   refine ⟨_, List.mem_append_left _ (List.mem_map.mpr ⟨q, hq, rfl⟩), ?_⟩
-  have hP := Zonotope.hPolytope_contains (q.zonotopeCora.reduceGirard order)
-    (dirs (q.zonotopeCora.reduceGirard order)).2
-    (Zonotope.reduceGirard_outer _ order (PolyZonotope.zonotopeCora_contains q hxq))
+  have hP := Zonotope.hPolytope_contains (q.zonotope.reduceGirard order)
+    (dirs (q.zonotope.reduceGirard order)).2
+    (Zonotope.reduceGirard_outer _ order (PolyZonotope.zonotope_contains q hxq))
   cases hex : HPolytope.excludesPoint _ (points i) with
   | false => rfl
   | true => exact absurd hP (HPolytope.excludesPoint_sound _ _ hex)

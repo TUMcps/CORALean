@@ -46,7 +46,7 @@ theorem Taylm.antideriv_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Enclo
   intro t ht
   set Plow := T.terms.filter fun a => Nat.blt (Taylm.degree a.2) T.maxOrder
   set Prest := T.terms.filter fun a => !Nat.blt (Taylm.degree a.2) T.maxOrder
-  set J := ((Taylm.polyBounds Prest).inf + T.remInf, (Taylm.polyBounds Prest).sup + T.remSup)
+  set J := ((Taylm.polyBounds Prest).inf + T.rem.inf, (Taylm.polyBounds Prest).sup + T.rem.sup)
   have hti := abs_le.1 (ht i)
   -- the segment from `0` to `tᵢ` stays in the box
   have hseg : ∀ s ∈ Set.uIcc (0 : ℝ) (t i), Function.update t i s ∈ Taylm.box n ∧

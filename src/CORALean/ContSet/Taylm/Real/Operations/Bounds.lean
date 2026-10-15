@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.bounds (T : Taylm n) : Interval ℝ :=
-  ⟨(Taylm.polyBounds T.terms).inf + T.remInf, (Taylm.polyBounds T.terms).sup + T.remSup⟩
+  ⟨(Taylm.polyBounds T.terms).inf + T.rem.inf, (Taylm.polyBounds T.terms).sup + T.rem.sup⟩
 
 end CORALean.Real
 

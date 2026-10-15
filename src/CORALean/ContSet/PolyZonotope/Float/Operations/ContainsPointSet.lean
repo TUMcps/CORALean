@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Basic
-public import CORALean.ContSet.PolyZonotope.Float.Operations.ZonotopeCora
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 public import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint
@@ -49,7 +49,7 @@ def PolyZonotope.containsPointSet [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope
   let pZsplit := pZ.splitMany splits
   -- polytope(reduce(zonotope(·), 'girard', order)), one per piece and one for `pZ`
   let poly : PolyZonotope (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) := fun q =>
-    let Z := q.zonotopeCora.reduceGirard order
+    let Z := q.zonotope.reduceGirard order
     Z.hPolytope (dirs Z).2
   let qZsplit : List (HPolytope 𝕋 (Vec 𝕋 n)) := pZsplit.map poly ++ [poly pZ]
   (List.finRange N).all fun i => qZsplit.any fun P => !P.excludesPoint (points i)

@@ -30,7 +30,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.construct_eq_of_representsa_point (T : Fin m → Taylm n)
-    (hT : ∀ i, (T i).remInf ≤ (T i).remSup) (h : Taylm.representsa_point T) :
+    (hT : ∀ i, (T i).rem.inf ≤ (T i).rem.sup) (h : Taylm.representsa_point T) :
     Taylm.construct T = {(Taylm.polyZonotope T).c} := by
   rw [← Taylm.polyZonotope_exact T hT]
   exact PolyZonotope.construct_eq_of_representsa_point _ h

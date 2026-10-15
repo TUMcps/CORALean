@@ -40,7 +40,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 theorem ReachSetAnalyzer.signalsSound_of_branch (obj : ReachSetAnalyzer S n) (d : ℝ)
     (hobj : obj.Represents d (fun _ _ => False) (fun _ _ => False))
     (R : List (ReachSetAnalyzer.Entry S n)) (w : List ℕ)
-    (hw : ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∀ s ∈ e.timeInterval, s.lo < s.hi)
+    (hw : ∀ j ∈ w, ∃ e, R[j - 1]? = some e ∧ ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup)
     (obj' : ReachSetAnalyzer S n)
     (hf : w.foldlM (fun o j => (R[j - 1]?).bind fun e => o.analyzeSingle (𝕋 := 𝕋) e) obj =
       some obj') (out : List (String × FiniteSignal ℝ Kleene)) (hs : obj'.signals = some out) :

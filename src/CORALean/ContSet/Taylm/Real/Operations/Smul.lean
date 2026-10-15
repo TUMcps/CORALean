@@ -37,8 +37,8 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.smul (a : ℝ) (T : Taylm n) : Taylm n :=
-  ⟨T.terms.map fun b => (a * b.1, b.2), Interval.mulLo a a T.remInf T.remSup,
-    Interval.mulHi a a T.remInf T.remSup, T.maxOrder⟩
+  ⟨T.terms.map fun b => (a * b.1, b.2), ⟨Interval.mulLo a a T.rem.inf T.rem.sup,
+    Interval.mulHi a a T.rem.inf T.rem.sup⟩, T.maxOrder⟩
 
 end CORALean.Real
 

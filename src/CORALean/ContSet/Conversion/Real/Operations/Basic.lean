@@ -523,7 +523,7 @@ noncomputable def Capsule.spectraShadow (C : Capsule n) : SpectraShadow (Vec ℝ
 
 /-- A box as an array of Taylor models -/
 noncomputable def Interval.taylm (I : Interval (Vec ℝ n)) (N : ℕ) : Fin n → Taylm n :=
-  fun i => ⟨[((I.inf i + I.sup i) / 2, 0), ((I.sup i - I.inf i) / 2, Pi.single i 1)], 0, 0, N⟩
+  fun i => ⟨[((I.inf i + I.sup i) / 2, 0), ((I.sup i - I.inf i) / 2, Pi.single i 1)], ⟨0, 0⟩, N⟩
 
 end
 
@@ -600,7 +600,7 @@ variable {m : ℕ}
 /-- A polynomial zonotope as an array of Taylor models -/
 def PolyZonotope.taylm (pZ : PolyZonotope (Vec ℝ m)) (N : ℕ) : Fin m → Taylm (pZ.p + pZ.q) :=
   fun i => ⟨(pZ.c i, 0) :: (List.ofFn (fun j => (pZ.G j i, Fin.append (fun k => pZ.E k j) 0))
-    ++ List.ofFn (fun l => (pZ.GI l i, Pi.single (Fin.natAdd pZ.p l) 1))), 0, 0, N⟩
+    ++ List.ofFn (fun l => (pZ.GI l i, Pi.single (Fin.natAdd pZ.p l) 1))), ⟨0, 0⟩, N⟩
 
 end
 
@@ -1018,7 +1018,7 @@ variable {n : ℕ}
 
 /-- A zonotope as an array of Taylor models -/
 def Zonotope.taylm {m : ℕ} (Z : Zonotope (Vec ℝ m)) (N : ℕ) : Fin m → Taylm Z.h :=
-  fun i => ⟨(Z.c i, 0) :: List.ofFn (fun j => (Z.G j i, Pi.single j 1)), 0, 0, N⟩
+  fun i => ⟨(Z.c i, 0) :: List.ofFn (fun j => (Z.G j i, Pi.single j 1)), ⟨0, 0⟩, N⟩
 
 end
 

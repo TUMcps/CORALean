@@ -164,7 +164,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.MatGeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MatMap
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestIndepGen
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitGen
-public import CORALean.ContSet.PolyZonotope.Float.Operations.ZonotopeCora
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Materialise
 

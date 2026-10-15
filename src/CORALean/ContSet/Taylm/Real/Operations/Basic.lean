@@ -51,7 +51,7 @@ noncomputable def Taylm.boxRad (B : Fin n → Interval ℝ) : Vec ℝ n :=
 
 /-- CORA's `aux_addConst` with nothing to add it to: one term at the zero exponent and no
 remainder. `compose` subtracts it to centre a model on its constant part. -/
-def Taylm.const (n : ℕ) (c : ℝ) (N : ℕ) : Taylm n := ⟨[(c, 0)], 0, 0, N⟩
+def Taylm.const (n : ℕ) (c : ℝ) (N : ℕ) : Taylm n := ⟨[(c, 0)], ⟨0, 0⟩, N⟩
 
 
 -- ======================================  `Taylm.degree`  ====================================== --
@@ -85,7 +85,7 @@ def Taylm.constCoef (T : Taylm n) : ℝ :=
 /-- CORA's `empty(n)`: the model of the empty interval in each coordinate, a polynomial of
 zero and the crossed remainder `[1, 0]`, which no function can satisfy. -/
 def Taylm.empty (n : ℕ) : Fin n → Taylm n :=
-  fun _ => ⟨[], 1, 0, 0⟩
+  fun _ => ⟨[], ⟨1, 0⟩, 0⟩
 
 
 -- =====================================  `Taylm.getSyms`  ====================================== --
@@ -121,7 +121,7 @@ def Taylm.mulTerms (L₁ L₂ : List (ℝ × (Fin n → ℕ))) : List (ℝ × (F
 /-- CORA's `sum` of an array of models: `plus` folded from the right, the empty sum being the
 zero model. -/
 def Taylm.sum : {m : ℕ} → (Fin m → Taylm n) → Taylm n
-  | 0, _ => ⟨[], 0, 0, 0⟩
+  | 0, _ => ⟨[], ⟨0, 0⟩, 0⟩
   | _ + 1, T => (T 0).plus (Taylm.sum fun i => T i.succ)
 
 
@@ -145,7 +145,7 @@ def Taylm.mtimes {k m : ℕ} (M : Mat ℝ k m) (T : Fin m → Taylm n) : Fin k �
 
 /-- CORA's unary `-`: every coefficient negated, the remainder reflected. -/
 def Taylm.uminus (T : Taylm n) : Taylm n :=
-  ⟨T.terms.map fun a => (-a.1, a.2), -T.remSup, -T.remInf, T.maxOrder⟩
+  ⟨T.terms.map fun a => (-a.1, a.2), ⟨-T.rem.sup, -T.rem.inf⟩, T.maxOrder⟩
 
 
 -- ======================================  `Taylm.uplus`  ======================================= --

@@ -87,15 +87,15 @@ theorem Taylm.reach_le {T : Taylm n} {h C : ℝ} (h0 : 0 < h) (h1 : h ≤ 1) (hT
   unfold Taylm.reach Taylm.bounds Taylm.constCoef
   -- each end: the polynomial's part, then the remainder's
   refine max_le ?_ ?_
-  · rw [show (Taylm.polyBounds T.terms).inf + T.remInf
+  · rw [show (Taylm.polyBounds T.terms).inf + T.rem.inf
         - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum
         = ((Taylm.polyBounds T.terms).inf
-          - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum) + T.remInf by ring]
+          - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum) + T.rem.inf by ring]
     exact le_trans (abs_add_le _ _) (by linarith [hb.1])
-  · rw [show (Taylm.polyBounds T.terms).sup + T.remSup
+  · rw [show (Taylm.polyBounds T.terms).sup + T.rem.sup
         - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum
         = ((Taylm.polyBounds T.terms).sup
-          - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum) + T.remSup by ring]
+          - ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum) + T.rem.sup by ring]
     exact le_trans (abs_add_le _ _) (by linarith [hb.2])
 
 end CORALean.Real

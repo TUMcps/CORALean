@@ -31,8 +31,8 @@ variable {n m : ℕ}
 theorem Taylm.indep_apply (T : Fin m → Taylm n) (β : Fin (Taylm.polyZonotope T).q → ℝ)
     (i : Fin m) :
     (∑ l, β l • (Taylm.polyZonotope T).GI l) i
-      = β i * (((T i).remSup - (T i).remInf) / 2) := by -- --- PROOF ---
-  change (∑ l : Fin m, β l • (Pi.single l (((T l).remSup - (T l).remInf) / 2) : Vec ℝ m)) i = _
+      = β i * (((T i).rem.sup - (T i).rem.inf) / 2) := by -- --- PROOF ---
+  change (∑ l : Fin m, β l • (Pi.single l (((T l).rem.sup - (T l).rem.inf) / 2) : Vec ℝ m)) i = _
   rw [Finset.sum_apply, Finset.sum_eq_single i]
   · simp
   · intro l _ hl; simp [Ne.symm hl]

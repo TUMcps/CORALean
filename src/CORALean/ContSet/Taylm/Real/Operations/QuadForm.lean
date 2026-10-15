@@ -33,7 +33,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def Taylm.quadForm (H : Mat ℝ n n) (x0 : Vec ℝ n) (N : ℕ) : Taylm n :=
-  ⟨Taylm.quadTerms H x0, 0, 0, N⟩
+  ⟨Taylm.quadTerms H x0, ⟨0, 0⟩, N⟩
 
 end CORALean.Real
 

@@ -18,7 +18,7 @@ src/CORALean/
   ContSet/         set representations, over whichever ambient type they suit
     ContSet/       the interface every representation instantiates
     InflatedContSet/  nominal part + error box, what a float representation adds
-    WithEmpty/     a representation or nothing, for an operation whose result
+    OptEmpty/      a representation or nothing, for an operation whose result
                    can be empty where the representation cannot say so
     EmptySet/      `∅` in a stated dimension, a set class of its own as in CORA
     Fullspace/     the whole space, the same way; neither carries a scalar, so
@@ -243,7 +243,9 @@ The lower and the upper bound of one quantity are an `Interval` (`Interval ℝ`,
 `Interval (Vec ℝ n)`), read through `inf` and `sup`, never a pair `ℝ × ℝ` read with `.1`/`.2`; a pair
 stays where its two components are two quantities (a value and its error, a sine and a cosine, a
 state and an input), and `check-conventions.sh` asks for a reason in `scripts/pair-allowlist.txt`
-for each file that spells one.
+for each file that spells one. The same holds for a structure with sibling fields named
+`…Inf`/`…Sup`, `…Lo`/`…Hi` or `lo…`/`hi…` (`remInf`/`remSup`): those are one `Interval` field, and the
+check asks for the same reason in the same list.
 
 A pair of two different quantities is not read with `.1`/`.2` either. Where it is a domain
 concept, it is a small structure with the paper's or CORA's names for its fields (`LinearSys.StepSets`
@@ -584,8 +586,10 @@ one `# ` title per part and may be `20` lines long for each of them.
 
 Nothing else is a counterexample: `check-conventions.sh` sends a file named `…Cora`, or declaring a
 `…Cora` definition or a `…counterexample` theorem, into a `Counterexamples/` folder, and refuses a file
-there that neither says `counterexample` or `Cora`, nor declares a negated statement (`not_`, `_ne`). A model the library imports (the `zonotopeCora` the
-containment test of `PolyZonotope` is stated with) stays where it is, listed with its importer in
+there that neither says `counterexample` or `Cora`, nor declares a negated statement (`not_`, `_ne`). A model the library does not need (it has a better or exact
+version, such as `zonotopeEven` for `zonotopeCora`) belongs in the folder, imported from there by the
+refutations and by theorems about the model; only a theorem that states CORA's own test on purpose
+(`isFullDimCora_of_interior`) keeps its model where it is, listed with the reason in
 `COUNTEREXAMPLE_EXCEPTIONS`. `noncomputable` is free in the folder, its models being read and never run.
 `Counterexamples/API.lean` collects the folder, and the `API.lean` that collects `Theorems/` imports it.
 The `**Counterexample:**` links of `references/`, the appendix tables `scripts/errors-table.py` and
@@ -1437,6 +1441,9 @@ unless it is meaningful, and most changes are not: only a statement or definitio
 says something different, or a new proof idea, resets it to `---`. Moving declarations out,
 renaming, changed notation, reformatting and reworded comments all keep it. A kept stamp
 keeps its original date, so a later `Last update:` shows the file changed since its review.
+`Last update:` itself moves only for a meaningful change (a statement, a definition, a proof
+idea, real content); a rename, a `.1`/`.2` turned into a named field, a repointed import, a
+comment edit or a move leaves it alone.
 To review, run
 `python3 scripts/review.py` (`--in ContSet/Zonotope` restricts it, `--main` picks only main-type files,
 `--updated` picks only files updated since their last review, `--commit` commits each review)

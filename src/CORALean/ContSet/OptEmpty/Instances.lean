@@ -2,12 +2,12 @@ module
 
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.OptEmpty.OptEmpty
 
 @[expose] public section
 
 /-!
-# What `WithEmpty` instantiates
+# What `OptEmpty` instantiates
 
 Everything `S` gives, lifted: `empty` absorbs a binary operation and passes a
 unary one through, which the class obligations survive because `∅` is a subset
@@ -42,7 +42,7 @@ variable {S α : Type} [ContSet S α]
 
 /-- At a normed ambient type, where `∅` is compact and the rest is `S`'s. -/
 instance [NormedAddCommGroup α] [NormedSpace ℝ α] [CompactSet S α] :
-    CompactSet (WithEmpty S) α where
+    CompactSet (OptEmpty S) α where
   isCompact_construct s := by
     cases s with
     | empty => exact isCompact_empty
@@ -52,13 +52,13 @@ section
 
 variable [AddCommGroup α] [Module ℝ α]
 
-instance [ConvexSet S α] : ConvexSet (WithEmpty S) α where
+instance [ConvexSet S α] : ConvexSet (OptEmpty S) α where
   convex_construct s := by
     cases s with
     | empty => exact convex_empty
     | of s => exact ConvexSet.convex_construct s
 
-instance [Plus S α] : Plus (WithEmpty S) α where
+instance [Plus S α] : Plus (OptEmpty S) α where
   plus s t := match s, t with
     | .of s, .of t => .of (Plus.plus s t)
     | _, _ => .empty
@@ -70,7 +70,7 @@ instance [Plus S α] : Plus (WithEmpty S) α where
       | empty => rintro x ⟨a, -, b, hb, -⟩; exact hb.elim
       | of t => exact Plus.plus_outer s t
 
-instance [LinComb S α] : LinComb (WithEmpty S) α where
+instance [LinComb S α] : LinComb (OptEmpty S) α where
   linComb s t := match s, t with
     | .of s, .of t => .of (LinComb.linComb s t)
     | _, _ => .empty
@@ -84,7 +84,7 @@ instance [LinComb S α] : LinComb (WithEmpty S) α where
 
 /-- The one class whose obligation is *inner*, so `empty` discharges it for
 free: `∅` sits inside every difference, and claims nothing about it. -/
-instance [MinkDiff S α] : MinkDiff (WithEmpty S) α where
+instance [MinkDiff S α] : MinkDiff (OptEmpty S) α where
   minkDiff s t := match s, t with
     | .of s, .of t => .of (MinkDiff.minkDiff s t)
     | _, _ => .empty
@@ -93,7 +93,7 @@ instance [MinkDiff S α] : MinkDiff (WithEmpty S) α where
     case of.of s t => exact MinkDiff.minkDiff_inner s t
     all_goals exact Set.empty_subset _
 
-instance [Reduce S α] : Reduce (WithEmpty S) α where
+instance [Reduce S α] : Reduce (OptEmpty S) α where
   reduce s o := match s with
     | .empty => .empty
     | .of s => .of (Reduce.reduce s o)
@@ -103,7 +103,7 @@ instance [Reduce S α] : Reduce (WithEmpty S) α where
     | of s => exact Reduce.reduce_outer s o
 
 /-- A point is never the empty set, so this never returns `empty`. -/
-instance [OfPoint S α] : OfPoint (WithEmpty S) α where
+instance [OfPoint S α] : OfPoint (OptEmpty S) α where
   ofPoint v := .of (OfPoint.ofPoint v)
   mem_ofPoint v := OfPoint.mem_ofPoint v
 

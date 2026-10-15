@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ContSet.API
 public import CORALean.ContSet.Equality.API
-public import CORALean.ContSet.WithEmpty.API
+public import CORALean.ContSet.OptEmpty.API
 public import CORALean.ContSet.SetUnion.API
 public import CORALean.ContSet.SetIntersection.API
 public import CORALean.ContSet.EmptySet.API
@@ -32,7 +32,7 @@ public import CORALean.ContSet.ProbZonotope.API
 `ContSet` is the interface every representation instantiates; `InflatedContSet`
 is what a float representation adds on top of its exact counterpart, beside it.
 `EmptySet` and `Fullspace` are `∅` and the whole space as representations, as
-CORA has them; `WithEmpty` wraps one for a result that may be `∅`, and
+CORA has them; `OptEmpty` wraps one for a result that may be `∅`, and
 `SetUnion`/`SetIntersection` a list's union or intersection, generic rather than layered.
 `Ellipsoid` is the one representation whose support function is closed form in
 every direction at once, making the conversions out of it tight without a linear program.

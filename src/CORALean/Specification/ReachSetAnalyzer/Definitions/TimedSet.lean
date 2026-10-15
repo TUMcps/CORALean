@@ -1,6 +1,6 @@
 module
 
-public import Mathlib.Data.Real.Basic
+public import CORALean.ContSet.Interval.Real.Interval
 
 @[expose] public section
 
@@ -26,8 +26,8 @@ namespace CORALean
 
 structure ReachSetAnalyzer.TimedSet (S : ℕ → Type) (n : ℕ) where
   set : S n
-  lo : ℝ
-  hi : ℝ
+  /-- The time interval `interval(lo,hi)`, read through `inf` and `sup`. -/
+  time : Real.Interval ℝ
 
 end CORALean
 

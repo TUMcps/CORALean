@@ -47,7 +47,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 def Taylm.nominal (T : Taylm 𝕋 n) : Real.Taylm n :=
   ⟨T.terms.map fun a => (SoundFloatArithmetic.toReal a.1, a.2),
-    SoundFloatArithmetic.toReal T.remInf, SoundFloatArithmetic.toReal T.remSup, T.maxOrder⟩
+    ⟨SoundFloatArithmetic.toReal T.remInf, SoundFloatArithmetic.toReal T.remSup⟩, T.maxOrder⟩
 
 /-- What a stored model claims: its nominal encloses `f`. The meaning of the float type, as
 `construct` is of a set, and the hypothesis of every float Taylor-model theorem. -/

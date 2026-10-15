@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMonomial
-public import CORALean.ContSet.PolyZonotope.Real.Operations.CoraNormalCone
+public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.CoraNormalCone
 public import Mathlib.Tactic.Ring
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.FinCases

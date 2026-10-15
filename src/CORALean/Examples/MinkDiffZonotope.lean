@@ -5,7 +5,7 @@ import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyNeEmpty
 # The Minkowski difference of zonotopes may be empty
 
 A zonotope has no difference of its own to instantiate `MinkDiff` with, since `{0} ⊖ [-1, 1]`
-is `∅` and no zonotope is: `WithEmpty` is where the instance lives. `[-1, 1]` less
+is `∅` and no zonotope is: `OptEmpty` is where the instance lives. `[-1, 1]` less
 `[-0.2, 0.2]`, one generator each, is a pair it answers with a zonotope rather than `∅`: the
 subtrahend's generator written in the minuend's own certifies it, and one candidate certifying
 is enough.
@@ -48,12 +48,12 @@ theorem MDiff.certified : (MDiff.Z1.minkDiffRep MDiff.Z2 MDiff.M).isSome := by -
 
 /-- One candidate certifying is enough: the operation answers with a zonotope,
 not with the `∅` its inner obligation would have accepted just as readily. -/
-example : MDiff.Z1.minkDiffOrEmpty MDiff.Z2 ≠ WithEmpty.empty :=
+example : MDiff.Z1.minkDiffOrEmpty MDiff.Z2 ≠ OptEmpty.empty :=
   Zonotope.minkDiffOrEmpty_ne_empty MDiff.Z1 MDiff.Z2 ⟨MDiff.M, MDiff.certified⟩
 
 /-- The instance itself, which is what an algorithm asking for a difference
 resolves — at the wrapper, and not at `Zonotope`. -/
-noncomputable example : MinkDiff (WithEmpty (Zonotope (Vec ℝ 1))) (Vec ℝ 1) := inferInstance
+noncomputable example : MinkDiff (OptEmpty (Zonotope (Vec ℝ 1))) (Vec ℝ 1) := inferInstance
 
 end CORALean.Real
 

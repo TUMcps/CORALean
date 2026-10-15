@@ -51,16 +51,16 @@ theorem Taylm.ldbStep_witness {T : Taylm n} {g : Vec ℝ n → ℝ} (h : T.Enclo
     rw [abs_mul] at h1
     nlinarith [abs_nonneg (Taylm.linCoef T.terms k), abs_le.2 this]
   have hA : g p ≤ T.constCoef + ∑ k, |Taylm.linCoef T.terms k|
-      + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.remSup) := by
+      + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.rem.sup) := by
     simp only [Taylm.poly, Taylm.constCoef] at hrp ⊢
     linarith [hrp.2, hb.2]
-  have hB : g p ≤ T.poly p + T.remSup := by linarith [hrp.2]
-  have hC : g 0 ≤ T.poly 0 + T.remSup := by linarith [hr0.2]
+  have hB : g p ≤ T.poly p + T.rem.sup := by linarith [hrp.2]
+  have hC : g 0 ≤ T.poly 0 + T.rem.sup := by linarith [hr0.2]
   -- one of the two points is at most `Min`, so it is kept
   have hex : ∃ q ∈ Taylm.box n, g q ≤ T.ldbStep.1.sup := by
     simp only [Taylm.ldbStep]
-    rcases le_total (T.poly 0 + T.remSup) (min (T.constCoef + ∑ k, |Taylm.linCoef T.terms k|
-      + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.remSup)) (T.poly p + T.remSup))
+    rcases le_total (T.poly 0 + T.rem.sup) (min (T.constCoef + ∑ k, |Taylm.linCoef T.terms k|
+      + ((Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.rem.sup)) (T.poly p + T.rem.sup))
       with hc | hc
     · exact ⟨0, h0, le_min (le_trans hC (le_trans hc (min_le_left _ _)))
         (le_min (le_trans hC (le_trans hc (min_le_right _ _))) hC)⟩

@@ -33,14 +33,15 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 /-- The loop over the time intervals `l` of the entry. -/
 theorem aux_analyzeSingle_loop (obj : ReachSetAnalyzer S n) (d : ℝ) (loc : ℕ) :
-    ∀ l : List (ReachSetAnalyzer.TimedSet S n), (∀ s ∈ l, s.lo < s.hi) →
+    ∀ l : List (ReachSetAnalyzer.TimedSet S n), (∀ s ∈ l, s.time.inf < s.time.sup) →
     ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer S n), obj0.aps = obj.aps →
       obj0.masks = obj.masks → obj0.Represents d PT PF → ∃ obj', l.foldlM
-        (fun o t => o.analyzeTimeInterval (𝕋 := 𝕋) t.set loc t.lo t.hi) obj0 = some obj' ∧
+        (fun o t => o.analyzeTimeInterval (𝕋 := 𝕋) t.set loc t.time.inf t.time.sup) obj0 =
+          some obj' ∧
         obj'.aps = obj.aps ∧ obj'.masks = obj.masks ∧ obj'.Represents d
-          (fun k t => PT k t ∨ ∃ s ∈ l, obj.TrueMark (𝕋 := 𝕋) k s.set loc s.lo s.hi d t)
+          (fun k t => PT k t ∨ ∃ s ∈ l, obj.TrueMark (𝕋 := 𝕋) k s.set loc s.time.inf s.time.sup d t)
           (fun k t => PF k t ∨ ∃ s ∈ l,
-            obj.FalseMark (𝕋 := 𝕋) k s.set loc s.lo s.hi d t) := by -- --- PROOF ---
+            obj.FalseMark (𝕋 := 𝕋) k s.set loc s.time.inf s.time.sup d t) := by -- --- PROOF ---
   intro l
   induction l with
   | nil =>
@@ -51,7 +52,7 @@ theorem aux_analyzeSingle_loop (obj : ReachSetAnalyzer S n) (d : ℝ) (loc : ℕ
     intro hl PT PF obj0 ha hm hr
     -- the first time interval, on the analyzer as it is
     obtain ⟨obj1, h1, ha1, hm1, hr1⟩ := ReachSetAnalyzer.analyzeTimeInterval_spec (𝕋 := 𝕋) obj0 d
-      PT PF hr s.set loc s.lo s.hi (hl s List.mem_cons_self)
+      PT PF hr s.set loc s.time.inf s.time.sup (hl s List.mem_cons_self)
     rw [(ReachSetAnalyzer.marks_congr (𝕋 := 𝕋) obj obj0 ha hm).1,
       (ReachSetAnalyzer.marks_congr (𝕋 := 𝕋) obj obj0 ha hm).2] at hr1
     -- and the others on what it leaves
@@ -89,13 +90,13 @@ theorem aux_analyzeSingle_loop (obj : ReachSetAnalyzer S n) (d : ℝ) (loc : ℕ
 
 theorem ReachSetAnalyzer.analyzeSingle_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
     (PT PF : String → ℝ → Prop) (hobj : obj.Represents d PT PF)
-    (R : ReachSetAnalyzer.Entry S n) (hR : ∀ s ∈ R.timeInterval, s.lo < s.hi) :
+    (R : ReachSetAnalyzer.Entry S n) (hR : ∀ s ∈ R.timeInterval, s.time.inf < s.time.sup) :
     ∃ obj', obj.analyzeSingle (𝕋 := 𝕋) R = some obj' ∧ obj'.aps = obj.aps ∧
       obj'.masks = obj.masks ∧ obj'.Represents d
         (fun k t => PT k t ∨ ∃ s ∈ R.timeInterval,
-          obj.TrueMark (𝕋 := 𝕋) k s.set R.loc s.lo s.hi d t)
+          obj.TrueMark (𝕋 := 𝕋) k s.set R.loc s.time.inf s.time.sup d t)
         (fun k t => PF k t ∨ ∃ s ∈ R.timeInterval,
-          obj.FalseMark (𝕋 := 𝕋) k s.set R.loc s.lo s.hi d t) :=
+          obj.FalseMark (𝕋 := 𝕋) k s.set R.loc s.time.inf s.time.sup d t) :=
   aux_analyzeSingle_loop (𝕋 := 𝕋) obj d R.loc R.timeInterval hR PT PF obj rfl rfl hobj
 
 end CORALean

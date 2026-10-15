@@ -41,12 +41,12 @@ noncomputable def Taylm.ldbStep (T : Taylm n) : Interval ℝ × (Fin n → Inter
   let L := Taylm.linCoef T.terms
   -- the bounds of the linear and the nonlinear part
   let S := ∑ k, |L k|
-  let Ih : Interval ℝ := ⟨(Taylm.polyBounds (Taylm.higherTerms T.terms)).inf + T.remInf,
-    (Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.remSup⟩
+  let Ih : Interval ℝ := ⟨(Taylm.polyBounds (Taylm.higherTerms T.terms)).inf + T.rem.inf,
+    (Taylm.polyBounds (Taylm.higherTerms T.terms)).sup + T.rem.sup⟩
   let M := c - S + Ih.inf
   -- the left end, where the linear part is least, and the mid-point
   let p : Vec ℝ n := fun k => if 0 < L k then -1 else 1
-  let Min := min (c + S + Ih.sup) (min (T.poly p + T.remSup) (T.poly 0 + T.remSup))
+  let Min := min (c + S + Ih.sup) (min (T.poly p + T.rem.sup) (T.poly 0 + T.rem.sup))
   -- (a): keep in each direction the part within `d / Lᵢ` of the left end
   let d := Min - M
   let R : Fin n → Interval ℝ := fun k =>

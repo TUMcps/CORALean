@@ -7,7 +7,7 @@ public import CORALean.ContSet.ContSet.Definitions.ExactVertices
 public import CORALean.ContSet.ContSet.Definitions.IntersectStrip
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
 public import CORALean.ContSet.Interval.Real.Instances
-public import CORALean.ContSet.WithEmpty.WithEmpty
+public import CORALean.ContSet.OptEmpty.OptEmpty
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Real.Theorems.IntersectStripOuter
@@ -37,7 +37,7 @@ computed.
 
 `MinkDiff` is the one instance not at `Zonotope` itself. Every zonotope holds
 its centre and a difference can be empty, so no total operation into `Zonotope`
-meets that class's obligation; at `WithEmpty (Zonotope α)` it does, `empty`
+meets that class's obligation; at `OptEmpty (Zonotope α)` it does, `empty`
 being the answer where no generator representation certifies one.
 -/
 
@@ -167,7 +167,7 @@ instance : IdentityMem 𝕄𝒵 where
 /-- Not at `Zonotope α`: `{0} ⊖ [-1, 1]` is `∅`, which no zonotope denotes, so
 the wrapper is where a total difference can live. -/
 noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] :
-    MinkDiff (WithEmpty (Zonotope α)) α where
+    MinkDiff (OptEmpty (Zonotope α)) α where
   minkDiff s t := match s, t with
     | .of Z₁, .of Z₂ => Z₁.minkDiffOrEmpty Z₂
     | _, _ => .empty

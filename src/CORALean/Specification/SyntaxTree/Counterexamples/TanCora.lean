@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Tan
-public import CORALean.Specification.SyntaxTree.Operations.FunHanTanCora
+public import CORALean.Specification.SyntaxTree.Counterexamples.FunHanTanCora
 public import CORALean.Specification.SyntaxTree.SyntaxTree
 
 @[expose] public section

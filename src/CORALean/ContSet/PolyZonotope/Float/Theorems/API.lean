@@ -122,7 +122,6 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.RealImageExtGens
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MatMapOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestIndepGenCover
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZonotopeCoraContains
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointSetSound
 
 /-!

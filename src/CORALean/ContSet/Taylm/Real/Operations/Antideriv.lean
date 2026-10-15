@@ -42,11 +42,10 @@ noncomputable def Taylm.antideriv (i : Fin n) (T : Taylm n) : Taylm n :=
   let Plow := T.terms.filter fun a => Nat.blt (Taylm.degree a.2) N
   let Prest := T.terms.filter fun a => !Nat.blt (Taylm.degree a.2) N
   -- `J = B(P - P_{n-1}) + I`
-  let J := ((Taylm.polyBounds Prest).inf + T.remInf, (Taylm.polyBounds Prest).sup + T.remSup)
+  let J := ((Taylm.polyBounds Prest).inf + T.rem.inf, (Taylm.polyBounds Prest).sup + T.rem.sup)
   -- `∫₀^{xᵢ} P_{n-1} dxᵢ`, and `J` times the signed lengths `[-1, 1]`
   { terms := Taylm.integrateTerms i Plow
-    remInf := Interval.mulLo J.1 J.2 (-1) 1
-    remSup := Interval.mulHi J.1 J.2 (-1) 1
+    rem := ⟨Interval.mulLo J.1 J.2 (-1) 1, Interval.mulHi J.1 J.2 (-1) 1⟩
     maxOrder := N }
 
 end CORALean.Real

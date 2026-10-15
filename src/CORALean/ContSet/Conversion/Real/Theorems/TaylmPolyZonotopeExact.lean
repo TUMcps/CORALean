@@ -38,14 +38,14 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.polyZonotope_exact (T : Fin m → Taylm n) (hT : ∀ i, (T i).remInf ≤ (T i).remSup) :
+theorem Taylm.polyZonotope_exact (T : Fin m → Taylm n) (hT : ∀ i, (T i).rem.inf ≤ (T i).rem.sup) :
     (Taylm.polyZonotope T).construct = Taylm.construct T := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ (Taylm.polyZonotope_contains T)
   rintro x ⟨a, β, ha, hβ, rfl⟩
   refine ⟨a, ha, fun i => ?_⟩
   rw [Pi.add_apply, Pi.add_apply, Taylm.dep_apply, Taylm.indep_apply]
   simp only [Taylm.polyZonotope]
-  have hr : 0 ≤ ((T i).remSup - (T i).remInf) / 2 := by linarith [hT i]
+  have hr : 0 ≤ ((T i).rem.sup - (T i).rem.inf) / 2 := by linarith [hT i]
   have hb := abs_le.1 (hβ i)
   constructor <;> nlinarith
 

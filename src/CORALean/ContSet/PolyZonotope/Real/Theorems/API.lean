@@ -153,7 +153,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdSubset
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReplaceIdExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.OnlyIdPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.JacobianHasDerivAt
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.ZonotopeCoraContains
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SplitGenCover
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ContainsPointSetSound
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.VolumeNegExample
@@ -175,8 +174,6 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.CubMapMixedExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SquareExampleConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMonomial
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraVertex
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexCoraNormalCone
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexInCone
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMemConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexNotConvex

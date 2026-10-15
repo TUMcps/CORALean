@@ -39,8 +39,8 @@ variable {n : ℕ}
 noncomputable def Taylm.optBernstein (T : Taylm n) : Interval ℝ :=
   let N := T.bernsteinDegree                                         -- n = max(max(E))
   let B := Taylm.bernsteinCoeff T.terms N                           -- poly2bernstein(G, E, dom)
-  ⟨Finset.univ.inf' ⟨fun _ => 0, Finset.mem_univ _⟩ B + T.remInf,    -- min(min(B)) + remainder
-   Finset.univ.sup' ⟨fun _ => 0, Finset.mem_univ _⟩ B + T.remSup⟩    -- max(max(B)) + remainder
+  ⟨Finset.univ.inf' ⟨fun _ => 0, Finset.mem_univ _⟩ B + T.rem.inf,    -- min(min(B)) + remainder
+   Finset.univ.sup' ⟨fun _ => 0, Finset.mem_univ _⟩ B + T.rem.sup⟩    -- max(max(B)) + remainder
 
 end CORALean.Real
 

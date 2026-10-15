@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitMany
-public import CORALean.ContSet.PolyZonotope.Real.Operations.ZonotopeCora
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
@@ -43,8 +43,8 @@ noncomputable def PolyZonotope.containsPointSet (pZ : PolyZonotope (Vec ℝ n)) 
   let pZsplit := pZ.splitMany splits
   -- `polytope(reduce(zonotope(·), 'girard', order))`, one per piece and one for `pZ`
   let qZsplit : List (Set (Vec ℝ n)) :=
-    pZsplit.map (fun q => (q.zonotopeCora.reduceGirard order).vPolytope.construct)
-      ++ [(pZ.zonotopeCora.reduceGirard order).vPolytope.construct]
+    pZsplit.map (fun q => (q.zonotopeEven.reduceGirard order).vPolytope.construct)
+      ++ [(pZ.zonotopeEven.reduceGirard order).vPolytope.construct]
   ∀ i, ∃ Q ∈ qZsplit, points i ∈ Q
 
 end CORALean.Real
