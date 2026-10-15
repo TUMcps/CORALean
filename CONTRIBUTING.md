@@ -16,7 +16,9 @@ src/CORALean/
     LinProg/       linear programming: duality, Farkas, the simplex solver
     SupportFunction/  bounds on a linear objective, and how they compose
   ContSet/         set representations, over whichever ambient type they suit
-    ContSet/       the interface every representation instantiates
+    ContSet/       the interfaces every representation instantiates, in
+                   Interfaces.lean; ContSet.lean instantiates them at a plain
+                   set and a matrix
     InflatedContSet/  nominal part + error box, what a float representation adds
     OptEmpty/      a representation or nothing, for an operation whose result
                    can be empty where the representation cannot say so
@@ -31,7 +33,7 @@ src/CORALean/
                    Complexity/Space/Theorems/ (how large a result is, proved),
                    Complexity/Time/Operations/ (what running it costs, asserted)
                    and Complexity/Time/Theorems/ (what is proved of the costs),
-                   Instances.lean (the interface, instantiated),
+                   Instances.lean (the interfaces, instantiated),
                    API.lean (the whole directory, and nothing but imports)
       Float/       the same representation, rounded
     Zonotope/      Real/ and Float/, as above
@@ -63,10 +65,13 @@ src/CORALean/
                    unsafe one — and why checking it on an outer approximation
                    answers for the exact set
   ContDynamics/    one directory per system class, written against the
-                   interfaces alone
-    Reach/         the reachability class every system instantiates, and how a
-                   reach operation takes its arguments: CORA's `params` (the
-                   problem) and `options` (the algorithm), as two structures
+                   interfaces alone; Interfaces.lean holds the classes every
+                   system instantiates: ContDynamics (ContDynamicsDT), its
+                   dimensions and what a run of it is, and Reach
+    Reach/         what goes with the reachability class: how a reach operation
+                   takes its arguments, CORA's `params` (the problem) and
+                   `options` (the algorithm), as two structures, and checking a
+                   specification on what it returns
     LinearSysDT/   discrete-time linear systems, and reachability
     LinearSys/     continuous-time linear systems: the flow in closed form,
                    reachability at the sample times by sampling into
@@ -82,9 +87,10 @@ src/CORALean/
     NonlinDASys/   ẋ = f(x,y,u), 0 = g(x,y,u): index 1, reached through a
                    reduced model that eliminates y, supplied as data
     NeurNetContrSys/  a plant closed around a network, one class over every
-                   plant as CORA's: each control period is reached as the
+                   ContDynamics plant as CORA's: each control period is reached as the
                    extended system [x; u], u̇ = 0, from the state set times
-                   what NN encloses; NeurNetContrSysDT/ steps a discrete plant
+                   what NN encloses; NeurNetContrSysDT/ steps any
+                   ContDynamicsDT plant
     OutputEq/      y = C x + D u, kept out of the system classes so that it
                    applies to all of them
   DiscrDynamics/   CORA's discrDynamics, written over ℝ: GridPartition/ cuts a box
@@ -154,7 +160,7 @@ per-statement version of a representation's whole `<Rep>/Real/Theorems/`.
 `Global/Float/` is the scalar interface itself, and the one other `Float/`.
 
 A directory holding any of `Operations/`, `Theorems/` or `Definitions/` is a
-*class root*: beside them it holds its class file, `Instances.lean` and
+*class root*: beside them it holds its class file, `Interfaces.lean`, `Instances.lean` and
 `API.lean`, and nothing else; `ContSet/Conversion/Real/` and `Float/` are class roots with no class
 file. A `Definitions/` file declares types, `abbrev`s,
 propositions, sets and `noncomputable` specifications; a computable `def`
@@ -164,6 +170,19 @@ returning an `Option` — a search that can fail — and a theorem belongs in
 named list in the script, which only shrinks. Two things no script can see are
 review items: whether a statement in `Theorems/` secretly holds only at ℝ, and
 whether one in `Theorems/Real/` really needs ℝ.
+
+### Interfaces
+
+A `class` is an interface, and it is declared in a file named `Interfaces.lean`, as its
+instances sit in `Instances.lean`: `ContSet/ContSet/Interfaces.lean` holds every class a set
+representation instantiates, `ContDynamics/Interfaces.lean` every class a system does
+(`ContDynamics`, `ContDynamicsDT`, `Reach`). So what a directory offers is one file to read, and
+what a representation or a system provides is the other. A generic algorithm or theorem is
+written over the interface alone — the closed loops in `NeurNetContrSys/` are over any
+`ContDynamics` — and a concrete one at the instance. `check-conventions.sh` refuses a `class`
+anywhere else, but in a file `scripts/class-allowlist.txt` names with its reason: a base file of
+`Global/`, below every interface, or a class whose law needs what the guarded
+`ContSet/ContSet/Interfaces.lean` keeps out of its closure.
 
 The remaining directory names — `ContSet`, `Interval`, `Operations` — are
 organizational and appear in no namespace, so a path never contradicts a
@@ -330,7 +349,8 @@ directory unless its own docstring says which sibling it deliberately leaves
 out, that no file imports its own directory's collector, that no `Real` file of
 a representation reaches into `Float`, that a file under a representation's
 `Real/` or any `Float/` declares the namespace its directory claims, that a class
-root holds only its class file, `Instances.lean` and `API.lean`, that a
+root holds only its class file, `Interfaces.lean`, `Instances.lean` and `API.lean`, that a
+`class` is declared only in an `Interfaces.lean` or an allowlisted file, that a
 `Definitions/` file declares only meanings, that no `Real/` or `Float/` folder
 sits outside `ContSet/` but a `Theorems/Real/` and `Global/Float/`, that a float
 type is named as its exact twin, the layer being the namespace — no `GZonotope`,
@@ -527,7 +547,7 @@ oleans.
 
 ## File roles
 
-Per representation, six kinds of file, and a file does only its own job. Scalar
+Per representation, seven kinds of file, and a file does only its own job. Scalar
 models and systems follow the same shape:
 
 | File | Holds |
@@ -539,6 +559,7 @@ models and systems follow the same shape:
 | `Complexity/Space/Theorems/*.lean` | how large a result is — a theorem, proved from the definition, one per count — and its `O` corollary, a file of its own |
 | `Complexity/Time/Operations/*.lean` | how much running it costs — a `def`, asserted against a model, one per operation |
 | `Complexity/Time/Theorems/*.lean` | what is proved of the asserted costs: monotonicity in the operand sizes, bounds, and the `O` corollary, one per file |
+| `Interfaces.lean` | the classes a directory offers, each with the laws its instances owe (see "Interfaces") |
 | `Instances.lean` | the class instances, whose fields *are* the guarantees |
 
 A file is named after what it declares, not after the role it plays:

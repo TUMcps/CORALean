@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Map
 
 @[expose] public section
 
@@ -37,7 +37,7 @@ omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, 
     [Mtimes (Mat 𝕋) S] in
 /-- One sampled run of the closed loop from `x₀` — no input argument, since the
 controller supplies it: a run is determined by its initial state alone. -/
-noncomputable def NeurNetContrSysDT.simulate (sys : NeurNetContrSysDT 𝕋 S n)
+noncomputable def NeurNetContrSysDT.simulate (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (π : Vec ℝ n → Vec ℝ sys.plant.m) (x₀ : Vec ℝ n) : ℕ → Vec ℝ n
   | 0 => x₀
   | k + 1 => toRealMat sys.plant.A *ᵥ sys.simulate π x₀ k +

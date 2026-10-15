@@ -38,8 +38,8 @@ variable {n : ℕ}
 /-- The same costs at a step's worst case: `o * n` generators reaching the
 `mtimes`, and `hEnc` a bound on what the controller's enclosure carries into
 the `reduce`. -/
-def NeurNetContrSysDT.reachStepBound (sys : NeurNetContrSysDT ℝ 𝒵 n) (o hEnc : ℕ)
-    (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost) : Cost :=
+def NeurNetContrSysDT.reachStepBound (sys : NeurNetContrSysDT (LinearSysDT ℝ n) 𝒵 n)
+    (o hEnc : ℕ) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost) : Cost :=
   NeuralNetwork.encloseCost LC sys.contr
     + (Zonotope.mtimesCost n sys.plant.m hEnc + Zonotope.plusCost n)
     + LinearSysDT.reachStepBound n hEnc o

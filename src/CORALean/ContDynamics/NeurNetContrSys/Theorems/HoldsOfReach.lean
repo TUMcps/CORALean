@@ -19,7 +19,7 @@ records as missing.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -46,13 +46,14 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem NeurNetContrSys.holds_of_reach (sys : NeurNetContrSys (LinearSys 𝕋 n) S n) (o η N : ℕ)
     (ho : 0 < o) {Δt : ℝ} (hΔt : 0 < Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {R₀ : S n} {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {W : S 0} {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ 0}
+    {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0)
+    {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ sys.plant.r}
     (traj : sys.Trajectory π ((N : ℝ) * Δt) H R₀ W x w)
     (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H)
     (h : spec.Holds (construct (sys.reach ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :
     spec.Holds {x ((i : ℝ) * ((N : ℝ) * Δt))} :=
   spec.holds_of_outer
-    (Set.singleton_subset_iff.mpr (sys.reach_outer o η N ho hΔt hε hπ traj i hi)) h
+    (Set.singleton_subset_iff.mpr (sys.reach_outer o η N ho hΔt hε hπ hW traj i hi)) h
 
 end CORALean
 

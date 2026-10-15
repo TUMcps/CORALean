@@ -1,29 +1,27 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.LinearSys
-public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
+public import CORALean.ContDynamics.Interfaces
 public import CORALean.NN.NeuralNetwork
-public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 @[expose] public section
 
 /-!
 # A neural network in the loop of a plant: the representation
 
-CORA's `neurNetContrSys(sys, nn, dt)`: one class over every plant CORA accepts, the network's
-output `u = π(x(i Δtc))` computed at the sampling instants and *held* over the control period
-`Δtc` (CORA's `dt`, here the argument of `Trajectory`). [1, Alg. 2]'s system
+CORA's `neurNetContrSys(sys, nn, dt)`: one class over every plant, any `ContDynamics`, the
+network's output `u = π(x(i Δtc))` computed at the sampling instants and *held* over the control
+period `Δtc` (CORA's `dt`, here the argument of `Trajectory`). [1, Alg. 2]'s system
 `ẋ(t) = f(x(t), u_c(x(t), t), w(t))`, with the disturbance `w(t) ∈ W`.
 
-`Plant` is what the class asks of a plant: the `m` inputs the network drives, the `r` remaining
-ones (CORA's external inputs `n_ext`, here the disturbance), and the right-hand side `f x u w`.
-A `LinearSys` is `ẋ = A x + B u + c` (CORA's `aux_augmentLinear`), the network driving every
-input, so `r = 0`; as in CORA, `E` and the output equation do not enter the loop. A
-`NonlinearSys n (m + r)` is `ẋ = f(x, (u, w))`, CORA's `sys.mFile(x(1:n), [x(n+1:n+m); u])`.
-The discrete-time loop is `NeurNetContrSysDT`, its runs indexed by `ℕ`.
+The network drives every input of the plant (`nrOfInputs`), and the plant's disturbance
+(`nrOfDisturbances`) is the loop's: at a `LinearSys` `E w`, at a `NonlinParamSys` the parameter.
+CORA's loop at a linear plant drops `E`; its reachability at one is stated for a `W` that `E`
+sends to `0`. CORA also lets the network drive only the first inputs, the rest external; that
+split is not modelled. The discrete-time loop is `NeurNetContrSysDT`, its runs indexed by `ℕ`.
 
-`Trajectory` is stated per period, with the derivative taken *within that period*: at a sampling
-instant `u` jumps and `x` is differentiable only one-sidedly. `H` bounds the number of periods.
+`Trajectory` is stated per period, as a run of the plant on `[0, Δtc]` shifted to the period's
+start: at a sampling instant `u` jumps, and a run is a run of the plant only within a period.
+`H` bounds the number of periods.
 
 ## References
 
@@ -33,7 +31,7 @@ instant `u` jumps and `x` is differentiable only one-sidedly. `H` bounds the num
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -41,56 +39,32 @@ instant `u` jumps and `x` is differentiable only one-sidedly. `H` bounds the num
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open ContSet ContDynamics
 
-variable {n m r : ℕ} {𝕋 : Type} [Scalar 𝕋]
+variable {n : ℕ} {P : Type} [ContDynamics P n]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- A plant a network can close the loop of: `m` inputs the network drives, `r` disturbance
-inputs, and the right-hand side `f x u w`. -/
-class NeurNetContrSys.Plant (P : Type) (n : outParam ℕ) where
-  m : P → ℕ
-  r : P → ℕ
-  f : (p : P) → Vec ℝ n → Vec ℝ (m p) → Vec ℝ (r p) → Vec ℝ n
-
-/-- A linear plant, `ẋ = A x + B u + c`: the network drives every input, no disturbance. -/
-instance NeurNetContrSys.Plant.linearSys : NeurNetContrSys.Plant (LinearSys 𝕋 n) n where
-  m p := p.m
-  r _ := 0
-  f p x u _ := toRealMat p.A *ᵥ x + (toRealMat p.B *ᵥ u + toRealVec p.c)
-
-/-- A nonlinear plant, `ẋ = f(x, (u, w))`: the network drives the first `m` inputs, the
-disturbance is the last `r`. -/
-instance NeurNetContrSys.Plant.nonlinearSys :
-    NeurNetContrSys.Plant (NonlinearSys n (m + r)) n where
-  m _ := m
-  r _ := r
-  f p x u w := p.f x (Fin.append u w)
-
-open NeurNetContrSys (Plant)
-
-/-- The plant and the network controlling it. -/
+/-- The plant and the network controlling it, which drives every input of the plant. -/
 structure NeurNetContrSys (P : Type) (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ)
-    [Plant P n] where
+    [ContDynamics P n] where
   plant : P
-  contr : NeuralNetwork S n (Plant.m plant)
+  contr : NeuralNetwork S n (nrOfInputs plant)
 
-/-- One run over `H` control periods of length `Δtc`: the input is `π(x(i Δtc))` on period `i`,
-the disturbance stays in `W`, and `x` starts in `R₀`. `π` is what the controller computes,
-which `NeuralNetwork` does not store. -/
-structure NeurNetContrSys.Trajectory {P : Type} [Plant P n] (sys : NeurNetContrSys P S n)
-    (π : Vec ℝ n → Vec ℝ (Plant.m sys.plant)) (Δtc : ℝ) (H : ℕ) (R₀ : S n)
-    (W : S (Plant.r sys.plant)) (x : ℝ → Vec ℝ n) (w : ℝ → Vec ℝ (Plant.r sys.plant)) :
-    Prop where
+/-- One run over `H` control periods of length `Δtc`: `x` starts in `R₀`, and on period `i` it is
+a run of the plant under the held input `π(x(i Δtc))` and a disturbance in `W`. `π` is what the
+controller computes, which `NeuralNetwork` does not store. -/
+structure NeurNetContrSys.Trajectory (sys : NeurNetContrSys P S n)
+    (π : Vec ℝ n → Vec ℝ (nrOfInputs sys.plant)) (Δtc : ℝ) (H : ℕ) (R₀ : S n)
+    (W : Set (Vec ℝ (nrOfDisturbances sys.plant))) (x : ℝ → Vec ℝ n)
+    (w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)) : Prop where
   init : x 0 ∈ construct R₀
-  dist (t : ℝ) (ht : t ∈ Set.Icc 0 ((H : ℝ) * Δtc)) : w t ∈ construct W
-  flow (i : ℕ) (hi : i < H) (t : ℝ)
-      (ht : t ∈ Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) :
-    HasDerivWithinAt x (Plant.f sys.plant (x t) (π (x ((i : ℝ) * Δtc))) (w t))
-      (Set.Icc ((i : ℝ) * Δtc) (((i : ℝ) + 1) * Δtc)) t
+  flow (i : ℕ) (hi : i < H) :
+    ContDynamics.Trajectory sys.plant (Set.Icc 0 Δtc) Set.univ Set.univ W
+      (fun t => x ((i : ℝ) * Δtc + t)) (fun _ => π (x ((i : ℝ) * Δtc)))
+      (fun t => w ((i : ℝ) * Δtc + t))
 
 end CORALean
 

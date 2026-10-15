@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
-public import CORALean.ContSet.ContSet.Definitions.IntersectStrip
 public import CORALean.ContSet.Interval.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
 public import CORALean.ContSet.Zonotope.Float.Theorems.Basic

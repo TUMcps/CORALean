@@ -38,7 +38,7 @@ assert_not_exists HasDerivAt
 -- Inner-product geometry; the sup norm is what this layer uses.
 assert_not_exists InnerProductSpace
 -- The abstract set class sits above this file.
-assert_not_imported CORALean.ContSet.ContSet.ContSet
+assert_not_imported CORALean.ContSet.ContSet.Interfaces
 -- A concrete representation sits above this file.
 assert_not_imported CORALean.ContSet.Zonotope.Real.Zonotope
 

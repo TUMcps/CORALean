@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
+public import CORALean.ContSet.ContSet.Interfaces
 public import CORALean.ContSet.ContSet.Definitions.API
 public import CORALean.ContSet.ContSet.Float.API
 public import CORALean.ContSet.ContSet.Operations.API
@@ -10,9 +11,10 @@ public import CORALean.ContSet.ContSet.Counterexamples.API
 /-!
 # The set interface, collected
 
-What every representation implements: `ContSet` for what it denotes,
+What every representation implements, in `Interfaces`: `ContSet` for what it denotes,
 one class per operation — `Plus`, `LinComb`, `Reduce`, `Mtimes`, `OfPoint`,
-`Recentre` — each carrying its own guarantee. `OfPoint` and `Recentre` are
+`Recentre` — each carrying its own guarantee. `ContSet` itself instantiates them at what
+needs no representation of its own: a plain set and a matrix. `OfPoint` and `Recentre` are
 independent: a representation with a centre has both, one with only a point
 operation just the first.
 

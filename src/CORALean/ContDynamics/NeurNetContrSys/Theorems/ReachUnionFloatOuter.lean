@@ -15,7 +15,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -38,7 +38,8 @@ theorem NeurNetContrSys.reachUnionFloat_outer
     {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ} {options : NeurNetContrSys.ReachOptions 𝕋}
     {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachUnionFloat params options = some Rs)
     (hΔt : 0 < toReal options.Δt) {π : Vec ℝ n → Vec ℝ sys.plant.m} (hπ : sys.contr.Sound π)
-    {W : Zonotope (Vec 𝕋 0)} {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ 0}
+    {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, Scalar.toRealMat sys.plant.E *ᵥ v = 0)
+    {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ sys.plant.r}
     (traj : sys.Trajectory π ((options.N : ℝ) * toReal options.Δt)
       (params.tFinal - params.tStart) params.X₀ W x w) :
     Rs.length = params.tFinal - params.tStart + 1 ∧ ∀ (i : ℕ) (hi : i < Rs.length),
@@ -53,7 +54,7 @@ theorem NeurNetContrSys.reachUnionFloat_outer
   have hadm := (LinearSys.reachOrderFloat_spec hη').1
   refine ⟨by simp, fun i hi => ?_⟩
   have hiH : i ≤ tFinal - tStart := by simp at hi; omega
-  simpa using sys.reachFloat_outer o η' N ho hΔt hadm hπ traj i hiH
+  simpa using sys.reachFloat_outer o η' N ho hΔt hadm hπ hW traj i hiH
 
 end CORALean
 

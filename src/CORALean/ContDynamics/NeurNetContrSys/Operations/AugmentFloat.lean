@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Instances
 public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 public import CORALean.Global.Float.SoundFloatArithmetic
 

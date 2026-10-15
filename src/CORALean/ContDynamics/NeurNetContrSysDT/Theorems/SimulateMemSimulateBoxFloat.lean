@@ -33,7 +33,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.simulate_mem_simulateBox
-    (sys : NeurNetContrSysDT 𝕋 ℐ𝒱[𝕋] n) {π : Vec ℝ n → Vec ℝ sys.plant.m}
+    (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) ℐ𝒱[𝕋] n) {π : Vec ℝ n → Vec ℝ sys.plant.m}
     (hπ : sys.contr.Sound π) (x₀ : Vec 𝕋 n) (k : ℕ) :
     sys.simulate π (Scalar.toRealVec x₀) k ∈ construct (sys.simulateBox x₀ k) := by -- --- PROOF ---
   induction k with

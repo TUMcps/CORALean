@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.TrajectoryOfMap
 
 @[expose] public section
 
@@ -16,7 +17,7 @@ run is determined by its initial state alone, with nothing for `input` to say.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -32,12 +33,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSysDT.simulate_trajectory (sys : NeurNetContrSysDT 𝕋 S n)
-    (π : Vec ℝ n → Vec ℝ sys.plant.m) {R₀ : S n}
+theorem NeurNetContrSysDT.simulate_trajectory (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
+    (π : Vec ℝ n → Vec ℝ sys.plant.m) {R₀ : S n} {W : Set (Vec ℝ sys.plant.r)} (hW : 0 ∈ W)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
-    sys.Trajectory π R₀ (sys.simulate π x₀) where
-  init := hx₀
-  step _ := rfl
+    sys.Trajectory π R₀ W (sys.simulate π x₀) 0 :=
+  NeurNetContrSysDT.trajectory_of_map hW hx₀ fun _ => rfl
 
 end CORALean
 

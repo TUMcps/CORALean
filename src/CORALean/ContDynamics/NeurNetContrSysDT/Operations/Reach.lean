@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.Reach
 public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.ReachOptions
-public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Map
 public import CORALean.ContDynamics.Reach.Definitions.Params
 public import CORALean.NN.Operations.Enclose
 
@@ -50,7 +50,8 @@ variable [OfScalarPoint 𝕋 S]
 
 /-- The reachable set of the closed loop at time `tFinal`, from `R₀` at `tStart`,
 held at maximum order `ρ`. -/
-def NeurNetContrSysDT.reach (sys : NeurNetContrSysDT 𝕋 S n) (params : Reach.Params (S n) ℕ)
+def NeurNetContrSysDT.reach (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n) (params : Reach.Params
+    (S n) ℕ)
     (options : NeurNetContrSysDT.ReachOptions) : S n :=
   let R₀ := params.X₀                                               -- the paper's symbols
   let N := params.tFinal - params.tStart                           -- steps, in sampling periods

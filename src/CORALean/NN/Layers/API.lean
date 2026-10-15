@@ -3,6 +3,7 @@ module
 public import CORALean.NN.Layers.Complexity.API
 public import CORALean.NN.Layers.Definitions.API
 public import CORALean.NN.Layers.Instances
+public import CORALean.NN.Layers.Interfaces
 public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Layers.Operations.API
 public import CORALean.NN.Layers.Theorems.API

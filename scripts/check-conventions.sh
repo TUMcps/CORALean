@@ -111,8 +111,14 @@ NONMODULE_LIST=scripts/non-module-allowlist.txt
 # input and output, where a pair is a datum. The list only shrinks, as the one above.
 PAIR_LIST=scripts/pair-allowlist.txt
 
+# Interfaces (#177): a `class` is declared only in a file named `Interfaces.lean`, which is what a
+# class root's `Instances.lean` instantiates, so the interfaces a directory offers are one file to
+# read. A file that declares one elsewhere names why in this list, `<path>  <reason>` per line.
+# The list only shrinks: an entry whose file declares no class any more is reported as stale.
+CLASS_LIST=scripts/class-allowlist.txt
+
 # Rule A. A class root, a directory holding an `Operations/`, `Theorems/` or
-# `Definitions/` folder, holds its class file, `Instances.lean` and `API.lean`
+# `Definitions/` folder, holds its class file, `Interfaces.lean`, `Instances.lean` and `API.lean`
 # and nothing else: every other file has a role folder beside them. Which of
 # the remaining files is the class file is not guessed at, so the rule is that
 # there is at most one.
@@ -165,7 +171,7 @@ src/CORALean/Global/Tensor.lean | 8
 src/CORALean/Global/Entrywise.lean | 8
 src/CORALean/Global/Scalar.lean | 8
 src/CORALean/Global/Float/FloatOps.lean | 8
-src/CORALean/ContSet/ContSet/ContSet.lean | 10
+src/CORALean/ContSet/ContSet/Interfaces.lean | 10
 src/CORALean/ContSet/Interval/Real/Interval.lean | 8
 "
 
@@ -213,6 +219,7 @@ if [ -n "$STAGED" ]; then
   ALLOWLIST=$repo/$ALLOWLIST
   NONMODULE_LIST=$repo/$NONMODULE_LIST
   PAIR_LIST=$repo/$PAIR_LIST
+  CLASS_LIST=$repo/$CLASS_LIST
   FAMILY_LONG_FORM_OK=$repo/${FAMILY_LONG_FORM_OK:-scripts/family-notation-exceptions.txt}
   stage=$(mktemp -d)
   printf '%s\n' "$files" | git checkout-index --prefix="$stage/" --stdin
@@ -1364,7 +1371,7 @@ BEGIN {
     if (f ~ /\/Complexity\/Space\/Operations\//)
       print f ": `Complexity/Space/` has no `Operations/`: a size is a theorem about the result," \
             " in `Complexity/Space/Theorems/`"
-    if (b != "API.lean" && b != "Instances.lean") { nextra[d]++; extra[d] = extra[d] " `" b "`" }
+    if (b != "API.lean" && b != "Instances.lean" && b != "Interfaces.lean") { nextra[d]++; extra[d] = extra[d] " `" b "`" }
     # A directory is a class root once any role folder sits directly in it.
     cur = d
     while (cur ~ /\//) {
@@ -1384,7 +1391,7 @@ BEGIN {
   for (d in root) {
     if (d in pending) continue
     if (nextra[d] > 1)
-      print d ": a class root holds its class file, `Instances.lean` and `API.lean` only," \
+      print d ": a class root holds its class file, `Interfaces.lean`, `Instances.lean` and `API.lean` only," \
             " and this one holds " nextra[d] ":" extra[d] " — one is the class file, the" \
             " rest belong in `Definitions/`, `Operations/` or `Theorems/`"
   }
@@ -1888,6 +1895,69 @@ done)
 report "$out"
 
 fi
+
+
+# Interfaces (#177): a `class` declaration — `class`, `class inductive`, `class abbrev`, with any
+# attributes and modifiers — only in an `Interfaces.lean`, or in a file `CLASS_LIST` names with a
+# reason. Comments are stripped as in the per-file pass, so a docstring line starting with the
+# word is not a declaration.
+out=$(awk -v LIST="$list" -v CLASSLIST="$CLASS_LIST" \
+  -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" '
+function strip(line,   out, i, c, n) {
+  out = ""; i = 1; n = length(line)
+  while (i <= n) {
+    c = substr(line, i, 2)
+    if (depth == 0 && c == "--") break
+    if (c == "/-") { depth++; i += 2; continue }
+    if (c == "-/") { if (depth > 0) depth--; i += 2; continue }
+    if (depth == 0) out = out substr(line, i, 1)
+    i++
+  }
+  return out
+}
+BEGIN {
+  while ((getline cl < CLASSLIST) > 0) {
+    clFNR++
+    line = cl
+    sub(/^[ \t]+/, "", line)
+    if (line == "" || line ~ /^#/) continue
+    p = line; sub(/[ \t].*$/, "", p)
+    r = line; sub(/^[^ \t]+[ \t]*/, "", r)
+    if (p in classOK)
+      print CLASSLIST ":" clFNR ": duplicate entry `" p "` (first at line " classLine[p] ")"
+    if (r == "")
+      print CLASSLIST ":" clFNR ": `" p "` carries no reason — say why its class is not in an" \
+            " `Interfaces.lean`"
+    if (p ~ /\/Interfaces\.lean$/)
+      print CLASSLIST ":" clFNR ": `" p "` is an `Interfaces.lean`, which needs no entry"
+    classOK[p] = 1; classLine[p] = clFNR
+  }
+  close(CLASSLIST)
+  while ((getline f < LIST) > 0) {
+    if (f == "") continue
+    seen[f] = 1; depth = 0; ln = 0
+    while ((getline raw < f) > 0) {
+      ln++
+      code = strip(raw)
+      if (code !~ /^(@\[[^]]*\][ \t]*)*((private|protected|noncomputable|scoped)[ \t]+)*class[ \t]/)
+        continue
+      hasClass[f] = 1
+      if (f ~ /\/Interfaces\.lean$/ || (f in classOK)) continue
+      name = code; sub(/^.*class[ \t]+((inductive|abbrev)[ \t]+)?/, "", name); sub(/[ \t(:{\[].*$/, "", name)
+      print f ":" ln ": class `" name "` declared outside an `Interfaces.lean` — move it to the" \
+            " directory'"'"'s `Interfaces.lean`, or list the file in " CLASSLIST " with the reason"
+    }
+    close(f)
+  }
+  if (!STALE) exit
+  for (p in classOK)
+    if (!(p in seen))
+      print CLASSLIST ":" classLine[p] ": stale entry `" p "` — no such file"
+    else if (!(p in hasClass))
+      print CLASSLIST ":" classLine[p] ": stale entry `" p "` — the file declares no class now;" \
+            " the list only shrinks"
+}' | sort)
+report "$out"
 
 if [ "$status" -eq 0 ]; then
   if [ -n "$STAGED" ]; then

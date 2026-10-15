@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Map
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Simulate
 public import CORALean.ContSet.Interval.Float.Instances
 public import CORALean.ContSet.Interval.Float.Operations.Point
@@ -36,7 +36,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The boxes `B_k` of the closed loop from `x₀`: `B_{k+1} = A B_k ⊕ (B enclose(B_k) ⊕ c)`. -/
-def NeurNetContrSysDT.simulateBox (sys : NeurNetContrSysDT 𝕋 ℐ𝒱[𝕋] n)
+def NeurNetContrSysDT.simulateBox (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) ℐ𝒱[𝕋] n)
     (x₀ : Vec 𝕋 n) : ℕ → Interval (Vec 𝕋 n)
   | 0 => Interval.point x₀
   | k + 1 =>

@@ -19,7 +19,7 @@ step, and every step lands in its own branch of the `SetUnion`.
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable [OfScalarPoint 𝕋 S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT 𝕋 S n)
+theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (params : Reach.Params (S n) ℕ) (options : NeurNetContrSysDT.ReachOptions) :
     sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
@@ -45,7 +45,8 @@ theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT 𝕋 S n)
   obtain ⟨k, hk, x₀, hx₀, rfl⟩ := Set.mem_iUnion₂.mp hy
   refine SetUnion.mem_construct.mpr ⟨sys.reach ⟨params.X₀, 0, k⟩ options, ?_,
     sys.reach_outer options.hZonotopeOrder params.X₀ sys.contr.sound_eval
-      (sys.trajectory_iterate _ hx₀) k⟩
+      (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])
+      (sys.trajectory_iterate _ (Set.mem_singleton 0) hx₀) k⟩
   exact List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hk))
 
 end CORALean

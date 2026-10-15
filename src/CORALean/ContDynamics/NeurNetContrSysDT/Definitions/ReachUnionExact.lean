@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
+public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Map
 public import CORALean.NN.Operations.Eval
 
 @[expose] public section
@@ -32,7 +32,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
 
 /-- Every state reachable in at most `K` steps of the closed loop from a bare
 initial set `X`. -/
-def NeurNetContrSysDT.reachUnionExact (sys : NeurNetContrSysDT 𝕋 S n) (K : ℕ)
+def NeurNetContrSysDT.reachUnionExact (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n) (K : ℕ)
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ k ≤ K, (sys.map sys.contr.eval.out)^[k] '' X
 

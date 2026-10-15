@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
+public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.Linear
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachUnionOuter
 
 @[expose] public section
@@ -8,17 +9,17 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachUnionOuter
 /-!
 # `NeurNetContrSysDT` instantiates `Reach`
 
-`params` is `Reach.Params` counted in sampling periods, `options`
-`NeurNetContrSysDT.ReachOptions`. `reachExact` is `reachUnionExact` over
-`tFinal - tStart` steps, the closed loop being time-invariant, `reach` is
-`reachUnion` (always `some`: nothing here can fail at run time), and the guarantee
-is `reachUnion_outer`. No input set: the closed loop reads its own input off the
-controller.
+`params` is `Reach.Params` counted in sampling periods, `options` `NeurNetContrSysDT.ReachOptions`.
+`reachExact` is `reachUnionExact` over `tFinal - tStart` steps, the closed loop being
+time-invariant, `reach` is `reachUnion` (always `some`: nothing here can fail at run time), and the
+guarantee is `reachUnion_outer`, at a `LinearSysDT` plant, the family `NeurNetContrSysDT.Linear`. No
+input set: the closed loop reads its own input off the controller; and no disturbance, as CORA's
+loop at a linear plant drops `E`.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +38,7 @@ variable [OfScalarPoint 𝕋 S]
 -- ========================================  INSTANCES  ========================================= --
 
 instance NeurNetContrSysDT.reachInstance :
-    Reach (NeurNetContrSysDT 𝕋 S) (fun n => Reach.Params (S n) ℕ)
+    Reach (NeurNetContrSysDT.Linear 𝕋 S) (fun n => Reach.Params (S n) ℕ)
       NeurNetContrSysDT.ReachOptions S where
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (construct params.X₀)

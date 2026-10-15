@@ -3,7 +3,6 @@ module
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Augment
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.AugmentFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.CartProd
-public import CORALean.ContDynamics.NeurNetContrSys.Operations.Extended
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Project
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Reach
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachFloat
@@ -17,7 +16,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachWith
 # What `NeurNetContrSys` computes
 
 `ReachWith`, [1, Alg. 2] at any plant: the network's image of the set reached so far, stacked
-under it, reached as the `Extended` system of a control period by an algorithm the caller
+under it, reached as the extended state `[x; u]` of a control period by an algorithm the caller
 supplies, and projected back. `Reach` is it at a linear plant, the period reached by
 `LinearSys`'s own machinery on the `Augment`ed system, the product and projection `CartProd`
 and `Project`; `ReachFloat` is `Reach` at float zonotopes, on `AugmentFloat`.

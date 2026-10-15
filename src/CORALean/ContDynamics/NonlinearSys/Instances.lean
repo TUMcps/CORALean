@@ -1,12 +1,12 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
 
 @[expose] public section
 
 /-!
-# `NonlinearSys.WithSteps` instantiates `Reach`
+# `NonlinearSys.WithSteps` instantiates `ContDynamics` and `Reach`
 
 `params` is `Reach.Params` at real time, `options` `LinearSys.ReachOptions` — each
 step is a linear one, and CORA's `nonlinearSys` reads the same `timeStep`,
@@ -20,11 +20,14 @@ at run time. That test is what lets `reach_outer` hold with no confinement
 hypothesis on any run. `ConvexSet` and `CompactSet` are asked of the
 representation, as `NeurNetContrSys`'s instance asks them, and discharge every side
 condition the linear step would otherwise put in `options`.
+
+`NonlinearSys` is a `ContDynamics`: every one of the `m` arguments of `f` an input, no
+disturbance, a run a `Trajectory`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-September-2026
--- Last update:   14-October-2026
+-- Last update:   15-October-2026
 -- Reviewed:      ---
 
 
@@ -51,6 +54,13 @@ noncomputable instance NonlinearSys.reachInstance :
     (construct params.X₀)
   reach sys params options := sys.reachUnion params options
   reach_outer sys params options _ h := sys.reachUnion_outer params options h
+
+/-- CORA's `nonlinearSys` as a `ContDynamics`: `ẋ = f(x, u)`. -/
+instance NonlinearSys.contDynamics {n m : ℕ} : ContDynamics (NonlinearSys n m) n where
+  nrOfInputs _ := m
+  nrOfDisturbances _ := 0
+  Trajectory sys T X₀ U W x u w :=
+    NonlinearSys.Trajectory (S := 𝒮) sys T X₀ U x u ∧ ∀ t ∈ T, w t ∈ W
 
 end CORALean
 

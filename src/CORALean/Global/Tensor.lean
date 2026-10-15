@@ -50,7 +50,7 @@ assert_not_imported CORALean.Global.Scalar
 -- The entrywise layer sits above this file.
 assert_not_imported CORALean.Global.Entrywise
 -- The abstract set class sits above this file.
-assert_not_imported CORALean.ContSet.ContSet.ContSet
+assert_not_imported CORALean.ContSet.ContSet.Interfaces
 
 namespace CORALean
 

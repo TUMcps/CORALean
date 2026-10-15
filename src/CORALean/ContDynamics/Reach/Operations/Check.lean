@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.Reach.Reach
+public import CORALean.ContDynamics.Interfaces
 public import CORALean.Specification.Operations.Check
 
 @[expose] public section

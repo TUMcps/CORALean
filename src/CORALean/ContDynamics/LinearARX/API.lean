@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearARX.Definitions.GO
 public import CORALean.ContDynamics.LinearARX.LinearARX
+public import CORALean.ContDynamics.LinearARX.Instances
 public import CORALean.ContDynamics.LinearARX.Definitions.API
 public import CORALean.ContDynamics.LinearARX.Operations.API
 public import CORALean.ContDynamics.LinearARX.Theorems.API
