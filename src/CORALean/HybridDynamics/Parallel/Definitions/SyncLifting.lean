@@ -33,9 +33,8 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 -- ========================================  MAIN TYPE  ========================================= --
 
 structure ParallelHybridAutomaton.SyncLifting (S G : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] (n : Fin k → ℕ) (m : ℕ)
-    (binds : ∀ i, Fin (n i) → InputSource k n m) extends
-    ParallelHybridAutomaton.Lifting S G n m binds where
+    [∀ n, ContSet (G n) (Vec ℝ n)] (n : Fin k → ℕ) (m : ℕ) extends
+    ParallelHybridAutomaton.Lifting S G n m where
   guardAll : (∀ i, Option (G (n i))) → G (∑ i, n i)
   mem_guardAll (gs : ∀ i, Option (G (n i))) (x : ∀ i, Vec ℝ (n i))
     (hx : ∀ i g, gs i = some g → x i ∈ construct g) : stack x ∈ construct (guardAll gs)

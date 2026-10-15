@@ -5,6 +5,7 @@ public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
 public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 public import CORALean.HybridDynamics.Parallel.Operations.ConZonotopeStackProd
 public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
+public import CORALean.HybridDynamics.Parallel.Theorems.SelectGlobalMulVecStack
 public import CORALean.ContSet.HPolytope.Real.Instances
 public import CORALean.ContSet.ConZonotope.Real.Instances
 
@@ -13,22 +14,21 @@ public import CORALean.ContSet.ConZonotope.Real.Instances
 /-!
 # `conZonoLifting`: a `Lifting` at constrained-zonotope inputs and halfspace descriptions
 
-`boxLifting` with the input sets in `ConZonotope` instead of `Interval`: inputs in `ConZonotope`,
-invariants and guards in `HPolytope`.
+`boxLifting` with the input and disturbance sets in `ConZonotope` instead of `Interval`.
 
 * `inv` and `guard` are `boxLifting`'s: `HPolytope.stackProd` and the block-projection preimage;
-* `input` is `ConZonotope.stackProd`, the product of the components' input sets, exact
-  (`Theorems.ConZonotopeStackProdExact`), not an outer enclosure; the `Lifting` fields ask only
-  for the inclusion.
+* `input b` is the image of `ConZonotope.stackProd`, the product of the components' input sets,
+  under `selectGlobal b`, which reads each global input off the first input bound to it;
+* `dist` is `ConZonotope.stackProd`, exact (`Theorems.ConZonotopeStackProdExact`).
 
 The invariant and the guard stay halfspace descriptions: a guard lifted to the product space is a
 cylinder, unbounded in the other blocks, which no ConZonotope is. So this is the lifting for a
-constrained-zonotope state or input set, with `HPolytope` where a set must be unbounded.
+constrained zonotope input or disturbance set, with `HPolytope` where a set must be unbounded.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -43,12 +43,12 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ParallelHybridAutomaton.conZonoLifting (binds : ∀ i, Fin (n i) → InputSource k n m) :
-    ParallelHybridAutomaton.Lifting (𝒞) (ℋ𝒫)
-      n m binds where
+def ParallelHybridAutomaton.conZonoLifting :
+    ParallelHybridAutomaton.Lifting (𝒞) (ℋ𝒫) n m where
   inv := HPolytope.stackProd
   guard i g := HPolytope.comap (blockProj i) g
-  input := ConZonotope.stackProd
+  input b us := ConZonotope.mtimes (selectGlobal b) (ConZonotope.stackProd us)
+  dist := ConZonotope.stackProd
   mem_inv gs x hx := by
     -- the product is exactly the blocks' sets, and the blocks of a stack are what was stacked
     show stack x ∈ (HPolytope.stackProd gs).construct
@@ -63,13 +63,23 @@ def ParallelHybridAutomaton.conZonoLifting (binds : ∀ i, Fin (n i) → InputSo
     show unstack (stack x) i ∈ g.construct
     rw [unstack_stack]
     exact hx
-  mem_input us v hv := by
-    -- as `mem_inv`, at the box of the stacked global inputs
-    show stack (globalInput binds v) ∈ (ConZonotope.stackProd us).construct
+  mem_input b us g hg hz := by
+    -- the components' points, stacked, are in the product, and `selectGlobal` takes them to `g`
+    choose v hv hva using hg
+    show g ∈ (ConZonotope.mtimes (selectGlobal b) (ConZonotope.stackProd us)).construct
+    rw [← ConZonotope.mtimes_exact, ← selectGlobal_mulVec_stack b v g hva hz]
+    refine ⟨stack v, ?_, rfl⟩
     rw [ConZonotope.stackProd_exact]
     intro i
     rw [unstack_stack]
     exact hv i
+  mem_dist ws w hw := by
+    -- as `mem_inv`, at the product of the disturbance sets
+    show stack w ∈ (ConZonotope.stackProd ws).construct
+    rw [ConZonotope.stackProd_exact]
+    intro i
+    rw [unstack_stack]
+    exact hw i
 
 end CORALean
 

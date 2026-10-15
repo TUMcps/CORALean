@@ -269,12 +269,16 @@ def arxB : Mat D 2 1 := arxD.inputMat 0
 #eval arxA 1 1
 #eval arxB 1 0
 
-/-- Two scalar components `ẋ = x + u`, each input bound to the other's state: the merged flow is
-`[[1, 1], [1, 1]]`, built with no rounding arithmetic, at `D` (#117). -/
+/-- Two scalar components `ẋ = x + u`, `y = x`, each input bound to the other's output: the merged
+flow is `[[1, 1], [1, 1]]`, built with no rounding arithmetic, at `D` (#117). -/
 def parP : ParallelHybridAutomaton ℐ𝒱[D] ℐ𝒱[D] 2
     (fun _ => Unit) D (fun _ => 1) 0 where
-  comp _ := ⟨fun _ => ⟨zbox 1, LinearSys.canonicalFloat (fun _ _ => d 1 0), zbox 1, []⟩⟩
-  binds i _ := .state i.rev 0
+  comp _ := ⟨fun _ => ⟨zbox 1, LinearSys.canonicalFloat (fun _ _ => d 1 0), zbox 1, zbox 1, []⟩⟩
+  p _ := 1
+  q _ := 1
+  binds i _ := .output i.rev 0
+  inputs_eq _ _ := rfl
+  outputs_eq _ _ := rfl
 
 def parA : Mat D 2 2 := (parP.mergeFlows (fun _ => ())).A
 
@@ -503,7 +507,7 @@ def minkDiffStretchInnerRun : Zonotope (Vec D 2) :=
 /-- A location flowing by the same `A`, its input `Z` off the origin, and its stay over
 `[0, r]` from `Z` by the float step and by the split float step. -/
 def ctLoc : Location 𝒵[D] 𝒵[D] Unit D 2 :=
-    ⟨Z, ctSys, Z, []⟩
+    ⟨Z, ctSys, Z, Zonotope.point fun _ => d 0 0, []⟩
 def locStepRun : Zonotope (Vec D 2) := ctLoc.timeIntervalStepFloat stepR 4 Z
 def locSplitRun : Zonotope (Vec D 2) := ctLoc.timeIntervalStepSplitFloat stepR 4 Z
 
@@ -522,7 +526,7 @@ def checkFlowRun : List (Zonotope (Vec D 2)) := ctLoc.checkFlowFloat hpNormal hp
 box of half-width `2⁻⁴` about `(1, 0)` onto `x₁ = 1`, `tmax = 2⁻³`, two Taylor terms. -/
 def hpMapLoc : Location 𝒵[D] 𝒵[D] Unit D 2 :=
   ⟨Z, LinearSys.canonicalFloat !![d 0 0, d (-1) (-1); d 1 (-1), d 0 0], Zonotope.point
-      ![d 1 0, d 0 0], []⟩
+      ![d 1 0, d 0 0], Zonotope.point fun _ => d 0 0, []⟩
 def hpMapR0 : Zonotope (Vec D 2) where
   h := 2
   c := ![d 1 0, d 0 0]

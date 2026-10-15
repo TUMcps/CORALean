@@ -67,7 +67,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {m : ℕ} {n : Fin 2 → ℕ} {Λ : Type}
 
 theorem ParallelHybridAutomaton.mergeTransitionSetsCora_wrong_target_counterexample
     [ExactScalar 𝕋] [DecidableEq Λ] (P : ParallelHybridAutomaton S G 2 (fun _ => ℕ) 𝕋 n m)
-    (slift : ParallelHybridAutomaton.SyncLifting S G n m P.binds)
+    (slift : ParallelHybridAutomaton.SyncLifting S G n m)
     (lab : ParallelHybridAutomaton.SyncLabels G (fun _ => ℕ) 𝕋 n Λ) (ℓ : Fin 2 → ℕ) (a : Λ)
     (e₀ : Transition G ℕ 𝕋 (n 0)) (e₁ : Transition G ℕ 𝕋 (n 1))
     (h₀ : lab.pick P ℓ a 0 = some e₀) (h₁ : lab.pick P ℓ a 1 = some e₁)

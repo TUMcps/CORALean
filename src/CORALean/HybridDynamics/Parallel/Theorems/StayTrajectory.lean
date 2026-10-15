@@ -1,20 +1,21 @@
 module
 
 public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
-public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsFlowLaw
+public import CORALean.HybridDynamics.Parallel.Theorems.MergeFlowsLinearSysFlowLaw
+public import CORALean.HybridDynamics.Parallel.Operations.LocationProduct
 
 @[expose] public section
 
 /-!
 # A shared stay is a stay of the product
 
-`Stay.trajectoryWith` at `mergeFlows`, whose flow law holds under `SelfBindFree`
-(`mergeFlows_flowLaw`).
+`Stay.trajectoryWith` at `mergeFlowsLinearSys`, whose flow law holds at `ℝ` under
+`FeedthroughFree` (`mergeFlowsLinearSys_flowLaw`).
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   01-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -25,20 +26,20 @@ namespace CORALean
 open Matrix ContSet Scalar
 
 variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
-variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
+variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A stay of every component, inputs as bound, is one stay of the product, whose state is the
-stack and whose input is `globalInput`. -/
-theorem ParallelHybridAutomaton.Stay.trajectory [ExactScalar 𝕋]
-    {P : ParallelHybridAutomaton S G k L 𝕋 n m} (hself : P.SelfBindFree)
-    (lift : ParallelHybridAutomaton.Lifting S G n m P.binds) {ℓ : ∀ i, L i} {τ : ℝ}
-    {x u : ∀ i, ℝ → Vec ℝ (n i)} {g : ℝ → Vec ℝ m} (h : P.Stay ℓ τ x u g) :
-    (P.locationProduct lift ℓ).Trajectory τ (fun t => stack fun i => x i t)
-      (fun t => stack (globalInput P.binds fun i => u i t)) :=
-  h.trajectoryWith (P.mergeFlows_flowLaw hself) lift
+/-- A stay of every component, inputs as bound, is one stay of the product location, whose state
+is the stack, under some input and disturbance of the product. -/
+theorem ParallelHybridAutomaton.Stay.trajectory {P : ParallelHybridAutomaton S G k L ℝ n m}
+    (hfeed : P.FeedthroughFree) (lift : ParallelHybridAutomaton.Lifting S G n m)
+    {ℓ : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
+    (h : P.Stay ℓ τ x u w g) :
+    ∃ (g' : ℝ → Vec ℝ m) (w' : ℝ → Vec ℝ (∑ i, (P.sys ℓ i).r)),
+      (P.locationProduct lift ℓ).Trajectory τ (fun t => stack fun i => x i t) g' w' :=
+  h.trajectoryWith (P.mergeFlowsLinearSys_flowLaw hfeed lift) lift
 
 end CORALean
 

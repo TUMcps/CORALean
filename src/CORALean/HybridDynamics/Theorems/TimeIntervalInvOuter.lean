@@ -32,9 +32,9 @@ It is also the loop body of [2, Alg. 1].
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -59,12 +59,14 @@ variable [∀ n, Intersection (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes �
 /-- Every state a stay passes through lies in the location's invariant-cut
 time-interval enclosure, the initial set and the input contribution named by
 the caller. -/
-theorem Location.Trajectory.timeIntervalInv_outer {ℓ : Location S S L 𝕋 n} {τ : ℝ}
-    {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u) {R₀ Ud : S n}
+theorem Location.Trajectory.timeIntervalInv_outer [∀ n, OfPoint (S n) (Vec ℝ n)]
+    {ℓ : Location S S L 𝕋 n} {τ : ℝ}
+    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w) {R₀ Ud : S n}
     (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.U))
-    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ u s)
+    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.inputSet))
+    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ
+      (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) :
     x t ∈ construct (ℓ.timeIntervalStepInv τ (m + 2) R₀ Ud) :=
   Intersection.intersection_outer _ _ ⟨traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd,

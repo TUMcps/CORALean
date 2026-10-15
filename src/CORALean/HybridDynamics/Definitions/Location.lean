@@ -9,27 +9,27 @@ public import Mathlib.Analysis.Calculus.Deriv.Basic
 /-!
 # Hybrid automata: a location
 
-CORA's `location`: the invariant that holds while the run is here, the dynamics
-that govern it, the input set those dynamics draw from, and the outgoing
-transitions.
+CORA's `location`: the invariant that holds while the run is here, the dynamics that govern it,
+and the outgoing transitions, with the input and disturbance sets of CORA's `params.Uloc` and
+`params.Wloc` at this location. The dynamics are CORA's `contDynamics`, a `LinearSys` with its
+whole equation `ẋ = A x + B u + c + E w`, `U` in its input space and `W` in its disturbance
+space, as `LinearSys.Trajectory` reads them. The output equation plays no part in a stay; the
+parallel automaton reads it where it binds an input to an output.
 
-`inv` is in the guard's representation `G` and `U` in the state's `S`: the
-invariant is only ever read through `construct`, where `U` is propagated, so
-this file asks `ContSet` of `G` and nothing more (#39). `LinearSys` dynamics,
-because that is what the reachability machinery encloses today.
+`inv` is in the guard's representation `G`, `U` and `W` in the state's `S` (#39).
 
-`Trajectory` is what a location denotes — one admissible stay, on a *local*
-clock from `0` to the dwell time `τ`, so global time never appears and every
-`LinearSys` statement is used unchanged. The initial state is the point `x 0`;
-`Theorems.LinearEmbedding` converts by naming a set it lies in.
+`Trajectory` is what a location denotes — one admissible stay, on a *local* clock from `0` to the
+dwell time `τ`, so global time never appears. The initial state is the point `x 0`;
+`Theorems.LinearEmbedding` hands a stay to `LinearSys` as a run of its canonical form, the
+combined input `B u + c + E w` drawn from any set holding it.
 
-`nonneg` is not bookkeeping: without it `Set.Icc 0 τ` is empty, every field
-holds vacuously, and `x τ` — the state a jump reads — is unconstrained.
+`nonneg` is not bookkeeping: without it `Set.Icc 0 τ` is empty and `x τ`, the state a jump
+reads, is unconstrained.
 -/
 
--- Authors:       Claude Sonnet 5
+-- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   07-September-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -48,15 +48,20 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 structure Location (S G : ℕ → Type) (L : Type) (𝕋 : Type) (n : ℕ) where
   inv : G n
   dynamics : LinearSys 𝕋 n
-  U : S n
+  U : S dynamics.m
+  W : S dynamics.r
   trans : List (Transition G L 𝕋 n)
 
-structure Location.Trajectory (ℓ : Location S G L 𝕋 n) (τ : ℝ)
-    (x u : ℝ → Vec ℝ n) : Prop where
+/-- A stay of length `τ`: the state under inputs in `U` and disturbances in `W`, by the whole
+state equation, inside the invariant throughout. -/
+structure Location.Trajectory (ℓ : Location S G L 𝕋 n) (τ : ℝ) (x : ℝ → Vec ℝ n)
+    (u : ℝ → Vec ℝ ℓ.dynamics.m) (w : ℝ → Vec ℝ ℓ.dynamics.r) : Prop where
   nonneg : 0 ≤ τ
   input (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : u t ∈ construct ℓ.U
+  dist (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : w t ∈ construct ℓ.W
   flow (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    HasDerivWithinAt x (toRealMat ℓ.dynamics.A *ᵥ x t + u t) (Set.Icc 0 τ) t
+    HasDerivWithinAt x (toRealMat ℓ.dynamics.A *ᵥ x t + toRealMat ℓ.dynamics.B *ᵥ u t +
+      toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t) (Set.Icc 0 τ) t
   invariant (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x t ∈ construct ℓ.inv
 
 end CORALean

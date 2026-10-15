@@ -17,9 +17,9 @@ invariant at `k + 1`. The `jump` case then owes an index rearrangement,
 `k + (k' + 1) = (k + 1) + k'`, which `omega` settles once it is named.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -41,7 +41,7 @@ theorem HybridAutomaton.RunOn.mem_of_invariantOn {HA : HybridAutomaton S G L �
     x ∈ construct (R k ℓ) → y ∈ construct (R (k + m) ℓ') := by -- --- PROOF ---
   induction run generalizing k with
   | flow h => exact fun hx => hinv.flow h hx h.mem_Icc_right
-  | @jump k' _ _ _ _ _ _ _ h hmem hguard _ ih =>
+  | @jump k' _ _ _ _ _ _ _ _ h hmem hguard _ ih =>
     intro hx
     have hk : k + (k' + 1) = (k + 1) + k' := by omega
     rw [hk]

@@ -8,25 +8,23 @@ import CORALean.ContSet.Interval.Real.Instances
 /-!
 # Two components, one fed by the other, as a parallel hybrid automaton
 
-Two one-dimensional components. Component `0` decays, `ẋ₀ = -x₀ + u₀`, with its input *bound*
-to component `1`'s state, and has a transition: past `x₀ ≥ 1` it resets to `0`. Component `1`
-integrates a global input, `ẋ₁ = u₁`, `u₁ ∈ [-1, 1]`. Invariants are boxes `x₀ ∈ [0, 2]` and
-`x₁ ∈ [-1, 1]`.
+Two one-dimensional components, each a `linearSys` with output `y = x`. Component `0` decays,
+`ẋ₀ = -x₀ + u₀`, with its input *bound* to component `1`'s output, and has a transition: past
+`x₀ ≥ 1` it resets to `0`. Component `1` integrates a global input, `ẋ₁ = u₁`, `u₁ ∈ [-1, 1]`.
+Invariants are boxes `x₀ ∈ [0, 2]` and `x₁ ∈ [-1, 1]`.
 
-The lifting is `boxLifting`: boxes for the input sets, `HPolytope` for invariants and guards, so
-the product's invariant is the box `[0, 2] × [-1, 1]` as halfspaces and the lifted guard
-`x₀ ≥ 1` is free in `x₁`. The product's flow matrix is read off entrywise, and the box is a
+The lifting is `boxLifting`: boxes for the input and disturbance sets, `HPolytope` for invariants
+and guards, so the product's invariant is the box `[0, 2] × [-1, 1]` as halfspaces and the lifted
+guard `x₀ ≥ 1` is free in `x₁`. The product's flow is `mergeFlowsLinearSys`, its matrix read off
+entrywise: `A + B C`, the `1` being component `0`'s `B` times component `1`'s `C`. The box is a
 product `Invariant`, so `ParallelHybridAutomaton.reachSet_subset_invariant` puts every reachable
 tuple of the parallel automaton in it. The invariant proof is by hand: the flow half is the
 location invariant sitting inside the box, the jump half is the reset landing in it.
-
-`ExactScalar` is held at `ℝ` alone, so the example does not run at a float scalar: the product
-cannot be assembled there, and no `#eval` of the flow matrix is possible (#40).
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   01-October-2026
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -46,6 +44,7 @@ def PTC.decay : HybridAutomaton ℐ𝒱 ℋ𝒫 Unit ℝ 1 where
     { inv := PTC.range 0 2
       dynamics := LinearSys.canonical !![-1]
       U := ⟨![0], ![0]⟩
+      W := ⟨![0], ![0]⟩
       trans := [⟨HPolytope.ineqs !![-1] ![-1], !![0], 0, ()⟩] }
 
 /-- Component `1`: integrates its global input. -/
@@ -54,11 +53,12 @@ def PTC.integrator : HybridAutomaton ℐ𝒱 ℋ𝒫 Unit ℝ 1 where
     { inv := PTC.range (-1) 1
       dynamics := LinearSys.canonical !![0]
       U := ⟨![-1], ![1]⟩
+      W := ⟨![0], ![0]⟩
       trans := [] }
 
-/-- Component `0`'s one input is component `1`'s state; component `1`'s is the global one. -/
-def PTC.binds : ∀ _ : Fin 2, Fin 1 → InputSource 2 (fun _ => 1) 1 :=
-  ![fun _ => .state 1 0, fun _ => .global 0]
+/-- Component `0`'s one input is component `1`'s output; component `1`'s is the global one. -/
+def PTC.binds : ∀ _ : Fin 2, Fin 1 → ResolveSource 2 (fun _ => 1) 1 :=
+  ![fun _ => .output 1 0, fun _ => .global 0]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -67,11 +67,15 @@ def PTC.binds : ∀ _ : Fin 2, Fin 1 → InputSource 2 (fun _ => 1) 1 :=
 def PTC.parallel :
     ParallelHybridAutomaton ℐ𝒱 ℋ𝒫 2 (fun _ => Unit) ℝ (fun _ => 1) 1 where
   comp := ![PTC.decay, PTC.integrator]
+  p _ := 1
+  q _ := 1
   binds := PTC.binds
+  inputs_eq i _ := by fin_cases i <;> rfl
+  outputs_eq i _ := by fin_cases i <;> rfl
 
 /-- The product, through `boxLifting`: a single automaton in the stacked space. -/
 def PTC.product : HybridAutomaton ℐ𝒱 ℋ𝒫 (∀ _ : Fin 2, Unit) ℝ (∑ _ : Fin 2, 1) :=
-  PTC.parallel.product (ParallelHybridAutomaton.boxLifting PTC.binds)
+  PTC.parallel.product ParallelHybridAutomaton.boxLifting
 
 /-- The box each component stays in. -/
 def PTC.box : ∀ _ : Fin 2, Interval (Vec ℝ 1) := ![⟨![0], ![2]⟩, ⟨![-1], ![1]⟩]
@@ -80,8 +84,8 @@ def PTC.box : ∀ _ : Fin 2, Interval (Vec ℝ 1) := ![⟨![0], ![2]⟩, ⟨![-1
 def PTC.R : (∀ _ : Fin 2, Unit) → Interval (Vec ℝ (∑ _ : Fin 2, 1)) :=
   fun _ => Interval.stackProd PTC.box
 
-/-- The product's flow matrix, entrywise: `-1` on component `0`, plus the `1` its input
-takes from component `1`'s state; component `1` has no flow and a global input. -/
+/-- The product's flow matrix, entrywise: `-1` on component `0`, plus the `1` its input takes
+from component `1`'s output, `B C`; component `1` has no flow and a global input. -/
 theorem PTC.flow_entries :
     let A := ((PTC.product.loc fun _ => ()).dynamics.A)
     A (finSigmaFinEquiv ⟨0, 0⟩) (finSigmaFinEquiv ⟨0, 0⟩) = -1 ∧
@@ -90,8 +94,8 @@ theorem PTC.flow_entries :
     A (finSigmaFinEquiv ⟨1, 0⟩) (finSigmaFinEquiv ⟨1, 0⟩) = 0 := by
   intro A
   simp [A, PTC.product, ParallelHybridAutomaton.product, ParallelHybridAutomaton.locationProduct,
-    ParallelHybridAutomaton.mergeFlows, PTC.parallel, PTC.decay, PTC.integrator,
-    PTC.binds]
+    ParallelHybridAutomaton.mergeFlowsLinearSys, ParallelHybridAutomaton.bindsAt,
+    ParallelHybridAutomaton.sys, PTC.parallel, PTC.decay, PTC.integrator, PTC.binds]
 
 /-- A slab is inside the box of the same bounds. -/
 theorem PTC.range_subset (lo hi : ℝ) {v : Vec ℝ 1} (hv : v ∈ (PTC.range lo hi).construct) :
@@ -105,7 +109,7 @@ theorem PTC.range_subset (lo hi : ℝ) {v : Vec ℝ 1} (hv : v ∈ (PTC.range lo
 
 /-- The box is an inductive invariant of the product. -/
 theorem PTC.invariant : PTC.product.Invariant PTC.R where
-  flow {ℓ τ x u} h h₀ {t} ht := by
+  flow {ℓ τ x u w} h h₀ {t} ht := by
     -- in the location, so in each component's invariant, so in each component's box
     have hx := h.invariant t ht
     change x t ∈ (HPolytope.stackProd fun i => ((PTC.parallel.comp i).loc (ℓ i)).inv).construct
@@ -145,26 +149,22 @@ theorem PTC.invariant : PTC.product.Invariant PTC.R where
       exact (by norm_num : (0 : ℝ) ≤ 2)
     · simpa [Function.update_of_ne] using hz 1
 
-/-- No coordinate is bound to a state of its own component: `0` takes `1`'s, `1` is global. -/
-theorem PTC.selfBindFree : PTC.parallel.SelfBindFree := by -- --- PROOF ---
-  intro ℓ i j s h
-  fin_cases i
-  · exfalso
-    simp [PTC.parallel, PTC.binds] at h
-  · exfalso
-    simp [PTC.parallel, PTC.binds] at h
+/-- No output that feeds an input has a feedthrough: both components' `D` are zero. -/
+theorem PTC.feedthroughFree : PTC.parallel.FeedthroughFree := by
+  intro ℓ i j c s _ j' c' s' _
+  fin_cases c <;> rfl
 
 /-- A parallel run is a run of the product, stacked. -/
 theorem PTC.run_toProduct {ℓ ℓ' : ∀ _ : Fin 2, Unit} {x y : ∀ _ : Fin 2, Vec ℝ 1}
     (run : PTC.parallel.Run ℓ x ℓ' y) : PTC.product.Run ℓ (stack x) ℓ' (stack y) :=
-  ParallelHybridAutomaton.Run.toProduct (P := PTC.parallel) PTC.selfBindFree
-    (ParallelHybridAutomaton.boxLifting PTC.binds) run
+  ParallelHybridAutomaton.Run.toProduct (P := PTC.parallel) PTC.feedthroughFree
+    ParallelHybridAutomaton.boxLifting run
 
 /-- Every tuple of states the parallel automaton reaches from the box, stacked, is in the box. -/
 theorem PTC.reachSet_subset (ℓ₀ ℓ : ∀ _ : Fin 2, Unit) :
     stack '' PTC.parallel.reachSet PTC.box ℓ₀ ℓ ⊆ construct (PTC.R ℓ) := by -- --- PROOF ---
   refine ParallelHybridAutomaton.reachSet_subset_invariant
-    (P := PTC.parallel) PTC.selfBindFree (lift := ParallelHybridAutomaton.boxLifting PTC.binds)
+    (P := PTC.parallel) PTC.feedthroughFree (lift := ParallelHybridAutomaton.boxLifting)
     PTC.invariant (fun x hx => ?_) ℓ
   -- a stack of points of the boxes is in the stacked box
   change stack x ∈ (Interval.stackProd PTC.box).construct

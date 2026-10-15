@@ -37,10 +37,10 @@ inductive HybridAutomaton.RunUntil {S G : ℕ → Type} [∀ n, ContSet (S n) (V
     [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     ℝ → ℕ → L → Vec ℝ n → L → Vec ℝ n → Prop where
-  | flow {T : ℝ} {ℓ : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} (h : (HA.loc ℓ).Trajectory τ x u)
+  | flow {T : ℝ} {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).Trajectory τ x u w)
       (hτ : τ ≤ T) : HA.RunUntil T 0 ℓ (x 0) ℓ (x τ)
-  | jump {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} {y : Vec ℝ n}
-      {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).Trajectory τ x u) (hτ : τ ≤ T)
+  | jump {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} {y : Vec ℝ n}
+      {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).Trajectory τ x u w) (hτ : τ ≤ T)
       (hmem : e ∈ (HA.loc ℓ).trans) (hguard : x τ ∈ construct e.guard)
       (rest : HA.RunUntil (T - τ) k e.target (e.reset (x τ)) ℓ' y) :
       HA.RunUntil T (k + 1) ℓ (x 0) ℓ' y

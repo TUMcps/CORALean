@@ -45,11 +45,11 @@ inductive HybridAutomaton.UrgentRunAt {S G : ℕ → Type} [∀ n, ContSet (S n)
     [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     ℝ → L → Vec ℝ n → L → Vec ℝ n → Prop where
-  | flow {ℓ : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} (h : (HA.loc ℓ).Trajectory τ x u)
+  | flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).Trajectory τ x u w)
       (hfree : (HA.loc ℓ).GuardFreeBefore τ x) :
       HA.UrgentRunAt τ ℓ (x 0) ℓ (x τ)
-  | jump {r : ℝ} {ℓ ℓ' : L} {τ : ℝ} {x u : ℝ → Vec ℝ n} {y : Vec ℝ n}
-      {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).Trajectory τ x u)
+  | jump {r : ℝ} {ℓ ℓ' : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} {y : Vec ℝ n}
+      {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).Trajectory τ x u w)
       (hfree : (HA.loc ℓ).GuardFreeBefore τ x) (hmem : e ∈ (HA.loc ℓ).trans)
       (hguard : x τ ∈ construct e.guard)
       (rest : HA.UrgentRunAt r e.target (e.reset (x τ)) ℓ' y) :

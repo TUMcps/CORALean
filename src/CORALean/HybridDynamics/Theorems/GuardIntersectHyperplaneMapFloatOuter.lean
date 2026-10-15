@@ -1,5 +1,6 @@
 module
 
+public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMapFloat
 public import CORALean.HybridDynamics.Theorems.AbstractionErrorFloatOuter
 public import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
@@ -316,8 +317,8 @@ mapped set, `η ≥ 1`. -/
 theorem Location.guardIntersectHyperplaneMapFloat_outer
     (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (nv : Vec 𝕋 n) (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) {η : ℕ}
-    (guardOrder zonotopeOrder p : ℕ) (hη : 1 ≤ η) {τ : ℝ} {x u : ℝ → Vec ℝ n}
-    (traj : ℓ.Trajectory τ x u) (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ)
+    (guardOrder zonotopeOrder p : ℕ) (hη : 1 ≤ η) {τ : ℝ} {x : ℝ → Vec ℝ n} {u w}
+    (traj : ℓ.Trajectory τ x u w) (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ)
     (htmax : t ≤ toReal tmax) (hhit : toRealVec nv ⬝ᵥ x t = toReal d) {Z : Zonotope (Vec 𝕋 n)}
     (hZ : ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p = some Z) :
     x t ∈ Z.construct := by -- --- PROOF ---
@@ -326,8 +327,8 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer
   set nr := toRealVec nv with hnr
   have htm0 : 0 ≤ toReal tmax := ht.1.trans htmax
   have hth : 0 ≤ toReal (half tmax) := by rw [toReal_half]; linarith
-  obtain ⟨bI, hbI⟩ : ∃ v, v = GuardMap.sdcInputFloat ℓ.dynamics.A ℓ.U.c (half tmax) η R₀.c :=
-    ⟨_, rfl⟩
+  obtain ⟨bI, hbI⟩ : ∃ v,
+      v = GuardMap.sdcInputFloat ℓ.dynamics.A ℓ.inputSetFloat.c (half tmax) η R₀.c := ⟨_, rfl⟩
   set br := toRealVec bI.inf with hbr
   obtain ⟨R0red, hR0red⟩ : ∃ Z', Z' = R₀.reduceGirard guardOrder := ⟨_, rfl⟩
   have hcen : R0red.c = R₀.c := by
@@ -347,34 +348,41 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer
     simp only [Bool.and_eq_true] at hc
     obtain ⟨⟨⟨⟨hcΛ, hcden⟩, hcm⟩, hcnrm⟩, hcA⟩ := hc
     -- the run, in closed form
-    have tr := (traj.linearSys (R₀ := R₀) h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, traj.nonneg⟩
-      (Zonotope.isCompact_construct ℓ.U).isBounded
+    have tr := (traj.linearSys (R₀ := R₀) h₀ traj.inputSetFloat_mem).trajectory (convex_Icc 0 τ)
+      ⟨le_rfl, traj.nonneg⟩
+      (Zonotope.isCompact_construct ℓ.inputSetFloat).isBounded
     have hvoc := tr.variation_of_constants (a := 0) (b := t) (Set.Icc_subset_Icc_right ht.2)
-      le_rfl ht.1 (Zonotope.isCompact_construct ℓ.U).isBounded
+      le_rfl ht.1 (Zonotope.isCompact_construct ℓ.inputSetFloat).isBounded
     simp only [sub_zero] at hvoc
-    have hvoc' : x t = exp (t • Ar) *ᵥ x₀ + ∫ s in (0:ℝ)..t, exp ((t - s) • Ar) *ᵥ u s := hvoc
+    -- the combined input `B u + c + E w` of the stay
+    set uc : ℝ → Vec ℝ n := fun s => toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c +
+      toRealMat ℓ.dynamics.E *ᵥ w s with huc
+    have hvoc' : x t = exp (t • Ar) *ᵥ x₀ + ∫ s in (0:ℝ)..t, exp ((t - s) • Ar) *ᵥ uc s := hvoc
     have hmeas := tr.aestronglyMeasurable_input_reflected (c := t) (r := t)
       (by rw [sub_self]; exact Set.Icc_subset_Icc_right ht.2)
-    have hu : ∀ s ∈ Set.Ioc (0:ℝ) t, u (t - s) ∈ ℓ.U.construct := fun s hs =>
-      traj.input (t - s) ⟨by linarith [hs.2], by linarith [hs.1, ht.2]⟩
-    have hUn : ℓ.U.construct.Nonempty := ⟨u 0, traj.input 0 ⟨le_rfl, traj.nonneg⟩⟩
+    have hu : ∀ s ∈ Set.Ioc (0:ℝ) t, uc (t - s) ∈ ℓ.inputSetFloat.construct := fun s hs =>
+      have hs' : t - s ∈ Set.Icc 0 τ := ⟨by linarith [hs.2], by linarith [hs.1, ht.2]⟩
+      ℓ.inputSetFloat_outer (traj.input _ hs') (traj.dist _ hs')
+    have hUn : ℓ.inputSetFloat.construct.Nonempty := ⟨_, ℓ.inputSetFloat_outer
+      (traj.input 0 ⟨le_rfl, traj.nonneg⟩) (traj.dist 0 ⟨le_rfl, traj.nonneg⟩)⟩
     -- its error to the constant flow of the exact `b`, then of the float `b̲`
-    have he := GuardMap.abstractionErrorFloat_outer ℓ.dynamics.A ℓ.U R0red hη ⟨ht.1, htmax⟩ hth
-      hcA      (hsub x₀ h₀) hUn hu hmeas
+    have he := GuardMap.abstractionErrorFloat_outer ℓ.dynamics.A ℓ.inputSetFloat R0red hη
+      ⟨ht.1, htmax⟩ hth hcA (hsub x₀ h₀) hUn (u := uc) hu hmeas
     rw [hcen] at he
-    obtain ⟨btrue, hbtrue⟩ : ∃ v, v = GuardMap.sdcInput (toRealMat ℓ.dynamics.A) (toRealVec ℓ.U.c)
-        (toReal (half tmax)) η (toRealVec R₀.c) := ⟨_, rfl⟩
-    have hbmem := GuardMap.sdcInput_mem_sdcInputFloat ℓ.dynamics.A ℓ.U.c η R₀.c hth
+    obtain ⟨btrue, hbtrue⟩ : ∃ v, v = GuardMap.sdcInput (toRealMat ℓ.dynamics.A)
+        (toRealVec ℓ.inputSetFloat.c) (toReal (half tmax)) η (toRealVec R₀.c) := ⟨_, rfl⟩
+    have hbmem := GuardMap.sdcInput_mem_sdcInputFloat ℓ.dynamics.A ℓ.inputSetFloat.c η R₀.c hth
     rw [← hbI] at hbmem
     rw [← hbtrue] at hbmem he
     -- `e`, the error to the constant flow of `b̲`, splits into the two parts
     obtain ⟨e, he_def⟩ : ∃ v, v = x t - GuardMap.sdcFlow Ar br x₀ t := ⟨_, rfl⟩
-    have hesplit : e = (exp (t • Ar) *ᵥ x₀ + (∫ s in (0:ℝ)..t, exp ((t - s) • Ar) *ᵥ u s)
+    have hesplit : e = (exp (t • Ar) *ᵥ x₀ + (∫ s in (0:ℝ)..t, exp ((t - s) • Ar) *ᵥ uc s)
         - GuardMap.sdcFlow Ar btrue x₀ t) + t • (btrue - br) := by
       rw [he_def, hvoc']
       simp only [GuardMap.sdcFlow]
       module
-    have he' : e ∈ ((GuardMap.abstractionErrorFloat ℓ.dynamics.A ℓ.U R0red (half tmax) tmax η).plus
+    have he' : e ∈ ((GuardMap.abstractionErrorFloat ℓ.dynamics.A ℓ.inputSetFloat R0red (half tmax)
+        tmax η).plus
         (⟨fun i => Interval.mulLo zero tmax zero (subUp (bI.sup i) (bI.inf i)),
           fun i => Interval.mulHi zero tmax zero (subUp (bI.sup i) (bI.inf i))⟩ :
             Interval (Vec 𝕋 n)).zonotope).construct := by

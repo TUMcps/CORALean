@@ -33,7 +33,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 /-- Each participant resets its block, the others keep theirs. -/
 theorem ParallelHybridAutomaton.liftSyncTransition_reset [ExactScalar 𝕋] [DecidableEq Λ]
     (P : ParallelHybridAutomaton S G k L 𝕋 n m)
-    (slift : ParallelHybridAutomaton.SyncLifting S G n m P.binds)
+    (slift : ParallelHybridAutomaton.SyncLifting S G n m)
     (lab : ParallelHybridAutomaton.SyncLabels G L 𝕋 n Λ) (ℓ : ∀ i, L i) (a : Λ)
     (x : ∀ i, Vec ℝ (n i)) :
     (P.liftSyncTransition slift lab ℓ a).reset (stack x) =

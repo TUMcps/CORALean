@@ -23,6 +23,8 @@ public import CORALean.HybridDynamics.Theorems.JumpOfPointOuter
 public import CORALean.HybridDynamics.Theorems.JumpFloatOuter
 public import CORALean.HybridDynamics.Theorems.JumpFloatOuterConZonotope
 public import CORALean.HybridDynamics.Theorems.JumpIntersectionOfPointOuter
+public import CORALean.HybridDynamics.Theorems.InputSetOuter
+public import CORALean.HybridDynamics.Theorems.InputSetFloatOuter
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 public import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter
 public import CORALean.HybridDynamics.Theorems.LocationReachFloatCheckedEqSome
@@ -116,14 +118,14 @@ public import CORALean.HybridDynamics.Theorems.TrajectoryErrorFloatOuter
 /-!
 # What a hybrid run guarantees, collected
 
-In step order: `LinearEmbedding` makes a stay a linear trajectory, `FlowOuter` encloses it and
-`TimeIntervalInvOuter` (`ReachGuardOuter`, a whole stay) cuts that to the invariant; `JumpOuter`
-intersects with the guard and applies the reset, `ResetImageSubset` restates it as a set
-inclusion, `JumpOuterConZonotope` discharges the one hypothesis `JumpOuter` leaves without an
-`Intersection` instance, and `JumpIntersectionOuter` is the case where one discharges it.
-`RunOuter` chains the two by induction on the run, and `HoldsOfRun`/`HoldsAllOfInvariant` turn
-the result into an answer, one specification or a list of them. `ReachSetOuter`/
-`ReachLocationsOuter`/`ReachSetSubsetInvariant` restate the same at a set of runs.
+In step order: `LinearEmbedding` makes a stay a run of its canonical form (input in `inputSet`,
+`InputSetOuter`), `FlowOuter` encloses it and `TimeIntervalInvOuter` (`ReachGuardOuter`, a whole
+stay) cuts that to the invariant; `JumpOuter` intersects with the guard and applies the reset,
+`ResetImageSubset` restates it as a set inclusion, `JumpOuterConZonotope` discharges the one
+hypothesis `JumpOuter` leaves without an `Intersection` instance, and `JumpIntersectionOuter` is the
+case where one discharges it. `RunOuter` chains the two by induction on the run, and
+`HoldsOfRun`/`HoldsAllOfInvariant` turn the result into an answer, one specification or a list of
+them. `ReachSetOuter`, `ReachLocationsOuter`, `ReachSetSubsetInvariant`: the same at run sets.
 
 The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `RunOn` to `Run`, `RunOnOuter`
 is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and `InvariantOnOfInvariant` reads an
@@ -131,7 +133,7 @@ is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and `InvariantOnOfInvar
 duration bound; `ReachFloatOuter`/`ReachSetSubsetReachFloat` enclose such runs in floats.
 
 `FlowOuterInputSolution` computes `FlowOuter`'s input contribution rather than
-naming it, `FlowOuterSplit` without asking `0 ∈ ℓ.U`, `…Float` the same in floats, and
+naming it, `FlowOuterSplit` without asking `0 ∈ ℓ.inputSet`, `…Float` the same in floats, and
 `InvariantOfEnclosureCut` is the criterion those buy, cut to `ℓ.inv` and with a
 model: uncut, `InvariantOfEnclosure`'s `hflow` has none under a nonzero drift.
 

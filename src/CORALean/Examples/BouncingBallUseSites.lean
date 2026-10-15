@@ -53,12 +53,13 @@ example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (V
 
 /-- A stay is enclosed by the linear time-interval step, which is what holding
 `LinearSys` dynamics in a location buys. -/
-example (ℓ : Location 𝒵 ℋ𝒫 Unit ℝ 2) {τ : ℝ} {x u : ℝ → Vec ℝ 2}
-    (traj : ℓ.Trajectory τ x u) {R₀ Ud : Zonotope (Vec ℝ 2)}
+example (ℓ : Location 𝒵 ℋ𝒫 Unit ℝ 2) {τ : ℝ} {x : ℝ → Vec ℝ 2} {u w}
+    (traj : ℓ.Trajectory τ x u w) {R₀ Ud : Zonotope (Vec ℝ 2)}
     (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.U))
-    (hUd : (∫ s in (0 : ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ u s)
+    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.inputSet))
+    (hUd : (∫ s in (0 : ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ
+      (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) :
     x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀) Ud) :=
   traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd

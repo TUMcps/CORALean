@@ -1,5 +1,6 @@
 module
 
+public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.HybridDynamics.Operations.GuardIntersectHyperplaneMap
 public import CORALean.HybridDynamics.Theorems.AbstractionErrorOuter
 public import CORALean.HybridDynamics.Theorems.HitPointAddEq
@@ -292,13 +293,13 @@ theorem aux_hpMap_res2 (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ E : Zonotope (
 /-- A run from `R₀` on the hyperplane at `t ≤ tmax` is in the mapped set, `η ≥ 1`. -/
 theorem Location.guardIntersectHyperplaneMap_outer (ℓ : Location 𝒵 G L ℝ n) (nv : Vec ℝ n)
     (d : ℝ) (R₀ : Zonotope (Vec ℝ n)) (tmax : ℝ) {η : ℕ} (guardOrder zonotopeOrder : ℕ)
-    (hη : 1 ≤ η) {τ : ℝ} {x u : ℝ → Vec ℝ n} (traj : ℓ.Trajectory τ x u)
+    (hη : 1 ≤ η) {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.Trajectory τ x u w)
     (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ tmax)
     (hhit : nv ⬝ᵥ x t = d) {Z : Zonotope (Vec ℝ n)}
     (hZ : ℓ.guardIntersectHyperplaneMap nv d R₀ tmax η guardOrder zonotopeOrder = some Z) :
     x t ∈ Z.construct := by -- --- PROOF ---
   set A : Mat ℝ n n := ℓ.dynamics.A with hA
-  set U : Zonotope (Vec ℝ n) := ℓ.U with hU
+  set U : Zonotope (Vec ℝ n) := ℓ.inputSet with hU
   set x₀ := x 0 with hx₀def
   set b : Vec ℝ n := GuardMap.sdcInput A U.c (tmax / 2) η R₀.c with hb
   set R0red := R₀.reduceGirard guardOrder with hR0red
@@ -306,18 +307,25 @@ theorem Location.guardIntersectHyperplaneMap_outer (ℓ : Location 𝒵 G L ℝ 
   have hsub : ∀ x ∈ R₀.construct, x ∈ R0red.construct :=
     fun x hx => Zonotope.reduceGirard_outer R₀ guardOrder hx
   set err := GuardMap.abstractionError A U R0red (tmax / 2) tmax η with herr
-  -- the run, in closed form, and its error to the constant flow
-  have tr := (traj.linearSys (R₀ := R₀) h₀).trajectory (convex_Icc 0 τ) ⟨le_rfl, traj.nonneg⟩
+  -- the run, in closed form, its input `B u + c + E w`, and its error to the constant flow
+  have tr := (traj.linearSys (R₀ := R₀) h₀ traj.inputSet_mem).trajectory (convex_Icc 0 τ)
+    ⟨le_rfl, traj.nonneg⟩
     (Zonotope.isBounded_construct U)
+  -- the variation of constants up to the hit
   have hvoc := tr.variation_of_constants (a := 0) (b := t) (Set.Icc_subset_Icc_right ht.2)
     le_rfl ht.1 (Zonotope.isBounded_construct U)
   simp only [sub_zero, Scalar.toRealMat_real] at hvoc
   have hmeas := tr.aestronglyMeasurable_input_reflected (c := t) (r := t)
     (by rw [sub_self]; exact Set.Icc_subset_Icc_right ht.2)
-  have hu : ∀ s ∈ Set.Ioc (0:ℝ) t, u (t - s) ∈ U.construct := fun s hs =>
-    traj.input (t - s) ⟨by linarith [hs.2], by linarith [hs.1, ht.2]⟩
+  have hu : ∀ s ∈ Set.Ioc (0:ℝ) t, Scalar.toRealMat ℓ.dynamics.B *ᵥ u (t - s) +
+      Scalar.toRealVec ℓ.dynamics.c + Scalar.toRealMat ℓ.dynamics.E *ᵥ w (t - s) ∈ U.construct :=
+    fun s hs =>
+    have hs' : t - s ∈ Set.Icc 0 τ := ⟨by linarith [hs.2], by linarith [hs.1, ht.2]⟩
+    ℓ.inputSet_outer (traj.input _ hs') (traj.dist _ hs')
   have he := GuardMap.abstractionError_outer A U R0red (tmax / 2) hη ⟨ht.1, htmax⟩
-    (hsub x₀ h₀) hu hmeas
+    (hsub x₀ h₀) (u := fun s => Scalar.toRealMat ℓ.dynamics.B *ᵥ u s +
+      Scalar.toRealVec ℓ.dynamics.c + Scalar.toRealMat ℓ.dynamics.E *ᵥ w s) hu hmeas
+  simp only [Scalar.toRealMat_real] at he
   rw [hcen, ← hvoc] at he
   set e := x t - GuardMap.sdcFlow A b x₀ t with he_def
   have hxt : x t = x₀ + t • (A *ᵥ x₀ + b) + e := by

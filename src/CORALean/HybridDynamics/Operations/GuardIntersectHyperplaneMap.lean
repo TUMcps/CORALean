@@ -1,6 +1,6 @@
 module
 
-public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.InputSet
 public import CORALean.HybridDynamics.Definitions.HitPoint
 public import CORALean.HybridDynamics.Definitions.HitJacobian
 public import CORALean.HybridDynamics.Definitions.SdcInput
@@ -17,7 +17,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 /-!
 # `Location.guardIntersectHyperplaneMap`, the guard mapping of Althoff and Krogh
 
-CORA's `guardIntersect_hyperplaneMap` [1] for `ẋ = Ax + u`, `u ∈ U`, onto `{x | nᵀx = d}`, one
+CORA's `guardIntersect_hyperplaneMap` [1] for `ẋ = Ax + Bu + c + Ew` onto `{x | nᵀx = d}`, one
 `let` per line: `k ⊕ L(R₀ ⊖ ξ) ⊕ ½[φ̲, φ̄] R_quad ⊕ I (AR₀ ⊕ b) ⊕ E` of [2, Sec. 5.4], `b` of
 [2, Prop. 1] at `th = tmax/2`, Girard-reduced and projected onto the normalized hyperplane.
 Departures: `ψ_c`, `ψ_g` are the one-factor `−n − τ_c Υᵀ`, `−τ_g Υᵀ` from an interval of `τ =
@@ -25,8 +25,8 @@ Departures: `ψ_c`, `ψ_g` are the one-factor `−n − τ_c Υᵀ`, `−τ_g Υ
 (FINDINGS.md, `Location guardIntersect_hyperplaneMap, coordinatewise ψ`); `err1` and the slices
 of `Q⁽ⁱ⁾` as the code means (FINDINGS.md, `... abstraction error and quadratic map`); `none` when
 a divisor interval holds `0`. `aux_refinedIntersectionTime`, a second `reach` with the guard's
-halfspace as invariant, enters as its outputs `R₀` and `tmax`; the nonlinear branch of
-`aux_systemParams` is not modelled.
+halfspace as invariant, enters as its outputs `R₀` and `tmax`; `aux_systemParams`'s `B U + c`
+is `inputSet`, which adds `E W`; its nonlinear branch is not modelled.
 
 ## References
 
@@ -64,7 +64,7 @@ noncomputable def Location.guardIntersectHyperplaneMap (ℓ : Location 𝒵 G L 
     ⟨Matrix.of fun j k => Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b,
       Matrix.of fun j k => Interval.mulHi ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) a b⟩
   let A : Mat ℝ n n := ℓ.dynamics.A                                -- [A,U] = aux_systemParams
-  let U : Zonotope (Vec ℝ n) := ℓ.U
+  let U : Zonotope (Vec ℝ n) := ℓ.inputSet                         -- U = B*U + c, and E*W
   let th : ℝ := tmax / 2                                           -- th = tmax/2
   let b : Vec ℝ n := GuardMap.sdcInput A U.c th η R₀.c             -- b = aux_constantFlow
   let R0red := R₀.reduceGirard guardOrder                          -- R0red = reduce(R0,..)

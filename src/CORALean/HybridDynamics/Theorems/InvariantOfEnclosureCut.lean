@@ -10,7 +10,7 @@ public import CORALean.HybridDynamics.Theorems.JumpOuter
 # `Invariant` from the enclosures, cut down by the location's invariant
 
 `InvariantOfEnclosure` without the two hypotheses no caller could meet.
-`FlowOuterSplit` stands in for `FlowOuterInputSolution`, so `0 ∈ ℓ.U` is gone;
+`FlowOuterSplit` stands in for `FlowOuterInputSolution`, so `0 ∈ ℓ.inputSet` is gone;
 and `hflow`'s containment is asked only of the part of the enclosure still
 inside `ℓ.inv`, so a dwell time long enough to leave the location no longer has
 to be absorbed by `R`. A trajectory that leaves `ℓ.inv` has left the location.
@@ -27,9 +27,9 @@ else, and `Examples.BouncingBall` runs it at a zonotope state with halfspace
 guards, `hflow` reading the invariant across the two (#39).
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -67,7 +67,7 @@ theorem HybridAutomaton.invariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec �
       construct (R ℓ) ∩ construct e.guard ⊆ construct Rg ∧
       construct (e.jump Rg) ⊆ construct (R e.target)) :
     HA.Invariant R where
-  flow {ℓ τ x u} h h₀ {t} ht := by
+  flow {ℓ τ x u w} h h₀ {t} ht := by
     rcases h.nonneg.lt_or_eq with hτ | hτ0
     · -- `τ > 0`: the stay's own state is in the enclosure and in `ℓ.inv`, and
       -- `hflow`'s containment is asked of exactly that intersection

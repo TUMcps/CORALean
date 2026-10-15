@@ -5,6 +5,7 @@ public import CORALean.HybridDynamics.Parallel.Theorems.HPolytopeStackProdExact
 public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 public import CORALean.HybridDynamics.Parallel.Operations.Basic
 public import CORALean.HybridDynamics.Parallel.Definitions.Lifting
+public import CORALean.HybridDynamics.Parallel.Theorems.SelectGlobalMulVec
 public import CORALean.ContSet.HPolytope.Real.Instances
 
 @[expose] public section
@@ -12,22 +13,23 @@ public import CORALean.ContSet.HPolytope.Real.Instances
 /-!
 # `boxLifting`: a `Lifting` at boxes and halfspace descriptions
 
-The first concrete `Lifting`: inputs in `Interval`, invariants and guards in `HPolytope`.
+The first concrete `Lifting`: inputs and disturbances in `Interval`, invariants and guards in
+`HPolytope`.
 
 * `inv` is `HPolytope.stackProd`, the Cartesian product of the components' invariants;
 * `guard i g` is `HPolytope.comap (blockProj i) g`, constraining block `i` and free elsewhere,
   which no box can say;
-* `input` is `Interval.stackProd`, the product of the components' input sets. The state-bound
-  coordinates are zero in `globalInput`, so a component's `U` must contain `0` there for a stay
-  to exist at all, and the product's box then contains the stacked zero too.
+* `input b` is the box of the global inputs: at `a`, the bounds of the first input `b` binds to
+  `a` (`selectGlobal`), `[0, 0]` where none is;
+* `dist` is `Interval.stackProd`, the product of the components' disturbance boxes.
 
-All three are exact (`Theorems.IntervalStackProdExact`, `Theorems.HPolytopeStackProdExact`), not
-outer enclosures; the `Lifting` fields ask only for the inclusion.
+`inv`, `guard` and `dist` are exact (`Theorems.IntervalStackProdExact`,
+`Theorems.HPolytopeStackProdExact`); `input` is, where no global input feeds two inputs.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -35,19 +37,20 @@ outer enclosures; the `Lifting` fields ask only for the inclusion.
 
 namespace CORALean
 
-open CORALean.Real ContSet
+open CORALean.Real ContSet Matrix
 
 variable {k m : ℕ} {n : Fin k → ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ParallelHybridAutomaton.boxLifting (binds : ∀ i, Fin (n i) → InputSource k n m) :
-    ParallelHybridAutomaton.Lifting (ℐ𝒱) (ℋ𝒫)
-      n m binds where
+def ParallelHybridAutomaton.boxLifting :
+    ParallelHybridAutomaton.Lifting (ℐ𝒱) (ℋ𝒫) n m where
   inv := HPolytope.stackProd
   guard i g := HPolytope.comap (blockProj i) g
-  input := Interval.stackProd
+  input b us := ⟨selectGlobal b *ᵥ stack fun i => (us i).inf,
+    selectGlobal b *ᵥ stack fun i => (us i).sup⟩
+  dist := Interval.stackProd
   mem_inv gs x hx := by
     -- the product is exactly the blocks' sets, and the blocks of a stack are what was stacked
     show stack x ∈ (HPolytope.stackProd gs).construct
@@ -62,13 +65,32 @@ def ParallelHybridAutomaton.boxLifting (binds : ∀ i, Fin (n i) → InputSource
     show unstack (stack x) i ∈ g.construct
     rw [unstack_stack]
     exact hx
-  mem_input us v hv := by
-    -- as `mem_inv`, at the box of the stacked global inputs
-    show stack (globalInput binds v) ∈ (Interval.stackProd us).construct
+  mem_input b us g hg hz := by
+    -- at `a`, the bounds of the first input bound to `a`, which a point of its box meets
+    intro a
+    show (selectGlobal b *ᵥ _) a ≤ g a ∧ g a ≤ (selectGlobal b *ᵥ _) a
+    rw [selectGlobal_mulVec, selectGlobal_mulVec]
+    split_ifs with h
+    · obtain ⟨v, hv, hva⟩ := hg (finSigmaFinEquiv.symm (Fin.find _ h)).1
+      have hj : (us _).inf (finSigmaFinEquiv.symm (Fin.find _ h)).2 ≤
+          v (finSigmaFinEquiv.symm (Fin.find _ h)).2 ∧
+          v (finSigmaFinEquiv.symm (Fin.find _ h)).2 ≤
+            (us _).sup (finSigmaFinEquiv.symm (Fin.find _ h)).2 := hv _
+      rw [hva _ a (Fin.find_spec h)] at hj
+      exact hj
+    · -- no input reads `a`, so `g a = 0`
+      rw [hz a fun i j hij => h ⟨finSigmaFinEquiv ⟨i, j⟩, by
+        rw [show finSigmaFinEquiv.symm (finSigmaFinEquiv ⟨i, j⟩) = ⟨i, j⟩ from
+          Equiv.symm_apply_apply _ _]
+        exact hij⟩]
+      exact ⟨le_rfl, le_rfl⟩
+  mem_dist ws w hw := by
+    -- as `mem_inv`, at the box of the stacked disturbances
+    show stack w ∈ (Interval.stackProd ws).construct
     rw [Interval.stackProd_exact]
     intro i
     rw [unstack_stack]
-    exact hv i
+    exact hw i
 
 end CORALean
 

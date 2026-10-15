@@ -2,20 +2,24 @@ module
 
 public import CORALean.HybridDynamics.Parallel.Operations.ConZonoLifting
 public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
+public import CORALean.HybridDynamics.Parallel.Theorems.SelectGlobalMulVecOfDistinct
 
 @[expose] public section
 
 /-!
 # `conZonoLifting` is exact
 
-The product of the invariants, the product of the input sets (`ConZonotope.stackProd_exact`) and the
-block-projection preimage of a guard each contain exactly the stacks whose blocks lie in the
-components' sets, so `conZonoLifting` meets `Lifting.Exact`.
+The product of the invariants, the product of the disturbance sets (`ConZonotope.stackProd_exact`)
+and the block-projection preimage of a guard each contain exactly the stacks whose blocks lie in the
+components' sets. The input set is the image of the product of the components' input sets under
+`selectGlobal`: a point of it is the image of a stacked point, whose blocks are points of the
+components' sets, and where each global input feeds one input those blocks agree with it
+(`selectGlobal_mulVec_of_distinct`). So `conZonoLifting` meets `Lifting.Exact`.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -23,15 +27,15 @@ components' sets, so `conZonoLifting` meets `Lifting.Exact`.
 
 namespace CORALean
 
-open CORALean.Real ContSet
+open CORALean.Real ContSet Matrix
 
 variable {k m : ℕ} {n : Fin k → ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ParallelHybridAutomaton.conZonoLifting_exact (binds : ∀ i, Fin (n i) → InputSource k n m) :
-    (ParallelHybridAutomaton.conZonoLifting binds).Exact where
+theorem ParallelHybridAutomaton.conZonoLifting_exact :
+    (ParallelHybridAutomaton.conZonoLifting (k := k) (n := n) (m := m)).Exact where
   inv_inv gs x hx := by
     -- the lifted invariant is exactly the blocks'
     have hx' : stack x ∈ (HPolytope.stackProd gs).construct := hx
@@ -47,12 +51,23 @@ theorem ParallelHybridAutomaton.conZonoLifting_exact (binds : ∀ i, Fin (n i) �
     have : unstack (stack x) i ∈ g.construct := hx'
     rw [unstack_stack] at this
     exact this
-  input_inv us v hv := by
-    -- the product of the input sets is exactly the blocks'
-    have hv' : stack (globalInput binds v) ∈ (ConZonotope.stackProd us).construct := hv
-    rw [ConZonotope.stackProd_exact] at hv'
+  input_inv b hb us _ g hg := by
+    -- `g` is the image of a stacked point of the product, whose blocks agree with it
+    have hg' : g ∈ (ConZonotope.mtimes (selectGlobal b) (ConZonotope.stackProd us)).construct := hg
+    rw [← ConZonotope.mtimes_exact] at hg'
+    obtain ⟨z, hz, rfl⟩ := hg'
+    rw [ConZonotope.stackProd_exact] at hz
     intro i
-    have := hv' i
+    refine ⟨unstack z i, hz i, fun j a hj => ?_⟩
+    show _ = (selectGlobal b *ᵥ z) a
+    rw [selectGlobal_mulVec_of_distinct hb z hj]
+    rfl
+  dist_inv ws w hw := by
+    -- the product of the disturbance sets is exactly the blocks'
+    have hw' : stack w ∈ (ConZonotope.stackProd ws).construct := hw
+    rw [ConZonotope.stackProd_exact] at hw'
+    intro i
+    have := hw' i
     rw [unstack_stack] at this
     exact this
 

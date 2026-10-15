@@ -6,6 +6,8 @@ public import CORALean.HybridDynamics.Operations.Jump
 public import CORALean.HybridDynamics.Operations.JumpIntersection
 public import CORALean.HybridDynamics.Operations.JumpOfPoint
 public import CORALean.HybridDynamics.Operations.JumpIntersectionOfPoint
+public import CORALean.HybridDynamics.Operations.InputSet
+public import CORALean.HybridDynamics.Operations.InputSetFloat
 public import CORALean.HybridDynamics.Operations.TimeIntervalStep
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepInv
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit
@@ -76,11 +78,11 @@ public import CORALean.HybridDynamics.Operations.NonlinearResetSecondOrderBound
 /-!
 # What a hybrid automaton computes, collected
 
-`Jump` propagates the reset over a set already cut to the guard; `JumpIntersection`
-cuts it there itself, at a representation with an `Intersection` instance. The flow
-enclosure is `LinearSys`'s, named again here only so that a statement about it
-reads its representation off the location; `TimeIntervalStepInv` cuts it to
-the invariant the same way, for a representation that has one, and
+`InputSet` (`InputSetFloat`) is the combined input `B U ⊕ c ⊕ E W` the flow enclosures read.
+`Jump` propagates the reset over a set already cut to the guard; `JumpIntersection` cuts it
+there itself, at a representation with an `Intersection` instance. The flow
+enclosure is `LinearSys`'s, named again so that a statement about it reads its representation off
+the location; `TimeIntervalStepInv` cuts it to the invariant the same way, and
 `TimeIntervalStepSplit` computes its input contribution without asking the
 location's input set to hold the origin; `…Float` are the two at float zonotopes.
 

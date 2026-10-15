@@ -4,30 +4,24 @@ public import CORALean.HybridDynamics.Parallel.Theorems.StayTrajectoryWith
 public import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
 public import CORALean.HybridDynamics.Parallel.Theorems.Basic
 public import CORALean.HybridDynamics.Parallel.Definitions.LiftingExact
-public import CORALean.HybridDynamics.Parallel.Definitions.GlobalsDistinct
-public import CORALean.HybridDynamics.Parallel.Definitions.InputsGlobalOnly
+public import CORALean.HybridDynamics.Parallel.Definitions.FlowLawConverse
 
 @[expose] public section
 
 /-!
 # A stay of the product is a shared stay
 
-The converse of `Stay.trajectoryWith`, for any flow with `FlowLaw`. Given a stay of the product's
-location, the components' states are the blocks of its state; a state-bound input is the state it
-is bound to, a global one is the product's input at that coordinate, and `g` reads each global
-input off the one coordinate it feeds (`GlobalsDistinct`). The product's input is a stack of a
-`globalInput` (`InputsGlobalOnly`), so it is zero at the state-bound coordinates and the merged
-matrix supplies the binding term alone, by the flow law. The invariant and the input set come back
-through `Lifting.Exact`.
-
-The conditions are the ones a product run can break: nothing in `Location.Trajectory` says the
-product's input is zero at a state-bound coordinate, or equal at two coordinates of one global
-input.
+The converse of `Stay.trajectoryWith`, for any flow with `FlowLawConverse`. Given a stay of the
+product's location, the components' states are the blocks of its state; at each instant the
+converse law supplies the components' inputs, disturbances and global inputs, bound as the
+parallel automaton binds them and in the components' sets, under which the product's right-hand
+side is every component's own, so each block flows as its component does. The invariant comes
+back through `Lifting.Exact`.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -47,92 +41,46 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 product's state. -/
 theorem ParallelHybridAutomaton.Stay.ofTrajectoryWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
-    (hF : P.FlowLaw F) (hdist : P.GlobalsDistinct)
-    {lift : ParallelHybridAutomaton.Lifting S G n m P.binds}
-    (hex : lift.Exact) (hglob : P.InputsGlobalOnly lift) {ℓ : ∀ i, L i} {τ : ℝ}
-    {X W : ℝ → Vec ℝ (∑ i, n i)} (h : ((P.productWith lift F).loc ℓ).Trajectory τ X W) :
-    ∃ (x u : ∀ i, ℝ → Vec ℝ (n i)) (g : ℝ → Vec ℝ m), P.Stay ℓ τ x u g ∧
-      (∀ i, x i = fun t => unstack (X t) i) := by -- --- PROOF ---
+    {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLawConverse F U W)
+    {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) {ℓ : ∀ i, L i} {τ : ℝ}
+    {X : ℝ → Vec ℝ (∑ i, n i)} {g' w'}
+    (h : ((P.productWith lift F U W).loc ℓ).Trajectory τ X g' w') :
+    ∃ (x : ∀ i, ℝ → Vec ℝ (n i)) (u : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).m)
+      (w : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).r) (g : ℝ → Vec ℝ m),
+      P.Stay ℓ τ x u w g ∧ ∀ i, x i = fun t => unstack (X t) i := by -- --- PROOF ---
   classical
-  -- the product's input is the stack of a `globalInput`, at each time of the stay
-  have hW : ∀ t ∈ Set.Icc 0 τ, ∃ v : ∀ i, Vec ℝ (n i), W t = stack (globalInput P.binds v) :=
-    fun t ht => hglob ℓ (W t) (h.input t ht)
-  -- the global input `a` is read off the one coordinate it feeds, if any
-  let g : ℝ → Vec ℝ m := fun t a =>
-    if hp : ∃ p : Σ i, Fin (n i), P.binds p.1 p.2 = .global a then
-      unstack (W t) hp.choose.1 hp.choose.2 else 0
-  let u : ∀ i, ℝ → Vec ℝ (n i) := fun i t j =>
-    match P.binds i j with
-    | .global _ => unstack (W t) i j
-    | .state c s => unstack (X t) c s
-  refine ⟨fun i t => unstack (X t) i, u, g, ?_, fun i => rfl⟩
-  have hs : ∀ (y : ∀ i, Vec ℝ (n i)) (c : Fin k) (s : Fin (n c)),
-      stack y (finSigmaFinEquiv ⟨c, s⟩) = y c s := by
-    intro y c s; unfold stack; rw [Equiv.symm_apply_apply]
-  refine ⟨h.nonneg, ?_, ?_, ?_, ?_⟩
-  · -- the input: the product's input is a stack, so the components' inputs lie in their sets
-    intro i t ht
-    obtain ⟨v, hv⟩ := hW t ht
-    have hin := hex.input_inv _ v (hv ▸ h.input t ht) i
-    have : globalInput P.binds (fun i => u i t) = globalInput P.binds v := by
-      funext i' j
-      have hj := congrFun (congrFun (congrArg unstack hv) i') j
-      rw [unstack_stack] at hj
-      simp only [globalInput] at hj ⊢
-      simp only [u]
-      cases hb : P.binds i' j
-      · simp [hb] at hj ⊢
-        exact hj
-      · simp
-    rw [this]
-    exact hin
-  · -- the flow: coordinate `⟨i, j⟩` of the product's, by the flow law and the binding
-    intro i t ht
-    obtain ⟨v, hv⟩ := hW t ht
-    -- the coordinates of the product's derivative
-    have hX := h.flow t ht
-    have hX' : ∀ j : Fin (n i), HasDerivWithinAt (fun t => X t (finSigmaFinEquiv ⟨i, j⟩))
-        ((toRealMat (F ℓ).A *ᵥ X t + W t) (finSigmaFinEquiv ⟨i, j⟩))
-        (Set.Icc 0 τ) t := fun j => hasDerivWithinAt_pi.mp hX _
+  -- at each instant, the converse law's inputs, disturbances and global inputs
+  have key : ∀ t, ∃ uwg : (∀ i, Vec ℝ (P.sys ℓ i).m) × (∀ i, Vec ℝ (P.sys ℓ i).r) × Vec ℝ m,
+      t ∈ Set.Icc 0 τ →
+      (∀ i j, uwg.1 i j = P.boundInput ℓ (unstack (X t)) uwg.1 uwg.2.2 i j) ∧
+      (∀ i, ∃ v ∈ construct ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a →
+        v j = uwg.2.2 a) ∧
+      (∀ i, uwg.2.1 i ∈ construct ((P.comp i).loc (ℓ i)).W) ∧
+      ∀ i a, (toRealMat (F ℓ).A *ᵥ X t + toRealMat (F ℓ).B *ᵥ g' t + toRealVec (F ℓ).c +
+        toRealMat (F ℓ).E *ᵥ w' t) (finSigmaFinEquiv ⟨i, a⟩) =
+        (toRealMat (P.sys ℓ i).A *ᵥ unstack (X t) i + toRealMat (P.sys ℓ i).B *ᵥ uwg.1 i +
+          toRealVec (P.sys ℓ i).c + toRealMat (P.sys ℓ i).E *ᵥ uwg.2.1 i) a := by
+    intro t
+    -- outside the stay nothing is asked
+    by_cases ht : t ∈ Set.Icc 0 τ
+    · obtain ⟨u, w, g, h1, h2, h3, h4⟩ := hF ℓ (unstack (X t)) (g' t) (w' t) (h.input t ht)
+        (h.dist t ht)
+      refine ⟨(u, w, g), fun _ => ⟨h1, h2, h3, ?_⟩⟩
+      rw [← stack_unstack (X t)]
+      simpa only [unstack_stack] using h4
+    · exact ⟨(0, 0, 0), fun h' => absurd h' ht⟩
+  choose uwg huwg using key
+  refine ⟨fun i t => unstack (X t) i, fun i t => (uwg t).1 i, fun i t => (uwg t).2.1 i,
+    fun t => (uwg t).2.2, ⟨h.nonneg, fun i t ht => (huwg t ht).2.1 i,
+    fun i t ht => (huwg t ht).2.2.1 i, fun i t ht => ?_, fun i t ht => ?_,
+    fun i j t ht => (huwg t ht).1 i j⟩, fun i => rfl⟩
+  · -- block `i` flows by coordinate `⟨i, j⟩` of the product's flow
     rw [hasDerivWithinAt_pi]
     intro j
-    refine (hX' j).congr_deriv ?_
-    -- the flow law at the stack of the blocks, and the input at this coordinate
-    have hm := hF ℓ (fun i => unstack (X t) i) i j
-    rw [show stack (fun i => unstack (X t) i) = X t from stack_unstack _] at hm
-    rw [Pi.add_apply, hm, Pi.add_apply]
-    have hWj : W t (finSigmaFinEquiv ⟨i, j⟩) = globalInput P.binds v i j := by
-      rw [hv, hs]
-    rw [hWj]
-    show _ = _ + u i t j
-    simp only [u, globalInput]
-    cases hb : P.binds i j with
-    | global a =>
-      have := congrFun (congrFun (congrArg unstack hv) i) j
-      rw [unstack_stack] at this
-      simp only [globalInput, hb] at this
-      simp only [this, add_zero]
-    | state c s => simp
+    exact (hasDerivWithinAt_pi.mp (h.flow t ht) (finSigmaFinEquiv ⟨i, j⟩)).congr_deriv
+      ((huwg t ht).2.2.2 i j)
   · -- the invariant, through `Lifting.Exact`
-    intro i t ht
-    have := hex.inv_inv _ _ (by rw [stack_unstack]; exact h.invariant t ht)
-    exact this i
-  · -- the binding: a global input is read off the one coordinate it feeds
-    intro i j t ht
-    obtain ⟨v, hv⟩ := hW t ht
-    simp only [u, g]
-    cases hb : P.binds i j with
-    | global a =>
-      have hp : ∃ p : Σ i, Fin (n i), P.binds p.1 p.2 = .global a := ⟨⟨i, j⟩, hb⟩
-      dsimp only
-      rw [dif_pos hp]
-      have := hdist _ _ _ _ _ hb hp.choose_spec
-      obtain ⟨hi, hj⟩ := Sigma.mk.inj_iff.mp this
-      subst hi
-      have hj' := eq_of_heq hj
-      subst hj'
-      rfl
-    | state c s => rfl
+    exact hex.inv_inv _ _ (by rw [stack_unstack]; exact h.invariant t ht) i
 
 end CORALean
 

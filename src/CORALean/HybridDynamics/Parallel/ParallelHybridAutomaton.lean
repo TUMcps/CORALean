@@ -1,32 +1,31 @@
 module
 
 public import CORALean.HybridDynamics.HybridAutomaton
+public import CORALean.HybridDynamics.Definitions.ResolveSource
 
 @[expose] public section
 
 /-!
 # Parallel hybrid automata: the automaton and its runs
 
-CORA's `parallelHybridAutomaton`: `k` component automata, each a `HybridAutomaton`
-of its own dimension `n i`, and `binds`, CORA's `bindsInputs`: every input of a
-component is either one of `m` global inputs or a state of some component.
+CORA's `parallelHybridAutomaton`: `k` component automata, each a `HybridAutomaton` of its own
+dimension `n i` whose locations flow by their whole equation, and `binds`, CORA's `bindsInputs`:
+input `j` of component `i` is global input `a` or output `s` of component `c`. As in CORA, every
+location of component `i` has `p i` inputs and `q i` outputs (`inputs_eq`, `outputs_eq`);
+`bindsAt ℓ` is `binds` read at the dimensions of the locations `ℓ`, and `boundInput` the value it
+gives an input: the global input, or the feeding component's output `C x + D u + k`, noise-free.
 
-The input is `u` in `ẋ = A x + u`, as `Location.Trajectory` has it: one input per state
-coordinate, `binds i j` feeding coordinate `j` of component `i`. Where CORA binds an *output*
-this binds a state, CORA's `C = I`, since `OutputEq` is kept off the system classes (#40).
-
-`stack` puts the components' states side by side, through `finSigmaFinEquiv`; `globalInput`
-zeroes the state-bound input coordinates, which the product keeps in its matrix.
-
-`Run` is the semantics, and the product never enters it. A `Stay` is the shared time axis:
-one dwell time `τ`, every component flowing in its location's invariant, inputs as bound; the
-input set constrains only the global inputs, as in CORA. A `jump` ends a stay with one
-component taking a transition; simultaneous jumps are consecutive, a zero-length stay between.
+`Run` is the semantics, and the product never enters it. A `Stay` is the shared time axis: one
+dwell time `τ`, every component flowing by its own equation in its location's invariant, its
+disturbances in its `W`, inputs as bound. The input set constrains only the global inputs, as in
+CORA: the global inputs fed to component `i` are the corresponding coordinates of a point of its
+`U`. A `jump` ends a stay with one component taking a transition; simultaneous jumps are
+consecutive, a zero-length stay between.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   14-October-2026
 -- Reviewed:      ---
 
 
@@ -42,53 +41,67 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-inductive InputSource (k : ℕ) (n : Fin k → ℕ) (m : ℕ) : Type where
-  | global (a : Fin m) : InputSource k n m
-  | state (c : Fin k) (s : Fin (n c)) : InputSource k n m
-
 structure ParallelHybridAutomaton (S G : ℕ → Type) (k : ℕ) (L : Fin k → Type) (𝕋 : Type)
     (n : Fin k → ℕ) (m : ℕ) where
   comp : ∀ i, HybridAutomaton S G (L i) 𝕋 (n i)
-  binds : ∀ i, Fin (n i) → InputSource k n m
+  p : Fin k → ℕ
+  q : Fin k → ℕ
+  binds : ∀ i, Fin (p i) → ResolveSource k q m
+  inputs_eq : ∀ i ℓ, ((comp i).loc ℓ).dynamics.m = p i
+  outputs_eq : ∀ i ℓ, ((comp i).loc ℓ).dynamics.q = q i
+
+/-- The flow of component `i` at the location tuple `ℓ`. -/
+abbrev ParallelHybridAutomaton.sys (P : ParallelHybridAutomaton S G k L 𝕋 n m)
+    (ℓ : ∀ i, L i) (i : Fin k) : LinearSys 𝕋 (n i) :=
+  ((P.comp i).loc (ℓ i)).dynamics
+
+/-- `binds` at the input and output dimensions of the locations `ℓ`. -/
+def ParallelHybridAutomaton.bindsAt (P : ParallelHybridAutomaton S G k L 𝕋 n m) (ℓ : ∀ i, L i)
+    (i : Fin k) (j : Fin (P.sys ℓ i).m) : ResolveSource k (fun c => (P.sys ℓ c).q) m :=
+  match P.binds i (Fin.cast (P.inputs_eq i (ℓ i)) j) with
+  | .global a => .global a
+  | .output c s => .output c (Fin.cast (P.outputs_eq c (ℓ c)).symm s)
+
+/-- The value the binding gives input `j` of component `i`: the global input, or the feeding
+component's output `C x + D u + k`, noise-free. -/
+def ParallelHybridAutomaton.boundInput (P : ParallelHybridAutomaton S G k L 𝕋 n m)
+    (ℓ : ∀ i, L i) (x : ∀ i, Vec ℝ (n i)) (u : ∀ i, Vec ℝ (P.sys ℓ i).m) (g : Vec ℝ m)
+    (i : Fin k) (j : Fin (P.sys ℓ i).m) : ℝ :=
+  match P.bindsAt ℓ i j with
+  | .global a => g a
+  | .output c s => (toRealMat (P.sys ℓ c).C *ᵥ x c + toRealMat (P.sys ℓ c).D *ᵥ u c +
+      toRealVec (P.sys ℓ c).k) s
 
 -- The components' states side by side: coordinate `⟨i, j⟩` is coordinate `j` of component `i`.
-def stack (x : ∀ i, Vec ℝ (n i)) : Vec ℝ (∑ i, n i) :=
+def stack {d : Fin k → ℕ} (x : ∀ i, Vec ℝ (d i)) : Vec ℝ (∑ i, d i) :=
   fun p => x (finSigmaFinEquiv.symm p).1 (finSigmaFinEquiv.symm p).2
-
--- The inputs a product keeps as its own: the globally bound coordinates, the rest zeroed.
-def globalInput (binds : ∀ i, Fin (n i) → InputSource k n m) (v : ∀ i, Vec ℝ (n i)) :
-    ∀ i, Vec ℝ (n i) :=
-  fun i j => match binds i j with
-    | .global _ => v i j
-    | .state _ _ => 0
 
 -- One shared dwell time; the input set constrains only the global inputs, as CORA's `bindsInputs`.
 structure ParallelHybridAutomaton.Stay [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
-    (ℓ : ∀ i, L i) (τ : ℝ) (x u : ∀ i, ℝ → Vec ℝ (n i)) (g : ℝ → Vec ℝ m) : Prop where
+    (ℓ : ∀ i, L i) (τ : ℝ) (x : ∀ i, ℝ → Vec ℝ (n i)) (u : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).m)
+    (w : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).r) (g : ℝ → Vec ℝ m) : Prop where
   nonneg : 0 ≤ τ
   input (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    globalInput P.binds (fun i => u i t) i ∈ construct ((P.comp i).loc (ℓ i)).U
+    ∃ v ∈ construct ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a → v j = g t a
+  dist (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : w i t ∈ construct ((P.comp i).loc (ℓ i)).W
   flow (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    HasDerivWithinAt (x i) (toRealMat ((P.comp i).loc (ℓ i)).dynamics.A *ᵥ x i t + u i t)
-      (Set.Icc 0 τ) t
+    HasDerivWithinAt (x i) (toRealMat (P.sys ℓ i).A *ᵥ x i t + toRealMat (P.sys ℓ i).B *ᵥ u i t +
+      toRealVec (P.sys ℓ i).c + toRealMat (P.sys ℓ i).E *ᵥ w i t) (Set.Icc 0 τ) t
   invariant (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
     x i t ∈ construct ((P.comp i).loc (ℓ i)).inv
-  bound (i : Fin k) (j : Fin (n i)) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    -- the binding decides: a global input at `t`, or a component's state at `t`
-    u i t j = match P.binds i j with
-      | .global a => g t a
-      | .state c s => x c t s
+  bound (i : Fin k) (j : Fin (P.sys ℓ i).m) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
+    u i t j = P.boundInput ℓ (fun c => x c t) (fun c => u c t) (g t) i j
 
 inductive ParallelHybridAutomaton.Run [∀ n, ContSet (S n) (Vec ℝ n)]
     [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m) :
     (∀ i, L i) → (∀ i, Vec ℝ (n i)) → (∀ i, L i) → (∀ i, Vec ℝ (n i)) → Prop where
-  | flow {ℓ : ∀ i, L i} {τ : ℝ} {x u : ∀ i, ℝ → Vec ℝ (n i)} {g : ℝ → Vec ℝ m}
-      (h : P.Stay ℓ τ x u g) : P.Run ℓ (fun i => x i 0) ℓ (fun i => x i τ)
+  | flow {ℓ : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
+      (h : P.Stay ℓ τ x u w g) : P.Run ℓ (fun i => x i 0) ℓ (fun i => x i τ)
   -- one component `c` takes a transition at the end of the stay, the others stand still
-  | jump {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x u : ∀ i, ℝ → Vec ℝ (n i)} {g : ℝ → Vec ℝ m}
+  | jump {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
       {y : ∀ i, Vec ℝ (n i)} {c : Fin k} {e : Transition G (L c) 𝕋 (n c)}
-      (h : P.Stay ℓ τ x u g) (hmem : e ∈ ((P.comp c).loc (ℓ c)).trans)
+      (h : P.Stay ℓ τ x u w g) (hmem : e ∈ ((P.comp c).loc (ℓ c)).trans)
       (hguard : x c τ ∈ construct e.guard)
       (rest : P.Run (Function.update ℓ c e.target)
         (Function.update (fun i => x i τ) c (e.reset (x c τ))) ℓ' y) :

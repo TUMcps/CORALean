@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.HybridDynamics.Operations.InputSetFloat
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepFloat
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
@@ -11,12 +12,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # `Location.timeIntervalStepSplitFloat`
 
 `Location.timeIntervalStepSplit` computed in `𝕋`, its input contribution split
-as `reachFloatInput` splits it: `ℓ.U = ũ ⊕ Ũ` by `Recentre`, `ũ` the stored
+as `reachFloatInput` splits it: `ℓ.inputSetFloat = ũ ⊕ Ũ` by `Recentre`, `ũ` the stored
 centre. The constant's contribution `∫₀ᵗ e^{Aσ}dσ ũ` is an admissible input of
 `[0, ũ]`, so `inputSolutionFloat` at that segment holds it at every `t ≤ r`,
 where the exact step uses `expIntegral` and `constCorrectionMatrix`; `Ũ` holds
 the origin, so `inputSolutionFloat Ũ` holds its share at every `t ≤ r` too.
-The location's input set need not hold the origin.
+The location's combined input set `B U ⊕ c ⊕ E W` need not hold the origin.
 
 ## References
 
@@ -43,14 +44,14 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The enclosure of a stay of length up to `r` from `X₀`, at Taylor order `η`,
-the input `ℓ.U` split at its centre, [1, Alg. 3]. -/
+the combined input `ℓ.inputSetFloat` split at its centre, [1, Alg. 3]. -/
 def Location.timeIntervalStepSplitFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (r : 𝕋) (η : ℕ)
     (X₀ : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
-  -- 1. `{ũ}`, the stored centre of `ℓ.U`
-  let ũ := (Interval.point ℓ.U.c).zonotope
+  -- 1. `{ũ}`, the stored centre of the combined input set
+  let ũ := (Interval.point ℓ.inputSetFloat.c).zonotope
   -- 2. `Ũ ← U - ũ`, holding the origin
-  let Ũ := Recentre.recentre ℓ.U
+  let Ũ := Recentre.recentre ℓ.inputSetFloat
   -- 3. `{0}`
   let O := (Interval.point fun _ => zero).zonotope
   -- 4. `H^R(τ_0)`, the homogeneous solution

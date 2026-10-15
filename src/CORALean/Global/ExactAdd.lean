@@ -9,8 +9,8 @@ public import CORALean.Global.ExactScalar
 
 `ExactScalar` has a `0` and a `1` and no `+`, since `toReal (a + b) = toReal a + toReal b` fails
 wherever a sum rounds. `ExactAdd` is that law as a class. It holds at `ℝ` and at no float format:
-a float sum is rounded, so the class marks exactly where a self-binding at a nonzero `A_ij` can be
-assembled (`mergeFlowsAdd`), and where it cannot (#40).
+a float sum is rounded, so the class marks where a merged matrix such as `mergeFlowsLinearSys`'s
+`A + B C` can be assembled exactly, and where it cannot (#40).
 -/
 
 -- Authors:       Claude Sonnet 5.5
