@@ -8,7 +8,7 @@ public import CORALean.Global.EuclideanNorm
 /-!
 # `Capsule.plusVec` is exactly the translate
 
-Translating the point by `v` and the centre by `v` leave the distance to the segment unchanged.
+Translating the point by `v` and the center by `v` leave the distance to the segment unchanged.
 -/
 
 -- Authors:       Claude Sonnet 5.5

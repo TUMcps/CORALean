@@ -9,10 +9,10 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.FRadiusGradient
 # The gradient of the set-based loss
 
 [1, Prop. 9]: the gradient of the set-based loss `𝓛(t, Y)` [1, Def. 5] at `Y = ⟨c_κ, G_κ⟩` is the
-zonotope with centre `(1 - τ) ∇_c L(t, c_κ)` and generator matrix `(τ/ε) G_κ / (n_κ² ‖Y‖_F)`, for
-`Y ≠ ⟨c, 0⟩` and a loss differentiable along every entry of the centre. The paper prints the
+zonotope with center `(1 - τ) ∇_c L(t, c_κ)` and generator matrix `(τ/ε) G_κ / (n_κ² ‖Y‖_F)`, for
+`Y ≠ ⟨c, 0⟩` and a loss differentiable along every entry of the center. The paper prints the
 generator matrix `(τ/ε) (1 / (n_κ ‖Y‖_F)) G_κ` Eq. 9 of [1, Prop. 9], inheriting the factor `n` of
-[1, Prop. 8]; the centre is as printed, and the generator entries get the corrected
+[1, Prop. 8]; the center is as printed, and the generator entries get the corrected
 `Zonotope.fRadius_gradient`. The counterexample to the printed form is
 `setBasedLoss_gradient_counterexample`.
 

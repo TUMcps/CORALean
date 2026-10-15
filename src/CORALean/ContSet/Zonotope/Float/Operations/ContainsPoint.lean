@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Deviation
 # `Zonotope.containsPoint`, over a floating-point scalar
 
 A point certified inside, by a right inverse `H` the caller proposes: `Zonotope.ballCert` makes the
-box of radius `B` around the centre part of the nominal zonotope, and the point, moved by the error
+box of radius `B` around the center part of the nominal zonotope, and the point, moved by the error
 box's lower corner, is checked to lie in it (`Zonotope.deviation`, rounded upward). No exact solve
 `G β = p - c` is needed; the box absorbs the rounding. Sufficient only: `true` proves membership.
 -/

@@ -22,7 +22,7 @@ theta'Theta theta'theta]`, `B = diag(0, …, 0, 1)`, `C = diag(1, …, 1, -1)` d
 1 + tol`. The ranks are exact (`Matrix.rank`; CORA's `rank(·, tol)` agrees on the matrices of
 the theorems); `pinv(H)` is the argument `Hp` and the solver (`value(rho)` after `optimize`) the
 argument `sdp A B C`, each pinned down by hypotheses in the theorems. The rank test checks the
-generators but not the centre offset `q2 - q1`, which `pinv(H)` projects away when `E1` is
+generators but not the center offset `q2 - q1`, which `pinv(H)` projects away when `E1` is
 degenerate; kept only so that `Ellipsoid.containsEllipsoidCora_counterexample` can state that
 this is unsound.
 
@@ -99,7 +99,7 @@ theorem Ellipsoid.containsEllipsoidCora_counterexample :
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
   · ext i j; fin_cases i <;> fin_cases j <;> simp [E₁, Matrix.mul_apply, Fin.sum_univ_two]
   · ext i j; fin_cases i <;> fin_cases j <;> norm_num [E₂, Matrix.mul_apply, Fin.sum_univ_two]
-  · -- the centre `(0, 1)` of `E₂` has second coordinate `1`, every point of `E₁` has `0`
+  · -- the center `(0, 1)` of `E₂` has second coordinate `1`, every point of `E₁` has `0`
     intro h
     obtain ⟨u, -, hu⟩ := h ⟨0, by rw [norm₂_zero]; norm_num, rfl⟩
     have := congrFun hu 1

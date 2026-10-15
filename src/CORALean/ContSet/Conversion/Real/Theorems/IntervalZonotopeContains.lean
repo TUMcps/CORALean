@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # A box as a zonotope
 
-CORA's `zonotope(interval)`: the centre, and one generator per coordinate
+CORA's `zonotope(interval)`: the center, and one generator per coordinate
 carrying that coordinate's radius. `n` generators, and no loss — a box is a
 zonotope with axis-aligned generators.
 
@@ -48,7 +48,7 @@ theorem Interval.zonotope_contains (I : Interval (Vec ℝ n)) :
   have hlo : ∀ j, I.inf j ≤ x j := fun j => (hx j).1
   have hhi : ∀ j, x j ≤ I.sup j := fun j => (hx j).2
   have hrad : ∀ j, 0 ≤ (I.sup j - I.inf j) / 2 := fun j => by linarith [hlo j, hhi j]
-  -- where the coordinate sits relative to its centre, and zero where it has no width
+  -- where the coordinate sits relative to its center, and zero where it has no width
   set β : Fin n → ℝ := fun j => if I.sup j = I.inf j then 0
     else (x j - (I.inf j + I.sup j) / 2) / ((I.sup j - I.inf j) / 2) with hβdef
   have hb1 : ∀ j, |β j| ≤ 1 := by

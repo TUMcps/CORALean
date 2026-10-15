@@ -97,7 +97,7 @@ def ConZonotope.aux_separator (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Ve
 bounds. Sound when `true`; `false` decides nothing. -/
 def ConZonotope.isDisjointLP (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : Bool :=
   let a := ConZonotope.aux_separator cZ₁ cZ₂
-  ConZonotope.separatesAlong cZ₁ cZ₂ a || ConZonotope.separatesAlong cZ₁ cZ₂ fun i => neg (a i)
+  ConZonotope.separatesAlong cZ₁ cZ₂ a || ConZonotope.separatesAlong cZ₁ cZ₂ (-a)
 
 end CORALean.Float
 

@@ -22,8 +22,8 @@ Outer and never exact: the boxed generators are one per coordinate, so what the
 radius does to different coordinates is allowed to vary independently, which the
 matrices denoted do not.
 
-The centre part is `mtimes` exactly; the whole content is that the leftover
-`(A - centre) x` fits inside the diagonal block, which it does because a
+The center part is `mtimes` exactly; the whole content is that the leftover
+`(A - center) x` fits inside the diagonal block, which it does because a
 coordinate of a zonotope never exceeds `absBound`.
 
 Nonnegativity of the radius is read off the witness rather than assumed: an
@@ -64,7 +64,7 @@ theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ m n)} {Z
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
--- the image sits in the centre's zonotope widened by what the radius can reach
+-- the image sits in the center's zonotope widened by what the radius can reach
 theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
     (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct)
       ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by -- --- PROOF ---
@@ -98,13 +98,13 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n)) (Z : Zono
   · rw [Zonotope.aux_sum_univ_mtimesIntervalMat]
     simp only [Zonotope.mtimesIntervalMat, Fin.append_left, Fin.append_right]
     rw [Zonotope.sum_diagonal_mul', Zonotope.mul_coefficient (herrb i)]
-    -- centre acts exactly, and the leftover is `err`
-    have hcentre : ∑ l, (IM.center *ᵥ Z.G l) i * β l
+    -- center acts exactly, and the leftover is `err`
+    have hcenter : ∑ l, (IM.center *ᵥ Z.G l) i * β l
         = ∑ j, IM.center i j * (∑ l, Z.G l j * β l) := by
       simp_rw [Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum]
       rw [Finset.sum_comm]
       simp_rw [mul_assoc]
-    rw [hcentre]
+    rw [hcenter]
     have hsplit : (A *ᵥ x) i = (∑ j, IM.center i j * x j) + err i := by
       simp only [herr, Matrix.mulVec, dotProduct]
       rw [← Finset.sum_add_distrib]

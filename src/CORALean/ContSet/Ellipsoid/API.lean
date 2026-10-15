@@ -6,7 +6,7 @@ public import CORALean.ContSet.Ellipsoid.Float.API
 /-!
 # Ellipsoids, collected
 
-Stored as a centre and a generator matrix rather than as CORA's shape matrix
+Stored as a center and a generator matrix rather than as CORA's shape matrix
 `Q`; `Real.Ellipsoid` says why.
 
 Both layers. The float one was expected to need a square root — an ellipsoid is

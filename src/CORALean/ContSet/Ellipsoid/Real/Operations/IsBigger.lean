@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Shape
 /-!
 # `Ellipsoid.isBigger`
 
-CORA's `@ellipsoid/isBigger`: is `E₂` inside `E₁` once both centres are moved to the origin,
+CORA's `@ellipsoid/isBigger`: is `E₂` inside `E₁` once both centers are moved to the origin,
 `ellipsoid(E₂.Q) ⊆ ellipsoid(E₁.Q)`. CORA decides it from the simultaneous diagonalisation of
 `Q₁` and `Q₂` (largest generalised eigenvalue at most `1 + tol`); what that computes, at
 tolerance `0`, is the Loewner order `Q₂ ⪯ Q₁`, stated here as the quadratic forms,

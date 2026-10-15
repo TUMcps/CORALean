@@ -13,11 +13,11 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 # `Zonotope.plus` over-approximates the Minkowski sum
 
 `InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts
-spill only by the centre rounding, and the box absorbs that spill along with the
+spill only by the center rounding, and the box absorbs that spill along with the
 two incoming boxes.
 
 The nominal obligation is the exact `plus` argument — `Fin.append β₁ β₂` as the
-witness — with the centre displaced; the error obligation is two applications of
+witness — with the center displaced; the error obligation is two applications of
 `Interval.plus_outer`. The count is therefore still `h + k`, the rounding having
 gone into the box.
 -/
@@ -47,7 +47,7 @@ theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope (Vec 𝕋 n)} (f : Fin 
       = ∑ j, f (Fin.castAdd Z₂.h j) + ∑ j, f (Fin.natAdd Z₁.h j) :=
   Fin.sum_univ_add f
 
-/-- The concatenated generators account for everything but the centre rounding. -/
+/-- The concatenated generators account for everything but the center rounding. -/
 theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
     (nominal Z₁).construct + (nominal Z₂).construct ⊆
       (nominal (Z₁.plus Z₂)).construct
@@ -70,7 +70,7 @@ theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotop
     simp only [Zonotope.plus, hz₁ i, hz₂ i, Fin.append_left, Fin.append_right]
     ring
 
-/-- The box absorbs the two incoming boxes and the centre rounding. -/
+/-- The box absorbs the two incoming boxes and the center rounding. -/
 theorem Zonotope.aux_plus_error (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
     Z₁.I_error.construct + Z₂.I_error.construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct ⊆
       (Z₁.plus Z₂).I_error.construct :=

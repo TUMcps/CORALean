@@ -13,7 +13,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
 
 A point is in the result exactly when it lies in the minuend at every vertex of the subtrahend
 reached by a choice of signs: `x ∈ P ⊖ Z` is tested at `x + c + Σⱼ ±gⱼ`, the `2ʰ` corner points of
-the zonotope (with its centre), and nowhere else. Each step `(P + g) ∩ (P - g)` asks `x - g` and
+the zonotope (with its center), and nowhere else. Each step `(P + g) ∩ (P - g)` asks `x - g` and
 `x + g` to lie in the set so far, and the steps compose over the generators.
 -/
 
@@ -110,7 +110,7 @@ theorem ConPolyZono.minkDiff_construct (cPZ₁ : ConPolyZono (Vec ℝ n)) (Z : Z
   rw [ConPolyZono.aux_foldl_minkDiff]
   ext x
   simp only [Set.mem_setOf_eq]
-  -- the centre is one more shift, undone by `plus (ofPoint (-c))` and `dependent_exact`
+  -- the center is one more shift, undone by `plus (ofPoint (-c))` and `dependent_exact`
   have hshift : ∀ y : Vec ℝ n, y ∈ (cPZ₁.dependent.plus (ConPolyZono.ofPoint (-Z.c))).construct
       ↔ y + Z.c ∈ cPZ₁.construct := fun y => by
     rw [← ConPolyZono.plus_exact]

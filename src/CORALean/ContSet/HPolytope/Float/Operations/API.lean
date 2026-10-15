@@ -8,7 +8,6 @@ public import CORALean.ContSet.HPolytope.Float.Operations.AnchorEqsInBox
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
 public import CORALean.ContSet.HPolytope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
@@ -19,7 +18,6 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsConstructI
 public import CORALean.ContSet.HPolytope.Float.Operations.Slab
 public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabIff
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecNeg
 public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.PlusOf
 public import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf

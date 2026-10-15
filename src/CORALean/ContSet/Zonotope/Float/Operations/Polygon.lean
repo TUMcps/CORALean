@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 # `Zonotope.polygon`, over a floating-point scalar
 
 CORA's `@zonotope/polygon` for a planar zonotope: the `2 h` vertices from the generators sorted by
-angle, `c - Σ g + 2 Σ_{j<k} g` and its mirror image through the centre, in place of the `2ʰ` corners
+angle, `c - Σ g + 2 Σ_{j<k} g` and its mirror image through the center, in place of the `2ʰ` corners
 of `Zonotope.vPolytope`. Generators are flipped into the half-plane `y > 0 ∨ (y = 0 ∧ x ≥ 0)` (a
 zonotope is symmetric), sorted by the sign of their cross product, and each walk corner is rounded
 down with the gap to its rounded-up value, plus the zonotope's own box, as the error box.

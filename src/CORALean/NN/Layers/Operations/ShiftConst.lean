@@ -7,7 +7,7 @@ public import CORALean.Global.Float.FloatOps
 /-!
 # Moving a stored constant coefficient
 
-The recentring `computeApproxError` performs, the constant coefficient moved by `s`: one
+The recentering `computeApproxError` performs, the constant coefficient moved by `s`: one
 `addUp`, and the coefficient that lands is the one soundness is then measured against.
 -/
 

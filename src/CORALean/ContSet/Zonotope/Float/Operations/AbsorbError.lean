@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
 # `Zonotope.absorbError`
 
 Trade the box for `n` generators about its own midpoint. Over ℝ this moves
-nothing; here the shifted centre must be stored as a float, so the box is left
+nothing; here the shifted center must be stored as a float, so the box is left
 holding what that rounding still owes rather than becoming `[0, 0]`.
 
 `shiftDown`, `shiftUp` and `errorRadius` are shared with `reduceAndAbsorbBy`,

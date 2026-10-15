@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedGen
-public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCentreMid
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCenterMid
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGapMid
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMid
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpMid
@@ -19,14 +19,14 @@ one stored generator: `half` is exact and the two layers shift and pay the same
 amount, as they already relax by the same width.
 
 The shift is a difference of two folds, so it has no sign to case on. It is
-stored at its lower rounding and added to the centre downward, which keeps the
-stored centre below the exact one; its gap is then the distance up to the same
+stored at its lower rounding and added to the center downward, which keeps the
+stored center below the exact one; its gap is then the distance up to the same
 sum taken at the shift's *upper* rounding, one-sided like every other gap here.
 
 Three sums round, as in the all-even case: the merged dependent column, the
-halved independent one, and the shifted centre. `generatorError` charges each
+halved independent one, and the shifted center. `generatorError` charges each
 gap at the coefficient that reads it — a monomial, a zonotope coefficient, and
-`1` for the centre.
+`1` for the center.
 -/
 
 -- Authors:       Claude Opus 5
@@ -45,13 +45,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two generators `part.right` names merged into one, the drift's midpoint
-moved into the centre and its half-width into a new independent generator. -/
+moved into the center and its half-width into a new independent generator. -/
 def PolyZonotope.relaxExpMid (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : PolyZonotope (Vec 𝕋 n) where
   p := pZ.p
   h := d + 1
   q := pZ.q + 1
-  c := pZ.relaxCentreMid part k₀
+  c := pZ.relaxCenterMid part k₀
   G := Fin.append (fun l => pZ.G (part.left l)) (fun _ => pZ.mergedGen part)
   E := fun k => Fin.append (fun l => pZ.E k (part.left l)) (fun _ => pZ.E k (part.right 1))
   GI := Fin.append pZ.GI (fun _ => pZ.relaxGenMid part k₀)

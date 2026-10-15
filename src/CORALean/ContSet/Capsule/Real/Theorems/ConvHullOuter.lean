@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Real.Operations.ConvHull
-public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCenterLe
 public import CORALean.ContSet.ContSet.ContSet
 
 @[expose] public section
@@ -9,7 +9,7 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # `Capsule.convHull` encloses the hull
 
-A point `λ x + (1 - λ) y` of the segments between the two capsules sits, in its centre part, at
+A point `λ x + (1 - λ) y` of the segments between the two capsules sits, in its center part, at
 `c_ + (2λ - 1) g_`, and the rest, `λ (x - c) + (1 - λ) (y - S.c)`, is under
 `λ (‖g‖₂ + r) + (1 - λ) (‖S.g‖₂ + S.r)`, so under the larger. Outer only: the hull is not a
 capsule, and the enclosure is strict in general.
@@ -36,9 +36,9 @@ variable {n : ℕ}
 theorem Capsule.convHull_outer (C S : Capsule n) :
     Set.linComb C.construct S.construct ⊆ (C.convHull S).construct := by -- --- PROOF ---
   rintro _ ⟨x, hx, y, hy, l, ⟨hl0, hl1⟩, rfl⟩
-  have h1 := Capsule.norm₂_sub_centre_le hx
-  have h2 := Capsule.norm₂_sub_centre_le hy
-  -- the segment parameter: the centre part is `c_ + (2 l - 1) g_`
+  have h1 := Capsule.norm₂_sub_center_le hx
+  have h2 := Capsule.norm₂_sub_center_le hy
+  -- the segment parameter: the center part is `c_ + (2 l - 1) g_`
   refine ⟨2 * l - 1, Set.mem_Icc.mpr ⟨by linarith, by linarith⟩, ?_⟩
   have key : l • x + (1 - l) • y - ((C.convHull S).c + (2 * l - 1) • (C.convHull S).g) =
       l • (x - C.c) + (1 - l) • (y - S.c) := by

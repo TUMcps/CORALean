@@ -9,8 +9,8 @@ public import CORALean.Global.Cost
 # `Zonotope.bilinCost`
 
 Asserted, not proved: `Operations/Bilin.lean` applies the bilinear map `f` once
-for the centre pair, once per generator of `Z₁` against the centre of `Z₂`,
-once per generator of `Z₂` against the centre of `Z₁`, and once per pair of
+for the center pair, once per generator of `Z₁` against the center of `Z₂`,
+once per generator of `Z₂` against the center of `Z₁`, and once per pair of
 generators: `1 + h₁ + h₂ + h₁ * h₂` applications. What one costs depends on `f`
 and is a parameter. `Complexity/Space/` states the matching size, and the existing
 `bilin_h_isBigO` there reads off the same product.

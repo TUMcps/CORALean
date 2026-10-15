@@ -75,7 +75,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.MoveToEqConstruct
 public import CORALean.ContSet.HPolytope.Real.Theorems.AtoAeStateSpec
 public import CORALean.ContSet.HPolytope.Real.Theorems.CompactAtoAeExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaFullspaceIff
-public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCentreMem
+public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCenterMem
 public import CORALean.ContSet.HPolytope.Real.Theorems.VolumeInterval
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageAffine

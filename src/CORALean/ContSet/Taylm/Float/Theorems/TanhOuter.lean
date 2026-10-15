@@ -19,7 +19,7 @@ public import CORALean.Global.TaylorRemainder
 `taylor_remainder_abs_le` at `tanh`, whose derivatives are `odePoly (1 - X²) k` at `tanh`
 (`iteratedDeriv_of_ode`), bounded by `odePoly (1 + X²) (N+1)` at one. The integer polynomial
 lists evaluate as the real ones (`eval_odePoly_odeL`), and `Interval.evalList_mem` encloses them.
-`hp` is `tanhUp`'s range hypothesis at the centre.
+`hp` is `tanhUp`'s range hypothesis at the center.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -44,7 +44,7 @@ theorem Taylm.tanh_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h
     (T.tanh p).Encloses fun t => Real.tanh (f t) := by -- --- PROOF ---
   set c := T.constCoef
   set N := T.maxOrder
-  -- the derivatives of `tanh` at the centre are the integer polynomial at `tanh c`
+  -- the derivatives of `tanh` at the center are the integer polynomial at `tanh c`
   have hder : ∀ k : ℕ, iteratedDeriv k Real.tanh (toReal c) =
       evalL (odeL [1, 0, -1] k) (Real.tanh (toReal c)) := by
     intro k
@@ -65,7 +65,7 @@ theorem Taylm.tanh_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h
     rw [← div_eq_mul_one_div, ← hder k] at hs
     exact ⟨le_trans (Interval.mulLo_le _ _ _ _) hs.1, le_trans hs.2 (Interval.le_mulHi _ _ _ _)⟩
   · have hb := Taylm.bounds_mem h ht
-    -- Lagrange at the centre, the derivative bounded by `odePoly (1 + X²) (N+1)` at one
+    -- Lagrange at the center, the derivative bounded by `odePoly (1 + X²) (N+1)` at one
     have hD1 : ∀ ξ : ℝ, |iteratedDeriv (N + 1) Real.tanh ξ| ≤
         evalL (odeL [1, 0, 1] (N + 1)) 1 := fun ξ => by
       rw [← eval_odePoly_odeL (q := [1, 0, 1]) (Q := 1 + X ^ 2)

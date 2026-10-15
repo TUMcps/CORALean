@@ -28,7 +28,7 @@ contribution, and with `t = t_k + s` both the free motion and the constant's par
 of their values at `s`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`). At
 `s ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
 `expIntegral_mem_constPropagateFloat`, and the `Ũ` part is in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being
-`Recentre`'s: nothing asks `U` to hold the origin.
+`Recenter`'s: nothing asks `U` to hold the origin.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -83,10 +83,10 @@ theorem LinParamSys.reachFloatInput_outer
   -- the input set of the state space, `B U`
   set V : Zonotope (Vec 𝕋 n) := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U with hV
   set Δ := toReal Δt with hΔ
-  -- the split's centre `ũ`, the stored one
-  set uc : Vec 𝕋 n := ScalarCentre.centreVec (S := 𝒵[𝕋]) V with huc
+  -- the split's center `ũ`, the stored one
+  set uc : Vec 𝕋 n := ScalarCenter.centerVec (S := 𝒵[𝕋]) V with huc
   set ũ : Vec ℝ n := Scalar.toRealVec uc with hũ
-  have hũc : ũ = Recentre.centre V := rfl
+  have hũc : ũ = Recenter.center V := rfl
   -- the run's combined input `B u` lies in `V = B U`: a run of the canonical form under `V`
   obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.CanonicalConstTrajectory (S := 𝒵[𝕋])
       (Set.Icc 0 ((tFinal : ℝ) - tStart)) X₀ V x u A := by
@@ -113,8 +113,8 @@ theorem LinParamSys.reachFloatInput_outer
   have hvoc := lin.variation_of_constants hTt le_rfl ht0 hU
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   -- the input, split along `V ⊆ {ũ} ⊞ Ũ`
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - ũ ∈ construct (Recentre.recentre V) :=
-    fun s hs => Recentre.sub_centre_mem_recentre (traj.input s (hTt hs))
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - ũ ∈ construct (Recenter.recenter V) :=
+    fun s hs => Recenter.sub_center_mem_recenter (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - ũ) (volume.restrict (Set.Icc 0 t)) :=
     (lin.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
   have hint₁ := intervalIntegrable_expSub_mulVec (S := 𝒵[𝕋])
@@ -125,7 +125,7 @@ theorem LinParamSys.reachFloatInput_outer
       aestronglyMeasurable_const
   have hint₀ := intervalIntegrable_expSub_mulVec (S := 𝒵[𝕋])
     (A := A) (c := t) ht0
-    (CompactSet.isBounded_construct (Recentre.recentre V)) hmem₀ hmeas₀
+    (CompactSet.isBounded_construct (Recenter.recenter V)) hmem₀ hmeas₀
   have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
       = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ ũ)
         + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ) := by
@@ -167,7 +167,7 @@ theorem LinParamSys.reachFloatInput_outer
   have hPc := sys.expIntegral_mem_constPropagateFloat ρ hΔt hadm traj.param uc k
   have hPR : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ)) ∈ PRtk.construct :=
     sys.inputReach_subset_particularSolutionFloat hΔt hadm traj.param
-    (Recentre.zero_mem_recentre V) hP ht0 htk1
+    (Recenter.zero_mem_recenter V) hP ht0 htk1
     ⟨fun s => u s - ũ, hmem₀, hmeas₀, by simp only [Scalar.toRealMat_real]⟩
   rw [← hRk, hx]
   exact Plus.plus_outer _ PRtk (Set.add_mem_add

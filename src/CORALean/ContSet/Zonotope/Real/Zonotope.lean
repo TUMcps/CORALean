@@ -9,10 +9,10 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 The matrix zonotope, `Zonotope (Mat ℝ m n)`, is [1, Eq. (8)].
 
-CORA's `zonotope` [2, Def. 1], with the same centre `c` and generator matrix `G`, denoting
+CORA's `zonotope` [2, Def. 1], with the same center `c` and generator matrix `G`, denoting
 every point the generators reach from `c` with coefficients in `[-1, 1]`.
 
-Over any real module, not just `Vec ℝ n`: nothing about a centre plus a bounded
+Over any real module, not just `Vec ℝ n`: nothing about a center plus a bounded
 combination of generators mentions coordinates. So `Zonotope (Mat ℝ n m)` is
 CORA's `matZonotope` and needs no separate development.
 

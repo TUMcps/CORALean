@@ -14,7 +14,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumErrMem
 
 A point of the exact layer's `sum` of what the stored floats denote, plus a point of every
 summand's error box, lies in the float `sum`. The generator blocks and exponent columns are
-appended exactly as at the real layer, so the two points differ by the rounding of the centre
+appended exactly as at the real layer, so the two points differ by the rounding of the center
 alone, which the `Interval.residual` of the directed sums holds; the error boxes are
 added (`sumErr`, `sumErr_mem`), a box having no factors to share.
 -/
@@ -45,7 +45,7 @@ theorem PolyZonotope.sum_outer {m : ℕ} (pZ : PolyZonotope (Vec 𝕋 n))
     (heL : ∀ i, eL i ∈ (L i).I_error.construct) :
     x + e + ∑ i, eL i ∈ (pZ.sum L hp).construct := by -- --- PROOF ---
   obtain ⟨a, β, ha, hβ, hx⟩ := Real.PolyZonotope.mem_construct_iff.mp hx
-  -- the stored centre is off from the exact sum by what the residual holds
+  -- the stored center is off from the exact sum by what the residual holds
   have hr := Interval.sub_mem_residual
     (lo := fun i => addDown (pZ.c i) (sumDown fun l => (L l).c i))
     (hi := fun i => addUp (pZ.c i) (sumUp fun l => (L l).c i))
@@ -56,7 +56,7 @@ theorem PolyZonotope.sum_outer {m : ℕ} (pZ : PolyZonotope (Vec 𝕋 n))
   have hbox := Interval.plus_outer _ _
     ⟨e + ∑ i, eL i, Interval.plus_outer _ _ ⟨e, he, ∑ i, eL i,
       PolyZonotope.sumErr_mem _ eL heL, rfl⟩, _, hr, rfl⟩
-  -- the float point at the same factors and coefficients, off by the centre's rounding
+  -- the float point at the same factors and coefficients, off by the center's rounding
   refine ⟨fun i => toReal ((pZ.sum L hp).c i)
         + (∑ l, toReal ((pZ.sum L hp).G l i) * Real.PolyZonotope.monomial (pZ.sum L hp).E a l)
         + ∑ j, toReal ((pZ.sum L hp).GI j i) * β j,
@@ -102,7 +102,7 @@ theorem PolyZonotope.sum_outer {m : ℕ} (pZ : PolyZonotope (Vec 𝕋 n))
             (nominal (L (σq j).1)).GI (σq j).2) (Fin.natAdd _ l)) i
         rw [Fin.append_right, Fin.append_right]
         rfl
-  -- the centre and the box agree up to the residual
+  -- the center and the box agree up to the residual
   have hx' := hx i
   have hc : (Real.PolyZonotope.sum (nominal pZ) (fun i => nominal (L i)) hp).c i
       = toReal (pZ.c i) + ∑ l, toReal ((L l).c i) := by

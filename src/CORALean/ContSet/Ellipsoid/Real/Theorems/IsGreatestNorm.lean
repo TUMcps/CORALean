@@ -6,11 +6,11 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestRadius
 @[expose] public section
 
 /-!
-# `norm_` of an ellipsoid centred at the origin is its largest Euclidean norm
+# `norm_` of an ellipsoid centered at the origin is its largest Euclidean norm
 
 CORA's `norm_(E, 2)` for `q = 0` is `sqrt(max(eig(Q)))`. It is exact: the greatest Euclidean
 norm of a point of the ellipsoid, attained. This is `Ellipsoid.isGreatest_radius` read at the
-centre `0`. The upper bound `Ellipsoid.normUb` is the float-capable counterpart; it is not this
+center `0`. The upper bound `Ellipsoid.normUb` is the float-capable counterpart; it is not this
 value.
 -/
 

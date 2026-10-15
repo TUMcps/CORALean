@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
 /-!
 # `Ellipsoid.cartProdVec` is the product with a point, exactly
 
-`E.c + E.G u` with the point appended is the padded centre plus the padded generators at `u`, as
+`E.c + E.G u` with the point appended is the padded center plus the padded generators at `u`, as
 the padding rows are zero.
 -/
 

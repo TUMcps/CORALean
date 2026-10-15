@@ -80,7 +80,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGap
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExp
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenEven
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenEvenUp
-public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCentreEven
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCenterEven
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGapEven
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpEven
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxDrift
@@ -88,7 +88,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxShiftMid
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxShiftMidUp
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMid
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGenMidUp
-public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCentreMid
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxCenterMid
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxGapMid
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpMid
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxWidthMulti
@@ -185,7 +185,7 @@ scalar has and ℝ has not. `compact` alone differs in cost, merging adding entr
 
 `relaxExp` charges two column sums to the box and nothing else: its width is a count, not a
 scalar, so the two layers relax by the same amount. `relaxExpEven` charges a third for the
-centre it shifts, and `relaxExpMid` charges the same three at a shift with no sign to case on;
+center it shifts, and `relaxExpMid` charges the same three at a shift with no sign to case on;
 `relaxExpMulti` charges the first two at a width summed over every factor, and `relaxExpGreedy`
 sequences steps and rounds nothing of its own.
 

@@ -9,7 +9,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
 /-!
 # CORA's `capsule/mtimes` radius, as printed
 
-Centre and generator mapped, radius `r · lam`, with `lam` the largest eigenvalue of `M Mᵀ`. Kept
+Center and generator mapped, radius `r · lam`, with `lam` the largest eigenvalue of `M Mᵀ`. Kept
 only so that `Capsule.mtimes_cora_counterexample` can state that it is unsound; `Capsule.mtimes`
 is the sound operation.
 
@@ -53,7 +53,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- For `M = ½` in dimension one, `M Mᵀ = ¼`, so `lam = ¼`, and CORA's capsule misses the image
-of the capsule with centre `0`, no segment and radius `1` (the point `1` maps to `½`, outside the
+of the capsule with center `0`, no segment and radius `1` (the point `1` maps to `½`, outside the
 ball of radius `¼`). -/
 theorem Capsule.mtimes_cora_counterexample :
     ∃ (M : Mat ℝ 1 1) (C : Capsule 1), M * M.transpose = Matrix.of (fun _ _ => (1 / 4 : ℝ)) ∧

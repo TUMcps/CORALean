@@ -26,7 +26,7 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 `t = t_k + τ` both the free motion and the constant's part are `e^{A t_k}` of
 their values at `τ`, the constant's plus `P̃(t_k)` (`expIntegral_add_mulVec`).
 At `τ ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, and the `Ũ` part is
-in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recentre`'s.
+in `P^R_Ũ(t_{k+1})`, `0 ∈ Ũ` being `Recenter`'s.
 
 ## References
 
@@ -53,7 +53,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
+variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
 
@@ -83,7 +83,7 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
   have hε : ‖Δt • toRealMat sys.sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 :=
     sys.sys.reachOrder_admissible Δt (hm ▸ le_max_right _ _)
   set A := toRealMat sys.sys.A with hA
-  set uc := Recentre.centre sys.U with huc
+  set uc := Recenter.center sys.U with huc
   -- the run on `[0, t]`, split into its free motion and its input's integral
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 tFinal := Set.Icc_subset_Icc_right ht.2
   have hU : Bornology.IsBounded (construct (construct sys.U)) :=
@@ -91,15 +91,15 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
   have hvoc := traj.variation_of_constants hTt le_rfl ht.1 hU
   rw [sub_zero] at hvoc
   -- the input, split along `U ⊆ {ũ} ⊕ Ũ`
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct (Recentre.recentre sys.U) :=
-    fun s hs => Recentre.sub_centre_mem_recentre (traj.input s (hTt hs))
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct (Recenter.recenter sys.U) :=
+    fun s hs => Recenter.sub_center_mem_recenter (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - uc) (volume.restrict (Set.Icc 0 t)) :=
     (traj.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
   have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht.1
     (CompactSet.isBounded_construct (OfPoint.ofPoint uc : S n))
     (fun _ _ => OfPoint.mem_ofPoint uc) aestronglyMeasurable_const
   have hint₀ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht.1
-    (CompactSet.isBounded_construct (Recentre.recentre sys.U)) hmem₀ hmeas₀
+    (CompactSet.isBounded_construct (Recenter.recenter sys.U)) hmem₀ hmeas₀
   have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
       = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ uc)
         + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - uc) := by
@@ -147,7 +147,7 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
       · exact sys.sys.expIntegral_mem_constInputSolution hΔt (m + 2) hε uc hτ0 htk
     · -- one admissible `Ũ`-input's contribution by `t`, in `P^R_Ũ(t_{k+1})`
       exact sys.sys.inputReach_subset_particularSolution hΔt hε
-        (Recentre.zero_mem_recentre sys.U) k ht.1 htk1 ⟨fun s => u s - uc, hmem₀, hmeas₀, rfl⟩
+        (Recenter.zero_mem_recenter sys.U) k ht.1 htk1 ⟨fun s => u s - uc, hmem₀, hmeas₀, rfl⟩
 
 end CORALean
 

@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.reindex` over a floating-point scalar
 
-Centre, generator rows and error box all relabelled, and nothing rounds: a
+Center, generator rows and error box all relabelled, and nothing rounds: a
 permutation moves stored floats without arithmetic. The generator index is
 untouched — only the coordinate axis moves, which is why the row index alone
 carries `e`.

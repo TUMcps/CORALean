@@ -21,7 +21,7 @@ What each step needs is `Prop. 1`'s hypotheses (`InnerMinkDiffCert`), asked for 
 started from reachable states, which is every step: solutions that exist, (21), which the
 remainder loop certifies (`InnerMinkDiffCert.of_abstractionError`), and `R̂_err(L̂)` convex,
 compact, nonempty and symmetric about line 14's `c = cen(C) + cen(R̂_err(L̂))`. A bounded set
-has one centre of symmetry, so with `cen(R̂_err(L̂))` that centre this needs `cen(C) = 0`;
+has one center of symmetry, so with `cen(R̂_err(L̂))` that center this needs `cen(C) = 0`;
 `Prop. 1` shifts by `2 cen(R̂_err)` alone.
 
 Runs are under the constant input `u₀` of the autonomous (4) of [1], so under any `U ∋ u₀`.

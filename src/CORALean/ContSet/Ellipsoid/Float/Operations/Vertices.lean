@@ -8,7 +8,7 @@ public import CORALean.Global.Float.Sqrt
 /-!
 # `Ellipsoid.vertices`, over a floating-point scalar
 
-The one-dimensional case, the only one CORA supports. The ends are the centre give or take the
+The one-dimensional case, the only one CORA supports. The ends are the center give or take the
 length `ρ = ‖G₀‖₂` of the generator row (`normUp`, `k` Newton steps, rounded up), the lower one
 rounded down and the upper one up, each shifted by its end of the error box. Both are always
 returned: CORA's single-vertex case (the two agree within tolerance) is not modelled, so for a

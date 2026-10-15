@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 
 The two directed midpoints bracket the exact one, halving being exact, so the
 gap between the stored value and the exact one is what `midpointResidual`
-records. Every operation whose centre is a midpoint owes this, which is why it
+records. Every operation whose center is a midpoint owes this, which is why it
 is stated once rather than inside one of them.
 -/
 

@@ -29,25 +29,25 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 
--- ==================================  `ConZonotope.centreHi`  ================================== --
+-- ==================================  `ConZonotope.centerHi`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- An upper end of `y₀ = c + G β₀`, each entry rounded upward. -/
-def ConZonotope.centreHi (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 cZ.h) : Vec 𝕋 n := fun i =>
+def ConZonotope.centerHi (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 cZ.h) : Vec 𝕋 n := fun i =>
   addUp (cZ.c i) (dotUp (fun j => cZ.G j i) β₀)
 
 
--- ==================================  `ConZonotope.centreLo`  ================================== --
+-- ==================================  `ConZonotope.centerLo`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- A lower end of `y₀ = c + G β₀`, each entry rounded downward. -/
-def ConZonotope.centreLo (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 cZ.h) : Vec 𝕋 n := fun i =>
+def ConZonotope.centerLo (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (β₀ : Vec 𝕋 cZ.h) : Vec 𝕋 n := fun i =>
   addDown (cZ.c i) (dotDown (fun j => cZ.G j i) β₀)
 
 

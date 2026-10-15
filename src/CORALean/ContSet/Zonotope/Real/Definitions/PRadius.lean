@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 # The P-radius of a zonotope
 
 [1, Sec. 2]: `L = max_{z ∈ Z} ‖z - p‖²_P` for `P = Pᵀ ≻ 0`, the largest squared `P`-distance of a
-point of `Z = p ⊕ H Bᵐ` from its centre; Wang et al. call it the W-radius [2, Def. 5],
+point of `Z = p ⊕ H Bᵐ` from its center; Wang et al. call it the W-radius [2, Def. 5],
 `ℓ_W = max_{z ∈ Z} ‖z - p‖²_{2,W}`. Written as the supremum; a zonotope is
 compact, so it is attained. `P` is any matrix here: what is proved about it says which `P` it
 needs. It is also the P-radius `Prad(Z)` of [3, Eq. 47], one of the sizes whose least value

@@ -13,7 +13,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Norm
 # `nonlinDASys.steadyState` in floats
 
 CORA's loop, step for step, on a `FloatModel` and the stacked state `z = (x, y)`: `k = f` and
-`l = g` are the centres of the model's enclosures at the point `(x, y, u₀)`, so are the Jacobian
+`l = g` are the centers of the model's enclosures at the point `(x, y, u₀)`, so are the Jacobian
 blocks `A, C, D, F`, `M = [A C; D F]`, and `delta_z = M \ (-[k; l])` is the midpoint of the outward
 product of an approximate inverse (`Zonotope.basisInverse`) with `-[k; l]`. The test is
 `‖delta_z‖₂ < tol` (`tol² ≤ ‖delta_z‖₂²` failing, the square rounded up), the update
@@ -42,6 +42,15 @@ open CORALean.Float FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n p m : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+-- file-local: only `steadyStateFloat` below needs it
+/-- The Jacobian a float model returns at a point, as a matrix of floats: the `Interval` it
+evaluates to is as thin as one evaluation's rounding, and its center is the matrix. -/
+def aux_pointJacobian {k l : ℕ} (J : Interval (Mat 𝕋 k l)) : Mat 𝕋 k l :=
+  J.materialiseMat.centerMat
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Newton's method on `(f, g)(·, ·, u₀)` from `(x₀, y₀)` until a stacked step of 2-norm below
@@ -58,17 +67,17 @@ def NonlinDASys.FloatModel.steadyStateFloat (fm : NonlinDASys.FloatModel 𝕋 n 
     -- returned value of algebraic equations
     let l : Vec 𝕋 p := (fm.g X Y U₀).materialise.center
     -- Jacobians
-    let A : Mat 𝕋 n n := (fm.jacA X Y U₀).materialiseMat.centreMat
-    let C : Mat 𝕋 n p := (fm.jacC X Y U₀).materialiseMat.centreMat
-    let D : Mat 𝕋 p n := (fm.jacD X Y U₀).materialiseMat.centreMat
-    let F : Mat 𝕋 p p := (fm.jacF X Y U₀).materialiseMat.centreMat
+    let A : Mat 𝕋 n n := aux_pointJacobian (fm.jacA X Y U₀)
+    let C : Mat 𝕋 n p := aux_pointJacobian (fm.jacC X Y U₀)
+    let D : Mat 𝕋 p n := aux_pointJacobian (fm.jacD X Y U₀)
+    let F : Mat 𝕋 p p := aux_pointJacobian (fm.jacF X Y U₀)
     -- evaluate Jacobian
     let M : Mat 𝕋 (n + p) (n + p) :=
       Fin.append (fun i => Fin.append (A i) (C i)) (fun i => Fin.append (D i) (F i))
     let Minv : Mat 𝕋 (n + p) (n + p) :=
       (Interval.point (Zonotope.basisInverse M)).materialiseMat.inf
     let delta_z : Vec 𝕋 (n + p) :=
-      (Interval.mtimes Minv (Interval.point fun i => neg (Fin.append k l i))).center
+      (Interval.mtimes Minv (Interval.point (-(Fin.append k l)))).center
     Vector.ofFn delta_z
   -- the convergence check `norm(delta_z) < 1e-10`
   let converged : Vector 𝕋 (n + p) → Bool := fun delta_z =>

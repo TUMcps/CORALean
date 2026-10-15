@@ -23,7 +23,7 @@ public import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneIntervalFlo
 `SupportBoundSetLinComb` carries a support-function bound across `Set.linComb`, CORA's `linComb`.
 
 The derived methods, written over the classes: `times`, `uminus` through `mtimes`, `uplus` the
-identity, `minus` and `minusFrom` through `plus` and `ofPoint`, `enlarge` through `centre`,
+identity, `minus` and `minusFrom` through `plus` and `ofPoint`, `enlarge` through `center`,
 `enclose` through `linComb`, `mtimes` and `plus`, `projectHighDim_` through `mtimes` at a selection
 matrix, and `projectOnHyperplane` through `mtimes`, `plus` and `ofPoint`.
 -/

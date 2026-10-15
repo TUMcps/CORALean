@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- Reviewed:      ---
 
 /-- The bundle of the points `0` and `e₀`, for `0 < n`, as over ℝ: two point zonotopes
-whose intersection is empty. The second centre is `one` in the first coordinate
+whose intersection is empty. The second center is `one` in the first coordinate
 and `zero` elsewhere. -/
 def ZonoBundle.empty (n : ℕ) (hn : 0 < n) : ZonoBundle (Vec 𝕋 n) :=
   ⟨2, ![Zonotope.origin n, Zonotope.point fun i => if i = ⟨0, hn⟩ then one else zero]⟩

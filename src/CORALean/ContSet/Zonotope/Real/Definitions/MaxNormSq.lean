@@ -9,7 +9,7 @@ public import CORALean.Global.EuclideanNorm
 # The squared maximum zonotope norm
 
 [1, Def. 3]: `⌈Z⌉² = max_{|u| ≤ 1} uᵀ Gᵀ G u`, the largest squared Euclidean distance from the
-centre to a point of the zonotope. A supremum over the coefficient box, which is attained, the box
+center to a point of the zonotope. A supremum over the coefficient box, which is attained, the box
 being compact (`Zonotope.isGreatest_maxNormSq_sign`).
 
 ## References

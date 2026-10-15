@@ -15,8 +15,8 @@ under a quadratic map is generally not a zonotope — and the reason this one do
 is that the factors are shared: `mᵢ mⱼ` is again a monomial, in the exponent
 column `Eᵢ + Eⱼ`.
 
-`extG`/`extE` fold the centre in as generator zero with the all-zero exponent
-column, so a point is one sum rather than a centre plus a sum; `quadMapG`/
+`extG`/`extE` fold the center in as generator zero with the all-zero exponent
+column, so a point is one sum rather than a center plus a sum; `quadMapG`/
 `quadMapE` are then a plain double sum, indexed by pairs through
 `finProdFinEquiv` since the structure carries a count and not an index type.
 

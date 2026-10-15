@@ -45,7 +45,7 @@ variable {N F m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- Masking to a set large enough for `adjMax A U`'s ball leaves the centre's row
+/-- Masking to a set large enough for `adjMax A U`'s ball leaves the center's row
 untouched at every admissible `lam`, given the two inputs already agree there. -/
 theorem GNN.evalSteps_row_mask_uncertain (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N)
     (hA : ∀ i j, 0 ≤ A i j) {lam : Fin m → ℝ} (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (v : Fin N)

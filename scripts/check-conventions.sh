@@ -117,6 +117,14 @@ PAIR_LIST=scripts/pair-allowlist.txt
 # The list only shrinks: an entry whose file declares no class any more is reported as stale.
 CLASS_LIST=scripts/class-allowlist.txt
 
+# `Operations/` holds definitions, never theorems (#198), the mirror of the rule that keeps
+# definitions out of `Theorems/`: a theorem in an `Operations/` file is a guarantee about the
+# operation, which is a `Theorems/` file's to state, or a general fact, which is a global lemma's
+# (or, with one user, a `private` lemma there). A file that still declares one is listed in this
+# file, `<path>` per line with `#` comments, until it is moved. The list only shrinks: an entry
+# whose file declares no theorem any more is reported as stale.
+OPS_THEOREM_LIST=scripts/operations-theorem-allowlist.txt
+
 # Rule A. A class root, a directory holding an `Operations/`, `Theorems/` or
 # `Definitions/` folder, holds its class file, `Interfaces.lean`, `Instances.lean` and `API.lean`
 # and nothing else: every other file has a role folder beside them. Which of
@@ -220,6 +228,7 @@ if [ -n "$STAGED" ]; then
   NONMODULE_LIST=$repo/$NONMODULE_LIST
   PAIR_LIST=$repo/$PAIR_LIST
   CLASS_LIST=$repo/$CLASS_LIST
+  OPS_THEOREM_LIST=$repo/$OPS_THEOREM_LIST
   FAMILY_LONG_FORM_OK=$repo/${FAMILY_LONG_FORM_OK:-scripts/family-notation-exceptions.txt}
   stage=$(mktemp -d)
   printf '%s\n' "$files" | git checkout-index --prefix="$stage/" --stdin
@@ -1996,6 +2005,123 @@ BEGIN {
     else if (!(p in hasClass))
       print CLASSLIST ":" classLine[p] ": stale entry `" p "` — the file declares no class now;" \
             " the list only shrinks"
+}' | sort)
+report "$out"
+
+# A float negation is written `-A` or `-b`, never as the lambda it abbreviates,
+# `fun i j => neg (A i j)` / `fun i => neg (b i)` (#197): negation is exact, so the `Neg` on a
+# float matrix or vector is the entrywise `neg`.
+out=$(awk -v LIST="$list" '
+function strip(line,   out, i, c, n) {
+  out = ""; i = 1; n = length(line)
+  while (i <= n) {
+    c = substr(line, i, 2)
+    if (depth == 0 && c == "--") break
+    if (c == "/-") { depth++; i += 2; continue }
+    if (c == "-/") { if (depth > 0) depth--; i += 2; continue }
+    if (depth == 0) out = out substr(line, i, 1)
+    i++
+  }
+  return out
+}
+BEGIN {
+  while ((getline f < LIST) > 0) {
+    if (f == "") continue
+    depth = 0; ln = 0
+    while ((getline raw < f) > 0) {
+      ln++
+      rest = strip(raw)
+      while (match(rest, /fun [a-z][a-z'"'"']*( [a-z][a-z'"'"']*)? => (Float[.])?(FloatOps[.])?neg \(/)) {
+        head = substr(rest, RSTART, RLENGTH); rest = substr(rest, RSTART + RLENGTH)
+        sub(/^fun /, "", head); sub(/ =>.*$/, "", head); nb = split(head, bs, " ")
+        if (!match(rest, /^[^()]*\)/)) continue
+        body = substr(rest, 1, RLENGTH - 1); after = substr(rest, RLENGTH + 1, 1)
+        n = split(body, ts, " "); ok = (n >= nb + 1 && after !~ /[.[]/)
+        for (k = 1; ok && k <= nb; k++) if (ts[n - nb + k] != bs[k]) ok = 0
+        if (ok)
+          print f ":" ln ": a float negation written as a lambda — write `-A` / `-b` (`Neg` on a" \
+                " float matrix or vector is the entrywise `neg`)"
+      }
+    }
+    close(f)
+  }
+}' | sort)
+report "$out"
+
+# No `theorem` or `lemma` in an `Operations/` file but those `OPS_THEOREM_LIST` names (#198).
+# Comments are stripped as in the class rule above.
+out=$(awk -v LIST="$list" -v OPSLIST="$OPS_THEOREM_LIST" \
+  -v STALE="$([ -z "$STAGED" ] && echo 1 || echo 0)" '
+function strip(line,   out, i, c, n) {
+  out = ""; i = 1; n = length(line)
+  while (i <= n) {
+    c = substr(line, i, 2)
+    if (depth == 0 && c == "--") break
+    if (c == "/-") { depth++; i += 2; continue }
+    if (c == "-/") { if (depth > 0) depth--; i += 2; continue }
+    if (depth == 0) out = out substr(line, i, 1)
+    i++
+  }
+  return out
+}
+BEGIN {
+  while ((getline ol < OPSLIST) > 0) {
+    opsFNR++
+    line = ol
+    sub(/^[ \t]+/, "", line)
+    if (line == "" || line ~ /^#/) continue
+    p = line; sub(/[ \t].*$/, "", p)
+    if (p in opsOK)
+      print OPSLIST ":" opsFNR ": duplicate entry `" p "` (first at line " opsLine[p] ")"
+    opsOK[p] = 1; opsLine[p] = opsFNR
+  }
+  close(OPSLIST)
+  while ((getline f < LIST) > 0) {
+    if (f == "") continue
+    seen[f] = 1; depth = 0; ln = 0
+    inOps = (f ~ /\/Operations\//)
+    while ((getline raw < f) > 0) {
+      ln++
+      code = strip(raw)
+      if (!inOps ||
+          code !~ /^(@\[[^]]*\][ \t]*)*((private|protected|nonrec|local)[ \t]+)*(theorem|lemma)[ \t]/)
+        continue
+      hasThm[f] = 1
+      if (!(f in opsOK) && !(f in reported)) {
+        reported[f] = 1
+        print f ":" ln ": a theorem in an `Operations/` file — state it in a `Theorems/` file, or" \
+              " in the global lemmas if it is a general fact (or list the file in " OPSLIST \
+              " until it is moved)"
+      }
+    }
+    close(f)
+  }
+  if (!STALE) exit
+  for (p in opsOK)
+    if (!(p in seen))
+      print OPSLIST ":" opsLine[p] ": stale entry `" p "` — no such file"
+    else if (!(p in hasThm))
+      print OPSLIST ":" opsLine[p] ": stale entry `" p "` — the file declares no theorem now;" \
+            " the list only shrinks"
+}' | sort)
+report "$out"
+
+# CORA spells it `center` (`centerMat`, `recenter`, `IsCenter`, …), so no `centre` in a source
+# file, whether in an identifier, a docstring, a comment or the file's name (#199).
+out=$(awk -v LIST="$list" '
+BEGIN {
+  while ((getline f < LIST) > 0) {
+    if (f == "") continue
+    if (f ~ /[Cc]entre/)
+      print f ": `centre` in a file name — CORA spells it `center`"
+    ln = 0
+    while ((getline raw < f) > 0) {
+      ln++
+      if (raw ~ /[Cc]entre/)
+        print f ":" ln ": `centre` — CORA spells it `center` (`centerMat`, `recenter`, …)"
+    }
+    close(f)
+  }
 }' | sort)
 report "$out"
 

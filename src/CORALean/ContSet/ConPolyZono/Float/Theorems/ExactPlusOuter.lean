@@ -16,7 +16,7 @@ The exact layer's `exactPlus` of what the two sets' stored floats denote, plus b
 lies in the float `exactPlus`. A point of the exact one is the two nominal points at one common
 factor value meeting the first set's constraints; the float one reads the same blocks and the
 same constraints at the same factors and coefficients, and differs only by the rounding of the
-centre sum, which its error box holds. Outer only: never the exact `exactPlus` at float.
+center sum, which its error box holds. Outer only: never the exact `exactPlus` at float.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -43,7 +43,7 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
   intro y hy
   obtain ⟨a, β, ha, hβ, hs, hy⟩ := Real.ConPolyZono.mem_construct_iff.mp hy
-  -- the float point at the same factors and coefficients, off by the centre's rounding
+  -- the float point at the same factors and coefficients, off by the center's rounding
   refine ⟨fun i => toReal ((cPZ₁.exactPlus cPZ₂ hp).c i)
             + (∑ l, toReal ((cPZ₁.exactPlus cPZ₂ hp).G l i)
                 * Real.PolyZonotope.monomial (cPZ₁.exactPlus cPZ₂ hp).E a l)

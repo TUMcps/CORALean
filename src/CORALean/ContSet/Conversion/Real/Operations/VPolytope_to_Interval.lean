@@ -12,7 +12,7 @@ public import Mathlib.Data.Real.Basic
 # A matrix polytope as an interval matrix
 
 CORA's `@matPolytope/intervalMatrix`: the entrywise minimum and maximum over the vertices, rebuilt
-as an interval matrix from their centre `½ (min + max)` and radius `½ (max - min)`. The vertex array
+as an interval matrix from their center `½ (min + max)` and radius `½ (max - min)`. The vertex array
 of a matrix polytope with no vertex is empty in CORA; here the infimum over no vertex is `0`, and
 the theorem holds vacuously, the polytope having no member.
 -/

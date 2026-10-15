@@ -13,7 +13,7 @@ public import CORALean.Global.MatVec
 
 CORA's `@matPolytope/matZonotope`: the vertices stacked into the columns of a point cloud, enclosed
 by `zonotope.enclosePoints` (its default `'maiga'`), the zero generators dropped (`compact(·,
-'zeros')`), and the centre and generators reshaped back into matrices. The principal-direction
+'zeros')`), and the center and generators reshaped back into matrices. The principal-direction
 oracle `dir` of the `'maiga'` algorithm (`svd(X)(:, 1)` in CORA) has no algorithm here and is an
 argument; the result is CORA's for that oracle. At least one vertex.
 -/

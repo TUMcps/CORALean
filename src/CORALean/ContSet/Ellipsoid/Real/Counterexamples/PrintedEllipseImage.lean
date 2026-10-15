@@ -12,11 +12,11 @@ public import Mathlib.Tactic.Ring
 @[expose] public section
 
 /-!
-# The printed image description of an ellipse omits the centre
+# The printed image description of an ellipse omits the center
 
 [1, Sec. 1.1 (ellipse)] defines
 `E(E, s) := {x | (x − s)ᵀ E⁻¹ (x − s) ≤ 1} = {E^(1/2)(x − s) | ‖x‖ ≤ 1}`.
-The second set is the unit ball mapped by `x ↦ E^(1/2)(x − s)`, centred at `−E^(1/2) s`,
+The second set is the unit ball mapped by `x ↦ E^(1/2)(x − s)`, centered at `−E^(1/2) s`,
 not at `s`: it is `{s + E^(1/2) x | ‖x‖ ≤ 1}` that equals the first (`mem_ofShape_iff`).
 For `n = 1`, `E = 1`, `s = 2` the first set is `[1, 3]` and the second `[−3, −1]`; `3` is in
 the first only.

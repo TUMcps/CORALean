@@ -59,7 +59,7 @@ def roundX0In (cfg : HeadlineConfig) (exactIn : ExactDyadic → 𝕋) :
     { h := cfg.x0Generators.size
       c := fun i => (cAt i).1
       G := fun j i => (gAt i j).1
-      I_error := ⟨fun i => FloatOps.neg (w i),
+      I_error := ⟨-w,
             fun i => FloatOps.addUp (w i) (subUp (cAt i).2 (cAt i).1)⟩ }
 
 end CORALean.Bench

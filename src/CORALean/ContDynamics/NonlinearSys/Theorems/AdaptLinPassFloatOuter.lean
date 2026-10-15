@@ -58,7 +58,7 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer
             Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋])
               (fm.linearizeFloat (fm.linPointFloat options.Δt R U).1
                 (fm.linPointFloat options.Δt R U).2).2
-              (Recentre.recentre U)).construct) →
+              (Recenter.recenter U)).construct) →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
         x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
   unfold NonlinearSys.FloatModel.adaptLinPassFloat at hpass

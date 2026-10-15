@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CenterResidual
 /-!
 # `Zonotope.plus`
 
-Generators concatenate exactly, so only the centre rounds and its `residual`
+Generators concatenate exactly, so only the center rounds and its `residual`
 goes into the box, leaving the count at `h₁ + h₂` as over ℝ. Paying into new
 generators instead would cost `n` more on every addition.
 -/

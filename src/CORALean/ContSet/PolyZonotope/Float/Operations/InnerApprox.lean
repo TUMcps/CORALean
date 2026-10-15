@@ -13,7 +13,7 @@ factor cube `[-1, 1]ᵖ` under the dependent point map, each turned into a zonot
 the independent generators, `zonotope(S{i}) + zonotope(0, GI)`. The union of the zonotopes is an
 inner approximation.
 
-The conversion of a box to a zonotope rounds inward: the centre is the rounded midpoint, kept
+The conversion of a box to a zonotope rounds inward: the center is the rounded midpoint, kept
 only where it lies in the box, and the radius in each coordinate is the smaller distance to the
 two bounds, rounded down and at least `0`; the error box is `0`, so nothing is added outward.
 Where the stored error box does not hold `0`, the nominal set need not lie in the set, and the

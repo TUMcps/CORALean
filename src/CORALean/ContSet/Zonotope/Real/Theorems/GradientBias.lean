@@ -12,9 +12,9 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.UpdateEqAddSingle
 
 [1, Prop. 14]: through the layer `H_k = W_k H_{k-1} + b_k` the gradient of a set loss with respect
 to the bias is `∇_{b_k} L = ∇_{H_k} L ⊙ ⟨1, 0⟩ᵀ`, with `Z₁ ⊙ Z₂ᵀ := c₁c₂ᵀ + G₁G₂ᵀ`, which is `c'_k ·
-1 + G'_k · 0 = c'_k`: the derivative of the loss along `b_k(i)` is the centre of the gradient set at
+1 + G'_k · 0 = c'_k`: the derivative of the loss along `b_k(i)` is the center of the gradient set at
 `i`. As in the paper's proof, `∂c_k(i)/∂b_k = e_i` and the generators do not depend on `b_k`; the
-loss is differentiable at the layer's output in the centre and generator entries together.
+loss is differentiable at the layer's output in the center and generator entries together.
 
 ## References
 
@@ -48,7 +48,7 @@ theorem Zonotope.gradient_bias (ℒ : Zonotope (Vec ℝ m) → ℝ) (W : Mat ℝ
       ((H.affine W b).gradient ℒ).c i := by -- --- PROOF ---
   set F : Vec ℝ m × (Fin (H.affine W b).h → Vec ℝ m) → ℝ :=
     fun p => ℒ ⟨(H.affine W b).h, p.1, p.2⟩ with hFdef
-  -- moving `b(i)` moves the output centre along the `i`-th basis vector
+  -- moving `b(i)` moves the output center along the `i`-th basis vector
   have h1 : deriv (fun t => ℒ (H.affine W (Function.update b i t))) (b i) =
       fderiv ℝ F ((H.affine W b).c, (H.affine W b).G) (Pi.single i 1, 0) := by
     rw [← deriv_line F ((H.affine W b).c, (H.affine W b).G) (Pi.single i 1, 0) hF
@@ -66,7 +66,7 @@ theorem Zonotope.gradient_bias (ℒ : Zonotope (Vec ℝ m) → ℝ) (W : Mat ℝ
     · funext l
       show W *ᵥ H.G l = W *ᵥ H.G l + (t - b i) • (0 : Vec ℝ m)
       simp
-  -- the derivative of the loss along that direction is the gradient's centre
+  -- the derivative of the loss along that direction is the gradient's center
   refine h1.trans ?_
   rw [Zonotope.fderiv_eq_gradient ℒ (H.affine W b) hF]
   simp [single_dotProduct]

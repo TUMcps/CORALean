@@ -17,7 +17,7 @@ linear flow `ẋ = A x + B u + c₀ + E w` is bounded over the projection and th
 and disturbances. `flowUp` is that supremum, exactly: the support functions of the set (through
 the projector `I - c cᵀ`) and of the combined input set `inputSet = B U ⊕ c₀ ⊕ E W`.
 
-Left out: the fast test (flow at the projection's centre, which `flowUp` already covers); the
+Left out: the fast test (flow at the projection's center, which `flowUp` already covers); the
 `'pca'` box reduction before the supremum (an enclosure, so CORA's test only keeps more); the
 orientation of the normal by the invariant (`aux_adaptGuard`), the caller's; the level-set guard
 and the nonlinear flow, which evaluate Taylor models.

@@ -8,7 +8,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.PolyBounds
 /-!
 # A polynomial's bounds over a box by re-expansion
 
-The advanced setting of [1, Alg. 1]: re-expand `P` at the box's centre, scaled to the
+The advanced setting of [1, Alg. 1]: re-expand `P` at the box's center, scaled to the
 normalized box, and bound the result there by interval arithmetic (`polyBounds`). CORA's
 `optBnbAdv` bounds each sub-box this way.
 

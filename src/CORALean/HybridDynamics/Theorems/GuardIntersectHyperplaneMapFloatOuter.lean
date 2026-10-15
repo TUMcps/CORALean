@@ -17,7 +17,7 @@ public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloat
 public import CORALean.ContSet.Interval.Float.Theorems.RecipOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.HalfspaceRangeMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapMatZonoOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterZeroMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
@@ -48,7 +48,7 @@ The chain is the exact layer's, each real quantity in the float set or interval 
 it: `x(t) = x₀ + (Ax₀ + b)t + e` with `b` the float lower end of the box of the exact `b` and
 `e` in the float abstraction error plus `t(b_exact − b)` (`GuardMap.abstractionErrorFloat_outer`,
 `GuardMap.sdcInput_mem_sdcInputFloat`); the hit is `y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e`;
-`y_h(x₀)` is in `res1` by the exact expansion around the stored centre `ξ` of the reduced `R₀`,
+`y_h(x₀)` is in `res1` by the exact expansion around the stored center `ξ` of the reduced `R₀`,
 `k`, `L` and the matrix zonotopes at `ξ` enclosed (`GuardMap.hitPoint_mem_hitPointFloat`,
 `GuardMap.hitJacobian_mem_hitJacobianFloat`, `GuardMap.hitHessianMatZonoFloat_mem`) and the
 remainder a point of the float `quadMapMatZono`; the rest is in `res2`; and a point of the
@@ -181,7 +181,7 @@ theorem aux_hpMapF_factor {y c g : ℝ} (h : |y - c| ≤ g) :
     exact h
 
 /-- A point of `[lo, hi]` is within `τ_g = max(⌈hi − τ_c⌉, ⌈τ_c − lo⌉)` of any float `τ_c`. -/
-theorem aux_hpMapF_centre {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
+theorem aux_hpMapF_center {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y) (h2 : y ≤ toReal hi) :
     |y - toReal c| ≤ toReal (maximum (subUp hi c) (subUp c lo)) := by -- --- PROOF ---
   have e1 := sub_le_subUp hi c
   have e2 := sub_le_subUp c lo
@@ -191,7 +191,7 @@ theorem aux_hpMapF_centre {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤ y) (h2 
   · linarith [le_max_left (toReal (subUp hi c)) (toReal (subUp c lo))]
 
 /-- `res1`: the hitting point `y_h(x₀)` of a point of `R₀`, given `Λ ≠ 0` and `1/Λ²` within
-`[φ̲, φ̄]` on a convex `S` holding `x₀` and the stored centre `ξ` of `R₀red`, and `τ(ξ)` within
+`[φ̲, φ̄]` on a convex `S` holding `x₀` and the stored center `ξ` of `R₀red`, and `τ(ξ)` within
 `τ_g` of `τ_c`. -/
 theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ R0red : Zonotope (Vec 𝕋 n))
     (hcen : R0red.c = R₀.c) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct)
@@ -208,7 +208,7 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
     (hL : GuardMap.hitJacobianFloat A b nv d R0red.c = some Lk) :
     -- `k ⊕ L R₀_ ⊕ [φ̲/2, φ̄/2] R_quad`, as the guard mapping builds it
     GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) x₀ ∈
-      ((k.zonotope.plus (Zonotope.mtimesIntervalMat Lk R₀.recentre)).plus
+      ((k.zonotope.plus (Zonotope.mtimesIntervalMat Lk R₀.recenter)).plus
         (Zonotope.mtimesIntervalMat (Interval.smul (half φlo) (half φhi)
           (Interval.point (diagonalBlock fun _ => (one : 𝕋))))
           (Zonotope.quadMapMatZono
@@ -219,7 +219,7 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
                 ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).I_error.sup l m)⟩)
             (fun (j : Fin (1 + R0red.h + R0red.h)) i =>
               (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).G j)
-            R0red.recentre))).construct := by -- --- PROOF ---
+            R0red.recenter))).construct := by -- --- PROOF ---
   set Ar := toRealMat A with hAr
   set br := toRealVec b with hbr
   set nr := toRealVec nv with hnr
@@ -271,7 +271,7 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
       · rw [hfac, Fin.append_left, Fin.append_left, Fin.fin_one_eq_zero j]; simpa using hκ
       · rw [hfac, Fin.append_left, Fin.append_right]; simp
     · rw [hfac, Fin.append_right]; simp
-  have hνmem : ν ∈ R0red.recentre.construct := Zonotope.sub_centre_mem_recentre hx₀'
+  have hνmem : ν ∈ R0red.recenter.construct := Zonotope.sub_center_mem_recenter hx₀'
   have hqmem : (fun i => ν ⬝ᵥ (GuardMap.hitHessianNum Ar br nr (toReal d) ξ i *ᵥ ν))
       ∈ (Zonotope.quadMapMatZono
             (fun i => ⟨fun l m => addDown
@@ -281,11 +281,11 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
                 ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).I_error.sup l m)⟩)
             (fun (j : Fin (1 + R0red.h + R0red.h)) i =>
               (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).G j)
-            R0red.recentre).construct := by
+            R0red.recenter).construct := by
     refine Zonotope.quadMapMatZono_outer _ _ _ ⟨ν, hνmem, fun i => toRealMat
       (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).c + E i, fun i => ?_, fac, hfac1,
       fun i => by dsimp only; exact congrArg (fun M => ν ⬝ᵥ (M *ᵥ ν)) (hEeq i)⟩
-    -- `c + E` within the directed sums of the centre and the box
+    -- `c + E` within the directed sums of the center and the box
     refine Interval.mem_mat_iff.mpr fun l m => ?_
     have hEl := Interval.mem_mat_iff.mp (hE i) l m
     have h1 := addDown_le_add ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).c l m)
@@ -303,7 +303,7 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
     rw [hν']
     exact Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_biUnion
       (GuardMap.hitJacobian_mem_hitJacobianFloat A b nv d R0red.c hL)
-      ⟨_, Zonotope.sub_centre_mem_recentre hx₀, rfl⟩)
+      ⟨_, Zonotope.sub_center_mem_recenter hx₀, rfl⟩)
   · rw [smul_smul]
     refine aux_hpMapF_smul_mem ?_ ?_ hqmem
     · rw [toReal_half]; linarith [hφm.1]
@@ -437,40 +437,40 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer
       ring
     -- the convex set `R₀red ⊖ ξ ⊕ ξ` the ranges are taken over, holding `ξ` and `R₀red`
     have hhull : ∀ y ∈ R0red.construct,
-        y ∈ (R0red.recentre.plus (Zonotope.point R0red.c)).construct :=
+        y ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).construct :=
       fun y hy => by
-        have h := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_centre_mem_recentre hy)
+        have h := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_center_mem_recenter hy)
           (show toRealVec R0red.c ∈ (Zonotope.point R0red.c).construct by
             rw [Zonotope.construct_point]; rfl))
         rwa [sub_add_cancel] at h
-    have hξS : toRealVec R0red.c ∈ (R0red.recentre.plus (Zonotope.point R0red.c)).construct := by
-      have h := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.zero_mem_recentre R0red)
+    have hξS : toRealVec R0red.c ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).construct := by
+      have h := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.zero_mem_recenter R0red)
         (show toRealVec R0red.c ∈ (Zonotope.point R0red.c).construct by
             rw [Zonotope.construct_point]; rfl))
       rwa [zero_add] at h
     have hx₀S := hhull x₀ (hsub x₀ h₀)
-    have hΛS := fun y hy => hrange (R0red.recentre.plus (Zonotope.point R0red.c)) y hy
+    have hΛS := fun y hy => hrange (R0red.recenter.plus (Zonotope.point R0red.c)) y hy
     -- `τ(ξ)` within `τ_g` of `τ_c`
-    have hdξ : toReal ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).inf
+    have hdξ : toReal ((R0red.recenter.plus (Zonotope.point R0red.c)).halfspaceRange nv d).inf
         ≤ nr ⬝ᵥ toRealVec R0red.c - toReal d ∧ nr ⬝ᵥ toRealVec R0red.c - toReal d
-        ≤ toReal ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).sup :=
+        ≤ toReal ((R0red.recenter.plus (Zonotope.point R0red.c)).halfspaceRange nv d).sup :=
       Zonotope.halfspaceRange_mem nv d hξS
     have hinvξ := aux_hpMapF_recip hcΛ (hΛS _ hξS).1 (hΛS _ hξS).2
     have hτ := Interval.mul_between_corners (y := toReal d - nr ⬝ᵥ toRealVec R0red.c)
-      (a := neg ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).sup)
-      (b := neg ((R0red.recentre.plus (Zonotope.point R0red.c)).halfspaceRange nv d).inf)
+      (a := neg ((R0red.recenter.plus (Zonotope.point R0red.c)).halfspaceRange nv d).sup)
+      (b := neg ((R0red.recenter.plus (Zonotope.point R0red.c)).halfspaceRange nv d).inf)
       (by rw [toReal_neg]; linarith [hdξ.2]) (by rw [toReal_neg]; linarith [hdξ.1])
       hinvξ.1 hinvξ.2
     -- `Λ ≠ 0` and `1/Λ² ∈ [φ̲, φ̄]` on the hull
-    have hΛneS : ∀ y ∈ (R0red.recentre.plus (Zonotope.point R0red.c)).construct,
+    have hΛneS : ∀ y ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).construct,
         nr ⬝ᵥ (Ar *ᵥ y + br) ≠ 0 := fun y hy => by
       rcases aux_hpMapF_sign hcΛ with h | h
       · exact (lt_of_lt_of_le h (hΛS y hy).1).ne'
       · exact (lt_of_le_of_lt (hΛS y hy).2 h).ne
     have hφS := fun y hy => aux_hpMapF_sq hcΛ hcm (hΛS y hy).1 (hΛS y hy).2
     -- `res2` holds `(−nᵀe/Λ(x₀))(Ax₀ + b) + e`
-    have hnum := Zonotope.halfspaceRange_mem (fun i => neg (nv i)) zero he'
-    have hneg : toRealVec (fun i => neg (nv i)) = -nr := funext fun i => toReal_neg (nv i)
+    have hnum := Zonotope.halfspaceRange_mem (-nv) zero he'
+    have hneg : toRealVec (-nv) = -nr := toRealVec_neg _
     rw [hneg, toReal_zero, sub_zero, neg_dotProduct] at hnum
     have hinv0 := aux_hpMapF_recip hcden hden.1 hden.2
     have hI := Interval.mul_between_corners hnum.1 hnum.2 hinv0.1 hinv0.2
@@ -515,7 +515,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer
       -- `res1` holds `y_h(x₀)`, `τ(ξ)` within `τ_g` of `τ_c`
       exact Zonotope.plus_outer _ _ (Set.add_mem_add (aux_hpMapF_res1 ℓ.dynamics.A bI.inf nv d R₀
         R0red hcen h₀ (hsub x₀ h₀) (Zonotope.convex_construct _) hξS hx₀S hΛneS hφS
-        (aux_hpMapF_centre hτ.1 hτ.2) hk hL) hres2)
+        (aux_hpMapF_center hτ.1 hτ.2) hk hL) hres2)
   · simp at hZ
 
 end CORALean

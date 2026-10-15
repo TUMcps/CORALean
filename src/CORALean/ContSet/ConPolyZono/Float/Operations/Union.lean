@@ -17,7 +17,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.HalfDiff
 /-!
 # `ConPolyZono.union`
 
-CORA's `@conPolyZono/or`, [1, Thm. 1], as the exact layer lays it out: the centre
+CORA's `@conPolyZono/or`, [1, Thm. 1], as the exact layer lays it out: the center
 at the midpoint, one generator `(c₁ - c₂) / 2` whose factor is the branch selector, then both
 operands' generators unchanged, and the selector constraints over two fresh factors.
 
@@ -66,7 +66,7 @@ def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
     (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
   R := Real.ConPolyZono.appendE (Real.ConPolyZono.unionUpperR cPZ₁.p cPZ₂.p)
     (Real.ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R)
-  -- the boxes of both operands, and what storing the centre and the generator cost
+  -- the boxes of both operands, and what storing the center and the generator cost
   I_error := (cPZ₁.I_error.or cPZ₂.I_error).plus
     ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).plus
       (PolyZonotope.halfDiffError cPZ₁.c cPZ₂.c))

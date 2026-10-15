@@ -16,12 +16,12 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.PosSemidefPlusIff
 # `SpectraShadow.plus` over-approximates the Minkowski sum
 
 `InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts
-spill only by the centre rounding, and the box absorbs that spill along with the
+spill only by the center rounding, and the box absorbs that spill along with the
 two incoming boxes.
 
 The nominal obligation is the exact `plus` argument — `Fin.append β₁ β₂` as the
 witness, the inequality splitting along the diagonal into the two it came from —
-with the centre displaced; the error obligation is two applications of
+with the center displaced; the error obligation is two applications of
 `Interval.plus_outer`. The sizes are therefore still `k₁ + k₂` and `m₁ + m₂`, the
 rounding having gone into the box.
 -/
@@ -79,7 +79,7 @@ theorem SpectraShadow.aux_posSemidef_plus (S₁ S₂ : SpectraShadow 𝕋 (Vec �
     exact Real.SpectraShadow.lmi_append _ _ _ _ β
   exact (Iff.of_eq (congrArg Matrix.PosSemidef e)).trans (posSemidef_blockDiag_iff _ _)
 
-/-- The concatenated generators account for everything but the centre rounding. -/
+/-- The concatenated generators account for everything but the center rounding. -/
 theorem SpectraShadow.aux_plus_nominal (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     (nominalSet S₁) + (nominalSet S₂) ⊆
       (nominalSet (S₁.plus S₂))
@@ -102,7 +102,7 @@ theorem SpectraShadow.aux_plus_nominal (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋
     simp only [SpectraShadow.plus, hz₁ i, hz₂ i, Fin.append_left, Fin.append_right]
     ring
 
-/-- The box absorbs the two incoming boxes and the centre rounding. -/
+/-- The box absorbs the two incoming boxes and the center rounding. -/
 theorem SpectraShadow.aux_plus_error (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     S₁.I_error.construct + S₂.I_error.construct +
         (SpectraShadow.centerResidual S₁.c S₂.c).construct ⊆

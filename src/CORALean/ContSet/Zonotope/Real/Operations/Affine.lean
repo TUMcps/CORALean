@@ -10,7 +10,7 @@ public import Mathlib.Data.Matrix.Mul
 
 [1, Prop. 4]: the image of `Z = ⟨c, G⟩` under the affine map `x ↦ W x + b` is the zonotope
 `W Z ⊕ b = ⟨W c + b, W G⟩`, the generator count unchanged: the set-based forward propagation of a
-linear layer [1, Prop. 6]. Its generators are those of `Zonotope.mtimes W Z`, its centre that
+linear layer [1, Prop. 6]. Its generators are those of `Zonotope.mtimes W Z`, its center that
 shifted by `b`.
 
 ## References

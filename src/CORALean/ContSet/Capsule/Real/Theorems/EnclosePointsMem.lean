@@ -39,7 +39,7 @@ theorem Capsule.range_subset_construct (pts : Fin N → Vec ℝ n) :
   · rename_i h
     exact absurd (List.argmax_eq_none.mp h) (List.ne_nil_of_mem (List.mem_finRange j))
   · rename_i jm hm
-    -- `g` is the longest `d`, so no point is farther from the centre than `g`
+    -- `g` is the longest `d`, so no point is farther from the center than `g`
     have hle := List.le_of_mem_argmax (List.mem_finRange j) hm
     set c : Vec ℝ n := (1 / (N : ℝ)) • ∑ j, pts j with hc
     set g : Vec ℝ n := pts jm - c with hg

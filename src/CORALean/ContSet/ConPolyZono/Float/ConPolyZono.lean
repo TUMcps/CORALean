@@ -18,7 +18,7 @@ is the vector case.
 `A` and `b` move to `𝕋` and are read back exactly: the nominal set is *defined*
 as what the stored floats denote, so its constraint is the one they state.
 
-Rounding therefore has two channels. The centre and the generators have no
+Rounding therefore has two channels. The center and the generators have no
 slack, so theirs goes into the ambient error box; the constraint bounds do, `b`
 being an interval, so theirs goes into `b`, widened outward and hence enclosing.
 `plus` and `mtimes` copy the constraint block and pay nothing; `intersection` and

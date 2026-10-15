@@ -10,7 +10,7 @@ public import Mathlib.Data.Real.Sign
 # The exposed face of a zonotope in a direction
 
 For `Z = c + ∑ βⱼgⱼ, |βⱼ| ≤ 1` and a functional `u`, the face `{x ∈ Z | u x = max_Z u}` is the
-zonotope with centre `c + ∑ sign(u gⱼ)gⱼ` and the generators `u` annihilates, `construct_face`.
+zonotope with center `c + ∑ sign(u gⱼ)gⱼ` and the generators `u` annihilates, `construct_face`.
 The generators are kept at their indices, those with `u gⱼ ≠ 0` replaced by `0`, so a face's
 generator `j` is `Z`'s generator `j` and the face is the zonotope of the subset
 `{gⱼ | u gⱼ = 0}`, as [1, Sec. 3 (faces)] states. `noncomputable` as the real layer is: it decides

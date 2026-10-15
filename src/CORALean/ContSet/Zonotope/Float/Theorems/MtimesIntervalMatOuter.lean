@@ -50,13 +50,13 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (Z : Zon
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
   obtain ⟨z, hz, e, he, rfl⟩ := hxmem
-  set C := Interval.centreMat IM
+  set C := Interval.centerMat IM
   set Rs := Interval.matResidual IM.inf IM.sup C
   set R : Mat ℝ m n := fun i j => A i j - toReal (C i j)
-  -- the centre matrix acts through `mtimes`, already proven sound
+  -- the center matrix acts through `mtimes`, already proven sound
   obtain ⟨t₀, ht₀, e₀, he₀, hsum⟩ := Zonotope.mtimes_outer C Z ⟨z + e, ⟨z, hz, e, he, rfl⟩, rfl⟩
   have hsum' : t₀ + e₀ = toRealMat C *ᵥ (z + e) := hsum
-  -- `A` known only to within `matResidual` of the centre matrix
+  -- `A` known only to within `matResidual` of the center matrix
   have hR : R ∈ Rs.construct := Interval.sub_mem_matResidual fun i j => hA (i, j)
   -- the residual on the error box, box times box
   have hRe : R *ᵥ e ∈ (Interval.mtimesIntervalMat Rs Z.I_error).construct :=

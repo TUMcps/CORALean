@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.LinComb
 # `PolyZonotope.linComb`'s counts
 
 One fresh factor over the two operands' own, dependent generators tripled in
-the two doubled blocks plus the one fresh centre-difference generator, and the
+the two doubled blocks plus the one fresh center-difference generator, and the
 independent block carried over at its combined count. `rfl` against the
 structure instance in `Operations/LinComb.lean`.
 -/

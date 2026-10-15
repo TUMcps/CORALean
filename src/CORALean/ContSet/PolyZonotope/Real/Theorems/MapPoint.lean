@@ -35,7 +35,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `map`'s point is `f` at the point: the monomials are scalars, so only the
-centre and the generators move. -/
+center and the generators move. -/
 theorem PolyZonotope.map_point (f : α →ₗ[ℝ] β) (pZ : PolyZonotope α) (a : Fin pZ.p → ℝ) :
     (pZ.map f).point a = f (pZ.point a) := by -- --- PROOF ---
   show f pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • f (pZ.G i)

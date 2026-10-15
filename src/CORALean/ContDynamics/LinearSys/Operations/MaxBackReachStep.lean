@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonoto
 
 `maxBackReachStep`: [1, Alg. 3], propagating the two particular solutions and assembling
 `R̂^{∃∀}(-τ_k)` from `P₁` and `P₂`. `ρ` is the caller's support oracle for a polytope — the
-linear program of (9). `Zw` is (27), the constant centre trajectory's contribution over one
+linear program of (9). `Zw` is (27), the constant center trajectory's contribution over one
 interval.
 
 ## References

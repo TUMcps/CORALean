@@ -9,7 +9,7 @@ public import CORALean.ContSet.StarSet.Real.StarSet
 # A star set as a constrained zonotope
 
 The factor box `[l, u]` is rescaled to `[-1, 1]`: `α_k = mid_k + rad_k β_k`, with
-`mid = (l + u) / 2` and `rad = (u - l) / 2`. The centre moves by `G · mid`, the generators are
+`mid = (l + u) / 2` and `rad = (u - l) / 2`. The center moves by `G · mid`, the generators are
 scaled by `rad`, and a row `a · α ≤ b` becomes `(a ∘ rad) · β ≤ b - a · mid` on the coefficients,
 one halfspace each.
 -/

@@ -43,8 +43,8 @@ variable {n : ℕ}
 noncomputable def ZonoBundle.split (Λ : Mat ℝ n n) (B : Interval (Vec ℝ n)) (j : Fin n)
     (zB : ZonoBundle (Vec ℝ n)) : ZonoBundle (Vec ℝ n) × ZonoBundle (Vec ℝ n) :=
   let Ψ := ZonoBundle.parallelotope Λ B                  -- Ψ = Λ box(Λ⁻¹ Z_∩)
-  let Ψ₁ := (Ψ.split j).fst                                -- first half, centre moved by -w⁽ʲ⁾/2
-  let Ψ₂ := (Ψ.split j).snd                                -- second half, centre moved by +w⁽ʲ⁾/2
+  let Ψ₁ := (Ψ.split j).fst                                -- first half, center moved by -w⁽ʲ⁾/2
+  let Ψ₂ := (Ψ.split j).snd                                -- second half, center moved by +w⁽ʲ⁾/2
   (zB.intersection ⟨1, fun _ => Ψ₁⟩, zB.intersection ⟨1, fun _ => Ψ₂⟩)
 
 end CORALean.Real

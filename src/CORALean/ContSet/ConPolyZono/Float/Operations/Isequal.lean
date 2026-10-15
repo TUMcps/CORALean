@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 # `ConPolyZono.isequal`, over a floating-point scalar
 
 The structural test at tolerance `0`, as over ℝ: the same numbers of factors, generators and
-constraints, the centre, the generators, the exponent matrices, the constraint matrix, the two ends
+constraints, the center, the generators, the exponent matrices, the constraint matrix, the two ends
 of the constraint interval and of the error box equal, each stored number by the certified `le`
 in both directions. Certified in one direction only: `true` is a proof, `false` refutes nothing.
 Not CORA's test, which compacts and reorders first.
@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
   if e : Z.p = S.p ∧ Z.h = S.h ∧ Z.qI = S.qI ∧ Z.m = S.m ∧ Z.q = S.q then
-    -- the centre, the error box and the two generator blocks, entry by entry
+    -- the center, the error box and the two generator blocks, entry by entry
     (List.finRange n).all (fun i =>
       (le (Z.c i) (S.c i) && le (S.c i) (Z.c i)) &&
       (le (Z.I_error.inf i) (S.I_error.inf i) && le (S.I_error.inf i) (Z.I_error.inf i)) &&

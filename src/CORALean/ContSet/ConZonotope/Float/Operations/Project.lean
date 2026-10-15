@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 /-!
 # `ConZonotope.project` over a floating-point scalar
 
-The centre and every generator row at the chosen coordinates, the constraint polytope untouched
+The center and every generator row at the chosen coordinates, the constraint polytope untouched
 (it constrains the factors, not the coordinates), and the error box projected with
 `Interval.project`. Selecting coordinates does no arithmetic, so nothing rounds.
 -/

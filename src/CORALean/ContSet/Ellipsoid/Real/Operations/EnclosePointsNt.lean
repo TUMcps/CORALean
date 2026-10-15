@@ -14,7 +14,7 @@ public import Mathlib.Data.Finset.Max
 The step `m1 = max(orientedMatrix, [], 2); m2 = min(orientedMatrix, [], 2); nt = max([m1, m2], [],
 2)` of CORA's `@ellipsoid/enclosePoints.m` at `method = 'cov'`: per rotated coordinate the larger
 of the maximum and the minimum, which is the maximum `m1` whenever the minimum is not larger (the
-maximum of centred values is non-negative). The columns of `O` are the points.
+maximum of centered values is non-negative). The columns of `O` are the points.
 -/
 
 -- Authors:       Claude Opus 5.5

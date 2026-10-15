@@ -13,7 +13,7 @@ CORA's `@polyZonotope/convHull_` for a second set that is a polynomial zonotope
 (`aux_convHullMult`):
 the dependent parts of the two sets (`pZ1_`, `pZ2_`: the independent generators dropped) are each
 paired with themselves by `linComb`, the two chord sets with each other, and the independent
-generators of the result are the generators of `enclose(Z1, Z2)` for the zero-centred zonotopes of
+generators of the result are the generators of `enclose(Z1, Z2)` for the zero-centered zonotopes of
 the two independent blocks, which for those is `Zonotope.linComb`.
 
 The result is the chords of chords. It contains both operands (`union_subset_convHull`) and is the

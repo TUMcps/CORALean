@@ -57,7 +57,7 @@ theorem aux_isCompact_sum_range_mulVec_var (W : ℕ → Zonotope (Vec ℝ n)) (�
   | succ k ih =>
     rw [Finset.sum_range_succ]
     exact ⟨ih.1.add ((W k).isCompact_construct.image (mulVecL (Φ k)).continuous),
-      ih.2.add (Set.Nonempty.image _ ⟨(W k).c, Zonotope.centre_mem_construct (W k)⟩)⟩
+      ih.2.add (Set.Nonempty.image _ ⟨(W k).c, Zonotope.center_mem_construct (W k)⟩)⟩
 
 /-- `d_H` ignores a summand both sides share: `hausdorffDist₂_add_le` at `d_H(X,X) = 0`. -/
 theorem aux_hausdorffDist₂_add_right_var {S T X : Set (Vec ℝ n)} (hS : IsCompact S)
@@ -94,14 +94,14 @@ theorem hausdorffDist₂_var_run_reduce_le (W : ℕ → Zonotope (Vec ℝ n)) (�
     have hXc : IsCompact ((fun x => Φ k *ᵥ x) '' (W k).construct) :=
       (Zonotope.isCompact_construct _).image (mulVecL _).continuous
     have hXne : ((fun x => Φ k *ᵥ x) '' (W k).construct).Nonempty :=
-      Set.Nonempty.image _ ⟨_, Zonotope.centre_mem_construct _⟩
+      Set.Nonempty.image _ ⟨_, Zonotope.center_mem_construct _⟩
     rw [Finset.sum_range_succ, Finset.sum_range_succ, hstep k]
     refine (hausdorffDist₂_triangle ((hsum k).1.add hXc).isBounded ((hsum k).2.add hXne)
-      (Zonotope.isBounded_construct _) ⟨_, Zonotope.centre_mem_construct _⟩).trans
+      (Zonotope.isBounded_construct _) ⟨_, Zonotope.center_mem_construct _⟩).trans
       (add_le_add ?_ (Zonotope.hausdorffDist₂_reduce_le _ (ρ k)))
     rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact]
     exact (aux_hausdorffDist₂_add_right_var (hsum k).1 (hsum k).2
-      (Zonotope.isCompact_construct _) ⟨_, Zonotope.centre_mem_construct _⟩ hXc hXne).trans ih
+      (Zonotope.isCompact_construct _) ⟨_, Zonotope.center_mem_construct _⟩ hXc hXne).trans ih
 
 end CORALean
 

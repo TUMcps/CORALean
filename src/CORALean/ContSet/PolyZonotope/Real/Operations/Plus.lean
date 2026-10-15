@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 /-!
 # `PolyZonotope.plus`
 
-CORA's `@polyZonotope/plus`: centres add, and all three generator blocks
+CORA's `@polyZonotope/plus`: centers add, and all three generator blocks
 concatenate.
 
 The exponent matrices do *not*. Each set's dependent factors range freely and

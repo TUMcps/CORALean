@@ -13,8 +13,8 @@ public import Mathlib.Data.Fin.VecNotation
 The test checks `ν eᵢ ∈ Z`, and its complexity paragraph checks the feasibility of
 `ν eᵢ = G x + z̄`: the point `ν eᵢ` itself, not `z̄ + ν eᵢ`. For `Z = [5, 7] = 6 + [-1, 1] ⊂ ℝ¹`
 and `ν = 6` the test passes, `6 ∈ Z`, but `ν²/n = 36` is no lower bound on `⌊Z⌋² = 1`: the ball of
-radius `6` around `6` reaches `12 ∉ Z`. Measured from the centre the lemma holds
-(`ball_subset_of_axis_test`); [1, Thm. 3] applies it to a transformed zonotope whose centre is
+radius `6` around `6` reaches `12 ∉ Z`. Measured from the center the lemma holds
+(`ball_subset_of_axis_test`); [1, Thm. 3] applies it to a transformed zonotope whose center is
 generally not the origin.
 
 ## References

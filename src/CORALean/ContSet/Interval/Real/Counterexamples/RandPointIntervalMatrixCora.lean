@@ -51,7 +51,7 @@ noncomputable def Interval.randPointExtremeIntervalMatrixCora (lo hi s : ℝ) : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- For a non-degenerate entry, no `'standard'` draw `u ∈ [0, 1]` exceeds the centre, and an
+/-- For a non-degenerate entry, no `'standard'` draw `u ∈ [0, 1]` exceeds the center, and an
 `'extreme'` draw with `s = ±1` is neither endpoint. -/
 theorem Interval.randPointIntervalMatrix_cora_counterexample {lo hi : ℝ} (h : lo < hi) :
     (∀ u : ℝ, 0 ≤ u → u ≤ 1 →

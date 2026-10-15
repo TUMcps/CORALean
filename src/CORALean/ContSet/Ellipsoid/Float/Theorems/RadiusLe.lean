@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.NormUbLe
 @[expose] public section
 
 /-!
-# The float `Ellipsoid.radius` bounds the distance to the centre
+# The float `Ellipsoid.radius` bounds the distance to the center
 
 `x - c`, for `x` in the ellipsoid, is in the ellipsoid moved to the origin (the same `u`, the
 same error), whose points `norm₂_le_normUb` bounds. An upper bound only.

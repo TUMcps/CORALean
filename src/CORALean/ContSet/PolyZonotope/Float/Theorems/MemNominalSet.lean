@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
 The form every enclosure proof at this layer reads the nominal half of a point
 in. The exponent matrix is over ℕ and is not rounded, so the monomials here are
 the exact layer's monomials rather than roundings of them; only the two
-generator blocks and the centre pass through `toReal`.
+generator blocks and the center pass through `toReal`.
 
 Proofs use it rather than going through `nominal` because through it every count
 is `pZ.h`, where the instance gives the equal-but-distinct `(nominal pZ).h` that

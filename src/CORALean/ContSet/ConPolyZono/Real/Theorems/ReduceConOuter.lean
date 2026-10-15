@@ -123,7 +123,7 @@ theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : 
     rw [hval]
     exact ⟨by simp only [ConPolyZono.reduceCon, ConPolyZono.reduceConB]; linarith [hbJ.1],
       by simp only [ConPolyZono.reduceCon, ConPolyZono.reduceConB]; linarith [hbJ.2]⟩
-  -- the value: generator `d`'s term is what the centre and the new block replace
+  -- the value: generator `d`'s term is what the center and the new block replace
   · have hsplitG : ∑ i, ν i • cPZ.G i
         = ν d • cPZ.G d + ∑ i : Fin (cPZ.h - 1), ν (dropIdx d i) • cPZ.G (dropIdx d i) :=
       sum_dropIdx d (fun i => ν i • cPZ.G i)
@@ -146,15 +146,15 @@ theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : 
           μ (dropIdx t i) • ((-(cPZ.A r (dropIdx t i)) / cPZ.A r t) • cPZ.G d)
         = (-(1 / cPZ.A r t) * (cPZ.b.inf r - cPZ.A r t * μ t)) • cPZ.G d := by
       simp only [hterm, ← Finset.sum_smul, ← Finset.mul_sum, hrest]
-    -- and that multiple, with the centre's, is generator `d`'s own monomial back
-    have hcentre : ν d • cPZ.G d
+    -- and that multiple, with the center's, is generator `d`'s own monomial back
+    have hcenter : ν d • cPZ.G d
         = (cPZ.b.inf r / cPZ.A r t) • cPZ.G d
           + (-(1 / cPZ.A r t) * (cPZ.b.inf r - cPZ.A r t * μ t)) • cPZ.G d := by
       rw [← add_smul, hmt]
       congr 1
       field_simp
       ring
-    rw [hsplitG, hres, hsum2, hcentre]
+    rw [hsplitG, hres, hsum2, hcenter]
     show _ = cPZ.c + (cPZ.b.inf r / cPZ.A r t) • cPZ.G d + _ + _
     abel
 

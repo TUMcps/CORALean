@@ -22,7 +22,7 @@ every non-convexity goes and so does the exactness of a quadratic map.
 
 `zonotopeEven` is [2, Prop. 1], restated as [3, Prop. 5], and is CORA's own
 `zonotope(polyZonotope)`: an all-even column has its monomial in `[0,1]` rather
-than `[-1,1]`, so half of that generator moves into the centre and only the other
+than `[-1,1]`, so half of that generator moves into the center and only the other
 half is left free. A column of zeros is the paper's `N`, whose monomial is `1`
 exactly; CORA reads it as merely even and pays half a generator for it. Neither
 keeps anything of the exponent matrix but the generators it indexed.
@@ -59,7 +59,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The coefficient that free generator is given, so that what the centre already
+/-- The coefficient that free generator is given, so that what the center already
 holds plus this much of the generator is the monomial. -/
 noncomputable def PolyZonotope.aux_evenCoeff {p h : ℕ} (E : Fin p → Fin h → ℕ)
     (a : Fin p → ℝ) (i : Fin h) : ℝ :=
@@ -79,7 +79,7 @@ theorem PolyZonotope.aux_monomial_nonneg {p h : ℕ} {E : Fin p → Fin h → �
     (hE : ∀ k, E k i % 2 = 0) (a : Fin p → ℝ) : 0 ≤ PolyZonotope.monomial E a i :=
   Finset.prod_nonneg fun k _ => Even.pow_nonneg (Nat.even_iff.mpr (hE k)) (a k)
 
-/-- What the centre keeps plus what the free generator reaches is the monomial,
+/-- What the center keeps plus what the free generator reaches is the monomial,
 in each of the three cases. -/
 theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
     (i : Fin h) :
@@ -88,12 +88,12 @@ theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → �
       = PolyZonotope.monomial E a i := by -- --- PROOF ---
   rw [PolyZonotope.evenWeight, PolyZonotope.aux_evenCoeff]
   split_ifs with hz he
-  · -- a constant column: the centre takes all of it
+  · -- a constant column: the center takes all of it
     rw [PolyZonotope.aux_monomial_eq_one hz a]
     ring
-  · -- an all-even column: half in the centre, half left free
+  · -- an all-even column: half in the center, half left free
     ring
-  · -- anything else: the centre takes none of it
+  · -- anything else: the center takes none of it
     ring
 
 /-- Every coefficient a free generator is given is admissible, an all-even
@@ -132,7 +132,7 @@ theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope α) :
       simpa using PolyZonotope.aux_abs_evenCoeff_le_one pZ.E ha i
     · intro j
       simpa using hb j
-  · -- the centre's share and the free generator's share add back to the monomial
+  · -- the center's share and the free generator's share add back to the monomial
     have hsum : ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i
         = ∑ i, (1 - PolyZonotope.evenWeight pZ.E i) • pZ.G i
           + ∑ i, PolyZonotope.aux_evenCoeff pZ.E a i

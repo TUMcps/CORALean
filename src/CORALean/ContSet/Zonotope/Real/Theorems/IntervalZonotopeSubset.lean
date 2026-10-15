@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 
 `Interval_to_Zonotope` run backwards, which holds exactly when the bounds do not cross: only
 generator `i` reaches coordinate `i`, so `|β i| ≤ 1` puts the coordinate within its own radius of
-its own centre.
+its own center.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -50,7 +50,7 @@ theorem Interval.zonotope_subset_of_isNonempty {I : Interval (Vec ℝ n)}
     nlinarith [habs.1, hrad]
   have hhi : β i * ((I.sup i - I.inf i) / 2) ≤ (I.sup i - I.inf i) / 2 := by
     nlinarith [habs.2, hrad]
-  -- and the centre plus that offset is exactly where `Interval.construct` asks it to be
+  -- and the center plus that offset is exactly where `Interval.construct` asks it to be
   show I.inf i ≤ ((fun i => (I.inf i + I.sup i) / 2 : Vec ℝ n) + ∑ j : Fin n, β j •
       (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i ∧
     ((fun i => (I.inf i + I.sup i) / 2 : Vec ℝ n) + ∑ j : Fin n, β j •

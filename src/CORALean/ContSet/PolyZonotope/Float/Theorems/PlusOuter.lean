@@ -12,10 +12,10 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 # `PolyZonotope.plus` over-approximates the Minkowski sum
 
 `InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts
-spill only by the centre rounding, and the box absorbs that spill along with the
+spill only by the center rounding, and the box absorbs that spill along with the
 two incoming boxes.
 
-The nominal obligation is the exact `plus` argument with the centre displaced —
+The nominal obligation is the exact `plus` argument with the center displaced —
 `Fin.append a₁ a₂` on the factors and `Fin.append β₁ β₂` on the independent
 coefficients — and `monomial_plusE_left`/`_right` are what read a concatenated
 factor vector back as each set's own. Nothing about the monomials rounds, so
@@ -57,7 +57,7 @@ theorem PolyZonotope.aux_sum_univ_plus_q {pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n
       = ∑ j, f (Fin.castAdd pZ₂.q j) + ∑ j, f (Fin.natAdd pZ₁.q j) :=
   Fin.sum_univ_add f
 
-/-- The concatenated blocks account for everything but the centre rounding. -/
+/-- The concatenated blocks account for everything but the center rounding. -/
 theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     nominalSet pZ₁ + nominalSet pZ₂ ⊆
       nominalSet (pZ₁.plus pZ₂)
@@ -88,7 +88,7 @@ theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) 
       hx₁ i, hx₂ i]
     ring
 
-/-- The box absorbs the two incoming boxes and the centre rounding. -/
+/-- The box absorbs the two incoming boxes and the center rounding. -/
 theorem PolyZonotope.aux_plus_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     pZ₁.I_error.construct + pZ₂.I_error.construct
         + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct ⊆

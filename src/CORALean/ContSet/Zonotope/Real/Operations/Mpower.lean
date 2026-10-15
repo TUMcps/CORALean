@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 /-!
 # `Zonotope.mpower`
 
-CORA's `@matZonotope/mpower`: the zero power is the identity (centre `eye`, no generators), the
+CORA's `@matZonotope/mpower`: the zero power is the identity (center `eye`, no generators), the
 first is the zonotope itself, and from the second on `matZ * matZ` is multiplied by `matZ` on the
 right, once per further exponent. Only for square matrices (`eye(dim(matZ))` of a rectangular
 zonotope is no identity, and the product needs a square one).

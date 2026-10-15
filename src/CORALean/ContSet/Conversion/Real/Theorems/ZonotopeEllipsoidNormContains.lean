@@ -52,7 +52,7 @@ theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ 
       Matrix.mul_nonsing_inv F hF, Matrix.one_mulVec]
   have hr0 : 0 ≤ r := le_trans (sq_nonneg _) hvle
   rcases hr0.eq_or_lt with hr0 | hrpos
-  -- `r = 0`: the point is the centre
+  -- `r = 0`: the point is the center
   · subst hr0
     have hv0 : v = 0 := by
       rw [← dotProduct_self_eq_zero, dotProduct_self]

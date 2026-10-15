@@ -127,7 +127,7 @@ theorem exists_eq_of_mean_value_box {f : (Fin m → ℝ) → Fin n → ℝ} {π 
       f0lo i + ∑ j with π j = some i, dulo i j * ((hi j - lo j) / 2)
         - ∑ j with π j ≠ some i, dwhi i j * ((hi j - lo j) / 2) ≤ f (X τ) i := by
     intro τ hτ i hτi
-    -- move the inputs of `π⁻¹(i)` to the centre and back to the corner, one at a time
+    -- move the inputs of `π⁻¹(i)` to the center and back to the corner, one at a time
     set x₀ : Fin m → ℝ := fun j => if π j = some i then c j else X τ j with hx₀
     have hx₀m : x₀ ∈ Icc lo hi := ⟨fun j => by
         by_cases h : π j = some i
@@ -145,7 +145,7 @@ theorem exists_eq_of_mean_value_box {f : (Fin m → ℝ) → Fin n → ℝ} {π 
           exact (hab i j h).2.2.1 p hp
         · simp [hx₀, h])
     rw [hsumE (fun j => dulo i j * ((hi j - lo j) / 2)) i] at hgain
-    -- the disturbances move `fᵢ` from the centre by at most `⟨∇̄w, r⟩`
+    -- the disturbances move `fᵢ` from the center by at most `⟨∇̄w, r⟩`
     have hb := abs_le.mp (abs_sub_le_sum_filter_of_abs_partial_le
       ((hf i).differentiable one_ne_zero) hlh (fun j => π j = some i) (dwhi i)
       (fun y hy hyE j hj => hw i y hy hyE j hj) hx₀m (fun j hj => by simp [hx₀, hj, hc]))
@@ -155,7 +155,7 @@ theorem exists_eq_of_mean_value_box {f : (Fin m → ℝ) → Fin n → ℝ} {π 
       f (X τ) i ≤ f0hi i - ∑ j with π j = some i, dulo i j * ((hi j - lo j) / 2)
         + ∑ j with π j ≠ some i, dwhi i j * ((hi j - lo j) / 2) := by
     intro τ hτ i hτi
-    -- move the inputs of `π⁻¹(i)` to the centre and back to the corner, one at a time
+    -- move the inputs of `π⁻¹(i)` to the center and back to the corner, one at a time
     set x₀ : Fin m → ℝ := fun j => if π j = some i then c j else X τ j with hx₀
     have hx₀m : x₀ ∈ Icc lo hi := ⟨fun j => by
         by_cases h : π j = some i
@@ -173,7 +173,7 @@ theorem exists_eq_of_mean_value_box {f : (Fin m → ℝ) → Fin n → ℝ} {π 
           linarith [(hab i j h).2.2.2 p hp]
         · simp [hx₀, h])
     rw [hsumE (fun j => dulo i j * ((hi j - lo j) / 2)) i] at hgain
-    -- the disturbances move `fᵢ` from the centre by at most `⟨∇̄w, r⟩`
+    -- the disturbances move `fᵢ` from the center by at most `⟨∇̄w, r⟩`
     have hb := abs_le.mp (abs_sub_le_sum_filter_of_abs_partial_le
       ((hf i).differentiable one_ne_zero) hlh (fun j => π j = some i) (dwhi i)
       (fun y hy hyE j hj => hw i y hy hyE j hj) hx₀m (fun j hj => by simp [hx₀, hj, hc]))

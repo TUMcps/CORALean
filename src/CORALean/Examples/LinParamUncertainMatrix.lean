@@ -43,7 +43,7 @@ def Example.sysZ : LinParamSysDT 𝕄𝒵 2 :=
   .canonical ⟨1, (0.9 : ℝ) • (1 : Mat ℝ 2 2), fun _ => !![(0.1:ℝ), 0; 0, 0.1]⟩
 
 /-- The nominal matrix `0.9 · I` sits in both: entrywise within the interval's bounds, and at
-the matrix zonotope's own centre. -/
+the matrix zonotope's own center. -/
 theorem Example.nominal_mem_sysI : (0.9 : ℝ) • (1 : Mat ℝ 2 2) ∈ construct Example.sysI.A := by
   rintro ⟨i, j⟩
   fin_cases i <;> fin_cases j <;>

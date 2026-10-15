@@ -11,8 +11,8 @@ The update of CORA's `@ellipsoid/intersectStrip` (method `'Gollamudi1996'`,
 `aux_methodGollamudi1996`) for `n = 1` and one strip, at the weight `λ` (CORA picks
 `min(1e-4, ν)`), as the code computes it:
 `δ = y - C c`, `σ² = 1 - λ + λ φ² - λ (1 - λ) δ² / ((1 - λ) + λ C Q C)`, the inverse shape
-`(1 - λ) Q⁻¹ + λ C²`, the new centre `c + λ Q C δ` and the new shape `Q' / σ²`. It returns
-the new centre and shape matrix `Q` of the ellipsoid `{x | (x - c)² / Q ≤ 1}`; the trigger
+`(1 - λ) Q⁻¹ + λ C²`, the new center `c + λ Q C δ` and the new shape `Q' / σ²`. It returns
+the new center and shape matrix `Q` of the ellipsoid `{x | (x - c)² / Q ≤ 1}`; the trigger
 `σ²_prev + δ² > φ` and the choice of `λ` are left to the caller.
 -/
 

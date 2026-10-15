@@ -5,9 +5,9 @@ public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 @[expose] public section
 
 /-!
-# A point of a box is its centre plus a multiple of its radius
+# A point of a box is its center plus a multiple of its radius
 
-Every `x` of a box is `centre + β ⊙ radius` with `|β_i| ≤ 1`: the coefficients `[x] = mid([x]) ⊕
+Every `x` of a box is `center + β ⊙ radius` with `|β_i| ≤ 1`: the coefficients `[x] = mid([x]) ⊕
 rad([x]) ⊗ [-1, 1]` leaves free, where a coordinate has width `0` taking `β_i = 0`. This is the
 step from a box to the zonotope with one generator per coordinate.
 -/
@@ -31,7 +31,7 @@ theorem Interval.exists_coeff_of_mem (I : Interval (Vec ℝ n)) {x : Vec ℝ n}
     (hx : x ∈ I.construct) :
     ∃ β : Fin n → ℝ, (∀ i, |β i| ≤ 1) ∧
       ∀ i, x i = I.center i + β i * I.radius i := by -- --- PROOF ---
-  -- each coordinate is within the radius of the centre
+  -- each coordinate is within the radius of the center
   have h : ∀ i, |x i - I.center i| ≤ I.radius i := fun i => Interval.abs_sub_center_le hx i
   refine ⟨fun i => if I.radius i = 0 then 0 else (x i - I.center i) / I.radius i, ?_, ?_⟩
   · intro i

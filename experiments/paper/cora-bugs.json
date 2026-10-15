@@ -17,7 +17,7 @@
       "fix": "ObserveInterval.lean"
     },
     "outputSet": {
-      "description": "input-set centre moved to uTrans is never added back",
+      "description": "input-set center moved to uTrans is never added back",
       "kind": "unsound",
       "cex": "OutputSetCora.lean"
     }
@@ -226,7 +226,7 @@
   },
   "contSet/ellipsoid": {
     "contains_": {
-      "description": "degenerate ellipsoid ignores centre offset; disjoint sets reported contained",
+      "description": "degenerate ellipsoid ignores center offset; disjoint sets reported contained",
       "kind": "unsound",
       "cex": "ContainsEllipsoidCora.lean"
     },
@@ -306,7 +306,7 @@
   },
   "contSet/polyZonotope": {
     "contains_": {
-      "description": "centre accepted outside set; exact uses zonotope enclosure",
+      "description": "center accepted outside set; exact uses zonotope enclosure",
       "kind": "unsound",
       "cex": "ContainsExactCora1D.lean"
     },
@@ -333,7 +333,7 @@
       "cex": "RepresentsaCapsuleCora.lean"
     },
     "sum": {
-      "description": "adds first centre in every pass; centre wrong",
+      "description": "adds first center in every pass; center wrong",
       "kind": "unsound"
     },
     "volume_": {
@@ -354,7 +354,7 @@
       "cex": "ContainsRegionCora.lean"
     },
     "hausdorffDist": {
-      "description": "one-directional distance; zero for square and its centre",
+      "description": "one-directional distance; zero for square and its center",
       "kind": "other"
     },
     "isIntersecting_": {
@@ -563,7 +563,7 @@
       "cex": "MinkDiffApproxNotInner.lean"
     },
     "norm_": {
-      "description": "'exact' omits centre from program; norm under-estimated",
+      "description": "'exact' omits center from program; norm under-estimated",
       "kind": "unsound",
       "cex": "NormExactCora.lean"
     },
@@ -668,7 +668,7 @@
   },
   "nn/layers": {
     "evaluateConZonotope": {
-      "description": "ReLU star-set bounds shift the factor-box centre",
+      "description": "ReLU star-set bounds shift the factor-box center",
       "kind": "unsound",
       "fix": "ReluStarSound.lean"
     },

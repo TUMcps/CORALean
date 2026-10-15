@@ -80,7 +80,7 @@ theorem Zonotope.split_union (Z : Zonotope α) (j : Fin Z.h) :
         have hc : (β j - 1) / 2 = β j * 2⁻¹ - 2⁻¹ := by ring
         rw [hc, sub_smul]
         abel
-    -- the second half onto `[0, 1]`, the centre moved the other way
+    -- the second half onto `[0, 1]`, the center moved the other way
     · refine ⟨Function.update β j ((β j + 1) / 2), fun k => ?_, ?_⟩
       · rcases eq_or_ne k j with rfl | hk
         · rw [Function.update_self, abs_le]

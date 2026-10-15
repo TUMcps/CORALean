@@ -13,7 +13,7 @@ CORA's `nonlinParamSys/linearize` [1], the `paramInt` branch, in `𝕋`. The mod
 the point boxes of the expansion point `(xs, us)` over the parameter box `P`: the enclosure of
 the constant term and of the two Jacobians, each holding at every parameter of the box
 (`linearizeFloat_f_mem` and its two siblings). Where CORA splits `f` along the unit vectors and
-so assumes it affine in `p`, the model's enclosure over `P` asks no such thing. The centre of the
+so assumes it affine in `p`, the model's enclosure over `P` asks no such thing. The center of the
 box is the stored `Interval.center`, rounded up. The `'linRem'` option and the numeric-`p`
 branch are not carried.
 

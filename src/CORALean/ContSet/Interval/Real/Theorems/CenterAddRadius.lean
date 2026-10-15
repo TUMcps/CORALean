@@ -7,7 +7,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 /-!
 # `Interval.center_add_radius`
 
-The centre plus the half-width is the upper bound: the split `center ± radius` gives the box back.
+The center plus the half-width is the upper bound: the split `center ± radius` gives the box back.
 
 [1, Sec. 2] writes an interval as `mid([x]) ⊕ rad([x]) ⊗ [-1, 1]`; this is its upper end.
 

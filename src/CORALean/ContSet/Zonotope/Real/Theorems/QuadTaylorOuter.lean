@@ -15,7 +15,7 @@ zonotope. `aux_quadTaylor_sq` is `A`'s own square expanded — `(c + Σ p i • 
 `Finset.sum_mul_sum`/`smul_mul_smul_comm`, `bilin_outer`'s own cross-block combinatorics.
 `aux_quadTaylor_diagpair` folds that expansion's diagonal and its `i ≠ j` half together into a
 single generator per unordered pair, and `aux_quadTaylor_diagfold` folds `p i²` into `q i := 2(p
-i)² - 1` and a constant half that joins the centre — both exactly what [1]'s own proof does to
+i)² - 1` and a constant half that joins the center — both exactly what [1]'s own proof does to
 the same expansion. The witness is `A`'s own coefficients `p`, plus `q` on the diagonal block
 and `p i * p j` on the pair block — [1]'s printed `L^(0)`, `L^(j)` and `L^(2κ+l)` are double
 these, a real erratum the page's own `## Findings` records and these coefficients do not repeat.
@@ -117,7 +117,7 @@ theorem Zonotope.aux_quadTaylor_diagpair {n h : ℕ} (G : Fin h → Mat ℝ n n)
   abel
 
 /-- The diagonal sum, folded: `p i * p i` is read as `(1 + (2(p i)² - 1)) / 2`, the constant
-half going into the centre and the rest onto the diagonal block's own generator. -/
+half going into the center and the rest onto the diagonal block's own generator. -/
 theorem Zonotope.aux_quadTaylor_diagfold {n h : ℕ} (G : Fin h → Mat ℝ n n) (p : Fin h → ℝ)
     (t : ℝ) :
     (t ^ 2 / 2) • ∑ i, (p i * p i) • (G i * G i)
@@ -198,7 +198,7 @@ theorem Zonotope.quadTaylor_outer {n : ℕ} (A_Z : Zonotope (Mat ℝ n n)) (t : 
         + ∑ j, (Fin.append (Fin.append p (fun i => 2 * (p i) ^ 2 - 1))
             (fun k => p (finProdFinEquiv.symm k).1 * p (finProdFinEquiv.symm k).2)) j
           • (A_Z.quadTaylor t).G j
-  -- expand the square, split the diagonal off the pair sum, then fold both centrewards
+  -- expand the square, split the diagonal off the pair sum, then fold both centerwards
   rw [Zonotope.aux_quadTaylor_sq, Zonotope.aux_quadTaylor_diagpair, smul_add, smul_add, smul_add,
     smul_add, Zonotope.aux_quadTaylor_diagfold, Fin.sum_univ_add, Fin.sum_univ_add]
   simp only [Zonotope.quadTaylor, Fin.append_left, Fin.append_right]

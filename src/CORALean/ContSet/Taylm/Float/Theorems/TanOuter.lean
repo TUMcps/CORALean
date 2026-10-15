@@ -22,7 +22,7 @@ public import CORALean.Global.TaylorRemainder
 (`abs_iteratedDeriv_tan_le`), `m` the magnitude of the model. The integer polynomial lists
 evaluate as the real ones (`eval_odePoly_odeL`), and `Interval.evalList_mem` encloses them.
 The domain is explicit: the magnitude below `π/2`, and the cosine certified positive by
-`cosDown` at the centre and at the magnitude, which is what `tanDown_le` and `le_tanUp` need.
+`cosDown` at the center and at the magnitude, which is what `tanDown_le` and `le_tanUp` need.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -57,7 +57,7 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
     rw [hm_def, toReal_maximum, toReal_maximum, toReal_absolute, toReal_absolute,
       toReal_absolute]
   set M := toReal m with hM
-  -- every point of the hull of the centre and the box is below the magnitude
+  -- every point of the hull of the center and the box is below the magnitude
   have hmag : ∀ ξ ∈ Set.Icc (min (toReal c) (toReal T.bounds.inf))
       (max (toReal c) (toReal T.bounds.sup)), |ξ| ≤ M := by
     intro ξ hξ
@@ -75,7 +75,7 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
       · linarith [le_abs_self (toReal c)]
       · linarith [le_abs_self (toReal T.bounds.sup)]
   have hcM : |toReal c| ≤ M := by rw [hm]; exact le_max_left _ _
-  -- the derivatives of `tan` at the centre are the integer polynomial at `tan c`
+  -- the derivatives of `tan` at the center are the integer polynomial at `tan c`
   have hcdom : toReal c ∈ Set.Ioo (-(Real.pi / 2)) (Real.pi / 2) := by
     have := abs_lt.1 (lt_of_le_of_lt hcM hπ)
     exact ⟨this.1, this.2⟩
@@ -105,7 +105,7 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
         Set.Icc (min (toReal c) (toReal T.bounds.inf)) (max (toReal c) (toReal T.bounds.sup)) :=
       Set.uIcc_subset_Icc ⟨min_le_left _ _, le_max_left _ _⟩
         ⟨le_trans (min_le_right _ _) hb.1, le_trans hb.2 (le_max_right _ _)⟩
-    -- Lagrange at the centre, the derivative bounded by the polynomial at `tan M`
+    -- Lagrange at the center, the derivative bounded by the polynomial at `tan M`
     have hD1 : ∀ ξ ∈ Set.uIcc (toReal c) (f t), |iteratedDeriv (N + 1) Real.tan ξ| ≤
         evalL (odeL [1, 0, 1] (N + 1)) (Real.tan M) := fun ξ hξ => by
       rw [← eval_odePoly_odeL (q := [1, 0, 1]) (Q := 1 + X ^ 2)

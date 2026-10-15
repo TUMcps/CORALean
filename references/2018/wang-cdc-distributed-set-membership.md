@@ -19,7 +19,7 @@ Findings).
 
 | Result | What it says | In CORALean | Class |
 |---|---|---|---|
-| `Def. 1` | A zonotope `Z = ⟨c, H⟩ = {c + Hz, ‖z‖_∞ ≤ 1}`, `c` its centre and `H` its segment matrix, `Z = c ⊕ H Bʳ` (Eq. 1). | n/a — restated; tracked as `Def. 1` on [Reachability of Uncertain Linear Systems Using Zonotopes](../2005/girard-hscc-reachability-zonotopes.md) | `restated` |
+| `Def. 1` | A zonotope `Z = ⟨c, H⟩ = {c + Hz, ‖z‖_∞ ≤ 1}`, `c` its center and `H` its segment matrix, `Z = c ⊕ H Bʳ` (Eq. 1). | n/a — restated; tracked as `Def. 1` on [Reachability of Uncertain Linear Systems Using Zonotopes](../2005/girard-hscc-reachability-zonotopes.md) | `restated` |
 | `Eq. 2` | `⟨c₁, H₁⟩ ⊕ ⟨c₂, H₂⟩ = ⟨c₁ + c₂, [H₁ H₂]⟩` (2a), `L⟨c, H⟩ = ⟨Lc, LH⟩` (2b). | n/a — restated; tracked as `Sec. 2` on [Reachability of Uncertain Linear Systems Using Zonotopes](../2005/girard-hscc-reachability-zonotopes.md) | `restated` |
 | `Def. 2` | The P-radius of `Z = ⟨p, H⟩` for `P ≻ 0` is `V(Z) = max_{‖z‖_∞ ≤ 1} ‖Hz‖²_P = max zᵀHᵀPHz` (Eq. 3). | n/a — restated; tracked as `Sec. 2` on [Zonotopic guaranteed state estimation for uncertain systems](../2013/le-automatica-zonotopic-estimation.md) | `restated` |
 | `Lemma 1` | (From Alamo, Bravo, Redondo and Camacho 2008) For `Z = c ⊕ H Bʳ` with `rank H = n ≤ r` and the SVD `H = UΣVᵀ`, `Z ⊆ Z_p = c ⊕ UD Bⁿ` with `D` diagonal, `D_ii = ‖σ_i V_i‖₁`. | n/a — restated from T. Alamo, J. M. Bravo, M. J. Redondo and E. F. Camacho, "A set-membership state estimation algorithm based on DC programming" (Automatica, 44(1):216-224, 2008), which has no page here; the loop below takes any outer reduction | `restated` |

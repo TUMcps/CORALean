@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.minkDiffAlignedCost`
 
-Asserted, not proved: `Operations/MinkDiffAligned.lean` subtracts the centres
+Asserted, not proved: `Operations/MinkDiffAligned.lean` subtracts the centers
 and the `h` generators pairwise, `n * (h + 1)` subtractions at `Vec ℝ n`.
 -/
 

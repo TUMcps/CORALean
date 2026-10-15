@@ -141,7 +141,7 @@ theorem Krylov.reach_krylov_counterexample :
   subst hp
   have ha1 := hbox 0 a ha
   have hb1 := hbox _ b hb
-  -- `V` has second row `0`, so the Krylov centre has `x₂ = 0`
+  -- `V` has second row `0`, so the Krylov center has `x₂ = 0`
   have hc1 : (V *ᵥ (E *ᵥ Pi.single 0 1)) 1 = 0 := by
     simp [V, mulVec, dotProduct, Fin.sum_univ_two, hK0, hK1]
   rw [hc1, sub_zero] at hb1

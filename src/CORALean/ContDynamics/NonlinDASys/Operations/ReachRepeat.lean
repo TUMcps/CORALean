@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 /-!
 # [1, Alg. 1]'s linearization-error loop
 
-Lines 5-10 of `[1, Alg. 1]`, the `repeat` loop: enlarge the errors by `λ` about their centre
+Lines 5-10 of `[1, Alg. 1]`, the `repeat` loop: enlarge the errors by `λ` about their center
 (Eq. 17), run `linReach` at the enlarged errors (lines 6-8: `Ũ`, Eq. 4's `Rᵈ(τ_k)`, Prop. 2's
 `R(τ_k)`), compute the errors `L` over the joint set (line 9, Cor. 1), and stop when `L ⊆ L̄` or
 `L ⊈ L_max`. Cor. 1 needs the Hessian bounds over `R^z`, so it is an argument: `corollary1`, from

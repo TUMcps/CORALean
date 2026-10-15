@@ -83,8 +83,8 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.QuadMapOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaPointIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ContainsPointIff
-public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreMem
-public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCentreIffOfEqZero
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCenterMem
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCenterIffOfEqZero
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapMixedOuter
 

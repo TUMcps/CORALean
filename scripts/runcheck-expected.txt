@@ -217,7 +217,7 @@ vdpReach | windows=4 x1 range per window: [1.076279, 1.289815] [0.941210, 1.1606
 vdpHessModel | [1.218750, 1.281250] x [-4.580841, -4.084686] | ok
 vdpReachAlg.lin | windows=4 x1 range per window: [1.076975, 1.289096] [0.942606, 1.159155] [0.814130, 1.031757] [0.692406, 0.908174] | ok
 vdpReachAlg.poly2 (one window) | windows=1 x1 range per window: [1.074972, 1.291099] | ok
-vdpCentreReach | windows=4 x1 range per window: [1.076478, 1.290273] [0.940954, 1.162810] [0.811335, 1.037662] [0.688518, 0.916048] | ok
+vdpCenterReach | windows=4 x1 range per window: [1.076478, 1.290273] [0.940954, 1.162810] [0.811335, 1.037662] [0.688518, 0.916048] | ok
 vdpAdaptRun | windows=4 x1 range per window: [1.076279, 1.289815] [0.941211, 1.160618] [0.812092, 1.033910] [0.689793, 0.910946] | ok
 vdpThird | [0.000000, 2.000000, 0.000000; 2.000000, 0.000000, 0.000000; 0.000000, 0.000000, 0.000000] | ok
 vdpLagrange | [0.000000, 0.000000] x [-0.515625*2^-14, 0.515625*2^-14] | ok

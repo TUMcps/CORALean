@@ -9,9 +9,9 @@ public import CORALean.ContSet.Interval.Real.Interval
 # The bounds of one neuron of a star set
 
 CORA's `nnReLULayer/evaluateConZonotopeNeuron` with `options.nn.bound_approx` (its default) bounds
-the neuron `j` over the factor box `[l, u]`: the centre of the row `c_j + G_j α` and its radius
-`Σ |G_jk| (u_k - l_k) / 2`, and `l = centre - radius`, `u = centre + radius`. The centre of the
-box is `(l + u) / 2`, which is what the row's centre is taken at here. CORA's code takes
+the neuron `j` over the factor box `[l, u]`: the center of the row `c_j + G_j α` and its radius
+`Σ |G_jk| (u_k - l_k) / 2`, and `l = center - radius`, `u = center + radius`. The center of the
+box is `(l + u) / 2`, which is what the row's center is taken at here. CORA's code takes
 `c_j + G_j (u - l) / 2` instead, which is the same only where `l = 0`: see
 `StarSet.coraRowBounds`.
 -/

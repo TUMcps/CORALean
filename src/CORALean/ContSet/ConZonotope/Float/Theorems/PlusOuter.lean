@@ -18,7 +18,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.MemSlabNominalIff
 The zonotope's argument with one step added, and that step costs nothing: the
 concatenated coefficients satisfy the padded constraints exactly when each half
 satisfies its own, which is `mem_stackRows_nominal_iff` composed with `blockLeft_append`. Only
-the centre rounds, and its residual is what the box absorbs.
+the center rounds, and its residual is what the box absorbs.
 -/
 
 -- Authors:       Claude Opus 5

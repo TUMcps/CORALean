@@ -33,7 +33,7 @@ abbrev D := Dyadic 53
 /-- `m · 2 ^ e`. -/
 def d (m e : ℤ) : D := ⟨m, e⟩
 
-/-- The unit square's generators, centred at the origin, no rounding error yet. -/
+/-- The unit square's generators, centered at the origin, no rounding error yet. -/
 def square (P : HPolytope D (Vec D 2)) : ConZonotope D (Vec D 2) where
   h := 2
   c := ![d 0 0, d 0 0]

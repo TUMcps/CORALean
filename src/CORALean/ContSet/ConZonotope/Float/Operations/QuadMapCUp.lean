@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 /-!
 # `ConZonotope.quadMapCUp`
 
-The centre of `quadMapCDown` rounded up; the box the stored centre needs is the gap
+The center of `quadMapCDown` rounded up; the box the stored center needs is the gap
 between the two.
 -/
 
@@ -29,7 +29,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The centre of the enclosing zonotope, from above. -/
+/-- The center of the enclosing zonotope, from above. -/
 def ConZonotope.quadMapCUp (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Vec 𝕋 m :=
   fun i => addUp (ConZonotope.quadBilUp (Q i) cZ.c cZ.c)
     (half (sumUp fun s => ConZonotope.quadBilUp (Q i) (cZ.G s) (cZ.G s)))

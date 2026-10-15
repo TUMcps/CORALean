@@ -22,8 +22,8 @@ with checkable regions, and `Instances` makes it `Reach`, its tests run at run t
 initial set's own factors rather than a set around it, so splitting the set splits the error too.
 
 `AbstrReach` is the on-the-fly abstraction loop and `AdaptReach` the adaptively-tuned step on it,
-with `OptDeltat`, `EstimateGain` and `TuneAbstrOrder` its subroutines; `CentreAbstrReach` is the
-earlier paper's same loop at the centre, `PolyReach` the HSCC'13 original it descends from, and
+with `OptDeltat`, `EstimateGain` and `TuneAbstrOrder` its subroutines; `CenterAbstrReach` is the
+earlier paper's same loop at the center, `PolyReach` the HSCC'13 original it descends from, and
 `TuneDeltat` its own tuning of the step.
 
 What CORA obtains from an interval Hessian is asked for as a certificate

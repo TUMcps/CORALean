@@ -15,8 +15,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 `LinParamSys.ConstTrajectory.initReachInputDependence_outer`:
 `initReachInputDependence_outer` for a `'constParam'` run whose matrix is
 `A(p) = A_c + Σ pᵢ A_g⁽ⁱ⁾` and whose input is the constant `u(p) = U_c + Σ pᵢ U_G⁽ⁱ⁾`, in input
-coordinates, at the same `p`. `initReachInputDependence` reads `B` at its centre, so the run's
-`B` is that centre. The run is a run of the canonical form at the state-space input `B u + c`
+coordinates, at the same `p`. `initReachInputDependence` reads `B` at its center, so the run's
+`B` is that center. The run is a run of the canonical form at the state-space input `B u + c`
 (`ConstTrajectory.canonical`), the point system's (`toLinearSys`), so variation of constants
 gives it in closed form, the input integral being the constant's on `[0, t]`.
 -/

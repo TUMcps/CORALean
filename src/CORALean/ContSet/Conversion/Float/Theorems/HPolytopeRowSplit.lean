@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q h : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A row reads a point as the centre's contribution plus the generators'. -/
+/-- A row reads a point as the center's contribution plus the generators'. -/
 theorem HPolytope.rowSplit (M : Mat 𝕋 q n) (G : Mat 𝕋 n h) (c : Vec 𝕋 n) (β : Vec ℝ h)
     (x : Vec ℝ n) (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G k j) * β j) (i : Fin q) :
     (toRealMat M *ᵥ x) i

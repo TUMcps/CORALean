@@ -11,7 +11,7 @@ public import Mathlib.Tactic.Linarith
 # An affine image of an ellipsoid plus a second ellipsoid, at a weight `p`
 
 For positive-definite `Q` and `W` and `p ∈ (0, 1)`: if `x ∈ E(Q, c)` and `w ∈ E(W, 0)`, then
-`M x + u + w` lies in the ellipsoid of centre `M c + u` and shape
+`M x + u + w` lies in the ellipsoid of center `M c + u` and shape
 `N = (1 - p)⁻¹ M Q Mᵀ + p⁻¹ W`, which is positive definite. This is the prediction of CORA's
 ellipsoidal observers `ESO-A` and `ESO-B` (`linearSysDT/priv_observe_ESO_A`, `_B`) at the
 level `1`, `LinearSysDT.observeEsoA` and `LinearSysDT.observeEsoB`.

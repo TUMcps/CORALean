@@ -58,7 +58,7 @@ public import CORALean.ContDynamics.Conform.Theorems.UnrollAffine
 
 The linear model: `mem_reachOut_iff` subtracts the nominal run, `conformant_iff_devSet`
 turns conformance into one inclusion per step, and `conformant_iff_hRep` and
-`conformant_iff_lp` make that inclusion linear in the identified centres and stretch
+`conformant_iff_lp` make that inclusion linear in the identified centers and stretch
 factors, so that every feasible point of the identification programs is conformant;
 `lpCost_eq` and `qpCost_eq` are their objectives. `conformant_of_recording` gives
 conformance at every horizon from one-step residuals.

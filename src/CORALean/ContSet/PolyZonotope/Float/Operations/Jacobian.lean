@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.JacobianGap
 
 CORA's `jacobian(pZ)` for one factor `k`: the polynomial zonotope of the derivative along `k`,
 whose generator `i` is `E k i` times the original and whose exponent of `k` is lowered by one;
-the centre is `0` and the independent block is dropped. The multiples are stored with the lower
+the center is `0` and the independent block is dropped. The multiples are stored with the lower
 rounding and the gap goes into the error box (`jacobianGap`). The original's error box is not part
 of the derivative.
 -/

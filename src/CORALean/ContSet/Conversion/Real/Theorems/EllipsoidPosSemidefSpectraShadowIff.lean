@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_SpectraSh
 
 Exact. In the generator form `x = q + G u`, `‖u‖₂ ≤ 1`, the unit ball is the inequality
 `[[1, uᵀ], [u, I]] ⪰ 0`, written `I + Σᵢ uᵢ Aᵢ ⪰ 0` with `Aᵢ = e₀eᵢ₊₁ᵀ + eᵢ₊₁e₀ᵀ`, and the
-centre and generators are the ellipsoid's own. Its quadratic form is `a² + 2a (u·y) + ‖y‖²`, which
+center and generators are the ellipsoid's own. Its quadratic form is `a² + 2a (u·y) + ‖y‖²`, which
 is nonnegative everywhere iff `‖u‖₂ ≤ 1`. This is not CORA's matrices: CORA's `spectraShadow`
 writes the set as `{x | 1 - (x-q)ᵀ Q⁻¹ (x-q) ≥ 0}` from `chol(inv(Q))`, and by an SVD when `Q` is
 singular, and has no generators; the generator form needs neither, and no degenerate split.

@@ -69,7 +69,7 @@ theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope α) :
   · exact HPolytope.mem_intersection_iff.mpr
       ⟨HPolytope.mem_halfScaled_comap hpar hl0 hd₁ hf₁,
         HPolytope.mem_halfScaled_comap hpar' hm0 hd₂ hf₂⟩
-  -- the value: each block gives back its own weighted sum, the fresh generator the centres
+  -- the value: each block gives back its own weighted sum, the fresh generator the centers
   · have hs₁ : (∑ j, (lam * β₁ j) • cZ₁.G j) = lam • ∑ j, β₁ j • cZ₁.G j := by
       rw [Finset.smul_sum]
       exact Finset.sum_congr rfl fun j _ => mul_smul lam (β₁ j) (cZ₁.G j)

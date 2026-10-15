@@ -15,7 +15,7 @@ The exact layer's `exactPlus` of what the two sets' stored floats denote, plus
 both error boxes, lies in the float `exactPlus`. A point of the exact one is the
 sum of the two nominal points at one common factor value; the float one reads the
 same factors through the same exponent matrix and the same generators, so the
-two points differ by the centre's rounding alone, which `centerResidual` holds.
+two points differ by the center's rounding alone, which `centerResidual` holds.
 
 The error boxes are added rather than threaded through the factors: a box has no
 factors to share, so the sum of two boxes is what any point-wise sum can pick up.
@@ -44,7 +44,7 @@ theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋
         + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct := by -- --- PROOF ---
   intro y hy
   obtain ⟨a, β, ha, hβ, hy⟩ := Real.PolyZonotope.mem_construct_iff.mp hy
-  -- the float point at the same factors and coefficients, off by the centre's rounding
+  -- the float point at the same factors and coefficients, off by the center's rounding
   refine ⟨fun i => toReal ((pZ₁.exactPlus pZ₂ hp).c i)
             + (∑ l, toReal ((pZ₁.exactPlus pZ₂ hp).G l i)
                 * Real.PolyZonotope.monomial (pZ₁.exactPlus pZ₂ hp).E a l)

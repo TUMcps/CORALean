@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 # `innerApprox` is an inner approximation
 
 Every zonotope `innerApprox` returns lies in the polynomial zonotope. Its box part lies in the
-box it was made from, the centre being in the box and the radii no larger than the distances to
+box it was made from, the center being in the box and the radii no larger than the distances to
 the bounds; that box is inside the image of the factor cube under the dependent point map
 (`innerApproxImage_subset_image`); the independent generators are the set's own, and the error
 box holds `0`.
@@ -56,7 +56,7 @@ theorem PolyZonotope.innerApprox_inner (pZ : PolyZonotope (Vec 𝕋 n)) (tol : �
   have he0 : e = 0 := funext fun i => le_antisymm
     (le_of_le_of_eq (he i).2 (toReal_zero (𝕋 := 𝕋)))
     (le_of_eq_of_le (toReal_zero (𝕋 := 𝕋)).symm (he i).1)
-  -- the centre and the radii of the zonotope made from `Y`
+  -- the center and the radii of the zonotope made from `Y`
   set c : Vec 𝕋 n := Interval.center Y
   set r : Vec 𝕋 n := fun i => maximum zero (minimum (subDown (Y.sup i) (c i))
     (subDown (c i) (Y.inf i)))

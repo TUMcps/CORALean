@@ -53,7 +53,7 @@ def LinearSysDT.observePropagationFloat (sys : LinearSysDT 𝕋 n)
     let S' := (((((Zonotope.mtimesIntervalMat (LinearSysDT.errMatFloat sys.A L sys.C) S).plus
       (Zonotope.mtimes sys.B (Zonotope.point (u k)))).plus
       (Zonotope.mtimes L (Zonotope.point (y k)))).plus
-      (Zonotope.mtimes (fun i j => neg (L i j)) V)).plus W)          -- (6)
+      (Zonotope.mtimes (-L) V)).plus W)          -- (6)
     S'.reduce order
 
 end CORALean

@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `Capsule.plusVecCost`
 
-Asserted, not proved: `Operations/PlusVec.lean` shifts the centre, `n` additions;
+Asserted, not proved: `Operations/PlusVec.lean` shifts the center, `n` additions;
 the generator and radius are copied.
 -/
 

@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Linarith
 
 A zonotope is a polytope (`Zonotope.vPolytope_exact`), and the inclusion is strict: the triangle
 with vertices `(0, 0)`, `(1, 0)` and `(0, 1)` is a halfspace description, and no zonotope has it as
-its set. A zonotope is symmetric about its centre `c`, so it contains `2c - p` with every point `p`,
+its set. A zonotope is symmetric about its center `c`, so it contains `2c - p` with every point `p`,
 and the reflections of the two vertices `(1, 0)` and `(0, 1)` already put `c` beyond the hypotenuse.
 
 This is the arrow from zonotopes to polytopes of [1, Fig. 1 (Zonotopes → Polytopes)].
@@ -50,7 +50,7 @@ theorem HPolytope.exists_not_zonotope :
             Ae := Fin.elim0
             be := Fin.elim0 }, ?_⟩
   rintro ⟨Z, hZ⟩
-  -- a zonotope is symmetric about its centre
+  -- a zonotope is symmetric about its center
   have hsym : ∀ x ∈ Z.construct, (Z.c + Z.c - x : Vec ℝ 2) ∈ Z.construct := by
     rintro x ⟨β, hβ, rfl⟩
     refine ⟨fun j => -β j, fun j => by simpa using hβ j, ?_⟩
@@ -70,7 +70,7 @@ theorem HPolytope.exists_not_zonotope :
       refine ⟨fun i => ?_, fun i => i.elim0⟩
       fin_cases i <;> simp [p, h0, h1, h2]
   have v0 : (fun _ => 0 : Vec ℝ 2) ∈ Z.construct := (hmem _).mpr (by simp)
-  -- the vertices lie in the triangle, and so do their reflections about the centre
+  -- the vertices lie in the triangle, and so do their reflections about the center
   have v1 : (fun i : Fin 2 => if i = 0 then (1 : ℝ) else 0) ∈ Z.construct :=
     (hmem _).mpr (by simp)
   have v2 : (fun i : Fin 2 => if i = 0 then (0 : ℝ) else 1) ∈ Z.construct :=

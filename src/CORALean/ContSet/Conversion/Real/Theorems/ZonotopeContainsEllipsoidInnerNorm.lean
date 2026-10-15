@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Thm. 3]: a ball of radius `√l` around the centre of `F⁻¹ Z` puts `E(l F Fᵀ, z̄)` in
+/-- [1, Thm. 3]: a ball of radius `√l` around the center of `F⁻¹ Z` puts `E(l F Fᵀ, z̄)` in
 `Z`; `l ≤ ⌊F⁻¹ Z⌋²` is what that ball says. -/
 theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (l : ℝ)
     (hF : IsUnit F.det)

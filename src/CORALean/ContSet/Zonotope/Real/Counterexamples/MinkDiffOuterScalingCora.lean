@@ -13,15 +13,15 @@ public import CORALean.ContSet.ContSet.ContSet
 CORA's `@zonotope/minkDiff.m` with method `'outer:scaling'` and an interval subtrahend `I`: the
 subtrahend is turned into `zonotope(I)` (l. 104), and for a full-dimensional minuend outside
 `n = 2` (where l. 120 forces `'exact'`) l. 148-150 call `aux_minkDiffOuterInterval` (l. 311-326).
-That scales the minuend about its own centre by `1 - radSub ./ radMin` through `enlarge`
-(`@contSet/enlarge.m`: `S - c`, `.* factor`, `+ c`) and never subtracts the subtrahend's centre.
+That scales the minuend about its own center by `1 - radSub ./ radMin` through `enlarge`
+(`@contSet/enlarge.m`: `S - c`, `.* factor`, `+ c`) and never subtracts the subtrahend's center.
 One `let` per line of the source; the `representsa_` guard (l. 314) only throws.
 
 # CORA's `minkDiff(Z, I, 'outer:scaling')` is not an outer approximation
 
 For the unit cube `Z = zonotope(zeros(3,1), eye(3))` and `I = interval(zeros(3,1), ones(3,1))`,
 `Z ⊖ I = [-1, 0]³`. `'outer:scaling'` (`Zonotope.minkDiffOuterScalingCora`) scales `Z` by
-`1 - 0.5/1 = 0.5` about its centre `0` and returns `[-0.5, 0.5]³`, ignoring `I`'s centre `0.5`:
+`1 - 0.5/1 = 0.5` about its center `0` and returns `[-0.5, 0.5]³`, ignoring `I`'s center `0.5`:
 the point `(-1, -1, -1)` of the difference is missing. `n = 3`, as at `n = 2` CORA forces
 `'exact'`; `Z` is full-dimensional and `I` has generators, so no earlier branch returns.
 
@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- [1]'s `'outer:scaling'` at an interval subtrahend: the minuend scaled coordinatewise about its
-own centre by `1 - radSub ./ radMin`. -/
+own center by `1 - radSub ./ radMin`. -/
 noncomputable def Zonotope.minkDiffOuterScalingCora (minuend : Zonotope (Vec ℝ n))
     (I : Interval (Vec ℝ n)) : Zonotope (Vec ℝ n) :=
   -- l. 104: `subtrahend = zonotope(subtrahend)`

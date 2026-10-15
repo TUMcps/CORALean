@@ -16,7 +16,7 @@ public import Mathlib.Analysis.Convex.Combination
 The exact layer's closed form is the convex hull of the read-back operand's nominal set
 (`convHullSingle_exact`, with Carathéodory at `a = n + 1` or more), and the hull of the nominal
 set plus a box is the hull of the nominal set plus the box, a box being convex. A point of the
-exact form lies in the stored one at the same factors, up to the centre `a c`, which is stored from
+exact form lies in the stored one at the same factors, up to the center `a c`, which is stored from
 below: its shortfall is the residual the stored box holds.
 
 No independent generators, as over ℝ, and at least `n + 1` copies.
@@ -52,7 +52,7 @@ theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G
         Fin.append_right, Real.ConPolyZono.repVec]
 
 /-- The stored nominal point at factors the exact form satisfies, which the stored form does
-too, moved by the shortfall of the centre. -/
+too, moved by the shortfall of the center. -/
 theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ) (hv : ∀ k, |v k| ≤ 1)
     (hsat : (Real.ConPolyZono.convHullSingle a (nominal cPZ)).satisfies v) :
@@ -113,7 +113,7 @@ theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 
     Finset.sum_congr rfl fun l _ => by
       rw [mul_comm]
       exact congrArg _ (ConPolyZono.aux_toReal_convHullG a cPZ.c cPZ.G l i)
-  -- the centre `a c` against its stored shortfall
+  -- the center `a c` against its stored shortfall
   have hc : (cPZ.convHullSingle a).c i = nsmulDown a (cPZ.c i) := rfl
   rw [hc, hsum]
   simp only [toRealVec] at hri

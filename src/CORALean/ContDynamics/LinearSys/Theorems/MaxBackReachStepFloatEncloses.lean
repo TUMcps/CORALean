@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
 public import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
-public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCentreSubset
+public import CORALean.ContSet.ConZonotope.Float.Theorems.LinCombSameCenterSubset
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesNominalErr
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
@@ -229,7 +229,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     have hne₂ : (nominalSet C₂).Nonempty :=
       ConZonotope.zeroFeasible_nonempty (Bool.and_eq_true_iff.mp hc).2
     obtain ⟨y₁, hy₁, y₂, hy₂, lam, ⟨hl0, hl1⟩, hzeq⟩ :=
-      ConZonotope.linCombSameCentre_subset C₁ C₂ rfl hne₁ hne₂ hz
+      ConZonotope.linCombSameCenter_subset C₁ C₂ rfl hne₁ hne₂ hz
     -- its points are within `ζ` of the origin
     have hζ₁ : ∀ k, |y₁ k| ≤ toReal (ζ k) := fun k =>
       HPolytope.abs_nominal_conZonotopeInnerOf_le _ Bx.zonotope hy₁ k
@@ -284,7 +284,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
       linarith [hk.2]
     have hdle : ∀ i, |d i| ≤ toReal (addUp (dotUp (fun k => subUp (Φn.sup i k) (Φn.inf i k)) ζ)
         (ConZonotope.mtimesNominalErr Φn.inf Hs i)) := fun i => by
-      -- the hull and its shape have the same centre and generators, which are all the error reads
+      -- the hull and its shape have the same center and generators, which are all the error reads
       have hshape : ConZonotope.mtimesNominalErr Φn.inf H
           = ConZonotope.mtimesNominalErr Φn.inf Hs := by
         have hc : H.c = Hs.c := rfl
@@ -318,7 +318,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
         exact le_trans (abs_add_le _ _) (by linarith)
       exact Interval.abs_mulVec_le_magnitudeMat hΨ hdd i
     -- each converted set, moved by that distance, stays in the exact one
-    have hδmem : δ ∈ (Interval.mk (fun i => neg (ρe i)) ρe).construct := fun i => by
+    have hδmem : δ ∈ (Interval.mk (-ρe) ρe).construct := fun i => by
       have h := abs_le.mp (hδle i)
       show toReal (neg (ρe i)) ≤ δ i ∧ δ i ≤ toReal (ρe i)
       rw [toReal_neg]

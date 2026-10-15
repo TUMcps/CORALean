@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 # Matrix zonotopes: a uniform-width box
 
 `expMatZonoRemainder`: [1, Sec. 3.3.2]'s tail, a box of uniform width `b` as a matrix
-zonotope: centre zero, and one generator per entry carrying `b` there and nothing else.
+zonotope: center zero, and one generator per entry carrying `b` there and nothing else.
 
 ## References
 
@@ -29,7 +29,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- A box of uniform width `b` as a matrix zonotope: centre zero, and one
+/-- A box of uniform width `b` as a matrix zonotope: center zero, and one
 generator per entry carrying `b` there and nothing anywhere else. -/
 noncomputable def MatExp.expMatZonoRemainder (m : ℕ) (b : ℝ) : Zonotope (Mat ℝ m m) where
   h := m * m

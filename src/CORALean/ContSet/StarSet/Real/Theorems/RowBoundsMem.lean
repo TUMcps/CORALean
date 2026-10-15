@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 /-!
 # The bounds of a neuron hold
 
-Every point of the star set has the neuron's value between the two bounds: the row is its centre
+Every point of the star set has the neuron's value between the two bounds: the row is its center
 plus `Σ G_jk (α_k - mid_k)`, and each factor is within its radius of the middle of its box.
 -/
 
@@ -40,11 +40,11 @@ theorem StarSet.rowBounds_mem {n : ℕ} (s : StarSet n) (j : Fin n) {x : Vec ℝ
     have h2 : 0 ≤ (s.u k - s.l k) / 2 := by linarith [h1.1, h1.2]
     rw [abs_of_nonneg h2, abs_le]
     constructor <;> linarith [h1.1, h1.2]
-  -- so the deviation of the row from its centre is within the radius
+  -- so the deviation of the row from its center is within the radius
   have hsum : |∑ k, s.G j k * (α k - (s.l k + s.u k) / 2)|
       ≤ ∑ k, |s.G j k * ((s.u k - s.l k) / 2)| :=
     (Finset.abs_sum_le_sum_abs _ _).trans (Finset.sum_le_sum fun k _ => hterm k)
-  -- the row is its centre plus that deviation
+  -- the row is its center plus that deviation
   have hxj : x j = (s.c j + ∑ k, s.G j k * ((s.l k + s.u k) / 2))
       + ∑ k, s.G j k * (α k - (s.l k + s.u k) / 2) := by
     rw [hxα j]

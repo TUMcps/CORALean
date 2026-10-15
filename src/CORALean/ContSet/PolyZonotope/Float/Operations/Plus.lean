@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Plus
 # `PolyZonotope.plus`
 
 All three generator blocks concatenate exactly and the exponent matrices go side
-by side block-diagonally over ℕ, so only the centre rounds and its `residual`
+by side block-diagonally over ℕ, so only the center rounds and its `residual`
 goes into the box. Both counts stay where they are over ℝ.
 
 The exponent matrix is the exact layer's `plusE`, reused rather than restated:

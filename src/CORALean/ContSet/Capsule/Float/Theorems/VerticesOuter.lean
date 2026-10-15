@@ -49,7 +49,7 @@ theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toRe
     have ht : C.representsa_point = true := by simpa using hne
     exact hnp ((Real.Capsule.representsa_point_iff (by norm_num) C.nominal).mp
       (Capsule.representsa_point_sound (by norm_num) ht))
-  -- the angle `θ`, `π/2`, the step and the two centres, in their boxes
+  -- the angle `θ`, `π/2`, the step and the two centers, in their boxes
   have hθ : (fun _ => Complex.arg ⟨toReal (C.g 0), toReal (C.g 1)⟩ : Vec ℝ 1) ∈
       (⟨fun _ => Interval.atan2Lo p k (C.g 0) (C.g 1),
         fun _ => Interval.atan2Hi p k (C.g 0) (C.g 1)⟩ : Interval (Vec 𝕋 1)).construct :=
@@ -63,7 +63,7 @@ theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toRe
       rwa [toReal_zero, Real.arccos_zero] at this
     · have := le_acosUp p k (zero : 𝕋)
       rwa [toReal_zero, Real.arccos_zero] at this
-  -- the step and the two centres
+  -- the step and the two centers
   have hstep := Capsule.piStep_mem (𝕋 := 𝕋) p k
   have hc₁ : (C.nominal.c + C.nominal.g : Vec ℝ 2) ∈
       (⟨fun j => addDown (C.c j) (C.g j), fun j => addUp (C.c j) (C.g j)⟩ :

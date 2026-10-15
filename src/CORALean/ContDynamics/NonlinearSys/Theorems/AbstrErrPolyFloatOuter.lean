@@ -58,9 +58,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- A matrix's negation, stored entrywise, is a point interval at the negated real one. -/
 theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) :
     -Scalar.toRealMat A ∈
-      (Interval.point (α := Mat 𝕋 k l) (fun i j => neg (A i j))).construct := by -- --- PROOF ---
-  have h := Interval.mem_point (α := Mat 𝕋 k l) (fun i j => neg (A i j))
-  have he : (RealImage.realImage (α := Mat 𝕋 k l) (fun i j => neg (A i j)) : Mat ℝ k l)
+      (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
+  have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
+  have he : (RealImage.realImage (α := Mat 𝕋 k l) (-A) : Mat ℝ k l)
       = -Scalar.toRealMat A := by
     funext i j
     exact toReal_neg (A i j)
@@ -70,10 +70,10 @@ theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) :
 theorem aux_polyErr_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
     (hy : y ∈ Y.construct) :
     y - toRealVec ys ∈
-      (Interval.plus Y (Interval.point fun i => neg (ys i))).construct := by -- --- PROOF ---
-  have hn : -toRealVec ys ∈ (Interval.point (α := Vec 𝕋 k) (fun i => neg (ys i))).construct := by
-    have h := Interval.mem_point (α := Vec 𝕋 k) (fun i => neg (ys i))
-    rwa [show (RealImage.realImage (α := Vec 𝕋 k) (fun i => neg (ys i)) : Vec ℝ k)
+      (Interval.plus Y (Interval.point (-ys))).construct := by -- --- PROOF ---
+  have hn : -toRealVec ys ∈ (Interval.point (α := Vec 𝕋 k) (-ys)).construct := by
+    have h := Interval.mem_point (α := Vec 𝕋 k) (-ys)
+    rwa [show (RealImage.realImage (α := Vec 𝕋 k) (-ys) : Vec ℝ k)
       = -toRealVec ys from funext fun i => toReal_neg (ys i)] at h
   have hd := Interval.plus_outer Y _ (Set.add_mem_add hy hn)
   rwa [← sub_eq_add_neg] at hd
@@ -84,8 +84,8 @@ theorem aux_polyErr_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Inte
     (hy : y ∈ Y.construct) :
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
-        (fun i j => neg (A i j)))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
-          (fun i => neg (ys i))))).construct := by -- --- PROOF ---
+        (-A))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
+          (-ys)))).construct := by -- --- PROOF ---
   have hM := Interval.matPlus_outer IJ _ hJ (aux_polyErr_neg_mat A)
   rw [← sub_eq_add_neg] at hM
   exact Interval.mtimesIntervalMat_outer _ _
@@ -146,7 +146,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.abstrErrPolyFloat_outer
         + Scalar.toRealMat A *ᵥ (x - toRealVec xs) + Scalar.toRealMat B *ᵥ (u - toRealVec us))
       ∈ (fm.abstrErrPolyFloat A B xs us X U Rdelta Rdiff).construct := by -- --- PROOF ---
   obtain ⟨Jx, hJx, Ju, hJu, H, hH, htay⟩ := h.taylor_mem X U xs us hxs hus x hx u hu
-  set Hs := fun i => (fm.hess (Interval.point xs) (Interval.point us) i).centreMat with hHs
+  set Hs := fun i => (fm.hess (Interval.point xs) (Interval.point us) i).centerMat with hHs
   set Q : Fin n → Mat 𝕋 n n := fun i j k => half (Hs i (Fin.castAdd m j) (Fin.castAdd m k))
   set dz := Fin.append (x - toRealVec xs) (u - toRealVec us)
   set z₀ : Vec ℝ (n + m) := Fin.append (x₀ - toRealVec xs) 0
@@ -201,7 +201,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.abstrErrPolyFloat_outer
     aux_polyErr_abs_append (aux_polyErr_abs_le (Zonotope.interval_contains Rdelta hx₀))
       fun _ => by rw [toReal_zero]; simp
   have hδz : ∀ j, |δz j| ≤ toReal ((Fin.append Rdiff.interval.normMag
-      (Interval.plus U (Interval.point fun i => neg (us i))).normMag : Vec 𝕋 (n + m)) j) :=
+      (Interval.plus U (Interval.point (-us))).normMag : Vec 𝕋 (n + m)) j) :=
     aux_polyErr_abs_append (aux_polyErr_abs_le (Zonotope.interval_contains Rdiff hδ))
       (aux_polyErr_abs_le (aux_polyErr_sub_mem us hu))
   have hHabs : ∀ j k, |H i j k| ≤ toReal (maximum (absolute ((fm.hess X U i).inf j k))

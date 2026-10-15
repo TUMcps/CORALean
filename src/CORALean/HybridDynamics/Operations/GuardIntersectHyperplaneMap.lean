@@ -69,8 +69,8 @@ noncomputable def Location.guardIntersectHyperplaneMap (ℓ : Location 𝒵 G L 
   let th : ℝ := tmax / 2                                           -- th = tmax/2
   let b : Vec ℝ n := GuardMap.sdcInput A U.c th η R₀.c             -- b = aux_constantFlow
   let R0red := R₀.reduceGirard guardOrder                          -- R0red = reduce(R0,..)
-  let R0red_ := R0red.recentre                                     -- R0red_ = R0red - c
-  let R0_ := R₀.recentre                                           -- R0_ = R0 - center(R0)
+  let R0red_ := R0red.recenter                                     -- R0red_ = R0red - c
+  let R0_ := R₀.recenter                                           -- R0_ = R0 - center(R0)
   let err := GuardMap.abstractionError A U R0red th tmax η         -- err = aux_abstractionError
   -- `aux_taylorSeriesParam(guard,A,b,R0red)`
   let x0 := R0red.c                                                -- x0 = center(R0)

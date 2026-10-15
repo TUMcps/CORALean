@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemIntervalInputRemai
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
 public import CORALean.ContSet.Zonotope.Real.Instances
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
@@ -167,7 +167,7 @@ theorem LinearSys.inputSolutionFloat_subset_add_box (sys : LinearSys 𝕋 n) {r 
   have hRem : (0 : Vec ℝ n) ∈ (Real.Zonotope.mtimesIntervalMat (Real.MatExp.inputRemainder
       (Scalar.toRealMat sys.A) (toReal r) η) (nominal U)).construct := by
     have h := Real.Zonotope.mtimesIntervalMat_outer _ (nominal U)
-      (Set.mem_biUnion hR0 ⟨_, Real.Zonotope.centre_mem_construct (nominal U), rfl⟩)
+      (Set.mem_biUnion hR0 ⟨_, Real.Zonotope.center_mem_construct (nominal U), rfl⟩)
     simpa only [Matrix.zero_mulVec] using h
   -- the float sum, then the Taylor sum and the remainder product, each against its exact part
   intro x hx

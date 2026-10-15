@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CubIdx
 # `Zonotope.cubMapGUp`
 
 The generators of `Zonotope.cubMap` on the stored floats, rounded up, indexed by all ordered triples
-(`Real.Zonotope.cubIdx`): `cubFoldUp` at the sorted triples `k ≤ j ≤ c` other than the centre's
+(`Real.Zonotope.cubIdx`): `cubFoldUp` at the sorted triples `k ≤ j ≤ c` other than the center's
 `(0, 0, 0)`, zero elsewhere, halved where it is a pure square `(0, j, j)`.
 -/
 

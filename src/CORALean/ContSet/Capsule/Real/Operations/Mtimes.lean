@@ -8,7 +8,7 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # `Capsule.mtimes`
 
-CORA's `@capsule/mtimes.m` maps the centre and the generator, `M c` and `M g`, and rescales the
+CORA's `@capsule/mtimes.m` maps the center and the generator, `M c` and `M g`, and rescales the
 radius. The image of a Euclidean ball under `M` is an ellipsoid, not a ball, so the result is an
 enclosure, and the radius has to be multiplied by a bound on the operator norm of `M` (its largest
 singular value). Here the bound is the Frobenius norm, `sqrt (∑ᵢⱼ Mᵢⱼ²)`, which is at least the
@@ -34,7 +34,7 @@ variable {m n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Centre and generator multiplied by `M`, the radius by the Frobenius norm of `M`, an upper
+/-- Center and generator multiplied by `M`, the radius by the Frobenius norm of `M`, an upper
 bound of its operator norm. -/
 noncomputable def Capsule.mtimes (M : Mat ℝ m n) (C : Capsule n) : Capsule m :=
   let σ := Real.sqrt (∑ i, ∑ j, M i j ^ 2)

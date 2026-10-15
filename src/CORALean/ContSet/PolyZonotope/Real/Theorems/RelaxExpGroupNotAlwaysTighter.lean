@@ -132,7 +132,7 @@ theorem aux_notTighter_chainGI1 : aux_notTighter_chain.GI (1 : Fin 2) = 0 := by 
         (aux_notTighter_part₂.right 0) = 0
   rw [aux_notTighter_mergedG, smul_zero]
 
-/-- Everything the pairwise route encloses is the centre: both its generators
+/-- Everything the pairwise route encloses is the center: both its generators
 are zero. -/
 theorem aux_notTighter_chain_eq_zero {x : ℝ} (hx : x ∈ aux_notTighter_chain.construct) :
     x = 0 := by -- --- PROOF ---
@@ -170,7 +170,7 @@ theorem PolyZonotope.relaxExpGroup_not_always_tighter :
       ((pZ.relaxExpMulti part).relaxExpMulti part₂).construct
         ⊂ (pZ.relaxExpGroup part 0).construct := by -- --- PROOF ---
   refine ⟨aux_notTighter_pZ, aux_notTighter_part, aux_notTighter_part₂, ?_, ?_⟩
-  · -- the pairwise route encloses the centre alone, which the group route holds too
+  · -- the pairwise route encloses the center alone, which the group route holds too
     intro x hx
     rw [aux_notTighter_chain_eq_zero hx]
     have h0 := aux_notTighter_mem_group (s := 0) (u := 0) (by norm_num) (by norm_num)

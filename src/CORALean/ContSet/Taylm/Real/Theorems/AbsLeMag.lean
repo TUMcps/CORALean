@@ -33,7 +33,7 @@ theorem Taylm.abs_le_mag (T : Taylm n) {ξ : ℝ}
   have h4 := le_max_right |T.constCoef| (max |T.bounds.inf| |T.bounds.sup|)
   rw [abs_le]
   constructor
-  · -- the lower end of the hull is the centre or the range's bottom
+  · -- the lower end of the hull is the center or the range's bottom
     have := hξ.1
     rcases min_choice T.constCoef T.bounds.inf with h | h <;> rw [h] at this
     · linarith [neg_abs_le T.constCoef]

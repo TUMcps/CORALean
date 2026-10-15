@@ -28,7 +28,7 @@ The two pieces want different sets: `F̃` multiplies a set holding the constant
 alone, the propagated part one holding the segment from the origin to it, since
 `M` applied to that segment is the range of `(t/r)·M ũ`.
 
-The split itself is a hypothesis — `ContSet` cannot name a centre — so which `c`
+The split itself is a hypothesis — `ContSet` cannot name a center — so which `c`
 and which sets is the representation's business.
 -/
 
@@ -104,7 +104,7 @@ theorem LinearSys.CanonicalTrajectory.inputSolution_timeInterval_outer_split
     (hRbdd₀ : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U₀)))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    -- the propagated constant, its interpolation error, and the recentred set
+    -- the propagated constant, its interpolation error, and the recentered set
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ construct (Plus.plus
           (Plus.plus
@@ -149,7 +149,7 @@ theorem LinearSys.CanonicalTrajectory.inputSolution_timeInterval_outer_split
     · exact aux_mtimes_mem (hcS _ ⟨hs0, hs1⟩)
     · exact aux_mtimesIM_mem
         (MatExp.expIntegralDiff_mem_constCorrectionMatrix A hr η hε ht0 htr) hcP
-  · -- the centred part: Prop. 3.3, unchanged
+  · -- the centered part: Prop. 3.3, unchanged
     exact sys.inputReach_subset_inputSolution hr η hε hconv₀ hclosed₀ hbdd₀
       hRconv₀ hRclosed₀ hRbdd₀
       (sys.inputReach_mono hbdd₀ h0₀ ht0 htr ⟨fun σ => u σ - c, hmem₀, hmeas₀, rfl⟩)

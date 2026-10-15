@@ -37,7 +37,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The box `timePointStepError` bounds a point of: its radius times each unit
-vector, centred at the origin. -/
+vector, centered at the origin. -/
 noncomputable def LinearSys.timePointStepErrorBox (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ)
     (U : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ n) :=
   ⟨n, 0, Matrix.diagonal fun _ => sys.timePointStepError r η U⟩

@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneL
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubOneSubLeSqMulExp
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Operations.Cube
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.CubeExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemLinCombMtimesIff
@@ -89,7 +89,7 @@ theorem LinearSys.exists_mem_iUnion_reachSet_dist_le (sys : LinearSys 𝕋 n)
   have hex := Real.add_one_le_exp x
   have hα0 : 0 ≤ Real.exp x - 1 - x := by linarith
   have hβ0 : 0 ≤ (Real.exp x - 1) / a * μ := mul_nonneg (div_nonneg (by linarith) hA.le) hμ
-  have hs0 : 0 ≤ s := (norm_nonneg Z.c).trans (hs _ (Zonotope.centre_mem_construct Z))
+  have hs0 : 0 ≤ s := (norm_nonneg Z.c).trans (hs _ (Zonotope.center_mem_construct Z))
   -- `q = p + w`, `p` split at its coefficients
   rw [← Zonotope.plus_exact, Zonotope.cube_exact n (add_nonneg (mul_nonneg hα0 hs0) hβ0)] at hq
   obtain ⟨p, hp, w, hw, rfl⟩ := hq

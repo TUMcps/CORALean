@@ -81,7 +81,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
   have ltrajC : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).CanonicalClassicalTrajectory (S := 𝒮)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
-      (R ⊞ (⟨0, fun i => neg (xs i), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
+      (R ⊞ (⟨0, (-xs), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))).construct
       ((fun u => Scalar.toRealMat (LinearSys.canonicalFloat A).B *ᵥ u +
         Scalar.toRealVec (LinearSys.canonicalFloat A).c) '' V.construct)
@@ -89,11 +89,10 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
       (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) := by
     refine ⟨?_, fun t ht => ?_, fun t ht => ?_⟩
     -- the start, `R - x✱`
-    · have hneg : toRealVec (fun i => neg (xs i)) = -toRealVec xs := by
-        funext i; exact toReal_neg (xs i)
-      have hp := aux_oneStep_mem_pt (fun i => neg (xs i))
+    · have hneg : toRealVec (-xs) = -toRealVec xs := toRealVec_neg _
+      have hp := aux_oneStep_mem_pt (-xs)
       rw [hneg] at hp
-      have := Plus.plus_outer R (⟨0, fun i => neg (xs i), fun j => j.elim0,
+      have := Plus.plus_outer R (⟨0, (-xs), fun j => j.elim0,
         ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
     -- the input, through `B = I`, `c = 0`

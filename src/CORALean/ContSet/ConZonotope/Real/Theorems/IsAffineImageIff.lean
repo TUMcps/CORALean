@@ -20,7 +20,7 @@ here under other names: `construct_eq_image` reads a constrained zonotope this
 way with `X` its own generator map and `P` its `domain`; `HPolytope.conZonotope`
 is `[1]`'s "Theorem 1 of Scott et al." the other way, an H-Rep polytope as a
 constrained zonotope, composed here with `map` for the linear part and a
-centre shift for the rest. `P` bounded (a `SupportBound` pair per coordinate)
+center shift for the rest. `P` bounded (a `SupportBound` pair per coordinate)
 is `[1]`'s own assumption made explicit: its "polytope" is bounded, while an
 H-Rep `P` here need not be. Non-emptiness is not needed — the iff holds at `∅`
 too, which an infeasible constrained zonotope denotes.
@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- Shifting a constrained zonotope's centre shifts its construct by the same
+/-- Shifting a constrained zonotope's center shifts its construct by the same
 amount — the translation half of an affine image. -/
 theorem ConZonotope.aux_construct_shift (cZ : ConZonotope (Vec ℝ n)) (v : Vec ℝ n) :
     ({ cZ with c := v + cZ.c } : ConZonotope (Vec ℝ n)).construct

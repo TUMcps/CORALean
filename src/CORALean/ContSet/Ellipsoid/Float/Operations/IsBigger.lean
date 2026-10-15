@@ -8,7 +8,7 @@ public import CORALean.Global.Float.EuclideanNorm
 /-!
 # `Ellipsoid.isBigger`, over a floating-point scalar
 
-CORA's `@ellipsoid/isBigger` (`E₂` fits into `E₁` up to the centres) compares the shape matrices
+CORA's `@ellipsoid/isBigger` (`E₂` fits into `E₁` up to the centers) compares the shape matrices
 by a simultaneous diagonalisation, which rounding cannot decide. A sound test instead checks a
 caller-proposed factor `T` with `G₂ ≈ G₁ T`: its Frobenius norm at most `1` (so `T u` stays in
 the unit ball), and the residual `G₂ - G₁ T`, bracketed by directed roundings, together with

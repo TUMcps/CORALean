@@ -64,7 +64,7 @@ theorem Zonotope.underS_inter_hyperplane_iff (Z : Zonotope (Vec ℝ n)) (s : Fin
   set σ := ∑ k, |Z.G k ⬝ᵥ s j| with hσ
   set t := (fₑ - Z.c ⬝ᵥ s j) / σ
   by_cases h0 : σ = 0
-  · -- no generator moves `s_j·x`: the centre is on the guard
+  · -- no generator moves `s_j·x`: the center is on the guard
     refine ⟨Z.c, ⟨0, by simp, by simp⟩, by linarith⟩
   · -- the point `u + t g_j` with `|t| ≤ 1`
     have hσpos : 0 < σ := lt_of_le_of_ne (Finset.sum_nonneg fun k _ => abs_nonneg _) (Ne.symm h0)

@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # `ConZonotope.mtimes` over-approximates the image under a linear map
 
 `InflatedContSet.map_subset` splits this into the nominal part and the box, as for
-`Zonotope.mtimes_outer`, whose regrouping lemma is stated again here for the stored centre and
+`Zonotope.mtimes_outer`, whose regrouping lemma is stated again here for the stored center and
 generators. The constraint is on the coefficients, which the stored generators keep, so the
 witness is the same coefficient family and its membership in `P` is carried over unchanged.
 -/
@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The exact image, regrouped so the centre and each generator appear once. -/
+/-- The exact image, regrouped so the center and each generator appear once. -/
 theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     (β : Vec ℝ cZ.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (cZ.c k) + ∑ j, toReal (cZ.G j k) * β j) (i : Fin m) :
@@ -79,7 +79,7 @@ theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋
     change _ ≤ toReal (subUp (mulVecUp M (cZ.G j) i) (mulVecDown M (cZ.G j) i))
     rw [abs_le]
     exact ⟨by linarith, by linarith⟩
-  -- the stored centre and generators at the same coefficients, and the box holds the rest
+  -- the stored center and generators at the same coefficients, and the box holds the rest
   refine ⟨fun i => toReal ((ConZonotope.mtimes M cZ).c i)
             + ∑ j : Fin cZ.h, toReal ((ConZonotope.mtimes M cZ).G j i) * β j,
           ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ, hP, fun _ => rfl⟩,

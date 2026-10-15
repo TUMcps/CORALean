@@ -7,7 +7,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 /-!
 # `Interval.center_sub_radius`
 
-The centre minus the half-width is the lower bound: the split `center ± radius` gives the box back.
+The center minus the half-width is the lower bound: the split `center ± radius` gives the box back.
 
 [1, Sec. 2] writes an interval as `mid([x]) ⊕ rad([x]) ⊗ [-1, 1]`; this is its lower end.
 

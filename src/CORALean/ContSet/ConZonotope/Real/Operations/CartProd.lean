@@ -8,7 +8,7 @@ public import Mathlib.Algebra.Module.Prod
 /-!
 # `ConZonotope.cartProd`
 
-CORA's `@conZonotope/cartProd_`: centres pair, generators are block-diagonal, and the
+CORA's `@conZonotope/cartProd_`: centers pair, generators are block-diagonal, and the
 constraints stack block-diagonally. As for `plus`, each half of the concatenated coefficient
 vector answers only to its own polytope, so the constraints are `comap` and `intersection`;
 every generator embeds into the product ambient type at zero in the other coordinate.

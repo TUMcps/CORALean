@@ -54,10 +54,10 @@ theorem HPolytope.excludesPoint_sound (P : HPolytope 𝕋 (Vec 𝕋 n)) (x : Vec
     linarith
   · -- an equality row, below its lower bound
     have h1 := toReal_lt_of_ltStrict hi
-    have h2 := dotDown_le (fun j => neg (P.Ae i j)) x
+    have h2 := dotDown_le (-(P.Ae i)) x
     have h3 := (hAe i).2
     rw [hrow] at h3
-    simp only [toReal_neg, neg_mul, Finset.sum_neg_distrib] at h2
+    simp only [Pi.neg_apply, toReal_neg', neg_mul, Finset.sum_neg_distrib] at h2
     linarith
 
 end CORALean.Float

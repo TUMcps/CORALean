@@ -5,7 +5,7 @@ public import CORALean.NN.Graph.Operations.Ball
 @[expose] public section
 
 /-!
-# A node is its own centre
+# A node is its own center
 
 Induction on the radius: at `0` the ball is `{v}` outright, and at a successor
 the `i = j` disjunct lets the base case step through unchanged, `v` reaching

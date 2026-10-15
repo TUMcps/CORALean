@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `Alg. 1` lines 5-10 in floats: one iteration of the main loop
 
-`tunedStep` computed in `𝕋`, with `V` split `ũ ⊕ Ũ` at its stored centre:
+`tunedStep` computed in `𝕋`, with `V` split `ũ ⊕ Ũ` at its stored center:
 `Alg. 2` picks `Δt_i` and `Φ_prop,i`, eq. (2) carries the solutions from
 `[0,Δt_i]` to `[t_i,t_{i+1}]` by `[e^{At_i}]`, `Alg. 3` reduces the input's
 accumulated share, and `R([t_i,t_{i+1}])` is their sum. What the tuning picks
@@ -54,8 +54,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (t₀ tf : ℚ)
     (options : LinearSys.AdaptiveOptions 𝕋) (s : LinearSys.AdaptiveState 𝕋 n) :
     Option (LinearSys.AdaptiveStepInfo 𝕋 n × LinearSys.AdaptiveState 𝕋 n) := do
-  let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored centre
-  let Ũ := Recentre.recentre V                                      -- Ũ = V - ũ, holding 0
+  let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored center
+  let Ũ := Recenter.recenter V                                      -- Ũ = V - ũ, holding 0
   let seg := LinComb.linComb (Interval.point fun _ => zero).zonotope ũ    -- [0, ũ]
   let ηe := max options.ηmax 2                                      -- [e^{At_i}]'s order
   let sq ← sys.squaringsFloat s.Δt s.tLo s.tHi ηe                   -- t_i / 2^sq within Δt_{i-1}

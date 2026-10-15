@@ -27,7 +27,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `conZonotope.empty(n)`: the centre `0`, no generators, and `HPolytope.emptySet` as
+/-- `conZonotope.empty(n)`: the center `0`, no generators, and `HPolytope.emptySet` as
 constraint. -/
 def ConZonotope.empty (n : ℕ) : ConZonotope (Vec ℝ n) :=
   ⟨0, 0, Fin.elim0, HPolytope.emptySet _⟩

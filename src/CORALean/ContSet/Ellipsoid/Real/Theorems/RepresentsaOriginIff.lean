@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaPointIff
 /-!
 # `Ellipsoid.representsa_origin_iff`
 
-The origin is the point whose centre is `0`: `{q} = {0}` iff `q = 0`.
+The origin is the point whose center is `0`: `{q} = {0}` iff `q = 0`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -31,7 +31,7 @@ theorem Ellipsoid.representsa_origin_iff (E : Ellipsoid n) :
   constructor
   · intro h
     have hc : E.c = 0 := by
-      have := Ellipsoid.centre_mem_construct E
+      have := Ellipsoid.center_mem_construct E
       rw [h] at this
       exact this
     refine ⟨hc, (Ellipsoid.representsa_point_iff E).mp ?_⟩

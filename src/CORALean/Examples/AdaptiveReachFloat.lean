@@ -46,7 +46,7 @@ def BD : Mat (Dyadic 64) 2 1 := !![d 0 0; d 1 0]
 state. -/
 def sysBD : LinearSys (Dyadic 64) 2 := { sysD with m := 1, B := BD, D := fun _ _ => d 0 0 }
 
-/-- `[3/8, 5/8]`, centred at `1/2`: `0` is not in it. -/
+/-- `[3/8, 5/8]`, centered at `1/2`: `0` is not in it. -/
 def UD : Zonotope (Vec (Dyadic 64) 1) where
   h := 1
   c := ![d 1 (-1)]

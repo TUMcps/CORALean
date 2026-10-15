@@ -137,7 +137,7 @@ theorem aux_align_step (W : Set α) (hW : Convex ℝ W) (g : α) (μ : ℝ) (h0 
     · refine ⟨w, hw, (t * (1 - μ) + μ) • g, ⟨t * (1 - μ) + μ, ?_, rfl⟩, by module⟩
       rw [abs_le]; constructor <;> nlinarith
 
-/-- The zero-centred zonotope on `n + 1` generators splits its head off: the
+/-- The zero-centered zonotope on `n + 1` generators splits its head off: the
 segment generator `0` spans, plus the zonotope on the remaining generators. -/
 theorem aux_construct_cons (n : ℕ) (g : Fin (n + 1) → α) :
     (⟨n + 1, (0 : α), g⟩ : Zonotope α).construct
@@ -203,7 +203,7 @@ theorem aux_fold_aligned (n : ℕ) :
       aux_construct_cons n (fun i => (1 - μ i) • g i)]
     abel
 
-/-- A zonotope shifted by `-v` is the zero-centred one on its generators, moved
+/-- A zonotope shifted by `-v` is the zero-centered one on its generators, moved
 to `c - v`. -/
 theorem aux_sub_singleton (Z : Zonotope α) (v : α) :
     Z.construct - ({v} : Set α)
@@ -221,7 +221,7 @@ theorem aux_sub_singleton (Z : Zonotope α) (v : α) :
     show Z.c + ∑ j, β j • Z.G j - v = Z.c - v + (0 + ∑ j, β j • Z.G j)
     abel
 
-/-- And back: moving a zero-centred zonotope to `v` is its centre. -/
+/-- And back: moving a zero-centered zonotope to `v` is its center. -/
 theorem aux_singleton_add (v : α) (n : ℕ) (g : Fin n → α) :
     ({v} : Set α) + (⟨n, (0 : α), g⟩ : Zonotope α).construct
       = (⟨n, v, g⟩ : Zonotope α).construct := by -- --- PROOF ---
@@ -264,7 +264,7 @@ theorem Zonotope.minkDiffAligned_outer (Z₁ Z₂ : Zonotope α) (hh : Z₁.h = 
   have hGG : G₂ = fun i => μ i • G₁ i := funext fun i => hG i
   subst hGG
   apply Eq.subset
-  -- the recursion's own starting set, then the fold, then the centre back on
+  -- the recursion's own starting set, then the fold, then the center back on
   rw [Zonotope.minkDiffGenRec]
   dsimp only
   rw [aux_sub_singleton]

@@ -8,7 +8,7 @@ public import CORALean.ContSet.InflatedContSet.InflatedContSet
 /-!
 # Ellipsoids over a floating-point scalar: the representation
 
-The exact layer's centre and generator matrix held in `𝕋`, plus the error box
+The exact layer's center and generator matrix held in `𝕋`, plus the error box
 that makes it an `InflatedContSet`. Storing the generator matrix rather than
 CORA's shape matrix pays here as it does over ℝ, and more: a shape matrix would
 have to come back through a matrix square root, and this layer has no square

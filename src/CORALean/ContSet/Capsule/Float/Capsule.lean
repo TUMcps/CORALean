@@ -8,7 +8,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # Capsules over a floating-point scalar: the representation
 
-The exact layer's centre, generator and radius held in `𝕋`. No error box, unlike the zonotope or
+The exact layer's center, generator and radius held in `𝕋`. No error box, unlike the zonotope or
 the ellipsoid: a capsule is not closed under the sum with a box (a segment thickened by a ball
 and then by a box is neither a capsule nor a box), so no operation here would have anything to
 pay into one, and the one that rounds, `Capsule.interval`, rounds its bounds outward instead.

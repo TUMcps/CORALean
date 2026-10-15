@@ -57,7 +57,7 @@ theorem ConZonotope.minkDiffV_outer {k : ℕ} (Z : Zonotope (Vec 𝕋 n)) (v : F
       ⊆ (ConZonotope.minkDiffV Z v).construct := by -- --- PROOF ---
   intro x hx
   -- each translate holds `x`: `x = (x + vᵢ) + (−vᵢ)`
-  have hs : ∀ i, x ∈ (Z.plus (Zonotope.point fun r => neg (v i r))).conZonotope.construct := by
+  have hs : ∀ i, x ∈ (Z.plus (Zonotope.point (-(v i)))).conZonotope.construct := by
     intro i
     have hv : x + toRealVec (v i) ∈ Z.construct :=
       hx _ (Real.VPolytope.vertex_mem (⟨k + 1, fun i => toRealVec (v i)⟩ : Real.VPolytope _) i)
@@ -65,7 +65,7 @@ theorem ConZonotope.minkDiffV_outer {k : ℕ} (Z : Zonotope (Vec 𝕋 n)) (v : F
     rw [Zonotope.construct_point]
     refine ⟨_, hv, _, rfl, ?_⟩
     funext r
-    simp [toRealVec, toReal_neg]
+    simp [toRealVec, toReal_neg']
   exact ConZonotope.aux_mem_foldl_intersection _ _ (hs 0) fun i => hs i.succ
 
 end CORALean.Float

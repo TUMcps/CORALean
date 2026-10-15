@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Minnorm
 # `minnormPoint` is at distance `minnorm`
 
 The foot of the perpendicular on the minimising facet is at Euclidean distance `minnorm Z` from
-the centre: it is the offset `b` times a unit row.
+the center: it is the offset `b` times a unit row.
 
 Source: [1].
 

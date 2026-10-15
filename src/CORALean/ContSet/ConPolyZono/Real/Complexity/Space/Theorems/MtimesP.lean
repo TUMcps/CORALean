@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Mtimes
 /-!
 # `ConPolyZono.mtimes`'s counts
 
-`mtimes` is `map` at `A *ᵥ ·`: it touches the centre and both generator blocks
+`mtimes` is `map` at `A *ᵥ ·`: it touches the center and both generator blocks
 only, so all five counts carry over exactly — the constraint system in
 particular is untouched, since `M` never reaches `A`, `b` or `R`. `rfl`
 against the structure instance in `Operations/Mtimes.lean`.

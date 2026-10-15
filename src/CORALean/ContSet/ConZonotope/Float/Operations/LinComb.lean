@@ -15,8 +15,8 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 
 The exact operation's shape, rounded, and almost nothing rounds: the generator
 blocks are copied, the constraint rows are copied and halved, and halving is
-exact. Only the centre and the generator spanning the half-difference of the
-centres are arithmetic, so the box carries a midpoint residual and a generator
+exact. Only the center and the generator spanning the half-difference of the
+centers are arithmetic, so the box carries a midpoint residual and a generator
 error over that one column.
 
 Each block's constraints are weighted by the trailing coefficient — `λ` on the

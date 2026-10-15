@@ -18,7 +18,7 @@ canonical form's, as CORA's `reach` runs on `canonicalForm`: a `U` is the combin
 `B U ⊕ c ⊕ E W` in state coordinates, and `LinearSys` alone reads `A`, its `reachExact` the
 homogeneous flow. `LinearSys.WithInput` carries `U`, `0 ∈ U` among its fields; it asks the
 representation to be convex and compact, what [1, Thm. 3.1]'s enclosure needs of `U` —
-[1, Alg. 2]. `LinearSys.WithInputSplit` drops `0 ∈ U` and asks for `Recentre` and `OfPoint`
+[1, Alg. 2]. `LinearSys.WithInputSplit` drops `0 ∈ U` and asks for `Recenter` and `OfPoint`
 too — [1, Alg. 3]; it bundles `U` as well, the pair's type choosing the algorithm, as `P` and
 `O` are the instance's outputs. Every run is `none` unless `0 < timeStep`.
 
@@ -95,7 +95,7 @@ noncomputable instance LinearSys.WithInput.reachInstance
     exact sys.reach_outer params h
 
 noncomputable instance LinearSys.WithInputSplit.reachInstance
-    [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
+    [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)]
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinearSys.WithInputSplit 𝕋 S) (fun n _ => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where

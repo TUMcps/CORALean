@@ -112,7 +112,7 @@ src/CORALean/ContDynamics/LinearARX/Theorems/ToLinearSysDTStep.lean
 src/CORALean/ContDynamics/LinearARX/Theorems/ToLinearSysDTTrajectory.lean
 src/CORALean/ContDynamics/LinearSys/Counterexamples/NoiseCovarianceDiagonal.lean
 src/CORALean/ContDynamics/LinearSys/Counterexamples/SupportLowerTimeInterval.lean
-src/CORALean/ContDynamics/LinearSys/Counterexamples/SupportUpperCentre.lean
+src/CORALean/ContDynamics/LinearSys/Counterexamples/SupportUpperCenter.lean
 src/CORALean/ContDynamics/LinearSys/Definitions/VerifyIterFloat.lean
 src/CORALean/ContDynamics/LinearSys/Definitions/VerifySound.lean
 src/CORALean/ContDynamics/LinearSys/Definitions/VerifySoundFloat.lean
@@ -560,7 +560,7 @@ src/CORALean/ContSet/Capsule/Real/Capsule.lean
 src/CORALean/ContSet/Capsule/Real/Counterexamples/IsIntersectingCora.lean
 src/CORALean/ContSet/Capsule/Real/Operations/Reindex.lean
 src/CORALean/ContSet/Capsule/Real/Operations/Volume.lean
-src/CORALean/ContSet/Capsule/Real/Theorems/CentreMemConstructIff.lean
+src/CORALean/ContSet/Capsule/Real/Theorems/CenterMemConstructIff.lean
 src/CORALean/ContSet/Capsule/Real/Theorems/ConstructEqAdd.lean
 src/CORALean/ContSet/Capsule/Real/Theorems/ConstructEqEmpty.lean
 src/CORALean/ContSet/Capsule/Real/Theorems/ConstructSubsetOfDistLe.lean
@@ -607,7 +607,7 @@ src/CORALean/ContSet/ConPolyZono/Float/Operations/ToPolyZonotope.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/Union.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/ZeroMonomials.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CartProdExact.lean
-src/CORALean/ContSet/ConPolyZono/Float/Theorems/CentreMemConstruct.lean
+src/CORALean/ContSet/ConPolyZono/Float/Theorems/CenterMemConstruct.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CompactConsEqSpec.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CompactConsOuter.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/CompactFactorsEqSpec.lean
@@ -692,7 +692,7 @@ src/CORALean/ContSet/ConPolyZono/Real/Operations/SatisfiesDependentIff.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/SumUnionE.lean
 src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionConValue.lean
 src/CORALean/ContSet/ConPolyZono/Real/Theorems/CartProdExact.lean
-src/CORALean/ContSet/ConPolyZono/Real/Theorems/CentreMemConstruct.lean
+src/CORALean/ContSet/ConPolyZono/Real/Theorems/CenterMemConstruct.lean
 src/CORALean/ContSet/ConPolyZono/Real/Theorems/CompactConsExact.lean
 src/CORALean/ContSet/ConPolyZono/Real/Theorems/CompactFactorsExact.lean
 src/CORALean/ContSet/ConPolyZono/Real/Theorems/CompactGensExact.lean
@@ -765,7 +765,7 @@ src/CORALean/ContSet/ConZonotope/Float/Theorems/BoundDotLe.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/BoundDotWeightsLe.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/BoxSubset.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/CartProdExact.lean
-src/CORALean/ContSet/ConZonotope/Float/Theorems/CentreBetween.lean
+src/CORALean/ContSet/ConZonotope/Float/Theorems/CenterBetween.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/CompactExact.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/ConIntersectOuter.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/ConstructEqNominal.lean
@@ -779,7 +779,7 @@ src/CORALean/ContSet/ConZonotope/Float/Theorems/IsDisjointLPSound.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/IsFullDimSound.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/IsequalSound.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/LinCombOuter.lean
-src/CORALean/ContSet/ConZonotope/Float/Theorems/LinCombSameCentreSubset.lean
+src/CORALean/ContSet/ConZonotope/Float/Theorems/LinCombSameCenterSubset.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/MemInterior.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/MemNominalSet.lean
 src/CORALean/ContSet/ConZonotope/Float/Theorems/MinkDiffVOuter.lean
@@ -833,8 +833,8 @@ src/CORALean/ContSet/ConZonotope/Real/Theorems/IntersectionExact.lean
 src/CORALean/ContSet/ConZonotope/Real/Theorems/IntersectsHyperplaneIff.lean
 src/CORALean/ContSet/ConZonotope/Real/Theorems/IsAffineImageIff.lean
 src/CORALean/ContSet/ConZonotope/Real/Theorems/IsBounded.lean
-src/CORALean/ContSet/ConZonotope/Real/Theorems/IsCentreIffOfEqZero.lean
-src/CORALean/ContSet/ConZonotope/Real/Theorems/IsCentreMem.lean
+src/CORALean/ContSet/ConZonotope/Real/Theorems/IsCenterIffOfEqZero.lean
+src/CORALean/ContSet/ConZonotope/Real/Theorems/IsCenterMem.lean
 src/CORALean/ContSet/ConZonotope/Real/Theorems/IsCompact.lean
 src/CORALean/ContSet/ConZonotope/Real/Theorems/IsCompactDomain.lean
 src/CORALean/ContSet/ConZonotope/Real/Theorems/IsequalConstruct.lean
@@ -1186,7 +1186,7 @@ src/CORALean/ContSet/Ellipsoid/Float/Theorems/AndPointOuter.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/BoundDotLe.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/CartProdOuter.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/CartProdVecExact.lean
-src/CORALean/ContSet/Ellipsoid/Float/Theorems/CentreMemConstruct.lean
+src/CORALean/ContSet/Ellipsoid/Float/Theorems/CenterMemConstruct.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/ContainsPointSound.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/EllipsoidNormLeEllipsoidNormUb.lean
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/Enclose2Outer.lean
@@ -1285,7 +1285,7 @@ src/CORALean/ContSet/Ellipsoid/Real/Theorems/VolumeEqZero.lean
 src/CORALean/ContSet/EmptySet/Real/Operations/IsBounded.lean
 src/CORALean/ContSet/EmptySet/Real/Operations/IsFullDimTest.lean
 src/CORALean/ContSet/EmptySet/Real/Theorems/AndExact.lean
-src/CORALean/ContSet/EmptySet/Real/Theorems/CentreIsSomeIff.lean
+src/CORALean/ContSet/EmptySet/Real/Theorems/CenterIsSomeIff.lean
 src/CORALean/ContSet/EmptySet/Real/Theorems/ConstructNeSingleton.lean
 src/CORALean/ContSet/EmptySet/Real/Theorems/ConstructNeUniv.lean
 src/CORALean/ContSet/EmptySet/Real/Theorems/ContainsIff.lean
@@ -1344,7 +1344,6 @@ src/CORALean/ContSet/HPolytope/Float/Operations/MemStackRowsNominalIff.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/MemUnitBoxIff.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/MinkDiffOf.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/MulVecAppendLast.lean
-src/CORALean/ContSet/HPolytope/Float/Operations/MulVecAppendRight.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/MulVecLiftCols.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/MulVecPadLeft.lean
 src/CORALean/ContSet/HPolytope/Float/Operations/MulVecPadRight.lean
@@ -1526,7 +1525,7 @@ src/CORALean/ContSet/HPolytope/Real/Theorems/IsClosed.lean
 src/CORALean/ContSet/HPolytope/Real/Theorems/IsGreatestBallRadius.lean
 src/CORALean/ContSet/HPolytope/Real/Theorems/IsGreatestPolyNormEllipsotope.lean
 src/CORALean/ContSet/HPolytope/Real/Theorems/IsGreatestSignedUnit.lean
-src/CORALean/ContSet/HPolytope/Real/Theorems/IsLPCentreMem.lean
+src/CORALean/ContSet/HPolytope/Real/Theorems/IsLPCenterMem.lean
 src/CORALean/ContSet/HPolytope/Real/Theorems/IsequalNondegIff.lean
 src/CORALean/ContSet/HPolytope/Real/Theorems/LinCombOfOuter.lean
 src/CORALean/ContSet/HPolytope/Real/Theorems/MapEquivExact.lean
@@ -1789,7 +1788,7 @@ src/CORALean/ContSet/Interval/Real/Operations/Power.lean
 src/CORALean/ContSet/Interval/Real/Operations/ProjectHighDim.lean
 src/CORALean/ContSet/Interval/Real/Operations/QuadMap.lean
 src/CORALean/ContSet/Interval/Real/Operations/Rdivide.lean
-src/CORALean/ContSet/Interval/Real/Operations/Recentre.lean
+src/CORALean/ContSet/Interval/Real/Operations/Recenter.lean
 src/CORALean/ContSet/Interval/Real/Operations/Recip.lean
 src/CORALean/ContSet/Interval/Real/Operations/Reindex.lean
 src/CORALean/ContSet/Interval/Real/Operations/RepresentsaEmptySet.lean
@@ -1929,8 +1928,8 @@ src/CORALean/ContSet/Interval/Real/Theorems/QuadMapMixedOuter.lean
 src/CORALean/ContSet/Interval/Real/Theorems/QuadMapOuter.lean
 src/CORALean/ContSet/Interval/Real/Theorems/Radius2IsLeast.lean
 src/CORALean/ContSet/Interval/Real/Theorems/RdivideExact.lean
-src/CORALean/ContSet/Interval/Real/Theorems/RecentreSubMem.lean
-src/CORALean/ContSet/Interval/Real/Theorems/RecentreZeroMem.lean
+src/CORALean/ContSet/Interval/Real/Theorems/RecenterSubMem.lean
+src/CORALean/ContSet/Interval/Real/Theorems/RecenterZeroMem.lean
 src/CORALean/ContSet/Interval/Real/Theorems/RecipExact.lean
 src/CORALean/ContSet/Interval/Real/Theorems/ReindexExact.lean
 src/CORALean/ContSet/Interval/Real/Theorems/RepresentsaOriginIff.lean
@@ -2076,7 +2075,7 @@ src/CORALean/ContSet/PolyZonotope/Float/Theorems/BlockPadLeftNominal.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/BlockPadRightNominal.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/BoxOutOuter.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/CartProdExact.lean
-src/CORALean/ContSet/PolyZonotope/Float/Theorems/CentreMemConstruct.lean
+src/CORALean/ContSet/PolyZonotope/Float/Theorems/CenterMemConstruct.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/CompactGensOuter.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/CompactOuter.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/ContainsPointApproxSound.lean
@@ -2160,7 +2159,7 @@ src/CORALean/ContSet/PolyZonotope/Float/Theorems/SupportBoundLe.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/TabAtFilter.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/TabAtKeepTab.lean
 src/CORALean/ContSet/PolyZonotope/Float/Theorems/ToRealExtG.lean
-src/CORALean/ContSet/PolyZonotope/Real/Counterexamples/CentreNotMem.lean
+src/CORALean/ContSet/PolyZonotope/Real/Counterexamples/CenterNotMem.lean
 src/CORALean/ContSet/PolyZonotope/Real/Counterexamples/ContainsExactCora1D.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/AbsFactorExtendLeOne.lean
 src/CORALean/ContSet/PolyZonotope/Real/Operations/Bilin.lean
@@ -2202,7 +2201,7 @@ src/CORALean/ContSet/PolyZonotope/Real/Theorems/AddedTermsPoint.lean
 src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinExact.lean
 src/CORALean/ContSet/PolyZonotope/Real/Theorems/BilinOuterMem.lean
 src/CORALean/ContSet/PolyZonotope/Real/Theorems/CartProdExact.lean
-src/CORALean/ContSet/PolyZonotope/Real/Theorems/CentreMemConstruct.lean
+src/CORALean/ContSet/PolyZonotope/Real/Theorems/CenterMemConstruct.lean
 src/CORALean/ContSet/PolyZonotope/Real/Theorems/CompactFactorsExact.lean
 src/CORALean/ContSet/PolyZonotope/Real/Theorems/CompactGensExact.lean
 src/CORALean/ContSet/PolyZonotope/Real/Theorems/ContainsPointSetSound.lean
@@ -3099,7 +3098,7 @@ src/CORALean/ContSet/ZonoBundle/Real/Theorems/IntersectionExact.lean
 src/CORALean/ContSet/ZonoBundle/Real/Theorems/IntersectsOfIntersects.lean
 src/CORALean/ContSet/ZonoBundle/Real/Theorems/IntervalAllContains.lean
 src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsBoxOfForall.lean
-src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsCentreMem.lean
+src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsCenterMem.lean
 src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsCompact.lean
 src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsFullDimAllMembers.lean
 src/CORALean/ContSet/ZonoBundle/Real/Theorems/IsequalConstruct.lean
@@ -3188,7 +3187,7 @@ src/CORALean/ContSet/Zonotope/Float/Theorems/BoundaryPointOuter.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/BoundaryRatioAtGe.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/BoundaryRatioGe.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/CartProdExact.lean
-src/CORALean/ContSet/Zonotope/Float/Theorems/CentreMemConstruct.lean
+src/CORALean/ContSet/Zonotope/Float/Theorems/CenterMemConstruct.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/CompactZerosExact.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/ConstrSatSound.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/ConstructPoint.lean
@@ -3261,8 +3260,8 @@ src/CORALean/ContSet/Zonotope/Float/Theorems/ProjectOuter.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/QuadMapOuter.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/RadiusLe.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/RealMtimesIntervalMatSubset.lean
-src/CORALean/ContSet/Zonotope/Float/Theorems/RecentreSubMem.lean
-src/CORALean/ContSet/Zonotope/Float/Theorems/RecentreZeroMem.lean
+src/CORALean/ContSet/Zonotope/Float/Theorems/RecenterSubMem.lean
+src/CORALean/ContSet/Zonotope/Float/Theorems/RecenterZeroMem.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/ReduceAndAbsorbByOuter.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/ReduceByCoeff.lean
 src/CORALean/ContSet/Zonotope/Float/Theorems/ReduceByOuter.lean
@@ -3370,7 +3369,7 @@ src/CORALean/ContSet/Zonotope/Real/Theorems/BoundIntersect2DBisectSpec.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/BoundIntersect2DScanSpec.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/CartProdExact.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/CentralSymmMemConstruct.lean
-src/CORALean/ContSet/Zonotope/Real/Theorems/CentreMemConstruct.lean
+src/CORALean/ContSet/Zonotope/Real/Theorems/CenterMemConstruct.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/Cloud2zonotopeCompressMem.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/Cloud2zonotopeMem.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/ConstrSatSound.lean
@@ -3502,7 +3501,7 @@ src/CORALean/ContSet/Zonotope/Real/Theorems/MulCoefficient.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/NaiveVertexSampleLe.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/NaiveVertexSampleNotSubset.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/NaiveVertexSampleProb.lean
-src/CORALean/ContSet/Zonotope/Real/Theorems/NormSubCentreLeSumGeneratorLength.lean
+src/CORALean/ContSet/Zonotope/Real/Theorems/NormSubCenterLeSumGeneratorLength.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/NotExistsPolyNormOfDegenerate.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/ObserveDescriptorCurrentEq.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/ObserveDescriptorFWRadiusLe.lean
@@ -3520,8 +3519,8 @@ src/CORALean/ContSet/Zonotope/Real/Theorems/QuadTaylorOuter.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/Radius2Bound.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/RankEqFinrankIff.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/ReachLe.lean
-src/CORALean/ContSet/Zonotope/Real/Theorems/RecentreSubMem.lean
-src/CORALean/ContSet/Zonotope/Real/Theorems/RecentreZeroMem.lean
+src/CORALean/ContSet/Zonotope/Real/Theorems/RecenterSubMem.lean
+src/CORALean/ContSet/Zonotope/Real/Theorems/RecenterZeroMem.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceCombastelOrderLe.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceGirardOrderLe.lean
 src/CORALean/ContSet/Zonotope/Real/Theorems/ReduceGirardOuter.lean
@@ -3718,7 +3717,7 @@ src/CORALean/Global/DotProductLeCoeffNorm.lean
 src/CORALean/Global/DoubleSumPosDef.lean
 src/CORALean/Global/DropIdx.lean
 src/CORALean/Global/ElementaryDerivBounds.lean
-src/CORALean/Global/EllipsotopeCentreShift.lean
+src/CORALean/Global/EllipsotopeCenterShift.lean
 src/CORALean/Global/EllipsotopeContainmentRadius.lean
 src/CORALean/Global/EllipsotopeRoundingOfLeTwo.lean
 src/CORALean/Global/EllipsotopeRoundingOfTwoLe.lean
@@ -3903,7 +3902,7 @@ src/CORALean/Global/UltimateBoundOfRecurrence.lean
 src/CORALean/Global/VecMulVecMulVecSelf.lean
 src/CORALean/Global/ZonotopeEllipsotopeSdpRelaxation.lean
 src/CORALean/Global/ZonotopeSubsetEllipsotopeOfLR.lean
-src/CORALean/Global/ZonotopeSubsetEllipsotopeOfLRCentre.lean
+src/CORALean/Global/ZonotopeSubsetEllipsotopeOfLRCenter.lean
 src/CORALean/HybridDynamics/Counterexamples/ResetTaylor.lean
 src/CORALean/HybridDynamics/Counterexamples/UlocCora.lean
 src/CORALean/HybridDynamics/Definitions/Invariant.lean

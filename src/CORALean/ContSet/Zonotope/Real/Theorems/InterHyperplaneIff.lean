@@ -48,7 +48,7 @@ theorem Zonotope.inter_hyperplane_iff (Z : Zonotope (Vec ℝ n)) (nv : Vec ℝ n
       Z.c ⬝ᵥ nv - ∑ i, |Z.G i ⬝ᵥ nv| ≤ γ ∧ γ ≤ Z.c ⬝ᵥ nv + ∑ i, |Z.G i ⬝ᵥ nv| := by -- --- PROOF ---
   constructor
   · rintro ⟨x, ⟨β, hβ, rfl⟩, rfl⟩
-    -- the coordinate along `nv` is the centre's plus a combination of the `gᵢ·nv`
+    -- the coordinate along `nv` is the center's plus a combination of the `gᵢ·nv`
     have hdot : (Z.c + ∑ j, β j • Z.G j) ⬝ᵥ nv = Z.c ⬝ᵥ nv + ∑ j, β j * (Z.G j ⬝ᵥ nv) := by
       rw [add_dotProduct, sum_dotProduct]
       simp only [smul_dotProduct, smul_eq_mul]
@@ -63,7 +63,7 @@ theorem Zonotope.inter_hyperplane_iff (Z : Zonotope (Vec ℝ n)) (nv : Vec ℝ n
     set t := γ - Z.c ⬝ᵥ nv with ht
     have hts : |t| ≤ s := abs_le.2 ⟨by linarith, by linarith⟩
     by_cases h0 : s = 0
-    · -- no generator moves the coordinate: the centre is the point
+    · -- no generator moves the coordinate: the center is the point
       refine ⟨Z.c, ⟨fun _ => 0, fun _ => by simp, by simp⟩, ?_⟩
       have : t = 0 := by rw [h0] at hts; exact abs_nonpos_iff.1 hts
       linarith

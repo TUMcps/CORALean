@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
-public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Interval.Float.Operations.Point
 
 @[expose] public section
@@ -10,11 +10,11 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 # `linearizeFloat`, the matrices a float step linearizes with
 
 CORA's `linearize` in `𝕋`: `A` and `B` are the Jacobian blocks at the expansion
-point `(x✱, u✱)`, here the centres of the model's enclosures of them at that point.
+point `(x✱, u✱)`, here the centers of the model's enclosures of them at that point.
 
 Any pair would do. `AbstractionError` does not ask `A` and `B` to be the
 derivative, and the remainder `slopeRemainder` encloses is taken against whatever
-pair this returns, so a centre rounded either way costs a slightly larger
+pair this returns, so a center rounded either way costs a slightly larger
 remainder and nothing else. That is why no real counterpart has to be named:
 `NonlinearSys.linearize` reads off whatever matrix it is given.
 -/
@@ -36,12 +36,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `(A, B)`: the centres of the model's `∂f/∂x` and `∂f/∂u` at `(xs, us)`. -/
+/-- `(A, B)`: the centers of the model's `∂f/∂x` and `∂f/∂u` at `(xs, us)`. -/
 def NonlinearSys.FloatModel.linearizeFloat (fm : NonlinearSys.FloatModel 𝕋 n m) (xs : Vec 𝕋 n)
     (us : Vec 𝕋 m) : Mat 𝕋 n n × Mat 𝕋 n m :=
   let Jx := fm.jacX (Interval.point xs) (Interval.point us)         -- [∂f/∂x (x✱, u✱)]
   let Ju := fm.jacU (Interval.point xs) (Interval.point us)         -- [∂f/∂u (x✱, u✱)]
-  (Jx.centreMat, Ju.centreMat)                                      -- A, B
+  (Jx.centerMat, Ju.centerMat)                                      -- A, B
 
 end CORALean
 

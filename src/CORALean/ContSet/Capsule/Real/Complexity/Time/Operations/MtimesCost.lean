@@ -9,7 +9,7 @@ public import CORALean.Global.Cost
 # `Capsule.mtimesCost`
 
 Asserted, not proved: `Operations/Mtimes.lean` computes the Frobenius norm of
-`M` (`m * n` products, `m * n` additions, one `sqrt`), sends the centre and the
+`M` (`m * n` products, `m * n` additions, one `sqrt`), sends the center and the
 generator through `M *ᵥ ·` (two `Cost.matVec m n`) and scales the radius (one
 product): `6 * m * n + 2`.
 -/

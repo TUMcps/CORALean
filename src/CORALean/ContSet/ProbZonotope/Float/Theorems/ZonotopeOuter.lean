@@ -62,7 +62,7 @@ theorem ProbZonotope.zonotope_outer (p : ℕ) (P : ProbZonotope 𝕋 n) (M : �
       Matrix.mulVec, dotProduct, Finset.mul_sum]
     exact Finset.sum_congr rfl fun j _ => by ring
   -- it is under the radius: coordinate `k` of `m g β` is at most `m √(n Σₖₖ)`, rounded up
-  have hbox : y ∈ (⟨fun i => neg (P.confidenceRadius p M i), P.confidenceRadius p M⟩ :
+  have hbox : y ∈ (⟨(-(P.confidenceRadius p M)), P.confidenceRadius p M⟩ :
       Interval (Vec 𝕋 n)).construct := fun k => by
     have hSkk : S k k ≤ toReal (P.cov.sup k k) := (Interval.mem_mat_iff.mp hS k k).2
     have hacc := Real.ProbZonotope.abs_sqrt_mulVec_le hpsd hγ k

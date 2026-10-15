@@ -8,7 +8,7 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 # `Capsule.radius`
 
 CORA's `@capsule/radius.m`: the length of the generator plus the radius of the ball,
-`norm(g, 2) + r`. That is the radius of the smallest Euclidean ball about the centre
+`norm(g, 2) + r`. That is the radius of the smallest Euclidean ball about the center
 holding the capsule: the far end of the segment is at distance `‖g‖₂`, and the ball reaches `r`
 further.
 -/

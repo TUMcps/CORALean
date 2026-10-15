@@ -27,7 +27,7 @@ variable {n : ℕ}
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
-/-- The centre of a box -/
+/-- The center of a box -/
 noncomputable def Taylm.boxMid (B : Fin n → Interval ℝ) : Vec ℝ n :=
     fun k => ((B k).inf + (B k).sup) / 2
 
@@ -50,7 +50,7 @@ noncomputable def Taylm.boxRad (B : Fin n → Interval ℝ) : Vec ℝ n :=
 -- Reviewed:      ---
 
 /-- CORA's `aux_addConst` with nothing to add it to: one term at the zero exponent and no
-remainder. `compose` subtracts it to centre a model on its constant part. -/
+remainder. `compose` subtracts it to center a model on its constant part. -/
 def Taylm.const (n : ℕ) (c : ℝ) (N : ℕ) : Taylm n := ⟨[(c, 0)], ⟨0, 0⟩, N⟩
 
 
@@ -71,7 +71,7 @@ def Taylm.degree (e : Fin n → ℕ) : ℕ := ∑ k, e k
 -- Reviewed:      ---
 
 /-- CORA's `c_f`, the coefficient at the zero exponent, where the elementary functions expand.
-Summed, as the list may repeat the exponent; any centre is sound and this one is CORA's. -/
+Summed, as the list may repeat the exponent; any center is sound and this one is CORA's. -/
 def Taylm.constCoef (T : Taylm n) : ℝ :=
   ((T.terms.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum
 

@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def PolyZonotope.getSubsetCoef (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋)
     (i : Fin pZ.h) (j : ℕ) : Interval 𝕋 :=
   let e := pZ.E k i
-  -- the integer, then the power of the centre, then the power of the radius
+  -- the integer, then the power of the center, then the power of the radius
   let A : Interval 𝕋 := ⟨Interval.mulLo (intDown (e.choose j : ℤ)) (intUp (e.choose j : ℤ))
     (Interval.powLo cen (e - j)) (Interval.powHi cen (e - j)),
     Interval.mulHi (intDown (e.choose j : ℤ)) (intUp (e.choose j : ℤ))

@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 # `ConPolyZono.unionE`
 
 The generator exponent matrix of [1, Thm. 1]: one column `α₁` for the generator
-that moves the centre to one operand or the other, then the two operands' own
+that moves the center to one operand or the other, then the two operands' own
 exponent matrices block-diagonally, widened by the two fresh factors.
 
 The `α₂` row is zero throughout — `α₂` exists only to pin `α₁`'s sign — which is

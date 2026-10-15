@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # `Alg. 2` lines 1-6: the loop state before the first iteration
 
-`minBackReachInit`: [1, Alg. 2] lines 1-6, the two centred particular solutions
+`minBackReachInit`: [1, Alg. 2] lines 1-6, the two centered particular solutions
 accumulated up to `t₀`, before the first iteration.
 
 ## References
@@ -41,7 +41,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Lines 1-6: the two centred particular solutions accumulated up to `t₀`,
+/-- Lines 1-6: the two centered particular solutions accumulated up to `t₀`,
 before the first iteration. -/
 noncomputable def LinearSys.minBackReachInit (sys : LinearSys 𝕋 n)
     (W₀ U₀ : Zonotope (Vec ℝ n)) (t₀ : ℝ) (η : ℕ) : LinearSys.MinBackReachState n :=

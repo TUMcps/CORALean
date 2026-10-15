@@ -9,7 +9,7 @@ public import Mathlib.Analysis.Convex.Topology
 /-!
 # Mean-value AE extensions of a real-valued function
 
-[1, Thm. 1]: for `f : ℝᵐ → ℝ` on the box `x` with centre `c` and radius `r`,
+[1, Thm. 1]: for `f : ℝᵐ → ℝ` on the box `x` with center `c` and radius `r`,
 `f(c) ∈ [f̲₀, f̄₀]` and `|∂ᵢf| ∈ [∇̲ᵢ, ∇̄ᵢ]` on the path set `{(c₁, …, cᵢ₋₁, xᵢ, …, x_m)}`,
 `range(f, x) ⊆ [f̲₀, f̄₀] + ⟨∇̄, r⟩[-1, 1]` (1) and
 `[f̄₀ - ⟨∇̲, r⟩, f̲₀ + ⟨∇̲, r⟩] ⊆ range(f, x)` (2).

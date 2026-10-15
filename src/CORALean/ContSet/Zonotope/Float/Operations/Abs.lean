@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.abs`, over a floating-point scalar
 
-CORA's `@zonotope/abs.m`: the centre and the generators are replaced by their entrywise absolute
+CORA's `@zonotope/abs.m`: the center and the generators are replaced by their entrywise absolute
 values (`FloatOps.absolute`, a comparison and a sign flip, so exact). The error box is copied.
 As at the real layer this is a different set, not an enclosure of the input; the nominal part is
 the real `abs` of the input's nominal part (`Zonotope.abs_nominal`).

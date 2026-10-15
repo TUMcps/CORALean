@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # `Zonotope.enclosePointsStursberg` contains every point
 
 Outer: with the stored basis orthogonal over the reals, `U Uᵀ = 1`, every input point lies in the
-float result. The centred point lies in the interval of its two directed differences, so its
+float result. The centered point lies in the interval of its two directed differences, so its
 rotation lies in the interval `mtimes`, hence in the box of minima and maxima; the box rotates back
 to the point, which `plus` moves to the mean. The mean's rounding is irrelevant.
 -/
@@ -53,7 +53,7 @@ theorem Zonotope.enclosePointsStursberg_outer [NeZero N] (pts : Fin N → Vec �
   set box : Interval (Vec 𝕋 n) :=
     ⟨fun i => minimumOver fun j => (oriented j).inf i,
      fun i => maximumOver fun j => (oriented j).sup i⟩ with hbox
-  -- the centred point lies between its two directed differences
+  -- the centered point lies between its two directed differences
   set d : Vec ℝ n := toRealVec (pts j) - toRealVec mean with hd
   have hdmem : d ∈ (sample j).construct := fun i =>
     ⟨subDown_le_sub (pts j i) (mean i), sub_le_subUp (pts j i) (mean i)⟩
@@ -62,7 +62,7 @@ theorem Zonotope.enclosePointsStursberg_outer [NeZero N] (pts : Fin N → Vec �
   have h2 : toRealMat U.transpose *ᵥ d ∈ box.construct := fun i =>
     ⟨le_trans (minimumOver_le (fun j => (oriented j).inf i) j) (h1 i).1,
       le_trans (h1 i).2 (le_maximumOver (fun j => (oriented j).sup i) j)⟩
-  -- rotated back it is the centred point, and `plus` moves it to the mean
+  -- rotated back it is the centered point, and `plus` moves it to the mean
   have h3 := Zonotope.mtimes_outer U box.zonotope
     (Set.mem_image_of_mem _ (Interval.zonotope_contains box h2))
   have h4 : toRealMat U *ᵥ (toRealMat U.transpose *ᵥ d) = d := by

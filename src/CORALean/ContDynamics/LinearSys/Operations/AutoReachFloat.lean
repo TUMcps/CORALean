@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.AutoRunFloat
 in `𝕋`: `autoRunFloat` from `autoInitFloat` for at most `K` iterations, the windows
 `R̂(τ_k)` with the times each covers, and `none` where the loop gave out or did not reach
 `t_end` in `K` iterations. `V` is the input set in the state space, `B U`, split at its stored
-centre. The horizon `t_end` must be a positive float.
+center. The horizon `t_end` must be a positive float.
 
 ## References
 

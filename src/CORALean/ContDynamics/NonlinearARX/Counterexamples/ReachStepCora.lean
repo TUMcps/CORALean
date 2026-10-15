@@ -10,7 +10,7 @@ public import CORALean.Specification.Specification
 
 CORA's `@nonlinearARX/reach.m` [1], linearize-and-reformulate branch (`otherwise`), step `k`: the
 body from `linReach` (l. 139) to the output set `Y_d` (l. 147-152) sits in `try` (l. 137), and
-`catch` (l. 154-155) sets `Y_d = zonotope([])`. `zonotope([])` has empty centre and generators,
+`catch` (l. 154-155) sets `Y_d = zonotope([])`. `zonotope([])` has empty center and generators,
 which `isemptyobject` reads as the empty set. Either way l. 158 stores `Y_d` as
 `timePoint.set{k}` and l. 164-166 hand it to `check`: the error is neither rethrown nor warned
 about.

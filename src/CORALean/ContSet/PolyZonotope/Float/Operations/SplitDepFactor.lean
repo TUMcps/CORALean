@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
 # `PolyZonotope.splitDepFactor`, over a floating-point scalar
 
 The halves `αₖ ∈ [-1, 0]` and `αₖ ∈ [0, 1]` of `pZ`, each over the full factor domain: `getSubset`
-at the centres `∓1/2` and radius `1/2`, all exact in the scalar (`half` is exact).
+at the centers `∓1/2` and radius `1/2`, all exact in the scalar (`half` is exact).
 -/
 
 -- Authors:       Claude Opus 5.5

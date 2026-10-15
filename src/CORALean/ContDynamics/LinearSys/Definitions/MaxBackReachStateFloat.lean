@@ -13,7 +13,7 @@ bracket, since a float need not hold it. `Z̲_U(t_k)` is *not* an inner set: its
 computation rounds both ways, so it is kept with a bound `UErr` on how far it lies outside the
 exact set, and the guarantee of the inner approximation is made room for in the erosion of
 `Ẑ_W(τ_k)`, not here. And `R̂^{∃∀}(-τ_{k-1})` is kept as the two summands line 12 adds,
-`RH ⊕ -RU`: a float sum rounds the centre, which an inner approximation cannot absorb, while
+`RH ⊕ -RU`: a float sum rounds the center, which an inner approximation cannot absorb, while
 the summands are each described by their stored numbers.
 
 ## References

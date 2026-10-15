@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Float.Instances
 /-!
 # Constrained zonotopes over a floating-point scalar, collected
 
-Two roundings in two places: the centre and generators into the ambient error
+Two roundings in two places: the center and generators into the ambient error
 box, the constraints into `P`, whose float form carries an interval right-hand
 side. One box, not two.
 

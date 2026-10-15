@@ -7,7 +7,7 @@ public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 /-!
 # `SpectraShadow.map`
 
-A linear map applies to centre and generators alike and leaves the inequality
+A linear map applies to center and generators alike and leaves the inequality
 alone, which is why a spectrahedral shadow is closed under one and why the shadow
 needs nothing but the projection to be.
 

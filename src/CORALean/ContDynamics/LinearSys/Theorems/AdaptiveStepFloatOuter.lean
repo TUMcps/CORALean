@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationSubse
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.SquaringsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -79,8 +79,8 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
   obtain ⟨rfl, rfl⟩ := h
   set A := Scalar.toRealMat sys.A with hA
   set eAt := sys.expSquaringFloat s.tLo s.tHi (max options.ηmax 2) sq with heAt
-  set ũ := Recentre.centre V with hũ
-  set Ũ := Recentre.recentre V with hŨ
+  set ũ := Recenter.center V with hũ
+  set Ũ := Recenter.recenter V with hŨ
   set seg := LinComb.linComb (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
     (Interval.point V.c).zonotope with hseg
   set ti : ℝ := (s.t : ℝ) with hti
@@ -162,11 +162,11 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     have hτ0 : 0 ≤ τ := sub_nonneg.mpr ht.1
     have hτΔ : τ ≤ toReal Δt := by linarith [ht.2]
     -- the run's departure from the free motion and the constant's share, by `t_{i+1}`
-    have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) (V := V)
+    have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) (V := V)
       hUV ⟨ht0, htf⟩
     have hd' := sys.inputReach_mono (S := 𝒵[𝕋])
       (CompactSet.isBounded_construct Ũ)
-      (Recentre.zero_mem_recentre V) ht0 ht.2 hd
+      (Recenter.zero_mem_recenter V) ht0 ht.2 hd
     obtain ⟨p, hp, q, hq, hpq⟩ := hsep _ hd'
     -- the free motion and the constant over `[0, τ]`, inside `HR₀ ⊕ P̃^R`
     have hc := sys.inputReach_subset_inputSolutionFloat hΔr hadm seg

@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `Δd_trans` in one line: both translates fit iff the centred one fits with
+/-- `Δd_trans` in one line: both translates fit iff the centered one fits with
 `|H|` to spare. -/
 theorem aux_abs_add_sub (A H Δ : ℝ) :
     (|A + H| ≤ Δ ∧ |A - H| ≤ Δ) ↔ |A| ≤ Δ - |H| := by -- --- PROOF ---

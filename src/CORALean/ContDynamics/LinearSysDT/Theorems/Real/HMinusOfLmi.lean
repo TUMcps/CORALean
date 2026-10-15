@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusLmi
 # The `H₋` inequality makes the residual fault-sensitive
 
 [1, Eq. 21], [1, Eq. 24]: with no disturbance or noise, the error `e_k = x_k - p_k` follows
-`e_{k+1} = (A - LC) e_k - L E f_k` [1, Eq. 19] and the residual centre is
+`e_{k+1} = (A - LC) e_k - L E f_k` [1, Eq. 19] and the residual center is
 `r_k = M C e_k + M E f_k` [1, Eq. 20]. If `P ≻ 0`, `α ≥ 0`, `W` and `β` satisfy [1, Eq. 27]
 (`LinearSysDT.HMinusLmi`) with `Y = MᵀM`, then at `L = P⁻¹W`, from `e_0 = 0`, every fault sequence
 with `f_{k₀} ≠ 0` has `J^N_- = Σ_{k<N} (r_kᵀr_k - β² f_kᵀf_k) ≥ c > 0` [1, Eq. 21] for all `N > k₀`,

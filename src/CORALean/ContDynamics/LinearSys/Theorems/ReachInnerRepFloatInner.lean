@@ -6,10 +6,10 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatR
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffRepInner
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
@@ -81,10 +81,10 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
   set Q := Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt))
     (nominal U)
   have hout := sys.discretizeEnclosureFloat_reach_subset_add_errorFloat hΔt hη ho hR₀ hU k
-  -- the budget is nonempty: the float run holds its centre, and lies in `Y + B`
+  -- the budget is nonempty: the float run holds its center, and lies in `Y + B`
   have hR0 : (0 : Vec ℝ n) ∈ R.I_error.construct :=
     sys.zero_mem_discretizeEnclosureFloat_reach_error hΔt.le hη ho hR₀ hU k
-  obtain ⟨_, -, b, hb, -⟩ := hout (Zonotope.centre_mem_construct R hR0)
+  obtain ⟨_, -, b, hb, -⟩ := hout (Zonotope.center_mem_construct R hR0)
   have hinner := (sys.discretize (toReal Δt)).reachSet_inner_of_outer
     (S := 𝒵)
     (Real.Zonotope.convex_construct (nominal R₀)) (Real.Zonotope.isCompact_construct (nominal R₀))
@@ -100,7 +100,7 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     exact ⟨c, hc, rfl⟩
   have hzoh := sys.discretize_reachSet_subset_inputReach (S := 𝒵)
     hΔt (nominal R₀) (nominal U) Q (Real.Zonotope.isBounded_construct _)
-    ⟨_, Real.Zonotope.centre_mem_construct _⟩ hstep k
+    ⟨_, Real.Zonotope.center_mem_construct _⟩ hstep k
   exact (Zonotope.minkDiffRep_inner hD).trans (hinner.trans (hzoh.trans
     (sys.mulVecLin_image_add_inputReach_subset_reachSet
       (S := 𝒵) (nominal R₀) (nominal U) (by positivity)

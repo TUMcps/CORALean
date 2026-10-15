@@ -14,7 +14,7 @@ are appended side by side over one factor set, and the sum is taken point by
 point at a common factor value rather than over all pairs as `plus` does.
 
 The shape is `plus`'s, and so is the rounding: the generators are copied and the
-exponents are over ℕ, so only the centre rounds, and its `residual` goes into the
+exponents are over ℕ, so only the center rounds, and its `residual` goes into the
 box together with the two incoming boxes.
 -/
 

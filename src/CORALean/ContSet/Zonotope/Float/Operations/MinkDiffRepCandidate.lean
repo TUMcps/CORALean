@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.minkDiffRepCandidate`, over a floating-point scalar
 
-The float candidate for `Real.Zonotope.minkDiffRep`'s result, one named `let` per step: the centre
+The float candidate for `Real.Zonotope.minkDiffRep`'s result, one named `let` per step: the center
 `c₁ - c₂`, the row sums `∑ⱼ |Mᵢⱼ|` of the representation, the margin `1 - ∑ⱼ |Mᵢⱼ|`, and the
 generators `margin · gᵢ`. A difference is a guarantee, so every rounding here goes *inward*: the
 row sums are rounded up, so the margin down, and a scaled generator is rounded towards zero. The

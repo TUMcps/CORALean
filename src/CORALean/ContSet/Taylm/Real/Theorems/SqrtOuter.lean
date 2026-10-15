@@ -10,7 +10,7 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 /-!
 # `Taylm.sqrt` encloses `sqrt ∘ f`
 
-Where the range and the centre are positive. `√x = x^(1/2)` everywhere in Mathlib, so the
+Where the range and the center are positive. `√x = x^(1/2)` everywhere in Mathlib, so the
 derivatives are `iter_deriv_rpow_const`'s, and a negative power decreases.
 
 [1, Def. 3 (sqrt)]: the result is a Taylor model of `sqrt ∘ f`.

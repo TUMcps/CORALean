@@ -71,7 +71,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval
     rw [Erased.out_mk]
     exact (Layer.linear_sound l.W l.b).image_subset s
 
-/-- `Layer.linearWithError` at the box's nonempty hull, committing to its centre. -/
+/-- `Layer.linearWithError` at the box's nonempty hull, committing to its center. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
     Enclose (LinearWithErrorLayer 𝕋) S where
   eval l := Erased.mk fun x =>

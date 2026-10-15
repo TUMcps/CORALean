@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 sides, `Lᵈ ⊆ ½ {…} ⊆ ½ quadint(…)`, is dropped, and its first inclusion is
 [1, Eq. 23]; this is the second. Each coordinate may take its own matrix of the interval.
 
-The printed proof bounds the interval centre and generators by the subdistributivity of
+The printed proof bounds the interval center and generators by the subdistributivity of
 [1, Eq. 22]. Here the route is [1, Thm. 1]: `zᵀH⁽ⁱ⁾z = zᵀHc⁽ⁱ⁾z + zᵀ(H⁽ⁱ⁾ - Hc⁽ⁱ⁾)z`, the first
 in `quad(Hc, Z)` by [1, Lemma 1], the second at most `|z|ᵀHΔ⁽ⁱ⁾|z| ≤ |Z|ᵀHΔ⁽ⁱ⁾|Z|` in absolute
 value, so in the box `[-η, η]`, and `quad(Hc, Z) ⊕ [-η, η]` is `quadint(H, Z)`.

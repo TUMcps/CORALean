@@ -42,9 +42,9 @@ def LinearSys.AutoInvariantFloat (sys : LinearSys 𝕋 n) (X₀ V : Float.Zonoto
     (s : LinearSys.AutoStateFloat 𝕋 n) : Prop :=
   0 ≤ s.t ∧ toReal s.tLo ≤ (s.t : ℝ) ∧ (s.t : ℝ) ≤ toReal s.tHi ∧
     (∀ x ∈ X₀.construct, exp ((s.t : ℝ) • Scalar.toRealMat sys.A) *ᵥ x
-      + MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V ∈ s.H.construct) ∧
-    MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recentre.centre V ∈ s.Pu.construct ∧
-    ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recentre.recentre V) s.t,
+      + MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V ∈ s.H.construct) ∧
+    MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V ∈ s.Pu.construct ∧
+    ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recenter.recenter V) s.t,
       y ∈ s.PU0.construct + s.PUinf.construct
 
 end CORALean

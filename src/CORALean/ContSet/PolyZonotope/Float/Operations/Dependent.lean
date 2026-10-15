@@ -25,7 +25,7 @@ Emptying it costs no rounding, which is why `errorBound` takes the larger
 magnitude of the two endpoints rather than the box's midpoint and radius:
 `maximum` and `absolute` are exact, where a midpoint would have to be stored as
 a float and leave a residual behind. The price is a generator up to twice as
-wide on an off-centre coordinate, which for a box of rounding error is nothing.
+wide on an off-center coordinate, which for a box of rounding error is nothing.
 -/
 
 -- Authors:       Claude Opus 5

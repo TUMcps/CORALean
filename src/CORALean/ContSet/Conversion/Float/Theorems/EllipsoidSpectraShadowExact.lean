@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_SpectraSh
 # An ellipsoid as a spectrahedral shadow, over a floating-point scalar
 
 The exact layer's inequality `[[1, uᵀ], [u, I]] ⪰ 0` with `one` and `zero` as its entries, all
-stored exactly, and the ellipsoid's own centre, generator matrix and error box: nothing rounds, so
+stored exactly, and the ellipsoid's own center, generator matrix and error box: nothing rounds, so
 nothing is paid, and the two sets are equal.
 
 Not routed through the exact layer's set but through its *nominal* reading, the exact conversion

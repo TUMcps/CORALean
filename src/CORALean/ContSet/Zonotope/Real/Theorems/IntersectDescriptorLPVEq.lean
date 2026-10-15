@@ -14,7 +14,7 @@ public import Mathlib.Tactic.Abel
 
 [1, Cor. 1]: if the correction matrix is polytopic, `Λ(θ) = Σᵢ ρᵢ(θ) Λᵢ` (its Eq. 14), then the
 intersection zonotope [1, Thm. 1] at `A(θ) = Σⱼ ρⱼ Aⱼ`, `B(θ)`, `D(θ)` alike (its Eq. 16) is
-`intersectDescriptorLPV`, its Eq. 15: an equality of zonotopes, centre and generators. The double
+`intersectDescriptorLPV`, its Eq. 15: an equality of zonotopes, center and generators. The double
 sums come from expanding `(I - Λ(θ)C) T A(θ)` bilinearly, and `I = Σᵢ ρᵢ I` needs `Σᵢ ρᵢ = 1`
 [1, Eq. 2]; the weights need not be nonnegative here.
 
@@ -103,7 +103,7 @@ theorem Zonotope.intersectDescriptorLPV_eq (T : Mat ℝ n n) (N : Mat ℝ n ny) 
     simp only [sum_mulVec, smul_mulVec, mulVec_mulVec, Matrix.mul_assoc]
   simp only [Zonotope.intersectDescriptorLPV, Zonotope.intersectDescriptor]
   congr 1
-  · -- the centre, Eq. 15a
+  · -- the center, Eq. 15a
     rw [hsy]
     simp only [smul_add, Finset.sum_add_distrib]
     rw [hv A X.c, hv B u, hdA, hdB]

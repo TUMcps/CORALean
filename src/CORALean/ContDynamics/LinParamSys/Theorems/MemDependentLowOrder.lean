@@ -17,7 +17,7 @@ public import Mathlib.Tactic.Positivity
 `w = Σ pᵢ U_G⁽ⁱ⁾`, the orders `(I + A r + A² r²/2) c + (I r + A r²/2 + A² r³/6) u` split by
 degree in `(G, w)` (`aux_lowOrder_split`); each degree is a sum over the parameters' indices
 (`aux_lowOrder_first`, `…_second`, `…_third`), the pairs folded into their diagonal and their
-`i < j` halves (`aux_lowOrder_diag_add`), the squares into a centre and a generator
+`i < j` halves (`aux_lowOrder_diag_add`), the squares into a center and a generator
 (`aux_lowOrder_sq_split`). The coefficients are the monomials `pᵢ`, `2pᵢ² - 1`, `pᵢpⱼ`,
 `pᵢpⱼpₗ`, all in `[-1, 1]`.
 
@@ -136,7 +136,7 @@ theorem aux_lowOrder_third (Ag : Fin k → Mat ℝ n n) (UG : Fin k → Vec ℝ 
   congr 1; ring
 
 
-/-- `pᵢ² f = f/2 + (2pᵢ² - 1) f/2`, the square's range `[0, 1]` as a centre and a generator. -/
+/-- `pᵢ² f = f/2 + (2pᵢ² - 1) f/2`, the square's range `[0, 1]` as a center and a generator. -/
 theorem aux_lowOrder_sq_split {V : Type} [AddCommGroup V] [Module ℝ V] (p : Fin k → ℝ)
     (f : Fin k → V) :
     ∑ i, (p i * p i) • f i
@@ -202,7 +202,7 @@ theorem LinParamSys.mem_dependentLowOrder (Ac : Mat ℝ n n) (Ag : Fin k → Mat
     · simp only [Matrix.mulVec_add, Matrix.smul_mulVec, Matrix.mulVec_smul,
         ← Matrix.mulVec_mulVec]
       module
-    -- the squares' halves, in the centre and as generators
+    -- the squares' halves, in the center and as generators
     · refine Finset.sum_congr rfl fun i _ => ?_
       simp only [Matrix.add_mulVec, Matrix.smul_mulVec, ← Matrix.mulVec_mulVec]
     · refine Finset.sum_congr rfl fun i _ => ?_

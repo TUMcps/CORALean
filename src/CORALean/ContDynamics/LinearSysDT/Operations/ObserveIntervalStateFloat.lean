@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 # The interval observer's state after `k` steps, in floats
 
 [1, Alg. 1]: the state `observeIntervalStepFloat` reaches after `k` measurements, from the initial
-set `R₀`: the nominal estimate starts at the centre of `R₀`, the error at `R₀` itself, the
+set `R₀`: the nominal estimate starts at the center of `R₀`, the error at `R₀` itself, the
 collected box at the origin and the disturbance set at `(-L) V ⊕ W`.
 
 ## References
@@ -41,7 +41,7 @@ def LinearSysDT.observeIntervalStateFloat (sys : LinearSysDT 𝕋 n) (L : Mat �
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) : ℕ → LinearSysDT.ObserveIntervalStateFloat 𝕋 n
   | 0 => { x := Interval.point R₀.c, Rx := R₀, Rwv := Interval.point fun _ => zero,
-           D := (Zonotope.mtimes (fun i j => neg (L i j)) V).plus W }
+           D := (Zonotope.mtimes (-L) V).plus W }
   | k + 1 =>
     sys.observeIntervalStepFloat L (u k) (y k) (sys.observeIntervalStateFloat L R₀ W V u y k)
 

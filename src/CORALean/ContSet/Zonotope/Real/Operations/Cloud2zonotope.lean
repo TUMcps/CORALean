@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Cloud2zonotopeLoop
 [1, Alg. 3] (`cloud2zonotope`): a zonotope `c ⊕ Z(R)` enclosing a cloud `X` of points of `ℝⁿ`,
 by at most `s₁` rounds of "compress the cloud along its first principal direction, add the cut
 segment" (`cloud2zonotopeLoop`), then the interval hull of what is left as `n` axis-aligned
-generators `diag(rad)` (`Interval.zonotope`: centre `mid`, generators `diag(rad)`). Inputs
+generators `diag(rad)` (`Interval.zonotope`: center `mid`, generators `diag(rad)`). Inputs
 `ratio`, `s₁`, `s₂` as printed; `dir` stands for `svd(X)(:, 1)`. Every point lies in the result,
 for any `dir` and `ratio` (`cloud2zonotope_mem`).
 

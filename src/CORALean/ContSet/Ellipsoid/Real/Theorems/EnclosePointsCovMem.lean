@@ -10,7 +10,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 Outer: every point lies in `Ellipsoid.enclosePointsCov pts T U`, for every orthogonal `T` and `U`
 (`T Tᵀ = 1`, `U Uᵀ = 1`) as long as no `ntᵢ` vanishes (for points spanning `ℝⁿ` each rotated
-coordinate takes a positive value, since the centred points sum to zero in it). With `u` the
+coordinate takes a positive value, since the centered points sum to zero in it). With `u` the
 coordinates of the point divided by `ntᵢ · sqrt maxDist`, `‖u‖₂² = Σᵢ (oᵢ / ntᵢ)² / maxDist ≤ 1`
 by the definition of `maxDist`. Not exact: the ellipsoid is larger than the hull of the points.
 -/
@@ -36,12 +36,12 @@ theorem Ellipsoid.enclosePointsCov_mem [NeZero N] (pts : Fin N → Vec ℝ n) {T
     (hT : T * Tᵀ = 1) (hU : U * Uᵀ = 1)
     (hnt : ∀ i, Ellipsoid.enclosePointsNt (Ellipsoid.enclosePointsOriented pts T U) i ≠ 0)
     (j : Fin N) : pts j ∈ (Ellipsoid.enclosePointsCov pts T U).construct := by -- --- PROOF ---
-  -- the oriented coordinates, the scalings `nt`, the radius `maxDist` and the centre
+  -- the oriented coordinates, the scalings `nt`, the radius `maxDist` and the center
   set O := Ellipsoid.enclosePointsOriented pts T U with hO
   set nt := Ellipsoid.enclosePointsNt O with hnt'
   set md := Ellipsoid.enclosePointsMaxDist O nt with hmd
   set c : Vec ℝ n := (1 / (N : ℝ)) • ∑ j, pts j with hc
-  -- the centred point is recovered from its oriented coordinates
+  -- the centered point is recovered from its oriented coordinates
   have hback : T *ᵥ (U *ᵥ O j) = pts j - c := by
     have : O j = Uᵀ *ᵥ (Tᵀ *ᵥ (pts j - c)) := rfl
     have e1 : ∀ w : Vec ℝ n, U *ᵥ (Uᵀ *ᵥ w) = w := fun w => by
@@ -102,7 +102,7 @@ theorem Ellipsoid.enclosePointsCov_mem [NeZero N] (pts : Fin N → Vec ℝ n) {T
       simp only [this, ← Finset.sum_div]
       rw [div_le_one hpos]
       exact hle
-  -- the point is the centre plus the generators applied to the coefficients
+  -- the point is the center plus the generators applied to the coefficients
   refine ⟨u, hu1, ?_⟩
   change pts j = c + (T * U * (Matrix.diagonal fun i => nt i * Real.sqrt md : Mat ℝ n n)) *ᵥ u
   rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, hGu, hback]

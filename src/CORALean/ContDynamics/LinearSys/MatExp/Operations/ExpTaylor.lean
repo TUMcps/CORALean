@@ -10,7 +10,7 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # The matrix exponential's Taylor truncation
 
-`expTaylor`: [1, Eq. 3.2–3.3]'s series truncated at `η`, the centre of the enclosure
+`expTaylor`: [1, Eq. 3.2–3.3]'s series truncated at `η`, the center of the enclosure
 `expEnclosure` builds around `exp x`.
 
 ## References
@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The series truncated at `η`, which is the centre of the enclosure. -/
+/-- The series truncated at `η`, which is the center of the enclosure. -/
 noncomputable def MatExp.expTaylor (x : Mat ℝ n n) (η : ℕ) : Mat ℝ n n :=
   ∑ i ∈ Finset.range (η + 1), ((Nat.factorial i : ℝ)⁻¹) • x ^ i
 

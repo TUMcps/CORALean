@@ -4,7 +4,7 @@ import CORALean.ContSet.Zonotope.Float.Zonotope
 # `randverify`: the system, held in a number type
 
 `ẋ = A x + B u`, `y = C x` with `n = 5` states, 2 inputs and 2 outputs, `X0` as a zonotope (its
-box, centre and diagonal generators) and `U` as a box, all read exactly, but for `X0` where
+box, center and diagonal generators) and `U` as a box, all read exactly, but for `X0` where
 `x0Enclosed` says it encloses the file's box.
 -/
 
@@ -30,7 +30,7 @@ structure RandSystem (𝕋 : Type) where
   X0 : Zonotope (Vec 𝕋 5)
   U : Interval (Vec 𝕋 2)
   dt : 𝕋
-  /-- `X0`'s centre or radius was not a number of the format, so `X0` encloses the file's box. -/
+  /-- `X0`'s center or radius was not a number of the format, so `X0` encloses the file's box. -/
   x0Enclosed : Bool := false
 
 end CORALean.Bench

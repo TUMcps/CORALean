@@ -8,8 +8,8 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 # `Ellipsoid.minkDiffPoint`
 
 CORA's `@ellipsoid/minkDiff` with a numeric column subtrahend: `s = sum(S,2)` is the vector
-itself and the result is `ellipsoid(E.Q, E.c - s)`, the same shape at the shifted centre. Here
-the generator matrix is kept and the centre shifted. The ellipsoid-minus-ellipsoid branch
+itself and the result is `ellipsoid(E.Q, E.c - s)`, the same shape at the shifted center. Here
+the generator matrix is kept and the center shifted. The ellipsoid-minus-ellipsoid branch
 (`priv_minkDiffEllipsoid`: `isBigger`, directions `L` filtered by `isBadDir`, an intersection or
 union of the per-direction ellipsoids) is not formalized.
 -/

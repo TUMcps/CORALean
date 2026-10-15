@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `T - c` at a centre no larger than `C` weighs at most twice `T`. -/
+/-- `T - c` at a center no larger than `C` weighs at most twice `T`. -/
 theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |c| ≤ C)
     (hT : T.Scaled h C) :
     (T.minus (Taylm.const n c T.maxOrder)).Scaled h (2 * C) := by -- --- PROOF ---

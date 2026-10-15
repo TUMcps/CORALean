@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import Mathlib.Analysis.Normed.Ring.Lemmas
 public import Mathlib.Topology.MetricSpace.HausdorffDistance
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 [1, Thm. 1]'s `ω_rad` bound, and only that one: the box over-approximation sits
 within the generators' total length of the zonotope, because every point of the
-box is that far from the centre and the zonotope contains its centre. The
+box is that far from the center and the zonotope contains its center. The
 paper's two sharper bounds, `ω_max` and `ω_cut`, are not proved here.
 
 The distance is Mathlib's, so it is read in the metric `Vec ℝ n` carries — the
@@ -52,8 +52,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A coordinate of the box is within the generators' total length of the
-centre's, each generator entry being at most that generator's norm. -/
-theorem aux_abs_sub_centre_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
+center's, each generator entry being at most that generator's norm. -/
+theorem aux_abs_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
     (hx : x ∈ Z.interval.construct) (i : Fin n) :
     |x i - Z.c i| ≤ ∑ p, ‖Z.G p‖ := by -- --- PROOF ---
   have hb := hx i
@@ -76,11 +76,11 @@ theorem Zonotope.hausdorffDist_interval_le (Z : Zonotope (Vec ℝ n)) :
   have hr : (0 : ℝ) ≤ ∑ p, ‖Z.G p‖ := Finset.sum_nonneg fun _ _ => norm_nonneg _
   refine Metric.hausdorffDist_le_of_mem_dist hr
     (fun x hx => ⟨x, Z.interval_contains hx, by simpa using hr⟩) ?_
-  -- the other way the box is reached from the centre, which the zonotope holds
+  -- the other way the box is reached from the center, which the zonotope holds
   intro x hx
-  refine ⟨Z.c, Z.centre_mem_construct, ?_⟩
+  refine ⟨Z.c, Z.center_mem_construct, ?_⟩
   rw [dist_eq_norm, pi_norm_le_iff_of_nonneg hr]
-  exact fun i => by rw [Real.norm_eq_abs]; exact aux_abs_sub_centre_le hx i
+  exact fun i => by rw [Real.norm_eq_abs]; exact aux_abs_sub_center_le hx i
 
 end CORALean.Real
 

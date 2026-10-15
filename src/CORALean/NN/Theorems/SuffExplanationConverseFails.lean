@@ -23,7 +23,7 @@ abstract explanation is valid for the original network, the reverse is not
 necessarily true". A sound abstraction can be too loose to see a separation the
 original network has, which is exactly why refinement exists. The witness keeps
 `nnAbs` a genuine `Layer.linearWithError` [2] abstraction of `nn` — same weights
-and bias, an error box centred at `0` so the two agree exactly — and makes the
+and bias, an error box centered at `0` so the two agree exactly — and makes the
 box wide enough that the enclosed output ties, though the exact one never does.
 
 ## References
@@ -55,10 +55,10 @@ noncomputable def aux_suffExplanationConverseFails_nn :
     NeuralNetwork ℐ𝒱 1 2 :=
   NeuralNetwork.ofLayer (LinearLayer.mk (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0))
 
-/-- The symmetric `±1` error box: centred at `0`, wide enough to tie. -/
+/-- The symmetric `±1` error box: centered at `0`, wide enough to tie. -/
 def aux_suffExplanationConverseFails_box : Float.Interval (Vec ℝ 2) := ⟨fun _ => -1, fun _ => 1⟩
 
--- the committed error is the centre of the box the layer runs, the box itself, so `0`
+-- the committed error is the center of the box the layer runs, the box itself, so `0`
 theorem aux_suffExplanationConverseFails_box_center :
     aux_suffExplanationConverseFails_box.nonemptyHull.nominal.center = 0 := by
   funext i
@@ -80,7 +80,7 @@ noncomputable def aux_suffExplanationConverseFails_nnAbs :
   NeuralNetwork.ofLayer (LinearWithErrorLayer.mk (0 : Mat ℝ 2 1)
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box)
 
--- the box's error is committed at its own centre, `0`, so the exact networks agree
+-- the box's error is committed at its own center, `0`, so the exact networks agree
 theorem aux_suffExplanationConverseFails_nnAbs_sound :
     aux_suffExplanationConverseFails_nnAbs.Sound
       aux_suffExplanationConverseFails_f := by -- --- PROOF ---

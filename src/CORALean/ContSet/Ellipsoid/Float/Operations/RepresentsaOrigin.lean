@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `Ellipsoid.representsa_origin`, over a floating-point scalar
 
 CORA's `@ellipsoid/representsa_` at type `origin` with tolerance `0`: every generator and the
-centre are `0`, and the error box is `{0}`. A `true` is sound, a `false` decides nothing.
+center are `0`, and the error box is `{0}`. A `true` is sound, a `false` decides nothing.
 -/
 
 -- Authors:       Claude Sonnet 5.5

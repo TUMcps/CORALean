@@ -13,7 +13,7 @@ public import Mathlib.Tactic.Ring
 # `addedTerms` is the weighted sum
 
 At the factor vector `(a, l)` the one-dimensional polynomial zonotope `addedTerms pZ` has the
-point `∑ᵢ lᵢ · (pZ.point a)ᵢ`: each dimension's block is its centre and generators times the
+point `∑ᵢ lᵢ · (pZ.point a)ᵢ`: each dimension's block is its center and generators times the
 monomial of `a`, and the new factor `lᵢ` enters with exponent `1` and no other.
 -/
 

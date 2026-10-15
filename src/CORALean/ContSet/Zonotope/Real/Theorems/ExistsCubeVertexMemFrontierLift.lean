@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 `[1, Lemma 6]`: for linearly independent `z₁, …, zₙ`, `Π = {x | |zᵢᵀx| ≤ 1}` (`[1, Eq. 29]`, the
 reading its polar `conv(±zᵢ)` needs; see `Zonotope.parallelotope_eq_abs_mulVec_le_counterexample`),
 `α = 1/(2n²R∞(Π))` (the paper's (31)) and `Z* = ∑ᵢ [0, 1](vᵢ + αe_{n+1})` over `vᵢ = ±zᵢ` (its
-(33)), the largest cube `C` centred at `c = nαe_{n+1}` inside `Z*` exists and has a vertex `q` on
+(33)), the largest cube `C` centered at `c = nαe_{n+1}` inside `Z*` exists and has a vertex `q` on
 `∂Z*` with `qᵀe_{n+1} ∈ [0, α]`. The lift is `Vec ℝ n × ℝ`, whose norm is the maximum norm, so `C`
 is a closed ball; a vertex is a point all of whose coordinates are `±r` off `c`.
 
@@ -252,7 +252,7 @@ theorem aux_cube_subset_lift (hn : 1 ≤ n) (z : Fin n → Vec ℝ n) (hz : Line
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `[1, Lemma 6]`: the largest cube `C` centred at `c = (0, nα)` inside `Z*` exists, and some
+/-- `[1, Lemma 6]`: the largest cube `C` centered at `c = (0, nα)` inside `Z*` exists, and some
 vertex `q` of `C` lies on `∂Z*` with `qᵀe_{n+1} ∈ [0, α]`. -/
 theorem exists_cube_vertex_mem_frontier_lift (hn : 1 ≤ n) (z : Fin n → Vec ℝ n)
     (hz : LinearIndependent ℝ z) {R : ℝ}

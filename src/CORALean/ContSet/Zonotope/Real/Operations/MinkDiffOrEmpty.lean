@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.MinkDiffRep
 
 `minkDiffRep` at whichever generator representation certifies one, wrapped so
 that the result may be empty. No zonotope denotes `∅` — `β = 0` gives the
-centre — while `{0} ⊖ [-1, 1]` is `∅`, so a total `Zonotope → Zonotope →
+center — while `{0} ⊖ [-1, 1]` is `∅`, so a total `Zonotope → Zonotope →
 Zonotope` cannot meet `MinkDiff`'s obligation and this one can.
 
 Two readings of "nothing", kept apart by two types. `minkDiffRep`'s `none`

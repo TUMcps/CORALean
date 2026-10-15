@@ -50,7 +50,7 @@ theorem LinearSysDT.intervalEstimate_le_of_bounds (sys : LinearSysDT ℝ n) (L :
   obtain ⟨-, heq⟩ := LinearSysDT.intervalEstimate_error_eq_hull sys L X₀ W V u y k
   set s := LinearSysDT.intervalEstimateState sys L X₀ W V u y k
   set Ω := LinearSysDT.reachErrorSet sys L X₀ W V k
-  -- `Ω_k` is nonempty: the centres of `⟨0, H₀⟩`, `W` and `V`
+  -- `Ω_k` is nonempty: the centers of `⟨0, H₀⟩`, `W` and `V`
   have hne : Ω.Nonempty := by
     refine ⟨_, Set.add_mem_add (Set.add_mem_add ⟨0, ⟨0, by simp, by simp⟩, rfl⟩
       (Set.finsetSum_mem_finsetSum _ _ _ fun j _ => ⟨W.c, ⟨0, by simp, by simp⟩, rfl⟩))

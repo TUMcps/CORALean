@@ -16,7 +16,7 @@ public import Mathlib.Analysis.Convex.PathConnected
 /-!
 # `Polygon.minkDiff` is the Minkowski difference up to its boundary
 
-For a convex subtrahend whose centre lies in it, and a vertex loop `V` that runs along the
+For a convex subtrahend whose center lies in it, and a vertex loop `V` that runs along the
 boundary of the shifted minuend, the region swept by the mirrored subtrahend along the loop is
 exactly the mirror plus the boundary (`linComb` of two shifts of a convex set is the set plus the
 segment). So the points of the shifted minuend off that region are those whose translate of the
@@ -65,7 +65,7 @@ theorem Polygon.aux_linComb_subset {p q : VPolytope (Vec ℝ 2)} {C : Set (Vec �
     rw [Fin.append_right]
     exact hq (VPolytope.vertex_mem q j)
 
-/-- The mirrored subtrahend about the centre is the points `c - b`. -/
+/-- The mirrored subtrahend about the center is the points `c - b`. -/
 theorem Polygon.aux_construct_mirror (B : Polygon) (c : Vec ℝ 2) :
     ContSet.construct (Polygon.times (-1) (B.minus c))
       = (fun b => c - b) '' ContSet.construct B := by -- --- PROOF ---

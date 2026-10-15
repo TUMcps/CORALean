@@ -5,7 +5,7 @@ import CORALean.ContSet.Conversion.Float.Instances
 import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContSet.SetUnion.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 import CORALean.Global.Float.Instances.Real.Instances
 import CORALean.Specification.Instances
 import CORALean.ContDynamics.LinearSys.Operations.Canonical

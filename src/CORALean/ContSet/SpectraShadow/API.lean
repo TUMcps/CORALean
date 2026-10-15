@@ -11,7 +11,7 @@ spectrahedron, the representation every convex set a semidefinite program
 describes lands in.
 
 The specification in `Real`, and in `Float` the same inequality's matrices stored
-in `𝕋` beside an error box for the centre. `plus`, `mtimes` and `cartProd` are
+in `𝕋` beside an error box for the center. `plus`, `mtimes` and `cartProd` are
 exact over ℝ, the closure properties the representation is for; the float layer
 has `plus` alone, a generator's rounding being unboundable here — see
 `Float/SpectraShadow.lean`.

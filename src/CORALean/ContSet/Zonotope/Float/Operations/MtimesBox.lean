@@ -10,10 +10,10 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 
 A box that holds everything `mtimes M Z` may contain beyond `M` applied to `Z`.
 
-The float `mtimes` rounds the centre and every generator of the result. This box collects
+The float `mtimes` rounds the center and every generator of the result. This box collects
 those rounding errors. It adds up three parts.
 
-* The rounding error of the new centre, bounded as in `plusBox`.
+* The rounding error of the new center, bounded as in `plusBox`.
 * The rounding error of the new generators. Each entry is off by at most `matMulDiff`, and
   `generatorError` turns these bounds into a box, as `mtimesResidual` does.
 * The error box of `mtimes M Z`.

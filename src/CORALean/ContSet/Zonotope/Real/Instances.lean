@@ -18,8 +18,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffOrEmptyInner
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesMatZonotopeOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
-public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreSubMem
-public import CORALean.ContSet.Zonotope.Real.Theorems.RecentreZeroMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecenterSubMem
+public import CORALean.ContSet.Zonotope.Real.Theorems.RecenterZeroMem
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
@@ -35,7 +35,7 @@ Noncomputable, as `reduce` is: it ranks generators, and ordering reals cannot be
 computed.
 
 `MinkDiff` is the one instance not at `Zonotope` itself. Every zonotope holds
-its centre and a difference can be empty, so no total operation into `Zonotope`
+its center and a difference can be empty, so no total operation into `Zonotope`
 meets that class's obligation; at `OptEmpty (Zonotope α)` it does, `empty`
 being the answer where no generator representation certifies one.
 -/
@@ -84,13 +84,13 @@ instance {α : Type} [AddCommGroup α] [Module ℝ α] : OfPoint (Zonotope α) �
   ofPoint := Zonotope.ofPoint
   mem_ofPoint := Zonotope.mem_ofPoint
 
-/-- `centre` is `Zonotope.c` directly: a field projection needs no operation
+/-- `center` is `Zonotope.c` directly: a field projection needs no operation
 of its own. -/
-instance {α : Type} [AddCommGroup α] [Module ℝ α] : Recentre (Zonotope α) α where
-  centre Z := Z.c
-  recentre := Zonotope.recentre
-  zero_mem_recentre := Zonotope.zero_mem_recentre
-  sub_centre_mem_recentre := Zonotope.sub_centre_mem_recentre
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : Recenter (Zonotope α) α where
+  center Z := Z.c
+  recenter := Zonotope.recenter
+  zero_mem_recenter := Zonotope.zero_mem_recenter
+  sub_center_mem_recenter := Zonotope.sub_center_mem_recenter
 
 instance : Plus (Zonotope (Vec ℝ n)) (Vec ℝ n) where
   plus := Zonotope.plus

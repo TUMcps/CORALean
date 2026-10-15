@@ -24,7 +24,7 @@ P-radius of the zonotope of [1, Prop. 2] satisfies `V(X(k)) ≤ γ V(X(k-1)) + �
 [1, Thm. 1], `V` the P-radius [1, Def. 2], `Zonotope.pRadius`. The paper's `γ ∈ (0, 1)` is not
 used: `γ ≥ 0` suffices.
 
-As in the paper's proof. A point of the new zonotope is its centre plus `d = P⁻¹ R v`, with
+As in the paper's proof. A point of the new zonotope is its center plus `d = P⁻¹ R v`, with
 `R = [(P - YC)A  (P - YC)D_w  Y D_v]` Eq. 18 of [1, Thm. 1] and `v = (θ, ϖ, σ)`, `θ` the offset
 in `X(k-1)`, so `‖d‖²_P = vᵀ Rᵀ P⁻¹ R v`. The matrix inequality at the vector `(θ, -d, ϖ, σ)`,
 the Schur complement of the block `P` evaluated there, bounds that by `γ θᵀPθ + ϖᵀΓϖ + σᵀΥσ`,

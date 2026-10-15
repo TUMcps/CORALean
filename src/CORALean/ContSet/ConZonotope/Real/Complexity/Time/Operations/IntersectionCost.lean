@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `ConZonotope.intersectionCost`
 
-Asserted, not proved: `Operations/Intersection.lean` keeps the first centre and
+Asserted, not proved: `Operations/Intersection.lean` keeps the first center and
 generator block, pads the second block with zeros, builds the polytope as in
 `plus` (free) and adds the equalities `G₁ β₁ - G₂ β₂ = c₂ - c₁`. Assembling
 `agreeMat` negates the `n * h₂` entries of the second block, and the right-hand

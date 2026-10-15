@@ -13,7 +13,7 @@ CORA's `@spectraShadow/cartProd_`: each set is put into its own coordinates of
 the product, zero in the other's, and the two are added. CORA assembles the same
 set by intersecting two lifts, which needs the intersection this representation
 does not compute; the sum of the two embeddings is also the block-diagonal
-inequality with the centres and generators stacked, and needs only `plus`.
+inequality with the centers and generators stacked, and needs only `plus`.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -49,7 +49,7 @@ src/CORALean/
                    what makes intersection exact; Real/ and Float/
     ZonoBundle/    a family of zonotopes denoting their intersection, exactly;
                    Real/ and Float/
-    Ellipsoid/     a centre and a generator matrix, the one representation whose
+    Ellipsoid/     a center and a generator matrix, the one representation whose
                    support function is closed form; Real/ and Float/
     SpectraShadow/ the projection of a spectrahedron: exact under sum, image and
                    product, the representation a semidefinite program lands in;
@@ -686,6 +686,14 @@ algorithm to `Operations/`, and a conversion's construction to the `Operations/`
 `Conversion/` layer. The one thing a theorem file may declare is a helper of its own proof,
 `private` or `aux_`. `check-conventions.sh` rejects the rest.
 
+The mirror image holds for `Operations/` (#198): a file there holds definitions, and no `theorem`
+or `lemma`. A guarantee about an operation is a `Theorems/` file's to state; a general fact about
+matrices or vectors, with no operation in it, belongs to the global lemmas
+(`toRealMat_append_mulVec_natAdd`, in `Global/Float/ToRealMatMulVec.lean`) or, with one user, is a
+`private` lemma there. The `Operations/` files that still declare a theorem are listed in
+`scripts/operations-theorem-allowlist.txt`, which only shrinks: an entry whose file declares none
+any more is reported as stale.
+
 ### A size is proved; a running cost is asserted
 
 `Complexity/Space/Theorems/` and `Complexity/Time/Operations/` look alike from outside and only
@@ -1055,8 +1063,17 @@ suffix is the table above.
 No binder is called `temp`, `tmp` or a variant of either (`tmp1`, `temp_`, `tmpX`,
 `temp₁`): a `let`, `have`, `fun`, `obtain`/`rcases` pattern, `intro` or declaration
 argument names the value for what it is — the CORA variable it mirrors, or what it
-holds (`preInf`, `quotient`, `shiftedCentre`). `check-conventions.sh` rejects the
+holds (`preInf`, `quotient`, `shiftedCenter`). `check-conventions.sh` rejects the
 name in code, and leaves comments and strings alone (#191).
+
+CORA's spelling is `center`: `center`, `centerMat`, `recenter`, `IsCenter`, never `centre`, in
+identifiers, file names, docstrings and comments alike. `check-conventions.sh` rejects `centre`
+anywhere in a source file (#199).
+
+A float negation is written `-A` or `-b`, never `fun i j => neg (A i j)` or `fun i => neg (b i)`:
+negation is exact, so the `Neg` on a float matrix or vector is the entrywise `neg`, and
+`toRealMat (-A) = -toRealMat A` (`toRealMat_neg`, `toRealVec_neg`) says what it reads as.
+`check-conventions.sh` rejects the spelled-out lambda (#197).
 
 ## The two layers
 

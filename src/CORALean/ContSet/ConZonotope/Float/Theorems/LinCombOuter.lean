@@ -24,11 +24,11 @@ segment between the two incoming boxes.
 The nominal obligation is the exact argument at the same coefficients — `λ β₁`,
 `(1 - λ) β₂` and `2λ - 1` — and the constraints cost nothing to carry: the
 weighted rows are the incoming rows against a nonnegative weight, which is what
-`smul_mem_halfScaledLeft` and its mirror say. Only the centre and the centre
+`smul_mem_halfScaledLeft` and its mirror say. Only the center and the center
 generator are displaced from what ℝ would have, so only they are charged.
 
 `aux_linCombCoeff` and `aux_linCombGReal` are `noncomputable`: both name a real
-number — a real-scaled coefficient, a real-halved centre gap — only to state
+number — a real-scaled coefficient, a real-halved center gap — only to state
 what this file proves about it, and neither is read back into
 `ConZonotope.linComb`, which stores no real. Inherent to arguing about ℝ, not a
 gap in what runs.
@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The coefficients the segment supplies: each side's own, weighted, and the
-interpolation parameter on the centre generator. -/
+interpolation parameter on the center generator. -/
 noncomputable def ConZonotope.aux_linCombCoeff {h₁ h₂ : ℕ} (β₁ : Vec ℝ h₁) (β₂ : Vec ℝ h₂)
     (lam : ℝ) : Vec ℝ (h₁ + h₂ + 1) :=
   Fin.append (Fin.append (lam • β₁) ((1 - lam) • β₂)) fun _ : Fin 1 => 2 * lam - 1
@@ -101,7 +101,7 @@ theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 
         (HPolytope.smul_mem_halfScaledRight (by ring) (by linarith) hd₂)⟩
 
 /-- What the stored generators are wrong by, entrywise: nothing on the copied
-blocks, and on the centre generator the gap `linCombGDiff` records. -/
+blocks, and on the center generator the gap `linCombGDiff` records. -/
 theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin n)
     (j : Fin (cZ₁.h + cZ₂.h + 1)) :
     |ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j - toReal ((cZ₁.linComb cZ₂).G j i)|
@@ -115,7 +115,7 @@ theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋
     · intro k
       simp only [Fin.append_left, Fin.append_right]
       rw [sub_self, abs_zero, toReal_zero]
-  -- the centre generator, the one column the two directed roundings differ on
+  -- the center generator, the one column the two directed roundings differ on
   · intro _
     simp only [Fin.append_right]
     rw [toReal_half, abs_le]
@@ -147,7 +147,7 @@ theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)
   rw [e₁, e₂]
   ring
 
-/-- The nominal part spills only by what the centre and the centre generator
+/-- The nominal part spills only by what the center and the center generator
 rounded. -/
 theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) ⊆
@@ -182,7 +182,7 @@ theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec �
   rw [ConZonotope.aux_linComb_row cZ₁ cZ₂ i β₁ β₂ lam] at hsum
   linarith [hsum]
 
-/-- The box absorbs the two incoming boxes, the centre rounding and the centre
+/-- The box absorbs the two incoming boxes, the center rounding and the center
 generator's. -/
 theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Set.linComb cZ₁.I_error.construct cZ₂.I_error.construct

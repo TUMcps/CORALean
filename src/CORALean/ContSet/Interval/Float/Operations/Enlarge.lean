@@ -8,10 +8,10 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `Interval.enlarge` over floats
 
-CORA's `@interval/enlarge`: `[c - f·r, c + f·r]` for the centre `c` and half-width `r`, scaled by a
-nonnegative factor `f`. Each bound rounds outward: the lower one takes the centre rounded down
+CORA's `@interval/enlarge`: `[c - f·r, c + f·r]` for the center `c` and half-width `r`, scaled by a
+nonnegative factor `f`. Each bound rounds outward: the lower one takes the center rounded down
 (`centerLo`) less the product `f · r` rounded up, with `r` rounded up (`radius`); the upper one the
-centre rounded up (`center`) plus the same product.
+center rounded up (`center`) plus the same product.
 -/
 
 -- Authors:       Claude Sonnet 5.5

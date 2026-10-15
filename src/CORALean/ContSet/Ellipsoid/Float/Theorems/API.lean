@@ -5,7 +5,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.BoundDotLe
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdOuter
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdVecExact
-public import CORALean.ContSet.Ellipsoid.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.EllipsoidNormLeEllipsoidNormUb
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.Enclose2Outer

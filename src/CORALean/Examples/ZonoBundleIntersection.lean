@@ -5,7 +5,7 @@ import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # Two zonotopes whose intersection is not one, bundled exactly
 
-A box and a diamond centred off it: their intersection has no centre of
+A box and a diamond centered off it: their intersection has no center of
 symmetry, so no `Zonotope` denotes it, where `ZonoBundle.intersection_exact` denotes it
 outright — `intersection`, not merely `intersection_outer`. `Plus` and `Mtimes` still run at a
 bundle exactly as at any other `ContSet`, which is the second point: a bundle
@@ -29,7 +29,7 @@ namespace CORALean.Real
 
 open Matrix Pointwise ContSet
 
--- A unit box at the origin, and a unit diamond centred away from it, sharing no centre.
+-- A unit box at the origin, and a unit diamond centered away from it, sharing no center.
 
 def Example.box : Zonotope (Vec ℝ 2) := ⟨2, ![0, 0], ![![1, 0], ![0, 1]]⟩
 

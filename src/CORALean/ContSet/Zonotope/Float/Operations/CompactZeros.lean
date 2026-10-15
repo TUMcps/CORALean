@@ -11,7 +11,7 @@ public import Mathlib.Data.Finset.Sort
 CORA's `compact_(Z, 'zeros')` at tolerance `0`: the generator columns that are certifiably zero
 (`Zonotope.keepColumn`, by the certified `le` in both directions, a proof when it holds) are
 dropped; a zero column the test cannot certify is kept, which is sound.
-The centre and the error box are copied. Nothing rounds, so the denoted set is the same
+The center and the error box are copied. Nothing rounds, so the denoted set is the same
 (`compactZeros_exact`).
 -/
 

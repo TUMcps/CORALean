@@ -19,7 +19,7 @@ the picks, and `T` is overwritten in every run. After the loop `Tr = Trn` is the
 that run 1 took into the basis and run 2 left over are scaled into the basis, but those that run 2
 took into its basis and run 1 left over are in neither `Tr`, `alpha` nor `T`: they are lost. The
 result then does not contain `Z`. `valero` is a case of the public `reduce` (l. 160) and is not in
-the list `getMembers('reductionTechnique')` of `reach`. Modelled for `n = 2`, centre `0`, generators
+the list `getMembers('reductionTechnique')` of `reach`. Modelled for `n = 2`, center `0`, generators
 in `ℤ²` (the residual norm of the second column is `|det(first, g)| / |first|`, the same factor for
 every candidate, so the comparison uses `|det|`; the sorts are stable, as MATLAB's `sort`), the
 result in `ℚ²`. Read from the source, not run; a python transcription gives the same result.
@@ -91,7 +91,7 @@ def Zonotope.valeroCora (G : List (ℤ × ℤ)) (g : Nat) : List (ℚ × ℚ) :=
   [(a.1 * best.1.1, a.1 * best.1.2), (a.2 * best.2.1.1, a.2 * best.2.1.2)]
     ++ (T.drop k).map fun v => ((v.1 : ℚ), (v.2 : ℚ))
 
-/-- The zonotope with centre `0` and generators `G`: the combinations with coefficients in
+/-- The zonotope with center `0` and generators `G`: the combinations with coefficients in
 `[-1, 1]`. -/
 def Zonotope.aux_zonotope (G : List (ℚ × ℚ)) : Set (ℚ × ℚ) :=
   {z | ∃ s : List ℚ, s.length = G.length ∧ (∀ x ∈ s, |x| ≤ 1) ∧

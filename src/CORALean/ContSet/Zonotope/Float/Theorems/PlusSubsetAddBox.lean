@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 The reverse of `plus_outer`, and what a float step's own accumulated error
 needs: `plus`'s generators concatenate exactly, so its nominal part misses
-`nominalSet Z₁ + nominalSet Z₂` by exactly the centre's rounding, a single
+`nominalSet Z₁ + nominalSet Z₂` by exactly the center's rounding, a single
 point bounded in `𝕋` the same two ways `addDown`/`addUp` already bound it;
 `Interval.plus_outer` reads that bound and `plus`'s own error box into
 `plusBox`. Both operands' own error boxes are absorbed at `0`, which is where
@@ -61,7 +61,7 @@ theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
     with hp₁def
   set p₂ : Vec ℝ n := fun i => toReal (Z₂.c i) + ∑ l, toReal (Z₂.G l i) * β (Fin.natAdd Z₁.h l)
     with hp₂def
-  -- the point `plus`'s stored centre misses the exact sum by
+  -- the point `plus`'s stored center misses the exact sum by
   set d : Vec ℝ n := fun i =>
     toReal (addDown (Z₁.c i) (Z₂.c i)) - toReal (Z₁.c i) - toReal (Z₂.c i) with hddef
   -- each half sits in its own zonotope's construct, its error box absorbed at `0`

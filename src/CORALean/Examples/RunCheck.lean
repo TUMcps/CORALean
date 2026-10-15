@@ -535,8 +535,8 @@ def dyadicRows2 : StateT Nat IO Unit := do
     (RunnableFloat.vdpHessModel.reachAlgFloat (.poly 2)
       { X₀ := RunnableFloat.vdpX₀, U := RunnableFloat.vdpU, tFinal := 1 / 32 }
       { Δt := RunnableFloat.d 1 (-5), η := 4, ρ := 10 }) 1)
-  -- the rest of the nonlinear block: centre linearization, the adaptive loop, the cubic box
-  row "vdpCentreReach" (ofWindowsBox RunnableFloat.vdpCentreReach 1)
+  -- the rest of the nonlinear block: center linearization, the adaptive loop, the cubic box
+  row "vdpCenterReach" (ofWindowsBox RunnableFloat.vdpCenterReach 1)
   row "vdpAdaptRun" (ofWindowsBox (RunnableFloat.vdpAdaptRun.map (List.map (·.Rτ))) 1)
   row "vdpThird" (ofMat (RunnableFloat.vdpThird 1 0))
   row "vdpLagrange" (ofBox RunnableFloat.vdpLagrange)

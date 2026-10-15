@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 
 CORA's `@polyZonotope/replaceId`: factors are renamed by a map `f : Fin p → Fin p'`, the exponent
 row of a new factor being the sum of the rows of the factors sent to it (natural numbers, so
-exact). Centre, generators and error box are copied; nothing rounds.
+exact). Center, generators and error box are copied; nothing rounds.
 -/
 
 -- Authors:       Claude Opus 5.5

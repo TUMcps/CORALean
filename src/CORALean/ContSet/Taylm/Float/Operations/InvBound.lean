@@ -10,7 +10,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 # The derivative bound of `1/x` over the box
 
 `|(1/x)⁽ᴺ⁺¹⁾| = (N+1)! / |x|ᴺ⁺²`, at most `(N+1)! · (1/m)ᴺ⁺²` where `m` is the distance from zero
-of the hull of the centre and the range, every factor rounded up.
+of the hull of the center and the range, every factor rounded up.
 -/
 
 -- Authors:       Claude Opus 5.5

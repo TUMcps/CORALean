@@ -14,7 +14,7 @@ public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 
 `taylor_remainder_abs_le` at `exp`, then every factor of the bound below its rounding.
 `hp` is `expUp`'s range hypothesis at the top of the hull, as `Interval.exp_outer` keeps
-it; it covers the centre too.
+it; it covers the center too.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -48,7 +48,7 @@ theorem Taylm.exp_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
     (fun k => Real.exp (toReal c) / (k.factorial : ℝ))
     (fun k _ => hcoef k) fun t ht => ?_
   have hb := Taylm.bounds_mem h ht
-  -- Lagrange at the centre, the derivative bounded at the top of the hull
+  -- Lagrange at the center, the derivative bounded at the top of the hull
   have hL := taylor_remainder_abs_le (g := Real.exp) (N := N) (c := toReal c)
     (x := f t) (D := Real.exp (max (toReal c) (toReal T.bounds.sup)))
     (fun ξ _ => Real.contDiff_exp.contDiffAt) fun ξ hξ => by

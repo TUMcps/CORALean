@@ -116,7 +116,7 @@ theorem Capsule.vertices_mem_frontier (C : Capsule 2) (hr : 0 ≤ C.r) :
   intro x hx
   unfold Capsule.vertices at hx
   split_ifs at hx with hp
-  · -- a point capsule: its centre
+  · -- a point capsule: its center
     rw [List.mem_singleton] at hx
     subst hx
     have := C.aux_mem_frontier hr (t₀ := 0) (by simp) ![1, 0] (by simp [Fin.sum_univ_two])

@@ -9,7 +9,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
 /-!
 # `Capsule.representsa_origin` is sound
 
-`true` makes the nominal capsule a point with centre `0`, so by the exact layer's
+`true` makes the nominal capsule a point with center `0`, so by the exact layer's
 `representsa_origin_iff` (for `0 < n`) it is `{0}`.
 -/
 

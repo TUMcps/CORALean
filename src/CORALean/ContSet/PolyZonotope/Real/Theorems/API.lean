@@ -130,7 +130,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExpEdgeAcyclic
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpEvenOuterOfEdge
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RelaxExpGreedyOuter
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMemIff
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsFullDimRank

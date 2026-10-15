@@ -150,7 +150,7 @@ theorem GNN.aux_padPoint (R : Relaxation ℝ) (A : Mat ℝ N N)
   rw [PolyZonotope.point, GNN.aux_sum_univ_uncertainAdjPad]
   simp only [GNN.uncertainAdjPad, PolyZonotope.monomial_identE, GNN.aux_factors,
     Fin.addCases_left, Fin.addCases_right, smul_zero, Finset.sum_const_zero, add_zero]
-  -- one edge's half in the centre plus its half in the generator is its weight
+  -- one edge's half in the center plus its half in the generator is its weight
   have hedge : ∀ e, (1/2 : ℝ) • GNN.edgeMat (U e)
       + (2 * lam e - 1) • ((1/2 : ℝ) • GNN.edgeMat (U e)) = lam e • GNN.edgeMat (U e) := by
     intro e

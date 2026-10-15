@@ -24,7 +24,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Mag
 
 The source's intrinsics (its Def. 3) as [1, Thm. 2]'s code lists call them, each under the
 condition the source states for it, read on the model as its own operation's guarantee needs it:
-`log`, `sqrt` and `1/sqrt` a positive centre and range bottom, the inverse a hull on one side of
+`log`, `sqrt` and `1/sqrt` a positive center and range bottom, the inverse a hull on one side of
 zero, `arcsin` and `arccos` a magnitude below one, `tan` below `π/2`. A model failing its
 condition gives `none`, where CORA throws `outOfDomain`: the condition is on the computed model,
 not on the function it encloses.

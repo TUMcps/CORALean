@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 # `Zonotope.matPlus` over-approximates the Minkowski sum
 
 The nominal parts add inside the exact `Zonotope.plus` (`plus_exact`), which
-`ofEntryBoundsMat_outer` rounds: its generators are stored exactly, its centre between the
+`ofEntryBoundsMat_outer` rounds: its generators are stored exactly, its center between the
 two directed sums. The boxes add by `matPlus_outer`.
 -/
 

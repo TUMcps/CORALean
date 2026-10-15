@@ -86,8 +86,8 @@ noncomputable def Location.guardIntersectHyperplaneMapCoraErr (ℓ : Location �
   let th : ℝ := tmax / 2                                           -- th = tmax/2
   let b : Vec ℝ n := GuardMap.sdcInput A U.c th η R₀.c             -- b = aux_constantFlow
   let R0red := R₀.reduceGirard guardOrder                          -- R0red = reduce(R0,..)
-  let R0red_ := R0red.recentre                                     -- R0red_ = R0red - c
-  let R0_ := R₀.recentre                                           -- R0_ = R0 - center(R0)
+  let R0red_ := R0red.recenter                                     -- R0red_ = R0red - c
+  let R0_ := R₀.recenter                                           -- R0_ = R0 - center(R0)
   let err := GuardMap.abstractionErrorCora A U R0red th tmax η     -- err = aux_abstractionError
   -- `aux_taylorSeriesParam(guard,A,b,R0red)`
   let x0 := R0red.c                                                -- x0 = center(R0)
@@ -244,7 +244,7 @@ theorem aux_hpMapCoraCex_quadMapMatZono {m ν : ℕ} (D : Fin m → Mat ℝ n n)
     exact aux_hpMapCoraCex_unitIntervalMul (aux_hpMapCoraCex_quadMap _ hc h).1
       (aux_hpMapCoraCex_quadMap _ hc h).2 _
 
-/-- A point of a zonotope whose generators are `0` is its centre. -/
+/-- A point of a zonotope whose generators are `0` is its center. -/
 theorem aux_hpMapCoraCex_mem {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G j = 0)
     {x : Vec ℝ n} (hx : x ∈ Z.construct) : x = Z.c := by
   obtain ⟨β, -, rfl⟩ := hx
@@ -324,7 +324,7 @@ theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample :
     simp [Zonotope.halfspaceRange, Zonotope.plus, Zonotope.mtimes, dotProduct,
       Fin.sum_univ_three, aux_hpMapCoraCex_A, Matrix.vecHead, Matrix.vecTail]
   rw [hΛ, if_pos (by norm_num)]
-  -- every generator of the result is `0`: a member is its centre, the projected `k`
+  -- every generator of the result is `0`: a member is its center, the projected `k`
   refine ⟨_, rfl, fun hmem => ?_⟩
   have heq := congrFun (aux_hpMapCoraCex_proj (aux_hpMapCoraCex_reduceGirard
     (aux_hpMapCoraCex_plus (aux_hpMapCoraCex_plus (aux_hpMapCoraCex_plus
@@ -339,7 +339,7 @@ theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample :
         hG)) zo) _ _ hmem) 0
   -- its first coordinate is `k₀ = 1`, the run's `2`
   rw [aux_hpMapCoraCex_reduceGirard_c] at heq
-  simp only [Zonotope.plus, Zonotope.mtimes, Zonotope.recentre, Zonotope.mtimesIntervalMat,
+  simp only [Zonotope.plus, Zonotope.mtimes, Zonotope.recenter, Zonotope.mtimesIntervalMat,
     Zonotope.quadMapMatZono, Zonotope.quadMap, Zonotope.halfspaceRange, hc, hG, mulVec_zero,
     add_zero, zero_dotProduct, dotProduct_zero, zero_add, abs_zero, Finset.sum_const_zero,
     sub_zero] at heq

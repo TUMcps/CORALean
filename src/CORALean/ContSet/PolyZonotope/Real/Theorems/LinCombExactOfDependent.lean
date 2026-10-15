@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombValueDependent
 
 The result is [1, Prop. 14], whose construction is `PolyZonotope.linComb`: the
 paper's `0.5[G₁ G₁ G₂ -G₂]` at the exponent matrix `linCombE` assembles, with
-the centre column `½(c₁-c₂)` carrying what a centre kept outside `G` costs.
+the center column `½(c₁-c₂)` carrying what a center kept outside `G` costs.
 
 `⊆` is `linComb_outer`, which needs no hypothesis. `⊇` is
 `linComb_value_dependent` — every factor vector of `linComb` names a segment

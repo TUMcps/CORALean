@@ -12,7 +12,7 @@ public import Mathlib.Probability.Distributions.Gaussian.Multivariate
 
 [1, Thm. 15 (accuracy)]: for `g` a standard Gaussian vector and `a` a fixed vector,
 `E|⟨a, g⟩|^k = ‖a‖^k γ_k^k`, `γ_k` the constant of Eq. 31 (`gaussMomentRoot`). `⟨a, g⟩` is
-a centred Gaussian of variance `‖a‖²` (Mathlib's `stdGaussian` is Gaussian, and the variance
+a centered Gaussian of variance `‖a‖²` (Mathlib's `stdGaussian` is Gaussian, and the variance
 of a functional is its squared norm), so it is `‖a‖` times a standard normal; and
 `E|g|^k = 2 ∫₀^∞ x^k e^{-x²/2} / √(2π) dx = 2^{k/2} Γ((k+1)/2) / √π` by the Gamma integral.
 

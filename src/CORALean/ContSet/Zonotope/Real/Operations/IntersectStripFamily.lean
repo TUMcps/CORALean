@@ -10,7 +10,7 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 # `Zonotope.intersectStripFamily`
 
 The zonotope that [1, Lemma 1] gives for a family of `m` strips `|H_j x - y_j| ≤ r_j`, each of
-`p` rows with one radius `r_j`: centre `c + Σ_j λ_j (y_j - H_j c)` and generators
+`p` rows with one radius `r_j`: center `c + Σ_j λ_j (y_j - H_j c)` and generators
 `[(I - Σ_j λ_j H_j) G, λ_1 r_1, …, λ_m r_m]`, the last `m p` being the columns of the `λ_j` scaled
 by `r_j`. It is `intersectStrip` at the stacked strip (`intersectStripFamily_eq`), written the way
 the paper writes it. The gains `λ_j` are arguments, as in [1] they are a degree of freedom.

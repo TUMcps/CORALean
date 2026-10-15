@@ -9,7 +9,7 @@ public import CORALean.Global.Partition
 # `Zonotope.reduceBy`
 
 CORA's reduction at a given partition, unchanged in shape and sound for every
-one of them. Nothing is charged to the box: the centre and kept generators are
+one of them. Nothing is charged to the box: the center and kept generators are
 copied exactly, and the diagonal block rounds *up*, which only enlarges.
 -/
 
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q r : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's reduction at a given partition, unchanged in shape and sound for
-every one of them. Nothing is charged to the box: the centre and kept generators
+every one of them. Nothing is charged to the box: the center and kept generators
 are copied exactly, and the diagonal block rounds *up*, which only enlarges. -/
 def Zonotope.reduceBy (Z : Zonotope (Vec 𝕋 n)) (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
     Zonotope (Vec 𝕋 n) where

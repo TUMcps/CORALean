@@ -6,7 +6,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.NormSubCenterLe
 @[expose] public section
 
 /-!
-# A member is within the certified bound of the centre
+# A member is within the certified bound of the center
 
 In `‖·‖₂`, from the certificate of `Radius2NominalLe`; a member forces the box nonempty.
 -/

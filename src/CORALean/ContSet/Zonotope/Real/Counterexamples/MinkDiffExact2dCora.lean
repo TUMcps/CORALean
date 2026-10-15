@@ -131,7 +131,7 @@ theorem Zonotope.minkDiffExact2dCora_not_inner :
     fin_cases j <;> simp [Z₁, Z₂]
   have hS : (Z₁.minkDiffAligned Z₂ rfl).c ∈ (Z₁.minkDiffAligned Z₂ rfl).construct :=
     ⟨fun _ => 0, fun _ => by simp, by simp⟩
-  -- CORA returns the aligned closed form, whose centre lies in it, so it is nonempty and not `∅`
+  -- CORA returns the aligned closed form, whose center lies in it, so it is nonempty and not `∅`
   refine ⟨hempty, Z₁.minkDiffAligned Z₂ rfl, ?_, ⟨_, hS⟩, ?_⟩
   · simp only [Zonotope.minkDiffExact2dCora]
     rw [dif_pos rfl, if_pos hal]

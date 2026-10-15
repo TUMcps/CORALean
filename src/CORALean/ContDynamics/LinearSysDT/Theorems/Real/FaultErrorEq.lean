@@ -14,7 +14,7 @@ public import Mathlib.Tactic.Abel
 [1, Eq. 3] and the Luenberger observer `x̂_{k+1} = A x̂_k + B u_k + L(y_k - C x̂_k)` [1, Eq. 7],
 the error `e_k = x_k - x̂_k` follows `e_{k+1} = (A - LC) e_k + D_x w_k - L D_y v_k - L E f_k`, and
 the residual is `r_k = M(y_k - C x̂_k) = M C e_k + M D_y v_k + M E f_k`. At `w_k = v_k = 0` and
-`x̂_k = p_k`, the centre of [1, Eq. 10], these are [1, Eq. 19] and [1, Eq. 20].
+`x̂_k = p_k`, the center of [1, Eq. 10], these are [1, Eq. 19] and [1, Eq. 20].
 
 ## References
 

@@ -161,7 +161,7 @@ theorem PolyZonotope.aux_halfDiff_mem_error (a b : Vec 𝕋 n) {lam : ℝ}
 
 /-! Constants pulled out of a generator block: `ring` cannot do that for itself,
 a sum being one atom to it. Stated at `toReal (half _)` rather than after
-unfolding it, so simp fires on the whole sum and never on the stored centre,
+unfolding it, so simp fires on the whole sum and never on the stored center,
 which has to stay folded to cancel against its residual. `aux_sum_mul` strips a
 coefficient's common factor first, which is why the two halving lemmas are
 needed only in their bare form. -/

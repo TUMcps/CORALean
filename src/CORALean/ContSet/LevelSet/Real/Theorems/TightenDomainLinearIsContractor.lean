@@ -15,7 +15,7 @@ public import Mathlib.Analysis.Calculus.Deriv.MeanValue
 
 The box it returns lies in the box it was given and keeps every solution of `f(x) = 0`
 ([1, Def. 6], `IsContractor`), whatever the number of sweeps. The reason is the mean value form
-of the equation: along the segment from the centre `m` to a solution `x`, both in the box,
+of the equation: along the segment from the center `m` to a solution `x`, both in the box,
 `0 = f(x) = f(m) + Σᵢ κᵢ (xᵢ - mᵢ)` with `κᵢ = ∂ᵢ f(ξ)` at a point `ξ` of the segment, hence of
 the box, so `κᵢ` lies in the interval gradient `kᵢ`. Solving for `xⱼ` and enclosing each term in
 interval arithmetic puts `xⱼ` in the tightened range, as long as `0 ∉ kⱼ`; the later coordinates
@@ -174,7 +174,7 @@ theorem LevelSet.aux_linearSweep {f : Vec ℝ n → ℝ} (hf : Differentiable �
     (LevelSet.linearSweep f grad I).construct ⊆ I.construct ∧
       ∀ x ∈ I.construct, f x = 0 →
         x ∈ (LevelSet.linearSweep f grad I).construct := by -- --- PROOF ---
-  -- the fold of `aux_linearFold`, at the centre, the interval gradient and `f` of the centre
+  -- the fold of `aux_linearFold`, at the center, the interval gradient and `f` of the center
   obtain ⟨h₁, h₂⟩ := LevelSet.aux_linearFold (f I.center) I.center (grad I) (List.finRange n) I
   refine ⟨h₁, fun x hx hfx => ?_⟩
   have hI : I.IsNonempty (ι := Fin n) := fun i => (hx i).1.trans (hx i).2

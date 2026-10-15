@@ -16,7 +16,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 When every feasible coefficient vector lies in `[ξL, ξU]` (over ℝ: the box contains
 `B∞(A, b)`), each one is `ξm + diag(ξr) δ` with `|δ| ≤ 1`, since the float radius reaches both
 ends from the float midpoint. The point at `ξ` is then the rescaled nominal point at `δ` plus
-the old error, the centre's rounding and the generators' rounding against `δ`, which is what
+the old error, the center's rounding and the generators' rounding against `δ`, which is what
 the new error box holds; and `δ` meets the rescaled rows, whose right-hand sides were widened by
 the same rounding. Outer: the exact layer's `rescale_exact` is an equality, this is not.
 -/
@@ -126,7 +126,7 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU 
   have hgen : ∀ i j, |toReal (cZ.G j i) * toReal (ξr j) - toReal (mulDown (cZ.G j i) (ξr j))|
       ≤ toReal (subUp (mulUp (cZ.G j i) (ξr j)) (mulDown (cZ.G j i) (ξr j))) :=
     fun i j => ConZonotope.aux_mulDown_gap _ _
-  -- the stored centre's rounding
+  -- the stored center's rounding
   have hcen : ∀ i, toReal (addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm))
         ≤ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (ξm j)
       ∧ toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * toReal (ξm j)

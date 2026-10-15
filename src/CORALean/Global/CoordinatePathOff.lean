@@ -5,15 +5,15 @@ public import CORALean.Global.CoordinatePath
 @[expose] public section
 
 /-!
-# Moving only some coordinates from the centre of a box
+# Moving only some coordinates from the center of a box
 
 [1, Thm. 2]'s outer bound moves the disturbances `w` of `f(w, u)` with the controls `u` at
-the centre of their interval, and bounds `∂ⱼf` only there. With the inputs one vector and
+the center of their interval, and bounds `∂ⱼf` only there. With the inputs one vector and
 the controls an index predicate `E`, a point of the box whose `E` coordinates are at the
-centre is a move from the centre through the other coordinates only, each bounded by
-`Uⱼ`, where `|∂ⱼf| ≤ Uⱼ` is asked only at points with their `E` coordinates at the centre.
+center is a move from the center through the other coordinates only, each bounded by
+`Uⱼ`, where `|∂ⱼf| ≤ Uⱼ` is asked only at points with their `E` coordinates at the center.
 The reduction is [`abs_sub_le_sum_of_abs_partial_le`](CoordinatePath.lean) applied to `f`
-with the `E` coordinates pinned to the centre.
+with the `E` coordinates pinned to the center.
 
 ## References
 
@@ -39,8 +39,8 @@ variable {m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `f` moves from the centre by at most `Σ_{j ∉ E} Uⱼ rⱼ` to a point with its `E` coordinates
-at the centre, when `|∂ⱼf| ≤ Uⱼ` for `j ∉ E` at the points of the box with `E` at the centre. -/
+/-- `f` moves from the center by at most `Σ_{j ∉ E} Uⱼ rⱼ` to a point with its `E` coordinates
+at the center, when `|∂ⱼf| ≤ Uⱼ` for `j ∉ E` at the points of the box with `E` at the center. -/
 theorem abs_sub_le_sum_filter_of_abs_partial_le {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f)
     {lo hi : Fin m → ℝ} (hlh : lo ≤ hi) (E : Fin m → Prop) [DecidablePred E] (U : Fin m → ℝ)
     (hU : ∀ y ∈ Icc lo hi, (∀ j, E j → y j = (lo j + hi j) / 2) → ∀ j, ¬ E j →
@@ -49,7 +49,7 @@ theorem abs_sub_le_sum_filter_of_abs_partial_le {f : (Fin m → ℝ) → ℝ} (h
     |f x - f (fun i => (lo i + hi i) / 2)|
       ≤ ∑ j with ¬ E j, U j * ((hi j - lo j) / 2) := by -- --- PROOF ---
   set c : Fin m → ℝ := fun i => (lo i + hi i) / 2 with hc
-  -- `f` with the `E` coordinates pinned to the centre
+  -- `f` with the `E` coordinates pinned to the center
   set φ : (Fin m → ℝ) → (Fin m → ℝ) := fun y j => if E j then c j else y j with hφ
   have hφd : Differentiable ℝ φ := differentiable_pi.mpr fun j => by
     by_cases h : E j <;> simp only [hφ, h, if_true, if_false]
@@ -111,7 +111,7 @@ theorem abs_sub_le_sum_filter_of_abs_partial_le {f : (Fin m → ℝ) → ℝ} (h
       · rw [hpart y i h]
         simp only [h, if_false]
         refine hU _ (hφm y hy) (fun j hj => by simp [hφ, hj, hc]) i h) hx
-  -- `φ` fixes `x` (its `E` coordinates are at the centre) and the centre
+  -- `φ` fixes `x` (its `E` coordinates are at the center) and the center
   have hφx : φ x = x := funext fun j => by
     by_cases h : E j
     · simp [hφ, h, hxE j h, hc]

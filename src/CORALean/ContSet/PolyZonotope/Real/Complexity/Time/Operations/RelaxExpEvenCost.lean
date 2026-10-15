@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Complexity.Time.Operations.Rela
 # `PolyZonotope.relaxExpEvenCost`
 
 Asserted, not proved, at `Vec ℝ n`: as `relaxExp`, with `ξ_E / 2` taken twice,
-once off the centre (`n` products, `n` subtractions) and once as the new
+once off the center (`n` products, `n` subtractions) and once as the new
 independent generator (`n` products), `ξ_E` itself evaluated twice as written,
 and the two generators added (`n`).
 -/

@@ -8,9 +8,9 @@ public import CORALean.Global.Float.Sqrt
 /-!
 # `Capsule.mtimes`
 
-The exact layer's map: centre and generator multiplied by `M`, the radius by the Frobenius norm
+The exact layer's map: center and generator multiplied by `M`, the radius by the Frobenius norm
 of `M`, an upper bound of its operator norm (not CORA's `max(eig(M Mᵀ))`, which is the square of
-it, `Capsule.mtimes_cora_counterexample`). In floats the centre and the generator are each a
+it, `Capsule.mtimes_cora_counterexample`). In floats the center and the generator are each a
 rounded-down `mulVecDown`, and the distance of each from the exact product (from the gap between
 `dotUp` and `dotDown`, per entry) is added to the radius as a length, with the scaled radius:
 `r' = r σ + ‖M c - c̃‖₂ + ‖M g - g̃‖₂`. `σ` is `sqrtUp` of the sum of the squared entries, rounded

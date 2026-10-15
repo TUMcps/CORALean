@@ -129,7 +129,7 @@ theorem aux_sum_univ_Zs {M : Type} [AddCommMonoid M] (f : Fin aux_As.h → M) :
 /-- `Δd`. -/
 noncomputable def aux_Add : Vec ℝ 6 := ![4, 7/3, 7/3, 7/3, 7/3, 2]
 
-/-- `delta_d = d - C c⁽ᵐ⁾ + C c⁽ˢ⁾`, the centres being `0`. -/
+/-- `delta_d = d - C c⁽ᵐ⁾ + C c⁽ˢ⁾`, the centers being `0`. -/
 theorem aux_dd_eq :
     (fun i => aux_AC i ⬝ᵥ aux_Am.c + ∑ j : Fin 4, |aux_AC i ⬝ᵥ aux_Am.G j|
       - (aux_AC i ⬝ᵥ aux_As.c + ∑ k : Fin 1, |aux_AC i ⬝ᵥ aux_As.G k|)

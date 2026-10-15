@@ -68,10 +68,22 @@ open SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 
+/-- `toReal_neg`, for the `-a` that a float vector or matrix negates its entries with. -/
+theorem toReal_neg' (a : 𝕋) : toReal (-a) = -toReal a := toReal_neg a
+
 /-! ## Reading arrays -/
 
 def toRealVec (v : Vec 𝕋 n) : Vec ℝ n := fun i => toReal (v i)
 def toRealMat (M : Mat 𝕋 m n) : Mat ℝ m n := fun i j => toReal (M i j)
+
+/-- Negating a float vector entrywise reads as negating the real vector. Stated at `Fin n → 𝕋`
+rather than `Vec 𝕋 n` so that `simp` indexes it. -/
+theorem toRealVec_neg (v : Fin n → 𝕋) : toRealVec (-v) = -toRealVec v :=
+  funext fun i => toReal_neg' (v i)
+
+/-- Negating a float matrix entrywise reads as negating the real matrix. -/
+theorem toRealMat_neg (M : Mat 𝕋 m n) : toRealMat (-M) = -toRealMat M :=
+  funext fun i => funext fun j => toReal_neg' (M i j)
 
 /-- What the exact layer needs of the scalar, and all it needs. The fields are written out
 rather than naming `toRealMat`, so that at `𝕋 := ℝ` instance search sees this is ℝ's own. -/
@@ -163,7 +175,7 @@ theorem minimumOver_le {k : ℕ} (f : Fin k → 𝕋) (l : Fin k) :
     toReal (minimumOver f) ≤ toReal (f l) := by
   rw [minimumOver, toReal_neg, neg_le]
   rw [← toReal_neg]
-  exact le_maximumOver (fun i => neg (f i)) l
+  exact le_maximumOver (-f) l
 
 /-- A fold of `addUp`, so each partial sum pays one rounding in the same direction. -/
 theorem sum_le_sumUp (f : Fin n → 𝕋) : ∑ i, toReal (f i) ≤ toReal (sumUp f) := by -- --- PROOF ---

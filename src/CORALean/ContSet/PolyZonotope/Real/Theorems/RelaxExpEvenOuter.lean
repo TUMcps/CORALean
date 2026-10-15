@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 @[expose] public section
 
 /-!
-# The recentred relaxation over-approximates
+# The recentered relaxation over-approximates
 
 `relaxExp_outer` with the drift read as a midpoint and a radius instead of as a
 symmetric bound. `abs_sub_monomial_le` gives `|δ| ≤ ξ_E` and
@@ -102,7 +102,7 @@ theorem PolyZonotope.relaxExpEven_outer (pZ : PolyZonotope α)
     Fin.sum_univ_add, Fin.sum_univ_add, Fin.sum_univ_two]
   simp only [Fin.sum_univ_one, hmono, hlast]
   simp only [PolyZonotope.relaxExpEven, Fin.append_left, Fin.append_right]
-  -- half the drift sits in the centre and half in the new generator
+  -- half the drift sits in the center and half in the new generator
   rw [smul_add, smul_smul, hcoef, add_smul, sub_smul]
   abel
 

@@ -14,7 +14,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.UpdateEqAddSingle
 to the weight matrix is `∇_{W_k} L = ∇_{H_k} L ⊙ H_{k-1}ᵀ`, with `Z₁ ⊙ Z₂ᵀ := c₁c₂ᵀ + G₁G₂ᵀ`: its
 entry `(i, j)` is `c'_k(i) c_{k-1}(j) + Σₗ G'_k(i,l) G_{k-1}(j,l)`, the derivative of the loss along
 that entry of `W_k`. As in the paper's proof, `∂c_k(i)/∂W_k(i,j) = c_{k-1}(j)` and `∂G_k(i,l)/
-∂W_k(i,j) = G_{k-1}(j,l)`; the loss is differentiable at the layer's output in the centre and
+∂W_k(i,j) = G_{k-1}(j,l)`; the loss is differentiable at the layer's output in the center and
 generator entries together, which the paper takes for granted.
 
 ## References

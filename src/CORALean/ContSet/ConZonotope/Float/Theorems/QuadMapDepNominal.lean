@@ -18,7 +18,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 The exact layer's enclosure (`Real.ConZonotope.quadMap_outer`) on the read-back operand gives
 coefficients `β'`, the point's own followed by the squares and the products, that meet the operand's
 constraints on their first block. At those same coefficients the stored zonotope's nominal point
-differs from the exact one by the shortfall of the stored centre and, per coefficient in `[-1,1]`,
+differs from the exact one by the shortfall of the stored center and, per coefficient in `[-1,1]`,
 that of the stored generators, which the box `quadMapDep` returns holds. The constraints are the
 operand's padded by the two new blocks, so they hold at `β'` exactly.
 -/

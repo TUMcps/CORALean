@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.TensorEvalLin
 
 For every tensor `M' = M.c + Σᵢ γᵢ M.G i` of the matrix zonotope and `x ∈ Z`, `Mᵢⱼₖₗ xⱼ xₖ xₗ`
 lies in the result, under the conditions of `tensorMultiplication_outer`: the product is linear in
-the tensor, the centre's term is in `tensorMultiplication M.c`, each generator's term scaled by
+the tensor, the center's term is in `tensorMultiplication M.c`, each generator's term scaled by
 `γᵢ` in that of `M.G i` (`tensorMultiplication_smul_outer`), and the fold of Minkowski sums holds
 the sum of one point from each summand (`Zonotope.plus_outer`).
 -/

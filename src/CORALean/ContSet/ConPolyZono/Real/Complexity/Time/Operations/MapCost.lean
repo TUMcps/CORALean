@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `ConPolyZono.mapCost`
 
-Asserted, not proved: `Operations/Map.lean` sends the centre and each of the
+Asserted, not proved: `Operations/Map.lean` sends the center and each of the
 `h` dependent and `qI` independent generators through `f`, and touches nothing
 else — the exponent matrix and the whole constraint system, `A`, `b`, `R`,
 carry over untouched.
@@ -31,7 +31,7 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `ConPolyZono.map` costs at a map costing at most `cf` per application:
-one per generator of either block, and one for the centre. -/
+one per generator of either block, and one for the center. -/
 def ConPolyZono.mapCost (cf : Cost) (h qI : ℕ) : Cost := (h + qI + 1) • cf
 
 end CORALean.Real

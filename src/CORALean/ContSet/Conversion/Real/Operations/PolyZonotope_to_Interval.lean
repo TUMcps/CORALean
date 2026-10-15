@@ -30,7 +30,7 @@ def PolyZonotope.interval (pZ : PolyZonotope (Vec ℝ n)) : Interval (Vec ℝ n)
   pZ.zonotope.interval
 
 /-- The tighter box, through `zonotopeEven`: an even-exponent generator halves
-into the centre instead of being boxed whole. -/
+into the center instead of being boxed whole. -/
 noncomputable def PolyZonotope.intervalEven (pZ : PolyZonotope (Vec ℝ n)) : Interval (Vec ℝ n) :=
   pZ.zonotopeEven.interval
 

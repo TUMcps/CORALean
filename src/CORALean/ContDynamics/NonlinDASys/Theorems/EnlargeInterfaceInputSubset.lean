@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 
 [1, Eq. 14] enlarges the input set `U` of a subsystem to `Û`, and [1, Alg. 2] then checks the
 other subsystems' reachable sets against `Λ Û`, the interface coordinates. For `λ_U ≥ 1`,
-`Λ` a projection (`Λ Λ = Λ`, as a 0/1 diagonal matrix is) and `ĉ` the centre of `U`, the
+`Λ` a projection (`Λ Λ = Λ`, as a 0/1 diagonal matrix is) and `ĉ` the center of `U`, the
 interface part of `Û` holds that of `U`: `Λ U ⊆ Λ Û`, since `Λ ((λ_U - 1) Λ + I) = λ_U Λ` scales
 `Λ (U ⊕ (-ĉ))` by `λ_U ≥ 1` and a zonotope is centrally symmetric about `ĉ`.
 
@@ -42,7 +42,7 @@ variable {m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Eq. 14]: `Λ U ⊆ Λ Û` for `λ_U ≥ 1`, `Λ Λ = Λ` and `ĉ` the centre of `U`. -/
+/-- [1, Eq. 14]: `Λ U ⊆ Λ Û` for `λ_U ≥ 1`, `Λ Λ = Λ` and `ĉ` the center of `U`. -/
 theorem NonlinDASys.image_subset_enlargeInterfaceInput {lamU : ℝ} (hlam : 1 ≤ lamU)
     {Λ : Mat ℝ m m} (hΛ : Λ * Λ = Λ) (U : Zonotope (Vec ℝ m)) :
     (Λ *ᵥ ·) '' U.construct

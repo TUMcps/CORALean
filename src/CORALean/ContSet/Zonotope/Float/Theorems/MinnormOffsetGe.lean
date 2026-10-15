@@ -6,9 +6,9 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 @[expose] public section
 
 /-!
-# The rounded offset bounds every ball around the centre
+# The rounded offset bounds every ball around the center
 
-If `Zonotope.minnormOffset` returns `U` at a vector `C`, every Euclidean ball around the centre
+If `Zonotope.minnormOffset` returns `U` at a vector `C`, every Euclidean ball around the center
 that lies in the zonotope the stored floats describe has radius at most `U`. The vector `C` is
 whatever `facetNormal` rounded to, and need not be a normal: for any nonzero `u`, a point
 `c + r u / ‖u‖₂` of the ball is `c + Σ βⱼ gⱼ` with `|βⱼ| ≤ 1`, so `r ‖u‖₂ = u·(Σ βⱼ gⱼ)` is at
@@ -59,7 +59,7 @@ theorem Zonotope.minnormOffset_ge (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (S
   have huu : 0 < u ⬝ᵥ u := Real.sqrt_pos.mp hs
   have hss : Real.sqrt (u ⬝ᵥ u) * Real.sqrt (u ⬝ᵥ u) = u ⬝ᵥ u := Real.mul_self_sqrt huu.le
   generalize Real.sqrt (u ⬝ᵥ u) = s at hle hs hss
-  -- the point of the ball along `u`, at distance `r` from the centre
+  -- the point of the ball along `u`, at distance `r` from the center
   set y : Vec ℝ (n + 1) := (r / s) • u with hy
   have hyy : y ⬝ᵥ y ≤ r ^ 2 := by
     rw [hy, smul_dotProduct, dotProduct_smul, smul_eq_mul, smul_eq_mul]

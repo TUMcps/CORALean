@@ -48,7 +48,7 @@ searches around that program and are not covered.
 
 ## Findings
 
-**`Thm. 2` — what "solved" means.** Problem 1.1 asks for the stretch factors and centre
+**`Thm. 2` — what "solved" means.** Problem 1.1 asks for the stretch factors and center
 shifts minimizing `Σ wₖ r(Ŷₖ)` subject to every measurement lying in `Ŷₖ = Ȳₖ ⊕ Êₖ`. The proof
 picks `r(Ŷ) = ‖Ȳ‖_I` and replaces `y ∈ Ŷ` by the stricter `y ∈ Ȳ` (23), valid once `0 ∈ Ê`.
 What Alg. 1 then solves is (23): every point it returns is feasible for Problem 1.1, which is

@@ -9,7 +9,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Taylor
 
 The multiplicative inverse of [1, Def. 3 (inverse)], eq. (2.6): the expansion of `1/x` at the
 constant part `c_f`, the Lagrange term `(-1)ᴺ⁺¹ (N+1)! / ξᴺ⁺²` largest in magnitude where the
-hull of the centre and the range comes closest to zero. The source's condition, `0` outside the
+hull of the center and the range comes closest to zero. The source's condition, `0` outside the
 range, is the hull lying on one side of zero; `m` is then its distance from zero. CORA's
 `priv_inverse` (behind `rdivide` and `mrdivide`) is the same expansion.
 
@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 noncomputable def Taylm.inv (T : Taylm n) : Taylm n :=
   let c := T.constCoef
-  -- the hull of the centre and the range, and its distance from zero
+  -- the hull of the center and the range, and its distance from zero
   let m := max (min c T.bounds.inf) (-max c T.bounds.sup)
   T.taylor (fun x => x⁻¹) c (((T.maxOrder + 1).factorial : ℝ) / m ^ (T.maxOrder + 2))
 

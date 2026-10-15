@@ -77,7 +77,7 @@ passes, as an array of doubles rather than a `Float.Interval`. -/
 def maxRadiusArr (los his : Array Float) : Float :=
   (Array.zipWith (fun l h => h - l) los his).foldl max 0.0
 
-/-- One image's record: label, the propagated centre's own class, whether the
+/-- One image's record: label, the propagated center's own class, whether the
 enclosure certifies it against every other logit, both radii, and the ten
 logit bounds (as doubles) for a reader who wants them. -/
 structure ImageResult where

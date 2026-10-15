@@ -8,7 +8,7 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 # `VPolytope.map`
 
 A linear map applies to the vertices, the count untouched, exactly as it does to
-a zonotope's centre and generators. Every multiplication a vertex description
+a zonotope's center and generators. Every multiplication a vertex description
 carries is this at a particular map.
 -/
 

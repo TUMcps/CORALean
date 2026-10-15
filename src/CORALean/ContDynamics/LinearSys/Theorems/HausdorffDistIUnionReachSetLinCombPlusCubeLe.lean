@@ -59,7 +59,7 @@ theorem LinearSys.hausdorffDist_iUnion_reachSet_linComb_plus_cube_le
             + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ))).construct
       ≤ r * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
         * (μ / ‖toRealMat sys.A‖ + (1 / 2 + r * ‖toRealMat sys.A‖) * s) := by -- --- PROOF ---
-  have hs0 : 0 ≤ s := (norm_nonneg Z.c).trans (hs _ (Zonotope.centre_mem_construct Z))
+  have hs0 : 0 ≤ s := (norm_nonneg Z.c).trans (hs _ (Zonotope.center_mem_construct Z))
   have hbound : 0 ≤ r * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
       * (μ / ‖toRealMat sys.A‖ + (1 / 2 + r * ‖toRealMat sys.A‖) * s) := by
     have := Real.exp_nonneg (r * ‖toRealMat sys.A‖)

@@ -15,7 +15,7 @@ public import CORALean.Global.Err
 # What one order reduction costs, as a Hausdorff distance
 
 [1, Prop. 4]'s eq. (29): reducing a zonotope by a partition moves it by at most
-`err(⟨0, G_red⟩_Z)`, the `err` of the dropped generators' own origin-centred
+`err(⟨0, G_red⟩_Z)`, the `err` of the dropped generators' own origin-centered
 zonotope. `Δε^r_k(ρ_k)` is that number, and the accumulation `ε^r_{k+1} = ε^r_k
 + Δε^r_k(ρ_k)` in eq. (28) is eq. (21)'s generic error propagation applied to it,
 not a further fact about reduction.

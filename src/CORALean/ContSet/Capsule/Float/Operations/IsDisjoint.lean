@@ -8,9 +8,9 @@ public import CORALean.ContSet.Capsule.Float.Operations.Basic
 # `Capsule.isDisjoint`: a certificate that two capsules share no point
 
 CORA's `isIntersecting_` for two capsules, answered one-sidedly: `true` only if some coordinate
-separates the centres by more than the two bounding radii (`Capsule.radius`, rounded up),
+separates the centers by more than the two bounding radii (`Capsule.radius`, rounded up),
 `ltStrict` certifying the gap with the difference rounded down. Every point of a capsule is within
-its radius of its centre, and a coordinate gap is at most the Euclidean distance, so a `true`
+its radius of its center, and a coordinate gap is at most the Euclidean distance, so a `true`
 answer excludes a common point. `false` refutes nothing: the segment-to-segment distance of CORA's
 quadratic program is not computed.
 -/

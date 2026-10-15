@@ -10,7 +10,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.CosyGo
 CORA's `optLinQuad`: the bounds of a model over the normalized box by the LDB/QFB optimizer of
 [1, Sec. 4], the lower end that of the minimum of `T`, the upper end minus that of `-T`. CORA's
 optimizer reduces the domain by LDB before each bisection and seeds the QFB point by a gradient
-search; this one bisects and takes the box's centre.
+search; this one bisects and takes the box's center.
 
 ## References
 

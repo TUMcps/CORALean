@@ -10,8 +10,8 @@ import CORALean.Global.Float.ToRat
 
 Every entry of `A`, `B`, `C`, every bound of `U`, and `dt` go through `inst`, the format's checked
 reader: a value the format does not hold is an error naming it, never a rounding. `X0` is read as
-its centre and radius, exactly where the format holds both; where it does not (the midpoint of two
-`p`-bit bounds can need `p + 1` bits), the centre is rounded and the radius rounded up to cover the
+its center and radius, exactly where the format holds both; where it does not (the midpoint of two
+`p`-bit bounds can need `p + 1` bits), the center is rounded and the radius rounded up to cover the
 whole interval, checked over ℚ: a larger initial set, which is sound, flagged `x0Enclosed`.
 -/
 
@@ -48,16 +48,16 @@ def aux_gridMatrix (inst : String → ExactDyadic → Except String 𝕋) (name 
       aux_exact inst s!"{name}[{i}][{j}]" (row.getD j 0))
   pure out
 
-/-- The centre and radius of `[l, h]` in the format: exact, or else enclosing it, with whether they
+/-- The center and radius of `[l, h]` in the format: exact, or else enclosing it, with whether they
 had to be rounded. -/
-def aux_centreRadius (inst : String → ExactDyadic → Except String 𝕋) (exactIn : ExactDyadic → 𝕋)
+def aux_centerRadius (inst : String → ExactDyadic → Except String 𝕋) (exactIn : ExactDyadic → 𝕋)
     (field : String) (l h : ℚ) : Except String (𝕋 × 𝕋 × Bool) := do
   let c := (l + h) / 2
   let r := (h - l) / 2
-  match aux_exact inst s!"{field} centre" c, aux_exact inst s!"{field} radius" r with
+  match aux_exact inst s!"{field} center" c, aux_exact inst s!"{field} radius" r with
   | .ok cv, .ok rv => pure (cv, rv, false)
   | _, _ =>
-    -- the centre rounded down, the radius up past both bounds' distance to it
+    -- the center rounded down, the radius up past both bounds' distance to it
     let cv : 𝕋 := FloatOps.addDown (exactIn (← ratExact c)) FloatOps.zero
     let cq := ToRat.toRat cv
     let need := max (h - cq) (cq - l)
@@ -65,7 +65,7 @@ def aux_centreRadius (inst : String → ExactDyadic → Except String 𝕋) (exa
     if ToRat.toRat rv < need then throw s!"`{field}`: no enclosing radius in the format"
     pure (cv, rv, true)
 
-/-- A box of dimension `n`, as its `(centre, radius)`, or as its two bounds. -/
+/-- A box of dimension `n`, as its `(center, radius)`, or as its two bounds. -/
 def aux_dimBox (name : String) (n : ℕ) (b : Array (ℚ × ℚ)) : Except String (Array (ℚ × ℚ)) :=
   if b.size = n then pure b else throw s!"`{name}` has dimension {b.size}, expected {n}"
 
@@ -83,9 +83,9 @@ def readRandSystem (inst : String → ExactDyadic → Except String 𝕋) (exact
   let C ← aux_gridMatrix inst "C" 2 5 I.C
   let x0 ← aux_dimBox "X0" 5 I.x0
   let u ← aux_dimBox "U" 2 I.u
-  -- `X0` as centre and diagonal radius, exact in the format or enclosing
+  -- `X0` as center and diagonal radius, exact in the format or enclosing
   let x0cr ← (List.range 5).toArray.mapM fun i =>
-    aux_centreRadius inst exactIn s!"X0[{i}]" (x0.getD i (0, 0)).1 (x0.getD i (0, 0)).2
+    aux_centerRadius inst exactIn s!"X0[{i}]" (x0.getD i (0, 0)).1 (x0.getD i (0, 0)).2
   let xc := x0cr.map (·.1)
   let xr := x0cr.map (·.2.1)
   let ulo ← (List.range 2).toArray.mapM fun i => aux_exact inst s!"U lb[{i}]" (u.getD i (0, 0)).1

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
 
@@ -59,7 +59,7 @@ theorem LinearSys.minkowskiDiff_subset_maxBackReachCZ
     show Pr.A i x ≤ Pr.b i - (ZWr.supportBound (Pr.A i)).val
     linarith
   · -- an equality row is blind to the subtrahend
-    have h := (hx _ (Real.Zonotope.centre_mem_construct ZWr)).2 i
+    have h := (hx _ (Real.Zonotope.center_mem_construct ZWr)).2 i
     rw [map_add, hker i ZWr.c] at h
     exact (add_zero _).symm.trans h
 

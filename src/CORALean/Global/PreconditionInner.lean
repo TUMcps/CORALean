@@ -10,7 +10,7 @@ public import Mathlib.Data.Real.Basic
 # An inner box of a preconditioned function gives an inner parallelotope
 
 [1, Sec. II-B]: for `C` nonsingular, an interval vector `z ⊆ range(Cf, x)` gives the skewed
-box `{C⁻¹z | z ∈ z} ⊆ range(f, x)`; [1] takes `C` the inverse of the centre of the interval
+box `{C⁻¹z | z ∈ z} ⊆ range(f, x)`; [1] takes `C` the inverse of the center of the interval
 Jacobian. Stated for any set `Z`, as nothing about a box is used.
 
 ## References

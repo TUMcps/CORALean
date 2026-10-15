@@ -47,7 +47,7 @@ theorem Zonotope.vPolytope_contains (Z : Zonotope α) :
     intro j
     rw [sum_prod_bool_mul t (fun _ => 1) (fun _ => -1) j, htdef]
     ring
-  -- one corner's contribution, split into centre and generators
+  -- one corner's contribution, split into center and generators
   have hR : ∀ σ : Fin Z.h → Bool,
       (∏ j, (if σ j then t j else 1 - t j)) • Z.corner σ
         = (∏ j, (if σ j then t j else 1 - t j)) • Z.c

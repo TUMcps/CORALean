@@ -159,10 +159,10 @@ public import CORALean.Global.IpmEllipsoidConsistentIffLmi
 public import CORALean.Global.IpmEllipsoidMeanSqHalfWidthLe
 public import CORALean.Global.Norm2MulVecLeErrOfMemClosureConvexHull
 public import CORALean.Global.IpmBallExample
-public import CORALean.Global.EllipsotopeCentreShift
+public import CORALean.Global.EllipsotopeCenterShift
 public import CORALean.Global.ExistsGadgetRadii
 public import CORALean.Global.ZonotopeSubsetEllipsotopeOfLR
-public import CORALean.Global.ZonotopeSubsetEllipsotopeOfLRCentre
+public import CORALean.Global.ZonotopeSubsetEllipsotopeOfLRCenter
 public import CORALean.Global.TerminalSetRowConstraints
 public import CORALean.Global.NoRetractionClosedBall
 public import CORALean.Global.BrouwerClosedBall
@@ -269,7 +269,7 @@ one, the induction principle carrying a property through a `Fin.foldl`, the
 `n`-dimensional cross product that enumeration builds, the entrywise
 product bundled as a bilinear map, the corner combinatorics a
 box needs, the model every asserted running cost is stated against, the width of
-the tightest box over a set and the origin-centred Euclidean radius of that box
+the tightest box over a set and the origin-centered Euclidean radius of that box
 (`err`), the Euclidean norm a vector does not carry by default, the Hausdorff
 distance read through it, a family of generators' own induced operator norm
 (`genOpNorm₂`), the cancellation law that turns an outer approximation into an inner one,

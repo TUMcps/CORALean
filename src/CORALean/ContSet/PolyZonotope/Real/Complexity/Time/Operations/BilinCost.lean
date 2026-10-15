@@ -12,7 +12,7 @@ Asserted, not proved, and the count the representation is expensive for:
 `Operations/Bilin.lean` builds one generator per *pair* of extended columns,
 `(h₁+1)(h₂+1)` of them, each one application of `f` and each carrying an
 exponent column that is `p` additions. Nothing else is computed — the
-independent block is empty and the centre is zero.
+independent block is empty and the center is zero.
 
 What one `f` costs is a parameter, as in `mapCost` and for the same reason: `f`
 is any bilinear map, so a caller with no bound on it has no bound here. `mulCost`

@@ -64,8 +64,8 @@ def LinearSys.reachWrappingFreeFloatInput (sys : LinearSys 𝕋 n)
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt) -- (tFinal - tStart) / Δt ∈ ℕ
   let η' ← sys.reachOrderFloat Δt Δt η                              -- η, raised until admissible
   let V := sys.inputSetFloat params.U                               -- B U ⊕ c, in the state space
-  let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored centre
-  let Ũ := Recentre.recentre V                                      -- Ũ = V - ũ, holding 0
+  let ũ := (Interval.point V.c).zonotope                            -- {ũ}, V's stored center
+  let Ũ := Recenter.recenter V                                      -- Ũ = V - ũ, holding 0
   let O := (Interval.point fun _ => zero).zonotope                  -- {0}
   let Pu := sys.inputSolutionFloat Δt η' ũ                          -- P̃(Δt)
   let PuR := sys.inputSolutionFloat Δt η' (LinComb.linComb O ũ)     -- P̃^R(τ_0), from [0, ũ]

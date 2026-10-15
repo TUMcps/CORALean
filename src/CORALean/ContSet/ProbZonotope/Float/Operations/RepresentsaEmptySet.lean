@@ -8,7 +8,7 @@ public import CORALean.ContSet.ProbZonotope.Float.ProbZonotope
 # `ProbZonotope.representsaEmptySet`, over a floating-point scalar
 
 CORA's `representsa(P, 'emptySet')`, answered one-sidedly. CORA answers `false`, the mean zonotope
-holding its centre; here `true` only if some covariance entry's interval is crossed (`ltStrict` on
+holding its center; here `true` only if some covariance entry's interval is crossed (`ltStrict` on
 its ends), which no matrix lies in, so there is no law. `false` refutes nothing.
 -/
 

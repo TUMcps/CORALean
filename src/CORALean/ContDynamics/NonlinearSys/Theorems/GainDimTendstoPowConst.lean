@@ -11,7 +11,7 @@ public import Mathlib.Analysis.Normed.Group.FunctionSeries
 
 `[2, Prop. 1]`: at a *constant* `A` and `Ψ`, the gain of dimension `i` tends to `ζ_δ^{λᵢ}`
 as `Δt → 0`, with `λᵢ = j+1` for the first `j` such that `(Aʲ Ψ)ᵢ ≠ {0}` — read off the
-generator row, as `[1, Def. 6]`/`gainOrderDim` already does, since a centre shifts a box
+generator row, as `[1, Def. 6]`/`gainOrderDim` already does, since a center shifts a box
 without widening it. `R_abs` is `abstrSolInf` at that fixed `A` and `Ψ`, matching `[1]`'s
 own convention of the un-truncated `[1, (8)]` rather than `[2]`'s own truncated `(6)`; see
 the paper page's finding.

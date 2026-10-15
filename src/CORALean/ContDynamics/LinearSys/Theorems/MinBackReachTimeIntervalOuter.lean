@@ -57,13 +57,13 @@ theorem LinearSys.minBackReachTimeInterval_outer (sys : LinearSys 𝕋 n) {T τ 
     {ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c}
     {CZ : ConZonotope (Vec ℝ n)} {W₀ U₀ : Zonotope (Vec ℝ n)} {Zw : ℝ → Zonotope (Vec ℝ n)}
     {N : Mat ℝ q n} {t₀ tend Δt : ℝ} {η ω : ℕ} (hΔt : Δt = (tend - t₀) / ω)
-    -- `Û ⊂ U`: the centre trajectory `u₀(·)` and the `q` others, all admissible
+    -- `Û ⊂ U`: the center trajectory `u₀(·)` and the `q` others, all admissible
     {u₀ : ℝ → Vec ℝ n} {û : Fin q → ℝ → Vec ℝ n}
     (hu₀ : ∀ s ∈ T, u₀ s ∈ construct U)
     (hmu₀ : AEStronglyMeasurable u₀ (volume.restrict T))
     (hû : ∀ i s, s ∈ T → û i s ∈ construct U)
     (hmû : ∀ i, AEStronglyMeasurable (û i) (volume.restrict T))
-    -- (44), (45): the `ω` steps enclose the centre trajectory's own set
+    -- (44), (45): the `ω` steps enclose the center trajectory's own set
     (hcov : sys.timeIntervalBackReachSetOfInput T U W Xend τ u₀ ⊆
       ⋃ k < ω, (sys.minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct)
     -- (46), (49): each `p_(j)` is a support value of some trajectory's own set
@@ -85,7 +85,7 @@ theorem LinearSys.minBackReachTimeInterval_outer (sys : LinearSys 𝕋 n) {T τ 
     refine HPolytope.mem_ineqs_iff.mpr fun j => ?_
     obtain ⟨i, hi⟩ := hp j
     exact hi x₀ (key (û i) (hû i) (hmû i))
-  -- (44): the centre trajectory's own set is covered by the `ω` steps
+  -- (44): the center trajectory's own set is covered by the `ω` steps
   obtain ⟨k, hk, hkx⟩ := Set.mem_iUnion₂.mp (hcov (key u₀ hu₀ hmu₀))
   -- (48): distributing the intersection over the union
   exact Set.mem_iUnion₂.mpr ⟨k, hk, hkx, hP⟩

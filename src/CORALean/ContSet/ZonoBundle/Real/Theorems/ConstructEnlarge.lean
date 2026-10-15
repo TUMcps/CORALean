@@ -7,9 +7,9 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
 /-!
 # The enlarged bundle is the intersection of the enlarged members
 
-By definition: `CORA` enlarges each zonotope about its own centre, and a bundle denotes the
+By definition: `CORA` enlarges each zonotope about its own center, and a bundle denotes the
 intersection of its members, so the result is the intersection of the enlarged members and not
-the enlargement of the intersection about a common centre.
+the enlargement of the intersection about a common center.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -14,7 +14,7 @@ time-inverted dynamics `ẋ̃ = -A x̃ - u - w`. Nothing here searches, so no fu
 are fixed by [1, Assumption 1] and the loop is bounded by `ω`.
 
 `ρ` is the caller's support oracle for a constrained zonotope — a linear program, which
-`HPolytope.supportBound` solves but only as an `Option`. `Zw` is (27), the constant centre
+`HPolytope.supportBound` solves but only as an `Option`. `Zw` is (27), the constant center
 trajectory's contribution over one interval. And line 16's union is no constrained zonotope,
 so the result is a `Set`, as `tunedReach` returns one for the same reason.
 

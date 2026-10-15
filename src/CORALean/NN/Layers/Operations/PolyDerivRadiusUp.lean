@@ -7,7 +7,7 @@ public import CORALean.NN.Layers.Operations.PowRange
 /-!
 # A stored fit's derivative radius, rounded up
 
-How far the remaining monomials move the centre over the box, everything rounded up: the
+How far the remaining monomials move the center over the box, everything rounded up: the
 degree count `i` reaches the scalar as `nsmulUp i one`, an upper bound rather than a cast,
 `FloatOps` having no integer literal above one.
 -/

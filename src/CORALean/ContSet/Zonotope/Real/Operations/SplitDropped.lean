@@ -9,7 +9,7 @@ public import CORALean.Global.Partition
 # `Zonotope.splitDropped`
 
 The part `Z_b = ⟨0, G_b⟩` of [1, Sec. IV-B, Step 1)]: the generators
-a partition drops (`part.right`), centred at `0`.
+a partition drops (`part.right`), centered at `0`.
 
 ## References
 

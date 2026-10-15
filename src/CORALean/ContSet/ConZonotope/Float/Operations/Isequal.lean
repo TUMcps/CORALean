@@ -8,7 +8,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Isequal
 /-!
 # `ConZonotope.isequal`, over a floating-point scalar
 
-The structural test at tolerance `0`, as over ℝ: the same number of generators, the centre, the
+The structural test at tolerance `0`, as over ℝ: the same number of generators, the center, the
 generators and the two ends of the error box equal entry by entry, each by the certified `le` in
 both directions, and the constraint polytopes `HPolytope.isequal`. Certified in one direction
 only: `true` is a proof, `false` refutes nothing. Not CORA's test, which compares up to the order

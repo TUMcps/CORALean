@@ -9,7 +9,7 @@ public import Mathlib.Analysis.Convex.Segment
 # The edges of the walk of a zonogon
 
 The segments between consecutive corners of `Zonotope.walk`: `[W_k; W_{k+1}]` along the first
-block, `c - Σ g + 2 Σ_{j<k} g`, and the same along the second, mirrored through the centre. These
+block, `c - Σ g + 2 Σ_{j<k} g`, and the same along the second, mirrored through the center. These
 are the segments `[P; P + 2g]` of [1, Sec. 3.2 (zonogons)] that [1, Alg. 3] scans in its two
 loops; for generators in the upper half-plane sorted by angle they make up the boundary of the
 zonogon.

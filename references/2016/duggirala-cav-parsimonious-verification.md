@@ -5,7 +5,7 @@ P. S. Duggirala and M. Viswanathan. "Parsimonious, Simulation Based Verification
 **Source:** https://www.cs.unc.edu/~psd/files/research/2016/duggirala-cav-2016-parsimonious-verification.pdf (the first author's copy of the paper, read in full; text extracted with `pypdf`). Numbering is that of this copy.  
 **Inventory:** confirmed (the numbered items are Definitions 1-4, Examples 1-2, Algorithms 1-3, Theorems 1-3, Remark 1 and Corollary 1)
 
-Where the star set comes from: the paper introduces the *generalized star set* `⟨x₀, V, P⟩`, a centre, a
+Where the star set comes from: the paper introduces the *generalized star set* `⟨x₀, V, P⟩`, a center, a
 basis and a predicate on the coefficients, as the representation in which the reachable set of a linear
 system is computed from `n + 1` simulations. CORALean takes the representation only. Its `StarSet` is
 the case CORA's `neuralNetwork` uses, where the predicate is a list of linear rows together with a
@@ -17,7 +17,7 @@ guarantees are not formalized.
 
 | Result | What it says | In CORALean | Class |
 |---|---|---|---|
-| `Def. 1` | (Generalized star set) A tuple Θ = ⟨x₀, V, P⟩ with centre x₀ ∈ ℝⁿ, basis V = {v₁, …, v_m} of m (≤ n) vectors, and a predicate P : ℝⁿ → {⊤, ⊥}; it denotes {x \| ∃ ᾱ, x = x₀ + Σ αᵢvᵢ ∧ P(ᾱ) = ⊤}. | [`StarSet.lean`](../../src/CORALean/ContSet/StarSet/Real/StarSet.lean), [`StarSet.lean`](../../src/CORALean/ContSet/StarSet/Float/StarSet.lean) — the predicate is a list of linear rows `a · α ≤ b` and a box `l ≤ α ≤ u`, so the sets are bounded polytopes, a special case of the paper's definition; `m` is not bounded by `n`, which the paper also does not require | `correct` |
+| `Def. 1` | (Generalized star set) A tuple Θ = ⟨x₀, V, P⟩ with center x₀ ∈ ℝⁿ, basis V = {v₁, …, v_m} of m (≤ n) vectors, and a predicate P : ℝⁿ → {⊤, ⊥}; it denotes {x \| ∃ ᾱ, x = x₀ + Σ αᵢvᵢ ∧ P(ᾱ) = ⊤}. | [`StarSet.lean`](../../src/CORALean/ContSet/StarSet/Real/StarSet.lean), [`StarSet.lean`](../../src/CORALean/ContSet/StarSet/Float/StarSet.lean) — the predicate is a list of linear rows `a · α ≤ b` and a box `l ≤ α ≤ u`, so the sets are bounded polytopes, a special case of the paper's definition; `m` is not bounded by `n`, which the paper also does not require | `correct` |
 | `Example 1` | A rectangle as a star set with the linear predicate Cᾱ ≤ g, and a disc with a quadratic predicate. | n/a — an illustration of Def. 1, not a claim | `not-a-claim` |
 | `Def. 2` | (Validated simulation) A sequence of sets Rᵢ with time steps at most h, each containing the trajectory on its interval and of diameter at most ϵ. | n/a — simulation-based verification, a subject CORALean does not cover | `not-covered` |
 | `Def. 3` | The set reachable within time T, and over- and under-approximations of it. | n/a — restates the standard notion of a reachable set and its enclosures | `not-a-claim` |

@@ -7,7 +7,7 @@ public import CORALean.ContSet.Capsule.Float.Capsule
 /-!
 # `Capsule.project` over a floating-point scalar
 
-Centre and generator read at `dims`, the radius unchanged, as over ℝ. Nothing is computed, so
+Center and generator read at `dims`, the radius unchanged, as over ℝ. Nothing is computed, so
 nothing is rounded.
 -/
 

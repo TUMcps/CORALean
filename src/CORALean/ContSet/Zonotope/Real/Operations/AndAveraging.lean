@@ -9,7 +9,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 # `Zonotope.andAveraging`
 
 CORA's `@zonotope/private/priv_andAveraging`, the zonotope [1, Thm. 1] encloses the intersection
-of the `m_i` zonotopes `Z̄ʲ = ⟨c̄ʲ, Ḡʲ⟩` with: for weights `wʲ` of nonzero sum, the centre
+of the `m_i` zonotopes `Z̄ʲ = ⟨c̄ʲ, Ḡʲ⟩` with: for weights `wʲ` of nonzero sum, the center
 `ć = (Σⱼ wʲ c̄ʲ) / Σⱼ wʲ` Eq. 14 of [1, Thm. 1] and the generators
 `Ǵ = [w¹ Ḡ¹, …, wᵐ Ḡᵐ] / Σⱼ wʲ` Eq. 15 of [1, Thm. 1], the blocks laid side by side with
 one coefficient each, as `cat` is a concatenation. The weights are any reals of nonzero sum,

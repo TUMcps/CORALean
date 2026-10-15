@@ -17,7 +17,7 @@ faces are centrally symmetric as it has to be for zonotopes".
 A direction `u` bounded by `t` on the zonotope cuts out the face `u y = t`.
 Every coefficient of a point on it is already extreme wherever `u` does not
 annihilate its generator, so only the annihilated generators are still free —
-the face is the zonotope on those, and is symmetric about its own centre
+the face is the zonotope on those, and is symmetric about its own center
 `c + ∑ sgn(u g⁽ᵘ⁾) g⁽ᵘ⁾`. No hypothesis says `t` is attained: above the
 maximum the face is empty and the statement is vacuous.
 

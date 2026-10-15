@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
@@ -71,9 +71,9 @@ theorem LinearSys.timePointStepInner_inner (sys : LinearSys 𝕋 n) {r : ℝ} (h
       = ((Zonotope.mtimes (exp (r • A)) X₀).plus
           (Zonotope.mtimes (MatExp.expIntegral A r) U)).construct := by
     rw [Zonotope.mtimes_exact, Zonotope.mtimes_exact, Zonotope.plus_exact]
-  -- the error ball holds a point because it encloses the step's own centre
+  -- the error ball holds a point because it encloses the step's own center
   have hEne : E.Nonempty := by
-    obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.centre_mem_construct _)
+    obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.center_mem_construct _)
     exact ⟨e, he⟩
   have hinner := minkowskiDiff_inner_of_outer hEne Metric.isBounded_closedBall
     (hY ▸ Zonotope.convex_construct _) (hY ▸ (Zonotope.isCompact_construct _).isClosed) hOuter

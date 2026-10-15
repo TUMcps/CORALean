@@ -83,7 +83,7 @@ theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Z
     (I.isLUB_norm_image_fold_max_absBound).1 ⟨z, hz, rfl⟩
   have hsAs : sA ≤ s := (I.isLUB_norm_image_fold_max_absBound).2 (by
     rintro _ ⟨z, hz, rfl⟩; exact hs z hz)
-  have hsA0 : 0 ≤ sA := (norm_nonneg I.c).trans (hsA _ (Zonotope.centre_mem_construct I))
+  have hsA0 : 0 ≤ sA := (norm_nonneg I.c).trans (hsA _ (Zonotope.center_mem_construct I))
   have hUb : Bornology.IsBounded (construct U) := Zonotope.isBounded_construct U
   have hUball : Metric.closedBall 0 μ ⊆ construct U := fun u hu => by
     show u ∈ U.construct; rw [hU]; exact hu

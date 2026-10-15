@@ -6,7 +6,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 @[expose] public section
 
 /-!
-# Every point of a float zonotope is within `radius` of the stored centre
+# Every point of a float zonotope is within `radius` of the stored center
 
 A point is `c + ∑ⱼ βⱼ Gⱼ + e` with `|βⱼ| ≤ 1` and `e` in the error box. Against the generator
 lengths it is the triangle inequality, `‖∑ βⱼ Gⱼ‖₂ ≤ ∑ⱼ ‖Gⱼ‖₂`, and `‖e‖₂ ≤ ‖err‖₂`. Against the

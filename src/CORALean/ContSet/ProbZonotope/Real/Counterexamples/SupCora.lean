@@ -9,7 +9,7 @@ public import CORALean.ContSet.ProbZonotope.Real.Counterexamples.UnitMeanInterva
 # `ProbZonotope.supCora`
 
 CORA's `sup(probZ)` as the code computes it: `max(‖inf I‖∞, ‖sup I‖∞)` of `interval(probZ)`
-(`intervalCora`), the box of the covariance's eigen factor around the centre, which leaves out the
+(`intervalCora`), the box of the covariance's eigen factor around the center, which leaves out the
 deterministic generators `probZ.Z(:,2:end)`. `Theorems.SupCoraLt` is a probabilistic zonotope whose
 means it does not bound.
 

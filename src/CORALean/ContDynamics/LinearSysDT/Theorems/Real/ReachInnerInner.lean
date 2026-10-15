@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddError
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
@@ -20,7 +20,7 @@ Nothing is left to discharge at the call site. `reach_subset_reachSet_add_error`
 supplies the enclosure `reachSet_inner_of_outer` asks for, and every hypothesis
 that bridge places on the sets is a zonotope fact already in the tree —
 `convex_construct` and `isCompact_construct` for `R₀` and `U`, and
-`centre_mem_construct` with `isBounded_construct` for the error.
+`center_mem_construct` with `isBounded_construct` for the error.
 
 So the run's own accumulated error is exactly what has to come off it, and
 nothing about the system beyond linearity enters.
@@ -50,7 +50,7 @@ theorem LinearSysDT.reachInner_inner (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0
     sys.reachInner o ho R₀ U k ⊆ sys.reachSet (S := 𝒵) R₀ U k :=
   sys.reachSet_inner_of_outer (S := 𝒵) (Zonotope.convex_construct R₀)
     (Zonotope.isCompact_construct R₀) (Zonotope.convex_construct U)
-    (Zonotope.isCompact_construct U) k ⟨_, Zonotope.centre_mem_construct _⟩
+    (Zonotope.isCompact_construct U) k ⟨_, Zonotope.center_mem_construct _⟩
     (Zonotope.isBounded_construct _) (sys.reach_subset_reachSet_add_error ho R₀ U k)
 
 end CORALean

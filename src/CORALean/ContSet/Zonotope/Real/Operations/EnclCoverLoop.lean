@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.GenSelection
 # `Alg. 1` lines 11-13: growing the selection until it covers
 
 [1, Alg. 1] lines 11-13: one more generator while the selection, read at the
-subtrahend's centre, still does not enclose it — the test through the
+subtrahend's center, still does not enclose it — the test through the
 caller's own `encloses`, zonotope-in-zonotope containment having no decision
 procedure here.
 
@@ -34,7 +34,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Lines 11-13: one more generator while the selection, read at the
-subtrahend's centre, still does not enclose it. -/
+subtrahend's center, still does not enclose it. -/
 def Zonotope.enclCoverLoop (encloses : Zonotope (Vec ℝ n) → Bool) (Z : Zonotope (Vec ℝ n))
     (σ : Equiv.Perm (Fin Z.h)) (cs : Vec ℝ n) : ℕ → ℕ → ℕ
   | 0, ξ => ξ

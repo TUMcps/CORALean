@@ -9,7 +9,7 @@ public import Mathlib.Data.Finset.Sort
 # `PolyZonotope.rmId`, over a floating-point scalar
 
 CORA's `@polyZonotope/rmId`: the exponent rows of the listed factors are deleted, which pins
-those factors at `1`. Centre, generators and error box are copied, so nothing rounds. The
+those factors at `1`. Center, generators and error box are copied, so nothing rounds. The
 factors that stay are read off in order by `orderIsoOfFin`, as at the real layer.
 -/
 

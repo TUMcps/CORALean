@@ -33,7 +33,7 @@ them.
 
 The bias is a box of zero width, so the second half is a translation. That is
 where the exactness of `plus` is actually needed — a singleton is what the
-`OfInterval` conversion has to denote, and it does, both the zonotope's centre
+`OfInterval` conversion has to denote, and it does, both the zonotope's center
 and its generators collapsing onto the point.
 
 This is what makes a linear layer convergent for nothing: the enclosed set
@@ -58,7 +58,7 @@ variable {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A zero-width box denotes its point and nothing else, through both conversion
-steps: every generator vanishes and the centre is the point. -/
+steps: every generator vanishes and the center is the point. -/
 theorem aux_construct_point_polyZonotope (b : Vec ℝ m) :
     ((Interval.point b).polyZonotope).construct = ({b} : Set (Vec ℝ m)) := by -- --- PROOF ---
   have hc : (Interval.point b).zonotope.c = b := by
@@ -74,7 +74,7 @@ theorem aux_construct_point_polyZonotope (b : Vec ℝ m) :
   rw [hpz, ← Zonotope.polyZonotope_exact]
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, _, rfl⟩
-    -- no generator reaches anywhere, so the centre is the only point
+    -- no generator reaches anywhere, so the center is the only point
     have hzero : ∑ j, β j • (Interval.point b).zonotope.G j = (0 : Vec ℝ m) := by
       rw [Finset.sum_congr rfl fun j _ => by rw [hG j, smul_zero]]
       exact Finset.sum_const_zero

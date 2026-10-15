@@ -26,7 +26,7 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `-α`: one factor, one generator `-1`, exponent `1`, centre `0`. -/
+/-- `-α`: one factor, one generator `-1`, exponent `1`, center `0`. -/
 abbrev PolyZonotope.aux_negAlpha : PolyZonotope (Vec ℝ 1) :=
   ⟨1, 1, 0, fun _ => 0, fun _ _ => -1, fun _ _ => 1, Fin.elim0⟩
 

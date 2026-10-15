@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.Conform.Definitions.TemplateZono
 /-!
 # A translated stretched template
 
-`d ⊕ ⟨c, G diag(α)⟩ = ⟨d + c, G diag(α)⟩`: translation moves the centre only.
+`d ⊕ ⟨c, G diag(α)⟩ = ⟨d + c, G diag(α)⟩`: translation moves the center only.
 -/
 
 -- Authors:       Claude Opus 5.5

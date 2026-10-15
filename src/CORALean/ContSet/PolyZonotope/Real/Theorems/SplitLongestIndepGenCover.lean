@@ -10,7 +10,7 @@ public import Mathlib.Tactic.Module
 # The halves of `splitLongestIndepGen` cover the set
 
 A coefficient `β ∈ [0,1]` of the halved generator is `(1 + β')/2` with `β' = 2β - 1 ∈ [-1,1]` in
-the half whose centre is `c + g/2`, and `β ∈ [-1,0]` is `(β' - 1)/2` with `β' = 2β + 1` in the
+the half whose center is `c + g/2`, and `β ∈ [-1,0]` is `(β' - 1)/2` with `β' = 2β + 1` in the
 other. Both halves also lie in the set, the same substitution read backwards; only the cover is
 needed and stated.
 -/
@@ -56,7 +56,7 @@ theorem PolyZonotope.splitLongestIndepGen_cover (pZ : PolyZonotope (Vec ℝ n)) 
       (Finset.add_sum_erase _ _ (Finset.mem_univ j)).symm
     have hb := abs_le.mp (hβ j)
     by_cases h0 : 0 ≤ β j
-    · -- a non-negative coefficient lies in the half with centre `c + g/2`, at `2β - 1`
+    · -- a non-negative coefficient lies in the half with center `c + g/2`, at `2β - 1`
       have hβ' : ∀ i : Fin pZ.q, |Function.update β j (2 * β j - 1) i| ≤ 1 := fun i => by
         by_cases hi : i = j
         · subst hi
@@ -69,7 +69,7 @@ theorem PolyZonotope.splitLongestIndepGen_cover (pZ : PolyZonotope (Vec ℝ n)) 
           • Function.update pZ.GI j ((2 : ℝ)⁻¹ • pZ.GI j) i
       rw [PolyZonotope.aux_sum_update_smul, hsplit]
       module
-    · -- a negative one in the half with centre `c - g/2`, at `2β + 1`
+    · -- a negative one in the half with center `c - g/2`, at `2β + 1`
       have hβ' : ∀ i : Fin pZ.q, |Function.update β j (2 * β j + 1) i| ≤ 1 := fun i => by
         by_cases hi : i = j
         · subst hi

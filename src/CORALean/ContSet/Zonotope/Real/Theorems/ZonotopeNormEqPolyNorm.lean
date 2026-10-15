@@ -2,14 +2,14 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
 public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 
 @[expose] public section
 
 /-!
 # The zonotope norm is the polyhedral norm of the zonotope
 
-`[1, Cor. 2]`: for a non-degenerate `Z` centred at the origin, `‖p‖_Z = S_Z(p)` for any
+`[1, Cor. 2]`: for a non-degenerate `Z` centered at the origin, `‖p‖_Z = S_Z(p)` for any
 halfspace representation `{H x ≤ h}` of `Z` with every `hᵢ ≠ 0`. Since `0 ∈ Z`, each
 `hᵢ > 0`; then both functions are positively homogeneous, nonnegative, and have the unit
 ball `Z` (`zonotopeNorm_ball_eq`, `polyNorm_isAsymmNorm`), so `ν(p) ≤ t ↔ S_Z(p) ≤ t` for
@@ -46,7 +46,7 @@ theorem Zonotope.zonotopeNorm_eq_polyNorm (Z : Zonotope (Vec ℝ n)) (hc : Z.c =
   -- `0 ∈ Z` makes every right-hand side positive
   have hpos : ∀ i, 0 < h i := fun i => by
     have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).construct := by
-      rw [hrep, ← hc]; exact Z.centre_mem_construct
+      rw [hrep, ← hc]; exact Z.center_mem_construct
     have := HPolytope.mem_ineqs_iff.mp h0 i
     simp only [mulVec_zero, Pi.zero_apply] at this
     exact lt_of_le_of_ne this (hne i).symm

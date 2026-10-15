@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.OfShape
 # `Ellipsoid.intersectStripGollamudi`
 
 CORA's `@ellipsoid/intersectStrip` (method `'Gollamudi1996'`, `aux_methodGollamudi1996`) for an
-ellipsoid of shape `Q` and centre `c` and the strip `‖C x - y‖₂ ≤ φ` (`C` is `m × n`), at the
+ellipsoid of shape `Q` and center `c` and the strip `‖C x - y‖₂ ≤ φ` (`C` is `m × n`), at the
 weight `λ` (CORA picks `min(1e-4, ν)`; the trigger `σ²_prev + δᵀδ > φ` and the choice of `λ`
 are left to the caller), corrected so that it encloses the intersection
 (`intersectStripGollamudi_outer`). Every point of the intersection satisfies the convex

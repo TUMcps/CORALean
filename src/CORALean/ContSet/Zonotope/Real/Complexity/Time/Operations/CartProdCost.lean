@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.cartProdCost`
 
-Asserted, not proved: `Operations/CartProd.lean` pairs the centres and pads each
+Asserted, not proved: `Operations/CartProd.lean` pairs the centers and pads each
 operand's generators with a zero in the other component. Nothing is computed;
 the zeros are written, not derived, so the count is nil.
 -/

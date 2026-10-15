@@ -13,7 +13,7 @@ public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
 rank `n`; `Z` has an interior point; `G` is onto; `ν` is defined on all of `ℝⁿ` and
 positive definite. Each is stated against "onto". Rank `n` is the range being everything,
 the interior is `isFullDim_iff` (the generators span), and definiteness is `coeffNorm`'s
-at an attained minimum. The printed `m ≥ n` and centre `0` are not needed.
+at an attained minimum. The printed `m ≥ n` and center `0` are not needed.
 
 ## References
 

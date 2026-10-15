@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubFoldUp
 /-!
 # `Zonotope.cubMapCUp`
 
-The centre of `Zonotope.cubMap` on the stored floats, rounded up: the coefficient of the constant
+The center of `Zonotope.cubMap` on the stored floats, rounded up: the coefficient of the constant
 monomial `(0, 0, 0)`, plus half the sum of the pure squares `β_y²` of `listQuad{1}` (`β² = 0.5 +
 0.5 (2β² - 1)`). Halving rounds nothing.
 -/

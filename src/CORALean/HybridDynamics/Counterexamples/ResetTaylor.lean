@@ -12,7 +12,7 @@ public import Mathlib.Tactic.FinCases
 # [1, Eq. 14] with one `ξ` for all coordinates fails
 
 The reset `r(x) = [x₁² - x₁, x₁³]ᵀ` on the segment `F = [-1, 1] × {0}` (a polynomial zonotope,
-centre `c = 0`), expanded to order `γ = 0`: `p(x) = r(0) = 0`, and [1]'s
+center `c = 0`), expanded to order `γ = 0`: `p(x) = r(0) = 0`, and [1]'s
 `L = {∇r(ξ)(x - c) | ξ, x ∈ F} = {s · [2ξ₁ - 1, 3ξ₁²]ᵀ | ξ₁, s ∈ [-1, 1]}`. At `x = (1, 0)`,
 `r(x) - p(x) = [0, 1]ᵀ`: the first coordinate forces `ξ₁ = ½` (or `s = 0`, which zeroes the
 second), and then the second needs `s = 4/3`, outside `[-1, 1]`. Each coordinate has its own

@@ -24,7 +24,7 @@ layers agree on exactly, however many factors it runs over. What that buys is
 that a wider relaxation costs no extra box: the fold is one `nsmulDown` at the
 larger count, not a chain of them.
 
-The centre is untouched, `ξ_c` being zero at `ξ_G = ξ_E`, so this operation adds
+The center is untouched, `ξ_c` being zero at `ξ_G = ξ_E`, so this operation adds
 the same two gaps to the box that `relaxExp` does.
 -/
 

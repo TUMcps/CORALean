@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Operations.IntervalMatrix
 /-!
 # `Interval.intervalMatrix` is the same box
 
-The centre and half-width of a box give its bounds back, so `intervalMatrix(center(I), rad(I))` is
+The center and half-width of a box give its bounds back, so `intervalMatrix(center(I), rad(I))` is
 `I` itself, and denotes the same set, with no hypothesis.
 -/
 

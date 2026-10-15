@@ -16,7 +16,7 @@ public import Mathlib.Data.Matrix.Mul
 `[z̃] ∋ z(t, z̃₀)` and `[J] ∋ ∂z(t, ·)/∂z₀` on the initial box; if a component comes out
 improper, its proper counterpart is in the range of that component of the flow. This is
 [1, Thm. 1] (the generalized mean-value extension of Goldsztejn et al.) at the flow,
-with an enclosure `[z̃]` for the centre where the theorem has the point `f(x̃)`. Steps 1, 2
+with an enclosure `[z̃]` for the center where the theorem has the point `f(x̃)`. Steps 1, 2
 and 4, the Taylor-model enclosures, are hypotheses here: `φ` is the flow at time `t`.
 
 The multiplication is the three cases [1, Sec. 2.3] lists for a proper factor and one in

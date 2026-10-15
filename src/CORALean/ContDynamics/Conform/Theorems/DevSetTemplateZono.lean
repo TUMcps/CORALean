@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
 # The deviation set of stretched templates is a stretched template
 
 With `X̃₀`, `W` and `V` stretched templates, the deviation set at `t_k` is the
-zonotope [2, Thm. 1] calls `⟨Γ(t_k) c, G(t_k)⟩`: centre `Λ_k c_X + ∑_{i<k} Λᵢ c_W + c_V`,
+zonotope [2, Thm. 1] calls `⟨Γ(t_k) c, G(t_k)⟩`: center `Λ_k c_X + ∑_{i<k} Λᵢ c_W + c_V`,
 generators `[Λ_k G_X, Λ₀ G_W, …, Λ_{k-1} G_W, G_V]` stretched by `α_X`, `α_W` once per step,
 and `α_V`, `Λᵢ = C Aⁱ`. An equality: Minkowski sums and linear maps of zonotopes are
 exact. [1, Eq. 17] and [1, Eq. 18] are the case `X̃₀ = {0}`, `DevSetZeroTemplateZono`.

@@ -15,7 +15,7 @@ public import Mathlib.Tactic.Positivity
 the box over `R^∞_abs(h)` is `2 Σₚ h^{p+1}/(p+1)! ‖Aᵖ(h)G(h)‖₁,ᵢ`, the 1-norm
 of the `i`-th *row*. The row is where the coordinate enters: `dᵢ` reads the set
 through `x ↦ (Aᵖ(h) x)ᵢ`, which pairs one row with the generators; the factor
-`2` is the set being symmetric about its centre, so a width is twice a reach.
+`2` is the set being symmetric about its center, so a width is twice a reach.
 
 An `=` and not a `⊆`: each summand's maximum is attained, at the sign pattern
 of its own row, and the choices in different summands are independent — which
@@ -95,7 +95,7 @@ theorem aux_summable_majorant {h a R : ℝ} (hh : 0 ≤ h) (ha : 0 ≤ a) (hR : 
     rw [hlhs, hrhs]
     exact div_le_div_of_nonneg_left hnum hp hle
 
-/-- A zonotope reaches no further than its centre plus all of its generators. -/
+/-- A zonotope reaches no further than its center plus all of its generators. -/
 theorem aux_norm_le_of_mem_construct {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
     (hx : x ∈ Z.construct) : ‖x‖ ≤ ‖Z.c‖ + ∑ j, ‖Z.G j‖ := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
@@ -116,7 +116,7 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
       2 * ∑' p : ℕ, h ^ (p + 1) / (Nat.factorial (p + 1) : ℝ)
         * ∑ j, |(A h ^ p *ᵥ Z.G j) i| := by -- --- PROOF ---
   classical
-  -- the three pieces of `[1, (35)]`: the coefficient, the centre's share, the row norm
+  -- the three pieces of `[1, (35)]`: the coefficient, the center's share, the row norm
   set coef : ℕ → ℝ := fun p => h ^ (p + 1) / (Nat.factorial (p + 1) : ℝ) with hcoefd
   set ctr : ℕ → ℝ := fun p => (A h ^ p *ᵥ Z.c) i with hctrd
   set row : ℕ → ℝ := fun p => ∑ j, |(A h ^ p *ᵥ Z.G j) i| with hrowd
@@ -126,7 +126,7 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
     fun p => (LinearMap.proj i).comp (Matrix.mulVecLin (A h ^ p)) with hLd
   have hcoefnn : ∀ p, 0 ≤ coef p := fun p =>
     div_nonneg (pow_nonneg hh _) (Nat.cast_nonneg _)
-  -- the support value of `Ψ(h)` in direction `±L p` is the centre's share ± the row norm
+  -- the support value of `Ψ(h)` in direction `±L p` is the center's share ± the row norm
   have hsupp : ∀ p, (Z.supportBound (L p)).val = ctr p + row p := fun p => rfl
   have hsuppneg : ∀ p, (Z.supportBound (-(L p))).val = -ctr p + row p := by
     intro p
@@ -153,7 +153,7 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
       _ ≤ ‖A h‖ ^ p * ‖x‖ := aux_norm_pow_mulVec_le _ _ _
   have hRnn : (0:ℝ) ≤ ‖Z.c‖ + ∑ j, ‖Z.G j‖ := by positivity
   have hmaj := aux_summable_majorant hh (norm_nonneg (A h)) hRnn
-  -- centre and generators alike sit under the one majorant, so all three series converge
+  -- center and generators alike sit under the one majorant, so all three series converge
   have hctrb : ∀ p, |ctr p| ≤ ‖A h‖ ^ p * (‖Z.c‖ + ∑ j, ‖Z.G j‖) := by
     intro p
     refine (habs p Z.c).trans (mul_le_mul_of_nonneg_left ?_ (by positivity))
@@ -167,7 +167,7 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
       _ ≤ ‖A h‖ ^ p * (‖Z.c‖ + ∑ j, ‖Z.G j‖) := by
           refine mul_le_mul_of_nonneg_left ?_ (by positivity)
           linarith [norm_nonneg Z.c]
-  -- comparison against that majorant, in absolute value for the centre's series
+  -- comparison against that majorant, in absolute value for the center's series
   have hsc : Summable (fun p => coef p * ctr p) := by
     refine Summable.of_norm_bounded hmaj (fun p => ?_)
     rw [Real.norm_eq_abs, abs_mul, abs_of_nonneg (hcoefnn p)]
@@ -176,7 +176,7 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
     refine Summable.of_norm_bounded hmaj (fun p => ?_)
     rw [Real.norm_eq_abs, abs_mul, abs_of_nonneg (hcoefnn p), abs_of_nonneg (hrownn p)]
     exact mul_le_mul_of_nonneg_left (hrowb p) (hcoefnn p)
-  -- so the two extreme series split into the centre's and the generators' halves
+  -- so the two extreme series split into the center's and the generators' halves
   have hadd : ∑' p, coef p * (ctr p + row p)
       = (∑' p, coef p * ctr p) + ∑' p, coef p * row p := by
     simp only [mul_add]
@@ -248,7 +248,7 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
     refine ⟨⟨xmin, hxminmem, show xmin i = _ by rw [hxminval, hsub]⟩, ?_⟩
     rintro _ ⟨x, hx, rfl⟩
     exact hmemge x hx
-  -- the centre's share cancels in the difference, leaving twice the row-norm series
+  -- the center's share cancels in the difference, leaving twice the row-norm series
   rw [boxDiameter, hgreat.csSup_eq, hleast.csInf_eq]
   ring
 

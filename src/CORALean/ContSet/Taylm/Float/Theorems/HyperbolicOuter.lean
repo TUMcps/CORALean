@@ -18,7 +18,7 @@ public import CORALean.Global.TaylorRemainder
 `taylor_remainder_abs_le` at `sinh` or `cosh`, whose derivatives alternate between the two, bounded
 by `cosh` at the magnitude of the model. `hp` is `expUp`'s range hypothesis at that magnitude, as
 `Taylm.exp_outer` keeps it; the magnitude is at least `|c|`, so it covers `sinhUp`, `sinhDown`,
-`coshUp` at the centre and `coshUp` at the magnitude itself.
+`coshUp` at the center and `coshUp` at the magnitude itself.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -61,7 +61,7 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
       (absolute T.bounds.sup))) ≤ 2 ^ p / 2) :
     (T.hyperbolic p first).Encloses
       fun t => (if first then Real.sinh else Real.cosh) (f t) := by -- --- PROOF ---
-  -- the centre, the order, and the function whose Taylor model this is
+  -- the center, the order, and the function whose Taylor model this is
   set c := T.constCoef
   set N := T.maxOrder
   set g : ℝ → ℝ := if first then Real.sinh else Real.cosh with hg_def
@@ -75,7 +75,7 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
     le_trans (le_max_left _ _) (hm ▸ hp)
   have hc1 : toReal c ≤ 2 ^ p / 2 := le_trans (le_abs_self _) hcm
   have hc2 : -toReal c ≤ 2 ^ p / 2 := le_trans (neg_le_abs _) hcm
-  -- the derivatives of `g` at the centre, by parity
+  -- the derivatives of `g` at the center, by parity
   have hder : ∀ k : ℕ, iteratedDeriv k g (toReal c) =
       if (k % 2 == 0) == first then Real.sinh (toReal c) else Real.cosh (toReal c) := by
     intro k
@@ -114,7 +114,7 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
     rw [← div_eq_mul_one_div] at hs
     exact ⟨le_trans (Interval.mulLo_le _ _ _ _) hs.1, le_trans hs.2 (Interval.le_mulHi _ _ _ _)⟩
   · have hb := Taylm.bounds_mem h ht
-    -- every point of the hull of the centre and the box is below the magnitude
+    -- every point of the hull of the center and the box is below the magnitude
     have hmag : ∀ ξ ∈ Set.Icc (min (toReal c) (toReal T.bounds.inf))
         (max (toReal c) (toReal T.bounds.sup)),
         |ξ| ≤ M := by
@@ -131,7 +131,7 @@ theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : 
       · rcases le_max_iff.1 hξ.2 with h5 | h5
         · linarith [le_abs_self (toReal c)]
         · linarith [le_abs_self (toReal T.bounds.sup)]
-    -- Lagrange at the centre, the derivative bounded by `cosh` of the magnitude
+    -- Lagrange at the center, the derivative bounded by `cosh` of the magnitude
     have hsub : Set.uIcc (toReal c) (f t) ⊆
         Set.Icc (min (toReal c) (toReal T.bounds.inf)) (max (toReal c) (toReal T.bounds.sup)) :=
       Set.uIcc_subset_Icc ⟨min_le_left _ _, le_max_left _ _⟩

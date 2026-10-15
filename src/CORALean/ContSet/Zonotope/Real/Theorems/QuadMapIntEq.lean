@@ -13,14 +13,14 @@ public import Mathlib.LinearAlgebra.Matrix.BilinearForm
 
 [1, Thm. 1]: with `H = Hc ⊕ [-HΔ, HΔ]`, `quadint(H, Z) = quad(Hc, Z) ⊕ [-η, η]`,
 `ηᵢ = |Z|ᵀ HΔ⁽ⁱ⁾ |Z|`, `|Z| = |c| + Σⱼ |g⁽ʲ⁾|` ([1, Eq. 7], `Zonotope.absBound`). The two are
-equal as zonotopes, the box `[-η, η]` being `Interval.zonotope`, centre `0` and axis
+equal as zonotopes, the box `[-η, η]` being `Interval.zonotope`, center `0` and axis
 generators `η`.
 
-The content is the identity `d_Δ + Σᵢ h_Δ⁽ⁱ⁾ = η`: the radii of the interval centre and
-generators add up to `Σⱼ Σₖ |λ⁽ʲ⁾|ᵀ HΔ |λ⁽ᵏ⁾|` over all centre and generator pairs, the
-printed proof's last display, which is `|Z|ᵀ HΔ |Z|`. The centre's `½ Σ |g|ᵀHΔ|g|` and the
+The content is the identity `d_Δ + Σᵢ h_Δ⁽ⁱ⁾ = η`: the radii of the interval center and
+generators add up to `Σⱼ Σₖ |λ⁽ʲ⁾|ᵀ HΔ |λ⁽ᵏ⁾|` over all center and generator pairs, the
+printed proof's last display, which is `|Z|ᵀ HΔ |Z|`. The center's `½ Σ |g|ᵀHΔ|g|` and the
 square generators' `½ |g|ᵀHΔ|g|` make the diagonal whole, the linear generators carry the
-centre-generator pairs both ways, and the pair generators the generator pairs both ways.
+center-generator pairs both ways, and the pair generators the generator pairs both ways.
 
 ## References
 
@@ -102,7 +102,7 @@ theorem Zonotope.aux_quadMapInt_radius (HΔ : Fin m → Mat ℝ n n) (Z : Zonoto
   set b := Matrix.toBilin' (HΔ i) with hbdef
   have hb : ∀ x y : Vec ℝ n, x ⬝ᵥ (HΔ i *ᵥ y) = b x y := fun x y => by
     rw [hbdef, Matrix.toBilin'_apply']
-  -- `|Z|` is the absolute centre plus the absolute generators
+  -- `|Z|` is the absolute center plus the absolute generators
   have habs : Z.absBound = u + ∑ j, v j := by
     funext k
     simp [Zonotope.absBound, hu, hv, Finset.sum_apply]

@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddErrorReduced
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
@@ -50,7 +50,7 @@ theorem LinearSysDT.reachInnerReduced_inner (sys : LinearSysDT ℝ n) {o : ℕ} 
     sys.reachInnerReduced o ho R₀ U k ⊆ sys.reachSet (S := 𝒵) R₀ U k :=
   sys.reachSet_inner_of_outer (S := 𝒵) (Zonotope.convex_construct R₀)
     (Zonotope.isCompact_construct R₀) (Zonotope.convex_construct U)
-    (Zonotope.isCompact_construct U) k ⟨_, Zonotope.centre_mem_construct _⟩
+    (Zonotope.isCompact_construct U) k ⟨_, Zonotope.center_mem_construct _⟩
     (Zonotope.isBounded_construct _) (sys.reach_subset_reachSet_add_errorReduced ho R₀ U k)
 
 end CORALean

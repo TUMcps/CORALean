@@ -9,9 +9,9 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 /-!
 # The loop of `Zonotope.cloud2zonotope`
 
-[1, Alg. 3, steps 2-11]: centre the cloud on its interval hull, find its first principal direction
+[1, Alg. 3, steps 2-11]: center the cloud on its interval hull, find its first principal direction
 `u`, cut a generator `g = ratio |u · rad| u`, compress the cloud along `g` and add the segment
-`[-1, 1] g` to the zonotope. `minbox` is `Interval.enclosePoints`, `(mid, rad)` its centre and
+`[-1, 1] g` to the zonotope. `minbox` is `Interval.enclosePoints`, `(mid, rad)` its center and
 radius, and `svd(X)(:, 1)` is the argument `dir`, which has no algorithm here. The zonotope
 `c ⊕ Z(R)` is carried as a `Zonotope`, `c := c + mid, R := [R, g]` being one Minkowski sum with
 `⟨mid, g⟩`. The fuel `k` is `s₁ - iter`.

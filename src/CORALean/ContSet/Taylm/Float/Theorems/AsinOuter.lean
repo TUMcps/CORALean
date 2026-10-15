@@ -13,7 +13,7 @@ public import CORALean.ContSet.Taylm.Float.Theorems.ArcsinBoundGe
 
 `Taylm.taylor_outer` at `arcsin`: the zeroth coefficient between `asinDown` and `asinUp`, the
 others `Taylm.arcsinCoef_mem`, the derivative bound `Taylm.arcsinBound_ge`. The hypotheses are the
-rounded root `√(1 - c²)` positive at the centre and `√(1 - m²)` at the magnitude `Taylm.magUp`,
+rounded root `√(1 - c²)` positive at the center and `√(1 - m²)` at the magnitude `Taylm.magUp`,
 which put the range inside `(-1, 1)`.
 -/
 

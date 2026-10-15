@@ -8,10 +8,10 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos
 /-!
 # Two monomials that agree off one even factor drift only downwards
 
-The all-even case of `[1, Thm. 1]`, and the shape of drift that makes a centre
+The all-even case of `[1, Thm. 1]`, and the shape of drift that makes a center
 shift worth taking: `abs_sub_monomial_le` bounds the drift by `eDiff`
 symmetrically, and this signs it, so the drift runs over `[-ξ_E, 0]` and half of
-it is a constant the centre can absorb.
+it is a constant the center can absorb.
 
 Two facts assembled. Every exponent of column `i` being even makes the shared
 factors a product of even powers, which is `sub_monomial_nonpos_of_pow`'s

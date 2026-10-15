@@ -14,7 +14,7 @@ systems carried along side by side, exactly as `plus` carries them — `plusA`
 lays the rows out block-diagonally and `plusB` concatenates the bounds, so a
 row of one set still reads exponent zero on every factor of the other.
 
-The centres pair rather than add, and every generator embeds into the product
+The centers pair rather than add, and every generator embeds into the product
 ambient type at zero in the other coordinate: the two operands no longer share
 an ambient type, which is the one place this departs from `plus`.
 -/

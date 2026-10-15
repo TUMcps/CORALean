@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Abs
 # `ProbZonotope.abs`
 
 CORA's `abs(probZ)`: `probZ.Z = abs(probZ.Z)`, the entrywise absolute value of the matrix
-`[c, G]` of the mean zonotope, centre column included, and the covariance kept. The mean
+`[c, G]` of the mean zonotope, center column included, and the covariance kept. The mean
 zonotope becomes `Zonotope.abs` of itself, which is a different set and not an enclosure of the
 input; `Theorems.AbsLeCorner` says what it keeps.
 -/

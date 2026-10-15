@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.Conform.Theorems.TemplateZonoAdd
 # [1, Lemma 1]: `Ȳ` of stretched templates is a stretched template
 
 With the uncertainty sets [1, Eq. 3], `X₀ = ⟨c_x + c_Δ,x, G_x diag(α_x)⟩` and every
-`Uᵢ = ⟨c_u + c_Δ,u, G_u diag(α_u)⟩`, `Ȳ` has centre `ȳ + C̄ c_Δ,x + ∑ᵢ D̄ᵢ c_Δ,u` (16a)
+`Uᵢ = ⟨c_u + c_Δ,u, G_u diag(α_u)⟩`, `Ȳ` has center `ȳ + C̄ c_Δ,x + ∑ᵢ D̄ᵢ c_Δ,u` (16a)
 and generators `[C̄ G_x, D̄₀ G_u, …, D̄ₖ G_u]` (16c) stretched by `[α_x; α_u; …; α_u]`
 (16b) — the initial estimates `c_x`, `c_u` cancel against the `-c_x`, `-c_u` of (7), leaving
 the shifts. An equality.
@@ -40,7 +40,7 @@ variable {n p q k : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Lemma 1]: `Ȳ` with centre (16a) and generators (16b)-(16c). -/
+/-- [1, Lemma 1]: `Ȳ` with center (16a) and generators (16b)-(16c). -/
 theorem Conform.gloSet_templateZono {ιx ιu : Type} [Fintype ιx] [Fintype ιu] (yb : Vec ℝ q)
     (Cb : Mat ℝ q n) (Db : Fin (k + 1) → Mat ℝ q p) (cx dx : Vec ℝ n) (Gx : ιx → Vec ℝ n)
     (αx : ιx → ℝ) (cu du : Vec ℝ p) (Gu : ιu → Vec ℝ p) (αu : ιu → ℝ) :

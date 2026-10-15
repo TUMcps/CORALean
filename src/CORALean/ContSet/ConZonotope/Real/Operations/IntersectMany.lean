@@ -9,7 +9,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 # `ConZonotope.intersectMany`
 
 The constrained zonotope that [1, Lemma 4] gives for the intersection of `d + 1` constrained
-zonotopes `Cⱼ = ⟨cⱼ, Gⱼ, Aⱼ, bⱼ⟩`, in one step rather than pair by pair: the first set's centre
+zonotopes `Cⱼ = ⟨cⱼ, Gⱼ, Aⱼ, bⱼ⟩`, in one step rather than pair by pair: the first set's center
 and generators, followed by zeros for the others' `d` coefficient blocks; each set's own constraints
 on its own block; and one block of `n` rows per further set pinning its point to the first,
 `G₁ β₁ - Gⱼ βⱼ = cⱼ - c₁` (eqs. 33-34). The blocks' lengths differ, so the later ones are

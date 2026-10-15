@@ -20,7 +20,7 @@ What it buys over a zonotope is `intersection`, exactly, which no zonotope can
 represent.
 
 Both layers are specified. `Float` pays two different roundings in two
-different places: the centre and generators into an ambient error box, as the
+different places: the center and generators into an ambient error box, as the
 float zonotope does, and the constraints into the polytope's rows, an equality that must be
 rounded being written as two inequalities — `HPolytope` records why an ambient box cannot pay
 for those. One error box, not two: the coefficient polytope is read at its nominal part, and

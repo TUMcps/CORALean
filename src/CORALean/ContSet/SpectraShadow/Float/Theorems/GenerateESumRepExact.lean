@@ -37,8 +37,6 @@ theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow 𝕋 (Vec 𝕋 n)
     S.generateESumRep.construct = InflatedContSet.nominalSet S := by -- --- PROOF ---
   have hd : ∀ v : Vec 𝕋 n, toRealMat (diagonalBlock v) = Matrix.diagonal (toRealVec v) :=
     fun v => by ext i l; exact toReal_diagonalBlock v i l
-  have hneg : ∀ v : Vec 𝕋 n, toRealVec (fun i => neg (v i)) = -toRealVec v :=
-    fun v => by funext i; exact toReal_neg _
   have hsingle : ∀ i : Fin n, toRealVec (fun r => if r = i then (one : 𝕋) else zero)
       = (Pi.single i 1 : Vec ℝ n) := fun i => by
     funext r
@@ -51,7 +49,8 @@ theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow 𝕋 (Vec 𝕋 n)
       CORALean.Real.SpectraShadow.ESumRep n)
       = CORALean.Real.SpectraShadow.generateESumRep (InflatedContSet.nominal S) := by
     simp only [SpectraShadow.generateESumRep, CORALean.Real.SpectraShadow.generateESumRep,
-      SpectraShadow.toRealMat_blockDiag, SpectraShadow.toRealMat_const_zero, hd, hneg, hsingle]
+      SpectraShadow.toRealMat_blockDiag, SpectraShadow.toRealMat_const_zero, hd, toRealVec_neg,
+      hsingle]
     rfl
   unfold SpectraShadow.ESumRep.construct
   rw [hrep]

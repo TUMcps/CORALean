@@ -10,9 +10,9 @@ public import CORALean.ContSet.Taylm.Float.Theorems.SqrtBoundGe
 /-!
 # `Taylm.sqrt` encloses `√ ∘ f`
 
-Where the centre and the bottom of the range are positive. `Taylm.taylor_outer` at `√`: the
-coefficients `Taylm.sqrtCoef_mem` at the centre, the derivative bound `Taylm.sqrtBound_ge` at
-the smaller of the centre and the bottom of the range.
+Where the center and the bottom of the range are positive. `Taylm.taylor_outer` at `√`: the
+coefficients `Taylm.sqrtCoef_mem` at the center, the derivative bound `Taylm.sqrtBound_ge` at
+the smaller of the center and the bottom of the range.
 
 [1, Def. 3 (sqrt)]: the result is a Taylor model of `sqrt ∘ f`.
 

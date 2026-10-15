@@ -12,7 +12,7 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 The intersection of the two *nominal* shadows, without a computed entry: the point becomes `n`
 further free variables `z`, tied to each shadow's point by the equalities `z - c₁ - G₁ β₁ = 0`
 and `z - c₂ - G₂ β₂ = 0` (each as a diagonal entry and its negation, beside the two inequalities),
-and the result is `z` itself, generators `[0 | I]` and centre `0`. Over ℝ the exact layer ties
+and the result is `z` itself, generators `[0 | I]` and center `0`. Over ℝ the exact layer ties
 the two points directly, `c₁ - c₂ + G₁ β₁ - G₂ β₂ = 0`, which needs the rounded `c₁ - c₂`; the
 extra variable keeps every stored entry a stored float, its exact negation, `zero` or `one`. The
 error boxes are ignored: `SpectraShadow.inter` absorbs them first.
@@ -39,13 +39,13 @@ def SpectraShadow.tieInter (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : Spect
   let unit : Fin n → Vec 𝕋 n := fun i r => if r = i then one else zero
   let zeroV : Vec 𝕋 (n + n) := fun _ => zero
   -- `z - c - Gβ = 0` as that expression and its negation: constants, `β` and `z` coefficients
-  let tie₁Const : Vec 𝕋 (n + n) := Fin.append (fun r => neg (S₁.c r)) S₁.c
-  let tie₂Const : Vec 𝕋 (n + n) := Fin.append (fun r => neg (S₂.c r)) S₂.c
+  let tie₁Const : Vec 𝕋 (n + n) := Fin.append (-S₁.c) S₁.c
+  let tie₂Const : Vec 𝕋 (n + n) := Fin.append (-S₂.c) S₂.c
   let tie₁Gen : Fin S₁.m → Vec 𝕋 (n + n) := fun j =>
-    Fin.append (fun r => neg (S₁.G j r)) fun r => S₁.G j r
+    Fin.append (-(S₁.G j)) fun r => S₁.G j r
   let tie₂Gen : Fin S₂.m → Vec 𝕋 (n + n) := fun j =>
-    Fin.append (fun r => neg (S₂.G j r)) fun r => S₂.G j r
-  let tieZ : Fin n → Vec 𝕋 (n + n) := fun i => Fin.append (unit i) fun r => neg (unit i r)
+    Fin.append (-(S₂.G j)) fun r => S₂.G j r
+  let tieZ : Fin n → Vec 𝕋 (n + n) := fun i => Fin.append (unit i) (-(unit i))
   -- the two inequalities side by side for `β₁`, `β₂`; nothing of them for `z`
   let X : Fin ((S₁.m + S₂.m) + n) → Mat 𝕋 (S₁.k + S₂.k) (S₁.k + S₂.k) :=
     Fin.append (Fin.append (fun j => blockDiag zero (S₁.A j) fun _ _ => zero)

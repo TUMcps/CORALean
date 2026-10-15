@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 # A step's error ball, as a float zonotope
 
 `timePointStepErrorBox` in `𝕋`: the box `[-ε, ε]ⁿ` as the zonotope with one generator `ε eᵢ`
-per coordinate, `ε` the upward-rounded radius `timePointStepErrorFloat`. Centred at the origin
+per coordinate, `ε` the upward-rounded radius `timePointStepErrorFloat`. Centered at the origin
 with a zero error box, so its denotation is exactly that box: the error is paid once, in `ε`,
 rounded up, which is the direction an inner approximation needs of the set it takes off.
 -/

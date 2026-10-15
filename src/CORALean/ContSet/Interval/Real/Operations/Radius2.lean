@@ -10,7 +10,7 @@ public import CORALean.Global.EuclideanNorm
 
 CORA's `@interval/radius`: the Euclidean norm of the half-widths, `sqrt(sum(rad(I).^2))`. Not
 `Interval.radius`, which is CORA's `rad`, the half-width vector itself. `Theorems/Radius2IsLeast`
-says what it measures: the radius of the smallest Euclidean ball about the centre containing the
+says what it measures: the radius of the smallest Euclidean ball about the center containing the
 box.
 -/
 

@@ -61,7 +61,7 @@ theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) :
     refine ⟨fun j => ?_, fun j => ?_⟩
     · rw [identityMat_mulVec]
       exact hhi j
-    · rw [negIdentityMat_mulVec, toReal_neg]
+    · rw [negIdentityMat_mulVec, Pi.neg_apply, toReal_neg']
       linarith [hlo j]
 
 end CORALean.Float

@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
 
 `LinearSys.WithInputSplit.reachStepk` at [1, Alg. 4]'s set of matrices. `V = B U ⊕ c` is the
 input set in state coordinates, the `inputSet` that `reachUnion` computes once, split at its
-stored centre `ũ` and `Ũ = V - ũ ∋ 0` by `Recentre`:
+stored center `ũ` and `Ũ = V - ũ ∋ 0` by `Recenter`:
 `R(τ_k) = e^{[A]t_k}(H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R_Ũ(t_{k+1})`.
 `P̃(t_k)` is `constPropagate`, carried by `e^{[A]Δt}` one window at a time rather than by
 `e^{[A]t_k}` itself, since no point value of it is available once `A` ranges over a set.
@@ -38,17 +38,17 @@ open ContSet
 variable {n : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)] [Mtimes ℐ S]
+variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The window `τ_k = [k Δt, (k + 1) Δt]` at Taylor order `η`, the input set `V` of the state
-space split at its centre, at every member of `sys.A`. -/
+space split at its center, at every member of `sys.A`. -/
 noncomputable def LinParamSys.reachStepkInput (sys : LinParamSys ℐ n)
     (Δt : ℝ) (η : ℕ) (X₀ : S n) (V : S n) (k : ℕ) : S n :=
-  let uc := Recentre.centre V                                     -- ũ, the constant
-  let U₀ := Recentre.recentre V                                    -- Ũ = V - ũ, holding 0
+  let uc := Recenter.center V                                     -- ũ, the constant
+  let U₀ := Recenter.recenter V                                    -- Ũ = V - ũ, holding 0
   let tk := (k : ℝ) * Δt                                           -- t_k = k Δt
   let HRτ₀ := sys.timeIntervalStep Δt η X₀                         -- H^R(τ_0)
   let PcRτ₀ : S n := sys.constInputSolution Δt η uc                -- P̃^R(τ_0), ũ over τ_0

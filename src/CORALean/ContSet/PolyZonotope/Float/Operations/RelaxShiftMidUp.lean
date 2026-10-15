@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n d : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The same shift rounded up, which the centre's gap reads. -/
+/-- The same shift rounded up, which the center's gap reads. -/
 def PolyZonotope.relaxShiftMidUp (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : Vec 𝕋 n :=
   fun i => half (subUp (nsmulUp (pZ.relaxDrift part k₀).2 (pZ.G (part.right 0) i))

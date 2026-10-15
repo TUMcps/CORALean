@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `Capsule.plusCost`
 
-Asserted, not proved: `Operations/Plus.lean` adds the centres (`n`), forms the
+Asserted, not proved: `Operations/Plus.lean` adds the centers (`n`), forms the
 two squared lengths `∑ g i ^ 2` (`2 * n` each: `n` products and `n` additions),
 compares them (`1`), and in the taken branch adds the radii and the root of the
 shorter length (`2` additions and one `sqrt`). A `sqrt` is priced as one

@@ -21,7 +21,7 @@ dropped factors are free to take, since no monomial of either block reads them.
 The constraint monomials restrict alongside the generator ones, and nothing else
 moves.
 
-The two `key`s are stated with the *original* centre and independent block on
+The two `key`s are stated with the *original* center and independent block on
 both sides. They are the compacted ones up to unfolding, and writing them so
 keeps each equation to the one sum that actually changes.
 -/

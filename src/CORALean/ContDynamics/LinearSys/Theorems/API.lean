@@ -243,7 +243,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryInterv
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryStepInputOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.ClassicalTrajectoryVariationOfConstants
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachShift
 public import CORALean.ContDynamics.LinearSys.Theorems.TrajectoryTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TunedRunErrorBudget
@@ -334,7 +334,7 @@ abstraction error; the rest are the input-integral facts they use.
 
 The first two are stated once, over `ConvexSet` and `CompactSet`, name no
 representation. `TimeIntervalOuterSplit` drops `0 ∈ U`, needing only
-`Recentre`/`OfPoint`, which any representation with a centre has.
+`Recenter`/`OfPoint`, which any representation with a center has.
 The `ReachSet` and `TimeIntervalReachSet` trios state the same guarantees of a
 set; `_eq_iUnion` ties the latter to a union of the former, `SubsetAddError`
 runs a step backwards, `Exists…Lt` shrinks its error, `SetLinCombSum` feeds

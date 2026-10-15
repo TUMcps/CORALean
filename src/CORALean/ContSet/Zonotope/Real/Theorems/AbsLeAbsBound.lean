@@ -8,7 +8,7 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 /-!
 # A coordinate of a zonotope never leaves `absBound`
 
-Centre plus the generator column sums, coordinatewise, the coefficients being at
+Center plus the generator column sums, coordinatewise, the coefficients being at
 most one. What both the real and the constrained interval-matrix products bound
 their leftover against.
 -/

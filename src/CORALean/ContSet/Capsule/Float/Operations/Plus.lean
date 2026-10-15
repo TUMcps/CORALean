@@ -8,9 +8,9 @@ public import CORALean.Global.Float.Sqrt
 /-!
 # `Capsule.plus`
 
-CORA's capsule-plus-capsule: the centres add, the longer generator is kept and the shorter one is
-absorbed into the radius, `r = r₁ + r₂ + ‖g_short‖₂`. Here the centre is added downward and the
-distance of that stored centre from the exact sum (`‖c₁ + c₂ - c‖₂`, from the per-entry gap
+CORA's capsule-plus-capsule: the centers add, the longer generator is kept and the shorter one is
+absorbed into the radius, `r = r₁ + r₂ + ‖g_short‖₂`. Here the center is added downward and the
+distance of that stored center from the exact sum (`‖c₁ + c₂ - c‖₂`, from the per-entry gap
 between `addUp` and `addDown`) is added to the radius too, so the stored capsule holds the exact
 one. The lengths are compared on the squares rounded up, which is only a choice of branch: both
 branches enclose the sum. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).

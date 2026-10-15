@@ -12,9 +12,9 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.UpdateEqAddSingle
 
 [1, Prop. 13 (linear)]: through the layer `H_k = W_k H_{k-1} + b_k` the gradient set of a set
 loss is `∇_{H_{k-1}} L = W_kᵀ ∇_{H_k} L`, `⟨W_kᵀ c'_k, W_kᵀ G'_k⟩`: the transpose applied to the
-centre and to each generator column. As in the paper's proof, the loss depends on `H_{k-1}`
+center and to each generator column. As in the paper's proof, the loss depends on `H_{k-1}`
 through `H_k`, so the chain rule reads `Σᵢ c'_k(i) ∂c_k(i) + Σᵢ Σⱼ G'_k(i,j) ∂G_k(j)(i)` with
-`∂c_k(i)/∂c_{k-1}(j) = W_k(i,j)`; the loss is differentiable at the layer's output in the centre
+`∂c_k(i)/∂c_{k-1}(j) = W_k(i,j)`; the loss is differentiable at the layer's output in the center
 and generator entries together, which the paper takes for granted.
 
 ## References
@@ -59,7 +59,7 @@ theorem Zonotope.gradient_affine (ℒ : Zonotope (Vec ℝ m) → ℝ) (W : Mat �
       rw [update_eq_add_single, mulVec_add, mulVec_smul, mulVec_single_one]; rfl
   unfold Zonotope.gradient
   congr 1
-  · -- the centre: moving `c_j` moves the output centre along column `j` of `W`
+  · -- the center: moving `c_j` moves the output center along column `j` of `W`
     funext j
     -- the entry's derivative is the derivative of the loss along that column of `W`
     have h1 : deriv (fun t => ℒ ((({ H with c := Function.update H.c j t } :

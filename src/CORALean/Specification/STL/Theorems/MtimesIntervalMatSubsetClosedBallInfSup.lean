@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatSubsetClo
 /-!
 # The interval matrix product in a ball, by the size of the bounds
 
-`Zonotope.mtimesIntervalMat_subset_closedBall` bounds the product by the entries of the centre and
+`Zonotope.mtimesIntervalMat_subset_closedBall` bounds the product by the entries of the center and
 the radius of the interval matrix. Both are at most `(|inf| + |sup|)/2` entrywise, so the sum
 `s = Σ_{j,k} (|inf_{jk}| + |sup_{jk}|)` serves for both: the product lies in the sup norm ball of
 radius `2 s Σ_j absBound_j(Z)`. This is the form in which [1, Prop. 4] lets `F` and `G` of
@@ -48,7 +48,7 @@ theorem STL.mtimesIntervalMat_subset_closedBall_infSup (IM : Interval (Mat ℝ m
       (fun _ _ => by positivity) (Finset.mem_univ j)).trans
       (Finset.single_le_sum (f := fun i => ∑ j, (|IM.inf i j| + |IM.sup i j|))
         (fun _ _ => Finset.sum_nonneg fun _ _ => by positivity) (Finset.mem_univ i))
-  -- the centre and the radius of the interval matrix are each bounded by `s` entrywise
+  -- the center and the radius of the interval matrix are each bounded by `s` entrywise
   have h := Zonotope.mtimesIntervalMat_subset_closedBall IM Z (ρc := s) (ρr := s) hs0 hs0
     (fun i j => by
       have hc : IM.center i j = (2:ℝ)⁻¹ * (IM.inf i j + IM.sup i j) := rfl

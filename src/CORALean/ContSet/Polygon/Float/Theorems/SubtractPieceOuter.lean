@@ -77,7 +77,7 @@ theorem Polygon.subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) :
     refine ⟨_, List.mem_map.mpr ⟨i, List.mem_finRange i, rfl⟩, ?_⟩
     refine Interval.vPolytope_contains _ (Interval.contractHalfspace_outer _ _ _
       (r.interval_contains hr) ?_)
-    simp only [toReal_neg]
+    simp only [Pi.neg_apply, toReal_neg, toReal_neg']
     simp only [Matrix.mulVec, dotProduct] at hi
     simp only [neg_mul, Finset.sum_neg_distrib]
     exact neg_le_neg hi.le

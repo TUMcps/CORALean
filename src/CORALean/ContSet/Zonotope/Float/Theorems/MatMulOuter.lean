@@ -15,7 +15,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalCont
 # `Zonotope.matMul` over-approximates every product of two members
 
 `(a + e)(b + f) = ab + (af + e(b + f))`. The nominal product `ab` lies in the exact
-`Zonotope.matMul` (`matMul_outer`), whose centre and generators the directed products
+`Zonotope.matMul` (`matMul_outer`), whose center and generators the directed products
 bracket, entry by entry, as `dotDown_le`/`le_dotUp` state them; `af` and `e(b + f)` are
 `Interval.matMul_outer` at the two boxes `matInterval_contains` supplies.
 -/

@@ -57,7 +57,7 @@ theorem ConPolyZono.aux_minkDiff_fold :
       A ⊆ cur.construct →
       {y | ∀ s : Fin m → Bool, y + ∑ j, (if s j then (1 : ℝ) else -1) • toRealVec (g j) ∈ A}
         ⊆ (Fin.foldl m (fun cPZ i => (cPZ.plus (Zonotope.point (g i)).conPolyZono).intersection
-            (cPZ.plus (Zonotope.point fun r => neg (g i r)).conPolyZono))
+            (cPZ.plus (Zonotope.point (-(g i))).conPolyZono))
           cur).construct := by -- --- PROOF ---
   intro m
   induction m with
@@ -74,9 +74,8 @@ theorem ConPolyZono.aux_minkDiff_fold :
       refine ConPolyZono.intersection_outer _ _ ⟨?_, ?_⟩
       · exact ConPolyZono.aux_mem_plus_point _ _ (hA hm)
       · refine ConPolyZono.aux_mem_plus_point _ _ (hA ?_)
-        have : z - toRealVec (fun r => neg (g 0 r)) = z + toRealVec (g 0) := by
-          funext r
-          simp [toRealVec, toReal_neg]
+        have : z - toRealVec (-(g 0)) = z + toRealVec (g 0) := by
+          rw [toRealVec_neg, sub_neg_eq_add]
         rw [this]
         exact hp
     · -- every corner of the rest, with `g₀` added or subtracted, is a corner of all of them
@@ -106,9 +105,9 @@ theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Z :
     intro y hy
     refine ConPolyZono.aux_mem_plus_point _ _ ?_
     rw [← ConPolyZono.dependent_exact]
-    have : y - toRealVec (fun r => neg (Z.c r)) = y + toRealVec Z.c := by
+    have : y - toRealVec (-Z.c) = y + toRealVec Z.c := by
       funext r
-      simp [toRealVec, toReal_neg]
+      simp [toRealVec, toReal_neg']
     rw [this]
     exact hy
   · -- every corner `c + Σ ±gⱼ` is a point of the float zonotope

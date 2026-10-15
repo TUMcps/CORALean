@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxDrift
 # `PolyZonotope.relaxExpMid`
 
 `[1, Thm. 1]` with the drift taken as an interval rather than as a radius: the
-centre moves by its midpoint and the new independent generator carries its
+center moves by its midpoint and the new independent generator carries its
 half-width. `[1]` shifts only when every exponent of column `i` is even, and
 CORA's other branch shifts not at all and pays the full width; the identity
 `mid + [-rad, rad] = [lo, hi]` holds whatever the exponents, so there is nothing
@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The two generators `part.right` names merged into one, the drift's midpoint
-moved into the centre and its half-width into a new independent generator. -/
+moved into the center and its half-width into a new independent generator. -/
 noncomputable def PolyZonotope.relaxExpMid (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : PolyZonotope α where
   p := pZ.p

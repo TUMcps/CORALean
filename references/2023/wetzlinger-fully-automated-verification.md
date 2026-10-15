@@ -86,9 +86,9 @@ hypothesis is what keeps that out; a `sInf`-valued `Prop. 8` would be false.
 **`err(·)` now has a named operator, `Global/Err.lean`'s `err`, settling `Prop. 1`-`Prop. 4`'s
 gap of a norm.** `err(S) := rad(box(S))` (eq. 11), and the Notation section (Sec. II-A) reads
 `rad` as "the radius of the smallest hypersphere centered at the origin and enclosing a set" and
-`box` as "the tightest axis-aligned interval outer-approximation of `S`" — the ORIGIN-centred
-Euclidean radius of `S`'s box, not `Interval.radius`'s own-centre one (`‖boxDiameter S / 2‖₂`,
-a different number whenever the box is not centred at `0`), matching CDC'20 `Prop. 1`'s box
+`box` as "the tightest axis-aligned interval outer-approximation of `S`" — the ORIGIN-centered
+Euclidean radius of `S`'s box, not `Interval.radius`'s own-center one (`‖boxDiameter S / 2‖₂`,
+a different number whenever the box is not centered at `0`), matching CDC'20 `Prop. 1`'s box
 radius already in
 [`HausdorffDist2AddLeBoxRadius.lean`](../../src/CORALean/ContSet/Interval/Real/Theorems/HausdorffDist2AddLeBoxRadius.lean).
 `err` carries monotonicity (`err_mono`), subadditivity under a Minkowski sum (`err_add_le`),
@@ -173,7 +173,7 @@ without the containment. What is missing for soundness itself is the step from t
 hull to the set: `E(Δt,η)ΔtU₀` is the exact union `⋃_{|M|≤E} M(ΔtU₀)` (`MatExp.intervalMulVecSet`),
 and it is not convex. A point `y` is in it iff `|y_j| ≤ Σ_k E_{jk}|v_k|` for every row `j` with one
 `v ∈ ΔtU₀`, and the coordinatewise bound on the tail, `|t_j| ≤ Σ_k E_{jk}∫|u_k|`, would need one `v`
-with `|v_k| ≥ ∫|u_k|/Δt` for every `k`. Already for the centred zonotope
+with `|v_k| ≥ ∫|u_k|/Δt` for every `k`. Already for the centered zonotope
 `U₀ = conv{±(2,1), ±(1,−2)}` and `E = I` no point of `U₀` has `|v| ≥ (1.5, 1.5)`, the mean of
 `|(2,1)|` and `|(1,−2)|`, so a proof has to use more than that bound: the `(i+1)!` against `i!`
 slack of eq. (18), and the cancellation that a sign change of `u_k` forces into `t_k`. A numerical
@@ -195,7 +195,7 @@ and weights `λ`, some `w ∈ U₀` has `|w_k| ≥ ½Σᵢλᵢ|wⁱ_k|` for eve
 generators past the dimension, Gaussian and `{−1, 0, 1}` generators, convex combinations of vertex
 moduli, 3400 instances, with local search over the weights) found the best `w` at least `1.43` times
 the required size, where below `1` would refute the reduction. No proof of that statement was found,
-and whether it holds for every centred zonotope is open; neither eq. (20) in general nor a
+and whether it holds for every centered zonotope is open; neither eq. (20) in general nor a
 counterexample is in the tree, and `Prop. 11` stays `proof-gap`: its statement is proved, its printed proof is not. The hypothesised
 `MatExp.hausdorffDist₂_particularSolution_le` remains for any `P` between `qP^U` and `P̂^U`, and
 `inputReach_subset_inputSolution` is about `MatExp.inputRemainder`'s norm-based block, not eq.

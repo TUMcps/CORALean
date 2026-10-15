@@ -57,7 +57,7 @@ theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) :
       rw [Homeomorph.image_interior]; exact h1
     obtain ⟨v, hv, -⟩ := h1'
     exact Submodule.eq_top_of_nonempty_interior' _ ⟨v, hv⟩
-  · -- onto, so open: the open unit ball maps to an open set around the centre
+  · -- onto, so open: the open unit ball maps to an open set around the center
     intro htop
     have hsurj : Function.Surjective L := by
       rw [← LinearMap.range_eq_top]; exact htop

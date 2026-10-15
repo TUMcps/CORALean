@@ -17,6 +17,7 @@ public import CORALean.Global.Float.Tan
 public import CORALean.Global.Float.Hyperbolic
 public import CORALean.Global.Float.Atanh
 public import CORALean.Global.Float.GenBlockDiag
+public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.Global.Float.ListSum
 public import CORALean.Global.Float.PowUp
 public import CORALean.Global.Float.PowDown

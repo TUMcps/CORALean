@@ -90,7 +90,6 @@ src/CORALean/ContSet/ConPolyZono/Float/Theorems/GetSubsetPointOuter.lean::ConPol
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/GetSubsetSatisfies.lean::ConPolyZono.getSubset_satisfies  queued: not named yet (70 characters, 3 times)
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/UnionPointMem.lean::ConPolyZono.aux_halfDiff_mem  queued: not named yet (74 characters, 3 times)
 src/CORALean/ContSet/ConPolyZono/Real/Operations/SatisfiesIntersectionDepIff.lean::ConPolyZono.satisfies_intersectionDep_iff  queued: not named yet (91 characters, 5 times)
-src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean::ConZonotope.nominalBoundWeights  queued: not named yet (88 characters, 3 times)
 src/CORALean/ContSet/ConZonotope/Float/Theorems/CubMapOuter.lean::ConZonotope.cubMap_outer  queued: not named yet (85 characters, 3 times)
 src/CORALean/ContSet/ConZonotope/Float/Theorems/IntersectStripOuter.lean::ConZonotope.intersectStrip_outer  queued: not named yet (113 characters, 3 times)
 src/CORALean/ContSet/Conversion/Float/Operations/Zonotope_to_HPolytope.lean::Zonotope.nominalBoundDot  queued: not named yet (86 characters, 3 times)

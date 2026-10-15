@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 /-!
 # A constrained zonotope as a star set
 
-CORA's `conversionConZonoStarSet`: the centre and the generators as they are, the factors in
+CORA's `conversionConZonoStarSet`: the center and the generators as they are, the factors in
 `[-1, 1]`, and the rows of the constraint polytope on the factors as the constraint rows.
 -/
 

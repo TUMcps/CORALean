@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
 public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import Mathlib.Data.Finset.Fold
 
 @[expose] public section
@@ -52,7 +52,7 @@ theorem Zonotope.isLUB_norm_image_fold_max_absBound (Z : Zonotope (Vec ℝ n)) :
       mem_closedBall_zero_iff.mpr (hb ⟨x, hx, rfl⟩)
     refine (Finset.fold_max_le _).mpr
       ⟨?_, fun j _ => Zonotope.absBound_le_of_subset_closedBall hsub j⟩
-    exact (norm_nonneg _).trans (hb ⟨Z.c, Zonotope.centre_mem_construct Z, rfl⟩)
+    exact (norm_nonneg _).trans (hb ⟨Z.c, Zonotope.center_mem_construct Z, rfl⟩)
 
 end CORALean.Real
 

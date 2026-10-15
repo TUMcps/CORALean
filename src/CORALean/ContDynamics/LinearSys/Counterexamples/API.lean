@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Counterexamples.ReachCurvatureInpu
 public import CORALean.ContDynamics.LinearSys.Counterexamples.ReachDecompCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.ReachFromStartCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.SupportLowerTimeInterval
-public import CORALean.ContDynamics.LinearSys.Counterexamples.SupportUpperCentre
+public import CORALean.ContDynamics.LinearSys.Counterexamples.SupportUpperCenter
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifyRAOuterVerdictCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySearchStall
 

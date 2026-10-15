@@ -62,7 +62,7 @@ theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) {x 
       + ∑ i, x i • toRealMat (P.spectraShadow.A i)).PosSemidef := by -- --- PROOF ---
   -- the matrix is the diagonal of the slacks
   have hM := HPolytope.aux_lmi_diag (n := n) (𝕋 := 𝕋)
-    (Fin.append P.b (Fin.append P.be fun r => neg (P.be r)))
+    (Fin.append P.b (Fin.append P.be (-P.be)))
     (fun i => Fin.append (fun r => P.A r i)
       (Fin.append (fun r => P.Ae r i) fun r => neg (P.Ae r i))) x
   refine Eq.mpr (congrArg Matrix.PosSemidef hM) (posSemidef_diagonal_iff.mpr ?_)
@@ -79,7 +79,8 @@ theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) {x 
     simp only [mul_comm (x _)] at this ⊢
     linarith
   · have := (hAe r).ge
-    simp only [Fin.append_right, mulVec, dotProduct, toRealMat, toReal_neg] at this ⊢
+    simp only [Fin.append_right, mulVec, dotProduct, toRealMat, Pi.neg_apply, toReal_neg,
+      toReal_neg'] at this ⊢
     simp only [mul_comm (x _), neg_mul, Finset.sum_neg_distrib] at this ⊢
     linarith
 

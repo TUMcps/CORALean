@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Basic
 /-!
 # A capsule as a box, over a floating-point scalar
 
-CORA's `interval(capsule)`: the centre give or take the generator's reach and the radius in each
+CORA's `interval(capsule)`: the center give or take the generator's reach and the radius in each
 coordinate, `|gᵢ| + r`. The reach is rounded up, so each end is rounded away from the capsule:
 the lower bound down, the upper bound up. An empty capsule (`r < 0`) is boxed all the same, by
 whatever the bounds say, as over ℝ.

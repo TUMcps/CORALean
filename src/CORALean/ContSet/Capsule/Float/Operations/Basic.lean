@@ -52,7 +52,7 @@ def Capsule.empty (n : ℕ) : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero,
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- No direction, no radius, centred at the origin: `zero` reads as `0`, so nothing rounds. -/
+/-- No direction, no radius, centered at the origin: `zero` reads as `0`, so nothing rounds. -/
 def Capsule.origin (n : ℕ) : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, zero⟩
 
 end
@@ -84,7 +84,7 @@ def Capsule.radius (k : ℕ) (C : Capsule 𝕋 n) : 𝕋 :=
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `@capsule/representsa_.m` at `origin`, tolerance `0`: a point whose centre is `0`. -/
+/-- `@capsule/representsa_.m` at `origin`, tolerance `0`: a point whose center is `0`. -/
 def Capsule.representsa_origin (C : Capsule 𝕋 n) : Bool :=
   (List.finRange n).all (fun i => le (C.c i) zero && le zero (C.c i)) && C.representsa_point
 

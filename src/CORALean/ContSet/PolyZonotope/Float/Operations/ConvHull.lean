@@ -13,10 +13,10 @@ public import CORALean.ContSet.Zonotope.Float.Operations.LinComb
 
 CORA's `@polyZonotope/convHull_` for a second polynomial zonotope, as over ℝ: the dependent parts
 paired with themselves by `linComb`, those chord sets with each other, and the independent
-generators of the result taken from `enclose(Z1, Z2)` of the zero-centred zonotopes of the two
+generators of the result taken from `enclose(Z1, Z2)` of the zero-centered zonotopes of the two
 independent blocks (`Zonotope.linComb`).
 
-The zonotope's rounded centre is not a generator, so it enters the error box as a point, with the
+The zonotope's rounded center is not a generator, so it enters the error box as a point, with the
 zonotope's own error box: the generators `Z.G` replace the independent block and `Z.c` and `Z.E`
 widen the error.
 -/

@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotop
 /-!
 # `Alg. 2` lines 1-6 in floats: the loop state before the first iteration
 
-`minBackReachInit` computed in `𝕋`: [1, Alg. 2] lines 1-6, the two centred particular solutions of
+`minBackReachInit` computed in `𝕋`: [1, Alg. 2] lines 1-6, the two centered particular solutions of
 the time-inverted dynamics `-A` accumulated up to `t₀`, by `inputSolutionFloat` rather than
 `inputSolution`, and the origin as the start of `R̂^∃`. Negating a float is exact, so `-A` costs
 no rounding.
@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 iteration. -/
 def LinearSys.minBackReachInitFloat (sys : LinearSys 𝕋 n) (W₀ U₀ : Zonotope (Vec 𝕋 n)) (t₀ : 𝕋)
     (η : ℕ) : LinearSys.MinBackReachStateOf 𝕋 (Zonotope (Vec 𝕋 n)) (ConZonotope 𝕋 (Vec 𝕋 n)) :=
-  let Ā : LinearSys 𝕋 n := { sys with A := fun i j => neg (sys.A i j) }  -- time-inverted dynamics
+  let Ā : LinearSys 𝕋 n := { sys with A := (-sys.A) }  -- time-inverted dynamics
   { t := t₀                                                         -- 1. τ = [t₀, t_end]
     ZW₀ := Ā.inputSolutionFloat t₀ η W₀                             -- 5. Ẑ_{W₀}(-t₀)
     ZU₀ := Ā.inputSolutionFloat t₀ η U₀                             -- 6. Ẑ_{U₀}(-t₀)

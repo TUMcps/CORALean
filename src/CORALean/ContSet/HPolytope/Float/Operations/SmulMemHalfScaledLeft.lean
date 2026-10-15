@@ -45,9 +45,7 @@ theorem HPolytope.smul_mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {
       ∈ (P.halfScaledLeft n₂).construct := by -- --- PROOF ---
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hy
   -- the third row group is the equality's lower end, which enters negated
-  have hneg : toRealMat (fun i' k => neg (P.Ae i' k)) = -toRealMat P.Ae := by
-    funext i' k
-    exact toReal_neg _
+  have hneg : toRealMat (fun i => -P.Ae i) = -toRealMat P.Ae := toRealMat_neg P.Ae
   refine (HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)
     (HPolytope.errFree_of_origin rfl)).mpr ⟨HPolytope.mem_ineqs_iff.mpr fun i => ?_,
     (HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)

@@ -11,11 +11,11 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # A box as a zonotope, over a floating-point scalar
 
-The centre may be rounded any way at all — the radius is then measured *from the
-centre that was actually stored*, upward on both sides, so it reaches whichever
+The center may be rounded any way at all — the radius is then measured *from the
+center that was actually stored*, upward on both sides, so it reaches whichever
 end the rounding moved away from. That is why the radius is a maximum of two
 directed differences rather than half the width: half a rounded width would
-leave one edge short whenever the centre moved.
+leave one edge short whenever the center moved.
 
 Nothing goes into the error box. The generators already cover the rounding, and
 paying for it twice would only widen the result.

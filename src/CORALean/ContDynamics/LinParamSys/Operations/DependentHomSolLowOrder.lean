@@ -12,7 +12,7 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 The part `R_lowOrder` of CORA's `linParamSys/private/priv_dependentHomSol`, the solution
 after one step `r` of `ẋ = A x + u` with `A = A_c + Σᵢ pᵢ A_g⁽ⁱ⁾` and the constant input
 `u = U_c + Σᵢ pᵢ U_G⁽ⁱ⁾` sharing the parameters `pᵢ ∈ [-1, 1]`, expanded to second order in
-the `pᵢ`: `R_c` (order zero, and the centre of the `pᵢ²` terms), `R_g` the first-order
+the `pᵢ`: `R_c` (order zero, and the center of the `pᵢ²` terms), `R_g` the first-order
 generators, the halved `pᵢ²` generators and the mixed `pᵢpⱼ` ones, line by line as printed.
 The time orders above `A² r²` (state) and `A² r³` (input) are left to the high-order mapping
 matrices, which CORA adds afterwards and which are not modelled here.
@@ -40,7 +40,7 @@ variable {n k : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- CORA's `R_lowOrder = zonotope(R_c, R_g)` of `priv_dependentHomSol`, at the centre `c` of
+/-- CORA's `R_lowOrder = zonotope(R_c, R_g)` of `priv_dependentHomSol`, at the center `c` of
 `Rinit`, the system matrix `A_c + Σ pᵢ A_g⁽ⁱ⁾`, the input `U_c + Σ pᵢ U_G⁽ⁱ⁾` and step `r`. -/
 noncomputable def LinParamSys.dependentHomSolLowOrder (Ac : Mat ℝ n n) (Ag : Fin k → Mat ℝ n n)
     (c Uc : Vec ℝ n) (UG : Fin k → Vec ℝ n) (r : ℝ) : Zonotope (Vec ℝ n) :=
@@ -53,7 +53,7 @@ noncomputable def LinParamSys.dependentHomSolLowOrder (Ac : Mat ℝ n n) (Ag : F
     (r • Ag i + (r ^ 2 / 2) • (Ac * Ag i) + (r ^ 2 / 2) • (Ag i * Ac)) *ᵥ c
       + ((r ^ 2 / 2) • Ag i + (r ^ 3 / 6) • (Ac * Ag i) + (r ^ 3 / 6) • (Ag i * Ac)) *ᵥ Uc
       + M *ᵥ UG i
-  -- second parametric order, same index: `Rtmp`, half a generator and half to the centre
+  -- second parametric order, same index: `Rtmp`, half a generator and half to the center
   let Rtmp : Fin k → Vec ℝ n := fun i =>
     ((r ^ 2 / 2) • (Ag i * Ag i)) *ᵥ c + ((r ^ 3 / 6) • Ag i) *ᵥ Uc
       + ((r ^ 3 / 6) • (Ac * Ag i + Ag i * Ac)) *ᵥ UG i

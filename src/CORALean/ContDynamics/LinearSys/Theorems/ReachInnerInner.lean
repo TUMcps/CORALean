@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetI
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetAddError
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
@@ -68,7 +68,7 @@ theorem LinearSys.reachInner_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
   have hinner := (sys.discretize Δt).reachSet_inner_of_outer (S := 𝒵)
     (Zonotope.convex_construct R₀) (Zonotope.isCompact_construct R₀)
     (Zonotope.convex_construct Q) (Zonotope.isCompact_construct Q) k
-    ⟨_, Zonotope.centre_mem_construct _⟩ (Zonotope.isBounded_construct _)
+    ⟨_, Zonotope.center_mem_construct _⟩ (Zonotope.isBounded_construct _)
     (sys.reach_subset_discretize_reachSet_add_error hΔt η hε ho R₀ U k)
   -- each step's held input is `stepInputConst` at a point of `U`
   have hstep : construct Q ⊆ (fun c => sys.stepInputConst c Δt) '' construct U := by
@@ -78,7 +78,7 @@ theorem LinearSys.reachInner_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
     obtain ⟨c, hc, rfl⟩ := hv'
     exact ⟨c, hc, rfl⟩
   have hzoh := sys.discretize_reachSet_subset_inputReach (S := 𝒵) hΔt R₀ U Q
-    (Zonotope.isBounded_construct U) ⟨_, Zonotope.centre_mem_construct U⟩ hstep k
+    (Zonotope.isBounded_construct U) ⟨_, Zonotope.center_mem_construct U⟩ hstep k
   exact hinner.trans (hzoh.trans (sys.mulVecLin_image_add_inputReach_subset_reachSet
     (S := 𝒵) R₀ U (by positivity) (Zonotope.isBounded_construct U)))
 

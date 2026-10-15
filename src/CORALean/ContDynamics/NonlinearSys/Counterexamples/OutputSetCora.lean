@@ -13,13 +13,13 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 The output set `reach` [1] stores at every time point, `outputSet(sys,R,params,options)` [2], for
 an output equation `h(x, u)` that `out_isLinear` marks linear, after `validateOptions` has run
 `postProcessing` [3]: `aux_set_U_uTrans_uTransVec` moves `center(U)` into `params.u` (later
-`params.uTrans`) and re-centres `params.U` at the origin. `aux_outputSet` then expands `h` about
+`params.uTrans`) and re-centers `params.U` at the origin. `aux_outputSet` then expands `h` about
 `p = [center(R); center(params.U)]` and reads `params.U` alone, never `uTrans`; at
 `out_isLinear` its second- and third-order terms are `0`, so `Y = h(p) + J (R - p_x) +
 D_lin (U - p_u)`. The sets are zonotopes as in CORA; the set is that of the values over
 `x ∈ R`, `v ∈ params.U`, which a linear map and a sum of zonotopes give exactly.
 
-# CORA's `nonlinearSys` output set drops the centre of the input set
+# CORA's `nonlinearSys` output set drops the center of the input set
 
 For `ẋ = 0`, the linear output `y = x + u`, `R0 = {0}` and the point input set `U = {1}` (the
 default `u = 0`), the run `x = 0` under the input `1` has the output `1` at time `0`.

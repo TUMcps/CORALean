@@ -11,8 +11,8 @@ public import Mathlib.Analysis.Calculus.FDeriv.Comp
 /-!
 # Moving one coordinate at a time through a box
 
-[1, Thm. 1]'s mean-value arguments move from the centre of a box to a point of it one
-coordinate at a time, coordinate `i` varied with every coordinate before it at the centre,
+[1, Thm. 1]'s mean-value arguments move from the center of a box to a point of it one
+coordinate at a time, coordinate `i` varied with every coordinate before it at the center,
 and bound each move by the partial derivative `∂ᵢf` on that *path set*. Three facts are
 here: the moves change `f` by at most `Σ Uᵢ rᵢ` when `|∂ᵢf| ≤ Uᵢ` on the path sets; some
 point raises `f` by at least `Σ Lᵢ rᵢ` when `|∂ᵢf| ≥ Lᵢ` there, the direction of each move
@@ -130,7 +130,7 @@ theorem exists_ge_add_of_abs_deriv_ge {g g' : ℝ → ℝ} {c r L : ℝ} (hr : 0
     nlinarith
 
 /-- [1, Thm. 1]'s inner argument: with `|∂ᵢf| ≥ Lᵢ` on the `i`-th path set, some point
-of the box raises `f` from the centre by at least `Σ Lᵢ rᵢ`. -/
+of the box raises `f` from the center by at least `Σ Lᵢ rᵢ`. -/
 theorem exists_ge_add_sum_of_abs_partial_ge {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f)
     {lo hi : Fin m → ℝ} (hlh : lo ≤ hi) (L : Fin m → ℝ)
     (hL : ∀ i, ∀ y ∈ Icc lo hi, (∀ j, j < i → y j = (lo j + hi j) / 2) →
@@ -140,7 +140,7 @@ theorem exists_ge_add_sum_of_abs_partial_ge {f : (Fin m → ℝ) → ℝ} (hf : 
   set c : Fin m → ℝ := fun i => (lo i + hi i) / 2 with hc
   have hcmem : c ∈ Icc lo hi := ⟨fun i => by simp only [hc]; linarith [hlh i],
     fun i => by simp only [hc]; linarith [hlh i]⟩
-  -- the coordinates from `m - d` on have moved, the others are still at the centre
+  -- the coordinates from `m - d` on have moved, the others are still at the center
   have key : ∀ d ≤ m, ∃ p ∈ Icc lo hi, (∀ j : Fin m, j.val < m - d → p j = c j) ∧
       f c + ∑ j : Fin m, (if m - d ≤ j.val then L j * ((hi j - lo j) / 2) else 0) ≤ f p := by
     intro d
@@ -177,14 +177,14 @@ theorem exists_ge_add_sum_of_abs_partial_ge {f : (Fin m → ℝ) → ℝ} (hf : 
   exact ⟨p, hp, by simpa using hfp⟩
 
 /-- [1, Thm. 1]'s outer argument: with `|∂ᵢf| ≤ Uᵢ` on the `i`-th path set, `f` moves from
-the centre by at most `Σ Uᵢ rᵢ` anywhere in the box. -/
+the center by at most `Σ Uᵢ rᵢ` anywhere in the box. -/
 theorem abs_sub_le_sum_of_abs_partial_le {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f)
     {lo hi : Fin m → ℝ} (U : Fin m → ℝ)
     (hU : ∀ i, ∀ y ∈ Icc lo hi, (∀ j, j < i → y j = (lo j + hi j) / 2) →
       |fderiv ℝ f y (Pi.single i 1)| ≤ U i) {x : Fin m → ℝ} (hx : x ∈ Icc lo hi) :
     |f x - f (fun i => (lo i + hi i) / 2)| ≤ ∑ i, U i * ((hi i - lo i) / 2) := by -- --- PROOF ---
   set c : Fin m → ℝ := fun i => (lo i + hi i) / 2 with hc
-  -- `q k`: the first `k` coordinates at the centre, the rest at `x`
+  -- `q k`: the first `k` coordinates at the center, the rest at `x`
   let q : ℕ → Fin m → ℝ := fun k j => if j.val < k then c j else x j
   have hq : ∀ k, q k ∈ Icc lo hi := fun k => ⟨fun j => by
       by_cases h : j.val < k <;> simp only [q, h, if_true, if_false, hc] <;>
@@ -201,7 +201,7 @@ theorem abs_sub_le_sum_of_abs_partial_le {f : (Fin m → ℝ) → ℝ} (hf : Dif
     | succ k ih =>
       intro hk
       set i : Fin m := ⟨k, by omega⟩
-      -- one more coordinate at the centre is one update
+      -- one more coordinate at the center is one update
       have hstep : q (k + 1) = Function.update (q k) i (c i) := by
         funext j
         by_cases h : j = i
@@ -257,7 +257,7 @@ theorem abs_sub_le_sum_of_abs_partial_le {f : (Fin m → ℝ) → ℝ} (hf : Dif
       calc |f (q (k + 1)) - f x| ≤ |f (q (k + 1)) - f (q k)| + |f (q k) - f x| :=
             abs_sub_le _ _ _
         _ ≤ _ := by linarith [ih (by omega)]
-  -- all `m` coordinates at the centre is the centre
+  -- all `m` coordinates at the center is the center
   have hqm : q m = c := funext fun j => by simp [q, j.is_lt]
   have := key m le_rfl
   rw [hqm, abs_sub_comm] at this

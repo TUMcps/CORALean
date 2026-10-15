@@ -10,7 +10,7 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 # `Ellipsoid.ellipsoidNorm`
 
 CORA's `@ellipsoid/ellipsoidNorm` at a full-rank ellipsoid, where `isFullDim(E)` holds: `q = Q \ p`
-and `sqrt(abs(p' q))`, the norm of `p` with respect to `E` with the centre ignored,
+and `sqrt(abs(p' q))`, the norm of `p` with respect to `E` with the center ignored,
 `sqrt(|pᵀ Q⁻¹ p|)`. The branch for a degenerate `Q` (an SVD pseudo-inverse with the cut-offs
 `1e-10`, and `Inf` for a point outside the range) is not modelled: at a singular `Q` this
 definition reads `Matrix`'s junk inverse and means nothing.

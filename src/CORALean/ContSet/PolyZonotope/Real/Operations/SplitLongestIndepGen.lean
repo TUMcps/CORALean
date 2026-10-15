@@ -8,8 +8,8 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SplitLongestGen
 # `PolyZonotope.splitLongestIndepGen`
 
 The subfunction `aux_splitLongestIndepGen` of CORA's `@polyZonotope/containsPointSet`: halve
-the longest independent generator `g`, one half with centre `c + g/2`, the other with
-centre `c - g/2`, the generator `g/2` in both. With no independent generator both halves are
+the longest independent generator `g`, one half with center `c + g/2`, the other with
+center `c - g/2`, the generator `g/2` in both. With no independent generator both halves are
 the set itself, where CORA errors.
 -/
 

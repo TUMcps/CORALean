@@ -15,10 +15,10 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # The derivative of a set function is its gradient set
 
-[1, Def. 3]: where a function `f` of a zonotope `Y = ⟨c, G⟩` is differentiable, in the centre and
+[1, Def. 3]: where a function `f` of a zonotope `Y = ⟨c, G⟩` is differentiable, in the center and
 the generator entries together, its derivative in the direction `(u, U)` is read off the gradient
 set `∇_Y f = ⟨∇_c f, ∇_G f⟩`: `Df(u, U) = ⟨u, ∇_c f⟩ + Σⱼ ⟨Uⱼ, (∇_G f)ⱼ⟩`, the inner products of
-the centre direction with the centre gradient and of each generator direction with its own. The
+the center direction with the center gradient and of each generator direction with its own. The
 gradient set is the partial derivatives along single entries, and a direction is the sum of the
 single-entry ones, `Df` being linear: the step the chain-rule proofs of [1, Prop. 13 (linear)] and
 [1, Prop. 14] take as `Σᵢ c'ₖ(i) ∇cₖ(i) + Σᵢ Σⱼ G'ₖ(i,j) ∇Gₖ(i,j)`.

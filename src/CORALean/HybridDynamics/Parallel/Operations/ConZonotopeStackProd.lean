@@ -10,7 +10,7 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 # `ConZonotope.stackProd`
 
 The Cartesian product of one constrained zonotope per component, in the stacked space: the
-generators and centres as `Zonotope.stackProd`, and the constraint on the coefficients the
+generators and centers as `Zonotope.stackProd`, and the constraint on the coefficients the
 `HPolytope.stackProd` of the components' constraints, each answering only to its own block of
 coefficients. CORA's `cartProd_` of two constrained zonotopes is the same, with block-diagonal
 generators and constraints; `Theorems.ConZonotopeStackProdExact` says it is exactly the product.

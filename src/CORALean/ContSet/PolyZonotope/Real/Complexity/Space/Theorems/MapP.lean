@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Map
 /-!
 # `PolyZonotope.map`'s counts
 
-A linear map touches the centre and both generator blocks only: none of the
+A linear map touches the center and both generator blocks only: none of the
 three counts move, since the monomials are scalars a linear map commutes with.
 `rfl` against the structure instance in `Operations/Map.lean`.
 -/

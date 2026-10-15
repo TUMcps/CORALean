@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Map
 /-!
 # `ConZonotope.project`
 
-CORA's `@conZonotope/project`: the centre and generators at the chosen coordinates, with the
+CORA's `@conZonotope/project`: the center and generators at the chosen coordinates, with the
 constraint untouched. `dims` may repeat or reorder coordinates. Reading coordinates is linear, so
 this is `map` at the selection map, and `project_exact` is `map_exact`.
 -/

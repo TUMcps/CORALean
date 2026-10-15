@@ -6,7 +6,7 @@ public import CORALean.ContSet.Interval.Real.Instances
 @[expose] public section
 
 /-!
-# The centre is the best expansion point
+# The center is the best expansion point
 
 [1, Cor. 3.2], first [2, Prop. 2]: `abstrErrLin`'s box is smallest at `zs = Z.c`. The radius `γ`
 carries `|c - zs|` as an additive term in every coordinate, and a quadratic form
@@ -22,7 +22,7 @@ second-derivative range `{ξ(z, z✱) | z ∈ Ẑ}` "is independent of `z✱`", 
 `max |Jᵢ|` is unaffected by it. That range is the convex hull of `Ẑ` and `z✱`,
 which equals `Ẑ` exactly when `z✱ ∈ Ẑ` and is strictly larger otherwise, so the
 max is affected. The corollary survives because the dependence runs one way: an
-`H` valid for some `z✱` is valid at the centre, which is why the same `H` stands
+`H` valid for some `z✱` is valid at the center, which is why the same `H` stands
 on both sides here.
 
 ## References
@@ -64,7 +64,7 @@ theorem aux_quad_mono {M : Mat ℝ d d} (hM : ∀ j k, 0 ≤ M j k) {γ δ : Vec
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Cor. 3.2]: the error box at the centre of `Z` is inside the one at any
+/-- [1, Cor. 3.2]: the error box at the center of `Z` is inside the one at any
 other expansion point. -/
 theorem abstrErrLin_center_subset {H : Fin n → Mat ℝ d d} (hH : ∀ i j k, 0 ≤ H i j k)
     (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) :
@@ -73,7 +73,7 @@ theorem abstrErrLin_center_subset {H : Fin n → Mat ℝ d d} (hH : ∀ i j k, 0
   set γ : Vec ℝ d := fun j => |Z.c j - zs j| + ∑ k, |Z.G k j| with hγ
   have hnn : ∀ j, 0 ≤ γc j := fun j =>
     add_nonneg (abs_nonneg _) (Finset.sum_nonneg fun k _ => abs_nonneg _)
-  -- the two radii differ by `|c - zs|` alone, which is where the centre wins
+  -- the two radii differ by `|c - zs|` alone, which is where the center wins
   have hle : ∀ j, γc j ≤ γ j := fun j => by
     simp only [hγc, hγ, sub_self, abs_zero, zero_add]
     have := abs_nonneg (Z.c j - zs j)

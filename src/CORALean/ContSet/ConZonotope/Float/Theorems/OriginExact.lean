@@ -38,7 +38,7 @@ theorem ConZonotope.origin_exact (n : ℕ) :
   have hN : InflatedContSet.nominalSet (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)) = {0} := by
     ext x
     constructor
-    -- no generator, so the point is the centre
+    -- no generator, so the point is the center
     · rintro ⟨β, -, -, h⟩
       haveI : IsEmpty (Fin (InflatedContSet.nominal
         (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n))).h) :=

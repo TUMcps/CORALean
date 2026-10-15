@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MergePoint
 `merge` touches neither `p` nor `q`, so one factor vector reads both sides and
 the two inclusions come out of the single equation below, exactly as they do
 for `compactGens`. That equation is `merge_point` with the independent block
-added back on either side, the centre being `point`'s own first summand.
+added back on either side, the center being `point`'s own first summand.
 
 What is *not* claimed here is [1, Prop. 3.3]'s regularity — see `Merge.lean`.
 

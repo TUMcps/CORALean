@@ -8,8 +8,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MinnormOffset
 # `Zonotope.minnorm`, over a floating-point scalar
 
 CORA's `minnorm(Z)` [2]: the smallest offset of the facets of `polytope(Z - c)`, rows normalized to
-unit length, which is the distance from the centre to the boundary. Rounded up, it is an upper
-bound on the radius of every Euclidean ball around the centre inside the zonotope the stored
+unit length, which is the distance from the center to the boundary. Rounded up, it is an upper
+bound on the radius of every Euclidean ball around the center inside the zonotope the stored
 floats describe (`Zonotope.minnorm_ball`), and on the exact `minnorm` when the generators span
 (`Zonotope.minnorm_le`). Only the upper side is computed: the lower side would need the facet
 normals exactly.

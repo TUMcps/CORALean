@@ -14,7 +14,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Stack
 The padded sets denote the exact layer's padded nominal sets (`nominal_blockPadLeft`,
 `nominal_blockPadRight`), so the exact `stack` of the two nominal sets, plus the two error boxes
 padded the same way, is `exactPlus_outer` at the padded pair: the factors the two sets share stay
-shared, and only the centre sum rounds. Outer, not exact.
+shared, and only the center sum rounds. Outer, not exact.
 -/
 
 -- Authors:       Claude Opus 5.5

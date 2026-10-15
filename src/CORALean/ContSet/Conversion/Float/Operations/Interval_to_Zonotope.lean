@@ -27,11 +27,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Far enough from the stored centre to reach both ends. -/
+/-- Far enough from the stored center to reach both ends. -/
 def Interval.radiusFrom (I : Interval (Vec 𝕋 n)) : Vec 𝕋 n :=
   fun i => maximum (subUp (I.sup i) (I.center i)) (subUp (I.center i) (I.inf i))
 
--- the stored centre, and one diagonal generator per coordinate
+-- the stored center, and one diagonal generator per coordinate
 def Interval.zonotope (I : Interval (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) where
   h := n
   c := I.center

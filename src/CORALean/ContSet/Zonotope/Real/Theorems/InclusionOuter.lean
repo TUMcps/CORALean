@@ -62,7 +62,7 @@ theorem Zonotope.inclusion_outer (p : Vec ℝ n) (IM : Interval (Mat ℝ n m)) :
           mul_le_mul (IM.abs_sub_center_le hM (i, j)) (hb j) (abs_nonneg _) (hrad i j)
       _ = ∑ j, IM.radius i j := by simp
   have hrsnn : ∀ i, 0 ≤ ∑ j, IM.radius i j := fun i => (abs_nonneg _).trans (herrb i)
-  -- the witness: `b` on the centre's columns, the scaled spread on the axis generators
+  -- the witness: `b` on the center's columns, the scaled spread on the axis generators
   refine Zonotope.mem_construct_iff.mpr
     ⟨Fin.append b (fun i => Zonotope.coefficient (∑ j, IM.radius i j) (err i)), ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)

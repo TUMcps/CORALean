@@ -11,7 +11,7 @@ public import CORALean.NN.Operations.StaticMergeBuckets
 
 [1, Alg. 1]'s "initialize merge buckets `B_{k,δ}`", whichever of [1]'s two ways (Sec. 3.2)
 the layer's `MergeBuckets` names: `staticMergeBuckets` at stored values, `dynamicMergeBuckets`
-at the neurons' centres.
+at the neurons' centers.
 
 ## References
 

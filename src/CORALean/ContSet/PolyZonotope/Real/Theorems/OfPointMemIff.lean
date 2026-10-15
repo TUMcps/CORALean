@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
 # `PolyZonotope.ofPoint` denotes exactly one point
 
 The converse to `mem_ofPoint`: no generator of either kind leaves nothing to add to
-the centre.
+the center.
 -/
 
 -- Authors:       Claude Opus 5.5

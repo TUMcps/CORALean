@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
+public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecSingle
 public import CORALean.ContSet.HPolytope.Float.Operations.UnitBox
 
@@ -39,7 +39,7 @@ theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
     obtain ⟨hle, -⟩ := (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mp hmem
     have hup := hle (Fin.castAdd n j)
     have hlo := hle (Fin.natAdd n j)
-    simp only [HPolytope.unitBox, HPolytope.mulVec_append_left, HPolytope.mulVec_append_right,
+    simp only [HPolytope.unitBox, HPolytope.mulVec_append_left, toRealMat_append_mulVec_natAdd,
       HPolytope.mulVec_single, toReal_one, toReal_neg, one_mul, neg_mul] at hup hlo
     exact abs_le.mpr ⟨by linarith, hup⟩
   -- back, the lower half being the negated coordinate
@@ -50,7 +50,7 @@ theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} :
     · simp only [HPolytope.unitBox, HPolytope.mulVec_append_left, HPolytope.mulVec_single,
         toReal_one, one_mul]
       exact (abs_le.mp (h j)).2
-    · simp only [HPolytope.unitBox, HPolytope.mulVec_append_right, HPolytope.mulVec_single,
+    · simp only [HPolytope.unitBox, toRealMat_append_mulVec_natAdd, HPolytope.mulVec_single,
         toReal_one, toReal_neg, neg_mul, one_mul]
       have := (abs_le.mp (h j)).1
       linarith

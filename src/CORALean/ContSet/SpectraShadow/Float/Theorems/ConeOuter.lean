@@ -47,7 +47,7 @@ theorem aux_toRealMat_arrowMat (s t : 𝕋) (w : Vec 𝕋 N) :
 theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 (Vec 𝕋 N)) :
     InflatedContSet.nominal T.cone
       = Real.SpectraShadow.cone (InflatedContSet.nominal T.absorb) := by -- --- PROOF ---
-  -- the six fields: the sizes agree, the matrices, centre and generators entry by entry
+  -- the six fields: the sizes agree, the matrices, center and generators entry by entry
   unfold SpectraShadow.cone Real.SpectraShadow.cone
   show Real.SpectraShadow.mk _ _ _ _ _ _ = Real.SpectraShadow.mk _ _ _ _ _ _
   congr 1

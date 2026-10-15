@@ -59,7 +59,7 @@ theorem HPolytope.contractBox_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (I : Inter
   · exact (heq i).1
   · -- the lower half of an equality row, negated into an upper one
     have h := (heq i).2
-    simp only [toReal_neg, neg_mul, Finset.sum_neg_distrib]
+    simp only [Pi.neg_apply, toReal_neg', neg_mul, Finset.sum_neg_distrib]
     exact h
 
 end CORALean.Float

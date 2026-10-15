@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import Mathlib.Analysis.Convex.Combination
 public import Mathlib.Algebra.Order.Chebyshev
 public import Mathlib.Tactic.Abel
@@ -14,7 +14,7 @@ public import Mathlib.Tactic.FieldSimp
 `[1, Cor. 4]`: `⟨x̄, X⟩ ⊆ conv(⋃ᵢ ⟨ȳᵢ, Yᵢ⟩)` if `‖(Γᵢ | βᵢ)‖∞ ≤ λᵢ`, `λ ≥ 0`, `∑ λᵢ = 1`,
 `∑ᵢ (Yᵢ βᵢ + λᵢ ȳᵢ) = x̄` and `∑ᵢ Yᵢ Γᵢ = X` (`[1, Cor. 4, Eq. 33]`). A point `x̄ + X a` is
 `∑ᵢ (λᵢ ȳᵢ + Yᵢ bᵢ)` with `bᵢ = Γᵢ a + βᵢ` and `|bᵢ| ≤ λᵢ` row by row, so each summand is
-`λᵢ` times a point of `⟨ȳᵢ, Yᵢ⟩` — its centre when `λᵢ = 0`, where `bᵢ` vanishes.
+`λᵢ` times a point of `⟨ȳᵢ, Yᵢ⟩` — its center when `λᵢ = 0`, where `bᵢ` vanishes.
 Zonotopes are nonempty and bounded, so `[1, Cor. 3]`'s gap does not arise. In generators,
 over any real module.
 
@@ -68,7 +68,7 @@ theorem Zonotope.construct_subset_convexHull_of_cert (Zx : Zonotope α) (Zy : Fi
         exact hb i k
       · rw [smul_add, Finset.smul_sum]
         simp only [smul_smul, ← mul_assoc, mul_inv_cancel₀ hpos.ne', one_mul]
-    · refine ⟨(Zy i).c, Zonotope.centre_mem_construct _, ?_⟩
+    · refine ⟨(Zy i).c, Zonotope.center_mem_construct _, ?_⟩
       have hb0 : ∀ k, b i k = 0 := fun k => abs_nonpos_iff.mp (hzero ▸ hb i k)
       simp [hb0, ← hzero]
   choose z hzmem hzeq using hz

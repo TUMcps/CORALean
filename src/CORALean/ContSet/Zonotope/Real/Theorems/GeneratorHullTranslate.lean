@@ -14,7 +14,7 @@ public import Mathlib.Tactic.Ring
 # Changing the shift translates the zonotope
 
 [1, Eq. 10]: changing the shift `s` to `s + v` translates `Z(s; g₁, …, g_m)` by `v`, so a
-zonotope "can easily be centred at 0" by taking `v = −(s + ½ ∑ gᵢ)`. Both are the cube's
+zonotope is easily centered at 0 by taking `v = −(s + ½ ∑ gᵢ)`. Both are the cube's
 image, and the shift is the additive constant.
 
 ## References

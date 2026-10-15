@@ -8,7 +8,7 @@ public import Mathlib.Analysis.SpecialFunctions.Sqrt
 # `Taylm.arcsinShift`
 
 The `g(x) = f(x)·√(1 - c_f²) - c_f·√(1 - f(x)²)` of [1, Def. 3 (arcsin)], at a value `a` of
-`f` and its centre `c`: the argument the source's addition formula hands to `arcsin`, so that
+`f` and its center `c`: the argument the source's addition formula hands to `arcsin`, so that
 the expansion is taken about `0` rather than about `c_f`.
 
 ## References

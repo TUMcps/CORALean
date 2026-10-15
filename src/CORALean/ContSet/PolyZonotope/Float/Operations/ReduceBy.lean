@@ -14,7 +14,7 @@ all outside this file.
 CORA's reduction at a given pair of partitions, sound for every one of them:
 kept dependent generators keep their exponent columns, kept independent ones
 are copied, and the rest becomes a box no longer tied to the factors.
-`reduceBy` charges nothing to the error box beyond it: the centre and the kept
+`reduceBy` charges nothing to the error box beyond it: the center and the kept
 generators are copied exactly, and the diagonal block rounds *up* — twice,
 once per block radius and once for their sum — which only enlarges an
 over-approximation.

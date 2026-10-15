@@ -17,7 +17,7 @@ independent factors, hence an enclosure, not an equality.
 
 Identifiers are positional. The rows of `id` stay as zero rows, the new factors are the rows after
 `p`, one per distinct pattern (the zero pattern's unused), and constant columns are not folded into
-the centre. Each generator gives a column of the first block and one of the second (the shift,
+the center. Each generator gives a column of the first block and one of the second (the shift,
 zero unless the pattern is even and non-zero). The other outputs of CORA (`pZ_gi_cell`,
 `ind_constGen`, `EM`, `indexE`) are the grouping itself and are not returned.
 -/

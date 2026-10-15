@@ -5,8 +5,8 @@ import CORALean.Examples.Bench.RandVerifyOutZono
 /-!
 # `randverify`: `Y = C · R` exactly
 
-The window `R` (centre `c`, generators `G`, error box `E`) mapped by `C` over ℚ, with no
-rounding: the centre is `C (c + mid E)`, the generators are `C g_j` and `C e_i rad_i E`, one per
+The window `R` (center `c`, generators `G`, error box `E`) mapped by `C` over ℚ, with no
+rounding: the center is `C (c + mid E)`, the generators are `C g_j` and `C e_i rad_i E`, one per
 error-box dimension of nonzero radius; a zero generator is dropped. `C` is the instance's own
 exact matrix. Every entry of `R` and of `C` is first put over a common denominator, so the
 product is taken in integers: `2 D` for `R` (twice, for the midpoint and radius of `E`), `D_C`
@@ -58,13 +58,13 @@ def outputZonoExact (C : Array (Array ℚ)) (R : Zonotope (Vec 𝕋 5)) : RandOu
   let G := (List.finRange R.h).toArray.map fun j => fin5.map fun k => ToRat.toRat (R.G j k)
   let D := Nat.lcm (aux_lcmDen (c ++ lo ++ hi)) (G.foldl (fun d g => Nat.lcm d (aux_lcmDen g)) 1)
   let s := aux_scaleTo D
-  -- over `2 D`: the centre `2c + lo + hi`, the generators `2 g_j` and `(hi - lo) e_k`
-  let centre := idx.map fun k => 2 * s (c.getD k 0) + s (lo.getD k 0) + s (hi.getD k 0)
+  -- over `2 D`: the center `2c + lo + hi`, the generators `2 g_j` and `(hi - lo) e_k`
+  let center := idx.map fun k => 2 * s (c.getD k 0) + s (lo.getD k 0) + s (hi.getD k 0)
   let gR := G.map fun g => aux_apply ci (g.map fun x => 2 * s x)
   let gE := idx.filterMap fun k =>
     let r := s (hi.getD k 0) - s (lo.getD k 0)
     if r = 0 then none else some (aux_apply ci (idx.map fun i => if i = k then r else 0))
-  { den := 2 * D * dC, c := aux_apply ci centre
+  { den := 2 * D * dC, c := aux_apply ci center
     gens := (gR ++ gE).filter fun (a, b) => a ≠ 0 ∨ b ≠ 0 }
 
 end CORALean.Bench

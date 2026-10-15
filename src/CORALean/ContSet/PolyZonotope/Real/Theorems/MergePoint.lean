@@ -17,7 +17,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 `merge` keeps, and the two hypotheses it asks for are `col_rep` and
 `fiberSum_eq_zero_of_notMem_merge`.
 
-The centre does not move, so the whole of it is that one sum.
+The center does not move, so the whole of it is that one sum.
 
 ## References
 

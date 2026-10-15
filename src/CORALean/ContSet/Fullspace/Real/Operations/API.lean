@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Fullspace.Real.Operations.Box
 public import CORALean.ContSet.Fullspace.Real.Operations.Isequal
 public import CORALean.ContSet.Fullspace.Real.Operations.Basic
-public import CORALean.ContSet.Fullspace.Real.Operations.Centre
+public import CORALean.ContSet.Fullspace.Real.Operations.Center
 public import CORALean.ContSet.Fullspace.Real.Operations.And
 public import CORALean.ContSet.Fullspace.Real.Operations.EnclosePoints
 public import CORALean.ContSet.Fullspace.Real.Operations.HPolytope
@@ -20,5 +20,5 @@ public import CORALean.ContSet.Fullspace.Real.Operations.TruncatedVertices
 /-!
 # The full space: operations, collected
 
-`centre`: the origin, which the whole space contains.
+`center`: the origin, which the whole space contains.
 -/

@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinnormOffsetMulSqrt
 /-!
 # No larger ball fits
 
-A Euclidean ball around the centre inside the zonotope has radius at most `minnorm Z`: the ball
+A Euclidean ball around the center inside the zonotope has radius at most `minnorm Z`: the ball
 reaches the facet that attains the minimum, along its unit row, and the facet's inequality
 (the enclosing half of `hRep_eq` [1, Thm. 2]) bounds the radius by that facet's offset.
 
@@ -46,7 +46,7 @@ theorem Zonotope.le_minnorm_of_ball_subset (Z : Zonotope (Vec ℝ (n + 1)))
   have hs : 0 < Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S) := Real.sqrt_pos.mpr hCC
   have hss : Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S) ^ 2
       = Z.facetNormal S ⬝ᵥ Z.facetNormal S := Real.sq_sqrt hCC.le
-  -- the point of the ball along the unit row, at distance `r` from the centre
+  -- the point of the ball along the unit row, at distance `r` from the center
   set y : Vec ℝ (n + 1) := (r * (Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S))⁻¹) •
     Z.facetNormal S with hy
   have hyy : y ⬝ᵥ y ≤ r ^ 2 := by

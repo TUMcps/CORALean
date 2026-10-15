@@ -88,8 +88,8 @@ theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 
     SpectraShadow.toRealMat_blockDiag, SpectraShadow.toRealMat_const_zero, hd]
   -- the old inequality beside the diagonal block of the equalities
   refine SpectraShadow.aux_lmi_block (toRealMat S.A₀) (fun j => toRealMat (S.A j))
-    (toRealVec (Fin.append (fun i => neg (S.c i)) S.c))
-    (fun j => toRealVec (Fin.append (fun i => neg (S.G j i)) fun i => S.G j i))
+    (toRealVec (Fin.append (-S.c) S.c))
+    (fun j => toRealVec (Fin.append (-(S.G j)) fun i => S.G j i))
     (fun i => toRealVec (Fin.append (fun r => if r = i then one else zero)
       fun r => if r = i then neg one else zero))
     (fun j => v (Fin.castAdd n j)) (fun i => v (Fin.natAdd S.m i)) ?_
@@ -105,7 +105,7 @@ theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 
   refine Fin.addCases (fun i => ?_) (fun i => ?_) r
   · have h := hz i
     simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Pi.zero_apply,
-      toRealVec, Fin.append_left, hv, toReal_neg, hite, mul_ite, mul_one, mul_zero,
+      toRealVec, Fin.append_left, hv, Pi.neg_apply, toReal_neg', hite, mul_ite, mul_one, mul_zero,
       Finset.sum_ite_eq, Finset.mem_univ, if_true, mul_neg]
     have h2 : ∑ x, v (Fin.castAdd n x) * toReal (S.G x i)
         = ∑ x, toReal (S.G x i) * v (Fin.castAdd n x) :=

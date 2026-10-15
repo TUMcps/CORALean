@@ -13,7 +13,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 `GuardMap.abstractionErrorCora` keeps of `err1` only the summand `(Aᵑ/η!)(τ^{η−1}R₀ − th^{η−1}ξ)`,
 which vanishes with `Aᵑ`; with no inputs (`U = {0}`) `err2` and `err3` are `{0}`; and with
 `W = 0` (the Taylor remainder of `e^{|A|tmax}` zero, as for a nilpotent `|A|`) so are `Ê R₀`
-and `Ê tmax U`. Stated on the representation, centre and every generator zero, which is what the
+and `Ê tmax U`. Stated on the representation, center and every generator zero, which is what the
 counterexamples compute with (`GuardMap.abstractionErrorCora_counterexample`).
 -/
 
@@ -40,8 +40,8 @@ def aux_absErrCora_Zero (Z : Zonotope (Vec ℝ n)) : Prop := Z.c = 0 ∧ ∀ j, 
 theorem aux_absErrCora_ofPoint : aux_absErrCora_Zero (Zonotope.ofPoint (0 : Vec ℝ n)) :=
   ⟨rfl, fun j => j.elim0⟩
 
-theorem aux_absErrCora_recentre {Z : Zonotope (Vec ℝ n)} (h : aux_absErrCora_Zero Z) :
-    aux_absErrCora_Zero Z.recentre := ⟨rfl, h.2⟩
+theorem aux_absErrCora_recenter {Z : Zonotope (Vec ℝ n)} (h : aux_absErrCora_Zero Z) :
+    aux_absErrCora_Zero Z.recenter := ⟨rfl, h.2⟩
 
 theorem aux_absErrCora_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} (h₁ : aux_absErrCora_Zero Z₁)
     (h₂ : aux_absErrCora_Zero Z₂) : aux_absErrCora_Zero (Z₁.plus Z₂) := by
@@ -93,7 +93,7 @@ theorem aux_absErrCora_foldl {β : Type} (f : ℕ → β) (init : β) (k : ℕ) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- For `U = {0}`, `R₀ = {x₀}`, `Aᵑ = 0` and `W = 0`, `GuardMap.abstractionErrorCora` is the
-zonotope `{0}`: centre and every generator `0`. -/
+zonotope `{0}`: center and every generator `0`. -/
 theorem GuardMap.abstractionErrorCora_eq_zero (A : Mat ℝ n n) (x₀ : Vec ℝ n) (th tmax : ℝ)
     {η : ℕ} (hA : A ^ η = 0) (hW : MatExp.expRemainderMat A tmax η = 0) :
     (GuardMap.abstractionErrorCora A (Zonotope.ofPoint 0) (Zonotope.ofPoint x₀) th tmax η).c = 0
@@ -116,9 +116,9 @@ theorem GuardMap.abstractionErrorCora_eq_zero (A : Mat ℝ n n) (x₀ : Vec ℝ 
   refine aux_absErrCora_plus (aux_absErrCora_plus (aux_absErrCora_mtimesIM _
     (aux_absErrCora_plus (aux_absErrCora_plus (h1 _ fun m hm => ?_)
       (aux_absErrCora_sumTerms (fun _ => aux_absErrCora_mtimesIM _ aux_absErrCora_ofPoint) η))
-      (aux_absErrCora_plus (aux_absErrCora_recentre aux_absErrCora_ofPoint)
+      (aux_absErrCora_plus (aux_absErrCora_recenter aux_absErrCora_ofPoint)
         (aux_absErrCora_sumTerms (fun _ => aux_absErrCora_mtimesIM _
-          (aux_absErrCora_recentre aux_absErrCora_ofPoint)) η))))
+          (aux_absErrCora_recenter aux_absErrCora_ofPoint)) η))))
     (aux_absErrCora_mtimesIM_zero ((congrArg Neg.neg hW0).trans neg_zero) hW0 _))
     (aux_absErrCora_mtimesIM _ aux_absErrCora_ofPoint)
   rw [hm, hA, smul_zero]

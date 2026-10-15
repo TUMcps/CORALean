@@ -31,7 +31,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `□(ρ)` of [1, Lemma 1]: centre `0`, generator `j` the `j`-th unit vector scaled by `ρ`. -/
+/-- `□(ρ)` of [1, Lemma 1]: center `0`, generator `j` the `j`-th unit vector scaled by `ρ`. -/
 def Zonotope.cube (n : ℕ) (ρ : ℝ) : Zonotope (Vec ℝ n) where
   h := n
   c := 0

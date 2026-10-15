@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 
 @[expose] public section
 
 /-!
-# A matrix of an interval matrix acts through its centre and the leftover
+# A matrix of an interval matrix acts through its center and the leftover
 
 `A` in the box `M` is `mid(M)` plus `A - mid(M)`, so `A x` is `mid(M) x + (A - mid(M)) x`: the
 split `mtimesIntervalMat` is built on, for a zonotope and a constrained zonotope alike.
@@ -29,14 +29,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `A` splits into its action through the centre matrix and the leftover. -/
+/-- `A` splits into its action through the center matrix and the leftover. -/
 theorem Zonotope.mulVec_split (IM : Interval (Mat 𝕋 m n)) (A : Mat ℝ m n) (x : Vec ℝ n) :
-    A *ᵥ x = toRealMat (Interval.centreMat IM) *ᵥ x
-      + (fun i j => A i j - toReal (Interval.centreMat IM i j)) *ᵥ x := by -- --- PROOF ---
+    A *ᵥ x = toRealMat (Interval.centerMat IM) *ᵥ x
+      + (fun i j => A i j - toReal (Interval.centerMat IM i j)) *ᵥ x := by -- --- PROOF ---
   rw [← Matrix.add_mulVec]
   congr 1
   funext i j
-  show A i j = toReal (Interval.centreMat IM i j) + (A i j - toReal (Interval.centreMat IM i j))
+  show A i j = toReal (Interval.centerMat IM i j) + (A i j - toReal (Interval.centerMat IM i j))
   ring
 
 end CORALean.Float

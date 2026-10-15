@@ -19,7 +19,7 @@ public import Mathlib.Analysis.Convex.Hull
 Each of the two shadows is inside the result: a point `x` of `S₁` is `1 · (x, 1)`, a point of the
 cone of `S₁ × {1}`, plus the origin of the other cone, at height `1`, and the projection gives `x`
 back. The result is convex, so it holds the hull. Outer: the cones are exact but their sum
-rounds the centre into the box.
+rounds the center into the box.
 -/
 
 -- Authors:       Claude Opus 5.5

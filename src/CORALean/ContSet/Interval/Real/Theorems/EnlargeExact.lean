@@ -9,11 +9,11 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemCenter
 @[expose] public section
 
 /-!
-# `Interval.enlarge` is exactly the box scaled about its centre
+# `Interval.enlarge` is exactly the box scaled about its center
 
 For a nonnegative factor `f` and a nonempty box, `[c - f·r, c + f·r]` is the image of the box under
-`x ↦ c + f·(x - c)`, the scaling about the centre `c` (`enlarge_exact`). A factor of zero collapses
-the box to its centre, which a nonempty box contains. Nonemptiness is needed: the image of an
+`x ↦ c + f·(x - c)`, the scaling about the center `c` (`enlarge_exact`). A factor of zero collapses
+the box to its center, which a nonempty box contains. Nonemptiness is needed: the image of an
 empty box is empty, while its enlargement may not be (a crossed box has a negative half-width,
 and a negative half-width times a factor is again negative, but a factor of zero gives the
 point).
@@ -51,11 +51,11 @@ theorem Interval.enlarge_exact {I : Interval α} (hI : I.IsNonempty (ι := ι)) 
   ext z
   constructor
   · intro hz
-    -- the target is within `f · radius` of the centre
+    -- the target is within `f · radius` of the center
     have hz' := (Interval.mem_ofCenterRadius _ _ z).1 hz
     simp only [entry_smul] at hz'
     rcases hf.eq_or_lt with hf0 | hfpos
-    · -- a factor of zero: the box collapses to its centre
+    · -- a factor of zero: the box collapses to its center
       refine ⟨I.center, Interval.mem_center I hI, ?_⟩
       refine Entrywise.ext fun i => ?_
       have h := hz' i

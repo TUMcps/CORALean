@@ -8,8 +8,8 @@ public import CORALean.NN.Operations.IntervalChainFwdFloat
 @[expose] public section
 
 /-!
-# The linear layer's centre is in its float box
-The centre `mu = W (l + u)/2 + b` of the layer's output interval, for `l`, `u` in their boxes, is in
+# The linear layer's center is in its float box
+The center `mu = W (l + u)/2 + b` of the layer's output interval, for `l`, `u` in their boxes, is in
 the box `IntervalChain.fwd` and `backprop` compute it as.
 -/
 

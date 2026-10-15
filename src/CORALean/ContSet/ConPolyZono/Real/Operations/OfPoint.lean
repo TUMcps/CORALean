@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 /-!
 # `ConPolyZono.ofPoint`
 
-CORA's `conPolyZono` at a centre, no generators of either block and no
+CORA's `conPolyZono` at a center, no generators of either block and no
 constraints: a single point, as the representation. What `OfPoint` asks every
 representation with a point operation to supply.
 -/

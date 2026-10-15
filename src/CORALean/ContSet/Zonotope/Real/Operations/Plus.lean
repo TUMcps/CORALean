@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.plus`
 
-CORA's `@zonotope/plus`: centres add, generators concatenate [1, Sec. 2].
+CORA's `@zonotope/plus`: centers add, generators concatenate [1, Sec. 2].
 
 ## References
 

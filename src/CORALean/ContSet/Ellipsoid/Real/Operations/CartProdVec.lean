@@ -26,7 +26,7 @@ variable {n m : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- An ellipsoid times a point: the centre extended by the point, the generators by zero rows. -/
+/-- An ellipsoid times a point: the center extended by the point, the generators by zero rows. -/
 def Ellipsoid.cartProdVec (E : Ellipsoid n) (v : Vec ℝ m) : Ellipsoid (n + m) where
   k := E.k
   c := Fin.append E.c v

@@ -42,7 +42,7 @@ theorem Zonotope.unitIntervalMul_outer (Z : Zonotope α) :
       ⊆ Z.unitIntervalMul.construct := by -- --- PROOF ---
   rintro _ ⟨⟨s, x⟩, ⟨hs, β, hβ, rfl⟩, rfl⟩
   have hs' : |s| ≤ 1 := abs_le.mpr hs
-  -- the centre's coefficient is `s`, generator `j`'s is `s βⱼ`
+  -- the center's coefficient is `s`, generator `j`'s is `s βⱼ`
   have hγ : ∀ k, |(Fin.cons s fun j => s * β j : Fin (Z.h + 1) → ℝ) k| ≤ 1 := by
     refine Fin.cases hs' fun j => ?_
     rw [Fin.cons_succ, abs_mul]

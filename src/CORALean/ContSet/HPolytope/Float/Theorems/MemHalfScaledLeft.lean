@@ -40,9 +40,7 @@ theorem HPolytope.mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {y : V
     (h : Fin.append (Fin.append y z) (fun _ : Fin 1 => t) ∈ (P.halfScaledLeft n₂).construct) :
     (∀ i, (toRealMat P.A *ᵥ y) i ≤ (t + 1) / 2 * toReal (P.b i)) ∧
       ∀ i, (toRealMat P.Ae *ᵥ y) i = (t + 1) / 2 * toReal (P.be i) := by -- --- PROOF ---
-  have hneg : toRealMat (fun i' k => neg (P.Ae i' k)) = -toRealMat P.Ae := by
-    funext i' k
-    exact toReal_neg _
+  have hneg : toRealMat (fun i => -P.Ae i) = -toRealMat P.Ae := toRealMat_neg P.Ae
   -- the three row groups of the weighted polytope
   obtain ⟨h1, h2⟩ := (HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)
     (HPolytope.errFree_of_origin rfl)).mp h

@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # A polynomial zonotope as a box, over a floating-point scalar
 
-The centre give or take what each block can reach: the dependent generators, the
+The center give or take what each block can reach: the dependent generators, the
 independent ones, and the error box, every end rounded away from the set.
 
 Direct, where the exact layer's route frees the dependent generators into a

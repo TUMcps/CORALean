@@ -18,7 +18,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopePosSemidefSpect
 
 CORA's `@conZonotope/spectraShadow`: the box inequalities `1 ± βⱼ ≥ 0` and the constraint rows
 along one block-diagonal matrix. The first block is the zonotope's own and the second the
-coefficient polytope's, as for the exact layer, with the stored `zero` between them; the centre,
+coefficient polytope's, as for the exact layer, with the stored `zero` between them; the center,
 generators and error box are carried over. Nothing rounds, so nothing is paid. The shadow
 contains the constrained zonotope.
 -/

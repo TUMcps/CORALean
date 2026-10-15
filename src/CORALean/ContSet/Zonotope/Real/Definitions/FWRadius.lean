@@ -11,7 +11,7 @@ public import Mathlib.Data.Matrix.Mul
 
 [1, Def. 4]: for `W = Wᵀ ≻ 0`, `ℓ_{F,W} = ‖⟨p, H⟩‖_{F,W} = ‖H‖_{F,W} = √tr(Hᵀ W H)`, the
 weighted Frobenius norm of the generator matrix, `√Σⱼ gⱼᵀ W gⱼ` over the generators `gⱼ`. It
-ignores the centre. At `W = I` it is the F-radius of Combastel's zonotopic Kalman filter.
+ignores the center. At `W = I` it is the F-radius of Combastel's zonotopic Kalman filter.
 
 ## References
 

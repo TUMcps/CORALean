@@ -9,8 +9,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 /-!
 # The zonotope is the convex hull of `Z±(R)`
 
-[1, Prop. 6.1, Eq. 39]: `C(Z±(R)) = Z(R)`, the centred zonotope with generators `R` being the
-convex hull of the images of the cube's vertices. With a centre `c`, translate both sides
+[1, Prop. 6.1, Eq. 39]: `C(Z±(R)) = Z(R)`, the centered zonotope with generators `R` being the
+convex hull of the images of the cube's vertices. With a center `c`, translate both sides
 (`Zonotope.construct_eq_convexHull_corner`).
 
 ## References
@@ -40,7 +40,7 @@ theorem Zonotope.convexHull_signedSums (R : Fin p → Vec ℝ n) :
       (⟨p, 0, R⟩ : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
   rw [Zonotope.construct_eq_convexHull_corner]
   congr 1
-  -- the corners are the signed sums, the centre being `0`
+  -- the corners are the signed sums, the center being `0`
   ext x
   constructor
   · rintro ⟨σ, rfl⟩

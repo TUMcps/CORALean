@@ -92,7 +92,7 @@ theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {a : Ve
     refine le_trans (Finset.sum_le_sum fun r _ => ?_) (sum_le_sumUp _)
     have hb : toReal (S.I_error.inf r) ≤ e r ∧ e r ≤ toReal (S.I_error.sup r) := he r
     exact SpectraShadow.aux_mul_le_corner _ _ _ hb.1 hb.2
-  -- the point's value along `a`, split into centre, generators and error
+  -- the point's value along `a`, split into center, generators and error
   have hsplit : ∑ r, toReal (a r) * (y + e) r = ∑ r, toReal (a r) * toReal (S.c r)
       + ∑ j, β j * ∑ r, toReal (a r) * toReal (S.G j r) + ∑ r, toReal (a r) * e r := by
     have hgen : ∑ r, toReal (a r) * ∑ j, toReal (S.G j r) * β j

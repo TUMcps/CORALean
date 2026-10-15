@@ -7,7 +7,7 @@ public import CORALean.ContSet.Capsule.Float.Capsule
 /-!
 # `Capsule.isequal`, over a floating-point scalar
 
-`@capsule/isequal.m` at tolerance `0`, as the exact layer: centre, generator and radius equal. The
+`@capsule/isequal.m` at tolerance `0`, as the exact layer: center, generator and radius equal. The
 scalar has no equality of its own, so each pair compares `≤` both ways by the certified `le`, whose
 `true` is a proof and whose `false` refutes nothing.
 -/

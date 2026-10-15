@@ -21,7 +21,7 @@ least their sum, so one coefficient places both at once.
 
 Neither `mono_subset` nor `map_subset` applies: they send nominal to nominal and
 box to box, whereas this moves content *out* of the box into the nominal part.
-What is left in the box is the rounded centre shift, as in `absorbError`.
+What is left in the box is the rounded center shift, as in `absorbError`.
 -/
 
 -- Authors:       Claude Opus 5
@@ -92,7 +92,7 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
     · simp only [Fin.append_right]
       exact Real.Zonotope.abs_coefficient_le_one (hnonneg i) (hmerged i)
   · exact Interval.sub_mem_residual (Zonotope.shift_brackets_mid Z)
-  -- the value spelled out, both blocks and the recentring shift together
+  -- the value spelled out, both blocks and the recentering shift together
   · funext i
     show toReal ((Z.reduceAndAbsorbBy part).c i)
         + ∑ j, toReal ((Z.reduceAndAbsorbBy part).G j i)
@@ -105,7 +105,7 @@ theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
         + (toReal (Z.c i) + (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2
             - toReal (Z.shiftDown i))
       = z i + e i
-    -- the dropped generators and the recentred box come back out of the diagonal block
+    -- the dropped generators and the recentered box come back out of the diagonal block
     rw [hz i, part.sum_split₂ fun j => toReal (Z.G j i) * β j,
       Zonotope.aux_sum_univ_reduceAndAbsorbBy]
     simp only [Zonotope.reduceAndAbsorbBy, Fin.append_left, Fin.append_right,

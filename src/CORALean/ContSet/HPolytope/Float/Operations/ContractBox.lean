@@ -45,7 +45,7 @@ def HPolytope.contractBox (P : HPolytope 𝕋 (Vec 𝕋 n)) (I : Interval (Vec �
   let rows := (List.finRange P.m).map (fun i => (P.A i, P.bU i))      -- A_i x ≤ bU_i
     ++ (List.finRange P.me).map (fun i => (P.Ae i, P.beU i))          -- Ae_i x ≤ beU_i
     ++ (List.finRange P.me).map                                       -- -Ae_i x ≤ beLN_i
-      (fun i => (fun j => neg (P.Ae i j), P.beLN i))
+      (fun i => (-(P.Ae i), P.beLN i))
   rows.foldl (fun J r => (J.contractHalfspace r.1 r.2).materialise) I
 
 end CORALean.Float

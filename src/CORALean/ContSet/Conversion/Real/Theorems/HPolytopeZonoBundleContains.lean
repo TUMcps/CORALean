@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeZonoBundleExact
-public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCentre
+public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCenter
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter

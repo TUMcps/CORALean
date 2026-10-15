@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 # `ConPolyZono.intersectionAgree`
 
 The agreement rows' right-hand interval, and the only thing `intersection` computes:
-the difference of the two centres, widened by how far the two error boxes let
+the difference of the two centers, widened by how far the two error boxes let
 the nominal points stand apart, each end rounded outward.
 -/
 
@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The agreement rows' right-hand interval, and the only thing `intersection` computes:
-the difference of the two centres, widened by how far the two error boxes let
+the difference of the two centers, widened by how far the two error boxes let
 the nominal points stand apart, each end rounded outward. -/
 def ConPolyZono.intersectionAgree (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
   ⟨fun i => addDown (subDown (cPZ₂.c i) (cPZ₁.c i))

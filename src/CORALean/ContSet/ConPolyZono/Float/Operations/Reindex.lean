@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 /-!
 # `ConPolyZono.reindex` over a floating-point scalar
 
-Centre, both generator blocks' rows and the error box relabelled, and nothing
+Center, both generator blocks' rows and the error box relabelled, and nothing
 rounds: a permutation moves stored floats without arithmetic. The exponents and
 the constraints live on the factors, which a relabelling of the coordinates does
 not touch, so they are kept.

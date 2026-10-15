@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.SinOuter
 /-!
 # `Capsule.arcBox` holds the sampled point
 
-For a centre in its box, a base angle in its box and a real step within the stored step bounds,
+For a center in its box, a base angle in its box and a real step within the stored step bounds,
 the exact sample `ctr + r (cos a, sin a)` at `a = a₀ + i * step` lies in the box: each interval
 operation encloses its exact counterpart (`plus_outer`, `times_outer`, `cos_outer`, `sin_outer`).
 -/
@@ -55,7 +55,7 @@ theorem Capsule.arcBox_mem (p : ℕ) (step : Interval 𝕋) {s : ℝ}
   have hang := Interval.plus_outer a₀ _ (Set.add_mem_add ha hprod)
   have hcos := Interval.cos_outer p _ ⟨_, hang, rfl⟩
   have hsin := Interval.sin_outer p _ ⟨_, hang, rfl⟩
-  -- the radius and the centre's coordinates
+  -- the radius and the center's coordinates
   have hrad : (fun _ => toReal r : Vec ℝ 1) ∈
       (Interval.point fun _ => r : Interval (Vec 𝕋 1)).construct := fun _ => ⟨le_rfl, le_rfl⟩
   have hc0 : (fun _ => c 0 : Vec ℝ 1) ∈

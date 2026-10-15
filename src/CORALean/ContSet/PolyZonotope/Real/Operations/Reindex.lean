@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 
 The dependent generators and their exponent columns read in another order. A
 permutation of the summation index changes nothing the set is made of, so the
-centre, the independent block, `p`, `q` and `h` all stay where they are — which
+center, the independent block, `p`, `q` and `h` all stay where they are — which
 is what makes it the only freedom an operation that reorders columns has.
 
 `sort` is this at the permutation that puts the columns in lexicographic order,

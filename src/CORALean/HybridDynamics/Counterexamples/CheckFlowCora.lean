@@ -25,7 +25,7 @@ of time-interval sets meeting a hyperplane or level-set guard and skips the grou
 false: the sets dropped here are never intersected with the guard.
 
 Left out: `c = guard.Ae ./ norm(guard.Ae)` and `aux_adaptGuard` (`c` is the outward unit normal,
-as for `Location.checkFlow`); `E*params.w` (the disturbance at `W`'s centre, `0` below); and
+as for `Location.checkFlow`); `E*params.w` (the disturbance at `W`'s center, `0` below); and
 `R = B * reduce(B'*Rproj,'pca',1)`,
 which leaves `Rproj` unchanged when it has at most `n` generators and encloses it otherwise.
 
@@ -35,7 +35,7 @@ The bouncing ball `ẋ₁ = x₂`, `ẋ₂ = -g` (CORA: `A = [0 1; 0 0]`, `sys.c
 invariant `x₁ ≥ 0`, guard `x₁ = 0` with outward normal `c = (-1, 0)`, and the box
 `R = [0, 1] × [-1, 1]` as the time-interval set meeting the guard, for any `g ≥ 1`.
 
-CORA's fast test sees the flow `c·(A·(0, 0) + sys.c) = 0` at the centre of the projection and
+CORA's fast test sees the flow `c·(A·(0, 0) + sys.c) = 0` at the center of the projection and
 fails; the second test bounds `c·A x = -x₂` over the projection by `1` and adds `sys.c`
 entrywise, `(1 + 0, 1 - g)`, whose second entry is not positive, so `checkFlowCora` drops `R`.
 The projection has two generators in two dimensions, so CORA's `'pca'` reduction left out of

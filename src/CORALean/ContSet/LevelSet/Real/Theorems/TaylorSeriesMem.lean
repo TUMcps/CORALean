@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A box with a point in it contains its centre. -/
+/-- A box with a point in it contains its center. -/
 theorem aux_center_mem {I : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ I.construct) :
     I.center ∈ I.construct := by
   intro i

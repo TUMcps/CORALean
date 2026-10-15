@@ -19,7 +19,7 @@ box is easy: the old one travels through the map as a box, by
 `Interval.mtimes_outer`, and the spill is added on.
 
 The nominal obligation is where the float layer pays for arithmetic rather than
-bookkeeping. Centre and generators are wrong in different ways: the centre by a
+bookkeeping. Center and generators are wrong in different ways: the center by a
 fixed vector, which `residual` holds, the generators by an entrywise amount the
 coefficients then scale, which `generatorError` sums.
 -/
@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- The exact image, regrouped so the centre and each generator appear once. -/
+/-- The exact image, regrouped so the center and each generator appear once. -/
 theorem Zonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) (β : Vec ℝ Z.h)
     {x : Vec ℝ n} (hx : ∀ k, x k = toReal (Z.c k) + ∑ j, toReal (Z.G j k) * β j) (i : Fin m) :
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (Z.c k))

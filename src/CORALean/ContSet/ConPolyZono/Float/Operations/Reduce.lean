@@ -15,7 +15,7 @@ over ℝ because `Tuple.sort` needs a `LinearOrder`, while `sortPerm` asks its
 comparator for nothing. It can afford to, `reduceBy_outer` holding at every pair
 of partitions, so a misranking costs precision and never soundness.
 
-`reduceBy` charges nothing to either place a rounding can go. The centre, the
+`reduceBy` charges nothing to either place a rounding can go. The center, the
 kept generators and their exponent columns are copied exactly, the whole
 constraint block with them — so `b` does not move and the ranking never reads a
 constraint — and the diagonal block rounds *up*, twice, which only enlarges an

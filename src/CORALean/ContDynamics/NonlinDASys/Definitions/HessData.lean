@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 # The interval Hessians of one abstraction-error evaluation
 
 What CORA's `priv_abstractionError_adaptive` obtains from `nlnsysDA.hessian(totalInt_x,
-totalInt_y, totalInt_u)`: the Hessian rows of `f` and `g` over the intervals as a centre and a
+totalInt_y, totalInt_u)`: the Hessian rows of `f` and `g` over the intervals as a center and a
 radius (`Hᵈ_c ± Hᵈ_Δ`, `Hᵃ_c ± Hᵃ_Δ`, [1, Cor. 1]), and the deviation zonotope
 `dz = [dx; dy; du]` they are evaluated against. The Hessians come from the model, so they are
 data here, as in `NonlinDASys.linError`.
@@ -37,11 +37,11 @@ open CORALean.Real
 
 /-- Interval Hessians of `f` (`n` rows) and `g` (`p` rows) in `q` variables, and `dz`. -/
 structure NonlinDASys.HessData (n p q : ℕ) where
-  /-- `Hᵈ_c`: the centres of the dynamics' Hessians. -/
+  /-- `Hᵈ_c`: the centers of the dynamics' Hessians. -/
   Hd_c : Fin n → Mat ℝ q q
   /-- `Hᵈ_Δ`: their radii. -/
   Hd_Δ : Fin n → Mat ℝ q q
-  /-- `Hᵃ_c`: the centres of the constraint's Hessians. -/
+  /-- `Hᵃ_c`: the centers of the constraint's Hessians. -/
   Ha_c : Fin p → Mat ℝ q q
   /-- `Hᵃ_Δ`: their radii. -/
   Ha_Δ : Fin p → Mat ℝ q q

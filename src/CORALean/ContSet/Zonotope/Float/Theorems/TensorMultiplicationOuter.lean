@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 /-!
 # `Zonotope.tensorMultiplication` encloses the tensor images, over a floating-point scalar
 
-For a zonotope `Z` centred at the origin and a tensor `M`,
+For a zonotope `Z` centered at the origin and a tensor `M`,
 `{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z } ⊆ Z.tensorMultiplication M L`, under the exact layer's hypotheses on the
 lists `L`: `perm` runs over every ordered triple of generator indices exactly once, and two
 permutations sent to one column by `map` are reorderings of one another. The stored columns at the

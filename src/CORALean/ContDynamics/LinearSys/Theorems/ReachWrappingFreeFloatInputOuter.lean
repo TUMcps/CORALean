@@ -13,7 +13,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolu
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
@@ -25,7 +25,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # `reachWrappingFreeFloatInput` holds every run over every window
 
 At `t = τ + t_k`: the run less its free motion and the constant's share is one
-`Ũ`-input's contribution by `t` (`Trajectory.sub_mem_inputReach_recentre`),
+`Ũ`-input's contribution by `t` (`Trajectory.sub_mem_inputReach_recenter`),
 inside `e^{A t_k} P^R(Δt) ⊕ P^R(t_k)` (`inputReach_mono`, then
 `inputReach_separation_subset` at `Δt + t_k`); the free motion and the constant
 come apart the same way (`expIntegral_add_mulVec`). So the run is
@@ -83,8 +83,8 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
   set Δ := toReal Δt with hΔ
   set V := sys.inputSetFloat U with hV
   set A := Scalar.toRealMat sys.A with hA
-  set ũ := Recentre.centre V with hũ
-  set Ũ := Recentre.recentre V with hŨ
+  set ũ := Recenter.center V with hũ
+  set Ũ := Recenter.recenter V with hŨ
   have hbdd := CompactSet.isBounded_construct Ũ
   -- `{0}`, `{ũ}` and `[0, ũ]` hold what they are built from
   have hpt : ũ ∈ (Interval.point V.c).zonotope.construct :=
@@ -164,11 +164,11 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
   have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
       U.construct ⊆ ContSet.construct V :=
     sys.inputSetFloat_outer U
-  have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) hUV
+  have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) hUV
     ⟨ht0, ht.2.trans hkN⟩
   -- the `Ũ`-input's share by `t`: its first step carried across `t_k`, and the rest
   have hd' := sys.inputReach_mono (S := 𝒵[𝕋]) hbdd
-    (Recentre.zero_mem_recentre V) ht0
+    (Recenter.zero_mem_recenter V) ht0
     (show t ≤ Δ + (k : ℝ) * Δ by linarith [ht.2]) hd
   obtain ⟨_, ⟨p, hp, rfl⟩, q, hq, hpq⟩ := sys.inputReach_separation_subset
     (S := 𝒵[𝕋])

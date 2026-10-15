@@ -17,7 +17,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 `minBackReachStep`: [1, Alg. 2], propagating the two particular solutions and the converted
 target set over `τ_k`, over the time-inverted dynamics `ẋ̃ = -A x̃ - u - w`. `Zw` is (27), the
-constant centre trajectory's contribution over one interval.
+constant center trajectory's contribution over one interval.
 
 ## References
 

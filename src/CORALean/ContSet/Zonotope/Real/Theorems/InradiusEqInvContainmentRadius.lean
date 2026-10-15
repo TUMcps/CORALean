@@ -8,7 +8,7 @@ public import Mathlib.Topology.MetricSpace.ProperSpace
 /-!
 # The inradius is the reciprocal of a containment radius
 
-`[1, Eq. 20]`: `r∞(Z) = 1 / d(c + [-1, 1]ⁿ, Z)`, the largest cube centred at `c`
+`[1, Eq. 20]`: `r∞(Z) = 1 / d(c + [-1, 1]ⁿ, Z)`, the largest cube centered at `c`
 inside a non-degenerate `Z` against `d`, the largest `‖p - c‖_Z` over the unit cube
 (the paper's Eq. 19). `ν` is homogeneous, so the cube of radius `r` fits iff
 `r d ≤ 1`. The maximum `d` is attained (`ν` is continuous, the cube compact) and positive

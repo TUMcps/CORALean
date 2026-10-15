@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraSha
 # A zonotope as a spectrahedral shadow, over a floating-point scalar
 
 The exact layer's diagonal inequality with `one`, `neg one` and `zero` as its
-entries, all stored exactly, and the zonotope's own centre, generators and error
+entries, all stored exactly, and the zonotope's own center, generators and error
 box: nothing rounds, so nothing is paid.
 
 Not routed through the exact layer's set — the stored matrices read as reals only

@@ -10,7 +10,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 Each column `Gⱼ` is the image of the unit vector `eⱼ`, which has `‖eⱼ‖₂ = 1`, so `q + Gⱼ` lies in
 the ellipsoid and, if that is `{q}`, `Gⱼ = 0`; conversely `G = 0` leaves only `q`. The origin is the
-point at `q = 0`. The empty set is never represented: `Ellipsoid.centre_mem_construct`.
+point at `q = 0`. The empty set is never represented: `Ellipsoid.center_mem_construct`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -52,7 +52,7 @@ theorem Ellipsoid.representsa_point_iff (E : Ellipsoid n) :
       simp [Ellipsoid.representsa_point] at h
       simp [h]
     · rintro rfl
-      exact Ellipsoid.centre_mem_construct E
+      exact Ellipsoid.center_mem_construct E
 
 end CORALean.Real
 

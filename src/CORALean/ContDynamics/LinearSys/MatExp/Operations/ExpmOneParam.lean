@@ -12,7 +12,7 @@ public import Mathlib.Algebra.Order.Floor.Div
 
 The matrix zonotope `K(r)` of [1, Thm. 1], enclosing the Taylor polynomial
 `Σ_{i=0}^η (C + βG)ⁱ rⁱ/i!` of the matrix exponential over `β ∈ [-1, 1]`: generator `l = 1 … η` is
-`G_K^{(l)} = Σ_{i=l}^η F_i^{(l)} rⁱ/i!`, halved for even `l`, and the centre is
+`G_K^{(l)} = Σ_{i=l}^η F_i^{(l)} rⁱ/i!`, halved for even `l`, and the center is
 `C_K = Σ_{l=0}^η D_l rˡ/l! + Σ_{l=1}^{⌊η/2⌋} G_K^{(2l)}`. CORA's `@matZonotope/expmOneParam`.
 Generator `j` of the structure is `G_K^{(j+1)}`.
 

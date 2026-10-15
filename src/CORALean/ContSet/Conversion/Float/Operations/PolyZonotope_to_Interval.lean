@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The centre, then each block's reach in turn: three directed roundings rather
+/-- The center, then each block's reach in turn: three directed roundings rather
 than one, so no intermediate sum is ever rounded the wrong way. -/
 def PolyZonotope.interval (pZ : PolyZonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
   -- each block's reach, read off the generators laid out as CORA's `n × h` matrix

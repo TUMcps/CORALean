@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 # `Alg. 1` lines 5-11 in floats: one iteration of the main loop
 
 `manualStep` computed in `𝕋`, at a fixed step `Δt`, order `η` and zonotope order `ρ`. `V` is
-split `ũ ⊕ Ũ` at its stored centre (line 1). `[e^{At_k}]` and `[e^{At_{k+1}}]` are taken by
+split `ũ ⊕ Ũ` at its stored center (line 1). `[e^{At_k}]` and `[e^{At_{k+1}}]` are taken by
 scaling and squaring at their float brackets, so `H(t_{k+1})` is reached from `X₀` directly,
 as line 7 reaches it. `P^u(t_{k+1})`, a point in [1], is kept as a box, so its rounding
 does not accumulate generators.
@@ -56,10 +56,10 @@ and `R̂(τ_k)`, or `none` where no squaring count fits `[e^{At_k}]` or `[e^{At_
 def LinearSys.manualStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (η ρ : ℕ) (s : LinearSys.ManualStateFloat 𝕋 n) :
     Option (LinearSys.ManualStateFloat 𝕋 n × Zonotope (Vec 𝕋 n)) := do
-  -- 1. {ũ}, V's stored centre
+  -- 1. {ũ}, V's stored center
   let ũ := (Interval.point V.c).zonotope
   -- 1. U₀ = V - ũ, holding 0
-  let Ũ := Recentre.recentre V
+  let Ũ := Recenter.recenter V
   let seg := LinComb.linComb (Interval.point fun _ => zero).zonotope ũ    -- [0, ũ]
   -- 3. P^u(Δt), eq. (19)
   let PuΔt := sys.inputSolutionFloat Δt η ũ

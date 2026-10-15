@@ -10,7 +10,7 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/QuadMap.lean` at `Q : Fin m → Mat ℝ n n` and
 `h` generators evaluates, per output coordinate, a bilinear form `xᵀ Q y`
-(`Cost.matVec n n` plus a dot product, `2 * n * n + 2 * n`) for the centre term
+(`Cost.matVec n n` plus a dot product, `2 * n * n + 2 * n`) for the center term
 (`h + 1` of them), twice for each of the `h` linear terms, once for each of the
 `h` squared terms and twice for each of the `h * h` index pairs, with `O(1)`
 additions or scalings around each. Summed, that is at most

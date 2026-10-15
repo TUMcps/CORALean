@@ -49,7 +49,7 @@ theorem Zonotope.quadMapMatZono_outer (D : Fin m → Mat ℝ n n)
         ∀ i, l i = x ⬝ᵥ ((D i + ∑ j, β j • K j i) *ᵥ x)}
       ⊆ (Z.quadMapMatZono D K).construct := by -- --- PROOF ---
   rintro l ⟨x, hx, β, hβ, hl⟩
-  -- the centres' part, a point of `Z_D`
+  -- the centers' part, a point of `Z_D`
   obtain ⟨γ, hγ, hD⟩ := Z.quadMap_outer D ⟨x, hx, rfl⟩
   -- each generator's part, `βⱼ xᵀK⁽ʲ⁾x`, a point of `[-1, 1] ⊗ Z_K(j)`
   have hK : ∀ j, ∃ δ : Fin (Z.h + Z.h + Z.h * Z.h + 1) → ℝ, (∀ k, |δ k| ≤ 1) ∧
@@ -61,7 +61,7 @@ theorem Zonotope.quadMapMatZono_outer (D : Fin m → Mat ℝ n n)
   refine ⟨Fin.append γ fun k => δ (finProdFinEquiv.symm k).1 (finProdFinEquiv.symm k).2,
     Fin.addCases (fun k => by rw [Fin.append_left]; exact hγ k)
       (fun k => by rw [Fin.append_right]; exact hδ _ _), ?_⟩
-  -- eq. (12): the centre's quadratic form plus every generator's, scaled by its factor
+  -- eq. (12): the center's quadratic form plus every generator's, scaled by its factor
   have hsplit : l = (fun i => x ⬝ᵥ (D i *ᵥ x)) + ∑ j, β j • (fun i => x ⬝ᵥ (K j i *ᵥ x)) := by
     funext i
     rw [hl i, Pi.add_apply, Finset.sum_apply, add_mulVec, dotProduct_add, Matrix.sum_mulVec,

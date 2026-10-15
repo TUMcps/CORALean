@@ -93,7 +93,7 @@ def Taylm.const (n : ℕ) (c : 𝕋) (N : ℕ) : Taylm 𝕋 n := ⟨[(c, 0)], ze
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- Summed downward; any float is a sound centre, so the rounding costs only precision. -/
+/-- Summed downward; any float is a sound center, so the rounding costs only precision. -/
 def Taylm.constCoef (T : Taylm 𝕋 n) : 𝕋 :=
   listSumDown ((T.terms.filter fun a => Real.Taylm.degree a.2 == 0).map Prod.fst)
 
@@ -178,7 +178,7 @@ def Taylm.bounds (T : Taylm 𝕋 n) : Interval 𝕋 :=
 -- Reviewed:      ---
 
 /-- The largest absolute value of the constant part and the two ends of the range: a bound of
-`|ξ|` on the hull of the centre and the range, which is where a Lagrange remainder looks for
+`|ξ|` on the hull of the center and the range, which is where a Lagrange remainder looks for
 the derivative. -/
 def Taylm.magUp (T : Taylm 𝕋 n) : 𝕋 :=
   maximum (absolute T.constCoef) (maximum (absolute T.bounds.inf) (absolute T.bounds.sup))

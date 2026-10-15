@@ -13,7 +13,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
 
 `HPolytope.conZonotope` widens the carried rows by what carrying them rounds off, so it encloses.
 `conZonotopeInner` tightens them by the same amount instead, so every coefficient vector meeting
-the stored rows meets the exact ones: the stored centre and generators are used as they are,
+the stored rows meets the exact ones: the stored center and generators are used as they are,
 with the polytope's own error box, and whatever box they are taken at, every point stays in the
 polytope. (A polytope with an equality row is carried as the empty set.) The
 box decides only how much of the polytope is covered.
@@ -59,7 +59,7 @@ theorem HPolytope.conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z
   obtain ⟨hle, -⟩ := HPolytope.mem_nominal_iff.mp hP'
   refine ⟨x, ?_, e, he, rfl⟩
   refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => absurd i.isLt (by omega)⟩
-  -- an inequality row: the tightened bound covers the carrying error and the centre
+  -- an inequality row: the tightened bound covers the carrying error and the center
   have hsplit := HPolytope.rowSplit P.A (fun i j => Z.G j i) Z.c β x hval i
   have herr := abs_le.mp (HPolytope.prodError P.A (fun i j => Z.G j i) β hβ i)
   have hc := le_dotUp (P.A i) Z.c

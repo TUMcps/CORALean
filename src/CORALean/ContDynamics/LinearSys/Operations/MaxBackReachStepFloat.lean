@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZFloat
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachErosionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachInitFloat
-public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCentre
+public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCenter
 public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominal
 public import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
@@ -26,11 +26,11 @@ margin between them is paid once, in line 10. Lines 8-10 are outer float sets wi
 recorded (`UErr`). `maxBackReachErosionFloat` is the distance the hull keeps from the exact eroded
 set for line 12's map at an interval matrix, rounded, and for `Z̲_U`'s excess; `Ẑ_W(τ_k)` is
 widened by it, so line 11's erosion keeps that distance. Line 11 is `maxBackReachCZFloat`, whose
-hull `linCombSameCentre` is exact since both sets share the conversion box's centre. Line 12's
+hull `linCombSameCenter` is exact since both sets share the conversion box's center. Line 12's
 first summand is the hull's stored numbers mapped by the lower matrix of `[e^{-A t_{k+1}}]`
 (`mtimesNominal`), the second `[e^{-A t_{k+1}}] Z̲_U(t_k)` outer; the state keeps them apart.
 
-`none` when an order search fails or the box's centre is not in a converted set
+`none` when an order search fails or the box's center is not in a converted set
 (`ConZonotope.zeroFeasible`, which the hull needs). The box `Bx` is the caller's and decides only
 how much of each set the conversion covers.
 
@@ -96,15 +96,15 @@ def LinearSys.maxBackReachStepFloat (sys : LinearSys 𝕋 n) (Bx : Interval (Vec
     addUp (absolute (Z₀.c k)) (radius (fun i j => Z₀.G j i) k)
   let DU : Vec 𝕋 n := fun i =>                                      -- -Z̲_U(t_k) after the map
     addUp ((Zonotope.mtimesIntervalMatBox Φn s.ZU).magnitude i) (dotUp (Φn.magnitudeMat i) s.UErr)
-  let Hs := (P₁.conZonotopeInner Bx).linCombSameCentre (P₂.conZonotopeInner Bx)  -- its shape
+  let Hs := (P₁.conZonotopeInner Bx).linCombSameCenter (P₂.conZonotopeInner Bx)  -- its shape
   let ρe := LinearSys.maxBackReachErosionFloat Φn Ψ Hs ζ DU         -- the margin line 12 needs
-  let ZWe := ZW ⊞ (Interval.mk (fun i => neg (ρe i)) ρe).zonotope  -- Ẑ_W(τ_k), widened by it
+  let ZWe := ZW ⊞ (Interval.mk (-ρe) ρe).zonotope  -- Ẑ_W(τ_k), widened by it
   -- 11. CZ(P₁ ⊖ Ẑ_W(τ_k))
   let C₁ := LinearSys.maxBackReachCZFloat Bx P₁ ZWe
   -- 11. CZ(P₂ ⊖ Ẑ_W(τ_k))
   let C₂ := LinearSys.maxBackReachCZFloat Bx P₂ ZWe
   -- 11. conv(CZ(…), CZ(…))
-  let H := C₁.linCombSameCentre C₂
+  let H := C₁.linCombSameCenter C₂
   if C₁.zeroFeasible && C₂.zeroFeasible then
     pure { tLo := tk1Lo
            tHi := tk1Hi

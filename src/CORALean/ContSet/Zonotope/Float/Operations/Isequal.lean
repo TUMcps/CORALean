@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # `Zonotope.isequal`, over a floating-point scalar
 
-The structural test at tolerance `0`, as over ℝ: the same number of generators, and the centre,
+The structural test at tolerance `0`, as over ℝ: the same number of generators, and the center,
 the generators and the two ends of the error box equal entry by entry, each entry by the
 certified `le` in both directions. Certified in one direction only: `true` is a proof, `false`
 refutes nothing. Not CORA's test, which merges parallel generators and ignores their order.

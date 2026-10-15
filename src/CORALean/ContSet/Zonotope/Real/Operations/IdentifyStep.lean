@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 
 [1, Sec. 3.3], steps 2 to 5, for the zonotope `AFSS_k = X`, the measurement `(y, r)` with bound `σ`
 and the expansion `γ`: the tight strip is the support strip of `X` met with `|rᵀθ - y| ≤ σ` ([1,
-Def. 9]), written as `|rᵀθ - d| ≤ σ'` with centre `d` and half-width `σ'` (the paper does not say
+Def. 9]), written as `|rᵀθ - d| ≤ σ'` with center `d` and half-width `σ'` (the paper does not say
 how, and takes the strip as given); `intersectStrip` at the gain `λ` gives `X̂(λ) = p̂(λ) ⊕ Ĥ(λ)
 Bʳ⁺¹` ([1, Property 1]), and `AFSS_{k+1} = X̂(λ) ⊕ diag(γ) Bⁿ`. The gain `λ` is an argument: the
 paper chooses `λ*` to minimise the volume, and the enclosure holds for every `λ`. The expansion `γ`

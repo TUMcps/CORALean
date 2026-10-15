@@ -20,7 +20,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 `autoStep` computed in `𝕋`. `autoTuneDeltaTFloat` picks `Δt_k`, `η_k` (lines 5-15),
 `Zonotope.autoTuneSetOrder` picks `ρ_k` (lines 19-22), then one step combines both with the
-affine-dynamics update, lines 16-18 and 23-30. `V` is split `ũ ⊕ U₀` at its stored centre
+affine-dynamics update, lines 16-18 and 23-30. `V` is split `ũ ⊕ U₀` at its stored center
 (line 3). `[e^{At_k}]` and `[e^{At_{k+1}}]` are taken by scaling and squaring at their float
 brackets, so `H(t_{k+1})` is reached from `X₀` directly, as line 26 reaches it. `P^u(t_{k+1})`,
 a point in [1], is kept as a box. `bPU_0(Δt_k)` is `Δt_k·U₀`, `bPU_∞(Δt_k)` the orders `1 … η_k`
@@ -65,10 +65,10 @@ tuned step is inadmissible, or no squaring count fits `[e^{At_k}]` or `[e^{At_{k
 def LinearSys.autoStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec 𝕋 n)) (tend : 𝕋)
     (εmax ζ : ℚ) (ηmax fuel : ℕ) (s : LinearSys.AutoStateFloat 𝕋 n) :
     Option (LinearSys.AutoStateFloat 𝕋 n × Zonotope (Vec 𝕋 n)) := do
-  -- 3. {ũ}, V's stored centre
+  -- 3. {ũ}, V's stored center
   let ũ := (Interval.point V.c).zonotope
   -- 3. U₀ = V - ũ, holding 0
-  let U₀ := Recentre.recentre V
+  let U₀ := Recenter.recenter V
   let ηe := max ηmax 2                                                 -- [e^{At_k}]'s order
   let sq ← sys.squaringsFloat s.Δt s.tLo s.tHi ηe                      -- t_k / 2^sq within Δt_{k-1}
   let eAtk := sys.expSquaringFloat s.tLo s.tHi ηe sq                   -- [e^{A t_k}]

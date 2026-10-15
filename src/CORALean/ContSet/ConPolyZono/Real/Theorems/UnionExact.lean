@@ -199,7 +199,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
             rw [hzero, hx1]
             simp only [ConPolyZono.unionLowerB, Fin.append_right]
             constructor <;> linarith [hb₂' r]
-      · -- the point itself: at the selector `1` the centre moves to `c₁`
+      · -- the point itself: at the selector `1` the center moves to `c₁`
         have hβ₀ : (∑ j, β₁ j • cPZ₁.GI j) = 0 :=
           Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
         have hG₂ : (∑ i, PolyZonotope.monomial cPZ₂.E
@@ -246,7 +246,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
             have h := hsat₂ r
             simp only [ConPolyZono.unionLowerB, Fin.append_right]
             constructor <;> linarith [h.1, h.2]
-      · -- and the point, the selector `-1` moving the centre to `c₂`
+      · -- and the point, the selector `-1` moving the center to `c₂`
         have hβ₀ : (∑ j, β₂ j • cPZ₂.GI j) = 0 :=
           Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
         have hG₁ : (∑ i, PolyZonotope.monomial cPZ₁.E

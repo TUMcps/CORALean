@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `PolyZonotope.mapCost`
 
-Asserted, not proved: `Operations/Map.lean` sends the centre, each of the `h`
+Asserted, not proved: `Operations/Map.lean` sends the center, each of the `h`
 dependent generators and each of the `q` independent ones through `f`, and
 touches nothing else — the exponent matrix is carried over whole.
 
@@ -33,7 +33,7 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `PolyZonotope.map` costs at a map costing at most `cf` per
-application: one per generator of either block, and one for the centre. -/
+application: one per generator of either block, and one for the center. -/
 def PolyZonotope.mapCost (cf : Cost) (h q : ℕ) : Cost := (h + q + 1) • cf
 
 end CORALean.Real

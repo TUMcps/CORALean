@@ -11,7 +11,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Instances
 
 The numeric branch of CORA's `@ellipsoid/and_.m`: for a point `S`,
 `if contains_(E, S, 'exact', eps, 0, false, false), E = ellipsoid(zeros(n), S), else E =
-ellipsoid.empty(n)`. The point itself as a degenerate ellipsoid (`Q = 0`, centre `S`) when it
+ellipsoid.empty(n)`. The point itself as a degenerate ellipsoid (`Q = 0`, center `S`) when it
 lies in `E`, and the empty ellipsoid otherwise, here `OptEmpty.empty`, as no `Ellipsoid` denotes
 `∅`. The membership test is the set-level `p ∈ E`, classical, at tolerance `0`; the
 `representsa_(E, 'point')` branch has the same result for a point argument. The hyperplane,

@@ -60,9 +60,9 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
         S.length = N ∧ Rti = S.map (fun s => s.2.1 ⊞ s.2.2.1) ∧
         Rtp = params.X₀ :: S.map (fun s => s.1 ⊞ s.2.2.1) ∧
         ∀ (k : ℕ) (hk : k < S.length), sys.ReachFloatInputInvariant (toReal options.Δt)
-          params.X₀.construct (Recentre.centre
+          params.X₀.construct (Recenter.center
             (sys.inputSetFloat params.U))
-          (Recentre.recentre (sys.inputSetFloat params.U)) k S[k] := by -- --- PROOF ---
+          (Recenter.recenter (sys.inputSetFloat params.U)) k S[k] := by -- --- PROOF ---
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
@@ -74,10 +74,10 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
   refine ⟨hΔt, N, hNΔt, _, List.length_iterate _ _ _, rfl, rfl, fun k hk => ?_⟩
   rw [List.getElem_iterate]
   clear hk
-  -- the input set in the state space, its centre, and one step's `[e^{AΔt}]`
+  -- the input set in the state space, its center, and one step's `[e^{AΔt}]`
   set V := sys.inputSetFloat U with hV
   set A := Scalar.toRealMat sys.A with hA
-  set ũ := Recentre.centre V with hũ
+  set ũ := Recenter.center V with hũ
   have heA := sys.exp_mem_expIntervalFloat hadm (t := toReal Δt) le_rfl le_rfl
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (toReal Δt • A) *ᵥ z
       ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])

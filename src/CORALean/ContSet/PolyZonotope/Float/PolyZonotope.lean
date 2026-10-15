@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Instances
 /-!
 # Sparse polynomial zonotopes over a floating-point scalar: the representation
 
-CORA's `polyZonotope` with its centre, dependent generators, exponent matrix and
+CORA's `polyZonotope` with its center, dependent generators, exponent matrix and
 independent generators, plus the error box that makes it an `InflatedContSet`.
 The nominal part is the polynomial zonotope those stored floats describe; the
 box holds what rounding has cost.

@@ -8,7 +8,7 @@ public import CORALean.ContSet.SpectraShadow.Float.SpectraShadow
 /-!
 # `SpectraShadow.hyperplaneOne`, over a floating-point scalar
 
-The hyperplane `ℝⁿ × {1}` of `ℝⁿ⁺¹` of `convHull_`: the trivial inequality `0 ⪰ 0`, the centre `(0,
+The hyperplane `ℝⁿ × {1}` of `ℝⁿ⁺¹` of `convHull_`: the trivial inequality `0 ⪰ 0`, the center `(0,
 1)` and the unit vectors of the first `n` coordinates as generators. The box is the origin.
 -/
 

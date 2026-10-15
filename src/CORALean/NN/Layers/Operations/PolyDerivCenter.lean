@@ -5,10 +5,10 @@ public import CORALean.Global.Float.FloatOps
 @[expose] public section
 
 /-!
-# A stored fit's derivative centre
+# A stored fit's derivative center
 
 The fit's linear coefficient, copied and so stored exactly; below order 1 there is none, and the
-centre is zero.
+center is zero.
 -/
 
 -- Authors:       Claude Opus 5.5

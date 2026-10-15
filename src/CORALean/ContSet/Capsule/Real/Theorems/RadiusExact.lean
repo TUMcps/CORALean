@@ -1,17 +1,17 @@
 module
 
-public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCentreLe
+public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCenterLe
 public import CORALean.Global.EuclideanNorm
 
 @[expose] public section
 
 /-!
-# `Capsule.radius` is the supremum of the distance from the centre
+# `Capsule.radius` is the supremum of the distance from the center
 
-Every point of the capsule is within `radius` of the centre (the segment contributes at most
+Every point of the capsule is within `radius` of the center (the segment contributes at most
 `‖g‖₂`, the ball `r`), and when the capsule is non-empty and the far end of the segment can be
 pushed outward by `r` the bound is attained: along `g` if `g ≠ 0`, along any coordinate axis if
-`g = 0` and `0 < n`. At `n = 0` with `g = 0` the only point is the centre, at distance `0`, so
+`g = 0` and `0 < n`. At `n = 0` with `g = 0` the only point is the center, at distance `0`, so
 `radius = r` is not attained there; the hypothesis excludes that case.
 -/
 
@@ -57,7 +57,7 @@ theorem aux_exists_unit_smul (g : Vec ℝ n) (hn : g ≠ 0 ∨ 0 < n) :
 /-- The bound is attained, for a non-empty capsule whose far end can be pushed outward. -/
 theorem Capsule.radius_isGreatest {C : Capsule n} (hr : 0 ≤ C.r) (hn : C.g ≠ 0 ∨ 0 < n) :
     IsGreatest ((fun x => ‖x - C.c‖₂) '' C.construct) C.radius := by -- --- PROOF ---
-  refine ⟨?_, fun d ⟨x, hx, hd⟩ => hd ▸ Capsule.norm₂_sub_centre_le hx⟩
+  refine ⟨?_, fun d ⟨x, hx, hd⟩ => hd ▸ Capsule.norm₂_sub_center_le hx⟩
   obtain ⟨u, hu, hgu⟩ := aux_exists_unit_smul C.g hn
   refine ⟨C.c + (‖C.g‖₂ + C.r) • u, ⟨1, by simp, ?_⟩, ?_⟩
   · have : C.c + (‖C.g‖₂ + C.r) • u - (C.c + (1 : ℝ) • C.g) = C.r • u := by

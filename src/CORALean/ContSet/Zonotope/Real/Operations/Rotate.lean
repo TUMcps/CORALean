@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.RotMat
 /-!
 # `Zonotope.rotate`
 
-CORA's `@zonotope/rotate(Z, dims, angle)`: the rotation is applied to the centre and the generators
+CORA's `@zonotope/rotate(Z, dims, angle)`: the rotation is applied to the center and the generators
 on the two coordinates `dims`, the others being left alone. That is `mtimes` at `rotMat`.
 -/
 

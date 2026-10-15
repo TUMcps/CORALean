@@ -6,11 +6,11 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 @[expose] public section
 
 /-!
-# The particular solution is centred at the origin
+# The particular solution is centered at the origin
 
-`P_c(t₀) = 0` and `U₀ = B(U ⊕ (-c_u))` is centred at `0`, so `P_c(t_{i+1}) = e^{AΔt}P_c(t_i) ⊕ T U₀`
-is at every `i`: the centre of `R(t_i)` is that of `H(t_i)`, which is what lets [1, Prop. 1] put
-the whole of `R(t_i)`'s centre in the error set `E(t)`.
+`P_c(t₀) = 0` and `U₀ = B(U ⊕ (-c_u))` is centered at `0`, so
+`P_c(t_{i+1}) = e^{AΔt}P_c(t_i) ⊕ T U₀` is at every `i`: the center of `R(t_i)` is that of `H(t_i)`,
+which is what lets [1, Prop. 1] put the whole of `R(t_i)`'s center in the error set `E(t)`.
 
 ## References
 

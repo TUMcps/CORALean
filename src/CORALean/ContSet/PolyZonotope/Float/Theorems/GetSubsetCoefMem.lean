@@ -42,7 +42,7 @@ theorem PolyZonotope.getSubsetCoef_mem (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin
   -- the integer between its roundings
   have hI := intDown_le_intUp (𝕋 := 𝕋) ((pZ.E k i).choose j : ℤ)
   simp only [Int.cast_natCast] at hI
-  -- the first product, with the power of the centre
+  -- the first product, with the power of the center
   have hA := Real.Interval.mul_between_corners hI.1 hI.2 (Interval.powLo_le cen (pZ.E k i - j))
     (Interval.le_powHi cen (pZ.E k i - j))
   have hA₁ := le_trans (Interval.mulLo_le _ _ _ _) hA.1

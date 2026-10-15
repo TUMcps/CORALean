@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 
 CORA's `@zonotope/tensorMultiplication_zono.m`: the tensor is a matrix zonotope
 `M = {M.center + Σᵢ γᵢ M.generator{i} | γᵢ ∈ [-1, 1]}`, here a `Zonotope` over the float tensor
-space `Zonotope.Tensor3 𝕋 n`, of which the centre and the generators are read (its box is not: a
+space `Zonotope.Tensor3 𝕋 n`, of which the center and the generators are read (its box is not: a
 caller passes the stored tensors). The result is `tensorMultiplication(Z, M.center)` plus, in a
 loop over the generators, `tensorMultiplication(Z, M.generator{i})` with Minkowski sums.
 -/

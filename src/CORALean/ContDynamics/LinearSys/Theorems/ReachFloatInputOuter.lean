@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 
 @[expose] public section
 
@@ -12,9 +12,9 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReac
 A run of `ẋ = Ax + u` with `u(t) ∈ B U + c`, any such signal the run is a solution
 for, at `t = t_k + τ` of window `k`: its free motion plus the constant's
 contribution is in `H(τ_k)`, and the rest is one `Ũ`-input's contribution by
-`t` (`Trajectory.sub_mem_inputReach_recentre`), which is in `P^R(t_{k+1})`
+`t` (`Trajectory.sub_mem_inputReach_recenter`), which is in `P^R(t_{k+1})`
 since `0 ∈ Ũ` lets the later window end bound it (`inputReach_mono`). No
-`0 ∈ U` is asked: the split took the centre out.
+`0 ∈ U` is asked: the split took the center out.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -67,11 +67,11 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
     have : (k : ℝ) + 1 ≤ N := by rw [← hlen]; exact_mod_cast hk'
     exact mul_le_mul_of_nonneg_right this hΔt.le
   have ht0 : 0 ≤ t := le_trans (by positivity) ht.1
-  have hd := traj.sub_mem_inputReach_recentre (S' := 𝒵[𝕋]) hUV
+  have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) hUV
     ⟨ht0, ht.2.trans hkN⟩
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
   have hy := h3 (sys.inputReach_mono (CompactSet.isBounded_construct _)
-    (Recentre.zero_mem_recentre _) ht0 (by push_cast; exact ht.2) hd)
+    (Recenter.zero_mem_recenter _) ht0 (by push_cast; exact ht.2) hd)
   -- the free motion and the constant's share at `t = t_k + τ`, inside `H(τ_k)`
   have hx := h2 (x 0) traj.init (t - k * Δ) ⟨sub_nonneg.mpr ht.1, by linarith [ht.2]⟩
   rw [add_sub_cancel] at hx

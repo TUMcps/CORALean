@@ -82,7 +82,7 @@ theorem Zonotope.aux_zero_mem_interval_mtimes {M : Mat 𝕋 m n} {I : Interval (
       (mulUp (M i k) (I.sup k)))
     exact le_trans (Finset.sum_nonneg fun k _ => hterm_hi k) (sum_le_sumUp _)
 
-/-- The shape `centerResidual` and `mtimesResidual`'s centre piece share: a
+/-- The shape `centerResidual` and `mtimesResidual`'s center piece share: a
 value stored as its own lower bound always brackets `0`. -/
 theorem Zonotope.aux_zero_mem_residual_self {lo hi : Vec 𝕋 n}
     (hle : ∀ i, toReal (lo i) ≤ toReal (hi i)) :

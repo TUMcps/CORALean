@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # At order 1 the derivative bound is the bracket
 
-ℝ-only, as the bound is: the radius vanishes and the centre is the slope, so this is the bracket
+ℝ-only, as the bound is: the radius vanishes and the center is the slope, so this is the bracket
 `Relaxation.ofDeriv` works with and no precision is lost.
 -/
 

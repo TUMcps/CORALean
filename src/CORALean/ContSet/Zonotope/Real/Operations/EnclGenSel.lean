@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclCoverLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.EnclRatioLoop
-public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Real.Operations.Recenter
 public import CORALean.Global.Sort
 
 @[expose] public section
@@ -51,7 +51,7 @@ noncomputable def Zonotope.enclGenSel (le lt : ℝ → ℝ → Bool)
   -- 2. `r_sel ← 0`
   let rsel : Vec ℝ n := 0
   -- 3. `r_s ← rad(box(Z_s))`
-  let rs := Zs.recentre.absBound
+  let rs := Zs.recenter.absBound
   -- 4. lines 4-10: `µ ← inf`, `ξ ← 0`; while `µ > µ̄` and `ξ < n_m`, grow `ξ` by the ratio
   let ξratio := Zm.enclRatioLoop lt Gsort rs μbar Zm.h 0 rsel
   -- 11. lines 11-13: while `Z_s ⊄ (c_s, g_sort^(1), …, g_sort^(ξ))`, `ξ ← ξ + 1`

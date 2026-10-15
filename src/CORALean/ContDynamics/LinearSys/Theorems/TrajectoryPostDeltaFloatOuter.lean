@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecentre
+public import CORALean.ContDynamics.LinearSys.Theorems.TrajectorySubMemInputReachRecenter
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 A run of `ẋ = Ax + u`, `u(t) ∈ V`, splits at time `t` into the free motion's
 difference `e^{At} x(0) - x(0)`, the constant `ũ`'s share `∫₀ᵗ e^{Aσ}dσ ũ`, and the
-rest, which `sub_mem_inputReach_recentre` places in `Ũ`'s input reach at `t`. Each
+rest, which `sub_mem_inputReach_recenter` places in `Ũ`'s input reach at `t`. Each
 lies in its summand: `deltaReachFloat_outer`, and the two input reaches at `t`
 inside those at `Δt` (`inputReach_mono`, both sets holding `0`), which
 `inputSolutionFloat` encloses.
@@ -62,7 +62,7 @@ theorem LinearSys.CanonicalTrajectory.postDeltaFloat_outer {sys : LinearSys 𝕋
       x u) (hUV : U ⊆ V.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 (toReal Δt)) :
     x t - x 0 ∈ (sys.postDeltaFloat Δt η R V).construct := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
-  set ũ := Recentre.centre V with hũ
+  set ũ := Recenter.center V with hũ
   -- `{ũ}` and `[0, ũ]` hold what they are built from
   have hpt : ũ ∈ (Interval.point V.c).zonotope.construct :=
     Interval.zonotope_contains _ (Interval.mem_point V.c)
@@ -84,17 +84,17 @@ theorem LinearSys.CanonicalTrajectory.postDeltaFloat_outer {sys : LinearSys 𝕋
           (Real.MatExp.expIntegral_constInput A ũ ht.1).symm⟩)
   -- the rest of the input's share by `t`, inside `P^R(Ũ)`
   have hrest := sys.inputReach_subset_inputSolutionFloat hΔt hη _
-    (sys.inputReach_mono (CompactSet.isBounded_construct _) (Recentre.zero_mem_recentre V) ht.1
-      ht.2 (traj.sub_mem_inputReach_recentre hUV ht))
+    (sys.inputReach_mono (CompactSet.isBounded_construct _) (Recenter.zero_mem_recenter V) ht.1
+      ht.2 (traj.sub_mem_inputReach_recenter hUV ht))
   -- the free motion's difference, inside `deltaReachFloat`
   have hhom := sys.deltaReachFloat_outer hΔt hη R traj.init ht.1 ht.2
   have hsplit : x t - x 0 = (exp (t • A) *ᵥ x 0 - x 0) + (Real.MatExp.expIntegral A t *ᵥ ũ
       + (x t - (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ))) := by abel
   rw [hsplit]
   exact Plus.plus_outer (sys.deltaReachFloat Δt η R) (sys.inputSolutionFloat Δt η seg ⊞
-    sys.inputSolutionFloat Δt η (Recentre.recentre V)) (Set.add_mem_add hhom
+    sys.inputSolutionFloat Δt η (Recenter.recenter V)) (Set.add_mem_add hhom
       (Plus.plus_outer (sys.inputSolutionFloat Δt η seg)
-        (sys.inputSolutionFloat Δt η (Recentre.recentre V)) (Set.add_mem_add hconst hrest)))
+        (sys.inputSolutionFloat Δt η (Recenter.recenter V)) (Set.add_mem_add hconst hrest)))
 
 end CORALean
 

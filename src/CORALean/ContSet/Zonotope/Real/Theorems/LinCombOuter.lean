@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumPair
 
 The paired blocks carry `λ β₁ ± (1-λ) β₂`, both back in `[-1,1]` because the two
 weights sum to one, and the generator spanning the half-difference of the
-centres carries `2λ - 1`. Past the shorter block a surplus generator carries its
+centers carries `2λ - 1`. Past the shorter block a surplus generator carries its
 own weighted coefficient alone.
 
 Nothing here asks for convexity: the claim is about the segments themselves, so
@@ -64,7 +64,7 @@ theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope α) :
   · rw [Zonotope.aux_sum_univ_linComb, Fin.sum_univ_add]
     simp only [Zonotope.linComb, Fin.append_left, Fin.append_right, Fin.sum_univ_one]
     rw [Zonotope.sum_pair Z₁.G Z₂.G β₁ β₂ lam]
-    -- what is left is the centres, which the fresh generator carries
+    -- what is left is the centers, which the fresh generator carries
     module
 
 end CORALean.Real

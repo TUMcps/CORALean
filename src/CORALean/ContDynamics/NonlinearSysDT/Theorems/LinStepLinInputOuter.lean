@@ -49,15 +49,15 @@ theorem NonlinearSysDT.LinStep.linInput_outer {sys : NonlinearSysDT n m} {U : S 
     simp only [Matrix.mulVec_sub]
     abel
   -- `-u✱` as the point box's real reading, rounding-free by `toReal_neg`
-  have hneg : -us = Scalar.toRealVec (fun i => FloatOps.neg (step.us i)) := by
+  have hneg : -us = Scalar.toRealVec (-step.us) := by
     funext i
     simp only [us, Scalar.toRealVec_apply, Pi.neg_apply]
     exact (SoundFloatArithmetic.toReal_neg _).symm
   have hshift : u - us ∈ construct (U ⊞ ofInterval (Interval.point
-      (fun i => FloatOps.neg (step.us i)))) := by
+      (-step.us))) := by
     rw [sub_eq_add_neg, hneg]
     exact plus_outer _ _ (Set.add_mem_add hu
-      (ofInterval_outer _ (Interval.mem_point (fun i => FloatOps.neg (step.us i)))))
+      (ofInterval_outer _ (Interval.mem_point (-step.us))))
   -- each summand lies in its own part of `linInput`
   rw [hsplit]
   exact plus_outer _ _ (Set.add_mem_add

@@ -13,7 +13,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Dirac
 public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 public import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
 public import CORALean.ContSet.Interval.Float.Operations.BoundProj
-public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
 public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 public import CORALean.ContSet.Interval.Float.Operations.MatMul

@@ -10,9 +10,9 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.ReindexPoint
 `reindex` moves no data, so one factor vector reads both sides and the two
 inclusions come out of a single equation, as they do for `compactGens`. That
 equation is `reindex_point` with the independent block added back on either
-side, the centre being `point`'s own first summand.
+side, the center being `point`'s own first summand.
 
-The `key` is stated with the *original* centre and independent block on both
+The `key` is stated with the *original* center and independent block on both
 sides. They are the reindexed ones up to unfolding, and writing them so keeps
 the equation to the one sum that actually moves.
 -/

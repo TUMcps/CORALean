@@ -11,7 +11,7 @@ CORA's `@polyZonotope/partZonotope(pZ, id)` (first output `PZ`): the dependent g
 grouped by their exponent pattern in the factors `id`, and every group but the zero pattern gets a
 new factor standing for the monomial of those factors; an all-even pattern's generators are halved
 (`FloatOps.half`, exact in a binary format) and a copy of the halves without the new factor is
-added. Nothing rounds; centre, independent generators and error box are copied. The grouping
+added. Nothing rounds; center, independent generators and error box are copied. The grouping
 outputs of CORA are not returned.
 -/
 

@@ -34,7 +34,7 @@ ds = f(xs) - m.*xs;   ds(xs < l | xs > u) = inf;   el = min(ds)
 ```
 
 The interior minimum `x = log(m/(1-m))/k` of `f(x) - m x` is never a candidate, so `el` is too
-large. `evaluateZonotopeBatch` then stores the centre `m c + (eu + el)/2` and the generator radius
+large. `evaluateZonotopeBatch` then stores the center `m c + (eu + el)/2` and the generator radius
 `(eu - el)/2`. One neuron. Read from the source, not run.
 
 # CORA's lower error of a softplus neuron is above the deviation at an interior point

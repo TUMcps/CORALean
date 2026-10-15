@@ -15,7 +15,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ContainsViaReach
 # A `true` from `Zonotope.containsZonotope` proves containment
 
 A point of the first set is a nominal point plus a member of its error box. The checked rows are
-the hypotheses of `Zonotope.contains_via_reach`, read as reals: the leftover in every entry (centre
+the hypotheses of `Zonotope.contains_via_reach`, read as reals: the leftover in every entry (center
 residual, the row of `|G₁ - G₂ Γ|`, the error box) is at most `B`, a box the right inverse reaches
 with coefficients of size at most `δ` (`Zonotope.ballCert_reach`), and the budget
 `|β₀ₖ| + ∑ⱼ |Γₖⱼ| + δ` is at most one. The result is a nominal point of the second set moved by the
@@ -52,7 +52,7 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
   -- the second error box's lower corner, and the real objects
   have he₂ : (fun i => toReal (Z₂.I_error.inf i)) ∈ (I_error Z₂).construct := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
-  -- every entry's leftover (centre residual, `G₁ - G₂ Γ`, error box) fits in `B`
+  -- every entry's leftover (center residual, `G₁ - G₂ Γ`, error box) fits in `B`
   have hres' : ∀ i, |toReal (Z₁.c i) - toReal (Z₂.I_error.inf i)
         - (toReal (Z₂.c i) + (toRealMat (fun i j => Z₂.G j i) *ᵥ toRealVec (Z₂.stBeta Z₁ H)) i)|
       + ∑ j, |(toRealMat (fun i j => Z₁.G j i)

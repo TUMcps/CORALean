@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MemScaleIff
 renumbered into a `Fin` by `Fintype.equivFin`, which changes neither the set, nor the
 span, nor which cross products occur. This is the halfspace form [1, Thm. 1],
 [2, Thm. 1] and [3, Lemma 3] turn the conformance constraint into: linear in the
-centre and in the stretch factors, at normals fixed by the template alone. It is also
+center and in the stretch factors, at normals fixed by the template alone. It is also
 [1, Remark 1]: the halfspaces of `W` and `V` make [1, Cor. 1]'s inclusions linear.
 
 ## References

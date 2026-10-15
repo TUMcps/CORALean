@@ -9,7 +9,7 @@ public import CORALean.NN.Layers.Operations.LinearWithError
 /-!
 # The linear layer with an error box, at every value of the error
 
-What the layer encloses at *every* value of the error, not only its centre: `W x + c` for any
+What the layer encloses at *every* value of the error, not only its center: `W x + c` for any
 real `c` within what `E` denotes of `b` — CORA's `W h + b ⊕ E` read pointwise, and what the
 reduction algorithms freeze a bias at.
 -/

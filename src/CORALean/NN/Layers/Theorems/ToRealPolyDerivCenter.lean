@@ -7,7 +7,7 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 @[expose] public section
 
 /-!
-# A stored centre reads back exactly
+# A stored center reads back exactly
 
 One index carries the linear term and every other contributes nothing.
 -/

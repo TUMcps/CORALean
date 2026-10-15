@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
-public import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
+public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemConstructIff
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.CentreMemConstructIff
 # A capsule is a point iff it has no direction and no radius
 
 Needs `0 < n`: in dimension `0` the single point is also the capsule at any `r ≥ 0`. The
-converse direction moves from the centre along `g`, or by `r` along the first axis, to a second
+converse direction moves from the center along `g`, or by `r` along the first axis, to a second
 point.
 -/
 
@@ -32,15 +32,15 @@ theorem Capsule.representsa_point_iff (hn : 0 < n) (C : Capsule n) :
     C.construct = {C.c} ↔ C.representsa_point := by -- --- PROOF ---
   constructor
   · intro h
-    -- the centre is in the set, so `0 ≤ r`
-    have hr0 : 0 ≤ C.r := (Capsule.centre_mem_construct_iff C).mp (h ▸ rfl)
+    -- the center is in the set, so `0 ≤ r`
+    have hr0 : 0 ≤ C.r := (Capsule.center_mem_construct_iff C).mp (h ▸ rfl)
     have hg : C.g = 0 := by
       by_contra hg
       have hmem : C.c + C.g ∈ C.construct :=
         ⟨1, by norm_num, by simpa using hr0⟩
       rw [h] at hmem
       exact hg (add_eq_left.mp hmem)
-    -- a nonzero radius leaves the centre along the first axis
+    -- a nonzero radius leaves the center along the first axis
     refine ⟨hg, le_antisymm ?_ hr0⟩
     by_contra hr
     push Not at hr

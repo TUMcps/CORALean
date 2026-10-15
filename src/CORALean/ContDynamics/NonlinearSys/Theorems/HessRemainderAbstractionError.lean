@@ -42,9 +42,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- A matrix's negation, stored entrywise, is a point interval at the negated real one. -/
 theorem aux_hessRem_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) :
     -Scalar.toRealMat A ∈
-      (Interval.point (α := Mat 𝕋 k l) (fun i j => neg (A i j))).construct := by -- --- PROOF ---
-  have h := Interval.mem_point (α := Mat 𝕋 k l) (fun i j => neg (A i j))
-  have he : (RealImage.realImage (α := Mat 𝕋 k l) (fun i j => neg (A i j)) : Mat ℝ k l)
+      (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
+  have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
+  have he : (RealImage.realImage (α := Mat 𝕋 k l) (-A) : Mat ℝ k l)
       = -Scalar.toRealMat A := by
     funext i j
     exact toReal_neg (A i j)
@@ -52,16 +52,16 @@ theorem aux_hessRem_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) :
 
 /-- The same for a vector. -/
 theorem aux_hessRem_neg_vec {k : ℕ} (v : Vec 𝕋 k) :
-    -toRealVec v ∈ (Interval.point (α := Vec 𝕋 k) (fun i => neg (v i))).construct := by
-  have h := Interval.mem_point (α := Vec 𝕋 k) (fun i => neg (v i))
-  have he : (RealImage.realImage (α := Vec 𝕋 k) (fun i => neg (v i)) : Vec ℝ k) = -toRealVec v :=
+    -toRealVec v ∈ (Interval.point (α := Vec 𝕋 k) (-v)).construct := by
+  have h := Interval.mem_point (α := Vec 𝕋 k) (-v)
+  have he : (RealImage.realImage (α := Vec 𝕋 k) (-v) : Vec ℝ k) = -toRealVec v :=
     funext fun i => toReal_neg (v i)
   rwa [he] at h
 
 /-- `y - ys` lies in the box `Y - ys`. -/
 theorem aux_hessRem_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
     (hy : y ∈ Y.construct) :
-    y - toRealVec ys ∈ (Interval.plus Y (Interval.point fun i => neg (ys i))).construct := by
+    y - toRealVec ys ∈ (Interval.plus Y (Interval.point (-ys))).construct := by
   have hd := Interval.plus_outer Y _ (Set.add_mem_add hy (aux_hessRem_neg_vec ys))
   rwa [← sub_eq_add_neg] at hd
 
@@ -71,8 +71,8 @@ theorem aux_hessRem_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Inte
     (hy : y ∈ Y.construct) :
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
-        (fun i j => neg (A i j)))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
-          (fun i => neg (ys i))))).construct := by -- --- PROOF ---
+        (-A))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
+          (-ys)))).construct := by -- --- PROOF ---
   have hM := Interval.matPlus_outer IJ _ hJ (aux_hessRem_neg_mat A)
   rw [← sub_eq_add_neg] at hM
   exact Interval.mtimesIntervalMat_outer _ _

@@ -14,7 +14,7 @@ The converse of `subset_closedBall_of_absBound_le`, and the direction that
 makes a stated outer ball tell you something about the generators: if the
 zonotope sits inside the ball of radius `r`, then every coordinate's
 `absBound` is at most `r`, not just some aggregate of them. The witness point
-puts the sign of the centre on every generator at that coordinate, so it
+puts the sign of the center on every generator at that coordinate, so it
 attains `|x j| = Z.absBound j` exactly.
 -/
 
@@ -52,12 +52,12 @@ theorem aux_abs_sign (x : ℝ) : |if 0 ≤ x then (1 : ℝ) else -1| = 1 := by
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A zonotope inside the ball of radius `r` has every coordinate's `absBound`
-at most `r`: the point that puts the centre's own sign on every generator at
+at most `r`: the point that puts the center's own sign on every generator at
 that coordinate attains `|x j| = absBound j` exactly, and the ball bounds it. -/
 theorem Zonotope.absBound_le_of_subset_closedBall {Z : Zonotope (Vec ℝ n)} {r : ℝ}
     (h : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) (j : Fin n) :
     Z.absBound j ≤ r := by -- --- PROOF ---
-  -- `t` and `β` put the centre's own sign on every generator, `x` the point that names
+  -- `t` and `β` put the center's own sign on every generator, `x` the point that names
   set t : ℝ := if 0 ≤ Z.c j then (1 : ℝ) else -1 with ht
   set β : Fin Z.h → ℝ := fun l => t * (if 0 ≤ Z.G l j then (1 : ℝ) else -1) with hβdef
   have hβ : ∀ l, |β l| ≤ 1 := fun l => by

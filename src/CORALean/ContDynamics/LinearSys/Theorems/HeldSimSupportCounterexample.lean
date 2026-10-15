@@ -21,7 +21,7 @@ carried forward by `e^{AΔt (k-1-i)} T`, and `supportLower`'s fields as sums ove
 the steps, the direction of line 8 as `ℓ ∘ e^{AΔt j}`. Line 15 then sums
 `ρ(X₀, d_k)`, the constant input's `ℓ(P_u(t_k))` and line 14's
 `ρ(T U₀, d_j) = ρ(T U, d_j) - d_j(T ũ)`, where the two `ũ` terms cancel: the
-value does not depend on which point of `U` line 2 calls its centre. Reflecting
+value does not depend on which point of `U` line 2 calls its center. Reflecting
 the sum over the steps (`Finset.sum_range_reflect`) matches the two.
 
 ## References

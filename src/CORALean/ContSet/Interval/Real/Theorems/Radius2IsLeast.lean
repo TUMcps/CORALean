@@ -7,11 +7,11 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsNonempty
 @[expose] public section
 
 /-!
-# `Interval.radius₂` is the radius of the smallest ball about the centre
+# `Interval.radius₂` is the radius of the smallest ball about the center
 
-Every member is within `radius₂` of the centre in `‖·‖₂` (`norm₂_sub_center_le`), and on a nonempty
+Every member is within `radius₂` of the center in `‖·‖₂` (`norm₂_sub_center_le`), and on a nonempty
 box the corner `sup` is at exactly that distance (`sup_sub_center`), so no smaller ball about the
-centre holds the box. It is the Euclidean ball about `center`; a ball about another point may be
+center holds the box. It is the Euclidean ball about `center`; a ball about another point may be
 smaller still. Nonemptiness is needed, as a crossed box has no corner to reach it.
 -/
 

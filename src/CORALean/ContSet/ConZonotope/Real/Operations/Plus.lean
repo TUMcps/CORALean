@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 /-!
 # `ConZonotope.plus`
 
-CORA's `@conZonotope/plus` [1, Prop. 1]: centres add and generators concatenate, as for a
+CORA's `@conZonotope/plus` [1, Prop. 1]: centers add and generators concatenate, as for a
 zonotope, and each half of the concatenated coefficient vector answers only to
 its own constraints.
 

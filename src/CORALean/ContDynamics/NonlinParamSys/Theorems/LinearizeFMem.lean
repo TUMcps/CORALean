@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.ExistsCoeffOfMem
 
 For a system affine in `p` (`hAff`: the split `f = f_0 + ∑ pᵢ fᵢ` that `linearize` makes from
 `f(·, ·, 0)` and the unit vectors), `f(x*, u*, p)` lies in `zf` for every `p` in the box: `p` is
-the centre plus `βᵢ rᵢ` and `f` is affine in it. The set of values is the image of a box under an
+the center plus `βᵢ rᵢ` and `f` is affine in it. The set of values is the image of a box under an
 affine map, a zonotope, so `zf` is not only an enclosure of it; the statement is the inclusion.
 Without `hAff` it fails (`linearize_f_counterexample`).
 -/
@@ -40,7 +40,7 @@ theorem NonlinParamSys.linearize_f_mem (sys : NonlinParamSys n m q)
     sys.f xs us p ∈ (sys.linearize xs us I).zf.construct := by -- --- PROOF ---
   obtain ⟨β, hβ, hpi⟩ := I.exists_coeff_of_mem hp
   refine ⟨β, hβ, ?_⟩
-  -- each summand splits into the centre's and the generator's
+  -- each summand splits into the center's and the generator's
   have hsum : ∀ i, p i • (sys.f xs us (Pi.single i 1) - sys.f xs us 0)
       = I.center i • (sys.f xs us (Pi.single i 1) - sys.f xs us 0)
         + β i • (I.radius i • (sys.f xs us (Pi.single i 1) - sys.f xs us 0)) := fun i => by

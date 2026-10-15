@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.RepresentsaPointIff
 /-!
 # `Zonotope.representsa_origin_iff`
 
-The origin is the point whose centre is `0`: `{c} = {0}` iff `c = 0`.
+The origin is the point whose center is `0`: `{c} = {0}` iff `c = 0`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -31,7 +31,7 @@ theorem Zonotope.representsa_origin_iff (Z : Zonotope α) :
   constructor
   · intro h
     have hc : Z.c = 0 := by
-      have := Zonotope.centre_mem_construct Z
+      have := Zonotope.center_mem_construct Z
       rw [h] at this
       exact this
     refine ⟨hc, (Zonotope.representsa_point_iff Z).mp ?_⟩

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Topology.Instances.Matrix
 public import Mathlib.Topology.Algebra.Order.Group
@@ -15,7 +15,7 @@ public import Mathlib.Topology.Algebra.Module.Basic
 `[1, Remark 2]` says that for a degenerate `Z`, where `‖·‖_Z` is not defined everywhere,
 "`S_Z` is a norm, and can be used instead of `‖·‖_Z` to check whether a point lies in `Z`".
 `S_Z` (`[1, Def. 3]`) needs a halfspace representation with every `hᵢ ≠ 0`, and a
-degenerate `Z` centred at the origin has none: `0 ∈ Z` forces every `hᵢ > 0`, and then
+degenerate `Z` centered at the origin has none: `0 ∈ Z` forces every `hᵢ > 0`, and then
 `{H x < h}` is an open set around `0` inside `Z`. No norm can serve either, a norm's unit
 ball having an interior.
 
@@ -49,7 +49,7 @@ theorem Zonotope.not_exists_polyNorm_of_degenerate (Z : Zonotope (Vec ℝ n)) (h
   rintro ⟨s, H, h, hne, hrep⟩
   -- `0 ∈ Z` makes every right-hand side positive
   have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).construct := by
-    rw [hrep, ← hc]; exact Z.centre_mem_construct
+    rw [hrep, ← hc]; exact Z.center_mem_construct
   have hpos : ∀ i, 0 < h i := fun i => by
     have := HPolytope.mem_ineqs_iff.mp h0 i
     simp only [mulVec_zero, Pi.zero_apply] at this

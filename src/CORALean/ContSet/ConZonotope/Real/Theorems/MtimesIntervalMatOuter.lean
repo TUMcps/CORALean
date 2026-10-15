@@ -13,8 +13,8 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # Multiplying a constrained zonotope by an interval matrix over-approximates
 
-The zonotope argument unchanged — the centre acts exactly and the leftover
-`(A - centre) x` fits in the diagonal block because a coordinate never exceeds
+The zonotope argument unchanged — the center acts exactly and the leftover
+`(A - center) x` fits in the diagonal block because a coordinate never exceeds
 `absBound` — with one step added: the constraints were pulled back along the
 projection onto the original coefficients, so the concatenated witness satisfies
 them exactly when the original half did, which is `blockLeft_append`.
@@ -89,13 +89,13 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   · rw [ConZonotope.aux_sum_univ_mtimesIntervalMat]
     simp only [ConZonotope.mtimesIntervalMat, Fin.append_left, Fin.append_right]
     rw [Zonotope.sum_diagonal_mul', Zonotope.mul_coefficient (herrb i)]
-    -- centre acts exactly, and the leftover is `err`
-    have hcentre : ∑ l, (IM.center *ᵥ cZ.G l) i * β l
+    -- center acts exactly, and the leftover is `err`
+    have hcenter : ∑ l, (IM.center *ᵥ cZ.G l) i * β l
         = ∑ j, IM.center i j * (∑ l, cZ.G l j * β l) := by
       simp_rw [Matrix.mulVec, dotProduct, Finset.sum_mul, Finset.mul_sum]
       rw [Finset.sum_comm]
       simp_rw [mul_assoc]
-    rw [hcentre]
+    rw [hcenter]
     have hsplit : (A *ᵥ x) i = (∑ j, IM.center i j * x j) + err i := by
       simp only [herr, Matrix.mulVec, dotProduct]
       rw [← Finset.sum_add_distrib]

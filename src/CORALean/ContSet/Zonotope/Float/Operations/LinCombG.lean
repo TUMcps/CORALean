@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The whole generator matrix at one rounding: the two paired blocks and the
-generator spanning the half-difference of the centres. -/
+generator spanning the half-difference of the centers. -/
 def Zonotope.linCombG (add sub : 𝕋 → 𝕋 → 𝕋) (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
     Mat 𝕋 n (Z₁.h + Z₂.h + 1) :=
   fun i => Fin.append

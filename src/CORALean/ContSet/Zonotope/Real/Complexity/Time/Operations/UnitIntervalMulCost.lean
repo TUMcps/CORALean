@@ -8,8 +8,8 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.unitIntervalMulCost`
 
-Asserted, not proved: `Operations/UnitIntervalMul.lean` makes the old centre the
-first generator and the new centre zero; both are placed, not computed.
+Asserted, not proved: `Operations/UnitIntervalMul.lean` makes the old center the
+first generator and the new center zero; both are placed, not computed.
 -/
 
 -- Authors:       Claude Sonnet 5.5

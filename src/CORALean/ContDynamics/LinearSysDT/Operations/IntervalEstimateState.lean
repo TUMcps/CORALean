@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.IntervalEstimateStep
 # The reachability-based interval estimator's state after `k` steps
 
 [1, Alg. 1], lines 2-3, then lines 8-13 (`intervalEstimateStep`) at `u_k`, `y_k`. Line 2 starts
-the estimate at the centre `p₀` of `X₀ = ⟨p₀, H₀⟩` and line 3 the error set at `⟨0, H₀⟩`. Line 3
+the estimate at the center `p₀` of `X₀ = ⟨p₀, H₀⟩` and line 3 the error set at `⟨0, H₀⟩`. Line 3
 starts `S_w` and `S_v` at `∅`, which would make line 5's sum empty at every step; they start at
 `{0}`, the neutral element of `⊕` that line 5 needs.
 

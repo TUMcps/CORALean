@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.mtimesCost`
 
-Asserted, not proved: `Operations/Mtimes.lean` sends the centre and each of the
+Asserted, not proved: `Operations/Mtimes.lean` sends the center and each of the
 `h` generators through `M *ᵥ ·`, so it pays `h + 1` matrix-vector products at
 `m × n` and nothing else.
 
@@ -30,7 +30,7 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `Zonotope.mtimes` costs at `M : Mat ℝ m n` and `h` generators: one
-matrix-vector product for the centre and one per generator. -/
+matrix-vector product for the center and one per generator. -/
 def Zonotope.mtimesCost (m n h : ℕ) : Cost := (h + 1) • Cost.matVec m n
 
 end CORALean.Real

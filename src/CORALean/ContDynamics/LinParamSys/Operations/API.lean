@@ -53,7 +53,7 @@ holds at once: `InputSolution` for what the input adds, `TimeIntervalStep` for
 where the homogeneous flow goes. `InputTerm` and `InputTaylorSum` are the exact
 orders the first is built from. `ReachOrder`/`ReachUnion` are `Instances`', over windows,
 `ReachUnion` forming `B U ⊕ c` (`InputSet`) from CORA's `params.U` and `ReachStepkInput`
-splitting it at its centre: `ReachStepk` and `ParticularSolution` carry the first window's sets to
+splitting it at its center: `ReachStepk` and `ParticularSolution` carry the first window's sets to
 later ones by `ExpEnclosure`, `e^{At_k}` at every member at once; `ConstInputSolution` and
 `ConstPropagate` do the same for the split input set's constant half.
 

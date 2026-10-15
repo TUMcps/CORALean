@@ -10,7 +10,7 @@ public import CORALean.ContSet.Taylm.Float.Operations.SqrtBound
 # `Taylm.sqrt`
 
 The exact layer's `sqrt` with every number enclosed: the coefficients `Taylm.sqrtCoef` at the
-centre, the Lagrange bound `Taylm.sqrtBound` at the smaller of the centre and the bottom of the
+center, the Lagrange bound `Taylm.sqrtBound` at the smaller of the center and the bottom of the
 range, where `√⁽ᴺ⁺¹⁾` is largest. `q` is the precision of the square root.
 -/
 

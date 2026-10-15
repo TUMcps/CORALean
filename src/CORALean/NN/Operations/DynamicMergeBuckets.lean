@@ -6,11 +6,11 @@ public import CORALean.NN.Operations.InMergeBucket
 @[expose] public section
 
 /-!
-# [1, Eq. 6]: merge buckets at the neurons' own centres
+# [1, Eq. 6]: merge buckets at the neurons' own centers
 
-One candidate bucket at each neuron's centre `c = (l_k + u_k)/2` in turn, skipping the
+One candidate bucket at each neuron's center `c = (l_k + u_k)/2` in turn, skipping the
 neurons already merged so the buckets stay disjoint, and used only when it holds two or more:
-a singleton bucket saves nothing. The centre is halved exactly, a binary format only moving
+a singleton bucket saves nothing. The center is halved exactly, a binary format only moving
 the exponent; its sum rounds up, which only moves the bucket.
 
 ## References
@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Eq. 6]'s dynamic buckets, one at each neuron's centre in turn, kept disjoint by
+/-- [1, Eq. 6]'s dynamic buckets, one at each neuron's center in turn, kept disjoint by
 skipping the neurons already merged and used only when they hold two or more. -/
 def dynamicMergeBuckets (le : 𝕋 → 𝕋 → Bool) (I : Interval (Vec 𝕋 n)) (δ : 𝕋) : Fin n → Bool :=
   Fin.foldl n (fun merged j =>

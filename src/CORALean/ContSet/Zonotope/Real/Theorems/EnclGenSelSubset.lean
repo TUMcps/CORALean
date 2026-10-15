@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.EnclGenSel
 # [1, Alg. 1] never leaves the minuend
 
 `Z_{m,encl}` is built from the minuend's own generators at the minuend's own
-centre, so whatever the sort, the threshold and the containment oracle do, the
+center, so whatever the sort, the threshold and the containment oracle do, the
 result stays inside `Z_m` — the coefficients of the generators left out are
 zero. That is what makes [1, Prop. 4]'s split a split: `Z_{m,encl}` is a part
 of `Z_m` and not merely some zonotope near it.

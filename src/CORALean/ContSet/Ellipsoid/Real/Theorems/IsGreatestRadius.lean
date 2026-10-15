@@ -7,9 +7,9 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 @[expose] public section
 
 /-!
-# The first radius is the largest distance from the centre
+# The first radius is the largest distance from the center
 
-CORA's `radius(E)` (`i = 1`) is the radius of the smallest hyperball around the centre that
+CORA's `radius(E)` (`i = 1`) is the radius of the smallest hyperball around the center that
 holds the ellipsoid: `sqrt` of the largest eigenvalue `λ₀` of `Q = G Gᵀ` is the greatest
 distance `‖x - q‖₂` over the ellipsoid. Bound: for `v = G u`, `‖v‖² ≤ ‖Gᵀ v‖ ‖u‖` and
 `‖Gᵀ v‖² = vᵀ Q v ≤ λ₀ ‖v‖²` (Rayleigh, from the spectral theorem). Attained: at `q + G u*`,
@@ -84,7 +84,7 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
   refine ⟨?_, ?_⟩
   · -- attained at `q + G u*`
     by_cases hl : l0 ≤ 0
-    · -- no spread: the centre itself
+    · -- no spread: the center itself
       refine ⟨E.c, E.q_mem_construct, ?_⟩
       have : Real.sqrt l0 = 0 := Real.sqrt_eq_zero_of_nonpos hl
       simp [this, norm₂_zero]

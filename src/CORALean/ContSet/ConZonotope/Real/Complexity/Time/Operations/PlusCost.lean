@@ -8,12 +8,12 @@ public import CORALean.ContSet.Zonotope.Real.Complexity.Time.Operations.PlusCost
 /-!
 # `ConZonotope.plusCost`
 
-Asserted, not proved: `Operations/Plus.lean` adds the centres, as
+Asserted, not proved: `Operations/Plus.lean` adds the centers, as
 `Zonotope.plus` does, and builds the polytope from two `comap`s along the block
 embeddings `blockLeft` and `blockRight` and one `intersection`. A block
 embedding copies a row into a longer one, so `HPolytope.comapCost` at zero
 applies, and `HPolytope.intersectionCost` is zero too: the whole count is the
-centre's `n` additions, however many constraints the operands carry.
+center's `n` additions, however many constraints the operands carry.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -29,7 +29,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- What `ConZonotope.plus` costs at `Vec ℝ n`: the centre's `n` additions, the
+/-- What `ConZonotope.plus` costs at `Vec ℝ n`: the center's `n` additions, the
 two block `comap`s and the `intersection` being free. The same count as
 `Zonotope.plusCost`: constraints are carried along at no price. -/
 def ConZonotope.plusCost (n : ℕ) : Cost := Zonotope.plusCost n

@@ -42,7 +42,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnlargeOuter
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEnlarge
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalConstruct
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsFullDimAllMembers
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCentreMem
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCenterMem
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ContainsAllIff
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsBoxOfForall
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightOuter

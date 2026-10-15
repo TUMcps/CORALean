@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.Global.EuclideanHausdorffDist
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
@@ -137,7 +137,7 @@ theorem Zonotope.hausdorffDist₂_interval_le_max (Z : Zonotope (Vec ℝ n)) :
   refine hausdorffDist₂_le_of_mem_dist hr
     (fun x hx => ⟨x, Z.interval_contains hx, by rw [sub_self, norm₂_zero]; exact hr⟩) ?_
   intro x hx
-  -- a box point is within the columnwise magnitude sum of the centre
+  -- a box point is within the columnwise magnitude sum of the center
   have hbox : ∀ i, |x i - Z.c i| ≤ ∑ p, |Z.G p i| := by
     intro i
     have hb := hx i

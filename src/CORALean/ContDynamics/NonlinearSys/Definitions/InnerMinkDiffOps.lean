@@ -9,7 +9,7 @@ public import Mathlib.Data.Real.Basic
 # The subroutines of the inner Minkowski-difference algorithm
 
 What [1, Alg. 1] computes by formulas of other papers or by representation-specific
-routines, supplied rather than fixed: the Chebyshev centre `cen` and the enclosing box `box`
+routines, supplied rather than fixed: the Chebyshev center `cen` and the enclosing box `box`
 (Sec. II-A, by linear programs on polytopes), the Jacobian `jac` of (6), the curvature error
 `curv` of (17), `C = F(Δt) box ⊕ G(Δt) w` with the interval matrices `F` and `G` [1] cites, the
 abstraction error `err` of (13), `R̂_err(L̂)`, and the Lagrange remainder `lagr` of (9) on a

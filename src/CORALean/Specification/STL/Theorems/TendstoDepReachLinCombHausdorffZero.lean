@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
 public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 public import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.Global.EuclideanNorm
 public import CORALean.Specification.STL.Operations.DepReachConstsOf
@@ -50,7 +50,7 @@ variable {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- Adding the point `w` is shifting the centre by `w`. -/
+/-- Adding the point `w` is shifting the center by `w`. -/
 theorem aux_plus_ofPoint_eq_shift (Z : Zonotope (Vec ℝ n)) (w : Vec ℝ n) :
     Z.plus (Zonotope.ofPoint w) = Z.shift (-w) := by -- --- PROOF ---
   obtain ⟨h, c, G⟩ := Z
@@ -106,8 +106,8 @@ theorem STL.tendsto_depReach_linComb_hausdorff_zero (A : Mat ℝ n n) (B : Mat �
   have hnext : (STL.depReachAt A Δt cs X₀ (i + 1)).H
       = (Zonotope.mtimes (exp (Δt • A)) Hi).shift (-(MatExp.expIntegral A Δt).mulVec (B *ᵥ U.c)) :=
     aux_plus_ofPoint_eq_shift _ _
-  rw [hnext, convexHull_union_eq_setLinComb ⟨Hi.c, Zonotope.centre_mem_construct Hi⟩
-    ⟨_, Zonotope.centre_mem_construct _⟩ Hi.convex_construct (Zonotope.convex_construct _)]
+  rw [hnext, convexHull_union_eq_setLinComb ⟨Hi.c, Zonotope.center_mem_construct Hi⟩
+    ⟨_, Zonotope.center_mem_construct _⟩ Hi.convex_construct (Zonotope.convex_construct _)]
   refine (Zonotope.hausdorffDist₂_linComb_le A Δt Hi _).trans ?_
   -- the generators of `H(t_i)`
   have hcol : ∀ j : Fin Hi.h, ‖(exp (Δt • A) - 1) *ᵥ Hi.G j‖₂

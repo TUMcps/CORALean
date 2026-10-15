@@ -41,7 +41,7 @@ theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) :
         (⟨E₁.k, 0, E₁.G⟩ : Ellipsoid n).construct := by -- --- PROOF ---
   constructor
   · rintro ⟨x, hx⟩ _ ⟨u, hu, rfl⟩
-    -- `c ± G₂ u` both lie in the centred first ellipsoid, `c = x + q₂ - q₁`
+    -- `c ± G₂ u` both lie in the centered first ellipsoid, `c = x + q₂ - q₁`
     have hin : ∀ u' : Vec ℝ E₂.k, ‖u'‖₂ ≤ 1 →
         (x + E₂.c - E₁.c) + E₂.G *ᵥ u' ∈ (⟨E₁.k, 0, E₁.G⟩ : Ellipsoid n).construct := by
       intro u' hu'
@@ -49,7 +49,7 @@ theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) :
       exact ⟨w, hw, by rw [zero_add, ← sub_eq_iff_eq_add'.mpr heq]; abel⟩
     have hp := hin u hu
     have hm := hin (-u) (by rw [show -u = (-1 : ℝ) • u by simp, norm₂_smul]; simpa using hu)
-    -- reflect the second point through the centre
+    -- reflect the second point through the center
     obtain ⟨w, hw, hweq⟩ := hm
     have hm' : -(x + E₂.c - E₁.c) + E₂.G *ᵥ u ∈ (⟨E₁.k, 0, E₁.G⟩ : Ellipsoid n).construct :=
       ⟨-w, by rw [show -w = (-1 : ℝ) • w by simp, norm₂_smul]; simpa using hw, by

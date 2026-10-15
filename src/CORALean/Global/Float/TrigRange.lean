@@ -18,7 +18,7 @@ its value at a float `m` near the middle, `r ≥ |x - m|`, both functions being 
 derivative is certified of one sign the function is monotone there and the range is between its
 values at the ends, each rounded outward. Otherwise an extremum may lie inside, and the range is
 the midpoint form `f(m) ± r`, clamped to `[-1, 1]`: sound, and tight for a narrow range, as at a
-taylm centre or a rotation angle.
+taylm center or a rotation angle.
 -/
 
 -- Authors:       Claude Opus 5.5

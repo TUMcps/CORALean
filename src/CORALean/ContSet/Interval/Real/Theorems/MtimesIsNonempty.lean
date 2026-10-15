@@ -13,7 +13,7 @@ itself have crossed bounds and the result still has bounds in order, so there is
 no hypothesis to carry.
 
 That is what lets a computed image box be handed straight to a layer that
-commits to its centre — `Layer.linearWithError` asks exactly this of the error
+commits to its center — `Layer.linearWithError` asks exactly this of the error
 box a neuron merge builds as `W(·,B) · Y(B)`. The fact is about `mtimes` and
 mentions no network, so it lives here rather than beside that layer.
 -/

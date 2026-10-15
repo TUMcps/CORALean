@@ -14,11 +14,11 @@ that sub-interval of the old one reached. What such a sub-box names is [1, Thm. 
 subject; this is the representation of it, `getSubsetG` at `getSubsetE`.
 
 An exact change of variables and not an enclosure, above degree one as much as
-at it: the binomial expansion is a polynomial identity. Centre, factor count and
+at it: the binomial expansion is a polynomial identity. Center, factor count and
 independent block are untouched, so a caller's sub-box needs no transport.
 
 CORA substitutes a list of factors at once, expands each column only as far as
-its own degree, folds the constant columns into the centre, merges the duplicate
+its own degree, folds the constant columns into the center, merges the duplicate
 ones and drops the factors nothing reads. Here one factor is substituted —
 iterating gives the list — and the uniform padding is what keeps the generator
 index a product type; the pruning is `compact`'s job in this tree.

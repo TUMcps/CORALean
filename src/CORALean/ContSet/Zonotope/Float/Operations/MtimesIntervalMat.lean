@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.CentreMat
+public import CORALean.ContSet.Interval.Float.Operations.CenterMat
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 # `Zonotope.mtimesIntervalMat`, over a floating-point scalar
 
 CORA's `mtimes` at an interval matrix, `mid(M) Z ⊕ box(rad(M) |Z|)`, rounded.
-`Zonotope.mtimes` handles the centre matrix `Interval.centreMat`, paying its
+`Zonotope.mtimes` handles the center matrix `Interval.centerMat`, paying its
 rounding into the box as it does for a plain matrix. What any member of `M`
 does beyond it is a matrix known only to within `Interval.matResidual`: on the
 nominal part `c + G β` that is at most `|M - mid(M)| (|c| + Σ|G|)` per
@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {m n : ℕ}
 and a box for what it does to the error box. -/
 def Zonotope.mtimesIntervalMat (IM : Interval (Mat 𝕋 m n)) (Z : Zonotope (Vec 𝕋 n)) :
     Zonotope (Vec 𝕋 m) :=
-  let C := Interval.centreMat IM                                    -- mid(M), stored
+  let C := Interval.centerMat IM                                    -- mid(M), stored
   let Rs := Interval.matResidual IM.inf IM.sup C                    -- M - mid(M), a box
   let MZ := Zonotope.mtimes C Z                                     -- mid(M) Z
   let b : Vec 𝕋 m := fun i => sumUp fun j =>                        -- |M - mid(M)| (|c| + Σ|G|)

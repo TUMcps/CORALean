@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 /-!
 # `PolyZonotope.project` over a floating-point scalar
 
-CORA's `@polyZonotope/project` and [1, Prop. 2.11], at a family of coordinates: the centre and
+CORA's `@polyZonotope/project` and [1, Prop. 2.11], at a family of coordinates: the center and
 the rows of both generator blocks at the chosen coordinates, the exponent matrix and the factor
 counts untouched, and the error box projected with `Interval.project`. Selecting coordinates
 does no arithmetic, so nothing rounds. `dims` may repeat or reorder coordinates; one coordinate

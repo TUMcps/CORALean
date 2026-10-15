@@ -74,7 +74,7 @@ theorem STL.depReachInterval_dependency_counterexample :
     if k < 0 ∨ (2 * 0 + 1 ≤ k ∧ k < 2 * 0 + 1 + 1 * (0 + 1)) then (1 : ℝ) else 0)
   have hB := STL.depReachInterval_sum_eval (fun k =>
     if k < 0 ∨ (2 * 0 + 1 ≤ k ∧ k < 2 * 0 + 1 + 1 * (0 + 1)) then (0 : ℝ) else β k)
-  -- the centre of `R(τ₀)` is `0`
+  -- the center of `R(τ₀)` is `0`
   dsimp only at hA hB heq
   rw [hA, hB] at heq
   have hRc : (STL.depReach (0 : Mat ℝ 1 1) (1 : Mat ℝ 1 1) (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1))

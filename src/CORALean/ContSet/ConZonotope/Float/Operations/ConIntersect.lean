@@ -11,9 +11,9 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
 
 CORA's `@conZonotope/conIntersect` [1, Prop. 1] on the stored floats: the points of `cZ₁`
 whose image under `M` lies in `cZ₂`. As over ℝ the coefficient vectors are stacked, each set
-keeping its own constraints, the first set's centre and generators kept and the second block of
+keeping its own constraints, the first set's center and generators kept and the second block of
 generators zero; the agreement rows `M G₁ β₁ - G₂ β₂ = c₂ - M c₁` are built from the float
-image `Zonotope.mtimes M` of the first set's zonotope part (centre and generators rounded down,
+image `Zonotope.mtimes M` of the first set's zonotope part (center and generators rounded down,
 the rest of `M (c₁ + G₁ β₁ + e₁)` in its error box), and, as in the float `intersection`, their
 right-hand side is an interval holding `c₂ - M c₁` plus every difference of the two error boxes,
 rounded outward. The rows stay equalities, at its upper end, where `ConZonotope.anchorSlab`
@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 def ConZonotope.conIntersect (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n)) (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 m))
     (M : Mat 𝕋 m n) :
     ConZonotope 𝕋 (Vec 𝕋 n) :=
-  -- M (c₁ + G₁ β₁ + e₁): centre and generators rounded down, the rest in a box
+  -- M (c₁ + G₁ β₁ + e₁): center and generators rounded down, the rest in a box
   let W := Zonotope.mtimes M ⟨cZ₁.h, cZ₁.c, cZ₁.G, cZ₁.I_error⟩
   -- Z = [c₁, G₁, zeros(size(G₂))]
   let G : Fin (cZ₁.h + cZ₂.h) → Vec 𝕋 n := Fin.append cZ₁.G fun _ _ => zero

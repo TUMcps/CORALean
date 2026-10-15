@@ -11,7 +11,7 @@ public import CORALean.NN.Layers.Theorems.ToRealPolyDerivCenter
 /-!
 # The stored derivative bound a bracket for σ' buys
 
-The difference splits at the centre: the bracket's spread, then the radius, each rounded up.
+The difference splits at the center: the bracket's spread, then the radius, each rounded up.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -43,7 +43,7 @@ theorem abs_sub_evalPolyDeriv_le {c : Fin (n + 1) → 𝕋} {σ' : ℝ → ℝ} 
     (subUp (polyDerivCenter c) loD)) (polyDerivRadiusUp c l u)
   rw [toReal_polyDerivCenter] at h1
   rw [polyDerivBoundUp]
-  -- the difference splits at the centre: the bracket's spread, then the radius
+  -- the difference splits at the center: the bracket's spread, then the radius
   calc |σ' x - Real.evalPolyDeriv (fun k => toReal (c k)) x|
       ≤ |σ' x - Real.polyDerivCenter (fun k => toReal (c k))|
         + |Real.polyDerivCenter (fun k => toReal (c k))

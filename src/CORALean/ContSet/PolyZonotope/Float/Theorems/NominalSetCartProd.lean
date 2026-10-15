@@ -73,7 +73,7 @@ theorem PolyZonotope.aux_nominal_cartProd (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
           (InflatedContSet.nominal pZ₂)) := by -- --- PROOF ---
   show (⟨_, _, _, _, _, _, _⟩ : Real.PolyZonotope (Vec ℝ (n₁ + n₂))) = ⟨_, _, _, _, _, _, _⟩
   congr 1
-  · -- the centres
+  · -- the centers
     rw [appendLinear_apply]
     exact toRealVec_append pZ₁.c pZ₂.c
   · -- the dependent generators, column by column

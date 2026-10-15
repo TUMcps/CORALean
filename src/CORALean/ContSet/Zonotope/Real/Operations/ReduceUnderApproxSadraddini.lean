@@ -13,7 +13,7 @@ CORA's `reduceUnderApprox(Z, 'sadraddini', order)`: a zonotope of lower order in
 trusted base: `opt` proposes generators `X_red` with a `Γ₀`, and what is kept is checked,
 `X_red = X Γ₀` with `‖Γ₀‖∞ ≤ 1`, which is (43)'s containment row and `[1, Thm. 3]`'s
 condition for `⟨x̄, X_red⟩ ⊆ ⟨x̄, X⟩`. A missing or failing proposal costs the reduction,
-not soundness: the centre alone is returned, which `Z` always contains.
+not soundness: the center alone is returned, which `Z` always contains.
 
 ## References
 
@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The solver's reduced generators if they pass (43)'s containment row, else the centre. -/
+/-- The solver's reduced generators if they pass (43)'s containment row, else the center. -/
 noncomputable def Zonotope.reduceUnderApproxSadraddini
     (opt : (Z : Zonotope (Vec ℝ n)) → Option (Σ h : ℕ, (Fin h → Vec ℝ n) × Mat ℝ Z.h h))
     (Z : Zonotope (Vec ℝ n)) : Zonotope (Vec ℝ n) :=

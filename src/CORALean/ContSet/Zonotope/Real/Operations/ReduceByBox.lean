@@ -8,10 +8,10 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBy
 # `Zonotope.reduceByBox`
 
 The error `reduceBy` pays, as a set of its own: the diagonal block it puts in
-place of the dropped generators, centred at the origin. `reduceBy` is the kept
+place of the dropped generators, centered at the origin. `reduceBy` is the kept
 generators plus this box, so this is exactly the `E` in `Ẑ ⊆ Z + E`.
 
-Centred at `0` and not at `Z.c`, which is the whole reason the reverse inclusion
+Centered at `0` and not at `Z.c`, which is the whole reason the reverse inclusion
 holds: the dropped generators contribute `0` to `Z` when their coefficients are
 set to `0`, so the reduced set never reaches further than `Z` plus this box.
 
@@ -38,7 +38,7 @@ variable {n q r : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The box `reduceBy` absorbs the dropped generators into, on its own: one
-entry per coordinate, the absorbed rows' `1`-norm, centred at the origin. -/
+entry per coordinate, the absorbed rows' `1`-norm, centered at the origin. -/
 def Zonotope.reduceByBox (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : Zonotope (Vec ℝ n) where
   h := n

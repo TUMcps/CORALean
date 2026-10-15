@@ -16,7 +16,7 @@ public import Mathlib.Algebra.BigOperators.Fin
 `Ax + Bu + K ∈ Z_k ⊖ Z(Z_k, EW)`; the second is only a subset. `Z` is the hexagon with
 generators `(1, 0)`, `(0, 1)`, `(1, 1)` and `EW` the triangle `(0, 0)`, `(1, 0)`, `(1, 1)`.
 `Z ⊖ EW` is `{z₀, z₁, z₀ - z₁ ∈ [-2, 1]}`, and for every aligned zonotope `Z̄ ⊇ EW`
-(scalings in `[0, 1]`, any centre, so whatever (min-out)'s weights select) one of
+(scalings in `[0, 1]`, any center, so whatever (min-out)'s weights select) one of
 `(-2, -1)`, `(1, 1)`, `(-1, -2)`, `(-2, 0)` is in `Z ⊖ EW` and not in `Z ⊖ Z̄`: the
 triangle's three widths cannot all be matched by a centrally symmetric aligned
 zonotope. At `A = B = E = I`, `K = 0`, `x = 0` and `U = Z` that is (16) with `⊊`.
@@ -162,7 +162,7 @@ theorem Zonotope.minkowskiDiff_not_subset_minkDiffAligned :
     simp only [Pi.add_apply, Matrix.cons_val_zero, Matrix.cons_val_one] at this
     rcases hy with h | h | h | h | h <;> linarith
   have h1 : ∀ x : ℝ, |x| ≤ 1 ↔ -1 ≤ x ∧ x ≤ 1 := fun x => abs_le
-  -- which corner depends on which of the five bounds the centre leaves slack
+  -- which corner depends on which of the five bounds the center leaves slack
   by_cases hA : c 0 - a 0 - a 2 < 0
   · refine ⟨![-2, -1], hin _ ?_, hout _ ![-1, 0, -1] ?_ ?_⟩
     · intro v hv; simp at hv; rcases hv with rfl | rfl | rfl <;> norm_num [abs_le]

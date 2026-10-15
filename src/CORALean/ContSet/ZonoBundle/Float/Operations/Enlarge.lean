@@ -9,9 +9,9 @@ public import CORALean.ContSet.ContSet.Operations.EnlargeScalar
 /-!
 # `ZonoBundle.enlarge`, over a floating-point scalar
 
-CORA's `@zonoBundle/enlarge.m`: each zonotope enlarged about its own centre, by the scalar-point
+CORA's `@zonoBundle/enlarge.m`: each zonotope enlarged about its own center, by the scalar-point
 `ContSet.enlargeScalar` the float zonotope instantiates. The result is the intersection of the
-enlarged members, not the enlargement of the intersection (the centres differ).
+enlarged members, not the enlargement of the intersection (the centers differ).
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -16,8 +16,8 @@ public import Mathlib.Tactic.Ring
 
 [1, Eq. 11]: replacing the generators `g₁, …, g_M` by the `2M` generators `½g₁, …, ½g_M,
 −½g₁, …, −½g_M` leaves the zonotope unchanged "up to a shift": with the shift moved to the
-centre `s + ½ ∑ gᵢ`, `Z(s; g)` is `Z(s + ½ ∑ gᵢ; ½g, −½g)`. Both are the zonotope of that
-centre and generators `gᵢ/2` ([1, Lemma 3.1] and `generatorHull_eq_construct`).
+center `s + ½ ∑ gᵢ`, `Z(s; g)` is `Z(s + ½ ∑ gᵢ; ½g, −½g)`. Both are the zonotope of that
+center and generators `gᵢ/2` ([1, Lemma 3.1] and `generatorHull_eq_construct`).
 
 ## References
 

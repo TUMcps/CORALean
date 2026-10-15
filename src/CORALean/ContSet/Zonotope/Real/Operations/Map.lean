@@ -8,7 +8,7 @@ public import Mathlib.Algebra.Module.LinearMap.Defs
 /-!
 # `Zonotope.map`
 
-A linear map applies to centre and generators alike, which is why a zonotope is
+A linear map applies to center and generators alike, which is why a zonotope is
 closed under one [1, Sec. 2] and the generator count is untouched.
 
 Every multiplication a zonotope carries is this at a particular map — `mtimes`

@@ -44,7 +44,7 @@ variable {𝕋 : Type} {n : ℕ}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- A star set stored in `𝕋`: `m` factors, centre `c`, generators `G`, constraint rows, the box
+/-- A star set stored in `𝕋`: `m` factors, center `c`, generators `G`, constraint rows, the box
 `[l, u]` of the factors, and the box of what rounding has cost. -/
 structure StarSet (𝕋 : Type) (n : ℕ) where
   m : ℕ

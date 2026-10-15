@@ -42,7 +42,7 @@ variable {n : ℕ}
 noncomputable def Taylm.invTight (T : Taylm n) : Taylm n :=
   let c := T.constCoef
   let N := T.maxOrder
-  -- the distance of the hull from zero, and the reach of the range from the centre
+  -- the distance of the hull from zero, and the reach of the range from the center
   let m := max (min c T.bounds.inf) (-max c T.bounds.sup)
   let r := T.reach c
   -- (33): `L_q`, the Lagrange remainder, in magnitude

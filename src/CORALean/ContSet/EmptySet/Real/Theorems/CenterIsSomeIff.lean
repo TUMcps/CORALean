@@ -1,0 +1,38 @@
+module
+
+public import CORALean.ContSet.EmptySet.Real.Operations.Center
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
+
+/-!
+# `EmptySet.center` is a point exactly when there is one
+
+`∅` has a center iff it has a point, and it has none.
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+open ContSet in
+theorem EmptySet.center_isSome_iff (E : EmptySet n) :
+    E.center.isSome ↔ (construct E).Nonempty := by
+  change (none : Option (Vec ℝ n)).isSome ↔ (∅ : Set (Vec ℝ n)).Nonempty
+  simp
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

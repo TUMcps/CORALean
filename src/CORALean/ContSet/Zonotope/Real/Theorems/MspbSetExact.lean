@@ -12,9 +12,9 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # A parallelotope plus a box is a zonotope with `2n` generators
 
-[1, Prop. 4.2, Eqs. 17-20]: `A [r] ⊕ [v] = c ⊕ R B²ⁿ` with centre `c = A mid([r]) + mid([v])` and
+[1, Prop. 4.2, Eqs. 17-20]: `A [r] ⊕ [v] = c ⊕ R B²ⁿ` with center `c = A mid([r]) + mid([v])` and
 generators `R = [A dr([r]) | dr([v])]`, `dr(·) = diag(rad(·))`. The zonotope is
-`(A □[r]) ⊕ □[v]` built from `Interval.zonotope`, whose centre and generators are `mid` and
+`(A □[r]) ⊕ □[v]` built from `Interval.zonotope`, whose center and generators are `mid` and
 `diag(rad)`; exact for boxes with `inf ≤ sup`.
 
 ## References

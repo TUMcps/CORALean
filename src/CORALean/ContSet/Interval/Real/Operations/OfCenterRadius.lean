@@ -7,7 +7,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 /-!
 # `Interval.ofCenterRadius`
 
-CORA's constructor `intervalMatrix(C, Δ)` from a centre and a half-width: the box `[C - Δ, C + Δ]`.
+CORA's constructor `intervalMatrix(C, Δ)` from a center and a half-width: the box `[C - Δ, C + Δ]`.
 `Interval (Mat ℝ m n)` is already the interval matrix, so this is the same representation under
 another description, and `Theorems/MemOfCenterRadius` reads it back.
 -/

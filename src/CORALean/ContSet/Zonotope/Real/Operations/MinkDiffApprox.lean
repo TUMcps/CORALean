@@ -48,7 +48,7 @@ variable {n N : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1]'s `'approx'` at the minuend's halfspace normals `C` (the rows of `Horig`): `G` scaled by
-`α = pinv(|C G|) Δd`, centred at `c⁽ᵐ⁾ - c⁽ˢ⁾`. -/
+`α = pinv(|C G|) Δd`, centered at `c⁽ᵐ⁾ - c⁽ˢ⁾`. -/
 noncomputable def Zonotope.minkDiffApprox (Z₁ Z₂ : Zonotope (Vec ℝ n)) (C : Mat ℝ N n) :
     Zonotope (Vec ℝ n) :=
   -- `polytope.m`: the first half of `KorigTwice`, `C c + ∑ |C G|`

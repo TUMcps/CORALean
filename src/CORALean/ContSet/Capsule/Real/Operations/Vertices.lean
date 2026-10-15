@@ -12,7 +12,7 @@ CORA's `@capsule/vertices_` for a planar capsule. A capsule has no vertices, so 
 sampled points of its boundary: 500 points on each half circle, equally spaced in the angle, the
 first half circle around `c + g` over `[θ - π/2, θ + π/2]` and the second around `c - g` over
 `[θ + π/2, θ + 3π/2]`, with `θ` the angle of `g` (`0` for `g = 0`), and the first point repeated
-at the end to close the polygon; a point capsule returns its centre. The point test
+at the end to close the polygon; a point capsule returns its center. The point test
 `representsa_(C,'point',1e-8)` is at tolerance `0` here (`Capsule.representsa_point`). The points
 are on the boundary, not vertices: `Capsule.vertices_mem_frontier`.
 -/
@@ -32,7 +32,7 @@ open Classical
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `capsule/vertices_` (planar): the sampled boundary points, `1001` of them, or the centre of a
+/-- `capsule/vertices_` (planar): the sampled boundary points, `1001` of them, or the center of a
 point capsule. -/
 noncomputable def Capsule.vertices (C : Capsule 2) : List (Vec ℝ 2) :=
   if C.representsa_point then [C.c] else

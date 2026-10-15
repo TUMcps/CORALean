@@ -40,7 +40,7 @@ theorem Zonotope.zero_mem_mtimesIntervalMat_error {IM : Interval (Mat 𝕋 m n)}
     {Z : Zonotope (Vec 𝕋 n)}
     {A : Mat ℝ m n} (hA : A ∈ IM.construct) (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) :
     (0 : Vec ℝ m) ∈ (Zonotope.mtimesIntervalMat IM Z).I_error.construct := by -- --- PROOF ---
-  set C := Interval.centreMat IM
+  set C := Interval.centerMat IM
   set Rs := Interval.matResidual IM.inf IM.sup C
   have hR : (fun i j => A i j - toReal (C i j)) ∈ Rs.construct :=
     Interval.sub_mem_matResidual fun i j => hA (i, j)

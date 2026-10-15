@@ -7,7 +7,7 @@ public import CORALean.ContSet.Capsule.Real.Capsule
 /-!
 # `Capsule.reindex`
 
-The coordinates of a capsule read in another order: centre and direction composed with the
+The coordinates of a capsule read in another order: center and direction composed with the
 relabelling `e`, the radius unchanged. This is CORA's `@capsule/lift_` at the one case it
 defines, `length(proj) == N`, where it calls `project` with a permutation; for any other `proj`
 CORA throws `notDefined`, new dimensions being unbounded and a capsule always bounded.

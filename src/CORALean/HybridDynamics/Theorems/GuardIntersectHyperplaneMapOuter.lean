@@ -27,7 +27,7 @@ whenever it returns one (`some`: the intervals of `Λ` it divides by exclude `0`
 The chain is [1]'s: `x(t) = x₀ + (Ax₀ + b)t + e` with `e` in the abstraction error `E`
 (`GuardMap.abstractionError_outer`, [1, Eq. 13]); a state of that form on the hyperplane is
 `y_h(x₀) + (−nᵀe/Λ(x₀))(Ax₀ + b) + e` ([1, Eq. 15]); `y_h(x₀)` is in `res1` by the exact
-expansion `GuardMap.hitPoint_add_eq` around the centre `ξ` of the reduced `R₀`, whose
+expansion `GuardMap.hitPoint_add_eq` around the center `ξ` of the reduced `R₀`, whose
 remainder `½φ(νᵀQ⁽ⁱ⁾(ξ)ν)ᵢ` is a point of `R_quad` by [1, Thm. 1] with the factors of `ξ` in the
 matrix zonotopes of [1, Prop. 3] (`GuardMap.hitHessianNum_eq_hitHessianMatZono`, at the
 one-factor `ψ`) and `φ ∈ [φ̲, φ̄]` (`GuardMap.hitFactor_mem_Icc`); the rest is in `res2`; and a
@@ -141,7 +141,7 @@ theorem aux_hpMap_smul_mem_mtimes {a b s : ℝ} (hs : a ≤ s ∧ s ≤ b) {Z : 
   rw [Matrix.smul_mulVec, Matrix.one_mulVec] at h
   exact h
 
-/-- Girard's reduction keeps the centre. -/
+/-- Girard's reduction keeps the center. -/
 theorem aux_hpMap_reduceGirard_c (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
     (Z.reduceGirard o).c = Z.c := by
   unfold Zonotope.reduceGirard
@@ -173,10 +173,10 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
     let φhi := 1 / min (Λint.inf ^ 2) (Λint.sup ^ 2)
     let Q := GuardMap.hitHessianMatZono A b nv d R0red ψc ψg
     let Rquad := Zonotope.quadMapMatZono (fun i => (Q i).c)
-      (fun (j : Fin (1 + R0red.h + R0red.h)) i => (Q i).G j) R0red.recentre
+      (fun (j : Fin (1 + R0red.h + R0red.h)) i => (Q i).G j) R0red.recenter
     (0 < Λint.inf ∨ Λint.sup < 0) →
     GuardMap.hitPoint A b nv d x₀ ∈ (((Zonotope.ofPoint (GuardMap.hitPoint A b nv d R0red.c)).plus
-      (Zonotope.mtimes (GuardMap.hitJacobian A b nv d R0red.c) R₀.recentre)).plus
+      (Zonotope.mtimes (GuardMap.hitJacobian A b nv d R0red.c) R₀.recenter)).plus
       (Zonotope.mtimesIntervalMat ⟨Matrix.of fun j k =>
           Interval.mulLo ((1 : Mat ℝ n n) j k) ((1 : Mat ℝ n n) j k) (φlo / 2) (φhi / 2),
         Matrix.of fun j k =>
@@ -184,7 +184,7 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
         Rquad)).construct := by -- --- PROOF ---
   intro Υ flowRed Λint dint τlo τhi ψc ψg φlo φhi Q Rquad hΛ
   set ξ := R0red.c with hξdef
-  have hξ : ξ ∈ R0red.construct := Zonotope.centre_mem_construct R0red
+  have hξ : ξ ∈ R0red.construct := Zonotope.center_mem_construct R0red
   have hx₀' : x₀ ∈ R0red.construct := hsub x₀ hx₀
   -- `Λ` on the reduced set, within `Λ_int`, so nonzero, and `1/Λ²` within `[φ̲, φ̄]`
   have hΛr : ∀ x ∈ R0red.construct,
@@ -242,7 +242,7 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
       · rw [hfac, Fin.append_left, Fin.append_left, Fin.fin_one_eq_zero j]; simpa using hκ
       · rw [hfac, Fin.append_left, Fin.append_right]; simp
     · rw [hfac, Fin.append_right]; simp
-  have hνmem : ν ∈ R0red.recentre.construct := Zonotope.sub_centre_mem_recentre hx₀'
+  have hνmem : ν ∈ R0red.recenter.construct := Zonotope.sub_center_mem_recenter hx₀'
   have hqmem : (fun i => ν ⬝ᵥ (GuardMap.hitHessianNum A b nv d ξ i *ᵥ ν)) ∈ Rquad.construct :=
     Zonotope.quadMapMatZono_outer _ _ _ ⟨ν, hνmem, fac, hfac1, fun i => by
       dsimp only
@@ -252,7 +252,7 @@ theorem aux_hpMap_res1 (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (R₀ R0re
   refine Set.add_mem_add (Set.add_mem_add (Zonotope.mem_ofPoint _) ?_) ?_
   · rw [← Zonotope.mtimes_exact]
     refine ⟨ν, ?_, rfl⟩
-    have h := Zonotope.sub_centre_mem_recentre hx₀
+    have h := Zonotope.sub_center_mem_recenter hx₀
     rwa [← hcen] at h
   · rw [smul_smul]
     refine aux_hpMap_smul_mem_mtimes ⟨?_, ?_⟩ hqmem

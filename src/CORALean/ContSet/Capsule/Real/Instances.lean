@@ -80,7 +80,7 @@ noncomputable instance : Mtimes (Mat ℝ) (fun n => Capsule n) where
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Capsule.mtimes_outer M C
 
-/-- CORA's `convHull_`, a ball around the segment between the two centres. -/
+/-- CORA's `convHull_`, a ball around the segment between the two centers. -/
 noncomputable instance : LinComb (Capsule n) (Vec ℝ n) where
   linComb := Capsule.convHull
   linComb_outer := Capsule.convHull_outer

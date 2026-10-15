@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 /-!
 # `ConZonotope.quadMapGDown`
 
-The generators of [1, Lemma 1] on the stored centre and generators, rounded down: the linear
+The generators of [1, Lemma 1] on the stored center and generators, rounded down: the linear
 block `cᵀQ gⱼ + gⱼᵀQ c`, the squares `½ gⱼᵀQ gⱼ` (halving is exact) and one generator per pair
 `j < k`, `gⱼᵀQ gₖ + gₖᵀQ gⱼ`, zero elsewhere. The blocks are the exact layer's, in its order.
 

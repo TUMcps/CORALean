@@ -52,7 +52,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ProjectHighDim
 public import CORALean.ContSet.Zonotope.Real.Operations.QuadTaylor
 public import CORALean.ContSet.Zonotope.Real.Operations.RadiusReach
 public import CORALean.ContSet.Zonotope.Real.Operations.RatioExceeds
-public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Real.Operations.Recenter
 public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
@@ -220,7 +220,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Vertices
 Only `reduce` bounds the generator count; the others grow it freely. `bilin` and `mtimesMatZonotope`
 are a matrix zonotope acting on a set, at any bilinear map and at `Matrix.mulVecBilin` respectively;
 `matMul` is the same at matrix multiplication, `matPow` iterates it and `quadTaylor` sums into
-Prop. 3's Taylor term; `ofPoint`/`recentre` are a point and the origin-holding remainder.
+Prop. 3's Taylor term; `ofPoint`/`recenter` are a point and the origin-holding remainder.
 `minkDiffAligned` is CORA's exact aligned-generator case of `minkDiff`, the only one not needing an
 enclosure, and `minkDiffRep` is the general one, at a generator representation the caller offers and
 this checks. `minkDiffOrEmpty` is that one again with the candidate chosen here rather than by the
@@ -230,12 +230,12 @@ can be, the difference of two zonotopes not being one itself.
 
 `girardSplit` is the ranking `reduceGirard` reduces by, named on its own because `reduceBox` reads
 the same partition the other way round. `reduceByBox` computes nothing new — the diagonal block
-`reduceBy` already builds, centred at the origin — and `reduceBox` is that at the partition
+`reduceBy` already builds, centered at the origin — and `reduceBox` is that at the partition
 `reduce` actually picks, the origin where the order is already met. Together they name the error a
 reduction pays, which is what an inner approximation subtracts back off.
 
 `reduceByBasis` boxes along a basis, not the axes: `methCFilter`, `methCVolume` and `methCBasis`
 pick `methC`'s, `pcaCovariance` and `pcaBasis` pick `pca`'s. `split` halves one generator into two
 zonotopes that cover the original; `splitRank` picks which one. `supportBound` answers a direction
-with no solver, the value attained; `shift` translates the centre alone — Prop. 6's `Z − vᵢ`.
+with no solver, the value attained; `shift` translates the center alone — Prop. 6's `Z − vᵢ`.
 -/

@@ -13,7 +13,7 @@ public import Mathlib.Data.Fintype.BigOperators
 /-!
 # `tensorMultiplication` encloses the tensor images
 
-Outer: for a zonotope `Z` centred at the origin and a tensor `M`,
+Outer: for a zonotope `Z` centered at the origin and a tensor `M`,
 `{ Mᵢⱼₖₗ xⱼ xₖ xₗ | x ∈ Z } ⊆ Z.tensorMultiplication M L`, when the lists `L` are what CORA's
 reachability code makes them: `perm` runs over every ordered triple of generator indices exactly
 once (permutations with replacement), and two permutations sent to one column by `map` are

@@ -53,7 +53,7 @@ theorem NonlinDASys.newtonTestFloat_sound (g : Vec ℝ k → Vec ℝ k)
   have hr0 : 0 ≤ toReal r := by
     have := toReal_le_of_le hr; rwa [toReal_zero] at this
   set R : Mat 𝕋 k k :=
-    (Interval.point (Zonotope.basisInverse (J (Interval.point c)).centreMat)).inf
+    (Interval.point (Zonotope.basisInverse (J (Interval.point c)).centerMat)).inf
   set B : Interval (Vec 𝕋 k) := ⟨fun i => subDown (c i) r, fun i => addUp (c i) r⟩ with hB
   set E : Interval (Mat 𝕋 k k) := Interval.matMul (Interval.point R) (J B)
   set I : Mat 𝕋 k k := fun i j => if i = j then one else zero with hI
@@ -94,7 +94,7 @@ theorem NonlinDASys.newtonTestFloat_sound (g : Vec ℝ k → Vec ℝ k)
       rw [Matrix.sub_apply, abs_sub_comm]
     rw [hsub, Interval.magnitudeMat, toReal_maximum, toReal_absolute, toReal_absolute]
     exact abs_le_max_abs_abs hij.1 hij.2
-  -- the residual at the centre
+  -- the residual at the center
   have hgc : ∀ i, |(toRealMat R *ᵥ g (toRealVec c)) i| ≤
       toReal ((Interval.mtimes R (G (Interval.point c))).magnitude i) := fun i =>
     Interval.abs_le_magnitude (Interval.mtimes_outer R _

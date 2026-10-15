@@ -14,7 +14,7 @@ A run of `priv_observe_ESO_B` on `x_{k+1} = x_k + w_k`, `y_k = x_k + v_k`, with
 so the initial update does not fire and the first estimate is `R0` with `sigma_sq = 0.3`. The
 disturbance `w = -1/10` gives `x₁ = -1`, measured as `y₂ = 6/5` (`v = 11/5`). The step predicts
 `p = 1/6`, `Q_next = 6/5`, fires (`0.3 + (6/5)² > 1`), takes `λ = 3/5` (`g = 2/15`,
-`√(g/ω) = 12/25`) and returns the centre `1/5`, the shape `2/5` and `sigma_sq = 16/25`, which
+`√(g/ω) = 12/25`) and returns the center `1/5`, the shape `2/5` and `sigma_sq = 16/25`, which
 misses `x₁`: `(x₁ - c)² / Q = 18/5 > 1`, and also as the level-`sigma_sq` set,
 `(x₁ - c)² / (sigma_sq Q) = 45/8 > 1`. The cause is the update's shape, `(1 - λ)²` times the
 one the fusion needs (`Ellipsoid.intersectStripLiu1D_counterexample`): at `(1 - λ)⁻²` times it,

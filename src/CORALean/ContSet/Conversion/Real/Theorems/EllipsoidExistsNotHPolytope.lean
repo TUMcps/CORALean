@@ -38,7 +38,7 @@ theorem Ellipsoid.exists_not_hPolytope :
   -- the halfspace description is bounded, so a constrained zonotope
   obtain ⟨cZ, hcZ⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mpr
     ⟨P, hP, E.isCompact_construct.isBounded⟩
-  -- the centre is a point of it, so its coefficient domain is nonempty
+  -- the center is a point of it, so its coefficient domain is nonempty
   have hc : E.c ∈ E.construct := ⟨0, by rw [norm₂_zero]; exact zero_le_one, by simp⟩
   obtain ⟨β, hβ, hβP, -⟩ := hcZ ▸ hc
   exact hE ⟨cZ.vPolytope ⟨β, ConZonotope.mem_domain_iff.mpr ⟨hβ, hβP⟩⟩,

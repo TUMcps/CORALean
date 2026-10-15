@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.minkDiffStretchCost`
 
-Asserted, not proved: `Operations/MinkDiffStretch.lean` subtracts the centres
+Asserted, not proved: `Operations/MinkDiffStretch.lean` subtracts the centers
 (`n`) and scales each of the `h` generators of the minuend by its `μ i`
 (`n * h`).
 -/

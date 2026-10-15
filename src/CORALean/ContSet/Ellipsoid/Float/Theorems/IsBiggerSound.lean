@@ -8,7 +8,7 @@ public import CORALean.Global.Float.EuclideanNorm
 @[expose] public section
 
 /-!
-# A `true` from `Ellipsoid.isBigger` proves the inclusion up to the centres
+# A `true` from `Ellipsoid.isBigger` proves the inclusion up to the centers
 
 A point `q₂ + G₂ u + e` of `E₂`, moved by `-q₂`, is `G₁ (T u) + (Δ u + e)` with
 `Δ = G₂ - G₁ T`: `T u` is in the unit ball (Cauchy–Schwarz per row, the Frobenius norm at most

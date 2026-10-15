@@ -17,7 +17,7 @@ CORA's `convHull_(SpS, S)` for two spectrahedral shadows, as the exact layer has
 (`Real.SpectraShadow.convHull_`), with the float `cartProd`, `cone`, `plus`, `inter` and `project`:
 both shadows at height `1` (`singletonOne`), their cones added, the sum cut with the hyperplane `ℝⁿ
 × {1}` (`hyperplaneOne`) and projected to the first `n` coordinates. The only rounding is `plus`'s
-on the centre, which its box takes; the shadows' own boxes are absorbed by the cones. Each stage is
+on the center, which its box takes; the shadows' own boxes are absorbed by the cones. Each stage is
 `materialise`d (stored, `materialise_eq`), as the fields are function types.
 -/
 

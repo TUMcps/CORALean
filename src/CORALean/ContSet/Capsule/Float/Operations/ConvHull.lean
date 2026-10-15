@@ -8,8 +8,8 @@ public import CORALean.ContSet.Capsule.Float.Operations.Basic
 # `Capsule.convHull`, over a floating-point scalar
 
 CORA's `@capsule/convHull_.m` for two capsules, as the exact layer: the midpoint `c_` of the
-centres, the generator `g_` from it to the first centre, `(C.c - S.c)/2`, and the larger of the
-two radii `‖g‖₂ + r`. The stored centre and generator are rounded, so the distance of each from the
+centers, the generator `g_` from it to the first center, `(C.c - S.c)/2`, and the larger of the
+two radii `‖g‖₂ + r`. The stored center and generator are rounded, so the distance of each from the
 exact one (per entry at most half the gap between the upward and the downward rounding of the same
 sum or difference) is added to the radius as a rounded-up length. `k` is the number of Newton
 steps of the roots (`Global/Float/Sqrt`).

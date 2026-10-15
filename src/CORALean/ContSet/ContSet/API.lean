@@ -13,9 +13,9 @@ public import CORALean.ContSet.ContSet.Counterexamples.API
 
 What every representation implements, in `Interfaces`: `ContSet` for what it denotes,
 one class per operation — `Plus`, `LinComb`, `Reduce`, `Mtimes`, `OfPoint`,
-`Recentre` — each carrying its own guarantee. `ContSet` itself instantiates them at what
-needs no representation of its own: a plain set and a matrix. `OfPoint` and `Recentre` are
-independent: a representation with a centre has both, one with only a point
+`Recenter` — each carrying its own guarantee. `ContSet` itself instantiates them at what
+needs no representation of its own: a plain set and a matrix. `OfPoint` and `Recenter` are
+independent: a representation with a center has both, one with only a point
 operation just the first.
 
 `Definitions` holds two classes carrying no operation at all, `ConvexSet` and

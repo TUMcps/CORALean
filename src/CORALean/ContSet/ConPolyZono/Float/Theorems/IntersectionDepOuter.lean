@@ -11,7 +11,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 
 The exact layer's `intersectionDep_exact` at the tolerance `intersectionD` already covers what
 the two error boxes let the nominal points differ by — `aux_mem_intersectionD` is the
-fitting — so the rounding of the centres never has to be pushed anywhere.
+fitting — so the rounding of the centers never has to be pushed anywhere.
 -/
 
 -- Authors:       Claude Opus 5

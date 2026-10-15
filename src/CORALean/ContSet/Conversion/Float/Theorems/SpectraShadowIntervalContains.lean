@@ -48,8 +48,8 @@ theorem SpectraShadow.interval_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
   -- the two bounds, along `eᵢ` and `-eᵢ`, are the coordinate's
   have hup := SpectraShadow.dualBound_le (hc i).1 x hx
   have hlo := SpectraShadow.dualBound_le (hc i).2 x hx
-  simp only [toReal_neg, hunit, ite_mul, one_mul, zero_mul, neg_mul, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true] at hup hlo
+  simp only [Pi.neg_apply, toReal_neg', hunit, ite_mul, one_mul, zero_mul, neg_mul,
+    Finset.sum_ite_eq', Finset.mem_univ, if_true] at hup hlo
   simp only [Finset.sum_neg_distrib, Finset.sum_ite_eq', Finset.mem_univ, if_true] at hlo
   show toReal (neg _) ≤ x i ∧ x i ≤ toReal _
   rw [toReal_neg]

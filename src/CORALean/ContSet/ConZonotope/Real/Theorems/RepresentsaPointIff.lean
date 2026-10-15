@@ -10,7 +10,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
 
 The set is the image `ξ ↦ c + G ξ` of `ConZonotope.domain` (`construct_eq_image`), so it is a single
 point exactly when that image is one: the polytope is nonempty and `G ξ` takes one value on it.
-The point need not be the centre `c`: with `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2` the set is
+The point need not be the center `c`: with `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2` the set is
 `{1}`.
 -/
 

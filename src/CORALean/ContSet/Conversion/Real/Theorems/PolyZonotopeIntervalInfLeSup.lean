@@ -21,7 +21,7 @@ is given.
 `intervalEven` goes through `zonotopeEven` instead, splitting generators on
 their exponents' parity before boxing — [2, Prop. 1], and CORA's own
 `interval(polyZonotope)`. Tighter wherever an even-exponent generator exists,
-since half of it moves into the centre rather than being boxed whole.
+since half of it moves into the center rather than being boxed whole.
 
 Both boxes come out ordered, which the type does not say: a polynomial
 zonotope is never empty, and a box enclosing a point cannot have its `sup`

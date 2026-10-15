@@ -9,7 +9,7 @@ public import Mathlib.Logic.Equiv.Fin.Basic
 # `ConZonotope.intersectStripFamily`
 
 The constrained zonotope that [1, Lemma 2] gives for the intersection of `ĉ + Ĝ ξ` with `m`
-strips `|H_j x - y_j| ≤ r_j`, each of `p` rows with one radius `r_j`: the centre and generators of
+strips `|H_j x - y_j| ≤ r_j`, each of `p` rows with one radius `r_j`: the center and generators of
 the zonotopic case ([1, Lemma 1]), `m p` new factors `ν`, and one equality row per strip row,
 `H_j Ĝ ξ - r_j ν_jk = y_jk - (H_j ĉ)_k`, below the old constraints, which keep acting on the old
 factors. It is `intersectStrip` at the stacked strip (`intersectStripFamily_exact`). The gains

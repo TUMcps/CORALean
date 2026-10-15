@@ -17,7 +17,7 @@ The operations stay inside the instances rather than earning files of their
 own: each is `S`'s operation on `of`, and `empty` everywhere else, so there is
 nothing to say about one that is not said by the class it discharges.
 
-No `Recentre`: it asks `0 ∈ construct (recentre s)` unconditionally, which
+No `Recenter`: it asks `0 ∈ construct (recenter s)` unconditionally, which
 `empty` cannot meet — the same reason `Interval` refuses it for a crossed box.
 `MinkDiff` transfers, but a representation that has no `MinkDiff` of its own
 gets one here at the wrapper instead, as `Zonotope` does.

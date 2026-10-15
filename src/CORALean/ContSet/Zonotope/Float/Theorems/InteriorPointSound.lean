@@ -10,7 +10,7 @@ public import Mathlib.Topology.Algebra.Group.Pointwise
 /-!
 # A `true` from `Zonotope.interiorPoint` proves the point interior
 
-The point minus the error box's lower corner is strictly within `B` of the centre, so interior to
+The point minus the error box's lower corner is strictly within `B` of the center, so interior to
 the nominal set (`Zonotope.mem_interior`); adding the corner keeps it interior.
 -/
 

@@ -38,7 +38,7 @@ def HPolytope.excludesPoint (P : HPolytope 𝕋 (Vec 𝕋 n)) (x : Vec 𝕋 n) :
     -- an equality violated: beU < Aeᵢ x, or beLN < -Aeᵢ x
     || (List.finRange P.me).any fun i =>
       ltStrict (P.beU i) (dotDown (P.Ae i) x)
-        || ltStrict (P.beLN i) (dotDown (fun j => neg (P.Ae i j)) x)
+        || ltStrict (P.beLN i) (dotDown (-(P.Ae i)) x)
 
 end CORALean.Float
 

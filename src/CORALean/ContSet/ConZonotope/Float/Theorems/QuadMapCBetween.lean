@@ -8,11 +8,11 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.QuadMap
 @[expose] public section
 
 /-!
-# The exact centre of `quadMap` lies between the two stored roundings
+# The exact center of `quadMap` lies between the two stored roundings
 
-The exact layer's centre of [1, Lemma 1] on the read-back operand, `cᵀQ c + ½ Σⱼ gⱼᵀQ gⱼ`, is
+The exact layer's center of [1, Lemma 1] on the read-back operand, `cᵀQ c + ½ Σⱼ gⱼᵀQ gⱼ`, is
 a bilinear form plus half a sum of them. Each is bracketed (`quadBil_bracket`), the sums by
-`sumDown_le_sum` and `sum_le_sumUp`, and halving is exact. The stored centre is the lower end, and
+`sumDown_le_sum` and `sum_le_sumUp`, and halving is exact. The stored center is the lower end, and
 the gap to the upper is what the box is charged.
 
 ## References
@@ -46,7 +46,7 @@ theorem ConZonotope.quadMapC_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonot
         ≤ (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
       ∧ (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
         ≤ toReal (ConZonotope.quadMapCUp Q cZ i) := by -- --- PROOF ---
-  -- the exact centre, with the generators read back as `toRealVec` reads them
+  -- the exact center, with the generators read back as `toRealVec` reads them
   have hR : (Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).c i
       = toRealVec cZ.c ⬝ᵥ (toRealMat (Q i) *ᵥ toRealVec cZ.c)
         + 1 / 2 * ∑ s, (toRealVec (cZ.G s)) ⬝ᵥ

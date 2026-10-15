@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CartProdExact
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CenterMemConstruct
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsEqSpec
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsEqSpec
@@ -81,7 +81,7 @@ matrices, and `satisfies_mtimes` is `Iff.rfl`.
 `intersection_outer` is the one that computes a constraint, and it is the file to read.
 The two nominal points it has to make agree differ by whatever the two error
 boxes admit, so the agreement rows carry an interval wide enough for that
-difference — which leaves the rounding of the centres nowhere to go but into an
+difference — which leaves the rounding of the centers nowhere to go but into an
 interval that was going to be widened anyway. `MemNominalSet` is how each of
 them reads the nominal half of a point.
 -/

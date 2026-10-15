@@ -19,5 +19,5 @@ public import CORALean.ContSet.Fullspace.Real.Theorems.ConstructEqIUnionTruncate
 /-!
 # The full space: theorems, collected
 
-`centre_mem_construct` and `isBounded_construct_iff` answer CORA's `center` and `isBounded`.
+`center_mem_construct` and `isBounded_construct_iff` answer CORA's `center` and `isBounded`.
 -/

@@ -37,7 +37,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
 
 Stated over the same sets of real points as the exact layer states them, the
 rounding already inside `construct`. `plus` is an enclosure, the exact layer's
-equation weakened by the centre's rounding; `mem_nominalSet_iff` is the reading
+equation weakened by the center's rounding; `mem_nominalSet_iff` is the reading
 every enclosure proof starts from, and `toRealMat_blockDiag` how a stored block
 diagonal reads; and `Inf_exact` and `empty_exact` are equations, nothing being stored that rounds;
 `project_outer` an enclosure; and convexity holds unconditionally, the error

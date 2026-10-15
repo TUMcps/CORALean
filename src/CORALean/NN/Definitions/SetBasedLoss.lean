@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Definitions.FRadius
 
 [1, Def. 5]: `𝓛(t, Y) = (1 - τ) L(t, c_κ) + (τ/ε) ‖Y‖_F` for an output zonotope `Y = ⟨c_κ, G_κ⟩`, a
 loss `L` of target and output, the tradeoff `τ ∈ [0, 1]` and the perturbation radius `ε > 0`. The
-first term is the standard loss of the centre (accuracy), the second the F-radius of the
+first term is the standard loss of the center (accuracy), the second the F-radius of the
 enclosure (robustness), normalized by `ε`; `ε` and `τ` are not constrained here, what is proved
 about them says which values it needs.
 

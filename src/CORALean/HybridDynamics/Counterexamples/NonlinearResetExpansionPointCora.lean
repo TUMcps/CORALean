@@ -36,7 +36,7 @@ namespace CORALean
 /-- The expansion point `(px, pu)` as the code assigns it, `none` for the unassigned `pu`. -/
 def NonlinearReset.expansionPointCora {E : Type} (x u : NonlinearReset.Arg E) :
     Option (E × E) :=
-  -- px: the centre of a set, the value of a number
+  -- px: the center of a set, the value of a number
   let px : E := match x with | .set c => c | .num v => v
   match u with
   -- isa(u,'contSet')
@@ -49,7 +49,7 @@ def NonlinearReset.expansionPointCora {E : Type} (x u : NonlinearReset.Arg E) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A set `x` with centre `c` and a numeric `u = v`: CORA gives no expansion point, where the
+/-- A set `x` with center `c` and a numeric `u = v`: CORA gives no expansion point, where the
 point `(c, v)` is wanted; with a numeric `x` it gives one. -/
 theorem NonlinearReset.expansionPointCora_crash {E : Type} (c v w : E) :
     NonlinearReset.expansionPointCora (.set c) (.num v) = none ∧

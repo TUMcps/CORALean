@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 /-!
 # `ConZonotope.mtimesIntervalMat`
 
-The zonotope operation with the constraints carried along: the centre acts
+The zonotope operation with the constraints carried along: the center acts
 exactly and the radius is boxed into one fresh generator per coordinate, exactly
 as for a zonotope. The constraints are pulled back along the projection onto the
 original coefficients, which is what says the fresh ones answer to nothing.

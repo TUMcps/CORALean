@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 /-!
 # `Ellipsoid.ofPoint`
 
-CORA's `ellipsoid` at a centre and no generators: a degenerate ellipsoid, its
+CORA's `ellipsoid` at a center and no generators: a degenerate ellipsoid, its
 `G` the `n × 0` matrix, denoting the single point `v`. What `OfPoint` asks
 every representation with a point operation to supply.
 -/

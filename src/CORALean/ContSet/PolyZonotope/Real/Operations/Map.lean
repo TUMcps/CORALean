@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Module.LinearMap.Defs
 
 The construction is [1, Prop. 2.8].
 
-A linear map applies to the centre and to both generator blocks, and touches
+A linear map applies to the center and to both generator blocks, and touches
 neither the exponent matrix nor any of the three counts: the monomials are
 scalars, and a linear map commutes with scaling.
 

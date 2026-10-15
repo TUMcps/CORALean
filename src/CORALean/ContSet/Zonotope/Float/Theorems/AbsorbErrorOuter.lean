@@ -15,7 +15,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 # `absorbError` keeps the set it had
 
 Over ℝ an identity — a box is a zonotope about its own midpoint. It is only an
-inclusion here because the shifted centre must be stored as a float and the
+inclusion here because the shifted center must be stored as a float and the
 midpoint need not be one, which is why the box does not become `[0, 0]`.
 
 The witness is `Fin.append β γ`: the old coefficients, then one per coordinate

@@ -12,7 +12,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.ArrowMat
 
 The conic hull `aux_conicHull` of `@spectraShadow/convHull_.m`, as the exact layer has it
 (`Real.SpectraShadow.cone`): the shadow's own matrices scaled by the free variable `s`, the
-generators and the centre as columns of the homogenised point, and the arrowhead block. The error
+generators and the center as columns of the homogenised point, and the arrowhead block. The error
 box is absorbed into the inequality first (`absorb`), as the cone of a box-inflated shadow is not
 the cone of its nominal part. Every stored entry is a stored float, `zero` or `one`, so nothing
 rounds and the box left over is the origin.

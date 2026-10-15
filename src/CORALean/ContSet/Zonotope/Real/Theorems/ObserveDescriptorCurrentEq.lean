@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.IntersectDescriptor
 
 [1, Thm. 7]: the zonotope `⟨p̃₊(Ĝ), H̃₊(Ĝ)⟩` of the current-estimation-type observer Eq. 39 of [1,
 Thm. 7] is the intersection zonotope `⟨p̂₊(Λ), Ĥ₊(Λ)⟩` of Eq. 7 of [1, Thm. 1] at `Λ = Ĝ`, as sets.
-The centres are the same expression, and the generators agree up to the sign of the last two blocks,
+The centers are the same expression, and the generators agree up to the sign of the last two blocks,
 `-(I - ĜC)NF` and `-ĜF` against `(I - ĜC)NF` and `ΛF`, which "can be removed by definition of the
 zonotope": flipping the sign of a coefficient that ranges over `[-1, 1]` changes nothing.
 

@@ -8,7 +8,7 @@ public import CORALean.Global.Cost
 /-!
 # `Zonotope.mapCost`
 
-Asserted, not proved: `Operations/Map.lean` sends the centre and each of the
+Asserted, not proved: `Operations/Map.lean` sends the center and each of the
 `h` generators through `f`, and touches nothing else.
 
 What one `f` costs is a parameter, as in `PolyZonotope.mapCost` and for the
@@ -31,7 +31,7 @@ namespace CORALean.Real
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- What `Zonotope.map` costs at a map costing at most `cf` per application:
-one per generator, and one for the centre. -/
+one per generator, and one for the center. -/
 def Zonotope.mapCost (cf : Cost) (h : ℕ) : Cost := (h + 1) • cf
 
 end CORALean.Real

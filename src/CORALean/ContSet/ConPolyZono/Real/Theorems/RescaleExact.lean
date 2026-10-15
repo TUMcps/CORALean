@@ -153,7 +153,7 @@ theorem ConPolyZono.aux_rescale_exact_of_box (cPZ : ConPolyZono α)
         (fun r => if h : r < cPZ.p then (dom.sup ⟨r, h⟩ - dom.inf ⟨r, h⟩) / 2 else 0))
       cPZ).construct
       = cPZ.construct := by -- --- PROOF ---
-  -- the centre and radius of the box, and the invariant after all `p` steps
+  -- the center and radius of the box, and the invariant after all `p` steps
   set cen : ℕ → ℝ := fun r => if h : r < cPZ.p then (dom.inf ⟨r, h⟩ + dom.sup ⟨r, h⟩) / 2 else 0
     with hcen
   set rad : ℕ → ℝ := fun r => if h : r < cPZ.p then (dom.sup ⟨r, h⟩ - dom.inf ⟨r, h⟩) / 2 else 0

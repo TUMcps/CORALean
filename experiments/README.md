@@ -397,7 +397,7 @@ python3 experiments/plot/simulate.py <config.json> <out.dat> [--interior N]
 
 Exact trajectories of the spiral (`e^{At} = e^{at} [[cos bt, sin bt], [-sin
 bt, cos bt]]`, evaluated in plain Python `float` -- fine for a plot overlay,
-no soundness claim) from points of `X0` in the config: its centre, every
+no soundness claim) from points of `X0` in the config: its center, every
 `2^h` sign-combination corner, and (`--interior`, default 5) fixed-seed
 pseudo-random interior points (`random.Random(1234)`, reproducible run to
 run) -- about ten trajectories in all. Each is sampled only at the run's own
@@ -900,7 +900,7 @@ significand width, `decimal<f>`), `significand_bits`, `number_type`, `dt`, `stat
 with every scalar the exact rational `{"num", "den"}` (decimal strings, `den > 0`), `null`
 for a value past the format's range.
 
-`x0` is the config's `X0` rounded outward into the format: the centre and the generators
+`x0` is the config's `X0` rounded outward into the format: the center and the generators
 are rounded down, and what that loses goes into the error box `E`, so a format that holds
 `X0` exactly (a zero `E`) keeps it. `A` and `dt` are read exactly, as everywhere else, and a
 format that cannot hold either is `"status": "none"`, `reason` `not representable: ...`.
@@ -957,13 +957,13 @@ also read as `tFinal`.
 
 * The system is read EXACTLY into each format (`A`, `B`, `C`, `U`, `dt`). One a format cannot hold
   is `"status": "none"`, `reason` `not representable: ...`; the dynamics are never rounded. `X0` is
-  read as its centre and radius; where the format holds its bounds but not their midpoint (which
-  can need one bit more), the centre is rounded and the radius rounded up to cover the box, checked
+  read as its center and radius; where the format holds its bounds but not their midpoint (which
+  can need one bit more), the center is rounded and the radius rounded up to cover the box, checked
   exactly: a larger initial set, which is sound, and the record says `x0_enclosed: true`.
 * Each unsafe box is rounded OUTWARD (lower down, upper up), which only enlarges it, so a reach
   set disjoint from the enlarged box is disjoint from the original: sound.
 * Each window `R(tau_k)` is mapped to output space EXACTLY, `Y_k = C R(tau_k)` over the rationals
-  (centre, generators and error box of `R`, the error box as five more generators), and tested
+  (center, generators and error box of `R`, the error box as five more generators), and tested
   against each unsafe box `S` by the separating-axis theorem in the plane: `Y_k` and `S` are
   disjoint iff `0` is outside the polygon `Y_k + (-S)`, iff some facet normal `n` of it -- the
   perpendicular `(-g_2, g_1)` of a generator of `Y_k`, or `+-e_1`, `+-e_2` -- has

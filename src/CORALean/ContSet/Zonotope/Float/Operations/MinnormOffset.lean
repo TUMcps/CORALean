@@ -14,7 +14,7 @@ rounded up: the numerator by `dotUp` and `dotDown` (the magnitude of a dot produ
 larger of the upper end and the negated lower end), the length from below by `sqrtDown` of the
 rounded-down square sum. `none` where `ltStrict` cannot prove the length positive, which is where
 CORA's row is `NaN` (a zero normal). For any vector `C` the quotient bounds the radius of every
-ball around the centre inside the zonotope (`minnormOffset_ge`), so `C` need not be the normal.
+ball around the center inside the zonotope (`minnormOffset_ge`), so `C` need not be the normal.
 
 Source: [1].
 

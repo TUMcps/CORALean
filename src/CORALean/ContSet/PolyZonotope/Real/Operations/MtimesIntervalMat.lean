@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RadiusReach
 /-!
 # Polynomial zonotopes: multiplication by an interval matrix
 
-CORA writes this as `mtimes` too, dispatching on the argument. The centre acts
+CORA writes this as `mtimes` too, dispatching on the argument. The center acts
 exactly on every block. Everything the radius allows is boxed into one fresh
 generator per coordinate, and it goes into the *independent* block: the
 matrix's uncertainty answers to none of the set's dependent factors, so making

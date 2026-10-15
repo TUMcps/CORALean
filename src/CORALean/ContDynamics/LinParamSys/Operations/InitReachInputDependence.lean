@@ -15,11 +15,11 @@ shares its parameters with the matrix zonotope `sys.A`: the time-point set `Rhom
 (`dependentHomSol`, corrected) and `Rhom = enclose(Rinit, Rhom_tp) + F Rinit + inputCorr`, `F`
 from `priv_tie` and `inputF` from `priv_inputTie` (`intervalCorrectionMatrix`,
 `intervalConstCorrectionMatrix` of the box). The input is carried to the state space as CORA's
-`sys.B*Uconst` and `c` carry it, `B` at its centre `sys.B.c`: the generators keep the
+`sys.B*Uconst` and `c` carry it, `B` at its center `sys.B.c`: the generators keep the
 parameters of `sys.A`, which a product with a matrix zonotope's own generators would not.
 
 **`inputCorr` corrected**: CORA's `inputF*B*zonotope(uTrans + center(Uconst))` corrects the
-input's curvature over the step at its centre only, but `Rhom_tp` integrates all of `Uconst`;
+input's curvature over the step at its center only, but `Rhom_tp` integrates all of `Uconst`;
 here `inputF` times the state-space `B Uconst ⊕ c`.
 
 Not modelled: the time-varying input `params.U` (`sys.RV`, added to both sets by CORA), `uTrans`
@@ -49,7 +49,7 @@ input coordinates by `Uc` and `UG`. -/
 noncomputable def LinParamSys.initReachInputDependence (sys : LinParamSys 𝕄𝒵 n) (r : ℝ)
     (η : ℕ) (Rinit : Zonotope (Vec ℝ n)) (Uc : Vec ℝ sys.m) (UG : Fin sys.A.h → Vec ℝ sys.m) :
     Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) :=
-  -- the constant input in the state space, `B Uconst ⊕ c`, `B` at its centre
+  -- the constant input in the state space, `B Uconst ⊕ c`, `B` at its center
   let Vc : Vec ℝ n := sys.B.c *ᵥ Uc + sys.c
   let VG : Fin sys.A.h → Vec ℝ n := fun i => sys.B.c *ᵥ UG i
   let Uconst : Zonotope (Vec ℝ n) := ⟨sys.A.h, Vc, VG⟩

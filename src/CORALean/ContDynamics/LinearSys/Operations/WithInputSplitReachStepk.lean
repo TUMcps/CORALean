@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
 /-!
 # One window of `reach` with the input set split: the set over `τ_k`
 
-[1, Alg. 3]'s window, `U = ũ ⊕ Ũ` by `Recentre`. The first window's
+[1, Alg. 3]'s window, `U = ũ ⊕ Ũ` by `Recenter`. The first window's
 homogeneous set and the constant's contribution over it, `H^R(τ_0) ⊕ P̃^R(τ_0)`,
 carried to `τ_k` by `e^{A t_k}`; plus `P̃(t_k) = ∫₀^{t_k} e^{Aσ}dσ ũ`, a point,
 what the constant contributed before the window; plus `P^R(t_{k+1})` of `Ũ`,
@@ -44,7 +44,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recentre (S n) (Vec ℝ n)]
+variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 
@@ -54,8 +54,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 `R(τ_k) = e^{A t_k} (H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R_Ũ(t_{k+1})`. -/
 noncomputable def LinearSys.WithInputSplit.reachStepk (sys : LinearSys.WithInputSplit 𝕋 S n)
     (Δt : ℝ) (η : ℕ) (X₀ : S n) (k : ℕ) : S n :=
-  let uc := Recentre.centre sys.U                                -- ũ, the constant
-  let U₀ := Recentre.recentre sys.U                              -- Ũ = U - ũ, holding 0
+  let uc := Recenter.center sys.U                                -- ũ, the constant
+  let U₀ := Recenter.recenter sys.U                              -- Ũ = U - ũ, holding 0
   let tk := (k : ℝ) * Δt                                         -- t_k = k Δt
   let HRτ₀ := sys.sys.timeIntervalStep Δt η X₀                   -- H^R(τ_0)
   let PcRτ₀ : S n := sys.sys.constInputSolution Δt η uc          -- P̃^R(τ_0), ũ over τ_0

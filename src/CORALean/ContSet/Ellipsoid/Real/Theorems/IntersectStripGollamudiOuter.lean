@@ -15,13 +15,13 @@ public import Mathlib.Tactic.Ring
 For positive-definite `Q` and `λ ∈ [0, 1)`, every point `x` of the ellipsoid `E(Q, c)` with
 `‖C x - y‖₂ ≤ φ` lies in `intersectStripGollamudi Q c C φ y λ`. With `T = (1 - λ) I + λ C Q Cᵀ`,
 `w = T⁻¹ δ`, `u = Cᵀ w` and `invQ = (1 - λ) Q⁻¹ + λ Cᵀ C`, one has `invQ Q Cᵀ = Cᵀ T`, so the
-centre is `c* = c + λ Q u`, `C c* - y = -(1 - λ) w`, and with `d = x - c*`
+center is `c* = c + λ Q u`, `C c* - y = -(1 - λ) w`, and with `d = x - c*`
 
   `(1 - λ)(x - c)ᵀ Q⁻¹ (x - c) + λ ‖C x - y‖₂² = dᵀ invQ d + λ (1 - λ) δᵀ w`,
 
 the cross terms `2 λ (1 - λ) dᵀ u` cancelling. The left side is at most `1 - λ + λ φ²`, so
 `dᵀ invQ d ≤ σ²`, which is membership in the ellipsoid of shape `σ² invQ⁻¹`; when `σ² = 0` it
-forces `d = 0`, the centre. CORA divides by `σ²` instead
+forces `d = 0`, the center. CORA divides by `σ²` instead
 (`intersectStripGollamudi1D_counterexample`).
 -/
 
@@ -87,7 +87,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer {Q : Mat ℝ n n} (hQ : Q.PosDef
   have hδu : δ = (1 - lam) • w + lam • (C *ᵥ (Q *ᵥ u)) := by
     rw [← hTw, hT, add_mulVec, smul_mulVec, smul_mulVec, one_mulVec, hu, mulVec_mulVec,
       mulVec_mulVec]
-  -- `invQ Q Cᵀ = Cᵀ T`, so the centre is `c + λ Q u`
+  -- `invQ Q Cᵀ = Cᵀ T`, so the center is `c + λ Q u`
   have hM : P * Q * Cᵀ = Cᵀ * T := by
     simp only [hP, hT, Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul,
       Matrix.mul_one, ← Matrix.mul_assoc, nonsing_inv_mul Q hQu, Matrix.one_mul]
@@ -95,7 +95,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer {Q : Mat ℝ n n} (hQ : Q.PosDef
     have hPv : P *ᵥ (Q *ᵥ u) = Cᵀ *ᵥ δ := by
       rw [hu, mulVec_mulVec, mulVec_mulVec, hM, ← mulVec_mulVec, hTw]
     rw [← hPv, mulVec_mulVec, nonsing_inv_mul P hPu, one_mulVec]
-  -- the goal, at the centre `c + λ Q u`
+  -- the goal, at the center `c + λ Q u`
   show x ∈ (Ellipsoid.ofShape
     ((1 - lam + lam * φ ^ 2 - lam * (1 - lam) * (δ ⬝ᵥ T⁻¹ *ᵥ δ)) • P⁻¹)
       (c + lam • (P⁻¹ *ᵥ (Cᵀ *ᵥ δ)))).construct
@@ -159,7 +159,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer {Q : Mat ℝ n n} (hQ : Q.PosDef
     rw [Ellipsoid.mem_ofShape_iff (hPpd.inv.smul hpos), inv_eq_right_inv hinv, ← hd,
       smul_mulVec, dotProduct_smul, smul_eq_mul, inv_mul_le_iff₀ hpos, mul_one]
     exact hquad
-  · -- `σ² = 0`: the form vanishes, so `x` is the centre
+  · -- `σ² = 0`: the form vanishes, so `x` is the center
     have hd' : d = 0 := by
       by_contra hne
       have := hPpd.dotProduct_mulVec_pos hne

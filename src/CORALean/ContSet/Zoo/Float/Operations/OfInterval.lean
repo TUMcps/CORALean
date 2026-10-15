@@ -10,7 +10,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 # `Zoo.ofInterval`, over a floating-point scalar
 
 CORA's `zoo(int, N)` for coordinate `i`: the variable of the box's float zonotope, `c + r tᵢ` with
-the stored centre `c` and the generator `r` (`Interval.radiusFrom`), as the Taylor model of
+the stored center `c` and the generator `r` (`Interval.radiusFrom`), as the Taylor model of
 `Interval.taylm` and as the interval `[c - |r|, c + |r|]`, the ends rounded outward (`|r| = r` for
 a nonempty box). The box lies in that interval, so it is as wide as the box or wider.
 -/

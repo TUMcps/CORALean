@@ -11,7 +11,7 @@ public import CORALean.Global.Cost
 
 Asserted, not proved, by reading `Operations/LinComb.lean`:
 
-* the centre `(1/2) • (c₁ + c₂)` and the fresh generator `(1/2) • (c₁ - c₂)`:
+* the center `(1/2) • (c₁ + c₂)` and the fresh generator `(1/2) • (c₁ - c₂)`:
   `4 * n`, as in `Zonotope.linCombCost`;
 * the two `domain`s are a unit box intersected with `P`, whose rows concatenate
   (free), so they carry `2 * hᵢ + mᵢ` inequality rows and `meᵢ` equality rows;

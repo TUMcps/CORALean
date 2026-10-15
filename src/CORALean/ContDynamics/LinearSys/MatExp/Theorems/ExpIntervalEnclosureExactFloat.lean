@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorE
 
 The float counterpart of `Real.MatExp.exp_mem_expIntervalEnclosureExact`, entry by entry as
 `exp_mem_expIntervalEnclosure` does and with the same tail bound at `normUpperBound`: only the
-centre differs. `hε` asks `1/2`, as there, since `expRemainderBound_le`'s geometric factor is
+center differs. `hε` asks `1/2`, as there, since `expRemainderBound_le`'s geometric factor is
 the fixed constant `2`.
 -/
 

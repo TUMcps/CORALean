@@ -32,10 +32,10 @@ theorem PolyZonotope.construct_eq_of_representsa_point (pZ : PolyZonotope α)
     (h : pZ.representsa_point) : pZ.construct = {pZ.c} := by -- --- PROOF ---
   ext x
   constructor
-  · -- every term is `0`, so the point is the centre
+  · -- every term is `0`, so the point is the center
     rintro ⟨a, β, -, -, rfl⟩
     simp [h.1, h.2]
-  · -- the centre is the point at the factors `0`
+  · -- the center is the point at the factors `0`
     rintro rfl
     have := pZ.point_mem_construct (a := fun _ => 0) fun _ => by simp
     simpa [PolyZonotope.point, h.1] using this

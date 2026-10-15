@@ -52,7 +52,7 @@ theorem Zonotope.image_subset_meanValueInclusion {n nw : ℕ}
   intro x hx w hw
   obtain ⟨β, hβ, rfl⟩ := hx
   set d : Vec ℝ n := ∑ j, β j • X.G j with hd
-  -- the mean value theorem on coordinate `i`, along the segment from the centre to `x`
+  -- the mean value theorem on coordinate `i`, along the segment from the center to `x`
   have key : ∀ i, ∃ ξ ∈ X.construct,
       f (X.c + d) w i - f X.c w i = fderiv ℝ (fun x => f x w) ξ d i := by
     intro i

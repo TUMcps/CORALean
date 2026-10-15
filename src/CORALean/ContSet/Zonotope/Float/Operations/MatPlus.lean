@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBoundsMat
 # `Zonotope.matPlus`
 
 The exact layer's `Zonotope.plus` at `Mat`: generators concatenate exactly, so only the
-centre rounds, and the two boxes add. The count is `h₁ + h₂`, as over ℝ.
+center rounds, and the two boxes add. The count is `h₁ + h₂`, as over ℝ.
 -/
 
 -- Authors:       Claude Opus 5.5

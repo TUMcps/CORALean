@@ -8,12 +8,12 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.CenterMem
 @[expose] public section
 
 /-!
-# The float centre box holds a point of the polytope
+# The float center box holds a point of the polytope
 
 The exact mean of the nominal vertices lies in the box (each bound brackets the coordinate sum
 divided by the count, whatever the sum's sign), and it is a point of the nominal polytope
 (`center_mem`), so adding any point of the error box gives a point of the float polytope. Outer:
-the box is not claimed to be the centre, only to hold it.
+the box is not claimed to be the center, only to hold it.
 -/
 
 -- Authors:       Claude Opus 5.5

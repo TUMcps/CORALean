@@ -5,7 +5,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 @[expose] public section
 
 /-!
-# The stored midpoint of two centres
+# The stored midpoint of two centers
 
 Split out of `LinComb.lean` (issue #62): used again by `ConZonotope.linComb`
 and by `MidpointMemResidual.lean`, both outside this file.
@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The stored midpoint of the two centres. -/
+/-- The stored midpoint of the two centers. -/
 def Zonotope.midpoint (a b : Vec 𝕋 n) : Vec 𝕋 n := fun i => half (addDown (a i) (b i))
 
 end CORALean.Float

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Zonotope.Float.Instances
-public import CORALean.ContSet.Zonotope.Float.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Float.Operations.Recenter
 public import CORALean.ContSet.Zonotope.Float.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
 public import CORALean.ContSet.Zonotope.Float.Operations.Point
@@ -15,8 +15,8 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 # `LinearSys.canonicalFormFloat`
 
 CORA's `canonicalForm` [1] at float zonotopes: `Ax + B u + c + E w → Ax + u'` with `u' ∈ U_ ⊕ u_`
-and `Cx + D u + k + F v → Cx + v'` with `v' ∈ V_ ⊕ v_`. The centred zonotopes `U_`, `V_` are
-zonotopes (`recentre` is exact), and the offsets `u_`, `v_`, which are real vectors of exact
+and `Cx + D u + k + F v → Cx + v'` with `v' ∈ V_ ⊕ v_`. The centered zonotopes `U_`, `V_` are
+zonotopes (`recenter` is exact), and the offsets `u_`, `v_`, which are real vectors of exact
 sums at ℝ, are boxes here, each sum and product rounded outward. Soundness is
 `canonicalFormFloat_state_outer` and `canonicalFormFloat_output_outer`.
 
@@ -49,9 +49,9 @@ def LinearSys.canonicalFormFloat (sys : LinearSys 𝕋 n) (U : Zonotope (Vec �
     (vVec : Vec 𝕋 sys.s) :
     LinearSys 𝕋 n × Zonotope (Vec 𝕋 n) × Interval (Vec 𝕋 n) × Zonotope (Vec 𝕋 sys.q) ×
       Interval (Vec 𝕋 sys.q) :=
-  let U₀ := U.recentre                                               -- U - centerU
-  let W₀ := W.recentre                                               -- W - centerW
-  let V₀ := V.recentre                                               -- V - centerV
+  let U₀ := U.recenter                                               -- U - centerU
+  let W₀ := W.recenter                                               -- W - centerW
+  let V₀ := V.recenter                                               -- V - centerV
   let v_ := ((Interval.mtimes sys.D (Interval.point uVec)).plus (Interval.point sys.k)).plus
     (Interval.mtimes sys.F ((Interval.point V.c).plus (Interval.point vVec)))  -- output offset
   let V_ := (Zonotope.mtimes sys.D (Zonotope.plus U₀ (Zonotope.point U.c))).plus

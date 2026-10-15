@@ -14,9 +14,9 @@ factors of the result, shared with `pZ`'s where the identifiers agree.
 
 Each generator is scaled by `∏ᵢ αᵤ(ᵢ)^e`; substituting `αᵤ(ᵢ) = (pZin)ᵢ(β)` gives a product of
 powers of polynomials in `β`, expanded into one generator per term (`subsXprod`, `subsTerms`).
-CORA then merges equal columns and moves constant ones into the centre
+CORA then merges equal columns and moves constant ones into the center
 (`removeRedundantExponents`, `priv_removeZeroExponents`): same set, left out. Its shortcut for a
-`pZin` without centre and at most one monomial per output computes the same terms.
+`pZin` without center and at most one monomial per output computes the same terms.
 
 Identifiers are indices: `idu i` is the factor of `pZ` that output `i` replaces, the result's
 factors are `pZ`'s (the replaced ones left as zero rows) and then `pZin`'s (`subsFactor`).

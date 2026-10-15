@@ -16,7 +16,7 @@ segment between the two incoming boxes.
 
 The nominal obligation is the exact `linComb` argument — `2λ-1` on the fresh
 factor, `pairCoeffSum` and `pairCoeffDiff` on the independent block — with the
-centre, the sliding generator and the paired independent generators displaced.
+center, the sliding generator and the paired independent generators displaced.
 No stored value is unfolded: each cancels against its own residual or against
 `linCombGIDiff`, so what remains is the exact identity.
 
@@ -73,7 +73,7 @@ theorem PolyZonotope.aux_linComb_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n
       constructor <;> linarith
   · rw [hx, funext hy₁, funext hy₂]
 
-/-- The box absorbs the two incoming boxes, both centre roundings and the
+/-- The box absorbs the two incoming boxes, both center roundings and the
 independent block's. -/
 theorem PolyZonotope.aux_linComb_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
     Set.linComb pZ₁.I_error.construct pZ₂.I_error.construct

@@ -5,7 +5,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
-public import CORALean.ContSet.Zonotope.Real.Operations.Recentre
+public import CORALean.ContSet.Zonotope.Real.Operations.Recenter
 public import CORALean.ContSet.Zonotope.Real.Operations.SumTerms
 
 @[expose] public section
@@ -57,7 +57,7 @@ noncomputable def GuardMap.abstractionError (A : Mat ℝ n n) (U R₀ : Zonotope
   let W : Mat ℝ n n := fun j k => |MatExp.expRemainderMat A tmax η j k|  -- W = abs(expm - M)
   let xi := R₀.c                                                    -- xi = center(R0)
   let u := U.c                                                      -- u = center(U)
-  let U_ := U.recentre                                              -- U_ = U - u
+  let U_ := U.recenter                                              -- U_ = U - u
   let err1 := Zonotope.sumTerms (fun m =>                           -- for i = 2:order
     Zonotope.mtimes (((Nat.factorial (m + 2) : ℝ)⁻¹) • A ^ (m + 2))
       ((Zonotope.mtimesIntervalMat (mulI 1 1 0 (tmax ^ (m + 1))) R₀).plus

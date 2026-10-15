@@ -142,7 +142,7 @@ theorem aux_len₂ (d : Vec ℝ 2) :
   refine congrArg Real.sqrt ((Fin.sum_univ_two _).trans ?_)
   simp [aux_E₂, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
-/-- The support length of the sum is the sum of the support lengths: the centre cancels in
+/-- The support length of the sum is the sum of the support lengths: the center cancels in
 `d` and `-d`. -/
 theorem aux_support_length_sum (d : Vec ℝ 2) (E : Ellipsoid 2)
     (h : aux_E₁.construct + aux_E₂.construct = E.construct) :

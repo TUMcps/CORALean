@@ -52,7 +52,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
-variable [∀ n, Recentre (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -213,12 +213,12 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) :
     linarith
   have hε0 : 0 ≤ ε := le_trans (by positivity) hεc.le
   -- a point of `P̂_U(Δt)`: the Taylor terms and the remainder at the input `1 ∈ U₀`
-  let U₀ := Recentre.recentre U
+  let U₀ := Recenter.recenter U
   let w : Vec ℝ 1 := fun _ => 1
   have hw : w ∈ construct U₀ := by
     refine ⟨fun _ => 1, by simp, ?_⟩
     funext i
-    simp [U₀, w, U, Recentre.recentre, Zonotope.recentre]
+    simp [U₀, w, U, Recenter.recenter, Zonotope.recenter]
   -- the Taylor terms of `P̂_U(Δt)` at `w`
   have hmt : ∀ M : Mat ℝ 1 1,
       M *ᵥ w ∈ construct (Mtimes.mtimes (𝕄 := Mat ℝ) (S := 𝒵) M U₀) := fun M =>
@@ -264,7 +264,7 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) :
     have h0X : (0 : Vec ℝ 1) ∈ construct X₀ := OfPoint.mem_ofPoint (0 : Vec ℝ 1)
     have h1 := hρ X₀ 0 h0X (ℓ₁ ∘ₗ (exp ((1 : ℝ) • toRealMat sys.A)).mulVecLin)
     have h3 := hρ _ _ hxp ℓ₁
-    have hc : Recentre.centre U = 0 := rfl
+    have hc : Recenter.center U = 0 := rfl
     rw [hc, Matrix.mulVec_zero, Matrix.mulVec_zero, add_zero, map_zero, add_zero, zero_add]
     rw [map_zero] at h1
     have h4 : ℓ₁ ((∑ i ∈ Finset.range (η + 1), sys.inputTerm 1 i *ᵥ w) + Mε *ᵥ w) =

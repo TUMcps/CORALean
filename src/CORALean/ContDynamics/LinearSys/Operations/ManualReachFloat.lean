@@ -17,7 +17,7 @@ public import CORALean.Global.Float.ToRat
 `ẋ = Ax + Bu + c`, `u(t) ∈ U` arbitrary in time, from `X₀` over `[tStart, tFinal]`, by
 [1, Alg. 1] computed in `𝕋`: `N = (tFinal - tStart)/Δt` iterations from `manualInitFloat`,
 returning `R̂(τ_0), …, R̂(τ_{N-1})`. `B` and `c` are the system's; `V = B U ⊕ c`
-(`inputSetFloat`) is split at its stored centre, so `0 ∈ U` is not asked. The order `η` is
+(`inputSetFloat`) is split at its stored center, so `0 ∈ U` is not asked. The order `η` is
 raised until the float enclosures admit it (`reachOrderFloat`), as the other float reaches
 raise it; `Δt` must divide the horizon exactly.
 

@@ -18,7 +18,7 @@ denotation: CORA's conversion computes them from the constraints, so for a set i
 implied and change nothing, and a bound a step relies on is then the bound the set already
 satisfies.
 
-This is the generalized star set of [1, Def. 1] (centre, basis, predicate on the coefficients)
+This is the generalized star set of [1, Def. 1] (center, basis, predicate on the coefficients)
 with a linear predicate. The set is then convex, in fact a bounded polytope: the conversions to
 and from `ConZonotope` (`Conversion/`) are exact. A nonlinear predicate is not this class.
 

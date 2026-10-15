@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
 /-!
 # `Zonotope.representsa_origin` is sound
 
-A `true` answer makes every generator and the centre `0`, so the nominal part is `{0}`, and the
+A `true` answer makes every generator and the center `0`, so the nominal part is `{0}`, and the
 error box is `{0}`: the zonotope is `{0}`.
 -/
 
@@ -35,7 +35,7 @@ theorem Zonotope.representsa_origin_sound {Z : Zonotope (Vec 𝕋 n)}
   simp only [Zonotope.representsa_origin, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hG, hc⟩, hE⟩ := h
-  -- every stored generator entry and centre entry is squeezed to `0`
+  -- every stored generator entry and center entry is squeezed to `0`
   have hG0 : ∀ i j, toReal (Z.G j i) = 0 := fun i j => le_antisymm
     (by simpa [toReal_zero] using toReal_le_of_le (hG j i).1)
     (by simpa [toReal_zero] using toReal_le_of_le (hG j i).2)

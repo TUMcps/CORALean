@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadRightNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.CentreMemConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemConstruct
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
@@ -141,7 +141,7 @@ reachability loop's representation from growing a box per step.
 
 `relaxExp_outer` reads the exact layer's drift bound at the stored columns, the two roundings
 it makes being the only difference between the layers; `relaxExpEven_outer` the same with a
-third for the centre it shifts, `relaxExpMid_outer` the same three at any parity, and
+third for the center it shifts, `relaxExpMid_outer` the same three at any parity, and
 `relaxExpMulti_outer` the same two at any two generators. `mergedGen_gap` is the column all
 four store alike. `relaxExpGreedy_outer` composes them, at every selection and step count.
 

@@ -9,8 +9,8 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonot
 # A box as a polynomial zonotope, over a floating-point scalar
 
 The box goes into the error box, and the nominal part is the origin. Exact, and
-the only encoding here that is: a centre with one generator per coordinate has to
-round the centre and then reach both ends from wherever it landed, as
+the only encoding here that is: a center with one generator per coordinate has to
+round the center and then reach both ends from wherever it landed, as
 `Interval.zonotope` does, while `err` already *is* an interval and holds this one
 unchanged.
 

@@ -47,7 +47,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitLongestGenUnion
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitUnion
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExactPlusConstruct
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.RepresentsaPointSubset
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct

@@ -14,11 +14,11 @@ takes from Eq. 21 and Eq. 48 of Liu, Zhao and Wu (IET Control Theory & Applicati
 
   `Q_next = (1 - p)⁻¹ A Q A + (σ²_prev p)⁻¹ W`,  `p = √W / (√(σ²_prev A Q A) + √W)`,
 
-centred at `A c + u` (`post`: `A x + B u + c`, the known input folded into `u`), then the strip
+centered at `A c + u` (`post`: `A x + B u + c`, the known input folded into `u`), then the strip
 update the code takes from Gollamudi, Nagaraj, Kapoor and Huang (ISITA 1996), by
 `intersectStrip(…, 'Gollamudi1996')` with `phi = norm(params.V) = √V` for the measurement noise
 `E(0, V)`: the trigger `σ²_prev + δ² > phi`, the weight `λ = min(1e-4, ν)` and the update
-`Ellipsoid.intersectStripGollamudi1D`. It returns the new centre, shape and `sigma_sq`. The update
+`Ellipsoid.intersectStripGollamudi1D`. It returns the new center, shape and `sigma_sq`. The update
 divides the shape by `σ²` where the enclosure needs `σ²` times it
 (`Ellipsoid.intersectStripGollamudi1D_counterexample`); the observer inherits that
 (`LinearSysDT.observeEsoA1D_counterexample`). `LinearSysDT.observeEsoA` is the corrected step.
@@ -43,7 +43,7 @@ noncomputable def LinearSysDT.observeEsoA1D (A C W V u y Q c σsqPrev : ℝ) : �
   let phi := Real.sqrt V  -- `phi = norm(params.V)`
   let auxRes := Real.sqrt W  -- `auxRes = sqrt(trace(params.W.Q))`
   let Qhom := A * Q * A  -- `Rnext_hom = post(...)`: the shape of `A*Rnext.tp`
-  let chom := A * c + u  -- its centre, `B u + c` folded into `u`
+  let chom := A * c + u  -- its center, `B u + c` folded into `u`
   let p := auxRes / (Real.sqrt (σsqPrev * Qhom) + auxRes)  -- `p`, eq. (48) of Liu et al.
   let Qnext := (1 - p)⁻¹ * Qhom + (σsqPrev * p)⁻¹ * W  -- `Q_next`
   let δ := y - C * chom  -- `delta` of `aux_methodGollamudi1996`

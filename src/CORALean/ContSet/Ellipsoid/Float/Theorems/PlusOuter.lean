@@ -15,7 +15,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 # `Ellipsoid.plus` encloses the Minkowski sum
 
 `InflatedContSet.plus_subset` reduces this to two obligations: the nominal parts
-spill only by the centre rounding and the two scalings, and the box absorbs that
+spill only by the center rounding and the two scalings, and the box absorbs that
 spill along with the two incoming boxes.
 
 The nominal obligation is the exact argument. The point of the enclosure's ball
@@ -132,7 +132,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
         _ ≤ 1 := by rw [one_mul, one_mul]; exact hinv
     calc ‖w‖₂ ≤ Real.sqrt 1 := Real.sqrt_le_sqrt hsum
       _ = 1 := Real.sqrt_one
-  -- the witness: stored centre and generators at `w`, both shortfalls charged
+  -- the witness: stored center and generators at `w`, both shortfalls charged
   have hgen := Ellipsoid.mem_generatorError (Ellipsoid.aux_plusGap s₁ s₂ E₁ E₂) hw
   refine ⟨fun i => toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).c i)
             + ∑ j, toReal ((Ellipsoid.plus s₁ s₂ E₁ E₂).G i j) * w j,
@@ -172,7 +172,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
   simp only [Ellipsoid.plus, Ellipsoid.plusG, hwdef, Fin.append_left, Fin.append_right]
   linarith [hblk₁, hblk₂]
 
-/-- The box absorbs the two incoming boxes, the centre rounding and the
+/-- The box absorbs the two incoming boxes, the center rounding and the
 scalings. -/
 theorem Ellipsoid.aux_plus_error (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) :
     E₁.I_error.construct + E₂.I_error.construct

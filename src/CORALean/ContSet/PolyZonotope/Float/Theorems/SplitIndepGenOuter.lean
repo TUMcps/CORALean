@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 # `splitIndepGen` covers the set
 
 A point with independent coefficient `βⱼ ≥ 0` is in the first half at `2βⱼ - 1`, one with
-`βⱼ < 0` in the second at `2βⱼ + 1`; the halved generator is exact, and the centre's rounding
+`βⱼ < 0` in the second at `2βⱼ + 1`; the halved generator is exact, and the center's rounding
 `c ± g - cᵢ ≥ 0` is at most the gap added to the top of the error box.
 -/
 
@@ -60,7 +60,7 @@ theorem PolyZonotope.splitIndepGen_outer (pZ : PolyZonotope (Vec 𝕋 n)) (j : F
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hz
   have hb := abs_le.mp (hβ j)
   by_cases hj : 0 ≤ β j
-  · -- the first half, at `2βⱼ - 1`, the centre's rounding moved into the error
+  · -- the first half, at `2βⱼ - 1`, the center's rounding moved into the error
     left
     set d : Vec ℝ n := fun i => toReal (pZ.c i) + toReal (pZ.GI j i) / 2
       - toReal (addDown (pZ.c i) (half (pZ.GI j i)))

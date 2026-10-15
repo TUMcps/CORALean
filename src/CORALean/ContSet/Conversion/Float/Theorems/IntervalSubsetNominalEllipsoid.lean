@@ -129,7 +129,7 @@ theorem Interval.subset_nominal_ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋
       rw [diagonalBlock, if_neg hij, toReal_zero, zero_mul]
   show x i = toReal (I.center i) + ∑ j, toReal ((I.ellipsoid σ).G i j) * u j
   rw [hdiag]
-  -- a zero-width coordinate is the centre; otherwise the division cancels
+  -- a zero-width coordinate is the center; otherwise the division cancels
   by_cases h : toReal (I.ellipsoidG σ i i) = 0
   · rw [hudef]
     simp only [if_pos h]

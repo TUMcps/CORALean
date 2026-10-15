@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `PolyZonotope.origin`, over a floating-point scalar
 
-The point `0` as a polynomial zonotope with no generators of either kind, the centre
+The point `0` as a polynomial zonotope with no generators of either kind, the center
 stored as `zero` and the error box at zero.
 -/
 

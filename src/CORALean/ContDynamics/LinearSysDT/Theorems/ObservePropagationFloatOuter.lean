@@ -57,10 +57,8 @@ theorem LinearSysDT.observePropagationFloat_outer (sys : LinearSysDT 𝕋 n)
     -- the true state, one point of each summand of (6)
     have heq : x (k + 1) = (toRealMat sys.A - toRealMat L * toRealMat sys.C) *ᵥ x k +
         toRealMat sys.B *ᵥ toRealVec (u k) + toRealMat L *ᵥ toRealVec (y k) +
-        toRealMat (fun i j => neg (L i j)) *ᵥ v k + w k := by
-      have hneg : toRealMat (fun i j => neg (L i j)) = -toRealMat L := by
-        funext i j
-        simp [toRealMat, toReal_neg]
+        toRealMat (-L) *ᵥ v k + w k := by
+      have hneg : toRealMat (-L) = -toRealMat L := toRealMat_neg _
       rw [hstep, hy k, hneg, Matrix.sub_mulVec, ← Matrix.mulVec_mulVec, Matrix.mulVec_add,
         Matrix.neg_mulVec]
       abel
@@ -82,15 +80,15 @@ theorem LinearSysDT.observePropagationFloat_outer (sys : LinearSysDT 𝕋 n)
       rw [Zonotope.construct_point]
       exact rfl
     -- `(-L) v_k` is in the product of `-L` with `V`
-    have h4 : toRealMat (fun i j => neg (L i j)) *ᵥ v k ∈
-        (Zonotope.mtimes (fun i j => neg (L i j)) V).construct :=
+    have h4 : toRealMat (-L) *ᵥ v k ∈
+        (Zonotope.mtimes (-L) V).construct :=
       Zonotope.mtimes_outer _ V ⟨v k, hv k, rfl⟩
     -- the sum of the five points is in the sum of the five sets, then reduced
     show x (k + 1) ∈ (Zonotope.reduce (((((Zonotope.mtimesIntervalMat
       (LinearSysDT.errMatFloat sys.A L sys.C) S).plus
       (Zonotope.mtimes sys.B (Zonotope.point (u k)))).plus
       (Zonotope.mtimes L (Zonotope.point (y k)))).plus
-      (Zonotope.mtimes (fun i j => neg (L i j)) V)).plus W) order).construct
+      (Zonotope.mtimes (-L) V)).plus W) order).construct
     refine Zonotope.reduce_outer _ _ ?_
     rw [heq]
     exact Zonotope.plus_outer _ _ ⟨_, Zonotope.plus_outer _ _ ⟨_, Zonotope.plus_outer _ _

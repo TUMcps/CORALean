@@ -16,7 +16,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 Exact. CORA's `@polytope/spectraShadow` stacks `C = [A; Ae; -Ae]` and `d = [b; be; -be]` and
 writes one 1x1 block `d_j - C_j x` per row: `A₀ = diag(d)`, `A_i = diag(-C(:,i))`. A diagonal
 matrix is positive semidefinite exactly when its entries are nonnegative, so the inequality
-holds exactly on the polytope. The centre is `0` and the generators are the unit vectors.
+holds exactly on the polytope. The center is `0` and the generators are the unit vectors.
 With no rows the matrices are `0 × 0`, trivially positive semidefinite, and the shadow is the
 whole space, which is what CORA's `spectraShadow.Inf(n)` branch returns.
 -/

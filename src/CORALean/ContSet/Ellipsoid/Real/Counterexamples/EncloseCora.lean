@@ -39,7 +39,7 @@ theorem Ellipsoid.enclose_cora_counterexample :
       ¬ Set.linComb E.construct ((M *ᵥ ·) '' E.construct + Eplus.construct) ⊆
         Set.linComb E.construct ((Ellipsoid.mtimes M Eplus).construct) := by -- --- PROOF ---
   refine ⟨Ellipsoid.ofPoint 0, Ellipsoid.ofPoint (fun _ => 1), 0, fun h => ?_⟩
-  -- a point ellipsoid is the singleton of its centre
+  -- a point ellipsoid is the singleton of its center
   have hpt : ∀ v : Vec ℝ 1, (Ellipsoid.ofPoint v).construct = {v} := by
     intro v
     ext x

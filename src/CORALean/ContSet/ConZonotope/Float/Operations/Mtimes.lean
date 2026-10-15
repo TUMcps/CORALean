@@ -12,7 +12,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 # `ConZonotope.mtimes` over a floating-point scalar
 
 As over ℝ the constraints sit on the coefficients and a linear map never sees them, so `P`
-is copied. Centre and generators are rounded, and what that costs goes into the error box
+is copied. Center and generators are rounded, and what that costs goes into the error box
 exactly as for `Zonotope.mtimes`: the coefficients of a constrained zonotope lie in
 `[-1, 1]`, which is what lets a generator's rounding be a box. The old box travels through
 the map by `Interval.mtimes`.

@@ -18,7 +18,7 @@ The exact layer's three dependent blocks, and nothing in any of them rounds.
 Halving is exact and so is negation, so `½G₁`, `½G₂` and `-½G₂` are copies, and
 `linCombE` is over ℕ.
 
-Three vectors' worth of rounding is what is left, in two kinds. The centre and
+Three vectors' worth of rounding is what is left, in two kinds. The center and
 the sliding generator are what a zonotope's `linComb` already pays: a midpoint
 stored in place of a known bracket is a `residual`, while the sliding
 generator's coefficient ranges over `[-1,1]`, so its shortfall pulls both ways

@@ -54,7 +54,7 @@ def Zonotope.generatorError (G : Mat 𝕋 n h) : Interval (Vec 𝕋 n) := Interv
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- The point `0` as a zonotope with no generators, the centre stored as `zero`
+/-- The point `0` as a zonotope with no generators, the center stored as `zero`
 and the error box at zero, as `Interval.origin` is for a box. -/
 def Zonotope.origin (n : ℕ) : Zonotope (Vec 𝕋 n) := Zonotope.point fun _ => zero
 
@@ -100,7 +100,7 @@ def Zonotope.pointMat (A : Mat 𝕋 m n) : Zonotope (Mat 𝕋 m n) :=
 -- Last update:   05-September-2026
 -- Reviewed:      ---
 
-/-- The box midpoint added to the centre, rounded up — the other side of the gap
+/-- The box midpoint added to the center, rounded up — the other side of the gap
 `shiftDown` leaves for `absorbError` to store. -/
 def Zonotope.shiftUp (Z : Zonotope (Vec 𝕋 n)) : Vec 𝕋 n :=
   fun i => addUp (Z.c i) (half (addUp (Z.I_error.inf i) (Z.I_error.sup i)))

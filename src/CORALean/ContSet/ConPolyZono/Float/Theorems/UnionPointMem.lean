@@ -13,7 +13,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
 
 A point of the exact union of the two read-back operands, moved by a vector of the two operand
 boxes' hull, lies in the stored union. Its factors are the exact union's own, so the stored
-constraints hold there (`union_satisfies_of_real`). What differs is the centre and the sliding
+constraints hold there (`union_satisfies_of_real`). What differs is the center and the sliding
 generator, which are stored rounded down: their shortfalls are the midpoint residual and, over
 the selector `t` in `[-1,1]`, the symmetric half-difference box, both of which the stored box holds.
 -/

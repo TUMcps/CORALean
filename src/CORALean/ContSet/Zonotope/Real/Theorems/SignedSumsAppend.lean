@@ -10,7 +10,7 @@ public import Mathlib.Data.Fin.Tuple.Basic
 /-!
 # `Z±` of concatenated generators is the sum of the `Z±`
 
-[1, Remark 3]: `Z±([R₁, R₂]) = Z±(R₁) ⊕ Z±(R₂)`. With a box `[r]` as the centred zonotope with
+[1, Remark 3]: `Z±([R₁, R₂]) = Z±(R₁) ⊕ Z±(R₂)`. With a box `[r]` as the centered zonotope with
 generators `diag(rad)`, the potential vertices of an MSPB `A [r] + [v]` are the images of the
 boxes' vertices (`A [r]± ⊕ [v]±`), which is how `Zonotope.mspb` enumerates them.
 

@@ -67,7 +67,7 @@ theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {
         abs_sum_le_radius (fun _ _ => le_rfl) hβ i
       rw [abs_le] at hrad
       simp only [ConZonotope.conB, Interval.nominal, RealImage.realImage, toRealVec,
-        Fin.append_left, toReal_neg]
+        Fin.append_left, Pi.neg_apply, toReal_neg']
       exact ⟨hrad.1, hle i⟩
     · rw [hEq i]
       simp only [ConZonotope.conB, Interval.nominal, RealImage.realImage, toRealVec,

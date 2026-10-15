@@ -38,7 +38,7 @@ of `Table 2`, which misses the boundary. None of them reaches CORA.
 | `Sec. 3 (W_c)` | `W_c = (∫₀ʰ e^{A(h-τ)} dτ)⁻¹ W = (A⁻¹(e^{Ah} - I))⁻¹ W` [3, eq. (3.6)]; considering all disturbances only adds conservatism. | n/a — restated from Althoff 2010 [3, eq. (3.6)] | `restated` |
 | `Eq. 9` | The templates `X̃₀ = ⟨c_X, G_X diag(α_X)⟩`, `W = ⟨c_W, G_W diag(α_W)⟩`, `V = ⟨c_V, G_V diag(α_V)⟩`. | [`TemplateZono.lean`](../../src/CORALean/ContDynamics/Conform/Definitions/TemplateZono.lean) | `correct` |
 | `Eq. 10` | `c = [c_X; c_W; c_V]`, `α = [α_X; α_W; α_V]`. | n/a — notation | `not-a-claim` |
-| `Eq. 11` | The interval norm `‖Z‖_{Ĩ,σ} = σᵀ\|[c, G]\| 1`, `σ > 0`, with a) `≥ 0`, b) `‖⟨0⟩‖ = 0`, c) `‖γZ‖ = \|γ\| ‖Z‖`, d) `‖⟨[c₁, G₁] + [c₂, G₂]⟩‖ ≤ ‖⟨[c, G₁]⟩‖ + ‖⟨[c₂, G₂]⟩‖`; without the centre, `‖Z‖_{I,σ} = σᵀ\|G\| 1` (11). | [`IntervalNormProps.lean`](../../src/CORALean/ContDynamics/Conform/Theorems/IntervalNormProps.lean), [`IntervalNorm.lean`](../../src/CORALean/ContDynamics/Conform/Definitions/IntervalNorm.lean) — a)-d) for `σᵀ\|M\|1` as a function of the matrix, `σ ≥ 0` | `underspecified` — d)'s first right-hand term prints `c` for `c₁` |
+| `Eq. 11` | The interval norm `‖Z‖_{Ĩ,σ} = σᵀ\|[c, G]\| 1`, `σ > 0`, with a) `≥ 0`, b) `‖⟨0⟩‖ = 0`, c) `‖γZ‖ = \|γ\| ‖Z‖`, d) `‖⟨[c₁, G₁] + [c₂, G₂]⟩‖ ≤ ‖⟨[c, G₁]⟩‖ + ‖⟨[c₂, G₂]⟩‖`; without the center, `‖Z‖_{I,σ} = σᵀ\|G\| 1` (11). | [`IntervalNormProps.lean`](../../src/CORALean/ContDynamics/Conform/Theorems/IntervalNormProps.lean), [`IntervalNorm.lean`](../../src/CORALean/ContDynamics/Conform/Definitions/IntervalNorm.lean) — a)-d) for `σᵀ\|M\|1` as a function of the matrix, `σ ≥ 0` | `underspecified` — d)'s first right-hand term prints `c` for `c₁` |
 | `Thm. 1` | (Linear program) `min nᵀz s.t. Ãz ≤ b̃` (12)-(21) minimizes `Σ_k ω_k ‖R(t_k) - ỹ(t_k)‖_{I,σ}` (13) and ensures reachset conformance, (8) at every `k`; `N(t_k)` the normals of the zonotope with generators `G(t_k)` (21) by [11, Thm. 7]. | [`ConformantIffLp.lean`](../../src/CORALean/ContDynamics/Conform/Theorems/ConformantIffLp.lean), [`LpCostEq.lean`](../../src/CORALean/ContDynamics/Conform/Theorems/LpCostEq.lean), [`DevSetTemplateZono.lean`](../../src/CORALean/ContDynamics/Conform/Theorems/DevSetTemplateZono.lean) — a point with `α ≥ 0` meets the constraints iff the model is conformant (both directions), and `nᵀz` is the cost; the minimizer the solver returns is the solver's | `proof-gap` — the proof takes `N(t_k)` independent of `α`, citing [46, Thm. 1], whose argument needs `α > 0`; the program allows `αᵢ = 0`, where a generator and its normals vanish. The statement holds there, with the template's normals; the template must span the output space; see Findings |
 | `Eq. 22` | The Frobenius norm `‖Z‖_{F,P} = √trace(Gᵀ P G)`. | [`IntervalNorm.lean`](../../src/CORALean/ContDynamics/Conform/Definitions/IntervalNorm.lean) — `frobNormSq`, its square | `correct` |
 | `Thm. 2` | (Quadratic program) `min ½ zᵀHz s.t. Ãz ≤ b̃` with `H` from (24)-(26) minimizes `Σ_k ω_k ‖R(t_k) - ỹ(t_k)‖²_{F,P}` (23) and ensures conformance. | [`QpCostEq.lean`](../../src/CORALean/ContDynamics/Conform/Theorems/QpCostEq.lean) — `zᵀHz` is the cost (`½` halves it, the minimizers are the same); the constraints are `Thm. 1`'s | `correct` |
@@ -51,7 +51,7 @@ of `Table 2`, which misses the boundary. None of them reaches CORA.
 falsifying when `(y ⊕ V) ∩ R = ∅`, i.e. no `v ∈ V` has `y + v ∈ R`, i.e. `y ∉ R ⊕ (-V)`. The
 paper checks `y ∉ R ⊕ V`, which differs for an asymmetric `V`: at `R = {0}`, `V = [0, 1]`,
 `y = -1`, the exact output `y + 1 = 0` may well be reachable, yet `-1 ∉ [0, 1]` reports a
-falsification. For centrally symmetric `V` — the zero-centred sets CORA's examples use — the
+falsification. For centrally symmetric `V` — the zero-centered sets CORA's examples use — the
 two coincide.
 [`FalsifyAdd.lean`](../../src/CORALean/ContDynamics/Conform/Counterexamples/FalsifyAdd.lean),
 [`DisjointSingletonAddIff.lean`](../../src/CORALean/ContDynamics/Conform/Theorems/DisjointSingletonAddIff.lean)
@@ -59,7 +59,7 @@ two coincide.
 **`Table 2` — the capsule test misses the boundary.** The test is presented among the exact
 containment checks, but its axis disjunct compares `< r`: a point at distance exactly `r`
 from the open axis is in the capsule and rejected — `c = 0`, `g = (1, 0)`, `r = 1`,
-`x = (0, 1)` fails the axis test (`1 < 1`) and lies `√2` from both end centres. With `≤ r` the
+`x = (0, 1)` fails the axis test (`1 < 1`) and lies `√2` from both end centers. With `≤ r` the
 disjunction is exact. CORA's `capsule/contains_` compares `dist < r | withinTol(dist, r)` and
 is not affected.
 [`ContainsTable.lean`](../../src/CORALean/ContSet/Capsule/Real/Counterexamples/ContainsTable.lean),

@@ -8,7 +8,7 @@ public import Mathlib.Data.Real.Basic
 # `Taylm.atanShift`
 
 The `g(x) = (f(x) - c_f) / (1 + c_f·f(x))` of [1, Def. 3 (arctan)], at a value `a` of `f` and its
-centre `c`: the argument the source's addition formula hands to `arctan`.
+center `c`: the argument the source's addition formula hands to `arctan`.
 
 ## References
 

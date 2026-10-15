@@ -13,10 +13,10 @@ public import CORALean.NN.Layers.Definitions.SecantSlope
 [1, Alg. 1]: per neuron, the slope `m = (ϕ(u) - ϕ(l)) / (u - l)` of the secant [1, Def. 7], and the
 approximation errors `e_low`, `e_up` of `p(x) = m x` on `[l, u]` [1, Def. 6], the image being
 enclosed by `m x ⊕ [e_low, e_up]`. As a `Relaxation`: slope `m`, offset `(e_low + e_up)/2` and error
-`(e_up - e_low)/2`, the box `[e_low, e_up]` centred. `Layer.activation` of it is the algorithm:
+`(e_up - e_low)/2`, the box `[e_low, e_up]` centered. `Layer.activation` of it is the algorithm:
 the slope matrix applied to the input set, the box of errors added by one Minkowski sum.
 
-The printed line 6 adds `(e_low + e_up)/2` to the centre of `Diag(m) H` and line 7 then forms
+The printed line 6 adds `(e_low + e_up)/2` to the center of `Diag(m) H` and line 7 then forms
 `⊕ [e_low, e_up]`, which by [1, Prop. 3] adds the midpoint again; the relaxation adds it once.
 
 ## References

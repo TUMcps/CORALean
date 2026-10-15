@@ -103,7 +103,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
         (Zonotope.ofPoint 0) P x u (fun _ => 2) ∧
       x r ∉ construct R.1 ∧ x r ∉ construct R.2 := by -- --- PROOF ---
   intro sys P I R
-  -- the size of a zonotope in coordinate `0`: centre plus the absolute generators
+  -- the size of a zonotope in coordinate `0`: center plus the absolute generators
   obtain ⟨S, hS⟩ : ∃ S : Zonotope (Vec ℝ 1) → ℝ, ∀ Z, S Z = Z.c 0 + ∑ l, |Z.G l 0| :=
     ⟨_, fun _ => rfl⟩
   have hSplus : ∀ Z₁ Z₂ : Zonotope (Vec ℝ 1), S (Z₁ ⊞ Z₂) = S Z₁ + S Z₂ := by
@@ -153,7 +153,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       intro a b f g
       rw [Fin.sum_univ_add]
       simp [Fin.append_left, Fin.append_right]
-    -- `linComb` of a point and a set with a larger centre is no bigger than the latter
+    -- `linComb` of a point and a set with a larger center is no bigger than the latter
     have hlin : ∀ Z₁ Z₂ : Zonotope (Vec ℝ 1), Z₁.h = 0 → Z₁.c 0 ≤ Z₂.c 0 →
         S (Zonotope.linComb Z₁ Z₂) ≤ S Z₂ := by
       rintro ⟨h₁, c₁, G₁⟩ ⟨h₂, c₂, G₂⟩ hz1 hc
@@ -177,7 +177,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
           r 2 Rd Uc UG := by
       simp only [LinParamSys.initReachInputDependence, hVc, hVG]
     subst hA
-    -- the second-order `R_lowOrder`: centre `d + 3 r / 2`, one generator `r / 2`
+    -- the second-order `R_lowOrder`: center `d + 3 r / 2`, one generator `r / 2`
     have hlow : S (LinParamSys.dependentLowOrder (0 : Mat ℝ 1 1) (fun _ => 0) Rd.c Uc UG r)
         = Rd.c 0 + 2 * r := by
       simp only [hS, LinParamSys.dependentLowOrder, hSapp]
@@ -220,7 +220,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       intro i j
       simp [MatExp.expIntervalEnclosure, MatExp.expIntervalTaylor, hplI, hplS, hsmI, hsmS,
         (hpow C hzC _ _ _).1, (hpow C hzC _ _ _).2, habs C hzC, hE, (hp0 C _ _).1, (hp0 C _ _).2]
-    -- the centre and the size of an interval matrix times a zonotope
+    -- the center and the size of an interval matrix times a zonotope
     have hcmt : ∀ (IM : Interval (Mat ℝ 1 1)) (Z : Zonotope (Vec ℝ 1)),
         (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z).c 0 = IM.center 0 0 * Z.c 0 := by
       intro IM Z
@@ -258,7 +258,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       intro i j
       simp [hE2, hplI, hplS, MatExp.intervalInputRemainder, hC, habs C hzC, hE, (hTi i j).1,
         (hTi i j).2]
-    -- the centre of the time-point set is at least the centre of the start
+    -- the center of the time-point set is at least the center of the start
     have hctp : Rd.c 0 ≤ (LinParamSys.dependentHomSol
         (LinParamSys.canonical (⟨1, 0, fun _ => 0⟩ : Zonotope (Mat ℝ 1 1))) r 2 Rd Uc UG).c 0 := by
       have hcplus : ∀ Z₁ Z₂ : Zonotope (Vec ℝ 1), (Z₁ ⊞ Z₂).c 0 = Z₁.c 0 + Z₂.c 0 :=

@@ -38,8 +38,8 @@ def SpectraShadow.absorb (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : SpectraShadow �
   -- the `i`-th unit vector
   let unit : Fin n → Vec 𝕋 n := fun i r => if r = i then one else zero
   -- the box constraints `e - inf ≥ 0`, `sup - e ≥ 0`: their constants and their `e` coefficients
-  let boxConst : Vec 𝕋 (n + n) := Fin.append (fun r => neg (S.I_error.inf r)) S.I_error.sup
-  let boxGen : Fin n → Vec 𝕋 (n + n) := fun i => Fin.append (unit i) fun r => neg (unit i r)
+  let boxConst : Vec 𝕋 (n + n) := Fin.append (-S.I_error.inf) S.I_error.sup
+  let boxGen : Fin n → Vec 𝕋 (n + n) := fun i => Fin.append (unit i) (-(unit i))
   -- the old matrices for the old variables, the box coefficients for the new ones
   let X : Fin (S.m + n) → Mat 𝕋 S.k S.k := Fin.append S.A fun _ _ _ => zero
   let d : Fin (S.m + n) → Vec 𝕋 (n + n) := Fin.append (fun _ _ => zero) boxGen

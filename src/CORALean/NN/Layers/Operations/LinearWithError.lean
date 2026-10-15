@@ -12,8 +12,8 @@ public import CORALean.NN.Layers.Layer
 
 CORA's adaptation `W h + b ⊕ E` for a network already carrying an approximation error — the
 reduced linear layer a neuron merge leaves behind, weights and box alike stored in the scalar.
-`E` need not be centred at `0`, a merging error rarely is, so the layer commits to `E`'s own
-centre as its nominal value and pays the rest into `enclose`, the way `Layer.activation` pays a
+`E` need not be centered at `0`, a merging error rarely is, so the layer commits to `E`'s own
+center as its nominal value and pays the rest into `enclose`, the way `Layer.activation` pays a
 relaxation's error. Nothing rounds beyond the representation's own `plus` and the box's sum.
 -/
 

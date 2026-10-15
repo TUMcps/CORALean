@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Polymax
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
-public import CORALean.ContSet.Zonotope.Real.Theorems.CentreMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
@@ -62,7 +62,7 @@ theorem Zonotope.polymax_iff (Z₁ Z₂ : Zonotope (Vec ℝ n)) (hG : Function.S
     -- every right-hand side is positive, `0` being inside
     have hpos : ∀ i, 0 < h i := fun i => by
       have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).construct := by
-        rw [hrep]; simpa using Z₂.centre_mem_construct
+        rw [hrep]; simpa using Z₂.center_mem_construct
       have := HPolytope.mem_ineqs_iff.mp h0 i
       simp only [mulVec_zero, Pi.zero_apply] at this
       exact lt_of_le_of_ne this (hne i).symm

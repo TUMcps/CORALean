@@ -2,7 +2,7 @@ import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.SetIntersection.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Theorems.CentreMemConstruct
+import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemConstruct
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -95,18 +95,18 @@ theorem image_outer :
 theorem small_outer : ContSet.construct I ⊆ ContSet.construct small :=
   SetIntersection.reduce_outer I 1
 
-/-- The centre of a zonotope with no error is one of its points. -/
-theorem centre_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z.c ∈ Z.construct :=
-  Zonotope.centre_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
+/-- The center of a zonotope with no error is one of its points. -/
+theorem center_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z.c ∈ Z.construct :=
+  Zonotope.center_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
 
 /-- The origin is in the square and the diamond, hence in `I`. -/
 theorem origin_mem_I : toRealVec square.c ∈ ContSet.construct I := by -- --- PROOF ---
   refine SetIntersection.mem_construct.mpr fun s hs => ?_
   simp only [I, List.mem_cons, List.not_mem_nil, or_false] at hs
   rcases hs with rfl | rfl
-  · exact centre_mem _ rfl
+  · exact center_mem _ rfl
   · have : toRealVec square.c = toRealVec diamond.c := rfl
-    rw [this]; exact centre_mem _ rfl
+    rw [this]; exact center_mem _ rfl
 
 /-- The origin is in `I` and in `J`, so `0 + 0` is in `I + J`, and by `sum_outer` in `sum`. -/
 theorem origin_add_origin_mem_sum :
@@ -116,8 +116,8 @@ theorem origin_add_origin_mem_sum :
   simp only [J, List.mem_cons, List.not_mem_nil, or_false] at hs
   rcases hs with rfl | rfl
   · have : toRealVec square.c = toRealVec segment.c := rfl
-    rw [this]; exact centre_mem _ rfl
-  · exact centre_mem _ rfl
+    rw [this]; exact center_mem _ rfl
+  · exact center_mem _ rfl
 
 end CORALean.Examples.SetIntersectionFloat
 

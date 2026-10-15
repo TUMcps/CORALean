@@ -56,7 +56,7 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A zonotope's centre is one of its points, which is all the nonemptiness a Hausdorff
+/-- A zonotope's center is one of its points, which is all the nonemptiness a Hausdorff
 distance asks of it. -/
 theorem aux_center_mem_construct {α : Type} [AddCommGroup α] [Module ℝ α] (Z : Zonotope α) :
     Z.c ∈ Z.construct :=

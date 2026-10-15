@@ -8,11 +8,11 @@ public import CORALean.Global.Float.Sqrt
 /-!
 # `Zonotope.radius`
 
-CORA's `@zonotope/radius`: the smaller of two radii of a ball about the centre, the sum of the
+CORA's `@zonotope/radius`: the smaller of two radii of a ball about the center, the sum of the
 generator lengths and the Euclidean norm of the half-widths of `interval(Z)`. Here both are
-radii about the stored centre and both pay for the error box by its largest magnitude `err`
+radii about the stored center and both pay for the error box by its largest magnitude `err`
 per coordinate: `∑ⱼ ‖Gⱼ‖₂ + ‖err‖₂`, and `‖rowSum |G| + err‖₂`. The second is CORA's
-half-width norm when the error box is zero and the centre is the midpoint, as it is for a
+half-width norm when the error box is zero and the center is the midpoint, as it is for a
 box with no error. The roots are `normUp` (`Global/Float/Sqrt`, `k` Newton steps), the sums
 `addUp`, so the radius is rounded up.
 -/

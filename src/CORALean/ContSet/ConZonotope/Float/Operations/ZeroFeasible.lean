@@ -5,12 +5,12 @@ public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 @[expose] public section
 
 /-!
-# `ConZonotope.zeroFeasible`: the centre is a point of the set
+# `ConZonotope.zeroFeasible`: the center is a point of the set
 
 A test on the constraint rows alone that coefficients `0` meet them: every inequality's bound
-is at least `0` and every equality's right-hand side is `0`. Then the centre is a point of the
+is at least `0` and every equality's right-hand side is `0`. Then the center is a point of the
 nominal part, so the set is nonempty (`zeroFeasible_nonempty`). Sufficient, not necessary:
-`false` says only that the centre may be outside.
+`false` says only that the center may be outside.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

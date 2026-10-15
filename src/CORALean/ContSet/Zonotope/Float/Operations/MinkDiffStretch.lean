@@ -9,8 +9,8 @@ public import CORALean.ContSet.Zonotope.Float.Operations.OfEntryBounds
 # `Zonotope.minkDiffStretch`, over a floating-point scalar
 
 The float counterpart of `Real.Zonotope.minkDiffStretch`: the generator representation [1,
-Thm. 4] and [1, Thm. 5] share, the centres subtracted and each generator of the minuend stretched
-by its own factor `μᵢ`. Rounded *outward*, one named `let` per step: the centre and every scaled
+Thm. 4] and [1, Thm. 5] share, the centers subtracted and each generator of the minuend stretched
+by its own factor `μᵢ`. Rounded *outward*, one named `let` per step: the center and every scaled
 generator entry are bracketed by their two directed roundings, and `ofEntryBounds` stores the
 lower bounds and pays the gaps into the box. So the result encloses the real stretched zonotope
 at the same `μ`, which is the direction [1, Thm. 5]'s over-approximation needs

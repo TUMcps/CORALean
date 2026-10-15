@@ -8,7 +8,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaPointIff
 /-!
 # A capsule is the origin iff it is a point at `0`
 
-The point is the centre, so the origin is the point whose centre is `0`.
+The point is the center, so the origin is the point whose center is `0`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -31,7 +31,7 @@ theorem Capsule.representsa_origin_iff (hn : 0 < n) (C : Capsule n) :
   constructor
   · intro h
     have hc : C.c ∈ C.construct :=
-      (Capsule.centre_mem_construct_iff C).mpr (by
+      (Capsule.center_mem_construct_iff C).mpr (by
         obtain ⟨t, -, ht⟩ : (0 : Vec ℝ n) ∈ C.construct := h ▸ rfl
         exact le_trans (Real.sqrt_nonneg _) ht)
     rw [h] at hc

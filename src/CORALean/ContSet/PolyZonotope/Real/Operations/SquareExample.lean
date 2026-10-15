@@ -32,7 +32,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Centre `0`, generator `1`, exponent `2`: the points `α²` for `α` between `-1` and `1`. -/
+/-- Center `0`, generator `1`, exponent `2`: the points `α²` for `α` between `-1` and `1`. -/
 def PolyZonotope.squareExample : PolyZonotope (Vec ℝ 1) where
   p := 1
   h := 1

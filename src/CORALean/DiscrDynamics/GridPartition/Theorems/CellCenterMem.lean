@@ -6,7 +6,7 @@ public import CORALean.DiscrDynamics.GridPartition.Theorems.Basic
 @[expose] public section
 
 /-!
-# A cell's centre is in the cell
+# A cell's center is in the cell
 
 In a well-formed partition `cellCenter` returns a point of each cell asked for.
 -/

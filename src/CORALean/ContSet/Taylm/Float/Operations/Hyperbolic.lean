@@ -14,7 +14,7 @@ public import CORALean.Global.Float.DivFact
 # `Taylm.hyperbolic`: the Taylor model of `sinh` and of `cosh`
 
 The derivatives of `sinh` and `cosh` alternate between the two, so the `k`-th coefficient at the
-centre `c` is `sinh c / k!` or `cosh c / k!` by the parity of `k`: `first` says whether the even
+center `c` is `sinh c / k!` or `cosh c / k!` by the parity of `k`: `first` says whether the even
 coefficients are `sinh`'s (`Taylm.sinh`) or `cosh`'s (`Taylm.cosh`). `sinh c` and `cosh c` are
 enclosed by `sinhDown`/`sinhUp` and `coshDown`/`coshUp`, and the quotient by `k!` as the product
 with `[divFact ⟨1, 1⟩ k]` through the four corner products `mulLo`, `mulHi`, since `sinh c` has no
@@ -44,7 +44,7 @@ def Taylm.hyperbolic (p : ℕ) (first : Bool) (T : Taylm 𝕋 n) : Taylm 𝕋 n 
   let N := T.maxOrder
   let c := T.constCoef
   let b := T.bounds
-  -- `|f t - c| ≤ B` on the box, and `|ξ| ≤ m` on the hull of the centre and the box
+  -- `|f t - c| ≤ B` on the box, and `|ξ| ≤ m` on the hull of the center and the box
   let B := maximum zero (maximum (subUp b.sup c) (subUp c b.inf))
   let m := maximum (absolute c) (maximum (absolute b.inf) (absolute b.sup))
   let D := coshUp p m

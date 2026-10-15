@@ -15,14 +15,14 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 `LinParamSys.initReachInputDependence_outer`: for every parameter `p ∈ [-1, 1]ᵏ` shared by the
 system matrix and the constant input, every `x₀ ∈ Rinit` and every `t ∈ [0, r]`, the solution
 `x(t) = e^{A(p) t} x₀ + ∫₀ᵗ e^{A(p)(t-s)} (B u(p) + c) ds`, `u(p)` in input coordinates and `B` the
-centre of `sys.B`, lies in the time-interval set, and `x(r)` in the time-point set
+center of `sys.B`, lies in the time-interval set, and `x(r)` in the time-point set
 (`dependentHomSol_outer`), at the state-space constant input `B u(p) + c`.
 
 The time-interval argument is `timeIntervalStep_outer`'s with an input: `x(t)` is the point
 `(1 - t/r) x₀ + (t/r) x(r)` of `enclose(Rinit, Rhom_tp)` plus the state's curvature
 `(e^{At} - I - (t/r)(e^{Ar} - I)) x₀ ∈ F Rinit` plus the input's,
 `(∫₀ᵗ e^{As} ds - (t/r) ∫₀ʳ e^{As} ds) u(p) ∈ inputF Uconst`. The last is where CORA's
-`inputF*center(Uconst)` falls short: `u(p)` ranges over `Uconst`, not its centre.
+`inputF*center(Uconst)` falls short: `u(p)` ranges over `Uconst`, not its center.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5

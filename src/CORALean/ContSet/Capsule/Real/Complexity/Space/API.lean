@@ -3,7 +3,7 @@ module
 /-!
 # What `Capsule` costs
 
-`Capsule` carries no count at all: its fields are a centre `c`, a segment
+`Capsule` carries no count at all: its fields are a center `c`, a segment
 direction `g` and a radius `r`, three plain values rather than a generator or
 constraint list indexed by some `Fin k`. There is no `Operations/` directory
 either — `Instances.lean` already explains why the representation has no

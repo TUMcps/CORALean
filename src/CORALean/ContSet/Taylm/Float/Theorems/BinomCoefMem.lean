@@ -40,7 +40,7 @@ theorem Taylm.binomCoef_mem (e j : ℕ) (m r : 𝕋) :
   -- the integer between its roundings
   have hI := intDown_le_intUp (𝕋 := 𝕋) (e.choose j : ℤ)
   simp only [Int.cast_natCast] at hI
-  -- the first product, with the power of the centre
+  -- the first product, with the power of the center
   have hA := Real.Interval.mul_between_corners hI.1 hI.2 (Interval.powLo_le m (e - j))
     (Interval.le_powHi m (e - j))
   have hA₁ := le_trans (Interval.mulLo_le _ _ _ _) hA.1

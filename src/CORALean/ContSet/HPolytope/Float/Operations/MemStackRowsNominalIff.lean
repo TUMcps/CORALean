@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
-public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendRight
+public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 
@@ -45,10 +45,10 @@ theorem HPolytope.mem_stackRows_nominal_iff {P₁ P₂ : HPolytope 𝕋 (Vec �
       simp only [HPolytope.stackRows, HPolytope.mulVec_append_left, Fin.append_left] at h
       exact h
     · have h := hle (Fin.natAdd P₁.m i)
-      simp only [HPolytope.stackRows, HPolytope.mulVec_append_right, Fin.append_right] at h
+      simp only [HPolytope.stackRows, toRealMat_append_mulVec_natAdd, Fin.append_right] at h
       exact h
     · have h := heq (Fin.natAdd P₁.me i)
-      simp only [HPolytope.stackRows, HPolytope.mulVec_append_right, Fin.append_right] at h
+      simp only [HPolytope.stackRows, toRealMat_append_mulVec_natAdd, Fin.append_right] at h
       exact h
   -- back: the two memberships are the two halves of one row list
   · rintro ⟨⟨hle₁, heq₁⟩, hle₂, heq₂⟩
@@ -56,12 +56,12 @@ theorem HPolytope.mem_stackRows_nominal_iff {P₁ P₂ : HPolytope 𝕋 (Vec �
     · refine Fin.addCases (fun i => ?_) fun i => ?_
       · simp only [HPolytope.stackRows, HPolytope.mulVec_append_left, Fin.append_left]
         exact hle₁ i
-      · simp only [HPolytope.stackRows, HPolytope.mulVec_append_right, Fin.append_right]
+      · simp only [HPolytope.stackRows, toRealMat_append_mulVec_natAdd, Fin.append_right]
         exact hle₂ i
     · refine Fin.addCases (fun i => ?_) fun i => ?_
       · simp only [HPolytope.stackRows, HPolytope.mulVec_append_left, Fin.append_left]
         exact heq₁ i
-      · simp only [HPolytope.stackRows, HPolytope.mulVec_append_right, Fin.append_right]
+      · simp only [HPolytope.stackRows, toRealMat_append_mulVec_natAdd, Fin.append_right]
         exact heq₂ i
 
 end CORALean.Float

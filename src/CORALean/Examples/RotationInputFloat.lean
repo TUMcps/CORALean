@@ -12,7 +12,7 @@ an input set that does not hold `0` — from the same box, over the same eight
 steps at `Dyadic 64`: `LinearSys.reachFloatInput` (CORA's standard scheme) and
 `LinearSys.reachWrappingFreeFloatInput`, each with the guarantee it carries
 against every run. The `#eval`s print the summary `RotationFloat` prints, and
-the time-point sets' centres, the second falling at `-x₁ + 1/2`, half the rate
+the time-point sets' centers, the second falling at `-x₁ + 1/2`, half the rate
 it falls at without the input.
 -/
 
@@ -34,7 +34,7 @@ def BD : Mat (Dyadic 64) 2 1 := !![d 0 0; d 1 0]
 /-- The rotation with that input, CORA's `linearSys(A, BD)`: `c = 0`, the output the state. -/
 def sysBD : LinearSys (Dyadic 64) 2 := { sysD with m := 1, B := BD, D := fun _ _ => d 0 0 }
 
-/-- `[3/8, 5/8]`, centred at `1/2`: `0` is not in it. -/
+/-- `[3/8, 5/8]`, centered at `1/2`: `0` is not in it. -/
 def UD : Zonotope (Vec (Dyadic 64) 1) where
   h := 1
   c := ![d 1 (-1)]
@@ -69,13 +69,13 @@ example {Rs : List (Zonotope (Vec (Dyadic 64) 2))} (h : wrapFreeD = some Rs) :=
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The time-point sets' centres, through `Float`. -/
-def centres (Rs : List (Zonotope (Vec (Dyadic 64) 2))) : List (List Float) :=
+/-- The time-point sets' centers, through `Float`. -/
+def centers (Rs : List (Zonotope (Vec (Dyadic 64) 2))) : List (List Float) :=
   Rs.map fun Z => List.ofFn fun i => dToFloat (Z.c i)
 
 #eval recursiveD.map fun r => r.1.map (summary dToFloat)
 #eval recursiveD.map fun r => r.2.map (summary dToFloat)
-#eval recursiveD.map fun r => centres r.2
+#eval recursiveD.map fun r => centers r.2
 #eval wrapFreeD.map (·.map (summary dToFloat))
 
 end CORALean.RotationInputFloat

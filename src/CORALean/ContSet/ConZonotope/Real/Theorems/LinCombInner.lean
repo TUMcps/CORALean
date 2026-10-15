@@ -97,7 +97,7 @@ theorem ConZonotope.linComb_inner (cZ₁ cZ₂ : ConZonotope α) (h₁ : cZ₁.c
   obtain ⟨y₂, hy₂mem, hy₂⟩ := ConZonotope.aux_smul_mem cZ₂ h₂ (by linarith)
     (u := fun j => β (Fin.castAdd 1 (Fin.natAdd cZ₁.h j))) hA₂ hAe₂
   refine ⟨y₁, hy₁mem, y₂, hy₂mem, lam, ⟨hl0, hl1⟩, ?_⟩
-  -- the value: the two weighted sums, and the centres the fresh generator moves
+  -- the value: the two weighted sums, and the centers the fresh generator moves
   rw [ConZonotope.sum_univ_linComb, Fin.sum_univ_add, Fin.sum_univ_one]
   simp only [ConZonotope.linComb, Fin.append_left, Fin.append_right]
   rw [hy₁, hy₂, hlam]

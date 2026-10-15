@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
 
 CORA's `@conZonotope/cubMap` (`aux_cubMapSingle`) for a single constrained zonotope on the stored
 floats: the error box made into coefficients (`dependent`), then the generators of
-`Zonotope.cubMapDep` on the centre and generators, with the constraints kept on the *linear*
+`Zonotope.cubMapDep` on the center and generators, with the constraints kept on the *linear*
 monomials, the generators `(0, 0, j)` whose factor is the old `βⱼ`, and every other monomial factor
 (`βⱼβₖ`, `2βⱼ² - 1`, the cubes, ...) unconstrained: `lift_` writes the operand's constraints on
 those coordinates. Every linear generator is kept, zero or not, where CORA's

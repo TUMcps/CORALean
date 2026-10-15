@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Module.BigOperators
 # `Zonotope.intersectWeighted` encloses the intersection of the zonotopes
 
 [1, Lemma 3]: a point `x` of every `Zᵢ = cᵢ + Gᵢ βᵢ` satisfies `x = (Σ wᵢ)⁻¹ Σ wᵢ (cᵢ + Gᵢ βᵢ)`,
-which is the centre plus the weighted generators at the stacked coefficients `(β₁, …, β_d)`,
+which is the center plus the weighted generators at the stacked coefficients `(β₁, …, β_d)`,
 each still in `[-1, 1]`. Any weights with a nonzero sum, positive or not; outer only.
 
 ## References

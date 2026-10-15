@@ -18,7 +18,7 @@ the zonogon with a line `x = γ` is `{γ} × [y_l; y_h]` and both ends lie on ed
 lower end is `exists_edge_least_section` at `σ = 1` (the line to the right of the lowest corner,
 the walk in increasing angle) or `σ = -1` (to its left, the walk back in decreasing angle, the
 second block); the upper end is the lower end of the section at `2 c_x - γ`, reflected through the
-centre. It is the output specification of [1, Alg. 3] and [1, Alg. 4], with the ends on edges.
+center. It is the output specification of [1, Alg. 3] and [1, Alg. 4], with the ends on edges.
 
 ## References
 
@@ -91,7 +91,7 @@ theorem Zonotope.section_eq_Icc_walkEdges (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z
     ∃ yl yh : ℝ, (![γ, yl] : Vec ℝ 2) ∈ Z.walkEdges ∧ (![γ, yh] : Vec ℝ 2) ∈ Z.walkEdges ∧
       {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} = Set.Icc yl yh := by -- --- PROOF ---
   obtain ⟨yl, hyl, hylZ, hlow⟩ := Z.aux_section_low hh h1 h2 γ hne
-  -- the section at the reflected abscissa, through the centre
+  -- the section at the reflected abscissa, through the center
   have hrefl : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.construct →
       (![2 * Z.c 0 - γ, 2 * Z.c 1 - y] : Vec ℝ 2) ∈ Z.construct := fun y hy => by
     have := Z.central_symm_mem_construct hy

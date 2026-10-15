@@ -53,7 +53,7 @@ theorem Zonotope.identifyStep_outer (X : Zonotope (Vec ℝ n)) (r : Vec ℝ n) (
   have hhi : r ⬝ᵥ θ ≤ r ⬝ᵥ X.c + X.supportRadius r := hmax ⟨θ, hθX, rfl⟩
   have hlo : r ⬝ᵥ X.c - X.supportRadius r ≤ r ⬝ᵥ θ := hmin ⟨θ, hθX, rfl⟩
   obtain ⟨hF1, hF2⟩ := abs_le.mp (show |r ⬝ᵥ θ - y| ≤ σ from hθF)
-  -- hence in the tight strip, centred at `(u + q) / 2` with half-width `(u - q) / 2`
+  -- hence in the tight strip, centered at `(u + q) / 2` with half-width `(u - q) / 2`
   set q : ℝ := max (r ⬝ᵥ X.c - X.supportRadius r) (y - σ) with hq
   set u : ℝ := min (r ⬝ᵥ X.c + X.supportRadius r) (y + σ) with hu
   have hstrip : θ ∈ {x | ∀ i, |((Matrix.of fun _ j => r j : Mat ℝ 1 n) *ᵥ x -

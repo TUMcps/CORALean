@@ -16,7 +16,7 @@ Lines 1-2 and 6-14 of it: the two polytopes `P₁`, `P₂` of lines 3-5 are take
 constrained zonotope, so the result is a `Set`, as in `Alg. 2`.
 
 `ρ` is the caller's support oracle for a polytope — the linear program of (9). `Zw` is (27),
-the constant centre trajectory's contribution over one interval.
+the constant center trajectory's contribution over one interval.
 
 ## References
 

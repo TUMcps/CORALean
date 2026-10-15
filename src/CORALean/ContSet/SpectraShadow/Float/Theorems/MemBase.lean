@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 # The base spectrahedron holds every feasible `β`
 
 At `β` the base shadow's inequality is the shadow's own, its point is `β` (identity generators,
-centre `0`), and its box is the origin.
+center `0`), and its box is the origin.
 -/
 
 -- Authors:       Claude Opus 5.5

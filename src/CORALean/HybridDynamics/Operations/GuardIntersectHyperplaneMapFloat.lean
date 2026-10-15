@@ -32,9 +32,9 @@ zonotopes, one `let` per line of the code: `k ⊕ L(R₀ ⊖ ξ) ⊕ ½[φ̲, φ
 [2, Sec. 5.4], reduced and projected. What rounds is an interval, and what an interval cannot stand
 in for is charged to a set: `b` is the lower end of the box `GuardMap.sdcInputFloat`, the rest `t(b
 − b̲)` added to the error; `k`, `L` are a box and an interval matrix; `aux_systemParams`'s `B U + c`
-is `inputSetFloat`, with `E W`; `Q⁽ⁱ⁾` is taken at the centre `τ_c` and radius `τ_g` of `τ`'s
-interval and `R_quad` at interval centres; `Λ` and `nᵀx − d` range over `R₀red ⊖ ξ ⊕ ξ`, which holds
-the stored centre `ξ` even when the error box of `R₀red` does not hold `0`; `n/‖n‖` and `d/‖n‖` are
+is `inputSetFloat`, with `E W`; `Q⁽ⁱ⁾` is taken at the center `τ_c` and radius `τ_g` of `τ`'s
+interval and `R_quad` at interval centers; `Λ` and `nᵀx − d` range over `R₀red ⊖ ξ ⊕ ξ`, which holds
+the stored center `ξ` even when the error box of `R₀red` does not hold `0`; `n/‖n‖` and `d/‖n‖` are
 boxes (`sqrtDown`/`sqrtUp` at precision `p`) for `projectOnHyperplaneIntervalFloat`. `none` when a
 float test fails: `Λ`, `nᵀ(Ax + b)`, `Λ²` or `‖n‖` not certified away from `0`, the float `‖tmax A‖`
 above `(η + 2)/2`, or `k`, `L` not computed.
@@ -83,8 +83,8 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
   let bI := GuardMap.sdcInputFloat A U.c th η R₀.c                  -- b = aux_constantFlow, a box
   let b : Vec 𝕋 n := bI.inf                                         -- its lower end
   let R0red := R₀.reduceGirard guardOrder                           -- R0red = reduce(R0,..)
-  let R0red_ := R0red.recentre                                      -- R0red_ = R0red - c
-  let R0_ := R₀.recentre                                            -- R0_ = R0 - center(R0)
+  let R0red_ := R0red.recenter                                      -- R0red_ = R0red - c
+  let R0_ := R₀.recenter                                            -- R0_ = R0 - center(R0)
   let err := (GuardMap.abstractionErrorFloat A U R0red th tmax η).plus  -- aux_abstractionError
     (⟨fun i => Interval.mulLo zero tmax zero (subUp (bI.sup i) (b i)),  -- + [0, tmax](b - b_lo)
       fun i => Interval.mulHi zero tmax zero (subUp (bI.sup i) (b i))⟩ :
@@ -98,14 +98,14 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
   let Λinv := recipI Λint.inf Λint.sup                                  -- 1/Lambda_int
   let τlo := Interval.mulLo (neg dint.sup) (neg dint.inf) (Λinv.inf 0) (Λinv.sup 0)  -- tau
   let τhi := Interval.mulHi (neg dint.sup) (neg dint.inf) (Λinv.inf 0) (Λinv.sup 0)
-  let τc := half (addUp τlo τhi)                                    -- its centre
+  let τc := half (addUp τlo τhi)                                    -- its center
   let τg := maximum (subUp τhi τc) (subUp τc τlo)                   -- and radius
   let Λmin := minimum (absolute Λint.inf) (absolute Λint.sup)
   let Λmax := maximum (absolute Λint.inf) (absolute Λint.sup)
   let φlo := divDown one (mulUp Λmax Λmax)                          -- phi = 1/Lambda_int^2
   let φhi := divUp one (mulDown Λmin Λmin)
   let Q := fun i => GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i  -- Q{i}
-  -- `Q{i}`'s centres with error boxes as interval matrices, and generators, each stored once
+  -- `Q{i}`'s centers with error boxes as interval matrices, and generators, each stored once
   let Dv : Vector (Interval (Mat 𝕋 n n)) n := Vector.ofFn fun i =>
     (⟨fun l m => addDown ((Q i).c l m) ((Q i).I_error.inf l m),
       fun l m => addUp ((Q i).c l m) ((Q i).I_error.sup l m)⟩ : Interval (Mat 𝕋 n n)).materialiseMat
@@ -117,7 +117,7 @@ def Location.guardIntersectHyperplaneMapFloat (ℓ : Location 𝒵[𝕋] G L �
       (((Kv[j.val]'j.isLt)[i.val]'i.isLt)[l.val]'l.isLt)[m.val]'m.isLt) R0red_).materialise
   -- `res2 = aux_mappedSetError(guard,R0,A,b,err)`
   let flowSet := (Zonotope.mtimes A R₀).plus (Zonotope.point b)    -- flowSet = A*R0 + b
-  let numInt := err.halfspaceRange (fun i => neg (nv i)) zero       -- interval(-n*err)
+  let numInt := err.halfspaceRange (-nv) zero       -- interval(-n*err)
   let denInt := flowSet.halfspaceRange nv zero                      -- interval(n*flowSet)
   let denInv := recipI denInt.inf denInt.sup
   let Ilo := Interval.mulLo numInt.inf numInt.sup (denInv.inf 0) (denInv.sup 0)  -- I = num/den

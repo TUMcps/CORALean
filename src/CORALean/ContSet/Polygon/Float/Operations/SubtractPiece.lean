@@ -45,7 +45,7 @@ def Polygon.subtractPiece (q r : VPolytope (Vec 𝕋 2)) : List (VPolytope (Vec 
     | some H =>
       if H.me = 0 then
         (List.finRange H.m).map fun i =>
-          Interval.vPolytope (r.interval.contractHalfspace (fun j => neg (H.A i j)) (neg (H.b i)))
+          Interval.vPolytope (r.interval.contractHalfspace (-(H.A i)) (neg (H.b i)))
       else [r]
     | none => [r]
 

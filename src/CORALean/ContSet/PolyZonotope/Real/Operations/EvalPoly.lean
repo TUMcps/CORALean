@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPolyP
 
 Horner's rule, coordinatewise: one coefficient *vector* per degree, lowest
 degree first, so every coordinate carries a polynomial of its own. `mul`
-multiplies coordinatewise and a coefficient only shifts the centre, so the
+multiplies coordinatewise and a coefficient only shifts the center, so the
 coordinates never mix and an activation layer can give each neuron the fit its
 own input range earned. `pZ` stays the right factor at every step, so the shared
 factor count `pZ.p` never moves and every step's `hp` is the previous one's,

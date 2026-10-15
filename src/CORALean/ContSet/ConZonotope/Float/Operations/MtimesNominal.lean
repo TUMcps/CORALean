@@ -8,7 +8,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Point
 /-!
 # `ConZonotope.mtimesNominal`: a matrix applied to the stored numbers, with no error box
 
-The matrix against the centre and the generators, each product rounded down, the constraints
+The matrix against the center and the generators, each product rounded down, the constraints
 untouched and the error box the point `0`. The set it describes is not `M cZ` — a rounded
 product is a different number — but is within `mtimesNominalErr` of it at each coefficient
 vector (`mtimesNominal_err`), which is all an inner approximation asks of it: the caller then

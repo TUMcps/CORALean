@@ -46,7 +46,7 @@ theorem toReal_d (m e : ℤ) : toReal (d m e) = (m : ℝ) * 2 ^ e := Dyadic.toRe
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A converted zonotope's polynomial: the centre plus the generators times the variables. -/
+/-- A converted zonotope's polynomial: the center plus the generators times the variables. -/
 theorem aux_taylm_poly (Z : Zonotope (Vec D 2)) (N : ℕ) (i : Fin 2) (t : Vec ℝ Z.h) :
     (Z.taylm N i).nominal.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j := by
   -- unfold the model, then evaluate the term list
@@ -84,12 +84,12 @@ def E : Taylm D 2 := XY.exp 53
 /-- Every point of the box is a value of the two models (some `t ∈ [-1, 1]²` and remainders). -/
 theorem box_subset : box.construct ⊆ Taylm.construct (box.taylm 3) := Interval.taylm_contains box 3
 
-/-- A converted box encloses its coordinate function: centre plus generator times `t`. -/
+/-- A converted box encloses its coordinate function: center plus generator times `t`. -/
 theorem taylm_encloses (i : Fin 2) :
     ((box.taylm 3) i).Encloses fun t =>
       toReal (box.zonotope.c i) + ∑ j, toReal (box.zonotope.G j i) * t j := by -- --- PROOF ---
   intro t _
-  -- the polynomial is the centre plus the generators times the variables
+  -- the polynomial is the center plus the generators times the variables
   have h : ((box.taylm 3) i).nominal.poly t =
       toReal (box.zonotope.c i) + ∑ j, toReal (box.zonotope.G j i) * t j :=
     aux_taylm_poly box.zonotope 3 i t

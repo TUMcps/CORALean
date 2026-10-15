@@ -5,7 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.OfPoint
 @[expose] public section
 
 /-!
-# A generator-free polynomial zonotope contains its own centre
+# A generator-free polynomial zonotope contains its own center
 
 `ofPoint v` states its own `p`, `h` and `q`, that count only up to unfolding,
 so both sums need a `show`.

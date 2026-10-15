@@ -155,8 +155,8 @@ instance : IdentityMem ℐ[𝕋] where
     exact Interval.mem_point (diagonalBlock fun _ : Fin n => (one : 𝕋))
 
 /-- The rounded midpoint: any point of the box would do, as `enlarge` is sound about any. -/
-instance : ScalarCentre 𝕋 ℐ𝒱[𝕋] where
-  centreVec I := Interval.center I
+instance : ScalarCenter 𝕋 ℐ𝒱[𝕋] where
+  centerVec I := Interval.center I
 
 /-- The floats of the lower and the upper bound, for `ifNoNaN`. -/
 instance {α : Type} [Floats 𝕋 α] : Floats 𝕋 (Interval α) :=
