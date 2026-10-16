@@ -1862,10 +1862,12 @@ fi
 # Files not yet brought up to this are listed in `scripts/main-docstring-allowlist.txt`, one
 # path per line; the list only shrinks, and an entry whose file has no such declaration left
 # is reported as stale.
-out=$(awk -v LIST=scripts/main-docstring-allowlist.txt -v STALE="${STAGED:-}" '
+# Read from `$repo`: `--staged` runs inside a checkout of the staged files alone.
+out=$(awk -v LIST=scripts/main-docstring-allowlist.txt -v PATHLIST="$repo/scripts/main-docstring-allowlist.txt" \
+    -v STALE="${STAGED:-}" '
 BEGIN {
-  while ((getline l < LIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++n }
-  close(LIST)
+  while ((getline l < PATHLIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++n }
+  close(PATHLIST)
 }
 FNR == 1 { inb = 0; sect = 0; doc = 0; isdoc = 0; seen[FILENAME] = 1 }
 {

@@ -28,7 +28,7 @@ it contains [1, Lemma 1], the unitary signals being among them.
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   15-October-2026
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -30,7 +30,7 @@ The star set is the generalized star set of [1, Def. 1]; see `Real.StarSet`.
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
 -- Last update:   15-October-2026
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

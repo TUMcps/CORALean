@@ -17,7 +17,7 @@ has `|(A x) i| ≤ dotUp (magnitudeMat M i) ξ`, the products and the sum rounde
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

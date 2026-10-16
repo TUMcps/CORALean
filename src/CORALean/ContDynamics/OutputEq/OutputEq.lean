@@ -20,7 +20,7 @@ The input dimension `m` is separate from the state dimension `n`, as CORA's are.
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

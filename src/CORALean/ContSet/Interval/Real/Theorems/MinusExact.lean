@@ -23,7 +23,7 @@ the definition. `minus_outer` is the half that needs no such hypothesis.
 -- Authors:       Claude Opus 5
 -- Written:       01-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
