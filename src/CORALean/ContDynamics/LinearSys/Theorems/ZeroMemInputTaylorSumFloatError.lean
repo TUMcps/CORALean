@@ -20,7 +20,7 @@ operands when the float sum is bounded from above.
 -- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

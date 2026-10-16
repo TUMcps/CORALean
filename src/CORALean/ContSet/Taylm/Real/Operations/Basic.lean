@@ -25,7 +25,7 @@ variable {n : ℕ}
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 /-- The center of a box -/
 noncomputable def Taylm.boxMid (B : Fin n → Interval ℝ) : Vec ℝ n :=
@@ -36,7 +36,7 @@ noncomputable def Taylm.boxMid (B : Fin n → Interval ℝ) : Vec ℝ n :=
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 /-- The radius of a box -/
 noncomputable def Taylm.boxRad (B : Fin n → Interval ℝ) : Vec ℝ n :=

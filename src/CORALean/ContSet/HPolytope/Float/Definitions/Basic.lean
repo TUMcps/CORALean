@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 /-- The error box is the origin, as every real number it stores reads: the polytope denotes its
 nominal part. What every constructor returns, and what `absorb` returns. -/

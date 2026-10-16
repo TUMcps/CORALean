@@ -17,7 +17,7 @@ zonotope is no identity, and the product needs a square one).
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

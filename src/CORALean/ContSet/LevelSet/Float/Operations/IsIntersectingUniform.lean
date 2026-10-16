@@ -19,7 +19,7 @@ intersecting, which is what `true` says.
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   14-October-2026
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

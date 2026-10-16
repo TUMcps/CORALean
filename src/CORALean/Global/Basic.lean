@@ -25,7 +25,7 @@ open Matrix
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 /-- `tr(Aᵀ B) = Σₖ Σⱼ A_{kj} B_{kj}`. -/
 theorem trace_transpose_mul_eq_sum {a b : ℕ} (A B : Matrix (Fin a) (Fin b) ℝ) :

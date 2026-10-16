@@ -36,7 +36,7 @@ and the paper's until of Boolean signals under them, are defined for no other (`
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -27,7 +27,7 @@ side of Eq. 67 being positive and `L` negative, so `n ≥ 2` is the hypothesis, 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       09-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

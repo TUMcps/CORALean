@@ -38,7 +38,7 @@ vertices and not precision.
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   12-September-2026
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -26,7 +26,7 @@ variable {L X : Type}
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 /-- An empty operand gives the other, otherwise the conjunction. -/
 theorem Rtl.and?_spec (o : Option (Rtl L)) (a b : Rtl L) :

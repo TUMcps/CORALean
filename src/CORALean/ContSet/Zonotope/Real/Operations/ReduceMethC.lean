@@ -39,7 +39,7 @@ result encloses nothing. Here that case boxes along the axes instead.
 -- Authors:       Claude Opus 5
 -- Written:       08-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

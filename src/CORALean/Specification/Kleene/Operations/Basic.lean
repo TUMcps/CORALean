@@ -64,7 +64,7 @@ def Kleene.fromBool (b : Bool) : Kleene := if b then .tt else .ff
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 /-- `b ≺ k`, [1, Sec. 4.2 (refinements)]: `k` is refined by the Boolean value `b` if `k` is not
 `Unknown` only when `b` is `k`. -/

@@ -14,7 +14,7 @@ exactly when the formula is.
 -- Authors:       Claude Sonnet 5.5
 -- Written:       14-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,7 +20,7 @@ negation only inside `ϱ`, and `R ⊨ᵣ ψ` for a reach sequence `R : ℝ≥0 �
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

@@ -20,7 +20,7 @@ it says the smaller set is still sufficient.
 -- Authors:       Claude Opus 5.5
 -- Written:       12-September-2026
 -- Last update:   23-September-2026
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --

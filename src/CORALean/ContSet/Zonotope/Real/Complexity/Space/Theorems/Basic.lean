@@ -56,7 +56,7 @@ theorem Zonotope.mtimes_h (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) :
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
 -- Last update:   ---
--- Reviewed:      ---
+-- Reviewed:      16-October-2026 (Tobias Ladner)
 
 omit [Module ℝ α] in
 /-- `plus`'s generator count: the two operands' concatenated, with nothing
