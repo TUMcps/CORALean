@@ -6494,7 +6494,7 @@
         },
         "cora_issues": 0,
         "findings": {
-          "correct": 57,
+          "correct": 59,
           "underspecified": 18,
           "proof-gap": 0,
           "fixed": 10,
@@ -6803,8 +6803,8 @@
         "class": "zonoBundle",
         "methods": 44,
         "proved": 3,
-        "float": 28,
-        "bound": 6,
+        "float": 29,
+        "bound": 5,
         "not_yet": 0,
         "out_of_scope": 7,
         "needs_float": 3,
@@ -6818,7 +6818,7 @@
         },
         "cora_issues": 6,
         "findings": {
-          "correct": 12,
+          "correct": 10,
           "underspecified": 5,
           "proof-gap": 0,
           "fixed": 2,
@@ -8396,8 +8396,8 @@
       "contSet": {
         "methods": 908,
         "proved": 41,
-        "float": 566,
-        "bound": 48,
+        "float": 567,
+        "bound": 47,
         "not_yet": 6,
         "out_of_scope": 247,
         "needs_float": 41,
@@ -8547,8 +8547,8 @@
     "totals": {
       "methods": 1696,
       "proved": 280,
-      "float": 755,
-      "bound": 53,
+      "float": 756,
+      "bound": 52,
       "not_yet": 80,
       "out_of_scope": 528,
       "needs_float": 280,
@@ -8587,10 +8587,10 @@
     },
     "theorems": {
       "paper": 1838,
-      "float": 1936,
+      "float": 1930,
       "helper": 1781,
-      "lemma": 3342,
-      "total": 8897,
+      "lemma": 3350,
+      "total": 8899,
       "examples": 129
     }
   }

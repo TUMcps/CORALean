@@ -5,17 +5,19 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 @[expose] public section
 
 /-!
-# `HPolytope.absorbRounding`: the error box folded into the rows
+# `HPolytope.absorbRounding`: the errors folded into the rows
 
 A box is not a halfspace, but its effect on one is a number: the points of `N ⊕ E` satisfy
-`A x ≤ b + max_{e ∈ E} A e`. This writes every row that way, rounded up, and each equality
-as the two inequalities it stands for, since an equality has no direction to widen in. The
-result has no box, so it is an ordinary description of a superset.
+`A x ≤ b + max_{e ∈ E} A e`. This writes every inequality row that way, its slack added:
+`b + b_error + |A| r` (`bU`), rounded up. An equality has no direction to widen in, so each
+becomes the two inequalities its slab and the box give, `Aₑ x ≤ bₑ + sup + |Aₑ| r` (`beU`) and
+`-Aₑ x ≤ -(bₑ + inf) + |Aₑ| r` (`beLN`): the equality rows move into the inequality part. The
+result has no box and no slack, so it is an ordinary description of a superset.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -37,6 +39,8 @@ def HPolytope.absorbRounding (P : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 
   me := 0
   Ae := fun i => i.elim0
   be := fun i => i.elim0
+  b_error := fun _ => zero
+  be_error := fun _ => zero
   I_error := Interval.origin n
 
 end CORALean.Float

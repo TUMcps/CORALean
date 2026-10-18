@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.Capsule.Float.Instances
 public import CORALean.ContSet.Capsule.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.Conversion.Float.Instances
@@ -167,9 +168,13 @@ theorem aux_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec �
   intro x hx
   obtain ⟨⟨hA, hE⟩, hbox⟩ := h
   refine ⟨x, HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩, 0, ?_, add_zero x⟩
-  · exact le_trans (hb (P.A i) x hx) (toReal_le_of_le (hA i))
-  · exact le_antisymm (le_trans (hb (P.Ae i) x hx) (toReal_le_of_le (hE i).1))
-      (le_trans (toReal_le_of_le (hE i).2) (aux_neg_bound hb (P.Ae i) hx))
+  · exact le_add_of_le_of_nonneg (le_trans (hb (P.A i) x hx) (toReal_le_of_le (hA i)))
+      (abs_nonneg _)
+  · have h : (toRealMat P.Ae).mulVec x i = toReal (P.be i) :=
+      le_antisymm (le_trans (hb (P.Ae i) x hx) (toReal_le_of_le (hE i).1))
+        (le_trans (toReal_le_of_le (hE i).2) (aux_neg_bound hb (P.Ae i) hx))
+    rw [h, sub_self, abs_zero]
+    exact abs_nonneg _
   · refine Interval.mem_vec_iff.mpr fun j => ?_
     have h₁ := toReal_le_of_le (hbox j).1
     have h₂ := toReal_le_of_le (hbox j).2
@@ -222,11 +227,12 @@ def aux_disjointBundleBox (zB : ZonoBundle (Vec 𝕋 n)) (B : Interval (Vec 𝕋
 
 theorem aux_disjointBundleBox_sound {zB : ZonoBundle (Vec 𝕋 n)} {B : Interval (Vec 𝕋 n)}
     (h : aux_disjointBundleBox zB B = true) :
-    Disjoint B.construct zB.construct := by
+    Disjoint B.construct zB.construct := by -- --- PROOF ---
   simp only [aux_disjointBundleBox, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨i, hi⟩ := h
   exact (aux_disjointBox_sound hi).mono_right
-    ((Set.iInter_subset _ i).trans (Zonotope.interval_contains (zB.Z i)))
+    ((SetIntersection.construct_subset_ofFn _ i).trans
+      (Zonotope.interval_contains (zB.Z i)))
 
 /-- Some member of `zB'` and some member of `zB` with disjoint hulls. -/
 def aux_disjointBundles (zB zB' : ZonoBundle (Vec 𝕋 n)) : Bool :=
@@ -234,11 +240,12 @@ def aux_disjointBundles (zB zB' : ZonoBundle (Vec 𝕋 n)) : Bool :=
 
 theorem aux_disjointBundles_sound {zB zB' : ZonoBundle (Vec 𝕋 n)}
     (h : aux_disjointBundles zB zB' = true) :
-    Disjoint zB'.construct zB.construct := by
+    Disjoint zB'.construct zB.construct := by -- --- PROOF ---
   simp only [aux_disjointBundles, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨j, hj⟩ := h
   exact (aux_disjointBundleBox_sound hj).mono_left
-    ((Set.iInter_subset _ j).trans (Zonotope.interval_contains (zB'.Z j)))
+    ((SetIntersection.construct_subset_ofFn _ j).trans
+      (Zonotope.interval_contains (zB'.Z j)))
 
 -- A bundle's three pairings: with a boxable set on either side, and with a bundle.
 

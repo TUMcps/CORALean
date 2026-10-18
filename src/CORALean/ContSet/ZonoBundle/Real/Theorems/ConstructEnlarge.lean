@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Enlarge
 
 @[expose] public section
@@ -31,7 +32,8 @@ variable {n : ℕ}
 
 theorem ZonoBundle.construct_enlarge (zB : ZonoBundle (Vec ℝ n)) (f : Vec ℝ n) :
     (zB.enlarge f).construct = ⋂ i, (ContSet.enlarge (S := 𝒵)
-      (zB.Z i) f).construct := rfl
+      (zB.Z i) f).construct :=
+  ZonoBundle.construct_eq_iInter _
 
 end CORALean.Real
 

@@ -14,7 +14,8 @@ enlarges the set — the intersection then runs over fewer factors.
 Nothing rounds, and nothing is absorbed: every other float `reduce` in the tree
 pays what it drops into an error box, while a bundle just forgets it, for free.
 Which members survive is a heuristic with no proof obligation of its own —
-`reduce_outer` holds at *any* choice, keeping the first `o` among them.
+the `Reduce` instance's `reduce_outer` (`SetIntersection.memberwise_outer` at the identity)
+holds at *any* choice, keeping the first `o` among them.
 -/
 
 -- Authors:       Claude Opus 5

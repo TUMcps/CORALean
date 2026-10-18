@@ -30,10 +30,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem HPolytope.errFree_of_isErrFree {P : HPolytope 𝕋 (Vec 𝕋 n)} (h : P.isErrFree = true) :
     P.ErrFree := by -- --- PROOF ---
   simp only [HPolytope.isErrFree, Bool.and_eq_true] at h
-  have hz : ∀ {v : Vec 𝕋 n}, HPolytope.isZeroVec v = true → ∀ j, toReal (v j) = 0 :=
+  have hz : ∀ {k : ℕ} {v : Vec 𝕋 k}, HPolytope.isZeroVec v = true → ∀ j, toReal (v j) = 0 :=
     fun hv j => (HPolytope.toReal_eq_of_eqScalar
       (List.all_eq_true.mp hv j (List.mem_finRange j))).trans toReal_zero
-  exact fun j => ⟨hz h.1 j, hz h.2 j⟩
+  -- the box, the inequality slack, the equality slack
+  exact ⟨fun j => ⟨hz h.1.1 j, hz h.1.2 j⟩, fun i => hz h.2.1 i, fun i => hz h.2.2 i⟩
 
 end CORALean.Float
 

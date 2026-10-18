@@ -228,8 +228,13 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
       ConZonotope.zeroFeasible_nonempty (Bool.and_eq_true_iff.mp hc).1
     have hne₂ : (nominalSet C₂).Nonempty :=
       ConZonotope.zeroFeasible_nonempty (Bool.and_eq_true_iff.mp hc).2
+    -- both constraint polytopes are carried onto the coefficients without slack
+    have hsf : ∀ (Q : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n)),
+        (Q.onCoefficientsInner Z).IsSlackFree := fun Q Z => by
+      unfold HPolytope.onCoefficientsInner
+      split <;> exact ⟨fun _ => toReal_zero, fun _ => toReal_zero⟩
     obtain ⟨y₁, hy₁, y₂, hy₂, lam, ⟨hl0, hl1⟩, hzeq⟩ :=
-      ConZonotope.linCombSameCenter_subset C₁ C₂ rfl hne₁ hne₂ hz
+      ConZonotope.linCombSameCenter_subset C₁ C₂ rfl (hsf _ _) (hsf _ _) hne₁ hne₂ hz
     -- its points are within `ζ` of the origin
     have hζ₁ : ∀ k, |y₁ k| ≤ toReal (ζ k) := fun k =>
       HPolytope.abs_nominal_conZonotopeInnerOf_le _ Bx.zonotope hy₁ k

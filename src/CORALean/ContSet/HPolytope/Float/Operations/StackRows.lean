@@ -15,7 +15,7 @@ this after each box has been folded into its rows.
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,6 +35,8 @@ def HPolytope.stackRows (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope �
   me := P₁.me + P₂.me
   Ae := Fin.append P₁.Ae P₂.Ae
   be := Fin.append P₁.be P₂.be
+  b_error := Fin.append P₁.b_error P₂.b_error
+  be_error := Fin.append P₁.be_error P₂.be_error
   I_error := Interval.origin n
 
 end CORALean.Float

@@ -15,15 +15,15 @@ duality at *any* nonnegative weights `y, zu, zl` of `P`'s rows: with the residua
 
   `(Gᵀa)ᵀβ = rᵀβ + yᵀ(Aβ) + zuᵀ(Aeβ) - zlᵀ(Aeβ) ≤ Σ |rⱼ| + yᵀb + zuᵀbe - zlᵀbe`,
 
-the unit box paying for the residual. Nothing asks the weights to be optimal or
-the residual to vanish: `rⱼ` is enclosed in rounded arithmetic and `|rⱼ|` bounded
-by the larger end, and every weight is clamped at zero, so even its sign is not
+the unit box paying for the residual, each right-hand side widened by its row's slack. Nothing asks
+the weights to be optimal or the residual to vanish: `rⱼ` is enclosed in rounded arithmetic and
+`|rⱼ|` bounded by the larger end, and every weight is clamped at zero, so even its sign is not
 trusted. Sound for every weight vector; tight only for optimal ones.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -124,8 +124,12 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
   let zl : Vec 𝕋 cZ.P.me := fun k => ConZonotope.aux_clamp (zl₀ k)
   let R : Vec 𝕋 cZ.h := fun j =>
     maximum (ConZonotope.aux_resUp cZ a y zu zl j) (neg (ConZonotope.aux_resDown cZ a y zu zl j))
-  { val := addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be)
-      (addUp (dotUp zl (-cZ.P.be)) (sumUp R))))
+  -- the right-hand sides, each widened by its row's slack, rounded up
+  let bS : Vec 𝕋 cZ.P.m := fun k => addUp (cZ.P.b k) (absolute (cZ.P.b_error k))
+  let beU : Vec 𝕋 cZ.P.me := fun k => addUp (cZ.P.be k) (absolute (cZ.P.be_error k))
+  let beL : Vec 𝕋 cZ.P.me := fun k => addUp (neg (cZ.P.be k)) (absolute (cZ.P.be_error k))
+  { val := addUp (dotUp a cZ.c) (addUp (dotUp y bS) (addUp (dotUp zu beU)
+      (addUp (dotUp zl beL) (sumUp R))))
     le := by
       intro x hx
       obtain ⟨β, hβ, hP, hxβ⟩ := ConZonotope.mem_nominalSet_iff.mp hx
@@ -155,28 +159,42 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
             - ∑ j, β j * L j := by
         simp only [mul_add, mul_sub, Finset.sum_add_distrib, Finset.sum_sub_distrib]
         ring
-      -- weak duality, row block by row block
-      have hYb : ∑ j, β j * Y j ≤ toReal (dotUp y cZ.P.b) := by
+      -- weak duality, row block by row block: each row within its widened right-hand side
+      have hbS : ∀ k, (toRealMat cZ.P.A *ᵥ β) k ≤ toReal (bS k) := fun k => by
+        have h := add_le_addUp (cZ.P.b k) (absolute (cZ.P.b_error k))
+        rw [toReal_absolute] at h
+        exact (hle k).trans h
+      have hbeU : ∀ k, (toRealMat cZ.P.Ae *ᵥ β) k ≤ toReal (beU k) := fun k => by
+        have h := add_le_addUp (cZ.P.be k) (absolute (cZ.P.be_error k))
+        rw [toReal_absolute] at h
+        linarith [(abs_le.mp (heq k)).2]
+      have hbeL : ∀ k, -toReal (beL k) ≤ (toRealMat cZ.P.Ae *ᵥ β) k := fun k => by
+        have h := add_le_addUp (neg (cZ.P.be k)) (absolute (cZ.P.be_error k))
+        rw [toReal_absolute, toReal_neg] at h
+        linarith [(abs_le.mp (heq k)).1]
+      -- the inequality block and the equality block's upper edge, weighted
+      have hYb : ∑ j, β j * Y j ≤ toReal (dotUp y bS) := by
         rw [hY, ← ConZonotope.aux_sum_swap (fun k => toReal (y k))
           (fun k j => toReal (cZ.P.A k j)) β]
         refine le_trans (Finset.sum_le_sum fun k _ => ?_) (le_dotUp _ _)
         rw [← hAβ]
-        exact mul_le_mul_of_nonneg_left (hle k) (hy k)
-      have hUb : ∑ j, β j * U j ≤ toReal (dotUp zu cZ.P.be) := by
+        exact mul_le_mul_of_nonneg_left (hbS k) (hy k)
+      have hUb : ∑ j, β j * U j ≤ toReal (dotUp zu beU) := by
         rw [hU, ← ConZonotope.aux_sum_swap (fun k => toReal (zu k))
           (fun k j => toReal (cZ.P.Ae k j)) β]
         refine le_trans (Finset.sum_le_sum fun k _ => ?_) (le_dotUp _ _)
         rw [← hAeβ]
-        exact mul_le_mul_of_nonneg_left (heq k).le (hzu k)
+        exact mul_le_mul_of_nonneg_left (hbeU k) (hzu k)
       -- the lower edge of an equality row, read through its negated row
-      have hLb : -toReal (dotUp zl (-cZ.P.be)) ≤ ∑ j, β j * L j := by
+      have hLb : -toReal (dotUp zl beL) ≤ ∑ j, β j * L j := by
         rw [hL, ← ConZonotope.aux_sum_swap (fun k => toReal (zl k))
           (fun k j => toReal (cZ.P.Ae k j)) β]
-        have hd := le_dotUp zl (-cZ.P.be)
-        simp only [Pi.neg_apply, toReal_neg', mul_neg, Finset.sum_neg_distrib] at hd
-        refine le_trans (neg_le.mp hd) (Finset.sum_le_sum fun k _ => ?_)
-        rw [← hAeβ]
-        exact mul_le_mul_of_nonneg_left (heq k).ge (hzl k)
+        have hd := neg_le_neg (le_dotUp zl beL)
+        refine le_trans hd ?_
+        rw [← Finset.sum_neg_distrib]
+        refine Finset.sum_le_sum fun k _ => ?_
+        rw [← hAeβ, ← mul_neg]
+        exact mul_le_mul_of_nonneg_left (hbeL k) (hzl k)
       -- the box pays for the residual
       have hRb : ∑ j, β j * (D j - Y j - U j + L j) ≤ toReal (sumUp R) := by
         refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp R)
@@ -197,13 +215,11 @@ def ConZonotope.nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Ve
           _ ≤ toReal (R j) := by rw [one_mul]; exact habs
       -- the four outer additions, each rounded up
       have hc0 := le_dotUp a cZ.c
-      have r1 := add_le_addUp (dotUp zl (-cZ.P.be)) (sumUp R)
-      have r2 := add_le_addUp (dotUp zu cZ.P.be)
-        (addUp (dotUp zl (-cZ.P.be)) (sumUp R))
-      have r3 := add_le_addUp (dotUp y cZ.P.b) (addUp (dotUp zu cZ.P.be)
-        (addUp (dotUp zl (-cZ.P.be)) (sumUp R)))
-      have r4 := add_le_addUp (dotUp a cZ.c) (addUp (dotUp y cZ.P.b)
-        (addUp (dotUp zu cZ.P.be) (addUp (dotUp zl (-cZ.P.be)) (sumUp R))))
+      have r1 := add_le_addUp (dotUp zl beL) (sumUp R)
+      have r2 := add_le_addUp (dotUp zu beU) (addUp (dotUp zl beL) (sumUp R))
+      have r3 := add_le_addUp (dotUp y bS) (addUp (dotUp zu beU) (addUp (dotUp zl beL) (sumUp R)))
+      have r4 := add_le_addUp (dotUp a cZ.c) (addUp (dotUp y bS)
+        (addUp (dotUp zu beU) (addUp (dotUp zl beL) (sumUp R))))
       rw [hcx, hsplit]
       linarith }
 

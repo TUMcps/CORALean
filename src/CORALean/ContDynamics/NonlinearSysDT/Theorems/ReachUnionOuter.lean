@@ -62,8 +62,7 @@ theorem NonlinearSysDT.WithSteps.reachUnion_outer (sys : NonlinearSysDT.WithStep
       (sys.sys.confinement_of_subset_on options.hZonotopeOrder sys.steps params.X₀ hsub traj')
       k hk
     rw [← Option.some_inj.mp hR]
-    exact SetUnion.mem_construct.mpr ⟨_, List.mem_map_of_mem (List.mem_range.mpr
-      (Nat.lt_succ_of_le hk)), hx⟩
+    exact SetUnion.mem_construct_range (Nat.lt_succ_of_le hk) hx
 
 end CORALean
 

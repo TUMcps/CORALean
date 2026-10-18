@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Enlarge
 public import CORALean.ContSet.ContSet.Operations.EnlargeScalar
 
@@ -32,7 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.construct_enlarge (zB : ZonoBundle (Vec 𝕋 n)) (f : Vec 𝕋 n) :
     (zB.enlarge f).construct = ⋂ i, (ContSet.enlargeScalar (S := 𝒵[𝕋])
-      (zB.Z i) f).construct := rfl
+      (zB.Z i) f).construct :=
+  ZonoBundle.construct_eq_iInter _
 
 end CORALean.Float
 

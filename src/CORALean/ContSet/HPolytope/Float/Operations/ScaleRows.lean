@@ -52,6 +52,8 @@ def HPolytope.scaleRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (sA : Fin P.m → 𝕋
       me := P.me
       Ae := fun i j => mulDown (P.Ae i j) (sE i)
       be := fun i => subUp (mulUp (P.be i) (sE i)) (HPolytope.scaleDevLo (P.Ae i) (sE i) dom)
+      b_error := fun _ => zero
+      be_error := fun _ => zero
       I_error := Interval.origin n }
   -- and how far below it the lower end can lie
   Q.anchorEqs fun i =>

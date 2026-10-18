@@ -42,8 +42,8 @@ theorem VPolytope.aux_ones_mulVec (β : Vec ℝ k) (i : Fin 1) :
 theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} :
     β ∈ (VPolytope.simplex 𝕋 k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
   simp only [VPolytope.simplex]
-  rw [HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)
-    (HPolytope.errFree_of_origin rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
+  rw [HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)
+    (HPolytope.errFree_of_origin rfl rfl rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
   -- both directions: a nonnegativity row each, and the ones-row equality
   constructor
   · rintro ⟨hle, heq⟩

@@ -14,7 +14,7 @@ The rows of a polytope picked by two Boolean tests, in their order: CORA's `A(id
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -39,6 +39,8 @@ def HPolytope.restrict (P : HPolytope 𝕋 (Vec 𝕋 n)) (keepA : Fin P.m → Bo
   me := ((List.finRange P.me).filter keepE).length
   Ae := fun k => P.Ae (((List.finRange P.me).filter keepE).get k)
   be := fun k => P.be (((List.finRange P.me).filter keepE).get k)
+  b_error := fun k => P.b_error (((List.finRange P.m).filter keepA).get k)
+  be_error := fun k => P.be_error (((List.finRange P.me).filter keepE).get k)
   I_error := P.I_error
 
 end CORALean.Float

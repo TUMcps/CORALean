@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIffExact
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeRowSplit
 public import CORALean.ContSet.Conversion.Float.Theorems.HPolytopeProdError
 public import CORALean.ContSet.Interval.Float.Operations.Point
@@ -56,7 +57,8 @@ theorem HPolytope.conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z
   obtain ⟨β, hβ, hP, hval⟩ := ConZonotope.mem_nominalSet_iff.mp hx
   have hP' : β ∈ (P.onCoefficientsInner Z).nominal.construct := hP
   simp only [HPolytope.onCoefficientsInner, hme, if_true] at hP'
-  obtain ⟨hle, -⟩ := HPolytope.mem_nominal_iff.mp hP'
+  obtain ⟨hle, -⟩ := (HPolytope.mem_nominal_iff_exact
+    ⟨fun _ => toReal_zero, fun _ => toReal_zero⟩).mp hP'
   refine ⟨x, ?_, e, he, rfl⟩
   refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => absurd i.isLt (by omega)⟩
   -- an inequality row: the tightened bound covers the carrying error and the center
@@ -70,7 +72,7 @@ theorem HPolytope.conZonotopeInnerOf_subset (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z
   change (toRealMat (matMulDown P.A (fun i j => Z.G j i)) *ᵥ β) i ≤ toReal (subDown (subDown
     (P.b i) (dotUp (P.A i) Z.c)) (radius (matMulDiff P.A (fun i j => Z.G j i)) i)) at h
   rw [hsplit]
-  linarith [herr.1, herr.2]
+  linarith [herr.1, herr.2, abs_nonneg (toReal (P.b_error i))]
 
 end CORALean.Float
 

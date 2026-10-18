@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvGain
 
@@ -17,19 +18,19 @@ equalities is removed by a step of at most `σ = γ maxᵢ rᵢ` (`Zonotope.righ
 solution `β̂` lies within `1 - s` of the origin in every coordinate, `s = 1 - (maxⱼ |β₀ⱼ| + σ)`
 rounded down, and the check is `s > 0`.
 
-A coefficient vector `β` in the box that satisfies the stored inequalities and reads within `εᵢ`
-of `beᵢ` is then moved onto the hyperplanes, `β' = β + δ` with `|δⱼ| ≤ ρ = γ maxᵢ εᵢ`, and pulled
-back into the box along the segment to `β̂`: `β'' = (1 - λ) β' + λ β̂` with `λ = ρ / (ρ + s)`
-keeps every equality and every `|β''ⱼ| ≤ 1`. In total `β` moves by at most
-`τ = ρ + (ρ / s) (2 + ρ)`, rounded up. The result is `P` with every inequality raised by what it
-reads on such a move (`∑ⱼ |Aᵢⱼ| τ`), and `τ`, which the caller pays into the error box of the
-point the coefficients describe. `none`, when the certificate or the slack fails, leaves the
-fallback to the caller (`HPolytope.anchorEqsInBox_sound`).
+A coefficient vector `β` in the box that satisfies the stored inequalities up to their slack and
+reads within `εᵢ` of `beᵢ` is then moved onto the hyperplanes, `β' = β + δ` with
+`|δⱼ| ≤ ρ = γ maxᵢ εᵢ`, and pulled back into the box along the segment to `β̂`:
+`β'' = (1 - λ) β' + λ β̂` with `λ = ρ / (ρ + s)` keeps every equality and every `|β''ⱼ| ≤ 1`. In
+total `β` moves by at most `τ = ρ + (ρ / s) (2 + ρ)`, rounded up. The result is `P` with every
+inequality raised by what it reads on such a move (`∑ⱼ |Aᵢⱼ| τ`), its slack kept, the equalities
+without one, and `τ`, which the caller pays into the point's error box. `none`, when the
+certificate or the slack fails, leaves the fallback to the caller (`anchorEqsInBox_sound`).
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -63,7 +64,8 @@ def HPolytope.anchorEqsInBox (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec 𝕋 P.
     let ρ := mulUp γ (maximumOver ε)
     let τ := addUp ρ (mulUp (divUp ρ s) (addUp (addUp one one) ρ))
     if ltStrict zero s then
-      some ({ P with b := fun k => addUp (P.b k) (mulUp (radius P.A k) τ) }, τ)
+      some ({ P with b := fun k => addUp (P.b k) (mulUp (radius P.A k) τ),
+                     be_error := fun _ => zero }, τ)
     else none
 
 end CORALean.Float

@@ -33,7 +33,8 @@ theorem HPolytope.mem_slab_nominal_iff {A : Mat 𝕋 q n} {lo hi : Vec 𝕋 q} {
         ∧ (toRealMat A *ᵥ x) i ≤ toReal (hi i) := by -- --- PROOF ---
   unfold HPolytope.slab
   rw [HPolytope.mem_stackRows_nominal_iff, HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
-  simp only [HPolytope.ineqs, toRealMat_neg_mulVec, Pi.neg_apply, toReal_neg']
+  simp only [HPolytope.ineqs, toRealMat_neg_mulVec, Pi.neg_apply, toReal_neg', toReal_zero,
+    abs_zero, add_zero]
   constructor
   · rintro ⟨⟨h1, -⟩, h2, -⟩ i
     exact ⟨by linarith [h2 i], h1 i⟩

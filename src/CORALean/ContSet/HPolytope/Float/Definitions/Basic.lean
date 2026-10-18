@@ -22,16 +22,26 @@ open SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
+-- =================================  `HPolytope.IsSlackFree`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Both slacks read `0`: every inequality is read at its stored `b`, every equality exactly. -/
+def HPolytope.IsSlackFree (P : HPolytope 𝕋 (Vec 𝕋 n)) : Prop :=
+  (∀ i, toReal (P.b_error i) = 0) ∧ ∀ i, toReal (P.be_error i) = 0
+
+
 -- ===================================  `HPolytope.ErrFree`  ==================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
--- Reviewed:      16-October-2026 (Tobias Ladner)
+-- Last update:   18-October-2026
+-- Reviewed:      ---
 
-/-- The error box is the origin, as every real number it stores reads: the polytope denotes its
-nominal part. What every constructor returns, and what `absorb` returns. -/
+/-- The box is the origin and the polytope is slack-free: it denotes its stored rows exactly. -/
 def HPolytope.ErrFree (P : HPolytope 𝕋 (Vec 𝕋 n)) : Prop :=
-  ∀ j, toReal (P.I_error.inf j) = 0 ∧ toReal (P.I_error.sup j) = 0
+  (∀ j, toReal (P.I_error.inf j) = 0 ∧ toReal (P.I_error.sup j) = 0) ∧ P.IsSlackFree
 
 end CORALean.Float
 

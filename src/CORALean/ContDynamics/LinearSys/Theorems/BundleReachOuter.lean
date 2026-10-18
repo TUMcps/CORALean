@@ -5,8 +5,10 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
+public import CORALean.ContSet.SetIntersection.Theorems.MemberwiseOuter
+public import CORALean.ContSet.SetIntersection.Theorems.PairwiseOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -116,7 +118,8 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
       refine ⟨?_, h2, ?_⟩
       · rintro _ ⟨x, hx, rfl⟩
         -- the homogeneous part, one more `e^{Ar}`
-        refine ZonoBundle.mtimes_outer E _ ⟨_, (ih τ hτ).1 ⟨x, hx, rfl⟩, ?_⟩
+        refine SetIntersection.memberwise_outer (Set.image (E *ᵥ ·)) Set.monotone_image
+          (fun i => ⟨i, (Zonotope.mtimes_exact E _).subset⟩) ⟨_, (ih τ hτ).1 ⟨x, hx, rfl⟩, ?_⟩
         simp only [hEkτ, Matrix.mulVec_mulVec]
       -- the input part: what `[0, τ]` contributes, propagated, plus `[0, (k+1)r]`
       · have hsep := sys.inputReach_separation_eq hτ0 (hkr (k + 1)) hU
@@ -141,9 +144,11 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * r) hτ
     rw [show (k : ℝ) * r + (t - k * r) = t by ring] at hI
-    refine ZonoBundle.plus_outer _ _ ⟨_, hI.1 ⟨x, hx, rfl⟩, v, ?_, rfl⟩
-    rw [← Zonotope.zonoBundle_exact]
-    exact hI.2.2 hv
+    refine SetIntersection.pairwise_outer (f' := (step^[k] s₀).2.2.zonoBundle.Z) (· + ·)
+      (fun _ _ _ _ => Set.add_subset_add)
+      (fun p => ⟨(finProdFinEquiv.symm p).1, (finProdFinEquiv.symm p).2,
+        (Zonotope.plus_exact _ _).subset⟩) ⟨_, hI.1 ⟨x, hx, rfl⟩, v, ?_, rfl⟩
+    exact (Zonotope.zonoBundle_exact _).subset (hI.2.2 hv)
 
 end CORALean
 

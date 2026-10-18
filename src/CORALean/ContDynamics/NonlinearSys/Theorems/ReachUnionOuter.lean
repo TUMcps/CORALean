@@ -121,7 +121,7 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
     hRclosed hRbdd ho ht ⟨x, u, traj', rfl⟩
   obtain ⟨i, hi, hxi⟩ := Set.mem_iUnion₂.mp hx
   rw [← Option.some_inj.mp hR]
-  exact SetUnion.mem_construct.mpr ⟨_, List.mem_map_of_mem (List.mem_range.mpr hi), hxi⟩
+  exact SetUnion.mem_construct_range hi hxi
 
 end CORALean
 

@@ -44,17 +44,18 @@ def square (P : HPolytope D (Vec D 2)) : ConZonotope D (Vec D 2) where
 /-- `β₁ + β₂ = 0`, an equality row:
 the segment `{(t, -t)}`. -/
 def eqRow : HPolytope D (Vec D 2) :=
-  ⟨0, fun i => i.elim0, fun i => i.elim0, 1, fun _ _ => d 1 0, fun _ => d 0 0, Interval.origin _⟩
+  ⟨0, fun i => i.elim0, fun i => i.elim0, 1, fun _ _ => d 1 0, fun _ => d 0 0, fun _ => d 0 0,
+    fun _ => d 0 0, Interval.origin _⟩
 
 /-- `β₁ + β₂ ≤ 0`, an inequality row: a triangle. -/
 def ineqRow : HPolytope D (Vec D 2) :=
-  ⟨1, fun _ _ => d 1 0, fun _ => d 0 0, 0, fun i => i.elim0, fun i => i.elim0,
-    Interval.origin _⟩
+  ⟨1, fun _ _ => d 1 0, fun _ => d 0 0, 0, fun i => i.elim0, fun i => i.elim0, fun _ => d 0 0,
+    fun _ => d 0 0, Interval.origin _⟩
 
 /-- `3β₁ + β₂ ≤ 1`, whose support value in direction `(1, 0)` is `2/3`, not a dyadic. -/
 def thirdRow : HPolytope D (Vec D 2) :=
   ⟨1, fun _ j => if j = 0 then d 3 0 else d 1 0, fun _ => d 1 0, 0, fun i => i.elim0,
-    fun i => i.elim0, Interval.origin _⟩
+    fun i => i.elim0, fun _ => d 0 0, fun _ => d 0 0, Interval.origin _⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

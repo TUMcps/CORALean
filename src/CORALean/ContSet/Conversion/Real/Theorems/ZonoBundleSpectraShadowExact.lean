@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InfExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeSpectraShadowExact
@@ -55,7 +56,7 @@ theorem ZonoBundle.spectraShadow_exact (zB : ZonoBundle (Vec ℝ n)) :
   have hmem : ∀ x, x ∈ zB.construct ↔ ∀ T ∈ List.ofFn (fun i => (zB.Z i).spectraShadow),
       x ∈ T.construct := by
     intro x
-    simp only [ZonoBundle.construct, Set.mem_iInter, List.mem_ofFn,
+    simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, List.mem_ofFn,
       forall_exists_index, forall_apply_eq_imp_iff, ← Zonotope.spectraShadow_exact]
   unfold ZonoBundle.spectraShadow
   generalize hL : List.ofFn (fun i => (zB.Z i).spectraShadow) = L at hmem

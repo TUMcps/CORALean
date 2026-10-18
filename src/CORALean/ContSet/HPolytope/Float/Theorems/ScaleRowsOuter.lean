@@ -57,6 +57,7 @@ theorem HPolytope.scaleRows_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.ErrF
   rw [← add_zero x]
   refine HPolytope.anchorEqs_outer _ _ (fun i => ?_) (fun i => ?_) ?_
   · -- an inequality row: the deviation's lower end, the right-hand side rounded up
+    refine le_add_of_le_of_nonneg ?_ (abs_nonneg _)
     have hdev := (HPolytope.scaleDev_between (P.A i) (sA i) dom hd).1
     have hb1 := mul_le_mulUp (P.b i) (sA i)
     have hsub := sub_le_subUp (mulUp (P.b i) (sA i)) (HPolytope.scaleDevLo (P.A i) (sA i) dom)

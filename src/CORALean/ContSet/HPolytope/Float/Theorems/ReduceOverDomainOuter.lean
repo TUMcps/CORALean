@@ -39,7 +39,7 @@ theorem HPolytope.reduceOverDomain_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋
     P.construct ∩ dom.construct ⊆
       (P.reduceOverDomain p dom true).construct ∩ dom.construct := by -- --- PROOF ---
   rintro x ⟨hP, hd⟩
-  refine ⟨(HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mpr
+  refine ⟨(HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mpr
     ⟨fun _ => ?_, fun r => r.elim0⟩, hd⟩
   -- the rows are read with the error box folded in
   have hQ := HPolytope.absorbRounding_outer P hP
@@ -48,7 +48,7 @@ theorem HPolytope.reduceOverDomain_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋
     omega
   simp only [HPolytope.reduceOverDomain, if_true]
   set Q := P.absorbRounding with hQdef
-  have hQe : Q.ErrFree := HPolytope.errFree_of_origin rfl
+  have hQe : Q.ErrFree := HPolytope.errFree_of_origin rfl rfl rfl
   set i₀ : Fin Q.m := ⟨0, hmQ⟩
   set Ainf : Vec 𝕋 n := fun j => minimumOver fun i => mulDown (Q.A i j) (Q.rowScale p i)
   set Asup : Vec 𝕋 n := fun j => maximumOver fun i => mulUp (Q.A i j) (Q.rowScale p i)

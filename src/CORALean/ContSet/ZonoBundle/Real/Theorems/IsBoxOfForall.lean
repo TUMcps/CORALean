@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Zonotope.Real.Operations.IsBox
 public import Mathlib.Data.Finset.Lattice.Fold
@@ -41,7 +42,7 @@ theorem ZonoBundle.isBox_of_forall (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
   ext x
   have hc : ∀ (J : Interval (Vec ℝ n)) (x : Vec ℝ n),
       x ∈ J.construct ↔ ∀ j, J.inf j ≤ x j ∧ x j ≤ J.sup j := fun _ _ => Iff.rfl
-  simp only [ZonoBundle.construct, Set.mem_iInter, hIs, hc]
+  simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, hIs, hc]
   constructor
   · -- inside every member: above every lower bound, below every upper bound
     intro hx j

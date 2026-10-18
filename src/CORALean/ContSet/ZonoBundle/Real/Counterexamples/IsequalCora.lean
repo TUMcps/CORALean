@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
 
 @[expose] public section
@@ -59,11 +60,11 @@ theorem ZonoBundle.isequal_cora_counterexample :
   intro h
   -- the origin is in the first and not in the second
   have h0 : (0 : Vec ℝ 1) ∈ (ZonoBundle.mk 1 fun _ => Z).construct := by
-    refine Set.mem_iInter.mpr fun _ => ⟨fun _ => 0, fun _ => by simp, ?_⟩
+    refine SetIntersection.mem_construct_ofFn.mpr fun _ => ⟨fun _ => 0, fun _ => by simp, ?_⟩
     funext i
     simp [Z]
   rw [h] at h0
-  have hW := Set.mem_iInter.mp h0 1
+  have hW := SetIntersection.mem_construct_ofFn.mp h0 1
   obtain ⟨β, -, hβ⟩ := hW
   have := congrFun hβ 0
   simp [W] at this

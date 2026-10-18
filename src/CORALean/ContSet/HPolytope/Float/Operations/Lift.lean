@@ -16,7 +16,7 @@ free coordinates carry the point `[0, 0]`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -38,6 +38,8 @@ def HPolytope.lift_ (P : HPolytope 𝕋 (Vec 𝕋 n)) (dims : Fin n → Fin N) :
   me := P.me
   Ae := HPolytope.liftCols dims P.Ae
   be := P.be
+  b_error := P.b_error
+  be_error := P.be_error
   I_error := ⟨HPolytope.liftCols dims (fun _ : Fin 1 => P.I_error.inf) 0,
     HPolytope.liftCols dims (fun _ : Fin 1 => P.I_error.sup) 0⟩
 

@@ -15,7 +15,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraSha
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       03-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -33,9 +33,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 def HPolytope.spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) where
   k := P.m + (P.me + P.me)
   m := n
-  -- `A₀ = diag(d)` with `d = [b; be; -be]`
+  -- `A₀ = diag(d)` with `d = [b; be; -be]`, each widened by its row's slack, rounded up
   A₀ := fun p q => if p = q then
-    Fin.append P.b (Fin.append P.be (-P.be)) p else zero
+    Fin.append (fun r => addUp (P.b r) (absolute (P.b_error r)))
+      (Fin.append (fun r => addUp (P.be r) (absolute (P.be_error r)))
+        fun r => addUp (neg (P.be r)) (absolute (P.be_error r))) p else zero
   -- `Aᵢ = diag(-C(:,i))` with `C = [A; Ae; -Ae]`
   A := fun i p q => if p = q then neg (Fin.append (fun r => P.A r i)
     (Fin.append (fun r => P.Ae r i) fun r => neg (P.Ae r i)) p) else zero

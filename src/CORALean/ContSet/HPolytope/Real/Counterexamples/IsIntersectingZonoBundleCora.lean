@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.ZonoBundleVar
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
@@ -100,7 +101,7 @@ theorem HPolytope.isIntersectingZonoBundleCora_counterexample : -- --- STMT ---
   refine ⟨Set.disjoint_left.mpr fun x hx hx₂ => ?_, fun linprog hlp => ?_⟩
   -- `x₀ = 5` on the line, `x₀ ≤ 1` in the box
   · have h0 := HPolytope.mem_eqs_iff.mp hx 0
-    have hz : x ∈ Zbox.construct := Set.mem_iInter.mp hx₂ 0
+    have hz : x ∈ Zbox.construct := SetIntersection.mem_construct_ofFn.mp hx₂ 0
     obtain ⟨β, hβ, hx'⟩ := hz
     have hb := abs_le.mp (hβ (0 : Fin 2))
     have hx0 := congrFun hx' 0

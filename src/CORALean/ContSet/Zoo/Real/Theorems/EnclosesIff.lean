@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Zoo.Real.Zoo
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 
 @[expose] public section
 
@@ -29,10 +30,11 @@ variable {n : ℕ}
 theorem Zoo.encloses_iff {Z : Zoo n} {f : Vec ℝ n → ℝ} :
     Z.Encloses f ↔ (∀ T, Z.taylm = some T → T.Encloses f) ∧
       ∀ I, Z.ivl = some I → ∀ t ∈ Taylm.box n,
-        (fun _ => f t : Vec ℝ 1) ∈ I.construct := by
+        (fun _ => f t : Vec ℝ 1) ∈ I.construct := by -- --- PROOF ---
   obtain ⟨a, b⟩ := Z
-  show f ∈ ⋂ s ∈ (Zoo.members ⟨a, b⟩).sets, ContSet.construct s ↔ _
-  simp only [Set.mem_iInter, Zoo.members, List.mem_append, List.mem_map, Option.mem_toList]
+  show f ∈ ContSet.construct (Zoo.members ⟨a, b⟩) ↔ _
+  simp only [SetIntersection.mem_construct, Zoo.members, List.mem_append, List.mem_map,
+    Option.mem_toList]
   cases a <;> cases b <;> simp [ContSet.construct, or_imp, forall_and, forall_eq']
 
 end CORALean.Real

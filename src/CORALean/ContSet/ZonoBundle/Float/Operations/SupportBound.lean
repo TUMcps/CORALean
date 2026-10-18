@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 
@@ -13,8 +14,8 @@ bounds it too — soundness needs no choice at all. `minimum` only says which,
 and being exact it rounds nothing, so what the fold returns denotes the least
 of the members' bounds and costs no width.
 
-Needs `0 < zB.k`, as `isCompact_construct` does and for the same reason: at
-`k = 0` the bundle is the whole space, unbounded in every nonzero direction.
+Needs `0 < zB.k`, as `SetIntersection.isCompact_construct` needs a member, and for the same
+reason: at `k = 0` the bundle is the whole space, unbounded in every nonzero direction.
 -/
 
 -- Authors:       Claude Opus 5
@@ -80,7 +81,7 @@ def ZonoBundle.boundDot (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) {c : Vec 
   val := ZonoBundle.aux_minimumFrom (Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).val
     fun i => (Zonotope.boundDot (zB.Z i) a hc).val
   le x hx := by
-    have hmem : ∀ i, x ∈ (zB.Z i).construct := fun i => Set.mem_iInter.mp hx i
+    have hmem : ∀ i, x ∈ (zB.Z i).construct := fun i => SetIntersection.mem_construct_ofFn.mp hx i
     exact ZonoBundle.aux_le_minimumFrom ((Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).le x (hmem _))
       fun i => (Zonotope.boundDot (zB.Z i) a hc).le x (hmem i)
 

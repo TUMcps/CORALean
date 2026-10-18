@@ -7,22 +7,22 @@ public import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # The dynamics interfaces
 
-CORA's `contDynamics` and its `reach`, as classes; each system's `Instances.lean` instantiates them,
-and every system class does but `LinProbSys`, which defines no run yet.
-
-`ContDynamics`: `n` states (CORA's `nrOfDims`), `nrOfInputs`, `nrOfDisturbances`, and
-`IsTrajectory sys T X₀ U W x u w`, the class's own run on `T` over its whole equation, under the
-input `u` in `U` and the disturbance `w` in `W`, what else it carries (outputs, noise, parameters,
-algebraic variables) quantified away. `ContDynamicsDT` is the same over steps, a class of its own
-because every discrete-time class constrains every step, with no `T` to give.
+CORA's `contDynamics` and its `reach`, as classes, instantiated by every system class but
+`LinProbSys`, which defines no run yet. `ContDynamics`: `n` states (CORA's `nrOfDims`),
+`nrOfInputs`, `nrOfDisturbances`, and `IsTrajectory sys T X₀ U W x u w`, the class's own run on
+`T` over its whole equation, under the input `u` in `U` and the disturbance `w` in `W`, what else
+it carries (outputs, noise, parameters, algebraic variables) quantified away. `ContDynamicsDT` is
+the same over steps, every discrete-time class constraining every step, with no `T` to give.
 
 `Reach`: `reachExact sys params` is what the dynamics reach, a `Set` nothing may widen;
 `reach sys params options` what an algorithm computes, `none` where it could not certify its
 soundness conditions at run time, where CORA raises an error; `reach_outer` the enclosure, at
-`reach … = some R` only, so a failed run proves nothing. A positive zonotope order is a field with
-a default proof, refused at elaboration as CORA's `validateOptions` refuses it. `P n sys` is CORA's
-`params` (`X₀`, `[tStart, tFinal]`, `U` in the system's own input dimension), `O` its `options`,
-both `outParam`s as CORA dispatches on `sys` alone; `Sys` may sit in `Type 1`, as a loop does.
+`reach … = some R` only. A positive zonotope order is a field with a default proof, refused at
+elaboration as CORA's `validateOptions` refuses it. `P n sys` is CORA's `params` (`X₀`,
+`[tStart, tFinal]`, `U` in the system's own input dimension), `O` its `options`, both `outParam`s
+as CORA dispatches on `sys` alone; `Sys` may sit in `Type 1`, as a loop does. `reach` returns
+CORA's `reachSet` as the general `SetUnion` of its sets, without the times CORA stores with each
+(`ReachSetAnalyzer.TimedSet` pairs a set with its time interval where a check needs them).
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5, Claude Sonnet 5.5

@@ -47,6 +47,8 @@ def floorGuard : HPolytope D (Vec D 2) where
   me := 1
   Ae := ![![d 1 0, d 0 0]]
   be := ![d 0 0]
+  b_error := ![d 0 0]
+  be_error := ![d 0 0]
   I_error := Interval.origin 2
 
 /-- Above the floor, `-p ≤ 0`. -/
@@ -57,6 +59,8 @@ def aboveFloor : HPolytope D (Vec D 2) where
   me := 0
   Ae := ![]
   be := ![]
+  b_error := ![d 0 0]
+  be_error := ![]
   I_error := Interval.origin 2
 
 /-- The bounce: keep the position, reverse the velocity and damp it by `3/4`. -/

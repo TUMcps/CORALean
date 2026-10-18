@@ -30,8 +30,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem HPolytope.mem_stackRows_construct_iff {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n}
     (h₁ : P₁.ErrFree) (h₂ : P₂.ErrFree) :
     x ∈ (P₁.stackRows P₂).construct ↔ x ∈ P₁.construct ∧ x ∈ P₂.construct := by
-  rw [HPolytope.mem_stackRows_iff, HPolytope.construct_eq_nominal h₁,
-    HPolytope.construct_eq_nominal h₂]
+  rw [HPolytope.mem_stackRows_iff, HPolytope.construct_eq_nominal h₁.1,
+    HPolytope.construct_eq_nominal h₂.1]
 
 end CORALean.Float
 

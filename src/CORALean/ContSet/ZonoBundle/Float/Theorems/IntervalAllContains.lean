@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
 public import CORALean.ContSet.Interval.Float.Operations.IntersectionExact
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
@@ -35,7 +36,7 @@ theorem ZonoBundle.intervalAll_contains (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 <
     zB.construct ⊆ (zB.intervalAll hk).construct := by -- --- PROOF ---
   intro x hx
   have hmem : ∀ i, x ∈ (Zonotope.interval (zB.Z i)).construct := fun i =>
-    Zonotope.interval_contains _ (Set.mem_iInter.mp hx i)
+    Zonotope.interval_contains _ (SetIntersection.mem_construct_ofFn.mp hx i)
   -- every box the fold meets holds `x`, so the running intersection does
   suffices h : ∀ (l : List (Fin zB.k)) (I : Interval (Vec 𝕋 n)), x ∈ I.construct →
       x ∈ (l.foldl (fun I i => Interval.intersection I (Zonotope.interval (zB.Z i))) I).construct

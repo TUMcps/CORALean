@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.SetIntersection.Theorems.MtimesOuter
 public import CORALean.ContSet.SetIntersection.Theorems.PlusOuter
 public import CORALean.ContSet.SetIntersection.Theorems.ReduceOuter
+public import CORALean.ContSet.SetIntersection.Theorems.IntersectionExact
 
 @[expose] public section
 
@@ -10,9 +11,10 @@ public import CORALean.ContSet.SetIntersection.Theorems.ReduceOuter
 # What `SetIntersection` instantiates
 
 `ContSet` is already at `SetIntersection.lean`, since the type's own docstring
-needs what it denotes. `Mtimes`, `Plus` and `Reduce` follow whenever the
+needs what it denotes. `Mtimes`, `Plus`, `Reduce` and `ConvexSet` follow whenever the
 member type `S` has them, each the branch-wise operation from `Operations/`
-paired with the outer guarantee `Theorems/` proves for it.
+paired with the guarantee `Theorems/` proves for it; `Intersection` holds at every `S`,
+appending the lists.
 
 `Contains`/`IsDisjoint` lift both ways. As the *computed* set, `S :=
 SetIntersection S'`: conservative both ways, one member already answering
@@ -20,8 +22,7 @@ being enough. As the *container*, `T := SetIntersection T'`: `contains`
 exact, needing every member; `isDisjoint` conservative. Both instantiate
 `Contains (SetIntersection T') (SetIntersection S')` at once, so the
 container pair carries `(priority := low)`, exactly as `SetUnion`'s own two
-pairs do: the computed-set reading is tried first, uniformly across both
-files.
+pairs do: the computed-set reading is tried first, uniformly across both files.
 
 Computable throughout, for the same reason as `SetUnion`: every field is
 `List.map`/`List.all`/`List.any` over whatever `S`'s own instance computes.
@@ -57,6 +58,13 @@ instance [Plus S α] : Plus (SetIntersection S) α where
 instance [Reduce S α] : Reduce (SetIntersection S) α where
   reduce := SetIntersection.reduce
   reduce_outer := SetIntersection.reduce_outer
+
+instance [ConvexSet S α] : ConvexSet (SetIntersection S) α := ⟨SetIntersection.convex_construct⟩
+
+/-- Exact: the two lists appended; the class keeps the outer half of `intersection_exact`. -/
+instance : Intersection (SetIntersection S) α where
+  intersection := SetIntersection.intersection
+  intersection_outer I J := (SetIntersection.intersection_exact I J).symm.subset
 
 variable {T α : Type} [ContSet T α] [ContSet S α]
 

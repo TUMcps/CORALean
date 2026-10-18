@@ -97,9 +97,10 @@ theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 
     HPolytope.mem_stackRows_nominal_iff.mpr
       ⟨hP₂, (HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.mem_unitBox_iff.mpr hβ₂)⟩
   exact HPolytope.mem_stackRows_nominal_iff.mpr
-    ⟨(HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.smul_mem_halfScaledLeft (by ring) hl0 hd₁),
+    ⟨(HPolytope.mem_nominal_of_origin rfl).mp
+        (HPolytope.smul_mem_halfScaledLeft (by ring) hl0 hl1 hd₁),
       (HPolytope.mem_nominal_of_origin rfl).mp
-        (HPolytope.smul_mem_halfScaledRight (by ring) (by linarith) hd₂)⟩
+        (HPolytope.smul_mem_halfScaledRight (by ring) (by linarith) (by linarith) hd₂)⟩
 
 /-- What the stored generators are wrong by, entrywise: nothing on the copied
 blocks, and on the center generator the gap `linCombGDiff` records. -/

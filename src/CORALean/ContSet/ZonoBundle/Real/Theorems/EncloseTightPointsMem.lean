@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EncloseTightPoints
 public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.EnclosePointsStursbergMem
@@ -36,6 +37,7 @@ variable {n r N : ℕ}
 theorem ZonoBundle.encloseTightPoints_mem [NeZero N] (V : Fin N → Vec ℝ n)
     (W : Fin r → Mat ℝ n n) (hW : ∀ i, IsUnit (W i).det) {U : Mat ℝ n n} (hU : U * Uᵀ = 1)
     (j : Fin N) : V j ∈ (ZonoBundle.encloseTightPoints V W U).construct := by -- --- PROOF ---
+  rw [ZonoBundle.construct_eq_iInter]
   refine Set.mem_iInter.mpr fun i => ?_
   induction i using Fin.lastCases with
   | last =>

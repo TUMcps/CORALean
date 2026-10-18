@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.Operations.OfPoint
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
@@ -32,7 +33,7 @@ theorem ZonoBundle.mem_ofPoint_iff (v x : α) :
     x ∈ (ZonoBundle.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
   constructor
   · intro h
-    exact (Zonotope.mem_ofPoint_iff v x).mp (Set.mem_iInter.mp h (0 : Fin 1))
+    exact (Zonotope.mem_ofPoint_iff v x).mp (SetIntersection.mem_construct_ofFn.mp h (0 : Fin 1))
   · rintro rfl
     exact ZonoBundle.mem_ofPoint _
 

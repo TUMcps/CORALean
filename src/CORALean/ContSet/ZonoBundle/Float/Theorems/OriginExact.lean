@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 
@@ -30,6 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.origin_exact (n : ℕ) :
     (ZonoBundle.origin n : ZonoBundle (Vec 𝕋 n)).construct = {0} := by
+  rw [ZonoBundle.construct_eq_iInter]
   show ⋂ _ : Fin 1, (Zonotope.origin n : Zonotope (Vec 𝕋 n)).construct = {0}
   rw [Set.iInter_const]
   exact Zonotope.origin_exact n

@@ -8,12 +8,13 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 /-!
 # An error-free polytope denotes its nominal part
 
-A box whose bounds all read `0` is the origin, and adding the origin changes nothing.
+A box whose bounds all read `0` is the origin, and adding the origin changes nothing; the slacks
+are part of the nominal polytope, so this asks only for the box.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -28,7 +29,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.construct_eq_nominal {P : HPolytope 𝕋 (Vec 𝕋 n)} (h : P.ErrFree) :
+theorem HPolytope.construct_eq_nominal {P : HPolytope 𝕋 (Vec 𝕋 n)}
+    (h : ∀ j, toReal (P.I_error.inf j) = 0 ∧ toReal (P.I_error.sup j) = 0) :
     P.construct = P.nominal.construct := by -- --- PROOF ---
   -- the box is the origin
   have hbox : P.I_error.construct = {0} := by

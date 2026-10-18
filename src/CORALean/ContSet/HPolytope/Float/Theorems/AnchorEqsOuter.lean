@@ -21,7 +21,7 @@ in the same box.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.anchorEqs_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec 𝕋 P.me) {y e : Vec ℝ n}
-    (hA : ∀ i, (toRealMat P.A *ᵥ y) i ≤ toReal (P.b i))
+    (hA : ∀ i, (toRealMat P.A *ᵥ y) i ≤ toReal (P.b i) + |toReal (P.b_error i)|)
     (hE : ∀ i, |(toRealMat P.Ae *ᵥ y) i - toReal (P.be i)| ≤ toReal (ε i))
     (he : e ∈ P.I_error.construct) : -- --- STMT ---
     y + e ∈ (P.anchorEqs ε).construct := by -- --- PROOF ---
@@ -66,7 +66,8 @@ theorem HPolytope.anchorEqs_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec �
     rw [hsplit]
     refine Set.add_mem_add (HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩) fun j => ?_
     -- an inequality reads at most `∑ⱼ |Aᵢⱼ| ρ` more
-    · show (toRealMat P.A *ᵥ (y + β)) i ≤ toReal (addUp (P.b i) (mulUp (radius P.A i) ρ))
+    · show (toRealMat P.A *ᵥ (y + β)) i
+        ≤ toReal (addUp (P.b i) (mulUp (radius P.A i) ρ)) + |toReal (P.b_error i)|
       have hstep : (toRealMat P.A *ᵥ β) i ≤ toReal (radius P.A i) * toReal ρ :=
         calc (toRealMat P.A *ᵥ β) i = ∑ j, toReal (P.A i j) * β j := rfl
           _ ≤ ∑ j, |toReal (P.A i j)| * toReal ρ := Finset.sum_le_sum fun j _ =>
@@ -80,9 +81,9 @@ theorem HPolytope.anchorEqs_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec �
       have h2 := add_le_addUp (P.b i) (mulUp (radius P.A i) ρ)
       linarith [hA i]
     -- an equality now holds
-    · show (toRealMat P.Ae *ᵥ (y + β)) i = toReal (P.be i)
-      rw [Matrix.mulVec_add, Pi.add_apply, hβ]
-      ring
+    · show |(toRealMat P.Ae *ᵥ (y + β)) i - toReal (P.be i)| ≤ |toReal (FloatOps.zero : 𝕋)|
+      rw [Matrix.mulVec_add, Pi.add_apply, hβ, toReal_zero, abs_zero]
+      exact (abs_nonpos_iff.mpr (by ring)).trans le_rfl
     -- the box takes the step back
     · have hlo : toReal (P.I_error.inf j) ≤ e j := (he j).1
       have hhi : e j ≤ toReal (P.I_error.sup j) := (he j).2
@@ -105,12 +106,14 @@ theorem HPolytope.anchorEqs_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec �
       · simp only [toRealMat_append_mulVec_natAdd, HPolytope.mulVec_append_left, Fin.append_left,
           Fin.append_right]
         have h := add_le_addUp (P.be i) (ε i)
+        simp only [toReal_zero, abs_zero, add_zero]
         linarith [(hab i).2]
       · simp only [toRealMat_append_mulVec_natAdd, Fin.append_right]
         have hneg : (toRealMat (-P.Ae : Fin P.me → Fin n → 𝕋) *ᵥ y) i = -(toRealMat P.Ae *ᵥ y) i :=
           congrFun (toRealMat_neg_mulVec P.Ae y) i
         have h := add_le_addUp (neg (P.be i)) (ε i)
         rw [toReal_neg] at h
+        simp only [toReal_zero, abs_zero, add_zero]
         linarith [(hab i).1]
 
 end CORALean.Float

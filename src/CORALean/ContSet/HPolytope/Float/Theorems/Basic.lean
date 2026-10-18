@@ -36,14 +36,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ==============================  `HPolytope.errFree_of_origin`  =============================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- A polytope whose box is the origin box is error-free. -/
-theorem HPolytope.errFree_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (h : P.I_error = Interval.origin n) : P.ErrFree := fun j => by
-  rw [h]
-  exact ⟨toReal_zero, toReal_zero⟩
+/-- A polytope whose box is the origin and whose slacks are `zero` is error-free. -/
+theorem HPolytope.errFree_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)} (h : P.I_error = Interval.origin n)
+    (hb : P.b_error = fun _ => FloatOps.zero) (he : P.be_error = fun _ => FloatOps.zero) :
+    P.ErrFree :=
+  ⟨fun _ => h ▸ ⟨toReal_zero, toReal_zero⟩, fun _ => hb ▸ toReal_zero, fun _ => he ▸ toReal_zero⟩
 
 
 -- ============================  `HPolytope.mem_nominal_of_origin`  ============================= --
@@ -56,7 +56,7 @@ theorem HPolytope.errFree_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)}
 theorem HPolytope.mem_nominal_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (h : P.I_error = Interval.origin n) {x : Vec ℝ n} :
     x ∈ P.construct ↔ x ∈ P.nominal.construct :=
-  Set.ext_iff.mp (HPolytope.construct_eq_nominal (HPolytope.errFree_of_origin h)) x
+  Set.ext_iff.mp (HPolytope.construct_eq_nominal fun _ => h ▸ ⟨toReal_zero, toReal_zero⟩) x
 
 
 -- ============================  `HPolytope.toReal_eq_of_eqScalar`  ============================= --

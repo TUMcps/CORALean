@@ -42,6 +42,8 @@ def HPolytope.not (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : 𝕋) : Option (HPolyt
         me := 0
         Ae := fun i => i.elim0
         be := fun i => i.elim0
+        b_error := fun _ => zero
+        be_error := fun _ => zero
         I_error := Interval.origin n }
   else none
 

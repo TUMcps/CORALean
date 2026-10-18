@@ -56,7 +56,8 @@ theorem HPolytope.isFullDim_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {x₀ : Vec 
       isOpen_lt (HPolytope.aux_continuous_row _ i) continuous_const
   -- which lies inside the nominal part, there being no equality row
   have hsub : U ⊆ P.nominal.construct := fun x hx =>
-    HPolytope.mem_nominal_iff.mpr ⟨fun i => (hx i).le, fun i => (hme ▸ i).elim0⟩
+    HPolytope.mem_nominal_iff.mpr
+      ⟨fun i => (hx i).le.trans (le_add_of_nonneg_right (abs_nonneg _)), fun i => (hme ▸ i).elim0⟩
   -- shifted by a point of the error box, it lies inside the polytope
   have he : (fun j => toReal (P.I_error.inf j)) ∈ P.I_error.construct :=
     Interval.mem_vec_iff.mpr fun j => ⟨le_rfl, toReal_le_of_le (hbox j)⟩

@@ -64,6 +64,8 @@ def HPolytope.reduceOverDomain (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (dom 
     me := 0
     Ae := fun r => r.elim0
     be := fun r => r.elim0
+    b_error := fun _ => zero
+    be_error := fun _ => zero
     I_error := Interval.origin n }
 
 end CORALean.Float

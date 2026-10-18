@@ -16,7 +16,7 @@ two roundings of its shifted bound, which is the residual `anchorEqs` is given
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -46,24 +46,29 @@ theorem HPolytope.translate_outer (t : Vec 𝕋 n) (P : HPolytope 𝕋 (Vec 𝕋
     rw [Matrix.mulVec_add]
     rfl
   refine HPolytope.anchorEqs_outer _ _ (fun i => ?_) (fun i => ?_) he
-  -- each inequality bound shifts by what its own row reads of `t`, rounded up
-  · show (toRealMat P.A *ᵥ (toRealVec t + z)) i ≤ toReal (addUp (P.b i) (dotUp (P.A i) t))
+  -- each inequality bound shifts by what its own row reads of `t`, rounded up, its slack kept
+  · show (toRealMat P.A *ᵥ (toRealVec t + z)) i
+      ≤ toReal (addUp (P.b i) (dotUp (P.A i) t)) + |toReal (P.b_error i)|
     rw [hsplit P.A i]
     have h := add_le_addUp (P.b i) (dotUp (P.A i) t)
     have h' := le_dotUp (P.A i) t
     linarith [hle i]
-  -- an equality reads between the two roundings of its shifted bound
-  · show |(toRealMat P.Ae *ᵥ (toRealVec t + z)) i - toReal (addUp (P.be i) (dotUp (P.Ae i) t))|
-      ≤ toReal (subUp (addUp (P.be i) (dotUp (P.Ae i) t)) (addDown (P.be i) (dotDown (P.Ae i) t)))
-    rw [hsplit P.Ae i, heq i]
+  -- an equality reads within its slack of the exact shifted bound, which lies in the gap
+  · set top := addUp (P.be i) (dotUp (P.Ae i) t)
+    set bot := addDown (P.be i) (dotDown (P.Ae i) t)
+    show |(toRealMat P.Ae *ᵥ (toRealVec t + z)) i - toReal top|
+      ≤ toReal (addUp (absolute (P.be_error i)) (subUp top bot))
+    rw [hsplit P.Ae i]
+    have hz' := abs_le.mp (heq i)
     have h1 := add_le_addUp (P.be i) (dotUp (P.Ae i) t)
     have h2 := le_dotUp (P.Ae i) t
     have h3 := addDown_le_add (P.be i) (dotDown (P.Ae i) t)
     have h4 := dotDown_le (P.Ae i) t
-    have h5 := sub_le_subUp (addUp (P.be i) (dotUp (P.Ae i) t))
-      (addDown (P.be i) (dotDown (P.Ae i) t))
+    have h5 := sub_le_subUp top bot
+    have h6 := add_le_addUp (absolute (P.be_error i)) (subUp top bot)
+    rw [toReal_absolute] at h6
     rw [abs_le]
-    constructor <;> linarith
+    constructor <;> linarith [hz'.1, hz'.2]
 
 end CORALean.Float
 

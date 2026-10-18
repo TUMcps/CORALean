@@ -22,7 +22,9 @@ block's rows at the weight `λ = (ν + 1) / 2` and the second's at `1 - λ`
 its weight: above weight zero by dividing through, and at weight zero because the weighted unit
 box pins the block to the origin, leaving the other set's point alone. Both sets have to be
 nonempty, as in the exact layer's `linComb_inner`: at weight zero the point is the second set's,
-which is a segment only if the first has a point to run from.
+which is a segment only if the first has a point to run from. Both constraint polytopes have to
+be slack-free: a slack is read once at every weight, so dividing a block by its weight would
+stretch it.
 
 The centers are the same and the interpolation column is zero, so the point is
 `λ(c + G₁β₁) + (1 - λ)(c + G₂β₂)` without a remainder.
@@ -30,7 +32,7 @@ The centers are the same and the interpolation column is zero, so the point is
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -74,11 +76,14 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
       refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
       · -- the inequality rows scale by `lam⁻¹`
         rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
+        refine le_add_of_le_of_nonneg ?_ (abs_nonneg _)
         calc lam⁻¹ * (toRealMat Q.A *ᵥ γ) i
             ≤ lam⁻¹ * (lam * toReal (Q.b i)) :=
               mul_le_mul_of_nonneg_left (hA i) (inv_nonneg.mpr hl0)
           _ = _ := by field_simp
       · rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul, hE i]
+        refine le_trans (le_of_eq ?_) (abs_nonneg _)
+        rw [abs_eq_zero, sub_eq_zero]
         field_simp
     rw [hQ] at hmem
     obtain ⟨hP, hbox⟩ := HPolytope.mem_stackRows_nominal_iff.mp hmem
@@ -90,7 +95,7 @@ theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.linCombSameCenter_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n))
-    (hc : cZ₂.c = cZ₁.c)
+    (hc : cZ₂.c = cZ₁.c) (hs₁ : cZ₁.P.IsSlackFree) (hs₂ : cZ₂.P.IsSlackFree)
     (hne₁ : (nominalSet cZ₁).Nonempty) (hne₂ : (nominalSet cZ₂).Nonempty) : -- --- STMT ---
     nominalSet (cZ₁.linCombSameCenter cZ₂) ⊆
       Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) := by -- --- PROOF ---
@@ -120,6 +125,17 @@ theorem ConZonotope.linCombSameCenter_subset (cZ₁ cZ₂ : ConZonotope 𝕋 (Ve
   replace hR := (HPolytope.mem_nominal_of_origin rfl).mpr hR
   obtain ⟨hA₁, hE₁⟩ := HPolytope.mem_halfScaledLeft hL
   obtain ⟨hA₂, hE₂⟩ := HPolytope.mem_halfScaledRight hR
+  -- a slack-free block stays slack-free with its unit box stacked on, so the rows read exactly
+  have hstack : ∀ {k : ℕ} (Q : HPolytope 𝕋 (Vec 𝕋 k)), Q.IsSlackFree →
+      (Q.stackRows (HPolytope.unitBox 𝕋 k)).IsSlackFree := fun Q hs =>
+    ⟨fun i => Fin.addCases (fun i => by simpa [HPolytope.stackRows] using hs.1 i)
+      (fun i => by simp [HPolytope.stackRows, HPolytope.unitBox, toReal_zero]) i,
+     fun i => Fin.addCases (fun i => by simpa [HPolytope.stackRows] using hs.2 i)
+      (fun i => i.elim0) i⟩
+  obtain ⟨hb₁, he₁⟩ := hstack cZ₁.P hs₁
+  obtain ⟨hb₂, he₂⟩ := hstack cZ₂.P hs₂
+  simp only [hb₁, hb₂, he₁, he₂, abs_zero, add_zero, abs_nonpos_iff, sub_eq_zero]
+    at hA₁ hE₁ hA₂ hE₂
   -- the weight, and the second block's
   have hν1 : |ν| ≤ 1 := by
     have := hβ (Fin.natAdd (cZ₁.h + cZ₂.h) 0)

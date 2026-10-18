@@ -1176,7 +1176,7 @@ Every float set records its rounding explicitly in an `I_error` box (`InflatedCo
 denotes `nominal ⊕ I_error`); rounding is never folded silently into a parameter. Each float
 representation provides a sound `absorbRounding`, which moves `I_error` into the parameters where
 the representation can hold it (a zonotope into box generators, a polyhedron into the right-hand
-side `b`, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
+side `b`, together with the slack its rows record besides the box, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
 model into its remainder), with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
 `absorbRounding` may itself round, so it does **not** promise an empty `I_error` afterwards: the
 result's box holds only the rounding of the absorption step, often exactly zero, and a caller

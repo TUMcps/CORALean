@@ -14,7 +14,7 @@ the right-hand side with the box folded in (`bU`, `beU`, `beLN`). This is how an
 that reads the rows sees a polytope that carries a box.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
@@ -64,24 +64,30 @@ theorem HPolytope.rows_of_mem_construct {P : HPolytope 𝕋 (Vec 𝕋 n)} {x : V
   -- an inequality row, then the two halves of an equality
   refine ⟨fun i => ?_, fun i => ⟨?_, ?_⟩⟩
   · rw [hrow]
-    have h := add_le_addUp (P.b i) (P.errUp (P.A i))
+    have h := add_le_addUp (addUp (P.b i) (absolute (P.b_error i))) (P.errUp (P.A i))
+    have h₀ := add_le_addUp (P.b i) (absolute (P.b_error i))
     have h' := P.le_errUp (P.A i) he
     have := hle i
-    show _ ≤ toReal (addUp (P.b i) (P.errUp (P.A i)))
+    rw [toReal_absolute] at h₀
+    show _ ≤ toReal (addUp (addUp (P.b i) (absolute (P.b_error i))) (P.errUp (P.A i)))
     linarith
   · rw [hrow]
-    have h := add_le_addUp (P.be i) (P.errUp (P.Ae i))
+    have h := add_le_addUp (addUp (P.be i) (absolute (P.be_error i))) (P.errUp (P.Ae i))
+    have h₀ := add_le_addUp (P.be i) (absolute (P.be_error i))
     have h' := P.le_errUp (P.Ae i) he
-    have := heq i
-    show _ ≤ toReal (addUp (P.be i) (P.errUp (P.Ae i)))
+    have := (abs_le.mp (heq i)).2
+    rw [toReal_absolute] at h₀
+    show _ ≤ toReal (addUp (addUp (P.be i) (absolute (P.be_error i))) (P.errUp (P.Ae i)))
     linarith
   -- the lower half, as the row negated
   · rw [hrow]
-    have h := add_le_addUp (neg (P.be i)) (P.errUp (-(P.Ae i)))
+    have h := add_le_addUp (addUp (neg (P.be i)) (absolute (P.be_error i))) (P.errUp (-(P.Ae i)))
+    have h₀ := add_le_addUp (neg (P.be i)) (absolute (P.be_error i))
     have h' := P.le_errUp (-(P.Ae i)) he
-    have := heq i
-    simp only [toReal_neg, Pi.neg_apply, toReal_neg', neg_mul, Finset.sum_neg_distrib] at h h'
-    show _ ≤ toReal (addUp (neg (P.be i)) (P.errUp (-(P.Ae i))))
+    have := (abs_le.mp (heq i)).1
+    rw [toReal_absolute, toReal_neg] at h₀
+    simp only [Pi.neg_apply, toReal_neg', neg_mul, Finset.sum_neg_distrib] at h h'
+    show _ ≤ toReal (addUp (addUp (neg (P.be i)) (absolute (P.be_error i))) (P.errUp (-(P.Ae i))))
     linarith
 
 end CORALean.Float

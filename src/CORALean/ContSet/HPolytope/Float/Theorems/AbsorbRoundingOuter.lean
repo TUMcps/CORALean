@@ -36,7 +36,7 @@ theorem HPolytope.absorbRounding_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     P.construct ⊆ P.absorbRounding.construct := by -- --- PROOF ---
   intro x hx
   obtain ⟨hA, hE⟩ := HPolytope.rows_of_mem_construct hx
-  rw [HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)]
+  rw [HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)]
   refine ⟨Fin.addCases (fun i => ?_) fun k => ?_, fun i => i.elim0⟩
   · simp only [HPolytope.absorbRounding, HPolytope.mulVec_append_left, Fin.append_left]
     exact hA i

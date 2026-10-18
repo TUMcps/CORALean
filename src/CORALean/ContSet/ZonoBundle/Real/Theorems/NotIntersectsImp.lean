@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import Mathlib.Data.Fin.VecNotation
@@ -47,8 +48,8 @@ theorem ZonoBundle.not_intersects_imp :
     · refine ⟨1 / 2, ⟨fun _ => 0, fun _ => by simp, by simp [Z₁]⟩, by norm_num, by norm_num⟩
     · refine ⟨5 / 2, ⟨fun _ => 0, fun _ => by simp, by simp [Z₂]⟩, by norm_num, by norm_num⟩
   · rintro ⟨x, hx, -⟩
-    have h1 := Set.mem_iInter.mp hx 0
-    have h2 := Set.mem_iInter.mp hx 1
+    have h1 := SetIntersection.mem_construct_ofFn.mp hx 0
+    have h2 := SetIntersection.mem_construct_ofFn.mp hx 1
     obtain ⟨β, hβ, e1⟩ := h1
     obtain ⟨γ, hγ, e2⟩ := h2
     have a := abs_le.mp (hβ ⟨0, Nat.one_pos⟩)

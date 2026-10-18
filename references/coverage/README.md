@@ -169,7 +169,7 @@ Rulings on borderline cases:
 | [probZonotope](contSet/probZonotope.md) | contSet | 28 | 3 | 14 | 2 | 0 | 9 | 5 |
 | [spectraShadow](contSet/spectraShadow.md) | contSet | 33 | 1 | 23 | 0 | 0 | 9 | 6 |
 | [taylm](contSet/taylm.md) | contSet | 51 | 1 | 27 | 11 | 0 | 12 | 1 |
-| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 28 | 6 | 0 | 7 | 6 |
+| [zonoBundle](contSet/zonoBundle.md) | contSet | 44 | 3 | 29 | 5 | 0 | 7 | 6 |
 | [zonotope](contSet/zonotope.md) | contSet | 80 | 5 | 57 | 4 | 0 | 14 | 16 |
 | [zoo](contSet/zoo.md) | contSet | 12 | 0 | 10 | 0 | 0 | 2 | 2 |
 | [contDynamics](contDynamics/contDynamics.md) | contDynamics | 19 | 2 | 6 | 0 | 0 | 11 | 4 |

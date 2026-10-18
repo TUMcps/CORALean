@@ -39,10 +39,15 @@ theorem ConZonotope.zeroFeasible_nonempty {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
   refine ⟨fun i => toReal (cZ.c i), ConZonotope.mem_nominalSet_iff.mpr
     ⟨0, fun j => by simp, HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩,
       fun i => by simp⟩⟩
+  · rw [Matrix.mulVec_zero, Pi.zero_apply]
+    have h0 := toReal_le_of_le (hA i)
+    rw [toReal_zero] at h0
+    linarith [abs_nonneg (toReal (cZ.P.b_error i))]
   · rw [Matrix.mulVec_zero]
-    simpa [toReal_zero] using toReal_le_of_le (hA i)
-  · rw [Matrix.mulVec_zero]
-    simpa [toReal_zero] using le_antisymm (toReal_le_of_le (hE i).2) (toReal_le_of_le (hE i).1)
+    have h0 := le_antisymm (toReal_le_of_le (hE i).2) (toReal_le_of_le (hE i).1)
+    rw [toReal_zero] at h0
+    rw [Pi.zero_apply, ← h0, sub_self, abs_zero]
+    exact abs_nonneg _
 
 end CORALean.Float
 

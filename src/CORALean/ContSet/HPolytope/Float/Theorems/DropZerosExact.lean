@@ -49,18 +49,16 @@ theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
       rcases h with ⟨i, -, hz, hl⟩ | ⟨r, -, hz, hl⟩
       · have := toReal_lt_of_ltStrict hl
         have h3 := h1 i
+        have hu := add_le_addUp (Q.b i) (absolute (Q.b_error i))
         rw [hzA i hz x] at h3
         rw [toReal_zero] at this
+        rw [toReal_absolute] at hu
         linarith
       · have h3 := h2 r
-        rw [hzE r hz x] at h3
-        rcases hl with hl | hl
-        · have := toReal_lt_of_ltStrict hl
-          rw [toReal_zero] at this
-          linarith
-        · have := toReal_lt_of_ltStrict hl
-          rw [toReal_zero] at this
-          linarith
+        rw [hzE r hz x, zero_sub, abs_neg] at h3
+        have := toReal_lt_of_ltStrict hl
+        rw [toReal_absolute, toReal_absolute] at this
+        linarith
     rw [HPolytope.construct_emptySet]
     show _ = Q.nominal.construct + Q.I_error.construct
     rw [hN, Set.empty_add]
@@ -78,12 +76,14 @@ theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) :
         · simp only [Bool.not_eq_true', Bool.not_eq_false, Bool.and_eq_true] at hk
           rw [hzA i hk.1 x]
           have := toReal_le_of_le hk.2
-          rwa [toReal_zero] at this
+          rw [toReal_zero] at this
+          linarith [abs_nonneg (toReal (Q.b_error i))]
       · by_cases hk : (!(HPolytope.isZeroVec (Q.Ae r) && HPolytope.eqScalar (Q.be r) FloatOps.zero))
             = true
         · exact h2 r hk
         · simp only [Bool.not_eq_true', Bool.not_eq_false, Bool.and_eq_true] at hk
-          rw [hzE r hk.1 x, HPolytope.toReal_eq_of_eqScalar hk.2, toReal_zero]
+          rw [hzE r hk.1 x, HPolytope.toReal_eq_of_eqScalar hk.2, toReal_zero, sub_zero, abs_zero]
+          exact abs_nonneg _
     · rintro ⟨h1, h2⟩
       exact ⟨fun i _ => h1 i, fun r _ => h2 r⟩
 

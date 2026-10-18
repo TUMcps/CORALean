@@ -70,9 +70,8 @@ theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S
     (div_pos htFinal hΔt)).ne'
   rw [max_eq_right hN] at hk
   -- window `k` holds `e^{At} x₀`, and `k < N`
-  refine SetUnion.mem_construct.mpr ⟨sys.reachStepk Δt η X₀ k, ?_, ?_⟩
-  · exact List.mem_map.mpr ⟨k, List.mem_range.mpr hk, rfl⟩
-  · exact sys.reachStepk_outer hΔt hη hε X₀ hkt htk (Set.mem_image_of_mem _ hx₀)
+  exact SetUnion.mem_construct_range hk
+    (sys.reachStepk_outer hΔt hη hε X₀ hkt htk (Set.mem_image_of_mem _ hx₀))
 
 end CORALean
 

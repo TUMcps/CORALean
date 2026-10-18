@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCenter
@@ -74,7 +75,7 @@ theorem HPolytope.zonoBundleRows_exact [NeZero n] (P : HPolytope (Vec ℝ n))
     intro hx
     rw [HPolytope.mem_construct_iff_rows]
     intro i
-    have hxi := Set.mem_iInter.mp hx i
+    have hxi := SetIntersection.mem_construct_ofFn.mp hx i
     obtain ⟨y, hy, rfl⟩ : ∃ y ∈
         (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).zonotope.construct,
         B i *ᵥ y = x := by
@@ -104,7 +105,7 @@ theorem HPolytope.zonoBundleRows_exact [NeZero n] (P : HPolytope (Vec ℝ n))
       _ ≤ P.rowsRhs i := hrowj
   · -- the polytope is the hull of its vertices, and every zonotope is convex and holds them
     intro hx
-    refine Set.mem_iInter.mpr fun i => ?_
+    refine SetIntersection.mem_construct_ofFn.mpr fun i => ?_
     rw [← hV, VPolytope.construct_eq_convexHull] at hx
     refine convexHull_min ?_ (Zonotope.convex_construct _) hx
     rintro _ ⟨j, rfl⟩

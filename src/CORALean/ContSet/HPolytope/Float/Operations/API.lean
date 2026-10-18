@@ -81,13 +81,14 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Materialise
 /-!
 # What the float `HPolytope` computes
 
-Exactly and without arithmetic: `stackRows` concatenates constraint lists (the nominal
-intersection, which reads no box), `padLeft`, `padRight` and `lift_` widen the coefficient space
-and carry the box along, `halfScaledLeft` and its mirror widen it by one weighting coordinate and
+Exactly and without arithmetic: `stackRows` concatenates rows and slacks (the nominal intersection,
+which reads no box), `padLeft`, `padRight` and `lift_` widen the coefficient space and carry the
+box and the slacks along, `halfScaledLeft` and its mirror widen it by one weighting coordinate and
 halve every right-hand side into it, and the constructors copy matrices. None of them rounds.
 
-Moving the error box into the rows: `absorbRounding` raises each right-hand side by the box's
-support in that row's direction and writes each equality as the two inequalities it stands for;
+Moving the error box into the rows: `absorbRounding` raises each right-hand side by its slack and
+the box's support in that row's direction and writes each equality as the two inequalities it
+stands for, widened by its slack;
 the normalizations of a polytope with a box and `not` read a polytope through it, a box not being
 a halfspace.
 

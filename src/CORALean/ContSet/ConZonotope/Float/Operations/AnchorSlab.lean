@@ -14,7 +14,8 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 An operation that adds coefficient equalities `A β = b` (an intersection's agreement rows, a
 strip's rows) knows `b` only up to rounding and the error boxes: every coefficient vector of the
 exact set reads between `lo` and `hi` on them. The rows are added as the equalities `A β = hi`,
-the gap `hi - lo` being the residual, and `HPolytope.anchorEqsInBox` moves each such coefficient
+the gap `hi - lo` being the residual (an old equality's being its slack), and
+`HPolytope.anchorEqsInBox` moves each such coefficient
 vector onto them, inside the unit box, by at most `τ` in every coordinate. The point the
 coefficients describe then moves by at most `∑ⱼ |Gⱼᵢ| τ` in coordinate `i`, which the error box
 takes, rounded up.
@@ -26,7 +27,7 @@ choice is made at run time; `ConZonotope.anchorSlab_outer` covers both.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -45,9 +46,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n q : ℕ}
 can be certified, the cost in the error box, else as the slab. -/
 def ConZonotope.anchorSlab (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (A : Mat 𝕋 q cZ.h) (lo hi : Vec 𝕋 q) :
     ConZonotope 𝕋 (Vec 𝕋 n) :=
-  -- the old rows exact, the new ones within `hi - lo`
+  -- the old rows within their slack, the new ones within `hi - lo`
   let Q := cZ.P.stackRows (HPolytope.eqs A hi)
-  match Q.anchorEqsInBox (Fin.append (fun _ => zero) fun i => subUp (hi i) (lo i)) with
+  match Q.anchorEqsInBox
+    (Fin.append (fun i => absolute (cZ.P.be_error i)) fun i => subUp (hi i) (lo i)) with
   | some (Q', τ) =>
     -- what moving the coefficients by up to `τ` moves the point, rounded up
     let w : Vec 𝕋 n := fun i => mulUp (sumUp fun j => absolute (cZ.G j i)) τ

@@ -9,6 +9,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.DirPcaCovariance
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingBox
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
 public import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalAll
+public import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalSupportFunc
 public import CORALean.ContSet.ZonoBundle.Real.Operations.FacetLift
 public import CORALean.ContSet.ZonoBundle.Real.Operations.FlowIndex
 public import CORALean.ContSet.ZonoBundle.Real.Operations.GuardIntersect
@@ -59,5 +60,6 @@ family's own component bounds, and needs the same `0 < zB.k` compactness does.
 column of `Λ` [Althoff-Krogh, Eq. 2], with the four direction heuristics `dirBox`, `dirPca`,
 `dirFil` and `dirFlow`. `enclosingParallelotope` is the `Γ box(Γ⁻¹ Z_∩)` of that equation around
 the whole bundle, which `shrink` (member by member) and `reduceCombined` (to one zonotope)
-enclose by.
+enclose by. CORA's box `intervalAll` intersects the members' boxes; `intervalSupportFunc` is the
+bounding box of the bundle itself, by its support function in `±eᵢ`.
 -/

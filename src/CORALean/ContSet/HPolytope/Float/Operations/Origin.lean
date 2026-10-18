@@ -36,6 +36,8 @@ def HPolytope.origin (n : ℕ) : HPolytope 𝕋 (Vec 𝕋 n) where
   me := n
   Ae := fun i j => if i = j then one else zero
   be := fun _ => zero
+  b_error := fun _ => zero
+  be_error := fun _ => zero
   I_error := Interval.origin n
 
 end CORALean.Float
