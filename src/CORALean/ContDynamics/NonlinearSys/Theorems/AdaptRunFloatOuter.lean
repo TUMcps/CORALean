@@ -50,10 +50,10 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
       {ss : List (NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋)},
       fm.adaptRunFloat U options ζδ ζh ζZ ζK prec bis fuel tend k s = some ss →
       s.t ≤ ((s :: ss).getLast (List.cons_ne_nil _ _)).t ∧
-        ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+        ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
             (Set.Icc 0 ((((s :: ss).getLast (List.cons_ne_nil _ _)).t - s.t : ℚ) : ℝ))
-            s.R.construct U.construct x u →
+            s.R.construct U.construct x u y →
           ∀ (j : ℕ) (hj : j < ss.length), ∀ t ∈ Set.Icc
             ((((s :: ss)[j]'(Nat.lt_succ_of_lt hj)).t - s.t : ℚ) : ℝ) ((ss[j].t - s.t : ℚ) : ℝ),
             x t ∈ ss[j].Rτ.construct := by -- --- PROOF ---
@@ -78,7 +78,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
       obtain ⟨hlt, hstep⟩ := h.adaptStepFloat_outer _ hs'
       obtain ⟨hmono, hind⟩ := ih hrest
       rw [List.getLast_cons (List.cons_ne_nil _ _)]
-      refine ⟨le_trans hlt.le hmono, fun {x u} traj j hj t ht' => ?_⟩
+      refine ⟨le_trans hlt.le hmono, fun {x u y} traj j hj t ht' => ?_⟩
       -- the horizon is the first step plus the rest's
       set L := ((s' :: rest).getLast (List.cons_ne_nil _ _)).t with hL
       have hΔ : (0 : ℝ) < ((s'.t - s.t : ℚ) : ℝ) := by
@@ -100,7 +100,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
         have hmaps : Set.MapsTo (fun r => ((s'.t - s.t : ℚ) : ℝ) + r)
             (Set.Icc 0 ((L - s'.t : ℚ) : ℝ)) (Set.Icc 0 ((L - s.t : ℚ) : ℝ)) :=
           fun r hr => ⟨by linarith [hr.1], by rw [hLs]; linarith [hr.2]⟩
-        have shifted := traj.shift (R₀' := s'.R.construct) hmaps hend
+        have shifted := traj.shift (R₀' := s'.R.construct) hmaps (hsub ⟨hΔ.le, le_rfl⟩) hend
         have hj' : j < rest.length := by simpa using hj
         have key := hind shifted j hj' (t - ((s'.t - s.t : ℚ) : ℝ)) ⟨?_, ?_⟩
         · simpa using key

@@ -2,7 +2,6 @@ module
 
 public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
 public import CORALean.HybridDynamics.Operations.TimeIntervalStepSplit
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
@@ -58,8 +57,7 @@ theorem Location.IsTrajectory.timeInterval_outer_split [∀ n, OfPoint (S n) (Ve
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) :
     x t ∈ construct (ℓ.timeIntervalStepSplit τ (m + 2) R₀) :=
-  ((traj.linearSys h₀ traj.inputSet_mem).trajectory (convex_Icc 0 τ) ⟨le_rfl, hτ.le⟩
-    (CompactSet.isBounded_construct ℓ.inputSet)).timeInterval_outer_split hτ subset_rfl hε ht0 htτ
+  (traj.linearSys h₀ traj.inputSet_mem).timeInterval_outer_split hτ subset_rfl hε ht0 htτ
 
 end CORALean
 

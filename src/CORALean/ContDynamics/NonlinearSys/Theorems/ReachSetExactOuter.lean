@@ -39,10 +39,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Reach for this to say where a run *is*; reach for a `reachSetExact_subset_`
 theorem to say what encloses it. -/
 theorem NonlinearSys.IsTrajectory.reachSetExact_outer {sys : NonlinearSys n m} {T : Set ℝ}
-    {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory T R₀ U x u) (t : ℝ) :
+    {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q}
+    (traj : sys.IsTrajectory T R₀ U x u y) (t : ℝ) :
     x t ∈ sys.reachSetExact T R₀ U t :=
-  ⟨x, u, traj, rfl⟩
+  -- the output is read off the run, the same at every point of `T`
+  ⟨x, u, { traj with output := fun _ _ => rfl }, rfl⟩
 
 end CORALean
 

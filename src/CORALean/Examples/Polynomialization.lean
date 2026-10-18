@@ -56,7 +56,7 @@ same hypotheses, a non-convex representation underneath. -/
 example {n m : ℕ} (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : PolyZonotope (Vec ℝ n))
     (U : PolyZonotope (Vec ℝ m)) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m)
     (steps : ℕ → sys.LinStep (S := 𝒫𝒵) U) (Ud : ℕ → PolyZonotope (Vec ℝ n)) (Δt : ℝ) (N : ℕ)
-    (traj : sys.IsTrajectory (S := 𝒫𝒵) T R₀ U x u) (hΔt : 0 ≤ Δt)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒫𝒵) T R₀ U x u y) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
@@ -92,7 +92,7 @@ noncomputable example (U X₀ : PolyZonotope (Vec ℝ 1)) (xs us : Vec ℝ 1) :
 certified is inside the linearized reachable set at `Δt`. -/
 example (sys : NonlinearSys 1 1) (U X₀ Ud : PolyZonotope (Vec ℝ 1)) (A : Mat ℝ 1 1)
     (xs us : Vec ℝ 1) (x : ℝ → Vec ℝ 1) (u : ℝ → Vec ℝ 1) (step : sys.LinStep (S := 𝒫𝒵) U)
-    (traj : sys.IsTrajectory (S := 𝒫𝒵) (Set.Icc 0 (1 / 100)) X₀ U x u)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒫𝒵) (Set.Icc 0 (1 / 100)) X₀ U x u y)
     (h : sys.linReachPoly U A 1 xs us
       (fun _ => Matrix.of fun i j => if i = 0 ∧ j = 0 then 2 else 0) (fun _ _ => 0)
       (1 / 100) 4 50 50 X₀ 0 10 = some step)

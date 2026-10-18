@@ -56,7 +56,7 @@ step's certified region, instead of assuming confinement of the trajectory. -/
 theorem NonlinearSys.IsTrajectory.confinement_of_subset [Mtimes ℐ S]
     {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ} {M ρ : ℝ}
-    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 < Δt)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hΔt : 0 < Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (η : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / ((η : ℝ) + 2) < 1)
     (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))

@@ -15,7 +15,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.SetUnion.Theorems.Basic

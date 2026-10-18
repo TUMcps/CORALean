@@ -15,6 +15,7 @@ public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachFloatCheckedEqS
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.IsTrajectoryOfNonlinearSys
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.IsTrajectoryToNonlinParam
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.IsTrajectoryToNonlinearSys
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.IsConstTrajectoryOfHasDerivWithinAt
 
 /-!
 # What `NonlinParamSys` guarantees

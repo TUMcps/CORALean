@@ -259,6 +259,9 @@ public import CORALean.Global.BilliardReflectReflect
 public import CORALean.Global.SmithDiskIterations
 public import CORALean.Global.NotHyperplaneOneDim
 public import CORALean.Global.Counterexamples.API
+public import CORALean.Global.AestronglyMeasurableOfHasDerivWithinAt
+public import CORALean.Global.EqAddIntegralOfHasDerivWithinAt
+public import CORALean.Global.IntervalIntegrableMulVecAddOfBounded
 
 /-!
 # Global definitions, collected

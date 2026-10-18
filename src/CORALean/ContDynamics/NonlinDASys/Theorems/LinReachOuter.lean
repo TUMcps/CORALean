@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.NonlinDASys.Operations.LinReach
 public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryToLinearSys
 public import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
@@ -61,7 +60,8 @@ time-interval and joint sets throughout `[0, Δt]`. -/
 theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt : ℝ}
     {Rinit : Zonotope (Vec ℝ n)} {U : Zonotope (Vec ℝ m)} {x : ℝ → Vec ℝ n}
     {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y u) (hΔt : 0 < Δt)
+    {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y u z)
+    (hΔt : 0 < Δt)
     {xs : Vec ℝ n} {ys : Vec ℝ p} {us : Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m}
     {C : Mat ℝ n p} {D : Mat ℝ p n} {E : Mat ℝ p m} {F F_inv : Mat ℝ p p}
     (hF : F_inv * F = 1) {Verror : Zonotope (Vec ℝ n)} {Verror_y : Zonotope (Vec ℝ p)}
@@ -87,8 +87,7 @@ theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt :
     with hU_lin
   set W : Zonotope (Vec ℝ n) := (Zonotope.ofPoint f0).plus (U_lin.plus Verror) with hW
   -- the shifted run is a run of the linear system `oneStep` is taken of
-  have lin := (traj.toLinearSys hF hR hL).trajectory (convex_Icc 0 Δt) ⟨le_rfl, hΔt.le⟩
-    (Zonotope.isBounded_construct _)
+  have lin := traj.toLinearSys hF measurableSet_Icc hR hL
   -- `oneStep`'s side conditions, all of zonotopes
   have hWU : ∀ v ∈ construct (S := Zonotope (Vec ℝ n)) W,
       v - f0 ∈ construct (S := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by

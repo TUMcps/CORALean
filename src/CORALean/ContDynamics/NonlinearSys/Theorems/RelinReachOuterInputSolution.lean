@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryStepInputOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 
 @[expose] public section
@@ -41,7 +41,7 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 theorem NonlinearSys.IsTrajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
     {sys : NonlinearSys n m} {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ}
-    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 < Δt)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hΔt : 0 < Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (η : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / ((η : ℝ) + 2) < 1)
@@ -60,7 +60,7 @@ theorem NonlinearSys.IsTrajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
   -- everything above is per step, so the loop is `relinReach_outer` plus one enclosure
   refine traj.relinReach_outer hΔt.le hT hR hbdd ?_ ho
   intro i hi
-  have hlin := (traj.restrict (step_subset_horizon hΔt.le hT hi)).linearize
+  have hlin := (traj.restrict (step_subset_horizon hΔt.le hT hi)).linearize measurableSet_Icc
     (steps i).cert (hR i hi)
   exact hlin.stepInput_outer hΔt η (hε i hi) (hconv i hi) (hclosed i hi) (hbdd i hi)
     (hRconv i hi) (hRclosed i hi) (hRbdd i hi) i subset_rfl

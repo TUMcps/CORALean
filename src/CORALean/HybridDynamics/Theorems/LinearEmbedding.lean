@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.LinearSys
+public import Mathlib.Topology.Instances.Matrix
 public import CORALean.HybridDynamics.Definitions.Location
 
 @[expose] public section
@@ -9,13 +10,12 @@ public import CORALean.HybridDynamics.Definitions.Location
 # A stay in a location is a run of its canonical form
 
 `Location.IsTrajectory` runs the whole equation `ẋ = A x + B u + c + E w`;
-`LinearSys.IsCanonicalClassicalTrajectory` runs `ẋ = A x + u'`, anchored at a set and with no
-invariant. A stay is a run of the latter with the combined input `u' = B u + c + E w`, CORA's
-`canonicalForm`, wherever the caller's set `U'` holds every value it takes — at `ℓ.inputSet`
-(`B U ⊕ c ⊕ E W`, `memInputSet`) or its float counterpart. Naming a set the initial point lies in
-and one the combined input lies in is all it takes to hand a stay to the whole of `LinearSys`
-through `IsCanonicalClassicalTrajectory.trajectory`; the invariant is dropped — it only ever
-tightens an enclosure, never justifies one.
+`LinearSys.IsCanonicalTrajectory` runs `ẋ = A x + u'`, anchored at a set and with no invariant,
+both by the integral equation. A stay is a run of the latter with the combined input `u' = B u + c
++ E w`, CORA's `canonicalForm`, wherever the caller's set `U'` holds every value it takes — at
+`ℓ.inputSet` (`B U ⊕ c ⊕ E W`, `memInputSet`) or its float counterpart. Naming a set the initial
+point lies in and one the combined input lies in is all it takes to hand a stay to the whole of
+`LinearSys`; the invariant is dropped — it only ever tightens an enclosure, never justifies one.
 
 The time domain is `Set.Icc 0 τ` on the location's own clock, which is the shape every bounded
 statement in `LinearSys` asks for.
@@ -23,7 +23,7 @@ statement in `LinearSys` asks for.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -31,7 +31,7 @@ statement in `LinearSys` asks for.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet Scalar MeasureTheory
 
 variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 variable [∀ n, ContSet (G n) (Vec ℝ n)]
@@ -47,16 +47,24 @@ theorem Location.IsTrajectory.linearSys {ℓ : Location S G L 𝕋 n} {τ : ℝ}
     {R₀ U' : S n} (h₀ : x 0 ∈ construct R₀)
     (hU' : ∀ t ∈ Set.Icc 0 τ, toRealMat ℓ.dynamics.B *ᵥ u t + toRealVec ℓ.dynamics.c +
       toRealMat ℓ.dynamics.E *ᵥ w t ∈ construct U') :
-    ℓ.dynamics.IsCanonicalClassicalTrajectory (Set.Icc 0 τ) R₀ U' x
+    ℓ.dynamics.IsCanonicalTrajectory (Set.Icc 0 τ) R₀ U' x
       (fun t => toRealMat ℓ.dynamics.B *ᵥ u t + toRealVec ℓ.dynamics.c +
         toRealMat ℓ.dynamics.E *ᵥ w t) where
   init := h₀
   input := hU'
-  -- the same sum, bracketed as `A x + (B u + c + E w)`
+  -- the combined input is the integrand less the continuous drift `A x`
+  meas := by
+    have hA : Continuous fun v : Vec ℝ n => toRealMat ℓ.dynamics.A *ᵥ v :=
+      continuous_const.matrix_mulVec continuous_id
+    refine (traj.meas.sub ((hA.comp_continuousOn traj.cont).aestronglyMeasurable
+      measurableSet_Icc)).congr (Filter.Eventually.of_forall fun s => ?_)
+    simp only [Pi.sub_apply, Function.comp_apply]
+    abel
+  cont := traj.cont
+  -- the same integrand, bracketed as `A x + (B u + c + E w)`
   flow t ht := by
-    have h := traj.flow t ht
-    simp only [add_assoc] at h ⊢
-    exact h
+    rw [traj.flow t ht]
+    simp only [add_assoc]
 
 end CORALean
 

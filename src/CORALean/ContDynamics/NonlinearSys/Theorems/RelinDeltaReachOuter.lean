@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuterInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.StepSubsetHorizon
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinDeltaReach
@@ -54,7 +53,7 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S]
 theorem NonlinearSys.IsTrajectory.relinDeltaReach_outer {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ}
-    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 < Δt)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hΔt : 0 < Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (q : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1)
@@ -85,14 +84,13 @@ theorem NonlinearSys.IsTrajectory.relinDeltaReach_outer {sys : NonlinearSys n m}
     intro s hs
     refine hwin ⟨by linarith [hs.1], ?_⟩
     rw [hexp]; linarith [hs.2]
-  have shifted := traj.shift hmaps hRi
+  have shifted := traj.shift hmaps (by simpa using hmaps (Set.left_mem_Icc.2 hΔt.le)) hRi
   have hR1 : ∀ s ∈ Set.Icc (0 : ℝ) Δt, x ((i : ℝ) * Δt + s) ∈ (steps i).R := by
     intro s hs
     refine hR i hi _ ⟨by linarith [hs.1], ?_⟩
     rw [hexp]; linarith [hs.2]
   -- the shifted run is a run of the linearized system, on `[0, Δt]`
-  have hlin := (shifted.linearize (steps i).cert hR1).trajectory (convex_Icc 0 Δt)
-    ⟨le_rfl, hΔt.le⟩ (hbdd i hi)
+  have hlin := shifted.linearize measurableSet_Icc (steps i).cert hR1
   -- `t`'s own position inside the step, re-anchored the same way
   set s := t - (i : ℝ) * Δt with hs_def
   have hs0 : 0 ≤ s := by rw [hs_def]; linarith [ht.1]

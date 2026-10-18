@@ -34,13 +34,18 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem NonlinParamSys.isTrajectory_of_toNonlinearSys {sys : NonlinParamSys n m q} {T : Set ℝ}
     {R₀ : S n} {U : S m} {P : S q} {W : S (m + q)} {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ (m + q)}
-    (traj : sys.toNonlinearSys.IsTrajectory T R₀ W x w)
+    {y : ℝ → Vec ℝ sys.r} (traj : sys.toNonlinearSys.IsTrajectory T R₀ W x w y)
     (hUP : ∀ v ∈ construct W, v ∘ Fin.castAdd q ∈ construct U ∧ v ∘ Fin.natAdd m ∈ construct P) :
-    sys.IsTrajectory T R₀ U P x (fun t => w t ∘ Fin.castAdd q) (fun t => w t ∘ Fin.natAdd m) where
+    sys.IsTrajectory T R₀ U P x (fun t => w t ∘ Fin.castAdd q) (fun t => w t ∘ Fin.natAdd m)
+      y where
   init := traj.init
   input t ht := (hUP (w t) (traj.input t ht)).1
   param t ht := (hUP (w t) (traj.input t ht)).2
+  meas := traj.meas
+  integrable := traj.integrable
+  cont := traj.cont
   flow t ht := traj.flow t ht
+  output t ht := traj.output t ht
 
 end CORALean
 

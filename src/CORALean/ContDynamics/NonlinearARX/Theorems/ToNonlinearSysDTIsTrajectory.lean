@@ -39,11 +39,13 @@ theorem NonlinearARX.toNonlinearSysDT_isTrajectory (sys : NonlinearARX dy du p)
       (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ construct U) →
         v ∈ construct V)
     {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.IsTrajectory Y₀ U y u) :
-    sys.toNonlinearSysDT.IsTrajectory Y₀ V (NonlinearARX.stack p y) (NonlinearARX.feed p u) where
+    sys.toNonlinearSysDT.IsTrajectory Y₀ V (NonlinearARX.stack p y) (NonlinearARX.feed p u)
+      (fun k => sys.toNonlinearSysDT.g (NonlinearARX.stack p y k) (NonlinearARX.feed p u k)) where
   init := traj.init
   input k := hV _ fun a => by
     simpa [NonlinearARX.feed] using traj.input (k + a)
   step k := sys.toNonlinearSysDT_step traj.step k
+  output _ := rfl
 
 end CORALean
 

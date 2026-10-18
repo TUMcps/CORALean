@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinDASys.NonlinDASys
+public import Mathlib.Analysis.Calculus.FDeriv.Basic
 
 @[expose] public section
 

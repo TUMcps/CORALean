@@ -32,12 +32,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem NonlinParamSys.isConstTrajectory_toIsTrajectory {sys : NonlinParamSys n m q} {T : Set ℝ}
     {R₀ : S n} {U : S m} {P : S q} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {p : Vec ℝ q}
-    (traj : sys.IsConstTrajectory T R₀ U P x u p) :
-    sys.IsTrajectory T R₀ U P x u (fun _ => p) where
+    {y : ℝ → Vec ℝ sys.r} (traj : sys.IsConstTrajectory T R₀ U P x u p y) :
+    sys.IsTrajectory T R₀ U P x u (fun _ => p) y where
   init := traj.init
   input := traj.input
   param _ _ := traj.param
+  meas := traj.meas
+  integrable := traj.integrable
+  cont := traj.cont
   flow := traj.flow
+  output := traj.output
 
 end CORALean
 

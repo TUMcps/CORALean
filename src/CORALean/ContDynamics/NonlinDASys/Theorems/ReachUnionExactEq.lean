@@ -39,12 +39,14 @@ theorem NonlinDASys.WithSteps.reachUnionExact_eq (sys : NonlinDASys.WithSteps S 
     sys.reachUnionExact tFinal X = sys.ode.reachUnionExact tFinal X := by -- --- PROOF ---
   ext z
   simp only [NonlinDASys.WithSteps.reachUnionExact, NonlinearSys.WithSteps.reachUnionExact,
-    NonlinearSys.reachSetExact, Set.mem_iUnion, Set.mem_setOf_eq, sys.ode_sys]
+    NonlinearSys.reachSetExact, Set.mem_iUnion, Set.mem_setOf_eq]
+  rw [sys.ode_sys]
+  -- the outputs are read off the runs, the same on the horizon
   constructor
   · rintro ⟨t, ht, x, y, u, traj, rfl⟩
-    exact ⟨t, ht, x, u, traj.toNonlinearSys sys.red, rfl⟩
+    exact ⟨t, ht, x, u, { traj.toNonlinearSys sys.red with output := fun _ _ => rfl }, rfl⟩
   · rintro ⟨t, ht, x, u, traj, rfl⟩
-    exact ⟨t, ht, x, _, u, traj.toNonlinDASys sys.red, rfl⟩
+    exact ⟨t, ht, x, _, u, { traj.toNonlinDASys sys.red with output := fun _ _ => rfl }, rfl⟩
 
 end CORALean
 

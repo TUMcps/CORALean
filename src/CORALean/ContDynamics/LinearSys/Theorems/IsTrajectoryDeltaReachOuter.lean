@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.DeltaReachOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 @[expose] public section

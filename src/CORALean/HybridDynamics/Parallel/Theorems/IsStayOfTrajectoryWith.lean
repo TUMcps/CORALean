@@ -21,7 +21,7 @@ back through `Lifting.Exact`.
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +29,7 @@ back through `Lifting.Exact`.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet Scalar MeasureTheory
 
 variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
@@ -70,15 +70,41 @@ theorem ParallelHybridAutomaton.IsStay.ofTrajectoryWith [ExactScalar 𝕋]
       simpa only [unstack_stack] using h4
     · exact ⟨(0, 0, 0), fun h' => absurd h' ht⟩
   choose uwg huwg using key
+  -- component `i`'s right-hand side, coordinate `a`, is the product's at `⟨i, a⟩`
+  set Fp : ℝ → Vec ℝ (∑ i, n i) := fun t => toRealMat (F ℓ).A *ᵥ X t +
+    toRealMat (F ℓ).B *ᵥ g' t + toRealVec (F ℓ).c + toRealMat (F ℓ).E *ᵥ w' t
+  have hco : ∀ i, ∀ t ∈ Set.Icc 0 τ, (toRealMat (P.sys ℓ i).A *ᵥ unstack (X t) i +
+      toRealMat (P.sys ℓ i).B *ᵥ (uwg t).1 i + toRealVec (P.sys ℓ i).c +
+        toRealMat (P.sys ℓ i).E *ᵥ (uwg t).2.1 i) = fun a => Fp t (finSigmaFinEquiv ⟨i, a⟩) :=
+    fun i t ht => funext fun a => ((huwg t ht).2.2.2 i a).symm
+  have hwin : ∀ t ∈ Set.Icc 0 τ, Set.uIcc 0 t ⊆ Set.Icc 0 τ := fun t ht =>
+    Set.OrdConnected.uIcc_subset inferInstance (Set.left_mem_Icc.2 h.nonneg) ht
+  have hev : ∀ {N : ℕ} {g : ℝ → Vec ℝ N} {t : ℝ}, IntervalIntegrable g volume 0 t →
+      ∀ q : Fin N, (∫ s in (0:ℝ)..t, g s) q = ∫ s in (0:ℝ)..t, g s q := fun {N} {_} {_} hg q =>
+    ((ContinuousLinearMap.proj (R := ℝ) (φ := fun _ : Fin N => ℝ) q).intervalIntegral_comp_comm
+      hg).symm
+  -- the product's integrand read at block `i` is integrable, coordinate by coordinate
+  have hbi : ∀ i, ∀ t ∈ Set.Icc 0 τ,
+      IntervalIntegrable (fun s a => Fp s (finSigmaFinEquiv ⟨i, a⟩)) volume 0 t :=
+    fun i t ht => ⟨Integrable.of_eval fun a => (h.integrable t ht).1.eval _,
+      Integrable.of_eval fun a => (h.integrable t ht).2.eval _⟩
   refine ⟨fun i t => unstack (X t) i, fun i t => (uwg t).1 i, fun i t => (uwg t).2.1 i,
     fun t => (uwg t).2.2, ⟨h.nonneg, fun i t ht => (huwg t ht).2.1 i,
-    fun i t ht => (huwg t ht).2.2.1 i, fun i t ht => ?_, fun i t ht => ?_,
-    fun i j t ht => (huwg t ht).1 i j⟩, fun i => rfl⟩
-  · -- block `i` flows by coordinate `⟨i, j⟩` of the product's flow
-    rw [hasDerivWithinAt_pi]
-    intro j
-    exact (hasDerivWithinAt_pi.mp (h.flow t ht) (finSigmaFinEquiv ⟨i, j⟩)).congr_deriv
-      ((huwg t ht).2.2.2 i j)
+    fun i t ht => (huwg t ht).2.2.1 i, fun i => ?_, fun i t ht => ?_,
+    fun i => continuousOn_pi.mpr fun a => (continuous_apply _).comp_continuousOn h.cont,
+    fun i t ht => ?_, fun i t ht => ?_, fun i j t ht => (huwg t ht).1 i j⟩, fun i => rfl⟩
+  · exact (aemeasurable_pi_iff.mpr fun a => h.meas.aemeasurable.eval
+      (finSigmaFinEquiv ⟨i, a⟩)).aestronglyMeasurable.congr
+        (ae_restrict_of_forall_mem measurableSet_Icc fun t ht => (hco i t ht).symm)
+  · exact (intervalIntegrable_congr fun s hs =>
+      (hco i s (hwin t ht (Set.uIoc_subset_uIcc hs))).symm).mp (hbi i t ht)
+  · -- block `i` of the product's integral equation, coordinate by coordinate
+    rw [intervalIntegral.integral_congr fun s hs => hco i s (hwin t ht hs)]
+    funext a
+    have hX := congrFun (h.flow t ht) (finSigmaFinEquiv ⟨i, a⟩)
+    rw [Pi.add_apply, hev (h.integrable t ht)] at hX
+    rw [Pi.add_apply, hev (hbi i t ht)]
+    exact hX
   · -- the invariant, through `Lifting.Exact`
     exact hex.inv_inv _ _ (by rw [stack_unstack]; exact h.invariant t ht) i
 

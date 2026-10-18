@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 @[expose] public section
 
@@ -10,17 +10,18 @@ public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 CORA's `nonlinDASys`: `ẋ(t) = f(x(t), y(t), u(t))`, `0 = g(x(t), y(t), u(t))`, with `y` algebraic,
 and the output equation `z = h(x, y, u)`. `n` states, `p` constraints (CORA's `nrOfConstraints`,
-the dimension of `y`) and `m` inputs; the output dimension `q` is a field, as CORA's
-`nrOfOutputs` is a property. Absent an output equation CORA's is the state, `h x y u = x`.
-Time-invariant as CORA's is. The output of a run is `h (x t) (y t) (u t)`, a function of it,
-so `IsTrajectory` does not repeat it.
+the dimension of `y`) and `m` inputs; the output dimension `q` is a field, as CORA's `nrOfOutputs`
+is a property. Time-invariant as CORA's is. `IsTrajectory` carries the output
+`z t = h (x t) (y t) (u t)`, as every class with an output equation does.
 
-A `IsTrajectory` is `(x, y, u)` with `x` differentiable along `f`, and the constraint holding on
-all of `T`; there is no separate consistency condition on `y 0`, which the constraint at `0`
-already imposes (`0 ∈ T` is the caller's). CORA assumes the system is of differentiation index 1,
-that `∂g/∂y` is invertible along solutions; the class does not carry it, as CORA's does not, and
-`IsIndex1` in `Definitions/` states it, to be assumed where a theorem needs it. The setting is
-[1, Eq. 1]: time-invariant, semi-explicit, index 1.
+A `IsTrajectory` is `(x, y, u)` with `x` a Carathéodory solution along `f`, the integral equation
+`x t = x 0 + ∫₀ᵗ f(x s, y s, u s) ds` as for `NonlinearSys`, and the constraint holding on all
+of `T`; a jumping input is admissible, `y` jumping with it. [1, Eq. 1] states no solution concept
+beyond "unique solutions"; its classical ones are among these (`IsTrajectory.of_hasDerivWithinAt`).
+The constraint at `0` is the consistency condition on `y 0`. CORA assumes differentiation index 1,
+`∂g/∂y` invertible along solutions; the class does not carry it, as CORA's does not, and
+`IsIndex1` in `Definitions/` states it. The setting is [1, Eq. 1]: semi-explicit, index 1.
+
 ## References
 
 * [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
@@ -29,15 +30,15 @@ that `∂g/∂y` is invertible along solutions; the class does not carry it, as 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   14-October-2026
--- Reviewed:      15-October-2026 (Tobias Ladner)
+-- Last update:   18-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 namespace CORALean
 
-open ContSet
+open ContSet MeasureTheory
 
 variable {n p m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
@@ -52,12 +53,17 @@ structure NonlinDASys (n p m : ℕ) where
   h : Vec ℝ n → Vec ℝ p → Vec ℝ m → Vec ℝ q
 
 structure NonlinDASys.IsTrajectory (sys : NonlinDASys n p m) (T : Set ℝ) (R₀ : S n)
-    (U : S m) (x : ℝ → Vec ℝ n) (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m) : Prop where
+    (U : S m) (x : ℝ → Vec ℝ n) (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m) (z : ℝ → Vec ℝ sys.q) :
+    Prop where
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
-  flow (t : ℝ) (ht : t ∈ T) :
-    HasDerivWithinAt x (sys.f (x t) (y t) (u t)) T t
+  meas : AEStronglyMeasurable (fun t => sys.f (x t) (y t) (u t)) (volume.restrict T)
+  integrable (t : ℝ) (ht : t ∈ T) :
+    IntervalIntegrable (fun s => sys.f (x s) (y s) (u s)) volume 0 t
+  cont : ContinuousOn x T
+  flow (t : ℝ) (ht : t ∈ T) : x t = x 0 + ∫ s in (0:ℝ)..t, sys.f (x s) (y s) (u s)
   constraint (t : ℝ) (ht : t ∈ T) : sys.g (x t) (y t) (u t) = 0
+  output (t : ℝ) (ht : t ∈ T) : z t = sys.h (x t) (y t) (u t)
 
 end CORALean
 

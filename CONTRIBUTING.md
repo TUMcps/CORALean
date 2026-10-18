@@ -671,7 +671,18 @@ definition in `Definitions/IsValid.lean` of the same class, like any other propo
 in a main-type file. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
 `<C>.IsTrajectory`, with what it is stated with (the closed loop's plant input `[a; e]`), and
 `check-conventions.sh` asks for it; `LinProbSys`, which denotes the law of its solution, and
-`OutputEq`, which is no system, are the named exceptions.
+`OutputEq`, which is no system, are the named exceptions. A continuous-time run, a hybrid
+automaton's flow among them, is a Carathéodory run (#105): the integral equation
+`x t = x 0 + ∫₀ᵗ f`, its integrand measurable and integrable (or, for a linear class, its input
+measurable), not a derivative at every point, which a zero-order-hold input does not have. A
+classical run reaches it through the class's `IsTrajectory.of_hasDerivWithinAt`, and back, at a
+continuous field, through `IsTrajectory.hasDerivWithinAt`. `check-conventions.sh` refuses a
+derivative in those definitions; `DiffInclAutomaton`, whose paper defines its flow by a
+derivative, is the named exception. A class with an output equation, as CORA gives one
+(`out_fun`, or `C`, `D`, `k` at a linear class), carries the output in its runs, the same way in
+every class (#179): the output signal is the run's last argument and `output` states
+`y t = g (x t) (u t)`, at a linear class `outputEq.eval (x t) (u t)` with the noise `F v t` beside
+it; a canonical form has none. `check-conventions.sh` asks for the field.
 
 A main-type file also cites the publication it formalizes: its module docstring has at least one
 numbered entry, `* [1] ...`, under `## References`, and says what it takes from it (`[1, Def. 5]`).

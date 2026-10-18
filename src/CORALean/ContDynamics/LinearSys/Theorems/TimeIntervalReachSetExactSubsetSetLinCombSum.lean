@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactEqUnion
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSetLinComb

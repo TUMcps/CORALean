@@ -35,9 +35,9 @@ theorem NonlinearSys.FloatModel.Encloses.centerAbstrStepFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {R : Zonotope (Vec 𝕋 n)} :
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.centerAbstrStepFloat U options R →
-      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U.construct x u →
+          R.construct U.construct x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
           x (toReal options.Δt) ∈ Rt.construct := fun _ _ hstep =>
   h.relinStepAtFloat_outer _ _ hstep

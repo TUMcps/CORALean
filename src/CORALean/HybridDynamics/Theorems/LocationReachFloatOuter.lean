@@ -3,7 +3,6 @@ module
 public import CORALean.HybridDynamics.Theorems.Basic
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSetFloatOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputInvariant
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
@@ -97,9 +96,7 @@ theorem Location.IsTrajectory.reachFloat_outer {ℓ : Location 𝒵[𝕋] G L �
     have h := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat_outer ℓ.inputSetFloat
     rw [LinearSys.canonicalFloat_input, Set.image_id] at h
     exact h
-  have hd := ((traj.linearSys h₀ traj.inputSetFloat_mem).trajectory (convex_Icc 0 τ)
-    ⟨le_rfl, ht.1.trans ht.2⟩
-    (CompactSet.isBounded_construct ℓ.inputSetFloat)).sub_mem_inputReach_recenter
+  have hd := (traj.linearSys h₀ traj.inputSetFloat_mem).sub_mem_inputReach_recenter
       (S' := 𝒵[𝕋]) hUV ht
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
   have hy := h3 (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)

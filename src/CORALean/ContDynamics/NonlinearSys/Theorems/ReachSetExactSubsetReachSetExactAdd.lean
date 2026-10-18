@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSetExact
-public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
-public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.MeasureTheory.Group.LIntegral
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 public import Mathlib.Order.Interval.Set.Basic
 
 @[expose] public section
@@ -14,9 +14,9 @@ A run from a point the flow reaches at `T` is the tail of a run from `X₀` over
 the reachable set at `Δt` from what is reached at `T` is reached at `T + Δt`. This is what lets
 a step-by-step algorithm start each step from the previous step's set, as [1, Alg. 1] does.
 
-The input is the constant `u₀`, `U = {u₀}`. With inputs that may jump the statement fails for
-classical runs, which have to be differentiable at the junction from both sides with the one
-input value there; a constant input agrees with itself.
+The input is the constant `u₀`, `U = {u₀}`, as in [1]. The concatenated run satisfies the
+integral equation piece by piece: up to `T` it is the first run's, after `T` the second run's
+added to what the first had reached, the integral split at `T`.
 
 ## References
 
@@ -27,7 +27,7 @@ input value there; a constant input agrees with itself.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +35,7 @@ input value there; a constant input agrees with itself.
 
 namespace CORALean
 
-open ContSet Set
+open ContSet Set MeasureTheory intervalIntegral
 
 variable {n m : ℕ}
 
@@ -64,37 +64,73 @@ theorem NonlinearSys.reachSetExact_subset_reachSetExact_add (sys : NonlinearSys 
       simp only [g, if_pos h, neg_add_cancel]
       exact hx₁
     · exact if_neg h
-  -- the tail as a run on `[T, T + Δt]`
-  have tail := traj₂.shift (t₀ := -T) (T' := Icc T (T + Δt))
-    (fun t ht => ⟨by linarith [ht.1], by linarith [ht.2]⟩)
-    (mem_univ _ : x₂ (-T) ∈ (univ : Set (Vec ℝ n)))
-  refine ⟨g, fun _ => u₀, ⟨?_, fun _ _ => rfl, fun t ht => ?_⟩, ?_⟩
+  -- the integrand of the concatenated run, piece by piece
+  set F : ℝ → Vec ℝ n := fun s => sys.f (g s) u₀ with hF
+  set F₂ : ℝ → Vec ℝ n := fun s => sys.f (x₂ s) (u₂ s) with hF₂
+  have he₁ : EqOn F (fun s => sys.f (x₁ s) (u₁ s)) (Icc 0 T) := fun s hs => by
+    simp only [hF, hg₁ hs, hu₁ s hs]
+  have he₂ : EqOn F (fun s => F₂ (-T + s)) (Icc T (T + Δt)) := fun s hs => by
+    simp only [hF, hF₂, hg₂ hs, hu₂ (-T + s) ⟨by linarith [hs.1], by linarith [hs.2]⟩]
+  -- each piece integrable, the tail through the shift by `T`
+  have hT₀ : T ∈ Icc 0 T := ⟨hT, le_rfl⟩
+  have hI₁ : IntervalIntegrable F volume 0 T :=
+    (intervalIntegrable_congr fun s hs => (he₁ (by
+      rw [uIoc_of_le hT] at hs; exact ⟨hs.1.le, hs.2⟩)).symm).mp (traj₁.integrable T hT₀)
+  have hI₂ : ∀ t ∈ Icc T (T + Δt), IntervalIntegrable F volume T t := fun t ht => by
+    have h := (traj₂.integrable (-T + t) ⟨by linarith [ht.1], by linarith [ht.2]⟩).comp_add_left
+      (-T)
+    simp only [sub_neg_eq_add, zero_add, neg_add_cancel_comm] at h
+    refine (intervalIntegrable_congr fun s hs => (he₂ ?_).symm).mp (by simpa [add_comm] using h)
+    rw [uIoc_of_le ht.1] at hs
+    exact ⟨hs.1.le, hs.2.trans ht.2⟩
+  have hsplit : Icc 0 (T + Δt) = Icc 0 T ∪ Icc T (T + Δt) :=
+    (Icc_union_Icc_eq_Icc hT (by linarith)).symm
+  refine ⟨g, fun _ => u₀, ⟨?_, fun _ _ => rfl, ?_, fun t ht => ?_, ?_, fun t ht => ?_,
+    fun _ _ => rfl⟩, ?_⟩
   · show g 0 ∈ X₀
     rw [hg₁ ⟨le_rfl, hT⟩]
     exact traj₁.init
-  · -- the derivative from each side of the junction, `[0, T]` and `[T, T + Δt]`
-    rw [← Icc_union_Icc_eq_Icc hT (by linarith : T ≤ T + Δt)]
-    refine HasDerivWithinAt.union ?_ ?_
-    · by_cases h : t ≤ T
-      · have ht' : t ∈ Icc 0 T := ⟨ht.1, h⟩
-        have d := traj₁.flow t ht'
-        rw [hu₁ t ht', ← hg₁ ht'] at d
-        exact d.congr_of_mem hg₁ ht'
-      · refine hasDerivWithinAt_iff_hasFDerivWithinAt.mpr
-          (HasFDerivWithinAt.of_notMem_closure ?_)
-        rw [closure_Icc]
-        exact fun h' => h h'.2
-    · -- the tail's derivative, where `t ≥ T`
-      by_cases h : T ≤ t
-      · have ht' : t ∈ Icc T (T + Δt) := ⟨h, ht.2⟩
-        have d := tail.flow t ht'
-        have e : g t = x₂ (-T + t) := hg₂ ht'
-        rw [hu₂ _ ⟨by linarith, by linarith [ht.2]⟩, ← e] at d
-        exact d.congr_of_mem hg₂ ht'
-      · refine hasDerivWithinAt_iff_hasFDerivWithinAt.mpr
-          (HasFDerivWithinAt.of_notMem_closure ?_)
-        rw [closure_Icc]
-        exact fun h' => h h'.1
+  · -- measurable on each piece, the tail through the shift by `T`
+    rw [hsplit, aestronglyMeasurable_union_iff]
+    refine ⟨traj₁.meas.congr ((ae_restrict_mem measurableSet_Icc).mono fun s hs => (he₁ hs).symm),
+      ?_⟩
+    have hmaps : MapsTo (fun s => -T + s) (Icc T (T + Δt)) (Icc 0 Δt) :=
+      fun s hs => ⟨by linarith [hs.1], by linarith [hs.2]⟩
+    exact (traj₂.meas.comp_quasiMeasurePreserving
+      ((measurePreserving_add_left volume (-T)).quasiMeasurePreserving.restrict hmaps)).congr
+        ((ae_restrict_mem measurableSet_Icc).mono fun s hs => (he₂ hs).symm)
+  · -- integrable from `0`, across the junction if need be
+    by_cases h : t ≤ T
+    · exact hI₁.mono_set (uIcc_subset_uIcc_left (by rw [uIcc_of_le hT]; exact ⟨ht.1, h⟩))
+    · exact hI₁.trans (hI₂ t ⟨(not_le.mp h).le, ht.2⟩)
+  · -- continuous on each closed piece
+    rw [hsplit]
+    refine ContinuousOn.union_of_isClosed ?_ ?_ isClosed_Icc isClosed_Icc
+    · exact traj₁.cont.congr hg₁
+    · exact (traj₂.cont.comp ((continuousOn_const (c := -T)).add continuousOn_id)
+        fun s (hs : s ∈ Icc T (T + Δt)) => show -T + s ∈ Icc 0 Δt from
+          ⟨by linarith [hs.1], by linarith [hs.2]⟩).congr hg₂
+  · -- the integral equation, split at `T` past the junction
+    by_cases h : t ≤ T
+    · have ht' : t ∈ Icc 0 T := ⟨ht.1, h⟩
+      rw [hg₁ ht', hg₁ ⟨le_rfl, hT⟩, traj₁.flow t ht']
+      congr 1
+      refine integral_congr fun s hs => (he₁ ?_).symm
+      rw [uIcc_of_le ht.1] at hs
+      exact ⟨hs.1, hs.2.trans h⟩
+    · have ht' : t ∈ Icc T (T + Δt) := ⟨(not_le.mp h).le, ht.2⟩
+      have hs₂ : -T + t ∈ Icc 0 Δt := ⟨by linarith [ht'.1], by linarith [ht'.2]⟩
+      -- the second run from where the first reached, and the integral split at `T`
+      rw [show g t = x₂ (-T + t) from hg₂ ht', hg₁ ⟨le_rfl, hT⟩, traj₂.flow _ hs₂, ← hx₁,
+        traj₁.flow T hT₀, ← integral_add_adjacent_intervals hI₁ (hI₂ t ht'), add_assoc]
+      congr 2
+      · refine integral_congr fun s hs => (he₁ ?_).symm
+        rw [uIcc_of_le hT] at hs
+        exact hs
+      · rw [integral_congr (g := fun s => F₂ (-T + s)) fun s hs => he₂ (by
+          rw [uIcc_of_le ht'.1] at hs; exact ⟨hs.1, hs.2.trans ht'.2⟩),
+          integral_comp_add_left F₂ (-T)]
+        simp [hF₂]
   · show g (T + Δt) = x₂ Δt
     rw [hg₂ ⟨by linarith, le_rfl⟩]
     simp

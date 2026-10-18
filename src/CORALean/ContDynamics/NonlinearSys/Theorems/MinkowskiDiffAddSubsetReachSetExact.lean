@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSetExact
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAt
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffSubsetOfContinuousOfConvex
 public import Mathlib.Analysis.ODE.Gronwall
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
@@ -107,8 +108,13 @@ theorem NonlinearSys.minkowskiDiff_add_subset_reachSetExact (sys : NonlinearSys 
   rintro _ ⟨y, hy, rfl⟩
   obtain ⟨_, ⟨_, ⟨x₀, hx₀, rfl⟩, rfl⟩, rfl⟩ :=
     minkowskiDiff_subset_of_continuous_of_convex hE hEc hEne hEs hφ hφE hy
-  refine ⟨sol x₀ hx₀, fun _ => u₀, ⟨by rw [hsol0 x₀ hx₀]; exact hx₀, fun _ _ => hu₀,
-    fun t ht => (hsol x₀ hx₀ t ht).2⟩, ?_⟩
+  -- the solution is a run: the field along it is continuous, `f(·, u₀)` Lipschitz on `Ω`
+  have hfc : ContinuousOn (fun t => sys.f (sol x₀ hx₀ t) u₀) (Set.Icc 0 Δt) :=
+    hLip.continuousOn.comp (hcont x₀ hx₀) fun s hs => (hsol x₀ hx₀ s hs).1
+  refine ⟨sol x₀ hx₀, fun _ => u₀, NonlinearSys.IsTrajectory.of_hasDerivWithinAt
+    (convex_Icc 0 Δt) ⟨le_rfl, hΔt⟩ (by rw [hsol0 x₀ hx₀]; exact hx₀) (fun _ _ => hu₀)
+    (fun t ht => (hsol x₀ hx₀ t ht).2)
+    (fun t ht => (hfc.mono (Set.uIcc_subset_Icc ⟨le_rfl, hΔt⟩ ht)).intervalIntegrable), ?_⟩
   simp only
   rw [hφx x₀ hx₀]
   abel_nf

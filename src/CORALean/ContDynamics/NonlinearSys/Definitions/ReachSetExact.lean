@@ -14,8 +14,8 @@ The definition is [1, Def. 6], and [2, Def. 8]'s `Rᵉ_{X₀}(t)` is the same se
 `LinearSys.reachSetExact`'s shape at a nonlinear field, quantified over the runs: nothing
 is computed or widened, so "the trajectory is in the reachable set" holds by
 construction and a claim's content sits in the inclusion in a computed set. The runs
-are classical, a derivative everywhere, where `LinearSys`'s are Carathéodory: Mathlib
-has no existence theory for the latter at a nonlinear field.
+are Carathéodory, as `LinearSys`'s are; under a continuous input they are the classical
+solutions the papers quantify over (`IsTrajectory.hasDerivWithinAt`).
 
 `relinReach` encloses it through linearizations, each conservative only where its
 certificate was issued, so its theorems carry a confinement hypothesis.
@@ -64,7 +64,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 at, at time `t`: the exact reachable set, and not an enclosure of it. -/
 def NonlinearSys.reachSetExact (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : S n) (U : S m) (t : ℝ) :
     Set (Vec ℝ n) :=
-  {y | ∃ (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m), sys.IsTrajectory T R₀ U x u ∧ x t = y}
+  {y | ∃ (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m),
+    sys.IsTrajectory T R₀ U x u (fun t => sys.g (x t) (u t)) ∧ x t = y}
 
 end CORALean
 

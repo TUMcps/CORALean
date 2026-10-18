@@ -5,7 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 public import Mathlib.Analysis.SpecialFunctions.Exp
-public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalTrajectoryOfHasDerivWithinAt
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
@@ -46,7 +46,7 @@ CORALean's `LinearSys` the input `B u + c = 1` is the input set `{1}`. The Arnol
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -98,7 +98,7 @@ theorem Krylov.reachKrylovCora1D_constant_counterexample (Δt ε eps : ℝ) (o :
     (hε0 : 0 ≤ ε) (hε : 2 * ε < Δt) (heps : 0 ≤ eps) (ho : 2 ≤ o) : -- --- STMT ---
     ∃ R, Krylov.reachKrylovCora1D 0 1 1 Δt ε eps o = some R ∧
       ∃ x w : ℝ → Vec ℝ 1,
-        (LinearSys.canonical (0 : Mat ℝ 1 1) : LinearSys ℝ 1).IsCanonicalClassicalTrajectory
+        (LinearSys.canonical (0 : Mat ℝ 1 1) : LinearSys ℝ 1).IsCanonicalTrajectory
           (S := 𝒮) (Set.Icc 0 Δt) {0} {fun _ => 1} x w ∧
         x Δt ∉ R.construct := by -- --- PROOF ---
   -- Arnoldi on the zero matrix from `e₂`: `v⁽¹⁾ = e₂`, `h₁,₁ = h₂,₁ = 0`
@@ -111,7 +111,9 @@ theorem Krylov.reachKrylovCora1D_constant_counterexample (Δt ε eps : ℝ) (o :
     simp [K, Krylov.arnoldi, Krylov.gramSchmidtStep, norm₂, Fin.sum_univ_two, dotProduct]
   -- the breakdown branch is taken and `c_new = 1 · (1 · 0) · e⁰ = 0`
   simp only [Krylov.reachKrylovCora1D, ← hKdef, h10, hK0, h00, not_lt.2 heps, if_false]
-  refine ⟨_, rfl, fun s => fun _ => s, fun _ => fun _ => 1, ⟨?_, fun _ _ => rfl, ?_⟩, ?_⟩
+  refine ⟨_, rfl, fun s => fun _ => s, fun _ => fun _ => 1,
+    LinearSys.IsCanonicalTrajectory.of_hasDerivWithinAt (convex_Icc 0 Δt) ⟨le_rfl, by linarith⟩
+      Bornology.isBounded_singleton ?_ (fun _ _ => rfl) ?_, ?_⟩
   -- the run `x(s) = s` from `0` under the input `B u + c = 1`
   · exact funext fun _ => rfl
   · intro t _

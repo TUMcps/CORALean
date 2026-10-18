@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 

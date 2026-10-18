@@ -77,8 +77,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.FlowIci
-public import CORALean.ContDynamics.LinearSys.Theorems.FlowIoi
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachOuter
@@ -100,8 +98,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDistReachSetExac
 public import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheck
 public import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheckWrappingFree
 public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetExactSubsetLinCombPlusCube
-public import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalTrajectoryOfHasDerivWithinAt
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachDistInner
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
@@ -236,13 +233,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstI
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointSubsetReachFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryCanonical
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryDeltaReachOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryAestronglyMeasurableInput
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryAestronglyMeasurableReflected
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryDiscretizeStep
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIntervalIntegrableInput
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryStepInputOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryVariationOfConstants
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachShift
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryTimeIntervalOuter

@@ -40,10 +40,11 @@ theorem NonlinParamSys.reachFloat_outer (sys : NonlinParamSys n m q)
     {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
     ∀ Rs ∈ sys.reachFloat fm P params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-        Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {p : Vec ℝ q},
+        Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {p : Vec ℝ q}
+          {y : ℝ → Vec ℝ sys.r},
           sys.IsConstTrajectory (S := 𝒮)
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-            params.U.construct P.construct x u p →
+            params.U.construct P.construct x u p y →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
             (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
   intro Rs (hR : sys.reachFloat fm P params options = some Rs)
@@ -51,7 +52,7 @@ theorem NonlinParamSys.reachFloat_outer (sys : NonlinParamSys n m q)
   simp only [Option.map_eq_some_iff] at hR
   obtain ⟨Ra, hRa, rfl⟩ := hR
   obtain ⟨N, hN, hlen, hout⟩ := h.reachFloat_outer _ hRa
-  refine ⟨N, hN, by simpa using hlen, fun {x u p} traj k hk t ht => ?_⟩
+  refine ⟨N, hN, by simpa using hlen, fun {x u p y} traj k hk t ht => ?_⟩
   have hk' : k < Ra.length := by simpa using hk
   have haug := hout (x := fun t => Fin.append (x t) p) (u := u)
     (traj.toAugment (Z₀ := (params.X₀.cartProd P).construct) fun v hv w hw => by

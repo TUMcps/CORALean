@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.ContSet.Zonotope.Real.Instances
@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
-public import Mathlib.Analysis.Calculus.Deriv.Add
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 @[expose] public section
@@ -24,7 +24,7 @@ linear system `NonlinDASys.linReach` hands to `oneStep`. The input lies there by
 `NonlinDASys.mem_linInclusion`, which uses only `F⁻¹ F = I`.
 
 The confinement and the error certificate are hypotheses, as in
-`NonlinDASys.IsTrajectory.hasDerivWithinAt_mem_linInclusion`: CORA checks the error after
+`NonlinDASys.IsTrajectory.field_mem_linInclusion`: CORA checks the error after
 the fact on a set computed under the assumption it checks.
 
 ## References
@@ -35,7 +35,7 @@ the fact on a set computed under the assumption it checks.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -55,16 +55,17 @@ variable {n p m : ℕ}
 linearization error, is shifted by `-x*` a run of `Ã x̃ ⊕ w ⊕ B̃ (U ⊕ (-u*)) ⊕ Verror`. -/
 theorem NonlinDASys.IsTrajectory.toLinearSys {sys : NonlinDASys n p m} {T : Set ℝ}
     {Rinit : Zonotope (Vec ℝ n)} {U : Zonotope (Vec ℝ m)} {x : ℝ → Vec ℝ n}
-    {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m} (traj : sys.IsTrajectory (S := 𝒵) T Rinit U x y u)
+    {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m} {z : ℝ → Vec ℝ sys.q}
+    (traj : sys.IsTrajectory (S := 𝒵) T Rinit U x y u z)
     {xs : Vec ℝ n} {ys : Vec ℝ p} {us : Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m}
     {C : Mat ℝ n p} {D : Mat ℝ p n} {E : Mat ℝ p m} {F F_inv : Mat ℝ p p}
-    (hF : F_inv * F = 1) {Verror : Zonotope (Vec ℝ n)}
+    (hF : F_inv * F = 1) (hTm : MeasurableSet T) {Verror : Zonotope (Vec ℝ n)}
     {Rz : Set (Vec ℝ n × Vec ℝ p × Vec ℝ m)} (hR : ∀ t ∈ T, (x t, y t, u t) ∈ Rz)
     (hL : ∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       (sys.f x' y' u' - (sys.f xs ys us + A *ᵥ (x' - xs) + B *ᵥ (u' - us) + C *ᵥ (y' - ys)))
         - (C * F_inv) *ᵥ (sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us)
           + F *ᵥ (y' - ys))) ∈ Verror.construct) :
-    (LinearSys.canonical (A - C * F_inv * D) : LinearSys ℝ n).IsCanonicalClassicalTrajectory
+    (LinearSys.canonical (A - C * F_inv * D) : LinearSys ℝ n).IsCanonicalTrajectory
         (S := 𝒵) T
       (Rinit.plus (Zonotope.ofPoint (-xs)))
       ((Zonotope.ofPoint (sys.f xs ys us - (C * F_inv) *ᵥ sys.g xs ys us)).plus
@@ -92,16 +93,20 @@ theorem NonlinDASys.IsTrajectory.toLinearSys {sys : NonlinDASys n p m} {T : Set 
     refine Set.add_mem_add (Zonotope.mem_ofPoint _) (Set.add_mem_add ⟨u' - us, ?_, rfl⟩ hl)
     rw [sub_eq_add_neg]
     exact Set.add_mem_add hu' (Zonotope.mem_ofPoint _)
+  -- the shifted input is the field less a continuous drift, so measurable
+  meas := traj.meas.sub (((mulVecL (A - C * F_inv * D)).continuous.comp_continuousOn
+    (traj.cont.sub continuousOn_const)).aestronglyMeasurable hTm)
+  cont := traj.cont.sub continuousOn_const
   flow t ht := by
-    -- the field at the shifted state is the DAE's field, which is the run's derivative
-    have he : Scalar.toRealMat (A - C * F_inv * D) *ᵥ (x t - xs)
-        + (sys.f (x t) (y t) (u t) - (A - C * F_inv * D) *ᵥ (x t - xs))
-          = sys.f (x t) (y t) (u t) := by
-      rw [Scalar.toRealMat_real]; abel
-    show HasDerivWithinAt (fun t => x t - xs) (Scalar.toRealMat (A - C * F_inv * D)
-      *ᵥ (x t - xs) + (sys.f (x t) (y t) (u t) - (A - C * F_inv * D) *ᵥ (x t - xs))) T t
-    rw [he]
-    exact (hasDerivWithinAt_sub_const_iff xs).mpr (traj.flow t ht)
+    -- the field at the shifted state is the DAE's field, the run's integrand
+    have he : (fun s => Scalar.toRealMat (A - C * F_inv * D) *ᵥ (x s - xs)
+        + (sys.f (x s) (y s) (u s) - (A - C * F_inv * D) *ᵥ (x s - xs)))
+          = fun s => sys.f (x s) (y s) (u s) := by
+      funext s; rw [Scalar.toRealMat_real]; abel
+    show x t - xs = (x 0 - xs) + ∫ s in (0:ℝ)..t, (Scalar.toRealMat (A - C * F_inv * D)
+      *ᵥ (x s - xs) + (sys.f (x s) (y s) (u s) - (A - C * F_inv * D) *ᵥ (x s - xs)))
+    rw [he, traj.flow t ht]
+    abel
 
 end CORALean
 

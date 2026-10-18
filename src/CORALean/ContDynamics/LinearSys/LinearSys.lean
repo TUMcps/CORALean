@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.OutputEq.OutputEq
 public import CORALean.ContSet.ContSet.ContSet
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
@@ -11,29 +12,30 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 CORA's `linearSys`, `ẋ = A x + B u + c + E w` with the output `y = C x + D u + k + F v`, every
 matrix stored. The dimensions beside `n` are fields, as CORA's `nrOfInputs`, `nrOfOutputs`,
 `nrOfDisturbances` and `nrOfNoises` are properties: `m` inputs, `q` outputs, `r` disturbances,
-`s` noises, the letters CORA's property comments use. `LinearSys 𝕋 n` is the type of every
-system with `n` states, which is what `Reach` indexes a class by.
+`s` noises. `LinearSys 𝕋 n` is the type of every system with `n` states.
 
-`IsTrajectory` is a run of the whole equation. `IsCanonicalTrajectory` is a run of CORA's
-`canonicalForm` [1], `ẋ = A x + u'` with the combined input `u' = B u + c + E w` in state
-coordinates, as in [2, Sec. 3.2]: what the reachability algorithms, which read `A` and an input
-set in state coordinates, are proved against, as CORA's `reach` runs on `canonicalForm`.
-`IsTrajectory.canonical` turns every run into one of those. Both are Carathéodory runs, stated
-by the integral equation [2, Def. 3.1] writes, not by a derivative at every point: a
-zero-order-hold input has none at a jump (Sontag, *Math. Control Theory*, Def. C.2.1). `meas`
-is the input's own regularity, restricted to `T`; `cont` is Def. C.2.1's continuity, without
-which `intervalIntegral`'s junk value would let `flow` admit an `x` nothing like a run.
+`IsTrajectory` is a run of the whole equation, its output
+`y t = outputEq.eval (x t) (u t) + F v t`, the form every class with an output equation states it
+in. `IsCanonicalTrajectory` is a run of CORA's `canonicalForm` [1], `ẋ = A x + u'` with the
+combined input `u' = B u + c + E w` in state coordinates, the system [2, Sec. 2] states, and what
+the reachability algorithms are proved against; `IsTrajectory.canonical` turns every run into one.
+Both are Carathéodory runs, the integral equation rather than a derivative at every point (Sontag,
+*Math. Control Theory*, Def. C.2.1): [2, Sec. 2]'s piecewise-continuous inputs jump, and a
+zero-order-hold input has no derivative at a jump. `meas` is the input's regularity on `T`; `cont`
+is Def. C.2.1's continuity, without which `intervalIntegral`'s junk value would let `flow` admit an
+`x` nothing like a run.
 
 ## References
 
 * [1] `contDynamics/@linearSys/canonicalForm.m`
-* [2] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [2] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear Dynamic
+      Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.), Modeling, Design,
+      and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       18-August-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
@@ -63,6 +65,11 @@ structure LinearSys (𝕋 : Type) (n : ℕ) where
   E : Mat 𝕋 n r
   F : Mat 𝕋 q s
 
+/-- The output equation `y = C x + D u + k`, read off the system as stored; the noise term `F v`
+stays with the system, as `OutputEq.outputSetNoise` takes `sys.F` beside it. -/
+def LinearSys.outputEq (sys : LinearSys 𝕋 n) : OutputEq 𝕋 n sys.m sys.q :=
+  ⟨sys.C, sys.D, sys.k⟩
+
 /-- A Carathéodory run of the whole equation on `T`: the state from `X₀` under inputs in `U`
 and disturbances in `W`, and the output under noise in `V`. -/
 structure LinearSys.IsTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (X₀ : S n) (U : S sys.m)
@@ -77,8 +84,7 @@ structure LinearSys.IsTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (X₀ : 
   cont : ContinuousOn x T
   flow (t : ℝ) (ht : t ∈ T) : x t = x 0 + ∫ s in (0:ℝ)..t,
     (toRealMat sys.A *ᵥ x s + toRealMat sys.B *ᵥ u s + toRealVec sys.c + toRealMat sys.E *ᵥ w s)
-  output (t : ℝ) (ht : t ∈ T) :
-    y t = toRealMat sys.C *ᵥ x t + toRealMat sys.D *ᵥ u t + toRealVec sys.k + toRealMat sys.F *ᵥ v t
+  output (t : ℝ) (ht : t ∈ T) : y t = sys.outputEq.eval (x t) (u t) + toRealMat sys.F *ᵥ v t
 
 /-- A Carathéodory run of `sys`'s canonical form on `T` from `R₀`, its combined input in state
 coordinates drawn from `U`: `B`, `c` and `E` are already in `u`. -/

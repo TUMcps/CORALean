@@ -22,7 +22,6 @@ src/CORALean/ContDynamics/LinearSys/Instances.lean
 src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovTaylor.lean
 src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovZonotope.lean
 src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetSumExpImage.lean
-src/CORALean/ContDynamics/LinearSys/LinearSys.lean
 src/CORALean/ContDynamics/LinearSys/MatExp/Counterexamples/ExpDiffPrinted.lean
 src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/ExpDiffMatrices.lean
 src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ConstCorrTerm.lean

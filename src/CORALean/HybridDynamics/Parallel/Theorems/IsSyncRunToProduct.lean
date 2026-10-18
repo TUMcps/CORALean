@@ -54,7 +54,8 @@ theorem ParallelHybridAutomaton.IsSyncRun.toProductSync [ExactScalar 𝕋] [Deci
       P.IsStay ℓ τ X u w g → ∃ g' w', ((P.productSync slift lab F U W).loc ℓ).IsTrajectory τ
         (fun t => stack fun i => X i t) g' w' := fun h => by
     obtain ⟨g', w', h'⟩ := h.trajectoryWith hF slift.toLifting
-    exact ⟨g', w', h'.nonneg, h'.input, h'.dist, h'.flow, h'.invariant⟩
+    exact ⟨g', w', h'.nonneg, h'.input, h'.dist, h'.meas, h'.integrable, h'.cont, h'.flow,
+      h'.invariant⟩
   induction run with
   | @flow ℓ₁ τ X u w g h =>
     obtain ⟨g', w', htr⟩ := key h

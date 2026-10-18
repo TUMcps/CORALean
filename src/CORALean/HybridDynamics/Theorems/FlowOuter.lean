@@ -1,7 +1,6 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.Basic
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryTimeIntervalOuter
 public import CORALean.HybridDynamics.Operations.TimeIntervalStep
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
@@ -66,8 +65,7 @@ theorem Location.IsTrajectory.timeInterval_outer [∀ n, OfPoint (S n) (Vec ℝ 
       (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) :
     x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀) Ud) :=
-  ((traj.linearSys h₀ traj.inputSet_mem).trajectory (convex_Icc 0 τ) ⟨le_rfl, hτ.le⟩
-    hU).timeInterval_outer hτ
+  (traj.linearSys h₀ traj.inputSet_mem).timeInterval_outer hτ
     subset_rfl hε ht0 htτ hU hUd
 
 end CORALean

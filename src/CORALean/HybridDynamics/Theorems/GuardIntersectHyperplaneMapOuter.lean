@@ -7,7 +7,6 @@ public import CORALean.HybridDynamics.Theorems.HitPointAddEq
 public import CORALean.HybridDynamics.Theorems.HitFactorMemIcc
 public import CORALean.HybridDynamics.Theorems.HitHessianNumEqHitHessianMatZono
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
@@ -308,9 +307,7 @@ theorem Location.guardIntersectHyperplaneMap_outer (ℓ : Location 𝒵 G L ℝ 
     fun x hx => Zonotope.reduceGirard_outer R₀ guardOrder hx
   set err := GuardMap.abstractionError A U R0red (tmax / 2) tmax η with herr
   -- the run, in closed form, its input `B u + c + E w`, and its error to the constant flow
-  have tr := (traj.linearSys (R₀ := R₀) h₀ traj.inputSet_mem).trajectory (convex_Icc 0 τ)
-    ⟨le_rfl, traj.nonneg⟩
-    (Zonotope.isBounded_construct U)
+  have tr := traj.linearSys (R₀ := R₀) h₀ traj.inputSet_mem
   -- the variation of constants up to the hit
   have hvoc := tr.variation_of_constants (a := 0) (b := t) (Set.Icc_subset_Icc_right ht.2)
     le_rfl ht.1 (Zonotope.isBounded_construct U)

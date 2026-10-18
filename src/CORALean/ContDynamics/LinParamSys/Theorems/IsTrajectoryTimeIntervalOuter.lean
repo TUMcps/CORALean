@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryToLinearSys
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 
 @[expose] public section

@@ -56,8 +56,9 @@ theorem NonlinearSysDT.WithSteps.reachUnion_outer (sys : NonlinearSysDT.WithStep
         (List.all_eq_true.mp hconf k (List.mem_range.mpr hk))).trans (sys.region_subset k)
     obtain ⟨k, hk, x, u, traj, rfl⟩ := Set.mem_iUnion₂.mp hy
     -- the run from the bare set `construct R0` is a run from the representation `R0`
-    have traj' : sys.sys.IsTrajectoryOn params.X₀ sys.U (params.tFinal - params.tStart) x u :=
-      ⟨traj.init, traj.input, traj.step⟩
+    have traj' : sys.sys.IsTrajectoryOn params.X₀ sys.U (params.tFinal - params.tStart) x u
+        (fun k => sys.sys.g (x k) (u k)) :=
+      ⟨traj.init, traj.input, traj.step, traj.output⟩
     have hx := sys.sys.reach_outer_on options.hZonotopeOrder sys.steps params.X₀ traj'
       (sys.sys.confinement_of_subset_on options.hZonotopeOrder sys.steps params.X₀ hsub traj')
       k hk

@@ -1,11 +1,11 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachFloatInputTimePointOuter
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinStepAtFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeSub
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
@@ -80,9 +80,9 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
     {sys : NonlinearSys n m} (h : fm.Encloses sys) {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachOptions 𝕋} {R : Zonotope (Vec 𝕋 n)} {xs : Vec 𝕋 n} : -- --- STMT ---
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.relinStepAtFloat U options R xs →
-      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U.construct x u →
+          R.construct U.construct x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
           x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
   intro Rτ Rt (hstep : fm.relinStepAtFloat U options R xs = some (Rτ, Rt))
@@ -100,7 +100,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
   set U' : Interval (Vec 𝕋 m) :=
     ⟨fun i => minimum (U.interval.inf i) (U.c i), fun i => maximum (U.interval.sup i) (U.c i)⟩
   obtain ⟨hΔt, -⟩ := LinearSys.reachFloatInput_invariant _ _ _ hS
-  refine ⟨hΔt, fun {x u} traj => ?_⟩
+  refine ⟨hΔt, fun {x u y} traj => ?_⟩
   -- the horizon `reachFloatInput` was given is the step
   have hTf : (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)) = toReal Δt := by
     rw [ToRat.toReal_toRat, Rat.cast_zero, sub_zero]
@@ -113,7 +113,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
   have hUU' : U.construct ⊆ U'.construct :=
     fun v hv => (aux_mem_hull U.interval U.c).1 (Zonotope.interval_contains U hv)
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
-  have ltrajC : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalClassicalTrajectory (S := 𝒮)
+  have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory (S := 𝒮)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, (-xs), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))).construct
@@ -122,7 +122,8 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
         (fm.linInputFloat A B xs X U U').construct)
       (fun t => x t - toRealVec xs)
       (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) := by
-    refine ⟨?_, fun t ht => ?_, fun t ht => ?_⟩
+    rw [hTf]
+    refine traj.linearize_sub measurableSet_Icc ?_ fun t ht => ?_
     -- the start, `R - x✱`
     · have hneg : toRealVec (-xs) = -toRealVec xs := toRealVec_neg _
       have hp := aux_mem_pt (-xs)
@@ -131,26 +132,9 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
         ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
     -- the input, through `B = I`, `c = 0`
-    · rw [hTf] at ht
-      refine ⟨_, h.linInputFloat_outer A B (aux_mem_hull Ω xs).2 hUU'
+    · refine ⟨_, h.linInputFloat_outer A B (aux_mem_hull Ω xs).2 hUU'
         (aux_mem_hull U.interval U.c).2 (hxX t ht) (traj.input t ht), ?_⟩
       exact congrFun (LinearSys.canonicalFloat_input A) _
-    -- the flow, `δ̇ = ẋ = A δ + (f - A δ)`
-    · have ht' : t ∈ Set.Icc 0 (toReal Δt) := by rwa [hTf] at ht
-      have hd := (traj.flow t ht').sub_const (toRealVec xs)
-      rw [hTf]
-      refine hd.congr_deriv ?_
-      show sys.f (x t) (u t) = Scalar.toRealMat A *ᵥ (x t - toRealVec xs)
-        + (sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs))
-      abel
-  -- a classical run on `[0, Δt]` with its input in a compact set is a Carathéodory one
-  have hVb : Bornology.IsBounded
-      ((fun u => Scalar.toRealMat (LinearSys.canonicalFloat A).B *ᵥ u +
-        Scalar.toRealVec (LinearSys.canonicalFloat A).c) ''
-        (fm.linInputFloat A B xs X U U').construct) := by
-    rw [LinearSys.canonicalFloat_input, Set.image_id]
-    exact (Zonotope.isCompact_construct _).isBounded
-  have ltraj := ltrajC.trajectory (convex_Icc _ _) ⟨le_rfl, by rw [hTf]; exact hΔt.le⟩ hVb
   obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ _ hS
   obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ _ hS
   -- adding `x✱` back

@@ -2,7 +2,9 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormEq
 public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
+public import Mathlib.Analysis.Calculus.FDeriv.Measurable
 public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 
@@ -54,6 +56,42 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
+/-- The exponential is continuous, so it is bounded over a compact step. -/
+theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp ((-s) • A) :=
+  exp_continuous.comp (continuous_neg.smul continuous_const)
+
+/-- A continuous matrix times the measurable input is measurable. -/
+theorem LinearSys.IsCanonicalTrajectory.aux_aestronglyMeasurable_expNeg {sys : LinearSys 𝕋 n}
+    {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
+    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hT : Set.Icc a b ⊆ T) :
+    AEStronglyMeasurable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
+      (volume.restrict (Set.Ioc a b)) :=
+  (((aux_continuous_expNeg (toRealMat sys.A)).comp continuous_fst).matrix_mulVec
+    continuous_snd).comp_aestronglyMeasurable₂ (f := fun s : ℝ => s) aestronglyMeasurable_id
+    ((traj.aestronglyMeasurable_input hT).mono_measure
+      (Measure.restrict_mono Set.Ioc_subset_Icc_self le_rfl))
+
+/-- What `variation_of_constants` asks for, given only that the input set is
+bounded — which every representation of a set of points is. -/
+theorem LinearSys.IsCanonicalTrajectory.aux_intervalIntegrable_input {sys : LinearSys 𝕋 n}
+    {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
+    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hT : Set.Icc a b ⊆ T) (hab : a ≤ b)
+    (hU : Bornology.IsBounded (construct U)) : -- --- STMT ---
+    IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
+      volume a b := by -- --- PROOF ---
+  obtain ⟨CU, hCU⟩ := hU.exists_norm_le
+  obtain ⟨CE, hCE⟩ := (isCompact_Icc (a := a) (b := b)).exists_bound_of_continuousOn
+    (aux_continuous_expNeg (toRealMat sys.A)).continuousOn
+  have hCE0 : 0 ≤ CE := le_trans (norm_nonneg _) (hCE a ⟨le_refl a, hab⟩)
+  rw [intervalIntegrable_iff_integrableOn_Ioc_of_le hab]
+  refine ⟨traj.aux_aestronglyMeasurable_expNeg hT,
+    HasFiniteIntegral.restrict_of_bounded (C := CE * CU) measure_Ioc_lt_top ?_⟩
+  refine (ae_restrict_iff' measurableSet_Ioc).mpr (Filter.Eventually.of_forall fun s hs => ?_)
+  calc ‖exp ((-s) • toRealMat sys.A) *ᵥ u s‖
+      ≤ ‖exp ((-s) • toRealMat sys.A)‖ * ‖u s‖ := Matrix.linfty_opNorm_mulVec _ _
+    _ ≤ CE * CU := mul_le_mul (hCE s ⟨hs.1.le, hs.2⟩)
+        (hCU _ (traj.input s (hT ⟨hs.1.le, hs.2⟩))) (norm_nonneg _) hCE0
+
 /-- The substituted form at one time: `closedForm`, with `e^{ρA}` cancelled. -/
 theorem aux_expNeg_mulVec_eq {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
     {x u : ℝ → Vec ℝ n} {b ρ : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
@@ -62,7 +100,7 @@ theorem aux_expNeg_mulVec_eq {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S 
     exp ((-ρ) • toRealMat sys.A) *ᵥ x ρ
       = x 0 + ∫ s in (0:ℝ)..ρ, exp ((-s) • toRealMat sys.A) *ᵥ u s := by -- --- PROOF ---
   have hb : 0 ≤ b := hρ.1.trans hρ.2
-  have hint := traj.intervalIntegrable_input ((Set.Icc_subset_Icc_right hρ.2).trans hT) hρ.1 hU
+  have hint := traj.aux_intervalIntegrable_input ((Set.Icc_subset_Icc_right hρ.2).trans hT) hρ.1 hU
   rw [sys.eq_closedForm_of_flow hb hU (fun s hs => traj.input s (hT hs))
     (traj.aestronglyMeasurable_input hT) (traj.cont.mono hT) (fun τ hτ => traj.flow τ (hT hτ)) hρ,
     sys.closedForm_eq (x 0) u hint, Matrix.mulVec_mulVec]
@@ -84,8 +122,8 @@ theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S
   rw [aux_expNeg_mulVec_eq traj hT hU ⟨ha.trans hab, le_rfl⟩,
     aux_expNeg_mulVec_eq traj hT hU ⟨ha, hab⟩, add_sub_add_left_eq_sub]
   exact intervalIntegral.integral_interval_sub_left
-    (traj.intervalIntegrable_input hT (ha.trans hab) hU)
-    (traj.intervalIntegrable_input ((Set.Icc_subset_Icc_right hab).trans hT) ha hU)
+    (traj.aux_intervalIntegrable_input hT (ha.trans hab) hU)
+    (traj.aux_intervalIntegrable_input ((Set.Icc_subset_Icc_right hab).trans hT) ha hU)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -109,7 +147,7 @@ theorem LinearSys.IsCanonicalTrajectory.variation_of_constants {sys : LinearSys 
   have hint : mulVecL (exp (b • A)) (∫ s in a..b, exp ((-s) • A) *ᵥ u s)
       = ∫ s in a..b, exp ((b - s) • A) *ᵥ u s := by
     rw [← ContinuousLinearMap.intervalIntegral_comp_comm _
-      (traj.intervalIntegrable_input ((Set.Icc_subset_Icc_left ha).trans hT) hab hU)]
+      (traj.aux_intervalIntegrable_input ((Set.Icc_subset_Icc_left ha).trans hT) hab hU)]
     congr 1
     funext s
     show exp (b • A) *ᵥ (exp ((-s) • A) *ᵥ u s) = _

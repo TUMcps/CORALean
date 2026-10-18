@@ -16,16 +16,16 @@ location of component `i` has `p i` inputs and `q i` outputs (`inputs_eq`, `outp
 gives an input: the global input, or the feeding component's output `C x + D u + k`, noise-free.
 
 `IsRun` is the semantics, and the product never enters it. A `IsStay` is the shared time axis: one
-dwell time `τ`, every component flowing by its own equation in its location's invariant, its
-disturbances in its `W`, inputs as bound. The input set constrains only the global inputs, as in
-CORA: the global inputs fed to component `i` are the corresponding coordinates of a point of its
-`U`. A `jump` ends a stay with one component taking a transition; simultaneous jumps are
-consecutive, a zero-length stay between.
+dwell time `τ`, every component a Carathéodory run of its own equation, as a location's stay is, in
+its location's invariant, its disturbances in its `W`, inputs as bound. The input set constrains
+only the global inputs, as in CORA: the global inputs fed to component `i` are the corresponding
+coordinates of a point of its `U`. A `jump` ends a stay with one component taking a transition;
+simultaneous jumps are consecutive, a zero-length stay between.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +33,7 @@ consecutive, a zero-length stay between.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet Scalar MeasureTheory
 
 variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
@@ -85,9 +85,17 @@ structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
   input (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
     ∃ v ∈ construct ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a → v j = g t a
   dist (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : w i t ∈ construct ((P.comp i).loc (ℓ i)).W
-  flow (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    HasDerivWithinAt (x i) (toRealMat (P.sys ℓ i).A *ᵥ x i t + toRealMat (P.sys ℓ i).B *ᵥ u i t +
-      toRealVec (P.sys ℓ i).c + toRealMat (P.sys ℓ i).E *ᵥ w i t) (Set.Icc 0 τ) t
+  -- every component a Carathéodory run of its own location's whole equation
+  meas (i : Fin k) : AEStronglyMeasurable (fun s => toRealMat (P.sys ℓ i).A *ᵥ x i s +
+    toRealMat (P.sys ℓ i).B *ᵥ u i s + toRealVec (P.sys ℓ i).c + toRealMat (P.sys ℓ i).E *ᵥ w i s)
+      (volume.restrict (Set.Icc 0 τ))
+  integrable (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : IntervalIntegrable (fun s =>
+    toRealMat (P.sys ℓ i).A *ᵥ x i s + toRealMat (P.sys ℓ i).B *ᵥ u i s +
+      toRealVec (P.sys ℓ i).c + toRealMat (P.sys ℓ i).E *ᵥ w i s) volume 0 t
+  cont (i : Fin k) : ContinuousOn (x i) (Set.Icc 0 τ)
+  flow (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x i t = x i 0 + ∫ s in (0:ℝ)..t,
+    (toRealMat (P.sys ℓ i).A *ᵥ x i s + toRealMat (P.sys ℓ i).B *ᵥ u i s +
+      toRealVec (P.sys ℓ i).c + toRealMat (P.sys ℓ i).E *ᵥ w i s)
   invariant (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
     x i t ∈ construct ((P.comp i).loc (ℓ i)).inv
   bound (i : Fin k) (j : Fin (P.sys ℓ i).m) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :

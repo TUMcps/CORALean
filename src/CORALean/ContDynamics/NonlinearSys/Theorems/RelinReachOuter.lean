@@ -64,7 +64,7 @@ of `N` steps never speaks about the run past `NΔt`. -/
 theorem NonlinearSys.IsTrajectory.relinReach_outer {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {steps : ℕ → sys.LinStep U} {Ud : ℕ → S n} {Δt : ℝ} {N : ℕ}
-    (traj : sys.IsTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
@@ -93,7 +93,7 @@ theorem NonlinearSys.IsTrajectory.relinReach_outer {sys : NonlinearSys n m} {T :
       refine hwin ⟨by linarith [ht.1], ?_⟩
       rw [hexp]
       linarith [ht.2]
-    have shifted := traj.shift hmaps (ih hiN.le)
+    have shifted := traj.shift hmaps (by simpa using hmaps (Set.left_mem_Icc.2 hΔt)) (ih hiN.le)
     have hT1 : Set.Icc (0 : ℝ) (((1 : ℕ) : ℝ) * Δt) ⊆ Set.Icc (0 : ℝ) Δt := by
       simp
     have hR1 : ∀ t ∈ Set.Icc (0 : ℝ) (((1 : ℕ) : ℝ) * Δt),

@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStep
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 

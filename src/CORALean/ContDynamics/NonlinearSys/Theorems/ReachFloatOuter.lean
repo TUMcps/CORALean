@@ -42,10 +42,10 @@ theorem NonlinearSys.FloatModel.Encloses.reachFloat_outer {fm : NonlinearSys.Flo
     {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
     ∀ Rs ∈ fm.reachFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-        Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+        Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-            params.U.construct x u →
+            params.U.construct x u y →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
             (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
   intro Rs (hR : fm.reachFloat params options = some Rs)
@@ -54,7 +54,7 @@ theorem NonlinearSys.FloatModel.Encloses.reachFloat_outer {fm : NonlinearSys.Flo
   obtain ⟨N, hN, hrun⟩ := hR
   obtain ⟨-, hNΔt⟩ := Reach.steps_spec_toReal _ hN
   obtain ⟨hlen, hout⟩ := h.relinRunFloat_outer N hrun
-  refine ⟨N, hNΔt, hlen, fun {x u} traj => ?_⟩
+  refine ⟨N, hNΔt, hlen, fun {x u y} traj => ?_⟩
   -- the horizon is `N` steps exactly
   rw [← hNΔt] at traj
   exact hout traj

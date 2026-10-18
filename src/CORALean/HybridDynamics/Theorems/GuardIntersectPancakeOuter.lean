@@ -2,7 +2,10 @@ module
 
 public import CORALean.ContDynamics.NonlinParamSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachUnionOuter
+public import CORALean.ContDynamics.NonlinParamSys.Theorems.IsConstTrajectoryOfHasDerivWithinAt
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryHasDerivWithinAt
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Reparametrize
+public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneOuter
 public import CORALean.HybridDynamics.Operations.GuardIntersectPancake
@@ -12,22 +15,20 @@ public import CORALean.HybridDynamics.Operations.GuardIntersectPancake
 /-!
 # A run's guard hit is in the pancake guard intersection
 
-The guarantee of CORA's `guardIntersect_pancake` [1] for a classical run. Time scaling cannot
-reach the guard (`g → 0` there, so the scaled clock `τ(t) = ∫₀ᵗ p/(nᵀx − d)` diverges at the hit),
-and the proof is where that is paid. Let `t_f` be the original time at which the scaled clock reads
-the horizon, `τ(t_f) = tScaled`, with the run strictly on the invariant side up to `t_f`. By
-`NonlinearSys.reparametrize` the run before `t_f` is a constant-parameter run of the scaled system
-at any positive `p` of the parameter set, so `x(t_f)` is in the scaled reach set
-(`NonlinParamSys.WithSteps.reachUnion_outer`). The jump is the original system run from the member
-holding it, and holds `x(t_f + s)` for `s ≤ δ` (`NonlinearSys.WithSteps.reachUnion_outer`, the
-run shifted by `t_f`); a guard point of the run in that window is therefore in the jump, and a
-point of the hyperplane is fixed by the projection (`ContSet.projectOnHyperplane_outer`).
+The guarantee of CORA's `guardIntersect_pancake` [1] for a run with a continuous field, a
+classical one. Time scaling cannot reach the guard (`g → 0` there, so the scaled clock
+`τ(t) = ∫₀ᵗ p/(nᵀx − d)` diverges at the hit), and the proof is where that is paid. With
+`τ(t_f) = tScaled` and the run strictly on the invariant side up to `t_f`, the run before `t_f`
+is, by `NonlinearSys.reparametrize`, a constant-parameter run of the scaled system at any
+positive `p` of the parameter set, so `x(t_f)` is in the scaled reach set. The jump is the
+original system run from the member holding it, and holds `x(t_f + s)` for `s ≤ δ` (the run
+shifted by `t_f`); a guard point of the run in that window is in the jump, and a point of the
+hyperplane is fixed by the projection (`ContSet.projectOnHyperplane_outer`).
 
-Disclosed: the theorem has two conditions that are CORA's run-time checks, not consequences. The
-scaled horizon must reach the original time `t_f` (`hclock`), and the guard hit must fall in the
-jump window `[t_f, t_f + δ]` (`ht`); where they fail CORA throws `Pancake approach failed!` or
-returns a set that misses the hit. Given a hit time `t*` and `δ > 0`, `t_f = max 0 (t* − δ)` and
-`tScaled = τ(t_f)` satisfy both. The run must extend to `t_f + δ`.
+Disclosed: two conditions are CORA's run-time checks, not consequences. The scaled horizon must
+reach `t_f` (`hclock`), and the guard hit must fall in the jump window `[t_f, t_f + δ]` (`ht`);
+where they fail CORA throws `Pancake approach failed!` or misses the hit. Given a hit time `t*`
+and `δ > 0`, `t_f = max 0 (t* − δ)` and `tScaled = τ(t_f)` satisfy both.
 
 ## References
 
@@ -36,7 +37,7 @@ returns a set that misses the hit. Given a hit time `t*` and `δ > 0`, `t_f = ma
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -64,7 +65,9 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
     (optionsScaled optionsJump : LinearSys.ReachOptions ℝ)
     (hsc : scaled.sys = sys.sys.pancakeScaled nv d) (hU : construct scaled.aug.U = construct sys.U)
     {p : Vec ℝ 1} (hp : p ∈ construct scaled.P) (hp0 : 0 < p 0) {T : ℝ} {x : ℝ → Vec ℝ n}
-    {u : ℝ → Vec ℝ m} (traj : sys.sys.IsTrajectory (Icc 0 T) R₀ sys.U x u) {tf : ℝ} (htf : 0 ≤ tf)
+    {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.sys.q}
+    (traj : sys.sys.IsTrajectory (Icc 0 T) R₀ sys.U x u y)
+    (hf : ContinuousOn (fun s => sys.sys.f (x s) (u s)) (Icc 0 T)) {tf : ℝ} (htf : 0 ≤ tf)
     (hδ : 0 ≤ δ) (htfT : tf + δ ≤ T) (hpos : ∀ s ∈ Icc 0 tf, 0 < nv ⬝ᵥ x s - d)
     (hclock : ∫ r in (0 : ℝ)..tf, ((nv ⬝ᵥ x r - d) / p 0)⁻¹ = tScaled) {t : ℝ}
     (ht : t ∈ Icc tf (tf + δ)) (hhit : nv ⬝ᵥ x t = d) :
@@ -75,10 +78,12 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
   -- the run before `t_f`, reparametrized: a constant-parameter run of the scaled system
   have hgc : Continuous (fun z : Vec ℝ n => (nv ⬝ᵥ z - d) / p 0) := by
     unfold dotProduct; fun_prop
-  obtain ⟨σ, hσ0, hσT, hmaps, -, hy, -⟩ := sys.sys.reparametrize tf htf x u
+  have htfT' : tf ≤ T := by linarith [ht.1, ht.2]
+  have hx : ∀ s ∈ Icc 0 T, HasDerivWithinAt x (sys.sys.f (x s) (u s)) (Icc 0 T) s :=
+    fun s hs => traj.hasDerivWithinAt ⟨le_rfl, htf.trans htfT'⟩ hf hs
+  obtain ⟨σ, hσ0, hσT, hmaps, hσd, hy, -⟩ := sys.sys.reparametrize tf htf x u
     (fun z => (nv ⬝ᵥ z - d) / p 0)
-    (fun s hs => (traj.flow s ⟨hs.1, hs.2.trans (by linarith [ht.1, ht.2])⟩).mono
-      (Icc_subset_Icc_right (by linarith [ht.1, ht.2])))
+    (fun s hs => (hx s ⟨hs.1, hs.2.trans htfT'⟩).mono (Icc_subset_Icc_right htfT'))
     hgc.continuousOn (fun s hs => div_pos (hpos s hs) hp0)
   have hS0 : 0 ≤ tScaled := by
     rw [← hclock]
@@ -87,6 +92,8 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
   -- the same at the horizon `tScaled` the integral equals
   have hσT' : σ tScaled = tf := by rw [← hclock]; exact hσT
   have hmaps' : MapsTo σ (Icc 0 tScaled) (Icc 0 tf) := by rw [← hclock]; exact hmaps
+  have hσc : ContinuousOn σ (Icc 0 tScaled) := by
+    rw [← hclock]; exact fun s hs => (hσd s hs).continuousWithinAt
   have hy' : ∀ s ∈ Icc 0 tScaled, HasDerivWithinAt (x ∘ σ)
       (((nv ⬝ᵥ (x ∘ σ) s - d) / p 0) • sys.sys.f ((x ∘ σ) s) (u (σ s))) (Icc 0 tScaled) s := by
     rw [← hclock]; exact hy
@@ -98,9 +105,19 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
     have h1 := scaled.reachUnion_outer ⟨R₀, 0, tScaled⟩ optionsScaled _ hRs
     have hx : x tf ∈ scaled.reachUnionExact (tScaled - 0) (construct R₀) := by
       simp only [NonlinParamSys.WithSteps.reachUnionExact, mem_iUnion, mem_setOf_eq, sub_zero]
-      refine ⟨tScaled, ⟨hS0, le_rfl⟩, x ∘ σ, u ∘ σ, p, ⟨?_, fun s hs => ?_, hp, fun s hs => ?_⟩, ?_⟩
+      have hmapsT : MapsTo σ (Icc 0 tScaled) (Icc 0 T) :=
+        fun s hs => ⟨(hmaps' hs).1, (hmaps' hs).2.trans htfT'⟩
+      -- the scaled field along the reparametrized run, continuous, so integrable
+      have hFc : ContinuousOn (fun s => scaled.sys.f ((x ∘ σ) s) ((u ∘ σ) s) p)
+          (Icc 0 tScaled) := by
+        rw [hsc]
+        exact (hgc.comp_continuousOn (traj.cont.comp hσc hmapsT)).smul (hf.comp hσc hmapsT)
+      refine ⟨tScaled, ⟨hS0, le_rfl⟩, x ∘ σ, u ∘ σ, p,
+        NonlinParamSys.IsConstTrajectory.of_hasDerivWithinAt (convex_Icc 0 tScaled) ⟨le_rfl, hS0⟩
+          ?_ (fun s hs => ?_) hp (fun s hs => ?_)
+          (fun s hs => (hFc.mono (uIcc_subset_Icc ⟨le_rfl, hS0⟩ hs)).intervalIntegrable), ?_⟩
       · simpa [hσ0] using traj.init
-      · rw [hU]; exact traj.input _ ⟨(hmaps' hs).1, (hmaps' hs).2.trans (by linarith [ht.1, ht.2])⟩
+      · rw [hU]; exact traj.input _ (hmapsT hs)
       · rw [hsc]; exact hy' s hs
       · simp [hσT']
     exact h1 hx
@@ -135,18 +152,13 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
     refine h2 ?_
     simp only [NonlinearSys.WithSteps.reachUnionExact, mem_iUnion, NonlinearSys.reachSetExact,
       mem_setOf_eq, sub_zero]
-    refine ⟨t - tf, ⟨by linarith [ht.1], by linarith [ht.2]⟩, fun s => x (tf + s),
-      fun s => u (tf + s), ⟨?_, fun s hs => ?_, fun s hs => ?_⟩, by simp⟩
-    · simpa [hσT'] using hxRi
-    · exact traj.input _ ⟨by linarith [hs.1], by linarith [hs.2]⟩
-    · have hg : HasDerivWithinAt (fun s : ℝ => tf + s) 1 (Icc 0 δ) s :=
-        (hasDerivWithinAt_id s _).const_add tf
-      have h3 := (traj.flow (tf + s) ⟨by linarith [hs.1], by linarith [hs.2]⟩).scomp s hg
-        (fun r hr => ⟨by linarith [hr.1], by linarith [hr.2]⟩)
-      have h3' : HasDerivWithinAt (fun s : ℝ => x (tf + s))
-          (sys.sys.f (x (tf + s)) (u (tf + s))) (Icc 0 δ) s := by
-        simp only [one_smul] at h3; exact h3
-      exact h3'
+    have traj' : sys.sys.IsTrajectory (S := 𝒮) (Icc 0 T) (construct R₀) (construct sys.U) x u y :=
+      ⟨traj.init, traj.input, traj.meas, traj.integrable, traj.cont, traj.flow, traj.output⟩
+    have hxtf : x tf ∈ construct Ri := by simpa [hσT'] using hxRi
+    exact ⟨t - tf, ⟨by linarith [ht.1], by linarith [ht.2]⟩, fun s => x (tf + s),
+      fun s => u (tf + s), { traj'.shift (R₀' := construct Ri) (T' := Icc 0 δ)
+        (fun s hs => ⟨by linarith [hs.1], by linarith [hs.2]⟩) ⟨htf, htfT'⟩ hxtf with
+          output := fun _ _ => rfl }, by simp⟩
   -- a point of the hyperplane is fixed by the projection
   obtain ⟨Rk, hRk, hxRk⟩ := SetUnion.mem_construct.mp hxJ
   refine SetUnion.mem_construct.mpr

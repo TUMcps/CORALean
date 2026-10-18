@@ -57,7 +57,7 @@ theorem NonlinDASys.reachLoop_outer (sys : NonlinDASys n p m)
     (splitFn : Zonotope (Vec ℝ n) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n))
     (hsplit : ∀ Z, Z.construct ⊆ (splitFn Z).1.construct ∪ (splitFn Z).2.construct)
     {R0 : Zonotope (Vec ℝ n)} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m} {K : ℕ}
-    (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 ((K : ℝ) * r)) R0 U x y u)
+    {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 ((K : ℝ) * r)) R0 U x y u z)
     (hcert : ∀ j : ℕ, j < K → ∀ (fuel : ℕ) (Z : Zonotope (Vec ℝ n))
       (L₀ : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) (rr : NonlinDASys.ErrorLoopResult n p),
       x ((j : ℝ) * r) ∈ Z.construct →

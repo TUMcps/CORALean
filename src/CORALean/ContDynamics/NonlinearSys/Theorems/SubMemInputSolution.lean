@@ -1,11 +1,12 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryAestronglyMeasurableInput
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryAestronglyMeasurableReflected
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
+public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryVariationOfConstants
-public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
+public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinInputOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeWindow
 
 @[expose] public section
 
@@ -31,7 +32,7 @@ conservative linearization.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -47,7 +48,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -57,7 +58,7 @@ error contributes over the step. -/
 theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : NonlinearSys n m}
     {R₀ L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u₀ : Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ}
-    (traj : sys.IsTrajectory (Set.Icc 0 Δt) R₀ U x fun _ => u₀)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (Set.Icc 0 Δt) R₀ U x (fun _ => u₀) y)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hR : ∀ t ∈ Set.Icc 0 Δt, x t ∈ R) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
@@ -73,8 +74,6 @@ theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : No
         construct ((NonlinearSys.linearize A).inputSolution Δt η L) := by -- --- PROOF ---
   set w : Vec ℝ n := sys.f xs us - A *ᵥ xs + B *ᵥ (u₀ - us)
   have hu₀ : u₀ ∈ construct U := traj.input 0 ⟨le_rfl, hΔt.le⟩
-  -- the run as a linear one, with input `ũ(t) = f(x(t), u₀) - A x(t) = w + l(t)`
-  have lin := traj.linearize cert hR
   set l : ℝ → Vec ℝ n := fun t => sys.f (x t) u₀ - A *ᵥ x t - w
   have hl : ∀ t ∈ Set.Icc 0 Δt, l t ∈ construct L := fun t ht => by
     have h := cert.encloses (x t) (hR t ht) u₀ hu₀
@@ -83,6 +82,14 @@ theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : No
       abel
     rw [e]
     exact h
+  -- the run as a linear one, with input `ũ(t) = f(x(t), u₀) - A x(t) = w + l(t)` in `{w} + L`
+  have hVb : Bornology.IsBounded (({w} : Set (Vec ℝ n)) + construct L) :=
+    Bornology.isBounded_singleton.add hbdd
+  have lin := traj.linearize_window (t₀ := 0) (A := A) (V := {w} + construct L) hΔt.le
+    (by rw [zero_add]) fun t ht => by
+      rw [zero_add] at ht
+      exact Set.mem_add.mpr ⟨w, rfl, l t, hl t ht, by simp only [l]; abel⟩
+  simp only [zero_add] at lin
   have hlm : AEStronglyMeasurable l (volume.restrict (Set.Icc 0 Δt)) :=
     (lin.aestronglyMeasurable_input subset_rfl).sub aestronglyMeasurable_const
   -- the variation of constants, and its integral split into `w`'s part and `l`'s
@@ -90,21 +97,9 @@ theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : No
     (Continuous.matrix_mulVec (by fun_prop) continuous_const).intervalIntegrable 0 Δt
   have hlI : IntervalIntegrable (fun s => exp ((Δt - s) • A) *ᵥ l s) volume 0 Δt :=
     intervalIntegrable_expSub_mulVec hΔt.le hbdd hl hlm
-  -- the integrability `variation_of_constants` asks for, from the same split
-  have hint : IntervalIntegrable (fun s => exp ((-s) • A) *ᵥ
-      (sys.f (x s) u₀ - A *ᵥ x s)) volume 0 Δt := by
-    have h0 : IntervalIntegrable (fun s => exp ((0 - s) • A) *ᵥ l s) volume 0 Δt :=
-      intervalIntegrable_expSub_mulVec hΔt.le hbdd hl hlm
-    have h1 : IntervalIntegrable (fun s => exp ((-s) • A) *ᵥ w) volume 0 Δt :=
-      (Continuous.matrix_mulVec (by fun_prop) continuous_const).intervalIntegrable 0 Δt
-    refine (h1.add h0).congr ?_
-    intro s _
-    simp only [l, zero_sub, ← Matrix.mulVec_add]
-    congr 1
-    abel
   -- `x(Δt) = e^{AΔt} x(0) + ∫ e^{A(Δt-s)} ũ(s) ds`
   have hvoc : x Δt = exp ((Δt - 0) • A) *ᵥ x 0 + ∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ
-      (sys.f (x s) u₀ - A *ᵥ x s) := lin.variation_of_constants subset_rfl hΔt.le hint
+      (sys.f (x s) u₀ - A *ᵥ x s) := lin.variation_of_constants subset_rfl le_rfl hΔt.le hVb
   have hsplit : (∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ (sys.f (x s) u₀ - A *ᵥ x s))
       = (∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ w)
         + ∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ l s := by

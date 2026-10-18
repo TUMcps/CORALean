@@ -1,6 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Theorems.IsTrajectoryOfHasDerivWithinAt
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Mathlib.Analysis.Calculus.Deriv.Add
@@ -119,7 +120,8 @@ theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 
   set c : Vec ℝ 2 := ![-1, 0] with hcdef
   refine ⟨1 / g, fun t => ![1 / (2 * g) - g * t ^ 2 / 2, -(g * t)],
     fun _ => (0 : Vec ℝ ℓ.dynamics.m), fun _ => (0 : Vec ℝ ℓ.dynamics.r),
-    ⟨by positivity, fun _ _ => hU, fun _ _ => hW, ?_, ?_⟩, ?_, ?_⟩
+    Location.IsTrajectory.of_hasDerivWithinAt (by positivity) (fun _ _ => hU) (fun _ _ => hW)
+      continuousOn_const continuousOn_const ?_ ?_, ?_, ?_⟩
   · intro t _
     -- no input and no disturbance enter: the flow is `A x + c`
     rw [Matrix.mulVec_zero, Matrix.mulVec_zero, add_zero, add_zero, hA, hc]

@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeHorizon
 
@@ -43,7 +42,8 @@ nothing past `KΔt` — which is what re-linearizing from there needs. -/
 theorem NonlinearSys.IsTrajectory.reach_outer_horizon {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ Ud L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
-    {R : Set (Vec ℝ n)} {Δt : ℝ} {K : ℕ} (traj : sys.IsTrajectory T R₀ U x u)
+    {R : Set (Vec ℝ n)} {Δt : ℝ} {K : ℕ} {y : ℝ → Vec ℝ sys.q}
+    (traj : sys.IsTrajectory T R₀ U x u y)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T)
     (hR : ∀ t ∈ Set.Icc (0 : ℝ) ((K : ℝ) * Δt), x t ∈ R) (hΔt : 0 ≤ Δt)
@@ -52,8 +52,7 @@ theorem NonlinearSys.IsTrajectory.reach_outer_horizon {sys : NonlinearSys n m} {
       (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈
       construct (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
-  ((traj.linearize_horizon cert hT hR).trajectory (convex_Icc 0 _)
-    ⟨le_rfl, mul_nonneg (Nat.cast_nonneg K) hΔt⟩ hU).reach_outer_horizon hΔt subset_rfl hU hUd ho
+  (traj.linearize_horizon cert hT hR).reach_outer_horizon hΔt subset_rfl hU hUd ho
 
 end CORALean
 

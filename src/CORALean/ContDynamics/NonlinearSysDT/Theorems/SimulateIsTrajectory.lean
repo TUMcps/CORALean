@@ -37,10 +37,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinearSysDT.simulate_isTrajectory (sys : NonlinearSysDT n m) {R₀ : S n} {U : S m}
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ m}
     (hu : ∀ k, u k ∈ construct U) :
-    sys.IsTrajectory R₀ U (sys.simulate x₀ u) u where
+    sys.IsTrajectory R₀ U (sys.simulate x₀ u) u (fun k => sys.g (sys.simulate x₀ u k) (u k)) where
   init := hx₀
   input := hu
   step _ := rfl
+  output _ := rfl
 
 end CORALean
 

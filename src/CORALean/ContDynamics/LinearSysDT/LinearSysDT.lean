@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.OutputEq.OutputEq
 public import CORALean.ContSet.ContSet.ContSet
 
 @[expose] public section
@@ -14,14 +15,15 @@ time `dt`. Runs and reachable sets are indexed by the step `k`, the time `k dt`,
 `reach` and `simulate` step through `tStart:dt:tFinal`; `dt` is what a conversion to
 continuous time reads (`toLinearSys`) and what a discretization stores (`LinearSys.discretize`).
 
-`IsTrajectory` is a run of the whole equation. `IsCanonicalTrajectory` is a run of the canonical
-form, `x(k+1) = A x(k) + u'(k)` with the combined input `u' = B u + c + E w` in state
-coordinates, as in [1, Sec. 3.2]: what the reachability algorithms, which read `A` and an input
-set in state coordinates, are proved against. `IsTrajectory.canonical` turns every run into one.
-`IsCanonicalTrajectoryOn K` is the canonical run known only for `k < K` — what sampling on
-`[0, KΔt]` gives, so `discretize_horizon` produces it and `reach_outer_horizon` consumes it;
-`toIsTrajectoryOn` gives it at any `K` from a total run. `IsCanonicalHeldTrajectory` holds one
-input for the whole run.
+`IsTrajectory` is a run of the whole equation, its output
+`y k = outputEq.eval (x k) (u k) + F v k`, the form every class with an output equation states it
+in. `IsCanonicalTrajectory` is a run of the canonical form, `x(k+1) = A x(k) + u'(k)` with the
+combined input `u' = B u + c + E w` in state coordinates, as in [1, Sec. 3.2]: what the
+reachability algorithms, which read `A` and an input set in state coordinates, are proved against.
+`IsTrajectory.canonical` turns every run into one. `IsCanonicalTrajectoryOn K` is the canonical run
+known only for `k < K` — what sampling on `[0, KΔt]` gives, so `discretize_horizon` produces it and
+`reach_outer_horizon` consumes it; `toIsTrajectoryOn` gives it at any `K` from a total run.
+`IsCanonicalHeldTrajectory` holds one input for the whole run.
 
 ## References
 
@@ -31,7 +33,7 @@ input for the whole run.
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       18-August-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
@@ -62,6 +64,11 @@ structure LinearSysDT (𝕋 : Type) (n : ℕ) where
   F : Mat 𝕋 q s
   dt : 𝕋
 
+/-- The output equation `y = C x + D u + k`, read off the system as stored; the noise term `F v`
+stays with the system. -/
+def LinearSysDT.outputEq (sys : LinearSysDT 𝕋 n) : OutputEq 𝕋 n sys.m sys.q :=
+  ⟨sys.C, sys.D, sys.k⟩
+
 /-- A run of the whole equation: the state from `X₀` under inputs in `U` and disturbances in
 `W`, and the output under noise in `V`. -/
 structure LinearSysDT.IsTrajectory (sys : LinearSysDT 𝕋 n) (X₀ : S n) (U : S sys.m)
@@ -73,8 +80,7 @@ structure LinearSysDT.IsTrajectory (sys : LinearSysDT 𝕋 n) (X₀ : S n) (U : 
   noise (k : ℕ) : v k ∈ construct V
   step (k : ℕ) : x (k + 1) =
     toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ u k + toRealVec sys.c + toRealMat sys.E *ᵥ w k
-  output (k : ℕ) :
-    y k = toRealMat sys.C *ᵥ x k + toRealMat sys.D *ᵥ u k + toRealVec sys.k + toRealMat sys.F *ᵥ v k
+  output (k : ℕ) : y k = sys.outputEq.eval (x k) (u k) + toRealMat sys.F *ᵥ v k
 
 /-- A run of the canonical form, its combined input in state coordinates drawn from `U`. -/
 structure LinearSysDT.IsCanonicalTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
