@@ -48,7 +48,7 @@ def Layer.activationTaylm (P : LayerRelaxation 𝕋 n deg) :
       let coeffs := (P i).coeffs l u
       let err := (P i).error l u
       let r := (Taylm.const d (coeffs 0) input.maxOrder).plus
-        ⟨[], neg err, err, input.maxOrder⟩
+        ⟨[], ⟨neg err, err⟩, ⟨zero, zero⟩, input.maxOrder⟩
       r.plus (Taylm.sum fun k : Fin deg =>
         (input.pow ((k : ℕ) + 1)).smul (coeffs k.succ) (coeffs k.succ))⟩
 

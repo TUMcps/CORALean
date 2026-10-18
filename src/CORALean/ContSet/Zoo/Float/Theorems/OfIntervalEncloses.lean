@@ -34,8 +34,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem Zoo.aux_ofInterval_poly (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n) (t : Vec ℝ Z.h) :
-    (Z.taylm N i).nominal.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j := by
-  simp only [Zonotope.taylm, Taylm.nominal, Real.Taylm.poly, List.map_cons, List.map_ofFn,
+    (Z.taylm N i).inflated.poly t = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * t j := by
+  simp only [Zonotope.taylm, Taylm.inflated, Real.Taylm.poly, List.map_cons, List.map_ofFn,
     Real.Taylm.polyOf_cons, Real.Taylm.polyOf_ofFn, Real.Taylm.monomial_zero,
     Function.comp_def, Real.Taylm.monomial_single, mul_one]
 
@@ -51,17 +51,18 @@ theorem Zoo.ofInterval_encloses (I : Interval (Vec 𝕋 n)) (N : ℕ) (i : Fin n
     obtain rfl : I.taylm N i = T := Option.some.inj hT
     intro t _
     -- the stored polynomial is the zonotope's center plus its generators
-    have hp : (I.taylm N i).nominal.poly t = toReal (I.zonotope.c i) +
+    have hp : (I.taylm N i).inflated.poly t = toReal (I.zonotope.c i) +
         ∑ j, toReal (I.zonotope.G j i) * t j := Zoo.aux_ofInterval_poly I.zonotope N i t
     have hs : ∑ j, toReal (I.zonotope.G j i) * t j = toReal (I.radiusFrom i) * t i :=
       Zoo.diagonalBlock_sum I i t
     have h0 : toReal (I.zonotope.I_error.inf i) = 0 := toReal_zero
     have h1 : toReal (I.zonotope.I_error.sup i) = 0 := toReal_zero
     have hc : toReal (I.zonotope.c i) = toReal (I.center i) := rfl
-    show toReal (I.zonotope.I_error.inf i) ≤ toReal (I.center i) + toReal (I.radiusFrom i) * t i -
-        (I.taylm N i).nominal.poly t ∧ toReal (I.center i) + toReal (I.radiusFrom i) * t i -
-        (I.taylm N i).nominal.poly t ≤ toReal (I.zonotope.I_error.sup i)
-    rw [hp, hs, hc, h0, h1]
+    show toReal (zero : 𝕋) + toReal (I.zonotope.I_error.inf i) ≤ toReal (I.center i) +
+        toReal (I.radiusFrom i) * t i - (I.taylm N i).inflated.poly t ∧
+      toReal (I.center i) + toReal (I.radiusFrom i) * t i - (I.taylm N i).inflated.poly t ≤
+        toReal (zero : 𝕋) + toReal (I.zonotope.I_error.sup i)
+    rw [hp, hs, hc, h0, h1, toReal_zero]
     constructor <;> linarith
   · -- the interval: `c ± abs r` contains `c + r t` for `|t| ≤ 1`
     obtain rfl : (⟨fun _ => subDown (I.center i) (absolute (I.radiusFrom i)),

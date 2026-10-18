@@ -9,13 +9,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
 public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
+public import CORALean.ContSet.Capsule.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointParts
 
 @[expose] public section
 
 /-!
 # Every box of `Capsule.vertices` holds a boundary point
 
-For a capsule that is not a point and has a nonnegative radius, each box of the list holds a
+For a capsule that is not a point, has a nonnegative radius and an error box that is the origin
+(the boundary of a capsule thickened by a box is not sampled), each box of the list holds a
 sampled point of the exact layer's `vertices` of the nominal capsule, and that point is on the
 frontier of the capsule (`vertices_mem_frontier`): the angles `θ ∓ π/2 + i π / 499` are enclosed,
 `θ` by the corner values of the argument, and every interval operation encloses its exact
@@ -25,7 +28,7 @@ vertices.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -41,14 +44,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toReal C.r)
-    (hnp : ¬ Real.Capsule.representsa_point C.nominal) :
+    (hnp : ¬ Real.Capsule.representsa_point C.nominal) (hI : C.I_error.construct = {0}) :
     ∀ B ∈ C.vertices p k, ∃ x ∈ B.construct, x ∈ frontier C.construct := by -- --- PROOF ---
+  -- the box is the origin, so the set is the nominal capsule
+  rw [Capsule.construct_eq_nominal hI]
   -- the float test answers `false`, or the capsule would be a point
   have hfl : C.representsa_point = false := by
     by_contra hne
     have ht : C.representsa_point = true := by simpa using hne
-    exact hnp ((Real.Capsule.representsa_point_iff (by norm_num) C.nominal).mp
-      (Capsule.representsa_point_sound (by norm_num) ht))
+    exact hnp (Capsule.representsa_point_parts ht).2
   -- the angle `θ`, `π/2`, the step and the two centers, in their boxes
   have hθ : (fun _ => Complex.arg ⟨toReal (C.g 0), toReal (C.g 1)⟩ : Vec ℝ 1) ∈
       (⟨fun _ => Interval.atan2Lo p k (C.g 0) (C.g 1),

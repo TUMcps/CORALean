@@ -11,12 +11,13 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 # `Taylm.representsa_point` is sound
 
 A `true` answer makes every coordinate's polynomial the constant `poly 0` on the whole box, with
-remainder `[0, 0]`, so the range set is within the point `(poly 0)ᵢ`.
+the remainder plus the error box within `[0, 0]` (the absorbed ends bracket their sum), so the range
+set is within the point `(poly 0)ᵢ`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -60,10 +61,10 @@ theorem Taylm.representsa_point_sound {T : Fin m → Taylm 𝕋 n}
   simp only [Bool.and_eq_true] at hi
   obtain ⟨⟨hterms, hlo⟩, hhi⟩ := hi
   have h0 := toReal_zero (𝕋 := 𝕋)
-  have hlo' : |toReal (T i).remInf| ≤ 0 := by
+  have hlo' : |toReal (addDown (T i).rem.inf (T i).I_error.inf)| ≤ 0 := by
     have := SoundFloatArithmetic.toReal_le_of_le hlo
     rwa [toReal_absolute, h0] at this
-  have hhi' : |toReal (T i).remSup| ≤ 0 := by
+  have hhi' : |toReal (addUp (T i).rem.sup (T i).I_error.sup)| ≤ 0 := by
     have := SoundFloatArithmetic.toReal_le_of_le hhi
     rwa [toReal_absolute, h0] at this
   -- the polynomial of the nominal model is constant
@@ -77,17 +78,16 @@ theorem Taylm.representsa_point_sound {T : Fin m → Taylm 𝕋 n}
       have := SoundFloatArithmetic.toReal_le_of_le hb'
       rw [toReal_absolute, h0] at this
       exact abs_nonpos_iff.1 this
-  -- the remainder is `[0, 0]`, so the point equals the polynomial
+  -- the remainder and the box are within `[0, 0]`, so the point equals the polynomial
   have a := ht i
-  have e1 : toReal (T i).remInf = 0 := abs_nonpos_iff.1 hlo'
-  have e2 : toReal (T i).remSup = 0 := abs_nonpos_iff.1 hhi'
-  have : (T i).nominal.rem.inf = 0 := e1
-  have : (T i).nominal.rem.sup = 0 := e2
+  have e1 : toReal (addDown (T i).rem.inf (T i).I_error.inf) = 0 := abs_nonpos_iff.1 hlo'
+  have e2 : toReal (addUp (T i).rem.sup (T i).I_error.sup) = 0 := abs_nonpos_iff.1 hhi'
+  have e3 := addDown_le_add (T i).rem.inf (T i).I_error.inf
+  have e4 := add_le_addUp (T i).rem.sup (T i).I_error.sup
+  have b1 : toReal (T i).rem.inf + toReal (T i).I_error.inf ≤ x i - (T i).nominal.poly t := a.1
+  have b2 : x i - (T i).nominal.poly t ≤ toReal (T i).rem.sup + toReal (T i).I_error.sup := a.2
   show x i = (T i).nominal.poly 0
   rw [← hpoly]
-  have b1 := a.1
-  have b2 := a.2
-  simp only [Taylm.nominal, Real.Taylm.poly] at *
   linarith
 
 end CORALean.Float

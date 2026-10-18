@@ -8,14 +8,14 @@ public import CORALean.ContSet.Taylm.Real.Theorems.GetSymsMem
 /-!
 # The stored polynomial brackets the function, over a floating-point scalar
 
-A function the float model encloses lies within the stored remainder interval around its
-polynomial part `T.nominal.getSyms` on the box: the stored floats read as exact coefficients,
-with nothing rounded.
+A function the float model encloses lies within the stored remainder interval plus the error box
+around its polynomial part `T.nominal.getSyms` on the box: the stored floats read as exact
+coefficients, with nothing rounded.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.getSyms_mem {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) {t : Vec ℝ n}
     (ht : t ∈ Real.Taylm.box n) :
-    T.nominal.getSyms t + toReal T.remInf ≤ f t ∧ f t ≤ T.nominal.getSyms t + toReal T.remSup :=
+    T.nominal.getSyms t + (toReal T.rem.inf + toReal T.I_error.inf) ≤ f t ∧
+      f t ≤ T.nominal.getSyms t + (toReal T.rem.sup + toReal T.I_error.sup) :=
   Real.Taylm.getSyms_mem h ht
 
 end CORALean.Float

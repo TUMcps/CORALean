@@ -11,7 +11,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.EmptyExact
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -28,10 +28,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.empty_exact (hn : 0 < n) :
     Taylm.construct (Taylm.empty n : Fin n → Taylm 𝕋 n) = ∅ := by -- --- PROOF ---
-  have h : (fun i => (Taylm.empty n i : Taylm 𝕋 n).nominal) = Real.Taylm.empty n := by
+  have h : (fun i => (Taylm.empty n i : Taylm 𝕋 n).inflated) = Real.Taylm.empty n := by
     funext i
-    simp [Taylm.empty, Taylm.nominal, Real.Taylm.empty, toReal_one, toReal_zero]
-  show Real.Taylm.construct (fun i => (Taylm.empty n i : Taylm 𝕋 n).nominal) = ∅
+    simp [Taylm.empty, Taylm.inflated, Real.Taylm.empty, toReal_one, toReal_zero]
+  show Real.Taylm.construct (fun i => (Taylm.empty n i : Taylm 𝕋 n).inflated) = ∅
   rw [h]
   exact Real.Taylm.empty_exact hn
 

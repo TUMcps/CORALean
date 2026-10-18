@@ -31,6 +31,18 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ==================================  `Taylm.absorbRounding`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The error box added to the remainder, rounded outward, and the box left the origin. -/
+def Taylm.absorbRounding (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
+  ⟨T.terms, ⟨addDown T.rem.inf T.I_error.inf, addUp T.rem.sup T.I_error.sup⟩, ⟨zero, zero⟩,
+    T.maxOrder⟩
+
+
 -- =====================================  `Taylm.belowPow`  ===================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
@@ -80,11 +92,11 @@ def Taylm.boxRad (B : Fin n → Interval 𝕋) : Vec 𝕋 n :=
 -- ======================================  `Taylm.const`  ======================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 /-- A constant Taylor model -/
-def Taylm.const (n : ℕ) (c : 𝕋) (N : ℕ) : Taylm 𝕋 n := ⟨[(c, 0)], zero, zero, N⟩
+def Taylm.const (n : ℕ) (c : 𝕋) (N : ℕ) : Taylm 𝕋 n := ⟨[(c, 0)], ⟨zero, zero⟩, ⟨zero, zero⟩, N⟩
 
 
 -- ====================================  `Taylm.constCoef`  ===================================== --
@@ -101,13 +113,13 @@ def Taylm.constCoef (T : Taylm 𝕋 n) : 𝕋 :=
 -- ======================================  `Taylm.empty`  ======================================= --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 /-- The empty model in each coordinate: no terms and the crossed remainder, lower bound `one`
-and upper bound `zero`. -/
+and upper bound `zero`, and no error box. -/
 def Taylm.empty (n : ℕ) : Fin n → Taylm 𝕋 n :=
-  fun _ => ⟨[], one, zero, 0⟩
+  fun _ => ⟨[], ⟨one, zero⟩, ⟨zero, zero⟩, 0⟩
 
 
 -- =====================================  `Taylm.listMax`  ====================================== --
@@ -139,12 +151,13 @@ def Taylm.listMin {α : Type} (f : α → 𝕋) : List α → 𝕋
 -- =======================================  `Taylm.plus`  ======================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The term lists side by side, which rounds nothing; only the remainder sum rounds outward. -/
+/-- The term lists side by side; the remainders and the boxes summed, rounded outward. -/
 def Taylm.plus (T₁ T₂ : Taylm 𝕋 n) : Taylm 𝕋 n :=
-  ⟨T₁.terms ++ T₂.terms, addDown T₁.remInf T₂.remInf, addUp T₁.remSup T₂.remSup,
+  ⟨T₁.terms ++ T₂.terms, ⟨addDown T₁.rem.inf T₂.rem.inf, addUp T₁.rem.sup T₂.rem.sup⟩,
+    ⟨addDown T₁.I_error.inf T₂.I_error.inf, addUp T₁.I_error.sup T₂.I_error.sup⟩,
     max T₁.maxOrder T₂.maxOrder⟩
 
 
@@ -163,12 +176,13 @@ def Taylm.polyBounds (L : List (𝕋 × (Fin n → ℕ))) : Interval 𝕋 :=
 -- ======================================  `Taylm.bounds`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The range of a Taylor model -/
+/-- The range of a Taylor model: the polynomial's, remainder's and box's, rounded outward. -/
 def Taylm.bounds (T : Taylm 𝕋 n) : Interval 𝕋 :=
-  ⟨addDown (Taylm.polyBounds T.terms).inf T.remInf, addUp (Taylm.polyBounds T.terms).sup T.remSup⟩
+  ⟨addDown (addDown (Taylm.polyBounds T.terms).inf T.rem.inf) T.I_error.inf,
+    addUp (addUp (Taylm.polyBounds T.terms).sup T.rem.sup) T.I_error.sup⟩
 
 
 -- ======================================  `Taylm.magUp`  ======================================= --
@@ -187,12 +201,12 @@ def Taylm.magUp (T : Taylm 𝕋 n) : 𝕋 :=
 -- =======================================  `Taylm.sum`  ======================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 /-- `Taylm.sum` -/
 def Taylm.sum : {m : ℕ} → (Fin m → Taylm 𝕋 n) → Taylm 𝕋 n
-  | 0, _ => ⟨[], zero, zero, 0⟩
+  | 0, _ => ⟨[], ⟨zero, zero⟩, ⟨zero, zero⟩, 0⟩
   | _ + 1, T => (T 0).plus (Taylm.sum fun i => T i.succ)
 
 
@@ -246,12 +260,13 @@ def Taylm.trace {k : ℕ} (A : Fin k → Fin k → Taylm 𝕋 n) : Taylm 𝕋 n 
 -- ======================================  `Taylm.uminus`  ====================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- Exact: negation is. -/
+/-- Exact: negation is, of the terms, the remainder and the box. -/
 def Taylm.uminus (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
-  ⟨T.terms.map fun a => (neg a.1, a.2), neg T.remSup, neg T.remInf, T.maxOrder⟩
+  ⟨T.terms.map fun a => (neg a.1, a.2), ⟨neg T.rem.sup, neg T.rem.inf⟩,
+    ⟨neg T.I_error.sup, neg T.I_error.inf⟩, T.maxOrder⟩
 
 
 -- ======================================  `Taylm.minus`  ======================================= --

@@ -5,16 +5,20 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Taylm.Float.Taylm
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Float.Operations.Basic
 
 @[expose] public section
 
 /-!
 # An array of Taylor models as a polynomial zonotope, over a floating-point scalar
+
+Every term of every coordinate a generator along that coordinate, and the remainder with the
+model's error box absorbed (`Taylm.absorbRounding`) the polynomial zonotope's error box.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +46,7 @@ def Taylm.polyZonotope (T : Fin m → Taylm 𝕋 n) : PolyZonotope (Vec 𝕋 m) 
     else zero
   E := fun k j => ((Taylm.allTerms T).get j).2.2 k
   GI := Fin.elim0
-  I_error := ⟨fun i => (T i).remInf, fun i => (T i).remSup⟩
+  I_error := ⟨fun i => (T i).absorbRounding.rem.inf, fun i => (T i).absorbRounding.rem.sup⟩
 
 end CORALean.Float
 

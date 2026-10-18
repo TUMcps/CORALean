@@ -14,15 +14,15 @@ public import CORALean.ContSet.Conversion.Float.Operations.Taylm_to_PolyZonotope
 
 CORA's `polyZonotope(taylm)`: the variables are the dependent factors, every term of every
 coordinate a generator along that coordinate, and the remainders independent. The center is `0`
-and the constant terms stay generators at the zero exponent. The remainder box `[remInf, remSup]`
-is carried over as the error box, so nothing rounds, no midpoint is formed and nothing is paid.
-The range set is contained; an inverted remainder is `∅` on both sides, so no hypothesis is
-needed here.
+and the constant terms stay generators at the zero exponent. The remainder with the model's error
+box absorbed (`Taylm.absorbRounding`, the sum of the two rounded outward) is carried over as the
+polynomial zonotope's error box, so no midpoint is formed. The range set is contained; an inverted
+remainder is `∅` on both sides, so no hypothesis is needed here.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -88,10 +88,11 @@ theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n) (i : Fi
 theorem Taylm.polyZonotope_contains (T : Fin m → Taylm 𝕋 n) :
     Taylm.construct T ⊆ (Taylm.polyZonotope T).construct := by -- --- PROOF ---
   rintro x ⟨t, ht, hx⟩
-  -- the polynomial values are the nominal part, the rest of `x` is a point of the error box
+  -- the polynomial values are the nominal part, the rest of `x` is in the absorbed error box
   refine ⟨fun i => (T i).nominal.poly t, PolyZonotope.mem_nominalSet_iff.mpr
     ⟨t, Fin.elim0, ht, fun j => j.elim0, fun i => ?_⟩, fun i => x i - (T i).nominal.poly t,
-    fun i => hx i, funext fun i => by simp⟩
+    fun i => ⟨le_trans (addDown_le_add _ _) (hx i).1, le_trans (hx i).2 (add_le_addUp _ _)⟩,
+    funext fun i => by simp⟩
   show (T i).nominal.poly t = toReal (zero : 𝕋) +
     ∑ l, toReal ((Taylm.polyZonotope T).G l i) *
       Real.PolyZonotope.monomial (Taylm.polyZonotope T).E t l + ∑ j : Fin 0, _

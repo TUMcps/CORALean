@@ -90,13 +90,13 @@ theorem taylm_encloses (i : Fin 2) :
       toReal (box.zonotope.c i) + ∑ j, toReal (box.zonotope.G j i) * t j := by -- --- PROOF ---
   intro t _
   -- the polynomial is the center plus the generators times the variables
-  have h : ((box.taylm 3) i).nominal.poly t =
+  have h : ((box.taylm 3) i).inflated.poly t =
       toReal (box.zonotope.c i) + ∑ j, toReal (box.zonotope.G j i) * t j :=
     aux_taylm_poly box.zonotope 3 i t
-  show toReal ((box.taylm 3) i).remInf ≤ _ - ((box.taylm 3) i).nominal.poly t ∧
-    _ - ((box.taylm 3) i).nominal.poly t ≤ toReal ((box.taylm 3) i).remSup
+  show ((box.taylm 3) i).inflated.rem.inf ≤ _ - ((box.taylm 3) i).inflated.poly t ∧
+    _ - ((box.taylm 3) i).inflated.poly t ≤ ((box.taylm 3) i).inflated.rem.sup
   rw [h, sub_self]
-  simp [Interval.taylm, Zonotope.taylm, Interval.zonotope, toReal_zero]
+  simp [Taylm.inflated, Interval.taylm, Zonotope.taylm, Interval.zonotope, toReal_zero]
 
 /-- The product, the sum and `exp` enclose the functions they were computed from. -/
 theorem XY_encloses : XY.Encloses fun t =>

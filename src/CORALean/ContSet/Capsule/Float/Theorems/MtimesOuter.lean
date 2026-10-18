@@ -1,24 +1,30 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.Mtimes
+public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
 public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
+public import CORALean.ContSet.Capsule.Float.Theorems.Basic
+public import CORALean.ContSet.Capsule.Float.Theorems.SmulMemSymmetric
 
 @[expose] public section
 
 /-!
 # `Capsule.mtimes` encloses the image
 
-The exact layer's `mtimes_outer` at the nominal capsule and the matrix the floats denote, then
-`construct_subset_of_dist_le` to the stored capsule: the center and the generator are each
-within the length of their per-entry gap, and the radius times the exact Frobenius norm is under
-the radius times its rounded-up bound. A negative radius denotes `∅`, so a point in the capsule
-has `0 ≤ r`, which the product with the bound needs.
+A point is a point of the nominal capsule plus a point `e` of the box, and its image is the image
+of each. The exact layer's `mtimes_outer` puts the first at `M c + t M g + w` with `‖w‖₂` at most
+the radius times the exact Frobenius norm, which is under the radius times its rounded-up bound (a
+negative radius denotes `∅`, so a point in the capsule has `0 ≤ r`, which the product with the
+bound needs). What it and `M e` miss of the stored `c̃ + t g̃ + w` is `M e`, the center's rounding
+`M c - c̃`, and `t (M g - g̃)`, which the three boxes of the stored box hold.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -26,26 +32,18 @@ has `0 ≤ r`, which the product with the bound needs.
 
 namespace CORALean.Float
 
-open Pointwise Matrix FloatOps SoundFloatArithmetic
+open CORALean Pointwise Matrix FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem aux_mulVec_gap_le (k : ℕ) (M : Mat 𝕋 m n) (v : Vec 𝕋 n) :
-    ‖(toRealMat M *ᵥ toRealVec v) - toRealVec (mulVecDown M v)‖₂ ≤
-      toReal (normUp k fun i => subUp (dotUp (M i) v) (mulVecDown M v i)) := by -- --- PROOF ---
-  refine norm₂_le_normUp k fun i => ?_
-  have h₁ := dotDown_le (M i) v
-  have h₂ := le_dotUp (M i) v
-  have h₃ := sub_le_subUp (dotUp (M i) v) (dotDown (M i) v)
-  have hv : (toRealMat M *ᵥ toRealVec v) i = ∑ j, toReal (M i j) * toReal (v j) := rfl
-  show |(toRealMat M *ᵥ toRealVec v) i - toReal (dotDown (M i) v)| ≤
-    |toReal (subUp (dotUp (M i) v) (dotDown (M i) v))|
-  rw [hv]
-  rw [abs_of_nonneg (by linarith), abs_of_nonneg (by linarith)]
-  linarith
+/-- Each entry of the exact product lies between the stored `mulVecDown` and `dotUp`. -/
+private theorem aux_mulVec_mem (M : Mat 𝕋 m n) (v : Vec 𝕋 n) (i : Fin m) :
+    toReal (mulVecDown M v i) ≤ (toRealMat M *ᵥ toRealVec v) i ∧
+      (toRealMat M *ᵥ toRealVec v) i ≤ toReal (dotUp (M i) v) :=
+  ⟨dotDown_le (M i) v, le_dotUp (M i) v⟩
 
 private theorem aux_frobenius_le (k : ℕ) (M : Mat 𝕋 m n) :
     Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤
@@ -60,29 +58,47 @@ private theorem aux_frobenius_le (k : ℕ) (M : Mat 𝕋 m n) :
 
 theorem Capsule.mtimes_outer (k : ℕ) (M : Mat 𝕋 m n) (C : Capsule 𝕋 n) :
     (toRealMat M *ᵥ ·) '' C.construct ⊆ (C.mtimes k M).construct := by -- --- PROOF ---
-  rintro _ ⟨x, hx, rfl⟩
+  rintro _ ⟨_, ⟨y, hy, e, he, rfl⟩, rfl⟩
   -- the exact layer's enclosure, and a point of a capsule has a nonnegative radius
-  have hK := CORALean.Real.Capsule.mtimes_outer (toRealMat M) C.nominal ⟨x, hx, rfl⟩
+  have hK := CORALean.Real.Capsule.mtimes_outer (toRealMat M) C.nominal ⟨y, hy, rfl⟩
   have hr : 0 ≤ toReal C.r := by
-    obtain ⟨t, _, hle⟩ := hx
-    exact le_trans (CORALean.norm₂_nonneg _) hle
-  refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := ⟨_, _, _⟩) ?_ hK
-  -- the rounded radius, and the two rounding gaps of the center and of the generator
-  set rad := mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j)))
-  set gC := normUp k fun i => subUp (dotUp (M i) C.c) (mulVecDown M C.c i)
-  set gG := normUp k fun i => subUp (dotUp (M i) C.g) (mulVecDown M C.g i)
-  -- the three lengths: the center's gap, the generator's gap, and the scaled radius
-  have h₁ := aux_mulVec_gap_le k M C.c
-  have h₂ := aux_mulVec_gap_le k M C.g
-  have h₃ : toReal C.r * Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤ toReal rad :=
-    le_trans (mul_le_mul_of_nonneg_left (aux_frobenius_le k M) hr) (mul_le_mulUp _ _)
-  have s₁ := add_le_addUp rad gC
-  have s₂ := add_le_addUp (addUp rad gC) gG
-  show ‖(toRealMat M *ᵥ toRealVec C.c) - toRealVec (mulVecDown M C.c)‖₂ +
-      ‖(toRealMat M *ᵥ toRealVec C.g) - toRealVec (mulVecDown M C.g)‖₂ +
-      toReal C.r * Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤ _
-  show _ ≤ toReal (addUp (addUp rad gC) gG)
-  linarith
+    obtain ⟨t, _, hle⟩ := hy
+    exact le_trans (Real.sqrt_nonneg _) hle
+  obtain ⟨t, ht, w, hw, hMy⟩ := Capsule.exists_split_of_mem hK
+  refine Capsule.mem_construct_of_split _ ht (w := w) ?_ ?_
+  · -- the radius times the exact Frobenius norm, under its rounded-up product
+    have h₃ : toReal C.r * Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤
+        toReal (mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j)))) :=
+      le_trans (mul_le_mul_of_nonneg_left (aux_frobenius_le k M) hr) (mul_le_mulUp _ _)
+    exact le_trans hw h₃
+  · -- the image of the box point, the center's rounding, and the generator's at `t`
+    have hMe := Interval.mtimes_outer M C.I_error ⟨e, he, rfl⟩
+    have hc := Interval.sub_mem_residual (stored := mulVecDown M C.c)
+      (x := toRealMat M *ᵥ toRealVec C.c) (lo := mulVecDown M C.c)
+      (hi := fun i => dotUp (M i) C.c) fun i => aux_mulVec_mem M C.c i
+    have hg := Capsule.smul_mem_symmetric (m := fun i => subUp (dotUp (M i) C.g)
+      (mulVecDown M C.g i)) (δ := toRealMat M *ᵥ toRealVec C.g - toRealVec (mulVecDown M C.g)) ht
+      fun i => by
+        have h := aux_mulVec_mem M C.g i
+        have h' := sub_le_subUp (dotUp (M i) C.g) (mulVecDown M C.g i)
+        rw [abs_le]
+        simp only [Pi.sub_apply, toRealVec]
+        constructor <;> linarith [h.1, h.2]
+    -- the three summed into the stored box, and the difference is their sum
+    have hsum := Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, hMe, _, hc, rfl⟩, _, hg,
+      rfl⟩
+    show _ ∈ (((Interval.mtimes M C.I_error).plus (Interval.residual (mulVecDown M C.c)
+      (fun i => dotUp (M i) C.c) (mulVecDown M C.c))).plus
+        (Interval.symmetric fun i => subUp (dotUp (M i) C.g) (mulVecDown M C.g i))).construct
+    convert hsum using 1
+    show toRealMat M *ᵥ (y + e) - (toRealVec (mulVecDown M C.c) + t • toRealVec (mulVecDown M C.g)
+      + w) = _
+    rw [Matrix.mulVec_add]
+    funext i
+    have hi := congrFun hMy i
+    simp only [Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul, toRealVec, Capsule.nominal,
+      CORALean.Real.Capsule.mtimes] at hi ⊢
+    linear_combination hi
 
 end CORALean.Float
 

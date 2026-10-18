@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.Basic
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 
@@ -9,15 +10,16 @@ public import CORALean.ContSet.Capsule.Float.Operations.Basic
 
 CORA's `@capsule/convHull_.m` for two capsules, as the exact layer: the midpoint `c_` of the
 centers, the generator `g_` from it to the first center, `(C.c - S.c)/2`, and the larger of the
-two radii `‖g‖₂ + r`. The stored center and generator are rounded, so the distance of each from the
-exact one (per entry at most half the gap between the upward and the downward rounding of the same
-sum or difference) is added to the radius as a rounded-up length. `k` is the number of Newton
-steps of the roots (`Global/Float/Sqrt`).
+two radii `‖g‖₂ + r`, here `Capsule.radius`, which counts each operand's error box too. The stored
+center and generator are rounded, and what each misses of the exact one (per entry at most half
+the gap between the upward and the downward rounding of the same sum or difference) goes into the
+error box, as a symmetric box: the center's as it is, the generator's at every segment parameter.
+`k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -37,8 +39,8 @@ def Capsule.convHull (k : ℕ) (C S : Capsule 𝕋 n) : Capsule 𝕋 n :=
   let g_ := fun i => half (subUp (C.c i) (S.c i))
   let cGap := fun i => half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i)))
   let gGap := fun i => half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i)))
-  let r_ := addUp (maximum (C.radius k) (S.radius k)) (addUp (normUp k cGap) (normUp k gGap))
-  ⟨c_, g_, r_⟩
+  let r_ := maximum (C.radius k) (S.radius k)
+  ⟨c_, g_, r_, (Interval.symmetric cGap).plus (Interval.symmetric gGap)⟩
 
 end CORALean.Float
 

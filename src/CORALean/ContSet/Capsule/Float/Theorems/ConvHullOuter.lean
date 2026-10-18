@@ -1,23 +1,28 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.ConvHull
-public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.RadiusLe
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Capsule.Float.Theorems.SmulMemSymmetric
 
 @[expose] public section
 
 /-!
 # `Capsule.convHull` encloses the hull
 
-The exact layer's `convHull_outer` at the nominal capsules gives the segments inside the exact
-hull capsule; `construct_subset_of_dist_le` moves that to the stored one. Its center and generator
-are each at most `normUp` of the half-gaps away (`aux_half_gap_le`), and the stored radius adds
-both to the larger rounded-up radius. Outer only, as the exact hull.
+The exact layer's argument (`Real.Capsule.convHull_outer`) with `Capsule.radius` in place of the
+exact radii: a point `l x + (1 - l) y` of the hull is `c_ + (2l - 1) g_ + w` for the exact
+midpoint `c_`, half-difference `g_` and `w = l (x - c) + (1 - l) (y - S.c)`, whose length is at
+most the larger radius, because `radius_le` bounds `‖x - c‖₂` for every point of the set, the error
+box included. What the exact `c_` and `g_` miss of the stored ones is at most half the gap of the
+two roundings per entry (`aux_half_gap_le`), which the two symmetric boxes of the stored box hold.
+Outer only, as the exact hull.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,19 +40,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A value `x` between the roundings `d ≤ x ≤ u` of the same quantity: half of `x` is within
 half the gap of the stored half of `u`. -/
 theorem Capsule.aux_half_gap_le {x : ℝ} {u d : 𝕋} (hd : toReal d ≤ x) (hu : x ≤ toReal u) :
-    |x / 2 - toReal (half u)| ≤ |toReal (half (subUp u d))| := by -- --- PROOF ---
+    |x / 2 - toReal (half u)| ≤ toReal (half (subUp u d)) := by
   have h₃ := sub_le_subUp u d
   rw [toReal_half, toReal_half]
-  refine le_trans ?_ (le_abs_self _)
   rw [abs_of_nonpos (by linarith)]
-  linarith
-
-theorem Capsule.aux_radius_le (k : ℕ) (C : Capsule 𝕋 n) :
-    C.nominal.radius ≤ toReal (C.radius k) := by -- --- PROOF ---
-  have h₂ : ‖toRealVec C.g‖₂ ≤ toReal (normUp k C.g) :=
-    norm₂_le_normUp k fun j => le_rfl
-  have h₃ := add_le_addUp (normUp k C.g) C.r
-  change ‖toRealVec C.g‖₂ + toReal C.r ≤ toReal (addUp (normUp k C.g) C.r)
   linarith
 
 
@@ -55,47 +51,39 @@ theorem Capsule.aux_radius_le (k : ℕ) (C : Capsule 𝕋 n) :
 
 theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) :
     Set.linComb C.construct S.construct ⊆ (C.convHull k S).construct := by -- --- PROOF ---
-  intro z hz
-  -- the exact hull capsule holds the segments
-  have hK := CORALean.Real.Capsule.convHull_outer C.nominal S.nominal hz
-  refine CORALean.Real.Capsule.construct_subset_of_dist_le (C := C.nominal.convHull S.nominal)
-    ?_ hK
-  -- the center's and the generator's half-gaps, rounded up
-  set gc := normUp k fun i => half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i)))
-  set gg := normUp k fun i => half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i)))
-  have hc : ‖(C.nominal.convHull S.nominal).c - (Capsule.convHull k C S).nominal.c‖₂ ≤
-      toReal gc := by
-    refine norm₂_le_normUp k fun j => ?_
-    have h := Capsule.aux_half_gap_le (x := toReal (C.c j) + toReal (S.c j))
-      (addDown_le_add (C.c j) (S.c j)) (add_le_addUp (C.c j) (S.c j))
-    have e : (C.nominal.convHull S.nominal).c j - toReal (half (addUp (C.c j) (S.c j))) =
-        (toReal (C.c j) + toReal (S.c j)) / 2 - toReal (half (addUp (C.c j) (S.c j))) := by
-      show (1 / 2 : ℝ) * (toReal (C.c j) + toReal (S.c j)) - _ = _
-      ring
-    show |(C.nominal.convHull S.nominal).c j - toReal (half (addUp (C.c j) (S.c j)))| ≤ _
-    rw [e]; exact h
-  have hg : ‖(C.nominal.convHull S.nominal).g - (Capsule.convHull k C S).nominal.g‖₂ ≤
-      toReal gg := by
-    refine norm₂_le_normUp k fun j => ?_
-    -- the same, for the difference
-    have h := Capsule.aux_half_gap_le (x := toReal (C.c j) - toReal (S.c j))
-      (subDown_le_sub (C.c j) (S.c j)) (sub_le_subUp (C.c j) (S.c j))
-    have e : (C.nominal.convHull S.nominal).g j - toReal (half (subUp (C.c j) (S.c j))) =
-        (toReal (C.c j) - toReal (S.c j)) / 2 - toReal (half (subUp (C.c j) (S.c j))) := by
-      show toReal (C.c j) - (1 / 2 : ℝ) * (toReal (C.c j) + toReal (S.c j)) - _ = _
-      ring
-    show |(C.nominal.convHull S.nominal).g j - toReal (half (subUp (C.c j) (S.c j)))| ≤ _
-    rw [e]; exact h
-  -- the stored radius adds both gaps to the larger rounded-up radius
-  have hr₁ := Capsule.aux_radius_le k C
-  have hr₂ := Capsule.aux_radius_le k S
-  have s₁ := add_le_addUp (maximum (C.radius k) (S.radius k)) (addUp gc gg)
-  have s₂ := add_le_addUp gc gg
-  have hm : max C.nominal.radius S.nominal.radius ≤
-      toReal (maximum (C.radius k) (S.radius k)) := by
-    rw [toReal_maximum]; exact max_le_max hr₁ hr₂
-  show _ + _ + max C.nominal.radius S.nominal.radius ≤ toReal (addUp _ _)
-  linarith
+  rintro _ ⟨x, hx, y, hy, l, ⟨hl0, hl1⟩, rfl⟩
+  have h₁ := Capsule.radius_le k C hx
+  have h₂ := Capsule.radius_le k S hy
+  have ht : 2 * l - 1 ∈ Set.Icc (-1 : ℝ) 1 := Set.mem_Icc.mpr ⟨by linarith, by linarith⟩
+  refine Capsule.mem_construct_of_split _ ht
+    (w := l • (x - toRealVec C.c) + (1 - l) • (y - toRealVec S.c)) ?_ ?_
+  · -- the two offsets, each within the larger radius
+    show _ ≤ toReal (maximum (C.radius k) (S.radius k))
+    refine (norm₂_add_le _ _).trans ?_
+    rw [norm₂_smul, norm₂_smul, abs_of_nonneg hl0, abs_of_nonneg (by linarith), toReal_maximum]
+    have a₁ := mul_le_mul_of_nonneg_left (h₁.trans (le_max_left _ (toReal (S.radius k)))) hl0
+    have a₂ := mul_le_mul_of_nonneg_left (h₂.trans (le_max_right (toReal (C.radius k)) _))
+      (by linarith : 0 ≤ 1 - l)
+    nlinarith
+  · -- the center's and the generator's half-gaps
+    have hc := Capsule.smul_mem_symmetric (t := 1)
+      (m := fun i => half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i))))
+      (δ := fun i => (toReal (C.c i) + toReal (S.c i)) / 2 - toReal (half (addUp (C.c i) (S.c i))))
+      (Set.mem_Icc.mpr ⟨by norm_num, le_rfl⟩) fun i =>
+        Capsule.aux_half_gap_le (addDown_le_add _ _) (add_le_addUp _ _)
+    have hg := Capsule.smul_mem_symmetric (t := 2 * l - 1)
+      (m := fun i => half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i))))
+      (δ := fun i => (toReal (C.c i) - toReal (S.c i)) / 2 - toReal (half (subUp (C.c i) (S.c i))))
+      ht fun i => Capsule.aux_half_gap_le (subDown_le_sub _ _) (sub_le_subUp _ _)
+    show _ ∈ ((Interval.symmetric fun i =>
+        half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i)))).plus
+      (Interval.symmetric fun i =>
+        half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i))))).construct
+    convert Interval.plus_outer _ _ ⟨_, hc, _, hg, rfl⟩ using 1
+    funext i
+    simp only [Capsule.convHull, Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul,
+      toRealVec]
+    ring
 
 end CORALean.Float
 

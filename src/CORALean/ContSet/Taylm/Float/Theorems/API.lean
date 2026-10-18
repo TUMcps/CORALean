@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsorbRoundingNominal
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsPolyOfRoundLe
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp

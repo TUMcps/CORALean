@@ -15,13 +15,13 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 The new polynomial at `s` is the original at `s` with `sₖ` replaced by `m + r sₖ`
 (`polyOf_reexpPairs`), up to the width of the stored coefficients' brackets
-(`abs_polyOf_round_le`), which the remainder takes in; and for `|m| + |r| ≤ 1` that point is again
-in the normalized box, where the original remainder holds.
+(`abs_polyOf_round_le`), which the error box takes in; and for `|m| + |r| ≤ 1` that point is again
+in the normalized box, where the original remainder and box hold.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -69,12 +69,12 @@ theorem Taylm.reexpandAt_outer {T : Taylm 𝕋 n} {g : Vec ℝ n → ℝ} (h : T
       Real.Taylm.polyOf (T.terms.map fun a => (toReal a.1, a.2))
         (Function.update s k (toReal m + toReal r * s k)) :=
     Taylm.polyOf_reexpPairs T.terms k m r s
-  -- the remainder's two ends, rounded outward by the stored coefficients' width
-  have hlo := subDown_le_sub T.remInf (listSumUp ((T.reexpPairs k).map fun p =>
+  -- the box's two ends, rounded outward by the stored coefficients' width
+  have hlo := subDown_le_sub T.I_error.inf (listSumUp ((T.reexpPairs k).map fun p =>
     subUp (Taylm.reexpCoef k m r p).sup (Taylm.reexpCoef k m r p).inf))
-  have hhi := add_le_addUp T.remSup (listSumUp ((T.reexpPairs k).map fun p =>
+  have hhi := add_le_addUp T.I_error.sup (listSumUp ((T.reexpPairs k).map fun p =>
     subUp (Taylm.reexpCoef k m r p).sup (Taylm.reexpCoef k m r p).inf))
-  simp only [Taylm.nominal, Real.Taylm.poly] at hr ⊢
+  simp only [Taylm.inflated, Real.Taylm.poly] at hr ⊢
   -- the stored polynomial, spelt as a sum over the pairs
   have hrw : Real.Taylm.polyOf ((T.reexpandAt k m r).terms.map fun a => (toReal a.1, a.2)) s
       = Real.Taylm.polyOf ((T.reexpPairs k).map fun p => (toReal (Taylm.reexpCoef k m r p).sup,

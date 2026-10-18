@@ -4,12 +4,9 @@
 # with `absorbRounding_outer` (CONTRIBUTING, "The error box and absorbRounding"). A representation
 # that cannot hold the box, or has no box of its own, is listed here with the reason. The list
 # only shrinks: an entry whose representation meets the rule is reported as stale.
-Capsule  pending #185: the representation has no `I_error` yet; its rounding is still folded into the radius
-Ellipsoid  pending #185: has I_error since #169 (q, Q form), absorbRounding (Q += a bound of I_error) not yet written
 Interval  is the error-box type itself: its operations round outward in the bounds
 Polygon  an abbreviation for a union of float `VPolytope`s; the pieces carry the boxes
 ProbZonotope  the rounding sits in the mean zonotope's `I_error` and in the covariance interval, which is outward by construction
-Taylm  pending #185: the representation has no `I_error` yet; its rounding is still added to the remainder
 VPolytope  absorbing a box needs the box's 2^n corners at each of the `k` vertices, a vertex count the representation cannot hold in general
 ZonoBundle  no box of its own: each member zonotope carries one, and the set is their intersection
 Zoo  a set of functions, with no ambient point set to hold a box; the members are a Taylor model and an interval

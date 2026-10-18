@@ -68,6 +68,7 @@ public import CORALean.ContSet.Taylm.Float.Operations.Reexpand
 # Float Taylor model operations, collected
 
 The exact layer's arithmetic with each coefficient computation enclosed and its width added
-to the remainder, and `exp` and `log` with every constant of their expansions enclosed.
+to the error box (`absorbRounding` moves the box into the remainder, as a product does first), and
+`exp` and `log` with every constant of their expansions enclosed.
 `codeEval` runs a code list with them, and `rangeBound` bounds its range over a box.
 -/

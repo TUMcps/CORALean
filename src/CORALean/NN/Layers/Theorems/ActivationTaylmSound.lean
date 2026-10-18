@@ -58,13 +58,13 @@ theorem Layer.activationTaylm_sound {P : LayerRelaxation 𝕋 n deg}
   · -- each output model encloses the fit at `f i` plus the constant deviation
     intro i
     have hrel := abs_le.mp ((hP i).sound (hbox i).1 (hbox i).2)
-    have hrem : (⟨[], neg ((P i).error ((Taylm.interval s.taylm).inf i)
+    have hrem : (⟨[], ⟨neg ((P i).error ((Taylm.interval s.taylm).inf i)
         ((Taylm.interval s.taylm).sup i)),
-        (P i).error ((Taylm.interval s.taylm).inf i) ((Taylm.interval s.taylm).sup i),
-        (s.taylm i).maxOrder⟩ : Taylm 𝕋 d).Encloses fun _ => dv i := by
+        (P i).error ((Taylm.interval s.taylm).inf i) ((Taylm.interval s.taylm).sup i)⟩,
+        ⟨zero, zero⟩, (s.taylm i).maxOrder⟩ : Taylm 𝕋 d).Encloses fun _ => dv i := by
       intro t' _
-      simp only [Taylm.nominal, Real.Taylm.poly, Real.Taylm.polyOf_nil, List.map_nil, sub_zero,
-        toReal_neg]
+      simp only [Taylm.inflated, Real.Taylm.poly, Real.Taylm.polyOf_nil, List.map_nil, sub_zero,
+        toReal_neg, toReal_zero, add_zero]
       exact ⟨hrel.1, hrel.2⟩
     -- constant, remainder box, then the sum of the scaled powers
     exact Taylm.plus_outer (Taylm.plus_outer (Taylm.const_outer _ _) hrem)

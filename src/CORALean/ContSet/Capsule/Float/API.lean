@@ -11,6 +11,7 @@ public import CORALean.ContSet.Capsule.Float.Operations.IsDisjoint
 public import CORALean.ContSet.Capsule.Float.Theorems.IsDisjointSound
 public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Float.Operations.Basic
+public import CORALean.ContSet.Capsule.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.Capsule.Float.Operations.Reduce
 public import CORALean.ContSet.Capsule.Float.Operations.Reindex
 public import CORALean.ContSet.Capsule.Float.Operations.Project
@@ -26,6 +27,14 @@ public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
 public import CORALean.ContSet.Capsule.Float.Operations.IsFullDim
 public import CORALean.ContSet.Capsule.Float.Operations.ContainsPoint
 public import CORALean.ContSet.Capsule.Float.Theorems.Basic
+public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.SmulMemSymmetric
+public import CORALean.ContSet.Capsule.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.Capsule.Float.Theorems.CenterMemConstructIff
+public import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Capsule.Float.Theorems.Norm2LeErrorNorm
+public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointParts
+public import CORALean.ContSet.Capsule.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.Capsule.Float.Theorems.OriginExact
 public import CORALean.ContSet.Capsule.Float.Theorems.EmptyExact
 public import CORALean.ContSet.Capsule.Float.Theorems.ProjectExact
@@ -46,7 +55,8 @@ public import CORALean.ContSet.Capsule.Float.Instances
 /-!
 # Capsules over a floating-point scalar, collected
 
-The representation in `Capsule`, `origin`, `empty`, `center`, `reduce`, `reindex` and `project` in
-`Operations`, their guarantees in `Theorems`, and the class instances in `Instances`. The box a
-capsule is enclosed by, and every conversion through it, are in `Conversion/Float/Capsule_to_*`.
+The representation in `Capsule`, `origin`, `empty`, `center`, `reduce`, `reindex`, `project` and
+`absorbRounding` in `Operations`, their guarantees in `Theorems`, and the class instances in
+`Instances`. The box a capsule is enclosed by, and every conversion through it, are in
+`Conversion/Float/Capsule_to_*`.
 -/

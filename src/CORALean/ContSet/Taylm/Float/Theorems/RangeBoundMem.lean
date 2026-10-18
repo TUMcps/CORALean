@@ -51,7 +51,7 @@ theorem Taylm.rangeBound_mem {m : ℕ} {p q s N : ℕ} {e : Real.Taylm.CodeList 
   obtain ⟨t, ht, hxt⟩ := Interval.taylm_contains D N hx
   -- each coordinate is its model's polynomial plus a fixed offset inside the remainder
   set f : Fin m → Vec ℝ _ → ℝ := fun i t' =>
-    (D.taylm N i).nominal.poly t' + (x i - (D.taylm N i).nominal.poly t)
+    (D.taylm N i).inflated.poly t' + (x i - (D.taylm N i).inflated.poly t)
   have hF : ∀ i, (D.taylm N i).Encloses (f i) := by
     intro i t' _
     have := hxt i

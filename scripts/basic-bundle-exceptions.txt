@@ -15,7 +15,6 @@ src/CORALean/ContSet/PolyZonotope/Float/Operations/SubsPoly.lean  cycle once mov
 src/CORALean/ContSet/SpectraShadow/Float/Theorems/MaterialiseEq.lean  cycle once moved in: `Basic` → `ContSet/SpectraShadow/Float/Theorems/ConvHullOuter` → `Basic`
 src/CORALean/ContSet/SpectraShadow/Real/Operations/Or.lean  cycle once moved in: `Basic` → `ContSet/SpectraShadow/Real/Operations/ConvHull` → `Basic`
 src/CORALean/ContSet/SpectraShadow/Real/Theorems/OrExact.lean  cycle once moved in: `Basic` → `ContSet/SpectraShadow/Real/Theorems/ConvHullExact` → `ContSet/SpectraShadow/Real/Theorems/ConeConstruct` → `ContSet/SpectraShadow/Real/Theorems/ArrowMatPosSemidefOfPos` → `Basic`
-src/CORALean/ContSet/Taylm/Float/Operations/Compose.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Float/Operations/Pow` → `Basic`
 src/CORALean/ContSet/Taylm/Float/Operations/Cosh.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Float/Operations/Hyperbolic` → `Basic`
 src/CORALean/ContSet/Taylm/Float/Operations/Mmul.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Float/Operations/Times` → `Basic`
 src/CORALean/ContSet/Taylm/Float/Operations/OptBnbAdv.lean  cycle once moved in: `Basic` → `ContSet/Taylm/Float/Operations/BranchAndBound` → `Basic`

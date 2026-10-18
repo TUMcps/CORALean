@@ -1,7 +1,9 @@
 module
 
+public import CORALean.ContSet.Capsule.Float.Theorems.Norm2LeErrorNorm
 public import CORALean.ContSet.Capsule.Float.Operations.Basic
 public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCenterLe
+public import CORALean.ContSet.Capsule.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -9,12 +11,13 @@ public import CORALean.ContSet.Capsule.Real.Theorems.NormSubCenterLe
 # Every point of a float capsule is within `radius` of the nominal center
 
 The exact layer's `norm₂_sub_center_le` at the nominal capsule, with `√(Σ g²)` replaced by its
-rounded-up `normUp` and the sum by `addUp`.
+rounded-up `normUp` and the sum by `addUp`, and the error box's point within `errorNorm` of the
+origin by the triangle inequality.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -22,7 +25,7 @@ rounded-up `normUp` and the sum by `addUp`.
 
 namespace CORALean.Float
 
-open FloatOps SoundFloatArithmetic
+open CORALean FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
@@ -31,12 +34,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Capsule.radius_le (k : ℕ) (C : Capsule 𝕋 n) {x : Vec ℝ n} (hx : x ∈ C.construct) :
     ‖x - toRealVec C.c‖₂ ≤ toReal (C.radius k) := by -- --- PROOF ---
-  have h₁ := CORALean.Real.Capsule.norm₂_sub_center_le (C := C.nominal) hx
+  obtain ⟨y, hy, e, he, rfl⟩ := hx
+  have h₁ := CORALean.Real.Capsule.norm₂_sub_center_le (C := C.nominal) hy
   have h₂ : ‖toRealVec C.g‖₂ ≤ toReal (normUp k C.g) :=
     norm₂_le_normUp k fun j => le_rfl
   have h₃ := add_le_addUp (normUp k C.g) C.r
-  change ‖x - toRealVec C.c‖₂ ≤ ‖toRealVec C.g‖₂ + toReal C.r at h₁
-  have h₄ : toReal (C.radius k) = toReal (addUp (normUp k C.g) C.r) := rfl
+  have h₄ := add_le_addUp (addUp (normUp k C.g) C.r) (C.errorNorm k)
+  have h₅ := Capsule.norm₂_le_errorNorm k C he
+  change ‖y - toRealVec C.c‖₂ ≤ ‖toRealVec C.g‖₂ + toReal C.r at h₁
+  have h₆ : ‖y + e - toRealVec C.c‖₂ ≤ ‖y - toRealVec C.c‖₂ + ‖e‖₂ := by
+    rw [show y + e - toRealVec C.c = (y - toRealVec C.c) + e by abel]
+    exact norm₂_add_le _ _
+  show _ ≤ toReal (addUp (addUp (normUp k C.g) C.r) (C.errorNorm k))
   linarith
 
 end CORALean.Float

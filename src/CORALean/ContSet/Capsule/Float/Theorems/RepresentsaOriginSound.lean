@@ -9,13 +9,13 @@ public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
 /-!
 # `Capsule.representsa_origin` is sound
 
-`true` makes the nominal capsule a point with center `0`, so by the exact layer's
-`representsa_origin_iff` (for `0 < n`) it is `{0}`.
+`true` makes the capsule its stored center (`representsa_point_sound`, for `0 < n`), and that
+center `0`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,11 +35,8 @@ theorem Capsule.representsa_origin_sound (hn : 0 < n) {C : Capsule 𝕋 n}
   simp only [Capsule.representsa_origin, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hc, hp⟩ := h
-  have hpt : C.nominal.representsa_point := by
-    have := Capsule.representsa_point_sound hn hp
-    exact (CORALean.Real.Capsule.representsa_point_iff hn C.nominal).mp this
-  refine (CORALean.Real.Capsule.representsa_origin_iff hn C.nominal).mpr ⟨?_, hpt⟩
-  funext i
+  rw [Capsule.representsa_point_sound hn hp]
+  refine congrArg _ (funext fun i => ?_)
   have := hc i
   show toReal (C.c i) = 0
   exact le_antisymm (by simpa [toReal_zero] using toReal_le_of_le this.1)

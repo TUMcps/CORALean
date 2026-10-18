@@ -86,13 +86,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- ====================================  `Capsule.interval`  ==================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The box, each end rounded away from the capsule. -/
+/-- The box, each end rounded away from the capsule, the error box's ends added. -/
 def Capsule.interval (C : Capsule 𝕋 n) : Interval (Vec 𝕋 n) where
-  inf := fun i => subDown (C.c i) (addUp (absolute (C.g i)) C.r)
-  sup := fun i => addUp (C.c i) (addUp (absolute (C.g i)) C.r)
+  inf := fun i => addDown (subDown (C.c i) (addUp (absolute (C.g i)) C.r)) (C.I_error.inf i)
+  sup := fun i => addUp (addUp (C.c i) (addUp (absolute (C.g i)) C.r)) (C.I_error.sup i)
 
 end
 
@@ -608,14 +608,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- ===================================  `PolyZonotope.taylm`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 /-- A polynomial zonotope as an array of Taylor models, over a floating-point scalar -/
 def PolyZonotope.taylm (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) : Fin n → Taylm 𝕋 (pZ.p + pZ.q) :=
   fun i => ⟨(pZ.c i, 0) :: (List.ofFn (fun j => (pZ.G j i, Fin.append (fun k => pZ.E k j) 0))
     ++ List.ofFn (fun l => (pZ.GI l i, Pi.single (Fin.natAdd pZ.p l) 1))),
-    pZ.I_error.inf i, pZ.I_error.sup i, N⟩
+    ⟨zero, zero⟩, ⟨pZ.I_error.inf i, pZ.I_error.sup i⟩, N⟩
 
 end
 
@@ -1033,13 +1033,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  `Zonotope.taylm`  ===================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 /-- A zonotope as an array of Taylor models, over a floating-point scalar -/
 def Zonotope.taylm (Z : Zonotope (Vec 𝕋 n)) (N : ℕ) : Fin n → Taylm 𝕋 Z.h :=
   fun i => ⟨(Z.c i, 0) :: List.ofFn (fun j => (Z.G j i, Pi.single j 1)),
-    Z.I_error.inf i, Z.I_error.sup i, N⟩
+    ⟨zero, zero⟩, ⟨Z.I_error.inf i, Z.I_error.sup i⟩, N⟩
 
 end
 

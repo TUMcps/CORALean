@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Taylm.const_outer (c : 𝕋) (N : ℕ) :
     (Taylm.const n c N).Encloses fun _ => toReal c := by
   intro t _
-  simp [Taylm.const, Taylm.nominal, Real.Taylm.poly, Real.Taylm.monomial_zero, toReal_zero]
+  simp [Taylm.const, Taylm.inflated, Real.Taylm.poly, Real.Taylm.monomial_zero, toReal_zero]
 
 
 -- ===================================  `Taylm.minus_outer`  ==================================== --
