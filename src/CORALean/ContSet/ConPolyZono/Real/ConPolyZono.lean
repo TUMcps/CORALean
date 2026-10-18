@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Interval
+public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 public import Mathlib.Data.Matrix.Mul
 
@@ -19,12 +19,10 @@ The symbols are [1]'s: `p` factors, `h` generators, `m` constraints, `q` constra
 so `A` is `m × q` and `R` is `p × q`. [1] has no independent generators; their count is `qI`,
 `PolyZonotope`'s `q` [2, Def. 1] being the letter [1] gives the constraint generators.
 
-`b` is an `Interval` where [1] writes `A μ_R(α) = b`; `Interval.point b` gives that back.
-Nothing here rounds; the width is for the float layer, whose `nominal` must be an exact
-`ConPolyZono`. Rounding the stored `A` or `b` names another equation, which has no interior to
-absorb the error, so the stored `b` is read as the interval it was widened to. The operations
-copy `b` through and build crisp rows from crisp ones; only `intersection`, whose agreement rows
-carry a tolerance box, writes a row of positive width.
+The constraint system is a `PolyLevelSet` on the factors with `=` in every row (`cons`), as a
+constrained zonotope's is an `HPolytope`: `satisfies a` is `a ∈ cons.construct`
+(`satisfies_iff_mem_cons`). `A`, `b` and `R` are stored as [1] writes them, `b` a point vector;
+what rounding costs the float layer's rows is its own record, `b_error`.
 
 ## References
 
@@ -35,9 +33,9 @@ carry a tolerance box, writes a row of positive width.
       Control, 2021.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -68,18 +66,20 @@ structure ConPolyZono (α : Type) where
   E : Fin p → Fin h → ℕ
   GI : Fin qI → α
   A : Mat ℝ m q
-  /-- The constraint vector `b` of [1], held as the interval it is widened to. -/
-  b : Interval (Vec ℝ m)
+  /-- The constraint vector `b` of [1]. -/
+  b : Vec ℝ m
   /-- The constraint exponent matrix, `R` of [1]. -/
   R : Fin p → Fin q → ℕ
 
-/-- The constraint `A μ_R(α) ∈ b`, one row at a time and over the data rather than
-over a set, so an operation can name the constraints of the system it is still
-assembling. -/
-def ConPolyZono.holds {p m q : ℕ} (A : Mat ℝ m q) (b : Interval (Vec ℝ m))
+/-- The constraint `A μ_R(α) = b`, one row at a time and over the data rather than over a set,
+so an operation can name the constraints of the system it is still assembling. -/
+def ConPolyZono.holds {p m q : ℕ} (A : Mat ℝ m q) (b : Vec ℝ m)
     (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) : Prop :=
-  ∀ i, b.inf i ≤ (A *ᵥ PolyZonotope.monomial R a) i
-        ∧ (A *ᵥ PolyZonotope.monomial R a) i ≤ b.sup i
+  ∀ i, (A *ᵥ PolyZonotope.monomial R a) i = b i
+
+/-- The constraint system as a polynomial level set on the factors, `=` in every row. -/
+def ConPolyZono.cons (cPZ : ConPolyZono α) : PolyLevelSet cPZ.p :=
+  ⟨cPZ.m, cPZ.q, cPZ.A, cPZ.R, cPZ.b, fun _ => .eq⟩
 
 /-- What a set's own factors must satisfy: `holds` at its own fields. -/
 def ConPolyZono.satisfies (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) : Prop :=

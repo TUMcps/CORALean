@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 theorem ConPolyZono.compactCons_eq_spec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.compactCons = cPZ.compactConsSpec := by
   simp only [ConPolyZono.compactCons, ConPolyZono.compactConsSpec,
-    ConPolyZono.compactConsB, PolyZonotope.repTab_getD, PolyZonotope.tabAt_keepTab]
+    PolyZonotope.repTab_getD, PolyZonotope.tabAt_keepTab]
   rfl
 
 end CORALean.Float

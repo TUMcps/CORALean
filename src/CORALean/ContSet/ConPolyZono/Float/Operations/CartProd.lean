@@ -14,13 +14,14 @@ public import CORALean.Global.Float.GenBlockDiag
 CORA's `@conPolyZono/cartProd_`: the factors of the two operands stay disjoint, so both exponent
 matrices are block diagonal (`PolyZonotope.plusE`), the centers stack, the dependent and the
 independent generators are each `genBlockDiag` of the two, the constraint matrix is block diagonal
-(`plusA`) and the right-hand sides stack (`plusB`). The error boxes stack (`Interval.append`).
+(`plusA`), and the right-hand sides and their slacks stack (`plusB`), the nominal part being the
+product of the two (`Real.ConPolyZono.relax_cartProd`). The error boxes stack (`Interval.append`).
 Nothing is added or multiplied, so nothing rounds.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -46,6 +47,7 @@ def ConPolyZono.cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁)) (cPZ₂ : C
   GI := fun j i => genBlockDiag (fun i j => cPZ₁.GI j i) (fun i j => cPZ₂.GI j i) i j
   A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
   b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
+  b_error := ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error
   R := Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R
   I_error := Interval.append cPZ₁.I_error cPZ₂.I_error
 

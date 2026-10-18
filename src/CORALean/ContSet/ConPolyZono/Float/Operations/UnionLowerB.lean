@@ -7,9 +7,8 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 /-!
 # `ConPolyZono.unionLowerB`
 
-Each operand's bounds of [1, Thm. 1], shifted by what the selector column contributes: the lower end
-is `b.inf / 2`, exact, and the upper end `b.sup - b.inf / 2` rounded up, so the
-interval only ever widens.
+Each operand's right-hand side of [1, Thm. 1], shifted by what the selector column contributes:
+`b / 2`, exact, so nothing rounds and each row keeps its operand's slack.
 
 ## References
 
@@ -19,7 +18,7 @@ interval only ever widens.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -34,12 +33,9 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Each operand's bounds, shifted by the selector column and rounded outward. -/
-def ConPolyZono.unionLowerB {m₁ m₂ : ℕ} (b₁ : Interval (Vec 𝕋 m₁))
-    (b₂ : Interval (Vec 𝕋 m₂)) : Interval (Vec 𝕋 (m₁ + m₂)) :=
-  ⟨Fin.append (fun r => half (b₁.inf r)) (fun r => half (b₂.inf r)),
-    Fin.append (fun r => subUp (b₁.sup r) (half (b₁.inf r)))
-      (fun r => subUp (b₂.sup r) (half (b₂.inf r)))⟩
+/-- Each operand's right-hand side, shifted by the selector column: halved, exactly. -/
+def ConPolyZono.unionLowerB {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b₂ : Vec 𝕋 m₂) : Vec 𝕋 (m₁ + m₂) :=
+  Fin.append (fun r => half (b₁ r)) (fun r => half (b₂ r))
 
 end CORALean.Float
 

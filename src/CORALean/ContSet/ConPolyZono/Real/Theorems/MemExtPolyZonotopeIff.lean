@@ -18,7 +18,7 @@ blocks of `extPolyZonotope`, the monomials of `appendE` being those of either ha
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -54,7 +54,7 @@ theorem ConPolyZono.mem_extPolyZonotope_iff (cPZ : ConPolyZono (Vec ℝ n)) (p :
     (t : Vec ℝ cPZ.m) : -- --- STMT ---
     (p, t) ∈ cPZ.extPolyZonotope.construct ↔
       ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-        ∧ (∀ i, (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R a) i = cPZ.b.inf i + t i)
+        ∧ (∀ i, (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R a) i = cPZ.b i + t i)
         ∧ p = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i
             + ∑ j, β j • cPZ.GI j := by -- --- PROOF ---
   constructor

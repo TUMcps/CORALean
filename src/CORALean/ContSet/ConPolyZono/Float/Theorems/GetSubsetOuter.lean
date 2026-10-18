@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.GetSubset
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
@@ -12,17 +13,18 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMono
 /-!
 # `ConPolyZono.getSubset` over-approximates the exact re-parametrization
 
-A point of the exact layer's `getSubset` of the stored set, plus a point of its error box, is a
-point of the float `getSubset`. The generators are as for `PolyZonotope.getSubset`: the rounding
-they cost, scaled by monomials in `[-1, 1]`, lies in the box added to `err`. The constraint matrix
+A point of the exact layer's `getSubset` of the stored set (`nominalCore`), its rows relaxed by the
+stored slack, plus a point of its error box, is a point of the float `getSubset`. The generators
+are as for `PolyZonotope.getSubset`: the rounding they cost, scaled by monomials in `[-1, 1]`,
+lies in the box added to `err`. The constraint matrix
 is rounded the same way, and the same bound, scaled by the same monomials, moves the exact
-constraint value into the widened `b`: what `A μ` loses to the rounding of `A` is a point of the
-box `b` was widened by, so the stored system holds wherever the exact one does.
+constraint value into the widened slack: what `A μ` loses to the rounding of `A` is at most the
+row radius the slack was widened by, so the stored system holds wherever the exact one does.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   12-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -38,10 +40,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) (cen rad : 𝕋) :
-    (Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).construct
-        + cPZ.I_error.construct ⊆ (cPZ.getSubset k cen rad).construct := by -- --- PROOF ---
+    ((Real.ConPolyZono.getSubset cPZ.nominalCore k (toReal cen) (toReal rad)).relax
+        (toRealVec cPZ.b_error)).construct + cPZ.I_error.construct
+      ⊆ (cPZ.getSubset k cen rad).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
-  obtain ⟨a, β, ha, hβ, hsat, hz⟩ := Real.ConPolyZono.mem_construct_iff.mp hz
+  obtain ⟨a, β, ha, hβ, hsat, hz⟩ := (Real.ConPolyZono.mem_relax_vec_iff _ _).mp hz
   -- the exact generators, the stored (rounded down) ones and the monomials, named once
   set G := Real.PolyZonotope.getSubsetG (nominal cPZ.toPolyZonotope) k (toReal cen) (toReal rad)
   set Gd : Fin n → Fin (cPZ.toPolyZonotope.h * (cPZ.toPolyZonotope.maxExp k + 1)) → 𝕋 :=

@@ -12,27 +12,21 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeSatisfiesCon
 @[expose] public section
 
 /-!
-# A constrained zonotope as a constrained polynomial zonotope, over a
+# A constrained zonotope as a constrained polynomial zonotope, over a floating-point scalar
 
-floating-point scalar
+The constraint matrix is the two blocks of `P` stacked, each row held to its enclosure over the
+unit cube as a right-hand side and a slack, and the error box is carried across. The only values
+computed are the lower bound an inequality does not have, computed upward in absolute value,
+which makes it a bound rather than a cut, and the enclosures' widths, rounded up.
 
-Nothing rounds. The constraint matrix is the two blocks of `P` stacked, the
-upper bounds are `P`'s own, and the error box is carried across, so the only
-value computed is the lower bound an inequality does not have — and it is
-computed upward in absolute value, which makes it a bound rather than a cut.
-
-Not routed through the exact layer's conversion. There a constraint is a
-functional and the coefficients have to be read back off it; here they are
-already a matrix, and the exact layer's `HPolytope` reading of a float one
-keeps an equality a single row, where the interval `b` of the constrained polynomial zonotope
-has the degenerate interval `[be, be]`, so the two constructions do not agree row for row even
-though they denote the same set.
-Membership is the shorter argument.
+Not routed through the exact layer's conversion, which adds a slack factor per row; here each
+row's slack is recorded beside it instead, so the two constructions do not agree factor for
+factor. Membership is the shorter argument.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 

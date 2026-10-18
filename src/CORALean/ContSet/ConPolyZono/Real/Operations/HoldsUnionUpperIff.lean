@@ -56,31 +56,29 @@ theorem ConPolyZono.holds_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂
     refine ⟨?_, ?_⟩
     · -- the `α₁α₂` row, its single column evaluated
       have h := h₁ 0
-      simp only [Interval.point, Matrix.mulVec, dotProduct, Finset.univ_unique,
+      simp only [Matrix.mulVec, dotProduct, Finset.univ_unique,
         Fin.default_eq_zero, one_mul, Finset.sum_singleton, PolyZonotope.monomial] at h
       rw [ConPolyZono.prod_addCol, ConPolyZono.prod_unitCol, ConPolyZono.prod_unitCol,
         pow_one, pow_one] at h
-      linarith [h.1, h.2]
+      exact h
     · have h := h₂ 0
-      simp only [Interval.point, Matrix.mulVec, dotProduct, PolyZonotope.monomial] at h
+      simp only [Matrix.mulVec, dotProduct, PolyZonotope.monomial] at h
       rw [ConPolyZono.unionCon_value] at h
-      simp only [Pi.zero_apply] at h
-      linarith [h.1, h.2]
+      simpa only [Pi.zero_apply] using h
   · rintro ⟨h₁, h₂⟩
     constructor
     · intro i
       fin_cases i
-      simp only [Interval.point, Matrix.mulVec, dotProduct, Finset.univ_unique,
+      simp only [Matrix.mulVec, dotProduct, Finset.univ_unique,
         Fin.default_eq_zero, one_mul, Finset.sum_singleton, PolyZonotope.monomial]
       rw [ConPolyZono.prod_addCol, ConPolyZono.prod_unitCol, ConPolyZono.prod_unitCol,
         pow_one, pow_one, h₁]
-      exact ⟨le_refl 1, le_refl 1⟩
     · -- the selector row, at the value `unionCon_value` computes
       intro i
       fin_cases i
-      simp only [Interval.point, Matrix.mulVec, dotProduct, PolyZonotope.monomial]
+      simp only [Matrix.mulVec, dotProduct, PolyZonotope.monomial]
       rw [ConPolyZono.unionCon_value, h₂]
-      exact ⟨le_refl 0, le_refl 0⟩
+      rfl
 
 end CORALean.Real
 

@@ -35,7 +35,7 @@ def PolyZonotope.conPolyZono (pZ : PolyZonotope α) : ConPolyZono α where
   E := pZ.E
   GI := pZ.GI
   A := 0
-  b := Interval.point 0
+  b := 0
   R := fun _ => Fin.elim0
 
 end CORALean.Real

@@ -2,11 +2,11 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Isequal
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
+public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.AgreeRow
 public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionA
-public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionB
 public import CORALean.ContSet.ConPolyZono.Real.Operations.IntersectionDep
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecIntersectionALeft
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecIntersectionAAgree
@@ -130,7 +130,7 @@ neither, so they constrain the image as they did the argument.
 
 `PadE` and `AppendE` are the two ways a constraint block is reshaped — widened by factors
 it does not read, and set beside another over the same factors — and `Domain` is the pair
-`construct` splits into, which compactness reads.
+`construct` splits into. `relax` loosens every row by a slack factor: a float set's `b_error`.
 
 `reduce` ranks both blocks as one and boxes what it drops; `getSubset` reweights one
 factor at both, and `reduceCon` spends generators to buy a constraint back. The two

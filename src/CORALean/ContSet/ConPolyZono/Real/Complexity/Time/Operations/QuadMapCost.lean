@@ -20,7 +20,7 @@ dependent generators, both proved in `Complexity/Space/Theorems/QuadMap*.lean`, 
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -36,7 +36,7 @@ generators, `mC` constraints over `q`: the conversion, the map at the counts it 
 writes of the constraint block and of the polynomial zonotope read off the dependent set. -/
 def ConPolyZono.quadMapCost (m n p h qI mC q : ℕ) : Cost :=
   ConPolyZono.dependentCost n p h qI mC q + PolyZonotope.quadMapDepCost m n (p + qI) (h + qI) +
-    ⟨mC * q + 2 * mC + (p + qI) * q + (n * (1 + (h + qI)) + (p + qI) * (h + qI))⟩
+    ⟨mC * q + mC + (p + qI) * q + (n * (1 + (h + qI)) + (p + qI) * (h + qI))⟩
 
 end CORALean.Real
 

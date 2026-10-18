@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorConstruct
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RelaxZero
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeBoxRadius
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsOuterFactorSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalCenterEq
@@ -26,7 +27,7 @@ box `q ± sqrt(diag(Q))` added to the error box (`abs_sub_le_boxRadius`). Outer 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -45,7 +46,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 /-- The stored fields read as the exact layer's conversion of the chosen factor. -/
 private theorem Ellipsoid.aux_nominal_conPolyZono (E : Ellipsoid 𝕋 n) :
-    nominal E.conPolyZono = Real.Ellipsoid.conPolyZonoOfFactor
+    E.conPolyZono.nominalCore = Real.Ellipsoid.conPolyZonoOfFactor
       (toRealMat (if Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q) then
         Ellipsoid.outerFactor E.Q else fun _ _ => zero)) (toRealVec E.q) := by -- --- PROOF ---
   have hhalf : toReal (half (one : 𝕋)) = 1 / 2 := by rw [toReal_half, toReal_one]
@@ -61,9 +62,7 @@ private theorem Ellipsoid.aux_nominal_conPolyZono (E : Ellipsoid 𝕋 n) :
     split_ifs
     · exact toReal_one
     · rw [toReal_neg, hhalf]
-  case e_b =>
-    simp only [Interval.nominal, RealImage.realImage, Real.Interval.point]
-    congr 1 <;> funext i <;> exact hhalf
+  case e_b => funext i; exact hhalf
 
 /-- The factor form's set, read as the nominal part of the conversion. -/
 private theorem Ellipsoid.aux_mem_nominalSet_conPolyZono (E : Ellipsoid 𝕋 n) {x : Vec ℝ n}
@@ -71,8 +70,11 @@ private theorem Ellipsoid.aux_mem_nominalSet_conPolyZono (E : Ellipsoid 𝕋 n) 
       (if Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q) then
         Ellipsoid.outerFactor E.Q else fun _ _ => zero) *ᵥ u) : -- --- STMT ---
     x ∈ nominalSet E.conPolyZono := by -- --- PROOF ---
-  show x ∈ (nominal E.conPolyZono).construct
-  rw [Ellipsoid.aux_nominal_conPolyZono, ← Real.Ellipsoid.conPolyZonoOfFactor_construct]
+  -- the rows record no slack, so the nominal set is the stored fields' own
+  have hs : toRealVec E.conPolyZono.b_error = 0 := funext fun _ => toReal_zero
+  show x ∈ (E.conPolyZono.nominalCore.relax (toRealVec E.conPolyZono.b_error)).construct
+  rw [hs, Real.ConPolyZono.relax_zero_construct, Ellipsoid.aux_nominal_conPolyZono,
+    ← Real.Ellipsoid.conPolyZonoOfFactor_construct]
   exact hx
 
 

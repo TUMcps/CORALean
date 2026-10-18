@@ -9,9 +9,9 @@ public import CORALean.Global.Float.IntRound
 /-!
 # `ConPolyZono.convHullB`
 
-The constraint bound of [1, Prop. 9]: the linear combination's, once per copy, and `1 - a`
-for the weight row. The copies' bounds are copied; `1 - a` is an integer, enclosed by `intDown` and
-`intUp`, so the weight row's interval only ever widens.
+The constraint right-hand side of [1, Prop. 9]: the operand's, once per copy, and `1 - a` for the
+weight row, stored from below by `intDown`; `convHullSingle`'s slack for that row is the gap to
+`intUp`, so the weight row only ever widens.
 
 ## References
 
@@ -21,7 +21,7 @@ for the weight row. The copies' bounds are copied; `1 - a` is an integer, enclos
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -36,11 +36,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- One copy of `b` per block, then the weight row's `1 - a`, rounded outward. -/
-def ConPolyZono.convHullB (a : ℕ) {m : ℕ} (b : Interval (Vec 𝕋 m)) :
-    Interval (Vec 𝕋 (a * m + 1)) :=
-  ⟨Fin.append (Real.ConPolyZono.repVec a b.inf) (fun _ => intDown (1 - (a : ℤ))),
-    Fin.append (Real.ConPolyZono.repVec a b.sup) (fun _ => intUp (1 - (a : ℤ)))⟩
+/-- One copy of `b` per block, then the weight row's `1 - a`, rounded down. -/
+def ConPolyZono.convHullB (a : ℕ) {m : ℕ} (b : Vec 𝕋 m) : Vec 𝕋 (a * m + 1) :=
+  Fin.append (Real.ConPolyZono.repVec a b) (fun _ => intDown (1 - (a : ℤ)))
 
 end CORALean.Float
 

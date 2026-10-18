@@ -17,15 +17,15 @@ segment parameter comes from and where every rounding is paid, with the two
 constraint systems carried along side by side.
 
 The constraint side computes nothing. `plusA` places the two matrices
-block-diagonally with `zero` off the blocks, `plusB` concatenates, and the
+block-diagonally with `zero` off the blocks, `plusB` concatenates `b` and `b_error`, and the
 exponent matrices are over ℕ, so the constraints of the result are exactly the
 two operands' — read on the factors they came with, the fresh one at exponent
 zero. The error box is therefore the generator part's, unchanged.
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -51,6 +51,7 @@ def ConPolyZono.linComb (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPol
     GI := pZ.GI
     A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
     b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
+    b_error := ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error
     R := Real.ConPolyZono.padE (Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R) 1
     I_error := pZ.I_error }
 

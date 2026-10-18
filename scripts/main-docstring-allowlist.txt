@@ -587,7 +587,6 @@ src/CORALean/ContSet/ConPolyZono/Float/Operations/Empty.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/ExactPlus.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/GetSubset.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/Intersection.lean
-src/CORALean/ContSet/ConPolyZono/Float/Operations/IntersectionD.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/IsFullDimWith.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/Isequal.lean
 src/CORALean/ContSet/ConPolyZono/Float/Operations/LinComb.lean
@@ -630,10 +629,6 @@ src/CORALean/ContSet/ConPolyZono/Float/Theorems/IsequalSound.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/LinCombOuter.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/MemNominalSet.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/MtimesOuter.lean
-src/CORALean/ContSet/ConPolyZono/Float/Theorems/NominalDependent.lean
-src/CORALean/ContSet/ConPolyZono/Float/Theorems/NominalIntersectionB.lean
-src/CORALean/ContSet/ConPolyZono/Float/Theorems/NominalIntersectionDep.lean
-src/CORALean/ContSet/ConPolyZono/Float/Theorems/NominalPlusB.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/NominalSetDependent.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/OriginExact.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/PlusOuter.lean
@@ -655,7 +650,6 @@ src/CORALean/ContSet/ConPolyZono/Float/Theorems/ToRealAgreeRow.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/ToRealMatIntersectionA.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/ToRealMatPlusA.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/UnionConIntEq.lean
-src/CORALean/ContSet/ConPolyZono/Float/Theorems/UnionLowerHolds.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/UnionOuter.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/UnionPointMem.lean
 src/CORALean/ContSet/ConPolyZono/Float/Theorems/UnionSatisfies.lean
@@ -991,7 +985,6 @@ src/CORALean/ContSet/Conversion/Float/Theorems/ZonotopeTaylmExact.lean
 src/CORALean/ContSet/Conversion/Float/Theorems/ZonotopeVPolytopeContains.lean
 src/CORALean/ContSet/Conversion/Float/Theorems/ZonotopeZonoBundleExact.lean
 src/CORALean/ContSet/Conversion/Real/Operations/ConPolyZono_to_PolyZonotope.lean
-src/CORALean/ContSet/Conversion/Real/Operations/ConZonotope_to_ConPolyZono.lean
 src/CORALean/ContSet/Conversion/Real/Operations/ConZonotope_to_SpectraShadow.lean
 src/CORALean/ContSet/Conversion/Real/Operations/ConZonotope_to_StarSet.lean
 src/CORALean/ContSet/Conversion/Real/Operations/ConZonotope_to_VPolytope.lean

@@ -49,7 +49,6 @@ src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetSubsetEvalOn.lean::Nonli
 src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetSubsetRelinReach.lean::NonlinearSys.reachSet_subset_relinReach
 src/CORALean/ContDynamics/NonlinearSys/Theorems/RelinReachEvalOn.lean::NonlinearSys.IsTrajectory.relinReach_evalOn
 src/CORALean/ContDynamics/NonlinearSys/Theorems/RelinReachOuterInputSolution.lean::NonlinearSys.IsTrajectory.relinReach_outer_inputSolution
-src/CORALean/ContSet/ConPolyZono/Float/Theorems/GetSubsetSatisfies.lean::ConPolyZono.getSubset_satisfies
 src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenEREmpty.lean::ConZonotope.tightenER_empty
 src/CORALean/ContSet/Ellipsoid/Float/Theorems/IntersectStripGollamudiOuter.lean::Ellipsoid.aux_strip_widen
 src/CORALean/ContSet/HPolytope/Real/Theorems/InteriorRestrictNonempty.lean::HPolytope.interior_restrict_nonempty

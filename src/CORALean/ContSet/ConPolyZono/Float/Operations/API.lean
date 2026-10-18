@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionD
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Isequal
 public import CORALean.ContSet.ConPolyZono.Float.Operations.AgreeRow
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IntersectionA
@@ -74,14 +73,14 @@ block-diagonally, `mtimes` leaves them alone. `dependent` copies everything and
 rounds nothing at all.
 
 `intersection` is the one that computes constraint data, and the one the representation
-exists for. It is possible here only because the right-hand side of a constraint
-is an interval: its agreement rows have to admit the difference of two nominal
-points that each carry an error box, so they were never going to be an equality,
-and the rounding of the centers rides along inside the same interval.
+exists for. It is possible here only because a constraint row records a slack: its agreement
+rows have to admit the difference of two nominal points that each carry an error box, so they
+were never going to be an equality, and the rounding of the centers rides along inside the same
+slack.
 
 `compact` is the operation that pays into both places at once, and the only one
 that does: merging generator columns rounds into the error box, merging
-constraint columns into `b`, and dropping factors into neither.
+constraint columns into the slack `b_error`, and dropping factors into neither.
 
 `reduce` is the one operation computable here and not over ℝ, ranking generators
 with a comparator that owes no laws. It pays nothing of its own: the box it adds

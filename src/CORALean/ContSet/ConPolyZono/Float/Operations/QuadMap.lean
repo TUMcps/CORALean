@@ -21,7 +21,7 @@ block does. Outer, never the exact image.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -41,7 +41,7 @@ def ConPolyZono.quadMap (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 (Ve
   -- the image of the generator part, its rounding in the error box
   let qZ := PolyZonotope.quadMapDep Q pZ
   { p := qZ.p, h := qZ.h, qI := 0, m := cPZ.m, q := cPZ.q, c := qZ.c, G := qZ.G, E := qZ.E,
-    GI := Fin.elim0, A := cPZ.A, b := cPZ.b,
+    GI := Fin.elim0, A := cPZ.A, b := cPZ.b, b_error := cPZ.b_error,
     R := Real.ConPolyZono.padE cPZ.R (cPZ.qI + n), I_error := qZ.I_error }
 
 end CORALean.Float

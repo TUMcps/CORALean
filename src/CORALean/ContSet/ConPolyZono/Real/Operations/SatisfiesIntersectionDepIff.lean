@@ -13,12 +13,12 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
 # What `ConPolyZono.intersectionDep`'s constraint system says
 
 Each set's own constraints, and that the two points agree coordinate by
-coordinate to within `D`.
+coordinate.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -34,22 +34,17 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- What `intersectionDep`'s constraint system says: each set's own constraints, and that
-the two points agree coordinate by coordinate to within `D`. -/
+the two points agree coordinate by coordinate. -/
 theorem ConPolyZono.satisfies_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (D : Interval (Vec ℝ n)) (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- STMT ---
-    (cPZ₁.intersectionDep cPZ₂ D).satisfies a ↔
+    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- STMT ---
+    (cPZ₁.intersectionDep cPZ₂).satisfies a ↔
       (cPZ₁.satisfies (fun k => a (Fin.castAdd cPZ₂.p k))
         ∧ cPZ₂.satisfies (fun k => a (Fin.natAdd cPZ₁.p k)))
-      ∧ ∀ i, cPZ₂.c i - cPZ₁.c i + D.inf i
-            ≤ (∑ l, cPZ₁.G l i
+      ∧ ∀ i, (∑ l, cPZ₁.G l i
               * PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l)
             - ∑ l, cPZ₂.G l i
               * PolyZonotope.monomial cPZ₂.E (fun k => a (Fin.natAdd cPZ₁.p k)) l
-          ∧ (∑ l, cPZ₁.G l i
-              * PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l)
-            - ∑ l, cPZ₂.G l i
-              * PolyZonotope.monomial cPZ₂.E (fun k => a (Fin.natAdd cPZ₁.p k)) l
-          ≤ cPZ₂.c i - cPZ₁.c i + D.sup i := by -- --- PROOF ---
+          = cPZ₂.c i - cPZ₁.c i := by -- --- PROOF ---
   have hcol : (fun l => PolyZonotope.monomial (ConPolyZono.appendE
         (PolyZonotope.plusE cPZ₁.R cPZ₂.R) (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a
           (Fin.castAdd (cPZ₁.h + cPZ₂.h) l))
@@ -84,7 +79,7 @@ theorem ConPolyZono.satisfies_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (
   · intro hsat'
     -- the projections are read away first: `Fin.castAdd` does not fit `Fin (intersectionDep ..).m`
     have hsat : ConPolyZono.holds (ConPolyZono.intersectionA cPZ₁ cPZ₂)
-        (ConPolyZono.intersectionB cPZ₁ cPZ₂ D)
+        (ConPolyZono.intersectionB cPZ₁ cPZ₂)
         (ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.R cPZ₂.R)
           (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a := hsat'
     refine ⟨(ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R a).mp
@@ -100,7 +95,7 @@ theorem ConPolyZono.satisfies_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (
       (ConPolyZono.holds_plus_iff cPZ₁.A cPZ₁.b cPZ₁.R cPZ₂.A cPZ₂.b cPZ₂.R a).mpr hcon
     -- the index here reads `Fin (intersectionDep ..).m`, which `Fin.castAdd` misses
     show ConPolyZono.holds (ConPolyZono.intersectionA cPZ₁ cPZ₂)
-      (ConPolyZono.intersectionB cPZ₁ cPZ₂ D)
+      (ConPolyZono.intersectionB cPZ₁ cPZ₂)
       (ConPolyZono.appendE (PolyZonotope.plusE cPZ₁.R cPZ₂.R)
         (PolyZonotope.plusE cPZ₁.E cPZ₂.E)) a
     refine Fin.addCases (fun i => ?_) fun i => ?_

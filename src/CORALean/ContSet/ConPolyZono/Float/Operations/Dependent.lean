@@ -21,9 +21,9 @@ The fresh factors take exponent zero in every constraint row, which is what
 `padE` says.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -50,6 +50,7 @@ def ConPolyZono.dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono �
   GI := Fin.elim0
   A := cPZ.A
   b := cPZ.b
+  b_error := cPZ.b_error
   R := Real.ConPolyZono.padE cPZ.R cPZ.qI
   I_error := cPZ.I_error
 

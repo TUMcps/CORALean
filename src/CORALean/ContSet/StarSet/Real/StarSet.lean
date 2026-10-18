@@ -13,7 +13,9 @@ public import Mathlib.Data.Real.Basic
 The generalized star set of [1, Def. 1]: a center `c`, a basis `G` of `m` vectors and a predicate
 `P` on the coefficients, denoting `{c + G α | α ∈ P}`. The predicate is one of CORALean's own
 representations in coefficient space, any family `P m` with a `ContSet` instance at `Vec ℝ m`: a
-`LevelSet` for an arbitrary predicate, a `SupportFunction`, an `HPolytope`, an `Interval` for a box.
+`LevelSet` for an arbitrary predicate, a `PolyLevelSet` for a polynomial one (a constrained
+polynomial zonotope's, `ConPolyZono.starSet`), a `SupportFunction`, an `HPolytope`, an `Interval`
+for a box.
 Which family is a parameter of the type, so a star set is as general as its predicate, and the
 figure's arrows into and out of star sets (`Conversion/`) are about this class.
 

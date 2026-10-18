@@ -29,6 +29,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Operations.SubsetOfBounds
 public import CORALean.ContSet.LevelSet.Real.LevelSet
+public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
@@ -537,6 +538,19 @@ noncomputable def Capsule.spectraShadow (C : Capsule n) : SpectraShadow (Vec ℝ
 /-- A box as an array of Taylor models -/
 noncomputable def Interval.taylm (I : Interval (Vec ℝ n)) (N : ℕ) : Fin n → Taylm n :=
   fun i => ⟨[((I.inf i + I.sup i) / 2, 0), ((I.sup i - I.inf i) / 2, Pi.single i 1)], ⟨0, 0⟩, N⟩
+
+
+-- =================================  `PolyLevelSet.levelSet`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The polynomial as the level set's function: `A μ_R(x) - b`, each row with its operator. -/
+def PolyLevelSet.levelSet (P : PolyLevelSet n) : LevelSet n where
+  m := P.m
+  f x := Matrix.mulVec P.A (PolyZonotope.monomial P.R x) - P.b
+  op := P.op
 
 end
 

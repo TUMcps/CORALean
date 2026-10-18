@@ -9,16 +9,16 @@ public import CORALean.Global.Cost
 /-!
 # `ConPolyZono.intersectionCost`
 
-Asserted, not proved: `intersection` runs `intersectionDep` on the two `dependent` sets, at zero
-tolerance. `intersectionDep` builds `agreeRow`, which negates each of `cPZ₂`'s dependent
+Asserted, not proved: `intersection` runs `intersectionDep` on the two `dependent` sets.
+`intersectionDep` builds `agreeRow`, which negates each of `cPZ₂`'s dependent
 generators once per output coordinate, `n * (h₂ + qI₂)` negations, and `intersectionB`, which is
-one subtraction and one addition per coordinate for each of `inf` and `sup`, `4 * n`. Everything
+one subtraction per coordinate, `n`. Everything
 else — `plusA`, `PolyZonotope.plusE`, `appendE` — lays a field out block-diagonally, which
 computes nothing but writes every entry of the result.
 
 The result, with `H` dependent generators and `P` factors in all, `n` more constraints and `Q`
 constraint generators, is the center and `H` generators of `n` entries, the `P` by `H` exponent
-matrix, the `(m₁ + m₂ + n)` by `Q` matrix `A`, the interval `b` and the `P` by `Q` matrix `R`.
+matrix, the `(m₁ + m₂ + n)` by `Q` matrix `A`, the vector `b` and the `P` by `Q` matrix `R`.
 The conversions write their own results (`dependentCost`).
 
 `h₂ + qI₂` is the *dependent* count `intersectionDep` sees, which
@@ -28,7 +28,7 @@ carries.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -47,7 +47,7 @@ def ConPolyZono.intersectionCost (n p₁ h₁ qI₁ m₁ q₁ p₂ h₂ qI₂ m�
   let M := m₁ + m₂ + n
   let Q := q₁ + q₂ + H
   ConPolyZono.dependentCost n p₁ h₁ qI₁ m₁ q₁ + ConPolyZono.dependentCost n p₂ h₂ qI₂ m₂ q₂ +
-    ⟨n * (h₂ + qI₂) + 4 * n + (n * (1 + H) + P * H + M * Q + 2 * M + P * Q)⟩
+    ⟨n * (h₂ + qI₂) + n + (n * (1 + H) + P * H + M * Q + M + P * Q)⟩
 
 end CORALean.Real
 

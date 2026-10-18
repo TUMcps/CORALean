@@ -16,28 +16,28 @@
   "totals": {
     "papers": 97,
     "papers_with_findings": 88,
-    "in_scope": 1273,
-    "formalized": 1217,
+    "in_scope": 1274,
+    "formalized": 1218,
     "not_formalized": 56,
-    "out_of_scope": 1084,
+    "out_of_scope": 1083,
     "out_of_scope_by_reason": {
       "restated": 397,
       "mathlib": 23,
       "not-a-claim": 559,
-      "done-differently": 12,
+      "done-differently": 11,
       "not-covered": 93
     },
     "by_class": {
-      "correct": 810,
+      "correct": 811,
       "underspecified": 253,
       "proof-gap": 37,
       "fixed": 106,
       "false": 11
     },
     "claims": {
-      "in_scope": 479,
-      "formalized": 455,
-      "correct": 270,
+      "in_scope": 480,
+      "formalized": 456,
+      "correct": 271,
       "underspecified": 92,
       "proof-gap": 37,
       "fixed": 49,
@@ -4790,28 +4790,28 @@
       "label": "Kochdumper 2023",
       "year": 2023,
       "title": "Constrained Polynomial Zonotopes",
-      "in_scope": 16,
-      "formalized": 16,
+      "in_scope": 17,
+      "formalized": 17,
       "not_formalized": 0,
-      "out_of_scope": 11,
+      "out_of_scope": 10,
       "out_of_scope_by_reason": {
         "restated": 5,
         "mathlib": 0,
         "not-a-claim": 3,
-        "done-differently": 3,
+        "done-differently": 2,
         "not-covered": 0
       },
       "by_class": {
-        "correct": 13,
+        "correct": 14,
         "underspecified": 3,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
       },
       "claims": {
-        "in_scope": 14,
-        "formalized": 14,
-        "correct": 11,
+        "in_scope": 15,
+        "formalized": 15,
+        "correct": 12,
         "underspecified": 3,
         "proof-gap": 0,
         "fixed": 0,
@@ -6440,7 +6440,7 @@
         },
         "cora_issues": 4,
         "findings": {
-          "correct": 12,
+          "correct": 13,
           "underspecified": 3,
           "proof-gap": 0,
           "fixed": 0,
@@ -8411,7 +8411,7 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 414,
+          "correct": 415,
           "underspecified": 122,
           "proof-gap": 9,
           "fixed": 48,
@@ -8562,7 +8562,7 @@
         "deprecated": 14
       },
       "findings": {
-        "correct": 726,
+        "correct": 727,
         "underspecified": 222,
         "proof-gap": 33,
         "fixed": 89,
@@ -8586,11 +8586,11 @@
       }
     },
     "theorems": {
-      "paper": 1838,
-      "float": 1930,
-      "helper": 1781,
-      "lemma": 3350,
-      "total": 8899,
+      "paper": 1839,
+      "float": 1925,
+      "helper": 1785,
+      "lemma": 3367,
+      "total": 8916,
       "examples": 129
     }
   }

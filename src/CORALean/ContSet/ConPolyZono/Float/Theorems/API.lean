@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecUnionLowerB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CartProdExact
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CenterMemConstruct
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsEqSpec
@@ -30,10 +32,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.MinkDiffOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsorbRoundingOuter
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalDependent
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionB
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalIntersectionDep
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecPlusB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalSetDependent
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.OriginExact
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
@@ -58,7 +57,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealAgreeRow
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatIntersectionA
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionLowerHolds
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatUnionLowerA
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionPointMem
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionSatisfies
@@ -73,17 +72,17 @@ here that is not an enclosure, and the one this layer needs most: an unbounded
 generator count is memory and time per step.
 
 `compact_outer` is the one that moves the counts, and the one that widens `b`:
-merging a constraint column rounds, and `b` is the only place on that side a
+merging a constraint column rounds, and the slack `b_error` is the only place on that side a
 rounding can go, the state's error box being of the wrong dimension.
 
 `plus` and `mtimes` rest on the constraint block surviving `toReal`:
-`satisfies_plus_iff` is the exact layer's `holds_plus_iff` at the read-back
-matrices, and `satisfies_mtimes` is `Iff.rfl`.
+`satisfies_plus_iff` splits the rows as the exact layer's `mulVec_plusA_plusE` does at the
+read-back matrices, and `satisfies_mtimes` is `Iff.rfl`.
 
 `intersection_outer` is the one that computes a constraint, and it is the file to read.
 The two nominal points it has to make agree differ by whatever the two error
-boxes admit, so the agreement rows carry an interval wide enough for that
-difference — which leaves the rounding of the centers nowhere to go but into an
-interval that was going to be widened anyway. `MemNominalSet` is how each of
+boxes admit, so the agreement rows carry a slack wide enough for that
+difference — which leaves the rounding of the centers nowhere to go but into a
+slack that was going to be there anyway. `MemNominalSet` is how each of
 them reads the nominal half of a point.
 -/

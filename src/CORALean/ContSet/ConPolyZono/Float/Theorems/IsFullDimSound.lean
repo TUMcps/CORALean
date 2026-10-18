@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDimWith
 public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
@@ -10,18 +11,18 @@ public import Mathlib.Topology.Algebra.Group.Pointwise
 /-!
 # A `true` from `ConPolyZono.isFullDim` proves an interior point
 
-The factors `α = 0` satisfy the constraints, since each row `A μ(0)` lies between its bounds (its
-two directed roundings do), and `μ(0)` is the zero-exponent-column indicator. So the nominal set
-contains `y₀ + GI β` for every `|βⱼ| ≤ 1`, with `y₀` the center plus the dependent generators
-weighted by their monomials at `0`; the checked rows then put the open box of radius `B` around
-`y₀` inside it (`Zonotope.ballCert_reach`), and the error box's lower corner keeps an interior
-point.
+The factors `α = 0` satisfy the constraints, each row `A μ(0)` being within its slack of `b`
+(both its directed roundings are), and `μ(0)` is the zero-exponent-column indicator. So the
+nominal set contains `y₀ + GI β` for every `|βⱼ| ≤ 1`, with `y₀` the center plus the dependent
+generators weighted by their monomials at `0`; the checked rows then put the open box of radius
+`B` around `y₀` inside it (`Zonotope.ballCert_reach`), and the error box's lower corner keeps an
+interior point.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
--- Reviewed:      15-October-2026 (Tobias Ladner)
+-- Last update:   18-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -48,47 +49,47 @@ theorem ConPolyZono.aux_zeroMonomials (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k :
     obtain ⟨l, hl⟩ := h
     exact (Finset.prod_eq_zero (Finset.mem_univ l) (by rw [zero_pow hl])).symm
 
-/-- A combination of the stored independent generators is their matrix applied to the weights. -/
-theorem ConPolyZono.aux_sum_gi (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (β : Vec ℝ cPZ.qI) :
-    (∑ j, β j • (nominal cPZ).GI j)
-      = toRealMat (fun i j => cPZ.GI j i) *ᵥ β := by -- --- PROOF ---
-  funext i
-  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Matrix.mulVec, dotProduct]
-  exact Finset.sum_congr rfl fun j _ => by
-    show β j * toReal (cPZ.GI j i) = toReal (cPZ.GI j i) * β j
-    ring
-
-/-- The checked rows say the factors `0` satisfy the constraints. -/
+/-- The checked rows say the factors `0` meet the constraints within their slack. -/
 theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
-    (h : ∀ i, le (cPZ.b.inf i) (dotDown (cPZ.A i) cPZ.zeroMonomials) = true
-      ∧ le (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b.sup i) = true) :
+    (h : ∀ i, le (subUp (cPZ.b i) (dotDown (cPZ.A i) cPZ.zeroMonomials))
+        (absolute (cPZ.b_error i)) = true
+      ∧ le (subUp (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b i))
+        (absolute (cPZ.b_error i)) = true) : -- --- STMT ---
     cPZ.satisfies (fun _ => 0) := by -- --- PROOF ---
   intro i
   have hA : (toRealMat cPZ.A *ᵥ Real.PolyZonotope.monomial cPZ.R (fun _ => (0 : ℝ))) i
       = ∑ k, toReal (cPZ.A i k) * toReal (cPZ.zeroMonomials k) := by
     simp only [Matrix.mulVec, dotProduct, toRealMat]
     exact Finset.sum_congr rfl fun k _ => by rw [ConPolyZono.aux_zeroMonomials]
-  rw [hA]
-  exact ⟨le_trans (toReal_le_of_le (h i).1) (dotDown_le (cPZ.A i) cPZ.zeroMonomials),
-    le_trans (le_dotUp (cPZ.A i) cPZ.zeroMonomials) (toReal_le_of_le (h i).2)⟩
+  rw [hA, abs_le]
+  -- each end of the enclosure, its distance from `b` rounded up, within the slack
+  have hlo := toReal_le_of_le (h i).1
+  have hhi := toReal_le_of_le (h i).2
+  rw [toReal_absolute] at hlo hhi
+  have h₁ := sub_le_subUp (cPZ.b i) (dotDown (cPZ.A i) cPZ.zeroMonomials)
+  have h₂ := sub_le_subUp (dotUp (cPZ.A i) cPZ.zeroMonomials) (cPZ.b i)
+  have h₃ := dotDown_le (cPZ.A i) cPZ.zeroMonomials
+  have h₄ := le_dotUp (cPZ.A i) cPZ.zeroMonomials
+  constructor <;> linarith
 
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
 theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n} {B : 𝕋}
     (hc : Zonotope.ballCert (fun i j => cPZ.GI j i) H B one = true)
     (hsat : cPZ.satisfies (fun _ => 0)) {y₀ : Vec ℝ n}
-    (hy₀ : y₀ = (nominal cPZ).c
-      + ∑ i, Real.PolyZonotope.monomial (nominal cPZ).E (fun _ => 0) i • (nominal cPZ).G i)
+    (hy₀ : ∀ i, y₀ i = toReal (cPZ.c i)
+      + ∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E (fun _ => 0) l)
     (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : -- --- STMT ---
     y ∈ nominalSet cPZ := by -- --- PROOF ---
   obtain ⟨-, hreach⟩ := Zonotope.ballCert_reach hc
   obtain ⟨β, hβ, hβδ⟩ := hreach (fun i => y i - y₀ i) hy
-  refine ⟨fun _ => 0, β, fun k => by simp, fun j => by simpa [toReal_one] using hβδ j, hsat, ?_⟩
-  show y = (nominal cPZ).c
-      + ∑ i, Real.PolyZonotope.monomial (nominal cPZ).E (fun _ => 0) i • (nominal cPZ).G i
-      + ∑ j, β j • (nominal cPZ).GI j
-  rw [ConPolyZono.aux_sum_gi, hβ, ← hy₀]
-  funext i
-  show y i = y₀ i + (y i - y₀ i)
+  refine ConPolyZono.mem_nominalSet_iff.mpr ⟨fun _ => 0, β, fun k => by simp,
+    fun j => by simpa [toReal_one] using hβδ j, hsat, fun i => ?_⟩
+  -- the independent block reaches exactly `y - y₀`
+  have hβi : ∑ j, toReal (cPZ.GI j i) * β j = y i - y₀ i := by
+    have h := congrFun hβ i
+    simp only [Matrix.mulVec, dotProduct, toRealMat] at h
+    exact h
+  rw [hβi, ← hy₀ i]
   ring
 
 
@@ -102,9 +103,9 @@ theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : M
   obtain ⟨hB, -⟩ := Zonotope.ballCert_reach hc
   have hsat := ConPolyZono.aux_satisfies_zero hrows
   -- the open box of radius `B` around `y₀` lies in the nominal set
-  obtain ⟨y₀, hy₀⟩ : ∃ y₀ : Vec ℝ n, y₀ = (nominal cPZ).c
-      + ∑ i, Real.PolyZonotope.monomial (nominal cPZ).E (fun _ => 0) i • (nominal cPZ).G i :=
-    ⟨_, rfl⟩
+  obtain ⟨y₀, hy₀⟩ : ∃ y₀ : Vec ℝ n, ∀ i, y₀ i = toReal (cPZ.c i)
+      + ∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E (fun _ => 0) l :=
+    ⟨_, fun _ => rfl⟩
   let V : Set (Vec ℝ n) := Set.pi Set.univ fun i =>
     Metric.ball (y₀ i) (toReal (Zonotope.ballB H one))
   have hV : IsOpen V := isOpen_set_pi Set.finite_univ fun _ _ => Metric.isOpen_ball

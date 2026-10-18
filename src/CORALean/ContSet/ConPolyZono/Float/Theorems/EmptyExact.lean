@@ -1,15 +1,15 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Empty
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 
 @[expose] public section
 
 /-!
 # `ConPolyZono.empty` denotes the empty set
 
-The nominal part is `∅`: its single constraint row asks `1 ≤ (A μ)₀ ≤ 0`, and `one` and `zero`
-read as `1` and `0`. So the sum with the error box is `∅` too.
+The nominal part is `∅`: its single constraint row asks `|(A μ)₀ - 1| ≤ |0|` of an empty matrix,
+`one` and `zero` reading as `1` and `0`. So the sum with the error box is `∅` too.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -34,19 +34,12 @@ theorem ConPolyZono.empty_exact (n : ℕ) :
   have hN : InflatedContSet.nominalSet (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n)) = ∅ := by
     ext x
     simp only [Set.mem_empty_iff_false, iff_false]
+    rw [ConPolyZono.mem_nominalSet_iff]
     rintro ⟨a, β, -, -, hsat, -⟩
-    obtain ⟨h₁, h₂⟩ := hsat (0 : Fin 1)
-    have hi : (InflatedContSet.nominal (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n))).b.inf
-        (0 : Fin 1) = 1 := by
-      rw [ConPolyZono.nominal_b]
-      exact toReal_one
-    have hs : (InflatedContSet.nominal (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n))).b.sup
-        (0 : Fin 1) = 0 := by
-      rw [ConPolyZono.nominal_b]
-      exact toReal_zero
-    rw [hi] at h₁
-    rw [hs] at h₂
-    linarith
+    -- the one row reads `|0 - 1| ≤ |0|`
+    have h := hsat (0 : Fin 1)
+    simp [ConPolyZono.empty, Matrix.mulVec, toReal_one, toReal_zero] at h
+    exact absurd h (by norm_num)
   show InflatedContSet.nominalSet (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n))
       + (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.construct = _
   rw [hN, Set.empty_add]

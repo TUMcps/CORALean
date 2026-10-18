@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
 # `ConPolyZono.compactCons`
 
 Equal constraint exponent columns added together, the stored value the lower
-rounding and the widening paid into `b`. The generators stand, so the ambient
+rounding and the widening paid into the slack `b_error`. The generators stand, so the ambient
 box is untouched.
 
 The constraint exponent matrix is scanned once, as `compactGens`' is, and every
@@ -20,9 +20,9 @@ entry read through the tables; `compactCons_eq_spec` says this is
 `compactConsSpec` (issue #61).
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   11-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -46,7 +46,7 @@ def ConPolyZono.compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
   let k := PolyZonotope.tabAt (PolyZonotope.repKeep cPZ.R) kt
   let gap : Mat 𝕋 cPZ.m (PolyZonotope.repKeep cPZ.R).card := fun i l =>
     subUp (PolyZonotope.fiberUp r cPZ.A i (k l)) (PolyZonotope.fiberDown r cPZ.A i (k l))
-  -- only the constraint block changes: its columns, `b`, and the count
+  -- only the constraint block changes: its columns, the slack, and the count
   { p := cPZ.p
     h := cPZ.h
     qI := cPZ.qI
@@ -57,8 +57,8 @@ def ConPolyZono.compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
     E := cPZ.E
     GI := cPZ.GI
     A := fun i l => PolyZonotope.fiberDown r cPZ.A i (k l)
-    b := ⟨fun i => subDown (cPZ.b.inf i) (radius gap i),
-      fun i => addUp (cPZ.b.sup i) (radius gap i)⟩
+    b := cPZ.b
+    b_error := fun i => addUp (absolute (cPZ.b_error i)) (radius gap i)
     R := fun a l => cPZ.R a (k l)
     I_error := cPZ.I_error }
 

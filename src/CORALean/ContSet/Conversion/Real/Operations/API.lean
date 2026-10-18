@@ -5,6 +5,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZon
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_StarSet
+public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_StarSet
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval

@@ -18,9 +18,9 @@ The dimension variables are `k` and `n` rather than the usual `m` and `n`: the
 structure already has a field named `m`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   06-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -48,6 +48,7 @@ def ConPolyZono.mtimes (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
   GI := fun j => mulVecDown M (cPZ.GI j)
   A := cPZ.A
   b := cPZ.b
+  b_error := cPZ.b_error
   R := cPZ.R
   I_error := (Interval.mtimes M cPZ.I_error).plus (ConPolyZono.mtimesResidual M cPZ)
 

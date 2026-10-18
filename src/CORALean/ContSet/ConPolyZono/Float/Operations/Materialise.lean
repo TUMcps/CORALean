@@ -15,9 +15,9 @@ Both exponent matrices are stored along with the floats, being curried functions
 rather than `Mat`s.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -38,6 +38,8 @@ def ConPolyZono.materialise (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
   let E : Vector (Vector ℕ cPZ.h) cPZ.p := Vector.ofFn fun k => Vector.ofFn fun l => cPZ.E k l
   let GI : Vector (Vector 𝕋 n) cPZ.qI := Vector.ofFn fun j => Vector.ofFn (cPZ.GI j)
   let A : Vector (Vector 𝕋 cPZ.q) cPZ.m := Vector.ofFn fun i => Vector.ofFn fun l => cPZ.A i l
+  let b : Vector 𝕋 cPZ.m := Vector.ofFn cPZ.b
+  let b_error : Vector 𝕋 cPZ.m := Vector.ofFn cPZ.b_error
   let R : Vector (Vector ℕ cPZ.q) cPZ.p := Vector.ofFn fun k => Vector.ofFn fun l => cPZ.R k l
   -- every field now reads out of a stored vector, so nothing is left as a closure
   { p := cPZ.p
@@ -50,7 +52,8 @@ def ConPolyZono.materialise (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
     E := fun k l => (E[k.val]'k.isLt)[l.val]'l.isLt
     GI := fun j i => (GI[j.val]'j.isLt)[i.val]'i.isLt
     A := fun i l => (A[i.val]'i.isLt)[l.val]'l.isLt
-    b := cPZ.b.materialise
+    b := fun i => b[i.val]'i.isLt
+    b_error := fun i => b_error[i.val]'i.isLt
     R := fun k l => (R[k.val]'k.isLt)[l.val]'l.isLt
     I_error := cPZ.I_error.materialise }
 

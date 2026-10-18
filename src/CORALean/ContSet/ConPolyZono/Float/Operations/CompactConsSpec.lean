@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 # `ConPolyZono.compactConsSpec`
 
 Equal constraint exponent columns added together, the stored value the lower
-rounding and the widening paid into `b`. The generators stand, so the ambient
+rounding and the widening paid into the slack `b_error`. The generators stand, so the ambient
 box is untouched.
 
 The definition `compactCons` is proved equal to, which computes the same thing
@@ -19,7 +19,7 @@ reads: every entry a named, separately provable lookup.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The specification of `compactCons`: equal constraint exponent columns added
-together, the stored value the lower rounding and the widening paid into `b`.
+together, the stored value the lower rounding and the widening paid into `b_error`.
 The generators stand, so the ambient box is untouched. -/
 def ConPolyZono.compactConsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := cPZ.p
@@ -48,7 +48,8 @@ def ConPolyZono.compactConsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   E := cPZ.E
   GI := cPZ.GI
   A := cPZ.mergedConsCol
-  b := ConPolyZono.compactConsB cPZ
+  b := cPZ.b
+  b_error := ConPolyZono.compactConsB cPZ
   R := fun k l => cPZ.R k (PolyZonotope.keepIdx cPZ.R l)
   I_error := cPZ.I_error
 

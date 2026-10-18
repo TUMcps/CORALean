@@ -17,10 +17,10 @@ of partitions, so a misranking costs precision and never soundness.
 
 `reduceBy` charges nothing to either place a rounding can go. The center, the
 kept generators and their exponent columns are copied exactly, the whole
-constraint block with them — so `b` does not move and the ranking never reads a
+constraint block with them — so `b` and its slack do not move and the ranking never reads a
 constraint — and the diagonal block rounds *up*, twice, which only enlarges an
 over-approximation. `compact`, which `reduce` runs first, is where the rounding
-of this operation is: it pays into the error box and into `b` both, and running
+of this operation is: it pays into the error box and into the slack `b_error` both, and running
 it is what makes the order bound count distinct monomials.
 -/
 

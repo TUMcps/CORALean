@@ -23,7 +23,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeEllipsoidCont
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeHPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopePolyZonotopeContains
-public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeSatisfiesConPolyZonoIff
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConRowsIff
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeSpectraShadowExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExact
@@ -144,6 +144,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalMatPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalMatrixContains
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeMatZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeStarSetExact
+public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoStarSetExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeStarSetExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeStarSetRowsIff
 public import CORALean.ContSet.Conversion.Real.Theorems.StarSetConZonotopeExact

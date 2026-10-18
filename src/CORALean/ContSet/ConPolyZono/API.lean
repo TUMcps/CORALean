@@ -14,12 +14,13 @@ need not be convex. `ConZonotope` buys the same operation for zonotopes;
 with `ZonoBundle`, the three are the only representations here that intersect
 without loss.
 
-One departure from [1], and both layers turn on it: the right-hand side of a
-constraint is an interval, so the row reads `A μ(α) ∈ b`. An equality is the
-degenerate interval and nothing [1] states is lost, while a bound now has a
-direction to be rounded in — which is what carries `intersection` across to the
-float layer, and what lets a `ConZonotope`, inequalities and all, convert in
-exactly.
+The constraint is [1, Def. 5]'s, `A μ_R(α) = b` with `b` a vector: a polynomial level set on the
+factors with `=` in every row (`ConPolyZono.cons`). An equation has no direction to be rounded
+in, so the float layer records each row's rounding beside it, as a slack `b_error`, and its
+nominal set is the exact one with a slack factor per row (`ConPolyZono.relax`) — which is what
+carries `intersection` across to the float layer, and what lets a `ConZonotope`, inequalities
+and all, convert in exactly. As a star set its predicate is that level set
+(`ConPolyZono.starSet`).
 
 ## References
 

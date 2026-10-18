@@ -7,16 +7,22 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
 
 @[expose] public section
 
 /-!
-# A constrained zonotope as a constrained polynomial zonotope, over a: `satisfies_conPolyZono`
+# A constrained zonotope's coefficients meet its constrained polynomial zonotope's rows
+
+A coefficient vector in the cube that the polytope admits meets every row of
+`ConZonotope.conPolyZono` within its slack: each row value lies in the row's enclosure `conB`, an
+inequality's above the free lower bound `-Σ|aⱼ|`, and so within the enclosure's width of its lower
+end (`abs_sub_le_subUp`).
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -80,11 +86,12 @@ theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {
       rw [toReal_absolute] at hu hd
       have hab := abs_le.mp (heq i)
       exact ⟨by linarith [hab.1], by linarith [hab.2]⟩
-  show Real.ConPolyZono.holds (toRealMat (ConZonotope.conA cZ)) (ConZonotope.conB cZ).nominal
-    (Real.PolyZonotope.identE cZ.h) β
   intro i
+  show |(toRealMat (ConZonotope.conA cZ) *ᵥ Real.PolyZonotope.monomial
+      (Real.PolyZonotope.identE cZ.h) β) i - toReal ((ConZonotope.conB cZ).inf i)|
+    ≤ |toReal (subUp ((ConZonotope.conB cZ).sup i) ((ConZonotope.conB cZ).inf i))|
   rw [hm]
-  exact key i
+  exact ConPolyZono.abs_sub_le_subUp (key i).1 (key i).2
 
 end CORALean.Float
 

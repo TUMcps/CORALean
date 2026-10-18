@@ -37,17 +37,15 @@ theorem ConPolyZono.minkDiff_not_inner :
   -- `{α ∈ [-1, 1] | α² = 1}`, as the point `α`
   let cPZ : ConPolyZono (Vec ℝ 1) :=
     ⟨1, 1, 0, 1, 1, 0, fun _ => fun _ => 1, fun _ _ => 1, Fin.elim0, fun _ _ => 1,
-      Interval.point (fun _ => 1), fun _ _ => 2⟩
+      fun _ => 1, fun _ _ => 2⟩
   let Z : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => fun _ => 1⟩
   refine ⟨cPZ, Z, fun h => ?_⟩
   -- every point of `P` is `±1`
   have hP : ∀ x ∈ cPZ.construct, x 0 = 1 ∨ x 0 = -1 := by
     rintro x ⟨a, β, ha, hβ, hs, rfl⟩
     have h1 := hs 0
-    simp [PolyZonotope.monomial, Interval.point, cPZ, Matrix.mulVec,
-      dotProduct] at h1
-    have h2 : |a 0| = 1 := le_antisymm h1.2 h1.1
-    rcases (abs_eq zero_le_one).mp h2 with h3 | h3
+    simp [PolyZonotope.monomial, cPZ, Matrix.mulVec, dotProduct] at h1
+    rcases h1 with h3 | h3
     · left; simp [cPZ, PolyZonotope.monomial, h3]
     · right; simp [cPZ, PolyZonotope.monomial, h3]
   -- both `±1` are points of `P`
@@ -55,7 +53,7 @@ theorem ConPolyZono.minkDiff_not_inner :
     intro v hv hv1
     refine ⟨fun _ => v, Fin.elim0, fun _ => hv1, fun j => j.elim0, ?_, ?_⟩
     · intro i
-      simp [PolyZonotope.monomial, Interval.point, cPZ, Matrix.mulVec, dotProduct, hv]
+      simp [PolyZonotope.monomial, cPZ, Matrix.mulVec, dotProduct, hv]
     · funext k
       simp [cPZ, PolyZonotope.monomial]
   -- `0` passes the corner test

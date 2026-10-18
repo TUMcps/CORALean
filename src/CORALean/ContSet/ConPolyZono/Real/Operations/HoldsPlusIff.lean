@@ -16,9 +16,9 @@ The block-diagonal exponent matrix is what makes the right-to-left direction
 work, neither system's monomials seeing the other's.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,8 +35,8 @@ open Matrix
 factors it came with; the block-diagonal exponent matrix is what makes the
 right-to-left direction work, neither system's monomials seeing the other's. -/
 theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
-    (b₁ : Interval (Vec ℝ m₁)) (R₁ : Fin p₁ → Fin q₁ → ℕ) (A₂ : Mat ℝ m₂ q₂)
-    (b₂ : Interval (Vec ℝ m₂))
+    (b₁ : Vec ℝ m₁) (R₁ : Fin p₁ → Fin q₁ → ℕ) (A₂ : Mat ℝ m₂ q₂)
+    (b₂ : Vec ℝ m₂)
     (R₂ : Fin p₂ → Fin q₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) : -- --- STMT ---
     ConPolyZono.holds (ConPolyZono.plusA A₁ A₂) (ConPolyZono.plusB b₁ b₂)
         (PolyZonotope.plusE R₁ R₂) a

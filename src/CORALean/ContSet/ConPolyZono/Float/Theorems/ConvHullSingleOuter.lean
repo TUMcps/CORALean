@@ -3,6 +3,9 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ConvHullSatisfies
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
+public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsConvHullIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialConvHullEPadE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecRelax
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
@@ -13,18 +16,19 @@ public import Mathlib.Analysis.Convex.Combination
 /-!
 # `ConPolyZono.convHullSingle` contains the convex hull
 
-The exact layer's closed form is the convex hull of the read-back operand's nominal set
+The exact layer's closed form is the convex hull of the operand's nominal set
 (`convHullSingle_exact`, with Carathéodory at `a = n + 1` or more), and the hull of the nominal
 set plus a box is the hull of the nominal set plus the box, a box being convex. A point of the
-exact form lies in the stored one at the same factors, up to the center `a c`, which is stored from
-below: its shortfall is the residual the stored box holds.
+exact form lies in the stored one at the same factors with each copy's slack factors dropped
+(`monomial_convHullE_padE`), a copy's row then being within its slack (`mulVec_relax`), up to the
+center `a c`, which is stored from below: its shortfall is the residual the stored box holds.
 
 No independent generators, as over ℝ, and at least `n + 1` copies.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -51,17 +55,18 @@ theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec 𝕋 n) (G
       simp only [ConPolyZono.convHullG, Real.ConPolyZono.convHullG, Fin.append_left,
         Fin.append_right, Real.ConPolyZono.repVec]
 
-/-- The stored nominal point at factors the exact form satisfies, which the stored form does
-too, moved by the shortfall of the center. -/
+/-- The stored nominal point at factors whose copies the stored operand's constraints admit and
+whose weights add up to `1 - a`. -/
 theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ) (hv : ∀ k, |v k| ≤ 1)
-    (hsat : (Real.ConPolyZono.convHullSingle a (nominal cPZ)).satisfies v) : -- --- STMT ---
+    (hcopy : ∀ j, cPZ.satisfies (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))))
+    (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- STMT ---
     (fun i => toReal ((cPZ.convHullSingle a).c i)
       + ∑ l, toReal ((cPZ.convHullSingle a).G l i)
         * Real.PolyZonotope.monomial (cPZ.convHullSingle a).E v l)
       ∈ nominalSet (cPZ.convHullSingle a) := by -- --- PROOF ---
   refine ConPolyZono.mem_nominalSet_iff.mpr ⟨v, fun j => j.elim0, hv, fun j => j.elim0,
-    ConPolyZono.convHullSingle_satisfies_of_real a cPZ v hsat, fun i => ?_⟩
+    ConPolyZono.convHullSingle_satisfies_of_real a cPZ v hcopy hw, fun i => ?_⟩
   -- no independent generators
   have h0 : ∀ f : Fin (cPZ.convHullSingle a).qI → ℝ, ∑ j, f j = 0 := fun f =>
     Finset.sum_eq_zero fun j _ => Fin.elim0 (show Fin 0 from j)
@@ -86,16 +91,51 @@ theorem ConPolyZono.convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 
     rw [hR]
     exact hr
   obtain ⟨v, β, hv, hβ, hsat, hr⟩ := hr'
-  -- no independent generators in the exact form, and the factor vector with its own type
+  -- each copy of the relaxed operand, and the weights
+  obtain ⟨hj, hl⟩ := (Real.ConPolyZono.holds_convHull_iff _ _ _ v).mp hsat
+  -- the factors with every copy's slack factors dropped
+  set w : Fin (a * cPZ.p + a) → ℝ := Fin.append
+    (fun x => v (Fin.castAdd a (finProdFinEquiv ((finProdFinEquiv.symm x).1,
+      Fin.castAdd cPZ.m (finProdFinEquiv.symm x).2)))) fun j => v (Fin.natAdd _ j) with hwdef
+  have hw : ∀ k, |w k| ≤ 1 := Fin.addCases (fun x => by simpa [hwdef] using hv _)
+    (fun j => by simpa [hwdef] using hv _)
+  -- a copy's slack factor makes up what its row is off by, so the row is within its slack
+  have hcopy : ∀ j, cPZ.satisfies (fun k => w (Fin.castAdd a (finProdFinEquiv (j, k)))) := by
+    intro j i
+    have h : (toRealMat cPZ.A *ᵥ Real.PolyZonotope.monomial cPZ.R
+          fun k => v (Fin.castAdd a (finProdFinEquiv (j, Fin.castAdd cPZ.m k)))) i
+        + toRealVec cPZ.b_error i * v (Fin.castAdd a (finProdFinEquiv (j, Fin.natAdd cPZ.p i)))
+        = toReal (cPZ.b i) :=
+      (Real.ConPolyZono.mulVec_relax cPZ.nominalCore (toRealVec cPZ.b_error)
+        (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) i).symm.trans (hj j i)
+    have hγ := hv (Fin.castAdd a (finProdFinEquiv (j, Fin.natAdd cPZ.p i)))
+    have hcopyw : (fun k => w (Fin.castAdd a (finProdFinEquiv (j, k))))
+        = fun k => v (Fin.castAdd a (finProdFinEquiv (j, Fin.castAdd cPZ.m k))) :=
+      funext fun k => by simp only [hwdef, Fin.append_left, Equiv.symm_apply_apply]
+    rw [hcopyw]
+    -- the row is off by the slack times the slack factor, which is at most `1`
+    have hrow : (toRealMat cPZ.A *ᵥ Real.PolyZonotope.monomial cPZ.R
+          fun k => v (Fin.castAdd a (finProdFinEquiv (j, Fin.castAdd cPZ.m k)))) i
+        - toReal (cPZ.b i) = -(toReal (cPZ.b_error i)
+          * v (Fin.castAdd a (finProdFinEquiv (j, Fin.natAdd cPZ.p i)))) := by
+      have hs : toRealVec cPZ.b_error i = toReal (cPZ.b_error i) := rfl
+      rw [hs] at h
+      linarith
+    rw [hrow, abs_neg, abs_mul]
+    exact mul_le_of_le_one_right (abs_nonneg _) hγ
+  -- the weights are the exact form's own
+  have hsum : ∑ j, w (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ) := by
+    simpa [hwdef] using hl
+  -- no independent generators in the exact form
   have h0 : (∑ j, β j • (Real.ConPolyZono.convHullSingle a (nominal cPZ)).GI j) = 0 :=
     Finset.sum_eq_zero fun j _ => Fin.elim0 (show Fin 0 from j)
-  obtain ⟨w, hw, hsatw, hrw⟩ : ∃ w : Fin (a * cPZ.p + a) → ℝ, (∀ k, |w k| ≤ 1)
-      ∧ (Real.ConPolyZono.convHullSingle a (nominal cPZ)).satisfies w
-      ∧ r = (a : ℝ) • toRealVec cPZ.c
-        + ∑ l, Real.PolyZonotope.monomial (Real.ConPolyZono.convHullE a cPZ.E) w l
-          • Real.ConPolyZono.convHullG a (toRealVec cPZ.c) (fun l i => toReal (cPZ.G l i)) l :=
-    ⟨v, hv, hsat, by rw [hr, h0, add_zero]; rfl⟩
-  have hz := ConPolyZono.aux_convHullSingle_mem a cPZ w hw hsatw
+  have hrw : r = (a : ℝ) • toRealVec cPZ.c
+      + ∑ l, Real.PolyZonotope.monomial (Real.ConPolyZono.convHullE a cPZ.E) w l
+        • Real.ConPolyZono.convHullG a (toRealVec cPZ.c) (fun l i => toReal (cPZ.G l i)) l := by
+    rw [hr, h0, add_zero]
+    refine congrArg _ (Finset.sum_congr rfl fun l _ => ?_)
+    exact congrArg (· • _) (Real.ConPolyZono.monomial_convHullE_padE cPZ.E v l)
+  have hz := ConPolyZono.aux_convHullSingle_mem a cPZ w hw hcopy hsum
   -- what storing `a c` from below leaves to pay
   have hd : (fun i => (a : ℝ) * toReal (cPZ.c i) - toReal (nsmulDown a (cPZ.c i)))
       ∈ (Interval.residual (fun i => nsmulDown a (cPZ.c i)) (fun i => nsmulUp a (cPZ.c i))

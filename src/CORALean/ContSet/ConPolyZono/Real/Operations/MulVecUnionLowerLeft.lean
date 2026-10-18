@@ -19,7 +19,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 # A row of the first operand's block of the union's lower constraint
 
 The operand's own row of [1, Thm. 1] against its own factors, less what the
-shared selector column contributes — `0.5 b₁.inf α₁`. At `α₁ = 1` that shift is exactly what
+shared selector column contributes — `0.5 b₁ α₁`. At `α₁ = 1` that shift is exactly what
 `unionLowerB` subtracted, so the row is the operand's own constraint; at
 `α₁ = -1` it is what makes a row whose left side has fallen to `0` satisfiable.
 
@@ -29,9 +29,9 @@ shared selector column contributes — `0.5 b₁.inf α₁`. At `α₁ = 1` that
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -45,13 +45,13 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mulVec_unionLower_left {p₁ p₂ m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
-    (b₁ : Interval (Vec ℝ m₁)) (A₂ : Mat ℝ m₂ q₂) (b₂ : Interval (Vec ℝ m₂))
+    (b₁ : Vec ℝ m₁) (A₂ : Mat ℝ m₂ q₂) (b₂ : Vec ℝ m₂)
     (R₁ : Fin p₁ → Fin q₁ → ℕ) (R₂ : Fin p₂ → Fin q₂ → ℕ)
     (a : Fin (p₁ + p₂ + 2) → ℝ) (i : Fin m₁) : -- --- STMT ---
     (ConPolyZono.unionLowerA A₁ b₁ A₂ b₂
         *ᵥ PolyZonotope.monomial (ConPolyZono.unionLowerR R₁ R₂) a) (Fin.castAdd m₂ i)
       = (A₁ *ᵥ PolyZonotope.monomial R₁ fun k => a (Fin.castAdd 2 (Fin.castAdd p₂ k))) i
-        - 2⁻¹ * b₁.inf i * a (ConPolyZono.unionSel p₁ p₂) := by -- --- PROOF ---
+        - 2⁻¹ * b₁ i * a (ConPolyZono.unionSel p₁ p₂) := by -- --- PROOF ---
   show (∑ l, ConPolyZono.unionLowerA A₁ b₁ A₂ b₂ (Fin.castAdd m₂ i) l
       * PolyZonotope.monomial (ConPolyZono.unionLowerR R₁ R₂) a l) = _
   rw [Fin.sum_univ_add (a := q₁ + q₂) (b := 1), Fin.sum_univ_one]

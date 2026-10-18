@@ -15,14 +15,18 @@ constraint rows appended below the generators, so that the constraint becomes a 
 
   `c = [c; -b]`, `G = blkdiag(G, A)`, `E = [E, R]`, `GI = [GI; 0]`,
 
-whose last `m` coordinates `-b + A μ(α)` vanish exactly when the factors satisfy `A μ(α) = b`.
-`b` is CORA's vector, read as the lower end `b.inf` of the interval `b`; the construction means the
-equality only for a degenerate `b`.
+whose last `m` coordinates `-b + A μ(α)` vanish exactly when the factors satisfy `A μ(α) = b`:
+the lifted polynomial zonotope of [1, Lemma 1], with the independent block carried as `[GI; 0]`.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -41,7 +45,7 @@ def ConPolyZono.extPolyZonotope (cPZ : ConPolyZono (Vec ℝ n)) :
   p := cPZ.p
   h := cPZ.h + cPZ.q
   q := cPZ.qI
-  c := (cPZ.c, -cPZ.b.inf)
+  c := (cPZ.c, -cPZ.b)
   G := Fin.append (fun i => (cPZ.G i, 0)) (fun l => (0, ConPolyZono.consCol cPZ.A l))
   E := ConPolyZono.appendE cPZ.E cPZ.R
   GI := fun j => (cPZ.GI j, 0)

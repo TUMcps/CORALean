@@ -20,19 +20,15 @@ factor vector the original admits satisfies the reduced system with the same
 value, but a factor vector of the reduced system need not put `μ_t(α)` where row
 `r` would have. Nothing here compensates for that, and [1] claims nothing more.
 
-The third hypothesis is the representation's, not [1]'s: `b` is an `Interval`
-where [1, Def. 5] has a vector, and a row solved for a monomial must be a point
-to determine one. Only the eliminated row is asked for it.
-
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -72,8 +68,7 @@ theorem ConPolyZono.aux_sum_univ_reduceCon (cPZ : ConPolyZono α) (r : Fin cPZ.m
 /-- Eliminating a constraint keeps every point: the same factors satisfy the
 reduced system and give the same value. -/
 theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : Fin cPZ.h)
-    (t : Fin cPZ.q) (hE : ∀ k, cPZ.E k d = cPZ.R k t) (hA : cPZ.A r t ≠ 0)
-    (hb : cPZ.b.inf r = cPZ.b.sup r) :
+    (t : Fin cPZ.q) (hE : ∀ k, cPZ.E k d = cPZ.R k t) (hA : cPZ.A r t ≠ 0) :
     cPZ.construct ⊆ (cPZ.reduceCon r d t).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, hsat, rfl⟩
   set μ := PolyZonotope.monomial cPZ.R a with hμ
@@ -82,14 +77,10 @@ theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : 
   have hmt : ν d = μ t := by
     simp only [hμ, hν, PolyZonotope.monomial]
     exact Finset.prod_congr rfl fun k _ => by rw [hE k]
-  have hrow : ∑ i, cPZ.A r i * μ i = cPZ.b.inf r := by
-    have h1 := hsat r
-    have h2 : (cPZ.A *ᵥ μ) r = ∑ i, cPZ.A r i * μ i := rfl
-    rw [h2, ← hb] at h1
-    linarith [h1.1, h1.2]
+  have hrow : ∑ i, cPZ.A r i * μ i = cPZ.b r := hsat r
   -- eq. (35), read as what the surviving constraint generators sum to
   have hrest : ∑ i : Fin (cPZ.q - 1), cPZ.A r (dropIdx t i) * μ (dropIdx t i)
-      = cPZ.b.inf r - cPZ.A r t * μ t := by
+      = cPZ.b r - cPZ.A r t * μ t := by
     rw [← hrow, sum_dropIdx t (fun i => cPZ.A r i * μ i)]
     ring
   refine ⟨a, β, ha, hβ, ?_, ?_⟩
@@ -114,15 +105,13 @@ theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : 
               * (cPZ.A r (dropIdx t i) * μ (dropIdx t i)) := fun i => by ring
     -- so the row is the original one, shifted by exactly what `reduceConB` shifts
     have hval : ((cPZ.reduceCon r d t).A *ᵥ PolyZonotope.monomial (cPZ.reduceCon r d t).R a) j
-        = (cPZ.A *ᵥ μ) (dropIdx r j) - cPZ.b.inf r * cPZ.A (dropIdx r j) t / cPZ.A r t := by
+        = (cPZ.A *ᵥ μ) (dropIdx r j) - cPZ.b r * cPZ.A (dropIdx r j) t / cPZ.A r t := by
       rw [hsum, Finset.sum_congr rfl (fun i _ => hterm i), Finset.sum_sub_distrib,
         ← Finset.mul_sum, hJ, hrest]
       field_simp
       ring
-    have hbJ := hsat (dropIdx r j)
-    rw [hval]
-    exact ⟨by simp only [ConPolyZono.reduceCon, ConPolyZono.reduceConB]; linarith [hbJ.1],
-      by simp only [ConPolyZono.reduceCon, ConPolyZono.reduceConB]; linarith [hbJ.2]⟩
+    rw [hval, hsat (dropIdx r j)]
+    rfl
   -- the value: generator `d`'s term is what the center and the new block replace
   · have hsplitG : ∑ i, ν i • cPZ.G i
         = ν d • cPZ.G d + ∑ i : Fin (cPZ.h - 1), ν (dropIdx d i) • cPZ.G (dropIdx d i) :=
@@ -144,18 +133,18 @@ theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : 
       field_simp
     have hsum2 : ∑ i : Fin (cPZ.q - 1),
           μ (dropIdx t i) • ((-(cPZ.A r (dropIdx t i)) / cPZ.A r t) • cPZ.G d)
-        = (-(1 / cPZ.A r t) * (cPZ.b.inf r - cPZ.A r t * μ t)) • cPZ.G d := by
+        = (-(1 / cPZ.A r t) * (cPZ.b r - cPZ.A r t * μ t)) • cPZ.G d := by
       simp only [hterm, ← Finset.sum_smul, ← Finset.mul_sum, hrest]
     -- and that multiple, with the center's, is generator `d`'s own monomial back
     have hcenter : ν d • cPZ.G d
-        = (cPZ.b.inf r / cPZ.A r t) • cPZ.G d
-          + (-(1 / cPZ.A r t) * (cPZ.b.inf r - cPZ.A r t * μ t)) • cPZ.G d := by
+        = (cPZ.b r / cPZ.A r t) • cPZ.G d
+          + (-(1 / cPZ.A r t) * (cPZ.b r - cPZ.A r t * μ t)) • cPZ.G d := by
       rw [← add_smul, hmt]
       congr 1
       field_simp
       ring
     rw [hsplitG, hres, hsum2, hcenter]
-    show _ = cPZ.c + (cPZ.b.inf r / cPZ.A r t) • cPZ.G d + _ + _
+    show _ = cPZ.c + (cPZ.b r / cPZ.A r t) • cPZ.G d + _ + _
     abel
 
 end CORALean.Real

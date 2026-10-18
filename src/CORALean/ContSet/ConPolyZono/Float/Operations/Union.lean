@@ -23,10 +23,13 @@ operands' generators unchanged, and the selector constraints over two fresh fact
 
 The midpoint and the sliding generator are rounded down and their shortfalls paid into
 the box, as `linComb`'s are; the box also holds both operands' boxes (`Interval.or`),
-which each branch carries along. The operands' constraint blocks are copied, and the
-selector polynomial is stored scaled to integer coefficients (`unionConInt`).
+which each branch carries along. The operands' constraint blocks are copied with their slacks, and
+the selector polynomial is stored scaled to integer coefficients (`unionConInt`), what storing them
+cost being its row's slack (`unionConErr`).
 
-No independent generators: as over ℝ, there is nothing for them to mean here.
+No independent generators: as over ℝ, there is nothing for them to mean here. That the result
+holds both operands rests on `Real.ConPolyZono.union_relax_subset`, [1, Thm. 1]'s construction
+with each operand's rows met within their slack.
 
 ## References
 
@@ -36,13 +39,15 @@ No independent generators: as over ℝ, there is nothing for them to mean here.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 namespace CORALean.Float
+
+open FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
@@ -62,8 +67,11 @@ def ConPolyZono.union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   GI := Fin.elim0
   A := ConPolyZono.plusA (ConPolyZono.unionUpperA cPZ₁.p cPZ₂.p)
     (ConPolyZono.unionLowerA cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b)
-  b := ConPolyZono.plusB (ConPolyZono.unionUpperB cPZ₁.p cPZ₂.p)
-    (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
+  b := ConPolyZono.plusB ConPolyZono.unionUpperB (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
+  -- the selector polynomial's coefficient rounding, then the operands' own slacks
+  b_error := ConPolyZono.plusB
+    (ConPolyZono.plusB (fun _ => zero) (fun _ => ConPolyZono.unionConErr cPZ₁.p cPZ₂.p))
+    (ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error)
   R := Real.ConPolyZono.appendE (Real.ConPolyZono.unionUpperR cPZ₁.p cPZ₂.p)
     (Real.ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R)
   -- the boxes of both operands, and what storing the center and the generator cost

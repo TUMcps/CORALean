@@ -130,7 +130,8 @@ def ofPZ {n : ℕ} (P : PolyZonotope (Vec 𝕋 n)) : Out :=
 
 def ofCPZ {n : ℕ} (P : ConPolyZono 𝕋 (Vec 𝕋 n)) : Out :=
   ⟨s!"p={P.p} h={P.h} qI={P.qI} m={P.m} q={P.q} c={vecS P.c} err={boxS P.I_error}",
-    vecF P.c ++ matF P.G ++ matF P.GI ++ matF P.A ++ boxF P.b ++ boxF P.I_error, false⟩
+    vecF P.c ++ matF P.G ++ matF P.GI ++ matF P.A ++ vecF P.b ++ vecF P.b_error
+      ++ boxF P.I_error, false⟩
 
 -- the remaining representations, and the containers of sets
 def ofEll {n : ℕ} (E : Ellipsoid 𝕋 n) : Out :=

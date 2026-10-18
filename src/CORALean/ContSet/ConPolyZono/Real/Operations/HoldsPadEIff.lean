@@ -12,9 +12,9 @@ Fresh factors at exponent zero constrain nothing, so the system says of the
 widened factor vector exactly what it said of the original.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -27,7 +27,7 @@ namespace CORALean.Real
 
 /-- Fresh factors at exponent zero constrain nothing, so the system says of the
 widened factor vector exactly what it said of the original. -/
-theorem ConPolyZono.holds_padE_iff {p m q : ℕ} (A : Mat ℝ m q) (b : Interval (Vec ℝ m))
+theorem ConPolyZono.holds_padE_iff {p m q : ℕ} (A : Mat ℝ m q) (b : Vec ℝ m)
     (R : Fin p → Fin q → ℕ) (r : ℕ) (a : Fin (p + r) → ℝ) :
     ConPolyZono.holds A b (ConPolyZono.padE R r) a
       ↔ ConPolyZono.holds A b R (fun k => a (Fin.castAdd r k)) := by

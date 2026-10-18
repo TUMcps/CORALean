@@ -9,15 +9,16 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.AppendE
 /-!
 # `ConPolyZono.intersectionDep`
 
-Sound where both independent blocks are empty; `intersection` arranges that. Keeps
+Sound where both independent blocks are empty; `intersection` arranges that. Its rows read as
+the exact layer's at the read-back data (`Real.ConPolyZono.mulVec_intersectionDep`). Keeps
 `cPZ₁`'s error box and only `cPZ₁`'s generator block: the point it denotes is
 `y₁ + e₁`, and `cPZ₂` enters through the constraint system alone, its generator
 columns kept at `zero` so the agreement rows can read the second point.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -46,6 +47,10 @@ def ConPolyZono.intersectionDep (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
   GI := Fin.elim0
   A := ConPolyZono.intersectionA cPZ₁ cPZ₂
   b := ConPolyZono.intersectionB cPZ₁ cPZ₂
+  -- each agreement row held to its interval: its lower end, and the width above it
+  b_error := Fin.append (ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error) fun i =>
+    subUp ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).sup i)
+      ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf i)
   R := Real.ConPolyZono.appendE (Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R)
           (Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E)
   I_error := cPZ₁.I_error
