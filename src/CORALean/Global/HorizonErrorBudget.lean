@@ -84,7 +84,7 @@ theorem aux_horizonErrorBudget_ceilPred {tf Δtstar : ℝ} (htf : 0 < tf) (hΔts
 `ε_P`-errors sum below any given `ε_{P,max}`. -/
 theorem exists_finPartition_sum_particularError_le
     (εP : ℝ → ℝ) (hεP_ratio : Tendsto (fun Δt => εP Δt / Δt) (𝓝[>] (0:ℝ)) (𝓝 0))
-    {tf : ℝ} (htf : 0 < tf) {εPmax : ℝ} (hεPmax : 0 < εPmax) :
+    {tf : ℝ} (htf : 0 < tf) {εPmax : ℝ} (hεPmax : 0 < εPmax) : -- --- STMT ---
     ∃ (M : ℕ) (Δt : Fin (M + 1) → ℝ), (∀ i, 0 < Δt i) ∧ (∑ i, Δt i = tf) ∧
       (∑ i, εP (Δt i) ≤ εPmax) := by -- --- PROOF ---
   set c := εPmax / tf with hc_def

@@ -46,7 +46,7 @@ theorem Zonotope.diffusionProp_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n) (Q 
     (hy : ∀ k i j, |(Γ i *ᵥ x k - yb (k + 1) i) j| ≤ r (k + 1) i j)
     (hα : ∀ k i a, 0 < ∑ s, ∑ l, ((Zonotope.diffusionPropLuenberger F (Q (k + 1)) Γ (r (k + 1))
       (yb (k + 1)) (Zonotope.diffusionProp F Q Γ r yb nb o Z₀ k) (nb i a)).G l s) ^ 2)
-    (k : ℕ) (i : Fin N) :
+    (k : ℕ) (i : Fin N) : -- --- STMT ---
     x k ∈ (Zonotope.diffusionProp F Q Γ r yb nb o Z₀ k i).construct := by -- --- PROOF ---
   induction k generalizing i with
   | zero => exact h0

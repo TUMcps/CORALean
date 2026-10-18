@@ -68,7 +68,7 @@ theorem LinearSys.IsCanonicalClassicalTrajectory.aux_aestronglyMeasurable {sys :
     {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
     (traj : sys.IsCanonicalClassicalTrajectory T R₀ U x u)
-    (hT : Set.Icc a b ⊆ T) :
+    (hT : Set.Icc a b ⊆ T) : -- --- STMT ---
     AEStronglyMeasurable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       (volume.restrict (Set.Ioc a b)) := by -- --- PROOF ---
   rw [show volume.restrict (Set.Ioc a b) = volume.restrict (Set.Ioo a b) from
@@ -91,7 +91,7 @@ theorem LinearSys.IsCanonicalClassicalTrajectory.intervalIntegrable_input {sys :
     {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
     (traj : sys.IsCanonicalClassicalTrajectory T R₀ U x u)
-    (hT : Set.Icc a b ⊆ T) (hab : a ≤ b) (hU : Bornology.IsBounded (construct U)) :
+    (hT : Set.Icc a b ⊆ T) (hab : a ≤ b) (hU : Bornology.IsBounded (construct U)) : -- --- STMT ---
     IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       volume a b := by -- --- PROOF ---
   obtain ⟨CU, hCU⟩ := hU.exists_norm_le

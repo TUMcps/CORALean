@@ -53,7 +53,8 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
 /-- `H_scaling` with time bound `T + t_scaling` overapproximates `H_single` with time bound `T`. -/
 theorem DiffInclAutomaton.scalingConversion_contOverapprox {I : Set X} {f : X → X} {K K' : ℝ≥0}
     (hf : LipschitzWith K f) {g : X → ℝ} (hg : Continuous g) (hg0 : ∀ x, 0 ≤ g x)
-    (hF : LipschitzWith K' fun x => g x • f x) {tb ts : ℝ} (htb : 0 < tb) (hts : 0 < ts) (T : ℝ) :
+    (hF : LipschitzWith K' fun x => g x • f x) {tb ts : ℝ} (htb : 0 < tb) (hts : 0 < ts)
+    (T : ℝ) : -- --- STMT ---
     (DiffInclAutomaton.singleMode I f).ContOverapprox T
       (DiffInclAutomaton.scalingConversion I f g tb ts) Prod.fst (T + ts) := by -- --- PROOF ---
   set H' := DiffInclAutomaton.scalingConversion I f g tb ts with hH'

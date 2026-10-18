@@ -45,7 +45,8 @@ variable {X : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.model_checking_sound {c : ℝ≥0} (hc : 0 < c) (φ : STL.Formula X) (hstl : φ.IsStl)
-    (hdiv : φ.CDivisible c) : ∃ cnf : STL.CNF X,
+    (hdiv : φ.CDivisible c) : -- --- STMT ---
+    ∃ cnf : STL.CNF X,
       (∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) ∧
         ∀ (T : Finset ℝ≥0) (R : ℝ≥0 → Set X), (∀ t, (R t).Nonempty) →
           ReachSequence.FinRep T R → ReachSequence.CDivisible c T →

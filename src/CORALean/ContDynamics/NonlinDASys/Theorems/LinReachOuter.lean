@@ -74,7 +74,7 @@ theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt :
       sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us) + F *ᵥ (y' - ys))
         ∈ Verror_y.construct)
     (hus : us ∈ U.construct) (h0 : (0 : Vec ℝ n) ∈ Verror.construct) {q : ℕ}
-    (hε : ‖Δt • (A - C * F_inv * D)‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1) :
+    (hε : ‖Δt • (A - C * F_inv * D)‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1) : -- --- STMT ---
     let R := NonlinDASys.linReach (sys.f xs ys us) (sys.g xs ys us) A B C D E F_inv xs ys us
       Rinit U Verror Verror_y Δt (q + 2)
     x Δt ∈ R.1.construct ∧

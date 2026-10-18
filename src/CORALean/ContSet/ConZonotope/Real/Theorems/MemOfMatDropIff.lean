@@ -37,7 +37,8 @@ open Matrix
 /-- A zero generator column `j` and a zero constraint row `r` can be dropped from `ofMat`. -/
 theorem ConZonotope.mem_ofMat_drop_iff {α : Type} [AddCommGroup α] [Module ℝ α] {q h : ℕ}
     (c : α) (G : Fin h → α) (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h)
-    (hG : G j = 0) (hA : ∀ i, A i j = 0) (hr : ∀ l, A r l = 0) (hb : b r = 0) (x : α) :
+    (hG : G j = 0) (hA : ∀ i, A i j = 0) (hr : ∀ l, A r l = 0) (hb : b r = 0)
+    (x : α) : -- --- STMT ---
     x ∈ (ConZonotope.ofMat c G A b).construct ↔
       x ∈ (ConZonotope.ofMat c (G ∘ dropIdx j)
         (fun i k => A (dropIdx r i) (dropIdx j k)) (b ∘ dropIdx r)).construct := by -- --- PROOF ---

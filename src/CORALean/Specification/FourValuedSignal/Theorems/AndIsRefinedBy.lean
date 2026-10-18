@@ -33,7 +33,7 @@ namespace CORALean
 
 theorem FourValuedSignal.and_isRefinedBy {ι : Type} [Fintype ι] [Nonempty ι]
     (sigs : ι → FourValuedSignal ℝ) (ks : ι → KleeneSignal ℝ) (hs : ∀ i, (sigs i).IsValid)
-    (hk : ∀ i, (ks i).IsValid) (h : ∀ i, (sigs i).IsRefinedBy (ks i)) :
+    (hk : ∀ i, (ks i).IsValid) (h : ∀ i, (sigs i).IsRefinedBy (ks i)) : -- --- STMT ---
     ∃ r, FourValuedSignal.and_ sigs = some r ∧ r.IsValid ∧
       r.IsRefinedBy (KleeneSignal.and_ ks) := by -- --- PROOF ---
   obtain ⟨r, hr, hv, hc⟩ := FourValuedSignal.at_and sigs hs

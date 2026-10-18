@@ -42,7 +42,7 @@ variable {n nu ny nw nv nf : ℕ}
 
 theorem LinearSysDT.faultError_eq (A : Mat ℝ n n) (B : Mat ℝ n nu) (C : Mat ℝ ny n)
     (L : Mat ℝ n ny) (M : Mat ℝ ny ny) (Dx : Mat ℝ n nw) (Dy : Mat ℝ ny nv) (E : Mat ℝ ny nf)
-    (x xh : Vec ℝ n) (u : Vec ℝ nu) (w : Vec ℝ nw) (v : Vec ℝ nv) (f : Vec ℝ nf) :
+    (x xh : Vec ℝ n) (u : Vec ℝ nu) (w : Vec ℝ nw) (v : Vec ℝ nv) (f : Vec ℝ nf) : -- --- STMT ---
     let y := C *ᵥ x + Dy *ᵥ v + E *ᵥ f                                      -- Eq. 3b
     let x_plus := A *ᵥ x + B *ᵥ u + Dx *ᵥ w                                  -- Eq. 3a
     let xh_plus := A *ᵥ xh + B *ᵥ u + L *ᵥ (y - C *ᵥ xh)                     -- Eq. 7

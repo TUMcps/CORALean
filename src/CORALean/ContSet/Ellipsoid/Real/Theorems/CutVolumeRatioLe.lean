@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 19]: `vol(M E)/vol(M B) = vol(E)/vol(B) ≤ κ_ε`, for every square `M`. -/
-theorem Ellipsoid.cut_volume_ratio_le {ε : ℝ} (hε : 0 < ε) :
+theorem Ellipsoid.cut_volume_ratio_le {ε : ℝ} (hε : 0 < ε) : -- --- STMT ---
     ∃ κ : ℝ, 0 < κ ∧ κ < 1 ∧ ∀ (n : ℕ) (c : Vec ℝ n), 2 ≤ n → c ⬝ᵥ c = 1 → ∀ M : Mat ℝ n n,
       (Ellipsoid.mtimes M (Ellipsoid.ofShape (Ellipsoid.cutShape n c
           (1 / Real.sqrt ((n : ℝ) * (1 + ε)))) 0)).volume

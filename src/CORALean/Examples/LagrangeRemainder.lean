@@ -59,7 +59,7 @@ def Example.sqBox : Zonotope (Vec ℝ 2) := ⟨2, 0, fun k => Pi.single k 1⟩
 
 /-- The unit box's abstraction error for `f(x, u) = x₀² + u₀` at the origin,
 where `A = 0` and `B = 1` really are the derivative. -/
-theorem Example.sq_abstractionError :
+theorem Example.sq_abstractionError : -- --- STMT ---
     AbstractionError (S := ℐ𝒱) Example.sqField 0 1 0 0
       {x : Vec ℝ 1 | |x 0| ≤ 1} {u : Vec ℝ 1 | |u 0| ≤ 1}
       (abstrErrLin Example.sqHessBound Example.sqBox

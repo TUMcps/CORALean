@@ -233,7 +233,7 @@ theorem aux_hpMapCoraCex_unitIntervalMul {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 
 /-- `R_quad` of `{0}` is `{0}`. -/
 theorem aux_hpMapCoraCex_quadMapMatZono {m ν : ℕ} (D : Fin m → Mat ℝ n n)
     (K : Fin ν → Fin m → Mat ℝ n n) {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0)
-    (h : ∀ j, Z.G j = 0) :
+    (h : ∀ j, Z.G j = 0) : -- --- STMT ---
     (Zonotope.quadMapMatZono D K Z).c = 0 ∧
       ∀ j, (Zonotope.quadMapMatZono D K Z).G j = 0 := by -- --- PROOF ---
   refine ⟨(aux_hpMapCoraCex_quadMap D hc h).1, fun j => ?_⟩
@@ -276,7 +276,7 @@ theorem aux_hpMapCoraCex_inputSet (inv : Zonotope (Vec ℝ 3)) :
 
 /-- A run of a linear location from `R₀` hits `nᵀx = d` at `t ≤ tmax` outside the set
 `Location.guardIntersectHyperplaneMapCoraErr` returns, `η = 3`, for all reduction orders. -/
-theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample :
+theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample : -- --- STMT ---
     ∃ (ℓ : Location 𝒵 𝒵 Unit ℝ 3) (nv : Vec ℝ 3) (d : ℝ) (R₀ : Zonotope (Vec ℝ 3))
       (tmax τ t : ℝ) (x : ℝ → Vec ℝ 3) (u : ℝ → Vec ℝ ℓ.dynamics.m)
       (w : ℝ → Vec ℝ ℓ.dynamics.r), ℓ.IsTrajectory τ x u w ∧ x 0 ∈ R₀.construct ∧

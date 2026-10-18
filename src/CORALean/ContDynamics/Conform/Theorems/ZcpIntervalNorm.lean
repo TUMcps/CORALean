@@ -40,7 +40,7 @@ variable {ny nu : ℕ} {ι : Type} [Fintype ι]
 /-- [1, Lemma 4]: `R Y_ZCP(x)` is `⟨R f(x), R D̄ G_u diag(α)⟩`, of interval norm
 `1ᵀ|R D̄ G_u| α`. -/
 theorem Conform.intervalNorm_zcpSet {nr : ℕ} (R : Mat ℝ nr ny) (fx : Vec ℝ ny) (D : Mat ℝ ny nu)
-    (Gu : ι → Vec ℝ nu) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) :
+    (Gu : ι → Vec ℝ nu) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) : -- --- STMT ---
     (fun y => R *ᵥ y) '' Conform.zcpSet fx D Gu α
         = Conform.templateZono (R *ᵥ fx) (fun j => (R * D) *ᵥ Gu j) α ∧
       Conform.intervalNorm (fun _ => 1) (fun j => α j • (R * D) *ᵥ Gu j)

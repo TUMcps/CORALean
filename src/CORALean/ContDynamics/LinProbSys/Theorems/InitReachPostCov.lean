@@ -35,7 +35,7 @@ variable {n m : ℕ}
 theorem LinProbSys.initReach_post_cov (sys : LinProbSys n m) (Veig : Mat ℝ n n)
     (lambda : Fin n → ℝ) (hV : IsUnit Veig.det) (hA : sys.A = Veig * diagonal lambda * Veig⁻¹)
     (Rinit : ProbZonotope n) (gammaInit : ℝ) (U : Zonotope (Vec ℝ m)) (uTrans : Vec ℝ m)
-    (r : ℝ) (η : ℕ) (gamma : ℝ) (originContained : Bool) (k : ℕ) :
+    (r : ℝ) (η : ℕ) (gamma : ℝ) (originContained : Bool) (k : ℕ) : -- --- STMT ---
     ((fun st => (sys.post r (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma
         originContained).2.2.2 st).1)^[k]
         (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma

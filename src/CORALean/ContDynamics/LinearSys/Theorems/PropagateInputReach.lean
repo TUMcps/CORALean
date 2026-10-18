@@ -66,7 +66,7 @@ theorem LinearSys.aux_inputReach_zero (sys : LinearSys 𝕋 n) {U : S n}
 step, is the exact particular solution over the horizon. -/
 theorem LinearSys.propagateInputSolution_inputReach (sys : LinearSys 𝕋 n) {U : S n} {Δt : ℝ}
     (hΔt : 0 ≤ Δt) (hbdd : Bornology.IsBounded (construct U))
-    (hne : (construct U).Nonempty) (ω : ℕ) :
+    (hne : (construct U).Nonempty) (ω : ℕ) : -- --- STMT ---
     sys.propagateInputSolution Δt (sys.inputReach U Δt) ω
       = sys.inputReach U ((ω : ℝ) * Δt) := by -- --- PROOF ---
   induction ω with

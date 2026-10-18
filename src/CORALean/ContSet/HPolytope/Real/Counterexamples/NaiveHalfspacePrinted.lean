@@ -38,7 +38,7 @@ open MeasureTheory Matrix ENNReal
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.naiveHalfspace_printed_counterexample :
+theorem HPolytope.naiveHalfspace_printed_counterexample : -- --- STMT ---
     ∃ (G : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (c d : Vec ℝ 2) (Λ : Mat ℝ 4 2) (b : Vec ℝ 4)
       (j : Fin 1 → Fin 4), (∀ i, 0 < b i) ∧
       (∀ i, ∃ i', (∀ x, (Λ *ᵥ x) i' = -(Λ *ᵥ x) i) ∧ b i' = b i) ∧

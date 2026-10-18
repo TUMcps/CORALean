@@ -183,7 +183,7 @@ theorem aux_lift_exists_coeff (hn : 1 ≤ n) (z : Fin n → Vec ℝ n) (hz : Lin
 pair `±zᵢ` and total `t/α ∈ [1, 2n - 1]`. -/
 theorem aux_cube_subset_lift (hn : 1 ≤ n) (z : Fin n → Vec ℝ n) (hz : LinearIndependent ℝ z)
     {R : ℝ} (hR : IsGreatest ((fun x => ‖x‖) '' {x : Vec ℝ n | ∀ i, |z i ⬝ᵥ x| ≤ 1}) R)
-    (hRpos : 0 < R) :
+    (hRpos : 0 < R) : -- --- STMT ---
     closedBall (((0 : Vec ℝ n), (n : ℝ) * (1 / (2 * n ^ 2 * R))) : Vec ℝ n × ℝ)
         ((n - 1) * (1 / (2 * n ^ 2 * R))) ⊆
       {p | ∃ μ : Fin n ⊕ Fin n → ℝ, (∀ k, 0 ≤ μ k ∧ μ k ≤ 1) ∧
@@ -259,7 +259,7 @@ theorem exists_cube_vertex_mem_frontier_lift (hn : 1 ≤ n) (z : Fin n → Vec �
     (hR : IsGreatest ((fun x => ‖x‖) '' {x : Vec ℝ n | ∀ i, |z i ⬝ᵥ x| ≤ 1}) R)
     {α : ℝ} (hα : α = 1 / (2 * n ^ 2 * R)) {Zs : Set (Vec ℝ n × ℝ)}
     (hZs : Zs = {p | ∃ μ : Fin n ⊕ Fin n → ℝ, (∀ k, 0 ≤ μ k ∧ μ k ≤ 1) ∧
-      p = ∑ k, μ k • ((Sum.elim z (fun i => -z i) k, α) : Vec ℝ n × ℝ)}) :
+      p = ∑ k, μ k • ((Sum.elim z (fun i => -z i) k, α) : Vec ℝ n × ℝ)}) : -- --- STMT ---
     ∃ r, IsGreatest {r | closedBall (((0 : Vec ℝ n), (n : ℝ) * α) : Vec ℝ n × ℝ) r ⊆ Zs} r ∧
       ∃ q ∈ frontier Zs, (∀ i, |q.1 i| = r) ∧ |q.2 - n * α| = r ∧
         q.2 ∈ Set.Icc 0 α := by -- --- PROOF ---

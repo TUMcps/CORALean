@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 /-- A point of `Z`, nominal part and error box together, reaches no further than
 `|c| + Σ|G| + |E|`, rounded up. -/
 theorem Zonotope.aux_abs_le_construct {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ n}
-    (hz : z ∈ nominalSet Z) (he : e ∈ Z.I_error.construct) (j : Fin n) :
+    (hz : z ∈ nominalSet Z) (he : e ∈ Z.I_error.construct) (j : Fin n) : -- --- STMT ---
     |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) ∧
       |z j + e j| ≤ toReal (addUp (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
         (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))) := by -- --- PROOF ---
@@ -84,7 +84,7 @@ theorem Zonotope.aux_abs_mulVec_le {R : Mat ℝ m n} {x : Vec ℝ n} {r : Mat �
 the box, widened by `mtimesIntervalMatBox`, provided `Z` brackets `0` in its own box. -/
 theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
     (Z : Zonotope (Vec 𝕋 n)) (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) {A : Mat ℝ m n}
-    (hA : A ∈ IM.construct) :
+    (hA : A ∈ IM.construct) : -- --- STMT ---
     (Zonotope.mtimesIntervalMat IM Z).construct ⊆
       (A *ᵥ ·) '' Z.construct
         + (Zonotope.mtimesIntervalMatBox IM Z).construct := by -- --- PROOF ---

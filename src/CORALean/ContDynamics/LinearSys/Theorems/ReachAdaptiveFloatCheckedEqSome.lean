@@ -33,7 +33,7 @@ theorem LinearSys.reachAdaptiveFloatChecked_eq_some (sys : LinearSys 𝕋 n)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ)
     (options : LinearSys.AdaptiveOptions 𝕋)
     {Rs : (List (LinearSys.AdaptiveStepInfo 𝕋 n))}
-    (h : sys.reachAdaptiveFloatChecked params options = some Rs) :
+    (h : sys.reachAdaptiveFloatChecked params options = some Rs) : -- --- STMT ---
     sys.reachAdaptiveFloat params options = some Rs ∧
       noNaN (𝕋 := 𝕋) (Rs.map fun r => (r.Δt, r.R)) = true := by -- --- PROOF ---
   unfold LinearSys.reachAdaptiveFloatChecked at h

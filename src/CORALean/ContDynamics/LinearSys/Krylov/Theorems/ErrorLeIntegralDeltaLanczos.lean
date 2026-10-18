@@ -45,7 +45,8 @@ variable {n m : ℕ}
 |β_{k+1}|‖v_{k+1}‖₂ ∫₀ᵗ|h(s)|ds` for `t ≥ 0`; `V_k` has `m + 1` columns. -/
 theorem Krylov.error_le_integral_delta_lanczos (H : Mat ℂ n n) (hH : H.IsHermitian)
     (V : Mat ℂ n (m + 1)) (T : Mat ℂ (m + 1) (m + 1)) (β : ℂ) (w : Fin n → ℂ)
-    (hK : H * V = V * T + β • vecMulVec w (Pi.single (Fin.last m) 1)) {t : ℝ} (ht : 0 ≤ t) :
+    (hK : H * V = V * T + β • vecMulVec w (Pi.single (Fin.last m) 1)) {t : ℝ}
+    (ht : 0 ≤ t) : -- --- STMT ---
     let v := V *ᵥ Pi.single 0 1
     let h : ℝ → ℂ := fun s => exp (s • (Complex.I • T)) (Fin.last m) 0
     ‖(WithLp.toLp 2 (exp (t • (Complex.I • H)) *ᵥ v -

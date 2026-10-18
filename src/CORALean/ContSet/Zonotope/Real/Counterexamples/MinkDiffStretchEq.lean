@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 /-- [1, Prop. 6] as printed: (22) solved exactly at a negative `µ` does not make the stretched
 minuend the Minkowski difference. -/
-theorem Zonotope.minkDiffStretch_eq_counterexample :
+theorem Zonotope.minkDiffStretch_eq_counterexample : -- --- STMT ---
     ∃ (Z₁ Z₂ : Zonotope ℝ) (C : Fin 2 → (ℝ →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ),
       {y | ∀ i, C i (y - Z₁.c) ≤ ∑ υ, |C i (Z₁.G υ)|} ⊆ Z₁.construct ∧
       {y | ∀ i, C i (y - (Z₁.minkDiffStretch Z₂ μ).c)

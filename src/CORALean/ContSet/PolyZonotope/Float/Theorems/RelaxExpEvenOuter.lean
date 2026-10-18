@@ -67,7 +67,7 @@ theorem PolyZonotope.aux_sum_univ_relaxExpEven_q {pZ : PolyZonotope (Vec 𝕋 n)
 /-- The halved column is stored downward and its upward twin lies above the
 exact half, so the gap between them covers it. -/
 theorem PolyZonotope.aux_relaxGenEven_gap (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) :
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- STMT ---
     |(pZ.relaxWidth part k₀ : ℝ) / 2 * toReal (pZ.G (part.right 0) i)
       - toReal (pZ.relaxGenEven part k₀ i)|
         ≤ toReal (pZ.relaxGapEven part k₀ i 1) := by -- --- PROOF ---
@@ -90,7 +90,7 @@ theorem PolyZonotope.aux_relaxGenEven_gap (pZ : PolyZonotope (Vec 𝕋 n))
 /-- The recentered center is stored below the exact one, and the gap between the
 two roundings of that same subtraction bounds the difference. -/
 theorem PolyZonotope.aux_relaxCenterEven_gap (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) :
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) (i : Fin n) : -- --- STMT ---
     |toReal (pZ.c i) - (pZ.relaxWidth part k₀ : ℝ) / 2 * toReal (pZ.G (part.right 0) i)
       - toReal (pZ.relaxCenterEven part k₀ i)|
         ≤ toReal (pZ.relaxGapEven part k₀ i 2) := by -- --- PROOF ---
@@ -122,7 +122,7 @@ theorem PolyZonotope.aux_relaxExpEven_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1))
     (heven : ∀ k, Even (pZ.E k (part.right 0)))
     (hevenj : Even (pZ.E k₀ (part.right 1)))
-    (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) :
+    (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) : -- --- STMT ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExpEven part k₀)
       + (PolyZonotope.generatorError (pZ.relaxGapEven part k₀)).construct := by -- --- PROOF ---
   intro x hx
@@ -223,7 +223,7 @@ theorem PolyZonotope.relaxExpEven_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1))
     (heven : ∀ k, Even (pZ.E k (part.right 0)))
     (hevenj : Even (pZ.E k₀ (part.right 1)))
-    (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) :
+    (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) : -- --- STMT ---
     pZ.construct ⊆ (pZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ :=

@@ -57,7 +57,7 @@ variable {n q r : ℕ}
 /-- Coordinate `i`'s extreme is attained: the point whose coefficients are the
 signs of row `i` of the dropped generators reaches `∑_l |G_red(i,l)|` there. -/
 theorem Zonotope.aux_dropped_le_sSup (Z : Zonotope (Vec ℝ n))
-    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (i : Fin n) :
+    (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (i : Fin n) : -- --- STMT ---
     ∑ l, |Z.G (part.right l) i|
       ≤ sSup ((fun z : Vec ℝ n => z i) ''
           (Z.reduceByDropped part).construct) := by -- --- PROOF ---

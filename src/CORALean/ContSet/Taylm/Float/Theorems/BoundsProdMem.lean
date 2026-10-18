@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {ι : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.boundsProd_mem (E : ι → Interval 𝕋) (e : ι → ℝ) :
+theorem Taylm.boundsProd_mem (E : ι → Interval 𝕋) (e : ι → ℝ) : -- --- STMT ---
     ∀ (l : List ι) (I : Interval 𝕋) (x : ℝ), toReal I.inf ≤ x → x ≤ toReal I.sup →
       (∀ k ∈ l, toReal (E k).inf ≤ e k ∧ e k ≤ toReal (E k).sup) →
       toReal (Taylm.boundsProd E l I).inf ≤ x * (l.map e).prod ∧

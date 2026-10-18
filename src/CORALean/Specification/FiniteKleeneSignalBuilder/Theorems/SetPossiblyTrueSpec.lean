@@ -29,7 +29,7 @@ namespace CORALean
 
 open FiniteKleeneSignalBuilder in
 theorem FiniteKleeneSignalBuilder.setPossiblyTrue?_spec (b : FiniteKleeneSignalBuilder)
-    (lo hi : EReal) :
+    (lo hi : EReal) : -- --- STMT ---
     (hi ≤ lo → b.setPossiblyTrue? lo hi = none) ∧
     (lo < hi → ∀ (d : ℝ) (PT PF : ℝ → Prop), b.Represents d PT PF →
       ∃ b', b.setPossiblyTrue? lo hi = some b' ∧

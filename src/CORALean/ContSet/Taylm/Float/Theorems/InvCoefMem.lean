@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.invCoef_mem (c : 𝕋) (hc : toReal c ≠ 0) (k : ℕ) :
+theorem Taylm.invCoef_mem (c : 𝕋) (hc : toReal c ≠ 0) (k : ℕ) : -- --- STMT ---
     toReal (Taylm.invCoef c k).inf ≤
         iteratedDeriv k (fun x : ℝ => x⁻¹) (toReal c) / (k.factorial : ℝ) ∧
       iteratedDeriv k (fun x : ℝ => x⁻¹) (toReal c) / (k.factorial : ℝ) ≤

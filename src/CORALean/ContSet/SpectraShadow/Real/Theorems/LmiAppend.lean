@@ -28,7 +28,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.lmi_append {k₁ k₂ m₁ m₂ : ℕ} (A₀ : Mat ℝ k₁ k₁) (B₀ : Mat ℝ k₂ k₂)
-    (A : Fin m₁ → Mat ℝ k₁ k₁) (B : Fin m₂ → Mat ℝ k₂ k₂) (β : Fin (m₁ + m₂) → ℝ) :
+    (A : Fin m₁ → Mat ℝ k₁ k₁) (B : Fin m₂ → Mat ℝ k₂ k₂) (β : Fin (m₁ + m₂) → ℝ) : -- --- STMT ---
     blockDiag 0 A₀ B₀ + ∑ i, β i • (Fin.append (fun i => blockDiag 0 (A i) 0)
         (fun j => blockDiag 0 0 (B j)) : Fin (m₁ + m₂) → Mat ℝ (k₁ + k₂) (k₁ + k₂)) i
       = blockDiag 0 (A₀ + ∑ i, β (Fin.castAdd m₂ i) • A i)

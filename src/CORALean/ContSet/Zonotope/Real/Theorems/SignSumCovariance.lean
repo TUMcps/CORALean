@@ -71,7 +71,7 @@ theorem aux_sum_flip (j : Fin m) (f : (Fin m → Bool) → ℝ)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.sign_sum_covariance (G : Mat ℝ n m) :
+theorem Zonotope.sign_sum_covariance (G : Mat ℝ n m) : -- --- STMT ---
     (∑ s : Fin m → Bool, G *ᵥ fun j => if s j then (1 : ℝ) else -1) = 0 ∧
       ∀ a b, (∑ s : Fin m → Bool, (G *ᵥ fun j => if s j then (1 : ℝ) else -1) a *
         (G *ᵥ fun j => if s j then (1 : ℝ) else -1) b) =

@@ -45,7 +45,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 widened by the error that run accumulated. -/
 theorem LinearSys.reach_subset_discretize_reachSet_add_error (sys : LinearSys 𝕋 n)
     {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
+    {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- STMT ---
     ((sys.discretize Δt).reach (S := 𝒵) ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩
         ⟨o, ho⟩).construct
       ⊆ (sys.discretize Δt).reachSet (S := 𝒵) R₀

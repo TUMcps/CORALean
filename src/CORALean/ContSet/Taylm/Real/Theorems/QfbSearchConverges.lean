@@ -52,7 +52,7 @@ variable {n : ℕ}
 /-- One step decreases `P₂` by at least `‖x⁺ - x‖² / (2α)`. -/
 theorem Taylm.aux_qfbSearchStep_descent {H : Mat ℝ n n} (hH : H.IsSymm) (c : ℝ) (g : Vec ℝ n)
     {α L : ℝ} (hα : 0 < α) (hL : ∀ v : Vec ℝ n, v ⬝ᵥ (H *ᵥ v) ≤ L * (v ⬝ᵥ v))
-    (hαL : α * L ≤ 1) {x : Vec ℝ n} (hx : x ∈ Taylm.box n) :
+    (hαL : α * L ≤ 1) {x : Vec ℝ n} (hx : x ∈ Taylm.box n) : -- --- STMT ---
     2 * α * (c + g ⬝ᵥ Taylm.qfbSearchStep H g α x
         + Taylm.qfbSearchStep H g α x ⬝ᵥ (H *ᵥ Taylm.qfbSearchStep H g α x) / 2)
       + (Taylm.qfbSearchStep H g α x - x) ⬝ᵥ (Taylm.qfbSearchStep H g α x - x)
@@ -82,7 +82,7 @@ theorem Taylm.aux_qfbSearchStep_descent {H : Mat ℝ n n} (hH : H.IsSymm) (c : �
 to a minimizer `x*` of `P₂` on the box, and `P₂(x₀⁽ⁱ⁾) → P₂(x*)`. -/
 theorem Taylm.qfbSearch_converges {H : Mat ℝ n n} (hH : H.IsSymm) (hP : H.PosSemidef) (c : ℝ)
     (g : Vec ℝ n) {α L : ℝ} (hα : 0 < α) (hL : ∀ v : Vec ℝ n, v ⬝ᵥ (H *ᵥ v) ≤ L * (v ⬝ᵥ v))
-    (hαL : α * L ≤ 1) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ Taylm.box n) :
+    (hαL : α * L ≤ 1) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ Taylm.box n) : -- --- STMT ---
     ∃ xs ∈ Taylm.box n, IsMinOn (fun x => c + g ⬝ᵥ x + x ⬝ᵥ (H *ᵥ x) / 2) (Taylm.box n) xs ∧
       (∃ φ : ℕ → ℕ, StrictMono φ ∧
         Tendsto (fun j => (Taylm.qfbSearchStep H g α)^[φ j] x₀) atTop (𝓝 xs)) ∧

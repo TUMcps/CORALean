@@ -42,7 +42,8 @@ variable {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
 /-- [1, Lemma 2], corrected: overapproximation at `T + t_scaling`, zero error against `Reach(H)`. -/
 theorem DiffInclAutomaton.scalingConversion_zeroError {I : Set X} {f : X → X} {K K' : ℝ≥0}
     (hf : LipschitzWith K f) {g : X → ℝ} (hg : Continuous g) (hg0 : ∀ x, 0 ≤ g x)
-    (hF : LipschitzWith K' fun x => g x • f x) {tb ts : ℝ} (htb : 0 < tb) (hts : 0 < ts) (T : ℝ) :
+    (hF : LipschitzWith K' fun x => g x • f x) {tb ts : ℝ} (htb : 0 < tb) (hts : 0 < ts)
+    (T : ℝ) : -- --- STMT ---
     (DiffInclAutomaton.singleMode I f).ContOverapprox T
         (DiffInclAutomaton.scalingConversion I f g tb ts) Prod.fst (T + ts) ∧
       ∀ T', Prod.fst '' (DiffInclAutomaton.scalingConversion I f g tb ts).reachLE T' ⊆

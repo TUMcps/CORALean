@@ -61,7 +61,7 @@ variable {n : ℕ}
 /-- Every tail term is at most `r^m` in the scalar factor, so the tail is the
 exponential's own remainder series. -/
 theorem aux_norm_expDiff_tail_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 < r) (η : ℕ)
-    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
     ‖∑' i : ℕ, (((Nat.factorial (i + (η + 1)) : ℝ))⁻¹
         * (t ^ (i + (η + 1)) - (t / r) * r ^ (i + (η + 1)))) • A ^ (i + (η + 1))‖
       ≤ MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---

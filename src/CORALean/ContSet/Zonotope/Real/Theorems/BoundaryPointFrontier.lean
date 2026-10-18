@@ -31,7 +31,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem aux_step_props (Z : Zonotope α) {dir start : α} (hdir : dir ≠ 0)
-    (hs : start ∈ Z.construct) :
+    (hs : start ∈ Z.construct) : -- --- STMT ---
     sSup {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} ∈
         {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} ∧
       BddAbove {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} := by -- --- PROOF ---

@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The independent sum with generator `j` halved and coefficient `j` replaced by `b`. -/
 theorem PolyZonotope.aux_sum_update (pZ : PolyZonotope (Vec 𝕋 n)) (j : Fin pZ.q) (β : Vec ℝ pZ.q)
-    (b : ℝ) (i : Fin n) :
+    (b : ℝ) (i : Fin n) : -- --- STMT ---
     ∑ k, toReal (Function.update pZ.GI j (fun i => half (pZ.GI j i)) k i)
         * Function.update β j b k
       = ∑ k, toReal (pZ.GI k i) * β k - toReal (pZ.GI j i) * β j

@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Two constraint systems side by side hold exactly when each holds on the
 factors it came with — the exact layer's lemma, at the read-back data. -/
 theorem ConPolyZono.satisfies_plus_iff (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
-    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) :
+    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- STMT ---
     (cPZ₁.plus cPZ₂).satisfies a
       ↔ cPZ₁.satisfies (fun k => a (Fin.castAdd cPZ₂.p k))
         ∧ cPZ₂.satisfies (fun k => a (Fin.natAdd cPZ₁.p k)) := by -- --- PROOF ---

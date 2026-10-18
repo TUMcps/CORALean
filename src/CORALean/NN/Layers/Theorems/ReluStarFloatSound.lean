@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Operations.ReluStarFloat
 public import CORALean.NN.Layers.Theorems.StarSetFloatReluNeuronOuter
 public import CORALean.ContSet.StarSet.Float.Theorems.RowBoundsMem
@@ -31,10 +32,10 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.reluStarFloat_sound (n : ℕ) :
-    (Layer.reluStarFloat 𝕋 n).Sound fun x i => max (x i) 0 := by -- --- PROOF ---
+    (Layer.reluStarFloat 𝕋 n).Sound fun x i => Real.relu (x i) := by -- --- PROOF ---
   -- the ReLU at the neurons of a list, applied one neuron at a time
   have key : ∀ (L : List (Fin n)) (t : Float.StarSet 𝕋 n) (x : Vec ℝ n), x ∈ construct t →
-      (fun i => if i ∈ L then max (x i) 0 else x i : Vec ℝ n) ∈ construct
+      (fun i => if i ∈ L then Real.relu (x i) else x i : Vec ℝ n) ∈ construct
         (L.foldl (fun t j => t.reluNeuron j (t.rowBounds j)) t) := by
     intro L
     induction L with
@@ -48,8 +49,8 @@ theorem Layer.reluStarFloat_sound (n : ℕ) :
       refine (congrArg (· ∈ construct _) ?_).mp h2
       funext i
       by_cases hij : i = j
-      · subst hij; simp
-      · by_cases hiL : i ∈ L <;> simp [hij, hiL]
+      · subst hij; simp [Real.relu]
+      · by_cases hiL : i ∈ L <;> simp [hij, hiL, Real.relu]
   refine ⟨fun s x hx => ?_⟩
   have := key (List.finRange n) s x hx
   simp only [List.mem_finRange, if_true] at this

@@ -55,7 +55,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- The step's enclosure minus its own error ball is *contained in* the states
 the flow visits over the step. -/
 theorem LinearSys.timeIntervalStepInner_inner (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)
-    (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ : Zonotope (Vec ℝ n)) :
+    (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
+    (X₀ : Zonotope (Vec ℝ n)) : -- --- STMT ---
     sys.timeIntervalStepInner r η X₀
       ⊆ ⋃ t ∈ Set.Icc (0:ℝ) r,
           (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀.construct := by -- --- PROOF ---

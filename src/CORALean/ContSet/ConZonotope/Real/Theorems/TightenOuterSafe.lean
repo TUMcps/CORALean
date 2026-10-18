@@ -51,7 +51,7 @@ theorem ConZonotope.aux_tightenCoeff_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng
     (S : Set (Fin ng))
     (hclosed : ∀ j ∈ S, ∀ i : Fin nc, A i j ≠ 0 → ∀ l : Fin ng, l ≠ j → A i l ≠ 0 → l ∈ S)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
-    (hβS : ∀ k ∈ S, E.inf k ≤ β k ∧ β k ≤ E.sup k) (hrow : (A *ᵥ β) i = b i) :
+    (hβS : ∀ k ∈ S, E.inf k ≤ β k ∧ β k ≤ E.sup k) (hrow : (A *ᵥ β) i = b i) : -- --- STMT ---
     ∀ k ∈ S, (ConZonotope.tightenCoeff A b i j E).inf k ≤ β k ∧
         β k ≤ (ConZonotope.tightenCoeff A b i j E).sup k := by -- --- PROOF ---
   intro k hkS
@@ -117,7 +117,7 @@ theorem ConZonotope.aux_tightenRow_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng) 
     (S : Set (Fin ng))
     (hclosed : ∀ j ∈ S, ∀ i : Fin nc, A i j ≠ 0 → ∀ l : Fin ng, l ≠ j → A i l ≠ 0 → l ∈ S)
     (i : Fin nc) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
-    (hβS : ∀ k ∈ S, E.inf k ≤ β k ∧ β k ≤ E.sup k) (hrow : (A *ᵥ β) i = b i) :
+    (hβS : ∀ k ∈ S, E.inf k ≤ β k ∧ β k ≤ E.sup k) (hrow : (A *ᵥ β) i = b i) : -- --- STMT ---
     ∀ k ∈ S, (ConZonotope.tightenRow A b i E).inf k ≤ β k ∧
         β k ≤ (ConZonotope.tightenRow A b i E).sup k := by -- --- PROOF ---
   unfold ConZonotope.tightenRow
@@ -134,7 +134,7 @@ theorem ConZonotope.aux_tightenRow_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng) 
 theorem ConZonotope.tighten_outer_safe {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (S : Set (Fin ng))
     (hclosed : ∀ j ∈ S, ∀ i : Fin nc, A i j ≠ 0 → ∀ l : Fin ng, l ≠ j → A i l ≠ 0 → l ∈ S)
-    {β : Vec ℝ ng} (hbox : ∀ j ∈ S, |β j| ≤ 1) (heq : ∀ i, (A *ᵥ β) i = b i) :
+    {β : Vec ℝ ng} (hbox : ∀ j ∈ S, |β j| ≤ 1) (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- STMT ---
     ∀ k ∈ S, (ConZonotope.tighten A b).inf k ≤ β k ∧
         β k ≤ (ConZonotope.tighten A b).sup k := by -- --- PROOF ---
   unfold ConZonotope.tighten

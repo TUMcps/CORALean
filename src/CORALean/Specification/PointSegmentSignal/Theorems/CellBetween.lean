@@ -35,7 +35,7 @@ namespace CORALean
 theorem PointSegmentSignal.cell_between {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (k : ℕ) (hk : k < s.timePoints.length) (t : T)
     (h0 : 0 ≤ t) (h1 : s.timePoints[k] < t)
-    (h2 : ∀ h : k + 1 < s.timePoints.length, t < s.timePoints[k + 1]) :
+    (h2 : ∀ h : k + 1 < s.timePoints.length, t < s.timePoints[k + 1]) : -- --- STMT ---
     s.cell t = 2 * k + 1 := by -- --- PROOF ---
   have hlen := hs.2.1
   have hb : 2 * k + 1 < s.values.length := by omega

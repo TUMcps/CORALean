@@ -32,7 +32,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.scale_box_counterexample :
+theorem Interval.scale_box_counterexample : -- --- STMT ---
     let b : Vec ℝ 1 := fun _ => 1
     let β : Vec ℝ 1 := fun _ => -1
     (fun _ => (1 / 2 : ℝ)) ∈ Set.extremePoints ℝ

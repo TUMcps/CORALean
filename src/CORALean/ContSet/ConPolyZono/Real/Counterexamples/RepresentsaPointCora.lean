@@ -77,7 +77,7 @@ theorem ConPolyZono.aux_pinned_construct :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- CORA says "point" for an empty set and "no point" for a point. -/
-theorem ConPolyZono.representsa_point_cora_counterexample :
+theorem ConPolyZono.representsa_point_cora_counterexample : -- --- STMT ---
     (ConPolyZono.aux_infeasible.construct = ∅ ∧
         ConPolyZono.aux_infeasible.representsa_point = true) ∧
       (ConPolyZono.aux_pinned.construct = {0} ∧

@@ -44,7 +44,7 @@ theorem sdp_relaxation_quad_le (s₁ s₁' s₂ s₂' : ℝ≥0∞) [Fact (1 ≤
     (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ) (v : Fin m → ℝ)
     (w : Fin l → ℝ)
     (hK : (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)).PosSemidef)
-    (α : Fin m → ℝ) (z : Fin n → ℝ) :
+    (α : Fin m → ℝ) (z : Fin n → ℝ) : -- --- STMT ---
     2 * (z ⬝ᵥ (G *ᵥ α)) ≤ ‖WithLp.toLp s₁ v‖ * ‖WithLp.toLp s₁' (fun j => α j ^ 2)‖ +
       ‖WithLp.toLp s₂ w‖ * ‖WithLp.toLp s₂' (fun i => (z ᵥ* H) i ^ 2)‖ := by -- --- PROOF ---
   haveI : Fact (1 ≤ s₁) := ⟨ENNReal.HolderConjugate.one_le s₁ s₁'⟩

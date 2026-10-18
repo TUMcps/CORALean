@@ -34,7 +34,7 @@ variable {n : ℕ}
 /-- Strictly decreasing `f`, continuous on the interval `D`, corners in `D`: the corners swap. -/
 theorem Interval.antitoneImage_exact (f : ℝ → ℝ) (D : Set ℝ) (hD : D.OrdConnected)
     (hf : StrictAntiOn f D) (hc : ContinuousOn f D) (I : Interval (Vec ℝ n))
-    (hI : ∀ i, I.inf i ∈ D ∧ I.sup i ∈ D) :
+    (hI : ∀ i, I.inf i ∈ D ∧ I.sup i ∈ D) : -- --- STMT ---
     (⟨fun i => f (I.sup i), fun i => f (I.inf i)⟩ : Interval (Vec ℝ n)).construct
       = (fun x i => f (x i)) '' I.construct := by -- --- PROOF ---
   ext y

@@ -71,7 +71,7 @@ theorem Krylov.aux_norm₂_smul_inv_smul (w : Vec ℝ n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Krylov.arnoldi_relation (C : Mat ℝ n n) (v : Vec ℝ n) (k : ℕ) :
+theorem Krylov.arnoldi_relation (C : Mat ℝ n n) (v : Vec ℝ n) (k : ℕ) : -- --- STMT ---
     C *ᵥ (Krylov.arnoldi C v (k + 1)).1 k
       = ∑ i ∈ Finset.range (k + 1),
           (Krylov.arnoldi C v (k + 1)).2 i k • (Krylov.arnoldi C v (k + 1)).1 i

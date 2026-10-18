@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Def. 1.3]: `{s} ⊕ g₁ ⊕ ⋯ ⊕ g_m` is the set of `s + ∑ αᵢ gᵢ`, `α ∈ [0, 1]^m`. -/
-theorem Zonotope.generatorHull_eq (s : Vec ℝ n) :
+theorem Zonotope.generatorHull_eq (s : Vec ℝ n) : -- --- STMT ---
     ∀ (m : ℕ) (g : Fin m → Vec ℝ n), Zonotope.generatorHull s m g
       = {y | ∃ α : Fin m → ℝ, (∀ i, α i ∈ Set.Icc (0:ℝ) 1) ∧ y = s + ∑ i, α i • g i}
   | 0, g => by

@@ -57,7 +57,7 @@ theorem aux_append_cast {m m' n : ℕ} (e : m' = m) (a : Fin m → ℝ) (β : Fi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 1]: the exact layered iteration from a point is a point of `gcnActSteps`. -/
-theorem GNN.evalLayers_mem_gcnActSteps (L : ℕ) :
+theorem GNN.evalLayers_mem_gcnActSteps (L : ℕ) : -- --- STMT ---
     ∀ (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ) (W : ∀ s, Mat ℝ (c s) (c (s + 1)))
       (acts : ∀ s, GNN.ActLayer N (c (s + 1))) (_ : ∀ s, (acts s).Sound (σ s))
       (P : PolyZonotope (Mat ℝ N N)) (H : PolyZonotope (Mat ℝ N (c 0))) (hp : P.p = H.p)

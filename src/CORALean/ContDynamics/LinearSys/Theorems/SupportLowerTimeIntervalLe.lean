@@ -54,7 +54,7 @@ line 15's `ρ(Ř(t_k), ℓ)` and `ρ(Ř(t_{k+1}), ℓ)`. -/
 theorem LinearSys.supportLower_timeInterval_le (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n) {c : Vec ℝ n}
     (hc : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d c ≤ d (νU d))
-    (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
+    (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- STMT ---
     (sys.supportLower Δt ν₀ νU c ℓ (k + 1)).ρRτ
       ≤ max (sys.supportLower Δt ν₀ νU c ℓ k).ρR
           (sys.supportLower Δt ν₀ νU c ℓ (k + 1)).ρR := by -- --- PROOF ---

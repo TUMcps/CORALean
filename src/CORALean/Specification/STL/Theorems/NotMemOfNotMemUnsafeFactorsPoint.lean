@@ -43,7 +43,7 @@ variable {n m : ℕ}
 theorem STL.not_mem_of_not_mem_unsafeFactors_point (A : Mat ℝ n n) (B : Mat ℝ n m)
     (X₀ : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) {Δt : ℝ} (hΔt : 0 < Δt) (κ : ℕ)
     (α : ℕ → ℝ) (hα : ∀ k, |α k| ≤ 1) (i : ℕ) {s : ℕ} (C : Matrix (Fin s) (Fin n) ℝ)
-    (d : Fin s → ℝ) {p : ℕ} (hp : X₀.h + i * U.h ≤ p) :
+    (d : Fin s → ℝ) {p : ℕ} (hp : X₀.h + i * U.h ≤ p) : -- --- STMT ---
     let R := STL.depReachPoint (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i)
     ∀ (hle : X₀.h + i * U.h ≤ R.h),
       (fun l : Fin p => α l) ∉ STL.unsafeFactors C d R.c (Matrix.of fun j k => R.G k j)

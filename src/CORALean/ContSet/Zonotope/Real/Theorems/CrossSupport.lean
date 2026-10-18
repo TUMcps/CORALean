@@ -39,7 +39,7 @@ theorem Zonotope.cross_support (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) (s : Fin Z.
     (a : Fin Z.h) (ha : s a = false)
     (hB : ∀ b, s b = true → 0 ≤ σ * (Z.G b 0 * Z.G a 1 - Z.G b 1 * Z.G a 0))
     (hC : ∀ c, s c = false → c ≠ a → 0 ≤ σ * (Z.G a 0 * Z.G c 1 - Z.G a 1 * Z.G c 0))
-    {z : Vec ℝ 2} (hz : z ∈ Z.construct) :
+    {z : Vec ℝ 2} (hz : z ∈ Z.construct) : -- --- STMT ---
     0 ≤ σ * (Z.G a 0 * (z - Z.corner s) 1 - Z.G a 1 * (z - Z.corner s) 0) := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
   -- the difference to the corner, coordinatewise

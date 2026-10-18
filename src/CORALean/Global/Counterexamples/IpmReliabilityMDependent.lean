@@ -140,7 +140,7 @@ theorem aux_indep (t : ℕ) {s : ℕ} (hs : 1 ≤ s) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ipmReliabilityMDependent_counterexample :
+theorem ipmReliabilityMDependent_counterexample : -- --- STMT ---
     ¬ ∀ (E Φ Y Ω : Type) [AddCommGroup E] [Module ℝ E] [FiniteDimensional ℝ E]
       [MeasurableSpace E] [MeasurableSpace Φ] [MeasurableSpace Y] [MeasurableSpace Ω]
       (ℙ : Measure Ω) [IsProbabilityMeasure ℙ] (x : ℕ → Ω → Φ × Y) (P : Measure (Φ × Y))

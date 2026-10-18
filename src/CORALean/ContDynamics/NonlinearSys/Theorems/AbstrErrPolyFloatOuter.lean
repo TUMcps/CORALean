@@ -81,7 +81,7 @@ theorem aux_polyErr_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
 theorem aux_polyErr_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
     (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
-    (hy : y ∈ Y.construct) :
+    (hy : y ∈ Y.construct) : -- --- STMT ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
         (-A))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
@@ -141,7 +141,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.abstrErrPolyFloat_outer
     {U : Interval (Vec 𝕋 m)} {Rdelta Rdiff : Zonotope (Vec 𝕋 n)} (hxs : toRealVec xs ∈ X.construct)
     (hus : toRealVec us ∈ U.construct) {x₀ x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ X.construct)
     (hu : u ∈ U.construct) (hx₀ : x₀ - toRealVec xs ∈ Rdelta.construct)
-    (hδ : x - x₀ ∈ Rdiff.construct) :
+    (hδ : x - x₀ ∈ Rdiff.construct) : -- --- STMT ---
     sys.f x u - (sys.f (toRealVec xs) (toRealVec us)
         + Scalar.toRealMat A *ᵥ (x - toRealVec xs) + Scalar.toRealMat B *ᵥ (u - toRealVec us))
       ∈ (fm.abstrErrPolyFloat A B xs us X U Rdelta Rdiff).construct := by -- --- PROOF ---

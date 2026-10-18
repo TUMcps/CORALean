@@ -53,7 +53,7 @@ def ParallelHybridAutomaton.feedInputCora {α : Type} [Zero α] (y : α → α �
 open Classical in
 /-- For `y = x + v` the output depends on its input, so CORA's input of B is `0` at every state and
 global input, where the intended `y x g = x + g` is `2` at `x = g = 1`. -/
-theorem ParallelHybridAutomaton.feedInputCora_counterexample :
+theorem ParallelHybridAutomaton.feedInputCora_counterexample : -- --- STMT ---
     (∀ g x : ℝ, ParallelHybridAutomaton.feedInputCora (fun x v => x + v) g x
       (∀ x' v : ℝ, x' + v = x' + 0) = 0) ∧
       ParallelHybridAutomaton.feedInputCora (fun x v => x + v) 1 1 (∀ x' v : ℝ, x' + v = x' + 0) ≠

@@ -52,7 +52,8 @@ theorem aux_foldl_iterate {α : Type} (f : α → α) (a : α) (k : ℕ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 1], unrolled: `R_{N-1}` is `Q₀, f(Q₀), ..., f^{N-1}(Q₀)`. -/
-theorem LinearSys.girardReach_eq (sys : LinearSys 𝕋 n) (I : Zonotope (Vec ℝ n)) (μ r T : ℝ) :
+theorem LinearSys.girardReach_eq (sys : LinearSys 𝕋 n) (I : Zonotope (Vec ℝ n))
+    (μ r T : ℝ) : -- --- STMT ---
     sys.girardReach I μ r T
       = (List.range (⌈T / r⌉₊ - 1 + 1)).map fun i =>
           (fun Q : Zonotope (Vec ℝ n) => (Q.mtimes (exp (r • toRealMat sys.A))).plus

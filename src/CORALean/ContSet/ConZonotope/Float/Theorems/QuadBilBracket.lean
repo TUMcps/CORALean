@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.quadBil_bracket (Q : Mat 𝕋 n n) (u v : Vec 𝕋 n) :
+theorem ConZonotope.quadBil_bracket (Q : Mat 𝕋 n n) (u v : Vec 𝕋 n) : -- --- STMT ---
     toReal (ConZonotope.quadBilDown Q u v)
         ≤ toRealVec u ⬝ᵥ (toRealMat Q *ᵥ toRealVec v)
       ∧ toRealVec u ⬝ᵥ (toRealMat Q *ᵥ toRealVec v)

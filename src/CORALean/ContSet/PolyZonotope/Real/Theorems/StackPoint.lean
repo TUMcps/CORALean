@@ -33,7 +33,7 @@ variable {n₁ n₂ : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.stack_point (pZ₁ : PolyZonotope (Vec ℝ n₁)) (pZ₂ : PolyZonotope (Vec ℝ n₂))
-    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) :
+    (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) : -- --- STMT ---
     (pZ₁.stack pZ₂ hp).point a =
       (Fin.append (pZ₁.point a) (pZ₂.point (fun k => a (Fin.cast hp.symm k))) :
         Vec ℝ (n₁ + n₂)) := by -- --- PROOF ---

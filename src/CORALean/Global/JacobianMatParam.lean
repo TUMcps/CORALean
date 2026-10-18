@@ -41,7 +41,7 @@ theorem jacobianMat_sub (g h : Vec ℝ k → Vec ℝ n) (x : Vec ℝ k) (hg : Di
 
 theorem jacobianMat_param (g0 : Vec ℝ k → Vec ℝ n) (gi : Fin q → Vec ℝ k → Vec ℝ n)
     (p : Vec ℝ q) (x : Vec ℝ k) (h0 : DifferentiableAt ℝ g0 x)
-    (hi : ∀ i, DifferentiableAt ℝ (gi i) x) :
+    (hi : ∀ i, DifferentiableAt ℝ (gi i) x) : -- --- STMT ---
     jacobianMat (fun z => g0 z + ∑ i, p i • gi i z) x
       = jacobianMat g0 x + ∑ i, p i • jacobianMat (gi i) x := by -- --- PROOF ---
   -- the derivative of the sum is the sum of the derivatives, scaled

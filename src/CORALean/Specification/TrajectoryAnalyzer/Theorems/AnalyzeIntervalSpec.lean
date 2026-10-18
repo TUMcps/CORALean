@@ -33,7 +33,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSe
 
 /-- The loop over the propositions `L` of the analyzer, for a point, location and interval. -/
 theorem aux_analyzeInterval_loop (aps : List (String × AtomicProposition S n)) (dur : ℝ)
-    (point : Vec 𝕋 n) (loc : ℕ) (lo hi : ℝ) (hlh : lo < hi) :
+    (point : Vec 𝕋 n) (loc : ℕ) (lo hi : ℝ) (hlh : lo < hi) : -- --- STMT ---
     ∀ L : List (String × AtomicProposition S n), (∀ q ∈ L, q ∈ aps) →
     ∀ (sigs : List (String × FiniteSignal ℝ Bool)) (M : String → ℝ → Prop),
       TrajectoryAnalyzer.SignalsRepresent aps dur sigs M → ∃ sigs', L.foldlM (fun sigs p =>
@@ -86,7 +86,7 @@ theorem aux_analyzeInterval_loop (aps : List (String × AtomicProposition S n)) 
 theorem TrajectoryAnalyzer.analyzeInterval_spec (obj : TrajectoryAnalyzer 𝕋 S n) (s : ℕ)
     (dur : ℝ) (sigs : List (String × FiniteSignal ℝ Bool)) (M : String → ℝ → Prop)
     (h : TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs M) (l : ℕ)
-    (hlh : obj.traj.t.getD (l - 1) 0 < obj.traj.t.getD l 0) :
+    (hlh : obj.traj.t.getD (l - 1) 0 < obj.traj.t.getD l 0) : -- --- STMT ---
     ∃ sigs', obj.analyzeInterval s dur sigs l = some sigs' ∧
       TrajectoryAnalyzer.SignalsRepresent obj.aps dur sigs'
         (fun k τ => M k τ ∨ obj.TrueAt s dur k l τ) := by -- --- PROOF ---

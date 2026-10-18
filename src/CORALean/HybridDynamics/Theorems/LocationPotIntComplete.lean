@@ -36,7 +36,7 @@ omit [Scalar 𝕋] in
 theorem Location.potInt_complete [DecidableEq L] [∀ n, IsDisjoint (G n) (S n)]
     (ℓ : Location S G L 𝕋 n) (Rs : List (S n)) (finalLoc : L) {i j : ℕ}
     (hi : i < ℓ.trans.length) (hj : j < Rs.length) (hfin : ℓ.trans[i].target ≠ finalLoc)
-    {x : Vec ℝ n} (hg : x ∈ construct ℓ.trans[i].guard) (hR : x ∈ construct Rs[j]) :
+    {x : Vec ℝ n} (hg : x ∈ construct ℓ.trans[i].guard) (hR : x ∈ construct Rs[j]) : -- --- STMT ---
     (i, j) ∈ ℓ.potInt Rs finalLoc := by -- --- PROOF ---
   -- the pair is not certified disjoint, since `x` lies in both
   have hnd : IsDisjoint.isDisjoint ℓ.trans[i].guard Rs[j] = false := by

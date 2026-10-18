@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 theorem PolyZonotope.mulVec_split {hh qq : ℕ} (M : Mat 𝕋 m n) (c : Vec 𝕋 n)
     (G : Fin hh → Vec 𝕋 n) (GI : Fin qq → Vec 𝕋 n) (t : Vec ℝ hh) (β : Vec ℝ qq) {x : Vec ℝ n}
     (hx : ∀ k, x k = toReal (c k) + (∑ l, toReal (G l k) * t l)
-            + ∑ j, toReal (GI j k) * β j) (i : Fin m) :
+            + ∑ j, toReal (GI j k) * β j) (i : Fin m) : -- --- STMT ---
     (toRealMat M *ᵥ x) i
       = (∑ k, toReal (M i k) * toReal (c k))
         + (∑ l, (∑ k, toReal (M i k) * toReal (G l k)) * t l)

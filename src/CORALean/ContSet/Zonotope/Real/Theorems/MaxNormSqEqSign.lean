@@ -60,7 +60,7 @@ theorem aux_convexOn_sq_norm₂ :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.maxNormSq_eq_sign (Z : Zonotope (Vec ℝ n)) (lam : ℝ) :
+theorem Zonotope.maxNormSq_eq_sign (Z : Zonotope (Vec ℝ n)) (lam : ℝ) : -- --- STMT ---
     Z.maxNormSq = -(Finset.univ.inf' Finset.univ_nonempty fun s : Fin Z.h → Bool =>
         (fun j => if s j then (1 : ℝ) else -1) ⬝ᵥ
           ((lam • (1 : Mat ℝ Z.h Z.h) - Matrix.of fun j k => Z.G j ⬝ᵥ Z.G k) *ᵥ

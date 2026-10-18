@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.evalPolySort_exact (pZ : PolyZonotope (Vec ℝ n))
-    (coeffs : List (Vec ℝ n)) (a : Fin pZ.p → ℝ) :
+    (coeffs : List (Vec ℝ n)) (a : Fin pZ.p → ℝ) : -- --- STMT ---
     (pZ.evalPolySort coeffs).point (fun l => a (Fin.cast (pZ.evalPolySort_p coeffs) l))
       = fun i => PolyZonotope.evalPolyReal (coeffs.map fun v => v i)
           (pZ.point a i) := by -- --- PROOF ---

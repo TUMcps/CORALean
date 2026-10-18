@@ -45,7 +45,7 @@ variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensiona
 `c` and `φ : A → B` continuous, `S = {a + φ(a) | a ∈ A}`. -/
 theorem minkowskiDiff_subset_of_continuous {A B : Set V} (hA : IsCompact A)
     (hAc : Convex ℝ A) (hAne : A.Nonempty) {c : V} (hB : ∀ b ∈ B, (2 : ℝ) • c - b ∈ B)
-    {φ : V → V} (hφ : ContinuousOn φ A) (hφB : Set.MapsTo φ A B) :
+    {φ : V → V} (hφ : ContinuousOn φ A) (hφB : Set.MapsTo φ A B) : -- --- STMT ---
     minkowskiDiff A B ⊆
       (fun s => s - (2 : ℝ) • c) '' {x | ∃ a ∈ A, x = a + φ a} := by -- --- PROOF ---
   intro x hx

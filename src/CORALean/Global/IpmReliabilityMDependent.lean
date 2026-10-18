@@ -106,7 +106,7 @@ theorem ipm_reliability_mDependent [MeasurableSpace E] [MeasurableSpace Φ] [Mea
     (A : (Fin N → Φ × Y) → Finset (Fin N)) (hA : ∀ X, (A X).card = N - k)
     (hIm : MeasurableSet {p : E × (Φ × Y) | p.2.2 ∈ I p.1 p.2.1})
     (hsolm : ∀ H : Finset (Fin N), H.card = d → Measurable (sol H)) {ε : ℝ} (hε : 0 < ε)
-    (hε1 : ε < 1) :
+    (hε1 : ε < 1) : -- --- STMT ---
     1 - (N.choose d : ℝ) * ∑ i ∈ Finset.range (k + 1),
         ((⌈((N : ℝ) - d * (2 * M + 1)) / (M + 1)⌉₊).choose i : ℝ) * ε ^ i *
           (1 - ε) ^ (⌈((N : ℝ) - d * (2 * M + 1)) / (M + 1)⌉₊ - i) <

@@ -37,7 +37,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 /-- One operand of `aux_times_` keeps `a`, and lies inside its interval. -/
 private theorem SyntaxTree.funHanTimes_operand {int prev other : Dom} {a b : ℝ} (hb : Dom.contains
     prev b)
-    (ha : Dom.contains other a) (hi : Dom.contains int (a * b)) :
+    (ha : Dom.contains other a) (hi : Dom.contains int (a * b)) : -- --- STMT ---
     Dom.contains (if prev.inf 0 ≤ 0 ∧ 0 ≤ prev.sup 0 then other
       else Real.Interval.intersection other (Real.Interval.rdivide int prev)) a ∧
     Dom.within (if prev.inf 0 ≤ 0 ∧ 0 ≤ prev.sup 0 then other

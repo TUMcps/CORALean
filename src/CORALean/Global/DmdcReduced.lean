@@ -47,7 +47,7 @@ theorem dmdc_reduced_step (Ā : Mat ℝ n n) (Bb : Mat ℝ n l) (Û : Mat ℝ n 
 
 /-- [1, Eq. 29]: `Ã = Ûᵀ Ā Û = Ûᵀ X' Ṽ Σ̃⁻¹ Ũ₁ᵀ Û`. -/
 theorem dmdc_reducedA_eq (X2 : Mat ℝ n N) (V : Mat ℝ (n + l) p) (s : Fin p → ℝ) (W : Mat ℝ N p)
-    (Û : Mat ℝ n r) :
+    (Û : Mat ℝ n r) : -- --- STMT ---
     Ûᵀ * (dmdcBlocks (dmdCandidate X2 V s W p)).1 * Û
       = Ûᵀ * X2 * W * Matrix.diagonal (fun i : Fin p => if (i : ℕ) < p then (s i)⁻¹ else 0)
         * (Matrix.of fun a j => V (Fin.castAdd l a) j)ᵀ * Û := by -- --- PROOF ---
@@ -56,7 +56,7 @@ theorem dmdc_reducedA_eq (X2 : Mat ℝ n N) (V : Mat ℝ (n + l) p) (s : Fin p �
 
 /-- [1, Eq. 30]: `B̃ = Ûᵀ B̄ = Ûᵀ X' Ṽ Σ̃⁻¹ Ũ₂ᵀ`. -/
 theorem dmdc_reducedB_eq (X2 : Mat ℝ n N) (V : Mat ℝ (n + l) p) (s : Fin p → ℝ) (W : Mat ℝ N p)
-    (Û : Mat ℝ n r) :
+    (Û : Mat ℝ n r) : -- --- STMT ---
     Ûᵀ * (dmdcBlocks (dmdCandidate X2 V s W p)).2
       = Ûᵀ * X2 * W * Matrix.diagonal (fun i : Fin p => if (i : ℕ) < p then (s i)⁻¹ else 0)
         * (Matrix.of fun b j => V (Fin.natAdd n b) j)ᵀ := by -- --- PROOF ---

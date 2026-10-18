@@ -43,7 +43,7 @@ variable {n : ℕ}
 theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (l : ℝ)
     (hF : IsUnit F.det)
     (hball : ∀ x : Vec ℝ n, ‖x‖₂ ≤ √l → F⁻¹ *ᵥ Z.c + x ∈
-      (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).construct) :
+      (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).construct) : -- --- STMT ---
     (Z.ellipsoidInnerNorm F l).construct ⊆ Z.construct := by -- --- PROOF ---
   rw [Zonotope.ellipsoidInnerNorm, Ellipsoid.construct_ofFactor]
   rintro _ ⟨u, hu, rfl⟩

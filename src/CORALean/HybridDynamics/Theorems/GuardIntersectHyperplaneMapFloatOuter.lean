@@ -127,7 +127,7 @@ down and `1/min(|lo|, |hi|)²` rounded up, the latter's denominator certified po
 theorem aux_hpMapF_sq {lo hi : 𝕋} (h : (ltStrict zero lo || ltStrict hi zero) = true)
     (hm : ltStrict zero (mulDown (minimum (absolute lo) (absolute hi))
       (minimum (absolute lo) (absolute hi))) = true) {y : ℝ} (h1 : toReal lo ≤ y)
-    (h2 : y ≤ toReal hi) :
+    (h2 : y ≤ toReal hi) : -- --- STMT ---
     toReal (divDown one (mulUp (maximum (absolute lo) (absolute hi))
         (maximum (absolute lo) (absolute hi)))) ≤ 1 / y ^ 2 ∧
       1 / y ^ 2 ≤ toReal (divUp one (mulDown (minimum (absolute lo) (absolute hi))
@@ -205,7 +205,7 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
         ≤ toReal τg)
     {k : Interval (Vec 𝕋 n)} {Lk : Interval (Mat 𝕋 n n)}
     (hk : GuardMap.hitPointFloat A b nv d R0red.c = some k)
-    (hL : GuardMap.hitJacobianFloat A b nv d R0red.c = some Lk) :
+    (hL : GuardMap.hitJacobianFloat A b nv d R0red.c = some Lk) : -- --- STMT ---
     -- `k ⊕ L R₀_ ⊕ [φ̲/2, φ̄/2] R_quad`, as the guard mapping builds it
     GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) x₀ ∈
       ((k.zonotope.plus (Zonotope.mtimesIntervalMat Lk R₀.recenter)).plus

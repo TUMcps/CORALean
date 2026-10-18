@@ -81,7 +81,7 @@ theorem NonlinearSys.IsLinReachInnerCert.of_abstractionError [Mtimes ℐ S]
     (hEs : ∀ e ∈ st.Rerror, -e ∈ st.Rerror)
     {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
-      x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) :
+      x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- STMT ---
     NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st := by -- --- PROOF ---
   -- what the linearization, `particularSolution_constant` and `Rerror` computed
   have hst : st.u = sys.f st.p u₀ ∧

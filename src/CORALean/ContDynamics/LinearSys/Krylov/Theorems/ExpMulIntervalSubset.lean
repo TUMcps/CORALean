@@ -91,7 +91,7 @@ theorem Krylov.exp_mul_interval_subset (A : Mat ℝ n n) {t : ℝ} (ht : 0 ≤ t
     (xhat xbar : Vec ℝ n) {ε εbar : ℝ}
     (hc : ‖exp (t • A) *ᵥ bc - xhat‖₂ ≤ ‖bc‖₂ * ε * t)
     (hΔ : ‖exp (t • MatExp.absMat A) *ᵥ bΔ - xbar‖₂ ≤ ‖bΔ‖₂ * εbar * t)
-    {x : Vec ℝ n} (hx : ∀ j, |x j - bc j| ≤ bΔ j) (j : Fin n) :
+    {x : Vec ℝ n} (hx : ∀ j, |x j - bc j| ≤ bΔ j) (j : Fin n) : -- --- STMT ---
     |(exp (t • A) *ᵥ x - xhat) j|
       ≤ xbar j + (‖bΔ‖₂ * εbar * t + ‖bc‖₂ * ε * t) := by -- --- PROOF ---
   -- the center's error, and `e^{At}` applied to the deviation `x - b_c`

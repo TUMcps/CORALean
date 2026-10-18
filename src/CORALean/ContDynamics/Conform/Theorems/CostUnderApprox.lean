@@ -68,7 +68,7 @@ theorem Conform.costU_le {M ιx ιu : Type} [Fintype M] [Fintype ιx] [Fintype �
         0 ≤ Sum.elim αx (fun r : Fin (k + 1) × ιu => αu r.2) j - β j) ∧
       y m s k - yb m k = (Cb m k *ᵥ dx + ∑ i, Db m k i *ᵥ du)
         + ∑ j, β j • Sum.elim (fun j => Cb m k *ᵥ Gx j)
-            (fun r : Fin (k + 1) × ιu => Db m k r.1 *ᵥ Gu r.2) j) :
+            (fun r : Fin (k + 1) × ιu => Db m k r.1 *ᵥ Gu r.2) j) : -- --- STMT ---
     ∑ m, ∑ k ∈ Finset.range nk, w k * ∑ a, Finset.univ.sup' Finset.univ_nonempty
         (fun s => |(y m s k - yb m k - (Cb m k *ᵥ dx + ∑ i, Db m k i *ᵥ du)) a|)
       ≤ ∑ m, ∑ k ∈ Finset.range nk, w k * (∑ j, (∑ a, |(Cb m k *ᵥ Gx j) a|) * αx j

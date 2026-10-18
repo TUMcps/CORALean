@@ -99,7 +99,7 @@ theorem Krylov.aux_isBounded_iUnion_image (I : Interval (Mat ℝ n n)) {U : Set 
 
 /-- Order `j` of the thesis' Taylor sum is the Krylov term `P Ṽ H̃^{j+1} e₁ δ^{j+1}/(j+1)!`. -/
 theorem Krylov.aux_inputTerm_image_eq (A : Mat ℝ n n) (U : Set (Vec ℝ n)) (δ : ℝ) (m : ℕ)
-    {j : ℕ} (hj : j + 1 ≤ m) :
+    {j : ℕ} (hj : j + 1 ≤ m) : -- --- STMT ---
     ((LinearSys.canonical A : LinearSys ℝ n).inputTerm δ j *ᵥ ·) '' U
       = (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>
           (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
@@ -117,7 +117,7 @@ theorem Krylov.aux_inputTerm_image_eq (A : Mat ℝ n n) (U : Set (Vec ℝ n)) (�
 with the thesis' remainder `E(δ)·δ·U` closed and convexified in place of [1]'s. -/
 theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec ℝ n)}
     (hconv : Convex ℝ U) (hclosed : IsClosed U) (hbdd : Bornology.IsBounded U) {δ : ℝ}
-    (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) :
+    (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) U δ
       ⊆ (∑ j ∈ Finset.range (η + 1),
           (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>

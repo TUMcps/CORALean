@@ -100,7 +100,7 @@ theorem aux_intervalMulVecSet_eq_box (E : Mat ℝ n n) {U : Set (Vec ℝ n)} {Δ
 theorem LinearSys.inputReach_subset_particularSolutionOuter_of_dominant (sys : LinearSys 𝕋 n)
     {U : S n} (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U)) {w : Vec ℝ n} (hw : w ∈ construct U)
-    (hdom : ∀ v ∈ construct U, ∀ k, |v k| ≤ |w k|) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ) :
+    (hdom : ∀ v ∈ construct U, ∀ k, |v k| ≤ |w k|) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ) : -- --- STMT ---
     sys.inputReach U Δt ⊆
       MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η := by -- --- PROOF ---
   set E := MatExp.expRemainderMat (toRealMat sys.A) Δt η

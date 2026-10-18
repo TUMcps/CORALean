@@ -79,7 +79,7 @@ theorem MatExp.hausdorffDist₂_affineDynamics_le (A : Mat ℝ n n) (H : Zonotop
       ⊆ MatExp.affineTimeIntervalSolution A H ũ Δt
         + (MatExp.curvatureEnclosure A H ũ Δt η).construct)
     (houter : MatExp.affineTimeIntervalSolution A H ũ Δt
-      ⊆ (MatExp.affineTimeIntervalOuter A H ũ Δt η).construct) :
+      ⊆ (MatExp.affineTimeIntervalOuter A H ũ Δt η).construct) : -- --- STMT ---
     hausdorffDist₂ (MatExp.affineTimeIntervalSolution A H ũ Δt)
         (MatExp.affineTimeIntervalOuter A H ũ Δt η).construct
       ≤ MatExp.affineDynamicsError A H ũ Δt η := by -- --- PROOF ---

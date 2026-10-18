@@ -48,7 +48,7 @@ open CORALean
 /-- A square `P = closedBall z δ` (the supremum-norm ball) meets the unit disk, but CORA's test
 against `polygon(E)` says it does not. -/
 theorem Polygon.isIntersectingEllipsoid_cora_counterexample (V : Set (Vec ℝ 2)) (hV : V.Finite)
-    (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) :
+    (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) : -- --- STMT ---
     ∃ (z : Vec ℝ 2) (δ : ℝ), 0 < δ ∧
       ¬ Polygon.overlapsRegionCora (Metric.closedBall z δ) (Polygon.sampledHullCora V) ∧
       (Metric.closedBall z δ ∩ (⟨1, 0, .one⟩ : Ellipsoid 2).construct).Nonempty

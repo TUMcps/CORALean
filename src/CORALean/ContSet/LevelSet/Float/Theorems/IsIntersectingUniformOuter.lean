@@ -16,7 +16,7 @@ interval denotes. A `true` says nothing, as over ℝ.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -32,13 +32,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.isIntersecting_uniform_outer (L : CORALean.Real.LevelSet n)
-    (op : CORALean.Real.CompOp) (hop : ∀ i, L.op i = op) (I : Interval (Vec 𝕋 n))
+    (I : Interval (Vec 𝕋 n))
     (B : Fin L.m → Interval 𝕋) {tol : 𝕋} (htol : 0 ≤ toReal tol)
     (hB : ∀ i, CORALean.Real.IsRangeBound (fun x => L.f x i) I.construct
       (toReal (B i).inf) (toReal (B i).sup))
-    (h : LevelSet.isIntersecting_uniform tol op B = false) :
+    (h : LevelSet.isIntersecting_uniform L tol B = false) : -- --- STMT ---
     L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
-  refine CORALean.Real.LevelSet.isIntersecting_uniform_outer L op hop I.nominal
+  refine CORALean.Real.LevelSet.isIntersecting_uniform_outer L I.nominal
     (fun i => ⟨toReal (B i).inf, toReal (B i).sup⟩) htol hB ?_
   -- the refuting row, and the real test failing there
   simp only [LevelSet.isIntersecting_uniform, List.all_eq_false, List.mem_finRange, true_and,
@@ -46,8 +46,10 @@ theorem LevelSet.isIntersecting_uniform_outer (L : CORALean.Real.LevelSet n)
   obtain ⟨i, hi⟩ := h
   intro hall
   have hr := hall i
-  cases op with
+  revert hi hr
+  cases hco : L.op i with
   | eq =>
+    intro hi hr
     -- `=`: either `tol < lb` or `ub < -tol` is certified
     simp only [Bool.or_eq_true] at hi
     obtain ⟨hu, hl⟩ := hr
@@ -66,6 +68,7 @@ theorem LevelSet.isIntersecting_uniform_outer (L : CORALean.Real.LevelSet n)
         simp only at this
         linarith
   | le =>
+    intro hi hr
     -- `≤`: `tol < lb` is certified
     have hlt := toReal_lt_of_ltStrict hi
     rcases hr with hr | hr
@@ -74,6 +77,7 @@ theorem LevelSet.isIntersecting_uniform_outer (L : CORALean.Real.LevelSet n)
       simp only at this
       linarith
   | lt =>
+    intro hi hr
     -- `<`: `0 ≤ lb` is certified
     have hle := toReal_le_of_le hi
     rw [toReal_zero] at hle

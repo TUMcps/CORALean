@@ -52,7 +52,7 @@ theorem aux_updateNodes_getElem? {B : Type} (g : B → Option B) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineReachSetAnalyzer.observeSet_spec (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
-    (set : S d) (loc : ℕ) (mv : Option STLInterval) :
+    (set : S d) (loc : ℕ) (mv : Option STLInterval) : -- --- STMT ---
     OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set .empty loc mv = some obj ∧
     ∀ (I : STLInterval) (obj' : OnlineReachSetAnalyzer S d), I ≠ .empty →
       OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc mv = some obj' →

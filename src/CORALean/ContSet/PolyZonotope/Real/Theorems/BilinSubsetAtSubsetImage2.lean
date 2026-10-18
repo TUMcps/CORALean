@@ -42,7 +42,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 `image2` of `f` over the two sets' own subsets at `B`. -/
 theorem PolyZonotope.bilin_subsetAt_subset_image2 (f : α →ₗ[ℝ] β →ₗ[ℝ] γ)
     (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p)
-    (B : Set (Fin pZ₁.p → ℝ)) :
+    (B : Set (Fin pZ₁.p → ℝ)) : -- --- STMT ---
     (pZ₁.bilin f pZ₂ hp).subsetAt B
       ⊆ Set.image2 (fun x y => f x y) (pZ₁.subsetAt B)
           (pZ₂.subsetAt ((fun a k => a (Fin.cast hp.symm k)) '' B)) := by -- --- PROOF ---

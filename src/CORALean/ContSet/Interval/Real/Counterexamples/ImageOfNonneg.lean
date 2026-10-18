@@ -39,7 +39,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.image_of_nonneg_counterexample :
+theorem Interval.image_of_nonneg_counterexample : -- --- STMT ---
     let A : Mat ℝ 2 2 := fun _ _ => 1
     let a : Vec ℝ 2 := fun _ => 0
     let b : Vec ℝ 2 := fun _ => 1

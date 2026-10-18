@@ -164,7 +164,7 @@ theorem aux_notTighter_mem_group {s u : ℝ} (hs : |s| ≤ 1) (hu : |u| ≤ 1) :
 
 /-- A group merge is not always the tighter of the two: here the pairwise
 merges reaching the same generator enclose strictly less. -/
-theorem PolyZonotope.relaxExpGroup_not_always_tighter :
+theorem PolyZonotope.relaxExpGroup_not_always_tighter : -- --- STMT ---
     ∃ (pZ : PolyZonotope ℝ) (part : Split (Fin pZ.h) into (Fin 1) ⊕ (Fin 2))
       (part₂ : Split (Fin (pZ.relaxExpMulti part).h) into (Fin 0) ⊕ (Fin 2)),
       ((pZ.relaxExpMulti part).relaxExpMulti part₂).construct

@@ -36,7 +36,7 @@ open Finset
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 24] as printed fails at `d = 2`, `λ = (1, 1)`, `β = 1`. -/
-theorem Ellipsoid.printed_poly_counterexample :
+theorem Ellipsoid.printed_poly_counterexample : -- --- STMT ---
     ¬ ∀ (d : ℕ) (lam : Fin d → ℝ) (β : ℝ), (∀ i, 0 < lam i) → 1 ≤ d →
       ∑ i, (β ^ 2 - 1 / lam i) * ∏ j ∈ univ.erase i, (β + 1 / lam j)
         = (d : ℝ) * β ^ (d + 1)

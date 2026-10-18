@@ -28,7 +28,7 @@ namespace CORALean.Real
 /-- The same monomial read against an extended factor vector: the extension
 gives the dropped factors a value, and no monomial looks at it. -/
 theorem PolyZonotope.monomial_factorExtend {p h : ℕ} (E : Fin p → Fin h → ℕ)
-    (a : Fin (PolyZonotope.usedFactors E).card → ℝ) (i : Fin h) :
+    (a : Fin (PolyZonotope.usedFactors E).card → ℝ) (i : Fin h) : -- --- STMT ---
     PolyZonotope.monomial E (PolyZonotope.factorExtend E a) i
       = PolyZonotope.monomial (fun k i => E (PolyZonotope.factorIdx E k) i)
         a i := by -- --- PROOF ---

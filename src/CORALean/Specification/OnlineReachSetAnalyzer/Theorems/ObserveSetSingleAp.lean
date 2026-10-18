@@ -39,7 +39,7 @@ theorem OnlineReachSetAnalyzer.observeSet_single_ap (eps : ℝ) (obj : OnlineRea
     (hk : N.kind = .ap) (hap : N.ap = some a) (ht : N.tentative = some tent)
     (hp : N.prop = [STLInterval.empty]) (hch : N.children = []) (set : S d) (loc : ℕ)
     (I : STLInterval) (hne : I ≠ .empty) (val : Kleene)
-    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) :
+    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) : -- --- STMT ---
     ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc none = some obj1 ∧
       obj1.nodes =
         [{ N with signal := N.signal.set I (FourValued.fromKleene val) }] := by -- --- PROOF ---

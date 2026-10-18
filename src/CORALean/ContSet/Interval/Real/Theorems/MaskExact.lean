@@ -29,7 +29,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mask_exact (keep : Fin m → Fin n → Prop) [∀ i j, Decidable (keep i j)]
-    (I : Interval (Mat ℝ m n)) (hI : ∀ i j, I.inf i j ≤ I.sup i j) :
+    (I : Interval (Mat ℝ m n)) (hI : ∀ i j, I.inf i j ≤ I.sup i j) : -- --- STMT ---
     (I.mask keep).construct =
       (fun (A : Mat ℝ m n) (i : Fin m) (j : Fin n) => if keep i j then A i j else 0) ''
         I.construct := by -- --- PROOF ---

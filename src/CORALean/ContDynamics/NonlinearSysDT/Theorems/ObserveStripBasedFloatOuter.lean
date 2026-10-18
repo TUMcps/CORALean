@@ -52,7 +52,7 @@ theorem NonlinearSysDT.observeStripBasedFloat_outer (sys : NonlinearSysDT n m)
     (hw : ∀ k, w k ∈ W.construct) (hR : ∀ k, x k ∈ (steps k).R)
     (hstep : ∀ k, x (k + 1) = sys.f (x k) (u k) + w k)
     (hy : ∀ k i, |(Scalar.toRealMat C *ᵥ x k - Scalar.toRealVec (y k)) i|
-      ≤ Scalar.toReal (σ i)) (k : ℕ) :
+      ≤ Scalar.toReal (σ i)) (k : ℕ) : -- --- STMT ---
     x k ∈ (sys.observeStripBasedFloat steps o C σ W R₀ y options k).construct := by -- --- PROOF ---
   induction k with
   | zero =>

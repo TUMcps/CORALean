@@ -42,7 +42,7 @@ variable {n s : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem ConZonotope.aux_value_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
-    (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.h + s)) :
+    (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.h + s)) : -- --- STMT ---
     (cZ.intersectStrip C φ y Λ).c
         + ∑ j : Fin (cZ.h + s), β j • (cZ.intersectStrip C φ y Λ).G j
       = (cZ.c + ∑ j, β (Fin.castAdd s j) • cZ.G j)
@@ -77,7 +77,7 @@ theorem ConZonotope.aux_value_intersectStrip' (cZ : ConZonotope (Vec ℝ n)) (C 
   ConZonotope.aux_value_intersectStrip cZ C φ y Λ β
 
 theorem ConZonotope.aux_row_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
-    (φ : Vec ℝ s) (β : Vec ℝ (cZ.h + s)) (i : Fin s) :
+    (φ : Vec ℝ s) (β : Vec ℝ (cZ.h + s)) (i : Fin s) : -- --- STMT ---
     (cZ.stripMat C φ *ᵥ β) i
       = (C *ᵥ ∑ j, β (Fin.castAdd s j) • cZ.G j) i
         - φ i * β (Fin.natAdd cZ.h i) := by -- --- PROOF ---
@@ -98,7 +98,7 @@ theorem ConZonotope.aux_mulVec_value (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ
 
 /-- The row condition says exactly that the gain's argument vanishes. -/
 theorem ConZonotope.aux_mem_intersectStrip_P_iff (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
-    (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.intersectStrip C φ y Λ).h) :
+    (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.intersectStrip C φ y Λ).h) : -- --- STMT ---
     β ∈ (cZ.intersectStrip C φ y Λ).P.construct ↔
       blockLeft cZ.h s β ∈ cZ.P.construct
         ∧ ∀ i, (y - C *ᵥ (cZ.c + ∑ j, β (Fin.castAdd s j) • cZ.G j)

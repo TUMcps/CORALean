@@ -9,7 +9,7 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 /-!
 # Vertex descriptions over a floating-point scalar: the representation
 
-CORA's `polytope` with `isVRep` set, its vertices held in `𝕋`, plus the error box
+CORA's `polytope` [1, Def. 1] with `isVRep` set, its vertices held in `𝕋`, plus the error box
 that makes it an `InflatedContSet`.
 
 The box is the only sound place to pay. Rounding a vertex moves a point, and
@@ -20,6 +20,11 @@ the way an interval absorbs it into its bounds.
 `VPolytope α` is generic over its ambient type, vertices a family, as the exact
 layer's `VPolytope α` is; `VPolytope (Vec 𝕋 n)` is the vector case, and the
 nominal reading copies the family.
+
+## References
+
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
+      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
 -- Authors:       Claude Opus 5

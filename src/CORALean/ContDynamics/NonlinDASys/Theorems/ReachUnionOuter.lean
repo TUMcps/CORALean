@@ -40,7 +40,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 theorem NonlinDASys.WithSteps.reachUnion_outer (sys : NonlinDASys.WithSteps S Rg m p n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ)
-    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) :
+    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) : -- --- STMT ---
     sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct R := by -- --- PROOF ---
   -- the run is the reduced one, and so is the set it reaches

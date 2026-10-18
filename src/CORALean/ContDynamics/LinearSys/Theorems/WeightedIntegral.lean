@@ -50,7 +50,7 @@ variable {n : ℕ}
 theorem integral_pow_smul_mem {S : Set (Vec ℝ n)} (hconv : Convex ℝ S) (hclosed : IsClosed S)
     (hbdd : Bornology.IsBounded S) {f : ℝ → Vec ℝ n} {r : ℝ} (hr : 0 < r) (i : ℕ)
     (hmeas : AEStronglyMeasurable f (volume.restrict (Set.Ioc 0 r)))
-    (hmem : ∀ τ ∈ Set.Ioc (0:ℝ) r, f τ ∈ S) :
+    (hmem : ∀ τ ∈ Set.Ioc (0:ℝ) r, f τ ∈ S) : -- --- STMT ---
     (∫ τ in (0:ℝ)..r, τ ^ i • f τ) ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • S := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hbdd.exists_norm_le
   set t : Set ℝ := Set.Ioc 0 r with ht

@@ -34,7 +34,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem minkowskiDiff_not_subset_of_discontinuous :
+theorem minkowskiDiff_not_subset_of_discontinuous : -- --- STMT ---
     let φ : ℝ → ℝ := fun a => if 0 ≤ a then 1 else -1
     minkowskiDiff (Set.Icc (-1 : ℝ) 1) (Set.Icc (-1) 1) = {0} ∧
       Set.MapsTo φ (Set.Icc (-1) 1) (Set.Icc (-1) 1) ∧

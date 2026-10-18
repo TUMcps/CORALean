@@ -45,7 +45,8 @@ theorem ConPolyZono.union_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hb₁ : cPZ₁.b.nominal.IsNonempty (ι := Fin cPZ₁.m))
     (hb₂ : cPZ₂.b.nominal.IsNonempty (ι := Fin cPZ₂.m))
     (hE₁ : Real.ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : Real.ConPolyZono.NoZeroCol cPZ₁.R)
-    (hE₂ : Real.ConPolyZono.NoZeroCol cPZ₂.E) (hR₂ : Real.ConPolyZono.NoZeroCol cPZ₂.R) :
+    (hE₂ : Real.ConPolyZono.NoZeroCol cPZ₂.E)
+    (hR₂ : Real.ConPolyZono.NoZeroCol cPZ₂.R) : -- --- STMT ---
     cPZ₁.construct ∪ cPZ₂.construct ⊆ (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   -- the exact union of the read-back operands holds both nominal sets
   have hex := Real.ConPolyZono.union_exact_of_noZeroCol (nominal cPZ₁) (nominal cPZ₂)

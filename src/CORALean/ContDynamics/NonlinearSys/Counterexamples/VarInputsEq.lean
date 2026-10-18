@@ -41,7 +41,7 @@ open Matrix Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Eq. 7] as printed: the set of values of `v∆` is `varInputs`. It is not. -/
-theorem varInputs_eq_counterexample :
+theorem varInputs_eq_counterexample : -- --- STMT ---
     ∃ (B : Mat ℝ 1 1) (D : Fin 1 → Mat ℝ 1 1) (Rz RzΔ : PolyZonotope (Vec ℝ 1))
       (UΔ : PolyZonotope (Vec ℝ 1)),
       {v : Vec ℝ 1 | ∃ z ∈ Rz.construct, ∃ zΔ ∈ RzΔ.construct, ∃ uΔ ∈ UΔ.construct,

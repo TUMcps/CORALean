@@ -48,7 +48,7 @@ theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 (Vec
     (μ : 𝕋) {Fr : Set (Vec ℝ n)} {μr : ℝ} (hFr : Fr ⊆ FB.construct) (hμ : μr ≤ toReal μ)
     (hker₁ : ∀ i, ∀ y ∈ FB.construct, (toRealMat X.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i, ∀ y ∈ (Capsule.mk (fun _ => (zero : 𝕋)) (fun _ => zero)
-      (maximum zero μ)).construct, (toRealMat X.Ae *ᵥ y) i = 0) :
+      (maximum zero μ)).construct, (toRealMat X.Ae *ᵥ y) i = 0) : -- --- STMT ---
     (LinearSys.maxBackReachPolyFloat p X FB μ).construct ⊆
       minkowskiDiff (minkowskiDiff X.construct Fr)
         (Real.Capsule.mk (0 : Vec ℝ n) 0 μr).construct := by -- --- PROOF ---

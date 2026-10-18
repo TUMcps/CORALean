@@ -66,7 +66,7 @@ theorem Zonotope.aux_double_sum {k : ℕ} (T : Mat ℝ n n) (ρ : Fin r → ℝ)
 theorem Zonotope.intersectDescriptorLPV_eq (T : Mat ℝ n n) (N : Mat ℝ n ny) (ρ : Fin r → ℝ)
     (Λ : Fin r → Mat ℝ n ny) (A : Fin r → Mat ℝ n n) (B : Fin r → Mat ℝ n nu)
     (D : Fin r → Mat ℝ n nd) (C : Mat ℝ ny n) (F : Mat ℝ ny nd) (Hd : Mat ℝ nd m)
-    (u : Vec ℝ nu) (y : Vec ℝ ny) (X : Zonotope (Vec ℝ n)) (hρ : ∑ i, ρ i = 1) :
+    (u : Vec ℝ nu) (y : Vec ℝ ny) (X : Zonotope (Vec ℝ n)) (hρ : ∑ i, ρ i = 1) : -- --- STMT ---
     X.intersectDescriptorLPV T N ρ Λ A B D C F Hd u y =
       X.intersectDescriptor T N (∑ i, ρ i • Λ i) (∑ j, ρ j • A j) (∑ j, ρ j • B j)
         ((∑ j, ρ j • D j) * Hd) C (F * Hd) u y := by -- --- PROOF ---

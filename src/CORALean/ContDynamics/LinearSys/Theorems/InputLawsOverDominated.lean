@@ -51,7 +51,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
   [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 theorem LinearSys.inputLawsOver_dominated (sys : LinearSys 𝕋 n) (C : Mat ℝ n m) {U : S n}
     {r : ℝ} (hbdd : Bornology.IsBounded (construct U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) :
+    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- STMT ---
     ∀ ν ∈ sys.inputLawsOver C U 0 r, ∃ y ∈ sys.inputReach U r, ∃ t ∈ Set.Icc (0 : ℝ) r,
       ν = multivariateGaussian (toLp 2 y) (noiseCovariance (toRealMat sys.A) C t) ∧
         (noiseCovariance (toRealMat sys.A) C r - noiseCovariance (toRealMat sys.A) C t).PosSemidef

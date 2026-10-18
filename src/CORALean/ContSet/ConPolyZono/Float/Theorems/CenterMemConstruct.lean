@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ConPolyZono.center_mem_construct (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hE : Real.ConPolyZono.NoZeroCol cPZ.E) (hR : Real.ConPolyZono.NoZeroCol cPZ.R)
     (hb : ∀ i, toReal (cPZ.b.inf i) ≤ 0 ∧ 0 ≤ toReal (cPZ.b.sup i))
-    (h0 : ∀ i, toReal (cPZ.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (cPZ.I_error.sup i)) :
+    (h0 : ∀ i, toReal (cPZ.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (cPZ.I_error.sup i)) : -- --- STMT ---
     toRealVec cPZ.center ∈ cPZ.construct := by -- --- PROOF ---
   -- the nominal part holds its own center, which is the stored one read as reals
   have hN : toRealVec cPZ.center ∈ InflatedContSet.nominalSet cPZ :=

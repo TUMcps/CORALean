@@ -8,17 +8,25 @@ public import CORALean.ContSet.Zonotope.Real.Instances
 /-!
 # Zonotopes over a floating-point scalar: the representation
 
-CORA's `zonotope` with its center and generators, plus the error box that makes
+CORA's `zonotope` [2, Def. 1] with its center and generators, plus the error box that makes
 it an `InflatedContSet`. The nominal part is the zonotope those stored floats
 describe; the box holds what rounding has cost.
 
 `Zonotope α` is indexed by the ambient type it stores, as the exact layer's
 `Zonotope α` and the float `Interval α` are, with generators a family rather than
-a matrix: `Zonotope (Mat 𝕋 m n)` is CORA's `matZonotope`, with no separate
+a matrix: `Zonotope (Mat 𝕋 m n)` is CORA's `matZonotope` [1, Eq. (8)], with no separate
 representation. `Zonotope (Vec 𝕋 n)` is the vector case, and an algorithm generic
 over the dimension takes the family `fun k => Zonotope (Vec 𝕋 k)`. A matrix
 operation whose vector namesake means something else carries a `mat` prefix, as
 `Zonotope.matInterval` does.
+
+## References
+
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
+* [2] A. Girard. "Reachability of Uncertain Linear Systems Using Zonotopes". In Hybrid
+      Systems: Computation and Control (HSCC), LNCS 3414, Springer, 2005, pp. 291-305.
 -/
 
 -- Authors:       Claude Opus 5

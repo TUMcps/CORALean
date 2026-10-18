@@ -33,7 +33,7 @@ theorem LinearARX.eq_simulate (sys : LinearARX 𝕋 dy du p) {y₀ : Vec ℝ (p 
     {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (h₀ : LinearARX.stack p y 0 = y₀)
     (hy : ∀ k, p ≤ k →
       y k = ∑ i : Fin p, toRealMat (sys.Abar i) *ᵥ y (k - (i + 1))
-        + ∑ j : Fin (p + 1), toRealMat (sys.Bbar j) *ᵥ u (k - j)) (k : ℕ) :
+        + ∑ j : Fin (p + 1), toRealMat (sys.Bbar j) *ᵥ u (k - j)) (k : ℕ) : -- --- STMT ---
     y k = sys.simulate y₀ u k := by -- --- PROOF ---
   induction k using Nat.strong_induction_on with
   | _ k ih =>

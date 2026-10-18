@@ -38,7 +38,7 @@ namespace CORALean.Real
 theorem Interval.polyBoxReviseLeft_le {gLo gHi : ℝ → ℝ} {root : (ℝ → ℝ) → ℝ → ℝ → ℝ}
     {xl xu x : ℝ} (hroot : Interval.IsLeftRootBound root)
     (hLo : ContinuousOn gLo (Set.Icc xl xu)) (hHi : ContinuousOn gHi (Set.Icc xl xu))
-    (hx : x ∈ Set.Icc xl xu) (hxLo : gLo x ≤ 0) (hxHi : 0 ≤ gHi x) :
+    (hx : x ∈ Set.Icc xl xu) (hxLo : gLo x ≤ 0) (hxHi : 0 ≤ gHi x) : -- --- STMT ---
     Interval.polyBoxReviseLeft gLo gHi root xl xu ≤ x := by -- --- PROOF ---
   have hsub : Set.Icc xl x ⊆ Set.Icc xl xu := Set.Icc_subset_Icc le_rfl hx.2
   unfold Interval.polyBoxReviseLeft

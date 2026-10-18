@@ -47,7 +47,7 @@ theorem NonlinDASys.IsTrajectory.linReachAdaptive_outer {sys : NonlinDASys n p m
     (_hpass : sys.linReachAdaptive T Rstart U (k + 2) fuelErr fuelHalf adm_x adm_y h lastStep
       = some pass) {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
     (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 pass.Δt) Rstart U x y u) (hΔt : 0 < pass.Δt)
-    (hc : (pass.linPoint (T.taylor Rstart)).Certifies sys U pass.Δt k x y u) :
+    (hc : (pass.linPoint (T.taylor Rstart)).Certifies sys U pass.Δt k x y u) : -- --- STMT ---
     x pass.Δt ∈ (NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt
         (k + 2)).1.construct ∧
       ∀ t ∈ Set.Icc 0 pass.Δt,

@@ -108,7 +108,7 @@ theorem aux_until_fold (eps p : ℝ) (q : EReal) (dur : ℝ) (h0 : 0 ≤ dur) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.until?_spec (eps : ℝ) (lsig rsig : FiniteSignal ℝ Bool) (p : ℝ) (q : EReal)
-    (hl : lsig.IsValid) (hd : lsig.duration = rsig.duration) :
+    (hl : lsig.IsValid) (hd : lsig.duration = rsig.duration) : -- --- STMT ---
     ∃ r, FiniteSignal.until? eps lsig p q rsig = some r ∧ r.IsValid ∧
       r.duration = lsig.duration ∧ ∀ t : ℝ, 0 ≤ t → t ≤ lsig.duration →
         (r.at? t = some true ↔ ∃ L ∈ lsig.findIntervals (fun v => decide (true ≤ v)),

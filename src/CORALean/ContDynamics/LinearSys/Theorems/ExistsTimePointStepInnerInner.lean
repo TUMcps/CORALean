@@ -51,7 +51,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- Some step is short enough that the enclosure minus a ball of the caller's
 own radius `ε` is already inside what the step reaches. -/
 theorem LinearSys.exists_timePointStepInner_inner (sys : LinearSys 𝕋 n)
-    (X₀ U : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) :
+    (X₀ U : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- STMT ---
     ∃ r : ℝ, 0 < r ∧ sys.timePointStepError r η U < ε ∧
       minkowskiDiff (sys.timePointStep (S := 𝒵) r η X₀ U).construct
           (Metric.closedBall (0 : Vec ℝ n) ε)

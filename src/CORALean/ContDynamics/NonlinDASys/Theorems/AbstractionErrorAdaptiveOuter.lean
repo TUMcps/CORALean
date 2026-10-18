@@ -42,7 +42,7 @@ theorem NonlinDASys.abstractionErrorAdaptive_outer (CF_inv : Mat ℝ n p)
     (H : NonlinDASys.HessData n p q) {Hd : Fin n → Mat ℝ q q} {Ha : Fin p → Mat ℝ q q}
     (hHd : ∀ i j k, |Hd i j k - H.Hd_c i j k| ≤ H.Hd_Δ i j k)
     (hHa : ∀ i j k, |Ha i j k - H.Ha_c i j k| ≤ H.Ha_Δ i j k) {ν : Vec ℝ q}
-    (hν : ν ∈ H.dz.construct) :
+    (hν : ν ∈ H.dz.construct) : -- --- STMT ---
     (1 / 2 : ℝ) • (fun i => ν ⬝ᵥ (Hd i *ᵥ ν))
         ∈ (NonlinDASys.abstractionErrorAdaptive CF_inv H).Z_error_x.construct ∧
       (1 / 2 : ℝ) • (fun j => ν ⬝ᵥ (Ha j *ᵥ ν))

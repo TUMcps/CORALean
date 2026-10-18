@@ -42,7 +42,8 @@ Hessenberg, at `V_m` with `m + 1` columns here, so for `j ≤ m`. -/
 theorem Krylov.pow_mulVec_of_krylovIdentity (A : Mat R n n) (V : Mat R n (m + 1))
     (T : Mat R (m + 1) (m + 1)) (τ : R) (w : Fin n → R)
     (hT : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0)
-    (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1)) {j : ℕ} (hj : j ≤ m) :
+    (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1)) {j : ℕ}
+    (hj : j ≤ m) : -- --- STMT ---
     A ^ j *ᵥ (V *ᵥ Pi.single 0 1) = V *ᵥ (T ^ j *ᵥ Pi.single 0 1) := by -- --- PROOF ---
   induction j with
   | zero => rw [pow_zero, pow_zero, one_mulVec, one_mulVec]

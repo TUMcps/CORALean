@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.bernsteinCoeffBounds_mem (L : List (𝕋 × (Fin n → ℕ))) (N : ℕ)
-    (β : Fin n → Fin (N + 1)) :
+    (β : Fin n → Fin (N + 1)) : -- --- STMT ---
     toReal (Taylm.bernsteinCoeffBounds L N β).inf
         ≤ Real.Taylm.bernsteinCoeff (L.map fun a => (toReal a.1, a.2)) N β ∧
       Real.Taylm.bernsteinCoeff (L.map fun a => (toReal a.1, a.2)) N β

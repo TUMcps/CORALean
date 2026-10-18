@@ -99,7 +99,7 @@ theorem dmdcBlocks_mulVec (G : Mat ℝ n (n + l)) (x : Vec ℝ n) (u : Vec ℝ l
 
 /-- [1, Eq. 25]: `X' = [A B] Ω` for `Ω = [X; Υ]` at every snapshot. -/
 theorem dmdc_data_stack (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l) (A : Mat ℝ n n)
-    (B : Mat ℝ n l) :
+    (B : Mat ℝ n l) : -- --- STMT ---
     (∀ k, xNext k = A *ᵥ x k + B *ᵥ u k) ↔
       dmdcCols xNext =
         dmdcStack A B * dmdcCols (fun k => dmdcRegressor (x k) (u k)) := by -- --- PROOF ---

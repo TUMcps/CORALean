@@ -120,7 +120,7 @@ theorem aux_reduceOnTheFlyFrom_reducesAt :
 /-- [1, Alg. 2] returns a reduction of every instance of `Φ`, and `Y` is its enclosure of `X`. -/
 theorem reduceOnTheFly_reducesAt {n m : ℕ} {X : S n} {Φ Φhat : ReducibleNetwork ℝ n m}
     {Y : S m} {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.InstanceNetwork nn f)
-    (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y)) :
+    (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y)) : -- --- STMT ---
     NeuralNetwork.ReducesAt X nn Φhat.toNetwork f
       ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
   -- the output set is the reduced network's enclosure at every scalar

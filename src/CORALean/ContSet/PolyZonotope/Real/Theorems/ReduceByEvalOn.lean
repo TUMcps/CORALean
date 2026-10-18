@@ -52,7 +52,7 @@ variable {n d r dI rI : ℕ}
 /-- `mem_construct_iff` at an evaluation: one coordinate of the defining
 equation, both generator blocks transposed. -/
 theorem PolyZonotope.aux_mem_evalOn_iff {pZ : PolyZonotope (Vec ℝ n)}
-    {B : Set (Fin pZ.p → ℝ)} {x : Vec ℝ n} :
+    {B : Set (Fin pZ.p → ℝ)} {x : Vec ℝ n} : -- --- STMT ---
     x ∈ pZ.evalOn B ↔ ∃ a ∈ B, ∃ β : Fin pZ.q → ℝ, (∀ j, |β j| ≤ 1)
       ∧ ∀ i, x i = pZ.c i + (∑ l, pZ.G l i * PolyZonotope.monomial pZ.E a l)
             + ∑ j, pZ.GI j i * β j := by -- --- PROOF ---
@@ -95,7 +95,7 @@ theorem PolyZonotope.aux_sum_univ_reduceBy_h {pZ : PolyZonotope (Vec ℝ n)}
 and never by more than one. -/
 theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec ℝ n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin pZ.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
+    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- STMT ---
     |∑ l, pZ.G (partD.right l) i * PolyZonotope.monomial pZ.E a (partD.right l)|
       ≤ ∑ l, |pZ.G (partD.right l) i| :=
   calc |∑ l, pZ.G (partD.right l) i * PolyZonotope.monomial pZ.E a (partD.right l)|
@@ -133,7 +133,7 @@ original, at the very same factor vector. -/
 theorem PolyZonotope.reduceBy_evalOn (pZ : PolyZonotope (Vec ℝ n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {B : Set (Fin pZ.p → ℝ)}
-    (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) :
+    (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- STMT ---
     pZ.evalOn B ⊆ (pZ.reduceBy partD partI).evalOn B := by -- --- PROOF ---
   intro x hxmem
   obtain ⟨a, haB, β, hβ, hx⟩ := PolyZonotope.aux_mem_evalOn_iff.mp hxmem

@@ -42,7 +42,8 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace
 theorem subset_image_of_disjoint_image_frontier {g : E → F} {g' : E → E →L[ℝ] F} {u : Set E}
     (hu : IsCompact u) (hg : ∀ x ∈ interior u, HasStrictFDerivAt g (g' x) x)
     (hsurj : ∀ x ∈ interior u, (g' x).range = ⊤) (hcont : ContinuousOn g u) {y : Set F}
-    (hy : IsPreconnected y) (hi : Disjoint y (g '' frontier u)) (hii : ∃ ũ ∈ u, g ũ ∈ y) :
+    (hy : IsPreconnected y) (hi : Disjoint y (g '' frontier u))
+    (hii : ∃ ũ ∈ u, g ũ ∈ y) : -- --- STMT ---
     y ⊆ g '' u := by -- --- PROOF ---
   have hKc : IsClosed (g '' u) := (hu.image_of_continuousOn hcont).isClosed
   have hfr := frontier_image_subset_image_frontier hu hg hsurj hcont

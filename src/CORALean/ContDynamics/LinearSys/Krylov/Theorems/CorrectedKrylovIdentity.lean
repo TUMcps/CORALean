@@ -44,7 +44,7 @@ subdiagonal product `γ_mτ_{m+1,m}`, and `V⁺_me₁ = V_me₁`; `V_m` has `m +
 theorem Krylov.correctedKrylov_identity (A : Mat R n n) (V : Mat R n (m + 1))
     (T : Mat R (m + 1) (m + 1)) (τ : R) (w : Fin n → R)
     (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0)
-    (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1)) :
+    (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1)) : -- --- STMT ---
     let Tp : Mat R (m + 2) (m + 2) := Matrix.of fun i j =>
       Fin.lastCases (Fin.lastCases 0 (fun j' => if j' = Fin.last m then τ else 0) j)
         (fun i' => Fin.lastCases 0 (fun j' => T i' j') j) i

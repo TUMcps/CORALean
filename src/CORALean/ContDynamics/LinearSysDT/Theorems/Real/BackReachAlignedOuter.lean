@@ -48,7 +48,7 @@ theorem LinearSysDT.backReachAligned_outer {A : Mat ℝ n n} (hA : IsUnit A.det)
     (E : Mat ℝ n p) (K : Vec ℝ n) (U : Zonotope (Vec ℝ m)) (W : Set (Vec ℝ p))
     (Z₀ : Zonotope (Vec ℝ n)) (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ))
     (hσ : ∀ Z, (∀ i, 0 ≤ (σ Z).2 i ∧ (σ Z).2 i ≤ 1) ∧
-      (Z.aligned (σ Z).1 (σ Z).2).construct ⊆ (E *ᵥ ·) '' W) (k : ℕ) :
+      (Z.aligned (σ Z).1 (σ Z).2).construct ⊆ (E *ᵥ ·) '' W) (k : ℕ) : -- --- STMT ---
     LinearSysDT.backReachSetRobust A B E K U.construct W Z₀.construct k
       ⊆ (Zonotope.backReachAligned A B K U Z₀ σ k).construct := by -- --- PROOF ---
   induction k with

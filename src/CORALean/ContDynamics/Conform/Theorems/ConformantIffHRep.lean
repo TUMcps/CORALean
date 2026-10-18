@@ -48,7 +48,7 @@ variable {n p q : ℕ}
 /-- One halfspace of `R_a(k)`, its offset split into (19)'s four blocks. -/
 theorem aux_row_iff (sys : Conform.Plant n p (q + 1)) {ιW ιV : Type} [Fintype ιW]
     [Fintype ιV] (cW : Vec ℝ n) (GW : ιW → Vec ℝ n) (αW : ιW → ℝ) (cV : Vec ℝ (q + 1))
-    (GV : ιV → Vec ℝ (q + 1)) (αV : ιV → ℝ) (k : ℕ) (v y : Vec ℝ (q + 1)) :
+    (GV : ιV → Vec ℝ (q + 1)) (αV : ιV → ℝ) (k : ℕ) (v y : Vec ℝ (q + 1)) : -- --- STMT ---
     v ⬝ᵥ (y - (∑ i : Fin k, (sys.C * sys.A ^ (i : ℕ)) *ᵥ cW + cV))
         ≤ ∑ j, |v ⬝ᵥ Sum.elim (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2)
             GV j| * Sum.elim (fun r => αW r.2) αV j ↔

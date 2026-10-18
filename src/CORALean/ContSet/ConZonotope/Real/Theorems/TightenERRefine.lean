@@ -84,7 +84,7 @@ theorem ConZonotope.aux_tightenPassER_tighter {nc ng : ℕ} (A : Mat ℝ nc ng) 
 /-- [2, Alg. 1]: one more pass of [1, Alg. 1 (iteration)] returns `E` and `R` inside the previous
 ones. -/
 theorem ConZonotope.tightenER_succ_refine {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
-    (k : ℕ) (j : Fin ng) :
+    (k : ℕ) (j : Fin ng) : -- --- STMT ---
     (ConZonotope.tightenER A b k).1.inf j ≤ (ConZonotope.tightenER A b (k + 1)).1.inf j ∧
       (ConZonotope.tightenER A b (k + 1)).1.sup j ≤ (ConZonotope.tightenER A b k).1.sup j ∧
       (ConZonotope.tightenER A b k).2.1 j ≤ (ConZonotope.tightenER A b (k + 1)).2.1 j ∧

@@ -43,7 +43,7 @@ open Matrix
 mentions the split at all, which is the point — it holds before `δ` picks any
 bucket. -/
 theorem mergeError_width_le_row {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (y δ : ℝ) (hδ : 0 ≤ δ)
-    (hY : Y.IsNonempty) (W : Mat ℝ n₂ n) (i : Fin n₂) :
+    (hY : Y.IsNonempty) (W : Mat ℝ n₂ n) (i : Fin n₂) : -- --- STMT ---
     let EB := Real.Interval.mtimes (W.submatrix id (mergeSplit Y y δ).right)
       ⟨Y.inf ∘ (mergeSplit Y y δ).right, Y.sup ∘ (mergeSplit Y y δ).right⟩
     EB.sup i - EB.inf i ≤ mergeRowWeight W i * (2 * δ) := by -- --- PROOF ---

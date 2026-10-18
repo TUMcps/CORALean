@@ -78,7 +78,7 @@ theorem NonlinearSys.adaptStep_invariant (sys : NonlinearSys n m) (U : S m)
     (dbox : S n → Fin n → ℝ) (ζδ ζh ζZ ζK : ℝ) (ηlin ηabs o fuel : ℕ)
     {s s' : NonlinearSys.AdaptState S n}
     (h : sys.adaptStep U lin Φ sub enlarge le rad dbox ζδ ζh ζZ ζK ηlin ηabs o fuel s
-      = some s') :
+      = some s') : -- --- STMT ---
     s'.h = s.h * (ζδ - ζh) / (ζδ - s.φ) ∧ (∃ j : ℕ, s'.t = s.t + s'.h * ζδ ^ j) ∧
       ((s.κ = 1 ∨ s.κ = 2) → (s'.κ = 1 ∨ s'.κ = 2)) := by -- --- PROOF ---
   simp only [NonlinearSys.adaptStep] at h

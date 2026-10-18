@@ -40,7 +40,7 @@ variable {M M' X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 theorem DiffInclAutomaton.flows_timer {H : DiffInclAutomaton M X}
     {H' : DiffInclAutomaton M' (X × ℝ)} {m : M} {k : M'} {x x' : X} {t τ c : ℝ}
     (h : H.Flows m x t x') (hflow : ∀ y τ', ∀ v ∈ H.flow m y, (v, (1 : ℝ)) ∈ H'.flow k (y, τ'))
-    (hinv : ∀ y ∈ H.inv m, ∀ τ' ≤ c, (y, τ') ∈ H'.inv k) (hc : τ + t ≤ c) :
+    (hinv : ∀ y ∈ H.inv m, ∀ τ' ≤ c, (y, τ') ∈ H'.inv k) (hc : τ + t ≤ c) : -- --- STMT ---
     H'.Flows k (x, τ) t (x', τ + t) := by -- --- PROOF ---
   obtain ⟨ht, g, hd, h0, htt, hg⟩ := h
   refine ⟨ht, fun δ => (g δ, τ + δ), DifferentiableOn.prodMk hd (by fun_prop),

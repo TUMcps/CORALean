@@ -41,7 +41,7 @@ variable {X : Type}
 
 theorem ReachSequence.forall_finals_or_globals_iff {R : ℝ≥0 → Set X}
     (hne : ∀ t, (R t).Nonempty) {a c : ℝ≥0} (hc : 0 < c) {S : Set X}
-    (hS : ∀ x, a < x → x < a + c → R x = S) (K L : List (Pform X)) :
+    (hS : ∀ x, a < x → x < a + c → R x = S) (K L : List (Pform X)) : -- --- STMT ---
     (∀ ξ ∈ ReachSequence.traceSet R,
       (∃ ϱ ∈ K, ∃ t, 0 < t ∧ t < c ∧ ϱ.Sat (ξ (t + a))) ∨
         ∃ ϱ ∈ L, ∀ t, 0 < t → t < c → ϱ.Sat (ξ (t + a))) ↔

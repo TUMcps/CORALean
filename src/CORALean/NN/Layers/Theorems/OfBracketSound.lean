@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {σ : ℝ →
 theorem PolyRelaxation.ofBracket_sound {c : 𝕋 → 𝕋 → Fin (m + 1) → 𝕋} {lo hi : 𝕋 → 𝕋 → 𝕋}
     (hb : ∀ (l u : 𝕋) (t : ℝ), toReal l ≤ t → t ≤ toReal u →
       toReal (lo l u) ≤ σ t - Real.evalPoly (fun k => toReal (c l u k)) t
-        ∧ σ t - Real.evalPoly (fun k => toReal (c l u k)) t ≤ toReal (hi l u)) :
+        ∧ σ t - Real.evalPoly (fun k => toReal (c l u k)) t ≤ toReal (hi l u)) : -- --- STMT ---
     (PolyRelaxation.ofBracket c lo hi).Sound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   obtain ⟨h1, h2⟩ := hb l u t hl hu

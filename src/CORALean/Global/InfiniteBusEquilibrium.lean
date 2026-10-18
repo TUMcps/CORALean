@@ -34,7 +34,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem infiniteBus_equilibrium (M D Y : ℝ) (hY : 1 ≤ Y) :
+theorem infiniteBus_equilibrium (M D Y : ℝ) (hY : 1 ≤ Y) : -- --- STMT ---
     let P_m : ℝ := 1
     let E : ℝ := 1
     let V : ℝ := 1

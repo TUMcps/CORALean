@@ -44,7 +44,8 @@ variable {n nu ny nd m : ℕ}
 
 theorem LinearSysDT.intersectDescriptorHd_outer (E T A : Mat ℝ n n) (N Λ : Mat ℝ n ny)
     (B : Mat ℝ n nu) (D : Mat ℝ n nd) (C : Mat ℝ ny n) (F : Mat ℝ ny nd) (Hd : Mat ℝ nd m)
-    (u : Vec ℝ nu) (y : Vec ℝ ny) (X : Zonotope (Vec ℝ n)) (hTN : T * E + N * C = 1) :
+    (u : Vec ℝ nu) (y : Vec ℝ ny) (X : Zonotope (Vec ℝ n))
+    (hTN : T * E + N * C = 1) : -- --- STMT ---
     {x | ∃ xp ∈ X.construct, ∃ b : Vec ℝ m, (∀ i, |b i| ≤ 1) ∧
         E *ᵥ x - B *ᵥ u = A *ᵥ xp + D *ᵥ (Hd *ᵥ b)} ∩
       {x | ∃ b : Vec ℝ m, (∀ i, |b i| ≤ 1) ∧ y - C *ᵥ x = F *ᵥ (Hd *ᵥ b)} ⊆

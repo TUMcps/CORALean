@@ -65,7 +65,7 @@ theorem Zonotope.aux_pRadius_lmi_form (P R₁ : Mat ℝ n n) (Rd : Matrix (Fin n
       (fromRows (0 : Matrix (Fin n) (Fin nw ⊕ Fin nv) ℝ) Rd)
       (fromRows (0 : Matrix (Fin n) (Fin nw ⊕ Fin nv) ℝ) Rd)ᵀ (diagonal (Sum.elim Γ Υ))).PosSemidef)
     (θ d : Vec ℝ n) (ϖ : Vec ℝ nw) (σ : Vec ℝ nv)
-    (hd : P *ᵥ d = R₁ *ᵥ θ + Rd *ᵥ Sum.elim ϖ σ) :
+    (hd : P *ᵥ d = R₁ *ᵥ θ + Rd *ᵥ Sum.elim ϖ σ) : -- --- STMT ---
     d ⬝ᵥ (P *ᵥ d) ≤
       γ * (θ ⬝ᵥ (P *ᵥ θ)) + ∑ i, Γ i * ϖ i ^ 2 + ∑ i, Υ i * σ i ^ 2 := by -- --- PROOF ---
   have hdiag : ∀ {ι : Type} [Fintype ι] [DecidableEq ι] (e w : ι → ℝ),
@@ -101,7 +101,7 @@ theorem Zonotope.correctedStep_pRadius_le (A : Mat ℝ n n) (B : Mat ℝ n nu) (
       (fromRows (0 : Matrix (Fin n) (Fin nw ⊕ Fin nv) ℝ)
         (fromCols ((P - Y * C) * Dw) (Y * Dv)))ᵀ (diagonal (Sum.elim Γ Υ))).PosDef)
     (hΓ : ∀ i, 0 ≤ Γ i) (hΥ : ∀ i, 0 ≤ Υ i) (hε : ∑ i, Γ i + ∑ i, Υ i < ε)        -- Eq. 14a
-    (hγ : 0 ≤ γ) :
+    (hγ : 0 ≤ γ) : -- --- STMT ---
     (X.correctedStep (P⁻¹ * Y) A B Dw C Dv u y).pRadius P ≤
       γ * X.pRadius P + ε := by -- --- PROOF ---
   haveI : Invertible P := hP.isUnit.invertible

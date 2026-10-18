@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.naturalExtension_dependency :
+theorem Interval.naturalExtension_dependency : -- --- STMT ---
     let X : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
     let natural := ((X.power 2).minus ((X.times X).smul 2)).plus (X.power 2)
     let rewritten := (X.minus X).power 2

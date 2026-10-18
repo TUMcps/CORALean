@@ -2,6 +2,7 @@ module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.NN.Definitions.Basic
+public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Operations.ChainEval
@@ -118,10 +119,10 @@ theorem identityEnclosure_encloses : ScalarEncloses (id : Interval 𝕋 → Inte
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- Monotonicity of `max 0`, and `maximum` reads as `max`. -/
-theorem reluEnclosure_encloses : ScalarEncloses (reluEnclosure (𝕋 := 𝕋)) (fun x => max 0 x) :=
+/-- Monotonicity of `relu`, and `maximum` reads as `max`. -/
+theorem reluEnclosure_encloses : ScalarEncloses (reluEnclosure (𝕋 := 𝕋)) Real.relu :=
   fun _ _ hl hu => by
-    simp only [reluEnclosure, toReal_maximum, toReal_zero]
+    simp only [reluEnclosure, toReal_maximum, toReal_zero, Real.relu, max_comm _ (0 : ℝ)]
     exact ⟨max_le_max le_rfl hl, max_le_max le_rfl hu⟩
 
 

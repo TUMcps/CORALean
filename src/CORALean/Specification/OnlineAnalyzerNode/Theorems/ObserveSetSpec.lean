@@ -31,7 +31,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 
 theorem OnlineAnalyzerNode.observeSet_spec (eps : ℝ)
     (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval)
-    (loc : ℕ) (tentative : Bool) :
+    (loc : ℕ) (tentative : Bool) : -- --- STMT ---
     ((n.kind = .not ∨ n.kind = .or ∨ n.kind = .and ∨ n.kind = .until) →
       OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc tentative = none) ∧
     (OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed n.prop =

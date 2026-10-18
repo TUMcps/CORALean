@@ -58,7 +58,7 @@ theorem aux_oneStep_mem_pt {k : ℕ} (v : Vec 𝕋 k) :
 whose `f(x, u) - A(x - x✱)` stays in `V` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n n}
     {xs : Vec 𝕋 n} {V R Rτ Rt : Zonotope (Vec 𝕋 n)} {options : LinearSys.ReachOptions 𝕋}
-    (hstep : NonlinearSys.oneStepFloat A xs V R options = some (Rτ, Rt)) :
+    (hstep : NonlinearSys.oneStepFloat A xs V R options = some (Rτ, Rt)) : -- --- STMT ---
     0 < toReal options.Δt ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U x u →

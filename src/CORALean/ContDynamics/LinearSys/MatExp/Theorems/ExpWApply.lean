@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `W(t)`'s entry `(i, j)`, split the way [1, Lemma 3.1] evaluates it. -/
-theorem MatExp.expW_apply (M : Mat ℝ n n) (t : ℝ) (i j : Fin n) :
+theorem MatExp.expW_apply (M : Mat ℝ n n) (t : ℝ) (i j : Fin n) : -- --- STMT ---
     MatExp.expW M t i j
       = (if i = j then MatExp.quadTerm t (M i i)
           else M i j * (t + t ^ 2 / 2 * (M i i + M j j)))

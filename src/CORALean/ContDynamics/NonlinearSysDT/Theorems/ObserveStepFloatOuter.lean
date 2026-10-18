@@ -51,7 +51,7 @@ theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zo
     (Xhat : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n} {u : Vec ℝ m} {w : Vec ℝ n}
     (hx : x ∈ Xhat.construct) (hR : x ∈ step.R) (hu : u ∈ construct U) (hw : w ∈ W.construct)
     (hy : ∀ i, |(Scalar.toRealMat C *ᵥ (sys.f x u + w) - Scalar.toRealVec y) i|
-      ≤ Scalar.toReal (σ i)) :
+      ≤ Scalar.toReal (σ i)) : -- --- STMT ---
     sys.f x u + w ∈
       (sys.observeStepFloat step o C σ W options y Xhat).construct := by -- --- PROOF ---
   -- the prediction: the linearized step on the widened input holds `f(x, u)`

@@ -9,8 +9,8 @@ public import CORALean.ContSet.InflatedContSet.InflatedContSet
 /-!
 # Ellipsoids over a floating-point scalar: the representation
 
-The exact layer's shape matrix `Q` and center `q` held in `𝕋`, plus the error box that makes it
-an `InflatedContSet`. The nominal part is the stored floats read as reals, unchecked
+The exact layer's shape matrix `Q` and center `q` [1, Def. 4] held in `𝕋`, plus the error box that
+makes it an `InflatedContSet`. The nominal part is the stored floats read as reals, unchecked
 (`Real.Ellipsoid.Unchecked`), and denotes what CORA's constructor `ellipsoid(Q, q)` makes of them
 (`Real.Ellipsoid.ofShape`): the ellipsoid of `Q` when `Q` is positive semi-definite, and where
 CORA's constructor refuses, the center alone. No float operation trusts
@@ -20,6 +20,12 @@ whenever its argument is, because rounding is paid into `Q` itself (`Operations/
 whose answer claims points of the set (`containsPoint`, `isBigger`, `isFullDim`) runs the check
 `isPsd`, a factor `L` from an unverified Cholesky decomposition and `Q - L Lᵀ` certified
 diagonally dominant in outward rounding, and answers `false` where it fails.
+
+## References
+
+* [1] M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated
+      Verification of Linear Systems Using Reachability Analysis with Support
+      Functions". HSCC, 2023, Article 5.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

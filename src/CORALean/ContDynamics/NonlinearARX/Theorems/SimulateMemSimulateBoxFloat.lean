@@ -54,7 +54,8 @@ theorem NonlinearARX.aux_stack_simulate_zero (sys : NonlinearARX dy du p) (y₀ 
 
 theorem NonlinearARX.simulate_mem_simulateBoxFloat (sys : NonlinearARX dy du p)
     {fm : NonlinearSysDT.FloatModel 𝕋 (p * dy) ((p + 1) * du)}
-    (h : fm.Encloses sys.toNonlinearSysDT) (y₀ : Vec 𝕋 (p * dy)) (u : ℕ → Vec 𝕋 du) (k : ℕ) :
+    (h : fm.Encloses sys.toNonlinearSysDT) (y₀ : Vec 𝕋 (p * dy)) (u : ℕ → Vec 𝕋 du)
+    (k : ℕ) : -- --- STMT ---
     NonlinearARX.stack p (sys.simulate (Scalar.toRealVec y₀) fun j => Scalar.toRealVec (u j)) k ∈
       construct (sys.simulateBoxFloat fm y₀ u k) := by -- --- PROOF ---
   -- the ARX recursion for `k ≥ p` is `simulate`'s definition

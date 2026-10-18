@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.innerApproxImage_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     (X : Interval (Vec 𝕋 pZ.p)) (tol : 𝕋) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k)
-    (iter depth : ℕ) (X₀ : Interval (Vec 𝕋 pZ.p)) :
+    (iter depth : ℕ) (X₀ : Interval (Vec 𝕋 pZ.p)) : -- --- STMT ---
     ∀ Y ∈ PolyZonotope.innerApproxImage pZ X tol inv iter depth X₀,
       Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---
   induction depth generalizing X₀ with

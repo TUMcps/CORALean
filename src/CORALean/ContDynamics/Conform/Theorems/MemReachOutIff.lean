@@ -49,7 +49,7 @@ variable {n p q : ℕ}
 
 /-- The output of the run from `x0 + x̃`, the nominal output subtracted. -/
 theorem aux_output_sub_nominal (sys : Conform.Plant n p q) (x0 xt : Vec ℝ n)
-    (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) :
+    (u : ℕ → Vec ℝ p) (w : ℕ → Vec ℝ n) (k : ℕ) : -- --- STMT ---
     sys.output (x0 + xt) u w k - sys.nominal x0 u k
       = (sys.C * sys.A ^ k) *ᵥ xt
         + ∑ i : Fin k, (sys.C * sys.A ^ (i : ℕ)) *ᵥ w (k - 1 - i) := by -- --- PROOF ---

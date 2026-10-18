@@ -84,7 +84,7 @@ theorem LinParamSys.inputReach_subset_particularSolution
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {U : S n}
     (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) {t : ℝ} (ht0 : 0 ≤ t)
-    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) :
+    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) : -- --- STMT ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach U t
       ⊆ construct (sys.particularSolution Δt η U k) := by -- --- PROOF ---
   set L : LinearSys ℝ n := LinearSys.canonical A

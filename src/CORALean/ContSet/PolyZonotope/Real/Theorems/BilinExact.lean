@@ -40,7 +40,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.bilin_exact (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
-    (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) :
+    (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) : -- --- STMT ---
     (fun a : Fin pZ₁.p → ℝ => f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}
       = (pZ₁.bilin f pZ₂ hp).construct := by -- --- PROOF ---

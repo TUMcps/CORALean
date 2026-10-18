@@ -56,7 +56,7 @@ theorem Taylm.aux_const_scaled (c : ℝ) (N : ℕ) {h : ℝ} (h0 : 0 < h) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.codeEval_scaled {m : ℕ} {N : ℕ} {F : Fin m → Taylm n} {h C : ℝ} (h0 : 0 < h)
-    (h1 : h ≤ 1) (hN : ∀ i, (F i).maxOrder = N) (hF : ∀ i, (F i).Scaled h C) :
+    (h1 : h ≤ 1) (hN : ∀ i, (F i).maxOrder = N) (hF : ∀ i, (F i).Scaled h C) : -- --- STMT ---
     ∀ (e : Taylm.CodeList ℝ m), e.ScalingFragment → ∀ {T : Taylm n},
       Taylm.codeEval N F e = some T →
         T.maxOrder = N ∧ T.Scaled h (Taylm.codeScale N C e) := by -- --- PROOF ---

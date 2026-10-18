@@ -39,7 +39,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `Y = e₁ e₁ᵀ` maximizes Eq. 33 at `G = H = I₂`, `q = ∞`, and its columns differ. -/
-theorem parallelotope_lr_exact_counterexample :
+theorem parallelotope_lr_exact_counterexample : -- --- STMT ---
     let G : Matrix (Fin 2) (Fin 2) ℝ := 1
     let H : Matrix (Fin 2) (Fin 2) ℝ := 1
     let Y : Matrix (Fin 2) (Fin 2) ℝ := Matrix.of fun i j => if i = 0 ∧ j = 0 then 1 else 0

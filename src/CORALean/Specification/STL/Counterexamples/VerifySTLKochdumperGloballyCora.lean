@@ -177,7 +177,7 @@ noncomputable def STL.verifySTLKochdumperGloballyCora {n p : ℕ}
 theorem STL.verifySTLKochdumperGloballyCora_unionLastOnly_counterexample
     (isIntersecting : Set (Fin 1 → ℝ) → Set (Fin 1 → ℝ) → Bool)
     (hsound : ∀ S T, (S ∩ T).Nonempty → isIntersecting S T = true)
-    (ε : ℝ) (hε : 0 ≤ ε) (hε1 : ε < 1) :
+    (ε : ℝ) (hε : 0 ≤ ε) (hε1 : ε < 1) : -- --- STMT ---
     let c₀ : Fin 1 → ℝ := fun _ => -1                          -- R0 = zonotope(-1,1)
     let G₀ : Fin 1 → Fin 1 → ℝ := fun _ _ => 1
     let S₁ : List ((Fin 1 → ℝ) × ℝ) := [(fun _ => -1, 1), (fun _ => 1, 1)]  -- x >= -1 & x <= 1

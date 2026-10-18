@@ -37,7 +37,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinearSys.pancake_isTrajectory (sys : NonlinearSys n m) (T : ℝ) (hT : 0 ≤ T)
     (R₀ : S n) (U : S m) (c : Vec ℝ n) (b p : ℝ) (hp : 0 < p) (x : ℝ → Vec ℝ n)
     (u : ℝ → Vec ℝ m) (hrun : sys.IsTrajectory (Icc 0 T) R₀ U x u)
-    (hpos : ∀ t ∈ Icc 0 T, b < c ⬝ᵥ x t) :
+    (hpos : ∀ t ∈ Icc 0 T, b < c ⬝ᵥ x t) : -- --- STMT ---
     ∃ (S' : ℝ) (y : ℝ → Vec ℝ n) (v : ℝ → Vec ℝ m), 0 ≤ S' ∧
       (⟨fun z w => ((c ⬝ᵥ z - b) / p) • sys.f z w, sys.q, sys.g⟩ : NonlinearSys n m).IsTrajectory
         (Icc 0 S') R₀ U y v ∧ ∀ t ∈ Icc 0 T, ∃ s ∈ Icc 0 S', y s = x t := by -- --- PROOF ---

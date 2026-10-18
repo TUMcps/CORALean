@@ -25,7 +25,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineReachSetAnalyzer.updateNode_eq_some_iff {B : Type} (nodes : List B) (i : ℕ)
-    (f : B → Option B) (nodes' : List B) :
+    (f : B → Option B) (nodes' : List B) : -- --- STMT ---
     OnlineReachSetAnalyzer.updateNode nodes i f = some nodes' ↔
       i ≠ 0 ∧ ∃ n n', nodes[i - 1]? = some n ∧ f n = some n' ∧
         nodes' = nodes.set (i - 1) n' := by -- --- PROOF ---

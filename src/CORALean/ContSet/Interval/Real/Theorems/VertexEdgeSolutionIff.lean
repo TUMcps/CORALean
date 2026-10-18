@@ -49,7 +49,7 @@ theorem aux_sum_update_zero' {v : Vec ℝ n} {i : Fin n} {a : ℝ} (hvi : v i = 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.vertex_edge_solution_iff {b : Vec ℝ n} (hb0 : ∀ i, 0 < b i) {α : ℝ}
-    (l : Fin n → Bool) :
+    (l : Fin n → Bool) : -- --- STMT ---
     let v := (⟨0, b⟩ : Interval (Vec ℝ n)).corner l
     (v ∈ Interval.hyperplane 1 α ↔ ∑ i, v i = α) ∧
     ((∃ i, l i = false ∧ ∃ t, 0 < t ∧ t < b i ∧

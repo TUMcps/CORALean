@@ -31,14 +31,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem aux_leakyReluEndUp_ge (α m a : 𝕋) :
-    max (toReal α * toReal a) (toReal a) - toReal m * toReal a ≤
+    Real.leakyRelu (toReal α) (toReal a) - toReal m * toReal a ≤
       toReal (leakyReluEndUp α m a) := by -- --- PROOF ---
   have h1 := sub_le_subUp (maximum (mulUp α a) a) (mulDown m a)
   have h2 := toReal_maximum (mulUp α a) a
   have h3 := mul_le_mulUp α a
   have h4 := mulDown_le_mul m a
   rw [leakyReluEndUp]
-  have : max (toReal α * toReal a) (toReal a) ≤ toReal (maximum (mulUp α a) a) := by
+  have : Real.leakyRelu (toReal α) (toReal a) ≤ toReal (maximum (mulUp α a) a) := by
     rw [h2]; exact max_le_max h3 le_rfl
   linarith
 

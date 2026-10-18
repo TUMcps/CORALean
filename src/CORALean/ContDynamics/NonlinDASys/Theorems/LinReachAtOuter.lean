@@ -43,7 +43,7 @@ theorem NonlinDASys.IsTrajectory.linReachAt_outer {sys : NonlinDASys n p m}
     {Δt : ℝ} {Rinit : Zonotope (Vec ℝ n)} {U : Zonotope (Vec ℝ m)} {x : ℝ → Vec ℝ n}
     {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
     (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y u) (hΔt : 0 < Δt) {k : ℕ}
-    (hc : L.Certifies sys U Δt k x y u) :
+    (hc : L.Certifies sys U Δt k x y u) : -- --- STMT ---
     x Δt ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).1.construct ∧
       ∀ t ∈ Set.Icc 0 Δt,
         x t ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.1.construct ∧

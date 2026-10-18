@@ -54,7 +54,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Lemma 1], conservative approximation: `Φ_r(Z) ⊆ e^{rA}Z + □(β_r)`. -/
 theorem LinearSys.reachSet_subset_mtimes_plus_cube (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r)
-    (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ) :
+    (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ) : -- --- STMT ---
     sys.reachSet (S := 𝒵) (Set.Icc 0 r) Z U r
       ⊆ ((Z.mtimes (exp (r • toRealMat sys.A))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖

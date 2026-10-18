@@ -35,7 +35,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 elsewhere. -/
 theorem ParallelHybridAutomaton.liftTransition_reset [ExactScalar 𝕋]
     (lift : ParallelHybridAutomaton.Lifting S G n m) (ℓ : ∀ i, L i) (c : Fin k)
-    (e : Transition G (L c) 𝕋 (n c)) (x : ∀ i, Vec ℝ (n i)) :
+    (e : Transition G (L c) 𝕋 (n c)) (x : ∀ i, Vec ℝ (n i)) : -- --- STMT ---
     (ParallelHybridAutomaton.liftTransition lift ℓ c e).reset (stack x) =
       stack (Function.update x c (e.reset (x c))) := by -- --- PROOF ---
   -- compare coordinate `⟨i, j⟩` of both sides, reading the sums over the pairs

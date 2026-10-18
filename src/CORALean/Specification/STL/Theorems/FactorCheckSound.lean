@@ -44,7 +44,7 @@ theorem STL.factorCheck_sound (H J K : ℕ) (box : Set X) (R : ℕ → Set S)
     (hR : ∀ j α, ξ j α ∈ R j) (hU : ∀ j α Pl, ξ j α ∈ Pl → α ∈ unsafeSet j Pl)
     (hmeets : ∀ A B, meets A B = false → A ∩ B = ∅) (hempty : ∀ v, isEmpty v = true → v = ∅)
     (α : X) (hα : α ∈ box)
-    (hL : ∀ v ∈ STL.factorCheck H J K box R P unsafeSet meets isEmpty, α ∉ v) :
+    (hL : ∀ v ∈ STL.factorCheck H J K box R P unsafeSet meets isEmpty, α ∉ v) : -- --- STMT ---
     ∀ h ≤ H, ∃ j ≤ J, ∃ k ≤ K, ∀ Pl ∈ P h j k, ξ j α ∉ Pl := by -- --- PROOF ---
   intro h hh
   by_contra hcon

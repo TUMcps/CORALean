@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.evalPolySortTail_point (pZ : PolyZonotope (Vec ℝ n))
-    (coeffs : List (Vec ℝ n)) (k : ℕ) (a : Fin pZ.p → ℝ) :
+    (coeffs : List (Vec ℝ n)) (k : ℕ) (a : Fin pZ.p → ℝ) : -- --- STMT ---
     (pZ.evalPolySortTailP coeffs k).1.point
         (fun l => a (Fin.cast (pZ.evalPolySortTailP coeffs k).2 l))
       = fun i => pZ.point a i ^ (k + 1)

@@ -33,7 +33,8 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineAnalyzerNode.apValue_spec (ap : AtomicProposition S d) (set : S d) (loc : ℕ) :
+theorem OnlineAnalyzerNode.apValue_spec (ap : AtomicProposition S d) (set : S d)
+    (loc : ℕ) : -- --- STMT ---
     (OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some .tt →
       ∀ x ∈ construct set, ap.Holds x loc) ∧
     (OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some .ff →

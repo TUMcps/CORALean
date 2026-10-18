@@ -74,7 +74,7 @@ theorem gainDim_le_pow (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec ℝ n)) 
     (hsum : ∀ t ∈ Set.Icc (0:ℝ) h,
       Summable (fun p : ℕ => t ^ (e p + 1) / (Nat.factorial (p + 1) : ℝ) * Q p))
     (hexp : ∀ t ∈ Set.Icc (0:ℝ) h, boxDiameter (abstrSolInf A Ψ t) i
-      = 2 * ∑' p : ℕ, t ^ (e p + 1) / (Nat.factorial (p + 1) : ℝ) * Q p) :
+      = 2 * ∑' p : ℕ, t ^ (e p + 1) / (Nat.factorial (p + 1) : ℝ) * Q p) : -- --- STMT ---
     ∀ t ∈ Set.Icc (0:ℝ) h, gainDim A Ψ t δ i ≤ δ ^ (qi + 1) := by -- --- PROOF ---
   rintro t ⟨ht0, hth⟩
   have hδt : δ * t ∈ Set.Icc (0:ℝ) h :=

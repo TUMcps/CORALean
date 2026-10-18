@@ -35,7 +35,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem infiniteBus_field (M D P_m E V Y δ ω ω_s : ℝ) :
+theorem infiniteBus_field (M D P_m E V Y δ ω ω_s : ℝ) : -- --- STMT ---
     let Θ : ℝ := 0                                                   -- the infinite bus
     let Ψ : ℝ := -(Real.pi / 2)                                      -- `Ψ_g = -π/2`
     let P_g := E * V * Y * Real.cos (Ψ + δ - Θ) - V ^ 2 * Y * Real.cos Ψ   -- Eq. 2

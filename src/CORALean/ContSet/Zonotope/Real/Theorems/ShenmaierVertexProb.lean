@@ -54,7 +54,8 @@ theorem Zonotope.shenmaierVertex_prob (G : Vec ℝ m →ₗ[ℝ] Vec ℝ n) (c d
     (hvm : ∀ i, Measurable (v i)) (hind : iIndepFun v P) {ϑ : ℝ} (hϑ : 0 ≤ ϑ)
     (hunif : ∀ i, IsThetaUniform P (v i) vol {x | ∑ j, |x j| ≤ 1} ϑ)
     (z : Fin N → Ω → Vec ℝ m) (hz : ∀ i ω, ‖z i ω‖ ≤ 1)
-    (hzv : ∀ i ω, ∑ j, z i ω j * v i ω j = ∑ j, |v i ω j|) (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1) :
+    (hzv : ∀ i ω, ∑ j, z i ω j * v i ω j = ∑ j, |v i ω j|) (ε : ℝ) (hε : 0 < ε)
+    (hε1 : ε ≤ 1) : -- --- STMT ---
     ENNReal.ofReal (shenmaierProb m N ϑ ε)
       ≤ P {ω | (1 - ε) * r ≤ shenmaierVertexValue G c H d hN fun i => z i ω} := by -- --- PROOF ---
   -- the maximum is attained at a corner `c + G s` of the cube

@@ -42,7 +42,8 @@ omit [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] in
 the equalities' diagonal vanishes. -/
 theorem SpectraShadow.aux_lmi_block {k a b : ℕ} (A₀ : Mat ℝ k k) (A : Fin a → Mat ℝ k k)
     (d₀ : Vec ℝ (n + n)) (dβ : Fin a → Vec ℝ (n + n)) (dz : Fin b → Vec ℝ (n + n))
-    (β : Fin a → ℝ) (z : Fin b → ℝ) (hD : d₀ + ∑ j, β j • dβ j + ∑ i, z i • dz i = 0) :
+    (β : Fin a → ℝ) (z : Fin b → ℝ)
+    (hD : d₀ + ∑ j, β j • dβ j + ∑ i, z i • dz i = 0) : -- --- STMT ---
     blockDiag 0 A₀ (Matrix.diagonal d₀)
       + (∑ j, β j • blockDiag 0 (A j) (Matrix.diagonal (dβ j))
         + ∑ i, z i • blockDiag 0 (0 : Mat ℝ k k) (Matrix.diagonal (dz i)))
@@ -73,7 +74,7 @@ one beside a zero block. -/
 theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n))
     (v : Fin (S.mtimes M).m → ℝ) (z : Vec ℝ n)
     (hz : ∀ i, z i = toReal (S.c i) + ∑ j, toReal (S.G j i) * v (Fin.castAdd n j))
-    (hv : ∀ i, v (Fin.natAdd S.m i) = z i) :
+    (hv : ∀ i, v (Fin.natAdd S.m i) = z i) : -- --- STMT ---
     toRealMat (S.mtimes M).A₀ + ∑ l, v l • toRealMat ((S.mtimes M).A l)
       = blockDiag 0 (toRealMat S.A₀ + ∑ j, v (Fin.castAdd n j) • toRealMat (S.A j))
         0 := by -- --- PROOF ---

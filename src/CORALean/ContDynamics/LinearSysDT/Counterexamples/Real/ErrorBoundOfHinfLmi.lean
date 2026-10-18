@@ -79,7 +79,7 @@ theorem LinearSysDT.aux_hinfLmi_instance :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.errorBound_of_hinfLmi_counterexample :
+theorem LinearSysDT.errorBound_of_hinfLmi_counterexample : -- --- STMT ---
     let A : Mat ℝ 1 1 := 0
     let C : Mat ℝ 1 1 := 1
     let E : Mat ℝ 1 1 := 1

@@ -69,7 +69,7 @@ theorem HybridAutomaton.reachFloat_outer
     {options : LinearSys.ReachOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
     (run : HA.IsRunUntil T k ℓ x ℓ' y) (hT : T ≤ tFinal) {K : ℕ} (hk : k ≤ K)
     {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ construct X₀) {out : List (L × Zonotope (Vec 𝕋 n))}
-    (h : HA.reachFloat tFinal options K ℓ X₀ = some out) :
+    (h : HA.reachFloat tFinal options K ℓ X₀ = some out) : -- --- STMT ---
     ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ construct p.2 := by -- --- PROOF ---
   induction run generalizing K X₀ out with
   | @flow T ℓ τ x u w traj hτ =>

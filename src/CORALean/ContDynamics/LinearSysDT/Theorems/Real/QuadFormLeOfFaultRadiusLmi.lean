@@ -45,7 +45,7 @@ variable {n ny nw nv rw rv : ℕ}
 theorem LinearSysDT.quadForm_le_of_faultRadiusLmi (A : Mat ℝ n n) (C : Mat ℝ ny n)
     (Dx : Mat ℝ n nw) (Hw : Mat ℝ nw rw) (Dy : Mat ℝ ny nv) (Hv : Mat ℝ nv rv) (P : Mat ℝ n n)
     (W : Mat ℝ n ny) (γ : ℝ) (hP : P.PosDef) (h : LinearSysDT.FaultRadiusLmi A C Dx Hw Dy Hv P W γ)
-    (θ : Vec ℝ n) (s₁ : Vec ℝ rw) (s₂ : Vec ℝ rv) :
+    (θ : Vec ℝ n) (s₁ : Vec ℝ rw) (s₂ : Vec ℝ rv) : -- --- STMT ---
     let L := P⁻¹ * W
     let e := (A - L * C) *ᵥ θ + (Dx * Hw) *ᵥ s₁ - (L * (Dy * Hv)) *ᵥ s₂
     e ⬝ᵥ (P *ᵥ e) ≤ γ * (θ ⬝ᵥ (P *ᵥ θ)) + ((Dx * Hw) *ᵥ s₁) ⬝ᵥ ((Dx * Hw) *ᵥ s₁) +

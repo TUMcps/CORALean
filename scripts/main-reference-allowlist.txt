@@ -1,0 +1,45 @@
+# Main-type files (`<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` with a `MAIN TYPE` banner)
+# whose module docstring has no numbered entry under `## References`.
+#
+# `check-conventions.sh` refuses any other: the main file is where a reader meets the
+# representation first, and says which publication it formalizes (#211). One path per line.
+# The list only shrinks: add the reference, read from the publication, and delete the line.
+src/CORALean/ContDynamics/NonlinParamSys/NonlinParamSys.lean
+src/CORALean/ContDynamics/NonlinearSys/NonlinearSys.lean
+src/CORALean/ContDynamics/NonlinearSysDT/NonlinearSysDT.lean
+src/CORALean/ContDynamics/OutputEq/OutputEq.lean
+src/CORALean/ContSet/Capsule/Float/Capsule.lean
+src/CORALean/ContSet/Capsule/Real/Capsule.lean
+src/CORALean/ContSet/EmptySet/Real/EmptySet.lean
+src/CORALean/ContSet/Fullspace/Real/Fullspace.lean
+src/CORALean/ContSet/InflatedContSet/InflatedContSet.lean
+src/CORALean/ContSet/Interval/Float/Interval.lean
+src/CORALean/ContSet/Interval/Real/Interval.lean
+src/CORALean/ContSet/OptEmpty/OptEmpty.lean
+src/CORALean/ContSet/ProbZonotope/Float/ProbZonotope.lean
+src/CORALean/ContSet/SetIntersection/SetIntersection.lean
+src/CORALean/ContSet/SetUnion/SetUnion.lean
+src/CORALean/ContSet/SpectraShadow/Float/SpectraShadow.lean
+src/CORALean/ContSet/SupportFunction/Real/SupportFunction.lean
+src/CORALean/ContSet/Taylm/Float/Taylm.lean
+src/CORALean/ContSet/Taylm/Real/Taylm.lean
+src/CORALean/ContSet/Zoo/Float/Zoo.lean
+src/CORALean/ContSet/Zoo/Real/Zoo.lean
+src/CORALean/DiscrDynamics/GridPartition/GridPartition.lean
+src/CORALean/DiscrDynamics/MarkovChain/MarkovChain.lean
+src/CORALean/Examples/Bench/NearestUnsound/NearestUnsound.lean
+src/CORALean/Global/Float/Instances/Dyadic/Dyadic.lean
+src/CORALean/Global/Float/Instances/FixedPoint/FixedPoint.lean
+src/CORALean/Global/Float/Instances/Flint/Flint.lean
+src/CORALean/Global/Float/Instances/IEEE/IEEE.lean
+src/CORALean/Global/SupportFunction/SupportFunction.lean
+src/CORALean/Specification/AtomicProposition/AtomicProposition.lean
+src/CORALean/Specification/FiniteKleeneSignalBuilder/FiniteKleeneSignalBuilder.lean
+src/CORALean/Specification/FiniteSignal/FiniteSignal.lean
+src/CORALean/Specification/OnlineAnalyzerNode/OnlineAnalyzerNode.lean
+src/CORALean/Specification/OnlineReachSetAnalyzer/OnlineReachSetAnalyzer.lean
+src/CORALean/Specification/ReachSetAnalyzer/ReachSetAnalyzer.lean
+src/CORALean/Specification/Specification.lean
+src/CORALean/Specification/SyntaxTree/SyntaxTree.lean
+src/CORALean/Specification/TentativeKleeneSignal/TentativeKleeneSignal.lean
+src/CORALean/Specification/TrajectoryAnalyzer/TrajectoryAnalyzer.lean

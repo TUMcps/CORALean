@@ -124,7 +124,7 @@ convex, closed, bounded and containing `0`, with no hypothesis on eq. (20). -/
 theorem LinearSys.hausdorffDist₂_inputReach_le_of_convex (sys : LinearSys 𝕋 n) (tk : ℝ)
     {U : S n} (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
     (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U) {Δt : ℝ}
-    (hΔt : 0 < Δt) (η : ℕ) :
+    (hΔt : 0 < Δt) (η : ℕ) : -- --- STMT ---
     hausdorffDist₂
         ((fun x => (exp (tk • toRealMat sys.A)).mulVec x) '' sys.inputReach U Δt)
         ((fun x => (exp (tk • toRealMat sys.A)).mulVec x)

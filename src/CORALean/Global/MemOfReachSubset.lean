@@ -45,7 +45,7 @@ theorem RobustInvariant.mem_of_reach_subset {γ : ℝ → X → (ℝ → Inp) �
     {S R₀ : Set X} {t : ℝ} (hS : RobustInvariant γ U S)
     (hγ : ∀ t s : ℝ, 0 ≤ t → 0 ≤ s → ∀ x u, γ (t + s) x u = γ s (γ t x u) (fun r => u (t + r)))
     (hU : ∀ u ∈ U, ∀ t : ℝ, 0 ≤ t → (fun r => u (t + r)) ∈ U) (ht : 0 ≤ t)
-    (hR : ∀ x₀ ∈ R₀, ∀ u ∈ U, γ t x₀ u ∈ S) :
+    (hR : ∀ x₀ ∈ R₀, ∀ u ∈ U, γ t x₀ u ∈ S) : -- --- STMT ---
     ∀ x₀ ∈ R₀, ∀ u ∈ U, ∀ t' ≥ t, γ t' x₀ u ∈ S := by -- --- PROOF ---
   intro x₀ hx₀ u hu t' ht'
   rcases eq_or_lt_of_le ht' with h | h

@@ -39,7 +39,7 @@ theorem LinParamSys.timeIntervalStepFloat_outer
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ}
-    (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) :
+    (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) : -- --- STMT ---
     exp (s • A) *ᵥ x ∈ (sys.timeIntervalStepFloat Δt η R).construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt

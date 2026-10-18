@@ -36,7 +36,7 @@ open Matrix
 /-- [1, Prop. 2, eq. 20]: `z ∈ Z` iff the minimum of `‖ξ‖∞` over `[G; A]ξ = [z − c; b]`
 exists and is `≤ 1`. -/
 theorem ConZonotope.mem_iff_isLeast {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
-    (A : Mat ℝ q h) (b : Vec ℝ q) (z : Vec ℝ n) :
+    (A : Mat ℝ q h) (b : Vec ℝ q) (z : Vec ℝ n) : -- --- STMT ---
     z ∈ (ConZonotope.ofMat c G A b).construct ↔
       ∃ m, IsLeast {t | ∃ ξ : Vec ℝ h,
         Matrix.fromRows (Matrix.of fun (i : Fin n) (j : Fin h) => G j i) A *ᵥ ξ

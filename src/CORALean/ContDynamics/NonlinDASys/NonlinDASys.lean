@@ -19,7 +19,12 @@ A `IsTrajectory` is `(x, y, u)` with `x` differentiable along `f`, and the const
 all of `T`; there is no separate consistency condition on `y 0`, which the constraint at `0`
 already imposes (`0 ∈ T` is the caller's). CORA assumes the system is of differentiation index 1,
 that `∂g/∂y` is invertible along solutions; the class does not carry it, as CORA's does not, and
-`IsIndex1` in `Definitions/` states it, to be assumed where a theorem needs it.
+`IsIndex1` in `Definitions/` states it, to be assumed where a theorem needs it. The setting is
+[1, Eq. 1]: time-invariant, semi-explicit, index 1.
+## References
+
+* [1] M. Althoff and B. H. Krogh. "Reachability Analysis of Nonlinear Differential-Algebraic
+      Systems". IEEE Transactions on Automatic Control, 59(2):371-383, 2014.
 -/
 
 -- Authors:       Claude Opus 5.5

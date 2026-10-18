@@ -63,7 +63,7 @@ theorem NonlinearSys.reachSet_subset_relinTimeInterval (sys : NonlinearSys n m)
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
     {o : ℕ} (ho : 0 < o) (i : ℕ) (hi : i < N)
-    {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) :
+    {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) : -- --- STMT ---
     sys.reachSet T R₀ U t ⊆ construct (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) := by -- --- PROOF ---

@@ -70,7 +70,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinProbSys.reachCovCora_lt_counterexample (B : Mat ℝ 1 1)
-    (st0 : LinProbSys.PostState 1) (h0 : st0.Rpar_prob.cov = 0) (k : ℕ) (hk : 1 ≤ k) :
+    (st0 : LinProbSys.PostState 1) (h0 : st0.Rpar_prob.cov = 0) (k : ℕ)
+    (hk : 1 ≤ k) : -- --- STMT ---
     (⟨diagonal fun _ => 1, B, 1⟩ : LinProbSys 1 1).reachCovCora (fun _ => 1) 1 st0 k 0 0
       < noiseCovariance (diagonal fun _ : Fin 1 => (1 : ℝ)) (1 : Mat ℝ 1 1) (k * 1) 0 0
     := by -- --- PROOF ---

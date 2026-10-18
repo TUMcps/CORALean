@@ -32,7 +32,7 @@ variable {n m N r d : ℕ}
 
 theorem NonlinearSys.identify_le_candidate (φ : Vec ℝ n → Vec ℝ m → Vec ℝ d) (lt : ℝ → ℝ → Bool)
     (hlt : ∀ a b, lt a b = true ↔ a < b) (err : NonlinearSys n m → ℝ) (dx : Fin N → Vec ℝ n)
-    (V : Mat ℝ d r) (s : Fin r → ℝ) (W : Mat ℝ N r) (hr : 0 < r) :
+    (V : Mat ℝ d r) (s : Fin r → ℝ) (W : Mat ℝ N r) (hr : 0 < r) : -- --- STMT ---
     ∃ sys, NonlinearSys.identify φ lt err dx V s W = some sys ∧
       (∃ k, 1 ≤ k ∧ k ≤ r ∧ sys = (NonlinearSys.mk (fun x u =>
         NonlinearSys.identifyCandidate dx V s W k *ᵥ φ x u) n

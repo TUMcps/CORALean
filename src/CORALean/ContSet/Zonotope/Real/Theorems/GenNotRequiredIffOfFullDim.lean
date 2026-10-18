@@ -46,7 +46,7 @@ theorem Zonotope.gen_not_required_iff_of_fullDim {n : ℕ} (Zm Zs : Zonotope (Ve
         = {x | dotProductEquiv ℝ _ (Zm.minkDiffRowNormal k) x ≤ Zm.minkDiffRowOffset Zs k} →
       {x | dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤ Zm.minkDiffRowOffset Zs j}
         = Set.univ)
-    (i : Fin Zm.h) :
+    (i : Fin Zm.h) : -- --- STMT ---
     ∑ j ∈ Finset.univ.filter (fun j : Bool × Finset (Fin Zm.h) => j.2.card = n + 1 ∧
         {x | ∀ k : Bool × Finset (Fin Zm.h), k.2.card = n + 1 → k ≠ j →
             dotProductEquiv ℝ _ (Zm.minkDiffRowNormal k) x ≤ Zm.minkDiffRowOffset Zs k}

@@ -44,7 +44,7 @@ theorem ParallelHybridAutomaton.IsStay.ofTrajectoryWith [ExactScalar 𝕋]
     {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLawConverse F U W)
     {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) {ℓ : ∀ i, L i} {τ : ℝ}
     {X : ℝ → Vec ℝ (∑ i, n i)} {g' w'}
-    (h : ((P.productWith lift F U W).loc ℓ).IsTrajectory τ X g' w') :
+    (h : ((P.productWith lift F U W).loc ℓ).IsTrajectory τ X g' w') : -- --- STMT ---
     ∃ (x : ∀ i, ℝ → Vec ℝ (n i)) (u : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).m)
       (w : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).r) (g : ℝ → Vec ℝ m),
       P.IsStay ℓ τ x u w g ∧ ∀ i, x i = fun t => unstack (X t) i := by -- --- PROOF ---

@@ -49,7 +49,7 @@ private theorem HPolytope.le_errUp (P : HPolytope 𝕋 (Vec 𝕋 n)) (a : Vec �
 
 
 theorem HPolytope.rows_of_mem_construct {P : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n}
-    (hx : x ∈ P.construct) :
+    (hx : x ∈ P.construct) : -- --- STMT ---
     (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.bU i)) ∧
       ∀ i, (toRealMat P.Ae *ᵥ x) i ≤ toReal (P.beU i)
         ∧ -(toRealMat P.Ae *ᵥ x) i ≤ toReal (P.beLN i) := by -- --- PROOF ---

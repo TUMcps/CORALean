@@ -54,7 +54,7 @@ theorem aux_relaxGreedyCost_ops_le (h q n p : ℕ) (hp : 1 ≤ p) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Thm. 2 (complexity)]: `Alg. 2` is `O((h + q) h n + h² p)`. -/
-theorem PolyZonotope.relaxGreedyCost_isBigO :
+theorem PolyZonotope.relaxGreedyCost_isBigO : -- --- STMT ---
     (fun x : ℕ × ℕ × ℕ × ℕ => ((PolyZonotope.relaxGreedyCost x.1 x.2.1 x.2.2.1 x.2.2.2).ops : ℝ))
       =O[Filter.atTop]
         fun x : ℕ × ℕ × ℕ × ℕ =>

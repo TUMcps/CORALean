@@ -115,7 +115,7 @@ theorem aux_greedy_fold (G : Fin h → Fin h → Prop) [DecidableRel G] (w : Fin
 /-- [1, Thm. 2]: `greedyTarget` is `none` exactly at a node without outgoing edges, and otherwise
 an outgoing edge of smallest weight. -/
 theorem PolyZonotope.greedyTarget_spec (G : Fin h → Fin h → Prop) [DecidableRel G]
-    (w : Fin h → Fin h → ℕ) (i : Fin h) :
+    (w : Fin h → Fin h → ℕ) (i : Fin h) : -- --- STMT ---
     (PolyZonotope.greedyTarget G w i = none ↔ ∀ j, ¬ G i j) ∧
       ∀ j, PolyZonotope.greedyTarget G w i = some j →
         G i j ∧ ∀ j', G i j' → w i j ≤ w i j' := by -- --- PROOF ---

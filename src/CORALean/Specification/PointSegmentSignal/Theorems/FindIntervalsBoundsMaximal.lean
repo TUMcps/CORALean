@@ -37,7 +37,7 @@ theorem PointSegmentSignal.findIntervalsBounds_maximal {T : Type} [LinearOrder T
     [DenselyOrdered T] [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid)
     (cond : Bool → Bool) (b : T × WithTop T × Bool × Bool) (hb : b ∈ s.findIntervalsBounds cond)
     (t₁ t₂ : T) (ht₂ : 0 ≤ t₂) (h₁ : STLInterval.memBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t₁)
-    (hpath : ∀ t, 0 ≤ t → min t₁ t₂ ≤ t → t ≤ max t₁ t₂ → cond (s.at t) = true) :
+    (hpath : ∀ t, 0 ≤ t → min t₁ t₂ ≤ t → t ≤ max t₁ t₂ → cond (s.at t) = true) : -- --- STMT ---
     STLInterval.memBounds b.1 b.2.1 b.2.2.1 b.2.2.2 t₂ := by -- --- PROOF ---
   obtain ⟨runs, heq, hT1, -⟩ := s.findIntervalsBounds_runs hs cond
   rw [heq, List.mem_map] at hb

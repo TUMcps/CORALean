@@ -68,7 +68,7 @@ theorem Zonotope.aux_par (p q : ℝ) (u w : Vec ℝ 2) (hu : 0 ≤ u 1 ∧ (0 < 
 theorem Zonotope.aux_noalt (p q : ℝ) (gi gj gl : Vec ℝ 2) (hi : 0 ≤ gi 1 ∧ (0 < gi 1 ∨ 0 ≤ gi 0))
     (hj : 0 ≤ gj 1 ∧ (0 < gj 1 ∨ 0 ≤ gj 0)) (_hl : 0 ≤ gl 1 ∧ (0 < gl 1 ∨ 0 ≤ gl 0))
     (cij : 0 ≤ gi 0 * gj 1 - gi 1 * gj 0) (cjl : 0 ≤ gj 0 * gl 1 - gj 1 * gl 0)
-    (cil : 0 ≤ gi 0 * gl 1 - gi 1 * gl 0) :
+    (cil : 0 ≤ gi 0 * gl 1 - gi 1 * gl 0) : -- --- STMT ---
     ¬(0 < p * gi 0 + q * gi 1 ∧ p * gj 0 + q * gj 1 < 0 ∧ 0 < p * gl 0 + q * gl 1) ∧
       ¬(p * gi 0 + q * gi 1 < 0 ∧ 0 < p * gj 0 + q * gj 1 ∧
         p * gl 0 + q * gl 1 < 0) := by -- --- PROOF ---
@@ -126,7 +126,7 @@ theorem Zonotope.aux_pattern1 {h : ℕ} (a : Fin h → ℝ)
 /-- The sign pattern along sorted generators, either way round. -/
 theorem Zonotope.aux_pattern {h : ℕ} (a : Fin h → ℝ)
     (hno : ∀ i j l : Fin h, i < j → j < l →
-      ¬(0 < a i ∧ a j < 0 ∧ 0 < a l) ∧ ¬(a i < 0 ∧ 0 < a j ∧ a l < 0)) :
+      ¬(0 < a i ∧ a j < 0 ∧ 0 < a l) ∧ ¬(a i < 0 ∧ 0 < a j ∧ a l < 0)) : -- --- STMT ---
     ∃ k : ℕ, k ≤ h ∧
       ((∀ j : Fin h, j.val < k → 0 ≤ a j) ∧ (∀ j : Fin h, k ≤ j.val → a j ≤ 0) ∨
         (∀ j : Fin h, j.val < k → a j ≤ 0) ∧

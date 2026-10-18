@@ -71,7 +71,7 @@ attribute [local instance] aux_paramSetPlus aux_paramSetMtimes aux_paramSetMtime
 /-- The member's exact orders, taken at plain sets, inside the float sum. -/
 theorem LinParamSys.aux_inputTaylorSum_subset
     (sys : LinParamSys ℐ[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
     ∀ i, construct ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
       (S := 𝒮) (toReal r) V.construct i)
       ⊆ (sys.inputTaylorSumFloat r V i).construct := by -- --- PROOF ---
@@ -99,7 +99,7 @@ theorem LinParamSys.aux_inputTaylorSum_subset
 theorem LinParamSys.aux_inputRemainder_subset
     (sys : LinParamSys ℐ[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct)
-    (V : Zonotope (Vec 𝕋 n)) :
+    (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
     construct (Mtimes.mtimes (𝕄 := ℐ)
       (S := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
       (V.construct : Set (Vec ℝ n)))
@@ -124,7 +124,7 @@ lies in `inputSolutionFloat`. -/
 theorem LinParamSys.inputReach_subset_inputSolutionFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
-    (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) :
+    (hA : A ∈ sys.A.construct) (V : Zonotope (Vec 𝕋 n)) : -- --- STMT ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (sys.inputSolutionFloat Δt η V).construct := by -- --- PROOF ---
   -- the float bound's condition is the exact one's, with room to spare

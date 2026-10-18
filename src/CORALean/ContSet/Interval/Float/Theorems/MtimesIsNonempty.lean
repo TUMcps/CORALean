@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.mtimes_isNonempty (M : Mat 𝕋 m n) (I : Interval (Vec 𝕋 n)) :
+theorem Interval.mtimes_isNonempty (M : Mat 𝕋 m n) (I : Interval (Vec 𝕋 n)) : -- --- STMT ---
     (Interval.mtimes M I).nominal.IsNonempty := fun i => by
   -- one term of the row: the down-rounded product at `inf` sits between the two
   have hle : ∀ k, toReal (minimum (mulDown (M i k) (I.inf k)) (mulDown (M i k) (I.sup k)))

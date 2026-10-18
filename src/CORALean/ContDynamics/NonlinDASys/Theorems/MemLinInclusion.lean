@@ -52,7 +52,7 @@ theorem NonlinDASys.mem_linInclusion (sys : NonlinDASys n p m) {xs : Vec ℝ n} 
     (hg : sys.g x y u = 0)
     (hL : (sys.f x y u - (sys.f xs ys us + A *ᵥ (x - xs) + B *ᵥ (u - us) + C *ᵥ (y - ys)))
       - (C * F_inv) *ᵥ (sys.g x y u - (sys.g xs ys us + D *ᵥ (x - xs) + E *ᵥ (u - us)
-        + F *ᵥ (y - ys))) ∈ L) :
+        + F *ᵥ (y - ys))) ∈ L) : -- --- STMT ---
     sys.f x y u ∈ NonlinDASys.linInclusion (sys.f xs ys us) (sys.g xs ys us) A B C D E F_inv
       us U L (x - xs) := by -- --- PROOF ---
   set ℓd := sys.f x y u - (sys.f xs ys us + A *ᵥ (x - xs) + B *ᵥ (u - us) + C *ᵥ (y - ys))

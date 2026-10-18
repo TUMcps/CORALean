@@ -46,7 +46,7 @@ theorem aux_jacobianMat_apply_of_hasFDerivAt {k N : ℕ} (g : Vec ℝ k → Vec 
   rfl
 
 /-- Reading `p` blocks newest first is its own inverse. -/
-theorem aux_rev_rev {a b : ℕ} (c : Fin (a * b)) :
+theorem aux_rev_rev {a b : ℕ} (c : Fin (a * b)) : -- --- STMT ---
     finProdFinEquiv (Fin.rev (finProdFinEquiv.symm (finProdFinEquiv (Fin.rev
       (finProdFinEquiv.symm c).1, (finProdFinEquiv.symm c).2))).1,
       (finProdFinEquiv.symm (finProdFinEquiv (Fin.rev (finProdFinEquiv.symm c).1,
@@ -54,7 +54,7 @@ theorem aux_rev_rev {a b : ℕ} (c : Fin (a * b)) :
   simp only [Equiv.symm_apply_apply, Fin.rev_rev, Prod.mk.eta, Equiv.apply_symm_apply]
 
 /-- The reindexing, as a continuous linear map, sends a unit vector to a unit vector. -/
-theorem aux_reindex_hasFDerivAt {a b : ℕ} (x : Vec ℝ (a * b)) :
+theorem aux_reindex_hasFDerivAt {a b : ℕ} (x : Vec ℝ (a * b)) : -- --- STMT ---
     ∃ L : Vec ℝ (a * b) →L[ℝ] Vec ℝ (a * b),
       HasFDerivAt (fun x' : Vec ℝ (a * b) => fun s => x' (finProdFinEquiv
         (Fin.rev (finProdFinEquiv.symm s).1, (finProdFinEquiv.symm s).2))) L x ∧

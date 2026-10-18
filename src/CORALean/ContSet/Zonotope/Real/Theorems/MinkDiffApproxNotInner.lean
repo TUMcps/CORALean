@@ -165,7 +165,7 @@ theorem aux_minkDiffApprox :
 
 /-- CORA's `'approx'`, at a minuend's own normalised facet normals, can leave the Minkowski
 difference while that difference is nonempty. -/
-theorem Zonotope.minkDiffApprox_not_inner :
+theorem Zonotope.minkDiffApprox_not_inner : -- --- STMT ---
     ∃ (Z₁ Z₂ : Zonotope (Vec ℝ 3)) (C : Mat ℝ 6 3) (S : Fin 6 → Fin 2 → Fin Z₁.h),
       (∀ i, StrictMono (S i)) ∧ Function.Injective S ∧
       (∀ i, C i = (√(Z₁.facetNormal (S i) ⬝ᵥ Z₁.facetNormal (S i)))⁻¹

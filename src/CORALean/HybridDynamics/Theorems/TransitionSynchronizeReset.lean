@@ -33,7 +33,7 @@ variable {n q k : ℕ} {L : Fin k → Type}
 at `idStates`. -/
 theorem Transition.synchronize_reset (compIdx : Fin q → Fin k)
     (t : ∀ i : Fin q, Transition (fun k => HPolytope ℝ (Vec ℝ k)) (L (compIdx i)) ℝ n)
-    (idStates : Finset (Fin n)) (locID : ∀ c, L c) (x : Vec ℝ n) (i : Fin n) :
+    (idStates : Finset (Fin n)) (locID : ∀ c, L c) (x : Vec ℝ n) (i : Fin n) : -- --- STMT ---
     (Transition.synchronize compIdx t idStates locID).reset x i =
       (if i ∈ idStates then x i else 0) + ∑ j, ((t j).reset x) i := by -- --- PROOF ---
   simpa [Transition.synchronize, Transition.reset] using

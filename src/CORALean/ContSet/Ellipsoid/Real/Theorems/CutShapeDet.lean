@@ -15,9 +15,11 @@ public import Mathlib.Tactic.Ring
 # The determinant of the cut ellipsoid's shape matrix
 
 For a unit `c`, `det(a(I − κ c cᵀ)) = aⁿ (1 − κ)`, as `det(I − κ c cᵀ) = 1 − κ cᵀc` (the
-Weinstein-Aronszajn identity). For [1, Eq. 16] that is
-`(n(1 − γ²)/(n − 1))ⁿ · (1 − (1 − nγ²)/(1 − γ²))`, the square of the volume ratio that
-[1, Lemma 4.4] bounds.
+Weinstein-Aronszajn identity), and the `ⁿ` is that of `det(a M) = aⁿ det M` for an `n × n` matrix
+`M`. For the matrix `E = a (I − κ c cᵀ)` of [1, Eq. 16], `a = n(1 − γ²)/(n − 1)` and
+`κ = (1 − nγ²)/(1 − γ²)`, that is `(n(1 − γ²)/(n − 1))ⁿ · (1 − (1 − nγ²)/(1 − γ²))`, the square of
+the volume ratio that [1, Lemma 4.4] bounds. The paper does not print this determinant; it is what
+the proof of the lemma needs.
 
 ## References
 
@@ -60,7 +62,9 @@ theorem Ellipsoid.aux_det_one_sub (c : Vec ℝ n) (κ : ℝ) (hc : c ⬝ᵥ c = 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Eq. 16]: `det E = (n(1 − γ²)/(n − 1))ⁿ (1 − (1 − nγ²)/(1 − γ²))`. -/
+/-- The determinant of [1, Eq. 16]'s `E`, used in the proof of [1, Lemma 4.4]:
+`det E = (n(1 − γ²)/(n − 1))ⁿ (1 − (1 − nγ²)/(1 − γ²))`, the `ⁿ` being `det(a M) = aⁿ det M` for
+`n × n`. -/
 theorem Ellipsoid.cutShape_det {c : Vec ℝ n} (hc : c ⬝ᵥ c = 1) (γ : ℝ) :
     (Ellipsoid.cutShape n c γ).det
       = ((n : ℝ) * (1 - γ ^ 2) / ((n : ℝ) - 1)) ^ n

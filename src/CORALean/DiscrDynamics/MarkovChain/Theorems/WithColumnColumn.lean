@@ -30,7 +30,8 @@ variable {n m : ℕ}
 /-- Column `iState ≠ 0` of input `iInput` is `tp`, both for `T.T` and `T.OT`. -/
 theorem MarkovChain.withColumn_column (M : MarkovChain n m)
     (tp : MarkovChain.TransitionProbabilities M.field.nrOfCells) (iInput : Fin m)
-    {iState : Fin (M.field.nrOfCells + 1)} (hs : iState ≠ 0) (r : Fin (M.field.nrOfCells + 1)) :
+    {iState : Fin (M.field.nrOfCells + 1)} (hs : iState ≠ 0)
+    (r : Fin (M.field.nrOfCells + 1)) : -- --- STMT ---
     (M.withColumn tp iInput iState).T.T iInput r iState = tp.T r ∧
       (M.withColumn tp iInput iState).T.OT iInput r iState = tp.OT r := by -- --- PROOF ---
   simp [MarkovChain.withColumn, MarkovChain.setColumn, hs]

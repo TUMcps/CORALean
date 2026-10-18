@@ -35,7 +35,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 /-- The loop over the propositions of a list `l` of those of `obj`. -/
 theorem aux_analyzeTimeInterval_loop (obj : ReachSetAnalyzer S n) (d : ℝ)
-    (set : S n) (loc : ℕ) (lo hi : ℝ) (hlh : lo < hi) :
+    (set : S n) (loc : ℕ) (lo hi : ℝ) (hlh : lo < hi) : -- --- STMT ---
     ∀ (l : List (String × AtomicProposition S n)), (∀ q ∈ l, q ∈ obj.aps) →
     ∀ (PT PF : String → ℝ → Prop) (obj0 : ReachSetAnalyzer S n), obj0.aps = obj.aps →
       obj0.masks = obj.masks →
@@ -100,7 +100,7 @@ theorem aux_analyzeTimeInterval_loop (obj : ReachSetAnalyzer S n) (d : ℝ)
 
 theorem ReachSetAnalyzer.analyzeTimeInterval_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
     (PT PF : String → ℝ → Prop) (hobj : obj.Represents d PT PF) (set : S n) (loc : ℕ)
-    (lo hi : ℝ) (hlh : lo < hi) :
+    (lo hi : ℝ) (hlh : lo < hi) : -- --- STMT ---
     ∃ obj', obj.analyzeTimeInterval (𝕋 := 𝕋) set loc lo hi = some obj' ∧ obj'.aps = obj.aps ∧
       obj'.masks = obj.masks ∧ obj'.Represents d
         (fun k t => PT k t ∨ obj.TrueMark (𝕋 := 𝕋) k set loc lo hi d t)

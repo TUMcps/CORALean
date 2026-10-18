@@ -88,7 +88,7 @@ open CORALean.Real Matrix
 
 /-- The linearization error `½ (σ - CF⁻¹φ) = 1` of `ẋ = y`, `0 = y - x²` at `z* = 0`, `ν = 1`,
 lies in [1, Cor. 1]'s set and not in CORA's. -/
-theorem NonlinDASys.linErrorCora_counterexample :
+theorem NonlinDASys.linErrorCora_counterexample : -- --- STMT ---
     (1 / 2 : ℝ) • ((fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ ((0 : Mat ℝ 1 1) *ᵥ ![1]))
         - (1 : Mat ℝ 1 1) *ᵥ (fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ (!![-2] *ᵥ ![1])))
       ∈ (NonlinDASys.linError (p := 1) (q := 1) 0 0 (fun _ => !![-2]) 0 1

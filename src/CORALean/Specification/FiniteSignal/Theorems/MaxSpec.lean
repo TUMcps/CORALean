@@ -66,7 +66,7 @@ theorem aux_foldl_max {α V : Type} [LinearOrder V] (P : α → Prop) [Decidable
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.max_spec {V : Type} [LinearOrder V] [Zero V] (s : FiniteSignal ℝ V)
-    (hs : s.IsValid) (lo hi : EReal) (hlh : lo ≤ hi) (h0 : (0 : EReal) ≤ hi) :
+    (hs : s.IsValid) (lo hi : EReal) (hlh : lo ≤ hi) (h0 : (0 : EReal) ≤ hi) : -- --- STMT ---
     0 ≤ s.max lo hi ∧ (∀ c ∈ s.cells, lo ≤ (c.1.2 : EReal) → (c.1.1 : EReal) ≤ hi →
         c.2 ≤ s.max lo hi) ∧
       (s.max lo hi = 0 ∨ ∃ c ∈ s.cells, lo ≤ (c.1.2 : EReal) ∧ (c.1.1 : EReal) ≤ hi ∧

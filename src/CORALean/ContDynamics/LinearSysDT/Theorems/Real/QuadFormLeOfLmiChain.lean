@@ -55,7 +55,7 @@ theorem LinearSysDT.quadForm_le_of_lmi_chain (j : ℕ) (G : Fin q → Mat ℝ n 
       (fromBlocks (fromBlocks (β • P) 0 0
         (fromBlocks (Fᵀ * F) 0 0 (diagonal fun s : Fin j => φ s ^ 2))) Ξ Ξᵀ P).PosSemidef)
     (A : Mat ℝ n n) (hA : A ∈ convexHull ℝ (Set.range G)) (θ : Vec ℝ n) (γ : Vec ℝ m)
-    (η : Fin j → ℝ) :
+    (η : Fin j → ℝ) : -- --- STMT ---
     let e := Conform.prodJac κ j j *ᵥ (A *ᵥ θ + F *ᵥ γ)
       + ∑ s : Fin j, η s • (Conform.prodJac κ j (j - s - 1) *ᵥ u s)
     e ⬝ᵥ (P *ᵥ e) ≤ β * (θ ⬝ᵥ (P *ᵥ θ)) + (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ)

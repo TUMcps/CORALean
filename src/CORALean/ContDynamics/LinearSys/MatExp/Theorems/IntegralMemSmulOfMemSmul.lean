@@ -42,7 +42,7 @@ theorem integral_mem_smul_of_mem_smul {K : Set (Vec ℝ n)} (hK : Convex ℝ K)
     (hKc : IsClosed K) {f : ℝ → Vec ℝ n} {w : ℝ → ℝ} {s : ℝ} (hs : 0 ≤ s)
     (hf : IntervalIntegrable f volume 0 s) (hw : IntervalIntegrable w volume 0 s)
     (hw0 : ∀ σ ∈ Set.Icc 0 s, 0 ≤ w σ) (hfK : ∀ σ ∈ Set.Icc 0 s, f σ ∈ w σ • K)
-    (hW : 0 < ∫ σ in (0:ℝ)..s, w σ) :
+    (hW : 0 < ∫ σ in (0:ℝ)..s, w σ) : -- --- STMT ---
     (∫ σ in (0:ℝ)..s, f σ) ∈ (∫ σ in (0:ℝ)..s, w σ) • K := by -- --- PROOF ---
   set W := ∫ σ in (0:ℝ)..s, w σ with hWdef
   refine ⟨W⁻¹ • ∫ σ in (0:ℝ)..s, f σ, ?_, by

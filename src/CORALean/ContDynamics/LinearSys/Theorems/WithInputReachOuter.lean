@@ -58,7 +58,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 `sys.U`, reaches is in one of `reach`'s windows. -/
 theorem LinearSys.WithInput.reach_outer (sys : LinearSys.WithInput 𝕋 S n)
     (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
-    (hΔt : 0 < options.Δt) :
+    (hΔt : 0 < options.Δt) : -- --- STMT ---
     sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reach params options) := by -- --- PROOF ---
   obtain ⟨X₀, tStart, tF⟩ := params

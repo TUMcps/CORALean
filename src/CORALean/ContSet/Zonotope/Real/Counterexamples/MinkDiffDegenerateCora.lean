@@ -84,7 +84,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.minkDiffDegenerateCora_counterexample :
+theorem Zonotope.minkDiffDegenerateCora_counterexample : -- --- STMT ---
     let minuend : Zonotope (Vec ℝ 2) := ⟨1, ![0, 1], fun _ => ![1, 0]⟩
     let subtrahend : Zonotope (Vec ℝ 2) := ⟨1, 0, fun _ => ![1 / 2, 0]⟩
     ∀ (U : Mat ℝ 2 2) (S : Mat ℝ 2 1) (V : Mat ℝ 1 1), Uᵀ * U = 1 → S 1 0 = 0 →

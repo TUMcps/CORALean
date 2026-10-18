@@ -43,7 +43,7 @@ theorem OnlineAnalyzerNode.observeSet_ap_sound (eps : ℝ)
     (hs : n.signal.IsValid)
     (n' : OnlineAnalyzerNode (AtomicProposition S d))
     (h : OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false = some n')
-    (t : ℝ) (h0 : 0 ≤ t) (hti : t ∈ interval.set) :
+    (t : ℝ) (h0 : 0 ≤ t) (hti : t ∈ interval.set) : -- --- STMT ---
     (n'.signal.at t = FourValued.tt → ∀ x ∈ construct set, ap.Holds x loc) ∧
     (n'.signal.at t = FourValued.ff → ∀ x ∈ construct set, ¬ ap.Holds x loc) := by -- --- PROOF ---
   obtain ⟨hm, hsig⟩ := (OnlineAnalyzerNode.observeSet_ap_spec (𝕋 := 𝕋) eps n set interval loc

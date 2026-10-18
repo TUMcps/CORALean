@@ -38,7 +38,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.chebyshev_not_unique :
+theorem HPolytope.chebyshev_not_unique : -- --- STMT ---
     ∃ (A : Mat ℝ 4 2) (b : Vec ℝ 4) (c₁ c₂ : Vec ℝ 2), c₁ ≠ c₂ ∧
       (∀ j, (A *ᵥ c₁) j + 1 / 2 * ‖A j‖₂ ≤ b j) ∧ (∀ j, (A *ᵥ c₂) j + 1 / 2 * ‖A j‖₂ ≤ b j) ∧
       ∀ (c : Vec ℝ 2) (r : ℝ), (∀ j, (A *ᵥ c) j + r * ‖A j‖₂ ≤ b j) →

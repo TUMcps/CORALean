@@ -53,7 +53,7 @@ theorem aux_maxNormSqSdp_trace_vecMulVec {m : ℕ} (M : Mat ℝ m m) (u : Vec �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.maxNormSq_sdp_relaxation (Z : Zonotope (Vec ℝ n)) :
+theorem Zonotope.maxNormSq_sdp_relaxation (Z : Zonotope (Vec ℝ n)) : -- --- STMT ---
     IsGreatest {t | ∃ U : Mat ℝ Z.h Z.h, U.PosSemidef ∧ (∀ j, U j j = 1) ∧
         (∃ u : Vec ℝ Z.h, U = vecMulVec u u) ∧
         t = ((Matrix.of fun j k => Z.G j ⬝ᵥ Z.G k) * U).trace} Z.maxNormSq ∧

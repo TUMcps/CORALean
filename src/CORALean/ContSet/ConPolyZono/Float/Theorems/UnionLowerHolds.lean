@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- Read back, the stored matrix is the exact layer's on the read-back operands. -/
 theorem ConPolyZono.aux_toRealMat_unionLowerA {m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat 𝕋 m₁ q₁)
-    (b₁ : Interval (Vec 𝕋 m₁)) (A₂ : Mat 𝕋 m₂ q₂) (b₂ : Interval (Vec 𝕋 m₂)) :
+    (b₁ : Interval (Vec 𝕋 m₁)) (A₂ : Mat 𝕋 m₂ q₂) (b₂ : Interval (Vec 𝕋 m₂)) : -- --- STMT ---
     toRealMat (ConPolyZono.unionLowerA A₁ b₁ A₂ b₂)
       = Real.ConPolyZono.unionLowerA (toRealMat A₁) b₁.nominal (toRealMat A₂)
         b₂.nominal := by -- --- PROOF ---
@@ -59,7 +59,7 @@ theorem ConPolyZono.holds_unionLower_of_real {p₁ p₂ m₁ q₁ m₂ q₂ : �
     (h : Real.ConPolyZono.holds
       (Real.ConPolyZono.unionLowerA (toRealMat A₁) b₁.nominal (toRealMat A₂) b₂.nominal)
       (Real.ConPolyZono.unionLowerB b₁.nominal b₂.nominal)
-      (Real.ConPolyZono.unionLowerR R₁ R₂) a) :
+      (Real.ConPolyZono.unionLowerR R₁ R₂) a) : -- --- STMT ---
     Real.ConPolyZono.holds (toRealMat (ConPolyZono.unionLowerA A₁ b₁ A₂ b₂))
       (ConPolyZono.unionLowerB b₁ b₂).nominal (Real.ConPolyZono.unionLowerR R₁ R₂)
         a := by -- --- PROOF ---

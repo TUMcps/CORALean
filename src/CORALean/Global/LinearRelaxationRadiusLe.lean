@@ -74,7 +74,7 @@ theorem aux_continuous_lrNorm (q : ℝ≥0∞) [Fact (1 ≤ q)] :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem lr_isLeast_radius_le (q : ℝ≥0∞) [Fact (1 ≤ q)] (G : (Fin m → ℝ) →ₗ[ℝ] W)
-    (H : PiLp q (fun _ : Fin l => ℝ) →ₗ[ℝ] W) (hH : Function.Surjective H) :
+    (H : PiLp q (fun _ : Fin l => ℝ) →ₗ[ℝ] W) (hH : Function.Surjective H) : -- --- STMT ---
     ∃ LR, IsLeast {N | ∃ X : Matrix (Fin l) (Fin m) ℝ,
         (∀ α, G α = H (WithLp.toLp q (X *ᵥ α))) ∧ N = ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖}
         LR ∧

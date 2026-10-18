@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 theorem ProbZonotope.enclose_mean_outer (P : ProbZonotope n) (Ar : Mat ℝ n n) (m : ℝ)
     (Rtrans : Vec ℝ n) {μ : Vec ℝ n} (hμ : μ ∈ P.Z.construct) {a : ℝ}
-    (ha : a ∈ Set.Icc (0 : ℝ) 1) :
+    (ha : a ∈ Set.Icc (0 : ℝ) 1) : -- --- STMT ---
     a • μ + (1 - a) • (NormedSpace.exp Ar *ᵥ μ + Rtrans)
       ∈ (P.enclose Ar m Rtrans).Z.construct := by -- --- PROOF ---
   -- `μ` is a mean of the confidence zonotope, at the zero confidence coefficients

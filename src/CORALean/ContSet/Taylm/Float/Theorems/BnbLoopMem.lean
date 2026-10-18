@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Taylm.bnbLoop_mem {bnd : (Fin n → Interval 𝕋) → Interval 𝕋} {g : Vec ℝ n → ℝ}
     (hb : ∀ B t, Taylm.InBox B t → toReal (bnd B).inf ≤ g t ∧ g t ≤ toReal (bnd B).sup) (ε : 𝕋)
-    {X : Fin n → Interval 𝕋} {t : Vec ℝ n} (ht : Taylm.InBox X t) :
+    {X : Fin n → Interval 𝕋} {t : Vec ℝ n} (ht : Taylm.InBox X t) : -- --- STMT ---
     ∀ (fuel : ℕ) (l : List (Fin n → Interval 𝕋)), Taylm.Covers X l →
       toReal (Taylm.bnbLoop bnd ε fuel l).inf ≤ g t ∧
         g t ≤ toReal (Taylm.bnbLoop bnd ε fuel l).sup := by -- --- PROOF ---

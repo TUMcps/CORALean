@@ -59,7 +59,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The factor vector of the branch that keeps the first operand: its own
 factors, the second operand's pinned to `0`, and the two fresh ones at `t`. -/
 theorem ConPolyZono.aux_factors_left {p₁ p₂ : ℕ} (t : ℝ) (ht : |t| ≤ 1)
-    {a₁ : Fin p₁ → ℝ} (ha₁ : ∀ k, |a₁ k| ≤ 1) :
+    {a₁ : Fin p₁ → ℝ} (ha₁ : ∀ k, |a₁ k| ≤ 1) : -- --- STMT ---
     ∃ a : Fin (p₁ + p₂ + 2) → ℝ, (∀ k, |a k| ≤ 1)
       ∧ (∀ k, a (Fin.castAdd 2 (Fin.castAdd p₂ k)) = a₁ k)
       ∧ (∀ k, a (Fin.castAdd 2 (Fin.natAdd p₁ k)) = 0)
@@ -80,7 +80,7 @@ theorem ConPolyZono.aux_factors_left {p₁ p₂ : ℕ} (t : ℝ) (ht : |t| ≤ 1
 
 /-- The mirror, keeping the second operand instead. -/
 theorem ConPolyZono.aux_factors_right {p₁ p₂ : ℕ} (t : ℝ) (ht : |t| ≤ 1)
-    {a₂ : Fin p₂ → ℝ} (ha₂ : ∀ k, |a₂ k| ≤ 1) :
+    {a₂ : Fin p₂ → ℝ} (ha₂ : ∀ k, |a₂ k| ≤ 1) : -- --- STMT ---
     ∃ a : Fin (p₁ + p₂ + 2) → ℝ, (∀ k, |a k| ≤ 1)
       ∧ (∀ k, a (Fin.castAdd 2 (Fin.castAdd p₂ k)) = 0)
       ∧ (∀ k, a (Fin.castAdd 2 (Fin.natAdd p₁ k)) = a₂ k)
@@ -108,7 +108,7 @@ theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
       ConPolyZono.unionUpperB (ConPolyZono.unionUpperR cPZ₁.p cPZ₂.p) a)
     (hlow : ConPolyZono.holds (ConPolyZono.unionLowerA cPZ₁.A cPZ₁.b cPZ₂.A cPZ₂.b)
       (ConPolyZono.unionLowerB cPZ₁.b cPZ₂.b)
-      (ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R) a) :
+      (ConPolyZono.unionLowerR cPZ₁.R cPZ₂.R) a) : -- --- STMT ---
     (2:ℝ)⁻¹ • (cPZ₁.c + cPZ₂.c)
         + (∑ i, PolyZonotope.monomial (ConPolyZono.unionE cPZ₁.E cPZ₂.E) a i
             • ConPolyZono.unionG cPZ₁.c cPZ₂.c cPZ₁.G cPZ₂.G i)
@@ -161,7 +161,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
     (hb₁ : cPZ₁.b.IsNonempty (ι := Fin cPZ₁.m))
     (hb₂ : cPZ₂.b.IsNonempty (ι := Fin cPZ₂.m))
     (hE₁ : ConPolyZono.NoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.NoZeroCol cPZ₁.R)
-    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E) (hR₂ : ConPolyZono.NoZeroCol cPZ₂.R) :
+    (hE₂ : ConPolyZono.NoZeroCol cPZ₂.E) (hR₂ : ConPolyZono.NoZeroCol cPZ₂.R) : -- --- STMT ---
     cPZ₁.construct ∪ cPZ₂.construct = (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   have hb₁' : ∀ i, cPZ₁.b.inf i ≤ cPZ₁.b.sup i := fun i => hb₁ i
   have hb₂' : ∀ i, cPZ₂.b.inf i ≤ cPZ₂.b.sup i := fun i => hb₂ i

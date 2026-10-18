@@ -68,7 +68,7 @@ theorem Zonotope.intersectDescriptorHd_pRadius_le (T : Mat ℝ n n) (N Λ : Mat 
     (hβ : β₁ + β₂ + β₃ = 1)
     (hϱ : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ ϱ)
     (hℓd : ∀ b : Vec ℝ m, (∀ i, |b i| ≤ 1) → (Hd *ᵥ b) ⬝ᵥ (Hd *ᵥ b) ≤ ℓd)
-    (hγ : ∀ x : Vec ℝ n, x ⬝ᵥ x ≤ γ ^ 2 * (x ⬝ᵥ (P *ᵥ x))) :
+    (hγ : ∀ x : Vec ℝ n, x ⬝ᵥ x ≤ γ ^ 2 * (x ⬝ᵥ (P *ᵥ x))) : -- --- STMT ---
     let Z := X.intersectDescriptor T N Λ A B (D * Hd) C (F * Hd) u y
     Z.pRadius P ≤ α * ϱ + (1 - α) * ℓd ∧ Z.pRadius 1 ≤ γ ^ 2 * Z.pRadius P := by -- --- PROOF ---
   intro Z

@@ -75,7 +75,7 @@ theorem Zonotope.tensorMultiplication_outer (Z : Zonotope (Vec ℝ n)) (M : Zono
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {x : Vec ℝ n} (hx : x ∈ Z.construct) :
+    {x : Vec ℝ n} (hx : x ∈ Z.construct) : -- --- STMT ---
     Zonotope.tensorEval M x ∈ (Z.tensorMultiplication M L).construct := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   -- coordinates of `x`

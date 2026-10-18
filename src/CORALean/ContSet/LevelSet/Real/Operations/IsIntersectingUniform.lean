@@ -16,12 +16,15 @@ evaluation of a real function, so the bounds `(lb, ub)` of the evaluation are th
 tolerance `tol` enters as `withinTol(·, 0, tol)`, `|·| ≤ tol`.
 
 This is the branch `~iscell(ls.compOp)`, one operator for all rows: the per-row test of that
-operator (a vector in CORA, read here as all rows).
+operator. The level set `ls` is the first argument, as in CORA, and the operator is read from it
+(`ls.op i` for row `i`); when every row has the same operator this is the single-operator branch,
+and the test of each row by its own operator is that branch applied row by row. The function of
+`ls` is not read, only its operators; `B` stands for its interval evaluation at the box.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -29,16 +32,17 @@ operator (a vector in CORA, read here as all rows).
 
 namespace CORALean.Real
 
-variable {n m : ℕ}
+variable {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def LevelSet.isIntersecting_uniform (tol : ℝ) (op : CompOp) (B : Fin m → Interval ℝ) : Prop :=
-  let lb : Fin m → ℝ := fun i => (B i).inf
-  let ub : Fin m → ℝ := fun i => (B i).sup
+def LevelSet.isIntersecting_uniform (ls : LevelSet n) (tol : ℝ) (B : Fin ls.m → Interval ℝ) :
+    Prop :=
+  let lb : Fin ls.m → ℝ := fun i => (B i).inf
+  let ub : Fin ls.m → ℝ := fun i => (B i).sup
   ∀ i,
-    match op with
+    match ls.op i with
     | .eq => (0 < ub i ∨ |ub i| ≤ tol) ∧ (lb i < 0 ∨ |lb i| ≤ tol)
     | .le => lb i < 0 ∨ |lb i| ≤ tol
     | .lt => lb i < 0

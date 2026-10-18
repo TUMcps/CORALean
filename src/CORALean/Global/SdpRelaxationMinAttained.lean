@@ -43,7 +43,7 @@ variable {n m l : ℕ}
 
 /-- The quadratic form of `[0, Gᵀ; G, 0] - [Diag(v), 0; 0, H Diag(w) Hᵀ]` at `(α, z)`. -/
 theorem aux_srm_quad (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
-    (v : Fin m → ℝ) (w : Fin l → ℝ) (x : Fin m ⊕ Fin n → ℝ) :
+    (v : Fin m → ℝ) (w : Fin l → ℝ) (x : Fin m ⊕ Fin n → ℝ) : -- --- STMT ---
     x ⬝ᵥ ((fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)) *ᵥ x) =
       2 * ((x ∘ Sum.inr) ⬝ᵥ (G *ᵥ (x ∘ Sum.inl))) - ∑ j, v j * (x (Sum.inl j)) ^ 2 -
         ∑ i, w i * ((x ∘ Sum.inr) ᵥ* H) i ^ 2 := by -- --- PROOF ---
@@ -75,7 +75,7 @@ theorem aux_srm_abs_le (s : ℝ≥0∞) [Fact (1 ≤ s)] {k : ℕ} (v : Fin k �
 
 theorem sdp_relaxation_exists_isLeast (s₁ s₂ : ℝ≥0∞) [Fact (1 ≤ s₁)] [Fact (1 ≤ s₂)]
     (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
-    (hH : Function.Surjective H.mulVec) :
+    (hH : Function.Surjective H.mulVec) : -- --- STMT ---
     ∃ Z, IsLeast ((fun vw : (Fin m → ℝ) × (Fin l → ℝ) =>
         (‖WithLp.toLp s₁ vw.1‖ + ‖WithLp.toLp s₂ vw.2‖) / 2) ''
         {vw | (fromBlocks 0 Gᵀ G 0 -

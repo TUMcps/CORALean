@@ -40,7 +40,7 @@ namespace CORALean.Real
 
 theorem ConPolyZono.sum_unionE {p₁ h₁ p₂ h₂ : ℕ} {α : Type} [AddCommGroup α] [Module ℝ α]
     (c₁ c₂ : α) (G₁ : Fin h₁ → α) (G₂ : Fin h₂ → α) (E₁ : Fin p₁ → Fin h₁ → ℕ)
-    (E₂ : Fin p₂ → Fin h₂ → ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ) :
+    (E₂ : Fin p₂ → Fin h₂ → ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- STMT ---
     (∑ i, PolyZonotope.monomial (ConPolyZono.unionE E₁ E₂) a i
         • ConPolyZono.unionG c₁ c₂ G₁ G₂ i)
       = a (ConPolyZono.unionSel p₁ p₂) • ((2 : ℝ)⁻¹ • (c₁ - c₂))

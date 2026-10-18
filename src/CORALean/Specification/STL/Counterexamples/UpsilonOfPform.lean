@@ -33,7 +33,7 @@ open scoped NNReal
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.exists_upsilon_ofPform_ne :
+theorem STL.exists_upsilon_ofPform_ne : -- --- STMT ---
     ∃ (R : ℝ≥0 → Set Bool) (Υ : STL.Formula Bool → RTL.Formula Bool),
       STL.IsSound {R} Υ ∧ STL.IsComplete {R} Υ ∧
         ¬ ((Υ (STL.Formula.ofPform Pform.bot)).Sat R ↔

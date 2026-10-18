@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem approxError_tanh (m l u : ℝ) (hlu : l ≤ u) :
+theorem approxError_tanh (m l u : ℝ) (hlu : l ≤ u) : -- --- STMT ---
     IsLeast ((fun x => Real.tanh x - (fun x => m * x) x) ''
           (({Real.artanh (√(1 - m)), -Real.artanh (√(1 - m)), l, u} : Set ℝ) ∩ Set.Icc l u))
         (approxErrorLow Real.tanh (fun x => m * x) l u) ∧

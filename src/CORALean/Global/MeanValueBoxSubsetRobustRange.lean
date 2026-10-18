@@ -52,7 +52,7 @@ theorem meanValueBox_subset_robustRangeVec {f : (Fin m → ℝ) → Fin n → �
     (hw : ∀ i, ∀ y ∈ Icc lo hi, (∀ j, j ∉ IA → π j = i → y j = (lo j + hi j) / 2) →
       ∀ j, j ∈ IA ∨ π j ≠ i → |fderiv ℝ (fun x => f x i) y (Pi.single j 1)| ≤ dwhi i j)
     (hu : ∀ i, ∀ y ∈ Icc lo hi, ∀ j, j ∉ IA → π j = i →
-      dulo i j ≤ |fderiv ℝ (fun x => f x i) y (Pi.single j 1)|) :
+      dulo i j ≤ |fderiv ℝ (fun x => f x i) y (Pi.single j 1)|) : -- --- STMT ---
     Icc (fun i => f0hi i - ∑ j with (j ∉ IA ∧ π j = i), dulo i j * ((hi j - lo j) / 2)
         + ∑ j with (j ∈ IA ∨ π j ≠ i), dwhi i j * ((hi j - lo j) / 2))
       (fun i => f0lo i + ∑ j with (j ∉ IA ∧ π j = i), dulo i j * ((hi j - lo j) / 2)

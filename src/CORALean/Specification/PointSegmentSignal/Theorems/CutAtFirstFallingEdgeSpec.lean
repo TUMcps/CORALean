@@ -46,7 +46,8 @@ theorem aux_mono_of_step (v : List Bool) (M : ℕ)
 
 /-- The cut signal is `true` where the signal is `true` and has not yet fallen. -/
 theorem PointSegmentSignal.cutAtFirstFallingEdge_spec {T : Type} [LinearOrder T] [Zero T]
-    (s : PointSegmentSignal T) (hs : s.IsValid) : s.cutAtFirstFallingEdge.IsValid ∧
+    (s : PointSegmentSignal T) (hs : s.IsValid) : -- --- STMT ---
+    s.cutAtFirstFallingEdge.IsValid ∧
       ∀ t : T, 0 ≤ t → (s.cutAtFirstFallingEdge.at t = true ↔ s.at t = true ∧
         ∀ c₁ c₂, c₁ ≤ c₂ → c₂ ≤ s.cell t → s.values.getD c₁ false = true →
           s.values.getD c₂ false = true) := by -- --- PROOF ---

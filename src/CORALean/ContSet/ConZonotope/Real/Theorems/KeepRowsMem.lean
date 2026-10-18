@@ -33,7 +33,7 @@ variable {h q r : ℕ}
 /-- A row splits along a partition: kept coordinates through `keepEmbed`, dropped ones
 as a weighted sum. -/
 theorem ConZonotope.aux_apply_split (part : Split (Fin h) into (Fin q) ⊕ (Fin r))
-    (f : Vec ℝ h →ₗ[ℝ] ℝ) (β : Vec ℝ h) :
+    (f : Vec ℝ h →ₗ[ℝ] ℝ) (β : Vec ℝ h) : -- --- STMT ---
     f β = f (ConZonotope.keepEmbed part (fun l => β (part.left l)))
       + ∑ l, β (part.right l)
         * f (Pi.single (part.right l) (1 : ℝ) : Vec ℝ h) := by -- --- PROOF ---

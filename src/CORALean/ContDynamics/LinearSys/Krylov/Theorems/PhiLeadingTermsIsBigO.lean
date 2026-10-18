@@ -51,7 +51,7 @@ columns here. -/
 theorem Krylov.phi_leading_terms_isBigO (A : Mat ℂ n n) (V : Mat ℂ n (m + 1))
     (T : Mat ℂ (m + 1) (m + 1)) (τ σ : ℂ) (w : Fin n → ℂ)
     (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0)
-    (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1)) :
+    (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1)) : -- --- STMT ---
     let v := V *ᵥ Pi.single 0 1
     let γ := ∏ j : Fin m, T j.succ j.castSucc
     let P : ℕ → ℝ → ℂ := fun j t =>

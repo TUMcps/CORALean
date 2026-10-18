@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Interval.boundaryPoint_outer (I : Interval (Vec 𝕋 n)) (dir start : Vec 𝕋 n)
     (hs : toRealVec start ∈ I.construct) (hex : ∃ i, toReal (dir i) ≠ 0)
     (hcert : ∀ i, toReal (dir i) ≠ 0 →
-      ltStrict zero (dir i) = true ∨ ltStrict (dir i) zero = true) :
+      ltStrict zero (dir i) = true ∨ ltStrict (dir i) zero = true) : -- --- STMT ---
     ∃ J, I.boundaryPoint dir start = some J ∧
       Real.Interval.boundaryPoint I.nominal (toRealVec dir) (toRealVec start) hex ∈
         J.construct := by -- --- PROOF ---

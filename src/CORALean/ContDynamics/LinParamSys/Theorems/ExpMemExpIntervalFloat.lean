@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinParamSys.exp_mem_expIntervalFloat
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {tLo tHi : 𝕋} {η : ℕ}
     (hη : sys.OrderAdmissibleFloat tLo tHi η) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct)
-    {t : ℝ} (htLo : toReal tLo ≤ t) (htHi : t ≤ toReal tHi) :
+    {t : ℝ} (htLo : toReal tLo ≤ t) (htHi : t ≤ toReal tHi) : -- --- STMT ---
     exp (t • A) ∈ (sys.expIntervalFloat tLo tHi η).construct := by -- --- PROOF ---
   rw [LinParamSys.expIntervalFloat, Interval.materialiseMat_eq]
   exact MatExp.exp_mem_expIntervalEnclosure _ η (Interval.smul_outer htLo htHi _ hA) hη.2

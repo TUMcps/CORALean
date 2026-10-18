@@ -44,7 +44,7 @@ window `τ_k`, is in `reachStepk`'s set for it. -/
 theorem LinParamSys.reachStepk_outer (sys : LinParamSys ℐ n) {Δt : ℝ} (hΔt : 0 < Δt) {m : ℕ}
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {k : ℕ} {t : ℝ}
-    (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) :
+    (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- STMT ---
     (fun x₀ => exp (t • A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.reachStepk Δt (m + 2) X₀ k) := by -- --- PROOF ---
   rintro _ ⟨x₀, hx₀, rfl⟩

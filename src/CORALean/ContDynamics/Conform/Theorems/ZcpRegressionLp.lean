@@ -43,7 +43,8 @@ variable {ny nu : ℕ} {ι : Type} [Fintype ι]
 /-- [1, Thm. 6]: (19c)-(19e) are (10b), and (19a) is (10a) with the cost (14). -/
 theorem Conform.zcp_regression_lp {M E : Type} [Fintype E] {nr : ℕ}
     (f : M → Vec ℝ ny) (D : M → Mat ℝ ny nu) (y : M → Vec ℝ ny) (Gu : ι → Vec ℝ nu)
-    (R : Fin (nr + 1) → Mat ℝ ny ny) (Deval : E → Mat ℝ ny nu) (α : ι → ℝ) (hα : ∀ j, 0 ≤ α j) :
+    (R : Fin (nr + 1) → Mat ℝ ny ny) (Deval : E → Mat ℝ ny nu) (α : ι → ℝ)
+    (hα : ∀ j, 0 ≤ α j) : -- --- STMT ---
     ((∀ m, ∃ β : ι → ℝ, (∀ j, 0 ≤ α j + β j) ∧ (∀ j, 0 ≤ α j - β j) ∧
         y m - f m = ∑ j, β j • D m *ᵥ Gu j) ↔
       ∀ m, y m ∈ Conform.zcpSet (f m) (D m) Gu α) ∧

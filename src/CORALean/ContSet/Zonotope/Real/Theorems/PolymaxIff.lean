@@ -43,7 +43,7 @@ variable {n s : ℕ}
 theorem Zonotope.polymax_iff (Z₁ Z₂ : Zonotope (Vec ℝ n)) (hG : Function.Surjective Z₂.genMap)
     {H : Mat ℝ s n} {h : Vec ℝ s}
     (hrep : (HPolytope.ineqs H h).construct = {y | Z₂.c + y ∈ Z₂.construct})
-    (hne : ∀ i, h i ≠ 0) :
+    (hne : ∀ i, h i ≠ 0) : -- --- STMT ---
     Z₁.polymax Z₂ H h = true ↔ Z₁.construct ⊆ Z₂.construct := by -- --- PROOF ---
   have hball := (Z₂.zonotopeNorm_ball_eq hG).1
   set x : Fin s → Fin Z₁.h → ℝ := fun i j => if (H *ᵥ Z₁.G j) i / h i ≥ 0 then 1 else -1

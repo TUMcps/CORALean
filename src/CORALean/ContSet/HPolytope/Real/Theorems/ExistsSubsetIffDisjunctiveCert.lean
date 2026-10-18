@@ -47,7 +47,7 @@ theorem HPolytope.exists_subset_iff_disjunctive_cert {qy : Fin N → ℕ} {xbar 
     {X : Mat ℝ n nx} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : (i : Fin N) → Mat ℝ (qy i) n}
     {hy : (i : Fin N) → Vec ℝ (qy i)} (hnex : (HPolytope.ineqs Hx hx).construct.Nonempty)
     (hne : ∀ i, (HPolytope.ineqs (Hy i) (hy i)).construct.Nonempty)
-    (hb : ∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).construct) :
+    (hb : ∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).construct) : -- --- STMT ---
     (∃ i, HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
         ⊆ (HPolytope.ineqs (Hy i) (hy i)).construct) ↔
       ∃ (Λ : (i : Fin N) → Mat ℝ (qy i) qx) (δ : Fin N → ℝ) (β : Fin N → Vec ℝ n)

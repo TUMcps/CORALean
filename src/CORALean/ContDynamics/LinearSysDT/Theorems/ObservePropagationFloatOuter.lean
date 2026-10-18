@@ -47,7 +47,7 @@ theorem LinearSysDT.observePropagationFloat_outer (sys : LinearSysDT 𝕋 n)
     (v : ℕ → Vec ℝ sys.q) (h0 : x 0 ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
     (hv : ∀ k, v k ∈ V.construct)
     (hstep : ∀ k, x (k + 1) = toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ toRealVec (u k) + w k)
-    (hy : ∀ k, toRealVec (y k) = toRealMat sys.C *ᵥ x k + v k) (k : ℕ) :
+    (hy : ∀ k, toRealVec (y k) = toRealMat sys.C *ᵥ x k + v k) (k : ℕ) : -- --- STMT ---
     x k ∈ (sys.observePropagationFloat gain order W R₀ V u y k).construct := by -- --- PROOF ---
   induction k with
   | zero => exact h0

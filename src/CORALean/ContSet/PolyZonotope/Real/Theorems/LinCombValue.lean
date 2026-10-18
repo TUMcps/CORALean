@@ -75,7 +75,7 @@ theorem PolyZonotope.aux_sum_scaled_mul {k : ℕ} (t s : ℝ) (m : Fin k → ℝ
 fresh one, and the zonotope pairing on the independent coefficients — evaluates
 to the segment point `λ y₁ + (1-λ) y₂` exactly. -/
 theorem PolyZonotope.linComb_value (pZ₁ pZ₂ : PolyZonotope α) (a₁ : Fin pZ₁.p → ℝ)
-    (β₁ : Fin pZ₁.q → ℝ) (a₂ : Fin pZ₂.p → ℝ) (β₂ : Fin pZ₂.q → ℝ) (lam : ℝ) :
+    (β₁ : Fin pZ₁.q → ℝ) (a₂ : Fin pZ₂.p → ℝ) (β₂ : Fin pZ₂.q → ℝ) (lam : ℝ) : -- --- STMT ---
     lam • (pZ₁.c + ∑ i, PolyZonotope.monomial pZ₁.E a₁ i • pZ₁.G i + ∑ j, β₁ j • pZ₁.GI j)
         + (1 - lam) • (pZ₂.c + ∑ i, PolyZonotope.monomial pZ₂.E a₂ i • pZ₂.G i
           + ∑ j, β₂ j • pZ₂.GI j)

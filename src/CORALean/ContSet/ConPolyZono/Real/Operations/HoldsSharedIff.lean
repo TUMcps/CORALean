@@ -44,7 +44,7 @@ open Matrix
 
 theorem ConPolyZono.holds_shared_iff {p m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
     (b₁ : Interval (Vec ℝ m₁)) (R₁ : Fin p → Fin q₁ → ℕ) (A₂ : Mat ℝ m₂ q₂)
-    (b₂ : Interval (Vec ℝ m₂)) (R₂ : Fin p → Fin q₂ → ℕ) (a : Fin p → ℝ) :
+    (b₂ : Interval (Vec ℝ m₂)) (R₂ : Fin p → Fin q₂ → ℕ) (a : Fin p → ℝ) : -- --- STMT ---
     ConPolyZono.holds (ConPolyZono.plusA A₁ A₂) (ConPolyZono.plusB b₁ b₂)
         (ConPolyZono.appendE R₁ R₂) a
       ↔ ConPolyZono.holds A₁ b₁ R₁ a ∧ ConPolyZono.holds A₂ b₂ R₂ a := by -- --- PROOF ---

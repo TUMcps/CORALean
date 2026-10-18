@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 one applied to the re-parametrized factors — `getSubset_point` read at the
 constraint columns, both sides unfolded to a sum over one coordinate. -/
 theorem ConPolyZono.aux_getSubset_mulVec (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
-    (a : Fin cPZ.p → ℝ) :
+    (a : Fin cPZ.p → ℝ) : -- --- STMT ---
     (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).R a
       = cPZ.A *ᵥ PolyZonotope.monomial cPZ.R
         (Function.update a r (cen + rad * a r)) := by -- --- PROOF ---
@@ -88,7 +88,7 @@ theorem ConPolyZono.aux_getSubset_holds (cPZ : ConPolyZono α) (r : Fin cPZ.p) (
 /-- The subset the factor sub-box `αᵣ ∈ cen ± rad` reaches is exactly what
 `getSubset` constructs. -/
 theorem ConPolyZono.getSubset_construct (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
-    (hrad : 0 ≤ rad) :
+    (hrad : 0 ≤ rad) : -- --- STMT ---
     (cPZ.getSubset r cen rad).construct
       = {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ,
             |a r - cen| ≤ rad ∧ (∀ k, k ≠ r → |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)

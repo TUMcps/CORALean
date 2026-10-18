@@ -54,7 +54,7 @@ private theorem aux_reach_zero_eq (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
   rw [Nat.sub_self, Nat.fold_zero]
 
 private theorem aux_reach_succ_eq (sys : NonlinearSysDT n m) {U : S m} {o : ℕ} (ho : 0 < o)
-    (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (k : ℕ) :
+    (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) (k : ℕ) : -- --- STMT ---
     sys.reach ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩ steps
       = (NonlinearSysDT.linearize (steps k).A).reach
         ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps,

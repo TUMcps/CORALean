@@ -50,7 +50,7 @@ open scoped Pointwise
 open Classical in
 /-- `aux_intervalUntil` is true exactly where a pair of intervals gives a witness. -/
 theorem PointSegmentSignal.intervalUntil_spec (lhsInt rhsInt : List STLInterval) (U : STLInterval)
- :
+ : -- --- STMT ---
     (PointSegmentSignal.intervalUntil lhsInt U rhsInt).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((PointSegmentSignal.intervalUntil lhsInt U rhsInt).at t = true ↔
         (∃ L ∈ lhsInt, ∃ R ∈ rhsInt, ∃ t' ∈ R.set, t' ∈ L.rightClosure.set ∧

@@ -44,7 +44,7 @@ variable {n m : ℕ}
 /-- [1, Thm. 2]'s step: `φ_{p+1}(tσA)v - V_mφ_{p+1}(tσT_m)e₁ = 1/p! ∫₀¹(1 - θ)ᵖL_m(θt)v dθ`,
 `φ_{p+1}` the series (4.1a), `L_m(s)v = e^{sσA}v - V_me^{sσT_m}e₁`. -/
 theorem Krylov.phi_error_eq_integral (A : Mat ℂ n n) (V : Mat ℂ n m) (T : Mat ℂ m m) (σ : ℂ)
-    (v : Fin n → ℂ) (e : Fin m → ℂ) (p : ℕ) (t : ℝ) :
+    (v : Fin n → ℂ) (e : Fin m → ℂ) (p : ℕ) (t : ℝ) : -- --- STMT ---
     (∑' k : ℕ, ((Nat.factorial (k + (p + 1)) : ℝ)⁻¹) • (t • (σ • A)) ^ k) *ᵥ v -
         V *ᵥ ((∑' k : ℕ, ((Nat.factorial (k + (p + 1)) : ℝ)⁻¹) • (t • (σ • T)) ^ k) *ᵥ e) =
       ((Nat.factorial p : ℝ)⁻¹) • ∫ θ in (0 : ℝ)..1, (1 - θ) ^ p •

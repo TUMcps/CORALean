@@ -52,7 +52,7 @@ variable {n : ℕ}
 /-- The first `η + 1` terms at `t` lie in the interval Taylor truncation of `t • B`. -/
 theorem aux_peanoBakerSum_mem {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) {t : ℝ} (ht : 0 ≤ t) (η : ℕ) :
+    (hAB : ∀ s, A s ∈ B.construct) {t : ℝ} (ht : 0 ≤ t) (η : ℕ) : -- --- STMT ---
     ∑ k ∈ Finset.range (η + 1), MatExp.peanoBakerTerm A k t
       ∈ (MatExp.expIntervalTaylor (Interval.smul t B) η).construct := by -- --- PROOF ---
   -- each term is `1/k!` times a member of the `k`-th box power
@@ -78,7 +78,7 @@ theorem MatExp.exists_mem_expIntervalEnclosure_of_integral {B : Interval (Mat �
     (hAB : ∀ s, A s ∈ B.construct)
     {x : ℝ → Vec ℝ n} {t : ℝ} (ht : 0 ≤ t) (hxc : ContinuousOn x (Set.Icc 0 t))
     (hx : ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, A σ *ᵥ x σ) (η : ℕ)
-    (hε : ‖(Interval.smul t B).absMax‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖(Interval.smul t B).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
     ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul t B) η).construct,
       x t = Φ *ᵥ x 0 := by -- --- PROOF ---
   set T := ∑ k ∈ Finset.range (η + 1), MatExp.peanoBakerTerm A k t with hT

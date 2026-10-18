@@ -80,7 +80,8 @@ theorem Zonotope.aux_abs_center_mulVec_le {ρc : ℝ} {IM : Interval (Mat ℝ m 
 bounds together, against the operand's `ℓ¹` reach. -/
 theorem Zonotope.aux_absBound_mtimesIntervalMat_le {ρc ρr : ℝ} {IM : Interval (Mat ℝ m n)}
     {Z : Zonotope (Vec ℝ n)}
-    (hc : ∀ i j, |IM.center i j| ≤ ρc) (hr : ∀ i j, |IM.radius i j| ≤ ρr) (i : Fin m) :
+    (hc : ∀ i j, |IM.center i j| ≤ ρc) (hr : ∀ i j, |IM.radius i j| ≤ ρr)
+    (i : Fin m) : -- --- STMT ---
     (Zonotope.mtimesIntervalMat IM Z).absBound i
       ≤ (ρc + ρr) * ∑ j, Z.absBound j := by -- --- PROOF ---
   have habs : ∀ j, (0:ℝ) ≤ Z.absBound j := fun j => by
@@ -123,7 +124,7 @@ theorem Zonotope.aux_absBound_mtimesIntervalMat_le {ρc ρr : ℝ} {IM : Interva
 operand's `ℓ¹` reach. -/
 theorem Zonotope.mtimesIntervalMat_subset_closedBall {ρc ρr : ℝ} (IM : Interval (Mat ℝ m n))
     (Z : Zonotope (Vec ℝ n)) (hρc : 0 ≤ ρc) (hρr : 0 ≤ ρr)
-    (hc : ∀ i j, |IM.center i j| ≤ ρc) (hr : ∀ i j, |IM.radius i j| ≤ ρr) :
+    (hc : ∀ i j, |IM.center i j| ≤ ρc) (hr : ∀ i j, |IM.radius i j| ≤ ρr) : -- --- STMT ---
     (Zonotope.mtimesIntervalMat IM Z).construct
       ⊆ Metric.closedBall (0 : Vec ℝ m) ((ρc + ρr) * ∑ j, Z.absBound j) := by -- --- PROOF ---
   have habs : ∀ j, (0:ℝ) ≤ Z.absBound j := fun j => by

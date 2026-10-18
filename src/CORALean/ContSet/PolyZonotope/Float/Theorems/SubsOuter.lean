@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     (pZin : PolyZonotope (Vec 𝕋 nu))
-    (idu : Fin nu → Fin pZ.p) (share : Fin pZin.p → Option (Fin pZ.p)) :
+    (idu : Fin nu → Fin pZ.p) (share : Fin pZin.p → Option (Fin pZ.p)) : -- --- STMT ---
     (Real.PolyZonotope.subs (nominal pZ) (nominal pZin) idu share).construct
         + pZ.I_error.construct ⊆ (pZ.subs pZin idu share).construct := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩

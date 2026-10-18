@@ -37,7 +37,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 theorem LinearARX.computeGO_output (sys : LinearARX 𝕋 dy du p) (hp : 0 < p) {Y₀ : S (p * dy)}
     {U : S du} {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.IsTrajectory Y₀ U y u)
-    {nk : ℕ} (k : Fin nk) :
+    {nk : ℕ} (k : Fin nk) : -- --- STMT ---
     y k.val = (sys.computeGO nk).C k *ᵥ LinearARX.stack p y 0
       + ∑ i : Fin nk, (sys.computeGO nk).D k i *ᵥ u i := by -- --- PROOF ---
   -- the output is the first block of the window, whose closed form is `state_eq`

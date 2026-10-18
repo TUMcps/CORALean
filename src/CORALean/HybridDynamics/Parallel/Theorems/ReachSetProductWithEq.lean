@@ -43,7 +43,7 @@ theorem ParallelHybridAutomaton.reachSet_productWith_eq [ExactScalar 𝕋]
     (hex : lift.Exact) {R₀ : ∀ i, S (n i)}
     {R₀' : S (∑ i, n i)}
     (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), stack x ∈ construct R₀' ↔ ∀ i, x i ∈ construct (R₀ i))
-    (ℓ₀ ℓ : ∀ i, L i) :
+    (ℓ₀ ℓ : ∀ i, L i) : -- --- STMT ---
     (P.productWith lift F U W).reachSet R₀' ℓ₀ ℓ =
       stack '' P.reachSet R₀ ℓ₀ ℓ := by -- --- PROOF ---
   ext w

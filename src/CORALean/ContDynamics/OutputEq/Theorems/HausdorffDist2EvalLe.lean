@@ -107,7 +107,7 @@ theorem aux_image2_eval_eq_add (out : OutputEq 𝕋 n m r) (X : Set (Vec ℝ n))
 matching how `WV + q` is read off `Y` and `Ŷ` alike in [1]'s proof. -/
 theorem OutputEq.hausdorffDist₂_eval_le (out : OutputEq 𝕋 n m r) {X1 X2 : Set (Vec ℝ n)}
     (hX1 : IsCompact X1) (hX1ne : X1.Nonempty) (hX2 : IsCompact X2) (hX2ne : X2.Nonempty)
-    (V : Set (Vec ℝ m)) :
+    (V : Set (Vec ℝ m)) : -- --- STMT ---
     hausdorffDist₂ (Set.image2 out.eval X1 V) (Set.image2 out.eval X2 V)
       ≤ ‖aux_toEuclideanCLM (toRealMat out.C)‖ * hausdorffDist₂ X1 X2 := by -- --- PROOF ---
   have hC1 : IsCompact (mulVecLin (toRealMat out.C) '' X1) :=

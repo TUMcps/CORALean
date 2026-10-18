@@ -43,7 +43,7 @@ theorem not_holds_safeSet_of_verifyHalfspace_violated {ℓ : ι → α →ₗ[�
     {S : (r : ℕ) → Fin (2 ^ r) → Set α} {R : Set α} {bndUp : (r : ℕ) → Fin (2 ^ r) → ι → ℝ}
     (w : ∀ (r : ℕ) (k : Fin (2 ^ r)) (i : ι), SupportWitness (S r k) (ℓ i))
     (hsub : ∀ (r : ℕ) (k : Fin (2 ^ r)), S r k ⊆ R) {r fuel : ℕ}
-    (h : verifyHalfspace bndUp (fun r k i => (w r k i).val) d r fuel = .violated) :
+    (h : verifyHalfspace bndUp (fun r k i => (w r k i).val) d r fuel = .violated) : -- --- STMT ---
     ¬ (Specification.safeSet {x | ∀ i, ℓ i x ≤ d i}).Holds R := by -- --- PROOF ---
   obtain ⟨r', hr', k, i, hlt⟩ := exists_round_of_verifyHalfspace_eq_violated h
   obtain ⟨x, hxS, hxle⟩ := (w r' k i).mem

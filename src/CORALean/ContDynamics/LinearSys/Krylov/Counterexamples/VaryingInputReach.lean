@@ -82,7 +82,7 @@ theorem Krylov.aux_exp_mulVec_eq_of_hasDerivAt {m : ℕ} (M : Mat ℝ m m) (f : 
   rw [hmul, one_mulVec]
 
 /-- `e^{τA}w` for the coupled oscillators, `w = (1/10, 0, 0, 0)`. -/
-theorem Krylov.aux_exp_rot_mulVec (τ : ℝ) :
+theorem Krylov.aux_exp_rot_mulVec (τ : ℝ) : -- --- STMT ---
     exp (τ • !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0])
         *ᵥ ![1 / 10, 0, 0, 0]
       = ![Real.cos τ * Real.cos (40 * τ) / 10, Real.cos τ * Real.sin (40 * τ) / 10,
@@ -183,7 +183,7 @@ theorem Krylov.aux_integral_sin_mul_sin_sq :
   all_goals exact Continuous.intervalIntegrable (by fun_prop) _ _
 
 /-- The augmented matrix of the coupled oscillators and `u = (a, 0, 0, 0)`, applied. -/
-theorem Krylov.aux_augment_rot_mulVec (a : ℝ) (x : Fin 5 → ℝ) :
+theorem Krylov.aux_augment_rot_mulVec (a : ℝ) (x : Fin 5 → ℝ) : -- --- STMT ---
     Krylov.augment !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0]
         ![a, 0, 0, 0] *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2,
@@ -218,7 +218,7 @@ theorem Krylov.aux_arnoldi_snd_stable {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n
     exact if_neg (by omega)
 
 /-- Pass `k + 1` of Alg. 1 stores `v⁽ᵏ⁺²⁾ = w/‖w‖`, `w` the swept `C v⁽ᵏ⁺¹⁾`. -/
-theorem Krylov.aux_arnoldi_succ_fst {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) (k : ℕ) :
+theorem Krylov.aux_arnoldi_succ_fst {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) (k : ℕ) : -- --- STMT ---
     (Krylov.arnoldi C v (k + 1)).1 (k + 1)
       = ‖(Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k) (Krylov.arnoldi C v k).1
           (k + 1)).1‖₂⁻¹ • (Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k)
@@ -227,7 +227,8 @@ theorem Krylov.aux_arnoldi_succ_fst {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) 
   exact Function.update_self ..
 
 /-- Pass `k + 1` of Alg. 1 stores the column `k` of `H`. -/
-theorem Krylov.aux_arnoldi_succ_snd {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n) (k i : ℕ) :
+theorem Krylov.aux_arnoldi_succ_snd {n : ℕ} (C : Mat ℝ n n) (v : Vec ℝ n)
+    (k i : ℕ) : -- --- STMT ---
     (Krylov.arnoldi C v (k + 1)).2 i k
       = if i ≤ k then (Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C v k).1 k)
           (Krylov.arnoldi C v k).1 (k + 1)).2 i
@@ -271,7 +272,7 @@ theorem Krylov.aux_rot_sweep1 (a : ℝ) (C : Mat ℝ 5 5)
 theorem Krylov.aux_rot_vec1 (a : ℝ) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
-    (i : ℕ) (hi : i ≤ 1) :
+    (i : ℕ) (hi : i ≤ 1) : -- --- STMT ---
     (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 1).1 i
       = if i = 0 then ![0, 0, 0, 0, 1] else ![a / |a|, 0, 0, 0, 0] := by -- --- PROOF ---
   interval_cases i
@@ -289,7 +290,7 @@ theorem Krylov.aux_rot_sweep2 (a σ : ℝ) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     (hV : ∀ i ≤ 1, (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 1).1 i
-      = if i = 0 then ![0, 0, 0, 0, 1] else ![σ, 0, 0, 0, 0]) :
+      = if i = 0 then ![0, 0, 0, 0, 1] else ![σ, 0, 0, 0, 0]) : -- --- STMT ---
     Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 1).1 1)
         (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 1).1 2
       = (![0, 40 * σ, σ, 0, 0], fun _ => 0) := by -- --- PROOF ---
@@ -306,7 +307,7 @@ theorem Krylov.aux_rot_vec2 (a σ : ℝ) (hσ2 : σ * σ = 1) (C : Mat ℝ 5 5)
     (hC : ∀ x, C *ᵥ x
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     (hV : ∀ i ≤ 1, (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 1).1 i
-      = if i = 0 then ![0, 0, 0, 0, 1] else ![σ, 0, 0, 0, 0]) (i : ℕ) (hi : i ≤ 2) :
+      = if i = 0 then ![0, 0, 0, 0, 1] else ![σ, 0, 0, 0, 0]) (i : ℕ) (hi : i ≤ 2) : -- --- STMT ---
     (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 2).1 i = if i = 0 then ![0, 0, 0, 0, 1]
       else if i = 1 then ![σ, 0, 0, 0, 0]
       else ![0, 40 * σ / √1601, σ / √1601, 0, 0] := by -- --- PROOF ---
@@ -332,7 +333,7 @@ theorem Krylov.aux_rot_sweep3 (a σ : ℝ) (hσ2 : σ * σ = 1) (C : Mat ℝ 5 5
       = ![-40 * x 1 - x 2 + a * x 4, 40 * x 0 - x 3, x 0 - 40 * x 3, x 1 + 40 * x 2, 0])
     (hV : ∀ i ≤ 2, (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 2).1 i
       = if i = 0 then ![0, 0, 0, 0, 1] else if i = 1 then ![σ, 0, 0, 0, 0]
-        else ![0, 40 * σ / √1601, σ / √1601, 0, 0]) :
+        else ![0, 40 * σ / √1601, σ / √1601, 0, 0]) : -- --- STMT ---
     Krylov.gramSchmidtStep (C *ᵥ (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 2).1 2)
         (Krylov.arnoldi C (Pi.single (Fin.last 4) 1) 2).1 3
       = (![0, 0, 0, 80 * σ / √1601, 0],
@@ -486,7 +487,7 @@ theorem Krylov.aux_phi_le {ν : ℝ} (hν : ν ≤ 1 / 20) :
 
 /-- `ε̃(u) = h₄,₃ ω ϕ ≤ 1/50` for `u = (β/10, 0, 0, 0)`, `|β| ≤ 1`; the fourth row of `P Ṽ(u)`
 is `0`. -/
-theorem Krylov.aux_rot_errorBound_le {β : ℝ} (hβ : β ∈ Set.Icc (-1 : ℝ) 1) :
+theorem Krylov.aux_rot_errorBound_le {β : ℝ} (hβ : β ∈ Set.Icc (-1 : ℝ) 1) : -- --- STMT ---
     let C := Krylov.augment !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0]
       ![β / 10, 0, 0, 0]
     (∀ k : Fin 3, Krylov.arnoldiBasis C (Pi.single (Fin.last 4) 1) 3 (Fin.castSucc 3) k = 0)
@@ -540,7 +541,7 @@ theorem Krylov.aux_rot_errorBound_le {β : ℝ} (hβ : β ∈ Set.Icc (-1 : ℝ)
     _ ≤ 1 / 50 := by norm_num
 
 /-- The input `-sin s sin 40s · w` reaches `y` with `y₄ = π/40`. -/
-theorem Krylov.aux_rot_mem_inputReach :
+theorem Krylov.aux_rot_mem_inputReach : -- --- STMT ---
     ∃ y ∈ (LinearSys.canonical !![(0 : ℝ), -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0] :
         LinearSys ℝ 4).inputReach (S := 𝒮)
         {u | ∃ β ∈ Set.Icc (-1 : ℝ) 1, u = β • ![1 / 10, 0, 0, 0]} Real.pi,
@@ -595,7 +596,7 @@ theorem Krylov.aux_rot_mem_inputReach :
 /-- [1, Thm. IV.2] and [1, Cor. IV.2] fail with [1, Prop. B.1]'s `ε̃` (`ν` any Rayleigh quotient
 of `C̃`, `ω` any value of `|e₃ᵀe^{H̃t}e₁|` on `[0, δ]`): every Krylov term has fourth coordinate
 `0`, `ε̃(u) ≤ 1/50`, `ε̃(0) = 0`, yet a point of `R_p(π)` has `|y₄| > π/50`. -/
-theorem Krylov.varying_input_reach_counterexample :
+theorem Krylov.varying_input_reach_counterexample : -- --- STMT ---
     let A : Mat ℝ 4 4 := !![0, -40, -1, 0; 40, 0, 0, -1; 1, 0, 0, -40; 0, 1, 40, 0]
     let w : Vec ℝ 4 := ![1 / 10, 0, 0, 0]
     let U : Set (Vec ℝ 4) := {u | ∃ β ∈ Set.Icc (-1 : ℝ) 1, u = β • w}

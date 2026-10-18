@@ -59,7 +59,7 @@ theorem LinParamSys.IsCanonicalTrajectory.norm_le {sys : LinParamSys 𝕄 n} {T 
     {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} (traj : sys.IsCanonicalTrajectory T R₀ U x u A)
     {a b : ℝ} (hT : Set.Icc a b ⊆ T) {M ν δ : ℝ}
     (hM : ∀ t ∈ Set.Ico a b, ‖A t‖ ≤ M) (hν : ∀ t ∈ Set.Ico a b, ‖u t‖ ≤ ν)
-    (hδ : ‖x a‖ ≤ δ) :
+    (hδ : ‖x a‖ ≤ δ) : -- --- STMT ---
     ∀ t ∈ Set.Icc a b, ‖x t‖ ≤ gronwallBound δ M ν (t - a) := by -- --- PROOF ---
   intro t ht
   rcases eq_or_lt_of_le ht.1 with hat | hat

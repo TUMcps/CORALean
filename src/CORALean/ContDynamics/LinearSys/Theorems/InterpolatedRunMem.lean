@@ -80,7 +80,7 @@ theorem LinearSys.interpolated_run_mem (sys : LinearSys 𝕋 n) (R₀ U : S n)
     (hw₁ : ∑ j ∈ s, w j = 1) {x : ι → Vec ℝ n} (hx : ∀ j ∈ s, x j ∈ construct R₀)
     {v : ι → ℕ → Vec ℝ n} (hv : ∀ j ∈ s, ∀ i, v j i ∈ construct U) {y : ι → Vec ℝ n}
     (hy : ∀ j ∈ s, y j ∈ L) {k : ℕ}
-    (h0 : ∑ j ∈ s, w j • (sys.heldSim Δt (x j) (v j) k - y j) = 0) :
+    (h0 : ∑ j ∈ s, w j • (sys.heldSim Δt (x j) (v j) k - y j) = 0) : -- --- STMT ---
     sys.IsCanonicalTrajectory (Set.Icc 0 (k * Δt)) R₀ U
         (sys.closedForm (∑ j ∈ s, w j • x j)
           (LinearSys.heldInput Δt fun i => ∑ j ∈ s, w j • v j i))

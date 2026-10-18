@@ -66,7 +66,7 @@ theorem NonlinDASys.reachLoop_outer (sys : NonlinDASys n p m)
       ({ taylor Z with Verror := rr.L.1, Verror_y := rr.L.2 } :
         NonlinDASys.LinPoint n p m).Certifies
         sys U r q (fun s => x ((j : ℝ) * r + s)) (fun s => y ((j : ℝ) * r + s))
-        (fun s => u ((j : ℝ) * r + s))) (fuel : ℕ) :
+        (fun s => u ((j : ℝ) * r + s))) (fuel : ℕ) : -- --- STMT ---
     ∀ (k₀ N k : ℕ) (tk tf : ℝ) (Rk : Zonotope (Vec ℝ n))
       (L : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) (Runion : Set (Vec ℝ n)),
       tk = (k : ℝ) * r → tf = (N : ℝ) * r → k ≤ N → k₀ + N ≤ K → 0 < N →

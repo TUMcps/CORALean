@@ -89,7 +89,7 @@ theorem Krylov.reach_subset_alg2Corrected (A : Mat ℝ n n) {U : Set (Vec ℝ n)
       ⊆ corollaryIV2)
     (hIII2 : ∀ X, ∀ t ∈ Set.Icc 0 δ, (exp (t • A) *ᵥ ·) '' X ⊆ theoremIII2 X (theoremIII1 X δ))
     {t : ℝ} (ht : t ∈ Set.Icc 0 tf) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ X₀) {y : Vec ℝ n}
-    (hy : y ∈ (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) U t) :
+    (hy : y ∈ (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) U t) : -- --- STMT ---
     exp (t • A) *ᵥ x₀ + y
       ∈ Krylov.alg2Corrected theoremIII1 corollaryIV2 theoremIII2 X₀ δ tf := by -- --- PROOF ---
   set Rp := (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) U δ

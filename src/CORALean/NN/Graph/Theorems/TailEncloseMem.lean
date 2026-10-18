@@ -35,7 +35,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Enclosing layer by layer encloses the composition. -/
-theorem GNN.tailEval_mem_tailEnclose (T : ℕ) :
+theorem GNN.tailEval_mem_tailEnclose (T : ℕ) : -- --- STMT ---
     ∀ (d : ℕ → ℕ) (g : ∀ t, Vec ℝ (d t) → Vec ℝ (d (t + 1)))
       (f : ∀ t, PolyZonotope (Vec ℝ (d t)) → PolyZonotope (Vec ℝ (d (t + 1))))
       (_ : ∀ t S x, x ∈ S.construct → g t x ∈ (f t S).construct)

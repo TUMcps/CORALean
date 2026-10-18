@@ -68,7 +68,7 @@ theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.dist_ellipsoid_eq_max (E₁ E₂ : Ellipsoid n) :
+theorem Ellipsoid.dist_ellipsoid_eq_max (E₁ E₂ : Ellipsoid n) : -- --- STMT ---
     (Disjoint E₁.construct E₂.construct → ∃ d > 0,
       IsLeast {t | ∃ x ∈ E₁.construct, ∃ y ∈ E₂.construct, t = ‖x - y‖₂} d ∧
       IsGreatest {t | ∃ l : Vec ℝ n, ‖l‖₂ = 1 ∧ t = l ⬝ᵥ E₁.q - √(l ⬝ᵥ (E₁.Q *ᵥ l)) -

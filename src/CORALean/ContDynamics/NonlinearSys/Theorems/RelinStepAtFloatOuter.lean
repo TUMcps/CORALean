@@ -79,7 +79,7 @@ theorem aux_mem_hull {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec 𝕋 k) :
 theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {R Rτ Rt : Zonotope (Vec 𝕋 n)}
-    {xs : Vec 𝕋 n} (hstep : fm.relinStepAtFloat U options R xs = some (Rτ, Rt)) :
+    {xs : Vec 𝕋 n} (hstep : fm.relinStepAtFloat U options R xs = some (Rτ, Rt)) : -- --- STMT ---
     0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →

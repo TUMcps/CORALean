@@ -32,7 +32,7 @@ variable {n : ℕ}
 
 /-- `M ^ j` is in the power of order `j` that starts from the exact square, for `j ≥ 2`. -/
 theorem MatExp.powers_intSq_mem (A : Interval (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {j : ℕ} (hj : 2 ≤ j) :
+    {M : Mat ℝ n n} (hM : M ∈ A.construct) {j : ℕ} (hj : 2 ≤ j) : -- --- STMT ---
     M ^ j ∈ (Interval.powers A
       (MatExp.dependentTerms (Interval.smul (1 / r) A) r).intSq
         (j - 2)).construct := by -- --- PROOF ---

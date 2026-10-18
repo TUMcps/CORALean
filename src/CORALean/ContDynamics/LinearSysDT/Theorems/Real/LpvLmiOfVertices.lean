@@ -46,7 +46,7 @@ variable {n ny nd r : ℕ}
 theorem LinearSysDT.aux_sum_fromBlocks {a b c d : Type} [Fintype a] [Fintype b] [Fintype c]
     [Fintype d] (w : Fin r → Fin r → ℝ) (M₁ : Fin r → Fin r → Matrix a c ℝ)
     (M₂ : Fin r → Fin r → Matrix a d ℝ) (M₃ : Fin r → Fin r → Matrix b c ℝ)
-    (M₄ : Fin r → Fin r → Matrix b d ℝ) :
+    (M₄ : Fin r → Fin r → Matrix b d ℝ) : -- --- STMT ---
     ∑ i, ∑ j, w i j • fromBlocks (M₁ i j) (M₂ i j) (M₃ i j) (M₄ i j) =
       fromBlocks (∑ i, ∑ j, w i j • M₁ i j) (∑ i, ∑ j, w i j • M₂ i j)
         (∑ i, ∑ j, w i j • M₃ i j) (∑ i, ∑ j, w i j • M₄ i j) := by -- --- PROOF ---
@@ -55,7 +55,7 @@ theorem LinearSysDT.aux_sum_fromBlocks {a b c d : Type} [Fintype a] [Fintype b] 
 -- the same for columns
 theorem LinearSysDT.aux_sum_fromCols {a c d : Type} [Fintype c] [Fintype d]
     (w : Fin r → Fin r → ℝ) (M₁ : Fin r → Fin r → Matrix a c ℝ)
-    (M₂ : Fin r → Fin r → Matrix a d ℝ) :
+    (M₂ : Fin r → Fin r → Matrix a d ℝ) : -- --- STMT ---
     ∑ i, ∑ j, w i j • fromCols (M₁ i j) (M₂ i j) =
       fromCols (∑ i, ∑ j, w i j • M₁ i j) (∑ i, ∑ j, w i j • M₂ i j) := by -- --- PROOF ---
   ext x (y | y) <;> simp [Matrix.sum_apply]
@@ -77,7 +77,7 @@ theorem LinearSysDT.aux_sum_mul {k l : ℕ} (ρ : Fin r → ℝ) (K : Fin r → 
 theorem LinearSysDT.lpvLmi_of_vertices (T : Mat ℝ n n) (N : Mat ℝ n ny) (C : Mat ℝ ny n)
     (F : Mat ℝ ny nd) (P : Mat ℝ n n) (Λ Y : Fin r → Mat ℝ n ny) (A : Fin r → Mat ℝ n n)
     (D : Fin r → Mat ℝ n nd) (α β : ℝ) (ρ : Fin r → ℝ) (hρ0 : ∀ i, 0 ≤ ρ i)
-    (hρ1 : ∑ i, ρ i = 1) (hPT : Pᵀ = P) (hY : ∀ i, P * Λ i = Y i) :
+    (hρ1 : ∑ i, ρ i = 1) (hPT : Pᵀ = P) (hY : ∀ i, P * Λ i = Y i) : -- --- STMT ---
     let Dg : Matrix (Fin n ⊕ (Fin nd ⊕ Fin nd)) (Fin n ⊕ (Fin nd ⊕ Fin nd)) ℝ :=
       fromBlocks (α • P) 0 0 (fromBlocks (((1 - α) * β) • 1) 0 0 (((1 - α) * (1 - β)) • 1))
     let R : Fin r → Fin r → Matrix (Fin n) (Fin n ⊕ (Fin nd ⊕ Fin nd)) ℝ := fun i j =>

@@ -44,7 +44,7 @@ theorem NonlinDASys.newtonTestFloat_sound (g : Vec ℝ k → Vec ℝ k)
     (hG : ∀ X : Interval (Vec 𝕋 k), ∀ a ∈ X.construct, g a ∈ (G X).construct)
     (hJ : ∀ X : Interval (Vec 𝕋 k), ∀ a ∈ X.construct, ∀ a' ∈ X.construct,
       ∃ M ∈ (J X).construct, g a - g a' = M *ᵥ (a - a'))
-    (c : Vec 𝕋 k) (r : 𝕋) (h : NonlinDASys.newtonTestFloat G J c r = true) :
+    (c : Vec 𝕋 k) (r : 𝕋) (h : NonlinDASys.newtonTestFloat G J c r = true) : -- --- STMT ---
     ∃! z, z ∈ Metric.closedBall (toRealVec c) (toReal r) ∧ g z = 0 := by -- --- PROOF ---
   unfold NonlinDASys.newtonTestFloat at h
   simp only [Interval.materialiseMat_eq] at h

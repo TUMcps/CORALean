@@ -58,7 +58,7 @@ theorem Zonotope.pRadius_predict_strip_le (A P : Mat ℝ n n) (F : Mat ℝ n m) 
       let e := κ *ᵥ (A *ᵥ θ) + κ *ᵥ (F *ᵥ γ) + (φ * η) • l
       e ⬝ᵥ (P *ᵥ e) ≤ β * (θ ⬝ᵥ (P *ᵥ θ)) + (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) + φ ^ 2 * η ^ 2)
     (hβ : 0 ≤ β) (hL : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ L)
-    (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) :
+    (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) : -- --- STMT ---
     let W : Zonotope (Vec ℝ n) := ⟨m, 0, fun j i => F i j⟩
     let Xk := ((X.mtimes A).plus W).intersectStrip (Matrix.of fun _ => c : Mat ℝ 1 n)
       (fun _ => φ) (fun _ => y) (Matrix.of fun r _ => l r : Mat ℝ n 1)

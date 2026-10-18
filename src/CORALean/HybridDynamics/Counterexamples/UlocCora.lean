@@ -43,7 +43,7 @@ def HybridAutomaton.ulocCora {α : Type} (numLoc i : Nat) (u : α) (l : Nat) : O
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.ulocCora_counterexample {α : Type} (numLoc : Nat) (hn : 2 ≤ numLoc)
-    (u : α) :
+    (u : α) : -- --- STMT ---
     HybridAutomaton.ulocCora numLoc (numLoc - 1) u 0 = none ∧
       HybridAutomaton.uloc numLoc u 0 = some u ∧
       HybridAutomaton.ulocCora numLoc (numLoc - 1) u (numLoc - 1) =

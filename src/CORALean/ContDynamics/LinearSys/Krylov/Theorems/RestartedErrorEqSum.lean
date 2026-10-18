@@ -42,7 +42,8 @@ variable {X : Type*} [AddCommGroup X]
 /-- [1, Eq. 7.2]: `v^{[N]} - w^{[N]} = Σ_{j<N} E_{N-1}⋯E_{j+1}(E_j w^{[j]} - S_j w^{[j]})` for
 `v^{[j+1]} = E_j v^{[j]}`, `w^{[j+1]} = S_j w^{[j]}`, `v^{[0]} = w^{[0]}`. -/
 theorem Krylov.restarted_error_eq_sum (E : ℕ → X →+ X) (S : ℕ → X → X) (v w : ℕ → X)
-    (hv : ∀ j, v (j + 1) = E j (v j)) (hw : ∀ j, w (j + 1) = S j (w j)) (h0 : v 0 = w 0) :
+    (hv : ∀ j, v (j + 1) = E j (v j)) (hw : ∀ j, w (j + 1) = S j (w j))
+    (h0 : v 0 = w 0) : -- --- STMT ---
     let P : ℕ → ℕ → (X →+ X) := fun a N =>
       Nat.rec (AddMonoidHom.id X)
         (fun k acc => if a ≤ k then (E k).comp acc else AddMonoidHom.id X) N

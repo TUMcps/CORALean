@@ -48,7 +48,8 @@ theorem STL.Tree.aux_eval_term (a x : Fin n → ℝ) (i : Fin n) :
   · simp [STL.Expr.eval, h]
   · simp [STL.Expr.times, STL.Expr.eval]
 
-theorem STL.Tree.aux_eval_foldl (a x : Fin n → ℝ) (rest : List (Fin n)) (ind : Fin n) :
+theorem STL.Tree.aux_eval_foldl (a x : Fin n → ℝ) (rest : List (Fin n))
+    (ind : Fin n) : -- --- STMT ---
     (rest.foldl (fun rhs i => STL.Expr.plus rhs
         (if a i = 1 then STL.Expr.var i else STL.Expr.times (.num (a i)) (.var i)))
       (if a ind = 1 then STL.Expr.var ind else STL.Expr.times (.num (a ind)) (.var ind))).eval x

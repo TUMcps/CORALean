@@ -47,7 +47,7 @@ theorem ParallelHybridAutomaton.IsSyncRun.toProductSync [ExactScalar 𝕋] [Deci
     {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLaw F U W)
     (slift : ParallelHybridAutomaton.SyncLifting S G n m)
     (lab : ParallelHybridAutomaton.SyncLabels G L 𝕋 n Λ) {ℓ ℓ' : ∀ i, L i}
-    {x y : ∀ i, Vec ℝ (n i)} (run : P.IsSyncRun lab ℓ x ℓ' y) :
+    {x y : ∀ i, Vec ℝ (n i)} (run : P.IsSyncRun lab ℓ x ℓ' y) : -- --- STMT ---
     (P.productSync slift lab F U W).IsRun ℓ (stack x) ℓ' (stack y) := by -- --- PROOF ---
   -- a stay of the labeled product's location is one of `productWith`'s: transitions are not read
   have key : ∀ {ℓ : ∀ i, L i} {τ : ℝ} {X : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m},

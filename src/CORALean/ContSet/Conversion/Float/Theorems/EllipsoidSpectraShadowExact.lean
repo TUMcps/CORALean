@@ -41,7 +41,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 /-- With a PSD stored `Q`, the stored inequality reads entry by entry as the exact layer's. -/
 private theorem Ellipsoid.aux_toRealMat_spectraShadow (E : Ellipsoid 𝕋 n)
-    (hQ : (toRealMat E.Q).PosSemidef) (β : Vec ℝ n) :
+    (hQ : (toRealMat E.Q).PosSemidef) (β : Vec ℝ n) : -- --- STMT ---
     toRealMat E.spectraShadow.A₀ + ∑ i, β i • toRealMat (E.spectraShadow.A i) =
       (⟨toRealMat E.Q, toRealVec E.q, hQ⟩ : Real.Ellipsoid n).spectraShadow.A₀ +
         ∑ i, β i • (⟨toRealMat E.Q, toRealVec E.q, hQ⟩ : Real.Ellipsoid n).spectraShadow.A i

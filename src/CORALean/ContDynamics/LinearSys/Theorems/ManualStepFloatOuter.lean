@@ -67,7 +67,7 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     {Δt : 𝕋} {η ρ : ℕ} {s s' : LinearSys.ManualStateFloat 𝕋 n} {R : Zonotope (Vec 𝕋 n)}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
     (h : sys.manualStepFloat X₀ V Δt η ρ s = some (s', R))
-    (hinv : sys.ManualInvariantFloat X₀ V s) :
+    (hinv : sys.ManualInvariantFloat X₀ V s) : -- --- STMT ---
     sys.ManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
         sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →

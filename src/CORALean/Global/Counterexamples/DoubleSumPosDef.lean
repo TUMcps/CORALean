@@ -38,7 +38,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem doubleSum_posDef_counterexample :
+theorem doubleSum_posDef_counterexample : -- --- STMT ---
     let Γ : Fin 2 → Fin 2 → Matrix (Fin 1) (Fin 1) ℝ := fun i j => if i = j then 1 else -1
     let μ : Fin 2 → ℝ := fun _ => 1 / 2
     (∀ i, 0 ≤ μ i) ∧ ∑ i, μ i = 1 ∧ (∀ i j, (Γ i j)ᵀ = Γ i j) ∧ (∀ i, (Γ i i).PosDef) ∧

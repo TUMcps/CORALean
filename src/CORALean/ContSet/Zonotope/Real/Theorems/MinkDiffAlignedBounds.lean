@@ -44,7 +44,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 one inside `S` are an inner and an outer approximation of `Z ⊖ S`. -/
 theorem Zonotope.minkDiffAligned_bounds (Z : Zonotope α) (S : Set α) (co ci : α)
     (ao ai : Fin Z.h → ℝ) (hao : ∀ i, 0 ≤ ao i ∧ ao i ≤ 1) (hai : ∀ i, 0 ≤ ai i ∧ ai i ≤ 1)
-    (hout : S ⊆ (Z.aligned co ao).construct) (hin : (Z.aligned ci ai).construct ⊆ S) :
+    (hout : S ⊆ (Z.aligned co ao).construct)
+    (hin : (Z.aligned ci ai).construct ⊆ S) : -- --- STMT ---
     (Z.minkDiffAligned (Z.aligned co ao) rfl).construct ⊆ minkowskiDiff Z.construct S ∧
       minkowskiDiff Z.construct S
         ⊆ (Z.minkDiffAligned (Z.aligned ci ai) rfl).construct := by -- --- PROOF ---

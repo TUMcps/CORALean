@@ -45,7 +45,7 @@ variable {n p q : ℕ}
 theorem aux_step_cost (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype ιX]
     [Fintype ιW] [Fintype ιV] (GX : ιX → Vec ℝ n) (αX : ιX → ℝ) (GW : ιW → Vec ℝ n)
     (αW : ιW → ℝ) (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (hαX : ∀ x, 0 ≤ αX x)
-    (hαW : ∀ r, 0 ≤ αW r) (hαV : ∀ l, 0 ≤ αV l) (σ : Vec ℝ q) (k : ℕ) :
+    (hαW : ∀ r, 0 ≤ αW r) (hαV : ∀ l, 0 ≤ αV l) (σ : Vec ℝ q) (k : ℕ) : -- --- STMT ---
     Conform.intervalNorm σ (fun j => Sum.elim (Sum.elim αX fun r : Fin k × ιW => αW r.2) αV j
         • Sum.elim (Sum.elim (fun x => (sys.C * sys.A ^ k) *ᵥ GX x)
           (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2)) GV j)
@@ -65,7 +65,7 @@ theorem aux_step_cost (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype 
 theorem Conform.Plant.lpCost_eq (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype ιX]
     [Fintype ιW] [Fintype ιV] (GX : ιX → Vec ℝ n) (αX : ιX → ℝ) (GW : ιW → Vec ℝ n)
     (αW : ιW → ℝ) (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (hαX : ∀ x, 0 ≤ αX x)
-    (hαW : ∀ r, 0 ≤ αW r) (hαV : ∀ l, 0 ≤ αV l) (σ : Vec ℝ q) (ω : ℕ → ℝ) (K : ℕ) :
+    (hαW : ∀ r, 0 ≤ αW r) (hαV : ∀ l, 0 ≤ αV l) (σ : Vec ℝ q) (ω : ℕ → ℝ) (K : ℕ) : -- --- STMT ---
     ∑ k ∈ Finset.range (K + 1), ω k * Conform.intervalNorm σ (fun j =>
         Sum.elim (Sum.elim αX fun r : Fin k × ιW => αW r.2) αV j
         • Sum.elim (Sum.elim (fun x => (sys.C * sys.A ^ k) *ᵥ GX x)

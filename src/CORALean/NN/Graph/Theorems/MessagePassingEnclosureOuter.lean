@@ -108,7 +108,7 @@ theorem GNN.aux_residual_le (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat
 error and multiplying back, or a zero error forcing a zero residual. -/
 theorem GNN.aux_error_mul_resFactor (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
-    (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) :
+    (hA : ∀ a b, 0 ≤ A a b) (j : Fin N) : -- --- STMT ---
     GNN.sqrtError R A U j * GNN.aux_resFactor R A U lam j
       = GNN.aux_residual R A U lam j := by -- --- PROOF ---
   rw [GNN.aux_resFactor]
@@ -165,7 +165,7 @@ theorem GNN.aux_padPoint (R : Relaxation ℝ) (A : Mat ℝ N N)
 exactly, which is `sqrt_affine` plus the residual the factor spends. -/
 theorem GNN.aux_broadcastPoint (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (lam : Fin m → ℝ) (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1)
-    (hA : ∀ a b, 0 ≤ A a b) (idx : Fin N → Fin N → Fin N) :
+    (hA : ∀ a b, 0 ≤ A a b) (idx : Fin N → Fin N → Fin N) : -- --- STMT ---
     (GNN.sqrtBroadcast R A U idx).point (GNN.aux_factors R A U lam)
       = fun i j => invSqrt (GNN.degreeAt A U lam (idx i j)) := by -- --- PROOF ---
   rw [PolyZonotope.point, GNN.aux_sum_univ_sqrtBroadcast]
@@ -199,7 +199,7 @@ theorem GNN.aux_broadcastPoint (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : 
 graph's own `D̃^(-1/2) Ã D̃^(-1/2)` is a point of it. -/
 theorem GNN.messagePassing_mem_enclosure (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
-    (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) :
+    (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) : -- --- STMT ---
     GNN.messagePassing (GNN.adjAt A U lam)
       ∈ (GNN.messagePassingEnclosure R A U).construct := by -- --- PROOF ---
   have hinner := PolyZonotope.bilin_point (Entrywise.hadamardLin (α := Mat ℝ N N))

@@ -52,7 +52,7 @@ the horizon, each holding what `ReachFloatInputInvariant` asks at its pass. -/
 theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloatInput params options = some (Rti, Rtp)) :
+    (h : sys.reachFloatInput params options = some (Rti, Rtp)) : -- --- STMT ---
     0 < toReal options.Δt ∧ ∃ N : ℕ,
       (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       ∃ S : List (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) ×

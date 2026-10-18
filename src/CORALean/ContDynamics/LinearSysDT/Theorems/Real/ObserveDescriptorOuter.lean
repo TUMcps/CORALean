@@ -44,7 +44,8 @@ theorem LinearSysDT.observeDescriptor_outer (E T A : Mat ℝ n n) (N G : Mat ℝ
     (u : Vec ℝ nu) (X : Zonotope (Vec ℝ n)) (hTN : T * E + N * C = 1) (hTD : T * Dd = 0)
     (x x_plus : Vec ℝ n) (ω : Vec ℝ nw) (υ υ_plus : Vec ℝ nv) (d : Vec ℝ nd)
     (hx : x ∈ X.construct) (hω : ∀ i, |ω i| ≤ 1) (hυ : ∀ i, |υ i| ≤ 1)
-    (hυp : ∀ i, |υ_plus i| ≤ 1) (hE : E *ᵥ x_plus = A *ᵥ x + B *ᵥ u + D *ᵥ ω + Dd *ᵥ d) :
+    (hυp : ∀ i, |υ_plus i| ≤ 1)
+    (hE : E *ᵥ x_plus = A *ᵥ x + B *ᵥ u + D *ᵥ ω + Dd *ᵥ d) : -- --- STMT ---
     x_plus ∈ (X.observeDescriptor T N G A B D C F u (C *ᵥ x + F *ᵥ υ)
       (C *ᵥ x_plus + F *ᵥ υ_plus)).construct := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx

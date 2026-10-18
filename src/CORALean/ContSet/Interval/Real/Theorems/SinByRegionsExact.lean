@@ -136,7 +136,7 @@ theorem aux_sinByRegions_full {lo hi yl yu : ℝ}
       (yl ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2) ∧
         yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2) ∧ yu < yl) ∨
       (yl ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi) ∧
-        yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi) ∧ yu < yl)) :
+        yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi) ∧ yu < yl)) : -- --- STMT ---
     Real.sin '' Set.Icc lo hi = Set.Icc (-1) 1 := by -- --- PROOF ---
   have hpi := Real.pi_pos
   rw [hshift]
@@ -170,7 +170,7 @@ theorem aux_sinByRegions_mono {lo hi yl yu : ℝ}
     (h : (yl ∈ Set.Ico 0 (Real.pi / 2) ∧ yu ∈ Set.Ico 0 (Real.pi / 2) ∧ yl ≤ yu) ∨
       (yl ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi) ∧ yu ∈ Set.Ico 0 (Real.pi / 2)) ∨
       (yl ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi) ∧
-        yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi) ∧ yl ≤ yu)) :
+        yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi) ∧ yl ≤ yu)) : -- --- STMT ---
     Real.sin '' Set.Icc lo hi = Set.Icc (Real.sin yl) (Real.sin yu) := by -- --- PROOF ---
   have hpi := Real.pi_pos
   have hab : yl ≤ yl + (hi - lo) := by linarith
@@ -195,7 +195,7 @@ theorem aux_sinByRegions_peak {lo hi yl yu : ℝ}
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu) (hb2 : yu < yl → yl + (hi - lo) = yu + 2 * Real.pi)
     (h : (yl ∈ Set.Ico 0 (Real.pi / 2) ∧ yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2)) ∨
       (yl ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi) ∧
-        yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2))) :
+        yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2))) : -- --- STMT ---
     Real.sin '' Set.Icc lo hi = Set.Icc (min (Real.sin yl) (Real.sin yu)) 1 := by -- --- PROOF ---
   have hpi := Real.pi_pos
   rw [hshift]
@@ -219,7 +219,7 @@ theorem aux_sinByRegions_valley {lo hi yl yu : ℝ}
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu) (hb2 : yu < yl → yl + (hi - lo) = yu + 2 * Real.pi)
     (h : (yl ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2) ∧ yu ∈ Set.Ico 0 (Real.pi / 2)) ∨
       (yl ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2) ∧
-        yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi))) :
+        yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi))) : -- --- STMT ---
     Real.sin '' Set.Icc lo hi =
       Set.Icc (-1) (max (Real.sin yl) (Real.sin yu)) := by -- --- PROOF ---
   have hpi := Real.pi_pos
@@ -243,7 +243,7 @@ theorem aux_sinByRegions_anti {lo hi yl yu : ℝ}
     (hle : lo ≤ hi)
     (hb1 : yl ≤ yu → yl + (hi - lo) = yu)
     (h1 : yl ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2))
-    (h2 : yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2)) (h3 : yl ≤ yu) :
+    (h2 : yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2)) (h3 : yl ≤ yu) : -- --- STMT ---
     Real.sin '' Set.Icc lo hi = Set.Icc (Real.sin yu) (Real.sin yl) := by -- --- PROOF ---
   have hab : yl ≤ yl + (hi - lo) := by linarith
   have hb := hb1 h3
@@ -268,7 +268,7 @@ theorem aux_sinByRegions_last {yl yu : ℝ} (hyl : 0 ≤ yl ∧ yl < 2 * Real.pi
         yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2))))
     (hD : ¬((yl ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2) ∧ yu ∈ Set.Ico 0 (Real.pi / 2)) ∨
       (yl ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2) ∧
-        yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi)))) :
+        yu ∈ Set.Ico (3 * Real.pi / 2) (2 * Real.pi)))) : -- --- STMT ---
     yl ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2) ∧
       yu ∈ Set.Ico (Real.pi / 2) (3 * Real.pi / 2) ∧ yl ≤ yu := by -- --- PROOF ---
   -- `y̲` is not in `R_s1`

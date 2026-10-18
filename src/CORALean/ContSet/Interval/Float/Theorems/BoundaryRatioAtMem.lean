@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.boundaryRatioAt_mem {I : Interval (Vec 𝕋 n)} {dir start : Vec 𝕋 n} {i : Fin n}
-    {x : Interval 𝕋} (hx : Interval.boundaryRatioAt I dir start i = some x) :
+    {x : Interval 𝕋} (hx : Interval.boundaryRatioAt I dir start i = some x) : -- --- STMT ---
     (0 < toReal (dir i) ∧
         toReal x.inf ≤ (toReal (I.sup i) - toReal (start i)) / toReal (dir i) ∧
         (toReal (I.sup i) - toReal (start i)) / toReal (dir i) ≤ toReal x.sup) ∨

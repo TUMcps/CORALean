@@ -44,7 +44,7 @@ namespace CORALean.Real
 theorem ConZonotope.construct_eq_comap_of_lift {n m h : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ (m + 0) h) (b : Vec ℝ (m + 0))
     (P : HPolytope (Vec ℝ (n + m)))
-    (hP : P.construct = (ConZonotope.lift (m₂ := 0) c G A b).construct) :
+    (hP : P.construct = (ConZonotope.lift (m₂ := 0) c G A b).construct) : -- --- STMT ---
     (ConZonotope.ofMat c G A b).construct
       = (P.comap (blockPadLeft n m)).construct := by -- --- PROOF ---
   ext z

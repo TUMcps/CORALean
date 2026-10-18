@@ -42,7 +42,7 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 theorem SyntaxTree.backpropagation_sound {B : Real.Interval (Vec ℝ n)} (t : SyntaxTree n)
     (h : Sound B t) {int : Real.Interval (Vec ℝ n)} {x : Fin n → ℝ} (v : Dom)
     (hv : Dom.within v t.value) (hB : InBox B x) (hx : InBox int x)
-    (hs : Dom.contains v (t.eval x)) :
+    (hs : Dom.contains v (t.eval x)) : -- --- STMT ---
     ∃ r, backpropagation t v int = .ok r ∧ InBox r x := by -- --- PROOF ---
   induction t generalizing v with
   | var i w =>

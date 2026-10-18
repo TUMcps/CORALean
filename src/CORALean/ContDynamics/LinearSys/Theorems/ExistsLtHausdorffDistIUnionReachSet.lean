@@ -45,7 +45,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- [1, Lemma 2], convergence, as printed, fails: a system, a zonotope and a step meeting
 every hypothesis where the distance exceeds `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup ‖x‖)`. -/
-theorem LinearSys.exists_lt_hausdorffDist_iUnion_reachSet :
+theorem LinearSys.exists_lt_hausdorffDist_iUnion_reachSet : -- --- STMT ---
     ∃ (sys : LinearSys ℝ 1) (Z U : Zonotope (Vec ℝ 1)) (μ r s : ℝ),
       0 < ‖toRealMat sys.A‖ ∧ 0 < r ∧ 0 ≤ μ ∧ U.construct = Metric.closedBall 0 μ
       ∧ IsGreatest ((fun x => ‖x‖) '' Z.construct) s

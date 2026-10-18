@@ -50,7 +50,7 @@ theorem Zonotope.minkDiffStretch_inner {ι : Type} (Z₁ Z₂ : Zonotope α)
     (C : ι → (α →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ)
     (hCm : {y | ∀ i, C i (y - Z₁.c) ≤ ∑ υ, |C i (Z₁.G υ)|} ⊆ Z₁.construct)
     (hμ : ∀ i, ∑ υ, |C i (Z₁.G υ)| * μ υ
-            ≤ (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) :
+            ≤ (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) : -- --- STMT ---
     (Z₁.minkDiffStretch Z₂ μ).construct
       ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
   intro x hx z hz

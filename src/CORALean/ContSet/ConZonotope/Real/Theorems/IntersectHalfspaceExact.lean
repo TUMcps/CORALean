@@ -45,7 +45,7 @@ variable {n : ℕ}
 /-- `Fin.sum_univ_add`/`Fin.sum_univ_one` at the one row `interHalfspace`'s constraint matrix
 carries. -/
 theorem Zonotope.aux_mulVec_interHalfspace (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ) (f : ℝ)
-    (ξ : Fin (Z.h + 1) → ℝ) :
+    (ξ : Fin (Z.h + 1) → ℝ) : -- --- STMT ---
     ((fun _ : Fin 1 => Fin.append (fun i => h (Z.G i))
         (fun _ : Fin 1 => (f - h Z.c + ∑ i, |h (Z.G i)|) / 2)) *ᵥ ξ) 0
       = (∑ i, h (Z.G i) * ξ (Fin.castAdd 1 i))
@@ -67,7 +67,7 @@ theorem Zonotope.aux_value_interHalfspace (Z : Zonotope (Vec ℝ n)) (ξ : Fin (
 /-- Membership in `Z.interHalfspace h f`, unpacked into `Z`'s own coefficients and the one fresh
 one, [1]'s `(6)`. -/
 theorem Zonotope.aux_mem_interHalfspace_iff (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
-    (f : ℝ) (x : Vec ℝ n) :
+    (f : ℝ) (x : Vec ℝ n) : -- --- STMT ---
     x ∈ (Z.interHalfspace h f).construct ↔
       ∃ (ξ : Fin Z.h → ℝ) (t : ℝ), (∀ i, |ξ i| ≤ 1) ∧ |t| ≤ 1 ∧
         (∑ i, h (Z.G i) * ξ i) + (f - h Z.c + ∑ i, |h (Z.G i)|) / 2 * t

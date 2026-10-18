@@ -76,7 +76,8 @@ noncomputable def Polygon.isequalCora (tol : ℝ) (V1 V2 : List (Vec ℝ 2)) : B
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.isequal_cora_counterexample (tol : ℝ) (h0 : 0 ≤ tol) (h2 : tol < 2) :
+theorem Polygon.isequal_cora_counterexample (tol : ℝ) (h0 : 0 ≤ tol)
+    (h2 : tol < 2) : -- --- STMT ---
     let O : Vec ℝ 2 := ![0, 0]
     let A : Vec ℝ 2 := ![1, 1]
     let B : Vec ℝ 2 := ![1, -1]

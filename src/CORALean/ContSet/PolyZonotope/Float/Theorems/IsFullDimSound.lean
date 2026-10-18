@@ -49,7 +49,8 @@ theorem PolyZonotope.aux_box_subset {pZ : PolyZonotope (Vec 𝕋 n)} {H : Mat �
     (hc : Zonotope.ballCert (fun i j => pZ.GI j i) H B one = true) {y₀ : Vec ℝ n}
     (hy₀ : y₀ = (nominal pZ).c
       + ∑ i, Real.PolyZonotope.monomial (nominal pZ).E (fun _ => 0) i • (nominal pZ).G i)
-    (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : y ∈ nominalSet pZ := by -- --- PROOF ---
+    (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : -- --- STMT ---
+    y ∈ nominalSet pZ := by -- --- PROOF ---
   obtain ⟨-, hreach⟩ := Zonotope.ballCert_reach hc
   obtain ⟨β, hβ, hβδ⟩ := hreach (fun i => y i - y₀ i) hy
   refine ⟨fun _ => 0, β, fun k => by simp, fun j => by simpa [toReal_one] using hβδ j, ?_⟩

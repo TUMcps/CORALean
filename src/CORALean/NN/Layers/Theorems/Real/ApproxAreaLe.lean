@@ -44,7 +44,7 @@ namespace CORALean.Real
 
 theorem approxArea_le {ϕ dϕ : ℝ → ℝ} {x' : ℝ} (hd : ∀ x, HasDerivAt ϕ (dϕ x) x)
     (hmono : MonotoneOn dϕ (Set.Iic x')) (hanti : AntitoneOn dϕ (Set.Ici x')) (l u : ℝ)
-    (hlu : l ≤ u) :
+    (hlu : l ≤ u) : -- --- STMT ---
     approxArea (approxErrorLow ϕ (fun x => secantSlope ϕ l u * x) l u)
         (approxErrorUp ϕ (fun x => secantSlope ϕ l u * x) l u) l u ≤
       approxArea (-(deepZSShape ϕ dϕ).error l u)

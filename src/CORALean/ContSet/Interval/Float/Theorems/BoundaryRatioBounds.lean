@@ -104,7 +104,7 @@ theorem Interval.aux_ratio_step (f : Fin n → Option (Interval 𝕋)) (idx : Li
         · rw [toReal_minimum]
           exact le_min (h4 y fun j hj x hx => hy j (by simp [hj]) x hx) (hy i (by simp) r hfi)
 
-theorem Interval.aux_ratio_foldl (f : Fin n → Option (Interval 𝕋)) :
+theorem Interval.aux_ratio_foldl (f : Fin n → Option (Interval 𝕋)) : -- --- STMT ---
     ∀ (l : List (Fin n)) (acc : Option (Interval 𝕋)) (idx : List (Fin n)),
       Interval.aux_ratioInv f idx acc →
       Interval.aux_ratioInv f (idx ++ l)
@@ -120,7 +120,8 @@ theorem Interval.aux_ratio_foldl (f : Fin n → Option (Interval 𝕋)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.boundaryRatio_bounds (I : Interval (Vec 𝕋 n)) (dir start : Vec 𝕋 n) :
+theorem Interval.boundaryRatio_bounds (I : Interval (Vec 𝕋 n))
+    (dir start : Vec 𝕋 n) : -- --- STMT ---
     (Interval.boundaryRatio I dir start = none ↔
         ∀ i, Interval.boundaryRatioAt I dir start i = none) ∧
       ∀ a, Interval.boundaryRatio I dir start = some a →

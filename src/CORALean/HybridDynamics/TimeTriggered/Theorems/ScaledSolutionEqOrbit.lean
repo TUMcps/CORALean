@@ -43,7 +43,7 @@ theorem scaledSolution_eq_orbit {f : X → X} {K : ℝ≥0} (hf : LipschitzWith 
     (hy0 : ∀ u ∈ Icc 0 t, 0 ≤ g (y u)) (hyc : ContinuousOn y (Icc 0 t))
     (hyd : ∀ u ∈ Ico 0 t, HasDerivWithinAt y (g (y u) • f (y u)) (Ici u) u)
     (hz : ∀ u ∈ Icc 0 M, HasDerivAt z (f (z u)) u) (hz0 : z 0 = y 0)
-    (hσ : ∫ v in (0 : ℝ)..t, g (y v) ≤ M) :
+    (hσ : ∫ v in (0 : ℝ)..t, g (y v) ≤ M) : -- --- STMT ---
     y t = z (∫ v in (0 : ℝ)..t, g (y v)) := by -- --- PROOF ---
   obtain ⟨γ, hγ0, hγ, hγt⟩ := scaledSolution_unscale hf hg ht hy0 hyc hyd
   have hσ0 : 0 ≤ ∫ v in (0 : ℝ)..t, g (y v) :=

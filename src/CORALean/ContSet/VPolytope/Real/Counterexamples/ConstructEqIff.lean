@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_eq_iff_counterexample :
+theorem VPolytope.construct_eq_iff_counterexample : -- --- STMT ---
     ∃ P₁ P₂ : VPolytope (Vec ℝ 1),
       (∀ j, (∃ k, P₁.V j = P₂.V k) ∨
           P₁.V j ∈ (⟨P₁.k - 1, fun i => P₁.V (dropIdx j i)⟩ : VPolytope (Vec ℝ 1)).construct) ∧

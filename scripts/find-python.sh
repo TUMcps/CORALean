@@ -23,3 +23,11 @@ if [ -z "$PYTHON" ]; then
   echo "       (Settings > Apps > Advanced app settings > App execution aliases)." >&2
   exit 2
 fi
+
+# UTF-8 mode for every Python the checks run: the sources hold `ℝ` and `⊆`, and on Windows
+# `Path.read_text()` and `print` otherwise use the console's code page (cp1252) and raise
+# `UnicodeDecodeError` / `UnicodeEncodeError` (#230). It covers reading, writing and printing
+# in one setting, whatever each script remembers to pass; the scripts also say
+# `encoding="utf-8"` themselves, and `check-conventions.sh` asks them to.
+PYTHONUTF8=1
+export PYTHONUTF8

@@ -40,7 +40,7 @@ open Set
 
 /-- A proper result of (18) at valid enclosures, where the whole line CORA reports is not in
 the range. -/
-theorem kaucherInnerStep_cora_counterexample :
+theorem kaucherInnerStep_cora_counterexample : -- --- STMT ---
     let s := kaucherInnerStep (n := 1) (fun _ => -1) (fun _ => 2) (fun _ _ => 1) (fun _ _ => 1)
       (fun _ => 0) (fun _ => 1) (fun _ => 1 / 2) 0
     s.1 < s.2 ∧ (fun _ => (1 / 2 : ℝ)) 0 ∈ Icc (-1 : ℝ) 2 ∧

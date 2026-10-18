@@ -43,7 +43,8 @@ theorem ParallelHybridAutomaton.reachFloat_outer
     {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
     {X₀ : Zonotope (Vec 𝕋 (∑ i, n i))} {out : List ((∀ i, L i) × Zonotope (Vec 𝕋 (∑ i, n i)))}
     (h : P.reachFloat lift tFinal options K ℓ₀ X₀ = some out)
-    {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ construct X₀) (run : P.IsRun ℓ₀ x ℓ y) :
+    {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ construct X₀)
+    (run : P.IsRun ℓ₀ x ℓ y) : -- --- STMT ---
     ∃ (T : ℝ) (j : ℕ), (P.productWith lift P.mergeFlows (P.mergeInputSets lift)
       (P.mergeDistSets lift)).IsRunUntil T j ℓ₀ (stack x) ℓ (stack y) ∧
       (T ≤ tFinal → j ≤ K → ∃ p ∈ out, p.1 = ℓ ∧ stack y ∈ construct p.2) := by -- --- PROOF ---

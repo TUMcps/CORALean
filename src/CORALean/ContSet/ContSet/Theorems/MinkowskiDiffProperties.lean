@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem minkowskiDiff_properties (S₁ S₂ : Set (Vec ℝ n)) :
+theorem minkowskiDiff_properties (S₁ S₂ : Set (Vec ℝ n)) : -- --- STMT ---
     (S₂ = ∅ → minkowskiDiff S₁ S₂ = Set.univ ∧
         (0 < n → ¬ Bornology.IsBounded (minkowskiDiff S₁ S₂))) ∧
       (S₁ = ∅ → S₂.Nonempty → minkowskiDiff S₁ S₂ = ∅) ∧

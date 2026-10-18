@@ -62,7 +62,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
     (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
     (h0 : (0 : Vec ℝ n) ∈ U.construct) {t : ℝ} (ht0 : 0 ≤ t) (htΔ : t ≤ toReal Δt)
-    (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) :
+    (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) : -- --- STMT ---
     x t ∈ (sys.oneStepFloat X U u Δt η).Rti.construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set A := Scalar.toRealMat sys.A with hA

@@ -30,7 +30,7 @@ variable {n : ℕ}
 
 -- and the agreement rows, whose two blocks are the two generator matrices
 theorem ConPolyZono.mulVec_intersectionA_agree (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (v : Fin (cPZ₁.q + cPZ₂.q + (cPZ₁.h + cPZ₂.h)) → ℝ) (i : Fin n) :
+    (v : Fin (cPZ₁.q + cPZ₂.q + (cPZ₁.h + cPZ₂.h)) → ℝ) (i : Fin n) : -- --- STMT ---
     (ConPolyZono.intersectionA cPZ₁ cPZ₂ *ᵥ v) (Fin.natAdd (cPZ₁.m + cPZ₂.m) i)
       = (∑ l, cPZ₁.G l i * v (Fin.natAdd (cPZ₁.q + cPZ₂.q) (Fin.castAdd cPZ₂.h l)))
         - ∑ l, cPZ₂.G l i

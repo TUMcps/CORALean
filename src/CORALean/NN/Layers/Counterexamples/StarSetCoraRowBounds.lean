@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.ContSet.StarSet.Real.Instances
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Tactic.Linarith
@@ -55,7 +56,7 @@ open ContSet
 
 theorem StarSet.coraRowBounds_unsound :
     ∃ (s : StarSet StarSet.LinPred 2) (x : Vec ℝ 2), x ∈ construct s ∧
-      (Function.update x 0 (max (x 0) 0) : Vec ℝ 2)
+      (Function.update x 0 (Real.relu (x 0)) : Vec ℝ 2)
         ∉ construct (s.reluNeuron 0 (s.coraRowBounds 0)) := by -- --- PROOF ---
   let s : StarSet StarSet.LinPred 2 :=
     { m := 1, c := fun _ => 0, G := fun i _ => if i = 0 then 1 else -1,
@@ -73,7 +74,7 @@ theorem StarSet.coraRowBounds_unsound :
     rintro ⟨α, -, h⟩
     have h0 := h 0
     have h1 := h 1
-    simp [s] at h0 h1
+    simp [s, Real.relu] at h0 h1
     linarith
 
 end CORALean.Real

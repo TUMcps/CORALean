@@ -41,7 +41,7 @@ variable {n : ℕ}
 /-- [1, Alg. 2]: for `ℓ ∈ D` the polyhedron's `x·ℓ` ranges over exactly `Z ∩ G`'s. -/
 theorem ContSet.dimReduce_tight {bound : Set (ℝ × ℝ) → ℝ → Real.Interval ℝ}
     (hb : ContSet.IsBoundIntersect2D bound) (Z : Set (Vec ℝ n)) (nv : Vec ℝ n) (γ : ℝ)
-    (D : Finset (Vec ℝ n)) (hne : ∃ x ∈ Z, x ⬝ᵥ nv = γ) {ℓ : Vec ℝ n} (hℓ : ℓ ∈ D) :
+    (D : Finset (Vec ℝ n)) (hne : ∃ x ∈ Z, x ⬝ᵥ nv = γ) {ℓ : Vec ℝ n} (hℓ : ℓ ∈ D) : -- --- STMT ---
     IsGreatest ((fun x => x ⬝ᵥ ℓ) '' ContSet.dimReduce bound Z nv γ D)
         (bound ((fun x : Vec ℝ n => (x ⬝ᵥ nv, x ⬝ᵥ ℓ)) '' Z) γ).sup
       ∧ IsLeast ((fun x => x ⬝ᵥ ℓ) '' ContSet.dimReduce bound Z nv γ D)

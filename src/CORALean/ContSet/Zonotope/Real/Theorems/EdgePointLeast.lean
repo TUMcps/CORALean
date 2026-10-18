@@ -42,7 +42,7 @@ theorem Zonotope.edge_point_least (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) (s : Fin
     (hB : ∀ b, s b = true → 0 ≤ σ * (Z.G b 0 * Z.G a 1 - Z.G b 1 * Z.G a 0))
     (hC : ∀ c, s c = false → c ≠ a → 0 ≤ σ * (Z.G a 0 * Z.G c 1 - Z.G a 1 * Z.G c 0))
     (haX : 0 < σ * Z.G a 0) {z : Vec ℝ 2}
-    (hz : z ∈ segment ℝ (Z.corner s) (Z.corner s + (2 : ℝ) • Z.G a)) :
+    (hz : z ∈ segment ℝ (Z.corner s) (Z.corner s + (2 : ℝ) • Z.G a)) : -- --- STMT ---
     z ∈ Z.construct ∧
       ∀ y' : ℝ, (![z 0, y'] : Vec ℝ 2) ∈ Z.construct → z 1 ≤ y' := by -- --- PROOF ---
   -- the far end of the edge is also a corner: `a` flipped to `+`

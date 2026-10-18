@@ -56,7 +56,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 n) (L : 
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
-    {e : Vec ℝ n} (he : e ∈ R₀.construct) (k : ℕ) :
+    {e : Vec ℝ n} (he : e ∈ R₀.construct) (k : ℕ) : -- --- STMT ---
     (M ^ k) *ᵥ e ∈
       (sys.observeIntervalStateFloat L R₀ W V u y k).Rx.construct := by -- --- PROOF ---
   induction k with
@@ -72,7 +72,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (L : M
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
     {d : Vec ℝ n}
-    (hd : d ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) :
+    (hd : d ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- STMT ---
     (M ^ k) *ᵥ d ∈
       (sys.observeIntervalStateFloat L R₀ W V u y k).D.construct := by -- --- PROOF ---
   induction k with
@@ -87,7 +87,7 @@ theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (L :
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
     (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
     (d : ℕ → Vec ℝ n)
-    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) :
+    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- STMT ---
     ∑ m ∈ Finset.range k, (M ^ m) *ᵥ d m ∈
       (sys.observeIntervalStateFloat L R₀ W V u y k).Rwv.construct := by -- --- PROOF ---
   induction k with
@@ -116,7 +116,7 @@ theorem LinearSysDT.observeIntervalFloat_outer (sys : LinearSysDT 𝕋 n) (L : M
     (h0 : x 0 - toRealVec R₀.c ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
     (hv : ∀ k, v k ∈ V.construct)
     (hstep : ∀ k, x (k + 1) = toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ toRealVec (u k) + w k)
-    (hy : ∀ k, toRealVec (y k) = toRealMat sys.C *ᵥ x k + v k) (k : ℕ) :
+    (hy : ∀ k, toRealVec (y k) = toRealMat sys.C *ᵥ x k + v k) (k : ℕ) : -- --- STMT ---
     x k ∈ (sys.observeIntervalFloat L R₀ W V u y k).construct := by -- --- PROOF ---
   set M : Mat ℝ n n := toRealMat sys.A - toRealMat L * toRealMat sys.C with hMdef
   have hM := LinearSysDT.errMatFloat_mem sys.A L sys.C

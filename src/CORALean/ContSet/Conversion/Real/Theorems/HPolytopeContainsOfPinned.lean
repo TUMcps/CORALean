@@ -40,7 +40,7 @@ those points, never that its search was exhaustive in any other sense. -/
 theorem HPolytope.contains_of_pinned (hc : IsCompact P.construct) (W : VPolytope (Vec ℝ n))
     (hW : ∀ x ∈ P.construct,
         (∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0) →
-        x ∈ Set.range W.V) :
+        x ∈ Set.range W.V) : -- --- STMT ---
     P.construct ⊆ W.construct := by -- --- PROOF ---
   have hext : P.construct.extremePoints ℝ ⊆ Set.range W.V := fun x hx =>
     hW x hx.1 fun _ h₁ h₂ => P.eq_zero_of_extremePoint hx h₁ h₂

@@ -42,7 +42,7 @@ variable {N m : ℕ}
 theorem GNN.alg1Node_h_le (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N)
     (hm : 1 ≤ m) (L : ℕ) (c : ℕ → ℕ) (W : ∀ s, Mat ℝ (c s) (c (s + 1)))
     (acts : ∀ s, GNN.ActLayer N (c (s + 1))) (ν : ℕ) (hadd : ∀ s, s < L → (acts s).AddsAtMost ν)
-    (X : PolyZonotope (Mat ℝ N (c 0))) :
+    (X : PolyZonotope (Mat ℝ N (c 0))) : -- --- STMT ---
     (GNN.alg1Node R A U L c W acts X).h + 1
       ≤ (((N + 2) * (N + 2) + 1) * (N + 2) + 2) ^ L * m ^ (3 * L)
         * (X.h + X.q + 1 + L * ν) := by -- --- PROOF ---

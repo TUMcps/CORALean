@@ -36,7 +36,7 @@ theorem SetUnion.mtimes_exact
     (hExact : ∀ {m n : ℕ} (M : 𝕄 m n) (s : S n),
       (⋃ A ∈ ContSet.construct M, (A *ᵥ ·) '' ContSet.construct s) =
         ContSet.construct (Mtimes.mtimes M s))
-    {m n : ℕ} (M : 𝕄 m n) (u : SetUnion (S n)) :
+    {m n : ℕ} (M : 𝕄 m n) (u : SetUnion (S n)) : -- --- STMT ---
     (⋃ A ∈ ContSet.construct M, (A *ᵥ ·) '' ContSet.construct u) =
       ContSet.construct (SetUnion.mtimes M u) := by -- --- PROOF ---
   refine Set.Subset.antisymm (SetUnion.mtimes_outer M u) ?_

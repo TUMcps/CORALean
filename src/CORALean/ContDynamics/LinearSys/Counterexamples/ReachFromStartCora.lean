@@ -55,7 +55,7 @@ def LinearSys.constantInputTimePoint (e pu0 : ℝ) : Nat → ℝ
 
 /-- With `e = 1` and `Pu_0 = 1` (`ẋ = 1`, `Δt = 1`) the set after step `k + 1` is `{1}`, and the
 state is `k + 1`: from the second step on the state is outside CORA's set. -/
-theorem LinearSys.fromStartTimePointCora_counterexample (k : Nat) :
+theorem LinearSys.fromStartTimePointCora_counterexample (k : Nat) : -- --- STMT ---
     LinearSys.fromStartTimePointCora 1 1 k = 1 ∧
       LinearSys.constantInputTimePoint 1 1 (k + 1) = (k : ℝ) + 1 ∧
       (1 ≤ k → LinearSys.constantInputTimePoint 1 1 (k + 1) ∉

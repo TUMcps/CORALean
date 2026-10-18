@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 
 theorem Zonotope.encloseManyBasisInv_mem (newGen : Vec 𝕋 (m + 1))
     (hg : ltStrict zero (newGen (Zonotope.encloseManyDropped newGen)) = true
-      ∨ ltStrict (newGen (Zonotope.encloseManyDropped newGen)) zero = true) :
+      ∨ ltStrict (newGen (Zonotope.encloseManyDropped newGen)) zero = true) : -- --- STMT ---
     ∃ A ∈ (Zonotope.encloseManyBasisInv newGen).construct,
       ∀ x : Vec ℝ (m + 1),
         toRealMat (Zonotope.encloseManyBasis newGen) *ᵥ (A *ᵥ x) = x := by -- --- PROOF ---

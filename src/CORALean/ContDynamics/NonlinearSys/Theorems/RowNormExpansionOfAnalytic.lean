@@ -87,7 +87,7 @@ theorem aux_analyticAt_row (A : ℝ → Mat ℝ n n) (G : ℝ → Mat ℝ n m)
 vanishes near `0`, or is `h^q` times a continuous non-vanishing factor. -/
 theorem rowNorm_expansion_of_analytic (A : ℝ → Mat ℝ n n) (G : ℝ → Mat ℝ n m)
     (hA : ∀ k l, AnalyticAt ℝ (fun t => A t k l) 0)
-    (hG : ∀ k l, AnalyticAt ℝ (fun t => G t k l) 0) (p : ℕ) (i : Fin n) :
+    (hG : ∀ k l, AnalyticAt ℝ (fun t => G t k l) 0) (p : ℕ) (i : Fin n) : -- --- STMT ---
     (∀ᶠ t in 𝓝 (0:ℝ), ∑ j, |(A t ^ p * G t) i j| = 0) ∨
       ∃ (q : ℕ) (a : Vec ℝ m) (b : ℝ → Vec ℝ m), a ≠ 0 ∧ b 0 = 0 ∧ b =O[𝓝 0] (fun t => t) ∧
         ContinuousAt (fun t => ∑ j, |a j + b t j|) 0 ∧

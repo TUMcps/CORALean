@@ -28,7 +28,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FourValuedSignal.fromKleeneSignal_spec
-    (kSig : KleeneSignal ℝ) (hk : kSig.IsValid) :
+    (kSig : KleeneSignal ℝ) (hk : kSig.IsValid) : -- --- STMT ---
     (FourValuedSignal.fromKleeneSignal kSig).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (FourValuedSignal.fromKleeneSignal kSig).at t =
         FourValued.fromKleene (kSig.at t) := by -- --- PROOF ---

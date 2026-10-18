@@ -84,7 +84,7 @@ open CORALean Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.isIntersecting_cora_counterexample :
+theorem Capsule.isIntersecting_cora_counterexample : -- --- STMT ---
     let C₁ : Capsule 2 := ⟨![0, 0], ![1, 0], 1 / 10⟩
     let C₂ : Capsule 2 := ⟨![1 / 2, 0], ![0, 1], 1 / 10⟩
     let IsQuadprog := fun quadprog : Mat ℝ 2 2 → Vec ℝ 2 → Vec ℝ 2 → Vec ℝ 2 → Vec ℝ 2 =>

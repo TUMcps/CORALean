@@ -62,7 +62,7 @@ theorem LinearSys.reachSet_subset_image_inputSolution (sys : LinearSys 𝕋 n) {
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder (toRealMat sys.A) r η) U))) :
+      (MatExp.inputRemainder (toRealMat sys.A) r η) U))) : -- --- STMT ---
     sys.reachSet T R₀ U r
       ⊆ (exp (r • toRealMat sys.A)).mulVecLin '' construct R₀
         + construct (sys.inputSolution r η U) := by -- --- PROOF ---

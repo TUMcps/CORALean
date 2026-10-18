@@ -77,7 +77,8 @@ theorem aux_exists_isGreatest (G : E₁ →ₗ[ℝ] W) (c : W) (H : E₂ →ₗ[
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ellipsotope_containmentRadius (G : E₁ →ₗ[ℝ] W) (c : W) (H : E₂ →ₗ[ℝ] W) (d : W) :
+theorem ellipsotope_containmentRadius (G : E₁ →ₗ[ℝ] W) (c : W) (H : E₂ →ₗ[ℝ] W)
+    (d : W) : -- --- STMT ---
     let Ê := {x | ∃ α : E₁, ‖α‖ ≤ 1 ∧ x = c + G α}
     let E := {x | ∃ β : E₂, ‖β‖ ≤ 1 ∧ x = d + H β}
     (LinearMap.range G ≤ LinearMap.range H ∧ c - d ∈ LinearMap.range H →

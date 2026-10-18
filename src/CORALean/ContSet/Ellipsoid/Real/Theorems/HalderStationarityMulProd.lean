@@ -37,7 +37,7 @@ variable {lam : ι → ℝ}
 
 /-- [1, Eq. 21]: [1, Eq. 18] times `∏ⱼ (1 + βλⱼ)` is `−p_{d+1}(β)`. -/
 theorem Ellipsoid.halderStationarity_mul_prod (hlam : ∀ i, 0 < lam i) {β : ℝ}
-    (hβ : 0 ≤ β) :
+    (hβ : 0 ≤ β) : -- --- STMT ---
     Ellipsoid.halderStationarity lam β * ∏ j, (1 + β * lam j)
       = -∑ i, (β ^ 2 * lam i - 1)
           * ∏ j ∈ Finset.univ.erase i, (β * lam j + 1) := by -- --- PROOF ---

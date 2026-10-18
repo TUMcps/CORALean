@@ -119,7 +119,7 @@ theorem aux_lrDual_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderCon
 theorem aux_lrDual_matrix_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (Z : Matrix (Fin l) (Fin m) ℝ)
     (h : ∀ X : Matrix (Fin l) (Fin m) ℝ,
-      ∑ i, ∑ j, Z i j * X i j ≤ ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖) :
+      ∑ i, ∑ j, Z i j * X i j ≤ ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖) : -- --- STMT ---
     ‖WithLp.toLp q' (fun i => ⨆ j, |Z i j|)‖ ≤ 1 := by -- --- PROOF ---
   refine aux_lrDual_dual_le_one q q' _ (fun i => Real.iSup_nonneg fun j => abs_nonneg _)
     fun w hw => ?_
@@ -153,7 +153,7 @@ theorem aux_lrDual_matrix_dual_le_one (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.Ho
 
 theorem lr_exists_dual (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
-    (hG : ∃ X₀ : Matrix (Fin l) (Fin m) ℝ, H * X₀ = G) :
+    (hG : ∃ X₀ : Matrix (Fin l) (Fin m) ℝ, H * X₀ = G) : -- --- STMT ---
     ∃ LR, IsLeast {N | ∃ X : Matrix (Fin l) (Fin m) ℝ, H * X = G ∧
         N = ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖} LR ∧
       ∃ Y : Matrix (Fin n) (Fin m) ℝ,

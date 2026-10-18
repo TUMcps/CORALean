@@ -52,7 +52,7 @@ theorem aux_leading_mem (A : Interval (Mat 𝕋 n n)) (t : 𝕋) {M : Mat ℝ n 
     (hm : ∀ i j, toReal (A.inf i j) ≤ M i j ∧ M i j ≤ toReal (A.sup i j))
     {fLo fHi : 𝕋} {i j : Fin n}
     (hf : toReal fLo ≤ toReal t + toReal t ^ 2 / 2 * (M i i + M j j))
-    (hf' : toReal t + toReal t ^ 2 / 2 * (M i i + M j j) ≤ toReal fHi) :
+    (hf' : toReal t + toReal t ^ 2 / 2 * (M i i + M j j) ≤ toReal fHi) : -- --- STMT ---
     toReal (if i = j then MatExp.quadTermLo t (A.inf i i) (A.sup i i)
         else Interval.mulLo (A.inf i j) (A.sup i j) fLo fHi)
       ≤ (if i = j then Real.MatExp.quadTerm (toReal t) (M i i)
@@ -73,7 +73,7 @@ theorem aux_leading_mem (A : Interval (Mat 𝕋 n n)) (t : 𝕋) {M : Mat ℝ n 
 
 /-- The directed sums of the corner hulls bracket the `k ≠ i, j` row-column sum. -/
 theorem aux_rowColSum_mem (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n} (hM : M ∈ A.construct)
-    (i j : Fin n) :
+    (i j : Fin n) : -- --- STMT ---
     toReal (sumDown fun k => if k = i ∨ k = j then (zero : 𝕋)
         else Interval.mulLo (A.inf i k) (A.sup i k) (A.inf k j) (A.sup k j))
       ≤ ∑ k ∈ Finset.univ \ ({i, j} : Finset (Fin n)), M i k * M k j

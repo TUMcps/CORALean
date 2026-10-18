@@ -33,7 +33,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.cubMapMixed_exact (T : Fin m → Fin n → Mat ℝ n n)
-    (pZ₁ pZ₂ pZ₃ : PolyZonotope (Vec ℝ n)) :
+    (pZ₁ pZ₂ pZ₃ : PolyZonotope (Vec ℝ n)) : -- --- STMT ---
     (fun x : (Vec ℝ n × Vec ℝ n) × Vec ℝ n => cubEvalMixed T x.1.1 x.1.2 x.2)
         '' ((pZ₁.construct ×ˢ pZ₂.construct) ×ˢ pZ₃.construct)
       = (cubMapMixed T pZ₁ pZ₂ pZ₃).construct := by -- --- PROOF ---

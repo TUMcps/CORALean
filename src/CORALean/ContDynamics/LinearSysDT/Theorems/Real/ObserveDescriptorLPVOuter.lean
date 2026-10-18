@@ -50,7 +50,7 @@ theorem LinearSysDT.observeDescriptorLPV_outer (E T : Mat ℝ n n) (N : Mat ℝ 
     (hb : ∀ k i, |b k i| ≤ 1)
     (hstep : ∀ k, E *ᵥ x (k + 1) = (∑ j, ρ k j • A j) *ᵥ x k + (∑ j, ρ k j • B j) *ᵥ u k +
       (∑ j, ρ k j • D j) *ᵥ (Hd *ᵥ b k))
-    (hy : ∀ k, y k = C *ᵥ x k + F *ᵥ (Hd *ᵥ b k)) (k : ℕ) :
+    (hy : ∀ k, y k = C *ᵥ x k + F *ᵥ (Hd *ᵥ b k)) (k : ℕ) : -- --- STMT ---
     x k ∈ (LinearSysDT.observeDescriptorLPV T N C F Hd A B D Λ ρ red X₀ u y
       k).construct := by -- --- PROOF ---
   induction k with

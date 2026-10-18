@@ -81,7 +81,7 @@ theorem LinParamSys.inputReach_subset_particularSolutionFloat
     {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {U : Zonotope (Vec 𝕋 n)}
     (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ} {P : Zonotope (Vec 𝕋 n)}
     (hP : sys.particularSolutionFloat Δt η ρ U k = some P) {t : ℝ} (ht0 : 0 ≤ t)
-    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * toReal Δt) :
+    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * toReal Δt) : -- --- STMT ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t
       ⊆ P.construct := by -- --- PROOF ---
   set L : LinearSys ℝ n := LinearSys.canonical A

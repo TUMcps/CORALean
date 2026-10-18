@@ -49,7 +49,7 @@ theorem HPolytope.ahPolytope_subset_convexHull_of_cert {qy : Fin N → ℕ} {xba
     {Λ : (i : Fin N) → Mat ℝ (qy i) qx} {lam : Fin N → ℝ} {β : Fin N → Vec ℝ n}
     {Γ : Fin N → Mat ℝ n nx} (hΛ : ∀ i j k, 0 ≤ Λ i j k) (hlam : ∀ i, 0 ≤ lam i)
     (h1 : ∀ i, Λ i * Hx = Hy i * Γ i) (h2 : ∀ i, Λ i *ᵥ hx ≤ lam i • hy i + Hy i *ᵥ β i)
-    (hsum : ∑ i, lam i = 1) (hc : ∑ i, -β i = xbar) (hX : ∑ i, Γ i = X) :
+    (hsum : ∑ i, lam i = 1) (hc : ∑ i, -β i = xbar) (hX : ∑ i, Γ i = X) : -- --- STMT ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
       ⊆ convexHull ℝ (⋃ i, (HPolytope.ineqs (Hy i) (hy i)).construct) := by -- --- PROOF ---
   rintro _ ⟨p, hp, rfl⟩

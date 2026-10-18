@@ -48,7 +48,7 @@ theorem explanationRefineLoop_iff {f : Vec ℝ n → Vec ℝ m} {x : Vec ℝ n} 
     {absSuff genuine : ℕ → Finset (Fin n) → Bool} {N : ℕ}
     (habs : ∀ k E, absSuff k E = true → IsSuffExplanation f x ε E l)
     (hgen : ∀ k E, genuine k E = true → ¬ IsSuffExplanation f x ε E l)
-    (hlast : ∀ E, IsSuffExplanation f x ε E l → absSuff N E = true) :
+    (hlast : ∀ E, IsSuffExplanation f x ε E l → absSuff N E = true) : -- --- STMT ---
     ∀ (r k : ℕ), k + r = N → ∀ E : Finset (Fin n),
       (explanationRefineLoop absSuff genuine E k r = true
         ↔ IsSuffExplanation f x ε E l) := by -- --- PROOF ---

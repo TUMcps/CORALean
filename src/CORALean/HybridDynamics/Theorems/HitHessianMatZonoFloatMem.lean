@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `C + κG = C̲ + E + κG̲` with `E` in `[−(Ḡ − G̲), (C̄ − C̲) + (Ḡ − G̲)]`, for `C`, `G` in their
 interval matrices and `|κ| ≤ 1`. -/
 theorem aux_hessF_box (C G : Interval (Mat 𝕋 n n)) {Cr Gr : Mat ℝ n n} (hC : Cr ∈ C.construct)
-    (hG : Gr ∈ G.construct) {κ : ℝ} (hκ : |κ| ≤ 1) :
+    (hG : Gr ∈ G.construct) {κ : ℝ} (hκ : |κ| ≤ 1) : -- --- STMT ---
     ∃ E ∈ (⟨fun l m => neg (subUp (G.sup l m) (G.inf l m)),
         fun l m => addUp (subUp (C.sup l m) (C.inf l m)) (subUp (G.sup l m) (G.inf l m))⟩ :
           Interval (Mat 𝕋 n n)).construct,
@@ -80,7 +80,7 @@ theorem aux_hessF_box (C G : Interval (Mat 𝕋 n n)) {Cr Gr : Mat ℝ n n} (hC 
 /-- [1, Prop. 3] at floats: the exact matrix zonotope's point at `(κ, 0, 0)` is the float one's
 plus a point of its error box. -/
 theorem GuardMap.hitHessianMatZonoFloat_mem (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
-    (R₀ : Zonotope (Vec 𝕋 n)) (τc τg : 𝕋) (i : Fin n) {κ : ℝ} (hκ : |κ| ≤ 1) :
+    (R₀ : Zonotope (Vec 𝕋 n)) (τc τg : 𝕋) (i : Fin n) {κ : ℝ} (hκ : |κ| ≤ 1) : -- --- STMT ---
     ∃ E ∈ (GuardMap.hitHessianMatZonoFloat A b nv d R₀ τc τg i).I_error.construct,
       (GuardMap.hitHessianMatZono (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d)
           (⟨R₀.h, toRealVec R₀.c, fun j => toRealVec (R₀.G j)⟩ : Real.Zonotope (Vec ℝ n))

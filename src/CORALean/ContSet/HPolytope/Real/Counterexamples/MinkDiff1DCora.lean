@@ -72,7 +72,7 @@ noncomputable def HPolytope.minkDiff1DCora (P_ S_ : HPolytope (Vec ℝ 1)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.minkDiff1DCora_counterexample :
+theorem HPolytope.minkDiff1DCora_counterexample : -- --- STMT ---
     let P_ : HPolytope (Vec ℝ 1) :=
       ⟨2, ![LinearMap.proj 0, -LinearMap.proj 0], ![1, 1], 0, Fin.elim0, Fin.elim0⟩
     let S_ : HPolytope (Vec ℝ 1) := ⟨1, ![LinearMap.proj 0], ![0], 0, Fin.elim0, Fin.elim0⟩

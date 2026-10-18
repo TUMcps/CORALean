@@ -44,7 +44,7 @@ open Set Matrix
 
 /-- Both components of (18) are `[-1, 1]` for the rotated flow, and their box is not in its
 image. -/
-theorem kaucherInnerStep_box_counterexample :
+theorem kaucherInnerStep_box_counterexample : -- --- STMT ---
     let φ : (Fin 2 → ℝ) → (Fin 2 → ℝ) := fun x => ![(x 0 + x 1) / 2, (x 1 - x 0) / 2]
     let J : Mat ℝ 2 2 := !![1 / 2, 1 / 2; -1 / 2, 1 / 2]
     let s := kaucherInnerStep (fun _ => 0) (fun _ => 0) J J (fun _ => -1) (fun _ => 1)

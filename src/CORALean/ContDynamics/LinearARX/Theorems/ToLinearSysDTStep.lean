@@ -45,7 +45,7 @@ theorem LinearARX.toLinearSysDT_step (sys : LinearARX 𝕋 dy du p) {y : ℕ →
     {u : ℕ → Vec ℝ du}
     (hy : ∀ k, p ≤ k →
       y k = ∑ i : Fin p, toRealMat (sys.Abar i) *ᵥ y (k - (i + 1))
-        + ∑ j : Fin (p + 1), toRealMat (sys.Bbar j) *ᵥ u (k - j)) (k : ℕ) :
+        + ∑ j : Fin (p + 1), toRealMat (sys.Bbar j) *ᵥ u (k - j)) (k : ℕ) : -- --- STMT ---
     LinearARX.stack p y (k + 1)
       = toRealMat sys.toLinearSysDT.A *ᵥ LinearARX.stack p y k + sys.feed u k := by -- --- PROOF ---
   funext r

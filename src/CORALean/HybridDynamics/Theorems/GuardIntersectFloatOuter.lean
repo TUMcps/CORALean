@@ -61,7 +61,7 @@ theorem Location.guardIntersectFloat_outer
     (guard : HPolytope 𝕋 (Vec 𝕋 n)) {Rs : List (Zonotope (Vec 𝕋 n))}
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ Rs)
     {x : Vec ℝ n} (hx : x ∈ construct R) (hinv : x ∈ construct ℓ.inv)
-    (hguard : x ∈ construct guard) :
+    (hguard : x ∈ construct guard) : -- --- STMT ---
     ∃ Rg, ℓ.guardIntersectFloat guard Rs = some Rg ∧ x ∈ Rg.construct := by -- --- PROOF ---
   -- the cut of `R` holds `x`, so it is not certified empty
   set J := guard.contractBox (ℓ.inv.contractBox R.interval) with hJ

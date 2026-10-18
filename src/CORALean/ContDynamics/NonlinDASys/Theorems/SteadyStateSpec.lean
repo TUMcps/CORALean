@@ -36,7 +36,7 @@ theorem NonlinDASys.steadyState_spec (sys : NonlinDASys n p m)
     (A : Vec ℝ n → Vec ℝ p → Vec ℝ m → Mat ℝ n n) (C : Vec ℝ n → Vec ℝ p → Vec ℝ m → Mat ℝ n p)
     (D : Vec ℝ n → Vec ℝ p → Vec ℝ m → Mat ℝ p n) (F : Vec ℝ n → Vec ℝ p → Vec ℝ m → Mat ℝ p p)
     (tol : ℝ) (fuel : ℕ) (x₀ : Vec ℝ n) (y₀ : Vec ℝ p) (u₀ : Vec ℝ m) (x' : Vec ℝ n)
-    (y' : Vec ℝ p) (h : sys.steadyState A C D F tol fuel x₀ y₀ u₀ = some (x', y')) :
+    (y' : Vec ℝ p) (h : sys.steadyState A C D F tol fuel x₀ y₀ u₀ = some (x', y')) : -- --- STMT ---
     ∃ (x : Vec ℝ n) (y : Vec ℝ p) (Δx : Vec ℝ n) (Δy : Vec ℝ p), x' = x + Δx ∧ y' = y + Δy ∧
       Real.sqrt (∑ i, Δx i ^ 2 + ∑ j, Δy j ^ 2) < tol ∧
       (IsUnit (Matrix.fromBlocks (A x y u₀) (C x y u₀) (D x y u₀) (F x y u₀)).det →

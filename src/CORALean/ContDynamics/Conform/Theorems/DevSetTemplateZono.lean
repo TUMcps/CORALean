@@ -47,7 +47,7 @@ variable {n p q : ℕ}
 theorem Conform.Plant.devSet_templateZono (sys : Conform.Plant n p q) {ιX ιW ιV : Type}
     [Fintype ιX] [Fintype ιW] [Fintype ιV] (cX : Vec ℝ n) (GX : ιX → Vec ℝ n) (αX : ιX → ℝ)
     (cW : Vec ℝ n) (GW : ιW → Vec ℝ n) (αW : ιW → ℝ) (cV : Vec ℝ q) (GV : ιV → Vec ℝ q)
-    (αV : ιV → ℝ) (k : ℕ) :
+    (αV : ιV → ℝ) (k : ℕ) : -- --- STMT ---
     sys.devSet (Conform.templateZono cX GX αX) (Conform.templateZono cW GW αW)
         (Conform.templateZono cV GV αV) k
       = Conform.templateZono

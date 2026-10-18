@@ -40,7 +40,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinParamSys.IsConstTrajectory.toAugment {sys : NonlinParamSys n m q} {T : Set ℝ}
     {R₀ : S n} {U : S m} {P : S q} {Z₀ : S (n + q)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {p : Vec ℝ q} (traj : sys.IsConstTrajectory T R₀ U P x u p)
-    (hZ : ∀ v ∈ construct R₀, ∀ w ∈ construct P, Fin.append v w ∈ construct Z₀) :
+    (hZ : ∀ v ∈ construct R₀, ∀ w ∈ construct P, Fin.append v w ∈ construct Z₀) : -- --- STMT ---
     sys.augment.IsTrajectory T Z₀ U (fun t => Fin.append (x t) p) u := by -- --- PROOF ---
   refine ⟨hZ (x 0) traj.init p traj.param, traj.input, fun t ht => ?_⟩
   -- the two halves of the augmented state read back as `x t` and `p`

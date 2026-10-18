@@ -45,7 +45,7 @@ reals. `E'` is passed rather than computed, so the caller's own field is what
 appears in the result. -/
 theorem ConPolyZono.merge {p d h : ℕ} (E : Fin p → Fin h → ℕ) (G : Mat 𝕋 d h)
     (a : Fin p → ℝ) (E' : Fin p → Fin (PolyZonotope.repKeep E).card → ℕ)
-    (hE' : ∀ k j, E' k j = E k (PolyZonotope.keepIdx E j)) (i : Fin d) :
+    (hE' : ∀ k j, E' k j = E k (PolyZonotope.keepIdx E j)) (i : Fin d) : -- --- STMT ---
     (∑ l, toReal (G i l) * Real.PolyZonotope.monomial E a l)
       = ∑ j : Fin (PolyZonotope.repKeep E).card,
           Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep E)

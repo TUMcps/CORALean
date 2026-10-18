@@ -28,7 +28,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.orientBounds_le (p q r : Vec 𝕋 2) :
+theorem Polygon.orientBounds_le (p q r : Vec 𝕋 2) : -- --- STMT ---
     toReal (Polygon.orientBounds p q r).inf
         ≤ (toReal (q 0) - toReal (p 0)) * (toReal (r 1) - toReal (p 1))
           - (toReal (q 1) - toReal (p 1)) * (toReal (r 0) - toReal (p 0))

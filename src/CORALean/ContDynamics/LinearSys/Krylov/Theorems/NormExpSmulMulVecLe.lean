@@ -48,7 +48,7 @@ variable {n : ℕ}
 `s ≥ 0`. -/
 theorem Krylov.norm_exp_smul_mulVec_le (M : Mat ℂ n n)
     (hM : ∀ x : Fin n → ℂ, (star x ⬝ᵥ (M *ᵥ x)).re ≤ 0) (x : Fin n → ℂ) {s : ℝ}
-    (hs : 0 ≤ s) :
+    (hs : 0 ≤ s) : -- --- STMT ---
     ‖(WithLp.toLp 2 (exp (s • M) *ᵥ x) : EuclideanSpace ℂ (Fin n))‖ ≤
       ‖(WithLp.toLp 2 x : EuclideanSpace ℂ (Fin n))‖ := by -- --- PROOF ---
   -- `B ↦ Bx`, into Euclidean space, as a continuous ℝ-linear map

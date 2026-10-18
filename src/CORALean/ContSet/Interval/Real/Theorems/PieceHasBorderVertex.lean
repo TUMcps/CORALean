@@ -46,7 +46,7 @@ theorem Interval.piece_has_border_vertex {b : Vec ℝ n} (hb0 : ∀ i, 0 ≤ b i
       (fun i => if (i : ℕ) < j then p i else decide ((i : ℕ) < k)) x ≤ α)
     (hnext : α < ∑ x, (⟨0, b⟩ : Interval (Vec ℝ n)).corner
       (fun i => if (i : ℕ) < j then p i else decide ((i : ℕ) < k + 1)) x)
-    {i : ℕ} (hji : j ≤ i) (hik : i < k) :
+    {i : ℕ} (hji : j ≤ i) (hik : i < k) : -- --- STMT ---
     ∃ u ∈ Interval.prefixFace (i + 1) (fun m => if (m : ℕ) = i then false else
         if (m : ℕ) < j then p m else decide ((m : ℕ) < k)),
       ∑ x, (⟨0, b⟩ : Interval (Vec ℝ n)).corner u x ≤ α ∧

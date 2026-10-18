@@ -34,7 +34,7 @@ variable {n : ℕ}
 /-- A point every box of the list holds, and the start holds, is in the fold. -/
 theorem ZonoBundle.aux_foldl_intersection (zB : ZonoBundle (Vec ℝ n))
     (L : List (Fin zB.k)) (I : Interval (Vec ℝ n)) {x : Vec ℝ n} (hI : x ∈ I.construct)
-    (hL : ∀ i ∈ L, x ∈ (zB.interval i).construct) :
+    (hL : ∀ i ∈ L, x ∈ (zB.interval i).construct) : -- --- STMT ---
     x ∈ (L.foldl (fun I i => Interval.intersection I (zB.interval i))
       I).construct := by -- --- PROOF ---
   induction L generalizing I with

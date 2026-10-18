@@ -65,7 +65,7 @@ theorem Interval.aux_le_ratioHi (k s : ℕ) (hs : 0 < s) (hk : k ≤ s) :
 
 /-- One coordinate: the real piece `[a + k d, a + (k + 1) d]`, `d = (b - a) / s`, is inside the
 float one. -/
-theorem Interval.aux_partition_piece (a b : 𝕋) (s k : ℕ) (hs : 0 < s) (hk : k < s) :
+theorem Interval.aux_partition_piece (a b : 𝕋) (s k : ℕ) (hs : 0 < s) (hk : k < s) : -- --- STMT ---
     toReal (addDown a (Interval.mulLo
         (divDown (nsmulDown k (one : 𝕋)) (nsmulUp s (one : 𝕋)))
         (subUp one (divDown (nsmulDown (s - k) (one : 𝕋)) (nsmulUp s (one : 𝕋))))

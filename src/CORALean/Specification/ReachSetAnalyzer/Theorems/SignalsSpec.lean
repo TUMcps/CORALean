@@ -31,7 +31,7 @@ variable {S : ℕ → Type} {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSetAnalyzer.signals_spec (obj : ReachSetAnalyzer S n) (d : ℝ)
-    (PT PF : String → ℝ → Prop) (hobj : obj.Represents d PT PF) :
+    (PT PF : String → ℝ → Prop) (hobj : obj.Represents d PT PF) : -- --- STMT ---
     ∃ sigs, obj.signals = some sigs ∧ List.Forall₂ (fun p q => q.1 = p.1 ∧ q.2.IsValid ∧
       q.2.duration = d ∧ ∀ t : ℝ, 0 ≤ t → t ≤ d → ∃ v, q.2.at? t = some v ∧
         (v = Kleene.tt ↔ PT p.1 t ∧ ¬ PF p.1 t) ∧ (v = Kleene.ff ↔ PF p.1 t ∧ ¬ PT p.1 t))

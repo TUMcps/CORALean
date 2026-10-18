@@ -57,7 +57,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The substituted form at one time: `closedForm`, with `e^{ρA}` cancelled. -/
 theorem aux_expNeg_mulVec_eq {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
     {x u : ℝ → Vec ℝ n} {b ρ : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
-    (hT : Set.Icc 0 b ⊆ T) (hU : Bornology.IsBounded (construct U)) (hρ : ρ ∈ Set.Icc 0 b) :
+    (hT : Set.Icc 0 b ⊆ T) (hU : Bornology.IsBounded (construct U))
+    (hρ : ρ ∈ Set.Icc 0 b) : -- --- STMT ---
     exp ((-ρ) • toRealMat sys.A) *ᵥ x ρ
       = x 0 + ∫ s in (0:ℝ)..ρ, exp ((-s) • toRealMat sys.A) *ᵥ u s := by -- --- PROOF ---
   have hb : 0 ≤ b := hρ.1.trans hρ.2
@@ -76,7 +77,8 @@ theorem aux_expNeg_mulVec_eq {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S 
 /-- The substituted form over a window: the difference of the two primitives. -/
 theorem aux_expNeg_mulVec_sub {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n}
     {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
-    (hT : Set.Icc 0 b ⊆ T) (ha : 0 ≤ a) (hab : a ≤ b) (hU : Bornology.IsBounded (construct U)) :
+    (hT : Set.Icc 0 b ⊆ T) (ha : 0 ≤ a) (hab : a ≤ b)
+    (hU : Bornology.IsBounded (construct U)) : -- --- STMT ---
     exp ((-b) • toRealMat sys.A) *ᵥ x b - exp ((-a) • toRealMat sys.A) *ᵥ x a
       = ∫ s in a..b, exp ((-s) • toRealMat sys.A) *ᵥ u s := by -- --- PROOF ---
   rw [aux_expNeg_mulVec_eq traj hT hU ⟨ha.trans hab, le_rfl⟩,
@@ -94,7 +96,7 @@ the integral equation is anchored. -/
 theorem LinearSys.IsCanonicalTrajectory.variation_of_constants {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
     (hT : Set.Icc 0 b ⊆ T) (ha : 0 ≤ a) (hab : a ≤ b)
-    (hU : Bornology.IsBounded (construct U)) :
+    (hU : Bornology.IsBounded (construct U)) : -- --- STMT ---
     x b = exp ((b - a) • toRealMat sys.A) *ᵥ x a
       + ∫ s in a..b, exp ((b - s) • toRealMat sys.A) *ᵥ u s := by -- --- PROOF ---
   set A := toRealMat sys.A

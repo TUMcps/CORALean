@@ -38,7 +38,7 @@ theorem Taylm.globalMin_le {f : Vec ℝ n → ℝ} {lb : (Fin n → Interval ℝ
     {Good : (Fin n → Interval ℝ) → Prop}
     (hgood : ∀ B β, Good B → Good (Taylm.halveBox B β).1 ∧ Good (Taylm.halveBox B β).2)
     (hlb : ∀ B, Good B → ∀ t, Taylm.InBox B t → lb B ≤ f t) {X : Fin n → Interval ℝ} (hX : Good X)
-    (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) :
+    (fuel : ℕ) {t : Vec ℝ n} (ht : Taylm.InBox X t) : -- --- STMT ---
     (Taylm.globalMin lb ub X fuel).inf ≤ f t := by -- --- PROOF ---
   -- every point is in a live box, or above the cutoff; every live box is good
   have inv : ∀ fuel (st : List (Fin n → Interval ℝ) × ℝ), (∀ B ∈ st.1, Good B) →

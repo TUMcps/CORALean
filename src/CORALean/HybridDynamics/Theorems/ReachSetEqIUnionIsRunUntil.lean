@@ -33,7 +33,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.reachSet_eq_iUnion_isRunUntil (HA : HybridAutomaton S G L 𝕋 n)
-    (R₀ : S n) (ℓ₀ ℓ : L) :
+    (R₀ : S n) (ℓ₀ ℓ : L) : -- --- STMT ---
     HA.reachSet R₀ ℓ₀ ℓ
       = ⋃ (T : ℝ) (k : ℕ),
         {y | ∃ x ∈ construct R₀, HA.IsRunUntil T k ℓ₀ x ℓ y} := by -- --- PROOF ---

@@ -51,7 +51,7 @@ theorem LinParamSys.timeIntervalStepZono_outer (sys : LinParamSys 𝕄𝒵 n) {r
       / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hεF : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (X₀ : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {t : ℝ}
-    (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
     (fun x₀ => exp (t • A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.timeIntervalStepZono r (m + 2) X₀) := by -- --- PROOF ---
   rintro y ⟨x₀, hx₀, rfl⟩

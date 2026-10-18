@@ -28,7 +28,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.indicator_spec (I : STLInterval)
-    (val default : Bool) :
+    (val default : Bool) : -- --- STMT ---
     (PointSegmentSignal.indicator I val default).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (PointSegmentSignal.indicator I val default).at t = val) ∧
       (t ∉ I.set →

@@ -39,7 +39,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.cloud2zonotopeCora_zeroGenerator :
+theorem Zonotope.cloud2zonotopeCora_zeroGenerator : -- --- STMT ---
     ∃ (pts : Fin 2 → Vec ℝ 2) (u : Vec ℝ 2),
       ‖u‖₂ = 1 ∧ (∑ j, (u ⬝ᵥ pts j) ^ 2 = ∑ j, ‖pts j‖₂ ^ 2) ∧ (∃ j, u ⬝ᵥ pts j ≠ 0) ∧
       u ⬝ᵥ (Interval.enclosePoints pts).radius = 0 ∧

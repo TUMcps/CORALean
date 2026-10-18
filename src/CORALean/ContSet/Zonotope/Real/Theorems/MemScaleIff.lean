@@ -71,7 +71,7 @@ theorem aux_mem_stretch {n : ℕ} {κ : Type} (Z : Zonotope (Vec ℝ (n + 1)))
     (hN : ∀ S : Fin n → Fin Z.h, ∃ (i₁ i₂ : κ) (lam : ℝ), 0 < lam ∧
       N i₁ = lam • Z.facetNormal S ∧ N i₂ = -(lam • Z.facetNormal S))
     (α : Fin Z.h → ℝ) (hα : ∀ j, 0 ≤ α j) (y : Vec ℝ (n + 1))
-    (hy : ∀ i, N i ⬝ᵥ (y - Z.c) ≤ ∑ j, |N i ⬝ᵥ Z.G j| * α j) (ε : ℝ) (hε : 0 < ε) :
+    (hy : ∀ i, N i ⬝ᵥ (y - Z.c) ≤ ∑ j, |N i ⬝ᵥ Z.G j| * α j) (ε : ℝ) (hε : 0 < ε) : -- --- STMT ---
     ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧
       y = Z.c + ∑ j, β j • (α j + ε) • Z.G j := by -- --- PROOF ---
   let Zε : Zonotope (Vec ℝ (n + 1)) := ⟨Z.h, Z.c, fun j => (α j + ε) • Z.G j⟩
@@ -121,7 +121,7 @@ theorem Zonotope.mem_scale_iff {n : ℕ} {κ : Type} (Z : Zonotope (Vec ℝ (n +
     (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) (N : κ → Vec ℝ (n + 1))
     (hN : ∀ S : Fin n → Fin Z.h, ∃ (i₁ i₂ : κ) (lam : ℝ), 0 < lam ∧
       N i₁ = lam • Z.facetNormal S ∧ N i₂ = -(lam • Z.facetNormal S))
-    (α : Fin Z.h → ℝ) (hα : ∀ j, 0 ≤ α j) (y : Vec ℝ (n + 1)) :
+    (α : Fin Z.h → ℝ) (hα : ∀ j, 0 ≤ α j) (y : Vec ℝ (n + 1)) : -- --- STMT ---
     y ∈ (⟨Z.h, Z.c, fun j => α j • Z.G j⟩ : Zonotope (Vec ℝ (n + 1))).construct ↔
       ∀ i, N i ⬝ᵥ (y - Z.c) ≤ ∑ j, |N i ⬝ᵥ Z.G j| * α j := by -- --- PROOF ---
   constructor

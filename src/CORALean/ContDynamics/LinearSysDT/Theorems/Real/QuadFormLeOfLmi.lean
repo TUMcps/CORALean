@@ -58,7 +58,8 @@ theorem LinearSysDT.quadForm_le_of_lmi (G : Fin q → Mat ℝ n n) (F : Mat ℝ 
           (fromRows (Fᵀ * P - Fᵀ * vecMulVec c Y) (Matrix.of fun _ j => Y j * φ))
       (fromBlocks (fromBlocks (β • P) 0 0 (fromBlocks (Fᵀ * F) 0 0 (Matrix.of fun _ _ => φ ^ 2)))
         Ξ Ξᵀ P).PosSemidef)
-    (A : Mat ℝ n n) (hA : A ∈ convexHull ℝ (Set.range G)) (θ : Vec ℝ n) (γ : Vec ℝ m) (η : ℝ) :
+    (A : Mat ℝ n n) (hA : A ∈ convexHull ℝ (Set.range G)) (θ : Vec ℝ n) (γ : Vec ℝ m)
+    (η : ℝ) : -- --- STMT ---
     let l := P⁻¹ *ᵥ Y
     let κ : Mat ℝ n n := 1 - vecMulVec l c
     let e := κ *ᵥ (A *ᵥ θ) + κ *ᵥ (F *ᵥ γ) + (φ * η) • l

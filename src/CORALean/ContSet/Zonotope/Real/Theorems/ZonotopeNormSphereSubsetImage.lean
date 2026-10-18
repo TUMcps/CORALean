@@ -33,7 +33,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.zonotopeNorm_sphere_subset_image :
+theorem Zonotope.zonotopeNorm_sphere_subset_image : -- --- STMT ---
     (∀ (n : ℕ) (Z : Zonotope (Vec ℝ n)), Function.Surjective Z.genMap → ∀ x,
       Z.zonotopeNorm x = 1 → ∃ γ, ‖γ‖ = 1 ∧ Z.genMap γ = x) ∧
     ∃ Z : Zonotope (Vec ℝ 1), Function.Surjective Z.genMap ∧

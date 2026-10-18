@@ -37,7 +37,7 @@ theorem findRegionPolys_cover {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxati
     {pStart pEnd : RegionPoly 𝕋} (hs : pStart.lo = none ∧ pStart.hi = some lMax)
     (he : pEnd.lo = some uMax ∧ pEnd.hi = none) (hS : pStart.Encloses σ) (hE : pEnd.Encloses σ)
     {regions : List (RegionPoly 𝕋)}
-    (h : findRegionPolys F order tol fuel lMax uMax pStart pEnd = some regions) :
+    (h : findRegionPolys F order tol fuel lMax uMax pStart pEnd = some regions) : -- --- STMT ---
     (∀ t, ∃ r ∈ regions, r.covers t ∧
         |σ t - Real.evalPoly (fun k => toReal (r.coeffs k)) t| ≤ toReal r.err) ∧
       ∀ r ∈ regions, r = pStart ∨ r = pEnd ∨ toReal r.err ≤ toReal tol := by -- --- PROOF ---

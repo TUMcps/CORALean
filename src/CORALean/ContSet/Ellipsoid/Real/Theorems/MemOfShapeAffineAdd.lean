@@ -75,7 +75,7 @@ theorem Ellipsoid.aux_two_dot_le {P : Mat ℝ n n} (hP : P.PosDef) (a e : Vec �
 theorem Ellipsoid.mem_ofShape_affine_add {Q : Mat ℝ n n} (hQ : Q.PosDef) {W : Mat ℝ m m}
     (hW : W.PosDef) (M : Mat ℝ m n) {p : ℝ} (hp0 : 0 < p) (hp1 : p < 1) (c : Vec ℝ n)
     (u : Vec ℝ m) {x : Vec ℝ n} {w : Vec ℝ m} (hx : x ∈ (Ellipsoid.ofShape Q c).construct)
-    (hw : w ∈ (Ellipsoid.ofShape W 0).construct) :
+    (hw : w ∈ (Ellipsoid.ofShape W 0).construct) : -- --- STMT ---
     ((1 - p)⁻¹ • (M * Q * Mᵀ) + p⁻¹ • W).PosDef ∧
       M *ᵥ x + u + w ∈ (Ellipsoid.ofShape ((1 - p)⁻¹ • (M * Q * Mᵀ) + p⁻¹ • W)
         (M *ᵥ c + u)).construct := by -- --- PROOF ---

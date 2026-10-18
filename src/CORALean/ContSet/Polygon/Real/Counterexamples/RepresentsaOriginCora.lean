@@ -51,7 +51,7 @@ noncomputable def Polygon.representsaOriginCora (P : Polygon) : Bool :=
 
 /-- The empty polygon denotes `∅`; CORA nevertheless answers `'origin'` with `true`, though the
 set is not `{0}`, and answers `'emptySet'` with `true` as well. -/
-theorem Polygon.representsa_origin_cora_counterexample :
+theorem Polygon.representsa_origin_cora_counterexample : -- --- STMT ---
     Polygon.representsaOriginCora ⟨[]⟩ = true ∧
       Polygon.representsaEmptySet ⟨[]⟩ = true ∧
       ContSet.construct (⟨[]⟩ : Polygon) = (∅ : Set (Vec ℝ 2)) ∧

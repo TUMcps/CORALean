@@ -123,7 +123,7 @@ theorem NonlinearSys.linReachTensor3Cora2D_index_counterexample
     (quad : (Fin 2 → Real.Interval ℝ) → Matrix (Fin 2) (Fin 2) (Real.Interval ℝ) → Real.Interval ℝ)
     (imul : Real.Interval ℝ → Real.Interval ℝ → Real.Interval ℝ)
     (hquad : ∀ dz, quad dz (Matrix.of fun _ _ => ⟨0, 0⟩) = ⟨0, 0⟩)
-    (himul : ∀ a, imul ⟨0, 0⟩ a = ⟨0, 0⟩) (Δt : ℝ) (hΔt : 0 < Δt) (fuel : ℕ) :
+    (himul : ∀ a, imul ⟨0, 0⟩ a = ⟨0, 0⟩) (Δt : ℝ) (hΔt : 0 < Δt) (fuel : ℕ) : -- --- STMT ---
     let f : (Fin 2 → ℝ) → Fin 2 → ℝ := fun x => ![x 1 ^ 3, 0]
     let jac : (Fin 2 → ℝ) → Matrix (Fin 2) (Fin 2) ℝ := fun x => !![0, 3 * x 1 ^ 2; 0, 0]
     let hess : (Fin 2 → ℝ) → Fin 2 → Matrix (Fin 2) (Fin 2) ℝ :=

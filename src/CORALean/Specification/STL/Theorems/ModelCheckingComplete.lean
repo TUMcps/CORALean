@@ -37,7 +37,8 @@ variable {X : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.model_checking_complete_sampled {c : ℝ≥0} (hc : 0 < c) (s : STL.Samp X) :
+theorem STL.model_checking_complete_sampled {c : ℝ≥0} (hc : 0 < c)
+    (s : STL.Samp X) : -- --- STMT ---
     ∃ cnf : STL.CNF X, (∀ clause ∈ cnf, (clause.map STL.Branch.j).Nodup) ∧
       ∀ (T : Finset ℝ≥0) (R : ℝ≥0 → Set X), (∀ t, (R t).Nonempty) →
         ReachSequence.FinRep T R → ReachSequence.CDivisible c T →

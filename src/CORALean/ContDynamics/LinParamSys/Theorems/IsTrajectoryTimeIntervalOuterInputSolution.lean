@@ -67,7 +67,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_inputSolution {sys 
       (MatExp.intervalInputRemainder sys.A r (m + 2)) V)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.intervalInputRemainder sys.A r (m + 2)) V)))
-    (h0 : (0 : Vec ℝ n) ∈ construct V) :
+    (h0 : (0 : Vec ℝ n) ∈ construct V) : -- --- STMT ---
     x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
       (sys.inputSolution r (m + 2) V)) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩

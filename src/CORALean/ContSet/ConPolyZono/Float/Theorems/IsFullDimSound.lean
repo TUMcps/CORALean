@@ -78,7 +78,8 @@ theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Ma
     (hsat : cPZ.satisfies (fun _ => 0)) {y₀ : Vec ℝ n}
     (hy₀ : y₀ = (nominal cPZ).c
       + ∑ i, Real.PolyZonotope.monomial (nominal cPZ).E (fun _ => 0) i • (nominal cPZ).G i)
-    (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : y ∈ nominalSet cPZ := by -- --- PROOF ---
+    (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : -- --- STMT ---
+    y ∈ nominalSet cPZ := by -- --- PROOF ---
   obtain ⟨-, hreach⟩ := Zonotope.ballCert_reach hc
   obtain ⟨β, hβ, hβδ⟩ := hreach (fun i => y i - y₀ i) hy
   refine ⟨fun _ => 0, β, fun k => by simp, fun j => by simpa [toReal_one] using hβδ j, hsat, ?_⟩

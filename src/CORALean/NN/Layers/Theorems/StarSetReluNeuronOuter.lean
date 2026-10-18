@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Relu
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.FieldSimp
 public import CORALean.NN.Layers.Operations.StarSetReluNeuron
@@ -11,7 +12,7 @@ public import CORALean.NN.Layers.Operations.StarSetReluNeuron
 
 Given bounds the neuron's value respects on the set, the ReLU at that neuron maps the set into
 the star set the step builds. Where `0 ≤ l` the neuron is the identity, where `u ≤ 0` it is `0`,
-and between, `β = max (x_j) 0` is the new factor: it is above `0` and above `x_j`, and under the
+and between, `β = relu (x_j)` is the new factor: it is above `0` and above `x_j`, and under the
 chord from `(l, 0)` to `(u, u)`, since `max` is convex.
 -/
 
@@ -32,8 +33,8 @@ open ContSet
 
 theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet StarSet.LinPred n) (j : Fin n)
     (b : Interval ℝ)
-    (hb : ∀ x ∈ construct s, b.inf ≤ x j ∧ x j ≤ b.sup) :
-    (fun (x : Vec ℝ n) => (Function.update x j (max (x j) 0) : Vec ℝ n)) '' construct s
+    (hb : ∀ x ∈ construct s, b.inf ≤ x j ∧ x j ≤ b.sup) : -- --- STMT ---
+    (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' construct s
       ⊆ construct (s.reluNeuron j b) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   beta_reduce
@@ -43,14 +44,14 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet StarSet.LinPred n) (j : 
   -- the neuron is nonnegative everywhere: the ReLU is the identity
   by_cases h0 : 0 ≤ b.inf
   · rw [if_pos h0]
-    have : max (x j) 0 = x j := max_eq_left (by linarith [hbx.1])
+    have : Real.relu (x j) = x j := max_eq_left (by linarith [hbx.1])
     rw [this, Function.update_eq_self]
     exact ⟨α, ⟨hα, hcα⟩, hxα⟩
   rw [if_neg h0]
   -- the neuron is nonpositive everywhere: the ReLU is `0`, the row cleared
   by_cases h1 : b.sup ≤ 0
   · rw [if_pos h1]
-    have : max (x j) 0 = 0 := max_eq_right (by linarith [hbx.2])
+    have : Real.relu (x j) = 0 := max_eq_right (by linarith [hbx.2])
     rw [this]
     refine ⟨α, ⟨hα, hcα⟩, fun i => ?_⟩
     by_cases hi : i = j
@@ -60,7 +61,7 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet StarSet.LinPred n) (j : 
   rw [not_le] at h0
   rw [not_le] at h1
   -- the triangle: the new factor is the value of the ReLU
-  set β := max (x j) 0 with hβ
+  set β := Real.relu (x j) with hβ
   have hxj := hxα j
   have hβ0 : 0 ≤ β := le_max_right _ _
   have hβx : x j ≤ β := le_max_left _ _
@@ -70,8 +71,8 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet StarSet.LinPred n) (j : 
   have hchord : β ≤ b.sup / (b.sup - b.inf) * (x j - b.inf) := by
     rw [div_mul_eq_mul_div, le_div_iff₀ hden]
     rcases le_total (x j) 0 with h | h
-    · rw [hβ, max_eq_right h]; nlinarith [hbx.1]
-    · rw [hβ, max_eq_left h]; nlinarith [hbx.2]
+    · rw [hβ, Real.relu, max_eq_right h]; nlinarith [hbx.1]
+    · rw [hβ, Real.relu, max_eq_left h]; nlinarith [hbx.2]
   -- the old factors with `β` appended witness the new set
   have hS : ∑ k, s.G j k * α k = x j - s.c j := by rw [hxj]; ring
   refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ⟨?_, ?_⟩, fun i => ?_⟩

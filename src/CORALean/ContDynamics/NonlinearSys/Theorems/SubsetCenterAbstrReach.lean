@@ -58,7 +58,7 @@ theorem NonlinearSys.subset_centerAbstrReach (sys : NonlinearSys n m)
     {j : ℕ} (hj : j < options.K) {s : NonlinearSys.CenterAbstrState S n}
     (h : sys.centerAbstrRun params.U options.lin options.Φ options.sub options.enlarge
       options.Δt (params.tFinal - params.tStart) options.η
-      options.taylorTermsAbstr options.ρ options.fuel params.X₀ (j + 1) = some s) :
+      options.taylorTermsAbstr options.ρ options.fuel params.X₀ (j + 1) = some s) : -- --- STMT ---
     construct s.Rτ ⊆ sys.centerAbstrReach params options := by -- --- PROOF ---
   intro x hx
   simp only [NonlinearSys.centerAbstrReach, Set.mem_iUnion, exists_prop]

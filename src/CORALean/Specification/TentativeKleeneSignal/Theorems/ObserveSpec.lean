@@ -29,7 +29,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem TentativeKleeneSignal.observe_spec (s : TentativeKleeneSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) (value : Kleene) :
+    (I : STLInterval) (value : Kleene) : -- --- STMT ---
     (s.observe I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((s.observe I value).canBeTrue.at t = true ↔
         s.canBeTrue.at t = true ∨ (t ∈ I.set ∧ value ≠ Kleene.ff)) ∧

@@ -69,7 +69,7 @@ theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r :
     (M : Fin (sys.timePointStepInputFloat r η X₀ U).h →
       Fin (sys.timePointStepInnerErrorFloat r η X₀ U).h → 𝕋) (ρ : 𝕋)
     (H : Mat 𝕋 (sys.timePointStepInputFloat r η X₀ U).h n) {D : Zonotope (Vec 𝕋 n)}
-    (hD : sys.timePointStepInnerRepFloat r η X₀ U M ρ H = some D) :
+    (hD : sys.timePointStepInnerRepFloat r η X₀ U M ρ H = some D) : -- --- STMT ---
     D.construct ⊆ sys.reachSet (S := 𝒵)
       (Set.Icc 0 (toReal r)) (nominal X₀) (nominal U) (toReal r) := by -- --- PROOF ---
   set S := sys.timePointStepInputFloat r η X₀ U

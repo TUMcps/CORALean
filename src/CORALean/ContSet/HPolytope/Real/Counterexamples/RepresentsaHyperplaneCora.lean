@@ -81,7 +81,7 @@ theorem HPolytope.aux_noRows_construct :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The set is `ℝ²`, which is no hyperplane `{x | f x = c}` with `f ≠ 0`; CORA answers `true`. -/
-theorem HPolytope.representsa_hyperplane_cora_counterexample :
+theorem HPolytope.representsa_hyperplane_cora_counterexample : -- --- STMT ---
     HPolytope.aux_noRows.construct = Set.univ ∧
       (¬ ∃ (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
         HPolytope.aux_noRows.construct = {x | f x = c}) ∧

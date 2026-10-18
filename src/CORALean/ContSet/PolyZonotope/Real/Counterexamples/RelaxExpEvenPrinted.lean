@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 /-- [1, Thm. 1] as printed: the relaxation recentered by `+ξ_E/2` does not enclose, even
 with the evenness of `E_{k₀,j}` and the orientation `E_{k₀,j} ≤ E_{k₀,i}` supplied. -/
-theorem PolyZonotope.relaxExpEven_printed_counterexample :
+theorem PolyZonotope.relaxExpEven_printed_counterexample : -- --- STMT ---
     ¬ ∀ (pZ : PolyZonotope ℝ) (d : ℕ) (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2))
       (k₀ : Fin pZ.p),
       (∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) →

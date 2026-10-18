@@ -67,7 +67,7 @@ def LevelSet.aux_BG (g : LevelSet 1) (_ : ℕ) : Fin g.m → Interval ℝ :=
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.potIntCora_misses_counterexample :
+theorem LevelSet.potIntCora_misses_counterexample : -- --- STMT ---
     LevelSet.aux_G.construct ∩ LevelSet.aux_R.construct ≠ ∅ ∧
       (∀ i : Fin 2, IsRangeBound (fun x => LevelSet.aux_G.f x i) LevelSet.aux_R.construct
         (LevelSet.aux_BG LevelSet.aux_G 0 i).inf (LevelSet.aux_BG LevelSet.aux_G 0 i).sup) ∧

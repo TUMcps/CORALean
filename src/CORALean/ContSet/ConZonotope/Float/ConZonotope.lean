@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 /-!
 # Constrained zonotopes over a floating-point scalar: the representation
 
-CORA's `conZonotope` with its center, generators and coefficient constraints all
+CORA's `conZonotope` [1, Def. 3] with its center, generators and coefficient constraints all
 held in `𝕋`, plus the error box that makes it an `InflatedContSet`. `ConZonotope 𝕋 α`
 is generic over its ambient type, generators a family, as the exact layer's
 `ConZonotope α` is; `𝕋` stays, the constraints living on the coefficient space
@@ -25,6 +25,12 @@ equality is kept where a certificate pays the move onto it into the ambient box
 
 One box, therefore, not two: `P` is a float `HPolytope`, but only its nominal part is
 read, and the operations leave its own box at the origin.
+
+## References
+
+* [1] J. K. Scott, D. M. Raimondo, G. R. Marseglia and R. D. Braatz. "Constrained zonotopes:
+      A new tool for set-based estimation and fault detection". Automatica, 69:126-136,
+      2016.
 -/
 
 -- Authors:       Claude Opus 5

@@ -128,7 +128,7 @@ theorem Krylov.aux_integral_abs : ∫ s in (0 : ℝ)..8, |s / 2 - 3| = 10 := by 
 /-- [1, Thm. IV.2] and [1, Cor. IV.2] do not follow from (3): at `ξ = 1` every Krylov term
 `P Ṽ(u) M e₁` is zero, `ε̃ = 9/8` satisfies (3) for every `u ∈ U` on `[0, δ]`, and `R_p(δ)` has
 a point outside `[-1, 1]ⁿ ε̃ δ`. -/
-theorem Krylov.varying_input_not_of_errorBound :
+theorem Krylov.varying_input_not_of_errorBound : -- --- STMT ---
     let A : Mat ℝ 2 2 := !![0, 1; 0, 0]
     let w : Vec ℝ 2 := ![1, -1 / 2]
     let U : Set (Vec ℝ 2) := {u | ∃ β ∈ Set.Icc (-1 : ℝ) 1, u = β • w}

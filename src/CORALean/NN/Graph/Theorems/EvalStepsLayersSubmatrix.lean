@@ -38,7 +38,7 @@ open Matrix
 subgraph alone. -/
 theorem GNN.evalStepsLayers_submatrix {N K F : ℕ} (Pm : Mat ℝ N N) (κ : Fin K → Fin N)
     (hinj : Function.Injective κ) (hclosed : ∀ k i, (∀ l, κ l ≠ i) → Pm (κ k) i = 0)
-    (L : ℕ) (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) :
+    (L : ℕ) (g : Fin L → Vec ℝ F → Vec ℝ F) (X : Mat ℝ N F) : -- --- STMT ---
     (GNN.evalStepsLayers Pm L g X).submatrix κ id
       = GNN.evalStepsLayers (Pm.submatrix κ κ) L g (X.submatrix κ id) := by -- --- PROOF ---
   induction L generalizing X with

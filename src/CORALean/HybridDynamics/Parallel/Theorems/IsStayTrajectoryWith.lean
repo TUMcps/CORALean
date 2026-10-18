@@ -43,7 +43,7 @@ theorem ParallelHybridAutomaton.IsStay.trajectoryWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
     {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLaw F U W)
     (lift : ParallelHybridAutomaton.Lifting S G n m) {ℓ : ∀ i, L i} {τ : ℝ}
-    {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m} (h : P.IsStay ℓ τ x u w g) :
+    {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m} (h : P.IsStay ℓ τ x u w g) : -- --- STMT ---
     ∃ (g' : ℝ → Vec ℝ (F ℓ).m) (w' : ℝ → Vec ℝ (F ℓ).r),
       ((P.productWith lift F U W).loc ℓ).IsTrajectory τ (fun t => stack fun i => x i t)
         g' w' := by -- --- PROOF ---

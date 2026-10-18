@@ -62,7 +62,7 @@ theorem LinearSys.hausdorffDist₂_inputReach_step_le (sys : LinearSys 𝕋 n) {
     (hcQΔ : IsCompact (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η))
     (hstep : hausdorffDist₂ (sys.inputReach U tk) Pk ≤ εk)
     (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) :
+    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- STMT ---
     hausdorffDist₂ (sys.inputReach U (tk + Δt))
         (Pk + (fun x => exp (tk • toRealMat sys.A) *ᵥ x)
           '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η)

@@ -51,7 +51,7 @@ theorem aux_project_eq_mtimes (P : ProbZonotope n) (dims : Fin m → Fin n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.project_laws (P : ProbZonotope n) (dims : Fin m → Fin n)
-    (h : P.cov.PosSemidef) :
+    (h : P.cov.PosSemidef) : -- --- STMT ---
     (fun μ : Measure (EuclideanSpace ℝ (Fin n)) =>
         μ.map (fun x : EuclideanSpace ℝ (Fin n) =>
           (toLp 2 (fun k => ofLp x (dims k)) : EuclideanSpace ℝ (Fin m)))) '' P.laws

@@ -64,7 +64,7 @@ theorem aux_timePointStepRemainderError_nonneg (sys : LinearSys 𝕋 n) {r : ℝ
 meeting the usual side condition. -/
 theorem LinearSys.superlinearDecrease_timePointStepRemainderError (sys : LinearSys 𝕋 n)
     (η : ℕ) (U : Zonotope (Vec ℝ n)) {Δt : ℝ} (hΔt0 : 0 < Δt)
-    (hΔt : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) :
+    (hΔt : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
     SuperlinearDecrease
       (fun δ => Metric.closedBall (0:ℝ) (sys.timePointStepRemainderError δ η U))
       Δt := by -- --- PROOF ---

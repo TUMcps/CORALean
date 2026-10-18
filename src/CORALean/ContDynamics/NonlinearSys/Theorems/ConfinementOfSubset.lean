@@ -72,7 +72,7 @@ theorem NonlinearSys.IsTrajectory.confinement_of_subset [Mtimes ℐ S]
     (hρ : M * Δt < ρ) {o : ℕ} (ho : 0 < o)
     (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps (fun i =>
       (NonlinearSys.linearize (steps i).A).inputSolution Δt η (steps i).linInput)),
-      Metric.closedBall y ρ ⊆ (steps i).R) :
+      Metric.closedBall y ρ ⊆ (steps i).R) : -- --- STMT ---
     ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt),
       x t ∈ (steps i).R := by -- --- PROOF ---
   intro i

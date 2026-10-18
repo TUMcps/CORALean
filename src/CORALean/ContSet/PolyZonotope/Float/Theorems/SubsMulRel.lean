@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p : ℕ}
 then the float product `subsMul A B` encloses the real product `subsMul A' B'` term by term. -/
 theorem PolyZonotope.subsMul_rel {A B : List ((Interval 𝕋) × (Fin p → ℕ))}
     {A' B' : List (ℝ × (Fin p → ℕ))} (hA : PolyZonotope.subsRel A A')
-    (hB : PolyZonotope.subsRel B B') :
+    (hB : PolyZonotope.subsRel B B') : -- --- STMT ---
     PolyZonotope.subsRel (PolyZonotope.subsMul A B)
       (Real.PolyZonotope.subsMul A' B') := by -- --- PROOF ---
   unfold PolyZonotope.subsRel at *

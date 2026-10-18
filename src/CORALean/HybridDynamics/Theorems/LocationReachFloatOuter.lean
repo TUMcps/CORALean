@@ -71,7 +71,7 @@ theorem Location.IsTrajectory.reachFloat_outer
     {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) {tFinal : ℚ}
     {options : LinearSys.ReachOptions 𝕋} {X₀ : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))}
     (h : ℓ.reachFloat tFinal options X₀ = some Rs) (h₀ : x 0 ∈ construct X₀)
-    (hτ : τ ≤ tFinal) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :
+    (hτ : τ ≤ tFinal) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) : -- --- STMT ---
     ∃ R ∈ Rs, x t ∈ construct R := by -- --- PROOF ---
   unfold Location.reachFloat at h
   split_ifs at h with htf

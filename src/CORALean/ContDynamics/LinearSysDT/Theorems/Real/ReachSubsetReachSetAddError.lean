@@ -48,7 +48,7 @@ variable {n : ℕ}
 /-- The reverse of `reach_outer`: what a run computes stays inside the exact
 reachable set widened by the error that run accumulated. -/
 theorem LinearSysDT.reach_subset_reachSet_add_error (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
+    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- STMT ---
     (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
       sys.reachSet (S := 𝒵) R₀ U k
         + (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---

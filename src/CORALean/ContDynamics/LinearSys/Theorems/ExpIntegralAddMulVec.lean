@@ -39,7 +39,7 @@ variable {n : ℕ}
 /-- `expIntegral` over `[0, a + b]`: the part over `[0, a]` carried across `b`,
 plus the part over `[0, b]`. -/
 theorem Real.MatExp.expIntegral_add_mulVec (A : Mat ℝ n n) (v : Vec ℝ n) {a b : ℝ}
-    (ha : 0 ≤ a) (hb : 0 ≤ b) :
+    (ha : 0 ≤ a) (hb : 0 ≤ b) : -- --- STMT ---
     Real.MatExp.expIntegral A (a + b) *ᵥ v
       = exp (b • A) *ᵥ (Real.MatExp.expIntegral A a *ᵥ v)
         + Real.MatExp.expIntegral A b *ᵥ v := by -- --- PROOF ---

@@ -42,7 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- The exact image, regrouped so the center and each generator appear once. -/
 theorem ConZonotope.aux_mulVec_nominal (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     (β : Vec ℝ cZ.h)
-    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (cZ.c k) + ∑ j, toReal (cZ.G j k) * β j) (i : Fin m) :
+    {x : Vec ℝ n} (hx : ∀ k, x k = toReal (cZ.c k) + ∑ j, toReal (cZ.G j k) * β j)
+    (i : Fin m) : -- --- STMT ---
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (cZ.c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (cZ.G j k)) * β j := by -- --- PROOF ---
   show ∑ k, toReal (M i k) * x k = _

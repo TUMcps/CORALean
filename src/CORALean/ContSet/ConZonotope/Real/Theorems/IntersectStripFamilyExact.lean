@@ -39,7 +39,7 @@ variable {n p m : ℕ}
 
 /-- The stacked strip: the `H_j` below one another, the radii repeated, the gains side by side. -/
 theorem ConZonotope.aux_family_eq_stacked (cZ : ConZonotope (Vec ℝ n)) (H : Fin m → Mat ℝ p n)
-    (r : Fin m → ℝ) (y : Fin m → Vec ℝ p) (lam : Fin m → Mat ℝ n p) :
+    (r : Fin m → ℝ) (y : Fin m → Vec ℝ p) (lam : Fin m → Mat ℝ n p) : -- --- STMT ---
     cZ.intersectStripFamily H r y lam =
       cZ.intersectStrip
         (Matrix.of fun q a => H (finProdFinEquiv.symm q).1 (finProdFinEquiv.symm q).2 a)
@@ -84,7 +84,7 @@ theorem ConZonotope.aux_family_eq_stacked (cZ : ConZonotope (Vec ℝ n)) (H : Fi
 
 theorem ConZonotope.intersectStripFamily_exact (cZ : ConZonotope (Vec ℝ n))
     (H : Fin m → Mat ℝ p n) (r : Fin m → ℝ) (y : Fin m → Vec ℝ p) (lam : Fin m → Mat ℝ n p)
-    (hr : ∀ j, 0 ≤ r j) :
+    (hr : ∀ j, 0 ≤ r j) : -- --- STMT ---
     (cZ.intersectStripFamily H r y lam).construct =
       cZ.construct ∩ {x | ∀ j k, |(H j *ᵥ x - y j) k| ≤ r j} := by -- --- PROOF ---
   rw [ConZonotope.aux_family_eq_stacked, ConZonotope.intersectStrip_exact _ _ _ _ _

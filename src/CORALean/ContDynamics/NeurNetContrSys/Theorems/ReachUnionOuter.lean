@@ -47,7 +47,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 `R0` is inside `reachUnion` at every period boundary. -/
 theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) S n)
     (U_ext : S sys.nExt) (params : Reach.Params (S n) ℕ) {options : NeurNetContrSys.ReachOptions ℝ}
-    (hdt : sys.dt = (options.N : ℝ) * options.Δt) (hΔt : 0 < options.Δt) :
+    (hdt : sys.dt = (options.N : ℝ) * options.Δt) (hΔt : 0 < options.Δt) : -- --- STMT ---
     sys.reachUnionExact (params.tFinal - params.tStart)
       (construct U_ext) {0} (construct params.X₀) ⊆
       construct (sys.reachUnion U_ext params options) := by -- --- PROOF ---

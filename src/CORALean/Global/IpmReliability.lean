@@ -57,7 +57,7 @@ theorem ipm_reliability [MeasurableSpace E] [MeasurableSpace Φ] [MeasurableSpac
     (P : Measure (Φ × Y)) [IsProbabilityMeasure P]
     (hIm : MeasurableSet {p : E × (Φ × Y) | p.2.2 ∈ I p.1 p.2.1})
     (hsolm : ∀ H : Finset (Fin N), H.card = d → Measurable (sol H)) {ε : ℝ} (hε : 0 < ε)
-    (hε1 : ε < 1) :
+    (hε1 : ε < 1) : -- --- STMT ---
     1 - (N.choose d : ℝ) * (1 - ε) ^ (N - d) *
         ∑ i ∈ Finset.range (k + 1), ((N - d).choose i : ℝ) * ε ^ i / (1 - ε) ^ i <
       (Measure.pi fun _ : Fin N => P).real

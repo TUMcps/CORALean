@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- The exact pairing of the nominal parts lies in the float pairing: the stored generators differ
 from the exact ones inside the error box. -/
 theorem PolyZonotope.bilin_refines (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
-    (hp : pZ₁.p = pZ₂.p) :
+    (hp : pZ₁.p = pZ₂.p) : -- --- STMT ---
     (Real.PolyZonotope.bilin (Real.PolyZonotope.quadBilin fun k => toRealMat (Q k))
         (nominal pZ₁) (nominal pZ₂) hp).construct
       ⊆ (PolyZonotope.bilin Q pZ₁ pZ₂ hp).construct := by -- --- PROOF ---

@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem MatExp.corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {A : Mat ℝ n n} (hA : A ∈ M.construct)
-    (j k : Fin n) :
+    (j k : Fin n) : -- --- STMT ---
     toReal ((MatExp.matZonoCorrTerm M r i).inf j k) ≤ Real.MatExp.corrTerm A (toReal r) i j k
       ∧ Real.MatExp.corrTerm A (toReal r) i j k
         ≤ toReal ((MatExp.matZonoCorrTerm M r i).sup j k) := by -- --- PROOF ---

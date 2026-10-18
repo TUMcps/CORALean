@@ -30,7 +30,7 @@ namespace CORALean
 
 theorem KleeneSignal.set_spec (s : KleeneSignal ℝ)
     (hs : s.IsValid) (I : STLInterval) (value :
-        Kleene) :
+        Kleene) : -- --- STMT ---
     (s.set I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.set I value).at t = value) ∧
       (t ∉ I.set → (s.set I value).at t = s.at t) := by -- --- PROOF ---

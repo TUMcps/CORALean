@@ -44,7 +44,7 @@ float error solution for every `v ∈ Vdyn` and `s ∈ Vstat`. -/
 theorem LinearSys.expIntegral_mem_errorSolutionAdaptiveFloat_static (sys : LinearSys 𝕋 n)
     {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
     {Vdyn Vstat : Zonotope (Vec 𝕋 n)} {v s : Vec ℝ n} (hv : v ∈ Vdyn.construct)
-    (hs : s ∈ Vstat.construct) :
+    (hs : s ∈ Vstat.construct) : -- --- STMT ---
     Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ v
         + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ s
       ∈ (sys.errorSolutionAdaptiveFloat Δt η Vdyn (some Vstat)).construct := by -- --- PROOF ---

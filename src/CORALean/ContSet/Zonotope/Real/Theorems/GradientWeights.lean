@@ -59,7 +59,7 @@ theorem Zonotope.gradient_weights (ℒ : Zonotope (Vec ℝ m) → ℝ) (W : Mat 
     (H : Zonotope (Vec ℝ n))
     (hF : DifferentiableAt ℝ (fun p : Vec ℝ m × (Fin (H.affine W b).h → Vec ℝ m) =>
       ℒ ⟨(H.affine W b).h, p.1, p.2⟩) ((H.affine W b).c, (H.affine W b).G))
-    (i : Fin m) (j : Fin n) :
+    (i : Fin m) (j : Fin n) : -- --- STMT ---
     deriv (fun t => ℒ (H.affine (Function.update W i (Function.update (W i) j t)) b)) (W i j) =
       ((H.affine W b).gradient ℒ).c i * H.c j +
         ∑ l, ((H.affine W b).gradient ℒ).G l i * H.G l j := by -- --- PROOF ---

@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A merged generator column is off by at most the gap between the two
 directed masked sums. -/
 theorem ConPolyZono.aux_compactGensGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i : Fin n)
-    (j : Fin (PolyZonotope.repKeep cPZ.E).card) :
+    (j : Fin (PolyZonotope.repKeep cPZ.E).card) : -- --- STMT ---
     |Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.E)
         (fun l => toReal (cPZ.G l i)) (PolyZonotope.keepIdx cPZ.E j)
       - toReal (cPZ.mergedCol i j)|

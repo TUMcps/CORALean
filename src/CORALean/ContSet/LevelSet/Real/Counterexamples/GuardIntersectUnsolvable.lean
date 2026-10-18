@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem guardIntersectUnsolvable_printed_counterexample :
+theorem guardIntersectUnsolvable_printed_counterexample : -- --- STMT ---
     let I : Interval (Vec ℝ 2) := ⟨![-1, -2], ![1, 2]⟩
     let g : Vec ℝ 2 → ℝ := fun x => x 1 + x 0 ^ 2
     let a : Vec ℝ 2 := ![0, 1]

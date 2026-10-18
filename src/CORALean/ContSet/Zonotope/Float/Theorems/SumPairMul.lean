@@ -28,7 +28,7 @@ variable {h₁ h₂ : ℕ}
 /-- `Zonotope.sum_pair` where the coefficient follows the generator, which is
 the order a stored row is read in. -/
 theorem Zonotope.sum_pair_mul (g₁ : Fin h₁ → ℝ) (g₂ : Fin h₂ → ℝ)
-    (β₁ : Fin h₁ → ℝ) (β₂ : Fin h₂ → ℝ) (lam : ℝ) :
+    (β₁ : Fin h₁ → ℝ) (β₂ : Fin h₂ → ℝ) (lam : ℝ) : -- --- STMT ---
     (∑ j, Real.Zonotope.pairSum g₁ g₂ j * Real.Zonotope.pairCoeffSum β₁ β₂ lam j)
         + ∑ j, Real.Zonotope.pairDiff g₁ g₂ j * Real.Zonotope.pairCoeffDiff β₁ β₂ lam j
       = lam * (∑ j, g₁ j * β₁ j) + (1 - lam) * ∑ j, g₂ j * β₂ j := by -- --- PROOF ---

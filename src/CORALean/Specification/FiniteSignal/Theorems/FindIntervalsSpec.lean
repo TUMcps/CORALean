@@ -178,7 +178,7 @@ theorem aux_findIntervals_loop {T V : Type} [LinearOrder T] (cond : V → Bool) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.findIntervals_spec {T V : Type} [LinearOrder T] [Zero T] (s : FiniteSignal T V)
-    (hs : s.IsValid) (cond : V → Bool) :
+    (hs : s.IsValid) (cond : V → Bool) : -- --- STMT ---
     (∀ I ∈ s.findIntervals cond, I.1 ≤ I.2) ∧
       (s.findIntervals cond).Pairwise (fun I J => I.2 < J.1) ∧
       ∀ x, (∃ I ∈ s.findIntervals cond, I.1 ≤ x ∧ x ≤ I.2) ↔

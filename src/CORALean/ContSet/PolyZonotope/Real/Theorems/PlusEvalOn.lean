@@ -62,7 +62,7 @@ theorem PolyZonotope.aux_plus_sum_q {pZ₁ pZ₂ : PolyZonotope α} (f : Fin (pZ
 
 /-- The sum's evaluated point, split along the two blocks the append makes. -/
 theorem PolyZonotope.aux_plus_eval (pZ₁ pZ₂ : PolyZonotope α) (a₁ : Fin pZ₁.p → ℝ)
-    (a₂ : Fin pZ₂.p → ℝ) (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) :
+    (a₂ : Fin pZ₂.p → ℝ) (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) : -- --- STMT ---
     (pZ₁.plus pZ₂).point (Fin.append a₁ a₂)
         + ∑ j, Fin.append β₁ β₂ j • (pZ₁.plus pZ₂).GI j
       = (pZ₁.point a₁ + ∑ j, β₁ j • pZ₁.GI j)

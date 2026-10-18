@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.isGreatest_zonotopeNorm_corner (Z₁ Z₂ : Zonotope (Vec ℝ n))
-    (hG : Function.Surjective Z₂.genMap) :
+    (hG : Function.Surjective Z₂.genMap) : -- --- STMT ---
     IsGreatest ((fun p => Z₂.zonotopeNorm (p - Z₂.c)) '' Z₁.construct)
       (Finset.univ.sup' Finset.univ_nonempty fun σ =>
         Z₂.zonotopeNorm (Z₁.corner σ - Z₂.c)) := by -- --- PROOF ---

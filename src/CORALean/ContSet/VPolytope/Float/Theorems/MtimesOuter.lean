@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋 n)) :
+theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋 n)) : -- --- STMT ---
     (toRealMat M *ᵥ ·) '' nominalSet P ⊆
       nominalSet (VPolytope.mtimes M P)
         + (VPolytope.columnGap (fun l => mulVecDown M (P.V l))

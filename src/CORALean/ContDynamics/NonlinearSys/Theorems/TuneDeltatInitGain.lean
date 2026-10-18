@@ -49,7 +49,7 @@ variable {n : ℕ}
 /-- [1, Alg. 2] lines 3-7: the horizon reported meets eq. (32)'s condition, and
 is the initialization scaled by `ζ_δ` a positive number of times. -/
 theorem tuneDeltatInit_gain {le : ℝ → ℝ → Bool} (hle : ∀ a b : ℝ, le a b = true → a ≤ b)
-    (dabs : ℝ → Fin n → ℝ) (ζδ ζΔ : ℝ) :
+    (dabs : ℝ → Fin n → ℝ) (ζδ ζΔ : ℝ) : -- --- STMT ---
     ∀ (fuel : ℕ) (Δ : ℝ) (p : NonlinearSys.TunedStep ℝ),
       tuneDeltatInit le dabs ζδ ζΔ Δ fuel = some p →
       ζΔ ≤ p.gain ∧ ∃ j : ℕ, p.step = ζδ ^ (j + 1) * Δ := by -- --- PROOF ---

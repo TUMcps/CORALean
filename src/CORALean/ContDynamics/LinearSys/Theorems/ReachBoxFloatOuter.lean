@@ -66,7 +66,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
     {η N : ℕ} {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachBoxFloat X₀ U r η N = some Rs)
     (hr : 0 < toReal r) (h0 : (0 : Vec ℝ n) ∈ U.construct)
     {k : ℕ} (hk : k ≤ N) {t : ℝ}
-    (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) :
+    (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- STMT ---
     ∃ R, Rs[k]? = some R ∧
       sys.reachSet (S := 𝒵[𝕋]) (Set.Icc 0 t) X₀ U t
         ⊆ R.construct := by -- --- PROOF ---

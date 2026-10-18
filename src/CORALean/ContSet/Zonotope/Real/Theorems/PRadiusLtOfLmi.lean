@@ -50,7 +50,8 @@ theorem Zonotope.pRadius_lt_of_lmi (W : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) 
     (hLMI :
       let H : Matrix (Fin n) (Fin Z.h) ℝ := Matrix.of fun i j => Z.G j i
       (fromBlocks (diagonal m) (W * H)ᵀ (W * H) W).PosDef)
-    (hh : 0 < Z.h) : Z.pRadius W < ∑ i, m i := by -- --- PROOF ---
+    (hh : 0 < Z.h) : -- --- STMT ---
+    Z.pRadius W < ∑ i, m i := by -- --- PROOF ---
   set H : Matrix (Fin n) (Fin Z.h) ℝ := Matrix.of fun i j => Z.G j i
   haveI : Invertible W := hW.isUnit.invertible
   have hWT : Wᵀ = W := by

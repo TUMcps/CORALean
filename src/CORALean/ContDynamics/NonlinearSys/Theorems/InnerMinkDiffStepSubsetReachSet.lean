@@ -49,7 +49,7 @@ theorem NonlinearSys.innerMinkDiffStep_subset_reachSet (ops : NonlinearSys.Inner
     (sys : NonlinearSys n m) (u₀ : Vec ℝ m) {Δt : ℝ} (hΔt : 0 ≤ Δt) (μ : ℝ) (fuel : ℕ)
     {X : Set (Vec ℝ n)} {st : NonlinearSys.InnerMinkDiffState n 𝓛}
     (h : NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X = some st)
-    (cert : NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st) :
+    (cert : NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st) : -- --- STMT ---
     st.Rtk1 ⊆ sys.reachSet (S := 𝒮) (Icc 0 Δt) X {u₀}
       Δt := by -- --- PROOF ---
   -- what line 15 and lines 7-8 computed

@@ -59,7 +59,7 @@ theorem aux_diff_eq (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (ht : 0 ≤ t)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t)))
     (hcont : ContinuousOn x (Set.Icc 0 t))
     (hflow : ∀ τ ∈ Set.Icc (0:ℝ) t, x τ = x 0 + ∫ ρ in (0:ℝ)..τ, (toRealMat sys.A *ᵥ x ρ + u ρ))
-    {τ : ℝ} (hτ : τ ∈ Set.Icc (0:ℝ) t) :
+    {τ : ℝ} (hτ : τ ∈ Set.Icc (0:ℝ) t) : -- --- STMT ---
     x τ - sys.closedForm (x 0) u τ
       = ∫ ρ in (0:ℝ)..τ, toRealMat sys.A *ᵥ (x ρ - sys.closedForm (x 0) u ρ) := by -- --- PROOF ---
   set A := toRealMat sys.A
@@ -105,7 +105,7 @@ theorem LinearSys.eq_closedForm_of_flow (sys : LinearSys 𝕋 n) {U : S n} {t : 
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t)))
     (hcont : ContinuousOn x (Set.Icc 0 t))
     (hflow : ∀ τ ∈ Set.Icc (0:ℝ) t, x τ = x 0 + ∫ ρ in (0:ℝ)..τ, (toRealMat sys.A *ᵥ x ρ + u ρ))
-    {τ : ℝ} (hτ : τ ∈ Set.Icc (0:ℝ) t) :
+    {τ : ℝ} (hτ : τ ∈ Set.Icc (0:ℝ) t) : -- --- STMT ---
     x τ = sys.closedForm (x 0) u τ := by -- --- PROOF ---
   set A := toRealMat sys.A
   -- `d := x - c` will turn out to be identically `0`

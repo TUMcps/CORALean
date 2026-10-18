@@ -49,7 +49,8 @@ namespace CORALean
 
 /-- Each halving keeps a passing end and a failing end and halves what lies
 between them. -/
-theorem aux_estimateGainSearch_bracket (le : ℝ → ℝ → Bool) (g : ℝ → ℝ) (target : ℝ) :
+theorem aux_estimateGainSearch_bracket (le : ℝ → ℝ → Bool) (g : ℝ → ℝ)
+    (target : ℝ) : -- --- STMT ---
     ∀ (fuel : ℕ) (lo hi : ℝ), lo ≤ hi → le (g lo) target = true → le (g hi) target = false →
       ∃ a b : ℝ, le (g a) target = true ∧ le (g b) target = false ∧
         a ≤ estimateGainSearch le g target lo hi fuel ∧
@@ -86,7 +87,7 @@ theorem estimateGain_bracket {le : ℝ → ℝ → Bool} (ζδ lam rabs1 rabsOpt
     (hlo : le (∏ j ∈ Finset.range scalings, interpGain ζδ 0 j)
       (lam * rabsOpt / rabs1) = true)
     (hhi : le (∏ j ∈ Finset.range scalings, interpGain ζδ 1 j)
-      (lam * rabsOpt / rabs1) = false) :
+      (lam * rabsOpt / rabs1) = false) : -- --- STMT ---
     ∃ a b : ℝ,
       le (∏ j ∈ Finset.range scalings, interpGain ζδ a j) (lam * rabsOpt / rabs1) = true ∧
       le (∏ j ∈ Finset.range scalings, interpGain ζδ b j) (lam * rabsOpt / rabs1) = false ∧

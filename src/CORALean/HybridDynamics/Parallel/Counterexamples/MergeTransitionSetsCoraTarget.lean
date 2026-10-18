@@ -73,7 +73,7 @@ theorem ParallelHybridAutomaton.mergeTransitionSetsCora_wrong_target_counterexam
     (e₀ : Transition G ℕ 𝕋 (n 0)) (e₁ : Transition G ℕ 𝕋 (n 1))
     (h₀ : lab.pick P ℓ a 0 = some e₀) (h₁ : lab.pick P ℓ a 1 = some e₁)
     (hp₀ : lab.parts a 0 = true) (hp₁ : lab.parts a 1 = true)
-    (t₀ : e₀.target = 2) (t₁ : e₁.target = 3) :
+    (t₀ : e₀.target = 2) (t₁ : e₁.target = 3) : -- --- STMT ---
     P.mergeTransitionSetsCoraTarget lab ℓ a = ![3, 3] ∧
       (P.liftSyncTransition slift lab ℓ a).target = ![2, 3] ∧
       P.mergeTransitionSetsCoraTarget lab ℓ a ≠

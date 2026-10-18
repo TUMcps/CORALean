@@ -58,13 +58,13 @@
 <text x="150" y="188" font-size="10" fill="#888">+n: out of scope, not in the bar</text>
 <text x="150" y="200" font-weight="bold">(b) Formalized paper statements</text>
 <text x="142" y="219" text-anchor="end">Paper results</text>
-<rect x="150.0" y="208" width="330.7" height="14" fill="rgb(120,197,127)"/>
-<text x="315.4" y="219" text-anchor="middle" font-size="9" fill="#000">809</text>
-<rect x="480.7" y="208" width="15.1" height="14" fill="rgb(237,177,32)"/>
-<rect x="495.8" y="208" width="103.4" height="14" fill="rgb(255,174,76)"/>
-<text x="547.6" y="219" text-anchor="middle" font-size="9" fill="#000">253</text>
+<rect x="150.0" y="208" width="330.9" height="14" fill="rgb(120,197,127)"/>
+<text x="315.4" y="219" text-anchor="middle" font-size="9" fill="#000">810</text>
+<rect x="480.9" y="208" width="15.1" height="14" fill="rgb(237,177,32)"/>
+<rect x="496.0" y="208" width="103.3" height="14" fill="rgb(255,174,76)"/>
+<text x="547.7" y="219" text-anchor="middle" font-size="9" fill="#000">253</text>
 <rect x="599.3" y="208" width="43.3" height="14" fill="rgb(241,141,145)"/>
-<text x="620.9" y="219" text-anchor="middle" font-size="9" fill="#000">106</text>
+<text x="621.0" y="219" text-anchor="middle" font-size="9" fill="#000">106</text>
 <rect x="642.6" y="208" width="4.5" height="14" fill="rgb(162,20,47)"/>
 <rect x="647.1" y="208" width="22.9" height="14" fill="rgb(255,255,255)"/>
 <text x="658.6" y="219" text-anchor="middle" font-size="9" fill="#000">56</text>

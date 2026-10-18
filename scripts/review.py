@@ -233,11 +233,11 @@ def self_test():
         p = Path(d) / "T.lean"
         base = ("/-! doc -/\n\n-- Authors:       Claude Opus 5.5\n-- Written:       16-August-2026\n"
                 "-- Last update:   04-September-2026\n-- Reviewed:      ---\n\ndef x := 1\n")
-        p.write_text(base)
+        p.write_text(base, encoding="utf-8")
         assert valid(base)
-        t1 = add_review(p.read_text(), "02-September-2026 (Tobias Ladner)")
-        p.write_text(t1)
-        t2 = add_review(p.read_text(), "13-October-2026 (Tobias Ladner)")
+        t1 = add_review(p.read_text(encoding="utf-8"), "02-September-2026 (Tobias Ladner)")
+        p.write_text(t1, encoding="utf-8")
+        t2 = add_review(p.read_text(encoding="utf-8"), "13-October-2026 (Tobias Ladner)")
         assert "---\n" not in t2.split("def x")[0].split("Reviewed:")[1]
         assert "-- Reviewed:      02-September-2026 (Tobias Ladner)\n"\
                "--                13-October-2026 (Tobias Ladner)\n\ndef x" in t2, t2

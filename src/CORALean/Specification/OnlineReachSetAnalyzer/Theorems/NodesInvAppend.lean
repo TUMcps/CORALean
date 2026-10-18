@@ -29,7 +29,7 @@ variable {A : Type}
 theorem OnlineReachSetAnalyzer.nodesInv_append (dp : Bool) (nodes : List (OnlineAnalyzerNode A))
     (node : OnlineAnalyzerNode A) (h : OnlineReachSetAnalyzer.NodesInv dp nodes)
     (hidx : node.idx = nodes.length + 1) (hd : node.dropPropagated = dp)
-    (hp : node.parents.head?.isSome = true) :
+    (hp : node.parents.head?.isSome = true) : -- --- STMT ---
     OnlineReachSetAnalyzer.NodesInv dp (nodes ++ [node]) := by -- --- PROOF ---
   refine ⟨fun j hj => ?_, fun n hn => ?_⟩
   -- the positions of the old nodes and of the new one

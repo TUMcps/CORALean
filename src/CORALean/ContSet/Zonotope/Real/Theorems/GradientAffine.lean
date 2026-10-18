@@ -43,7 +43,7 @@ variable {m n : ℕ}
 theorem Zonotope.gradient_affine (ℒ : Zonotope (Vec ℝ m) → ℝ) (W : Mat ℝ m n) (b : Vec ℝ m)
     (H : Zonotope (Vec ℝ n))
     (hF : DifferentiableAt ℝ (fun p : Vec ℝ m × (Fin (H.affine W b).h → Vec ℝ m) =>
-      ℒ ⟨(H.affine W b).h, p.1, p.2⟩) ((H.affine W b).c, (H.affine W b).G)) :
+      ℒ ⟨(H.affine W b).h, p.1, p.2⟩) ((H.affine W b).c, (H.affine W b).G)) : -- --- STMT ---
     H.gradient (fun Z => ℒ (Z.affine W b)) =
       { h := H.h
         c := Wᵀ *ᵥ ((H.affine W b).gradient ℒ).c

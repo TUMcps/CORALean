@@ -59,7 +59,7 @@ theorem PolyZonotope.aux_getSubset_binom (x y : ℝ) {e d : ℕ} (hed : e ≤ d)
 /-- One expanded column, its monomial and its generator: the substituted factor
 pulled out of both, the rest of the monomial left standing. -/
 theorem PolyZonotope.aux_getSubset_col (pZ : PolyZonotope α) (k : Fin pZ.p) (cen rad : ℝ)
-    (b : Fin pZ.p → ℝ) (i : Fin pZ.h) (j : Fin (pZ.maxExp k + 1)) :
+    (b : Fin pZ.p → ℝ) (i : Fin pZ.h) (j : Fin (pZ.maxExp k + 1)) : -- --- STMT ---
     monomial (pZ.getSubsetE k) b (finProdFinEquiv (i, j))
         • pZ.getSubsetG k cen rad (finProdFinEquiv (i, j))
       = (((pZ.E k i).choose j : ℝ) * cen ^ (pZ.E k i - (j : ℕ)) * (rad * b k) ^ (j : ℕ)

@@ -73,7 +73,7 @@ theorem aux_fderiv_reset (ξ w : Vec ℝ 2) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem resetTaylor_printed_counterexample :
+theorem resetTaylor_printed_counterexample : -- --- STMT ---
     let r : Vec ℝ 2 → Vec ℝ 2 := fun x => ![x 0 ^ 2 - x 0, x 0 ^ 3]
     let F : Set (Vec ℝ 2) := {x | -1 ≤ x 0 ∧ x 0 ≤ 1 ∧ x 1 = 0}
     (0 : Vec ℝ 2) ∈ F ∧

@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 theorem Zonotope.minnormPoint_not_mem_step (Z : Zonotope (Vec ℝ (n + 1)))
     (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) (S : Fin n → Fin Z.h)
-    (hC : Z.facetNormal S ≠ 0) (t : ℝ) (ht : 0 < t) :
+    (hC : Z.facetNormal S ≠ 0) (t : ℝ) (ht : 0 < t) : -- --- STMT ---
     Z.minnormPoint S +
       t • ((Real.sqrt (Z.facetNormal S ⬝ᵥ Z.facetNormal S))⁻¹ • Z.facetNormal S) ∉
       Z.construct := by -- --- PROOF ---

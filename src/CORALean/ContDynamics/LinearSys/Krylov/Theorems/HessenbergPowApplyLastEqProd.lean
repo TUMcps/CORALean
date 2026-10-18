@@ -40,7 +40,7 @@ variable {R : Type*} [CommSemiring R] {m : ℕ}
 
 /-- `(Tᵏ)_{k,0} = ∏_{j<k} T_{j+1,j}` for every `k ≤ m` (rows and columns from `0`). -/
 theorem Krylov.aux_hessenberg_pow_apply_eq_prod (T : Mat R (m + 1) (m + 1))
-    (hT : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0) :
+    (hT : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0) : -- --- STMT ---
     ∀ (k : ℕ) (hk : k ≤ m),
       (T ^ k) ⟨k, by omega⟩ 0
         = ∏ j : Fin k, T ⟨j + 1, by omega⟩ ⟨j, by omega⟩ := by -- --- PROOF ---

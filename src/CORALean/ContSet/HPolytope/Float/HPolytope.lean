@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # Halfspace descriptions over a floating-point scalar: the representation
 
-CORA's `polytope` with `isHRep` set, its constraint matrices held in `𝕋`, plus the error
+CORA's `polytope` [1, Def. 2] with `isHRep` set, its constraint matrices held in `𝕋`, plus the error
 box that makes it an `InflatedContSet`, as every other float representation has one. The
 nominal part is the exact layer's polytope those stored floats describe,
 `{x | A x ≤ b, Aₑ x = bₑ}`; the box holds what rounding has cost.
@@ -28,6 +28,11 @@ into them (`HPolytope.absorbRounding`); one that moves or pads the description c
 It stays at `Vec`, the only place either layer pairs a row with a point, though
 `HPolytope 𝕋 α` stores its rows as a family in `α` as the exact layer does;
 `HPolytope 𝕋 (Vec 𝕋 n)` is the vector case, rows of a matrix.
+
+## References
+
+* [1] N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to
+      Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

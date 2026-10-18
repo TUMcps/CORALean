@@ -43,7 +43,7 @@ variable {n p nq nr : ℕ}
 theorem Zonotope.luenbergerUpdate_outer (F : Mat ℝ n n) (Γ : Mat ℝ p n) (Λ : Mat ℝ n p)
     (Q : Mat ℝ n nq) (R : Mat ℝ p nr) (y : Vec ℝ p) (X : Zonotope (Vec ℝ n)) (x : Vec ℝ n)
     (hx : x ∈ X.construct) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1) (γ : Vec ℝ nr)
-    (hγ : ∀ j, |γ j| ≤ 1) :
+    (hγ : ∀ j, |γ j| ≤ 1) : -- --- STMT ---
     F *ᵥ x + Q *ᵥ β + Λ *ᵥ (y - Γ *ᵥ x - R *ᵥ γ) ∈
       (Zonotope.luenbergerUpdate F Γ Λ Q R y X).construct := by -- --- PROOF ---
   obtain ⟨α, hα, rfl⟩ := hx

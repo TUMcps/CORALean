@@ -82,7 +82,7 @@ theorem PolyZonotope.aux_monomial_nonneg {p h : ℕ} {E : Fin p → Fin h → �
 /-- What the center keeps plus what the free generator reaches is the monomial,
 in each of the three cases. -/
 theorem PolyZonotope.aux_evenWeight_smul {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
-    (i : Fin h) :
+    (i : Fin h) : -- --- STMT ---
     (1 - PolyZonotope.evenWeight E i)
         + PolyZonotope.aux_evenCoeff E a i * PolyZonotope.evenWeight E i
       = PolyZonotope.monomial E a i := by -- --- PROOF ---

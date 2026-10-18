@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p m : ℕ}
 theorem NonlinDASys.FloatModel.Encloses.consistentInitialStateFloat_root
     {fm : NonlinDASys.FloatModel 𝕋 n p m} {sys : NonlinDASys n p m} (hfm : fm.Encloses sys)
     (tol : 𝕋) (fuel : ℕ) (x₀ : Vec 𝕋 n) (u₀ : Vec 𝕋 m) (y₀ y' : Vec 𝕋 p)
-    (h : fm.consistentInitialStateFloat tol fuel x₀ u₀ y₀ = some y') :
+    (h : fm.consistentInitialStateFloat tol fuel x₀ u₀ y₀ = some y') : -- --- STMT ---
     ∃! y, y ∈ Metric.closedBall (toRealVec y') (toReal tol) ∧
       sys.g (toRealVec x₀) y (toRealVec u₀) = 0 := by -- --- PROOF ---
   unfold NonlinDASys.FloatModel.consistentInitialStateFloat at h

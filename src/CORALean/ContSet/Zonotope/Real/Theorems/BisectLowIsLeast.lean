@@ -47,7 +47,7 @@ namespace CORALean.Real
 theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) (right : Bool) {σ : ℝ}
     (hσ : σ = if right then 1 else -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
-    (hinv : Z.BisectInv γ σ st) (n : ℕ) :
+    (hinv : Z.BisectInv γ σ st) (n : ℕ) : -- --- STMT ---
     Z.BisectInv γ σ ((Z.bisectStep γ right)^[n] st) ∧
       ((Z.bisectStep γ right)^[n] st).2.1.card ≤ max 1 (st.2.1.card - n) := by -- --- PROOF ---
   induction n with
@@ -67,7 +67,7 @@ theorem Zonotope.aux_iterate (Z : Zonotope (Vec ℝ 2))
 theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) {σ : ℝ}
     (hσ : σ = 1 ∨ σ = -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
-    (hinv : Z.BisectInv γ σ st) (hcard : st.2.1.card ≤ 1) :
+    (hinv : Z.BisectInv γ σ st) (hcard : st.2.1.card ≤ 1) : -- --- STMT ---
     IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
       (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ st.1 (st.1 + st.2.2)}) := by -- --- PROOF ---
   classical
@@ -159,7 +159,7 @@ theorem Zonotope.aux_bisect_least (Z : Zonotope (Vec ℝ 2))
     (hG : G = if right then Finset.univ.filter (fun i => 0 < Z.G i 0)
       else Finset.univ.filter (fun i => Z.G i 0 < 0)) (s : Vec ℝ 2)
     (hs : s = ∑ i ∈ G, (2 : ℝ) • Z.G i) (loop : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
-    (hloop : (Z.bisectStep γ right)^[Z.h] (P, G, s) = loop) :
+    (hloop : (Z.bisectStep γ right)^[Z.h] (P, G, s) = loop) : -- --- STMT ---
     IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
       (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈
         segment ℝ loop.1 (loop.1 + loop.2.2)}) := by -- --- PROOF ---

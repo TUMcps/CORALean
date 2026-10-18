@@ -55,7 +55,7 @@ variable {n : ℕ}
 /-- [1, Thm. 1]: `e^{(C + βG) r} ∈ K(r) ⊕ E(r)` for every `β ∈ [-1, 1]`. -/
 theorem MatExp.exp_mem_expmOneParam (C G : Mat ℝ n n) (r : ℝ) (η : ℕ) {β : ℝ} (hβ : |β| ≤ 1)
     (hε : ‖(⟨1, r • C, fun _ => r • G⟩ : Zonotope (Mat ℝ n n)).interval.absMax‖ /
-      ((η : ℝ) + 2) < 1) :
+      ((η : ℝ) + 2) < 1) : -- --- STMT ---
     exp (r • (C + β • G)) ∈ ((MatExp.expmOneParam C G r η).plus (MatExp.expMatZonoRemainder n
       (MatExp.expRemainderBound (⟨1, r • C, fun _ => r • G⟩ : Zonotope (Mat ℝ n n)).interval.absMax
         η))).construct := by -- --- PROOF ---

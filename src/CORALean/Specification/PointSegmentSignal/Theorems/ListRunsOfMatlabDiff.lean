@@ -273,7 +273,7 @@ theorem aux_runs (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
       tk.getD f true = false)
     (hR : R.Pairwise (· < ·))
     (hRm : ∀ r, r ∈ R ↔ 1 ≤ r ∧ r ≤ tk.length ∧ tk.getD (r - 1) false = true ∧
-      (r = 1 ∨ tk.getD (r - 2) true = false)) (hne : tk ≠ []) :
+      (r = 1 ∨ tk.getD (r - 2) true = false)) (hne : tk ≠ []) : -- --- STMT ---
     F.length ≤ R.length ∧ R.length ≤ F.length + 1 ∧
     (∀ p ∈ R.zip (F ++ [tk.length]), 1 ≤ p.1 ∧ p.1 ≤ p.2 ∧ p.2 ≤ tk.length ∧
       (∀ m, p.1 ≤ m → m ≤ p.2 → tk.getD (m - 1) false = true) ∧
@@ -393,7 +393,7 @@ theorem aux_runs (tk : List Bool) (F R : List ℕ) (hF : F.Pairwise (· < ·))
 theorem List.runs_of_matlabDiff (tk : List Bool) (hne : tk ≠ []) (F R R' : List ℕ)
     (hF : F = List.matlabFind (· == (-1 : ℤ)) (List.matlabDiff tk))
     (hR : R = (List.matlabFind (· == (1 : ℤ)) (List.matlabDiff tk)).map (· + 1))
-    (hR' : R' = if tk.head? = some true then 1 :: R else R) :
+    (hR' : R' = if tk.head? = some true then 1 :: R else R) : -- --- STMT ---
     R'.length ≤ F.length + 1 ∧
     (∀ p ∈ R'.zip (F ++ [tk.length]), 1 ≤ p.1 ∧ p.1 ≤ p.2 ∧ p.2 ≤ tk.length ∧
       (∀ m, p.1 ≤ m → m ≤ p.2 → tk.getD (m - 1) false = true) ∧

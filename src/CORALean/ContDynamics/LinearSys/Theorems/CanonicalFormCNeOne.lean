@@ -39,7 +39,7 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 /-- The system `ẋ = 0`, `y = 2 x`, with no inputs, disturbances or noises. -/
 theorem LinearSys.canonicalForm_C_ne_one (U : S 0) (uVec : Vec ℝ 0) (W : S 0) (V : S 0)
-    (vVec : Vec ℝ 0) :
+    (vVec : Vec ℝ 0) : -- --- STMT ---
     let sys : LinearSys ℝ 1 := ⟨0, 1, 0, 0, 0, 0, 0, !![2], 0, 0, 0, 0⟩
     (sys.canonicalForm U uVec W V vVec).1.C ≠ (1 : Mat ℝ 1 1) ∧
       (sys.canonicalForm U uVec W V vVec).1.IsCanonicalForm := by -- --- PROOF ---

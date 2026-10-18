@@ -39,7 +39,7 @@ theorem OnlineAnalyzerNode.observeSet_ap_spec (eps : ℝ)
     (tent : TentativeKleeneSignal ℝ) (ht : n.tentative = some tent)
     (hnc : OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed
       n.prop = some false) (val : Kleene)
-    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val) :
+    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val) : -- --- STMT ---
     (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false =
         some { n with signal := n.signal.set interval (FourValued.fromKleene val) } ∧
       (n.signal.IsValid →

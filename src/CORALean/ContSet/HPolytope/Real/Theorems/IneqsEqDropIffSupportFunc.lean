@@ -40,7 +40,8 @@ variable {q n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.ineqs_eq_drop_iff_supportFunc (A : Mat ℝ q n) (b : Vec ℝ q) (j : Fin q) :
+theorem HPolytope.ineqs_eq_drop_iff_supportFunc (A : Mat ℝ q n) (b : Vec ℝ q)
+    (j : Fin q) : -- --- STMT ---
     (HPolytope.ineqs A b).construct
         = (HPolytope.ineqs (A.submatrix (dropIdx j) id) (fun i => b (dropIdx j i))).construct ↔
       supportFunc (HPolytope.ineqs A b).construct (HPolytope.rowLin A j)

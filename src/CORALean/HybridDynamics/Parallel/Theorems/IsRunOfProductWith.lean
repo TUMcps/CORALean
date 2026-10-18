@@ -43,7 +43,7 @@ theorem ParallelHybridAutomaton.IsRun.ofProductWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
     {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLawConverse F U W)
     {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) {ℓ ℓ' : ∀ i, L i}
-    {z w : Vec ℝ (∑ i, n i)} (run : (P.productWith lift F U W).IsRun ℓ z ℓ' w) :
+    {z w : Vec ℝ (∑ i, n i)} (run : (P.productWith lift F U W).IsRun ℓ z ℓ' w) : -- --- STMT ---
     P.IsRun ℓ (unstack z) ℓ' (unstack w) := by -- --- PROOF ---
   induction run with
   | @flow ℓ₁ τ X g' w' h =>

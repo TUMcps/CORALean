@@ -30,7 +30,7 @@ variable {A : Type}
 
 theorem OnlineAnalyzerNode.setPropagated_spec (eps : ℝ) (n n' : OnlineAnalyzerNode A)
     (hv : n.signal.IsValid) (parent : ℕ) (int : STLInterval)
-    (h : n.setPropagated eps parent int = some n') :
+    (h : n.setPropagated eps parent int = some n') : -- --- STMT ---
     n'.signal.IsValid ∧ n'.prop = n.prop.set (n.parents.idxOf parent) int ∧
       (n.dropPropagated = false → n'.signal = n.signal) ∧
       (n.dropPropagated = true → ∀ t : ℝ, 0 ≤ t →

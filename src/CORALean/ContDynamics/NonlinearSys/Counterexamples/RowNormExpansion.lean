@@ -40,7 +40,7 @@ open Filter Topology Matrix Polynomial
 
 /-- `[1, Lemma 3]` as printed: a smooth `G` with a coefficient that is neither zero near `0` nor
 `h^q` times a factor tending to a nonzero vector. -/
-theorem rowNorm_expansion_counterexample :
+theorem rowNorm_expansion_counterexample : -- --- STMT ---
     ∃ (A G : ℝ → Mat ℝ 1 1), (∀ (k l : Fin 1) (n : ℕ∞), ContDiff ℝ n (fun t => A t k l)) ∧
       (∀ (k l : Fin 1) (n : ℕ∞), ContDiff ℝ n (fun t => G t k l)) ∧
       ¬ ((∀ᶠ t in 𝓝 (0:ℝ), ∑ j, |(A t ^ 0 * G t) 0 j| = 0) ∨

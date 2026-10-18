@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+theorem ConPolyZono.aux_linComb_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- STMT ---
     Set.linComb (nominalSet cPZ₁) (nominalSet cPZ₂) ⊆
       nominalSet (cPZ₁.linComb cPZ₂)
         + ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).construct

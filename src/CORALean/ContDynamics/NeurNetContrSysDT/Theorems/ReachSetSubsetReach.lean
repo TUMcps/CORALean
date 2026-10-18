@@ -43,7 +43,7 @@ not to a run of it. -/
 theorem NeurNetContrSysDT.reachSet_subset_reach (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (U_ext : S sys.nExt) {o : ℕ} (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m}
     (hπ : sys.contr.Sound π) (W : Set (Vec ℝ sys.plant.r))
-    (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) (k : ℕ) :
+    (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) (k : ℕ) : -- --- STMT ---
     sys.reachSet π R₀ (construct U_ext) W k ⊆
       construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   rintro _ ⟨x, v, w, traj, rfl⟩

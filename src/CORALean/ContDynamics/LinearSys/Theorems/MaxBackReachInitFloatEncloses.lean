@@ -60,7 +60,7 @@ theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W�
     (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀)
     (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
     (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero)
-        (hW₀r : W₀r.construct ⊆ W₀.construct) :
+        (hW₀r : W₀r.construct ⊆ W₀.construct) : -- --- STMT ---
     s.Encloses (sys.maxBackReachInit Ur W₀r (toReal t₀) η') := by -- --- PROOF ---
   -- the float state, with the order the search found
   simp only [LinearSys.maxBackReachInitFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,

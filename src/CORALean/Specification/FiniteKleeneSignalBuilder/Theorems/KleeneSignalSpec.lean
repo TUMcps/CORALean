@@ -29,7 +29,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteKleeneSignalBuilder.kleeneSignal?_spec (b : FiniteKleeneSignalBuilder) (d : ℝ)
-    (PT PF : ℝ → Prop) (hb : b.Represents d PT PF) :
+    (PT PF : ℝ → Prop) (hb : b.Represents d PT PF) : -- --- STMT ---
     ∃ s, b.kleeneSignal? = some s ∧ s.IsValid ∧ s.duration = d ∧ ∀ t : ℝ, 0 ≤ t → t ≤ d →
       ∃ v, s.at? t = some v ∧ (v = Kleene.tt ↔ PT t ∧ ¬ PF t) ∧
         (v = Kleene.ff ↔ PF t ∧ ¬ PT t) := by -- --- PROOF ---

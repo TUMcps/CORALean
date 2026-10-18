@@ -107,7 +107,7 @@ open scoped NNReal
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- CORA's step on the example: two passes of the loop, then `Rti`'s upper end. -/
-theorem aux_linReachCora1D_step :
+theorem aux_linReachCora1D_step : -- --- STMT ---
     ∃ R, NonlinearSys.linReachCora1D (fun x : ℝ => 1 - 1001 / 750 * x + 1001 / 3000 * x ^ 4)
       (fun x => -(1001 / 750) + 1001 / 750 * x ^ 3)
       (fun lo hi => 1001 / 250 * max (lo ^ 2) (hi ^ 2)) ⟨0, 0⟩ 2 2 = some R ∧
@@ -119,7 +119,7 @@ theorem aux_linReachCora1D_step :
 theorem aux_linReachCora1D_run (f f' : ℝ → ℝ)
     (hfd : f = fun x : ℝ => 1 - 1001 / 750 * x + 1001 / 3000 * x ^ 4)
     (hf'd : f' = fun x : ℝ => -(1001 / 750) + 1001 / 750 * x ^ 3)
-    (hf : ∀ x, HasDerivAt f (f' x) x) :
+    (hf : ∀ x, HasDerivAt f (f' x) x) : -- --- STMT ---
     ∃ x : ℝ → ℝ, x 0 = 0 ∧
         (∀ t ∈ Icc (0 : ℝ) (1 / 4), HasDerivWithinAt x (f (x t)) (Icc 0 (1 / 4)) t) ∧
         1 / 20 ≤ x (1 / 4) := by -- --- PROOF ---
@@ -189,7 +189,7 @@ theorem aux_linReachCora1D_run (f f' : ℝ → ℝ)
 /-- CORA's `'lin'` step for `ẋ = f(x)` from `{0}`, `Δt = 2`, with `f'`, `f''` the derivatives and
 `hess` the exact maximum of `|f''|` over a box, settles on an `Rti` ending below `1/50000`; a run
 from `0` is at `x(1/4) ≥ 1/20`. -/
-theorem NonlinearSys.linReachCora1D_hessianRegion_counterexample :
+theorem NonlinearSys.linReachCora1D_hessianRegion_counterexample : -- --- STMT ---
     let f : ℝ → ℝ := fun x => 1 - 1001 / 750 * x + 1001 / 3000 * x ^ 4
     let f' : ℝ → ℝ := fun x => -(1001 / 750) + 1001 / 750 * x ^ 3
     let hess : ℝ → ℝ → ℝ := fun lo hi => 1001 / 250 * max (lo ^ 2) (hi ^ 2)

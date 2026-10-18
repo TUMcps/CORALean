@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 theorem ZonoBundle.exists_hPolytope_convHull (zB₁ zB₂ : ZonoBundle (Vec ℝ n))
     (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.construct.Nonempty)
-    (hne₂ : zB₂.construct.Nonempty) :
+    (hne₂ : zB₂.construct.Nonempty) : -- --- STMT ---
     ∃ P : HPolytope (Vec ℝ n),
       P.construct = convexHull ℝ (zB₁.construct ∪ zB₂.construct) := by -- --- PROOF ---
   have hV := VPolytope.convHull_exact (zB₁.vPolytopeAll hk₁ hne₁) (zB₂.vPolytopeAll hk₂ hne₂)

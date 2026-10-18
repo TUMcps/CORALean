@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.cubMapC_between (T : Fin m → Fin n → Mat 𝕋 n n)
-    (Z : Zonotope (Vec 𝕋 n)) (i : Fin m) :
+    (Z : Zonotope (Vec 𝕋 n)) (i : Fin m) : -- --- STMT ---
     toReal (Zonotope.cubMapCDown T Z i)
         ≤ (Real.Zonotope.cubMap (fun i k => toRealMat (T i k))
             (nominal Z : Real.Zonotope (Vec ℝ n))).c i

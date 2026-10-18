@@ -28,7 +28,7 @@ namespace CORALean.Real
 /-- A monomial reads the kept factors and no others, which is the whole content
 of dropping a factor. -/
 theorem PolyZonotope.monomial_factorIdx {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p → ℝ)
-    (i : Fin h) :
+    (i : Fin h) : -- --- STMT ---
     PolyZonotope.monomial (fun k i => E (PolyZonotope.factorIdx E k) i)
         (fun k => a (PolyZonotope.factorIdx E k)) i
       = PolyZonotope.monomial E a i := by -- --- PROOF ---

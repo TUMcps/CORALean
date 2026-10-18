@@ -48,7 +48,7 @@ variable {m : ℕ}
 theorem meanValueAE_outer {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f) {lo hi : Fin m → ℝ}
     {f0lo f0hi : ℝ} (hf0 : f (fun i => (lo i + hi i) / 2) ∈ Icc f0lo f0hi) (dhi : Fin m → ℝ)
     (hd : ∀ i, ∀ y ∈ Icc lo hi, (∀ j, j < i → y j = (lo j + hi j) / 2) →
-      |fderiv ℝ f y (Pi.single i 1)| ≤ dhi i) :
+      |fderiv ℝ f y (Pi.single i 1)| ≤ dhi i) : -- --- STMT ---
     f '' Icc lo hi ⊆ Icc (f0lo - ∑ i, dhi i * ((hi i - lo i) / 2))
       (f0hi + ∑ i, dhi i * ((hi i - lo i) / 2)) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
@@ -59,7 +59,7 @@ theorem meanValueAE_outer {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ
 theorem meanValueAE_inner {f : (Fin m → ℝ) → ℝ} (hf : Differentiable ℝ f) {lo hi : Fin m → ℝ}
     (hlh : lo ≤ hi) {f0lo f0hi : ℝ} (hf0 : f (fun i => (lo i + hi i) / 2) ∈ Icc f0lo f0hi)
     (dlo : Fin m → ℝ) (hd : ∀ i, ∀ y ∈ Icc lo hi, (∀ j, j < i → y j = (lo j + hi j) / 2) →
-      dlo i ≤ |fderiv ℝ f y (Pi.single i 1)|) :
+      dlo i ≤ |fderiv ℝ f y (Pi.single i 1)|) : -- --- STMT ---
     Icc (f0hi - ∑ i, dlo i * ((hi i - lo i) / 2)) (f0lo + ∑ i, dlo i * ((hi i - lo i) / 2))
       ⊆ f '' Icc lo hi := by -- --- PROOF ---
   -- a point above `f(c) + ⟨∇̲, r⟩`, and one below `f(c) - ⟨∇̲, r⟩` from `-f`

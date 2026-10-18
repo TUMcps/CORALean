@@ -424,7 +424,10 @@ tree, so a commit that bypasses the hook, or that the scope wrongly called small
 fails there. The Python scripts are started through `scripts/find-python.sh`, which
 takes the first of `python3`, `python`, `py -3` that really runs a program (on
 Windows `python3` is by default a Store stub that runs nothing) and stops with a
-message when none does. Setting a clone up means
+message when none does, and sets `PYTHONUTF8=1` so that reading the sources and printing `ℝ`
+works under Windows' code page; a script in `scripts/` also passes `encoding="utf-8"` to every
+`read_text`, `write_text` and `open` (binary modes excepted), which `check-conventions.sh` checks.
+Setting a clone up means
 
 ```
 git config core.hooksPath .githooks
@@ -659,6 +662,12 @@ in a main-type file. What a system class denotes is its runs, so the main file o
 `<C>.IsTrajectory`, with what it is stated with (the closed loop's plant input `[a; e]`), and
 `check-conventions.sh` asks for it; `LinProbSys`, which denotes the law of its solution, and
 `OutputEq`, which is no system, are the named exceptions.
+
+A main-type file also cites the publication it formalizes: its module docstring has at least one
+numbered entry, `* [1] ...`, under `## References`, and says what it takes from it (`[1, Def. 5]`).
+A cross-reference in backticks does not count, as it is no publication. `check-conventions.sh`
+asks for it, and the files not yet brought up to it are listed in
+`scripts/main-reference-allowlist.txt`, which only shrinks (#211).
 
 ### A theorem used once is a lemma of its user
 
@@ -977,6 +986,31 @@ forms to recognise and two habits to keep.
 Only the declaration's own `:= by` takes it, never a nested `have … := by`:
 the flag marks the proof of the thing the file is named for, and one on every
 inner block would mark nothing at all.
+
+### The statement marker
+
+The PROOF flag marks where the claim stops; its twin marks where the claim starts. A theorem or
+lemma whose signature is **five lines or more** (the PROOF flag's threshold, counted the same way)
+ends the line of the colon that closes its binders with `-- --- STMT ---`, so that what is given
+stands above the flag and what should hold below it:
+
+```lean
+theorem NonlinDASys.exists_lagrange_remainder {C : Set (Vec ℝ d)} (hC : Convex ℝ C)
+    {F : Vec ℝ d → ℝ} {Ff : Vec ℝ d → (Vec ℝ d →L[ℝ] ℝ)}
+    {Hf : Vec ℝ d → (Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ)}
+    (hF : ∀ ξ ∈ C, HasFDerivAt F (Ff ξ) ξ) (hH : ∀ ξ ∈ C, HasFDerivAt Ff (Hf ξ) ξ)
+    {zs z : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) : -- --- STMT ---
+    ∃ ξ ∈ segment ℝ zs z,
+      F z = F zs + Ff zs (z - zs) + (1 / 2) * Hf ξ (z - zs) (z - zs) := by -- --- PROOF ---
+```
+
+It is required on a signature of five lines or more and refused on a shorter one, as the PROOF flag
+is, and it rides on the colon line only: the conclusion starts on the line below, so a statement
+whose conclusion shared the colon line is broken after the colon, and a colon line with no room for
+the flag has its last binders moved down to it. `check-conventions.sh` checks both. The theorems
+the tree-wide pass could not place, because even the wrapped colon line leaves no room, are listed
+in `scripts/stmt-marker-allowlist.txt` as `path::name`; the list only shrinks. The flag carries no
+meaning for Lean and none for `Last update:`.
 
 ### `API.lean`
 

@@ -37,7 +37,7 @@ variable [OfInterval S 𝕋]
 
 theorem ContSet.projectOnHyperplaneIntervalFloat_outer (s : S n) (c : Interval (Vec 𝕋 n))
     (dLo dHi : 𝕋) {cr : Vec ℝ n} (hc : cr ∈ c.construct) {δ : ℝ} (hδ : toReal dLo ≤ δ)
-    (hδ' : δ ≤ toReal dHi) :
+    (hδ' : δ ≤ toReal dHi) : -- --- STMT ---
     (fun x : Vec ℝ n => x - (cr ⬝ᵥ x - δ) • cr) '' construct s ⊆
       construct (ContSet.projectOnHyperplaneIntervalFloat s c dLo dHi) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩

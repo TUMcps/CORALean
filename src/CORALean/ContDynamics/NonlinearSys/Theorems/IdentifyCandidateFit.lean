@@ -36,7 +36,7 @@ theorem NonlinearSys.identifyCandidate_fit (φ : Vec ℝ n → Vec ℝ m → Vec
     (W : Mat ℝ N r)
     (hX1 : (Matrix.of fun i j => φ (x j) (u j) i : Mat ℝ d N) = V * Matrix.diagonal s * Wᵀ)
     (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (A' : Mat ℝ n d)
-    (hdata : ∀ j, dx j = A' *ᵥ φ (x j) (u j)) (j : Fin N) :
+    (hdata : ∀ j, dx j = A' *ᵥ φ (x j) (u j)) (j : Fin N) : -- --- STMT ---
     NonlinearSys.identifyCandidate dx V s W r *ᵥ φ (x j) (u j) = dx j := by -- --- PROOF ---
   -- the data is `X2 = A' X1`
   have hG : (Matrix.of fun i j => dx j i : Mat ℝ n N)

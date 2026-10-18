@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
 public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
@@ -9,7 +10,7 @@ public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
 /-!
 # The float chord row holds at the ReLU of a bounded neuron
 
-At a point of the star set, the neuron lying within its bounds, the value `β = max(y, 0)` of
+At a point of the star set, the neuron lying within its bounds, the value `β = relu(y)` of
 its ReLU satisfies the chord row, whenever `StarSet.chordGuard` accepts the bounds. The
 rounding of `k` and of its products with the generators is paid by the right-hand side.
 -/
@@ -35,10 +36,10 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval �
     (hg : StarSet.chordGuard b = true) (α : Fin s.m → ℝ)
     (hα : ∀ k, toReal (s.pred.l k) ≤ α k ∧ α k ≤ toReal (s.pred.u k))
     (hy : toReal b.inf ≤ toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ∧
-      toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ≤ toReal b.sup) :
+      toReal (s.c j) + ∑ k, toReal (s.G j k) * α k ≤ toReal b.sup) : -- --- STMT ---
     ∑ k : Fin (s.m + 1), toReal ((s.chordRow j b).1 k)
         * Fin.snoc (α := fun _ => ℝ) α
-          (max (toReal (s.c j) + ∑ k, toReal (s.G j k) * α k) 0) k
+          (Real.relu (toReal (s.c j) + ∑ k, toReal (s.G j k) * α k)) k
       ≤ toReal (s.chordRow j b).2 := by -- --- PROOF ---
   -- the guard gives `l < 0 < u` and a positive rounded `u - l`
   set y := toReal (s.c j) + ∑ k, toReal (s.G j k) * α k with hydef
@@ -65,13 +66,13 @@ theorem StarSet.chordRow_holds (s : StarSet 𝕋 n) (j : Fin n) (b : Interval �
     le_trans (div_le_div_of_nonneg_left hu0.le hdL hdLle) (div_le_divUp _ _ hdL)
   set klo := divDown b.sup (subUp b.sup b.inf) with hkloD
   set khi := divUp b.sup (subDown b.sup b.inf) with hkhiD
-  set β := max y 0 with hβ
+  set β := Real.relu y with hβ
   -- the chord lies above the ReLU
   have hchord : β ≤ k * (y - lf) := by
     rw [hk, div_mul_eq_mul_div, le_div_iff₀ hd]
     rcases le_total y 0 with h | h
-    · rw [hβ, max_eq_right h]; nlinarith [hy.1]
-    · rw [hβ, max_eq_left h]; nlinarith [hy.2]
+    · rw [hβ, Real.relu, max_eq_right h]; nlinarith [hy.1]
+    · rw [hβ, Real.relu, max_eq_left h]; nlinarith [hy.2]
   have hS : y - lf = (toReal (s.c j) - lf) + ∑ i, toReal (s.G j i) * α i := by
     rw [hydef]; ring
   -- the products with the generators, and the widest factor of the box

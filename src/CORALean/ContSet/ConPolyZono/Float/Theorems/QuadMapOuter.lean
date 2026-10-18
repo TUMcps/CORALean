@@ -62,7 +62,8 @@ theorem ConPolyZono.aux_quadMapG_close (Q : Fin k → Mat 𝕋 n n) (pZ : PolyZo
 `β`, then the error coordinates, is the nominal point plus the error. -/
 theorem ConPolyZono.aux_dependent_point (pZ : PolyZonotope (Vec 𝕋 n)) (a : Fin pZ.p → ℝ)
     (β : Fin pZ.q → ℝ) (e : Vec ℝ n)
-    (hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.I_error i)) (i : Fin n) :
+    (hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.I_error i))
+    (i : Fin n) : -- --- STMT ---
     toReal (pZ.c i) + (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
         + (∑ j, toReal (pZ.GI j i) * β j) + e i
       = toReal (pZ.absorbRounding.c i)

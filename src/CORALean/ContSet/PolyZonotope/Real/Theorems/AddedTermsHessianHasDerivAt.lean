@@ -35,7 +35,7 @@ variable {n : ℕ}
 /-- The first derivative of `F` along `k` is the point of `jacobian k`, and the derivative of that
 along `j` is the Hessian entry. -/
 theorem PolyZonotope.addedTermsHessian_hasDerivAt (pZ : PolyZonotope (Vec ℝ n))
-    (a : Fin pZ.p → ℝ) (l : Fin n → ℝ) (j k : Fin pZ.p) :
+    (a : Fin pZ.p → ℝ) (l : Fin n → ℝ) (j k : Fin pZ.p) : -- --- STMT ---
     HasDerivAt (fun t => ∑ i, l i * pZ.point (Function.update a k t) i)
       ((pZ.addedTerms.jacobian (Fin.castAdd n k)).point (Fin.append a l)) (a k)
     ∧ HasDerivAt (fun t => (pZ.addedTerms.jacobian (Fin.castAdd n k)).point

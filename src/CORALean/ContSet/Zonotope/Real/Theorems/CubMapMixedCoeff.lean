@@ -38,7 +38,7 @@ variable {n m : ℕ}
 /-- The trilinear expansion of the mixed cubic map over the three families of extended columns. -/
 theorem Zonotope.aux_cubMapMixed_expand (T : Fin m → Fin n → Mat ℝ n n) {N₁ N₂ N₃ : ℕ}
     (β₁ : Fin N₁ → ℝ) (β₂ : Fin N₂ → ℝ) (β₃ : Fin N₃ → ℝ) (u₁ : Fin N₁ → Vec ℝ n)
-    (u₂ : Fin N₂ → Vec ℝ n) (u₃ : Fin N₃ → Vec ℝ n) (i : Fin m) :
+    (u₂ : Fin N₂ → Vec ℝ n) (u₃ : Fin N₃ → Vec ℝ n) (i : Fin m) : -- --- STMT ---
     PolyZonotope.cubEvalMixed T (∑ a, β₁ a • u₁ a) (∑ b, β₂ b • u₂ b) (∑ j, β₃ j • u₃ j) i
       = ∑ j, ∑ b, ∑ a, β₃ j * β₂ b * β₁ a * ∑ k, (u₁ a ⬝ᵥ (T i k *ᵥ u₂ b)) * u₃ j k
     := by -- --- PROOF ---
@@ -66,7 +66,7 @@ theorem Zonotope.aux_cubMapMixed_expand (T : Fin m → Fin n → Mat ℝ n n) {N
 /-- With every extended factor `1` at index `0`, the `((0, 0), 0)` term is the center. -/
 theorem Zonotope.aux_cubMapMixed_center {h₁ h₂ h₃ : ℕ} (β₁ : Fin (h₁ + 1) → ℝ)
     (β₂ : Fin (h₂ + 1) → ℝ) (β₃ : Fin (h₃ + 1) → ℝ) (e₁ : β₁ 0 = 1) (e₂ : β₂ 0 = 1)
-    (e₃ : β₃ 0 = 1) (Q : Fin (h₃ + 1) → Fin (h₂ + 1) → Fin (h₁ + 1) → ℝ) :
+    (e₃ : β₃ 0 = 1) (Q : Fin (h₃ + 1) → Fin (h₂ + 1) → Fin (h₁ + 1) → ℝ) : -- --- STMT ---
     ∑ j, ∑ b, ∑ a, β₃ j * β₂ b * β₁ a * Q j b a
       = Q 0 0 0 + ∑ j, ∑ b, ∑ a,
           β₃ j * β₂ b * β₁ a * (if j = 0 ∧ b = 0 ∧ a = 0 then 0 else Q j b a) := by -- --- PROOF ---
@@ -97,7 +97,7 @@ family being that family's `p`. -/
 theorem Zonotope.cubMapMixed_coeff (T : Fin m → Fin n → Mat ℝ n n)
     (Z₁ Z₂ Z₃ : Zonotope (Vec ℝ n)) (p₁ : Fin Z₁.h → ℝ) (p₂ : Fin Z₂.h → ℝ)
     (p₃ : Fin Z₃.h → ℝ) (hp₁ : ∀ j, |p₁ j| ≤ 1) (hp₂ : ∀ j, |p₂ j| ≤ 1)
-    (hp₃ : ∀ j, |p₃ j| ≤ 1) :
+    (hp₃ : ∀ j, |p₃ j| ≤ 1) : -- --- STMT ---
     ∃ γ : Fin (Z₁.cubMapMixed T Z₂ Z₃).h → ℝ, (∀ l, |γ l| ≤ 1)
       ∧ (∀ a : Fin Z₁.h,
           γ ((Zonotope.cubIdx (Z₃.h + 1) (Z₂.h + 1) (Z₁.h + 1)).symm ((0, 0), a.succ)) = p₁ a)

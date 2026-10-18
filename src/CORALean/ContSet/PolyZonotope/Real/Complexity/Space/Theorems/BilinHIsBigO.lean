@@ -33,7 +33,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 /-- The `h` count of `bilin`'s result in `O`-notation. -/
 theorem PolyZonotope.bilin_h_isBigO (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ : ℕ → PolyZonotope α)
     (T : ℕ → PolyZonotope β) (hp : ∀ m, (pZ m).p = (T m).p) (hS : ∀ m, (pZ m).h = m)
-    (hT : ∀ m, (T m).h = m) :
+    (hT : ∀ m, (T m).h = m) : -- --- STMT ---
     (fun m : ℕ => (((PolyZonotope.bilin f (pZ m) (T m) (hp m)).h : ℕ) : ℝ))
       =O[Filter.atTop] fun m : ℕ => ((m : ℝ)) ^ 2 := by -- --- PROOF ---
   apply Asymptotics.IsBigO.of_bound 4

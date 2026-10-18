@@ -41,7 +41,7 @@ difference as the scalar computes it. -/
 theorem bucketTolerance_approx {le : 𝕋 → 𝕋 → Bool}
     (hle : ∀ a b, le a b = true → toReal a ≤ toReal b)
     {tol : 𝕋} {fuel : ℕ} {B : MergeBuckets 𝕋} {I_k : Interval (Vec 𝕋 n)} {ρ : 𝕋}
-    {B_kδ : Fin n → Bool} (h : bucketTolerance le tol fuel B I_k ρ = some B_kδ) :
+    {B_kδ : Fin n → Bool} (h : bucketTolerance le tol fuel B I_k ρ = some B_kδ) : -- --- STMT ---
     |toReal (subUp (ratio (n - bucketed B_kδ) n) ρ)| ≤ toReal tol := by -- --- PROOF ---
   -- the bisection returns only where line 16's test passed, at every fuel
   have key : ∀ (k : ℕ) (δmin δmax : 𝕋),

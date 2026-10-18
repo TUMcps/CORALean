@@ -36,7 +36,7 @@ namespace CORALean
 /-- `stlInterval(lb,ub,lc,rc)` of values `r` to `f` holds the times with `cell` in that run. -/
 theorem PointSegmentSignal.cell_mem_bounds {T : Type} [LinearOrder T] [Zero T]
     (s : PointSegmentSignal T) (hs : s.IsValid) (r f : ℕ) (hr : 1 ≤ r) (hrN : r ≤ s.values.length)
-    (hf : 1 ≤ f) (hfN : f ≤ s.values.length) (t : T) (ht : 0 ≤ t) :
+    (hf : 1 ≤ f) (hfN : f ≤ s.values.length) (t : T) (ht : 0 ≤ t) : -- --- STMT ---
     STLInterval.memBounds (s.precTimeAtValIdx r).1 (s.succTimeAtValIdx f).1
       (s.precTimeAtValIdx r).2 (s.succTimeAtValIdx f).2 t ↔
       r - 1 ≤ s.cell t ∧ s.cell t ≤ f - 1 := by -- --- PROOF ---

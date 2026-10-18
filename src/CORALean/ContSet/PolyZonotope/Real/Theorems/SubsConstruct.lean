@@ -32,7 +32,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `subs` is exactly the substitution, as a set. -/
 theorem PolyZonotope.subs_construct (pZ : PolyZonotope α) {nu : ℕ}
     (pZin : PolyZonotope (Vec ℝ nu)) (idu : Fin nu → Fin pZ.p)
-    (share : Fin pZin.p → Option (Fin pZ.p)) (hidu : Function.Injective idu) :
+    (share : Fin pZin.p → Option (Fin pZ.p)) (hidu : Function.Injective idu) : -- --- STMT ---
     (pZ.subs pZin idu share).construct
       = {x | ∃ a : Fin (pZ.p + pZin.p) → ℝ, ∃ γ : Fin pZ.q → ℝ,
           (∀ k, |a k| ≤ 1) ∧ (∀ j, |γ j| ≤ 1) ∧

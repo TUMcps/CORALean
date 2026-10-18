@@ -58,7 +58,7 @@ solution over `t = ωΔt` is `O(Δt)`, hence `0` in the limit. -/
 theorem LinearSys.hausdorffDist₂_inputSolutionInner_le (sys : LinearSys 𝕋 n) {U : S n}
     {Δt ρ : ℝ} (hΔt : 0 < Δt) (hconv : Convex ℝ (construct U))
     (hclosed : IsClosed (construct U)) (hbdd : Bornology.IsBounded (construct U))
-    (hne : (construct U).Nonempty) (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) (ω : ℕ) :
+    (hne : (construct U).Nonempty) (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) (ω : ℕ) : -- --- STMT ---
     hausdorffDist₂ (sys.propagateInputSolution Δt (sys.inputSolutionInner U Δt) ω)
         (sys.inputReach U ((ω : ℝ) * Δt))
       ≤ Real.sqrt n * (2 * ρ * ‖toRealMat sys.A‖

@@ -48,7 +48,8 @@ variable {n ny nf : ℕ}
 -- [1, Eq. 24] at one step: the form of the negated Eq. 27 at `(e_{k+1}, e_k, f_k)`
 theorem LinearSysDT.aux_hMinus_step (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
     (P : Mat ℝ n n) (W : Mat ℝ n ny) (M : Mat ℝ ny ny) (α β : ℝ) (hP : P.PosDef)
-    (h : LinearSysDT.HMinusLmi A C E P W (Mᵀ * M) α β) (e : Vec ℝ n) (f : Vec ℝ nf) :
+    (h : LinearSysDT.HMinusLmi A C E P W (Mᵀ * M) α β) (e : Vec ℝ n)
+    (f : Vec ℝ nf) : -- --- STMT ---
     let L := P⁻¹ * W
     let w := (A - L * C) *ᵥ e - (L * E) *ᵥ f
     let r := (M * C) *ᵥ e + (M * E) *ᵥ f
@@ -122,7 +123,7 @@ theorem LinearSysDT.hMinus_of_lmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat 
     (h : LinearSysDT.HMinusLmi A C E P W (Mᵀ * M) α β) (e : ℕ → Vec ℝ n) (f : ℕ → Vec ℝ nf)
     (he0 : e 0 = 0)
     (he : ∀ k, e (k + 1) = (A - P⁻¹ * W * C) *ᵥ e k - (P⁻¹ * W * E) *ᵥ f k)
-    (k₀ : ℕ) (hf : f k₀ ≠ 0) :
+    (k₀ : ℕ) (hf : f k₀ ≠ 0) : -- --- STMT ---
     let r : ℕ → Vec ℝ ny := fun k => (M * C) *ᵥ e k + (M * E) *ᵥ f k        -- Eq. 20
     ∃ c > 0, ∀ N, k₀ < N →
       c ≤ ∑ k ∈ Finset.range N, (r k ⬝ᵥ r k - β ^ 2 * (f k ⬝ᵥ f k)) := by -- --- PROOF ---

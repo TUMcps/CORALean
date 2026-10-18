@@ -30,7 +30,7 @@ variable {A : Type}
 theorem OnlineReachSetAnalyzer.nodesInv_of_ext (dp : Bool)
     (nodes nodes' : List (OnlineAnalyzerNode A)) (hl : nodes'.length = nodes.length)
     (he : OnlineReachSetAnalyzer.Ext nodes nodes')
-    (h : OnlineReachSetAnalyzer.NodesInv dp nodes) :
+    (h : OnlineReachSetAnalyzer.NodesInv dp nodes) : -- --- STMT ---
     OnlineReachSetAnalyzer.NodesInv dp nodes' := by -- --- PROOF ---
   refine ⟨fun j hj => ?_, fun n hn => ?_⟩
   -- the index of a node is unchanged

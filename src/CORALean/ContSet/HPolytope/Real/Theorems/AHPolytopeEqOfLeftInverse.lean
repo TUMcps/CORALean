@@ -43,7 +43,7 @@ variable {n m q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ahPolytope_eq_of_leftInverse {xbar : Vec ℝ n} {X : Mat ℝ n m}
-    {Xd : Mat ℝ m n} (hX : Xd * X = 1) {H : Mat ℝ q m} {h : Vec ℝ q} :
+    {Xd : Mat ℝ m n} (hX : Xd * X = 1) {H : Mat ℝ q m} {h : Vec ℝ q} : -- --- STMT ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs H h)
       = {y | (H * Xd) *ᵥ y ≤ h + (H * Xd) *ᵥ xbar ∧
           (1 - X * Xd) *ᵥ (y - xbar) = 0} := by -- --- PROOF ---

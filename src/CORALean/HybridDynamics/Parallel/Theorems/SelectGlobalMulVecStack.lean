@@ -34,7 +34,7 @@ variable {k m : ℕ}
 theorem ParallelHybridAutomaton.selectGlobal_mulVec_stack {d q : Fin k → ℕ}
     (b : ∀ i, Fin (d i) → ResolveSource k q m) (v : ∀ i, Vec ℝ (d i)) (g : Vec ℝ m)
     (hv : ∀ i j a, b i j = .global a → v i j = g a)
-    (hz : ∀ a, (∀ i j, b i j ≠ .global a) → g a = 0) :
+    (hz : ∀ a, (∀ i j, b i j ≠ .global a) → g a = 0) : -- --- STMT ---
     selectGlobal b *ᵥ stack v = g := by -- --- PROOF ---
   funext a
   rw [selectGlobal_mulVec]

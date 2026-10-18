@@ -80,7 +80,7 @@ theorem NonlinearSys.IsInnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
     (hEs : ∀ e ∈ st.Rerr, (2 : ℝ) • st.c - e ∈ st.Rerr)
     {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
-      x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) :
+      x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- STMT ---
     NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st := by -- --- PROOF ---
   -- what lines 5, 7 and 14 computed
   have hst : st.w = sys.f st.xstar u₀ ∧

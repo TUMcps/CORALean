@@ -45,7 +45,7 @@ open Matrix
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 -- Eq. 19 at the instance: its form is `x₁²/10 + x₂²/4 + (x₃/2 + 2x₄/5)² + x₄²/25`
-theorem Zonotope.aux_pRadiusCounterexample_lmi :
+theorem Zonotope.aux_pRadiusCounterexample_lmi : -- --- STMT ---
     let T : Mat ℝ 1 1 := 0
     let N : Mat ℝ 1 1 := 1
     let Λ : Mat ℝ 1 1 := fun _ _ => 2
@@ -97,7 +97,7 @@ theorem Zonotope.aux_pRadiusCounterexample_lmi :
   nlinarith [hpos]
 
 -- the zonotope is `⟨0, [-1  2]⟩` up to a zero generator: `3` is in it, and nothing beyond
-theorem Zonotope.aux_pRadiusCounterexample_points :
+theorem Zonotope.aux_pRadiusCounterexample_points : -- --- STMT ---
     let Z := (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1)).intersectDescriptor (0 : Mat ℝ 1 1)
       (1 : Mat ℝ 1 1) (fun _ _ => 2 : Mat ℝ 1 1) (0 : Mat ℝ 1 1) (0 : Mat ℝ 1 1)
       ((0 : Mat ℝ 1 1) * 1) (1 : Mat ℝ 1 1) ((1 : Mat ℝ 1 1) * 1) 0 0
@@ -137,7 +137,7 @@ theorem Zonotope.aux_pRadiusCounterexample_points :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.intersectDescriptorHd_pRadius_counterexample :
+theorem Zonotope.intersectDescriptorHd_pRadius_counterexample : -- --- STMT ---
     let E : Mat ℝ 1 1 := 0
     let T : Mat ℝ 1 1 := 0
     let N : Mat ℝ 1 1 := 1

@@ -94,7 +94,7 @@ theorem NonlinearSys.reachSet_subset_relinTimeInterval_horizon (sys : NonlinearS
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
     (hRbdd : ∀ i < N, Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (steps i).A Δt (q + 2)) (steps i).linInput)))
-    {o : ℕ} (ho : 0 < o) {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) ((N : ℝ) * Δt)) :
+    {o : ℕ} (ho : 0 < o) {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) ((N : ℝ) * Δt)) : -- --- STMT ---
     sys.reachSet T R₀ U t ⊆ ⋃ i < N, construct (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) := by -- --- PROOF ---

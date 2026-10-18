@@ -31,7 +31,7 @@ variable {S : ℕ → Type} {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSetAnalyzer.mk?_spec (aps : List (String × AtomicProposition S n)) (dur : ℝ)
-    (masks : List (String × FiniteSignal ℝ Bool)) :
+    (masks : List (String × FiniteSignal ℝ Bool)) : -- --- STMT ---
     (dur < 0 → aps ≠ [] → ReachSetAnalyzer.mk? aps dur masks = none) ∧
     (0 ≤ dur → (aps.map Prod.fst).Nodup → ∃ obj, ReachSetAnalyzer.mk? aps dur masks = some obj ∧
       obj.aps = aps ∧ obj.masks = masks ∧

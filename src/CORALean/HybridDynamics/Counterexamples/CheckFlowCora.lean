@@ -110,7 +110,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type}
 theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hc : ℓ.dynamics.c = ![0, -g])
     (hU : 0 ∈ ContSet.construct ℓ.U) (hW : 0 ∈ ContSet.construct ℓ.W)
-    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) :
+    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) : -- --- STMT ---
     ∃ τ x u w, ℓ.IsTrajectory τ x u w ∧
       (∀ t ∈ Set.Icc 0 τ, x t ∈ (⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩ :
         Real.Zonotope (Vec ℝ 2)).construct) ∧ (![-1, 0] : Vec ℝ 2) ⬝ᵥ x τ = 0 := by -- --- PROOF ---
@@ -187,7 +187,7 @@ theorem Location.checkFlowCora_drops_hit_counterexample
     (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hB : ℓ.dynamics.B = 0) (hc : ℓ.dynamics.c = ![0, -g])
     (hU : 0 ∈ ContSet.construct ℓ.U) (hW : 0 ∈ ContSet.construct ℓ.W)
-    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) :
+    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) : -- --- STMT ---
     let R : Real.Zonotope (Vec ℝ 2) := ⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩
     let c : Vec ℝ 2 := ![-1, 0]
     R ∉ ℓ.checkFlowCora 0 0 c 0 [R] ∧

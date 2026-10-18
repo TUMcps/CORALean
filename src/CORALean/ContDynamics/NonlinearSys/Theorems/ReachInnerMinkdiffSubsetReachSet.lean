@@ -58,7 +58,7 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSet (ops : NonlinearSys.LinR
       NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st)
     {timePoint timeInt : ℕ → Set (Vec ℝ n)}
     (h : NonlinearSys.reachInnerMinkdiff ops (fun x => sys.f x u₀) X₀ Δt steps fuel =
-      some (timePoint, timeInt)) :
+      some (timePoint, timeInt)) : -- --- STMT ---
     (∀ k : ℕ, timePoint k ⊆
       sys.reachSet (S := 𝒮) (Icc 0 (k * Δt)) X₀ U (k * Δt)) ∧
     (∀ k : ℕ, timeInt k ⊆ ⋃ t ∈ Icc (k * Δt) ((k + 1) * Δt),

@@ -44,7 +44,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The generator sum read against the kept factors alone. -/
-theorem ConPolyZono.aux_sum_compactFactors (cPZ : ConPolyZono α) (a : Fin cPZ.p → ℝ) :
+theorem ConPolyZono.aux_sum_compactFactors (cPZ : ConPolyZono α)
+    (a : Fin cPZ.p → ℝ) : -- --- STMT ---
     (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i)
       = ∑ i : Fin cPZ.compactFactors.h, PolyZonotope.monomial cPZ.compactFactors.E
           (fun k => a (ConPolyZono.factorIdx cPZ.E cPZ.R k)) i
@@ -59,7 +60,7 @@ theorem ConPolyZono.aux_sum_compactFactors (cPZ : ConPolyZono α) (a : Fin cPZ.p
 inclusion supplies. Stated separately, since obtaining it from
 `sum_compactFactors` would rewrite under a binder typed by a projection. -/
 theorem ConPolyZono.aux_sum_compactFactors_extend (cPZ : ConPolyZono α)
-    (a : Fin cPZ.compactFactors.p → ℝ) :
+    (a : Fin cPZ.compactFactors.p → ℝ) : -- --- STMT ---
     (∑ i, PolyZonotope.monomial cPZ.E (ConPolyZono.factorExtend cPZ.E cPZ.R a) i • cPZ.G i)
       = ∑ i : Fin cPZ.compactFactors.h,
           PolyZonotope.monomial cPZ.compactFactors.E a i

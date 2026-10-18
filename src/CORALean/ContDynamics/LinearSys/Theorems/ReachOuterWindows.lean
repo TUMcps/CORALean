@@ -55,7 +55,7 @@ is in one of `reach`'s windows. -/
 theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S n) ℝ}
     {options : LinearSys.ReachStepOptions ℝ} (htFinal : 0 < params.tFinal - params.tStart)
     (hΔt : 0 < options.Δt) (hη : 2 ≤ options.η)
-    (hε : ‖options.Δt • toRealMat sys.A‖ / ((options.η : ℝ) + 2) < 1) :
+    (hε : ‖options.Δt • toRealMat sys.A‖ / ((options.η : ℝ) + 2) < 1) : -- --- STMT ---
     sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reach params options) := by -- --- PROOF ---
   unfold LinearSys.reach

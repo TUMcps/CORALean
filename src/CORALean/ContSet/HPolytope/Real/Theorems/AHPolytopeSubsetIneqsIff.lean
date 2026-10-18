@@ -41,7 +41,7 @@ variable {n nx qx qy : ℕ}
 /-- [1, Cor. 2]: `x̄ + X Px ⊆ Py` iff (12) of [1, Thm. 1] holds at `Y = I`, `ȳ = 0`. -/
 theorem HPolytope.ahPolytope_subset_ineqs_iff {xbar : Vec ℝ n} {X : Mat ℝ n nx}
     {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : Mat ℝ qy n} {hy : Vec ℝ qy}
-    (hne : (HPolytope.ineqs Hx hx).construct.Nonempty) :
+    (hne : (HPolytope.ineqs Hx hx).construct.Nonempty) : -- --- STMT ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx) ⊆ (HPolytope.ineqs Hy hy).construct ↔
       ∃ (Γ : Mat ℝ n nx) (β : Vec ℝ n) (Λ : Mat ℝ qy qx), X = (1 : Mat ℝ n n) * Γ ∧
         0 - xbar = (1 : Mat ℝ n n) *ᵥ β ∧ (∀ i j, 0 ≤ Λ i j) ∧ Λ * Hx = Hy * Γ ∧

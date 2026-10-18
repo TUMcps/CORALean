@@ -62,7 +62,7 @@ theorem LinearSys.IsCanonicalTrajectory.aux_aestronglyMeasurable {sys : LinearSy
 bounded — which every representation of a set of points is. -/
 theorem LinearSys.IsCanonicalTrajectory.intervalIntegrable_input {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
-    (hT : Set.Icc a b ⊆ T) (hab : a ≤ b) (hU : Bornology.IsBounded (construct U)) :
+    (hT : Set.Icc a b ⊆ T) (hab : a ≤ b) (hU : Bornology.IsBounded (construct U)) : -- --- STMT ---
     IntervalIntegrable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       volume a b := by -- --- PROOF ---
   obtain ⟨CU, hCU⟩ := hU.exists_norm_le

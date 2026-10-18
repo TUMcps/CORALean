@@ -56,7 +56,7 @@ theorem aux_frobNormSq_smul {m : ℕ} {ι : Type} [Fintype ι] (P : Mat ℝ m m)
 /-- One step's `trace(G(t_k)^T P G(t_k))`, split into the blocks of (25). -/
 theorem aux_step_frob (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype ιX]
     [Fintype ιW] [Fintype ιV] (GX : ιX → Vec ℝ n) (αX : ιX → ℝ) (GW : ιW → Vec ℝ n)
-    (αW : ιW → ℝ) (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (P : Mat ℝ q q) (k : ℕ) :
+    (αW : ιW → ℝ) (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (P : Mat ℝ q q) (k : ℕ) : -- --- STMT ---
     Conform.frobNormSq P (fun j => Sum.elim (Sum.elim αX fun r : Fin k × ιW => αW r.2) αV j
         • Sum.elim (Sum.elim (fun x => (sys.C * sys.A ^ k) *ᵥ GX x)
           (fun r : Fin k × ιW => (sys.C * sys.A ^ (r.1 : ℕ)) *ᵥ GW r.2)) GV j)
@@ -75,7 +75,8 @@ theorem aux_step_frob (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype 
 /-- [1, Thm. 2]: `z^T H z` is `∑_{k ≤ K} ω_k ‖R(t_k) - ỹ(t_k)‖²_{F,P}`. -/
 theorem Conform.Plant.qpCost_eq (sys : Conform.Plant n p q) {ιX ιW ιV : Type} [Fintype ιX]
     [Fintype ιW] [Fintype ιV] (GX : ιX → Vec ℝ n) (αX : ιX → ℝ) (GW : ιW → Vec ℝ n)
-    (αW : ιW → ℝ) (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (P : Mat ℝ q q) (ω : ℕ → ℝ) (K : ℕ) :
+    (αW : ιW → ℝ) (GV : ιV → Vec ℝ q) (αV : ιV → ℝ) (P : Mat ℝ q q) (ω : ℕ → ℝ)
+    (K : ℕ) : -- --- STMT ---
     ∑ k ∈ Finset.range (K + 1), ω k * Conform.frobNormSq P (fun j =>
         Sum.elim (Sum.elim αX fun r : Fin k × ιW => αW r.2) αV j
         • Sum.elim (Sum.elim (fun x => (sys.C * sys.A ^ k) *ᵥ GX x)

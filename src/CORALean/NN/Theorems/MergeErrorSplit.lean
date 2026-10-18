@@ -41,7 +41,7 @@ open Matrix
 sub-buckets' errors. -/
 theorem mergeError_split {m r r₁ r₂ : ℕ}
     (part : Split (Fin r) into (Fin r₁) ⊕ (Fin r₂))
-    (M : Mat ℝ m r) (Y : Real.Interval (Vec ℝ r)) :
+    (M : Mat ℝ m r) (Y : Real.Interval (Vec ℝ r)) : -- --- STMT ---
     Real.Interval.mtimes M Y
       = Real.Interval.plus
           (Real.Interval.mtimes (M.submatrix id part.left)

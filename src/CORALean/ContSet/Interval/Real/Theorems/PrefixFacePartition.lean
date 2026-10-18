@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.prefixFace_partition {j k : ℕ} (hjk : j ≤ k) (hkn : k ≤ n) (p q : Fin n → Bool)
-    (hq : ∀ i : Fin n, (i : ℕ) < j → q i = p i) :
+    (hq : ∀ i : Fin n, (i : ℕ) < j → q i = p i) : -- --- STMT ---
     let piece : ℕ → Set (Fin n → Bool) := fun i =>
       Interval.prefixFace (i + 1) fun m => if (m : ℕ) = i then !q m else q m
     Interval.prefixFace j p =

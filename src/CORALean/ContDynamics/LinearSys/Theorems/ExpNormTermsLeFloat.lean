@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- At `r ≥ 0` and an admissible `η`: `r‖A‖ ≤ nrm`, `e^{r‖A‖} - 1` and `e^{r‖A‖} - 1 - r‖A‖`
 under their float bounds, and `0 ≤ E(rA, η) ≤` its float bound. -/
 theorem LinearSys.expNormTerms_le_float (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
-    (hr : 0 ≤ toReal r) (hη : sys.OrderAdmissibleFloat r r η) :
+    (hr : 0 ≤ toReal r) (hη : sys.OrderAdmissibleFloat r r η) : -- --- STMT ---
     toReal r * ‖Scalar.toRealMat sys.A‖
         ≤ toReal (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ∧
       Real.exp (toReal r * ‖Scalar.toRealMat sys.A‖) - 1

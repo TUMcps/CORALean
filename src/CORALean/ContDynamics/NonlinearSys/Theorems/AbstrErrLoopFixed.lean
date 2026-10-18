@@ -52,7 +52,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 error that contains it. -/
 theorem abstrErrLoop_subset {sub : S n → S n → Bool}
     (hsub : ∀ a b : S n, sub a b = true → construct a ⊆ construct b)
-    (enlarge Φ : S n → S n) :
+    (enlarge Φ : S n → S n) : -- --- STMT ---
     ∀ (fuel : ℕ) (Ψ Ψ' : S n), abstrErrLoop sub enlarge Φ Ψ fuel = some Ψ' →
       ∃ Ψapp, Ψ' = Φ Ψapp ∧ construct Ψ' ⊆ construct Ψapp := by -- --- PROOF ---
   intro fuel

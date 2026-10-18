@@ -46,7 +46,7 @@ the step and in `R_lin(t_{k+1})` at its end. -/
 theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachOptions 𝕋} {R Rt Rτ : Zonotope (Vec 𝕋 n)} {A : Mat 𝕋 n n}
-    (hpass : fm.adaptLinPassFloat U options R = some (A, Rt, Rτ)) :
+    (hpass : fm.adaptLinPassFloat U options R = some (A, Rt, Rτ)) : -- --- STMT ---
     0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →

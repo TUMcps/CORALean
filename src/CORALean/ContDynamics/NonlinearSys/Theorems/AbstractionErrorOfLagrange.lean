@@ -74,7 +74,7 @@ theorem aux_abs_taylor_le2 {φ φ' φ'' φ''' : ℝ → ℝ} {K : ℝ}
     (hφ : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ (φ' t) t)
     (hφ' : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ' (φ'' t) t)
     (hφ'' : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ'' (φ''' t) t)
-    (hK : ∀ t ∈ Icc (0:ℝ) 1, |φ''' t| ≤ K) :
+    (hK : ∀ t ∈ Icc (0:ℝ) 1, |φ''' t| ≤ K) : -- --- STMT ---
     |φ 1 - φ 0 - φ' 0 - φ'' 0 / 2| ≤ K / 6 := by -- --- PROOF ---
   have hlin : ∀ s : ℝ, HasDerivAt (fun t : ℝ => K * t) K s := fun s => by
     simpa using (hasDerivAt_id s).const_mul K
@@ -177,7 +177,7 @@ fixed: an entrywise bound on a trilinear map is a bound on the cubic form. -/
 theorem aux_abs_cubic_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ : Vec ℝ d)
     (M : Fin d → Mat ℝ d d)
     (hM : ∀ j k l, |T (Pi.single j 1) (Pi.single k 1) (Pi.single l 1)| ≤ M j k l)
-    (hv : ∀ j, |v j| ≤ γ j) :
+    (hv : ∀ j, |v j| ≤ γ j) : -- --- STMT ---
     |T v v v| ≤ ∑ j, γ j * (γ ⬝ᵥ (M j *ᵥ γ)) := by -- --- PROOF ---
   have hγ : ∀ j, 0 ≤ γ j := fun j => le_trans (abs_nonneg _) (hv j)
   have hexp1 : T v v v = ∑ j, v j * (T (Pi.single j 1) v v) := by
@@ -227,7 +227,7 @@ theorem aux_abs_remainder_le2 {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec
     (hE : ∀ ξ ∈ C, HasFDerivAt Hf (Ef ξ) ξ)
     {M : Fin d → Mat ℝ d d}
     (hM : ∀ ξ ∈ C, ∀ j k l, |Ef ξ (Pi.single j 1) (Pi.single k 1) (Pi.single l 1)| ≤ M j k l)
-    {zs z γ : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) (hγ : ∀ j, |z j - zs j| ≤ γ j) :
+    {zs z γ : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) (hγ : ∀ j, |z j - zs j| ≤ γ j) : -- --- STMT ---
     |F z - F zs - Ff zs (z - zs) - Hf zs (z - zs) (z - zs) / 2|
       ≤ (∑ j, γ j * (γ ⬝ᵥ (M j *ᵥ γ))) / 6 := by -- --- PROOF ---
   set h : Vec ℝ d := z - zs with hh

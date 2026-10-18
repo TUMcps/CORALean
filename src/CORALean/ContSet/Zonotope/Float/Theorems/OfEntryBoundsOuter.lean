@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Zonotope.ofEntryBounds_outer (Z : CORALean.Real.Zonotope (Vec ℝ n))
     {cLo cHi : Vec 𝕋 n} {GLo GHi : Mat 𝕋 n Z.h} (E : Interval (Vec 𝕋 n))
     (hc : ∀ i, toReal (cLo i) ≤ Z.c i ∧ Z.c i ≤ toReal (cHi i))
-    (hG : ∀ i k, toReal (GLo i k) ≤ Z.G k i ∧ Z.G k i ≤ toReal (GHi i k)) :
+    (hG : ∀ i k, toReal (GLo i k) ≤ Z.G k i ∧ Z.G k i ≤ toReal (GHi i k)) : -- --- STMT ---
     Z.construct + E.construct
       ⊆ (Zonotope.ofEntryBounds cLo cHi GLo GHi E).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨β, hβ, rfl⟩, e, he, rfl⟩

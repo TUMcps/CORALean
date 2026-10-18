@@ -45,7 +45,7 @@ theorem HPolytope.ahPolytope_subset_sum_of_cert {ny qy : Fin N → ℕ} {xbar : 
     {Γ : (i : Fin N) → Mat ℝ (ny i) nx} {β : (i : Fin N) → Vec ℝ (ny i)}
     (hΛ : ∀ i j k, 0 ≤ Λ i j k) (h1 : ∀ i, Λ i * Hx = Hy i * Γ i)
     (h2 : ∀ i, Λ i *ᵥ hx ≤ hy i + Hy i *ᵥ β i)
-    (hc : ∑ i, (ybar i - Y i *ᵥ β i) = xbar) (hX : ∑ i, Y i * Γ i = X) :
+    (hc : ∑ i, (ybar i - Y i *ᵥ β i) = xbar) (hX : ∑ i, Y i * Γ i = X) : -- --- STMT ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx) ⊆
       {x | ∃ q : (i : Fin N) → Vec ℝ (ny i),
         (∀ i, q i ∈ (HPolytope.ineqs (Hy i) (hy i)).construct) ∧

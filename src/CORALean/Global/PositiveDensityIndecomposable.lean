@@ -43,7 +43,8 @@ theorem positiveDensity_indecomposable (μ : Measure S) (hμ : μ ≠ 0) (f : S 
     (A₁ A₂ : Set S) (h₁ : MeasurableSet A₁) (h₂ : MeasurableSet A₂)
     (hne₁ : A₁.Nonempty) (hne₂ : A₂.Nonempty) (hdisj : Disjoint A₁ A₂)
     (hcl₁ : ∀ x ∈ A₁, ∫⁻ y in A₁ᶜ, f x y ∂μ = 0)
-    (hcl₂ : ∀ x ∈ A₂, ∫⁻ y in A₂ᶜ, f x y ∂μ = 0) : False := by -- --- PROOF ---
+    (hcl₂ : ∀ x ∈ A₂, ∫⁻ y in A₂ᶜ, f x y ∂μ = 0) : -- --- STMT ---
+    False := by -- --- PROOF ---
   -- a closed set has a null complement: the density is positive
   have hnull : ∀ A : Set S, MeasurableSet A → ∀ x, ∫⁻ y in Aᶜ, f x y ∂μ = 0 → μ Aᶜ = 0 := by
     intro A hA x hx

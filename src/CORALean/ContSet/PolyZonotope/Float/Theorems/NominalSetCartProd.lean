@@ -57,7 +57,7 @@ theorem PolyZonotope.aux_realGI_left (pZ₁ : PolyZonotope (Vec 𝕋 n₁)) (pZ�
 
 theorem PolyZonotope.aux_realGI_right (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
     (pZ₂ : PolyZonotope (Vec 𝕋 n₂))
-    (l : Fin pZ₂.q) :
+    (l : Fin pZ₂.q) : -- --- STMT ---
     (Real.PolyZonotope.cartProd (InflatedContSet.nominal pZ₁) (InflatedContSet.nominal pZ₂)).GI
       (Fin.natAdd pZ₁.q l) = (0, (InflatedContSet.nominal pZ₂).GI l) := by -- --- PROOF ---
   dsimp only [Real.PolyZonotope.cartProd]
@@ -66,7 +66,7 @@ theorem PolyZonotope.aux_realGI_right (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
 /-- The nominal polynomial zonotope of the product is the exact product, mapped through the
 append. -/
 theorem PolyZonotope.aux_nominal_cartProd (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
-    (pZ₂ : PolyZonotope (Vec 𝕋 n₂)) :
+    (pZ₂ : PolyZonotope (Vec 𝕋 n₂)) : -- --- STMT ---
     InflatedContSet.nominal (pZ₁.cartProd pZ₂) =
       Real.PolyZonotope.map (appendLinear n₁ n₂)
         (Real.PolyZonotope.cartProd (InflatedContSet.nominal pZ₁)
@@ -103,7 +103,7 @@ theorem PolyZonotope.aux_nominal_cartProd (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.nominalSet_cartProd (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
-    (pZ₂ : PolyZonotope (Vec 𝕋 n₂)) :
+    (pZ₂ : PolyZonotope (Vec 𝕋 n₂)) : -- --- STMT ---
     InflatedContSet.nominalSet (pZ₁.cartProd pZ₂) =
       (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
         (InflatedContSet.nominalSet pZ₁ ×ˢ InflatedContSet.nominalSet pZ₂) := by -- --- PROOF ---

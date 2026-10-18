@@ -42,7 +42,7 @@ subgraph `κ` enumerates the `L`-ball by. -/
 theorem GNN.evalSteps_row_ball {N K F : ℕ} (A : Mat ℝ N N) (v : Fin N) (L : ℕ)
     (κ : Fin K → Fin N) (hinj : Function.Injective κ)
     (hκ : ∀ i, (∃ k, κ k = i) ↔ i ∈ GNN.ball A v L)
-    (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) (k₀ : Fin K) (hk₀ : κ k₀ = v) :
+    (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) (k₀ : Fin K) (hk₀ : κ k₀ = v) : -- --- STMT ---
     GNN.evalSteps (GNN.messagePassing A) L W X v
       = GNN.evalSteps ((GNN.messagePassing A).submatrix κ κ) L W
           (X.submatrix κ id) k₀ := by -- --- PROOF ---

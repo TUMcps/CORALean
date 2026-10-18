@@ -40,7 +40,7 @@ theorem NonlinearSysDT.consistentSet_inter_subset_strip {n nv p : ℕ}
     (g : Vec ℝ n → Vec ℝ nv → Vec ℝ p) (V : Set (Vec ℝ nv)) (y : Vec ℝ p) (i : Fin p)
     (Xbar : Set (Vec ℝ n)) (c : Vec ℝ n) (s σ : ℝ)
     (h : ∀ a ∈ (fun x => c ⬝ᵥ x) '' Xbar, ∀ b ∈ {b | ∃ x ∈ Xbar, ∃ v ∈ V, b = g x v i},
-      s - σ ≤ a - b ∧ a - b ≤ s + σ) :
+      s - σ ≤ a - b ∧ a - b ≤ s + σ) : -- --- STMT ---
     Xbar ∩ NonlinearSysDT.consistentSetComp g V y i ⊆
       Xbar ∩ {x | |c ⬝ᵥ x - y i - s| ≤ σ} := by -- --- PROOF ---
   rintro x ⟨hx, v, hv, hy⟩

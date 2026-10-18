@@ -38,7 +38,7 @@ variable {n : ℕ}
 theorem Taylm.compose_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f) (g : ℝ → ℝ)
     (c : ℝ) (a : ℕ → ℝ) (N : ℕ) (ρ : ℝ)
     (hg : ∀ t ∈ Taylm.box n,
-      |g (f t) - ∑ k ∈ Finset.range (N + 1), a k * (f t - c) ^ k| ≤ ρ) :
+      |g (f t) - ∑ k ∈ Finset.range (N + 1), a k * (f t - c) ^ k| ≤ ρ) : -- --- STMT ---
     (T.compose c a N ρ).Encloses fun t => g (f t) := by -- --- PROOF ---
   have hc := Taylm.minus_outer h (Taylm.const_outer (n := n) c T.maxOrder)
   -- the polynomial part encloses the polynomial in `f - c`

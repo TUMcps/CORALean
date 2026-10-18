@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {h₁ h₂ : 
 /-- A paired-sum column brackets its exact value between the two directed
 roundings: halving is exact, so the directed addition is the only rounding, and
 a surplus column is copied and does not round at all. -/
-theorem Zonotope.pairSum_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ → 𝕋) (k : Fin h₁) :
+theorem Zonotope.pairSum_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ → 𝕋) (k : Fin h₁) : -- --- STMT ---
     toReal (Zonotope.pairSum addDown g₁ g₂ k)
         ≤ Real.Zonotope.pairSum (fun j => toReal (g₁ j)) (fun j => toReal (g₂ j)) k
       ∧ Real.Zonotope.pairSum (fun j => toReal (g₁ j)) (fun j => toReal (g₂ j)) k

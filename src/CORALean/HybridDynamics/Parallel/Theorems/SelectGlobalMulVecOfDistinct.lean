@@ -33,7 +33,8 @@ theorem ParallelHybridAutomaton.selectGlobal_mulVec_of_distinct {d q : Fin k →
     {b : ∀ i, Fin (d i) → ResolveSource k q m}
     (hb : ∀ i i' j j' a, b i j = .global a → b i' j' = .global a →
       (⟨i, j⟩ : Σ i, Fin (d i)) = ⟨i', j'⟩)
-    (z : Vec ℝ (∑ i, d i)) {i : Fin k} {j : Fin (d i)} {a : Fin m} (h : b i j = .global a) :
+    (z : Vec ℝ (∑ i, d i)) {i : Fin k} {j : Fin (d i)} {a : Fin m}
+    (h : b i j = .global a) : -- --- STMT ---
     (selectGlobal b *ᵥ z) a = z (finSigmaFinEquiv ⟨i, j⟩) := by -- --- PROOF ---
   have hex : ∃ p', b (finSigmaFinEquiv.symm p').1 (finSigmaFinEquiv.symm p').2 = .global a :=
     ⟨finSigmaFinEquiv ⟨i, j⟩, by
