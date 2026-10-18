@@ -52,25 +52,24 @@ def HPolytope.errUp (P : HPolytope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
 -- =====================================  `HPolytope.beLN`  ===================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The negated lower end of equality row `i` with the error box folded in, rounded up: the
-bound of the row `-Aeᵢ`, so that the equality reads as the two inequalities `Aeᵢ x ≤ beU i` and
-`-Aeᵢ x ≤ beLN i`. -/
+/-- The negated lower end of equality row `i`, its slack and the error box folded in, rounded up:
+the bound of the row `-Aeᵢ`, so the equality reads as `Aeᵢ x ≤ beU i` and `-Aeᵢ x ≤ beLN i`. -/
 def HPolytope.beLN (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
-  addUp (neg (P.be i)) (P.errUp (-(P.Ae i)))
+  addUp (addUp (neg (P.be i)) (absolute (P.be_error i))) (P.errUp (-(P.Ae i)))
 
 
 -- =====================================  `HPolytope.beU`  ====================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The upper end of equality row `i` with the error box folded in, rounded up. -/
+/-- The upper end of equality row `i`, its slack and the error box folded in, rounded up. -/
 def HPolytope.beU (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
-  addUp (P.be i) (P.errUp (P.Ae i))
+  addUp (addUp (P.be i) (absolute (P.be_error i))) (P.errUp (P.Ae i))
 
 
 -- ====================================  `HPolytope.beRes`  ===================================== --
@@ -88,13 +87,13 @@ def HPolytope.beRes (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
 -- ======================================  `HPolytope.bU`  ====================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The right-hand side of inequality row `i` with the error box folded in, rounded up: the
-bound every point of the polytope, box included, satisfies. -/
+/-- The right-hand side of inequality row `i`, its slack and the error box folded in, rounded up:
+`bᵢ + |b_errorᵢ| + |Aᵢ| r`, the bound every point of the polytope, box included, satisfies. -/
 def HPolytope.bU (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.m) : 𝕋 :=
-  addUp (P.b i) (P.errUp (P.A i))
+  addUp (addUp (P.b i) (absolute (P.b_error i))) (P.errUp (P.A i))
 
 
 -- ==================================  `HPolytope.isZeroVec`  =================================== --
@@ -113,13 +112,14 @@ def HPolytope.isZeroVec (v : Vec 𝕋 n) : Bool :=
 -- ==================================  `HPolytope.isErrFree`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- Every bound of the error box certified equal to `zero`: the check that the polytope denotes
-its nominal part (`HPolytope.errFree_of_isErrFree`). `false` says nothing. -/
+/-- Every slack and every bound of the error box certified `zero`: the check that the polytope
+denotes its stored rows exactly (`HPolytope.errFree_of_isErrFree`). `false` says nothing. -/
 def HPolytope.isErrFree (P : HPolytope 𝕋 (Vec 𝕋 n)) : Bool :=
-  HPolytope.isZeroVec P.I_error.inf && HPolytope.isZeroVec P.I_error.sup
+  (isZeroVec P.I_error.inf && isZeroVec P.I_error.sup) &&
+    (isZeroVec P.b_error && isZeroVec P.be_error)
 
 
 -- ====================================  `HPolytope.minus`  ===================================== --
@@ -153,7 +153,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ} {
 /-- Every point is in `HPolytope.fullspace` -/
 theorem HPolytope.mem_fullspace (x : Vec ℝ n) :
     x ∈ (HPolytope.fullspace 𝕋 n).construct :=
-  (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mpr
+  (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mpr
     ⟨fun i => i.elim0, fun i => i.elim0⟩
 
 
@@ -214,7 +214,7 @@ theorem HPolytope.mem_padRight_nominal_iff {P : HPolytope 𝕋 (Vec 𝕋 n₂)} 
 /-- Membership splits with the rows, each half read on the nominal part it came from. -/
 theorem HPolytope.mem_stackRows_iff {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n} :
     x ∈ (P₁.stackRows P₂).construct ↔ x ∈ P₁.nominal.construct ∧ x ∈ P₂.nominal.construct := by
-  rw [HPolytope.construct_eq_nominal (HPolytope.errFree_of_origin rfl)]
+  rw [HPolytope.construct_eq_nominal fun _ => ⟨toReal_zero, toReal_zero⟩]
   exact HPolytope.mem_stackRows_nominal_iff
 
 end

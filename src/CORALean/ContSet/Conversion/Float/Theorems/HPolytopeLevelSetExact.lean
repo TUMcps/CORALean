@@ -37,18 +37,20 @@ theorem HPolytope.levelSet_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     P.levelSet.construct = P.nominal.construct := by -- --- PROOF ---
   ext x
   show (∀ i, Real.CompOp.holds (Fin.append (fun _ => .le) (Fin.append (fun _ => .le)
-    fun _ => .le) i) (Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i))
-      (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be r))
-        fun r => toReal (P.be r) - (toRealMat P.Ae *ᵥ x) r) i)) ↔ _
+    fun _ => .le) i) (Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i)
+      - |toReal (P.b_error i)|)
+      (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be r) - |toReal (P.be_error r)|)
+        fun r => toReal (P.be r) - (toRealMat P.Ae *ᵥ x) r - |toReal (P.be_error r)|) i)) ↔ _
   -- the three blocks of components, each its own family of rows
   rw [Real.LevelSet.forall_append_holds, Real.LevelSet.forall_append_holds,
     HPolytope.mem_nominal_iff]
-  simp only [Real.CompOp.holds, sub_nonpos]
+  simp only [Real.CompOp.holds, sub_nonpos, abs_le]
   constructor
   · rintro ⟨h1, h2, h3⟩
-    exact ⟨h1, fun r => le_antisymm (h2 r) (h3 r)⟩
+    exact ⟨fun i => by linarith [h1 i], fun r => ⟨by linarith [h3 r], by linarith [h2 r]⟩⟩
   · rintro ⟨h1, h2⟩
-    exact ⟨h1, fun r => (h2 r).le, fun r => (h2 r).ge⟩
+    exact ⟨fun i => by linarith [h1 i], fun r => by linarith [(h2 r).2],
+      fun r => by linarith [(h2 r).1]⟩
 
 end CORALean.Float
 

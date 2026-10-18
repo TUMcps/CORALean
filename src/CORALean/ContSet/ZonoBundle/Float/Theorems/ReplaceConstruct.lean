@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Replace
 
 @[expose] public section
@@ -31,7 +32,7 @@ theorem ZonoBundle.replace_construct (zB : ZonoBundle (Vec 𝕋 n)) (index : Fin
     (zB.replace index Z).construct =
       Z.construct ∩ ⋂ i : {i : Fin zB.k // i ≠ index}, (zB.Z i).construct := by -- --- PROOF ---
   ext x
-  simp only [ZonoBundle.construct, ZonoBundle.replace, Set.mem_iInter, Set.mem_inter_iff]
+  simp only [ZonoBundle.construct_eq_iInter, ZonoBundle.replace, Set.mem_iInter, Set.mem_inter_iff]
   constructor
   · intro h
     refine ⟨by simpa using h index, fun i => ?_⟩

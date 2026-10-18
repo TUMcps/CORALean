@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIffExact
 public import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
 public import CORALean.ContSet.HPolytope.Float.Operations.MemLiftNominalIff
 public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
@@ -68,7 +69,7 @@ theorem HPolytope.projectHighDim_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) {dims :
       (fun k => y (dims k)) ∈ P.nominal.construct ∧ ∀ j, (∀ k, dims k ≠ j) → y j = 0
     rw [HPolytope.mem_stackRows_nominal_iff, HPolytope.mem_lift_nominal_iff P hdims]
     refine and_congr Iff.rfl ?_
-    rw [HPolytope.mem_nominal_iff]
+    rw [HPolytope.mem_nominal_iff_exact ⟨fun _ => toReal_zero, fun _ => toReal_zero⟩]
     -- a unit row reads one coordinate
     have hrow : ∀ a : Fin s.card, (toRealMat R *ᵥ y) a = y (s.orderEmbOfFin rfl a) := by
       intro a

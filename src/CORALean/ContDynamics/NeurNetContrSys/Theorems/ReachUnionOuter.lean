@@ -64,8 +64,7 @@ theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys (LinearSys 𝕋 
       exact_mod_cast le_max_right _ _
     exact lt_of_le_of_lt (div_le_div_of_nonneg_left (norm_nonneg _) (by positivity)
       (by linarith)) (sys.reachOrder_admissible options.Δt)
-  refine SetUnion.mem_construct.mpr
-    ⟨_, List.mem_map_of_mem (List.mem_range.mpr (Nat.lt_succ_of_le hi)), ?_⟩
+  refine SetUnion.mem_construct_range (Nat.lt_succ_of_le hi) ?_
   exact sys.reach_outer U_ext options.ρ _ options.N options.hZonotopeOrder hΔt hdt hε
     sys.contr.sound_eval
       (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj i hi

@@ -1,15 +1,17 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Intersection
+public import CORALean.ContSet.SetIntersection.Theorems.IntersectionExact
+public import Mathlib.Data.List.OfFn
 
 @[expose] public section
 
 /-!
 # `ZonoBundle.intersection` denotes exactly the intersection
 
-Appending the two families intersects what each bundle denoted:
-`Fin.forall_fin_add` splits membership in the appended family the same way
-`Fin.append` splits the family itself. The members' error boxes ride along
+Appending the two families intersects what each bundle denoted: the general
+`SetIntersection.intersection_exact`, once `List.ofFn_fin_append` reads the appended family
+`Fin.append` as the appended lists of members. The members' error boxes ride along
 inside their own `construct`, so the argument is the exact layer's unchanged —
 this is the one operation here that loses nothing over floats either.
 
@@ -34,9 +36,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.intersection_exact (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) :
     (zB₁.intersection zB₂).construct = zB₁.construct ∩ zB₂.construct := by
-  ext x
-  simp only [ZonoBundle.construct, ZonoBundle.intersection, Set.mem_iInter, Set.mem_inter_iff,
-    Fin.forall_fin_add, Fin.append_left, Fin.append_right]
+  show ContSet.construct (⟨List.ofFn (Fin.append zB₁.Z zB₂.Z)⟩ : SetIntersection _) = _
+  rw [List.ofFn_fin_append]
+  exact SetIntersection.intersection_exact zB₁.toSetIntersection zB₂.toSetIntersection
 
 end CORALean.Float
 

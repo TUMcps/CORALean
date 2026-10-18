@@ -79,6 +79,18 @@ open Scalar
 @[simp] theorem matMulBilin_apply {p q r : ℕ} (A : Mat ℝ p q) (B : Mat ℝ q r) :
     matMulBilin A B = A * B := rfl
 
+
+-- ==================================  `reindexLin_bijective`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A relabelling is bijective: `reindexLin e.symm` undoes it on either side. -/
+theorem reindexLin_bijective {n m : ℕ} (e : Fin m ≃ Fin n) : Function.Bijective (reindexLin e) :=
+  Function.bijective_iff_has_inverse.mpr ⟨reindexLin e.symm,
+    fun x => funext fun i => by simp [reindexLin], fun x => funext fun i => by simp [reindexLin]⟩
+
 end
 
 
@@ -181,6 +193,18 @@ theorem LinComb.union_subset_linComb [LinComb S α] (s t : S) (hs : (construct s
     (ht : (construct t).Nonempty) :
     construct s ∪ construct t ⊆ construct (LinComb.linComb s t) :=
   (union_subset_setLinComb hs ht).trans (LinComb.linComb_outer s t)
+
+
+-- ====================================  `setLinComb_mono`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Set.linComb` is monotone in both sets: the same points and weights still witness it. -/
+theorem setLinComb_mono {X X' Y Y' : Set α} (hX : X ⊆ X') (hY : Y ⊆ Y') :
+    Set.linComb X Y ⊆ Set.linComb X' Y' :=
+  fun _ ⟨y₁, h₁, y₂, h₂, lam, hl, e⟩ => ⟨y₁, hX h₁, y₂, hY h₂, lam, hl, e⟩
 
 end
 

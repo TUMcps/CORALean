@@ -25,7 +25,7 @@ up. The error box is the operand's: nothing is charged to it.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -58,6 +58,7 @@ def ConZonotope.reduceLiftBy (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     G := Gnew
     P := { m := cZ.P.m, A := Aineq, b := fun i => addUp (cZ.P.b i) (slack i),
            me := cZ.P.me, Ae := Anew, be := cZ.P.be,
+           b_error := cZ.P.b_error, be_error := cZ.P.be_error,
            I_error := Interval.origin Zred.h }
     I_error := cZ.I_error }
 

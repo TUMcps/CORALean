@@ -33,11 +33,25 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 omit [SoundFloatArithmetic 𝕋] in
-/-- A polytope with the origin box passes the check, when `zero = zero` is certified. -/
+/-- A polytope with the origin box and certified-zero slacks passes the check, when `zero = zero`
+is certified. -/
 theorem aux_isErrFree_of_origin (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) FloatOps.zero = true)
-    {P : HPolytope 𝕋 (Vec 𝕋 n)} (hP : P.I_error = Interval.origin n) :
+    {P : HPolytope 𝕋 (Vec 𝕋 n)} (hP : P.I_error = Interval.origin n)
+    (hb : HPolytope.isZeroVec P.b_error = true) (he : HPolytope.isZeroVec P.be_error = true) :
     P.isErrFree = true := by
-  simp [HPolytope.isErrFree, HPolytope.isZeroVec, hP, Interval.origin, h0]
+  rw [HPolytope.isErrFree, hb, he, hP]
+  simp [HPolytope.isZeroVec, Interval.origin, h0]
+
+omit [SoundFloatArithmetic 𝕋] in
+/-- Two vectors certified zero, appended, are certified zero. -/
+theorem aux_isZeroVec_append {k l : ℕ} {u : Vec 𝕋 k} {v : Vec 𝕋 l}
+    (hu : HPolytope.isZeroVec u = true) (hv : HPolytope.isZeroVec v = true) :
+    HPolytope.isZeroVec (Fin.append u v) = true := by -- --- PROOF ---
+  simp only [HPolytope.isZeroVec, List.all_eq_true, List.mem_finRange, true_implies] at hu hv ⊢
+  intro j
+  refine Fin.addCases (fun i => ?_) (fun i => ?_) j
+  · rw [Fin.append_left]; exact hu i
+  · rw [Fin.append_right]; exact hv i
 
 /-- The accumulator of the guard fold stays error-free and is the intersection so far. -/
 theorem aux_synchronizeGuard_fold_eq
@@ -52,7 +66,11 @@ theorem aux_synchronizeGuard_fold_eq
     -- one step only stacks the rows, which leaves the origin box
     have hstep : (P.intersection (g a)).isErrFree = true := by
       rw [HPolytope.intersection, if_pos (by rw [hP, hg a]; rfl)]
-      exact aux_isErrFree_of_origin h0 rfl
+      have hP' := hP
+      have hg' := hg a
+      simp only [HPolytope.isErrFree, Bool.and_eq_true] at hP' hg'
+      exact aux_isErrFree_of_origin h0 rfl (aux_isZeroVec_append hP'.2.1 hg'.2.1)
+        (aux_isZeroVec_append hP'.2.2 hg'.2.2)
     rw [List.foldl_cons, ih _ hstep, ← HPolytope.intersection_exact hP (hg a)]
     ext x
     simp [and_assoc]
@@ -66,7 +84,9 @@ theorem Transition.synchronizeGuard_exact
     (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (hg : ∀ i, (g i).isErrFree = true) :
     (Transition.synchronizeGuard g).construct = ⋂ i, (g i).construct := by -- --- PROOF ---
   unfold Transition.synchronizeGuard
-  rw [aux_synchronizeGuard_fold_eq h0 g hg _ _ (aux_isErrFree_of_origin h0 rfl)]
+  rw [aux_synchronizeGuard_fold_eq h0 g hg _ _ (aux_isErrFree_of_origin h0 rfl
+    (by simp [HPolytope.isZeroVec, HPolytope.fullspace])
+    (by simp [HPolytope.isZeroVec, HPolytope.fullspace]))]
   ext x
   simp only [Set.mem_inter_iff, Set.mem_iInter, List.mem_finRange, forall_true_left]
   exact ⟨fun h => h.2, fun h => ⟨HPolytope.mem_fullspace x, h⟩⟩

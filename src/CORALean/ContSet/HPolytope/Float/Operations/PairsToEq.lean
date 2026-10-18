@@ -15,7 +15,7 @@ are deleted from the inequalities. Nothing rounds, and the error box is kept.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -38,6 +38,8 @@ def HPolytope.pairsToEq (Q : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 
   me := Q.me + Q.leadRows.length
   Ae := Fin.append Q.Ae fun k => Q.A (Q.leadRows.get k)
   be := Fin.append Q.be fun k => Q.b (Q.leadRows.get k)
+  b_error := fun k => Q.b_error (Q.keptRows.get k)
+  be_error := Fin.append Q.be_error fun _ => zero
   I_error := Q.I_error
 
 end CORALean.Float

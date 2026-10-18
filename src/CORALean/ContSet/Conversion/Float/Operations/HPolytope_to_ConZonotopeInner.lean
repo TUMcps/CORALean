@@ -53,6 +53,8 @@ def HPolytope.onCoefficientsInner (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotop
       me := 0
       Ae := fun i => i.elim0
       be := fun i => i.elim0
+      b_error := fun _ => zero
+      be_error := fun _ => zero
       I_error := Interval.origin Z.h }
   else HPolytope.emptySet 𝕋 Z.h
 /-- `{c + Gβ}` at the stored `c` and `G` of `Z`, with the rows of `P` tightened and the box of

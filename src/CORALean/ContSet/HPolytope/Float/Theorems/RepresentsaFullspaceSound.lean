@@ -52,12 +52,15 @@ theorem HPolytope.representsaFullspace_sound {P : HPolytope 𝕋 (Vec 𝕋 n)}
         simp only [mulVec, dotProduct, toRealMat]
         exact Finset.sum_eq_zero fun j _ => by rw [zr ((hin i).2 j), zero_mul]
       rw [hrow]
-      simpa [toReal_zero] using toReal_le_of_le (hin i).1
+      have h0 := toReal_le_of_le (hin i).1
+      rw [toReal_zero] at h0
+      linarith [abs_nonneg (toReal (P.b_error i))]
     · -- the row is zero, and its right-hand side is zero
       have hrow : (toRealMat P.Ae *ᵥ (x - fun j => toReal (P.I_error.inf j))) r = 0 := by
         simp only [mulVec, dotProduct, toRealMat]
         exact Finset.sum_eq_zero fun j _ => by rw [zr ((heq r).2 j), zero_mul]
-      rw [hrow, zr (heq r).1]
+      rw [hrow, zr (heq r).1, sub_zero, abs_zero]
+      exact abs_nonneg _
   exact ⟨_, hy, _, he, sub_add_cancel _ _⟩
 
 end CORALean.Float

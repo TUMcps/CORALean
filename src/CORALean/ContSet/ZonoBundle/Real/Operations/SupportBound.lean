@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
@@ -12,7 +13,7 @@ The intersection sits inside every component, so any component's
 `Zonotope.supportBound` bounds it too, `SupportBound.mono` at
 `Set.iInter_subset`; the least of them is the tightest such bound available
 this way. Needs the index nonempty, which is exactly
-`ZonoBundle.isCompact_construct`'s hypothesis and for the same reason: at
+`SetIntersection.isCompact_construct`'s hypothesis and for the same reason: at
 `k = 0` the bundle is the whole space, unbounded in every nonzero direction.
 -/
 
@@ -36,7 +37,8 @@ result type is what pins the metavariables `SupportBound.mono` would
 otherwise leave to the caller. -/
 def aux_componentBound (zB : ZonoBundle α) (c : α →ₗ[ℝ] ℝ) (i : Fin zB.k) :
     SupportBound zB.construct c :=
-  SupportBound.mono (Set.iInter_subset (fun i => (zB.Z i).construct) i) ((zB.Z i).supportBound c)
+  SupportBound.mono (SetIntersection.construct_subset_ofFn _ i)
+    ((zB.Z i).supportBound c)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

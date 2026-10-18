@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.InfExact
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeSpectraShadowContains
@@ -53,7 +54,7 @@ theorem ZonoBundle.spectraShadow_contains (zB : ZonoBundle (Vec 𝕋 n)) :
   have hall : ∀ T ∈ List.ofFn (fun i => Zonotope.spectraShadow (zB.Z i)), x ∈ T.construct := by
     intro T hT
     obtain ⟨i, rfl⟩ := List.mem_ofFn.mp hT
-    exact Zonotope.spectraShadow_contains _ (Set.mem_iInter.mp hx i)
+    exact Zonotope.spectraShadow_contains _ (SetIntersection.mem_construct_ofFn.mp hx i)
   unfold ZonoBundle.spectraShadow
   -- so the fold of their intersections does, or the whole space when there is none
   split

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.OriginExact
 
@@ -31,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ZonoBundle.empty_exact (n : ℕ) (hn : 0 < n) :
     (ZonoBundle.empty n hn : ZonoBundle (Vec 𝕋 n)).construct = ∅ := by -- --- PROOF ---
   ext x
-  simp only [ZonoBundle.construct, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
+  simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
   intro h
   have h0 : x ∈ (Zonotope.origin n : Zonotope (Vec 𝕋 n)).construct := h (0 : Fin 2)
   have h1 : x ∈ (Zonotope.point fun i : Fin n =>

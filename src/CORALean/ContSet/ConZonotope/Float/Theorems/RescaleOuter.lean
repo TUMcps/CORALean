@@ -164,29 +164,39 @@ theorem ConZonotope.rescale_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU 
       have hadd := add_le_addUp (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k)
       simp only [mulVec, dotProduct, toRealMat] at hk
       show ∑ j, toReal (mulDown (cZ.P.A k j) (ξr j)) * δ j ≤ toReal (addUp
-        (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k))
+        (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (gapA k)) + |toReal (cZ.P.b_error k)|
       linarith
     · -- an equality row, read from below
-      have hk := (heq k).ge
+      have hk := (abs_le.mp (heq k)).1
       have hs := ConZonotope.aux_row_split (cZ.P.Ae k) ξm ξr δ ξ hξδ
       have hg := le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.Ae k) ξr δ hδ)
       have hu := le_dotUp (cZ.P.Ae k) ξm
-      have hsub := subDown_le_sub (cZ.P.be k) (dotUp (cZ.P.Ae k) ξm)
-      have hsub' := subDown_le_sub (subDown (cZ.P.be k) (dotUp (cZ.P.Ae k) ξm)) (gapE k)
+      have he := subDown_le_sub (cZ.P.be k) (absolute (cZ.P.be_error k))
+      have hsub := subDown_le_sub (subDown (cZ.P.be k) (absolute (cZ.P.be_error k)))
+        (dotUp (cZ.P.Ae k) ξm)
+      have hsub' := subDown_le_sub (subDown (subDown (cZ.P.be k) (absolute (cZ.P.be_error k)))
+        (dotUp (cZ.P.Ae k) ξm)) (gapE k)
+      rw [toReal_absolute] at he
       simp only [mulVec, dotProduct, toRealMat] at hk
-      show toReal (subDown (subDown (cZ.P.be k) (dotUp (cZ.P.Ae k) ξm)) (gapE k))
+      show toReal (subDown (subDown (subDown (cZ.P.be k) (absolute (cZ.P.be_error k)))
+          (dotUp (cZ.P.Ae k) ξm)) (gapE k))
         ≤ ∑ j, toReal (mulDown (cZ.P.Ae k j) (ξr j)) * δ j
       linarith
     · -- and from above
-      have hk := (heq k).le
+      have hk := (abs_le.mp (heq k)).2
       have hs := ConZonotope.aux_row_split (cZ.P.Ae k) ξm ξr δ ξ hξδ
       have hneg := neg_le_of_abs_le (ConZonotope.aux_row_gap (cZ.P.Ae k) ξr δ hδ)
       have hd := dotDown_le (cZ.P.Ae k) ξm
-      have hsub := sub_le_subUp (cZ.P.be k) (dotDown (cZ.P.Ae k) ξm)
-      have hadd := add_le_addUp (subUp (cZ.P.be k) (dotDown (cZ.P.Ae k) ξm)) (gapE k)
+      have he := add_le_addUp (cZ.P.be k) (absolute (cZ.P.be_error k))
+      have hsub := sub_le_subUp (addUp (cZ.P.be k) (absolute (cZ.P.be_error k)))
+        (dotDown (cZ.P.Ae k) ξm)
+      have hadd := add_le_addUp (subUp (addUp (cZ.P.be k) (absolute (cZ.P.be_error k)))
+        (dotDown (cZ.P.Ae k) ξm)) (gapE k)
+      rw [toReal_absolute] at he
       simp only [mulVec, dotProduct, toRealMat] at hk
       show ∑ j, toReal (mulDown (cZ.P.Ae k j) (ξr j)) * δ j ≤ toReal (addUp
-        (subUp (cZ.P.be k) (dotDown (cZ.P.Ae k) ξm)) (gapE k))
+        (subUp (addUp (cZ.P.be k) (absolute (cZ.P.be_error k))) (dotDown (cZ.P.Ae k) ξm))
+          (gapE k))
       linarith
   · -- the point: the rescaled one plus the old error and the two roundings
     funext i

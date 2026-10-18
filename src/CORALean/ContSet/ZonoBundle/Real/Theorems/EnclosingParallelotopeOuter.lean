@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.EnclosingParallelotope
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntervalAllContains
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
+public import CORALean.ContSet.SetIntersection.Theorems.MemberwiseOuter
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
@@ -51,7 +51,8 @@ theorem ZonoBundle.enclosingParallelotope_outer (zB : ZonoBundle (Vec ℝ n)) (h
   -- `Γ'⁻¹ x` lies in the mapped bundle, hence in its box
   have hbox := Interval.zonotope_contains _
     (ZonoBundle.intervalAll_contains (zB.mtimes Γ'⁻¹) hk
-      (ZonoBundle.mtimes_outer Γ'⁻¹ zB ⟨x, hx, rfl⟩))
+      (SetIntersection.memberwise_outer (Set.image (Γ'⁻¹ *ᵥ ·)) Set.monotone_image
+        (fun i => ⟨i, (Zonotope.mtimes_exact Γ'⁻¹ (zB.Z i)).subset⟩) ⟨x, hx, rfl⟩))
   -- and `Γ'` maps it back to `x`
   rw [ZonoBundle.parallelotope, ← Zonotope.mtimes_exact]
   refine ⟨_, hbox, ?_⟩

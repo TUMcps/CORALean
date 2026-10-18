@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPol
 # A constrained zonotope as a constrained polynomial zonotope, over a: `satisfies_conPolyZono`
 -/
 
--- Authors:       Claude Opus 5, Claude Sonnet 5.5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   15-October-2026
 -- Reviewed:      ---
@@ -68,11 +68,18 @@ theorem ConZonotope.satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {
       rw [abs_le] at hrad
       simp only [ConZonotope.conB, Interval.nominal, RealImage.realImage, toRealVec,
         Fin.append_left, Pi.neg_apply, toReal_neg']
-      exact ⟨hrad.1, hle i⟩
+      have hu := add_le_addUp (cZ.P.b i) (absolute (cZ.P.b_error i))
+      rw [toReal_absolute] at hu
+      exact ⟨hrad.1, (hle i).trans hu⟩
+    -- an equality row: within its slack of `be`, so inside the widened pair
     · rw [hEq i]
       simp only [ConZonotope.conB, Interval.nominal, RealImage.realImage, toRealVec,
         Fin.append_right]
-      exact ⟨(heq i).ge, (heq i).le⟩
+      have hu := add_le_addUp (cZ.P.be i) (absolute (cZ.P.be_error i))
+      have hd := subDown_le_sub (cZ.P.be i) (absolute (cZ.P.be_error i))
+      rw [toReal_absolute] at hu hd
+      have hab := abs_le.mp (heq i)
+      exact ⟨by linarith [hab.1], by linarith [hab.2]⟩
   show Real.ConPolyZono.holds (toRealMat (ConZonotope.conA cZ)) (ConZonotope.conB cZ).nominal
     (Real.PolyZonotope.identE cZ.h) β
   intro i

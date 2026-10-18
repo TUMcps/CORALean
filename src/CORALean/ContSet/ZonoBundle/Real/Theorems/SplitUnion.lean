@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Split
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
@@ -51,7 +52,7 @@ theorem ZonoBundle.split_union (Λ : Mat ℝ n n) (hΛ : IsUnit Λ.det) (B : Int
   -- a one-member bundle denotes its member
   have hconst : ∀ Z : Zonotope (Vec ℝ n), (ZonoBundle.mk 1 fun _ => Z).construct = Z.construct :=
     fun Z => by
-      show (⋂ _ : Fin 1, Z.construct) = Z.construct
+      rw [ZonoBundle.construct_eq_iInter]
       exact Set.iInter_const Z.construct
   -- the bundle lies in `Ψ`: `Λ⁻¹ x` is in the box, so in its zonotope, and `Λ` maps it back
   have hsub : zB.construct ⊆ (ZonoBundle.parallelotope Λ B).construct := by

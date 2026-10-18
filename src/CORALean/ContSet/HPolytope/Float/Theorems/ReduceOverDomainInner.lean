@@ -50,7 +50,7 @@ theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋
   obtain ⟨-, hhi⟩ := HPolytope.reduceOverDomain_rows p P dom hd i
   -- the reduced row, under its stored lower bound
   have hred : ∑ j, toReal (Ared j) * x j ≤ toReal (subDown bInf prodSup) :=
-    ((HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mp hR).1
+    ((HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mp hR).1
       (⟨0, Nat.one_pos⟩ : Fin 1)
   have hsub := subDown_le_sub bInf prodSup
   -- the scaled right-hand side is above the hull's bottom

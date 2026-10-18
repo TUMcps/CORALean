@@ -92,7 +92,7 @@ def inputBox (inst : ExactDyadic → 𝕋) : Interval (Vec 𝕋 1) :=
 /-- `y ≤ threshold` as a one-row halfspace, the safe set `Specification.check` tests. -/
 def spec (inst : ExactDyadic → 𝕋) : Specification (HPolytope 𝕋 (Vec 𝕋 1)) :=
   .safeSet ⟨1, fun _ _ => inst ExactDyadic.one, fun _ => inst threshold, 0, fun i => i.elim0,
-    fun i => i.elim0, Interval.origin _⟩
+    fun i => i.elim0, fun _ => FloatOps.zero, fun _ => FloatOps.zero, Interval.origin _⟩
 
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n h : ℕ}

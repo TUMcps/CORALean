@@ -64,7 +64,8 @@ theorem HPolytope.intersection_outer (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) :
         (toReal (subUp (P.beLN i) (neg (P.be i))))]
   refine HPolytope.anchorEqs_outer _ _ (fun k => ?_) (fun k => ?_) fun j => ?_
   -- the inequalities, each half raised by its own box
-  · refine Fin.addCases (fun i => ?_) (fun i => ?_) k
+  · refine le_add_of_le_of_nonneg ?_ (abs_nonneg _)
+    refine Fin.addCases (fun i => ?_) (fun i => ?_) k
     · show (toRealMat (Fin.append P₁.A P₂.A) *ᵥ x) (Fin.castAdd P₂.m i)
         ≤ toReal (Fin.append P₁.bU P₂.bU (Fin.castAdd P₂.m i))
       rw [HPolytope.mulVec_append_left, Fin.append_left]

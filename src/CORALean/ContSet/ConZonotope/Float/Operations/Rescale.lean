@@ -10,19 +10,18 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 /-!
 # `ConZonotope.rescale` over a floating-point scalar
 
-CORA's `conZonotope/rescale` and [1, Prop. 4]'s eq. 24 on the stored floats: the coefficient
-box `[ξL, ξU]` is mapped back onto `[-1, 1]` by `ξ = ξm + diag(ξr) δ`. Here `ξm` is the
-rounded midpoint and `ξr` a radius rounded up from it to both ends, so the box around `ξm`
-covers `[ξL, ξU]` whatever the rounding did. The new center `c + G ξm` and generators
-`G diag(ξr)` are rounded down, what that costs going into the error box (the center's as a
-residual, the generators' as a generator error against `|δ| ≤ 1`); the constraint rows
-`A diag(ξr)` are rounded down too, their right-hand sides `b − A ξm` rounded outward and
-widened by the same generator error, so every rescaled coefficient vector stays feasible. An
-equality row's rescaled value lies between two such bounds; it stays an equality, at the upper
-one, where `ConZonotope.anchorSlab` certifies that every coefficient vector can be moved onto
-the rows inside the unit box (the point's move paid into the error box), and becomes the slab
-between the two otherwise. The interval is an argument, as over ℝ; the result is outer, never
-the exact rescaling.
+CORA's `conZonotope/rescale` and [1, Prop. 4]'s eq. 24 on the stored floats: the coefficient box
+`[ξL, ξU]` is mapped back onto `[-1, 1]` by `ξ = ξm + diag(ξr) δ`. Here `ξm` is the rounded midpoint
+and `ξr` a radius rounded up from it to both ends, so the box around `ξm` covers `[ξL, ξU]` whatever
+the rounding did. The new center `c + G ξm` and generators `G diag(ξr)` are rounded down, what that
+costs going into the error box (the center's as a residual, the generators' as a generator error
+against `|δ| ≤ 1`); the constraint rows `A diag(ξr)` are rounded down too, their right-hand sides
+`b − A ξm` rounded outward and widened by the same generator error, their slack carried, so every
+rescaled coefficient vector stays feasible. An equality row's rescaled value, its slack included,
+lies between two such bounds; it stays an equality, at the upper one, where `ConZonotope.anchorSlab`
+certifies that every coefficient vector can be moved onto the rows inside the unit box (the point's
+move paid into the error box), and becomes the slab between the two otherwise. The interval is an
+argument, as over ℝ; the result is outer, never the exact rescaling.
 
 ## References
 
@@ -33,7 +32,7 @@ the exact rescaling.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -69,13 +68,16 @@ def ConZonotope.rescale (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU : Vec 𝕋
     { h := cZ.h
       c := cLo
       G := fun j i => mulDown (cZ.G j i) (ξr j)
-      P := HPolytope.ineqs (fun k j => mulDown (cZ.P.A k j) (ξr j))
-        fun k => addUp (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (sumUp (gapA k))
+      P := { HPolytope.ineqs (fun k j => mulDown (cZ.P.A k j) (ξr j))
+        (fun k => addUp (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (sumUp (gapA k)))
+          with b_error := cZ.P.b_error }
       I_error := (cZ.I_error.plus (Interval.residual cLo cHi cLo)).plus
           (Zonotope.generatorError gapG) }
     (fun k j => mulDown (cZ.P.Ae k j) (ξr j))
-    (fun k => subDown (subDown (cZ.P.be k) (dotUp (cZ.P.Ae k) ξm)) (sumUp (gapAe k)))
-    (fun k => addUp (subUp (cZ.P.be k) (dotDown (cZ.P.Ae k) ξm)) (sumUp (gapAe k)))
+    (fun k => subDown (subDown (subDown (cZ.P.be k) (absolute (cZ.P.be_error k)))
+      (dotUp (cZ.P.Ae k) ξm)) (sumUp (gapAe k)))
+    (fun k => addUp (subUp (addUp (cZ.P.be k) (absolute (cZ.P.be_error k)))
+      (dotDown (cZ.P.Ae k) ξm)) (sumUp (gapAe k)))
 
 end CORALean.Float
 

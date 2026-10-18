@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.HPolytope
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 public import CORALean.ContSet.Zonotope.Float.Operations.RightInvGain
 
@@ -20,12 +21,14 @@ taken back.
 
 When the certificate fails (a rank-deficient or ill-conditioned `Ae`), each equality is written
 instead as the two inequalities `Aeᵢ x ≤ beᵢ + εᵢ` and `-Aeᵢ x ≤ -beᵢ + εᵢ`, rounded up, and the
-box is kept. The choice is made at run time; `HPolytope.anchorEqs_outer` covers both.
+box is kept. The choice is made at run time; `HPolytope.anchorEqs_outer` covers both. Either way
+the inequalities keep their slack and the equalities carry none: the residuals are what the caller
+certifies of its points, which meet the stored inequalities up to their slack.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -49,6 +52,7 @@ def HPolytope.anchorEqs (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec 𝕋 P.me) :
     let ρ := mulUp γ (maximumOver ε)
     { P with
       b := fun i => addUp (P.b i) (mulUp (radius P.A i) ρ)
+      be_error := fun _ => zero
       I_error := ⟨fun j => addDown (P.I_error.inf j) (neg ρ), fun j => addUp (P.I_error.sup j) ρ⟩ }
   | none =>
     -- each equality as its two inequalities, widened by its residual
@@ -59,6 +63,8 @@ def HPolytope.anchorEqs (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec 𝕋 P.me) :
       me := 0
       Ae := fun i => i.elim0
       be := fun i => i.elim0
+      b_error := Fin.append P.b_error fun _ => zero
+      be_error := fun _ => zero
       I_error := P.I_error }
 
 end CORALean.Float

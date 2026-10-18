@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Split
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
@@ -46,7 +47,7 @@ theorem ZonoBundle.split_inter (Λ : Mat ℝ n n) (B : Interval (Vec ℝ n)) (j 
         : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
   have hconst : ∀ Z : Zonotope (Vec ℝ n), (ZonoBundle.mk 1 fun _ => Z).construct = Z.construct :=
     fun Z => by
-      show (⋂ _ : Fin 1, Z.construct) = Z.construct
+      rw [ZonoBundle.construct_eq_iInter]
       exact Set.iInter_const Z.construct
   simp only [ZonoBundle.split, ZonoBundle.intersection_exact, hconst]
   rw [← Set.inter_inter_distrib_left, Zonotope.split_intersection]

@@ -16,9 +16,9 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraSha
 CORA's `@polytope/spectraShadow`: one `1 × 1` block `d_j - C_j x` per row of the stacked
 `C = [A; Ae; -Ae]`, `d = [b; be; -be]`, as the diagonal `A₀ = diag(d)`, `Aᵢ = -diag(C(:,i))`.
 The equality rows are the pair `Ae x ≤ be`, `-Ae x ≤ -be` the float polytope denotes, so the
-stacked right-hand side is `[b; be; -be]`. Every entry is an existing entry, a negation or a
-`zero`, `one`: nothing rounds, and the error box is the polytope's own. The shadow contains the
-polytope.
+stacked right-hand side is `[b; be; -be]`, each entry widened by its row's slack and rounded up.
+Every other entry is an existing entry, a negation or a `zero`, `one`, and the error box is the
+polytope's own. The shadow contains the polytope.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
@@ -62,25 +62,33 @@ theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) {x 
       + ∑ i, x i • toRealMat (P.spectraShadow.A i)).PosSemidef := by -- --- PROOF ---
   -- the matrix is the diagonal of the slacks
   have hM := HPolytope.aux_lmi_diag (n := n) (𝕋 := 𝕋)
-    (Fin.append P.b (Fin.append P.be (-P.be)))
+    (Fin.append (fun r => addUp (P.b r) (absolute (P.b_error r)))
+      (Fin.append (fun r => addUp (P.be r) (absolute (P.be_error r)))
+        fun r => addUp (neg (P.be r)) (absolute (P.be_error r))))
     (fun i => Fin.append (fun r => P.A r i)
       (Fin.append (fun r => P.Ae r i) fun r => neg (P.Ae r i))) x
   refine Eq.mpr (congrArg Matrix.PosSemidef hM) (posSemidef_diagonal_iff.mpr ?_)
   obtain ⟨hA, hAe⟩ := HPolytope.mem_nominal_iff.mp hx
-  -- the three row groups
+  -- the three row groups, each within its widened bound
   intro p
   refine Fin.addCases (fun r => ?_) (fun p' => Fin.addCases (fun r => ?_) (fun r => ?_) p') p
   · have := hA r
+    have hu := add_le_addUp (P.b r) (absolute (P.b_error r))
+    rw [toReal_absolute] at hu
     simp only [Fin.append_left, mulVec, dotProduct, toRealMat] at this ⊢
     simp only [mul_comm (x _)] at this ⊢
     linarith
-  · have := (hAe r).le
+  -- an equality's upper edge, then its lower one
+  · have := (abs_le.mp (hAe r)).2
+    have hu := add_le_addUp (P.be r) (absolute (P.be_error r))
+    rw [toReal_absolute] at hu
     simp only [Fin.append_left, Fin.append_right, mulVec, dotProduct, toRealMat] at this ⊢
     simp only [mul_comm (x _)] at this ⊢
     linarith
-  · have := (hAe r).ge
-    simp only [Fin.append_right, mulVec, dotProduct, toRealMat, Pi.neg_apply, toReal_neg,
-      toReal_neg'] at this ⊢
+  · have := (abs_le.mp (hAe r)).1
+    have hu := add_le_addUp (neg (P.be r)) (absolute (P.be_error r))
+    rw [toReal_absolute, toReal_neg] at hu
+    simp only [Fin.append_right, mulVec, dotProduct, toRealMat, toReal_neg] at this ⊢
     simp only [mul_comm (x _), neg_mul, Finset.sum_neg_distrib] at this ⊢
     linarith
 

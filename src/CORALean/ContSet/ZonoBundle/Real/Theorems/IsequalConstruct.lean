@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
 
@@ -33,7 +34,7 @@ theorem ZonoBundle.isequal_construct {zB S : ZonoBundle α} (h : zB.isequal S) :
   obtain ⟨k₂, Z₂⟩ := S
   simp only at e hZ
   subst e
-  unfold ZonoBundle.construct
+  rw [ZonoBundle.construct_eq_iInter, ZonoBundle.construct_eq_iInter]
   exact Set.iInter_congr fun i => Zonotope.isequal_construct (hZ i)
 
 end CORALean.Real

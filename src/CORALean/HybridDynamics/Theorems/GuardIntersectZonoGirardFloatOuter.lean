@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
 public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
@@ -59,7 +60,7 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
         · exact Or.inl (Interval.or_outer J I' (Or.inr hy))
         · exact Or.inr ⟨I', hI', hy⟩
   -- member `i` of the bundle, whose basis is orthogonal
-  refine Set.mem_iInter.mpr fun i => ?_
+  refine SetIntersection.mem_construct_ofFn.mpr fun i => ?_
   have hB : Scalar.toRealMat Bs[i] * (Scalar.toRealMat Bs[i])ᵀ = 1 :=
     horth _ (List.getElem_mem i.isLt)
   unfold Location.guardIntersectZonoGirardFloat

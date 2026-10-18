@@ -30,6 +30,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.LinCombOfOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIffExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemHalfScaledRight
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff

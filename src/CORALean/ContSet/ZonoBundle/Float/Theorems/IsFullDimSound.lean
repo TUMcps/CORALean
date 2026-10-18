@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
 public import CORALean.ContSet.Zonotope.Float.Theorems.InteriorPointSound
 
@@ -34,7 +35,7 @@ theorem ZonoBundle.isFullDim_sound {zB : ZonoBundle (Vec 𝕋 n)}
     (h : zB.isFullDim H x₀ = true) : (interior zB.construct).Nonempty := by
   simp only [ZonoBundle.isFullDim, List.all_eq_true, List.mem_finRange, forall_const] at h
   refine ⟨toRealVec x₀, ?_⟩
-  rw [ZonoBundle.construct, interior_iInter_of_finite]
+  rw [ZonoBundle.construct_eq_iInter, interior_iInter_of_finite]
   exact Set.mem_iInter.mpr fun i => Zonotope.interiorPoint_sound (h i)
 
 end CORALean.Float

@@ -21,6 +21,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
 public import CORALean.ContSet.ZonoBundle.Float.Operations.RepresentsaEmptySet
 public import CORALean.ContSet.ZonoBundle.Float.Operations.ContainsPoint
 public import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalAll
+public import CORALean.ContSet.ZonoBundle.Float.Operations.IntervalSupportFunc
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Parallelotope
 public import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
 public import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
@@ -36,7 +37,8 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.Materialise
 member's own error box; `reindex`, which does no arithmetic at all; and
 `reduce`, which forgets members rather than absorbing them; and `supportBound`,
 the least of the members' own float bounds; and `boundDotLP`, CORA's linear
-program over the whole bundle, by a checked dual certificate.
+program over the whole bundle, by a checked dual certificate. CORA's box `intervalAll` intersects
+the members' boxes; `intervalSupportFunc` is the bundle's own, by `boundDotLP` in `±eᵢ`.
 
 `mtimesMatZonotope` is absent because `Zonotope` has no float counterpart to
 build it from, and `ofPoint` because `OfPoint` asks for an arbitrary *real*

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
@@ -30,6 +31,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem Zonotope.zonoBundle_exact (Z : Zonotope α) :
     Z.construct = Z.zonoBundle.construct := by
+  rw [ZonoBundle.construct_eq_iInter]
   show Z.construct = ⋂ _ : Fin 1, Z.construct
   exact (Set.iInter_const Z.construct).symm
 

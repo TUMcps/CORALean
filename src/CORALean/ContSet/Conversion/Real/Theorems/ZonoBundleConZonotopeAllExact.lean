@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
@@ -33,7 +34,7 @@ theorem ZonoBundle.conZonotopeAll_exact (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < 
   rw [ConZonotope.construct_foldl_intersection_eq]
   ext x
   simp only [Set.mem_inter_iff, Set.mem_iInter, ← Zonotope.conZonotope_exact,
-    ZonoBundle.construct]
+    ZonoBundle.construct_eq_iInter]
   constructor
   · rintro ⟨h0, hi⟩ ⟨j, hj⟩
     rcases j with _ | j

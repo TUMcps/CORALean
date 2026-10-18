@@ -3,38 +3,41 @@ module
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.PlusOuter
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.LinCombOuter
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesOuter
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.MtimesMatZonotopeOuter
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
+public import CORALean.ContSet.ZonoBundle.Real.Operations.LinComb
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
+public import CORALean.ContSet.ZonoBundle.Real.Operations.MtimesMatZonotope
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Map
+public import CORALean.ContSet.ZonoBundle.Real.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Real.Instances
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.MapExact
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReduceOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
+public import CORALean.ContSet.SetIntersection.Theorems.MemberwiseOuter
+public import CORALean.ContSet.SetIntersection.Theorems.MemberwiseImageExact
+public import CORALean.ContSet.SetIntersection.Theorems.PairwiseOuter
+public import CORALean.ContSet.ContSet.Theorems.Basic
 
 @[expose] public section
 
 /-!
 # What `ZonoBundle` instantiates
 
-`ContSet`, `ConvexSet` — an intersection of convex sets — `Plus`, `LinComb`
-and `Mtimes`, the last at a point matrix and at a matrix zonotope alike, from
-the enclosure operations, and `Intersection` from `intersection_exact`:
-appending the two families of zonotopes is exact, at any real module.
-`OfPoint` bundles one point-zonotope, and `Reindex` lifts `Zonotope`'s at
-`reindexLin e`, which `map_exact` needs *bijective* rather than merely
-injective — `e`'s own inverse supplies that. `Reduce` drops components,
-which only enlarges the set, so it needs no error box, unlike every other
-`reduce` in the tree.
+A bundle is `SetIntersection` at its members, so every guarantee here is a general theorem of
+that class read at the members' own: `ConvexSet` is `SetIntersection.convex_construct`;
+`Plus` and `LinComb`, over every pair of members, are `pairwise_outer` at `Zonotope.plus_exact`
+and `Zonotope.linComb_outer`; `Mtimes`, at a point matrix and at a matrix zonotope, and
+`Reduce`, which drops members and so needs no error box, are `memberwise_outer`; `Reindex` is
+`memberwise_image_exact` at `reindexLin e`, bijective as `e`'s inverse supplies. `Intersection`
+is `intersection_exact`, appending the two families; `OfPoint` bundles one point-zonotope.
 
-`CompactSet` is not an instance: at `k = 0` the set is `univ`, not compact, so
-the class's unconditional obligation cannot be discharged. `isCompact_construct`
-states the conditional fact instead, at `0 < zB.k`. No `MinkDiff` either — that
-needs `Zonotope.minkDiff`, an open design decision on #85.
+`CompactSet` is not an instance: at `k = 0` the set is `univ`, not compact, so the class's
+unconditional obligation cannot be discharged; `SetIntersection.isCompact_construct` states the
+conditional fact. No `MinkDiff` either — that needs `Zonotope.minkDiff`, an open design
+decision on #85.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   07-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -42,7 +45,7 @@ needs `Zonotope.minkDiff`, an open design decision on #85.
 
 namespace CORALean.Real
 
-open Matrix
+open Matrix Pointwise
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
@@ -50,32 +53,26 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 scoped notation "𝒵ℬ" => fun n => ZonoBundle (Vec ℝ n)
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- `reindexLin e.symm` is a two-sided inverse of `reindexLin e`: `e`'s own
-cancellation laws move straight through the coordinate swap. -/
-theorem aux_reindexLin_bijective {n m : ℕ} (e : Fin m ≃ Fin n) :
-    Function.Bijective (reindexLin e) := by -- --- PROOF ---
-  have hl : Function.LeftInverse (reindexLin e.symm) (reindexLin e) :=
-    fun x => funext fun i => by simp [reindexLin]
-  have hr : Function.LeftInverse (reindexLin e) (reindexLin e.symm) :=
-    fun x => funext fun i => by simp [reindexLin]
-  exact ⟨hl.injective, hr.surjective⟩
-
-
 -- ========================================  INSTANCES  ========================================= --
 
 instance : ContSet (ZonoBundle α) α := ⟨ZonoBundle.construct⟩
 
-instance : ConvexSet (ZonoBundle α) α := ⟨ZonoBundle.convex_construct⟩
+instance : ConvexSet (ZonoBundle α) α :=
+  ⟨fun zB => SetIntersection.convex_construct zB.toSetIntersection⟩
 
+/-- Every pair of members summed, each sum exact. -/
 instance : Plus (ZonoBundle α) α where
   plus := ZonoBundle.plus
-  plus_outer := ZonoBundle.plus_outer
+  plus_outer _ _ := SetIntersection.pairwise_outer (· + ·)
+    (fun _ _ _ _ => Set.add_subset_add) fun p =>
+      ⟨(finProdFinEquiv.symm p).1, (finProdFinEquiv.symm p).2, (Zonotope.plus_exact _ _).subset⟩
 
+/-- Every pair of members combined, each by `Zonotope.linComb_outer`. -/
 noncomputable instance : LinComb (ZonoBundle α) α where
   linComb := ZonoBundle.linComb
-  linComb_outer := ZonoBundle.linComb_outer
+  linComb_outer _ _ := SetIntersection.pairwise_outer Set.linComb
+    (fun _ _ _ _ => setLinComb_mono) fun p =>
+      ⟨(finProdFinEquiv.symm p).1, (finProdFinEquiv.symm p).2, Zonotope.linComb_outer _ _⟩
 
 instance : Intersection (ZonoBundle α) α where
   intersection := ZonoBundle.intersection
@@ -85,27 +82,33 @@ instance : OfPoint (ZonoBundle α) α where
   ofPoint := ZonoBundle.ofPoint
   mem_ofPoint := ZonoBundle.mem_ofPoint
 
-/-- `map` at the relabelling: `reindexLin e` is bijective, so `map_exact`
-applies, unlike `Zonotope`'s instance of it, which needs no hypothesis. -/
+/-- `map` at the relabelling: `reindexLin e` is bijective, so the bundle's image is exact,
+unlike `Zonotope`'s instance of it, which needs no hypothesis. -/
 instance : Reindex (𝒵ℬ) where
   reindex e zB := ZonoBundle.map (reindexLin e) zB
-  reindex_exact e zB := ZonoBundle.map_exact (reindexLin e) (aux_reindexLin_bijective e) zB
+  reindex_exact e zB := SetIntersection.memberwise_image_exact (reindexLin e)
+    (reindexLin_bijective e) fun i => (Zonotope.map_exact (reindexLin e) (zB.Z i)).symm
 
 instance : Mtimes (Mat ℝ) (𝒵ℬ) where
   mtimes := ZonoBundle.mtimes
   mtimes_outer M zB := by
     simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
-    exact ZonoBundle.mtimes_outer M zB
+    exact SetIntersection.memberwise_outer _ Set.monotone_image fun i =>
+      ⟨i, (Zonotope.mtimes_exact M (zB.Z i)).subset⟩
 
 /-- The same operation at a matrix zonotope, which keeps the correlations an
 interval matrix would throw away. Componentwise, as `mtimes` is. -/
 noncomputable instance : Mtimes 𝕄𝒵 (𝒵ℬ) where
   mtimes := ZonoBundle.mtimesMatZonotope
-  mtimes_outer M zB := ZonoBundle.mtimesMatZonotope_outer M zB
+  mtimes_outer M zB := SetIntersection.memberwise_outer (fun X => ⋃ A ∈ M.construct, (A *ᵥ ·) '' X)
+    (fun _ _ h => Set.biUnion_mono subset_rfl fun _ _ => Set.image_mono h) fun i =>
+      ⟨i, Zonotope.mtimesMatZonotope_outer M (zB.Z i)⟩
 
+/-- Drops members, which only enlarges the intersection. -/
 instance : Reduce (ZonoBundle α) α where
   reduce := ZonoBundle.reduce
-  reduce_outer := ZonoBundle.reduce_outer
+  reduce_outer zB o := SetIntersection.memberwise_outer id monotone_id fun i =>
+    ⟨Fin.castLE (min_le_left zB.k o) i, subset_rfl⟩
 
 end CORALean.Real
 

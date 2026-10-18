@@ -21,7 +21,7 @@ never larger, and the result stays inside the exact difference.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -44,6 +44,8 @@ def HPolytope.minkDiffOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
   me := P.me
   Ae := P.Ae
   be := P.be
+  b_error := P.b_error
+  be_error := P.be_error
   I_error := P.I_error
 
 end CORALean.Float

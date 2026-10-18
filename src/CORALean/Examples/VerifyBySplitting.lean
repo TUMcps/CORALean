@@ -57,7 +57,7 @@ def Example.input : Interval (Vec Example.D 1) := ⟨fun _ => ⟨-1, 0⟩, fun _
 /-- Safe: `y ≤ 1`, as the one-row halfspace polytope. -/
 def Example.spec : Specification (HPolytope Example.D (Vec Example.D 1)) :=
   .safeSet ⟨1, fun _ _ => ⟨1, 0⟩, fun _ => ⟨1, 0⟩, 0, fun i => i.elim0, fun i => i.elim0,
-    Interval.origin _⟩
+    fun _ => FloatOps.zero, fun _ => FloatOps.zero, Interval.origin _⟩
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

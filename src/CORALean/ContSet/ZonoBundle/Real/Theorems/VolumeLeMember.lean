@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Volume
 
 @[expose] public section
@@ -27,7 +28,7 @@ variable {n : ℕ}
 
 theorem ZonoBundle.volume_le_member (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
     zB.volume ≤ MeasureTheory.volume (zB.Z i).construct :=
-  MeasureTheory.measure_mono (Set.iInter_subset _ i)
+  MeasureTheory.measure_mono (SetIntersection.construct_subset_ofFn _ i)
 
 
 end CORALean.Real

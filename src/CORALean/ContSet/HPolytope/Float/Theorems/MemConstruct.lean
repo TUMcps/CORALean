@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIffExact
 
 @[expose] public section
 
@@ -40,8 +41,8 @@ theorem HPolytope.mem_construct_iff [SoundFloatArithmetic 𝕋] {P : HPolytope �
     x ∈ P.construct ↔
       (∀ i, (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i))
         ∧ ∀ i, (toRealMat P.Ae *ᵥ x) i = toReal (P.be i) := by -- --- PROOF ---
-  rw [HPolytope.construct_eq_nominal hP]
-  exact HPolytope.mem_nominal_iff
+  rw [HPolytope.construct_eq_nominal hP.1]
+  exact HPolytope.mem_nominal_iff_exact hP.2
 
 end CORALean.Float
 

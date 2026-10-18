@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Split
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
@@ -50,7 +51,7 @@ theorem ZonoBundle.split_outer (Λ : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (
   -- a one-member bundle denotes its member
   have h1 : ∀ Z : Zonotope (Vec 𝕋 n),
       ZonoBundle.construct (⟨1, fun _ => Z⟩ : ZonoBundle (Vec 𝕋 n)) = Z.construct :=
-    fun Z => Set.iInter_const (ι := Fin 1) Z.construct
+    fun Z => (ZonoBundle.construct_eq_iInter _).trans (Set.iInter_const (ι := Fin 1) Z.construct)
   -- so in one of the two halves, and the bundle half is the bundle cut with it
   rcases Zonotope.split_outer (Zonotope.mtimes Λ B.zonotope) j hΨ with h | h
   · left

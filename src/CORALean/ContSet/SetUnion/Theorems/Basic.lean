@@ -31,6 +31,19 @@ theorem SetUnion.mem_construct [ContSet S α] {u : SetUnion S} {x : α} :
   show x ∈ SetUnion.construct u ↔ _
   simp [SetUnion.construct]
 
+
+-- ==============================  `SetUnion.mem_construct_range`  ============================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A point of step `k < K` lies in the union over the steps, as a run enters a `reach` result. -/
+theorem SetUnion.mem_construct_range [ContSet S α] {f : ℕ → S} {K k : ℕ} (hk : k < K) {x : α}
+    (hx : x ∈ ContSet.construct (f k)) :
+    x ∈ ContSet.construct (⟨(List.range K).map f⟩ : SetUnion S) :=
+  SetUnion.mem_construct.mpr ⟨f k, List.mem_map_of_mem (List.mem_range.mpr hk), hx⟩
+
 end CORALean
 
 

@@ -39,7 +39,8 @@ theorem HPolytope.origin_exact (n : ℕ) :
     · exact toReal_one
     · exact toReal_zero
   ext x
-  rw [(HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)), Set.mem_singleton_iff, hA]
+  rw [(HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)),
+    Set.mem_singleton_iff, hA]
   simp only [HPolytope.origin, toReal_zero, Matrix.one_mulVec]
   constructor
   · rintro ⟨-, h⟩

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Float.Operations.ContainsPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
 
@@ -32,7 +33,7 @@ theorem ZonoBundle.containsPoint_sound {zB : ZonoBundle (Vec 𝕋 n)}
     {H : (i : Fin zB.k) → Mat 𝕋 (zB.Z i).h n} {p : Vec 𝕋 n}
     (h : zB.containsPoint H p = true) : toRealVec p ∈ zB.construct := by
   simp only [ZonoBundle.containsPoint, List.all_eq_true, List.mem_finRange, forall_const] at h
-  exact Set.mem_iInter.mpr fun i => Zonotope.containsPoint_sound (h i)
+  exact SetIntersection.mem_construct_ofFn.mpr fun i => Zonotope.containsPoint_sound (h i)
 
 
 end CORALean.Float

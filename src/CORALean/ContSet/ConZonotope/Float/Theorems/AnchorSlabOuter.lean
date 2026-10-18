@@ -13,13 +13,13 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.AnchorEqsInBoxSound
 /-!
 # `ConZonotope.anchorSlab` contains the slab version
 
-A point `y + e` of the constrained zonotope with the rows added as the slab `lo ≤ A β ≤ hi`, so
-`y` described by coefficients `β` of the box that meet the old constraints and read between `lo`
-and `hi` on the new rows, and `e` in the error box, lies in the result on either branch. With
-the certificate, `β` meets the stacked rows of the anchoring polytope, the old equalities
-exactly and the new ones within `hi - lo`, so `HPolytope.anchorEqsInBox_sound` moves it to a
-`β''` of the box on all of them, by at most `τ`; the point `y''` that `β''` describes is within
-`∑ⱼ |Gⱼᵢ| τ` of `y`, which the widened box takes. Without, the result is the slab version.
+A point `y + e` of the constrained zonotope with the rows added as the slab `lo ≤ A β ≤ hi`, so `y`
+described by coefficients `β` of the box that meet the old constraints and read between `lo` and
+`hi` on the new rows, and `e` in the error box, lies in the result on either branch. With the
+certificate, `β` meets the stacked rows of the anchoring polytope, the old equalities within their
+slack and the new ones within `hi - lo`, so `HPolytope.anchorEqsInBox_sound` moves it to a `β''` of
+the box on all of them, by at most `τ`; the point `y''` that `β''` describes is within `∑ⱼ |Gⱼᵢ| τ`
+of `y`, which the widened box takes. Without, the result is the slab version.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -58,22 +58,23 @@ theorem ConZonotope.anchorSlab_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (A : M
         refine Fin.addCases (fun k => ?_) (fun k => k.elim0) k
         show (toRealMat (Fin.append cZ.P.A fun i => i.elim0) *ᵥ β) (Fin.castAdd 0 k)
           ≤ toReal (Fin.append cZ.P.b (fun i => i.elim0) (Fin.castAdd 0 k))
-        rw [HPolytope.mulVec_append_left, Fin.append_left]
+            + |toReal (Fin.append cZ.P.b_error (fun _ => (zero : 𝕋)) (Fin.castAdd 0 k))|
+        rw [HPolytope.mulVec_append_left, Fin.append_left, Fin.append_left]
         exact hle k)
       (fun i => by
         refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-        -- the old equalities hold exactly
+        -- the old equalities hold within their slack
         · show |(toRealMat (Fin.append cZ.P.Ae A) *ᵥ β) (Fin.castAdd q i)
               - toReal (Fin.append cZ.P.be hi (Fin.castAdd q i))|
-            ≤ toReal (Fin.append (fun _ => (zero : 𝕋)) (fun i => subUp (hi i) (lo i))
-              (Fin.castAdd q i))
-          rw [HPolytope.mulVec_append_left, Fin.append_left, Fin.append_left, heq i, sub_self,
-            abs_zero, toReal_zero]
+            ≤ toReal (Fin.append (fun i => absolute (cZ.P.be_error i))
+              (fun i => subUp (hi i) (lo i)) (Fin.castAdd q i))
+          rw [HPolytope.mulVec_append_left, Fin.append_left, Fin.append_left, toReal_absolute]
+          exact heq i
         -- the new ones within the gap
         · show |(toRealMat (Fin.append cZ.P.Ae A) *ᵥ β) (Fin.natAdd cZ.P.me i)
               - toReal (Fin.append cZ.P.be hi (Fin.natAdd cZ.P.me i))|
-            ≤ toReal (Fin.append (fun _ => (zero : 𝕋)) (fun i => subUp (hi i) (lo i))
-              (Fin.natAdd cZ.P.me i))
+            ≤ toReal (Fin.append (fun i => absolute (cZ.P.be_error i))
+              (fun i => subUp (hi i) (lo i)) (Fin.natAdd cZ.P.me i))
           rw [toRealMat_append_mulVec_natAdd, Fin.append_right, Fin.append_right, abs_le]
           have h := sub_le_subUp (hi i) (lo i)
           constructor <;> linarith [(hslab i).1, (hslab i).2])

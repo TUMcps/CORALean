@@ -34,6 +34,8 @@ def HPolytope.ineqs (A : Mat 𝕋 q n) (b : Vec 𝕋 q) : HPolytope 𝕋 (Vec �
   me := 0
   Ae := fun i => i.elim0
   be := fun i => i.elim0
+  b_error := fun _ => zero
+  be_error := fun _ => zero
   I_error := Interval.origin n
 
 end CORALean.Float

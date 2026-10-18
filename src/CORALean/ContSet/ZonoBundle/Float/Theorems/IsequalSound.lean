@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Isequal
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
 
@@ -37,7 +38,7 @@ theorem ZonoBundle.isequal_sound {zB S : ZonoBundle (Vec 𝕋 n)} (h : zB.isequa
     obtain ⟨k₂, Z₂⟩ := S
     simp only at e h
     subst e
-    unfold ZonoBundle.construct
+    rw [ZonoBundle.construct_eq_iInter, ZonoBundle.construct_eq_iInter]
     exact Set.iInter_congr fun i => Zonotope.isequal_sound (h i)
   · simp at h
 

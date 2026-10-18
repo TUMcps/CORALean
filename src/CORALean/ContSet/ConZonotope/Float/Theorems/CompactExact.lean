@@ -135,7 +135,8 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
         have : (toRealMat cZ.P.Ae *ᵥ ξ) r = 0 := by
           simp only [mulVec, dotProduct, toRealMat]
           exact Finset.sum_eq_zero fun j _ => by rw [hz j, zero_mul]
-        rw [this, hb]
+        rw [this, hb, sub_zero, abs_zero]
+        exact abs_nonneg _
     · rw [hy i, hsum]
       rfl
   · -- the kept coefficients
@@ -150,13 +151,14 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     · have := hin k
       simp only [mulVec, dotProduct, toRealMat] at this
       show ∑ l : Fin S.card, toReal (cZ.P.A k (S.orderEmbOfFin rfl l))
-        * ξ (S.orderEmbOfFin rfl l) ≤ toReal (cZ.P.b k)
+        * ξ (S.orderEmbOfFin rfl l) ≤ toReal (cZ.P.b k) + |toReal (cZ.P.b_error k)|
       rw [← hsum _ fun j hj => (hdrop j hj).2.1 k]
       exact this
     · have := heq (R.orderEmbOfFin rfl r)
       simp only [mulVec, dotProduct, toRealMat] at this
-      show ∑ l : Fin S.card, toReal (cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l))
-            * ξ (S.orderEmbOfFin rfl l) = toReal (cZ.P.be (R.orderEmbOfFin rfl r))
+      show |∑ l : Fin S.card, toReal (cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l))
+            * ξ (S.orderEmbOfFin rfl l) - toReal (cZ.P.be (R.orderEmbOfFin rfl r))|
+          ≤ |toReal (cZ.P.be_error (R.orderEmbOfFin rfl r))|
       rw [← hsum _ fun j hj => (hdrop j hj).2.2 _]
       exact this
     · rw [hy i, hsum _ fun j hj => (hdrop j hj).1 i]

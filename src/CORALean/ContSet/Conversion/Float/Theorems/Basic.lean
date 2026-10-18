@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotope
@@ -429,7 +430,7 @@ theorem VPolytope.zonoBundle_contains (P : VPolytope (Vec 𝕋 n)) :
 owes no proof: the guarantee is sound at every one. -/
 theorem ZonoBundle.zonotope_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
     zB.construct ⊆ (zB.zonotope i).construct :=
-  Set.iInter_subset _ i
+  SetIntersection.construct_subset_ofFn _ i
 
 
 -- =============================  `ZonoBundle.hPolytope_contains`  ============================== --

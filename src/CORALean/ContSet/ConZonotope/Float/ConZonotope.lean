@@ -24,7 +24,7 @@ equality is kept where a certificate pays the move onto it into the ambient box
 (`ConZonotope.anchorSlab`), and becomes two inequalities (`HPolytope.slab`) otherwise.
 
 One box, therefore, not two: `P` is a float `HPolytope`, but only its nominal part is
-read, and the operations leave its own box at the origin.
+read, slacks included, and the operations leave its own box at the origin.
 
 ## References
 

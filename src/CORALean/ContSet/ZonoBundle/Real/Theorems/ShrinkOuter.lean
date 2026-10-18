@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Shrink
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnclosingParallelotopeOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMethCOuter
@@ -34,10 +36,10 @@ theorem ZonoBundle.shrink_outer (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
   intro x hx
   -- the bundle lies in the intersection of the reduced members
   have hP : x ∈ (⟨zB.k, fun i => (zB.Z i).reduceMethC 1⟩ : ZonoBundle (Vec ℝ n)).construct := by
-    simp only [ZonoBundle.construct, Set.mem_iInter] at hx ⊢
+    simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter] at hx ⊢
     exact fun i => Zonotope.reduceMethC_outer _ 1 (hx i)
   rw [ZonoBundle.shrink]
-  refine Set.mem_iInter.mpr fun i => ?_
+  refine SetIntersection.mem_construct_ofFn.mpr fun i => ?_
   exact ZonoBundle.enclosingParallelotope_outer (⟨zB.k, fun i => (zB.Z i).reduceMethC 1⟩ :
     ZonoBundle (Vec ℝ n)) hk _ hP
 

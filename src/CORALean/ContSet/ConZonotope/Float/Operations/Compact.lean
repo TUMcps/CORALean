@@ -18,7 +18,7 @@ their order. Tolerance `0`; CORA's `eps` removes columns below it as well.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -54,6 +54,8 @@ def ConZonotope.compact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 
         me := R.card
         Ae := fun r l => cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l)
         be := fun r => cZ.P.be (R.orderEmbOfFin rfl r)
+        b_error := cZ.P.b_error
+        be_error := fun r => cZ.P.be_error (R.orderEmbOfFin rfl r)
         I_error := Interval.origin S.card }
     I_error := cZ.I_error }
 

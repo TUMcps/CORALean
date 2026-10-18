@@ -4,6 +4,7 @@ public import CORALean.ContSet.HPolytope.Real.Instances
 public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Real.Operations.Slab
 public import CORALean.ContSet.InflatedContSet.InflatedContSet
 public import CORALean.ContSet.Interval.Float.Interval
 
@@ -12,22 +13,21 @@ public import CORALean.ContSet.Interval.Float.Interval
 /-!
 # Halfspace descriptions over a floating-point scalar: the representation
 
-CORA's `polytope` [1, Def. 2] with `isHRep` set, its constraint matrices held in `𝕋`, plus the error
-box that makes it an `InflatedContSet`, as every other float representation has one. The
-nominal part is the exact layer's polytope those stored floats describe,
-`{x | A x ≤ b, Aₑ x = bₑ}`; the box holds what rounding has cost.
+CORA's `polytope` [1, Def. 2] with `isHRep` set, its constraint matrices held in `𝕋`, plus three
+errors, each where its rounding lives: `b_error` the slack of the inequality rows,
+`A x ≤ b + |b_error|`; `be_error` that of the equality rows, `|Aₑ x - bₑ| ≤ |be_error|`; and the
+state-space box `I_error`, as every float representation has one. A slack is a magnitude, read
+through `|·|`, since rounding only ever widens a row. The nominal part is the exact polytope the
+stored floats describe, slacks included (an equality with slack is the slab it then is);
+`construct` adds the box, through `InflatedContSet`. Separate from the box because a slack is a
+constraint-space quantity, one number per row, which no state-space box expresses without loss.
 
-An inequality absorbs a rounding of its own by raising `b`. A rounded equality names a different
-hyperplane; it is kept where a certified right inverse of `Aₑ` bounds the step onto the stored
-hyperplane, the step paid into the box and the inequalities (`HPolytope.anchorEqs`), and is
-written as the two inequalities it stands for, rounded outward, where that certificate fails.
+An operation may still pay a rounding by raising `b` or into the box (`HPolytope.anchorEqs`
+moves a rounded equality onto the stored hyperplane, paying the step into the box and the
+inequalities); one that reads the rows first folds all three into them
+(`HPolytope.absorbRounding`), and one that moves or pads the description carries them along.
 
-An operation that reads the rows (a halfspace test, a dual certificate) first folds the box
-into them (`HPolytope.absorbRounding`); one that moves or pads the description carries it along.
-
-It stays at `Vec`, the only place either layer pairs a row with a point, though
-`HPolytope 𝕋 α` stores its rows as a family in `α` as the exact layer does;
-`HPolytope 𝕋 (Vec 𝕋 n)` is the vector case, rows of a matrix.
+It stays at `Vec`, the only place either layer pairs a row with a point.
 
 ## References
 
@@ -35,10 +35,10 @@ It stays at `Vec`, the only place either layer pairs a row with a point, though
       Obtain Subsets of Reachable Sets". HSCC 2020. arXiv:1910.08354.
 -/
 
--- Authors:       Claude Opus 5, Claude Sonnet 5.5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   15-October-2026
--- Reviewed:      16-October-2026 (Tobias Ladner)
+-- Last update:   18-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -59,14 +59,20 @@ structure HPolytope (𝕋 α : Type) where
   me : ℕ
   Ae : Fin me → α
   be : Vec 𝕋 me
-  /-- The error box: everything rounding has cost so far. -/
+  /-- The slack of the inequality rows: row `i` holds `Aᵢ x ≤ bᵢ + |b_errorᵢ|`. -/
+  b_error : Vec 𝕋 m
+  /-- The slack of the equality rows: row `i` holds `|Aeᵢ x - beᵢ| ≤ |be_errorᵢ|`. -/
+  be_error : Vec 𝕋 me
+  /-- The error box: what rounding has cost in the state space. -/
   I_error : Interval α
 
-/-- The exact polytope the stored floats describe, read through `toRealMat`. -/
+/-- The exact polytope the stored floats describe, slacks included, read through `toRealMat`:
+the inequalities at `b + |b_error|`, each equality as the slab `be ± |be_error|`. -/
 def HPolytope.nominal [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 (Vec 𝕋 n)) :
     CORALean.Real.HPolytope (Vec ℝ n) :=
-  (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b)).intersection
-    (Real.HPolytope.eqs (toRealMat P.Ae) (toRealVec P.be))
+  (Real.HPolytope.ineqs (toRealMat P.A) (toRealVec P.b + |toRealVec P.b_error|)).intersection
+    (Real.HPolytope.slab (toRealMat P.Ae) (toRealVec P.be - |toRealVec P.be_error|)
+      (toRealVec P.be + |toRealVec P.be_error|))
 
 instance [SoundFloatArithmetic 𝕋] :
     InflatedContSet (HPolytope 𝕋 (Vec 𝕋 n)) (CORALean.Real.HPolytope (Vec ℝ n))

@@ -47,7 +47,7 @@ private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} {H : HPol
   simp only [Polygon.innerHRep] at h
   split_ifs at h
   cases h
-  exact HPolytope.errFree_of_origin rfl
+  exact HPolytope.errFree_of_origin rfl rfl rfl
 
 
 theorem Polygon.subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) :

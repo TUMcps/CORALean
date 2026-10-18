@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Float.Operations.CartProd
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
 
@@ -55,9 +56,10 @@ theorem ZonoBundle.cartProd_exact (zB₁ : ZonoBundle (Vec 𝕋 n₁)) (zB₂ : 
       funext fun i => (Fin.append_right xp yp i).symm⟩
   constructor
   · intro h
-    have h' : ∀ p, z ∈ ((zB₁.cartProd zB₂).Z p).construct := Set.mem_iInter.1 h
+    have h' : ∀ p, z ∈ ((zB₁.cartProd zB₂).Z p).construct := SetIntersection.mem_construct_ofFn.1 h
     refine ⟨(fun i => z (Fin.castAdd n₂ i), fun i => z (Fin.natAdd n₁ i)),
-      ⟨Set.mem_iInter.2 fun i => ?_, Set.mem_iInter.2 fun j => ?_⟩, ?_⟩
+      ⟨SetIntersection.mem_construct_ofFn.2 fun i => ?_,
+        SetIntersection.mem_construct_ofFn.2 fun j => ?_⟩, ?_⟩
     · -- pair `(i, 0)` stands in for member `i` of the first bundle
       obtain ⟨⟨a, b⟩, ⟨ha, hb⟩, hab⟩ := (hp _).1 (h' (finProdFinEquiv (i, ⟨0, h₂⟩)))
       simp only [Equiv.symm_apply_apply] at ha
@@ -69,9 +71,9 @@ theorem ZonoBundle.cartProd_exact (zB₁ : ZonoBundle (Vec 𝕋 n₁)) (zB₂ : 
     · funext i
       refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;> simp
   · rintro ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩
-    refine Set.mem_iInter.2 fun p => (hp p).2 ⟨(x, y), ⟨?_, ?_⟩, rfl⟩
-    · exact Set.mem_iInter.1 hx _
-    · exact Set.mem_iInter.1 hy _
+    refine SetIntersection.mem_construct_ofFn.2 fun p => (hp p).2 ⟨(x, y), ⟨?_, ?_⟩, rfl⟩
+    · exact SetIntersection.mem_construct_ofFn.1 hx _
+    · exact SetIntersection.mem_construct_ofFn.1 hy _
 
 end CORALean.Float
 

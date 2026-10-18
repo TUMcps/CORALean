@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 
@@ -31,7 +32,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem ZonoBundle.zonotope_contains (zB : ZonoBundle α) (i : Fin zB.k) :
     zB.construct ⊆ (zB.zonotope i).construct :=
-  Set.iInter_subset _ i
+  SetIntersection.construct_subset_ofFn _ i
 
 end CORALean.Real
 

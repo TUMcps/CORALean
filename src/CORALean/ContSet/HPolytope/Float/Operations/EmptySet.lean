@@ -36,6 +36,8 @@ def HPolytope.emptySet (𝕋 : Type) [FloatOps 𝕋] (n : ℕ) : HPolytope 𝕋 
   me := 0
   Ae := fun i => i.elim0
   be := fun i => i.elim0
+  b_error := fun _ => zero
+  be_error := fun _ => zero
   I_error := Interval.origin n
 
 end CORALean.Float

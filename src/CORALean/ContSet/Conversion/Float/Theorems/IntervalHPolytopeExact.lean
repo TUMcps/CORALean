@@ -44,8 +44,8 @@ theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) :
     (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
   ext x
   simp only [Interval.hPolytope]
-  rw [HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl)
-    (HPolytope.errFree_of_origin rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
+  rw [HPolytope.mem_stackRows_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)
+    (HPolytope.errFree_of_origin rfl rfl rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
   constructor
   · rintro ⟨hup, hlo⟩ j
     have h₁ : x j ≤ toReal (I.sup j) := by rw [← identityMat_mulVec (𝕋 := 𝕋) x j]; exact hup j

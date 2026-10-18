@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 
 @[expose] public section
@@ -37,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem ZonoBundle.intersects_of_intersects (zB : ZonoBundle α) (S : Set α)
     (h : (zB.construct ∩ S).Nonempty) (i : Fin zB.k) :
     ((zB.Z i).construct ∩ S).Nonempty :=
-  h.mono (Set.inter_subset_inter_left _ (Set.iInter_subset _ i))
+  h.mono (Set.inter_subset_inter_left _ (SetIntersection.construct_subset_ofFn _ i))
 
 
 end CORALean.Real

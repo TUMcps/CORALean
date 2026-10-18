@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Zonotope.Real.Operations.IsBox
 public import Mathlib.Algebra.BigOperators.Pi
@@ -59,11 +60,11 @@ theorem ZonoBundle.isIntervalCora_counterexample :
     intro x
     constructor
     · rintro ⟨β, hβ, rfl⟩ i
-      simpa [Z₁, Finset.sum_apply, Pi.single_apply] using hβ i
+      simpa [Z₁, Finset.sum_apply, Pi.single_apply, -Fin.sum_univ_two] using hβ i
     · intro hx
       refine ⟨x, hx, ?_⟩
       funext i
-      simp [Z₁, Finset.sum_apply, Pi.single_apply]
+      simp [Z₁, Finset.sum_apply, Pi.single_apply, -Fin.sum_univ_two]
   -- the diagonal
   have hZ₂ : ∀ x : Vec ℝ 2, x ∈ Z₂.construct ↔ ∃ t : ℝ, |t| ≤ 1 ∧ ∀ i, x i = t := by
     intro x
@@ -78,7 +79,7 @@ theorem ZonoBundle.isIntervalCora_counterexample :
   have hmem : ∀ x : Vec ℝ 2, x ∈ zB.construct ↔
       (∀ i, |x i| ≤ 1) ∧ ∃ t : ℝ, |t| ≤ 1 ∧ ∀ i, x i = t := by
     intro x
-    simp only [ZonoBundle.construct, Set.mem_iInter]
+    simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter]
     rw [Fin.forall_fin_two]
     simp only [zB, if_pos, h10, if_false, hZ₁, hZ₂]
   have hIc : ∀ (J : Interval (Vec ℝ 2)) (x : Vec ℝ 2),

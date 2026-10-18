@@ -20,7 +20,7 @@ more than at `β`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : Vec 𝕋 P.me}
     {Q : HPolytope 𝕋 (Vec 𝕋 n)} {τ : 𝕋} (h : P.anchorEqsInBox ε = some (Q, τ))
-    (β : Vec ℝ n) (hβ : ∀ j, |β j| ≤ 1) (hA : ∀ k, (toRealMat P.A *ᵥ β) k ≤ toReal (P.b k))
+    (β : Vec ℝ n) (hβ : ∀ j, |β j| ≤ 1)
+    (hA : ∀ k, (toRealMat P.A *ᵥ β) k ≤ toReal (P.b k) + |toReal (P.b_error k)|)
     (hE : ∀ i, |(toRealMat P.Ae *ᵥ β) i - toReal (P.be i)| ≤ toReal (ε i)) : -- --- STMT ---
     0 ≤ toReal τ ∧ ∃ β'' : Vec ℝ n, (∀ j, |β'' j| ≤ 1) ∧ β'' ∈ Q.nominal.construct
       ∧ ∀ j, |β'' j - β j| ≤ toReal τ := by -- --- PROOF ---
@@ -159,7 +160,8 @@ theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : V
           add_le_add (mul_le_mul_of_nonneg_left h1 h1l) (mul_le_mul_of_nonneg_left (hβsB j) hl0)
       _ = 1 := by linarith
   -- an inequality reads at most `∑ⱼ |Aₖⱼ| τ` more than at `β`
-  · show (toRealMat P.A *ᵥ β'') k ≤ toReal (addUp (P.b k) (mulUp (radius P.A k) τ))
+  · show (toRealMat P.A *ᵥ β'') k
+      ≤ toReal (addUp (P.b k) (mulUp (radius P.A k) τ)) + |toReal (P.b_error k)|
     have hd : (toRealMat P.A *ᵥ (β'' - β)) k ≤ toReal (radius P.A k) * toReal τ :=
       calc (toRealMat P.A *ᵥ (β'' - β)) k = ∑ j, toReal (P.A k j) * (β'' - β) j := rfl
         _ ≤ ∑ j, |toReal (P.A k j)| * toReal τ := Finset.sum_le_sum fun j _ =>
@@ -178,7 +180,8 @@ theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : V
     rw [hsum]
     linarith [hA k]
   -- the equalities hold at both ends of the segment, so along it
-  · show (toRealMat P.Ae *ᵥ β'') i = toReal (P.be i)
+  · show |(toRealMat P.Ae *ᵥ β'') i - toReal (P.be i)| ≤ |toReal (FloatOps.zero : 𝕋)|
+    rw [toReal_zero, abs_zero, abs_nonpos_iff, sub_eq_zero]
     have hβ' : (toRealMat P.Ae *ᵥ (β + δ)) i = toReal (P.be i) := by
       rw [Matrix.mulVec_add, Pi.add_apply, hδ]
       ring

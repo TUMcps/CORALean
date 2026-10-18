@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeZonoBundleRowsExact
@@ -113,7 +114,7 @@ theorem HPolytope.exists_zonoBundle_exact [NeZero n] (P : HPolytope (Vec ℝ n))
     refine ⟨⟨2, ![⟨0, 0, Fin.elim0⟩, ⟨0, fun j => if j = 0 then 1 else 0, Fin.elim0⟩]⟩, ?_⟩
     rw [hne]
     ext x
-    simp only [ZonoBundle.construct, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
+    simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
     intro h
     have h0 := h 0
     have h1 := h 1

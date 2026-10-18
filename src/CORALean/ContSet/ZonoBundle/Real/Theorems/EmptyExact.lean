@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Empty
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
@@ -30,7 +31,7 @@ variable {n : ℕ}
 theorem ZonoBundle.empty_exact (n : ℕ) (hn : 0 < n) :
     (ZonoBundle.empty n hn).construct = ∅ := by -- --- PROOF ---
   ext x
-  simp only [ZonoBundle.construct, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
+  simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
   intro h
   have h0 := h (0 : Fin 2)
   have h1 := h (1 : Fin 2)

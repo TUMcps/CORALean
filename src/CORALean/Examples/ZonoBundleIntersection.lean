@@ -1,5 +1,5 @@
 import CORALean.ContSet.ZonoBundle.Real.Instances
-import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCompact
+import CORALean.ContSet.SetIntersection.Theorems.IsCompact
 import CORALean.ContSet.Zonotope.Real.Instances
 
 /-!
@@ -11,10 +11,10 @@ outright — `intersection`, not merely `intersection_outer`. `Plus` and `Mtimes
 bundle exactly as at any other `ContSet`, which is the second point: a bundle
 pays for its exact intersection with nothing else.
 
-`CompactSet` is a theorem here, `isCompact_construct`, and not an instance:
-`ZonoBundle.construct` at `k = 0` is `⋂` over the empty family, which is `univ`,
+`CompactSet` is a theorem here, the general `SetIntersection.isCompact_construct`, and not an
+instance: `ZonoBundle.construct` at `k = 0` is `⋂` over the empty family, which is `univ`,
 not compact, so the class's unconditional obligation has no proof to give it. A
-positive `k` is what the theorem asks for instead.
+member is what the theorem asks for instead.
 -/
 
 -- Authors:       Claude Opus 5
@@ -72,7 +72,8 @@ example (M : Mat ℝ 2 2) :
 
 /-- Compact, since this bundle's `k` is `1`, not `0`. -/
 example : IsCompact Example.boxBundle.construct :=
-  ZonoBundle.isCompact_construct (zB := Example.boxBundle) (by simp [Example.boxBundle])
+  SetIntersection.isCompact_construct (I := Example.boxBundle.toSetIntersection)
+    (by simp [Example.boxBundle, ZonoBundle.toSetIntersection])
 
 end CORALean.Real
 

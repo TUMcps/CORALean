@@ -85,7 +85,7 @@ theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat �
     have h4 := mul_le_mulUp δ (radius cZ.P.A i)
     have h5 := (abs_le.mp (ConZonotope.aux_row_move cZ.P.A β' hδ hβδ i)).2
     rw [hsplit]
-    linarith
+    linarith [abs_nonneg (toReal (cZ.P.b_error i))]
   · -- the point: `y = c + G β` since `G β' = y - y₀`
     have := congrFun hβ' i
     simp only [Matrix.mulVec, dotProduct] at this

@@ -11,7 +11,7 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -26,13 +26,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `levelSet(P)`: `A x - b ≤ 0`, then `Ae x - be ≤ 0` and `be - Ae x ≤ 0`. The rows are the
-nominal part's: the error box is not read. -/
+/-- `levelSet(P)`: `A x - b ≤ |b_error|`, then `Ae x - be` and `be - Ae x` each `≤ |be_error|`.
+The rows are the nominal part's, slacks included: the error box is not read. -/
 def HPolytope.levelSet (P : HPolytope 𝕋 (Vec 𝕋 n)) : Real.LevelSet n where
   m := P.m + (P.me + P.me)
-  f x := Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i))
-    (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be r))
-      fun r => toReal (P.be r) - (toRealMat P.Ae *ᵥ x) r)
+  f x := Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i) - |toReal (P.b_error i)|)
+    (Fin.append (fun r => (toRealMat P.Ae *ᵥ x) r - toReal (P.be r) - |toReal (P.be_error r)|)
+      fun r => toReal (P.be r) - (toRealMat P.Ae *ᵥ x) r - |toReal (P.be_error r)|)
   op := Fin.append (fun _ => .le) (Fin.append (fun _ => .le) fun _ => .le)
 
 end CORALean.Float

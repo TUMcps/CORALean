@@ -42,7 +42,8 @@ theorem HPolytope.minkDiffOf_inner (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (V
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hz
   refine Set.mem_add.mpr ⟨z + y, HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩, e, he,
     add_right_comm _ _ _⟩
-  · have h1 : (toRealMat P.A *ᵥ z) i ≤ toReal (subDown (P.b i) (u i).val) := hle i
+  · have h1 : (toRealMat P.A *ᵥ z) i
+        ≤ toReal (subDown (P.b i) (u i).val) + |toReal (P.b_error i)| := hle i
     have h2 : (toRealMat P.A *ᵥ y) i ≤ toReal (u i).val := (u i).le y hy
     have h3 := subDown_le_sub (P.b i) (u i).val
     rw [mulVec_add, Pi.add_apply]

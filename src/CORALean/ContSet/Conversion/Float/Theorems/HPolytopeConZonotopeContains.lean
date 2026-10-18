@@ -87,7 +87,8 @@ private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
   · obtain ⟨hle, heq⟩ := (HPolytope.mem_construct_iff (HPolytope.errFree_of_isErrFree hP)).mp hx
     refine ConZonotope.anchorSlab_outer _ _ _ _ (Set.add_mem_add
       (ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ, HPolytope.mem_stackRows_nominal_iff.mpr
-        ⟨HPolytope.mem_nominal_iff.mpr ⟨fun i => hcarry i (hle i), fun i => i.elim0⟩,
+        ⟨HPolytope.mem_nominal_iff.mpr
+          ⟨fun i => le_add_of_le_of_nonneg (hcarry i (hle i)) (abs_nonneg _), fun i => i.elim0⟩,
           HPolytope.mem_slab_nominal_iff.mpr fun i => ?_⟩, hval⟩) h0)
     have hsplit := HPolytope.rowSplit P.Ae (fun i j => Z.G j i) Z.c β x hval i
     have herr := abs_le.mp (HPolytope.prodError P.Ae (fun i j => Z.G j i) β hβ i)
@@ -103,10 +104,12 @@ private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
     rw [hsplit] at h
     constructor <;> linarith [herr.1, herr.2]
   -- with a box: the rows with the box folded in, which hold at `x`
-  · obtain ⟨hle, -⟩ := (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl)).mp
+  · obtain ⟨hle, -⟩ := (HPolytope.mem_construct_iff (HPolytope.errFree_of_origin rfl rfl rfl)).mp
       (HPolytope.absorbRounding_outer P hx)
     exact Set.add_mem_add (ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ,
-      HPolytope.mem_nominal_iff.mpr ⟨fun i => hcarry i (hle i), fun i => i.elim0⟩, hval⟩) h0
+      HPolytope.mem_nominal_iff.mpr
+          ⟨fun i => le_add_of_le_of_nonneg (hcarry i (hle i)) (abs_nonneg _), fun i => i.elim0⟩,
+        hval⟩) h0
 
 theorem HPolytope.conZonotope_contains {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))

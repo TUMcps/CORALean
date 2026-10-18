@@ -2,7 +2,9 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Float.Operations.EnclosingParallelotope
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
+public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
+public import CORALean.ContSet.SetIntersection.Theorems.MemberwiseOuter
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.ParallelotopeContains
 public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
 
@@ -12,8 +14,9 @@ public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
 # `ZonoBundle.enclosingParallelotope` encloses the bundle
 
 At whichever basis and candidate inverse the check leaves: a point of the bundle has its image
-under `H` in the box of the mapped bundle (`mtimes_outer`, `intervalAll_contains`) and its
-coordinates within the bundle's box, which is all `parallelotope_contains` asks.
+under `H` in the box of the mapped bundle (`SetIntersection.memberwise_outer` at
+`Zonotope.mtimes_outer`, then `intervalAll_contains`) and its coordinates within the bundle's
+box, which is all `parallelotope_contains` asks.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -26,7 +29,7 @@ coordinates within the bundle's box, which is all `parallelotope_contains` asks.
 
 namespace CORALean.Float
 
-open SoundFloatArithmetic
+open Matrix SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
@@ -38,7 +41,9 @@ theorem ZonoBundle.enclosingParallelotope_outer (zB : ZonoBundle (Vec 𝕋 n)) (
     zB.construct ⊆ (zB.enclosingParallelotope hk Γ).construct := by -- --- PROOF ---
   intro x hx
   exact ZonoBundle.parallelotope_contains _ _ _ _
-    (ZonoBundle.intervalAll_contains (zB.mtimes _) hk (ZonoBundle.mtimes_outer _ zB ⟨x, hx, rfl⟩))
+    (ZonoBundle.intervalAll_contains (zB.mtimes _) hk
+      (SetIntersection.memberwise_outer (Set.image (toRealMat _ *ᵥ ·)) Set.monotone_image
+        (fun i => ⟨i, Zonotope.mtimes_outer _ (zB.Z i)⟩) ⟨x, hx, rfl⟩))
     (fun j => le_trans (Interval.abs_le_magnitude (ZonoBundle.intervalAll_contains zB hk hx) j)
       (le_maximumOver _ j))
 

@@ -48,7 +48,7 @@ theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec ℝ n))
       = convexHull ℝ (zB₁.construct ∪ zB₂.construct) := hV
   rw [← hV', VPolytope.construct_eq_convexHull]
   -- the bundle is convex and holds every vertex
-  refine convexHull_min ?_ (ZonoBundle.convex_construct _)
+  refine convexHull_min ?_ (SetIntersection.convex_construct _)
   rintro _ ⟨j, rfl⟩
   haveI : NeZero (zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂).k :=
     ⟨VPolytope.k_ne_zero_of_nonempty

@@ -81,8 +81,9 @@ theorem ConZonotope.reduceLiftBy_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
           zero_mul, Finset.sum_const_zero, add_zero, hξl]
         rfl
       refine le_trans (le_of_eq hrow) ?_
-      refine le_trans ?_ (add_le_addUp (cZ.P.b i)
-        (radius (fun i l => cZ.P.A i (part.right l)) i))
+      have hu := add_le_addUp (cZ.P.b i) (radius (fun i l => cZ.P.A i (part.right l)) i)
+      show _ ≤ toReal (addUp (cZ.P.b i) (radius (fun i l => cZ.P.A i (part.right l)) i))
+        + |toReal (cZ.P.b_error i)|
       linarith
     · -- the lower coordinates of the lifted sum are the original equality rows
       have heq := hPeq i

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.GuardIntersect
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
@@ -64,9 +65,10 @@ theorem ZonoBundle.guardIntersect_outer (zB : ZonoBundle (Vec ℝ n))
   have hxP : x ∈ P.construct := by
     rw [← HPolytope.intersection_exact, HPolytope.stack_exact]
     refine ⟨Set.mem_iInter.mpr fun i => Zonotope.hPolytope_contains _ Aq ?_, hxG⟩
-    exact Set.mem_iInter.mp hx i
+    exact SetIntersection.mem_construct_ofFn.mp hx i
   have hxV := hvert hxP
   -- and the cut, inside every parallelotope
+  rw [ZonoBundle.construct_eq_iInter]
   show x ∈ ⋂ j, (Zonotope.mtimes (Λ j)
     (Interval.enclosePoints fun l => (Λ j)⁻¹ *ᵥ vert P l).zonotope).construct
   refine Set.mem_iInter.mpr fun j => ?_
