@@ -39,19 +39,19 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 theorem ParallelHybridAutomaton.reachFloat_outer
     {P : ParallelHybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m}
     (hst : P.StateBound) (hself : P.SelfBindFree)
-    (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m)
-    {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
-    {X₀ : Zonotope (Vec 𝕋 (∑ i, n i))} {out : List ((∀ i, L i) × Zonotope (Vec 𝕋 (∑ i, n i)))}
-    (h : P.reachFloat lift tFinal options K ℓ₀ X₀ = some out)
-    {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ construct X₀)
+    (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m) {tFinal : ℚ}
+    {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
+    {X₀ : Zonotope (Vec 𝕋 (∑ i, n i))} {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ construct X₀)
     (run : P.IsRun ℓ₀ x ℓ y) : -- --- STMT ---
-    ∃ (T : ℝ) (j : ℕ), (P.productWith lift P.mergeFlows (P.mergeInputSets lift)
-      (P.mergeDistSets lift)).IsRunUntil T j ℓ₀ (stack x) ℓ (stack y) ∧
-      (T ≤ tFinal → j ≤ K → ∃ p ∈ out, p.1 = ℓ ∧ stack y ∈ construct p.2) := by -- --- PROOF ---
+    ∀ out ∈ P.reachFloat lift tFinal options K ℓ₀ X₀,
+      ∃ (T : ℝ) (j : ℕ), (P.productWith lift P.mergeFlows (P.mergeInputSets lift)
+        (P.mergeDistSets lift)).IsRunUntil T j ℓ₀ (stack x) ℓ (stack y) ∧
+        (T ≤ tFinal → j ≤ K → ∃ p ∈ out, p.1 = ℓ ∧ stack y ∈ construct p.2) := by -- --- PROOF ---
+  intro out (h : P.reachFloat lift tFinal options K ℓ₀ X₀ = some out)
   -- the parallel run is a run of the product, which has a duration and a jump count
   obtain ⟨T, j, hrun⟩ := HybridAutomaton.isRun_iff_exists_isRunUntil.mp
     (run.toProductWith (P.mergeFlows_flowLaw hst hself lift) lift)
-  exact ⟨T, j, hrun, fun hT hj => HybridAutomaton.reachFloat_outer _ hrun hT hj hx h⟩
+  exact ⟨T, j, hrun, fun hT hj => HybridAutomaton.reachFloat_outer _ hrun hT hj hx _ h⟩
 
 end CORALean
 

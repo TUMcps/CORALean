@@ -14,7 +14,7 @@ the constructor accepts a numeric matrix, an `intervalMatrix` or a `matZonotope`
 (l. 162-175; a numeric one is the point set, a mix is read in the coarser family); `c` a plain
 vector, `m` inputs as in `LinearSys`. `IsTrajectory` is `'varParam'`, a fresh `A t`, `B t` from
 their sets at every instant; `IsConstTrajectory` is `'constParam'` (CORA's default), one `A`, one
-`B` over the whole flow. Both are Carathéodory runs, as `LinearSys.IsTrajectory` is [1, Def. 3.1]:
+`B` over the whole flow. Both are Carathéodory runs, as `LinearSys.IsTrajectory` is [1, Sec. 2]:
 the parameters sit inside the integral, so a jumping input or parameter is admissible.
 `IsCanonicalTrajectory` and `IsCanonicalConstTrajectory` are the same runs of the canonical form
 `ẋ = A x + u'`, the combined input `u' = B u + c` in state coordinates (CORA's `V = B*U + c`,
@@ -26,8 +26,9 @@ settle on one matrix) and is not stated.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

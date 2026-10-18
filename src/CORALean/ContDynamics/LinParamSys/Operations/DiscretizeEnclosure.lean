@@ -15,7 +15,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Smul
 set-valued only because `e^{AΔt}` cannot be computed; here the matrix is a box
 to begin with, and `expIntervalEnclosure` of `Δt • sys.A` covers both the
 uncertainty and the truncation at once. Either way the result is a
-`LinParamSysDT`, so the loop of [1, Alg. 4] — `R(k) = e^{AΔt}R(k-1) ⊞ P_R(0)`,
+`LinParamSysDT`, so the loop of [1, Alg. 1] — `R(k) = e^{AΔt}R(k-1) ⊞ P_R(0)`,
 reduced every step — is `LinParamSysDT.reach` and needs no recursion here.
 
 `ℐ` names the family, where the point case writes it out: the argument is
@@ -24,8 +24,9 @@ than with this definition.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5, Claude Sonnet 5.5

@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinParamSys.Theorems.IsTrajectoryMemInputSet
 public import CORALean.ContDynamics.LinParamSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
@@ -25,7 +25,7 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 /-!
 # `reachUnion` encloses every constant-parameter run
 
-[1, Alg. 4]'s soundness, the input set anywhere. A run fixes `A` and `B`, and its combined input
+[1, Alg. 1]'s soundness, the input set anywhere. A run fixes `A` and `B`, and its combined input
 `B u + c` lies in `V = B U ⊕ c` (`mem_inputSet`), so it is a run of the canonical form under
 `V`, the point system `⟨A⟩`'s (`toLinearSys`): at `t` it is at
 `e^{At} x(0) + ∫₀ᵗ e^{A(t-s)} u'(s) ds`.
@@ -38,8 +38,9 @@ At `τ ∈ [0, Δt]` those are in `H^R(τ_0)` and `P̃^R(τ_0)`, `P̃(t_k)` is
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Sonnet 5.5

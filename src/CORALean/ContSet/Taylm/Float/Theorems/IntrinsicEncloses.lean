@@ -41,9 +41,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.intrinsic_encloses (p q s : ℕ) {T T' : Taylm 𝕋 n} {f : Vec ℝ n → ℝ}
-    (h : T.Encloses f) (k : Real.Taylm.Intrinsic) (hk : T.intrinsic p q s k = some T') :
-    T'.Encloses fun t => k.fn (f t) := by -- --- PROOF ---
+theorem Taylm.intrinsic_encloses (p q s : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
+    (k : Real.Taylm.Intrinsic) :
+    ∀ T' ∈ T.intrinsic p q s k,
+      T'.Encloses fun t => k.fn (f t) := by -- --- PROOF ---
+  intro T' (hk : T.intrinsic p q s k = some T')
   -- an unguarded intrinsic returns its model
   have hu : ∀ {U : Taylm 𝕋 n}, some U = some T' → U.Encloses (fun t => k.fn (f t)) →
       T'.Encloses fun t => k.fn (f t) := fun hU hE => by

@@ -5,7 +5,7 @@ public import CORALean.HybridDynamics.Operations.ReachGuard
 @[expose] public section
 
 /-!
-# [1, Alg. 5] is sound, and so [2, Alg. 1]
+# [1, Alg. 1] is sound
 
 Given the guarantees its operators owe — `reach k` holds every state of the stay at
 `t ∈ [kr, (k+1)r]`, the conversions enclose, `isEmpty` answers `true` only for `∅`, and
@@ -14,14 +14,12 @@ Given the guarantees its operators owe — `reach k` holds every state of the st
 in the guard of `e`. A loop that stopped before the horizon `t_f = N r` did so because a piece
 was empty, and then the stay ended before `t^end_inv`: the invariant has been left.
 
-`reach` is the thesis's continuous reachable set, `LinearSys.reachBox_outer` ([1, Alg. 2])
-being one way to meet its obligation at linear location dynamics.
+`reach` is the continuous reachable set, `LinearSys.reachBox_outer` being one way to meet its
+obligation at linear location dynamics.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
       Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
@@ -74,7 +72,7 @@ theorem aux_reachGuard_while (RH : ℕ → G n) (isEmpty : G n → Bool) (N : �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Alg. 5] encloses a stay before `t^end_inv` and where it meets the guard, and a loop
+/-- [1, Alg. 1] encloses a stay before `t^end_inv` and where it meets the guard, and a loop
 stopped before `t_f = N r` means the stay ended before `t^end_inv`. -/
 theorem Location.IsTrajectory.reachGuard_outer [∀ n, Intersection (G n) (Vec ℝ n)]
     {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w)

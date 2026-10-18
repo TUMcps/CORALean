@@ -4,9 +4,9 @@ public import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOFloatOuter
 public import CORALean.ContDynamics.LinearARX.Theorems.ComputeGOOutput
 public import CORALean.ContDynamics.LinearARX.Theorems.SumRangeFloatMem
 public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemFeedBox
-public import CORALean.ContDynamics.LinearARX.Theorems.Alg1EqReachWindow
-public import CORALean.ContDynamics.LinearARX.Theorems.Alg2EqReachWindow
-public import CORALean.ContDynamics.LinearARX.Theorems.Alg2NeReachWindow
+public import CORALean.ContDynamics.LinearARX.Theorems.Alg1EqReachWindowExact
+public import CORALean.ContDynamics.LinearARX.Theorems.Alg2EqReachWindowExact
+public import CORALean.ContDynamics.LinearARX.Theorems.Alg2NeReachWindowExact
 public import CORALean.ContDynamics.LinearARX.Theorems.BextEqZero
 public import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLe
 public import CORALean.ContDynamics.LinearARX.Theorems.BtildeAddOfLt
@@ -14,10 +14,10 @@ public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSucc
 public import CORALean.ContDynamics.LinearARX.Theorems.BtildeSuccIndex
 public import CORALean.ContDynamics.LinearARX.Theorems.EqSimulate
 public import CORALean.ContDynamics.LinearARX.Theorems.OfObserverStep
-public import CORALean.ContDynamics.LinearARX.Theorems.ReachOutEqImageBlock
-public import CORALean.ContDynamics.LinearARX.Theorems.ReachOutEqSimulate
-public import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowEq
-public import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowNeProd
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachOutExactEqImageBlock
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachOutExactEqSimulate
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowExactEq
+public import CORALean.ContDynamics.LinearARX.Theorems.ReachWindowExactNeProd
 public import CORALean.ContDynamics.LinearARX.Theorems.SsReachEq
 public import CORALean.ContDynamics.LinearARX.Theorems.StackEqTvp
 public import CORALean.ContDynamics.LinearARX.Theorems.FeedMemInputSet
@@ -47,8 +47,9 @@ system, through `ToLinearSysDTStep` and `FeedMemInputSet`; `ReachOuter` and
 Everything is at `ℝ`: `Scalar` has no law relating a block matrix to its entries.
 
 The ARMAX form (Lützow and Althoff, CDC 2023): `StackEqTvp` (Thm. 1) and the `Btilde` lemmas
-(Lemmas 1-3) give `ReachWindowEq` (Eq. 12), which `Alg1EqReachWindow`/`Alg2EqReachWindow`
-reach; `ReachWindowNeProd` and `Alg2NeReachWindow` are where the paper is wrong.
+(Lemmas 1-3) give `ReachWindowExactEq` (Eq. 12), which
+`Alg1EqReachWindowExact`/`Alg2EqReachWindowExact` reach; `ReachWindowExactNeProd` and
+`Alg2NeReachWindowExact` are where the paper is wrong.
 
 `identify`: `IdentifyCandidateFit` (consistent data is reproduced), `IdentifyCandidateLeastSquares`
 (any data) and `IdentifyLeCandidate` (the selected rank is no worse).

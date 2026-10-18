@@ -29,14 +29,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NonlinDASys.reachFloatChecked_eq_some {sys : NonlinDASys n p m}
-    (_red : sys.ReducedModel)
+theorem NonlinDASys.reachFloatChecked_eq_some {sys : NonlinDASys n p m} (_red : sys.ReducedModel)
     (fm : NonlinearSys.FloatModel 𝕋 n m)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋)
-    {Rs : (List (Zonotope (Vec 𝕋 n)))}
-    (h : NonlinDASys.reachFloatChecked _red fm params options = some Rs) :
-    NonlinDASys.reachFloat _red fm params options = some Rs ∧ noNaN (𝕋 := 𝕋) Rs = true :=
+    (options : LinearSys.ReachOptions 𝕋) :
+    ∀ Rs ∈ NonlinDASys.reachFloatChecked _red fm params options,
+      NonlinDASys.reachFloat _red fm params options = some Rs ∧
+        noNaN (𝕋 := 𝕋) Rs = true := fun _ h =>
   checkNoNaN_eq_some h
 
 end CORALean

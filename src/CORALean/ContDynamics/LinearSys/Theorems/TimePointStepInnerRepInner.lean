@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerSubsetReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerSubsetReachSetExact
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallSubsetDiagonal
 public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffRepInner
 `minkDiffRep_inner` puts the returned zonotope inside the step minus its error
 box. The box contains the error ball (`closedBall_subset_diagonal`), and a
 Minkowski difference is antitone in what it takes off, so that difference lies
-inside `timePointStepInner`, which `timePointStepInner_subset_reachSet`
+inside `timePointStepInner`, which `timePointStepInner_subset_reachSetExact`
 places in the exact reachable set.
 -/
 
@@ -45,10 +45,10 @@ theorem LinearSys.timePointStepInnerRep_inner (sys : LinearSys 𝕋 n) {r : ℝ}
     (M : Fin (sys.timePointStep (S := 𝒵) r η X₀ U).h →
       Fin (sys.timePointStepErrorBox r η U).h → ℝ) {D : Zonotope (Vec ℝ n)}
     (hD : sys.timePointStepInnerRep r η X₀ U M = some D) :
-    construct D ⊆ sys.reachSet (S := 𝒵) (Set.Icc 0 r) X₀ U r :=
-  ((Zonotope.minkDiffRep_inner _ _ M hD).trans
+    construct D ⊆ sys.reachSetExact (S := 𝒵) (Set.Icc 0 r) X₀ U r :=
+  ((Zonotope.minkDiffRep_inner _ _ M _ hD).trans
     (minkowskiDiff_mono subset_rfl (Zonotope.closedBall_subset_diagonal _))).trans
-    (sys.timePointStepInner_subset_reachSet hr η hε X₀ U)
+    (sys.timePointStepInner_subset_reachSetExact hr η hε X₀ U)
 
 end CORALean
 

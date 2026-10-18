@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorFloat
 # An inner approximation of a reachable set, from a float run
 
 The float counterpart of `reachInner`: the computed float run minus the error
-that run accumulated, put inside `reachSet` — the *exact*, real-valued
+that run accumulated, put inside `reachSetExact` — the *exact*, real-valued
 reachable set, over the nominal parts of `R₀` and `U` — by
 `reachInnerFloat_inner`.
 

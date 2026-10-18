@@ -154,8 +154,9 @@ theorem HPolytope.aux_billiardEnd_mem (P : HPolytope E) (R : ℕ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.billiardEnd_mem (P : HPolytope E) (R : ℕ) (x d : E) (ℓ : ℝ)
-    (hx : ∀ i, P.A i x < P.b i) (hℓ : 0 ≤ ℓ) (y : E)
-    (hy : P.billiardEnd R x d ℓ = some y) : ∀ i, P.A i y ≤ P.b i :=
+    (hx : ∀ i, P.A i x < P.b i) (hℓ : 0 ≤ ℓ) :
+    ∀ y ∈ P.billiardEnd R x d ℓ,
+      ∀ i, P.A i y ≤ P.b i := fun y hy =>
   HPolytope.aux_billiardEnd_mem P R x d ℓ
     (fun i => ⟨(hx i).le, fun h => absurd h (hx i).ne⟩) hℓ y hy
 

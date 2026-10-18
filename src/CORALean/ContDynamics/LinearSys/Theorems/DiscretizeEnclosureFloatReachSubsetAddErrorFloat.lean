@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Discretize
 public import CORALean.ContDynamics.LinearSys.Operations.ReachErrorFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddExcess
 public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemDiscretizeEnclosureFloatReachError
-public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceSubsetAddBox
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
@@ -15,7 +15,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 # A float sampled run lies in the exact held-input sampled set, plus its budget
 
 The budget theorem of `reachInnerRepFloat`, and the float counterpart of
-`reach_subset_discretize_reachSet_add_error`: the float run
+`reach_subset_discretize_reachSetExact_add_error`: the float run
 `discretizeEnclosureFloat`'s `reach`, with `inputSolutionFloat` as its input
 set, lies after `k` steps in the exact held-input sampled set — the sampled
 system `discretize Δt` from `R₀`'s nominal zonotope, under the held-input
@@ -62,7 +62,7 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) : -- --- STMT ---
     ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).construct
-      ⊆ (sys.discretize (toReal Δt)).reachSet (S := 𝒵)
+      ⊆ (sys.discretize (toReal Δt)).reachSetExact (S := 𝒵)
           (nominal R₀)
           (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt))
             (nominal U)) k
@@ -74,7 +74,7 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
   -- the claim with the two summands of the budget kept apart
   suffices h : ∀ k, ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).construct
-      ⊆ (sys.discretize (toReal Δt)).reachSet (S := 𝒵)
+      ⊆ (sys.discretize (toReal Δt)).reachSetExact (S := 𝒵)
           (nominal R₀) Q k
         + (sys.reachExcessFloat Δt η o ho R₀ U k).construct
         + (sys.reachInputErrorFloat Δt η U k).construct by
@@ -136,7 +136,7 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
         (sys.reachInputErrorFloat Δt η U k) ⊞ sys.timePointStepErrorBoxFloat Δt η U)
       exact Plus.plus_outer _ _ (Set.add_mem_add hEi ht)
     -- the exact part is the exact set's own step
-    have hZ : E *ᵥ z + q ∈ (sys.discretize (toReal Δt)).reachSet
+    have hZ : E *ᵥ z + q ∈ (sys.discretize (toReal Δt)).reachSetExact
         (S := 𝒵) (nominal R₀) Q (k + 1) :=
       ⟨_, ⟨z, hz, rfl⟩, q, hq, rfl⟩
     refine ⟨_, ⟨_, hZ, _, hD, rfl⟩, _, hI, ?_⟩

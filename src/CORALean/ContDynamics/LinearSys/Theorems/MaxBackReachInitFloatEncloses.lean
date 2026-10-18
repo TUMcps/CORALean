@@ -55,19 +55,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W₀ : Zonotope (Vec 𝕋 n)}
-    {t₀ : 𝕋} {η η' : ℕ} {s : LinearSys.MaxBackReachStateFloat 𝕋 n}
-    (h : sys.maxBackReachInitFloat U W₀ t₀ η = some s) (hη' : sys.reachOrderFloat t₀ t₀ η = some η')
-    (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀)
+    {t₀ : 𝕋} {η : ℕ} (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀)
     (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
     (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero)
-        (hW₀r : W₀r.construct ⊆ W₀.construct) : -- --- STMT ---
-    s.Encloses (sys.maxBackReachInit Ur W₀r (toReal t₀) η') := by -- --- PROOF ---
+    (hW₀r : W₀r.construct ⊆ W₀.construct) : -- --- STMT ---
+    ∀ η' ∈ sys.reachOrderFloat t₀ t₀ η,
+      ∀ s ∈ sys.maxBackReachInitFloat U W₀ t₀ η,
+        s.Encloses (sys.maxBackReachInit Ur W₀r (toReal t₀) η') := by -- --- PROOF ---
+  intro η' (hη' : sys.reachOrderFloat t₀ t₀ η = some η') s (h : sys.maxBackReachInitFloat U W₀ t₀ η
+      = some s)
   -- the float state, with the order the search found
   simp only [LinearSys.maxBackReachInitFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h
   obtain ⟨η'', hη'', rfl⟩ := h
   obtain rfl : η' = η'' := Option.some.inj (hη'.symm.trans hη'')
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   have hW := sys.inputSolution_subset_inputSolutionFloat ht₀ hadm hWE hW₀r
   -- the exact integral is in the float interval matrix
   have hI := sys.expIntegral_mem_adaptiveIntegralFloat ht₀ hadm

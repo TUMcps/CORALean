@@ -118,13 +118,15 @@ theorem aux_reduceOnTheFlyFrom_reducesAt :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Alg. 2] returns a reduction of every instance of `Φ`, and `Y` is its enclosure of `X`. -/
-theorem reduceOnTheFly_reducesAt {n m : ℕ} {X : S n} {Φ Φhat : ReducibleNetwork ℝ n m}
-    {Y : S m} {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.InstanceNetwork nn f)
-    (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y)) : -- --- STMT ---
-    NeuralNetwork.ReducesAt X nn Φhat.toNetwork f
-      ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
+theorem reduceOnTheFly_reducesAt {n m : ℕ} {X : S n} {Φ : ReducibleNetwork ℝ n m}
+    {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
+    (hΦ : Φ.InstanceNetwork nn f) : -- --- STMT ---
+    ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
+      NeuralNetwork.ReducesAt X nn Φhat.toNetwork f
+        ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
+  intro Φhat Y (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
   -- the output set is the reduced network's enclosure at every scalar
-  refine ⟨?_, (reduceOnTheFly_outer (instance_of_instanceNetwork hΦ) hrun).2⟩
+  refine ⟨?_, (reduceOnTheFly_outer (instance_of_instanceNetwork hΦ) _ _ hrun).2⟩
   cases hΦ with
   | nil hid =>
     simp only [reduceOnTheFly, Option.some.injEq, Prod.mk.injEq] at hrun

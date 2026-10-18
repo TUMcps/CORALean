@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.SupportLower
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
 public import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
@@ -15,7 +15,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 For `A = 0`, `X₀ = {0}`, the simplex `U = conv{0, e₁, e₂, e₃} ⊂ ℝ³`, `ℓ = (1, 1, 1)` and `Δt = 1`
 the center of the enclosing box `[0, 1]³` is `ũ = (1/2, 1/2, 1/2)`, which is outside `U`. Line 16
 reads `ρ(Ř(τ₀), ℓ) = 3/2` there (`supportLower` at `k = 1`), while the exact reachable set at
-`t ∈ [0, 1]` is `tU` (`reachSet_eq` with `e^{0} = I`), whose support function along `ℓ` over
+`t ∈ [0, 1]` is `tU` (`reachSetExact_eq` with `e^{0} = I`), whose support function along `ℓ` over
 `τ₀ = [0, 1]` is `1`: a "lower bound" above the support function.
 
 ## References
@@ -53,7 +53,7 @@ theorem LinearSys.supportLower_timeInterval_counterexample : -- --- STMT ---
       IsGreatest ((fun x : Vec ℝ 3 => x i) '' U) 1) ∧
     IsGreatest (ℓ '' U) (ℓ ![1, 0, 0]) ∧
     (sys.supportLower 1 (fun _ => 0) (fun _ => ![1, 0, 0]) ũ ℓ 1).ρRτ = 3 / 2 ∧
-    IsGreatest {r | ∃ t ∈ Set.Icc (0 : ℝ) 1, ∃ y ∈ sys.reachSet (S := 𝒮)
+    IsGreatest {r | ∃ t ∈ Set.Icc (0 : ℝ) 1, ∃ y ∈ sys.reachSetExact (S := 𝒮)
       (Set.Icc 0 t) ({0} : Set (Vec ℝ 3)) U t, r = ℓ y} 1 := by -- --- PROOF ---
   intro sys U ℓ ũ
   have hS : ∀ s ∈ ({![0, 0, 0], ![1, 0, 0], ![0, 1, 0], ![0, 0, 1]} : Set (Vec ℝ 3)),
@@ -105,7 +105,7 @@ theorem LinearSys.supportLower_timeInterval_counterexample : -- --- STMT ---
     have hℓ1 : ∀ x ∈ U, ℓ x ≤ 1 := fun x hx => by simpa [hℓe] using hmax.2 ⟨x, hx, rfl⟩
     refine ⟨?_, ?_⟩
     · refine ⟨1, ⟨zero_le_one, le_rfl⟩, ![1, 0, 0], ?_, by simp [hℓe]⟩
-      rw [LinearSys.reachSet_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U
+      rw [LinearSys.reachSetExact_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U
         zero_le_one hbdd]
       -- next step of the computation
       have hmem := sys.expIntegral_mem_inputReach (S := 𝒮) zero_le_one
@@ -117,7 +117,7 @@ theorem LinearSys.supportLower_timeInterval_counterexample : -- --- STMT ---
       simpa using this
     -- next step of the computation
     · rintro r ⟨t, ⟨ht0, ht1⟩, y, hy, rfl⟩
-      rw [LinearSys.reachSet_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U ht0
+      rw [LinearSys.reachSetExact_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U ht0
         hbdd] at hy
       obtain ⟨a, ⟨x, hx, rfl⟩, z, ⟨u, hu, hmeas, rfl⟩, rfl⟩ := hy
       have hx0 : x = 0 := hx

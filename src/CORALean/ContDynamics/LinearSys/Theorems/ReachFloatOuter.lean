@@ -38,23 +38,24 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachFloat_outer (sys : LinearSys 𝕋 n)
-    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloat params options = some (Rti, Rtp)) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rti.length = N ∧ ∀ (k : ℕ) (hk : k < Rti.length), ∀ x₀ ∈ params.X₀.construct,
-        ∀ s ∈ Set.Icc 0 (toReal options.Δt),
-          exp (((k : ℝ) * toReal options.Δt + s) • Scalar.toRealMat sys.A) *ᵥ x₀
-            ∈ Rti[k].construct := by -- --- PROOF ---
+    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloat params options →
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rti.length = N ∧ ∀ (k : ℕ) (hk : k < Rti.length), ∀ x₀ ∈ params.X₀.construct,
+          ∀ s ∈ Set.Icc 0 (toReal options.Δt),
+            exp (((k : ℝ) * toReal options.Δt + s) • Scalar.toRealMat sys.A) *ᵥ x₀
+              ∈ Rti[k].construct := by -- --- PROOF ---
+  intro Rti Rtp (h : sys.reachFloat params options = some (Rti, Rtp))
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
-  obtain ⟨-, -, -, htp⟩ := sys.reachFloat_timePoint_outer h
+  obtain ⟨-, -, -, htp⟩ := sys.reachFloat_timePoint_outer _ _ h
   simp only [LinearSys.reachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨N, hN, η', hη', rfl, hRtp⟩ := h
-  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal _ hN
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   subst hRtp
   refine ⟨N, hNΔt, by simp, fun k hk x₀ hx₀ s ⟨hs0, hs⟩ => ?_⟩
   have hkp : k < N + 1 := by simp at hk; omega

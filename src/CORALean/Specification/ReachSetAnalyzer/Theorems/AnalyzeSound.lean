@@ -35,14 +35,15 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSetAnalyzer.analyze_sound (aps : List (String × AtomicProposition S n)) (dur : ℝ)
-    (masks : List (String × FiniteSignal ℝ Bool)) (obj : ReachSetAnalyzer S n) (hd : 0 ≤ dur)
-    (hnd : (aps.map Prod.fst).Nodup) (hobj : ReachSetAnalyzer.mk? aps dur masks = some obj)
+    (masks : List (String × FiniteSignal ℝ Bool)) (hd : 0 ≤ dur) (hnd : (aps.map Prod.fst).Nodup)
     (R : List (ReachSetAnalyzer.Entry S n))
     (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup)
-    (outs : List (List (String × FiniteSignal ℝ Kleene)))
-    (h : obj.analyze (𝕋 := 𝕋) R = some outs) : -- --- STMT ---
-    ∀ out ∈ outs, ∃ w, ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w ∧
-      obj.SignalsSound dur R w out := by -- --- PROOF ---
+    (outs : List (List (String × FiniteSignal ℝ Kleene))) : -- --- STMT ---
+    ∀ obj ∈ ReachSetAnalyzer.mk? aps dur masks,
+      obj.analyze (𝕋 := 𝕋) R = some outs →
+      ∀ out ∈ outs, ∃ w, ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w ∧
+        obj.SignalsSound dur R w out := by -- --- PROOF ---
+  intro obj (hobj : ReachSetAnalyzer.mk? aps dur masks = some obj) h
   obtain ⟨obj0, hmk, -, -, hr⟩ := (ReachSetAnalyzer.mk?_spec aps dur masks).2 hd hnd
   have hobj0 : obj = obj0 := Option.some.inj (hobj.symm.trans hmk)
   subst hobj0

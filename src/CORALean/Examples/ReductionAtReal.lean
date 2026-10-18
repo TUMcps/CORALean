@@ -49,7 +49,7 @@ example {le : ℝ → ℝ → Bool} (hle : ∀ a b, le a b = true → a ≤ b) {
       refine ⟨?_, ?_⟩
       · show (1 : ℝ) + nsmulDown k 1 = _; rw [ih.1]; push_cast; ring
       · show (1 : ℝ) + nsmulUp k 1 = _; rw [ih.2]; push_cast; ring
-  have happrox := bucketTolerance_approx hle h
+  have happrox := bucketTolerance_approx hle _ h
   have hratio : ratio (𝕋 := ℝ) (n - bucketed B_kδ) n = ((n - bucketed B_kδ : ℕ) : ℝ) / n := by
     show nsmulDown _ (1 : ℝ) / nsmulUp _ 1 = _
     rw [(hcount _).1, (hcount _).2]
@@ -72,7 +72,7 @@ example {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {ρ : ℝ} {X : S n
     (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
     (spec : Specification (Set (Vec ℝ m))) (hspec : spec.Holds (construct Y)) :
     spec.Holds (f '' construct X) :=
-  holds_of_reduceOnTheFly (instance_of_instanceNetwork hΦ) hrun spec hspec
+  holds_of_reduceOnTheFly (instance_of_instanceNetwork hΦ) spec _ _ hrun hspec
 
 /-- [1, Alg. 3] at a network of layers, the ReLU any relaxation sound for it. -/
 example {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {R_relu : Relaxation ℝ}
@@ -84,6 +84,6 @@ example {le : ℝ → ℝ → Bool} {tol : ℝ} {fuel : ℕ} {R_relu : Relaxatio
     (hrun : compressionPreprocessing le tol fuel R_relu ⟨_, hR⟩ I_X L_1 L_2 hL_2 B_2 rest ρ
       = some Y) :
     f '' I_X.construct ⊆ construct Y :=
-  compressionPreprocessing_outer hR hX (instance_of_instanceNetwork hΦ) hrun
+  compressionPreprocessing_outer hR hX (instance_of_instanceNetwork hΦ) _ hrun
 
 end CORALean.Real

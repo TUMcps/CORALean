@@ -38,31 +38,29 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.maxBackReachRunFloat_inner (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
-    (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) {U W₀ : Zonotope (Vec 𝕋 n)}
-    {Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)} {t₀ Δt : 𝕋}
-    {η : ℕ}
-    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ),
-      SupportBound P.construct c)
-    (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n)) (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n))
-    (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀) (hΔt : 0 < toReal Δt)
-    (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
-    (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
+    (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) {U W₀ : Zonotope (Vec 𝕋 n)} {Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)}
+    {t₀ Δt : 𝕋} {η : ℕ} (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ),
+      SupportBound P.construct c) (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n))
+    (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n))
+    (ht₀ : 0 ≤ toReal t₀) (hΔt : 0 < toReal Δt) (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct)
+    (hU : U.construct ⊆ construct Ur) (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero)
+    (hW₀r : W₀r.construct ⊆ W₀.construct)
     (hZw : ∀ (tLo tHi : 𝕋) (t : ℝ), toReal tLo ≤ t → t ≤ toReal tHi →
-      construct (Zwr t) ⊆ (Zw tLo tHi).construct)
-    (hP₁ : P₁.construct ⊆ P₁r.construct) (hP₂ : P₂.construct ⊆ P₂r.construct)
-    (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.construct) (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.construct)
+      construct (Zwr t) ⊆ (Zw tLo tHi).construct) (hP₁ : P₁.construct ⊆ P₁r.construct)
+    (hP₂ : P₂.construct ⊆ P₂r.construct) (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.construct)
+    (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.construct)
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
     (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
-    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0) (k : ℕ)
-    {s : LinearSys.MaxBackReachStateFloat 𝕋 n}
-    (h : sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k = some s) : -- --- STMT ---
-    ∃ ηr, sys.reachOrderFloat t₀ t₀ η = some ηr ∧ sys.reachOrderFloat Δt Δt η = some ηr ∧
-      s.R ⊆ construct
-        (sys.maxBackReachRun ρ P₁r P₂r Ur W₀r Zwr (toReal t₀) (toReal Δt) ηr
-          k).R := by -- --- PROOF ---
+    (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0) (k : ℕ) : -- --- STMT ---
+    ∀ s ∈ sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k,
+      ∃ ηr, sys.reachOrderFloat t₀ t₀ η = some ηr ∧ sys.reachOrderFloat Δt Δt η = some ηr ∧
+        s.R ⊆ construct
+          (sys.maxBackReachRun ρ P₁r P₂r Ur W₀r Zwr (toReal t₀) (toReal Δt) ηr
+            k).R := by -- --- PROOF ---
+  intro s (h : sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k = some s)
   obtain ⟨ηr, h₀, h₁, henc⟩ := sys.maxBackReachRunFloat_encloses Bx P₁ P₂ ρ P₁r P₂r Ur W₀r Zwr
-    ht₀ hΔt hU0 hU hWE hW₀r hZw hP₁ hP₂ hP₁0 hP₂0 hker₁ hker₂ hkerr₁ hkerr₂ k h
+    ht₀ hΔt hU0 hU hWE hW₀r hZw hP₁ hP₂ hP₁0 hP₂0 hker₁ hker₂ hkerr₁ hkerr₂ k _ h
   exact ⟨ηr, h₀, h₁, henc.R⟩
 
 end CORALean

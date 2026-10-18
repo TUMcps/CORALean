@@ -14,16 +14,17 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A time-interval input enclosure at a box, when the input set misses the origin
 
-`inputSolution_timeInterval_outer` needs `0 ∈ U`; this is [1, Alg. 4]'s second
-case, the input set split into a constant `ũ` and a set `Ũ` holding the origin.
-`Ũ` goes through Prop. 3.3 unchanged, and the constant contributes
-`(∫₀ᵗ e^{Aσ}dσ)ũ`, enclosed as the straight line to its value at `r` widened by
-`intervalConstCorrectionMatrix`, Althoff's `F̃` over the whole box.
+`inputSolution_timeInterval_outer` needs `0 ∈ U`; this is the case of [1, Alg. 1]
+that [1, Sec. 3.3] leaves out, the input set split into a constant `ũ` and a set `Ũ` holding the
+origin. `Ũ` goes through [1, Sec. 3.3]'s `P([0, r]) = P(r)` unchanged, and the constant
+contributes `(∫₀ᵗ e^{Aσ}dσ)ũ`, enclosed as the straight line to its value at `r` widened by
+`intervalConstCorrectionMatrix`, the input correction matrix `F̃` over the whole box (not in a
+paper; CORA's `priv_inputTie` [2]).
 
 The propagated half differs from the point case, and this is where the matrix
 being a set is paid for: there the line is `expIntegral A r` applied to the
 segment, an exact matrix no machine holds. Here `A` is a box, so the same
-`C(r) := ∫₀ʳ e^{At}dt` of [1, Alg. 4] is the series `inputSolution` already
+`C(r) := ∫₀ʳ e^{At}dt` is the series `inputSolution` already
 encloses — applied to the segment rather than to an input set. Distributing the
 product over that sum is the tightness this costs.
 
@@ -31,8 +32,10 @@ The split itself is a hypothesis, `ContSet` being unable to name a center.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
+* [2] `contDynamics/@linParamSys/private/priv_inputTie.m`
 -/
 
 -- Authors:       Claude Opus 5
@@ -134,7 +137,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.inputSolution_timeInterval_outer_
         (MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix sys.A hr η hε
           traj.param ht0 htr)
         (Set.mem_image_of_mem _ hcP))
-  · -- the centered part: Prop. 3.3 at the member, unchanged
+  · -- the centered part: [1, Sec. 3.3] at the member, unchanged
     exact sys.inputReach_subset_inputSolution hr η hε traj.param hconv₀ hclosed₀ hbdd₀
       hRconv₀ hRclosed₀ hRbdd₀
       ((LinearSys.canonical A : LinearSys ℝ n).inputReach_mono hbdd₀ h0₀ ht0 htr

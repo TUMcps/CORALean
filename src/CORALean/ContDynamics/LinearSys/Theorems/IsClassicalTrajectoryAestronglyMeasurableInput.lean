@@ -16,7 +16,7 @@ covers, and both terms are measurable for every function: the derivative within
 `Ici s` is strongly measurable outright, the drift a continuous map of a
 continuous state. So the derivative reading admits measurable inputs only, and a
 set that quantifies over every admissible input signal — the backward sets of
-`BackReachSetForallExists` — degenerates under it, which is why those are stated
+`BackReachSetForallExistsExact` — degenerates under it, which is why those are stated
 over Carathéodory runs. `NonlinearSys` reads it off a classically linearized run.
 -/
 

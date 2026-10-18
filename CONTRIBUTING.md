@@ -229,6 +229,16 @@ algorithm. `Exact` and `Real` are not variant suffixes, and a top-level type
 takes the `Float.` namespace (`Float.Zonotope`), never a `Float` suffix; the
 suffix is for twins nested in a system namespace, as `LinearSys.AutoStateFloat`.
 
+A definition that denotes the *true* set, a `Set` the semantics defines by trajectories and no
+algorithm computes, ends in `Exact`, whatever it is the set of: `LinearSys.reachSetExact`,
+`LinearSys.timeIntervalReachSetExact`, `LinearSysDT.backReachSetExistsExact`,
+`NonlinearSys.robustReachSetExact`, `HybridAutomaton.reachSetExact`. A computed set is a
+representation named by its algorithm, never a bare `Set`. `check-conventions.sh` runs
+`scripts/check-exact-names.py`, which rejects a `Set`-valued definition in a `Definitions/`
+directory of `ContDynamics/` or `HybridDynamics/` whose name says reach set, output, state,
+window or locations and does not end in `Exact`, unless `scripts/exact-name-allowlist.txt` lists
+it with a reason; the list only shrinks.
+
 ### The ambient type
 
 `ContSet` is indexed by the ambient type, so a representation is written once and
@@ -1133,6 +1143,18 @@ negation is exact, so the `Neg` on a float matrix or vector is the entrywise `ne
 `toRealMat (-A) = -toRealMat A` (`toRealMat_neg`, `toRealVec_neg`) says what it reads as.
 `check-conventions.sh` rejects the spelled-out lambda (#197).
 
+When an operation returns `Option`, its result cannot be named in a claim, and the main theorem
+quantifies over the results instead of taking a hypothesis `(hE : f … = some E)`:
+`∀ E ∈ f …, claim`, the call in the statement, `Option` membership doing the work of `= some`
+(a pair is `∀ a b, (a, b) ∈ f …`; an `Option (Option _)` is `∀ o ∈ f …, ∀ x ∈ o`). Hypotheses
+about the result go in the claim as arrows, in front of it. The proof starts with
+`intro E (hE : f … = some E)`, and a caller supplies `_` for `E`. Every other operation is called
+directly in the claim. `check-conventions.sh` runs `scripts/check-option-hyps.py`, which rejects a
+binder `(h… : <call> = some …)` in the signature of the theorem under a `MAIN THEOREM` banner,
+except a lookup (`l[i]? = some a`, `.head?`, `.find?`) and a verdict (`= some true`,
+`= some false`), which name no result. `scripts/option-hyp-allowlist.txt` lists the theorems that
+could not be converted; it only shrinks.
+
 ## The two layers
 
 `Real` is the specification, `Float` the refinement, which obtains its soundness
@@ -1461,8 +1483,9 @@ of the module docstring:
 ```
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 ```
 
 Every `[N]` cited is defined, every one defined is cited, and the numbering is
@@ -1481,14 +1504,18 @@ its year, holding that paper's results and where each is formalized. Citing a
 paper for the first time means adding one; `check-references.py` says so if you
 forget.
 
-**Cite where the result actually is.** Prefer the original paper: a *cumulative*
-thesis reproduces its chapters as papers, so cite the paper rather than the
-thesis — that is the case for Kochdumper's and Wetzlinger's. A monograph thesis
-is different: where a result appears only there, as much of Althoff's 2010 does,
-the thesis *is* the source and citing it is correct, not a fallback. A book is
-equally fine where no paper stands behind the result — CORA cites one for the
-matrix zonotope product, and so do we. Where none can be confirmed, leave the
-section out; a blank is honest and a wrong citation is not.
+**Cite where the result actually is.** Cite the paper, never a thesis: a thesis reproduces
+results that first appeared in papers, and the paper's own numbering is the one a reader can
+look up. Find the paper that states the result, read it, and cite it for what it says — a
+result a paper only defers ("see [27]", a thesis) is cited for the statement it makes and no
+more. Where no paper we hold states a result, remove the citation and say so in the docstring
+("not in a paper; CORA's `priv_inputTie`"), citing CORA's `.m` source as the reference entry.
+A book is fine where no paper stands behind the result — CORA cites one for the matrix zonotope
+product, and so do we. Where none can be confirmed, leave the section out; a blank is honest and
+a wrong citation is not. `check-conventions.sh` runs `scripts/check-thesis-refs.py`, which rejects
+a `## References` entry that says `thesis`, `dissertation`, `PhD` or `habilitation`, except in the
+files `scripts/thesis-ref-allowlist.txt` lists with the reason no paper we hold states the result;
+the list only shrinks.
 
 ## The module header
 

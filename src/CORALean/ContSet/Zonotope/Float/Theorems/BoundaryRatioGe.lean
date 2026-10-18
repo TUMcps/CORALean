@@ -38,10 +38,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.boundaryRatio_ge (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start : Vec 𝕋 (n + 1))
-    (U : 𝕋) (hU : Z.boundaryRatio dir start = some U) (t : ℝ) (ht : 0 ≤ t)
-    (hmem : toRealVec start + t • toRealVec dir ∈ nominalSet Z) :
-    t ≤ toReal U := by -- --- PROOF ---
+theorem Zonotope.boundaryRatio_ge (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start : Vec 𝕋 (n + 1)) (t : ℝ)
+    (ht : 0 ≤ t) (hmem : toRealVec start + t • toRealVec dir ∈ nominalSet Z) :
+    ∀ U ∈ Z.boundaryRatio dir start,
+      t ≤ toReal U := by -- --- PROOF ---
+  intro U (hU : Z.boundaryRatio dir start = some U)
   unfold Zonotope.boundaryRatio at hU
   dsimp only at hU
   -- every row of `b` is above `t`
@@ -51,7 +52,7 @@ theorem Zonotope.boundaryRatio_ge (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start :
     intro o ho
     obtain ⟨T, -, hT⟩ := List.mem_filterMap.mp ho
     split_ifs at hT with hlen
-    exact Zonotope.boundaryRatioAt_ge Z dir start _ o hT t ht hmem
+    exact Zonotope.boundaryRatioAt_ge Z dir start _ t ht hmem o hT
   -- and a fold of `minimum` over such rows stays above it
   have key : ∀ (l : List 𝕋) (best : Option 𝕋), (∀ o ∈ l, t ≤ toReal o) →
       (∀ x, best = some x → t ≤ toReal x) →

@@ -14,7 +14,7 @@ public import Mathlib.Analysis.Matrix.Normed
 `IsTrajectory` equals, and what `ClosedFormFlow` proves satisfies the integral
 equation `IsTrajectory.flow` asks for, for *any* measurable bounded `u`. Named
 apart from either use: `Theorems/ClosedFormFlow.lean` and the `⊇` half of
-`reachSet_eq` both build on it, at a point rather than a run.
+`reachSetExact_eq` both build on it, at a point rather than a run.
 -/
 
 -- Authors:       Claude Sonnet 5

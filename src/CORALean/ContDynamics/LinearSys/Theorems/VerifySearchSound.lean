@@ -61,9 +61,9 @@ theorem LinearSys.verifySearch_sound
     (closestFacet : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ) × List ℕ)
     (gramSchmidt : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ)) (fuel : ℕ) :
     (sys.verifySearch X₀ U t (m + 2) ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt fuel
-        = .safe → Disjoint (sys.reachSet (Set.Icc 0 t) X₀ U t) L) ∧
+        = .safe → Disjoint (sys.reachSetExact (Set.Icc 0 t) X₀ U t) L) ∧
     (sys.verifySearch X₀ U t (m + 2) ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt fuel
-        = .violated → ¬ Disjoint (sys.reachSet (Set.Icc 0 t) X₀ U t) L) :=
+        = .violated → ¬ Disjoint (sys.reachSetExact (Set.Icc 0 t) X₀ U t) L) :=
   sys.verifySearchLoop_sound X₀ U hX₀ hUconv hρ hν₀ hνU hL hνL hρL hhull closestFacet
     gramSchmidt _ fuel _ ht (by simp) hε (fun v hv => by simp at hv)
 

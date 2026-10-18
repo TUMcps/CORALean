@@ -19,8 +19,8 @@ for some `J_x ∈ [J_x]`, `J_u ∈ [J_u]`, what is left once the affine part at
 `L = ([J_x] - A)(X - x✱) ⊕ ([J_u] - B)(U - u✱)`.
 
 A departure from CORA's `'lin'` (`priv_abstrerr_lin`), which bounds the remainder
-by the second-order Lagrange term `½ δᵀ H(ξ) δ` from an interval Hessian [1, Prop.
-3.7]: `FloatModel` carries no Hessian enclosure, so this is the first-order
+by the second-order Lagrange term `½ δᵀ H(ξ) δ` from an interval Hessian
+[1, Prop. 1]: `FloatModel` carries no Hessian enclosure, so this is the first-order
 mean-value remainder. It is coarser: over a fixed box it is `O(‖δ‖)` in the
 deviation `δ = z - z✱` from the expansion point, the Hessian's `O(‖δ‖²)`; only
 the width of `[J] - A`, which shrinks with the box, makes up part of the gap.
@@ -29,8 +29,10 @@ float run, where the model carries one.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Claude Opus 5.5

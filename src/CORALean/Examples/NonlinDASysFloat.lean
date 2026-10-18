@@ -136,7 +136,7 @@ theorem run_outer {Rs : List (Zonotope (Vec D 1))} (h : run = some Rs) :
           X₀.construct U₀.construct x y u →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal (d 1 (-3) : D))
           (((k : ℝ) + 1) * toReal (d 1 (-3) : D)), x t ∈ Rs[k].construct :=
-  NonlinDASys.reachFloat_outer daeRed model_encloses (run_eq.trans h)
+  NonlinDASys.reachFloat_outer daeRed model_encloses _ (run_eq.trans h)
 
 end CORALean.Examples.NonlinDASysFloat
 

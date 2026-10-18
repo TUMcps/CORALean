@@ -18,7 +18,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 /-!
 # The float input solution holds the exact one
 
-[1, Thm. 3.1]'s `⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` over `Real.Zonotope` is inside
+[1, Thm. 1]'s `⊕ᵢ Aⁱrⁱ⁺¹/(i+1)! U ⊕ E(r)·r·U` over `Real.Zonotope` is inside
 `inputSolutionFloat` at a float zonotope holding `U`: order by order the exact matrix is in the
 float interval matrix and `mtimes_outer` carries its image, the exact sums in `plus_outer`, and
 the remainder is the exact zonotope map at the exact interval `[-E r, E r]`, inside the float
@@ -28,8 +28,9 @@ part.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

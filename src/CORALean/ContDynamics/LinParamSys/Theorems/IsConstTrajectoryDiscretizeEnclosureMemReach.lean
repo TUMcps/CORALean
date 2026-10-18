@@ -9,24 +9,24 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # A sampled constant-parameter run lands in `reach`, over a whole horizon
 
-The loop of [1, Alg. 4]: `discretizeEnclosure` handed to
+The loop of [1, Alg. 1]: `discretizeEnclosure` handed to
 `LinParamSysDT.reach_outer`, so the whole run — propagate by the enclosed
 exponential, add the input set, reduce — is the discrete recursion and the
 continuous guarantee holds at every sample time `k Δt`, for every `k`.
 
-`reduce` enters here and nowhere else, which is what makes this algorithm the
-one of [1] that is *not* wrapping-effect free: each step multiplies the previous
-set by an interval matrix and reduces the result, rather than propagating the
-initial set by one exact exponential.
+`reduce` enters here and nowhere else, which is what makes this algorithm not wrapping-effect
+free ([1, Sec. 2]): each step multiplies the previous set by an interval matrix and reduces
+the result, rather than propagating the initial set by one exact exponential.
 
-No horizon is fixed. `[1, Alg. 4]` runs `k = 1 … t_f/r` and takes the union;
+No horizon is fixed. [1, Alg. 1] runs `k = 1 … t_f/r - 1` and takes the union;
 `k` is universally quantified here instead, so a bounded horizon is a
 restriction of this rather than a second statement.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5

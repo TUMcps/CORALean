@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSysDT.Operations.GlmReach
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 # `glmReach` returns the exact reachable sets
 
 [1, Alg. 1]'s output line: the `i`-th set returned is `Ω_{i+1}` of the recurrence
-`Ω_{i+1} = ΦΩᵢ ⊕ U`, [1, Eq. 1], which is `LinearSysDT.reachSet`. The invariant is the
+`Ω_{i+1} = ΦΩᵢ ⊕ U`, [1, Eq. 1], which is `LinearSysDT.reachSetExact`. The invariant is the
 paper's derivation from [1, Eq. 2]: `Xᵢ ⊕ Sᵢ = Ωᵢ` and `Sᵢ ⊕ Vᵢ = ΦSᵢ ⊕ U`, the second
 being `S_{i+1} = Φ^iU ⊕ … ⊕ U` read one step at a time. Linear maps distribute over
 Minkowski sums of arbitrary sets, so neither convexity nor boundedness of `U` is used.
@@ -60,7 +60,7 @@ theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonot
     let f := fun (s : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)) =>
       (s.1.mtimes (toRealMat sys.A), s.2.1.plus s.2.2, s.2.2.mtimes (toRealMat sys.A))
     let s := f^[k] (Ω₀, Zonotope.ofPoint 0, U)
-    s.1.construct + s.2.1.construct = sys.reachSet (S := 𝒵) Ω₀ U k ∧
+    s.1.construct + s.2.1.construct = sys.reachSetExact (S := 𝒵) Ω₀ U k ∧
       s.2.1.construct + s.2.2.construct
         = mulVecLin (toRealMat sys.A) '' s.2.1.construct + U.construct := by -- --- PROOF ---
   intro f s
@@ -83,7 +83,7 @@ theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonot
     set t := f^[k] (Ω₀, Zonotope.ofPoint 0, U)
     constructor
     · -- `ΦXᵢ ⊕ (Sᵢ ⊕ Vᵢ) = ΦXᵢ ⊕ ΦSᵢ ⊕ U = Φ(Xᵢ ⊕ Sᵢ) ⊕ U`
-      show _ = L '' sys.reachSet (S := 𝒵) Ω₀ U k + ContSet.construct U
+      show _ = L '' sys.reachSetExact (S := 𝒵) Ω₀ U k + ContSet.construct U
       rw [ih₂, ← ih₁, Set.image_add, add_assoc]
       rfl
     · -- `(Sᵢ ⊕ Vᵢ) ⊕ ΦVᵢ = ΦSᵢ ⊕ U ⊕ ΦVᵢ = Φ(Sᵢ ⊕ Vᵢ) ⊕ U`
@@ -95,7 +95,7 @@ theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonot
 /-- [1, Alg. 1]: the sets returned are `Ω₁, …, Ω_N` of `Ω_{i+1} = ΦΩᵢ ⊕ U`. -/
 theorem LinearSysDT.glmReach_eq (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n)) (N : ℕ) :
     (sys.glmReach Ω₀ U N).map Zonotope.construct
-      = (List.range N).map fun i => sys.reachSet (S := 𝒵) Ω₀ U (i + 1) := by -- --- PROOF ---
+      = (List.range N).map fun i => sys.reachSetExact (S := 𝒵) Ω₀ U (i + 1) := by -- --- PROOF ---
   -- unroll the loop, then read each set off the invariant
   have h := LinearSysDT.aux_glmReach_foldl
     (fun (s : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)) =>

@@ -7,13 +7,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
 /-!
 # The second-order Taylor term's diagonal factor, greatest value on a box
 
-`quadTermHi`: the greatest value [1, Lemma 3.1]'s `quadTerm t` takes on `[a, b]`, always at
+`quadTermHi`: the greatest value [1, Prop. 4]'s `quadTerm t` takes on `[a, b]`, always at
 an endpoint since the parabola opens upwards.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

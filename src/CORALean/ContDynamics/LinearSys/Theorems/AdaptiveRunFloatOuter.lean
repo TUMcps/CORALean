@@ -71,7 +71,7 @@ theorem LinearSys.adaptiveRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zono
       obtain ⟨r, s'⟩ := rs
       simp only [hstep, Option.map_eq_some_iff] at h
       obtain ⟨rest, hrest, rfl⟩ := h
-      obtain ⟨hinv', hlt, hrs, hre, hsound⟩ := sys.adaptiveStepFloat_outer hstep hinv
+      obtain ⟨hinv', hlt, hrs, hre, hsound⟩ := sys.adaptiveStepFloat_outer hinv _ _ hstep
       obtain ⟨hcov, hsnd⟩ := ih hrest hinv'
       have hre' : (r.tEnd : ℝ) = t₀ + min (s'.t : ℝ) tf := by rw [hre]; push_cast; rfl
       have hrs' : (r.tStart : ℝ) = t₀ + s.t := by rw [hrs]; push_cast; rfl

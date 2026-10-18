@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
-public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSet
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetConvex
+public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSetExact
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactConvex
 public import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperOuter
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
@@ -70,11 +70,11 @@ theorem LinearSys.verifySearchLoop_sound
     (gramSchmidt : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ)) (ℓ₁ : Vec ℝ n →ₗ[ℝ] ℝ) (fuel : ℕ)
     (s : LinearSys.VerifySearchState n) (hΔt : 0 < s.Δt) (hk : (s.k : ℝ) * s.Δt = t)
     (hε : ‖s.Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (hP : ∀ v ∈ s.Pcheck, v ∈ sys.reachSet (Set.Icc 0 t) X₀ U t - L) : -- --- STMT ---
+    (hP : ∀ v ∈ s.Pcheck, v ∈ sys.reachSetExact (Set.Icc 0 t) X₀ U t - L) : -- --- STMT ---
     (sys.verifySearchLoop X₀ U (m + 2) ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁ fuel s
-        = .safe → Disjoint (sys.reachSet (Set.Icc 0 t) X₀ U t) L) ∧
+        = .safe → Disjoint (sys.reachSetExact (Set.Icc 0 t) X₀ U t) L) ∧
     (sys.verifySearchLoop X₀ U (m + 2) ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁ fuel s
-        = .violated → ¬ Disjoint (sys.reachSet (Set.Icc 0 t) X₀ U t) L) := by -- --- PROOF ---
+        = .violated → ¬ Disjoint (sys.reachSetExact (Set.Icc 0 t) X₀ U t) L) := by -- --- PROOF ---
   induction fuel generalizing s with
   | zero => exact ⟨fun h => by simp [LinearSys.verifySearchLoop] at h,
       fun h => by simp [LinearSys.verifySearchLoop] at h⟩
@@ -82,12 +82,12 @@ theorem LinearSys.verifySearchLoop_sound
     -- `R(t)` is convex, so is `R(t) - L`, and the bounds of `Alg. 1` hold along `ℓ_i`
     have ht0 : 0 ≤ t := hk ▸ mul_nonneg s.k.cast_nonneg hΔt.le
     have hU : Bornology.IsBounded (construct U) := CompactSet.isBounded_construct U
-    have hRL : Convex ℝ (sys.reachSet (Set.Icc 0 t) X₀ U t - L) :=
-      (sys.reachSet_convex ht0 hX₀ hUconv hU).sub hL
+    have hRL : Convex ℝ (sys.reachSetExact (Set.Icc 0 t) X₀ U t - L) :=
+      (sys.reachSetExact_convex ht0 hX₀ hUconv hU).sub hL
     have hup := (sys.supportUpper_outer hΔt hε X₀ U hρ s.ℓ s.k).1
     rw [hk] at hup
     -- the support vector of the inner approximation is a state of `R(t)`
-    have hv := sys.convexHull_supportCounterexample_subset_reachSet X₀ U hX₀ hUconv hU hΔt hν₀
+    have hv := sys.convexHull_supportCounterexample_subset_reachSetExact X₀ U hX₀ hUconv hU hΔt hν₀
       hνU (fun _ : Unit => s.ℓ) s.k
     rw [hk] at hv
     have hvc := Set.sub_mem_sub (hv (subset_convexHull ℝ _ ⟨(), rfl⟩)) (hνL (-s.ℓ))
@@ -95,7 +95,7 @@ theorem LinearSys.verifySearchLoop_sound
     have hvert : ∀ v ∈ s.Pcheck ++ [sys.heldSim s.Δt
         (sys.supportCounterexample s.Δt ν₀ νU s.ℓ s.k).1
         (sys.supportCounterexample s.Δt ν₀ νU s.ℓ s.k).2 s.k - νL (-s.ℓ)],
-        v ∈ sys.reachSet (Set.Icc 0 t) X₀ U t - L := by
+        v ∈ sys.reachSetExact (Set.Icc 0 t) X₀ U t - L := by
       intro v hv'
       rcases List.mem_append.mp hv' with h | h
       · exact hP v h

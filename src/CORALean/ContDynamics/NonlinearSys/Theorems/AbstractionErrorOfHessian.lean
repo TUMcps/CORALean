@@ -12,7 +12,7 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 /-!
 # A twice-differentiable field supplies its own certificate
 
-[1, Prop. 3.7] = [2, Prop. 1], and the one place in the directory where `f` is differentiated:
+[1, Prop. 1], and the one place in the directory where `f` is differentiated:
 `abstrErrLin` is an `AbstractionError` once `A` and `B` really are the derivative
 at `(xs, us)` and `H` really bounds the second derivative. No theorem that
 *spends* a certificate imports it, so `AbstractionError` and the reachability
@@ -22,7 +22,7 @@ never meets any of this.
 `C` carries the regularity the printed proposition leaves implicit: the two
 `HasFDerivAt` hypotheses are two-sided at every point of it, so `C` is read as an
 open convex neighbourhood of `Z` and of the expansion point, and the segment
-`Z ∪ {zs}` spans lies inside it, the segment of `ξ(z, z✱)` in [2, Eq. 2]'s remainder.
+`Z ∪ {zs}` spans lies inside it, the segment of `ξ(z, z✱)` in [1, Eq. 2]'s remainder.
 
 `hA` pins `Ff i zs` on every stacked vector, which is what makes `A` and `B` the
 Jacobian blocks rather than merely one pair among many. The parameter box `P` of
@@ -31,9 +31,7 @@ the bound is over states and inputs alone.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
       Systems with Uncertain Parameters using Conservative Linearization". In
       Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
       pp. 4042-4048.
@@ -143,7 +141,7 @@ theorem aux_abs_quad_le (T : Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ) (v γ 
           _ = γ j * (M j k * γ k) := by ring
     _ = γ ⬝ᵥ (M *ᵥ γ) := by simp [dotProduct, mulVec, Finset.mul_sum]
 
-/-- [1, Prop. 3.7] at one coordinate: what is left of `F` once its affine part at
+/-- [1, Prop. 1] at one coordinate: what is left of `F` once its affine part at
 `zs` is subtracted is `γᵀ M γ / 2`, over any `z` that `γ` covers. -/
 theorem aux_abs_remainder_le {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec ℝ d → ℝ}
     {Ff : Vec ℝ d → (Vec ℝ d →L[ℝ] ℝ)}
@@ -203,7 +201,7 @@ theorem aux_append_sub (x xs : Vec ℝ n) (u us : Vec ℝ m) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Prop. 3.7]: where `A` and `B` are the derivative of `f` at `(xs, us)` and
+/-- [1, Prop. 1]: where `A` and `B` are the derivative of `f` at `(xs, us)` and
 `H` bounds its second derivative entrywise, `abstrErrLin` is a certificate. -/
 theorem AbstractionError.of_hessian {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {U : Set (Vec ℝ m)}

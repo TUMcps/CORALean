@@ -15,7 +15,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 /-!
 # `inputSolutionFloat` contains everything the input can contribute over a step
 
-[1, Thm. 3.1] in floats, by way of the exact theorem rather than a second proof
+[1, Thm. 1] in floats, by way of the exact theorem rather than a second proof
 of it: `inputReach_subset_inputSolution` is generic over the representation, so
 it is taken at plain sets — Minkowski sum, image, and for an interval matrix the
 closed convex hull of the images — where it asks nothing a float zonotope cannot
@@ -26,8 +26,9 @@ hull the remainder took stays inside it.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

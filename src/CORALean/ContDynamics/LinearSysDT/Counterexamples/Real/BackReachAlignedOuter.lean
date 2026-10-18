@@ -52,7 +52,7 @@ theorem LinearSysDT.backReachAligned_outer_counterexample : -- --- STMT ---
         (∀ (c' : Vec ℝ n) (a' : Fin Zj.h → ℝ), (∀ i, 0 ≤ a' i ∧ a' i ≤ 1) →
           (∀ l, (H *ᵥ c') l + ∑ i, |(H *ᵥ Zj.G i) l| * a' i ≤ h l) →
           ∑ i, ‖Zj.G i‖ * Real.log (a' i) ≤ ∑ i, ‖Zj.G i‖ * Real.log ((σ Zj).2 i))) →
-      LinearSysDT.backReachSetRobust A B E K U.construct {w | ∀ l, (H *ᵥ w) l ≤ h l}
+      LinearSysDT.backReachSetRobustExact A B E K U.construct {w | ∀ l, (H *ᵥ w) l ≤ h l}
           Z₀.construct k
         ⊆ (Zonotope.backReachAligned A B K U Z₀ σ k).construct := by -- --- PROOF ---
   intro hall

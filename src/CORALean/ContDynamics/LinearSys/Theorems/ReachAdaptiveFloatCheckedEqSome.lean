@@ -31,11 +31,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem LinearSys.reachAdaptiveFloatChecked_eq_some (sys : LinearSys 𝕋 n)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ)
-    (options : LinearSys.AdaptiveOptions 𝕋)
-    {Rs : (List (LinearSys.AdaptiveStepInfo 𝕋 n))}
-    (h : sys.reachAdaptiveFloatChecked params options = some Rs) : -- --- STMT ---
-    sys.reachAdaptiveFloat params options = some Rs ∧
-      noNaN (𝕋 := 𝕋) (Rs.map fun r => (r.Δt, r.R)) = true := by -- --- PROOF ---
+    (options : LinearSys.AdaptiveOptions 𝕋) : -- --- STMT ---
+    ∀ Rs ∈ sys.reachAdaptiveFloatChecked params options,
+      sys.reachAdaptiveFloat params options = some Rs ∧
+        noNaN (𝕋 := 𝕋) (Rs.map fun r => (r.Δt, r.R)) = true := by -- --- PROOF ---
+  intro Rs (h : sys.reachAdaptiveFloatChecked params options = some Rs)
   unfold LinearSys.reachAdaptiveFloatChecked at h
   cases hr : sys.reachAdaptiveFloat params options with
   | none => simp [hr] at h

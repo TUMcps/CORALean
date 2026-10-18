@@ -74,23 +74,24 @@ theorem LinearSys.aux_manualInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V
 time of window `k`, in the `k`-th set. -/
 theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.manualReachFloat params options = some Rs) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮)
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-            params.U.construct) x u →
-        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rs ∈ sys.manualReachFloat params options,
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
+          sys.IsCanonicalTrajectory (S := 𝒮)
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+              params.U.construct) x u →
+          ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+  intro Rs (h : sys.manualReachFloat params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.manualReachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
   obtain ⟨N, hN, η', hη', h⟩ := h
-  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal _ hN
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   set V := sys.inputSetFloat U with hV
   obtain ⟨hlen, hsnd⟩ := sys.manualRunFloat_outer hΔt hadm h
     (sys.aux_manualInvariantFloat_init X₀ V)

@@ -9,15 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 /-!
 # `MatExp.intervalInputTerm`, the input solution's order `i` over a float box
 
-`Aⁱ r^{i+1}/(i+1)!` of [1, Thm. 3.1], at every member of a float interval
+`Aⁱ r^{i+1}/(i+1)!` of [1, Thm. 1], at every member of a float interval
 matrix: the power as `matPow`, the scalar as `taylorCoeffBounds`, and the two
 joined by `smul`. The float counterpart of `LinearSys.inputTerm` at a point
 (a point box) and of `LinParamSys.inputTerm` at a set.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

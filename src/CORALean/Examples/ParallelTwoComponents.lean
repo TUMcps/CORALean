@@ -1,7 +1,7 @@
 import CORALean.ContSet.HPolytope.Real.Operations.MemSlabIff
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
 import CORALean.HybridDynamics.Parallel.Operations.BoxLifting
-import CORALean.HybridDynamics.Parallel.Theorems.ReachSetSubsetInvariant
+import CORALean.HybridDynamics.Parallel.Theorems.ReachSetExactSubsetInvariant
 import CORALean.HybridDynamics.Parallel.Theorems.StackUnstack
 import CORALean.ContSet.Interval.Real.Instances
 
@@ -17,9 +17,9 @@ The lifting is `boxLifting`: boxes for the input and disturbance sets, `HPolytop
 and guards, so the product's invariant is the box `[0, 2] × [-1, 1]` as halfspaces and the lifted
 guard `x₀ ≥ 1` is free in `x₁`. The product's flow is `mergeFlowsLinearSys`, its matrix read off
 entrywise: `A + B C`, the `1` being component `0`'s `B` times component `1`'s `C`. The box is a
-product `Invariant`, so `ParallelHybridAutomaton.reachSet_subset_invariant` puts every reachable
-tuple of the parallel automaton in it. The invariant proof is by hand: the flow half is the
-location invariant sitting inside the box, the jump half is the reset landing in it.
+product `Invariant`, so `ParallelHybridAutomaton.reachSetExact_subset_invariant` puts every
+reachable tuple of the parallel automaton in it. The invariant proof is by hand: the flow half is
+the location invariant sitting inside the box, the jump half is the reset landing in it.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -161,9 +161,9 @@ theorem PTC.isRun_toProduct {ℓ ℓ' : ∀ _ : Fin 2, Unit} {x y : ∀ _ : Fin 
     ParallelHybridAutomaton.boxLifting run
 
 /-- Every tuple of states the parallel automaton reaches from the box, stacked, is in the box. -/
-theorem PTC.reachSet_subset (ℓ₀ ℓ : ∀ _ : Fin 2, Unit) :
-    stack '' PTC.parallel.reachSet PTC.box ℓ₀ ℓ ⊆ construct (PTC.R ℓ) := by -- --- PROOF ---
-  refine ParallelHybridAutomaton.reachSet_subset_invariant
+theorem PTC.reachSetExact_subset (ℓ₀ ℓ : ∀ _ : Fin 2, Unit) :
+    stack '' PTC.parallel.reachSetExact PTC.box ℓ₀ ℓ ⊆ construct (PTC.R ℓ) := by -- --- PROOF ---
+  refine ParallelHybridAutomaton.reachSetExact_subset_invariant
     (P := PTC.parallel) PTC.feedthroughFree (lift := ParallelHybridAutomaton.boxLifting)
     PTC.invariant (fun x hx => ?_) ℓ
   -- a stack of points of the boxes is in the stacked box

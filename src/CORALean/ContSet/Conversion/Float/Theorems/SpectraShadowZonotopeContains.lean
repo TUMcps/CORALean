@@ -49,14 +49,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.zonotope_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
-    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} {Z : Zonotope (Vec 𝕋 n)} (h : S.zonotope Yup Ylo = some Z) :
-    S.construct ⊆ Z.construct := by -- --- PROOF ---
+    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} :
+    ∀ Z ∈ S.zonotope Yup Ylo,
+      S.construct ⊆ Z.construct := by -- --- PROOF ---
+  intro Z (h : S.zonotope Yup Ylo = some Z)
   simp only [SpectraShadow.zonotope, Option.map_eq_some_iff] at h
   obtain ⟨B, hB, rfl⟩ := h
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨β, hP, hyβ⟩ := SpectraShadow.mem_nominalSet_iff.mp hy
   -- `β` is in the certified box, so `G β` in the image zonotope
-  have hβ := (Interval.zonotope_contains B) (SpectraShadow.interval_contains hB
+  have hβ := (Interval.zonotope_contains B) (SpectraShadow.interval_contains _ hB
     (SpectraShadow.mem_base hP))
   have hGβ := Zonotope.mtimes_outer (fun r j => S.G j r) B.zonotope ⟨β, hβ, rfl⟩
   -- the center plus the error is in the box zonotope

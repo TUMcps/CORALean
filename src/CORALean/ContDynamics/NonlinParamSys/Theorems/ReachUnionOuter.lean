@@ -43,11 +43,11 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinParamSys.WithSteps.reachUnion_outer (sys : NonlinParamSys.WithSteps S Rg m q n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ)
-    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) : -- --- STMT ---
-    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-      ⊆ construct R := by -- --- PROOF ---
-  intro y hy
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- STMT ---
+    ∀ R ∈ sys.reachUnion params options,
+      sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
+        ⊆ construct R := by -- --- PROOF ---
+  intro R (hR : sys.reachUnion params options = some R) y hy
   simp only [NonlinParamSys.WithSteps.reachUnion, Option.map_eq_some_iff] at hR
   obtain ⟨Ra, hRa, rfl⟩ := hR
   set Z₀ : S (n + q) :=
@@ -68,7 +68,7 @@ theorem NonlinParamSys.WithSteps.reachUnion_outer (sys : NonlinParamSys.WithStep
   simp only [NonlinParamSys.WithSteps.reachUnionExact, Set.mem_iUnion, Set.mem_setOf_eq] at hy
   obtain ⟨t, ht, x, u, c, traj, rfl⟩ := hy
   have hz : Fin.append (x t) c ∈ construct Ra := by
-    refine sys.aug.reachUnion_outer ⟨Z₀, params.tStart, params.tFinal⟩ options hRa ?_
+    refine sys.aug.reachUnion_outer ⟨Z₀, params.tStart, params.tFinal⟩ options _ hRa ?_
     simp only [NonlinearSys.WithSteps.reachUnionExact, Set.mem_iUnion]
     refine ⟨t, ht, fun s => Fin.append (x s) c, u, ?_, rfl⟩
     rw [sys.aug_sys]

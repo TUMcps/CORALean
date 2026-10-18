@@ -1,13 +1,13 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetExact
 
 @[expose] public section
 
 /-!
 # The exact set `Reach LinearSysDT` is asked to enclose
 
-Every state reachable in at most `K` steps from `R₀` under inputs in `U`: `reachSet`
+Every state reachable in at most `K` steps from `R₀` under inputs in `U`: `reachSetExact`
 at each step, united. Positional, as the mathematics: `Reach` reads `R₀`, `U` and
 `K = tFinal - tStart` off `params`, the system being time-invariant.
 -/
@@ -30,7 +30,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
 
 /-- Every state reachable in at most `K` steps from `R₀` under inputs in `U`. -/
 def LinearSysDT.reachUnionExact (sys : LinearSysDT 𝕋 n) (R₀ U : S n) (K : ℕ) : Set (Vec ℝ n) :=
-  ⋃ k ≤ K, sys.reachSet R₀ U k
+  ⋃ k ≤ K, sys.reachSetExact R₀ U k
 
 end CORALean
 

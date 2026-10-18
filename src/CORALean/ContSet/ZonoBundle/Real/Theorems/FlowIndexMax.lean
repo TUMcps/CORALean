@@ -35,8 +35,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The chosen axis is at least as aligned with `f` as any axis. -/
-theorem ZonoBundle.flowIndex_max {f : Vec ℝ n} {i : Fin n} (h : ZonoBundle.flowIndex f = some i)
-    (k : Fin n) : |f k| ≤ |f i| :=
+theorem ZonoBundle.flowIndex_max {f : Vec ℝ n} (k : Fin n) :
+    ∀ i ∈ ZonoBundle.flowIndex f,
+      |f k| ≤ |f i| := fun _ h =>
   List.le_of_mem_argmax (f := fun i => |f i|) (List.mem_finRange k) h
 
 end CORALean.Real

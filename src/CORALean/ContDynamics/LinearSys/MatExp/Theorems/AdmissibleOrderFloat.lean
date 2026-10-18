@@ -30,9 +30,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.admissibleOrder_spec {nrm : 𝕋} {η₀ fuel η : ℕ}
-    (h : MatExp.admissibleOrder nrm η₀ fuel = some η) :
-    toReal nrm / ((η : ℝ) + 2) ≤ 1 / 2 ∧ η₀ ≤ η := by -- --- PROOF ---
+theorem MatExp.admissibleOrder_spec {nrm : 𝕋} {η₀ fuel : ℕ} :
+    ∀ η ∈ MatExp.admissibleOrder nrm η₀ fuel,
+      toReal nrm / ((η : ℝ) + 2) ≤ 1 / 2 ∧ η₀ ≤ η := by -- --- PROOF ---
+  intro η (h : MatExp.admissibleOrder nrm η₀ fuel = some η)
   rw [MatExp.admissibleOrder] at h
   have hle := toReal_le_of_le (List.find?_some (p := fun η =>
     le nrm (half (nsmulDown (η + 2) (one : 𝕋)))) h)

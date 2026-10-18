@@ -31,7 +31,7 @@ Goldsztejn's continuous selections (Findings).
 | `Example 3` | f = (5x₁² + x₂² - 2x₁x₂ - 4, x₁² + 5x₂² - 2x₁x₂ - 4) on [0.9, 1.1]²: π = (1 → 2, 2 → 1) gives an empty box, π = id gives [-0.64, 0.64]². | n/a — an illustration | `not-a-claim` |
 | `Sec. II-B` | (Preconditioning) For C nonsingular and z ⊆ range(Cf, x), the skewed box {C⁻¹z \| z ∈ z} ⊆ range(f, x). | [`PreconditionInner.lean`](../../src/CORALean/Global/PreconditionInner.lean) — for any set `z` | `correct` |
 | `Example 4` | f = (2x₁² - x₁x₂ - 1, x₁² + x₂² - 2) on [0.9, 1.1]²: empty inner boxes, a nonempty preconditioned parallelotope (Fig. 1). | n/a — an illustration | `not-a-claim` |
-| `Sec. III` | (Maximal, minimal and robust reachability) R_E = {z \| ∃u ∈ U, ∃z₀ ∈ Z₀, z = φ(t; z₀, u)}, R_A = {z \| ∀u ∈ U, ∃z₀ ∈ Z₀, …}, R_AE = {z \| ∀u_A ∈ U_A, ∃u_E ∈ U_E, ∃z₀ ∈ Z₀, z = φ(t; z₀, u)}. | [`RobustReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/RobustReachSet.lean) — `NonlinearSys.robustReachSet`, the solution map and the admissible signals as arguments; R_E and R_A as one-signal cases | `correct` |
+| `Sec. III` | (Maximal, minimal and robust reachability) R_E = {z \| ∃u ∈ U, ∃z₀ ∈ Z₀, z = φ(t; z₀, u)}, R_A = {z \| ∀u ∈ U, ∃z₀ ∈ Z₀, …}, R_AE = {z \| ∀u_A ∈ U_A, ∃u_E ∈ U_E, ∃z₀ ∈ Z₀, z = φ(t; z₀, u)}. | [`RobustReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/RobustReachSetExact.lean) — `NonlinearSys.robustReachSetExact`, the solution map and the admissible signals as arguments; R_E and R_A as one-signal cases | `correct` |
 | `Sec. IV` | RINO on the Dubbins vehicle, a 10D quadrotor and other benchmarks (Figs. 2-3, Table I). | n/a — experiments | `not-a-claim` |
 
 ## Findings

@@ -60,7 +60,7 @@ theorem LinearSys.manualRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonoto
     obtain ⟨⟨s', R⟩, hstep, Rs', hrest, h⟩ := h
     obtain rfl := (Option.some.inj h).symm
     -- one iteration, then the rest of the run from the state it reached
-    obtain ⟨hinv', ht', hwin⟩ := sys.manualStepFloat_outer hΔt hη hstep hinv
+    obtain ⟨hinv', ht', hwin⟩ := sys.manualStepFloat_outer hΔt hη hinv _ _ hstep
     obtain ⟨hlen, hsnd⟩ := ih hrest hinv'
     refine ⟨by simp [hlen], fun {T U x u} traj hUV j hj t ht htT => ?_⟩
     cases j with

@@ -76,15 +76,16 @@ theorem aux_mem_hull {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec 𝕋 k) :
 
 /-- A successful step, at any expansion point, has a positive width, and every run of `sys` on
 `[0, Δt]` from `R` under inputs in `U` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
-theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
-    {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {R Rτ Rt : Zonotope (Vec 𝕋 n)}
-    {xs : Vec 𝕋 n} (hstep : fm.relinStepAtFloat U options R xs = some (Rτ, Rt)) : -- --- STMT ---
-    0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-        R.construct U.construct x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-        x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearSys.FloatModel 𝕋 n m}
+    {sys : NonlinearSys n m} (h : fm.Encloses sys) {U : Zonotope (Vec 𝕋 m)}
+    {options : LinearSys.ReachOptions 𝕋} {R : Zonotope (Vec 𝕋 n)} {xs : Vec 𝕋 n} : -- --- STMT ---
+    ∀ Rτ Rt, (Rτ, Rt) ∈ fm.relinStepAtFloat U options R xs →
+      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+          R.construct U.construct x u →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+  intro Rτ Rt (hstep : fm.relinStepAtFloat U options R xs = some (Rτ, Rt))
   -- every `←` of the step succeeded: name what each returned
   unfold NonlinearSys.FloatModel.relinStepAtFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
@@ -98,15 +99,15 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
     ⟨fun i => minimum (Ω.inf i) (xs i), fun i => maximum (Ω.sup i) (xs i)⟩ with hX_def
   set U' : Interval (Vec 𝕋 m) :=
     ⟨fun i => minimum (U.interval.inf i) (U.c i), fun i => maximum (U.interval.sup i) (U.c i)⟩
-  obtain ⟨hΔt, -⟩ := LinearSys.reachFloatInput_invariant _ hS
+  obtain ⟨hΔt, -⟩ := LinearSys.reachFloatInput_invariant _ _ _ hS
   refine ⟨hΔt, fun {x u} traj => ?_⟩
   -- the horizon `reachFloatInput` was given is the step
   have hTf : (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)) = toReal Δt := by
     rw [ToRat.toReal_toRat, Rat.cast_zero, sub_zero]
   -- the run stays in `Ω`, so in `X`, and its inputs in `U'`
-  have hconf := h.regionFloat_confined hΩ hΔt.le traj
+  have hconf := h.regionFloat_confined hΔt.le traj
     (Zonotope.interval_contains U) (a := 0) (by rw [zero_add])
-    (Zonotope.interval_contains R traj.init)
+    (Zonotope.interval_contains R traj.init) _ hΩ
   have hxX : ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.construct := fun t ht =>
     (aux_mem_hull Ω xs).1 (hconf t (by rwa [zero_add]))
   have hUU' : U.construct ⊆ U'.construct :=
@@ -150,8 +151,8 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer
     rw [LinearSys.canonicalFloat_input, Set.image_id]
     exact (Zonotope.isCompact_construct _).isBounded
   have ltraj := ltrajC.trajectory (convex_Icc _ _) ⟨le_rfl, by rw [hTf]; exact hΔt.le⟩ hVb
-  obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ hS
-  obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ hS
+  obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ _ hS
+  obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ _ hS
   -- adding `x✱` back
   have hback : ∀ {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.construct →
       y ∈ construct (Z ⊞ (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :

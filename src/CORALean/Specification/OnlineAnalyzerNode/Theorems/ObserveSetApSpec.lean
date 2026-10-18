@@ -34,25 +34,27 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineAnalyzerNode.observeSet_ap_spec (eps : ℝ)
-    (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval)
-    (loc : ℕ) (hk : n.kind = .ap) (ap : AtomicProposition S d) (hap : n.ap = some ap)
-    (tent : TentativeKleeneSignal ℝ) (ht : n.tentative = some tent)
+    (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval) (loc : ℕ)
+    (hk : n.kind = .ap)
     (hnc : OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed
-      n.prop = some false) (val : Kleene)
-    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val) : -- --- STMT ---
-    (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false =
-        some { n with signal := n.signal.set interval (FourValued.fromKleene val) } ∧
-      (n.signal.IsValid →
-        (n.signal.set interval (FourValued.fromKleene val)).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
-          (t ∈ interval.set →
-            (n.signal.set interval (FourValued.fromKleene val)).at t =
-              FourValued.fromKleene val) ∧
-          (t ∉ interval.set →
-            (n.signal.set interval (FourValued.fromKleene val)).at t = n.signal.at t))) ∧
-    (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc true =
-        some { n with tentative := some (tent.observe interval val) } ∧
-      (tent.IsValid →
-        (tent.observe interval val).IsValid)) := by -- --- PROOF ---
+      n.prop = some false) (val : Kleene) : -- --- STMT ---
+    ∀ tent ∈ n.tentative,
+      ∀ ap ∈ n.ap,
+        OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val →
+        (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false =
+            some { n with signal := n.signal.set interval (FourValued.fromKleene val) } ∧
+          (n.signal.IsValid →
+            (n.signal.set interval (FourValued.fromKleene val)).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
+              (t ∈ interval.set →
+                (n.signal.set interval (FourValued.fromKleene val)).at t =
+                  FourValued.fromKleene val) ∧
+              (t ∉ interval.set →
+                (n.signal.set interval (FourValued.fromKleene val)).at t = n.signal.at t))) ∧
+        (OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc true =
+            some { n with tentative := some (tent.observe interval val) } ∧
+          (tent.IsValid →
+            (tent.observe interval val).IsValid)) := by -- --- PROOF ---
+  intro tent (ht : n.tentative = some tent) ap (hap : n.ap = some ap) hval
   refine ⟨⟨?_, fun hs => FourValuedSignal.set_spec n.signal hs interval _⟩,
     ⟨?_, fun hs => (tent.observe_spec hs interval val).1⟩⟩
   -- a final observation sets the satisfaction signal

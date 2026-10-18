@@ -14,15 +14,16 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 # `particularSolutionFloat` holds what the input contributes at one member
 
 `LinParamSys.inputReach_subset_particularSolution` in floats: at a member `A` of
-`sys.A`, with `0 ∈ U` the input's contribution grows with time [1, Prop. 3.3],
-is the one-step set propagated `k + 1` times [1, Prop. 3.2], and that one step
+`sys.A`, with `0 ∈ U` the input's contribution grows with time [1, Sec. 3.3],
+is the one-step set propagated `k + 1` times [1, Alg. 1], and that one step
 lies in `inputSolutionFloat`. Each propagator `e^{A t_j}` is in the window
 `reachStepkFloat` computes.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -65,7 +66,7 @@ theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
     obtain ⟨PRtk, hPRtk, E, hE, rfl⟩ := h
     rw [LinearSys.propagateInputSolution]
     rintro _ ⟨a, ha, _, ⟨y, hy, rfl⟩, rfl⟩
-    have hE' := sys.reachStepkFloat_outer h2 hE hA hy
+    have hE' := sys.reachStepkFloat_outer h2 hA hy _ hE
     simp only [Scalar.toRealMat_real, Nat.cast_add, Nat.cast_one] at hE' ⊢
     exact Reduce.reduce_outer _ ρ (Plus.plus_outer PRtk E (Set.add_mem_add
       (sys.aux_propagate_subset_particularSolutionFloat h2 U hA k hPRtk ha) hE'))
@@ -75,26 +76,25 @@ theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
 
 /-- Everything an input in `U` holding the origin contributes under a member `A` by
 any `t ≤ t_{k+1}` lies in `P^R(t_{k+1})` as `particularSolutionFloat` computes it. -/
-theorem LinParamSys.inputReach_subset_particularSolutionFloat
-    (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η ρ : ℕ}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {U : Zonotope (Vec 𝕋 n)}
-    (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ} {P : Zonotope (Vec 𝕋 n)}
-    (hP : sys.particularSolutionFloat Δt η ρ U k = some P) {t : ℝ} (ht0 : 0 ≤ t)
-    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * toReal Δt) : -- --- STMT ---
-    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t
-      ⊆ P.construct := by -- --- PROOF ---
+theorem LinParamSys.inputReach_subset_particularSolutionFloat (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋}
+    {η ρ : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
+    (hA : A ∈ sys.A.construct) {U : Zonotope (Vec 𝕋 n)} (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ}
+    {t : ℝ} (ht0 : 0 ≤ t) (htk : t ≤ ((k + 1 : ℕ) : ℝ) * toReal Δt) : -- --- STMT ---
+    ∀ P ∈ sys.particularSolutionFloat Δt η ρ U k,
+      (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t
+        ⊆ P.construct := by -- --- PROOF ---
+  intro P (hP : sys.particularSolutionFloat Δt η ρ U k = some P)
   set L : LinearSys ℝ n := LinearSys.canonical A
   have hbdd := CompactSet.isBounded_construct U
-  -- [1, Thm. 3.1]: one step of the input under `A`, inside `inputSolutionFloat`
+  -- [1, Thm. 1]: one step of the input under `A`, inside `inputSolutionFloat`
   have hΔ : L.inputReach (S := 𝒵[𝕋]) U (toReal Δt)
       ⊆ (sys.inputSolutionFloat Δt η U).construct :=
     sys.inputReach_subset_inputSolutionFloat hΔt hη hA U
   calc L.inputReach (S := 𝒵[𝕋]) U t
-      -- [1, Prop. 3.3]: `0 ∈ U`, so the window's right end bounds every earlier time
+      -- [1, Sec. 3.3]: `0 ∈ U`, so the window's right end bounds every earlier time
       ⊆ L.inputReach (S := 𝒵[𝕋]) U (((k + 1 : ℕ) : ℝ) * toReal Δt) :=
         L.inputReach_mono hbdd h0 ht0 htk
-    -- [1, Prop. 3.2]: exactly the one-step set, propagated `k + 1` times
+    -- [1, Alg. 1]: exactly the one-step set, propagated `k + 1` times
     _ = L.propagateInputSolution (toReal Δt)
       (L.inputReach (S := 𝒵[𝕋]) U (toReal Δt)) (k + 1) :=
       (L.propagateInputSolution_inputReach hΔt.le hbdd ⟨0, h0⟩ (k + 1)).symm

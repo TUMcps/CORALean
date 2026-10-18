@@ -9,14 +9,15 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ExpIntervalFloat
 # What a constant input contributes up to the start of a window at every member, in floats
 
 `LinParamSys.constPropagate` computed in `𝕋`: `P̃(t_0) = {0}`, and
-`P̃(t_{k+1}) = [e^{[A]Δt}] P̃(t_k) ⊕ P̃^R(τ_0)` [1, Prop. 3.2]. Every factor is the one box
-`[e^{[A]Δt}]` of `expIntervalFloat`, enclosed at the order admissible for `Δt`; the
+`P̃(t_{k+1}) = [e^{[A]Δt}] P̃(t_k) ⊕ P̃^R(τ_0)`, [1, Alg. 1]'s recursion. Every factor is the one
+box `[e^{[A]Δt}]` of `expIntervalFloat`, enclosed at the order admissible for `Δt`; the
 accumulated set is reduced to order `ρ`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

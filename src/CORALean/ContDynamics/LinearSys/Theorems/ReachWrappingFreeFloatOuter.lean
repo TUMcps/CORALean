@@ -42,21 +42,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachWrappingFreeFloat_outer (sys : LinearSys 𝕋 n)
-    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachWrappingFreeFloat params options = some Rs) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ params.X₀.construct,
-        ∀ s ∈ Set.Icc 0 (toReal options.Δt),
-          exp (((k : ℝ) * toReal options.Δt + s) • Scalar.toRealMat sys.A) *ᵥ x₀
-            ∈ Rs[k].construct := by -- --- PROOF ---
+    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rs ∈ sys.reachWrappingFreeFloat params options,
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ params.X₀.construct,
+          ∀ s ∈ Set.Icc 0 (toReal options.Δt),
+            exp (((k : ℝ) * toReal options.Δt + s) • Scalar.toRealMat sys.A) *ᵥ x₀
+              ∈ Rs[k].construct := by -- --- PROOF ---
+  intro Rs (h : sys.reachWrappingFreeFloat params options = some Rs)
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachWrappingFreeFloat, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
   obtain ⟨N, hN, η', hη', hRs⟩ := h
-  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal _ hN
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   obtain ⟨hlen, hget⟩ := LinParamSys.mapM_eq_some hRs
   rw [List.length_range] at hlen
   refine ⟨N, hNΔt, hlen, fun k hk x₀ hx₀ s ⟨hs0, hs⟩ => ?_⟩
@@ -76,7 +77,7 @@ theorem LinearSys.reachWrappingFreeFloat_outer (sys : LinearSys 𝕋 n)
     rw [Matrix.mulVec_mulVec]
     exact congrArg (· *ᵥ x₀) h
   rw [hexp]
-  exact sys.reachStepkWrappingFreeFloat_outer hadm.1 hwin hτ₀
+  exact sys.reachStepkWrappingFreeFloat_outer hadm.1 hτ₀ _ hwin
 
 end CORALean
 

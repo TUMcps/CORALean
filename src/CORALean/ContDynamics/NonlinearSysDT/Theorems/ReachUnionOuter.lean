@@ -39,11 +39,11 @@ variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋] [∀ n, Contai
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.WithSteps.reachUnion_outer (sys : NonlinearSysDT.WithSteps S Rg 𝕋 m n)
-    (params : Reach.Params (S n) ℕ) (options : NonlinearSysDT.ReachOptions)
-    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) : -- --- STMT ---
-    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-      ⊆ construct R := by -- --- PROOF ---
-  intro y hy
+    (params : Reach.Params (S n) ℕ) (options : NonlinearSysDT.ReachOptions) : -- --- STMT ---
+    ∀ R ∈ sys.reachUnion params options,
+      sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
+        ⊆ construct R := by -- --- PROOF ---
+  intro R (hR : sys.reachUnion params options = some R) y hy
   simp only [NonlinearSysDT.WithSteps.reachUnion] at hR
   split at hR
   case isFalse => exact absurd hR (by simp)

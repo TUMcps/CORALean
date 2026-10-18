@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
 /-!
 # One window of `reachUnion`: the set over `τ_k = [t_k, t_k + Δt]`
 
-`LinearSys.WithInputSplit.reachStepk` at [1, Alg. 4]'s set of matrices. `V = B U ⊕ c` is the
+`LinearSys.WithInputSplit.reachStepk` at [1, Alg. 1]'s set of matrices. `V = B U ⊕ c` is the
 input set in state coordinates, the `inputSet` that `reachUnion` computes once, split at its
 stored center `ũ` and `Ũ = V - ũ ∋ 0` by `Recenter`:
 `R(τ_k) = e^{[A]t_k}(H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R_Ũ(t_{k+1})`.
@@ -18,8 +18,9 @@ stored center `ũ` and `Ũ = V - ũ ∋ 0` by `Recenter`:
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Sonnet 5.5

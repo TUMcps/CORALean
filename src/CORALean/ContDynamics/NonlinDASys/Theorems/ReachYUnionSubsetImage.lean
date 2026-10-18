@@ -36,12 +36,13 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinDASys.WithSteps.reachYUnion_subset_image (sys : NonlinDASys.WithSteps S Rg m p n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ)
-    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) : -- --- STMT ---
-    sys.reachYUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-      ⊆ (fun xu : Vec ℝ n × Vec ℝ m => sys.red.h xu.1 xu.2) ''
-        (construct R ×ˢ construct sys.ode.U) := by -- --- PROOF ---
-  have h := sys.reachUnion_outer params options hR
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- STMT ---
+    ∀ R ∈ sys.reachUnion params options,
+      sys.reachYUnionExact (params.tFinal - params.tStart) (construct params.X₀)
+        ⊆ (fun xu : Vec ℝ n × Vec ℝ m => sys.red.h xu.1 xu.2) ''
+          (construct R ×ˢ construct sys.ode.U) := by -- --- PROOF ---
+  intro R (hR : sys.reachUnion params options = some R)
+  have h := sys.reachUnion_outer params options _ hR
   intro z hz
   simp only [NonlinDASys.WithSteps.reachYUnionExact, Set.mem_iUnion, Set.mem_setOf_eq] at hz
   obtain ⟨t, ht, x, y, u, traj, rfl⟩ := hz

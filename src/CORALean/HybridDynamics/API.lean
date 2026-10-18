@@ -30,11 +30,12 @@ alone ask the guard to be in `S`. Without one there is still `Theorems.JumpOuter
 Time-triggered only in the sense that nothing here is: a stay runs for a dwell
 time the run chooses, and a bounded-horizon reading is `IsRunOn`/`InvariantOn`,
 the same run and invariant indexed by the jump count — `Invariant.invariantOn`
-its constant-family case. `ReachSet` names what `IsRun` quantifies over: `reachSet`
-at a location, `reachLocations` over all, [1, Def. 3.4]'s two reachable sets.
+its constant-family case. `ReachSetExact` names what `IsRun` quantifies over: `reachSetExact`
+at a location ([1, Def. 2]'s `R_e`), `reachLocationsExact` over all.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+      Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
+      Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/

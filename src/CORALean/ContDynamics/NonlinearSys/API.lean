@@ -13,8 +13,8 @@ public import CORALean.ContDynamics.NonlinearSys.Instances
 The representation and what a trajectory of it is, and then reachability by conservative
 linearization: `AbstractionError` is the certificate the method runs on, `LinStep` is one
 linearization together with the certificate it was issued for, `Operations` computes the linear
-system, the input set it has to be given and the loop that re-linearizes, `ReachSet` is the set the
-flow actually reaches, and `Theorems` shows a confined run is a run of the linear system, chains
+system, the input set it has to be given and the loop that re-linearizes, `ReachSetExact` is the set
+the flow actually reaches, and `Theorems` shows a confined run is a run of the linear system, chains
 the steps, and restates both on that set rather than on a run. `WithSteps` bundles a chain of steps
 with checkable regions, and `Instances` makes it `Reach`, its tests run at run time.
 

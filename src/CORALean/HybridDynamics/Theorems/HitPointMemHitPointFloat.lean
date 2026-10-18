@@ -35,11 +35,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `y_h(x₀)` is in the box `hitPointFloat` returns, and `Λ ≠ 0`. -/
 theorem GuardMap.hitPoint_mem_hitPointFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
-    (x₀ : Vec 𝕋 n) {K : Interval (Vec 𝕋 n)}
-    (hK : GuardMap.hitPointFloat A b nv d x₀ = some K) : -- --- STMT ---
-    toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec x₀ + toRealVec b) ≠ 0 ∧
-      GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
-        ∈ K.construct := by -- --- PROOF ---
+    (x₀ : Vec 𝕋 n) : -- --- STMT ---
+    ∀ K ∈ GuardMap.hitPointFloat A b nv d x₀,
+      toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec x₀ + toRealVec b) ≠ 0 ∧
+        GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
+          ∈ K.construct := by -- --- PROOF ---
+  intro K (hK : GuardMap.hitPointFloat A b nv d x₀ = some K)
   simp only [GuardMap.hitPointFloat] at hK
   split_ifs at hK with hc
   obtain rfl := Option.some.inj hK

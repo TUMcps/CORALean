@@ -39,17 +39,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 at `t_k = k Δt` in the `k`-th time-point set. -/
 theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloatInput params options = some (Rti, Rtp)) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rtp.length = N + 1 ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮)
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-            params.U.construct) x u →
-        ∀ (k : ℕ) (hk : k < Rtp.length),
-          x ((k : ℝ) * toReal options.Δt) ∈ Rtp[k].construct := by -- --- PROOF ---
-  obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant h
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloatInput params options →
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rtp.length = N + 1 ∧ ∀ {x u : ℝ → Vec ℝ n},
+          sys.IsCanonicalTrajectory (S := 𝒮)
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+              params.U.construct) x u →
+          ∀ (k : ℕ) (hk : k < Rtp.length),
+            x ((k : ℝ) * toReal options.Δt) ∈ Rtp[k].construct := by -- --- PROOF ---
+  intro Rti Rtp (h : sys.reachFloatInput params options = some (Rti, Rtp))
+  obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant _ _ h
   refine ⟨N, hNΔt, by simp [hlen], fun {x u} traj k hk => ?_⟩
   cases k with
   | zero =>

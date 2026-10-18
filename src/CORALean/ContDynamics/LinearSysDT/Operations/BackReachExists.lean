@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 /-!
 # Backward reachability in the `∃` reading, computed
 
-`backReachSetExists`'s step at a representation: `plus` against the negated
+`backReachSetExistsExact`'s step at a representation: `plus` against the negated
 input set, then `mtimes Ainv` for the preimage under `A`, taken as the image
 under a left inverse the caller hands in as `options.Ainv`. `sys` is carried and never read — the
 dynamics enter through `backReachExists_outer`'s `hA` alone.

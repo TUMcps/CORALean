@@ -11,15 +11,16 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 /-!
 # The set every input contributes over one step, at a float matrix zonotope
 
-`LinParamSys.inputSolutionZono` computed in `𝕋` [1, Prop. 3.6]: orders `0` and `1` through
+`LinParamSys.inputSolutionZono` computed in `𝕋` [1, Thm. 1]: orders `0` and `1` through
 the system's float matrix zonotope (`inputTermZonoFloat`), orders `2 … η` and the remainder
 `[E(r)·r]` over the interval matrix it encloses, `sys.A.matInterval`. The four pieces stay
-four products, as printed.
+four products, as in CORA's `priv_inputSolution`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -39,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Prop. 3.6] in floats: `A_Z r U ⊕ A_Z r²/2! U`, then orders `2 … η` and the remainder
+/-- [1, Thm. 1] in floats: `A_Z r U ⊕ A_Z r²/2! U`, then orders `2 … η` and the remainder
 over `A_Z`'s interval matrix. -/
 def LinParamSys.inputSolutionZonoFloat (sys : LinParamSys 𝕄𝒵[𝕋] n)
     (r : 𝕋) (η : ℕ) (V : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=

@@ -34,9 +34,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.hitAndRunStep_mem (P : HPolytope α) (x d : α) (u : ℝ)
-    (hx : ∀ i, P.A i x < P.b i) (hu₀ : 0 ≤ u) (hu₁ : u ≤ 1) (y : α)
-    (hy : P.hitAndRunStep x d u = some y) : ∀ i, P.A i y ≤ P.b i := by -- --- PROOF ---
+theorem HPolytope.hitAndRunStep_mem (P : HPolytope α) (x d : α) (u : ℝ) (hx : ∀ i, P.A i x < P.b i)
+    (hu₀ : 0 ≤ u) (hu₁ : u ≤ 1) :
+    ∀ y ∈ P.hitAndRunStep x d u,
+      ∀ i, P.A i y ≤ P.b i := by -- --- PROOF ---
+  intro y (hy : P.hitAndRunStep x d u = some y)
   -- the two ends of the chord
   obtain ⟨tLow, hlo, tHigh, hhi, rfl⟩ : ∃ tLow, P.chordLow x d = some tLow ∧
       ∃ tHigh, P.chordHigh x d = some tHigh ∧ y = x + (tLow + u * (tHigh - tLow)) • d := by

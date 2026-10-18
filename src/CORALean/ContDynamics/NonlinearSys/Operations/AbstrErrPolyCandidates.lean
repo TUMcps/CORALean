@@ -35,7 +35,7 @@ through `blockPadLeft`/`blockPadRight`; `interval` is CORA's, `intervalEven`.
 Three departures: `Rdiff + RallError` runs `dependent`, so a region names all of it
 by `point`; `E` bounds the third derivative over the region as `lagrangeRemainder`
 takes it, where CORA re-evaluates the tensor on `totalInt`; and no
-`reachSetExplosion` exit, the search's fuel bounding the loop instead.
+`reachSetExactExplosion` exit, the search's fuel bounding the loop instead.
 
 ## References
 

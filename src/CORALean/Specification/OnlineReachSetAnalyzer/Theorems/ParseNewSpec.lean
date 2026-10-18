@@ -34,13 +34,14 @@ variable {S : ℕ → Type} {d : ℕ}
 
 theorem OnlineReachSetAnalyzer.parseNew_spec (dp : Bool)
     (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) (parent : ℕ)
-    (st st' : OnlineReachSetAnalyzer.ParseState S d)
-    (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes)
-    (h : OnlineReachSetAnalyzer.parseNew dp φ parent st = some st') : -- --- STMT ---
-    OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧
-      OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
-      ∃ node, st'.nodes[st.nodes.length]? = some node ∧ node.kind = φ.kind ∧
-        node.parents = [parent] := by -- --- PROOF ---
+    (st : OnlineReachSetAnalyzer.ParseState S d)
+    (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes) : -- --- STMT ---
+    ∀ st' ∈ OnlineReachSetAnalyzer.parseNew dp φ parent st,
+      OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧
+        OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
+        ∃ node, st'.nodes[st.nodes.length]? = some node ∧ node.kind = φ.kind ∧
+          node.parents = [parent] := by -- --- PROOF ---
+  intro st' (h : OnlineReachSetAnalyzer.parseNew dp φ parent st = some st')
   unfold OnlineReachSetAnalyzer.parseNew at h
   obtain ⟨nodes1, h1, h⟩ := Option.bind_eq_some_iff.mp h
   obtain ⟨node, hnode, rfl⟩ := Option.map_eq_some_iff.mp h
@@ -48,8 +49,8 @@ theorem OnlineReachSetAnalyzer.parseNew_spec (dp : Bool)
   have hext : OnlineReachSetAnalyzer.Ext st.nodes nodes1 ∧ nodes1.length = st.nodes.length := by
     by_cases hp : parent ≠ 0
     · rw [if_pos hp] at h1
-      exact OnlineReachSetAnalyzer.ext_updateNode _ _ _ _ h1 fun n _ n' hn' =>
-        by obtain rfl := Option.some.inj hn'; exact ⟨rfl, rfl, rfl, rfl⟩
+      exact OnlineReachSetAnalyzer.ext_updateNode _ _ _ (fun n _ n' hn' =>
+        by obtain rfl := Option.some.inj hn'; exact ⟨rfl, rfl, rfl, rfl⟩) _ h1
     · rw [if_neg hp] at h1
       obtain rfl := Option.some.inj h1
       exact ⟨OnlineReachSetAnalyzer.ext_refl _, rfl⟩

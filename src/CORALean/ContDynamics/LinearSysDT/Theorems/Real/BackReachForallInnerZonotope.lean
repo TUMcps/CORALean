@@ -47,11 +47,11 @@ theorem LinearSysDT.backReachForall_inner_zonotope (sys : LinearSysDT ℝ n) {Ai
     (T U : Zonotope (Vec ℝ n)) (k : ℕ) (R : Zonotope (Vec ℝ n))
     (hR : sys.backReachForall (S := 𝒵) ⟨T, U, 0, k⟩
       ⟨Ainv, fun Z₁ Z₂ => Z₁.minkDiffRep Z₂ (M Z₁ Z₂)⟩ = some R) : -- --- STMT ---
-    construct R ⊆ sys.backReachSetForall (S := 𝒵) T U k := by -- --- PROOF ---
+    construct R ⊆ sys.backReachSetForallExact (S := 𝒵) T U k := by -- --- PROOF ---
   refine sys.backReachForall_inner (S := 𝒵) ?_ ?_ ?_ T U k R hR
   · simpa using hA
   -- the difference: sound at whatever `M` the caller picked, or `none`
-  · exact fun B V D hD => Zonotope.minkDiffRep_inner B V (M B V) hD
+  · exact fun B V D hD => Zonotope.minkDiffRep_inner B V (M B V) _ hD
   -- the preimage: the inner half of an exact `mtimes`, which is the one at risk
   · intro s
     rw [Scalar.toRealMat_real]

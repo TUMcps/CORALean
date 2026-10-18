@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOrderLe
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuter
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterInstances
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOuterOn
-public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetSubsetReach
+public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachSetExactSubsetReach
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateMemReach
 public import CORALean.ContDynamics.LinParamSysDT.Theorems.SimulateIsTrajectory
@@ -31,8 +31,8 @@ system matrix that is a *set*: `reach_outer`, its step in isolation
 
 `ReachOuterInstances` is the payoff: `Mtimes` was already written against a
 set of matrices, so `reach_outer` is proved once and instantiates at an
-interval matrix (Althoff [1, §3.3.1]), a matrix zonotope (§3.3.2), a matrix
-polytope (§3.3.3), and a point matrix — `LinearSysDT` again — with no
+interval matrix (Althoff [1, Sec. 4.2]), a matrix zonotope (Sec. 4.1), a matrix
+polytope ([1, Sec. 4.4]), and a point matrix — `LinearSysDT` again — with no
 representation-specific proof.
 
 `ToLinParam`/`TrajectoryToLinParam`/`ReachEqToLinParam` are the bridge:
@@ -43,10 +43,11 @@ open re-expression question — a call this file does not make.
 matrix chosen per step, landing inside `reach` — same shape as `LinearSysDT`'s.
 `NotHoldsOfSimulate` is the falsification corollary, mirroring `LinearSysDT`'s.
 `ReachOrderLe`/`ReachBigO` carry the size bound over unchanged, and
-`ReachSetSubsetReach`/`ReachUnionOuter` are what `Instances` needs.
+`ReachSetExactSubsetReach`/`ReachUnionOuter` are what `Instances` needs.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/

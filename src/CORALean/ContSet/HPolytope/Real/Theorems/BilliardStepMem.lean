@@ -38,8 +38,10 @@ variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDime
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.billiardStep_mem (P : HPolytope E) (R : ℕ) (τ : ℝ) (x : E) (η : ℝ) (ξ : E)
-    (hx : ∀ i, P.A i x < P.b i) (hτ : 0 ≤ τ) (hη₀ : 0 < η) (hη₁ : η ≤ 1) (y : E)
-    (hy : P.billiardStep R τ x η ξ = some y) : ∀ i, P.A i y ≤ P.b i := by -- --- PROOF ---
+    (hx : ∀ i, P.A i x < P.b i) (hτ : 0 ≤ τ) (hη₀ : 0 < η) (hη₁ : η ≤ 1) :
+    ∀ y ∈ P.billiardStep R τ x η ξ,
+      ∀ i, P.A i y ≤ P.b i := by -- --- PROOF ---
+  intro y (hy : P.billiardStep R τ x η ξ = some y)
   -- the length is nonnegative: `log η ≤ 0`
   have hℓ : 0 ≤ -τ * Real.log η := by
     have := Real.log_nonpos hη₀.le hη₁

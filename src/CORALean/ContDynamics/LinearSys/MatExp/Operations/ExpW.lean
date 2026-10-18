@@ -8,13 +8,14 @@ public import Mathlib.Data.Matrix.Mul
 /-!
 # The second-order Taylor term, exactly, at one matrix
 
-`expW`: [1, Lemma 3.1]'s `W(t) = M t + ½ M² t²` at one matrix, which is orders one and two
+`expW`: [1, Prop. 4]'s `W(t) = M t + ½ M² t²` at one matrix, which is orders one and two
 of `expTaylor (t • M)`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

@@ -119,13 +119,14 @@ under inputs in `U` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
-    {R Rτ Rt : Zonotope (Vec 𝕋 n)}
-    (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt)) : -- --- STMT ---
-    0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-        R.construct U.construct x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-        x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+    {R : Zonotope (Vec 𝕋 n)} : -- --- STMT ---
+    ∀ Rτ Rt, (Rτ, Rt) ∈ fm.linReachFloat alg U options R →
+      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+          R.construct U.construct x u →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+  intro Rτ Rt (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt))
   unfold NonlinearSys.FloatHessModel.linReachFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
   obtain ⟨Ω, hΩ, hrest⟩ := hstep
@@ -146,8 +147,8 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct
         U.construct x u → ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.construct :=
     fun hΔt {x u} traj t ht => (aux_linReach_mem_hull Ω xs).1
-      (h.regionFloat_confined hΩ hΔt.le traj (Zonotope.interval_contains U) (a := 0)
-        (by rw [zero_add]) (Zonotope.interval_contains R traj.init) t (by rwa [zero_add]))
+      (h.regionFloat_confined hΔt.le traj (Zonotope.interval_contains U) (a := 0)
+        (by rw [zero_add]) (Zonotope.interval_contains R traj.init) _ hΩ t (by rwa [zero_add]))
   -- the `'lin'` input set holds the field less its linear part
   have hlin : ∀ {x : Vec ℝ n} {u : Vec ℝ m}, x ∈ X.construct → u ∈ U.construct →
       sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs) ∈
@@ -158,12 +159,12 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
       ((h.hessRemainder_abstractionError A B hxsX husU').encloses x hx u (hUU' hu)))
   cases alg with
   | lin =>
-    obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer hrest
+    obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer _ _ hrest
     exact ⟨hΔt, fun traj => hout traj fun t ht => hlin (hconf hΔt traj t ht) (traj.input t ht)⟩
   | poly errorOrder =>
     simp only [Option.bind_eq_some_iff] at hrest
     obtain ⟨η, hη, hone⟩ := hrest
-    obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer hone
+    obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer _ _ hone
     refine ⟨hΔt, fun {x u} traj => hout traj fun t ht => ?_⟩
     set Rdelta := R ⊞ (⟨0, (-xs), fun j => j.elim0,
       ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) with hRdelta
@@ -190,7 +191,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
         abel⟩
     have ltraj := ltrajC.trajectory (convex_Icc 0 _) ⟨le_rfl, hΔt.le⟩
       (Zonotope.isCompact_construct _).isBounded
-    have hδ := ltraj.postDeltaFloat_outer hΔt (LinearSys.reachOrderFloat_spec hη).1
+    have hδ := ltraj.postDeltaFloat_outer hΔt (LinearSys.reachOrderFloat_spec _ hη).1
       subset_rfl ht
     simp only [sub_sub_sub_cancel_right] at hδ
     -- the remainder at `x(t)`, inside `abstrErrPolyFloat`

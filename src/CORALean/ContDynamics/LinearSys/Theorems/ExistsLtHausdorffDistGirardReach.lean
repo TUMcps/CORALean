@@ -51,7 +51,7 @@ theorem LinearSys.exists_lt_hausdorffDist_girardReach : -- --- STMT ---
       ∧ r * ‖toRealMat sys.A‖ * Real.exp (‖toRealMat sys.A‖ * (N * r))
             * (2 * μ / ‖toRealMat sys.A‖ + (1 / 2 + r) * s)
         < Metric.hausdorffDist
-          (⋃ t ∈ Set.Icc (0:ℝ) (N * r), sys.reachSet (S := 𝒵) (Set.Icc 0 t) I U t)
+          (⋃ t ∈ Set.Icc (0:ℝ) (N * r), sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t)
           (⋃ Q ∈ sys.girardReach I μ r (N * r), Q.construct) := by -- --- PROOF ---
   obtain ⟨hnorm, hgr, hd⟩ := LinearSys.girardExample_spec
   have he : 2.7182818283 < Real.exp 1 := Real.exp_one_gt_d9

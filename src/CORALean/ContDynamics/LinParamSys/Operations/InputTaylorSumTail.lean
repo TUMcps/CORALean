@@ -8,7 +8,8 @@ public import CORALean.ContSet.Interval.Real.Operations.Point
 /-!
 # Orders `2` through `η` of the input solution, over an interval matrix, summed
 
-[1, Prop. 3.6]'s over-approximated part: `LinParamSys.inputTaylorSum` starting
+The part of [1, Thm. 1] that [1, Sec. 4.4] over-approximates by interval matrices:
+`LinParamSys.inputTaylorSum` starting
 at order `2` rather than `0`, since orders `0` and `1` are the exact part
 `inputTermZono` supplies instead. Below order `2` the sum is empty, matched by
 `Interval.point 0`, whose singleton `{0}` is what an empty sum denotes.
@@ -18,8 +19,9 @@ gives: `plus` is only an enclosure and never has to be reassociated.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5

@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpMulVecSubInterpolateLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormUpperBoundFloat
 public import CORALean.ContDynamics.LinearSys.Operations.GirardReachFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetAddEq
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactAddEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContSet.ContSet.Theorems.Basic
@@ -116,16 +116,17 @@ theorem aux_foldl_iterate_float {α : Type} (f : α → α) (a : α) (k : ℕ) :
 
 /-- [1, Thm. 1] in floats: every state a run under inputs of norm at most `μ` reaches from `I`
 over `[0, T]` is in some `Qᵢ`. -/
-theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotope (Vec 𝕋 n)}
-    {μ r : 𝕋} {T : ℚ} {Qs : List (Zonotope (Vec 𝕋 n))} (h : sys.girardReachFloat I μ r T = some Qs)
-    (hA : 0 < ‖Scalar.toRealMat sys.A‖) (hr : 0 < toReal r) (hμ : 0 ≤ toReal μ)
+theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotope (Vec 𝕋 n)} {μ r : 𝕋}
+    {T : ℚ} (hA : 0 < ‖Scalar.toRealMat sys.A‖) (hr : 0 < toReal r) (hμ : 0 ≤ toReal μ)
     (hU : ∀ u ∈ U.construct, ‖u‖ ≤ toReal μ) : -- --- STMT ---
-    ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSet (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t
-      ⊆ ⋃ Q ∈ Qs, Q.construct := by -- --- PROOF ---
+    ∀ Qs ∈ sys.girardReachFloat I μ r T,
+      ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSetExact (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t
+        ⊆ ⋃ Q ∈ Qs, Q.construct := by -- --- PROOF ---
+  intro Qs (h : sys.girardReachFloat I μ r T = some Qs)
   simp only [LinearSys.girardReachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h
   obtain ⟨η, hη, rfl⟩ := h
-  have hadm := (LinearSys.reachOrderFloat_spec hη).1
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη).1
   -- the algorithm's own names for what it computed
   set A := Scalar.toRealMat sys.A with hAdef
   set a := ‖A‖ with hadef
@@ -211,7 +212,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
     ⊞ cube (addUp αr βr) with hQ₀
   -- every window lands in its own iterate
   have hwin : ∀ i : ℕ, ∀ t ∈ Set.Icc ((i : ℝ) * rr) (((i : ℝ) + 1) * rr),
-      sys.reachSet (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t ⊆
+      sys.reachSetExact (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t ⊆
         (f^[i] Q₀).construct := by
     intro i
     induction i with
@@ -219,7 +220,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
       intro t ht y hy
       simp only [Nat.cast_zero, zero_mul, zero_add, one_mul] at ht
       obtain ⟨ht0, htr⟩ := ht
-      rw [sys.reachSet_eq (S := 𝒵[𝕋]) I U ht0 hUb] at hy
+      rw [sys.reachSetExact_eq (S := 𝒵[𝕋]) I U ht0 hUb] at hy
       obtain ⟨_, ⟨z, hz, rfl⟩, v, hv, rfl⟩ := hy
       -- the point of the segment from `z` to `e^{rA} z`, at the fraction `t / r`
       have hlam : t / rr ∈ Set.Icc (0:ℝ) 1 := ⟨div_nonneg ht0 hr.le, (div_le_one hr).mpr htr⟩
@@ -253,7 +254,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
       have ht' : t - rr ∈ Set.Icc ((i : ℝ) * rr) (((i : ℝ) + 1) * rr) := by
         push_cast at ht; constructor <;> linarith [ht.1, ht.2]
       have hti : 0 ≤ t - rr := (mul_nonneg (Nat.cast_nonneg i) hr.le).trans ht'.1
-      rw [show t = (t - rr) + rr by ring, sys.reachSet_add_eq (S := 𝒵[𝕋]) I U
+      rw [show t = (t - rr) + rr by ring, sys.reachSetExact_add_eq (S := 𝒵[𝕋]) I U
         hti hr.le hUb] at hy
       obtain ⟨_, ⟨q, hq, rfl⟩, v, hv, rfl⟩ := hy
       rw [Function.iterate_succ_apply']

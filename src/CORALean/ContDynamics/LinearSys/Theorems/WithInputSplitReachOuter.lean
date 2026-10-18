@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInputSplitReachExact
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemConstInputSolution

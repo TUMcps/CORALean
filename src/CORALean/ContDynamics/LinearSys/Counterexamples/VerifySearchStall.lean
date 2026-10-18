@@ -1,9 +1,9 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
-public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Instances
@@ -142,7 +142,8 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- STMT ---
     let ℓ₁ : Vec ℝ 1 →ₗ[ℝ] ℝ := LinearMap.proj 0
     -- decidable: `R(1)` and `L` are at a positive distance
     Real.exp 1 - 1 < c ∧
-    (∀ x ∈ sys.reachSet (S := 𝒵) (Set.Icc 0 1) X₀ U 1, ∀ y ∈ L, c - (Real.exp 1 - 1) ≤ ‖x - y‖) ∧
+    (∀ x ∈ sys.reachSetExact (S := 𝒵) (Set.Icc 0 1) X₀ U 1, ∀ y ∈ L,
+      c - (Real.exp 1 - 1) ≤ ‖x - y‖) ∧
     -- and yet, for every sound oracle, `Alg. 3` never exits
     ∀ (ρ : Zonotope (Vec ℝ 1) → (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ)
       (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ construct X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
@@ -169,9 +170,9 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- STMT ---
     refine (pi_norm_le_iff_of_nonneg zero_le_one).mpr fun i => ?_
     simpa [U] using hβ 0
   -- `R(1)` lies left of `e - 1`
-  have hR : ∀ x ∈ sys.reachSet (S := 𝒵) (Set.Icc 0 1) X₀ U 1, x 0 ≤ Real.exp 1 - 1 := by
+  have hR : ∀ x ∈ sys.reachSetExact (S := 𝒵) (Set.Icc 0 1) X₀ U 1, x 0 ≤ Real.exp 1 - 1 := by
     intro x hx
-    rw [LinearSys.reachSet_eq (S := 𝒵) sys X₀ U zero_le_one hUbdd] at hx
+    rw [LinearSys.reachSetExact_eq (S := 𝒵) sys X₀ U zero_le_one hUbdd] at hx
     obtain ⟨a, ⟨z, hz, rfl⟩, v, hv, rfl⟩ := hx
     have hz0 : z = 0 := by
       obtain ⟨β, -, rfl⟩ := hz
@@ -283,7 +284,7 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- STMT ---
     linarith
   have hcheck : ℓ₁ (sys.heldSim 1 (sys.supportCounterexample 1 ν₀ νU ℓ₁ 1).1
       (sys.supportCounterexample 1 ν₀ νU ℓ₁ 1).2 1 - νL (-ℓ₁)) < 0 := by
-    have hmem := sys.convexHull_supportCounterexample_subset_reachSet (S := 𝒵) X₀ U
+    have hmem := sys.convexHull_supportCounterexample_subset_reachSetExact (S := 𝒵) X₀ U
       (ConvexSet.convex_construct X₀) (ConvexSet.convex_construct U) hUbdd one_pos hν₀ hνU
       (fun _ : Unit => ℓ₁) 1 (subset_convexHull ℝ _ ⟨(), rfl⟩)
     rw [Nat.cast_one, one_mul] at hmem

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
@@ -165,10 +165,10 @@ theorem LinearSys.supportUpper_outer
     {ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ}
     (hρ : ∀ X : S n, ∀ x ∈ construct X, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d x ≤ ρ X d)
     (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- STMT ---
-    (∀ x ∈ sys.reachSet (Set.Icc 0 ((k : ℝ) * Δt)) X₀ U ((k : ℝ) * Δt),
+    (∀ x ∈ sys.reachSetExact (Set.Icc 0 ((k : ℝ) * Δt)) X₀ U ((k : ℝ) * Δt),
         ℓ x ≤ (sys.supportUpper Δt (m + 2) X₀ U ρ ℓ k).ρR) ∧
     (∀ t ∈ Set.Icc ((k : ℝ) * Δt) (((k + 1 : ℕ) : ℝ) * Δt),
-      ∀ x ∈ sys.reachSet (Set.Icc 0 t) X₀ U t,
+      ∀ x ∈ sys.reachSetExact (Set.Icc 0 t) X₀ U t,
         ℓ x ≤ (sys.supportUpper Δt (m + 2) X₀ U ρ ℓ (k + 1)).ρRτ) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set c := Recenter.center U with hc

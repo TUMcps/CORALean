@@ -51,8 +51,8 @@ theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
       obj1.getVerdict = some (FourValued.fromKleene val) ∧
       (val = .tt → ∀ x ∈ construct set, a.Holds x loc) ∧
       (val = .ff → ∀ x ∈ construct set, ¬ a.Holds x loc) := by -- --- PROOF ---
-  obtain ⟨obj1, hobs, hnodes⟩ := OnlineReachSetAnalyzer.observeSet_single_ap (𝕋 := 𝕋) eps obj N a
-    TentativeKleeneSignal.emptySignal hn hl hf hc hk hap ht hp hch set loc I hne val hval
+  obtain ⟨obj1, hobs, hnodes⟩ := OnlineReachSetAnalyzer.observeSet_single_ap (𝕋 := 𝕋) eps obj N hn
+    hl hf hc hk hp hch set loc I hne val TentativeKleeneSignal.emptySignal ht a hap hval
   -- its signal is `val` at `0`
   have hsv : N.signal.IsValid := by
     rw [hsig]
@@ -69,15 +69,16 @@ theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineReachSetAnalyzer.getVerdict_ap (label : String) (a : AtomicProposition S d)
-    (dp : Bool) (obj0 : OnlineReachSetAnalyzer S d)
-    (hmk : OnlineReachSetAnalyzer.mk? (OnlineReachSetAnalyzer.Formula.ap label a) 1 dp =
-      some obj0) (eps : ℝ) (set : S d) (loc : ℕ) (val : Kleene)
-    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) (I : STLInterval)
-    (hne : I ≠ .empty) (h0 : (0 : ℝ) ∈ I.set) : -- --- STMT ---
-    ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj0 set I loc none = some obj1 ∧
-      obj1.getVerdict = some (FourValued.fromKleene val) ∧
-      (val = .tt → ∀ x ∈ construct set, a.Holds x loc) ∧
-      (val = .ff → ∀ x ∈ construct set, ¬ a.Holds x loc) := by -- --- PROOF ---
+    (dp : Bool) (eps : ℝ) (set : S d) (loc : ℕ) (I : STLInterval) (hne : I ≠ .empty)
+    (h0 : (0 : ℝ) ∈ I.set) : -- --- STMT ---
+    ∀ val ∈ OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc,
+      ∀ obj0 ∈ OnlineReachSetAnalyzer.mk? (OnlineReachSetAnalyzer.Formula.ap label a) 1 dp,
+        ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj0 set I loc none = some obj1 ∧
+          obj1.getVerdict = some (FourValued.fromKleene val) ∧
+          (val = .tt → ∀ x ∈ construct set, a.Holds x loc) ∧
+          (val = .ff → ∀ x ∈ construct set, ¬ a.Holds x loc) := by -- --- PROOF ---
+  intro val (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) obj0 (hmk :
+      OnlineReachSetAnalyzer.mk? (OnlineReachSetAnalyzer.Formula.ap label a) 1 dp = some obj0)
   -- the analyzer of an atom is one fresh `AP` node
   simp [OnlineReachSetAnalyzer.mk?, OnlineReachSetAnalyzer.parse,
     OnlineReachSetAnalyzer.parseNew, OnlineAnalyzerNode.mk?, OnlineReachSetAnalyzer.Formula.kind,

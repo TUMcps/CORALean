@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.Reach.Definitions.InputParams
 /-!
 # Backward reachability, computed
 
-`backReachSetForall`'s two steps at a representation: `diff` for the Minkowski
+`backReachSetForallExact`'s two steps at a representation: `diff` for the Minkowski
 difference, and `mtimes Ainv` for the preimage under `A`, taken as the image
 under a right inverse the caller hands in. `sys` is carried and never read —
 the dynamics enter through `backReachForall_inner`'s `hA` alone.

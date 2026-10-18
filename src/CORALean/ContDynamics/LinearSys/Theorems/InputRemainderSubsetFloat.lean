@@ -11,7 +11,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 /-!
 # The input remainder's closed convex hull lies in the float product
 
-The exact remainder `[-E(r)·r, E(r)·r]` of [1, Thm. 3.1], applied to the plain set `V.construct`
+The exact remainder `[-E(r)·r, E(r)·r]` of [1, Thm. 1], applied to the plain set `V.construct`
 and closed and convexified as the exact theorem has it, sits inside the float product of
 `intervalInputRemainder` with `V`: a matrix of the exact box is in the float one, so its image is
 in the float product, and the float product is convex and closed, so the hull stays inside it.
@@ -20,8 +20,9 @@ here.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

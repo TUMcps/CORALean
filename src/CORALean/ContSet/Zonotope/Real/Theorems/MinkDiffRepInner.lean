@@ -35,9 +35,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.minkDiffRep_inner (Z₁ Z₂ : Zonotope α) (M : Fin Z₁.h → Fin Z₂.h → ℝ)
-    {D : Zonotope α} (hD : Z₁.minkDiffRep Z₂ M = some D) :
-    D.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+theorem Zonotope.minkDiffRep_inner (Z₁ Z₂ : Zonotope α) (M : Fin Z₁.h → Fin Z₂.h → ℝ) :
+    ∀ D ∈ Z₁.minkDiffRep Z₂ M,
+      D.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+  intro D (hD : Z₁.minkDiffRep Z₂ M = some D)
   unfold Zonotope.minkDiffRep at hD
   split_ifs at hD with hchk
   obtain ⟨hM, hrow⟩ := hchk

@@ -59,21 +59,19 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 /-- A guard point `x t`, `t ∈ [t_f, t_f + δ]`, of a run strictly inside until `t_f`, is in the
 set. -/
-theorem NonlinearSys.WithSteps.guardIntersectPancake_outer
-    (sys : NonlinearSys.WithSteps S Rg m n) (scaled : NonlinParamSys.WithSteps S Rg m 1 n)
-    (nv : Vec ℝ n) (d : ℝ) (R₀ : S n) (tScaled δ : ℝ)
+theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.WithSteps S Rg m n)
+    (scaled : NonlinParamSys.WithSteps S Rg m 1 n) (nv : Vec ℝ n) (d : ℝ) (R₀ : S n) (tScaled δ : ℝ)
     (optionsScaled optionsJump : LinearSys.ReachOptions ℝ)
-    (hsc : scaled.sys = sys.sys.pancakeScaled nv d)
-    (hU : construct scaled.aug.U = construct sys.U)
-    {p : Vec ℝ 1} (hp : p ∈ construct scaled.P) (hp0 : 0 < p 0)
-    {T : ℝ} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.sys.IsTrajectory (Icc 0 T) R₀ sys.U x u)
-    {tf : ℝ} (htf : 0 ≤ tf) (hδ : 0 ≤ δ) (htfT : tf + δ ≤ T)
-    (hpos : ∀ s ∈ Icc 0 tf, 0 < nv ⬝ᵥ x s - d)
-    (hclock : ∫ r in (0 : ℝ)..tf, ((nv ⬝ᵥ x r - d) / p 0)⁻¹ = tScaled)
-    {t : ℝ} (ht : t ∈ Icc tf (tf + δ)) (hhit : nv ⬝ᵥ x t = d) {Z : SetUnion (S n)}
-    (hZ : sys.guardIntersectPancake scaled nv d R₀ tScaled δ optionsScaled optionsJump = some Z) :
-    x t ∈ construct Z := by -- --- PROOF ---
+    (hsc : scaled.sys = sys.sys.pancakeScaled nv d) (hU : construct scaled.aug.U = construct sys.U)
+    {p : Vec ℝ 1} (hp : p ∈ construct scaled.P) (hp0 : 0 < p 0) {T : ℝ} {x : ℝ → Vec ℝ n}
+    {u : ℝ → Vec ℝ m} (traj : sys.sys.IsTrajectory (Icc 0 T) R₀ sys.U x u) {tf : ℝ} (htf : 0 ≤ tf)
+    (hδ : 0 ≤ δ) (htfT : tf + δ ≤ T) (hpos : ∀ s ∈ Icc 0 tf, 0 < nv ⬝ᵥ x s - d)
+    (hclock : ∫ r in (0 : ℝ)..tf, ((nv ⬝ᵥ x r - d) / p 0)⁻¹ = tScaled) {t : ℝ}
+    (ht : t ∈ Icc tf (tf + δ)) (hhit : nv ⬝ᵥ x t = d) :
+    ∀ Z ∈ sys.guardIntersectPancake scaled nv d R₀ tScaled δ optionsScaled optionsJump,
+      x t ∈ construct Z := by -- --- PROOF ---
+  intro Z (hZ : sys.guardIntersectPancake scaled nv d R₀ tScaled δ optionsScaled optionsJump = some
+      Z)
   -- the run before `t_f`, reparametrized: a constant-parameter run of the scaled system
   have hgc : Continuous (fun z : Vec ℝ n => (nv ⬝ᵥ z - d) / p 0) := by
     unfold dotProduct; fun_prop
@@ -97,7 +95,7 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer
   obtain ⟨Rs, hRs, Rj, hRj, rfl⟩ := hZ
   -- `x(t_f)` is in the scaled reach set at the horizon
   have hmem : x tf ∈ construct Rs := by
-    have h1 := scaled.reachUnion_outer ⟨R₀, 0, tScaled⟩ optionsScaled hRs
+    have h1 := scaled.reachUnion_outer ⟨R₀, 0, tScaled⟩ optionsScaled _ hRs
     have hx : x tf ∈ scaled.reachUnionExact (tScaled - 0) (construct R₀) := by
       simp only [NonlinParamSys.WithSteps.reachUnionExact, mem_iUnion, mem_setOf_eq, sub_zero]
       refine ⟨tScaled, ⟨hS0, le_rfl⟩, x ∘ σ, u ∘ σ, p, ⟨?_, fun s hs => ?_, hp, fun s hs => ?_⟩, ?_⟩
@@ -133,9 +131,9 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer
   obtain ⟨J, hJ, hJm⟩ := hmap _ _ hRj Ri hRi
   -- the shifted run is a run of the original system from `Ri` over `[0, δ]`
   have hxJ : x t ∈ construct J := by
-    have h2 := sys.reachUnion_outer ⟨Ri, 0, δ⟩ optionsJump hJ
+    have h2 := sys.reachUnion_outer ⟨Ri, 0, δ⟩ optionsJump _ hJ
     refine h2 ?_
-    simp only [NonlinearSys.WithSteps.reachUnionExact, mem_iUnion, NonlinearSys.reachSet,
+    simp only [NonlinearSys.WithSteps.reachUnionExact, mem_iUnion, NonlinearSys.reachSetExact,
       mem_setOf_eq, sub_zero]
     refine ⟨t - tf, ⟨by linarith [ht.1], by linarith [ht.2]⟩, fun s => x (tf + s),
       fun s => u (tf + s), ⟨?_, fun s hs => ?_, fun s hs => ?_⟩, by simp⟩

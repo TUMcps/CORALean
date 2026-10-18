@@ -62,11 +62,11 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Interval predictor models: Identification and reliability](2009/campi-automatica-interval-predictor-models.md) | Campi, Calafiore, Garatti | Automatica, 45(2):382-392 | 2009 | 🟢 9/9 \| 28 |
 | [On the Hyperbox – Hyperplane Intersection Problem](2009/lara-infocomp-hyperbox-hyperplane.md) | Lara, Flores, Calderon | INFOCOMP Journal of Computer Science, 8(4):21-27 | 2009 | 🟢 18/18 \| 17 |
 | [Computing Reachable Sets of Hybrid Systems Using a Combination of Zonotopes and Polytopes](2010/althoff-nahs-zonotopes-polytopes.md) | Althoff, Stursberg, Buss | Nonlinear Analysis: Hybrid Systems, 4(2):233-249 | 2010 | 🟢 13/13 \| 8 |
-| [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 34/34 \| 2 |
+| [Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars](2010/althoff-thesis.md) | Althoff | PhD thesis, TU München | 2010 | 🟢 22/22 \| 14 |
 | [Inner approximation of the range of vector-valued functions](2010/goldsztejn-rc-inner-range.md) | Goldsztejn, Jaulin | Reliable Computing, 14:1-23 | 2010 | 🟡 11/18 \| 6 |
 | [A Box-Consistency Contractor Based on Extremal Functions](2010/trombettoni-cp-box-consistency.md) | Trombettoni, Papegay, Chabert, Pourtallier | CP 2010, LNCS 6308, pp. 491-498 | 2010 | 🟢 9/9 \| 10 |
 | [Zonotope Bundles for the Efficient Computation of Reachable Sets](2011/althoff-cdc-zonotope-bundles.md) | Althoff, Krogh | CDC-ECC, pp. 6814-6821 | 2011 | 🟢 16/16 \| 7 |
-| [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md) | Althoff, Krogh, Stursberg | In A. Rauh and E. Auer (eds.), Modeling, Design, and Simulation of Systems with Uncertainties, Springer | 2011 | 🟢 5/5 \| 0 |
+| [Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties](2011/althoff-reachability-parametric-uncertainties.md) | Althoff, Krogh, Stursberg | In A. Rauh and E. Auer (eds.), Modeling, Design, and Simulation of Systems with Uncertainties, Springer | 2011 | 🟢 13/13 \| 0 |
 | [Reachability Computation of Low-Order Models for the Safety Verification of High-Order Road Vehicle Models](2012/althoff-acc-low-order-models.md) | Althoff, Dolan | ACC, pp. 3559-3566 | 2012 | 🟢 3/3 \| 11 |
 | [Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems](2012/althoff-hscc-avoiding-intersection.md) | Althoff, Krogh | HSCC, pp. 45-54 | 2012 | 🟢 18/18 \| 6 |
 | [Goffin's algorithm for zonotopes](2012/cerny-kybernetika-goffin-zonotopes.md) | Černý | Kybernetika, 48(5):890-906 | 2012 | 🟢 25/25 \| 23 |

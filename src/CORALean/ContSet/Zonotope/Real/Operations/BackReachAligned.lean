@@ -13,8 +13,8 @@ public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 # `Zonotope.backReachAligned`
 
 [1, Eq. 12] with (11) and (13): zonotopes `Z_k` approximating the robust backward
-reachable sets of `x⁺ = Ax + Bu + Ew + K` (`LinearSysDT.backReachSetRobust`), `Z₀` the target and
-`Z_{k+1} = A⁻¹(Z_k ⊖ Z(Z_k, EW) ⊕ -BU - K)`. The subtrahend is aligned with `Z_k`, so
+reachable sets of `x⁺ = Ax + Bu + Ew + K` (`LinearSysDT.backReachSetRobustExact`), `Z₀` the target
+and `Z_{k+1} = A⁻¹(Z_k ⊖ Z(Z_k, EW) ⊕ -BU - K)`. The subtrahend is aligned with `Z_k`, so
 the difference is generator-wise ([1, Prop. 3]); its center and scalings are what `σ`
 returns at `Z_k`, the linear program's solution. (12) and (13) are this recursion with
 two programs: (min-out), an aligned zonotope around `EW`, gives the inner `Z̲_k`, and

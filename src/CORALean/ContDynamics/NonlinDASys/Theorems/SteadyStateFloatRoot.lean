@@ -36,13 +36,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A returned pair is within `tol`, blockwise, of exactly one solution of `f = 0`, `g = 0`. -/
-theorem NonlinDASys.FloatModel.Encloses.steadyStateFloat_root
-    {fm : NonlinDASys.FloatModel 𝕋 n p m} {sys : NonlinDASys n p m} (hfm : fm.Encloses sys)
-    (tol : 𝕋) (fuel : ℕ) (x₀ : Vec 𝕋 n) (y₀ : Vec 𝕋 p) (u₀ : Vec 𝕋 m) (x' : Vec 𝕋 n)
-    (y' : Vec 𝕋 p) (h : fm.steadyStateFloat tol fuel x₀ y₀ u₀ = some (x', y')) : -- --- STMT ---
-    ∃! xy : Vec ℝ n × Vec ℝ p, xy.1 ∈ Metric.closedBall (toRealVec x') (toReal tol) ∧
-      xy.2 ∈ Metric.closedBall (toRealVec y') (toReal tol) ∧
-      sys.f xy.1 xy.2 (toRealVec u₀) = 0 ∧ sys.g xy.1 xy.2 (toRealVec u₀) = 0 := by -- --- PROOF ---
+theorem NonlinDASys.FloatModel.Encloses.steadyStateFloat_root {fm : NonlinDASys.FloatModel 𝕋 n p m}
+    {sys : NonlinDASys n p m} (hfm : fm.Encloses sys) (tol : 𝕋) (fuel : ℕ) (x₀ : Vec 𝕋 n)
+    (y₀ : Vec 𝕋 p) (u₀ : Vec 𝕋 m) : -- --- STMT ---
+    ∀ x' y', (x', y') ∈ fm.steadyStateFloat tol fuel x₀ y₀ u₀ →
+      ∃! xy : Vec ℝ n × Vec ℝ p, xy.1 ∈ Metric.closedBall (toRealVec x') (toReal tol) ∧
+        xy.2 ∈ Metric.closedBall (toRealVec y') (toReal tol) ∧
+        sys.f xy.1 xy.2 (toRealVec u₀) = 0 ∧
+        sys.g xy.1 xy.2 (toRealVec u₀) = 0 := by -- --- PROOF ---
+  intro x' y' (h : fm.steadyStateFloat tol fuel x₀ y₀ u₀ = some (x', y'))
   unfold NonlinDASys.FloatModel.steadyStateFloat at h
   obtain ⟨zv, -, hz⟩ := Option.bind_eq_some_iff.mp h
   dsimp only at hz

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiff
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Analysis.Calculus.Deriv.Prod
@@ -69,7 +69,7 @@ theorem NonlinearSys.innerMinkDiff_timeInterval_counterexample
     (∀ x D, ops.lagr x D = ops.zero) → ops.sub ops.zero ops.zero = true → ops.cen {0} = 0 →
     ∃ Rτ, NonlinearSys.innerMinkDiff ops (fun x => sys.f x 0) X₀ 1 1 fuel = some Rτ ∧
       ![1 / 2, 0] ∈ Rτ ∧ ∀ t ∈ Icc (0 : ℝ) 1,
-        ![1 / 2, 0] ∉ sys.reachSet (S := 𝒮) (Icc 0 t) X₀ U
+        ![1 / 2, 0] ∉ sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U
           t := by -- --- PROOF ---
   intro sys A X₀ hcen hjac hC hsmul herr hlagr hsub hcen0
   obtain ⟨k, rfl⟩ : ∃ k, fuel = k + 1 := ⟨fuel - 1, by omega⟩

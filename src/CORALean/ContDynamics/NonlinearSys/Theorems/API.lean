@@ -37,13 +37,13 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizon
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterHorizonInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachOuterInputSolution
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetOuter
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinReach
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetEvalOn
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeInterval
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalHorizon
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalOfSubset
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactConfinementOfSubset
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRelinReach
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetEvalOn
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRelinTimeInterval
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRelinTimeIntervalHorizon
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRelinTimeIntervalOfSubset
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinDeltaReachOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RelinReachOuterInputSolution
@@ -90,22 +90,22 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptRunFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrRunFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderFloatOuter
-public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
-public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffInputSolutionSubsetReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffInputSolutionSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CancelRedundantCovers
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimDerivTendsto
 public import CORALean.ContDynamics.NonlinearSys.Theorems.GainDimDerivLimitNonpos
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetReachSetAdd
-public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffStepSubsetReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetReachSetExactAdd
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffStepSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffLoopAdd
-public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffLoopSubsetReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffLoopSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.InnerMinkDiffCertOfAbstractionError
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerSubsetReachSet
-public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubsetReachSet
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerSubsetReachSetExact
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerCertOfAbstractionError
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSet
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSetHorizon
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSetExact
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSetExactHorizon
 
 /-!
 # What `NonlinearSys` guarantees
@@ -118,15 +118,15 @@ the steps. `RelinTimeIntervalOuter` covers a step's interval; `RelinDeltaReachOu
 
 `ConfinedOfBall` and `ConfinementOfSubset` pay off the confinement hypothesis those carry per step:
 the run cannot cross a ball of radius `ρ > MΔt` about a step's start, so inflating the computed set
-and checking it discharges it, which `ReachUnionOuter` does at run time for `Reach`. The `ReachSet`
-files say that of the reachable set rather than of a run. `AbstractionErrorOfHessian` is one
-supplier, `AbstrErrLinCenterSubset` minimises what it gives at the center,
-`AbstractionErrorOfLagrange` is the same one order up, and the `PolyAbstractionError` files are the
-polynomialization variant's: `OfQuadRemainder` builds one, `GetSubset` splits it, `...OfPoly`
-forgets it; `AbstrErrPolySearchEqSome`, `LinReachPolyRegion` and `LinReachPolyOuter` read back what
-its search accepted. `GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its local one —
-Rådström cancellation — `GlobalAbstrErrLeLocalAbstrErr` reads a run's off its worst step,
-`BoxDiameterAbstrSolInf` closes that at a zonotope, `RowNormExpansionOfAnalytic` expands its
+and checking it discharges it, which `ReachUnionOuter` does at run time for `Reach`. The
+`ReachSetExact` files say that of the reachable set rather than of a run.
+`AbstractionErrorOfHessian` is one supplier, `AbstrErrLinCenterSubset` minimises what it gives at
+the center, `AbstractionErrorOfLagrange` is the same one order up, and the `PolyAbstractionError`
+files are the polynomialization variant's: `OfQuadRemainder` builds one, `GetSubset` splits it,
+`...OfPoly` forgets it; `AbstrErrPolySearchEqSome`, `LinReachPolyRegion` and `LinReachPolyOuter`
+read back what its search accepted. `GlobalAbstrErrEqLocalAbstrErr` reads a step's error as its
+local one — Rådström cancellation — `GlobalAbstrErrLeLocalAbstrErr` reads a run's off its worst
+step, `BoxDiameterAbstrSolInf` closes that at a zonotope, `RowNormExpansionOfAnalytic` expands its
 coefficients, `GainDimTendstoPow` is the limit gain, `GainDimLePow` its bound, `GainOrderEqTopIff`
 the gain order's point; and `AbstrErrLoopFixed`, `SubsetAbstrReach`, `OptDeltatDescent`,
 `EstimateGainBracket`, `AdaptStepInvariant`, `SubsetCenterAbstrReach` and `TuneDeltatInitGain` are

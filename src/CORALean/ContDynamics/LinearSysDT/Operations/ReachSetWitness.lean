@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetExact
 public import CORALean.Global.SupportFunction.Composition
 
 @[expose] public section
@@ -49,7 +49,7 @@ the set reached after `k` steps — no set built, and `reach` never mentioned. -
 def LinearSysDT.reachSetWitness (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
     (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (construct R₀) d)
     (bU : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (construct U) d) :
-    (k : ℕ) → (c : Vec ℝ n →ₗ[ℝ] ℝ) → SupportWitness (sys.reachSet R₀ U k) c
+    (k : ℕ) → (c : Vec ℝ n →ₗ[ℝ] ℝ) → SupportWitness (sys.reachSetExact R₀ U k) c
   | 0, c => b₀ c
   | k + 1, c =>
     (SupportWitness.image (mulVecLin (toRealMat sys.A))

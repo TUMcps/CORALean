@@ -7,21 +7,22 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 @[expose] public section
 
 /-!
-# `W(t)`, entry by entry, in the shape [1, Lemma 3.1] evaluates
+# `W(t)`, entry by entry, in the shape [1, Prop. 4] evaluates
 
 The rearrangement itself, with no interval anywhere: the `k ∈ {i, j}` part of
 the row-column sum is pulled out and folded into the factor multiplying
 `M i j`, leaving `k ≠ i, j` behind. On the diagonal the two pulled-out terms
 coincide and become `γ (M i i)` instead.
 
-This is the only algebra in [1, Lemma 3.1]; enclosure and tightness are then
+This is the only algebra in [1, Prop. 4]; enclosure and tightness are then
 the same statement about each of the three pieces, which is why both
 `expW_mem_expIntervalW` and `expIntervalW_attained` go through here.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5
@@ -39,7 +40,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `W(t)`'s entry `(i, j)`, split the way [1, Lemma 3.1] evaluates it. -/
+/-- `W(t)`'s entry `(i, j)`, split the way [1, Prop. 4] evaluates it. -/
 theorem MatExp.expW_apply (M : Mat ℝ n n) (t : ℝ) (i j : Fin n) : -- --- STMT ---
     MatExp.expW M t i j
       = (if i = j then MatExp.quadTerm t (M i i)

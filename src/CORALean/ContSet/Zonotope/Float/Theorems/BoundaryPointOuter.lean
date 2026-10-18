@@ -35,10 +35,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.boundaryPoint_outer (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start : Vec 𝕋 (n + 1))
-    (J : Interval (Vec 𝕋 (n + 1))) (hJ : Z.boundaryPoint dir start = some J) :
-    CORALean.Real.Zonotope.boundaryPoint (nominal Z) (toRealVec dir) (toRealVec start)
-      ∈ J.construct := by -- --- PROOF ---
+theorem Zonotope.boundaryPoint_outer (Z : Zonotope (Vec 𝕋 (n + 1))) (dir start : Vec 𝕋 (n + 1)) :
+    ∀ J ∈ Z.boundaryPoint dir start,
+      CORALean.Real.Zonotope.boundaryPoint (nominal Z) (toRealVec dir) (toRealVec start)
+        ∈ J.construct := by -- --- PROOF ---
+  intro J (hJ : Z.boundaryPoint dir start = some J)
   unfold Zonotope.boundaryPoint at hJ
   obtain ⟨U, hU, rfl⟩ := Option.map_eq_some_iff.mp hJ
   set T := maximum zero U with hT
@@ -50,7 +51,7 @@ theorem Zonotope.boundaryPoint_outer (Z : Zonotope (Vec 𝕋 (n + 1))) (dir star
   have hup : sSup S ≤ toReal T := by
     refine Real.sSup_le (fun t ht => ?_) hT0
     rw [hT, toReal_maximum, toReal_zero]
-    exact le_max_of_le_right (Zonotope.boundaryRatio_ge Z dir start U hU t ht.1 ht.2)
+    exact le_max_of_le_right (Zonotope.boundaryRatio_ge Z dir start t ht.1 ht.2 U hU)
   intro i
   show toReal (addDown (start i) (minimum zero (mulDown T (dir i)))) ≤
       toReal (start i) + sSup S * toReal (dir i) ∧

@@ -31,10 +31,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.reachOrderFloat_spec {sys : LinearSys 𝕋 n} {tLo tHi : 𝕋} {η η' : ℕ}
-    (h : sys.reachOrderFloat tLo tHi η = some η') :
-    sys.OrderAdmissibleFloat tLo tHi η' ∧ η ≤ η' := by
-  obtain ⟨hε, hle⟩ := MatExp.admissibleOrder_spec h
+theorem LinearSys.reachOrderFloat_spec {sys : LinearSys 𝕋 n} {tLo tHi : 𝕋} {η : ℕ} :
+    ∀ η' ∈ sys.reachOrderFloat tLo tHi η,
+      sys.OrderAdmissibleFloat tLo tHi η' ∧ η ≤ η' := by
+  intro η' (h : sys.reachOrderFloat tLo tHi η = some η')
+  obtain ⟨hε, hle⟩ := MatExp.admissibleOrder_spec _ h
   -- the search starts at `max η 2`, which bounds both floors
   exact ⟨⟨le_trans (le_max_right η 2) hle, hε⟩, le_trans (le_max_left η 2) hle⟩
 

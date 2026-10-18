@@ -30,11 +30,11 @@ public import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter
 public import CORALean.HybridDynamics.Theorems.LocationReachFloatCheckedEqSome
 public import CORALean.HybridDynamics.Theorems.ReachFloatOuter
 public import CORALean.HybridDynamics.Theorems.ReachFloatCheckedEqSome
-public import CORALean.HybridDynamics.Theorems.ReachLocationsOuter
-public import CORALean.HybridDynamics.Theorems.ReachSetOuter
-public import CORALean.HybridDynamics.Theorems.ReachSetEqIUnionIsRunUntil
-public import CORALean.HybridDynamics.Theorems.ReachSetSubsetInvariant
-public import CORALean.HybridDynamics.Theorems.ReachSetSubsetReachFloat
+public import CORALean.HybridDynamics.Theorems.ReachLocationsExactOuter
+public import CORALean.HybridDynamics.Theorems.ReachSetExactOuter
+public import CORALean.HybridDynamics.Theorems.ReachSetExactEqIUnionIsRunUntil
+public import CORALean.HybridDynamics.Theorems.ReachSetExactSubsetInvariant
+public import CORALean.HybridDynamics.Theorems.ReachSetExactSubsetReachFloat
 public import CORALean.HybridDynamics.Theorems.ResetImageSubset
 public import CORALean.HybridDynamics.Theorems.IsRunExistsIsRunOn
 public import CORALean.HybridDynamics.Theorems.IsRunIffExistsIsRunUntil
@@ -97,7 +97,7 @@ public import CORALean.HybridDynamics.Theorems.LinearResetResolveApply
 public import CORALean.HybridDynamics.Theorems.NonlinearResetResolveApply
 public import CORALean.HybridDynamics.Theorems.NonlinearResetFloatModelEnclosesResolve
 public import CORALean.HybridDynamics.Theorems.NonlinearResetResolveCORASharedInputs
-public import CORALean.HybridDynamics.Theorems.UrgentReachSetAtSubsetReachSet
+public import CORALean.HybridDynamics.Theorems.UrgentReachSetAtExactSubsetReachSetExact
 public import CORALean.HybridDynamics.Theorems.IsUrgentRunToIsRun
 public import CORALean.HybridDynamics.Theorems.ReachGuardOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectLevelSetOuter
@@ -128,12 +128,12 @@ stay) cuts that to the invariant; `JumpOuter` intersects with the guard and appl
 hypothesis `JumpOuter` leaves without an `Intersection` instance, and `JumpIntersectionOuter` is the
 case where one discharges it. `RunOuter` chains the two by induction on the run, and
 `HoldsOfRun`/`HoldsAllOfInvariant` turn the result into an answer, one specification or a list of
-them. `ReachSetOuter`, `ReachLocationsOuter`, `ReachSetSubsetInvariant`: the same at run sets.
+them. `ReachSetExactOuter`, `ReachLocationsExactOuter`, `ReachSetExactSubsetInvariant`: at run sets.
 
 The bounded-horizon reading: `RunOnToRun`/`RunExistsRunOn` relate `IsRunOn` to `IsRun`, `RunOnOuter`
 is `RunOuter` at an index, `HoldsOfRunOn` its corollary, and `InvariantOnOfInvariant` reads an
 `Invariant` as the constant-family case. By `RunIffExistsRunUntil`, `IsRunUntil` is a `IsRun` with a
-duration bound; `ReachFloatOuter`/`ReachSetSubsetReachFloat` enclose such runs in floats.
+duration bound; `ReachFloatOuter`/`ReachSetExactSubsetReachFloat` enclose such runs in floats.
 
 `FlowOuterInputSolution` computes `FlowOuter`'s input contribution rather than
 naming it, `FlowOuterSplit` without asking `0 ∈ ℓ.inputSet`, `…Float` the same in floats, and

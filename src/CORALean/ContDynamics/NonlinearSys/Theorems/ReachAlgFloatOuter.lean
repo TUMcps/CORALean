@@ -38,19 +38,20 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAlgFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg}
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (hR : fm.reachAlgFloat alg params options = some Rs) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-        sys.IsTrajectory (S := 𝒮)
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          params.U.construct x u →
-        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rs ∈ fm.reachAlgFloat alg params options,
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+          sys.IsTrajectory (S := 𝒮)
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            params.U.construct x u →
+          ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+  intro Rs (hR : fm.reachAlgFloat alg params options = some Rs)
   unfold NonlinearSys.FloatHessModel.reachAlgFloat at hR
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hR
   obtain ⟨N, hN, hrun⟩ := hR
-  obtain ⟨-, hNΔt⟩ := Reach.steps_spec_toReal hN
+  obtain ⟨-, hNΔt⟩ := Reach.steps_spec_toReal _ hN
   obtain ⟨hlen, hout⟩ := h.linReachRunFloat_outer N hrun
   refine ⟨N, hNΔt, hlen, fun {x u} traj => ?_⟩
   -- the horizon is `N` steps exactly

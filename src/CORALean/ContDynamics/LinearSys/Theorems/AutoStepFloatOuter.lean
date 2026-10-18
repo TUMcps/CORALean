@@ -64,14 +64,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- An iteration from a state holding the invariant reaches one holding it later in time, and
 its window holds every run over `[t_k, t_{k+1}]`. -/
 theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {tend : 𝕋}
-    {εmax ζ : ℚ} {ηmax fuel : ℕ} {s s' : LinearSys.AutoStateFloat 𝕋 n} {R : Zonotope (Vec 𝕋 n)}
-    (h : sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s = some (s', R))
+    {εmax ζ : ℚ} {ηmax fuel : ℕ} {s : LinearSys.AutoStateFloat 𝕋 n}
     (hinv : sys.AutoInvariantFloat X₀ V s) : -- --- STMT ---
-    sys.AutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
-      ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
-        U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
-          x t ∈ R.construct := by -- --- PROOF ---
+    ∀ s' R, (s', R) ∈ sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s →
+      sys.AutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
+        ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
+          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
+          U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
+            x t ∈ R.construct := by -- --- PROOF ---
+  intro s' R (h : sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s = some (s', R))
   obtain ⟨h0, hlo, hhi, hH, hPu, hPU⟩ := hinv
   unfold LinearSys.autoStepFloat at h
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at h
@@ -105,7 +106,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eAtk Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
-        (LinearSys.squaringsFloat_spec (le_max_right _ _) hsq) hlo hhi)
+        (LinearSys.squaringsFloat_spec (le_max_right _ _) _ hsq) hlo hhi)
         (Set.mem_image_of_mem _ hz))
   have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct
       → exp ((toReal Δt + tk) • A) *ᵥ z
@@ -115,7 +116,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
-        (LinearSys.squaringsFloat_spec hη2 hsq1)
+        (LinearSys.squaringsFloat_spec hη2 _ hsq1)
         ((addDown_le_add _ _).trans (by linarith)) (le_trans (by linarith) (add_le_addUp _ _)))
         (Set.mem_image_of_mem _ hz))
   -- `{ũ}` holds what it is built from

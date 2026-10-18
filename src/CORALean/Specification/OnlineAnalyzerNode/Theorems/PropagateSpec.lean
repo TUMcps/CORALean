@@ -48,16 +48,18 @@ theorem aux_mapM_forall₂ {α β : Type} (f : α → Option β) :
 
 theorem OnlineAnalyzerNode.propagate_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
     (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk1 : n.kind ≠ .true)
-    (hk2 : n.kind ≠ .false)
-    (hk3 : n.kind ≠ .ap) (hs : n.signal.IsValid) (delta : FourValuedSignal ℝ)
-    (hd : n.combine ch = some delta) (hdv : delta.IsValid) (n' : OnlineAnalyzerNode A)
-    (ch' : List (OnlineAnalyzerNode A))
-    (h : n.propagate eps ch I = some (n', ch')) : -- --- STMT ---
-    n' = { n with signal := n.signal.merge delta } ∧ n'.signal.IsValid ∧
-      (∀ t : ℝ, 0 ≤ t → (delta.at t ≠ FourValued.ii → n'.signal.at t = delta.at t) ∧
-        (delta.at t = FourValued.ii → n'.signal.at t = n.signal.at t)) ∧
-      List.Forall₂ (fun c c' => c.setPropagated eps n.idx
-        (n'.signal.conclusiveInterval (n'.getAllProp eps)) = some c') ch ch' := by -- --- PROOF ---
+    (hk2 : n.kind ≠ .false) (hk3 : n.kind ≠ .ap) (hs : n.signal.IsValid) : -- --- STMT ---
+    ∀ n' ch', (n', ch') ∈ n.propagate eps ch I →
+      ∀ delta ∈ n.combine ch,
+        delta.IsValid →
+        n' = { n with signal := n.signal.merge delta } ∧ n'.signal.IsValid ∧
+          (∀ t : ℝ, 0 ≤ t → (delta.at t ≠ FourValued.ii → n'.signal.at t = delta.at t) ∧
+            (delta.at t = FourValued.ii → n'.signal.at t = n.signal.at t)) ∧
+          List.Forall₂ (fun c c' => c.setPropagated eps n.idx
+            (n'.signal.conclusiveInterval (n'.getAllProp eps)) = some c')
+            ch ch' := by -- --- PROOF ---
+  intro n' ch' (h : n.propagate eps ch I = some (n', ch')) delta (hd : n.combine ch = some delta)
+      hdv
   -- the node is the one with the merged signal
   unfold OnlineAnalyzerNode.propagate at h
   split at h

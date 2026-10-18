@@ -86,7 +86,7 @@ theorem PolyZonotope.innerTest_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
       split at hst <;> (try cases hst) <;>
       exact PolyZonotope.innerStep_subset_image pZ X X₀ Y ind C
         (PolyZonotope.precondRegular_injective hC) _ hxc _ hb U
-        (Interval.le_subset hguard.2) ht (by assumption) (Option.some.inj hst)
+        (Interval.le_subset hguard.2) (Option.some.inj hst) _ ht (by assumption)
 
 end CORALean.Float
 

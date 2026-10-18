@@ -7,13 +7,13 @@ public import CORALean.ContSet.Zonotope.Real.Zonotope
 /-!
 # `Zonotope.splitRank`
 
-The measure that picks which generator to split [1, Heuristic 3.1], first
-[2, Sec. VI-A]'s `ρ_j`: `l1 j`, `l2 j` are Prop. 3.7's bounds for `Z.split j`'s two
-halves, `l̄` is §3.4.4's admissible bound, and `splitRank` folds each ratio to its
-worst dimension and multiplies the two — the lowest names the generator to split.
+The measure that picks which generator to split [1, Sec. VI-A]'s `ρ_j`: `l1 j`, `l2 j` are
+[1, Prop. 1]'s bounds for `Z.split j`'s two halves, `l̄` is [1, Eq. 7]'s admissible bound, and
+`splitRank` folds each ratio to its worst dimension and multiplies the two — the lowest names the
+generator to split.
 
-`l1`, `l2`, `l̄` are parameters: neither Prop. 3.7 nor §3.4.4's bound is
-formalized here (both rows are `—`), so this reads like
+`l1`, `l2`, `l̄` are parameters: the bounds of [1, Prop. 1] and [1, Eq. 7] are
+`abstrErrLin` and `AdmissibleLinError`, so this reads like
 `NN.Operations.RefinementRank` — a paper's ranking over what the caller has.
 
 Nothing here is proved and nothing here can be wrong: `split_union` and
@@ -26,9 +26,7 @@ factor (`0.1 · 5 < 1`). Formalized as printed regardless.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
       Systems with Uncertain Parameters using Conservative Linearization". In
       Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
       pp. 4042-4048.
@@ -49,9 +47,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The performance measure `ϱ_j` [1, Heuristic 3.1]: `l1 j`, `l2 j` read
+/-- The performance measure `ϱ_j` [1, Sec. VI-A]: `l1 j`, `l2 j` read
 against `l̄` and folded to their worst dimension, then multiplied — the
-generator with the lowest `splitRank` is the one `Heuristic 3.1` picks. -/
+generator with the lowest `splitRank` is the one [1, Sec. VI-A] picks. -/
 noncomputable def Zonotope.splitRank (Z : Zonotope (Vec ℝ n)) (l1 l2 : Fin Z.h → Vec ℝ n)
     (lBar : Vec ℝ n) (j : Fin Z.h) : ℝ :=
   (Finset.univ.fold max 0 fun i => l1 j i / lBar i) *

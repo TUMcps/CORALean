@@ -7,7 +7,7 @@ public import CORALean.ContSet.ContSet.ContSet
 /-!
 # The abstraction error of a linearization
 
-[1, Sec. 3.4], first [2, Eq. 3]. Splitting a nonlinear field at an expansion point,
+[1, Eq. 3]. Splitting a nonlinear field at an expansion point,
 `f(x,u) = f(x✱,u✱) + A(x - x✱) + B(u - u✱) + L(x,u)`, leaves a remainder `L`, and
 this is a set enclosing it over the whole of `R × U`.
 
@@ -26,9 +26,7 @@ having to enter a computed set, and a parameter rather than a field.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
       Systems with Uncertain Parameters using Conservative Linearization". In
       Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
       pp. 4042-4048.

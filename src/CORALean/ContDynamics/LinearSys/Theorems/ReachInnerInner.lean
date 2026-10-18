@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRep
-public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetAddError
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetExactSubsetInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSuperset
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetExactAddError
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetExactInnerOfOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
@@ -22,12 +22,12 @@ and inside the *exact* reachable set there, not an enclosure of it: every point
 of `reachInner` is the state at `t = kΔt` of a Carathéodory run of the system
 from `R₀` under an input in `U`.
 
-Three steps. `reach_subset_discretize_reachSet_add_error` measures the run
+Three steps. `reach_subset_discretize_reachSetExact_add_error` measures the run
 against the zero-order-hold reachable set, a recursion of zonotopes and so
-convex and compact, which is what `reachSet_inner_of_outer` asks of it. That set
+convex and compact, which is what `reachSetExact_inner_of_outer` asks of it. That set
 lies in `e^{kΔtA} R₀ ⊕ inputReach U (kΔt)`, a piecewise-constant input being
-admissible (`discretize_reachSet_subset_inputReach`). And that sum is `reachSet`
-(`reachSet_eq`), the integral equation admitting the jumps such an input makes.
+admissible (`discretize_reachSetExact_subset_inputReach`). And that sum is `reachSetExact`
+(`reachSetExact_eq`), the integral equation admitting the jumps such an input makes.
 
 The hypotheses are the step's own: `0 < Δt`, and the truncation order large
 enough that the exponential's remainder bound converges. `R₀` and `U` are
@@ -61,15 +61,15 @@ theorem LinearSys.reachInner_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- STMT ---
     sys.reachInner Δt η o ho R₀ U k
-      ⊆ sys.reachSet (S := 𝒵) (Set.Icc 0 ((k : ℝ) * Δt)) R₀ U
+      ⊆ sys.reachSetExact (S := 𝒵) (Set.Icc 0 ((k : ℝ) * Δt)) R₀ U
           ((k : ℝ) * Δt) := by -- --- PROOF ---
   set Q := Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) Δt) U with hQ
   -- the run minus its error lies in the zero-order-hold reachable set
-  have hinner := (sys.discretize Δt).reachSet_inner_of_outer (S := 𝒵)
+  have hinner := (sys.discretize Δt).reachSetExact_inner_of_outer (S := 𝒵)
     (Zonotope.convex_construct R₀) (Zonotope.isCompact_construct R₀)
     (Zonotope.convex_construct Q) (Zonotope.isCompact_construct Q) k
     ⟨_, Zonotope.center_mem_construct _⟩ (Zonotope.isBounded_construct _)
-    (sys.reach_subset_discretize_reachSet_add_error hΔt η hε ho R₀ U k)
+    (sys.reach_subset_discretize_reachSetExact_add_error hΔt η hε ho R₀ U k)
   -- each step's held input is `stepInputConst` at a point of `U`
   have hstep : construct Q ⊆ (fun c => sys.stepInputConst c Δt) '' construct U := by
     intro v hv
@@ -77,9 +77,9 @@ theorem LinearSys.reachInner_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
     rw [hQ, ← Zonotope.mtimes_exact] at hv'
     obtain ⟨c, hc, rfl⟩ := hv'
     exact ⟨c, hc, rfl⟩
-  have hzoh := sys.discretize_reachSet_subset_inputReach (S := 𝒵) hΔt R₀ U Q
+  have hzoh := sys.discretize_reachSetExact_subset_inputReach (S := 𝒵) hΔt R₀ U Q
     (Zonotope.isBounded_construct U) ⟨_, Zonotope.center_mem_construct U⟩ hstep k
-  exact hinner.trans (hzoh.trans (sys.mulVecLin_image_add_inputReach_subset_reachSet
+  exact hinner.trans (hzoh.trans (sys.mulVecLin_image_add_inputReach_subset_reachSetExact
     (S := 𝒵) R₀ U (by positivity) (Zonotope.isBounded_construct U)))
 
 end CORALean

@@ -83,7 +83,7 @@ through `TrajectoryExistsIntegralEq`/`…MeasurableParam`, `…InputSolution` wi
 `…FloatOuter` at the float step; or `TrajectoryToLinearSys` pays the drift as input,
 `TrajectoryNormLe`/`…NormDriftLe` bounding it by Gronwall. The `…Split` pair drops `0 ∈ U` by
 splitting the input set, and `ConstTrajectoryDiscretizeEnclosure`/`…MemReach` carry one step to
-a whole horizon through `LinParamSysDT.reach` — together, [1, Alg. 4].
+a whole horizon through `LinParamSysDT.reach` — together, [1, Alg. 1].
 `ConstTrajectoryToTrajectory`, `ToLinParam` and `TrajectoryToLinParam` convert: `'constParam'`
 is `'varParam'` at a constant, `LinearSys` `LinParamSys` at a point. `InputSolutionZonoOuter`
 is `InputSolutionOuter` at a matrix zonotope instead, `…ZonoOuter` the step there, and
@@ -94,6 +94,7 @@ is `InputSolutionOuter` at a matrix zonotope instead, `…ZonoOuter` the step th
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/

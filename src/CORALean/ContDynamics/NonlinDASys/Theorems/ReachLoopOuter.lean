@@ -121,7 +121,7 @@ theorem NonlinDASys.reachLoop_outer (sys : NonlinDASys n p m)
       · simp at hres
       · next rr hrep =>
         obtain ⟨hRti, hexit⟩ := NonlinDASys.reachRepeat_spec sys (taylor Rk) corollary1 sub Lmax
-          lam r (q + 2) Rk U (fuel + 1) L hrep
+          lam r (q + 2) Rk U (fuel + 1) L _ hrep
         have hcr := hcert (k₀ + k) hj (fuel + 1) Rk L rr hx hrep
         -- everything before `t_k` is already in the union, and `k > 0` if there is anything
         have hbefore : ∀ t ∈ Set.Icc 0 tf, t < tk → x ((k₀ : ℝ) * r + t) ∈ Runion := by

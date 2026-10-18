@@ -30,8 +30,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.underapproximate_inner {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n} {s : Vec 𝕋 n}
-    {b : Bool} {p : Vec 𝕋 n} (h : Z.underapproximate H s b = some p) :
-    toRealVec p ∈ Z.construct := by
+    {b : Bool} :
+    ∀ p ∈ Z.underapproximate H s b,
+      toRealVec p ∈ Z.construct := by -- --- PROOF ---
+  intro p (h : Z.underapproximate H s b = some p)
   unfold Zonotope.underapproximate at h
   dsimp only at h
   split_ifs at h with hc

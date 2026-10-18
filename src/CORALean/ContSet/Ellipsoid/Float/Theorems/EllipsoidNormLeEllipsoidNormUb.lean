@@ -34,10 +34,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.ellipsoidNorm_le_ellipsoidNormUb {prec : ℕ} {E : Ellipsoid 𝕋 n}
-    {p w : Vec 𝕋 n} {t : 𝕋} (hr : (nominal E).ellipsoid.rank = n)
-    (h : E.ellipsoidNormUb prec p w = some t) :
-    (nominal E).ellipsoid.ellipsoidNorm (toRealVec p) ≤ toReal t := by -- --- PROOF ---
+theorem Ellipsoid.ellipsoidNorm_le_ellipsoidNormUb {prec : ℕ} {E : Ellipsoid 𝕋 n} {p w : Vec 𝕋 n}
+    (hr : (nominal E).ellipsoid.rank = n) :
+    ∀ t ∈ E.ellipsoidNormUb prec p w,
+      (nominal E).ellipsoid.ellipsoidNorm (toRealVec p) ≤ toReal t := by -- --- PROOF ---
+  intro t (h : E.ellipsoidNormUb prec p w = some t)
   simp only [Ellipsoid.ellipsoidNormUb] at h
   split_ifs at h with hsol
   simp only [Option.some.injEq] at h

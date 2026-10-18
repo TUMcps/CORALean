@@ -13,13 +13,14 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 What the constant `ũ` contributes by any `t ∈ [0, r]` at a member `A` of `sys.A` is
 `∫₀ᵗ e^{Aσ}dσ ũ`: the input `ũ` held over `[0, t]` is an admissible input of the segment
-`[0, ũ]`, whose contribution grows with time [1, Prop. 3.3] and by `r` lies in
-`inputSolutionFloat` [1, Thm. 3.1].
+`[0, ũ]`, whose contribution grows with time [1, Sec. 3.3] and by `r` lies in
+`inputSolutionFloat` [1, Thm. 1].
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

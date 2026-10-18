@@ -8,7 +8,7 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 /-!
 # Zonotope bundles over a floating-point scalar: the representation
 
-CORA's `zonoBundle` [1, §3.5.5] at float zonotopes: the family is stored and the
+CORA's `zonoBundle` [1, Def. 4] at float zonotopes: the family is stored and the
 intersection is what it denotes, each member already inflated by its own error
 box. So there is no `InflatedContSet` instance and `Instances` gives `ContSet`
 directly — one ambient box cannot stand in for the members': `⋂ᵢ (Nᵢ + Eᵢ)` can be nonempty
@@ -27,8 +27,9 @@ read against that rather than against `Zonotope`'s.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
+      Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
+      European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

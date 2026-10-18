@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachUnion
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetSubsetReach
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetExactSubsetReach
 public import CORALean.ContSet.SetUnion.SetUnion
 public import CORALean.ContSet.SetUnion.Theorems.Basic
 
@@ -11,7 +11,7 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 /-!
 # `reachUnion` encloses `reachUnionExact`
 
-Every step's inclusion, `LinearSysDT.reachSet_subset_reach`, landing in its own
+Every step's inclusion, `LinearSysDT.reachSetExact_subset_reach`, landing in its own
 branch of the `SetUnion`.
 -/
 
@@ -41,7 +41,7 @@ theorem LinearSysDT.reachUnion_outer (sys : LinearSysDT 𝕋 n)
   intro y hy
   obtain ⟨k, hk, hy⟩ := Set.mem_iUnion₂.mp hy
   exact SetUnion.mem_construct_range (Nat.lt_succ_of_le hk)
-    (sys.reachSet_subset_reach options.hZonotopeOrder params.X₀ params.U k hy)
+    (sys.reachSetExact_subset_reach options.hZonotopeOrder params.X₀ params.U k hy)
 
 end CORALean
 

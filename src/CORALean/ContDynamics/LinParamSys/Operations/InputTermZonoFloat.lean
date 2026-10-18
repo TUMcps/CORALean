@@ -11,14 +11,15 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MatSmul
 /-!
 # The matrix-zonotope order `i` of the input solution, in floats
 
-`LinParamSys.inputTermZono` computed in `𝕋` [1, Prop. 3.6]: the system's float matrix
+`LinParamSys.inputTermZono` computed in `𝕋` ([1, Thm. 1], [1, Sec. 4.4]): the system's float matrix
 zonotope to the power `i`, kept as a matrix zonotope, scaled by `r^{i+1}/(i+1)!`, which
 `taylorCoeffBounds` brackets because no float holds it exactly.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

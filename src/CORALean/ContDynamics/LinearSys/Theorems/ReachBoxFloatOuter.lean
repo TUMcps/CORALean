@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
@@ -31,7 +31,7 @@ hold by the same induction, with `e^{Ar}` in the float interval matrix `[e^{Ar}]
 (`exp_mem_expIntervalFloat`, `Mtimes.mtimes_outer`) and each sum and box an enclosure
 (`Plus.plus_outer`, `Zonotope.interval_contains`, `Interval.zonotope_contains`). The base case
 is `timeIntervalStepFloat_outer` and `inputReach_subset_inputSolutionFloat`, once
-`inputReach U τ ⊆ inputReach U r`. The enclosure is of the exact `reachSet`, not an
+`inputReach U τ ⊆ inputReach U r`. The enclosure is of the exact `reachSetExact`, not an
 equality with `reachBox`'s sets.
 
 ## References
@@ -63,18 +63,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- [1, Alg. 2] in floats: `R_k` encloses the reachable set at every `t ∈ [kr, (k+1)r]`,
 `k ≤ N`. -/
 theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec 𝕋 n)) {r : 𝕋}
-    {η N : ℕ} {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachBoxFloat X₀ U r η N = some Rs)
-    (hr : 0 < toReal r) (h0 : (0 : Vec ℝ n) ∈ U.construct)
-    {k : ℕ} (hk : k ≤ N) {t : ℝ}
+    {η N : ℕ} (hr : 0 < toReal r) (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ} (hk : k ≤ N) {t : ℝ}
     (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- STMT ---
-    ∃ R, Rs[k]? = some R ∧
-      sys.reachSet (S := 𝒵[𝕋]) (Set.Icc 0 t) X₀ U t
-        ⊆ R.construct := by -- --- PROOF ---
+    ∀ Rs ∈ sys.reachBoxFloat X₀ U r η N,
+      ∃ R, Rs[k]? = some R ∧
+        sys.reachSetExact (S := 𝒵[𝕋]) (Set.Icc 0 t) X₀ U t
+          ⊆ R.construct := by -- --- PROOF ---
+  intro Rs (h : sys.reachBoxFloat X₀ U r η N = some Rs)
   -- the order is the search's, and the list is the loop's
   simp only [LinearSys.reachBoxFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h
   obtain ⟨η', hη', rfl⟩ := h
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   -- the loop's pieces, named
   set A := Scalar.toRealMat sys.A
   set ρ := toReal r with hρ
@@ -178,7 +178,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
     rw [ List.getElem?_map, List.getElem?_range (by omega)]
     rfl
   · have ht0 : 0 ≤ t := (hkr k).trans ht.1
-    rw [sys.reachSet_eq (S := 𝒵[𝕋]) X₀ U ht0 hU]
+    rw [sys.reachSetExact_eq (S := 𝒵[𝕋]) X₀ U ht0 hU]
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * ρ) hτ
     rw [show (k : ℝ) * ρ + (t - k * ρ) = t by ring] at hI

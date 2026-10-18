@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.Interfaces
 system's own `nrOfInputs`, which is why `Reach`'s `P` reads the system. `options` is
 `LinearSys.ReachStepOptions`, the point case's. `reachExact` is `reachUnionExact` on
 `[0, tFinal - tStart]`, the system being time-invariant, `reach` is `reachUnion`, `none` unless
-`0 < Δt`, and the guarantee is `reachUnion_outer` [1, Alg. 4], constant-parameter, in
+`0 < Δt`, and the guarantee is `reachUnion_outer` [1, Alg. 1], constant-parameter, in
 `⌈(tFinal - tStart) / Δt⌉` windows. The representation is asked to be convex and compact, what
 `inputSolution`'s enclosure needs of `V = B U ⊕ c`, and for `Recenter` and `OfPoint`, which
 split `V` at its center: no `0 ∈ U` is asked.
@@ -23,8 +23,9 @@ at some such matrices.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Sonnet 5.5

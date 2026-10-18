@@ -291,13 +291,13 @@ theorem aux_hpMap_res2 (A : Mat ℝ n n) (b nv : Vec ℝ n) (R₀ E : Zonotope (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A run from `R₀` on the hyperplane at `t ≤ tmax` is in the mapped set, `η ≥ 1`. -/
-theorem Location.guardIntersectHyperplaneMap_outer (ℓ : Location 𝒵 G L ℝ n) (nv : Vec ℝ n)
-    (d : ℝ) (R₀ : Zonotope (Vec ℝ n)) (tmax : ℝ) {η : ℕ} (guardOrder zonotopeOrder : ℕ)
-    (hη : 1 ≤ η) {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w)
-    (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ tmax)
-    (hhit : nv ⬝ᵥ x t = d) {Z : Zonotope (Vec ℝ n)}
-    (hZ : ℓ.guardIntersectHyperplaneMap nv d R₀ tmax η guardOrder zonotopeOrder = some Z) :
-    x t ∈ Z.construct := by -- --- PROOF ---
+theorem Location.guardIntersectHyperplaneMap_outer (ℓ : Location 𝒵 G L ℝ n) (nv : Vec ℝ n) (d : ℝ)
+    (R₀ : Zonotope (Vec ℝ n)) (tmax : ℝ) {η : ℕ} (guardOrder zonotopeOrder : ℕ) (hη : 1 ≤ η) {τ : ℝ}
+    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) (h₀ : x 0 ∈ R₀.construct) {t : ℝ}
+    (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ tmax) (hhit : nv ⬝ᵥ x t = d) :
+    ∀ Z ∈ ℓ.guardIntersectHyperplaneMap nv d R₀ tmax η guardOrder zonotopeOrder,
+      x t ∈ Z.construct := by -- --- PROOF ---
+  intro Z (hZ : ℓ.guardIntersectHyperplaneMap nv d R₀ tmax η guardOrder zonotopeOrder = some Z)
   set A : Mat ℝ n n := ℓ.dynamics.A with hA
   set U : Zonotope (Vec ℝ n) := ℓ.inputSet with hU
   set x₀ := x 0 with hx₀def

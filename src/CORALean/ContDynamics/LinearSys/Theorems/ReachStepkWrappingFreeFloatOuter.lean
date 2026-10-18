@@ -37,10 +37,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachStepkWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η k : ℕ}
-    (h2 : 2 ≤ η) {Rτ₀ R : Zonotope (Vec 𝕋 n)}
-    (h : sys.reachStepkWrappingFreeFloat Δt η Rτ₀ k = some R)
-    {y : Vec ℝ n} (hy : y ∈ Rτ₀.construct) : -- --- STMT ---
-    exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ y ∈ R.construct := by -- --- PROOF ---
+    (h2 : 2 ≤ η) {Rτ₀ : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n} (hy : y ∈ Rτ₀.construct) :
+    ∀ R ∈ sys.reachStepkWrappingFreeFloat Δt η Rτ₀ k,
+      exp (((k : ℝ) * toReal Δt) • Scalar.toRealMat sys.A) *ᵥ y ∈ R.construct := by -- --- PROOF ---
+  intro R (h : sys.reachStepkWrappingFreeFloat Δt η Rτ₀ k = some R)
   simp only [LinearSys.reachStepkWrappingFreeFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h
   obtain ⟨sk, hsk, rfl⟩ := h
@@ -48,7 +48,7 @@ theorem LinearSys.reachStepkWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {Δ
   obtain ⟨hLo, hHi⟩ := LinearSys.sampleTimeFloat_mem Δt k
   exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋]) _ Rτ₀
-    (Set.mem_biUnion (sys.exp_mem_expSquaringFloat (LinearSys.squaringsFloat_spec h2 hsk)
+    (Set.mem_biUnion (sys.exp_mem_expSquaringFloat (LinearSys.squaringsFloat_spec h2 _ hsk)
       hLo hHi) (Set.mem_image_of_mem _ hy))
 
 end CORALean

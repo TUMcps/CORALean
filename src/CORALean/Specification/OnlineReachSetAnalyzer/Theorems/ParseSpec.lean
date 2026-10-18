@@ -42,16 +42,16 @@ theorem aux_parse_hit (dp : Bool) (st st' : OnlineReachSetAnalyzer.ParseState S 
   obtain ⟨nodes1, h1, h⟩ := Option.bind_eq_some_iff.mp h
   obtain ⟨nodes2, h2, rfl⟩ := Option.map_eq_some_iff.mp h
   -- a parent is added: the first one stays
-  obtain ⟨e1, l1⟩ := OnlineReachSetAnalyzer.ext_updateNode _ _ _ _ h1 fun n hn n' hn' => by
+  obtain ⟨e1, l1⟩ := OnlineReachSetAnalyzer.ext_updateNode _ _ _ (fun n hn n' hn' => by
     obtain rfl := Option.some.inj hn'
     obtain ⟨-, hp⟩ := hinv.2 n hn
     exact ⟨rfl, rfl, by
-      cases hps : n.parents <;> simp_all [OnlineAnalyzerNode.addParent], rfl⟩
+      cases hps : n.parents <;> simp_all [OnlineAnalyzerNode.addParent], rfl⟩) _ h1
   have hinv1 := OnlineReachSetAnalyzer.nodesInv_of_ext dp _ _ l1 e1 hinv
   -- a child is added
-  obtain ⟨e2, l2⟩ := OnlineReachSetAnalyzer.ext_updateNode _ _ _ _ h2 fun n hn n' hn' => by
+  obtain ⟨e2, l2⟩ := OnlineReachSetAnalyzer.ext_updateNode _ _ _ (fun n hn n' hn' => by
     obtain rfl := Option.some.inj hn'
-    exact ⟨rfl, rfl, rfl, rfl⟩
+    exact ⟨rfl, rfl, rfl, rfl⟩) _ h2
   refine ⟨OnlineReachSetAnalyzer.nodesInv_of_ext dp _ _ l2 e2 hinv1,
     OnlineReachSetAnalyzer.ext_trans e1 e2, ?_⟩
   -- the node that was updated is in the list
@@ -130,7 +130,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- STMT ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node with no operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ _ hinv h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain rfl := Option.some.inj h
       exact aux_parse_leaf dp st st1 parent _ hi1 he1 hnode
@@ -143,7 +143,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- STMT ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node with no operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ _ hinv h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain rfl := Option.some.inj h
       exact aux_parse_leaf dp st st1 parent _ hi1 he1 hnode
@@ -156,7 +156,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- STMT ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node with no operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ _ hinv h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain rfl := Option.some.inj h
       exact aux_parse_leaf dp st st1 parent _ hi1 he1 hnode
@@ -169,7 +169,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- STMT ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node, then its operand
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ _ hinv h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain ⟨hi2, he2, -⟩ := ih _ _ _ hi1 h
       exact ⟨hi2, OnlineReachSetAnalyzer.ext_trans he1 he2, fun hnil =>
@@ -183,7 +183,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- STMT ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node, then its two operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ _ hinv h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain ⟨st2, h2, h3⟩ := Option.bind_eq_some_iff.mp h
       obtain ⟨hi2, he2, -⟩ := iha _ _ _ hi1 h2
@@ -198,7 +198,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- STMT ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node, then its two operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ _ hinv h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain ⟨st2, h2, h3⟩ := Option.bind_eq_some_iff.mp h
       obtain ⟨hi2, he2, -⟩ := iha _ _ _ hi1 h2
@@ -213,7 +213,7 @@ theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- STMT ---
       exact ⟨h1, h2, fun hnil => absurd hnil h3⟩
     · -- a new node, then its two operands
       obtain ⟨st1, h1, h⟩ := Option.bind_eq_some_iff.mp h
-      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ _ hinv h1
+      obtain ⟨hi1, he1, hnode⟩ := OnlineReachSetAnalyzer.parseNew_spec dp _ _ _ hinv _ h1
       dsimp only at h
       obtain ⟨st2, h2, h3⟩ := Option.bind_eq_some_iff.mp h
       obtain ⟨hi2, he2, -⟩ := iha _ _ _ hi1 h2

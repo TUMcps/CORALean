@@ -35,13 +35,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : Vec 𝕋 P.me}
-    {Q : HPolytope 𝕋 (Vec 𝕋 n)} {τ : 𝕋} (h : P.anchorEqsInBox ε = some (Q, τ))
-    (β : Vec ℝ n) (hβ : ∀ j, |β j| ≤ 1)
+theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : Vec 𝕋 P.me} (β : Vec ℝ n)
+    (hβ : ∀ j, |β j| ≤ 1)
     (hA : ∀ k, (toRealMat P.A *ᵥ β) k ≤ toReal (P.b k) + |toReal (P.b_error k)|)
     (hE : ∀ i, |(toRealMat P.Ae *ᵥ β) i - toReal (P.be i)| ≤ toReal (ε i)) : -- --- STMT ---
-    0 ≤ toReal τ ∧ ∃ β'' : Vec ℝ n, (∀ j, |β'' j| ≤ 1) ∧ β'' ∈ Q.nominal.construct
-      ∧ ∀ j, |β'' j - β j| ≤ toReal τ := by -- --- PROOF ---
+    ∀ Q τ, (Q, τ) ∈ P.anchorEqsInBox ε →
+      0 ≤ toReal τ ∧ ∃ β'' : Vec ℝ n, (∀ j, |β'' j| ≤ 1) ∧ β'' ∈ Q.nominal.construct
+        ∧ ∀ j, |β'' j - β j| ≤ toReal τ := by -- --- PROOF ---
+  intro Q τ (h : P.anchorEqsInBox ε = some (Q, τ))
   unfold HPolytope.anchorEqsInBox at h
   dsimp only at h
   split at h

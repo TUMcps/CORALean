@@ -8,8 +8,8 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.NotHoldsOfSimulat
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OfFullIsTrajectoryIff
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.OutputOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetOuter
-public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetSubsetReach
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetExactOuter
+public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachSetExactSubsetReach
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.Real.API
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.SimulateMemReach
@@ -26,7 +26,7 @@ a specification on it buys, and `TrajectoryLinear`/`TrajectoryOfMap`/`EqOfInit` 
 run at a linear plant that a determined input forces: a sequence stepping by `map` under the
 external input, settled by where it started and that input.
 
-`ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable
+`ReachSetExactOuter`/`ReachSetExactSubsetReach` restate `ReachOuter` on the reachable
 set; `Real/` bounds its generator count at `𝒵`, `ReachOrderLe` only holding at ℝ.
 
 `OutputOuter`/`HoldsOfOutput` are those two at an `OutputEq`, read at the

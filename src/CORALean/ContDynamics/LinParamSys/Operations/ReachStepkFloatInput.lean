@@ -10,15 +10,16 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
 # One window with the input set split, at every member, in floats
 
 `LinParamSys.reachStepkInput` computed in `𝕋`, `V = ũ ⊕ Ũ` the input set of the state space
-split at its stored center [1, Alg. 4]:
+split at its stored center [1, Alg. 1]:
 `R(τ_k) = [e^{[A]t_k}](H^R(τ_0) ⊕ P̃^R(τ_0)) ⊕ P̃(t_k) ⊕ P^R_Ũ(t_{k+1})`. The first
 window's set `Rτ₀ = (H^R ⊕ P̃^R)(τ_0)` is taken, as `reachStepkFloat` takes `H^R(τ_0)`,
 so no window pays for it again.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

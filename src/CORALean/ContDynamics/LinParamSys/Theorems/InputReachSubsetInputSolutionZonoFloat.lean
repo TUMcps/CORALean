@@ -18,7 +18,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatIntervalCont
 /-!
 # `inputSolutionZonoFloat` holds every member's input contribution over a step
 
-[1, Prop. 3.6] in floats, by way of the exact theorem at the frozen member, as
+[1, Thm. 1] in floats, by way of the exact theorem at the frozen member, as
 `inputReach_subset_inputSolutionFloat` takes it: `inputReach_subset_inputSolution` at plain
 sets gives the member's orders `0 … η` and its remainder. Orders `0` and `1` then sit in
 `inputTermZonoFloat` (`smul_pow_mem_inputTermZonoFloat`), orders from `2` in the interval
@@ -29,8 +29,9 @@ exact sum is regrouped as the float one is, Minkowski sums being associative.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

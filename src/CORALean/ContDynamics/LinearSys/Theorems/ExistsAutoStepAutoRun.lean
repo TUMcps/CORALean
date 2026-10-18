@@ -48,13 +48,13 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 horizon, some fuel lets the next iteration report rather than give out. -/
 theorem LinearSys.exists_autoStep_autoRun (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, a ≤ b → le a b = true) (hle' : ∀ a b : ℝ, le a b = true → a ≤ b)
-    (X₀ U : Zonotope (Vec ℝ n)) {tend εmax ζ : ℝ} {ηmax fuel k : ℕ}
-    {s : LinearSys.AutoState n} (hn : 0 < n) (htpos : 0 < tend) (hεmax : 0 < εmax)
-    (hζ0 : 0 ≤ ζ) (hζ1 : ζ < 1) (hηmax : 1 ≤ ηmax)
-    (hrun : sys.autoRun le X₀ U tend εmax ζ ηmax fuel k = some s)
-    (hlt : s.t < tend) : -- --- STMT ---
-    ∃ (fuel' : ℕ) (r : LinearSys.AutoState n × Zonotope (Vec ℝ n)),
-      sys.autoStep le X₀ U tend εmax ζ ηmax fuel' s = some r := by -- --- PROOF ---
+    (X₀ U : Zonotope (Vec ℝ n)) {tend εmax ζ : ℝ} {ηmax fuel k : ℕ} (hn : 0 < n) (htpos : 0 < tend)
+    (hεmax : 0 < εmax) (hζ0 : 0 ≤ ζ) (hζ1 : ζ < 1) (hηmax : 1 ≤ ηmax) : -- --- STMT ---
+    ∀ s ∈ sys.autoRun le X₀ U tend εmax ζ ηmax fuel k,
+      s.t < tend →
+      ∃ (fuel' : ℕ) (r : LinearSys.AutoState n × Zonotope (Vec ℝ n)),
+        sys.autoStep le X₀ U tend εmax ζ ηmax fuel' s = some r := by -- --- PROOF ---
+  intro s (hrun : sys.autoRun le X₀ U tend εmax ζ ηmax fuel k = some s) hlt
   obtain ⟨-, hΔt, hεa, hεr⟩ := sys.autoRun_budget hle' X₀ U htpos ηmax fuel k s hrun
   exact sys.exists_autoStep hle X₀ U s hn hlt htpos hεmax hζ0 hζ1 hεa hεr hΔt hηmax
 

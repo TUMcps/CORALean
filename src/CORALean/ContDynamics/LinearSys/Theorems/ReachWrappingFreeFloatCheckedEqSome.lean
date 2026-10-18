@@ -31,11 +31,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachWrappingFreeFloatChecked_eq_some (sys : LinearSys 𝕋 n)
-    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋)
-    {Rs : (List (Zonotope (Vec 𝕋 n)))}
-    (h : sys.reachWrappingFreeFloatChecked params options = some Rs) :
-    sys.reachWrappingFreeFloat params options = some Rs ∧ noNaN (𝕋 := 𝕋) Rs = true :=
+    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachOptions 𝕋) :
+    ∀ Rs ∈ sys.reachWrappingFreeFloatChecked params options,
+      sys.reachWrappingFreeFloat params options = some Rs ∧ noNaN (𝕋 := 𝕋) Rs = true := fun _ h =>
   checkNoNaN_eq_some h
 
 end CORALean

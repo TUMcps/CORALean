@@ -35,12 +35,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem findRegionPolys_cover {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
     (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol : 𝕋) (fuel : ℕ) (lMax uMax : 𝕋)
     {pStart pEnd : RegionPoly 𝕋} (hs : pStart.lo = none ∧ pStart.hi = some lMax)
-    (he : pEnd.lo = some uMax ∧ pEnd.hi = none) (hS : pStart.Encloses σ) (hE : pEnd.Encloses σ)
-    {regions : List (RegionPoly 𝕋)}
-    (h : findRegionPolys F order tol fuel lMax uMax pStart pEnd = some regions) : -- --- STMT ---
-    (∀ t, ∃ r ∈ regions, r.covers t ∧
-        |σ t - Real.evalPoly (fun k => toReal (r.coeffs k)) t| ≤ toReal r.err) ∧
-      ∀ r ∈ regions, r = pStart ∨ r = pEnd ∨ toReal r.err ≤ toReal tol := by -- --- PROOF ---
+    (he : pEnd.lo = some uMax ∧ pEnd.hi = none) (hS : pStart.Encloses σ)
+    (hE : pEnd.Encloses σ) : -- --- STMT ---
+    ∀ regions ∈ findRegionPolys F order tol fuel lMax uMax pStart pEnd,
+      (∀ t, ∃ r ∈ regions, r.covers t ∧
+          |σ t - Real.evalPoly (fun k => toReal (r.coeffs k)) t| ≤ toReal r.err) ∧
+        ∀ r ∈ regions, r = pStart ∨ r = pEnd ∨ toReal r.err ≤ toReal tol := by -- --- PROOF ---
+  intro regions (h : findRegionPolys F order tol fuel lMax uMax pStart pEnd = some regions)
   -- the loop's regions, framed by the two given ones
   unfold findRegionPolys at h
   obtain ⟨mids, hm, rfl⟩ := Option.map_eq_some_iff.mp h

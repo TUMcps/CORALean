@@ -11,7 +11,7 @@ public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 
 `∫₀ʳ τⁱ f(τ) dτ ∈ (r^{i+1}/(i+1)) · S` whenever `f` is valued in `S` and `S` is
 convex and closed — the total weight `∫₀ʳ τⁱ dτ` scaling the set, and nothing
-worse. Every term of the input solution of [1, Thm. 3.1] is one instance of it.
+worse. Every term of the input solution of [1, Thm. 1] is one instance of it.
 
 An integral is a limit of convex combinations of values of `f`, so convexity is
 what puts it in `S` and closedness is what turns the limit into membership.
@@ -23,8 +23,9 @@ normalised integral wanted, normalised by the total weight.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5

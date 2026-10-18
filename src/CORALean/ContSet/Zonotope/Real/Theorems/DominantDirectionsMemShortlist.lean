@@ -34,10 +34,13 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.dominantDirections_mem_shortlist (Z : Zonotope (Vec ℝ n)) (a b : ℕ) (P : Mat ℝ n n)
-    (h : Z.dominantDirections a b = some P) :
-    ∃ T ∈ Z.dominantShortlist (min a (Finset.univ.filter fun j => Z.G j ≠ 0).card)
-        (min b (Finset.univ.filter fun j => Z.G j ≠ 0).card), P = Z.generatorMatrix T := by
+theorem Zonotope.dominantDirections_mem_shortlist (Z : Zonotope (Vec ℝ n))
+    (a b : ℕ) : -- --- STMT ---
+    ∀ P ∈ Z.dominantDirections a b,
+      ∃ T ∈ Z.dominantShortlist (min a (Finset.univ.filter fun j => Z.G j ≠ 0).card)
+          (min b (Finset.univ.filter fun j => Z.G j ≠ 0).card),
+        P = Z.generatorMatrix T := by -- --- PROOF ---
+  intro P (h : Z.dominantDirections a b = some P)
   unfold Zonotope.dominantDirections at h
   have hmem : P ∈ List.argmin Z.dominantScore ((Z.dominantShortlist _ _).map Z.generatorMatrix) := h
   obtain ⟨T, hT, rfl⟩ := List.mem_map.mp (List.argmin_mem hmem)

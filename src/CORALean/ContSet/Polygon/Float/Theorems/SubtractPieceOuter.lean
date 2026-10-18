@@ -42,8 +42,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `innerHRep` returns the plain inequalities its edges give, with no error box. -/
-private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} {H : HPolytope 𝕋 (Vec 𝕋 2)}
-    (h : Polygon.innerHRep p = some H) : H.ErrFree := by
+private theorem Polygon.innerHRep_errFree {p : VPolytope (Vec 𝕋 2)} :
+    ∀ H ∈ Polygon.innerHRep p,
+      H.ErrFree := by -- --- PROOF ---
+  intro H (h : Polygon.innerHRep p = some H)
   simp only [Polygon.innerHRep] at h
   split_ifs at h
   cases h
@@ -66,8 +68,8 @@ theorem Polygon.subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) :
   by_cases hme : H.me = 0
   · rw [if_pos hme]
     -- outside `q`, some row of the inner description fails
-    have hxH : x ∉ H.construct := fun h => hq (Polygon.innerHRep_inner hH h)
-    rw [HPolytope.mem_construct_iff (Polygon.innerHRep_errFree hH)] at hxH
+    have hxH : x ∉ H.construct := fun h => hq (Polygon.innerHRep_inner _ hH h)
+    rw [HPolytope.mem_construct_iff (Polygon.innerHRep_errFree _ hH)] at hxH
     have hex : ∃ i, toReal (H.b i) < (toRealMat H.A *ᵥ x) i := by
       by_contra hno
       push Not at hno

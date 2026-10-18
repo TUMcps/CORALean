@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.NoiseCovariance
-public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetExactSubsetInputReach
 
 @[expose] public section
 

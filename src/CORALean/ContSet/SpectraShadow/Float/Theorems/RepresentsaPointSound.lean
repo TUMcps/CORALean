@@ -41,7 +41,7 @@ theorem SpectraShadow.representsa_point_sound {S : SpectraShadow 𝕋 (Vec 𝕋 
     refine ⟨toRealVec I.sup, Set.eq_singleton_iff_unique_mem.mpr
       ⟨SpectraShadow.containsPoint_sound hmem, fun x hx => ?_⟩⟩
     -- every member is squeezed between the two equal corners
-    have hb := SpectraShadow.interval_contains hI hx
+    have hb := SpectraShadow.interval_contains _ hI hx
     funext i
     have hi : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hb i
     have e₁ := toReal_le_of_le (hflat i).2

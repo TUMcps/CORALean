@@ -49,17 +49,18 @@ the horizon from `X₀` under inputs `u(t) ∈ B U + c` lies, at every time of a
 window, in that window's set. -/
 theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.AdaptiveOptions 𝕋} {steps : List (LinearSys.AdaptiveStepInfo 𝕋 n)}
-    (h : sys.reachAdaptiveFloat params options = some steps) : -- --- STMT ---
-    (∀ t ∈ Set.Icc (params.tStart : ℝ) params.tFinal, ∃ (k : ℕ) (hk : k < steps.length),
-        t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧
-      ∀ {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮)
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-            params.U.construct) x u →
-        ∀ (k : ℕ) (hk : k < steps.length), ∀ t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd,
-          x (t - params.tStart) ∈ steps[k].R.construct := by -- --- PROOF ---
+    {options : LinearSys.AdaptiveOptions 𝕋} : -- --- STMT ---
+    ∀ steps ∈ sys.reachAdaptiveFloat params options,
+      (∀ t ∈ Set.Icc (params.tStart : ℝ) params.tFinal, ∃ (k : ℕ) (hk : k < steps.length),
+          t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧
+        ∀ {x u : ℝ → Vec ℝ n},
+          sys.IsCanonicalTrajectory (S := 𝒮)
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+              params.U.construct) x u →
+          ∀ (k : ℕ) (hk : k < steps.length), ∀ t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd,
+            x (t - params.tStart) ∈ steps[k].R.construct := by -- --- PROOF ---
+  intro steps (h : sys.reachAdaptiveFloat params options = some steps)
   unfold LinearSys.reachAdaptiveFloat at h
   dsimp only at h
   split_ifs at h with htf

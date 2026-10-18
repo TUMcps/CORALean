@@ -39,10 +39,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- [1, Alg. 1]: the buckets returned leave `n̂_k` neurons with `|n̂_k/n_k - ρ| ≤ tol`, the
 difference as the scalar computes it. -/
 theorem bucketTolerance_approx {le : 𝕋 → 𝕋 → Bool}
-    (hle : ∀ a b, le a b = true → toReal a ≤ toReal b)
-    {tol : 𝕋} {fuel : ℕ} {B : MergeBuckets 𝕋} {I_k : Interval (Vec 𝕋 n)} {ρ : 𝕋}
-    {B_kδ : Fin n → Bool} (h : bucketTolerance le tol fuel B I_k ρ = some B_kδ) : -- --- STMT ---
-    |toReal (subUp (ratio (n - bucketed B_kδ) n) ρ)| ≤ toReal tol := by -- --- PROOF ---
+    (hle : ∀ a b, le a b = true → toReal a ≤ toReal b) {tol : 𝕋} {fuel : ℕ} {B : MergeBuckets 𝕋}
+    {I_k : Interval (Vec 𝕋 n)} {ρ : 𝕋} : -- --- STMT ---
+    ∀ B_kδ ∈ bucketTolerance le tol fuel B I_k ρ,
+      |toReal (subUp (ratio (n - bucketed B_kδ) n) ρ)| ≤ toReal tol := by -- --- PROOF ---
+  intro B_kδ (h : bucketTolerance le tol fuel B I_k ρ = some B_kδ)
   -- the bisection returns only where line 16's test passed, at every fuel
   have key : ∀ (k : ℕ) (δmin δmax : 𝕋),
       bisectBucketTolerance le tol B I_k ρ δmin δmax k = some B_kδ →

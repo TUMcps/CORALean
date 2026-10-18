@@ -75,7 +75,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
       simp only [pure, Option.some.injEq] at hpure
       subst hpure
       -- the step, and what the rest of the run guarantees from where it left off
-      obtain ⟨hlt, hstep⟩ := h.adaptStepFloat_outer hs'
+      obtain ⟨hlt, hstep⟩ := h.adaptStepFloat_outer _ hs'
       obtain ⟨hmono, hind⟩ := ih hrest
       rw [List.getLast_cons (List.cons_ne_nil _ _)]
       refine ⟨le_trans hlt.le hmono, fun {x u} traj j hj t ht' => ?_⟩

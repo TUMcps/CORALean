@@ -74,7 +74,7 @@ theorem LinearSysDT.aux_interval_plus (Z₁ Z₂ : Zonotope (Vec ℝ n)) :
 theorem LinearSysDT.glmReachBox_eq_hull (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n))
     (N : ℕ) :
     sys.glmReachBox Ω₀ U N = (List.range N).map fun i =>
-      Interval.hull (sys.reachSet (S := 𝒵) Ω₀ U (i + 1)) := by -- --- PROOF ---
+      Interval.hull (sys.reachSetExact (S := 𝒵) Ω₀ U (i + 1)) := by -- --- PROOF ---
   set Φ := toRealMat sys.A
   set f₁ := fun (s : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)) =>
     (s.1.mtimes Φ, s.2.1.plus s.2.2, s.2.2.mtimes Φ) with hf₁

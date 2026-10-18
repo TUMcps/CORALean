@@ -34,20 +34,22 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineAnalyzerNode.observeSet_ap_sound (eps : ℝ)
-    (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval)
-    (loc : ℕ) (hk : n.kind = .ap) (ap : AtomicProposition S d) (hap : n.ap = some ap)
-    (tent : TentativeKleeneSignal ℝ) (ht : n.tentative = some tent)
+    (n : OnlineAnalyzerNode (AtomicProposition S d)) (set : S d) (interval : STLInterval) (loc : ℕ)
+    (hk : n.kind = .ap)
     (hnc : OnlineAnalyzerNode.conflicts eps interval.infimum.value interval.infimum.closed
-      n.prop = some false) (val : Kleene)
-    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val)
-    (hs : n.signal.IsValid)
-    (n' : OnlineAnalyzerNode (AtomicProposition S d))
-    (h : OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false = some n')
-    (t : ℝ) (h0 : 0 ≤ t) (hti : t ∈ interval.set) : -- --- STMT ---
-    (n'.signal.at t = FourValued.tt → ∀ x ∈ construct set, ap.Holds x loc) ∧
-    (n'.signal.at t = FourValued.ff → ∀ x ∈ construct set, ¬ ap.Holds x loc) := by -- --- PROOF ---
+      n.prop = some false) (val : Kleene) (hs : n.signal.IsValid) (t : ℝ) (h0 : 0 ≤ t)
+    (hti : t ∈ interval.set) : -- --- STMT ---
+    ∀ n' ∈ OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false,
+      ∀ tent ∈ n.tentative,
+        ∀ ap ∈ n.ap,
+          OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some val →
+          (n'.signal.at t = FourValued.tt → ∀ x ∈ construct set, ap.Holds x loc) ∧
+          (n'.signal.at t = FourValued.ff →
+            ∀ x ∈ construct set, ¬ ap.Holds x loc) := by -- --- PROOF ---
+  intro n' (h : OnlineAnalyzerNode.observeSet (𝕋 := 𝕋) eps n set interval loc false = some n') tent
+      (ht : n.tentative = some tent) ap (hap : n.ap = some ap) hval
   obtain ⟨hm, hsig⟩ := (OnlineAnalyzerNode.observeSet_ap_spec (𝕋 := 𝕋) eps n set interval loc
-    hk ap hap tent ht hnc val hval).1
+    hk hnc val tent ht ap hap hval).1
   obtain rfl : { n with signal := n.signal.set interval (FourValued.fromKleene val) } = n' :=
     Option.some.inj (hm.symm.trans h)
   have hat := ((hsig hs).2 t h0).1 hti

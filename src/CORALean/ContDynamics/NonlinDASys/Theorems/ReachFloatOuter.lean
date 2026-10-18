@@ -34,16 +34,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 theorem NonlinDASys.reachFloat_outer {sys : NonlinDASys n p m} (red : sys.ReducedModel)
     {fm : NonlinearSys.FloatModel 𝕋 n m} (h : fm.Encloses red.toNonlinearSys)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (hR : NonlinDASys.reachFloat red fm params options = some Rs) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m},
-        sys.IsTrajectory (S := 𝒮)
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          params.U.construct x y u →
-        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
-  obtain ⟨N, hN, hlen, hout⟩ := h.reachFloat_outer hR
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rs ∈ NonlinDASys.reachFloat red fm params options,
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m},
+          sys.IsTrajectory (S := 𝒮)
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            params.U.construct x y u →
+          ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+  intro Rs (hR : NonlinDASys.reachFloat red fm params options = some Rs)
+  obtain ⟨N, hN, hlen, hout⟩ := h.reachFloat_outer _ hR
   exact ⟨N, hN, hlen, fun {x y u} traj => hout (traj.toNonlinearSys red)⟩
 
 end CORALean

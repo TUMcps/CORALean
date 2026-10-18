@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.StepInputEqShifted
 /-!
 # `inputSolution` contains what a classical run's input contributed over a step
 
-[1, Thm. 3.1] applied to a trajectory, which is what turns the sampled
+[1, Thm. 1] applied to a trajectory, which is what turns the sampled
 guarantees' input enclosure from a hypothesis into a theorem.
 
 Every step has the same length, so the enclosing set does not depend on `k`:
@@ -27,8 +27,9 @@ equation is anchored at `0`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

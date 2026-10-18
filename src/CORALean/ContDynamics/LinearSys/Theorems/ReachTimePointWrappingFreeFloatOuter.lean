@@ -40,27 +40,28 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachTimePointWrappingFreeFloat_outer (sys : LinearSys 𝕋 n)
-    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachTimePointWrappingFreeFloat params options = some Rs) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ params.X₀.construct,
-        exp (((k : ℝ) * toReal options.Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
-          ∈ Rs[k].construct := by -- --- PROOF ---
+    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rs ∈ sys.reachTimePointWrappingFreeFloat params options,
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rs.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ params.X₀.construct,
+          exp (((k : ℝ) * toReal options.Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
+            ∈ Rs[k].construct := by -- --- PROOF ---
+  intro Rs (h : sys.reachTimePointWrappingFreeFloat params options = some Rs)
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachTimePointWrappingFreeFloat, Option.bind_eq_bind,
     Option.bind_eq_some_iff] at h
   obtain ⟨N, hN, η', hη', hRs⟩ := h
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   obtain ⟨hlen, hget⟩ := LinParamSys.mapM_eq_some hRs
   rw [List.length_range] at hlen
-  refine ⟨N, (Reach.steps_spec_toReal hN).2, hlen, fun k hk x₀ hx₀ => ?_⟩
+  refine ⟨N, (Reach.steps_spec_toReal _ hN).2, hlen, fun k hk x₀ hx₀ => ?_⟩
   have hwin := hget k hk
   simp only [List.getElem_range] at hwin
   -- window `k` is `reachStepkWrappingFreeFloat` at `X₀` directly, `k = 0` included
-  exact sys.reachStepkWrappingFreeFloat_outer hadm.1 hwin hx₀
+  exact sys.reachStepkWrappingFreeFloat_outer hadm.1 hx₀ _ hwin
 
 end CORALean
 

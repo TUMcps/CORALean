@@ -34,12 +34,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.polyZonotope_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
-    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} {W : PolyZonotope (Vec 𝕋 n)}
-    (h : S.polyZonotope Yup Ylo = some W) :
-    S.construct ⊆ W.construct := by
+    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} :
+    ∀ W ∈ S.polyZonotope Yup Ylo,
+      S.construct ⊆ W.construct := by
+  intro W (h : S.polyZonotope Yup Ylo = some W)
   simp only [SpectraShadow.polyZonotope, Option.map_eq_some_iff] at h
   obtain ⟨Z, hZ, rfl⟩ := h
-  exact subset_trans (SpectraShadow.zonotope_contains hZ) (Zonotope.polyZonotope_contains Z)
+  exact subset_trans (SpectraShadow.zonotope_contains _ hZ) (Zonotope.polyZonotope_contains Z)
 
 end CORALean.Float
 

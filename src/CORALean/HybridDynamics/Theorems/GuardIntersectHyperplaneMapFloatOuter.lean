@@ -297,12 +297,12 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
   -- assemble `k + Lν + ½φq`
   rw [hexp]
   refine Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.plus_outer _ _ (Set.add_mem_add
-    (Interval.zonotope_contains _ (GuardMap.hitPoint_mem_hitPointFloat A b nv d R0red.c hk).2)
+    (Interval.zonotope_contains _ (GuardMap.hitPoint_mem_hitPointFloat A b nv d R0red.c _ hk).2)
     ?_)) ?_)
   · have hν' : ν = x₀ - toRealVec R₀.c := by rw [hν, hξdef, hcen]
     rw [hν']
     exact Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_biUnion
-      (GuardMap.hitJacobian_mem_hitJacobianFloat A b nv d R0red.c hL)
+      (GuardMap.hitJacobian_mem_hitJacobianFloat A b nv d R0red.c _ hL)
       ⟨_, Zonotope.sub_center_mem_recenter hx₀, rfl⟩)
   · rw [smul_smul]
     refine aux_hpMapF_smul_mem ?_ ?_ hqmem
@@ -314,14 +314,15 @@ theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋) (R₀ 
 
 /-- [1, Sec. 5.4] at floats: a run from `R₀` on the hyperplane at `t ≤ tmax` is in the float
 mapped set, `η ≥ 1`. -/
-theorem Location.guardIntersectHyperplaneMapFloat_outer
-    (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
-    (nv : Vec 𝕋 n) (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) {η : ℕ}
-    (guardOrder zonotopeOrder p : ℕ) (hη : 1 ≤ η) {τ : ℝ} {x : ℝ → Vec ℝ n} {u w}
-    (traj : ℓ.IsTrajectory τ x u w) (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ)
-    (htmax : t ≤ toReal tmax) (hhit : toRealVec nv ⬝ᵥ x t = toReal d) {Z : Zonotope (Vec 𝕋 n)}
-    (hZ : ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p = some Z) :
-    x t ∈ Z.construct := by -- --- PROOF ---
+theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[𝕋] G L 𝕋 n) (nv : Vec 𝕋 n)
+    (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) {η : ℕ} (guardOrder zonotopeOrder p : ℕ)
+    (hη : 1 ≤ η) {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w)
+    (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ toReal tmax)
+    (hhit : toRealVec nv ⬝ᵥ x t = toReal d) :
+    ∀ Z ∈ ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p,
+      x t ∈ Z.construct := by -- --- PROOF ---
+  intro Z (hZ : ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p = some
+      Z)
   set x₀ := x 0 with hx₀def
   set Ar := toRealMat ℓ.dynamics.A with hAr
   set nr := toRealVec nv with hnr

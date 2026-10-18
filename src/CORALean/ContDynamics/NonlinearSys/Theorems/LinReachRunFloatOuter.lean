@@ -60,7 +60,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachRunFloat_outer
     obtain ⟨⟨Rτ, Rt⟩, hstep, rest, hrest, hpure⟩ := hRs
     simp only [pure, Option.some.injEq] at hpure
     subst hpure
-    obtain ⟨hΔt, hout⟩ := h.linReachFloat_outer hstep
+    obtain ⟨hΔt, hout⟩ := h.linReachFloat_outer _ _ hstep
     obtain ⟨hlen, hrestout⟩ := ih hrest
     set Δt := toReal options.Δt
     refine ⟨by simp [hlen], fun {x u} traj j hj t ht => ?_⟩

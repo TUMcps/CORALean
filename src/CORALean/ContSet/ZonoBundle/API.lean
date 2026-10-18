@@ -6,8 +6,8 @@ public import CORALean.ContSet.ZonoBundle.Float.API
 /-!
 # Zonotope bundles, both layers
 
-CORA's `zonoBundle` [1, §3.5.5]: a finite family of zonotopes, denoting their
-intersection, exactly — the representation §3.5.5 introduces because a
+CORA's `zonoBundle` [1, Def. 4]: a finite family of zonotopes, denoting their
+intersection, exactly — the representation introduced because a
 zonotope is not closed under intersection.
 
 The specification in `Real`, and in `Float` the same family at float zonotopes.
@@ -17,6 +17,7 @@ every error box in sight is a member's.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
+      Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
+      European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/

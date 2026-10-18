@@ -13,7 +13,7 @@ public import CORALean.ContDynamics.LinearSys.Counterexamples.API
 # Continuous-time linear systems, collected
 
 The system and what it denotes in `LinearSys`, sampling in `Operations`, the
-set the flow reaches in `ReachSet` and over an interval in `TimeIntervalReachSet`,
+set the flow reaches in `ReachSetExact` and over an interval in `TimeIntervalReachSetExact`,
 how far a step's enclosure exceeds it in `StepError`, as a zonotope in
 `StepErrorBox`, that excess taken back off in `StepInner`, and over a whole
 sampled run, accumulated in `ReachError`, in `ReachInner`; the two halves of it
@@ -25,11 +25,11 @@ Reachability holds at the sample times, by sampling into `LinearSysDT`, or, once
 the sample times it is `reach`, `Instances`' `Reach`: one `timeIntervalStep` window
 per `Δt`, carried by `e^{A t_k}`, plus at `WithInput` the input accumulated so far.
 
-A trajectory is Carathéodory — the integral equation — so `reachSet` *is*
-`e^{tA} R₀ ⊕ inputReach U t` (`reachSet_eq`) and a witness there is reached;
+A trajectory is Carathéodory — the integral equation — so `reachSetExact` *is*
+`e^{tA} R₀ ⊕ inputReach U t` (`reachSetExact_eq`) and a witness there is reached;
 `IsCanonicalClassicalTrajectory.trajectory` admits every derivative-everywhere run.
 Backward, `IsPerturbedTrajectory` is `IsTrajectory` with a second, independently
-quantified signal `w`: `backReachSetForallExists` and `backReachSetExistsForall`
+quantified signal `w`: `backReachSetForallExistsExact` and `backReachSetExistsForallExact`
 are Wetzlinger and Althoff's Def. 6 and Def. 7, each with a `timeInterval...`
 sibling, the reading in which Prop. 3 and Prop. 5 are equalities.
 `minBackReachTimeInterval` is their Alg. 2, held to Thm. 1 in `Theorems`.

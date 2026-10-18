@@ -37,17 +37,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.minnorm_le (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (U : 𝕋)
-    (hU : Z.minnorm p = some U)
+theorem Zonotope.minnorm_le (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1)))
     (hspan : Submodule.span ℝ (Set.range (nominal Z).G) = ⊤) :
-    (nominal Z).minnorm ≤ toReal U := by -- --- PROOF ---
+    ∀ U ∈ Z.minnorm p,
+      (nominal Z).minnorm ≤ toReal U := by -- --- PROOF ---
+  intro U (hU : Z.minnorm p = some U)
   -- the exact value is nonnegative, as an infimum of nonnegative offsets
   have hnn : 0 ≤ (nominal Z).minnorm := Real.sInf_nonneg (by
     rintro _ ⟨S, -, rfl⟩
     exact CORALean.Real.Zonotope.minnormOffset_nonneg (nominal Z) S)
   -- its ball lies in the zonotope, so the bound applies
-  exact Zonotope.minnorm_ball p Z U hU _ hnn fun y hy =>
-    CORALean.Real.Zonotope.minnorm_ball_subset (nominal Z) hspan y hy
+  exact Zonotope.minnorm_ball p Z _ hnn (fun y hy =>
+    CORALean.Real.Zonotope.minnorm_ball_subset (nominal Z) hspan y hy) U hU
 
 end CORALean.Float
 

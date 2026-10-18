@@ -25,8 +25,10 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.not_exact {L L' : LevelSet n} (h : L.not = some L') :
-    L'.construct = L.construct ᶜ := by -- --- PROOF ---
+theorem LevelSet.not_exact {L : LevelSet n} :
+    ∀ L' ∈ L.not,
+      L'.construct = L.construct ᶜ := by -- --- PROOF ---
+  intro L' (h : L.not = some L')
   obtain ⟨m, f, op⟩ := L
   match m, f, op, h with
   | 1, f, op, h =>

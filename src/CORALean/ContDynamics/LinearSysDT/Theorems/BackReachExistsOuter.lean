@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.BackReachExists
-public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExistsExact
 
 @[expose] public section
 
@@ -45,7 +45,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 theorem LinearSysDT.backReachExists_outer (sys : LinearSysDT 𝕋 n) {Ainv : Mat 𝕋 n n}
     (hA : toRealMat Ainv * toRealMat sys.A = 1) (T U negU : S n)
     (hneg : -construct U ⊆ construct negU) (k : ℕ) : -- --- STMT ---
-    sys.backReachSetExists T U k ⊆
+    sys.backReachSetExistsExact T U k ⊆
       construct (sys.backReachExists ⟨T, negU, 0, k⟩ ⟨Ainv⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl

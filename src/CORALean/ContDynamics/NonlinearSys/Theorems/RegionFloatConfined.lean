@@ -126,15 +126,15 @@ theorem aux_picard {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n
 
 /-- Where `fm` encloses `sys`, a run under inputs in `Ub` that starts a window of
 length `Δt` in `X` stays, over the whole window, in the box `regionFloat` returns. -/
-theorem NonlinearSys.FloatModel.Encloses.regionFloat_confined
-    {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {Δt : 𝕋} {X Ω : Interval (Vec 𝕋 n)} {Ub : Interval (Vec 𝕋 m)}
-    (hΩ : fm.regionFloat Δt X Ub = some Ω) (hΔt : 0 ≤ toReal Δt) {T : Set ℝ}
-    {R₀ : Set (Vec ℝ n)} {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u)
-    (hU : U ⊆ Ub.construct) {a : ℝ} (hT : Set.Icc a (a + toReal Δt) ⊆ T)
-    (hxa : x a ∈ X.construct) : -- --- STMT ---
-    ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct := by -- --- PROOF ---
+theorem NonlinearSys.FloatModel.Encloses.regionFloat_confined {fm : NonlinearSys.FloatModel 𝕋 n m}
+    {sys : NonlinearSys n m} (h : fm.Encloses sys) {Δt : 𝕋} {X : Interval (Vec 𝕋 n)}
+    {Ub : Interval (Vec 𝕋 m)} (hΔt : 0 ≤ toReal Δt) {T : Set ℝ} {R₀ : Set (Vec ℝ n)}
+    {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
+    (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u) (hU : U ⊆ Ub.construct) {a : ℝ}
+    (hT : Set.Icc a (a + toReal Δt) ⊆ T) (hxa : x a ∈ X.construct) : -- --- STMT ---
+    ∀ Ω ∈ fm.regionFloat Δt X Ub,
+      ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct := by -- --- PROOF ---
+  intro Ω (hΩ : fm.regionFloat Δt X Ub = some Ω)
   -- the check passed, and `Ω` is the twice-refined box
   rw [NonlinearSys.FloatModel.regionFloat] at hΩ
   split_ifs at hΩ with hlt

@@ -32,15 +32,17 @@ variable {A : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineAnalyzerNode.propagate_ap_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
-    (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk : n.kind = .ap)
-    (tent : TentativeKleeneSignal ℝ) (ht : n.tentative = some tent) (hs : n.signal.IsValid)
-    (htv : tent.IsValid) (hne : I ≠ .empty) : -- --- STMT ---
-    ∃ n', n.propagate eps ch I = some (n', ch) ∧ n'.signal.IsValid ∧
-      n'.tentative = some (tent.setInvalid I) ∧ (tent.setInvalid I).IsValid ∧
-      ∀ t : ℝ, 0 ≤ t →
-        (t ∈ I.set ∧ tent.at t ≠ FourValued.ii → n'.signal.at t = tent.at t) ∧
-        (¬ (t ∈ I.set ∧ tent.at t ≠ FourValued.ii) →
-          n'.signal.at t = n.signal.at t) := by -- --- PROOF ---
+    (ch : List (OnlineAnalyzerNode A)) (I : STLInterval) (hk : n.kind = .ap) (hs : n.signal.IsValid)
+    (hne : I ≠ .empty) : -- --- STMT ---
+    ∀ tent ∈ n.tentative,
+      tent.IsValid →
+      ∃ n', n.propagate eps ch I = some (n', ch) ∧ n'.signal.IsValid ∧
+        n'.tentative = some (tent.setInvalid I) ∧ (tent.setInvalid I).IsValid ∧
+        ∀ t : ℝ, 0 ≤ t →
+          (t ∈ I.set ∧ tent.at t ≠ FourValued.ii → n'.signal.at t = tent.at t) ∧
+          (¬ (t ∈ I.set ∧ tent.at t ≠ FourValued.ii) →
+            n'.signal.at t = n.signal.at t) := by -- --- PROOF ---
+  intro tent (ht : n.tentative = some tent) htv
   -- the tentative values on the interval, and the signal they are merged into
   obtain ⟨hfv, hf⟩ := tent.getInterval_spec htv I
   obtain ⟨hmv, hm⟩ := n.signal.merge_spec (tent.getInterval I) hs hfv

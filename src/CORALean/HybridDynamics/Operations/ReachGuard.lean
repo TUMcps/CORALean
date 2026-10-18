@@ -5,15 +5,16 @@ public import CORALean.HybridDynamics.Definitions.Location
 @[expose] public section
 
 /-!
-# `Location.reachGuard`: [1, Alg. 5], the reachable set within a location and at a guard
+# `Location.reachGuard`: [1, Alg. 1], the reachable set within a location and at a guard
 
-[1, Alg. 5], "Compute `R'_j` within a location `y_i`", one `let` per printed line. Its four
+[1, Alg. 1], "Compute `R'_j` within a location `z_i`", one `let` per printed line. Its four
 operators are arguments, as the listing leaves them to other sections of [1]: `reach` gives
-`R([kr, (k+1)r])` at `k` (sections 3.2-3.4), `halfspaceConv` and `generatorConv` are the
-over-approximative conversions of sections 2.5.6 and 3.5.4 (the latter enclosing several
-polytopes at once), and `intersectionTimes` returns the first and last position of
-`R^H([0, t^end_inv])` that may meet the guard. `isEmpty` is the test `R^H = ∅`, `true` only
-when it is. `Location.IsTrajectory.reachGuard_outer` states what each must guarantee.
+`R([kr, (k+1)r]) = e^{Ar}R([(k-1)r, kr]) + R̄([0, r])` at `k`, `halfspaceConv` and
+`generatorConv` are the over-approximative conversions of [1, Prop. 9] with [1, Thm. 7] and
+of [1, Prop. 12] (the latter enclosing several polytopes at once), and `intersectionTimes` returns
+the first and last position of `R^H([0, t^end_inv])` that may meet the guard. `isEmpty` is the test
+`R^H = ∅`, `true` only when it is. `Location.IsTrajectory.reachGuard_outer` states what each must
+guarantee.
 
 Two readings of the listing: the loop runs while `R^H([(k-1)r, kr]) ≠ ∅` *and* `t < t_f`,
 where it prints "or", which would not stop before `t_f`; and `t`, never assigned, is `kr`.
@@ -21,14 +22,11 @@ At `t_f = N r` it runs at most `N - 1` times: `N` passes, a failed test leaving 
 Times are in steps, `t^end_inv = (k - 1) r` being `k - 1`; the output `R^H([0, t^end_inv])` is
 the list of the `R^H([(i-1)r, ir])`, `i = 1, …, k - 1`, whose union the listing writes.
 
-[2, Alg. 1] is the same listing, `reach` there being `R([kr, (k+1)r]) = e^{Ar}R([(k-1)r, kr]) +
-R̄([0, r])`. Generic over the representations and the scalar: one definition, both layers.
+Generic over the representations and the scalar: one definition, both layers.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
       Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/
@@ -51,7 +49,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Alg. 5]: `R^H([0, t^end_inv])`, as the list of its pieces, and `R_j`, the enclosure
+/-- [1, Alg. 1]: `R^H([0, t^end_inv])`, as the list of its pieces, and `R_j`, the enclosure
 of where it meets the guard of `e`, for `t_f = N r`. -/
 def Location.reachGuard [∀ n, Intersection (G n) (Vec ℝ n)] (ℓ : Location S G L 𝕋 n)
     (e : Transition G L 𝕋 n) (reach : ℕ → S n) (halfspaceConv : S n → G n)

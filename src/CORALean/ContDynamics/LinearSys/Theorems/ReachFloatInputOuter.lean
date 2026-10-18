@@ -41,17 +41,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 at every time of window `k`, in the `k`-th time-interval set. -/
 theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloatInput params options = some (Rti, Rtp)) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮)
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-            params.U.construct) x u →
-        ∀ (k : ℕ) (hk : k < Rti.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rti[k].construct := by -- --- PROOF ---
-  obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant h
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloatInput params options →
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
+          sys.IsCanonicalTrajectory (S := 𝒮)
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+              params.U.construct) x u →
+          ∀ (k : ℕ) (hk : k < Rti.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rti[k].construct := by -- --- PROOF ---
+  intro Rti Rtp (h : sys.reachFloatInput params options = some (Rti, Rtp))
+  obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant _ _ h
   refine ⟨N, hNΔt, by simp [hlen], fun {x u} traj k hk t ht => ?_⟩
   set Δ := toReal options.Δt with hΔ
   set V := sys.inputSetFloat params.U with hV

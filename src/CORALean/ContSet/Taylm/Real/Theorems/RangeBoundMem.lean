@@ -39,8 +39,10 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.rangeBound_mem {m : ℕ} {e : Taylm.CodeList ℝ m} {D : Interval (Vec ℝ m)} {N : ℕ}
-    {b : Interval ℝ} (hb : Taylm.rangeBound e D N = some b) {x : Vec ℝ m} (hx : x ∈ D.construct) :
-    b.inf ≤ e.eval x ∧ e.eval x ≤ b.sup := by -- --- PROOF ---
+    {x : Vec ℝ m} (hx : x ∈ D.construct) :
+    ∀ b ∈ Taylm.rangeBound e D N,
+      b.inf ≤ e.eval x ∧ e.eval x ≤ b.sup := by -- --- PROOF ---
+  intro b (hb : Taylm.rangeBound e D N = some b)
   simp only [Taylm.rangeBound, Option.map_eq_some_iff] at hb
   obtain ⟨T, hT, rfl⟩ := hb
   have hE := Taylm.codeEval_encloses (fun i => Interval.taylm_outer D N i) e hT

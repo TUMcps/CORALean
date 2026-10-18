@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetExistsForall
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetExistsForallExact
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
-public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetExistsForallEq
+public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetExistsForallExactEq
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
 public import CORALean.ContSet.ConZonotope.Real.Theorems.Basic
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PlusExact
@@ -81,8 +81,8 @@ theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys 𝕋 n) {U 
     {tend t : ℝ} (ht : 0 ≤ t) (hle : t ≤ tend) {τ : Set ℝ} (hτ : t ∈ τ)
     (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))
     {c : Vec ℝ n} (hc : c ∈ construct U) : -- --- STMT ---
-    sys.backReachSetExistsForall (Set.Icc 0 t) U W Xend t ⊆
-      sys.timeIntervalBackReachSetExistsForall
+    sys.backReachSetExistsForallExact (Set.Icc 0 t) U W Xend t ⊆
+      sys.timeIntervalBackReachSetExistsForallExact
         (Set.Icc 0 tend) U W Xend τ := by -- --- PROOF ---
   classical
   rintro x₀ ⟨u, hu, humeas, hall⟩
@@ -137,7 +137,7 @@ theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend 
       (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t) : -- --- STMT ---
     (sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw Δt η s).R.construct ⊆
       ⋃ t ∈ Set.Icc s.t (s.t + Δt),
-        sys.backReachSetExistsForall (Set.Icc 0 t) U W Xend t := by -- --- PROOF ---
+        sys.backReachSetExistsForallExact (Set.Icc 0 t) U W Xend t := by -- --- PROOF ---
   -- line 12: the map, the hull and the input summand, spelled out
   have hR : (sys.maxBackReachStep ρ P₁ P₂ Uz W₀ Zw Δt η s).R
       = ConZonotope.mtimes (exp ((-(s.t + Δt)) • toRealMat sys.A))
@@ -171,7 +171,7 @@ theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend 
   obtain ⟨d, hd, hdeq⟩ := hZU t ht hc
   have ht0 : 0 ≤ t := le_trans hs ht.1
   refine Set.mem_iUnion₂.mpr ⟨t, ht, ?_⟩
-  rw [sys.backReachSetExistsForall_eq U W Xend ht0 hU hW]
+  rw [sys.backReachSetExistsForallExact_eq U W Xend ht0 hU hW]
   refine ⟨w' + -d, ⟨w', hw', -d, by rw [Set.mem_neg, neg_neg]; exact hd, rfl⟩, ?_⟩
   -- the two exponentials compose to `e^{-At}`, which is [1, Prop. 5]'s map
   have hcomm : Commute ((-(s.t + Δt)) • toRealMat sys.A) ((s.t + Δt - t) • toRealMat sys.A) :=
@@ -219,7 +219,7 @@ theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W X
     (hZU : ∀ k < ω, ∀ t ∈ Set.Icc (st k).t ((st k).t + Δt), (st k).ZU.construct ⊆
       (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t) :
     sys.maxBackReachTimeInterval ρ P₁ P₂ Uz W₀ Zw t₀ tend η ω ⊆
-      sys.timeIntervalBackReachSetExistsForall
+      sys.timeIntervalBackReachSetExistsForallExact
         (Set.Icc 0 tend) U W Xend τ := by -- --- PROOF ---
   subst hΔt
   intro x hx

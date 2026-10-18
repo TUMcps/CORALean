@@ -53,7 +53,7 @@ noncomputable instance NonlinearSys.reachInstance :
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (construct params.X₀)
   reach sys params options := sys.reachUnion params options
-  reach_outer sys params options _ h := sys.reachUnion_outer params options h
+  reach_outer sys params options _ h := sys.reachUnion_outer params options _ h
 
 /-- CORA's `nonlinearSys` as a `ContDynamics`: `ẋ = f(x, u)`. -/
 instance NonlinearSys.contDynamics {n m : ℕ} : ContDynamics (NonlinearSys n m) n where

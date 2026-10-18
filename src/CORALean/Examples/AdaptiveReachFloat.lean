@@ -65,7 +65,7 @@ def adaptiveD : Option (List (LinearSys.AdaptiveStepInfo (Dyadic 64) 2)) :=
 /-- What a successful run is worth: its windows cover `[0, 1]`, and every run
 under every input signal in `B U` is in the window of every time. -/
 example {steps : List (LinearSys.AdaptiveStepInfo (Dyadic 64) 2)} (h : adaptiveD = some steps) :=
-  sysBD.reachAdaptiveFloat_outer h
+  sysBD.reachAdaptiveFloat_outer _ h
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

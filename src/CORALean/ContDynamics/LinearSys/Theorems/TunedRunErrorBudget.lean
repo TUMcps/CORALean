@@ -157,7 +157,7 @@ theorem aux_tunedRun_invariant (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bo
             aux_adaptTimeStep_pos sys le X₀ U εHmax εPmax s₀.εP tf s₀.t s₀.Δt μ ηmax fuel
               hμ hΔt₀ hA2
           obtain ⟨hH, hP, hPacc⟩ := LinearSys.adaptTimeStep_budget sys hle X₀ U εHmax εPmax
-            s₀.εP tf s₀.t s₀.Δt μ ηmax fuel hA2
+            s₀.εP tf s₀.t s₀.Δt μ ηmax fuel _ _ _ hA2
           -- the `ε_S` share is nonnegative, so `Alg. 3`'s loop starts admissible
           have hεS₀ : s₀.εS ≤ εSmax := by
             have hfrac : s₀.t / tf ≤ 1 := div_le_one_of_le₀ hst₀ htf.le
@@ -187,14 +187,13 @@ theorem aux_tunedRun_invariant (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bo
 the step last taken under `ε_H,max`. -/
 theorem LinearSys.tunedRun_error_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (hn : 0 < n) (X₀ U : Zonotope (Vec ℝ n))
-    {εHmax εPmax εSmax tf μ : ℝ} (hμ : 0 < μ) (htf : 0 < tf)
-    (hεPmax : 0 ≤ εPmax) (hεSmax : 0 ≤ εSmax) (ηmax fuel k : ℕ)
-    (hhor : ∀ j ≤ k, ∀ s, sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel j = some s →
-      s.t ≤ tf)
-    {s : LinearSys.TunedState n}
-    (h : sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k = some s) : -- --- STMT ---
-    s.εP ≤ εPmax ∧ s.εS ≤ εSmax ∧
-      (0 < s.t → sys.timeIntervalStepCurvatureError s.Δt s.η X₀ ≤ εHmax) := by -- --- PROOF ---
+    {εHmax εPmax εSmax tf μ : ℝ} (hμ : 0 < μ) (htf : 0 < tf) (hεPmax : 0 ≤ εPmax)
+    (hεSmax : 0 ≤ εSmax) (ηmax fuel k : ℕ) : -- --- STMT ---
+    ∀ s ∈ sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k,
+      (∀ j ≤ k, ∀ s, sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel j = some s → s.t ≤ tf) →
+      s.εP ≤ εPmax ∧ s.εS ≤ εSmax ∧
+        (0 < s.t → sys.timeIntervalStepCurvatureError s.Δt s.η X₀ ≤ εHmax) := by -- --- PROOF ---
+  intro s (h : sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k = some s) hhor
   obtain ⟨ht, -, hP, hS, hH⟩ :=
     aux_tunedRun_invariant sys hle hn X₀ U hμ htf hεSmax ηmax fuel k hhor s h
   have hfrac : s.t / tf ≤ 1 := div_le_one_of_le₀ (hhor k (le_refl _) s h) htf.le

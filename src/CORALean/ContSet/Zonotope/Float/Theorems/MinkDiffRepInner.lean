@@ -33,9 +33,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.minkDiffRep_inner {Z₁ Z₂ D : Zonotope (Vec 𝕋 n)} {M : Fin Z₁.h → Fin Z₂.h → 𝕋}
-    {ρ : 𝕋} {H : Mat 𝕋 Z₁.h n} (h : Z₁.minkDiffRep Z₂ M ρ H = some D) :
-    D.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+theorem Zonotope.minkDiffRep_inner {Z₁ Z₂ : Zonotope (Vec 𝕋 n)} {M : Fin Z₁.h → Fin Z₂.h → 𝕋}
+    {ρ : 𝕋} {H : Mat 𝕋 Z₁.h n} :
+    ∀ D ∈ Z₁.minkDiffRep Z₂ M ρ H,
+      D.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+  intro D (h : Z₁.minkDiffRep Z₂ M ρ H = some D)
   unfold Zonotope.minkDiffRep at h
   dsimp only at h
   split_ifs at h with hc

@@ -7,13 +7,14 @@ public import CORALean.ContSet.Interval.Real.Interval
 /-!
 # The second-order Taylor term's diagonal factor
 
-`quadTerm`: the `γ` of [1, Lemma 3.1]: what a diagonal entry contributes through itself, and
+`quadTerm`: the `γ` of [1, Prop. 4]: what a diagonal entry contributes through itself, and
 the one place a variable occurs twice.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -29,7 +30,7 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The `γ` of [1, Lemma 3.1]: what a diagonal entry contributes through itself,
+/-- The `γ` of [1, Prop. 4]: what a diagonal entry contributes through itself,
 and the one place a variable occurs twice. -/
 noncomputable def MatExp.quadTerm (t a : ℝ) : ℝ := a * t + a ^ 2 * t ^ 2 / 2
 

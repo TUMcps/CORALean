@@ -34,10 +34,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p m : ℕ}
 /-- A returned point is within `tol` of exactly one solution of `g(x₀, y, u₀) = 0`. -/
 theorem NonlinDASys.FloatModel.Encloses.consistentInitialStateFloat_root
     {fm : NonlinDASys.FloatModel 𝕋 n p m} {sys : NonlinDASys n p m} (hfm : fm.Encloses sys)
-    (tol : 𝕋) (fuel : ℕ) (x₀ : Vec 𝕋 n) (u₀ : Vec 𝕋 m) (y₀ y' : Vec 𝕋 p)
-    (h : fm.consistentInitialStateFloat tol fuel x₀ u₀ y₀ = some y') : -- --- STMT ---
-    ∃! y, y ∈ Metric.closedBall (toRealVec y') (toReal tol) ∧
-      sys.g (toRealVec x₀) y (toRealVec u₀) = 0 := by -- --- PROOF ---
+    (tol : 𝕋) (fuel : ℕ) (x₀ : Vec 𝕋 n) (u₀ : Vec 𝕋 m) (y₀ : Vec 𝕋 p) : -- --- STMT ---
+    ∀ y' ∈ fm.consistentInitialStateFloat tol fuel x₀ u₀ y₀,
+      ∃! y, y ∈ Metric.closedBall (toRealVec y') (toReal tol) ∧
+        sys.g (toRealVec x₀) y (toRealVec u₀) = 0 := by -- --- PROOF ---
+  intro y' (h : fm.consistentInitialStateFloat tol fuel x₀ u₀ y₀ = some y')
   unfold NonlinDASys.FloatModel.consistentInitialStateFloat at h
   obtain ⟨yv, -, hy⟩ := Option.bind_eq_some_iff.mp h
   dsimp only at hy

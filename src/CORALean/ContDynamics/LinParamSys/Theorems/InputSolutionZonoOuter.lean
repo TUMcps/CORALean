@@ -23,7 +23,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 /-!
 # `inputSolutionZono` contains what the input contributes at every matrix of the set
 
-[1, Prop. 3.6] at a matrix drawn from `construct sys.A`, the run being
+[1, Thm. 1] at a matrix drawn from `construct sys.A`, the run being
 `'constParam'` as in `InputSolutionOuter`. The Taylor sum splits into four
 pieces rather than two: orders `0` and `1` land in `inputTermZono` by
 `matPow_outer` at the matrix zonotope, orders `2` through `η` and the remainder
@@ -31,14 +31,15 @@ land in the interval-matrix pieces by the same argument `InputSolutionOuter`
 already makes, now at `sys.A.interval` rather than a set-valued matrix given
 directly.
 
-`2 ≤ η` is what makes the split legitimate: below it the printed formula's
+`2 ≤ η` is what makes the split legitimate: below it the
 "order `1`, then orders `2 … η`" reading does not correspond to any truncation
 of the exponential, `expTaylor _ 0` not reaching order `1` at all.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5

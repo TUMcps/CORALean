@@ -18,14 +18,15 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 `LinearSys.inputReach_subset_particularSolution` at a member `A` of `sys.A`,
 the point system `⟨A⟩`'s own `P^R(t)`: with `0 ∈ U` it grows with time
-[1, Prop. 3.3], is the one-step set propagated `k + 1` times [1, Prop. 3.2],
+[1, Sec. 3.3], is the one-step set propagated `k + 1` times [1, Alg. 1],
 and that one step lies in the box's `inputSolution`. Each propagator
 `e^{A t_j}` is a member of `expEnclosure t_j`, which is all the recursion needs.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -89,15 +90,15 @@ theorem LinParamSys.inputReach_subset_particularSolution
       ⊆ construct (sys.particularSolution Δt η U k) := by -- --- PROOF ---
   set L : LinearSys ℝ n := LinearSys.canonical A
   have hbdd := CompactSet.isBounded_construct U
-  -- [1, Thm. 3.1]: one step of the input under `A`, inside the box's `inputSolution`
+  -- [1, Thm. 1]: one step of the input under `A`, inside the box's `inputSolution`
   have hΔ : L.inputReach U Δt ⊆ construct (sys.inputSolution Δt η U) :=
     sys.inputReach_subset_inputSolution hΔt η hε hA (ConvexSet.convex_construct U)
       (CompactSet.isClosed_construct U) hbdd (ConvexSet.convex_construct _)
       (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _)
   calc L.inputReach U t
-      -- [1, Prop. 3.3]: `0 ∈ U`, so the window's right end bounds every earlier time
+      -- [1, Sec. 3.3]: `0 ∈ U`, so the window's right end bounds every earlier time
       ⊆ L.inputReach U (((k + 1 : ℕ) : ℝ) * Δt) := L.inputReach_mono hbdd h0 ht0 htk
-    -- [1, Prop. 3.2]: exactly the one-step set, propagated `k + 1` times
+    -- [1, Alg. 1]: exactly the one-step set, propagated `k + 1` times
     _ = L.propagateInputSolution Δt (L.inputReach U Δt) (k + 1) :=
       (L.propagateInputSolution_inputReach hΔt.le hbdd ⟨0, h0⟩ (k + 1)).symm
     _ ⊆ L.propagateInputSolution Δt (construct (sys.inputSolution Δt η U)) (k + 1) :=

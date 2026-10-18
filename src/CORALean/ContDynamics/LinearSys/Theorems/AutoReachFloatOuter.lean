@@ -72,12 +72,13 @@ theorem LinearSys.aux_autoInvariantFloat_init (sys : LinearSys 𝕋 n) (X₀ V :
 /-- Every run on `[0, t_end]` from `X₀` under inputs in `V` is, at every time, in one of the
 windows, the one covering that time. -/
 theorem LinearSys.autoReachFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {tend : 𝕋}
-    {εmax ζ : ℚ} {ηmax fuel K : ℕ} {Rs : List (ℚ × ℚ × Zonotope (Vec 𝕋 n))}
-    (h : sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K = some Rs) : -- --- STMT ---
-    ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-      sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
-      U ⊆ V.construct → ∀ t ∈ Set.Icc (0 : ℝ) (ToRat.toRat tend), t ≤ T →
-        ∃ w ∈ Rs, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.construct := by -- --- PROOF ---
+    {εmax ζ : ℚ} {ηmax fuel K : ℕ} : -- --- STMT ---
+    ∀ Rs ∈ sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K,
+      ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
+        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
+        U ⊆ V.construct → ∀ t ∈ Set.Icc (0 : ℝ) (ToRat.toRat tend), t ≤ T →
+          ∃ w ∈ Rs, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.construct := by -- --- PROOF ---
+  intro Rs (h : sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K = some Rs)
   unfold LinearSys.autoReachFloat at h
   split_ifs at h with hpos
   split at h

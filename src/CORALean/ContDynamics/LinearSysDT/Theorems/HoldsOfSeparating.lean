@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ReachSetBound
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetExactOuter
 public import CORALean.Specification.Theorems.HoldsOfOuter
 public import CORALean.Specification.Theorems.Separation
 
@@ -48,7 +48,7 @@ theorem LinearSysDT.holds_unsafeSet_of_separating (sys : LinearSysDT 𝕋 n) (R�
     (h : (sys.reachSetBound R₀ U b₀ bU k c).val + v.val < 0) :
     (Specification.unsafeSet X).Holds {x k} :=
   (Specification.unsafeSet X).holds_of_outer
-    (Set.singleton_subset_iff.mpr (sys.reachSet_outer R₀ U traj k))
+    (Set.singleton_subset_iff.mpr (sys.reachSetExact_outer R₀ U traj k))
     (Specification.holds_unsafeSet_of_separating (sys.reachSetBound R₀ U b₀ bU k c) v h)
 
 end CORALean

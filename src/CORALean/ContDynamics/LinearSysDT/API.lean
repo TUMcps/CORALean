@@ -4,9 +4,9 @@ public import CORALean.ContDynamics.LinearSysDT.Complexity.API
 public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachExistsOptions
 public import CORALean.ContDynamics.LinearSysDT.Definitions.IsConformDyn
 public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachForallOptions
-public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExists
-public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
-public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetRobust
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetExistsExact
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForallExact
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetRobustExact
 public import CORALean.ContDynamics.LinearSysDT.Definitions.GO
 public import CORALean.ContDynamics.LinearSysDT.Definitions.GOFloat
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInner
@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachOrdersOptions
-public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.LinearSysDT.Instances
 public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
@@ -44,7 +44,7 @@ public import CORALean.ContDynamics.LinearSysDT.Definitions.HMinusStepPositive
 
 The system and what it denotes in `LinearSysDT`, reachability in `Operations`
 at CORA's `options` in `ReachOptions` and its siblings, the set reachability
-encloses in `ReachSet`, what a run of it owes in `ReachError` and the inner approximation
+encloses in `ReachSetExact`, what a run of it owes in `ReachError` and the inner approximation
 that buys in `ReachInner`, the guarantees in `Theorems`, how large the owed
 error is in `Complexity/Space`, and in `Complexity/Time` what running it costs.
 
@@ -54,11 +54,11 @@ horizon, and `Instances` is the instance itself.
 `ReachErrorReduced`/`ReachInnerReduced` are the same pair with the error
 reduced at every step, sound since it is *added* to the exact set.
 `ReachErrorFloat`/`ReachInnerFloat` are the same pair for a run computed at a
-float scalar; its inner approximation sits inside the *exact* `reachSet`.
+float scalar; its inner approximation sits inside the *exact* `reachSetExact`.
 
-`BackReachSetForall` is the run read backwards — the states every admissible
+`BackReachSetForallExact` is the run read backwards — the states every admissible
 input carries into a target — and `BackReachForall` computes inside it.
-`BackReachSetExists` is the other reading, *some* input suffices, and
+`BackReachSetExistsExact` is the other reading, *some* input suffices, and
 `BackReachExists` encloses it: a sum, so both halves are outer at `Plus,
 Mtimes`. `ReachErrorOrders`/`ReachErrorReducedOrders` are `ReachError`/
 `ReachErrorReduced` at `Operations.reachOrders`'s per-step order sequence.

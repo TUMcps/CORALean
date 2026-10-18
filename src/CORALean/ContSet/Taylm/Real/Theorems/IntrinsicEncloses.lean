@@ -46,9 +46,11 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Taylm.intrinsic_encloses {T T' : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
-    (s : Taylm.Intrinsic) (hs : T.intrinsic s = some T') :
-    T'.Encloses fun t => s.fn (f t) := by -- --- PROOF ---
+theorem Taylm.intrinsic_encloses {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses f)
+    (s : Taylm.Intrinsic) :
+    ∀ T' ∈ T.intrinsic s,
+      T'.Encloses fun t => s.fn (f t) := by -- --- PROOF ---
+  intro T' (hs : T.intrinsic s = some T')
   -- the unguarded intrinsics return their model
   have hu : ∀ {U : Taylm n}, some U = some T' → U.Encloses (fun t => s.fn (f t)) →
       T'.Encloses fun t => s.fn (f t) := fun hU hE => by

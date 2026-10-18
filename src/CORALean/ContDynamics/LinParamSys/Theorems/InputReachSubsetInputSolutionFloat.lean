@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 /-!
 # `inputSolutionFloat` holds every member's input contribution over a step
 
-[1, Thm. 3.1] in floats at a set-valued matrix, by way of the exact theorem at
+[1, Thm. 1] in floats at a set-valued matrix, by way of the exact theorem at
 the frozen member, as `LinearSys.inputReach_subset_inputSolutionFloat` takes it
 at the stored one. `inputReach_subset_inputSolution` is generic over the
 representation, so it is taken at plain sets; each of their pieces then sits in
@@ -23,8 +23,9 @@ the float one, because the member's order-`i` matrix is in
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5
