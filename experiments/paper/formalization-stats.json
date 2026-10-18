@@ -6906,7 +6906,7 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 7,
+          "correct": 6,
           "underspecified": 0,
           "proof-gap": 0,
           "fixed": 0,
@@ -6987,7 +6987,7 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 60,
+          "correct": 61,
           "underspecified": 25,
           "proof-gap": 10,
           "fixed": 8,
@@ -8566,11 +8566,11 @@
       }
     },
     "theorems": {
-      "paper": 1843,
+      "paper": 1842,
       "float": 1940,
-      "helper": 1785,
-      "lemma": 3363,
-      "total": 8931,
+      "helper": 1781,
+      "lemma": 3367,
+      "total": 8930,
       "examples": 129
     }
   }

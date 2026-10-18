@@ -30,8 +30,8 @@ variable {n p m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- The constraint and `unique`: the only solution of `g(x, ·, u) = 0` is `h x u`. -/
 theorem NonlinDASys.IsTrajectory.y_eq {sys : NonlinDASys n p m} (red : sys.ReducedModel)
-    {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory T R₀ U x y u) {t : ℝ} (ht : t ∈ T) : y t = red.h (x t) (u t) :=
+    {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m} {z}
+    (traj : sys.IsTrajectory T R₀ U x y u z) {t : ℝ} (ht : t ∈ T) : y t = red.h (x t) (u t) :=
   red.unique _ _ _ (traj.constraint t ht)
 
 end CORALean

@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NonlinDASys.Counterexamples.CompLocalErrorCora
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryOfHasDerivWithinAt
 public import CORALean.ContDynamics.LinearSys.Operations.OneStep
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
@@ -234,7 +235,7 @@ theorem NonlinDASys.linReachCompCora_misses_counterexample {Δt : ℝ} (hΔt : 0
     let X : Fin 2 → Mat ℝ 1 2 := ![!![1, 0], !![0, 1]]
     let x : ℝ → Vec ℝ 2 := fun t => ![1 - (1 + t)⁻¹, -(1 + t)⁻¹]
     let y : ℝ → Vec ℝ 2 := fun t => ![(1 + t)⁻¹ ^ 2, (1 + t)⁻¹ ^ 2]
-    sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y (fun _ => 0) ∧
+    sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y (fun _ => 0) x ∧
       x Δt ∉ (NonlinDASys.linReachCompCora (sys.f 0 0 0) (sys.g 0 0 0) 0 0 1 0 0 F_inv 0 0
         Rinit U X ![0, Hf₂] ![0, Hf₂'] ![0, Hg₂] ![0, Hg₂'] Csub Fsub R_xyu o Δt η).1.construct
       := by -- --- PROOF ---
@@ -242,11 +243,17 @@ theorem NonlinDASys.linReachCompCora_misses_counterexample {Δt : ℝ} (hΔt : 0
   have h1 : ∀ t : ℝ, 0 ≤ t → (1 + t) ≠ 0 := fun t ht => by positivity
   refine ⟨?_, ?_⟩
   · -- the run: `x₂ = -1/(1+t)`, `x₁ = x₂ + 1`, `y₁ = y₂ = x₂²`
-    refine
-      { init := ⟨fun _ => -1, fun _ => by simp, by funext i; fin_cases i <;> simp [x, Rinit]⟩
-        input := fun _ _ => (Zonotope.mem_ofPoint_iff _ _).mpr rfl
-        flow := fun t ht => ?_
-        constraint := fun t _ => by funext i; fin_cases i <;> simp [sys, x, y] }
+    have hyc : ContinuousOn y (Set.Icc 0 Δt) := by
+      refine continuousOn_pi.mpr fun i => ?_
+      fin_cases i <;>
+      · simp only [y]
+        exact ((continuousOn_const.add continuousOn_id).inv₀ fun t ht => h1 t ht.1).pow 2
+    refine NonlinDASys.IsTrajectory.of_hasDerivWithinAt (convex_Icc 0 Δt) ⟨le_rfl, hΔt.le⟩
+      ⟨fun _ => -1, fun _ => by simp, by funext i; fin_cases i <;> simp [x, Rinit]⟩
+      (fun _ _ => (Zonotope.mem_ofPoint_iff _ _).mpr rfl) (fun t ht => ?_)
+      (fun t ht => (hyc.mono (Set.uIcc_subset_Icc ⟨le_rfl, hΔt.le⟩ ht)).intervalIntegrable)
+      (fun t _ => by funext i; fin_cases i <;> simp [sys, x, y])
+    -- the derivative, coordinate by coordinate, is `y`
     have hd : HasDerivAt (fun s : ℝ => (1 + s)⁻¹) (-(1 : ℝ) / (1 + t) ^ 2) t :=
       ((hasDerivAt_id' t).const_add 1).inv (h1 t ht.1)
     refine (hasDerivAt_pi.mpr fun i => ?_).hasDerivWithinAt

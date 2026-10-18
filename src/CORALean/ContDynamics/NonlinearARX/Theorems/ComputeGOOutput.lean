@@ -56,10 +56,11 @@ theorem NonlinearARX.computeGO_output (sys : NonlinearARX dy du p) (hp : 0 < p)
                 (NonlinearARX.stack p y j) (NonlinearARX.feed p u j))
               : Vec ℝ (p * dy + dy)) := by -- --- PROOF ---
   -- the windows are a run of the converted system
-  have h := NonlinearSysDT.computeGO_output
+  have h := NonlinearSysDT.computeGO_output (S := 𝒮)
     { sys.toNonlinearSysDT with q := dy, g := fun x _ => sys.outputSel (𝕋 := ℝ) *ᵥ x } x0
-    (NonlinearARX.feed p u_ref) (x := NonlinearARX.stack p y) (u := NonlinearARX.feed p u)
-    (fun k => sys.toNonlinearSysDT_step hy k) k
+    (NonlinearARX.feed p u_ref) (R₀ := Set.univ) (U := Set.univ) (x := NonlinearARX.stack p y)
+    (u := NonlinearARX.feed p u) (y := fun k => sys.outputSel (𝕋 := ℝ) *ᵥ NonlinearARX.stack p y k)
+    ⟨trivial, fun _ => trivial, fun k => sys.toNonlinearSysDT_step hy k, fun _ => rfl⟩ k
   -- and the selection matrix reads `y(k)` off the window
   have hsel : sys.outputSel (𝕋 := ℝ) *ᵥ NonlinearARX.stack p y k = y k :=
     sys.outputSel_mulVec (𝕋 := ℝ) hp y k

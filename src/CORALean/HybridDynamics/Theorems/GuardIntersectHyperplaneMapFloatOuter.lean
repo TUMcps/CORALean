@@ -10,7 +10,6 @@ public import CORALean.HybridDynamics.Theorems.HitPointAddEq
 public import CORALean.HybridDynamics.Theorems.HitPointMemHitPointFloat
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 public import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInputReflected
 public import CORALean.ContSet.ContSet.Theorems.ProjectOnHyperplaneIntervalFloatOuter
@@ -349,9 +348,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
     simp only [Bool.and_eq_true] at hc
     obtain ⟨⟨⟨⟨hcΛ, hcden⟩, hcm⟩, hcnrm⟩, hcA⟩ := hc
     -- the run, in closed form
-    have tr := (traj.linearSys (R₀ := R₀) h₀ traj.inputSetFloat_mem).trajectory (convex_Icc 0 τ)
-      ⟨le_rfl, traj.nonneg⟩
-      (Zonotope.isCompact_construct ℓ.inputSetFloat).isBounded
+    have tr := traj.linearSys (R₀ := R₀) h₀ traj.inputSetFloat_mem
     have hvoc := tr.variation_of_constants (a := 0) (b := t) (Set.Icc_subset_Icc_right ht.2)
       le_rfl ht.1 (Zonotope.isCompact_construct ℓ.inputSetFloat).isBounded
     simp only [sub_zero] at hvoc

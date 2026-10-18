@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterInputSolution
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Linearize
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
@@ -42,7 +41,8 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S]
 theorem NonlinearSys.IsTrajectory.reach_outer_inputSolution [Mtimes ℐ S]
     {sys : NonlinearSys n m} {T : Set ℝ} {R₀ L : S n} {U : S m} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n}
-    {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ} (traj : sys.IsTrajectory T R₀ U x u)
+    {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ} {y : ℝ → Vec ℝ sys.q}
+    (traj : sys.IsTrajectory T R₀ U x u y)
     (cert : AbstractionError sys.f A B xs us R (construct U) L)
     (hT : Set.Ici 0 ⊆ T) (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
@@ -60,9 +60,8 @@ theorem NonlinearSys.IsTrajectory.reach_outer_inputSolution [Mtimes ℐ S]
     x (k * Δt) ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach
       ⟨R₀, (NonlinearSys.linearize A).inputSolution Δt η (linInput sys.f A B xs us U L), 0, k⟩
       ⟨o, ho⟩) :=
-  (((traj.restrict hT).linearize cert hR).trajectory (convex_Ici 0) Set.self_mem_Ici
-    hbdd).reach_outer_inputSolution hΔt subset_rfl η hε
-    hconv hclosed hbdd hRconv hRclosed hRbdd ho k
+  ((traj.restrict hT).linearize measurableSet_Ici cert hR).reach_outer_inputSolution hΔt
+    subset_rfl η hε hconv hclosed hbdd hRconv hRclosed hRbdd ho k
 
 end CORALean
 

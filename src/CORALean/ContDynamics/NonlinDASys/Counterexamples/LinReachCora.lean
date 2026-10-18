@@ -204,7 +204,7 @@ theorem NonlinDASys.linReachCora_misses_counterexample {Δt : ℝ} (hΔt : 0 < �
     let Rinit : Zonotope (Vec ℝ 1) := Zonotope.ofPoint 0
     let U : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => ![1]⟩
     let x : ℝ → Vec ℝ 1 := fun t _ => t
-    sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x (fun _ _ => 1) (fun _ _ => 1) ∧
+    sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x (fun _ _ => 1) (fun _ _ => 1) x ∧
       x Δt ∉ (NonlinDASys.linReachCora (sys.f 0 0 0) (sys.g 0 0 0) 0 0 1 0 0 1 0 0 Rinit U
         0 0 (fun _ => !![-2]) 0 U Δt η).1.construct ∧
       x Δt ∈ (NonlinDASys.linReach (sys.f 0 0 0) (sys.g 0 0 0) 0 0 1 0 0 1 0 0 0 Rinit U
@@ -212,11 +212,16 @@ theorem NonlinDASys.linReachCora_misses_counterexample {Δt : ℝ} (hΔt : 0 < �
         ⟨1, fun _ => -1 / 2, fun _ _ => 1 / 2⟩ Δt (η + 2)).1.construct := by -- --- PROOF ---
   intro sys Rinit U x
   -- the run: `y = u² = 1`, `ẋ = 1`
-  have traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x (fun _ _ => 1) (fun _ _ => 1) :=
+  have traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x (fun _ _ => 1) (fun _ _ => 1)
+      x :=
     { init := (Zonotope.mem_ofPoint_iff _ _).mpr (funext fun _ => rfl)
       input := fun _ _ => ⟨fun _ => 1, fun _ => by simp, by funext i; fin_cases i; simp [U]⟩
-      flow := fun t _ => (hasDerivAt_pi.mpr fun _ => hasDerivAt_id t).hasDerivWithinAt
-      constraint := fun _ _ => by funext i; simp [sys] }
+      meas := MeasureTheory.aestronglyMeasurable_const
+      integrable := fun _ _ => intervalIntegrable_const
+      cont := continuousOn_pi.mpr fun _ => continuousOn_id
+      flow := fun t _ => by funext i; simp [sys, x]
+      constraint := fun _ _ => by funext i; simp [sys]
+      output := fun _ _ => rfl }
   refine ⟨traj, ?_, ?_⟩
   · -- CORA's set: `Δt` times its error set, all of whose points are `≤ 0`
     intro hmem

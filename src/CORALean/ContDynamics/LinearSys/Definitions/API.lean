@@ -8,7 +8,6 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBound
 public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSetExact
 public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
 public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalForm
-public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalClassicalTrajectory
 public import CORALean.ContDynamics.LinearSys.Definitions.IsPerturbedTrajectory
 public import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetExistsForallExact
 public import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetForallExistsExact
@@ -65,9 +64,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.VerifySearchState
 
 The set the Carathéodory runs reach in `ReachSetExact`, over an interval in
 `TimeIntervalReachSetExact`. `ClosedForm` is the variation-of-constants formula;
-`IsCanonicalClassicalTrajectory` the derivative-everywhere run, the special case a nonlinear
-or parameter-varying run is linearized to; `IsPerturbedTrajectory` a run with a
-second, independently-quantified disturbance signal.
+`IsPerturbedTrajectory` a run with a second, independently-quantified disturbance signal.
 
 The backward sets over it: `BackReachSetExistsForallExact`/`BackReachSetForallExistsExact`
 at a time point, `TimeIntervalBackReachSetExistsForallExact`/`ForallExists` over an

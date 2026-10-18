@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinearSys.LinearSys
 public import CORALean.HybridDynamics.Definitions.Transition
-public import Mathlib.Analysis.Calculus.Deriv.Basic
 
 @[expose] public section
 
@@ -13,23 +12,21 @@ CORA's `location`: the invariant that holds while the run is here, the dynamics 
 and the outgoing transitions, with the input and disturbance sets of CORA's `params.Uloc` and
 `params.Wloc` at this location. The dynamics are CORA's `contDynamics`, a `LinearSys` with its
 whole equation `ẋ = A x + B u + c + E w`, `U` in its input space and `W` in its disturbance
-space, as `LinearSys.IsTrajectory` reads them. The output equation plays no part in a stay; the
-parallel automaton reads it where it binds an input to an output.
+space. The output equation plays no part in a stay; the parallel automaton reads it where it
+binds an input to an output. `inv` is in the guard's representation `G`, `U` and `W` in the
+state's `S` (#39).
 
-`inv` is in the guard's representation `G`, `U` and `W` in the state's `S` (#39).
-
-`IsTrajectory` is what a location denotes — one admissible stay, on a *local* clock from `0` to the
-dwell time `τ`, so global time never appears. The initial state is the point `x 0`;
-`Theorems.LinearEmbedding` hands a stay to `LinearSys` as a run of its canonical form, the
-combined input `B u + c + E w` drawn from any set holding it.
-
-`nonneg` is not bookkeeping: without it `Set.Icc 0 τ` is empty and `x τ`, the state a jump
-reads, is unconstrained.
+`IsTrajectory` is what a location denotes — one admissible stay, on a *local* clock from `0` to
+the dwell time `τ`. It is a Carathéodory run, as `NonlinearSys.IsTrajectory` is: the integral
+equation over the stay, its integrand measurable and integrable, so a zero-order-hold input is
+admissible (`IsTrajectory.of_hasDerivWithinAt` admits a classical stay). `Theorems.LinearEmbedding`
+hands a stay to `LinearSys` as a run of its canonical form. `nonneg` is not bookkeeping: without
+it `Set.Icc 0 τ` is empty and `x τ`, the state a jump reads, is unconstrained.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +34,7 @@ reads, is unconstrained.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet Scalar MeasureTheory
 
 variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
@@ -59,9 +56,16 @@ structure Location.IsTrajectory (ℓ : Location S G L 𝕋 n) (τ : ℝ) (x : �
   nonneg : 0 ≤ τ
   input (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : u t ∈ construct ℓ.U
   dist (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : w t ∈ construct ℓ.W
-  flow (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    HasDerivWithinAt x (toRealMat ℓ.dynamics.A *ᵥ x t + toRealMat ℓ.dynamics.B *ᵥ u t +
-      toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t) (Set.Icc 0 τ) t
+  meas : AEStronglyMeasurable (fun s => toRealMat ℓ.dynamics.A *ᵥ x s +
+    toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s)
+      (volume.restrict (Set.Icc 0 τ))
+  integrable (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : IntervalIntegrable (fun s =>
+    toRealMat ℓ.dynamics.A *ᵥ x s + toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c +
+      toRealMat ℓ.dynamics.E *ᵥ w s) volume 0 t
+  cont : ContinuousOn x (Set.Icc 0 τ)
+  flow (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x t = x 0 + ∫ s in (0:ℝ)..t,
+    (toRealMat ℓ.dynamics.A *ᵥ x s + toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c +
+      toRealMat ℓ.dynamics.E *ᵥ w s)
   invariant (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x t ∈ construct ℓ.inv
 
 end CORALean

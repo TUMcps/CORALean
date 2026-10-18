@@ -1,8 +1,6 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.Basic
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.ContSet.Theorems.Basic
@@ -56,9 +54,7 @@ theorem Location.IsTrajectory.timeIntervalFloat_outer
         Scalar.toRealMat ℓ.dynamics.E *ᵥ w s))
       ∈ construct Ud) : -- --- STMT ---
     x t ∈ construct (Plus.plus (ℓ.timeIntervalStepFloat r η R₀) Ud) := by -- --- PROOF ---
-  have ltraj := (traj.linearSys h₀ traj.inputSetFloat_mem).trajectory (convex_Icc 0 τ)
-    ⟨le_rfl, ht0.trans htτ⟩
-    (CompactSet.isBounded_construct ℓ.inputSetFloat)
+  have ltraj := traj.linearSys h₀ traj.inputSetFloat_mem
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 τ := Set.Icc_subset_Icc le_rfl htτ
   -- the variation of constants, from `0` to `t`
   have hvoc := ltraj.variation_of_constants hTt le_rfl ht0

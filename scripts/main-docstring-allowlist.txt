@@ -216,9 +216,6 @@ src/CORALean/ContDynamics/LinearSys/Theorems/CanonicalFormFloatOutputOuter.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/CanonicalFormFloatStateOuter.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/CanonicalFormOuterOutput.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/CanonicalFormOuterState.lean
-src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryAestronglyMeasurableInput.lean
-src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryAestronglyMeasurableReflected.lean
-src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryDiscretizeStep.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/DeltaReachOuterInputSolution.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/Discretize.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/DiscretizeEnclosure.lean
@@ -238,7 +235,6 @@ src/CORALean/ContDynamics/LinearSys/Theorems/HoldsOfCheck.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/HoldsOfCheckWrappingFree.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/IdentifyCandidateFit.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/IdentifyLeCandidate.lean
-src/CORALean/ContDynamics/LinearSys/Theorems/InputEqDerivWithin.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/InputLawsAdd.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/InputLawsOverAdd.lean
 src/CORALean/ContDynamics/LinearSys/Theorems/InputLawsOverDominated.lean
@@ -479,7 +475,6 @@ src/CORALean/ContDynamics/NonlinearARX/Theorems/SimulateIsTrajectory.lean
 src/CORALean/ContDynamics/NonlinearARX/Theorems/ToNonlinearSysDTStep.lean
 src/CORALean/ContDynamics/NonlinearARX/Theorems/ToNonlinearSysDTIsTrajectory.lean
 src/CORALean/ContDynamics/NonlinearSys/NonlinearSys.lean
-src/CORALean/ContDynamics/NonlinearSys/Theorems/IsClassicalTrajectoryIffNonlinearSys.lean
 src/CORALean/ContDynamics/NonlinearSys/Theorems/IdentifyCandidateFit.lean
 src/CORALean/ContDynamics/NonlinearSys/Theorems/IdentifyLeCandidate.lean
 src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachAlgFloatCheckedEqSome.lean

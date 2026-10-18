@@ -39,7 +39,8 @@ theorem NonlinDASys.reachAdaptive_outer (sys : NonlinDASys n p m)
     (T : NonlinDASys.AdaptTuning n p m q) (U : Zonotope (Vec ℝ m)) (tFinal tol h₀ : ℝ)
     (adm_x₀ : Vec ℝ n) (adm_y₀ : Vec ℝ p) (k fuelErr fuelHalf fuel : ℕ)
     {R0 : Zonotope (Vec ℝ n)} {Tmax : ℝ} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Tmax) R0 U x y u) (hT : tFinal ≤ Tmax)
+    {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Tmax) R0 U x y u z)
+    (hT : tFinal ≤ Tmax)
     (hcert : ∀ (st : NonlinDASys.AdaptState n p) (h : ℝ) (lastStep : Bool)
       (pass : NonlinDASys.AdaptPass n p), 0 ≤ st.t → x st.t ∈ st.R.construct →
       sys.linReachAdaptive T st.R U (k + 2) fuelErr fuelHalf st.adm_x st.adm_y h lastStep

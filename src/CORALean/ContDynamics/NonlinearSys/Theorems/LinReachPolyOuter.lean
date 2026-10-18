@@ -48,7 +48,7 @@ theorem NonlinearSys.IsTrajectory.linReachPoly_outer {sys : NonlinearSys n m} {T
     {E : Fin n → Fin (n + m) → Mat ℝ (n + m) (n + m)} {Δt : ℝ}
     {η errorOrder intermediateOrder : ℕ} {Rinit Ud : PolyZonotope (Vec ℝ n)}
     {abstrerr : Vec ℝ n} {fuel : ℕ} {step : sys.LinStep (S := 𝒫𝒵) U}
-    (traj : sys.IsTrajectory (S := 𝒫𝒵) T Rinit U x u)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒫𝒵) T Rinit U x u y)
     (h : sys.linReachPoly U A B xs us H E Δt η errorOrder intermediateOrder Rinit abstrerr fuel
       = some step)
     (hT : Set.Icc 0 Δt ⊆ T) (hR : ∀ t ∈ Set.Icc 0 Δt, x t ∈ step.R) (hΔt : 0 ≤ Δt)

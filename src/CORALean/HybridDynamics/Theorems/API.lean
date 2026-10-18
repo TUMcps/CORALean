@@ -117,6 +117,7 @@ public import CORALean.HybridDynamics.Theorems.HitHessianMatZonoFloatMem
 public import CORALean.HybridDynamics.Theorems.SdcInputMemSdcInputFloat
 public import CORALean.HybridDynamics.Theorems.GuardIntersectHyperplaneMapFloatOuter
 public import CORALean.HybridDynamics.Theorems.TrajectoryErrorFloatOuter
+public import CORALean.HybridDynamics.Theorems.IsTrajectoryOfHasDerivWithinAt
 
 /-!
 # What a hybrid run guarantees, collected

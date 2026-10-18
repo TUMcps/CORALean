@@ -1,7 +1,6 @@
 module
 
 public import CORALean.HybridDynamics.Theorems.Basic
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
@@ -62,9 +61,7 @@ theorem Location.IsTrajectory.timeIntervalSplitFloat_outer
   set A := Scalar.toRealMat ℓ.dynamics.A with hA
   set ũ := Recenter.center ℓ.inputSetFloat with hũ
   -- `x t` less its free motion and the constant's share is one `Ũ`-input's share
-  have hrest := ((traj.linearSys h₀ traj.inputSetFloat_mem).trajectory (convex_Icc 0 τ)
-    ⟨le_rfl, ht0.trans htτ⟩
-    (CompactSet.isBounded_construct ℓ.inputSetFloat)).sub_mem_inputReach_recenter
+  have hrest := (traj.linearSys h₀ traj.inputSetFloat_mem).sub_mem_inputReach_recenter
       (S' := 𝒵[𝕋]) (V := ℓ.inputSetFloat)
       subset_rfl
     ⟨ht0, htτ⟩

@@ -52,7 +52,8 @@ instance NonlinDASys.contDynamics {n p m : ℕ} : ContDynamics (NonlinDASys n p 
   nrOfInputs _ := m
   nrOfDisturbances _ := 0
   IsTrajectory sys T X₀ U W x u w :=
-    (∃ y, NonlinDASys.IsTrajectory (S := 𝒮) sys T X₀ U x y u) ∧
+    (∃ y, NonlinDASys.IsTrajectory (S := 𝒮) sys T X₀ U x y u
+      (fun t => sys.h (x t) (y t) (u t))) ∧
       ∀ t ∈ T, w t ∈ W
 
 end CORALean

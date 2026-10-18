@@ -18,7 +18,7 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.SteadyStateFloatRoot
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ExistsLagrangeRemainder
 public import CORALean.ContDynamics.NonlinDASys.Theorems.AlgDeviationEq
 public import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
-public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryDerivMemLinInclusion
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryFieldMemLinInclusion
 public import CORALean.ContDynamics.NonlinDASys.Theorems.JointReachSetOuter
 public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
 public import CORALean.ContDynamics.NonlinDASys.Theorems.OutputSetLinearOuter
@@ -39,6 +39,7 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.EnlargeInterfaceInputSu
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsExact
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ComposeSubsystemsEqPreimage
 public import CORALean.ContDynamics.NonlinDASys.Theorems.ReachNextCompositionalSpec
+public import CORALean.ContDynamics.NonlinDASys.Theorems.IsTrajectoryOfHasDerivWithinAt
 
 /-!
 # What `NonlinDASys` guarantees

@@ -1,12 +1,12 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryIsTrajectory
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryPostDeltaFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeSub
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.RegionFloatConfined
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
@@ -121,9 +121,9 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
     {R : Zonotope (Vec 𝕋 n)} : -- --- STMT ---
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.linReachFloat alg U options R →
-      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U.construct x u →
+          R.construct U.construct x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
           x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
   intro Rτ Rt (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt))
@@ -143,10 +143,10 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
   have hxsX := (aux_linReach_mem_hull Ω xs).2
   have husU' := (aux_linReach_mem_hull U.interval U.c).2
   -- a run stays in `Ω`, so in `X`
-  have hconf : 0 < toReal Δt → ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+  have hconf : 0 < toReal Δt → ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct
-        U.construct x u → ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.construct :=
-    fun hΔt {x u} traj t ht => (aux_linReach_mem_hull Ω xs).1
+        U.construct x u y → ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.construct :=
+    fun hΔt {x u y} traj t ht => (aux_linReach_mem_hull Ω xs).1
       (h.regionFloat_confined hΔt.le traj (Zonotope.interval_contains U) (a := 0)
         (by rw [zero_add]) (Zonotope.interval_contains R traj.init) _ hΩ t (by rwa [zero_add]))
   -- the `'lin'` input set holds the field less its linear part
@@ -165,7 +165,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     simp only [Option.bind_eq_some_iff] at hrest
     obtain ⟨η, hη, hone⟩ := hrest
     obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer _ _ hone
-    refine ⟨hΔt, fun {x u} traj => hout traj fun t ht => ?_⟩
+    refine ⟨hΔt, fun {x u y} traj => hout traj fun t ht => ?_⟩
     set Rdelta := R ⊞ (⟨0, (-xs), fun j => j.elim0,
       ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) with hRdelta
     -- the start, `x(0) - x✱ ∈ Rdelta`
@@ -177,20 +177,15 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
         ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) (Set.add_mem_add traj.init hp)
       rwa [← sub_eq_add_neg] at this
     -- `x - x✱` is a run of the `'lin'` linearization, so its differences are in `Rdiff`
-    have ltrajC : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalClassicalTrajectory
+    have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory
         (S := 𝒮) (Set.Icc 0 (toReal Δt)) Rdelta.construct
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
           Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
             (fm.hessRemainder A B xs U.c X U').zonotope).construct
         (fun t => x t - toRealVec xs)
         (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) :=
-      ⟨hx₀, fun s hs => hlin (hconf hΔt traj s hs) (traj.input s hs), fun s hs => by
-        refine ((traj.flow s hs).sub_const (toRealVec xs)).congr_deriv ?_
-        show sys.f (x s) (u s) = Scalar.toRealMat A *ᵥ (x s - toRealVec xs)
-          + (sys.f (x s) (u s) - Scalar.toRealMat A *ᵥ (x s - toRealVec xs))
-        abel⟩
-    have ltraj := ltrajC.trajectory (convex_Icc 0 _) ⟨le_rfl, hΔt.le⟩
-      (Zonotope.isCompact_construct _).isBounded
+      traj.linearize_sub measurableSet_Icc hx₀ fun s hs =>
+        hlin (hconf hΔt traj s hs) (traj.input s hs)
     have hδ := ltraj.postDeltaFloat_outer hΔt (LinearSys.reachOrderFloat_spec _ hη).1
       subset_rfl ht
     simp only [sub_sub_sub_cancel_right] at hδ

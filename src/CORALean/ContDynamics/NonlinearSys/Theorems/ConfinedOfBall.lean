@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-public import Mathlib.Analysis.Calculus.MeanValue
+public import CORALean.ContDynamics.NonlinearSys.Theorems.SubEqIntegral
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 public import Mathlib.Analysis.InnerProductSpace.Basic
 
 @[expose] public section
@@ -16,8 +16,8 @@ about `x a` already lies in `R`, then the run stays in `R` for the whole of
 one statement here that places `x t` without assuming where `x` goes.
 
 The proof is the first-exit argument. Below `τ = inf {t | x t ∉ R}` the run is
-confined, so the mean value inequality bounds `‖x t - x a‖` by `M(b - a)`
-there; that bound passes to `x τ` in the limit, which puts `x τ` at distance
+confined, so the integral of the field from `a` to `t` bounds `‖x t - x a‖` by
+`M(b - a)` there; that bound passes to `x τ` in the limit, which puts `x τ` at distance
 `ρ - M(b - a) > 0` from the outside of the ball and hence in the interior of
 `R`. Continuity then keeps the run in `R` just past `τ`, which is what no
 point of `{t | x t ∉ R}` above `τ` allows.
@@ -28,7 +28,7 @@ reach the boundary of `R` exactly at `b`, and nothing keeps it inside after.
 
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -48,7 +48,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 ball of radius `ρ > M(b - a)` about `x a` lies in `R`. -/
 theorem NonlinearSys.IsTrajectory.confined_of_ball {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {R : Set (Vec ℝ n)}
-    {a b M ρ : ℝ} (traj : sys.IsTrajectory T R₀ U x u) (hab : a ≤ b) (hT : Set.Icc a b ⊆ T)
+    {a b M ρ : ℝ} {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hab : a ≤ b)
+    (hT : Set.Icc a b ⊆ T)
     (hM₀ : 0 ≤ M) (hM : ∀ y ∈ R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M)
     (hρ : M * (b - a) < ρ) (hball : Metric.closedBall (x a) ρ ⊆ R) : -- --- STMT ---
     ∀ t ∈ Set.Icc a b, x t ∈ R := by -- --- PROOF ---
@@ -68,20 +69,20 @@ theorem NonlinearSys.IsTrajectory.confined_of_ball {sys : NonlinearSys n m} {T :
     intro t ht
     by_contra h
     exact absurd (csInf_le hBbdd ⟨⟨ht.1, le_trans ht.2.le hτb⟩, h⟩) (not_le.2 ht.2)
-  -- the mean value inequality on every closed interval below `τ`
+  -- the field's integral on every closed interval below `τ`
   have hbound : ∀ t ∈ Set.Ico a τ, ‖x t - x a‖ ≤ M * (b - a) := by
     intro t ht
     have hsub : Set.Icc a t ⊆ Set.Ico a τ := fun r hr => ⟨hr.1, lt_of_le_of_lt hr.2 ht.2⟩
     have hsubT : Set.Icc a t ⊆ T := fun r hr =>
       hT ⟨hr.1, le_trans (le_trans hr.2 ht.2.le) hτb⟩
-    have hderiv : ∀ r ∈ Set.Icc a t,
-        HasDerivWithinAt x (sys.f (x r) (u r)) (Set.Icc a t) r :=
-      fun r hr => (traj.flow r (hsubT hr)).mono hsubT
-    have hbd : ∀ r ∈ Set.Icc a t, ‖sys.f (x r) (u r)‖ ≤ M :=
-      fun r hr => hM _ (hbelow r (hsub hr)) _ (traj.input r (hsubT hr))
-    have hmv := Convex.norm_image_sub_le_of_norm_hasDerivWithin_le hderiv hbd
-      (convex_Icc a t) (Set.left_mem_Icc.2 ht.1) (Set.right_mem_Icc.2 ht.1)
-    rw [Real.norm_eq_abs, abs_of_nonneg (by linarith [ht.1] : (0 : ℝ) ≤ t - a)] at hmv
+    have hbd : ∀ r ∈ Set.uIoc a t, ‖sys.f (x r) (u r)‖ ≤ M := by
+      intro r hr
+      rw [Set.uIoc_of_le ht.1] at hr
+      exact hM _ (hbelow r (hsub ⟨hr.1.le, hr.2⟩)) _ (traj.input r (hsubT ⟨hr.1.le, hr.2⟩))
+    have hmv := intervalIntegral.norm_integral_le_of_norm_le_const hbd
+    rw [← traj.sub_eq_integral (hsubT (Set.left_mem_Icc.2 ht.1))
+      (hsubT (Set.right_mem_Icc.2 ht.1)), abs_of_nonneg (by linarith [ht.1] : (0 : ℝ) ≤ t - a)]
+      at hmv
     exact hmv.trans (by nlinarith [ht.2, hτb, ht.1])
   -- the bound passes to `τ` itself, in the limit from below
   have hτball : x τ ∈ Metric.closedBall (x a) (M * (b - a)) := by
@@ -92,8 +93,7 @@ theorem NonlinearSys.IsTrajectory.confined_of_ball {sys : NonlinearSys n m} {T :
         rw [← mem_closure_iff_nhdsWithin_neBot, closure_Ico (ne_of_lt hlt)]
         exact ⟨hlt.le, le_rfl⟩
       have htend : Filter.Tendsto x (nhdsWithin τ (Set.Ico a τ)) (nhds (x τ)) :=
-        ((traj.flow τ (hT hτIcc)).continuousWithinAt).mono
-          (fun r hr => hT ⟨hr.1, le_trans hr.2.le hτb⟩)
+        (traj.cont τ (hT hτIcc)).mono (fun r hr => hT ⟨hr.1, le_trans hr.2.le hτb⟩)
       refine Metric.isClosed_closedBall.mem_of_tendsto htend
         (eventually_mem_nhdsWithin.mono fun t ht => ?_)
       simpa [Metric.mem_closedBall, dist_eq_norm] using hbound t ht
@@ -108,7 +108,7 @@ theorem NonlinearSys.IsTrajectory.confined_of_ball {sys : NonlinearSys n m} {T :
     linarith
   -- some time of `B` sits inside every neighbourhood of `τ`, and this one is in `R`
   have hcont : ContinuousWithinAt x (Set.Icc a b) τ :=
-    ((traj.flow τ (hT hτIcc)).continuousWithinAt).mono hT
+    (traj.cont τ (hT hτIcc)).mono hT
   have hev : ∀ᶠ t in nhdsWithin τ (Set.Icc a b), x t ∈ R := hcont hnhds
   rw [Filter.eventually_iff, mem_nhdsWithin] at hev
   obtain ⟨V, hVopen, hτV, hVsub⟩ := hev

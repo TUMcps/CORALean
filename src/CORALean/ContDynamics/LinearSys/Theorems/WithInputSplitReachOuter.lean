@@ -7,7 +7,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemConstInputSolution
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible

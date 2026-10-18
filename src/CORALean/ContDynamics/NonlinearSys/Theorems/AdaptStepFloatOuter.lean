@@ -57,9 +57,9 @@ theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : 
     (h : fm.Encloses sys) {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋}
     {t₀ : ℚ} {R : Zonotope (Vec 𝕋 n)} {F : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)} {κ : ℕ}
     (hF : fm.orderStepFloat κ U { options with Δt := Δ } R = some F) : -- --- STMT ---
-    t₀ < t₀ + ToRat.toRat Δ ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+    t₀ < t₀ + ToRat.toRat Δ ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ))
-        R.construct U.construct x u →
+        R.construct U.construct x u y →
       (∀ t ∈ Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ),
           x t ∈ (Reduce.reduce F.1 options.ρ).construct) ∧
         x ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ) ∈
@@ -68,7 +68,7 @@ theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : 
   have hcast : ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ) = toReal Δ := by
     rw [add_sub_cancel_left, ToRat.toReal_toRat]
   obtain ⟨hpos, hout⟩ := h.orderStepFloat_outer _ _ hF
-  refine ⟨?_, fun {x u} traj => ?_⟩
+  refine ⟨?_, fun {x u y} traj => ?_⟩
   · -- a positive step size is a positive exact time
     have h1 : (0 : ℝ) < ((ToRat.toRat Δ : ℚ) : ℝ) := by rwa [ToRat.toReal_toRat]
     have h2 : (0 : ℚ) < ToRat.toRat Δ := by exact_mod_cast h1
@@ -89,9 +89,9 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptStepFloat_outer
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
     {prec bis fuel : ℕ} {s : NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋} : -- --- STMT ---
     ∀ s' ∈ fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s,
-      s.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+      s.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ))
-          s.R.construct U.construct x u →
+          s.R.construct U.construct x u y →
         (∀ t ∈ Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ), x t ∈ s'.Rτ.construct) ∧
           x ((s'.t - s.t : ℚ) : ℝ) ∈ s'.R.construct := by -- --- PROOF ---
   intro s' (hstep : fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s = some s')

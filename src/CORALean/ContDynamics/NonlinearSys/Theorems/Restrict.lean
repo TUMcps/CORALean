@@ -8,14 +8,14 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 /-!
 # A nonlinear trajectory restricts to any smaller time domain
 
-`HasDerivWithinAt.mono`: a derivative within `T` is one within every `T' ⊆ T`. It
-is what lets `linearize` be applied to a run over all forward time while asking
-for confinement on one step only: restrict first, linearize second.
+Every field of a Carathéodory run is a statement at the points of `T`, or a measurability on
+`T`, so each survives on any `T' ⊆ T`. It is what lets `linearize` be applied to a run over all
+forward time while asking for confinement on one step only: restrict first, linearize second.
 -/
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -23,7 +23,7 @@ for confinement on one step only: restrict first, linearize second.
 
 namespace CORALean
 
-open ContSet
+open ContSet MeasureTheory
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
@@ -33,12 +33,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- Every run on `T` is a run on any smaller domain. -/
 theorem NonlinearSys.IsTrajectory.restrict {sys : NonlinearSys n m} {T T' : Set ℝ}
-    {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory T R₀ U x u) (hT : T' ⊆ T) :
-    sys.IsTrajectory T' R₀ U x u where
+    {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q}
+    (traj : sys.IsTrajectory T R₀ U x u y) (hT : T' ⊆ T) :
+    sys.IsTrajectory T' R₀ U x u y where
   init := traj.init
   input t ht := traj.input t (hT ht)
-  flow t ht := (traj.flow t (hT ht)).mono hT
+  meas := traj.meas.mono_measure (Measure.restrict_mono hT le_rfl)
+  integrable t ht := traj.integrable t (hT ht)
+  cont := traj.cont.mono hT
+  flow t ht := traj.flow t (hT ht)
+  output t ht := traj.output t (hT ht)
 
 end CORALean
 

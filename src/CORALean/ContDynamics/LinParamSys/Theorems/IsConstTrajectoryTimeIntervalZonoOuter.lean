@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.LinParamSys.Theorems.IsConstTrajectoryToLinearSys
 public import CORALean.ContDynamics.LinParamSys.Theorems.TimeIntervalStepZonoOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 

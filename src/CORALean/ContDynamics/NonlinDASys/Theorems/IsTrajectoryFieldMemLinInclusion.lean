@@ -9,8 +9,9 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.MemLinInclusion
 
 [1, Prop. 1]: if `L̄ ⊇ L`, the solution of the original dynamics is enclosed by the solution
 of the abstracting differential inclusion `˙x̃ ∈ Ã x̃ ⊕ w ⊕ B̃ (U ⊕ (-u*)) ⊕ L̄`. Read as: a
-run `(x, y, u)` of the system on `τ` has, at every time of `τ`, a derivative `ẋ(t)` in the
-inclusion's right-hand side at `x(t) - x*` — it is a solution of the inclusion.
+run `(x, y, u)` of the system on `τ` has, at every time of `τ`, its field `f(x(t), y(t), u(t))`,
+the integrand of its integral equation, in the inclusion's right-hand side at `x(t) - x*` — it is
+a Carathéodory solution of the inclusion, the derivative lying there wherever it exists.
 
 Two hypotheses carry what the printed proof assumes. The run stays in the region `R^z`
 the errors are taken over: the proof quantifies over `x ∈ Rᵈ(τₖ)`, `y ∈ Rᵃ(τₖ)`, `u ∈ U`,
@@ -28,7 +29,7 @@ linearization error `ℓᵈ - C F⁻¹ ℓᵃ` at every consistent point of `R^z
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -44,10 +45,10 @@ variable {n p m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Prop. 1]: a run confined to `R^z`, over which `L̄` holds every consistent point's
-linearization error, has `ẋ(t) ∈ Ã (x(t) - x*) ⊕ w ⊕ B̃ (U ⊕ (-u*)) ⊕ L̄` on all of `τ`. -/
-theorem NonlinDASys.IsTrajectory.hasDerivWithinAt_mem_linInclusion {sys : NonlinDASys n p m}
+linearization error, has its field in `Ã (x(t) - x*) ⊕ w ⊕ B̃ (U ⊕ (-u*)) ⊕ L̄` on all of `τ`. -/
+theorem NonlinDASys.IsTrajectory.field_mem_linInclusion {sys : NonlinDASys n p m}
     {τ : Set ℝ} {R₀ : Set (Vec ℝ n)} {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p}
-    {u : ℝ → Vec ℝ m} (hrun : sys.IsTrajectory (S := 𝒮) τ R₀ U x y u)
+    {u : ℝ → Vec ℝ m} {z : ℝ → Vec ℝ sys.q} (hrun : sys.IsTrajectory (S := 𝒮) τ R₀ U x y u z)
     {xs : Vec ℝ n} {ys : Vec ℝ p} {us : Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m}
     {C : Mat ℝ n p} {D : Mat ℝ p n} {E : Mat ℝ p m} {F F_inv : Mat ℝ p p}
     (hF : F_inv * F = 1) {L : Set (Vec ℝ n)} {Rz : Set (Vec ℝ n × Vec ℝ p × Vec ℝ m)}
@@ -55,15 +56,12 @@ theorem NonlinDASys.IsTrajectory.hasDerivWithinAt_mem_linInclusion {sys : Nonlin
     (hL : ∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       (sys.f x' y' u' - (sys.f xs ys us + A *ᵥ (x' - xs) + B *ᵥ (u' - us) + C *ᵥ (y' - ys)))
         - (C * F_inv) *ᵥ (sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us)
-          + F *ᵥ (y' - ys))) ∈ L) : -- --- STMT ---
-    ∀ t ∈ τ, ∃ v ∈ NonlinDASys.linInclusion (sys.f xs ys us) (sys.g xs ys us) A B C D E F_inv
-      us U L (x t - xs), HasDerivWithinAt x v τ t := by -- --- PROOF ---
-  intro t ht
-  -- the derivative is the field at the run's own point, which [1, Eq. 16] holds
-  exact ⟨sys.f (x t) (y t) (u t),
-    NonlinDASys.mem_linInclusion sys hF (hrun.input t ht) (hrun.constraint t ht)
-      (hL _ _ _ (hR t ht) (hrun.constraint t ht)),
-    hrun.flow t ht⟩
+          + F *ᵥ (y' - ys))) ∈ L) :
+    ∀ t ∈ τ, sys.f (x t) (y t) (u t) ∈ NonlinDASys.linInclusion (sys.f xs ys us) (sys.g xs ys us)
+      A B C D E F_inv us U L (x t - xs) := fun t ht =>
+  -- the field at the run's own point, which [1, Eq. 16] holds
+  NonlinDASys.mem_linInclusion sys hF (hrun.input t ht) (hrun.constraint t ht)
+    (hL _ _ _ (hR t ht) (hrun.constraint t ht))
 
 end CORALean
 

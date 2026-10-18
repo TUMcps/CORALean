@@ -2,6 +2,8 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.IsInnerMinkDiffCert
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiffStep
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorExistsNormLe
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAtOfNormLe
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.MulExpIntegralEq
@@ -92,11 +94,14 @@ theorem NonlinearSys.IsInnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
     obtain ⟨_, -, rfl⟩ := Option.map_eq_some_iff.mp h
     exact ⟨rfl, rfl, rfl⟩
   refine ⟨hEc, hEcv, hEne, hEs, ⟨Ω, K, hLip, hex⟩, fun x₀ hx₀ x hx0 hder => ?_⟩
-  -- the solution as a run from the point interval at `x₀`
+  -- the solution as a run from the point interval at `x₀`, its field bounded by the certificate
+  obtain ⟨C, hC⟩ := cert.exists_norm_le hbdd isCompact_Icc
+    (fun t ht => (hder t ht).continuousWithinAt) (hconf x₀ hx₀ x hx0 hder) hu₀
   have traj : sys.IsTrajectory (Icc 0 Δt) (OfInterval.ofInterval (⟨x₀, x₀⟩ : Interval (Vec ℝ n)))
-      U x fun _ => u₀ :=
-    ⟨OfInterval.ofInterval_outer _ (by rw [hx0]; exact fun _ => ⟨le_rfl, le_rfl⟩),
-      fun _ _ => hu₀, hder⟩
+      U x (fun _ => u₀) (fun t => sys.g (x t) u₀) :=
+    .of_hasDerivWithinAt_of_norm_le (convex_Icc 0 Δt) ⟨le_rfl, hΔt.le⟩
+      (OfInterval.ofInterval_outer _ (by rw [hx0]; exact fun _ => ⟨le_rfl, le_rfl⟩))
+      (fun _ _ => hu₀) hder hC
   have hs := traj.sub_mem_inputSolution cert (hconf x₀ hx₀ x hx0 hder) hΔt η hε hconv hclosed
     hbdd hRconv hRclosed hRbdd
   rw [hst.2.2, herr]

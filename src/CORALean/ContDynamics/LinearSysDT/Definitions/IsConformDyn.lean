@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.ConformReach
 public import CORALean.ContDynamics.LinearSysDT.Operations.NominalState
-public import CORALean.ContDynamics.LinearSysDT.Operations.Basic
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 
 @[expose] public section
 

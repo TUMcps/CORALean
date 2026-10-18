@@ -40,15 +40,17 @@ set lying inside that step's certified region. -/
 theorem NonlinearSysDT.confinement_of_subset_on (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) {K : ℕ}
     (hsub : ∀ k < K, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
-    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (traj : sys.IsTrajectoryOn R₀ U K x u) : -- --- STMT ---
+    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} {y : ℕ → Vec ℝ sys.q}
+    (traj : sys.IsTrajectoryOn R₀ U K x u y) : -- --- STMT ---
     ∀ k < K, x k ∈ (steps k).R := by -- --- PROOF ---
   intro k
   induction k using Nat.strong_induction_on with
   | _ k ih =>
     intro hk
     -- the run up to `k`, confined below `k` by the induction hypothesis
-    have hOn : sys.IsTrajectoryOn R₀ U k x u :=
-      ⟨traj.init, fun j hj => traj.input j (hj.trans hk), fun j hj => traj.step j (hj.trans hk)⟩
+    have hOn : sys.IsTrajectoryOn R₀ U k x u y :=
+      ⟨traj.init, fun j hj => traj.input j (hj.trans hk), fun j hj => traj.step j (hj.trans hk),
+        fun j hj => traj.output j (hj.trans hk)⟩
     exact hsub k hk
       (sys.reach_outer_on ho steps R₀ hOn (fun j hj => ih j hj (hj.trans hk)) k le_rfl)
 

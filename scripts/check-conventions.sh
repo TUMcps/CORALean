@@ -1998,6 +1998,55 @@ if [ -z "$STAGED" ]; then
   report "$out"
 fi
 
+# A class with an output equation states the output in its runs, the same way in every class
+# (#179): where the main structure of `ContDynamics/<C>/<C>.lean` stores an output map (`g`, `h`, or
+# `C` for the linear ones), each `<C>.Is…Trajectory…` structure there that is not a canonical form
+# has an `output` field, `y = g x u` (`outputEq.eval` at a linear class, noise beside it).
+if [ -z "$STAGED" ]; then
+  out=$(for d in src/CORALean/ContDynamics/*/; do
+    c=$(basename "$d"); f="$d$c.lean"
+    [ -f "$f" ] || continue
+    awk -v F="$f" -v C="$c" '
+      /MAIN TYPE/ { m = 1 }
+      m && /^structure / { s++ ; if (s > 1) { insT = 0 } }
+      s == 1 && /^  (g|h|C) : / { hasOut = 1 }
+      /^structure / {
+        if (cur != "" && !seen) bad[cur] = curLine
+        cur = ""; seen = 0
+        if ($2 ~ ("^" C "\\.Is[A-Za-z]*Trajectory") && $2 !~ /Canonical/) { cur = $2; curLine = FNR }
+      }
+      cur != "" && /^  output / { seen = 1 }
+      END {
+        if (cur != "" && !seen) bad[cur] = curLine
+        if (hasOut) for (k in bad)
+          print F ":" bad[k] ": `" k "` states no `output` — a class with an output equation" \
+            " carries it in its runs (#179)"
+      }' "$f"
+  done)
+  report "$out"
+fi
+
+# A continuous-time run is a Carathéodory run (#105): the integral equation, not a derivative at
+# every point, which a zero-order-hold input does not have. So the main file of every
+# `ContDynamics/<C>/` and the files that state the flows of the hybrid automata name no
+# derivative. `TimeTriggered/DiffInclAutomaton.lean` is the exception: [Bak et al. 2017, Def. 4]
+# defines its continuous successor by a differentiable `g`, and it is formalized as printed.
+if [ -z "$STAGED" ]; then
+  out=$(for f in src/CORALean/ContDynamics/*/*.lean \
+      src/CORALean/HybridDynamics/Definitions/Location.lean \
+      src/CORALean/HybridDynamics/Definitions/NonlinHybridAutomaton.lean \
+      src/CORALean/HybridDynamics/Parallel/ParallelHybridAutomaton.lean; do
+    d=$(basename "$(dirname "$f")")
+    case "$f" in
+      src/CORALean/ContDynamics/*) [ "$(basename "$f" .lean)" = "$d" ] || continue ;;
+    esac
+    awk -v F="$f" '/^--/ { next } /(HasDerivWithinAt|HasDerivAt|derivWithin|deriv )/ {
+      print F ":" FNR ": a run stated by a derivative — state it by the integral equation, a" \
+        " Carathéodory run (#105)" }' "$f"
+  done)
+  report "$out"
+fi
+
 # A main-type file holds the type and what it denotes, not what is said or done about
 # it (CONTRIBUTING, "Main-type files"): the file with the `MAIN TYPE` banner at
 # `<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` has no `theorem`/`lemma`, and no

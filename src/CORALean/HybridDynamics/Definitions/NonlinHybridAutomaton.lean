@@ -1,7 +1,7 @@
 module
 
 public import CORALean.Global.Tensor
-public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 @[expose] public section
 
@@ -16,10 +16,9 @@ is a set or a function, which is all the definition asks.
 `IsRunAt` is the evolution [1] describes in words, with the time it lasts: flow in mode `m` with
 inputs in `U`, staying in `S_m`, until the state is in the guard of a transition out of `m`;
 that transition is taken at once, its reset applied, and the flow goes on in its target mode.
-Urgency is the "is taken" of the text: a stay meets no guard out of its mode before its end.
-The invariant is kept over the whole stay, the semantics [1, Sec. 3.2] computes against
-("until the reachable set is completely located outside the current invariant set"); the text
-itself states it only of `x₀`. Jumps take no time.
+Urgency is the "is taken" of the text: a stay meets no guard out of its mode before its end. A
+stay is a Carathéodory run of `fᵢ`, as `NonlinearSys.IsTrajectory` is, the invariant kept over the
+whole of it, the semantics [1, Sec. 3.2] computes against; the text states it only of `x₀`.
 
 ## References
 
@@ -30,13 +29,15 @@ itself states it only of `x₀`. Jumps take no time.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 namespace CORALean
+
+open MeasureTheory
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -62,8 +63,11 @@ structure NonlinHybridAutomaton.IsStay (H : NonlinHybridAutomaton n m p q) (U : 
     (i : Fin p) (τ : ℝ) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) : Prop where
   nonneg : 0 ≤ τ
   input (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : u t ∈ U
-  flow (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    HasDerivWithinAt x (H.F i (x t) (u t)) (Set.Icc 0 τ) t
+  meas : AEStronglyMeasurable (fun t => H.F i (x t) (u t)) (volume.restrict (Set.Icc 0 τ))
+  integrable (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
+    IntervalIntegrable (fun s => H.F i (x s) (u s)) volume 0 t
+  cont : ContinuousOn x (Set.Icc 0 τ)
+  flow (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x t = x 0 + ∫ s in (0:ℝ)..t, H.F i (x s) (u s)
   invariant (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x t ∈ H.S i
   urgent (t : ℝ) (ht : t ∈ Set.Ico 0 τ) (j : Fin q) (hj : (H.T j).s = i) : x t ∉ (H.T j).G
 

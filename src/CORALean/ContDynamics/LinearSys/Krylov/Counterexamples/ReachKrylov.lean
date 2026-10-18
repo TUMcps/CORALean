@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalClassicalTrajectory
+public import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalTrajectoryOfHasDerivWithinAt
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
@@ -34,7 +34,7 @@ the margin `7` exceeds any floating error, the Arnoldi steps on `0/1` data are e
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -67,7 +67,7 @@ theorem Krylov.reach_krylov_counterexample : -- --- STMT ---
       ((Htp.plus (RTrans E)).plus (Zonotope.ofPoint 0)).reduceGirard 10
     (K.2 1 0 = 1 ∧ τ = 1 ∧ ¬ ‖v‖₂ * (τ * γ * t ^ 2 / (Nat.factorial 2 : ℝ)) > ε) ∧
       ∃ x w : ℝ → Vec ℝ 2,
-        (LinearSys.canonical A : LinearSys ℝ 2).IsCanonicalClassicalTrajectory (S := 𝒮)
+        (LinearSys.canonical A : LinearSys ℝ 2).IsCanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 t) {0} {u} x w ∧
         ∀ E : Mat ℝ 2 2, x t ∉ (Rtp E).construct := by -- --- PROOF ---
   intro A u t ε C v K τ γ V box Htp RTrans Rtp
@@ -100,7 +100,9 @@ theorem Krylov.reach_krylov_counterexample : -- --- STMT ---
     simp only [hnv, τ, γ, h21, h10, ε, t, Nat.factorial]
     norm_num
   -- the run from `0` under `u ≡ e₁`: `x(s) = (s, eˢ - 1 - s)`
-  refine ⟨fun s => ![s, Real.exp s - 1 - s], fun _ => u, ⟨?_, ?_, ?_⟩, ?_⟩
+  refine ⟨fun s => ![s, Real.exp s - 1 - s], fun _ => u,
+    LinearSys.IsCanonicalTrajectory.of_hasDerivWithinAt (convex_Icc 0 t) ⟨le_rfl, by norm_num [t]⟩
+      Bornology.isBounded_singleton ?_ ?_ ?_, ?_⟩
   · show ![(0 : ℝ), Real.exp 0 - 1 - 0] ∈ ({0} : Set (Vec ℝ 2))
     rw [Set.mem_singleton_iff]
     ext i

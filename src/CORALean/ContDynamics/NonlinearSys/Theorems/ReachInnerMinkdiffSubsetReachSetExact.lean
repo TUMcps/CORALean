@@ -40,7 +40,7 @@ Runs are under the constant input `u₀` (CORA's `params.u`), so under any `U �
 
 namespace CORALean
 
-open ContSet Set
+open ContSet Set MeasureTheory
 
 variable {n m : ℕ} {𝓛 : Type}
 
@@ -123,14 +123,14 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSetExact
           (fun i hi => by rw [Function.update_of_ne (by omega)]; exact hti0 i (by omega)) hl
         refine ⟨this.1, this.2.1, fun i hi => this.2.2.1 i (by omega),
           fun i hi => this.2.2.2 i (by omega)⟩
-  -- `R0` is reached at `0`: on `{0}` any derivative is one
+  -- `R0` is reached at `0`: on `{0}` the constant is a run
   have base : X₀ ⊆ RS 0 := by
     intro y hy
-    refine ⟨fun _ => y, fun _ => u₀, ⟨hy, fun _ _ => rfl, fun t ht => ?_⟩, rfl⟩
-    rw [Icc_self] at ht ⊢
-    rw [mem_singleton_iff.mp ht, hasDerivWithinAt_iff_tendsto_slope, sdiff_self,
-      nhdsWithin_empty]
-    exact Filter.tendsto_bot
+    refine ⟨fun _ => y, fun _ => u₀, ⟨hy, fun _ _ => rfl, aestronglyMeasurable_const,
+      fun _ _ => intervalIntegrable_const, continuousOn_const, fun t ht => ?_, fun _ _ => rfl⟩, rfl⟩
+    rw [Icc_self, mem_singleton_iff] at ht
+    subst ht
+    simp
   have hall := step steps 0 X₀ 0 _ _ timePoint timeInt (by simpa using base)
     (fun i => by
       rcases eq_or_ne i 0 with rfl | hi
@@ -142,7 +142,8 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSetExact
   -- runs under `u₀` are runs with inputs in `U`
   have mono : ∀ t, RS t ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t := by
     rintro t y ⟨x, u, traj, hx⟩
-    refine ⟨x, u, ⟨traj.init, fun s hs => ?_, traj.flow⟩, hx⟩
+    refine ⟨x, u, ⟨traj.init, fun s hs => ?_, traj.meas, traj.integrable, traj.cont, traj.flow,
+      traj.output⟩, hx⟩
     have hu : u s = u₀ := traj.input s hs
     show u s ∈ U
     rw [hu]

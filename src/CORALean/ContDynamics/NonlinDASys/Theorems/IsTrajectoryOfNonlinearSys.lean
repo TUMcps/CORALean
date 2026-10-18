@@ -31,12 +31,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem NonlinearSys.IsTrajectory.toNonlinDASys {sys : NonlinDASys n p m} (red : sys.ReducedModel)
     {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : red.toNonlinearSys.IsTrajectory T R₀ U x u) :
-    sys.IsTrajectory T R₀ U x (fun t => red.h (x t) (u t)) u where
+    {z : ℝ → Vec ℝ sys.q} (traj : red.toNonlinearSys.IsTrajectory T R₀ U x u z) :
+    sys.IsTrajectory T R₀ U x (fun t => red.h (x t) (u t)) u z where
   init := traj.init
   input := traj.input
+  meas := traj.meas
+  integrable := traj.integrable
+  cont := traj.cont
   flow := traj.flow
   constraint _ _ := red.sound _ _
+  output := traj.output
 
 end CORALean
 

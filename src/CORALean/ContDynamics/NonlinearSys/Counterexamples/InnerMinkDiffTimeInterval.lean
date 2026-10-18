@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Operations.InnerMinkDiff
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryHasDerivWithinAt
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Mathlib.Analysis.Calculus.MeanValue
@@ -111,8 +112,14 @@ theorem NonlinearSys.innerMinkDiff_timeInterval_counterexample
     ext i; fin_cases i <;> simp
   · -- a run through `(1/2, 0)` starts on `x₂ = 0` and keeps its first coordinate
     rintro ⟨x, u, traj, hxt⟩
+    -- the field `(x₂, 0)` is continuous along the run, so the run is classical
+    have hcont : ContinuousOn (fun s => sys.f (x s) (u s)) (Icc 0 t) := by
+      refine continuousOn_pi.mpr fun i => ?_
+      fin_cases i
+      · exact (continuous_apply 1).comp_continuousOn traj.cont
+      · exact continuousOn_const
     have hder : ∀ s ∈ Icc (0 : ℝ) t, HasDerivWithinAt x ![x s 1, 0] (Icc 0 t) s :=
-      fun s hs => traj.flow s hs
+      fun s hs => traj.hasDerivWithinAt ⟨le_rfl, ht.1⟩ hcont hs
     -- a function with zero derivative on `[0, t]` is constant there
     have hconst : ∀ g : ℝ → ℝ, (∀ s ∈ Icc (0 : ℝ) t, HasDerivWithinAt g 0 (Icc 0 t) s) →
         ∀ s ∈ Icc (0 : ℝ) t, g s = g 0 := fun g hd =>

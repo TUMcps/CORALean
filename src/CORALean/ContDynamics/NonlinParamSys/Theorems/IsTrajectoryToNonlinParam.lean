@@ -34,12 +34,16 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem NonlinearSys.IsTrajectory.toNonlinParam {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {P : S q} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory T R₀ U x u) (hP : (construct P).Nonempty) :
-    sys.toNonlinParam.IsTrajectory T R₀ U P x u (fun _ => hP.choose) where
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hP : (construct P).Nonempty) :
+    sys.toNonlinParam.IsTrajectory T R₀ U P x u (fun _ => hP.choose) y where
   init := traj.init
   input := traj.input
   param _ _ := hP.choose_spec
+  meas := traj.meas
+  integrable := traj.integrable
+  cont := traj.cont
   flow := traj.flow
+  output := traj.output
 
 end CORALean
 

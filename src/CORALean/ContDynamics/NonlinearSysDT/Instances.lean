@@ -55,7 +55,7 @@ instance NonlinearSysDT.contDynamicsDT {n m : ℕ} : ContDynamicsDT (NonlinearSy
   nrOfInputs _ := m
   nrOfDisturbances _ := 0
   IsTrajectory sys X₀ U W x u w :=
-    NonlinearSysDT.IsTrajectory (S := 𝒮) sys X₀ U x u ∧ ∀ k, w k ∈ W
+    NonlinearSysDT.IsTrajectory (S := 𝒮) sys X₀ U x u (fun k => sys.g (x k) (u k)) ∧ ∀ k, w k ∈ W
 
 end CORALean
 

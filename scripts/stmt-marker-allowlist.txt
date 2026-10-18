@@ -18,8 +18,6 @@ src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TsumLeExpTail.lean::tsum_le_
 src/CORALean/ContDynamics/LinearSys/Theorems/ClosedFormEq.lean::LinearSys.closedForm_eq
 src/CORALean/ContDynamics/LinearSys/Theorems/ExistsMemIUnionReachSetExactDistLe.lean::LinearSys.exists_mem_iUnion_reachSetExact_dist_le
 src/CORALean/ContDynamics/LinearSys/Theorems/InputSolutionOuter.lean::LinearSys.inputSolution_outer
-src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryVariationOfConstants.lean::LinearSys.IsCanonicalClassicalTrajectory.variation_of_constants
-src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryVariationOfConstants.lean::aux_classical_expNeg_mulVec_sub
 src/CORALean/ContDynamics/LinearSys/Theorems/IsTrajectoryDeltaReachOuter.lean::LinearSys.IsCanonicalTrajectory.deltaReach_outer
 src/CORALean/ContDynamics/LinearSys/Theorems/IsTrajectoryTimeIntervalOuter.lean::LinearSys.IsCanonicalTrajectory.timeInterval_outer
 src/CORALean/ContDynamics/LinearSys/Theorems/MaxBackReachTimeIntervalInner.lean::LinearSys.maxBackReachTimeInterval_inner

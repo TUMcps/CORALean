@@ -169,7 +169,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       (Zonotope.ofPoint 0) r 2
     ∃ x u : ℝ → Vec ℝ 1,
       sys.IsConstTrajectory (S := 𝒵) (Set.Icc 0 r) (Zonotope.ofPoint fun _ => x₀)
-        (Zonotope.ofPoint 0) P x u (fun _ => 2) ∧
+        (Zonotope.ofPoint 0) P x u (fun _ => 2) x ∧
       x r ∉ construct R.1 ∧ x r ∉ construct R.2 := by -- --- PROOF ---
   intro sys P I R
   -- the size of a zonotope in coordinate `0`: center plus the absolute generators
@@ -422,15 +422,18 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
       linarith
     exact ⟨fun hmem => by linarith [hbound _ _ hmem], fun hmem => by linarith [hbound _ _ hmem]⟩
   -- the run `x t = x₀ + 4 t` at `p = 2` is a constant-parameter trajectory
-  refine ⟨fun t => fun _ => x₀ + 4 * t, fun _ => 0, ⟨?_, ?_, ?_, ?_⟩, hx _ fun _ => rfl⟩
+  refine ⟨fun t => fun _ => x₀ + 4 * t, fun _ => 0,
+    ⟨?_, ?_, ?_, MeasureTheory.aestronglyMeasurable_const, fun _ _ => intervalIntegrable_const, ?_,
+      ?_, fun _ _ => rfl⟩, hx _ fun _ => rfl⟩
   · exact ⟨fun _ => 0, fun _ => by simp, by simp [Zonotope.ofPoint]⟩
   · intro t _; exact ⟨fun _ => 0, fun _ => by simp, by simp [Zonotope.ofPoint]⟩
   · exact ⟨fun _ => 1, fun _ => by simp, by funext i; simp [P]; norm_num⟩
+  · exact continuousOn_pi.mpr fun _ =>
+      (continuous_const.add (continuous_const.mul continuous_id)).continuousOn
   · intro t _
-    refine hasDerivWithinAt_pi.2 fun i => ?_
-    have h : HasDerivWithinAt (fun s : ℝ => x₀ + 4 * s) (4 * 1) (Set.Icc 0 r) t :=
-      (((hasDerivAt_id t).const_mul 4).const_add x₀).hasDerivWithinAt
-    simpa [sys] using h.congr_deriv (by norm_num)
+    funext i
+    simp [sys]
+    ring
 
 end CORALean
 

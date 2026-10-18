@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinearSys.Operations.RegionFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ConfinedOfBall
-public import Mathlib.Analysis.Calculus.Deriv.Prod
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 @[expose] public section
 
@@ -12,14 +12,13 @@ public import Mathlib.Analysis.Calculus.Deriv.Prod
 Two arguments, one after the other. `confined_of_ball` keeps the run in the
 inflated box `X ⊕ [-δ, δ]`, which holds a sup-norm ball of radius `δ > MΔt`
 about every state of `X`. Inside it the field lies in the model's box `F`, so
-each coordinate moves at a rate in `[F_i⁻, F_i⁺]`; the mean value inequality,
-applied to the coordinate minus its mid rate, keeps it in
+each coordinate moves at a rate in `[F_i⁻, F_i⁺]`; the integral of that rate keeps it in
 `X_i + [min(0, ΔtF_i⁻), max(0, ΔtF_i⁺)]` — the Picard step, taken twice.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -59,7 +58,7 @@ theorem aux_picard {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n
     (h : fm.Encloses sys) {Δt : 𝕋} {X Ω : Interval (Vec 𝕋 n)}
     {Ub : Interval (Vec 𝕋 m)} {T : Set ℝ} {R₀ : Set (Vec ℝ n)} {U : Set (Vec ℝ m)}
     {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u y)
     (hU : U ⊆ Ub.construct) {a : ℝ} (hT : Set.Icc a (a + toReal Δt) ⊆ T)
     (hxa : x a ∈ X.construct)
     (hΩ : ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct) : -- --- STMT ---
@@ -73,30 +72,30 @@ theorem aux_picard {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n
   -- the field's coordinate stays in `[lo, hi]` over the window
   have hF : ∀ s ∈ Set.Icc a (a + toReal Δt), lo ≤ sys.f (x s) (u s) i ∧ sys.f (x s) (u s) i ≤ hi :=
     fun s hs => h.f_mem Ω Ub _ (hΩ s hs) _ (hU (traj.input s (hT hs))) i
-  -- the coordinate minus its mid rate moves at most `(hi - lo)/2` per unit time
-  have hd : ∀ s ∈ Set.Icc a (a + toReal Δt), HasDerivWithinAt
-      (fun r => (x r i : ℝ) - (lo + hi) / 2 * r) ((sys.f (x s) (u s) i : ℝ) - (lo + hi) / 2)
-      (Set.Icc a (a + toReal Δt)) s := fun s hs => by
-    have hx : HasDerivWithinAt (fun r => (x r i : ℝ)) (sys.f (x s) (u s) i : ℝ)
-        (Set.Icc a (a + toReal Δt)) s := hasDerivWithinAt_pi.mp ((traj.flow s (hT hs)).mono hT) i
-    have hc := ((hasDerivAt_id s).const_mul ((lo + hi) / 2)).hasDerivWithinAt
-      (s := Set.Icc a (a + toReal Δt))
-    rw [mul_one] at hc
-    exact hx.sub hc
-  have hb := norm_image_sub_le_of_norm_deriv_le_segment' hd (C := (hi - lo) / 2)
-    (fun s hs => by
-      obtain ⟨h1, h2⟩ := hF s (Set.Ico_subset_Icc_self hs)
-      rw [Real.norm_eq_abs, abs_le]; constructor <;> linarith) t ht
-  rw [Real.norm_eq_abs, abs_le] at hb
-  -- so the coordinate moved by between `(t - a) lo` and `(t - a) hi`
+  -- the coordinate moved by the integral of its rate, between `(t - a) lo` and `(t - a) hi`
   obtain ⟨ht1, ht2⟩ := ht
-  obtain ⟨hb1, hb2⟩ := hb
+  have haT : a ∈ T := hT ⟨le_rfl, le_trans ht1 ht2⟩
+  have htT : t ∈ T := hT ⟨ht1, ht2⟩
+  have hint : IntervalIntegrable (fun s => sys.f (x s) (u s)) MeasureTheory.volume a t :=
+    (traj.integrable a haT).symm.trans (traj.integrable t htT)
+  set L := ContinuousLinearMap.proj (R := ℝ) (φ := fun _ : Fin n => ℝ) i
+  have hinti : IntervalIntegrable (fun s => sys.f (x s) (u s) i) MeasureTheory.volume a t :=
+    ⟨L.integrable_comp hint.1, L.integrable_comp hint.2⟩
+  -- the coordinate's displacement is the integral of the coordinate's rate
+  have hcoord : (x t i : ℝ) - x a i = ∫ s in a..t, sys.f (x s) (u s) i := by
+    rw [← Pi.sub_apply, traj.sub_eq_integral haT htT]
+    exact (L.intervalIntegral_comp_comm hint).symm
+  have hlo' := intervalIntegral.integral_mono_on ht1 intervalIntegrable_const hinti
+    fun s hs => (hF s ⟨hs.1, le_trans hs.2 ht2⟩).1
+  have hhi' := intervalIntegral.integral_mono_on ht1 hinti intervalIntegrable_const
+    fun s hs => (hF s ⟨hs.1, le_trans hs.2 ht2⟩).2
+  rw [← hcoord, intervalIntegral.integral_const, smul_eq_mul] at hlo' hhi'
   set xt : ℝ := x t i
   set xa : ℝ := x a i
   have hxa1 : toReal (X.inf i) ≤ xa := (hxa i).1
   have hxa2 : xa ≤ toReal (X.sup i) := (hxa i).2
-  have hlo : xa + (t - a) * lo ≤ xt := by nlinarith
-  have hhi : xt ≤ xa + (t - a) * hi := by nlinarith
+  have hlo : xa + (t - a) * lo ≤ xt := by linarith
+  have hhi : xt ≤ xa + (t - a) * hi := by linarith
   -- the two faces, each rounding outward
   constructor
   · have r1 := addDown_le_add (X.inf i) (minimum zero (mulDown Δt ((fm.f Ω Ub).inf i)))
@@ -130,7 +129,8 @@ theorem NonlinearSys.FloatModel.Encloses.regionFloat_confined {fm : NonlinearSys
     {sys : NonlinearSys n m} (h : fm.Encloses sys) {Δt : 𝕋} {X : Interval (Vec 𝕋 n)}
     {Ub : Interval (Vec 𝕋 m)} (hΔt : 0 ≤ toReal Δt) {T : Set ℝ} {R₀ : Set (Vec ℝ n)}
     {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u) (hU : U ⊆ Ub.construct) {a : ℝ}
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u y) (hU : U ⊆ Ub.construct)
+    {a : ℝ}
     (hT : Set.Icc a (a + toReal Δt) ⊆ T) (hxa : x a ∈ X.construct) : -- --- STMT ---
     ∀ Ω ∈ fm.regionFloat Δt X Ub,
       ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.construct := by -- --- PROOF ---

@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.MulVecJoinInput
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ToRealMatLeftCols
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ToRealMatRightCols
 public import CORALean.ContDynamics.OutputEq.Theorems.OutputSetOuter
-public import CORALean.ContDynamics.LinearSysDT.Operations.Basic
+public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 
 @[expose] public section
 

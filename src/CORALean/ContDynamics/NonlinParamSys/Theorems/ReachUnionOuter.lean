@@ -72,7 +72,8 @@ theorem NonlinParamSys.WithSteps.reachUnion_outer (sys : NonlinParamSys.WithStep
     simp only [NonlinearSys.WithSteps.reachUnionExact, Set.mem_iUnion]
     refine ⟨t, ht, fun s => Fin.append (x s) c, u, ?_, rfl⟩
     rw [sys.aug_sys]
-    exact traj.toAugment (Z₀ := construct Z₀) fun v hv w hw => hZ v hv w hw
+    exact { traj.toAugment (Z₀ := construct Z₀) fun v hv w hw => hZ v hv w hw with
+      output := fun _ _ => rfl }
   -- the member holding `(x t, c)` maps to the projected one holding `x t`
   obtain ⟨s, hs, hzs⟩ := SetUnion.mem_construct.mp hz
   refine SetUnion.mem_construct.mpr ⟨_, List.mem_map_of_mem hs, ?_⟩

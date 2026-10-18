@@ -60,8 +60,8 @@ likewise, with no regularity asked of either; but `ξ(t;x_0,u(·),w(·))` is int
 "a solution to (30)", and for an arbitrary — in particular non-measurable — signal there
 is none. The gap is not cosmetic. A pointwise derivative is a pointwise limit of
 difference quotients and so measurable — which is what
-[`ClassicalTrajectoryAestronglyMeasurableInput.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryAestronglyMeasurableInput.lean)
-proves of a one-input `IsCanonicalClassicalTrajectory` — so `ẋ = Ax + Bu + Ew` holding at every point
+[`AestronglyMeasurableOfHasDerivWithinAt.lean`](../../src/CORALean/Global/AestronglyMeasurableOfHasDerivWithinAt.lean)
+proves of a derivative within a convex set — so `ẋ = Ax + Bu + Ew` holding at every point
 of `[0,t]` forces `Bu + Ew` measurable there. Two consequences for `t > 0`, both in the
 strong direction:
 

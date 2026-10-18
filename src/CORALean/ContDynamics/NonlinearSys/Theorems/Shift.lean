@@ -1,9 +1,8 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.NonlinearSys
-public import Mathlib.Analysis.Calculus.Deriv.Add
-public import Mathlib.Analysis.Calculus.Deriv.Comp
-public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import Mathlib.MeasureTheory.Group.LIntegral
 
 @[expose] public section
 
@@ -16,9 +15,11 @@ This is the move: `fun t => x (t₀ + t)` is a trajectory on any domain the shif
 carries into `T`, with the input shifted alongside it.
 
 The field is time-invariant, so `flow` transports without a change of vector
-field — the chain rule contributes the factor `1` and nothing else. That is the
-only reason re-anchoring is cheap here, and it is why `NonlinearSys` carrying
-time in the state rather than as an argument is not a neutral choice.
+field: the integral from `t₀` to `t₀ + t` is the integral from `0` of the
+shifted integrand, and it is the difference of the two integral equations at
+`t₀ + t` and at `t₀`, which is why `t₀ ∈ T` is asked. That is the only reason
+re-anchoring is cheap here, and it is why `NonlinearSys` carrying time in the
+state rather than as an argument is not a neutral choice.
 
 `R₀'` is a parameter and its membership a hypothesis: the state reached at `t₀`
 is what the previous step enclosed, so the caller already has the set and the
@@ -27,7 +28,7 @@ proof, and asking for them is what makes this compose.
 
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +36,7 @@ proof, and asking for them is what makes this compose.
 
 namespace CORALean
 
-open ContSet
+open ContSet MeasureTheory intervalIntegral
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
@@ -46,17 +47,28 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Every run on `T` is a run on `T'` re-anchored at `t₀`, given a set holding
 the state it starts from. -/
 theorem NonlinearSys.IsTrajectory.shift {sys : NonlinearSys n m} {T T' : Set ℝ}
-    {R₀ R₀' : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {t₀ : ℝ}
-    (traj : sys.IsTrajectory T R₀ U x u) (hT : Set.MapsTo (fun t => t₀ + t) T' T)
-    (h₀ : x t₀ ∈ construct R₀') :
-    sys.IsTrajectory T' R₀' U (fun t => x (t₀ + t)) (fun t => u (t₀ + t)) where
+    {R₀ R₀' : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q} {t₀ : ℝ}
+    (traj : sys.IsTrajectory T R₀ U x u y) (hT : Set.MapsTo (fun t => t₀ + t) T' T)
+    (ht₀ : t₀ ∈ T) (h₀ : x t₀ ∈ construct R₀') :
+    sys.IsTrajectory T' R₀' U (fun t => x (t₀ + t)) (fun t => u (t₀ + t))
+      (fun t => y (t₀ + t)) where
   init := by simpa using h₀
   input t ht := traj.input _ (hT ht)
+  meas := traj.meas.comp_quasiMeasurePreserving
+    ((measurePreserving_add_left volume t₀).quasiMeasurePreserving.restrict hT)
+  integrable t ht := by
+    have h := ((traj.integrable t₀ ht₀).symm.trans (traj.integrable _ (hT ht))).comp_add_left t₀
+    simpa using h
+  cont := traj.cont.comp (continuousOn_const.add continuousOn_id) hT
   flow t ht := by
-    have hg : HasDerivWithinAt (fun s : ℝ => t₀ + s) 1 T' t :=
-      ((hasDerivAt_id t).const_add t₀).hasDerivWithinAt
-    have h := (traj.flow _ (hT ht)).scomp t hg hT
-    simpa [Function.comp_def] using h
+    have h1 := traj.flow _ (hT ht)
+    have h2 := traj.flow t₀ ht₀
+    simp only at h1
+    rw [integral_comp_add_left (fun s => sys.f (x s) (u s)) t₀, add_zero,
+      ← integral_interval_sub_left (traj.integrable _ (hT ht)) (traj.integrable t₀ ht₀)]
+    rw [h1, h2]
+    abel
+  output t ht := traj.output _ (hT ht)
 
 end CORALean
 

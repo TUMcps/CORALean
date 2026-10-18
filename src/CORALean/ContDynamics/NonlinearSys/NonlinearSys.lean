@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ContSet.ContSet
-public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 public import Mathlib.Topology.Algebra.Module.ModuleTopology
 
 @[expose] public section
@@ -10,32 +10,36 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 # Continuous-time nonlinear systems: the representation
 
 CORA's `nonlinearSys`: `ẋ(t) = f(x(t), u(t))` with the output equation `y = g(x, u)`,
-time-invariant as CORA's is — a time-varying field is this with time in the state. The output
-dimension `q` is a field, as CORA's `nrOfOutputs` is a property; absent an output equation
-CORA's is the state, `g x u = x`. The output of a run is `g (x t) (u t)`, a function of it, so
-`IsTrajectory` does not repeat it. A run reaches `LinearSys` through `linearize` and an
-`AbstractionError` certificate.
+time-invariant as CORA's is. The output dimension `q` is a field, as CORA's `nrOfOutputs` is a
+property; absent an output equation CORA's is the state, `g x u = x`. `IsTrajectory` carries the
+output `y t = g (x t) (u t)`, as `LinearSys.IsTrajectory` carries its `outputEq.eval`.
 
-State and input dimensions are separate, as CORA's are; a run is linearized to `LinearSys`'s
-canonical form, whose input is in state coordinates.
+`IsTrajectory` is a Carathéodory run, the integral equation `x t = x 0 + ∫₀ᵗ f(x s, u s) ds`
+rather than a derivative at every point (Sontag, *Math. Control Theory*, Def. C.2.1): a
+zero-order-hold input has no derivative at a jump. `meas` and `integrable` are the integrand's
+regularity, without which `intervalIntegral`'s junk value would let `flow` admit an `x` nothing
+like a run. [1, Def. 1] asks for Lipschitz-continuous inputs, whose runs are classical as well
+(`IsTrajectory.hasDerivWithinAt`); `IsTrajectory.of_hasDerivWithinAt` is the converse bridge, so
+whatever encloses these runs encloses [1]'s. `IsTrajectory.linearize` hands a run to `LinearSys`.
 
-`IsTrajectory` is classical and mirrors `LinearSys.IsCanonicalClassicalTrajectory` field for
-field — `LinearSys.isCanonicalClassicalTrajectory_iff_nonlinearSys`;
-`IsCanonicalClassicalTrajectory.trajectory` carries a run to `LinearSys.IsCanonicalTrajectory`. A
-bounded `T` makes `linearize` one step.
+## References
+
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
+      Uncertain Parameters using Conservative Linearization". In Proc. of the 47th IEEE
+      Conference on Decision and Control (CDC), 2008, pp. 4042-4048.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       01-September-2026
--- Last update:   14-October-2026
--- Reviewed:      15-October-2026 (Tobias Ladner)
+-- Last update:   18-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
 
 namespace CORALean
 
-open ContSet
+open ContSet MeasureTheory
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
@@ -48,12 +52,17 @@ structure NonlinearSys (n m : ℕ) where
   q : ℕ
   g : Vec ℝ n → Vec ℝ m → Vec ℝ q
 
+/-- A Carathéodory run on `T` from `R₀` under inputs in `U`. -/
 structure NonlinearSys.IsTrajectory (sys : NonlinearSys n m) (T : Set ℝ) (R₀ : S n)
-    (U : S m) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) : Prop where
+    (U : S m) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) (y : ℝ → Vec ℝ sys.q) : Prop where
   init : x 0 ∈ construct R₀
   input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
-  flow (t : ℝ) (ht : t ∈ T) :
-    HasDerivWithinAt x (sys.f (x t) (u t)) T t
+  meas : AEStronglyMeasurable (fun t => sys.f (x t) (u t)) (volume.restrict T)
+  integrable (t : ℝ) (ht : t ∈ T) :
+    IntervalIntegrable (fun s => sys.f (x s) (u s)) volume 0 t
+  cont : ContinuousOn x T
+  flow (t : ℝ) (ht : t ∈ T) : x t = x 0 + ∫ s in (0:ℝ)..t, sys.f (x s) (u s)
+  output (t : ℝ) (ht : t ∈ T) : y t = sys.g (x t) (u t)
 
 end CORALean
 

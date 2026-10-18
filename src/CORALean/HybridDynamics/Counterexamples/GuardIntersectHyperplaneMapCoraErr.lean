@@ -1,6 +1,7 @@
 module
 
 public import CORALean.HybridDynamics.Operations.InputSet
+public import CORALean.HybridDynamics.Theorems.IsTrajectoryOfHasDerivWithinAt
 public import CORALean.HybridDynamics.Definitions.HitPoint
 public import CORALean.HybridDynamics.Definitions.HitJacobian
 public import CORALean.HybridDynamics.Definitions.SdcInput
@@ -288,7 +289,8 @@ theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample : -- --- STMT
   set inv : Zonotope (Vec ℝ 3) := ⟨2, ![1, 1, 1], ![![1, 0, 0], ![0, 1, 0]]⟩
   refine ⟨⟨inv, LinearSys.canonical aux_hpMapCoraCex_A, Zonotope.ofPoint 0, Zonotope.ofPoint 0,
     []⟩, ![0, 1, 0], 2, Zonotope.ofPoint ![0, 0, 1], 2, 2, 2, x, fun _ => 0, fun _ => 0,
-    ⟨by norm_num, ?_, ?_, ?_, ?_⟩, ?_, ⟨by norm_num, le_rfl⟩, le_rfl, ?_, ?_⟩
+    Location.IsTrajectory.of_hasDerivWithinAt (by norm_num) ?_ ?_ continuousOn_const
+      continuousOn_const ?_ ?_, ?_, ⟨by norm_num, le_rfl⟩, le_rfl, ?_, ?_⟩
   -- the run: `ẋ = Ax`, no input and no disturbance, inside the box `inv`
   · intro t _; exact Zonotope.mem_ofPoint (0 : Vec ℝ 3)
   · intro t _; exact Zonotope.mem_ofPoint (0 : Vec ℝ 3)

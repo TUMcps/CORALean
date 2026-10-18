@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContDynamics.NonlinearSys.Theorems.MinkowskiDiffAddSubsetReachSetExact
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorExistsNormLe
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAtOfNormLe
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubMemInputSolution
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 
@@ -46,7 +48,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n m : ℕ}
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
+variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -83,8 +85,11 @@ theorem NonlinearSys.minkowskiDiff_inputSolution_subset_reachSetExact [Mtimes �
     ((Matrix.isUnit_iff_isUnit_det _).mp (Matrix.isUnit_exp _)) _ hEc hEcv hEne hEs hu₀ hLip hex
     fun x₀ hx₀ x hx0 hder => ?_
   -- each solution is a run under `u₀` confined to `R`, so (21) holds for it
-  have traj : sys.IsTrajectory (Set.Icc 0 Δt) R₀ U x fun _ => u₀ :=
-    ⟨by rw [hx0]; exact hx₀, fun _ _ => hu₀, hder⟩
+  obtain ⟨C, hC⟩ := cert.exists_norm_le hbdd isCompact_Icc
+    (fun t ht => (hder t ht).continuousWithinAt) (hconf x₀ hx₀ x hx0 hder) hu₀
+  have traj : sys.IsTrajectory (Set.Icc 0 Δt) R₀ U x (fun _ => u₀) (fun t => sys.g (x t) u₀) :=
+    .of_hasDerivWithinAt_of_norm_le (convex_Icc 0 Δt) ⟨le_rfl, hΔt.le⟩
+      (by rw [hx0]; exact hx₀) (fun _ _ => hu₀) hder hC
   have h := traj.sub_mem_inputSolution cert (hconf x₀ hx₀ x hx0 hder) hΔt η hε hconv hclosed
     hbdd hRconv hRclosed hRbdd
   rw [hx0] at h

@@ -192,7 +192,6 @@ public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
 public import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
-public import CORALean.ContDynamics.LinearSys.Operations.Basic
 
 /-!
 # What a continuous-time linear system computes

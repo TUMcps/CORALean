@@ -22,8 +22,8 @@ the closed system. The plant receives `U_nn × U_ext` (`inputSet`), its input ve
 there is stated for a `W` that `E` sends to `0`. The discrete-time loop is `NeurNetContrSysDT`.
 
 What the loop denotes is its runs, `IsTrajectory`, stated here as for every other system class:
-on period `i` a run of the plant, shifted to `i dt`, under the held input `[π(x(i dt)); v]`; `u`
-jumps at a sampling instant, so a run is a run of the plant only within a period.
+on period `i` a run of the plant (a Carathéodory run for every continuous-time class here),
+shifted to `i dt`, under the held input `[π(x(i dt)); v]`, which jumps at a sampling instant.
 
 ## References
 

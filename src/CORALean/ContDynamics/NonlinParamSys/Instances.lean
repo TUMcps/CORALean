@@ -58,7 +58,7 @@ instance NonlinParamSys.contDynamics {n m q : ℕ} : ContDynamics (NonlinParamSy
   nrOfInputs _ := m
   nrOfDisturbances _ := q
   IsTrajectory sys T X₀ U W x u w :=
-    NonlinParamSys.IsTrajectory (S := 𝒮) sys T X₀ U W x u w
+    NonlinParamSys.IsTrajectory (S := 𝒮) sys T X₀ U W x u w (fun t => sys.g (x t) (u t) (w t))
 
 end CORALean
 

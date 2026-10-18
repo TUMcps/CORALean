@@ -54,7 +54,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.RowNormExpansionOfAnal
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetAbstrReach
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubsetCenterAbstrReach
-public import CORALean.ContDynamics.NonlinearSys.Theorems.IsClassicalTrajectoryIffNonlinearSys
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsCanonicalTrajectoryIffNonlinearSys
 public import CORALean.ContDynamics.NonlinearSys.Theorems.TuneDeltatInitGain
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsMono
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsOuter
@@ -106,6 +106,13 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerRtiSubset
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachInnerCertOfAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachInnerMinkdiffSubsetReachSetExactHorizon
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorExistsNormLe
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryHasDerivWithinAt
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAt
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAtOfNormLe
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeSub
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeWindow
+public import CORALean.ContDynamics.NonlinearSys.Theorems.SubEqIntegral
 
 /-!
 # What `NonlinearSys` guarantees

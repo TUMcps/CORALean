@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.NonlinearSysDT.NonlinearSysDT
 public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
 
 @[expose] public section
@@ -9,12 +10,13 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ComputeGOState
 
 `y(k) - y_ref(k)` is `C{k}` applied to the initial deviation, plus `D{k,j}` applied to each input
 deviation, plus `E{k,j}` applied to each linearization error `L_j = [L_x; L_y]`, for every run
-of the system. As for the state, an identity: the errors are the `linResidual`s, not bounded.
+of the system, `y` its output as `IsTrajectory` states it. As for the state, an identity: the
+errors are the `linResidual`s, not bounded.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -22,18 +24,19 @@ of the system. As for the state, an identity: the errors are the `linResidual`s,
 
 namespace CORALean
 
-open Matrix
+open Matrix ContSet
 
 variable {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
     (x0 : Vec ℝ n) (u_ref : ℕ → Vec ℝ m)
-    {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} (hx : ∀ k, x (k + 1) = sys.f (x k) (u k))
-    (k : ℕ) : -- --- STMT ---
-    sys.g (x k) (u k) - (sys.computeGO x0 u_ref).y k
+    {R₀ : S n} {U : S m} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} {y : ℕ → Vec ℝ sys.q}
+    (traj : sys.IsTrajectory R₀ U x u y) (k : ℕ) : -- --- STMT ---
+    y k - (sys.computeGO x0 u_ref).y k
       = (sys.computeGO x0 u_ref).C k *ᵥ (x 0 - x0)
         + ∑ j ∈ Finset.range (k + 1),
             (sys.computeGO x0 u_ref).D k j *ᵥ (u j - u_ref j)
@@ -42,6 +45,7 @@ theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
               (linResidual sys.f ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
               (linResidual sys.g ((sys.computeGO x0 u_ref).x j) (u_ref j) (x j) (u j))
               : Vec ℝ (n + sys.q)) := by -- --- PROOF ---
+  rw [traj.output k]
   cases k with
   | zero =>
     -- no earlier step: only the feedthrough and `L_y` remain
@@ -59,7 +63,7 @@ theorem NonlinearSysDT.computeGO_output (sys : NonlinearSysDT n m)
     abel
   | succ k =>
     -- the deviation of the state one step back, from the state theorem
-    have hs := NonlinearSysDT.computeGO_state sys x0 u_ref hx k
+    have hs := NonlinearSysDT.computeGO_state sys x0 u_ref traj.step k
     -- row `k + 1` is the output Jacobian times row `k`, plus the feedthrough and `L_y`
     have hC : (sys.computeGO x0 u_ref).C (k + 1) = jacobianMat
         (fun x => sys.g x (u_ref (k + 1))) ((sys.computeGO x0 u_ref).x (k + 1))

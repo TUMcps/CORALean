@@ -43,7 +43,7 @@ Runs are under the constant input `u₀` of the autonomous (4) of [1], so under 
 
 namespace CORALean
 
-open ContSet Set
+open ContSet Set MeasureTheory
 
 variable {n m : ℕ} {𝓛 : Type}
 
@@ -85,20 +85,21 @@ theorem NonlinearSys.innerMinkDiffLoop_subset_reachSetExact
         (hcert T X st hX hst)).trans (sys.reachSetExact_subset_reachSetExact_add X₀ X u₀ hT hΔt hX)
       have h2 := ih (T + Δt) _ _ X' Y' (by positivity) h1 hl
       rwa [show T + Δt + (j : ℝ) * Δt = T + ((j + 1 : ℕ) : ℝ) * Δt by push_cast; ring] at h2
-  -- `R̂(t₀) = X₀` is reached at `0`: on `{0}` any derivative is one
+  -- `R̂(t₀) = X₀` is reached at `0`: on `{0}` the constant is a run
   have base : X₀ ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 0) X₀ {u₀} 0 := by
     intro y hy
-    refine ⟨fun _ => y, fun _ => u₀, ⟨hy, fun _ _ => rfl, fun t ht => ?_⟩, rfl⟩
-    rw [Icc_self] at ht ⊢
-    rw [mem_singleton_iff.mp ht, hasDerivWithinAt_iff_tendsto_slope, sdiff_self,
-      nhdsWithin_empty]
-    exact Filter.tendsto_bot
+    refine ⟨fun _ => y, fun _ => u₀, ⟨hy, fun _ _ => rfl, aestronglyMeasurable_const,
+      fun _ _ => intervalIntegrable_const, continuousOn_const, fun t ht => ?_, fun _ _ => rfl⟩, rfl⟩
+    rw [Icc_self, mem_singleton_iff] at ht
+    subst ht
+    simp
   have hk := step k 0 X₀ ∅ Rtk Rτ le_rfl base h
   rw [zero_add] at hk
   -- runs under `u₀` are runs with inputs in `U`
   rintro y hy
   obtain ⟨x, u, traj, hx⟩ := hk hy
-  refine ⟨x, u, ⟨traj.init, fun t ht => ?_, traj.flow⟩, hx⟩
+  refine ⟨x, u, ⟨traj.init, fun t ht => ?_, traj.meas, traj.integrable, traj.cont, traj.flow,
+      traj.output⟩, hx⟩
   have hu : u t = u₀ := traj.input t ht
   show u t ∈ U
   rw [hu]

@@ -1,6 +1,8 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.IsClassicalTrajectoryDiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
+public import CORALean.ContDynamics.LinearSys.Theorems.StepInputShift
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeWindow
 public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalOnMono
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PostEvalOn
@@ -33,7 +35,7 @@ what discharges the step.
 
 -- Authors:       Claude Opus 5
 -- Written:       18-September-2026
--- Last update:   30-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -57,7 +59,7 @@ initial set stays inside the computed set's evaluation, at every step. -/
 theorem NonlinearSys.IsTrajectory.relinReach_evalOn {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : 𝒫𝒵 n} {U : 𝒫𝒵 m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {steps : ℕ → sys.LinStep (S := 𝒫𝒵) U} {Ud : ℕ → 𝒫𝒵 n} {Δt : ℝ} {N o : ℕ} (ho : 0 < o)
-    (traj : sys.IsTrajectory (S := 𝒫𝒵) T R₀ U x u) (hΔt : 0 ≤ Δt)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒫𝒵) T R₀ U x u y) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
@@ -84,9 +86,17 @@ theorem NonlinearSys.IsTrajectory.relinReach_evalOn {sys : NonlinearSys n m} {T 
     have hwin : Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt) ⊆ T :=
       step_subset_horizon hΔt hT hiN
     -- step `i`'s linearized run, and the sample it takes over that window
-    have hlin := (traj.restrict hwin).linearize (steps i).cert (hR i hiN)
-    have hstep := hlin.discretize_step hΔt (hU i hiN) i subset_rfl
-    rw [Scalar.toRealMat_real] at hstep
+    have hexp : ((i : ℝ) + 1) * Δt = (i : ℝ) * Δt + Δt := by ring
+    rw [hexp] at hwin
+    have hlin := traj.linearize_window (A := (steps i).A) (V := construct (steps i).linInput) hΔt
+      hwin fun t ht => linInput_outer (steps i).cert (hR i hiN t (hexp ▸ ht))
+        (traj.input t (hwin ht))
+    have hstep := hlin.discretize_step hΔt (hU i hiN) 0 (by simp)
+    have hshift := (NonlinearSys.linearize (steps i).A).stepInput_shift
+      (fun s => sys.f (x s) (u s) - (steps i).A *ᵥ x s) Δt i
+    rw [Scalar.toRealMat_real, hshift] at hstep
+    simp only [Nat.cast_zero, zero_add, one_mul, zero_mul, add_zero] at hstep
+    rw [← hexp] at hstep
     have hmem : x (((i : ℝ) + 1) * Δt)
         ∈ (((NonlinearSys.linearize (steps i).A).discretize Δt).A *ᵥ ·)
             '' (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).evalOn (Bs i)
