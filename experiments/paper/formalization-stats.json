@@ -8567,10 +8567,10 @@
     },
     "theorems": {
       "paper": 1843,
-      "float": 1925,
+      "float": 1940,
       "helper": 1785,
       "lemma": 3363,
-      "total": 8916,
+      "total": 8931,
       "examples": 129
     }
   }

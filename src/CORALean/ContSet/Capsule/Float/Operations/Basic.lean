@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.Global.Float.Sqrt
 
 @[expose] public section
@@ -42,8 +43,9 @@ def Capsule.center (C : Capsule 𝕋 n) : Vec 𝕋 n := C.c
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- Radius `-1`, as over ℝ: `neg one` reads as `-1`, which no point is within. -/
-def Capsule.empty (n : ℕ) : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, neg one⟩
+/-- Radius `-1`, as over ℝ: `neg one` reads as `-1`, which no point is within; no error box. -/
+def Capsule.empty (n : ℕ) : Capsule 𝕋 n :=
+  ⟨fun _ => zero, fun _ => zero, neg one, Interval.origin n⟩
 
 
 -- =====================================  `Capsule.origin`  ===================================== --
@@ -53,7 +55,7 @@ def Capsule.empty (n : ℕ) : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero,
 -- Reviewed:      ---
 
 /-- No direction, no radius, centered at the origin: `zero` reads as `0`, so nothing rounds. -/
-def Capsule.origin (n : ℕ) : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, zero⟩
+def Capsule.origin (n : ℕ) : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, zero, Interval.origin n⟩
 
 end
 
@@ -65,17 +67,26 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- =====================================  `Capsule.radius`  ===================================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       02-October-2026
+-- ===================================  `Capsule.errorNorm`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- CORA's `norm(g, 2) + r` with the norm rounded up: `normUp` of the generator, added to the radius
-upward. `k` is the number of Newton steps of the root (`Global/Float/Sqrt`). -/
+/-- A bound on the Euclidean norm of every point of the error box: the norm of the entrywise
+larger end magnitude, rounded up. `k` is the number of Newton steps of the root. -/
+def Capsule.errorNorm (k : ℕ) (C : Capsule 𝕋 n) : 𝕋 := normUp k C.I_error.normMag
+
+
+-- =====================================  `Capsule.radius`  ===================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       02-October-2026
+-- Last update:   18-October-2026
+-- Reviewed:      ---
+
+/-- CORA's `norm(g, 2) + r`, the norm rounded up, plus `errorNorm` for the box; `k` Newton steps. -/
 def Capsule.radius (k : ℕ) (C : Capsule 𝕋 n) : 𝕋 :=
-  let length := normUp k C.g
-  addUp length C.r
+  addUp (addUp (normUp k C.g) C.r) (C.errorNorm k)
 
 
 -- ===============================  `Capsule.representsa_origin`  =============================== --

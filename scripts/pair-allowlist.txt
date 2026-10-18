@@ -35,7 +35,6 @@ src/CORALean/ContSet/Interval/Float/Operations/Basic.lean  layering: `Interval.E
 src/CORALean/ContSet/Interval/Real/Theorems/ExistsMulEq.lean  state: a point of the product domain
 src/CORALean/ContSet/Interval/Real/Theorems/ExtremalExample.lean  state: a point of a product set
 src/CORALean/ContSet/PolyZonotope/Real/Operations/RelaxDrift.lean  other: midpoint and half-width, not two bounds
-src/CORALean/ContSet/Taylm/Float/Taylm.lean  layering: the float remainder `remInf`/`remSup` waits for the #185 decision (an explicit `I_error` and an `absorb` into the remainder); the Real layer already holds `rem : Interval ℝ`
 src/CORALean/Global/Counterexamples/RegionOfAttraction.lean  state: a point of the plane
 src/CORALean/Global/ForwardInnerReach.lean  improper: the improper interval `]z[` of Step 3
 src/CORALean/Global/KaucherInner.lean  improper: Kaucher products and sums, whose ends cross by design

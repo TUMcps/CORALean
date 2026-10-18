@@ -21,7 +21,7 @@ exact bound is not.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -69,9 +69,9 @@ theorem Taylm.optBernstein_mem (T : Taylm 𝕋 n) {f : Vec ℝ n → ℝ} (h : T
         T.nominal.bernsteinDegree β).sup) (Taylm.mem_bernsteinIdx n _ β))
   constructor
   · refine le_trans (addDown_le_add _ _) (le_trans ?_ hr.1)
-    exact add_le_add hlo le_rfl
+    exact add_le_add hlo (addDown_le_add _ _)
   · refine le_trans hr.2 (le_trans ?_ (add_le_addUp _ _))
-    exact add_le_add hhi le_rfl
+    exact add_le_add hhi (add_le_addUp _ _)
 
 end CORALean.Float
 

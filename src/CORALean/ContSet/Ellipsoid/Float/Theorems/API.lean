@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeBoxRadius
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeOfMemNominalSet
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet

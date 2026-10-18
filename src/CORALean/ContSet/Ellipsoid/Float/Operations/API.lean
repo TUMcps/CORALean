@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Operations.BoxRadius

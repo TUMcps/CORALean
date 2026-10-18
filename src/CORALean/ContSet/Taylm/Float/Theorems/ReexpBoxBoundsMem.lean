@@ -20,7 +20,7 @@ otherwise the range is `polyBoxBounds`'s.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -88,10 +88,10 @@ theorem Taylm.reexpBoxBounds_mem (P : List (𝕋 × (Fin n → ℕ))) {B : Fin n
       rw [abs_div, abs_of_pos hr0, div_le_one hr0, abs_le]
       constructor <;> linarith [h.1, h.2, h'.1, h'.2]
   -- the model of the term list with remainder `0` encloses its polynomial
-  have hT0 : (⟨P, zero, zero, 0⟩ : Taylm 𝕋 n).Encloses
+  have hT0 : (⟨P, ⟨zero, zero⟩, ⟨zero, zero⟩, 0⟩ : Taylm 𝕋 n).Encloses
       fun s => Real.Taylm.polyOf (P.map fun a => (toReal a.1, a.2)) s := by
     intro s _
-    simp only [Taylm.nominal, Real.Taylm.poly, toReal_zero, sub_self]
+    simp only [Taylm.inflated, Real.Taylm.poly, toReal_zero, sub_self, add_zero]
     exact ⟨le_rfl, le_rfl⟩
   have hre := Taylm.reexpand_outer hT0 (Taylm.boxMid B) (Taylm.boxRad B) hmr
   have hb := Taylm.bounds_mem hre hs

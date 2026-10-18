@@ -13,7 +13,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,7 +35,7 @@ theorem Taylm.uminus_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enc
   have e : (T.terms.map fun a => (neg a.1, a.2)).map (fun a => (toReal a.1, a.2))
       = (T.terms.map fun a => (toReal a.1, a.2)).map fun a => (-a.1, a.2) := by
     simp [toReal_neg]
-  simp only [Taylm.uminus, Taylm.nominal, Real.Taylm.poly, e, Real.Taylm.polyOf_neg,
+  simp only [Taylm.uminus, Taylm.inflated, Real.Taylm.poly, e, Real.Taylm.polyOf_neg,
     toReal_neg] at *
   constructor <;> linarith [a.1, a.2]
 

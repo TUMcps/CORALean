@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.EnclosePoints
+public import CORALean.ContSet.InflatedContSet.Theorems.Basic
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 @[expose] public section
 
@@ -66,6 +68,11 @@ theorem Capsule.range_subset_construct (k : ℕ) {N : ℕ} (pts : Fin N → Vec 
   unfold Capsule.enclosePoints
   rw [dif_pos hN]
   dsimp only
+  -- the box is the origin, so the point is one of the nominal capsule
+  refine InflatedContSet.nominalSet_subset_construct ?_ ?_
+  · show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+    rw [Interval.origin_exact]
+    rfl
   -- name the stored center, farthest point, generator and parameter
   set c : Vec 𝕋 n := fun i => divUp (sumUp fun j => pts j i) (nsmulUp N one) with hc
   set d : Fin N → Vec 𝕋 n := fun j i => subUp (pts j i) (c i) with hd

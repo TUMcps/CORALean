@@ -34,7 +34,7 @@ def Taylm.reexpBoxBounds (P : List (𝕋 × (Fin n → ℕ))) (B : Fin n → Int
   let m := Taylm.boxMid B
   let r := Taylm.boxRad B
   if (List.finRange n).all (fun k => le (addUp (absolute (m k)) (absolute (r k))) one) = true then
-    (Taylm.reexpand m r ⟨P, zero, zero, 0⟩).bounds
+    (Taylm.reexpand m r ⟨P, ⟨zero, zero⟩, ⟨zero, zero⟩, 0⟩).bounds
   else Taylm.polyBoxBounds P B
 end CORALean.Float
 

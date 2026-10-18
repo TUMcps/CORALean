@@ -2,10 +2,11 @@ module
 
 public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Float.Operations.Reduce
-public import CORALean.ContSet.Capsule.Float.Operations.Reindex
 public import CORALean.ContSet.Capsule.Real.Instances
-public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemConstructIff
-public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
+public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+public import CORALean.ContSet.Capsule.Float.Operations.Basic
+public import CORALean.ContSet.InflatedContSet.Theorems.Convex
+public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
 
 @[expose] public section
 
@@ -22,43 +23,44 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Float
 
-open FloatOps SoundFloatArithmetic
+open CORALean FloatOps SoundFloatArithmetic
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
-
-
--- ============================  `Capsule.center_mem_construct_iff`  ============================ --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- It is in the capsule exactly when the stored radius is non-negative. -/
-theorem Capsule.center_mem_construct_iff (C : Capsule 𝕋 n) :
-    toRealVec C.c ∈ C.construct ↔ 0 ≤ toReal C.r :=
-  CORALean.Real.Capsule.center_mem_construct_iff C.nominal
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 -- ================================  `Capsule.convex_construct`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
+-- Last update:   18-October-2026
+-- Reviewed:      ---
+
+/-- A capsule plus a box: both convex, so the sum is. -/
+theorem Capsule.convex_construct (C : Capsule 𝕋 n) : Convex ℝ C.construct :=
+  InflatedContSet.convex_construct C
+
+
+-- ==============================  `Capsule.exists_split_of_mem`  =============================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What it denotes is the exact capsule's set, so the exact theorem applies. -/
-theorem Capsule.convex_construct (C : Capsule 𝕋 n) : Convex ℝ C.construct :=
-  CORALean.Real.Capsule.convex_construct C.nominal
+/-- A point of an exact capsule is a point of its segment plus a vector no longer than `r`. -/
+theorem Capsule.exists_split_of_mem {K : Real.Capsule n} {y : Vec ℝ n} (hy : y ∈ K.construct) :
+    ∃ t ∈ Set.Icc (-1 : ℝ) 1, ∃ w : Vec ℝ n, ‖w‖₂ ≤ K.r ∧ y = K.c + t • K.g + w :=
+  let ⟨t, ht, hw⟩ := (Real.Capsule.mem_construct_iff_norm₂ K y).mp hy
+  ⟨t, ht, _, hw, by abel⟩
 
 
 -- ==============================  `Capsule.isCompact_construct`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- What it denotes is the exact capsule's set, so the exact theorem applies. -/
+/-- A capsule plus a box: both compact, so the sum is. -/
 theorem Capsule.isCompact_construct (C : Capsule 𝕋 n) : IsCompact C.construct :=
-  CORALean.Real.Capsule.isCompact_construct C.nominal
+  InflatedContSet.isCompact_construct C
 
 
 -- ==================================  `Capsule.reduce_outer`  ================================== --
@@ -72,18 +74,6 @@ theorem Capsule.reduce_outer (C : Capsule 𝕋 n) (o : ℕ) :
     C.construct ⊆ (C.reduce o).construct :=
   subset_rfl
 
-
--- =================================  `Capsule.reindex_exact`  ================================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- The exact layer's `reindex` of the nominal capsule is the nominal capsule of the result, so
-`Real.Capsule.reindex_exact` is the equality, as over ℝ: nothing is rounded. -/
-theorem Capsule.reindex_exact (e : Fin m ≃ Fin n) (C : Capsule 𝕋 n) :
-    (C.reindex e).construct = reindexLin e '' C.construct :=
-  Real.Capsule.reindex_exact e C.nominal
 
 end CORALean.Float
 

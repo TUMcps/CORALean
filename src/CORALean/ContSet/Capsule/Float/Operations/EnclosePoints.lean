@@ -16,7 +16,8 @@ sum over a rounded-up count, the farthest point is picked by comparing squared l
 certified `le` (a wrong pick only costs radius), and the radius is the largest rounded-up length of
 the residual `p - (c + t g)` of each point against the stored center and generator, at the
 projection parameter `t` clamped to `[-1, 1]`, so the capsule holds every point whatever the
-roundings. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
+roundings. The capsule is computed, not a rounded image of an exact one, so its error box is the
+origin. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -48,7 +49,7 @@ def Capsule.enclosePoints (k : ℕ) {N : ℕ} (pts : Fin N → Vec 𝕋 n) : Cap
     let res := fun j i => maximum
       (absolute (subDown (subDown (pts j i) (c i)) (mulUp (t j) (g i))))
       (absolute (subUp (subUp (pts j i) (c i)) (mulDown (t j) (g i))))
-    ⟨c, g, maximumOver fun j => normUp k (res j)⟩
+    ⟨c, g, maximumOver fun j => normUp k (res j), Interval.origin n⟩
   else Capsule.empty n
 
 end CORALean.Float

@@ -1,7 +1,10 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.Basic
+public import CORALean.ContSet.Capsule.Float.Theorems.Basic
+public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.Capsule.Real.Theorems.OfPointMemIff
+public import CORALean.ContSet.Capsule.Float.Theorems.ConstructEqNominal
 
 @[expose] public section
 
@@ -36,6 +39,7 @@ theorem Capsule.origin_exact (n : ℕ) :
     · funext i; exact toReal_zero
     · funext i; exact toReal_zero
     · exact toReal_zero
+  rw [Capsule.construct_eq_nominal (Interval.origin_exact n)]
   show (Capsule.origin n : Capsule 𝕋 n).nominal.construct = {0}
   rw [h]
   exact Set.ext fun x =>

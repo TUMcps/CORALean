@@ -8,6 +8,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfFilter
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfMulTerms
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Float.Theorems.AbsorbRoundingNominal
 
 @[expose] public section
 
@@ -15,13 +16,15 @@ public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
 # `Taylm.times` encloses the product
 
 The exact layer's decomposition `fg - kept = dropped + p₁(g - p₂) + p₂(f - p₁) + (f - p₁)(g - p₂)`
-with two more summands, the rounding of the kept and of the dropped coefficient products,
-each bounded by `abs_polyOf_round_le`, and every sum of the remainder rounded outward.
+for the two operands with their boxes absorbed (`absorbRounding_nominal`, so their remainders alone
+enclose), with two more summands, the rounding of the kept and of the dropped coefficient products,
+each bounded by `abs_polyOf_round_le`, the kept one the result's error box, and every sum of the
+remainder rounded outward.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -73,9 +76,9 @@ theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (
   have hP₁ := Taylm.polyBounds_mem T₁.terms ht
   have hP₂ := Taylm.polyBounds_mem T₂.terms ht
   -- the cross terms, as at the exact layer
-  have hr₁ := h₁ t ht
-  have hr₂ := h₂ t ht
-  simp only [Taylm.nominal, Real.Taylm.poly] at hr₁ hr₂
+  have hr₁ := Taylm.absorbRounding_nominal h₁ t ht
+  have hr₂ := Taylm.absorbRounding_nominal h₂ t ht
+  simp only [Taylm.nominal, Taylm.absorbRounding, Real.Taylm.poly] at hr₁ hr₂
   have m₁ := Interval.mul_between_corners hP₁.1 hP₁.2 hr₂.1 hr₂.2
   have m₂ := Interval.mul_between_corners hP₂.1 hP₂.2 hr₁.1 hr₁.2
   have m₃ := Interval.mul_between_corners hr₁.1 hr₁.2 hr₂.1 hr₂.2
@@ -89,18 +92,20 @@ theorem Taylm.times_outer {T₁ T₂ : Taylm 𝕋 n} {f g : Vec ℝ n → ℝ} (
     fun p => (mulUp p.1.1 p.2.1, p.1.2 + p.2.2))).sup
     (listSumUp ((P.filter fun p => !pk p).map
       fun p => subUp (mulUp p.1.1 p.2.1) (mulDown p.1.1 p.2.1)))
-  simp only [Taylm.times, Taylm.nominal, Real.Taylm.poly, List.map_map, Function.comp_def]
+  simp only [Taylm.times, Taylm.inflated, Taylm.absorbRounding, Real.Taylm.poly, List.map_map,
+    Function.comp_def, toReal_neg]
   -- each end: unwind the directed sums, then the decomposition of `fg - kept`
   refine ⟨?_, ?_⟩
-  · refine le_trans (le_trans (subDown_le_sub _ _) (sub_le_sub_right
+  · rw [← sub_eq_add_neg]
+    refine le_trans (sub_le_sub_right
       (le_trans (addDown_le_add _ _) (add_le_add (le_trans (addDown_le_add _ _)
         (add_le_add (le_trans (addDown_le_add _ _) (add_le_add (subDown_le_sub _ _) le_rfl))
-          le_rfl)) le_rfl)) _)) ?_
+          le_rfl)) le_rfl)) _) ?_
     simp only [N, P, pk, ex] at *
     linarith [m₁.1, m₂.1, m₃.1, hD.1, rK.1, rD.1, q₁]
-  · refine le_trans ?_ (le_trans (add_le_add (le_trans (add_le_add (le_trans
+  · refine le_trans ?_ (add_le_add (le_trans (add_le_add (le_trans
       (add_le_add (le_trans (add_le_add (add_le_addUp _ _) le_rfl) (add_le_addUp _ _)) le_rfl)
-        (add_le_addUp _ _)) le_rfl) (add_le_addUp _ _)) le_rfl) (add_le_addUp _ _))
+        (add_le_addUp _ _)) le_rfl) (add_le_addUp _ _)) le_rfl)
     simp only [N, P, pk, ex] at *
     linarith [m₁.2, m₂.2, m₃.2, hD.2, rK.2, rD.2, q₂]
 

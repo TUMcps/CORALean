@@ -75,7 +75,8 @@ theorem Interval.capsule_contains (k : ℕ) (I : Interval (Vec 𝕋 n)) :
       exact absurd (h.symm.trans hb') (by simp)
     subst hn
     intro x _
-    exact ⟨0, by simp, by simp [Capsule.nominal, toReal_zero]⟩
+    exact ⟨x, ⟨0, by simp, by show Real.sqrt _ ≤ toReal (zero : 𝕋); simp [toReal_zero]⟩, 0,
+      fun i => i.elim0, Subsingleton.elim _ _⟩
 
 end CORALean.Float
 

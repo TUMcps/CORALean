@@ -19,7 +19,7 @@ As at the exact layer, for any real coefficients `a k` inside the stored enclosu
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -49,14 +49,16 @@ theorem Taylm.compose_outer {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.En
   have h₁ := hs t ht
   have h₂ := abs_le.1 (hg t ht)
   rw [Finset.sum_range (fun k => a k * (f t - toReal c) ^ k)] at h₂
-  have := addDown_le_add
-    (Taylm.sum fun k : Fin (N + 1) =>
-      ((T.minus (Taylm.const n c T.maxOrder)).pow k).smul (lo k) (hi k)).remInf (neg ρ)
-  have := add_le_addUp
-    (Taylm.sum fun k : Fin (N + 1) =>
-      ((T.minus (Taylm.const n c T.maxOrder)).pow k).smul (lo k) (hi k)).remSup ρ
-  simp only [Taylm.compose, Taylm.plus, Taylm.nominal, Real.Taylm.poly, List.map_append,
-    Real.Taylm.polyOf_append, List.map_nil, Real.Taylm.polyOf_nil, toReal_neg] at *
+  -- the sum's remainder and box, each widened by the Lagrange term's and the empty box
+  set S := Taylm.sum fun k : Fin (N + 1) =>
+    ((T.minus (Taylm.const n c T.maxOrder)).pow k).smul (lo k) (hi k) with hS
+  have := addDown_le_add S.rem.inf (neg ρ)
+  have := add_le_addUp S.rem.sup ρ
+  have := addDown_le_add S.I_error.inf zero
+  have := add_le_addUp S.I_error.sup zero
+  simp only [Taylm.compose, Taylm.plus, Taylm.inflated, Real.Taylm.poly, List.map_append,
+    Real.Taylm.polyOf_append, List.map_nil, Real.Taylm.polyOf_nil, toReal_neg, toReal_zero,
+    add_zero] at *
   constructor <;> linarith [h₁.1, h₁.2, h₂.1, h₂.2]
 
 end CORALean.Float

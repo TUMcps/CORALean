@@ -20,6 +20,8 @@ whenever its argument is, because rounding is paid into `Q` itself (`Operations/
 whose answer claims points of the set (`containsPoint`, `isBigger`, `isFullDim`) runs the check
 `isPsd`, a factor `L` from an unverified Cholesky decomposition and `Q - L Lᵀ` certified
 diagonally dominant in outward rounding, and answers `false` where it fails.
+`Ellipsoid.absorbRounding` moves the box into `Q`, by an outer ellipsoid of the sum with a ball
+holding the box.
 
 ## References
 

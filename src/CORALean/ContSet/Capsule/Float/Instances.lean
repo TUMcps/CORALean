@@ -7,6 +7,7 @@ public import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Capsule.Float.Theorems.ConvHullOuter
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
+public import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
 
 @[expose] public section
 
@@ -14,7 +15,7 @@ public import CORALean.ContSet.ContSet.Definitions.CompactSet
 # What a float `Capsule` instantiates
 
 `ConvexSet` and `CompactSet`, from the theorems that say so, then `Reduce` (the identity, as CORA's
-empty body) and `Reindex` (CORA's `lift_` at a permutation). `ContSet` is in `Capsule`.
+empty body) and `Reindex` (CORA's `lift_` at a permutation). `ContSet` comes from `InflatedContSet`.
 `Plus` and `Mtimes` take 100 Newton steps for their roots (`Capsule.plus`,
 `Capsule.mtimes`; more steps buy accuracy only). As over ℝ, no `LinComb`: a capsule is closed
 under almost nothing.

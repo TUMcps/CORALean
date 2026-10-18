@@ -11,7 +11,7 @@ public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoundsMem
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -31,9 +31,11 @@ theorem Taylm.bounds_mem {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h : T.Enclo
     toReal T.bounds.inf ≤ f t ∧ f t ≤ toReal T.bounds.sup := by -- --- PROOF ---
   have h₁ := h t ht
   have h₂ := Taylm.polyBounds_mem T.terms ht
-  have := addDown_le_add (Taylm.polyBounds T.terms).inf T.remInf
-  have := add_le_addUp (Taylm.polyBounds T.terms).sup T.remSup
-  simp only [Taylm.bounds, Taylm.nominal, Real.Taylm.poly] at *
+  have := addDown_le_add (Taylm.polyBounds T.terms).inf T.rem.inf
+  have := add_le_addUp (Taylm.polyBounds T.terms).sup T.rem.sup
+  have := addDown_le_add (addDown (Taylm.polyBounds T.terms).inf T.rem.inf) T.I_error.inf
+  have := add_le_addUp (addUp (Taylm.polyBounds T.terms).sup T.rem.sup) T.I_error.sup
+  simp only [Taylm.bounds, Taylm.inflated, Real.Taylm.poly] at *
   constructor <;> linarith [h₁.1, h₁.2, h₂.1, h₂.2]
 
 end CORALean.Float

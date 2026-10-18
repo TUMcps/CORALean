@@ -1201,7 +1201,8 @@ the representation can hold it (a zonotope into box generators, a polyhedron int
 side `b`, together with the slack its rows record besides the box, a constrained polynomial
 zonotope into independent generators, the slack its equality rows record (`b_error`) into a factor
 per row, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
-model into its remainder), with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
+model into its remainder, an ellipsoid into its shape matrix by an outer ellipsoid of its sum with
+a ball holding the box), with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
 A row that is an equation has no interior to absorb its own rounding, so a float representation
 with equality rows records it per row in a field `<name>_error` beside the box, read through
 `|·|`, and its constructors set it to zero.
