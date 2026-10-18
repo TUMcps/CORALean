@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 
 @[expose] public section
@@ -34,6 +35,7 @@ variable {n : ℕ}
 /-- `Q₁ ⪯ Q₂` about one center: the first ellipsoid lies in the second. -/
 theorem Ellipsoid.construct_subset_of_le {E₁ E₂ : Ellipsoid n} (hle : (E₂.Q - E₁.Q).PosSemidef)
     (hq : E₁.q = E₂.q) : E₁.construct ⊆ E₂.construct := by -- --- PROOF ---
+  rw [E₁.construct_eq_sqrt]
   -- `D^(1/2)` beside `G₁`
   set H : Mat ℝ n n := CFC.sqrt (E₂.Q - E₁.Q) with hH
   have hHH : H * Hᵀ = E₂.Q - E₁.Q :=

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
 public import CORALean.ContSet.OptEmpty.Theorems.Basic
 
@@ -35,7 +36,8 @@ theorem Ellipsoid.aux_construct_ofPoint (p : Vec ℝ n) :
   have hG : (Ellipsoid.ofPoint p).G = 0 := (Ellipsoid.G_eq_zero_iff _).2 rfl
   ext x
   constructor
-  · rintro ⟨u, -, rfl⟩
+  · rw [Ellipsoid.construct_eq_sqrt]
+    rintro ⟨u, -, rfl⟩
     rw [hG, Matrix.zero_mulVec, add_zero]
     rfl
   · rintro rfl

@@ -36,12 +36,12 @@ theorem ConZonotope.starSet_exact (cZ : ConZonotope (Vec ℝ n)) :
     simp only [funext_iff, Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
     exact forall_congr' fun i => by rw [Finset.sum_congr rfl fun k _ => mul_comm (β k) (cZ.G k i)]
   constructor
-  · rintro ⟨α, hα, hrows, hxα⟩
+  · rintro ⟨α, ⟨hα, hrows⟩, hxα⟩
     exact ⟨α, fun j => abs_le.mpr ⟨(hα j).1, (hα j).2⟩,
       (HPolytope.starRows_iff cZ.P α).mp hrows, (hpt α).mpr hxα⟩
   · rintro ⟨β, hβ, hP, hxβ⟩
-    exact ⟨β, fun j => ⟨(abs_le.mp (hβ j)).1, (abs_le.mp (hβ j)).2⟩,
-      (HPolytope.starRows_iff cZ.P β).mpr hP, (hpt β).mp hxβ⟩
+    exact ⟨β, ⟨fun j => ⟨(abs_le.mp (hβ j)).1, (abs_le.mp (hβ j)).2⟩,
+      (HPolytope.starRows_iff cZ.P β).mpr hP⟩, (hpt β).mp hxβ⟩
 
 end CORALean.Real
 

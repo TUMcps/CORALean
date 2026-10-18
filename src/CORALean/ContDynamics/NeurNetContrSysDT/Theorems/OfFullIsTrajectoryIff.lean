@@ -2,7 +2,6 @@ module
 
 public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
-public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.IsTrajectory
 public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Basic
 
 @[expose] public section

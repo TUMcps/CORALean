@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Capsule.Real.Capsule
-public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Tactic.FinCases
@@ -236,6 +236,7 @@ theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) :
     rw [← norm₂_sq]
     nlinarith [norm₂_nonneg u]
   -- the corners `(0,0)`, `(1,0)`, `(0,1)` have preimages `u`, `v`, `u'`
+  rw [E.construct_eq_sqrt] at hmem
   obtain ⟨u, hu, hxu⟩ := (hmem ![0, 0]).mpr (by simp)
   obtain ⟨v, hv, hxv⟩ := (hmem ![1, 0]).mpr (by simp)
   obtain ⟨u', hu', hxu'⟩ := (hmem ![0, 1]).mpr (by simp)

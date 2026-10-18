@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
@@ -46,6 +47,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
     E₁.isBigger E₂ ↔
       (fun x => x - E₂.q) '' E₂.construct ⊆
         (fun x => x - E₁.q) '' E₁.construct := by -- --- PROOF ---
+  rw [E₁.construct_eq_sqrt, E₂.construct_eq_sqrt]
   constructor
   · rintro h _ ⟨x, ⟨u, hu, rfl⟩, rfl⟩
     -- the centered point `p = G₂ u`
@@ -72,6 +74,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
     have hle : p ⬝ᵥ w ≤ 1 := by nlinarith
     -- so the centered point is in `E₁ - q₁`
     refine ⟨E₁.q + p, ?_, add_sub_cancel_left _ _⟩
+    rw [← E₁.construct_eq_sqrt]
     refine (E₁.ellipsoidNorm_le_one_iff hr p).mp ?_
     unfold Ellipsoid.ellipsoidNorm
     simp only
@@ -87,7 +90,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
       set u : Vec ℝ n := ‖E₂.Gᵀ *ᵥ v‖₂⁻¹ • (E₂.Gᵀ *ᵥ v) with hu
       have hun : ‖u‖₂ = 1 := by
         rw [hu, norm₂_smul, abs_of_pos (inv_pos.mpr hpos), inv_mul_cancel₀ ha]
-      obtain ⟨_, ⟨u', hu', rfl⟩, hy⟩ := hsub ⟨E₂.q + E₂.G *ᵥ u, Ellipsoid.mem_construct hun.le,
+      obtain ⟨_, ⟨u', hu', rfl⟩, hy⟩ := hsub ⟨E₂.q + E₂.G *ᵥ u, ⟨u, hun.le, rfl⟩,
         add_sub_cancel_left _ _⟩
       have hGu : E₁.G *ᵥ u' = E₂.G *ᵥ u := by simpa using hy
       -- `a = vᵀ G₂ u` on one side, at most `‖G₁ᵀ v‖` on the other

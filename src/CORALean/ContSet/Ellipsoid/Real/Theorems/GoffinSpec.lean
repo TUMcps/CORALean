@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Goffin
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapeContains
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CutShapePosDef
@@ -143,7 +144,7 @@ theorem Ellipsoid.goffin_spec {ε : ℝ} (hε : 0 < ε) (hn : 2 ≤ n) (Z : Set 
       -- `z = S u` with `‖u‖ ≤ 1`, from `z ∈ E(E, 0)`
       obtain ⟨u, hu, hzu⟩ : ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧ z = 0 + S *ᵥ u := by
         have h := hZ hz
-        rwa [Ellipsoid.ofShape_eq hE.posSemidef] at h
+        rwa [Ellipsoid.ofShape_eq hE.posSemidef, Ellipsoid.construct_eq_sqrt] at h
       have hSz : S⁻¹ *ᵥ z = u := by
         rw [hzu, zero_add, mulVec_mulVec, hiS, one_mulVec]
       -- the separator at `z` and at `-z`: `|aᵀS⁻¹z| ≤ b`

@@ -12,7 +12,7 @@ import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.Specification.Instances
 import CORALean.ContDynamics.NeurNetContrSysDT.Operations.Basic
-import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.IsTrajectory
+import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
 
 /-!
 # A network in a discrete-time loop, at a floating-point representation

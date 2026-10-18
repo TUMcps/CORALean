@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
@@ -323,7 +324,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid �
   have hxn' : xn ∈ Er.construct := by
     have h : xn ∈ (nominal E).ellipsoid.construct := hxn
     rwa [Ellipsoid.nominal_of_psd hQ] at h
-  obtain ⟨u, hu, rfl⟩ := hxn'
+  obtain ⟨u, hu, rfl⟩ := Real.Ellipsoid.mem_construct_iff.1 hxn'
   have he' : ∀ i, toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i) := fun i => he i
   have hxS' : |∑ i, toReal (c i) * (toReal (E.q i) + (G *ᵥ u) i + e i) - toReal y|
       ≤ toReal φ := hxS

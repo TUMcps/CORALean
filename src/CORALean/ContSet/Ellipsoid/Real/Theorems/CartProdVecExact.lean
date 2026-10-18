@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
@@ -34,6 +35,7 @@ variable {n m : ℕ}
 theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid n) (v : Vec ℝ m) :
     (E.cartProdVec v).construct =
       (fun x : Vec ℝ n => (Fin.append x v : Vec ℝ (n + m))) '' E.construct := by -- --- PROOF ---
+  rw [E.construct_eq_sqrt]
   set P : Mat ℝ (n + m) n := Matrix.of fun i j => Fin.addCases (fun i => if i = j then 1 else 0)
     (fun _ => 0) i with hP
   have hQ : (E.cartProdVec v).Q = P * E.Q * Pᵀ := rfl

@@ -12,7 +12,7 @@ No factors, no rows: `c + G α` over the empty family is `c`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -23,13 +23,12 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def StarSet.ofPoint {n : ℕ} (v : Vec ℝ n) : StarSet n where
+/-- The point `v` as CORA's star set: no factors, no rows, an empty box. -/
+def StarSet.ofPoint {n : ℕ} (v : Vec ℝ n) : StarSet StarSet.LinPred n where
   m := 0
   c := v
   G := fun _ => Fin.elim0
-  cons := []
-  l := Fin.elim0
-  u := Fin.elim0
+  pred := ⟨[], Fin.elim0, Fin.elim0⟩
 
 end CORALean.Real
 

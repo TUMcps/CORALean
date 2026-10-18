@@ -30,10 +30,10 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 theorem StarSet.mem_nominalSet_iff (s : StarSet 𝕋 n) (x : Vec ℝ n) :
     x ∈ nominalSet s ↔ ∃ α : Fin s.m → ℝ,
-      (∀ k, toReal (s.l k) ≤ α k ∧ α k ≤ toReal (s.u k)) ∧
-      (∀ r ∈ s.cons, ∑ k, toReal (r.1 k) * α k ≤ toReal r.2) ∧
+      ((∀ k, toReal (s.pred.l k) ≤ α k ∧ α k ≤ toReal (s.pred.u k)) ∧
+      (∀ r ∈ s.pred.cons, ∑ k, toReal (r.1 k) * α k ≤ toReal r.2)) ∧
       ∀ i, x i = toReal (s.c i) + ∑ k, toReal (s.G i k) * α k := by -- --- PROOF ---
-  change (∃ α : Fin s.m → ℝ, _ ∧ (∀ r ∈ s.cons.map _, _) ∧ _) ↔ _
+  change (∃ α : Fin s.m → ℝ, (_ ∧ (∀ r ∈ s.pred.cons.map _, _)) ∧ _) ↔ _
   simp only [List.forall_mem_map]
   exact Iff.rfl
 

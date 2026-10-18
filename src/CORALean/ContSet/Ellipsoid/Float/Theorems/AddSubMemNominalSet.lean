@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructSubsetOfLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
@@ -38,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Ellipsoid.add_sub_mem_nominalSet {E : Ellipsoid 𝕋 n} {F : Real.Ellipsoid n}
     (hF : F.Q = 0 ∨ (toRealMat E.Q - F.Q).PosSemidef) {x : Vec ℝ n} (hx : x ∈ F.construct) :
     toRealVec E.q + (x - F.q) ∈ nominalSet E := by -- --- PROOF ---
-  obtain ⟨u, hu, rfl⟩ := hx
+  obtain ⟨u, hu, rfl⟩ := Real.Ellipsoid.mem_construct_iff.1 hx
   rw [add_sub_cancel_left]
   rcases hF with h0 | hdom
   · -- a point: only the center
@@ -53,7 +54,7 @@ theorem Ellipsoid.add_sub_mem_nominalSet {E : Ellipsoid 𝕋 n} {F : Real.Ellips
       (E₂ := ⟨toRealMat E.Q, toRealVec E.q, hpsd⟩) hdom rfl
     show _ ∈ (nominal E).ellipsoid.construct
     rw [Ellipsoid.nominal_of_psd hpsd]
-    exact hsub ⟨u, hu, rfl⟩
+    exact hsub (Real.Ellipsoid.mem_construct_iff.2 ⟨u, hu, rfl⟩)
 
 end CORALean.Float
 

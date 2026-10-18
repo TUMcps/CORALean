@@ -32,7 +32,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 theorem StarSet.rowBounds_mem (s : StarSet 𝕋 n) (j : Fin n) {x : Vec ℝ n}
     (hx : x ∈ s.nominal.construct) :
     toReal (s.rowBounds j).inf ≤ x j ∧ x j ≤ toReal (s.rowBounds j).sup := by -- --- PROOF ---
-  obtain ⟨α, hα, -, hxα⟩ := hx
+  obtain ⟨α, ⟨hα, -⟩, hxα⟩ := hx
   have hb := fun k => Interval.mul_between_corners (le_refl (toReal (s.G j k)))
     (le_refl (toReal (s.G j k))) (hα k).1 (hα k).2
   rw [hxα j]

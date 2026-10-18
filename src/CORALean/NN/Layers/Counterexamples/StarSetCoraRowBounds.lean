@@ -41,9 +41,10 @@ namespace CORALean.Real
 
 
 -- The model: CORA's code as printed, kept only to be refuted.
-noncomputable def StarSet.coraRowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : Interval ℝ :=
-  let c_ := s.c j + (1 / 2) * ∑ k, s.G j k * (s.u k - s.l k)
-  let r := ∑ k, |(1 / 2) * s.G j k * (s.u k - s.l k)|
+noncomputable def StarSet.coraRowBounds {n : ℕ} (s : StarSet StarSet.LinPred n) (j : Fin n) :
+    Interval ℝ :=
+  let c_ := s.c j + (1 / 2) * ∑ k, s.G j k * (s.pred.u k - s.pred.l k)
+  let r := ∑ k, |(1 / 2) * s.G j k * (s.pred.u k - s.pred.l k)|
   ⟨c_ - r, c_ + r⟩
 
 
@@ -53,23 +54,23 @@ open ContSet
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem StarSet.coraRowBounds_unsound :
-    ∃ (s : StarSet 2) (x : Vec ℝ 2), x ∈ construct s ∧
+    ∃ (s : StarSet StarSet.LinPred 2) (x : Vec ℝ 2), x ∈ construct s ∧
       (Function.update x 0 (max (x 0) 0) : Vec ℝ 2)
         ∉ construct (s.reluNeuron 0 (s.coraRowBounds 0)) := by -- --- PROOF ---
-  let s : StarSet 2 :=
-    { m := 1, c := fun _ => 0, G := fun i _ => if i = 0 then 1 else -1, cons := [],
-      l := fun _ => -1, u := fun _ => 1 }
+  let s : StarSet StarSet.LinPred 2 :=
+    { m := 1, c := fun _ => 0, G := fun i _ => if i = 0 then 1 else -1,
+      pred := ⟨[], fun _ => -1, fun _ => 1⟩ }
   have hb : s.coraRowBounds 0 = ⟨0, 2⟩ := by
     simp only [StarSet.coraRowBounds, s]
     norm_num [abs_of_nonneg]
   have hs : s.reluNeuron 0 (s.coraRowBounds 0) = s := by
     rw [hb]; simp [StarSet.reluNeuron]
-  refine ⟨s, fun i => if i = 0 then -1 else 1, ⟨fun _ => -1, ?_, ?_, ?_⟩, ?_⟩
+  refine ⟨s, fun i => if i = 0 then -1 else 1, ⟨fun _ => -1, ⟨?_, ?_⟩, ?_⟩, ?_⟩
   · intro k; simp [s]
   · intro r hr; simp [s] at hr
   · intro i; fin_cases i <;> simp [s]
   · rw [hs]
-    rintro ⟨α, -, -, h⟩
+    rintro ⟨α, -, h⟩
     have h0 := h 0
     have h1 := h 1
     simp [s] at h0 h1

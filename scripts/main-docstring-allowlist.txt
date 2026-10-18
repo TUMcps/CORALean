@@ -1051,7 +1051,7 @@ src/CORALean/ContSet/Conversion/Real/Theorems/ConZonotopeZonotopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidConPolyZonoExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidConZonotopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidExistsNotHPolytope.lean
-src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidExistsNotStarSet.lean
+src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidExistsNotStarSetLinPred.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidExistsNotVPolytope.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidHPolytopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidLevelSetExact.lean
@@ -1094,7 +1094,7 @@ src/CORALean/ContSet/Conversion/Real/Theorems/IntervalVPolytopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/IntervalZonoBundleContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/IntervalZonotopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/LevelSetExistsNotPolyZonotope.lean
-src/CORALean/ContSet/Conversion/Real/Theorems/LevelSetExistsNotStarSet.lean
+src/CORALean/ContSet/Conversion/Real/Theorems/LevelSetExistsNotStarSetLinPred.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/PolyZonotopeConPolyZonoExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/PolyZonotopeConZonotopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/PolyZonotopeEllipsoidContains.lean
@@ -1117,7 +1117,7 @@ src/CORALean/ContSet/Conversion/Real/Theorems/StarSetConZonotopeExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/StarSetExistsHPolytopeExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/SupportFunctionExistsNotEllipsoid.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/SupportFunctionExistsNotHPolytope.lean
-src/CORALean/ContSet/Conversion/Real/Theorems/SupportFunctionExistsNotStarSet.lean
+src/CORALean/ContSet/Conversion/Real/Theorems/SupportFunctionExistsNotStarSetLinPred.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/TaylmDepApply.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/TaylmIndepApply.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/TaylmIntervalContains.lean
@@ -2570,10 +2570,7 @@ src/CORALean/ContSet/SpectraShadow/Real/Theorems/TranslateMem.lean
 src/CORALean/ContSet/StarSet/Float/StarSet.lean
 src/CORALean/ContSet/StarSet/Float/Theorems/MemNominalSet.lean
 src/CORALean/ContSet/StarSet/Float/Theorems/RowBoundsMem.lean
-src/CORALean/ContSet/StarSet/Real/Operations/OfPoint.lean
 src/CORALean/ContSet/StarSet/Real/Operations/RowBounds.lean
-src/CORALean/ContSet/StarSet/Real/StarSet.lean
-src/CORALean/ContSet/StarSet/Real/Theorems/Convex.lean
 src/CORALean/ContSet/StarSet/Real/Theorems/RowBoundsMem.lean
 src/CORALean/ContSet/SupportFunction/Real/Operations/OfSet.lean
 src/CORALean/ContSet/SupportFunction/Real/SupportFunction.lean

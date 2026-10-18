@@ -35,9 +35,9 @@ theorem StarSet.absorbRounding_nominal (s : StarSet 𝕋 n) :
     s.construct ⊆ nominalSet s.absorbRounding := by -- --- PROOF ---
   -- a point is a nominal point plus an error within the box
   rintro _ ⟨y, hy, e, he, rfl⟩
-  obtain ⟨α, hbox, hcons, hy⟩ := StarSet.mem_nominalSet_iff s y |>.mp hy
+  obtain ⟨α, ⟨hbox, hcons⟩, hy⟩ := StarSet.mem_nominalSet_iff s y |>.mp hy
   -- the witness: the old factors, then the error itself
-  refine (StarSet.mem_nominalSet_iff _ _).mpr ⟨Fin.append α e, ?_, ?_, fun i => ?_⟩
+  refine (StarSet.mem_nominalSet_iff _ _).mpr ⟨Fin.append α e, ⟨?_, ?_⟩, fun i => ?_⟩
   -- the factor box: the old bounds, then the error box's
   · refine Fin.addCases (fun k => ?_) (fun k => ?_)
     · simpa [StarSet.absorbRounding] using hbox k
@@ -45,7 +45,7 @@ theorem StarSet.absorbRounding_nominal (s : StarSet 𝕋 n) :
       simpa [StarSet.absorbRounding] using hb
   -- the rows: each old row reads the old factors only
   · intro r hr
-    change r ∈ s.cons.map _ at hr
+    change r ∈ s.pred.cons.map _ at hr
     obtain ⟨r', hr', rfl⟩ := List.mem_map.mp hr
     have h := hcons r' hr'
     show ∑ k : Fin (s.m + n), toReal (Fin.append r'.1 (fun _ : Fin n => (zero : 𝕋)) k)

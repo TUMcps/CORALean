@@ -29,7 +29,7 @@ namespace CORALean
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def Layer.reluStar (n : ℕ) : Layer Real.StarSet n n where
+noncomputable def Layer.reluStar (n : ℕ) : Layer (Real.StarSet Real.StarSet.LinPred) n n where
   enclose s := (List.finRange n).foldl (fun t j => t.reluNeuron j (t.rowBounds j)) s
 
 end CORALean

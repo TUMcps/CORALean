@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
@@ -40,6 +41,8 @@ variable {n : ℕ}
 
 theorem Ellipsoid.isGreatest_dot (E : Ellipsoid n) (l : Vec ℝ n) :
     IsGreatest ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.q + √(l ⬝ᵥ (E.Q *ᵥ l))) := by -- --- PROOF ---
+  -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
+  simp only [Ellipsoid.construct_eq_sqrt] at *
   set w : Vec ℝ n := E.Gᵀ *ᵥ l with hw
   have hlG : ∀ u, l ⬝ᵥ (E.q + E.G *ᵥ u) = l ⬝ᵥ E.q + w ⬝ᵥ u := fun u => by
     rw [dotProduct_add, Matrix.dotProduct_mulVec, hw, Matrix.mulVec_transpose]

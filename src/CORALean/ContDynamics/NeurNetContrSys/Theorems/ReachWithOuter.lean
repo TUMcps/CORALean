@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachWith
 public import CORALean.NN.Theorems.EncloseOuter
 public import Mathlib.Tactic.Linarith
-public import CORALean.ContDynamics.NeurNetContrSys.Definitions.IsTrajectory
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 
 @[expose] public section
 

@@ -49,12 +49,13 @@ def StarSet.reluNeuron (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋) :
       c := Function.update s.c j zero
       G := fun i => Fin.snoc (α := fun _ => 𝕋) (if i = j then (fun _ => zero) else s.G i)
         (if i = j then one else zero)
-      cons := s.cons.map (fun r => (Fin.snoc (α := fun _ => 𝕋) r.1 zero, r.2)) ++
-        [(Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one), zero),
-         (Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one), neg (s.c j))] ++
-        (if StarSet.chordGuard b then [s.chordRow j b] else [])
-      l := Fin.snoc (α := fun _ => 𝕋) s.l zero
-      u := Fin.snoc (α := fun _ => 𝕋) s.u (maximum b.sup zero)
+      pred :=
+        { cons := s.pred.cons.map (fun r => (Fin.snoc (α := fun _ => 𝕋) r.1 zero, r.2)) ++
+            [(Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one), zero),
+             (Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one), neg (s.c j))] ++
+            (if StarSet.chordGuard b then [s.chordRow j b] else [])
+          l := Fin.snoc (α := fun _ => 𝕋) s.pred.l zero
+          u := Fin.snoc (α := fun _ => 𝕋) s.pred.u (maximum b.sup zero) }
       I_error := e }
 
 end CORALean.Float

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorConstruct
 
 @[expose] public section
@@ -34,7 +35,7 @@ variable {n : ℕ}
 
 theorem Ellipsoid.conPolyZono_exact (E : Ellipsoid n) :
     E.construct = E.conPolyZono.construct :=
-  Ellipsoid.conPolyZonoOfFactor_construct E.G E.q
+  E.construct_eq_sqrt.trans <| Ellipsoid.conPolyZonoOfFactor_construct E.G E.q
 
 end CORALean.Real
 

@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
@@ -43,7 +44,8 @@ theorem Ellipsoid.representsa_point_iff (E : Ellipsoid n) :
       unfold norm₂
       rw [Real.sqrt_le_one]
       simp [Pi.single_apply]
-    have hmem : E.q + E.G *ᵥ Pi.single j 1 ∈ E.construct := ⟨_, hu, rfl⟩
+    have hmem : E.q + E.G *ᵥ Pi.single j 1 ∈ E.construct :=
+      Ellipsoid.mem_construct hu
     rw [h] at hmem
     have h0 : E.G *ᵥ (Pi.single j 1 : Vec ℝ n) = 0 := add_eq_left.mp hmem
     have := congrFun h0 i
@@ -52,7 +54,8 @@ theorem Ellipsoid.representsa_point_iff (E : Ellipsoid n) :
     intro h
     ext x
     constructor
-    · rintro ⟨u, -, rfl⟩
+    · rw [E.construct_eq_sqrt]
+      rintro ⟨u, -, rfl⟩
       have hG : E.G = 0 := E.G_eq_zero_iff.2 h
       simp [hG]
     · rintro rfl

@@ -1,7 +1,6 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSysDT.NeurNetContrSysDT
-public import CORALean.ContDynamics.NeurNetContrSysDT.Definitions.IsTrajectory
 
 @[expose] public section
 

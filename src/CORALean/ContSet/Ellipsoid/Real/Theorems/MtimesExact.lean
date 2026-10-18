@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
@@ -41,6 +42,7 @@ variable {n m : ℕ}
 
 theorem Ellipsoid.mtimes_exact (M : Mat ℝ m n) (E : Ellipsoid n) :
     (M *ᵥ ·) '' E.construct = (Ellipsoid.mtimes M E).construct := by -- --- PROOF ---
+  rw [E.construct_eq_sqrt]
   rw [(Ellipsoid.mtimes M E).construct_eq_of_factor _ (E.mul_G_mul_transpose M)]
   have haff : ∀ u : Vec ℝ n, M *ᵥ (E.q + E.G *ᵥ u)
       = (Ellipsoid.mtimes M E).q + (M * E.G) *ᵥ u := fun u => by

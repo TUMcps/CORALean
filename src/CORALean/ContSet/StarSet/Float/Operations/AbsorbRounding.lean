@@ -37,9 +37,10 @@ def StarSet.absorbRounding (s : StarSet 𝕋 n) : StarSet 𝕋 n where
   m := s.m + n
   c := s.c
   G := fun i => Fin.append (s.G i) fun k => if k = i then one else zero
-  cons := s.cons.map fun r => (Fin.append r.1 fun _ => zero, r.2)
-  l := Fin.append s.l s.I_error.inf
-  u := Fin.append s.u s.I_error.sup
+  pred :=
+    { cons := s.pred.cons.map fun r => (Fin.append r.1 fun _ => zero, r.2)
+      l := Fin.append s.pred.l s.I_error.inf
+      u := Fin.append s.pred.u s.I_error.sup }
   I_error := Interval.origin n
 
 end CORALean.Float

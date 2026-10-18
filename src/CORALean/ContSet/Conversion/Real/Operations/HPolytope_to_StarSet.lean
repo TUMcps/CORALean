@@ -44,13 +44,11 @@ def HPolytope.starRows (P : HPolytope (Vec ℝ n)) : List ((Fin n → ℝ) × �
 the factors bounded by the certified bounds of the coordinates. -/
 def HPolytope.starSet (P : HPolytope (Vec ℝ n))
     (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : StarSet n where
+    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : StarSet StarSet.LinPred n where
   m := n
   c := 0
   G := fun i k => if i = k then 1 else 0
-  cons := P.starRows
-  l := fun j => -(lo j).val
-  u := fun j => (up j).val
+  pred := ⟨P.starRows, fun j => -(lo j).val, fun j => (up j).val⟩
 
 end CORALean.Real
 

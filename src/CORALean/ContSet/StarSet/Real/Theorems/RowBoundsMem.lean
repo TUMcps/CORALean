@@ -27,29 +27,29 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.rowBounds_mem {n : ℕ} (s : StarSet n) (j : Fin n) {x : Vec ℝ n}
+theorem StarSet.rowBounds_mem {n : ℕ} (s : StarSet StarSet.LinPred n) (j : Fin n) {x : Vec ℝ n}
     (hx : x ∈ s.construct) :
     (s.rowBounds j).inf ≤ x j ∧ x j ≤ (s.rowBounds j).sup := by -- --- PROOF ---
-  obtain ⟨α, hα, -, hxα⟩ := hx
+  obtain ⟨α, ⟨hα, -⟩, hxα⟩ := hx
   -- each factor is within its radius of the middle of its box
-  have hterm : ∀ k, |s.G j k * (α k - (s.l k + s.u k) / 2)|
-      ≤ |s.G j k * ((s.u k - s.l k) / 2)| := fun k => by
+  have hterm : ∀ k, |s.G j k * (α k - (s.pred.l k + s.pred.u k) / 2)|
+      ≤ |s.G j k * ((s.pred.u k - s.pred.l k) / 2)| := fun k => by
     rw [abs_mul, abs_mul]
     refine mul_le_mul_of_nonneg_left ?_ (abs_nonneg _)
     have h1 := hα k
-    have h2 : 0 ≤ (s.u k - s.l k) / 2 := by linarith [h1.1, h1.2]
+    have h2 : 0 ≤ (s.pred.u k - s.pred.l k) / 2 := by linarith [h1.1, h1.2]
     rw [abs_of_nonneg h2, abs_le]
     constructor <;> linarith [h1.1, h1.2]
   -- so the deviation of the row from its center is within the radius
-  have hsum : |∑ k, s.G j k * (α k - (s.l k + s.u k) / 2)|
-      ≤ ∑ k, |s.G j k * ((s.u k - s.l k) / 2)| :=
+  have hsum : |∑ k, s.G j k * (α k - (s.pred.l k + s.pred.u k) / 2)|
+      ≤ ∑ k, |s.G j k * ((s.pred.u k - s.pred.l k) / 2)| :=
     (Finset.abs_sum_le_sum_abs _ _).trans (Finset.sum_le_sum fun k _ => hterm k)
   -- the row is its center plus that deviation
-  have hxj : x j = (s.c j + ∑ k, s.G j k * ((s.l k + s.u k) / 2))
-      + ∑ k, s.G j k * (α k - (s.l k + s.u k) / 2) := by
+  have hxj : x j = (s.c j + ∑ k, s.G j k * ((s.pred.l k + s.pred.u k) / 2))
+      + ∑ k, s.G j k * (α k - (s.pred.l k + s.pred.u k) / 2) := by
     rw [hxα j]
-    have : ∑ k, s.G j k * α k = ∑ k, s.G j k * ((s.l k + s.u k) / 2)
-        + ∑ k, s.G j k * (α k - (s.l k + s.u k) / 2) := by
+    have : ∑ k, s.G j k * α k = ∑ k, s.G j k * ((s.pred.l k + s.pred.u k) / 2)
+        + ∑ k, s.G j k * (α k - (s.pred.l k + s.pred.u k) / 2) := by
       rw [← Finset.sum_add_distrib]
       exact Finset.sum_congr rfl fun k _ => by ring
     rw [add_assoc, ← this]

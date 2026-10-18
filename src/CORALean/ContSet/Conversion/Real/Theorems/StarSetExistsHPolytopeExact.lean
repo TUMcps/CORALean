@@ -33,9 +33,9 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.exists_hPolytope_exact (s : StarSet n) :
+theorem StarSet.exists_hPolytope_exact (s : StarSet StarSet.LinPred n) :
     ∃ P : HPolytope (Vec ℝ n), P.construct = s.construct := by -- --- PROOF ---
-  by_cases hlu : ∀ k, s.l k ≤ s.u k
+  by_cases hlu : ∀ k, s.pred.l k ≤ s.pred.u k
   · -- an uncrossed box: the star set is a constrained zonotope, which is a halfspace description
     obtain ⟨P, hP, -⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mp
       ⟨s.conZonotope, StarSet.conZonotope_exact s hlu⟩
@@ -45,7 +45,7 @@ theorem StarSet.exists_hPolytope_exact (s : StarSet n) :
     obtain ⟨k, hk⟩ := hlu
     refine ⟨HPolytope.emptySet _, HPolytope.construct_emptySet.trans ?_⟩
     ext x
-    exact ⟨fun h => h.elim, fun ⟨α, hα, _⟩ => absurd (hα k) fun h => by linarith [h.1, h.2]⟩
+    exact ⟨fun h => h.elim, fun ⟨α, ⟨hα, _⟩, _⟩ => absurd (hα k) fun h => by linarith [h.1, h.2]⟩
 
 end CORALean.Real
 

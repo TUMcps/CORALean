@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
@@ -70,7 +71,7 @@ theorem Ellipsoid.volume_eq (E : Ellipsoid n) :
   have hcon : E.construct =
       (fun v => -E.q + v) ⁻¹' ((Matrix.toLin' E.G) '' {u : Vec ℝ n | ‖u‖₂ ≤ 1}) := by
     ext x
-    simp only [Ellipsoid.construct, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image]
+    simp only [Ellipsoid.construct_eq_sqrt, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image]
     constructor
     · rintro ⟨u, hu, rfl⟩
       exact ⟨u, hu, by simp⟩

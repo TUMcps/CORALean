@@ -34,11 +34,11 @@ theorem HPolytope.starSet_exact (up : ∀ j, SupportBound P.construct (LinearMap
   ext x
   constructor
   · -- the identity generators make the factors the point itself
-    rintro ⟨α, -, hrows, hxα⟩
+    rintro ⟨α, ⟨-, hrows⟩, hxα⟩
     have hx : x = α := funext fun i => by simp [hxα i, HPolytope.starSet]
     exact hx ▸ (HPolytope.starRows_iff P α).mp hrows
   · intro hx
-    refine ⟨x, fun k => ⟨?_, (up k).le x hx⟩, (HPolytope.starRows_iff P x).mpr hx,
+    refine ⟨x, ⟨fun k => ⟨?_, (up k).le x hx⟩, (HPolytope.starRows_iff P x).mpr hx⟩,
       fun i => by simp [HPolytope.starSet]⟩
     have := (lo k).le x hx
     simp only [LinearMap.neg_apply, LinearMap.coe_proj, Function.eval] at this

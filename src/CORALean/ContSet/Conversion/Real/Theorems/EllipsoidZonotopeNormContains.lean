@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
@@ -41,6 +42,7 @@ theorem Ellipsoid.zonotopeNorm_contains (E : Ellipsoid n) {m : ℕ} (S : Fin m �
     {l : ℝ} (hl : 0 < l)
     (hball : ∀ u : Vec ℝ n, ‖u‖₂ ≤ √l → u ∈ (⟨m, 0, S⟩ : Zonotope (Vec ℝ n)).construct) :
     E.construct ⊆ (E.zonotopeNorm S l).construct := by -- --- PROOF ---
+  rw [E.construct_eq_sqrt]
   rintro _ ⟨u, hu, rfl⟩
   have hs : 0 < √l := Real.sqrt_pos.mpr hl
   -- `√l u` is a combination of the points, so `u` is one of the scaled points

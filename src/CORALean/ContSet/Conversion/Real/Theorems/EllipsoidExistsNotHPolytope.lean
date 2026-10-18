@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidExistsNotVPolytope
@@ -39,7 +40,7 @@ theorem Ellipsoid.exists_not_hPolytope :
   obtain ⟨cZ, hcZ⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mpr
     ⟨P, hP, E.isCompact_construct.isBounded⟩
   -- the center is a point of it, so its coefficient domain is nonempty
-  have hc : E.q ∈ E.construct := ⟨0, by rw [norm₂_zero]; exact zero_le_one, by simp⟩
+  have hc : E.q ∈ E.construct := E.q_mem_construct
   obtain ⟨β, hβ, hβP, -⟩ := hcZ ▸ hc
   exact hE ⟨cZ.vPolytope ⟨β, ConZonotope.mem_domain_iff.mpr ⟨hβ, hβP⟩⟩,
     (ConZonotope.vPolytope_exact cZ _).trans hcZ⟩

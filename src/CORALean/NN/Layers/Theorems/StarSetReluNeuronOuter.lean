@@ -30,28 +30,29 @@ open ContSet
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet n) (j : Fin n) (b : Interval ℝ)
+theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet StarSet.LinPred n) (j : Fin n)
+    (b : Interval ℝ)
     (hb : ∀ x ∈ construct s, b.inf ≤ x j ∧ x j ≤ b.sup) :
     (fun (x : Vec ℝ n) => (Function.update x j (max (x j) 0) : Vec ℝ n)) '' construct s
       ⊆ construct (s.reluNeuron j b) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   beta_reduce
   have hbx := hb x hx
-  obtain ⟨α, hα, hcα, hxα⟩ := hx
+  obtain ⟨α, ⟨hα, hcα⟩, hxα⟩ := hx
   unfold StarSet.reluNeuron
   -- the neuron is nonnegative everywhere: the ReLU is the identity
   by_cases h0 : 0 ≤ b.inf
   · rw [if_pos h0]
     have : max (x j) 0 = x j := max_eq_left (by linarith [hbx.1])
     rw [this, Function.update_eq_self]
-    exact ⟨α, hα, hcα, hxα⟩
+    exact ⟨α, ⟨hα, hcα⟩, hxα⟩
   rw [if_neg h0]
   -- the neuron is nonpositive everywhere: the ReLU is `0`, the row cleared
   by_cases h1 : b.sup ≤ 0
   · rw [if_pos h1]
     have : max (x j) 0 = 0 := max_eq_right (by linarith [hbx.2])
     rw [this]
-    refine ⟨α, hα, hcα, fun i => ?_⟩
+    refine ⟨α, ⟨hα, hcα⟩, fun i => ?_⟩
     by_cases hi : i = j
     · subst hi; simp
     · simp [Function.update_of_ne hi, hxα i]
@@ -73,7 +74,7 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet n) (j : Fin n) (b : Inte
     · rw [hβ, max_eq_left h]; nlinarith [hbx.2]
   -- the old factors with `β` appended witness the new set
   have hS : ∑ k, s.G j k * α k = x j - s.c j := by rw [hxj]; ring
-  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ?_, ?_, fun i => ?_⟩
+  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ⟨?_, ?_⟩, fun i => ?_⟩
   · intro k
     refine Fin.lastCases ?_ (fun k => ?_) k
     · simp only [Fin.snoc_last]

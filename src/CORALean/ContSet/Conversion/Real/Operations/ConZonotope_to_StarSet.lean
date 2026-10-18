@@ -27,13 +27,11 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConZonotope.starSet (cZ : ConZonotope (Vec ℝ n)) : StarSet n where
+def ConZonotope.starSet (cZ : ConZonotope (Vec ℝ n)) : StarSet StarSet.LinPred n where
   m := cZ.h
   c := cZ.c
   G := fun i k => cZ.G k i
-  cons := cZ.P.starRows
-  l := fun _ => -1
-  u := fun _ => 1
+  pred := ⟨cZ.P.starRows, fun _ => -1, fun _ => 1⟩
 
 end CORALean.Real
 

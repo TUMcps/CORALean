@@ -6,11 +6,12 @@ public import CORALean.ContSet.Conversion.Real.Theorems.StarSetExistsHPolytopeEx
 @[expose] public section
 
 /-!
-# An ellipsoid that is no star set
+# An ellipsoid that is no star set of CORA's predicate
 
-A star set is a halfspace description (`StarSet.exists_hPolytope_exact`), which the unit disc is not
-(`Ellipsoid.exists_not_hPolytope`). So the star sets, convex sets of linear predicates on the
-factors, do not contain the ellipsoids, which are among the sets a support function represents.
+A star set whose predicate is CORA's `C α ≤ d, l ≤ α ≤ u` is a halfspace description
+(`StarSet.exists_hPolytope_exact`), which the unit disc is not (`Ellipsoid.exists_not_hPolytope`).
+So the linear predicate does not reach the ellipsoids; a star set with a level-set or
+support-function predicate does (`SupportFunction.starSet_exact`).
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -26,8 +27,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.exists_not_starSet :
-    ∃ E : Ellipsoid 2, ¬ ∃ s : StarSet 2, s.construct = E.construct := by
+theorem Ellipsoid.exists_not_starSet_linPred :
+    ∃ E : Ellipsoid 2, ¬ ∃ s : StarSet StarSet.LinPred 2, s.construct = E.construct := by
   obtain ⟨E, hE⟩ := Ellipsoid.exists_not_hPolytope
   exact ⟨E, fun ⟨s, hs⟩ => hE (hs ▸ StarSet.exists_hPolytope_exact s)⟩
 
