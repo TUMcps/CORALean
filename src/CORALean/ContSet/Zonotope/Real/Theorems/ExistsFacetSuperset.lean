@@ -96,7 +96,7 @@ theorem Zonotope.aux_argmax_subset_efs (Z : Zonotope (Vec ℝ n)) (l l' : Vec �
 /-- One step: a face of dimension at most `n - 2` lies in a face of larger dimension. -/
 theorem Zonotope.aux_step_efs (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) (l : Vec ℝ n →ₗ[ℝ] ℝ)
-    (hdim : Module.finrank ℝ (Submodule.span ℝ (Set.range (Z.face l).G)) + 2 ≤ n) :
+    (hdim : Module.finrank ℝ (Submodule.span ℝ (Set.range (Z.face l).G)) + 2 ≤ n) : -- --- STMT ---
     ∃ l' : Vec ℝ n →ₗ[ℝ] ℝ, (∃ j, l' (Z.G j) ≠ 0) ∧
       Submodule.span ℝ (Set.range (Z.face l).G) < Submodule.span ℝ (Set.range (Z.face l').G) ∧
       ∀ j, l' (Z.G j) ≠ 0 → 0 < l (Z.G j) * l' (Z.G j) := by -- --- PROOF ---
@@ -207,7 +207,7 @@ theorem Zonotope.aux_step_efs (Z : Zonotope (Vec ℝ n))
 
 /-- Iterating the step until the face has dimension at least `n - 1`. -/
 theorem Zonotope.aux_exists_top_efs (Z : Zonotope (Vec ℝ n))
-    (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) (k : ℕ) :
+    (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) (k : ℕ) : -- --- STMT ---
     ∀ l : Vec ℝ n →ₗ[ℝ] ℝ,
       n - Module.finrank ℝ (Submodule.span ℝ (Set.range (Z.face l).G)) = k →
       (∃ j, l (Z.G j) ≠ 0) → ∃ l' : Vec ℝ n →ₗ[ℝ] ℝ, (∃ j, l' (Z.G j) ≠ 0) ∧
@@ -233,7 +233,8 @@ theorem Zonotope.aux_exists_top_efs (Z : Zonotope (Vec ℝ n))
 zonotope lies in an exposed face of dimension `n - 1`. -/
 theorem Zonotope.exists_facet_superset (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) {F : Set (Vec ℝ n)}
-    (hF : IsExposed ℝ Z.construct F) (hne : F.Nonempty) (hproper : F ≠ Z.construct) :
+    (hF : IsExposed ℝ Z.construct F) (hne : F.Nonempty)
+    (hproper : F ≠ Z.construct) : -- --- STMT ---
     ∃ F' : Set (Vec ℝ n), IsExposed ℝ Z.construct F' ∧
       Module.finrank ℝ (vectorSpan ℝ F') = n - 1 ∧ F ⊆ F' := by -- --- PROOF ---
   obtain ⟨l, rfl⟩ := hF hne

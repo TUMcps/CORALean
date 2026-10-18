@@ -15,6 +15,17 @@ of `@linParamSys` with `obj.A` a `matZonotope`: orders `2` through `η` from
 `matZonoCorrTerm`, each the box of a matrix-zonotope power, and everything past
 `η` in the tail bound at the box of `r • M`. The result is an interval matrix, as
 CORA's `obj.F` is: CORA boxes the powers before the correction, not after.
+
+The matrix is the `F(r) = Σᵢ₌₂^η Aⁱ/i! [ϕ](i, r) + E[i](r)` of [1, Sec. 3.2], the set of matrices
+that pays for interpolating the homogeneous solution linearly over a time interval: here `Aⁱ` is
+the box of the `i`-th matrix-zonotope power, `[ϕ](i, r)` the interval of
+`tⁱ − t rⁱ⁻¹` over `t ∈ [0, r]`, and `E[i](r)` the tail bound. CORA's `priv_tie` cites nothing.
+
+## References
+
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

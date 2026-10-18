@@ -70,7 +70,7 @@ theorem existsUnique_zero_of_newtonTest (g : Vec ℝ k → Vec ℝ k) (c : Vec �
     (hr : 0 ≤ r) (R : Mat ℝ k k) (q : Vec ℝ k)
     (hslope : ∀ a ∈ Metric.closedBall c r, ∀ a' ∈ Metric.closedBall c r,
       ∃ J : Mat ℝ k k, g a - g a' = J *ᵥ (a - a') ∧ ∀ i, ∑ j, |(1 - R * J) i j| ≤ q i)
-    (hq : ∀ i, q i < 1) (hball : ∀ i, q i * r + |(R *ᵥ g c) i| ≤ r) :
+    (hq : ∀ i, q i < 1) (hball : ∀ i, q i * r + |(R *ᵥ g c) i| ≤ r) : -- --- STMT ---
     ∃! z, z ∈ Metric.closedBall c r ∧ g z = 0 := by -- --- PROOF ---
   have hc : c ∈ Metric.closedBall c r := Metric.mem_closedBall_self hr
   -- the Newton map, and its differences through a slope

@@ -67,7 +67,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The box of `aux_robustProjection` at `D = 1`, `n = (2, 0)`, `γ = 4` misses the hyperplane. -/
-theorem Location.robustProjectionCora_counterexample (lb ub : Vec ℝ 2) :
+theorem Location.robustProjectionCora_counterexample (lb ub : Vec ℝ 2) : -- --- STMT ---
     ∀ x : Vec ℝ 2, x ⬝ᵥ ![2, 0] = 4 →
       ¬ ∀ k, (Location.robustProjectionCora (1 : Mat ℝ 2 2) ![2, 0] 4 lb ub).1 k ≤ x k ∧
         x k ≤

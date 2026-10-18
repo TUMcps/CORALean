@@ -34,7 +34,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem TentativeKleeneSignal.getInterval_spec (s : TentativeKleeneSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) :
+    (I : STLInterval) : -- --- STMT ---
     (s.getInterval I).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.getInterval I).at t = s.at t) ∧
       (t ∉ I.set → (s.getInterval I).at t = FourValued.ii) := by -- --- PROOF ---

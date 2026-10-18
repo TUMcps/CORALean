@@ -41,7 +41,7 @@ namespace CORALean
 /-- `until` is true where the right-hand side holds at a time in the interval after, the
 left-hand side in between. -/
 theorem PointSegmentSignal.until_spec (lhs rhs : PointSegmentSignal ℝ) (hl : lhs.IsValid)
-    (hr : rhs.IsValid) (U : STLInterval) :
+    (hr : rhs.IsValid) (U : STLInterval) : -- --- STMT ---
     (lhs.until U rhs).IsValid ∧ ∀ t : ℝ, 0 ≤ t → ((lhs.until U rhs).at t = true ↔
       ∃ t', t' - t ∈ U.set ∧ rhs.at t' = true ∧
         ∀ x, t < x → x < t' → lhs.at x = true) := by -- --- PROOF ---

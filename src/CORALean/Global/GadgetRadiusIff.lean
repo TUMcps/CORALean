@@ -62,7 +62,7 @@ theorem aux_rpow_tangent_le {q c u : ℝ} (hq : 1 ≤ q) (hc : 0 < c) (hu : 0 �
 theorem aux_add_mul_le {q L ϱ N a s : ℝ} (hq : 1 < q) (hϱ : 0 < ϱ) (hLpos : 0 < L)
     (hx : 0 < (N - ϱ) / L) (h66 : 1 - ϱ ^ q = ((N - ϱ) / L) ^ q)
     (h67 : L = (1 - ((N - ϱ) / L) ^ q) ^ (1 / q - 1) * ((N - ϱ) / L) ^ (q - 1))
-    (ha : 0 ≤ a) (hs : 0 ≤ s) (has : a ^ q + s ^ q ≤ 1) :
+    (ha : 0 ≤ a) (hs : 0 ≤ s) (has : a ^ q + s ^ q ≤ 1) : -- --- STMT ---
     a + L * s ≤ N ∧ ϱ ^ q + ((N - ϱ) / L) ^ q = 1 := by -- --- PROOF ---
   set x := (N - ϱ) / L with hxdef
   have hsum : ϱ ^ q + x ^ q = 1 := by linarith
@@ -173,7 +173,7 @@ theorem aux_radius_upper (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 
     (hL : aux_Radii n p L ϱ) (A : Mat ℝ n m) {ξ : ℝ}
     (hξ : IsGreatest ((fun v : PiLp p (fun _ : Fin m => ℝ) => ∑ i, |(A *ᵥ WithLp.ofLp v) i|) ''
       Metric.closedBall 0 1) ξ)
-    (α : WithLp p (PiLp p (fun _ : Fin m => ℝ) × ℝ)) (hα : ‖α‖ ≤ 1) :
+    (α : WithLp p (PiLp p (fun _ : Fin m => ℝ) × ℝ)) (hα : ‖α‖ ≤ 1) : -- --- STMT ---
     (ξ ≤ 1 → coeffNorm ((1 / 2 : ℝ) • gadgetH n) (gadgetGA p A L α) ≤ 1) ∧
       (ξ < 1 → coeffNorm ((1 / 2 : ℝ) • gadgetH n) (gadgetGA p A L α) < 1) := by -- --- PROOF ---
   have hnpos : (0 : ℝ) < n := by have : (2 : ℝ) ≤ n := by exact_mod_cast hn
@@ -217,7 +217,7 @@ theorem aux_radius_upper (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 
 theorem aux_lower (hn : 2 ≤ n) {p : ℝ≥0∞} [Fact (1 ≤ p)] (hp : 1 < p) {L ϱ : ℝ}
     (hL : aux_Radii n p L ϱ) (A : Mat ℝ n m) {ξ : ℝ}
     (hξ : IsGreatest ((fun v : PiLp p (fun _ : Fin m => ℝ) => ∑ i, |(A *ᵥ WithLp.ofLp v) i|) ''
-      Metric.closedBall 0 1) ξ) :
+      Metric.closedBall 0 1) ξ) : -- --- STMT ---
     ∃ α : WithLp p (PiLp p (fun _ : Fin m => ℝ) × ℝ), ‖α‖ ≤ 1 ∧
       (ϱ * ξ + n - ϱ) / n ≤
         coeffNorm ((1 / 2 : ℝ) • gadgetH n) (gadgetGA p A L α) := by -- --- PROOF ---
@@ -268,7 +268,7 @@ theorem gadget_radius_iff (hn : 2 ≤ n) (p : ℝ≥0∞) [Fact (1 ≤ p)] (hp :
     (hξ : IsGreatest ((fun v : PiLp p (fun _ : Fin m => ℝ) => ∑ i, |(A *ᵥ WithLp.ofLp v) i|) ''
       Metric.closedBall 0 1) ξ) {r : ℝ}
     (hr : IsGreatest ((fun α => coeffNorm ((1 / 2 : ℝ) • gadgetH n) (gadgetGA p A L α)) ''
-      Metric.closedBall 0 1) r) :
+      Metric.closedBall 0 1) r) : -- --- STMT ---
     (r = 1 ↔ ξ = 1) ∧ (r < 1 ↔ ξ < 1) ∧ (1 < r ↔ 1 < ξ) := by -- --- PROOF ---
   have hnpos : (0 : ℝ) < n := by have : (2 : ℝ) ≤ n := by exact_mod_cast hn
                                  linarith

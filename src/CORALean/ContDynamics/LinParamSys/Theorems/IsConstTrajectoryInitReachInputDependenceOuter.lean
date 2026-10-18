@@ -53,7 +53,7 @@ theorem LinParamSys.IsConstTrajectory.initReachInputDependence_outer {sys : LinP
     (hu : ∀ s ∈ T, u s = Uc + ∑ i, p i • UG i)
     {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
     x r ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 ∧
       x t ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).2 := by -- --- PROOF ---
   -- the combined input `B u + c` is in `B_c Uconst ⊕ c` plus the deviation `B_Δ Uconst`

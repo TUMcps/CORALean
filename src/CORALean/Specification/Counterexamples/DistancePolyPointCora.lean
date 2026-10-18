@@ -79,7 +79,7 @@ def Specification.aux_cubeOffsets : Fin 6 → ℝ := fun i => if i.val < 3 then 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Specification.distancePolyPointCora_norm_counterexample :
+theorem Specification.distancePolyPointCora_norm_counterexample : -- --- STMT ---
     Specification.distancePolyPointCora Specification.aux_cubeRows Specification.aux_cubeOffsets
         ![2, 2, 1 / 2] = 2 ∧
       Specification.distancePolyPointCora Specification.aux_cubeRows Specification.aux_cubeOffsets

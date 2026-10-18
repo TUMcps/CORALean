@@ -32,7 +32,7 @@ variable {n : ℕ}
 /-- The window's maximum above its pivot, for *any* `g` bounding the other taps' reach. -/
 theorem maxPool_bounds {k : ℕ} (t : Fin (k + 1) → Fin n) (p : Fin (k + 1))
     (lo hi x : Vec ℝ n) (hx : ∀ i, lo i ≤ x i ∧ x i ≤ hi i) {g : ℝ} (hg0 : 0 ≤ g)
-    (hg : ∀ l, l ≠ p → hi (t l) - lo (t p) ≤ g) :
+    (hg : ∀ l, l ≠ p → hi (t l) - lo (t p) ≤ g) : -- --- STMT ---
     0 ≤ windowMax (fun l => x (t l)) - x (t p) ∧
       windowMax (fun l => x (t l)) - x (t p) ≤ g := by -- --- PROOF ---
   refine ⟨by linarith [le_windowMax (fun l => x (t l)) p], ?_⟩

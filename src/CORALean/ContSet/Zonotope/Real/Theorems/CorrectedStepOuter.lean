@@ -44,7 +44,7 @@ theorem Zonotope.correctedStep_outer (Λ : Mat ℝ n ny) (A : Mat ℝ n n) (B : 
     (Dw : Mat ℝ n nw) (C : Mat ℝ ny n) (Dv : Mat ℝ ny nv) (u : Vec ℝ nu) (y : Vec ℝ ny)
     (X : Zonotope (Vec ℝ n)) (x : Vec ℝ n) (hx : x ∈ X.construct) (ϖ : Vec ℝ nw)
     (hϖ : ∀ j, |ϖ j| ≤ 1) (σ : Vec ℝ nv) (hσ : ∀ j, |σ j| ≤ 1)
-    (hy : y = C *ᵥ (A *ᵥ x + B *ᵥ u + Dw *ᵥ ϖ) + Dv *ᵥ σ) :
+    (hy : y = C *ᵥ (A *ᵥ x + B *ᵥ u + Dw *ᵥ ϖ) + Dv *ᵥ σ) : -- --- STMT ---
     A *ᵥ x + B *ᵥ u + Dw *ᵥ ϖ ∈ (X.correctedStep Λ A B Dw C Dv u y).construct := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   have hcol : ∀ {k : ℕ} (M : Mat ℝ n k) (v : Vec ℝ k), ∑ j, v j • (fun i => M i j) = M *ᵥ v :=

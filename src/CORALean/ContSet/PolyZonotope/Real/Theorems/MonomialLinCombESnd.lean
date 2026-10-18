@@ -29,7 +29,7 @@ variable {p₁ h₁ p₂ h₂ : ℕ} (E₁ : Fin p₁ → Fin h₁ → ℕ) (E�
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.monomial_linCombE_snd (a : Fin (p₁ + p₂ + 1) → ℝ)
-    (i : Fin (h₁ + h₂)) :
+    (i : Fin (h₁ + h₂)) : -- --- STMT ---
     PolyZonotope.monomial (PolyZonotope.linCombE E₁ E₂) a
         (Fin.natAdd (h₁ + h₂) (Fin.castAdd 1 i))
       = a (Fin.natAdd (p₁ + p₂) (0 : Fin 1))

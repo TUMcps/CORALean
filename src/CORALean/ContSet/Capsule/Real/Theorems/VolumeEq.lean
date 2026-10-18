@@ -255,7 +255,7 @@ theorem aux_sqrtPi (k : ℕ) : Real.sqrt Real.pi ^ k = Real.pi ^ ((k : ℝ) / 2)
   ring
 
 -- the measure of the `n`-ball
-theorem aux_vol_ball {r : ℝ} :
+theorem aux_vol_ball {r : ℝ} : -- --- STMT ---
     volume (aux_Kcap (0 : aux_E m) r)
       = ENNReal.ofReal r ^ (m + 1) *
         ENNReal.ofReal (Real.sqrt Real.pi ^ (m + 1)

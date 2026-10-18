@@ -41,7 +41,7 @@ open Matrix Pointwise
 
 /-- [1, Eq. 5]: `y` is in the output set iff its deviation from `ỹ` is in the shifted one. -/
 theorem Conform.mem_underApprox_iff {n m : ℕ} (C : Mat ℝ m n) (Φ Υ : Mat ℝ n n)
-    (x0 b : Vec ℝ n) (X0 Wc : Set (Vec ℝ n)) (V : Set (Vec ℝ m)) (y : Vec ℝ m) :
+    (x0 b : Vec ℝ n) (X0 Wc : Set (Vec ℝ n)) (V : Set (Vec ℝ m)) (y : Vec ℝ m) : -- --- STMT ---
     y ∈ (fun x => C *ᵥ x) '' ((fun x => Φ *ᵥ x) '' ({x0} + X0) + {b}
         + (fun w => Υ *ᵥ w) '' Wc) + V ↔
       y - C *ᵥ (Φ *ᵥ x0 + b) ∈ (fun x => C *ᵥ x) '' ((fun x => Φ *ᵥ x) '' X0

@@ -45,7 +45,7 @@ open Set
 
 /-- [1, Prop. 2] fails for `ẋ = (0, 1)` from two squares: `(1/2, 1/2)` is in the hull of `X₀`
 and `X₀ + w`, and on no run over `[0, 1]`. -/
-theorem convexHull_timeInterval_counterexample :
+theorem convexHull_timeInterval_counterexample : -- --- STMT ---
     let X₀ : Set (Fin 2 → ℝ) := {x | (x 0 ∈ Icc 0 (1 / 10) ∨ x 0 ∈ Icc (9 / 10) 1) ∧
       x 1 ∈ Icc 0 (1 / 10)}
     let w : Fin 2 → ℝ := ![0, 1]

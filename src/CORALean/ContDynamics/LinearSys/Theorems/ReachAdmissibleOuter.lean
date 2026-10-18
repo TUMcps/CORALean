@@ -43,7 +43,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 is in one of `reachAdmissible`'s windows, at any order `η`. -/
 theorem LinearSys.reachAdmissible_outer (sys : LinearSys 𝕋 n)
     {params : Reach.Params (S n) ℝ} {options : LinearSys.ReachStepOptions ℝ}
-    (htFinal : 0 < params.tFinal - params.tStart) (hΔt : 0 < options.Δt) :
+    (htFinal : 0 < params.tFinal - params.tStart) (hΔt : 0 < options.Δt) : -- --- STMT ---
     sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct (sys.reachAdmissible params options) := by -- --- PROOF ---
   unfold LinearSys.reachAdmissible

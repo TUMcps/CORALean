@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The exact orders, over `Real.Zonotope`, inside the float sum. -/
 theorem LinearSys.aux_inputTaylorSumZ_subset (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {Wr : CORALean.Real.Zonotope (Vec ℝ n)} {V : Zonotope (Vec 𝕋 n)}
-    (hW : Wr.construct ⊆ V.construct) :
+    (hW : Wr.construct ⊆ V.construct) : -- --- STMT ---
     ∀ i, construct (sys.inputTaylorSum (S := 𝒵)
         (toReal r) Wr i) ⊆ (sys.inputTaylorSumFloat r V i).construct := by -- --- PROOF ---
   -- order `i`'s matrix is in its float box, so the image of `Wr` is in the float product
@@ -93,7 +93,8 @@ theorem LinearSys.aux_inputTaylorSumZ_subset (sys : LinearSys 𝕋 n) {r : 𝕋}
 theorem LinearSys.inputSolution_subset_inputSolutionFloat (sys : LinearSys 𝕋 n) {r : 𝕋} {η : ℕ}
     (hr : 0 ≤ toReal r) (hη : sys.OrderAdmissibleFloat r r η)
     {Wr : CORALean.Real.Zonotope (Vec ℝ n)} {V : Zonotope (Vec 𝕋 n)}
-    (hE : V.I_error = Interval.point fun _ => FloatOps.zero) (hW : Wr.construct ⊆ V.construct) :
+    (hE : V.I_error = Interval.point fun _ => FloatOps.zero)
+    (hW : Wr.construct ⊆ V.construct) : -- --- STMT ---
     construct (sys.inputSolution (S := 𝒵) (toReal r) η Wr)
       ⊆ (sys.inputSolutionFloat r η V).construct := by -- --- PROOF ---
   set IMr := CORALean.Real.MatExp.inputRemainder (Scalar.toRealMat sys.A) (toReal r) η with hIMr

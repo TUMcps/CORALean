@@ -42,7 +42,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Sec. 4.2]'s Eq. (18) in closed form:
 `x(k) = e^{AΔt k} x₀ + ∑_{i<k} e^{AΔt (k-1-i)} T u(i)`. -/
 theorem LinearSys.heldSim_eq (sys : LinearSys 𝕋 n) (Δt : ℝ) (x₀ : Vec ℝ n) (u : ℕ → Vec ℝ n)
-    (k : ℕ) :
+    (k : ℕ) : -- --- STMT ---
     sys.heldSim Δt x₀ u k
       = exp (Δt • toRealMat sys.A) ^ k *ᵥ x₀
         + ∑ i ∈ Finset.range k, exp (Δt • toRealMat sys.A) ^ (k - 1 - i) *ᵥ

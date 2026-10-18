@@ -36,7 +36,7 @@ variable {n : ℕ} {𝓛 : Type}
 
 /-- `k + j` steps of [1, Alg. 1] are `k` steps, then `j` more. -/
 theorem NonlinearSys.innerMinkDiffLoop_add (ops : NonlinearSys.InnerMinkDiffOps n 𝓛)
-    (f : Vec ℝ n → Vec ℝ n) (Δt μ : ℝ) (fuel k j : ℕ) (Rtk Rτ : Set (Vec ℝ n)) :
+    (f : Vec ℝ n → Vec ℝ n) (Δt μ : ℝ) (fuel k j : ℕ) (Rtk Rτ : Set (Vec ℝ n)) : -- --- STMT ---
     NonlinearSys.innerMinkDiffLoop ops f Δt μ fuel (k + j) Rtk Rτ =
       (NonlinearSys.innerMinkDiffLoop ops f Δt μ fuel k Rtk Rτ).bind fun p =>
         NonlinearSys.innerMinkDiffLoop ops f Δt μ fuel j p.1 p.2 := by -- --- PROOF ---

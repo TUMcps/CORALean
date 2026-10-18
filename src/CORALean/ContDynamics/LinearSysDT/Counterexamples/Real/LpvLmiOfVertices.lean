@@ -72,7 +72,7 @@ theorem LinearSysDT.aux_coord4 (x : (Fin 1 ⊕ (Fin 1 ⊕ Fin 1)) ⊕ Fin 1 → 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSysDT.lpvLmi_of_vertices_counterexample :
+theorem LinearSysDT.lpvLmi_of_vertices_counterexample : -- --- STMT ---
     let T : Mat ℝ 1 1 := 1
     let N : Mat ℝ 1 1 := 1
     let C : Mat ℝ 1 1 := 1

@@ -67,7 +67,7 @@ theorem NeurNetContrSys.reach_outer (sys : NeurNetContrSys (LinearSys 𝕋 n) S 
     {H : ℕ} {R₀ : S n} {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.IsTrajectory π H R₀ (construct U_ext) W x v w) :
+    (traj : sys.IsTrajectory π H R₀ (construct U_ext) W x v w) : -- --- STMT ---
     ∀ i ≤ H,
       x ((i : ℝ) * sys.dt) ∈
         construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---

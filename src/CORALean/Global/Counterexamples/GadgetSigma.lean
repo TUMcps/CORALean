@@ -136,7 +136,7 @@ theorem aux_sigma (t : ℝ) (ht0 : 0 < t) (ht1 : t ≤ 1) :
 /-- At `A = (2, 1)ᵀ`, `p = ∞`, `L = 1`, with `‖A‖_{1↦∞} = 2` and `ξ̂ = ‖A‖_{1↦1} = 3`, the radii
 `σ(3)` and `σ(5/2)` at the printed `Z(H)`, and at `Z(½H)`, differ by less than
 `(2 / ξ̂²) |3 - 5/2|`. -/
-theorem gadget_sigma_counterexample :
+theorem gadget_sigma_counterexample : -- --- STMT ---
     IsGreatest ((fun v : PiLp 1 (fun _ : Fin 1 => ℝ) => ‖aux_A28 *ᵥ WithLp.ofLp v‖) ''
         Metric.closedBall 0 1) 2 ∧
       IsGreatest ((fun v : PiLp 1 (fun _ : Fin 1 => ℝ) => ∑ i, |(aux_A28 *ᵥ WithLp.ofLp v) i|) ''

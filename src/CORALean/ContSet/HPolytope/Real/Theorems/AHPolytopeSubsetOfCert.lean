@@ -42,7 +42,7 @@ theorem HPolytope.ahPolytope_subset_of_cert {xbar ybar : Vec ℝ n} {X : Mat ℝ
     {Y : Mat ℝ n ny} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : Mat ℝ qy ny} {hy : Vec ℝ qy}
     {Γ : Mat ℝ ny nx} {β : Vec ℝ ny} {Λ : Mat ℝ qy qx}
     (hX : X = Y * Γ) (hβ : ybar - xbar = Y *ᵥ β)
-    (hΛ : ∀ i j, 0 ≤ Λ i j) (h1 : Λ * Hx = Hy * Γ) (h2 : Λ *ᵥ hx ≤ hy + Hy *ᵥ β) :
+    (hΛ : ∀ i j, 0 ≤ Λ i j) (h1 : Λ * Hx = Hy * Γ) (h2 : Λ *ᵥ hx ≤ hy + Hy *ᵥ β) : -- --- STMT ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
       ⊆ HPolytope.ahPolytope ybar Y (HPolytope.ineqs Hy hy) := by -- --- PROOF ---
   rintro _ ⟨p, hp, rfl⟩

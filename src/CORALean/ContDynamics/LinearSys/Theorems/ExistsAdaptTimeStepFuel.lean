@@ -66,7 +66,7 @@ theorem aux_tendsto_geometric_nhdsGT {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 <
 /-- The step sweep reaches every `Δt μ^j` its fuel allows, so an order clearing
 both bounds anywhere along that sequence is one it finds. -/
 theorem aux_adaptTimeStepSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
-    (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ) :
+    (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ) : -- --- STMT ---
     ∀ (j : ℕ) (Δt : ℝ) (η : ℕ),
       LinearSys.adaptTimeStepOrder sys le X₀ U εHmax ((εPmax - εPacc) / (tf - ti) * (Δt * μ ^ j))
           (Δt * μ ^ j) 2 (ηmax - 1) = some η →
@@ -94,7 +94,7 @@ and `2 ≤ Φ_prop,max` is what leaves the sweep an iteration to report it in. -
 theorem aux_adaptTimeStepOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPi Δt : ℝ) {ηmax : ℕ} (hηmax : 2 ≤ ηmax)
     (hc : (le (sys.timeIntervalStepCurvatureError Δt 2 X₀) εHmax
-      && le (sys.timePointStepRemainderError Δt 2 U) εPi) = true) :
+      && le (sys.timePointStepRemainderError Δt 2 U) εPi) = true) : -- --- STMT ---
     LinearSys.adaptTimeStepOrder sys le X₀ U εHmax εPi Δt 2 (ηmax - 1)
       = some 2 := by -- --- PROOF ---
   obtain ⟨m, hm⟩ : ∃ m, ηmax - 1 = m + 1 := ⟨ηmax - 2, by omega⟩
@@ -108,7 +108,7 @@ theorem aux_adaptTimeStepOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ
 /-- `ε_P`'s cofactor past the `Δt_i` it carries vanishes along the sweep, which
 is what lets a *linear* share eventually cover it. -/
 theorem aux_tendsto_remainderCofactor (sys : LinearSys 𝕋 n) (U : Zonotope (Vec ℝ n))
-    {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 < μ) (hμ1 : μ < 1) :
+    {Δt μ : ℝ} (hΔt : 0 < Δt) (hμ0 : 0 < μ) (hμ1 : μ < 1) : -- --- STMT ---
     Tendsto (fun k : ℕ => 2 * (∑ j, U.absBound j)
       * MatExp.expRemainderBound ((Δt * μ ^ k) • toRealMat sys.A) 2)
       atTop (𝓝 0) := by -- --- PROOF ---
@@ -125,7 +125,7 @@ theorem LinearSys.exists_adaptTimeStep (sys : LinearSys 𝕋 n) {le : ℝ → �
     (hle : ∀ a b : ℝ, a ≤ b → le a b = true) (X₀ U : Zonotope (Vec ℝ n))
     {εHmax εPmax εPacc tf ti Δtprev μ : ℝ} {ηmax : ℕ} (hεH : 0 < εHmax)
     (hshare : 0 < (εPmax - εPacc) / (tf - ti)) (hΔtprev : 0 < Δtprev) (hμ0 : 0 < μ)
-    (hμ1 : μ < 1) (hηmax : 2 ≤ ηmax) :
+    (hμ1 : μ < 1) (hηmax : 2 ≤ ηmax) : -- --- STMT ---
     ∃ (fuel : ℕ) (Δti εP : ℝ) (ηi : ℕ),
       sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel
         = some (Δti, ηi, εP) := by -- --- PROOF ---

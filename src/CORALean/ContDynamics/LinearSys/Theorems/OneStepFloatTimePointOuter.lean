@@ -55,7 +55,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timePoint_outer {sys : Line
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
     (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
       W x w)
-    (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) :
+    (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) : -- --- STMT ---
     x (toReal Δt) ∈ (sys.oneStepFloat X U u Δt η).Rtp.construct := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
   set r := toReal Δt with hr

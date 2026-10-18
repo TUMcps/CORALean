@@ -70,7 +70,8 @@ theorem aux_entry_bound {X : Real.Interval (Mat ℝ m n)} {Y : Real.Interval (Ma
     {X' : Interval (Mat 𝕋 m n)} {Y' : Interval (Mat 𝕋 n p)} {M₀ : Mat ℝ m n} {N₀ : Mat ℝ n p}
     (hM₀ : M₀ ∈ X.construct) (hN₀ : N₀ ∈ Y.construct) (hX : X.construct ⊆ X'.construct)
     (hY : Y.construct ⊆ Y'.construct) (i : Fin m) (j : Fin p) {y x : Fin n → ℝ}
-    (hy : ∀ l, X.inf i l ≤ y l ∧ y l ≤ X.sup i l) (hx : ∀ l, Y.inf l j ≤ x l ∧ x l ≤ Y.sup l j) :
+    (hy : ∀ l, X.inf i l ≤ y l ∧ y l ≤ X.sup i l)
+    (hx : ∀ l, Y.inf l j ≤ x l ∧ x l ≤ Y.sup l j) : -- --- STMT ---
     toReal ((Interval.matMul X' Y').inf i j) ≤ ∑ l, y l * x l ∧
       ∑ l, y l * x l ≤ toReal ((Interval.matMul X' Y').sup i j) := by -- --- PROOF ---
   classical
@@ -97,7 +98,7 @@ float product. -/
 theorem Interval.matMul_subset {X : Real.Interval (Mat ℝ m n)} {Y : Real.Interval (Mat ℝ n p)}
     {X' : Interval (Mat 𝕋 m n)} {Y' : Interval (Mat 𝕋 n p)} {M₀ : Mat ℝ m n} {N₀ : Mat ℝ n p}
     (hM₀ : M₀ ∈ X.construct) (hN₀ : N₀ ∈ Y.construct) (hX : X.construct ⊆ X'.construct)
-    (hY : Y.construct ⊆ Y'.construct) :
+    (hY : Y.construct ⊆ Y'.construct) : -- --- STMT ---
     (Real.Interval.matMul X Y).construct ⊆ (Interval.matMul X' Y').construct := by -- --- PROOF ---
   intro P hP
   have hXw : ∀ i l, X.inf i l ≤ X.sup i l := fun i l =>

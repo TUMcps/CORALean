@@ -40,7 +40,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- [1, Eq. 17]: the derivative of `log det Q(β)` as a trace in `R = Q₁⁻¹ Q₂`. -/
 theorem Ellipsoid.halder_deriv_log_det {Q₁ Q₂ : Matrix n n ℝ} (h₁ : Q₁.PosDef)
-    (h₂ : Q₂.PosDef) {β : ℝ} (hβ : 0 < β) :
+    (h₂ : Q₂.PosDef) {β : ℝ} (hβ : 0 < β) : -- --- STMT ---
     HasDerivAt (fun b : ℝ => Real.log (((1 + 1 / b) • Q₁ + (1 + b) • Q₂).det))
       (-(1 / (β * (1 + β))) *
         ((1 + β • (Q₁⁻¹ * Q₂))⁻¹ * (1 - β ^ 2 • (Q₁⁻¹ * Q₂))).trace) β := by -- --- PROOF ---

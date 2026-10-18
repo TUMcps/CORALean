@@ -39,7 +39,7 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flowLaw
     {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.FeedthroughFree)
-    (lift : ParallelHybridAutomaton.Lifting S G n m) :
+    (lift : ParallelHybridAutomaton.Lifting S G n m) : -- --- STMT ---
     P.FlowLaw (fun ℓ => mergeFlowsLinearSys (P.sys ℓ) (P.bindsAt ℓ)) (P.mergeInputSets lift)
       (P.mergeDistSets lift) := by -- --- PROOF ---
   classical

@@ -96,7 +96,7 @@ theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) (b' : Ve
     (hint : (interior (HPolytope.ineqs A b).construct).Nonempty) (j : Fin q)
     (hred : (HPolytope.ineqs A b).construct ≠
       (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).construct)
-    (heq : (HPolytope.ineqs A b).construct = (HPolytope.ineqs A' b').construct) :
+    (heq : (HPolytope.ineqs A b).construct = (HPolytope.ineqs A' b').construct) : -- --- STMT ---
     ∃ k, A' k = A j ∧ b' k = b j := by -- --- PROOF ---
   -- a point kept by the other rows and cut off by row `j`
   have hsub : (HPolytope.ineqs A b).construct ⊆ (HPolytope.ineqs (A.submatrix (dropIdx j) id)
@@ -229,7 +229,7 @@ theorem aux_unit (A : Mat ℝ q n) (hA : ∀ i, A i ≠ 0) (j : Fin q) :
 
 /-- A row is redundant, in the support-function sense of line 4, exactly when dropping it
 leaves the set. -/
-theorem aux_redundant_iff (A : Mat ℝ q n) (b : Vec ℝ q) (j : Fin q) :
+theorem aux_redundant_iff (A : Mat ℝ q n) (b : Vec ℝ q) (j : Fin q) : -- --- STMT ---
     supportFunc (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).construct
         (HPolytope.rowLin A j) ≤ (b j : EReal) ↔
       (HPolytope.ineqs A b).construct =

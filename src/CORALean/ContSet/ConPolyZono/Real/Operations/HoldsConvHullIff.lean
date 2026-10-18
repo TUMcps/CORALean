@@ -44,7 +44,7 @@ open Matrix
 
 /-- A copy's constraint column names that copy's own monomial. -/
 theorem ConPolyZono.aux_monomial_con {a p q : ℕ} (R : Fin p → Fin q → ℕ)
-    (v : Fin (a * p + a) → ℝ) (j : Fin a) (l : Fin q) :
+    (v : Fin (a * p + a) → ℝ) (j : Fin a) (l : Fin q) : -- --- STMT ---
     PolyZonotope.monomial (ConPolyZono.convHullR a R) v (Fin.castAdd a (finProdFinEquiv (j, l)))
       = PolyZonotope.monomial R
         (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) l := by -- --- PROOF ---
@@ -79,7 +79,7 @@ theorem ConPolyZono.aux_monomial_lam {a p q : ℕ} (R : Fin p → Fin q → ℕ)
 
 /-- A copy's constraint row is the linear combination's, over that copy. -/
 theorem ConPolyZono.aux_mulVec_block {a p m q : ℕ} (A : Mat ℝ m q) (R : Fin p → Fin q → ℕ)
-    (v : Fin (a * p + a) → ℝ) (j : Fin a) (i : Fin m) :
+    (v : Fin (a * p + a) → ℝ) (j : Fin a) (i : Fin m) : -- --- STMT ---
     (ConPolyZono.convHullA a A *ᵥ PolyZonotope.monomial (ConPolyZono.convHullR a R) v)
         (Fin.castAdd 1 (finProdFinEquiv (j, i)))
       = (A *ᵥ PolyZonotope.monomial R
@@ -97,7 +97,7 @@ theorem ConPolyZono.aux_mulVec_block {a p m q : ℕ} (A : Mat ℝ m q) (R : Fin 
 
 /-- The last row adds the weight factors and nothing else. -/
 theorem ConPolyZono.aux_mulVec_last {a p m q : ℕ} (A : Mat ℝ m q) (R : Fin p → Fin q → ℕ)
-    (v : Fin (a * p + a) → ℝ) :
+    (v : Fin (a * p + a) → ℝ) : -- --- STMT ---
     (ConPolyZono.convHullA a A *ᵥ PolyZonotope.monomial (ConPolyZono.convHullR a R) v)
         (Fin.natAdd (a * m) (0 : Fin 1))
       = ∑ j, v (Fin.natAdd (a * p) j) := by -- --- PROOF ---
@@ -115,7 +115,7 @@ theorem ConPolyZono.aux_mulVec_last {a p m q : ℕ} (A : Mat ℝ m q) (R : Fin p
 /-- The hull's system holds exactly when every copy's does and the weights add
 up to what a convex combination needs. -/
 theorem ConPolyZono.holds_convHull_iff {a p m q : ℕ} (A : Mat ℝ m q) (b : Interval (Vec ℝ m))
-    (R : Fin p → Fin q → ℕ) (v : Fin (a * p + a) → ℝ) :
+    (R : Fin p → Fin q → ℕ) (v : Fin (a * p + a) → ℝ) : -- --- STMT ---
     ConPolyZono.holds (ConPolyZono.convHullA a A) (ConPolyZono.convHullB a b)
         (ConPolyZono.convHullR a R) v
       ↔ (∀ j, ConPolyZono.holds A b R (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))))

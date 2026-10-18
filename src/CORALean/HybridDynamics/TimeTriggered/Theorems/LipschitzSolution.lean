@@ -42,7 +42,7 @@ omit [CompleteSpace E] in
 /-- Extending a solution on `(-h, T)` by `h/2` to the right, `h / 2 ≤ T`. -/
 theorem aux_extend {f : E → E} {K : ℝ≥0} (hf : LipschitzWith K f) {h T : ℝ} (hh : 0 < h)
     (hT : h ≤ T) (hloc : ∀ y : E, ∃ α : ℝ → E, α 0 = y ∧ ∀ u ∈ Ioo (-h) h, HasDerivAt α (f (α u)) u)
-    {γ : ℝ → E} (hγ : ∀ u ∈ Ioo (-h) T, HasDerivAt γ (f (γ u)) u) :
+    {γ : ℝ → E} (hγ : ∀ u ∈ Ioo (-h) T, HasDerivAt γ (f (γ u)) u) : -- --- STMT ---
     ∃ γ' : ℝ → E, (∀ u ≤ 0, γ' u = γ u) ∧
       ∀ u ∈ Ioo (-h) (T + h / 2), HasDerivAt γ' (f (γ' u)) u := by -- --- PROOF ---
   set c : ℝ := T - h / 2 with hc

@@ -8,7 +8,7 @@ public import CORALean.ContSet.InflatedContSet.InflatedContSet
 /-!
 # Constrained polynomial zonotopes over a floating-point scalar: the representation
 
-CORA's `conPolyZono` with its five counts, its two generator blocks and its
+CORA's `conPolyZono` [1, Def. 5] with its five counts, its two generator blocks and its
 constraint system `A μ_R(α) ∈ b`, plus the error box that makes it an
 `InflatedContSet`. `ConPolyZono 𝕋 α` is generic over its ambient type,
 generators a family, as the exact layer's `ConPolyZono α` is; `𝕋` stays, the
@@ -24,6 +24,11 @@ being an interval, so theirs goes into `b`, widened outward and hence enclosing.
 `plus` and `mtimes` copy the constraint block and pay nothing; `intersection` and
 `compact` need both at once. `intersection`'s agreement rows relate two nominal points
 as far apart as their error boxes allow, plus the rounding of `c₂ - c₁`, directed outward.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Claude Opus 5

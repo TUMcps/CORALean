@@ -93,7 +93,7 @@ theorem PolyZonotope.aux_evalPolySortTail_h_le (pZ : PolyZonotope (Vec ℝ n))
 /-- [1, Prop. 3.5 (generators)]: Alg. 2 at a polynomial of degree `o` has at most `o · 3^o · h^o`
 generators when `h ≥ 1`, which is `O(h^o)`. -/
 theorem PolyZonotope.evalPolySort_h_le (pZ : PolyZonotope (Vec ℝ n)) (coeffs : List (Vec ℝ n))
-    (hh : 1 ≤ pZ.h) :
+    (hh : 1 ≤ pZ.h) : -- --- STMT ---
     (pZ.evalPolySort coeffs).h
       ≤ (coeffs.length - 1) * 3 ^ (coeffs.length - 1)
         * pZ.h ^ (coeffs.length - 1) := by -- --- PROOF ---

@@ -138,7 +138,7 @@ theorem LinParamSys.IsNullZono.mtimesMatZonotope_zero {Z : Zonotope (Vec ℝ 1)}
 independent input `initReachInputDependence` adds for it is the zero set. -/
 theorem LinParamSys.aux_inputSolutionZono_null (zA : Zonotope (Mat ℝ 1 1))
     (UG : Fin zA.h → Vec ℝ 1) (Uc : Vec ℝ 1) (r : ℝ) (S : Zonotope (Vec ℝ 1) → ℝ)
-    (hS : ∀ Z, S Z = Z.c 0 + ∑ l, |Z.G l 0|) :
+    (hS : ∀ Z, S Z = Z.c 0 + ∑ l, |Z.G l 0|) : -- --- STMT ---
     let X := (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).inputSolutionZono (S := 𝒵) r 2
       (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵)
         (⟨(LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.h, 0,
@@ -160,7 +160,8 @@ theorem LinParamSys.aux_inputSolutionZono_null (zA : Zonotope (Mat ℝ 1 1))
 
 /-- For `ẋ = p²`, `p ∈ [1, 2]`, the state of the run at `p = 2` after a step `r` lies outside
 both sets of `linReachCora`, which is run with `Rerror = {0}` (the remainder is zero). -/
-theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r) (x₀ : ℝ) :
+theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
+    (x₀ : ℝ) : -- --- STMT ---
     let sys : NonlinParamSys 1 1 1 := ⟨fun _ _ p => fun _ => p 0 ^ 2, 1, fun x _ _ => x⟩
     let P : Zonotope (Vec ℝ 1) := ⟨1, fun _ => 3 / 2, fun _ _ => 1 / 2⟩
     let I : Interval (Vec ℝ 1) := ⟨fun _ => 1, fun _ => 2⟩

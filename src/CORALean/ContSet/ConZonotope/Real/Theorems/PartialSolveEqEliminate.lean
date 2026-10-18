@@ -39,7 +39,7 @@ open Matrix
 /-- [1, Sec. 4.2]: dropping the zero column and row of the partial-solve `Z̃` is `eliminate`. -/
 theorem ConZonotope.partialSolve_eq_eliminate {n q h : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h)
-    (hAj : A r j ≠ 0) :
+    (hAj : A r j ≠ 0) : -- --- STMT ---
     (ConZonotope.partialSolve c G A b r j).construct
       = (ConZonotope.eliminate c G A b r j).construct := by -- --- PROOF ---
   obtain ⟨hG, hA⟩ := ConZonotope.partialSolve_zero_col G A r j hAj

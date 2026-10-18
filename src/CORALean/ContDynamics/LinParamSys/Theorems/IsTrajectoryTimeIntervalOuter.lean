@@ -61,7 +61,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer {sys : LinParamSys 
     (hV : ∀ s ∈ T, (A s - Â) *ᵥ x s + u s ∈ construct V)
     (hVb : Bornology.IsBounded (construct V)) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hVd : (∫ s in (0:ℝ)..t, exp ((t - s) • Â) *ᵥ ((A s - Â) *ᵥ x s + u s))
-      ∈ construct Vd) :
+      ∈ construct Vd) : -- --- STMT ---
     x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀) Vd) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   -- the run is a point system's run at `Â`, its input enlarged by the drift

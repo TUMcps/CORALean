@@ -51,7 +51,7 @@ theorem NonlinearSys.linReachInner_subset_reachSet (ops : NonlinearSys.LinReachI
     (sys : NonlinearSys n m) (u₀ : Vec ℝ m) {Δt : ℝ} (hΔt : 0 ≤ Δt) (fuel : ℕ)
     {X : Set (Vec ℝ n)} {e : Vec ℝ n} {st : NonlinearSys.LinReachInnerState n 𝓛}
     (h : NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st))
-    (cert : NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st) :
+    (cert : NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st) : -- --- STMT ---
     st.Rtp ⊆ sys.reachSet (S := 𝒮) (Icc 0 Δt) X {u₀}
       Δt := by -- --- PROOF ---
   -- what `Rtp.set` and `Rlintp__ + p` are

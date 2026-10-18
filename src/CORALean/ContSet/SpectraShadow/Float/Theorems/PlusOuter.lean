@@ -54,7 +54,7 @@ theorem SpectraShadow.aux_sum_append {S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n
 
 /-- The stored inequality of the sum holds exactly when both inequalities do. -/
 theorem SpectraShadow.aux_posSemidef_plus (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n))
-    (β : Fin (S₁.m + S₂.m) → ℝ) :
+    (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- STMT ---
     (toRealMat (S₁.plus S₂).A₀ + ∑ i : Fin (S₁.plus S₂).m, β i • toRealMat ((S₁.plus S₂).A i)
       ).PosSemidef
       ↔ (toRealMat S₁.A₀ + ∑ i, β (Fin.castAdd S₂.m i) • toRealMat (S₁.A i)).PosSemidef

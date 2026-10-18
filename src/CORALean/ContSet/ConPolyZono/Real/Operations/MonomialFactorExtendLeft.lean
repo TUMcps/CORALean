@@ -28,7 +28,8 @@ namespace CORALean.Real
 /-- The same generator monomial read against an extended factor vector, which is
 what the reverse inclusion supplies. -/
 theorem ConPolyZono.monomial_factorExtend_left {p h q : ℕ} (E : Fin p → Fin h → ℕ)
-    (R : Fin p → Fin q → ℕ) (a : Fin (ConPolyZono.usedFactors E R).card → ℝ) (i : Fin h) :
+    (R : Fin p → Fin q → ℕ) (a : Fin (ConPolyZono.usedFactors E R).card → ℝ)
+    (i : Fin h) : -- --- STMT ---
     PolyZonotope.monomial E (ConPolyZono.factorExtend E R a) i
       = PolyZonotope.monomial (fun k i => E (ConPolyZono.factorIdx E R k) i)
         a i := by -- --- PROOF ---

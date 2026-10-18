@@ -33,7 +33,7 @@ namespace CORALean.Real
 
 /-- [1, Prop. 3] at the trivial partition, `m₂ = 0`: `Z⁺ = {[G; A], [c; −b]}` is a zonotope. -/
 theorem ConZonotope.mem_lift_zero_iff {n m h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
-    (A : Mat ℝ (m + 0) h) (b : Vec ℝ (m + 0)) (x : Vec ℝ (n + m)) :
+    (A : Mat ℝ (m + 0) h) (b : Vec ℝ (m + 0)) (x : Vec ℝ (n + m)) : -- --- STMT ---
     x ∈ (ConZonotope.lift (m₂ := 0) c G A b).construct ↔
       ∃ β : Fin h → ℝ, (∀ j, |β j| ≤ 1) ∧
         x = Fin.append c (-fun i => b (Fin.castAdd 0 i))

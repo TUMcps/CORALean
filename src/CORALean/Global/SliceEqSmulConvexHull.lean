@@ -42,7 +42,7 @@ variable {N n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem slice_eq_smul_convexHull (hN : 0 < N) (v : Fin N → Vec ℝ n) {α β : ℝ} (hα : 0 < α)
-    (hβ0 : 0 ≤ β) (hβα : β ≤ α) :
+    (hβ0 : 0 ≤ β) (hβα : β ≤ α) : -- --- STMT ---
     {x : Vec ℝ n | ∃ μ : Fin N → ℝ, (∀ i, 0 ≤ μ i ∧ μ i ≤ 1) ∧
         (x, β) = ∑ i, μ i • ((v i, α) : Vec ℝ n × ℝ)}
       = (β / α) • convexHull ℝ (Set.range v) := by -- --- PROOF ---

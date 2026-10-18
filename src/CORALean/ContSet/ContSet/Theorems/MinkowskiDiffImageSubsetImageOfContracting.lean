@@ -48,7 +48,7 @@ with `K < 1`. -/
 theorem minkowskiDiff_image_subset_image_of_contracting (P : W →+ V) (hP : Injective P)
     (Ē E : V → W) (hĒ : ∀ x, P (Ē x) = x) {K : NNReal} (hK : K < 1)
     (hLip : LipschitzWith K fun x => x - P (E x)) {X : Set V} (hX : IsComplete X)
-    (hXne : X.Nonempty) {B : Set W} (hB : ∀ x ∈ X, Ē x - E x ∈ B) :
+    (hXne : X.Nonempty) {B : Set W} (hB : ∀ x ∈ X, Ē x - E x ∈ B) : -- --- STMT ---
     minkowskiDiff (Ē '' X) B ⊆ E '' X := by -- --- PROOF ---
   intro y hy
   -- the map whose fixed points solve `y = E x`

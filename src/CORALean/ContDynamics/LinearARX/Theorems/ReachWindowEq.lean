@@ -40,7 +40,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.reachWindow_eq (sys : LinearARX 𝕋 dy du p) (y₀ : Vec ℝ (p * dy))
-    {U : ℕ → Set (Vec ℝ du)} (hU : ∀ i, (U i).Nonempty) (k : ℕ) :
+    {U : ℕ → Set (Vec ℝ du)} (hU : ∀ i, (U i).Nonempty) (k : ℕ) : -- --- STMT ---
     sys.reachWindow y₀ U k = {sys.Aext ^ k *ᵥ y₀}
       + ∑ i ∈ Finset.range (k + p),
         (sys.Btilde k i *ᵥ ·) '' U (k + p - 1 - i) := by -- --- PROOF ---

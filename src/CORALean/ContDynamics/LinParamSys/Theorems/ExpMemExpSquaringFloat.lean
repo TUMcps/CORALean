@@ -50,7 +50,8 @@ theorem LinParamSys.aux_toReal_half_iterate (a : 𝕋) :
 theorem LinParamSys.exp_mem_expSquaringFloat
     (sys : LinParamSys (fun m n => Interval (Mat 𝕋 m n)) n) {tLo tHi : 𝕋} {η s : ℕ}
     (hη : sys.OrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {A : Mat ℝ n n}
-    (hA : A ∈ sys.A.construct) {t : ℝ} (htLo : toReal tLo ≤ t) (htHi : t ≤ toReal tHi) :
+    (hA : A ∈ sys.A.construct) {t : ℝ} (htLo : toReal tLo ≤ t)
+    (htHi : t ≤ toReal tHi) : -- --- STMT ---
     exp (t • A) ∈ (sys.expSquaringFloat tLo tHi η s).construct := by -- --- PROOF ---
   have h2s : (0 : ℝ) < 2 ^ s := by positivity
   -- the base: `t / 2^s` is in the halved range

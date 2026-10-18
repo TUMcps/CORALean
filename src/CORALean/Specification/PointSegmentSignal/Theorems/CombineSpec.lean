@@ -95,7 +95,7 @@ structure aux_LoopInv (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSi
 theorem aux_loopInv_final [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
     (hv : ∀ k, (sig k).IsValid) (fuel : ℕ) (inIdx : ι → ℕ) (tp : List T)
     (val : List Bool) (inv : aux_LoopInv op sig fuel inIdx tp val)
-    (hc : ¬ ∃ k, inIdx k ≤ (sig k).length) :
+    (hc : ¬ ∃ k, inIdx k ≤ (sig k).length) : -- --- STMT ---
     (PointSegmentSignal.mk tp val).IsValid ∧
       ∀ t : T, 0 ≤ t →
         (PointSegmentSignal.mk tp val).at t = op fun k => (sig k).at t := by -- --- PROOF ---
@@ -153,7 +153,7 @@ theorem aux_loop_facts [Nonempty ι] (sig : ι → PointSegmentSignal T) (hv : �
     (hle : ∀ k, inIdx k ≤ (sig k).length + 1)
     (hcons : ∀ k j a, j + 1 < inIdx k → (sig k).timePoints[j]? = some a →
       (a : WithTop T) < aux_loopTime sig inIdx)
-    (hc : ∃ k, inIdx k ≤ (sig k).length) :
+    (hc : ∃ k, inIdx k ≤ (sig k).length) : -- --- STMT ---
     ∃ τ : T, aux_loopTime sig inIdx = τ ∧
       (∀ k, (sig k).timeOrInf (inIdx k) = τ →
         inIdx k ≤ (sig k).length ∧ (sig k).timePoints[inIdx k - 1]? = some τ) ∧
@@ -235,7 +235,7 @@ theorem aux_zero_le_loopTime (sig : ι → PointSegmentSignal T) (hv : ∀ k, (s
 theorem aux_loopInv_step [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
     (hv : ∀ k, (sig k).IsValid) (fuel : ℕ) (inIdx : ι → ℕ) (tp : List T)
     (val : List Bool) (inv : aux_LoopInv op sig (fuel + 1) inIdx tp val)
-    (hc : ∃ k, inIdx k ≤ (sig k).length) :
+    (hc : ∃ k, inIdx k ≤ (sig k).length) : -- --- STMT ---
     let N := aux_loopTime sig inIdx
     let isMin : ι → Bool := fun k => decide ((sig k).timeOrInf (inIdx k) = N)
     let pv := op fun k =>
@@ -447,7 +447,7 @@ theorem aux_loopInv_step [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι �
 
 /-- The loop from any state satisfying the invariant ends in the claim. -/
 theorem aux_combineLoop_spec [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι → PointSegmentSignal T)
-    (hv : ∀ k, (sig k).IsValid) (fuel : ℕ) :
+    (hv : ∀ k, (sig k).IsValid) (fuel : ℕ) : -- --- STMT ---
     ∀ (inIdx : ι → ℕ) (tp : List T) (val : List Bool),
       aux_LoopInv op sig fuel inIdx tp val →
       (PointSegmentSignal.mk (PointSegmentSignal.combineLoop op sig fuel inIdx tp val).1
@@ -513,7 +513,7 @@ theorem aux_loopInv_init [Nonempty ι] (op : (ι → Bool) → Bool) (sig : ι �
 theorem PointSegmentSignal.combine_spec {T : Type} [LinearOrder T] [Zero T] {ι κ : Type}
     [Fintype ι] [Nonempty ι]
     (op : (ι → Bool) → κ → Bool) (sig : ι → PointSegmentSignal T)
-    (hv : ∀ k, (sig k).IsValid) (i : κ) :
+    (hv : ∀ k, (sig k).IsValid) (i : κ) : -- --- STMT ---
     (PointSegmentSignal.combine op sig i).IsValid ∧ ∀ t : T, 0 ≤ t →
       (PointSegmentSignal.combine op sig i).at t
         = op (fun k => (sig k).at t) i := by -- --- PROOF ---

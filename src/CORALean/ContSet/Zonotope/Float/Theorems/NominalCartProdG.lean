@@ -49,7 +49,7 @@ theorem Zonotope.aux_realG_right (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonot
 
 /-- The nominal generators of the product are the exact block-diagonal ones, appended. -/
 theorem Zonotope.nominal_cartProd_G (Z₁ : Zonotope (Vec 𝕋 n₁)) (Z₂ : Zonotope (Vec 𝕋 n₂))
-    (j : Fin (Z₁.h + Z₂.h)) :
+    (j : Fin (Z₁.h + Z₂.h)) : -- --- STMT ---
     (InflatedContSet.nominal (Z₁.cartProd Z₂)).G j = appendLinear n₁ n₂
       ((Real.Zonotope.cartProd (InflatedContSet.nominal Z₁)
         (InflatedContSet.nominal Z₂)).G j) := by -- --- PROOF ---

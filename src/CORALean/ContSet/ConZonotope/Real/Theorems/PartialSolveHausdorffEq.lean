@@ -39,7 +39,7 @@ open Matrix
 /-- [1, Sec. 4.2 (choice of j)]: `H_j` read over the coefficients, `Gξ + c ∈ Z̃` against
 `Gδ + c ∈ Z`. -/
 theorem ConZonotope.partialSolve_hausdorff_eq {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
-    (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) :
+    (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) : -- --- STMT ---
     sSup ((fun zt => sInf ((fun z => ‖zt - z‖₂) '' (ConZonotope.ofMat c G A b).construct))
         '' (ConZonotope.partialSolve c G A b r j).construct)
       = sSup ((fun ξ : Vec ℝ h => sInf ((fun δ : Vec ℝ h => ‖∑ k, (ξ k - δ k) • G k‖₂)

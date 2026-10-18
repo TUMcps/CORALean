@@ -67,7 +67,7 @@ theorem aux_exists_annihilator {k : ℕ} (b : Fin k → Vec ℝ N) (hk : k < N) 
 /-- The pivot, repeated: while fewer than `N - 1` independent constraints are
 active, walk to where one more is, keeping `w ⬝ᵥ ·` positive. -/
 theorem aux_coneWalk (a : ι → Vec ℝ N) (w : Vec ℝ N)
-    (hpt : ∀ y : Vec ℝ N, (∀ j, a j ⬝ᵥ y = 0) → y = 0) :
+    (hpt : ∀ y : Vec ℝ N, (∀ j, a j ⬝ᵥ y = 0) → y = 0) : -- --- STMT ---
     ∀ (m k : ℕ) (S : Fin k → ι) (z : Vec ℝ N), N ≤ m + k →
       LinearIndependent ℝ (fun i => a (S i)) → (∀ i, a (S i) ⬝ᵥ z = 0) →
       (∀ j, 0 ≤ a j ⬝ᵥ z) → 0 < w ⬝ᵥ z →
@@ -173,7 +173,7 @@ theorem aux_coneWalk (a : ι → Vec ℝ N) (w : Vec ℝ N)
 a direction `n` linearly independent constraints annihilate. -/
 theorem exists_edge_of_cone {n : ℕ} (a : ι → Vec ℝ (n + 1)) (w : Vec ℝ (n + 1))
     (hpt : ∀ y : Vec ℝ (n + 1), (∀ j, a j ⬝ᵥ y = 0) → y = 0)
-    (z : Vec ℝ (n + 1)) (hz : ∀ j, 0 ≤ a j ⬝ᵥ z) (hw : 0 < w ⬝ᵥ z) :
+    (z : Vec ℝ (n + 1)) (hz : ∀ j, 0 ≤ a j ⬝ᵥ z) (hw : 0 < w ⬝ᵥ z) : -- --- STMT ---
     ∃ (S : Fin n → ι) (y : Vec ℝ (n + 1)), LinearIndependent ℝ (fun i => a (S i)) ∧
       (∀ i, a (S i) ⬝ᵥ y = 0) ∧ (∀ j, 0 ≤ a j ⬝ᵥ y) ∧ 0 < w ⬝ᵥ y := by -- --- PROOF ---
   obtain ⟨k, S, y, hk, hind, hSy, hy, hwy⟩ :=

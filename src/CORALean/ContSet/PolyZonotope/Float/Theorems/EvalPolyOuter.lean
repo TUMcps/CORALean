@@ -78,7 +78,7 @@ theorem PolyZonotope.aux_point_le_boundS (pZ : PolyZonotope (Vec 𝕋 n)) (b : F
 stored floats, with no further rounding) and the float accumulator's own stored
 value lies in that accumulator's error box, at every admissible `b`. -/
 theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs : List (Vec 𝕋 n))
-    (b : Fin pZ.p → ℝ) (hb : ∀ k, |b k| ≤ 1) :
+    (b : Fin pZ.p → ℝ) (hb : ∀ k, |b k| ≤ 1) : -- --- STMT ---
     (fun i => (Real.PolyZonotope.evalPolyP (nominal pZ) (coeffs.map toRealVec)).1.point
           (fun k => b (Fin.cast ((Real.PolyZonotope.evalPolyP (nominal pZ)
               (coeffs.map toRealVec)).2.trans (PolyZonotope.nominal_p pZ)) k)) i
@@ -314,7 +314,8 @@ theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the exact statement, read through the refinement: the same image, rounded outward
-theorem PolyZonotope.evalPoly_outer (pZ : PolyZonotope (Vec 𝕋 n)) (coeffs : List (Vec 𝕋 n)) :
+theorem PolyZonotope.evalPoly_outer (pZ : PolyZonotope (Vec 𝕋 n))
+    (coeffs : List (Vec 𝕋 n)) : -- --- STMT ---
     (fun a : Fin pZ.p → ℝ => fun i => Real.PolyZonotope.evalPolyReal
         (coeffs.map fun v => toReal (v i))
         (Real.PolyZonotope.point (nominal pZ) a i)) '' {a | ∀ k, |a k| ≤ 1}

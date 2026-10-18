@@ -38,7 +38,7 @@ theorem map_prod_pi_eq_of_indep {Ω β Δ ι : Type*} [mΩ : MeasurableSpace Ω]
     (P : Measure Δ) [IsProbabilityMeasure P] {Z : Ω → β} (hZ : Measurable Z) {y : ι → Ω → Δ}
     (hy : ∀ j, Measurable (y j)) (hyP : ∀ j, μ.map (y j) = P) (m : ι → MeasurableSpace Ω)
     (hZm : ∀ j, Measurable[m j] Z) (hym : ∀ j j', j' ≠ j → Measurable[m j] (y j'))
-    (hind : ∀ j, Indep (MeasurableSpace.comap (y j) mΔ) (m j) μ) :
+    (hind : ∀ j, Indep (MeasurableSpace.comap (y j) mΔ) (m j) μ) : -- --- STMT ---
     μ.map (fun ω => (Z ω, fun j => y j ω)) =
       (μ.map Z).prod (Measure.pi fun _ : ι => P) := by -- --- PROOF ---
   -- on a rectangle the measure splits off one sample at a time

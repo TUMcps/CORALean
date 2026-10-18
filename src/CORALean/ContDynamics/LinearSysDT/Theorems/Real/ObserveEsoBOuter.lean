@@ -43,7 +43,7 @@ theorem LinearSysDT.observeEsoB_outer (sys : LinearSysDT ℝ n) {W : Mat ℝ n n
     (hQ : Q.PosDef) (c : Vec ℝ n) {x w : Vec ℝ n} (hx : x ∈ (Ellipsoid.ofShape Q c).construct)
     (hw : w ∈ (Ellipsoid.ofShape W 0).construct)
     (hy : (y - sys.C *ᵥ (sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w)) ⬝ᵥ
-      V⁻¹ *ᵥ (y - sys.C *ᵥ (sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w)) ≤ 1) :
+      V⁻¹ *ᵥ (y - sys.C *ᵥ (sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w)) ≤ 1) : -- --- STMT ---
     sys.A *ᵥ x + (sys.B *ᵥ u + sys.c) + w
       ∈ (sys.observeEsoB W V p lam σsqPrev u y Q c).construct := by -- --- PROOF ---
   obtain ⟨hN, hpred⟩ :=

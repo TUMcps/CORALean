@@ -52,7 +52,8 @@ theorem aux_lt_of_window {a k r j q : ℕ} (hj : j < a + r) (ha : a ≤ j) (hq :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Cat.maxSegments_eval_iff (k : ℕ) : ∀ (a r : ℕ) (x : Vec ℝ (a + (k + 1) * r))
+theorem Cat.maxSegments_eval_iff (k : ℕ) : -- --- STMT ---
+    ∀ (a r : ℕ) (x : Vec ℝ (a + (k + 1) * r))
     (y : Vec ℝ (a + r)), (Cat.maxSegments (𝕋 := 𝕋) k a r).Eval x y ↔
       y = fun j => if _h : j.val < a then x ⟨j.val, by omega⟩
         else Real.windowMax fun q : Fin (k + 1) =>

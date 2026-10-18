@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem PolyZonotope.aux_linComb_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
+theorem PolyZonotope.aux_linComb_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : -- --- STMT ---
     Set.linComb (nominalSet pZ₁) (nominalSet pZ₂) ⊆
       nominalSet (pZ₁.linComb pZ₂)
         + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).construct

@@ -68,7 +68,7 @@ theorem aux_pb_continuous_mulVec {A : ℝ → Mat ℝ n n}
 /-- The recursion read on a vector: `P_{k+1}(s) v = ∫₀ˢ A(σ) (P_k(σ) v) dσ`. -/
 theorem aux_pb_succ_mulVec {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b) (k : ℕ) (s : ℝ)
-    (v : Vec ℝ n) :
+    (v : Vec ℝ n) : -- --- STMT ---
     MatExp.peanoBakerTerm A (k + 1) s *ᵥ v
       = ∫ σ in (0:ℝ)..s, A σ *ᵥ (MatExp.peanoBakerTerm A k σ *ᵥ v) := by -- --- PROOF ---
   funext i
@@ -90,7 +90,7 @@ theorem aux_pb_norm_mulVec_le {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n}
 /-- `‖P_k(s) v‖ ≤ s^k/k! · c^k ‖v‖`, the `k`-th term of the exponential of `c s`. -/
 theorem aux_pb_norm_term_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) (v : Vec ℝ n) (k : ℕ) :
+    (hAB : ∀ s, A s ∈ B.construct) (v : Vec ℝ n) (k : ℕ) : -- --- STMT ---
     ∀ s, 0 ≤ s → ‖MatExp.peanoBakerTerm A k s *ᵥ v‖
       ≤ s ^ k / (Nat.factorial k : ℝ) * (‖B.absMax‖ ^ k * ‖v‖) := by -- --- PROOF ---
   induction k with
@@ -113,7 +113,7 @@ theorem aux_pb_norm_term_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n 
 /-- `‖V_k(s)‖ ≤ s^{k+1}/(k+1)! · c^k ν`, the input's terms. -/
 theorem aux_pb_norm_input_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hAB : ∀ s, A s ∈ B.construct) {u : ℝ → Vec ℝ n} {t ν : ℝ}
-    (hν : ∀ s ∈ Set.Icc 0 t, ‖u s‖ ≤ ν) (k : ℕ) :
+    (hν : ∀ s ∈ Set.Icc 0 t, ‖u s‖ ≤ ν) (k : ℕ) : -- --- STMT ---
     ∀ s ∈ Set.Icc 0 t, ‖MatExp.peanoBakerInputTerm A u k s‖
       ≤ s ^ (k + 1) / (Nat.factorial (k + 1) : ℝ) * (‖B.absMax‖ ^ k * ν) := by -- --- PROOF ---
   induction k with
@@ -148,7 +148,7 @@ theorem aux_pb_remainder_succ {A : ℝ → Mat ℝ n n}
     (hu : ∀ a b, IntervalIntegrable u volume a b)
     {x : ℝ → Vec ℝ n} {t : ℝ} (hxc : ContinuousOn x (Set.Icc 0 t))
     (hx : ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, (A σ *ᵥ x σ + u σ)) (L : ℕ) {s : ℝ}
-    (hs : s ∈ Set.Icc 0 t) :
+    (hs : s ∈ Set.Icc 0 t) : -- --- STMT ---
     x s - ∑ j ∈ Finset.range (L + 1), (MatExp.peanoBakerTerm A j s *ᵥ x 0
         + MatExp.peanoBakerInputTerm A u j s)
       = ∫ σ in (0:ℝ)..s, A σ *ᵥ (x σ - ∑ j ∈ Finset.range L,
@@ -185,7 +185,7 @@ theorem aux_pb_remainder_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n 
     (hu : ∀ a b, IntervalIntegrable u volume a b)
     {x : ℝ → Vec ℝ n} {t : ℝ} (hxc : ContinuousOn x (Set.Icc 0 t))
     (hx : ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, (A σ *ᵥ x σ + u σ)) {X : ℝ}
-    (hX : ∀ s ∈ Set.Icc 0 t, ‖x s‖ ≤ X) (L : ℕ) :
+    (hX : ∀ s ∈ Set.Icc 0 t, ‖x s‖ ≤ X) (L : ℕ) : -- --- STMT ---
     ∀ s ∈ Set.Icc 0 t, ‖x s - ∑ j ∈ Finset.range L,
         (MatExp.peanoBakerTerm A j s *ᵥ x 0 + MatExp.peanoBakerInputTerm A u j s)‖
       ≤ s ^ L / (Nat.factorial L : ℝ) * (‖B.absMax‖ ^ L * X) := by -- --- PROOF ---
@@ -219,7 +219,7 @@ theorem MatExp.exists_peanoBaker_expansion {B : Interval (Mat ℝ n n)} {A : ℝ
     {x : ℝ → Vec ℝ n} {t : ℝ} (ht : 0 ≤ t) (hxc : ContinuousOn x (Set.Icc 0 t))
     (hx : ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, (A σ *ᵥ x σ + u σ)) {ν : ℝ}
     (hν : ∀ s ∈ Set.Icc 0 t, ‖u s‖ ≤ ν) (η : ℕ)
-    (hε : ‖(Interval.smul t B).absMax‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖(Interval.smul t B).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
     ∃ ρh ρu : Vec ℝ n,
       ‖ρh‖ ≤ ‖x 0‖ * MatExp.expRemainderBound (Interval.smul t B).absMax η ∧
       ‖ρu‖ ≤ t * ν * MatExp.expRemainderBound (Interval.smul t B).absMax η ∧

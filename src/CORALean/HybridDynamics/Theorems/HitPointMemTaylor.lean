@@ -79,7 +79,7 @@ theorem aux_hitPoint_taylor_one {g g' g'' : ℝ → ℝ} (hg : ∀ t ∈ Icc (0 
 
 /-- `νᵀQ⁽ⁱ⁾(x)ν = 2(Aν)ᵢ θ - 2θ(Υν)(Ax + b)ᵢ/Λ(x)`, `θ = Θ(x)ᵀν`: `Ω` is antisymmetric. -/
 theorem aux_quad_hitHessianNum (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (x ν : Vec ℝ n)
-    (i : Fin n) :
+    (i : Fin n) : -- --- STMT ---
     ν ⬝ᵥ (GuardMap.hitHessianNum A b nv d x i *ᵥ ν)
       = 2 * (A *ᵥ ν) i * (-(nv ⬝ᵥ (A *ᵥ x + b)) * (nv ⬝ᵥ ν) - (d - nv ⬝ᵥ x) * (nv ⬝ᵥ (A *ᵥ ν)))
         - 2 * (-(nv ⬝ᵥ (A *ᵥ x + b)) * (nv ⬝ᵥ ν) - (d - nv ⬝ᵥ x) * (nv ⬝ᵥ (A *ᵥ ν)))
@@ -120,7 +120,7 @@ theorem aux_quad_hitHessianNum (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ) (x
 theorem GuardMap.hitPoint_mem_taylor {A : Mat ℝ n n} {b nv : Vec ℝ n} {d : ℝ}
     {R₀ : Set (Vec ℝ n)} (hR₀ : Convex ℝ R₀) (hΛ : ∀ y ∈ R₀, nv ⬝ᵥ (A *ᵥ y + b) ≠ 0)
     {φlo φhi : ℝ} (hφ : ∀ y ∈ R₀, ((nv ⬝ᵥ (A *ᵥ y + b)) ^ 2)⁻¹ ∈ Icc φlo φhi)
-    {ξ x₀ : Vec ℝ n} (hξ : ξ ∈ R₀) (hx₀ : x₀ ∈ R₀) (i : Fin n) :
+    {ξ x₀ : Vec ℝ n} (hξ : ξ ∈ R₀) (hx₀ : x₀ ∈ R₀) (i : Fin n) : -- --- STMT ---
     ∃ φ ∈ Icc φlo φhi, ∃ y ∈ R₀,
       GuardMap.hitPoint A b nv d x₀ i = GuardMap.hitPoint A b nv d ξ i
         + (GuardMap.hitJacobian A b nv d ξ *ᵥ (x₀ - ξ)) i

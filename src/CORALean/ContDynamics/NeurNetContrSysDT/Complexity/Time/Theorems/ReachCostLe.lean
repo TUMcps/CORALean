@@ -74,7 +74,7 @@ theorem NeurNetContrSysDT.reachCost_le (sys : NeurNetContrSysDT (LinearSysDT ℝ
     (U_ext : Zonotope (Vec ℝ sys.nExt)) {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec ℝ n)) (hR₀ : R₀.h ≤ o * n) (LC : ∀ {a b : ℕ}, Layer 𝒵 a b → Cost)
     (hEnc hU : ℕ) (hE : ∀ k, (sys.contr.enclose (sys.reach (S := 𝒵) U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)).h
-      ≤ hEnc) (hUe : U_ext.h ≤ hU) (k : ℕ) :
+      ≤ hEnc) (hUe : U_ext.h ≤ hU) (k : ℕ) : -- --- STMT ---
     sys.reachCost U_ext o ho R₀ LC k ≤ k • sys.reachStepBound o hEnc hU LC := by -- --- PROOF ---
   induction k with
   | zero => simp [NeurNetContrSysDT.reachCost]

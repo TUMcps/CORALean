@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.cubMapDep_coeff (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n))
-    (p : Fin Z.h → ℝ) (hp : ∀ j, |p j| ≤ 1) :
+    (p : Fin Z.h → ℝ) (hp : ∀ j, |p j| ≤ 1) : -- --- STMT ---
     ∃ γ : Fin (Zonotope.cubMapDep T Z).h → ℝ, (∀ l, |γ l| ≤ 1)
       ∧ (∀ j : Fin Z.h,
           γ ((Real.Zonotope.cubIdx (Z.h + 1) (Z.h + 1) (Z.h + 1)).symm ((0, 0), j.succ)) = p j)

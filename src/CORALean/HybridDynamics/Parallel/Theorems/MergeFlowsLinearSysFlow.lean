@@ -44,7 +44,7 @@ theorem aux_stack_apply {d : Fin k → ℕ} (z : ∀ i, Vec ℝ (d i)) (c : Fin 
 -- a matrix over the stacked coordinates, applied to a stack, as a double sum over the blocks
 theorem aux_reindex_mulVec_stack {d e : Fin k → ℕ}
     (M : Matrix (Σ i, Fin (d i)) (Σ i, Fin (e i)) ℝ) (z : ∀ i, Vec ℝ (e i))
-    (p : Σ i, Fin (d i)) :
+    (p : Σ i, Fin (d i)) : -- --- STMT ---
     (Matrix.reindex finSigmaFinEquiv finSigmaFinEquiv M *ᵥ stack z) (finSigmaFinEquiv p) =
       ∑ c, ∑ b, M p ⟨c, b⟩ * z c b := by -- --- PROOF ---
   simp only [Matrix.mulVec, dotProduct, Matrix.reindex_apply, Matrix.submatrix_apply,
@@ -72,7 +72,7 @@ theorem ParallelHybridAutomaton.mergeFlowsLinearSys_flow (sys : ∀ i, LinearSys
     (hu : ∀ i j, u i j = match binds i j with
       | .global a => g a
       | .output c s => ((sys c).C *ᵥ x c + (sys c).D *ᵥ u c + (sys c).k) s)
-    (i : Fin k) (a : Fin (n i)) :
+    (i : Fin k) (a : Fin (n i)) : -- --- STMT ---
     ((mergeFlowsLinearSys sys binds).A *ᵥ stack x) (finSigmaFinEquiv ⟨i, a⟩) +
         ((mergeFlowsLinearSys sys binds).B *ᵥ g) (finSigmaFinEquiv ⟨i, a⟩) +
         (mergeFlowsLinearSys sys binds).c (finSigmaFinEquiv ⟨i, a⟩) +

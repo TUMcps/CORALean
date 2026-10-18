@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Table 2]'s capsule test, at `≤ r` on the axis, decides membership. -/
-theorem Capsule.mem_iff_table (C : Capsule n) (x : Vec ℝ n) :
+theorem Capsule.mem_iff_table (C : Capsule n) (x : Vec ℝ n) : -- --- STMT ---
     x ∈ C.construct ↔
       (‖((x - C.c) ⬝ᵥ (‖C.g‖₂⁻¹ • C.g)) • (‖C.g‖₂⁻¹ • C.g) - (x - C.c)‖₂ ≤ C.r ∧
           |(x - C.c) ⬝ᵥ (‖C.g‖₂⁻¹ • C.g)| < ‖C.g‖₂) ∨

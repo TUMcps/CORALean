@@ -128,7 +128,7 @@ theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Interval (V
   · simpa only [Function.update_of_ne hij] using hxi
 
 /-- The coordinate steps in turn narrow the box and keep every such solution. -/
-theorem LevelSet.aux_linearFold (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n)) :
+theorem LevelSet.aux_linearFold (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n)) : -- --- STMT ---
     ∀ (l : List (Fin n)) (X : Interval (Vec ℝ n)),
       (l.foldl (fun X j => linearCoord fm m k j X) X).construct ⊆ X.construct ∧
       ∀ x ∈ X.construct, ∀ κ : Vec ℝ n, (∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i) →
@@ -170,7 +170,7 @@ theorem LevelSet.aux_meanValue {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ 
 /-- One sweep narrows the box and keeps every solution. -/
 theorem LevelSet.aux_linearSweep {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
     {grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)} (hg : IsGradEnclosure f grad)
-    (I : Interval (Vec ℝ n)) :
+    (I : Interval (Vec ℝ n)) : -- --- STMT ---
     (LevelSet.linearSweep f grad I).construct ⊆ I.construct ∧
       ∀ x ∈ I.construct, f x = 0 →
         x ∈ (LevelSet.linearSweep f grad I).construct := by -- --- PROOF ---
@@ -194,7 +194,7 @@ theorem LevelSet.aux_linearSweep {f : Vec ℝ n → ℝ} (hf : Differentiable �
 
 /-- The sweeps keep narrowing and keep every solution. -/
 theorem LevelSet.aux_tightenDomainLinear {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
-    {grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)} (hg : IsGradEnclosure f grad) :
+    {grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)} (hg : IsGradEnclosure f grad) : -- --- STMT ---
     ∀ (k : ℕ) (I : Interval (Vec ℝ n)),
       (LevelSet.tightenDomainLinear f grad k I).construct ⊆ I.construct ∧
       ∀ x ∈ I.construct, f x = 0 →

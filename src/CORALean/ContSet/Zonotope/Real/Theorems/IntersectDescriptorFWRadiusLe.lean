@@ -52,7 +52,7 @@ variable {n nu nw ny nv : ℕ}
 theorem Zonotope.intersectDescriptor_fwRadius_le (T : Mat ℝ n n) (N : Mat ℝ n ny)
     (A : Mat ℝ n n) (B : Mat ℝ n nu) (D : Mat ℝ n nw) (C : Mat ℝ ny n) (F : Mat ℝ ny nv)
     (u : Vec ℝ nu) (y : Vec ℝ ny) (X : Zonotope (Vec ℝ n)) (W : Mat ℝ n n)
-    (hW : ∀ v, 0 ≤ v ⬝ᵥ (W *ᵥ v)) (Λ : Mat ℝ n ny) :
+    (hW : ∀ v, 0 ≤ v ⬝ᵥ (W *ᵥ v)) (Λ : Mat ℝ n ny) : -- --- STMT ---
     let Pbar : Mat ℝ n n := ∑ j, vecMulVec (X.G j) (X.G j)             -- P̄ = H̄ H̄ᵀ
     let Rbar := T * (A * Pbar * Aᵀ + D * Dᵀ) * Tᵀ + N * (F * Fᵀ) * Nᵀ  -- Eq. 15
     let S := C * Rbar * Cᵀ + F * Fᵀ                                    -- Eq. 14

@@ -45,7 +45,7 @@ def Feasible (A : Fin m → (α →ₗ[ℝ] ℝ)) (b : Fin m → ℝ)
 theorem le_dual_bound (A : Fin m → (α →ₗ[ℝ] ℝ)) (b : Fin m → ℝ)
     (Ae : Fin me → (α →ₗ[ℝ] ℝ)) (be : Fin me → ℝ)
     (y : Fin m → ℝ) (z : Fin me → ℝ) (hy : ∀ i, 0 ≤ y i)
-    {x : α} (hle : ∀ i, A i x ≤ b i) (heq : ∀ i, Ae i x = be i) :
+    {x : α} (hle : ∀ i, A i x ≤ b i) (heq : ∀ i, Ae i x = be i) : -- --- STMT ---
     (∑ i, y i * A i x) + (∑ i, z i * Ae i x)
       ≤ (∑ i, y i * b i) + ∑ i, z i * be i := by -- --- PROOF ---
   refine add_le_add (Finset.sum_le_sum fun i _ => mul_le_mul_of_nonneg_left (hle i) (hy i)) ?_
@@ -73,7 +73,7 @@ theorem eq_empty_of_dual {A : Fin m → (α →ₗ[ℝ] ℝ)} {b : Fin m → ℝ
     {Ae : Fin me → (α →ₗ[ℝ] ℝ)} {be : Fin me → ℝ}
     (y : Fin m → ℝ) (z : Fin me → ℝ) (hy : ∀ i, 0 ≤ y i)
     (h0 : ∀ x : α, (∑ i, y i * A i x) + ∑ i, z i * Ae i x = 0)
-    (hneg : (∑ i, y i * b i) + ∑ i, z i * be i < 0) :
+    (hneg : (∑ i, y i * b i) + ∑ i, z i * be i < 0) : -- --- STMT ---
     Feasible A b Ae be = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]

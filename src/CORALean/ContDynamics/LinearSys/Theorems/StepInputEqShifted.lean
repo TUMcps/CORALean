@@ -40,7 +40,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- Step `k` shifted to start at zero. -/
 theorem LinearSys.stepInput_eq_shifted (sys : LinearSys 𝕋 n) (u : ℝ → Vec ℝ n) (Δt : ℝ)
-    (k : ℕ) :
+    (k : ℕ) : -- --- STMT ---
     sys.stepInput u Δt k
       = ∫ σ in (0:ℝ)..Δt,
         exp ((Δt - σ) • toRealMat sys.A) *ᵥ u ((k : ℝ) * Δt + σ) := by -- --- PROOF ---

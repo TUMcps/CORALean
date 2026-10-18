@@ -1,5 +1,6 @@
 module
 
+public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Operations.StarSetFloatReluNeuron
 public import CORALean.ContSet.StarSet.Float.Theorems.MemNominalSet
 public import CORALean.NN.Layers.Theorems.StarSetFloatChordRowHolds
@@ -41,8 +42,8 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 star set of the result. -/
 theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
     (hb : ∀ x ∈ nominalSet s, toReal b.inf ≤ x j ∧ x j ≤ toReal b.sup) (x : Vec ℝ n)
-    (hx : x ∈ nominalSet s) :
-    (Function.update x j (max (x j) 0) : Vec ℝ n) ∈
+    (hx : x ∈ nominalSet s) : -- --- STMT ---
+    (Function.update x j (Real.relu (x j)) : Vec ℝ n) ∈
       nominalSet (s.reluNeuron j b) := by -- --- PROOF ---
   have hbx := hb x hx
   rw [StarSet.mem_nominalSet_iff] at hx
@@ -54,7 +55,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
   · rw [if_pos h0, StarSet.mem_nominalSet_iff]
     have h0' := toReal_le_of_le h0
     rw [toReal_zero] at h0'
-    have : max (x j) 0 = x j := max_eq_left (by linarith [hbx.1])
+    have : Real.relu (x j) = x j := max_eq_left (by linarith [hbx.1])
     rw [this, Function.update_eq_self]
     exact ⟨α, ⟨hα, hcα⟩, hxα⟩
   rw [if_neg h0]
@@ -63,7 +64,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
   · rw [if_pos h1, StarSet.mem_nominalSet_iff]
     have h1' := toReal_le_of_le h1
     rw [toReal_zero] at h1'
-    have : max (x j) 0 = 0 := max_eq_right (by linarith [hbx.2])
+    have : Real.relu (x j) = 0 := max_eq_right (by linarith [hbx.2])
     rw [this]
     refine ⟨α, ⟨hα, hcα⟩, fun i => ?_⟩
     by_cases hi : i = j
@@ -72,7 +73,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
   rw [if_neg h1, StarSet.mem_nominalSet_iff]
   -- the new factor is the value of the ReLU
   have hxj := hxα j
-  set β := max (x j) 0 with hβ
+  set β := Real.relu (x j) with hβ
   have hβ0 : 0 ≤ β := le_max_right _ _
   have hβx : x j ≤ β := le_max_left _ _
   have hS : ∑ k, toReal (s.G j k) * α k = x j - toReal (s.c j) := by rw [hxj]; ring
@@ -110,21 +111,21 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
 
 theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
     (hb : ∀ x ∈ nominalSet s, toReal b.inf ≤ x j ∧ x j ≤ toReal b.sup) :
-    (fun (x : Vec ℝ n) => (Function.update x j (max (x j) 0) : Vec ℝ n)) '' s.construct
+    (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' s.construct
       ⊆ (s.reluNeuron j b).construct := by -- --- PROOF ---
   rintro _ ⟨_, ⟨x, hx, e, he, rfl⟩, rfl⟩
   -- the nominal point moves as the step says; the error at `j` changes by at most its size
   have hnom := StarSet.aux_reluNeuron_nominal s j b hb x hx
   refine ⟨_, hnom, Function.update e j
-    (max (x j + e j) 0 - max (x j) 0), fun i => ?_, ?_⟩
+    (Real.relu (x j + e j) - Real.relu (x j)), fun i => ?_, ?_⟩
   · have hI : (s.reluNeuron j b).I_error = StarSet.reluError s.I_error j := by
       unfold StarSet.reluNeuron
       dsimp only
       split_ifs <;> rfl
     have he' : toReal (s.I_error.inf i) ≤ e i ∧ e i ≤ toReal (s.I_error.sup i) := he i
     show toReal (((s.reluNeuron j b).I_error).inf i) ≤
-        (Function.update e j (max (x j + e j) 0 - max (x j) 0) : Vec ℝ n) i ∧
-      (Function.update e j (max (x j + e j) 0 - max (x j) 0) : Vec ℝ n) i ≤
+        (Function.update e j (Real.relu (x j + e j) - Real.relu (x j)) : Vec ℝ n) i ∧
+      (Function.update e j (Real.relu (x j + e j) - Real.relu (x j)) : Vec ℝ n) i ≤
         toReal (((s.reluNeuron j b).I_error).sup i)
     rw [hI]
     unfold StarSet.reluError
@@ -134,7 +135,7 @@ theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 
       simp only [Function.update_self, toReal_neg, toReal_maximum]
       have h := he'
       -- the ReLU is `1`-Lipschitz, and the error is within the radius of its box
-      have h1 : |max (x i + e i) 0 - max (x i) 0| ≤ |e i| :=
+      have h1 : |Real.relu (x i + e i) - Real.relu (x i)| ≤ |e i| :=
         (abs_max_sub_max_le_abs (x i + e i) (x i) 0).trans_eq (by rw [add_sub_cancel_left])
       have h2 : |e i| ≤ max (-toReal (s.I_error.inf i)) (toReal (s.I_error.sup i)) := by
         rw [abs_le]

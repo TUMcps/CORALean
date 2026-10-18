@@ -44,7 +44,7 @@ variable {m : ℕ}
 
 /-- [1, Eq. 14]: `Λ U ⊆ Λ Û` for `λ_U ≥ 1`, `Λ Λ = Λ` and `ĉ` the center of `U`. -/
 theorem NonlinDASys.image_subset_enlargeInterfaceInput {lamU : ℝ} (hlam : 1 ≤ lamU)
-    {Λ : Mat ℝ m m} (hΛ : Λ * Λ = Λ) (U : Zonotope (Vec ℝ m)) :
+    {Λ : Mat ℝ m m} (hΛ : Λ * Λ = Λ) (U : Zonotope (Vec ℝ m)) : -- --- STMT ---
     (Λ *ᵥ ·) '' U.construct
       ⊆ (Λ *ᵥ ·) ''
         (NonlinDASys.enlargeInterfaceInput lamU Λ U.c U).construct := by -- --- PROOF ---

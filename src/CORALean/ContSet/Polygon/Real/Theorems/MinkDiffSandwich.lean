@@ -85,7 +85,7 @@ theorem Polygon.aux_convex_mirror {B : Set (Vec ℝ 2)} (hB : Convex ℝ B) (c :
 
 /-- The `linComb` of two shifts of the mirror sweeps the mirror along the segment. -/
 theorem Polygon.aux_edge (B : Polygon) (c : Vec ℝ 2) (hB : Convex ℝ (ContSet.construct B))
-    (u v : Vec ℝ 2) :
+    (u v : Vec ℝ 2) : -- --- STMT ---
     ContSet.construct (Polygon.linComb
         (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint u))
         (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint v)))
@@ -195,7 +195,7 @@ theorem Polygon.aux_minkDiff_outer {A B : Set (Vec ℝ 2)} {c : Vec ℝ 2} (hc :
 theorem Polygon.minkDiff_sandwich (A B : Polygon) (V : List (Vec ℝ 2))
     (hB : Convex ℝ (ContSet.construct B)) (hc : Polygon.center B ∈ ContSet.construct B)
     (hV : (⋃ e ∈ V.zip (V.rotate 1), segment ℝ e.1 e.2)
-      = frontier ((fun x => x - Polygon.center B) '' ContSet.construct A)) :
+      = frontier ((fun x => x - Polygon.center B) '' ContSet.construct A)) : -- --- STMT ---
     interior {x | ∀ b ∈ ContSet.construct B, x + b ∈ ContSet.construct A}
         ⊆ Polygon.minkDiff A B V ∧
       Polygon.minkDiff A B V ⊆

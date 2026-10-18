@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A returned right region fits `[l', u]`. -/
 theorem findRegionRight_fits {σ : ℝ → ℝ} {F : (o : ℕ) → PolyRelaxation 𝕋 o}
-    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol u : 𝕋) :
+    (hF : ∀ o, (F o).Sound σ) (order : ℕ) (tol u : 𝕋) : -- --- STMT ---
     ∀ (fuel : ℕ) (li : 𝕋) (r : RegionPoly 𝕋) (l' : 𝕋),
       findRegionRight F order tol u fuel li = some (r, l') →
         r.Fits σ tol l' u := by -- --- PROOF ---

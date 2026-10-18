@@ -119,7 +119,7 @@ over `[0, T]` is in some `Qᵢ`. -/
 theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotope (Vec 𝕋 n)}
     {μ r : 𝕋} {T : ℚ} {Qs : List (Zonotope (Vec 𝕋 n))} (h : sys.girardReachFloat I μ r T = some Qs)
     (hA : 0 < ‖Scalar.toRealMat sys.A‖) (hr : 0 < toReal r) (hμ : 0 ≤ toReal μ)
-    (hU : ∀ u ∈ U.construct, ‖u‖ ≤ toReal μ) :
+    (hU : ∀ u ∈ U.construct, ‖u‖ ≤ toReal μ) : -- --- STMT ---
     ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSet (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t
       ⊆ ⋃ Q ∈ Qs, Q.construct := by -- --- PROOF ---
   simp only [LinearSys.girardReachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,

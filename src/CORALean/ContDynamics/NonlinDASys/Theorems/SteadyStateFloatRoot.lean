@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p m : ℕ}
 theorem NonlinDASys.FloatModel.Encloses.steadyStateFloat_root
     {fm : NonlinDASys.FloatModel 𝕋 n p m} {sys : NonlinDASys n p m} (hfm : fm.Encloses sys)
     (tol : 𝕋) (fuel : ℕ) (x₀ : Vec 𝕋 n) (y₀ : Vec 𝕋 p) (u₀ : Vec 𝕋 m) (x' : Vec 𝕋 n)
-    (y' : Vec 𝕋 p) (h : fm.steadyStateFloat tol fuel x₀ y₀ u₀ = some (x', y')) :
+    (y' : Vec 𝕋 p) (h : fm.steadyStateFloat tol fuel x₀ y₀ u₀ = some (x', y')) : -- --- STMT ---
     ∃! xy : Vec ℝ n × Vec ℝ p, xy.1 ∈ Metric.closedBall (toRealVec x') (toReal tol) ∧
       xy.2 ∈ Metric.closedBall (toRealVec y') (toReal tol) ∧
       sys.f xy.1 xy.2 (toRealVec u₀) = 0 ∧ sys.g xy.1 xy.2 (toRealVec u₀) = 0 := by -- --- PROOF ---

@@ -40,7 +40,7 @@ theorem ParallelHybridAutomaton.IsRun.toProductWith [ExactScalar 𝕋]
     {P : ParallelHybridAutomaton S G k L 𝕋 n m} {F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)}
     {U : ∀ ℓ, S (F ℓ).m} {W : ∀ ℓ, S (F ℓ).r} (hF : P.FlowLaw F U W)
     (lift : ParallelHybridAutomaton.Lifting S G n m) {ℓ ℓ' : ∀ i, L i}
-    {x y : ∀ i, Vec ℝ (n i)} (run : P.IsRun ℓ x ℓ' y) :
+    {x y : ∀ i, Vec ℝ (n i)} (run : P.IsRun ℓ x ℓ' y) : -- --- STMT ---
     (P.productWith lift F U W).IsRun ℓ (stack x) ℓ' (stack y) := by -- --- PROOF ---
   -- one case per constructor, as the run's recursion has it
   induction run with

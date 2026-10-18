@@ -50,7 +50,7 @@ variable {n p : ℕ}
 -- `R_x` after `k` steps is the initial set under `(A - L C)^k`
 theorem LinearSysDT.aux_observeIntervalState_Rx (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
-    (y : ℕ → Vec ℝ sys.q) (k : ℕ) :
+    (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- STMT ---
     (sys.observeIntervalState L R₀ W V u y k).Rx.construct =
       (((sys.A - L * sys.C) ^ k) *ᵥ ·) '' R₀.construct := by -- --- PROOF ---
   induction k with
@@ -65,7 +65,7 @@ theorem LinearSysDT.aux_observeIntervalState_Rx (sys : LinearSysDT ℝ n) (L : M
 -- `D` after `k` steps is the disturbance set under `(A - L C)^k`
 theorem LinearSysDT.aux_observeIntervalState_D (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
-    (y : ℕ → Vec ℝ sys.q) (k : ℕ) :
+    (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- STMT ---
     (sys.observeIntervalState L R₀ W V u y k).D.construct =
       (((sys.A - L * sys.C) ^ k) *ᵥ ·) ''
         ((Zonotope.mtimes (-L) V).plus W).construct := by -- --- PROOF ---
@@ -82,7 +82,7 @@ theorem LinearSysDT.aux_observeIntervalState_D (sys : LinearSysDT ℝ n) (L : Ma
 theorem LinearSysDT.aux_observeIntervalState_Rwv (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (d : ℕ → Vec ℝ n)
-    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) :
+    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- STMT ---
     ∑ m ∈ Finset.range k, ((sys.A - L * sys.C) ^ m) *ᵥ d m ∈
       (sys.observeIntervalState L R₀ W V u y k).Rwv.construct := by -- --- PROOF ---
   induction k with
@@ -114,7 +114,7 @@ theorem LinearSysDT.observeInterval_outer (sys : LinearSysDT ℝ n) (L : Mat ℝ
     (y : ℕ → Vec ℝ sys.q) (x w : ℕ → Vec ℝ n) (v : ℕ → Vec ℝ sys.q)
     (h0 : x 0 - R₀.c ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
     (hv : ∀ k, v k ∈ V.construct) (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + w k)
-    (hy : ∀ k, y k = sys.C *ᵥ x k + v k) (k : ℕ) :
+    (hy : ∀ k, y k = sys.C *ᵥ x k + v k) (k : ℕ) : -- --- STMT ---
     x k ∈ (sys.observeInterval L R₀ W V u y k).construct := by -- --- PROOF ---
   set s := sys.observeIntervalState L R₀ W V u y with hs
   set d : ℕ → Vec ℝ n := fun j => w j - L *ᵥ v j with hdef

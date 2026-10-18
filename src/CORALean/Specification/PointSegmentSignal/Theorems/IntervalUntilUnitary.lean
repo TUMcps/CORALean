@@ -158,7 +158,7 @@ theorem PointSegmentSignal.aux_mem_rightClosure (J : STLInterval) (t t' : ℝ) (
 
 /-- The unitary until of `Eq. 1` is `true` exactly where the until semantics says. -/
 theorem PointSegmentSignal.intervalUntil_unitary (l₁ l₂ : PointSegmentSignal ℝ)
-    (J₁ J₂ U : STLInterval) (h₁ : l₁.IsUnitary J₁) (h₂ : l₂.IsUnitary J₂) :
+    (J₁ J₂ U : STLInterval) (h₁ : l₁.IsUnitary J₁) (h₂ : l₂.IsUnitary J₂) : -- --- STMT ---
     (PointSegmentSignal.intervalUntil [J₁] U [J₂]).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       ((PointSegmentSignal.intervalUntil [J₁] U [J₂]).at t = true ↔
         ∃ t', t' - t ∈ U.set ∧ l₂.at t' = true ∧

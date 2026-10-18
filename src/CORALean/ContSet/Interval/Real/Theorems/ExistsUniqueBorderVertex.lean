@@ -40,7 +40,7 @@ theorem Interval.existsUnique_border_vertex {b : Vec ℝ n} (hb : Monotone b)
     (h5 : ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner
         (fun i => if (i : ℕ) < j then p i else false) i ≤ α ∧
       α < b ⟨j, hj⟩ + ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner
-        (fun i => if (i : ℕ) < j then p i else false) i) :
+        (fun i => if (i : ℕ) < j then p i else false) i) : -- --- STMT ---
     ∃! l, l ∈ Interval.prefixFace j p ∧
       ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner l i ≤ α := by -- --- PROOF ---
   refine ⟨fun i => if (i : ℕ) < j then p i else false, ⟨fun i hi => by simp [hi], h5.1⟩, ?_⟩

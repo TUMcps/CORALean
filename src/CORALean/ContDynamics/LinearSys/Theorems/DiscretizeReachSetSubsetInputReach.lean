@@ -67,7 +67,8 @@ applied to a point of `R₀` plus a point of `U`'s own `kΔt`-window input reach
 theorem LinearSys.discretize_reachSet_subset_inputReach (sys : LinearSys 𝕋 n) {Δt : ℝ}
     (hΔt : 0 < Δt) (R₀ U Ud : S n) (hbdd : Bornology.IsBounded (construct U))
     (hne : (construct U).Nonempty)
-    (hUd : construct Ud ⊆ (fun c => sys.stepInputConst c Δt) '' construct U) (k : ℕ) :
+    (hUd : construct Ud ⊆ (fun c => sys.stepInputConst c Δt) '' construct U)
+    (k : ℕ) : -- --- STMT ---
     (sys.discretize Δt).reachSet R₀ Ud k
       ⊆ (exp (((k : ℝ) * Δt) • toRealMat sys.A)).mulVecLin '' construct R₀
         + sys.inputReach U ((k : ℝ) * Δt) := by -- --- PROOF ---

@@ -67,7 +67,7 @@ open CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.containsCellCora_counterexample :
+theorem LevelSet.containsCellCora_counterexample : -- --- STMT ---
     let ls : LevelSet 1 := ⟨2, fun x => ![x 0 - 2, x 0 - 10], ![CompOp.eq, CompOp.le]⟩
     let S : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
     let B : Fin 2 → Interval ℝ := ![⟨-2, -1⟩, ⟨-10, -9⟩]

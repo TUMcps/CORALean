@@ -36,7 +36,7 @@ theorem Zoo.rdivide_outer {Z₁ Z₂ : Zoo 𝕋 n} {f g : Vec ℝ n → ℝ} (h�
     (hm : ∀ T, Z₂.taylm = some T → 0 < toReal (maximum (minimum T.constCoef T.bounds.inf)
       (neg (maximum T.constCoef T.bounds.sup))))
     (hJ : ∀ J, Z₂.ivl = some J →
-      ∀ i, ltStrict zero (J.inf i) = true ∨ ltStrict (J.sup i) zero = true) :
+      ∀ i, ltStrict zero (J.inf i) = true ∨ ltStrict (J.sup i) zero = true) : -- --- STMT ---
     (Z₁.rdivide Z₂).Encloses fun t => f t / g t := by -- --- PROOF ---
   rw [Zoo.encloses_iff] at h₁ h₂ ⊢
   refine ⟨fun T hT => ?_, fun I hI t ht => ?_⟩

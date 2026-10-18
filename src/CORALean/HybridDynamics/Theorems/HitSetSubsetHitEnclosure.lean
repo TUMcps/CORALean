@@ -65,7 +65,7 @@ theorem GuardMap.hitSet_subset_hitEnclosure (A : Mat ℝ n n) (b nv : Vec ℝ n)
       1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ≤ φhi)
     (hψ : ∀ x ∈ R₀.construct, ∃ κ : ℝ, |κ| ≤ 1 ∧ (nv ⬝ᵥ (A *ᵥ x + b))⁻¹ •
       (-((nv ⬝ᵥ (A *ᵥ x + b)) • nv) - (d - nv ⬝ᵥ x) • (nv ᵥ* A)) = ψc + κ • ψg)
-    (hξ : ξ ∈ R₀.construct) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) :
+    (hξ : ξ ∈ R₀.construct) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) : -- --- STMT ---
     GuardMap.hitSet A b nv d E x₀
       ⊆ GuardMap.hitEnclosure A b nv d E R₀ ξ ψc ψg φlo φhi := by -- --- PROOF ---
   rintro _ ⟨_, rfl, w, ⟨_, ⟨e, he, rfl⟩, e', he', rfl⟩, rfl⟩

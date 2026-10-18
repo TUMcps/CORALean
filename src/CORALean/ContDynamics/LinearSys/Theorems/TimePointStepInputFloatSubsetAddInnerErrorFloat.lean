@@ -52,7 +52,7 @@ zonotope, `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U`, widened by `timePointStepInn
 theorem LinearSys.timePointStepInputFloat_subset_add_innerErrorFloat (sys : LinearSys 𝕋 n)
     {r : 𝕋} (hr : 0 < toReal r) {η : ℕ} (hη : sys.OrderAdmissibleFloat r r η)
     {X₀ U : Zonotope (Vec 𝕋 n)} (hX₀ : (0 : Vec ℝ n) ∈ X₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) :
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- STMT ---
     (sys.timePointStepInputFloat r η X₀ U).construct
       ⊆ (sys.discretize (toReal r)).reachSet (S := 𝒵) (nominal X₀)
           (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal r))

@@ -36,7 +36,7 @@ theorem coarse_bounds {E : Enclosure 𝕋} {c : Fin (m + 1) → 𝕋} {M l u : �
     (hE : E.Sound σ) (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hM : ∀ x, toReal l ≤ x → x ≤ toReal u →
       |σ' x - Real.evalPolyDeriv (fun k => toReal (c k)) x| ≤ toReal M)
-    (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
+    (hl : toReal l ≤ t) (hu : t ≤ toReal u) : -- --- STMT ---
     toReal (coarseLo E c M l u) ≤ σ t - Real.evalPoly (fun k => toReal (c k)) t
       ∧ σ t - Real.evalPoly (fun k => toReal (c k)) t
         ≤ toReal (coarseHi E c M l u) := by -- --- PROOF ---

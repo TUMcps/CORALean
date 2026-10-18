@@ -51,7 +51,7 @@ theorem LinParamSys.IsCanonicalTrajectory.exists_mem_expIntervalEnclosure {sys :
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) (η : ℕ)
-    (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
     ∃ Φ ∈ construct (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η),
       x t = Φ *ᵥ x 0 := by -- --- PROOF ---
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq ht hT hu

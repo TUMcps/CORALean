@@ -35,7 +35,7 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 /-- `HoldsAll` over a list of safe sets, read as one safe set on their
 `SetIntersection`: `X` inside every listed set iff `X` inside all of them. -/
 theorem Specification.holdsAll_safeSet_iff_setIntersection_holds
-    (sets : List ContSet) (X : Set α) :
+    (sets : List ContSet) (X : Set α) : -- --- STMT ---
     Specification.HoldsAll (sets.map Specification.safeSet) X ↔
       (Specification.safeSet (⟨sets⟩ : SetIntersection ContSet) :
         Specification (SetIntersection ContSet)).Holds X := by -- --- PROOF ---

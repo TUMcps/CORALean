@@ -36,7 +36,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem optimalDiscard_none_example :
+theorem optimalDiscard_none_example : -- --- STMT ---
     let w : Finset (Fin 4) → ℕ := fun F => if (0 : Fin 4) ∈ F then 1 else 0
     (∀ G H : Finset (Fin 4), G ⊆ H → w G ≤ w H) ∧
     (∀ G : Finset (Fin 4), w (supportConstraints w G).toFinset = w G) ∧

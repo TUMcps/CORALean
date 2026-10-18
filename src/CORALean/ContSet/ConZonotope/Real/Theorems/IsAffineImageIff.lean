@@ -61,7 +61,7 @@ theorem ConZonotope.aux_construct_shift (cZ : ConZonotope (Vec ℝ n)) (v : Vec 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.eq_construct_iff_isAffineImage {S : Set (Vec ℝ n)} :
+theorem ConZonotope.eq_construct_iff_isAffineImage {S : Set (Vec ℝ n)} : -- --- STMT ---
     (∃ cZ : ConZonotope (Vec ℝ n), cZ.construct = S) ↔
       ∃ (m : ℕ) (X : Vec ℝ m →ₗ[ℝ] Vec ℝ n) (xbar : Vec ℝ n) (P : HPolytope (Vec ℝ m))
         (_ : ∀ j, SupportBound P.construct (LinearMap.proj j))

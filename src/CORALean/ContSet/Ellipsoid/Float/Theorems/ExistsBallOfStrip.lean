@@ -48,7 +48,7 @@ completed Gollamudi inequality, Cauchy–Schwarz `p² ≤ ν D`, and `γ = α + 
 theorem Ellipsoid.aux_strip_factor_le {D p ν lam α β S : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1)
     (hD : 0 ≤ D) (hν : 0 ≤ ν) (hCS : p ^ 2 ≤ ν * D) (hα : 0 < α) (hγ : 0 < α + β * ν)
     (hkey : (1 - lam) * D + lam * p ^ 2 ≤ S) (hSα : S ≤ α ^ 2 * (1 - lam))
-    (hSγ : S ≤ (α + β * ν) ^ 2 * (1 - lam + lam * ν)) :
+    (hSγ : S ≤ (α + β * ν) ^ 2 * (1 - lam + lam * ν)) : -- --- STMT ---
     (α + β * ν) ^ 2 * D - 2 * β * (α + β * ν) * p ^ 2 + β ^ 2 * ν * p ^ 2
       ≤ α ^ 2 * (α + β * ν) ^ 2 := by -- --- PROOF ---
   set γ := α + β * ν with hγdef
@@ -100,7 +100,7 @@ theorem Ellipsoid.exists_ball_of_strip {v u : Vec ℝ k} {δ φ lam α β S : �
     (h0 : 0 ≤ lam) (h1 : lam < 1) (hu : ‖u‖₂ ≤ 1) (hstrip : |v ⬝ᵥ u - δ| ≤ φ)
     (hS : 1 - lam + lam * φ ^ 2 - lam * (1 - lam) * δ ^ 2 / (1 - lam + lam * (v ⬝ᵥ v)) ≤ S)
     (hα : 0 < α) (hγ : 0 < α + β * (v ⬝ᵥ v)) (hSα : S ≤ α ^ 2 * (1 - lam))
-    (hSγ : S ≤ (α + β * (v ⬝ᵥ v)) ^ 2 * (1 - lam + lam * (v ⬝ᵥ v))) :
+    (hSγ : S ≤ (α + β * (v ⬝ᵥ v)) ^ 2 * (1 - lam + lam * (v ⬝ᵥ v))) : -- --- STMT ---
     ∃ w : Vec ℝ k, ‖w‖₂ ≤ 1 ∧ u = (lam * δ / (1 - lam + lam * (v ⬝ᵥ v))) • v + α • w
       + (β * (v ⬝ᵥ w)) • v := by -- --- PROOF ---
   set ν := v ⬝ᵥ v with hν

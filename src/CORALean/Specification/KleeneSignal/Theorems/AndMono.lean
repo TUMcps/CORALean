@@ -33,7 +33,7 @@ namespace CORALean
 
 theorem KleeneSignal.and_mono {ι : Type} [Fintype ι] [Nonempty ι]
     (sigs sigs' : ι → KleeneSignal ℝ) (hv : ∀ k, (sigs k).IsValid) (hv' : ∀ k, (sigs' k).IsValid)
-    (h : ∀ k, ∀ t : ℝ, 0 ≤ t → (sigs k).at t ≤ (sigs' k).at t) :
+    (h : ∀ k, ∀ t : ℝ, 0 ≤ t → (sigs k).at t ≤ (sigs' k).at t) : -- --- STMT ---
     ∀ t : ℝ, 0 ≤ t →
       (KleeneSignal.and_ sigs).at t ≤ (KleeneSignal.and_ sigs').at t := by -- --- PROOF ---
   intro t ht

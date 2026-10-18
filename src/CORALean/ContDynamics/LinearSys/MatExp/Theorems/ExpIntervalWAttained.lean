@@ -81,7 +81,7 @@ entries to the matching endpoint — the one place two variables move together. 
 theorem aux_diag_choice (A : Interval (Mat ℝ n n)) (t : ℝ) (i j : Fin n) {x : ℝ}
     (hx : x = t + t ^ 2 / 2 * (A.inf i i + A.inf j j)
       ∨ x = t + t ^ 2 / 2 * (A.sup i i + A.sup j j))
-    (hA : ∀ p q, A.inf p q ≤ A.sup p q) :
+    (hA : ∀ p q, A.inf p q ≤ A.sup p q) : -- --- STMT ---
     ∃ u : Fin n → ℝ, (∀ p, A.inf p p ≤ u p ∧ u p ≤ A.sup p p) ∧
       t + t ^ 2 / 2 * (u i + u j) = x := by -- --- PROOF ---
   rcases hx with rfl | rfl
@@ -95,7 +95,7 @@ theorem aux_expW_offDiag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) {i j : Fi
     {y : ℝ} (hy : A.inf i j ≤ y ∧ y ≤ A.sup i j)
     (u : Fin n → ℝ) (hu : ∀ p, A.inf p p ≤ u p ∧ u p ≤ A.sup p p)
     (d : Fin n → ℝ) (hd : ∀ q, A.inf i q ≤ d q ∧ d q ≤ A.sup i q)
-    (e : Fin n → ℝ) (he : ∀ p, A.inf p j ≤ e p ∧ e p ≤ A.sup p j) :
+    (e : Fin n → ℝ) (he : ∀ p, A.inf p j ≤ e p ∧ e p ≤ A.sup p j) : -- --- STMT ---
     ∃ M ∈ A.construct, MatExp.expW M t i j
       = y * (t + t ^ 2 / 2 * (u i + u j))
         + t ^ 2 / 2
@@ -132,7 +132,7 @@ theorem aux_expW_diag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) (i : Fin n)
     (hA : ∀ p q, A.inf p q ≤ A.sup p q)
     {a : ℝ} (ha : A.inf i i ≤ a ∧ a ≤ A.sup i i)
     (d : Fin n → ℝ) (hd : ∀ q, A.inf i q ≤ d q ∧ d q ≤ A.sup i q)
-    (e : Fin n → ℝ) (he : ∀ p, A.inf p i ≤ e p ∧ e p ≤ A.sup p i) :
+    (e : Fin n → ℝ) (he : ∀ p, A.inf p i ≤ e p ∧ e p ≤ A.sup p i) : -- --- STMT ---
     ∃ M ∈ A.construct, MatExp.expW M t i i
       = MatExp.quadTerm t a
         + t ^ 2 / 2
@@ -163,7 +163,7 @@ theorem aux_expW_diag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) (i : Fin n)
 /-- Each entry's two bounds are attained, so [1, Lemma 3.1] is exact and not
 merely sound. `t ≠ 0` and a non-empty box are what the witnesses need. -/
 theorem MatExp.expIntervalW_attained (A : Interval (Mat ℝ n n)) {t : ℝ} (ht : t ≠ 0)
-    (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i j : Fin n) :
+    (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i j : Fin n) : -- --- STMT ---
     (∃ M ∈ A.construct, MatExp.expW M t i j = (MatExp.expIntervalW A t).inf i j) ∧
       (∃ M ∈ A.construct,
         MatExp.expW M t i j = (MatExp.expIntervalW A t).sup i j) := by -- --- PROOF ---

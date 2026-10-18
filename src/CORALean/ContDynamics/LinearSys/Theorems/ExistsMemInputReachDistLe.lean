@@ -55,7 +55,7 @@ point the input reaches over `[0, r]`. -/
 theorem LinearSys.exists_mem_inputReach_dist_le (sys : LinearSys 𝕋 n) {U : S n} {μ r : ℝ}
     (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r) (hμ : 0 ≤ μ)
     (hU : Metric.closedBall 0 μ ⊆ construct U) {w : Vec ℝ n}
-    (hw : ‖w‖ ≤ (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ) :
+    (hw : ‖w‖ ≤ (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ) : -- --- STMT ---
     ∃ v ∈ sys.inputReach U r,
       dist w v ≤ μ * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
         * r ^ 2 := by -- --- PROOF ---

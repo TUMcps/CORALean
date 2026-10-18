@@ -87,7 +87,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isIntersectingZonoBundleCora_counterexample :
+theorem HPolytope.isIntersectingZonoBundleCora_counterexample : -- --- STMT ---
     let P : HPolytope (Vec ℝ 2) := HPolytope.eqs !![1, 0] ![5]
     let Zbox : Zonotope (Vec ℝ 2) := ⟨2, 0, ![![1, 0], ![0, 1]]⟩
     let zB : ZonoBundle (Vec ℝ 2) := ⟨2, ![Zbox, Zbox]⟩

@@ -59,7 +59,7 @@ theorem Zonotope.aux_stripCoeff {k : ℕ} (a r : Vec ℝ k) (h : ∀ j, |a j| �
 theorem Zonotope.diffusionPropLuenberger_outer (F : Mat ℝ n n) (Q : Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ∀ i, Vec ℝ (p i)) (Zh : Fin N → Zonotope (Vec ℝ n))
     (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1) (i : Fin N) (hx : x ∈ (Zh i).construct)
-    (hy : ∀ j, |(Γ i *ᵥ x - yb i) j| ≤ r i j) :
+    (hy : ∀ j, |(Γ i *ᵥ x - yb i) j| ≤ r i j) : -- --- STMT ---
     F *ᵥ x + Q *ᵥ β ∈
       (Zonotope.diffusionPropLuenberger F Q Γ r yb Zh i).construct := by -- --- PROOF ---
   obtain ⟨γ, hγ, hRγ⟩ := Zonotope.aux_stripCoeff (yb i - Γ i *ᵥ x) (r i) (fun j => by

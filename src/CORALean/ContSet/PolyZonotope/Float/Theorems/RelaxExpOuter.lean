@@ -83,7 +83,7 @@ theorem PolyZonotope.aux_relaxGen_gap (pZ : PolyZonotope (Vec 𝕋 n))
 -- the two stored columns and their two gaps, the drift carried by the second
 theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
-    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) :
+    (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- STMT ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExp part k₀)
       + (PolyZonotope.generatorError (pZ.relaxGap part k₀)).construct := by -- --- PROOF ---
   intro x hx

@@ -70,7 +70,7 @@ theorem LinearSysDT.aux_quad_le_sum_abs (P : Mat ℝ n n) (x : Vec ℝ n) :
 
 theorem LinearSysDT.errorBound_of_hinfLmi (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ n nw)
     (F : Mat ℝ ny nv) (P : Mat ℝ n n) (Y : Mat ℝ n ny) (γ : ℝ) (hP : P.PosDef)
-    (h : LinearSysDT.HinfLmi A C E F P Y γ) :
+    (h : LinearSysDT.HinfLmi A C E F P Y γ) : -- --- STMT ---
     ∃ α β : ℝ, 0 < α ∧ α < 1 ∧ 0 < β ∧ β < 1 ∧
       ∀ (e : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ nw) (v : ℕ → Vec ℝ nv) (D : ℝ),
         (∀ k, e (k + 1) = (A - P⁻¹ * Y * C) *ᵥ e k + E *ᵥ w k - (P⁻¹ * Y * F) *ᵥ v k) →

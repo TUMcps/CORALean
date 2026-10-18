@@ -79,7 +79,7 @@ theorem Zonotope.aux_update_erd (Z : Zonotope (Vec ℝ n)) (β : Fin Z.h → ℝ
 stays in a facet through `x` and raises the degree, `deg(x) < deg(x*) ≤ n - 1`. -/
 theorem Zonotope.exists_raise_degree (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) {x : Vec ℝ n} (hx : x ∈ Z.construct)
-    (hdeg : Zonotope.degree Z.construct x < n - 1) :
+    (hdeg : Zonotope.degree Z.construct x < n - 1) : -- --- STMT ---
     ∃ (γ : ℝ) (j : Fin Z.h) (F : Set (Vec ℝ n)), IsExposed ℝ Z.construct F ∧
       Module.finrank ℝ (vectorSpan ℝ F) = n - 1 ∧ x ∈ F ∧ x + γ • Z.G j ∈ F ∧
       Zonotope.degree Z.construct x < Zonotope.degree Z.construct (x + γ • Z.G j) ∧

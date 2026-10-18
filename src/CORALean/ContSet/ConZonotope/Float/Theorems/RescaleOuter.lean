@@ -63,7 +63,7 @@ theorem ConZonotope.aux_row_gap {h : ℕ} (a r : Vec 𝕋 h) (δ : Vec ℝ h) (h
 /-- A row against `ξm + diag(r) δ` splits into the row against `ξm`, the row rounded down
 against `δ`, and the rounding against `δ`. -/
 theorem ConZonotope.aux_row_split {h : ℕ} (a m r : Vec 𝕋 h) (δ ξ : Vec ℝ h)
-    (hξ : ∀ j, ξ j = toReal (m j) + toReal (r j) * δ j) :
+    (hξ : ∀ j, ξ j = toReal (m j) + toReal (r j) * δ j) : -- --- STMT ---
     ∑ j, toReal (a j) * ξ j = ∑ j, toReal (a j) * toReal (m j)
       + ∑ j, toReal (mulDown (a j) (r j)) * δ j
       + ∑ j, (toReal (a j) * toReal (r j) - toReal (mulDown (a j) (r j)))

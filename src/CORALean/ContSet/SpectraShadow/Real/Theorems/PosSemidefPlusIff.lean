@@ -29,7 +29,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
 theorem SpectraShadow.posSemidef_plus_iff (S₁ S₂ : SpectraShadow α)
-    (β : Fin (S₁.m + S₂.m) → ℝ) :
+    (β : Fin (S₁.m + S₂.m) → ℝ) : -- --- STMT ---
     ((S₁.plus S₂).A₀ + ∑ i : Fin (S₁.plus S₂).m, β i • (S₁.plus S₂).A i).PosSemidef
       ↔ (S₁.A₀ + ∑ i, β (Fin.castAdd S₂.m i) • S₁.A i).PosSemidef
         ∧ (S₂.A₀ + ∑ j, β (Fin.natAdd S₁.m j) • S₂.A j).PosSemidef := by -- --- PROOF ---

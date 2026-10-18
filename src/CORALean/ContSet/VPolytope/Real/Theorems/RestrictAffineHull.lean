@@ -45,7 +45,7 @@ variable {n r : ℕ}
 theorem VPolytope.restrict_affineHull (P : VPolytope (Vec ℝ n)) (c : Vec ℝ n) (U : Mat ℝ n n)
     (hU : Uᵀ * U = 1) (hrn : r ≤ n) (hc : c ∈ affineSpan ℝ (Set.range P.V))
     (hspan : Submodule.span ℝ (Set.range fun j : Fin r => U.col (Fin.castLE hrn j)) =
-      vectorSpan ℝ (Set.range P.V)) :
+      vectorSpan ℝ (Set.range P.V)) : -- --- STMT ---
     let M : Mat ℝ r n := Matrix.of fun i l => U l (Fin.castLE hrn i)
     let P' : VPolytope (Vec ℝ r) := ⟨P.k, fun i => M *ᵥ (P.V i - c)⟩
     P.construct = (fun y => Mᵀ *ᵥ y + c) '' P'.construct ∧

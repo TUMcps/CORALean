@@ -35,7 +35,8 @@ theorem Zonotope.contains_via_reach (G₁ : Mat ℝ n h₁) (G₂ : Mat ℝ n h�
     (β₀ : Vec ℝ h₂) (c₁ c₂ e₁ e₂ : Vec ℝ n) {B δ : ℝ}
     (hreach : ∀ d : Vec ℝ n, (∀ i, |d i| ≤ B) → ∃ β' : Vec ℝ h₂, G₂ *ᵥ β' = d ∧ ∀ k, |β' k| ≤ δ)
     (hres : ∀ i, |c₁ i - e₂ i - (c₂ i + (G₂ *ᵥ β₀) i)| + ∑ j, |(G₁ - G₂ * Γ) i j| + |e₁ i| ≤ B)
-    (hcoef : ∀ k, |β₀ k| + ∑ j, |Γ k j| + δ ≤ 1) (β : Vec ℝ h₁) (hβ : ∀ j, |β j| ≤ 1) :
+    (hcoef : ∀ k, |β₀ k| + ∑ j, |Γ k j| + δ ≤ 1) (β : Vec ℝ h₁)
+    (hβ : ∀ j, |β j| ≤ 1) : -- --- STMT ---
     ∃ γ : Vec ℝ h₂, (∀ k, |γ k| ≤ 1) ∧
       c₁ + G₁ *ᵥ β + e₁ = e₂ + (c₂ + G₂ *ᵥ γ) := by -- --- PROOF ---
   -- the part of the first set's point the coefficients `Γ β` and `β₀` do not explain

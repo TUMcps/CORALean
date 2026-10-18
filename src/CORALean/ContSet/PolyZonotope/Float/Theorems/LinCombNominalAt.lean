@@ -69,7 +69,7 @@ noncomputable def PolyZonotope.aux_linCombGIReal (pZ₁ pZ₂ : PolyZonotope (Ve
 /-- What the stored independent generators are wrong by, entrywise, which is
 what `linCombGIDiff` records. -/
 theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
-    (j : Fin (pZ₁.q + pZ₂.q)) :
+    (j : Fin (pZ₁.q + pZ₂.q)) : -- --- STMT ---
     |PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         - toReal (PolyZonotope.linCombGI addDown subDown pZ₁ pZ₂ i j)|
       ≤ toReal (PolyZonotope.linCombGIDiff pZ₁ pZ₂ i j) := by -- --- PROOF ---
@@ -97,7 +97,7 @@ theorem PolyZonotope.aux_linCombGI_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n
 /-- One row of the exact independent generators against the coefficients the
 segment supplies: the pairing gives back the two sets' own sums. -/
 theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (i : Fin n)
-    (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (lam : ℝ) :
+    (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (lam : ℝ) : -- --- STMT ---
     (∑ j, PolyZonotope.aux_linCombGIReal pZ₁ pZ₂ i j
         * Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
             (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j)
@@ -132,7 +132,7 @@ theorem PolyZonotope.aux_mul_mem_symmetric {q R s : ℝ} (hq0 : 0 ≤ q) (hqR : 
 larger than the gap between the two directed halvings; the fresh factor spreads
 it over `[-1,1]`. -/
 theorem PolyZonotope.aux_halfDiff_mem_error (a b : Vec 𝕋 n) {lam : ℝ}
-    (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
+    (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) : -- --- STMT ---
     (fun i => ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i))
         * (2 * lam - 1))
       ∈ (PolyZonotope.halfDiffError a b).construct := by -- --- PROOF ---
@@ -187,7 +187,8 @@ theorem PolyZonotope.aux_sum_neg_half {k : ℕ} (g : Fin k → 𝕋) (m : Fin k 
 
 theorem PolyZonotope.linComb_nominal_at (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) {a₁ : Fin pZ₁.p → ℝ}
     {a₂ : Fin pZ₂.p → ℝ} {β₁ : Fin pZ₁.q → ℝ} {β₂ : Fin pZ₂.q → ℝ} {lam : ℝ}
-    (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
+    (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hl0 : 0 ≤ lam)
+    (hl1 : lam ≤ 1) : -- --- STMT ---
     ∃ β : Fin (pZ₁.linComb pZ₂).q → ℝ, (∀ j, |β j| ≤ 1) ∧
       lam • (fun i => toReal (pZ₁.c i)
           + (∑ l, toReal (pZ₁.G l i) * Real.PolyZonotope.monomial pZ₁.E a₁ l)

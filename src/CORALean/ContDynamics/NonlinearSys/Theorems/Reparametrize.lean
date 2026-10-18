@@ -38,7 +38,7 @@ variable {n m : ℕ}
 theorem NonlinearSys.reparametrize (sys : NonlinearSys n m) (T : ℝ) (hT : 0 ≤ T)
     (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) (g : Vec ℝ n → ℝ)
     (hx : ∀ t ∈ Icc 0 T, HasDerivWithinAt x (sys.f (x t) (u t)) (Icc 0 T) t)
-    (hgc : ContinuousOn g (x '' Icc 0 T)) (hgp : ∀ t ∈ Icc 0 T, 0 < g (x t)) :
+    (hgc : ContinuousOn g (x '' Icc 0 T)) (hgp : ∀ t ∈ Icc 0 T, 0 < g (x t)) : -- --- STMT ---
     ∃ σ : ℝ → ℝ, σ 0 = 0 ∧ σ (∫ r in (0 : ℝ)..T, (g (x r))⁻¹) = T ∧
       MapsTo σ (Icc 0 (∫ r in (0 : ℝ)..T, (g (x r))⁻¹)) (Icc 0 T) ∧
       (∀ s ∈ Icc 0 (∫ r in (0 : ℝ)..T, (g (x r))⁻¹),

@@ -51,7 +51,8 @@ theorem OnlineAnalyzerNode.propagate_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
     (hk2 : n.kind ≠ .false)
     (hk3 : n.kind ≠ .ap) (hs : n.signal.IsValid) (delta : FourValuedSignal ℝ)
     (hd : n.combine ch = some delta) (hdv : delta.IsValid) (n' : OnlineAnalyzerNode A)
-    (ch' : List (OnlineAnalyzerNode A)) (h : n.propagate eps ch I = some (n', ch')) :
+    (ch' : List (OnlineAnalyzerNode A))
+    (h : n.propagate eps ch I = some (n', ch')) : -- --- STMT ---
     n' = { n with signal := n.signal.merge delta } ∧ n'.signal.IsValid ∧
       (∀ t : ℝ, 0 ≤ t → (delta.at t ≠ FourValued.ii → n'.signal.at t = delta.at t) ∧
         (delta.at t = FourValued.ii → n'.signal.at t = n.signal.at t)) ∧

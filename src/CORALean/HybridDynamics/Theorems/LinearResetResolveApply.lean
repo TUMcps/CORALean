@@ -61,7 +61,7 @@ theorem aux_scatter_apply {n : ℕ} (σ : Fin n → Fin N) (hσ : Function.Injec
 
 /-- A matrix summing the columns bound to global input `u'`, applied to `u`. -/
 theorem aux_resolveGlobal_mulVec (inputBinds : ∀ i, Fin (m i) → ResolveSource k p g)
-    (X : Fin N → (Σ i, Fin (m i)) → ℝ) (u : Vec ℝ g) (a : Fin N) :
+    (X : Fin N → (Σ i, Fin (m i)) → ℝ) (u : Vec ℝ g) (a : Fin N) : -- --- STMT ---
     ((Matrix.of fun a u' => ∑ ij : (Σ i, Fin (m i)),
         if inputBinds ij.1 ij.2 = .global u' then X a ij else 0) *ᵥ u) a =
       ∑ ij : (Σ i, Fin (m i)), match inputBinds ij.1 ij.2 with
@@ -87,7 +87,7 @@ theorem LinearReset.resolve_apply (A : Mat ℝ N N) (B : Mat ℝ N (∑ i, m i))
     (hg : ∀ i j a, inputBinds i j = .global a → w (finSigmaFinEquiv ⟨i, j⟩) = u a)
     (ho : ∀ i j c' l, inputBinds i j = .output c' l →
       w (finSigmaFinEquiv ⟨i, j⟩) = (C c' *ᵥ (fun s => x (stateBinds c' s)) +
-        D c' *ᵥ (fun jj => w (finSigmaFinEquiv ⟨c', jj⟩)) + q c') l) (a : Fin N) :
+        D c' *ᵥ (fun jj => w (finSigmaFinEquiv ⟨c', jj⟩)) + q c') l) (a : Fin N) : -- --- STMT ---
     ((LinearReset.resolve A B c C D q stateBinds inputBinds).1 *ᵥ x +
       (LinearReset.resolve A B c C D q stateBinds inputBinds).2.1 *ᵥ u +
       (LinearReset.resolve A B c C D q stateBinds inputBinds).2.2) a =

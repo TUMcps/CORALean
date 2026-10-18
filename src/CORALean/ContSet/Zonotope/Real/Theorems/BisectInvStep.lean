@@ -48,7 +48,7 @@ theorem Zonotope.aux_sum_horizontal (Z : Zonotope (Vec ℝ 2)) {σ : ℝ} {H : F
 theorem Zonotope.bisectInv_step (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) (right : Bool) {σ : ℝ}
     (hσ : σ = if right then 1 else -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
-    (hinv : Z.BisectInv γ σ st) :
+    (hinv : Z.BisectInv γ σ st) : -- --- STMT ---
     Z.BisectInv γ σ (Z.bisectStep γ right st) ∧
     (1 < st.2.1.card → (Z.bisectStep γ right st).2.1.card < st.2.1.card) ∧
     (st.2.1.card ≤ 1 → Z.bisectStep γ right st = st) := by -- --- PROOF ---

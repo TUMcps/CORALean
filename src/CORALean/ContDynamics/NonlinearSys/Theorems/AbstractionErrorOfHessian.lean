@@ -75,7 +75,7 @@ mean value is named, so `φ''` is never asked for at an unknown point. -/
 theorem aux_abs_taylor_le {φ φ' φ'' : ℝ → ℝ} {K : ℝ}
     (hφ : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ (φ' t) t)
     (hφ' : ∀ t ∈ Icc (0:ℝ) 1, HasDerivAt φ' (φ'' t) t)
-    (hK : ∀ t ∈ Icc (0:ℝ) 1, |φ'' t| ≤ K) :
+    (hK : ∀ t ∈ Icc (0:ℝ) 1, |φ'' t| ≤ K) : -- --- STMT ---
     |φ 1 - φ 0 - φ' 0| ≤ K / 2 := by -- --- PROOF ---
   have hlin : ∀ s : ℝ, HasDerivAt (fun t : ℝ => K * t) K s := fun s => by
     simpa using (hasDerivAt_id s).const_mul K
@@ -150,7 +150,7 @@ theorem aux_abs_remainder_le {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {F : Vec 
     {Hf : Vec ℝ d → (Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ)}
     (hF : ∀ ξ ∈ C, HasFDerivAt F (Ff ξ) ξ) (hH : ∀ ξ ∈ C, HasFDerivAt Ff (Hf ξ) ξ)
     {M : Mat ℝ d d} (hM : ∀ ξ ∈ C, ∀ j k, |Hf ξ (Pi.single j 1) (Pi.single k 1)| ≤ M j k)
-    {zs z γ : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) (hγ : ∀ j, |z j - zs j| ≤ γ j) :
+    {zs z γ : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) (hγ : ∀ j, |z j - zs j| ≤ γ j) : -- --- STMT ---
     |F z - F zs - Ff zs (z - zs)| ≤ γ ⬝ᵥ (M *ᵥ γ) / 2 := by -- --- PROOF ---
   set h : Vec ℝ d := z - zs with hh
   -- the segment stays inside `C`, which is where both derivatives live

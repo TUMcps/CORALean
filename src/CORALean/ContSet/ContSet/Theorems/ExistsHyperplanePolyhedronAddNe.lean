@@ -50,7 +50,7 @@ theorem ContSet.aux_dot_two (x y : Vec ℝ 2) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 4.2] is false: two nonempty bands whose sum is not the band of the sums. -/
-theorem ContSet.exists_hyperplanePolyhedron_add_ne :
+theorem ContSet.exists_hyperplanePolyhedron_add_ne : -- --- STMT ---
     ∃ (S : Finset (Vec ℝ 2)) (m₁ M₁ m₂ M₂ : Vec ℝ 2 → ℝ),
       (ContSet.hyperplanePolyhedron S m₁ M₁).Nonempty ∧
         (ContSet.hyperplanePolyhedron S m₂ M₂).Nonempty ∧

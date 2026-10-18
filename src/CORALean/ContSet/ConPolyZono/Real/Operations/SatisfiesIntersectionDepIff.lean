@@ -36,7 +36,7 @@ variable {n : ℕ}
 /-- What `intersectionDep`'s constraint system says: each set's own constraints, and that
 the two points agree coordinate by coordinate to within `D`. -/
 theorem ConPolyZono.satisfies_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (D : Interval (Vec ℝ n)) (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) :
+    (D : Interval (Vec ℝ n)) (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- STMT ---
     (cPZ₁.intersectionDep cPZ₂ D).satisfies a ↔
       (cPZ₁.satisfies (fun k => a (Fin.castAdd cPZ₂.p k))
         ∧ cPZ₂.satisfies (fun k => a (Fin.natAdd cPZ₁.p k)))

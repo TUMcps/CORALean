@@ -43,7 +43,7 @@ open MeasureTheory
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem shenmaierHalfspace_counterexample :
+theorem shenmaierHalfspace_counterexample : -- --- STMT ---
     ∃ (G H : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (c d v : Vec ℝ 2) (z : Fin 1 → Vec ℝ 2 →L[ℝ] ℝ) (ϑ p : ℝ),
       ‖(z 0).comp (LinearMap.toContinuousLinearMap H)‖ ≤ 1 ∧ coeffNorm H v ≤ 1 ∧
       z 0 v = coeffNorm H v ∧

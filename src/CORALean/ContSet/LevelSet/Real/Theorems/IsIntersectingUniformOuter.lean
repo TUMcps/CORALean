@@ -10,13 +10,13 @@ public import CORALean.ContSet.LevelSet.Real.Definitions.RangeBound
 
 If the bounds `B i` are a range bound of row `i` of the function over the box `I`, a negative
 verdict means the level set misses the box: `isIntersecting_ = false` is a proof of disjointness
-(one operator for every row, `tol ≥ 0`). Outer only: a positive verdict says nothing, and no
-exactness is claimed.
+(each row tested by its operator in `L`, `tol ≥ 0`). Outer only: a positive verdict says
+nothing, and no exactness is claimed.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -29,11 +29,11 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.isIntersecting_uniform_outer (L : LevelSet n) (op : CompOp)
-    (hop : ∀ i, L.op i = op) (I : Interval (Vec ℝ n)) (B : Fin L.m → Interval ℝ) {tol : ℝ}
+theorem LevelSet.isIntersecting_uniform_outer (L : LevelSet n) (I : Interval (Vec ℝ n))
+    (B : Fin L.m → Interval ℝ) {tol : ℝ}
     (htol : 0 ≤ tol)
     (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.construct (B i).inf (B i).sup)
-    (h : ¬ LevelSet.isIntersecting_uniform tol op B) :
+    (h : ¬ L.isIntersecting_uniform tol B) : -- --- STMT ---
     L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
   classical
   -- some row fails the test; a common point would satisfy it
@@ -43,10 +43,9 @@ theorem LevelSet.isIntersecting_uniform_outer (L : LevelSet n) (op : CompOp)
   simp only [Set.mem_inter_iff, Set.mem_empty_iff_false, iff_false, not_and]
   intro hxL hxI
   have h1 := hxL i
-  rw [hop i] at h1
   have h2 := hB i x hxI
   apply hi
-  cases op <;> simp only [CompOp.holds] at h1 ⊢
+  cases hop : L.op i <;> rw [hop] at h1 <;> simp only [CompOp.holds] at h1 ⊢
   · -- le: `f x i ≤ 0` forces `lb ≤ 0`
     rcases lt_or_eq_of_le (h2.1.trans h1) with h | h
     · exact Or.inl h

@@ -74,7 +74,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.minkDiffOuterScalingCora_not_outer :
+theorem Zonotope.minkDiffOuterScalingCora_not_outer : -- --- STMT ---
     let Z : Zonotope (Vec ℝ 3) := ⟨3, 0, fun j i => if i = j then 1 else 0⟩
     let I : Interval (Vec ℝ 3) := ⟨0, 1⟩
     ¬ minkowskiDiff Z.construct I.construct ⊆

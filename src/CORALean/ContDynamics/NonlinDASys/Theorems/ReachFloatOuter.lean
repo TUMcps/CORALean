@@ -35,7 +35,7 @@ theorem NonlinDASys.reachFloat_outer {sys : NonlinDASys n p m} (red : sys.Reduce
     {fm : NonlinearSys.FloatModel 𝕋 n m} (h : fm.Encloses red.toNonlinearSys)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (hR : NonlinDASys.reachFloat red fm params options = some Rs) :
+    (hR : NonlinDASys.reachFloat red fm params options = some Rs) : -- --- STMT ---
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m},
         sys.IsTrajectory (S := 𝒮)

@@ -50,7 +50,7 @@ reachable set `R(t_k)`. -/
 theorem LinearSys.supportLower_mem_image_reachSet (sys : LinearSys 𝕋 n) (R₀ U : S n)
     (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt)
     {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct R₀)
-    (hνU : ∀ d, νU d ∈ construct U) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
+    (hνU : ∀ d, νU d ∈ construct U) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- STMT ---
     (sys.supportLower Δt ν₀ νU c ℓ k).ρR
       ∈ ℓ '' sys.reachSet (Set.Icc 0 (k * Δt)) R₀ U (k * Δt) := by -- --- PROOF ---
   set cex := sys.supportCounterexample Δt ν₀ νU ℓ k

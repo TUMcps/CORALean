@@ -66,7 +66,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 the dynamic and the constraint equation. -/
 theorem NonlinDASys.outputSetLinearCora_counterexample
     (f : Vec ℝ 1 → Vec ℝ 1 → Vec ℝ 1 → Vec ℝ 1) (g : Vec ℝ 1 → Vec ℝ 1 → Vec ℝ 1 → Vec ℝ 1)
-    (R : S 1) (p_x p_u : Vec ℝ 1) (p_y x y u : Vec ℝ 1) (hy : y ≠ p_y) :
+    (R : S 1) (p_x p_u : Vec ℝ 1) (p_y x y u : Vec ℝ 1) (hy : y ≠ p_y) : -- --- STMT ---
     let sys : NonlinDASys 1 1 1 := ⟨f, g, 1, fun _ y _ => y⟩
     sys.h x y u ∉ sys.outputSetLinearCora p_x p_y p_u R := by -- --- PROOF ---
   intro sys

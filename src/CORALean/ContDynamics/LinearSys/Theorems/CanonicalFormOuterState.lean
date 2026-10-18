@@ -38,7 +38,7 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 theorem LinearSys.canonicalForm_state_outer (sys : LinearSys ℝ n) (U : S sys.m)
     (uVec : Vec ℝ sys.m) (W : S sys.r) (V : S sys.s) (vVec : Vec ℝ sys.s) {u : Vec ℝ sys.m}
-    (hu : u ∈ construct U) {w : Vec ℝ sys.r} (hw : w ∈ construct W) :
+    (hu : u ∈ construct U) {w : Vec ℝ sys.r} (hw : w ∈ construct W) : -- --- STMT ---
     sys.B *ᵥ (uVec + u) + sys.c + sys.E *ᵥ w - (sys.canonicalForm U uVec W V vVec).2.2.1
       ∈ construct (sys.canonicalForm U uVec W V vVec).2.1 := by -- --- PROOF ---
   -- the offset cancels, leaving `B (u - centerU) + E (w - centerW)`

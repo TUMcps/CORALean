@@ -40,7 +40,7 @@ variable {m : ℕ} {E W : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Fini
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem isGreatest_coeffNorm_center_shift (G : (Fin m → ℝ) →ₗ[ℝ] W) (c d : W)
-    (H : E →ₗ[ℝ] W) (hH : Function.Surjective H) (r : ℝ) :
+    (H : E →ₗ[ℝ] W) (hH : Function.Surjective H) (r : ℝ) : -- --- STMT ---
     IsGreatest ((fun α => coeffNorm H (G α + c - d)) '' Metric.closedBall 0 1) r ↔
       IsGreatest ((fun α' : Fin (m + 1) → ℝ =>
         coeffNorm H (G (fun i => α' i.castSucc) + α' (Fin.last m) • (c - d))) ''

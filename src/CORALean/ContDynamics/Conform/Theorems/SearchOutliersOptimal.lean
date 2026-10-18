@@ -56,7 +56,7 @@ theorem aux_exists_pos_le {X : Type} (s : Finset X) (f : X → ℝ) (hf : ∀ x 
 /-- [1, Sec. 5.1.1]: `searchOutliers` is the least cost over removals of at most `k` points. -/
 theorem Conform.searchOutliers_optimal [Fintype ι] [DecidableEq ι] {P : Type} [DecidableEq P]
     (C : P → Set (ι → ℝ)) (hC : ∀ m, Convex ℝ (C m)) (γ : ι → ℝ) (sol : Finset P → ι → ℝ)
-    (bd : Finset P → Finset P) :
+    (bd : Finset P → Finset P) : -- --- STMT ---
     let Feas : Finset P → (ι → ℝ) → Prop := fun S a =>
       (∀ j, 0 ≤ a j) ∧ ∀ m ∈ S, Conform.FitsUnder (C m) a
     let cost : Finset P → ℝ := fun S => ∑ j, γ j * sol S j

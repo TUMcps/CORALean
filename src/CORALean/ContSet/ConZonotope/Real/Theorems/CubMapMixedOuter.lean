@@ -31,7 +31,7 @@ variable {n m : ℕ}
 
 /-- Mixed form, outer only; each set's constraints sit on its own linear generators. -/
 theorem ConZonotope.cubMapMixed_outer (T : Fin m → Fin n → Mat ℝ n n)
-    (cZ₁ cZ₂ cZ₃ : ConZonotope (Vec ℝ n)) :
+    (cZ₁ cZ₂ cZ₃ : ConZonotope (Vec ℝ n)) : -- --- STMT ---
     (fun x : Vec ℝ n × Vec ℝ n × Vec ℝ n => PolyZonotope.cubEvalMixed T x.1 x.2.1 x.2.2)
         '' (cZ₁.construct ×ˢ cZ₂.construct ×ˢ cZ₃.construct)
       ⊆ (ConZonotope.cubMapMixed T cZ₁ cZ₂ cZ₃).construct := by -- --- PROOF ---

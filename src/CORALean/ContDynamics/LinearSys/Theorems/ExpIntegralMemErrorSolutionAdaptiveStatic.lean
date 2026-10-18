@@ -41,7 +41,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 theorem LinearSys.expIntegral_mem_errorSolutionAdaptive_static (sys : LinearSys 𝕋 n)
     {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ) {Vdyn Vstat : S n} {v s : Vec ℝ n}
-    (hv : v ∈ construct Vdyn) (hs : s ∈ construct Vstat) :
+    (hv : v ∈ construct Vdyn) (hs : s ∈ construct Vstat) : -- --- STMT ---
     MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ v + MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ s
       ∈ construct (sys.errorSolutionAdaptive Δt η Vdyn (some Vstat)) := by -- --- PROOF ---
   set A := toRealMat sys.A

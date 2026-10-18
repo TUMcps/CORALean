@@ -48,7 +48,7 @@ variable [∀ n, OfPoint (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 `constInputSolution r η ũ`, at an order admissible for `r`. -/
 theorem LinearSys.expIntegral_mem_constInputSolution (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)
     (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (uc : Vec ℝ n) {t : ℝ}
-    (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
     MatExp.expIntegral (toRealMat sys.A) t *ᵥ uc
       ∈ construct (sys.constInputSolution (S := S) r η uc) := by -- --- PROOF ---
   set A := toRealMat sys.A

@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.cubContract_bracket (T : Fin m → Fin n → Mat 𝕋 n n) (u v w : Vec 𝕋 n)
-    (i : Fin m) :
+    (i : Fin m) : -- --- STMT ---
     toReal (Zonotope.cubContractDown T u v w i)
         ≤ ∑ k, toReal (u k) * (toRealVec v ⬝ᵥ (toRealMat (T i k) *ᵥ toRealVec w))
       ∧ ∑ k, toReal (u k) * (toRealVec v ⬝ᵥ (toRealMat (T i k) *ᵥ toRealVec w))

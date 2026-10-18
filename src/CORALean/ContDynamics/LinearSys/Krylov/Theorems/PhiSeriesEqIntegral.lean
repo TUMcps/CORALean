@@ -42,7 +42,7 @@ open NormedSpace
 /-- [1, Eq. 4.1]: `Σ_k zᵏ/k! = e^z`, and `Σ_k zᵏ/(k + p + 1)! = 1/p! ∫₀¹(1 - θ)ᵖe^{θz}dθ`, for
 `z` in a complete normed ℝ-algebra. -/
 theorem Krylov.phi_series_eq_integral {𝔸 : Type*} [NormedRing 𝔸] [NormedAlgebra ℝ 𝔸]
-    [CompleteSpace 𝔸] (z : 𝔸) :
+    [CompleteSpace 𝔸] (z : 𝔸) : -- --- STMT ---
     ∑' k : ℕ, ((Nat.factorial (k + 0) : ℝ)⁻¹) • z ^ k = exp z ∧
       ∀ p : ℕ, ∑' k : ℕ, ((Nat.factorial (k + (p + 1)) : ℝ)⁻¹) • z ^ k =
         ((Nat.factorial p : ℝ)⁻¹) •

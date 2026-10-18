@@ -43,7 +43,7 @@ variable {n p q k : ℕ}
 /-- [1, Lemma 1]: `Ȳ` with center (16a) and generators (16b)-(16c). -/
 theorem Conform.gloSet_templateZono {ιx ιu : Type} [Fintype ιx] [Fintype ιu] (yb : Vec ℝ q)
     (Cb : Mat ℝ q n) (Db : Fin (k + 1) → Mat ℝ q p) (cx dx : Vec ℝ n) (Gx : ιx → Vec ℝ n)
-    (αx : ιx → ℝ) (cu du : Vec ℝ p) (Gu : ιu → Vec ℝ p) (αu : ιu → ℝ) :
+    (αx : ιx → ℝ) (cu du : Vec ℝ p) (Gu : ιu → Vec ℝ p) (αu : ιu → ℝ) : -- --- STMT ---
     Conform.gloSet yb Cb Db cx (Conform.templateZono (cx + dx) Gx αx) cu
         (fun _ => Conform.templateZono (cu + du) Gu αu)
       = Conform.templateZono (yb + Cb *ᵥ dx + ∑ i, Db i *ᵥ du)

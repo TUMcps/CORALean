@@ -82,7 +82,7 @@ theorem PolyZonotope.aux_mergedGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 n))
 /-- The new independent column is the summed `ξ_E` copies added downward, so it
 too is off by at most its gap to the upward fold. -/
 theorem PolyZonotope.aux_relaxGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 n))
-    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) :
+    (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (i : Fin n) : -- --- STMT ---
     |(pZ.relaxWidthMulti part : ℝ) * toReal (pZ.G (part.right 0) i)
       - toReal (pZ.relaxGenMulti part i)|
         ≤ toReal (pZ.relaxGapMulti part i 1) := by -- --- PROOF ---

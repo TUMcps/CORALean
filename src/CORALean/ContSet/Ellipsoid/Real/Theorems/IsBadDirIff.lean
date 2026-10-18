@@ -57,7 +57,7 @@ theorem Ellipsoid.aux_quad_pos (E : Ellipsoid n) (hr : E.rank = n) {v : Vec ℝ 
 
 theorem Ellipsoid.isBadDir_iff (E₁ E₂ : Ellipsoid n) (l : Vec ℝ n) (p : ℝ)
     (hr : E₁.rank = n) (hbig : E₁.isBigger E₂) (hl : 0 < l ⬝ᵥ (E₂.Q *ᵥ l))
-    (hp : p = Real.sqrt (l ⬝ᵥ (E₁.Q *ᵥ l)) / Real.sqrt (l ⬝ᵥ (E₂.Q *ᵥ l))) :
+    (hp : p = Real.sqrt (l ⬝ᵥ (E₁.Q *ᵥ l)) / Real.sqrt (l ⬝ᵥ (E₂.Q *ᵥ l))) : -- --- STMT ---
     E₁.isBadDir E₂ l ↔ ¬ ∀ v : Vec ℝ n, 0 ≤ (1 - 1 / p) * (v ⬝ᵥ (E₁.Q *ᵥ v))
       + (1 - p) * (v ⬝ᵥ (E₂.Q *ᵥ v)) := by -- --- PROOF ---
   -- `l` is nonzero, as its form is positive

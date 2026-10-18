@@ -63,7 +63,7 @@ theorem Zonotope.aux_sum_weighted {k : ℕ} (w : ℝ) (b : Fin k → ℝ) (g : F
 sets have, the sum and the difference generator carry `λβ₁` and `(1-λ)β₂`
 between them; past the shorter block each surplus generator carries its own. -/
 theorem Zonotope.sum_pair (G₁ : Fin h₁ → α) (G₂ : Fin h₂ → α)
-    (β₁ : Fin h₁ → ℝ) (β₂ : Fin h₂ → ℝ) (lam : ℝ) :
+    (β₁ : Fin h₁ → ℝ) (β₂ : Fin h₂ → ℝ) (lam : ℝ) : -- --- STMT ---
     (∑ j, Zonotope.pairCoeffSum β₁ β₂ lam j • Zonotope.pairSum G₁ G₂ j)
         + ∑ j, Zonotope.pairCoeffDiff β₁ β₂ lam j • Zonotope.pairDiff G₁ G₂ j
       = lam • (∑ j, β₁ j • G₁ j) + (1 - lam) • ∑ j, β₂ j • G₂ j := by -- --- PROOF ---

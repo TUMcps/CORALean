@@ -58,7 +58,7 @@ only linearly, once eq. (36) puts what is already accumulated inside its own sha
 theorem aux_eventually_particularSolutionError_le (A : Mat ℝ n n) (tk : ℝ)
     {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ) {tend εmax ζ εaAcc : ℝ}
     (htend : 0 < tend) (hεmax : 0 < εmax) (hζ1 : ζ < 1)
-    (hacc : εaAcc ≤ tk / tend * (1 - ζ) * εmax) :
+    (hacc : εaAcc ≤ tk / tend * (1 - ζ) * εmax) : -- --- STMT ---
     ∀ᶠ Δt : ℝ in 𝓝[>] (0 : ℝ), MatExp.particularSolutionError A tk U0 Δt η
       ≤ (tk + Δt) / tend * (1 - ζ) * εmax - εaAcc := by -- --- PROOF ---
   obtain ⟨K, hK⟩ := MatExp.exists_particularSolutionError_le_const_mul_sq A tk hU0 η
@@ -84,7 +84,7 @@ share that approaches a positive constant, `t_k < t_end` being what makes it pos
 theorem aux_eventually_nonAccumulating_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (tk : ℝ) {U0 : Set (Vec ℝ n)} (hU0 : Bornology.IsBounded U0) (η : ℕ)
     {tend εmax ζ εaAcc : ℝ} (htk : 0 < tend) (htend : tk < tend) (hεmax : 0 < εmax)
-    (hacc : εaAcc ≤ tk / tend * (1 - ζ) * εmax) :
+    (hacc : εaAcc ≤ tk / tend * (1 - ζ) * εmax) : -- --- STMT ---
     ∀ᶠ Δt : ℝ in 𝓝[>] (0 : ℝ), MatExp.affineDynamicsError A H ũ Δt η
         + MatExp.particularSolutionTauError A tk U0 Δt η
       ≤ εmax - (tk + Δt) / tend * ζ * εmax - εaAcc := by -- --- PROOF ---
@@ -115,7 +115,7 @@ theorem aux_autoTuneOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → 
     (hc : (le (MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δt 2) εaτ
       && le (MatExp.affineDynamicsError (toRealMat sys.A) H ũ Δt 2
         + MatExp.particularSolutionTauError (toRealMat sys.A) tk U₀.construct Δt 2) εnτ)
-      = true) :
+      = true) : -- --- STMT ---
     sys.autoTuneOrder le H ũ tk U₀ Δt εaτ εnτ 2 ηmax = some 2 := by -- --- PROOF ---
   obtain ⟨m, hm⟩ : ∃ m, ηmax = m + 1 := ⟨ηmax - 1, by omega⟩
   rw [hm]
@@ -129,7 +129,7 @@ theorem aux_autoTuneOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → 
 anywhere along that sequence is one the sweep's own fuel reaches. -/
 theorem aux_autoTuneSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk tend εmax ζ εaAcc : ℝ) (ηmax : ℕ)
-    (U₀ : Zonotope (Vec ℝ n)) :
+    (U₀ : Zonotope (Vec ℝ n)) : -- --- STMT ---
     ∀ (j : ℕ) (Δt : ℝ) (η : ℕ),
       sys.autoTuneOrder le H ũ tk U₀ (Δt / 2 ^ (j + 1))
           ((tk + Δt / 2 ^ (j + 1)) / tend * (1 - ζ) * εmax - εaAcc)
@@ -157,7 +157,7 @@ theorem aux_autoTuneSearch_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ →
 positive — which is what the time `t_{k+1}` of the step after it rests on. -/
 theorem aux_autoTuneSearch_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk tend εmax ζ εaAcc : ℝ) (ηmax : ℕ)
-    (U₀ : Zonotope (Vec ℝ n)) :
+    (U₀ : Zonotope (Vec ℝ n)) : -- --- STMT ---
     ∀ (k : ℕ) (Δt : ℝ) (p : ℝ × ℕ), 0 < Δt →
       sys.autoTuneSearch le H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt k = some p →
       0 < p.1 := by -- --- PROOF ---
@@ -184,7 +184,8 @@ theorem LinearSys.exists_autoTuneDeltaT (sys : LinearSys 𝕋 n) {le : ℝ → �
     (hle : ∀ a b : ℝ, a ≤ b → le a b = true) (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n)
     (U₀ : Zonotope (Vec ℝ n)) {tk tend εmax ζ εaAcc Δtprev : ℝ} {ηmax : ℕ}
     (htend : tk < tend) (htpos : 0 < tend) (hεmax : 0 < εmax) (hζ1 : ζ < 1)
-    (hacc : εaAcc ≤ tk / tend * (1 - ζ) * εmax) (hΔtprev : 0 < Δtprev) (hηmax : 1 ≤ ηmax) :
+    (hacc : εaAcc ≤ tk / tend * (1 - ζ) * εmax) (hΔtprev : 0 < Δtprev)
+    (hηmax : 1 ≤ ηmax) : -- --- STMT ---
     ∃ (fuel : ℕ) (Δt : ℝ) (η : ℕ),
       sys.autoTuneDeltaT le H ũ tk tend εmax ζ εaAcc Δtprev ηmax fuel U₀ = some (Δt, η)
         ∧ 0 < Δt := by -- --- PROOF ---

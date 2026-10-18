@@ -97,7 +97,7 @@ theorem aux_form_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ : ℝ) (x : Fin 
   ring
 
 /-- Eq. 23's matrix is the certificate of `s_lemma_posSemidef` for `f` and `αᵀα - 1`. -/
-theorem aux_lmi_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ δ : ℝ) :
+theorem aux_lmi_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ δ : ℝ) : -- --- STMT ---
     δ • fromBlocks (1 : Mat ℝ m m) 0 0 (-1 : Mat ℝ 1 1) -
         (fromBlocks (Θᵀ * Θ) (replicateCol (Fin 1) (Θᵀ *ᵥ θ)) (replicateRow (Fin 1) (θ ᵥ* Θ))
           (of fun _ _ => θ ⬝ᵥ θ) - ρ • fromBlocks (0 : Mat ℝ m m) 0 0 (1 : Mat ℝ 1 1)) =
@@ -114,7 +114,8 @@ theorem aux_lmi_eq (Θ : Mat ℝ l m) (θ : Fin l → ℝ) (ρ δ : ℝ) :
 
 /-- [1, Thm. 13]: `r(Ê, E)² = min S`, `S = [r², ∞)` the `ρ` with Eq. 23 for some `δ ≥ 0`. -/
 theorem ellipsoid_containmentRadius_sdp (G : Mat ℝ n m) (c : Fin n → ℝ) (H : Mat ℝ n l)
-    (d : Fin n → ℝ) (hH : Function.Surjective H.mulVec) (Hp : Mat ℝ l n) (hHp : IsPinv H Hp) :
+    (d : Fin n → ℝ) (hH : Function.Surjective H.mulVec) (Hp : Mat ℝ l n)
+    (hHp : IsPinv H Hp) : -- --- STMT ---
     let Θ := Hp * G
     let θ := Hp *ᵥ (c - d)
     let S := {ρ : ℝ | ∃ δ : ℝ, 0 ≤ δ ∧

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Taylm.rangeBound_mem {m : ℕ} {p q s N : ℕ} {e : Real.Taylm.CodeList 𝕋 m}
     {D : Interval (Vec 𝕋 m)} {b : Interval 𝕋} (hb : Taylm.rangeBound p q s e D N = some b)
-    {x : Vec ℝ m} (hx : x ∈ D.construct) :
+    {x : Vec ℝ m} (hx : x ∈ D.construct) : -- --- STMT ---
     toReal b.inf ≤ (e.map toReal).eval x ∧
       (e.map toReal).eval x ≤ toReal b.sup := by -- --- PROOF ---
   simp only [Taylm.rangeBound, Option.map_eq_some_iff] at hb

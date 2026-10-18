@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope (Vec 𝕋 n))
     (guess : Interval (Vec 𝕋 n) → Interval (Vec 𝕋 (pZ.p + pZ.q)))
     (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter fuel : ℕ)
-    (h : PolyZonotope.containsSetApprox pZ S guess inv iter fuel = true) :
+    (h : PolyZonotope.containsSetApprox pZ S guess inv iter fuel = true) : -- --- STMT ---
     S.construct ⊆ pZ.construct := by -- --- PROOF ---
   unfold PolyZonotope.containsSetApprox at h
   simp only [Bool.and_eq_true, beq_iff_eq] at h

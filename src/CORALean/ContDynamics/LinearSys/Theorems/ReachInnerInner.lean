@@ -59,7 +59,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 the system reaches at `t = kΔt`. -/
 theorem LinearSys.reachInner_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o)
-    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
+    (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- STMT ---
     sys.reachInner Δt η o ho R₀ U k
       ⊆ sys.reachSet (S := 𝒵) (Set.Icc 0 ((k : ℝ) * Δt)) R₀ U
           ((k : ℝ) * Δt) := by -- --- PROOF ---

@@ -42,7 +42,7 @@ variable {n m : ℕ}
 theorem Krylov.inputSolution_mem_box (A : Mat ℝ n n) (u : Vec ℝ n) (V : Mat ℝ (n + 1) m)
     (H : Mat ℝ m m) (e₁ : Vec ℝ m) {ε δ : ℝ}
     (h3 : ‖exp (δ • Krylov.augment A u) *ᵥ (Pi.single (Fin.last n) 1 : Fin (n + 1) → ℝ)
-      - V *ᵥ (exp (δ • H) *ᵥ e₁)‖₂ ≤ ε * δ) :
+      - V *ᵥ (exp (δ • H) *ᵥ e₁)‖₂ ≤ ε * δ) : -- --- STMT ---
     ∃ r : Vec ℝ n, (∀ j, |r j| ≤ ε * δ) ∧
       MatExp.expIntegral A δ *ᵥ u
         = (fun j => (V *ᵥ (exp (δ • H) *ᵥ e₁)) (Fin.castSucc j)) + r := by -- --- PROOF ---

@@ -41,7 +41,7 @@ variable {M X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X]
 theorem DiffInclAutomaton.isExec_flow_timer {H : DiffInclAutomaton M (X × ℝ)} {k : M}
     {d τ r : ℝ} {w V : ℝ → X} (hr : 0 ≤ r) (hw : ∀ u ∈ Icc 0 r, HasDerivAt w (V u) u)
     (hflow : ∀ u ∈ Ioo 0 r, (V u, (1 : ℝ)) ∈ H.flow k (w u, τ + u))
-    (hinv : ∀ u ∈ Ioo 0 r, (w u, τ + u) ∈ H.inv k) (h : H.IsExec d k (w 0, τ)) :
+    (hinv : ∀ u ∈ Ioo 0 r, (w u, τ + u) ∈ H.inv k) (h : H.IsExec d k (w 0, τ)) : -- --- STMT ---
     H.IsExec (d + r) k (w r, τ + r) := by -- --- PROOF ---
   rcases hr.eq_or_lt with rfl | hpos
   · simpa using h

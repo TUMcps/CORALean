@@ -95,7 +95,7 @@ theorem NonlinearSys.abstrErrAdaptiveTensor3Cora2D_factor_counterexample
     (himul : ∀ a, imul a ⟨0, 0⟩ = ⟨0, 0⟩)
     (qmap : (Fin 2 → Real.Interval ℝ) → Matrix (Fin 2) (Fin 2) ℝ → Real.Interval ℝ)
     (hqmap : ∀ dz, qmap dz 0 = ⟨0, 0⟩) (red : (Fin 2 → Real.Interval ℝ) → Fin 2 → Real.Interval ℝ)
-    (hred : red (fun _ => ⟨0, 0⟩) = fun _ => ⟨0, 0⟩) :
+    (hred : red (fun _ => ⟨0, 0⟩) = fun _ => ⟨0, 0⟩) : -- --- STMT ---
     let f : (Fin 2 → ℝ) → Fin 2 → ℝ := fun x => ![x 1 ^ 3, 0]
     let jac : (Fin 2 → ℝ) → Matrix (Fin 2) (Fin 2) ℝ := fun x => !![0, 3 * x 1 ^ 2; 0, 0]
     let hess : (Fin 2 → ℝ) → Fin 2 → Matrix (Fin 2) (Fin 2) ℝ :=

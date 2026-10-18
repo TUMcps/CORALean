@@ -51,7 +51,7 @@ input's integral and the disturbance's own. -/
 theorem LinearSys.IsPerturbedTrajectory.superposition {sys : LinearSys 𝕋 n} {U W : S n}
     {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
     (hW : Bornology.IsBounded (construct W)) {x u w : ℝ → Vec ℝ n}
-    (traj : sys.IsPerturbedTrajectory (Set.Icc 0 t) U W x u w) :
+    (traj : sys.IsPerturbedTrajectory (Set.Icc 0 t) U W x u w) : -- --- STMT ---
     x t = exp (t • toRealMat sys.A) *ᵥ x 0
         + (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
         + ∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ w s := by -- --- PROOF ---

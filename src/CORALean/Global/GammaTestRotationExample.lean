@@ -38,7 +38,7 @@ open Set Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Example 4.1]: `y ⊆ range(f, x)` iff `ε ≤ 2`, and (2) fails for every `ε > 0`. -/
-theorem gammaTest_rotation_example {ε : ℝ} (hε : 0 < ε) :
+theorem gammaTest_rotation_example {ε : ℝ} (hε : 0 < ε) : -- --- STMT ---
     ¬ gammaTest (fun x => !![1, 1; -1, 1] *ᵥ x) 0 (fun _ => -2) (fun _ => 2)
         !![1, 1; -1, 1] !![1, 1; -1, 1] (fun _ => -ε) (fun _ => ε) ∧
       (Icc (fun _ : Fin 2 => -ε) (fun _ => ε) ⊆

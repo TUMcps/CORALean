@@ -73,7 +73,7 @@ theorem aux_gainDim_gainDerivExample {s : ℝ} (hs0 : 0 < s) (hs1 : s < 1) :
 /-- `[1, Prop. 2 (derivative)]`'s `(41)` as printed fails: smooth `A` and `G` with every
 `Q⁽ᵖ⁾ᵢ = |(Aᵖ(h)G(h))ᵢ|` differentiable at `0` and `Q⁽⁰⁾(0) ≠ 0`, for which `dφ/dh` tends to
 `1/4 > 0` at `δ = 1/2`. -/
-theorem gainDim_deriv_counterexample :
+theorem gainDim_deriv_counterexample : -- --- STMT ---
     ∃ (A : ℝ → Mat ℝ 1 1) (G : ℝ → Vec ℝ 1),
       (∀ k l, ContDiff ℝ ⊤ (fun t => A t k l)) ∧ (∀ k, ContDiff ℝ ⊤ (fun t => G t k)) ∧
       (∀ p, DifferentiableAt ℝ (fun t => |(A t ^ p *ᵥ G t) 0|) 0) ∧ G 0 0 ≠ 0 ∧

@@ -66,7 +66,7 @@ theorem aux_piLp_norm_le (q : ℝ≥0∞) [Fact (1 ≤ q)] (a b : Fin l → ℝ)
 theorem zonotope_subset_ellipsotope_of_lr (q : ℝ≥0∞) [Fact (1 ≤ q)] (G : (Fin m → ℝ) →ₗ[ℝ] W)
     (H : PiLp q (fun _ : Fin l => ℝ) →ₗ[ℝ] W) (X : Matrix (Fin l) (Fin m) ℝ)
     (hGX : ∀ α, G α = H (WithLp.toLp q (X.mulVec α)))
-    (hX : ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖ ≤ 1) :
+    (hX : ‖WithLp.toLp q (fun i => ∑ j, |X i j|)‖ ≤ 1) : -- --- STMT ---
     {x | ∃ α : Fin m → ℝ, ‖α‖ ≤ 1 ∧ x = G α} ⊆
       {x | ∃ β : PiLp q (fun _ : Fin l => ℝ), ‖β‖ ≤ 1 ∧ x = H β} := by -- --- PROOF ---
   rintro _ ⟨α, hα, rfl⟩

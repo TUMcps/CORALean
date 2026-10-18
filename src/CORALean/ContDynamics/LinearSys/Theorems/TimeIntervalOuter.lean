@@ -59,7 +59,7 @@ omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 time at once. -/
 theorem LinearSys.timeIntervalStep_outer_at (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.timeIntervalStep r (m + 2) X₀) := by -- --- PROOF ---
   -- the two lifts `timeIntervalStep_outer_setLinComb` stops short of

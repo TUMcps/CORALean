@@ -61,7 +61,7 @@ theorem NonlinearSys.innerMinkDiffLoop_subset_reachSet (ops : NonlinearSys.Inner
       NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st)
     {k : ℕ} {Rtk Rτ : Set (Vec ℝ n)}
     (h : NonlinearSys.innerMinkDiffLoop ops (fun x => sys.f x u₀) Δt μ fuel k X₀ ∅ =
-      some (Rtk, Rτ)) :
+      some (Rtk, Rτ)) : -- --- STMT ---
     Rtk ⊆ sys.reachSet (S := 𝒮) (Icc 0 (k * Δt)) X₀ U
       (k * Δt) := by -- --- PROOF ---
   -- the induction over the steps, from any time `T` whose reachable set holds the start

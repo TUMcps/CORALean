@@ -46,7 +46,7 @@ theorem scaledSolution_clock_le {f : X → X} {K : ℝ≥0} (hf : LipschitzWith 
     (hg : Continuous g) {K' : ℝ≥0} (hF : LipschitzWith K' fun x => g x • f x) {y z : ℝ → X}
     {t M : ℝ} (ht : 0 ≤ t) (hy : ∀ u ∈ Icc 0 t, HasDerivAt y (g (y u) • f (y u)) u)
     (hy0 : ∀ u ∈ Icc 0 t, 0 ≤ g (y u)) (hz : ∀ u ∈ Icc 0 M, HasDerivAt z (f (z u)) u)
-    (hz0 : z 0 = y 0) (hM : 0 ≤ M) (hgM : g (z M) = 0) :
+    (hz0 : z 0 = y 0) (hM : 0 ≤ M) (hgM : g (z M) = 0) : -- --- STMT ---
     ∫ v in (0 : ℝ)..t, g (y v) ≤ M := by -- --- PROOF ---
   by_contra hlt
   rw [not_le] at hlt

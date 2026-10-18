@@ -54,7 +54,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 the system visits over `[0, r]`, under inputs in any `U`. -/
 theorem LinearSys.timeIntervalStepInner_subset_timeIntervalReachSet
     (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) (η : ℕ)
-    (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ U : Zonotope (Vec ℝ n)) :
+    (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ U : Zonotope (Vec ℝ n)) : -- --- STMT ---
     sys.timeIntervalStepInner r η X₀
       ⊆ sys.timeIntervalReachSet (S := 𝒵) (Set.Icc 0 r) X₀ U r := by -- --- PROOF ---
   have hOuter := sys.timeIntervalStep_subset_initial_add_error hr η hε X₀

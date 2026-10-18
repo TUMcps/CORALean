@@ -35,7 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinearSys.IsCanonicalClassicalTrajectory.input_eq_derivWithin {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n}
         (traj : sys.IsCanonicalClassicalTrajectory T R₀ U x u)
-    {a b t : ℝ} (hT : Set.Icc a b ⊆ T) (ht : t ∈ Set.Ico a b) :
+    {a b t : ℝ} (hT : Set.Icc a b ⊆ T) (ht : t ∈ Set.Ico a b) : -- --- STMT ---
     u t = derivWithin x (Set.Ici t) t - toRealMat sys.A *ᵥ x t := by -- --- PROOF ---
   rw [(traj.flow_Ici hT ht).derivWithin (uniqueDiffWithinAt_Ici t)]
   abel

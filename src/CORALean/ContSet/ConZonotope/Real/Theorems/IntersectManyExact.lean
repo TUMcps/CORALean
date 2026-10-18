@@ -60,7 +60,7 @@ def ConZonotope.aux_block (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
 
 /-- Row `(j, a)` of the agreement block reads the first point against the `j`-th. -/
 theorem ConZonotope.aux_row (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
-    (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) (j : Fin d) (a : Fin n) :
+    (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) (j : Fin d) (a : Fin n) : -- --- STMT ---
     ∑ u : Fin (∑ j : Fin d, (cs j.succ).h),
         (-(if (finSigmaFinEquiv.symm u).1 = j then (1 : ℝ) else 0)
           * (cs (finSigmaFinEquiv.symm u).1.succ).G (finSigmaFinEquiv.symm u).2 a)
@@ -85,7 +85,7 @@ theorem ConZonotope.aux_row (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
   · intro h; exact absurd (Finset.mem_univ j) h
 
 theorem ConZonotope.aux_mem_intersectMany_P_iff (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
-    (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) :
+    (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) : -- --- STMT ---
     β ∈ (ConZonotope.intersectMany cs).P.construct ↔
       ((fun t => β (Fin.castAdd _ t)) ∈ (cs 0).P.construct ∧
         ∀ j, ConZonotope.aux_block cs β j ∈ (cs j.succ).P.construct) ∧
@@ -121,7 +121,7 @@ theorem ConZonotope.aux_mem_intersectMany_P_iff (cs : Fin (d + 1) → ConZonotop
 
 /-- Only the first generator block survives; the others are pinned to it. -/
 theorem ConZonotope.aux_value_intersectMany (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
-    (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) :
+    (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) : -- --- STMT ---
     (ConZonotope.intersectMany cs).c
         + ∑ l : Fin ((cs 0).h + ∑ j : Fin d, (cs j.succ).h),
             β l • (ConZonotope.intersectMany cs).G l

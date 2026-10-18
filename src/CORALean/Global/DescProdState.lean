@@ -33,7 +33,7 @@ variable {n m : ℕ}
 
 theorem descProd_state (A : ℕ → Mat ℝ n n) (B : ℕ → Mat ℝ n m) (Δ : ℕ → Vec ℝ n)
     (δ : ℕ → Vec ℝ m) (L : ℕ → Vec ℝ n)
-    (h : ∀ k, Δ (k + 1) = A k *ᵥ Δ k + B k *ᵥ δ k + L k) (k : ℕ) :
+    (h : ∀ k, Δ (k + 1) = A k *ᵥ Δ k + B k *ᵥ δ k + L k) (k : ℕ) : -- --- STMT ---
     Δ (k + 1) = descProd A k (k + 1) *ᵥ Δ 0
       + ∑ j ∈ Finset.range (k + 1), (descProd A k (k - j) * B j) *ᵥ δ j
       + ∑ j ∈ Finset.range (k + 1), descProd A k (k - j) *ᵥ L j := by -- --- PROOF ---

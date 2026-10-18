@@ -58,7 +58,7 @@ private theorem aux_iteratedDeriv_hyp_parity (k : ℕ) :
 theorem Taylm.hyperbolic_outer (p : ℕ) (first : Bool) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ}
     (h : T.Encloses f)
     (hp : toReal (maximum (absolute T.constCoef) (maximum (absolute T.bounds.inf)
-      (absolute T.bounds.sup))) ≤ 2 ^ p / 2) :
+      (absolute T.bounds.sup))) ≤ 2 ^ p / 2) : -- --- STMT ---
     (T.hyperbolic p first).Encloses
       fun t => (if first then Real.sinh else Real.cosh) (f t) := by -- --- PROOF ---
   -- the center, the order, and the function whose Taylor model this is

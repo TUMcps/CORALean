@@ -38,7 +38,7 @@ variable {X : Type}
 theorem ReachSequence.forall_exists_iff_exists_forall {ι : Type} {R : ℝ≥0 → Set X}
     (hne : ∀ t, (R t).Nonempty) {T : ι → Set ℝ≥0} {s : Set ι}
     (hT : s.Pairwise fun a b => Disjoint (T a) (T b)) {P : ι → (ℝ≥0 → X) → Prop}
-    (hP : ∀ i ξ ξ', (∀ x ∈ T i, ξ x = ξ' x) → (P i ξ ↔ P i ξ')) :
+    (hP : ∀ i ξ ξ', (∀ x ∈ T i, ξ x = ξ' x) → (P i ξ ↔ P i ξ')) : -- --- STMT ---
     (∀ ξ ∈ ReachSequence.traceSet R, ∃ i ∈ s, P i ξ) ↔
       ∃ i ∈ s, ∀ ξ ∈ ReachSequence.traceSet R, P i ξ := by -- --- PROOF ---
   classical

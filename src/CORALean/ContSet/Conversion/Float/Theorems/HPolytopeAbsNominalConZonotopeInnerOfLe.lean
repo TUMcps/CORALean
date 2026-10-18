@@ -31,7 +31,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 taken at, whatever the polytope. -/
 theorem HPolytope.abs_nominal_conZonotopeInnerOf_le (P : HPolytope 𝕋 (Vec 𝕋 n))
     (Z : Zonotope (Vec 𝕋 n))
-    {y : Vec ℝ n} (hy : y ∈ nominalSet (P.conZonotopeInnerOf Z)) (k : Fin n) :
+    {y : Vec ℝ n} (hy : y ∈ nominalSet (P.conZonotopeInnerOf Z)) (k : Fin n) : -- --- STMT ---
     |y k| ≤
       toReal (addUp (absolute (Z.c k)) (radius (fun i j => Z.G j i) k)) := by -- --- PROOF ---
   obtain ⟨β, hβ, -, hval⟩ := ConZonotope.mem_nominalSet_iff.mp hy

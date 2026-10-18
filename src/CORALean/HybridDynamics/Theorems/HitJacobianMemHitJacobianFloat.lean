@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `L(x₀)` is in the interval matrix `hitJacobianFloat` returns. -/
 theorem GuardMap.hitJacobian_mem_hitJacobianFloat (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
     (x₀ : Vec 𝕋 n) {L : Interval (Mat 𝕋 n n)}
-    (hL : GuardMap.hitJacobianFloat A b nv d x₀ = some L) :
+    (hL : GuardMap.hitJacobianFloat A b nv d x₀ = some L) : -- --- STMT ---
     GuardMap.hitJacobian (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
       ∈ L.construct := by -- --- PROOF ---
   simp only [GuardMap.hitJacobianFloat] at hL

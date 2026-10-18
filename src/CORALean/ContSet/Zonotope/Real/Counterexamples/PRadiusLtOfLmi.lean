@@ -36,7 +36,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.pRadius_lt_of_lmi_counterexample :
+theorem Zonotope.pRadius_lt_of_lmi_counterexample : -- --- STMT ---
     let Z : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1 / 2⟩
     let W : Mat ℝ 1 1 := 1
     let m : Vec ℝ 1 := fun _ => 1 / 2

@@ -48,7 +48,7 @@ theorem NonlinDASys.reachAdaptive_outer (sys : NonlinDASys n p m)
         (fun s => x (st.t + s)) (fun s => y (st.t + s)) (fun s => u (st.t + s)))
     (h0 : 0 ≤ tFinal) {res : Set (Vec ℝ n)} {tEnd : ℝ}
     (hres : sys.reachAdaptive T R0 U tFinal tol h₀ adm_x₀ adm_y₀ (k + 2) fuelErr fuelHalf fuel
-      = some (res, tEnd)) (hpos : 0 < tEnd) :
+      = some (res, tEnd)) (hpos : 0 < tEnd) : -- --- STMT ---
     ∀ t ∈ Set.Icc 0 tEnd, x t ∈ res := by -- --- PROOF ---
   refine NonlinDASys.reachAdaptiveLoop_outer sys T U tFinal tol k fuelErr fuelHalf traj hT hcert
     fuel _ ∅ le_rfl traj.init (fun h => absurd h (lt_irrefl 0)) h0 res tEnd hres hpos

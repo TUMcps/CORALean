@@ -54,7 +54,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 
 theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S Rg m n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ)
-    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) :
+    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) : -- --- STMT ---
     sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
       ⊆ construct R := by -- --- PROOF ---
   intro y hy

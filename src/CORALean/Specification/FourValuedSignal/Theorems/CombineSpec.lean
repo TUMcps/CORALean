@@ -34,7 +34,7 @@ namespace CORALean
 
 theorem FourValuedSignal.combine_spec {ι κ : Type} [Fintype ι] [Nonempty ι] (op : (ι →
     FourValued) → κ → FourValued)
-    (sig : ι → FourValuedSignal ℝ) (hv : ∀ k, (sig k).IsValid) (i : κ) :
+    (sig : ι → FourValuedSignal ℝ) (hv : ∀ k, (sig k).IsValid) (i : κ) : -- --- STMT ---
     (FourValuedSignal.combine op sig i).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (FourValuedSignal.combine op sig i).at t = op (fun k => (sig k).at t) i := by -- --- PROOF ---
   unfold FourValuedSignal.combine

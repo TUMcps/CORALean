@@ -87,7 +87,7 @@ theorem aux_encloseNotMonotone_subset :
 
 /-- At `ℝ`, the activation layer's propagation of a box is the box `mtimes` makes of the
 diagonal slopes, plus the relaxation's box, rounded nowhere. -/
-theorem aux_encloseNotMonotone_enclose (I : Real.Interval (Vec ℝ 1)) :
+theorem aux_encloseNotMonotone_enclose (I : Real.Interval (Vec ℝ 1)) : -- --- STMT ---
     (Layer.activation (S := ℐ𝒱) aux_encloseNotMonotone_R).enclose I
       = (Real.Interval.mtimes (Float.diagonalBlock fun i =>
           aux_encloseNotMonotone_R.slope (I.inf i) (I.sup i)) I).plus
@@ -130,7 +130,7 @@ theorem aux_encloseNotMonotone_not_mem_t :
 
 /-- The zero-function relaxation above witnesses that no such law holds: `[0, 1]`
 encloses past `1`, while its superset `[0, 3]` encloses only to `0`. -/
-theorem Layer.enclose_not_monotone :
+theorem Layer.enclose_not_monotone : -- --- STMT ---
     ¬ ∀ {σ : ℝ → ℝ} (R : Relaxation ℝ), R.Sound σ → ∀ (s t : Real.Interval (Vec ℝ 1)),
         construct s ⊆ construct t →
           construct ((Layer.activation (S := ℐ𝒱) R).enclose s)

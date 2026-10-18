@@ -40,7 +40,7 @@ variable {n : ℕ} {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 
 theorem Reach.holds_of_check [Reach Sys P O S] [Contains ContSet (SetUnion (S n))]
     [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (params : P n sys) (options : O)
-    (spec : Specification ContSet) :
+    (spec : Specification ContSet) : -- --- STMT ---
     Reach.check (S := S) sys params options spec →
     (spec.Holds (Reach.reachExact (S := S) sys params)) := by -- --- PROOF ---
   unfold Reach.check

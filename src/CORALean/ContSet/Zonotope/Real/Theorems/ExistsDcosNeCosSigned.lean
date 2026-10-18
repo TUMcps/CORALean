@@ -34,7 +34,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The printed `dcos` differs from the cosine between the sign-aligned generators. -/
-theorem Zonotope.exists_dcos_ne_cosSigned : ∃ gi gj : Vec ℝ 2,
+theorem Zonotope.exists_dcos_ne_cosSigned : -- --- STMT ---
+    ∃ gi gj : Vec ℝ 2,
     Zonotope.dcos gi gj ≠
       dotProduct ((if gi 0 < 0 then (-1 : ℝ) else 1) • gi) ((if gj 0 < 0 then (-1 : ℝ) else 1) • gj)
         / (‖(if gi 0 < 0 then (-1 : ℝ) else 1) • gi‖₂ * ‖(if gj 0 < 0 then (-1 : ℝ) else 1) • gj‖₂)

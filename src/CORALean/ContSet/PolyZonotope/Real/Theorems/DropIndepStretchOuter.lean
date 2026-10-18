@@ -56,7 +56,7 @@ theorem PolyZonotope.dropIndepStretch_outer {n : ℕ} (pZ : PolyZonotope (Vec �
     (k : Fin n → Fin pZ.p) (hk : Function.Injective k)
     (hE : ∀ j k' l, (k' = k j ∨ l = partD.left j) →
       pZ.E k' l = if k' = k j ∧ l = partD.left j then 1 else 0)
-    (hPinv : IsUnit (pZ.dropIndepMat partD).det) :
+    (hPinv : IsUnit (pZ.dropIndepMat partD).det) : -- --- STMT ---
     pZ.construct ⊆ (pZ.dropIndepStretch partD partI).construct := by -- --- PROOF ---
   set P := pZ.dropIndepMat partD with hPdef
   set i0 := partI.right 0 with hi0def

@@ -42,7 +42,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- A float run's error box always brackets `0`, given its two inputs do. -/
 theorem LinearSysDT.reachFloat_zero_mem_error (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) :
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) : -- --- STMT ---
     (0 : Vec ℝ n) ∈
       (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩
         ⟨o, ho⟩).I_error.construct := by -- --- PROOF ---

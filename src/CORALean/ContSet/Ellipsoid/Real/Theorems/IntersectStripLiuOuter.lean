@@ -51,7 +51,7 @@ variable {n m : ℕ}
 
 theorem Ellipsoid.intersectStripLiu_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c : Vec ℝ n)
     (C : Mat ℝ m n) {V : Mat ℝ m m} (hV : V.PosDef) (y : Vec ℝ m) (σsqPrev : ℝ) {lam : ℝ}
-    (h0 : 0 < lam) (h1 : lam < 1) :
+    (h0 : 0 < lam) (h1 : lam < 1) : -- --- STMT ---
     {x | (x - c) ⬝ᵥ Q⁻¹ *ᵥ (x - c) ≤ σsqPrev} ∩ {x | (y - C *ᵥ x) ⬝ᵥ V⁻¹ *ᵥ (y - C *ᵥ x) ≤ 1}
       ⊆ (Ellipsoid.intersectStripLiu Q c C V y σsqPrev lam).construct := by -- --- PROOF ---
   rintro x ⟨hxE, hxS⟩

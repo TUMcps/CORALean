@@ -41,7 +41,7 @@ open Matrix ContSet Scalar NormedSpace MeasureTheory
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.supportLower_timeInterval_counterexample :
+theorem LinearSys.supportLower_timeInterval_counterexample : -- --- STMT ---
     let sys : LinearSys ℝ 3 := LinearSys.canonical 0
     let U : Set (Vec ℝ 3) := convexHull ℝ {![0, 0, 0], ![1, 0, 0], ![0, 1, 0], ![0, 0, 1]}
     let ℓ : Vec ℝ 3 →ₗ[ℝ] ℝ :=

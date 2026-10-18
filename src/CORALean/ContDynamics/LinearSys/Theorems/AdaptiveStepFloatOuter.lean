@@ -61,7 +61,7 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} {s s' : LinearSys.AdaptiveState 𝕋 n}
     {r : LinearSys.AdaptiveStepInfo 𝕋 n}
     (h : sys.adaptiveStepFloat X₀ V t₀ tf options s = some (r, s'))
-    (hinv : sys.AdaptiveInvariant V s) :
+    (hinv : sys.AdaptiveInvariant V s) : -- --- STMT ---
     sys.AdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
       r.tEnd = t₀ + min s'.t tf ∧
       ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},

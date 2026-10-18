@@ -47,7 +47,7 @@ variable {n : ℕ}
 /-- Only the first generator block survives. The second is kept at zero rather
 than dropped, so that the agreement rows have columns in which to read it. -/
 theorem ConPolyZono.aux_value_intersectionDep (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
-    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) :
+    (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- STMT ---
     (∑ l : Fin (cPZ₁.h + cPZ₂.h),
         PolyZonotope.monomial (PolyZonotope.plusE cPZ₁.E cPZ₂.E) a l
           • Fin.append cPZ₁.G (0 : Fin cPZ₂.h → Vec ℝ n) l)

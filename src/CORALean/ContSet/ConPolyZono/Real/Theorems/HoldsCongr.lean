@@ -32,7 +32,7 @@ constraint alone — which is what compacting `A` and `R` does. -/
 theorem ConPolyZono.holds_congr {p p' m q s' : ℕ} {A : Mat ℝ m q} {A' : Mat ℝ m s'}
     {b : Interval (Vec ℝ m)} {R : Fin p → Fin q → ℕ} {R' : Fin p' → Fin s' → ℕ}
     {a : Fin p → ℝ} {a' : Fin p' → ℝ}
-    (h : A' *ᵥ PolyZonotope.monomial R' a' = A *ᵥ PolyZonotope.monomial R a) :
+    (h : A' *ᵥ PolyZonotope.monomial R' a' = A *ᵥ PolyZonotope.monomial R a) : -- --- STMT ---
     ConPolyZono.holds A b R a ↔ ConPolyZono.holds A' b R' a' := by -- --- PROOF ---
   rw [ConPolyZono.holds, ConPolyZono.holds, h]
 

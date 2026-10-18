@@ -87,7 +87,7 @@ theorem Krylov.aux_coord_integral {c : ℝ} {u : ℝ → Vec ℝ 1}
 
 /-- [1, Alg. 2] line 8 as printed: with `R*_{b,1} = R_p(1)` for `ẋ = -x + u`, `u ∈ [0, 1]`, the
 boxes of lines 3 and 8 stay below `c₀` and `c₁`, and `R_p(2)` holds a point beyond `c₀ + c₁`. -/
-theorem Krylov.printed_input_propagation_counterexample :
+theorem Krylov.printed_input_propagation_counterexample : -- --- STMT ---
     let A : Mat ℝ 1 1 := !![-1]
     let sys : LinearSys ℝ 1 := LinearSys.canonical A
     let U : Set (Vec ℝ 1) := {u | 0 ≤ u 0 ∧ u 0 ≤ 1}

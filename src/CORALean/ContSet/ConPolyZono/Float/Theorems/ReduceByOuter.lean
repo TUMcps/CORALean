@@ -91,7 +91,7 @@ theorem ConPolyZono.aux_abs_droppedInd_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
 theorem ConPolyZono.aux_abs_dropped_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) {a : Fin cPZ.p → ℝ}
-    {β : Fin cPZ.qI → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
+    {β : Fin cPZ.qI → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- STMT ---
     |(∑ l, toReal (cPZ.G (partD.right l) i)
           * Real.PolyZonotope.monomial cPZ.E a (partD.right l))
         + ∑ j, toReal (cPZ.GI (partI.right j) i) * β (partI.right j)|

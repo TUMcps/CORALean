@@ -46,7 +46,7 @@ theorem LinearSys.reachFloatInputStep_invariant (sys : LinearSys 𝕋 n) {Δt : 
     {Pu : Zonotope (Vec 𝕋 n)} (ρ : ℕ) (heA : exp (Δt • Scalar.toRealMat sys.A) ∈ eAΔt.construct)
     (hPu : Real.MatExp.expIntegral (Scalar.toRealMat sys.A) Δt *ᵥ ũ ∈ Pu.construct) {k : ℕ}
     {s : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)}
-    (h : sys.ReachFloatInputInvariant Δt X₀ ũ Ũ k s) :
+    (h : sys.ReachFloatInputInvariant Δt X₀ ũ Ũ k s) : -- --- STMT ---
     sys.ReachFloatInputInvariant Δt X₀ ũ Ũ (k + 1)
       (LinearSys.reachFloatInputStep eAΔt Pu ρ s) := by -- --- PROOF ---
   obtain ⟨h1, h2, h3, h4⟩ := h

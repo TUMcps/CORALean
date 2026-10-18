@@ -40,7 +40,7 @@ open Matrix
 
 /-- A point of `{[T TR], c}`, its coefficient vector split at the two blocks. -/
 theorem Zonotope.aux_ofEchelon_sum {n k : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
-    (R : Fin k → Vec ℝ n) (β : Fin (n + k) → ℝ) :
+    (R : Fin k → Vec ℝ n) (β : Fin (n + k) → ℝ) : -- --- STMT ---
     c + ∑ a, β a • Fin.append (fun i a => T a i) (fun l => T *ᵥ R l) a
       = c + T *ᵥ (fun i => β (Fin.castAdd k i))
         + ∑ l, β (Fin.natAdd n l) • (T *ᵥ R l) := by -- --- PROOF ---
@@ -59,7 +59,7 @@ theorem Zonotope.aux_ofEchelon_sum {n k : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
 /-- [1, Sec. 4.3 (new reduction)]: one step of the reduction, at any `T` and any chosen column,
 encloses. -/
 theorem Zonotope.ofEchelon_reduceScottStep_outer {n k : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
-    (R : Fin (k + 1) → Vec ℝ n) (ind : Fin (k + 1)) :
+    (R : Fin (k + 1) → Vec ℝ n) (ind : Fin (k + 1)) : -- --- STMT ---
     (Zonotope.ofEchelon c T R).construct
       ⊆ (Zonotope.ofEchelon c (Zonotope.reduceScottStep T R ind).1
           (Zonotope.reduceScottStep T R ind).2).construct := by -- --- PROOF ---

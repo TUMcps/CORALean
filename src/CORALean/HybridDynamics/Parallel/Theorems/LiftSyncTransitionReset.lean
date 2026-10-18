@@ -35,7 +35,7 @@ theorem ParallelHybridAutomaton.liftSyncTransition_reset [ExactScalar 𝕋] [Dec
     (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (slift : ParallelHybridAutomaton.SyncLifting S G n m)
     (lab : ParallelHybridAutomaton.SyncLabels G L 𝕋 n Λ) (ℓ : ∀ i, L i) (a : Λ)
-    (x : ∀ i, Vec ℝ (n i)) :
+    (x : ∀ i, Vec ℝ (n i)) : -- --- STMT ---
     (P.liftSyncTransition slift lab ℓ a).reset (stack x) =
       stack fun c => match lab.pick P ℓ a c with
         | some e => e.reset (x c)

@@ -68,7 +68,7 @@ theorem Taylm.aux_minus_const_scaled {T : Taylm n} {h C : ℝ} (c : ℝ) (hc : |
 theorem Taylm.taylor_scaled {T : Taylm n} {g : ℝ → ℝ} {D h C A E : ℝ} (h0 : 0 < h)
     (h1 : h ≤ 1) (hT : T.Scaled h C)
     (hA : ∀ k ≤ T.maxOrder, |iteratedDeriv k g T.constCoef / (Nat.factorial k : ℝ)| ≤ A)
-    (hD : |D| ≤ E) :
+    (hD : |D| ≤ E) : -- --- STMT ---
     (T.taylor g T.constCoef D).Scaled h
       (A * ∑ k : Fin (T.maxOrder + 1), (8 * C) ^ (k : ℕ)
         + E * (2 * C) ^ (T.maxOrder + 1)) := by -- --- PROOF ---

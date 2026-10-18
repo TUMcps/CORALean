@@ -59,7 +59,7 @@ theorem LinearARX.identifyCandidate_fit (y : Fin N → ℕ → Vec ℝ dy) (u : 
         Mat ℝ (p * dy + (p + 1) * du) N) = V * Matrix.diagonal s * Wᵀ)
     (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (sys' : LinearARX ℝ dy du p)
     (hdata : ∀ j, y j (k j) = ∑ i : Fin p, sys'.Abar i *ᵥ y j (k j - (i + 1))
-      + ∑ l : Fin (p + 1), sys'.Bbar l *ᵥ u j (k j - l)) (j : Fin N) :
+      + ∑ l : Fin (p + 1), sys'.Bbar l *ᵥ u j (k j - l)) (j : Fin N) : -- --- STMT ---
     y j (k j) = ∑ i : Fin p, (LinearARX.identifyBlocks sys'.dt (LinearARX.identifyCandidate
           (fun j => y j (k j)) V s W r)).Abar i *ᵥ y j (k j - (i + 1))
       + ∑ l : Fin (p + 1), (LinearARX.identifyBlocks sys'.dt (LinearARX.identifyCandidate

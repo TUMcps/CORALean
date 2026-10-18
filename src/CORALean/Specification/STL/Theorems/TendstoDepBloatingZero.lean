@@ -46,7 +46,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.tendsto_depBloating_zero (A : Mat ℝ n n) (B : Mat ℝ n m) (U : Zonotope (Vec ℝ m))
-    (κ : ℕ) :
+    (κ : ℕ) : -- --- STMT ---
     Tendsto (fun Δt : ℝ =>
       sSup ((fun v => ‖v‖) '' (STL.depReachConsts A B U Δt κ).D.construct))
       (𝓝[>] (0 : ℝ)) (𝓝 0) := by -- --- PROOF ---

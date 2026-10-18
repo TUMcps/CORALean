@@ -44,7 +44,7 @@ def token():
         if os.environ.get(var):
             return os.environ[var].strip()
     try:
-        with open(TOKEN_FILE) as f:
+        with open(TOKEN_FILE, encoding="utf-8") as f:
             return f.read().strip()
     except OSError:
         sys.exit("no token: set $CORALEAN_GITLAB_TOKEN or write %s" % TOKEN_FILE)

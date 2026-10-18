@@ -47,7 +47,7 @@ variable [IntersectStrip 𝕋 S] {n p : ℕ}
 
 theorem LinearSysDT.observeStep_outer (sys : LinearSysDT 𝕋 n) (σ : Vec 𝕋 sys.q)
     (W : S n) (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n sys.q) (u : Vec 𝕋 sys.m)
-    (y : Vec 𝕋 sys.q) (Xhat : S n) {X : Set (Vec ℝ n)} (hX : X ⊆ construct Xhat) :
+    (y : Vec 𝕋 sys.q) (Xhat : S n) {X : Set (Vec ℝ n)} (hX : X ⊆ construct Xhat) : -- --- STMT ---
     ((fun x => toRealMat sys.A *ᵥ x + toRealMat sys.B *ᵥ toRealVec u + toRealVec sys.c) '' X +
         construct W) ∩
         {x | ∀ i, |(toRealMat sys.C *ᵥ x - toRealVec y) i| ≤ toReal (σ i)} ⊆

@@ -82,7 +82,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isIntersectingVPolyCora_counterexample :
+theorem HPolytope.isIntersectingVPolyCora_counterexample : -- --- STMT ---
     let P1 : HPolytope (Vec ℝ 2) := HPolytope.ineqs !![1, 0; 0, 1; -1, 0; 0, -1] ![1, 1, 1, 1]
     let P2 : VPolytope (Vec ℝ 2) := ⟨3, ![![5, 5], ![6, 5], ![5, 6]]⟩
     Disjoint P1.construct P2.construct ∧

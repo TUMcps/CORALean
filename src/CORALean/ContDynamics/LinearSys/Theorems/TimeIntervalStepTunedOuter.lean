@@ -52,7 +52,7 @@ returned by the computable search `tuneOrder` at the float norm bound of `[r, r]
 theorem LinearSys.timeIntervalStep_outer_tuned (sys : LinearSys 𝕋 n) {r ε : 𝕋}
     (hr : 0 < toReal r) {fuel η : ℕ}
     (h : MatExp.tuneOrder (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A)))
-      ε fuel = some η) (X₀ : S n) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) :
+      ε fuel = some η) (X₀ : S n) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) : -- --- STMT ---
     (fun x₀ => exp (t • Scalar.toRealMat sys.A) *ᵥ x₀) '' construct X₀
       ⊆ construct (sys.timeIntervalStep (toReal r) η X₀) := by -- --- PROOF ---
   have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point sys.A) r

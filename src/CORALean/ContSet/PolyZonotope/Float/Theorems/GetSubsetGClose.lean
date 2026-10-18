@@ -32,7 +32,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.getSubsetG_close (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) (cen rad : 𝕋)
-    (r : Fin n) (l : Fin (pZ.h * (pZ.maxExp k + 1))) :
+    (r : Fin n) (l : Fin (pZ.h * (pZ.maxExp k + 1))) : -- --- STMT ---
     |Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad) l r
         - toReal (pZ.getSubsetGDown k cen rad r l)|
       ≤ toReal (pZ.getSubsetGDiff k cen rad r l) := by -- --- PROOF ---

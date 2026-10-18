@@ -63,7 +63,7 @@ theorem Ellipsoid.aux_upper {a c r : ℝ} (ha : 0 < a) (hc : 0 < c) (hr : 0 < r)
 
 /-- [1, Eq. 25]: the root of [1, Eq. 18] at `d = 2` lies between the two printed bounds. -/
 theorem Ellipsoid.halderRoot_bounds_two {l₁ l₂ r : ℝ} (h₁ : 0 < l₁) (h₂ : 0 < l₂)
-    (hr : 0 < r) (hroot : Ellipsoid.halderStationarity ![l₁, l₂] r = 0) :
+    (hr : 0 < r) (hroot : Ellipsoid.halderStationarity ![l₁, l₂] r = 0) : -- --- STMT ---
     (Real.sqrt ((l₁ + l₂) * (l₁ + l₂ + 6 * (l₁ * l₂))) - (l₁ + l₂)) / (6 * (l₁ * l₂)) < r
     ∧ r < min ((l₁ + Real.sqrt (l₁ * (l₁ + 8))) / (2 * l₁))
         ((l₂ + Real.sqrt (l₂ * (l₂ + 8))) / (2 * l₂)) := by -- --- PROOF ---

@@ -43,7 +43,7 @@ variable {X : Type}
 theorem STL.upsilon_or_of_decided {𝓡 : Set (ℝ≥0 → Set X)} {Υ : STL.Formula X → RTL.Formula X}
     (hs : STL.IsSound 𝓡 Υ) (hc : STL.IsComplete 𝓡 Υ) (φ₁ φ₂ : STL.Formula X)
     {T₁ T₂ : Set ℝ≥0} (hT : Disjoint T₁ T₂) (h₁ : φ₁.DecidedOn T₁) (h₂ : φ₂.DecidedOn T₂)
-    {R : ℝ≥0 → Set X} (hR : R ∈ 𝓡) :
+    {R : ℝ≥0 → Set X} (hR : R ∈ 𝓡) : -- --- STMT ---
     (Υ (φ₁.or φ₂)).Sat R ↔ (RTL.Formula.or (Υ φ₁) (Υ φ₂)).Sat R := by -- --- PROOF ---
   constructor
   · intro h

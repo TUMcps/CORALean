@@ -59,7 +59,7 @@ noncomputable def ConZonotope.aux_quadMapGReal (Q : Fin m → Mat 𝕋 n n)
 
 /-- The exact generator lies between the two stored roundings. -/
 theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
-    (i : Fin m) (l : Fin (cZ.h + cZ.h + cZ.h * cZ.h)) :
+    (i : Fin m) (l : Fin (cZ.h + cZ.h + cZ.h * cZ.h)) : -- --- STMT ---
     toReal (ConZonotope.quadMapGDown Q cZ i l) ≤ ConZonotope.aux_quadMapGReal Q cZ i l
       ∧ ConZonotope.aux_quadMapGReal Q cZ i l
         ≤ toReal (ConZonotope.quadMapGUp Q cZ i l) := by -- --- PROOF ---
@@ -110,7 +110,7 @@ theorem ConZonotope.aux_quadMapG_between (Q : Fin m → Mat 𝕋 n n) (cZ : ConZ
 
 theorem ConZonotope.quadMapG_close (Q : Fin m → Mat 𝕋 n n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin m)
-    (l : Fin (cZ.h + cZ.h + cZ.h * cZ.h)) :
+    (l : Fin (cZ.h + cZ.h + cZ.h * cZ.h)) : -- --- STMT ---
     |(Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ)).G l i
         - toReal (ConZonotope.quadMapGDown Q cZ i l)|
       ≤ toReal (ConZonotope.quadMapGDiff Q cZ i l) := by -- --- PROOF ---

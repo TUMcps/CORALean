@@ -65,7 +65,7 @@ theorem aux_abs_le_tBound {l u : 𝕋} {t : ℝ} (hl : toReal l ≤ t) (hu : t �
 
 /-- The exact conjugated coefficients lie between the two roundings. -/
 theorem aux_conjCoeffs_bracket {A B : ScaleRounding 𝕋} (hA : A.Sound ra) (hB : B.Sound rb)
-    (ha : 0 < ra) (hb : 0 < rb) (c : 𝕋) (p : Fin (m + 1) → 𝕋) (i : Fin (m + 1)) :
+    (ha : 0 < ra) (hb : 0 < rb) (c : 𝕋) (p : Fin (m + 1) → 𝕋) (i : Fin (m + 1)) : -- --- STMT ---
     toReal (conjCoeffsDown A B c p i)
         ≤ Real.shiftConst (Real.scaleCoeffs (fun k => toReal (p k)) ra rb) (toReal c) i
       ∧ Real.shiftConst (Real.scaleCoeffs (fun k => toReal (p k)) ra rb) (toReal c) i
@@ -88,7 +88,7 @@ theorem aux_conjCoeffs_bracket {A B : ScaleRounding 𝕋} (hA : A.Sound ra) (hB 
 /-- What rounding the coefficients can move the polynomial by, over the box. -/
 theorem aux_evalPoly_conjCoeffs_le {A B : ScaleRounding 𝕋} (hA : A.Sound ra) (hB : B.Sound rb)
     (ha : 0 < ra) (hb : 0 < rb) (c : 𝕋) (p : Fin (m + 1) → 𝕋) {t : ℝ} {T : 𝕋}
-    (hT : |t| ≤ toReal T) :
+    (hT : |t| ≤ toReal T) : -- --- STMT ---
     |Real.evalPoly (fun k => toReal (conjCoeffsUp A B c p k)) t
         - (ra * Real.evalPoly (fun k => toReal (p k)) (rb * t) + toReal c)|
       ≤ toReal (evalPolyUp (conjCoeffsGap A B c p) T) := by -- --- PROOF ---

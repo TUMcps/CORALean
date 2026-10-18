@@ -56,7 +56,7 @@ theorem NeurNetContrSys.reachWith_timePoint_outer (sys : NeurNetContrSys P S n)
       (Fin.append (z sys.dt) u : Vec ℝ (n + _)) ∈ construct (rx R).1)
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π) {H : ℕ}
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
-    (traj : sys.IsTrajectory π H X₀ U_ext W x v w) :
+    (traj : sys.IsTrajectory π H X₀ U_ext W x v w) : -- --- STMT ---
     ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈ construct (sys.reachWith cp pr rx X₀ i).1 := by -- --- PROOF ---
   intro i
   induction i with

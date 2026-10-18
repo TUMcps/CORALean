@@ -48,7 +48,7 @@ theorem LinearSysDT.intervalEstimate_le_zonotope (sys : LinearSysDT ℝ n) (L : 
     (hZ0 : X₀.construct ⊆ (Z 0).construct)
     (hZ : ∀ k, ((sys.A - L * sys.C) *ᵥ ·) '' (Z k).construct + {sys.B *ᵥ u k + L *ᵥ y k} +
       (sys.E *ᵥ ·) '' W.construct + ((-(L * sys.F)) *ᵥ ·) '' V.construct ⊆ (Z (k + 1)).construct)
-    (k : ℕ) (i : Fin n) :
+    (k : ℕ) (i : Fin n) : -- --- STMT ---
     (Z k).interval.inf i ≤ (LinearSysDT.intervalEstimate sys L X₀ W V u y k).inf i ∧
       (LinearSysDT.intervalEstimate sys L X₀ W V u y k).sup i ≤
         (Z k).interval.sup i := by -- --- PROOF ---

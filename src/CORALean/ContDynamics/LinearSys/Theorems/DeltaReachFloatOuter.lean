@@ -70,7 +70,8 @@ theorem aux_zero_mem_origin :
 started from, for `x ∈ R` and `s ∈ [0, Δt]`. -/
 theorem LinearSys.deltaReachFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
-    {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) :
+    {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s)
+    (hs : s ≤ toReal Δt) : -- --- STMT ---
     exp (s • Scalar.toRealMat sys.A) *ᵥ x - x
       ∈ (sys.deltaReachFloat Δt η R).construct := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1

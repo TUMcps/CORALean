@@ -53,7 +53,7 @@ variable {N F₁ F₂ : ℕ}
 /-- The padded pair at a joint factor vector, read back as the product each set
 contributes at its own half of it. -/
 theorem GNN.aux_gcnUncertain_apply (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
-    (H : PolyZonotope (Mat ℝ N F₁)) (a : Fin (P.p + H.p) → ℝ) :
+    (H : PolyZonotope (Mat ℝ N F₁)) (a : Fin (P.p + H.p) → ℝ) : -- --- STMT ---
     (P.padBack H.p).point a
         * (H.padFront P.p).point (fun k => a (Fin.cast (rfl : (P.p + H.p) = (P.p + H.p)) k)) * W
       = P.point (a ∘ Fin.castAdd H.p) * H.point (a ∘ Fin.natAdd P.p) * W := by -- --- PROOF ---
@@ -66,7 +66,7 @@ theorem GNN.aux_gcnUncertain_apply (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Ma
 /-- [1]'s uncertain-graph convolution is exactly the set of products the two
 sets take at a joint factor vector. -/
 theorem GNN.gcnUncertain_exact (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
-    (H : PolyZonotope (Mat ℝ N F₁)) :
+    (H : PolyZonotope (Mat ℝ N F₁)) : -- --- STMT ---
     (fun a : Fin (P.p + H.p) → ℝ =>
         P.point (a ∘ Fin.castAdd H.p) * H.point (a ∘ Fin.natAdd P.p) * W)
         '' {a | ∀ k, |a k| ≤ 1}

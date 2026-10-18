@@ -75,7 +75,7 @@ theorem LinearSysDT.aux_backReachSetExists_input (sys : LinearSysDT 𝕋 n) (T U
 
 theorem LinearSysDT.backReachSetExists_isTrajectory (sys : LinearSysDT 𝕋 n) (T U : S n)
     {R₀ : S n} {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) (k : ℕ)
-    (hx : x₀ ∈ sys.backReachSetExists T U k) :
+    (hx : x₀ ∈ sys.backReachSetExists T U k) : -- --- STMT ---
     ∃ u : ℕ → Vec ℝ n, sys.IsCanonicalTrajectoryOn R₀ U k (sys.simulate x₀ u) u ∧
       sys.simulate x₀ u k ∈ construct T := by -- --- PROOF ---
   obtain ⟨u, hu, hT⟩ := sys.aux_backReachSetExists_input T U k x₀ hx

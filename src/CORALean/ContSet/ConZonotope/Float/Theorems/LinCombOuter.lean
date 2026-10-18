@@ -86,7 +86,8 @@ theorem ConZonotope.aux_abs_linCombCoeff {h₁ h₂ : ℕ} {β₁ : Vec ℝ h₁
 weight the trailing coefficient names. -/
 theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) {β₁ : Vec ℝ cZ₁.h}
     {β₂ : Vec ℝ cZ₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ cZ₁.P.nominal.construct)
-    (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.nominal.construct) (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) :
+    (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.nominal.construct) (hl0 : 0 ≤ lam)
+    (hl1 : lam ≤ 1) : -- --- STMT ---
     ConZonotope.aux_linCombCoeff β₁ β₂ lam
       ∈ (cZ₁.linComb cZ₂).P.nominal.construct := by -- --- PROOF ---
   have hd₁ : β₁ ∈ (cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).nominal.construct :=
@@ -130,7 +131,7 @@ theorem ConZonotope.aux_linCombG_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋
 supplies. -/
 theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) (i : Fin n)
     (β₁ : Vec ℝ cZ₁.h)
-    (β₂ : Vec ℝ cZ₂.h) (lam : ℝ) :
+    (β₂ : Vec ℝ cZ₂.h) (lam : ℝ) : -- --- STMT ---
     (∑ j, ConZonotope.aux_linCombGReal cZ₁ cZ₂ i j * ConZonotope.aux_linCombCoeff β₁ β₂ lam j)
       = lam * (∑ j, toReal (cZ₁.G j i) * β₁ j) + (1 - lam) * (∑ j, toReal (cZ₂.G j i) * β₂ j)
         + (2 * lam - 1) * ((toReal (cZ₁.c i) - toReal (cZ₂.c i)) / 2) := by -- --- PROOF ---
@@ -149,7 +150,7 @@ theorem ConZonotope.aux_linComb_row (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)
 
 /-- The nominal part spills only by what the center and the center generator
 rounded. -/
-theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- STMT ---
     Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) ⊆
       nominalSet (cZ₁.linComb cZ₂)
         + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct

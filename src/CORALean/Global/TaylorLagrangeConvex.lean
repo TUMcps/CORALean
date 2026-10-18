@@ -56,7 +56,8 @@ theorem aux_iteratedDeriv_line {f : Vec ℝ n → ℝ} {N : ℕ} (hf : ContDiff 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem taylor_lagrange_convex {f : Vec ℝ n → ℝ} {N : ℕ} (hf : ContDiff ℝ (N + 1) f)
-    {C : Set (Vec ℝ n)} (hC : Convex ℝ C) {c x : Vec ℝ n} (hc : c ∈ C) (hx : x ∈ C) :
+    {C : Set (Vec ℝ n)} (hC : Convex ℝ C) {c x : Vec ℝ n} (hc : c ∈ C)
+    (hx : x ∈ C) : -- --- STMT ---
     ∃ ξ ∈ C, f x = ∑ k ∈ Finset.range (N + 1),
         iteratedFDeriv ℝ k f c (fun _ => x - c) / (k.factorial : ℝ)
       + iteratedFDeriv ℝ (N + 1) f ξ (fun _ => x - c)

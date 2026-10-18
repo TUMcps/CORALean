@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 /-- A member of `F_x(Δt,η)` is entrywise within its Taylor terms' reach plus `‖E(Δt,η)‖`. -/
 theorem MatExp.abs_entry_le_of_mem_stateCorrectionSet {A : Mat ℝ n n} {Δt : ℝ} {η : ℕ}
-    {M : Mat ℝ n n} (hM : M ∈ MatExp.stateCorrectionSet A Δt η) (i j : Fin n) :
+    {M : Mat ℝ n n} (hM : M ∈ MatExp.stateCorrectionSet A Δt η) (i j : Fin n) : -- --- STMT ---
     |M i j| ≤ (∑ k ∈ Finset.Icc 2 η, |MatExp.corrCoeff k * Δt ^ k|
         * |((((Nat.factorial k : ℝ))⁻¹ • A ^ k) : Mat ℝ n n) i j|)
       + ‖MatExp.expRemainderMat A Δt η‖ := by -- --- PROOF ---

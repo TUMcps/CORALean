@@ -39,7 +39,7 @@ variable {d k : ℕ}
 theorem Zonotope.one_le_volumeRatio (Z : Zonotope (Vec ℝ (d + k))) (P : HPolytope (Vec ℝ (d + k)))
     (hd : 0 < d) (hZP : Z.construct ⊆ P.construct)
     (hpos : ∀ i : Fin (k + 1), 0 < MeasureTheory.volume
-      (Z.project (fun j : Fin d => (⟨j + i, by omega⟩ : Fin (d + k)))).construct) :
+      (Z.project (fun j : Fin d => (⟨j + i, by omega⟩ : Fin (d + k)))).construct) : -- --- STMT ---
     1 ≤ Z.volumeRatio P := by -- --- PROOF ---
   unfold Zonotope.volumeRatio
   simp only

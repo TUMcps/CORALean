@@ -39,7 +39,7 @@ theorem ReachSetAnalyzer.analyze_complete (aps : List (String × AtomicPropositi
     (R : List (ReachSetAnalyzer.Entry S n))
     (hR : ∀ e ∈ R, ∀ s ∈ e.timeInterval, s.time.inf < s.time.sup)
     (outs : List (List (String × FiniteSignal ℝ Kleene)))
-    (h : obj.analyze (𝕋 := 𝕋) R = some outs) :
+    (h : obj.analyze (𝕋 := 𝕋) R = some outs) : -- --- STMT ---
     ∀ w, ReachSetAnalyzer.Branch (ReachSetAnalyzer.children R) 0 w →
       ∃ out ∈ outs, obj.SignalsSound dur R w out := by -- --- PROOF ---
   obtain ⟨obj0, hmk, -, -, hr⟩ := (ReachSetAnalyzer.mk?_spec aps dur masks).2 hd hnd

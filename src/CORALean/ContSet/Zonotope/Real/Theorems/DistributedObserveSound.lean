@@ -51,7 +51,7 @@ theorem Zonotope.distributedObserve_sound (nb : ∀ i, Fin (q i) → ι)
     (hϖ : ∀ k i j, |ϖ k i j| ≤ 1) (hσ : ∀ k i j, |σ k i j| ≤ 1)
     (hx : ∀ k i, x (k + 1) i = ∑ a, A i a *ᵥ x k (nb i a) + B i *ᵥ u k i + Dw i *ᵥ ϖ k i)
     (hy : ∀ k i, y k i = C i *ᵥ x k i + Dv i *ᵥ σ k i)
-    (h0 : ∀ i, x 0 i ∈ (X 0 i).construct) :
+    (h0 : ∀ i, x 0 i ∈ (X 0 i).construct) : -- --- STMT ---
     ∀ k i, x k i ∈ (X k i).construct := by -- --- PROOF ---
   intro k
   induction k with

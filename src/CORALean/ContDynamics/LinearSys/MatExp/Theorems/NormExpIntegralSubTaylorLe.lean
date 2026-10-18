@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 /-- What the integrated series has left after order `η`. -/
 theorem MatExp.norm_expIntegral_sub_taylor_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) (η : ℕ)
-    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
     ‖MatExp.expIntegral A r
         - ∑ i ∈ Finset.range (η + 1), ((Nat.factorial (i + 1) : ℝ)⁻¹ * r ^ (i + 1)) • A ^ i‖
       ≤ r * MatExp.expRemainderBound (r • A) η := by -- --- PROOF ---

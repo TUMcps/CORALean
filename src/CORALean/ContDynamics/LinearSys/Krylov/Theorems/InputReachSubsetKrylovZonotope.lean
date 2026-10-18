@@ -60,7 +60,7 @@ noncomputable abbrev Krylov.aux_krylovTerm (A : Mat ℝ n n) (δ : ℝ) (m j : �
 /-- Below the Krylov order the Krylov term maps the zonotope `Z` onto the zonotope of the
 images of its center and generators. -/
 theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (δ : ℝ) {m j : ℕ}
-    (hj : j + 1 ≤ m) :
+    (hj : j + 1 ≤ m) : -- --- STMT ---
     Krylov.aux_krylovTerm A δ m j '' Z.construct = (⟨Z.h, Krylov.aux_krylovTerm A δ m j Z.c,
       fun i => Krylov.aux_krylovTerm A δ m j (Z.G i)⟩ :
         Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
@@ -87,7 +87,7 @@ theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
 /-- [1, Cor. IV.2] below the Krylov order `η + 1 ≤ m`: the zonotopes of the Krylov terms at
 `c_u` and the `g⁽ⁱ⁾_u`, plus the thesis' remainder `E(δ)·δ·U` closed and convexified. -/
 theorem Krylov.inputReach_subset_krylovZonotope (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) {δ : ℝ}
-    (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) :
+    (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) Z.construct δ
       ⊆ (∑ j ∈ Finset.range (η + 1),
           (⟨Z.h, Krylov.aux_krylovTerm A δ m j Z.c,

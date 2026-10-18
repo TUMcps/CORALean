@@ -37,7 +37,7 @@ namespace CORALean.Real
 theorem approxError_isExtreme (ϕ p : ℝ → ℝ) (P : Set ℝ) (l u : ℝ)
     (hfin : (P ∩ Set.Icc l u).Finite) (hne : (P ∩ Set.Icc l u).Nonempty)
     (hlo : ∀ x ∈ Set.Icc l u, ∃ q ∈ P ∩ Set.Icc l u, ϕ q - p q ≤ ϕ x - p x)
-    (hup : ∀ x ∈ Set.Icc l u, ∃ q ∈ P ∩ Set.Icc l u, ϕ x - p x ≤ ϕ q - p q) :
+    (hup : ∀ x ∈ Set.Icc l u, ∃ q ∈ P ∩ Set.Icc l u, ϕ x - p x ≤ ϕ q - p q) : -- --- STMT ---
     IsLeast ((fun x => ϕ x - p x) '' (P ∩ Set.Icc l u)) (approxErrorLow ϕ p l u) ∧
       IsGreatest ((fun x => ϕ x - p x) '' (P ∩ Set.Icc l u))
         (approxErrorUp ϕ p l u) := by -- --- PROOF ---

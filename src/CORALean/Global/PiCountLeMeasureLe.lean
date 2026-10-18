@@ -65,7 +65,7 @@ theorem aux_sum_powerset_card_le [DecidableEq ι] (m k : ℕ) (g : ℕ → ℝ) 
 
 open scoped Classical in
 theorem measure_pi_card_filter_le [Fintype ι] (P : Measure Δ) [IsProbabilityMeasure P] {V : Set Δ}
-    (hV : MeasurableSet V) (k : ℕ) :
+    (hV : MeasurableSet V) (k : ℕ) : -- --- STMT ---
     Measure.pi (fun _ : ι => P) {b | (Finset.univ.filter fun j => b j ∈ V).card ≤ k} ≤
       ENNReal.ofReal (∑ i ∈ Finset.range (k + 1), ((Fintype.card ι).choose i : ℝ) *
         P.real V ^ i * (1 - P.real V) ^ (Fintype.card ι - i)) := by -- --- PROOF ---

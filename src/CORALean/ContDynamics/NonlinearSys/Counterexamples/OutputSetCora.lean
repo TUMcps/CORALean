@@ -83,7 +83,7 @@ open CORALean.Real
 
 /-- `x = 0` under the input `1` is a run of `ẋ = 0` from `R0 = {0}` with inputs in `U = {1}`, and
 its output `x(0) + u(0) = 1` is not in CORA's output set at `R0`. -/
-theorem NonlinearSys.outputSetCora_counterexample :
+theorem NonlinearSys.outputSetCora_counterexample : -- --- STMT ---
     let sys : NonlinearSys 1 1 := ⟨fun _ _ => 0, 1, fun x v => x + v⟩
     let R0 : Zonotope (Vec ℝ 1) := ⟨0, 0, Fin.elim0⟩
     let U : Zonotope (Vec ℝ 1) := ⟨0, 1, Fin.elim0⟩

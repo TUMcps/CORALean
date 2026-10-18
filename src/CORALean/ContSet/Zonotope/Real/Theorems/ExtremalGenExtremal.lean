@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Sec. 5.1]: `u + g` maximizes and `u - g` minimizes `x·s` over `Z`. -/
-theorem Zonotope.extremalGen_extremal (Z : Zonotope (Vec ℝ n)) (s : Vec ℝ n) :
+theorem Zonotope.extremalGen_extremal (Z : Zonotope (Vec ℝ n)) (s : Vec ℝ n) : -- --- STMT ---
     (Z.c + Z.extremalGen s ∈ Z.construct ∧
         ∀ x ∈ Z.construct, x ⬝ᵥ s ≤ (Z.c + Z.extremalGen s) ⬝ᵥ s) ∧
       Z.c - Z.extremalGen s ∈ Z.construct ∧

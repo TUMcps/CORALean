@@ -30,7 +30,8 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.mem_construct_iff {n : ℕ} {cPZ : ConPolyZono (Vec ℝ n)} {x : Vec ℝ n} :
+theorem ConPolyZono.mem_construct_iff {n : ℕ} {cPZ : ConPolyZono (Vec ℝ n)}
+    {x : Vec ℝ n} : -- --- STMT ---
     x ∈ cPZ.construct ↔
       ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ cPZ.satisfies a

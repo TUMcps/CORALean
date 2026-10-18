@@ -52,7 +52,7 @@ variable {n m : ℕ}
 theorem Krylov.spectrum_subset_of_krylovIdentity (A : Mat ℂ n n) (V : Mat ℂ n (m + 1))
     (T : Mat ℂ (m + 1) (m + 1)) (τ σ : ℂ) (w : Fin n → ℂ)
     (hK : A * V = V * T + τ • vecMulVec w (Pi.single (Fin.last m) 1)) (hV : Vᴴ * V = 1)
-    (hw : Vᴴ *ᵥ w = 0) :
+    (hw : Vᴴ *ᵥ w = 0) : -- --- STMT ---
     let W : ∀ {k : ℕ}, Mat ℂ k k → Set ℂ := fun M =>
       {z | ∃ x, x ≠ 0 ∧ z = (star x ⬝ᵥ (M *ᵥ x)) / (star x ⬝ᵥ x)}
     spectrum ℂ (σ • T) ⊆ W (σ • T) ∧ W (σ • T) ⊆ W (σ • A) ∧

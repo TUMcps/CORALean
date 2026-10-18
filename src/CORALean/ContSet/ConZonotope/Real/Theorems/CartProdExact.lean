@@ -48,7 +48,7 @@ theorem ConZonotope.aux_mem_cartProd_P_iff (cZ₁ : ConZonotope α) (cZ₂ : Con
   HPolytope.mem_intersection_iff
 
 theorem ConZonotope.aux_value_cartProd (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
-    (γ : Fin (cZ₁.h + cZ₂.h) → ℝ) :
+    (γ : Fin (cZ₁.h + cZ₂.h) → ℝ) : -- --- STMT ---
     (cZ₁.cartProd cZ₂).c + ∑ j : Fin (cZ₁.cartProd cZ₂).h, γ j • (cZ₁.cartProd cZ₂).G j
       = (cZ₁.c + ∑ j, γ (Fin.castAdd cZ₂.h j) • cZ₁.G j,
          cZ₂.c + ∑ j, γ (Fin.natAdd cZ₁.h j) • cZ₂.G j) := by -- --- PROOF ---

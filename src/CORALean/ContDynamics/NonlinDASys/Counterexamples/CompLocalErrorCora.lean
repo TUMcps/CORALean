@@ -105,7 +105,7 @@ open CORALean.Real Matrix
 /-- [1, Sec. V-B]: subsystem 1 (`Hf = Hg = 0`): every point of CORA's error set is `0`, whatever
 `R_xyu`, `Csub`, `Fsub`; the true error of `ẋ₁` at `x₂ = 1`, `y = (1, 1)` (consistent: `g = 0`)
 is `1`. -/
-theorem NonlinDASys.compLocalErrorCora_counterexample :
+theorem NonlinDASys.compLocalErrorCora_counterexample : -- --- STMT ---
     (∀ (Csub Fsub : Mat ℝ 1 1) (R_xyu : Zonotope (Vec ℝ 3)),
       ∀ e ∈ (NonlinDASys.compLocalErrorCora (fun _ => 0) (fun _ => 0) (fun _ => 0)
         (fun _ => 0) Csub Fsub R_xyu).construct, e = 0) ∧

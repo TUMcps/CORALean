@@ -60,7 +60,7 @@ theorem LinearSys.IsCanonicalTrajectory.inputSolution_timeInterval_outer
       (MatExp.inputRemainder (toRealMat sys.A) r η) U)))
     -- `0 ∈ U` is what `inputReach_mono` needs, and the only extra hypothesis here
     (h0 : (0 : Vec ℝ n) ∈ construct U)
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩

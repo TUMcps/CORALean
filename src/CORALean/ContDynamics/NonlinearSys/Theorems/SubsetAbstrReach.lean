@@ -59,7 +59,7 @@ theorem NonlinearSys.subset_abstrReach (sys : NonlinearSys n m)
     {j : ℕ} (hj : j < options.K) {s : NonlinearSys.AbstrState S n}
     (h : sys.abstrRun params.U options.lin options.Φ options.sub options.enlarge
       options.Δt (params.tFinal - params.tStart) options.η
-      options.taylorTermsAbstr options.ρ options.fuel params.X₀ (j + 1) = some s) :
+      options.taylorTermsAbstr options.ρ options.fuel params.X₀ (j + 1) = some s) : -- --- STMT ---
     construct s.Rτ ⊆ sys.abstrReach params options := by -- --- PROOF ---
   intro x hx
   simp only [NonlinearSys.abstrReach, Set.mem_iUnion, exists_prop]

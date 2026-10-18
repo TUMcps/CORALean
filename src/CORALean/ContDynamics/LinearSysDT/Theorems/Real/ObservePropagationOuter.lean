@@ -47,7 +47,7 @@ theorem LinearSysDT.observePropagation_outer (sys : LinearSysDT ℝ n)
     (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (x w : ℕ → Vec ℝ n)
     (v : ℕ → Vec ℝ sys.q) (h0 : x 0 ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
     (hv : ∀ k, v k ∈ V.construct) (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + w k)
-    (hy : ∀ k, y k = sys.C *ᵥ x k + v k) (k : ℕ) :
+    (hy : ∀ k, y k = sys.C *ᵥ x k + v k) (k : ℕ) : -- --- STMT ---
     x k ∈ (sys.observePropagation gain order W R₀ V u y k).construct := by -- --- PROOF ---
   induction k with
   | zero => exact h0

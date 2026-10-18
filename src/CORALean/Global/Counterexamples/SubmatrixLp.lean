@@ -69,7 +69,7 @@ theorem subLp13_infeasible (hn : 0 < n) (hm : 2 ≤ m) {mig mag : Matrix (Fin n)
   linarith
 
 /-- [1, Eq. 16]: all its constraints hold for the singular all-ones matrix at `x = I`. -/
-theorem subLp16_counterexample :
+theorem subLp16_counterexample : -- --- STMT ---
     let A : Matrix (Fin 2) (Fin 2) ℝ := Matrix.of fun _ _ => 1
     let x : Matrix (Fin 2) (Fin 2) ℝ := 1
     let μ : ℝ := 1 / 100

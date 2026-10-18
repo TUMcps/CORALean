@@ -31,7 +31,7 @@ open Pointwise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Conform.sum_templateZono {m k : ℕ} {ι : Type} [Fintype ι] (c : Fin k → Vec ℝ m)
-    (G : Fin k → ι → Vec ℝ m) (α : Fin k → ι → ℝ) :
+    (G : Fin k → ι → Vec ℝ m) (α : Fin k → ι → ℝ) : -- --- STMT ---
     ∑ i : Fin k, Conform.templateZono (c i) (G i) (α i)
       = Conform.templateZono (∑ i, c i) (fun r : Fin k × ι => G r.1 r.2)
           (fun r => α r.1 r.2) := by -- --- PROOF ---

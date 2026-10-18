@@ -28,7 +28,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.subtract_outer (P₁ P₂ : Polygon)
-    (hreg : ContSet.construct P₁ = closure (interior (ContSet.construct P₁))) :
+    (hreg : ContSet.construct P₁ = closure (interior (ContSet.construct P₁))) : -- --- STMT ---
     ContSet.construct P₁ \ ContSet.construct P₂ ⊆ Polygon.subtract P₁ P₂ ∧
       Polygon.subtract P₁ P₂ ⊆ ContSet.construct P₁ ∧
       Polygon.subtract P₁ P₂ ∩ interior (ContSet.construct P₂) = ∅ := by -- --- PROOF ---

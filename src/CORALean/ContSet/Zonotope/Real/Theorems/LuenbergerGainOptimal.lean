@@ -49,7 +49,7 @@ theorem Zonotope.aux_sum_mul_eq_trace {a b : ℕ} (M N : Mat ℝ a b) :
 
 /-- Eq. 32: the squared Frobenius norm of `Ḡ` is the three blocks' squared entries. -/
 theorem Zonotope.aux_frobSq_luenbergerUpdate (F : Mat ℝ n n) (Γ : Mat ℝ p n) (Λ : Mat ℝ n p)
-    (Q : Mat ℝ n nq) (R : Mat ℝ p nr) (y : Vec ℝ p) (X : Zonotope (Vec ℝ n)) :
+    (Q : Mat ℝ n nq) (R : Mat ℝ p nr) (y : Vec ℝ p) (X : Zonotope (Vec ℝ n)) : -- --- STMT ---
     ∑ i, ∑ k, ((Zonotope.luenbergerUpdate F Γ Λ Q R y X).G k i) ^ 2 =
       (∑ i, ∑ k, (((F - Λ * Γ) * Matrix.of fun i j => X.G j i) i k) ^ 2) +
         (∑ i, ∑ j, ((Λ * R) i j) ^ 2) + ∑ i, ∑ j, (Q i j) ^ 2 := by -- --- PROOF ---
@@ -88,7 +88,7 @@ theorem Zonotope.aux_sq_add {a b : ℕ} (X Y : Mat ℝ a b) :
 theorem Zonotope.luenbergerGain_optimal (F : Mat ℝ n n) (Γ : Mat ℝ p n) (Q : Mat ℝ n nq)
     (R : Mat ℝ p nr) (y : Vec ℝ p) (X : Zonotope (Vec ℝ n))
     (hS : IsUnit (Γ * (Matrix.of fun i j => X.G j i) * (Matrix.of fun i j => X.G j i)ᵀ * Γᵀ +
-      R * Rᵀ).det) (Λ' : Mat ℝ n p) :
+      R * Rᵀ).det) (Λ' : Mat ℝ n p) : -- --- STMT ---
     ∑ i, ∑ k, ((Zonotope.luenbergerUpdate F Γ (Zonotope.luenbergerGain F Γ R X) Q R y X).G k i)
         ^ 2 ≤
       ∑ i, ∑ k, ((Zonotope.luenbergerUpdate F Γ Λ' Q R y X).G k i) ^ 2 := by -- --- PROOF ---

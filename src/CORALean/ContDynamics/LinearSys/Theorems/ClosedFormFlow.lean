@@ -102,7 +102,7 @@ theorem aux_duhamel_swap (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (_ht : 0 �
     (hU : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) {τ : ℝ}
-    (hτ : τ ∈ Set.Icc (0:ℝ) t) :
+    (hτ : τ ∈ Set.Icc (0:ℝ) t) : -- --- STMT ---
     (∫ ρ in (0:ℝ)..τ,
         toRealMat sys.A *ᵥ (∫ s in (0:ℝ)..ρ, exp ((ρ - s) • toRealMat sys.A) *ᵥ u s))
       + ∫ ρ in (0:ℝ)..τ, u ρ
@@ -281,7 +281,7 @@ theorem LinearSys.closedForm_flow (sys : LinearSys 𝕋 n) (x0 : Vec ℝ n) {U :
     (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) {τ : ℝ}
-    (hτ : τ ∈ Set.Icc (0:ℝ) t) :
+    (hτ : τ ∈ Set.Icc (0:ℝ) t) : -- --- STMT ---
     sys.closedForm x0 u τ
       = sys.closedForm x0 u 0
         + ∫ ρ in (0:ℝ)..τ, (toRealMat sys.A *ᵥ sys.closedForm x0 u ρ + u ρ) := by -- --- PROOF ---

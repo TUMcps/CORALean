@@ -38,7 +38,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.exists_minimal_unitary_decomposition (s : PointSegmentSignal ℝ)
-    (hs : s.IsValid) :
+    (hs : s.IsValid) : -- --- STMT ---
     ∃ (ι : Type) (_ : Fintype ι) (u : ι → PointSegmentSignal ℝ) (J : ι → STLInterval),
       (∀ i, (u i).IsValid ∧ (u i).IsUnitary (J i) ∧ (J i).set.Nonempty) ∧
       (∀ t : ℝ, 0 ≤ t → (s.at t = true ↔ ∃ i, (u i).at t = true)) ∧

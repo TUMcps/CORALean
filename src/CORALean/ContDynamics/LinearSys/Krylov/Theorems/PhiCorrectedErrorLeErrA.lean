@@ -52,7 +52,7 @@ theorem Krylov.aux_corrected_exp_error_le (A : Mat ℂ n n) (Vp : Mat ℂ n (m +
     (hA : ∀ x : Fin n → ℂ, (star x ⬝ᵥ ((σ • A) *ᵥ x)).re ≤ 0) (hσ : ‖σ‖ = 1)
     (hδ : ∀ r : ℝ, 0 ≤ r →
       ‖exp (r • (σ • Tp)) (Fin.last (m + 1)) 0‖ ≤ c * r ^ (m + 1) / (Nat.factorial (m + 1) : ℝ))
-    {s : ℝ} (hs : 0 ≤ s) :
+    {s : ℝ} (hs : 0 ≤ s) : -- --- STMT ---
     ‖(WithLp.toLp 2 (exp (s • (σ • A)) *ᵥ (Vp *ᵥ Pi.single 0 1) -
         Vp *ᵥ (exp (s • (σ • Tp)) *ᵥ Pi.single 0 1)) : EuclideanSpace ℂ (Fin n))‖ ≤
       ‖(WithLp.toLp 2 u : EuclideanSpace ℂ (Fin n))‖ * c * s ^ (m + 2) /
@@ -83,7 +83,7 @@ theorem Krylov.phi_corrected_error_le_errA (A : Mat ℂ n n) (V : Mat ℂ n (m +
     (T : Mat ℂ (m + 1) (m + 1)) (τ : ℝ) (σ : ℂ) (w : Fin n → ℂ)
     (hK : A * V = V * T + (τ : ℂ) • vecMulVec w (Pi.single (Fin.last m) 1))
     (hV : Vᴴ * V = 1) (hVw : Vᴴ *ᵥ w = 0) (hτ : 0 ≤ τ)
-    (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0) (hσ : ‖σ‖ = 1) (p : ℕ) :
+    (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0) (hσ : ‖σ‖ = 1) (p : ℕ) : -- --- STMT ---
     let v := V *ᵥ Pi.single 0 1
     let γ := ∏ j : Fin m, T j.succ j.castSucc
     let Tp : Mat ℂ (m + 2) (m + 2) := Matrix.of fun i j =>

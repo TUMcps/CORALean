@@ -36,7 +36,7 @@ theorem NonlinParamSys.linearize_f_mem (sys : NonlinParamSys n m q)
     (hAff : ∀ x u p, sys.f x u p
       = sys.f x u 0 + ∑ i, p i • (sys.f x u (Pi.single i 1) - sys.f x u 0))
     (xs : Vec ℝ n) (us : Vec ℝ m) (I : Interval (Vec ℝ q)) {p : Vec ℝ q}
-    (hp : p ∈ I.construct) :
+    (hp : p ∈ I.construct) : -- --- STMT ---
     sys.f xs us p ∈ (sys.linearize xs us I).zf.construct := by -- --- PROOF ---
   obtain ⟨β, hβ, hpi⟩ := I.exists_coeff_of_mem hp
   refine ⟨β, hβ, ?_⟩

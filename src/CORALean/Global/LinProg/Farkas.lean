@@ -137,7 +137,7 @@ theorem exists_nonneg_comb_of_forall_nonneg :
 assembled by nonnegative weights on the rows. -/
 theorem exists_dual_of_forall_le {m : ℕ} (A : Fin m → (E →ₗ[ℝ] ℝ)) (b : Fin m → ℝ)
     (c : E →ₗ[ℝ] ℝ) (d : ℝ) (hne : ∃ x0, ∀ i, A i x0 ≤ b i)
-    (h : ∀ x, (∀ i, A i x ≤ b i) → c x ≤ d) :
+    (h : ∀ x, (∀ i, A i x ≤ b i) → c x ≤ d) : -- --- STMT ---
     ∃ y : Fin m → ℝ, (∀ i, 0 ≤ y i) ∧ c = ∑ i, y i • A i ∧
       ∑ i, y i * b i ≤ d := by -- --- PROOF ---
   obtain ⟨x0, hx0⟩ := hne
@@ -209,7 +209,7 @@ theorem exists_dual_of_forall_le {m : ℕ} (A : Fin m → (E →ₗ[ℝ] ℝ)) (
 /-- The same over any finite index of rows, by renumbering them. -/
 theorem exists_dual_of_forall_le_fintype {ι : Type} [Fintype ι] (A : ι → (E →ₗ[ℝ] ℝ))
     (b : ι → ℝ) (c : E →ₗ[ℝ] ℝ) (d : ℝ) (hne : ∃ x0, ∀ i, A i x0 ≤ b i)
-    (h : ∀ x, (∀ i, A i x ≤ b i) → c x ≤ d) :
+    (h : ∀ x, (∀ i, A i x ≤ b i) → c x ≤ d) : -- --- STMT ---
     ∃ y : ι → ℝ, (∀ i, 0 ≤ y i) ∧ c = ∑ i, y i • A i ∧
       ∑ i, y i * b i ≤ d := by -- --- PROOF ---
   let e := Fintype.equivFin ι

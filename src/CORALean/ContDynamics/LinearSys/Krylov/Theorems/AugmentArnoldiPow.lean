@@ -54,7 +54,7 @@ theorem Krylov.aux_norm₂_single_last :
 
 /-- `P Ṽ(u) H̃ʲ(u) e₁ = A^{j-1} u` for `1 ≤ j ≤ m`, Alg. 1 run `m + 1` passes. -/
 theorem Krylov.augment_arnoldi_pow (A : Mat ℝ n n) (u : Vec ℝ n) (m : ℕ) {j : ℕ} (hj1 : 1 ≤ j)
-    (hj : j ≤ m) :
+    (hj : j ≤ m) : -- --- STMT ---
     (fun i => (Krylov.arnoldiBasis (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) *ᵥ
         (Krylov.arnoldiHessenberg (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1) ^ j *ᵥ
           Pi.single 0 1)) (Fin.castSucc i))

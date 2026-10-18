@@ -46,7 +46,7 @@ namespace CORALean.Real
 /-- The convex hull of two non-empty operands, exactly. -/
 theorem ConPolyZono.convHull_exact_of_nonempty {n : ℕ} (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
     (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
-    (hne₁ : cPZ₁.construct.Nonempty) (hne₂ : cPZ₂.construct.Nonempty) :
+    (hne₁ : cPZ₁.construct.Nonempty) (hne₂ : cPZ₂.construct.Nonempty) : -- --- STMT ---
     convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct)
       = (cPZ₁.convHull cPZ₂).construct := by -- --- PROOF ---
   have hq : (cPZ₁.linComb cPZ₂).qI = 0 := by simp [ConPolyZono.linComb, hq₁, hq₂]

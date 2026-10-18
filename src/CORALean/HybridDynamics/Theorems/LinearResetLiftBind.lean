@@ -30,7 +30,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearReset.lift_bind (W : Mat 𝕋 n n) (w : Vec 𝕋 n) (stateBind : Fin n → Fin N)
-    (hinj : Function.Injective stateBind) (id : Bool) (x : Vec ℝ N) (j : Fin n) :
+    (hinj : Function.Injective stateBind) (id : Bool) (x : Vec ℝ N) (j : Fin n) : -- --- STMT ---
     (toRealMat (LinearReset.lift W w N stateBind id).1 *ᵥ x +
         toRealVec (LinearReset.lift W w N stateBind id).2) (stateBind j) =
       (toRealMat W *ᵥ (fun k => x (stateBind k)) + toRealVec w) j := by -- --- PROOF ---

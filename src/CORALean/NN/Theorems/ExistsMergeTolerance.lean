@@ -61,7 +61,7 @@ theorem aux_scaled_le {S w ε : ℝ} (hS : 0 ≤ S) (hw : w ≤ S) (hε : 0 < ε
 /-- For every error budget `ε`, a tolerance `δ` under which every bucket, at
 every output, costs no more than `ε` — the cost being linear in `δ`. -/
 theorem exists_mergeTolerance {n n₂ : ℕ} (Y : Real.Interval (Vec ℝ n)) (hY : Y.IsNonempty)
-    (W : Mat ℝ n₂ n) {ε : ℝ} (hε : 0 < ε) :
+    (W : Mat ℝ n₂ n) {ε : ℝ} (hε : 0 < ε) : -- --- STMT ---
     ∃ δ : ℝ, 0 < δ ∧ ∀ (y : ℝ) (i : Fin n₂),
       let EB := Real.Interval.mtimes (W.submatrix id (mergeSplit Y y δ).right)
         ⟨Y.inf ∘ (mergeSplit Y y δ).right, Y.sup ∘ (mergeSplit Y y δ).right⟩

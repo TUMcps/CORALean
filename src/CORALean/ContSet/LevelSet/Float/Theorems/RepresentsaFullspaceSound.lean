@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LevelSet.representsa_fullspace_sound (L : CORALean.Real.LevelSet n)
     (O : Fin L.m → Interval 𝕋)
     (hO : ∀ i x, toReal (O i).inf ≤ L.f x i ∧ L.f x i ≤ toReal (O i).sup)
-    (h : LevelSet.representsa_fullspace L O = true) :
+    (h : LevelSet.representsa_fullspace L O = true) : -- --- STMT ---
     L.construct = Set.univ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.representsa_fullspace_sound L
     (fun i => ⟨((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)⟩)

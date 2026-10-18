@@ -100,7 +100,7 @@ theorem LinearSys.chain_hasDerivAt (t : ℝ) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `x(3/2)`, a state of the second step, is outside `Rti` of the second step. -/
-theorem LinearSys.standardRtiCora_counterexample :
+theorem LinearSys.standardRtiCora_counterexample : -- --- STMT ---
     (![9 / 16, 9 / 8, 3 / 2] : Fin 3 → ℝ) =
         (fun s : ℝ => (![s ^ 3 / 6, s ^ 2 / 2, s] : Fin 3 → ℝ)) (3 / 2) ∧
       (![9 / 16, 9 / 8, 3 / 2] : Fin 3 → ℝ) ∉ LinearSys.standardRtiCora LinearSys.chainE

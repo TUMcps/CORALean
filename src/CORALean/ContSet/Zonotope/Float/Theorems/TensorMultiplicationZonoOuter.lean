@@ -61,7 +61,7 @@ theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope (Vec 𝕋 n))
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.absorbRounding.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {β : Fin M.h → ℝ} (hβ : ∀ j, |β j| ≤ 1) {x : Vec ℝ n} (hx : x ∈ Z.construct) :
+    {β : Fin M.h → ℝ} (hβ : ∀ j, |β j| ≤ 1) {x : Vec ℝ n} (hx : x ∈ Z.construct) : -- --- STMT ---
     Real.Zonotope.tensorEval (fun i a b c => toReal (M.c i a b c)
         + ∑ j, β j * toReal (M.G j i a b c)) x
       ∈ (Z.tensorMultiplication_zono M L).construct := by -- --- PROOF ---

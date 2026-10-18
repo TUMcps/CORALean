@@ -65,7 +65,7 @@ theorem aux_norm_vec1 (v : Vec ℝ 1) : ‖v‖ = |v 0| := by
 
 /-- [1, Lemma 2] at `x' = 100x + u`, `u = 0`, `Z = [0, 2]`, `r = 1/100`: `‖A‖ = 100`,
 `sup_{x∈Z} |x| = 2`, and `d_H(R_[0,r](Z), P + □(α_r + β_r)) ≥ 3e - 5`. -/
-theorem LinearSys.girardExample_spec :
+theorem LinearSys.girardExample_spec : -- --- STMT ---
     ‖(Matrix.diagonal fun _ => 100 : Mat ℝ 1 1)‖ = 100
     ∧ IsGreatest ((fun x => ‖x‖) ''
         (⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).construct) 2

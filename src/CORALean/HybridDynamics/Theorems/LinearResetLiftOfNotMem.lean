@@ -30,7 +30,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearReset.lift_of_not_mem (W : Mat 𝕋 n n) (w : Vec 𝕋 n) (stateBind : Fin n → Fin N)
-    (id : Bool) (x : Vec ℝ N) (i : Fin N) (hi : ∀ j, stateBind j ≠ i) :
+    (id : Bool) (x : Vec ℝ N) (i : Fin N) (hi : ∀ j, stateBind j ≠ i) : -- --- STMT ---
     (toRealMat (LinearReset.lift W w N stateBind id).1 *ᵥ x +
         toRealVec (LinearReset.lift W w N stateBind id).2) i =
       if id then x i else 0 := by -- --- PROOF ---

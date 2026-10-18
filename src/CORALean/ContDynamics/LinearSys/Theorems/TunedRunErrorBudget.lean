@@ -76,7 +76,8 @@ theorem aux_tunedStep_le {ε a a' tf ti Δt : ℝ} (htf : 0 < tf)
 /-- Every step the sweep of `Alg. 2` can report is the one it came in with,
 shrunk by `μ` finitely often, so both being positive leaves it positive. -/
 theorem aux_adaptTimeStepSearch_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
-    (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ) (hμ : 0 < μ) :
+    (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti μ : ℝ) (ηmax : ℕ)
+    (hμ : 0 < μ) : -- --- STMT ---
     ∀ (k : ℕ) (Δt Δti : ℝ) (ηi : ℕ), 0 < Δt →
       LinearSys.adaptTimeStepSearch sys le X₀ U εHmax εPmax εPacc tf ti μ ηmax Δt k
         = some (Δti, ηi) → 0 < Δti := by -- --- PROOF ---
@@ -101,7 +102,8 @@ theorem aux_adaptTimeStep_pos (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Boo
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ)
     (hμ : 0 < μ) (hΔtprev : 0 < Δtprev) {Δti εP : ℝ} {ηi : ℕ}
     (h : sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel
-      = some (Δti, ηi, εP)) : 0 < Δti := by -- --- PROOF ---
+      = some (Δti, ηi, εP)) : -- --- STMT ---
+    0 < Δti := by -- --- PROOF ---
   simp only [LinearSys.adaptTimeStep] at h
   split at h
   · exact absurd h (by simp)
@@ -117,7 +119,7 @@ spent, and once a step has been taken its `ε_H` is inside `ε_H,max`. -/
 theorem aux_tunedRun_invariant (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (hn : 0 < n) (X₀ U : Zonotope (Vec ℝ n))
     {εHmax εPmax εSmax tf μ : ℝ} (hμ : 0 < μ) (htf : 0 < tf)
-    (hεSmax : 0 ≤ εSmax) (ηmax fuel : ℕ) :
+    (hεSmax : 0 ≤ εSmax) (ηmax fuel : ℕ) : -- --- STMT ---
     ∀ (k : ℕ), (∀ j ≤ k, ∀ s, sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel j = some s →
         s.t ≤ tf) →
       ∀ s, sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k = some s →
@@ -190,7 +192,7 @@ theorem LinearSys.tunedRun_error_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ �
     (hhor : ∀ j ≤ k, ∀ s, sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel j = some s →
       s.t ≤ tf)
     {s : LinearSys.TunedState n}
-    (h : sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k = some s) :
+    (h : sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel k = some s) : -- --- STMT ---
     s.εP ≤ εPmax ∧ s.εS ≤ εSmax ∧
       (0 < s.t → sys.timeIntervalStepCurvatureError s.Δt s.η X₀ ≤ εHmax) := by -- --- PROOF ---
   obtain ⟨ht, -, hP, hS, hH⟩ :=

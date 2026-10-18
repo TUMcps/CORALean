@@ -15,6 +15,14 @@ Every product `[Tᵢ] U` keeps `0` (`[Tᵢ]` holds the exact `Tᵢ`,
 `smul_pow_mem_intervalInputTerm`), and every float sum does. What
 `plus_subset_add_box` and `mtimesIntervalMat_subset_add_box` ask of their
 operands when the float sum is bounded from above.
+
+Why it matters: a float reach set is an outer approximation, and an inner approximation run in
+floats needs the opposite bound, that the float set reaches no further than the exact one plus a
+box. This theorem is the first step of that bound for the input term of a time-point step. It
+feeds `zero_mem_inputSolutionFloat_error` (the Taylor sum and the remainder), which is what
+`inputSolutionFloat_subset_add_box` asks of its input set, and through it the upper bound on the
+float step `timePointStepInputFloat` (`timePointStepInputFloat_subset_add_excess`) from which the
+float inner-approximation theorems are built.
 -/
 
 -- Authors:       Claude Opus 5.5

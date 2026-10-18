@@ -60,7 +60,7 @@ def SBC.aux_parallel : ParallelHybridAutomaton ℐ𝒱 ℋ𝒫 1 (fun _ => Unit)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `mergeFlows` reads `1` where CORA's merge, and the flow, is `1 + 1`: not `SelfBindFree`. -/
-theorem ParallelHybridAutomaton.mergeFlows_selfBind_counterexample :
+theorem ParallelHybridAutomaton.mergeFlows_selfBind_counterexample : -- --- STMT ---
     ¬ SBC.aux_parallel.SelfBindFree ∧
     (toRealMat (SBC.aux_parallel.mergeFlows fun _ => ()).A *ᵥ stack fun _ => SBC.aux_one)
         (finSigmaFinEquiv ⟨0, 0⟩) = 1 ∧

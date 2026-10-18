@@ -55,7 +55,7 @@ noncomputable def dmdcAlgorithm (xNext : Fin N → Vec ℝ n) (Vω : Mat ℝ (n 
 
 /-- The outputs are `Ûᵀ Ā Û`, `Ûᵀ B̄` and `Ā Û W` for the blocks of `Ḡ = X' Ṽ Σ̃⁻¹ Ũᵀ`. -/
 theorem dmdcAlgorithm_eq (xNext : Fin N → Vec ℝ n) (Vω : Mat ℝ (n + l) r) (s : Fin r → ℝ)
-    (Wω : Mat ℝ N r) (p : ℕ) (Û : Mat ℝ n q) (W : Mat ℝ q q) :
+    (Wω : Mat ℝ N r) (p : ℕ) (Û : Mat ℝ n q) (W : Mat ℝ q q) : -- --- STMT ---
     dmdcAlgorithm xNext Vω s Wω p Û W
       = (Ûᵀ * (dmdcBlocks (dmdCandidate (dmdcCols xNext) Vω s Wω p)).1 * Û,
          Ûᵀ * (dmdcBlocks (dmdCandidate (dmdcCols xNext) Vω s Wω p)).2,
@@ -69,7 +69,7 @@ eigenvectors of `Ā`, `Ā Φ = Φ Λ`. -/
 theorem dmdcAlgorithm_modes (xNext : Fin N → Vec ℝ n) (Vω : Mat ℝ (n + l) r) (s : Fin r → ℝ)
     (Wω : Mat ℝ N r) (p : ℕ) (Û : Mat ℝ n q) (W Λ : Mat ℝ q q)
     (hspan : Û * Ûᵀ * dmdcCols xNext = dmdcCols xNext)
-    (h : (dmdcAlgorithm xNext Vω s Wω p Û W).1 * W = W * Λ) :
+    (h : (dmdcAlgorithm xNext Vω s Wω p Û W).1 * W = W * Λ) : -- --- STMT ---
     (dmdcBlocks (dmdCandidate (dmdcCols xNext) Vω s Wω p)).1
         * (dmdcAlgorithm xNext Vω s Wω p Û W).2.2
       = (dmdcAlgorithm xNext Vω s Wω p Û W).2.2 * Λ := by -- --- PROOF ---

@@ -43,7 +43,7 @@ namespace CORALean.Real
 
 /-- [1, Thm. 1], eq. (2.8) for `f·g`: models around `x_h` of order `1` on `x_h + [-h, h]` with
 remainders `O(h²)` give a product model with remainders `O(h²)`. They do not. -/
-theorem Taylm.times_scaling_counterexample :
+theorem Taylm.times_scaling_counterexample : -- --- STMT ---
     ¬ ∀ (f g : ℝ → ℝ) (xh : ℝ → ℝ) (T₁ T₂ : ℝ → Taylm 1), ContDiff ℝ 2 f → ContDiff ℝ 2 g →
       (∀ h, 0 < h → h ≤ 1 → (T₁ h).maxOrder = 1 ∧ (T₂ h).maxOrder = 1
         ∧ (T₁ h).Encloses (fun t => f (xh h + h * t 0))

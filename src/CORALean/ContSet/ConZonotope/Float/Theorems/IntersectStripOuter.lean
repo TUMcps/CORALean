@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n s : ℕ}
 /-- The exact image of `c + G ξ + e`, regrouped so the center and each generator appear once. -/
 theorem ConZonotope.aux_strip_regroup {h : ℕ} (M : Mat 𝕋 s n) (c : Vec 𝕋 n) (G : Fin h → Vec 𝕋 n)
     (β : Vec ℝ h) (e : Vec ℝ n) {x : Vec ℝ n}
-    (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G j k) * β j + e k) (i : Fin s) :
+    (hx : ∀ k, x k = toReal (c k) + ∑ j, toReal (G j k) * β j + e k) (i : Fin s) : -- --- STMT ---
     (toRealMat M *ᵥ x) i = (∑ k, toReal (M i k) * toReal (c k))
       + ∑ j, (∑ k, toReal (M i k) * toReal (G j k)) * β j
       + (toRealMat M *ᵥ e) i := by -- --- PROOF ---
@@ -81,7 +81,7 @@ theorem ConZonotope.aux_strip_mulDown_gap (a r : 𝕋) :
 
 theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C : Mat 𝕋 s n)
     (φ y : Vec 𝕋 s)
-    (Λ : Mat 𝕋 n s) :
+    (Λ : Mat 𝕋 n s) : -- --- STMT ---
     cZ.construct ∩ {x | ∀ k, |(toRealMat C *ᵥ x) k - toReal (y k)| ≤ toReal (φ k)}
       ⊆ (cZ.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
   intro x hx'

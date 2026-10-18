@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem MatExp.corrTerm_mem_intervalCorrTerm (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {M : Mat ℝ n n} (hM : M ∈ A.construct)
-    (j k : Fin n) :
+    (j k : Fin n) : -- --- STMT ---
     toReal ((MatExp.intervalCorrTerm A r i).inf j k) ≤ Real.MatExp.corrTerm M (toReal r) i j k
       ∧ Real.MatExp.corrTerm M (toReal r) i j k
         ≤ toReal ((MatExp.intervalCorrTerm A r i).sup j k) := by -- --- PROOF ---

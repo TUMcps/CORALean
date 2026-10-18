@@ -38,7 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.timeIntervalStepEpsFloat_outer (sys : LinearSys 𝕋 n) {r ε : 𝕋} {fuel : ℕ}
     {X₀ R : Zonotope (Vec 𝕋 n)} (hr : 0 < toReal r)
     (h : sys.timeIntervalStepEpsFloat r ε fuel X₀ = some R)
-    {x : Vec ℝ n} (hx : x ∈ X₀.construct) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal r) :
+    {x : Vec ℝ n} (hx : x ∈ X₀.construct) {s : ℝ} (hs0 : 0 ≤ s)
+    (hs : s ≤ toReal r) : -- --- STMT ---
     exp (s • Scalar.toRealMat sys.A) *ᵥ x ∈ R.construct := by -- --- PROOF ---
   simp only [LinearSys.timeIntervalStepEpsFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h

@@ -43,7 +43,7 @@ variable {n : ℕ}
 theorem isHMatrix_of_gammaTest {f : (Fin n → ℝ) → (Fin n → ℝ)} {x₀ xlo xhi ylo yhi : Fin n → ℝ}
     {Jlo Jhi : Matrix (Fin n) (Fin n) ℝ} (hJ : ∀ i j, Jlo i j ≤ Jhi i j)
     (hdiag : ∀ i, (0 : ℝ) ∉ Icc (Jlo i i) (Jhi i i)) (hx₀ : x₀ ∈ Icc xlo xhi)
-    (hy : f x₀ ∈ Icc ylo yhi) (h : gammaTest f x₀ xlo xhi Jlo Jhi ylo yhi) :
+    (hy : f x₀ ∈ Icc ylo yhi) (h : gammaTest f x₀ xlo xhi Jlo Jhi ylo yhi) : -- --- STMT ---
     IsHMatrix (fun i j => min |Jlo i j| |Jhi i j|)
       (fun i j => max |Jlo i j| |Jhi i j|) := by -- --- PROOF ---
   -- the box has positive width: the open interval it must contain is nonempty

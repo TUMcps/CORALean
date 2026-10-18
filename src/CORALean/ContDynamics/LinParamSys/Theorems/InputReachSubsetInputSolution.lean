@@ -57,7 +57,7 @@ theorem LinParamSys.inputReach_subset_inputSolution (sys : LinParamSys ℐ n)
     (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.intervalInputRemainder sys.A r η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.intervalInputRemainder sys.A r η) U))) :
+      (MatExp.intervalInputRemainder sys.A r η) U))) : -- --- STMT ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach U r
       ⊆ construct (sys.inputSolution r η U) := by -- --- PROOF ---
   rintro _ ⟨u, hmem, hmeas, rfl⟩

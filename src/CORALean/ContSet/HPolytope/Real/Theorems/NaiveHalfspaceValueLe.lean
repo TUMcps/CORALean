@@ -42,7 +42,7 @@ theorem HPolytope.naiveHalfspaceValue_le (p : ℝ≥0∞) [Fact (1 ≤ p)] (G : 
     (c d : Vec ℝ n) {Λ : Mat ℝ s n} {b : Vec ℝ s} (hb : ∀ i, 0 < b i)
     (hsym : ∀ i, ∃ i', (∀ x, (Λ *ᵥ x) i' = -(Λ *ᵥ x) i) ∧ b i' = b i) {r : ℝ}
     (hr : IsGreatest ((fun α => HPolytope.polyNorm Λ b (G α + c - d)) '' Metric.closedBall 0 1) r)
-    {N : ℕ} (hN : 0 < N) (j : Fin N → Fin s) :
+    {N : ℕ} (hN : 0 < N) (j : Fin N → Fin s) : -- --- STMT ---
     HPolytope.naiveHalfspaceValue p G c d Λ b hN j ≤ r := by -- --- PROOF ---
   set f := fun i => LinearMap.toContinuousLinearMap ((HPolytope.rowLin Λ i).comp G) with hf
   set T := insert 0 (Finset.univ.image fun i =>

@@ -66,7 +66,7 @@ variable {n : ℕ}
 /-- A point matrix scaled by a point of `[a, b]` lies in the entrywise product
 `[lo, hi] * [a, b]`. -/
 theorem aux_absErr_smul_mem {lo hi M : Mat ℝ n n} {a b s : ℝ}
-    (hM : ∀ j k, lo j k ≤ M j k ∧ M j k ≤ hi j k) (hs : a ≤ s ∧ s ≤ b) :
+    (hM : ∀ j k, lo j k ≤ M j k ∧ M j k ≤ hi j k) (hs : a ≤ s ∧ s ≤ b) : -- --- STMT ---
     s • M ∈ (⟨Matrix.of fun j k => Interval.mulLo (lo j k) (hi j k) a b,
       Matrix.of fun j k => Interval.mulHi (lo j k) (hi j k) a b⟩ :
         Interval (Mat ℝ n n)).construct := by -- --- PROOF ---

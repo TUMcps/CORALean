@@ -45,7 +45,7 @@ variable {n : ℕ}
 theorem aux_mulVec_mem_hull {B : Interval (Mat ℝ n n)} {U : Set (Vec ℝ n)} {M : Mat ℝ n n}
     (hM : M ∈ B.construct) {k : ℕ} {y : Vec ℝ n}
     (hy : y ∈ closure (convexHull ℝ
-      {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v})) :
+      {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v})) : -- --- STMT ---
     M *ᵥ y ∈ closure (convexHull ℝ
       {z | ∃ N ∈ (Interval.matPow B (k + 1)).construct, ∃ v ∈ U, z = N *ᵥ v}) := by -- --- PROOF ---
   have hc : Continuous (Matrix.mulVecLin M) := (Matrix.mulVecLin M).continuous_of_finiteDimensional
@@ -66,7 +66,7 @@ theorem MatExp.peanoBakerInputTerm_mem {B : Interval (Mat ℝ n n)} {A : ℝ →
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
     (hAB : ∀ s, A s ∈ B.construct) {u : ℝ → Vec ℝ n}
     (hu : ∀ a b, IntervalIntegrable u volume a b) {U : Set (Vec ℝ n)} {t : ℝ} (ht : 0 ≤ t)
-    (huU : ∀ s ∈ Set.Icc 0 t, u s ∈ U) (k : ℕ) :
+    (huU : ∀ s ∈ Set.Icc 0 t, u s ∈ U) (k : ℕ) : -- --- STMT ---
     ∀ s ∈ Set.Icc 0 t, MatExp.peanoBakerInputTerm A u k s
       ∈ (s ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (convexHull ℝ
         {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v}) := by -- --- PROOF ---

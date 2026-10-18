@@ -96,7 +96,7 @@ theorem Zonotope.aux_faultRadiusCounterexample_sumK (b : Fin 3 → ℝ) :
   fin_cases i <;> simp [Xk, Fin.sum_univ_three] <;> ring
 
 -- the next zonotope: `↓_1` keeps `(2, 0)` and boxes the rest into `diag(2, 2)`, then `A = 9/10`
-theorem Zonotope.aux_faultRadiusCounterexample_sumP (b : Fin (1 + 2 + 0 + 0) → ℝ) :
+theorem Zonotope.aux_faultRadiusCounterexample_sumP (b : Fin (1 + 2 + 0 + 0) → ℝ) : -- --- STMT ---
     let A : Mat ℝ 2 2 := (9 / 10 : ℝ) • 1
     let Xk : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![2, 0], ![1, 1], ![1, -1]]⟩
     let Xp := (Xk.reduceBy (Partition.split 1 2)).faultObserve A (0 : Mat ℝ 2 1)
@@ -121,7 +121,7 @@ theorem Zonotope.aux_faultRadiusCounterexample_sumP (b : Fin (1 + 2 + 0 + 0) →
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.faultObserve_pRadius_counterexample :
+theorem Zonotope.faultObserve_pRadius_counterexample : -- --- STMT ---
     let A : Mat ℝ 2 2 := (9 / 10 : ℝ) • 1
     let B : Mat ℝ 2 1 := 0
     let C : Mat ℝ 1 2 := 0

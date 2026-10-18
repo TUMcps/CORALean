@@ -41,7 +41,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.eph_mtimes_exp_le_max (P : ProbZonotope n) (hP : 0 < P.cov.det)
-    (A : Mat ℝ n n) {r t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) (x : EuclideanSpace ℝ (Fin n)) :
+    (A : Mat ℝ n n) {r t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
+    (x : EuclideanSpace ℝ (Fin n)) : -- --- STMT ---
     (P.mtimes (exp (t • A))).eph (toLp 2 (exp (t • A) *ᵥ ofLp x))
       ≤ max (P.eph x)
         ((P.mtimes (exp (r • A))).eph (toLp 2 (exp (r • A) *ᵥ ofLp x))) := by -- --- PROOF ---

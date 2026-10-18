@@ -36,7 +36,7 @@ open scoped NNReal
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem FourValuedSTL.not_holdsOn_of_ff_counterexample :
+theorem FourValuedSTL.not_holdsOn_of_ff_counterexample : -- --- STMT ---
     ∃ r, (FourValuedSTL.Formula.not .tt : FourValuedSTL.Formula Unit).fourValuedSat
         (fun _ => FourValuedSignal.uniformSignal .ii) = some r ∧ r.IsValid ∧
       r.at 0 = FourValued.ff ∧

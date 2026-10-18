@@ -27,7 +27,7 @@ namespace CORALean
 /-- A nonempty interval reaches up to `s` iff `s` is before its upper bound. -/
 theorem STLInterval.rawSet_upperReach {l u : EReal} {lc rc : Bool}
     (hne : (rawSet l u lc rc).Nonempty)
-    (s : ℝ) :
+    (s : ℝ) : -- --- STMT ---
     (∃ a ∈ rawSet l u lc rc, s ≤ a) ↔
       ((s : EReal) < u ∨ (rc = true ∧ (s : EReal) = u)) := by -- --- PROOF ---
   constructor

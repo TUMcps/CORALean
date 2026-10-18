@@ -37,7 +37,7 @@ def names(x):
 live = set()
 for trace in build.rglob("*.trace"):
     try:
-        live.update(names(json.loads(trace.read_text()).get("outputs", {})))
+        live.update(names(json.loads(trace.read_text(encoding="utf-8")).get("outputs", {})))
     except (ValueError, OSError):
         pass
 if not live:
@@ -46,7 +46,7 @@ if not live:
 keep = set()
 for pkg in (cache / "outputs").iterdir():
     for mapping in pkg.glob("*.json"):
-        used = set(names(json.loads(mapping.read_text())["data"]))
+        used = set(names(json.loads(mapping.read_text(encoding="utf-8"))["data"]))
         if pkg.name == package and used <= live:
             keep |= used
         else:

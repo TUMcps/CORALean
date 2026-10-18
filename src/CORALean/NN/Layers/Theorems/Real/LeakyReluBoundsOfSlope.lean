@@ -27,7 +27,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem leakyRelu_bounds_of_slope {α m l u t : ℝ} (h0 : α ≤ m) (h1 : m ≤ 1)
-    (hl : l ≤ t) (hu : t ≤ u) :
+    (hl : l ≤ t) (hu : t ≤ u) : -- --- STMT ---
     0 ≤ leakyRelu α t - m * t ∧
       leakyRelu α t - m * t ≤
         max (leakyRelu α l - m * l) (leakyRelu α u - m * u) := by -- --- PROOF ---

@@ -53,7 +53,7 @@ own iteration, at any point of the feature set, lies in the chain. -/
 theorem GNN.evalSteps_mem_gcnSteps (R : Relaxation ℝ) (hR : R.Sound invSqrt) (A : Mat ℝ N N)
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L : ℕ) (W : Fin (L + 1) → Mat ℝ F F)
-    (H : PolyZonotope (Mat ℝ N F)) (aH : Fin H.p → ℝ) (haH : ∀ k, |aH k| ≤ 1) :
+    (H : PolyZonotope (Mat ℝ N F)) (aH : Fin H.p → ℝ) (haH : ∀ k, |aH k| ≤ 1) : -- --- STMT ---
     GNN.evalSteps (GNN.messagePassing (GNN.adjAt A U lam)) (L + 1) W (H.point aH)
       ∈ (GNN.gcnSteps ((GNN.messagePassingEnclosure R A U).padBack H.p) (L + 1) W
           (H.padFront (GNN.messagePassingEnclosure R A U).p) rfl).construct := by -- --- PROOF ---

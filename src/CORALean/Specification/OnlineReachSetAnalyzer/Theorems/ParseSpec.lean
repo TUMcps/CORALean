@@ -36,7 +36,7 @@ theorem aux_parse_hit (dp : Bool) (st st' : OnlineReachSetAnalyzer.ParseState S 
         (fun n => some (n.addParent parent))).bind fun nodes =>
           (OnlineReachSetAnalyzer.updateNode nodes parent (fun n => some (n.addChild c))).map
             fun nodes => ({ st with nodes := nodes } : OnlineReachSetAnalyzer.ParseState S d)) =
-      some st') :
+      some st') : -- --- STMT ---
     OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧ OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
       st.nodes ≠ [] := by -- --- PROOF ---
   obtain ⟨nodes1, h1, h⟩ := Option.bind_eq_some_iff.mp h
@@ -65,7 +65,7 @@ theorem aux_parse_root (st st1 st' : OnlineReachSetAnalyzer.ParseState S d) (par
     (k : OnlineAnalyzerNode.Kind)
     (hnode : ∃ node, st1.nodes[st.nodes.length]? = some node ∧ node.kind = k ∧
       node.parents = [parent]) (hnil : st.nodes = [])
-    (hext : OnlineReachSetAnalyzer.Ext st1.nodes st'.nodes) :
+    (hext : OnlineReachSetAnalyzer.Ext st1.nodes st'.nodes) : -- --- STMT ---
     ∃ root, st'.nodes[0]? = some root ∧ root.kind = k ∧
       root.parents.head? = some parent := by -- --- PROOF ---
   obtain ⟨node, hn, hk, hp⟩ := hnode
@@ -110,7 +110,7 @@ theorem aux_parse_chain (dp : Bool) (st st1 st2 st' : OnlineReachSetAnalyzer.Par
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) :
+theorem OnlineReachSetAnalyzer.parse_spec (dp : Bool) : -- --- STMT ---
     ∀ (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) (parent : ℕ)
       (st st' : OnlineReachSetAnalyzer.ParseState S d),
       OnlineReachSetAnalyzer.NodesInv dp st.nodes →

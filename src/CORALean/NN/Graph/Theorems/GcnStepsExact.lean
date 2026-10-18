@@ -44,7 +44,7 @@ open Matrix
 /-- `L + 1` steps at one uncertain graph are exactly the values the iteration
 takes over the admissible factor vectors. -/
 theorem GNN.gcnSteps_exact {N F : ℕ} (P : PolyZonotope (Mat ℝ N N)) (L : ℕ)
-    (W : Fin (L + 1) → Mat ℝ F F) (H : PolyZonotope (Mat ℝ N F)) (hp : P.p = H.p) :
+    (W : Fin (L + 1) → Mat ℝ F F) (H : PolyZonotope (Mat ℝ N F)) (hp : P.p = H.p) : -- --- STMT ---
     (fun a : Fin P.p → ℝ =>
         GNN.evalSteps (P.point a) (L + 1) W (H.point fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}

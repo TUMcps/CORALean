@@ -50,7 +50,7 @@ variable {n : ℕ}
 /-- The sum is symmetric about the sum of the centers. -/
 theorem aux_sum_reflect {K : ℕ} (Qs : Fin K → Mat ℝ n n) (qs : Fin K → Vec ℝ n)
     (hQs : ∀ k, (Qs k).PosDef) {x : Vec ℝ n}
-    (hx : x ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct) :
+    (hx : x ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct) : -- --- STMT ---
     (2 : ℝ) • ∑ k, qs k - x
       ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct := by -- --- PROOF ---
   rw [Set.mem_finsetSum] at hx ⊢
@@ -83,7 +83,7 @@ theorem Ellipsoid.center_of_min_volume {K : ℕ} (Qs : Fin K → Mat ℝ n n) (q
     (hsub : ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct ⊆ (Ellipsoid.ofShape Q q).construct)
     (hmin : ∀ (Q' : Mat ℝ n n) (q' : Vec ℝ n), Q'.PosDef →
       ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct ⊆ (Ellipsoid.ofShape Q' q').construct →
-        (Ellipsoid.ofShape Q q).volume ≤ (Ellipsoid.ofShape Q' q').volume) :
+        (Ellipsoid.ofShape Q q).volume ≤ (Ellipsoid.ofShape Q' q').volume) : -- --- STMT ---
     q = ∑ k, qs k := by -- --- PROOF ---
   by_contra hne
   set c : Vec ℝ n := ∑ k, qs k with hc

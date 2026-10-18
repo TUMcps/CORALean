@@ -43,7 +43,7 @@ variable {n : ℕ}
 theorem frontier_image_subset_image_frontier_union_singular
     {f : (Fin n → ℝ) → (Fin n → ℝ)} {f' : (Fin n → ℝ) → (Fin n → ℝ) →L[ℝ] (Fin n → ℝ)}
     {K : Set (Fin n → ℝ)} (hK : IsCompact K) (hf : ∀ x ∈ interior K, HasStrictFDerivAt f (f' x) x)
-    (hcont : ContinuousOn f K) :
+    (hcont : ContinuousOn f K) : -- --- STMT ---
     frontier (f '' K) ⊆ f '' frontier K ∪
       f '' {x | x ∈ interior K ∧ LinearMap.det (f' x).toLinearMap = 0} := by -- --- PROOF ---
   intro y hy

@@ -50,7 +50,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 /-- [1, Prop. 1] as arXiv v1 printed it: the particular solution lies in (24) summed from
 `i = 1`. -/
-theorem LinearSys.inputSolutionSet_printed_counterexample :
+theorem LinearSys.inputSolutionSet_printed_counterexample : -- --- STMT ---
     ¬ ∀ (n : ℕ) (sys : LinearSys ℝ n) (U : Zonotope (Vec ℝ n)) (Δt : ℝ), 0 < Δt → ∀ η : ℕ,
       sys.inputReach (S := 𝒵) U Δt
         ⊆ (∑ i ∈ Finset.Icc 1 η, (fun s => sys.inputTerm Δt i *ᵥ s) '' construct U)

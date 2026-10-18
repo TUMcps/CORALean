@@ -39,7 +39,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAlgFloat_outer
     {alg : NonlinearSys.LinReachAlg}
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (hR : fm.reachAlgFloat alg params options = some Rs) :
+    (hR : fm.reachAlgFloat alg params options = some Rs) : -- --- STMT ---
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
         sys.IsTrajectory (S := 𝒮)

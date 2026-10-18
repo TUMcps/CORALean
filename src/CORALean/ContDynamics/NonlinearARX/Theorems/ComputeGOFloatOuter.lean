@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : �
 
 theorem NonlinearARX.computeGOFloat_outer (sys : NonlinearARX dy du p)
     {fm : NonlinearARX.FloatJacModel 𝕋 dy du p} (h : fm.Encloses sys) (x0 : Vec 𝕋 (p * dy))
-    (u_ref : ℕ → Vec 𝕋 du) (k j : ℕ) :
+    (u_ref : ℕ → Vec 𝕋 du) (k j : ℕ) : -- --- STMT ---
     let G := sys.computeGO (toRealVec x0) (fun i => toRealVec (u_ref i))
     let F := sys.computeGOFloat fm x0 u_ref
     G.x k ∈ (F.x k).construct ∧ G.y k ∈ (F.y k).construct ∧ G.A k ∈ (F.A k).construct ∧

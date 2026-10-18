@@ -93,7 +93,7 @@ the nominal parts of `R₀` and `U` — widened by the error that run accumulate
 provided both `R₀` and `U` bracket `0` in their own error boxes. -/
 theorem LinearSysDT.reach_float_subset_reachSet_add_error (sys : LinearSysDT 𝕋 n) {o : ℕ}
     (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) :
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) : -- --- STMT ---
     (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
       sys.reachSet (S := 𝒵) (nominal R₀) (nominal U) k
         + (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---

@@ -41,7 +41,7 @@ theorem Zonotope.reduceUnderApproxNLP_inner (Z : Zonotope (Vec ℝ n)) (r : ℕ)
     (hr : r < Z.h) (Gb' : Fin n → Vec ℝ n)
     (T : Mat ℝ (Z.splitDropped (Z.lengthSplit (r - n) (by omega))).h n)
     (hG : ∀ k, Gb' k = ∑ i, T i k • (Z.splitDropped (Z.lengthSplit (r - n) (by omega))).G i)
-    (hT : ∀ i, ∑ k, |T i k| ≤ 1) :
+    (hT : ∀ i, ∑ k, |T i k| ≤ 1) : -- --- STMT ---
     (Z.reduceUnderApproxNLP r hn hr Gb').construct ⊆ Z.construct := by -- --- PROOF ---
   -- `⟨0, Ĝ_b⟩ = ⟨0, G_b T⟩` is inside `⟨0, G_b⟩` by (1)
   have hb : (⟨n, 0, Gb'⟩ : Zonotope (Vec ℝ n)).construct ⊆

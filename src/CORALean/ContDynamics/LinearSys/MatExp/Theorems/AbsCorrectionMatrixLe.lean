@@ -82,7 +82,7 @@ theorem aux_abs_clamp_le (t : ℝ) : |min t 0| ≤ |t| ∧ |max t 0| ≤ |t| := 
 /-- Neither endpoint of the correction matrix leaves the ball the step and the
 order name. -/
 theorem MatExp.abs_correctionMatrix_le (A : Mat ℝ n n) {r : ℝ} (hr : 0 ≤ r) {η : ℕ}
-    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) :
+    (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) (j k : Fin n) : -- --- STMT ---
     |(MatExp.correctionMatrix A r η).inf j k|
         ≤ Real.exp (r * ‖A‖) - 1 - r * ‖A‖ + MatExp.expRemainderBound (r • A) η
       ∧ |(MatExp.correctionMatrix A r η).sup j k|

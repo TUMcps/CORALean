@@ -34,7 +34,7 @@ namespace CORALean
 
 open FiniteKleeneSignalBuilder in
 theorem FiniteKleeneSignalBuilder.or_indicator_spec (s : FiniteSignal ℝ Bool) (hs : s.IsValid)
-    (lo hi : EReal) :
+    (lo hi : EReal) : -- --- STMT ---
     (hi ≤ lo → (FiniteSignal.indicator? s.duration lo hi true).bind
       (fun ind => FiniteSignal.combine? (· || ·) [s, ind]) = none) ∧
     (lo < hi → ∃ s', (FiniteSignal.indicator? s.duration lo hi true).bind

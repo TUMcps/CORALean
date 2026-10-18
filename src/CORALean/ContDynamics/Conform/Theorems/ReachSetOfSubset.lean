@@ -43,7 +43,7 @@ theorem Conform.reachSetOf_subset (τ : Vec ℝ n → (Fin (k + 1) → Vec ℝ p
     (X0 : Set (Vec ℝ n)) (us : Fin (k + 1) → Vec ℝ p) (cu : Vec ℝ p)
     (U : Fin (k + 1) → Set (Vec ℝ p)) (E : Set (Vec ℝ q))
     (hE : ∀ x0 ∈ {xs} + X0, ∀ u : Fin (k + 1) → Vec ℝ p, (∀ i, u i ∈ {us i} + U i) →
-      τ x0 u - Conform.glo yb Cb Db (xs + cx) (fun i => us i + cu) x0 u ∈ E) :
+      τ x0 u - Conform.glo yb Cb Db (xs + cx) (fun i => us i + cu) x0 u ∈ E) : -- --- STMT ---
     Conform.reachSetOf τ xs X0 us U ⊆ Conform.gloSet yb Cb Db cx X0 cu U + E := by -- --- PROOF ---
   rintro y ⟨x0, hx0, u, hu, rfl⟩
   rw [← Conform.reachSetOf_glo]

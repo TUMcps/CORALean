@@ -54,7 +54,7 @@ theorem aux_kaucher_gain {f : (Fin n → ℝ) → ℝ} (hf : Differentiable ℝ 
     {a b : ℝ} (j : Fin n)
     (hab : ∀ y ∈ Icc lo hi, fderiv ℝ f y (Pi.single j 1) ∈ Icc a b) (p : Fin n → ℝ)
     (hp : p ∈ Icc lo hi) (s t : ℝ) (hs : s ∈ Icc (lo j) (hi j)) (ht : t ∈ Icc (lo j) (hi j))
-    (hst : s ≤ t) :
+    (hst : s ≤ t) : -- --- STMT ---
     a * (t - s) ≤ f (Function.update p j t) - f (Function.update p j s) ∧
       f (Function.update p j t) - f (Function.update p j s) ≤ b * (t - s) := by -- --- PROOF ---
   set g : ℝ → ℝ := fun r => f (Function.update p j r)
@@ -96,7 +96,7 @@ theorem kaucherInnerStep_inner {φ : (Fin n → ℝ) → (Fin n → ℝ)} (i : F
     (hφ : Differentiable ℝ fun z => φ z i) {lo hi z₀ : Fin n → ℝ} (hz₀ : z₀ ∈ Icc lo hi)
     {zlo zhi : Fin n → ℝ} (hz : φ z₀ i ∈ Icc (zlo i) (zhi i)) {Jlo Jhi : Mat ℝ n n}
     (hJ : ∀ j, ∀ y ∈ Icc lo hi, fderiv ℝ (fun z => φ z i) y (Pi.single j 1)
-      ∈ Icc (Jlo i j) (Jhi i j)) :
+      ∈ Icc (Jlo i j) (Jhi i j)) : -- --- STMT ---
     Icc (kaucherInnerStep zlo zhi Jlo Jhi lo hi z₀ i).2
         (kaucherInnerStep zlo zhi Jlo Jhi lo hi z₀ i).1
       ⊆ (fun z => φ z i) '' Icc lo hi := by -- --- PROOF ---

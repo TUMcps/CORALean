@@ -51,7 +51,7 @@ open scoped NNReal
 theorem FourValuedSTL.sound_kleene {X : Type} (φ : FourValuedSTL.Formula X) (R : ℝ≥0 → Set X)
     (S : (X → Prop) → KleeneSignal ℝ)
     (hS : ∀ a ∈ φ.atoms, FourValuedSTL.IsAtomSignal R a (S a))
-    (ξ : ℝ≥0 → X) (hξ : FourValuedSTL.Covers R ξ) :
+    (ξ : ℝ≥0 → X) (hξ : FourValuedSTL.Covers R ξ) : -- --- STMT ---
     (φ.kleeneSat S).IsValid ∧
       ∀ t : ℝ≥0, ((φ.kleeneSat S).at t).IsRefinedBy (φ.satBool ξ t) := by -- --- PROOF ---
   induction φ with

@@ -68,7 +68,7 @@ theorem NonlinearSys.FloatModel.Encloses.of_hasFDerivAt
         ∃ Jx ∈ (fm.jacX X U).construct, ∃ Ju ∈ (fm.jacU X U).construct,
           ∃ D : (Vec ℝ n × Vec ℝ m) →L[ℝ] Vec ℝ n,
             HasFDerivAt (fun p : Vec ℝ n × Vec ℝ m => sys.f p.1 p.2) D (x, u) ∧
-            ∀ v w, D (v, w) = Jx *ᵥ v + Ju *ᵥ w) :
+            ∀ v w, D (v, w) = Jx *ᵥ v + Ju *ᵥ w) : -- --- STMT ---
     fm.Encloses sys := by -- --- PROOF ---
   refine ⟨hf, fun X U x hx x' hx' u hu u' hu' => ?_⟩
   set dx := x - x'

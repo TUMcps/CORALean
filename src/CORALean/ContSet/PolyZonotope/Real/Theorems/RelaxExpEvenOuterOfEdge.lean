@@ -48,7 +48,7 @@ center shifted, given that the relaxed column is even. -/
 theorem PolyZonotope.relaxExpEven_outer_of_edge (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) {η : ℕ} {k₀ : Fin pZ.p}
     (hedge : PolyZonotope.ExpEdgeAt pZ.E η k₀ (part.right 0) (part.right 1))
-    (heven : ∀ k, Even (pZ.E k (part.right 0))) :
+    (heven : ∀ k, Even (pZ.E k (part.right 0))) : -- --- STMT ---
     pZ.construct ⊆ (pZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   obtain ⟨hsim, hpar, -, hlt⟩ := hedge
   -- the survivor's exponent is even: matching the parity of an even one, or zero

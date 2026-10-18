@@ -127,7 +127,8 @@ theorem Partition.sum_split₂ [AddCommMonoid M] [Fintype α] [Fintype βₗ] [F
 /-- A matrix-vector product splits along a partition of the columns, as `sum_split₂` splits a
 sum: what neuron merging parts into the survivors' weights and the bucket's contribution. -/
 theorem Partition.mulVec_split₂ {ι R : Type*} [Fintype α] [Fintype βₗ] [Fintype βᵣ]
-    [NonUnitalNonAssocSemiring R] (P : Split α into βₗ ⊕ βᵣ) (W : Matrix ι α R) (v : α → R) :
+    [NonUnitalNonAssocSemiring R] (P : Split α into βₗ ⊕ βᵣ) (W : Matrix ι α R)
+    (v : α → R) : -- --- STMT ---
     W.mulVec v
       = (W.submatrix id P.left).mulVec (v ∘ P.left)
         + (W.submatrix id P.right).mulVec (v ∘ P.right) := by -- --- PROOF ---

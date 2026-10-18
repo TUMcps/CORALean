@@ -42,7 +42,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- [1, Eq. 15]: every entry of `Q(β)` has derivative that of `−(1/β²) Q₁ (I − β² R)`. -/
 theorem Ellipsoid.halder_deriv_shape {Q₁ Q₂ : Matrix n n ℝ} (h₁ : Q₁.PosDef) {β : ℝ}
-    (hβ : 0 < β) (i j : n) :
+    (hβ : 0 < β) (i j : n) : -- --- STMT ---
     HasDerivAt (fun b : ℝ => (((1 + 1 / b) • Q₁ + (1 + b) • Q₂) i j))
       ((-(1 / β ^ 2) • (Q₁ * (1 - β ^ 2 • (Q₁⁻¹ * Q₂))) : Matrix n n ℝ) i j)
       β := by -- --- PROOF ---

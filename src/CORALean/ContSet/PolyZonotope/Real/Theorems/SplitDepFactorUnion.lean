@@ -30,7 +30,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- A point of `getSubset` is a point of `pZ` at the substituted factor, the independent block
 kept. -/
 theorem PolyZonotope.aux_mem_getSubset (pZ : PolyZonotope α) (k : Fin pZ.p) (cen rad : ℝ)
-    (x : α) : x ∈ (pZ.getSubset k cen rad).construct ↔
+    (x : α) : -- --- STMT ---
+    x ∈ (pZ.getSubset k cen rad).construct ↔
       ∃ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ), (∀ k', |a k'| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ x = pZ.point (Function.update a k (cen + rad * a k))
           + ∑ j, β j • pZ.GI j := by -- --- PROOF ---

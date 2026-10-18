@@ -59,7 +59,7 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
     {B_2 : MergeBuckets 𝕋} {rest : ReducibleNetwork 𝕋 n₁ m} {f : Vec ℝ n → Vec ℝ m}
     (hΦ : (ReducibleNetwork.cons L_1 L_2 hσ_2 B_2 rest).Instance f) {ρ : 𝕋} {Y : S m}
     (hrun : compressionPreprocessing le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2 rest ρ
-      = some Y) :
+      = some Y) : -- --- STMT ---
     f '' I_X.construct ⊆ construct Y := by -- --- PROOF ---
   cases hΦ with
   | @cons _ _ _ _ c1 _ _ σ₂ _ _ h1 _ hR2 hc1 hrest1 hf1 =>

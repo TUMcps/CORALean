@@ -57,7 +57,7 @@ theorem NonlinDASys.exists_lagrange_remainder {C : Set (Vec ℝ d)} (hC : Convex
     {F : Vec ℝ d → ℝ} {Ff : Vec ℝ d → (Vec ℝ d →L[ℝ] ℝ)}
     {Hf : Vec ℝ d → (Vec ℝ d →L[ℝ] Vec ℝ d →L[ℝ] ℝ)}
     (hF : ∀ ξ ∈ C, HasFDerivAt F (Ff ξ) ξ) (hH : ∀ ξ ∈ C, HasFDerivAt Ff (Hf ξ) ξ)
-    {zs z : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) :
+    {zs z : Vec ℝ d} (hzs : zs ∈ C) (hz : z ∈ C) : -- --- STMT ---
     ∃ ξ ∈ segment ℝ zs z,
       F z = F zs + Ff zs (z - zs) + (1 / 2) * Hf ξ (z - zs) (z - zs) := by -- --- PROOF ---
   set h : Vec ℝ d := z - zs with hh

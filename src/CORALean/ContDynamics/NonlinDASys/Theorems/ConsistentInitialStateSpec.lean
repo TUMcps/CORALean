@@ -34,7 +34,7 @@ variable {n p m : ℕ}
 theorem NonlinDASys.consistentInitialState_spec (sys : NonlinDASys n p m)
     (F : Vec ℝ n → Vec ℝ p → Vec ℝ m → Mat ℝ p p) (tol : ℝ) (fuel : ℕ) (x₀ : Vec ℝ n)
     (u₀ : Vec ℝ m) (y₀ y' : Vec ℝ p)
-    (h : sys.consistentInitialState F tol fuel x₀ u₀ y₀ = some y') :
+    (h : sys.consistentInitialState F tol fuel x₀ u₀ y₀ = some y') : -- --- STMT ---
     ∃ y Δ : Vec ℝ p, y' = y + Δ ∧ norm₂ Δ < tol ∧
       (IsUnit (F x₀ y u₀).det → F x₀ y u₀ *ᵥ Δ = -(sys.g x₀ y u₀)) := by -- --- PROOF ---
   obtain ⟨y, hy, hs⟩ := newtonIterate_spec _ _ fuel y₀ y' h

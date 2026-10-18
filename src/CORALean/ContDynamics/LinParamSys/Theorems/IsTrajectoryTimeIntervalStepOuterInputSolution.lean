@@ -111,7 +111,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalStep_outer_inputSolution
     (hTconv : ∀ k ≤ m + 2,
       Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
     (hTclosed : ∀ k ≤ m + 2,
-      IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U))) :
+      IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U))) : -- --- STMT ---
     x t ∈ construct (Plus.plus (sys.timeIntervalStep r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   set η := m + 2 with hη

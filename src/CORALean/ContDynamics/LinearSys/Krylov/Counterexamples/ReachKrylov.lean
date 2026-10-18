@@ -49,7 +49,7 @@ open Matrix
 
 /-- CORA's Krylov `reach`, step `1`, as printed for the example above: the Jawecki test accepts
 order `2`, yet for every `expm` output `E` the time-point set misses `x(3)` of a run. -/
-theorem Krylov.reach_krylov_counterexample :
+theorem Krylov.reach_krylov_counterexample : -- --- STMT ---
     let A : Mat ℝ 2 2 := !![0, 0; 1, 1]
     let u : Vec ℝ 2 := ![1, 0]
     let t : ℝ := 3

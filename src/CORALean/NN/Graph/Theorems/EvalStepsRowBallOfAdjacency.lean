@@ -42,7 +42,7 @@ open Matrix
 theorem GNN.evalSteps_row_ball_of_adjacency {N F : ℕ} (A : Mat ℝ N N) (hA : ∀ i j, 0 ≤ A i j)
     (hSymm : ∀ i j, A i j = A j i) (v : Fin N) (L : ℕ) {K : ℕ} (κ : Fin K → Fin N)
     (hinj : Function.Injective κ) (hκ : GNN.ball A v (L + 1) ⊆ Finset.univ.image κ)
-    (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) :
+    (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) : -- --- STMT ---
     ∃ φ : Fin (GNN.ball A v L).card → Fin K,
       GNN.evalSteps (GNN.messagePassing A) L W X v
         = GNN.evalSteps ((GNN.messagePassing (A.submatrix κ κ)).submatrix φ φ) L W

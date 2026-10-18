@@ -46,7 +46,7 @@ variable {n v N r : ℕ}
 /-- [1, Eq. 6]: `Ẋ V Σ⁻¹ Uᵀ` minimizes (4) for the economy SVD `Φ = U Σ Vᵀ`. -/
 theorem dmdCandidate_leastSquares (Xd : Mat ℝ n N) (Φ : Mat ℝ v N) (U : Mat ℝ v r)
     (s : Fin r → ℝ) (V : Mat ℝ N r) (hΦ : Φ = U * Matrix.diagonal s * Vᵀ) (hU : Uᵀ * U = 1)
-    (hV : Vᵀ * V = 1) (hs : ∀ i, s i ≠ 0) (B : Mat ℝ n v) :
+    (hV : Vᵀ * V = 1) (hs : ∀ i, s i ≠ 0) (B : Mat ℝ n v) : -- --- STMT ---
     ∑ i, ∑ a, ((Xd - dmdCandidate Xd U s V r * Φ) a i) ^ 2
       ≤ ∑ i, ∑ a, ((Xd - B * Φ) a i) ^ 2 := by -- --- PROOF ---
   refine leastSquares_le_of_normal_eq Xd Φ _ ?_ B

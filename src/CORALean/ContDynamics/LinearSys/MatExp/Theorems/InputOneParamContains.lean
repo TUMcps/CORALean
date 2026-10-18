@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.inputOneParam_contains (C G : Mat ℝ n n) (c_c g_c : Vec ℝ n) (r : ℝ) (η : ℕ)
-    {β : ℝ} (hβ : |β| ≤ 1) :
+    {β : ℝ} (hβ : |β| ≤ 1) : -- --- STMT ---
     ∑ i ∈ Finset.range (η + 1), (r ^ (i + 1) / (i + 1).factorial) •
         ((C + β • G) ^ i *ᵥ (c_c + β • g_c)) ∈
       (MatExp.inputOneParam C G c_c g_c r η).construct := by -- --- PROOF ---

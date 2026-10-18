@@ -40,7 +40,7 @@ variable {N F₁ F₂ : ℕ}
 /-- A shared-factor convolution is exactly the set of products the two sets take
 at a common factor vector. -/
 theorem GNN.gcnShared_exact (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat ℝ N N))
-    (H : PolyZonotope (Mat ℝ N F₁)) (hp : P.p = H.p) :
+    (H : PolyZonotope (Mat ℝ N F₁)) (hp : P.p = H.p) : -- --- STMT ---
     (fun a : Fin P.p → ℝ => P.point a * H.point (fun k => a (Fin.cast hp.symm k)) * W)
         '' {a | ∀ k, |a k| ≤ 1}
       = (GNN.gcnShared W P H hp).construct := by -- --- PROOF ---

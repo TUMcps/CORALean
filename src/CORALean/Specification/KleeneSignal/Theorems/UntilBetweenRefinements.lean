@@ -33,7 +33,7 @@ namespace CORALean
 
 theorem KleeneSignal.until_between_refinements (s₁ s₂ : KleeneSignal ℝ) (h₁ : s₁.IsValid)
     (h₂ : s₂.IsValid) (l₁ l₂ : PointSegmentSignal ℝ) (hl₁ : l₁.IsValid) (hl₂ : l₂.IsValid)
-    (hr₁ : s₁.IsRefinedBy l₁) (hr₂ : s₂.IsRefinedBy l₂) (U : STLInterval) :
+    (hr₁ : s₁.IsRefinedBy l₁) (hr₂ : s₂.IsRefinedBy l₂) (U : STLInterval) : -- --- STMT ---
     ∀ t : ℝ, 0 ≤ t →
       ((s₁.toBoolSignal false).until U (s₂.toBoolSignal false)).at t ≤ (l₁.until U l₂).at t ∧
       (l₁.until U l₂).at t ≤

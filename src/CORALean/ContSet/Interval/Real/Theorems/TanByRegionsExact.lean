@@ -90,7 +90,7 @@ theorem aux_tanByRegions_none {lo hi zl zu : ℝ}
     (hb2 : zu < zl → zl + (hi - lo) = zu + Real.pi)
     (h : (zl ∈ Set.Ico 0 (Real.pi / 2) ∧ zu ∈ Set.Ico 0 (Real.pi / 2) ∧ zu < zl) ∨
       (zl ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi ∧ zu < zl) ∨
-      (zl ∈ Set.Ico 0 (Real.pi / 2) ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi)) :
+      (zl ∈ Set.Ico 0 (Real.pi / 2) ∧ zu ∈ Set.Ico (Real.pi / 2) Real.pi)) : -- --- STMT ---
     ¬BddAbove (Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0})) ∧
       ¬BddBelow (Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0})) := by -- --- PROOF ---
   rw [hshift]
@@ -156,7 +156,7 @@ theorem aux_tanByRegions_wrap {zl zu : ℝ} (hzl : 0 ≤ zl ∧ zl < Real.pi)
 
 /-- [1, Eq. 14], its missing case supplied, at ends that are not poles. -/
 theorem Interval.tanByRegions_exact {lo hi : ℝ} (hle : lo ≤ hi) (hlo : Real.cos lo ≠ 0)
-    (hhi : Real.cos hi ≠ 0) :
+    (hhi : Real.cos hi ≠ 0) : -- --- STMT ---
     (Interval.tanByRegions lo hi = none →
       ¬BddAbove (Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0})) ∧
         ¬BddBelow (Real.tan '' (Set.Icc lo hi ∩ {x | Real.cos x ≠ 0}))) ∧

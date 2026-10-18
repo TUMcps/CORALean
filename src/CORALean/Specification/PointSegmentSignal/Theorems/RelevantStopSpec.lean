@@ -41,7 +41,7 @@ namespace CORALean
 /-- The last value of an interval is the one read at its right end, or just before it. -/
 theorem PointSegmentSignal.relevantStop_spec {T : Type} [LinearOrder T] [Zero T] [DenselyOrdered T]
     [NoMaxOrder T] (s : PointSegmentSignal T) (hs : s.IsValid) (ub : WithTop T)
-    (hub0 : ((0 : T) : WithTop T) ≤ ub) (rc : Bool) :
+    (hub0 : ((0 : T) : WithTop T) ≤ ub) (rc : Bool) : -- --- STMT ---
     s.relevantStop ub rc ≤ s.values.length ∧
     (∀ t : T, 0 ≤ t → ((t : WithTop T) < ub ∨ (rc = true ∧ (t : WithTop T) = ub)) →
       s.cell t < s.relevantStop ub rc) ∧

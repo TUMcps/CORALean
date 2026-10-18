@@ -70,7 +70,7 @@ theorem LinearSys.verifySearchLoop_sound
     (gramSchmidt : List (Vec ℝ n) → (Vec ℝ n →ₗ[ℝ] ℝ)) (ℓ₁ : Vec ℝ n →ₗ[ℝ] ℝ) (fuel : ℕ)
     (s : LinearSys.VerifySearchState n) (hΔt : 0 < s.Δt) (hk : (s.k : ℝ) * s.Δt = t)
     (hε : ‖s.Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (hP : ∀ v ∈ s.Pcheck, v ∈ sys.reachSet (Set.Icc 0 t) X₀ U t - L) :
+    (hP : ∀ v ∈ s.Pcheck, v ∈ sys.reachSet (Set.Icc 0 t) X₀ U t - L) : -- --- STMT ---
     (sys.verifySearchLoop X₀ U (m + 2) ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁ fuel s
         = .safe → Disjoint (sys.reachSet (Set.Icc 0 t) X₀ U t) L) ∧
     (sys.verifySearchLoop X₀ U (m + 2) ρ ν₀ νU νL νhat ρL inHull closestFacet gramSchmidt ℓ₁ fuel s

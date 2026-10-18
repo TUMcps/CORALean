@@ -74,7 +74,7 @@ theorem Krylov.aux_arnoldi_shift_hessenberg (i j : ℕ) :
 
 /-- [1, Thm. III.2] as printed fails at the `3 × 3` shift, `X₀ = (e₃, e₁)`, `δ = 1`, `η = 2`:
 Alg. 1 is exact (`h_{ξ+1,ξ} = 0`, so `ε_norm = 0`), and `e^{A/2}(e₃ - e₁)` is outside. -/
-theorem Krylov.printed_time_interval_counterexample :
+theorem Krylov.printed_time_interval_counterexample : -- --- STMT ---
     let A : Mat ℝ 3 3 := !![0, 0, 0; 1, 0, 0; 0, 1, 0]
     let c : Vec ℝ 3 := ![0, 0, 1]
     let g : Vec ℝ 3 := ![1, 0, 0]

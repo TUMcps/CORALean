@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 rounded to a float. -/
 theorem MatExp.abs_entry_exp_sub_expTaylor_le (A : Interval (Mat 𝕋 n n)) (η : ℕ) {M : Mat ℝ n n}
     (hM : M ∈ A.construct) (hε : toReal (MatExp.normUpperBound A) / ((η : ℝ) + 2) ≤ 1 / 2)
-    (i j : Fin n) :
+    (i j : Fin n) : -- --- STMT ---
     |exp M i j - Real.MatExp.expTaylor M η i j|
       ≤ toReal (MatExp.expRemainderBound (MatExp.normUpperBound A) η) := by -- --- PROOF ---
   have hnorm : ‖M‖ ≤ toReal (MatExp.normUpperBound A) :=

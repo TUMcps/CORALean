@@ -36,7 +36,7 @@ an admissible order. -/
 theorem LinearSys.zero_mem_discretizeEnclosureFloat_reach_error (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     (hΔt : 0 ≤ toReal Δt) {η : ℕ} (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o)
     {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) :
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) : -- --- STMT ---
     (0 : Vec ℝ n) ∈ ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).I_error.construct := by -- --- PROOF ---
   induction k with

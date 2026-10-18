@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem gaussPdf_exp_mulVec (A : Mat ℝ n n) (t : ℝ) (c : Vec ℝ n) {S : Mat ℝ n n}
-    (hS : 0 < S.det) (x : EuclideanSpace ℝ (Fin n)) :
+    (hS : 0 < S.det) (x : EuclideanSpace ℝ (Fin n)) : -- --- STMT ---
     gaussPdf (exp (t • A) *ᵥ c) (exp (t • A) * S * (exp (t • A))ᵀ)
         (toLp 2 (exp (t • A) *ᵥ ofLp x))
       = Real.exp (-(t * A.trace)) * gaussPdf c S x := by -- --- PROOF ---

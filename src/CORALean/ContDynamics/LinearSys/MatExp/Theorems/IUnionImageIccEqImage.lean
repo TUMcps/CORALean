@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 /-- The reach set over `[kr, (k+1)r]` is `e^{Akr}` times the one over `[0, r]`. -/
 theorem MatExp.iUnion_image_Icc_eq_image (A : Mat ℝ n n) (r : ℝ) (k : ℕ)
-    (Z : Set (Vec ℝ n)) :
+    (Z : Set (Vec ℝ n)) : -- --- STMT ---
     (⋃ t ∈ Set.Icc ((k : ℝ) * r) (((k : ℝ) + 1) * r), (fun x => exp (t • A) *ᵥ x) '' Z)
       = (fun y => exp (((k : ℝ) * r) • A) *ᵥ y) ''
         (⋃ t ∈ Set.Icc (0 : ℝ) r, (fun x => exp (t • A) *ᵥ x) '' Z) := by -- --- PROOF ---

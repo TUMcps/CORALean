@@ -52,7 +52,7 @@ theorem Location.guardIntersectPolytopeFloat_outer (Bs : List (Mat 𝕋 n n)) (R
     (Rs : List (Zonotope (Vec 𝕋 n))) (guard : ConZonotope 𝕋 (Vec 𝕋 n))
     (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.construct)
-    (hg : x ∈ guard.construct) :
+    (hg : x ∈ guard.construct) : -- --- STMT ---
     x ∈ (Location.guardIntersectPolytopeFloat Bs R₀ Rs guard).construct := by -- --- PROOF ---
   have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),
       (y ∈ J.construct ∨ ∃ I ∈ Is, y ∈ I.construct) → y ∈ (Is.foldl Interval.or J).construct := by

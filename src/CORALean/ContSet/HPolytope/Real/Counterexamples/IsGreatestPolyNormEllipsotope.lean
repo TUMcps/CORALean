@@ -37,7 +37,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.isGreatest_polyNorm_ellipsotope_counterexample :
+theorem HPolytope.isGreatest_polyNorm_ellipsotope_counterexample : -- --- STMT ---
     let Λ : Mat ℝ 2 1 := !![1; -1]
     let b : Vec ℝ 2 := ![1, 1]
     let c : Vec ℝ 1 := ![1]

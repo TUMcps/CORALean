@@ -40,7 +40,7 @@ at `t_k = k Δt` in the `k`-th time-point set. -/
 theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloatInput params options = some (Rti, Rtp)) :
+    (h : sys.reachFloatInput params options = some (Rti, Rtp)) : -- --- STMT ---
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rtp.length = N + 1 ∧ ∀ {x u : ℝ → Vec ℝ n},
         sys.IsCanonicalTrajectory (S := 𝒮)

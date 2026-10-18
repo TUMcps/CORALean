@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.polyBounds_mem (L : List (𝕋 × (Fin n → ℕ))) {t : Vec ℝ n}
-    (ht : t ∈ Real.Taylm.box n) :
+    (ht : t ∈ Real.Taylm.box n) : -- --- STMT ---
     toReal (Taylm.polyBounds L).inf ≤ Real.Taylm.polyOf (L.map fun a => (toReal a.1, a.2)) t ∧
       Real.Taylm.polyOf (L.map fun a => (toReal a.1, a.2)) t
         ≤ toReal (Taylm.polyBounds L).sup := by -- --- PROOF ---

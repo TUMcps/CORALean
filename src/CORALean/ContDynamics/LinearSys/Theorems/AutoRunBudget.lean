@@ -51,7 +51,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 the share `ε^{a,τ}_k` it was measured against. -/
 theorem aux_autoTuneOrder_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk : ℝ)
-    (U₀ : Zonotope (Vec ℝ n)) {Δt εaτ εnτ : ℝ} :
+    (U₀ : Zonotope (Vec ℝ n)) {Δt εaτ εnτ : ℝ} : -- --- STMT ---
     ∀ (m η η' : ℕ), sys.autoTuneOrder le H ũ tk U₀ Δt εaτ εnτ η m = some η' →
       MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δt η'
         ≤ εaτ := by -- --- PROOF ---
@@ -73,7 +73,7 @@ theorem aux_autoTuneOrder_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool
 inside line 14's share at that very step. -/
 theorem aux_autoTuneSearch_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n)
-    {tk tend εmax ζ εaAcc : ℝ} (ηmax : ℕ) (U₀ : Zonotope (Vec ℝ n)) :
+    {tk tend εmax ζ εaAcc : ℝ} (ηmax : ℕ) (U₀ : Zonotope (Vec ℝ n)) : -- --- STMT ---
     ∀ (m : ℕ) (Δt Δtk : ℝ) (ηk : ℕ), 0 < Δt →
       sys.autoTuneSearch le H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt m = some (Δtk, ηk) →
         0 < Δtk ∧ MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δtk ηk
@@ -109,7 +109,7 @@ theorem aux_autoStep_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
     {tend εmax ζ : ℝ} {ηmax fuel : ℕ} {s : LinearSys.AutoState n} (hΔt : 0 < s.Δt)
     (ht : 0 ≤ s.t) {r : LinearSys.AutoState n × Zonotope (Vec ℝ n)}
-    (h : sys.autoStep le X₀ U tend εmax ζ ηmax fuel s = some r) :
+    (h : sys.autoStep le X₀ U tend εmax ζ ηmax fuel s = some r) : -- --- STMT ---
     0 ≤ r.1.t ∧ 0 < r.1.Δt ∧ r.1.εa ≤ r.1.t / tend * (1 - ζ) * εmax ∧
       r.1.εr ≤ r.1.t / tend * ζ * εmax := by -- --- PROOF ---
   simp only [LinearSys.autoStep] at h
@@ -133,7 +133,7 @@ theorem aux_autoStep_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
 `ε^r_k` stay inside eq. (36)'s and eq. (35)'s shares at `t_k`, and the step stays positive. -/
 theorem LinearSys.autoRun_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
-    {tend εmax ζ : ℝ} (htend : 0 < tend) (ηmax fuel : ℕ) :
+    {tend εmax ζ : ℝ} (htend : 0 < tend) (ηmax fuel : ℕ) : -- --- STMT ---
     ∀ (k : ℕ) (s : LinearSys.AutoState n),
       sys.autoRun le X₀ U tend εmax ζ ηmax fuel k = some s →
         0 ≤ s.t ∧ 0 < s.Δt ∧ s.εa ≤ s.t / tend * (1 - ζ) * εmax ∧

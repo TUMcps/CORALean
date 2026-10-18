@@ -35,7 +35,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem prod_properties_counterexample :
+theorem prod_properties_counterexample : -- --- STMT ---
     (∃ (S₁ : Set (Vec ℝ 2)) (S₂ : Set (Vec ℝ 1)), interior S₁ = ∅ ∧ Bornology.IsBounded S₂ ∧
       ¬ Bornology.IsBounded (S₁ ×ˢ S₂)) ∧
     (∃ (S₁ : Set (Vec ℝ 1)) (S₂ : Set (Vec ℝ 1)), interior S₁ = ∅ ∧

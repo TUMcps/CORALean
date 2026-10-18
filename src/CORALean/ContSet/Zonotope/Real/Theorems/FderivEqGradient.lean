@@ -49,7 +49,7 @@ variable {n : ℕ}
 theorem Zonotope.fderiv_eq_gradient (ℒ : Zonotope (Vec ℝ n) → ℝ) (Y : Zonotope (Vec ℝ n))
     (hF : DifferentiableAt ℝ (fun p : Vec ℝ n × (Fin Y.h → Vec ℝ n) => ℒ ⟨Y.h, p.1, p.2⟩)
       (Y.c, Y.G))
-    (u : Vec ℝ n) (U : Fin Y.h → Vec ℝ n) :
+    (u : Vec ℝ n) (U : Fin Y.h → Vec ℝ n) : -- --- STMT ---
     fderiv ℝ (fun p : Vec ℝ n × (Fin Y.h → Vec ℝ n) => ℒ ⟨Y.h, p.1, p.2⟩) (Y.c, Y.G) (u, U) =
       u ⬝ᵥ (Y.gradient ℒ).c + ∑ l, U l ⬝ᵥ (Y.gradient ℒ).G l := by -- --- PROOF ---
   set F : Vec ℝ n × (Fin Y.h → Vec ℝ n) → ℝ := fun p => ℒ ⟨Y.h, p.1, p.2⟩ with hFdef

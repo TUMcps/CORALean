@@ -64,7 +64,7 @@ private theorem aux_const {x : ℝ → ℝ} (hd : ∀ s ∈ Icc (0 : ℝ) 1, Has
 
 /-- [1, Thm. 3] is false: every hypothesis holds for `ẋ = 0` from `[-1, 1]` with the identity
 contractor, and `C(α̲, ᾱ) = [-3/2, -1/2]` is not inside `R(1) = [-1, 1]`. -/
-theorem innerScaling_counterexample :
+theorem innerScaling_counterexample : -- --- STMT ---
     let pZ : PolyZonotope ℝ := ⟨2, 2, 0, 0, ![1, 1 / 2], fun k i => if k = i then 1 else 0,
       Fin.elim0⟩
     let B : List (PolyZonotope ℝ) := [⟨1, 1, 0, 1, ![1 / 2], fun _ _ => 1, Fin.elim0⟩,

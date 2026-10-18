@@ -39,7 +39,7 @@ variable {q₁ q₂ n₁ n₂ : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ineqs_blockDiag_eq (A₁ : Mat ℝ q₁ n₁) (b₁ : Vec ℝ q₁) (A₂ : Mat ℝ q₂ n₂)
-    (b₂ : Vec ℝ q₂) :
+    (b₂ : Vec ℝ q₂) : -- --- STMT ---
     (HPolytope.ineqs (Matrix.of fun r => Fin.addCases (fun r₁ => Fin.append (A₁ r₁) 0)
         (fun r₂ => Fin.append 0 (A₂ r₂)) r) (Fin.append b₁ b₂)).construct =
       (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''

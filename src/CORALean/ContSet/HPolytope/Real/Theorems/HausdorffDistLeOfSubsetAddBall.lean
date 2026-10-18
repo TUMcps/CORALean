@@ -43,7 +43,7 @@ theorem HPolytope.hausdorffDist_le_of_subset_add_ball {S T : Set (Vec ℝ n)} {H
     {hB : Vec ℝ qB} {D : ℝ} (hD : 0 ≤ D)
     (hPB : ∀ x, x ∈ (HPolytope.ineqs HB hB).construct ↔ ‖x‖ ≤ 1)
     (h₁ : S ⊆ T + (HPolytope.ineqs HB (D • hB)).construct)
-    (h₂ : T ⊆ S + (HPolytope.ineqs HB (D • hB)).construct) :
+    (h₂ : T ⊆ S + (HPolytope.ineqs HB (D • hB)).construct) : -- --- STMT ---
     Metric.hausdorffDist S T ≤ D := by -- --- PROOF ---
   have hB0 : ∀ i, 0 ≤ hB i := fun i => by
     have := HPolytope.mem_ineqs_iff.mp ((hPB 0).mpr (by simp)) i

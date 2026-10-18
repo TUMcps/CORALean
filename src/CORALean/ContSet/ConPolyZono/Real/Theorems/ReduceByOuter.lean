@@ -66,7 +66,7 @@ theorem ConPolyZono.aux_sum_univ_reduceBy_h {cPZ : ConPolyZono (Vec ℝ n)}
 and never by more than one. -/
 theorem ConPolyZono.aux_abs_droppedDep_le (cPZ : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin cPZ.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
+    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- STMT ---
     |∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l)|
       ≤ ∑ l, |cPZ.G (partD.right l) i| :=
   calc |∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l)|

@@ -43,7 +43,7 @@ theorem Zonotope.gradient_bias (ℒ : Zonotope (Vec ℝ m) → ℝ) (W : Mat ℝ
     (H : Zonotope (Vec ℝ n))
     (hF : DifferentiableAt ℝ (fun p : Vec ℝ m × (Fin (H.affine W b).h → Vec ℝ m) =>
       ℒ ⟨(H.affine W b).h, p.1, p.2⟩) ((H.affine W b).c, (H.affine W b).G))
-    (i : Fin m) :
+    (i : Fin m) : -- --- STMT ---
     deriv (fun t => ℒ (H.affine W (Function.update b i t))) (b i) =
       ((H.affine W b).gradient ℒ).c i := by -- --- PROOF ---
   set F : Vec ℝ m × (Fin (H.affine W b).h → Vec ℝ m) → ℝ :=

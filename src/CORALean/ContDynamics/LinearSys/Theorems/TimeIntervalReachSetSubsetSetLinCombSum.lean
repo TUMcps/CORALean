@@ -64,7 +64,7 @@ theorem LinearSys.timeIntervalReachSet_subset_setLinComb_sum (sys : LinearSys �
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) U)))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) :
+    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- STMT ---
     sys.timeIntervalReachSet T R₀ U r
       ⊆ Set.linComb (construct R₀) ((exp (r • toRealMat sys.A)).mulVecLin '' construct R₀)
         + construct (Mtimes.mtimes (𝕄 := ℐ)

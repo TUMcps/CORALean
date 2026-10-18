@@ -71,7 +71,7 @@ theorem LinearSys.IsCanonicalClassicalTrajectory.stepInput_outer [Mtimes ℐ S]
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) Δt η) U)))
-    (k : ℕ) (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) :
+    (k : ℕ) (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) : -- --- STMT ---
     sys.stepInput u Δt k ∈ construct (sys.inputSolution Δt η U) := by -- --- PROOF ---
   rw [show ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt from by ring] at hT
   -- the reflected argument, in the form each lemma states it

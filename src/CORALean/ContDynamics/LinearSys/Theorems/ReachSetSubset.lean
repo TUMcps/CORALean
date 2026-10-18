@@ -44,7 +44,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 sum of a moved initial point and an `inputReach` witness. -/
 theorem LinearSys.reachSet_subset_mulVecLin_image_add_inputReach
     (sys : LinearSys 𝕋 n) (R₀ U : S n) {t : ℝ} (ht : 0 ≤ t)
-    (hU : Bornology.IsBounded (construct U)) :
+    (hU : Bornology.IsBounded (construct U)) : -- --- STMT ---
     sys.reachSet (Set.Icc 0 t) R₀ U t
       ⊆ (exp (t • toRealMat sys.A)).mulVecLin '' construct R₀
         + sys.inputReach U t := by -- --- PROOF ---

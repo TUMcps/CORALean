@@ -36,7 +36,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.boundIntersect2DBisect_spec (Z : Zonotope (Vec ℝ 2)) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) :
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- STMT ---
     {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} =
       Set.Icc (Z.boundIntersect2DBisect γ).inf
         (Z.boundIntersect2DBisect γ).sup := by -- --- PROOF ---

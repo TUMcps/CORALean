@@ -37,7 +37,7 @@ variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.I
 /-- For a set of positive volume, `exactIntersectingCells` is the positive-volume cells and the
 volume share in each, with `1 - Σ` for the outside. -/
 theorem GridPartition.exactIntersectingCells_exact (P : GridPartition n) (X : S n) (hn : n ≠ 0)
-    (hpos : 0 < GridPartition.volumeOf (construct X)) :
+    (hpos : 0 < GridPartition.volumeOf (construct X)) : -- --- STMT ---
     let shares := (List.range' 1 P.nrOfCells).map
       fun c => P.cellVolume (construct X) c / GridPartition.volumeOf (construct X)
     (P.exactIntersectingCells X).iS = 0 :: (List.range' 1 P.nrOfCells).filter

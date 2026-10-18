@@ -78,7 +78,7 @@ theorem aux_mem_iff (hn : 1 ≤ n) (y : Vec ℝ n) (t : ℝ) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem gadget_zonotope (hn : 2 ≤ n) :
+theorem gadget_zonotope (hn : 2 ≤ n) : -- --- STMT ---
     let Zh := {x : Vec ℝ n × ℝ | ∃ β : Vec ℝ n × Vec ℝ n,
       ‖β‖ ≤ 1 ∧ (∀ i, 0 ≤ β.1 i ∧ 0 ≤ β.2 i) ∧ x = gadgetH n β}
     Zh = {x | ∃ β : Vec ℝ n × Vec ℝ n, ‖β‖ ≤ 1 ∧

@@ -42,7 +42,7 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
     (Rs : List (Zonotope (Vec 𝕋 n))) (nv : Vec 𝕋 n) (γ : 𝕋)
     (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.construct)
-    (hg : x ⬝ᵥ toRealVec nv = toReal γ) :
+    (hg : x ⬝ᵥ toRealVec nv = toReal γ) : -- --- STMT ---
     x ∈ (Location.guardIntersectZonoGirardFloat Bs R₀ Rs nv γ).construct := by -- --- PROOF ---
   have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),
       (y ∈ J.construct ∨ ∃ I ∈ Is, y ∈ I.construct) → y ∈ (Is.foldl Interval.or J).construct := by

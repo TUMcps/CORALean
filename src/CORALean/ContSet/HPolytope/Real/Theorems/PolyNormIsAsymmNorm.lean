@@ -40,7 +40,7 @@ variable {s n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.polyNorm_isAsymmNorm {H : Mat ℝ s n} {h : Vec ℝ s} :
+theorem HPolytope.polyNorm_isAsymmNorm {H : Mat ℝ s n} {h : Vec ℝ s} : -- --- STMT ---
     (∀ x y, HPolytope.polyNorm H h (x + y) ≤ HPolytope.polyNorm H h x + HPolytope.polyNorm H h y) ∧
       (∀ (a : ℝ) x, 0 < a → HPolytope.polyNorm H h (a • x) = a * HPolytope.polyNorm H h x) ∧
       ((∀ i, 0 < h i) →

@@ -45,7 +45,7 @@ variable {n : ℕ}
 /-- The left fold of `Zonotope.plus` over `f s, …, f (s + m - 1)` encloses `a + ∑ x (s + j)`. -/
 theorem MatExp.aux_foldl_plus_mem_zono (f : ℕ → Zonotope (Mat ℝ n n)) (x : ℕ → Mat ℝ n n) (s m : ℕ)
     (hx : ∀ j, j < m → x (s + j) ∈ (f (s + j)).construct) {acc : Zonotope (Mat ℝ n n)}
-    {a : Mat ℝ n n} (ha : a ∈ acc.construct) :
+    {a : Mat ℝ n n} (ha : a ∈ acc.construct) : -- --- STMT ---
     a + ∑ j ∈ Finset.range m, x (s + j) ∈ ((List.range' s m).foldl
       (fun e i => Zonotope.plus e (f i)) acc).construct := by -- --- PROOF ---
   -- peel the last index off both the list and the sum
@@ -62,7 +62,7 @@ theorem MatExp.aux_foldl_plus_mem_zono (f : ℕ → Zonotope (Mat ℝ n n)) (x :
 
 /-- `eZ` holds the Taylor sum of order `k` and `eI` the rest of the series, of every member. -/
 theorem MatExp.expmMixedMatZono_outer (Z : Zonotope (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0) {k η : ℕ}
-    (hk : 2 ≤ k) (hη : k < η) {M : Mat ℝ n n} (hM : M ∈ Z.construct) :
+    (hk : 2 ≤ k) (hη : k < η) {M : Mat ℝ n n} (hM : M ∈ Z.construct) : -- --- STMT ---
     MatExp.expTaylor M k ∈ (MatExp.expmMixedMatZono Z r k η).eZ.construct ∧
       exp M - MatExp.expTaylor M k ∈
         (MatExp.expmMixedMatZono Z r k η).eI.construct := by -- --- PROOF ---

@@ -30,7 +30,7 @@ variable {k : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- One cross term, at least its share of the off-diagonal penalty. -/
-theorem SpectraShadow.aux_cross_term (M : Mat ℝ k k) (x : Fin k → ℝ) (i j : Fin k) :
+theorem SpectraShadow.aux_cross_term (M : Mat ℝ k k) (x : Fin k → ℝ) (i j : Fin k) : -- --- STMT ---
     (if j = i then M i i * x i ^ 2 else 0)
         - (if j = i then 0 else |M i j|) * x i ^ 2 / 2
         - (if j = i then 0 else |M i j|) * x j ^ 2 / 2

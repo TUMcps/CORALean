@@ -50,7 +50,7 @@ window, in that window's set. -/
 theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.AdaptiveOptions 𝕋} {steps : List (LinearSys.AdaptiveStepInfo 𝕋 n)}
-    (h : sys.reachAdaptiveFloat params options = some steps) :
+    (h : sys.reachAdaptiveFloat params options = some steps) : -- --- STMT ---
     (∀ t ∈ Set.Icc (params.tStart : ℝ) params.tFinal, ∃ (k : ℕ) (hk : k < steps.length),
         t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧
       ∀ {x u : ℝ → Vec ℝ n},

@@ -75,7 +75,7 @@ time of window `k`, in the `k`-th set. -/
 theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.manualReachFloat params options = some Rs) :
+    (h : sys.manualReachFloat params options = some Rs) : -- --- STMT ---
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
         sys.IsCanonicalTrajectory (S := 𝒮)

@@ -40,7 +40,7 @@ theorem STL.exists_mem_factorStep (Rj : Set S) (Pjk : List (Set S)) (unsafeSet :
     (hR : ξ ∈ Rj) (hU : ∀ Pl, ξ ∈ Pl → α ∈ unsafeSet Pl)
     (hmeets : ∀ A B, meets A B = false → A ∩ B = ∅)
     (hempty : ∀ v, isEmpty v = true → v = ∅) (hP : ∃ Pl ∈ Pjk, ξ ∈ Pl)
-    (hV : ∃ v ∈ V, α ∈ v) :
+    (hV : ∃ v ∈ V, α ∈ v) : -- --- STMT ---
     ∃ v ∈ STL.factorStep Rj Pjk unsafeSet meets isEmpty V, α ∈ v := by -- --- PROOF ---
   obtain ⟨v, hv, hαv⟩ := hV
   obtain ⟨Pl, hPl, hξ⟩ := hP

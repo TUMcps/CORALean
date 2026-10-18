@@ -43,7 +43,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- Some step is short enough that its enclosure minus a ball of the caller's
 own radius `ε` is already inside the states the flow visits over it. -/
 theorem LinearSys.exists_timeIntervalStepInner_inner (sys : LinearSys 𝕋 n)
-    (X₀ : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) :
+    (X₀ : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- STMT ---
     ∃ r : ℝ, 0 < r ∧ sys.timeIntervalStepError r η X₀ < ε ∧
       minkowskiDiff (sys.timeIntervalStep (S := 𝒵) r η X₀).construct
           (Metric.closedBall (0 : Vec ℝ n) ε)

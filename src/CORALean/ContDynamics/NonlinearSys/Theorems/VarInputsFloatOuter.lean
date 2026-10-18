@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m o : ℕ}
 
 theorem varInputsFloat_outer (B : Mat 𝕋 n m) (D : Fin n → Mat 𝕋 o o)
     {Rz RzΔ : PolyZonotope (Vec 𝕋 o)} {UΔ : PolyZonotope (Vec 𝕋 m)} {z zΔ : Vec ℝ o} {uΔ : Vec ℝ m}
-    (hz : z ∈ Rz.construct) (hzΔ : zΔ ∈ RzΔ.construct) (huΔ : uΔ ∈ UΔ.construct) :
+    (hz : z ∈ Rz.construct) (hzΔ : zΔ ∈ RzΔ.construct) (huΔ : uΔ ∈ UΔ.construct) : -- --- STMT ---
     (fun i => (toRealMat B *ᵥ uΔ) i
         + (2 : ℝ)⁻¹ * ∑ j, ∑ k, toReal (D i j k) * (z j * zΔ k + zΔ j * z k + zΔ j * zΔ k))
       ∈ (varInputsFloat B D Rz RzΔ UΔ).construct := by -- --- PROOF ---

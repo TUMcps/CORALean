@@ -32,7 +32,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.exactPlus_construct (cPZ₁ cPZ₂ : ConPolyZono α) (hp : cPZ₁.p = cPZ₂.p) :
+theorem ConPolyZono.exactPlus_construct (cPZ₁ cPZ₂ : ConPolyZono α)
+    (hp : cPZ₁.p = cPZ₂.p) : -- --- STMT ---
     (cPZ₁.exactPlus cPZ₂ hp).construct
       = {x | ∃ a : Fin cPZ₁.p → ℝ, ∃ β₁ : Fin cPZ₁.qI → ℝ, ∃ β₂ : Fin cPZ₂.qI → ℝ,
           (∀ k, |a k| ≤ 1) ∧ (∀ j, |β₁ j| ≤ 1) ∧ (∀ j, |β₂ j| ≤ 1) ∧ cPZ₁.satisfies a

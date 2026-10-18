@@ -27,7 +27,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ReachSetAnalyzer.analyzeTree_sound {σ α : Type} (children : ℕ → List ℕ)
-    (analyzeSingle : σ → ℕ → Option σ) (signals : σ → Option α) :
+    (analyzeSingle : σ → ℕ → Option σ) (signals : σ → Option α) : -- --- STMT ---
     ∀ (fuel i : ℕ) (obj : σ) (outs : List α),
       ReachSetAnalyzer.analyzeTree children analyzeSingle signals fuel i obj = some outs →
       ∀ out ∈ outs, ∃ (w : List ℕ) (obj' : σ), ReachSetAnalyzer.Branch children i w ∧

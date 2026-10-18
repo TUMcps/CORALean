@@ -68,7 +68,7 @@ theorem aux_hessRem_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
 theorem aux_hessRem_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
     (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
-    (hy : y ∈ Y.construct) :
+    (hy : y ∈ Y.construct) : -- --- STMT ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
         (-A))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)

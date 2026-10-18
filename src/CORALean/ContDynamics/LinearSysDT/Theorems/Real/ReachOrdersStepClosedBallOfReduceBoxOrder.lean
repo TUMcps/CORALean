@@ -60,7 +60,7 @@ theorem LinearSysDT.reachOrders_step_subset_closedBall_of_reduceBoxOrder (sys : 
     (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (heq : o (k + 1) = Zonotope.reduceBoxOrder
         (Zonotope.plus (Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U)
-        (Metric.closedBall (0 : Vec ℝ n) ε)) :
+        (Metric.closedBall (0 : Vec ℝ n) ε)) : -- --- STMT ---
     (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * r + rU + ε) := by -- --- PROOF ---
   rw [show sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩

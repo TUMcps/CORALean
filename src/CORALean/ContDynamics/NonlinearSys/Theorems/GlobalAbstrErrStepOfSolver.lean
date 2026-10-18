@@ -55,7 +55,7 @@ theorem aux_exists_solverError {A : Mat ℝ n n} {Δt : ℝ} {N : ℕ}
     (hB1 : ∀ k < N, R (k + 1) = (exp (Δt • A)).mulVec '' R k + P k + Rabs k)
     (hB2 : ∀ k < N, Rhat (k + 1) = (exp (Δt • A)).mulVec '' Rhat k + P k)
     (hRabsNe : ∀ k < N, (Rabs k).Nonempty) (hRabsConv : ∀ k < N, Convex ℝ (Rabs k))
-    (hRabsCpt : ∀ k < N, IsCompact (Rabs k)) :
+    (hRabsCpt : ∀ k < N, IsCompact (Rabs k)) : -- --- STMT ---
     ∀ k ≤ N, ∃ E : Set (Vec ℝ n), E.Nonempty ∧ Convex ℝ E ∧ IsCompact E ∧
       R k = Rhat k + E := by -- --- PROOF ---
   intro k
@@ -88,7 +88,7 @@ theorem globalAbstrErr_succ_le_of_solver {A : Mat ℝ n n} {Δt tEnd : ℝ} (hΔ
     (hB2 : ∀ k < N, Rhat (k + 1) = (exp (Δt • A)).mulVec '' Rhat k + P k)
     (hRhatNe : ∀ k ≤ N, (Rhat k).Nonempty) (hRhatBdd : ∀ k ≤ N, Bornology.IsBounded (Rhat k))
     (hRabsNe : ∀ k < N, (Rabs k).Nonempty) (hRabsConv : ∀ k < N, Convex ℝ (Rabs k))
-    (hRabsCpt : ∀ k < N, IsCompact (Rabs k)) {k : ℕ} (hk : k < N) :
+    (hRabsCpt : ∀ k < N, IsCompact (Rabs k)) {k : ℕ} (hk : k < N) : -- --- STMT ---
     globalAbstrErr (R (k + 1)) (Rhat (k + 1)) ≤
       (1 + ‖A‖ * Real.exp (tEnd * ‖A‖) * Δt) * globalAbstrErr (R k) (Rhat k)
         + localAbstrErr (Rabs k) := by -- --- PROOF ---

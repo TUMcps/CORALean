@@ -31,7 +31,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.reduceOverDomain_rows (P : HPolytope (Vec ℝ n)) (dom : Interval (Vec ℝ n))
-    {x : Vec ℝ n} (hx : x ∈ dom.construct) (i : Fin P.m) :
+    {x : Vec ℝ n} (hx : x ∈ dom.construct) (i : Fin P.m) : -- --- STMT ---
     ((P.reduceOverDomain dom true).A (0 : Fin 1) x +
         ((⨆ k, P.normalizeRows.b k) - (P.reduceOverDomain dom true).b (0 : Fin 1))
         ≤ P.normalizeRows.A i x) ∧

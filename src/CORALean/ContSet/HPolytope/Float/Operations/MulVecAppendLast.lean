@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {N m : ℕ}
 
 -- a trailing column adds its entry against the coefficient the block holds
 theorem HPolytope.mulVec_append_last (A : Mat 𝕋 m N) (d : Vec 𝕋 m) (u : Vec ℝ N) (r : ℝ)
-    (i : Fin m) :
+    (i : Fin m) : -- --- STMT ---
     (toRealMat (fun i' => Fin.append (A i') fun _ : Fin 1 => d i')
         *ᵥ Fin.append u fun _ : Fin 1 => r) i
       = (toRealMat A *ᵥ u) i + toReal (d i) * r := by -- --- PROOF ---

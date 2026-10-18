@@ -42,7 +42,7 @@ theorem NonlinearSys.FloatModel.Encloses.linInputFloat_outer
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {X : Interval (Vec 𝕋 n)}
     {U : Zonotope (Vec 𝕋 m)} {U' : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.construct)
     (hU : U.construct ⊆ U'.construct) (hus : toRealVec U.c ∈ U'.construct)
-    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ X.construct) (hu : u ∈ U.construct) :
+    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ X.construct) (hu : u ∈ U.construct) : -- --- STMT ---
     sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs)
       ∈ (fm.linInputFloat A B xs X U U').construct := by -- --- PROOF ---
   set us := toRealVec U.c with hus_def

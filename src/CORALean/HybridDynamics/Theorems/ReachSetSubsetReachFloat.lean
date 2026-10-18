@@ -39,7 +39,7 @@ theorem HybridAutomaton.reachSet_subset_reachFloat
     n) {tFinal : ℚ}
     {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ : L} {X₀ : Zonotope (Vec 𝕋 n)}
     {out : List (L × Zonotope (Vec 𝕋 n))} (h : HA.reachFloat tFinal options K ℓ₀ X₀ = some out)
-    (ℓ : L) :
+    (ℓ : L) : -- --- STMT ---
     (⋃ (T : ℝ) (_ : T ≤ tFinal) (k : ℕ) (_ : k ≤ K),
         {y | ∃ x ∈ construct X₀, HA.IsRunUntil T k ℓ₀ x ℓ y})
       ⊆ {y | ∃ p ∈ out, p.1 = ℓ ∧ y ∈ construct p.2} := by -- --- PROOF ---

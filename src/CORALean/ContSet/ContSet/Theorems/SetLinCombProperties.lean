@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem setLinComb_properties (S₁ S₂ : Set (Vec ℝ n)) :
+theorem setLinComb_properties (S₁ S₂ : Set (Vec ℝ n)) : -- --- STMT ---
     (S₁ = ∅ ∨ S₂ = ∅ → Set.linComb S₁ S₂ = ∅) ∧
       (S₁.Nonempty → S₂.Nonempty → (Set.linComb S₁ S₂).Nonempty) ∧
       (S₁.Nonempty → (interior S₂).Nonempty → (interior (Set.linComb S₁ S₂)).Nonempty) ∧

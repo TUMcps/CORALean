@@ -54,7 +54,7 @@ theorem LinProbSys.aux_exp_smul_diagonal (l : Fin n → ℝ) (s : ℝ) :
 
 /-- An entry of the noise covariance of a diagonal system, the case `λ_i + λ_j = 0` included. -/
 theorem LinProbSys.aux_noiseCovariance_diagonal_apply (l : Fin n → ℝ) (C : Mat ℝ n m) (t : ℝ)
-    (i j : Fin n) :
+    (i j : Fin n) : -- --- STMT ---
     noiseCovariance (diagonal l) C t i j
       = if l i + l j = 0 then (C * C.transpose) i j * t
         else (C * C.transpose) i j / (l i + l j)

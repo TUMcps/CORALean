@@ -78,7 +78,7 @@ theorem aux_depReachAt_H_G (A : Mat ℝ n n) (Δt : ℝ) (cs : STL.DepReachConst
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem STL.tendsto_depReach_linComb_hausdorff_zero (A : Mat ℝ n n) (B : Mat ℝ n m)
-    (X₀ : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (κ : ℕ) (T : ℝ) :
+    (X₀ : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (κ : ℕ) (T : ℝ) : -- --- STMT ---
     ∀ ε > 0, ∀ᶠ Δt in 𝓝[>] (0 : ℝ), ∀ i : ℕ, (i : ℝ) * Δt ≤ T →
       hausdorffDist₂
         (convexHull ℝ ((STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).H.construct

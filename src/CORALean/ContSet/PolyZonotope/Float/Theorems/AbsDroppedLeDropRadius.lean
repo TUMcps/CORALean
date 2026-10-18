@@ -59,7 +59,7 @@ theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope (Vec 𝕋 n))
 theorem PolyZonotope.abs_dropped_le_dropRadius (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {a : Fin pZ.p → ℝ}
-    {β : Fin pZ.q → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
+    {β : Fin pZ.q → ℝ} (ha : ∀ k, |a k| ≤ 1) (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- STMT ---
     |(∑ l, toReal (pZ.G (partD.right l) i)
           * Real.PolyZonotope.monomial pZ.E a (partD.right l))
         + ∑ j, toReal (pZ.GI (partI.right j) i) * β (partI.right j)|

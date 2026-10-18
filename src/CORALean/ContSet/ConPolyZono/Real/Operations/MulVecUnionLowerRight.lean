@@ -45,7 +45,7 @@ open Matrix
 theorem ConPolyZono.mulVec_unionLower_right {p₁ p₂ m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
     (b₁ : Interval (Vec ℝ m₁)) (A₂ : Mat ℝ m₂ q₂) (b₂ : Interval (Vec ℝ m₂))
     (R₁ : Fin p₁ → Fin q₁ → ℕ) (R₂ : Fin p₂ → Fin q₂ → ℕ)
-    (a : Fin (p₁ + p₂ + 2) → ℝ) (i : Fin m₂) :
+    (a : Fin (p₁ + p₂ + 2) → ℝ) (i : Fin m₂) : -- --- STMT ---
     (ConPolyZono.unionLowerA A₁ b₁ A₂ b₂
         *ᵥ PolyZonotope.monomial (ConPolyZono.unionLowerR R₁ R₂) a) (Fin.natAdd m₁ i)
       = (A₂ *ᵥ PolyZonotope.monomial R₂ fun k => a (Fin.castAdd 2 (Fin.natAdd p₁ k))) i

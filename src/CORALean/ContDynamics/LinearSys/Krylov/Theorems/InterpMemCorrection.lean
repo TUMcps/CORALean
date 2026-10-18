@@ -41,7 +41,7 @@ variable {n m : ℕ}
 
 theorem Krylov.interp_mem_correction (V : Mat ℝ n m) (H : Mat ℝ m m) (e₁ : Vec ℝ m)
     (β : ℝ) (x₀ : Vec ℝ n) (hV : β • (V *ᵥ e₁) = x₀) {δ : ℝ} (hδ : 0 < δ) {η : ℕ} (hη : 1 ≤ η)
-    {t : ℝ} (ht0 : 0 ≤ t) (htδ : t ≤ δ) :
+    {t : ℝ} (ht0 : 0 ≤ t) (htδ : t ≤ δ) : -- --- STMT ---
     ∃ F ∈ Krylov.correctionSet H δ η,
       β • (V *ᵥ (exp (t • H) *ᵥ e₁))
         = x₀ + (t / δ) • (β • (V *ᵥ (exp (δ • H) *ᵥ e₁)) - x₀)

@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Instances
 /-!
 # Sparse polynomial zonotopes over a floating-point scalar: the representation
 
-CORA's `polyZonotope` with its center, dependent generators, exponent matrix and
+CORA's `polyZonotope` [1, Def. 1] with its center, dependent generators, exponent matrix and
 independent generators, plus the error box that makes it an `InflatedContSet`.
 The nominal part is the polynomial zonotope those stored floats describe; the
 box holds what rounding has cost.
@@ -24,6 +24,12 @@ The error box is `I_error`, the paper's `𝓘_error`.
 
 `PolyZonotope α` is generic over its ambient type, generators a family, as the exact
 layer's `PolyZonotope α` is; its vector case is `PolyZonotope (Vec 𝕋 n)`.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
+      Representation for Reachability Analysis". IEEE Transactions on Automatic
+      Control, 2021.
 -/
 
 -- Authors:       Claude Opus 5

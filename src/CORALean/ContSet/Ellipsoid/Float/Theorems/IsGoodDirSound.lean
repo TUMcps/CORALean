@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Ellipsoid.isGoodDir_sound {E₁ E₂ : Ellipsoid 𝕋 n} {l : Vec 𝕋 n} {μ : 𝕋}
     (h : E₁.isGoodDir E₂ l μ = true) (hr : (nominal E₁).ellipsoid.rank = n)
     (hbig : (nominal E₁).ellipsoid.isBigger (nominal E₂).ellipsoid)
-    (hl : 0 < toRealVec l ⬝ᵥ ((nominal E₂).ellipsoid.Q *ᵥ toRealVec l)) :
+    (hl : 0 < toRealVec l ⬝ᵥ ((nominal E₂).ellipsoid.Q *ᵥ toRealVec l)) : -- --- STMT ---
     ¬ (nominal E₁).ellipsoid.isBadDir (nominal E₂).ellipsoid (toRealVec l) := by -- --- PROOF ---
   unfold Ellipsoid.isGoodDir at h
   extract_lets mLo mHi dominant at h

@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.face_inter_hyperplane_nonempty {b : Vec ℝ n} (hb0 : ∀ i, 0 ≤ b i) {j : ℕ}
-    (p : Fin n → Bool) {α : ℝ} :
+    (p : Fin n → Bool) {α : ℝ} : -- --- STMT ---
     let w := (⟨0, b⟩ : Interval (Vec ℝ n)).corner fun i => if (i : ℕ) < j then p i else false
     let F : Interval (Vec ℝ n) := ⟨w, fun i => if (i : ℕ) < j then w i else b i⟩
     ∑ i, w i < α → α ≤ ∑ i, F.sup i →

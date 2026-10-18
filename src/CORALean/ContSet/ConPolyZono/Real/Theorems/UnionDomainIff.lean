@@ -80,7 +80,7 @@ theorem ConPolyZono.aux_meanSq_eq_zero {p : ℕ} {a : Fin p → ℝ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.union_domain_iff {p₁ p₂ : ℕ} (x y : ℝ) (u : Fin p₁ → ℝ)
-    (v : Fin p₂ → ℝ) (hx : |x| ≤ 1) (hy : |y| ≤ 1) (hv : ∀ k, |v k| ≤ 1) :
+    (v : Fin p₂ → ℝ) (hx : |x| ≤ 1) (hy : |y| ≤ 1) (hv : ∀ k, |v k| ≤ 1) : -- --- STMT ---
     (x * y = 1 ∧ (1 + x + 2⁻¹ * ConPolyZono.unionMeanSq u * (1 - x))
         * (1 - 2⁻¹ * ConPolyZono.unionMeanSq v) - y - 1 = 0)
       ↔ ((x = 1 ∧ y = 1 ∧ ∀ k, v k = 0)

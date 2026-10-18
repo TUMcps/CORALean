@@ -50,7 +50,7 @@ theorem LinearSys.aux_toReal_half_iterate (a : 𝕋) :
 
 theorem LinearSys.exp_mem_expSquaringFloat (sys : LinearSys 𝕋 n) {tLo tHi : 𝕋} {η s : ℕ}
     (hη : sys.OrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {t : ℝ}
-    (htLo : toReal tLo ≤ t) (htHi : t ≤ toReal tHi) :
+    (htLo : toReal tLo ≤ t) (htHi : t ≤ toReal tHi) : -- --- STMT ---
     exp (t • Scalar.toRealMat sys.A)
       ∈ (sys.expSquaringFloat tLo tHi η s).construct := by -- --- PROOF ---
   have h2s : (0 : ℝ) < 2 ^ s := by positivity

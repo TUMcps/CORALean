@@ -46,7 +46,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeIntervalFloat_outer
     (traj : sys.IsCanonicalConstTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) (hr : 0 < toReal r)
     (hT : Set.Icc 0 (toReal r) ⊆ T) (hη : sys.OrderAdmissibleFloat r r η) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ toReal r)
-    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) :
+    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) : -- --- STMT ---
     x t ∈ construct (Plus.plus (sys.timeIntervalStepFloat r η R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have lin := traj.toLinearSys

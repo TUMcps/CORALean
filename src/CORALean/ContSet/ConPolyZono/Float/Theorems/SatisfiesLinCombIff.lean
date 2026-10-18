@@ -35,7 +35,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.satisfies_linComb_iff (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
-    (a : Fin (cPZ₁.p + cPZ₂.p + 1) → ℝ) :
+    (a : Fin (cPZ₁.p + cPZ₂.p + 1) → ℝ) : -- --- STMT ---
     (cPZ₁.linComb cPZ₂).satisfies a
       ↔ cPZ₁.satisfies (fun k => a (Fin.castAdd 1 (Fin.castAdd cPZ₂.p k)))
         ∧ cPZ₂.satisfies (fun k => a (Fin.castAdd 1 (Fin.natAdd cPZ₁.p k))) := by -- --- PROOF ---

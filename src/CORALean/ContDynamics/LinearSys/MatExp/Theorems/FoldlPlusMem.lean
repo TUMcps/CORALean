@@ -33,7 +33,7 @@ variable {n : ℕ}
 /-- The left fold of `Interval.plus` over `f s, …, f (s + m - 1)` encloses `a + ∑ x (s + j)`. -/
 theorem MatExp.foldl_plus_mem (f : ℕ → Interval (Mat ℝ n n)) (x : ℕ → Mat ℝ n n) (s m : ℕ)
     (hx : ∀ j, j < m → x (s + j) ∈ (f (s + j)).construct) {acc : Interval (Mat ℝ n n)}
-    {a : Mat ℝ n n} (ha : a ∈ acc.construct) :
+    {a : Mat ℝ n n} (ha : a ∈ acc.construct) : -- --- STMT ---
     a + ∑ j ∈ Finset.range m, x (s + j) ∈
       ((List.range' s m).foldl (fun e i => Interval.plus e (f i))
         acc).construct := by -- --- PROOF ---

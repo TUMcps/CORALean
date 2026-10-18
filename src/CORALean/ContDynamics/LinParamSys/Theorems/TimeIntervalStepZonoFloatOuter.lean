@@ -46,7 +46,7 @@ theorem LinParamSys.timeIntervalStepZonoFloat_outer
     (hεF : toReal (MatExp.normUpperBound (Interval.smul Δt Δt sys.A.matInterval))
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
     (R : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n}
-    (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) :
+    (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) : -- --- STMT ---
     exp (s • A) *ᵥ x ∈ (sys.timeIntervalStepZonoFloat Δt (m + 2) R).construct := by -- --- PROOF ---
   set r := toReal Δt
   have hl0 : 0 ≤ s / r := div_nonneg hs0 hΔt.le

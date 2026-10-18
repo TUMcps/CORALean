@@ -177,7 +177,7 @@ theorem HPolytope.aux_not_flagged (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (k : Fin
 /-- `P` is empty, yet whatever the redundancy walk would return, CORA's `I` is a box containing
 the origin. -/
 theorem HPolytope.representsa_interval_zeroRow_cora_counterexample
-    (rest : (Fin 2 → EReal) × (Fin 2 → EReal)) :
+    (rest : (Fin 2 → EReal) × (Fin 2 → EReal)) : -- --- STMT ---
     HPolytope.aux_boxZeroRow.construct = ∅ ∧
       ∀ j, (HPolytope.aux_boxZeroRow.representsaIntervalZeroRowCora rest).1 j ≤ 0 ∧
         0 ≤

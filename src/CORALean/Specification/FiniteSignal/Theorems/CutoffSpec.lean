@@ -37,7 +37,7 @@ def aux_cutPairs {T V : Type} [LinearOrder T] : List (T × V) → T → List (T 
   | (b, v) :: rest, d => if b < d then (b, v) :: aux_cutPairs rest d else [(d, v)]
 
 /-- The index form of `cutoff` is the cut of the breakpoints. -/
-theorem aux_cut_zip {T V : Type} [LinearOrder T] (d : T) :
+theorem aux_cut_zip {T V : Type} [LinearOrder T] (d : T) : -- --- STMT ---
     ∀ (time : List T) (value : List V), time.length = value.length → (∃ x ∈ time, d ≤ x) →
       (time.take (time.takeWhile (· < d)).length ++ [d]).zip
         (value.take ((time.takeWhile (· < d)).length + 1)) = aux_cutPairs (time.zip value) d ∧
@@ -59,7 +59,7 @@ theorem aux_cut_zip {T V : Type} [LinearOrder T] (d : T) :
     · simp [hb, aux_cutPairs]
 
 /-- The cut breakpoints: valid, ending at `d`, and with the value of the original before `d`. -/
-theorem aux_cut_props {T V : Type} [LinearOrder T] (d : T) :
+theorem aux_cut_props {T V : Type} [LinearOrder T] (d : T) : -- --- STMT ---
     ∀ (L : List (T × V)), L ≠ [] → (L.map Prod.fst).Pairwise (· < ·) → (∃ p ∈ L, d ≤ p.1) →
       aux_cutPairs L d ≠ [] ∧ ((aux_cutPairs L d).map Prod.fst).Pairwise (· < ·) ∧
       (∀ p ∈ aux_cutPairs L d, p.1 ≤ d) ∧ (∃ p ∈ aux_cutPairs L d, p.1 = d) ∧
@@ -146,7 +146,8 @@ theorem aux_cut_props {T V : Type} [LinearOrder T] (d : T) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem FiniteSignal.cutoff?_spec {T V : Type} [LinearOrder T] [Zero T] [DecidableEq V]
-    (s : FiniteSignal T V) (hs : s.IsValid) (dur : T) (h0 : 0 ≤ dur) (h1 : dur ≤ s.duration) :
+    (s : FiniteSignal T V) (hs : s.IsValid) (dur : T) (h0 : 0 ≤ dur)
+    (h1 : dur ≤ s.duration) : -- --- STMT ---
     ∃ r, s.cutoff? dur = some r ∧ r.IsValid ∧ r.duration = dur ∧
       (∀ t, t < dur → r.at? t = s.at? t) ∧
       (dur ∉ s.time → r.at? dur = s.at? dur) ∧

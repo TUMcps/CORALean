@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem HPolytope.anchorEqs_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (ε : Vec 𝕋 P.me) {y e : Vec ℝ n}
     (hA : ∀ i, (toRealMat P.A *ᵥ y) i ≤ toReal (P.b i))
     (hE : ∀ i, |(toRealMat P.Ae *ᵥ y) i - toReal (P.be i)| ≤ toReal (ε i))
-    (he : e ∈ P.I_error.construct) :
+    (he : e ∈ P.I_error.construct) : -- --- STMT ---
     y + e ∈ (P.anchorEqs ε).construct := by -- --- PROOF ---
   unfold HPolytope.anchorEqs
   split

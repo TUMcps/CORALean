@@ -39,7 +39,8 @@ variable {n m p : ℕ}
 
 /-- [1, Eq. 4]: `X_{k+1}` is the preimage under `A` of `X_k ⊖ EW ⊕ -BU - K`. -/
 theorem LinearSysDT.backReachSetRobust_succ (A : Mat ℝ n n) (B : Mat ℝ n m) (E : Mat ℝ n p)
-    (K : Vec ℝ n) (U : Set (Vec ℝ m)) (W : Set (Vec ℝ p)) (X₀ : Set (Vec ℝ n)) (k : ℕ) :
+    (K : Vec ℝ n) (U : Set (Vec ℝ m)) (W : Set (Vec ℝ p)) (X₀ : Set (Vec ℝ n))
+    (k : ℕ) : -- --- STMT ---
     LinearSysDT.backReachSetRobust A B E K U W X₀ (k + 1)
       = (A *ᵥ ·) ⁻¹' (minkowskiDiff (LinearSysDT.backReachSetRobust A B E K U W X₀ k)
           ((E *ᵥ ·) '' W) + (fun u => -(B *ᵥ u)) '' U + {-K}) := by -- --- PROOF ---

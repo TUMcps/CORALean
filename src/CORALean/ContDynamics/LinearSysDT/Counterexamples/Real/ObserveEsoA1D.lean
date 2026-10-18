@@ -37,7 +37,7 @@ open CORALean.Real
 
 /-- `x₀ ∈ R0`, the first update does not fire, `w ∈ W`, `v ∈ V`, and `x₁` is not in the
 estimate. -/
-theorem LinearSysDT.observeEsoA1D_counterexample :
+theorem LinearSysDT.observeEsoA1D_counterexample : -- --- STMT ---
     let x₀ : ℝ := 9 / 5
     let w : ℝ := 1 / 2
     let x₁ : ℝ := 1 * x₀ + 0 + w

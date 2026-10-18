@@ -35,7 +35,7 @@ theorem OnlineReachSetAnalyzer.getVerdict_const (f : ℕ) (dp : Bool)
       f dp = some obj)
     (hff : OnlineReachSetAnalyzer.mk?
       (OnlineReachSetAnalyzer.Formula.ff : OnlineReachSetAnalyzer.Formula (AtomicProposition S d))
-      f dp = some obj') :
+      f dp = some obj') : -- --- STMT ---
     obj.getVerdict = some FourValued.tt ∧
       obj'.getVerdict = some FourValued.ff := by -- --- PROOF ---
   -- each analyzer is one node, with a uniform signal

@@ -36,7 +36,7 @@ EXEMPT_OLD = {"ConPolyZono"}
 
 def allowlist():
     entries = {}
-    for ln, line in enumerate(ALLOW.read_text().splitlines(), 1):
+    for ln, line in enumerate(ALLOW.read_text(encoding="utf-8").splitlines(), 1):
         if not line.strip() or line.startswith("#"):
             continue
         parts = line.split(None, 1)
@@ -56,11 +56,11 @@ def main():
         if main_file.stem != X:
             continue
         seen.add(X)
-        text = main_file.read_text()
+        text = main_file.read_text(encoding="utf-8")
         has_box = re.search(r"^\s*I_error\s*:", text, re.M) or re.search(
             r"^\s*extends\s+\S+", text, re.M)
         folder = main_file.parent
-        body = "\n".join(p.read_text() for p in folder.rglob("*.lean"))
+        body = "\n".join(p.read_text(encoding="utf-8") for p in folder.rglob("*.lean"))
         has_def = re.search(rf"^def {X}\.absorbRounding\b", body, re.M)
         has_thm = re.search(rf"^theorem {X}\.absorbRounding_outer\b", body, re.M)
         ok = has_box and has_def and has_thm
@@ -96,7 +96,7 @@ def main():
         if OLD_FILES.match(path.name):
             print(f"{rel}:1: the operation is called `absorbRounding` (file `AbsorbRounding*.lean`)")
             findings += 1
-        for ln, line in enumerate(path.read_text().splitlines(), 1):
+        for ln, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             if OLD_NAMES.search(line):
                 print(f"{rel}:{ln}: `dependent_outer`/`dependent_nominal` are "
                       "`absorbRounding_outer`/`absorbRounding_nominal` now")

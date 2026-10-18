@@ -37,7 +37,7 @@ theorem Taylm.taylor_outer {T : Taylm n} {f : Vec ℝ n → ℝ} (h : T.Encloses
     (hg : ∀ ξ ∈ Set.Icc (min c T.bounds.inf) (max c T.bounds.sup),
       ContDiffAt ℝ (T.maxOrder + 1) g ξ)
     (hD : ∀ ξ ∈ Set.Icc (min c T.bounds.inf) (max c T.bounds.sup),
-      |iteratedDeriv (T.maxOrder + 1) g ξ| ≤ D) :
+      |iteratedDeriv (T.maxOrder + 1) g ξ| ≤ D) : -- --- STMT ---
     (T.taylor g c D).Encloses fun t => g (f t) := by -- --- PROOF ---
   unfold Taylm.taylor
   refine Taylm.compose_outer h g c _ _ _ fun t ht => ?_

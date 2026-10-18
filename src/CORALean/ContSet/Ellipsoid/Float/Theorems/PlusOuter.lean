@@ -53,7 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the nominal part: a point of a real ellipsoid about the stored center, of shape `Q`
 where `isPsd` certifies it and `0` where not, plus a point of the operand's box in `plus`. -/
-theorem Ellipsoid.aux_plus_split (E : Ellipsoid 𝕋 n) {x : Vec ℝ n} (hx : x ∈ nominalSet E) :
+theorem Ellipsoid.aux_plus_split (E : Ellipsoid 𝕋 n) {x : Vec ℝ n}
+    (hx : x ∈ nominalSet E) : -- --- STMT ---
     ∃ A : Real.Ellipsoid n, A.q = toRealVec E.q
       ∧ A.Q = (if Ellipsoid.isPsd E.Q = true then toRealMat E.Q else 0)
       ∧ ∃ y ∈ A.construct, x - y ∈ (if Ellipsoid.isPsd E.Q = true then Interval.origin n
@@ -77,7 +78,7 @@ theorem Ellipsoid.aux_plus_split (E : Ellipsoid 𝕋 n) {x : Vec ℝ n} (hx : x 
 /-- The nominal parts: their sum, less the center's rounding and the two boxes. -/
 theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n)
     (hne₁ : toReal s₁ ≠ 0) (hne₂ : toReal s₂ ≠ 0)
-    (hs : 1 / toReal s₁ ^ 2 + 1 / toReal s₂ ^ 2 ≤ 1) :
+    (hs : 1 / toReal s₁ ^ 2 + 1 / toReal s₂ ^ 2 ≤ 1) : -- --- STMT ---
     nominalSet E₁ + nominalSet E₂ ⊆ nominalSet (Ellipsoid.plus s₁ s₂ E₁ E₂)
       + ((Ellipsoid.centerResidual E₁.q E₂.q).construct
         + (if Ellipsoid.isPsd E₁.Q = true then Interval.origin n
@@ -133,7 +134,7 @@ theorem Ellipsoid.aux_plus_nominal (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid �
   ring
 
 /-- The two boxes, the center's rounding and the two fallback boxes, summed. -/
-theorem Ellipsoid.aux_plus_error (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) :
+theorem Ellipsoid.aux_plus_error (s₁ s₂ : 𝕋) (E₁ E₂ : Ellipsoid 𝕋 n) : -- --- STMT ---
     (I_error E₁).construct + (I_error E₂).construct
       + ((Ellipsoid.centerResidual E₁.q E₂.q).construct
         + (if Ellipsoid.isPsd E₁.Q = true then Interval.origin n

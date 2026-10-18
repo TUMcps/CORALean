@@ -38,7 +38,7 @@ theorem NonlinParamSys.reachFloat_outer (sys : NonlinParamSys n m q)
     {P : Zonotope (Vec 𝕋 q)}
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
     {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (hR : sys.reachFloat fm P params options = some Rs) :
+    (hR : sys.reachFloat fm P params options = some Rs) : -- --- STMT ---
     ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
       Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {p : Vec ℝ q},
         sys.IsConstTrajectory (S := 𝒮)

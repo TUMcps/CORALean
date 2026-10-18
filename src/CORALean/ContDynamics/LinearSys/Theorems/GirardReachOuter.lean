@@ -73,7 +73,7 @@ theorem aux_exists_window {r T t : ℝ} (hr : 0 < r) (ht0 : 0 ≤ t) (htT : t �
 /-- [1, Thm. 1], conservative approximation: `R_[0,T](I) ⊆ R_{N-1}`. -/
 theorem LinearSys.girardReach_outer (sys : LinearSys 𝕋 n) (I U : Zonotope (Vec ℝ n))
     {μ r T : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 < r) (hμ : 0 ≤ μ)
-    (hU : U.construct = Metric.closedBall 0 μ) :
+    (hU : U.construct = Metric.closedBall 0 μ) : -- --- STMT ---
     ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSet (S := 𝒵) (Set.Icc 0 t) I U t
       ⊆ ⋃ Q ∈ sys.girardReach I μ r T, Q.construct := by -- --- PROOF ---
   set A := toRealMat sys.A

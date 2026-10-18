@@ -41,7 +41,7 @@ of steps. -/
 theorem PolyZonotope.relaxExpGreedy_outer
     (sel : (pZ : PolyZonotope (Vec 𝕋 n)) →
       Option ((d : ℕ) × (Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2))))
-    (m : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) :
+    (m : ℕ) (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- STMT ---
     pZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel m pZ).construct := by -- --- PROOF ---
   induction m generalizing pZ with
   | zero => exact subset_rfl

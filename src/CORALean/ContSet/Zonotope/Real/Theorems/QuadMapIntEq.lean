@@ -92,7 +92,7 @@ theorem Zonotope.aux_quadMapInt_pairblock {h : ℕ} (f : Fin h → Fin h → ℝ
 
 /-- The radii add up to `|Z|ᵀ HΔ⁽ⁱ⁾ |Z|`: the identity behind [1, Thm. 1]. -/
 theorem Zonotope.aux_quadMapInt_radius (HΔ : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
-    (i : Fin m) :
+    (i : Fin m) : -- --- STMT ---
     ((⟨Z.h, fun i => |Z.c i|, fun j i => |Z.G j i|⟩ : Zonotope (Vec ℝ n)).quadMap HΔ).c i
       + ∑ l : Fin (Z.h + Z.h + Z.h * Z.h),
           ((⟨Z.h, fun i => |Z.c i|, fun j i => |Z.G j i|⟩ : Zonotope (Vec ℝ n)).quadMap HΔ).G l i

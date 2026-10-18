@@ -47,7 +47,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- A one-step witness at distance `c` gives a horizon witness at `ω · M · c`. -/
 theorem LinearSys.propagateInputSolution_dist (sys : LinearSys 𝕋 n) (Δt : ℝ)
     {Z Z' : Set (Vec ℝ n)} {c M : ℝ} (hM : 0 ≤ M)
-    (h : ∀ x ∈ Z, ∃ y ∈ Z', ‖x - y‖ ≤ c) (ω : ℕ) :
+    (h : ∀ x ∈ Z, ∃ y ∈ Z', ‖x - y‖ ≤ c) (ω : ℕ) : -- --- STMT ---
     (∀ k : ℕ, k < ω → ‖exp (((k : ℝ) * Δt) • toRealMat sys.A)‖ ≤ M) →
       ∀ x ∈ sys.propagateInputSolution Δt Z ω,
         ∃ y ∈ sys.propagateInputSolution Δt Z' ω, ‖x - y‖ ≤ (ω : ℝ) * (M * c) := by -- --- PROOF ---

@@ -39,7 +39,7 @@ variable {α β γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [
 applications of `Fin.sum_univ_add`, the cross block reindexed to a pair through
 `finProdFinEquiv`. -/
 theorem Zonotope.aux_sum_univ_add3 {δ : Type} [AddCommMonoid δ] {m n : ℕ}
-    (g : Fin (m + n + m * n) → δ) :
+    (g : Fin (m + n + m * n) → δ) : -- --- STMT ---
     ∑ k, g k = ∑ i, g (Fin.castAdd (m * n) (Fin.castAdd n i))
       + ∑ j, g (Fin.castAdd (m * n) (Fin.natAdd m j))
       + ∑ i, ∑ j, g (Fin.natAdd (m + n) (finProdFinEquiv (i, j))) := by -- --- PROOF ---

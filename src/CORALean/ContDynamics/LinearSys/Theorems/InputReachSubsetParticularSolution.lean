@@ -78,7 +78,7 @@ theorem LinearSys.inputReach_subset_particularSolution
     (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
     (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) {t : ℝ} (ht0 : 0 ≤ t)
-    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) :
+    (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) : -- --- STMT ---
     sys.inputReach U t ⊆ construct (sys.particularSolution Δt η U k) := by -- --- PROOF ---
   have hbdd := CompactSet.isBounded_construct U
   -- [1, Thm. 3.1]: one step of the input, inside `inputSolution`

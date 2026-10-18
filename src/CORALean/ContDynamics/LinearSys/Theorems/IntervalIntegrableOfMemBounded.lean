@@ -41,7 +41,7 @@ interval integrable over that window. -/
 theorem intervalIntegrable_of_mem_bounded {U : S n} {t : ℝ} (ht : 0 ≤ t)
     (hU : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
     (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
-    (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) :
+    (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) : -- --- STMT ---
     IntervalIntegrable u volume 0 t := by -- --- PROOF ---
   obtain ⟨Cu, hCu⟩ := hU.exists_norm_le
   rw [intervalIntegrable_iff_integrableOn_Ioc_of_le ht]

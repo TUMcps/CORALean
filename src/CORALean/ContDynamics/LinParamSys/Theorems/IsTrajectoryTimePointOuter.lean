@@ -43,7 +43,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timePoint_outer {sys : LinParamSys ℐ
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) (η : ℕ)
-    (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) :
+    (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- STMT ---
     x t ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η) R₀) := by -- --- PROOF ---
   obtain ⟨Φ, hΦ, hx⟩ := traj.exists_mem_expIntervalEnclosure ht hT hu η hε

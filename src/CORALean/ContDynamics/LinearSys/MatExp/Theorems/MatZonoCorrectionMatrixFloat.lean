@@ -46,7 +46,8 @@ theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (Z : Zonotope (Mat 𝕋 n n))
     (hr : 0 < toReal r) {m : ℕ}
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r Z.matInterval))
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ Z.construct) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) :
+    {M : Mat ℝ n n} (hM : M ∈ Z.construct) {t : ℝ} (ht0 : 0 ≤ t)
+    (htr : t ≤ toReal r) : -- --- STMT ---
     exp (t • M) - 1 - (t / toReal r) • (exp (toReal r • M) - 1)
       ∈ (MatExp.matZonoCorrectionMatrix Z r (m + 2)).construct := by -- --- PROOF ---
   have hnorm := MatExp.norm_smul_le_normUpperBound Z.matInterval r

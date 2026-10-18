@@ -53,7 +53,7 @@ theorem aux_cnd_norm_congr_abs (q : ℝ≥0∞) [Fact (1 ≤ q)] (a b : Fin l �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem exists_dual_coeffNorm_le (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
-    (H : Matrix (Fin n) (Fin l) ℝ) {x : Fin n → ℝ} (hx : ∃ β, H *ᵥ β = x) :
+    (H : Matrix (Fin n) (Fin l) ℝ) {x : Fin n → ℝ} (hx : ∃ β, H *ᵥ β = x) : -- --- STMT ---
     ∃ z : Fin n → ℝ, ‖WithLp.toLp q' (z ᵥ* H)‖ ≤ 1 ∧
       coeffNorm ((Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap) x ≤
         z ⬝ᵥ x := by -- --- PROOF ---

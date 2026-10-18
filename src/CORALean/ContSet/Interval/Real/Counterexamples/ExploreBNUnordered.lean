@@ -38,7 +38,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 open Classical in
-theorem Interval.exploreBN_unordered_counterexample :
+theorem Interval.exploreBN_unordered_counterexample : -- --- STMT ---
     let b : Vec ℝ 2 := ![2, 1]
     let x : Vec ℝ 2 := ![1 / 2, 1]
     x ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ 2)).construct ∩

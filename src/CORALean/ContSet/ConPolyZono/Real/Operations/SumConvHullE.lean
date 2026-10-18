@@ -62,7 +62,7 @@ theorem ConPolyZono.aux_monomial_cen {a p h : ℕ} (E : Fin p → Fin h → ℕ)
 
 /-- A plain copy column names its own block's monomial. -/
 theorem ConPolyZono.aux_monomial_left {a p h : ℕ} (E : Fin p → Fin h → ℕ)
-    (v : Fin (a * p + a) → ℝ) (j : Fin a) (i : Fin h) :
+    (v : Fin (a * p + a) → ℝ) (j : Fin a) (i : Fin h) : -- --- STMT ---
     PolyZonotope.monomial (ConPolyZono.convHullE a E) v
         (Fin.natAdd a (Fin.castAdd (a * h) (finProdFinEquiv (j, i))))
       = PolyZonotope.monomial E
@@ -81,7 +81,7 @@ theorem ConPolyZono.aux_monomial_left {a p h : ℕ} (E : Fin p → Fin h → ℕ
 
 /-- A weighted copy column names that monomial times its block's weight. -/
 theorem ConPolyZono.aux_monomial_right {a p h : ℕ} (E : Fin p → Fin h → ℕ)
-    (v : Fin (a * p + a) → ℝ) (j : Fin a) (i : Fin h) :
+    (v : Fin (a * p + a) → ℝ) (j : Fin a) (i : Fin h) : -- --- STMT ---
     PolyZonotope.monomial (ConPolyZono.convHullE a E) v
         (Fin.natAdd a (Fin.natAdd (a * h) (finProdFinEquiv (j, i))))
       = v (Fin.natAdd (a * p) j) * PolyZonotope.monomial E
@@ -109,7 +109,7 @@ theorem ConPolyZono.aux_monomial_right {a p h : ℕ} (E : Fin p → Fin h → �
 /-- The point of the closed form, as `a` weighted points of the linear
 combination — one per block of factors. -/
 theorem ConPolyZono.sum_convHullE {a p h : ℕ} (c : α) (G : Fin h → α) (E : Fin p → Fin h → ℕ)
-    (v : Fin (a * p + a) → ℝ) :
+    (v : Fin (a * p + a) → ℝ) : -- --- STMT ---
     ((a : ℝ) • c + ∑ i, PolyZonotope.monomial (ConPolyZono.convHullE a E) v i
         • ConPolyZono.convHullG a c G i)
       = ∑ j, (1 + v (Fin.natAdd (a * p) j)) • (c + ∑ i, PolyZonotope.monomial E

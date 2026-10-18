@@ -45,7 +45,7 @@ variable {n m k : ℕ}
 /-- The rows `i ≠ ρ t` of the constraint's sum reach every other picked position. -/
 theorem aux_sum_picked_le {x : Matrix (Fin n) (Fin m) ℝ} {ρ : Fin k → Fin n} (hρ : Injective ρ)
     {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1) (f : Fin n → Fin m → ℝ)
-    (hf : ∀ i j, 0 ≤ x i j * f i j) (t : Fin k) :
+    (hf : ∀ i j, 0 ≤ x i j * f i j) (t : Fin k) : -- --- STMT ---
     ∑ t' ∈ univ.erase t, f (ρ t') (κ t')
       ≤ ∑ i ∈ univ.erase (ρ t), ∑ j, x i j * f i j := by -- --- PROOF ---
   calc ∑ t' ∈ univ.erase t, f (ρ t') (κ t')
@@ -65,7 +65,8 @@ theorem aux_det_submatrix_ne_zero_of_col {x : Matrix (Fin n) (Fin m) ℝ} (hx : 
     {ρ : Fin k → Fin n} (hρ : Injective ρ) {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1)
     {mig mag : Matrix (Fin n) (Fin m) ℝ}
     (hcol : ∀ t, ∑ i ∈ univ.erase (ρ t), ∑ j, x i j * mag i (κ t) < mig (ρ t) (κ t))
-    (A : Matrix (Fin n) (Fin m) ℝ) (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) :
+    (A : Matrix (Fin n) (Fin m) ℝ)
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
     (A.submatrix ρ κ).det ≠ 0 := by -- --- PROOF ---
   refine det_ne_zero_of_sum_col_lt_diag fun t => ?_
   simp only [submatrix_apply, Real.norm_eq_abs]
@@ -109,7 +110,8 @@ theorem det_submatrix_ne_zero_of_lp17 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     (hupos : ∀ t, 0 < u (ρ t) (κ t))
     (h17 : ∀ k l, ∑ i ∈ univ.erase k, ∑ j, x i j * mag i l * u i j
       ≤ M + (mig k l * u k l - μ - M) * x k l)
-    (A : Matrix (Fin n) (Fin m) ℝ) (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) :
+    (A : Matrix (Fin n) (Fin m) ℝ)
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
     (A.submatrix ρ κ).det ≠ 0 := by -- --- PROOF ---
   have hmag : ∀ i j, 0 ≤ mag i j := fun i j => (abs_nonneg _).trans (hA i j).2
   -- the transpose of the picked sub-matrix is an H-matrix, `uₜ = u(ρ t, κ t)`

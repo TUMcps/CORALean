@@ -37,7 +37,7 @@ variable {n : Type*} [Fintype n]
 
 /-- [1, Eq. 12]: [1, Eq. 9] at `K = 2` is [1, Eq. 11] at `β = √(ℓᵀQ₁ℓ / ℓᵀQ₂ℓ)`. -/
 theorem Ellipsoid.kurzhanski_eq_halder {Q₁ Q₂ : Matrix n n ℝ} {l : n → ℝ}
-    (h₁ : 0 < l ⬝ᵥ Q₁ *ᵥ l) (h₂ : 0 < l ⬝ᵥ Q₂ *ᵥ l) :
+    (h₁ : 0 < l ⬝ᵥ Q₁ *ᵥ l) (h₂ : 0 < l ⬝ᵥ Q₂ *ᵥ l) : -- --- STMT ---
     (Real.sqrt (l ⬝ᵥ Q₁ *ᵥ l) + Real.sqrt (l ⬝ᵥ Q₂ *ᵥ l)) •
         ((Real.sqrt (l ⬝ᵥ Q₁ *ᵥ l))⁻¹ • Q₁ + (Real.sqrt (l ⬝ᵥ Q₂ *ᵥ l))⁻¹ • Q₂)
       = (1 + 1 / Real.sqrt (l ⬝ᵥ Q₁ *ᵥ l / (l ⬝ᵥ Q₂ *ᵥ l))) • Q₁

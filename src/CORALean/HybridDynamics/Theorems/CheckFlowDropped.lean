@@ -40,7 +40,7 @@ theorem Location.checkFlow_dropped (ℓ : Location 𝒵 G L ℝ n)
     (c : Vec ℝ n) (d : ℝ) (Rs : List (Real.Zonotope (Vec ℝ n)))
     {R : Real.Zonotope (Vec ℝ n)} (hR : R ∈ Rs) (hdrop : R ∉ ℓ.checkFlow c d Rs)
     {x : Vec ℝ n} {u : Vec ℝ ℓ.dynamics.m} {w : Vec ℝ ℓ.dynamics.r} (hx : x ∈ R.construct)
-    (hu : u ∈ ContSet.construct ℓ.U) (hw : w ∈ ContSet.construct ℓ.W) :
+    (hu : u ∈ ContSet.construct ℓ.U) (hw : w ∈ ContSet.construct ℓ.W) : -- --- STMT ---
     c ⬝ᵥ (toRealMat ℓ.dynamics.A *ᵥ (x - (c ⬝ᵥ x - d) • c) + (toRealMat ℓ.dynamics.B *ᵥ u +
       toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w)) ≤ 0 := by -- --- PROOF ---
   -- the combined input is a point of `inputSet`

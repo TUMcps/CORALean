@@ -29,7 +29,7 @@ namespace CORALean
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PointSegmentSignal.set_spec (s : PointSegmentSignal ℝ) (hs : s.IsValid)
-    (I : STLInterval) (value : Bool) :
+    (I : STLInterval) (value : Bool) : -- --- STMT ---
     (s.set I value).IsValid ∧ ∀ t : ℝ, 0 ≤ t →
       (t ∈ I.set → (s.set I value).at t = value) ∧
       (t ∉ I.set → (s.set I value).at t = s.at t) := by -- --- PROOF ---

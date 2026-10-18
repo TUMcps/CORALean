@@ -119,7 +119,8 @@ under inputs in `U` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
-    {R Rτ Rt : Zonotope (Vec 𝕋 n)} (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt)) :
+    {R Rτ Rt : Zonotope (Vec 𝕋 n)}
+    (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt)) : -- --- STMT ---
     0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
         R.construct U.construct x u →

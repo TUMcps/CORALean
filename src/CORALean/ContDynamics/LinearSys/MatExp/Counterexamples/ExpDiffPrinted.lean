@@ -41,7 +41,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem MatExp.not_expDiff_mulVec_mem_unscaled_correctionMatrix :
+theorem MatExp.not_expDiff_mulVec_mem_unscaled_correctionMatrix : -- --- STMT ---
     ¬ ∃ F ∈ (MatExp.correctionMatrix (Matrix.diagonal fun _ : Fin 1 => (1 : ℝ)) (1 / 10)
         (0 + 2)).construct,
       exp ((0 : ℝ) • (Matrix.diagonal fun _ : Fin 1 => (1 : ℝ)))

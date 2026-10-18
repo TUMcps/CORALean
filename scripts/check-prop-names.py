@@ -35,7 +35,7 @@ def strip_comment(l):
 
 
 def prop_decls(path):
-    lines = path.read_text().splitlines()
+    lines = path.read_text(encoding="utf-8").splitlines()
     inblock = False
     out = []
     for i, raw in enumerate(lines):
@@ -76,7 +76,7 @@ def prop_decls(path):
 def main():
     allow, alines = {}, {}
     if LIST.exists():
-        for no, l in enumerate(LIST.read_text().splitlines(), 1):
+        for no, l in enumerate(LIST.read_text(encoding="utf-8").splitlines(), 1):
             if not l.strip() or l.startswith("#"):
                 continue
             key = l.split()[0]

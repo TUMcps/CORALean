@@ -40,7 +40,8 @@ variable {n m : ℕ}
 
 /-- The image rows are all that `conIntersect` adds over the two blocks' own constraints. -/
 theorem ConZonotope.aux_mem_conIntersect_P_iff (cZ₁ : ConZonotope (Vec ℝ n))
-    (cZ₂ : ConZonotope (Vec ℝ m)) (M : Mat ℝ m n) (β : Vec ℝ (cZ₁.conIntersect cZ₂ M).h) :
+    (cZ₂ : ConZonotope (Vec ℝ m)) (M : Mat ℝ m n)
+    (β : Vec ℝ (cZ₁.conIntersect cZ₂ M).h) : -- --- STMT ---
     β ∈ (cZ₁.conIntersect cZ₂ M).P.construct ↔
       (blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
         ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.construct)
@@ -66,7 +67,7 @@ theorem ConZonotope.aux_mem_conIntersect_P_iff (cZ₁ : ConZonotope (Vec ℝ n))
 
 /-- Only the first generator block survives; the second is pinned to it. -/
 theorem ConZonotope.aux_value_conIntersect (cZ₁ : ConZonotope (Vec ℝ n))
-    (cZ₂ : ConZonotope (Vec ℝ m)) (M : Mat ℝ m n) (β : Fin (cZ₁.h + cZ₂.h) → ℝ) :
+    (cZ₂ : ConZonotope (Vec ℝ m)) (M : Mat ℝ m n) (β : Fin (cZ₁.h + cZ₂.h) → ℝ) : -- --- STMT ---
     (cZ₁.conIntersect cZ₂ M).c
         + ∑ j : Fin (cZ₁.conIntersect cZ₂ M).h, β j • (cZ₁.conIntersect cZ₂ M).G j
       = cZ₁.c + ∑ j, β (Fin.castAdd cZ₂.h j) • cZ₁.G j := by -- --- PROOF ---

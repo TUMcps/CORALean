@@ -24,7 +24,7 @@ LIST = ROOT / "scripts/dt-twin-allowlist.txt"
 
 def fields(path, name):
     """Field names of `structure <name>` in `path`, in order, or None if it is not there."""
-    text = path.read_text().splitlines()
+    text = path.read_text(encoding="utf-8").splitlines()
     for i, line in enumerate(text):
         if re.match(rf"structure {re.escape(name)}\b", line):
             j = i
@@ -47,7 +47,7 @@ def main():
     allow = {}
     lines = {}
     if LIST.exists():
-        for no, l in enumerate(LIST.read_text().splitlines(), 1):
+        for no, l in enumerate(LIST.read_text(encoding="utf-8").splitlines(), 1):
             if not l.strip() or l.startswith("#"):
                 continue
             key, _, reason = l.partition("  ")

@@ -55,7 +55,7 @@ inner approximation. -/
 theorem LinearSys.inputReach_dist_inputSolutionInner (sys : LinearSys 𝕋 n) {U : S n}
     {Δt ρ : ℝ} (hΔt : 0 < Δt) (hconv : Convex ℝ (construct U))
     (hclosed : IsClosed (construct U)) (hbdd : Bornology.IsBounded (construct U))
-    (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) :
+    (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) : -- --- STMT ---
     ∀ x ∈ sys.inputReach U Δt, ∃ y ∈ sys.inputSolutionInner U Δt,
       ‖x - y‖ ≤ 2 * ρ * ‖toRealMat sys.A‖ * Real.exp (Δt * ‖toRealMat sys.A‖)
         * Δt ^ 2 := by -- --- PROOF ---

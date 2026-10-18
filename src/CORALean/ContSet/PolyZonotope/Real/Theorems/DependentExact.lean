@@ -47,7 +47,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The dependent block and the freed one, split apart and each read back
 against its own factors. Both inclusions come down to this equation. -/
-theorem PolyZonotope.aux_sum_dependent (pZ : PolyZonotope α) (a : Fin (pZ.p + pZ.q) → ℝ) :
+theorem PolyZonotope.aux_sum_dependent (pZ : PolyZonotope α)
+    (a : Fin (pZ.p + pZ.q) → ℝ) : -- --- STMT ---
     (∑ i : Fin (pZ.h + pZ.q),
         PolyZonotope.monomial (PolyZonotope.plusE pZ.E (PolyZonotope.identE pZ.q)) a i
           • Fin.append pZ.G pZ.GI i)

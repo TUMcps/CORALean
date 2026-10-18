@@ -66,7 +66,7 @@ its window holds every run over `[t_k, t_{k+1}]`. -/
 theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {tend : 𝕋}
     {εmax ζ : ℚ} {ηmax fuel : ℕ} {s s' : LinearSys.AutoStateFloat 𝕋 n} {R : Zonotope (Vec 𝕋 n)}
     (h : sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s = some (s', R))
-    (hinv : sys.AutoInvariantFloat X₀ V s) :
+    (hinv : sys.AutoInvariantFloat X₀ V s) : -- --- STMT ---
     sys.AutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
         sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →

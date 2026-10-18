@@ -41,7 +41,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) (i : Fin n)
-    (t : Vec ℝ (pZ.p + pZ.q)) :
+    (t : Vec ℝ (pZ.p + pZ.q)) : -- --- STMT ---
     (pZ.taylm N i).nominal.poly t = toReal (pZ.c i)
       + ∑ j, toReal (pZ.G j i)
           * Real.PolyZonotope.monomial pZ.E (fun k => t (Fin.castAdd pZ.q k)) j

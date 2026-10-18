@@ -35,7 +35,7 @@ variable {k n q : ℕ}
 theorem NonlinParamSys.jacobianFamily_mem (F : Vec ℝ k → Vec ℝ q → Vec ℝ n)
     (hAff : ∀ z p, F z p = F z 0 + ∑ i, p i • (F z (Pi.single i 1) - F z 0)) (z : Vec ℝ k)
     (hd : ∀ p, DifferentiableAt ℝ (fun w => F w p) z) (I : Interval (Vec ℝ q)) {p : Vec ℝ q}
-    (hp : p ∈ I.construct) :
+    (hp : p ∈ I.construct) : -- --- STMT ---
     jacobianMat (fun w => F w p) z ∈
       (⟨q, jacobianMat (fun w => F w 0) z + ∑ i, I.center i •
           (jacobianMat (fun w => F w (Pi.single i 1)) z - jacobianMat (fun w => F w 0) z),

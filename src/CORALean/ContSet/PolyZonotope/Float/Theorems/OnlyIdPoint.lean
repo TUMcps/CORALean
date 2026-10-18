@@ -50,7 +50,7 @@ theorem PolyZonotope.aux_onlyId_nominal_G (pZ : PolyZonotope (Vec 𝕋 n)) (S : 
 
 /-- Exact at the nominal points. -/
 theorem PolyZonotope.onlyId_point (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p))
-    (a : Fin pZ.p → ℝ) :
+    (a : Fin pZ.p → ℝ) : -- --- STMT ---
     (nominal pZ).point a
       = (nominal (pZ.onlyId S).1).point (fun k' : Fin S.card => a (S.orderIsoOfFin rfl k').1)
         + (nominal (pZ.onlyId S).2).point a := by -- --- PROOF ---

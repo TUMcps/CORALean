@@ -70,7 +70,7 @@ theorem ConZonotope.aux_sum_swap {p q : ℕ} (u : Fin p → ℝ) (M : Fin p → 
 
 /-- The upper and lower ends enclose the exact residual. -/
 theorem ConZonotope.aux_res_encl (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) (y : Vec 𝕋 cZ.P.m)
-    (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) :
+    (zu zl : Vec 𝕋 cZ.P.me) (j : Fin cZ.h) : -- --- STMT ---
     let r := (∑ i, toReal (a i) * toReal (cZ.G j i))
       - (∑ k, toReal (y k) * toReal (cZ.P.A k j))
       - (∑ k, toReal (zu k) * toReal (cZ.P.Ae k j))

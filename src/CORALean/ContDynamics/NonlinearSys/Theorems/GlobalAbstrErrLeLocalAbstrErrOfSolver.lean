@@ -76,7 +76,7 @@ theorem globalAbstrErr_le_of_localAbstrErr_of_solver {A : Mat ℝ n n} (hA : A �
     (hB2 : ∀ k < N, Rhat (k + 1) = (exp (Δt • A)).mulVec '' Rhat k + P k)
     (hRhatNe : ∀ k ≤ N, (Rhat k).Nonempty) (hRhatBdd : ∀ k ≤ N, Bornology.IsBounded (Rhat k))
     (hRabsNe : ∀ k < N, (Rabs k).Nonempty) (hRabsConv : ∀ k < N, Convex ℝ (Rabs k))
-    (hRabsCpt : ∀ k < N, IsCompact (Rabs k)) :
+    (hRabsCpt : ∀ k < N, IsCompact (Rabs k)) : -- --- STMT ---
     globalAbstrErr (R N) (Rhat N) ≤
       (Real.exp (‖A‖ * Real.exp (tEnd * ‖A‖) * tEnd) - 1) / (‖A‖ * Real.exp (tEnd * ‖A‖)) / Δt *
       (Finset.range N).sup' (Finset.nonempty_range_iff.mpr hN.ne')

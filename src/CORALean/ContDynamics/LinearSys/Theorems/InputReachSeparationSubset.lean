@@ -75,7 +75,7 @@ theorem aux_aestronglyMeasurable_comp_add_left {f : ℝ → Vec ℝ n} {a b c : 
 some run over `[0,a]` contributes, propagated across the remaining `b`, plus
 what some run over `[0,b]` contributes. -/
 theorem LinearSys.inputReach_separation_subset (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}
-    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) :
+    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) : -- --- STMT ---
     sys.inputReach U (a + b)
       ⊆ (fun y => exp (b • toRealMat sys.A) *ᵥ y) '' sys.inputReach U a
         + sys.inputReach U b := by -- --- PROOF ---

@@ -45,7 +45,7 @@ variable {n p q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.image_mul_apply_eq (IM : Interval (Mat ℝ n p))
-    (hIM : ∀ i k, IM.inf i k ≤ IM.sup i k) (N : Mat ℝ p q) (i : Fin n) (j : Fin q) :
+    (hIM : ∀ i k, IM.inf i k ≤ IM.sup i k) (N : Mat ℝ p q) (i : Fin n) (j : Fin q) : -- --- STMT ---
     (fun M : Mat ℝ n p => (M * N) i j) '' IM.construct =
       Set.Icc ((IM.center * N) i j - (IM.radius * N.map abs) i j)
         ((IM.center * N) i j + (IM.radius * N.map abs) i j) := by -- --- PROOF ---

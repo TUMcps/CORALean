@@ -53,7 +53,7 @@ theorem Icc_subset_image_of_disjoint_boundary_singular
     (hi : Disjoint (Icc ylo yhi) (f '' frontier (Icc xlo xhi)))
     (hii : Disjoint (Icc ylo yhi) (f '' {x | x ∈ interior (Icc xlo xhi) ∧
       LinearMap.det (f' x).toLinearMap = 0}))
-    (hiii : ∃ x₀ ∈ Icc xlo xhi, f x₀ ∈ Icc ylo yhi) :
+    (hiii : ∃ x₀ ∈ Icc xlo xhi, f x₀ ∈ Icc ylo yhi) : -- --- STMT ---
     Icc ylo yhi ⊆ f '' Icc xlo xhi := by -- --- PROOF ---
   have hE : IsCompact (f '' Icc xlo xhi) := isCompact_Icc.image_of_continuousOn hcont
   -- (1): `y` misses the frontier of the image

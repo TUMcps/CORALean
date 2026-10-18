@@ -26,7 +26,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {h₁ h₂ : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The same at the paired-difference column. -/
-theorem Zonotope.pairDiff_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ → 𝕋) (k : Fin h₂) :
+theorem Zonotope.pairDiff_bracket (g₁ : Fin h₁ → 𝕋) (g₂ : Fin h₂ → 𝕋) (k : Fin h₂) : -- --- STMT ---
     toReal (Zonotope.pairDiff subDown g₁ g₂ k)
         ≤ Real.Zonotope.pairDiff (fun j => toReal (g₁ j)) (fun j => toReal (g₂ j)) k
       ∧ Real.Zonotope.pairDiff (fun j => toReal (g₁ j)) (fun j => toReal (g₂ j)) k

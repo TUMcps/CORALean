@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 /-- The bounds minus the constant terms are at most `h` times the weight. -/
 theorem Taylm.aux_abs_polyBounds_sub_le (L : List (ℝ × (Fin n → ℕ))) {h : ℝ} (h0 : 0 < h)
-    (h1 : h ≤ 1) :
+    (h1 : h ≤ 1) : -- --- STMT ---
     |(Taylm.polyBounds L).inf - ((L.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum|
         ≤ h * Taylm.weight L h ∧
       |(Taylm.polyBounds L).sup - ((L.filter fun a => Taylm.degree a.2 == 0).map Prod.fst).sum|

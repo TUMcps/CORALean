@@ -71,7 +71,7 @@ def HPolytope.aux_convHullInterval (lo hi : ℝ) : HPolytope (Vec ℝ 1) where
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.convHullCora_empty_counterexample (rest : Set (Vec ℝ 1)) :
+theorem HPolytope.convHullCora_empty_counterexample (rest : Set (Vec ℝ 1)) : -- --- STMT ---
     let P := HPolytope.aux_convHullInterval 1 0
     let S := HPolytope.aux_convHullInterval 0 1
     (0 : Vec ℝ 1) ∈ convexHull ℝ (P.construct ∪ S.construct) ∧

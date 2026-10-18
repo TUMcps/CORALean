@@ -61,7 +61,7 @@ theorem Polygon.aux_affineSpan_eq_top {k : ℕ} (V : Fin k → Vec ℝ 2) (a b c
 
 /-- The certified cross product is the real one, so it is not zero. -/
 theorem Polygon.aux_cross_ne_zero {p : VPolytope (Vec 𝕋 2)} {a b c : Fin p.k}
-    (h : Polygon.crossCertified p a b c = true) :
+    (h : Polygon.crossCertified p a b c = true) : -- --- STMT ---
     (toReal (p.V b 0) - toReal (p.V a 0)) * (toReal (p.V c 1) - toReal (p.V a 1))
       - (toReal (p.V b 1) - toReal (p.V a 1)) * (toReal (p.V c 0) - toReal (p.V a 0))
       ≠ 0 := by -- --- PROOF ---

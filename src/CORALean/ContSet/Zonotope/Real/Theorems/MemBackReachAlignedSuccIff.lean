@@ -41,7 +41,7 @@ variable {n m : ℕ}
 /-- `x ∈ Z_{k+1}` iff `Ax + K` is a point of the difference plus a point of `(-B)U`. -/
 theorem Zonotope.mem_backReachAligned_succ_iff {A : Mat ℝ n n} (hA : IsUnit A.det)
     (B : Mat ℝ n m) (K : Vec ℝ n) (U : Zonotope (Vec ℝ m)) (Z₀ : Zonotope (Vec ℝ n))
-    (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ)) (k : ℕ) (x : Vec ℝ n) :
+    (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ)) (k : ℕ) (x : Vec ℝ n) : -- --- STMT ---
     x ∈ (Zonotope.backReachAligned A B K U Z₀ σ (k + 1)).construct ↔
       A *ᵥ x + K ∈ ((Zonotope.backReachAligned A B K U Z₀ σ k).minkDiffAligned
         ((Zonotope.backReachAligned A B K U Z₀ σ k).aligned

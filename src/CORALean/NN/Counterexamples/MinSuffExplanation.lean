@@ -44,7 +44,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 /-- `E` is minimal exactly when it is sufficient and every feature of it has a
 counterexample witnessing that dropping it is not. -/
 theorem minSuffExplanation_iff_counterexample (f : Vec ℝ n → Vec ℝ m)
-    (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) :
+    (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) : -- --- STMT ---
     IsMinSuffExplanation f x ε E l ↔
       IsSuffExplanation f x ε E l ∧ ∀ i ∈ E,
         ∃ x' ∈ construct (explainBox x ε (E \ {i})),

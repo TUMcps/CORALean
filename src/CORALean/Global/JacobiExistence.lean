@@ -104,7 +104,7 @@ theorem exists_mem_Icc_eq_add_of_jacobi {F : (Fin n → ℝ) → (Fin n → ℝ)
     (hstep : ∀ A : Fin n → Fin n → ℝ, (∀ i j, A i j ∈ Icc (Jlo i j) (Jhi i j)) →
       ∀ x ∈ Icc lo hi, ∀ i, A i i ≠ 0 ∧
         xc i + (b i - ∑ j ∈ Finset.univ.erase i, A i j * (x j - xc j)) / A i i ∈
-          Icc (lo i) (hi i)) :
+          Icc (lo i) (hi i)) : -- --- STMT ---
     ∃ x ∈ Icc lo hi, F x = F xc + b := by -- --- PROOF ---
   set X := Icc lo hi
   set A : (Fin n → ℝ) → Fin n → Fin n → ℝ :=

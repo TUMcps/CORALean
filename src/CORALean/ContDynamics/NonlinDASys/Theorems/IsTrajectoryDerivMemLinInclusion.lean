@@ -55,7 +55,7 @@ theorem NonlinDASys.IsTrajectory.hasDerivWithinAt_mem_linInclusion {sys : Nonlin
     (hL : ∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       (sys.f x' y' u' - (sys.f xs ys us + A *ᵥ (x' - xs) + B *ᵥ (u' - us) + C *ᵥ (y' - ys)))
         - (C * F_inv) *ᵥ (sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us)
-          + F *ᵥ (y' - ys))) ∈ L) :
+          + F *ᵥ (y' - ys))) ∈ L) : -- --- STMT ---
     ∀ t ∈ τ, ∃ v ∈ NonlinDASys.linInclusion (sys.f xs ys us) (sys.g xs ys us) A B C D E F_inv
       us U L (x t - xs), HasDerivWithinAt x v τ t := by -- --- PROOF ---
   intro t ht

@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem image_linearMap_properties (M : Vec ℝ n →ₗ[ℝ] Vec ℝ n) (S : Set (Vec ℝ n)) :
+theorem image_linearMap_properties (M : Vec ℝ n →ₗ[ℝ] Vec ℝ n) (S : Set (Vec ℝ n)) : -- --- STMT ---
     (S = ∅ → M '' S = ∅) ∧ (S.Nonempty → (M '' S).Nonempty) ∧
       (Bornology.IsBounded S → Bornology.IsBounded (M '' S)) ∧
       (Function.Bijective M →

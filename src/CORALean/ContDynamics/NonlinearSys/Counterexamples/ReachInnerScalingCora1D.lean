@@ -134,7 +134,7 @@ private theorem aux_reachInnerScalingCora1D_eq
     (hopt : ∀ f con lb ub, (∃ x, lb ≤ x ∧ x ≤ ub ∧ con x = 0) →
       lb ≤ fmincon f con lb ub ∧ fmincon f con lb ub ≤ ub ∧ con (fmincon f con lb ub) = 0)
     (hcontract : ∀ con lb ub, isEmptyContract con lb ub = true →
-      ∀ x, lb ≤ x → x ≤ ub → con x ≠ 0) :
+      ∀ x, lb ≤ x → x ≤ ub → con x ≠ 0) : -- --- STMT ---
     NonlinearSys.reachInnerScalingCora1D 2 ![1] ![1] ![2] 5 none fmincon isEmptyContract fuel =
       some (Icc 1 3) := by -- --- PROOF ---
   simp only [NonlinearSys.reachInnerScalingCora1D]
@@ -189,7 +189,7 @@ theorem NonlinearSys.reachInnerScalingCora1D_counterexample
     (hopt : ∀ f con lb ub, (∃ x, lb ≤ x ∧ x ≤ ub ∧ con x = 0) →
       lb ≤ fmincon f con lb ub ∧ fmincon f con lb ub ≤ ub ∧ con (fmincon f con lb ub) = 0)
     (hcontract : ∀ con lb ub, isEmptyContract con lb ub = true →
-      ∀ x, lb ≤ x → x ≤ ub → con x ≠ 0) :
+      ∀ x, lb ≤ x → x ≤ ub → con x ≠ 0) : -- --- STMT ---
     let X₀ : Set ℝ := Icc (-1) 1
     let runs : Set (ℝ → ℝ) := {x | ∀ t ∈ Icc (0 : ℝ) 1, HasDerivWithinAt x 0 (Icc 0 1) t}
     let R : Set ℝ := {y | ∃ x ∈ runs, x 0 ∈ X₀ ∧ x 1 = y}

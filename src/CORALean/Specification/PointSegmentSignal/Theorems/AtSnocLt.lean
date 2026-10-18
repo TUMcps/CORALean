@@ -29,7 +29,7 @@ namespace CORALean
 
 theorem PointSegmentSignal.at_snoc_lt {T : Type} [LinearOrder T] (tp : List T) (val : List Bool)
     (N : T) (pv iv : Bool) (hlen : val.length = 2 * tp.length) (hne : tp ≠ []) (t : T)
-    (ht : t < N) :
+    (ht : t < N) : -- --- STMT ---
     (PointSegmentSignal.mk (tp ++ [N]) (val ++ [pv, iv])).at t =
       (PointSegmentSignal.mk tp val).at t := by -- --- PROOF ---
   have hpos : 0 < tp.length := List.length_pos_iff.mpr hne

@@ -35,7 +35,7 @@ namespace CORALean
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem STL.pred_encoding_iff {μ M ε : ℝ} (hε : 0 < ε) :
+theorem STL.pred_encoding_iff {μ M ε : ℝ} (hε : 0 < ε) : -- --- STMT ---
     (∀ z : ℝ, (z = 0 ∨ z = 1) → μ ≤ M * z - ε → -μ ≤ M * (1 - z) - ε →
       ((z = 1 ↔ 0 < μ) ∧ (1 - z = 1 ↔ ¬ 0 < μ))) ∧
     (ε ≤ |μ| → |μ| ≤ M - ε →

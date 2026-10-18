@@ -95,7 +95,7 @@ open Matrix
 /-- CORA's first Krylov time-point set for `ẋ = 0·x + 1·u + 1`, `R0 = {0}`, `U = {0}`, step `Δt`,
 misses `x(Δt) = Δt` of the run, for `0 ≤ krylovError < Δt/2`, any `eps ≥ 0` and order `o ≥ 2`. -/
 theorem Krylov.reachKrylovCora1D_constant_counterexample (Δt ε eps : ℝ) (o : ℕ)
-    (hε0 : 0 ≤ ε) (hε : 2 * ε < Δt) (heps : 0 ≤ eps) (ho : 2 ≤ o) :
+    (hε0 : 0 ≤ ε) (hε : 2 * ε < Δt) (heps : 0 ≤ eps) (ho : 2 ≤ o) : -- --- STMT ---
     ∃ R, Krylov.reachKrylovCora1D 0 1 1 Δt ε eps o = some R ∧
       ∃ x w : ℝ → Vec ℝ 1,
         (LinearSys.canonical (0 : Mat ℝ 1 1) : LinearSys ℝ 1).IsCanonicalClassicalTrajectory

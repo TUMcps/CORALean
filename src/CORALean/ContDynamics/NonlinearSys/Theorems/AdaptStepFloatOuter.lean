@@ -41,7 +41,7 @@ theorem aux_adaptStep_pick {fm : NonlinearSys.FloatHessModel 𝕋 n m} {U : Zono
     {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋} {R : Zonotope (Vec 𝕋 n)} {κ : ℕ}
     {F₁ F₂ : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)}
     (hF₁ : fm.orderStepFloat 1 U { options with Δt := Δ } R = some F₁)
-    (hF₂ : fm.orderStepFloat 2 U { options with Δt := Δ } R = some F₂) :
+    (hF₂ : fm.orderStepFloat 2 U { options with Δt := Δ } R = some F₂) : -- --- STMT ---
     fm.orderStepFloat κ U { options with Δt := Δ } R =
       some (if κ = 1 then F₁ else F₂) := by -- --- PROOF ---
   by_cases hκ : κ = 1
@@ -56,7 +56,7 @@ theorem aux_adaptStep_pick {fm : NonlinearSys.FloatHessModel 𝕋 n m} {U : Zono
 theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m}
     (h : fm.Encloses sys) {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {Δ : 𝕋}
     {t₀ : ℚ} {R : Zonotope (Vec 𝕋 n)} {F : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)} {κ : ℕ}
-    (hF : fm.orderStepFloat κ U { options with Δt := Δ } R = some F) :
+    (hF : fm.orderStepFloat κ U { options with Δt := Δ } R = some F) : -- --- STMT ---
     t₀ < t₀ + ToRat.toRat Δ ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ))
         R.construct U.construct x u →
@@ -88,7 +88,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptStepFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
     {prec bis fuel : ℕ} {s s' : NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋}
-    (hstep : fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s = some s') :
+    (hstep : fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s = some s') : -- --- STMT ---
     s.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ))
         s.R.construct U.construct x u →

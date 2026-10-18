@@ -132,7 +132,7 @@ theorem aux_zsr_weak (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
     (hq2 : q ≤ 2) (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (hH : Function.Surjective H.mulVec) (v : Fin m → ℝ) (w : Fin l → ℝ)
     (hK : (fromBlocks 0 Gᵀ G 0 - fromBlocks (diagonal v) 0 0 (H * diagonal w * Hᵀ)).PosSemidef)
-    {α : Fin m → ℝ} (hα : α ∈ Metric.closedBall (0 : Fin m → ℝ) 1) :
+    {α : Fin m → ℝ} (hα : α ∈ Metric.closedBall (0 : Fin m → ℝ) 1) : -- --- STMT ---
     coeffNorm ((Matrix.mulVecLin H) ∘ₗ (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap)
       (G *ᵥ α) ≤ (‖WithLp.toLp 1 v‖ + ‖WithLp.toLp (q / (2 - q)) w‖) / 2 := by -- --- PROOF ---
   haveI : (q / (2 - q)).HolderConjugate (q' / 2) := aux_zsr_holderConjugate hq1 hq2
@@ -162,7 +162,8 @@ theorem aux_zsr_weak (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate q']
 /-- The vectors of a Gram factorization: `‖yⱼ‖`, `‖bᵢ‖²` and `⟨yⱼ, cⱼ⟩` in terms of `X`. -/
 theorem aux_zsr_gram {d : ℕ} (G : Matrix (Fin n) (Fin m) ℝ) (H : Matrix (Fin n) (Fin l) ℝ)
     (X : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ)
-    (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d)) (hc : ∀ p q, X p q = ⟪c p, c q⟫) :
+    (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d))
+    (hc : ∀ p q, X p q = ⟪c p, c q⟫) : -- --- STMT ---
     (∀ i, ‖∑ k, H k i • c (Sum.inr k)‖ ^ 2 = (Hᵀ * X.toBlocks₂₂ * H) i i) ∧
       ∑ j, ⟪∑ k, G k j • c (Sum.inr k), c (Sum.inl j)⟫ =
         ∑ k, ∑ j, G k j * X (Sum.inr k) (Sum.inl j) := by -- --- PROOF ---
@@ -182,7 +183,7 @@ theorem aux_zsr_pointwise {d : ℕ} (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.Hold
     (hrle : ∀ α ∈ Metric.closedBall (0 : Fin m → ℝ) 1, coeffNorm ((Matrix.mulVecLin H) ∘ₗ
       (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap) (G *ᵥ α) ≤ r)
     (c : Fin m ⊕ Fin n → EuclideanSpace ℝ (Fin d)) (s : Fin m → ℝ) (hs : ∀ j, |s j| ≤ 1)
-    (g : EuclideanSpace ℝ (Fin d)) :
+    (g : EuclideanSpace ℝ (Fin d)) : -- --- STMT ---
     ∑ j, s j * (⟪∑ k, G k j • c (Sum.inr k), g⟫ * (SignType.sign ⟪c (Sum.inl j), g⟫ : ℝ)) ≤
       r * (∑ i, |⟪∑ k, H k i • c (Sum.inr k), g⟫| ^ q'.toReal) ^
         (1 / q'.toReal) := by -- --- PROOF ---
@@ -225,7 +226,7 @@ theorem aux_zsr_rounding (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugate
       (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap) (G *ᵥ α) ≤ r)
     (X : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℝ) (hX : X.PosSemidef)
     (hX1 : ‖WithLp.toLp ∞ (fun j => X (Sum.inl j) (Sum.inl j))‖ ≤ 1)
-    (hX2 : ‖WithLp.toLp (q' / 2) (fun i => (Hᵀ * X.toBlocks₂₂ * H) i i)‖ ≤ 1) :
+    (hX2 : ‖WithLp.toLp (q' / 2) (fun i => (Hᵀ * X.toBlocks₂₂ * H) i i)‖ ≤ 1) : -- --- STMT ---
     gaussMomentRoot 1 * ∑ k, ∑ j, G k j * X (Sum.inr k) (Sum.inl j) ≤
       r * gaussMomentRoot q'.toReal := by -- --- PROOF ---
   haveI : Fact (1 ≤ q') := ⟨ENNReal.HolderConjugate.one_le q' q⟩
@@ -308,7 +309,7 @@ theorem zsr_radius_bounds (q q' : ℝ≥0∞) [Fact (1 ≤ q)] [q.HolderConjugat
           fromBlocks (diagonal vw.1) 0 0 (H * diagonal vw.2 * Hᵀ)).PosSemidef}) ZSR)
     (hr : IsGreatest ((fun α => coeffNorm ((Matrix.mulVecLin H) ∘ₗ
         (WithLp.linearEquiv q ℝ (Fin l → ℝ)).toLinearMap) (G *ᵥ α)) ''
-        Metric.closedBall 0 1) r) :
+        Metric.closedBall 0 1) r) : -- --- STMT ---
     r ≤ ZSR ∧ ZSR ≤ gaussMomentRoot q'.toReal / gaussMomentRoot 1 * r ∧
       (ZSR ≤ 1 → ∀ α ∈ Metric.closedBall (0 : Fin m → ℝ) 1, ∃ β : PiLp q (fun _ : Fin l => ℝ),
         H *ᵥ WithLp.ofLp β = G *ᵥ α ∧ ‖β‖ ≤ 1) ∧

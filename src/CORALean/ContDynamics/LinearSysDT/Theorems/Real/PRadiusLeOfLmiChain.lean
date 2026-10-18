@@ -56,7 +56,7 @@ theorem LinearSysDT.pRadius_le_of_lmi_chain (G : Fin q → Mat ℝ n n) (F : Mat
     (A : Mat ℝ n n) (hA : A ∈ convexHull ℝ (Set.range G)) (L ψ : ℝ)
     (X : Real.Zonotope (Vec ℝ n))
     (hL : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ L)
-    (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) :
+    (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) : -- --- STMT ---
     Real.Zonotope.pRadius P
         (ContSet.intersectStripSeq (S := 𝒵) C φ y (fun _ => Λ)
           ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Real.Zonotope (Vec ℝ n))))

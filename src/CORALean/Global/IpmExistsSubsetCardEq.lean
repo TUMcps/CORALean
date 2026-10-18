@@ -38,7 +38,7 @@ theorem ipm_exists_subset_card_eq {𝒬 : Set E} {μQ : E → ℝ} (hμ : Convex
     {sol : Finset (Fin N) → (Fin N → Φ × Y) → E}
     (hsol : ∀ F x, d ≤ F.card → sol F x ∈ 𝒬 ∧ (∀ t ∈ F, (x t).2 ∈ I (sol F x) (x t).1) ∧
       ∀ Q ∈ 𝒬, (∀ t ∈ F, (x t).2 ∈ I Q (x t).1) → Q ≠ sol F x → μQ (sol F x) < μQ Q)
-    (x : Fin N → Φ × Y) (F : Finset (Fin N)) (hF : d ≤ F.card) :
+    (x : Fin N → Φ × Y) (F : Finset (Fin N)) (hF : d ≤ F.card) : -- --- STMT ---
     ∃ H ⊆ F, H.card = d ∧ sol H x = sol F x := by -- --- PROOF ---
   classical
   obtain ⟨n, hn⟩ := Nat.exists_eq_add_of_le hF

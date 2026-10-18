@@ -47,7 +47,7 @@ variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
 /-- `boxDiffBounds` stays inside `[l₁, u₁]` and its open box misses `[l₂, u₂]`. -/
 private theorem aux_boxDiffBounds {n : ℕ} (hn : 0 < n) {l₁ u₁ l₂ u₂ : Fin n → ℝ} (h1 : l₁ ≤ l₂)
-    (h2 : l₂ ≤ u₂) (h3 : u₂ ≤ u₁) :
+    (h2 : l₂ ≤ u₂) (h3 : u₂ ≤ u₁) : -- --- STMT ---
     l₁ ≤ (boxDiffBounds l₁ u₁ l₂ u₂).1 ∧
       (boxDiffBounds l₁ u₁ l₂ u₂).1 ≤ (boxDiffBounds l₁ u₁ l₂ u₂).2 ∧
       (boxDiffBounds l₁ u₁ l₂ u₂).2 ≤ u₁ ∧
@@ -163,7 +163,7 @@ theorem PolyZonotope.innerScaling_subset_of_lt (pZ : PolyZonotope V) (B : List (
     (hR : IsClosed R) (hB : frontier R ⊆ ⋃ PZk ∈ B, PZk.subsetAt {b | ∀ j, |b j| ≤ 1})
     (hlt : ∀ i, (pZ.innerScaling B contract).1 i < (pZ.innerScaling B contract).2 i)
     (h14 : pZ.point (fun i => ((pZ.innerScaling B contract).1 i +
-      (pZ.innerScaling B contract).2 i) / 2) ∈ R) :
+      (pZ.innerScaling B contract).2 i) / 2) ∈ R) : -- --- STMT ---
     pZ.subsetAt (Icc (pZ.innerScaling B contract).1 (pZ.innerScaling B contract).2) ⊆
       R := by -- --- PROOF ---
   set lo := (pZ.innerScaling B contract).1

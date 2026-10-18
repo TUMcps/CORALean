@@ -1632,6 +1632,84 @@ END { if (nf > 0) checkfile() }
 ' | sort)
 report "$out"
 
+# The statement flag (#222). Where a signature runs to five lines or more (the PROOF flag's own
+# threshold, counted the same way: the `theorem`/`lemma` line to the `:= by` line, inclusive),
+# the colon that closes the binders ends its line with `-- --- STMT ---`, so that what is given
+# sits above the flag and what should hold below it, as the PROOF flag marks where the claim stops.
+# Required there and refused on a shorter signature, on a line whose text before the flag does not
+# end with `:`, and on the `:= by` line itself (the conclusion starts below the flag). Theorems the
+# tree-wide pass could not place, because the colon line has no room for the flag, are listed in
+# `scripts/stmt-marker-allowlist.txt` as `path::name`, one per line; the list only shrinks, and an
+# entry whose theorem carries the flag, is shorter or is gone is reported as stale.
+# Read from `$repo`: `--staged` runs inside a checkout of the staged files alone.
+out=$(awk -v MIN=5 -v LIST=scripts/stmt-marker-allowlist.txt \
+    -v PATHLIST="$repo/scripts/stmt-marker-allowlist.txt" -v STALE="${STAGED:-}" '
+function isdecl(s) {
+  return s ~ /^(@\[[^]]*\][ \t]*)?(private |protected |noncomputable |scoped )*(theorem|lemma)[ \t]/
+}
+function declname(s,   t) {
+  if (!match(s, /(theorem|lemma)[ \t]+[^ \t]+/)) return "?"
+  t = substr(s, RSTART, RLENGTH); sub(/^(theorem|lemma)[ \t]+/, "", t)
+  return t
+}
+function checkfile(   i, j, end, s, sig, m, nm, key, marks, legit) {
+  split("", legit)
+  i = 1
+  while (i <= nf) {
+    if (!isdecl(L[i])) { i++; continue }
+    end = 0
+    for (j = i; j <= nf && j - i < 30; j++) {
+      if (j > i && L[j] ~ /^[^ \t]/) break
+      s = L[j]; sub(/[ \t]+$/, "", s)
+      if (s ~ / where$/) break
+      if (s ~ /:= by$/ || s ~ /:= by -- --- PROOF ---$/) { end = j; break }
+    }
+    if (end == 0) { i++; continue }
+    sig = end - i + 1; nm = declname(L[i]); key = fname "::" nm
+    marks = 0
+    for (j = i; j <= end; j++)
+      if (L[j] ~ /-- --- STMT ---/) {
+        marks++; legit[j] = 1
+        s = L[j]
+        if (s !~ /:[ \t]*-- --- STMT ---$/ || s ~ /:= by/ || j == end)
+          print fname ":" j ": the statement flag reads `: -- --- STMT ---` at the end of the line" \
+                " that closes the binders, with the conclusion starting below it"
+      }
+    if (sig >= MIN && marks == 0) {
+      if (key in allow) hit[key] = 1
+      else
+        print fname ":" i ": a signature of " sig " lines needs `-- --- STMT ---` after the colon" \
+              " that closes its binders (what is given above, what should hold below)"
+    }
+    if (sig >= MIN && marks > 1)
+      print fname ":" i ": more than one statement flag in the signature of " nm
+    if (sig < MIN && marks > 0)
+      print fname ":" i ": the statement flag marks a signature of " sig " lines — it is for " MIN \
+            " or more"
+    i = end + 1
+  }
+  for (i = 1; i <= nf; i++)
+    if (L[i] ~ /-- --- STMT ---/ && !(i in legit))
+      print fname ":" i ": the statement flag belongs in the signature of a `theorem` or `lemma`"
+}
+BEGIN {
+  while ((getline l < PATHLIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++na }
+  close(PATHLIST)
+}
+FNR == 1 { if (nf > 0) checkfile(); split("", L); nf = 0; fname = FILENAME; seenf[FILENAME] = 1 }
+{ L[++nf] = $0 }
+END {
+  if (nf > 0) checkfile()
+  if (STALE != "") exit
+  for (k in allow) {
+    split(k, kp, "::")
+    if (!(kp[1] in seenf)) print LIST ":" aln[k] ": stale entry `" k "` — no such file"
+    else if (!(k in hit)) print LIST ":" aln[k] ": stale entry `" k "` — the theorem carries the flag, is short or is gone; the list only shrinks"
+  }
+}
+' $files | sort)
+report "$out"
+
 # Mathlib is imported in the file that uses it, never through a shared one: a
 # shared file makes every importer rebuild when any import is added to it. So no
 # file may be `Global/Mathlib.lean`, and none may hold nothing but `import
@@ -1952,7 +2030,88 @@ FNR == 1 {
 END { flush() }
 ' $files)
 report "$out"
+
+# A main-type file cites the publication it formalizes (#211): the file with the `MAIN TYPE`
+# banner at `<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` has at least one numbered entry
+# (`* [N] ...`) under `## References` in its module docstring. Files not yet brought up to this
+# are listed in `scripts/main-reference-allowlist.txt`, one path per line; the list only
+# shrinks, and an entry whose file has a reference (or is no main-type file) is stale.
+out=$(awk -v LIST=scripts/main-reference-allowlist.txt -v PATHLIST="$repo/scripts/main-reference-allowlist.txt" \
+    -v STALE="${STAGED:-}" '
+function flush() {
+  if (file == "") return
+  if (!(banner && isMain)) return
+  mainfile[file] = 1
+  if (hasref) return
+  if (file in allow) hit[file] = 1
+  else
+    print file ":1: a main-type file without a reference — add `* [1] ...` under `## References`," \
+          " the publication it formalizes"
+}
+BEGIN {
+  while ((getline l < PATHLIST) > 0) { if (l ~ /^#/ || l == "") continue; allow[l] = 1; aln[l] = ++n }
+  close(PATHLIST)
+}
+FNR == 1 {
+  flush()
+  file = FILENAME; seen[file] = 1; inb = 0; banner = 0; hasref = 0; inref = 0
+  n = split(FILENAME, pp, "/"); stem = pp[n]; sub(/\.lean$/, "", stem)
+  isMain = (stem == pp[n-1] || stem == pp[n-2])
+}
+{
+  s = $0
+  if (inb) {
+    if (s ~ /^## References/) inref = 1
+    else if (s ~ /^#/) inref = 0
+    else if (inref && s ~ /^\* \[[0-9]+\]/) hasref = 1
+    if (s ~ /-\//) inb = 0
+    next
+  }
+  if (s ~ /^[ \t]*\/-/) { if (s !~ /-\//) inb = 1; inref = 0; next }
+  if (s ~ /^-- =.*MAIN TYPE/) banner = 1
+}
+END {
+  flush()
+  if (STALE != "") exit
+  for (f in allow)
+    if (!(f in seen)) print LIST ":" aln[f] ": stale entry `" f "` — no such file"
+    else if (!(f in hit)) print LIST ":" aln[f] ": stale entry `" f "` — the file has a reference now (or is no main-type file); the list only shrinks"
+}' $files | sort)
+report "$out"
 if [ -z "$STAGED" ]; then
+
+# The Python checks read and write UTF-8 on every platform (#230): in `scripts/*.py` a
+# `read_text(`, `write_text(` or `open(` names `encoding=` (a binary mode `"rb"`/`"wb"` needs none).
+# Windows otherwise decodes with the console's code page, and the first `ℝ` raises. The call is
+# read to its closing parenthesis, so an argument on the next line counts.
+out=$(awk '
+function flush(   rest, off, p, i, depth, c, call, ln) {
+  rest = text; off = 0
+  while (match(rest, /(\.(read_text|write_text|open)|(^|[^A-Za-z0-9_.])open)\(/)) {
+    p = off + RSTART + RLENGTH - 1          # position of the "("
+    depth = 0; call = ""
+    for (i = p; i <= length(text); i++) {
+      c = substr(text, i, 1)
+      if (c == "(") depth++
+      else if (c == ")") { depth--; if (depth == 0) break }
+      call = call c
+    }
+    if (call !~ /encoding[ \t]*=/ && call !~ /["\x27][rwax+]*b[rwax+]*["\x27]/) {
+      ln = 1
+      for (i = 1; i <= p; i++) if (substr(text, i, 1) == "\n") ln++
+      print file ":" ln ": no `encoding=\"utf-8\"` — Windows reads this as cp1252 (#230)"
+    }
+    off = off + RSTART + RLENGTH - 1
+    rest = substr(text, off + 1)
+  }
+  text = ""
+}
+FNR == 1 { if (file != "") flush(); file = FILENAME }
+/^[ \t]*#/ { text = text "\n"; next }
+{ text = text $0 "\n" }
+END { if (file != "") flush() }
+' scripts/*.py)
+report "$out"
 
 # Layering: no file imports a directory the table forbids it, except the listed
 # exceptions, and no exception outlives its import.

@@ -64,7 +64,7 @@ namespace CORALean.Real
 
 /-- For `W = 1`, `b = 0`, the input `{0}` and `d = [-1, 1]`, the layer's output `1 = W 0 + b + 1`
 lies outside the set `c' + G' ξ` that CORA returns. -/
-theorem Layer.linearConZonotope_cora_counterexample :
+theorem Layer.linearConZonotope_cora_counterexample : -- --- STMT ---
     (∃ x e : ℝ, x ∈ Set.Icc (0 : ℝ) 0 ∧ e ∈ Set.Icc (-1 : ℝ) 1 ∧ (1 : ℝ) = 1 * x + 0 + e) ∧
       ∀ ξ ∈ Set.Icc (-1 : ℝ) 1,
         (1 : ℝ) ≠ Layer.linearConZonotopeCenterCora 1 0 0

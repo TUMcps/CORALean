@@ -39,7 +39,7 @@ theorem Zonotope.dominantDirections_score_le (Z : Zonotope (Vec ℝ n)) (a b : �
     (h : Z.dominantDirections a b = some P)
     (T : Finset (Fin Z.h))
     (hT : T ∈ Z.dominantShortlist (min a (Finset.univ.filter fun j => Z.G j ≠ 0).card)
-        (min b (Finset.univ.filter fun j => Z.G j ≠ 0).card)) :
+        (min b (Finset.univ.filter fun j => Z.G j ≠ 0).card)) : -- --- STMT ---
     Z.dominantScore P ≤ Z.dominantScore (Z.generatorMatrix T) := by -- --- PROOF ---
   unfold Zonotope.dominantDirections at h
   have hmem : P ∈ List.argmin Z.dominantScore ((Z.dominantShortlist _ _).map Z.generatorMatrix) := h

@@ -49,7 +49,7 @@ theorem GNN.alg1Graph_count_le (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m
     (acts : ∀ s, GNN.ActLayer N (c (s + 1))) (ν : ℕ) (hadd : ∀ s, s < L → (acts s).AddsAtMost ν)
     (f : ∀ t, PolyZonotope (Vec ℝ (c (L + t))) → PolyZonotope (Vec ℝ (c (L + (t + 1)))))
     (e : ℕ → ℕ) (hf : ∀ t S, (f t S).h + (f t S).q ≤ S.h + S.q + e t)
-    (X : PolyZonotope (Mat ℝ N (c 0))) :
+    (X : PolyZonotope (Mat ℝ N (c 0))) : -- --- STMT ---
     (GNN.alg1Graph R A U L T c W acts f X).h + (GNN.alg1Graph R A U L T c W acts f X).q + 1
       ≤ (((N + 2) * (N + 2) + 1) * (N + 2) + 2) ^ L * m ^ (3 * L) * (X.h + X.q + 1 + L * ν)
         + ∑ t ∈ Finset.range T, e t := by -- --- PROOF ---

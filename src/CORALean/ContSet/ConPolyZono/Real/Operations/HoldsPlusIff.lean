@@ -37,7 +37,7 @@ right-to-left direction work, neither system's monomials seeing the other's. -/
 theorem ConPolyZono.holds_plus_iff {p₁ p₂ m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
     (b₁ : Interval (Vec ℝ m₁)) (R₁ : Fin p₁ → Fin q₁ → ℕ) (A₂ : Mat ℝ m₂ q₂)
     (b₂ : Interval (Vec ℝ m₂))
-    (R₂ : Fin p₂ → Fin q₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) :
+    (R₂ : Fin p₂ → Fin q₂ → ℕ) (a : Fin (p₁ + p₂) → ℝ) : -- --- STMT ---
     ConPolyZono.holds (ConPolyZono.plusA A₁ A₂) (ConPolyZono.plusB b₁ b₂)
         (PolyZonotope.plusE R₁ R₂) a
       ↔ ConPolyZono.holds A₁ b₁ R₁ (fun k => a (Fin.castAdd p₂ k))

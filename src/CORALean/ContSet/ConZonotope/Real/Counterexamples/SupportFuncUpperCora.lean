@@ -94,7 +94,7 @@ theorem ConZonotope.aux_infeasibleZeroRow_construct :
 
 /-- The set is empty, so its support value along `dir = id` is `⊥ = -Inf`; CORA answers `1`,
 whatever `lp` is. -/
-theorem ConZonotope.supportFunc_upper_cora_counterexample (lp : EReal) :
+theorem ConZonotope.supportFunc_upper_cora_counterexample (lp : EReal) : -- --- STMT ---
     ConZonotope.aux_infeasibleZeroRow.construct = ∅ ∧
       (⨆ x ∈ ConZonotope.aux_infeasibleZeroRow.construct,
           (((LinearMap.proj 0 : Vec ℝ 1 →ₗ[ℝ] ℝ) x : ℝ) : EReal)) = ⊥ ∧

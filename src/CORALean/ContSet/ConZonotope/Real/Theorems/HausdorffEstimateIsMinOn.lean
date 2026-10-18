@@ -47,7 +47,7 @@ open Matrix
 theorem ConZonotope.hausdorffEstimate_isMinOn {n q h : ℕ} (G : Mat ℝ n h) (A : Mat ℝ q h)
     (j : Fin h) (rj : ℝ) (dHat : Vec ℝ h) (lamHat : Vec ℝ q) (muHat : ℝ)
     (h1 : (Gᵀ * G + 1) *ᵥ dHat + Aᵀ *ᵥ lamHat + muHat • Pi.single j 1 = 0)
-    (h2 : A *ᵥ dHat = 0) (h3 : dHat j = rj) :
+    (h2 : A *ᵥ dHat = 0) (h3 : dHat j = rj) : -- --- STMT ---
     IsMinOn (fun d : Vec ℝ h => (G *ᵥ d) ⬝ᵥ (G *ᵥ d) + d ⬝ᵥ d)
       {d | A *ᵥ d = 0 ∧ d j = rj} dHat := by -- --- PROOF ---
   intro d ⟨hAd, hdj⟩

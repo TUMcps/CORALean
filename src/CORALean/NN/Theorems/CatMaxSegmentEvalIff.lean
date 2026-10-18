@@ -54,7 +54,8 @@ theorem aux_holds_foldr_ge {N : ℕ} (P : Fin N) (x : Vec ℝ N) :
     rw [ih (fun q => g q.succ), Fin.forall_fin_succ]
 
 /-- The selection of position `p`, read off coordinate by coordinate. -/
-theorem aux_eval_select (a k b : ℕ) (p : Fin (k + 1)) (x : Vec ℝ (a + (k + 1) + b)) :
+theorem aux_eval_select (a k b : ℕ) (p : Fin (k + 1))
+    (x : Vec ℝ (a + (k + 1) + b)) : -- --- STMT ---
     toRealMat (selectMat (𝕋 := 𝕋) fun r : Fin (a + 1 + b) =>
         (⟨if r.val < a then r.val else if r.val = a then a + p.val else r.val + k,
           by have := r.isLt; have := p.isLt; split_ifs <;> omega⟩ : Fin (a + (k + 1) + b))) *ᵥ x
@@ -72,7 +73,7 @@ theorem aux_eval_select (a k b : ℕ) (p : Fin (k + 1)) (x : Vec ℝ (a + (k + 1
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Cat.maxSegment_eval_iff (a k b : ℕ) (x : Vec ℝ (a + (k + 1) + b))
-    (y : Vec ℝ (a + 1 + b)) :
+    (y : Vec ℝ (a + 1 + b)) : -- --- STMT ---
     (Cat.maxSegment (𝕋 := 𝕋) a k b).Eval x y ↔
       y = fun r => if _h : r.val < a then x ⟨r.val, by omega⟩
         else if r.val = a then Real.windowMax (fun q : Fin (k + 1) => x ⟨a + q.val, by omega⟩)

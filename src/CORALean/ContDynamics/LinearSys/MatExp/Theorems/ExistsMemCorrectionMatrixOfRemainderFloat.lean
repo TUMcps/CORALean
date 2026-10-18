@@ -93,7 +93,7 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder (A : Interval (M
       ≤ 1 / 2)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) (x₀ ρ : Vec ℝ n)
     (hρ : ‖ρ‖ ≤ ‖x₀‖ * Real.MatExp.expRemainderBound
-      (Real.Interval.smul t A.nominal).absMax (m + 2)) :
+      (Real.Interval.smul t A.nominal).absMax (m + 2)) : -- --- STMT ---
     ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r r A) (m + 2)).construct,
       ∃ F ∈ (MatExp.intervalCorrectionMatrix A r (m + 2)).construct,
         ∑ k ∈ Finset.range (m + 2 + 1), Real.MatExp.peanoBakerTerm Â k t *ᵥ x₀ + ρ

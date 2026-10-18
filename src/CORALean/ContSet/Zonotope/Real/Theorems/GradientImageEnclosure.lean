@@ -50,7 +50,7 @@ variable {n : ℕ}
 /-- The scalar functions of a row, along its center and along a generator entry. -/
 theorem aux_hasDerivAt_row (f : Zonotope (Vec ℝ 1) → ℝ) (R : Zonotope (Vec ℝ 1))
     (hf : DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin R.h → Vec ℝ 1) => f ⟨R.h, p.1, p.2⟩)
-      (R.c, R.G)) :
+      (R.c, R.G)) : -- --- STMT ---
     HasDerivAt (fun t => f ⟨R.h, fun _ => t, R.G⟩) ((R.gradient f).c 0) (R.c 0) ∧
       ∀ j, HasDerivAt (fun t => f ⟨R.h, R.c, Function.update R.G j (fun _ => t)⟩)
         ((R.gradient f).G j 0) (R.G j 0) := by -- --- PROOF ---
@@ -114,7 +114,7 @@ theorem aux_gradient_c (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotop
     (heL : ∀ i, DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin H.h → Vec ℝ 1) => eLo ⟨H.h, p.1, p.2⟩)
       ((H.row i).c, (H.row i).G))
     (heU : ∀ i, DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin H.h → Vec ℝ 1) => eUp ⟨H.h, p.1, p.2⟩)
-      ((H.row i).c, (H.row i).G)) (i : Fin n) :
+      ((H.row i).c, (H.row i).G)) (i : Fin n) : -- --- STMT ---
     (H.gradient (fun Z => ℒ (Z.imageEnclosure m eLo eUp))).c i =
       (H.backpropEnclose m eLo eUp ((H.imageEnclosure m eLo eUp).gradient ℒ).c
         ((H.imageEnclosure m eLo eUp).gradient ℒ).G).c i := by -- --- PROOF ---
@@ -211,7 +211,7 @@ theorem aux_gradient_G (ℒ : Zonotope (Vec ℝ n) → ℝ) (m eLo eUp : Zonotop
     (heL : ∀ i, DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin H.h → Vec ℝ 1) => eLo ⟨H.h, p.1, p.2⟩)
       ((H.row i).c, (H.row i).G))
     (heU : ∀ i, DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin H.h → Vec ℝ 1) => eUp ⟨H.h, p.1, p.2⟩)
-      ((H.row i).c, (H.row i).G)) (j : Fin H.h) (i : Fin n) :
+      ((H.row i).c, (H.row i).G)) (j : Fin H.h) (i : Fin n) : -- --- STMT ---
     (H.gradient (fun Z => ℒ (Z.imageEnclosure m eLo eUp))).G j i =
       (H.backpropEnclose m eLo eUp ((H.imageEnclosure m eLo eUp).gradient ℒ).c
         ((H.imageEnclosure m eLo eUp).gradient ℒ).G).G j i := by -- --- PROOF ---
@@ -343,7 +343,7 @@ theorem Zonotope.gradient_imageEnclosure (ℒ : Zonotope (Vec ℝ n) → ℝ)
     (heL : ∀ i, DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin H.h → Vec ℝ 1) => eLo ⟨H.h, p.1, p.2⟩)
       ((H.row i).c, (H.row i).G))
     (heU : ∀ i, DifferentiableAt ℝ (fun p : Vec ℝ 1 × (Fin H.h → Vec ℝ 1) => eUp ⟨H.h, p.1, p.2⟩)
-      ((H.row i).c, (H.row i).G)) :
+      ((H.row i).c, (H.row i).G)) : -- --- STMT ---
     H.gradient (fun Z => ℒ (Z.imageEnclosure m eLo eUp)) =
       H.backpropEnclose m eLo eUp ((H.imageEnclosure m eLo eUp).gradient ℒ).c
         ((H.imageEnclosure m eLo eUp).gradient ℒ).G := by -- --- PROOF ---

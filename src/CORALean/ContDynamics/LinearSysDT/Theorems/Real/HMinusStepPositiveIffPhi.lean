@@ -41,7 +41,7 @@ variable {n ny nf : ℕ}
 -- the form of `-Φ` at `(e, f)` is the quantity of Eq. 24
 theorem LinearSysDT.aux_hMinusPhi_form (A : Mat ℝ n n) (C : Mat ℝ ny n) (E : Mat ℝ ny nf)
     (L : Mat ℝ n ny) (Q : Mat ℝ n n) (M : Mat ℝ ny ny) (β : ℝ) (hQ : Qᵀ = Q) (e : Vec ℝ n)
-    (f : Vec ℝ nf) :
+    (f : Vec ℝ nf) : -- --- STMT ---
     let Φ₁₁ : Mat ℝ n n := -(Cᵀ * Mᵀ * M * C) + (A - L * C)ᵀ * Q * (A - L * C) - Q
     let Φ₁₂ : Matrix (Fin n) (Fin nf) ℝ := (A - L * C)ᵀ * Q * (-(L * E)) - Cᵀ * Mᵀ * M * E
     let Φ₂₂ : Mat ℝ nf nf := β ^ 2 • 1 - Eᵀ * Mᵀ * M * E + (L * E)ᵀ * Q * (L * E)

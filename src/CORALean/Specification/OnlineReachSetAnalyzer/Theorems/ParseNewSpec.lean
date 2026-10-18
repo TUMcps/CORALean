@@ -36,7 +36,7 @@ theorem OnlineReachSetAnalyzer.parseNew_spec (dp : Bool)
     (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) (parent : ℕ)
     (st st' : OnlineReachSetAnalyzer.ParseState S d)
     (hinv : OnlineReachSetAnalyzer.NodesInv dp st.nodes)
-    (h : OnlineReachSetAnalyzer.parseNew dp φ parent st = some st') :
+    (h : OnlineReachSetAnalyzer.parseNew dp φ parent st = some st') : -- --- STMT ---
     OnlineReachSetAnalyzer.NodesInv dp st'.nodes ∧
       OnlineReachSetAnalyzer.Ext st.nodes st'.nodes ∧
       ∃ node, st'.nodes[st.nodes.length]? = some node ∧ node.kind = φ.kind ∧

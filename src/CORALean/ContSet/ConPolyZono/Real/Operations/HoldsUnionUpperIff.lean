@@ -39,7 +39,7 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.holds_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) :
+theorem ConPolyZono.holds_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- STMT ---
     ConPolyZono.holds (ConPolyZono.unionUpperA p₁ p₂) ConPolyZono.unionUpperB
         (ConPolyZono.unionUpperR p₁ p₂) a
       ↔ (a (ConPolyZono.unionSel p₁ p₂) * a (Fin.natAdd (p₁ + p₂) 1) = 1

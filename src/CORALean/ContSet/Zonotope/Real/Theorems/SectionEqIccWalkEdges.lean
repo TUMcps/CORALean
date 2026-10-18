@@ -44,7 +44,7 @@ namespace CORALean.Real
 theorem Zonotope.aux_section_low (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) :
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- STMT ---
     ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.walkEdges ∧ (![γ, y] : Vec ℝ 2) ∈ Z.construct ∧
       ∀ y', (![γ, y'] : Vec ℝ 2) ∈ Z.construct → y ≤ y' := by -- --- PROOF ---
   by_cases hlt : Z.corner (fun _ => false) 0 < γ
@@ -87,7 +87,7 @@ theorem Zonotope.aux_section_low (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
 theorem Zonotope.section_eq_Icc_walkEdges (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) :
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- STMT ---
     ∃ yl yh : ℝ, (![γ, yl] : Vec ℝ 2) ∈ Z.walkEdges ∧ (![γ, yh] : Vec ℝ 2) ∈ Z.walkEdges ∧
       {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} = Set.Icc yl yh := by -- --- PROOF ---
   obtain ⟨yl, hyl, hylZ, hlow⟩ := Z.aux_section_low hh h1 h2 γ hne

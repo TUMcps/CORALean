@@ -27,7 +27,7 @@ variable {A : Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineAnalyzerNode.setPropagated_eq_none_iff (eps : ℝ) (n : OnlineAnalyzerNode A)
-    (parent : ℕ) (int : STLInterval) :
+    (parent : ℕ) (int : STLInterval) : -- --- STMT ---
     n.setPropagated eps parent int = none ↔ (n.prop[n.parents.idxOf parent]? = none ∨
       ∃ old, n.prop[n.parents.idxOf parent]? = some old ∧
         (¬ STLInterval.isequal eps old int ∧

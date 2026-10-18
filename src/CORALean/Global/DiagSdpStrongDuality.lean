@@ -179,7 +179,7 @@ theorem aux_sdpDual_contra (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) (hm 
     {ε : ℝ} (hε : 0 < ε) (f : Matrix (Fin m) (Fin m) ℝ →L[ℝ] ℝ) (u : ℝ)
     (hfO : ∀ X ∈ {X : Matrix (Fin m) (Fin m) ℝ |
       ∃ δ > 0, ∀ x : Fin m → ℝ, δ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (X *ᵥ x)}, f X < u)
-    (hfK : ∀ lam : Fin m → ℝ, ∑ i, lam i = p + ε → u ≤ f (diagonal lam - A)) :
+    (hfK : ∀ lam : Fin m → ℝ, ∑ i, lam i = p + ε → u ≤ f (diagonal lam - A)) : -- --- STMT ---
     False := by -- --- PROOF ---
   have hAij : ∀ i j, A j i = A i j := fun i j => by
     simpa using congrFun (congrFun hA i) j
@@ -415,7 +415,7 @@ theorem aux_sdpDual_exists (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) (hm 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Strong duality: `max {⟨A, U⟩ | U ≽ 0, Uᵢᵢ = 1} = min {1ᵀλ | diag(λ) - A ≽ 0}`, both attained. -/
-theorem diag_sdp_strong_duality (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) :
+theorem diag_sdp_strong_duality (A : Matrix (Fin m) (Fin m) ℝ) (hA : Aᵀ = A) : -- --- STMT ---
     ∃ d : ℝ,
       IsGreatest {t | ∃ U : Matrix (Fin m) (Fin m) ℝ,
         U.PosSemidef ∧ (∀ i, U i i = 1) ∧ t = (A * U).trace} d ∧

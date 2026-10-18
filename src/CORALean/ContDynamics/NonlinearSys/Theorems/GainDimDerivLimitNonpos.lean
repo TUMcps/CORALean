@@ -45,7 +45,7 @@ theorem gainDim_deriv_limit_nonpos (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (
     {qi : ℕ} {g g' : ℝ → ℝ} {δ : ℝ} (hδ0 : 0 ≤ δ) (hδ1 : δ ≤ 1)
     (hg : ∀ᶠ t in 𝓝 (0:ℝ), HasDerivAt g (g' t) t) (hg' : ContinuousAt g' 0) (hg0 : g 0 ≠ 0)
     (hexp : ∀ᶠ t in 𝓝[≥] (0:ℝ), boxDiameter (abstrSolInf A Ψ t) i = t ^ (qi + 1) * g t)
-    (hgrow : 0 ≤ g' 0 / g 0) :
+    (hgrow : 0 ≤ g' 0 / g 0) : -- --- STMT ---
     ∃ L : ℝ, L ≤ 0 ∧ Tendsto (fun h => deriv (fun s => gainDim A Ψ s δ i) h) (𝓝[>] (0:ℝ))
       (𝓝 L) := by -- --- PROOF ---
   refine ⟨δ ^ (qi + 1) * (δ - 1) * g' 0 / g 0, ?_,

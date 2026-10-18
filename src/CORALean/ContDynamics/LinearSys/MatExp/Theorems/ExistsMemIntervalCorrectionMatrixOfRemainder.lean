@@ -56,7 +56,7 @@ variable {n : ℕ}
 `κ ∈ [corrCoeff k, 0]`, lies between the order's correction term and zero. -/
 theorem aux_corr_entry {B : Interval (Mat ℝ n n)} {r κ : ℝ} {k : ℕ} {N : Mat ℝ n n}
     (hr : 0 ≤ r) (hN : N ∈ (Interval.matPow (Interval.smul r B) k).construct)
-    (hκ1 : MatExp.corrCoeff k ≤ κ) (hκ2 : κ ≤ 0) (i j : Fin n) :
+    (hκ1 : MatExp.corrCoeff k ≤ κ) (hκ2 : κ ≤ 0) (i j : Fin n) : -- --- STMT ---
     min ((MatExp.intervalCorrTerm B r k).inf i j) 0
         ≤ κ * ((Nat.factorial k : ℝ)⁻¹ * N i j) ∧
       κ * ((Nat.factorial k : ℝ)⁻¹ * N i j)

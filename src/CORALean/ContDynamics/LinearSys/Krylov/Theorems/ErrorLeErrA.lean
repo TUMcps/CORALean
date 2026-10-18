@@ -52,7 +52,7 @@ theorem Krylov.error_le_errA (A : Mat ℂ n n) (V : Mat ℂ n (m + 1)) (T : Mat 
     (hV : Vᴴ * V = 1) (hVw : Vᴴ *ᵥ w = 0) (hτ : 0 ≤ τ)
     (hw : ‖(WithLp.toLp 2 w : EuclideanSpace ℂ (Fin n))‖ = 1)
     (hH : ∀ i k : Fin (m + 1), (k : ℕ) + 1 < i → T i k = 0) (hσ : ‖σ‖ = 1)
-    (hA : ∀ x : Fin n → ℂ, (star x ⬝ᵥ ((σ • A) *ᵥ x)).re ≤ 0) {t : ℝ} (ht : 0 ≤ t) :
+    (hA : ∀ x : Fin n → ℂ, (star x ⬝ᵥ ((σ • A) *ᵥ x)).re ≤ 0) {t : ℝ} (ht : 0 ≤ t) : -- --- STMT ---
     let v := V *ᵥ Pi.single 0 1
     let γ := ∏ j : Fin m, T j.succ j.castSucc
     ‖(WithLp.toLp 2 (exp (t • (σ • A)) *ᵥ v - V *ᵥ (exp (t • (σ • T)) *ᵥ Pi.single 0 1)) :

@@ -39,7 +39,7 @@ open Matrix ENNReal
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.naiveHalfspace_accuracy_counterexample :
+theorem HPolytope.naiveHalfspace_accuracy_counterexample : -- --- STMT ---
     ∃ (G : Vec ℝ 1 →ₗ[ℝ] Vec ℝ 1) (c d : Vec ℝ 1) (Λ : Mat ℝ 2 1) (b : Vec ℝ 2)
       (j : Fin 1 → Fin 2) (ε : ℝ), 0 < ε ∧ ε ≤ 1 ∧ 0 < shenmaierProb 1 1 0 ε ∧
       ∀ r, IsGreatest ((fun α => HPolytope.polyNorm Λ b (G α + c - d)) '' Metric.closedBall 0 1) r →

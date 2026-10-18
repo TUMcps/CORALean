@@ -38,7 +38,7 @@ theorem Relaxation.ofDeriv_sound {E : Enclosure 𝕋} {lo hi lam : 𝕋 → 𝕋
     (hlo : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u → toReal (lo l u) ≤ σ' x)
     (hhi : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u → σ' x ≤ toReal (hi l u))
     (hlam : ∀ l u : 𝕋, toReal l ≤ toReal u →
-      toReal (lo l u) ≤ toReal (lam l u) ∧ toReal (lam l u) ≤ toReal (hi l u)) :
+      toReal (lo l u) ≤ toReal (lam l u) ∧ toReal (lam l u) ≤ toReal (hi l u)) : -- --- STMT ---
     (Relaxation.ofDeriv E lo hi lam).Sound σ := by -- --- PROOF ---
   refine ⟨fun {l u t} hl hu => ?_⟩
   show |σ t - (toReal (lam l u) * t + toReal (Relaxation.curvMid E lo hi lam l u))|

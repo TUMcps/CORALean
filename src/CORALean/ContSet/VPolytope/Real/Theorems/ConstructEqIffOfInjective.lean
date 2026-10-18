@@ -128,7 +128,7 @@ theorem aux_subset_of_extreme (P₁ P₂ : VPolytope (Vec ℝ n))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.construct_eq_iff_of_injective (P₁ P₂ : VPolytope (Vec ℝ n))
-    (h₁ : Function.Injective P₁.V) (h₂ : Function.Injective P₂.V) :
+    (h₁ : Function.Injective P₁.V) (h₂ : Function.Injective P₂.V) : -- --- STMT ---
     P₁.construct = P₂.construct ↔
       (∀ j, (∃ k, P₁.V j = P₂.V k) ∨
           P₁.V j ∈ (⟨P₁.k - 1, fun i => P₁.V (dropIdx j i)⟩ : VPolytope (Vec ℝ n)).construct) ∧
