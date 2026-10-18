@@ -15,7 +15,7 @@ cube, so it is a subset of a product of two closed balls, compact because both
 factor spaces are finite-dimensional.
 
 Closed is where the constraints are paid for. A constraint row is `A μ(α)`, a
-polynomial in the factors and hence continuous, so each of the four families of
+polynomial in the factors and hence continuous, so each of the three families of
 conditions cuts out a closed set and the domain is their intersection. This is
 what `ConZonotope` gets from a halfspace description instead, and the reason
 that argument does not carry over.
@@ -53,31 +53,27 @@ theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α) (i : Fin cPZ.m
   exact continuous_finsetSum _ fun l _ =>
     continuous_const.mul ((PolyZonotope.continuous_monomial cPZ.R l).comp continuous_fst)
 
-/-- Four families of conditions, each an inequality between continuous
+/-- Three families of conditions, each an inequality or an equation between continuous
 functions, so the domain is a finite intersection of closed sets. -/
 theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) :
     IsClosed cPZ.domain := by -- --- PROOF ---
   have hdom : cPZ.domain
       = (⋂ k, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.1 k| ≤ 1})
         ∩ ((⋂ j, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.2 j| ≤ 1})
-          ∩ ((⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) |
-                cPZ.b.inf i ≤ (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i})
-            ∩ ⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) |
-                (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i ≤ cPZ.b.sup i})) := by
+          ∩ ⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) |
+                (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i = cPZ.b i}) := by
     ext ab
-    -- `forall_and` is what separates a two-sided constraint into two families
     simp only [ConPolyZono.domain, ConPolyZono.satisfies, ConPolyZono.holds,
-      Set.mem_setOf_eq, Set.mem_inter_iff, Set.mem_iInter, forall_and]
+      Set.mem_setOf_eq, Set.mem_inter_iff, Set.mem_iInter]
   rw [hdom]
   refine IsClosed.inter (isClosed_iInter fun k => ?_)
     (IsClosed.inter (isClosed_iInter fun j => ?_)
-      (IsClosed.inter (isClosed_iInter fun i => ?_) (isClosed_iInter fun i => ?_)))
+      (isClosed_iInter fun i => ?_))
   · exact isClosed_le (continuous_abs.comp ((continuous_apply k).comp continuous_fst))
       continuous_const
   · exact isClosed_le (continuous_abs.comp ((continuous_apply j).comp continuous_snd))
       continuous_const
-  · exact isClosed_le continuous_const (cPZ.aux_continuous_consRow i)
-  · exact isClosed_le (cPZ.aux_continuous_consRow i) continuous_const
+  · exact isClosed_eq (cPZ.aux_continuous_consRow i) continuous_const
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

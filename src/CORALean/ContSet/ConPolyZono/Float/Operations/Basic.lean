@@ -117,28 +117,26 @@ def ConPolyZono.compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
 
 
 -- ===================================  `ConPolyZono.plusB`  ==================================== --
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The two right-hand sides side by side. Copied, so nothing here rounds. -/
-def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Interval (Vec 𝕋 m₁)) (b₂ : Interval (Vec 𝕋 m₂)) :
-    Interval (Vec 𝕋 (m₁ + m₂)) :=
-  ⟨Fin.append b₁.inf b₂.inf, Fin.append b₁.sup b₂.sup⟩
+/-- Two right-hand sides, or two slack vectors, side by side. Copied, so nothing here rounds. -/
+def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b₂ : Vec 𝕋 m₂) : Vec 𝕋 (m₁ + m₂) :=
+  Fin.append b₁ b₂
 
 
 -- ===============================  `ConPolyZono.intersectionB`  ================================ --
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The two systems' own bounds, then the agreement rows'. -/
+/-- The two systems' own right-hand sides, then the agreement rows' lower ends. -/
 def ConPolyZono.intersectionB (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    Interval (Vec 𝕋 (cPZ₁.m + cPZ₂.m + n)) :=
-  ⟨Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b).inf (ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf,
-   Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b).sup (ConPolyZono.intersectionAgree cPZ₁ cPZ₂).sup⟩
+    Vec 𝕋 (cPZ₁.m + cPZ₂.m + n) :=
+  Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b) (ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf
 
 
 -- ================================  `ConPolyZono.rescaleStep`  ================================= --

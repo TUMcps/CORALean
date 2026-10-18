@@ -54,7 +54,7 @@ noncomputable def Ellipsoid.conPolyZonoOfFactor (G : Mat ℝ n n) (q : Vec ℝ n
   E := ConPolyZono.padE (PolyZonotope.identE n) 1
   GI := Fin.elim0
   A := fun _ j => if j.val < n then 1 else -(1 / 2)
-  b := Interval.point fun _ => (1 / 2 : ℝ)
+  b := fun _ => (1 / 2 : ℝ)
   R := Ellipsoid.conPolyZonoR n
 
 /-- The conversion with the factor `G = Q^(1/2)`. -/

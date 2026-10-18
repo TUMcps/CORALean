@@ -1,8 +1,6 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsPointIff
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsMono
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsCongr
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
@@ -35,13 +33,29 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceOrder
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentSetUnionDomain
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsLeft
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsRight
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionExact
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionRelaxSubset
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ReduceConOuter
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.Basic
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ForallAbsSubAppendIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecRelax
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecPlusAPlusE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecIntersectionDep
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecPlusAAppendE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RelaxZero
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.RelaxCartProd
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecGetSubset
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecConvHullBlock
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecConvHullLast
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialConvHullEPadE
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.EmptyExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.SplitDepFactorUnion
@@ -77,7 +91,7 @@ nothing at either.
 
 `isCompact_construct` is the one guarantee about the set rather than an operation: a
 constraint row is a polynomial in the factors, so it closes the domain rather than opening
-it. `holds` and `MemConstruct` are what the operations are stated over.
+it. `holds`, `MemConstruct` and `MemRelaxIff` are what the operations are stated over.
 `mem_ofPoint` needs none of that, and `getSubset_construct` is an equality, its
 substitution a polynomial identity. So are `union_exact_of_noZeroCol` and
 `convHull_exact_of_nonempty` — each under a hypothesis the source omits and is false

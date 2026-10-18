@@ -1,21 +1,26 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsEqSpec
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Real.Operations.AbsFactorExtendLeOne
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendLeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorExtendRight
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxLeft
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialFactorIdxRight
 
 @[expose] public section
 
 /-!
-# `compactFactors`'s nominal part is the exact layer's
+# `compactFactors` leaves the nominal part as it was
 
-Costs nothing at all: it changes `p` and both exponent matrices, all over ℕ, so
-the nominal part of the result *is* the exact layer's `compactFactors` of the
-nominal part.
+Costs nothing at all: it changes `p` and both exponent matrices, all over ℕ, and every monomial
+it keeps reads the same kept factors (`monomial_factorIdx_left`, `monomial_factorIdx_right`), a
+dropped factor coming back as `0` (`factorExtend`), as in the exact layer's `compactFactors_exact`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -31,9 +36,43 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compactFactors_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    nominalSet cPZ = nominalSet cPZ.compactFactors := by
+    nominalSet cPZ = nominalSet cPZ.compactFactors := by -- --- PROOF ---
   rw [ConPolyZono.compactFactors_eq_spec]
-  exact Real.ConPolyZono.compactFactors_exact (InflatedContSet.nominal cPZ)
+  ext x
+  rw [ConPolyZono.mem_nominalSet_iff, ConPolyZono.mem_nominalSet_iff]
+  constructor
+  · rintro ⟨a, β, ha, hβ, hs, hx⟩
+    have hR : Real.PolyZonotope.monomial cPZ.compactFactorsSpec.R
+        (fun k => a (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k))
+        = Real.PolyZonotope.monomial cPZ.R a :=
+      funext fun l => Real.ConPolyZono.monomial_factorIdx_right cPZ.E cPZ.R a l
+    refine ⟨fun k => a (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k), β, fun k => ha _, hβ,
+      fun i => ?_, fun i => ?_⟩
+    · have h := hs i
+      rw [← hR] at h
+      exact h
+    · rw [hx i]
+      show _ = toReal (cPZ.c i) + (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial
+          (fun k i => cPZ.E (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k) i)
+          (fun k => a (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k)) l) + _
+      simp only [Real.ConPolyZono.monomial_factorIdx_left]
+      rfl
+  -- back: a dropped factor returns as `0`, which no monomial reads
+  · rintro ⟨a, β, ha, hβ, hs, hx⟩
+    have hR : Real.PolyZonotope.monomial cPZ.R (Real.ConPolyZono.factorExtend cPZ.E cPZ.R a)
+        = Real.PolyZonotope.monomial cPZ.compactFactorsSpec.R a :=
+      funext fun l => Real.ConPolyZono.monomial_factorExtend_right cPZ.E cPZ.R a l
+    refine ⟨Real.ConPolyZono.factorExtend cPZ.E cPZ.R a, β,
+      fun k => Real.ConPolyZono.abs_factorExtend_le_one cPZ.E cPZ.R ha k, hβ,
+      fun i => ?_, fun i => ?_⟩
+    · have h := hs i
+      rw [← hR] at h
+      exact h
+    · rw [hx i]
+      show toReal (cPZ.c i) + (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial
+          (fun k i => cPZ.E (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k) i) a l) + _ = _
+      simp only [Real.ConPolyZono.monomial_factorExtend_left]
+      rfl
 
 end CORALean.Float
 

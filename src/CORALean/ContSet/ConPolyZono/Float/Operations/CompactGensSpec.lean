@@ -19,7 +19,7 @@ reads: every entry a named, separately provable lookup.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -49,6 +49,7 @@ def ConPolyZono.compactGensSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZ
   GI := cPZ.GI
   A := cPZ.A
   b := cPZ.b
+  b_error := cPZ.b_error
   R := cPZ.R
   I_error := cPZ.I_error.plus (PolyZonotope.generatorError (ConPolyZono.compactGensGap cPZ))
 

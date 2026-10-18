@@ -17,9 +17,9 @@ the specification re-derives the sorted finset at each of the `p · (h + q)` rea
 (issue #61). `compactFactors_eq_spec` says they are one.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   11-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -51,6 +51,7 @@ def ConPolyZono.compactFactors (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZo
     GI := cPZ.GI
     A := cPZ.A
     b := cPZ.b
+    b_error := cPZ.b_error
     R := fun k l => cPZ.R (f k) l
     I_error := cPZ.I_error }
 

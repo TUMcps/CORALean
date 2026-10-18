@@ -133,6 +133,18 @@ theorem Interval.polyZonotope_p (I : Interval (Vec ℝ n)) : I.polyZonotope.p = 
 theorem Interval.polyZonotope_q (I : Interval (Vec ℝ n)) : I.polyZonotope.q = 0 := rfl
 
 
+-- ==============================  `PolyLevelSet.levelSet_exact`  =============================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The polynomial level set and its level set denote one set: `construct` is defined as the
+level set of the polynomial, so everything proved of a `LevelSet` holds of it. -/
+theorem PolyLevelSet.levelSet_exact (P : PolyLevelSet n) : P.levelSet.construct = P.construct :=
+  rfl
+
+
 -- =============================  `PolyZonotope.interval_contains`  ============================= --
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026

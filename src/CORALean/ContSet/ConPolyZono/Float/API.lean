@@ -14,7 +14,7 @@ The representation and its error box in `ConPolyZono`, the operations in
 error box means.
 
 The representation's docstring is where to read where a float operation may pay:
-into the ambient error box, as everywhere else, and — this representation alone —
-into the interval a constraint's right-hand side is. `intersection` is the
+into the ambient error box, as everywhere else, and into the slack `b_error` each constraint row
+records beside its right-hand side. `intersection` is the
 operation that needs both at once, and the one this representation exists for.
 -/

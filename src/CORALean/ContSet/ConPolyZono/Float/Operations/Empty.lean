@@ -8,13 +8,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 /-!
 # `ConPolyZono.empty`, over a floating-point scalar
 
-No generators and one constraint row that cannot hold: the empty constraint matrix and the
-crossed bound `[one, zero]`. The center is `zero` and the error box the point `0`.
+No generators and one constraint row that cannot hold: the empty constraint matrix, whose product
+is `0`, held to `one` with no slack. The center is `zero` and the error box the point `0`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +40,8 @@ def ConPolyZono.empty (n : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   E := fun i => i.elim0
   GI := Fin.elim0
   A := fun _ j => j.elim0
-  b := ⟨fun _ => one, fun _ => zero⟩
+  b := fun _ => one
+  b_error := fun _ => zero
   R := fun i => i.elim0
   I_error := Interval.origin n
 

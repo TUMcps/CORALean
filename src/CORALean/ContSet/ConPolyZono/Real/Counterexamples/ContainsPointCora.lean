@@ -22,7 +22,7 @@ not run.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -48,13 +48,13 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.containsPointCora_counterexample :
-    ∃ (cPZ : ConPolyZono (Vec ℝ 1)) (p : Vec ℝ 1), cPZ.b.inf = cPZ.b.sup
-      ∧ cPZ.containsPointCora p ∧ p ∉ cPZ.construct := by -- --- PROOF ---
+    ∃ (cPZ : ConPolyZono (Vec ℝ 1)) (p : Vec ℝ 1),
+      cPZ.containsPointCora p ∧ p ∉ cPZ.construct := by -- --- PROOF ---
   -- one factor `α`, generator `α`, constraint `α = 0`
   let cPZ : ConPolyZono (Vec ℝ 1) :=
     ⟨1, 1, 0, 1, 1, fun _ => 0, fun _ _ => 1, fun _ _ => 1, Fin.elim0, Matrix.of fun _ _ => 1,
-      ⟨fun _ => 0, fun _ => 0⟩, fun _ _ => 1⟩
-  refine ⟨cPZ, fun _ => 1, rfl, ?_, ?_⟩
+      fun _ => 0, fun _ _ => 1⟩
+  refine ⟨cPZ, fun _ => 1, ?_, ?_⟩
   · -- `α = 1` passes the extended test
     unfold ConPolyZono.containsPointCora
     rw [ConPolyZono.mem_extPolyZonotope_iff]
@@ -64,7 +64,7 @@ theorem ConPolyZono.containsPointCora_counterexample :
       simp [cPZ, PolyZonotope.monomial]
   · -- but the constraint pins `α = 0`, so `1` is not in the set
     rintro ⟨a, β, ha, hβ, hs, hx⟩
-    have h0 := (hs 0).2
+    have h0 := hs 0
     simp [cPZ, Matrix.mulVec, dotProduct, PolyZonotope.monomial] at h0
     have h1 := congrFun hx 0
     simp [cPZ, PolyZonotope.monomial] at h1

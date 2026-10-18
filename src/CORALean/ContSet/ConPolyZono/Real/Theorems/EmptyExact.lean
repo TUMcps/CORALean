@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Empty
 /-!
 # `ConPolyZono.empty` denotes the empty set
 
-The one constraint row asks `1 ≤ (A μ)₀ ≤ 0`, which no value satisfies.
+The one constraint row asks `(A μ)₀ = 1` of an empty matrix, whose product is `0`.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -29,8 +29,8 @@ theorem ConPolyZono.empty_exact (n : ℕ) : (ConPolyZono.empty n).construct = �
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨a, β, -, -, hsat, -⟩
-  obtain ⟨h₁, h₂⟩ := hsat (0 : Fin 1)
-  exact absurd (h₁.trans h₂) (by simp [ConPolyZono.empty])
+  have h := hsat (0 : Fin 1)
+  simp [ConPolyZono.empty, Matrix.mulVec] at h
 
 end CORALean.Real
 

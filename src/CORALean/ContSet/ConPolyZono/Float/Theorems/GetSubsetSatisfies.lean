@@ -11,15 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMono
 /-!
 # The constraints of the float `ConPolyZono.getSubset`
 
-Wherever the exact layer's `getSubset` of the stored set meets its constraint at a factor vector
-in `[-1, 1]ᵖ`, the float `getSubset` meets its own: what `A μ` loses to the rounding of the
-re-parametrized constraint matrix, scaled by monomials in `[-1, 1]`, is a point of the box `b`
-was widened by.
+Wherever the exact layer's `getSubset` of the stored set (`nominalCore`) meets its rows within
+their slack at a factor vector in `[-1, 1]ᵖ`, the float `getSubset` meets its own: what `A μ`
+loses to the rounding of the re-parametrized constraint matrix, scaled by monomials in `[-1, 1]`,
+is at most the row radius the slack was widened by.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   12-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -34,21 +34,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The widened `b` holds wherever the exact constraint system does. -/
+/-- The widened slack holds wherever the exact rows are within the old one. -/
 theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (k : Fin cPZ.p) (cen rad : 𝕋)
     (a : Fin cPZ.p → ℝ) (ha : ∀ k, |a k| ≤ 1)
-    (hsat : (Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).satisfies a) :
+    (hsat : ∀ i, |((Real.ConPolyZono.getSubset cPZ.nominalCore k (toReal cen) (toReal rad)).A
+        *ᵥ Real.PolyZonotope.monomial (cPZ.consPolyZonotope.getSubset k cen rad).E a) i
+        - toReal (cPZ.b i)| ≤ |toReal (cPZ.b_error i)|) : -- --- STMT ---
     (cPZ.getSubset k cen rad).satisfies a := by -- --- PROOF ---
   -- the exact generators, the stored (rounded down) ones, and the monomials, named once
   set G := Real.PolyZonotope.getSubsetG (nominal cPZ.consPolyZonotope) k (toReal cen) (toReal rad)
   set Gd := cPZ.consPolyZonotope.getSubsetGDown k cen rad
   set mon := Real.PolyZonotope.monomial
     (Real.PolyZonotope.getSubsetE (nominal cPZ.consPolyZonotope) k) a
-  -- the exact constraint value, a point of `b`
-  have hy : (Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).A
-      *ᵥ Real.PolyZonotope.monomial (cPZ.consPolyZonotope.getSubset k cen rad).E a
-      ∈ cPZ.b.construct := hsat
   -- what rounding `A` costs, scaled by the monomials, a point of the box
   have hd : (fun i => ∑ l, (toReal (Gd i l) - G l i) * mon l)
       ∈ (PolyZonotope.generatorError (cPZ.consPolyZonotope.getSubsetGDiff k cen rad)).construct :=
@@ -56,14 +54,12 @@ theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
       (fun i l => by
         rw [abs_sub_comm]
         exact PolyZonotope.getSubsetG_close cPZ.consPolyZonotope k cen rad i l) ha
-  -- the exact value plus that point is a point of the widened `b`
-  have hmem := Interval.plus_outer _ _ ⟨_, hy, _, hd, rfl⟩
   intro i
-  have hi := hmem i
-  -- and is what the stored matrix gives
+  have hi := hd i
+  -- and the stored row is the exact one plus that point
   have heq : ((toRealMat (cPZ.getSubset k cen rad).A) *ᵥ Real.PolyZonotope.monomial
         (cPZ.getSubset k cen rad).R a) i
-      = ((Real.ConPolyZono.getSubset (nominal cPZ) k (toReal cen) (toReal rad)).A
+      = ((Real.ConPolyZono.getSubset cPZ.nominalCore k (toReal cen) (toReal rad)).A
         *ᵥ Real.PolyZonotope.monomial (cPZ.consPolyZonotope.getSubset k cen rad).E a) i
         + ∑ l, (toReal (Gd i l) - G l i) * mon l := by
     -- entrywise, one sum over the new columns on each side
@@ -71,14 +67,29 @@ theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     erw [← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl fun l _ => ?_
     -- the fields read the same on both sides
-    have h1 : ((nominal cPZ).getSubset k (toReal cen) (toReal rad)).A i l = G l i := rfl
+    have h1 : (cPZ.nominalCore.getSubset k (toReal cen) (toReal rad)).A i l = G l i := rfl
     have h2 : Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).R a l = mon l := rfl
     have h4 : toReal ((cPZ.getSubset k cen rad).A i l) = toReal (Gd i l) := rfl
     erw [h1, h2, h4]
     ring
-  show _ ≤ _ ∧ _ ≤ _
+  -- the slack grew by the radius bounding that point
+  have hr : toReal ((PolyZonotope.generatorError
+        (cPZ.consPolyZonotope.getSubsetGDiff k cen rad)).inf i) ≤ _ ∧ _ ≤ toReal
+        ((PolyZonotope.generatorError (cPZ.consPolyZonotope.getSubsetGDiff k cen rad)).sup i) := hi
+  simp only [PolyZonotope.generatorError, Interval.symmetric, Entrywise.entry, Pi.neg_apply,
+    toReal_neg'] at hr
+  have hu := add_le_addUp (absolute (cPZ.b_error i))
+    (radius (cPZ.consPolyZonotope.getSubsetGDiff k cen rad) i)
+  rw [toReal_absolute] at hu
+  have hs := hsat i
+  show |(toRealMat (cPZ.getSubset k cen rad).A *ᵥ Real.PolyZonotope.monomial
+      (cPZ.getSubset k cen rad).R a) i - toReal (cPZ.b i)| ≤ |toReal (addUp
+      (absolute (cPZ.b_error i)) (radius (cPZ.consPolyZonotope.getSubsetGDiff k cen rad) i))|
   rw [heq]
-  exact hi
+  rw [abs_le] at hs ⊢
+  have hu' := le_abs_self (toReal (addUp (absolute (cPZ.b_error i))
+    (radius (cPZ.consPolyZonotope.getSubsetGDiff k cen rad) i)))
+  constructor <;> linarith [hs.1, hs.2, hr.1, hr.2]
 
 end CORALean.Float
 

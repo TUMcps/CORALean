@@ -18,7 +18,7 @@ proof reads.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       11-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -48,6 +48,7 @@ def ConPolyZono.compactFactorsSpec (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPo
   GI := cPZ.GI
   A := cPZ.A
   b := cPZ.b
+  b_error := cPZ.b_error
   R := fun k l => cPZ.R (Real.ConPolyZono.factorIdx cPZ.E cPZ.R k) l
   I_error := cPZ.I_error
 

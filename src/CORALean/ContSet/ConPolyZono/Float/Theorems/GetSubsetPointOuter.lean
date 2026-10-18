@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.GetSubsetSatisfies
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetSatisfies
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecGetSubset
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 
 @[expose] public section
@@ -45,9 +45,12 @@ theorem ConPolyZono.getSubset_point_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) 
           * Real.PolyZonotope.monomial (cPZ.getSubset k cen rad).E a l) + e' i
         = (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E
             (Function.update a k (toReal cen + toReal rad * a k)) l) + e i := by -- --- PROOF ---
-  refine ⟨ConPolyZono.getSubset_satisfies cPZ k cen rad a ha
-    ((Real.ConPolyZono.getSubset_satisfies (nominal cPZ) k (toReal cen) (toReal rad) a).mpr
-      hsat), fun e he => ?_⟩
+  refine ⟨ConPolyZono.getSubset_satisfies cPZ k cen rad a ha (fun i => ?_), fun e he => ?_⟩
+  · -- the exact rows at `a` are the stored set's at the re-parametrized factors
+    have h := congrFun
+      (Real.ConPolyZono.mulVec_getSubset cPZ.nominalCore k (toReal cen) (toReal rad) a) i
+    erw [h]
+    exact hsat i
   -- the exact generators, the stored (rounded down) ones and the monomials, named once
   set G := Real.PolyZonotope.getSubsetG (nominal cPZ.toPolyZonotope) k (toReal cen) (toReal rad)
   set Gd : Fin n → Fin (cPZ.toPolyZonotope.h * (cPZ.toPolyZonotope.maxExp k + 1)) → 𝕋 :=

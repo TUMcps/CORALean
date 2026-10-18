@@ -20,7 +20,7 @@ error boxes summed), and the first operand's constraints kept once, as over ℝ.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -37,7 +37,8 @@ def ConPolyZono.exactPlus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hp : 
     ConPolyZono 𝕋 (Vec 𝕋 n) :=
   let pZ := cPZ₁.toPolyZonotope.exactPlus cPZ₂.toPolyZonotope hp
   { p := pZ.p, h := pZ.h, qI := pZ.q, m := cPZ₁.m, q := cPZ₁.q, c := pZ.c, G := pZ.G, E := pZ.E,
-    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, R := cPZ₁.R, I_error := pZ.I_error }
+    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, b_error := cPZ₁.b_error, R := cPZ₁.R,
+    I_error := pZ.I_error }
 
 end CORALean.Float
 

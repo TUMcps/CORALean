@@ -18,6 +18,7 @@ public import CORALean.ContSet.Capsule.API
 public import CORALean.ContSet.StarSet.API
 public import CORALean.ContSet.SupportFunction.API
 public import CORALean.ContSet.LevelSet.API
+public import CORALean.ContSet.PolyLevelSet.API
 public import CORALean.ContSet.HPolytope.API
 public import CORALean.ContSet.VPolytope.API
 public import CORALean.ContSet.Conversion.API

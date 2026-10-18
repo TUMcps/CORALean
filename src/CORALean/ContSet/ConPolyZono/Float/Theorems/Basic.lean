@@ -94,6 +94,7 @@ theorem ConPolyZono.toRealVec_append {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b
   refine funext (Fin.addCases (fun i => ?_) (fun i => ?_)) <;>
     simp only [toRealVec, Fin.append_left, Fin.append_right]
 
+
 end
 
 
@@ -115,39 +116,6 @@ omit [FloatOps 𝕋] in
 @[simp] theorem ConPolyZono.materialise_eq (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     cPZ.materialise = cPZ := by
   simp [ConPolyZono.materialise]
-
-
--- =================================  `ConPolyZono.nominal_A`  ================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   14-October-2026
--- Reviewed:      ---
-
-/-- The nominal set's fields, so proofs can see through the instance. -/
-theorem ConPolyZono.nominal_A [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    (InflatedContSet.nominal cPZ).A = toRealMat cPZ.A := rfl
-
-
--- =================================  `ConPolyZono.nominal_b`  ================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   14-October-2026
--- Reviewed:      ---
-
-/-- The nominal ConPolyZono's field `b`, so proofs can see through the instance. -/
-theorem ConPolyZono.nominal_b [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    (InflatedContSet.nominal cPZ).b = cPZ.b.nominal := rfl
-
-
--- =================================  `ConPolyZono.nominal_R`  ================================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   14-October-2026
--- Reviewed:      ---
-
-/-- The nominal ConPolyZono's field `R`, so proofs can see through the instance. -/
-theorem ConPolyZono.nominal_R [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    (InflatedContSet.nominal cPZ).R = cPZ.R := rfl
 
 end
 

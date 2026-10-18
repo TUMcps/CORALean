@@ -12,9 +12,9 @@ constraints: a single point, as the representation. What `OfPoint` asks every
 representation with a point operation to supply.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       07-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -32,7 +32,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- A single point, as a constrained polynomial zonotope with no generators
 and an empty constraint system. -/
 def ConPolyZono.ofPoint (v : α) : ConPolyZono α :=
-  ⟨0, 0, 0, 0, 0, v, Fin.elim0, Fin.elim0, Fin.elim0, 0, ⟨0, 0⟩, Fin.elim0⟩
+  ⟨0, 0, 0, 0, 0, v, Fin.elim0, Fin.elim0, Fin.elim0, 0, 0, Fin.elim0⟩
 
 end CORALean.Real
 

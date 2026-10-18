@@ -1,38 +1,34 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-public import CORALean.ContSet.ConZonotope.Real.ConZonotope
-public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
-public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeSatisfiesConPolyZonoIff
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConRowsIff
 
 @[expose] public section
 
 /-!
 # A constrained zonotope as a constrained polynomial zonotope
 
-Exact, and it is the interval right-hand side that makes it so. Our
-`ConZonotope` carries an `HPolytope` over its coefficients, so it admits
-inequalities, and with `A μ(α) ∈ b` an inequality is a row whose interval is
-open at one end, with nothing added to `p`.
+Exact. Our `ConZonotope` carries an `HPolytope` over its coefficients, so it admits
+inequalities, and a row of a constrained polynomial zonotope is an equation: each row is held
+to the interval it may take over the unit cube, the midpoint relaxed by the radius
+(`ConPolyZono.relax`, one slack factor per row).
 
-Open at one end is not something an interval can be, so a lower bound has to be
-supplied — and one is free: every factor lies in `[-1,1]`, so a row cannot fall
-below minus the sum of its absolute coefficients. That bound cuts nothing, which
-is why the conversion is exact rather than enclosing.
+An inequality's interval is open at one end, which a radius cannot be, so a lower bound is
+supplied, and one is free: every factor lies in `[-1,1]`, so a row cannot fall below minus the
+sum of its absolute coefficients. Capped by `b`, that bound cuts nothing, which is why the
+conversion is exact rather than enclosing.
 
-The factors are the coefficients themselves, one each and to the first power, so
-generators and constraint columns read off the same identity exponent matrix. A
-constrained zonotope is exactly the linear fragment of the representation.
+The coefficients are factors themselves, one each and to the first power, so generators and
+constraint columns read them off the same identity exponent matrix.
 
 `coeffs` is the converse of `HPolytope.rowLin`: a constraint there is a
 functional, here a matrix row, and a functional is its values on the unit vectors.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -45,30 +41,59 @@ open Matrix
 variable {n : ℕ}
 
 
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- A row's interval is never crossed: `min(-Σ|aⱼ|, b) ≤ b`, and `be ≤ be`. -/
+theorem ConZonotope.aux_conLo_le_conHi (cZ : ConZonotope (Vec ℝ n))
+    (i : Fin (cZ.P.m + cZ.P.me)) : ConZonotope.conLo cZ i ≤ ConZonotope.conHi cZ i := by
+  refine Fin.addCases (fun i => ?_) (fun i => ?_) i
+  · simp only [ConZonotope.conLo, ConZonotope.conHi, Fin.append_left]
+    exact min_le_right _ _
+  · simp only [ConZonotope.conLo, ConZonotope.conHi, Fin.append_right, le_refl]
+
+/-- Within the radius of the midpoint is within the interval. -/
+theorem ConZonotope.aux_abs_sub_mid_le_iff {lo hi v : ℝ} (h : lo ≤ hi) :
+    |v - (lo + hi) / 2| ≤ |(hi - lo) / 2| ↔ lo ≤ v ∧ v ≤ hi := by -- --- PROOF ---
+  rw [abs_of_nonneg (by linarith : (0:ℝ) ≤ (hi - lo) / 2), abs_le]
+  constructor
+  · rintro ⟨h₁, h₂⟩
+    exact ⟨by linarith, by linarith⟩
+  · rintro ⟨h₁, h₂⟩
+    exact ⟨by linarith, by linarith⟩
+
+
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.conPolyZono_exact (cZ : ConZonotope (Vec ℝ n)) :
     cZ.construct = cZ.conPolyZono.construct := by -- --- PROOF ---
-  have hvalue : ∀ β : Vec ℝ cZ.h,
-      cZ.c + ∑ j, β j • cZ.G j
-        = cZ.c + (∑ i, PolyZonotope.monomial (PolyZonotope.identE cZ.h) β i • cZ.G i)
-          + ∑ j : Fin 0, (0:ℝ) • (Fin.elim0 j : Vec ℝ n) := by
-    intro β
-    simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero,
-      PolyZonotope.monomial_identE]
-  -- and the point is unchanged, the independent block being empty
-  apply Set.eq_of_subset_of_subset
-  · rintro _ ⟨β, hβ, hP, rfl⟩
-    exact ⟨β, fun _ => 0, hβ, fun j => j.elim0,
-      (ConZonotope.satisfies_conPolyZono_iff cZ β hβ).mpr hP, hvalue β⟩
-  · rintro _ ⟨β, γ, hβ, -, hsat, rfl⟩
-    refine ⟨β, hβ, (ConZonotope.satisfies_conPolyZono_iff cZ β hβ).mp hsat, ?_⟩
+  have hμ : ∀ β : Vec ℝ cZ.h, PolyZonotope.monomial (PolyZonotope.identE cZ.h) β = β :=
+    fun β => funext fun j => PolyZonotope.monomial_identE β j
+  ext x
+  rw [ConZonotope.conPolyZono, ConPolyZono.mem_relax_iff]
+  constructor
+  -- a coefficient vector the polytope admits meets every row within its radius of its midpoint
+  · rintro ⟨β, hβ, hP, rfl⟩
+    refine ⟨β, Fin.elim0, hβ, fun j => j.elim0, fun i => ?_, ?_⟩
+    · show |(ConZonotope.conA cZ *ᵥ PolyZonotope.monomial (PolyZonotope.identE cZ.h) β) i
+          - (ConZonotope.conLo cZ i + ConZonotope.conHi cZ i) / 2|
+        ≤ |(ConZonotope.conHi cZ i - ConZonotope.conLo cZ i) / 2|
+      rw [hμ, ConZonotope.aux_abs_sub_mid_le_iff (ConZonotope.aux_conLo_le_conHi cZ i)]
+      exact (ConZonotope.conRows_iff cZ β hβ).mpr hP i
+    · show _ = cZ.c + (∑ i, PolyZonotope.monomial (PolyZonotope.identE cZ.h) β i • cZ.G i)
+        + ∑ j : Fin 0, Fin.elim0 j • (Fin.elim0 j : Vec ℝ n)
+      simp only [hμ, Finset.univ_eq_empty, Finset.sum_empty, add_zero]
+  -- back: rows within their intervals say what the polytope says
+  · rintro ⟨β, γ, hβ, -, hrows, rfl⟩
+    have hrows' : ∀ i, ConZonotope.conLo cZ i ≤ (ConZonotope.conA cZ *ᵥ β) i
+        ∧ (ConZonotope.conA cZ *ᵥ β) i ≤ ConZonotope.conHi cZ i := fun i => by
+      have h := hrows i
+      rw [hμ] at h
+      exact (ConZonotope.aux_abs_sub_mid_le_iff (ConZonotope.aux_conLo_le_conHi cZ i)).mp h
+    refine ⟨β, hβ, (ConZonotope.conRows_iff cZ β hβ).mp hrows', ?_⟩
     show cZ.c + (∑ i, PolyZonotope.monomial (PolyZonotope.identE cZ.h) β i • cZ.G i)
         + (∑ j : Fin 0, γ j • (Fin.elim0 j : Vec ℝ n))
       = cZ.c + ∑ j, β j • cZ.G j
-    simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero,
-      PolyZonotope.monomial_identE]
-    rfl
+    simp only [hμ, Finset.univ_eq_empty, Finset.sum_empty, add_zero]
 
 end CORALean.Real
 

@@ -1,20 +1,19 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
-public import CORALean.ContSet.ConZonotope.Real.ConZonotope
-public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
-public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 
 @[expose] public section
 
 /-!
-# A constrained zonotope as a constrained polynomial zonotope: `satisfies_conPolyZono_iff`
+# A constrained zonotope's rows, each held to its interval: `conRows_iff`
+
+Over the unit cube a row `a β ≤ b` never falls below `-Σ|aⱼ|`, so the lower end `conLo` cuts
+nothing, and the interval rows say exactly what the polytope says.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -55,23 +54,16 @@ theorem ConZonotope.aux_abs_sum_le {h : ℕ} (c β : Vec ℝ h) (hβ : ∀ j, |�
         rw [abs_mul]
         exact mul_le_of_le_one_right (abs_nonneg _) (hβ j)
 
--- identity exponents make the monomial vector the factor vector itself
-theorem ConZonotope.aux_mulVec_conA (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.h) :
-    ∀ i, (ConZonotope.conA cZ *ᵥ PolyZonotope.monomial (PolyZonotope.identE cZ.h) β) i
-      = (ConZonotope.conA cZ *ᵥ β) i := by
-  have hm : PolyZonotope.monomial (PolyZonotope.identE cZ.h) β = β :=
-    funext fun j => PolyZonotope.monomial_identE β j
-  rw [hm]
-  exact fun _ => rfl
-
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- The constraint system says of the factors exactly what the coefficient
-polytope said of the coefficients — the lower bounds being free. -/
-theorem ConZonotope.satisfies_conPolyZono_iff (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.h)
-    (hβ : ∀ j, |β j| ≤ 1) :
-    cZ.conPolyZono.satisfies β ↔ β ∈ cZ.P.construct := by -- --- PROOF ---
+/-- The rows held to `[conLo, conHi]` say of the coefficients exactly what the coefficient
+polytope says. -/
+theorem ConZonotope.conRows_iff (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.h)
+    (hβ : ∀ j, |β j| ≤ 1) : -- --- STMT ---
+    (∀ i, ConZonotope.conLo cZ i ≤ (ConZonotope.conA cZ *ᵥ β) i
+        ∧ (ConZonotope.conA cZ *ᵥ β) i ≤ ConZonotope.conHi cZ i)
+      ↔ β ∈ cZ.P.construct := by -- --- PROOF ---
   have hlin : ∀ i : Fin cZ.P.m, (ConZonotope.conA cZ *ᵥ β) (Fin.castAdd cZ.P.me i)
       = cZ.P.A i β := by
     intro i
@@ -95,27 +87,23 @@ theorem ConZonotope.satisfies_conPolyZono_iff (cZ : ConZonotope (Vec ℝ n)) (β
     rw [abs_le] at h
     exact h.1
   constructor
-  · intro hsat'
-    have hsat : ConPolyZono.holds (ConZonotope.conA cZ) (ConZonotope.conB cZ)
-        (PolyZonotope.identE cZ.h) β := hsat'
+  · intro hsat
     refine ⟨fun i => ?_, fun i => ?_⟩
     · have h := (hsat (Fin.castAdd cZ.P.me i)).2
-      rw [ConZonotope.aux_mulVec_conA cZ β, hlin i] at h
-      simpa only [ConZonotope.conB, Fin.append_left] using h
+      rw [hlin i] at h
+      simpa only [ConZonotope.conHi, Fin.append_left] using h
     · have h := hsat (Fin.natAdd cZ.P.m i)
-      rw [ConZonotope.aux_mulVec_conA cZ β, heq i] at h
-      simp only [ConZonotope.conB, Fin.append_right] at h
+      rw [heq i] at h
+      simp only [ConZonotope.conLo, ConZonotope.conHi, Fin.append_right] at h
       exact le_antisymm h.2 h.1
   -- back: an inequality needs only its upper bound, an equality both ends at once
   · rintro ⟨hle, hE⟩
-    show ConPolyZono.holds (ConZonotope.conA cZ) (ConZonotope.conB cZ)
-      (PolyZonotope.identE cZ.h) β
-    refine Fin.addCases (fun i => ?_) fun i => ?_ <;>
-      rw [ConZonotope.aux_mulVec_conA cZ β]
+    refine Fin.addCases (fun i => ?_) fun i => ?_
     · rw [hlin i]
-      simpa only [ConZonotope.conB, Fin.append_left] using ⟨hfree i, hle i⟩
+      simp only [ConZonotope.conLo, ConZonotope.conHi, Fin.append_left]
+      exact ⟨min_le_of_left_le (hfree i), hle i⟩
     · rw [heq i]
-      simp only [ConZonotope.conB, Fin.append_right]
+      simp only [ConZonotope.conLo, ConZonotope.conHi, Fin.append_right]
       exact ⟨(hE i).ge, (hE i).le⟩
 
 end CORALean.Real

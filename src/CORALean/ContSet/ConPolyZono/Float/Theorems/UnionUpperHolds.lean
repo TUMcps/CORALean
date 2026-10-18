@@ -3,9 +3,11 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperA
 public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionUpperB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.NominalPlusB
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecPlusB
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionConIntEq
 public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsUnionUpperIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ForallAbsSubAppendIff
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecPlusAAppendE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 
 @[expose] public section
@@ -14,14 +16,14 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 # The stored selector rows hold wherever the exact ones do
 
 At a factor vector in the cube, the exact layer's two selector rows hold. The first is
-copied. The second is stored scaled to integers and rounded: its value moves by at most the
-sum of the coefficients' rounding gaps, a monomial being at most `1`, and `unionConErr` is
-that sum rounded up, which is the bound the stored row is held to.
+copied, and holds exactly. The second is stored scaled to integers and rounded: its value moves
+by at most the sum of the coefficients' rounding gaps, a monomial being at most `1`, and
+`unionConErr` is that sum rounded up, which is the slack the stored row is held to.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -69,28 +71,30 @@ theorem ConPolyZono.holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + 
     (ha : ∀ k, |a k| ≤ 1)
     (h : Real.ConPolyZono.holds (Real.ConPolyZono.unionUpperA p₁ p₂)
       Real.ConPolyZono.unionUpperB (Real.ConPolyZono.unionUpperR p₁ p₂) a) : -- --- STMT ---
-    Real.ConPolyZono.holds (toRealMat (ConPolyZono.unionUpperA p₁ p₂ : Mat 𝕋 _ _))
-      (ConPolyZono.unionUpperB p₁ p₂ : Interval (Vec 𝕋 _)).nominal
-      (Real.ConPolyZono.unionUpperR p₁ p₂) a := by -- --- PROOF ---
+    ∀ i, |(toRealMat (ConPolyZono.unionUpperA p₁ p₂ : Mat 𝕋 _ _)
+        *ᵥ Real.PolyZonotope.monomial (Real.ConPolyZono.unionUpperR p₁ p₂) a) i
+      - toReal ((ConPolyZono.unionUpperB : Vec 𝕋 (1 + 1)) i)|
+      ≤ |toReal (ConPolyZono.plusB (fun _ => (zero : 𝕋))
+          (fun _ => (ConPolyZono.unionConErr p₁ p₂ : 𝕋)) i)| := by -- --- PROOF ---
+  have hb : ∀ {m₁ m₂ : ℕ} (u : Vec 𝕋 m₁) (v : Vec 𝕋 m₂) (i : Fin (m₁ + m₂)),
+      toReal (ConPolyZono.plusB u v i) = Fin.append (toRealVec u) (toRealVec v) i :=
+    fun u v i => congrFun (ConPolyZono.toRealVec_plusB u v) i
   rw [ConPolyZono.unionUpperA, ConPolyZono.unionUpperB, ConPolyZono.toRealMat_plusA,
-    ConPolyZono.nominal_plusB, Real.ConPolyZono.unionUpperR, Real.ConPolyZono.holds_shared_iff]
+    Real.ConPolyZono.unionUpperR, Real.ConPolyZono.mulVec_plusA_appendE]
+  simp only [hb]
   rw [Real.ConPolyZono.unionUpperA, Real.ConPolyZono.unionUpperB, Real.ConPolyZono.unionUpperR,
     Real.ConPolyZono.holds_shared_iff] at h
   obtain ⟨h₁, h₂⟩ := h
-  refine ⟨?_, fun i => ?_⟩
-  · -- the `α₁α₂ = 1` row is copied, its entry `one` reading back as `1`
+  refine (Real.ConPolyZono.forall_abs_sub_append_iff _ _ _ _ _ _).mpr ⟨fun i => ?_, fun i => ?_⟩
+  · -- the `α₁α₂ = 1` row is copied, its entry `one` reading back as `1`, and holds exactly
     have hA : toRealMat (fun (_ : Fin 1) (_ : Fin 1) => (one : 𝕋)) = fun _ _ => 1 :=
       funext fun _ => funext fun _ => toReal_one
-    have hb : (⟨fun _ : Fin 1 => (one : 𝕋), fun _ => one⟩ : Interval (Vec 𝕋 1)).nominal
-        = Real.Interval.point (fun _ => (1 : ℝ)) := by
-      simp only [Interval.nominal, RealImage.realImage, Real.Interval.point]
-      congr 1 <;> funext _ <;> exact toReal_one
-    rw [hA, hb]
-    exact h₁
+    have h1 := h₁ i
+    rw [hA, h1]
+    simp [toRealVec, toReal_one, toReal_zero]
   · -- the selector row: the integer row's value is zero, the stored one within `unionConErr`
     have h0 := h₂ i
-    simp only [Real.Interval.point, Matrix.mulVec, dotProduct, Real.PolyZonotope.monomial,
-      Pi.zero_apply] at h0
+    simp only [Matrix.mulVec, dotProduct, Real.PolyZonotope.monomial, Pi.zero_apply] at h0
     -- the integer row's value is the exact row's, scaled, hence zero
     have hz : (∑ l, (ConPolyZono.unionConInt p₁ p₂ l : ℝ)
         * ∏ k, a k ^ Real.ConPolyZono.unionConCol p₁ p₂ l k) = 0 := by
@@ -102,17 +106,13 @@ theorem ConPolyZono.holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + 
         rw [Finset.mul_sum]
         exact Finset.sum_congr rfl fun l _ => by
           rw [← ConPolyZono.unionConInt_eq, mul_assoc]
-      rw [hs, le_antisymm h0.2 h0.1, mul_zero]
+      rw [hs, h0, mul_zero]
     -- the stored row is within `unionConErr` of it
     have hc := ConPolyZono.aux_unionCon_close (𝕋 := 𝕋) p₁ p₂ a ha
-    rw [hz, sub_zero, abs_le] at hc
-    refine ⟨?_, ?_⟩
-    · simp only [Interval.nominal, RealImage.realImage, toRealVec, toReal_neg, Matrix.mulVec,
-        dotProduct, Real.PolyZonotope.monomial, toRealMat]
-      linarith [hc.1]
-    · simp only [Interval.nominal, RealImage.realImage, toRealVec, Matrix.mulVec, dotProduct,
-        Real.PolyZonotope.monomial, toRealMat]
-      linarith [hc.2]
+    rw [hz, sub_zero] at hc
+    simp only [toRealVec, toReal_zero, sub_zero, Matrix.mulVec, dotProduct,
+      Real.PolyZonotope.monomial, toRealMat]
+    exact hc.trans (le_abs_self _)
 
 end CORALean.Float
 

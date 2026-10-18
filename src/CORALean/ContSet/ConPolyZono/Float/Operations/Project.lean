@@ -16,7 +16,7 @@ so nothing rounds.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -42,6 +42,7 @@ def ConPolyZono.project (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (dims : Fin m → 
   GI := fun j k => cPZ.GI j (dims k)
   A := cPZ.A
   b := cPZ.b
+  b_error := cPZ.b_error
   R := cPZ.R
   I_error := cPZ.I_error.project dims
 

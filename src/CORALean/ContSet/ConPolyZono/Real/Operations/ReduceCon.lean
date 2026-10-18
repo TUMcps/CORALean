@@ -32,9 +32,9 @@ of this one.
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       13-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -54,7 +54,7 @@ noncomputable def ConPolyZono.reduceCon {α : Type} [AddCommGroup α] [Module �
   qI := cPZ.qI
   m := cPZ.m - 1
   q := cPZ.q - 1
-  c := cPZ.c + (cPZ.b.inf r / cPZ.A r t) • cPZ.G d
+  c := cPZ.c + (cPZ.b r / cPZ.A r t) • cPZ.G d
   G := ConPolyZono.reduceConG cPZ.G cPZ.A r d t
   E := ConPolyZono.reduceConE cPZ.E cPZ.R d t
   GI := cPZ.GI

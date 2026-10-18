@@ -86,16 +86,27 @@ theorem ConPolyZono.mtimes_eq_map (M : Mat ℝ k n) (cPZ : ConPolyZono (Vec ℝ 
 
 
 -- ===================================  `ConPolyZono.plusB`  ==================================== --
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
-/-- The two right-hand sides side by side, each bound concatenated with its
-own. -/
-def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Interval (Vec ℝ m₁)) (b₂ : Interval (Vec ℝ m₂)) :
-    Interval (Vec ℝ (m₁ + m₂)) :=
-  ⟨Fin.append b₁.inf b₂.inf, Fin.append b₁.sup b₂.sup⟩
+/-- The two right-hand sides side by side. -/
+def ConPolyZono.plusB {m₁ m₂ : ℕ} (b₁ : Vec ℝ m₁) (b₂ : Vec ℝ m₂) : Vec ℝ (m₁ + m₂) :=
+  Fin.append b₁ b₂
+
+
+-- ===============================  `ConPolyZono.intersectionB`  ================================ --
+-- Authors:       Claude Opus 5, Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   18-October-2026
+-- Reviewed:      ---
+
+/-- The right-hand side of `intersectionDep`: the two systems' own, then the agreement
+rows' `c₂ − c₁`. -/
+def ConPolyZono.intersectionB (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
+    Vec ℝ (cPZ₁.m + cPZ₂.m + n) :=
+  Fin.append (ConPolyZono.plusB cPZ₁.b cPZ₂.b) fun i => cPZ₂.c i - cPZ₁.c i
 
 
 -- ==================================  `ConPolyZono.unitBox`  =================================== --

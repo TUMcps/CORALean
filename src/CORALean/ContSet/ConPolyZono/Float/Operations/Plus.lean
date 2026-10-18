@@ -13,14 +13,14 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 
 `PolyZonotope.plus` with the two constraint systems carried along side by side,
 and the reason it refines is that the carrying is pure bookkeeping: `plusA`
-places the two matrices block-diagonally with `zero` in the off-blocks and `b`
-concatenates, so not one entry of the constraint system is computed. Only the
+places the two matrices block-diagonally with `zero` in the off-blocks and `b` and `b_error`
+concatenate, so not one entry of the constraint system is computed. Only the
 center rounds, exactly as for an unconstrained polynomial zonotope.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -47,6 +47,7 @@ def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZo
   GI := Fin.append cPZ₁.GI cPZ₂.GI
   A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
   b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
+  b_error := ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error
   R := Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R
   I_error := (cPZ₁.I_error.plus cPZ₂.I_error).plus (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c)
 

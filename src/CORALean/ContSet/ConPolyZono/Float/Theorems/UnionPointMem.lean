@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionSatisfies
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
 public import CORALean.ContSet.ConPolyZono.Real.Operations.SumUnionE
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
@@ -11,16 +12,17 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.LinCombNominalAt
 /-!
 # A point of the exact union lies in the stored one
 
-A point of the exact union of the two read-back operands, moved by a vector of the two operand
-boxes' hull, lies in the stored union. Its factors are the exact union's own, so the stored
-constraints hold there (`union_satisfies_of_real`). What differs is the center and the sliding
+A point of the exact union of the two read-back operands (`nominalCore`), its operand rows relaxed
+by their slacks, moved by a vector of the two operand boxes' hull, lies in the stored union. Its
+factors are the exact union's own, so the stored constraints hold there
+(`union_satisfies_of_real`). What differs is the center and the sliding
 generator, which are stored rounded down: their shortfalls are the midpoint residual and, over
 the selector `t` in `[-1,1]`, the symmetric half-difference box, both of which the stored box holds.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -120,7 +122,12 @@ theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ} (ht : |t| ≤ 
 satisfies too. -/
 theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (ha : ∀ k, |a k| ≤ 1)
-    (hsat : (Real.ConPolyZono.union (nominal cPZ₁) (nominal cPZ₂)).satisfies a) : -- --- STMT ---
+    (hsat : ∀ i, |((Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).A
+        *ᵥ Real.PolyZonotope.monomial
+          (Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).R a) i
+      - (Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).b i|
+      ≤ |Fin.append (0 : Vec ℝ (1 + 1))
+          (Fin.append (toRealVec cPZ₁.b_error) (toRealVec cPZ₂.b_error)) i|) : -- --- STMT ---
     (fun i => toReal ((cPZ₁.union cPZ₂).c i)
       + ∑ l, toReal ((cPZ₁.union cPZ₂).G l i)
         * Real.PolyZonotope.monomial (cPZ₁.union cPZ₂).E a l)
@@ -136,10 +143,12 @@ theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.union_point_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {y e : Vec ℝ n}
-    (hy : y ∈ (Real.ConPolyZono.union (nominal cPZ₁) (nominal cPZ₂)).construct)
-    (he : e ∈ (cPZ₁.I_error.or cPZ₂.I_error).construct) :
+    (hy : y ∈ ((Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).relax
+      (Fin.append (0 : Vec ℝ (1 + 1))
+        (Fin.append (toRealVec cPZ₁.b_error) (toRealVec cPZ₂.b_error)))).construct)
+    (he : e ∈ (cPZ₁.I_error.or cPZ₂.I_error).construct) : -- --- STMT ---
     y + e ∈ (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
-  obtain ⟨a, β, ha, hβ, hsat, hy⟩ := hy
+  obtain ⟨a, β, ha, hβ, hsat, hy⟩ := (Real.ConPolyZono.mem_relax_iff _ _).mp hy
   set t := a (Real.ConPolyZono.unionSel cPZ₁.p cPZ₂.p) with ht
   have hz := ConPolyZono.aux_union_mem_nominal cPZ₁ cPZ₂ a ha hsat
   have hd₁ := ConPolyZono.aux_midpoint_mem cPZ₁.c cPZ₂.c
@@ -163,7 +172,7 @@ theorem ConPolyZono.union_point_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 
   simp only [Finset.sum_apply, Pi.smul_apply, Pi.add_apply, Pi.sub_apply, smul_eq_mul]
     at hGi
   -- the exact union has no independent generators
-  have h0 : (∑ j, β j • ((nominal cPZ₁).union (nominal cPZ₂)).GI j) = 0 :=
+  have h0 : (∑ j, β j • (cPZ₁.nominalCore.union cPZ₂.nominalCore).GI j) = 0 :=
     Finset.sum_eq_zero fun j _ => Fin.elim0 (show Fin 0 from j)
   have hyi' : y i = 2⁻¹ * (toReal (cPZ₁.c i) + toReal (cPZ₂.c i))
       + ∑ x, Real.PolyZonotope.monomial (Real.ConPolyZono.unionE cPZ₁.E cPZ₂.E) a x

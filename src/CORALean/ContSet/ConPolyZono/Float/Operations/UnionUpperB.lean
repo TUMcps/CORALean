@@ -9,8 +9,8 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.UnionConErr
 # `ConPolyZono.unionUpperB`
 
 What the two selector rows of [1, Thm. 1] are held to: `α₁α₂ = 1` exactly, and the scaled selector
-polynomial within `unionConErr` of `0`, the rounding of its integer coefficients paid
-into the bound.
+polynomial `0`, within the slack `unionConErr` that `union` records, the rounding of its integer
+coefficients.
 
 ## References
 
@@ -20,7 +20,7 @@ into the bound.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -36,10 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The right-hand sides of the two selector rows. -/
-def ConPolyZono.unionUpperB (p₁ p₂ : ℕ) : Interval (Vec 𝕋 (1 + 1)) :=
-  ConPolyZono.plusB ⟨fun _ => one, fun _ => one⟩
-    ⟨fun _ : Fin 1 => neg (ConPolyZono.unionConErr p₁ p₂ : 𝕋),
-      fun _ : Fin 1 => (ConPolyZono.unionConErr p₁ p₂ : 𝕋)⟩
+def ConPolyZono.unionUpperB : Vec 𝕋 (1 + 1) :=
+  ConPolyZono.plusB (fun _ => one) (fun _ => zero)
 
 end CORALean.Float
 

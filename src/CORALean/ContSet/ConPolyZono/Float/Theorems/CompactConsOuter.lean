@@ -21,9 +21,9 @@ monomials being in `[-1,1]`, and the bound moves out by it on both sides. The
 nominal set only *grows*, and the error box does not move.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -59,8 +59,8 @@ theorem ConPolyZono.aux_compactConsGap (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (i 
   simp only [ConPolyZono.compactConsGap]
   constructor <;> linarith
 
-/-- The widened bound admits every factor vector the old one did: the row moved
-by at most one `radius` of its gaps, and `b` moved out by exactly that. -/
+/-- The widened slack admits every factor vector the old one did: the row moved
+by at most one `radius` of its gaps, and the slack grew by exactly that. -/
 theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {a : Fin cPZ.p → ℝ}
     (ha : ∀ k, |a k| ≤ 1) (hsat : cPZ.satisfies a) :
     cPZ.compactConsSpec.satisfies a := by -- --- PROOF ---
@@ -72,9 +72,9 @@ theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 
     Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep cPZ.R) (fun r => toReal (cPZ.A i r))
       (PolyZonotope.keepIdx cPZ.R j) with hfib
   intro i
-  -- the constraint row at `a`, which the box `b` brackets
+  -- the constraint row at `a`, within its slack of `b`
   set row := ∑ l, toReal (cPZ.A i l) * Real.PolyZonotope.monomial cPZ.R a l with hrow
-  have hb : toReal (cPZ.b.inf i) ≤ row ∧ row ≤ toReal (cPZ.b.sup i) := hsat i
+  have hb : |row - toReal (cPZ.b i)| ≤ |toReal (cPZ.b_error i)| := hsat i
   have hex := ConPolyZono.merge cPZ.R cPZ.A a Rk (fun _ _ => rfl) i
   -- the exact merged row is the stored one plus what the gaps carry
   have hsplit : (∑ j, fib i j * mon j) = (∑ j, toReal (cPZ.mergedConsCol i j) * mon j)
@@ -88,17 +88,15 @@ theorem ConPolyZono.aux_satisfies_compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 
       (Δ := fun i j => fib i j - toReal (cPZ.mergedConsCol i j))
       (fun i j => le_trans (ConPolyZono.aux_compactConsGap cPZ i j) (le_abs_self _))
       (fun j => Real.PolyZonotope.abs_monomial_le_one Rk ha j) i
-  rw [abs_le] at hrad
-  -- both bounds now, `b` having moved out by the very number `hrad` supplies
-  refine ⟨?_, ?_⟩
-  · show toReal (subDown (cPZ.b.inf i) (radius (ConPolyZono.compactConsGap cPZ) i))
-      ≤ ∑ j, toReal (cPZ.mergedConsCol i j) * mon j
-    have hd := subDown_le_sub (cPZ.b.inf i) (radius (ConPolyZono.compactConsGap cPZ) i)
-    linarith [hb.1, hex, hsplit, hrad.1, hrad.2]
-  · show (∑ j, toReal (cPZ.mergedConsCol i j) * mon j)
-      ≤ toReal (addUp (cPZ.b.sup i) (radius (ConPolyZono.compactConsGap cPZ) i))
-    have hu := add_le_addUp (cPZ.b.sup i) (radius (ConPolyZono.compactConsGap cPZ) i)
-    linarith [hb.2, hex, hsplit, hrad.1, hrad.2]
+  -- the slack has grown by the very number `hrad` supplies
+  have hu := add_le_addUp (absolute (cPZ.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i)
+  rw [toReal_absolute] at hu
+  show |(∑ j, toReal (cPZ.mergedConsCol i j) * mon j) - toReal (cPZ.b i)|
+    ≤ |toReal (addUp (absolute (cPZ.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i))|
+  rw [abs_le] at hb hrad ⊢
+  have hu' := le_abs_self
+    (toReal (addUp (absolute (cPZ.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i)))
+  constructor <;> linarith [hb.1, hb.2, hex, hsplit, hrad.1, hrad.2]
 
 /-- Only the constraint weakens, so the nominal set grows and the error box does
 not move. -/

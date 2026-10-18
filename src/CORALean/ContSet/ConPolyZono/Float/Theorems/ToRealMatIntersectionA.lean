@@ -16,9 +16,9 @@ read-back matrices, and the agreement block is `toReal_agreeRow` read one row
 at a time.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,14 +35,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.toRealMat_intersectionA (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     toRealMat (ConPolyZono.intersectionA cPZ₁ cPZ₂)
-      = Real.ConPolyZono.intersectionA (nominal cPZ₁) (nominal cPZ₂) := by -- --- PROOF ---
+      = Real.ConPolyZono.intersectionA cPZ₁.nominalCore cPZ₂.nominalCore := by -- --- PROOF ---
   -- the exact layer's matrix spelled out, so the four `Fin.addCases` branches below match it
-  have hreal : Real.ConPolyZono.intersectionA (nominal cPZ₁) (nominal cPZ₂)
+  have hreal : Real.ConPolyZono.intersectionA cPZ₁.nominalCore cPZ₂.nominalCore
       = fun i => Fin.append
           (fun r => Fin.append (Real.ConPolyZono.plusA (toRealMat cPZ₁.A) (toRealMat cPZ₂.A) r)
             (0 : Fin (cPZ₁.h + cPZ₂.h) → ℝ))
           (fun r => Fin.append (0 : Fin (cPZ₁.q + cPZ₂.q) → ℝ)
-            (Real.ConPolyZono.agreeRow (nominal cPZ₁) (nominal cPZ₂) r)) i := rfl
+            (Real.ConPolyZono.agreeRow cPZ₁.nominalCore cPZ₂.nominalCore r)) i := rfl
   rw [hreal]
   refine funext (Fin.addCases (fun i => ?_) fun i => ?_) <;>
     refine funext (Fin.addCases (fun l => ?_) fun l => ?_)

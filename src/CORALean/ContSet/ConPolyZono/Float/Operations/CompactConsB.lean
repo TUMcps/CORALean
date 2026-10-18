@@ -7,14 +7,14 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 /-!
 # `ConPolyZono.compactConsB`
 
-`b` widened by what a merged row can be off by. Every constraint monomial is
-in `[-1,1]`, so a row's whole error is one `radius` of its gaps, and rounding
-it outward on both sides is what keeps the constraint admitting what it did.
+The slack widened by what a merged row can be off by. Every constraint monomial is
+in `[-1,1]`, so a row's whole error is one `radius` of its gaps, and adding it, rounded up, to
+the slack is what keeps the constraint admitting what it did.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -29,12 +29,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `b` widened by what a merged row can be off by. Every constraint monomial is
-in `[-1,1]`, so a row's whole error is one `radius` of its gaps, and rounding it
-outward on both sides is what keeps the constraint admitting what it did. -/
-def ConPolyZono.compactConsB (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Interval (Vec 𝕋 cPZ.m) :=
-  ⟨fun i => subDown (cPZ.b.inf i) (radius (ConPolyZono.compactConsGap cPZ) i),
-    fun i => addUp (cPZ.b.sup i) (radius (ConPolyZono.compactConsGap cPZ) i)⟩
+/-- The slack widened by what a merged row can be off by: one `radius` of the row's gaps,
+every constraint monomial being in `[-1,1]`. -/
+def ConPolyZono.compactConsB (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 cPZ.m :=
+  fun i => addUp (absolute (cPZ.b_error i)) (radius (ConPolyZono.compactConsGap cPZ) i)
 
 end CORALean.Float
 

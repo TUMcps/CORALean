@@ -18,7 +18,9 @@ whose sum one extra row fixes. The center `a c` is the only thing that rounds, s
 with its shortfall in the box; the box of the operand is kept, a convex combination of points of a
 box being in it.
 
-No independent generators, as over ℝ.
+No independent generators, as over ℝ. Each copy keeps its operand's slack; the exact hull of the
+operand's nominal set, whose slack factors sit inside each copy, reads as this layout with them
+dropped (`Real.ConPolyZono.monomial_convHullE_padE`).
 
 ## References
 
@@ -28,7 +30,7 @@ No independent generators, as over ℝ.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -56,6 +58,9 @@ def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
   GI := Fin.elim0
   A := ConPolyZono.convHullA a cPZ.A
   b := ConPolyZono.convHullB a cPZ.b
+  -- each copy's slack, and the weight row's rounding gap
+  b_error := Fin.append (Real.ConPolyZono.repVec a cPZ.b_error)
+    (fun _ => subUp (intUp (1 - (a : ℤ))) (intDown (1 - (a : ℤ))))
   R := Real.ConPolyZono.convHullR a cPZ.R
   -- the operand's box, and what storing `a c` from below leaves to pay
   I_error := cPZ.I_error.plus (Interval.residual (fun i => nsmulDown a (cPZ.c i))

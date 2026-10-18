@@ -8,14 +8,20 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
 /-!
 # `[p; 0]` is in the extended polynomial zonotope iff `p` is in the set
 
-With a point `b` (`b.inf = b.sup`, CORA's vector), `-b + A μ(α)` is zero exactly when the constraint
+`-b + A μ(α)` is zero exactly when the constraint
 `A μ(α) = b` holds, and the first coordinates are the generators' own: `[p; 0] ∈ pZ` iff
-`p ∈ cPZ`. This is what `@conPolyZono/contains_` means to decide for a numeric operand.
+`p ∈ cPZ`, which is [1, Lemma 1]. This is what `@conPolyZono/contains_` means to decide for a
+numeric operand.
+
+## References
+
+* [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta
+      Informatica, 2023.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -30,31 +36,19 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.containsPoint_iff (cPZ : ConPolyZono (Vec ℝ n)) (hb : cPZ.b.inf = cPZ.b.sup)
-    (p : Vec ℝ n) : cPZ.containsPoint p ↔ p ∈ cPZ.construct := by -- --- PROOF ---
+theorem ConPolyZono.containsPoint_iff (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec ℝ n) :
+    cPZ.containsPoint p ↔ p ∈ cPZ.construct := by -- --- PROOF ---
   unfold ConPolyZono.containsPoint
   rw [ConPolyZono.mem_extPolyZonotope_iff]
   constructor
-  · -- a zero residual is the constraint at both ends of the degenerate interval
+  · -- a zero residual is the constraint
     rintro ⟨a, β, ha, hβ, hc, hx⟩
     refine ⟨a, β, ha, hβ, fun i => ?_, hx⟩
-    refine ⟨?_, ?_⟩
-    · have := hc i
-      simp at this
-      linarith
-    · have := hc i
-      simp at this
-      rw [← hb]
-      linarith
-  · -- and the constraint at a point `b` is a zero residual
+    simpa using hc i
+  · -- and the constraint is a zero residual
     rintro ⟨a, β, ha, hβ, hs, hx⟩
     refine ⟨a, β, ha, hβ, fun i => ?_, hx⟩
-    have h1 := (hs i).1
-    have h2 := (hs i).2
-    rw [← hb] at h2
-    simp
-    linarith
-
+    simpa using hs i
 
 end CORALean.Real
 

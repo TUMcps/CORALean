@@ -21,9 +21,9 @@ of kept columns, and every entry is read through those: the specification
 summands under it (issue #61). `compactGens_eq_spec` says they are one.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   11-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -55,7 +55,9 @@ def ConPolyZono.compactGens (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 
     E := fun a j => cPZ.E a (k j)
     GI := cPZ.GI
     A := cPZ.A
+    -- the constraint block, its right-hand side and its slack stand
     b := cPZ.b
+    b_error := cPZ.b_error
     R := cPZ.R
     I_error := cPZ.I_error.plus (PolyZonotope.generatorError fun i j =>
       subUp (PolyZonotope.fiberUp r (fun i l => cPZ.G l i) i (k j))

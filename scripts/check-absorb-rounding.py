@@ -9,9 +9,12 @@ never folded silently into a parameter. Each float representation therefore prov
 `absorbRounding_outer : construct S ⊆ construct (absorbRounding S)`. For every main type file
 `ContSet/<X>/Float/<X>.lean` this checks
 
-  * the file has an `I_error` field (or extends a structure that has one), and
+  * the file has an `I_error` field (or extends a structure that has one),
   * a `def <X>.absorbRounding` and a `theorem <X>.absorbRounding_outer` stand under
-    `ContSet/<X>/Float/`.
+    `ContSet/<X>/Float/`, and
+  * every other recorded rounding of the type, a field `<name>_error` beside `I_error` (the per-row
+    slack `b_error` of an `HPolytope` or a `ConPolyZono`), is named in the body of
+    `<X>.absorbRounding`, which moves it into the parameters as it moves the box.
 
 It also rejects the names this operation had before it was unified: `dependent_outer` and
 `dependent_nominal` under a `Float/` folder, and a `Dependent*.lean` file there, except for
@@ -65,6 +68,15 @@ def main():
         has_thm = re.search(rf"^theorem {X}\.absorbRounding_outer\b", body, re.M)
         ok = has_box and has_def and has_thm
         rel = main_file.relative_to(ROOT)
+        # the other `_error` fields, and the body of `absorbRounding` they must appear in
+        others = [f for f in re.findall(r"^\s*(\w+_error)\s*:", text, re.M) if f != "I_error"]
+        absorb = re.search(rf"^def {X}\.absorbRounding\b.*?(?=^\S|\Z)", body, re.M | re.S)
+        for field in others:
+            if absorb and not re.search(rf"\b{field}\b", absorb.group(0)):
+                print(f"{rel}:1: `{X}.absorbRounding` does not name the field `{field}` — a "
+                      "recorded rounding beside `I_error` is moved into the parameters by "
+                      "`absorbRounding` too (CONTRIBUTING, \"The error box and absorbRounding\")")
+                findings += 1
         if X in allowed:
             if ok:
                 print(f"{ALLOW.relative_to(ROOT)}:{allowed[X]}: stale entry `{X}` — it has an "

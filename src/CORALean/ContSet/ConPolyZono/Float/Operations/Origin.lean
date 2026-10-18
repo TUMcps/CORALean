@@ -9,12 +9,12 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `ConPolyZono.origin`, over a floating-point scalar
 
 The point `0` as a constrained polynomial zonotope with no generators and an empty
-constraint system, the center stored as `zero` and both boxes at zero.
+constraint system, the center stored as `zero` and the box at zero.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +40,8 @@ def ConPolyZono.origin (n : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   E := fun i => i.elim0
   GI := Fin.elim0
   A := fun i => i.elim0
-  b := Interval.origin 0
+  b := fun i => i.elim0
+  b_error := fun i => i.elim0
   R := fun i => i.elim0
   I_error := Interval.origin n
 

@@ -20,7 +20,7 @@ The two merges pay into different places, which is the whole of what the
 constraints add. A merged *generator* column is off by the gap between the two
 directed masked sums, and that gap is a `generatorError` in the ambient box, as
 for `PolyZonotope`. A merged *constraint* column has no ambient box to pay into
-— its rows live in `Fin m`, not in the state — so it pays into `b`.
+— its rows live in `Fin m`, not in the state — so it pays into the rows' slack `b_error`.
 
 Each stage is `materialise`d before the next reads it (issue #61): the stages
 return closures over their input, so three stacked unstored stages made every

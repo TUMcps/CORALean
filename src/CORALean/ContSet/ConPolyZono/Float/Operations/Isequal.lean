@@ -8,15 +8,15 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 # `ConPolyZono.isequal`, over a floating-point scalar
 
 The structural test at tolerance `0`, as over ℝ: the same numbers of factors, generators and
-constraints, the center, the generators, the exponent matrices, the constraint matrix, the two ends
-of the constraint interval and of the error box equal, each stored number by the certified `le`
-in both directions. Certified in one direction only: `true` is a proof, `false` refutes nothing.
-Not CORA's test, which compacts and reorders first.
+constraints, the center, the generators, the exponent matrices, the constraint matrix, the
+right-hand side and its slack, and the two ends of the error box equal, each stored number by the
+certified `le` in both directions. Certified in one direction only: `true` is a proof, `false`
+refutes nothing. Not CORA's test, which compacts and reorders first.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -43,12 +43,12 @@ def ConPolyZono.isequal (Z S : ConPolyZono 𝕋 (Vec 𝕋 n)) : Bool :=
       (List.finRange Z.qI).all fun j =>
         le (Z.GI j i) (S.GI (Fin.cast e.2.2.1 j) i) &&
           le (S.GI (Fin.cast e.2.2.1 j) i) (Z.GI j i)) &&
-    -- the constraint interval and matrix
+    -- the right-hand side, its slack, and the constraint matrix
     (List.finRange Z.m).all (fun r =>
-      (le (Z.b.inf r) (S.b.inf (Fin.cast e.2.2.2.1 r)) &&
-        le (S.b.inf (Fin.cast e.2.2.2.1 r)) (Z.b.inf r)) &&
-      (le (Z.b.sup r) (S.b.sup (Fin.cast e.2.2.2.1 r)) &&
-        le (S.b.sup (Fin.cast e.2.2.2.1 r)) (Z.b.sup r)) &&
+      (le (Z.b r) (S.b (Fin.cast e.2.2.2.1 r)) &&
+        le (S.b (Fin.cast e.2.2.2.1 r)) (Z.b r)) &&
+      (le (Z.b_error r) (S.b_error (Fin.cast e.2.2.2.1 r)) &&
+        le (S.b_error (Fin.cast e.2.2.2.1 r)) (Z.b_error r)) &&
       (List.finRange Z.q).all fun j =>
         le (Z.A r j) (S.A (Fin.cast e.2.2.2.1 r) (Fin.cast e.2.2.2.2 j)) &&
           le (S.A (Fin.cast e.2.2.2.1 r) (Fin.cast e.2.2.2.2 j)) (Z.A r j)) &&

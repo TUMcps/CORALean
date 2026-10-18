@@ -1,7 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsPointIff
-import CORALean.ContSet.Interval.Real.Operations.Point
+import CORALean.ContSet.ConPolyZono.Real.Theorems.Basic
 import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeConPolyZonoContains
 import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConPolyZonoExact
 import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
@@ -12,25 +11,19 @@ import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeConPolyZonoExact
 /-!
 # Cutting a non-convex set by a guard
 
-What the interval right-hand side buys, at a use site. A guard is a constrained
-zonotope — inequalities and all — and the set being cut is a constrained
-polynomial zonotope, which is generally not convex. The guard converts exactly
-and the intersection is exact, so nothing is given away in either step, and the
-float layer does the same with `⊆` in place of `=`.
+A guard is a constrained zonotope — inequalities and all — and the set being cut is a
+constrained polynomial zonotope, which is generally not convex. The guard converts exactly, an
+inequality row becoming an equation with a slack factor (`ConPolyZono.relax`), and the
+intersection is exact, so nothing is given away in either step; the float layer does the same with
+`⊆` in place of `=`, its rows' rounding recorded in `b_error`.
 
-Neither line would elaborate against an equality-constrained representation. The
-conversion would have needed a slack factor per inequality, and the float
-intersection would have had nowhere to round: its agreement rows have to admit
-the difference of two nominal points that each carry an error box.
-
-The last example is the check that nothing was lost in the other direction: an
-equality is still sayable, as the degenerate interval, and reads back as the
-equation the paper writes.
+The last example reads the constraint back as what it is: the paper's `A μ(α) = b`, a polynomial
+level set on the factors with `=` in every row.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       03-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 namespace CORALean
@@ -50,11 +43,10 @@ example (cPZ : ConPolyZono (Vec ℝ n)) (G : ConZonotope (Vec ℝ n)) :
   rw [ConZonotope.conPolyZono_exact G]
   exact ConPolyZono.intersection_exact cPZ G.conPolyZono
 
-/-- The paper's `A μ(α) = b`, as the degenerate interval. -/
-example {p m s : ℕ} (A : Mat ℝ m s) (b : Vec ℝ m) (R : Fin p → Fin s → ℕ)
-    (a : Fin p → ℝ) (h : ConPolyZono.holds A (Interval.point b) R a) (i : Fin m) :
-    (A *ᵥ PolyZonotope.monomial R a) i = b i :=
-  (ConPolyZono.holds_point_iff A b R a).mp h i
+/-- The paper's `A μ(α) = b` is the factor constraint, a polynomial level set with `=` rows. -/
+example (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p → ℝ) (h : cPZ.satisfies a) :
+    a ∈ cPZ.cons.construct :=
+  (ConPolyZono.satisfies_iff_mem_cons cPZ a).mp h
 
 end Real
 

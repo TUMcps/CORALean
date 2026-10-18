@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
 
 @[expose] public section
 
@@ -10,16 +10,17 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
 
 The form every enclosure proof at this layer reads the nominal half of a point
 in: the center and the two generator blocks through `toReal`, the exponent
-matrices unrounded, and the constraint as this set's own `satisfies`.
+matrices unrounded, and the constraint as this set's own `satisfies`: the slack factors of
+`Real.ConPolyZono.relax` are read away into each row's `|b_error|` (`mem_relax_vec_iff`).
 
 Proofs use it rather than going through `nominal` because through it every count
 is `cPZ.h`, where the instance gives the equal-but-distinct `(nominal cPZ).h` that
 `rw` reads apart.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -40,7 +41,7 @@ theorem ConPolyZono.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cPZ : ConPol
       (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ cPZ.satisfies a ∧ ∀ i, x i = toReal (cPZ.c i)
         + (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E a l)
         + ∑ j, toReal (cPZ.GI j i) * β j :=
-  Real.ConPolyZono.mem_construct_iff
+  Real.ConPolyZono.mem_relax_vec_iff _ _
 
 end CORALean.Float
 

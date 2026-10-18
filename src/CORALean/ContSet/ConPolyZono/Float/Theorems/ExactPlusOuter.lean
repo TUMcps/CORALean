@@ -5,23 +5,24 @@ public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ExactPlus
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ExactPlus
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
 
 @[expose] public section
 
 /-!
 # `ConPolyZono.exactPlus` encloses the exact one at the nominal sets
 
-The exact layer's `exactPlus` of what the two sets' stored floats denote, plus both error boxes,
-lies in the float `exactPlus`. A point of the exact one is the two nominal points at one common
-factor value meeting the first set's constraints; the float one reads the same blocks and the
+The exact layer's `exactPlus` of what the two sets' stored floats describe (`nominalCore`), its
+rows relaxed by the first set's slack, plus both error boxes, lies in the float `exactPlus`. A
+point of the exact one is the two nominal points at one common factor value meeting the first
+set's constraints within their slack; the float one reads the same blocks and the
 same constraints at the same factors and coefficients, and differs only by the rounding of the
 center sum, which its error box holds. Outer only: never the exact `exactPlus` at float.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -38,11 +39,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hp : cPZ₁.p = cPZ₂.p) : -- --- STMT ---
-    (Real.ConPolyZono.exactPlus (nominal cPZ₁) (nominal cPZ₂) hp).construct
+    ((Real.ConPolyZono.exactPlus cPZ₁.nominalCore cPZ₂.nominalCore hp).relax
+        (toRealVec cPZ₁.b_error)).construct
       ⊆ nominalSet (cPZ₁.exactPlus cPZ₂ hp)
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
   intro y hy
-  obtain ⟨a, β, ha, hβ, hs, hy⟩ := Real.ConPolyZono.mem_construct_iff.mp hy
+  obtain ⟨a, β, ha, hβ, hs, hy⟩ := (Real.ConPolyZono.mem_relax_vec_iff _ _).mp hy
   -- the float point at the same factors and coefficients, off by the center's rounding
   refine ⟨fun i => toReal ((cPZ₁.exactPlus cPZ₂ hp).c i)
             + (∑ l, toReal ((cPZ₁.exactPlus cPZ₂ hp).G l i)
@@ -55,24 +57,24 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
   funext i
   -- the stored blocks read back as the exact layer's appended ones, entry by entry
   have hG : ∀ l : Fin (cPZ₁.h + cPZ₂.h), toReal (Fin.append cPZ₁.G cPZ₂.G l i)
-      = Fin.append (nominal cPZ₁).G (nominal cPZ₂).G l i :=
+      = Fin.append cPZ₁.nominalCore.G cPZ₂.nominalCore.G l i :=
     Fin.addCases
       (fun l => by
         rw [Fin.append_left]
-        exact (congrFun (Fin.append_left (nominal cPZ₁).G (nominal cPZ₂).G l) i).symm)
+        exact (congrFun (Fin.append_left cPZ₁.nominalCore.G cPZ₂.nominalCore.G l) i).symm)
       fun l => by
         rw [Fin.append_right]
-        exact (congrFun (Fin.append_right (nominal cPZ₁).G (nominal cPZ₂).G l) i).symm
+        exact (congrFun (Fin.append_right cPZ₁.nominalCore.G cPZ₂.nominalCore.G l) i).symm
   -- the independent blocks likewise
   have hGI : ∀ j : Fin (cPZ₁.qI + cPZ₂.qI), toReal (Fin.append cPZ₁.GI cPZ₂.GI j i)
-      = Fin.append (nominal cPZ₁).GI (nominal cPZ₂).GI j i :=
+      = Fin.append cPZ₁.nominalCore.GI cPZ₂.nominalCore.GI j i :=
     Fin.addCases
       (fun j => by
         rw [Fin.append_left]
-        exact (congrFun (Fin.append_left (nominal cPZ₁).GI (nominal cPZ₂).GI j) i).symm)
+        exact (congrFun (Fin.append_left cPZ₁.nominalCore.GI cPZ₂.nominalCore.GI j) i).symm)
       fun j => by
         rw [Fin.append_right]
-        exact (congrFun (Fin.append_right (nominal cPZ₁).GI (nominal cPZ₂).GI j) i).symm
+        exact (congrFun (Fin.append_right cPZ₁.nominalCore.GI cPZ₂.nominalCore.GI j) i).symm
   rw [hy i]
   simp only [Pi.add_apply, Real.ConPolyZono.exactPlus, Real.PolyZonotope.exactPlus,
     ConPolyZono.exactPlus, PolyZonotope.exactPlus, ConPolyZono.toPolyZonotope, hG, hGI]
@@ -85,8 +87,8 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.exactPlus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hp : cPZ₁.p = cPZ₂.p) :
-    (Real.ConPolyZono.exactPlus (nominal cPZ₁) (nominal cPZ₂) hp).construct
-        + (cPZ₁.I_error.construct + cPZ₂.I_error.construct)
+    ((Real.ConPolyZono.exactPlus cPZ₁.nominalCore cPZ₂.nominalCore hp).relax
+        (toRealVec cPZ₁.b_error)).construct + (cPZ₁.I_error.construct + cPZ₂.I_error.construct)
       ⊆ (cPZ₁.exactPlus cPZ₂ hp).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨y', hy', r, hr, hyr⟩ := ConPolyZono.aux_exactPlus_nominal cPZ₁ cPZ₂ hp hy

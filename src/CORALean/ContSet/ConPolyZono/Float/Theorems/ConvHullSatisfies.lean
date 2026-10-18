@@ -2,23 +2,27 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ConvHullSingle
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.HoldsMono
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecConvHullBlock
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecConvHullLast
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ConvHullSingle
 public import CORALean.Global.Float.IntRound
 
 @[expose] public section
 
 /-!
-# The stored hull's constraints hold wherever the exact hull's do
+# The stored hull's constraints hold wherever the copies' and the weights' do
 
 Read back, the stored constraint matrix is the exact layer's on the read-back operand: copies,
-`zero` and `one` round nothing. Only the weight row's bound differs, `1 - a` stored as an integer
-enclosure, so the stored system admits every factor vector the exact one does.
+`zero` and `one` round nothing. So a copy's row is the operand's at that copy's factors
+(`mulVec_convHull_block`), held to the operand's right-hand side and slack, and the weight row is
+the weights' sum (`mulVec_convHull_last`), held to `1 - a` stored from below with the gap to the
+upward rounding as its slack.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -53,32 +57,29 @@ theorem ConPolyZono.aux_toRealMat_convHullA (a : ℕ) {m q : ℕ} (A : Mat 𝕋 
 
 theorem ConPolyZono.convHullSingle_satisfies_of_real (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ)
-    (h : (Real.ConPolyZono.convHullSingle a (nominal cPZ)).satisfies v) :
+    (hcopy : ∀ j, cPZ.satisfies (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))))
+    (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- STMT ---
     (cPZ.convHullSingle a).satisfies v := by -- --- PROOF ---
-  unfold ConPolyZono.satisfies
-  show Real.ConPolyZono.holds (toRealMat (ConPolyZono.convHullA a cPZ.A))
-    (ConPolyZono.convHullB a cPZ.b).nominal (Real.ConPolyZono.convHullR a cPZ.R) v
+  intro i
+  show |(toRealMat (ConPolyZono.convHullA a cPZ.A) *ᵥ Real.PolyZonotope.monomial
+      (Real.ConPolyZono.convHullR a cPZ.R) v) i - toReal (ConPolyZono.convHullB a cPZ.b i)|
+    ≤ |toReal (Fin.append (Real.ConPolyZono.repVec a cPZ.b_error)
+      (fun _ => subUp (intUp (1 - (a : ℤ))) (intDown (1 - (a : ℤ)))) i)|
   rw [ConPolyZono.aux_toRealMat_convHullA]
-  have h' : Real.ConPolyZono.holds (Real.ConPolyZono.convHullA a (toRealMat cPZ.A))
-      (Real.ConPolyZono.convHullB a cPZ.b.nominal) (Real.ConPolyZono.convHullR a cPZ.R) v := h
-  refine Real.ConPolyZono.holds_mono (fun i => ?_) (fun i => ?_) h'
-  -- the weight row's bound is an integer enclosure, the copies' are copied
-  · refine Fin.addCases (fun r => ?_) (fun r => ?_) i
-    · simp [ConPolyZono.convHullB, Real.ConPolyZono.convHullB, Interval.nominal,
-        RealImage.realImage, toRealVec, Real.ConPolyZono.repVec]
-    · simp only [ConPolyZono.convHullB, Real.ConPolyZono.convHullB, Interval.nominal,
-        RealImage.realImage, toRealVec, Fin.append_right]
-      refine le_trans (intDown_le_intUp (𝕋 := 𝕋) _).1 ?_
-      push_cast
-      exact le_refl _
-  · refine Fin.addCases (fun r => ?_) (fun r => ?_) i
-    · simp [ConPolyZono.convHullB, Real.ConPolyZono.convHullB, Interval.nominal,
-        RealImage.realImage, toRealVec, Real.ConPolyZono.repVec]
-    · simp only [ConPolyZono.convHullB, Real.ConPolyZono.convHullB, Interval.nominal,
-        RealImage.realImage, toRealVec, Fin.append_right]
-      refine le_trans ?_ (intDown_le_intUp (𝕋 := 𝕋) _).2
-      push_cast
-      exact le_refl _
+  refine Fin.addCases (fun r => ?_) (fun r => ?_) i
+  -- a copy's row: the operand's, at that copy's factors
+  · obtain ⟨⟨j, k⟩, rfl⟩ := finProdFinEquiv.surjective r
+    rw [Real.ConPolyZono.mulVec_convHull_block]
+    simpa only [ConPolyZono.convHullB, Real.ConPolyZono.repVec, Fin.append_left,
+      Equiv.symm_apply_apply] using hcopy j k
+  -- the weight row: the weights' sum, `1 - a` exactly, stored between its two roundings
+  · have hr : r = 0 := Subsingleton.elim r 0
+    subst hr
+    rw [Real.ConPolyZono.mulVec_convHull_last, hw]
+    simp only [ConPolyZono.convHullB, Fin.append_right]
+    obtain ⟨h₁, h₂⟩ := intDown_le_intUp (𝕋 := 𝕋) (1 - (a : ℤ))
+    push_cast at h₁ h₂
+    exact ConPolyZono.abs_sub_le_subUp h₁ h₂
 
 end CORALean.Float
 

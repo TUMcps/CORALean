@@ -7,14 +7,14 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
 @[expose] public section
 
 /-!
-# The bound `plusB` reads back to the exact layer's
+# `plusB` reads back to the exact layer's
 
-Both blocks read back by `toRealVec_append`.
+The right-hand sides, or the slacks, side by side: both blocks read back by `toRealVec_append`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -29,11 +29,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.nominal_plusB {m₁ m₂ : ℕ} (b₁ : Interval (Vec 𝕋 m₁))
-    (b₂ : Interval (Vec 𝕋 m₂)) :
-    (ConPolyZono.plusB b₁ b₂).nominal = Real.ConPolyZono.plusB b₁.nominal b₂.nominal := by
-  simp only [ConPolyZono.plusB, Interval.nominal, RealImage.realImage, Real.ConPolyZono.plusB]
-  rw [ConPolyZono.toRealVec_append, ConPolyZono.toRealVec_append]
+/-- Two stored vectors side by side read back as the two read back side by side. -/
+theorem ConPolyZono.toRealVec_plusB {m₁ m₂ : ℕ} (b₁ : Vec 𝕋 m₁) (b₂ : Vec 𝕋 m₂) :
+    toRealVec (ConPolyZono.plusB b₁ b₂)
+      = Real.ConPolyZono.plusB (toRealVec b₁) (toRealVec b₂) :=
+  ConPolyZono.toRealVec_append b₁ b₂
 
 end CORALean.Float
 

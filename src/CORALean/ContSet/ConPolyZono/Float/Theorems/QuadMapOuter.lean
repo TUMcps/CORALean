@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.QuadMap
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
+public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeQuadUp
@@ -130,11 +130,14 @@ theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZon
     ConPolyZono.mem_nominalSet_iff.mpr ⟨a', Fin.elim0, ha'b, fun j => j.elim0, ?_, fun _ => rfl⟩,
     _, hbox, ?_⟩
   · -- the padded constraints read only the first block, which is `a`
-    show Real.ConPolyZono.holds (toRealMat cPZ.A) cPZ.b.nominal
-      (Real.ConPolyZono.padE cPZ.R (cPZ.qI + n)) a'
-    rw [Real.ConPolyZono.holds_padE_iff]
-    simp only [ha', Fin.append_left]
-    exact hs
+    have hm : Real.PolyZonotope.monomial (Real.ConPolyZono.padE cPZ.R (cPZ.qI + n)) a'
+        = Real.PolyZonotope.monomial cPZ.R a :=
+      funext fun l => (Real.ConPolyZono.monomial_padE cPZ.R (cPZ.qI + n) a' l).trans
+        (by simp only [ha', Fin.append_left])
+    intro i
+    have h := hs i
+    rw [← hm] at h
+    exact h
   · -- the image is the exact layer's `quadMapDep` at `a'`, the stored one plus the box's share
     funext i
     have hq := Real.PolyZonotope.quadMapDep_point (fun k => toRealMat (Q k)) (nominal D) a'

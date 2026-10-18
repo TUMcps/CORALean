@@ -1176,8 +1176,13 @@ Every float set records its rounding explicitly in an `I_error` box (`InflatedCo
 denotes `nominal ⊕ I_error`); rounding is never folded silently into a parameter. Each float
 representation provides a sound `absorbRounding`, which moves `I_error` into the parameters where
 the representation can hold it (a zonotope into box generators, a polyhedron into the right-hand
-side `b`, together with the slack its rows record besides the box, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
+side `b`, together with the slack its rows record besides the box, a constrained polynomial
+zonotope into independent generators, the slack its equality rows record (`b_error`) into a factor
+per row, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
 model into its remainder), with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
+A row that is an equation has no interior to absorb its own rounding, so a float representation
+with equality rows records it per row in a field `<name>_error` beside the box, read through
+`|·|`, and its constructors set it to zero.
 `absorbRounding` may itself round, so it does **not** promise an empty `I_error` afterwards: the
 result's box holds only the rounding of the absorption step, often exactly zero, and a caller
 must not assume `I_error = 0` after absorbing; where it is cheap, a lemma bounds the residual
@@ -1187,9 +1192,9 @@ part alone is `absorbRounding_nominal : S.construct ⊆ nominalSet S.absorbRound
 (`InflatedContSet.nominalSet_subset_construct`). A representation that cannot hold the box, or has
 none of its own, is listed in `scripts/absorb-rounding-allowlist.txt` with the reason, and says so in
 its main-type docstring; `scripts/check-absorb-rounding.py` (run by `check-conventions.sh`, #185)
-requires the rest to have an `I_error` field, a `def X.absorbRounding` and a
-`theorem X.absorbRounding_outer` under `ContSet/X/Float/`, and rejects the former name
-`dependent_outer`.
+requires the rest to have an `I_error` field, a `def X.absorbRounding` that names every other
+recorded rounding field `<name>_error` of the type, and a `theorem X.absorbRounding_outer` under
+`ContSet/X/Float/`, and rejects the former name `dependent_outer`.
 
 ### Two scalars a definition can be run at
 

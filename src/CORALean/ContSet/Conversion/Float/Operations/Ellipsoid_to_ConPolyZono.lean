@@ -53,7 +53,8 @@ def Ellipsoid.conPolyZono (E : Ellipsoid 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n)
     E := Real.ConPolyZono.padE (Real.PolyZonotope.identE n) 1
     GI := Fin.elim0
     A := fun _ j => if j.val < n then one else neg (half one)
-    b := ⟨fun _ => half one, fun _ => half one⟩
+    b := fun _ => half one
+    b_error := fun _ => zero
     R := fun r c => if r = c then (if c.val < n then 2 else 1) else 0
     I_error := if ok then E.I_error
       else E.I_error.plus (Interval.symmetric (Ellipsoid.boxRadius 64 E)) }

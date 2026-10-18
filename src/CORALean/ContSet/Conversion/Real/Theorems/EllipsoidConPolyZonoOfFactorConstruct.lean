@@ -127,7 +127,7 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
         rw [← norm₂_sq]
         ring
       rw [heqn]
-      exact ⟨le_refl _, le_refl _⟩
+      rfl
     · -- the point equation: `qI + Gu` read back as the CPZ's own generator sum
       show q + G *ᵥ u
           = P.c + ∑ i, PolyZonotope.monomial P.E
@@ -151,10 +151,8 @@ theorem Ellipsoid.conPolyZonoOfFactor_construct (G : Mat ℝ n n) (q : Vec ℝ n
       Ellipsoid.aux_monomial_conPolyZonoR a
     -- the constraint read back as `Σ u_k² - 0.5 a(last) = 0.5`
     have heqn : (∑ k, u k ^ 2) - (1 / 2) * a (Fin.natAdd n (0 : Fin 1)) = (1 / 2 : ℝ) := by
-      have h0 := (hsat i0).1
-      have h1 := (hsat i0).2
       have hval : (P.A *ᵥ PolyZonotope.monomial P.R a) i0
-          = (1 / 2 : ℝ) := le_antisymm h1 h0
+          = (1 / 2 : ℝ) := hsat i0
       have hexpand : (P.A *ᵥ PolyZonotope.monomial P.R a) i0
           = (∑ k, u k ^ 2) - (1 / 2) * a (Fin.natAdd n (0 : Fin 1)) := by
         show (∑ j : Fin (n + 1), P.A i0 j *

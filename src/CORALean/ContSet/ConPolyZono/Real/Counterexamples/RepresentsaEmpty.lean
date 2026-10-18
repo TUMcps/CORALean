@@ -43,7 +43,7 @@ def ConPolyZono.aux_isEmptySetPrinted {α : Type} (cPZ : ConPolyZono α) : Optio
 /-- One factor, `c = 0`, `GI = 1`, and the constraint `1 · α₁ = 2`. -/
 def ConPolyZono.aux_emptyWithGI : ConPolyZono ℝ :=
   ⟨1, 0, 1, 1, 1, 0, Fin.elim0, fun _ _ => 0, fun _ => 1, fun _ _ => 1,
-    ⟨fun _ => 2, fun _ => 2⟩, fun _ _ => 1⟩
+    fun _ => 2, fun _ _ => 1⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -58,11 +58,9 @@ theorem ConPolyZono.representsa_empty_counterexample :
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨a, β, ha, -, hs, -⟩
-  have h1 := (hs (0 : Fin 1)).1
-  have h2 := (hs (0 : Fin 1)).2
+  have h4 := hs (0 : Fin 1)
   have h3 := ha (0 : Fin 1)
-  simp [ConPolyZono.aux_emptyWithGI, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h1 h2 h3
-  have h4 := le_antisymm h2 h1
+  simp [ConPolyZono.aux_emptyWithGI, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h4 h3
   rw [h4] at h3
   norm_num [abs_of_pos] at h3
 

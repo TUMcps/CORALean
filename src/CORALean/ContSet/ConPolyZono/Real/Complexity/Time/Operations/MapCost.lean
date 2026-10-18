@@ -22,7 +22,7 @@ and their entries are written like the rest.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       23-September-2026
--- Last update:   15-October-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -35,9 +35,9 @@ namespace CORALean.Real
 
 /-- What `ConPolyZono.map` costs at a map costing at most `cf` per application (its write
 included) on `p` factors, `h`, `qI` generators, `m` constraints over `q`: the applications and
-`p * h + m * q + 2 * m + p * q` writes for the exponent matrix and constraint block. -/
+`p * h + m * q + m + p * q` writes for the exponent matrix and constraint block. -/
 def ConPolyZono.mapCost (cf : Cost) (p h qI m q : ℕ) : Cost :=
-  (h + qI + 1) • cf + ⟨p * h + m * q + 2 * m + p * q⟩
+  (h + qI + 1) • cf + ⟨p * h + m * q + m + p * q⟩
 
 end CORALean.Real
 

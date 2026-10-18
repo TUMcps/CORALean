@@ -12,9 +12,9 @@ that leaves that vector alone leaves `holds` alone, which is what lets
 `compact` rewrite the constraint block.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -30,7 +30,7 @@ open Matrix
 /-- A rewriting of the constraint block that leaves `A μ(α)` alone leaves the
 constraint alone — which is what compacting `A` and `R` does. -/
 theorem ConPolyZono.holds_congr {p p' m q s' : ℕ} {A : Mat ℝ m q} {A' : Mat ℝ m s'}
-    {b : Interval (Vec ℝ m)} {R : Fin p → Fin q → ℕ} {R' : Fin p' → Fin s' → ℕ}
+    {b : Vec ℝ m} {R : Fin p → Fin q → ℕ} {R' : Fin p' → Fin s' → ℕ}
     {a : Fin p → ℝ} {a' : Fin p' → ℝ}
     (h : A' *ᵥ PolyZonotope.monomial R' a' = A *ᵥ PolyZonotope.monomial R a) : -- --- STMT ---
     ConPolyZono.holds A b R a ↔ ConPolyZono.holds A' b R' a' := by -- --- PROOF ---

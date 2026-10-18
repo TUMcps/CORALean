@@ -12,15 +12,15 @@ public import CORALean.ContSet.Interval.Real.Operations.Point
 CORA's `@conPolyZono/and_`, and the reason a constrained representation exists:
 two constrained polynomial zonotopes intersect to one, exactly.
 
-`intersection` runs `intersectionDep` on the two `dependent` sets, at zero tolerance: an
+`intersection` runs `intersectionDep` on the two `dependent` sets: an
 independent coefficient answers to no constraint, so it could move the two
 points apart with nothing in the system to forbid it. Freeing the independent
 blocks into factors first is what makes this exact where CORA's `and_` encloses.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -33,9 +33,9 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Zero tolerance: the two points agree exactly. -/
+/-- The two `dependent` sets, their points made to agree exactly. -/
 def ConPolyZono.intersection (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
-  ConPolyZono.intersectionDep cPZ₁.dependent cPZ₂.dependent (Interval.point 0)
+  ConPolyZono.intersectionDep cPZ₁.dependent cPZ₂.dependent
 
 end CORALean.Real
 

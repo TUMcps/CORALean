@@ -13,13 +13,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 Factor `k` re-parametrized onto `cen ± rad`, as over ℝ: `PolyZonotope.getSubset` at the generator
 block and at the constraint columns read as a polynomial zonotope. The two channels of the layer
 pay as they are meant to: the rounding of the generators goes into the ambient error box, the
-rounding of the constraint matrix into `b`, widened outward by the row radius of what the stored
-entries lost.
+rounding of the constraint matrix into the slack `b_error`, widened by the row radius of what the
+stored entries lost.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -47,7 +47,9 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p) 
   GI := cPZ.GI
   A := fun i l => (cPZ.consPolyZonotope.getSubset k cen rad).G l i
   -- the rounding of the stored constraint entries, scaled by monomials in `[-1, 1]`
-  b := cPZ.b.plus (PolyZonotope.generatorError (cPZ.consPolyZonotope.getSubsetGDiff k cen rad))
+  b := cPZ.b
+  b_error := fun i => addUp (absolute (cPZ.b_error i))
+    (radius (cPZ.consPolyZonotope.getSubsetGDiff k cen rad) i)
   R := (cPZ.consPolyZonotope.getSubset k cen rad).E
   I_error := (cPZ.toPolyZonotope.getSubset k cen rad).I_error
 
