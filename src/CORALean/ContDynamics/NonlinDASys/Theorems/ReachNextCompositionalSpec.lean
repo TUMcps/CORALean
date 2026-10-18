@@ -48,14 +48,15 @@ theorem NonlinDASys.reachNextCompositional_spec
     (sub : ∀ {k : ℕ}, Zonotope (Vec ℝ k) → Zonotope (Vec ℝ k) → Bool)
     (hsub : ∀ {k : ℕ} (A B : Zonotope (Vec ℝ k)), sub A B = true → A.construct ⊆ B.construct)
     (fuel : ℕ) (s : NonlinDASys.CompositionalState m e d)
-    (hs : ∀ i, s.inputEnclosure i = true → (s.Rnext i, s.Rloc i) = subReach i (s.Uhat i))
-    {Rn : ∀ i, Zonotope (Vec ℝ (e i))} {R : Zonotope (Vec ℝ n)} {Uh : ∀ i, Zonotope (Vec ℝ (m i))}
-    (h : NonlinDASys.reachNextCompositional subReach Φ Υ Λ lamU sub fuel s = some (Rn, R, Uh)) :
-    (∀ i, sub (Zonotope.mtimes (Υ i) R) (Zonotope.mtimes (Λ i) (Uh i)) = true) ∧
-    (∀ i, (Υ i *ᵥ ·) '' R.construct ⊆ (Λ i *ᵥ ·) '' (Uh i).construct) ∧
-    ∃ Rloc : ∀ i, Zonotope (Vec ℝ (d i)),
-      R = NonlinDASys.composeSubsystems Φ Rloc ∧
-        ∀ i, (Rn i, Rloc i) = subReach i (Uh i) := by -- --- PROOF ---
+    (hs : ∀ i, s.inputEnclosure i = true → (s.Rnext i, s.Rloc i) = subReach i (s.Uhat i)) :
+    ∀ Rn R Uh, (Rn, R, Uh) ∈ NonlinDASys.reachNextCompositional subReach Φ Υ Λ lamU sub fuel s →
+      (∀ i, sub (Zonotope.mtimes (Υ i) R) (Zonotope.mtimes (Λ i) (Uh i)) = true) ∧
+      (∀ i, (Υ i *ᵥ ·) '' R.construct ⊆ (Λ i *ᵥ ·) '' (Uh i).construct) ∧
+      ∃ Rloc : ∀ i, Zonotope (Vec ℝ (d i)),
+        R = NonlinDASys.composeSubsystems Φ Rloc ∧
+          ∀ i, (Rn i, Rloc i) = subReach i (Uh i) := by -- --- PROOF ---
+  intro Rn R Uh (h : NonlinDASys.reachNextCompositional subReach Φ Υ Λ lamU sub fuel s = some (Rn,
+      R, Uh))
   induction fuel generalizing s with
   | zero => simp [NonlinDASys.reachNextCompositional] at h
   | succ k ih =>

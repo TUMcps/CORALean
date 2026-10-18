@@ -1,0 +1,151 @@
+# Files whose `## References` still names a thesis (the rule: cite the paper).
+#
+# `scripts/check-thesis-refs.py` refuses any other: a thesis reproduces results that first appeared
+# in papers, and the paper is cited with its own numbering. A file lands here while no paper we hold
+# states the result its entry stands for; once one does, the entry moves to that paper and the line
+# is deleted. One path per line, grouped under the reason as a comment. An entry that matches no
+# flagged file any more is reported as stale, so the list only shrinks.
+
+
+# Althoff 2010, Ch. 3, linear systems with certain parameters: the wrapping-effect-free algorithms
+# (Alg. 1-3), the correction matrices (Prop. 3.1, 3.4), the matrix-zonotope exponential (Sec. 3.3.2),
+# the interval exponential of Thm. 3.2 and the recursions (Prop. 3.2, Cor. 3.1). The papers behind
+# them (Althoff, Stursberg and Buss, CDC 2007, among others) are not ones we hold; the 2011 chapter
+# states some of them, and the files that cite those moved to it.
+src/CORALean/ContDynamics/LinearSys/Definitions/ReachExact.lean
+src/CORALean/ContDynamics/LinearSys/Definitions/ReachSetExact.lean
+src/CORALean/ContDynamics/LinearSys/Definitions/StepSets.lean
+src/CORALean/ContDynamics/LinearSys/Definitions/TimeIntervalReachSetExact.lean
+src/CORALean/ContDynamics/LinearSys/Definitions/WithInput.lean
+src/CORALean/ContDynamics/LinearSys/Definitions/WithInputSplit.lean
+src/CORALean/ContDynamics/LinearSys/Instances.lean
+src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovTaylor.lean
+src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetKrylovZonotope.lean
+src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/InputReachSubsetSumExpImage.lean
+src/CORALean/ContDynamics/LinearSys/LinearSys.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Counterexamples/ExpDiffPrinted.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/ExpDiffMatrices.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ConstCorrTerm.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ConstCorrectionMatrix.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/CorrCoeff.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/CorrCritical.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/CorrTerm.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/CorrectionMatrix.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpEnclosure.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntegral.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalEnclosure.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalEnclosureExact.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalEnclosureExactFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalTaylor.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalTaylorExact.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalTaylorExactFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalTaylorTail.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpIntervalTaylorTailFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpMatZonoEnclosure.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpMatZonoEnclosureFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpMatZonoRemainder.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpMatZonoRemainderFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpMatZonoTaylor.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpMatZonoTaylorFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpMatZonoTerm.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpMatZonoTermFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpRemainder.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpRemainderBound.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpTaylor.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/InputRemainder.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalConstCorrTerm.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalConstCorrTermFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalConstCorrectionMatrix.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalConstCorrectionMatrixFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalCorrTerm.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalCorrectionMatrix.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalCorrectionMatrixFloat.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Operations/IntervalInputRemainder.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ConstCorrectionMatrix.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/CorrCoeffBound.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/CorrectionMatrix.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpDiff.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpDiffMulVecMemCorrectionMatrix.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpEnclosure.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpIntervalEnclosure.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpIntervalEnclosureContainsExact.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpIntervalEnclosureExact.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpIntervalTaylorExact.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpIntervalWAttained.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpIntervalWOuter.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpMulVecImageSubsetAddImage2.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpTaylorTwo.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/IntervalConstCorrectionMatrix.lean
+src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/NormExpSubExpTaylorLe.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ConstInputSolution.lean
+src/CORALean/ContDynamics/LinearSys/Operations/DiscretizeEnclosure.lean
+src/CORALean/ContDynamics/LinearSys/Operations/DiscretizeEnclosureFloat.lean
+src/CORALean/ContDynamics/LinearSys/Operations/DiscretizeMatZonotope.lean
+src/CORALean/ContDynamics/LinearSys/Operations/DiscretizeMatZonotopeFloat.lean
+src/CORALean/ContDynamics/LinearSys/Operations/OneStep.lean
+src/CORALean/ContDynamics/LinearSys/Operations/OneStepFloat.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ParticularSolution.lean
+src/CORALean/ContDynamics/LinearSys/Operations/Reach.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ReachBox.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ReachBoxFloat.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ReachBoxFloatChecked.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ReachFloat.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ReachStepk.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ReachWrappingFreeFloat.lean
+src/CORALean/ContDynamics/LinearSys/Operations/ReachWrappingFreeFloatInput.lean
+src/CORALean/ContDynamics/LinearSys/Operations/TimePoint.lean
+src/CORALean/ContDynamics/LinearSys/Operations/WithInputReach.lean
+src/CORALean/ContDynamics/LinearSys/Operations/WithInputReachStepk.lean
+src/CORALean/ContDynamics/LinearSys/Operations/WithInputSplitReach.lean
+src/CORALean/ContDynamics/LinearSys/Operations/WithInputSplitReachStepk.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/ExpIntegralConstInput.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/ExpIntegralMemConstInputSolution.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/InputReachMono.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/InputReachSeparation.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/InputReachSeparationEq.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/InputReachSeparationSubset.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/InputReachSubsetParticularSolution.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/IsTrajectorySubMemInputReachRecenter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/IsTrajectorySubMemInputReachShift.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/OneStepFloatTimeIntervalOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/OneStepFloatTimePointOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/OneStepTimeIntervalOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/OneStepTimePointOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/PropagateInputReach.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/ReachBoxFloatOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/ReachBoxOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/ReachOuterWindows.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterConvexCompact.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalOuterSplit.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalReachSetExactEqUnion.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalReachSetExactSubsetSetLinCombSum.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimeIntervalStepOuterSetLinComb.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimePointOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/TimePointStepOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/WithInputReachOuter.lean
+src/CORALean/ContDynamics/LinearSys/Theorems/WithInputSplitReachOuter.lean
+
+# Althoff 2010, Sec. 3.2: the discretization of a linear system as the discrete-time model; no paper
+# we hold states it.
+src/CORALean/ContDynamics/LinearSysDT/LinearSysDT.lean
+
+# Althoff 2010, Lemma 3.2: the symmetric interval matrix times a regular one; first in Althoff,
+# Stursberg and Buss, CDC 2007, which we do not hold.
+src/CORALean/ContSet/Interval/Real/Theorems/MatMulSymmPoint.lean
+
+# Althoff 2010, Lemma 3.2, Lemma 3.3, Thm. 3.3, Remark 3.2: the zonotope times an interval matrix;
+# first in Althoff, Stursberg and Buss, CDC 2007, which we do not hold.
+src/CORALean/ContSet/Zonotope/Real/Theorems/MtimesIntervalMatOuter.lean
+src/CORALean/ContSet/Zonotope/Real/Theorems/MtimesIntervalMatSymmBox.lean
+
+# Althoff 2010, Lemma 3.1 and Thm. 3.2 together with Sec. 3.3.1: a worked comparison of the two
+# interval exponentials; no paper we hold states both.
+src/CORALean/Examples/ExactSecondOrderExp.lean
+
+# Althoff 2010, Alg. 3: the split-input step of a location; no paper we hold states it.
+src/CORALean/HybridDynamics/Operations/TimeIntervalStepSplitFloat.lean
+
+# CORA's header cites Netzer's habilitation thesis, which the entry says is not cited here: no
+# numbered result of it is used.
+src/CORALean/ContSet/SpectraShadow/Real/SpectraShadow.lean

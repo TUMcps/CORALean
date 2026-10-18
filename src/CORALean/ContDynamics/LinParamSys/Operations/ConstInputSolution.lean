@@ -10,16 +10,18 @@ public import CORALean.ContSet.Interval.Real.Instances
 # What a constant input contributes at every time of one step, at every member
 
 `LinearSys.constInputSolution` with the system matrix ranging over a set,
-[1, Alg. 4]'s split case: the straight line `C(r)` applied to the segment
-`[0, ũ]`, `inputSolution`'s own enclosure taking the place of a plain `Mtimes`,
-widened by the box's own interpolation error `intervalConstCorrectionMatrix`
-[1, Prop. 3.4] in place of the point one. `expIntegral_mem_constInputSolution`
-is the guarantee.
+the split case of [1, Alg. 1] (an input set missing the origin, which [1, Sec. 3.3] leaves out):
+the straight line `C(r)` applied to the segment `[0, ũ]`, `inputSolution`'s own enclosure
+taking the place of a plain `Mtimes`, widened by the box's own interpolation error
+`intervalConstCorrectionMatrix` in place of the point one. That input correction matrix is not in
+a paper; CORA's `priv_inputTie` [2]. `expIntegral_mem_constInputSolution` is the guarantee.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
+* [2] `contDynamics/@linParamSys/private/priv_inputTie.m`
 -/
 
 -- Authors:       Claude Sonnet 5

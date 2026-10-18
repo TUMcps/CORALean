@@ -8,17 +8,18 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ExpEnclosure
 /-!
 # What a constant input contributes up to the start of a window, at every member
 
-[1, Alg. 4]'s split case, off the first window: `particularSolution`'s own
-recursion ([1, Prop. 3.2]'s), at the constant `ũ` in place of a set `U` holding
-the origin. `P̃(t_0) = {0}`, and `P̃(t_{k+1}) = e^{[A]Δt} P̃(t_k) ⊕ P̃^R(τ_0)`,
+The split case of [1, Alg. 1] (an input set missing the origin, which [1, Sec. 3.3] leaves out), off
+the first window: `particularSolution`'s own recursion ([1, Alg. 1]'s), at the constant `ũ` in place
+of a set `U` holding the origin. `P̃(t_0) = {0}`, and `P̃(t_{k+1}) = e^{[A]Δt} P̃(t_k) ⊕ P̃^R(τ_0)`,
 `expIntegral_add_mulVec` carrying `∫₀^{t_k} e^{Aσ}dσ ũ` across one more window
 of width `Δt` rather than across `t_k` itself, so every factor is enclosed at
 the fixed order admissible for `Δt` alone.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

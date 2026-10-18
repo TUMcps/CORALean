@@ -26,7 +26,7 @@ from the *same* float values `reach` produces that step, and read back into
 this real accumulator by `.nominal`, the same conversion the box's own
 `construct` already goes through. `U.E.nominal.zonotope` has no `reachError`
 counterpart: `plusBox` bounds `(M.plus U).construct` against `U`'s *float*
-construct while `reachSet` advances by its *nominal* construct alone.
+construct while `reachSetExact` advances by its *nominal* construct alone.
 
 At `k = 0` the error is `R₀`'s own error box, read back as a zonotope.
 -/

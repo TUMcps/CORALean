@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
@@ -73,7 +73,7 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
     {N k : ℕ} (hk : k ≤ N) {t : ℝ}
     (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- STMT ---
     ∃ R, (sys.bundleReachFloat Rh₀ Ri₀ r η N)[k]? = some R
-      ∧ sys.reachSet (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
+      ∧ sys.reachSetExact (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
   -- the matrix, the step and the enclosure `[e^{Ar}]` the loop multiplies by
   set A := Scalar.toRealMat sys.A
   set r' := toReal r
@@ -161,7 +161,7 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
   · rw [hlist, List.getElem?_map, List.getElem?_range (by omega)]
     rfl
   · have ht0 : 0 ≤ t := (hkr k).trans ht.1
-    rw [sys.reachSet_eq X₀ U ht0 hU]
+    rw [sys.reachSetExact_eq X₀ U ht0 hU]
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * r') hτ
     rw [show (k : ℝ) * r' + (t - k * r') = t by ring] at hI

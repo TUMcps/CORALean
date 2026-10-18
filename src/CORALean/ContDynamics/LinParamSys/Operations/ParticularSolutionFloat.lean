@@ -10,15 +10,17 @@ public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
 
 `LinParamSys.particularSolution` computed in `𝕋`: `P^R(t_{k+1})` grown one window
 at a time from `P^R(Δt)`, `inputSolutionFloat`'s set, as
-`P^R(t_{k+1}) = P^R(t_k) ⊕ [e^{[A] t_k}] P^R(Δt)` [1, Prop. 3.2]. The new window
+`P^R(t_{k+1}) = P^R(t_k) ⊕ [e^{[A] t_k}] P^R(Δt)`, [1, Alg. 1]'s
+`R_k = M(r) R_{k-1} + P_0` unrolled with the new window prepended. The new window
 is `reachStepkFloat` applied to `P^R(Δt)`, so it encloses `e^{[A] t_k}` by scaling
 and squaring there, and no window is found when that has no admissible
 squaring count. The accumulated set is reduced to order `ρ`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -20,12 +20,14 @@ all the run spends, it is what the mean value theorem gives for an interval
 Jacobian over a convex box (`Encloses.of_hasFDerivAt`), and for a polynomial field
 it is plain algebra. The price is the remainder: `slopeRemainder` is first order,
 `O(‖δ‖)` in the deviation from the expansion point where CORA's Hessian bound
-[1, Prop. 3.7] is `O(‖δ‖²)`; `FloatHessModel` adds the Hessian enclosure.
+[1, Prop. 1] is `O(‖δ‖²)`; `FloatHessModel` adds the Hessian enclosure.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+      Systems with Uncertain Parameters using Conservative Linearization". In
+      Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
+      pp. 4042-4048.
 -/
 
 -- Authors:       Claude Opus 5.5

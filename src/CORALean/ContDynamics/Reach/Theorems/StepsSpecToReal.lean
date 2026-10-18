@@ -29,10 +29,11 @@ open CORALean.Float SoundFloatArithmetic
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Reach.steps_spec_toReal {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
-    {tStart tFinal : ℚ} {timeStep : 𝕋} {N : ℕ}
-    (h : Reach.steps tStart tFinal (ToRat.toRat timeStep) = some N) :
-    0 < toReal timeStep ∧ (N : ℝ) * toReal timeStep = (tFinal : ℝ) - tStart := by -- --- PROOF ---
-  obtain ⟨hpos, hN⟩ := Reach.steps_spec h
+    {tStart tFinal : ℚ} {timeStep : 𝕋} :
+    ∀ N ∈ Reach.steps tStart tFinal (ToRat.toRat timeStep),
+      0 < toReal timeStep ∧ (N : ℝ) * toReal timeStep = (tFinal : ℝ) - tStart := by -- --- PROOF ---
+  intro N (h : Reach.steps tStart tFinal (ToRat.toRat timeStep) = some N)
+  obtain ⟨hpos, hN⟩ := Reach.steps_spec _ h
   rw [← ToRat.toReal_toRat]
   refine ⟨Rat.cast_pos.mpr hpos, ?_⟩
   -- cast the exact identity in ℚ into ℝ

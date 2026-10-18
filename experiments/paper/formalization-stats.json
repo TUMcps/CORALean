@@ -16,12 +16,12 @@
   "totals": {
     "papers": 97,
     "papers_with_findings": 88,
-    "in_scope": 1274,
-    "formalized": 1218,
+    "in_scope": 1270,
+    "formalized": 1214,
     "not_formalized": 56,
-    "out_of_scope": 1083,
+    "out_of_scope": 1095,
     "out_of_scope_by_reason": {
-      "restated": 397,
+      "restated": 409,
       "mathlib": 23,
       "not-a-claim": 559,
       "done-differently": 11,
@@ -29,25 +29,25 @@
     },
     "by_class": {
       "correct": 811,
-      "underspecified": 253,
-      "proof-gap": 37,
+      "underspecified": 251,
+      "proof-gap": 35,
       "fixed": 106,
       "false": 11
     },
     "claims": {
-      "in_scope": 480,
-      "formalized": 456,
-      "correct": 271,
+      "in_scope": 477,
+      "formalized": 453,
+      "correct": 270,
       "underspecified": 92,
-      "proof-gap": 37,
+      "proof-gap": 35,
       "fixed": 49,
       "false": 7
     },
     "definitions": {
-      "in_scope": 794,
-      "formalized": 762,
-      "correct": 540,
-      "underspecified": 161,
+      "in_scope": 793,
+      "formalized": 761,
+      "correct": 541,
+      "underspecified": 159,
       "proof-gap": 0,
       "fixed": 57,
       "false": 4
@@ -1069,38 +1069,38 @@
       "label": "Althoff 2010 (thesis)",
       "year": 2010,
       "title": "Reachability Analysis and its Application to the Safety Assessment of Autonomous Cars",
-      "in_scope": 34,
-      "formalized": 34,
+      "in_scope": 22,
+      "formalized": 22,
       "not_formalized": 0,
-      "out_of_scope": 2,
+      "out_of_scope": 14,
       "out_of_scope_by_reason": {
-        "restated": 0,
+        "restated": 12,
         "mathlib": 0,
         "not-a-claim": 2,
         "done-differently": 0,
         "not-covered": 0
       },
       "by_class": {
-        "correct": 24,
-        "underspecified": 6,
-        "proof-gap": 4,
+        "correct": 17,
+        "underspecified": 3,
+        "proof-gap": 2,
         "fixed": 0,
         "false": 0
       },
       "claims": {
-        "in_scope": 16,
-        "formalized": 16,
-        "correct": 9,
-        "underspecified": 3,
-        "proof-gap": 4,
+        "in_scope": 11,
+        "formalized": 11,
+        "correct": 7,
+        "underspecified": 2,
+        "proof-gap": 2,
         "fixed": 0,
         "false": 0
       },
       "definitions": {
-        "in_scope": 18,
-        "formalized": 18,
-        "correct": 15,
-        "underspecified": 3,
+        "in_scope": 11,
+        "formalized": 11,
+        "correct": 10,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 0,
         "false": 0
@@ -1130,31 +1130,6 @@
           "result": "Alg. 4",
           "class": "underspecified",
           "reason": "line 2 subtracts `P̃(r)`, which cancels only for a point (Alg. 3), not the box here; formalized with the point-case arrangement"
-        },
-        {
-          "result": "Prop. 3.6",
-          "class": "underspecified",
-          "reason": "the quadratic term is carried unconditionally, which presupposes `η ≥ 2`"
-        },
-        {
-          "result": "Cor. 3.2",
-          "class": "proof-gap",
-          "reason": "proof claims the Hessian range is independent of `z*`; it is not, but a bound valid at any `z*` is valid at the center"
-        },
-        {
-          "result": "Prop. 3.8",
-          "class": "proof-gap",
-          "reason": "`Z₁ ∩ Z₂ = Z*` is read off `A+(B∩C) = (A+B)∩(A+C)`, false for sets; holds because `Z*` is convex"
-        },
-        {
-          "result": "Alg. 5",
-          "class": "underspecified",
-          "reason": "the loop runs \"while `R^H ≠ ∅` or `t < t_f`\", which does not stop before `t_f`; the text (Fig. 3.20, \"until invariant is left\") means \"and\", and `t`, never assigned, is read as `kr`"
-        },
-        {
-          "result": "Heuristic 3.1",
-          "class": "underspecified",
-          "reason": "measure printed as a product, but the sentence justifying it needs a sum; formalized as printed"
         }
       ]
     },
@@ -1345,8 +1320,8 @@
       "label": "Althoff 2011 (reachability)",
       "year": 2011,
       "title": "Analyzing Reachability of Linear Dynamic Systems with Parametric Uncertainties",
-      "in_scope": 5,
-      "formalized": 5,
+      "in_scope": 13,
+      "formalized": 13,
       "not_formalized": 0,
       "out_of_scope": 0,
       "out_of_scope_by_reason": {
@@ -1357,25 +1332,25 @@
         "not-covered": 0
       },
       "by_class": {
-        "correct": 4,
-        "underspecified": 0,
+        "correct": 11,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
       },
       "claims": {
-        "in_scope": 1,
-        "formalized": 1,
-        "correct": 0,
-        "underspecified": 0,
+        "in_scope": 3,
+        "formalized": 3,
+        "correct": 1,
+        "underspecified": 1,
         "proof-gap": 0,
         "fixed": 1,
         "false": 0
       },
       "definitions": {
-        "in_scope": 4,
-        "formalized": 4,
-        "correct": 4,
+        "in_scope": 10,
+        "formalized": 10,
+        "correct": 10,
         "underspecified": 0,
         "proof-gap": 0,
         "fixed": 0,
@@ -1386,6 +1361,11 @@
           "result": "Prop. 3",
           "class": "fixed",
           "reason": "printed generators `L^(j)` are off by a factor of two (confirmed erratum)"
+        },
+        {
+          "result": "Prop. 4",
+          "class": "underspecified",
+          "reason": "no hypothesis on `t`; at `t = 0` the `-1/t` branch is sound but not the exact value claimed"
         }
       ]
     },
@@ -6818,7 +6798,7 @@
         },
         "cora_issues": 6,
         "findings": {
-          "correct": 10,
+          "correct": 9,
           "underspecified": 5,
           "proof-gap": 0,
           "fixed": 2,
@@ -6845,9 +6825,9 @@
         },
         "cora_issues": 16,
         "findings": {
-          "correct": 147,
-          "underspecified": 48,
-          "proof-gap": 5,
+          "correct": 146,
+          "underspecified": 47,
+          "proof-gap": 4,
           "fixed": 16,
           "false": 1
         }
@@ -6926,8 +6906,8 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 4,
-          "underspecified": 2,
+          "correct": 7,
+          "underspecified": 0,
           "proof-gap": 0,
           "fixed": 0,
           "false": 0
@@ -7007,8 +6987,8 @@
         },
         "cora_issues": 3,
         "findings": {
-          "correct": 57,
-          "underspecified": 23,
+          "correct": 60,
+          "underspecified": 25,
           "proof-gap": 10,
           "fixed": 8,
           "false": 1
@@ -7169,9 +7149,9 @@
         },
         "cora_issues": 2,
         "findings": {
-          "correct": 16,
+          "correct": 14,
           "underspecified": 10,
-          "proof-gap": 7,
+          "proof-gap": 6,
           "fixed": 5,
           "false": 2
         }
@@ -7250,8 +7230,8 @@
         },
         "cora_issues": 1,
         "findings": {
-          "correct": 17,
-          "underspecified": 6,
+          "correct": 15,
+          "underspecified": 5,
           "proof-gap": 2,
           "fixed": 3,
           "false": 1
@@ -8411,9 +8391,9 @@
           "deprecated": 14
         },
         "findings": {
-          "correct": 415,
-          "underspecified": 122,
-          "proof-gap": 9,
+          "correct": 413,
+          "underspecified": 121,
+          "proof-gap": 8,
           "fixed": 48,
           "false": 5
         }
@@ -8436,9 +8416,9 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 184,
+          "correct": 188,
           "underspecified": 64,
-          "proof-gap": 18,
+          "proof-gap": 17,
           "fixed": 27,
           "false": 3
         }
@@ -8461,8 +8441,8 @@
           "deprecated": 0
         },
         "findings": {
-          "correct": 17,
-          "underspecified": 6,
+          "correct": 15,
+          "underspecified": 5,
           "proof-gap": 2,
           "fixed": 3,
           "false": 1
@@ -8563,8 +8543,8 @@
       },
       "findings": {
         "correct": 727,
-        "underspecified": 222,
-        "proof-gap": 33,
+        "underspecified": 220,
+        "proof-gap": 31,
         "fixed": 89,
         "false": 10
       }
@@ -8586,10 +8566,10 @@
       }
     },
     "theorems": {
-      "paper": 1839,
+      "paper": 1843,
       "float": 1925,
       "helper": 1785,
-      "lemma": 3367,
+      "lemma": 3363,
       "total": 8916,
       "examples": 129
     }

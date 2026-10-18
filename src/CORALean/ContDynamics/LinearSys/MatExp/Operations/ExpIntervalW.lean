@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Basic
 /-!
 # Interval matrices: the second-order Taylor term, exactly
 
-`expIntervalW`: `W(t)` of [1, Lemma 3.1] as an interval matrix. `A` occurring twice in
+`expIntervalW`: `W(t)` of [1, Prop. 4] as an interval matrix. `A` occurring twice in
 `W(t) = A t + ½ A² t²` means ordinary interval arithmetic over-approximates it. Entry by
 entry it rearranges into a *single-use expression* off the diagonal,
 `W i j = A i j (t + ½ t² (A i i + A j j)) + ½ t² ∑_{k ≠ i, j} A i k A k j`,
@@ -22,8 +22,9 @@ CORA computes the same term in `@intervalMatrix/dependentTerms.m`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5
@@ -41,7 +42,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `W(t)` of [1, Lemma 3.1] as an interval matrix: the single-use rearrangement
+/-- `W(t)` of [1, Prop. 4] as an interval matrix: the single-use rearrangement
 off the diagonal, the parabola's range on it, and the same `k ≠ i, j`
 row-column sum under both. -/
 noncomputable def MatExp.expIntervalW (A : Interval (Mat ℝ n n)) (t : ℝ) :

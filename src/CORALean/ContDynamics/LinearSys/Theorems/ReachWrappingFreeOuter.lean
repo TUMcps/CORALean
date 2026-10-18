@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 public import CORALean.ContDynamics.LinearSys.Operations.ReachWrappingFree
-public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
 public import CORALean.ContSet.SetUnion.Theorems.Basic

@@ -56,16 +56,17 @@ theorem aux_oneStep_mem_pt {k : ℕ} (v : Vec 𝕋 k) :
 
 /-- A successful step has a positive width, and every run of `sys` on `[0, Δt]` from `R`
 whose `f(x, u) - A(x - x✱)` stays in `V` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
-theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n n}
-    {xs : Vec 𝕋 n} {V R Rτ Rt : Zonotope (Vec 𝕋 n)} {options : LinearSys.ReachOptions 𝕋}
-    (hstep : NonlinearSys.oneStepFloat A xs V R options = some (Rτ, Rt)) : -- --- STMT ---
-    0 < toReal options.Δt ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-        R.construct U x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.Δt),
-        sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs) ∈ V.construct) →
-      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-        x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n n} {xs : Vec 𝕋 n}
+    {V R : Zonotope (Vec 𝕋 n)} {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rτ Rt, (Rτ, Rt) ∈ NonlinearSys.oneStepFloat A xs V R options →
+      0 < toReal options.Δt ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+          R.construct U x u →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt),
+          sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs) ∈ V.construct) →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+  intro Rτ Rt (hstep : NonlinearSys.oneStepFloat A xs V R options = some (Rτ, Rt))
   -- every `←` of the step succeeded: name what each returned
   unfold NonlinearSys.oneStepFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
@@ -73,7 +74,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   simp only [pure, Option.some.injEq, Prod.mk.injEq] at hpure
   obtain ⟨rfl, rfl⟩ := hpure
   set Δt := options.Δt with hΔt_def
-  obtain ⟨hΔt, -⟩ := LinearSys.reachFloatInput_invariant _ hS
+  obtain ⟨hΔt, -⟩ := LinearSys.reachFloatInput_invariant _ _ _ hS
   refine ⟨hΔt, fun {U x u} traj hV => ?_⟩
   -- the horizon `reachFloatInput` was given is the step
   have hTf : (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)) = toReal Δt := by
@@ -114,8 +115,8 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
     rw [LinearSys.canonicalFloat_input, Set.image_id]
     exact (Zonotope.isCompact_construct _).isBounded
   have ltraj := ltrajC.trajectory (convex_Icc _ _) ⟨le_rfl, by rw [hTf]; exact hΔt.le⟩ hVb
-  obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ hS
-  obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ hS
+  obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ _ hS
+  obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ _ hS
   -- adding `x✱` back
   have hback : ∀ {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.construct →
       y ∈ construct (Z ⊞ (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :

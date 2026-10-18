@@ -9,14 +9,15 @@ public import CORALean.ContSet.Interval.Float.Operations.MulLo
 /-!
 # The second-order Taylor term's diagonal factor, over a floating-point scalar
 
-`quadTerm`: the `γ(a) = a t + ½ a² t²` of [1, Lemma 3.1] at a float `a`, as the interval
+`quadTerm`: the `γ(a) = a t + ½ a² t²` of [1, Prop. 4] at a float `a`, as the interval
 `γ` lies in. `a t` is bracketed by the two directed products and squared by the corner hull,
 so the result rounds outward at every step.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

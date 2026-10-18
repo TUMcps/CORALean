@@ -47,7 +47,7 @@ theorem Polygon.minkDiff_inner (P Q : Polygon 𝕋) :
     cases hH
     rfl
   have hxy := HPolytope.minkDiffOf_inner H _ _ (fun i => absurd i.isLt (by omega)) hxR y hy
-  exact SetUnion.mem_construct.mpr ⟨p, hp, Polygon.innerHRep_inner hH hxy⟩
+  exact SetUnion.mem_construct.mpr ⟨p, hp, Polygon.innerHRep_inner _ hH hxy⟩
 
 end CORALean.Float
 

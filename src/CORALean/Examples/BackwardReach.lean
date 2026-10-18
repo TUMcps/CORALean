@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachForallInnerZonotope
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallIsTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetForallExactIsTrajectory
 import CORALean.ContDynamics.LinearSysDT.Theorems.SimulateIsTrajectory
 import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
@@ -107,7 +107,7 @@ theorem BReach.mem :
 /-- So `0.3` is in the exact backward reachable set — the computed set is
 inside it, and that is the only direction an implementation may claim. -/
 theorem BReach.backOne :
-    (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.sys.backReachSetForall (S := 𝒵) BReach.T BReach.U 1 :=
+    (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.sys.backReachSetForallExact (S := 𝒵) BReach.T BReach.U 1 :=
   BReach.sys.backReachForall_inner_zonotope BReach.hA BReach.M BReach.T BReach.U 1 _
     BReach.run BReach.mem
 
@@ -125,7 +125,7 @@ theorem BReach.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.T.construct := by --
 is inside the target one step later. -/
 example (u : ℕ → Vec ℝ 1) (hu : ∀ k, u k ∈ construct BReach.U) :
     BReach.sys.simulate ![(0.3:ℝ)] u 1 ∈ construct BReach.T :=
-  BReach.sys.backReachSetForall_isTrajectory (S := 𝒵) BReach.T BReach.U
+  BReach.sys.backReachSetForallExact_isTrajectory (S := 𝒵) BReach.T BReach.U
     (BReach.sys.simulate_isTrajectory (S := 𝒵) (R₀ := BReach.T) BReach.memT hu) 1 BReach.backOne
 
 end CORALean.Real

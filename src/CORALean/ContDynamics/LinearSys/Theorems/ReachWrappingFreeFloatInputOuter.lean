@@ -58,24 +58,25 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 at every time of window `k`, in the `k`-th set. -/
 theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachWrappingFreeFloatInput params options = some Rs) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮)
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-          ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-            params.U.construct) x u →
-        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rs ∈ sys.reachWrappingFreeFloatInput params options,
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
+          sys.IsCanonicalTrajectory (S := 𝒮)
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
+              params.U.construct) x u →
+          ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+  intro Rs (h : sys.reachWrappingFreeFloatInput params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachWrappingFreeFloatInput, Option.bind_eq_bind,
     Option.bind_eq_some_iff, Option.pure_def, Option.some.injEq] at h
   obtain ⟨N, hN, η', hη', Hτ, hHτ, Pτ, hPτ, rfl⟩ := h
-  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal _ hN
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   obtain ⟨hHlen, hHget⟩ := LinParamSys.mapM_eq_some hHτ
   obtain ⟨hPlen, hPget⟩ := LinParamSys.mapM_eq_some hPτ
   rw [List.length_range] at hHlen hPlen
@@ -139,9 +140,9 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
         (S := 𝒵[𝕋]) hΔt.le
         (by positivity) hbdd hq
       -- the step's share, carried across `t_j` by `[e^{A t_j}]`
-      have hstep := sys.reachStepkWrappingFreeFloat_outer hadm.1 (hPget j hjN)
+      have hstep := sys.reachStepkWrappingFreeFloat_outer hadm.1
         (Plus.plus_outer (sys.inputSolutionFloat Δt η' (Interval.point V.c).zonotope)
-          (sys.inputSolutionFloat Δt η' Ũ) (Set.add_mem_add hPu (hPU hp)))
+          (sys.inputSolutionFloat Δt η' Ũ) (Set.add_mem_add hPu (hPU hp))) _ (hPget j hjN)
       simp only [List.getElem_range] at hstep
       rw [Matrix.mulVec_add] at hstep
       have hsum := Reduce.reduce_outer _ ρ (Plus.plus_outer P[j] Pτ[j] (Set.add_mem_add
@@ -184,10 +185,10 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
           h0seg hτ.1 hτ.2
           (hconst hũseg hτ.1)))))
   have hk' : k < N := by simp [hHlen] at hk; omega
-  have hwin := sys.reachStepkWrappingFreeFloat_outer hadm.1 (hHget k (by rw [hHlen]; exact hk'))
+  have hwin := sys.reachStepkWrappingFreeFloat_outer hadm.1
     (Plus.plus_outer (Reduce.reduce (sys.timeIntervalStepFloat Δt η' X₀
       ⊞ sys.inputSolutionFloat Δt η' seg) ρ) (sys.inputSolutionFloat Δt η' Ũ)
-      (Set.add_mem_add hfirst (hPU hp)))
+      (Set.add_mem_add hfirst (hPU hp))) _ (hHget k (by rw [hHlen]; exact hk'))
   simp only [List.getElem_range] at hwin
   have hacc := hP k (by simp [hPdef, hPlen]; omega) q hq
 

@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachErrorReduced
 # An inner approximation whose subtrahend has a bounded description
 
 `reachInner` with `reachErrorReduced` in place of `reachError`. Same guarantee
-— `reachInnerReduced_inner` puts it inside `reachSet`, exactly as
+— `reachInnerReduced_inner` puts it inside `reachSetExact`, exactly as
 `reachInner_inner` does — and a strictly weaker one in content:
 `reachInnerReduced_subset_reachInner` says this is the smaller set, because
 reducing the error can only grow what is taken off.
@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The computed run minus its reduced error: an inner approximation of
-`reachSet` that is smaller than `reachInner`, and whose subtrahend is held at
+`reachSetExact` that is smaller than `reachInner`, and whose subtrahend is held at
 `o * n` generators rather than growing a box per step. -/
 noncomputable def LinearSysDT.reachInnerReduced (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : Set (Vec ℝ n) :=

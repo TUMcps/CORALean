@@ -13,7 +13,7 @@ public import CORALean.Global.Float.ToRat
 /-!
 # Reachability of a set-valued-matrix system in floats, window by window
 
-The homogeneous windows `reachStepk` over the horizon, computed in `𝕋`, as [1, Alg. 4] reads at a
+The homogeneous windows `reachStepk` over the horizon, computed in `𝕋`, as [1, Alg. 1] reads at a
 constant parameter, `U = {0}`: the first window `H^R(τ_0)` by `timeIntervalStepFloat`,
 reduced to order `ρ` as `LinearSys.reachWrappingFreeFloat` reduces it, and window
 `k` by `reachStepkFloat`, `[e^{[A] t_k}]` applied to the first — never a power of
@@ -22,8 +22,9 @@ by `Reach.steps`; `η` raised by `reachOrderFloat`; `none` when either fails.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

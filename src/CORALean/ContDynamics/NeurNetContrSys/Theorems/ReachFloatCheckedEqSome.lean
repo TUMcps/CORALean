@@ -30,13 +30,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeurNetContrSys.reachFloatChecked_eq_some
-    (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[𝕋] n)
+theorem NeurNetContrSys.reachFloatChecked_eq_some (sys : NeurNetContrSys (LinearSys 𝕋 n) 𝒵[𝕋] n)
     (U_ext : Zonotope (Vec 𝕋 sys.nExt)) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ)
-    (options : NeurNetContrSys.ReachOptions 𝕋)
-    {R : Zonotope (Vec 𝕋 n)}
-    (h : sys.reachFloatChecked U_ext params options = some R) : -- --- STMT ---
-    sys.reachFloat U_ext params options = R ∧ noNaN (𝕋 := 𝕋) R = true := by -- --- PROOF ---
+    (options : NeurNetContrSys.ReachOptions 𝕋) : -- --- STMT ---
+    ∀ R ∈ sys.reachFloatChecked U_ext params options,
+      sys.reachFloat U_ext params options = R ∧ noNaN (𝕋 := 𝕋) R = true := by -- --- PROOF ---
+  intro R (h : sys.reachFloatChecked U_ext params options = some R)
   obtain ⟨rfl, hx⟩ := ifNoNaN_eq_some h
   exact ⟨rfl, hx⟩
 

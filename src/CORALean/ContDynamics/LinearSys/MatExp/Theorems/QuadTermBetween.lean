@@ -11,7 +11,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # The diagonal parabola stays between its two bounds
 
-[1, Lemma 3.1], the half that says `quadTermLo`/`quadTermHi` enclose. `γ` opens
+[1, Prop. 4], the half that says `quadTermLo`/`quadTermHi` enclose. `γ` opens
 upwards, so the maximum is at an endpoint and the minimum at the vertex `-1/t`
 only when the box straddles it.
 
@@ -26,8 +26,9 @@ tightness theorem is where `t ≠ 0` is paid.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5

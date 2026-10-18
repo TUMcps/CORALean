@@ -28,11 +28,12 @@ variable {A : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineReachSetAnalyzer.ext_updateNode (nodes nodes' : List (OnlineAnalyzerNode A)) (i : ℕ)
+theorem OnlineReachSetAnalyzer.ext_updateNode (nodes : List (OnlineAnalyzerNode A)) (i : ℕ)
     (f : OnlineAnalyzerNode A → Option (OnlineAnalyzerNode A))
-    (h : OnlineReachSetAnalyzer.updateNode nodes i f = some nodes')
     (hf : ∀ n ∈ nodes, ∀ n', f n = some n' → OnlineReachSetAnalyzer.Same n n') : -- --- STMT ---
-    OnlineReachSetAnalyzer.Ext nodes nodes' ∧ nodes'.length = nodes.length := by -- --- PROOF ---
+    ∀ nodes' ∈ OnlineReachSetAnalyzer.updateNode nodes i f,
+      OnlineReachSetAnalyzer.Ext nodes nodes' ∧ nodes'.length = nodes.length := by -- --- PROOF ---
+  intro nodes' (h : OnlineReachSetAnalyzer.updateNode nodes i f = some nodes')
   obtain ⟨-, n, n', hn, hfn, rfl⟩ := (OnlineReachSetAnalyzer.updateNode_eq_some_iff _ _ _ _).mp h
   refine ⟨⟨by simp, fun j hj hj' => ?_⟩, by simp⟩
   -- the updated position is `Same`, every other one is equal

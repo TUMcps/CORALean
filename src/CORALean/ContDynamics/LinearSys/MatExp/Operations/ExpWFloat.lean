@@ -9,15 +9,16 @@ public import CORALean.ContSet.Interval.Float.Operations.MulLo
 /-!
 # The second-order Taylor term, at one float matrix
 
-`expW`: [1, Lemma 3.1]'s `W(t) = M t + ½ M² t²` at a stored matrix `M` and time `t`, as
+`expW`: [1, Prop. 4]'s `W(t) = M t + ½ M² t²` at a stored matrix `M` and time `t`, as
 `Real.MatExp.expW` has it, in the interval matrix it lies in. Neither the entries of `M²` (a dot
 product) nor `½ t²` is held exactly by a float, so an entry is `t M_ij` plus the product of two
 brackets, each rounded outward.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

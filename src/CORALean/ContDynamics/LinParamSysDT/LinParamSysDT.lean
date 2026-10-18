@@ -8,11 +8,11 @@ public import CORALean.ContSet.ContSet.ContSet
 # Discrete-time linear systems with a set-valued system matrix
 
 `x(k+1) = A(k) x(k) + B(k) u(k) + c` with `A(k)`, `B(k)` ranging over the sets `sys.A`, `sys.B`
-at every step, not fixed for the run — the system-matrix uncertainty of [1, Sec. 3.3]. The
+at every step, not fixed for the run — the system-matrix uncertainty of [1, Sec. 2]. The
 parameters are those of the continuous twin `LinParamSys` (`A`, `B` matrix sets, `c`, `m`); no
 `dt`, steps being counted. CORA has no class of this name: this is the discrete step inside
 `linParamSys/post`, `R(k+1) = M R(k) ⊕ R_input`, `M` the enclosure `mappingMatrixSet` of
-`e^{AΔt}` and `R_input` the input solution of `V = B*U + c`, the loop of [1, Alg. 4].
+`e^{AΔt}` and `R_input` the input solution of `V = B*U + c`, the loop of [1, Alg. 1].
 `LinParamSys.discretizeEnclosure` (and its float twin) produce one, `LinearSys.discretize…` from
 a `LinearSys`, and `LinearSysDT.toLinParam` embeds the point case `𝕄 := Mat 𝕋`. The reach takes
 the input in state coordinates, `U' ⊇ B U ⊕ c` (`inputSet`), so it reads neither `B` nor `c`:
@@ -23,8 +23,9 @@ canonical run known for `k < K`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5

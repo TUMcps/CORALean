@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.Conform.Definitions.ReachOut
+public import CORALean.ContDynamics.Conform.Definitions.ReachOutExact
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
 @[expose] public section
@@ -52,7 +52,7 @@ structure Conform.TestCase (n p q : ℕ) where
 /-- [1, Def. 5]: every measurement up to `K` in its test case's reachable set. -/
 def Conform.Plant.Conformant {M : Type} (sys : Conform.Plant n p q) (X0 W : Set (Vec ℝ n))
     (V : Set (Vec ℝ q)) (T : M → Conform.TestCase n p q) (K : ℕ) : Prop :=
-  ∀ m, ∀ k ≤ K, (T m).y k ∈ sys.reachOut ({(T m).x0} + X0) (T m).u W V k
+  ∀ m, ∀ k ≤ K, (T m).y k ∈ sys.reachOutExact ({(T m).x0} + X0) (T m).u W V k
 
 end CORALean
 

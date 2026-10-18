@@ -10,14 +10,15 @@ public import CORALean.ContSet.Zonotope.Float.Instances
 /-!
 # Orders `2` through `η` of the input solution, in floats
 
-`LinParamSys.inputTaylorSumTail` computed in `𝕋` [1, Prop. 3.6]: `inputTaylorSumFloat`
+`LinParamSys.inputTaylorSumTail` computed in `𝕋` ([1, Thm. 1], [1, Sec. 4.4]): `inputTaylorSumFloat`
 starting at order `2`, orders `0` and `1` being `inputTermZonoFloat`'s. Below order `2`
 the sum is empty, matched by the zero point interval, as the exact layer matches it.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

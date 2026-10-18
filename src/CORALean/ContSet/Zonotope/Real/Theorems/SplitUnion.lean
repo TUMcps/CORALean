@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 # A split loses nothing
 
 `split`'s two halves cover exactly the zonotope they came from
-[1, Prop. 3.8]. Read on the coefficient cube: the `j`-th coefficient of a half
+[1, Prop. 3]. Read on the coefficient cube: the `j`-th coefficient of a half
 is an affine image of `[-1, 1]`, onto `[-1, 0]` for the first half and onto
 `[0, 1]` for the second, and every other coefficient is carried across
 unchanged. So it is one substitution each way, `β_j ↦ (β_j ∓ 1)/2` forwards and
@@ -24,13 +24,9 @@ halves are the original.
 `Fintype` instance along, so the two halves are restated by `rfl` first; after
 that every sum here is `sum_smul_update` at different arguments.
 
-It first appeared as [2, Prop. 3].
-
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
       Systems with Uncertain Parameters using Conservative Linearization". In
       Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
       pp. 4042-4048.

@@ -13,7 +13,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.Canonical
 
 `inputSolution_outer` encloses what the input contributed where the step *ends*.
 A time-interval enclosure needs one set covering every `t ∈ [0, r]`, and
-[1, Prop. 3.3] says `0 ∈ U` makes those the same set — a statement about sets of
+[1, Sec. 3.3] says `0 ∈ U` makes those the same set — a statement about sets of
 points, so it is the point system at the fixed member that carries it and the
 matrix set never enters.
 
@@ -23,8 +23,9 @@ enclosure computed from the box.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5

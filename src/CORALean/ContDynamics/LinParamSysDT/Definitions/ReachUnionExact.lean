@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinParamSysDT.Definitions.ReachSetExact
 
 @[expose] public section
 
@@ -31,7 +31,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
 /-- Every state reachable in at most `K` steps from `R₀` under inputs in `U`. -/
 def LinParamSysDT.reachUnionExact (sys : LinParamSysDT 𝕄 n) (R₀ U : S n) (K : ℕ) :
     Set (Vec ℝ n) :=
-  ⋃ k ≤ K, sys.reachSet R₀ U k
+  ⋃ k ≤ K, sys.reachSetExact R₀ U k
 
 end CORALean
 

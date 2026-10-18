@@ -19,20 +19,21 @@ singleton, and `linComb (ofPoint 0) (ofPoint c)` is the segment the constant is
 enclosed against, exactly as the point-matrix split does it, so no
 representation-specific development is needed here either.
 
-That is `R(0)` of [1, Alg. 4] and nothing beyond it: the enclosure over one step
-`[0,r]`, at every matrix the box holds; the loop over the horizon is
-`discretizeEnclosure_mem_reach`. The printed line subtracts `P̃(r) = C(r)ũ`
-inside the hull and adds it back, which cancels only where `P̃(r)` is a point —
-true at a point matrix, false at a box, where `C(r)` is itself an interval
-matrix. The segment does that work with no subtraction to cancel.
+That is `R_0` of [1, Alg. 1], extended to an input set missing the origin, and nothing beyond
+it: the enclosure over one step `[0,r]`, at every matrix the box holds; the loop over the horizon
+is `discretizeEnclosure_mem_reach`. The point-matrix construction subtracts `P̃(r) = C(r)ũ` inside
+the hull and adds it back, which cancels only where `P̃(r)` is a point — true at a point matrix,
+false at a box, where `C(r)` is itself an interval matrix. The segment does that work with no
+subtraction to cancel.
 
 `Mtimes (Mat ℝ) S` is not asked for, where the point case needs it: every factor
 is now an interval matrix, `C(r)` included.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5
@@ -103,7 +104,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer_split
       (CompactSet.isBounded_construct (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.intervalInputRemainder sys.A r (m + 2)) (LinComb.linComb
           (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint (Recenter.center U)))))
-      -- and the recentered set is what Prop. 3.3 is read at
+      -- and the recentered set is what [1, Sec. 3.3] is read at
       (Recenter.zero_mem_recenter U)
       (ConvexSet.convex_construct (Recenter.recenter U))
       (CompactSet.isClosed_construct (Recenter.recenter U))

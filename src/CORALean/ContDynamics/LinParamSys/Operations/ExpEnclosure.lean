@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclo
 /-!
 # `e^{At}` at every matrix the set holds, as one interval matrix
 
-`expIntervalEnclosure` of the box `t • sys.A` [1, Sec. 3.3.1], at the order
+`expIntervalEnclosure` of the box `t • sys.A` [1, Sec. 3.1], at the order
 asked for raised to `reachOrder t + 2` wherever that is higher: the enclosure
 holds only at an order admissible for `t`, and a window far into the horizon
 needs a higher one than the first. So `exp_mem_expEnclosure` asks nothing of
@@ -16,8 +16,9 @@ needs a higher one than the first. So `exp_mem_expEnclosure` asks nothing of
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -38,10 +38,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.minnorm_ball (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (U : 𝕋)
-    (hU : Z.minnorm p = some U) (r : ℝ) (hr : 0 ≤ r)
+theorem Zonotope.minnorm_ball (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (r : ℝ) (hr : 0 ≤ r)
     (hball : ∀ y : Vec ℝ (n + 1), y ⬝ᵥ y ≤ r ^ 2 → toRealVec Z.c + y ∈ nominalSet Z) :
-    r ≤ toReal U := by -- --- PROOF ---
+    ∀ U ∈ Z.minnorm p,
+      r ≤ toReal U := by -- --- PROOF ---
+  intro U (hU : Z.minnorm p = some U)
   unfold Zonotope.minnorm at hU
   dsimp only at hU
   -- every row of `b` is above `r`
@@ -51,7 +52,7 @@ theorem Zonotope.minnorm_ball (p : ℕ) (Z : Zonotope (Vec 𝕋 (n + 1))) (U : �
     intro o ho
     obtain ⟨T, -, hT⟩ := List.mem_filterMap.mp ho
     split_ifs at hT with hlen
-    exact Zonotope.minnormOffset_ge p Z _ o hT r hr hball
+    exact Zonotope.minnormOffset_ge p Z _ r hr hball o hT
   -- and a fold of `minimum` over such rows stays above it
   have key : ∀ (l : List 𝕋) (best : Option 𝕋), (∀ o ∈ l, r ≤ toReal o) →
       (∀ x, best = some x → r ≤ toReal x) →

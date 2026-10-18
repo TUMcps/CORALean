@@ -76,7 +76,7 @@ theorem Taylm.codeEval_encloses {m : ℕ} (p q s N : ℕ) {F : Fin m → Taylm �
     intro T hT
     simp only [Taylm.codeEval, Option.bind_eq_some_iff] at hT
     obtain ⟨A, hA, hk⟩ := hT
-    exact Taylm.intrinsic_encloses p q s (iha hA) k hk
+    exact Taylm.intrinsic_encloses p q s (iha hA) k _ hk
 
 end CORALean.Float
 

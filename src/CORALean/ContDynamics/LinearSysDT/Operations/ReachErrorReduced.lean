@@ -18,7 +18,7 @@ holds `k * n` generators: past `k = o` the subtrahend is described by more
 generators than the run it comes off, which is bounded at `o * n` throughout.
 
 A `reduce` per step caps it, and the *direction* is what makes that sound. The
-error stands on the right of `reach_subset_reachSet_add_error`, added to the
+error stands on the right of `reach_subset_reachSetExact_add_error`, added to the
 exact set, so enlarging it keeps that inclusion — the reverse of the usual
 situation, where enlarging a computed set is what breaks a guarantee. And
 `reduce_outer` enlarges. So the price is precision, never soundness: the error

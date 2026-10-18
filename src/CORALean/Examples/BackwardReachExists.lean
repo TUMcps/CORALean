@@ -1,5 +1,5 @@
 import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachExistsOuter
-import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsIsTrajectory
+import CORALean.ContDynamics.LinearSysDT.Theorems.BackReachSetExistsExactIsTrajectory
 import CORALean.ContSet.Interval.Real.Instances
 import CORALean.ContDynamics.LinearSysDT.Operations.Canonical
 
@@ -87,7 +87,7 @@ example (u : Vec ℝ 1) (hu : u ∈ construct BReachE.U) :
 /-- `0.3` is in the exact set, witnessed by the zero input: `2 · 0.3 = 0.6`,
 which is in `[-1, 1]`. -/
 theorem BReachE.mem :
-    (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReachE.sys.backReachSetExists (S := ℐ𝒱)
+    (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReachE.sys.backReachSetExistsExact (S := ℐ𝒱)
       BReachE.T BReachE.U 1 := by -- --- PROOF ---
   refine ⟨0, fun i => ?_, fun i => ?_⟩
   · show (![(-0.2:ℝ)] : Vec ℝ 1) i ≤ (0 : Vec ℝ 1) i ∧ (0 : Vec ℝ 1) i ≤ (![(0.2:ℝ)] : Vec ℝ 1) i
@@ -97,7 +97,7 @@ theorem BReachE.mem :
     norm_num [BReachE.sys, Matrix.mulVec, dotProduct]
 
 /-- `0.3` is in the target as well, which is what lets a run start there:
-`backReachSetExists_isTrajectory` asks for a set the start lies in. -/
+`backReachSetExistsExact_isTrajectory` asks for a set the start lies in. -/
 theorem BReachE.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ construct BReachE.T := by
   intro i
   show (![(-1:ℝ)] : Vec ℝ 1) i ≤ (![(0.3:ℝ)] : Vec ℝ 1) i ∧
@@ -110,7 +110,7 @@ example : ∃ u : ℕ → Vec ℝ 1,
     BReachE.sys.IsCanonicalTrajectoryOn (S := ℐ𝒱) BReachE.T BReachE.U 1
       (BReachE.sys.simulate ![(0.3:ℝ)] u) u ∧
     BReachE.sys.simulate ![(0.3:ℝ)] u 1 ∈ construct BReachE.T :=
-  BReachE.sys.backReachSetExists_isTrajectory (S := ℐ𝒱) BReachE.T BReachE.U
+  BReachE.sys.backReachSetExistsExact_isTrajectory (S := ℐ𝒱) BReachE.T BReachE.U
     BReachE.memT 1 BReachE.mem
 
 end CORALean.Real

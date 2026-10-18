@@ -14,16 +14,19 @@ public import CORALean.ContSet.ContSet.Theorems.SmulMemLinCombOfPoint
 # `constInputSolution` holds what the constant contributes, at every member
 
 `LinearSys.expIntegral_mem_constInputSolution` at an interval matrix, feeding
-[1, Alg. 4]'s split case: at `t ∈ [0, r]`, `∫₀ᵗ e^{Aσ}dσ ũ` is the straight
-line `C(r)((t/r) ũ)` plus a member of [1, Prop. 3.4]'s `F̃` applied to `ũ`, the
+The split case of [1, Alg. 1] (an input set missing the origin, which [1, Sec. 3.3] leaves out): at
+`t ∈ [0, r]`, `∫₀ᵗ e^{Aσ}dσ ũ` is the straight line `C(r)((t/r) ũ)` plus a member of the input
+correction matrix `F̃` (not in a paper; CORA's `priv_inputTie` [2]) applied to `ũ`, the
 first through `inputSolution_outer` at the constant input `(t/r) ũ` on the
 segment `[0, ũ]`, the second through
 `expIntegralDiff_mem_intervalConstCorrectionMatrix`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
+* [2] `contDynamics/@linParamSys/private/priv_inputTie.m`
 -/
 
 -- Authors:       Claude Sonnet 5

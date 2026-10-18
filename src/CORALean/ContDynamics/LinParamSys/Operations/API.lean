@@ -64,13 +64,14 @@ these at float interval matrices, `ExpIntervalFloat` the box's exponential at an
 
 At `ℐ` throughout: every factor is an interval matrix, the exponential and the
 correction matrix of a box being interval matrices themselves. `InputSolutionZono`
-is [1, Prop. 3.6] instead, at a matrix zonotope: `InputTermZono` for its exact
+is [1, Thm. 1] instead, at a matrix zonotope: `InputTermZono` for its exact
 linear and quadratic orders, `InputTaylorSumTail` for the interval-matrix orders past them;
 `InitReachInputDependence`/`DependentHomSol` CORA's first step with an input sharing its
 parameters, `DependentLowOrder` corrected, `DependentHomSolLowOrder` as CORA computes it.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/

@@ -33,22 +33,23 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OnlineReachSetAnalyzer.observeSet_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyzer S d)
-    (N : OnlineAnalyzerNode (AtomicProposition S d)) (a : AtomicProposition S d)
-    (tent : TentativeKleeneSignal ℝ) (hn : obj.nodes = [N]) (hl : obj.leaves = [1])
-    (hf : obj.propagationFrequency = 1) (hc : obj.numObservations = 0)
-    (hk : N.kind = .ap) (hap : N.ap = some a) (ht : N.tentative = some tent)
+    (N : OnlineAnalyzerNode (AtomicProposition S d)) (hn : obj.nodes = [N]) (hl : obj.leaves = [1])
+    (hf : obj.propagationFrequency = 1) (hc : obj.numObservations = 0) (hk : N.kind = .ap)
     (hp : N.prop = [STLInterval.empty]) (hch : N.children = []) (set : S d) (loc : ℕ)
-    (I : STLInterval) (hne : I ≠ .empty) (val : Kleene)
-    (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) : -- --- STMT ---
-    ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc none = some obj1 ∧
-      obj1.nodes =
-        [{ N with signal := N.signal.set I (FourValued.fromKleene val) }] := by -- --- PROOF ---
+    (I : STLInterval) (hne : I ≠ .empty) (val : Kleene) : -- --- STMT ---
+    ∀ tent ∈ N.tentative,
+      ∀ a ∈ N.ap,
+        OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val →
+        ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc none = some obj1 ∧
+          obj1.nodes =
+            [{ N with signal := N.signal.set I (FourValued.fromKleene val) }] := by -- --- PROOF ---
+  intro tent (ht : N.tentative = some tent) a (hap : N.ap = some a) hval
   -- nothing was propagated to the node, so the observation conflicts with nothing
   have hnc : OnlineAnalyzerNode.conflicts eps I.infimum.value I.infimum.closed N.prop =
       some false := by
     cases I <;> simp [OnlineAnalyzerNode.conflicts, STLInterval.supremum, hp, STLInterval.infimum]
-  have hobs := (OnlineAnalyzerNode.observeSet_ap_spec (𝕋 := 𝕋) eps N set I loc hk a hap tent ht
-    hnc val hval).1.1
+  have hobs := (OnlineAnalyzerNode.observeSet_ap_spec (𝕋 := 𝕋) eps N set I loc hk hnc val tent
+    ht a hap hval).1.1
   cases I with
   | empty => exact absurd rfl hne
   | nonempty l u lc rc p1 p2 p3 =>

@@ -66,19 +66,19 @@ theorem aux_window {N : ℕ} {Δ t : ℝ} (hΔ : 0 < Δ) (hN : 0 < N) (ht0 : 0 �
 
 /-- Every state a stay of length `τ ≤ tFinal` from `X₀` passes through lies in
 one of the computed time-interval sets. -/
-theorem Location.IsTrajectory.reachFloat_outer
-    {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ}
-    {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) {tFinal : ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {X₀ : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : ℓ.reachFloat tFinal options X₀ = some Rs) (h₀ : x 0 ∈ construct X₀)
-    (hτ : τ ≤ tFinal) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) : -- --- STMT ---
-    ∃ R ∈ Rs, x t ∈ construct R := by -- --- PROOF ---
+theorem Location.IsTrajectory.reachFloat_outer {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n}
+    {u w} (traj : ℓ.IsTrajectory τ x u w) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋}
+    {X₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct X₀) (hτ : τ ≤ tFinal) {t : ℝ}
+    (ht : t ∈ Set.Icc 0 τ) : -- --- STMT ---
+    ∀ Rs ∈ ℓ.reachFloat tFinal options X₀,
+      ∃ R ∈ Rs, x t ∈ construct R := by -- --- PROOF ---
+  intro Rs (h : ℓ.reachFloat tFinal options X₀ = some Rs)
   unfold Location.reachFloat at h
   split_ifs at h with htf
   obtain ⟨⟨Rti, Rtp⟩, hreach, hRs⟩ := Option.bind_eq_some_iff.mp h
   cases hRs
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, -, hinv⟩ :=
-    (LinearSys.canonicalFloat ℓ.dynamics.A).reachFloatInput_invariant hreach
+    (LinearSys.canonicalFloat ℓ.dynamics.A).reachFloatInput_invariant _ _ hreach
   set Δ := toReal options.Δt with hΔ
   set V := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat ℓ.inputSetFloat with hV
   simp only [Rat.cast_zero, sub_zero] at hNΔt

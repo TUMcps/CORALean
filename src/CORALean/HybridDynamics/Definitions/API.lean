@@ -4,10 +4,10 @@ public import CORALean.HybridDynamics.Definitions.Transition
 public import CORALean.HybridDynamics.Definitions.Location
 public import CORALean.HybridDynamics.Definitions.Invariant
 public import CORALean.HybridDynamics.Definitions.InvariantOn
-public import CORALean.HybridDynamics.Definitions.ReachSet
+public import CORALean.HybridDynamics.Definitions.ReachSetExact
 public import CORALean.HybridDynamics.Definitions.IsRunUntil
 public import CORALean.HybridDynamics.Definitions.IsUrgentRun
-public import CORALean.HybridDynamics.Definitions.UrgentReachSetAt
+public import CORALean.HybridDynamics.Definitions.UrgentReachSetAtExact
 public import CORALean.HybridDynamics.Definitions.NonlinearResetArg
 public import CORALean.HybridDynamics.Definitions.NonlinearReset
 public import CORALean.HybridDynamics.Definitions.NonlinearResetFloatModel
@@ -32,5 +32,5 @@ public import CORALean.HybridDynamics.Definitions.HitEnclosure
 A location is an invariant, `LinearSys` dynamics with their whole equation, the input and
 disturbance sets they draw from, and a list of outgoing transitions; a transition is a guard, an
 affine reset and a target. `Invariant`/`InvariantOn` state that a family of sets holds it, the
-latter per jump count; `ReachSet` names what a run quantifies over.
+latter per jump count; `ReachSetExact` names what a run quantifies over.
 -/

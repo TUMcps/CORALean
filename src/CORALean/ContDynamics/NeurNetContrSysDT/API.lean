@@ -11,7 +11,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Complexity.API
 # A neural network in the loop of a discrete-time plant, collected
 
 The plant, the controller and what a run of the two is in `NeurNetContrSysDT`,
-the alternating recursion in `Operations`, the set a run reaches in `ReachSet`,
+the alternating recursion in `Operations`, the set a run reaches in `ReachSetExact`,
 its guarantee in `Theorems`, its cost in `Complexity/Time`, and `Instances`, its `Reach`
 instance: no input set to bundle, the closed loop reading its own off the
 controller.

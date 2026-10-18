@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Operations.BackReachForall
-public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForall
+public import CORALean.ContDynamics.LinearSysDT.Definitions.BackReachSetForallExact
 
 @[expose] public section
 
@@ -47,7 +47,7 @@ theorem LinearSysDT.backReachForall_inner (sys : LinearSysDT 𝕋 n) {Ainv : Mat
     (hinv : ∀ s : S n, construct (mtimes Ainv s) ⊆ (toRealMat Ainv *ᵥ ·) '' construct s)
     (T U : S n) : -- --- STMT ---
     ∀ (k : ℕ) (R : S n), sys.backReachForall ⟨T, U, 0, k⟩ ⟨Ainv, diff⟩ = some R →
-      construct R ⊆ sys.backReachSetForall T U k := by -- --- PROOF ---
+      construct R ⊆ sys.backReachSetForallExact T U k := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro R hR; rw [← Option.some.inj hR]; exact subset_rfl
@@ -63,7 +63,7 @@ theorem LinearSysDT.backReachForall_inner (sys : LinearSysDT 𝕋 n) {Ainv : Mat
     intro z hz
     obtain ⟨y, hy, rfl⟩ := hinv D hz
     show ∀ w ∈ construct U,
-      toRealMat sys.A *ᵥ (toRealMat Ainv *ᵥ y) + w ∈ sys.backReachSetForall T U k
+      toRealMat sys.A *ᵥ (toRealMat Ainv *ᵥ y) + w ∈ sys.backReachSetForallExact T U k
     -- one step forward undoes `Ainv`, and the difference pays for the input
     intro w hw
     have hAy : toRealMat sys.A *ᵥ (toRealMat Ainv *ᵥ y) = y := by

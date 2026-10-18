@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachOptions
-public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.NeurNetContrSys.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NeurNetContrSys.Definitions.Linear
 
@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Definitions.Linear
 # What `NeurNetContrSys` means
 
 The runs of the loop, `IsTrajectory`, are in the main file, with the plant's input set
-`U_nn × U_ext` they are stated with. `ReachSet`: every state some zero-order-hold run reaches,
+`U_nn × U_ext` they are stated with. `ReachSetExact`: every state some zero-order-hold run reaches,
 quantified over the runs themselves — the exact set, not an enclosure of it. `Linear` is the system
 with its external input set, as the family `Reach` is instantiated at, and `ReachUnionExact` what
 `Reach` asks of it, at the controller's own `eval`; `ReachOptions` is CORA's `options` for

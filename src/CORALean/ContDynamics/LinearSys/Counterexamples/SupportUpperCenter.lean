@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.SupportLower
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralZero
 public import CORALean.ContSet.ContSet.Theorems.IsGreatestImageConvexHull
@@ -61,7 +61,7 @@ theorem LinearSys.supportUpper_center_counterexample : -- --- STMT ---
       IsGreatest ((fun x : Vec ℝ 3 => x i) '' U) (-2)) ∧
     IsGreatest (ℓ '' U) (ℓ ![-2, -3, -3]) ∧
     max (S 1).ρH (S 2).ρH + 0 + (S 2).ρP = -17 / 2 ∧
-    ∃ t ∈ Set.Icc (1 : ℝ) 2, ∃ y ∈ sys.reachSet (S := 𝒮)
+    ∃ t ∈ Set.Icc (1 : ℝ) 2, ∃ y ∈ sys.reachSetExact (S := 𝒮)
       (Set.Icc 0 t) ({0} : Set (Vec ℝ 3)) U t, -17 / 2 < ℓ y := by -- --- PROOF ---
   intro sys U ℓ ũ S
   have hS : ∀ s ∈ ({![-3, -3, -3], ![-2, -3, -3], ![-3, -2, -3], ![-3, -3, -2]} :
@@ -111,7 +111,7 @@ theorem LinearSys.supportUpper_center_counterexample : -- --- STMT ---
     -- next step of the computation
     have hbdd : Bornology.IsBounded U := (hfin.isCompact_convexHull ℝ).isBounded
     refine ⟨1, ⟨le_rfl, one_le_two⟩, ![-2, -3, -3], ?_, by rw [hℓe]; norm_num⟩
-    rw [LinearSys.reachSet_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U
+    rw [LinearSys.reachSetExact_eq (S := 𝒮) sys ({0} : Set (Vec ℝ 3)) U
       zero_le_one hbdd]
     have hmem := sys.expIntegral_mem_inputReach (S := 𝒮) zero_le_one
       (U := U) (v := ![-2, -3, -3]) (subset_convexHull ℝ _ (by simp))

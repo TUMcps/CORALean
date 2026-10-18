@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Point
 # Reachability with inputs of a set-valued-matrix system in floats
 
 `LinParamSys.reachUnion` computed in `𝕋`, the input set `params.U` in input coordinates anywhere,
-[1, Alg. 4]: `V = B U ⊕ c` is formed here, as `LinearSys.reachFloatInput` forms it, and
+[1, Alg. 1]: `V = B U ⊕ c` is formed here, as `LinearSys.reachFloatInput` forms it, and
 taken apart at its center, `ũ` carried across windows by `constPropagateFloat` and the rest,
 holding the origin, by `particularSolutionFloat`, window by window as `reachStepkFloatInput` has
 it. The offset `sys.c` is a real vector, which no float run can add, so the run takes the float
@@ -21,8 +21,9 @@ or the accumulation fails.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

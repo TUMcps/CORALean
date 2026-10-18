@@ -18,7 +18,7 @@ and then cross the boundary. It holds when the final box is not flat; see Findin
 
 | Result | What it says | In CORALean | Class |
 |---|---|---|---|
-| `Def. 1` | (Reachable Set) R_{X₀}(t) := {ξ(t, x₀) \| x₀ ∈ X₀} for ẋ = f(x), f Lipschitz, ξ(t, x₀) the solution from x₀. | [`ReachSet.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/ReachSet.lean) — `NonlinearSys.reachSet`, over every solution (the one ξ when f is Lipschitz), with inputs that the autonomous case leaves out | `correct` |
+| `Def. 1` | (Reachable Set) R_{X₀}(t) := {ξ(t, x₀) \| x₀ ∈ X₀} for ẋ = f(x), f Lipschitz, ξ(t, x₀) the solution from x₀. | [`ReachSetExact.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Definitions/ReachSetExact.lean) — `NonlinearSys.reachSetExact`, over every solution (the one ξ when f is Lipschitz), with inputs that the autonomous case leaves out | `correct` |
 | `Def. 2` | (Polynomial Zonotope) PZ := {Σᵢ (Πₖ α₍ₖ₎^{E(k,i)}) G(·,i) \| α ∈ [-1, 1]}, shorthand ⟨G, E⟩_PZ, the sparse representation without independent generators. | n/a — restated from [19]; tracked as `Def. 1` on [Sparse Polynomial Zonotopes](../2021/kochdumper-tac-sparse-polyzonotopes.md) | `restated` |
 | `Example 1` | The polynomial zonotope ⟨[2 1 2; 0 1 1], [1 0 3; 0 1 1]⟩_PZ, plotted. | n/a — an illustration | `not-a-claim` |
 | `Thm. 1` | For B ⊇ ∂R_{X₀}(t), every connected C with C ∩ B = ∅ and C ∩ R_{X₀}(t) ≠ ∅ satisfies C ⊆ R_{X₀}(t). | n/a — restated from Chen, Sankaranarayanan and Ábrahám 2014 [10, Sec. 3]; [`SubsetOfIsPreconnectedOfDisjointFrontier.lean`](../../src/CORALean/Global/SubsetOfIsPreconnectedOfDisjointFrontier.lean) has it, for preconnected C and any set R of any topological space | `restated` |

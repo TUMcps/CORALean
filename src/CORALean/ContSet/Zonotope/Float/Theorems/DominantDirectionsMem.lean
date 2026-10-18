@@ -35,10 +35,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.dominantDirections_mem (Z : Zonotope (Vec 𝕋 n)) (a b : ℕ) (P : Mat 𝕋 n n)
-    (h : Z.dominantDirections a b = some P) :
-    ∃ T ∈ Z.dominantShortlist (min a Z.nonzeroCount) (min b Z.nonzeroCount),
-      P = Z.generatorMatrix T := by -- --- PROOF ---
+theorem Zonotope.dominantDirections_mem (Z : Zonotope (Vec 𝕋 n)) (a b : ℕ) :
+    ∀ P ∈ Z.dominantDirections a b,
+      ∃ T ∈ Z.dominantShortlist (min a Z.nonzeroCount) (min b Z.nonzeroCount),
+        P = Z.generatorMatrix T := by -- --- PROOF ---
+  intro P (h : Z.dominantDirections a b = some P)
   -- a fold that keeps the incumbent or the next candidate returns one of them
   have key : ∀ (c : Mat 𝕋 n n → Mat 𝕋 n n → Bool) (l : List (Mat 𝕋 n n))
       (init : Option (Mat 𝕋 n n)),

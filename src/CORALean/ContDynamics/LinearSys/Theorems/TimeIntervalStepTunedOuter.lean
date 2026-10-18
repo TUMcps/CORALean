@@ -49,15 +49,17 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 /-- Every image of the initial set under the flow, at every time of the step, with the order
 returned by the computable search `tuneOrder` at the float norm bound of `[r, r] · A`. -/
-theorem LinearSys.timeIntervalStep_outer_tuned (sys : LinearSys 𝕋 n) {r ε : 𝕋}
-    (hr : 0 < toReal r) {fuel η : ℕ}
-    (h : MatExp.tuneOrder (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A)))
-      ε fuel = some η) (X₀ : S n) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) : -- --- STMT ---
-    (fun x₀ => exp (t • Scalar.toRealMat sys.A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.timeIntervalStep (toReal r) η X₀) := by -- --- PROOF ---
+theorem LinearSys.timeIntervalStep_outer_tuned (sys : LinearSys 𝕋 n) {r ε : 𝕋} (hr : 0 < toReal r)
+    {fuel : ℕ} (X₀ : S n) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) : -- --- STMT ---
+    ∀ η ∈ MatExp.tuneOrder
+        (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ε fuel,
+      (fun x₀ => exp (t • Scalar.toRealMat sys.A) *ᵥ x₀) '' construct X₀
+        ⊆ construct (sys.timeIntervalStep (toReal r) η X₀) := by -- --- PROOF ---
+  intro η (h : MatExp.tuneOrder (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ε
+      fuel = some η)
   have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point sys.A) r
     (Interval.mem_point sys.A)
-  obtain ⟨h2, -, hs⟩ := MatExp.tuneOrder_spec hnorm h
+  obtain ⟨h2, -, hs⟩ := MatExp.tuneOrder_spec hnorm _ h
   obtain ⟨m, rfl⟩ : ∃ m : ℕ, η = m + 2 := ⟨η - 2, by omega⟩
   exact sys.timeIntervalStep_outer_at hr hs X₀ ht0 htr
 

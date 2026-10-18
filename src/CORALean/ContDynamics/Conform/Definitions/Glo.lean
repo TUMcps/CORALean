@@ -10,7 +10,7 @@ public import CORALean.Global.Tensor
 /-!
 # Reachable sets of any model, and the general linear output approximation
 
-`reachSetOf τ x∗ X₀ u∗ U` is [1, Def. 5]: every output `τ(x₀, u₀:ₖ)` from an initial state in
+`reachSetOfExact τ x∗ X₀ u∗ U` is [1, Def. 5]: every output `τ(x₀, u₀:ₖ)` from an initial state in
 `x∗ ⊕ X₀` and inputs in `u∗ᵢ ⊕ Uᵢ`, the inputs chosen independently per step. `τ` is any
 output map — a state-space model's, an input-output model's — fixed at one step `k`.
 
@@ -42,7 +42,7 @@ variable {n p q k : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Def. 5]: the outputs `τ` reaches from `x∗ ⊕ X₀` under inputs in `u∗ᵢ ⊕ Uᵢ`. -/
-def Conform.reachSetOf (τ : Vec ℝ n → (Fin (k + 1) → Vec ℝ p) → Vec ℝ q) (xs : Vec ℝ n)
+def Conform.reachSetOfExact (τ : Vec ℝ n → (Fin (k + 1) → Vec ℝ p) → Vec ℝ q) (xs : Vec ℝ n)
     (X0 : Set (Vec ℝ n)) (us : Fin (k + 1) → Vec ℝ p) (U : Fin (k + 1) → Set (Vec ℝ p)) :
     Set (Vec ℝ q) :=
   {y | ∃ x0 ∈ {xs} + X0, ∃ u : Fin (k + 1) → Vec ℝ p, (∀ i, u i ∈ {us i} + U i) ∧ y = τ x0 u}

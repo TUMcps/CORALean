@@ -51,7 +51,7 @@ def MarkovChain.IsStochastic (M : MarkovChain n m) : Prop :=
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- One `R(k)` of a `reachSet` array: its last time-point set and its time-interval sets. -/
+/-- One `R(k)` of a `reachSetExact` array: its last time-point set and its time-interval sets. -/
 structure MarkovChain.ReachEntry (S : ℕ → Type) (n : ℕ) where
   timePoint : S n
   timeInterval : List (S n)

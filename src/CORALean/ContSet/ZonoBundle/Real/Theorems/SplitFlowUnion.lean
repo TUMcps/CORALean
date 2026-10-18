@@ -55,7 +55,7 @@ theorem ZonoBundle.splitFlow_union (f : Vec ℝ n) (hf : f ≠ 0) (zB : ZonoBund
     have hdet : ((1 : Mat ℝ n n).updateCol a f).det = f a := by
       rw [← Matrix.cramer_apply, Matrix.cramer_one]; rfl
     have hfa : f a ≠ 0 := fun h0 =>
-      hk (abs_nonpos_iff.mp ((ZonoBundle.flowIndex_max hflow k).trans (by rw [h0, abs_zero])))
+      hk (abs_nonpos_iff.mp ((ZonoBundle.flowIndex_max k _ hflow).trans (by rw [h0, abs_zero])))
     simp only [hdet]
     exact isUnit_iff_ne_zero.mpr hfa
 

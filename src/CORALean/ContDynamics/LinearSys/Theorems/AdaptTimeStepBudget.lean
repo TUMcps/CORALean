@@ -100,12 +100,14 @@ theorem aux_adaptTimeStepSearch_budget (sys : LinearSys 𝕋 n) {le : ℝ → �
 own share of the `ε_P` budget, and the error it accumulates is eq. (9)'s. -/
 theorem LinearSys.adaptTimeStep_budget (sys : LinearSys 𝕋 n) {le : ℝ → ℝ → Bool}
     (hle : ∀ a b, le a b = true → a ≤ b) (X₀ U : Zonotope (Vec ℝ n))
-    (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ) {Δti εP : ℝ} {ηi : ℕ}
-    (h : sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel
-      = some (Δti, ηi, εP)) : -- --- STMT ---
-    sys.timeIntervalStepCurvatureError Δti ηi X₀ ≤ εHmax ∧
-      sys.timePointStepRemainderError Δti ηi U ≤ (εPmax - εPacc) / (tf - ti) * Δti ∧
-        εP = εPacc + sys.timePointStepRemainderError Δti ηi U := by -- --- PROOF ---
+    (εHmax εPmax εPacc tf ti Δtprev μ : ℝ) (ηmax fuel : ℕ) : -- --- STMT ---
+    ∀ Δti ηi εP,
+      (Δti, ηi, εP) ∈ sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel →
+      sys.timeIntervalStepCurvatureError Δti ηi X₀ ≤ εHmax ∧
+        sys.timePointStepRemainderError Δti ηi U ≤ (εPmax - εPacc) / (tf - ti) * Δti ∧
+          εP = εPacc + sys.timePointStepRemainderError Δti ηi U := by -- --- PROOF ---
+  intro Δti ηi εP (h : sys.adaptTimeStep le X₀ U εHmax εPmax εPacc tf ti Δtprev μ ηmax fuel = some
+      (Δti, ηi, εP))
   simp only [LinearSys.adaptTimeStep] at h
   split at h
   · exact absurd h (by simp)

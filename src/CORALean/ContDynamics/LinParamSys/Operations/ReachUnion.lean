@@ -12,7 +12,7 @@ public import CORALean.ContSet.SetUnion.SetUnion
 /-!
 # Reachability with inputs over `[tStart, tFinal]`, one window of width `Δt` at a time
 
-[1, Alg. 4]'s loop with CORA's `params.U`, in input coordinates, anywhere in the input space:
+[1, Alg. 1]'s loop with CORA's `params.U`, in input coordinates, anywhere in the input space:
 the windows `τ_0, …, τ_{N-1}`, one `reachStepkInput` each, collected as a `SetUnion`,
 `N = ⌈(tFinal - tStart) / Δt⌉` of them and never fewer than one. The state-space input set
 `V = B U ⊕ c` is formed here, as CORA's `priv_inputSolution` forms it, and each window splits
@@ -26,8 +26,9 @@ for `Δt` and every member of `sys.A`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5, Claude Sonnet 5.5

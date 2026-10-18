@@ -39,19 +39,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- A successful step has a positive width, and every run of `sys` on `[0, Δt]` from `R`
 under inputs in `U` is in `R(τ)` over the step and in `R(t₁)` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.orderStepFloat_outer
-    {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    {κ : ℕ} {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
-    {R Rτ Rt : Zonotope (Vec 𝕋 n)}
-    (hstep : fm.orderStepFloat κ U options R = some (Rτ, Rt)) : -- --- STMT ---
-    0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-        R.construct U.construct x u →
-      (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-        x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+    {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys) {κ : ℕ}
+    {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋}
+    {R : Zonotope (Vec 𝕋 n)} : -- --- STMT ---
+    ∀ Rτ Rt, (Rτ, Rt) ∈ fm.orderStepFloat κ U options R →
+      0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+          R.construct U.construct x u →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
+          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+  intro Rτ Rt (hstep : fm.orderStepFloat κ U options R = some (Rτ, Rt))
   unfold NonlinearSys.FloatHessModel.orderStepFloat at hstep
   split at hstep
-  · exact h.toEncloses.relinStepFloat_outer hstep
-  · exact h.linReachFloat_outer hstep
+  · exact h.toEncloses.relinStepFloat_outer _ _ hstep
+  · exact h.linReachFloat_outer _ _ hstep
 
 end CORALean
 

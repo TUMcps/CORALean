@@ -56,15 +56,15 @@ def wrapFreeD : Option (List (Zonotope (Vec (Dyadic 64) 2))) :=
 /-- What a successful recursive run is worth: every run under every input signal
 in `B U`, over every window. -/
 example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (Rti, Rtp)) :=
-  sysBD.reachFloatInput_outer h
+  sysBD.reachFloatInput_outer _ _ h
 
 /-- And at every step. -/
 example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (Rti, Rtp)) :=
-  sysBD.reachFloatInput_timePoint_outer h
+  sysBD.reachFloatInput_timePoint_outer _ _ h
 
 /-- And the wrapping-free run's, over every window. -/
 example {Rs : List (Zonotope (Vec (Dyadic 64) 2))} (h : wrapFreeD = some Rs) :=
-  sysBD.reachWrappingFreeFloatInput_outer h
+  sysBD.reachWrappingFreeFloatInput_outer _ h
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

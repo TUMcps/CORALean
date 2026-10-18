@@ -10,7 +10,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 /-!
 # What a split costs: where the two halves overlap
 
-`Z₁ ∩ Z₂` is `Z` with the `j`-th generator gone [1, Prop. 3.8], written here as
+`Z₁ ∩ Z₂` is `Z` with the `j`-th generator gone [1, Prop. 3], written here as
 that generator set to `0` — the same set, and it keeps the generator index a
 `Fin Z.h`, which dropping a column would not.
 
@@ -25,13 +25,9 @@ The thesis argues instead from `(-g/2; g/2) ∩ (g/2; g/2) = {0}` together with
 `A = [0,1]`, `B = {0}`, `C = {1}` in ℝ the left side is empty and the right side
 is `{1}`, and convexity is what the missing step actually needs.
 
-It first appeared as [2, Prop. 3], whose proof takes the same step.
-
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
+* [1] M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear
       Systems with Uncertain Parameters using Conservative Linearization". In
       Proc. of the 47th IEEE Conference on Decision and Control (CDC), 2008,
       pp. 4042-4048.

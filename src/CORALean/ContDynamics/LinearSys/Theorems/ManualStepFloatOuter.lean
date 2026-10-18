@@ -63,16 +63,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- An iteration from a state holding the invariant reaches one holding it `Δt` later, and
 its window holds every run over `[t_k, t_{k+1}]`. -/
-theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
-    {Δt : 𝕋} {η ρ : ℕ} {s s' : LinearSys.ManualStateFloat 𝕋 n} {R : Zonotope (Vec 𝕋 n)}
-    (hΔt : 0 < toReal Δt) (hη : sys.OrderAdmissibleFloat Δt Δt η)
-    (h : sys.manualStepFloat X₀ V Δt η ρ s = some (s', R))
+theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)} {Δt : 𝕋}
+    {η ρ : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} (hΔt : 0 < toReal Δt)
+    (hη : sys.OrderAdmissibleFloat Δt Δt η)
     (hinv : sys.ManualInvariantFloat X₀ V s) : -- --- STMT ---
-    sys.ManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
-      ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
-        U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
-          x t ∈ R.construct := by -- --- PROOF ---
+    ∀ s' R, (s', R) ∈ sys.manualStepFloat X₀ V Δt η ρ s →
+      sys.ManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
+        ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
+          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
+          U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
+            x t ∈ R.construct := by -- --- PROOF ---
+  intro s' R (h : sys.manualStepFloat X₀ V Δt η ρ s = some (s', R))
   obtain ⟨h0, hlo, hhi, hH, hPu, hPU⟩ := hinv
   unfold LinearSys.manualStepFloat at h
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at h
@@ -97,7 +98,7 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
-        (LinearSys.squaringsFloat_spec hη.1 hsq) hlo hhi) (Set.mem_image_of_mem _ hz))
+        (LinearSys.squaringsFloat_spec hη.1 _ hsq) hlo hhi) (Set.mem_image_of_mem _ hz))
   -- the same at `t_{k+1}`, inside the bracket `[tLo ⊖ Δt, tHi ⊕ Δt]`
   have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct
       → exp ((toReal Δt + tk) • A) *ᵥ z
@@ -107,7 +108,7 @@ theorem LinearSys.manualStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonot
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
-        (LinearSys.squaringsFloat_spec hη.1 hsq1)
+        (LinearSys.squaringsFloat_spec hη.1 _ hsq1)
         ((addDown_le_add _ _).trans (by linarith)) (le_trans (by linarith) (add_le_addUp _ _)))
         (Set.mem_image_of_mem _ hz))
   -- `{ũ}` and `[0, ũ]` hold what they are built from

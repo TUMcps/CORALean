@@ -79,7 +79,7 @@ inductive NonlinHybridAutomaton.IsRunAt (H : NonlinHybridAutomaton n m p q) (U :
 
 /-- [1, Def. 2]: `Rᵉ(t)`, every state `ξ(t, x₀, m₀, u(·))` of a run from `x₀ ∈ X₀` in mode
 `m₀` with inputs in `U`, in whichever mode it is at time `t`. -/
-def NonlinHybridAutomaton.reachSet (H : NonlinHybridAutomaton n m p q) (X₀ : Set (Vec ℝ n))
+def NonlinHybridAutomaton.reachSetExact (H : NonlinHybridAutomaton n m p q) (X₀ : Set (Vec ℝ n))
     (m₀ : Fin p) (U : Set (Vec ℝ m)) (t : ℝ) : Set (Vec ℝ n) :=
   {y | ∃ x₀ ∈ X₀, ∃ i, H.IsRunAt U t m₀ x₀ i y}
 

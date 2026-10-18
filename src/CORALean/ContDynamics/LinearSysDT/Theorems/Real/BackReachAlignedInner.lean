@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustSucc
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustExactSucc
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemBackReachAlignedSuccIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedInner
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
@@ -49,7 +49,8 @@ theorem LinearSysDT.backReachAligned_inner {A : Mat ℝ n n} (hA : IsUnit A.det)
     (hσ : ∀ Z, (∀ i, 0 ≤ (σ Z).2 i ∧ (σ Z).2 i ≤ 1) ∧
       (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).construct) (k : ℕ) : -- --- STMT ---
     (Zonotope.backReachAligned A B K U Z₀ σ k).construct
-      ⊆ LinearSysDT.backReachSetRobust A B E K U.construct W Z₀.construct k := by -- --- PROOF ---
+      ⊆ LinearSysDT.backReachSetRobustExact A B E K U.construct W Z₀.construct
+        k := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
@@ -58,11 +59,11 @@ theorem LinearSysDT.backReachAligned_inner {A : Mat ℝ n n} (hA : IsUnit A.det)
     obtain ⟨d, hd, _, ⟨u, hu, rfl⟩, hsum⟩ := hx
     set Zk := Zonotope.backReachAligned A B K U Z₀ σ k
     -- the difference by the aligned zonotope is inside `X_k ⊖ EW`
-    have hdiff : d ∈ minkowskiDiff (LinearSysDT.backReachSetRobust A B E K U.construct W
+    have hdiff : d ∈ minkowskiDiff (LinearSysDT.backReachSetRobustExact A B E K U.construct W
         Z₀.construct k) ((E *ᵥ ·) '' W) :=
       minkowskiDiff_mono ih (hσ Zk).2 (Zk.minkDiffAligned_inner (Zk.aligned (σ Zk).1 (σ Zk).2)
         rfl (σ Zk).2 (fun i => ((hσ Zk).1 i).1) (fun i => ((hσ Zk).1 i).2) (fun _ => rfl) hd)
-    rw [LinearSysDT.backReachSetRobust_succ, Set.mem_preimage]
+    rw [LinearSysDT.backReachSetRobustExact_succ, Set.mem_preimage]
     refine ⟨_, ⟨d, hdiff, -(B *ᵥ u), ⟨u, hu, rfl⟩, rfl⟩, -K, rfl, ?_⟩
     beta_reduce at hsum ⊢
     rw [← Matrix.neg_mulVec, hsum, add_neg_cancel_right]

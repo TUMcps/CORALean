@@ -19,7 +19,7 @@ step's error rides through the same `A` on both sides.
 This is the fact that makes `reachErrorReduced` worth having rather than a
 second definition sitting beside the first: everything already proved about
 `reachError` transfers to it in the direction the error is used, since the
-error is *added* to the exact set. `reach_subset_reachSet_add_errorReduced` is
+error is *added* to the exact set. `reach_subset_reachSetExact_add_errorReduced` is
 that transfer, and `reachInnerReduced_subset_reachInner` is the price paid for
 it, read on the other side of the Minkowski difference.
 

@@ -53,7 +53,7 @@ theorem ConZonotope.anchorSlab_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (A : M
   · rename_i Q' τ hQ
     obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hP
     -- `β` meets the stacked rows: the old ones as they are, the new ones within `hi - lo`
-    obtain ⟨hτ0, β'', hbox, hmem, hmove⟩ := HPolytope.anchorEqsInBox_sound hQ β hβ
+    obtain ⟨hτ0, β'', hbox, hmem, hmove⟩ := HPolytope.anchorEqsInBox_sound β hβ
       (fun k => by
         refine Fin.addCases (fun k => ?_) (fun k => k.elim0) k
         show (toRealMat (Fin.append cZ.P.A fun i => i.elim0) *ᵥ β) (Fin.castAdd 0 k)
@@ -77,7 +77,7 @@ theorem ConZonotope.anchorSlab_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (A : M
               (fun i => subUp (hi i) (lo i)) (Fin.natAdd cZ.P.me i))
           rw [toRealMat_append_mulVec_natAdd, Fin.append_right, Fin.append_right, abs_le]
           have h := sub_le_subUp (hi i) (lo i)
-          constructor <;> linarith [(hslab i).1, (hslab i).2])
+          constructor <;> linarith [(hslab i).1, (hslab i).2]) _ _ hQ
     -- the point `β''` describes, and the move from `y` to it
     set y'' : Vec ℝ n := fun i => toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * β'' j
     have hsplit : y + e = y'' + (y - y'' + e) := by abel

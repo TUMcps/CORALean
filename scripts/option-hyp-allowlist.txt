@@ -1,0 +1,5 @@
+# Main theorems that take a hypothesis `(h : f … = some E)` on an operation that returns `Option`
+# (#212). `scripts/check-option-hyps.py` refuses any other: the claim is stated `∀ E ∈ f …, claim`
+# instead (CONTRIBUTING, "When an operation returns `Option`"). One `<path>::<name>  <reason>` per
+# line. An entry that no flagged theorem carries any more is reported as stale, so the list only
+# shrinks. It is empty: every main theorem could be converted.

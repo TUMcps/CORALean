@@ -24,8 +24,8 @@ exactly the period, `Set.Icc 0 (N Δt)`, and the order is admissible for the aug
 boundaries only: between them `reach` says nothing, and the network is not invoked either.
 
 Stated at a convex, compact representation, which is what makes `inputSolution`'s six topological
-hypotheses instances rather than arguments; `reachSet_subset_reach` restates it on the reachable
-set.
+hypotheses instances rather than arguments; `reachSetExact_subset_reach` restates it on the
+reachable set.
 
 ## References
 

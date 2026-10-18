@@ -57,21 +57,20 @@ theorem PolyZonotope.aux_contDiff_point (pZ : CORALean.Real.PolyZonotope (Vec �
 
 /-- Where `u1_ + t ⊆ U1_ ⊆ U1` and `u1_ ∈ U1_`, `Y` is inside `f(X)`. -/
 theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
-    (X X₀ : Interval (Vec 𝕋 pZ.p))
-    (Y : Interval (Vec 𝕋 n)) (ind : Fin n ↪ Fin pZ.p) (C : Mat 𝕋 n n)
+    (X X₀ : Interval (Vec 𝕋 pZ.p)) (Y : Interval (Vec 𝕋 n)) (ind : Fin n ↪ Fin pZ.p) (C : Mat 𝕋 n n)
     (hC : Function.Injective (toRealMat C).mulVec) (xc : Vec 𝕋 pZ.p)
     (hxc : ∀ k, (∀ i, ind i ≠ k) → (toReal (X.inf k) ≤ toReal (xc k) ∧
       toReal (xc k) ≤ toReal (X.sup k)) ∧ (toReal (X₀.inf k) ≤ toReal (xc k) ∧
-      toReal (xc k) ≤ toReal (X₀.sup k)))
-    (b : Interval (Vec 𝕋 n)) (hb : ∀ y ∈ Y.construct, Matrix.mulVec (toRealMat C)
-      (y - (PolyZonotope.nominal pZ).point (toRealVec xc)) ∈ b.construct)
-    (U : Interval (Vec 𝕋 n))
+      toReal (xc k) ≤ toReal (X₀.sup k))) (b : Interval (Vec 𝕋 n))
+    (hb : ∀ y ∈ Y.construct, Matrix.mulVec (toRealMat C)
+      (y - (PolyZonotope.nominal pZ).point (toRealVec xc)) ∈ b.construct) (U : Interval (Vec 𝕋 n))
     (hU : U.construct ⊆ (⟨fun i => X.inf (ind i), fun i => X.sup (ind i)⟩ :
       Interval (Vec 𝕋 n)).construct)
-    {t : Interval (Vec 𝕋 n)} (h : PolyZonotope.innerStep pZ X₀ ind C xc b U = some t)
-    (hcand : ((Interval.point fun i => xc (ind i)).plus t).le U = true)
     (hmem : (Interval.point fun i => xc (ind i)).le U = true) : -- --- STMT ---
-    Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---
+    ∀ t ∈ PolyZonotope.innerStep pZ X₀ ind C xc b U,
+      (((Interval.point fun i => xc (ind i)).plus t).le U = true) →
+      Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---
+  intro t (h : PolyZonotope.innerStep pZ X₀ ind C xc b U = some t) hcand
   unfold PolyZonotope.innerStep at h
   dsimp only at h
   split at h

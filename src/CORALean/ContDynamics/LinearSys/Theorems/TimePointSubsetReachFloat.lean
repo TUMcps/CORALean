@@ -47,20 +47,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- Every `k` in range: the nominal time-point set at `k · toReal Δt` is inside
 `reachFloat`'s float one. -/
-theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n)
-    {X₀ : Real.Zonotope (Vec ℝ n)} {X₀float : Zonotope (Vec 𝕋 n)}
-    (hX₀ : construct X₀ ⊆ X₀float.construct) {tStart tFinal : ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options = some (Rti, Rtp)) : -- --- STMT ---
-    ∀ (k : ℕ) (hk : k < Rtp.length),
-      construct (sys.timePoint (S := 𝒵) (toReal options.Δt)
-        X₀ k) ⊆ Rtp[k].construct := by -- --- PROOF ---
+theorem LinearSys.timePoint_subset_reachFloat (sys : LinearSys 𝕋 n) {X₀ : Real.Zonotope (Vec ℝ n)}
+    {X₀float : Zonotope (Vec 𝕋 n)} (hX₀ : construct X₀ ⊆ X₀float.construct) {tStart tFinal : ℚ}
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options →
+      ∀ (k : ℕ) (hk : k < Rtp.length),
+        construct (sys.timePoint (S := 𝒵) (toReal options.Δt)
+          X₀ k) ⊆ Rtp[k].construct := by -- --- PROOF ---
+  intro Rti Rtp (h : sys.reachFloat ⟨X₀float, tStart, tFinal⟩ options = some (Rti, Rtp))
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨N, -, η', hη', -, rfl⟩ := h
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   intro k hk
   rw [List.getElem_iterate]
   clear hk

@@ -10,16 +10,17 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Map
 /-!
 # The matrix-zonotope order `i` contributes to the input solution, exactly
 
-[1, Prop. 3.6]'s exact part: `LinParamSys.inputTerm` with the power kept as a
-matrix zonotope rather than over-approximated into an interval matrix, so the
+The matrix-zonotope part of [1, Thm. 1] ([1, Sec. 4.4]): `LinParamSys.inputTerm` with the power kept
+as a matrix zonotope rather than over-approximated into an interval matrix, so the
 dependency between a member's own powers survives. Only orders `0` and `1`
-appear in the proposition, but nothing here is special to them — `matPow` is
-sound at any order, and the restriction is Prop. 3.6's, not this definition's.
+are kept as a matrix zonotope, but nothing here is special to them — `matPow` is
+sound at any order, and the restriction is Sec. 4.4's, not this definition's.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5

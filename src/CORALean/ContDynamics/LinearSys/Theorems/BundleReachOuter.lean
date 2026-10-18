@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.BundleReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ListFoldlRangeStepOut
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpAddSmul
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSeparationEq
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Mtimes
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Plus
@@ -26,7 +26,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeZonoBundleExact
 If `R^h_0` contains `e^{Aτ}X₀` and `R^i_0` contains `inputReach U τ` for every `τ ∈ [0, r]`,
 the listing's own inputs `R^h([0, t_1])` and `R^i([0, t_1])`, then `R_k ⊇ R(t)` for every
 `t ∈ [kr, (k+1)r]` and `k ≤ N`: the claim of [1, Alg. 1] that it computes `R([t_k, t_{k+1}])`.
-`R(t)` is `reachSet` on `[0, t]`. Three invariants, by induction on `k`, at every
+`R(t)` is `reachSetExact` on `[0, t]`. Three invariants, by induction on `k`, at every
 `τ ∈ [0, r]`: `e^{A(kr+τ)}X₀ ⊆ R^h_k`, `e^{Akr} inputReach U τ ⊆ R^i_k` and
 `inputReach U (kr+τ) ⊆ P_k`; the last is where the superposition is, the input over
 `[0, (k+1)r+τ]` separating into `e^{A(k+1)r}` of the input over `[0, τ]` plus the input over
@@ -71,7 +71,7 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
     (hi : ∀ τ ∈ Set.Icc (0:ℝ) r, sys.inputReach U τ ⊆ Ri₀.construct)
     {N k : ℕ} (hk : k ≤ N) {t : ℝ} (ht : t ∈ Set.Icc ((k : ℝ) * r) ((k + 1) * r)) : -- --- STMT ---
     ∃ R, (sys.bundleReach Rh₀ Ri₀ r N)[k]? = some R
-      ∧ sys.reachSet (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
+      ∧ sys.reachSetExact (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
   set A := toRealMat sys.A
   set E := exp (r • A)
   set step : ZonoBundle (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)
@@ -140,7 +140,7 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
   · rw [hlist, List.getElem?_map, List.getElem?_range (by omega)]
     rfl
   · have ht0 : 0 ≤ t := (hkr k).trans ht.1
-    rw [sys.reachSet_eq X₀ U ht0 hU]
+    rw [sys.reachSetExact_eq X₀ U ht0 hU]
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * r) hτ
     rw [show (k : ℝ) * r + (t - k * r) = t by ring] at hI

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 
 @[expose] public section
@@ -8,9 +8,9 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 /-!
 # Every state a nonlinear run reaches within the horizon
 
-`Reach.reachExact` at `NonlinearSys.WithSteps`: `reachSet` at every time of
+`Reach.reachExact` at `NonlinearSys.WithSteps`: `reachSetExact` at every time of
 `[0, tFinal]`, for runs on that horizon from a bare initial set under inputs in
-`U`. The bare set is the representation `Set` itself, which `reachSet` accepts
+`U`. The bare set is the representation `Set` itself, which `reachSetExact` accepts
 as it accepts any other. Nothing here mentions the linearizations or the step:
 they are how `reach` encloses this set, not part of it. Positional, as the
 mathematics: `Reach` reads the horizon `tFinal - tStart` off `params`.
@@ -39,7 +39,7 @@ variable {m n : ℕ}
 inputs in `sys.U`, is at, at some time of that horizon. -/
 def NonlinearSys.WithSteps.reachUnionExact (sys : NonlinearSys.WithSteps S Rg m n) (tFinal : ℝ)
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  ⋃ t ∈ Set.Icc 0 tFinal, sys.sys.reachSet (S := 𝒮)
+  ⋃ t ∈ Set.Icc 0 tFinal, sys.sys.reachSetExact (S := 𝒮)
     (Set.Icc 0 tFinal) X (construct sys.U) t
 
 end CORALean

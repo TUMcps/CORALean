@@ -51,26 +51,27 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 the horizon, each holding what `ReachFloatInputInvariant` asks at its pass. -/
 theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloatInput params options = some (Rti, Rtp)) : -- --- STMT ---
-    0 < toReal options.Δt ∧ ∃ N : ℕ,
-      (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      ∃ S : List (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) ×
-        Zonotope (Vec 𝕋 n)),
-        S.length = N ∧ Rti = S.map (fun s => s.2.1 ⊞ s.2.2.1) ∧
-        Rtp = params.X₀ :: S.map (fun s => s.1 ⊞ s.2.2.1) ∧
-        ∀ (k : ℕ) (hk : k < S.length), sys.ReachFloatInputInvariant (toReal options.Δt)
-          params.X₀.construct (Recenter.center
-            (sys.inputSetFloat params.U))
-          (Recenter.recenter (sys.inputSetFloat params.U)) k S[k] := by -- --- PROOF ---
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloatInput params options →
+      0 < toReal options.Δt ∧ ∃ N : ℕ,
+        (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        ∃ S : List (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) ×
+          Zonotope (Vec 𝕋 n)),
+          S.length = N ∧ Rti = S.map (fun s => s.2.1 ⊞ s.2.2.1) ∧
+          Rtp = params.X₀ :: S.map (fun s => s.1 ⊞ s.2.2.1) ∧
+          ∀ (k : ℕ) (hk : k < S.length), sys.ReachFloatInputInvariant (toReal options.Δt)
+            params.X₀.construct (Recenter.center
+              (sys.inputSetFloat params.U))
+            (Recenter.recenter (sys.inputSetFloat params.U)) k S[k] := by -- --- PROOF ---
+  intro Rti Rtp (h : sys.reachFloatInput params options = some (Rti, Rtp))
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachFloatInput, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨N, hN, η', hη', rfl, rfl⟩ := h
-  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
+  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal _ hN
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
   refine ⟨hΔt, N, hNΔt, _, List.length_iterate _ _ _, rfl, rfl, fun k hk => ?_⟩
   rw [List.getElem_iterate]
   clear hk

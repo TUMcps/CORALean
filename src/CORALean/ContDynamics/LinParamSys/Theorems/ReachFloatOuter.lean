@@ -40,20 +40,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSys.reachFloat_outer (sys : LinParamSys ℐ[𝕋] n)
-    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rs : List (Zonotope (Vec 𝕋 n))} (h : sys.reachFloat params options = some Rs) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ A ∈ sys.A.construct,
-        ∀ x₀ ∈ params.X₀.construct, ∀ s ∈ Set.Icc 0 (toReal options.Δt),
-          exp (((k : ℝ) * toReal options.Δt + s) • A) *ᵥ x₀
-            ∈ Rs[k].construct := by -- --- PROOF ---
+    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rs ∈ sys.reachFloat params options,
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ A ∈ sys.A.construct,
+          ∀ x₀ ∈ params.X₀.construct, ∀ s ∈ Set.Icc 0 (toReal options.Δt),
+            exp (((k : ℝ) * toReal options.Δt + s) • A) *ᵥ x₀
+              ∈ Rs[k].construct := by -- --- PROOF ---
+  intro Rs (h : sys.reachFloat params options = some Rs)
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinParamSys.reachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
   obtain ⟨N, hN, η', hη', hRs⟩ := h
-  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
-  have hadm := (LinParamSys.reachOrderFloat_spec hη').1
+  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal _ hN
+  have hadm := (LinParamSys.reachOrderFloat_spec _ hη').1
   obtain ⟨hlen, hget⟩ := LinParamSys.mapM_eq_some hRs
   rw [List.length_range] at hlen
   refine ⟨N, hNΔt, hlen, fun k hk A hA x₀ hx₀ s ⟨hs0, hs⟩ => ?_⟩
@@ -72,7 +74,7 @@ theorem LinParamSys.reachFloat_outer (sys : LinParamSys ℐ[𝕋] n)
     rw [Matrix.mulVec_mulVec]
     exact congrArg (· *ᵥ x₀) h
   rw [hexp]
-  exact sys.reachStepkFloat_outer hadm.1 hwin hA hτ₀
+  exact sys.reachStepkFloat_outer hadm.1 hA hτ₀ _ hwin
 
 end CORALean
 

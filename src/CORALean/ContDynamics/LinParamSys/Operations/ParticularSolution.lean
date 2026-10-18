@@ -10,14 +10,15 @@ public import CORALean.ContDynamics.LinParamSys.Operations.InputSolution
 
 `LinearSys.particularSolution` at a set of matrices: `P^R(t_{k+1})`, grown one
 window at a time from `P^R(Δt)`, `inputSolution`'s set, as
-`P^R(t_{k+1}) = P^R(t_k) ⊕ e^{[A] t_k} P^R(Δt)` [1, Prop. 3.2], the new window
-prepended, with `e^{[A] t_k}` the interval matrix `expEnclosure`. Indexed from
-`0`, so that `P^R(t_0) = {0}` never has to be represented.
+`P^R(t_{k+1}) = P^R(t_k) ⊕ e^{[A] t_k} P^R(Δt)`, [1, Alg. 1]'s
+`R_k = M(r) R_{k-1} + P_0` unrolled with the new window prepended, with `e^{[A] t_k}` the interval
+matrix `expEnclosure`. Indexed from `0`, so that `P^R(t_0) = {0}` never has to be represented.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5

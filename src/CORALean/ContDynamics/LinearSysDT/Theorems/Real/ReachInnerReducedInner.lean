@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
-public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetAddErrorReduced
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetExactInnerOfOuter
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetExactAddErrorReduced
 public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
@@ -13,8 +13,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 # The inner approximation at the reduced error
 
 `reachInner_inner` with `reachErrorReduced` in place of `reachError`, and the
-same bridge doing the work: `reach_subset_reachSet_add_errorReduced` supplies
-the enclosure `reachSet_inner_of_outer` asks for, and the reduced error is a
+same bridge doing the work: `reach_subset_reachSetExact_add_errorReduced` supplies
+the enclosure `reachSetExact_inner_of_outer` asks for, and the reduced error is a
 zonotope, so nonempty and bounded come from the representation exactly as
 before.
 
@@ -47,11 +47,11 @@ reachable set — the same guarantee as `reachInner_inner`, on a smaller set,
 bought with a bounded generator count. -/
 theorem LinearSysDT.reachInnerReduced_inner (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    sys.reachInnerReduced o ho R₀ U k ⊆ sys.reachSet (S := 𝒵) R₀ U k :=
-  sys.reachSet_inner_of_outer (S := 𝒵) (Zonotope.convex_construct R₀)
+    sys.reachInnerReduced o ho R₀ U k ⊆ sys.reachSetExact (S := 𝒵) R₀ U k :=
+  sys.reachSetExact_inner_of_outer (S := 𝒵) (Zonotope.convex_construct R₀)
     (Zonotope.isCompact_construct R₀) (Zonotope.convex_construct U)
     (Zonotope.isCompact_construct U) k ⟨_, Zonotope.center_mem_construct _⟩
-    (Zonotope.isBounded_construct _) (sys.reach_subset_reachSet_add_errorReduced ho R₀ U k)
+    (Zonotope.isBounded_construct _) (sys.reach_subset_reachSetExact_add_errorReduced ho R₀ U k)
 
 end CORALean
 

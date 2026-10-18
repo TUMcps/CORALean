@@ -9,8 +9,8 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.OptStep
 public import CORALean.ContDynamics.NonlinearSys.Definitions.TunedStep
 public import CORALean.ContDynamics.NonlinearSys.Definitions.CenterAbstrState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.PolyReach
-public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSet
-public import CORALean.ContDynamics.NonlinearSys.Definitions.RobustReachSet
+public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachSetExact
+public import CORALean.ContDynamics.NonlinearSys.Definitions.RobustReachSetExact
 public import CORALean.ContDynamics.NonlinearSys.Definitions.RelinReachOptions
 public import CORALean.ContDynamics.NonlinearSys.Definitions.RelinDeltaReachOptions
 public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
@@ -37,8 +37,8 @@ is checked against; `LinStep` bundles one linearization with its certificate.
 `OptStep`/`TunedStep` are what `optDeltat` and the tuning of `Δt` return.
 `AbstrState`/`AdaptState`/`CenterAbstrState`/`PolyReachState` (with
 `PolyTaylor`/`PolyPost`) are what each reachability loop hands its next
-iteration. `ReachSet` is the set the flow actually reaches, `RobustReachSet` the one reached
-against every disturbance. `WithSteps` bundles the
+iteration. `ReachSetExact` is the set the flow actually reaches, `RobustReachSetExact` the one
+reached against every disturbance. `WithSteps` bundles the
 system with a chain of `LinStep`s and checkable regions, and `ReachUnionExact` is
 the set a `Reach` run encloses. `RelinReachOptions`,
 `RelinDeltaReachOptions`, `AbstrReachOptions` and `PolyReachOptions` are CORA's

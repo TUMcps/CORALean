@@ -157,10 +157,11 @@ theorem aux_reduceOnTheFlyFrom_outer :
 
 /-- [1, Alg. 2]: every instance of `Φ` maps `X` into the `Y` computed, and `Y` is
 the reduced network's enclosure of `X`. -/
-theorem reduceOnTheFly_outer {n m : ℕ} {X : S n} {Φ Φhat : ReducibleNetwork 𝕋 n m} {Y : S m}
-    {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.Instance f)
-    (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y)) :
-    f '' construct X ⊆ construct Y ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
+theorem reduceOnTheFly_outer {n m : ℕ} {X : S n} {Φ : ReducibleNetwork 𝕋 n m}
+    {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.Instance f) :
+    ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
+      f '' construct X ⊆ construct Y ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
+  intro Φhat Y (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
   cases hΦ with
   | nil hid =>
     simp only [reduceOnTheFly, Option.some.injEq, Prod.mk.injEq] at hrun

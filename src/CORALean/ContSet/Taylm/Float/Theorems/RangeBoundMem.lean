@@ -41,10 +41,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.rangeBound_mem {m : ℕ} {p q s N : ℕ} {e : Real.Taylm.CodeList 𝕋 m}
-    {D : Interval (Vec 𝕋 m)} {b : Interval 𝕋} (hb : Taylm.rangeBound p q s e D N = some b)
-    {x : Vec ℝ m} (hx : x ∈ D.construct) : -- --- STMT ---
-    toReal b.inf ≤ (e.map toReal).eval x ∧
-      (e.map toReal).eval x ≤ toReal b.sup := by -- --- PROOF ---
+    {D : Interval (Vec 𝕋 m)} {x : Vec ℝ m} (hx : x ∈ D.construct) : -- --- STMT ---
+    ∀ b ∈ Taylm.rangeBound p q s e D N,
+      toReal b.inf ≤ (e.map toReal).eval x ∧
+        (e.map toReal).eval x ≤ toReal b.sup := by -- --- PROOF ---
+  intro b (hb : Taylm.rangeBound p q s e D N = some b)
   simp only [Taylm.rangeBound, Option.map_eq_some_iff] at hb
   obtain ⟨T, hT, rfl⟩ := hb
   obtain ⟨t, ht, hxt⟩ := Interval.taylm_contains D N hx

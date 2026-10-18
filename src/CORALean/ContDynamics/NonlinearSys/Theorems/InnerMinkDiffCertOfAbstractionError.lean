@@ -57,31 +57,33 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 /-- [1, Alg. 1]: a remainder `L̂` certified on a region the solutions keep to gives the step
 from `X` [1, Prop. 1]'s hypotheses, (21) among them. -/
 theorem NonlinearSys.IsInnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
-    (ops : NonlinearSys.InnerMinkDiffOps n (S n)) (sys : NonlinearSys n m) (u₀ : Vec ℝ m)
-    (U : S m) (hu₀ : u₀ ∈ construct U) {Δt : ℝ} (hΔt : 0 < Δt) (μ : ℝ) (fuel η : ℕ)
+    (ops : NonlinearSys.InnerMinkDiffOps n (S n)) (sys : NonlinearSys n m) (u₀ : Vec ℝ m) (U : S m)
+    (hu₀ : u₀ ∈ construct U) {Δt : ℝ} (hΔt : 0 < Δt) (μ : ℝ) (fuel η : ℕ)
     (herr : ∀ A L, ops.err Δt A L = construct ((NonlinearSys.linearize A).inputSolution Δt η L))
-    {X : Set (Vec ℝ n)} {st : NonlinearSys.InnerMinkDiffState n (S n)}
-    (h : NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X = some st)
-    {B : Mat ℝ n m} {R : Set (Vec ℝ n)}
-    (cert : AbstractionError sys.f st.A B st.xstar u₀ R (construct U) st.Lhat)
+    {X : Set (Vec ℝ n)} {B : Mat ℝ n m} {R : Set (Vec ℝ n)}
     (hconf : ∀ x₀ ∈ X, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ t ∈ Icc 0 Δt, HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) →
-      ∀ t ∈ Icc 0 Δt, x t ∈ R)
-    (hε : ‖Δt • st.A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct st.Lhat)) (hclosed : IsClosed (construct st.Lhat))
-    (hbdd : Bornology.IsBounded (construct st.Lhat))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder st.A Δt η) st.Lhat)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder st.A Δt η) st.Lhat)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
-      (MatExp.inputRemainder st.A Δt η) st.Lhat)))
-    (hEc : IsCompact st.Rerr) (hEcv : Convex ℝ st.Rerr) (hEne : st.Rerr.Nonempty)
-    (hEs : ∀ e ∈ st.Rerr, (2 : ℝ) • st.c - e ∈ st.Rerr)
-    {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
+      ∀ t ∈ Icc 0 Δt, x t ∈ R) {Ω : Set (Vec ℝ n)} {K : NNReal}
+    (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- STMT ---
-    NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st := by -- --- PROOF ---
+    ∀ st ∈ NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X,
+      AbstractionError sys.f st.A B st.xstar u₀ R (construct U) st.Lhat →
+      ‖Δt • st.A‖ / ((η : ℝ) + 2) < 1 →
+      Convex ℝ (construct st.Lhat) →
+      IsClosed (construct st.Lhat) →
+      Bornology.IsBounded (construct st.Lhat) →
+      Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder st.A Δt η) st.Lhat)) →
+      IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder st.A Δt η) st.Lhat)) →
+      Bornology.IsBounded
+        (construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder st.A Δt η) st.Lhat)) →
+      IsCompact st.Rerr →
+      Convex ℝ st.Rerr →
+      st.Rerr.Nonempty →
+      (∀ e ∈ st.Rerr, (2 : ℝ) • st.c - e ∈ st.Rerr) →
+      NonlinearSys.IsInnerMinkDiffCert sys u₀ Δt X st := by -- --- PROOF ---
+  intro st (h : NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X = some st) cert
+      hε hconv hclosed hbdd hRconv hRclosed hRbdd hEc hEcv hEne hEs
   -- what lines 5, 7 and 14 computed
   have hst : st.w = sys.f st.xstar u₀ ∧
       st.Rcon = (∫ θ in (0:ℝ)..Δt, exp ((Δt - θ) • st.A) *ᵥ st.w) ∧

@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Instances
 /-!
 # The set every input contributes over one step
 
-[1, Thm. 3.1]: the orders up to `η` exactly, and everything past `η` in the
+[1, Thm. 1]: the orders up to `η` exactly, and everything past `η` in the
 same remainder that bounds the exponential — so the tail costs a second product
 rather than a second argument about convergence.
 
@@ -18,8 +18,9 @@ representation must multiply by one of those and not only by a plain matrix.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5
@@ -42,7 +43,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- Althoff's Thm. 3.1: everything the input can contribute over one step,
+/-- [1, Thm. 1]: everything the input can contribute over one step,
 `⊕ᵢ Aⁱr^{i+1}/(i+1)! U ⊕ E(r)·r·U`. -/
 noncomputable def LinearSys.inputSolution
     (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (U : S n) : S n :=

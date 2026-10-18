@@ -13,8 +13,8 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatCheckedEq
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachFloatOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
-public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetOuter
-public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetSubsetReach
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetExactOuter
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetExactSubsetReach
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionFloatOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachWithOuter
@@ -36,7 +36,7 @@ plant's input vector, `MulVecJoinInput` splits `B` over its two parts, `ToRealMa
 `HoldsOfReach` says what checking a specification on it buys; `CartProdOuter`/`ProjectOuter`
 are the product and projection it runs with.
 
-`ReachSetOuter`/`ReachSetSubsetReach` restate `ReachOuter` on the reachable set
+`ReachSetExactOuter`/`ReachSetExactSubsetReach` restate `ReachOuter` on the reachable set
 rather than on one run — every run is in it, and it, in turn, is inside `reach`.
 `ReachOrderAdmissible`/`ReachUnionOuter` are `Instances`' guarantee, `ReachFloatOuter` `ReachOuter`
 in floats, through `ToRealMatAugmentFloat`. `OfFullTrajectoryIff` is the loop with no external

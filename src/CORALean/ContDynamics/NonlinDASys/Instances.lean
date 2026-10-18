@@ -45,7 +45,7 @@ noncomputable instance NonlinDASys.reachInstance :
   reachExact sys params := sys.reachUnionExact (params.tFinal - params.tStart)
     (construct params.X₀)
   reach sys params options := sys.reachUnion params options
-  reach_outer sys params options _ h := sys.reachUnion_outer params options h
+  reach_outer sys params options _ h := sys.reachUnion_outer params options _ h
 
 /-- CORA's `nonlinDASys` as a `ContDynamics`: the state is `x`, `y` is carried by the run. -/
 instance NonlinDASys.contDynamics {n p m : ℕ} : ContDynamics (NonlinDASys n p m) n where

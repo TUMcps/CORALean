@@ -3,8 +3,8 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.NonlinearSys.Definitions.ReachUnionExact
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachUnion
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetConfinementOfSubset
-public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetSubsetRelinTimeIntervalHorizon
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactConfinementOfSubset
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachSetExactSubsetRelinTimeIntervalHorizon
 public import CORALean.ContSet.ContSet.Definitions.CompactSet
 public import CORALean.ContSet.ContSet.Definitions.ConvexSet
 public import CORALean.ContSet.Interval.Real.Instances
@@ -17,8 +17,8 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 The run-time tests are what the proof spends. A returned union means every test
 passed; `contains_sound`, `region_subset` and the box inside the ball of radius
-`2MΔt` turn each into the ball check `reachSet_confinement_of_subset` asks for,
-the confinement it returns is what `reachSet_subset_relinTimeInterval_horizon`
+`2MΔt` turn each into the ball check `reachSetExact_confinement_of_subset` asks for,
+the confinement it returns is what `reachSetExact_subset_relinTimeInterval_horizon`
 places the reachable set with, and `2MΔt > MΔt` is the strictness
 `confined_of_ball` spends. No confinement is assumed of any run.
 
@@ -53,11 +53,11 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S Rg m n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ)
-    {R : SetUnion (S n)} (hR : sys.reachUnion params options = some R) : -- --- STMT ---
-    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-      ⊆ construct R := by -- --- PROOF ---
-  intro y hy
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- STMT ---
+    ∀ R ∈ sys.reachUnion params options,
+      sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
+        ⊆ construct R := by -- --- PROOF ---
+  intro R (hR : sys.reachUnion params options = some R) y hy
   simp only [NonlinearSys.WithSteps.reachUnion] at hR
   set Δt := options.Δt with hΔtdef
   set N := ⌈(params.tFinal - params.tStart) / Δt⌉₊ with hNdef
@@ -109,14 +109,14 @@ theorem NonlinearSys.WithSteps.reachUnion_outer (sys : NonlinearSys.WithSteps S 
     have hj : ‖(w - z) j‖ ≤ 2 * sys.M * Δt := (norm_le_pi_norm (w - z) j).trans hw'
     exact abs_le.mp (Real.norm_eq_abs _ ▸ hj)
   -- confinement of the whole reachable set, from the ball check
-  have hconf' := sys.sys.reachSet_confinement_of_subset (T := Set.Icc 0 ((N : ℝ) * Δt))
+  have hconf' := sys.sys.reachSetExact_confinement_of_subset (T := Set.Icc 0 ((N : ℝ) * Δt))
     params.X₀ sys.U hΔt subset_rfl (q + 2) hε hconv hclosed hbdd hRconv hRclosed hRbdd
     sys.M_pos.le (fun i _ => sys.norm_f_le i) (by nlinarith [sys.M_pos, hΔt]) ho hsub
   -- a run from the bare set `construct R0` is a run from the representation `R0`
   obtain ⟨t, ht, x, u, traj, rfl⟩ := by simpa [NonlinearSys.WithSteps.reachUnionExact] using hy
   have traj' : sys.sys.IsTrajectory (Set.Icc 0 ((N : ℝ) * Δt)) params.X₀ sys.U x u :=
     ⟨traj.init, traj.input, traj.flow⟩
-  have hx := sys.sys.reachSet_subset_relinTimeInterval_horizon params.X₀ sys.U hΔt hN
+  have hx := sys.sys.reachSetExact_subset_relinTimeInterval_horizon params.X₀ sys.U hΔt hN
     subset_rfl hconf' q hε hconv hclosed hbdd (fun i _ => sys.zero_mem_linInput i) hRconv
     hRclosed hRbdd ho ht ⟨x, u, traj', rfl⟩
   obtain ⟨i, hi, hxi⟩ := Set.mem_iUnion₂.mp hx

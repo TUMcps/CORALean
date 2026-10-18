@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
 # Interval matrices: the second-order Taylor term, exactly, over a floating-point scalar
 
 `expIntervalW`: `Real.MatExp.expIntervalW` rounded. The single-use rearrangement of
-[1, Lemma 3.1] off the diagonal, `quadTermLo`/`quadTermHi` on it, and the `k ≠ i, j`
+[1, Prop. 4] off the diagonal, `quadTermLo`/`quadTermHi` on it, and the `k ≠ i, j`
 row-column sum under both. Every bound the exact layer takes at a real is taken at a bracket
 here: `½ t²` by `halfSqBounds`, the factor by directed sums, the sum by `sumDown`/`sumUp` of
 the corner hulls, and each product by the hull of its brackets. Each rounds away from the
@@ -18,8 +18,9 @@ interval, `inf` down and `sup` up.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -60,7 +61,7 @@ def aux_expIntervalWEntry (A : Interval (Mat 𝕋 n n)) (t : 𝕋) (i j : Fin n)
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `W(t)` of [1, Lemma 3.1] as an interval matrix, rounded outward. -/
+/-- `W(t)` of [1, Prop. 4] as an interval matrix, rounded outward. -/
 def MatExp.expIntervalW (A : Interval (Mat 𝕋 n n)) (t : 𝕋) : Interval (Mat 𝕋 n n) :=
   ⟨fun i j => (aux_expIntervalWEntry A t i j).inf, fun i j => (aux_expIntervalWEntry A t i j).sup⟩
 

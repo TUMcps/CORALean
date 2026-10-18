@@ -8,12 +8,13 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 # The sign of `t + c t²` against the parabola's vertex
 
 `t + c t² = t² (c - (-1/t))`, so it takes the sign of `c` measured against the vertex `-1/t` of
-[1, Lemma 3.1]'s `γ` — and vanishes at `t = 0`, where `-1/t` reads as `0`.
+[1, Prop. 4]'s `γ` — and vanishes at `t = 0`, where `-1/t` reads as `0`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

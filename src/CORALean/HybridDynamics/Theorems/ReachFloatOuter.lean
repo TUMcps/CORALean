@@ -62,22 +62,22 @@ theorem aux_mapM_some {α β : Type} {f : α → Option β} :
 
 /-- Every run (`isRun_iff_exists_isRunUntil`: a `IsRun` with a duration) from `X₀` at `ℓ`, with at
 most `K` jumps and lasting at most `tFinal`, ends in a computed set of its final location;
-at `reachSet` this is `reachSet_subset_reachFloat`. -/
+at `reachSetExact` this is `reachSetExact_subset_reachFloat`. -/
 theorem HybridAutomaton.reachFloat_outer
     (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
-    n) {tFinal : ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
+    n) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
     (run : HA.IsRunUntil T k ℓ x ℓ' y) (hT : T ≤ tFinal) {K : ℕ} (hk : k ≤ K)
-    {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ construct X₀) {out : List (L × Zonotope (Vec 𝕋 n))}
-    (h : HA.reachFloat tFinal options K ℓ X₀ = some out) : -- --- STMT ---
-    ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ construct p.2 := by -- --- PROOF ---
+    {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ construct X₀) : -- --- STMT ---
+    ∀ out ∈ HA.reachFloat tFinal options K ℓ X₀,
+      ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ construct p.2 := by -- --- PROOF ---
+  intro out (h : HA.reachFloat tFinal options K ℓ X₀ = some out)
   induction run generalizing K X₀ out with
   | @flow T ℓ τ x u w traj hτ =>
     -- the stay itself, held by one of the location's sets whatever `K` is
     unfold HybridAutomaton.reachFloat at h
     obtain ⟨Rs, hRs, h⟩ := Option.bind_eq_some_iff.mp h
-    obtain ⟨R, hR, hy⟩ := traj.reachFloat_outer hRs hx (hτ.trans hT)
-      ⟨traj.nonneg, le_rfl⟩
+    obtain ⟨R, hR, hy⟩ := traj.reachFloat_outer hx (hτ.trans hT)
+      ⟨traj.nonneg, le_rfl⟩ _ hRs
     have hhere : (ℓ, R) ∈ Rs.map fun R => (ℓ, R) := List.mem_map.mpr ⟨R, hR, rfl⟩
     cases K with
     | zero =>
@@ -94,8 +94,8 @@ theorem HybridAutomaton.reachFloat_outer
     obtain ⟨next, hnext, h⟩ := Option.bind_eq_some_iff.mp h
     cases h
     -- the state at the jump is in a set of the stay, in the invariant and in the guard
-    obtain ⟨R, hR, hxτ⟩ := traj.reachFloat_outer hRs hx (hτ.trans hT)
-      ⟨traj.nonneg, le_rfl⟩
+    obtain ⟨R, hR, hxτ⟩ := traj.reachFloat_outer hx (hτ.trans hT)
+      ⟨traj.nonneg, le_rfl⟩ _ hRs
     obtain ⟨Rg, hRg, hxRg⟩ := (HA.loc ℓ).guardIntersectFloat_outer e.guard hR hxτ
       (traj.invariant τ ⟨traj.nonneg, le_rfl⟩) hguard
     -- so the reset state is in the set the transition's branch continues from
@@ -104,7 +104,7 @@ theorem HybridAutomaton.reachFloat_outer
     obtain ⟨o, ho, hfo⟩ := aux_mapM_some hnext e hmem
     simp only [hRg] at hfo
     obtain ⟨p, hp, hpℓ, hpy⟩ := ih (by linarith [traj.nonneg])
-      (Nat.le_of_succ_le_succ hk) hreset hfo
+      (Nat.le_of_succ_le_succ hk) hreset _ hfo
     exact ⟨p, List.mem_append_right _ (List.mem_flatten_of_mem ho hp), hpℓ, hpy⟩
 
 end CORALean

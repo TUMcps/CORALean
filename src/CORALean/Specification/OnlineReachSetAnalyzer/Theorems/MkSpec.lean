@@ -29,16 +29,16 @@ variable {S : ℕ → Type} {d : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineReachSetAnalyzer.mk?_spec
-    (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) (f : ℕ) (dp : Bool)
-    (obj : OnlineReachSetAnalyzer S d)
-    (h : OnlineReachSetAnalyzer.mk? φ f dp = some obj) : -- --- STMT ---
-    obj.propagationFrequency = f ∧ obj.numObservations = 0 ∧
-      obj.propagated = List.replicate obj.nodes.length false ∧
-      (∀ (j : ℕ) (hj : j < obj.nodes.length), obj.nodes[j].idx = j + 1) ∧
-      (∀ n ∈ obj.nodes, n.dropPropagated = dp) ∧
-      (∃ root, obj.nodes[0]? = some root ∧ root.kind = φ.kind ∧ root.parents.head? = some 0) ∧
-      (∀ l ∈ obj.leaves, 1 ≤ l ∧ l ≤ obj.nodes.length) := by -- --- PROOF ---
+theorem OnlineReachSetAnalyzer.mk?_spec (φ : OnlineReachSetAnalyzer.Formula (AtomicProposition S d))
+    (f : ℕ) (dp : Bool) : -- --- STMT ---
+    ∀ obj ∈ OnlineReachSetAnalyzer.mk? φ f dp,
+      obj.propagationFrequency = f ∧ obj.numObservations = 0 ∧
+        obj.propagated = List.replicate obj.nodes.length false ∧
+        (∀ (j : ℕ) (hj : j < obj.nodes.length), obj.nodes[j].idx = j + 1) ∧
+        (∀ n ∈ obj.nodes, n.dropPropagated = dp) ∧
+        (∃ root, obj.nodes[0]? = some root ∧ root.kind = φ.kind ∧ root.parents.head? = some 0) ∧
+        (∀ l ∈ obj.leaves, 1 ≤ l ∧ l ≤ obj.nodes.length) := by -- --- PROOF ---
+  intro obj (h : OnlineReachSetAnalyzer.mk? φ f dp = some obj)
   unfold OnlineReachSetAnalyzer.mk? at h
   obtain ⟨st, hparse, rfl⟩ := Option.map_eq_some_iff.mp h
   -- the parser keeps the invariant of the nodes, from the empty list

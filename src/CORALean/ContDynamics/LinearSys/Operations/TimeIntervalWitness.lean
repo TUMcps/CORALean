@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactEqUnion
 public import CORALean.Global.SupportFunction.SupportFunction
 
 @[expose] public section
@@ -10,8 +10,8 @@ public import CORALean.Global.SupportFunction.SupportFunction
 
 [1, Alg. 1 (lower bounds)]'s line 16: the lower bound `ρ(R̲(t_k), ℓ)` computed at a time point
 carries straight over to `ρ(R̲(τ_k), ℓ)`, the whole step, because
-`timeIntervalReachSet_eq_iUnion` makes `reachSet` at any `t ∈ [0, r]` a
-*subset* of `timeIntervalReachSet` over `[0, r]`, and `SupportWitness.mono`
+`timeIntervalReachSetExact_eq_iUnion` makes `reachSetExact` at any `t ∈ [0, r]` a
+*subset* of `timeIntervalReachSetExact` over `[0, r]`, and `SupportWitness.mono`
 turns a witness for a subset into a witness for the superset it sits in — the
 opposite of `LinearSys.timeIntervalBound`, which needs a set-level enclosure
 to shrink an upper bound the other way.
@@ -41,11 +41,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem aux_reachSet_subset_timeIntervalReachSet
+theorem aux_reachSetExact_subset_timeIntervalReachSetExact
     (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
     {r t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    sys.reachSet T R₀ U t ⊆ sys.timeIntervalReachSet T R₀ U r := by
-  rw [sys.timeIntervalReachSet_eq_iUnion]
+    sys.reachSetExact T R₀ U t ⊆ sys.timeIntervalReachSetExact T R₀ U r := by
+  rw [sys.timeIntervalReachSetExact_eq_iUnion]
   exact Set.subset_biUnion_of_mem ⟨ht0, htr⟩
 
 
@@ -54,9 +54,9 @@ theorem aux_reachSet_subset_timeIntervalReachSet
 /-- A witness at any time of the step is a witness for the whole step. -/
 def LinearSys.timeIntervalWitness (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n) {r t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) {c : Vec ℝ n →ₗ[ℝ] ℝ}
-    (w : SupportWitness (sys.reachSet T R₀ U t) c) :
-    SupportWitness (sys.timeIntervalReachSet T R₀ U r) c :=
-  w.mono (aux_reachSet_subset_timeIntervalReachSet sys T R₀ U ht0 htr)
+    (w : SupportWitness (sys.reachSetExact T R₀ U t) c) :
+    SupportWitness (sys.timeIntervalReachSetExact T R₀ U r) c :=
+  w.mono (aux_reachSetExact_subset_timeIntervalReachSetExact sys T R₀ U ht0 htr)
 
 end CORALean
 

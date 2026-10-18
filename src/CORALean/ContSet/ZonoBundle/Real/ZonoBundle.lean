@@ -8,7 +8,7 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 /-!
 # Zonotope bundles: the representation
 
-CORA's `zonoBundle` [1, §3.5.5], [2, Def. 4]: a finite family of zonotopes, denoting their
+CORA's `zonoBundle` [1, Def. 4]: a finite family of zonotopes, denoting their
 *intersection*. Two zonotopes generally do not intersect in a zonotope, so a
 bundle is what lets an algorithm keep such an intersection exact instead of
 enclosing it back into a single one.
@@ -27,9 +27,7 @@ mentions coordinates either.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
+* [1] M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of
       Reachable Sets". In Proc. of the 50th IEEE Conference on Decision and Control and
       European Control Conference (CDC-ECC), pp. 6814-6821, 2011.
 -/

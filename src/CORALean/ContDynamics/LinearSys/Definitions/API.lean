@@ -3,18 +3,18 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.AutoInvariantFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBound
-public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalReachSetExact
 public import CORALean.ContDynamics.LinearSys.Definitions.ClosedForm
 public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalForm
 public import CORALean.ContDynamics.LinearSys.Definitions.IsCanonicalClassicalTrajectory
 public import CORALean.ContDynamics.LinearSys.Definitions.IsPerturbedTrajectory
-public import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetExistsForall
-public import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetForallExists
-public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetExistsForall
-public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExists
-public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInput
+public import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetExistsForallExact
+public import CORALean.ContDynamics.LinearSys.Definitions.BackReachSetForallExistsExact
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetExistsForallExact
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExistsExact
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInputExact
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachInner
 public import CORALean.ContDynamics.LinearSys.Definitions.StepInner
 public import CORALean.ContDynamics.LinearSys.Definitions.AutoState
@@ -63,15 +63,15 @@ public import CORALean.ContDynamics.LinearSys.Definitions.VerifySearchState
 /-!
 # What a continuous-time linear system means
 
-The set the Carathéodory runs reach in `ReachSet`, over an interval in
-`TimeIntervalReachSet`. `ClosedForm` is the variation-of-constants formula;
+The set the Carathéodory runs reach in `ReachSetExact`, over an interval in
+`TimeIntervalReachSetExact`. `ClosedForm` is the variation-of-constants formula;
 `IsCanonicalClassicalTrajectory` the derivative-everywhere run, the special case a nonlinear
 or parameter-varying run is linearized to; `IsPerturbedTrajectory` a run with a
 second, independently-quantified disturbance signal.
 
-The backward sets over it: `BackReachSetExistsForall`/`BackReachSetForallExists`
-at a time point, `TimeIntervalBackReachSetExistsForall`/`ForallExists` over an
-interval. `TimeIntervalBackReachSetOfInput` is the set under one fixed input
+The backward sets over it: `BackReachSetExistsForallExact`/`BackReachSetForallExistsExact`
+at a time point, `TimeIntervalBackReachSetExistsForallExact`/`ForallExists` over an
+interval. `TimeIntervalBackReachSetOfInputExact` is the set under one fixed input
 signal, [1, Thm. 1]'s intersection target.
 
 `ReachExact` is what `Reach` asks of it, homogeneous;

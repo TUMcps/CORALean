@@ -1028,7 +1028,7 @@ def vdpReach : Option (List (Zonotope (Vec D 2))) :=
 
 /-- What a successful run is worth: every run of the real system, over every window. -/
 example {Rs : List (Zonotope (Vec D 2))} (h : vdpReach = some Rs) :=
-  vdpModel_encloses.reachFloat_outer h
+  vdpModel_encloses.reachFloat_outer _ h
 
 /-- A dyadic read through `Float`, for printing. -/
 def vdpF (x : D) : Float := Float.scaleB (Float.ofInt x.mantissa) x.exponent
@@ -1145,7 +1145,7 @@ theorem vdpHessModel_encloses : vdpHessModel.Encloses
 /-- What a successful run is worth, at either `alg`. -/
 example {alg : NonlinearSys.LinReachAlg} {Rs : List (Zonotope (Vec D 2))}
     (h : vdpReachAlg alg = some Rs) :=
-  vdpHessModel_encloses.reachAlgFloat_outer h
+  vdpHessModel_encloses.reachAlgFloat_outer _ h
 
 -- `'lin'` with the Hessian, each window about `0.22` wide; `'poly'`, a minute here, is RunCheck's.
 #eval (vdpReachAlg .lin).map (·.map fun Z =>

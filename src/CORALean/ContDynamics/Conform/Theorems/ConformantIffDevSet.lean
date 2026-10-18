@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.Conform.Definitions.Conformant
-public import CORALean.ContDynamics.Conform.Theorems.MemReachOutIff
+public import CORALean.ContDynamics.Conform.Theorems.MemReachOutExactIff
 
 @[expose] public section
 
@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.Conform.Theorems.MemReachOutIff
 
 [1, Eq. 16]: the model is reachset conformant on the test cases exactly when, at every
 step, the union over the test cases of the deviations `y_a = y - y_*` lies in the one
-deviation set `R_a(k)` — `mem_reachOut_iff` once per measurement.
+deviation set `R_a(k)` — `mem_reachOutExact_iff` once per measurement.
 
 ## References
 
@@ -42,8 +42,8 @@ theorem Conform.Plant.conformant_iff_devSet {M : Type} (sys : Conform.Plant n p 
       ∀ k ≤ K, (⋃ m, {(T m).y k - sys.nominal (T m).x0 (T m).u k}) ⊆
         sys.devSet X0 W V k := by -- --- PROOF ---
   simp only [Conform.Plant.Conformant, Set.iUnion_subset_iff, Set.singleton_subset_iff]
-  exact ⟨fun h k hk m => (sys.mem_reachOut_iff _ _ _ _ _ _ _).mp (h m k hk),
-    fun h m k hk => (sys.mem_reachOut_iff _ _ _ _ _ _ _).mpr (h k hk m)⟩
+  exact ⟨fun h k hk m => (sys.mem_reachOutExact_iff _ _ _ _ _ _ _).mp (h m k hk),
+    fun h m k hk => (sys.mem_reachOutExact_iff _ _ _ _ _ _ _).mpr (h k hk m)⟩
 
 end CORALean
 

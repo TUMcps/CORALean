@@ -16,7 +16,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 `reachErrorReduced` at a per-step order sequence: the same recursion, one
 `reduce` on top read at `o (k + 1)` in place of the one fixed `o`. The
 direction is what keeps it sound at any sequence, exactly as for the fixed
-order — the error stands on the right of `reach_subset_reachSet_add_error`, so
+order — the error stands on the right of `reach_subset_reachSetExact_add_error`, so
 enlarging it keeps that inclusion regardless of which order enlarged it.
 
 Otherwise the recursion of `reachErrorOrders` unchanged, and at the same

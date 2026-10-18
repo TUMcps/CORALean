@@ -7,13 +7,14 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTerm
 /-!
 # The second-order Taylor term's diagonal factor, least value on a box
 
-`quadTermLo`: the least value [1, Lemma 3.1]'s `quadTerm t` takes on `[a, b]`. `-1/t` is the
+`quadTermLo`: the least value [1, Prop. 4]'s `quadTerm t` takes on `[a, b]`. `-1/t` is the
 vertex; where `t = 0` the `if` reads `-1/t` as `0` and this is sound but not tight.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5

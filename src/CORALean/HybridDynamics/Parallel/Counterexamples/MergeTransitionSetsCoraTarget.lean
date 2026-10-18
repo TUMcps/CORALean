@@ -66,18 +66,20 @@ variable {𝕋 : Type} [Scalar 𝕋] {m : ℕ} {n : Fin 2 → ℕ} {Λ : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ParallelHybridAutomaton.mergeTransitionSetsCora_wrong_target_counterexample
-    [ExactScalar 𝕋] [DecidableEq Λ] (P : ParallelHybridAutomaton S G 2 (fun _ => ℕ) 𝕋 n m)
+theorem ParallelHybridAutomaton.mergeTransitionSetsCora_wrong_target_counterexample [ExactScalar 𝕋]
+    [DecidableEq Λ] (P : ParallelHybridAutomaton S G 2 (fun _ => ℕ) 𝕋 n m)
     (slift : ParallelHybridAutomaton.SyncLifting S G n m)
     (lab : ParallelHybridAutomaton.SyncLabels G (fun _ => ℕ) 𝕋 n Λ) (ℓ : Fin 2 → ℕ) (a : Λ)
-    (e₀ : Transition G ℕ 𝕋 (n 0)) (e₁ : Transition G ℕ 𝕋 (n 1))
-    (h₀ : lab.pick P ℓ a 0 = some e₀) (h₁ : lab.pick P ℓ a 1 = some e₁)
-    (hp₀ : lab.parts a 0 = true) (hp₁ : lab.parts a 1 = true)
-    (t₀ : e₀.target = 2) (t₁ : e₁.target = 3) : -- --- STMT ---
-    P.mergeTransitionSetsCoraTarget lab ℓ a = ![3, 3] ∧
-      (P.liftSyncTransition slift lab ℓ a).target = ![2, 3] ∧
-      P.mergeTransitionSetsCoraTarget lab ℓ a ≠
-        (P.liftSyncTransition slift lab ℓ a).target := by -- --- PROOF ---
+    (hp₀ : lab.parts a 0 = true) (hp₁ : lab.parts a 1 = true) : -- --- STMT ---
+    ∀ e₁ ∈ lab.pick P ℓ a 1,
+      e₁.target = 3 →
+      ∀ e₀ ∈ lab.pick P ℓ a 0,
+        e₀.target = 2 →
+        P.mergeTransitionSetsCoraTarget lab ℓ a = ![3, 3] ∧
+          (P.liftSyncTransition slift lab ℓ a).target = ![2, 3] ∧
+          P.mergeTransitionSetsCoraTarget lab ℓ a ≠
+            (P.liftSyncTransition slift lab ℓ a).target := by -- --- PROOF ---
+  intro e₁ (h₁ : lab.pick P ℓ a 1 = some e₁) t₁ e₀ (h₀ : lab.pick P ℓ a 0 = some e₀) t₀
   have hreal : (P.liftSyncTransition slift lab ℓ a).target = ![2, 3] := by
     funext c
     fin_cases c <;> simp [ParallelHybridAutomaton.liftSyncTransition, h₀, h₁, t₀, t₁]

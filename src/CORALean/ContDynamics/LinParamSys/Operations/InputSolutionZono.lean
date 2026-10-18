@@ -11,20 +11,21 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 /-!
 # The set every input contributes over one step, at a matrix zonotope
 
-[1, Prop. 3.6]: `LinearSys.inputSolution` adapted to a system matrix that is a
+[1, Thm. 1]: `LinearSys.inputSolution` adapted to a system matrix that is a
 matrix zonotope `A_Z`. Orders `0` and `1` — "linear" and "quadratic" — are
 `inputTermZono`, computed exactly through the matrix zonotope; from order `2`
 on, `A_Z` is over-approximated by its enclosing interval matrix `A_Z.interval`,
-matching `inputTaylorSumTail` and `intervalInputRemainder` from there.
+matching `inputTaylorSumTail` and `intervalInputRemainder` from there ([1, Sec. 4.4]
+keeps matrix zonotopes to second order for the same reason).
 
-[1] remarks that this may not be factored into `(r + A_Zr²/2!)U`: the four
-pieces below stay four separate products, each its own `mtimes`, exactly as
-printed.
+The four pieces below stay four separate products, each its own `mtimes`, as CORA's
+`priv_inputSolution` takes them: they are not factored into `(r + A_Zr²/2!)U`.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5

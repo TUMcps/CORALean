@@ -58,16 +58,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- A step from a state holding the invariant reaches a state holding it, later
 in time, and its window holds every run over `[t_i, t_{i+1}] ∩ [0, t_f]`. -/
 theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope (Vec 𝕋 n)}
-    {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} {s s' : LinearSys.AdaptiveState 𝕋 n}
-    {r : LinearSys.AdaptiveStepInfo 𝕋 n}
-    (h : sys.adaptiveStepFloat X₀ V t₀ tf options s = some (r, s'))
+    {t₀ tf : ℚ} {options : LinearSys.AdaptiveOptions 𝕋} {s : LinearSys.AdaptiveState 𝕋 n}
     (hinv : sys.AdaptiveInvariant V s) : -- --- STMT ---
-    sys.AdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
-      r.tEnd = t₀ + min s'.t tf ∧
-      ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
-        U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ tf →
-          x t ∈ r.R.construct := by -- --- PROOF ---
+    ∀ r s', (r, s') ∈ sys.adaptiveStepFloat X₀ V t₀ tf options s →
+      sys.AdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
+        r.tEnd = t₀ + min s'.t tf ∧
+        ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
+          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
+          U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ tf →
+            x t ∈ r.R.construct := by -- --- PROOF ---
+  intro r s' (h : sys.adaptiveStepFloat X₀ V t₀ tf options s = some (r, s'))
   obtain ⟨h0, hlo, hhi, hP⟩ := hinv
   unfold LinearSys.adaptiveStepFloat at h
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at h
@@ -98,7 +98,8 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eAt Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
-        (LinearSys.squaringsFloat_spec (le_max_right _ _) hsq) hlo hhi) (Set.mem_image_of_mem _ hz))
+        (LinearSys.squaringsFloat_spec (le_max_right _ _) _ hsq) hlo hhi)
+        (Set.mem_image_of_mem _ hz))
   -- `{ũ}` and `[0, ũ]` hold what they are built from
   have hpt : ũ ∈ (Interval.point V.c).zonotope.construct :=
     Interval.zonotope_contains _ (Interval.mem_point V.c)

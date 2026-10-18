@@ -67,7 +67,7 @@ theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : 
   -- the time of the step, exactly, is the step size
   have hcast : ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ) = toReal Δ := by
     rw [add_sub_cancel_left, ToRat.toReal_toRat]
-  obtain ⟨hpos, hout⟩ := h.orderStepFloat_outer hF
+  obtain ⟨hpos, hout⟩ := h.orderStepFloat_outer _ _ hF
   refine ⟨?_, fun {x u} traj => ?_⟩
   · -- a positive step size is a positive exact time
     have h1 : (0 : ℝ) < ((ToRat.toRat Δ : ℚ) : ℝ) := by rwa [ToRat.toReal_toRat]
@@ -87,13 +87,14 @@ theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : 
 theorem NonlinearSys.FloatHessModel.Encloses.adaptStepFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachOptions 𝕋} {ζδ ζh ζZ ζK : 𝕋}
-    {prec bis fuel : ℕ} {s s' : NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋}
-    (hstep : fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s = some s') : -- --- STMT ---
-    s.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
-      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ))
-        s.R.construct U.construct x u →
-      (∀ t ∈ Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ), x t ∈ s'.Rτ.construct) ∧
-        x ((s'.t - s.t : ℚ) : ℝ) ∈ s'.R.construct := by -- --- PROOF ---
+    {prec bis fuel : ℕ} {s : NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋} : -- --- STMT ---
+    ∀ s' ∈ fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s,
+      s.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m},
+        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ))
+          s.R.construct U.construct x u →
+        (∀ t ∈ Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ), x t ∈ s'.Rτ.construct) ∧
+          x ((s'.t - s.t : ℚ) : ℝ) ∈ s'.R.construct := by -- --- PROOF ---
+  intro s' (hstep : fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s = some s')
   unfold NonlinearSys.FloatHessModel.adaptStepFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
   obtain ⟨p1, hp1, F0, hF0, p2, hp2, F₁, hF₁, F₂, hF₂, hpure⟩ := hstep

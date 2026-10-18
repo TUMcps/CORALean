@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustSucc
+public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.BackReachSetRobustExactSucc
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemBackReachAlignedSuccIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.MinkDiffAlignedExact
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffMono
@@ -49,13 +49,13 @@ theorem LinearSysDT.backReachAligned_outer {A : Mat ℝ n n} (hA : IsUnit A.det)
     (Z₀ : Zonotope (Vec ℝ n)) (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ))
     (hσ : ∀ Z, (∀ i, 0 ≤ (σ Z).2 i ∧ (σ Z).2 i ≤ 1) ∧
       (Z.aligned (σ Z).1 (σ Z).2).construct ⊆ (E *ᵥ ·) '' W) (k : ℕ) : -- --- STMT ---
-    LinearSysDT.backReachSetRobust A B E K U.construct W Z₀.construct k
+    LinearSysDT.backReachSetRobustExact A B E K U.construct W Z₀.construct k
       ⊆ (Zonotope.backReachAligned A B K U Z₀ σ k).construct := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     intro x hx
-    rw [LinearSysDT.backReachSetRobust_succ, Set.mem_preimage] at hx
+    rw [LinearSysDT.backReachSetRobustExact_succ, Set.mem_preimage] at hx
     obtain ⟨_, ⟨d, hd, _, ⟨u, hu, rfl⟩, rfl⟩, _, rfl, hsum⟩ := hx
     rw [Zonotope.mem_backReachAligned_succ_iff hA]
     set Zk := Zonotope.backReachAligned A B K U Z₀ σ k

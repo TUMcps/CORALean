@@ -19,7 +19,7 @@
   "2005/girard-hscc-reachability-zonotopes": {
     "Lemma 2": {
       "description": "error factor $1/2 + r$ should be $1/2 + r\\|A\\|$",
-      "fix": "HausdorffDistIUnionReachSetLinCombPlusCubeLe.lean"
+      "fix": "HausdorffDistIUnionReachSetExactLinCombPlusCubeLe.lean"
     },
     "Thm. 1": {
       "description": "inherits Lemma~2's error factor; $1/2 + r\\|A\\|$ needed",

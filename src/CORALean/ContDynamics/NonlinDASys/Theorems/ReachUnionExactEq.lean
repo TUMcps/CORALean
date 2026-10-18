@@ -39,7 +39,7 @@ theorem NonlinDASys.WithSteps.reachUnionExact_eq (sys : NonlinDASys.WithSteps S 
     sys.reachUnionExact tFinal X = sys.ode.reachUnionExact tFinal X := by -- --- PROOF ---
   ext z
   simp only [NonlinDASys.WithSteps.reachUnionExact, NonlinearSys.WithSteps.reachUnionExact,
-    NonlinearSys.reachSet, Set.mem_iUnion, Set.mem_setOf_eq, sys.ode_sys]
+    NonlinearSys.reachSetExact, Set.mem_iUnion, Set.mem_setOf_eq, sys.ode_sys]
   constructor
   · rintro ⟨t, ht, x, y, u, traj, rfl⟩
     exact ⟨t, ht, x, u, traj.toNonlinearSys sys.red, rfl⟩

@@ -36,20 +36,20 @@ variable {n p m : ℕ}
 
 /-- [1, Alg. 1] lines 6-10: the loop's result is `linReach` at its assumed errors, and its exit
 test holds. -/
-theorem NonlinDASys.reachRepeat_spec (sys : NonlinDASys n p m)
-    (taylor : NonlinDASys.LinPoint n p m)
+theorem NonlinDASys.reachRepeat_spec (sys : NonlinDASys n p m) (taylor : NonlinDASys.LinPoint n p m)
     (corollary1 : NonlinDASys.LinPoint n p m → Zonotope (Vec ℝ n × Vec ℝ p) →
       Zonotope (Vec ℝ m) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p))
-    (sub : ∀ {k : ℕ}, Zonotope (Vec ℝ k) → Zonotope (Vec ℝ k) → Bool)
-    (Lmax : Zonotope (Vec ℝ n)) (lam r : ℝ) (η : ℕ) (Rk : Zonotope (Vec ℝ n))
-    (U : Zonotope (Vec ℝ m)) (fuel : ℕ) (L : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p))
-    {rr : NonlinDASys.ErrorLoopResult n p}
-    (h : NonlinDASys.reachRepeat sys taylor corollary1 sub Lmax lam r η Rk U fuel L = some rr) :
-    rr.Rti = (NonlinDASys.linReach (sys.f taylor.xs taylor.ys taylor.us)
-        (sys.g taylor.xs taylor.ys taylor.us) taylor.A taylor.B taylor.C taylor.D taylor.E
-        taylor.F_inv taylor.xs taylor.ys taylor.us Rk U rr.Lbar.1 rr.Lbar.2 r η).2.1 ∧
-      (sub rr.L.1 rr.Lbar.1 && sub rr.L.2 rr.Lbar.2
-        || !sub rr.L.1 Lmax) = true := by -- --- PROOF ---
+    (sub : ∀ {k : ℕ}, Zonotope (Vec ℝ k) → Zonotope (Vec ℝ k) → Bool) (Lmax : Zonotope (Vec ℝ n))
+    (lam r : ℝ) (η : ℕ) (Rk : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (fuel : ℕ)
+    (L : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) :
+    ∀ rr ∈ NonlinDASys.reachRepeat sys taylor corollary1 sub Lmax lam r η Rk U fuel L,
+      rr.Rti = (NonlinDASys.linReach (sys.f taylor.xs taylor.ys taylor.us)
+          (sys.g taylor.xs taylor.ys taylor.us) taylor.A taylor.B taylor.C taylor.D taylor.E
+          taylor.F_inv taylor.xs taylor.ys taylor.us Rk U rr.Lbar.1 rr.Lbar.2 r η).2.1 ∧
+        (sub rr.L.1 rr.Lbar.1 && sub rr.L.2 rr.Lbar.2
+          || !sub rr.L.1 Lmax) = true := by -- --- PROOF ---
+  intro rr (h : NonlinDASys.reachRepeat sys taylor corollary1 sub Lmax lam r η Rk U fuel L = some
+      rr)
   induction fuel generalizing L with
   | zero => simp [NonlinDASys.reachRepeat] at h
   | succ fuel ih =>

@@ -85,15 +85,15 @@ def recursiveD : Option (List (Zonotope (Vec (Dyadic 64) 2)) × List
 /-- What a successful wrapping-free run is worth: the exact flow, over every window,
 `1/8 = 8 Δt` split into the eight windows `Reach.steps` derived. -/
 example {Rs : List (Zonotope (Vec (Dyadic 64) 2))} (h : wrapFreeD = some Rs) :=
-  sysD.reachWrappingFreeFloat_outer h
+  sysD.reachWrappingFreeFloat_outer _ h
 
 /-- And the recursive one's, over every window. -/
 example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (Rti, Rtp)) :=
-  sysD.reachFloat_outer h
+  sysD.reachFloat_outer _ _ h
 
 /-- And at every step. -/
 example {Rti Rtp : List (Zonotope (Vec (Dyadic 64) 2))} (h : recursiveD = some (Rti, Rtp)) :=
-  sysD.reachFloat_timePoint_outer h
+  sysD.reachFloat_timePoint_outer _ _ h
 
 
 /-! ## At native `Float` -/

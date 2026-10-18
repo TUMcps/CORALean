@@ -74,7 +74,7 @@ theorem Taylm.codeEval_encloses {m : ℕ} {N : ℕ} {F : Fin m → Taylm n}
     intro T hT
     simp only [Taylm.codeEval, Option.bind_eq_some_iff] at hT
     obtain ⟨A, hA, hs⟩ := hT
-    exact Taylm.intrinsic_encloses (iha hA) s hs
+    exact Taylm.intrinsic_encloses (iha hA) s _ hs
 
 end CORALean.Real
 

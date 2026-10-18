@@ -53,27 +53,27 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 /-- The windows `reachFloatInput` returns hold every constant-parameter run of the system, at
 every time of the window, under inputs in `params.U` (input coordinates) anywhere. -/
-theorem LinParamSys.reachFloatInput_outer
-    (sys : LinParamSys ℐ[𝕋] n) {c : Vec 𝕋 n} (hc : Scalar.toRealVec c = sys.c)
+theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : Vec 𝕋 n}
+    (hc : Scalar.toRealVec c = sys.c)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋}
-    {Rs : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloatInput c params options = some Rs) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rs.length = N ∧ ∀ {A : Mat ℝ n n} {B : Mat ℝ n sys.m} {x : ℝ → Vec ℝ n}
-        {u : ℝ → Vec ℝ sys.m},
-        sys.IsConstTrajectory (S := 𝒵[𝕋])
-          (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
-          params.X₀ params.U x u A B →
-        ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-          (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rs ∈ sys.reachFloatInput c params options,
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rs.length = N ∧ ∀ {A : Mat ℝ n n} {B : Mat ℝ n sys.m} {x : ℝ → Vec ℝ n}
+          {u : ℝ → Vec ℝ sys.m},
+          sys.IsConstTrajectory (S := 𝒵[𝕋])
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
+            params.X₀ params.U x u A B →
+          ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+  intro Rs (h : sys.reachFloatInput c params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinParamSys.reachFloatInput, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
   obtain ⟨N, hN, η', hη', hRs⟩ := h
-  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal hN
-  have hadm := (LinParamSys.reachOrderFloat_spec hη').1
+  obtain ⟨hΔt, hNΔt⟩ := Reach.steps_spec_toReal _ hN
+  have hadm := (LinParamSys.reachOrderFloat_spec _ hη').1
   obtain ⟨hlen, hget⟩ := LinParamSys.mapM_eq_some hRs
   rw [List.length_range] at hlen
   refine ⟨N, hNΔt, hlen, fun {A B x uIn} trajB k hk t ht => ?_⟩
@@ -167,11 +167,11 @@ theorem LinParamSys.reachFloatInput_outer
       (sys.constInputSolutionFloat Δt η' uc) (Set.add_mem_add
         (sys.timeIntervalStepFloat_outer hΔt hadm X₀ traj.param traj.init hτ0 htk)
         (sys.expIntegral_mem_constInputSolutionFloat hΔt hadm traj.param uc hτ0 htk)))
-  have hHτ := sys.reachStepkFloat_outer hadm.1 hH traj.param hfirst
+  have hHτ := sys.reachStepkFloat_outer hadm.1 traj.param hfirst _ hH
   have hPc := sys.expIntegral_mem_constPropagateFloat ρ hΔt hadm traj.param uc k
   have hPR : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ)) ∈ PRtk.construct :=
     sys.inputReach_subset_particularSolutionFloat hΔt hadm traj.param
-    (Recenter.zero_mem_recenter V) hP ht0 htk1
+    (Recenter.zero_mem_recenter V) ht0 htk1 _ hP
     ⟨fun s => u s - ũ, hmem₀, hmeas₀, by simp only [Scalar.toRealMat_real]⟩
   rw [← hRk, hx]
   exact Plus.plus_outer _ PRtk (Set.add_mem_add

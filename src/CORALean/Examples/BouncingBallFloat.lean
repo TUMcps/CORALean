@@ -106,7 +106,7 @@ bounces, ends in a set `ballReach` computed. -/
 example {T : ℝ} {k : ℕ} {x y : Vec ℝ 2} (run : ball.IsRunUntil T k () x () y) (hT : T ≤ 1)
     (hk : k ≤ 2) (hx : x ∈ construct R0) {out : List (Unit × Zonotope (Vec D 2))}
     (h : ballReach = some out) : ∃ p ∈ out, y ∈ construct p.2 := by
-  obtain ⟨p, hp, -, hy⟩ := ball.reachFloat_outer run (by exact_mod_cast hT) hk hx h
+  obtain ⟨p, hp, -, hy⟩ := ball.reachFloat_outer run (by exact_mod_cast hT) hk hx _ h
   exact ⟨p, hp, hy⟩
 
 /-- The box every computed set lies in. -/

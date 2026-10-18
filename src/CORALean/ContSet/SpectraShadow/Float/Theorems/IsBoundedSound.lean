@@ -33,7 +33,7 @@ theorem SpectraShadow.isBounded_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
     (h : S.isBounded Yup Ylo = true) : Bornology.IsBounded S.construct := by
   simp only [SpectraShadow.isBounded, Option.isSome_iff_exists] at h
   obtain ⟨I, hI⟩ := h
-  exact (Interval.isCompact_construct I).isBounded.subset (SpectraShadow.interval_contains hI)
+  exact (Interval.isCompact_construct I).isBounded.subset (SpectraShadow.interval_contains _ hI)
 
 end CORALean.Float
 

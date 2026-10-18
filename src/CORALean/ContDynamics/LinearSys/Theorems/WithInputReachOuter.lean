@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInputReachExact
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.AestronglyMeasurableInput
-public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible

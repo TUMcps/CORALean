@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.ReachError
 # An inner approximation of a reachable set
 
 `reachInner` is the computed run minus the error that run accumulated:
-`reachInner_inner` puts it *inside* `reachSet`, the opposite direction to every
+`reachInner_inner` puts it *inside* `reachSetExact`, the opposite direction to every
 other reachability guarantee here, where the computed set is the larger one.
 
 What this is, and is not. `reachInner` is a `Set` — `minkowskiDiff` is a
@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The computed run minus its own accumulated error — an inner approximation
-of `reachSet`, as a set. -/
+of `reachSetExact`, as a set. -/
 noncomputable def LinearSysDT.reachInner (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : Set (Vec ℝ n) :=
   minkowskiDiff (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct

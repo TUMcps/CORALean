@@ -32,12 +32,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.zonoBundle_contains {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
-    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} {W : ZonoBundle (Vec 𝕋 n)}
-    (h : S.zonoBundle Yup Ylo = some W) :
-    S.construct ⊆ W.construct := by
+    {Yup Ylo : Fin S.m → Mat 𝕋 S.k S.k} :
+    ∀ W ∈ S.zonoBundle Yup Ylo,
+      S.construct ⊆ W.construct := by
+  intro W (h : S.zonoBundle Yup Ylo = some W)
   simp only [SpectraShadow.zonoBundle, Option.map_eq_some_iff] at h
   obtain ⟨Z, hZ, rfl⟩ := h
-  exact subset_trans (SpectraShadow.zonotope_contains hZ) (Zonotope.zonoBundle_exact Z).subset
+  exact subset_trans (SpectraShadow.zonotope_contains _ hZ) (Zonotope.zonoBundle_exact Z).subset
 
 end CORALean.Float
 

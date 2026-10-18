@@ -80,7 +80,7 @@ theorem Interval.boundaryPoint_outer (I : Interval (Vec 𝕋 n)) (dir start : Ve
     obtain ⟨x, hx⟩ := hrat i hc
     have h1 := (hlow i x hx).1
     have hm0 : 0 ≤ max 0 (toReal a.inf) := le_max_left _ _
-    rcases Interval.boundaryRatioAt_mem hx with ⟨hd, hx1, -⟩ | ⟨hd, hx1, -⟩
+    rcases Interval.boundaryRatioAt_mem _ hx with ⟨hd, hx1, -⟩ | ⟨hd, hx1, -⟩
     · -- positive direction
       have h2 : toReal a.inf * toReal (dir i) ≤ toReal (I.sup i) - toReal (start i) :=
         (le_div_iff₀ hd).1 (le_trans h1 hx1)
@@ -104,7 +104,7 @@ theorem Interval.boundaryPoint_outer (I : Interval (Vec 𝕋 n)) (dir start : Ve
     have hgi := hG.1 i
     have hgi' : toReal (I.inf i) ≤ g * toReal (dir i) + toReal (start i) ∧
         g * toReal (dir i) + toReal (start i) ≤ toReal (I.sup i) := hgi
-    rcases Interval.boundaryRatioAt_mem hx with ⟨hd, -, hx2⟩ | ⟨hd, -, hx2⟩
+    rcases Interval.boundaryRatioAt_mem _ hx with ⟨hd, -, hx2⟩ | ⟨hd, -, hx2⟩
     · have : g ≤ (toReal (I.sup i) - toReal (start i)) / toReal (dir i) :=
         (le_div_iff₀ hd).2 (by linarith [hgi'.2])
       linarith

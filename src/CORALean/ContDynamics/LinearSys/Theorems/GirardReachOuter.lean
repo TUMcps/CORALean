@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetAddEq
-public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetSubsetLinCombPlusCube
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactAddEq
+public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetExactSubsetLinCombPlusCube
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsLUBNormFoldMaxAbsBound
 
 @[expose] public section
@@ -13,7 +13,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.IsLUBNormFoldMaxAbsBound
 [1, Thm. 1], conservative approximation: `R_[0,T](I) ⊆ R_{N-1}`, the union of the `Qᵢ`
 `girardReach` returns. The printed induction: `Φ_t(I) ⊆ Q₀` for `t ∈ [0, r]` by [1, Lemma 2],
 and `Φ_t(I) = e^{rA}Φ_{t-r}(I) + inputReach U r ⊆ e^{rA}Qᵢ + □(β_r) = Qᵢ₊₁` for
-`t ∈ [(i+1)r, (i+2)r]` by `reachSet_add_eq` and eq. 3 of [1]. A time in `[0, T]` lies in
+`t ∈ [(i+1)r, (i+2)r]` by `reachSetExact_add_eq` and eq. 3 of [1]. A time in `[0, T]` lies in
 one of the `N = ⌈T/r⌉` windows, so `T` need not be a multiple of `r`.
 
 `R_[0,T](I)` is the union of `Φ_t(I)` over `t ∈ [0, T]`, as Sec. 3 of [1] defines it.
@@ -74,7 +74,7 @@ theorem aux_exists_window {r T t : ℝ} (hr : 0 < r) (ht0 : 0 ≤ t) (htT : t �
 theorem LinearSys.girardReach_outer (sys : LinearSys 𝕋 n) (I U : Zonotope (Vec ℝ n))
     {μ r T : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 < r) (hμ : 0 ≤ μ)
     (hU : U.construct = Metric.closedBall 0 μ) : -- --- STMT ---
-    ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSet (S := 𝒵) (Set.Icc 0 t) I U t
+    ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t
       ⊆ ⋃ Q ∈ sys.girardReach I μ r T, Q.construct := by -- --- PROOF ---
   set A := toRealMat sys.A
   set E := exp (r • A)
@@ -90,13 +90,13 @@ theorem LinearSys.girardReach_outer (sys : LinearSys 𝕋 n) (I U : Zonotope (Ve
     exact mem_closedBall_zero_iff.mp this
   -- every window lands in its own iterate
   have hwin : ∀ i : ℕ, ∀ t ∈ Set.Icc ((i : ℝ) * r) (((i : ℝ) + 1) * r),
-      sys.reachSet (S := 𝒵) (Set.Icc 0 t) I U t ⊆ (f^[i] Q₀).construct := by
+      sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t ⊆ (f^[i] Q₀).construct := by
     intro i
     induction i with
     | zero =>
       intro t ht y hy
       simp only [Nat.cast_zero, zero_mul, zero_add, one_mul] at ht
-      exact sys.iUnion_reachSet_subset_linComb_plus_cube I U hA hr.le hμ hU
+      exact sys.iUnion_reachSetExact_subset_linComb_plus_cube I U hA hr.le hμ hU
         (fun z hz => (I.isLUB_norm_image_fold_max_absBound).1 ⟨z, hz, rfl⟩)
         (Set.mem_iUnion₂.mpr ⟨t, ht, hy⟩)
     | succ i ih =>
@@ -106,7 +106,7 @@ theorem LinearSys.girardReach_outer (sys : LinearSys 𝕋 n) (I U : Zonotope (Ve
         push_cast at ht; constructor <;> linarith [ht.1, ht.2]
       have hti : 0 ≤ t - r := (mul_nonneg (Nat.cast_nonneg i) hr.le).trans ht'.1
       rw [show t = (t - r) + r by ring,
-        sys.reachSet_add_eq (S := 𝒵) I U hti hr.le hUb] at hy
+        sys.reachSetExact_add_eq (S := 𝒵) I U hti hr.le hUb] at hy
       obtain ⟨_, ⟨q, hq, rfl⟩, v, hv, rfl⟩ := hy
       rw [Function.iterate_succ_apply']
       show E *ᵥ q + v ∈ ((f^[i] Q₀).mtimes E |>.plus (Zonotope.cube n β)).construct

@@ -95,10 +95,11 @@ theorem ProbZonotope.aux_max_le_of_bounds {S : Mat ℝ n n} (hS : S.IsHermitian)
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ProbZonotope.max_le (P : ProbZonotope 𝕋 n) (m : 𝕋) (p k : ℕ) {v : 𝕋}
-    (hv : P.max m p k = some v) (Z : Real.Zonotope (Vec ℝ n)) {S : Mat ℝ n n}
-    (hS : S ∈ P.cov.construct) (hSh : S.IsHermitian) :
-    0 < S.det ∧ (⟨Z, S⟩ : Real.ProbZonotope n).max (toReal m) ≤ toReal v := by -- --- PROOF ---
+theorem ProbZonotope.max_le (P : ProbZonotope 𝕋 n) (m : 𝕋) (p k : ℕ) (Z : Real.Zonotope (Vec ℝ n))
+    {S : Mat ℝ n n} (hS : S ∈ P.cov.construct) (hSh : S.IsHermitian) :
+    ∀ v ∈ P.max m p k,
+      0 < S.det ∧ (⟨Z, S⟩ : Real.ProbZonotope n).max (toReal m) ≤ toReal v := by -- --- PROOF ---
+  intro v (hv : P.max m p k = some v)
   rw [ProbZonotope.max] at hv
   dsimp only at hv
   split_ifs at hv with hc

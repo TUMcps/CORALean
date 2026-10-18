@@ -52,15 +52,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- [1, Alg. 3]: on a nonnegative image box `I_X`, the output set holds every
 instance of `Φ_org` at every point of `I_X`. -/
 theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel : ℕ}
-    {R_relu : Relaxation 𝕋} (hR : R_relu.Sound Real.relu)
-    {hσ_relu : ∃ σ : ℝ → ℝ, R_relu.Sound σ} {n n₁ m : ℕ} {I_X : Interval (Vec 𝕋 n)}
-    (hX : ∀ x ∈ I_X.construct, ∀ i, 0 ≤ x i) {L_1 : ReducedLinear 𝕋 n n₁} {L_2 : Relaxation 𝕋}
-    {hσ_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ}
+    {R_relu : Relaxation 𝕋} (hR : R_relu.Sound Real.relu) {hσ_relu : ∃ σ : ℝ → ℝ, R_relu.Sound σ}
+    {n n₁ m : ℕ} {I_X : Interval (Vec 𝕋 n)} (hX : ∀ x ∈ I_X.construct, ∀ i, 0 ≤ x i)
+    {L_1 : ReducedLinear 𝕋 n n₁} {L_2 : Relaxation 𝕋} {hσ_2 : ∃ σ : ℝ → ℝ, L_2.Sound σ}
     {B_2 : MergeBuckets 𝕋} {rest : ReducibleNetwork 𝕋 n₁ m} {f : Vec ℝ n → Vec ℝ m}
-    (hΦ : (ReducibleNetwork.cons L_1 L_2 hσ_2 B_2 rest).Instance f) {ρ : 𝕋} {Y : S m}
-    (hrun : compressionPreprocessing le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2 rest ρ
-      = some Y) : -- --- STMT ---
-    f '' I_X.construct ⊆ construct Y := by -- --- PROOF ---
+    (hΦ : (ReducibleNetwork.cons L_1 L_2 hσ_2 B_2 rest).Instance f) {ρ : 𝕋} : -- --- STMT ---
+    ∀ Y ∈ compressionPreprocessing (S := S) le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2 rest ρ,
+      f '' I_X.construct ⊆ construct Y := by -- --- PROOF ---
+  intro Y (hrun : compressionPreprocessing (S := S) le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2
+      rest ρ = some Y)
   cases hΦ with
   | @cons _ _ _ _ c1 _ _ σ₂ _ _ h1 _ hR2 hc1 hrest1 hf1 =>
   simp only [compressionPreprocessing] at hrun
@@ -138,7 +138,7 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
         (B := .dynamic) (L := ReducedLinear.identity _) hR (h00 _)
         (ReducibleNetwork.Instance.cons (c := c1 + W1.submatrix id part.right *ᵥ w) (R := L_2)
           (hτ := hσ_2) (B := B_2) hR2 hc' hrest1 (fun _ => rfl)) (fun _ => rfl)
-      obtain ⟨hout, rfl⟩ := reduceOnTheFly_outer hΦ' hrun2
+      obtain ⟨hout, rfl⟩ := reduceOnTheFly_outer hΦ' _ _ hrun2
       have hmem := hout ⟨x ∘ part.left, hxl, rfl⟩
       -- which at `x`'s own survivors is `Φ_org` at `x`, the ReLU and the kernel being identities
       have hrelu' : (fun i => Real.relu (((1 : Mat ℝ _ _) *ᵥ (x ∘ part.left) + 0) i))

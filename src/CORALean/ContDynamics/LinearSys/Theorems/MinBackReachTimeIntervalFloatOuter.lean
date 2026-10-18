@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExists
-public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInput
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetForallExistsExact
+public import CORALean.ContDynamics.LinearSys.Definitions.TimeIntervalBackReachSetOfInputExact
 public import CORALean.ContDynamics.LinearSys.Operations.MinBackReachPFloat
 public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
@@ -58,13 +58,13 @@ theorem LinearSys.minBackReachTimeIntervalFloat_outer (sys : LinearSys 𝕋 n) {
     (hû : ∀ i s, s ∈ T → û i s ∈ construct U)
     (hmû : ∀ i, AEStronglyMeasurable (û i) (volume.restrict T))
     -- (44), (45): the `ω` steps enclose the center trajectory's own set
-    (hcov : sys.timeIntervalBackReachSetOfInput T U W Xend τ u₀ ⊆
+    (hcov : sys.timeIntervalBackReachSetOfInputExact T U W Xend τ u₀ ⊆
       ⋃ k < ω, (sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.construct)
     -- (46), (49): each `p_(j)` is a support value of some trajectory's own set
     (hp : ∀ j : Fin q, ∃ i : Fin q,
-      ∀ x ∈ sys.timeIntervalBackReachSetOfInput T U W Xend τ (û i),
+      ∀ x ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ (û i),
         (toRealMat N *ᵥ x) j ≤ toReal (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1) j)) :
-    sys.timeIntervalBackReachSetForallExists T U W Xend τ ⊆
+    sys.timeIntervalBackReachSetForallExistsExact T U W Xend τ ⊆
       ⋃ k < ω, ((sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.construct ∩
         (HPolytope.ineqs N
         (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1))).construct) := by -- --- PROOF ---
@@ -72,7 +72,7 @@ theorem LinearSys.minBackReachTimeIntervalFloat_outer (sys : LinearSys 𝕋 n) {
   -- (42), (55): `x₀` is in `R^∃(-τ;u*(·))` for every admissible `u*(·)`, so for `Û`'s
   have key : ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ construct U) →
       AEStronglyMeasurable u (volume.restrict T) →
-      x₀ ∈ sys.timeIntervalBackReachSetOfInput T U W Xend τ u :=
+      x₀ ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ u :=
     fun u hu hmu => hx₀ u hu hmu
   -- (57): every row of `⟨N,p⟩_H` bounds one of those sets, hence `x₀`
   have hP : x₀ ∈ (HPolytope.ineqs N

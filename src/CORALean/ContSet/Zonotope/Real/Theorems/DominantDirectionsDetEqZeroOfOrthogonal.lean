@@ -40,9 +40,12 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.dominantDirections_det_eq_zero_of_orthogonal (Z : Zonotope (Vec ℝ n)) (a b : ℕ)
-    (P : Mat ℝ n n) (h : Z.dominantDirections a b = some P) (y : Vec ℝ n) (hy : y ≠ 0)
+    (y : Vec ℝ n) (hy : y ≠ 0)
     (hort : ∀ j ∈ Z.dominantLengthFilter (min a (Finset.univ.filter fun j => Z.G j ≠ 0).card),
-      Z.G j ⬝ᵥ y = 0) : P.det = 0 := by -- --- PROOF ---
+      Z.G j ⬝ᵥ y = 0) : -- --- STMT ---
+    ∀ P ∈ Z.dominantDirections a b,
+      P.det = 0 := by -- --- PROOF ---
+  intro P (h : Z.dominantDirections a b = some P)
   obtain ⟨T, hT, rfl⟩ := Zonotope.dominantDirections_mem_shortlist Z a b P h
   -- the subset lies among the filtered generators
   have hTsub : T ∈ ((Z.dominantLengthFilter

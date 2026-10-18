@@ -13,19 +13,15 @@ interface's guarantee is exactly the inclusion `jump_outer` asks for, so the
 guard intersection needs no caller-supplied enclosure here, unlike at a
 representation with no `Intersection` instance.
 
-The enclosed intersection with a guard, the second half of [1, Alg. 5] —
+The enclosed intersection with a guard, the second half of [1, Alg. 1] —
 `timeIntervalInv_outer` is the first.
 
 The price is that `Intersection.intersection` takes two sets of one type, so the
 guard is asked to be in the state's own family here: `Transition S L 𝕋 n` (#39).
 
-It is also the last line of [2, Alg. 1].
-
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
-* [2] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
+* [1] M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid
       Systems Using a Combination of Zonotopes and Polytopes". Nonlinear
       Analysis: Hybrid Systems, 4(2):233-249, 2010.
 -/

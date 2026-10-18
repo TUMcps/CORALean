@@ -18,7 +18,7 @@ for `i < k` and `D̄ₖ,ₖ = Dₖ` (11c), `ēₖ = Cₖ ∑_{j<k} ∏_{l=1}^{k-
 recursion inserted into itself, as printed. That the remainders lie in `L̂_x`, `L̂_y` comes
 from the Taylor bounds of the conservative-polynomialization paper the corollary cites, so
 it is the hypothesis here; `Êₖ` is the set-based evaluation of `ēₖ` over them, and [1, Thm. 1]
-(`reachSetOf_subset`) gives the reachable set. A linear model has `l = 0` and so `ē = 0`.
+(`reachSetOfExact_subset`) gives the reachable set. A linear model has `l = 0` and so `ē = 0`.
 
 ## References
 

@@ -38,21 +38,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachFloat_timePoint_outer (sys : LinearSys 𝕋 n)
-    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {Rti Rtp : List (Zonotope (Vec 𝕋 n))}
-    (h : sys.reachFloat params options = some (Rti, Rtp)) : -- --- STMT ---
-    ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-      Rtp.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rtp.length), ∀ x₀ ∈ params.X₀.construct,
-        exp (((k : ℝ) * toReal options.Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
-          ∈ Rtp[k].construct := by -- --- PROOF ---
+    {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ}
+    {options : LinearSys.ReachOptions 𝕋} : -- --- STMT ---
+    ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloat params options →
+      ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
+        Rtp.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rtp.length), ∀ x₀ ∈ params.X₀.construct,
+          exp (((k : ℝ) * toReal options.Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
+            ∈ Rtp[k].construct := by -- --- PROOF ---
+  intro Rti Rtp (h : sys.reachFloat params options = some (Rti, Rtp))
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨N, hN, η', hη', -, rfl⟩ := h
-  have hadm := (LinearSys.reachOrderFloat_spec hη').1
-  refine ⟨N, (Reach.steps_spec_toReal hN).2, List.length_iterate _ _ _, fun k hk x₀ hx₀ => ?_⟩
+  have hadm := (LinearSys.reachOrderFloat_spec _ hη').1
+  refine ⟨N, (Reach.steps_spec_toReal _ hN).2, List.length_iterate _ _ _, fun k hk x₀ hx₀ => ?_⟩
   rw [List.getElem_iterate]
   clear hk
   induction k with

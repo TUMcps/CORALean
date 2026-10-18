@@ -65,7 +65,7 @@ theorem LinearSys.autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotope
       obtain ⟨⟨s1, R⟩, hstep, ⟨s2, Rs⟩, hrest, h⟩ := h
       obtain ⟨rfl, rfl⟩ := Prod.mk.inj (Option.some.inj (by simpa using h)).symm
       -- one iteration, then the rest of the run from the state it reached
-      obtain ⟨hinv1, hlt1, hwin⟩ := sys.autoStepFloat_outer hstep hinv
+      obtain ⟨hinv1, hlt1, hwin⟩ := sys.autoStepFloat_outer hinv _ _ hstep
       obtain ⟨hinv2, hle2, hrun⟩ := ih hrest hinv1
       refine ⟨hinv2, hlt1.le.trans hle2, fun {T U x u} traj hUV _ t ht htT => ?_⟩
       by_cases hts : t ≤ s1.t

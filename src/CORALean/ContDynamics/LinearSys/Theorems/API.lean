@@ -37,8 +37,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotope
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeFloatReach
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeMatZonotopeReach
-public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetAddReachInputError
-public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetExactSubsetAddReachInputError
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetExactSubsetInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeStep
 public import CORALean.ContDynamics.LinearSys.Theorems.EqClosedFormOfFlow
 public import CORALean.ContDynamics.LinearSys.Theorems.ErrorConvergesToZeroTimeIntervalStepCurvatureError
@@ -49,10 +49,10 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStepAutoInit
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStepAutoRun
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoTuneDeltaT
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsLtHausdorffDistGirardReach
-public import CORALean.ContDynamics.LinearSys.Theorems.ExistsLtHausdorffDistIUnionReachSet
-public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetDistLe
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsLtHausdorffDistIUnionReachSetExact
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetExactDistLe
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemInputReachDistLe
-public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindow
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepErrorLt
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimeIntervalStepInnerInner
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsTimePointStepErrorLt
@@ -95,11 +95,11 @@ public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachV
 public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2ManualRunReduceLe
 public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2VarRunReduceLe
 public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDistGirardReachLe
-public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDistIUnionReachSetLinCombPlusCubeLe
-public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDistReachSetMtimesPlusCubeLe
+public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDistIUnionReachSetExactLinCombPlusCubeLe
+public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDistReachSetExactMtimesPlusCubeLe
 public import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheck
 public import CORALean.ContDynamics.LinearSys.Theorems.HoldsOfCheckWrappingFree
-public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetSubsetLinCombPlusCube
+public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetExactSubsetLinCombPlusCube
 public import CORALean.ContDynamics.LinearSys.Theorems.InputEqDerivWithin
 public import CORALean.ContDynamics.LinearSys.Theorems.InputIntegrable
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachConvex
@@ -122,15 +122,15 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetConstI
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionFloatSubsetAddBox
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionTimeIntervalOuterSplit
-public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetExistsForallEq
-public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetForallExistsEq
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetAddEq
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetEq
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubset
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetMtimesPlusCube
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetEqUnion
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetSetLinCombSum
+public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetExistsForallExactEq
+public import CORALean.ContDynamics.LinearSys.Theorems.BackReachSetForallExistsExactEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactAddEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactEq
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubset
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubsetMtimesPlusCube
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSuperset
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactEqUnion
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactSubsetSetLinCombSum
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableMulVecAdd
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableOfMemBounded
@@ -177,14 +177,14 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterHorizonInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOuterWindows
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetImageInputSolution
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetReach
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSubsetTimeIntervalInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubsetImageInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubsetReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubsetTimeIntervalInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetAddError
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetExactAddError
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachTimePointWrappingFreeFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatInputOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachWrappingFreeFloatOuter
@@ -204,12 +204,12 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetSubsetTimeIntervalInputSolution
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactSubsetInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepEpsOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerInner
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerSubsetTimeIntervalReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepInnerSubsetTimeIntervalReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepOuterSetLinComb
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalStepSubsetAddError
@@ -227,7 +227,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemInputTaylorSumFloatError
 public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemIntervalInputRemainder
 public import CORALean.ContDynamics.LinearSys.Theorems.ZeroMemTimePointStepInputFloatError
-public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerSubsetReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInnerSubsetReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorBoxSubsetFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorNonneg
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepOuter
@@ -304,16 +304,16 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachRunFloatEnclo
 public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachRunFloatInner
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormHeldInput
-public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.ConvexHullSupportCounterexampleSubsetReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.CounterexampleOfVerifyHalfspaceViolated
 public import CORALean.ContDynamics.LinearSys.Theorems.HeldInputMeasurable
 public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimEq
 public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimLeSupportCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.HeldSimSupportCounterexample
 public import CORALean.ContDynamics.LinearSys.Theorems.InterpolatedRunMem
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetConvex
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactConvex
 public import CORALean.ContDynamics.LinearSys.Theorems.SupportCounterexampleViolates
-public import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerMemImageReachSet
+public import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerMemImageReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.SupportLowerTimeIntervalLe
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryHeldInput
 public import CORALean.ContDynamics.LinearSys.Theorems.InputLawsAdd
@@ -335,7 +335,7 @@ abstraction error; the rest are the input-integral facts they use.
 The first two are stated once, over `ConvexSet` and `CompactSet`, name no
 representation. `TimeIntervalOuterSplit` drops `0 ∈ U`, needing only
 `Recenter`/`OfPoint`, which any representation with a center has.
-The `ReachSet` and `TimeIntervalReachSet` trios state the same guarantees of a
+The `ReachSetExact` and `TimeIntervalReachSetExact` trios state the same guarantees of a
 set; `_eq_iUnion` ties the latter to a union of the former, `SubsetAddError`
 runs a step backwards, `Exists…Lt` shrinks its error, `SetLinCombSum` feeds
 `TimeIntervalBound` a genuine `+`/`Set.linComb`, and `TimeIntervalWitness` its dual.

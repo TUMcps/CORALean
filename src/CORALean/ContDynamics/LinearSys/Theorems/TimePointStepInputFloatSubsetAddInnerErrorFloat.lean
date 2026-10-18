@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.Discretize
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerErrorFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepInputFloatSubsetAddExcess
-public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachSetExact
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
@@ -18,7 +18,7 @@ The budget theorem of `timePointStepInnerRepFloat`. The exact set is the
 one-step reachable set of the sampled system `discretize r` from `X₀`'s nominal
 zonotope, with the held-input contribution `(∫₀^r e^{As} ds) U` of `U`'s nominal
 zonotope as its input: `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U`, a subset of the states
-the system reaches at `t = r` (`discretize_reachSet_subset_inputReach`).
+the system reaches at `t = r` (`discretize_reachSetExact_subset_inputReach`).
 
 `timePointStepInputFloat_subset_add_excess` does the step; what is left is
 `X₀`'s own error box, which `e^{Ar}` carries into `[e^{Ar}]` applied to it.
@@ -54,7 +54,7 @@ theorem LinearSys.timePointStepInputFloat_subset_add_innerErrorFloat (sys : Line
     {X₀ U : Zonotope (Vec 𝕋 n)} (hX₀ : (0 : Vec ℝ n) ∈ X₀.I_error.construct)
     (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- STMT ---
     (sys.timePointStepInputFloat r η X₀ U).construct
-      ⊆ (sys.discretize (toReal r)).reachSet (S := 𝒵) (nominal X₀)
+      ⊆ (sys.discretize (toReal r)).reachSetExact (S := 𝒵) (nominal X₀)
           (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal r))
             (nominal U)) 1
         + (sys.timePointStepInnerErrorFloat r η X₀ U).construct := by -- --- PROOF ---

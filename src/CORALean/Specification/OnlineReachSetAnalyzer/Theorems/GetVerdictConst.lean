@@ -28,16 +28,17 @@ variable {S : ℕ → Type} {d : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineReachSetAnalyzer.getVerdict_const (f : ℕ) (dp : Bool)
-    (obj obj' : OnlineReachSetAnalyzer S d)
-    (htt : OnlineReachSetAnalyzer.mk?
-      (OnlineReachSetAnalyzer.Formula.tt : OnlineReachSetAnalyzer.Formula (AtomicProposition S d))
-      f dp = some obj)
-    (hff : OnlineReachSetAnalyzer.mk?
-      (OnlineReachSetAnalyzer.Formula.ff : OnlineReachSetAnalyzer.Formula (AtomicProposition S d))
-      f dp = some obj') : -- --- STMT ---
-    obj.getVerdict = some FourValued.tt ∧
-      obj'.getVerdict = some FourValued.ff := by -- --- PROOF ---
+theorem OnlineReachSetAnalyzer.getVerdict_const (f : ℕ) (dp : Bool) : -- --- STMT ---
+    ∀ obj' ∈ OnlineReachSetAnalyzer.mk?
+        (OnlineReachSetAnalyzer.Formula.ff : OnlineReachSetAnalyzer.Formula (AtomicProposition S d))
+        f dp,
+      ∀ obj ∈ OnlineReachSetAnalyzer.mk?
+          (OnlineReachSetAnalyzer.Formula.tt :
+            OnlineReachSetAnalyzer.Formula (AtomicProposition S d)) f dp,
+        obj.getVerdict = some FourValued.tt ∧
+          obj'.getVerdict = some FourValued.ff := by -- --- PROOF ---
+  intro obj' hff obj htt
+  rw [Option.mem_def] at hff htt
   -- each analyzer is one node, with a uniform signal
   simp [OnlineReachSetAnalyzer.mk?, OnlineReachSetAnalyzer.parse, OnlineReachSetAnalyzer.parseNew,
     OnlineAnalyzerNode.mk?, OnlineReachSetAnalyzer.Formula.kind, OnlineReachSetAnalyzer.Formula.key,

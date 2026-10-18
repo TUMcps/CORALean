@@ -102,14 +102,15 @@ theorem aux_trajErrFloat_mulVec_mem {IM : Interval (Mat 𝕋 n n)} {Z : Zonotope
 `0 ≤ tmin`, `η + 1 ≥ 1`, whenever the float `E_err` is returned. -/
 theorem LinearSys.trajectoryErrorFloat_outer (sys : LinearSys 𝕋 n) (f u : Vec 𝕋 n)
     (R₀ : Zonotope (Vec 𝕋 n)) {tmin tmax tc : 𝕋} (hmin : 0 ≤ toReal tmin) (η : ℕ) {t : ℝ}
-    (ht : t ∈ Set.Icc (toReal tmin) (toReal tmax)) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct)
-    {E : Zonotope (Vec 𝕋 n)}
-    (hE : sys.trajectoryErrorFloat f f u R₀ tmin tmax tc (η + 1) = some E) : -- --- STMT ---
-    exp (t • toRealMat sys.A) *ᵥ x₀
-        + Real.MatExp.expIntegral (toRealMat sys.A) t *ᵥ toRealVec u
-        - GuardMap.sdcFlow (toRealMat sys.A) (GuardMap.sdcInput (toRealMat sys.A) (toRealVec u)
-          (toReal tc) (η + 1) (toRealVec R₀.c)) x₀ t
-      ∈ E.construct := by -- --- PROOF ---
+    (ht : t ∈ Set.Icc (toReal tmin) (toReal tmax)) {x₀ : Vec ℝ n}
+    (hx₀ : x₀ ∈ R₀.construct) : -- --- STMT ---
+    ∀ E ∈ sys.trajectoryErrorFloat f f u R₀ tmin tmax tc (η + 1),
+      exp (t • toRealMat sys.A) *ᵥ x₀
+          + Real.MatExp.expIntegral (toRealMat sys.A) t *ᵥ toRealVec u
+          - GuardMap.sdcFlow (toRealMat sys.A) (GuardMap.sdcInput (toRealMat sys.A) (toRealVec u)
+            (toReal tc) (η + 1) (toRealVec R₀.c)) x₀ t
+        ∈ E.construct := by -- --- PROOF ---
+  intro E (hE : sys.trajectoryErrorFloat f f u R₀ tmin tmax tc (η + 1) = some E)
   set A := sys.A with hAdef
   set Ar : Mat ℝ n n := toRealMat A with hAr
   set nrm := MatExp.normUpperBound (Interval.smul tmax tmax (Interval.point A)) with hnrmdef

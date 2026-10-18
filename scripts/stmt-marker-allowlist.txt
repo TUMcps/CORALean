@@ -16,7 +16,7 @@ src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExistsMemIntervalCorrectionM
 src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/ExpIntervalEnclosureExactFloat.lean::MatExp.exp_mem_expIntervalEnclosureExact
 src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/TsumLeExpTail.lean::tsum_le_expTail
 src/CORALean/ContDynamics/LinearSys/Theorems/ClosedFormEq.lean::LinearSys.closedForm_eq
-src/CORALean/ContDynamics/LinearSys/Theorems/ExistsMemIUnionReachSetDistLe.lean::LinearSys.exists_mem_iUnion_reachSet_dist_le
+src/CORALean/ContDynamics/LinearSys/Theorems/ExistsMemIUnionReachSetExactDistLe.lean::LinearSys.exists_mem_iUnion_reachSetExact_dist_le
 src/CORALean/ContDynamics/LinearSys/Theorems/InputSolutionOuter.lean::LinearSys.inputSolution_outer
 src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryVariationOfConstants.lean::LinearSys.IsCanonicalClassicalTrajectory.variation_of_constants
 src/CORALean/ContDynamics/LinearSys/Theorems/IsClassicalTrajectoryVariationOfConstants.lean::aux_classical_expNeg_mulVec_sub
@@ -45,8 +45,8 @@ src/CORALean/ContDynamics/NonlinearSys/Theorems/GainDimDerivTendsto.lean::gainDi
 src/CORALean/ContDynamics/NonlinearSys/Theorems/GainDimTendstoPow.lean::gainDim_tendsto_pow
 src/CORALean/ContDynamics/NonlinearSys/Theorems/LinReachFloatOuter.lean::aux_linReach_input
 src/CORALean/ContDynamics/NonlinearSys/Theorems/LinReachPolyOuter.lean::NonlinearSys.IsTrajectory.linReachPoly_outer
-src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetSubsetEvalOn.lean::NonlinearSys.reachSet_subset_evalOn
-src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetSubsetRelinReach.lean::NonlinearSys.reachSet_subset_relinReach
+src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetExactSubsetEvalOn.lean::NonlinearSys.reachSetExact_subset_evalOn
+src/CORALean/ContDynamics/NonlinearSys/Theorems/ReachSetExactSubsetRelinReach.lean::NonlinearSys.reachSetExact_subset_relinReach
 src/CORALean/ContDynamics/NonlinearSys/Theorems/RelinReachEvalOn.lean::NonlinearSys.IsTrajectory.relinReach_evalOn
 src/CORALean/ContDynamics/NonlinearSys/Theorems/RelinReachOuterInputSolution.lean::NonlinearSys.IsTrajectory.relinReach_outer_inputSolution
 src/CORALean/ContSet/ConZonotope/Real/Theorems/TightenEREmpty.lean::ConZonotope.tightenER_empty

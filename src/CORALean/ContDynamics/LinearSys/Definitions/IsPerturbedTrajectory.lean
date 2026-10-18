@@ -18,7 +18,7 @@ and those are integrals of merely measurable signals.
 
 `measInput`/`measDisturbance` are each signal's own regularity, `cont` the
 continuity `IsTrajectory.cont` is. No `init`/`R₀`: Def. 6 and Def. 7 test one
-starting point, which their own definitions pin, the way `reachSet` pins
+starting point, which their own definitions pin, the way `reachSetExact` pins
 `x t = y` outside `IsTrajectory`.
 
 ## References

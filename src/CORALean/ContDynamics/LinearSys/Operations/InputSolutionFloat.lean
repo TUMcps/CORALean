@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputTaylorSumFloat
 /-!
 # The set every input contributes over one step, in floats
 
-`inputSolution` [1, Thm. 3.1] computed in `𝕋`: the orders up to `η` by
+`inputSolution` [1, Thm. 1] computed in `𝕋`: the orders up to `η` by
 `inputTaylorSumFloat`, and everything past `η` in
 `MatExp.intervalInputRemainder`, the float `E(r)·r` taken at the bound
 `normUpperBound (r • A)` the exponential and the correction of the same step are
@@ -16,8 +16,9 @@ taken at — so the order `reachOrderFloat` admits for those admits this too.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -37,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Thm. 3.1] in floats: `⊕ᵢ [Aⁱr^{i+1}/(i+1)!] V ⊕ [E(r)·r] V`. -/
+/-- [1, Thm. 1] in floats: `⊕ᵢ [Aⁱr^{i+1}/(i+1)!] V ⊕ [E(r)·r] V`. -/
 def LinearSys.inputSolutionFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ) (V : Zonotope (Vec 𝕋 n)) :
     Zonotope (Vec 𝕋 n) :=
   sys.inputTaylorSumFloat r V η ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])

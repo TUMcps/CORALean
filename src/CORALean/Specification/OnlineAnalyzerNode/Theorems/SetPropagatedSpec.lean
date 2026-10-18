@@ -28,14 +28,15 @@ variable {A : Type}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem OnlineAnalyzerNode.setPropagated_spec (eps : ℝ) (n n' : OnlineAnalyzerNode A)
-    (hv : n.signal.IsValid) (parent : ℕ) (int : STLInterval)
-    (h : n.setPropagated eps parent int = some n') : -- --- STMT ---
-    n'.signal.IsValid ∧ n'.prop = n.prop.set (n.parents.idxOf parent) int ∧
-      (n.dropPropagated = false → n'.signal = n.signal) ∧
-      (n.dropPropagated = true → ∀ t : ℝ, 0 ≤ t →
-        (t ∈ (n'.getAllProp eps).set → n'.signal.at t = FourValued.ii) ∧
-        (t ∉ (n'.getAllProp eps).set → n'.signal.at t = n.signal.at t)) := by -- --- PROOF ---
+theorem OnlineAnalyzerNode.setPropagated_spec (eps : ℝ) (n : OnlineAnalyzerNode A)
+    (hv : n.signal.IsValid) (parent : ℕ) (int : STLInterval) : -- --- STMT ---
+    ∀ n' ∈ n.setPropagated eps parent int,
+      n'.signal.IsValid ∧ n'.prop = n.prop.set (n.parents.idxOf parent) int ∧
+        (n.dropPropagated = false → n'.signal = n.signal) ∧
+        (n.dropPropagated = true → ∀ t : ℝ, 0 ≤ t →
+          (t ∈ (n'.getAllProp eps).set → n'.signal.at t = FourValued.ii) ∧
+          (t ∉ (n'.getAllProp eps).set → n'.signal.at t = n.signal.at t)) := by -- --- PROOF ---
+  intro n' (h : n.setPropagated eps parent int = some n')
   unfold OnlineAnalyzerNode.setPropagated at h
   dsimp only at h
   rcases hp : n.prop[n.parents.idxOf parent]? with _ | old

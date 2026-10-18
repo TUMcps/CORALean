@@ -8,14 +8,15 @@ public import CORALean.ContDynamics.LinParamSys.Operations.InputSolutionFloat
 # What a constant input contributes over one step at every member, in floats
 
 `LinParamSys.constInputSolution` computed in `𝕋`: the constant `ũ` is an admissible input
-of the segment `[0, ũ]`, which holds the origin, so by [1, Thm. 3.1] and [1, Prop. 3.3] its
+of the segment `[0, ũ]`, which holds the origin, so by [1, Thm. 1] and [1, Sec. 3.3] its
 contribution at any time of `[0, r]` lies in `inputSolutionFloat` of that segment. No
 correction matrix `F̃` is needed: the segment's own enclosure already holds the constant.
 
 ## References
 
-* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
-      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
+* [1] M. Althoff, B. H. Krogh and O. Stursberg. "Analyzing Reachability of Linear
+      Dynamic Systems with Parametric Uncertainties". In A. Rauh and E. Auer (eds.),
+      Modeling, Design, and Simulation of Systems with Uncertainties, Springer, 2011.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -1,11 +1,11 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachSet
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachSetExact
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInnerRepFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeEnclosureFloatReachSubsetAddErrorFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetSubsetInputReach
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetSuperset
-public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetInnerOfOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetExactSubsetInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSuperset
+public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetExactInnerOfOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemConstruct
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffRepInner
@@ -27,11 +27,11 @@ each step in the direction an inner approximation needs:
    float run minus its budget (`D ⊆ R ⊖ B`).
 2. `discretizeEnclosureFloat_reach_subset_add_errorFloat` puts the float run
    inside the exact held-input sampled set plus the budget (`R ⊆ Y + B`), so
-   Rådström cancellation (`reachSet_inner_of_outer`, `Y` convex and compact)
+   Rådström cancellation (`reachSetExact_inner_of_outer`, `Y` convex and compact)
    gives `R ⊖ B ⊆ Y`.
 3. `Y` lies in the states the system reaches at `t = kΔt`
-   (`discretize_reachSet_subset_inputReach`, then
-   `mulVecLin_image_add_inputReach_subset_reachSet`).
+   (`discretize_reachSetExact_subset_inputReach`, then
+   `mulVecLin_image_add_inputReach_subset_reachSetExact`).
 
 The exact reachable set is read from the nominal zonotopes of `R₀` and `U`; the
 float sets' error boxes are paid inside the budget. The budget is nonempty
@@ -72,7 +72,7 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     (H : Mat 𝕋 ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
         ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).h n) {D : Zonotope (Vec 𝕋 n)}
     (hD : sys.reachInnerRepFloat Δt η o ho R₀ U k M ρ H = some D) : -- --- STMT ---
-    D.construct ⊆ sys.reachSet (S := 𝒵)
+    D.construct ⊆ sys.reachSetExact (S := 𝒵)
       (Set.Icc 0 ((k : ℝ) * toReal Δt)) (nominal R₀) (nominal U)
       ((k : ℝ) * toReal Δt) := by -- --- PROOF ---
   set R := (sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
@@ -85,7 +85,7 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
   have hR0 : (0 : Vec ℝ n) ∈ R.I_error.construct :=
     sys.zero_mem_discretizeEnclosureFloat_reach_error hΔt.le hη ho hR₀ hU k
   obtain ⟨_, -, b, hb, -⟩ := hout (Zonotope.center_mem_construct R hR0)
-  have hinner := (sys.discretize (toReal Δt)).reachSet_inner_of_outer
+  have hinner := (sys.discretize (toReal Δt)).reachSetExact_inner_of_outer
     (S := 𝒵)
     (Real.Zonotope.convex_construct (nominal R₀)) (Real.Zonotope.isCompact_construct (nominal R₀))
     (Real.Zonotope.convex_construct Q) (Real.Zonotope.isCompact_construct Q) k
@@ -98,11 +98,11 @@ theorem LinearSys.reachInnerRepFloat_inner (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     rw [← Real.Zonotope.mtimes_exact] at hv'
     obtain ⟨c, hc, rfl⟩ := hv'
     exact ⟨c, hc, rfl⟩
-  have hzoh := sys.discretize_reachSet_subset_inputReach (S := 𝒵)
+  have hzoh := sys.discretize_reachSetExact_subset_inputReach (S := 𝒵)
     hΔt (nominal R₀) (nominal U) Q (Real.Zonotope.isBounded_construct _)
     ⟨_, Real.Zonotope.center_mem_construct _⟩ hstep k
-  exact (Zonotope.minkDiffRep_inner hD).trans (hinner.trans (hzoh.trans
-    (sys.mulVecLin_image_add_inputReach_subset_reachSet
+  exact (Zonotope.minkDiffRep_inner _ hD).trans (hinner.trans (hzoh.trans
+    (sys.mulVecLin_image_add_inputReach_subset_reachSetExact
       (S := 𝒵) (nominal R₀) (nominal U) (by positivity)
       (Real.Zonotope.isBounded_construct _))))
 
