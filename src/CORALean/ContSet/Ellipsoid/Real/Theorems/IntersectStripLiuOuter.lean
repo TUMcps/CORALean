@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
@@ -185,7 +186,7 @@ theorem Ellipsoid.intersectStripLiu_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c :
       have := hPpd.dotProduct_mulVec_pos hne
       simp only [star_trivial] at this
       linarith
-    rw [Ellipsoid.ofShape_eq (by rw [← hzero, zero_smul]; exact .zero)]
+    rw [Ellipsoid.ofShape_eq (by rw [← hzero, zero_smul]; exact .zero), Ellipsoid.construct_eq_sqrt]
     refine ⟨0, by rw [norm₂_zero]; exact zero_le_one, ?_⟩
     rw [mulVec_zero, add_zero]
     exact sub_eq_zero.1 (hd.symm.trans hd')

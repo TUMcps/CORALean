@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import Mathlib.Data.Matrix.Block
 public import Mathlib.Data.Matrix.ColumnRowPartitioned
 public import Mathlib.LinearAlgebra.Matrix.Rank
@@ -115,7 +115,8 @@ theorem Ellipsoid.containsEllipsoidCora_counterexample :
   refine ⟨?_, ?_, ?_⟩
   · -- the center `(0, 1)` of `E₂` has second coordinate `1`, every point of `E₁` has `0`
     intro h
-    obtain ⟨u, -, hu⟩ := h ⟨0, by rw [norm₂_zero]; norm_num, rfl⟩
+    obtain ⟨u, -, hu⟩ := Ellipsoid.mem_construct_iff.1
+      (h (Ellipsoid.mem_construct_iff.2 ⟨0, by rw [norm₂_zero]; norm_num, rfl⟩))
     have := congrFun hu 1
     rw [hG₁] at this
     simp [E₁, E₂, dotProduct, Fin.sum_univ_two] at this

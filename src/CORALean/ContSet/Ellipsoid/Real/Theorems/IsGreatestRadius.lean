@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
@@ -121,6 +122,7 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) :
       simp only [add_sub_cancel_left, hGu]
       rw [norm₂_smul, hvn, mul_one, abs_of_pos hpos]
   · -- the bound
+    rw [E.construct_eq_sqrt]
     rintro _ ⟨x, ⟨u, hu, rfl⟩, rfl⟩
     simp only [add_sub_cancel_left]
     set v := E.G *ᵥ u with hv

@@ -4,7 +4,7 @@ public import CORALean.ContSet.Polygon.Real.Polygon
 public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 public import CORALean.ContSet.Polygon.Real.Counterexamples.SampledHullCora
 public import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
-public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 
 @[expose] public section
 
@@ -59,7 +59,7 @@ theorem Polygon.containsEllipsoid_cora_counterexample (V : Set (Vec ℝ 2)) (hV 
   obtain ⟨z, hz, hzn⟩ := Polygon.exists_circle_notMem_sampledHull V hV hc
   refine hzn (hsub ?_)
   have hG : (⟨1, 0, .one⟩ : Ellipsoid 2).G = 1 := CFC.sqrt_one
-  refine ⟨z, ?_, by rw [hG, Matrix.one_mulVec, zero_add]⟩
+  refine Ellipsoid.mem_construct_iff.2 ⟨z, ?_, by rw [hG, Matrix.one_mulVec, zero_add]⟩
   show Real.sqrt (∑ i, z i ^ 2) ≤ 1
   rw [Fin.sum_univ_two, hz]
   simp

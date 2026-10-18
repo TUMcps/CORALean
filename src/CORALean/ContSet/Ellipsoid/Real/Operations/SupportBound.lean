@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormPullbackEq
 public import CORALean.Global.SupportFunction.SupportFunction
 
@@ -44,6 +45,7 @@ noncomputable def Ellipsoid.supportBound (E : Ellipsoid n) (c : Vec ℝ n →ₗ
     SupportBound E.construct c where
   val := c E.q + Real.sqrt (dualVec c ⬝ᵥ E.Q *ᵥ dualVec c)
   le := by
+    rw [E.construct_eq_sqrt]
     rintro _ ⟨u, hu, rfl⟩
     rw [map_add, ← E.norm₂_pullback]
     refine add_le_add le_rfl ?_

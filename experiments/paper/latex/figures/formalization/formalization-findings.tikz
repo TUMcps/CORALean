@@ -19,7 +19,7 @@
     xtick pos=bottom,
     xmajorgrids=true,
     major x grid style={draw=black!15, line width=0.4pt},
-    xmax=632,
+    xmax=634,
     legend columns=5, legend to name=findinglegend,
     legend style={legend cell align=left, align=left, draw=white!15!black, rounded corners, font=\scriptsize, inner sep=1.5pt, /tikz/every even column/.append style={column sep=0.5ex}, /tikz/every odd column/.append style={column sep=0pt}},
     legend image code/.code={\draw[#1, draw=black, line width=0.2pt, rounded corners=1pt] (0cm,-0.6ex) rectangle (1.2ex,0.6ex);}]
@@ -34,59 +34,59 @@
 \addlegendentry{fixed}
 \addlegendimage{fill=CORAcolorDarkRed}
 \addlegendentry{false}
-\begin{scope}\clip([yshift=-4pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:596,0) -- ([yshift=4pt]axis cs:596,0) [sharp corners] -- ([yshift=4pt]axis cs:0,0) -- cycle;
-\fill[CORAcolorSafe] ([yshift=-4pt]axis cs:0,0) rectangle ([yshift=4pt]axis cs:412,0);
-\fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:412,0) rectangle ([yshift=4pt]axis cs:421,0);
-\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:421,0) rectangle ([yshift=4pt]axis cs:543,0);
-\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:543,0) rectangle ([yshift=4pt]axis cs:591,0);
-\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:591,0) rectangle ([yshift=4pt]axis cs:596,0);
+\begin{scope}\clip([yshift=-4pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:598,0) -- ([yshift=4pt]axis cs:598,0) [sharp corners] -- ([yshift=4pt]axis cs:0,0) -- cycle;
+\fill[CORAcolorSafe] ([yshift=-4pt]axis cs:0,0) rectangle ([yshift=4pt]axis cs:414,0);
+\fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:414,0) rectangle ([yshift=4pt]axis cs:423,0);
+\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:423,0) rectangle ([yshift=4pt]axis cs:545,0);
+\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:545,0) rectangle ([yshift=4pt]axis cs:593,0);
+\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:593,0) rectangle ([yshift=4pt]axis cs:598,0);
 \end{scope}
-\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:596,0) -- ([yshift=4pt]axis cs:596,0) [sharp corners] -- ([yshift=4pt]axis cs:0,0) -- cycle;
-\begin{scope}\clip([yshift=-4pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:295.454,1) -- ([yshift=4pt]axis cs:295.454,1) [sharp corners] -- ([yshift=4pt]axis cs:0,1) -- cycle;
+\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,0) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:598,0) -- ([yshift=4pt]axis cs:598,0) [sharp corners] -- ([yshift=4pt]axis cs:0,0) -- cycle;
+\begin{scope}\clip([yshift=-4pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:295.464,1) -- ([yshift=4pt]axis cs:295.464,1) [sharp corners] -- ([yshift=4pt]axis cs:0,1) -- cycle;
 \fill[CORAcolorSafe] ([yshift=-4pt]axis cs:0,1) rectangle ([yshift=4pt]axis cs:183,1);
 \fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:183,1) rectangle ([yshift=4pt]axis cs:201,1);
 \fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:201,1) rectangle ([yshift=4pt]axis cs:265,1);
 \fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:265,1) rectangle ([yshift=4pt]axis cs:292,1);
-\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:292,1) rectangle ([yshift=4pt]axis cs:295.454,1);
+\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:292,1) rectangle ([yshift=4pt]axis cs:295.464,1);
 \end{scope}
-\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:295.454,1) -- ([yshift=4pt]axis cs:295.454,1) [sharp corners] -- ([yshift=4pt]axis cs:0,1) -- cycle;
-\begin{scope}\clip([yshift=-4pt]axis cs:0,2) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:33.3607,2) -- ([yshift=4pt]axis cs:33.3607,2) [sharp corners] -- ([yshift=4pt]axis cs:0,2) -- cycle;
+\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,1) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:295.464,1) -- ([yshift=4pt]axis cs:295.464,1) [sharp corners] -- ([yshift=4pt]axis cs:0,1) -- cycle;
+\begin{scope}\clip([yshift=-4pt]axis cs:0,2) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:33.3934,2) -- ([yshift=4pt]axis cs:33.3934,2) [sharp corners] -- ([yshift=4pt]axis cs:0,2) -- cycle;
 \fill[CORAcolorSafe] ([yshift=-4pt]axis cs:0,2) rectangle ([yshift=4pt]axis cs:17,2);
-\fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:17,2) rectangle ([yshift=4pt]axis cs:20.4536,2);
-\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:20.4536,2) rectangle ([yshift=4pt]axis cs:26.4536,2);
-\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:26.4536,2) rectangle ([yshift=4pt]axis cs:29.9071,2);
-\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:29.9071,2) rectangle ([yshift=4pt]axis cs:33.3607,2);
+\fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:17,2) rectangle ([yshift=4pt]axis cs:20.4645,2);
+\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:20.4645,2) rectangle ([yshift=4pt]axis cs:26.4645,2);
+\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:26.4645,2) rectangle ([yshift=4pt]axis cs:29.929,2);
+\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:29.929,2) rectangle ([yshift=4pt]axis cs:33.3934,2);
 \end{scope}
-\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,2) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:33.3607,2) -- ([yshift=4pt]axis cs:33.3607,2) [sharp corners] -- ([yshift=4pt]axis cs:0,2) -- cycle;
-\begin{scope}\clip([yshift=-4pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:85.9071,3) -- ([yshift=4pt]axis cs:85.9071,3) [sharp corners] -- ([yshift=4pt]axis cs:0,3) -- cycle;
+\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,2) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:33.3934,2) -- ([yshift=4pt]axis cs:33.3934,2) [sharp corners] -- ([yshift=4pt]axis cs:0,2) -- cycle;
+\begin{scope}\clip([yshift=-4pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:85.929,3) -- ([yshift=4pt]axis cs:85.929,3) [sharp corners] -- ([yshift=4pt]axis cs:0,3) -- cycle;
 \fill[CORAcolorSafe] ([yshift=-4pt]axis cs:0,3) rectangle ([yshift=4pt]axis cs:70,3);
-\fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:70,3) rectangle ([yshift=4pt]axis cs:73.4536,3);
-\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:73.4536,3) rectangle ([yshift=4pt]axis cs:82.4536,3);
-\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:82.4536,3) rectangle ([yshift=4pt]axis cs:85.9071,3);
+\fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:70,3) rectangle ([yshift=4pt]axis cs:73.4645,3);
+\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:73.4645,3) rectangle ([yshift=4pt]axis cs:82.4645,3);
+\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:82.4645,3) rectangle ([yshift=4pt]axis cs:85.929,3);
 \end{scope}
-\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:85.9071,3) -- ([yshift=4pt]axis cs:85.9071,3) [sharp corners] -- ([yshift=4pt]axis cs:0,3) -- cycle;
-\begin{scope}\clip([yshift=-4pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:77.9071,4) -- ([yshift=4pt]axis cs:77.9071,4) [sharp corners] -- ([yshift=4pt]axis cs:0,4) -- cycle;
+\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,3) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:85.929,3) -- ([yshift=4pt]axis cs:85.929,3) [sharp corners] -- ([yshift=4pt]axis cs:0,3) -- cycle;
+\begin{scope}\clip([yshift=-4pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:77.929,4) -- ([yshift=4pt]axis cs:77.929,4) [sharp corners] -- ([yshift=4pt]axis cs:0,4) -- cycle;
 \fill[CORAcolorSafe] ([yshift=-4pt]axis cs:0,4) rectangle ([yshift=4pt]axis cs:41,4);
-\fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:41,4) rectangle ([yshift=4pt]axis cs:44.4536,4);
-\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:44.4536,4) rectangle ([yshift=4pt]axis cs:65.4536,4);
-\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:65.4536,4) rectangle ([yshift=4pt]axis cs:74.4536,4);
-\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:74.4536,4) rectangle ([yshift=4pt]axis cs:77.9071,4);
+\fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:41,4) rectangle ([yshift=4pt]axis cs:44.4645,4);
+\fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:44.4645,4) rectangle ([yshift=4pt]axis cs:65.4645,4);
+\fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:65.4645,4) rectangle ([yshift=4pt]axis cs:74.4645,4);
+\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:74.4645,4) rectangle ([yshift=4pt]axis cs:77.929,4);
 \end{scope}
-\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:77.9071,4) -- ([yshift=4pt]axis cs:77.9071,4) [sharp corners] -- ([yshift=4pt]axis cs:0,4) -- cycle;
-\begin{scope}\clip([yshift=-4pt]axis cs:0,5) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:139.454,5) -- ([yshift=4pt]axis cs:139.454,5) [sharp corners] -- ([yshift=4pt]axis cs:0,5) -- cycle;
+\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,4) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:77.929,4) -- ([yshift=4pt]axis cs:77.929,4) [sharp corners] -- ([yshift=4pt]axis cs:0,4) -- cycle;
+\begin{scope}\clip([yshift=-4pt]axis cs:0,5) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:139.464,5) -- ([yshift=4pt]axis cs:139.464,5) [sharp corners] -- ([yshift=4pt]axis cs:0,5) -- cycle;
 \fill[CORAcolorSafe] ([yshift=-4pt]axis cs:0,5) rectangle ([yshift=4pt]axis cs:84,5);
 \fill[CORAcolorUnknown] ([yshift=-4pt]axis cs:84,5) rectangle ([yshift=4pt]axis cs:88,5);
 \fill[CORAcolorHighlight1] ([yshift=-4pt]axis cs:88,5) rectangle ([yshift=4pt]axis cs:119,5);
 \fill[CORAcolorUnsafe] ([yshift=-4pt]axis cs:119,5) rectangle ([yshift=4pt]axis cs:136,5);
-\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:136,5) rectangle ([yshift=4pt]axis cs:139.454,5);
+\fill[CORAcolorDarkRed] ([yshift=-4pt]axis cs:136,5) rectangle ([yshift=4pt]axis cs:139.464,5);
 \end{scope}
-\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,5) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:139.454,5) -- ([yshift=4pt]axis cs:139.454,5) [sharp corners] -- ([yshift=4pt]axis cs:0,5) -- cycle;
+\draw[black, line width=0.2pt] ([yshift=-4pt]axis cs:0,5) [rounded corners=1.5pt] -- ([yshift=-4pt]axis cs:139.464,5) -- ([yshift=4pt]axis cs:139.464,5) [sharp corners] -- ([yshift=4pt]axis cs:0,5) -- cycle;
 \end{axis}
-\begin{axis}[at={(findings.south west)}, anchor=south west, height=3.70cm, width=0.6\linewidth, xmin=0, xmax=632, enlarge y limits={abs=0.7}, hide axis, clip=false]
+\begin{axis}[at={(findings.south west)}, anchor=south west, height=3.70cm, width=0.6\linewidth, xmin=0, xmax=634, enlarge y limits={abs=0.7}, hide axis, clip=false]
 \addplot[draw=none] coordinates {(0,0) (0,5)};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:206,0) {412};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:482,0) {122};
-\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:567,0) {48};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:207,0) {414};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:484,0) {122};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:569,0) {48};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:91.5,1) {183};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:233,1) {64};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:35,3) {70};

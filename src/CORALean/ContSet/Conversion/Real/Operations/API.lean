@@ -20,6 +20,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.LevelSet_to_StarSet
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_VPolytope
@@ -27,6 +28,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonoto
 public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.StarSet_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.SupportFunction_to_StarSet
 public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope

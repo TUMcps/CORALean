@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
@@ -44,7 +45,7 @@ theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fi
   have hs : 0 < √r := Real.sqrt_pos.mpr hr
   -- the coefficient point `u = r^{-1/2} ∑ βⱼ sⱼ` is in the unit ball
   have hle := le_trans (Zonotope.sq_norm₂_le_maxNormSq ⟨m, 0, S⟩ hβ) hS
-  refine ⟨(√r)⁻¹ • ∑ j, β j • S j, ?_, ?_⟩
+  refine Ellipsoid.mem_construct_iff.2 ⟨(√r)⁻¹ • ∑ j, β j • S j, ?_, ?_⟩
   · rw [norm₂_smul, abs_of_pos (inv_pos.mpr hs), inv_mul_le_iff₀ hs, mul_one]
     calc ‖∑ j, β j • S j‖₂ = √(‖∑ j, β j • S j‖₂ ^ 2) := (Real.sqrt_sq (norm₂_nonneg _)).symm
       _ ≤ √r := Real.sqrt_le_sqrt hle

@@ -30,8 +30,8 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def StarSet.reluNeuron {n : ℕ} (s : StarSet n) (j : Fin n) (b : Interval ℝ) :
-    StarSet n :=
+noncomputable def StarSet.reluNeuron {n : ℕ} (s : StarSet StarSet.LinPred n) (j : Fin n)
+    (b : Interval ℝ) : StarSet StarSet.LinPred n :=
   let l := b.inf
   let u := b.sup
   if 0 ≤ l then s
@@ -42,13 +42,14 @@ noncomputable def StarSet.reluNeuron {n : ℕ} (s : StarSet n) (j : Fin n) (b : 
       c := Function.update s.c j 0
       G := fun i => Fin.snoc (α := fun _ => ℝ) (if i = j then 0 else s.G i)
         (if i = j then 1 else 0)
-      cons := s.cons.map (fun r => (Fin.snoc (α := fun _ => ℝ) r.1 0, r.2)) ++
-        [(Fin.snoc (α := fun _ => ℝ) 0 (-1), 0),
-         (Fin.snoc (α := fun _ => ℝ) (s.G j) (-1), -s.c j),
-         (Fin.snoc (α := fun _ => ℝ) (fun k => -(u / (u - l)) * s.G j k) 1,
-          u / (u - l) * (s.c j - l))]
-      l := Fin.snoc (α := fun _ => ℝ) s.l 0
-      u := Fin.snoc (α := fun _ => ℝ) s.u u }
+      pred :=
+        { cons := s.pred.cons.map (fun r => (Fin.snoc (α := fun _ => ℝ) r.1 0, r.2)) ++
+            [(Fin.snoc (α := fun _ => ℝ) 0 (-1), 0),
+             (Fin.snoc (α := fun _ => ℝ) (s.G j) (-1), -s.c j),
+             (Fin.snoc (α := fun _ => ℝ) (fun k => -(u / (u - l)) * s.G j k) 1,
+              u / (u - l) * (s.c j - l))]
+          l := Fin.snoc (α := fun _ => ℝ) s.pred.l 0
+          u := Fin.snoc (α := fun _ => ℝ) s.pred.u u } }
 
 end CORALean.Real
 

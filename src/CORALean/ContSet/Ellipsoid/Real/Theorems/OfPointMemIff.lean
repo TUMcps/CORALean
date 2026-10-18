@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
@@ -30,7 +31,8 @@ variable {n : ℕ}
 theorem Ellipsoid.mem_ofPoint_iff (v x : Vec ℝ n) :
     x ∈ (Ellipsoid.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
   constructor
-  · rintro ⟨u, -, h⟩
+  · rw [Ellipsoid.construct_eq_sqrt]
+    rintro ⟨u, -, h⟩
     have hG : (Ellipsoid.ofPoint v).G = 0 := (Ellipsoid.G_eq_zero_iff _).2 rfl
     rw [hG, Matrix.zero_mulVec, add_zero] at h
     exact h

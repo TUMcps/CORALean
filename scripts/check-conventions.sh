@@ -1897,6 +1897,24 @@ END {
 }' $files | sort)
 report "$out"
 
+# A system class states what it denotes where it is declared (#215): the main file
+# `ContDynamics/<C>/<C>.lean` declares `<C>.IsTrajectory`, the runs of the system, as
+# `LinearSys` and `NonlinearSys` do, and not a `Definitions/` file beside it. The exceptions are
+# named here with their reason.
+if [ -z "$STAGED" ]; then
+  out=$(for d in src/CORALean/ContDynamics/*/; do
+    c=$(basename "$d"); f="$d$c.lean"
+    [ -f "$f" ] || continue
+    case "$c" in
+      LinProbSys) continue ;;  # denotes the law of its solution; the process itself is not defined
+      OutputEq) continue ;;    # an output map applied to any system's run, not a system
+    esac
+    grep -Eq "^(structure|def|abbrev|inductive)[[:space:]]+$c\.IsTrajectory([[:space:]]|$)" "$f" ||
+      echo "$f: no \`$c.IsTrajectory\` — a system class states its runs in its main file (#215)"
+  done)
+  report "$out"
+fi
+
 # A main-type file holds the type and what it denotes, not what is said or done about
 # it (CONTRIBUTING, "Main-type files"): the file with the `MAIN TYPE` banner at
 # `<Dir>/<Dir>.lean` or `<Dir>/<Layer>/<Dir>.lean` has no `theorem`/`lemma`, and no

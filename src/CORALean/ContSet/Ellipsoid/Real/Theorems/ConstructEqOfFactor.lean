@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import Mathlib.LinearAlgebra.Matrix.Rank
 
@@ -86,6 +87,7 @@ theorem Ellipsoid.construct_eq_of_factor (E : Ellipsoid n) {k : ℕ} (F : Mat �
     (hF : F * Fᵀ = E.Q) :
     E.construct = {x | ∃ u : Vec ℝ k, ‖u‖₂ ≤ 1 ∧ x = E.q + F *ᵥ u} := by -- --- PROOF ---
   have hG : E.G * E.Gᵀ = F * Fᵀ := by rw [E.G_mul_transpose, hF]
+  rw [E.construct_eq_sqrt]
   ext x
   constructor
   · rintro ⟨u, hu, rfl⟩

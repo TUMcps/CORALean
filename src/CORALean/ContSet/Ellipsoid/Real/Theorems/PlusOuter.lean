@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 
@@ -83,6 +84,7 @@ private theorem aux_value_plus {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ :
 theorem Ellipsoid.plus_outer (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) (hne₁ : s₁ ≠ 0)
     (hne₂ : s₂ ≠ 0) (hs : 1 / s₁ ^ 2 + 1 / s₂ ^ 2 ≤ 1) :
     E₁.construct + E₂.construct ⊆ (Ellipsoid.plus s₁ s₂ E₁ E₂).construct := by -- --- PROOF ---
+  rw [E₁.construct_eq_sqrt, E₂.construct_eq_sqrt]
   have hsq₁ : (0:ℝ) < s₁ ^ 2 := lt_of_le_of_ne (sq_nonneg _) (Ne.symm (pow_ne_zero 2 hne₁))
   have hsq₂ : (0:ℝ) < s₂ ^ 2 := lt_of_le_of_ne (sq_nonneg _) (Ne.symm (pow_ne_zero 2 hne₂))
   -- each summand's ball point squared-sums to at most one

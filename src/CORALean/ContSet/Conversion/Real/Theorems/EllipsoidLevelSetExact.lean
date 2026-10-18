@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.LevelSet.Real.LevelSet
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
@@ -50,6 +51,7 @@ theorem Ellipsoid.levelSet_exact (E : Ellipsoid n) (hQ : IsUnit E.Q.det) :
       (E.Gᵀ *ᵥ (Q⁻¹ *ᵥ y)) ⬝ᵥ u = y ⬝ᵥ (Q⁻¹ *ᵥ y) := fun y u hu => by
     rw [dotProduct_comm, Matrix.dotProduct_mulVec, Matrix.vecMul_transpose, hu, dotProduct_comm]
   ext x
+  rw [Ellipsoid.mem_construct_iff]
   constructor
   -- a point of the sublevel set is `q + G u` for `u = Gᵀ Q⁻¹ (x - q)`, of squared length `≤ 1`
   · intro h

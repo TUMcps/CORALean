@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.Global.NotHyperplaneOneDim
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
@@ -68,13 +68,13 @@ def Ellipsoid.aux_unitSegment : Ellipsoid 1 := ⟨1, fun _ => 0, .one⟩
 theorem Ellipsoid.aux_unitSegment_G : Ellipsoid.aux_unitSegment.G = 1 := CFC.sqrt_one
 
 theorem Ellipsoid.aux_zero_mem : (fun _ => (0 : ℝ)) ∈ Ellipsoid.aux_unitSegment.construct := by
-  refine ⟨fun _ => 0, ?_, ?_⟩
+  refine Ellipsoid.mem_construct_iff.2 ⟨fun _ => 0, ?_, ?_⟩
   · simp [CORALean.norm₂]
   · rw [Ellipsoid.aux_unitSegment_G, Matrix.one_mulVec]
     ext i; simp [Ellipsoid.aux_unitSegment]
 
 theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.aux_unitSegment.construct := by
-  refine ⟨fun _ => 1, ?_, ?_⟩
+  refine Ellipsoid.mem_construct_iff.2 ⟨fun _ => 1, ?_, ?_⟩
   · simp [CORALean.norm₂]
   · rw [Ellipsoid.aux_unitSegment_G, Matrix.one_mulVec]
     ext i; simp [Ellipsoid.aux_unitSegment]

@@ -8,7 +8,10 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.AbsSubLeSqrtDiag
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsPinvQpinv
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqPinv
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormPullbackEq
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfVolumeLeSupersetParallelotope
@@ -125,6 +128,8 @@ and convexity, compactness and boundedness are what the reachability theorems
 consume. `ConstructEqImage` is what all three of those last transfer from the
 unit ball through. `mem_ofPoint` reuses `mem_construct` at the zero
 coefficient vector. `ConstructEqOfFactor` is how a statement about the shape matrix is proved on
-generators — any `F` with `F Fᵀ = Q` generates the ellipsoid — and `ConstructEqPinv` is CORA's own
-description of the set through the pseudo-inverse.
+generators — any `F` with `F Fᵀ = Q` generates the ellipsoid. The definition is stated over `Q`
+through its pseudo-inverse, which `IsPinvQpinv` certifies; `ConstructEqSqrt` turns it into the image
+of the unit ball under `G = Q^(1/2)` that the proofs go through, `MemConstructIff` is that read
+pointwise, and `ConstructEqPinv` is the set at any pseudo-inverse, however CORA computes it.
 -/

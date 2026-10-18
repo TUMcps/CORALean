@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.VPolytope.Real.VPolytope
 public import CORALean.Global.EuclideanNorm
@@ -40,7 +41,8 @@ theorem Ellipsoid.aux_mem_disc (x : Vec ℝ 2) :
     x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ↔ x 0 ^ 2 + x 1 ^ 2 ≤ 1 := by -- --- PROOF ---
   have hG : (⟨1, 0, .one⟩ : Ellipsoid 2).G = 1 := CFC.sqrt_one
   have hball : x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ↔ ‖x‖₂ ≤ 1 :=
-    ⟨fun ⟨u, hu, hx⟩ => by rw [hx, hG, Matrix.one_mulVec, zero_add]; exact hu,
+    Ellipsoid.mem_construct_iff.trans
+      ⟨fun ⟨u, hu, hx⟩ => by rw [hx, hG, Matrix.one_mulVec, zero_add]; exact hu,
       fun h => ⟨x, h, by rw [hG, Matrix.one_mulVec, zero_add]⟩⟩
   have hsq : ‖x‖₂ ^ 2 = x 0 ^ 2 + x 1 ^ 2 := by rw [norm₂_sq, Fin.sum_univ_two]
   rw [hball, ← hsq]

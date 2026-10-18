@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
@@ -67,6 +68,7 @@ theorem Ellipsoid.inter_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ
     rw [dotProduct_add, Matrix.dotProduct_mulVec, hw, Matrix.mulVec_transpose]
   have hmem : ∀ x, x ∈ E.construct ∩ {x | v ⬝ᵥ x = c} ↔
       ∃ u : Vec ℝ n, u ⬝ᵥ u ≤ 1 ∧ x = E.q + E.G *ᵥ u ∧ w ⬝ᵥ u = t := fun x => by
+    rw [E.construct_eq_sqrt]
     constructor
     · rintro ⟨⟨u, hu, rfl⟩, hx⟩
       refine ⟨u, (aux_norm₂_le_one_iff u).mp hu, rfl, ?_⟩
@@ -88,6 +90,7 @@ theorem Ellipsoid.inter_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ
     obtain ⟨u, -, -, hwu⟩ := (hmem x).mp hx
     rw [hw0, zero_dotProduct] at hwu
     refine ⟨E, Set.ext fun y => ⟨fun hy => hy.1, fun hy => ?_⟩⟩
+    rw [E.construct_eq_sqrt] at hy
     obtain ⟨u', hu', rfl⟩ := hy
     exact (hmem _).mpr ⟨u', (aux_norm₂_le_one_iff u').mp hu', rfl,
       by rw [hw0, zero_dotProduct, hwu]⟩

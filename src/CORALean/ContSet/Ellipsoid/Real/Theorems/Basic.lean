@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
@@ -113,7 +114,7 @@ theorem Ellipsoid.isClosed_construct (E : Ellipsoid n) : IsClosed E.construct :=
 ball point is a point the ellipsoid contains. `Theorems/QMemConstruct` is the
 same statement at `u = 0`, the center. -/
 theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ n} (hu : ‖u‖₂ ≤ 1) :
-    E.q + E.G *ᵥ u ∈ E.construct := ⟨u, hu, rfl⟩
+    E.q + E.G *ᵥ u ∈ E.construct := E.construct_eq_sqrt ▸ ⟨u, hu, rfl⟩
 
 
 -- =============================  `Ellipsoid.center_mem_construct`  ============================= --

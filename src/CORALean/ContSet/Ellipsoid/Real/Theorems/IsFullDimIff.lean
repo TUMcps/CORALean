@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
@@ -50,6 +51,7 @@ theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) :
   rw [hrank]
   -- the ellipsoid sits inside the translate of the range
   have hsub : E.construct ⊆ (fun v => E.q + v) '' (LinearMap.range L : Set (Vec ℝ n)) := by
+    rw [E.construct_eq_sqrt]
     rintro x ⟨u, -, rfl⟩
     exact ⟨L u, ⟨u, rfl⟩, rfl⟩
   constructor
@@ -70,6 +72,7 @@ theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) :
     have hV : IsOpen ((fun v => E.q + v) '' (L '' U)) :=
       (Homeomorph.addLeft E.q).isOpenMap _ (hopen _ hU)
     have hVsub : (fun v => E.q + v) '' (L '' U) ⊆ E.construct := by
+      rw [E.construct_eq_sqrt]
       rintro _ ⟨_, ⟨u, hu, rfl⟩, rfl⟩
       exact ⟨u, le_of_lt hu, rfl⟩
     refine ⟨E.q, interior_maximal hVsub hV ⟨0, ⟨0, ?_, map_zero L⟩, by simp⟩⟩

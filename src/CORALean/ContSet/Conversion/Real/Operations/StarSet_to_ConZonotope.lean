@@ -29,14 +29,16 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def StarSet.conZonotope (s : StarSet n) : ConZonotope (Vec ℝ n) where
+noncomputable def StarSet.conZonotope (s : StarSet StarSet.LinPred n) : ConZonotope (Vec ℝ n) where
   h := s.m
-  c := fun i => s.c i + ∑ k, s.G i k * ((s.l k + s.u k) / 2)
-  G := fun k i => s.G i k * ((s.u k - s.l k) / 2)
+  c := fun i => s.c i + ∑ k, s.G i k * ((s.pred.l k + s.pred.u k) / 2)
+  G := fun k i => s.G i k * ((s.pred.u k - s.pred.l k) / 2)
   P :=
-    { m := s.cons.length
-      A := fun i => ∑ k, ((s.cons.get i).1 k * ((s.u k - s.l k) / 2)) • LinearMap.proj k
-      b := fun i => (s.cons.get i).2 - ∑ k, (s.cons.get i).1 k * ((s.l k + s.u k) / 2)
+    { m := s.pred.cons.length
+      A := fun i =>
+        ∑ k, ((s.pred.cons.get i).1 k * ((s.pred.u k - s.pred.l k) / 2)) • LinearMap.proj k
+      b := fun i =>
+        (s.pred.cons.get i).2 - ∑ k, (s.pred.cons.get i).1 k * ((s.pred.l k + s.pred.u k) / 2)
       me := 0
       Ae := Fin.elim0
       be := Fin.elim0 }

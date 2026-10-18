@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.Augment
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.JoinInputInj
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.MulVecJoinInput
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
-public import CORALean.ContDynamics.NeurNetContrSys.Definitions.IsTrajectory
+public import CORALean.ContDynamics.NeurNetContrSys.NeurNetContrSys
 public import CORALean.ContDynamics.NeurNetContrSys.Operations.Basic
 
 @[expose] public section

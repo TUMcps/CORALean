@@ -56,9 +56,10 @@ src/CORALean/
                    Real/ and Float/
     Capsule/       a segment thickened by a ball, for an obstacle rather than a
                    reachable set: Real/ and Float/, being closed under almost nothing
-    StarSet/       the star set `{c + G α | C α ≤ d, l ≤ α ≤ u}` of CORA's network
-                   evaluation: a bounded polytope exactly, the form a layer steps
-                   through; Real/ and Float/
+    StarSet/       the star set `{c + G α | α ∈ P}`, its predicate any representation in
+                   coefficient space; at CORA's `C α ≤ d, l ≤ α ≤ u`, the form a network
+                   layer steps through, a bounded polytope exactly; Real/ and Float/, the
+                   latter at CORA's predicate
     Taylm/         a polynomial over `[-1, 1]ⁿ` and a remainder interval, enclosing
                    a function rather than describing a set; Real/ and Float/
     Conversion/    what an ordered pair of representations builds, in `Operations/`, one
@@ -654,7 +655,10 @@ is at most five code lines ("Small declarations"), a file of its own otherwise.
 A validity predicate (`IsValid`, `WellFormed` and the like) is no part of the type: it is a
 definition in `Definitions/IsValid.lean` of the same class, like any other proposition about the type.
 `check-conventions.sh` rejects a `theorem`, `lemma`, validity predicate or `materialise…` definition
-in a main-type file.
+in a main-type file. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
+`<C>.IsTrajectory`, with what it is stated with (the closed loop's plant input `[a; e]`), and
+`check-conventions.sh` asks for it; `LinProbSys`, which denotes the law of its solution, and
+`OutputEq`, which is no system, are the named exceptions.
 
 ### A theorem used once is a lemma of its user
 

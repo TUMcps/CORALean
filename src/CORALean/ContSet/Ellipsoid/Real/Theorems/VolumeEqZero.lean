@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
@@ -48,10 +49,13 @@ theorem Ellipsoid.aux_det_shape_eq_zero (E : Ellipsoid n) (hr : E.rank < n) :
 
 theorem Ellipsoid.volume_eq_of_rank_lt (E : Ellipsoid n) (hr : E.rank < n) :
     MeasureTheory.volume E.construct = E.volume := by -- --- PROOF ---
+  -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
+  simp only [Ellipsoid.construct_eq_sqrt] at *
   have h0 : E.volume = 0 := by
     unfold Ellipsoid.volume
     simp only [E.aux_det_shape_eq_zero hr, Real.sqrt_zero, mul_zero, ENNReal.ofReal_zero]
   rw [h0]
+  -- `G` is not onto, so its range is a proper subspace, of measure zero
   have hne : LinearMap.range (Matrix.mulVecLin E.G) ≠ ⊤ := by
     intro h
     have : E.rank = n := by

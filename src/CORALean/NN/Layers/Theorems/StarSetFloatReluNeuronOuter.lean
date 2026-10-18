@@ -46,7 +46,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
       nominalSet (s.reluNeuron j b) := by -- --- PROOF ---
   have hbx := hb x hx
   rw [StarSet.mem_nominalSet_iff] at hx
-  obtain ⟨α, hα, hcα, hxα⟩ := hx
+  obtain ⟨α, ⟨hα, hcα⟩, hxα⟩ := hx
   unfold StarSet.reluNeuron
   dsimp only
     -- the neuron is nonnegative everywhere: the ReLU is the identity
@@ -56,7 +56,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
     rw [toReal_zero] at h0'
     have : max (x j) 0 = x j := max_eq_left (by linarith [hbx.1])
     rw [this, Function.update_eq_self]
-    exact ⟨α, hα, hcα, hxα⟩
+    exact ⟨α, ⟨hα, hcα⟩, hxα⟩
   rw [if_neg h0]
   -- the neuron is nonpositive everywhere: the ReLU is `0`, the row cleared
   by_cases h1 : le b.sup zero = true
@@ -65,7 +65,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
     rw [toReal_zero] at h1'
     have : max (x j) 0 = 0 := max_eq_right (by linarith [hbx.2])
     rw [this]
-    refine ⟨α, hα, hcα, fun i => ?_⟩
+    refine ⟨α, ⟨hα, hcα⟩, fun i => ?_⟩
     by_cases hi : i = j
     · subst hi; simp [toReal_zero]
     · simp [Function.update_of_ne hi, hxα i]
@@ -76,7 +76,7 @@ theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) (b : Int
   have hβ0 : 0 ≤ β := le_max_right _ _
   have hβx : x j ≤ β := le_max_left _ _
   have hS : ∑ k, toReal (s.G j k) * α k = x j - toReal (s.c j) := by rw [hxj]; ring
-  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ?_, ?_, fun i => ?_⟩
+  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ⟨?_, ?_⟩, fun i => ?_⟩
   · intro k
     refine Fin.lastCases ?_ (fun k => ?_) k
     · simp only [Fin.snoc_last, Fin.snoc_last, toReal_zero, toReal_maximum]

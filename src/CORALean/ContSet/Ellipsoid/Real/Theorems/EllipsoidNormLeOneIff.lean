@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
@@ -56,7 +57,7 @@ theorem Ellipsoid.ellipsoidNorm_le_one_iff (E : Ellipsoid n) (hr : E.rank = n) (
     simp only
     rw [← hw, ← huu, dotProduct_self, abs_of_nonneg (sq_nonneg _)]
     exact Real.sqrt_sq (norm₂_nonneg u)
-  rw [hnorm]
+  rw [hnorm, E.construct_eq_sqrt]
   constructor
   · -- `u` itself reaches the translated point
     intro h

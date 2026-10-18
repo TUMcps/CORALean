@@ -1,26 +1,25 @@
 module
 
 public import CORALean.ContSet.LevelSet.Real.LevelSet
-public import CORALean.ContSet.StarSet.Real.Theorems.Convex
+public import CORALean.ContSet.StarSet.Real.Instances
 public import Mathlib.Tactic.Linarith
 
 @[expose] public section
 
 /-!
-# A level set that is no star set
+# A level set that is no star set of CORA's predicate
 
 A star set `{c + G α | C α ≤ d, l ≤ α ≤ u}` is convex (`StarSet.convex_construct`), and a level set
-need not be: `{x | x₀² - 1 = 0} = {-1, 1}` contains the two points and not their midpoint. So a
-level set is no star set, though every star set is a level set (`LevelSet.exists_construct_eq`).
-
-This is the equivalence of star sets and level sets of [1, Fig. 1 (Star Sets ↔ Level Sets)].
+need not be: `{x | x₀² - 1 = 0} = {-1, 1}` contains the two points and not their midpoint. So the
+equivalence of star sets and level sets of [1, Fig. 1 (Star Sets ↔ Level Sets)] needs a predicate
+beyond the linear one: with a level-set predicate it holds (`LevelSet.starSet_exact`,
+`StarSet.exists_levelSet_exact`).
 
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set
       Representation for Reachability Analysis". IEEE Transactions on Automatic
       Control, 2021.
-
 -/
 
 -- Authors:       Claude Sonnet 5.5
@@ -36,8 +35,9 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LevelSet.exists_not_starSet :
-    ∃ L : LevelSet 1, ¬ ∃ s : StarSet 1, s.construct = L.construct := by -- --- PROOF ---
+theorem LevelSet.exists_not_starSet_linPred :
+    ∃ L : LevelSet 1, ¬ ∃ s : StarSet StarSet.LinPred 1, s.construct = L.construct
+    := by -- --- PROOF ---
   refine ⟨⟨1, fun x _ => x 0 ^ 2 - 1, fun _ => .eq⟩, ?_⟩
   rintro ⟨s, hs⟩
   -- the two points `1` and `-1` are on the level set, and `0` is not

@@ -109,7 +109,7 @@ Anything else that is not yet formalized is `—`, and stays in the denominator.
 | [Utilizing Dependencies to Obtain Subsets of Reachable Sets](2020/kochdumper-hscc-utilizing-dependencies.md) | Kochdumper, Schürmann, Althoff | HSCC | 2020 | 🟢 11/11 \| 4 |
 | [Adaptive parameter tuning for reachability analysis of linear systems](2020/wetzlinger-cdc-adaptive-tuning.md) | Wetzlinger, Kochdumper, Althoff | CDC, pp. 5145–5152 | 2020 | 🟢 12/12 \| 1 |
 | [Guaranteed State Estimation in CORA 2021](2021/althoff-arch-state-estimation.md) | Althoff | ARCH21, EPiC Series in Computing 80, pp. 161-175 | 2021 | 🟢 4/4 \| 17 |
-| [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟡 29/31 \| 13 |
+| [Sparse Polynomial Zonotopes: A Novel Set Representation for Reachability Analysis](2021/kochdumper-tac-sparse-polyzonotopes.md) | Kochdumper, Althoff | IEEE Transactions on Automatic Control | 2021 | 🟢 31/31 \| 13 |
 | [On the co-NP-Completeness of the Zonotope Containment Problem](2021/kulmburg-ejc-zonotope-containment.md) | Kulmburg, Althoff | European Journal of Control, 62:84-91 | 2021 | 🟡 22/24 \| 4 |
 | [Adaptive Parameter Tuning for Reachability Analysis of Nonlinear Systems](2021/wetzlinger-hscc-adaptive-tuning-nonlinear.md) | Wetzlinger, Kulmburg, Althoff | HSCC | 2021 | 🟢 5/5 \| 1 |
 | [Benchmarks for the Formal Verification of Power Systems](2022/althoff-arch-power-systems.md) | Althoff | ARCH22, EPiC Series in Computing, vol. 90, pp. 26-43 | 2022 | 🟢 3/3 \| 18 |

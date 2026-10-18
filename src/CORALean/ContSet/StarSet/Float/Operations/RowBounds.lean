@@ -34,8 +34,8 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 /-- The lower and the upper bound of neuron `j`, each rounded outward. -/
 def StarSet.rowBounds (s : StarSet 𝕋 n) (j : Fin n) : Interval 𝕋 :=
-  ⟨addDown (s.c j) (sumDown fun k => Interval.mulLo (s.G j k) (s.G j k) (s.l k) (s.u k)),
-   addUp (s.c j) (sumUp fun k => Interval.mulHi (s.G j k) (s.G j k) (s.l k) (s.u k))⟩
+  ⟨addDown (s.c j) (sumDown fun k => Interval.mulLo (s.G j k) (s.G j k) (s.pred.l k) (s.pred.u k)),
+   addUp (s.c j) (sumUp fun k => Interval.mulHi (s.G j k) (s.G j k) (s.pred.l k) (s.pred.u k))⟩
 
 end CORALean.Float
 

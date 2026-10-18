@@ -29,9 +29,10 @@ namespace CORALean.Real
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def StarSet.rowBounds {n : ℕ} (s : StarSet n) (j : Fin n) : Interval ℝ :=
-  let c_ := s.c j + ∑ k, s.G j k * ((s.l k + s.u k) / 2)
-  let r := ∑ k, |s.G j k * ((s.u k - s.l k) / 2)|
+noncomputable def StarSet.rowBounds {n : ℕ} (s : StarSet StarSet.LinPred n) (j : Fin n) :
+    Interval ℝ :=
+  let c_ := s.c j + ∑ k, s.G j k * ((s.pred.l k + s.pred.u k) / 2)
+  let r := ∑ k, |s.G j k * ((s.pred.u k - s.pred.l k) / 2)|
   ⟨c_ - r, c_ + r⟩
 
 end CORALean.Real

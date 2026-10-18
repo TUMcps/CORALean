@@ -4,6 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 
 @[expose] public section
 
@@ -45,6 +46,7 @@ theorem Ellipsoid.enclose_cora_counterexample :
     intro v
     have hG : (Ellipsoid.ofPoint v).G = 0 := (Ellipsoid.G_eq_zero_iff _).2 rfl
     ext x
+    rw [Ellipsoid.mem_construct_iff]
     constructor
     · rintro ⟨u, -, rfl⟩
       rw [hG, Matrix.zero_mulVec, add_zero]
@@ -62,7 +64,7 @@ theorem Ellipsoid.enclose_cora_counterexample :
   obtain ⟨y₁, h₁, y₂, h₂, l, -, ht⟩ := h hm
   rw [hpt] at h₁
   have h₂' : y₂ = 0 := by
-    obtain ⟨u, -, rfl⟩ := h₂
+    obtain ⟨u, -, rfl⟩ := Ellipsoid.mem_construct_iff.1 h₂
     have hG : (Ellipsoid.mtimes (0 : Mat ℝ 1 1) (Ellipsoid.ofPoint (fun _ => (1 : ℝ)))).G = 0 :=
       (Ellipsoid.G_eq_zero_iff _).2 (by simp [Ellipsoid.mtimes])
     rw [hG, Matrix.zero_mulVec, add_zero]

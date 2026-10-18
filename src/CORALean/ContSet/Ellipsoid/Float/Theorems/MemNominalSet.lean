@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 
 @[expose] public section
@@ -34,7 +35,7 @@ theorem Ellipsoid.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {E : Ellipsoid 
     x ∈ InflatedContSet.nominalSet E ↔ ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧
       x = toRealVec E.q + (InflatedContSet.nominal E).ellipsoid.G *ᵥ u := by
   rw [← E.nominal_q]
-  rfl
+  exact CORALean.Real.Ellipsoid.mem_construct_iff
 
 end CORALean.Float
 

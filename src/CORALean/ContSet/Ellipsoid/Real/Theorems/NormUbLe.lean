@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.NormUb
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
@@ -50,6 +51,8 @@ theorem aux_norm₂_mulVec_le_frobenius_ellipsoid (M : Mat ℝ m n) (y : Vec ℝ
 
 theorem Ellipsoid.norm₂_le_normUb (E : Ellipsoid n) {x : Vec ℝ n} (hx : x ∈ E.construct) :
     ‖x‖₂ ≤ E.normUb := by -- --- PROOF ---
+  -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
+  simp only [Ellipsoid.construct_eq_sqrt] at *
   obtain ⟨u, hu, rfl⟩ := hx
   refine le_trans (norm₂_add_le _ _) (add_le_add le_rfl ?_)
   -- the squared Frobenius norm of `G` is `trace (G Gᵀ) = trace Q`
