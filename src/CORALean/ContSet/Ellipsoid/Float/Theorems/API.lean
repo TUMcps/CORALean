@@ -5,6 +5,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeBoxRadius
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeOfMemNominalSet
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AndPointOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.BallContains
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.BoundDotLe
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.CartProdOuter

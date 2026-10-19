@@ -1,24 +1,18 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopePolyZonotopeContains
-public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeConPolyZonoExact
-public import CORALean.ContSet.Conversion.Real.Operations.Basic
-public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConPolyZonoExact
 
 @[expose] public section
 
 /-!
 # A halfspace description as a constrained polynomial zonotope
 
-Through the zonotope the box gives, then that zonotope's own exact reading as a
-polynomial zonotope, then `PolyZonotope.conPolyZono` — an empty constraint
-system, so that last leg adds nothing and is exact. All the loss is the box
-route's, exactly as in `HPolytope.polyZonotope_contains`.
+CORA's `conPolyZono(conZonotope(P))` is exact (`HPolytope.conPolyZono_exact`), so it holds `P`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -34,7 +28,7 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 theorem HPolytope.conPolyZono_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
     (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
     P.construct ⊆ (HPolytope.conPolyZono up lo).construct :=
-  subset_trans (HPolytope.polyZonotope_contains up lo) (PolyZonotope.conPolyZono_exact _).subset
+  (HPolytope.conPolyZono_exact up lo).symm.subset
 
 end CORALean.Real
 

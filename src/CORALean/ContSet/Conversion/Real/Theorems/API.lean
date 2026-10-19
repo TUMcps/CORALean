@@ -2,11 +2,15 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConPolyZonoContains
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConPolyZonoExact
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConstructEqSegmentAddBall
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleEllipsoidContains
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleHPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleHPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsulePolyZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleSpectraShadowContains
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleSpectraShadowExact
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleVPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoConZonotopeContains
@@ -31,7 +35,6 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonoBundleCon
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoExact
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorConstruct
-public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidContainsZonotopeInnerNorm
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidHPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidIntervalAttained
@@ -43,7 +46,10 @@ public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidVPolytopeContai
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidZonoBundleContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidZonotopeNormContains
+public import CORALean.ContSet.Conversion.Real.Theorems.GramSchmidtVecColZero
+public import CORALean.ContSet.Conversion.Real.Theorems.GramSchmidtVecOrthogonal
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConPolyZonoContains
+public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConPolyZonoExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeContainsOfPinned
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeContainsVPolytope
@@ -113,10 +119,13 @@ public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeHPolytopeContai
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeMemSimplexIff
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeZonoBundleContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConPolyZonoAllExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConPolyZonoContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAllExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleEllipsoidContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleHPolytopeAllContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleHPolytopeAllExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleHPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundlePolyZonotopeContains
@@ -132,7 +141,10 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeEllipsoidBoxCont
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeEllipsoidContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeEllipsoidNormContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeFacetsContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeFacetsExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeMemHPolytopeFacetsIff
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePolyZonotopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopePosSemidefSpectraShadowIff
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeSpectraShadowExact

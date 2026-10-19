@@ -1,27 +1,23 @@
 module
 
-public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleIntervalContains
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Conversion.Float.Operations.Capsule_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Float.Theorems.Basic
-public import CORALean.ContSet.Conversion.Float.Operations.Basic
-public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeConPolyZonoContains
-public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleIntervalContains
-public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
+public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleConstructSubsetSegmentAddBall
+public import CORALean.ContSet.Conversion.Float.Theorems.EllipsoidConPolyZonoContains
 
 @[expose] public section
 
 /-!
-# A capsule as a constrained polynomial zonotope, over a floating-point scalar
+# A capsule lies in its constrained polynomial zonotope, over a floating-point scalar
 
-Via the bounding box: `Capsule.interval`, then the box's own conversion. An outer enclosure,
-coarser than CORA's conversion, as over ℝ: the capsule is first replaced by its axis-aligned box,
-which loses the rounded ends and the slant of the segment.
+The capsule lies in its segment plus its ball (`Capsule.construct_subset_segment_add_ball`), each
+conversion encloses its part, and the sum encloses theirs.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,7 +25,7 @@ which loses the rounded ends and the slant of the segment.
 
 namespace CORALean.Float
 
-open FloatOps SoundFloatArithmetic
+open Pointwise FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
@@ -38,7 +34,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Capsule.conPolyZono_contains (C : Capsule 𝕋 n) :
     C.construct ⊆ C.conPolyZono.construct :=
-  subset_trans C.interval_contains (Interval.conPolyZono_contains _)
+  subset_trans C.construct_subset_segment_add_ball (subset_trans
+    (Set.add_subset_add (Zonotope.conPolyZono_contains _) (Ellipsoid.conPolyZono_contains _))
+    (ConPolyZono.plus_outer _ _))
 
 end CORALean.Float
 

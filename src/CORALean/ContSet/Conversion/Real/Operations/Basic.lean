@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Capsule.Real.Capsule
 public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_HPolytope
@@ -14,8 +15,10 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_VPolyt
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.SpectraShadow_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_HPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow
@@ -24,6 +27,8 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
 public import CORALean.ContSet.HPolytope.Real.HPolytope
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
+public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
+public import CORALean.ContSet.HPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.HPolytope.Real.Operations.OfBounds
 public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Interval.Real.Operations.OfBounds
@@ -86,17 +91,6 @@ variable {n : ℕ}
 /-- A capsule as a box -/
 def Capsule.interval (C : Capsule n) : Interval (Vec ℝ n) :=
   ⟨fun i => C.c i - (|C.g i| + C.r), fun i => C.c i + (|C.g i| + C.r)⟩
-
-
--- ===================================  `Capsule.hPolytope`  ==================================== --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A capsule as a halfspace description -/
-noncomputable def Capsule.hPolytope (C : Capsule n) : HPolytope (Vec ℝ n) :=
-  C.interval.hPolytope
 
 
 -- ===================================  `Capsule.vPolytope`  ==================================== --
@@ -372,17 +366,6 @@ noncomputable def HPolytope.polyZonotope (up : ∀ j, SupportBound P.construct (
   (HPolytope.zonotope up lo).polyZonotope
 
 
--- =================================  `HPolytope.conPolyZono`  ================================== --
--- Authors:       Claude Opus 5
--- Written:       06-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A halfspace description as a constrained polynomial zonotope -/
-noncomputable def HPolytope.conPolyZono (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : ConPolyZono (Vec ℝ n) :=
-  (HPolytope.polyZonotope up lo).conPolyZono
-
 end
 
 
@@ -486,17 +469,6 @@ noncomputable def Interval.conPolyZono (I : Interval (Vec ℝ n)) : ConPolyZono 
   I.polyZonotope.conPolyZono
 
 
--- ==================================  `Capsule.conPolyZono`  =================================== --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A capsule as a constrained polynomial zonotope -/
-noncomputable def Capsule.conPolyZono (C : Capsule n) : ConPolyZono (Vec ℝ n) :=
-  C.interval.conPolyZono
-
-
 -- =================================  `Interval.spectraShadow`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
@@ -506,17 +478,6 @@ noncomputable def Capsule.conPolyZono (C : Capsule n) : ConPolyZono (Vec ℝ n) 
 /-- A box as a spectrahedral shadow -/
 noncomputable def Interval.spectraShadow (I : Interval (Vec ℝ n)) : SpectraShadow (Vec ℝ n) :=
   I.zonotope.spectraShadow
-
-
--- =================================  `Capsule.spectraShadow`  ================================== --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A capsule as a spectrahedral shadow -/
-noncomputable def Capsule.spectraShadow (C : Capsule n) : SpectraShadow (Vec ℝ n) :=
-  C.interval.spectraShadow
 
 
 -- =====================================  `Interval.taylm`  ===================================== --
@@ -683,6 +644,18 @@ variable {n : ℕ}
 def Taylm.interval {m : ℕ} (T : Fin m → Taylm n) : Interval (Vec ℝ m) :=
   ⟨fun i => (T i).bounds.1, fun i => (T i).bounds.2⟩
 
+
+-- =================================  `VPolytope.conPolyZono`  ================================== --
+-- Authors:       Claude Opus 5, Claude Opus 5.5
+-- Written:       06-September-2026
+-- Last update:   19-October-2026
+-- Reviewed:      ---
+
+/-- CORA's `conPolyZono(conZonotope(P))`, the hull's constrained zonotope as its own. -/
+noncomputable def VPolytope.conPolyZono (P : VPolytope (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
+  P.conZonotope.conPolyZono
+
+
 end
 
 
@@ -769,17 +742,6 @@ section
 variable {n : ℕ}
 
 
--- =================================  `VPolytope.conPolyZono`  ================================== --
--- Authors:       Claude Opus 5
--- Written:       06-September-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A hull as a constrained polynomial zonotope -/
-noncomputable def VPolytope.conPolyZono (P : VPolytope (Vec ℝ n)) : ConPolyZono (Vec ℝ n) :=
-  P.polyZonotope.conPolyZono
-
-
 -- ================================  `ZonoBundle.spectraShadow`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
@@ -837,6 +799,17 @@ noncomputable def ZonoBundle.ellipsoid (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB
 /-- A bundle's box, at one component -/
 def ZonoBundle.interval (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) : Interval (Vec ℝ n) :=
   (zB.zonotope i).interval
+
+
+-- ==================================  `ZonoBundle.minVolIdx`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's choice in `zonotope(zB)`: the first member of least box volume `∏ᵢ ∑ⱼ |Gᵢⱼ|`. -/
+noncomputable def ZonoBundle.minVolIdx (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) : Fin zB.k :=
+  ((List.finRange zB.k).argmin fun i => ∏ r, ∑ j, |(zB.Z i).G j r|).getD ⟨0, hk⟩
 
 end
 
@@ -1017,6 +990,18 @@ variable {n q : ℕ}
 def ZonoBundle.hPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
     (Aq : Fin q → (Vec ℝ n →ₗ[ℝ] ℝ)) : HPolytope (Vec ℝ n) :=
   (zB.zonotope i).hPolytope Aq
+
+
+-- ================================  `ZonoBundle.hPolytopeAll`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `polytope(zB)`: each member's `polytope(Z{i})`, intersected in order. -/
+noncomputable def ZonoBundle.hPolytopeAll (zB : ZonoBundle (Vec ℝ (n + 1))) :
+    HPolytope (Vec ℝ (n + 1)) :=
+  (List.ofFn fun i => (zB.Z i).hPolytopeFacets).foldl HPolytope.intersection (.fullspace _)
 
 end
 

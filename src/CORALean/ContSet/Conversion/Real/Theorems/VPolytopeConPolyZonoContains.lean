@@ -1,24 +1,22 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeConPolyZonoExact
-public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
-public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConPolyZonoExact
+public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeConZonotopeExact
 
 @[expose] public section
 
 /-!
 # A hull as a constrained polynomial zonotope
 
-Through the hull's own box and that box's zonotope, then the zonotope's exact
-reading as a polynomial zonotope, then `PolyZonotope.conPolyZono` — an empty
-constraint system, so that last leg adds nothing and is exact. All the loss is
-the box route's, exactly as in `VPolytope.polyZonotope_contains`.
+CORA's `conPolyZono(conZonotope(P))`: the hull's constrained zonotope is exact
+(`VPolytope.conZonotope_exact`), and so is its reading as a constrained polynomial zonotope
+(`ConZonotope.conPolyZono_exact`), so the conversion is the hull itself.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -33,7 +31,7 @@ variable {n : ℕ}
 
 theorem VPolytope.conPolyZono_contains (P : VPolytope (Vec ℝ n)) :
     P.construct ⊆ P.conPolyZono.construct :=
-  subset_trans P.polyZonotope_contains (PolyZonotope.conPolyZono_exact _).subset
+  ((VPolytope.conZonotope_exact P).trans (ConZonotope.conPolyZono_exact _)).subset
 
 end CORALean.Real
 

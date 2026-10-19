@@ -881,7 +881,6 @@ src/CORALean/ContSet/Conversion/Float/Theorems/CapsuleEllipsoidContains.lean
 src/CORALean/ContSet/Conversion/Float/Theorems/CapsuleHPolytopeContains.lean
 src/CORALean/ContSet/Conversion/Float/Theorems/CapsuleIntervalContains.lean
 src/CORALean/ContSet/Conversion/Float/Theorems/CapsulePolyZonotopeContains.lean
-src/CORALean/ContSet/Conversion/Float/Theorems/CapsuleSpectraShadowContains.lean
 src/CORALean/ContSet/Conversion/Float/Theorems/CapsuleVPolytopeContains.lean
 src/CORALean/ContSet/Conversion/Float/Theorems/CapsuleZonotopeContains.lean
 src/CORALean/ContSet/Conversion/Float/Theorems/ConPolyZonoConZonotopeContains.lean
@@ -1008,7 +1007,6 @@ src/CORALean/ContSet/Conversion/Real/Theorems/ConZonotopeVPolytopeExact.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/ConZonotopeZonoBundleContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/ConZonotopeZonotopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidConPolyZonoExact.lean
-src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidConZonotopeContains.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidExistsNotHPolytope.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidExistsNotVPolytope.lean
 src/CORALean/ContSet/Conversion/Real/Theorems/EllipsoidHPolytopeContains.lean

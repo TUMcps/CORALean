@@ -4,11 +4,16 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 
 @[expose] public section
 
 /-!
 # A polynomial zonotope as a box, over a floating-point scalar
+
+`PolyZonotope.intervalEven` is CORA's default, the box of `zonotope(pZ)` (`zonotopeEven`);
+`PolyZonotope.interval` frees every dependent generator first.
 -/
 
 -- Authors:       Claude Opus 5
@@ -38,6 +43,11 @@ def PolyZonotope.interval (pZ : PolyZonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 
       (PolyZonotope.errorBound pZ.I_error i)
     sup := fun i => addUp (addUp (addUp (pZ.c i) (rG i)) (rGI i))
       (PolyZonotope.errorBound pZ.I_error i) }
+
+/-- CORA's default `interval(pZ)`, `'interval'`: `interval(zonotope(pZ))` at the even-column
+zonotope. -/
+def PolyZonotope.intervalEven (pZ : PolyZonotope (Vec 𝕋 n)) : Interval (Vec 𝕋 n) :=
+  pZ.zonotopeEven.interval
 
 end CORALean.Float
 

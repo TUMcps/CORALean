@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Conversion.Real.Definitions.GramSchmidt
 public import CORALean.ContSet.Conversion.Real.Definitions.IntervalOuter
 public import CORALean.ContSet.Conversion.Real.Definitions.OfInterval
 

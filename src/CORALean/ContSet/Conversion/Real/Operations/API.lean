@@ -1,6 +1,9 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_HPolytope
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
@@ -12,6 +15,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_ConPolyZo
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_StarSet
@@ -33,10 +37,12 @@ public import CORALean.ContSet.Conversion.Real.Operations.StarSet_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.SupportFunction_to_StarSet
 public import CORALean.ContSet.Conversion.Real.Operations.Taylm_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_HPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_SpectraShadow

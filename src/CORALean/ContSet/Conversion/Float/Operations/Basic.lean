@@ -1,10 +1,13 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Capsule
+public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
 public import CORALean.ContSet.Capsule.Real.Instances
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Capsule
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Ellipsoid
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
@@ -15,6 +18,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Inter
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.SpectraShadow_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Taylm_to_PolyZonotope
+public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Ellipsoid
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
@@ -113,17 +117,6 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The scaling `σ` is the one `Interval.ellipsoid` asks for: a float at least `√n`. -/
 def Capsule.ellipsoid (C : Capsule 𝕋 n) (σ : 𝕋) : Ellipsoid 𝕋 n :=
   C.interval.ellipsoid σ
-
-
--- ===================================  `Capsule.hPolytope`  ==================================== --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A capsule as a halfspace polytope, over a floating-point scalar -/
-def Capsule.hPolytope (C : Capsule 𝕋 n) : HPolytope 𝕋 (Vec 𝕋 n) :=
-  C.interval.hPolytope
 
 
 -- ==================================  `Capsule.polyZonotope`  ================================== --
@@ -278,16 +271,6 @@ def Ellipsoid.polyZonotope (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : PolyZonotop
   (E.interval s).polyZonotope
 
 
--- ===================================  `Ellipsoid.zonotope`  =================================== --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- An ellipsoid as a zonotope, over a floating-point scalar -/
-def Ellipsoid.zonotope (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : Zonotope (Vec 𝕋 n) :=
-  (E.interval s).zonotope
-
 end
 
 
@@ -365,17 +348,6 @@ def HPolytope.polyZonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.p
   (HPolytope.zonotope up lo).polyZonotope
 
 
--- =================================  `HPolytope.conPolyZono`  ================================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A halfspace description as a constrained polynomial zonotope, over a floating-point scalar -/
-def HPolytope.conPolyZono (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
-  (HPolytope.polyZonotope up lo).conPolyZono
-
 end
 
 
@@ -406,17 +378,6 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ==================================  `Capsule.conPolyZono`  =================================== --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A capsule as a constrained polynomial zonotope, over a floating-point scalar -/
-def Capsule.conPolyZono (C : Capsule 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
-  C.interval.conPolyZono
-
-
 -- =================================  `Interval.spectraShadow`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
@@ -427,16 +388,6 @@ def Capsule.conPolyZono (C : Capsule 𝕋 n) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
 def Interval.spectraShadow (I : Interval (Vec 𝕋 n)) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
   I.zonotope.spectraShadow
 
-
--- =================================  `Capsule.spectraShadow`  ================================== --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A capsule as a spectrahedral shadow, over a floating-point scalar -/
-def Capsule.spectraShadow (C : Capsule 𝕋 n) : SpectraShadow 𝕋 (Vec 𝕋 n) :=
-  C.interval.spectraShadow
 
 end
 
@@ -696,6 +647,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def Taylm.interval {m : ℕ} (T : Fin m → Taylm 𝕋 n) : Interval (Vec 𝕋 m) :=
   ⟨fun i => (T i).bounds.1, fun i => (T i).bounds.2⟩
 
+
+-- =================================  `VPolytope.conPolyZono`  ================================== --
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   19-October-2026
+-- Reviewed:      ---
+
+/-- CORA's `conPolyZono(conZonotope(P))`, over a floating-point scalar. -/
+def VPolytope.conPolyZono (P : VPolytope (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
+  P.conZonotope.conPolyZono
+
 end
 
 
@@ -770,22 +732,24 @@ def VPolytope.polyZonotope (P : VPolytope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋
   P.zonotope.polyZonotope
 
 
--- =================================  `VPolytope.conPolyZono`  ================================== --
--- Authors:       Claude Sonnet 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A hull as a constrained polynomial zonotope, over a floating-point scalar -/
-def VPolytope.conPolyZono (P : VPolytope (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
-  P.polyZonotope.conPolyZono
-
 end
 
 
 section
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ================================  `ZonoBundle.hPolytopeAll`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- CORA's `polytope(zB)`: each member's facet polytope, intersected in order. -/
+def ZonoBundle.hPolytopeAll (p : ℕ) (zB : ZonoBundle (Vec 𝕋 (n + 1))) :
+    HPolytope 𝕋 (Vec 𝕋 (n + 1)) :=
+  (List.ofFn fun i => (zB.Z i).hPolytopeFacets p).foldl HPolytope.intersection (.fullspace 𝕋 _)
 
 
 -- ================================  `ZonoBundle.spectraShadow`  ================================ --
