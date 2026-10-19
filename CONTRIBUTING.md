@@ -705,8 +705,9 @@ that nothing else in the file is stated with (#134); `NeuralNetwork.Sound` is in
 `Global/`, `Examples/` and `Interfaces.lean` (whose operation classes are #135's) are out of scope,
 and `scripts/main-type-allowlist.txt` names the rest, a reason to each, and only shrinks. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
 `<C>.IsTrajectory`, with what it is stated with (the closed loop's plant input `[a; e]`), and
-`check-conventions.sh` asks for it; `LinProbSys`, which denotes the law of its solution, and
-`OutputEq`, which is no system, are the named exceptions. A continuous-time run, a hybrid
+`check-conventions.sh` asks for it; `OutputEq`, which is no system, is the named exception
+(`LinProbSys.IsTrajectory` gives a run by its law at each time, since the process itself is not
+defined). A continuous-time run, a hybrid
 automaton's flow among them, is a Carathéodory run (#105): the integral equation
 `x t = x 0 + ∫₀ᵗ f`, its integrand measurable and integrable (or, for a linear class, its input
 measurable), not a derivative at every point, which a zero-order-hold input does not have. A
