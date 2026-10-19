@@ -9,6 +9,9 @@ public import CORALean.Specification.STLInterval.Operations.StlInterval
 
 `@stlInterval/minus.m`, the numeric branch: both bounds move down by the subtrahend, the flags
 stay, a negative lower bound is cut to the closed `0`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
+over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

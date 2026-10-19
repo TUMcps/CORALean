@@ -10,6 +10,9 @@ public import CORALean.Specification.Rtl.Rtl
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+Real-only, a specification: it builds RTL formulas, whose time constants are syntax rather than
+computed values.
 -/
 
 

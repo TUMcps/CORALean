@@ -1,0 +1,84 @@
+# Specification operations that are real-only because CORA computes them in doubles and their
+# refinement generic over `𝕋` is not yet written (CONTRIBUTING, "The two layers").
+#
+# `scripts/check-float-refinement.py` requires an operation file under `Specification/**/Operations/`
+# whose code mentions `ℝ` and not `𝕋` to carry `Real-only, a specification:` in its module docstring,
+# or to be listed here, with `Refinement pending:` in the docstring. One path per line, relative to
+# the repository root, then a short reason. The list only shrinks: write the refinement, and the file
+# leaves it; an entry whose file is generic over `𝕋` by now, or gone, is reported as stale.
+#
+src/CORALean/Specification/FiniteKleeneSignalBuilder/Operations/KleeneSignal.lean  signal time stamps in doubles
+src/CORALean/Specification/FiniteKleeneSignalBuilder/Operations/Mk.lean  signal time stamps in doubles
+src/CORALean/Specification/FiniteSignal/Operations/Indicator.lean  signal time stamps in doubles
+src/CORALean/Specification/FiniteSignal/Operations/Max.lean  signal time stamps in doubles
+src/CORALean/Specification/FiniteSignal/Operations/Set.lean  signal time stamps in doubles
+src/CORALean/Specification/FiniteSignal/Operations/SetLower.lean  signal time stamps in doubles
+src/CORALean/Specification/FiniteSignal/Operations/Until.lean  signal time stamps in doubles
+src/CORALean/Specification/FiniteSignal/Operations/UntilPiece.lean  signal time stamps in doubles
+src/CORALean/Specification/FiniteSignal/Operations/UntilStep.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/And.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/Basic.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/Combine.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/ConclusiveInterval.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/FindIntervals.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/Merge.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/Or.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/ToKleeneSignal.lean  signal time stamps in doubles
+src/CORALean/Specification/FourValuedSignal/Operations/Until.lean  signal time stamps in doubles
+src/CORALean/Specification/KleeneSignal/Operations/And.lean  signal time stamps in doubles
+src/CORALean/Specification/KleeneSignal/Operations/Basic.lean  signal time stamps in doubles
+src/CORALean/Specification/KleeneSignal/Operations/FindIntervals.lean  signal time stamps in doubles
+src/CORALean/Specification/KleeneSignal/Operations/Or.lean  signal time stamps in doubles
+src/CORALean/Specification/KleeneSignal/Operations/ToBoolSignal.lean  signal time stamps in doubles
+src/CORALean/Specification/KleeneSignal/Operations/Until.lean  signal time stamps in doubles
+src/CORALean/Specification/OnlineAnalyzerNode/Operations/Basic.lean  propagation times in doubles
+src/CORALean/Specification/OnlineAnalyzerNode/Operations/Combine.lean  propagation times in doubles
+src/CORALean/Specification/OnlineAnalyzerNode/Operations/Conflicts.lean  propagation times in doubles
+src/CORALean/Specification/OnlineAnalyzerNode/Operations/GetAllProp.lean  propagation times in doubles
+src/CORALean/Specification/OnlineAnalyzerNode/Operations/PropBound.lean  propagation times in doubles
+src/CORALean/Specification/OnlineAnalyzerNode/Operations/Propagate.lean  propagation times in doubles
+src/CORALean/Specification/OnlineAnalyzerNode/Operations/SetPropagated.lean  propagation times in doubles
+src/CORALean/Specification/OnlineReachSetAnalyzer/Operations/ForcePropagation.lean  propagation times in doubles
+src/CORALean/Specification/OnlineReachSetAnalyzer/Operations/Propagate.lean  propagation times in doubles
+src/CORALean/Specification/OnlineReachSetAnalyzer/Operations/PropagateRec.lean  propagation times in doubles
+src/CORALean/Specification/PointSegmentSignal/Operations/FindIntervals.lean  signal time stamps in doubles
+src/CORALean/Specification/PointSegmentSignal/Operations/Indicator.lean  signal time stamps in doubles
+src/CORALean/Specification/PointSegmentSignal/Operations/IntervalUntil.lean  signal time stamps in doubles
+src/CORALean/Specification/PointSegmentSignal/Operations/Set.lean  signal time stamps in doubles
+src/CORALean/Specification/PointSegmentSignal/Operations/Until.lean  signal time stamps in doubles
+src/CORALean/Specification/ReachSetAnalyzer/Operations/MaskOk.lean  signal time stamps in doubles
+src/CORALean/Specification/ReachSetAnalyzer/Operations/Mk.lean  signal time stamps in doubles
+src/CORALean/Specification/ReachSetAnalyzer/Operations/Signals.lean  signal time stamps in doubles
+src/CORALean/Specification/STL/Operations/DepBloating.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepBox.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepCurvatureF.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepCurvatureG.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepReach.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepReachAt.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepReachConstsOf.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepReachInit.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepReachInterval.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepReachPoint.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/DepReachStep.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STL/Operations/UnsafeFactors.lean  zonotope reach/curvature computation in doubles
+src/CORALean/Specification/STLInterval/Operations/Basic.lean  interval bounds in doubles
+src/CORALean/Specification/STLInterval/Operations/Interval.lean  interval bounds in doubles
+src/CORALean/Specification/STLInterval/Operations/MinusInterval.lean  interval bounds in doubles
+src/CORALean/Specification/STLInterval/Operations/MinusNum.lean  interval bounds in doubles
+src/CORALean/Specification/STLInterval/Operations/PlusInterval.lean  interval bounds in doubles
+src/CORALean/Specification/STLInterval/Operations/PlusNum.lean  interval bounds in doubles
+src/CORALean/Specification/STLInterval/Operations/StlIntervalBounds.lean  interval bounds in doubles
+src/CORALean/Specification/SyntaxTree/Operations/Backpropagation.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/Basic.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/FunHanAtan.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/FunHanExp.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/FunHanTanh.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/Interval.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/Nthroot.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/NthrootZ.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/Periodic.lean  interval contraction in doubles
+src/CORALean/Specification/SyntaxTree/Operations/SignedRoots.lean  interval contraction in doubles
+src/CORALean/Specification/TentativeKleeneSignal/Operations/Basic.lean  signal time stamps in doubles
+src/CORALean/Specification/TentativeKleeneSignal/Operations/GetInterval.lean  signal time stamps in doubles
+src/CORALean/Specification/TentativeKleeneSignal/Operations/Observe.lean  signal time stamps in doubles
+src/CORALean/Specification/TrajectoryAnalyzer/Operations/MarkKey.lean  signal time stamps in doubles

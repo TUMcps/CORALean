@@ -13,6 +13,9 @@ public import Mathlib.Data.Fin.VecNotation
 `sig = kleeneSignal.or_(varargin)`: the Boolean combination `@any` of the minimal refinements
 (unknown as false) is the Boolean part, and the value is unknown where it differs from that of the
 maximal refinements (unknown as true).
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

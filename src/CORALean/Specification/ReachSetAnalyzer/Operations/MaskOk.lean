@@ -12,6 +12,9 @@ public import Mathlib.Algebra.Ring.BooleanRing
 `~isKey(obj.masks,k) || max(obj.masks(k),int)` of `analyzeTimeInterval`: a proposition without a
 mask matters always, one with a mask only where the mask is true somewhere in `int =
 interval(lo,hi)`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -17,6 +17,9 @@ public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 `int = conclusiveInterval(obj,ignore)` of `fourValuedSignal.m`: the interval from `0` up to the
 first time the signal is inconclusive outside `ignore`; empty if it is inconclusive at `0`. It is
 closed at the end if the signal is conclusive there, and open, or unbounded, otherwise.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -18,6 +18,9 @@ term maps `U₀` by the sum of the matrices, the second is the Minkowski sum of 
 per `j`, and the third the interval matrix `E = [-E, E]` scaled by `2Δt` applied to `U₀`
 (`Zonotope.mtimesIntervalMat`).
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
+computation over `𝕋` with directed rounding) is not yet written.
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

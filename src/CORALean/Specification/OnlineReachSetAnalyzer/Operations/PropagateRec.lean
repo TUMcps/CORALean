@@ -16,6 +16,9 @@ the node and its children (handle objects in CORA; written back here, a child li
 by the last copy), and `obj.propagated(idx)` is set. The syntax graph has no cycles, so the
 recursion depth is at most the number of nodes; `fuel` of that size loses nothing and running out
 of it is `none`, as is every throw. `eps` is MATLAB's `eps`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

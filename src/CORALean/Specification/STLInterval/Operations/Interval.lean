@@ -11,6 +11,9 @@ public import CORALean.ContSet.Interval.Real.Interval
 `@stlInterval/interval.m`: `interval(obj.lower, obj.upper)`, the box with the same bounds and
 both ends closed. The real-layer `Interval` has no infinite bound: `toReal` sends `±∞` to `0`, so
 the result is meant for a bounded interval; `stlInterval()` gives the empty box `sup < inf`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
+over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

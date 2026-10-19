@@ -19,6 +19,9 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 `IsRefinedBy` is `λ ≺ Λ` of [1, Sec. 4.2 (refinements)]: the Boolean signal takes the value of the
 three-valued one wherever that is not unknown.
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

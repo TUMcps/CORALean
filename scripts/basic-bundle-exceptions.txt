@@ -48,8 +48,6 @@ src/CORALean/NN/Layers/Operations/Tanh.lean  cycle once moved in: `Basic` → `N
 src/CORALean/NN/Layers/Theorems/Real/SigmoidPolyFamilySound.lean  cycle once moved in: `Basic` → `NN/Layers/Definitions/SigmoidPolyFamily` → `NN/Layers/Theorems/Real/AbsSigmoidDerivLeOne` → `Basic`
 src/CORALean/NN/Layers/Theorems/Real/TanhPolyRelaxationSound.lean  cycle once moved in: `Basic` → `NN/Layers/Theorems/Real/SigmoidPolyRelaxationSound` → `Basic`
 src/CORALean/NN/Layers/Theorems/ReluSound.lean  cycle once moved in: `Basic` → `NN/Layers/Theorems/ReluRelaxationSound` → `Basic`
-src/CORALean/Specification/SyntaxTree/Operations/Interval.lean  cycle once moved in: `Basic` → `Specification/SyntaxTree/Operations/FunHanExp` → `Basic`
-src/CORALean/Specification/SyntaxTree/Operations/Nthroot.lean  cycle once moved in: `Basic` → `Specification/SyntaxTree/Operations/FunHanPower` → `Basic`
 src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_Interval.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/PolyZonotope_to_Interval` → `Basic`
 src/CORALean/ContSet/Conversion/Real/Operations/Interval_to_Zonotope.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/Ellipsoid_to_Zonotope` → `Basic`
 src/CORALean/ContSet/Conversion/Real/Operations/ConZonotope_to_VPolytope.lean  cycle once moved in: `Basic` → `ContSet/Conversion/Real/Operations/HPolytope_to_VPolytope` → `Basic`

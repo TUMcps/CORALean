@@ -23,6 +23,9 @@ zero; and, if the until interval contains `0`, at the times of `rhsInt`. `contai
 
 With one interval on each side this is the unitary until of [1, Eq. 1].
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

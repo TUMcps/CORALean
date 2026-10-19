@@ -14,6 +14,9 @@ public import CORALean.Specification.PointSegmentSignal.Operations.FindIntervals
 is `match` (by default `True`). The unknown intervals are those of `isUnknown`; the true ones are
 found after mapping unknown to false, and the false ones, with the condition `~x`, after mapping
 unknown to true.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

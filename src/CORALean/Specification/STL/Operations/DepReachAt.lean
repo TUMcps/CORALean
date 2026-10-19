@@ -11,6 +11,9 @@ public import CORALean.Specification.STL.Operations.DepReachStep
 [1, Alg. 1]: lines 2-3 give the state at `t₀`, and each pass of the loop, lines 5-7, takes the
 state at `t_i` to that at `t_{i+1}`; this is the state after `i` passes.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
+computation over `𝕋` with directed rounding) is not yet written.
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

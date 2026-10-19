@@ -11,6 +11,9 @@ public import CORALean.Specification.STLInterval.Operations.Basic
 `set(obj,interval,value)` of `pointSegmentSignal.m` for a time type `ℝ` and an `stlInterval`: the
 interval's bounds and closedness flags are read off (`lowerBound`, `upperBound`) and `setBounds`
 does the work.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

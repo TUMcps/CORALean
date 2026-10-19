@@ -10,6 +10,9 @@ public import CORALean.Specification.OnlineReachSetAnalyzer.Operations.Propagate
 `propagate(obj,makeValid)` (a private method): reset `obj.propagated` and propagate from the root,
 node `1`, with the interval `makeValid` for which observations are final. `eps` is MATLAB's
 `eps`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

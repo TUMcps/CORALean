@@ -11,6 +11,9 @@ public import CORALean.ContSet.Interval.Real.Interval
 `@stlInterval/minus.m`, the `stlInterval - interval` branch: `lower - sup` to `upper - inf` of the
 (one-dimensional) subtrahend, the flags stay, a negative lower bound is cut to the closed `0`. An
 empty subtrahend, `sup < inf`, gives `stlInterval()`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
+over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -14,6 +14,9 @@ property can only be true where only `possiblyTrueSignal` holds, only false wher
 `possiblyFalseSignal` holds, and is unknown where both do, and, "for convenience", where neither
 does (with masks a property can be neither). `finiteSignal.combine` throws if the constructor
 rejects the result; here `none`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

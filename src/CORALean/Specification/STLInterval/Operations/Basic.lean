@@ -11,6 +11,9 @@ public import CORALean.Specification.STLInterval.STLInterval
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (bounds
+over `𝕋`, rounded outward) is not yet written.
 -/
 
 

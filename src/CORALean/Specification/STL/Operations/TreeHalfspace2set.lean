@@ -13,6 +13,9 @@ comparison `A(ind) * x(ind) + ... + A(k) * x(k) op b` over the nonzero entries o
 one on its own (`x(ind)` if its coefficient is `1`, `A(ind) * x(ind)` otherwise) and the others
 added with the same rule. CORA's `op` is `<=`; the equality rows of `polytope2stl` need `>=`
 too. A row with no nonzero entry makes CORA fail (`find` is empty); it is read here as `0 op b`.
+
+Real-only, a specification: it builds a comparison from the coefficients of a halfspace, which the
+formula stores as given, so nothing is rounded.
 -/
 
 -- Authors:       Claude Sonnet 5.5

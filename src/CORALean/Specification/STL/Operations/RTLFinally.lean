@@ -9,6 +9,9 @@ public import CORALean.Specification.STL.Definitions.RTL
 
 `F[a,b] ψ := true U[a,b] ψ` of [1, Def. 2], with `true` as `A ⊤`.
 
+Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
+part of the syntax and are copied or added exactly, never rounded.
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

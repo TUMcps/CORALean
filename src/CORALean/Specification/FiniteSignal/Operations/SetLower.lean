@@ -12,6 +12,9 @@ The first part of `set.m` after the indices are found: the cell of the lower bou
 boundary at `lb`, unless its value is already `value` or `lb = 0`; if there already is one at
 `lb`, nothing is added, and if the cell before has the value, that boundary is dropped (`startIdx`
 moves back). The result is the new `startIdx`, and the `newTim` and `newVal` so far.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

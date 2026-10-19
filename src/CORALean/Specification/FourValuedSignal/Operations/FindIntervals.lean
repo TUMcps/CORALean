@@ -14,6 +14,9 @@ public import CORALean.Specification.PointSegmentSignal.Operations.FindIntervals
 signal is `match` (by default `True`). The inconclusive intervals are those of `isInconclusive`; the
 others are found on the Kleene refinement that maps inconclusive to `False` for `True`, and to
 `True` for `False` and `Unknown`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -17,6 +17,9 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 `IsRefinedBy` is `Λ ≺ Λ̃` of [1, Sec. 4.3 (refinements)]: the Kleene signal takes the value of the
 four-valued one wherever that is not inconclusive.
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

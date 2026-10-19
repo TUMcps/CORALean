@@ -11,6 +11,9 @@ Every bound of a temporal operator multiplied by `c`: `φ.scale c`. A `c`-divisi
 [1, Lemma 4] is the scaling by `c` of one with natural bounds, which is where Table 1's `c = 1`
 comes from: [1, Table 1] is for `c = 1` "for readability".
 
+Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
+part of the syntax and are copied or added exactly, never rounded.
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

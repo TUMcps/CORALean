@@ -16,6 +16,9 @@ public import CORALean.Specification.STL.Operations.DepBox
 `C₀ ← interval(F X₀ ⊕ G ũ)`, with `F X₀` and `G ũ` the interval matrices applied by
 `Zonotope.mtimesIntervalMat`. `P(t₀) = P_c(t₀) ⊕ D₀` is the origin as well.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
+computation over `𝕋` with directed rounding) is not yet written.
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

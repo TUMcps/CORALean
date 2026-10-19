@@ -18,6 +18,9 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 `T` is `MatExp.expIntegral A Δt = ∫₀^{Δt} e^{Aσ} dσ`, which is `A⁻¹(e^{AΔt} - I)` for an invertible
 `A` and the power series [1] integrates `A⁻¹` into otherwise.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
+computation over `𝕋` with directed rounding) is not yet written.
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

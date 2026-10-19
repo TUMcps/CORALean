@@ -11,6 +11,9 @@ public import CORALean.Specification.STL.STL
 [1, Sec. 4.1]: `s.toFormula c` is the formula with time step `c`: `X_c` is `Xₐ` at `a = c`, and
 `F(0,c)`, `G(0,c)` the window operators.
 
+Real-only, a specification: it rewrites or builds formulas, whose time bounds and constants are
+part of the syntax and are copied or added exactly, never rounded.
+
 ## References
 
 * [1] H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and

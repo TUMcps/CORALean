@@ -18,6 +18,9 @@ closedness flags are not read). CORA throws for an empty or singleton interval, 
 interval lies at or beyond the end of the signal the `find` that gives `startIdx` is empty and the
 comparison on `val(startIdx)` errors; both are `none`, and so is the constructor's failure. For an
 interval before `0` (`hi < 0`) CORA either throws or returns a signal with no change; here `none`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

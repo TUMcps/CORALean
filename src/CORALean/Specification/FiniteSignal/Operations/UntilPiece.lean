@@ -14,6 +14,9 @@ interval `int = [p,q]`. `&` of intervals (`and_`) takes the intersection of the 
 `lb - ub` is at most `eps` (swapping the bounds if it is negative) and is empty otherwise, `-`
 subtracts the bounds crosswise. The result is `none` if `bint` is empty, else its bounds; the
 upper bound `q` may be infinite.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

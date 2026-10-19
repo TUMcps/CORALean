@@ -18,6 +18,9 @@ in factor space. `[C G(·,H) 0] α̃` uses the first `|H|` entries of `α̃ ∈ 
 `H`, in order, as `[1, Prop. 1]`'s layout of `α̃` has it, hence `|H| ≤ p`. The reading of `K` as
 a tuple is a `Finset`: only its members count.
 
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (a zonotope
+computation over `𝕋` with directed rounding) is not yet written.
+
 ## References
 
 * [1] N. Kochdumper and S. Bak. "Fully Automated Verification of Linear Time-Invariant Systems

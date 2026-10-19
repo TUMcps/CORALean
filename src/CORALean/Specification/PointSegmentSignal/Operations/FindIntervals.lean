@@ -12,6 +12,9 @@ public import CORALean.Specification.STLInterval.Operations.StlIntervalBounds
 `intervals = findIntervals(obj,cond)` of `pointSegmentSignal`: the maximal intervals of time at
 which the signal has a value satisfying `cond` (by default, `true`), as the `stlInterval`s of the
 bounds `findIntervalsBounds` computes.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+stamps over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5

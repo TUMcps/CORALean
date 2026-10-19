@@ -15,6 +15,9 @@ public import CORALean.Specification.STL.Operations.TreeNnfWith
 
 One section per declaration, at most five code lines each; alphabetical, after the
 sections each one uses (CONTRIBUTING, "Small declarations").
+
+Real-only, a specification: it builds and rewrites formulas, whose time bounds are syntax, and
+`maximumTime` and `minimumTime` state the exact horizon of a formula.
 -/
 
 

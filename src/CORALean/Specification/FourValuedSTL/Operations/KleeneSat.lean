@@ -15,6 +15,9 @@ public import CORALean.Specification.KleeneSignal.Operations.Basic
 `and_`, `until`). The signals `t ↦ â(R(t))` of the atoms are given (`S`); the operators are defined
 for signals of finite variability, which `FourValuedSTL.IsAtomSignal` asks of them.
 
+Real-only, a specification: it denotes the satisfaction signal of a formula over a reachable set,
+a semantic object no machine runs.
+
 ## References
 
 * [1] F. Lercher and M. Althoff. "Using Four-Valued Signal Temporal Logic for Incremental

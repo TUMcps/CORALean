@@ -11,6 +11,9 @@ public import CORALean.Specification.ReachSetAnalyzer.ReachSetAnalyzer
 `obj = reachSetAnalyzer(aps,dur,masks)`: every proposition in `aps` gets a
 `finiteKleeneSignalBuilder(dur)`, and `masks` defaults to the empty map. CORA throws in the
 builder's constructor for a negative `dur`; here `none`.
+
+Refinement pending: CORA computes this in doubles, and its refinement generic over `𝕋` (time
+intervals over `𝕋`, rounded outward) is not yet written.
 -/
 
 -- Authors:       Claude Sonnet 5.5
