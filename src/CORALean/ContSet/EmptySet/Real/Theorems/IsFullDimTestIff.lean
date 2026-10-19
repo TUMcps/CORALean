@@ -10,6 +10,15 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 
 The `Bool` `EmptySet.isFullDimTest` is `true` exactly when the interior of the set is nonempty:
 exact.
+
+## Inputs
+* `F` – empty set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the test answers true iff the interior is nonempty
 -/
 
 -- Authors:       Claude Opus 5.5

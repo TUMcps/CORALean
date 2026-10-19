@@ -15,6 +15,13 @@ of as `t → ∞`.
 
 Source: [1].
 
+## Inputs
+* `F` – full space
+* `t` – truncation radius
+
+## Output
+* the corners of the box `[-t, t]^n` as a vertex polytope
+
 ## References
 
 * [1] `contSet/@fullspace/vertices_.m`, CORA (Sep. 2025).

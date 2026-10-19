@@ -17,6 +17,12 @@ column that denotes nothing rather than soundness. The exponent matrix is scanne
 `PolyZonotope.compactGens`' is, and every entry read through the tables; `compact_eq_spec` says
 this is `compactSpec` (issue #61). The widening holds on the unit box, where every monomial is in
 `[-1,1]` (`mem_compact_of_mem`).
+
+## Inputs
+* `P` – polynomial level set
+
+## Output
+* the level set with equal exponent columns merged
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

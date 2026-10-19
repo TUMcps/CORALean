@@ -17,6 +17,15 @@ tend to them.
 
 Source: [1].
 
+## Inputs
+* `F` – full space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the full space is the union of its truncated vertex hulls
+
 ## References
 
 * [1] `contSet/@fullspace/vertices_.m`, CORA (Sep. 2025).

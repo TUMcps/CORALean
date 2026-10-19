@@ -13,6 +13,13 @@ The neuron `j` is `c_j + Σ_k G_jk α_k` with each factor in `[l_k, u_k]`. Each 
 the corner hull of `G_jk` against `[l_k, u_k]`, the lower bounds summed rounding down and the
 upper ones rounding up. These bounds are certified by the rounding alone, not by CORA's center and
 radius formula (`Real.StarSet.rowBounds`), whose center is not the one CORA computes.
+
+## Inputs
+* `s` – float star set
+* `j` – neuron index
+
+## Output
+* certified interval bounds of neuron `j`
 -/
 
 -- Authors:       Claude Opus 5.5

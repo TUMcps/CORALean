@@ -10,6 +10,14 @@ public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 
 The rows read at the variables `f`, as over ℝ, each with its slack: only the exponent matrix and
 the box are reindexed, so nothing rounds (`mem_reindexVars_of_mem`).
+
+## Inputs
+* `P` – polynomial level set
+* `n'` – new number of variables
+* `f` – variable map
+
+## Output
+* the level set read at the variables `f`
 -/
 
 -- Authors:       Claude Opus 5.5

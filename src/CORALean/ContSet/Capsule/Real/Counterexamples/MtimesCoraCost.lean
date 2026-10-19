@@ -12,6 +12,13 @@ Asserted, not proved: `Operations/MtimesCora.lean` takes the eigenvalue `lam` as
 an argument, so computing it is the caller's cost and not this operation's. What
 remains is two `Cost.matVec m n`, each writing its result, and one product for the radius and its
 write.
+
+## Inputs
+* `m` – rows of the matrix
+* `n` – columns of the matrix
+
+## Output
+* the cost of CORA's `mtimes`, eigenvalue given
 -/
 
 -- Authors:       Claude Sonnet 5.5

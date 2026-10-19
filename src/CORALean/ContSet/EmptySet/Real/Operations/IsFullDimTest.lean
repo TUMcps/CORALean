@@ -10,6 +10,12 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 CORA's `isFullDim` of the emptyset, as the `Bool` it answers: always `false`: the interior of `∅`
 is empty. Holds no scalar and computes nothing numeric; `EmptySet.isFullDimTest_iff` says it is
 the interior being nonempty.
+
+## Inputs
+* `_` – empty set
+
+## Output
+* `false`, as `∅` has empty interior
 -/
 
 -- Authors:       Claude Opus 5.5

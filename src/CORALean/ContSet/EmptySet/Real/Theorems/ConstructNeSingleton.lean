@@ -9,6 +9,16 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 # The empty set is not a point
 
 `representsa_(O,'point')` and `'origin'` are `false` for `emptySet`.
+
+## Inputs
+* `E` – empty set
+* `v` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the empty set is not the singleton of `v`
 -/
 
 -- Authors:       Claude Opus 5.5

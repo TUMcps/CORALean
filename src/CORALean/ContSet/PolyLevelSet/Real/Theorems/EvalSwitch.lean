@@ -12,6 +12,19 @@ public import Mathlib.Tactic.Ring
 
 A switched row is `P`'s own plus `(1 - σᵢ x^e) bᵢ / 2`: `P`'s where `x^e = σᵢ`, and `P`'s
 polynomial part with no right-hand side where `x^e = -σᵢ`.
+
+## Inputs
+* `P` – polynomial level set
+* `e` – exponent of the switching monomial
+* `s` – sign of each row
+* `x` – point
+* `i` – row index
+
+## Hypotheses
+* none
+
+## Conclusion
+* a switched row is `P`'s row plus the weighted right-hand side
 -/
 
 -- Authors:       Claude Opus 5.5

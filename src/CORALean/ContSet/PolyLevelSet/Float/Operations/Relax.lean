@@ -14,6 +14,13 @@ Each row's slack moved into a variable of its own: row `i` gains the monomial `y
 coefficient `b_errorᵢ`, `y` ranging over the box `D`, and the slack left is `zero`. Nothing
 rounds, the coefficients being copied, and the rows read back as `Real.PolyLevelSet.relax` by the
 slack (`eval_nominalCore_relax`).
+
+## Inputs
+* `P` – polynomial level set
+* `D` – box of the slack variables
+
+## Output
+* the level set with row slacks moved into new variables
 -/
 
 -- Authors:       Claude Opus 5.5

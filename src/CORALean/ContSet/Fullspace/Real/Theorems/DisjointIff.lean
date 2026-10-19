@@ -11,6 +11,17 @@ public import CORALean.ContSet.ContSet.ContSet
 CORA's `@fullspace/isIntersecting_` answers `true` iff the other set is nonempty. The
 representation has no emptiness test for an arbitrary `S`, so there is no `IsDisjoint` instance;
 this is the statement the answer would be sound and complete for.
+
+## Inputs
+* `S` – type of the other set
+* `F` – full space
+* `s` – other set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `s` is disjoint from the full space iff `s` is empty
 -/
 
 -- Authors:       Claude Opus 5.5

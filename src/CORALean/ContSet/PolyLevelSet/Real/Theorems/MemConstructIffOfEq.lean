@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 Where every row is `=`, a point is in the set exactly when it solves `A μ_R(x) = b` row by row:
 the form [1, Def. 5] writes a constrained polynomial zonotope's constraint in.
 
+## Inputs
+* `P` – polynomial level set
+* `x` – point
+
+## Hypotheses
+* `h` – all rows are equations
+
+## Conclusion
+* `x` lies in the set iff it lies in the box and solves each row
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

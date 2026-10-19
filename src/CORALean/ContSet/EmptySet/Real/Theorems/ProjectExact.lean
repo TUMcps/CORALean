@@ -10,6 +10,16 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 
 The image of `∅` under the coordinate selection `dims` is `∅`, which is what the
 returned empty set in `m` dimensions denotes.
+
+## Inputs
+* `E` – empty set
+* `dims` – coordinates kept
+
+## Hypotheses
+* none
+
+## Conclusion
+* `project` denotes the image under the coordinate selection
 -/
 
 -- Authors:       Claude Opus 5.5

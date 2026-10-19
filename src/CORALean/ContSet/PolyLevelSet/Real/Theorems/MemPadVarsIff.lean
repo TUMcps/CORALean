@@ -9,6 +9,18 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalPadVars
 # What `PolyLevelSet.padVars` denotes
 
 The set times the whole space of the fresh variables: no row reads them (`eval_padVars`).
+
+## Inputs
+* `P` – polynomial level set
+* `r` – number of fresh variables
+* `D` – box of the fresh variables
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the padded set iff its two parts lie in `P` and `D`
 -/
 
 -- Authors:       Claude Opus 5.5

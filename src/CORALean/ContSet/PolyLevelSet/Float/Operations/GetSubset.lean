@@ -14,6 +14,15 @@ Variable `k` re-parametrized onto `cen ± rad`, as over ℝ: `PolyZonotope.getSu
 polynomial part (`lhs`). The coefficients are stored rounded down, and each row's slack is widened
 by the row radius of what they lost, which bounds the whole row's error wherever the monomials
 are in `[-1, 1]` (`mem_getSubset_of_real`).
+
+## Inputs
+* `P` – polynomial level set
+* `k` – variable index
+* `cen` – new center of the variable
+* `rad` – new radius of the variable
+
+## Output
+* the level set with variable `k` rescaled onto `cen ± rad`
 -/
 
 -- Authors:       Claude Opus 5.5

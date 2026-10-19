@@ -11,6 +11,17 @@ public import CORALean.Global.Float.GenBlockDiag
 The stored product's values at a point are the exact product's of the two read-back systems: its
 coefficients read back as the exact product's (`toRealMat_cartProd`) and the right-hand sides are
 stacked.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product's rows read back as the exact product
 -/
 
 -- Authors:       Claude Opus 5.5

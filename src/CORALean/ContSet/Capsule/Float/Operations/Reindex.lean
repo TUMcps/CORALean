@@ -11,6 +11,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Reindex
 CORA's `@capsule/lift_` at a permutation of the coordinates: center and direction composed with
 the relabelling, the radius unchanged, the error box relabelled too. The stored floats are moved,
 never computed with, so there is nothing to pay.
+
+## Inputs
+* `e` – coordinate relabelling
+* `C` – capsule
+
+## Output
+* the capsule with its coordinates relabelled
 -/
 
 -- Authors:       Claude Sonnet 5.5

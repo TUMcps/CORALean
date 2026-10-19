@@ -12,6 +12,12 @@ Asserted, not proved: `Operations/ConvHull.lean` forms `c_ = (c + S.c) / 2`
 (`2 * n`), `g_ = c - c_` (`n`), two `Capsule.radius` and their `max` (one).
 
 The result is `c_`, `g_` and `r_`, `2 * n + 1` writes.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the cost of the convex hull of two capsules
 -/
 
 -- Authors:       Claude Sonnet 5.5

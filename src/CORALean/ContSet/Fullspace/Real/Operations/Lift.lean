@@ -9,6 +9,14 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 
 CORA's `@fullspace/lift_`: only the dimension changes, to `N`; the new coordinates are
 unbounded, as they are in the full space already.
+
+## Inputs
+* `_` – full space
+* `N` – target dimension
+* `_` – coordinates of the old dimensions
+
+## Output
+* the full space of dimension `N`
 -/
 
 -- Authors:       Claude Opus 5.5

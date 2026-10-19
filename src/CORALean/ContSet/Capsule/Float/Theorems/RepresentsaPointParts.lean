@@ -12,6 +12,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 A `true` answer certifies, each comparison with `zero` both ways by `le`, that both ends of the
 error box are `0` in every coordinate, so the box is the origin, and that the nominal generator and
 radius are `0`, the exact layer's `representsa_point`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `h` – `representsa_point` answers true
+
+## Conclusion
+* the error box is the origin and the nominal capsule a point
 -/
 
 -- Authors:       Claude Opus 5.5

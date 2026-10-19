@@ -17,6 +17,15 @@ capsule (the axis point `0` is at distance `1`), yet the axis test fails (`1 < 1
 both end spheres are `√2` away. With `≤ r` the test is exact (`ContainsTableIff`).
 CORA's `aux_containsPoint` compares `dist < r | withinTol(dist, r)`, so it is not affected.
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a point in a capsule that the table's test rejects
+
 ## References
 
 * [1] M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". In Proc. of

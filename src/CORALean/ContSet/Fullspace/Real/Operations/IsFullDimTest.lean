@@ -10,6 +10,12 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 CORA's `isFullDim` of the fullspace, as the `Bool` it answers: always `true`: the interior of the
 whole space is itself. Holds no scalar and computes nothing numeric; `Fullspace.isFullDimTest_iff`
 says it is the interior being nonempty.
+
+## Inputs
+* `_` – full space
+
+## Output
+* `true`, as the full space is its own interior
 -/
 
 -- Authors:       Claude Opus 5.5

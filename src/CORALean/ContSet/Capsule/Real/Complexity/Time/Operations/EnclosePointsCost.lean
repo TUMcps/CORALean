@@ -16,6 +16,13 @@ comparison), the rejection from the farthest direction (two dot products,
 (`2 * n` and a `sqrt`) with one `max`: `11 * n + 4` per point.
 
 The result is the center, the generator and the radius, `2 * n + 1` writes.
+
+## Inputs
+* `n` – dimension
+* `N` – number of points
+
+## Output
+* the cost of the capsule enclosing `N` points
 -/
 
 -- Authors:       Claude Sonnet 5.5

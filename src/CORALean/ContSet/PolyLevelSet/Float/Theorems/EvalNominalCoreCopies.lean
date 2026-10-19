@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyLevelSet.Real.Operations.Copies
 
 The copies' rows, read back, are the read-back rows copied: entries are copied, and `zero` reads
 back as `0`.
+
+## Inputs
+* `P` – polynomial level set
+* `a` – number of copies
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the copies' rows read back as the copied rows
 -/
 
 -- Authors:       Claude Opus 5.5

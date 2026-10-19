@@ -13,6 +13,17 @@ public import Mathlib.Tactic.Ring
 With `=` in every row and the fresh variables in `[-1, 1]`, the relaxed set is the original
 rows met to within `|sᵢ|`: `yᵢ = -(A μ_R(x) - b)ᵢ / sᵢ` is a slack in `[-1, 1]` exactly when
 the row is off by at most `|sᵢ|`, and `0` where `sᵢ = 0` and the row is met.
+
+## Inputs
+* `P` – polynomial level set
+* `s` – row slack coefficients
+* `x` – point
+
+## Hypotheses
+* `h` – all rows are equations
+
+## Conclusion
+* `x` extends to the relaxed set iff each row is off by at most `|sᵢ|`
 -/
 
 -- Authors:       Claude Opus 5.5

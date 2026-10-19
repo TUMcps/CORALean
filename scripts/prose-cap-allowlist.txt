@@ -1,8 +1,8 @@
 # Content files whose module-docstring prose is over the 12-line cap (CONTRIBUTING, "Lengths"),
-# which the cap's drop from 20 to 12 (#251) left behind. The `## Inputs` / `## Output` /
-# `## Hypotheses` / `## Conclusion` / `## References` sections do not count toward the cap.
 # One path per line. The list only shrinks: shorten the docstring, delete the line. An entry whose
+# `## Hypotheses` / `## Conclusion` / `## References` sections do not count toward the cap.
 # file is within the cap, or gone, is reported as stale.
+# which the cap's drop from 20 to 12 (#251) left behind. The `## Inputs` / `## Output` /
 src/CORALean/ContDynamics/Conform/Definitions/IntervalNorm.lean
 src/CORALean/ContDynamics/Conform/Definitions/ZonoConformal.lean
 src/CORALean/ContDynamics/Conform/Plant.lean
@@ -543,9 +543,6 @@ src/CORALean/ContDynamics/OutputEq/Theorems/HoldsOfOutputSet.lean
 src/CORALean/ContDynamics/Reach/Definitions/InputParams.lean
 src/CORALean/ContDynamics/Reach/Definitions/Params.lean
 src/CORALean/ContSet/Capsule/Float/Capsule.lean
-src/CORALean/ContSet/Capsule/Float/Operations/AbsorbRounding.lean
-src/CORALean/ContSet/Capsule/Float/Operations/ContainsPoint.lean
-src/CORALean/ContSet/Capsule/Float/Operations/EnclosePoints.lean
 src/CORALean/ContSet/Capsule/Real/Capsule.lean
 src/CORALean/ContSet/Capsule/Real/Counterexamples/IsIntersectingCora.lean
 src/CORALean/ContSet/Capsule/Real/Instances.lean

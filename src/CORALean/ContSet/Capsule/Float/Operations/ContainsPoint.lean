@@ -8,15 +8,18 @@ public import CORALean.Global.Float.EuclideanNorm
 /-!
 # `Capsule.containsPoint`, over a floating-point scalar
 
-CORA's `aux_containsPoint` for a point operand: the point lies in the capsule when its distance to
-a point `c + t g` of the axis is at most `r`. The parameter `t` is the foot of the perpendicular
-`⟨p - c, g⟩ / ⟨g, g⟩` clipped to `[-1, 1]`; it is computed in floats and any value gives a
-witness, so the rounding of `t` costs precision alone. The vector `c + t g - p` is bracketed by
-directed arithmetic. The error box may absorb part of it: the point is `c + t g + w + e` for a
-point `e` of the box, and the best `e` leaves in each coordinate the distance of `-(c + t g - p)`
-to the box's range there, `max(0, inf + (c + t g - p), -(c + t g - p) - sup)`, bounded from the
-bracket by directed sums. Its squared length rounded up is compared with `r²` rounded down, and the
-box is required nonempty in each coordinate.
+The point is in the capsule when its distance to a point `c + t g` on the axis is at most `r`.
+The foot parameter `t` is clipped perpendicular distance to `[-1, 1]`, computed in floats.
+The vector `c + t g - p` is bracketed; the error box `e` absorbs it by minimizing distance
+in each coordinate. The squared length rounded up compares with `r²` rounded down; box
+nonempty per-coordinate.
+
+## Inputs
+* `C` – capsule
+* `p` – float point
+
+## Output
+* whether `p` is certified to lie in the capsule
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -37,6 +37,15 @@ The solver is any function returning a minimiser of `½ xᵀHx + fᵀx` over a n
 contract of `CORAquadprog` (MOSEK or MATLAB `quadprog`); the second conjunct shows such a function
 exists, so the statement is not vacuous. Read from the source, not run. `isIntersecting` reaches
 this branch for two capsules of equal precedence, `type` `'exact'` or `'approx'` alike.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* two intersecting capsules that CORA's `isIntersecting_` reports as disjoint
 -/
 
 -- Authors:       Claude Opus 5.5

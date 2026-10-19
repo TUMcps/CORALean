@@ -16,6 +16,12 @@ operation, like a division. Bounded above by evaluating both lengths and the
 root: `n + 4 * n + 1 + 3 = 5 * n + 4`.
 
 The result is the center, the kept generator and the radius, `2 * n + 1` writes.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the cost of adding two capsules
 -/
 
 -- Authors:       Claude Sonnet 5.5

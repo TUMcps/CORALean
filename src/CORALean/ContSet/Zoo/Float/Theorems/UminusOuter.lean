@@ -12,6 +12,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.UminusExact
 
 The Taylor model by `Taylm.uminus_outer`, the interval by `Interval.uminus_exact` (negation is
 exact in floats).
+
+## Inputs
+* `Z` – zoo
+* `f` – function
+
+## Hypotheses
+* `h` – `Z` encloses `f`
+
+## Conclusion
+* the negated zoo encloses `-f`
 -/
 
 -- Authors:       Claude Opus 5.5

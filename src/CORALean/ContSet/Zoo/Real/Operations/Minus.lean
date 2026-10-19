@@ -12,6 +12,13 @@ CORA's `minus` of two zoos (`aux_s_minus_zz`): `priv_combineZooObjects` keeps th
 have, and the members are combined one by one, `Taylm.minus` on the Taylor model and
 `Interval.minus` on the interval. `Option.map₂` is the combination: a member missing on either
 side is dropped.
+
+## Inputs
+* `Z₁` – first zoo
+* `Z₂` – second zoo
+
+## Output
+* the zoo of the member-wise difference
 -/
 
 -- Authors:       Claude Opus 5.5

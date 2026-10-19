@@ -10,6 +10,13 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 CORA's `@emptySet/isequal` at two empty sets: `true`, their dimensions agreeing. The dimension is
 the index, so two operands of one type agree on it; the other operand types of CORA's method
 (a set that represents `∅`, a numeric empty matrix) are not covered.
+
+## Inputs
+* `_` – first empty set
+* `_` – second empty set
+
+## Output
+* `true`, as two empty sets are equal
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,17 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 # `EmptySet.convHull` is the convex hull
 
 Exact for a convex operand, which is every `ConvexSet`.
+
+## Inputs
+* `S` – type of the convex set
+* `E` – empty set
+* `s` – convex set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `convHull` is the convex hull of the union
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,21 @@ public import CORALean.ContSet.Interval.Real.Theorems.RdivideExact
 Under the members' own conditions on the denominator: the Taylor model's sign condition of
 `Taylm.rdivide_outer`, and for the interval, that no denominator entry contains zero
 (`Interval.rdivide_exact`).
+
+## Inputs
+* `Z₁` – numerator zoo
+* `Z₂` – denominator zoo
+* `f` – numerator function
+* `g` – denominator function
+
+## Hypotheses
+* `h₁` – `Z₁` encloses `f`
+* `h₂` – `Z₂` encloses `g`
+* `hT` – Taylor model's denominator has a sign
+* `hI` – interval's denominator excludes zero
+
+## Conclusion
+* the quotient zoo encloses `f / g`
 -/
 
 -- Authors:       Claude Opus 5.5

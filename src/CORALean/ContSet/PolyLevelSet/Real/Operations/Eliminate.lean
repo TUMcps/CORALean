@@ -16,6 +16,14 @@ substitution hold in the rows that stay: each of them had a multiple of `A(j,t)`
 monomial `r` solves for, and this subtracts exactly that. Where row `r` is an equation that holds,
 every surviving row takes its old value (`mem_eliminate_of_mem`).
 
+## Inputs
+* `P` – polynomial level set
+* `r` – row eliminated
+* `t` – monomial solved for
+
+## Output
+* the level set with row `r` and monomial `t` removed
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

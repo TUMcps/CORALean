@@ -14,6 +14,15 @@ the neuron `j` over the coefficient box `[l, u]`: the center of the row `c_j + G
 box is `(l + u) / 2`, which is what the row's center is taken at here. CORA's code takes
 `c_j + G_j (u - l) / 2` instead, which is the same only where `l = 0`: see
 `StarSet.coraRowBounds`.
+
+## Inputs
+* `P` – predicate family
+* `n` – dimension
+* `s` – star set
+* `j` – neuron index
+
+## Output
+* interval bounds of neuron `j` over the factor box
 -/
 
 -- Authors:       Claude Opus 5.5

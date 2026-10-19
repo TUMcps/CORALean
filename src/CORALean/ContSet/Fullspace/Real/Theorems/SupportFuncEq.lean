@@ -11,6 +11,16 @@ public import CORALean.ContSet.ContSet.ContSet
 
 `Inf` is the supremum of a nonzero functional over the whole space in `EReal`: scaling a point
 where it is nonzero reaches any bound.
+
+## Inputs
+* `F` – full space
+* `c` – direction functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* `supportFunc` is the supremum of `c` over the set
 -/
 
 -- Authors:       Claude Opus 5.5

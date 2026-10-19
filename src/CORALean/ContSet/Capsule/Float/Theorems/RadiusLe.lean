@@ -13,6 +13,17 @@ public import CORALean.ContSet.Capsule.Float.Theorems.Basic
 The exact layer's `norm₂_sub_center_le` at the nominal capsule, with `√(Σ g²)` replaced by its
 rounded-up `normUp` and the sum by `addUp`, and the error box's point within `errorNorm` of the
 origin by the triangle inequality.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C` – capsule
+* `x` – real point
+
+## Hypotheses
+* `hx` – `x` lies in the capsule
+
+## Conclusion
+* `x` is within `radius` of the nominal center
 -/
 
 -- Authors:       Claude Sonnet 5.5

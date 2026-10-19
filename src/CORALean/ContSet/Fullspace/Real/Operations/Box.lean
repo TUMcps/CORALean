@@ -9,6 +9,12 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 
 CORA's `@fullspace/box`: the full space itself, which is its own smallest enclosing box
 (an interval with infinite endpoints, which `Interval` cannot hold).
+
+## Inputs
+* `F` – full space
+
+## Output
+* the full space itself
 -/
 
 -- Authors:       Claude Opus 5.5

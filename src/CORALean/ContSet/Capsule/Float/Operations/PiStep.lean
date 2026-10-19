@@ -13,6 +13,13 @@ The step of CORA's `linspace` over a half circle. `π = 2 arccos 0`, bounded bel
 sums `acosDown`, `acosUp` at `0`; the quotient by `499` rounded down with a divisor at least `499`
 (`intUp`), and up with one at most `499` (`intDown`) when `ltStrict` certifies it positive, `π`
 itself otherwise.
+
+## Inputs
+* `p` – precision of acos
+* `k` – Newton steps for sqrt
+
+## Output
+* an interval bounding `π / 499`
 -/
 
 -- Authors:       Claude Opus 5.5

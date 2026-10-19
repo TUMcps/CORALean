@@ -13,6 +13,14 @@ exponents and its box's bounds copied, and the coefficients, right-hand sides an
 Where `f` is injective and reaches every variable a monomial reads, the rows at `y ∘ f` are `P`'s
 at `y` (`eval_reindexVars`), which is how a constrained polynomial zonotope drops the factors no
 monomial reads (`ConPolyZono.compactFactors`). CORA's `@levelSet/lift_` read the other way.
+
+## Inputs
+* `P` – polynomial level set
+* `n'` – new number of variables
+* `f` – variable map
+
+## Output
+* the level set read at the variables `f`
 -/
 
 -- Authors:       Claude Opus 5.5

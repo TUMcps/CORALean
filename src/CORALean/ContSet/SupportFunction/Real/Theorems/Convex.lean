@@ -11,6 +11,15 @@ public import Mathlib.Tactic.Linarith
 
 The set is an intersection of halfspaces, one per direction. A direction in which the bound is `+∞`
 excludes nothing, and one whose bound is `-∞` leaves no point at all.
+
+## Inputs
+* `S` – support function
+
+## Hypotheses
+* none
+
+## Conclusion
+* a support function denotes a convex set
 -/
 
 -- Authors:       Claude Sonnet 5.5

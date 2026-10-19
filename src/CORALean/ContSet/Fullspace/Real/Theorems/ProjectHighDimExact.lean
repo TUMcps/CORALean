@@ -10,6 +10,18 @@ public import Mathlib.Data.Fintype.EquivFin
 
 At `n = N` and distinct coordinates, `proj` is a bijection, so embedding the coordinates
 at `proj` (the rest, of which there are none, held at zero) reaches everything.
+
+## Inputs
+* `F` – full space
+* `N` – target dimension
+* `proj` – coordinates of the old dimensions
+
+## Hypotheses
+* `hN` – `n = N`
+* `hproj` – `proj` is injective
+
+## Conclusion
+* `projectHighDim_` denotes the image under the zero-padded embedding
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,15 @@ public import CORALean.ContSet.Capsule.Float.Theorems.ConstructEqNominal
 # `Capsule.empty` is exactly empty
 
 `neg one` reads as `-1`, so the stored capsule is the exact layer's empty one.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Capsule.empty` denotes the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -15,6 +15,12 @@ members, from `(-∞, ∞)`. A zoo with no member is that unbounded interval, wh
 cannot hold: `none`. The Taylor model's enclosure is its `'int'` range bound (`Taylm.interval`);
 CORA's `taylm(bnb)`, `taylm(bnbAdv)`, `taylm(linQuad)` members, which differ only in the range
 bound, are not modelled.
+
+## Inputs
+* `Z` – zoo
+
+## Output
+* the intersection of the members' interval enclosures
 -/
 
 -- Authors:       Claude Opus 5.5

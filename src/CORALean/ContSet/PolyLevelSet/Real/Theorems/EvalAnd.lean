@@ -10,6 +10,17 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 The stacked system's values at a point are the two operands' values side by side: a row of either
 operand reads only its own monomials, the other block of its coefficients being zero.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stacked rows' values are the operands' side by side
 -/
 
 -- Authors:       Claude Opus 5.5

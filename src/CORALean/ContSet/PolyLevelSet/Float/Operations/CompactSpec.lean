@@ -11,6 +11,12 @@ Equal exponent columns merged, the stored coefficients the lower rounding and th
 into the slack `b_error` (`compactSlack`). The definition `compact` is proved equal to, which
 computes the same thing from tables built once (issue #61). This one is the statement the
 soundness proof reads: every entry a named, separately provable lookup.
+
+## Inputs
+* `P` – polynomial level set
+
+## Output
+* the specification of `compact`, equal exponent columns merged
 -/
 
 -- Authors:       Claude Opus 5.5

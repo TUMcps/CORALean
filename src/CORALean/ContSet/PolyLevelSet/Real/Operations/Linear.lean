@@ -12,6 +12,16 @@ The polynomial level set of degree-1 rows: `(A x - b)ᵢ ⋈ᵢ 0`, its monomial
 themselves (`PolyZonotope.identE`), so a point is in it when it meets `A x - b` row by row
 (`mem_linear_iff`). A linear system of inequalities, strict ones and equations, written as the
 polynomial data every other operation computes with.
+
+## Inputs
+* `m` – number of rows
+* `A` – coefficient matrix
+* `b` – right-hand side
+* `op` – comparison of each row
+* `D` – box of the variables
+
+## Output
+* the level set of the linear rows
 -/
 
 -- Authors:       Claude Opus 5.5

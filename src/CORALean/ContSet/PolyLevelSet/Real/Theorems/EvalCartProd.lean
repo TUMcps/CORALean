@@ -12,6 +12,17 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 The product's values at a point are each operand's at its own block of variables: a row of either
 operand reads exponent zero on the other's variables and has coefficient zero on its monomials.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product's values are each operand's at its own variables
 -/
 
 -- Authors:       Claude Opus 5.5

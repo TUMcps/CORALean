@@ -11,6 +11,13 @@ public import CORALean.ContSet.Capsule.Float.Capsule
 the two error boxes have equal ends. The
 scalar has no equality of its own, so each pair compares `≤` both ways by the certified `le`, whose
 `true` is a proof and whose `false` refutes nothing.
+
+## Inputs
+* `C` – first capsule
+* `S` – second capsule
+
+## Output
+* whether all fields are certified equal
 -/
 
 -- Authors:       Claude Opus 5.5

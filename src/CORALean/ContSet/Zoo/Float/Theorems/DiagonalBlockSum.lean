@@ -9,6 +9,17 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 
 In the box's float zonotope, whose generator block is diagonal, coordinate `i` is reached only by
 generator `i`.
+
+## Inputs
+* `I` – box
+* `i` – coordinate index
+* `t` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* only the diagonal generator reaches coordinate `i`
 -/
 
 -- Authors:       Claude Opus 5.5

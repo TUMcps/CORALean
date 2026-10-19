@@ -9,6 +9,15 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 # `EmptySet.vertices` spans the empty set
 
 The convex hull of no vertices is `∅`.
+
+## Inputs
+* `E` – empty set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the convex hull of the vertices is the empty set
 -/
 
 -- Authors:       Claude Opus 5.5

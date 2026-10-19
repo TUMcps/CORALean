@@ -14,6 +14,13 @@ matrix sit block-diagonally (`repBlockDiag`) and the right-hand sides and operat
 (`repVec`), so copy `j`'s rows read block `j` alone (`mem_copies_iff`). `cartProd` of `a` equal
 operands, laid out by `finProdFinEquiv`. Not one of CORA's operations: it is the constraint of
 `a` points of a set taken at once, as a convex combination of them needs.
+
+## Inputs
+* `P` – polynomial level set
+* `a` – number of copies
+
+## Output
+* the level set of `a` copies on fresh variables
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,13 @@ Asserted, not proved: `Operations/Mtimes.lean` computes the Frobenius norm of
 generator through `M *ᵥ ·` (two `Cost.matVec m n`) and scales the radius (one
 product): `6 * m * n + 2` at one write per `m` entries each, `Cost.matVec` including them, and one
 more for the radius.
+
+## Inputs
+* `m` – rows of the matrix
+* `n` – columns of the matrix
+
+## Output
+* the cost of mapping a capsule by a matrix
 -/
 
 -- Authors:       Claude Sonnet 5.5

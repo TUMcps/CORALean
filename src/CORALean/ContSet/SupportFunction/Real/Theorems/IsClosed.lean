@@ -14,6 +14,15 @@ The set is an intersection of the closed halfspaces `{x | ℓ x ≤ h ℓ}`: a l
 n` is continuous, and `{t | t ≤ b}` is closed in the extended reals. So a convex set that is not
 closed, such as an open box, is the set of no support function: it shares its support function with
 its closure.
+
+## Inputs
+* `S` – support function
+
+## Hypotheses
+* none
+
+## Conclusion
+* a support function denotes a closed set
 -/
 
 -- Authors:       Claude Sonnet 5.5

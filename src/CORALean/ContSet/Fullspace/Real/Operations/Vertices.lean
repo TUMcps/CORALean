@@ -19,6 +19,13 @@ The full space has no extreme points, so these columns are not vertices of the s
 is the limit of the vertices of the truncated boxes `[-t, t]^n` (`Fullspace.truncatedVertices`),
 whose hulls exhaust the space (`Fullspace.construct_eq_iUnion_truncatedVertices`).
 
+## Inputs
+* `_` – full space
+* `l` – corner index
+
+## Output
+* the `l`-th corner, each entry `⊥` or `⊤`
+
 ## References
 
 * [1] `contSet/@fullspace/vertices_.m`, CORA (Sep. 2025).

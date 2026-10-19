@@ -18,6 +18,17 @@ most the larger radius, because `radius_le` bounds `‖x - c‖₂` for every po
 box included. What the exact `c_` and `g_` miss of the stored ones is at most half the gap of the
 two roundings per entry (`aux_half_gap_le`), which the two symmetric boxes of the stored box hold.
 Outer only, as the exact hull.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C` – first capsule
+* `S` – second capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of both capsules lies in `convHull`
 -/
 
 -- Authors:       Claude Opus 5.5

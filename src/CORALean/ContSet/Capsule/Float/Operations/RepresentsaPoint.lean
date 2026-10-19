@@ -10,6 +10,12 @@ public import CORALean.ContSet.Capsule.Float.Capsule
 `@capsule/representsa_.m` at `point`, tolerance `0`: no direction, no radius, and an error box
 that is the origin (CORA's capsule has no box). Each stored value is compared with `zero` both
 ways by the certified `le`, so `true` is a proof and `false` refutes nothing.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* whether the capsule is certified to be a single point
 -/
 
 -- Authors:       Claude Opus 5.5

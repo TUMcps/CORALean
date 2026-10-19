@@ -11,6 +11,17 @@ public import CORALean.ContSet.PolyLevelSet.Real.Operations.Relax
 The rows with their slacks as variables read back as the exact rows relaxed by the read-back
 slacks: a slack column is `diagonalBlock b_error`, which reads as `Matrix.diagonal`, so row `i`'s
 column `l` is `b_errorᵢ` at `l = i` and `0` elsewhere, `Pi.single`.
+
+## Inputs
+* `P` – polynomial level set
+* `D` – box of the slack variables
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the relaxed rows read back as the exact relaxation
 -/
 
 -- Authors:       Claude Opus 5.5

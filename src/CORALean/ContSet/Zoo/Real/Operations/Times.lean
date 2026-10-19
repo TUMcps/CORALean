@@ -16,6 +16,13 @@ side is dropped. CORA's `times.m` (`aux_s_times_zz`) calls `combineZooObjects`, 
 nowhere (`plus`, `minus` and `mtimes` call `priv_combineZooObjects`), so CORA's elementwise
 zoo-by-zoo `.*` fails at run time; this is the operation it intends, which `mtimes` computes for
 scalar zoos.
+
+## Inputs
+* `Z₁` – first zoo
+* `Z₂` – second zoo
+
+## Output
+* the zoo of the member-wise product
 -/
 
 -- Authors:       Claude Opus 5.5

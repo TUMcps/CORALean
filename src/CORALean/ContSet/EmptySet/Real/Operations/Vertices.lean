@@ -9,6 +9,12 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 
 CORA's `@emptySet/vertices_`: `zeros(dim(O),0)`, an `n × 0` matrix, which is a family of
 no vertices in `Vec ℝ n`.
+
+## Inputs
+* `_` – empty set
+
+## Output
+* the empty family of vertices
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -17,6 +17,17 @@ The sample `ctr + r (cos a, sin a)` of `a = a₀ + i * step`, with the center `c
 angle `a₀` known only in boxes and the step `π / 499` in bounds: the index `i` enclosed by
 `intDown`, `intUp`, the angle by the interval plus and times, the cosine and sine by
 `Interval.cos`, `Interval.sin`, the coordinates by the interval plus and times again.
+
+## Inputs
+* `p` – precision of cos and sin
+* `step` – step size bounds
+* `ctr` – box around the center
+* `a₀` – box around the base angle
+* `r` – radius
+* `i` – sample index
+
+## Output
+* a box around the `i`-th sampled boundary point
 -/
 
 -- Authors:       Claude Opus 5.5

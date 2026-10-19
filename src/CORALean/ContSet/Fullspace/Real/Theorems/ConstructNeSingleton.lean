@@ -10,6 +10,16 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 `representsa_(fs,'point')` and `'origin'` are `false` for `fullspace`, at positive
 dimension (`R^0` is a point, and CORA's `representsa_emptyObject` answers before this).
+
+## Inputs
+* `F` – full space
+* `v` – vector
+
+## Hypotheses
+* `hn` – dimension positive
+
+## Conclusion
+* the full space is not the singleton of `v`
 -/
 
 -- Authors:       Claude Opus 5.5

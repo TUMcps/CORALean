@@ -20,6 +20,19 @@ direction. The three terms are added upward.
 
 No `0 ≤ r` hypothesis, as over ℝ: a negative radius denotes `∅`, where the bound is
 vacuous. The error box's own bound (`Interval.boundDot`) is added upward.
+
+## Inputs
+* `C` – capsule
+* `f` – linear functional
+* `a` – float direction vector
+* `s` – proposed norm of `a`
+
+## Hypotheses
+* `hf` – `a` represents `f`
+* `hs` – `s` bounds the norm of `a`
+
+## Output
+* a float upper bound of `f` over the capsule
 -/
 
 -- Authors:       Claude Sonnet 5.5

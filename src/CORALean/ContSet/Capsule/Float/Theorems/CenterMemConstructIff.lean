@@ -15,6 +15,15 @@ error box that holds the origin. A point of the set has a point of the nominal c
 negative radius, which empties the nominal capsule, excludes the center whatever the box; with the
 origin in the box, the nominal capsule is in the set, and the exact layer's
 `center_mem_construct_iff` gives the rest.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `h0` – origin lies in the error box
+
+## Conclusion
+* the stored center lies in `C` iff the stored radius is nonnegative
 -/
 
 -- Authors:       Claude Opus 5.5

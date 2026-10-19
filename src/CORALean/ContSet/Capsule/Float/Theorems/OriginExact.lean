@@ -12,6 +12,15 @@ public import CORALean.ContSet.Capsule.Float.Theorems.ConstructEqNominal
 # `Capsule.origin` is exactly the origin
 
 `zero` reads as `0`, so the stored capsule is the exact layer's point capsule at the origin.
+
+## Inputs
+* `n` – dimension
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Capsule.origin` denotes the singleton origin
 -/
 
 -- Authors:       Claude Opus 5.5

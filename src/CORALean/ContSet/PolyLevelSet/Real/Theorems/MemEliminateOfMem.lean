@@ -15,6 +15,20 @@ surviving row is the old one less `A(j,t) / A(r,t)` times row `r`'s polynomial p
 monomial `t` split off, which is `b(r) - A(r,t) μ_t` by row `r` itself, and the right-hand side is
 shifted by exactly the constant that leaves ([1, Prop. 13], eqs. (35) and (36)).
 
+## Inputs
+* `P` – polynomial level set
+* `r` – row eliminated
+* `t` – monomial solved for
+* `x` – point
+
+## Hypotheses
+* `hr` – row `r` is an equation
+* `hA` – coefficient of `t` in row `r` nonzero
+* `hx` – `x` lies in `P`
+
+## Conclusion
+* `x` lies in the eliminated level set
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

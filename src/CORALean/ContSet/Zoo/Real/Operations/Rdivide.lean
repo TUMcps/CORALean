@@ -13,6 +13,13 @@ CORA's `rdivide` of two zoos (`aux_s_rdivide_zz`), members combined as in `Zoo.p
 code calls `combineZooObjects`, which exists nowhere (the other operations call
 `priv_combineZooObjects`), so CORA's zoo-by-zoo `rdivide` (and `mrdivide`) fails at run time;
 this is the operation it intends.
+
+## Inputs
+* `Z₁` – numerator zoo
+* `Z₂` – denominator zoo
+
+## Output
+* the zoo of the member-wise quotient
 -/
 
 -- Authors:       Claude Opus 5.5

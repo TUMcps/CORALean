@@ -23,6 +23,15 @@ bound of `σ_max` instead, and `Capsule.mtimes_outer` is the sound statement.
 
 Stated with the eigenvalue `lam` as a parameter, since only its value on this `M` matters. Not
 run in CORA; read from the source.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `mtimes` radius misses part of the image under a contraction
 -/
 
 -- Authors:       Claude Sonnet 5.5

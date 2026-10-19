@@ -10,6 +10,22 @@ public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 Two systems with the same right-hand sides and operators, whose polynomial parts agree at two
 points, hold at both or at neither. This is what an operation that rewrites the monomials and keeps
 the rows, as `compact` does or as dropping unread variables does, needs.
+
+## Inputs
+* `P` – polynomial level set
+* `q'` – new number of monomials
+* `A'` – new coefficient matrix
+* `R'` – new exponent matrix
+* `D'` – new box
+* `x` – point of `P`
+* `x'` – point of the new system
+
+## Hypotheses
+* `h` – both polynomial parts agree
+* `hD` – both boxes agree on the points
+
+## Conclusion
+* the new system holds at `x'` iff `P` holds at `x`
 -/
 
 -- Authors:       Claude Opus 5.5

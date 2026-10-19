@@ -24,6 +24,19 @@ frontier of the capsule (`vertices_mem_frontier`): the angles `θ ∓ π/2 + i �
 `θ` by the corner values of the argument, and every interval operation encloses its exact
 counterpart. The boxes enclose boundary points; they are not themselves on the boundary, and not
 vertices.
+
+## Inputs
+* `p` – precision of atan2 and acos
+* `k` – Newton steps for sqrt
+* `C` – planar capsule
+
+## Hypotheses
+* `hr` – radius nonnegative
+* `hnp` – nominal capsule is not a point
+* `hI` – error box is the origin
+
+## Conclusion
+* every vertex box holds a boundary point
 -/
 
 -- Authors:       Claude Opus 5.5

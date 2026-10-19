@@ -20,6 +20,18 @@ certificate to supply and nothing to prove at the call site. The exact value is
 
 A negative radius denotes `∅`, where the bound is vacuous, as over ℝ. The error box's own bound
 (`Interval.boundDot`) is added upward.
+
+## Inputs
+* `C` – capsule
+* `f` – linear functional
+* `a` – float direction vector
+* `p` – Newton steps for the norm
+
+## Hypotheses
+* `hf` – `a` represents `f`
+
+## Output
+* a float upper bound of `f` over the capsule
 -/
 
 -- Authors:       Claude Sonnet 5.5

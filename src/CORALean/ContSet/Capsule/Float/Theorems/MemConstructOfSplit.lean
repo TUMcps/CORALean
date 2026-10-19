@@ -13,6 +13,20 @@ when, for some segment parameter `t ∈ [-1, 1]` and some `w` no longer than the
 `x` misses of `c + t g + w` (`c`, `g` the stored center and generator read as reals) is in the
 error box. `Capsule.exists_split_of_mem` gives the pieces of a point of an exact capsule, and
 `Capsule.smul_mem_symmetric` the box of a generator's rounding.
+
+## Inputs
+* `C` – capsule
+* `x` – real point
+* `w` – real offset
+* `t` – segment parameter
+
+## Hypotheses
+* `ht` – `t` lies in `[-1, 1]`
+* `hw` – `w` is within the radius
+* `he` – remainder lies in the error box
+
+## Conclusion
+* the point lies in the capsule
 -/
 
 -- Authors:       Claude Opus 5.5

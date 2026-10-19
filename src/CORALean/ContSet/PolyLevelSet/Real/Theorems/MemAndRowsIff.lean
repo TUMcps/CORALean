@@ -12,6 +12,17 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalAnd
 A point of `P.andRows Q` is a point of `P`, its box included, at which `Q`'s rows hold as well:
 `Q`'s box is not read. Where `Q`'s box contains `P`'s, this is `P.construct ∩ Q.construct`, as
 `and_exact` states for `and_`.
+
+## Inputs
+* `P` – level set
+* `Q` – level set whose rows are added
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `P.andRows Q` iff it lies in `P` and meets `Q`'s rows
 -/
 
 -- Authors:       Claude Opus 5.5

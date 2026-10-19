@@ -18,6 +18,17 @@ with the center added exactly: a point `(c₁ + c₂) + t g + w` with `‖w‖�
 the stored radius rounds up. What that point and the two box points miss of the stored
 `c + t g + w` is the two box points plus `c₁ + c₂ - c`, the center's rounding, and the stored box
 is their sum.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C₁` – first capsule
+* `C₂` – second capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* the Minkowski sum lies in `plus`
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

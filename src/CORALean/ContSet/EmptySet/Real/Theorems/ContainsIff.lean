@@ -11,6 +11,17 @@ public import CORALean.ContSet.ContSet.ContSet
 CORA's `@emptySet/contains_` answers `true` iff the other set is empty. The representation has
 no emptiness test for an arbitrary `S`, so there is no `Contains` instance; this is the
 statement the answer would be sound and complete for.
+
+## Inputs
+* `S` – type of the other set
+* `E` – empty set
+* `s` – other set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `s` lies in the empty set iff `s` is empty
 -/
 
 -- Authors:       Claude Opus 5.5

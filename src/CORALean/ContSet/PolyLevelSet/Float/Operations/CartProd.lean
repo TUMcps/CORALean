@@ -12,6 +12,13 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 `Real.PolyLevelSet.cartProd` at the stored floats: the rows of both operands stacked, each over
 its own variables, the off-blocks `zero` and every entry and slack copied, so nothing rounds
 (`eval_nominalCore_cartProd`).
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+
+## Output
+* the level set of the Cartesian product
 -/
 
 -- Authors:       Claude Opus 5.5

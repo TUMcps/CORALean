@@ -8,6 +8,15 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 # The full space is not empty
 
 `representsa_(fs,'emptySet')` is `false` for `fullspace`.
+
+## Inputs
+* `F` – full space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the full space is not empty
 -/
 
 -- Authors:       Claude Opus 5.5

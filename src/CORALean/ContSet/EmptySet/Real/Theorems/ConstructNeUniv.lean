@@ -10,6 +10,15 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 
 `representsa_(O,'fullspace')` is `false` for `emptySet`: `Vec ℝ n` has a point
 at every `n`, the zero vector at `n = 0` included.
+
+## Inputs
+* `E` – empty set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the empty set is not the full space
 -/
 
 -- Authors:       Claude Opus 5.5

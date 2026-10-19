@@ -12,6 +12,17 @@ Where every row is `=` and the stored box is `[-1, 1]ⁿ`, a point is in the set
 coordinate has modulus at most `1` and every row is met to within its slack: [1, Def. 7]'s
 `constrDom` with the float layer's slack, the factors of a float constrained polynomial zonotope.
 
+## Inputs
+* `P` – polynomial level set
+* `x` – real point
+
+## Hypotheses
+* `h` – all rows are equations
+* `hD` – box is the unit box
+
+## Conclusion
+* `x` lies in the set iff it is in the unit box and meets each row within its slack
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

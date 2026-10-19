@@ -16,6 +16,22 @@ Wherever the exact layer's `getSubset` of the read-back rows (`nominalCore`) mee
 within its slack at a point of `[-1, 1]ⁿ`, the float `getSubset` meets its own: what the row loses
 to the rounding of the re-parametrized coefficients, scaled by monomials in `[-1, 1]`, is at most
 the row radius the slack was widened by.
+
+## Inputs
+* `P` – polynomial level set
+* `k` – variable index
+* `cen` – new center of the variable
+* `rad` – new radius of the variable
+* `a` – real point
+
+## Hypotheses
+* `hP` – all rows are equations
+* `ha` – `a` lies in the unit box
+* `hdom` – `a` lies in the box
+* `hsat` – exact `getSubset` rows hold within their slacks
+
+## Conclusion
+* `a` lies in the float `getSubset`
 -/
 
 -- Authors:       Claude Opus 5.5

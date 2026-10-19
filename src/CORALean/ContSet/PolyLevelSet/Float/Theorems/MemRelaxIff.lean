@@ -11,6 +11,17 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreRelax
 With every row an equation, the rows with their slacks moved into variables are the exact rows
 relaxed by the slacks (`eval_nominalCore_relax`): the slack left is `zero`, so each row is met
 exactly.
+
+## Inputs
+* `P` – polynomial level set
+* `D` – box of the slack variables
+* `x` – real point
+
+## Hypotheses
+* `h` – all rows are equations
+
+## Conclusion
+* `x` lies in the relaxed set iff it lies in the exact relaxation
 -/
 
 -- Authors:       Claude Opus 5.5

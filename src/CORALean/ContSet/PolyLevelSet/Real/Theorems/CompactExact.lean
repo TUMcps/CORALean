@@ -15,6 +15,15 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.SumMonomialMerge
 Merging monomials with one exponent column adds their coefficient columns, which leaves
 `A μ_R(x)` alone at every point, and a dropped column is zero: `sum_monomial_merge` with the
 coefficient columns as generators. The rows read the same, so the set is the same.
+
+## Inputs
+* `P` – polynomial level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `compact` denotes the same set
 -/
 
 -- Authors:       Claude Opus 5.5

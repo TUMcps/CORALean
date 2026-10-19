@@ -14,6 +14,16 @@ Stacking the rows is intersecting the sets: the stack reads back as the exact st
 (`eval_nominalCore_and_`), whose values are the operands' side by side
 (`Real.PolyLevelSet.eval_and_`),
 and the slacks are stacked alike.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `and_` denotes the intersection exactly
 -/
 
 -- Authors:       Claude Opus 5.5

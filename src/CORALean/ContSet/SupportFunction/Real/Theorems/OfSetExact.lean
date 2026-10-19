@@ -16,6 +16,16 @@ its support function names, and a point outside it is separated from it by a hyp
 (Hahn–Banach), whose normal is a functional under which the point exceeds the support function.
 Without closedness the support function sees only the closure; without convexity only the closed
 convex hull.
+
+## Inputs
+* `S` – set
+
+## Hypotheses
+* `hconv` – `S` is convex
+* `hcl` – `S` is closed
+
+## Conclusion
+* the support function of `S` denotes `S`
 -/
 
 -- Authors:       Claude Sonnet 5.5

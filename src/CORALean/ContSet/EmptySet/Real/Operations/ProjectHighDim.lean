@@ -9,6 +9,14 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 
 CORA's `@emptySet/projectHighDim_`: only the dimension changes, to `N`; the new
 coordinates are the ones held at zero.
+
+## Inputs
+* `_` – empty set
+* `N` – target dimension
+* `_` – coordinates of the old dimensions
+
+## Output
+* the empty set of dimension `N`
 -/
 
 -- Authors:       Claude Opus 5.5

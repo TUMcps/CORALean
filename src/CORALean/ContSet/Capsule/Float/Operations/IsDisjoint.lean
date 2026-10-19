@@ -13,6 +13,14 @@ separates the centers by more than the two bounding radii (`Capsule.radius`, rou
 its radius of its center, and a coordinate gap is at most the Euclidean distance, so a `true`
 answer excludes a common point. `false` refutes nothing: the segment-to-segment distance of CORA's
 quadratic program is not computed.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C₁` – first capsule
+* `C₂` – second capsule
+
+## Output
+* whether the capsules are certified disjoint
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -12,6 +12,13 @@ public import CORALean.Global.RepBlockDiag
 `a` copies of the rows, each on a fresh block of variables and with its own slack, as over ℝ:
 the entries are copied and the off-blocks are `zero`, so nothing rounds and the rows read back as
 `Real.PolyLevelSet.copies` (`eval_nominalCore_copies`).
+
+## Inputs
+* `P` – polynomial level set
+* `a` – number of copies
+
+## Output
+* the level set of `a` copies on fresh variables
 -/
 
 -- Authors:       Claude Opus 5.5

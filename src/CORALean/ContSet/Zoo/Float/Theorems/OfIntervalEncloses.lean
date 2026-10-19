@@ -14,6 +14,17 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 The variable `c + r tᵢ` of the box's float zonotope (stored center `c`, generator `r`) is enclosed
 by both members.
+
+## Inputs
+* `I` – box of the variables
+* `N` – Taylor order
+* `i` – coordinate index
+
+## Hypotheses
+* none
+
+## Conclusion
+* the zoo encloses the box's coordinate function
 -/
 
 -- Authors:       Claude Opus 5.5

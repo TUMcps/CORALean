@@ -10,6 +10,17 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 
 Intersecting `∅` with a set of any representation gives `∅`, so the returned empty set
 denotes the intersection of the two operands, exactly.
+
+## Inputs
+* `S` – type of the other operand
+* `E` – empty set
+* `s` – other operand
+
+## Hypotheses
+* none
+
+## Conclusion
+* `and_` denotes the intersection of both operands exactly
 -/
 
 -- Authors:       Claude Opus 5.5

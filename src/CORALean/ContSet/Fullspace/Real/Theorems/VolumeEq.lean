@@ -9,6 +9,15 @@ public import CORALean.ContSet.Fullspace.Real.Operations.Volume
 
 `Inf`, CORA's value, is the volume of the whole space in positive dimension. At `n = 0` the
 space is a point of volume `1` while CORA answers `NaN`; that case is not claimed.
+
+## Inputs
+* `F` – full space
+
+## Hypotheses
+* `hn` – dimension positive
+
+## Conclusion
+* the Lebesgue volume equals `F.volume`
 -/
 
 -- Authors:       Claude Opus 5.5

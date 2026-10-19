@@ -11,6 +11,16 @@ public import CORALean.ContSet.Capsule.Real.Theorems.RepresentsaOriginIff
 
 `true` makes the capsule its stored center (`representsa_point_sound`, for `0 < n`), and that
 center `0`.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hn` – dimension positive
+* `h` – `representsa_origin` answers true
+
+## Conclusion
+* the capsule denotes the singleton origin
 -/
 
 -- Authors:       Claude Opus 5.5

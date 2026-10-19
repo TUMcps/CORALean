@@ -11,6 +11,13 @@ public import CORALean.ContSet.PolyLevelSet.Real.PolyLevelSet
 CORA's `@levelSet/and_` at the stored data: the rows of both operands stacked, each over its own
 monomials, so the monomial list is the two exponent matrices side by side and a row of one operand
 is blind to the other's monomials.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+
+## Output
+* the level set of both operands' rows stacked
 -/
 
 -- Authors:       Claude Opus 5.5

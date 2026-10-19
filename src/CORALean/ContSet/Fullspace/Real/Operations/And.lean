@@ -9,6 +9,14 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 
 CORA's `@fullspace/and_`: the intersection with anything is that operand, returned as it
 stands. Generic over the other operand, whatever representation it is in.
+
+## Inputs
+* `S` – type of the other operand
+* `_` – full space
+* `s` – other operand
+
+## Output
+* the other operand unchanged
 -/
 
 -- Authors:       Claude Opus 5.5

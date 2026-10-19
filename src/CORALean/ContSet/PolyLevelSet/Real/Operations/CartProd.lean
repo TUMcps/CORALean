@@ -13,6 +13,13 @@ CORA's `@levelSet/cartProd` at the stored data: the rows of both operands stacke
 own variables, so the exponent matrices sit block-diagonally (`PolyZonotope.plusE`) and a row of
 one operand reads exponent zero on every variable of the other. `and_` is the same stacking over
 shared variables.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+
+## Output
+* the level set of the Cartesian product
 -/
 
 -- Authors:       Claude Opus 5.5

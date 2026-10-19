@@ -15,6 +15,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 The intersection of sound enclosures is sound: whatever interval `Zoo.interval` returns holds
 the function's value at every box point. Outer, not exact: each member is only an enclosure, and
 the Taylor model's is the interval-arithmetic bound `Taylm.bounds`.
+
+## Inputs
+* `Z` – zoo
+* `f` – function
+* `t` – point of the normalized box
+
+## Hypotheses
+* `h` – `Z` encloses `f`
+* `ht` – `t` lies in the normalized box
+
+## Conclusion
+* `Z.interval` holds the value of `f` at `t`
 -/
 
 -- Authors:       Claude Opus 5.5

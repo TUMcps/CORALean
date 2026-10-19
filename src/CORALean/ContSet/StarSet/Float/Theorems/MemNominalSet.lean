@@ -9,6 +9,16 @@ public import CORALean.ContSet.StarSet.Float.StarSet
 
 The nominal star set is the stored numbers read as reals, so its points are the `c + G α` over the
 factors in the box `[l, u]` in the predicate's nominal part, each number read through `toReal`.
+
+## Inputs
+* `s` – float star set
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the nominal set iff `x = c + G α` for admissible factors `α`
 -/
 
 -- Authors:       Claude Sonnet 5.5

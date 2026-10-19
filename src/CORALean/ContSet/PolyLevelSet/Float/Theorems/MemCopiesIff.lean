@@ -10,6 +10,17 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalCopies
 # A point of `PolyLevelSet.copies`, over a floating-point scalar
 
 A point of the copies meets `P`'s rows, each within its slack, in every block of its variables.
+
+## Inputs
+* `P` – polynomial level set
+* `a` – number of copies
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the copies iff each block of variables lies in `P`
 -/
 
 -- Authors:       Claude Opus 5.5

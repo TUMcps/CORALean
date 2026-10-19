@@ -17,6 +17,14 @@ rounded-down `mulVecDown`, and what each misses of the exact product (between `0
 segment parameter `t ∈ [-1, 1]`, so as the symmetric box of the gap. The operand's box is mapped
 by `Interval.mtimes`. The radius is `r σ` rounded up, `σ` the `sqrtUp` of the sum of the squared
 entries, rounded up. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `M` – matrix
+* `C` – capsule
+
+## Output
+* a capsule enclosing the image of `C` under `M`
 -/
 
 -- Authors:       Claude Sonnet 5.5

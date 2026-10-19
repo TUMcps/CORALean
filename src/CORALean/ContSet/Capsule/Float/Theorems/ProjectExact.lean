@@ -14,6 +14,17 @@ Reading the stored floats commutes with selecting coordinates, so the nominal ca
 projection is the exact layer's projection of the nominal capsule, and the projected box is the
 projection of the box. That last needs the box nonempty: an empty range in a dropped coordinate
 empties the set but not its projection.
+
+## Inputs
+* `C` – capsule
+* `dims` – coordinates kept
+
+## Hypotheses
+* `hd` – `dims` is injective
+* `hI` – nominal error box nonempty
+
+## Conclusion
+* `project` denotes the projected set exactly
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -13,6 +13,12 @@ inequality is certified by `ltStrict` and every weak one by `le`, so `true` is a
 refutes nothing; `g ≠ 0` is a coordinate whose absolute value is certified positive. The error box
 must be nonempty (`inf ≤ sup` in each coordinate), for an empty box makes the set empty; a translate
 of a full-dimensional nominal part by any point of the box is then in the set.
+
+## Inputs
+* `C` – capsule
+
+## Output
+* whether the capsule is certified full-dimensional
 -/
 
 -- Authors:       Claude Opus 5.5

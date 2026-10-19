@@ -11,6 +11,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 Members combined as in the exact layer: the float Taylor models by `Taylm.plus`, the intervals by
 `Interval.plus`, kept where both zoos have them.
+
+## Inputs
+* `Z₁` – first zoo
+* `Z₂` – second zoo
+
+## Output
+* the zoo of the member-wise sum
 -/
 
 -- Authors:       Claude Opus 5.5

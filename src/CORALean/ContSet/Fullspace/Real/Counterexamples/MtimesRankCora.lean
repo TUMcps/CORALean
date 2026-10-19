@@ -32,6 +32,15 @@ run.
 `{(t, t)}`, and `(1, 0)` is not on it. The same holds for `[1; 1] * fullspace(1)` and
 `[1 0; 1 0] * fullspace(2)`. `isFullDim`, `representsa(.., 'fullspace')` and `volume` of the result
 then answer for the plane.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `mtimes` of a singular matrix and the full space contains a point outside the range
 -/
 
 -- Authors:       Claude Sonnet 5.5

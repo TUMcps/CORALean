@@ -14,6 +14,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.ReindexExact
 The exact layer's `reindex` of the nominal capsule is the nominal capsule of the result, and the
 box is relabelled exactly (`Interval.reindex_exact`); relabelling is linear, so it maps the sum of
 the two to the sum of their images. Nothing is rounded.
+
+## Inputs
+* `e` – coordinate relabelling
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* `reindex` denotes the relabelled set exactly
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

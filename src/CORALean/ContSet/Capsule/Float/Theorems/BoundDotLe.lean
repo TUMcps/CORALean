@@ -6,6 +6,19 @@ public import CORALean.ContSet.Capsule.Float.Operations.BoundDot
 
 /-!
 # `Capsule.boundDot` bounds the capsule, in float too
+
+## Inputs
+* `C` – capsule
+* `f` – linear functional
+* `a` – float direction vector
+* `s` – proposed norm of `a`
+
+## Hypotheses
+* `hf` – `a` represents `f`
+* `hs` – `s` bounds the norm of `a`
+
+## Conclusion
+* `f` on the capsule is at most the float bound
 -/
 
 -- Authors:       Claude Sonnet 5.5

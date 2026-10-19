@@ -15,6 +15,15 @@ not positive. `Capsule.isFullDim_iff` gives the exact characterisation; this is 
 CORA's formula differs from it.
 
 Not collected in `Theorems/API.lean`: it needs the `ContSet` instance, which that API feeds.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a full-dimensional capsule whose radius is not positive
 -/
 
 -- Authors:       Claude Opus 5.5

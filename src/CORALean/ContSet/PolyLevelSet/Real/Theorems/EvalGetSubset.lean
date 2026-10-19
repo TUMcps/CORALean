@@ -11,6 +11,19 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetPoint
 The re-parametrized rows at `x` are the original ones at `x` with `xᵣ` sent to `cen + rad xᵣ`:
 `PolyZonotope.getSubset_point` read at the rows' polynomial part (`lhs`), whose point at `x` is
 `A μ_R(x)`.
+
+## Inputs
+* `P` – polynomial level set
+* `r` – variable index
+* `cen` – new center of the variable
+* `rad` – new radius of the variable
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the rows at `x` are `P`'s rows at the rescaled point
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

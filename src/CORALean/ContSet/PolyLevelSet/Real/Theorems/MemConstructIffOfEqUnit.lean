@@ -12,6 +12,17 @@ Where every row is `=` and the box is `[-1, 1]ⁿ`, a point is in the set exactl
 coordinate has modulus at most `1` and it solves `A μ_R(x) = b`: [1, Def. 7]'s `constrDom`, the
 factors of a constrained polynomial zonotope.
 
+## Inputs
+* `P` – polynomial level set
+* `x` – point
+
+## Hypotheses
+* `h` – all rows are equations
+* `hD` – box is the unit box
+
+## Conclusion
+* `x` lies in the set iff it is in the unit box and solves each row
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

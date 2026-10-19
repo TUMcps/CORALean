@@ -11,6 +11,16 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 `-Inf`, CORA's value for the upper support function of the empty set, is the supremum of
 `c` over no point in `EReal`. This is the sense in which the convention is the right
 one; `SupportBound.ofEmpty` is the same fact over `ℝ`, every number bounding `∅`.
+
+## Inputs
+* `E` – empty set
+* `c` – direction functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* `supportFunc` is the supremum of `c` over the set
 -/
 
 -- Authors:       Claude Opus 5.5
