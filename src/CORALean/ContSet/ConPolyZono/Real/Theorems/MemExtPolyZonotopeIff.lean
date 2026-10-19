@@ -37,12 +37,15 @@ variable {n : ℕ}
 theorem ConPolyZono.aux_sum_ext (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p → ℝ) : -- --- STMT ---
     ∑ i : Fin cPZ.extPolyZonotope.h,
         PolyZonotope.monomial cPZ.extPolyZonotope.E a i • cPZ.extPolyZonotope.G i
-      = (∑ i : Fin cPZ.h, PolyZonotope.monomial cPZ.E a i • ((cPZ.G i, 0) : Vec ℝ n × Vec ℝ cPZ.m))
-        + ∑ l : Fin cPZ.q, PolyZonotope.monomial cPZ.R a l
-            • ((0, ConPolyZono.consCol cPZ.A l) : Vec ℝ n × Vec ℝ cPZ.m) := by -- --- PROOF ---
-  show ∑ i : Fin (cPZ.h + cPZ.q), PolyZonotope.monomial (ConPolyZono.appendE cPZ.E cPZ.R) a i
-      • (Fin.append (fun i => ((cPZ.G i, 0) : Vec ℝ n × Vec ℝ cPZ.m))
-          (fun l => ((0, ConPolyZono.consCol cPZ.A l) : Vec ℝ n × Vec ℝ cPZ.m)) i) = _
+      = (∑ i : Fin cPZ.h, PolyZonotope.monomial cPZ.E a i • ((cPZ.G i,
+          0) : Vec ℝ n × Vec ℝ cPZ.cons.m))
+        + ∑ l : Fin cPZ.cons.q, PolyZonotope.monomial cPZ.cons.R a l
+            • ((0, ConPolyZono.consCol cPZ.cons.A l) : Vec ℝ n × Vec ℝ cPZ.cons.m)
+                := by -- --- PROOF ---
+  show ∑ i : Fin (cPZ.h + cPZ.cons.q),
+      PolyZonotope.monomial (ConPolyZono.appendE cPZ.E cPZ.cons.R) a i
+      • (Fin.append (fun i => ((cPZ.G i, 0) : Vec ℝ n × Vec ℝ cPZ.cons.m))
+          (fun l => ((0, ConPolyZono.consCol cPZ.cons.A l) : Vec ℝ n × Vec ℝ cPZ.cons.m)) i) = _
   rw [Fin.sum_univ_add]
   simp only [ConPolyZono.monomial_appendE_left, ConPolyZono.monomial_appendE_right,
     Fin.append_left, Fin.append_right]
@@ -51,10 +54,10 @@ theorem ConPolyZono.aux_sum_ext (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mem_extPolyZonotope_iff (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec ℝ n)
-    (t : Vec ℝ cPZ.m) : -- --- STMT ---
+    (t : Vec ℝ cPZ.cons.m) : -- --- STMT ---
     (p, t) ∈ cPZ.extPolyZonotope.construct ↔
       ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
-        ∧ (∀ i, (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R a) i = cPZ.b i + t i)
+        ∧ (∀ i, (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R a) i = cPZ.cons.b i + t i)
         ∧ p = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i
             + ∑ j, β j • cPZ.GI j := by -- --- PROOF ---
   constructor

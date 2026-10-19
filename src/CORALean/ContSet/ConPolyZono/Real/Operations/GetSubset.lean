@@ -25,9 +25,9 @@ constraint columns, in `Theorems/GetSubsetConstruct.lean`.
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       12-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -48,15 +48,14 @@ def ConPolyZono.getSubset (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
   p := cPZ.p
   h := (cPZ.toPolyZonotope.getSubset r cen rad).h
   qI := cPZ.qI
-  m := cPZ.m
-  q := (cPZ.consPolyZonotope.getSubset r cen rad).h
   c := cPZ.c
   G := (cPZ.toPolyZonotope.getSubset r cen rad).G
   E := (cPZ.toPolyZonotope.getSubset r cen rad).E
   GI := cPZ.GI
-  A := fun i j => (cPZ.consPolyZonotope.getSubset r cen rad).G j i
-  b := cPZ.b
-  R := (cPZ.consPolyZonotope.getSubset r cen rad).E
+  cons := ⟨cPZ.cons.m, (cPZ.consPolyZonotope.getSubset r cen rad).h,
+    fun i j => (cPZ.consPolyZonotope.getSubset r cen rad).G j i,
+    (cPZ.consPolyZonotope.getSubset r cen rad).E, cPZ.cons.b, cPZ.cons.op⟩
+  cons_eq := cPZ.cons_eq
 
 end CORALean.Real
 

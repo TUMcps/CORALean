@@ -1,10 +1,11 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Float.Operations.PlusA
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.CartProd
+public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 
 @[expose] public section
 
@@ -12,9 +13,9 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 # `ConPolyZono.plus`
 
 `PolyZonotope.plus` with the two constraint systems carried along side by side,
-and the reason it refines is that the carrying is pure bookkeeping: `plusA`
-places the two matrices block-diagonally with `zero` in the off-blocks and `b` and `b_error`
-concatenate, so not one entry of the constraint system is computed. Only the
+and the reason it refines is that the carrying is pure bookkeeping: the float
+`PolyLevelSet.cartProd` places the two matrices block-diagonally with `zero` in the off-blocks
+and `b` and `b_error` concatenate, so not one entry of the constraint system is computed. Only the
 center rounds, exactly as for an unconstrained polynomial zonotope.
 -/
 
@@ -39,16 +40,12 @@ def ConPolyZono.plus (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZo
   p := cPZ₁.p + cPZ₂.p
   h := cPZ₁.h + cPZ₂.h
   qI := cPZ₁.qI + cPZ₂.qI
-  m := cPZ₁.m + cPZ₂.m
-  q := cPZ₁.q + cPZ₂.q
   c := fun i => addDown (cPZ₁.c i) (cPZ₂.c i)
   G := Fin.append cPZ₁.G cPZ₂.G
   E := Real.PolyZonotope.plusE cPZ₁.E cPZ₂.E
   GI := Fin.append cPZ₁.GI cPZ₂.GI
-  A := ConPolyZono.plusA cPZ₁.A cPZ₂.A
-  b := ConPolyZono.plusB cPZ₁.b cPZ₂.b
-  b_error := ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error
-  R := Real.PolyZonotope.plusE cPZ₁.R cPZ₂.R
+  cons := cPZ₁.cons.cartProd cPZ₂.cons
+  cons_eq := Real.LevelSet.append_op_eq cPZ₁.cons_eq cPZ₂.cons_eq
   I_error := (cPZ₁.I_error.plus cPZ₂.I_error).plus (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c)
 
 end CORALean.Float

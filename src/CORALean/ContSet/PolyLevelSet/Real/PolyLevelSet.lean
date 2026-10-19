@@ -32,7 +32,7 @@ proved of a `LevelSet` holds here; the stored data are what an operation can com
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -62,9 +62,13 @@ structure PolyLevelSet (n : ℕ) where
   /-- The comparison of each constraint with `0`. -/
   op : Fin m → CompOp
 
+/-- The value of every constraint at `x`, `A μ_R(x) - b`: what each operator compares with `0`. -/
+def PolyLevelSet.eval (P : PolyLevelSet n) (x : Vec ℝ n) : Vec ℝ P.m :=
+  P.A *ᵥ PolyZonotope.monomial P.R x - P.b
+
 /-- The points meeting every constraint `(A μ_R(x) - b)ᵢ ⋈ᵢ 0`. -/
 def PolyLevelSet.construct (P : PolyLevelSet n) : Set (Vec ℝ n) :=
-  {x | ∀ i, (P.op i).holds ((P.A *ᵥ PolyZonotope.monomial P.R x - P.b) i)}
+  {x | ∀ i, (P.op i).holds (P.eval x i)}
 
 end CORALean.Real
 

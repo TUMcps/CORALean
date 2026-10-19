@@ -50,18 +50,16 @@ def ConPolyZono.convHullSingle (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
   p := a * cPZ.p + a
   h := a + (a * cPZ.h + a * cPZ.h)
   qI := 0
-  m := a * cPZ.m + 1
-  q := a * cPZ.q + a
   c := fun i => nsmulDown a (cPZ.c i)
   G := ConPolyZono.convHullG a cPZ.c cPZ.G
   E := Real.ConPolyZono.convHullE a cPZ.E
   GI := Fin.elim0
-  A := ConPolyZono.convHullA a cPZ.A
-  b := ConPolyZono.convHullB a cPZ.b
-  -- each copy's slack, and the weight row's rounding gap
-  b_error := Fin.append (Real.ConPolyZono.repVec a cPZ.b_error)
-    (fun _ => subUp (intUp (1 - (a : ℤ))) (intDown (1 - (a : ℤ))))
-  R := Real.ConPolyZono.convHullR a cPZ.R
+  -- the copies' rows, each with its slack, and the weight row with its rounding gap
+  cons := ⟨a * cPZ.cons.m + 1, a * cPZ.cons.q + a, ConPolyZono.convHullA a cPZ.cons.A,
+    Real.ConPolyZono.convHullR a cPZ.cons.R, ConPolyZono.convHullB a cPZ.cons.b,
+    Fin.append (Real.ConPolyZono.repVec a cPZ.cons.b_error)
+      (fun _ => subUp (intUp (1 - (a : ℤ))) (intDown (1 - (a : ℤ)))), fun _ => .eq⟩
+  cons_eq _ := rfl
   -- the operand's box, and what storing `a c` from below leaves to pay
   I_error := cPZ.I_error.plus (Interval.residual (fun i => nsmulDown a (cPZ.c i))
     (fun i => nsmulUp a (cPZ.c i)) (fun i => nsmulDown a (cPZ.c i)))

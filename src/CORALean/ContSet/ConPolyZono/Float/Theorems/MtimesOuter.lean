@@ -16,7 +16,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesOuter
 `PolyZonotope.mtimes_outer`'s argument at one more field, and the extra field
 costs nothing: the constraint is a statement about the factor vector, the same
 factor vector witnesses the image, and the stored `A`, `b` and `R` are the same
-floats. `satisfies_mtimes` transfers by `id`, and every lemma the polynomial
+floats. The copied constraint transfers by `id`, and every lemma the polynomial
 zonotope's proof used — `mulVec_split`, `matMul_close`, `mem_generatorError` —
 is reused rather than restated.
 -/

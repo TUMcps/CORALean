@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ContainsPoint
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -43,12 +44,12 @@ theorem ConPolyZono.containsPoint_iff (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec �
   constructor
   · -- a zero residual is the constraint
     rintro ⟨a, β, ha, hβ, hc, hx⟩
-    refine ⟨a, β, ha, hβ, fun i => ?_, hx⟩
+    refine ⟨a, β, ha, hβ, (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr fun i => ?_, hx⟩
     simpa using hc i
   · -- and the constraint is a zero residual
     rintro ⟨a, β, ha, hβ, hs, hx⟩
     refine ⟨a, β, ha, hβ, fun i => ?_, hx⟩
-    simpa using hs i
+    simpa using (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs i
 
 end CORALean.Real
 

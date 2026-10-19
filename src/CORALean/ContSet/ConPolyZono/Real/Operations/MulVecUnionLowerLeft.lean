@@ -3,8 +3,6 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerA
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerB
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLowerR
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusALeft
-public import CORALean.ContSet.ConPolyZono.Real.Operations.MulVecPlusARight
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ProdUnitCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendELeft
@@ -12,6 +10,8 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialAppendERight
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
+public import CORALean.ContSet.ConPolyZono.Real.Operations.PlusA
+public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
 
@@ -40,6 +40,20 @@ shared selector column contributes — `0.5 b₁ α₁`. At `α₁ = 1` that shi
 namespace CORALean.Real
 
 open Matrix
+
+
+-- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+-- a row of the block-diagonal product, read on the block's own columns alone
+theorem ConPolyZono.aux_mulVec_plusA_left {m₁ q₁ m₂ q₂ : ℕ} (A₁ : Mat ℝ m₁ q₁)
+    (A₂ : Mat ℝ m₂ q₂) (v : Fin (q₁ + q₂) → ℝ) (i : Fin m₁) :
+    (ConPolyZono.plusA A₁ A₂ *ᵥ v) (Fin.castAdd m₂ i)
+      = (A₁ *ᵥ fun l => v (Fin.castAdd q₂ l)) i := by -- --- PROOF ---
+  show ∑ l : Fin (q₁ + q₂), ConPolyZono.plusA A₁ A₂ (Fin.castAdd m₂ i) l * v l
+      = ∑ l, A₁ i l * v (Fin.castAdd q₂ l)
+  rw [Fin.sum_univ_add]
+  simp only [ConPolyZono.plusA, Fin.append_left, Fin.append_right, Pi.zero_apply,
+    zero_mul, Finset.sum_const_zero, add_zero]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -78,7 +92,7 @@ theorem ConPolyZono.mulVec_unionLower_left {p₁ p₂ m₁ q₁ m₂ q₂ : ℕ}
             (fun k => a (Fin.castAdd 2 k)) l)
         = (ConPolyZono.plusA A₁ A₂ *ᵥ PolyZonotope.monomial (PolyZonotope.plusE R₁ R₂)
             fun k => a (Fin.castAdd 2 k)) (Fin.castAdd m₂ i) from rfl,
-      ConPolyZono.mulVec_plusA_left]
+      ConPolyZono.aux_mulVec_plusA_left]
     congr 1
     exact funext fun l => PolyZonotope.monomial_plusE_left R₁ R₂ _ l
   rw [hblk, hlast]

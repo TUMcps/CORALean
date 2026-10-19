@@ -122,12 +122,13 @@ theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ} (ht : |t| ≤ 
 satisfies too. -/
 theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (ha : ∀ k, |a k| ≤ 1)
-    (hsat : ∀ i, |((Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).A
+    (hsat : ∀ i, |((Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).cons.A
         *ᵥ Real.PolyZonotope.monomial
-          (Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).R a) i
-      - (Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).b i|
+          (Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).cons.R a) i
+      - (Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).cons.b i|
       ≤ |Fin.append (0 : Vec ℝ (1 + 1))
-          (Fin.append (toRealVec cPZ₁.b_error) (toRealVec cPZ₂.b_error)) i|) : -- --- STMT ---
+          (Fin.append (toRealVec cPZ₁.cons.b_error)
+            (toRealVec cPZ₂.cons.b_error)) i|) : -- --- STMT ---
     (fun i => toReal ((cPZ₁.union cPZ₂).c i)
       + ∑ l, toReal ((cPZ₁.union cPZ₂).G l i)
         * Real.PolyZonotope.monomial (cPZ₁.union cPZ₂).E a l)
@@ -145,7 +146,7 @@ theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 theorem ConPolyZono.union_point_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {y e : Vec ℝ n}
     (hy : y ∈ ((Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).relax
       (Fin.append (0 : Vec ℝ (1 + 1))
-        (Fin.append (toRealVec cPZ₁.b_error) (toRealVec cPZ₂.b_error)))).construct)
+        (Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error)))).construct)
     (he : e ∈ (cPZ₁.I_error.or cPZ₂.I_error).construct) : -- --- STMT ---
     y + e ∈ (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
   obtain ⟨a, β, ha, hβ, hsat, hy⟩ := (Real.ConPolyZono.mem_relax_iff _ _).mp hy

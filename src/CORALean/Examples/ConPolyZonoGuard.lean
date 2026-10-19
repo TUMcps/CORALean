@@ -1,6 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
-import CORALean.ContSet.ConPolyZono.Real.Theorems.Basic
+import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeConPolyZonoContains
 import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConPolyZonoExact
 import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
@@ -43,10 +43,12 @@ example (cPZ : ConPolyZono (Vec ℝ n)) (G : ConZonotope (Vec ℝ n)) :
   rw [ConZonotope.conPolyZono_exact G]
   exact ConPolyZono.intersection_exact cPZ G.conPolyZono
 
-/-- The paper's `A μ(α) = b` is the factor constraint, a polynomial level set with `=` rows. -/
-example (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p → ℝ) (h : cPZ.satisfies a) :
-    a ∈ cPZ.cons.construct :=
-  (ConPolyZono.satisfies_iff_mem_cons cPZ a).mp h
+/-- The paper's `A μ(α) = b` is the factor constraint: `cons` is a polynomial level set with `=`
+in every row, and a point of it solves the equations. -/
+example (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p → ℝ) :
+    a ∈ cPZ.cons.construct
+      ↔ ∀ i, (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R a) i = cPZ.cons.b i :=
+  PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq
 
 end Real
 

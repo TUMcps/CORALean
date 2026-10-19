@@ -129,8 +129,8 @@ def ofPZ {n : ℕ} (P : PolyZonotope (Vec 𝕋 n)) : Out :=
     vecF P.c ++ matF P.G ++ matF P.GI ++ boxF P.I_error, false⟩
 
 def ofCPZ {n : ℕ} (P : ConPolyZono 𝕋 (Vec 𝕋 n)) : Out :=
-  ⟨s!"p={P.p} h={P.h} qI={P.qI} m={P.m} q={P.q} c={vecS P.c} err={boxS P.I_error}",
-    vecF P.c ++ matF P.G ++ matF P.GI ++ matF P.A ++ vecF P.b ++ vecF P.b_error
+  ⟨s!"p={P.p} h={P.h} qI={P.qI} m={P.cons.m} q={P.cons.q} c={vecS P.c} err={boxS P.I_error}",
+    vecF P.c ++ matF P.G ++ matF P.GI ++ matF P.cons.A ++ vecF P.cons.b ++ vecF P.cons.b_error
       ++ boxF P.I_error, false⟩
 
 -- the remaining representations, and the containers of sets

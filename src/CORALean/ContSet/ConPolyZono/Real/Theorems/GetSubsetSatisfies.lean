@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MulVecGetSubset
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCongr
 
 @[expose] public section
 
@@ -13,7 +14,7 @@ holds at `a` with factor `r` sent through `αᵣ ↦ cen + rad·αᵣ`: `mulVec_
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -21,7 +22,6 @@ holds at `a` with factor `r` sent through `αᵣ ↦ cen + rad·αᵣ`: `mulVec_
 
 namespace CORALean.Real
 
-open Matrix
 
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
@@ -32,10 +32,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 factors. -/
 theorem ConPolyZono.getSubset_satisfies (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
     (a : Fin cPZ.p → ℝ) :
-    (cPZ.getSubset r cen rad).satisfies a
-      ↔ cPZ.satisfies (Function.update a r (cen + rad * a r)) := by
-  simp only [ConPolyZono.satisfies, ConPolyZono.holds, ConPolyZono.mulVec_getSubset]
-  rfl
+    a ∈ (cPZ.getSubset r cen rad).cons.construct
+      ↔ (Function.update a r (cen + rad * a r)) ∈ cPZ.cons.construct :=
+  PolyLevelSet.mem_congr cPZ.cons (ConPolyZono.mulVec_getSubset cPZ r cen rad a)
 
 end CORALean.Real
 

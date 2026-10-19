@@ -1210,13 +1210,19 @@ denotes `nominal ⊕ I_error`); rounding is never folded silently into a paramet
 representation provides a sound `absorbRounding`, which moves `I_error` into the parameters where
 the representation can hold it (a zonotope into box generators, a polyhedron into the right-hand
 side `b`, together with the slack its rows record besides the box, a constrained polynomial
-zonotope into independent generators, the slack its equality rows record (`b_error`) into a factor
-per row, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
+zonotope into independent generators, the slack its constraint's equality rows record
+(`cons.b_error`) into a factor per row, a star set into factors with the box's own bounds, a capsule into its radius, a Taylor
 model into its remainder, an ellipsoid into its shape matrix by an outer ellipsoid of its sum with
 a ball holding the box), with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
 A row that is an equation has no interior to absorb its own rounding, so a float representation
 with equality rows records it per row in a field `<name>_error` beside the box, read through
-`|·|`, and its constructors set it to zero.
+`|·|`, and its constructors set it to zero; a representation that holds its rows in a float
+representation of their own (`ConZonotope.P`, `ConPolyZono.cons`) inherits that one's `_error`
+fields, and its `absorbRounding` names them too, moving them or saying where they stay. A float
+type whose variables are no ambient points, a constraint system such as the float `PolyLevelSet`,
+has no box to absorb: it records its rounding in its `_error` fields and says so on one line of its
+main docstring, `` There is no `I_error` and no `absorbRounding`: `` and the reason, which the check
+accepts in place of the box, and refuses on a type that has one.
 `absorbRounding` may itself round, so it does **not** promise an empty `I_error` afterwards: the
 result's box holds only the rounding of the absorption step, often exactly zero, and a caller
 must not assume `I_error = 0` after absorbing; where it is cheap, a lemma bounds the residual

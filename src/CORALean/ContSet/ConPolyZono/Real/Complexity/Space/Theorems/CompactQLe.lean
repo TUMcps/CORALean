@@ -27,11 +27,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 omit [Module ℝ α] in
 /-- An upper bound on the `q` count of `compact`'s result. -/
-theorem ConPolyZono.compact_q_le (cPZ : ConPolyZono α) : (cPZ.compact).q ≤ cPZ.q := by
-  show (PolyZonotope.compactKeep cPZ.compactGens.R
-    (ConPolyZono.consCol cPZ.compactGens.A)).card ≤ cPZ.q
-  calc _ ≤ Fintype.card (Fin cPZ.q) := Finset.card_le_univ _
-    _ = cPZ.q := Fintype.card_fin cPZ.q
+theorem ConPolyZono.compact_q_le (cPZ : ConPolyZono α) : (cPZ.compact).cons.q ≤ cPZ.cons.q := by
+  show (PolyZonotope.compactKeep cPZ.compactGens.cons.R
+    (ConPolyZono.consCol cPZ.compactGens.cons.A)).card ≤ cPZ.cons.q
+  calc _ ≤ Fintype.card (Fin cPZ.cons.q) := Finset.card_le_univ _
+    _ = cPZ.cons.q := Fintype.card_fin cPZ.cons.q
 
 end CORALean.Real
 

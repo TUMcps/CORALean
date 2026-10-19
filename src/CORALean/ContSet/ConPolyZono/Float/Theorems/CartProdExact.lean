@@ -4,10 +4,9 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.CartProd
 public import CORALean.Global.Float.GenBlockDiag
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.RelaxCartProd
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealMatPlusA
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.ToRealVecPlusB
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
 public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.ToRealMatCartProd
 
 @[expose] public section
 
@@ -36,6 +35,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
+
+/-- The product's rows, read back, are the product of the read-back rows. -/
+theorem PolyLevelSet.aux_nominalCore_cartProd (P₁ : PolyLevelSet 𝕋 n₁)
+    (P₂ : PolyLevelSet 𝕋 n₂) :
+    (P₁.cartProd P₂).nominalCore = P₁.nominalCore.cartProd P₂.nominalCore := by -- --- PROOF ---
+  show (⟨_, _, toRealMat (P₁.cartProd P₂).A, _, toRealVec (P₁.cartProd P₂).b, _⟩ :
+    Real.PolyLevelSet (n₁ + n₂)) = _
+  rw [PolyLevelSet.toRealMat_cartProd, show toRealVec (P₁.cartProd P₂).b
+    = Fin.append (toRealVec P₁.b) (toRealVec P₂.b) from toRealVec_append _ _]
+  rfl
 
 theorem ConPolyZono.aux_realG_left (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂))
@@ -77,9 +86,10 @@ theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n�
     InflatedContSet.nominal (cPZ₁.cartProd cPZ₂) =
       Real.ConPolyZono.map (appendLinear n₁ n₂)
         ((Real.ConPolyZono.cartProd cPZ₁.nominalCore cPZ₂.nominalCore).relax
-          (Fin.append (toRealVec cPZ₁.b_error) (toRealVec cPZ₂.b_error))) := by -- --- PROOF ---
-  show (⟨_, _, _, _, _, _, _, _, _, _, _, _⟩ : Real.ConPolyZono (Vec ℝ (n₁ + n₂))) =
-    ⟨_, _, _, _, _, _, _, _, _, _, _, _⟩
+          (Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error)))
+              := by -- --- PROOF ---
+  show (⟨_, _, _, _, _, _, _, _, _⟩ : Real.ConPolyZono (Vec ℝ (n₁ + n₂))) =
+    ⟨_, _, _, _, _, _, _, _, _⟩
   congr 1
   · -- the centers
     rw [appendLinear_apply]
@@ -110,18 +120,10 @@ theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n�
           ((Real.ConPolyZono.cartProd cPZ₁.nominalCore cPZ₂.nominalCore).GI (Fin.natAdd cPZ₁.qI l))
       rw [toReal_genBlockDiag_right, ConPolyZono.aux_realGI_right, appendLinear_apply]
       rfl
-  · -- the constraint matrix, with the slack columns
-    funext i
-    have hA := ConPolyZono.toRealMat_plusA cPZ₁.A cPZ₂.A
-    have hs := ConPolyZono.toRealVec_plusB cPZ₁.b_error cPZ₂.b_error
-    show Fin.append (toRealMat (ConPolyZono.plusA cPZ₁.A cPZ₂.A) i)
-        (Pi.single i (toRealVec (ConPolyZono.plusB cPZ₁.b_error cPZ₂.b_error) i))
-      = Fin.append (Real.ConPolyZono.plusA (toRealMat cPZ₁.A) (toRealMat cPZ₂.A) i)
-        (Pi.single i (Fin.append (toRealVec cPZ₁.b_error) (toRealVec cPZ₂.b_error) i))
-    rw [hA, hs]
-    rfl
-  · -- the right-hand sides
-    exact ConPolyZono.toRealVec_plusB _ _
+  · -- the constraint: the read-back product, relaxed by the stacked slacks
+    congr 1
+    · exact PolyLevelSet.aux_nominalCore_cartProd _ _
+    · exact toRealVec_append cPZ₁.cons.b_error cPZ₂.cons.b_error
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

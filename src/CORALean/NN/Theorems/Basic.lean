@@ -5,6 +5,7 @@ public import CORALean.NN.Definitions.Basic
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Operations.Basic
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemLinearIff
 public import CORALean.NN.Operations.ChainEval
 public import CORALean.NN.Operations.RefinableLayerAtPattern
 public import CORALean.NN.Operations.ScheduleCons
@@ -31,6 +32,43 @@ namespace CORALean
 open Matrix
 
 variable {α : Type} [Semiring α] {n m k d : ℕ}
+
+
+-- ===================================  `CatCond.mem_ge_iff`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The guard `CatCond.ge i j` holds at `x` exactly when `xᵢ ≥ xⱼ`. -/
+theorem CatCond.mem_ge_iff (i j : Fin n) (x : Vec ℝ n) :
+    x ∈ (CatCond.ge i j).construct ↔ x j ≤ x i := (Real.PolyLevelSet.mem_linear_iff _ _ _ x).trans
+  (by simp [Real.CompOp.holds, mulVec, dotProduct, sub_mul, Finset.sum_sub_distrib,
+    Pi.single_apply])
+
+
+-- ==================================  `CatCond.mem_neg_iff`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The guard `CatCond.neg i` holds at `x` exactly when `xᵢ < 0`. -/
+theorem CatCond.mem_neg_iff (i : Fin n) (x : Vec ℝ n) :
+    x ∈ (CatCond.neg i).construct ↔ x i < 0 :=
+  (Real.PolyLevelSet.mem_linear_iff _ _ _ x).trans (by simp [Real.CompOp.holds, mulVec])
+
+
+-- =================================  `CatCond.mem_nonneg_iff`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The guard `CatCond.nonneg i` holds at `x` exactly when `xᵢ ≥ 0`. -/
+theorem CatCond.mem_nonneg_iff (i : Fin n) (x : Vec ℝ n) :
+    x ∈ (CatCond.nonneg i).construct ↔ 0 ≤ x i := (Real.PolyLevelSet.mem_linear_iff _ _ _ x).trans
+  (by simp [Real.CompOp.holds, mulVec, dotProduct, Pi.single_apply])
 
 
 -- ====================================  `Chain.eval_cons`  ===================================== --

@@ -31,13 +31,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def ConPolyZono.consPolyZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 cPZ.m) where
+def ConPolyZono.consPolyZonotope (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    PolyZonotope (Vec 𝕋 cPZ.cons.m) where
   p := cPZ.p
-  h := cPZ.q
+  h := cPZ.cons.q
   q := 0
   c := fun _ => zero
-  G := fun l i => cPZ.A i l
-  E := cPZ.R
+  G := fun l i => cPZ.cons.A i l
+  E := cPZ.cons.R
   GI := Fin.elim0
   I_error := Interval.point fun _ => zero
 

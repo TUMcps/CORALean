@@ -17,9 +17,9 @@ sums is then the whole proof.
 `MtimesExact` is this at `A *ᵥ ·`.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   04-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -48,10 +48,10 @@ theorem ConPolyZono.map_exact (f : α →ₗ[ℝ] β) (cPZ : ConPolyZono α) :
   -- both inclusions are `hf` read in the two directions; the constraint never moves
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x, ⟨a, b, ha, hb, hsat, rfl⟩, rfl⟩
-    exact ⟨a, b, ha, hb, (ConPolyZono.satisfies_map f cPZ a).mpr hsat, hf a b⟩
+    exact ⟨a, b, ha, hb, hsat, hf a b⟩
   · rintro y ⟨a, b, ha, hb, hsat, hy⟩
     refine ⟨cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, b j • cPZ.GI j,
-      ⟨a, b, ha, hb, (ConPolyZono.satisfies_map f cPZ a).mp hsat, rfl⟩, ?_⟩
+      ⟨a, b, ha, hb, hsat, rfl⟩, ?_⟩
     rw [hy]
     exact hf a b
 

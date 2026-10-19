@@ -27,7 +27,7 @@ is asked. `γ(⊥) = ∅` is asked, being what a containment proof by meet reads
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -55,7 +55,7 @@ structure CatDomain.Sound {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
   aff_outer {m n : ℕ} (a : S m) (W : Mat 𝕋 n m) (b : Vec 𝕋 n) :
     (fun x => toRealMat W *ᵥ x + toRealVec b) '' construct a ⊆ construct (D.aff a W b)
   meet_outer {n : ℕ} (a : S n) (E : CatCond n) :
-    construct a ∩ {x | E.Holds x} ⊆ construct (D.meet a E)
+    construct a ∩ E.construct ⊆ construct (D.meet a E)
   join_outer {n : ℕ} (a₁ a₂ : S n) : construct a₁ ∪ construct a₂ ⊆ construct (D.join a₁ a₂)
   bot_empty (n : ℕ) : construct (D.bot n) = ∅
 

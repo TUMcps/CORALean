@@ -1,8 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Dependent
-public import CORALean.ContSet.ConPolyZono.Real.Operations.HoldsPadEIff
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesDependentIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemPadVarsIff
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
@@ -17,16 +16,16 @@ public import Mathlib.Tactic.Abel
 The fresh factors are what the independent coefficients were: each occurs in one
 generator, to the first power, and in no constraint row, so it ranges over
 `[-1,1]` under nothing the coefficient did not already answer to.
-`monomial_identE` says the first part and `holds_padE_iff` the second.
+`monomial_identE` says the first part and `PolyLevelSet.mem_padVars_iff` the second.
 
 Both directions are stated through `show`, since the counts of the result are
 projections of a definition and the sum lemmas match only in their reduced
 spelling.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -69,7 +68,7 @@ theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) :
     refine ⟨Fin.append a b, fun _ => 0,
       Fin.addCases (fun k => by simpa using ha k) (fun j => by simpa using hb j),
       fun j => j.elim0, ?_, ?_⟩
-    · refine (ConPolyZono.satisfies_dependent_iff cPZ _).mpr ?_
+    · refine (PolyLevelSet.mem_padVars_iff cPZ.cons cPZ.qI _).mpr ?_
       rw [hA]
       exact hsat
     · show cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i) + ∑ j, b j • cPZ.GI j
@@ -85,7 +84,7 @@ theorem ConPolyZono.dependent_exact (cPZ : ConPolyZono α) :
   · rintro _ ⟨a, b, ha, _, hsat, rfl⟩
     refine ⟨fun k => a (Fin.castAdd cPZ.qI k), fun j => a (Fin.natAdd cPZ.p j),
       fun k => ha _, fun j => ha _,
-      (ConPolyZono.satisfies_dependent_iff cPZ a).mp hsat, ?_⟩
+      (PolyLevelSet.mem_padVars_iff cPZ.cons cPZ.qI a).mp hsat, ?_⟩
     show cPZ.c + (∑ i : Fin (cPZ.h + cPZ.qI),
             PolyZonotope.monomial (PolyZonotope.plusE cPZ.E (PolyZonotope.identE cPZ.qI)) a i
               • Fin.append cPZ.G cPZ.GI i)

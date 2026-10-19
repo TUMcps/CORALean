@@ -33,16 +33,12 @@ def ConPolyZono.empty (n : ℕ) : ConPolyZono 𝕋 (Vec 𝕋 n) where
   p := 0
   h := 0
   qI := 0
-  m := 1
-  q := 0
   c := fun _ => zero
   G := Fin.elim0
   E := fun i => i.elim0
   GI := Fin.elim0
-  A := fun _ j => j.elim0
-  b := fun _ => one
-  b_error := fun _ => zero
-  R := fun i => i.elim0
+  cons := ⟨1, 0, fun _ j => j.elim0, fun i => i.elim0, fun _ => one, fun _ => zero, fun _ => .eq⟩
+  cons_eq _ := rfl
   I_error := Interval.origin n
 
 end CORALean.Float

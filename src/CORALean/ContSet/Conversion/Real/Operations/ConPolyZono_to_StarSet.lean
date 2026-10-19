@@ -5,6 +5,7 @@ public import CORALean.ContSet.PolyLevelSet.Real.Operations.And
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 public import CORALean.ContSet.StarSet.Real.StarSet
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.PadVars
 
 @[expose] public section
 
@@ -21,7 +22,7 @@ and `=` are both needed, which is what the predicate's operators are for.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -44,15 +45,10 @@ def ConPolyZono.starBoxRows (cPZ : ConPolyZono (Vec ℝ n)) :
   b := fun _ => 1
   op := fun _ => .le
 
-/-- The constraint system on the factors, blind to `β` and `z`. -/
+/-- The constraint on the factors, blind to `β` and `z`: `cons` padded with both. -/
 def ConPolyZono.starConsRows (cPZ : ConPolyZono (Vec ℝ n)) :
-    PolyLevelSet (cPZ.p + cPZ.qI + cPZ.h) where
-  m := cPZ.m
-  q := cPZ.q
-  A := cPZ.A
-  R := ConPolyZono.padE (ConPolyZono.padE cPZ.R cPZ.qI) cPZ.h
-  b := cPZ.b
-  op := fun _ => .eq
+    PolyLevelSet (cPZ.p + cPZ.qI + cPZ.h) :=
+  (cPZ.cons.padVars cPZ.qI).padVars cPZ.h
 
 /-- `zₗ - μ_{E}(α)ₗ = 0`: each `z` is its generator's monomial. -/
 def ConPolyZono.starGenRows (cPZ : ConPolyZono (Vec ℝ n)) :

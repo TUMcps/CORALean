@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ConPolyZono.supportBound_le (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal cPZ).polyZonotope.point ''
-      {α | (∀ k, |α k| ≤ 1) ∧ (InflatedContSet.nominal cPZ).satisfies α}) c) :
+      {α | (∀ k, |α k| ≤ 1) ∧ α ∈ (InflatedContSet.nominal cPZ).cons.construct}) c) :
     ∀ x ∈ cPZ.construct, c x ≤ toReal (cPZ.supportBound a hc u).val :=
   (cPZ.supportBound a hc u).le
 

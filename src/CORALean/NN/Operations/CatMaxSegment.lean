@@ -1,5 +1,7 @@
 module
 
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.And
+public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Definitions.Cat
 public import CORALean.NN.Layers.Operations.SelectMat
 
@@ -24,7 +26,7 @@ which always holds; it is what a conjunction of `k + 1` atoms needs to be nonemp
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -43,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 def Cat.maxSegment (a k b : ℕ) : Cat 𝕋 (a + (k + 1) + b) (a + 1 + b) :=
   let seg : Fin (k + 1) → Fin (a + (k + 1) + b) := fun q => ⟨a + q.val, by omega⟩
   let isMax : Fin (k + 1) → CatCond (a + (k + 1) + b) := fun p =>
-    Fin.foldr (k + 1) (fun q acc => .and (.ge (seg p) (seg q)) acc) (.ge (seg p) (seg p))
+    Fin.foldr (k + 1) (fun q acc => (CatCond.ge (seg p) (seg q)).and_ acc) (.ge (seg p) (seg p))
   let keep : Fin (k + 1) → Fin (a + 1 + b) → Fin (a + (k + 1) + b) := fun p r =>
     ⟨if r.val < a then r.val else if r.val = a then a + p.val else r.val + k,
       by have := r.isLt; have := p.isLt; split_ifs <;> omega⟩

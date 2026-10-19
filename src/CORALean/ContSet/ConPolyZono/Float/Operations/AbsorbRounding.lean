@@ -6,6 +6,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.PlusE
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ErrorBound
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.Relax
 
 @[expose] public section
 
@@ -41,14 +42,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 its own, the box left over the origin and the slack `zero`. -/
 def ConPolyZono.absorbRounding (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   { cPZ with
-    p := cPZ.p + cPZ.m
+    p := cPZ.p + cPZ.cons.m
     qI := cPZ.qI + n
-    q := cPZ.q + cPZ.m
-    E := Real.ConPolyZono.padE cPZ.E cPZ.m
+    E := Real.ConPolyZono.padE cPZ.E cPZ.cons.m
     GI := Fin.append cPZ.GI (diagonalBlock (PolyZonotope.errorBound cPZ.I_error))
-    A := fun i => Fin.append (cPZ.A i) (diagonalBlock cPZ.b_error i)
-    b_error := fun _ => zero
-    R := Real.PolyZonotope.plusE cPZ.R (Real.PolyZonotope.identE cPZ.m)
+    -- the slack `cons.b_error` of each row, as a factor of its own, the slack left `zero`
+    cons := cPZ.cons.relax
+    cons_eq := cPZ.cons_eq
     I_error := Interval.origin n }
 
 end CORALean.Float

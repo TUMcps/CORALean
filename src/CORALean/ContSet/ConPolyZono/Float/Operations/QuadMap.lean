@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
 public import CORALean.ContSet.ConPolyZono.Real.Operations.PadE
 public import CORALean.ContSet.PolyZonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapDep
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.PadVars
 
 @[expose] public section
 
@@ -40,9 +41,8 @@ def ConPolyZono.quadMap (Q : Fin k → Mat 𝕋 n n) (cPZ : ConPolyZono 𝕋 (Ve
   let pZ := cPZ.toPolyZonotope.absorbRounding
   -- the image of the generator part, its rounding in the error box
   let qZ := PolyZonotope.quadMapDep Q pZ
-  { p := qZ.p, h := qZ.h, qI := 0, m := cPZ.m, q := cPZ.q, c := qZ.c, G := qZ.G, E := qZ.E,
-    GI := Fin.elim0, A := cPZ.A, b := cPZ.b, b_error := cPZ.b_error,
-    R := Real.ConPolyZono.padE cPZ.R (cPZ.qI + n), I_error := qZ.I_error }
+  { p := qZ.p, h := qZ.h, qI := 0, c := qZ.c, G := qZ.G, E := qZ.E, GI := Fin.elim0,
+    cons := cPZ.cons.padVars (cPZ.qI + n), cons_eq := cPZ.cons_eq, I_error := qZ.I_error }
 
 end CORALean.Float
 

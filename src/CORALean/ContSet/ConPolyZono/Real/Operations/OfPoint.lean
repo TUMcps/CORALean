@@ -32,7 +32,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- A single point, as a constrained polynomial zonotope with no generators
 and an empty constraint system. -/
 def ConPolyZono.ofPoint (v : α) : ConPolyZono α :=
-  ⟨0, 0, 0, 0, 0, v, Fin.elim0, Fin.elim0, Fin.elim0, 0, 0, Fin.elim0⟩
+  ⟨0, 0, 0, v, Fin.elim0, Fin.elim0, Fin.elim0, ⟨0, 0, 0, Fin.elim0, 0, Fin.elim0⟩,
+      fun i => i.elim0⟩
 
 end CORALean.Real
 

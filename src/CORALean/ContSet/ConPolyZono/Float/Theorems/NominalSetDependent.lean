@@ -6,6 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.MonomialPadE
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemPadVarsIff
 
 @[expose] public section
 
@@ -54,19 +55,13 @@ theorem ConPolyZono.aux_sum_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
 
 theorem ConPolyZono.nominalSet_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
     nominalSet cPZ.dependent = nominalSet cPZ := by -- --- PROOF ---
-  -- the constraint rows read the freed factors at exponent zero
-  have hR : ∀ a : Fin (cPZ.p + cPZ.qI) → ℝ, Real.PolyZonotope.monomial cPZ.dependent.R a
-      = Real.PolyZonotope.monomial cPZ.R (fun k => a (Fin.castAdd cPZ.qI k)) :=
-    fun a => funext fun l => Real.ConPolyZono.monomial_padE cPZ.R cPZ.qI a l
   ext x
   rw [ConPolyZono.mem_nominalSet_iff, ConPolyZono.mem_nominalSet_iff]
   constructor
   · rintro ⟨a, β, ha, -, hs, hx⟩
     refine ⟨fun k => a (Fin.castAdd cPZ.qI k), fun j => a (Fin.natAdd cPZ.p j),
-      fun k => ha _, fun j => ha _, fun i => ?_, fun i => ?_⟩
-    · have h := hs i
-      rw [hR] at h
-      exact h
+      fun k => ha _, fun j => ha _, (PolyLevelSet.mem_padVars_iff cPZ.cons cPZ.qI a).mp hs,
+      fun i => ?_⟩
     · have hz : ∑ j, toReal (cPZ.dependent.GI j i) * β j = 0 :=
         Finset.sum_eq_zero fun j _ => j.elim0
       rw [hx i, ConPolyZono.aux_sum_dependent, hz, add_zero, ← add_assoc]
@@ -79,10 +74,8 @@ theorem ConPolyZono.nominalSet_dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
       funext fun j => Fin.append_right a β j
     refine ⟨Fin.append a β, Fin.elim0,
       Fin.addCases (fun k => by simpa using ha k) (fun j => by simpa using hβ j),
-      fun j => j.elim0, fun i => ?_, fun i => ?_⟩
-    · have h := hs i
-      rw [← hA, ← hR] at h
-      exact h
+      fun j => j.elim0, (PolyLevelSet.mem_padVars_iff cPZ.cons cPZ.qI _).mpr (by rw [hA]; exact hs),
+      fun i => ?_⟩
     · rw [hx i]
       show _ = toReal (cPZ.c i) + (∑ l, toReal (cPZ.dependent.G l i)
           * Real.PolyZonotope.monomial cPZ.dependent.E (Fin.append a β) l)

@@ -16,7 +16,7 @@ order, with no compaction, alignment or row sign flips, so the test is sound, no
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -31,13 +31,14 @@ variable {α : Type}
 
 /-- `conPolyZono/isequal` at tolerance `0`, without compaction or reordering. -/
 def ConPolyZono.isequal (Z S : ConPolyZono α) : Prop :=
-  ∃ (ep : Z.p = S.p) (eh : Z.h = S.h) (eq : Z.qI = S.qI) (_ : Z.m = S.m) (es : Z.q = S.q),
+  ∃ (ep : Z.p = S.p) (eh : Z.h = S.h) (eq : Z.qI = S.qI) (_ : Z.cons.m = S.cons.m)
+    (es : Z.cons.q = S.cons.q),
     Z.c = S.c
     ∧ (∀ j, Z.G j = S.G (Fin.cast eh j))
     ∧ (∀ k i, Z.E k i = S.E (Fin.cast ep k) (Fin.cast eh i))
     ∧ (∀ j, Z.GI j = S.GI (Fin.cast eq j))
-    ∧ HEq Z.A S.A ∧ HEq Z.b S.b
-    ∧ ∀ k i, Z.R k i = S.R (Fin.cast ep k) (Fin.cast es i)
+    ∧ HEq Z.cons.A S.cons.A ∧ HEq Z.cons.b S.cons.b
+    ∧ ∀ k i, Z.cons.R k i = S.cons.R (Fin.cast ep k) (Fin.cast es i)
 
 end CORALean.Real
 

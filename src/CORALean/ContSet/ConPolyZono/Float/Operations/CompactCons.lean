@@ -40,26 +40,24 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- CORA's merge of equal constraint columns, as computed: `compactConsSpec` with
 the representative and kept-column lookups shared between entries. -/
 def ConPolyZono.compactCons (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
-  let rt := PolyZonotope.repTab cPZ.R
+  let rt := PolyZonotope.repTab cPZ.cons.R
   let kt := PolyZonotope.keepTab rt
-  let r : Fin cPZ.q → Fin cPZ.q := fun l => rt.getD l.val l
-  let k := PolyZonotope.tabAt (PolyZonotope.repKeep cPZ.R) kt
-  let gap : Mat 𝕋 cPZ.m (PolyZonotope.repKeep cPZ.R).card := fun i l =>
-    subUp (PolyZonotope.fiberUp r cPZ.A i (k l)) (PolyZonotope.fiberDown r cPZ.A i (k l))
+  let r : Fin cPZ.cons.q → Fin cPZ.cons.q := fun l => rt.getD l.val l
+  let k := PolyZonotope.tabAt (PolyZonotope.repKeep cPZ.cons.R) kt
+  let gap : Mat 𝕋 cPZ.cons.m (PolyZonotope.repKeep cPZ.cons.R).card := fun i l =>
+    subUp (PolyZonotope.fiberUp r cPZ.cons.A i (k l)) (PolyZonotope.fiberDown r cPZ.cons.A i (k l))
   -- only the constraint block changes: its columns, the slack, and the count
   { p := cPZ.p
     h := cPZ.h
     qI := cPZ.qI
-    m := cPZ.m
-    q := (PolyZonotope.repKeep cPZ.R).card
     c := cPZ.c
     G := cPZ.G
     E := cPZ.E
     GI := cPZ.GI
-    A := fun i l => PolyZonotope.fiberDown r cPZ.A i (k l)
-    b := cPZ.b
-    b_error := fun i => addUp (absolute (cPZ.b_error i)) (radius gap i)
-    R := fun a l => cPZ.R a (k l)
+    cons := ⟨cPZ.cons.m, (PolyZonotope.repKeep cPZ.cons.R).card,
+      fun i l => PolyZonotope.fiberDown r cPZ.cons.A i (k l), fun a l => cPZ.cons.R a (k l),
+      cPZ.cons.b, fun i => addUp (absolute (cPZ.cons.b_error i)) (radius gap i), cPZ.cons.op⟩
+    cons_eq := cPZ.cons_eq
     I_error := cPZ.I_error }
 
 end CORALean.Float

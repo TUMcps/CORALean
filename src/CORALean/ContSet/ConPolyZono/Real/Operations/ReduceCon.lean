@@ -48,19 +48,23 @@ namespace CORALean.Real
 /-- Constraint `r` eliminated, by solving it for constraint generator `t`'s
 monomial and substituting that into generator `d` and into the rows that stay. -/
 noncomputable def ConPolyZono.reduceCon {α : Type} [AddCommGroup α] [Module ℝ α]
-    (cPZ : ConPolyZono α) (r : Fin cPZ.m) (d : Fin cPZ.h) (t : Fin cPZ.q) : ConPolyZono α where
+    (cPZ : ConPolyZono α) (r : Fin cPZ.cons.m) (d : Fin cPZ.h) (t : Fin cPZ.cons.q) :
+    ConPolyZono α where
   p := cPZ.p
-  h := (cPZ.h - 1) + (cPZ.q - 1)
+  h := (cPZ.h - 1) + (cPZ.cons.q - 1)
   qI := cPZ.qI
-  m := cPZ.m - 1
-  q := cPZ.q - 1
-  c := cPZ.c + (cPZ.b r / cPZ.A r t) • cPZ.G d
-  G := ConPolyZono.reduceConG cPZ.G cPZ.A r d t
-  E := ConPolyZono.reduceConE cPZ.E cPZ.R d t
+  c := cPZ.c + (cPZ.cons.b r / cPZ.cons.A r t) • cPZ.G d
+  G := ConPolyZono.reduceConG cPZ.G cPZ.cons.A r d t
+  E := ConPolyZono.reduceConE cPZ.E cPZ.cons.R d t
   GI := cPZ.GI
-  A := ConPolyZono.reduceConA cPZ.A r t
-  b := ConPolyZono.reduceConB cPZ.A cPZ.b r t
-  R := fun k i => cPZ.R k (dropIdx t i)
+  cons :=
+    { m := cPZ.cons.m - 1
+      q := cPZ.cons.q - 1
+      A := ConPolyZono.reduceConA cPZ.cons.A r t
+      R := fun k i => cPZ.cons.R k (dropIdx t i)
+      b := ConPolyZono.reduceConB cPZ.cons.A cPZ.cons.b r t
+      op := fun _ => .eq }
+  cons_eq _ := rfl
 
 end CORALean.Real
 

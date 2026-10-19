@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Plus
-public import CORALean.ContSet.ConPolyZono.Real.Operations.SatisfiesPlusIff
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCartProdIff
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 public import Mathlib.Tactic.Abel
 
@@ -29,9 +29,9 @@ constrained the other's factors.
       Informatica, 2023.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -80,7 +80,7 @@ theorem ConPolyZono.plus_exact (cPZ₁ cPZ₂ : ConPolyZono α) :
       Fin.addCases (fun k => by simpa using ha₁ k) (fun k => by simpa using ha₂ k),
       Fin.addCases (fun j => by simpa using hβ₁ j) (fun j => by simpa using hβ₂ j),
       ?_, ?_⟩
-    · refine (ConPolyZono.satisfies_plus_iff cPZ₁ cPZ₂ _).mpr ⟨?_, ?_⟩
+    · refine (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons _).mpr ⟨?_, ?_⟩
       · rw [hA₁]
         exact hs₁
       · rw [hA₂]
@@ -91,7 +91,7 @@ theorem ConPolyZono.plus_exact (cPZ₁ cPZ₂ : ConPolyZono α) :
       abel
   -- back: the appended data split again, giving one point of each set
   · rintro x ⟨a, β, ha, hβ, hsat, rfl⟩
-    obtain ⟨hs₁, hs₂⟩ := (ConPolyZono.satisfies_plus_iff cPZ₁ cPZ₂ a).mp hsat
+    obtain ⟨hs₁, hs₂⟩ := (PolyLevelSet.mem_cartProd_iff cPZ₁.cons cPZ₂.cons a).mp hsat
     refine ⟨cPZ₁.c
               + ∑ i, PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) i • cPZ₁.G i
               + ∑ j, β (Fin.castAdd cPZ₂.qI j) • cPZ₁.GI j,

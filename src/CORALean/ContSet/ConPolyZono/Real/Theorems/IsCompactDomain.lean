@@ -4,6 +4,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 public import Mathlib.Analysis.Normed.Order.Lattice
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -43,15 +44,15 @@ variable {α : Type}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A constraint row is a polynomial in the factors. -/
-theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α) (i : Fin cPZ.m) :
+theorem ConPolyZono.aux_continuous_consRow (cPZ : ConPolyZono α) (i : Fin cPZ.cons.m) :
     Continuous fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) =>
-      (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i := by -- --- PROOF ---
+      (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R ab.1) i := by -- --- PROOF ---
   have hrow : (fun ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) =>
-        (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i)
-      = fun ab => ∑ l, cPZ.A i l * PolyZonotope.monomial cPZ.R ab.1 l := rfl
+        (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R ab.1) i)
+      = fun ab => ∑ l, cPZ.cons.A i l * PolyZonotope.monomial cPZ.cons.R ab.1 l := rfl
   rw [hrow]
   exact continuous_finsetSum _ fun l _ =>
-    continuous_const.mul ((PolyZonotope.continuous_monomial cPZ.R l).comp continuous_fst)
+    continuous_const.mul ((PolyZonotope.continuous_monomial cPZ.cons.R l).comp continuous_fst)
 
 /-- Three families of conditions, each an inequality or an equation between continuous
 functions, so the domain is a finite intersection of closed sets. -/
@@ -61,9 +62,9 @@ theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) :
       = (⋂ k, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.1 k| ≤ 1})
         ∩ ((⋂ j, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) | |ab.2 j| ≤ 1})
           ∩ ⋂ i, {ab : (Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ) |
-                (cPZ.A *ᵥ PolyZonotope.monomial cPZ.R ab.1) i = cPZ.b i}) := by
+                (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R ab.1) i = cPZ.cons.b i}) := by
     ext ab
-    simp only [ConPolyZono.domain, ConPolyZono.satisfies, ConPolyZono.holds,
+    simp only [ConPolyZono.domain, PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq,
       Set.mem_setOf_eq, Set.mem_inter_iff, Set.mem_iInter]
   rw [hdom]
   refine IsClosed.inter (isClosed_iInter fun k => ?_)

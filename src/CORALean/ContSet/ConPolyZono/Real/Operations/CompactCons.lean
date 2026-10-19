@@ -1,21 +1,21 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
-public import CORALean.ContSet.PolyZonotope.Real.Operations.Compact
+public import CORALean.ContSet.PolyLevelSet.Real.Operations.Compact
 
 @[expose] public section
 
 /-!
 # `ConPolyZono.compactCons`
 
-Equal constraint exponent columns added together and the zero columns gone.
-`b` stands: a merged column is exact, and a column at exponent zero stays a
-column here rather than moving into the bound.
+Equal constraint exponent columns added together and the zero columns gone: the constraint's own
+`PolyLevelSet.compact`, the generators untouched. `b` stands: a merged column is exact, and a
+column at exponent zero stays a column here rather than moving into the bound.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       04-September-2026
--- Last update:   05-September-2026
+-- Last update:   18-October-2026
 -- Reviewed:      14-October-2026 (Tobias Ladner)
 
 
@@ -31,20 +31,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- Equal constraint exponent columns added together and the zero columns gone.
 `b` stands: a merged column is exact, and a column at exponent zero stays a
 column here rather than moving into the bound. -/
-noncomputable def ConPolyZono.compactCons (cPZ : ConPolyZono α) : ConPolyZono α where
-  p := cPZ.p
-  h := cPZ.h
-  qI := cPZ.qI
-  m := cPZ.m
-  q := (PolyZonotope.compactKeep cPZ.R (ConPolyZono.consCol cPZ.A)).card
-  c := cPZ.c
-  G := cPZ.G
-  E := cPZ.E
-  GI := cPZ.GI
-  A := fun i l => PolyZonotope.fiberSum (PolyZonotope.rep cPZ.R) (ConPolyZono.consCol cPZ.A)
-                    (PolyZonotope.compactIdx cPZ.R (ConPolyZono.consCol cPZ.A) l) i
-  b := cPZ.b
-  R := fun k l => cPZ.R k (PolyZonotope.compactIdx cPZ.R (ConPolyZono.consCol cPZ.A) l)
+noncomputable def ConPolyZono.compactCons (cPZ : ConPolyZono α) : ConPolyZono α :=
+  { cPZ with cons := cPZ.cons.compact, cons_eq := cPZ.cons_eq }
 
 end CORALean.Real
 

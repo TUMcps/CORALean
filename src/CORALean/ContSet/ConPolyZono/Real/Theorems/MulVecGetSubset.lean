@@ -34,22 +34,23 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `getSubset`'s constraint rows at `a` are the original's at the re-parametrized factors. -/
 theorem ConPolyZono.mulVec_getSubset (cPZ : ConPolyZono α) (r : Fin cPZ.p) (cen rad : ℝ)
     (a : Fin cPZ.p → ℝ) : -- --- STMT ---
-    (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).R a
-      = cPZ.A *ᵥ PolyZonotope.monomial cPZ.R
+    (cPZ.getSubset r cen rad).cons.A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).cons.R a
+      = cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R
           (Function.update a r (cen + rad * a r)) := by -- --- PROOF ---
   -- the expanded constraint matrix at the new factors is the original at the re-parametrized
-  have hL : (cPZ.getSubset r cen rad).A *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).R a
+  have hL : (cPZ.getSubset r cen rad).cons.A
+      *ᵥ PolyZonotope.monomial (cPZ.getSubset r cen rad).cons.R a
       = (cPZ.consPolyZonotope.getSubset r cen rad).point a := by
     unfold PolyZonotope.point
     rw [ConPolyZono.mulVec_eq_sum,
-      show (cPZ.consPolyZonotope.getSubset r cen rad).c = (0 : Vec ℝ cPZ.m) from rfl, zero_add]
+      show (cPZ.consPolyZonotope.getSubset r cen rad).c = (0 : Vec ℝ cPZ.cons.m) from rfl, zero_add]
     exact Finset.sum_congr rfl fun x _ => rfl
   -- and the original constraint matrix at the re-parametrized factors, as a point
-  have hR : cPZ.A *ᵥ PolyZonotope.monomial cPZ.R (Function.update a r (cen + rad * a r))
+  have hR : cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R (Function.update a r (cen + rad * a r))
       = cPZ.consPolyZonotope.point (Function.update a r (cen + rad * a r)) := by
     unfold PolyZonotope.point
     rw [ConPolyZono.mulVec_eq_sum,
-      show cPZ.consPolyZonotope.c = (0 : Vec ℝ cPZ.m) from rfl, zero_add]
+      show cPZ.consPolyZonotope.c = (0 : Vec ℝ cPZ.cons.m) from rfl, zero_add]
     exact Finset.sum_congr rfl fun x _ => rfl
   -- the two agree by `getSubset_point` at the constraint columns
   exact hL.trans ((PolyZonotope.getSubset_point cPZ.consPolyZonotope r cen rad a).trans hR.symm)

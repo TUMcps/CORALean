@@ -9,9 +9,9 @@ public import CORALean.ContSet.Interval.Real.Operations.Point
 # A polynomial zonotope as a constrained one
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Opus 5.5
 -- Written:       02-September-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -28,15 +28,12 @@ def PolyZonotope.conPolyZono (pZ : PolyZonotope α) : ConPolyZono α where
   p := pZ.p
   h := pZ.h
   qI := pZ.q
-  m := 0
-  q := 0
   c := pZ.c
   G := pZ.G
   E := pZ.E
   GI := pZ.GI
-  A := 0
-  b := 0
-  R := fun _ => Fin.elim0
+  cons := ⟨0, 0, 0, fun _ => Fin.elim0, 0, Fin.elim0⟩
+  cons_eq i := i.elim0
 
 end CORALean.Real
 

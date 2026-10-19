@@ -13,7 +13,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_ConPol
 
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -32,16 +32,13 @@ def PolyZonotope.conPolyZono (pZ : PolyZonotope (Vec 𝕋 n)) : ConPolyZono 𝕋
   p := pZ.p
   h := pZ.h
   qI := pZ.q
-  m := 0
-  q := 0
   c := pZ.c
   G := pZ.G
   E := pZ.E
   GI := pZ.GI
-  A := fun i => i.elim0
-  b := fun i => i.elim0
-  b_error := fun i => i.elim0
-  R := fun _ => Fin.elim0
+  cons := ⟨0, 0, fun i => i.elim0, fun _ => Fin.elim0, fun i => i.elim0, fun i => i.elim0,
+    fun i => i.elim0⟩
+  cons_eq i := i.elim0
   I_error := pZ.I_error
 
 end CORALean.Float

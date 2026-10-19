@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Empty
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -29,7 +30,8 @@ theorem ConPolyZono.empty_exact (n : ℕ) : (ConPolyZono.empty n).construct = �
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨a, β, -, -, hsat, -⟩
-  have h := hsat (0 : Fin 1)
+  have h := (PolyLevelSet.mem_construct_iff_of_eq (ConPolyZono.empty n).cons_eq).mp hsat
+    (0 : Fin 1)
   simp [ConPolyZono.empty, Matrix.mulVec] at h
 
 end CORALean.Real

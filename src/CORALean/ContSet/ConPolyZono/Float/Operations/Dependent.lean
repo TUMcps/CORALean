@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
+public import CORALean.ContSet.PolyLevelSet.Float.Operations.PadVars
 
 @[expose] public section
 
@@ -42,16 +43,12 @@ def ConPolyZono.dependent (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : ConPolyZono �
   p := cPZ.p + cPZ.qI
   h := cPZ.h + cPZ.qI
   qI := 0
-  m := cPZ.m
-  q := cPZ.q
   c := cPZ.c
   G := Fin.append cPZ.G cPZ.GI
   E := Real.PolyZonotope.plusE cPZ.E (Real.PolyZonotope.identE cPZ.qI)
   GI := Fin.elim0
-  A := cPZ.A
-  b := cPZ.b
-  b_error := cPZ.b_error
-  R := Real.ConPolyZono.padE cPZ.R cPZ.qI
+  cons := cPZ.cons.padVars cPZ.qI
+  cons_eq := cPZ.cons_eq
   I_error := cPZ.I_error
 
 end CORALean.Float

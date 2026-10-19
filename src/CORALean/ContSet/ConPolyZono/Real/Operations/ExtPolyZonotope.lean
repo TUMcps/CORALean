@@ -41,13 +41,13 @@ variable {n : ℕ}
 
 /-- `polyZonotope([c; -b], blkdiag(G, A), [GI; 0], [E, R])`. -/
 def ConPolyZono.extPolyZonotope (cPZ : ConPolyZono (Vec ℝ n)) :
-    PolyZonotope (Vec ℝ n × Vec ℝ cPZ.m) where
+    PolyZonotope (Vec ℝ n × Vec ℝ cPZ.cons.m) where
   p := cPZ.p
-  h := cPZ.h + cPZ.q
+  h := cPZ.h + cPZ.cons.q
   q := cPZ.qI
-  c := (cPZ.c, -cPZ.b)
-  G := Fin.append (fun i => (cPZ.G i, 0)) (fun l => (0, ConPolyZono.consCol cPZ.A l))
-  E := ConPolyZono.appendE cPZ.E cPZ.R
+  c := (cPZ.c, -cPZ.cons.b)
+  G := Fin.append (fun i => (cPZ.G i, 0)) (fun l => (0, ConPolyZono.consCol cPZ.cons.A l))
+  E := ConPolyZono.appendE cPZ.E cPZ.cons.R
   GI := fun j => (cPZ.GI j, 0)
 
 

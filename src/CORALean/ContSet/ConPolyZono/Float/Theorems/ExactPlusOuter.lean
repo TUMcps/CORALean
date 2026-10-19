@@ -6,6 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.ExactPlus
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ExactPlus
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -40,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hp : cPZ₁.p = cPZ₂.p) : -- --- STMT ---
     ((Real.ConPolyZono.exactPlus cPZ₁.nominalCore cPZ₂.nominalCore hp).relax
-        (toRealVec cPZ₁.b_error)).construct
+        (toRealVec cPZ₁.cons.b_error)).construct
       ⊆ nominalSet (cPZ₁.exactPlus cPZ₂ hp)
         + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
   intro y hy
@@ -50,7 +51,9 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
             + (∑ l, toReal ((cPZ₁.exactPlus cPZ₂ hp).G l i)
                 * Real.PolyZonotope.monomial (cPZ₁.exactPlus cPZ₂ hp).E a l)
             + ∑ j, toReal ((cPZ₁.exactPlus cPZ₂ hp).GI j i) * β j,
-          ConPolyZono.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, hs, fun _ => rfl⟩,
+          ConPolyZono.mem_nominalSet_iff.mpr
+            ⟨a, β, ha, hβ, (PolyLevelSet.mem_construct_iff_of_eq cPZ₁.cons_eq).mpr hs,
+                fun _ => rfl⟩,
           fun i => toReal (cPZ₁.c i) + toReal (cPZ₂.c i)
             - toReal ((cPZ₁.exactPlus cPZ₂ hp).c i),
           Interval.sub_mem_residual fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩, ?_⟩
@@ -88,7 +91,7 @@ theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 
 theorem ConPolyZono.exactPlus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) (hp : cPZ₁.p = cPZ₂.p) :
     ((Real.ConPolyZono.exactPlus cPZ₁.nominalCore cPZ₂.nominalCore hp).relax
-        (toRealVec cPZ₁.b_error)).construct + (cPZ₁.I_error.construct + cPZ₂.I_error.construct)
+        (toRealVec cPZ₁.cons.b_error)).construct + (cPZ₁.I_error.construct + cPZ₂.I_error.construct)
       ⊆ (cPZ₁.exactPlus cPZ₂ hp).construct := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨y', hy', r, hr, hyr⟩ := ConPolyZono.aux_exactPlus_nominal cPZ₁ cPZ₂ hp hy

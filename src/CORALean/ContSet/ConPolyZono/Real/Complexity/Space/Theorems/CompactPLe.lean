@@ -29,7 +29,7 @@ omit [Module ℝ α] in
 /-- An upper bound on the `p` count of `compact`'s result. -/
 theorem ConPolyZono.compact_p_le (cPZ : ConPolyZono α) : (cPZ.compact).p ≤ cPZ.p := by
   show (ConPolyZono.usedFactors cPZ.compactGens.compactCons.E
-    cPZ.compactGens.compactCons.R).card ≤ cPZ.p
+    cPZ.compactGens.compactCons.cons.R).card ≤ cPZ.p
   calc _ ≤ Fintype.card (Fin cPZ.p) := Finset.card_le_univ _
     _ = cPZ.p := Fintype.card_fin cPZ.p
 

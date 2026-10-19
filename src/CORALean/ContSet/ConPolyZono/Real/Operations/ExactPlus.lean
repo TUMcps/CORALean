@@ -24,7 +24,7 @@ the first operand's.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   18-October-2026
 -- Reviewed:      ---
 
 
@@ -39,8 +39,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 def ConPolyZono.exactPlus (cPZ₁ cPZ₂ : ConPolyZono α) (hp : cPZ₁.p = cPZ₂.p) : ConPolyZono α :=
   let pZ := cPZ₁.polyZonotope.exactPlus cPZ₂.polyZonotope hp
-  { p := pZ.p, h := pZ.h, qI := pZ.q, m := cPZ₁.m, q := cPZ₁.q, c := pZ.c, G := pZ.G, E := pZ.E,
-    GI := pZ.GI, A := cPZ₁.A, b := cPZ₁.b, R := cPZ₁.R }
+  { p := pZ.p, h := pZ.h, qI := pZ.q, c := pZ.c, G := pZ.G, E := pZ.E, GI := pZ.GI,
+    cons := cPZ₁.cons, cons_eq := cPZ₁.cons_eq }
 
 end CORALean.Real
 

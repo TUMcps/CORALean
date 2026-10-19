@@ -35,16 +35,12 @@ def ConPolyZono.reindex (e : Fin m ≃ Fin n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 
   p := cPZ.p
   h := cPZ.h
   qI := cPZ.qI
-  m := cPZ.m
-  q := cPZ.q
   c := fun i => cPZ.c (e i)
   G := fun j i => cPZ.G j (e i)
   E := cPZ.E
   GI := fun j i => cPZ.GI j (e i)
-  A := cPZ.A
-  b := cPZ.b
-  b_error := cPZ.b_error
-  R := cPZ.R
+  cons := cPZ.cons
+  cons_eq := cPZ.cons_eq
   I_error := cPZ.I_error.reindex e
 
 end CORALean.Float

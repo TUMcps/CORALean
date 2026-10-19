@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
 public import Mathlib.Tactic.Linarith
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -37,20 +38,23 @@ open Matrix
 
 /-- No generator, the constraint `1 · α₁ = 2`: empty. -/
 def ConPolyZono.aux_infeasible : ConPolyZono ℝ :=
-  ⟨1, 0, 0, 1, 1, 0, Fin.elim0, fun _ _ => 0, Fin.elim0, fun _ _ => 1,
-    fun _ => 2, fun _ _ => 1⟩
+  ⟨1, 0, 0, 0, Fin.elim0, fun _ _ => 0, Fin.elim0, ⟨1, 1, fun _ _ => 1, fun _ _ => 1, fun _ => 2,
+      fun _ => .eq⟩,
+      fun _ => rfl⟩
 
 /-- `G = (1)` with exponent `1`, the constraint `1 · α₁ = 0`: the point `{0}`. -/
 def ConPolyZono.aux_pinned : ConPolyZono ℝ :=
-  ⟨1, 1, 0, 1, 1, 0, fun _ => 1, fun _ _ => 1, Fin.elim0, fun _ _ => 1,
-    fun _ => 0, fun _ _ => 1⟩
+  ⟨1, 1, 0, 0, fun _ => 1, fun _ _ => 1, Fin.elim0, ⟨1, 1, fun _ _ => 1, fun _ _ => 1, fun _ => 0,
+      fun _ => .eq⟩,
+      fun _ => rfl⟩
 
 theorem ConPolyZono.aux_infeasible_construct :
     ConPolyZono.aux_infeasible.construct = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨a, β, ha, -, hs, -⟩
-  have h4 := hs (0 : Fin 1)
+  have h4 :=
+    (PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.aux_infeasible.cons_eq).mp hs (0 : Fin 1)
   have h3 := ha (0 : Fin 1)
   simp [ConPolyZono.aux_infeasible, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h4 h3
   rw [h4] at h3
@@ -61,12 +65,14 @@ theorem ConPolyZono.aux_pinned_construct :
   ext x
   constructor
   · rintro ⟨a, β, ha, -, hs, hx⟩
-    have h1 := hs (0 : Fin 1)
+    have h1 :=
+      (PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.aux_pinned.cons_eq).mp hs (0 : Fin 1)
     simp [ConPolyZono.aux_pinned, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h1 hx
     exact hx.trans h1
   · intro hx
     refine ⟨fun _ => 0, Fin.elim0, fun _ => by norm_num, fun j => j.elim0, ?_, ?_⟩
-    · intro i
+    · refine (PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.aux_pinned.cons_eq).mpr
+        fun i => ?_
       simp [ConPolyZono.aux_pinned, PolyZonotope.monomial, Matrix.mulVec, dotProduct]
     · simp [ConPolyZono.aux_pinned, PolyZonotope.monomial, Set.mem_singleton_iff.mp hx]
 

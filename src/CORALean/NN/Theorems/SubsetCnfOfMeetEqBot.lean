@@ -12,8 +12,9 @@ public import CORALean.ContSet.ContSet.ContSet
 it satisfies every negated literal of it and survives the sound meet, into `γ(⊥) = ∅`.
 
 A literal is anything with a set of points and a negation denoting the complement, so the
-statement covers the paper's linear constraints and is not tied to `CatCond`, whose atoms are
-not closed under negation. The meet takes a whole conjunction, as the paper's does.
+statement covers the paper's linear constraints and is not tied to `CatCond`, whose guards are
+conjunctions and so not closed under negation. The meet takes a whole conjunction, as the paper's
+does.
 
 ## References
 

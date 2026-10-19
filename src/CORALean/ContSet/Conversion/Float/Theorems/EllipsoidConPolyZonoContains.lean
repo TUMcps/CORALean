@@ -51,18 +51,20 @@ private theorem Ellipsoid.aux_nominal_conPolyZono (E : Ellipsoid 𝕋 n) :
         Ellipsoid.outerFactor E.Q else fun _ _ => zero)) (toRealVec E.q) := by -- --- PROOF ---
   have hhalf : toReal (half (one : 𝕋)) = 1 / 2 := by rw [toReal_half, toReal_one]
   -- the fields agree entrywise
-  show Real.ConPolyZono.mk _ _ _ _ _ _ _ _ _ _ _ _ = _
+  show Real.ConPolyZono.mk _ _ _ _ _ _ _ (Real.PolyLevelSet.mk _ _ _ _ _ _) _ = _
   simp only [Real.Ellipsoid.conPolyZonoOfFactor]
   congr 1
   case e_GI => funext l i; exact l.elim0
-  case e_A =>
-    funext i j
-    change toReal (if j.val < n then (one : 𝕋) else neg (half one))
-      = if j.val < n then (1 : ℝ) else -(1 / 2)
-    split_ifs
-    · exact toReal_one
-    · rw [toReal_neg, hhalf]
-  case e_b => funext i; exact hhalf
+  case e_cons =>
+    congr 1
+    case e_A =>
+      funext i j
+      change toReal (if j.val < n then (one : 𝕋) else neg (half one))
+        = if j.val < n then (1 : ℝ) else -(1 / 2)
+      split_ifs
+      · exact toReal_one
+      · rw [toReal_neg, hhalf]
+    case e_b => funext i; exact hhalf
 
 /-- The factor form's set, read as the nominal part of the conversion. -/
 private theorem Ellipsoid.aux_mem_nominalSet_conPolyZono (E : Ellipsoid 𝕋 n) {x : Vec ℝ n}
@@ -71,8 +73,8 @@ private theorem Ellipsoid.aux_mem_nominalSet_conPolyZono (E : Ellipsoid 𝕋 n) 
         Ellipsoid.outerFactor E.Q else fun _ _ => zero) *ᵥ u) : -- --- STMT ---
     x ∈ nominalSet E.conPolyZono := by -- --- PROOF ---
   -- the rows record no slack, so the nominal set is the stored fields' own
-  have hs : toRealVec E.conPolyZono.b_error = 0 := funext fun _ => toReal_zero
-  show x ∈ (E.conPolyZono.nominalCore.relax (toRealVec E.conPolyZono.b_error)).construct
+  have hs : toRealVec E.conPolyZono.cons.b_error = 0 := funext fun _ => toReal_zero
+  show x ∈ (E.conPolyZono.nominalCore.relax (toRealVec E.conPolyZono.cons.b_error)).construct
   rw [hs, Real.ConPolyZono.relax_zero_construct, Ellipsoid.aux_nominal_conPolyZono,
     ← Real.Ellipsoid.conPolyZonoOfFactor_construct]
   exact hx

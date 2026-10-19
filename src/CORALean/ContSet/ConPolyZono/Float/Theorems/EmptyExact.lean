@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Empty
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
 
 @[expose] public section
 
@@ -37,7 +38,8 @@ theorem ConPolyZono.empty_exact (n : ℕ) :
     rw [ConPolyZono.mem_nominalSet_iff]
     rintro ⟨a, β, -, -, hsat, -⟩
     -- the one row reads `|0 - 1| ≤ |0|`
-    have h := hsat (0 : Fin 1)
+    have h := (PolyLevelSet.mem_construct_iff_of_eq
+      (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n)).cons_eq).mp hsat (0 : Fin 1)
     simp [ConPolyZono.empty, Matrix.mulVec, toReal_one, toReal_zero] at h
     exact absurd h (by norm_num)
   show InflatedContSet.nominalSet (ConPolyZono.empty n : ConPolyZono 𝕋 (Vec 𝕋 n))
