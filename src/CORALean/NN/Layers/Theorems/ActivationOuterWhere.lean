@@ -40,7 +40,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `σ` coordinatewise lands in the layer's output at every point of a set whose box the
-relaxation is sound on: the proof of `Layer.activation_sound`, which asks of the box nothing. -/
+relaxation is sound on: the proof of `Layer.activation_encloses`, which asks of the box nothing. -/
 theorem Layer.activation_outer_where {R : Relaxation 𝕋} {P : 𝕋 → 𝕋 → Prop}
     (hR : R.SoundWhere σ P) (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s)
     (hP : ∀ i, P ((interval s).inf i) ((interval s).sup i)) : -- --- STMT ---

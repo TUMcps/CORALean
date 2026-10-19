@@ -47,7 +47,7 @@ open Matrix
 on the subgraph the ball itself enumerates — `evalSteps_row_ball` with every
 hypothesis already discharged. -/
 theorem GNN.evalSteps_row_ball_enum {N F : ℕ} (A : Mat ℝ N N) (v : Fin N) (L : ℕ)
-    (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) :
+    (W : Fin L → Mat ℝ F F) (X : Mat ℝ N F) : -- --- STMT ---
     GNN.evalSteps (GNN.messagePassing A) L W X v
       = GNN.evalSteps ((GNN.messagePassing A).submatrix (GNN.ballEnum A v L) (GNN.ballEnum A v L))
           L W (X.submatrix (GNN.ballEnum A v L) id) (GNN.ballEnumIdx A v L) :=

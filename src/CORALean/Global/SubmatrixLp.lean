@@ -87,7 +87,8 @@ theorem det_submatrix_ne_zero_of_lp14 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     {ρ : Fin k → Fin n} (hρ : Injective ρ) {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1)
     {mig mag : Matrix (Fin n) (Fin m) ℝ}
     (h14 : ∀ k l, x k l = 1 → ∑ i ∈ univ.erase k, ∑ j, x i j * mag i l < mig k l)
-    (A : Matrix (Fin n) (Fin m) ℝ) (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) :
+    (A : Matrix (Fin n) (Fin m) ℝ)
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
     (A.submatrix ρ κ).det ≠ 0 :=
   aux_det_submatrix_ne_zero_of_col hx hρ hsel (fun t => h14 _ _ (hsel t)) A hA
 
@@ -97,7 +98,8 @@ theorem det_submatrix_ne_zero_of_lp15 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     {ρ : Fin k → Fin n} (hρ : Injective ρ) {κ : Fin k → Fin m} (hsel : ∀ t, x (ρ t) (κ t) = 1)
     {mig mag : Matrix (Fin n) (Fin m) ℝ} {M μ : ℝ} (hμ : 0 < μ)
     (h15 : ∀ k l, ∑ i ∈ univ.erase k, ∑ j, x i j * mag i l ≤ M + (mig k l - μ - M) * x k l)
-    (A : Matrix (Fin n) (Fin m) ℝ) (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) :
+    (A : Matrix (Fin n) (Fin m) ℝ)
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
     (A.submatrix ρ κ).det ≠ 0 :=
   det_submatrix_ne_zero_of_lp14 hx hρ hsel (fun k l hkl => by
     have := h15 k l; rw [hkl, mul_one] at this; linarith) A hA
@@ -140,7 +142,8 @@ theorem det_submatrix_ne_zero_of_lp18 {x : Matrix (Fin n) (Fin m) ℝ} (hx : ∀
     (h42 : ∀ t, mig (ρ t) (κ t) ≠ 0)
     (h18 : ∀ k l, ∑ i ∈ univ.erase k, ∑ j, x i j * mag i l * (mig i j)⁻¹
       ≤ M + (mig k l * (mig k l)⁻¹ - μ - M) * x k l)
-    (A : Matrix (Fin n) (Fin m) ℝ) (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) :
+    (A : Matrix (Fin n) (Fin m) ℝ)
+    (hA : ∀ i j, mig i j ≤ |A i j| ∧ |A i j| ≤ mag i j) : -- --- STMT ---
     (A.submatrix ρ κ).det ≠ 0 :=
   det_submatrix_ne_zero_of_lp17 hx hρ hsel hμ (fun i j => inv_nonneg.mpr (hmig i j))
     (fun t => inv_pos.mpr ((hmig _ _).lt_of_ne (h42 t).symm)) h18 A hA

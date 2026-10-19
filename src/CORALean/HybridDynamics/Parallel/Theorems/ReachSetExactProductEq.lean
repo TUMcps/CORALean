@@ -40,7 +40,7 @@ theorem ParallelHybridAutomaton.reachSetExact_product_eq {P : ParallelHybridAuto
     {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.Exact) {R₀ : ∀ i, S (n i)}
     {R₀' : S (∑ i, n i)}
     (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), stack x ∈ construct R₀' ↔ ∀ i, x i ∈ construct (R₀ i))
-    (ℓ₀ ℓ : ∀ i, L i) :
+    (ℓ₀ ℓ : ∀ i, L i) : -- --- STMT ---
     (P.product lift).reachSetExact R₀' ℓ₀ ℓ = stack '' P.reachSetExact R₀ ℓ₀ ℓ :=
   ParallelHybridAutomaton.reachSetExact_productWith_eq (P.mergeFlowsLinearSys_flowLaw hfeed lift)
     (P.mergeFlowsLinearSys_flowLawConverse hfeed hdist hne hex) hex hR₀ ℓ₀ ℓ

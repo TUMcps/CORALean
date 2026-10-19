@@ -35,7 +35,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NeurNetContrSysDT.simulate_isTrajectory (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (π : Vec ℝ n → Vec ℝ sys.m) {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {W : Set (Vec ℝ sys.plant.r)} (hW : 0 ∈ W) {v : ℕ → Vec ℝ sys.nExt} (hv : ∀ k, v k ∈ U_ext)
-    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) : -- --- STMT ---
     sys.IsTrajectory π R₀ U_ext W (sys.simulate π v x₀) v 0 :=
   NeurNetContrSysDT.isTrajectory_of_map hW hx₀ hv fun _ => rfl
 

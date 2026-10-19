@@ -46,17 +46,6 @@ def Ellipsoid.enclose₂ (orOA : Ellipsoid 𝕋 n → Ellipsoid 𝕋 n → Ellip
   orOA E E2
 
 
--- ====================================  `Ellipsoid.isSymm`  ==================================== --
--- Authors:       Claude Opus 5.5
--- Written:       15-October-2026
--- Last update:   ---
--- Reviewed:      19-October-2026 (Tobias Ladner)
-
-/-- The stored matrix is symmetric: each pair of mirrored entries `le` both ways. -/
-def Ellipsoid.isSymm (Q : Mat 𝕋 n n) : Bool :=
-  (List.finRange n).all fun i => (List.finRange n).all fun j => le (Q i j) (Q j i)
-
-
 -- ===================================  `Ellipsoid.quadDown`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       15-October-2026

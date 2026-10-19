@@ -41,7 +41,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Chain.sensitivity_eq_fderiv : ∀ {n m : ℕ} (c : Chain n m)
+theorem Chain.sensitivity_eq_fderiv : -- --- STMT ---
+    ∀ {n m : ℕ} (c : Chain n m)
     (x : Vec ℝ n), c.DifferentiableChain x → c.sensitivity x
       = LinearMap.toMatrix' (fderiv ℝ c.eval x : Vec ℝ n →L[ℝ] Vec ℝ m).toLinearMap
   | _, _, .nil, x, _ => by

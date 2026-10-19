@@ -63,7 +63,7 @@ theorem dmdcKnownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
 theorem dmdcKnownB_leastSquares (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
     (B : Mat ℝ n l) (V : Mat ℝ n r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hX : dmdcCols x = V * Matrix.diagonal s * Wᵀ) (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1)
-    (hs : ∀ i, s i ≠ 0) (A : Mat ℝ n n) :
+    (hs : ∀ i, s i ≠ 0) (A : Mat ℝ n n) : -- --- STMT ---
     ∑ i, ∑ a, ((dmdcCols xNext - B * dmdcCols u
         - dmdCandidate (dmdcCols xNext - B * dmdcCols u) V s W r * dmdcCols x) a i) ^ 2
       ≤ ∑ i, ∑ a, ((dmdcCols xNext - B * dmdcCols u - A * dmdcCols x) a i) ^ 2 :=
@@ -109,7 +109,7 @@ theorem dmdcUnknownB_fit (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ 
 theorem dmdcUnknownB_leastSquares (x xNext : Fin N → Vec ℝ n) (u : Fin N → Vec ℝ l)
     (V : Mat ℝ (n + l) r) (s : Fin r → ℝ) (W : Mat ℝ N r)
     (hΩ : dmdcCols (fun k => dmdcRegressor (x k) (u k)) = V * Matrix.diagonal s * Wᵀ)
-    (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (G : Mat ℝ n (n + l)) :
+    (hV : Vᵀ * V = 1) (hW : Wᵀ * W = 1) (hs : ∀ i, s i ≠ 0) (G : Mat ℝ n (n + l)) : -- --- STMT ---
     ∑ i, ∑ a, ((dmdcCols xNext - dmdCandidate (dmdcCols xNext) V s W r
         * dmdcCols (fun k => dmdcRegressor (x k) (u k))) a i) ^ 2
       ≤ ∑ i, ∑ a, ((dmdcCols xNext

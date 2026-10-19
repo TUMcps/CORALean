@@ -65,7 +65,7 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
     x t ∈ construct (Plus.plus
       (sys.timeIntervalStep r (m + 2) R₀)
       (Plus.plus

@@ -130,7 +130,6 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubMapGDiff
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMap
-public import CORALean.ContSet.Zonotope.Float.Operations.Tensor3
 public import CORALean.ContSet.Zonotope.Float.Operations.TensorHDown
 public import CORALean.ContSet.Zonotope.Float.Operations.TensorHUp
 public import CORALean.ContSet.Zonotope.Float.Operations.TensorMultiplication

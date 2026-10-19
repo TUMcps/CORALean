@@ -70,7 +70,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer_split
     {A : Mat ℝ n n} {r : ℝ} (traj : sys.IsCanonicalConstTrajectory T R₀ U x u A)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
+    {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- STMT ---
     x t ∈ construct (Plus.plus
       (sys.timeIntervalStep r (m + 2) R₀)
       (Plus.plus

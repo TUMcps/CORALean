@@ -186,7 +186,7 @@ theorem ConZonotope.aux_linComb_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec �
 
 /-- The box absorbs the two incoming boxes, the center rounding and the center
 generator's. -/
-theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- STMT ---
     Set.linComb cZ₁.I_error.construct cZ₂.I_error.construct
         + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
             + (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)).construct)

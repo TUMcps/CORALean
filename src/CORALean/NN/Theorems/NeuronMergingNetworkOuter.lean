@@ -61,8 +61,8 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
     (W0 : Mat 𝕋 n n₁) (b0 : Vec 𝕋 n) {σ : ℝ → ℝ} (R : Relaxation 𝕋) (hR : R.Sound σ)
     (W1 : Mat 𝕋 n₂ n) (b1 : Vec 𝕋 n₂) (Y : Interval (Vec 𝕋 n)) (X : S n₀)
-    {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Sound fpre)
-    {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Sound fpost)
+    {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Encloses fpre)
+    {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Encloses fpost)
     (hY : ∀ x ∈ construct (pre.enclose X),
       (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.construct) : -- --- STMT ---
     (fun x => fpost (toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ fpre x + toRealVec b0) i))

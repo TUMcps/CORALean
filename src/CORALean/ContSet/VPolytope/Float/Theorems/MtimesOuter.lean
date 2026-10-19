@@ -50,7 +50,7 @@ theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋
   exact VPolytope.mem_columnGap fun i => ⟨dotDown_le _ _, le_dotUp _ _⟩
 
 -- the old box travels through the map and absorbs the column gap on the way
-theorem VPolytope.aux_mtimes_error (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋 n)) :
+theorem VPolytope.aux_mtimes_error (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋 n)) : -- --- STMT ---
     (toRealMat M *ᵥ ·) '' (I_error P).construct
       + (VPolytope.columnGap (fun l => mulVecDown M (P.V l))
           fun l => mulVecUp M (P.V l)).construct ⊆

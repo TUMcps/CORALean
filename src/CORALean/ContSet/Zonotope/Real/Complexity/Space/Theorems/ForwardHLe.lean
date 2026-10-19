@@ -34,7 +34,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- An upper bound on the `h` count of `forward`'s result. -/
-theorem SetBasedNet.forward_h_le : ∀ {n k : ℕ} (net : SetBasedNet n k) (H : Zonotope (Vec ℝ n)),
+theorem SetBasedNet.forward_h_le : -- --- STMT ---
+    ∀ {n k : ℕ} (net : SetBasedNet n k) (H : Zonotope (Vec ℝ n)),
     (net.forward H).h ≤ H.h + net.neurons
   | _, _, .output, _ => Nat.le_add_right _ _
   | _, _, .linear W b tail, H => by

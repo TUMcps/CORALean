@@ -55,7 +55,7 @@ def Example.reachClosedLoopFloat (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) �
 
 example (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) 𝒵[𝕋] n) (U_ext : Zonotope (Vec 𝕋 sys.nExt))
     {o : ℕ} (ho : 0 < o)
-    (R₀ : Zonotope (Vec 𝕋 n)) {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
+    (R₀ : Zonotope (Vec 𝕋 n)) {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt} {w : ℕ → Vec ℝ sys.plant.r}
     (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ) :
     x k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
@@ -67,7 +67,7 @@ example (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) 𝒵[𝕋] n) (U_ext : Zon
     {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec 𝕋 n)) (spec : Specification (Interval (Vec 𝕋 n)))
     {π : Vec ℝ n → Vec ℝ sys.m}
-    (hπ : sys.contr.Sound π) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
+    (hπ : sys.contr.Encloses π) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
     {w : ℕ → Vec ℝ sys.plant.r}
     (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ) :
     spec.check (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=

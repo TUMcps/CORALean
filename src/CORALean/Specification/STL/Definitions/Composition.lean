@@ -33,6 +33,9 @@ variable {X : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
+/-- A composition `f(φ₁, …, φ_n)` of [1, Lemma 3] as a syntax tree. `hole i` is the placeholder for
+`φᵢ`, the `i`-th of the `n` formulas that `f` is applied to; it stands for no formula itself, and
+`and`, `or` and `next` build `f` around the holes. -/
 inductive STL.Comp (n : ℕ)
   | hole (i : Fin n)
   | and (f g : Comp n)

@@ -134,7 +134,6 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CubMap
 public import CORALean.ContSet.Zonotope.Real.Operations.CubMapMixed
 public import CORALean.ContSet.Zonotope.Real.Operations.FaultObserve
 public import CORALean.ContSet.Zonotope.Real.Operations.FaultResidual
-public import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
 public import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
 public import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
 public import CORALean.ContSet.Zonotope.Real.Operations.TensorEvalLin

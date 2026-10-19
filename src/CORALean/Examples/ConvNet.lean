@@ -19,7 +19,7 @@ import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Reshape
 import CORALean.NN.Layers.Operations.Softmax
 import CORALean.NN.Layers.Operations.TransposeEquiv
-import CORALean.NN.Layers.Theorems.ConvSound
+import CORALean.NN.Layers.Theorems.ConvEncloses
 import CORALean.NN.Layers.Theorems.ReshapeExact
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.EncloseOuter
@@ -94,13 +94,13 @@ noncomputable example (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5)
   (Example.convNet K b gamma beta mean var).enclose X
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
-example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Sound f)
+example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Encloses f)
     (X : Zonotope (Vec ℝ 6)) {x : Vec ℝ 6}
     (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- Robust classification at two labels, unchanged by the layers in between. -/
-example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Sound f)
+example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Encloses f)
     (X : Zonotope (Vec ℝ 6)) (l : Fin 2)
     (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ construct X)
@@ -110,9 +110,9 @@ example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Sou
 /-- The stencil computes the convolution, which is what makes the linear layer
 under it one. -/
 example (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5) :
-    (Layer.conv (S := 𝒵) (fun _ => 0) Example.convTap K b).Sound
+    (Layer.conv (S := 𝒵) (fun _ => 0) Example.convTap K b).Encloses
       fun x j => (∑ l, K 0 l * x (Example.convTap j l)) + b j :=
-  Layer.conv_sound _ _ _ _ Example.convTap_injective
+  Layer.conv_encloses _ _ _ _ Example.convTap_injective
 
 /-- The reshape loses nothing, and no hypothesis is needed to say so. -/
 example (X : Zonotope (Vec ℝ 6)) :

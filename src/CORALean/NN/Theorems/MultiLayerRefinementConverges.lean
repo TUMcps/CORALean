@@ -8,7 +8,7 @@ public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
 public import CORALean.NN.Layers.Operations.Activation
 public import CORALean.NN.Layers.Operations.ActivationPolyRefinable
 public import CORALean.NN.Layers.Operations.Linear
-public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.LinearEncloses
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
 public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
 public import CORALean.NN.Theorems.ActivationLipschitz
@@ -67,7 +67,7 @@ theorem sigmoidLinearSigmoidNetwork_convergent (W : Mat ℝ m n) (b : Vec ℝ m)
     ⟨⟨1, Layer.lipschitzWith_activation_eval lipschitzWith_sigmoid m⟩, trivial⟩
   -- and the matrix in front of it, whose constant is its largest row sum
   have h₁ : (RefinableNetwork.cons (S := 𝒫𝒵)
-      ((Layer.linear W b).refinable (Layer.linear_sound W b))
+      ((Layer.linear W b).refinable (Layer.linear_encloses W b))
       (.cons (Real.Layer.activationPolyRefinable (n := m) Real.sigmoidPolyFamily
         Real.sigmoidPolyFamily_sound)
         .nil)).LipschitzLayers :=

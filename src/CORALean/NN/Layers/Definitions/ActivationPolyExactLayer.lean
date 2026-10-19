@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Theorems.Basic
-public import CORALean.NN.Layers.Theorems.Real.ActivationPolySound
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloses
 
 @[expose] public section
 
@@ -43,7 +43,7 @@ noncomputable instance : Enclose ActivationPolyLayer 𝒫𝒵 where
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨_, _, hP, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.activationPoly_sound hP.choose_spec).image_subset s
+      exact (Layer.activationPoly_encloses hP.choose_spec).image_subset s
 
 end CORALean.Real
 

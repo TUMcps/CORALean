@@ -33,7 +33,7 @@ variable {n : ℕ}
 
 /-- `M ↦ Mᵢⱼₖₗ xⱼ xₖ xₗ`, linear in `M`. -/
 noncomputable def Zonotope.tensorEvalLin (x : Vec ℝ n) :
-    Zonotope.Tensor3 n →ₗ[ℝ] Vec ℝ n where
+    Tensor3 ℝ n →ₗ[ℝ] Vec ℝ n where
   toFun M := Zonotope.tensorEval M x
   map_add' M N := by
     funext d

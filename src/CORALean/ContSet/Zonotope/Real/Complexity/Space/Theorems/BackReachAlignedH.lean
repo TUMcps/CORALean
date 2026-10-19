@@ -35,7 +35,7 @@ variable {n m : ℕ}
 /-- [1, Sec. IV-B]: each step adds `U`'s generator count. -/
 theorem Zonotope.backReachAligned_h (A : Mat ℝ n n) (B : Mat ℝ n m) (K : Vec ℝ n)
     (U : Zonotope (Vec ℝ m)) (Z₀ : Zonotope (Vec ℝ n))
-    (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ)) (k : ℕ) :
+    (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ)) (k : ℕ) : -- --- STMT ---
     (Zonotope.backReachAligned A B K U Z₀ σ (k + 1)).h
       = (Zonotope.backReachAligned A B K U Z₀ σ k).h + U.h := rfl
 

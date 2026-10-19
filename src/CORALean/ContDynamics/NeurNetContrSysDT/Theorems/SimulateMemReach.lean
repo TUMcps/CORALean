@@ -34,9 +34,9 @@ variable [OfScalarPoint 𝕋 S]
 
 theorem NeurNetContrSysDT.simulate_mem_reach (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n) {o : ℕ}
     (U_ext : S sys.nExt) (ho : 0 < o)
-    (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
+    (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {v : ℕ → Vec ℝ sys.nExt} (hv : ∀ k, v k ∈ construct U_ext)
-    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) (k : ℕ) :
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) (k : ℕ) : -- --- STMT ---
     sys.simulate π v x₀ k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer U_ext ho R₀ hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])

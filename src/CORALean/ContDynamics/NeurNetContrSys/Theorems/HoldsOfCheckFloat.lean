@@ -39,11 +39,11 @@ theorem NeurNetContrSys.holds_of_checkFloat [Contains ContSet (Zonotope (Vec �
     (o η N : ℕ) (ho : 0 < o) {Δt : 𝕋} (hΔt : 0 < toReal Δt)
     (hdt : sys.dt = (N : ℝ) * toReal Δt)
     (hη : sys.augmentFloat.OrderAdmissibleFloat Δt Δt η) {H : ℕ} {R₀ : Zonotope (Vec 𝕋 n)}
-    {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
+    {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, Scalar.toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
     (traj : sys.IsTrajectory π H R₀ (construct U_ext) W x v w)
-    (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H) :
+    (spec : Specification ContSet) (i : ℕ) (hi : i ≤ H) : -- --- STMT ---
     spec.check (sys.reachFloat U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) →
       (spec.Holds {x ((i : ℝ) * sys.dt)}) :=
   fun h => spec.holds_of_outer (Set.singleton_subset_iff.2

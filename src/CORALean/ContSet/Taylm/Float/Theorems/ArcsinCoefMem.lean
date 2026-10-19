@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.ArcsinCoef
-public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.ContSet.Interval.Float.Theorems.EvalPolyCoeffsMem
 public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
 public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
@@ -13,7 +13,7 @@ public import CORALean.Global.ElementaryDerivBounds
 # `Taylm.arcsinCoef` encloses the coefficient of `arcsin`
 
 `arcsin⁽ʲ⁺¹⁾ c / (j+1)!` is `asinPoly j c · v²ʲ⁺¹ · (1 / (j+1)!)` (`iteratedDeriv_inv_sqrt`), the
-integer list evaluating as `asinPoly` (`eval_recL`), `Interval.evalList_mem` enclosing it, and
+integer list evaluating as `asinPoly` (`eval_recL`), `Interval.evalPolyCoeffs_mem` enclosing it, and
 the powers and the factorial between their roundings. `h` is the rounded root positive, which puts
 `c` inside `(-1, 1)`.
 -/
@@ -51,7 +51,7 @@ theorem Taylm.arcsinCoef_mem (q : ℕ) (c : 𝕋)
     have := hv.1
     constructor <;> nlinarith
   -- the three factors between their enclosures
-  have hb := Interval.evalList_mem (lo := c) (hi := c) (x := toReal c) le_rfl le_rfl
+  have hb := Interval.evalPolyCoeffs_mem (lo := c) (hi := c) (x := toReal c) le_rfl le_rfl
     (recL [1, 0, -1] (fun j => 2 * (j : ℤ) + 1) j)
   have hG := divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
     (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (j + 1)

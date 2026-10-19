@@ -41,7 +41,7 @@ theorem NonlinearARX.simulate_mem_reach (sys : NonlinearARX dy du p) {o : ℕ} (
     (steps : ℕ → sys.toNonlinearSysDT.LinStep 𝕋 V)
     {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ construct Y₀) {u : ℕ → Vec ℝ du}
     (hu : ∀ k, u k ∈ construct U)
-    (hR : ∀ k, NonlinearARX.stack p (sys.simulate y₀ u) k ∈ (steps k).R) (k : ℕ) :
+    (hR : ∀ k, NonlinearARX.stack p (sys.simulate y₀ u) k ∈ (steps k).R) (k : ℕ) : -- --- STMT ---
     NonlinearARX.stack p (sys.simulate y₀ u) k ∈ construct
       (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.reach_outer ho hV steps (sys.simulate_isTrajectory hy₀ hu) hR k

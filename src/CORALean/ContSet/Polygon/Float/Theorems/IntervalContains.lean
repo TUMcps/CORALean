@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-theorem Polygon.aux_intervalOfList_contains :
+theorem Polygon.aux_intervalOfList_contains : -- --- STMT ---
     ∀ ps : List (VPolytope (Vec 𝕋 2)),
       (⋃ p ∈ ps, VPolytope.construct p) ⊆ (Polygon.intervalOfList ps).construct
   | [] => by simp

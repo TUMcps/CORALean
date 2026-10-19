@@ -66,7 +66,8 @@ theorem NonlinearSys.IsTrajectory.reach_outer {sys : NonlinearSys n m} {T : Set 
     (hT : Set.Ici 0 ⊆ T) (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) (hΔt : 0 ≤ Δt)
     (hU : Bornology.IsBounded (construct (linInput sys.f A B xs us U L)))
     (hUd : ∀ k : ℕ, (NonlinearSys.linearize A).stepInput
-      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) :
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o)
+    (k : ℕ) : -- --- STMT ---
     x (k * Δt) ∈
       construct (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   ((traj.restrict hT).linearize measurableSet_Ici cert hR).reach_outer hΔt subset_rfl hU hUd ho k

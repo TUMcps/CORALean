@@ -35,7 +35,7 @@ cover. The coefficients are monomials, and `abs_sum_le_radius` asks only that
 they lie in `[-1, 1]`. -/
 theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)) {a : Fin pZ.p → ℝ}
-    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) :
+    (ha : ∀ k, |a k| ≤ 1) (i : Fin n) : -- --- STMT ---
     |∑ l, toReal (pZ.G (partD.right l) i)
         * Real.PolyZonotope.monomial pZ.E a (partD.right l)|
       ≤ toReal (radius (fun i l => pZ.G (partD.right l) i) i) :=
@@ -46,7 +46,7 @@ theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec 𝕋 n))
 free to begin with. -/
 theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope (Vec 𝕋 n))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin pZ.q → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- STMT ---
     |∑ j, toReal (pZ.GI (partI.right j) i) * β (partI.right j)|
       ≤ toReal (radius (fun i j => pZ.GI (partI.right j) i) i) :=
   abs_sum_le_radius (d := fun i j => pZ.GI (partI.right j) i) (fun _ _ => le_refl _)

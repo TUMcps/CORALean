@@ -63,6 +63,11 @@ abbrev Tensor (α : Type u) : List ℕ → Type u
 abbrev Vec (α : Type u) (n : ℕ) := Tensor α [n]
 abbrev Mat (α : Type u) (n m : ℕ) := Matrix (Fin n) (Fin m) α
 
+/-- A third-order tensor `M = {M₁, …, Mₙ}`, each `Mᵢ` an `n × n × n` array, read
+`M{iDim}(ind1, ind2, ind3)` as `M iDim ind1 ind2 ind3`: CORA's third derivative of a function
+`ℝⁿ → ℝⁿ` and the input of `tensorMultiplication`. -/
+abbrev Tensor3 (α : Type u) (n : ℕ) := Tensor α [n, n, n, n]
+
 
 -- =======================================  MAIN THEOREM  ======================================= --
 

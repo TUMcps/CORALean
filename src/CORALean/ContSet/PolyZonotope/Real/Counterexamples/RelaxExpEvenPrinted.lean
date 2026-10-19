@@ -24,7 +24,7 @@ only fault.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       08-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -58,7 +58,7 @@ theorem PolyZonotope.relaxExpEven_printed_counterexample : -- --- STMT ---
   have hr0 : (Partition.split 0 2).right 0 = (0 : Fin 2) := rfl
   have hr1 : (Partition.split 0 2).right 1 = (1 : Fin 2) := rfl
   simp [PolyZonotope.monomial, PolyZonotope.relaxExpEven, PolyZonotope.relaxWidth,
-    PolyZonotope.eDiff, hr0, hr1, Fin.append, Fin.addCases] at hx
+    PolyZonotope.eDiffTight, hr0, hr1, Fin.append, Fin.addCases] at hx
   have hb := abs_le.mp (hβ (Fin.last 0))
   have hx' : (0 : ℝ) = 2⁻¹ + 1 + β (Fin.last 0) * 2⁻¹ := hx
   linarith [hb.1]

@@ -49,7 +49,6 @@ allMembersFullDim
 constrSat
 subsRel
 mergeBucket
-fullDimShortcut
 untilEnc
 zEnc
 milpPrinted
@@ -57,6 +56,7 @@ milpCorrected
 
 # Models of CORA's code as printed, written down to be refuted (named for the CORA method, ending in Cora)
 reachSpecCora
+fullDimShortcutCora
 isIntersectingCora
 containsPointCora
 isFullDimCora

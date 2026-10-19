@@ -1,6 +1,5 @@
 module
 
-public import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
 public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
 

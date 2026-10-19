@@ -310,6 +310,10 @@
       "kind": "unsound",
       "cex": "ContainsExactCora1D.lean"
     },
+    "containsPointSet": {
+      "description": "full zonotope appended to split enclosures, loosening the test",
+      "kind": "other"
+    },
     "convHull_": {
       "description": "chord set returned, not the convex hull",
       "kind": "unsound"
@@ -670,7 +674,7 @@
     "evaluateConZonotope": {
       "description": "ReLU star-set bounds shift the factor-box center",
       "kind": "unsound",
-      "fix": "ReluStarSound.lean"
+      "fix": "ReluStarEncloses.lean"
     },
     "computeApproxPoly": {
       "description": "DeepZ S-shape unsound at $x^3$; reaches network output",

@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Operations.ReachUnion
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachOuter
 public import CORALean.ContSet.SetUnion.Theorems.Basic
-public import CORALean.NN.Theorems.SoundEval
+public import CORALean.NN.Theorems.EnclosesEval
 
 @[expose] public section
 
@@ -66,7 +66,7 @@ theorem NeurNetContrSys.reachUnion_outer (sys : NeurNetContrSys (LinearSys 𝕋 
       (by linarith)) (sys.reachOrder_admissible options.Δt)
   refine SetUnion.mem_construct_range (Nat.lt_succ_of_le hi) ?_
   exact sys.reach_outer U_ext options.ρ _ options.N options.hZonotopeOrder hΔt hdt hε
-    sys.contr.sound_eval
+    sys.contr.encloses_eval
       (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj i hi
 
 end CORALean

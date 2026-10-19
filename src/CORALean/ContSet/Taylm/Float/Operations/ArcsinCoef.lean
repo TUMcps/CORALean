@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Operations.EvalList
+public import CORALean.ContSet.Interval.Float.Operations.EvalPolyCoeffs
 public import CORALean.Global.RecList
 public import CORALean.Global.Float.InvSqrtOneSub
 public import CORALean.Global.Float.PowDown
@@ -14,7 +14,7 @@ public import CORALean.Global.Float.DivFact
 
 `arcsin⁽ʲ⁺¹⁾ c = asinPoly j c · v²ʲ⁺¹` with `v = (√(1 - c²))⁻¹`, so the coefficient is
 `asinPoly j c · v²ʲ⁺¹ / (j+1)!`: the integer polynomial (`recL [1, 0, -1] (j ↦ 2j+1) j`) by
-`Interval.evalList` on `[c, c]`, `v²ʲ⁺¹` between `powDown` and `powUp` of the roundings of `v`
+`Interval.evalPolyCoeffs` on `[c, c]`, `v²ʲ⁺¹` between `powDown` and `powUp` of the roundings of `v`
 (`Global/Float/InvSqrtOneSub`), and `1 / (j+1)!` by `divFact`, the three through the corner
 products. `q` is the precision of the square root.
 -/
@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Taylm.arcsinCoef (q : ℕ) (c : 𝕋) (j : ℕ) : Interval 𝕋 :=
-  let P := Interval.evalList c c (recL [1, 0, -1] (fun j => 2 * (j : ℤ) + 1) j)
+  let P := Interval.evalPolyCoeffs c c (recL [1, 0, -1] (fun j => 2 * (j : ℤ) + 1) j)
   let G := divFact ⟨one, one⟩ (j + 1)
   let W : Interval 𝕋 :=
     ⟨Interval.mulLo (powDown (invSqrtOneSubLo q c) (2 * j + 1))

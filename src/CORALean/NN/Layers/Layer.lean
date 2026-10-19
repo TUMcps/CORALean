@@ -8,7 +8,7 @@ public import CORALean.NN.Layers.Interfaces
 # What a layer is
 
 CORA's `nnLayer`, split in two: `Layer` is what a layer *computes* on a set, and
-`Layer.Sound` (in `Definitions/Basic.lean`) is the obligation tying that to an exact function,
+`Layer.Encloses` (in `Definitions/Basic.lean`) is the obligation tying that to an exact function,
 [1, Prop. 2.14], stated against a function of a point, so a set-valued layer is sound at the
 function it refines.
 No field of `Layer` mentions `ℝ`: a structure with a noncomputable field is noncomputable

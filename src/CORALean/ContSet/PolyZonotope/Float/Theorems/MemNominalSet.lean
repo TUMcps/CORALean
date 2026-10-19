@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {pZ : PolyZonotope (Vec 𝕋 n)}
-    {x : Vec ℝ n} :
+    {x : Vec ℝ n} : -- --- STMT ---
     x ∈ InflatedContSet.nominalSet pZ ↔ ∃ a : Fin pZ.p → ℝ, ∃ β : Fin pZ.q → ℝ,
       (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = toReal (pZ.c i)
         + (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)

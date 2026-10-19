@@ -70,7 +70,8 @@ theorem Zonotope.minkDiffStretch_outer {ι : Type} (Z₁ Z₂ : Zonotope (Vec �
     (hμ : ∀ i, b i ≤ ∑ υ, |C i (Z₁.nominal.G υ)| * toReal (μ υ))
     (hCd : {y | ∀ i, C i (y - (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).c)
                 ≤ ∑ υ, |C i ((Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).G υ)|}
-            ⊆ (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).construct) :
+            ⊆ (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).construct)
+    : -- --- STMT ---
     minkowskiDiff Z₁.nominal.construct Z₂.nominal.construct
       ⊆ (Z₁.minkDiffStretch Z₂ μ).construct :=
   subset_trans (Z₁.nominal.minkDiffStretch_outer Z₂.nominal C _ hμ0 b hb hμ hCd)

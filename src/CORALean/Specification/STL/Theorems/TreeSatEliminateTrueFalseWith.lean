@@ -60,31 +60,33 @@ theorem STL.Tree.sat_eliminateTrueFalseWith (ut : ℝ≥0 → ℝ≥0 → STL.Tr
   | «until» a b φ ψ ihφ ihψ =>
     have ihφ := ihφ hφ.2.1
     have ihψ := ihψ hφ.2.2
-    simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat, ← ihφ, ← ihψ]
+    simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat,
+      STL.Tree.HasUntilWitness, ← ihφ, ← ihψ]
     generalize STL.Tree.eliminateTrueFalseWith ut φ = l
     generalize STL.Tree.eliminateTrueFalseWith ut ψ = r
-    split <;> simp [STL.Tree.Sat, hut]
+    split <;> simp [STL.Tree.Sat, STL.Tree.HasUntilWitness, hut]
   | release a b φ ψ ihφ ihψ =>
     have ihφ := ihφ hφ.2.1
     have ihψ := ihψ hφ.2.2
-    simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat, ← ihφ, ← ihψ]
+    simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat,
+      STL.Tree.HasUntilWitness, ← ihφ, ← ihψ]
     generalize STL.Tree.eliminateTrueFalseWith ut φ = l
     generalize STL.Tree.eliminateTrueFalseWith ut ψ = r
-    split <;> simp [STL.Tree.Sat]
+    split <;> simp [STL.Tree.Sat, STL.Tree.HasUntilWitness]
     exact fun x _ _ _ => ⟨x, le_rfl⟩
   -- `finally` and `globally` need an instant of `[a,b]`, which `a ≤ b` gives
   | «finally» a b φ ih =>
     have ih := ih hφ.2
     have hab : ∃ t, a ≤ t ∧ t ≤ b := ⟨a, le_rfl, hφ.1⟩
-    simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat, ← ih]
+    simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat, STL.Tree.HasUntilWitness, ← ih]
     generalize STL.Tree.eliminateTrueFalseWith ut φ = l
-    split <;> simp [STL.Tree.Sat, hab]
+    split <;> simp [STL.Tree.Sat, STL.Tree.HasUntilWitness, hab]
   | globally a b φ ih =>
     have ih := ih hφ.2
     have hab : ∃ t, a ≤ t ∧ t ≤ b := ⟨a, le_rfl, hφ.1⟩
-    simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat, ← ih]
+    simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat, STL.Tree.HasUntilWitness, ← ih]
     generalize STL.Tree.eliminateTrueFalseWith ut φ = l
-    split <;> simp [STL.Tree.Sat, hab]
+    split <;> simp [STL.Tree.Sat, STL.Tree.HasUntilWitness, hab]
   | next a φ ih =>
     have ih := ih hφ
     simp only [STL.Tree.eliminateTrueFalseWith, STL.Tree.Sat, ← ih]

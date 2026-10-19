@@ -11,7 +11,7 @@ Any coordinatewise activation as an `Enclose` kind: a relaxation stored in the s
 proof that it encloses *some* `σ`. The proof is a `Prop`, so two layers at one relaxation are
 one layer whichever `σ` each was proved for, and the layer stores nothing over ℝ; `eval` is
 the `σ` the proof names, read back inside `Erased`. A layer whose `σ` matters to a caller is
-`SigmoidLayer`, `TanhLayer` or `ReluLayer`, or the relational `Layer.activation_sound`. The
+`SigmoidLayer`, `TanhLayer` or `ReluLayer`, or the relational `Layer.activation_encloses`. The
 dimension is kept, so its weights carry `dim`, which `rfl` discharges where a layer is built.
 -/
 

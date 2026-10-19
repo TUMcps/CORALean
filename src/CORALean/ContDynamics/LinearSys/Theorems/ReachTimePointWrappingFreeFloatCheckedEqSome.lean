@@ -31,7 +31,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.reachTimePointWrappingFreeFloatChecked_eq_some (sys : LinearSys 𝕋 n)
-    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachOptions 𝕋) :
+    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
+    (options : LinearSys.ReachOptions 𝕋) : -- --- STMT ---
     ∀ Rs ∈ sys.reachTimePointWrappingFreeFloatChecked params options,
       sys.reachTimePointWrappingFreeFloat params options = some Rs ∧
         noNaN (𝕋 := 𝕋) Rs = true := fun _ h =>

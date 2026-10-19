@@ -8,8 +8,8 @@ import CORALean.NN.Layers.Instances
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.Basic
 import CORALean.NN.Layers.Operations.ReluSlope
-import CORALean.NN.Layers.Theorems.LinearSound
-import CORALean.NN.Layers.Theorems.ReluSound
+import CORALean.NN.Layers.Theorems.LinearEncloses
+import CORALean.NN.Layers.Theorems.ReluEncloses
 import CORALean.NN.Operations.Enclose
 import CORALean.NN.Theorems.EncloseOuter
 import CORALean.NN.Theorems.HoldsOfCheck
@@ -26,7 +26,7 @@ certifies `y ≤ 0`. The zonotope's center `-3/4` rounds to `2^24 - 1` the same 
 
 Every weight, bias and bound is data here, exact, and read into whichever scalar
 an analysis runs at: `NnNaive`'s binary32, or `network` at `Dyadic 24` and
-`Float`, the verified enclosure through `NeuralNetwork.enclose`. `network_sound`
+`Float`, the verified enclosure through `NeuralNetwork.enclose`. `network_encloses`
 says what that enclosure is sound for -- the exact map the stored weights denote,
 the ReLU exact -- and `network_mem_enclose` is `enclose_outer` read at it.
 -/
@@ -105,14 +105,14 @@ def network (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋 1 h) (b�
 
 /-- What `network` encloses: the exact affine maps its stored weights denote,
 around the exact ReLU. -/
-theorem network_sound (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋 1 h) (b₂ : Vec 𝕋 1) :
-    (network (S := S) W₁ b₁ W₂ b₂).Sound fun x =>
+theorem network_encloses (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋 1 h) (b₂ : Vec 𝕋 1) :
+    (network (S := S) W₁ b₁ W₂ b₂).Encloses fun x =>
       Scalar.toRealMat W₂ *ᵥ (fun i => Real.relu ((Scalar.toRealMat W₁ *ᵥ x
         + Scalar.toRealVec b₁) i)) + Scalar.toRealVec b₂ := by -- --- PROOF ---
   delta network
-  exact .layer (Layer.linear_sound W₁ b₁)
-    (.layer (Layer.relu_sound reluSlope)
-      (.layer (Layer.linear_sound W₂ b₂) (.output fun _ => rfl) fun _ => rfl) fun _ => rfl)
+  exact .layer (Layer.linear_encloses W₁ b₁)
+    (.layer (Layer.relu_encloses reluSlope)
+      (.layer (Layer.linear_encloses W₂ b₂) (.output fun _ => rfl) fun _ => rfl) fun _ => rfl)
     fun _ => rfl
 
 
@@ -121,11 +121,11 @@ theorem network_sound (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋
 /-- The soundness corollary `nn-float32` reports on: every exact output over the
 input set lies in the computed enclosure, whatever the precision. -/
 theorem network_mem_enclose (W₁ : Mat 𝕋 h n) (b₁ : Vec 𝕋 h) (W₂ : Mat 𝕋 1 h)
-    (b₂ : Vec 𝕋 1) (X : S n) {x : Vec ℝ n} (hx : x ∈ construct X) :
+    (b₂ : Vec 𝕋 1) (X : S n) {x : Vec ℝ n} (hx : x ∈ construct X) : -- --- STMT ---
     Scalar.toRealMat W₂ *ᵥ (fun i => Real.relu ((Scalar.toRealMat W₁ *ᵥ x
         + Scalar.toRealVec b₁) i)) + Scalar.toRealVec b₂
       ∈ construct ((network (S := S) W₁ b₁ W₂ b₂).enclose X) :=
-  (network_sound W₁ b₁ W₂ b₂).enclose_outer X x hx
+  (network_encloses W₁ b₁ W₂ b₂).enclose_outer X x hx
 
 end CORALean.Bench.Nn
 

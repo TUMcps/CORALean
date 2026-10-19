@@ -11,7 +11,7 @@ public import CORALean.HybridDynamics.Definitions.Invariant
 The chaining, and it is the run's own recursion principle: one case per
 constructor, each discharging an obligation the invariant already carries. That
 is what choosing an inductive family for the run bought — the same shape as
-`NeuralNetwork.Sound.enclose_outer`, and for the same reason.
+`NeuralNetwork.Encloses.enclose_outer`, and for the same reason.
 
 The `jump` case applies `flow` first, at the right endpoint of the stay: the
 state a guard is tested against is the one the stay ends at, which is why

@@ -40,7 +40,7 @@ variable {n : ℕ}
 /-- `Fin.sum_univ_add` at `boxOut`'s independent generator count, through the projection. -/
 theorem PolyZonotope.aux_sum_univ_boxOut_q {pZ : PolyZonotope (Vec ℝ n)} {removed : Fin pZ.h → Prop}
     {taken : Fin pZ.q → Prop} [DecidablePred removed] [DecidablePred taken]
-    (f : Fin (pZ.q + n) → ℝ) :
+    (f : Fin (pZ.q + n) → ℝ) : -- --- STMT ---
     ∑ j : Fin (pZ.boxOut removed taken).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd pZ.q j) :=
   Fin.sum_univ_add f

@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Float.Operations.Atan
 public import CORALean.ContSet.Taylm.Float.Theorems.TaylorOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsLeMagUp
-public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.ContSet.Interval.Float.Theorems.EvalPolyCoeffsMem
 public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
 public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
@@ -16,7 +16,7 @@ public import CORALean.Global.ElementaryDerivBounds
 
 No domain condition: `atan` is smooth on `ℝ`. `Taylm.taylor_outer` at `arctan`, whose derivatives at
 the center are `atanPoly j c · wʲ⁺¹` (`iteratedDeriv_atan`), the polynomial the integer list
-`recL` evaluates (`eval_recL`), `Interval.evalList_mem` enclosing it, and whose `(N+1)`-th is
+`recL` evaluates (`eval_recL`), `Interval.evalPolyCoeffs_mem` enclosing it, and whose `(N+1)`-th is
 bounded by `atanDom N` at the magnitude (`abs_iteratedDeriv_atan_le`).
 -/
 
@@ -88,7 +88,7 @@ theorem Taylm.atan_outer (p q : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} 
     · exact ⟨by simpa using atanDown_le p q c, by simpa using le_atanUp p q c⟩
     · simp only
       -- the polynomial, the power and the factorial between their enclosures
-      have hb := Interval.evalList_mem (lo := c) (hi := c) (x := toReal c) le_rfl le_rfl
+      have hb := Interval.evalPolyCoeffs_mem (lo := c) (hi := c) (x := toReal c) le_rfl le_rfl
         (recL [1, 0, 1] (fun j => -(2 * ((j : ℤ) + 1))) j)
       have hG := divFact_mem ⟨(one : 𝕋), (one : 𝕋)⟩ zero_le_one
         (by rw [toReal_one]; exact ⟨le_rfl, le_rfl⟩) (j + 1)
@@ -108,7 +108,7 @@ theorem Taylm.atan_outer (p q : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} 
 -- the derivative bound `atanDom N` at the magnitude
   · rw [← hDm]
     exact abs_iteratedDeriv_atan_le N (T.abs_le_magUp hξ)
-  · exact (Interval.evalList_mem (lo := T.magUp) (hi := T.magUp) le_rfl le_rfl _).2
+  · exact (Interval.evalPolyCoeffs_mem (lo := T.magUp) (hi := T.magUp) le_rfl le_rfl _).2
 
 end CORALean.Float
 

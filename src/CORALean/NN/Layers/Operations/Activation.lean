@@ -24,7 +24,7 @@ interval arithmetic, and the relaxation is where all of a network's precision is
 The layer needs `IntervalOuter`, which the linear one does not, because the relaxation is a
 function of the input bounds. It rounds in exactly one place, `Relaxation.box`; the slope
 matrix is stored exactly and the propagation rounds inside `mtimes` and `plus`. `σ` appears
-only in `Layer.activation_sound`: the layer itself never sees it.
+only in `Layer.activation_encloses`: the layer itself never sees it.
 -/
 
 -- Authors:       Claude Opus 5.5

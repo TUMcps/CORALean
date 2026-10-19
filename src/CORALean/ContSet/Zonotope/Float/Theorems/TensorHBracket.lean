@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.tensorH_bracket (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
+theorem Zonotope.tensorH_bracket (M : Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
     (L : Real.Zonotope.TensorLists Z.h) (iDim : Fin n) (cInd : Fin L.C) : -- --- STMT ---
     toReal (Zonotope.tensorHDown M Z L iDim cInd)
         ≤ (Real.Zonotope.tensorMultiplication (nominal Z : Real.Zonotope (Vec ℝ n))

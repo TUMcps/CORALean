@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 the projection because that is the form the goal has. Only the outermost split
 needs it; every block it produces has a plain count. -/
 theorem PolyZonotope.aux_sum_univ_linComb_h {pZ₁ pZ₂ : PolyZonotope α}
-    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → α) :
+    (f : Fin (pZ₁.h + pZ₂.h + (pZ₁.h + pZ₂.h + 1)) → α) : -- --- STMT ---
     ∑ i : Fin (pZ₁.linComb pZ₂).h, f i
       = ∑ i, f (Fin.castAdd (pZ₁.h + pZ₂.h + 1) i)
         + ∑ i, f (Fin.natAdd (pZ₁.h + pZ₂.h) i) :=

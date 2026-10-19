@@ -31,7 +31,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 /-- A layer with nothing to spend: every pattern is the layer itself, which is
 how a linear layer sits in a refinable network. -/
-def Layer.refinable (L : Layer S n m) {f : Vec ℝ n → Vec ℝ m} (hf : L.Sound f) :
+def Layer.refinable (L : Layer S n m) {f : Vec ℝ n → Vec ℝ m} (hf : L.Encloses f) :
     RefinableLayer S n m where
   eval := f
   enclose _ := L.enclose

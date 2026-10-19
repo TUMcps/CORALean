@@ -58,7 +58,7 @@ theorem NonlinearSys.IsTrajectory.of_hasDerivWithinAt_of_norm_le {sys : Nonlinea
     (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (init : x 0 ∈ construct R₀)
     (input : ∀ t ∈ T, u t ∈ construct U)
     (hd : ∀ t ∈ T, HasDerivWithinAt x (sys.f (x t) (u t)) T t)
-    (hC : ∀ t ∈ T, ‖sys.f (x t) (u t)‖ ≤ C) :
+    (hC : ∀ t ∈ T, ‖sys.f (x t) (u t)‖ ≤ C) : -- --- STMT ---
     sys.IsTrajectory T R₀ U x u (fun t => sys.g (x t) (u t)) :=
   .of_hasDerivWithinAt hTconv h0T init input hd fun _ ht =>
     aux_intervalIntegrable_of_hasDerivWithinAt hTconv h0T hd ht fun s hs =>

@@ -15,8 +15,8 @@ import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Reshape
 import CORALean.NN.Layers.Operations.Softmax
 import CORALean.NN.Layers.Operations.TransposeEquiv
-import CORALean.NN.Layers.Theorems.ConvSound
-import CORALean.NN.Layers.Theorems.MaxPoolSound
+import CORALean.NN.Layers.Theorems.ConvEncloses
+import CORALean.NN.Layers.Theorems.MaxPoolEncloses
 import CORALean.NN.Layers.Theorems.ReshapeExact
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.EncloseOuter
@@ -37,7 +37,7 @@ in the scalar, as the network read in stores them.
 
 `Layer` no longer carries what a layer computes, so nothing here stores a real
 function: the network below is a plain `def` and every step of its `enclose` is
-float arithmetic. Max pooling's supremum over ℝ lives in `Layer.maxPool_sound`,
+float arithmetic. Max pooling's supremum over ℝ lives in `Layer.maxPool_encloses`,
 which is a `Prop`.
 -/
 
@@ -76,13 +76,13 @@ example (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (sc sh : Vec �
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example {nn : NeuralNetwork 𝒵[𝕋] 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 6)) {x : Vec ℝ 6}
+    (hf : nn.Encloses f) (X : Zonotope (Vec 𝕋 6)) {x : Vec ℝ 6}
     (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
 example {nn : NeuralNetwork 𝒵[𝕋] 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 6)) (l : Fin 2)
+    (hf : nn.Encloses f) (X : Zonotope (Vec 𝕋 6)) (l : Fin 2)
     (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ construct X)
     {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
@@ -91,9 +91,9 @@ example {nn : NeuralNetwork 𝒵[𝕋] 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
 /-- The stored kernel denotes the convolution exactly, the stencil's entries
 being placed rather than summed. -/
 example (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) :
-    (Layer.conv (S := 𝒵[𝕋]) (fun _ => 0) Real.Example.convTap K b).Sound
+    (Layer.conv (S := 𝒵[𝕋]) (fun _ => 0) Real.Example.convTap K b).Encloses
       fun x j => (∑ l, toReal (K 0 l) * x (Real.Example.convTap j l)) + toReal (b j) :=
-  Layer.conv_sound _ _ _ _ Real.Example.convTap_injective
+  Layer.conv_encloses _ _ _ _ Real.Example.convTap_injective
 
 /-- Exact at a float representation too, a relabelling carrying no scalar. -/
 example (X : Zonotope (Vec 𝕋 6)) :

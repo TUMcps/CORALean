@@ -55,7 +55,7 @@ theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonot
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope (Vec 𝕋 n))
-    (M : Zonotope (Zonotope.Tensor3 𝕋 n)) (L : Real.Zonotope.TensorLists Z.absorbRounding.h)
+    (M : Zonotope (Tensor3 𝕋 n)) (L : Real.Zonotope.TensorLists Z.absorbRounding.h)
     (hc : ∀ i, toReal (Z.c i) = 0)
     (hperm : Function.Bijective fun p : Fin L.P => (L.perm p 0, L.perm p 1, L.perm p 2))
     (hmap : ∀ p q, L.map p = L.map q →

@@ -89,7 +89,8 @@ theorem guardIntersectUnsolvable_subset {I : Interval (Vec ℝ n)} {κ : ℕ} (k
       - ∑ i ∈ Finset.univ.erase k, taylorGrad g I.center i * x i - taylorHigher g κ I.center x)
         / taylorGrad g I.center k = pk x + Dp x)
     (Dl Du : ℝ) (hD : ∀ x ∈ I.construct, ∀ r ∈ Set.Icc T.l T.u,
-      Dl ≤ Dp x - r / taylorGrad g I.center k ∧ Dp x - r / taylorGrad g I.center k ≤ Du) :
+      Dl ≤ Dp x - r / taylorGrad g I.center k ∧ Dp x - r / taylorGrad g I.center k ≤ Du)
+    : -- --- STMT ---
     I.construct ∩ {x | g x = 0} ⊆ (guardIntersectUnsolvable I k pk Dl Du).construct :=
   aux_guardIntersectUnsolvable_subset I k _ _ _ _ _ _ (fun _ hx => T.mem hg hκ hx) ha pk Dp
     hsplit Dl Du hD

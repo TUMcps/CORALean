@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {O U : Set α}
 already carries a separating direction — preserved by every further step. -/
 theorem verifyConvexFold_inv (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
     (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d) (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
-    (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (ℓ : ℕ → α →ₗ[ℝ] ℝ) :
+    (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (ℓ : ℕ → α →ₗ[ℝ] ℝ) : -- --- STMT ---
     ∀ (todo : List ℕ) {A : VerifyAnswer} {V : Set α}, V ⊆ O - U →
       (A = .violated → (0 : α) ∈ convexHull ℝ V) →
       (A = .safe → ∃ c : α →ₗ[ℝ] ℝ, (bO c).val + (bU (-c)).val < 0) →

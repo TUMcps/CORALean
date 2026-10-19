@@ -10,8 +10,8 @@ public import CORALean.NN.Layers.Operations.LinearWithError
 public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
 public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Layers.Operations.ActivationLayerOf
-public import CORALean.NN.Layers.Theorems.ActivationSound
-public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.ActivationEncloses
+public import CORALean.NN.Layers.Theorems.LinearEncloses
 public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 public import CORALean.NN.NeuralNetwork
 public import CORALean.NN.Operations.Basic
@@ -83,10 +83,10 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
       = (toRealMat W0 *ᵥ x + toRealVec b0) ∘ part.left := by
     funext i
     simp [Matrix.mulVec, dotProduct, toRealMat, toRealVec]
-  have hA1 := (Layer.linear_sound (S := S) (W0.submatrix part.left id)
+  have hA1 := (Layer.linear_encloses (S := S) (W0.submatrix part.left id)
     (b0 ∘ part.left)).enclose_outer X x hx
   rw [hrow] at hA1
-  have hA2 := (Layer.activation_sound (S := S) hR).enclose_outer _ _ hA1
+  have hA2 := (Layer.activation_encloses (S := S) hR).enclose_outer _ _ hA1
   -- the bucket's exact output lies in `Y`, hence in `Y` restricted to the bucket
   have hB : hk ∘ part.right
       ∈ (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Interval (Vec 𝕋 r)).construct :=

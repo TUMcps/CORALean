@@ -38,7 +38,7 @@ variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 theorem NonlinearSysDT.simulate_mem_reach (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀)
     {u : ℕ → Vec ℝ m} (hu : ∀ k, u k ∈ construct U)
-    (hR : ∀ k, sys.simulate x₀ u k ∈ (steps k).R) (k : ℕ) :
+    (hR : ∀ k, sys.simulate x₀ u k ∈ (steps k).R) (k : ℕ) : -- --- STMT ---
     sys.simulate x₀ u k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.reach_outer ho steps R₀ (sys.simulate_isTrajectory hx₀ hu) hR k
 

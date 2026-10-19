@@ -4,7 +4,7 @@ public import CORALean.ContSet.Taylm.Float.Operations.Tan
 public import CORALean.ContSet.Taylm.Float.Theorems.AbsSubLeMaximumSubUp
 public import CORALean.ContSet.Taylm.Float.Theorems.ComposeOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.ContSet.Interval.Float.Theorems.EvalPolyCoeffsMem
 public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
 public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
 public import CORALean.ContSet.Interval.Real.Theorems.MulBetweenCorners
@@ -20,7 +20,7 @@ public import CORALean.Global.TaylorRemainder
 `taylor_remainder_abs_le` at `tan`, whose derivatives are `odePoly (1 + X²) k` at `tan`
 (`iteratedDeriv_of_ode`) and are bounded by the same polynomial of order `N+1` at `tan m`
 (`abs_iteratedDeriv_tan_le`), `m` the magnitude of the model. The integer polynomial lists
-evaluate as the real ones (`eval_odePoly_odeL`), and `Interval.evalList_mem` encloses them.
+evaluate as the real ones (`eval_odePoly_odeL`), and `Interval.evalPolyCoeffs_mem` encloses them.
 The domain is explicit: the magnitude below `π/2`, and the cosine certified positive by
 `cosDown` at the center and at the magnitude, which is what `tanDown_le` and `le_tanUp` need.
 -/
@@ -95,7 +95,7 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
     (fun k => iteratedDeriv k Real.tan (toReal c) / (k.factorial : ℝ)) (fun k _ => ?_)
     fun t ht => ?_
   · -- coefficient `P(tan c) * (1 / k!)` between the corner products
-    have hb := Interval.evalList_mem ht1 ht2 (odeL [1, 0, 1] k)
+    have hb := Interval.evalPolyCoeffs_mem ht1 ht2 (odeL [1, 0, 1] k)
     have hf := hF1 k
     have hs := Real.Interval.mul_between_corners hb.1 hb.2 hf.1 hf.2
     rw [← div_eq_mul_one_div, ← hder k] at hs
@@ -124,8 +124,8 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
     have hPow := le_powUp (abs_nonneg _) hB (N + 1)
     -- the derivative bound below its rounding
     have hD : evalL (odeL [1, 0, 1] (N + 1)) (Real.tan M) ≤
-        toReal (Interval.evalList (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).sup :=
-      (Interval.evalList_mem (tanDown_le p m hcm) (le_tanUp p m hcm) _).2
+        toReal (Interval.evalPolyCoeffs (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).sup :=
+      (Interval.evalPolyCoeffs_mem (tanDown_le p m hcm) (le_tanUp p m hcm) _).2
     -- the bound is non-negative, being above an absolute value
     have hE : 0 ≤ evalL (odeL [1, 0, 1] (N + 1)) (Real.tan M) :=
       le_trans (abs_nonneg _) (hD1 (toReal c) Set.left_mem_uIcc)
@@ -138,12 +138,12 @@ theorem Taylm.tan_outer (p : ℕ) {T : Taylm 𝕋 n} {f : Vec ℝ n → ℝ} (h 
           / ((N + 1).factorial : ℝ)
         = evalL (odeL [1, 0, 1] (N + 1)) (Real.tan M) * |f t - toReal c| ^ (N + 1)
           * (1 / ((N + 1).factorial : ℝ)) := by ring
-      _ ≤ toReal (Interval.evalList (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).sup
+      _ ≤ toReal (Interval.evalPolyCoeffs (tanDown p m) (tanUp p m) (odeL [1, 0, 1] (N + 1))).sup
             * toReal (powUp B (N + 1))
           * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
         apply mul_le_mul (mul_le_mul hD hPow hY (le_trans hE hD)) hF hFpos
         exact mul_nonneg (le_trans hE hD) (le_trans hY hPow)
-      _ ≤ toReal (mulUp (Interval.evalList (tanDown p m) (tanUp p m)
+      _ ≤ toReal (mulUp (Interval.evalPolyCoeffs (tanDown p m) (tanUp p m)
               (odeL [1, 0, 1] (N + 1))).sup (powUp B (N + 1)))
           * toReal (divFact ⟨(one : 𝕋), (one : 𝕋)⟩ (N + 1)).sup := by
         apply mul_le_mul_of_nonneg_right (mul_le_mulUp _ _) (le_trans hFpos hF)

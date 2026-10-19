@@ -48,7 +48,7 @@ theorem LinearSys.convexHull_supportCounterexample_subset_reachSetExact (sys : L
     (R₀ U : S n) (hR₀ : Convex ℝ (construct R₀)) (hUconv : Convex ℝ (construct U))
     (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt)
     {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct R₀)
-    (hνU : ∀ d, νU d ∈ construct U) {ι : Type} (ℓ : ι → Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
+    (hνU : ∀ d, νU d ∈ construct U) {ι : Type} (ℓ : ι → Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- STMT ---
     convexHull ℝ (Set.range fun j => sys.heldSim Δt
         (sys.supportCounterexample Δt ν₀ νU (ℓ j) k).1
         (sys.supportCounterexample Δt ν₀ νU (ℓ j) k).2 k)

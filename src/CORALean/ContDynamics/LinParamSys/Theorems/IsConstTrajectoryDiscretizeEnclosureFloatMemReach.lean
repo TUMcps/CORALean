@@ -44,7 +44,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.discretizeEnclosureFloat_mem_reac
     (hU : Bornology.IsBounded (construct U))
     (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ construct
         Ud)
-    (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    (hη : sys.OrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) (k : ℕ) : -- --- STMT ---
     x (k * toReal Δt) ∈ construct ((sys.discretizeEnclosureFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
       ⟨o, ho⟩) :=
   (sys.discretizeEnclosureFloat Δt η).reach_outer ho R₀ Ud

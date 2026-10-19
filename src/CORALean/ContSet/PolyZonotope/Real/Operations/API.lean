@@ -110,6 +110,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Restructure
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RestructureReduce
 public import CORALean.ContSet.PolyZonotope.Real.Operations.ReduceDependent
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiff
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EDiffTight
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EDrift
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidth
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp

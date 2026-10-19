@@ -42,7 +42,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem LinearSys.holds_of_check_wrappingFree [Contains ContSet (SetUnion (S n))]
     [IsDisjoint ContSet (SetUnion (S n))] (sys : LinearSys 𝕋 n) (params : Reach.Params (S n) ℝ)
     {options : LinearSys.ReachStepOptions ℝ} (hΔt : 0 < options.Δt)
-    (spec : Specification ContSet) :
+    (spec : Specification ContSet) : -- --- STMT ---
     spec.check (sys.reachWrappingFree params options) →
     (spec.Holds (sys.reachExact (params.tFinal - params.tStart) (construct params.X₀))) :=
   fun h => spec.holds_of_outer (sys.reachWrappingFree_outer params hΔt) (spec.check_sound _ h)

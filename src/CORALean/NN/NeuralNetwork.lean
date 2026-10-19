@@ -18,8 +18,8 @@ A chain rather than a node-and-edge graph, and that is not a restriction: a bran
 vector and carries the branched coordinates along — `IdentityLayer` on that block, a linear
 layer to route or duplicate — so every value stays in one set and the dependency survives.
 
-What a network computes is its layers' `eval`s composed, `NeuralNetwork.eval`. `Sound`, in
-`Definitions/Sound.lean`, is the weaker, relational statement the reduction and refinement
+What a network computes is its layers' `eval`s composed, `NeuralNetwork.eval`. `Encloses`, in
+`Definitions/Encloses.lean`, is the weaker, relational statement the reduction and refinement
 results need.
 -/
 

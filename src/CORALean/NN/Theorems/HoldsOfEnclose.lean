@@ -1,7 +1,7 @@
 module
 
-public import CORALean.NN.Theorems.SoundEval
-public import CORALean.NN.Theorems.SoundHoldsOfEnclose
+public import CORALean.NN.Theorems.EnclosesEval
+public import CORALean.NN.Theorems.EnclosesHoldsOfEnclose
 
 @[expose] public section
 
@@ -36,7 +36,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 theorem NeuralNetwork.holds_of_enclose (nn : NeuralNetwork S n m) (X : S n)
     (spec : Specification ContSet) (h : spec.Holds (construct (nn.enclose X))) :
     spec.Holds (nn.eval.out '' construct X) :=
-  (NeuralNetwork.sound_eval nn).holds_of_enclose X spec h
+  (NeuralNetwork.encloses_eval nn).holds_of_enclose X spec h
 
 end CORALean
 

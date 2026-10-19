@@ -51,7 +51,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 set over a window is exactly the first part's, propagated across the second,
 plus the second part's. -/
 theorem LinearSys.inputReach_separation_eq (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}
-    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) :
+    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) : -- --- STMT ---
     sys.inputReach U (a + b)
       = (fun y => exp (b • toRealMat sys.A) *ᵥ y) '' sys.inputReach U a
         + sys.inputReach U b :=

@@ -15,10 +15,10 @@ public import CORALean.ContDynamics.LinearSysDT.LinearSysDT
 
 `LinearSysDT.output_outer`'s statement, with the controller's own enclosure of
 its input and the external inputs `U_ext` standing in for a free `U`: `reach_outer` places the
-state, `NeuralNetwork.Sound.enclose_outer` at that same enclosure places the network's part of the
-input the controller produces there, and the external part is in `U_ext`; `D [a; e]` splits as
-`D_nn a + D_ext e` (`outputSet`), each in its own product. The input set the output is read at is
-the enclosed one, not the looser one `reach` itself widens through, as
+state, `NeuralNetwork.Encloses.enclose_outer` at that same enclosure places the network's part
+of the input the controller produces there, and the external part is in `U_ext`; `D [a; e]` splits
+as `D_nn a + D_ext e` (`outputSet`), each in its own product. The input set the output is read at
+is the enclosed one, not the looser one `reach` itself widens through, as
 `NeurNetContrSysDT.Operations` already notes at the state.
 -/
 
@@ -44,7 +44,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem NeurNetContrSysDT.output_outer (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (U_ext : S sys.nExt) {o : ℕ} (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m}
-    (hπ : sys.contr.Sound π) {W : Set (Vec ℝ sys.plant.r)}
+    (hπ : sys.contr.Encloses π) {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
     {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (construct U_ext) W x v w)
     (k : ℕ) : -- --- STMT ---

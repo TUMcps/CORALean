@@ -45,7 +45,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 /-- `hcov` covers `X`, not necessarily equals it — the parts may overlap and
 overshoot `X`, so this is a cover a splitter produces, not a `Partition`. -/
 theorem NeuralNetwork.holds_of_split {ι : Type} {nn : NeuralNetwork S n m}
-    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Sound f) (X : S n)
+    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) (X : S n)
     (parts : ι → S n) (hcov : construct X ⊆ ⋃ i, construct (parts i))
     (spec : Specification ContSet)
     (h : ∀ i, spec.Holds (construct (nn.enclose (parts i)))) : -- --- STMT ---

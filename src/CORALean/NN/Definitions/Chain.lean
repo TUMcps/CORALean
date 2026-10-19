@@ -14,7 +14,7 @@ a network's do — and it is where everything about the *exact* map lives: the
 chain rule, sensitivity, a Lipschitz constant per layer.
 
 It is a specification and never a computation, which is why it may store what
-`Layer` may not. Nothing built here is ever run; `NeuralNetwork.Sound` at
+`Layer` may not. Nothing built here is ever run; `NeuralNetwork.Encloses` at
 `c.eval` is the only bridge back, and it is a proposition.
 -/
 

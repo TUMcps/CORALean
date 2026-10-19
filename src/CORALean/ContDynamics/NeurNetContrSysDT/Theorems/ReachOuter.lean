@@ -17,7 +17,7 @@ public import CORALean.NN.Theorems.EncloseOuter
 Where the two halves of this repository meet, and the meeting is two lines: the
 controller's enclosure of the input it produces at the reached state, handed to
 the plant's one-step enclosure. Nothing else appears, and nothing new is proved
-here — `NeuralNetwork.Sound.enclose_outer` and `LinearSysDT.reach_one_outer` are
+here — `NeuralNetwork.Encloses.enclose_outer` and `LinearSysDT.reach_one_outer` are
 both already stated against the interfaces, so neither knows it is being
 composed.
 
@@ -52,7 +52,7 @@ variable [OfScalarPoint 𝕋 S]
 
 theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (U_ext : S sys.nExt) {o : ℕ} (ho : 0 < o)
-    (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
+    (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
     {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (construct U_ext) W x v w)

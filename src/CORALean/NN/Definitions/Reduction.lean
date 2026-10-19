@@ -76,7 +76,7 @@ inductive NeuralNetwork.ReducesAt :
       ReducesAt s .output .output f
   | keep {n k m : ℕ} (s : S n) {L : ℕ → ℕ → Type} [inst : Enclose L S] (curr : L n k)
       {rest rest' : NeuralNetwork S k m} {g : Vec ℝ n → Vec ℝ k}
-      (hg : (Enclose.toLayer (S := S) curr).Sound g) {h : Vec ℝ k → Vec ℝ m}
+      (hg : (Enclose.toLayer (S := S) curr).Encloses g) {h : Vec ℝ k → Vec ℝ m}
       {f : Vec ℝ n → Vec ℝ m} (hf : ∀ x, f x = h (g x)) :
       ReducesAt (Enclose.enclose curr s) rest rest' h →
         ReducesAt s (.layer curr rest) (.layer curr rest') f

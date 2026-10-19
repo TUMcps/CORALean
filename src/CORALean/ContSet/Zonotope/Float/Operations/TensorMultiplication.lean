@@ -37,14 +37,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-def Zonotope.aux_tensorHDiff (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
+def Zonotope.aux_tensorHDiff (M : Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
     (L : Real.Zonotope.TensorLists Z.h) : Fin n → Fin L.C → 𝕋 :=
   fun iDim cInd => subUp (Zonotope.tensorHUp M Z L iDim cInd) (Zonotope.tensorHDown M Z L iDim cInd)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.tensorMultiplication (Z : Zonotope (Vec 𝕋 n)) (M : Zonotope.Tensor3 𝕋 n)
+def Zonotope.tensorMultiplication (Z : Zonotope (Vec 𝕋 n)) (M : Tensor3 𝕋 n)
     (L : Real.Zonotope.TensorLists Z.absorbRounding.h) : Zonotope (Vec 𝕋 n) where
   h := L.C
   c := fun _ => zero

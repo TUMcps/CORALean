@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Taylor
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
-public import CORALean.ContSet.Interval.Float.Operations.EvalList
+public import CORALean.ContSet.Interval.Float.Operations.EvalPolyCoeffs
 public import CORALean.Global.RecList
 public import CORALean.Global.Float.InverseTrig
 public import CORALean.Global.Float.PowDown
@@ -14,11 +14,11 @@ public import CORALean.Global.Float.PowDown
 
 The exact layer's `atan` with every number enclosed. `atan⁽ʲ⁺¹⁾ x = atanPoly j x · w⁽ʲ⁺¹⁾` with
 `w = (1 + x²)⁻¹`, so the `(j+1)`-th coefficient is `atanPoly j (c) · wʲ⁺¹ / (j+1)!`: the integer
-polynomial (`recL [1, 0, 1] (j ↦ -2(j+1)) j`) by `Interval.evalList` on `[c, c]`, `wʲ⁺¹` between
-`powDown` and `powUp` of the roundings of `w` (above by `1`, `w ≤ 1`), and `1 / (j+1)!` by
+polynomial (`recL [1, 0, 1] (j ↦ -2(j+1)) j`) by `Interval.evalPolyCoeffs` on `[c, c]`, `wʲ⁺¹`
+between `powDown` and `powUp` of the roundings of `w` (above by `1`, `w ≤ 1`), and `1 / (j+1)!` by
 `divFact`, the three through the corner products; the zeroth is `atanDown`/`atanUp`. The Lagrange
 bound is `atanDom N` (`recL [1, 0, 1] (j ↦ 2(j+1)) N`) at the magnitude `Taylm.magUp`, enclosed by
-`Interval.evalList` (`w ≤ 1` drops the power). `p` and `q` are the precisions of
+`Interval.evalPolyCoeffs` (`w ≤ 1` drops the power). `p` and `q` are the precisions of
 `Global/Float/InverseTrig`.
 -/
 
@@ -44,7 +44,7 @@ def Taylm.atan (p q : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
   let c := T.constCoef
   let m := T.magUp
   -- `|atan⁽ᴺ⁺¹⁾| ≤ atanDom N` at `m`
-  let D := (Interval.evalList m m (recL [1, 0, 1] (fun j => 2 * ((j : ℤ) + 1)) N)).sup
+  let D := (Interval.evalPolyCoeffs m m (recL [1, 0, 1] (fun j => 2 * ((j : ℤ) + 1)) N)).sup
   -- `w = (1 + c²)⁻¹` between its roundings
   let wl := maximum zero (divDown one (addUp one (mulUp c c)))
   let wh := divUp one (maximum one (addDown one (mulDown c c)))
@@ -52,7 +52,7 @@ def Taylm.atan (p q : ℕ) (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
     match k with
     | 0 => ⟨atanDown p q c, atanUp p q c⟩
     | j + 1 =>
-      let P := Interval.evalList c c (recL [1, 0, 1] (fun j => -(2 * ((j : ℤ) + 1))) j)
+      let P := Interval.evalPolyCoeffs c c (recL [1, 0, 1] (fun j => -(2 * ((j : ℤ) + 1))) j)
       let G := divFact ⟨one, one⟩ (j + 1)
       let W : Interval 𝕋 := ⟨Interval.mulLo (powDown wl (j + 1)) (powUp wh (j + 1)) G.inf G.sup,
         Interval.mulHi (powDown wl (j + 1)) (powUp wh (j + 1)) G.inf G.sup⟩

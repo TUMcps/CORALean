@@ -63,12 +63,12 @@ theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonot
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope (Vec ℝ n))
-    (M : Zonotope (Zonotope.Tensor3 n)) (L : Zonotope.TensorLists Z.h) (hc : Z.c = 0)
+    (M : Zonotope (Tensor3 ℝ n)) (L : Zonotope.TensorLists Z.h) (hc : Z.c = 0)
     (hperm : Function.Bijective fun p : Fin L.P => (L.perm p 0, L.perm p 1, L.perm p 2))
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {M' : Zonotope.Tensor3 n} (hM : M' ∈ M.construct) {x : Vec ℝ n}
+    {M' : Tensor3 ℝ n} (hM : M' ∈ M.construct) {x : Vec ℝ n}
     (hx : x ∈ Z.construct) : -- --- STMT ---
     Zonotope.tensorEval M' x ∈ (Z.tensorMultiplication_zono M L).construct := by -- --- PROOF ---
   obtain ⟨γ, hγ, rfl⟩ := hM

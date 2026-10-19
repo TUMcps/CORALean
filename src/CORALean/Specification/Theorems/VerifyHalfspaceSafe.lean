@@ -38,7 +38,8 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- `verifyHalfspace` only ever returns `safe` because some round already does, on its own —
 the round the recursion actually stopped at. -/
-theorem aux_exists_safe_round {bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι → ℝ} {d : ι → ℝ} :
+theorem aux_exists_safe_round {bndUp bndLo : (r : ℕ) → Fin (2 ^ r) → ι → ℝ}
+    {d : ι → ℝ} : -- --- STMT ---
     ∀ {r fuel : ℕ}, verifyHalfspace bndUp bndLo d r fuel = .safe →
       ∃ r' ≥ r, ∀ (k : Fin (2 ^ r')) (i : ι), bndUp r' k i ≤ d i
   | r, 0, h => by

@@ -88,7 +88,7 @@ example (sys : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2) (U_ext : Zonotope (Vec 
     (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o)
     {Δt : ℝ} (hΔt : 0 < Δt)
     (hdt : sys.dt = (N : ℝ) * Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
-    {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
+    {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℝ → Vec ℝ 2} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
     (traj : sys.IsTrajectory π H R₀ (construct U_ext) {0} x v w) (i : ℕ)
     (hi : i ≤ H) :
@@ -102,7 +102,7 @@ example (sys : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2) (U_ext : Zonotope (Vec 
     (R₀ : Zonotope (Vec ℝ 2)) (o η N : ℕ) (ho : 0 < o)
     {Δt : ℝ} (hΔt : 0 < Δt)
     (hdt : sys.dt = (N : ℝ) * Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
-    (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
+    (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℝ → Vec ℝ 2} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
     (traj : sys.IsTrajectory π H R₀ (construct U_ext) {0} x v w) (i : ℕ)
     (hi : i ≤ H)

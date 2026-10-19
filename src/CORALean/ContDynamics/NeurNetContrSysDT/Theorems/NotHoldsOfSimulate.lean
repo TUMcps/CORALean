@@ -41,9 +41,9 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem NeurNetContrSysDT.not_holds_of_simulate (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (U_ext : S sys.nExt) {o : ℕ}
     (ho : 0 < o) (R₀ : S n) (spec : Specification ContSet) {π : Vec ℝ n → Vec ℝ sys.m}
-    (hπ : sys.contr.Sound π) {v : ℕ → Vec ℝ sys.nExt} (hv : ∀ k, v k ∈ construct U_ext)
+    (hπ : sys.contr.Encloses π) {v : ℕ → Vec ℝ sys.nExt} (hv : ∀ k, v k ∈ construct U_ext)
     {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀)
-    (k : ℕ) (hbad : ¬ spec.Holds {sys.simulate π v x₀ k}) :
+    (k : ℕ) (hbad : ¬ spec.Holds {sys.simulate π v x₀ k}) : -- --- STMT ---
     ¬ spec.Holds (construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩)) :=
   fun h => hbad (sys.holds_of_reach U_ext ho R₀ spec hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])

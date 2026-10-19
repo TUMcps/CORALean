@@ -136,17 +136,6 @@ def Capsule.hPolytope (C : Capsule 𝕋 n) : HPolytope 𝕋 (Vec 𝕋 n) :=
 def Capsule.polyZonotope (C : Capsule 𝕋 n) : PolyZonotope (Vec 𝕋 n) :=
   C.interval.polyZonotope
 
-
--- ====================================  `Capsule.zonotope`  ==================================== --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A capsule as a zonotope, over a floating-point scalar -/
-def Capsule.zonotope (C : Capsule 𝕋 n) : Zonotope (Vec 𝕋 n) :=
-  C.interval.zonotope
-
 end
 
 

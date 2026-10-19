@@ -71,7 +71,7 @@ theorem aux_guardIntersectSolvable_subset (I : Interval (Vec ℝ n)) (k : Fin n)
 
 theorem guardIntersectSolvable_subset {I : Interval (Vec ℝ n)} {κ : ℕ} (k : Fin n)
     {g D : Vec ℝ n → ℝ} (hG : {x | g x = 0} = {x | x k = D x}) (T : TaylorSeries D I κ)
-    (hD : ContDiff ℝ (κ + 1) D) (hκ : 1 ≤ κ) :
+    (hD : ContDiff ℝ (κ + 1) D) (hκ : 1 ≤ κ) : -- --- STMT ---
     I.construct ∩ {x | g x = 0} ⊆ (guardIntersectSolvable I k (D I.center) (taylorGrad D I.center)
       I.center (taylorHigher D κ I.center) T.l T.u).construct :=
   aux_guardIntersectSolvable_subset I k hG _ _ _ _ _ _ fun _ hx => T.mem hD hκ hx

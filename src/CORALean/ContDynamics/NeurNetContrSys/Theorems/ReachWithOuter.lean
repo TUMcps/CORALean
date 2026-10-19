@@ -60,7 +60,7 @@ theorem NeurNetContrSys.reachWith_outer (sys : NeurNetContrSys P S n)
         (fun t => sys.input u (v' t)) w →
       (Fin.append (z sys.dt) u : Vec ℝ (n + _)) ∈ construct (rx R).1 ∧
         ∀ t ∈ Set.Icc 0 sys.dt, ∃ T ∈ (rx R).2, (Fin.append (z t) u : Vec ℝ (n + _)) ∈ construct T)
-    {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π) {H : ℕ}
+    {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π) {H : ℕ}
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
     (traj : sys.IsTrajectory π H X₀ U_ext W x v w) : -- --- STMT ---
     ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈ construct (sys.reachWith cp pr rx X₀ i).1 ∧

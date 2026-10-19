@@ -68,7 +68,7 @@ theorem ConZonotope.aux_value_intersectStrip (cZ : ConZonotope (Vec ℝ n)) (C :
 
 /-- `aux_value_intersectStrip` at the coefficient type `construct` uses. -/
 theorem ConZonotope.aux_value_intersectStrip' (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
-    (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.intersectStrip C φ y Λ).h) :
+    (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.intersectStrip C φ y Λ).h) : -- --- STMT ---
     (cZ.intersectStrip C φ y Λ).c
         + ∑ j : Fin (cZ.intersectStrip C φ y Λ).h, β j • (cZ.intersectStrip C φ y Λ).G j
       = (cZ.c + ∑ j, β (Fin.castAdd s j) • cZ.G j)

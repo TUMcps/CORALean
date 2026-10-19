@@ -5,7 +5,7 @@ public import CORALean.NN.Layers.Definitions.ActivationPolyRefinable
 public import CORALean.NN.Layers.Definitions.SigmoidPolyFamily
 public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Layers.Operations.Linear
-public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.LinearEncloses
 public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilySound
 public import CORALean.NN.Operations.LayerRefinable
 
@@ -49,14 +49,14 @@ noncomputable def sigmoidRefinableNetwork (n : ℕ) : RefinableNetwork 𝒫𝒵 
 /-- A linear layer, which takes every level as itself, and the refinable activation behind it. -/
 noncomputable def linearSigmoidNetwork (W : Mat ℝ m n) (b : Vec ℝ m) :
     RefinableNetwork 𝒫𝒵 n m :=
-  .cons ((CORALean.Layer.linear W b).refinable (CORALean.Layer.linear_sound W b))
+  .cons ((CORALean.Layer.linear W b).refinable (CORALean.Layer.linear_encloses W b))
     (.cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_sound) .nil)
 
 /-- Two refinable activations around a linear layer, which has nothing to spend. -/
 noncomputable def sigmoidLinearSigmoidNetwork (W : Mat ℝ m n) (b : Vec ℝ m) :
     RefinableNetwork 𝒫𝒵 n m :=
   .cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_sound)
-    (.cons ((CORALean.Layer.linear W b).refinable (CORALean.Layer.linear_sound W b))
+    (.cons ((CORALean.Layer.linear W b).refinable (CORALean.Layer.linear_encloses W b))
       (.cons (Layer.activationPolyRefinable sigmoidPolyFamily sigmoidPolyFamily_sound) .nil))
 
 end CORALean.Real

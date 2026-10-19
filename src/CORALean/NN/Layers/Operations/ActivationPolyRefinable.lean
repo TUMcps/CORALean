@@ -4,7 +4,7 @@ public import CORALean.NN.Definitions.RefinableLayer
 public import CORALean.NN.Layers.Layer
 public import CORALean.NN.Layers.Operations.ActivationPoly
 public import CORALean.NN.Layers.Operations.Basic
-public import CORALean.NN.Layers.Theorems.ActivationPolySound
+public import CORALean.NN.Layers.Theorems.ActivationPolyEncloses
 public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Operations.RefinableLayerAtPattern
 public import CORALean.NN.Theorems.Basic
@@ -48,7 +48,7 @@ def Layer.activationPolyRefinable {F : PolyRelaxationFamily 𝕋} (hF : F.Sound 
     RefinableLayer 𝒫𝒵[𝕋] n n where
   eval x := fun i => σ (x i)
   enclose t := (Layer.activationPoly (F.atPattern t)).enclose
-  enclose_outer t := (Layer.activationPoly_sound (F.atPattern_sound hF t)).enclose_outer
+  enclose_outer t := (Layer.activationPoly_encloses (F.atPattern_sound hF t)).enclose_outer
 
 end CORALean
 

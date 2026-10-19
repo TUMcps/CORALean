@@ -56,7 +56,9 @@ theorem STL.Tree.sat_congr_minimumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → F
       fun t (ht : a ≤ t) =>
       ih (Time.shift ξ t) (Time.shift ξ' t) fun s hs =>
         h (s + t) (ht.trans le_add_self)
-    exact exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 => hφ t h1
+    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness]
+    exact exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
+      and_congr (hφ t h1) Iff.rfl
   -- the same for `globally`
   | globally a b φ ih =>
     have e : (STL.Tree.globally a b φ).minimumTime = a := by simp [STL.Tree.minimumTime,
@@ -66,14 +68,16 @@ theorem STL.Tree.sat_congr_minimumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → F
       fun t (ht : a ≤ t) =>
       ih (Time.shift ξ t) (Time.shift ξ' t) fun s hs =>
         h (s + t) (ht.trans le_add_self)
-    exact forall_congr' fun t => forall_congr' fun h1 => forall_congr' fun h2 => hφ t h1
+    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness]
+    exact not_congr (exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
+      and_congr (not_congr (hφ t h1)) Iff.rfl)
   -- `until` and `release` start at the present: every shift is read
   | «until» a b φ ψ ihφ ihψ | release a b φ ψ ihφ ihψ =>
     have hφ : ∀ t, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t =>
       ihφ (Time.shift ξ t) (Time.shift ξ' t) fun s hs => h (s + t) zero_le
     have hψ : ∀ t, ψ.Sat (Time.shift ξ t) ↔ ψ.Sat (Time.shift ξ' t) := fun t =>
       ihψ (Time.shift ξ t) (Time.shift ξ' t) fun s hs => h (s + t) zero_le
-    simp only [STL.Tree.Sat, hφ, hψ]
+    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness, hφ, hψ]
 
 end CORALean
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsSymm
 public import CORALean.Global.Float.SoundFloatArithmetic
 
 @[expose] public section
@@ -8,8 +8,9 @@ public import CORALean.Global.Float.SoundFloatArithmetic
 /-!
 # A symmetry check, read as reals
 
-`isSymm` compares each pair of mirrored entries with `le` both ways; `le` is sound, so each
-comparison holds as reals, and the two inequalities make the entries equal.
+`isSymm` applies `le` to `(Q i j, Q j i)` at every pair, so each mirrored pair is compared in both
+orders; `le` is sound, so each comparison holds as reals, and the two inequalities make the
+entries equal.
 -/
 
 -- Authors:       Claude Opus 5.5

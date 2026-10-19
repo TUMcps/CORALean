@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_SpectraShadow

@@ -30,7 +30,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.not_mem_unsafeSet {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
-    (hf : nn.Sound f) (X : S n)
+    (hf : nn.Encloses f) (X : S n)
     {unsafe' : Set (Vec ℝ m)} (h : Disjoint (construct (nn.enclose X)) unsafe')
     {x : Vec ℝ n} (hx : x ∈ construct X) : f x ∉ unsafe' :=
   Set.disjoint_left.mp h (hf.enclose_outer X x hx)

@@ -21,6 +21,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IsGoodDir
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IsOuterFactor
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IsPsd
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsSymm
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Materialise
 public import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
