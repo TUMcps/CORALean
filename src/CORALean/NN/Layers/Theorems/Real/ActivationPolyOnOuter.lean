@@ -17,7 +17,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 /-!
 # The exact polynomial activation layer at a box handed to it
 
-ℝ-only, as the layer is. What survives is pointwise soundness, not `Layer.Sound`: `J` answers
+ℝ-only, as the layer is. What survives is pointwise soundness, not `Layer.Encloses`: `J` answers
 for the points it contains and no others, so the claim is at a point of the input that `J` holds
 too — what [1, Prop. 4.2]'s loop has, the enclosure sound for the exact set even where it says
 nothing about the set this iteration computed.

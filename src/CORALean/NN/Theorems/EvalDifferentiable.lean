@@ -35,7 +35,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Chain.differentiableAt_eval : ∀ {n m : ℕ} (c : Chain n m)
+theorem Chain.differentiableAt_eval : -- --- STMT ---
+    ∀ {n m : ℕ} (c : Chain n m)
     (x : Vec ℝ n), c.DifferentiableChain x → DifferentiableAt ℝ c.eval x
   | _, _, .nil, _, _ => differentiableAt_id
   | _, _, .cons f rest, x, h => by

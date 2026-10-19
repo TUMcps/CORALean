@@ -77,7 +77,7 @@ through the projection because that is the form the goal has and simp will not
 rewrite a binder's type. -/
 theorem PolyZonotope.aux_sum_univ_reduceBy_q {pZ : PolyZonotope (Vec ℝ n)}
     {partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r)}
-    {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) :
+    {partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)} (f : Fin (dI + n) → ℝ) : -- --- STMT ---
     ∑ j : Fin (pZ.reduceBy partD partI).q, f j
       = ∑ j, f (Fin.castAdd n j) + ∑ j, f (Fin.natAdd dI j) :=
   Fin.sum_univ_add f
@@ -114,7 +114,7 @@ theorem PolyZonotope.aux_abs_droppedDep_le (pZ : PolyZonotope (Vec ℝ n))
 already free. -/
 theorem PolyZonotope.aux_abs_droppedInd_le (pZ : PolyZonotope (Vec ℝ n))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) {β : Fin pZ.q → ℝ}
-    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) :
+    (hβ : ∀ j, |β j| ≤ 1) (i : Fin n) : -- --- STMT ---
     |∑ j, pZ.GI (partI.right j) i * β (partI.right j)|
       ≤ ∑ j, |pZ.GI (partI.right j) i| :=
   calc |∑ j, pZ.GI (partI.right j) i * β (partI.right j)|

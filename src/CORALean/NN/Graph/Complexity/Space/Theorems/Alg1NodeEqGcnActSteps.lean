@@ -47,7 +47,7 @@ variable {N m : ℕ}
 dependent form of `X`. -/
 theorem GNN.alg1Node_eq_gcnActSteps (R : Relaxation ℝ) (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N)
     (L : ℕ) (c : ℕ → ℕ) (W : ∀ s, Mat ℝ (c s) (c (s + 1)))
-    (acts : ∀ s, GNN.ActLayer N (c (s + 1))) (X : PolyZonotope (Mat ℝ N (c 0))) :
+    (acts : ∀ s, GNN.ActLayer N (c (s + 1))) (X : PolyZonotope (Mat ℝ N (c 0))) : -- --- STMT ---
     GNN.alg1Node R A U L c W acts X
       = GNN.gcnActSteps L c W acts ((GNN.messagePassingEnclosure R A U).padBack X.dependent.p)
           (X.dependent.padFront (GNN.messagePassingEnclosure R A U).p) rfl := rfl

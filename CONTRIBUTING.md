@@ -703,8 +703,8 @@ definition in `Definitions/IsValid.lean` of the same class, like any other propo
 in a main-type file.
 The rule is not about the file's name: any file with a `MAIN TYPE` banner (`NN/NeuralNetwork.lean`,
 `NN/Layers/Layer.lean`) declares no `theorem` or `lemma` and no operation, a `def` returning data
-that nothing else in the file is stated with (#134); `NeuralNetwork.Sound` is in
-`Definitions/Sound.lean`, `Enclose.toLayer` and `Layer.comp` in `Layers/Operations/Basic.lean`.
+that nothing else in the file is stated with (#134); `NeuralNetwork.Encloses` is in
+`Definitions/Encloses.lean`, `Enclose.toLayer` and `Layer.comp` in `Layers/Operations/Basic.lean`.
 `Global/`, `Examples/` and `Interfaces.lean` (whose operation classes are #135's) are out of scope,
 and `scripts/main-type-allowlist.txt` names the rest, a reason to each, and only shrinks. What a system class denotes is its runs, so the main file of `ContDynamics/<C>/` declares
 `<C>.IsTrajectory`, with what it is stated with (the closed loop's plant input `[a; e]`), and
@@ -1104,7 +1104,10 @@ theorem NonlinDASys.exists_lagrange_remainder {C : Set (Vec ℝ d)} (hC : Convex
 It is required on a signature of five lines or more and refused on a shorter one, as the PROOF flag
 is, and it rides on the colon line only: the conclusion starts on the line below, so a statement
 whose conclusion shared the colon line is broken after the colon, and a colon line with no room for
-the flag has its last binders moved down to it. `check-conventions.sh` checks both. The theorems
+the flag has its last binders moved down to it. A proof written as a term has no `:= by`, and the
+signature then ends at its first `:=` outside any bracket (a binder default is inside one): the
+flag is required there as well, since a theorem the check could not see was exactly the one that
+carried none (#247). `check-conventions.sh` checks both. The theorems
 the tree-wide pass could not place, because even the wrapped colon line leaves no room, are listed
 in `scripts/stmt-marker-allowlist.txt` as `path::name`; the list only shrinks. The flag carries no
 meaning for Lean and none for `Last update:`.

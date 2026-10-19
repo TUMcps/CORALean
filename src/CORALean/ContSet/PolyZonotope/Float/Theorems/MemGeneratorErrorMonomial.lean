@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p h : ℕ}
 /-- The same at the dependent block, where the coefficients are monomials. -/
 theorem PolyZonotope.mem_generatorError_monomial {G : Mat 𝕋 n h} {Δ : Mat ℝ n h}
     {E : Fin p → Fin h → ℕ} {a : Fin p → ℝ}
-    (hG : ∀ i l, |Δ i l| ≤ toReal (G i l)) (ha : ∀ k, |a k| ≤ 1) :
+    (hG : ∀ i l, |Δ i l| ≤ toReal (G i l)) (ha : ∀ k, |a k| ≤ 1) : -- --- STMT ---
     (fun i => ∑ l, Δ i l * Real.PolyZonotope.monomial E a l)
       ∈ (PolyZonotope.generatorError G).construct :=
   PolyZonotope.mem_generatorError hG fun l => Real.PolyZonotope.abs_monomial_le_one E ha l

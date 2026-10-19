@@ -79,6 +79,7 @@ public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
 public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
 public import CORALean.NN.Layers.Operations.RelaxationTighter
 public import CORALean.NN.Layers.Operations.RelaxationToPoly
+public import CORALean.NN.Layers.Operations.Relu
 public import CORALean.NN.Layers.Operations.ReluGapUp
 public import CORALean.NN.Layers.Operations.ReluRelaxation
 public import CORALean.NN.Layers.Operations.ReluSlope

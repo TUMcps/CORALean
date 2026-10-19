@@ -34,7 +34,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.DiracZeroMem
 public import CORALean.ContSet.Interval.Float.Theorems.EmptyExact
 public import CORALean.ContSet.Interval.Float.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Interval.Float.Theorems.EnlargeOuter
-public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.ContSet.Interval.Float.Theorems.EvalPolyCoeffsMem
 public import CORALean.ContSet.Interval.Float.Theorems.ExpOuter
 public import CORALean.ContSet.Interval.Float.Theorems.HalveOuter
 public import CORALean.ContSet.Interval.Float.Theorems.HorzcatExact

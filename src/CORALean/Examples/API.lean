@@ -73,7 +73,7 @@ import CORALean.Examples.RotationInputFloat
 import CORALean.Examples.RunnableFloat
 import CORALean.Examples.SetIntersectionFloat
 import CORALean.Examples.SimulateAndFalsify
-import CORALean.Examples.SoundCompression
+import CORALean.Examples.EnclosesCompression
 import CORALean.Examples.TaylmFloat
 import CORALean.Examples.UncertainGraphLocality
 import CORALean.Examples.VerifyBySplitting

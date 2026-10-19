@@ -63,7 +63,7 @@ theorem aux_continuous_expNeg (A : Mat ℝ n n) : Continuous fun s : ℝ => exp 
 /-- A continuous matrix times the measurable input is measurable. -/
 theorem LinearSys.IsCanonicalTrajectory.aux_aestronglyMeasurable_expNeg {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {a b : ℝ}
-    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hT : Set.Icc a b ⊆ T) :
+    (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hT : Set.Icc a b ⊆ T) : -- --- STMT ---
     AEStronglyMeasurable (fun s => exp ((-s) • toRealMat sys.A) *ᵥ u s)
       (volume.restrict (Set.Ioc a b)) :=
   (((aux_continuous_expNeg (toRealMat sys.A)).comp continuous_fst).matrix_mulVec

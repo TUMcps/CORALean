@@ -84,8 +84,8 @@ def affineLayer (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Layer S n m where
     (ofInterval (outVec b))
 
 set_option linter.unusedSectionVars false in
-theorem affineLayer_sound (W : Mat 𝕋 m n) (b : Vec 𝕋 m) :
-    (affineLayer (S := S) W b).Sound fun x => toRealMat W *ᵥ x + toRealVec b :=
+theorem affineLayer_encloses (W : Mat 𝕋 m n) (b : Vec 𝕋 m) :
+    (affineLayer (S := S) W b).Encloses fun x => toRealMat W *ᵥ x + toRealVec b :=
   ⟨fun s _x hx => plus_outer _ _ (Set.add_mem_add
     (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (outMat W) s
       (Set.mem_biUnion (mem_outMat W) (Set.mem_image_of_mem _ hx)))
@@ -98,7 +98,7 @@ def affineSoundLayer (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : SoundLayer S n m wher
   enclose := (affineLayer (S := S) W b).enclose
   enclose_outer s := by
     rw [Erased.out_mk]
-    exact (affineLayer_sound W b).image_subset s
+    exact (affineLayer_encloses W b).image_subset s
 
 
 /-! ## Reading a decoded layer's weights into `𝕋`

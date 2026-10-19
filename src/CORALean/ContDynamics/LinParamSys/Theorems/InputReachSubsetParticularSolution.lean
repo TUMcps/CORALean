@@ -55,7 +55,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 /-- The recursion encloses the member's propagation of the one-step set, window
 by window: `plus` absorbs one propagated copy at a time. -/
 theorem LinParamSys.aux_propagate_subset_particularSolution (sys : LinParamSys ℐ n)
-    (Δt : ℝ) (η : ℕ) (U : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) : ∀ k : ℕ,
+    (Δt : ℝ) (η : ℕ) (U : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) : -- --- STMT ---
+    ∀ k : ℕ,
     (LinearSys.canonical A : LinearSys ℝ n).propagateInputSolution Δt
         (construct (sys.inputSolution Δt η U)) (k + 1)
       ⊆ construct (sys.particularSolution Δt η U k)

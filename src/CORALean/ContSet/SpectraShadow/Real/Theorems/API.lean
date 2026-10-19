@@ -45,8 +45,6 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.PolytopeOuter
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PolytopeInner
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.IsFullDimIffAffineSpan
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.NotIsFullDimOfGZero
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.FullDimShortcutPointExample
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.FullDimShortcutThinLine
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.GenerateESumRepExact
 
 /-!

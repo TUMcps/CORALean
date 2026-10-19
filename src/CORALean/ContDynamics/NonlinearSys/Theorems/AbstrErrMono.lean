@@ -61,7 +61,7 @@ theorem abstrErr_mono (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (B : Mat ℝ
     {R₁ R₂ Ψ₁ Ψ₂ : PolyZonotope (Vec ℝ n)} (hR : R₁.construct ⊆ R₂.construct)
     (hpost : (sys.postDelta (S := 𝒫𝒵) r η R₁ Ψ₁).construct
       ⊆ (sys.postDelta (S := 𝒫𝒵) r η R₂ Ψ₂).construct)
-    (hZ : Z₁.construct ⊆ Z₂.construct) :
+    (hZ : Z₁.construct ⊆ Z₂.construct) : -- --- STMT ---
     (abstrErr sys r η B D E U UΔ Z₁ zs R₁ Ψ₁).construct
       ⊆ (abstrErr sys r η B D E U UΔ Z₂ zs R₂ Ψ₂).construct :=
   PolyZonotope.plus_mono

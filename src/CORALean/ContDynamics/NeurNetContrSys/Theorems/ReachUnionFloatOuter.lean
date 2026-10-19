@@ -37,7 +37,7 @@ theorem NeurNetContrSys.reachUnionFloat_outer (sys : NeurNetContrSys (LinearSys 
     (U_ext : Zonotope (Vec 𝕋 sys.nExt)) {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℕ}
     {options : NeurNetContrSys.ReachOptions 𝕋} (hΔt : 0 < toReal options.Δt)
     (hdt : sys.dt = (options.N : ℝ) * toReal options.Δt) {π : Vec ℝ n → Vec ℝ sys.m}
-    (hπ : sys.contr.Sound π) {W : Set (Vec ℝ sys.plant.r)}
+    (hπ : sys.contr.Encloses π) {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, Scalar.toRealMat sys.plant.E *ᵥ v = 0) {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt}
     {w : ℝ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π (params.tFinal - params.tStart) params.X₀
     (construct U_ext) W x v w) : -- --- STMT ---

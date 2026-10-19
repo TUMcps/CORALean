@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Ellipsoid.Float.Operations.IsSymm
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Operations.CholFactor
 public import CORALean.ContSet.Ellipsoid.Float.Operations.PsdCheck

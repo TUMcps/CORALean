@@ -50,7 +50,7 @@ noncomputable def Example.nnControlledDTExt (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 
 at every step. -/
 example (sys : NeurNetContrSysDT (LinearSysDT ℝ 2) 𝒵 2) (U_ext : Zonotope (Vec ℝ sys.nExt))
     (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
-    {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
+    {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℕ → Vec ℝ 2} {v : ℕ → Vec ℝ sys.nExt} {w : ℕ → Vec ℝ sys.plant.r}
     (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ) :
     x k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
@@ -61,7 +61,7 @@ example (sys : NeurNetContrSysDT (LinearSysDT ℝ 2) 𝒵 2) (U_ext : Zonotope (
 inside — `Specification.holds_of_outer`, reached from the loop. -/
 example (sys : NeurNetContrSysDT (LinearSysDT ℝ 2) 𝒵 2) (U_ext : Zonotope (Vec ℝ sys.nExt))
     (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
-    (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Sound π)
+    (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℕ → Vec ℝ 2} {v : ℕ → Vec ℝ sys.nExt} {w : ℕ → Vec ℝ sys.plant.r}
     (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ)
     (h : (Specification.safeSet safe).Holds

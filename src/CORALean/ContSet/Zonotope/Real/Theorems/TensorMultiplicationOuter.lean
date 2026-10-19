@@ -69,7 +69,7 @@ theorem Zonotope.aux_trilinear_expand {k : ℕ} (M : Fin n → Fin n → Fin n �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.tensorMultiplication_outer (Z : Zonotope (Vec ℝ n)) (M : Zonotope.Tensor3 n)
+theorem Zonotope.tensorMultiplication_outer (Z : Zonotope (Vec ℝ n)) (M : Tensor3 ℝ n)
     (L : Zonotope.TensorLists Z.h) (hc : Z.c = 0)
     (hperm : Function.Bijective fun p : Fin L.P => (L.perm p 0, L.perm p 1, L.perm p 2))
     (hmap : ∀ p q, L.map p = L.map q →

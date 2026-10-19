@@ -54,7 +54,7 @@ theorem PolyZonotope.containsPointSet_sound (pZ : PolyZonotope (Vec ℝ n)) {N :
   intro i
   -- the point is in some piece, whose enclosure the reduced zonotope's polytope contains
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_splitMany_cover pZ splits (points i) (h i)
-  refine ⟨_, List.mem_append_left _ (List.mem_map.mpr ⟨q, hq, rfl⟩), ?_⟩
+  refine ⟨_, List.mem_map.mpr ⟨q, hq, rfl⟩, ?_⟩
   rw [Zonotope.vPolytope_exact]
   exact Zonotope.reduceGirard_outer _ _ (PolyZonotope.zonotopeEven_contains q hxq)
 

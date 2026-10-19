@@ -53,7 +53,7 @@ theorem suffExplanationExact_of_refined (nnAbs : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
     (hrefine : f '' construct (ofInterval (explainBox x ε E) : S n)
       ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
-    (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
+    (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) : -- --- STMT ---
     IsSuffExplanationExact S f x ε E l :=
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs
 

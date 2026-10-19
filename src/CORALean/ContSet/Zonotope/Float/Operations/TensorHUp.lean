@@ -1,7 +1,7 @@
 module
 
+public import CORALean.Global.Tensor
 public import CORALean.ContSet.Zonotope.Float.Operations.CubContractUp
-public import CORALean.ContSet.Zonotope.Float.Operations.Tensor3
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
 
@@ -30,7 +30,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.tensorHUp (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
+def Zonotope.tensorHUp (M : Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
     (L : Real.Zonotope.TensorLists Z.h) : Fin n → Fin L.C → 𝕋 :=
   fun iDim cInd =>
     sumUp fun p : Fin L.P =>

@@ -63,7 +63,7 @@ theorem ConZonotope.aux_abs_convComb_sub_le_one {lam p q : ℝ} (hl0 : 0 ≤ lam
 /-- The restatement `Fin.sum_univ_add` needs: `enclose`'s generator count is not
 syntactically `cZ₁.h + cZ₁.h + 1` until this unfolds it. -/
 theorem ConZonotope.aux_sum_univ_enclose {M : Type} [AddCommMonoid M] {cZ₁ cZ₂ : ConZonotope α}
-    {hh : cZ₁.h = cZ₂.h} (f : Fin (cZ₁.h + cZ₁.h + 1) → M) :
+    {hh : cZ₁.h = cZ₂.h} (f : Fin (cZ₁.h + cZ₁.h + 1) → M) : -- --- STMT ---
     ∑ j : Fin (cZ₁.enclose cZ₂ hh).h, f j
       = ∑ i : Fin (cZ₁.h + cZ₁.h), f (Fin.castAdd 1 i)
         + ∑ i : Fin 1, f (Fin.natAdd (cZ₁.h + cZ₁.h) i) :=

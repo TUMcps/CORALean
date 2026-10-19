@@ -41,10 +41,16 @@ theorem STL.Tree.sat_nnfWith (ng : STL.Cmp → STL.Cmp)
   | and φ ψ ihφ ihψ =>
     cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ihφ, ihψ, imp_iff_not_or]
   | or φ ψ ihφ ihψ => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ihφ, ihψ]
-  | «until» a b φ ψ ihφ ihψ => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ihφ, ihψ]
-  | release a b φ ψ ihφ ihψ => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ihφ, ihψ]
-  | «finally» a b φ ih => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ih]
-  | globally a b φ ih => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ih]
+  | «until» a b φ ψ ihφ ihψ => cases neg <;>
+    simp [STL.Tree.nnfWith, STL.Tree.Sat, STL.Tree.HasUntilWitness, ihφ, ihψ]
+  | release a b φ ψ ihφ ihψ => cases neg <;>
+    simp [STL.Tree.nnfWith, STL.Tree.Sat, STL.Tree.HasUntilWitness, ihφ, ihψ]
+  | «finally» a b φ ih => cases neg <;>
+    simp [STL.Tree.nnfWith, STL.Tree.Sat,
+      STL.Tree.HasUntilWitness, ih]
+  | globally a b φ ih => cases neg <;>
+    simp [STL.Tree.nnfWith, STL.Tree.Sat,
+      STL.Tree.HasUntilWitness, ih]
   | next a φ ih => cases neg <;> simp [STL.Tree.nnfWith, STL.Tree.Sat, ih]
 
 end CORALean

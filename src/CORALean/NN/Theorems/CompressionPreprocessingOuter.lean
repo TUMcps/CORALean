@@ -6,7 +6,7 @@ public import CORALean.NN.Layers.Definitions.Relaxation
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Operations.Activation
 public import CORALean.NN.Layers.Operations.Basic
-public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.ActivationEncloses
 public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 public import CORALean.NN.Operations.CompressionPreprocessing
 public import CORALean.NN.Theorems.ReduceOnTheFlyOuter
@@ -98,7 +98,7 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
         simp [Real.relu, hX x hx i]
       -- line 2's look-ahead box holds `x`, so its bucket `B` holds `x`'s merged pixels
       have hxI : x ∈ I_m1.construct := by
-        have h := (Layer.activation_sound (S := ℐ𝒱[𝕋]) hR).enclose_outer _ _
+        have h := (Layer.activation_encloses (S := ℐ𝒱[𝕋]) hR).enclose_outer _ _
           (Layer.linearWithError_mem (S := ℐ𝒱[𝕋])
             (diagonalBlock fun _ => FloatOps.one)
             (Interval.construct_subset_nonemptyHull _ (h00 n)) I_X hx)

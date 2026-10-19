@@ -37,7 +37,7 @@ theorem NeurNetContrSys.IsTrajectory.reachSetExact_outer {sys : NeurNetContrSys 
     {π : Vec ℝ n → Vec ℝ sys.m} {H : ℕ} {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {W : Set (Vec ℝ (nrOfDisturbances sys.plant))} {x : ℝ → Vec ℝ n}
     {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
-    (traj : sys.IsTrajectory π H R₀ U_ext W x v w) (t : ℝ) :
+    (traj : sys.IsTrajectory π H R₀ U_ext W x v w) (t : ℝ) : -- --- STMT ---
     x t ∈ sys.reachSetExact π H R₀ U_ext W t :=
   ⟨x, v, w, traj, rfl⟩
 

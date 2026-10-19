@@ -55,14 +55,14 @@ noncomputable def Example.feedForward (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W
 -- anonymous, since their content is that they elaborate at this network
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
-example {nn : NeuralNetwork 𝒵 2 2} {f : Vec ℝ 2 → Vec ℝ 2} (hf : nn.Sound f)
+example {nn : NeuralNetwork 𝒵 2 2} {f : Vec ℝ 2 → Vec ℝ 2} (hf : nn.Encloses f)
     (X : Zonotope (Vec ℝ 2)) {x : Vec ℝ 2}
     (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- A safe set the enclosed zonotope stays inside is a safe set every output
 stays inside. -/
-example {nn : NeuralNetwork 𝒵 2 2} {f : Vec ℝ 2 → Vec ℝ 2} (hf : nn.Sound f)
+example {nn : NeuralNetwork 𝒵 2 2} {f : Vec ℝ 2 → Vec ℝ 2} (hf : nn.Encloses f)
     (X : Zonotope (Vec ℝ 2)) {safe : Set (Vec ℝ 2)}
     (h : construct (nn.enclose X) ⊆ safe) {x : Vec ℝ 2} (hx : x ∈ construct X) :
     f x ∈ safe :=
@@ -70,7 +70,7 @@ example {nn : NeuralNetwork 𝒵 2 2} {f : Vec ℝ 2 → Vec ℝ 2} (hf : nn.Sou
 
 /-- Robust classification at two labels, so a single bound decides it: label `l`
 wins everywhere on `X` as soon as the rival cannot reach it. -/
-example {nn : NeuralNetwork 𝒵 2 2} {f : Vec ℝ 2 → Vec ℝ 2} (hf : nn.Sound f)
+example {nn : NeuralNetwork 𝒵 2 2} {f : Vec ℝ 2 → Vec ℝ 2} (hf : nn.Encloses f)
     (X : Zonotope (Vec ℝ 2)) (l : Fin 2)
     (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 2} (hx : x ∈ construct X)

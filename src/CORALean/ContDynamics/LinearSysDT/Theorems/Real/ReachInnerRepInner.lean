@@ -44,7 +44,7 @@ theorem LinearSysDT.reachInnerRep_inner (sys : LinearSysDT ℝ n) {o : ℕ} (ho 
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ)
     (M : Fin (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h →
       Fin (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).h → ℝ) {D : Zonotope (Vec ℝ n)}
-    (hD : sys.reachInnerRep ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ M = some D) :
+    (hD : sys.reachInnerRep ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ M = some D) : -- --- STMT ---
     construct D ⊆ sys.reachSetExact (S := 𝒵) R₀ U k :=
   (Zonotope.minkDiffRep_inner _ _ M _ hD).trans (sys.reachInner_inner ho R₀ U k)
 

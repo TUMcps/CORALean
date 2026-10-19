@@ -36,14 +36,14 @@ structure IdentityLayer (n m : ℕ) : Type where
   dim : n = m
 
 
--- ======================================  `Layer.Sound`  ======================================= --
+-- =====================================  `Layer.Encloses`  ===================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
 -- Reviewed:      ---
 
 /-- The obligation `Layer` no longer carries: what `enclose` encloses. -/
-structure Layer.Sound (L : Layer S n m) (f : Vec ℝ n → Vec ℝ m) : Prop where
+structure Layer.Encloses (L : Layer S n m) (f : Vec ℝ n → Vec ℝ m) : Prop where
   enclose_outer (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s) :
     f x ∈ construct (L.enclose s)
 

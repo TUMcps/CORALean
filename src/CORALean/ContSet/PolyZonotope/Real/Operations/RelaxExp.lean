@@ -9,14 +9,14 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxWidth
 
 `[1, Thm. 1]`: two dependent generators whose exponent columns agree everywhere
 but at one index are merged into one, and what the merge costs is absorbed into
-a single new independent generator. One dependent generator is traded for one
-independent one, so no count grows and the set moves closer to a zonotope.
+a single new independent generator, of width `ξ_E = relaxWidth`, the maximum of `|x^a - x^b|` as
+CORA's `minMaxDiffPoly` computes it. One dependent generator is traded for one independent one,
+so no count grows and the set moves closer to a zonotope.
 
-Which two are merged is a `Split` rather than a pair of indices, `reduceBy`'s
-idiom: the partition names the two and the `d` that stay as one object. The
-index `k₀` where the columns may differ is an argument, not an existential;
-`relaxExp_outer` asks that they agree off it, so a wrong `k₀` costs the theorem
-and not the definition.
+Which two are merged is a `Split` rather than a pair of indices, `reduceBy`'s idiom: the partition
+names the two and the `d` that stay as one object. The index `k₀` where the columns may differ is
+an argument, not an existential; `relaxExp_outer` asks that they agree off it, so a wrong `k₀`
+costs the theorem and not the definition.
 
 `ξ_G = ξ_E` throughout, where `[1]` halves it and shifts the center by the other
 half when every exponent of column `i` is even. That recentering is not done here,
@@ -32,7 +32,7 @@ without which the range is symmetric and the shift is zero. CORA is unaffected.
 
 -- Authors:       Claude Opus 5
 -- Written:       05-September-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {d : ℕ}
 
 /-- The two generators `part.right` names merged into one, at the exponent
 column of the second, the first scaled by `ξ_E` becoming independent. -/
-def PolyZonotope.relaxExp (pZ : PolyZonotope α)
+noncomputable def PolyZonotope.relaxExp (pZ : PolyZonotope α)
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p) : PolyZonotope α where
   p := pZ.p
   h := d + 1
@@ -57,7 +57,7 @@ def PolyZonotope.relaxExp (pZ : PolyZonotope α)
     (fun _ => pZ.G (part.right 1) + pZ.G (part.right 0))
   E := fun k => Fin.append (fun l => pZ.E k (part.left l)) (fun _ => pZ.E k (part.right 1))
   GI := Fin.append pZ.GI
-    (fun _ => (pZ.relaxWidth part k₀ : ℝ) • pZ.G (part.right 0))
+    (fun _ => pZ.relaxWidth part k₀ • pZ.G (part.right 0))
 
 end CORALean.Real
 

@@ -60,7 +60,7 @@ theorem PolyZonotope.containsPointSet_sound (pZ : PolyZonotope (Vec 𝕋 n)) {N 
   refine List.all_eq_true.mpr fun i _ => List.any_eq_true.mpr ?_
   -- the point is in some piece, whose reduced zonotope's polytope contains it
   obtain ⟨q, hq, hxq⟩ := PolyZonotope.aux_splitMany_cover pZ splits _ (h i)
-  refine ⟨_, List.mem_append_left _ (List.mem_map.mpr ⟨q, hq, rfl⟩), ?_⟩
+  refine ⟨_, List.mem_map.mpr ⟨q, hq, rfl⟩, ?_⟩
   have hP := Zonotope.hPolytope_contains (q.zonotope.reduceGirard order)
     (dirs (q.zonotope.reduceGirard order)).2
     (Zonotope.reduceGirard_outer _ order (PolyZonotope.zonotope_contains q hxq))

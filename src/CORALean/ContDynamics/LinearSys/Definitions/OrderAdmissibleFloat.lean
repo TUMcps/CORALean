@@ -12,10 +12,16 @@ public import CORALean.ContSet.Interval.Float.Operations.Smul
 
 The float remainder `MatExp.expRemainderBound` is sound once `nrm / (η + 2) ≤ 1/2`,
 `nrm` a float bound on `‖t A‖` over every `t ∈ [tLo, tHi]` — here the one
-`MatExp.normUpperBound` reads off the interval matrix `[tLo, tHi] · A`. Its
-geometric factor is the fixed constant `2`, which is where `1/2` comes from
-where the exact layer's `timeIntervalStep_outer` asks `< 1`. At least `2`, as
-`MatExp.intervalCorrectionMatrix`'s guarantee needs.
+`MatExp.normUpperBound` reads off the interval matrix `[tLo, tHi] · A`. The geometric series of the
+remainder bound needs `nrm / (η + 2) < 1`, [1, Eq. 3.2–3.3] and the sentence after Eq. 3.3, which
+no paper states as a condition; the float layer asks `≤ 1/2`, its geometric factor being the fixed
+constant `2`, where the exact layer's `timeIntervalStep_outer` asks `< 1`. At least `2`, from no
+paper: as `MatExp.intervalCorrectionMatrix`'s guarantee needs.
+
+## References
+
+* [1] M. Althoff. "Reachability Analysis and its Application to the Safety
+      Assessment of Autonomous Cars". PhD thesis, TU München, 2010.
 -/
 
 -- Authors:       Claude Opus 5.5

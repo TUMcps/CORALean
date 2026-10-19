@@ -110,17 +110,6 @@ noncomputable def Capsule.vPolytope (C : Capsule n) : VPolytope (Vec ℝ n) :=
   C.interval.vPolytope
 
 
--- ====================================  `Capsule.zonotope`  ==================================== --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- A capsule as a zonotope -/
-noncomputable def Capsule.zonotope (C : Capsule n) : Zonotope (Vec ℝ n) :=
-  C.interval.zonotope
-
-
 -- ==================================  `ConPolyZono.interval`  ================================== --
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026

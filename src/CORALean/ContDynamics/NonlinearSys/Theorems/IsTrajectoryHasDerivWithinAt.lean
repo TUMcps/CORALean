@@ -62,7 +62,7 @@ theorem NonlinearSys.IsTrajectory.hasDerivWithinAt {sys : NonlinearSys n m} {a b
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (Set.Icc a b) R₀ U x u y)
     (h0 : (0:ℝ) ∈ Set.Icc a b)
     (hf : ContinuousOn (fun t => sys.f (x t) (u t)) (Set.Icc a b)) {t : ℝ}
-    (ht : t ∈ Set.Icc a b) :
+    (ht : t ∈ Set.Icc a b) : -- --- STMT ---
     HasDerivWithinAt x (sys.f (x t) (u t)) (Set.Icc a b) t :=
   aux_hasDerivWithinAt_of_eq_add_integral h0 hf traj.flow ht
 

@@ -57,7 +57,7 @@ theorem LinearSys.not_holds_unsafeSet_of_verifyConvex_violated (sys : LinearSys 
     (bL : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound L d)
     (wO : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (sys.reachSetExact (Set.Icc 0 t) R₀ Uin t) d)
     (wL : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness L d) (ℓ : ℕ → Vec ℝ n →ₗ[ℝ] ℝ) (fuel : ℕ)
-    (h : verifyConvex bO bL wO wL ℓ fuel = .violated) :
+    (h : verifyConvex bO bL wO wL ℓ fuel = .violated) : -- --- STMT ---
     ¬ (Specification.unsafeSet L).Holds (sys.reachSetExact (Set.Icc 0 t) R₀ Uin t) :=
   let ⟨_, hV, h0⟩ := exists_convexHull_of_verifyConvex_eq_unsafe bO bL wO wL ℓ fuel h
   let hOconv : Convex ℝ (sys.reachSetExact (Set.Icc 0 t) R₀ Uin t) :=

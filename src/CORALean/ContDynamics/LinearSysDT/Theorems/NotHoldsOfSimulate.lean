@@ -40,7 +40,7 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem LinearSysDT.not_holds_of_simulate (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : S n) (spec : Specification ContSet) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀)
     {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U) (k : ℕ)
-    (hbad : ¬ spec.Holds {sys.simulate x₀ u k}) :
+    (hbad : ¬ spec.Holds {sys.simulate x₀ u k}) : -- --- STMT ---
     ¬ spec.Holds (construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) :=
   fun h => hbad (sys.holds_of_reach ho R₀ U spec (sys.simulate_isTrajectory hx₀ hu) k h)
 

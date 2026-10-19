@@ -40,7 +40,7 @@ whose hull already reaches the origin. -/
 theorem exists_convexHull_of_verifyConvex_eq_unsafe (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d)
     (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d) (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d)
     (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d) (ℓ : ℕ → α →ₗ[ℝ] ℝ) (fuel : ℕ)
-    (h : verifyConvex bO bU wO wU ℓ fuel = .violated) :
+    (h : verifyConvex bO bU wO wU ℓ fuel = .violated) : -- --- STMT ---
     ∃ V : Set α, V ⊆ O - U ∧ (0 : α) ∈ convexHull ℝ V :=
   let inv := verifyConvexFold_inv bO bU wO wU ℓ (List.range fuel)
     (Set.empty_subset _) (fun h => by cases h) (fun h => by cases h)

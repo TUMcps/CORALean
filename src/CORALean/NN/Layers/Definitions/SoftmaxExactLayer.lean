@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Theorems.Basic
-public import CORALean.NN.Layers.Theorems.Real.SoftmaxSound
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxEncloses
 
 @[expose] public section
 
@@ -40,7 +40,7 @@ noncomputable instance : Enclose SoftmaxLayer S where
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨rfl⟩ => by
       rw [Erased.out_mk]
-      exact Layer.softmax_sound.image_subset s
+      exact Layer.softmax_encloses.image_subset s
 
 end CORALean.Real
 

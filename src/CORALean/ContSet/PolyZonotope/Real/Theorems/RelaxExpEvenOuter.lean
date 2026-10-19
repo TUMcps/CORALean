@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExpEven
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLeEDiffTight
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EDiffTightNonneg
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonpos
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -31,7 +32,7 @@ never meets the gap, only the theorem does.
 
 -- Authors:       Claude Opus 5
 -- Written:       06-September-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -55,26 +56,26 @@ theorem PolyZonotope.relaxExpEven_outer (pZ : PolyZonotope α)
     pZ.construct ⊆ (pZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   have habs : |PolyZonotope.monomial pZ.E a (part.right 0)
-      - PolyZonotope.monomial pZ.E a (part.right 1)| ≤ (pZ.relaxWidth part k₀ : ℝ) :=
-    PolyZonotope.abs_sub_monomial_le pZ.E ha hsim
+      - PolyZonotope.monomial pZ.E a (part.right 1)| ≤ pZ.relaxWidth part k₀ :=
+    PolyZonotope.abs_sub_monomial_le_eDiffTight pZ.E ha hsim
   have hsign : PolyZonotope.monomial pZ.E a (part.right 0)
       - PolyZonotope.monomial pZ.E a (part.right 1) ≤ 0 :=
     PolyZonotope.sub_monomial_nonpos pZ.E ha hsim heven hevenj hle
-  have hnn : (0:ℝ) ≤ (pZ.relaxWidth part k₀ : ℝ) / 2 := by
-    have h := Nat.cast_nonneg (α := ℝ) (pZ.relaxWidth part k₀)
+  have hnn : (0:ℝ) ≤ pZ.relaxWidth part k₀ / 2 := by
+    have h : 0 ≤ pZ.relaxWidth part k₀ := PolyZonotope.eDiffTight_nonneg _ _
     linarith
   -- one-sided drift: its midpoint is `-ξ_E/2` and its radius `ξ_E/2`
   have hmid : |PolyZonotope.monomial pZ.E a (part.right 0)
-      - PolyZonotope.monomial pZ.E a (part.right 1) + (pZ.relaxWidth part k₀ : ℝ) / 2|
-        ≤ (pZ.relaxWidth part k₀ : ℝ) / 2 := by
+      - PolyZonotope.monomial pZ.E a (part.right 1) + pZ.relaxWidth part k₀ / 2|
+        ≤ pZ.relaxWidth part k₀ / 2 := by
     rw [abs_le] at habs ⊢
     constructor <;> linarith [habs.1, habs.2]
-  set t := Zonotope.coefficient ((pZ.relaxWidth part k₀ : ℝ) / 2)
+  set t := Zonotope.coefficient (pZ.relaxWidth part k₀ / 2)
     (PolyZonotope.monomial pZ.E a (part.right 0)
-      - PolyZonotope.monomial pZ.E a (part.right 1) + (pZ.relaxWidth part k₀ : ℝ) / 2) with ht
-  have hcoef : t * ((pZ.relaxWidth part k₀ : ℝ) / 2)
+      - PolyZonotope.monomial pZ.E a (part.right 1) + pZ.relaxWidth part k₀ / 2) with ht
+  have hcoef : t * (pZ.relaxWidth part k₀ / 2)
       = PolyZonotope.monomial pZ.E a (part.right 0)
-        - PolyZonotope.monomial pZ.E a (part.right 1) + (pZ.relaxWidth part k₀ : ℝ) / 2 := by
+        - PolyZonotope.monomial pZ.E a (part.right 1) + pZ.relaxWidth part k₀ / 2 := by
     rw [ht, mul_comm]
     exact Zonotope.mul_coefficient hmid
   -- the kept columns keep their monomials, and the merged one takes the second's
@@ -94,7 +95,7 @@ theorem PolyZonotope.relaxExpEven_outer (pZ : PolyZonotope α)
     · rw [Fin.append_right]
       exact Zonotope.abs_coefficient_le_one hnn hmid
   show pZ.c + ∑ l, PolyZonotope.monomial pZ.E a l • pZ.G l + ∑ j, β j • pZ.GI j
-      = pZ.c - ((pZ.relaxWidth part k₀ : ℝ) / 2) • pZ.G (part.right 0)
+      = pZ.c - (pZ.relaxWidth part k₀ / 2) • pZ.G (part.right 0)
           + (∑ l : Fin (d + 1), PolyZonotope.monomial (pZ.relaxExpEven part k₀).E a l
               • (pZ.relaxExpEven part k₀).G l)
         + ∑ j : Fin (pZ.q + 1), Fin.append β (fun _ => t) j • (pZ.relaxExpEven part k₀).GI j

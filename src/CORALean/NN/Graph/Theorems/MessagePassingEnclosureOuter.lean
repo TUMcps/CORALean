@@ -91,7 +91,7 @@ theorem GNN.aux_sum_univ_uncertainAdjPad {β : Type} [AddCommMonoid β] {A : Mat
 through a different projection. -/
 theorem GNN.aux_sum_univ_sqrtBroadcast {β : Type} [AddCommMonoid β] {R : Relaxation ℝ}
     {A : Mat ℝ N N} {U : Fin m → Fin N × Fin N} {idx : Fin N → Fin N → Fin N}
-    (f : Fin (m + N) → β) :
+    (f : Fin (m + N) → β) : -- --- STMT ---
     ∑ k : Fin (GNN.aux_sqrtBroadcast R A U idx).h, f k
       = ∑ e, f (Fin.castAdd N e) + ∑ t, f (Fin.natAdd m t) :=
   Fin.sum_univ_add f

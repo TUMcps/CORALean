@@ -83,7 +83,8 @@ theorem PolyZonotope.aux_mul_refines (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the exact statement, read through the refinement: the same image, rounded outward
-theorem PolyZonotope.mul_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) (hp : pZ₁.p = pZ₂.p) :
+theorem PolyZonotope.mul_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
+    (hp : pZ₁.p = pZ₂.p) : -- --- STMT ---
     (fun a : Fin pZ₁.p → ℝ => Real.PolyZonotope.point (nominal pZ₁) a
         * Real.PolyZonotope.point (nominal pZ₂) (fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}

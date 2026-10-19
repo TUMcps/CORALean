@@ -1,7 +1,7 @@
 module
 
+public import CORALean.Global.Tensor
 public import CORALean.ContSet.Zonotope.Float.Operations.CubContractDown
-public import CORALean.ContSet.Zonotope.Float.Operations.Tensor3
 public import CORALean.ContSet.Zonotope.Float.Zonotope
 public import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
 
@@ -33,7 +33,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-def Zonotope.tensorHDown (M : Zonotope.Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
+def Zonotope.tensorHDown (M : Tensor3 𝕋 n) (Z : Zonotope (Vec 𝕋 n))
     (L : Real.Zonotope.TensorLists Z.h) : Fin n → Fin L.C → 𝕋 :=
   fun iDim cInd =>
     -- `tildeH` of each permutation, those mapped to `cInd` summed

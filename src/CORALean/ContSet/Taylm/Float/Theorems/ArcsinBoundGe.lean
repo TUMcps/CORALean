@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.ArcsinBound
-public import CORALean.ContSet.Interval.Float.Theorems.EvalListMem
+public import CORALean.ContSet.Interval.Float.Theorems.EvalPolyCoeffsMem
 public import CORALean.Global.ElementaryDerivBounds
 
 @[expose] public section
@@ -10,8 +10,8 @@ public import CORALean.Global.ElementaryDerivBounds
 # `Taylm.arcsinBound` bounds the derivative of `arcsin`
 
 `abs_iteratedDeriv_asin_le` bounds `|arcsin⁽ᴺ⁺¹⁾|` on `|x| ≤ m < 1` by `asinDom N (m)` times
-`(√(1 - m²))⁻⁽²ᴺ⁺¹⁾`; the polynomial is below its `Interval.evalList` enclosure, the power below
-`powUp` of the rounded-up `invSqrtOneSubHi`, and the product below its rounding. `hm` is the
+`(√(1 - m²))⁻⁽²ᴺ⁺¹⁾`; the polynomial is below its `Interval.evalPolyCoeffs` enclosure, the power
+below `powUp` of the rounded-up `invSqrtOneSubHi`, and the product below its rounding. `hm` is the
 rounded root positive at `m`, which puts `m` below one.
 -/
 
@@ -47,7 +47,7 @@ theorem Taylm.arcsinBound_ge (q : ℕ) (m : 𝕋)
   -- the derivative below `asinDom N (m)` times the power, each factor then below its rounding
   have h1 := abs_iteratedDeriv_asin_le N hx hM1
   rw [hDm] at h1
-  have hU := (Interval.evalList_mem (lo := m) (hi := m) (x := toReal m) le_rfl le_rfl
+  have hU := (Interval.evalPolyCoeffs_mem (lo := m) (hi := m) (x := toReal m) le_rfl le_rfl
     (recL [1, 0, 1] (fun j => 2 * (j : ℤ) + 1) N)).2
   have hb : 0 < ((√(1 - toReal m ^ 2))⁻¹) ^ (2 * N + 1) :=
     pow_pos (inv_pos.2 (Real.sqrt_pos.2 (by nlinarith))) _

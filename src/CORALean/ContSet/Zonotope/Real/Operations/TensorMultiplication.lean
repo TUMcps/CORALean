@@ -1,7 +1,7 @@
 module
 
+public import CORALean.Global.Tensor
 public import CORALean.ContSet.Zonotope.Real.Zonotope
-public import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
 public import CORALean.ContSet.Zonotope.Real.Operations.TensorLists
 public import CORALean.ContSet.Zonotope.Real.Operations.TensorEval
 
@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `tensorMultiplication(Z, M, options)` for a third-order tensor and a centered zonotope. -/
-noncomputable def Zonotope.tensorMultiplication (Z : Zonotope (Vec ℝ n)) (M : Zonotope.Tensor3 n)
+noncomputable def Zonotope.tensorMultiplication (Z : Zonotope (Vec ℝ n)) (M : Tensor3 ℝ n)
     (L : Zonotope.TensorLists Z.h) : Zonotope (Vec ℝ n) :=
   let G := Z.G
   -- `tildeH = aux_generatorMultiplication_3d(M, genComb)` with `genComb = G(:, perm(p, :))`

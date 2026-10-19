@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Layers.Theorems.LinearSound
+public import CORALean.NN.Layers.Theorems.LinearEncloses
 public import CORALean.NN.Operations.Convergent
 public import CORALean.NN.Operations.LayerRefinable
 public import CORALean.NN.Theorems.Real.LinearExact
@@ -48,7 +48,7 @@ variable {n m : ℕ}
 /-- ℝ-only, the linear layer being exact at the polynomial zonotope only there. -/
 theorem Layer.linear_refinable_convergent (W : Mat ℝ m n) (b : Vec ℝ m) :
     ((CORALean.Layer.linear (S := 𝒫𝒵) W b).refinable
-      (CORALean.Layer.linear_sound W b)).Convergent := by -- --- PROOF ---
+      (CORALean.Layer.linear_encloses W b)).Convergent := by -- --- PROOF ---
   intro s ε hε
   refine ⟨fun _ => 0, ?_⟩
   show construct ((CORALean.Layer.linear (S := 𝒫𝒵) W b).enclose s)

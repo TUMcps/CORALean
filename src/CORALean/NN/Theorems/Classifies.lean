@@ -34,7 +34,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 /-- Every input in the set is classified `l`, on the strength of one bound per
 rival label against the enclosed image. -/
 theorem NeuralNetwork.classifies {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
-    (hf : nn.Sound f) (X : S n) (l : Fin m)
+    (hf : nn.Encloses f) (X : S n) (l : Fin m)
     (u : ∀ j, SupportBound (construct (nn.enclose X))
       (marginDir m j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ n} (hx : x ∈ construct X)

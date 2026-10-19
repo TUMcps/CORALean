@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Operations.ReachUnion
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.ReachOuter
 public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.IsTrajectoryOfMap
 public import CORALean.ContSet.SetUnion.Theorems.Basic
-public import CORALean.NN.Theorems.SoundEval
+public import CORALean.NN.Theorems.EnclosesEval
 
 @[expose] public section
 
@@ -45,7 +45,7 @@ theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT (LinearSysDT
   intro y hy
   obtain ⟨k, hk, x, v, hx₀, hv, hstep, rfl⟩ := Set.mem_iUnion₂.mp hy
   exact SetUnion.mem_construct_range (Nat.lt_succ_of_le hk)
-    (sys.reach_outer U_ext options.hZonotopeOrder params.X₀ sys.contr.sound_eval
+    (sys.reach_outer U_ext options.hZonotopeOrder params.X₀ sys.contr.encloses_eval
       (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])
       (sys.isTrajectory_of_map (Set.mem_singleton 0) hx₀ hv hstep) k)
 

@@ -13,7 +13,7 @@ import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Operations.Sigmoid
 import CORALean.NN.Layers.Operations.SigmoidPoly
 import CORALean.NN.Layers.Operations.Tanh
-import CORALean.NN.Layers.Theorems.LinearSound
+import CORALean.NN.Layers.Theorems.LinearEncloses
 import CORALean.NN.Layers.Theorems.Basic
 import CORALean.NN.Theorems.Classifies
 import CORALean.NN.Theorems.EncloseOuter
@@ -69,21 +69,21 @@ def Example.feedForward (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (W₂ : Mat �
 
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example {nn : NeuralNetwork 𝒵[𝕋] 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 2)) {x : Vec ℝ 2}
+    (hf : nn.Encloses f) (X : Zonotope (Vec 𝕋 2)) {x : Vec ℝ 2}
     (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- A safe set the enclosed zonotope stays inside is a safe set every output
 stays inside. -/
 example {nn : NeuralNetwork 𝒵[𝕋] 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 2))
+    (hf : nn.Encloses f) (X : Zonotope (Vec 𝕋 2))
     {safe : Set (Vec ℝ 2)} (h : construct (nn.enclose X) ⊆ safe) {x : Vec ℝ 2}
     (hx : x ∈ construct X) : f x ∈ safe :=
   NeuralNetwork.mem_safeSet hf X h hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
 example {nn : NeuralNetwork 𝒵[𝕋] 2 2} {f : Vec ℝ 2 → Vec ℝ 2}
-    (hf : nn.Sound f) (X : Zonotope (Vec 𝕋 2)) (l : Fin 2)
+    (hf : nn.Encloses f) (X : Zonotope (Vec 𝕋 2)) (l : Fin 2)
     (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 2} (hx : x ∈ construct X)
     {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
@@ -103,17 +103,17 @@ def Example.sigmoidTanhNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (
       (.layer (LinearLayer.mk W₂ b₂) (.layer (TanhLayer.mk (𝕋 := 𝕋) k rfl) .output)))
 
 /-- And what it computes, which is where `Real.sigmoid` and `Real.tanh` appear. -/
-theorem Example.sigmoidTanhNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
+theorem Example.sigmoidTanhNet_encloses (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
     (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) : -- --- STMT ---
-    (Example.sigmoidTanhNet k W₁ b₁ W₂ b₂).Sound fun x i =>
+    (Example.sigmoidTanhNet k W₁ b₁ W₂ b₂).Encloses fun x i =>
       Real.tanh ((Scalar.toRealMat W₂ *ᵥ (fun j =>
           Real.sigmoid ((Scalar.toRealMat W₁ *ᵥ x + Scalar.toRealVec b₁) j))
         + Scalar.toRealVec b₂) i) := by -- --- PROOF ---
   delta Example.sigmoidTanhNet
-  exact .layer (Layer.linear_sound W₁ b₁)
-    (.layer (Layer.sigmoid_sound k)
-      (.layer (Layer.linear_sound W₂ b₂)
-        (.layer (Layer.tanh_sound k) (.output fun _ => rfl) fun _ => rfl) fun _ => rfl)
+  exact .layer (Layer.linear_encloses W₁ b₁)
+    (.layer (Layer.sigmoid_encloses k)
+      (.layer (Layer.linear_encloses W₂ b₂)
+        (.layer (Layer.tanh_encloses k) (.output fun _ => rfl) fun _ => rfl) fun _ => rfl)
       fun _ => rfl) fun _ => rfl
 
 /-- The polynomial relaxation in a chain, over a float polynomial zonotope, and
@@ -125,17 +125,17 @@ def Example.sigmoidPolyNet (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3) (
     (.layer (SigmoidPolyLayer.mk k 2 4 c dx p rfl) (.layer (LinearLayer.mk W₂ b₂) .output))
 
 /-- And what it computes, `Real.sigmoid` arriving only here. -/
-theorem Example.sigmoidPolyNet_sound (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
+theorem Example.sigmoidPolyNet_encloses (k : ℕ) (W₁ : Mat 𝕋 3 2) (b₁ : Vec 𝕋 3)
     (W₂ : Mat 𝕋 2 3) (b₂ : Vec 𝕋 2) (c : Fin 3 → 𝕋 → 𝕋 → Fin 3 → 𝕋) (dx : Fin 3 → 𝕋 → 𝕋 → 𝕋)
     (p : Fin 3 → 𝕋 → 𝕋 → Fin 5 → 𝕋) : -- --- STMT ---
-    (Example.sigmoidPolyNet k W₁ b₁ W₂ b₂ c dx p).Sound fun x =>
+    (Example.sigmoidPolyNet k W₁ b₁ W₂ b₂ c dx p).Encloses fun x =>
       Scalar.toRealMat W₂ *ᵥ (fun j =>
           Real.sigmoid ((Scalar.toRealMat W₁ *ᵥ x + Scalar.toRealVec b₁) j))
         + Scalar.toRealVec b₂ := by -- --- PROOF ---
   delta Example.sigmoidPolyNet
-  exact .layer (Layer.linear_sound W₁ b₁)
-    (.layer (Layer.sigmoidPoly_sound k c dx p)
-      (.layer (Layer.linear_sound W₂ b₂) (.output fun _ => rfl) fun _ => rfl) fun _ => rfl)
+  exact .layer (Layer.linear_encloses W₁ b₁)
+    (.layer (Layer.sigmoidPoly_encloses k c dx p)
+      (.layer (Layer.linear_encloses W₂ b₂) (.output fun _ => rfl) fun _ => rfl) fun _ => rfl)
     fun _ => rfl
 
 end CORALean.Float

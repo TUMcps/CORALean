@@ -28,7 +28,8 @@ open Matrix
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SmoothNetwork.outputFn_zero : ∀ {n k : ℕ} (N : SmoothNetwork n k) (x : Vec ℝ n),
+theorem SmoothNetwork.outputFn_zero : -- --- STMT ---
+    ∀ {n k : ℕ} (N : SmoothNetwork n k) (x : Vec ℝ n),
     N.outputFn x 0 = N.eval x
   | _, _, .output, _ => rfl
   | _, _, .linear (m := m) W b rest, x => by

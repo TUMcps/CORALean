@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
-public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.ActivationEncloses
 public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 public import CORALean.NN.Operations.Enclose
 public import CORALean.NN.Operations.ReduceOnTheFly
@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- Lines 10, 11 and 13 are the reduced layers' `enclose`, so `Y = H_κ` is `Φ̂_ρ`'s. -/
-theorem aux_reduceOnTheFlyFrom_enclose :
+theorem aux_reduceOnTheFlyFrom_enclose : -- --- STMT ---
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork 𝕋 n₁ m) (H : S n) (L : ReducedLinear 𝕋 n n₁)
       (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) (B : MergeBuckets 𝕋)
       {Φhat : ReducibleNetwork 𝕋 n m} {Y : S m},
@@ -79,7 +79,7 @@ theorem aux_reduceOnTheFlyFrom_enclose :
           exact hY
 
 /-- The loop from one `k` on, for every bias `c` the pending layer `L̂_{k-1}`'s box admits. -/
-theorem aux_reduceOnTheFlyFrom_outer :
+theorem aux_reduceOnTheFlyFrom_outer : -- --- STMT ---
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork 𝕋 n₁ m) (H : S n) (L : ReducedLinear 𝕋 n n₁)
       (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) (B : MergeBuckets 𝕋)
       {σ : ℝ → ℝ} (_hR : R.Sound σ) {c : Vec ℝ n₁}
@@ -95,7 +95,7 @@ theorem aux_reduceOnTheFlyFrom_outer :
         -- k = κ: the pending layer's box holds `c`, and the last activation encloses `σ`
         intro x hx
         rw [hid]
-        exact (Layer.activation_sound hR).enclose_outer _ _
+        exact (Layer.activation_encloses hR).enclose_outer _ _
           (Layer.linearWithError_mem L.W (Interval.construct_subset_nonemptyHull _ hc) H hx)
   | _, _, _, .cons L1 R1 hτ1 B1 rest1, H, L, R, hτ, B, σ, hR, c, hc, _, hrest, Φhat, Y, hrun => by
       cases hrest with
@@ -117,7 +117,7 @@ theorem aux_reduceOnTheFlyFrom_outer :
             set v : Vec ℝ _ := fun i => σ ((toRealMat L.W *ᵥ x + c) i) with hv
             -- line 5's box holds the merged neurons' values, computed at the float boxes
             have hvk : v ∈ construct I_k :=
-              (Layer.activation_sound (S := ℐ𝒱[𝕋]) hR).enclose_outer _ _
+              (Layer.activation_encloses (S := ℐ𝒱[𝕋]) hR).enclose_outer _ _
                 (Layer.linearWithError_mem (S := ℐ𝒱[𝕋]) L.W
                   (Interval.construct_subset_nonemptyHull _ hc) _ (interval_outer H hx))
             have hw : v ∘ part.right
@@ -133,7 +133,7 @@ theorem aux_reduceOnTheFlyFrom_outer :
             have hA1 := Layer.linearWithError_mem (S := S) (L.mergeRows part).W
               (Interval.construct_subset_nonemptyHull _ hcl) H hx
             rw [hrow] at hA1
-            have hA2 := (Layer.activation_sound (S := S) hR).enclose_outer _ _ hA1
+            have hA2 := (Layer.activation_encloses (S := S) hR).enclose_outer _ _ hA1
             -- the bucket's own values freeze layer `k+1`'s bias inside `mergeCols`'s box
             set W1 := toRealMat L1.W
             have hc' : c1 + W1.submatrix id part.right *ᵥ (v ∘ part.right)

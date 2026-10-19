@@ -1,7 +1,7 @@
 module
 
-public import CORALean.NN.Theorems.SoundEval
-public import CORALean.NN.Theorems.SoundHoldsAllOfEnclose
+public import CORALean.NN.Theorems.EnclosesEval
+public import CORALean.NN.Theorems.EnclosesHoldsAllOfEnclose
 
 @[expose] public section
 
@@ -34,7 +34,7 @@ theorem NeuralNetwork.holdsAll_of_enclose (nn : NeuralNetwork S n m) (X : S n)
     (specs : List (Specification ContSet))
     (h : Specification.HoldsAll specs (construct (nn.enclose X))) :
     Specification.HoldsAll specs (nn.eval.out '' construct X) :=
-  (NeuralNetwork.sound_eval nn).holdsAll_of_enclose X specs h
+  (NeuralNetwork.encloses_eval nn).holdsAll_of_enclose X specs h
 
 end CORALean
 

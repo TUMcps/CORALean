@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Definitions.Sound
+public import CORALean.NN.Definitions.Encloses
 public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Operations.Enclose
@@ -11,7 +11,7 @@ public import CORALean.NN.Operations.Enclose
 # The image sits inside the enclosed one
 
 Induction on `Sound`, the exact map and `enclose` unfolding in step: at `output`
-both are the identity, at `layer` `Layer.Sound.image_subset` gets the head
+both are the identity, at `layer` `Layer.Encloses.image_subset` gets the head
 layer's set inside the head layer's enclosure, and the tail's own induction
 carries that the rest of the way — the form `Verified` composes with
 `Specification.holds_of_outer`. That is [1, Prop. 2.14]'s image enclosure, `H_k = enclose(L_k,
@@ -43,8 +43,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 /-- `image_subset`, generalized to an arbitrary starting set: a subset of
 `construct b` is carried through the recursion the same way `b` is, applying
 `Layer.image_subset` at each layer instead of `enclose_outer` pointwise. -/
-theorem NeuralNetwork.Sound.aux_image_subset {n m : ℕ} {nn : NeuralNetwork S n m}
-    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Sound f) :
+theorem NeuralNetwork.Encloses.aux_image_subset {n m : ℕ} {nn : NeuralNetwork S n m}
+    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) :
     ∀ (A : Set (Vec ℝ n)) (b : S n), A ⊆ construct b →
       f '' A ⊆ construct (nn.enclose b) := by -- --- PROOF ---
   induction hf with
@@ -60,9 +60,9 @@ theorem NeuralNetwork.Sound.aux_image_subset {n m : ℕ} {nn : NeuralNetwork S n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.Sound.image_subset {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
-    (hf : nn.Sound f) (X : S n) : f '' construct X ⊆ construct (nn.enclose X) :=
-  NeuralNetwork.Sound.aux_image_subset hf (construct X) X Set.Subset.rfl
+theorem NeuralNetwork.Encloses.image_subset {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
+    (hf : nn.Encloses f) (X : S n) : f '' construct X ⊆ construct (nn.enclose X) :=
+  NeuralNetwork.Encloses.aux_image_subset hf (construct X) X Set.Subset.rfl
 
 end CORALean
 

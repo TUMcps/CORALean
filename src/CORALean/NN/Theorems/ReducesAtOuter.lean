@@ -40,7 +40,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- Whatever layers of `nn` were reduced to reach `nn'`, the original network's image lies
 in the enclosure `nn'.enclose s` builds. -/
-theorem NeuralNetwork.reducesAt_outer :
+theorem NeuralNetwork.reducesAt_outer : -- --- STMT ---
     ∀ {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m},
       NeuralNetwork.ReducesAt s nn nn' f → f '' construct s ⊆ construct (nn'.enclose s)
   | _, _, s, _, _, _, .nil _ hid => by
@@ -75,7 +75,7 @@ theorem NeuralNetwork.reducesAt_outer :
       have hA1 := Layer.linearWithError_mem (S := S) (W0.submatrix part.left id)
         (Float.Interval.construct_subset_nonemptyHull _ hc) s hx
       rw [Float.toRealMat_real, hrow] at hA1
-      have hA2 := (Layer.activation_sound (S := S) hR).enclose_outer _ _ hA1
+      have hA2 := (Layer.activation_encloses (S := S) hR).enclose_outer _ _ hA1
       -- the bucket is frozen at its own value, which its bounds admit
       have hw : v ∘ part.right
           ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Float.Interval (Vec ℝ _)) :=

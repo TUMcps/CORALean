@@ -1663,7 +1663,7 @@ function declname(s,   t) {
   t = substr(s, RSTART, RLENGTH); sub(/^(theorem|lemma)[ \t]+/, "", t)
   return t
 }
-function checkfile(   i, j, end, s, sig, m, nm, key, marks, legit) {
+function checkfile(   i, j, c, ch, depth, end, s, sig, m, nm, key, marks, legit) {
   split("", legit)
   i = 1
   while (i <= nf) {
@@ -1674,6 +1674,24 @@ function checkfile(   i, j, end, s, sig, m, nm, key, marks, legit) {
       s = L[j]; sub(/[ \t]+$/, "", s)
       if (s ~ / where$/) break
       if (s ~ /:= by$/ || s ~ /:= by -- --- PROOF ---$/) { end = j; break }
+    }
+    # A proof written as a term has no `:= by`: the signature ends at the first `:=` outside any
+    # bracket (a binder default such as `(k : ℕ := 3)` is inside one), and the flag is required
+    # there as well (#247: a term-mode theorem of eight signature lines carried none).
+    if (end == 0) {
+      depth = 0
+      for (j = i; j <= nf && j - i < 30; j++) {
+        if (j > i && L[j] ~ /^[^ \t]/) break
+        s = L[j]; sub(/ --.*$/, "", s)
+        if (s ~ / where$/) break
+        for (c = 1; c <= length(s); c++) {
+          ch = substr(s, c, 1)
+          if (ch == "(" || ch == "[" || ch == "{") depth++
+          else if (ch == ")" || ch == "]" || ch == "}") depth--
+          else if (ch == ":" && substr(s, c + 1, 1) == "=" && depth <= 0) { end = j; break }
+        }
+        if (end) break
+      }
     }
     if (end == 0) { i++; continue }
     sig = end - i + 1; nm = declname(L[i]); key = fname "::" nm
@@ -2105,7 +2123,7 @@ report "$out"
 
 # A main-type file holds the type, and nothing proved or computed about it (#134): *any* file
 # with a `MAIN TYPE` banner, whatever it is called (`NN/NeuralNetwork.lean`, `Layers/Layer.lean`
-# and `Definitions/Sound.lean` are main-type files too, which the check above, keyed to the
+# and `Definitions/Encloses.lean` are main-type files too, which the check above, keyed to the
 # `<Dir>/<Dir>.lean` name, does not reach), declares no `theorem`/`lemma`, and no operation, a
 # computable-or-not `def` (not an `abbrev` or an `instance`) returning data, that nothing else in
 # the file is stated with: a `def` the file's other declarations mention is the type's own

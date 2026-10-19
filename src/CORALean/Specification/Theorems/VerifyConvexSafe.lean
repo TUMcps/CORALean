@@ -41,7 +41,7 @@ and the unsafe set really are disjoint. -/
 theorem Specification.holds_unsafeSet_of_verifyConvex_safe
     (bO : ∀ d : α →ₗ[ℝ] ℝ, SupportBound O d) (bU : ∀ d : α →ₗ[ℝ] ℝ, SupportBound U d)
     (wO : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness O d) (wU : ∀ d : α →ₗ[ℝ] ℝ, SupportWitness U d)
-    (ℓ : ℕ → α →ₗ[ℝ] ℝ) (fuel : ℕ) (h : verifyConvex bO bU wO wU ℓ fuel = .safe) :
+    (ℓ : ℕ → α →ₗ[ℝ] ℝ) (fuel : ℕ) (h : verifyConvex bO bU wO wU ℓ fuel = .safe) : -- --- STMT ---
     (Specification.unsafeSet U).Holds O :=
   let ⟨c, hc⟩ := exists_separating_of_verifyConvex_eq_safe bO bU wO wU ℓ fuel h
   Specification.holds_unsafeSet_of_separating (bO c) (bU (-c)) hc

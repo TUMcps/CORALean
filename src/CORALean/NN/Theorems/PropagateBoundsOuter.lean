@@ -31,8 +31,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every point of `B` goes, under `f`, into the propagated bounds. -/
-theorem NeuralNetwork.Sound.propagateBounds_outer [Intersection (S m) (Vec ℝ m)]
-    {seg : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m} (hf : seg.Sound f) (B : S n)
+theorem NeuralNetwork.Encloses.propagateBounds_outer [Intersection (S m) (Vec ℝ m)]
+    {seg : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m} (hf : seg.Encloses f) (B : S n)
     (stored : Option (S m))
     (hstored : ∀ I, stored = some I → ∀ x ∈ construct B, f x ∈ construct I) : -- --- STMT ---
     ∀ x ∈ construct B, f x ∈ construct (seg.propagateBounds B stored) := by -- --- PROOF ---

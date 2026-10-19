@@ -25,7 +25,7 @@ namespace CORALean.Real
 
 /-- The same at the constraint block, `appendE`'s right half. -/
 theorem ConPolyZono.monomial_factorIdx_right {p h q : ℕ} (E : Fin p → Fin h → ℕ)
-    (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) (l : Fin q) :
+    (R : Fin p → Fin q → ℕ) (a : Fin p → ℝ) (l : Fin q) : -- --- STMT ---
     PolyZonotope.monomial (fun k l => R (ConPolyZono.factorIdx E R k) l)
         (fun k => a (ConPolyZono.factorIdx E R k)) l
       = PolyZonotope.monomial R a l :=

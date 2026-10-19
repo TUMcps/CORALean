@@ -76,7 +76,7 @@ def headlineTheorems : Array Name := #[
   `CORALean.Reach.holds_of_check,
   `CORALean.Specification.check_sound,
   `CORALean.NeuralNetwork.enclose_outer,
-  `CORALean.NeuralNetwork.Sound.enclose_outer,
+  `CORALean.NeuralNetwork.Encloses.enclose_outer,
   `CORALean.NeuralNetwork.holds_of_enclose,
   `CORALean.NeuralNetwork.holds_of_check,
   `CORALean.Float.Zonotope.mtimesIntervalMat_outer,

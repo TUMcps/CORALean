@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 /-- [1, Sec. 4.3 (new reduction)]: one step removes exactly one generator. -/
 theorem Zonotope.ofEchelon_reduceScottStep_h {n k : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
-    (R : Fin (k + 1) → Vec ℝ n) (ind : Fin (k + 1)) :
+    (R : Fin (k + 1) → Vec ℝ n) (ind : Fin (k + 1)) : -- --- STMT ---
     (Zonotope.ofEchelon c (Zonotope.reduceScottStep T R ind).1
         (Zonotope.reduceScottStep T R ind).2).h + 1
       = (Zonotope.ofEchelon c T R).h := rfl

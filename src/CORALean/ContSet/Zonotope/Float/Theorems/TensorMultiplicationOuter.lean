@@ -34,7 +34,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.tensorMultiplication_outer (Z : Zonotope (Vec 𝕋 n)) (M : Zonotope.Tensor3 𝕋 n)
+theorem Zonotope.tensorMultiplication_outer (Z : Zonotope (Vec 𝕋 n)) (M : Tensor3 𝕋 n)
     (L : Real.Zonotope.TensorLists Z.absorbRounding.h) (hc : ∀ i, toReal (Z.c i) = 0)
     (hperm : Function.Bijective fun p : Fin L.P => (L.perm p 0, L.perm p 1, L.perm p 2))
     (hmap : ∀ p q, L.map p = L.map q →

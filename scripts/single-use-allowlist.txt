@@ -314,7 +314,7 @@ src/CORALean/NN/Layers/Theorems/SumOffDownLe.lean::sumOffDown_le  pending review
 src/CORALean/NN/Layers/Theorems/TapEntryDot.lean::tapEntry_dot  pending review-pattern 15 cleanup
 src/CORALean/NN/Layers/Theorems/ToRealPadCoeffs.lean::toReal_padCoeffs  pending review-pattern 15 cleanup
 src/CORALean/NN/Layers/Theorems/ToRealPolyDerivCenter.lean::toReal_polyDerivCenter  pending review-pattern 15 cleanup
-src/CORALean/NN/Theorems/AtScheduleEval.lean::RefinableNetwork.atSchedule_sound  pending review-pattern 15 cleanup
+src/CORALean/NN/Theorems/AtScheduleEval.lean::RefinableNetwork.atSchedule_encloses  pending review-pattern 15 cleanup
 src/CORALean/NN/Theorems/LinearLipschitz.lean::Layer.lipschitzWith_linear_eval  pending review-pattern 15 cleanup
 src/CORALean/NN/Theorems/Real/Basic.lean::mergeRowWeight_nonneg  pending review-pattern 15 cleanup
 src/CORALean/NN/Theorems/SigmoidRefinementConverges.lean::sigmoidRefinableNetwork_convergent  pending review-pattern 15 cleanup

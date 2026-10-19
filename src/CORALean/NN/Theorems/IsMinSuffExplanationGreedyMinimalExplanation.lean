@@ -45,7 +45,8 @@ variable {n m : ℕ}
 no longer waiting in `todo` already has a witness — carried forward by
 `IsSuffExplanation.mono` — that dropping it breaks sufficiency. -/
 theorem aux_greedyFold_inv {f : Vec ℝ n → Vec ℝ m} {x : Vec ℝ n} {ε : ℝ} (hε : 0 ≤ ε) {l : Fin m}
-    {suff : Finset (Fin n) → Bool} (hsuff : ∀ E, suff E = true ↔ IsSuffExplanation f x ε E l) :
+    {suff : Finset (Fin n) → Bool}
+    (hsuff : ∀ E, suff E = true ↔ IsSuffExplanation f x ε E l) : -- --- STMT ---
     ∀ (todo : List (Fin n)) {E : Finset (Fin n)}, IsSuffExplanation f x ε E l →
       (∀ j ∈ E, j ∉ todo → ¬ IsSuffExplanation f x ε (E \ {j}) l) →
       IsSuffExplanation f x ε (todo.foldl (aux_greedyExplanationStep suff) E) l ∧
@@ -88,7 +89,7 @@ the base classification and a nonnegative perturbation radius. -/
 theorem isMinSuffExplanation_greedyMinimalExplanation
     {f : Vec ℝ n → Vec ℝ m} {x : Vec ℝ n} {ε : ℝ} (hε : 0 ≤ ε) {l : Fin m}
     {suff : Finset (Fin n) → Bool} (hsuff : ∀ E, suff E = true ↔ IsSuffExplanation f x ε E l)
-    (hl : IsSuffExplanation f x ε Finset.univ l) :
+    (hl : IsSuffExplanation f x ε Finset.univ l) : -- --- STMT ---
     IsMinSuffExplanation f x ε (greedyMinimalExplanation n suff) l :=
   aux_greedyFold_inv hε hsuff (List.finRange n) hl
     (fun j _ hj => absurd (List.mem_finRange j) hj)

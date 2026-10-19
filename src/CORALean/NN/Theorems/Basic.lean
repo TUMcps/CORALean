@@ -2,7 +2,7 @@ module
 
 public import CORALean.Global.Float.SoundFloatArithmetic
 public import CORALean.NN.Definitions.Basic
-public import CORALean.NN.Definitions.Sound
+public import CORALean.NN.Definitions.Encloses
 public import CORALean.NN.Layers.Definitions.Relu
 public import CORALean.NN.Layers.Instances
 public import CORALean.NN.Operations.Basic
@@ -12,7 +12,7 @@ public import CORALean.NN.Operations.ScheduleCons
 public import CORALean.NN.Operations.WeightAccLayer
 public import CORALean.NN.Operations.WeightLayerEval
 public import CORALean.NN.Theorems.ImageSubset
-public import CORALean.NN.Theorems.SoundEval
+public import CORALean.NN.Theorems.EnclosesEval
 
 @[expose] public section
 
@@ -192,37 +192,37 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- Reviewed:      ---
 
 /-- Its own function, on every input set, with no hypothesis: `sound_eval` read through
-`Sound.image_subset`. This is the guarantee a network gives as an `Enclose` kind. -/
+`Encloses.image_subset`. This is the guarantee a network gives as an `Enclose` kind. -/
 theorem NeuralNetwork.enclose_outer (nn : NeuralNetwork S n m) (X : S n) :
     nn.eval.out '' construct X ⊆ construct (nn.enclose X) :=
-  (NeuralNetwork.sound_eval nn).image_subset X
+  (NeuralNetwork.encloses_eval nn).image_subset X
 
 
--- ==============================  `NeuralNetwork.ofLayer_sound`  =============================== --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   24-September-2026
--- Reviewed:      ---
-
-/-- A single layer, sound at the function it is sound at. -/
-theorem NeuralNetwork.ofLayer_sound {L : ℕ → ℕ → Type} [Enclose L S] {curr : L n m}
-    {f : Vec ℝ n → Vec ℝ m} (h : (Enclose.toLayer (S := S) curr).Sound f) :
-    (NeuralNetwork.ofLayer (S := S) curr).Sound f :=
-  .layer h (.output fun _ => rfl) fun _ => rfl
-
-
--- ===============================  `NeuralNetwork.sound_output`  =============================== --
+-- =============================  `NeuralNetwork.encloses_output`  ============================== --
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
 -- Reviewed:      ---
 
 /-- The identity at `output`, which is the constructor read at `f = id`. -/
-theorem NeuralNetwork.sound_output : (NeuralNetwork.output : NeuralNetwork S n n).Sound id :=
+theorem NeuralNetwork.encloses_output : (NeuralNetwork.output : NeuralNetwork S n n).Encloses id :=
   .output fun _ => rfl
 
 
--- =============================  `RefinableLayer.atPattern_sound`  ============================= --
+-- =============================  `NeuralNetwork.ofLayer_encloses`  ============================= --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- A single layer, sound at the function it is sound at. -/
+theorem NeuralNetwork.ofLayer_encloses {L : ℕ → ℕ → Type} [Enclose L S] {curr : L n m}
+    {f : Vec ℝ n → Vec ℝ m} (h : (Enclose.toLayer (S := S) curr).Encloses f) :
+    (NeuralNetwork.ofLayer (S := S) curr).Encloses f :=
+  .layer h (.output fun _ => rfl) fun _ => rfl
+
+
+-- ===========================  `RefinableLayer.atPattern_encloses`  ============================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       05-September-2026
 -- Last update:   23-September-2026
@@ -230,8 +230,8 @@ theorem NeuralNetwork.sound_output : (NeuralNetwork.output : NeuralNetwork S n n
 
 /-- At the refinable layer's own `eval`, whatever the pattern: the obligation is stored once and
 asked at each. -/
-theorem RefinableLayer.atPattern_sound (L : RefinableLayer S n m) (t : OrderPattern n) :
-    (Enclose.toLayer (S := S) (L.atPattern t)).Sound L.eval :=
+theorem RefinableLayer.atPattern_encloses (L : RefinableLayer S n m) (t : OrderPattern n) :
+    (Enclose.toLayer (S := S) (L.atPattern t)).Encloses L.eval :=
   ⟨L.enclose_outer t⟩
 
 end CORALean

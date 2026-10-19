@@ -48,11 +48,11 @@ theorem STL.Tree.sat_congr_getVariables (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → 
       ihφ _ _ fun s i hi => h _ i (by simp [STL.Tree.getVariables, hi])
     have hψ : ∀ t, ψ.Sat (Time.shift ξ t) ↔ ψ.Sat (Time.shift ξ' t) := fun t =>
       ihψ _ _ fun s i hi => h _ i (by simp [STL.Tree.getVariables, hi])
-    simp only [STL.Tree.Sat, hφ, hψ]
+    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness, hφ, hψ]
   | «finally» a b φ ih | globally a b φ ih =>
     have hφ : ∀ t, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t =>
       ih _ _ fun s i hi => h _ i (by simpa [STL.Tree.getVariables] using hi)
-    simp only [STL.Tree.Sat, hφ]
+    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness, hφ]
   | next a φ ih => exact ih _ _ fun s i hi => h _ i (by simpa [STL.Tree.getVariables] using hi)
 
 end CORALean

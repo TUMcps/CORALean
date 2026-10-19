@@ -20,7 +20,7 @@ is sound at the *same* map. Without it "the exact image" would be a function of
 the schedule and no refinement could be said to converge to anything.
 
 It is also why `encloseAt_outer` needs no induction of its own: this soundness
-is what `NeuralNetwork.Sound.enclose_outer` then answers from.
+is what `NeuralNetwork.Encloses.enclose_outer` then answers from.
 -/
 
 -- Authors:       Claude Opus 5
@@ -40,13 +40,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem RefinableNetwork.atSchedule_sound : ∀ {n m : ℕ} (rn : RefinableNetwork S n m)
-    (sch : Schedule), (rn.atSchedule sch).Sound rn.eval
+theorem RefinableNetwork.atSchedule_encloses : ∀ {n m : ℕ} (rn : RefinableNetwork S n m)
+    (sch : Schedule), (rn.atSchedule sch).Encloses rn.eval
   | _, _, .nil, _ => .output fun _ => rfl
   -- the head layer computes `L.eval` at every level, so only the tail moves
   | _, _, .cons L rest, sch =>
-      .layer (L.atPattern_sound (Schedule.head sch _))
-        (rest.atSchedule_sound (Schedule.tail sch)) fun _ => rfl
+      .layer (L.atPattern_encloses (Schedule.head sch _))
+        (rest.atSchedule_encloses (Schedule.tail sch)) fun _ => rfl
 
 end CORALean
 

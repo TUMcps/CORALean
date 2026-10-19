@@ -58,14 +58,17 @@ theorem STL.Tree.sat_congr_maximumTime (φ : STL.Tree n) (ξ ξ' : ℝ≥0 → F
     rw [e] at h
     have hφ : ∀ t ≤ b, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t ht =>
       ih _ _ fun s hs => h _ (STL.Tree.aux_le_add hs ht)
+    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness]
     exact exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
-      hφ t h2
+      and_congr (hφ t h2) Iff.rfl
   | globally a b φ ih =>
     have e : (STL.Tree.globally a b φ).maximumTime = b + φ.maximumTime := rfl
     rw [e] at h
     have hφ : ∀ t ≤ b, φ.Sat (Time.shift ξ t) ↔ φ.Sat (Time.shift ξ' t) := fun t ht =>
       ih _ _ fun s hs => h _ (STL.Tree.aux_le_add hs ht)
-    exact forall_congr' fun t => forall_congr' fun h1 => forall_congr' fun h2 => hφ t h2
+    simp only [STL.Tree.Sat, STL.Tree.HasUntilWitness]
+    exact not_congr (exists_congr fun t => and_congr_right fun h1 => and_congr_right fun h2 =>
+      and_congr (not_congr (hφ t h2)) Iff.rfl)
   -- `until` and `release` read both operands at shifts up to `b`
   | «until» a b φ ψ ihφ ihψ =>
     have e : (STL.Tree.until a b φ ψ).maximumTime =

@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxExp
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLeEDiffTight
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EDiffTightNonneg
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import Mathlib.Tactic.Abel
@@ -34,8 +35,8 @@ existence, and agreement is all the proof spends.
 
 -- Authors:       Claude Opus 5
 -- Written:       05-September-2026
--- Last update:   ---
--- Reviewed:      19-October-2026 (Tobias Ladner)
+-- Last update:   19-October-2026
+-- Reviewed:      ---
 
 
 -- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
@@ -55,14 +56,14 @@ theorem PolyZonotope.relaxExp_outer (pZ : PolyZonotope α)
     pZ.construct ⊆ (pZ.relaxExp part k₀).construct := by -- --- PROOF ---
   rintro x ⟨a, β, ha, hβ, rfl⟩
   have habs : |PolyZonotope.monomial pZ.E a (part.right 0)
-      - PolyZonotope.monomial pZ.E a (part.right 1)| ≤ (pZ.relaxWidth part k₀ : ℝ) :=
-    PolyZonotope.abs_sub_monomial_le pZ.E ha hsim
-  have hnn : (0:ℝ) ≤ (pZ.relaxWidth part k₀ : ℝ) := Nat.cast_nonneg _
+      - PolyZonotope.monomial pZ.E a (part.right 1)| ≤ pZ.relaxWidth part k₀ :=
+    PolyZonotope.abs_sub_monomial_le_eDiffTight pZ.E ha hsim
+  have hnn : (0:ℝ) ≤ pZ.relaxWidth part k₀ := PolyZonotope.eDiffTight_nonneg _ _
   -- the new independent generator answers the drift with one coefficient
-  set t := Zonotope.coefficient (pZ.relaxWidth part k₀ : ℝ)
+  set t := Zonotope.coefficient (pZ.relaxWidth part k₀)
     (PolyZonotope.monomial pZ.E a (part.right 0)
       - PolyZonotope.monomial pZ.E a (part.right 1)) with ht
-  have hcoef : t * (pZ.relaxWidth part k₀ : ℝ) = PolyZonotope.monomial pZ.E a (part.right 0)
+  have hcoef : t * pZ.relaxWidth part k₀ = PolyZonotope.monomial pZ.E a (part.right 0)
       - PolyZonotope.monomial pZ.E a (part.right 1) := by
     rw [ht, mul_comm]
     exact Zonotope.mul_coefficient habs

@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.polyBox_rewrite_remarks :
+theorem Interval.polyBox_rewrite_remarks : -- --- STMT ---
     (∀ x y z t : ℝ,
       -2 * x + 2 * t * x * y - z + y ^ 2 * z = (-2 + 2 * t * y) * x + (-1 + y ^ 2) * z) ∧
     (∀ b₁ b₂ d₁ d₂ f₁ : ℝ, 5 * (b₁ - d₁) + 3 * (b₂ - d₂) * (b₁ + d₁ - 2 * f₁) =

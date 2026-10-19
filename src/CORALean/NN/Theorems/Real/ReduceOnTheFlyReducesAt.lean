@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubsetNonemptyHull
-public import CORALean.NN.Layers.Theorems.ActivationLayerOfSound
+public import CORALean.NN.Layers.Theorems.ActivationLayerOfEncloses
 public import CORALean.NN.Theorems.Real.InstanceOfInstanceNetwork
 public import CORALean.NN.Theorems.ReduceOnTheFlyOuter
 public import CORALean.NN.Theorems.ReducesAtCongr
@@ -58,7 +58,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 
 /-- The loop from one `k` on reduces the original frozen at any bias `c` the box of the
 pending layer `L̂_{k-1}` admits. -/
-theorem aux_reduceOnTheFlyFrom_reducesAt :
+theorem aux_reduceOnTheFlyFrom_reducesAt : -- --- STMT ---
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork ℝ n₁ m) (H : S n) (L : ReducedLinear ℝ n n₁)
       (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.Sound σ) {σ : ℝ → ℝ} (_hR : R.Sound σ)
       (B : MergeBuckets ℝ)
@@ -76,7 +76,7 @@ theorem aux_reduceOnTheFlyFrom_reducesAt :
         obtain ⟨rfl, rfl⟩ := hrun
         -- k = κ: the pending layer's box holds `c`, and the last activation is kept
         exact .widen H L.W c L.b L.I' hc (h := fun y => h fun i => σ (y i)) (fun _ => rfl)
-          (.keep _ (ActivationLayer.of hR) (ActivationLayer.of_sound (S := S) hR) (fun _ => rfl)
+          (.keep _ (ActivationLayer.of hR) (ActivationLayer.of_encloses (S := S) hR) (fun _ => rfl)
             (.nil _ hid))
   | _, _, _, .cons L1 R1 hτ1 B1 rest1, H, L, R, hτ, σ, hR, B, c, hc, _, _, hrest, _, _, hrun => by
       cases hrest with
@@ -97,7 +97,7 @@ theorem aux_reduceOnTheFlyFrom_reducesAt :
             -- line 5's box bounds the exact layer `k` at every point that reaches it
             have hY : ∀ x ∈ construct H, (fun i => σ ((L.W *ᵥ x + c) i)) ∈ construct I_k :=
               fun x hx =>
-                (Layer.activation_sound (S := ℐ𝒱[ℝ]) hR).enclose_outer
+                (Layer.activation_encloses (S := ℐ𝒱[ℝ]) hR).enclose_outer
                 _ _ (Layer.linearWithError_mem (S := ℐ𝒱[ℝ]) L.W
                   (Float.Interval.construct_subset_nonemptyHull _ hc) _
                   (Float.IntervalOuter.interval_outer H hx))

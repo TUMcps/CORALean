@@ -24,7 +24,6 @@ public import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Or
 public import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeOuter
 public import CORALean.ContSet.SpectraShadow.Real.Operations.PolytopeInner
-public import CORALean.ContSet.SpectraShadow.Real.Operations.FullDimShortcut
 public import CORALean.ContSet.SpectraShadow.Real.Operations.GenerateESumRep
 
 /-!

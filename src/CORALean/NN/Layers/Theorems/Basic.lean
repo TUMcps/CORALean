@@ -17,8 +17,8 @@ public import CORALean.NN.Layers.Operations.SigmoidRelaxation
 public import CORALean.NN.Layers.Operations.Square
 public import CORALean.NN.Layers.Operations.Tanh
 public import CORALean.NN.Layers.Operations.TanhRelaxation
-public import CORALean.NN.Layers.Theorems.ActivationPolySound
-public import CORALean.NN.Layers.Theorems.ActivationSound
+public import CORALean.NN.Layers.Theorems.ActivationPolyEncloses
+public import CORALean.NN.Layers.Theorems.ActivationEncloses
 public import CORALean.NN.Layers.Theorems.InvSqrtRootRelaxationSound
 public import CORALean.NN.Layers.Theorems.LeakyReluRelaxationSound
 public import CORALean.NN.Layers.Theorems.OfAffineConjSound
@@ -91,17 +91,17 @@ theorem doubleRounding_sound : (doubleRounding (𝕋 := 𝕋)).Sound 2 where
   down_le x := by have h := addDown_le_add x x; show toReal (addDown x x) ≤ _; linarith
 
 
--- ================================  `Layer.sigmoidPoly_sound`  ================================= --
+-- ===============================  `Layer.sigmoidPoly_encloses`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-September-2026
 -- Last update:   23-September-2026
 -- Reviewed:      ---
 
 /-- `Real.sigmoid` coordinatewise, which the layer itself never mentions. -/
-theorem Layer.sigmoidPoly_sound (k : ℕ) (c : Fin n → 𝕋 → 𝕋 → Fin (m + 1) → 𝕋)
+theorem Layer.sigmoidPoly_encloses (k : ℕ) (c : Fin n → 𝕋 → 𝕋 → Fin (m + 1) → 𝕋)
     (dx : Fin n → 𝕋 → 𝕋 → 𝕋) (p : Fin n → 𝕋 → 𝕋 → Fin (N + 1) → 𝕋) :
-    (Layer.sigmoidPoly k c dx p).Sound fun x i => Real.sigmoid (x i) :=
-  Layer.activationPoly_sound fun i => sigmoidPolyRelaxation_sound k (c i) (dx i) (p i)
+    (Layer.sigmoidPoly k c dx p).Encloses fun x i => Real.sigmoid (x i) :=
+  Layer.activationPoly_encloses fun i => sigmoidPolyRelaxation_sound k (c i) (dx i) (p i)
 
 
 -- ===============================  `PolyRelaxation.padTo_error`  =============================== --
@@ -216,41 +216,31 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
   {f : Vec ℝ n → Vec ℝ m} {g : Vec ℝ m → Vec ℝ k}
 
 
--- =================================  `Enclose.toLayer_sound`  ================================== --
+-- ================================  `Enclose.toLayer_encloses`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
 -- Reviewed:      ---
 
 /-- What forgetting the kind keeps: the layer is sound at its kind's `eval`. -/
-theorem Enclose.toLayer_sound {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) :
-    (Enclose.toLayer (S := S) l).Sound (Enclose.eval (S := S) l).out :=
+theorem Enclose.toLayer_encloses {L : ℕ → ℕ → Type u} [Enclose L S] (l : L n m) :
+    (Enclose.toLayer (S := S) l).Encloses (Enclose.eval (S := S) l).out :=
   ⟨fun s _x hx => Enclose.enclose_outer l s (Set.mem_image_of_mem _ hx)⟩
 
 
--- ====================================  `Layer.comp_sound`  ==================================== --
+-- ==================================  `Layer.comp_encloses`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
 -- Reviewed:      ---
 
 /-- Composition of layers is sound at the composition of their functions. -/
-theorem Layer.comp_sound {L₂ : Layer S m k} {L₁ : Layer S n m} (h₂ : L₂.Sound g)
-    (h₁ : L₁.Sound f) : (L₂.comp L₁).Sound (g ∘ f) :=
+theorem Layer.comp_encloses {L₂ : Layer S m k} {L₁ : Layer S n m} (h₂ : L₂.Encloses g)
+    (h₁ : L₁.Encloses f) : (L₂.comp L₁).Encloses (g ∘ f) :=
   ⟨fun s x hx => h₂.enclose_outer _ _ (h₁.enclose_outer s x hx)⟩
 
 
--- ==================================  `Layer.identity_sound`  ================================== --
--- Authors:       Claude Opus 5.5
--- Written:       02-September-2026
--- Last update:   24-September-2026
--- Reviewed:      ---
-
-/-- The identity layer is sound at the identity function. -/
-theorem Layer.identity_sound : (Layer.identity S n).Sound id := ⟨fun _ _ hx => hx⟩
-
-
--- ===================================  `Layer.Sound.congr`  ==================================== --
+-- ==================================  `Layer.Encloses.congr`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
@@ -258,22 +248,32 @@ theorem Layer.identity_sound : (Layer.identity S n).Sound id := ⟨fun _ _ hx =>
 
 /-- Soundness is stable under replacing the function by one that agrees with it
 everywhere, which is what lets a caller name the map in its own terms. -/
-theorem Layer.Sound.congr {L : Layer S n m} {f' : Vec ℝ n → Vec ℝ m} (h : L.Sound f)
-    (hff : ∀ x, f' x = f x) : L.Sound f' :=
+theorem Layer.Encloses.congr {L : Layer S n m} {f' : Vec ℝ n → Vec ℝ m} (h : L.Encloses f)
+    (hff : ∀ x, f' x = f x) : L.Encloses f' :=
   ⟨fun s x hx => (hff x) ▸ h.enclose_outer s x hx⟩
 
 
--- ================================  `Layer.Sound.image_subset`  ================================ --
+-- ==============================  `Layer.Encloses.image_subset`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-September-2026
 -- Last update:   24-September-2026
 -- Reviewed:      ---
 
 /-- The obligation as an inclusion, which is the form it composes in. -/
-theorem Layer.Sound.image_subset {L : Layer S n m} (h : L.Sound f) (s : S n) :
+theorem Layer.Encloses.image_subset {L : Layer S n m} (h : L.Encloses f) (s : S n) :
     f '' construct s ⊆ construct (L.enclose s) := by
   rintro _ ⟨x, hx, rfl⟩
   exact h.enclose_outer s x hx
+
+
+-- ================================  `Layer.identity_encloses`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-September-2026
+-- Last update:   24-September-2026
+-- Reviewed:      ---
+
+/-- The identity layer is sound at the identity function. -/
+theorem Layer.identity_encloses : (Layer.identity S n).Encloses id := ⟨fun _ _ hx => hx⟩
 
 end
 
@@ -285,7 +285,7 @@ open ContSet
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 
--- =============================  `Layer.generatorReduction_sound`  ============================= --
+-- ===========================  `Layer.generatorReduction_encloses`  ============================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
@@ -293,8 +293,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- The identity: `reduce_outer` says the reduced set contains the set, whichever generators are
 dropped. -/
-theorem Layer.generatorReduction_sound [∀ n, Reduce (S n) (Vec ℝ n)] (n maxGens : ℕ) :
-    (Layer.generatorReduction (S := S) n maxGens).Sound id :=
+theorem Layer.generatorReduction_encloses [∀ n, Reduce (S n) (Vec ℝ n)] (n maxGens : ℕ) :
+    (Layer.generatorReduction (S := S) n maxGens).Encloses id :=
   ⟨fun s _x hx => Reduce.reduce_outer s maxGens hx⟩
 
 end
@@ -309,76 +309,76 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mti
 variable [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n : ℕ}
 
 
--- ================================  `Layer.invSqrtRoot_sound`  ================================= --
+-- ===============================  `Layer.invSqrtRoot_encloses`  =============================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- `Real.invSqrt` coordinatewise, for every point of every set. -/
-theorem Layer.invSqrtRoot_sound (p : ℕ) :
-    (Layer.invSqrtRoot (𝕋 := 𝕋) (S := S) (n := n) p).Sound fun x i => Real.invSqrt (x i) :=
-  Layer.activation_sound (invSqrtRootRelaxation_sound p)
+theorem Layer.invSqrtRoot_encloses (p : ℕ) :
+    (Layer.invSqrtRoot (𝕋 := 𝕋) (S := S) (n := n) p).Encloses fun x i => Real.invSqrt (x i) :=
+  Layer.activation_encloses (invSqrtRootRelaxation_sound p)
 
 
--- =================================  `Layer.leakyRelu_sound`  ================================== --
+-- ================================  `Layer.leakyRelu_encloses`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- `Real.leakyRelu` at the stored `α`, coordinatewise, at every slope, for `α ≤ 1`. -/
-theorem Layer.leakyRelu_sound (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋 → 𝕋 → 𝕋) :
-    (Layer.leakyRelu (S := S) (n := n) α lam).Sound fun x i => Real.leakyRelu (toReal α) (x i) :=
-  Layer.activation_sound (leakyReluRelaxation_sound α hα lam)
+theorem Layer.leakyRelu_encloses (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋 → 𝕋 → 𝕋) :
+    (Layer.leakyRelu (S := S) (n := n) α lam).Encloses fun x i => Real.leakyRelu (toReal α) (x i) :=
+  Layer.activation_encloses (leakyReluRelaxation_sound α hα lam)
 
 
--- ====================================  `Layer.root_sound`  ==================================== --
+-- ==================================  `Layer.root_encloses`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- `Real.sqrt` coordinatewise, for every point of every set. -/
-theorem Layer.root_sound (p : ℕ) :
-    (Layer.root (𝕋 := 𝕋) (S := S) (n := n) p).Sound fun x i => Real.sqrt (x i) :=
-  Layer.activation_sound (rootRelaxation_sound p)
+theorem Layer.root_encloses (p : ℕ) :
+    (Layer.root (𝕋 := 𝕋) (S := S) (n := n) p).Encloses fun x i => Real.sqrt (x i) :=
+  Layer.activation_encloses (rootRelaxation_sound p)
 
 
--- ==================================  `Layer.sigmoid_sound`  =================================== --
+-- =================================  `Layer.sigmoid_encloses`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
 -- Reviewed:      ---
 
 /-- `Real.sigmoid` coordinatewise, at every reduction depth. -/
-theorem Layer.sigmoid_sound (k : ℕ) :
-    (Layer.sigmoid (𝕋 := 𝕋) (S := S) (n := n) k).Sound fun x i => Real.sigmoid (x i) :=
-  Layer.activation_sound (sigmoidRelaxation_sound k)
+theorem Layer.sigmoid_encloses (k : ℕ) :
+    (Layer.sigmoid (𝕋 := 𝕋) (S := S) (n := n) k).Encloses fun x i => Real.sigmoid (x i) :=
+  Layer.activation_encloses (sigmoidRelaxation_sound k)
 
 
--- ===================================  `Layer.square_sound`  =================================== --
+-- =================================  `Layer.square_encloses`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- `x ↦ x²` coordinatewise. -/
-theorem Layer.square_sound :
-    (Layer.square (𝕋 := 𝕋) (S := S) (n := n)).Sound fun x i => x i ^ 2 :=
-  Layer.activation_sound (σ := fun x : ℝ => x ^ 2) squareRelaxation_sound
+theorem Layer.square_encloses :
+    (Layer.square (𝕋 := 𝕋) (S := S) (n := n)).Encloses fun x i => x i ^ 2 :=
+  Layer.activation_encloses (σ := fun x : ℝ => x ^ 2) squareRelaxation_sound
 
 
--- ====================================  `Layer.tanh_sound`  ==================================== --
+-- ==================================  `Layer.tanh_encloses`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       03-September-2026
 -- Last update:   23-September-2026
 -- Reviewed:      ---
 
 /-- `Real.tanh` coordinatewise, at every reduction depth. -/
-theorem Layer.tanh_sound (k : ℕ) :
-    (Layer.tanh (𝕋 := 𝕋) (S := S) (n := n) k).Sound fun x i => Real.tanh (x i) :=
-  Layer.activation_sound (tanhRelaxation_sound k)
+theorem Layer.tanh_encloses (k : ℕ) :
+    (Layer.tanh (𝕋 := 𝕋) (S := S) (n := n) k).Encloses fun x i => Real.tanh (x i) :=
+  Layer.activation_encloses (tanhRelaxation_sound k)
 
 end
 

@@ -148,3 +148,10 @@ src/CORALean/HybridDynamics/Operations/TimeIntervalStepSplitFloat.lean
 # CORA's header cites Netzer's habilitation thesis, which the entry says is not cited here: no
 # numbered result of it is used.
 src/CORALean/ContSet/SpectraShadow/Real/SpectraShadow.lean
+
+# Althoff 2010, Eq. (3.3) and the sentence after it: the side condition `‖x‖ / (η + 2) < 1` of the
+# geometric-series remainder bound, "it is required to choose η so that ε < 1". No paper we hold
+# states it: Wetzlinger et al., CDC 2020, writes the remainder as the infinite series of its
+# Eq. (14)-(16), which needs no condition.
+src/CORALean/ContDynamics/LinearSys/MatExp/Definitions/OrderAdmissible.lean
+src/CORALean/ContDynamics/LinearSys/Definitions/OrderAdmissibleFloat.lean

@@ -34,7 +34,8 @@ theorem sample_bounds_of_deriv {g g' : ℝ → ℝ} {l u M dx : 𝕋}
     {p gLo gUp : Fin (N + 1) → 𝕋} {t : ℝ} (hd : ∀ x, HasDerivAt g (g' x) x)
     (hM : ∀ x, toReal l ≤ x → x ≤ toReal u → |g' x| ≤ toReal M)
     (hchk : gridChecked p l u dx) (hlo : ∀ i, toReal (gLo i) ≤ g (toReal (p i)))
-    (hup : ∀ i, g (toReal (p i)) ≤ toReal (gUp i)) (hl : toReal l ≤ t) (hu : t ≤ toReal u) :
+    (hup : ∀ i, g (toReal (p i)) ≤ toReal (gUp i)) (hl : toReal l ≤ t)
+    (hu : t ≤ toReal u) : -- --- STMT ---
     toReal (sampleLo gLo M dx) ≤ g t ∧ g t ≤ toReal (sampleHi gUp M dx) :=
   sample_bounds_of_cover hd hM (grid_mem_of_checked hchk)
     (fun _ hy hy' => exists_grid_close hchk hy hy') hlo hup hl hu

@@ -35,7 +35,7 @@ theorem PolyRelaxation.ofSampling_sound {E : Enclosure 𝕋} {c : 𝕋 → 𝕋 
     {M dx : 𝕋 → 𝕋 → 𝕋} {p : 𝕋 → 𝕋 → Fin (N + 1) → 𝕋} (hE : E.Sound σ)
     (hd : ∀ x, HasDerivAt σ (σ' x) x)
     (hM : ∀ (l u : 𝕋) (x : ℝ), toReal l ≤ x → x ≤ toReal u →
-      |σ' x - Real.evalPolyDeriv (fun k => toReal (c l u k)) x| ≤ toReal (M l u)) :
+      |σ' x - Real.evalPolyDeriv (fun k => toReal (c l u k)) x| ≤ toReal (M l u)) : -- --- STMT ---
     (PolyRelaxation.ofSampling E c M dx p).Sound σ :=
   PolyRelaxation.ofBracket_sound (c := c) (lo := fitLo E c M dx p)
     (hi := fitHi E c M dx p) fun l u t hl hu => by

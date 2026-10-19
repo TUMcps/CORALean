@@ -50,7 +50,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 by window. -/
 theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η ρ : ℕ}
-    (h2 : 2 ≤ η) (U : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) :
+    (h2 : 2 ≤ η) (U : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n}
+    (hA : A ∈ sys.A.construct) : -- --- STMT ---
     ∀ (k : ℕ) {P : Zonotope (Vec 𝕋 n)}, sys.particularSolutionFloat Δt η ρ U k = some P →
     (LinearSys.canonical A : LinearSys ℝ n).propagateInputSolution (toReal Δt)
         (sys.inputSolutionFloat Δt η U).construct (k + 1) ⊆ P.construct

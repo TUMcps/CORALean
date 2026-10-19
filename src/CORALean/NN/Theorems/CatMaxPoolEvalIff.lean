@@ -10,7 +10,7 @@ public import CORALean.NN.Theorems.CatMaxSegmentsEvalIff
 
 [1, Sec. II (MaxPool to CAT)]: `MaxPool' = f_{mn r/(pq)} ∘ … ∘ f₁ ∘ f^MP` maps `x` to the vector
 of window maxima, output `j` the largest of `x (tap j q)`, and to nothing else; the function
-`Layer.maxPool_sound` encloses. `f^MP` puts coordinate `q` of window `j` at `j (k + 1) + q`, and
+`Layer.maxPool_encloses` encloses. `f^MP` puts coordinate `q` of window `j` at `j (k + 1) + q`, and
 `Cat.maxSegments` from `a = 0` reads window `j` back there.
 
 ## References

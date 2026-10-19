@@ -37,7 +37,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem NeurNetContrSysDT.simulate_mem_simulateBox
     (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) ℐ𝒱[𝕋] n) (U_ext : Interval (Vec 𝕋 sys.nExt))
-    {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Sound π) {v : ℕ → Vec ℝ sys.nExt}
+    {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π) {v : ℕ → Vec ℝ sys.nExt}
     (hv : ∀ k, v k ∈ construct U_ext) (x₀ : Vec 𝕋 n) (k : ℕ) : -- --- STMT ---
     sys.simulate π v (Scalar.toRealVec x₀) k ∈
       construct (sys.simulateBox U_ext x₀ k) := by -- --- PROOF ---

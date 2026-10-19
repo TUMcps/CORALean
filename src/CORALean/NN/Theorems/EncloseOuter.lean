@@ -1,6 +1,6 @@
 module
 
-public import CORALean.NN.Definitions.Sound
+public import CORALean.NN.Definitions.Encloses
 public import CORALean.NN.Operations.Enclose
 
 @[expose] public section
@@ -10,7 +10,7 @@ public import CORALean.NN.Operations.Enclose
 
 Induction on `Sound`, applying each layer's own obligation in the order
 `enclose` applies the layers. Nothing else is used, so a new layer buys into the
-whole pipeline by proving `Layer.Sound` and nothing more — which is the reason
+whole pipeline by proving `Layer.Encloses` and nothing more — which is the reason
 the obligation is one proposition about a layer rather than a theorem about a
 particular network.
 
@@ -45,8 +45,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.Sound.enclose_outer {n m : ℕ} {nn : NeuralNetwork S n m}
-    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Sound f) :
+theorem NeuralNetwork.Encloses.enclose_outer {n m : ℕ} {nn : NeuralNetwork S n m}
+    {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) :
     ∀ (s : S n) (x : Vec ℝ n), x ∈ construct s →
       f x ∈ construct (nn.enclose s) := by -- --- PROOF ---
   induction hf with

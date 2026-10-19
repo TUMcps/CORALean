@@ -41,7 +41,7 @@ theorem ConZonotope.aux_sum_univ_cartProd {cZ₁ : ConZonotope α} {cZ₂ : ConZ
 omit [Module ℝ α] [Module ℝ β] in
 /-- Each block answers to its own polytope, as `ConZonotope.aux_mem_plus_P_iff`. -/
 theorem ConZonotope.aux_mem_cartProd_P_iff (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
-    (β' : Vec ℝ (cZ₁.cartProd cZ₂).h) :
+    (β' : Vec ℝ (cZ₁.cartProd cZ₂).h) : -- --- STMT ---
     β' ∈ (cZ₁.cartProd cZ₂).P.construct ↔
       blockLeft cZ₁.h cZ₂.h β' ∈ cZ₁.P.construct
         ∧ blockRight cZ₁.h cZ₂.h β' ∈ cZ₂.P.construct :=

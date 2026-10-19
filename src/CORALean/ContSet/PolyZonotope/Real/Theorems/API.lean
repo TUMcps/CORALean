@@ -114,6 +114,10 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureReduceOuter
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.RestructureReduceOrder
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubPowLeEDiff
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLe
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubPowLeEDiffTight
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsSubMonomialLeEDiffTight
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EDiffTightNonneg
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EDiffTightLeEDiff
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubPowNonpos
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonposOfPow
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SubMonomialNonpos

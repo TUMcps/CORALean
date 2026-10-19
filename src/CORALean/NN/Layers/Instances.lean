@@ -16,18 +16,18 @@ public import CORALean.NN.Layers.Definitions.SigmoidPolyLayer
 public import CORALean.NN.Layers.Definitions.SoundLayer
 public import CORALean.NN.Layers.Definitions.SoftmaxLayer
 public import CORALean.NN.Layers.Definitions.TanhLayer
-public import CORALean.NN.Layers.Theorems.ActivationPolySound
-public import CORALean.NN.Layers.Theorems.ActivationSound
-public import CORALean.NN.Layers.Theorems.AvgPoolSound
-public import CORALean.NN.Layers.Theorems.BatchNormSound
-public import CORALean.NN.Layers.Theorems.ConvSound
-public import CORALean.NN.Layers.Theorems.LinearSound
-public import CORALean.NN.Layers.Theorems.LinearWithErrorSound
-public import CORALean.NN.Layers.Theorems.MaxPoolSound
-public import CORALean.NN.Layers.Theorems.ReluSound
-public import CORALean.NN.Layers.Theorems.ReshapeSound
+public import CORALean.NN.Layers.Theorems.ActivationPolyEncloses
+public import CORALean.NN.Layers.Theorems.ActivationEncloses
+public import CORALean.NN.Layers.Theorems.AvgPoolEncloses
+public import CORALean.NN.Layers.Theorems.BatchNormEncloses
+public import CORALean.NN.Layers.Theorems.ConvEncloses
+public import CORALean.NN.Layers.Theorems.LinearEncloses
+public import CORALean.NN.Layers.Theorems.LinearWithErrorEncloses
+public import CORALean.NN.Layers.Theorems.MaxPoolEncloses
+public import CORALean.NN.Layers.Theorems.ReluEncloses
+public import CORALean.NN.Layers.Theorems.ReshapeEncloses
 public import CORALean.NN.Layers.Theorems.Basic
-public import CORALean.NN.Layers.Theorems.SoftmaxSound
+public import CORALean.NN.Layers.Theorems.SoftmaxEncloses
 
 @[expose] public section
 
@@ -69,7 +69,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval
   enclose l := (Layer.linear (S := S) l.W l.b).enclose
   enclose_outer l s := by
     rw [Erased.out_mk]
-    exact (Layer.linear_sound l.W l.b).image_subset s
+    exact (Layer.linear_encloses l.W l.b).image_subset s
 
 /-- `Layer.linearWithError` at the box's nonempty hull, committing to its center. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
@@ -79,7 +79,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval
   enclose l := (Layer.linearWithError (S := S) l.W l.b l.E.nonemptyHull).enclose
   enclose_outer l s := by
     rw [Erased.out_mk]
-    exact (Layer.linearWithError_sound l.W l.b _ l.E.nonemptyHull_isNonempty).image_subset s
+    exact (Layer.linearWithError_encloses l.W l.b _ l.E.nonemptyHull_isNonempty).image_subset s
 
 /-- `Layer.relu`, at `relu` coordinatewise. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
@@ -91,7 +91,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOu
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨lam, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.relu_sound lam).image_subset s
+      exact (Layer.relu_encloses lam).image_subset s
 
 /-- `Layer.sigmoid`, at the sigmoid coordinatewise. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
@@ -103,7 +103,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOu
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨k, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.sigmoid_sound k).image_subset s
+      exact (Layer.sigmoid_encloses k).image_subset s
 
 /-- `Layer.tanh`, at `tanh` coordinatewise. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
@@ -115,7 +115,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOu
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨k, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.tanh_sound k).image_subset s
+      exact (Layer.tanh_encloses k).image_subset s
 
 /-- `Layer.softmax`, asking of the set only the two boxes. -/
 instance [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] : Enclose (SoftmaxLayer 𝕋) S where
@@ -126,7 +126,7 @@ instance [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] : Enclose (Softm
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨k, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.softmax_sound (𝕋 := 𝕋) k).image_subset s
+      exact (Layer.softmax_encloses (𝕋 := 𝕋) k).image_subset s
 
 /-- `Layer.activation`, at the `σ` the weights' proof names. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
@@ -138,7 +138,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOu
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨_, hR, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.activation_sound hR.choose_spec).image_subset s
+      exact (Layer.activation_encloses hR.choose_spec).image_subset s
 
 /-- `Layer.batchNorm`, each coordinate scaled and shifted by its channel. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
@@ -151,7 +151,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨_, chan, scale, shift, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.batchNorm_sound chan scale shift).image_subset s
+      exact (Layer.batchNorm_encloses chan scale shift).image_subset s
 
 /-- `Layer.conv`, the stencil read as a sum. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
@@ -160,7 +160,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval
   enclose l := (Layer.conv (S := S) l.chan l.tap l.K l.b).enclose
   enclose_outer l s := by
     rw [Erased.out_mk]
-    exact (Layer.conv_sound l.chan l.tap l.K l.b l.tap_injective).image_subset s
+    exact (Layer.conv_encloses l.chan l.tap l.K l.b l.tap_injective).image_subset s
 
 /-- `Layer.avgPool`, the window sum scaled by the stored reciprocal. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval S 𝕋] :
@@ -169,7 +169,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.OfInterval
   enclose l := (Layer.avgPool (S := S) l.winv l.tap).enclose
   enclose_outer l s := by
     rw [Erased.out_mk]
-    exact (Layer.avgPool_sound l.winv l.tap l.tap_injective).image_subset s
+    exact (Layer.avgPool_encloses l.winv l.tap l.tap_injective).image_subset s
 
 /-- `Layer.maxPool`, at each window's maximum. -/
 instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋]
@@ -178,7 +178,7 @@ instance [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [Float.IntervalOu
   enclose l := (Layer.maxPool (S := S) l.tap l.pivot).enclose
   enclose_outer l s := by
     rw [Erased.out_mk]
-    exact (Layer.maxPool_sound l.tap l.pivot).image_subset s
+    exact (Layer.maxPool_encloses l.tap l.pivot).image_subset s
 
 /-- `Layer.reshape`, asking of the set only `Reindex`. -/
 instance [Reindex S] : Enclose ReshapeLayer S where
@@ -186,7 +186,7 @@ instance [Reindex S] : Enclose ReshapeLayer S where
   enclose l := (Layer.reshape (S := S) l.e).enclose
   enclose_outer l s := by
     rw [Erased.out_mk]
-    exact (Layer.reshape_sound l.e).image_subset s
+    exact (Layer.reshape_encloses l.e).image_subset s
 
 /-- `Layer.identity`, asking of the set nothing at all. -/
 instance : Enclose IdentityLayer S where
@@ -197,7 +197,7 @@ instance : Enclose IdentityLayer S where
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨rfl⟩ => by
       rw [Erased.out_mk]
-      exact Layer.identity_sound.image_subset s
+      exact Layer.identity_encloses.image_subset s
 
 /-- `Layer.sigmoidPoly`, at a polynomial zonotope. -/
 instance : Enclose (SigmoidPolyLayer 𝕋) 𝒫𝒵[𝕋] where
@@ -208,7 +208,7 @@ instance : Enclose (SigmoidPolyLayer 𝕋) 𝒫𝒵[𝕋] where
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨k, _, _, c, dx, p, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.sigmoidPoly_sound k c dx p).image_subset s
+      exact (Layer.sigmoidPoly_encloses k c dx p).image_subset s
 
 /-- `Layer.activationPoly`, at a polynomial zonotope. -/
 instance : Enclose (ActivationPolyLayer 𝕋) 𝒫𝒵[𝕋] where
@@ -219,7 +219,7 @@ instance : Enclose (ActivationPolyLayer 𝕋) 𝒫𝒵[𝕋] where
   enclose_outer := fun {n m} l s => match n, m, l with
     | _, _, ⟨_, _, hP, rfl⟩ => by
       rw [Erased.out_mk]
-      exact (Layer.activationPoly_sound hP.choose_spec).image_subset s
+      exact (Layer.activationPoly_encloses hP.choose_spec).image_subset s
 
 /-- A packed layer, its three fields read back. -/
 instance : Enclose (SoundLayer S) S where

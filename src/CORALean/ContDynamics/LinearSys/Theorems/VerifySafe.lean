@@ -43,7 +43,8 @@ theorem LinearSys.verify_safe
     (h : LinearSys.VerifySound Reach reachFn innerApprox distG distF le)
     (G : Fin (r + 1) → HPolytope (Vec ℝ n)) (F : Fin (w + 1) → HPolytope (Vec ℝ n))
     (εmax₀ : ℝ) (fuel : ℕ)
-    (hv : LinearSys.verify reachFn innerApprox distG distF G F le εmax₀ fuel = some true) :
+    (hv : LinearSys.verify reachFn innerApprox distG distF G F le εmax₀ fuel = some true)
+    : -- --- STMT ---
     LinearSys.VerifySpec G F Reach :=
   LinearSys.verifySpec_of_verifyRun h G F εmax₀ fuel hv
 

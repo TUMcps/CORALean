@@ -3,18 +3,18 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.NonemptyHullIsNonempty
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.NN.Definitions.Sound
+public import CORALean.NN.Definitions.Encloses
 public import CORALean.NN.Layers.Definitions.Enclosure
 public import CORALean.NN.Layers.Definitions.Relaxation
 public import CORALean.NN.Layers.Instances
-public import CORALean.NN.Layers.Theorems.LinearSound
-public import CORALean.NN.Layers.Theorems.LinearWithErrorSound
+public import CORALean.NN.Layers.Theorems.LinearEncloses
+public import CORALean.NN.Layers.Theorems.LinearWithErrorEncloses
 public import CORALean.NN.Operations.Basic
 public import CORALean.NN.Theorems.Basic
 public import CORALean.NN.Theorems.EncloseOuter
 public import CORALean.NN.Definitions.SuffExplanation
 public import CORALean.NN.Definitions.SuffExplanationAbstract
-public import CORALean.NN.Theorems.SoundCongr
+public import CORALean.NN.Theorems.EnclosesCongr
 
 @[expose] public section
 
@@ -74,8 +74,8 @@ def aux_suffExplanationConverseFails_f : Vec ℝ 1 → Vec ℝ 2 :=
   fun x => (0 : Mat ℝ 2 1) *ᵥ x + fun k => if k = 1 then (1 : ℝ) else 0
 
 theorem aux_suffExplanationConverseFails_nn_sound :
-    aux_suffExplanationConverseFails_nn.Sound aux_suffExplanationConverseFails_f :=
-  NeuralNetwork.ofLayer_sound (Layer.linear_sound _ _)
+    aux_suffExplanationConverseFails_nn.Encloses aux_suffExplanationConverseFails_f :=
+  NeuralNetwork.ofLayer_encloses (Layer.linear_encloses _ _)
 
 /-- `nn`'s abstraction: the same weights and bias, over-approximated by the
 `±1` box. -/
@@ -86,11 +86,11 @@ noncomputable def aux_suffExplanationConverseFails_nnAbs :
 
 -- the box's error is committed at its own center, `0`, so the exact networks agree
 theorem aux_suffExplanationConverseFails_nnAbs_sound :
-    aux_suffExplanationConverseFails_nnAbs.Sound
+    aux_suffExplanationConverseFails_nnAbs.Encloses
       aux_suffExplanationConverseFails_f := by -- --- PROOF ---
-  refine (NeuralNetwork.ofLayer_sound (S := ℐ𝒱)
+  refine (NeuralNetwork.ofLayer_encloses (S := ℐ𝒱)
     (curr := LinearWithErrorLayer.mk (0 : Mat ℝ 2 1) (fun k => if k = 1 then (1 : ℝ) else 0)
-      aux_suffExplanationConverseFails_box) (Layer.linearWithError_sound (0 : Mat ℝ 2 1)
+      aux_suffExplanationConverseFails_box) (Layer.linearWithError_encloses (0 : Mat ℝ 2 1)
     (fun k => if k = 1 then (1 : ℝ) else 0) aux_suffExplanationConverseFails_box.nonemptyHull
     aux_suffExplanationConverseFails_box.nonemptyHull_isNonempty)).congr fun x' => ?_
   funext i
@@ -109,7 +109,7 @@ abstractly sufficient for `nnAbs`. -/
 theorem suffExplanation_of_abstract_converse_fails : -- --- STMT ---
     ∃ (nn nnAbs : NeuralNetwork ℐ𝒱 1 2) (f : Vec ℝ 1 → Vec ℝ 2)
       (x : Vec ℝ 1) (ε : ℝ) (E : Finset (Fin 1)) (l : Fin 2),
-      nn.Sound f
+      nn.Encloses f
       ∧ f '' construct (ofInterval (S := ℐ𝒱) (explainBox x ε E))
         ⊆ construct (nnAbs.enclose
           (ofInterval (S := ℐ𝒱) (explainBox x ε E)))

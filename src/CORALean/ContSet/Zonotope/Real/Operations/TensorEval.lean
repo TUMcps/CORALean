@@ -1,9 +1,9 @@
 module
 
+public import CORALean.Global.Tensor
 public import Mathlib.Data.Real.Basic
 public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 public import Mathlib.Data.Fintype.Basic
-public import CORALean.ContSet.Zonotope.Real.Operations.Tensor3
 
 @[expose] public section
 
@@ -30,7 +30,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `Mᵢⱼₖₗ xⱼ xₖ xₗ` for one `x`. -/
-def Zonotope.tensorEval (M : Zonotope.Tensor3 n) (x : Vec ℝ n) : Vec ℝ n :=
+def Zonotope.tensorEval (M : Tensor3 ℝ n) (x : Vec ℝ n) : Vec ℝ n :=
   fun iDim => ∑ a, ∑ b, ∑ c, M iDim a b c * x a * x b * x c
 
 end CORALean.Real

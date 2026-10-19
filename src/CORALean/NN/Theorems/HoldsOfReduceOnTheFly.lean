@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 original network's exact image of `X`. -/
 theorem holds_of_reduceOnTheFly {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel : ℕ} {ρ : 𝕋} {n m : ℕ} {X : S n}
     {Φ : ReducibleNetwork 𝕋 n m} {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.Instance f) {ContSet : Type}
-    [CORALean.ContSet ContSet (Vec ℝ m)] (spec : Specification ContSet) :
+    [CORALean.ContSet ContSet (Vec ℝ m)] (spec : Specification ContSet) : -- --- STMT ---
     ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
       spec.Holds (construct Y) →
       spec.Holds (f '' construct X) := fun _ _ hrun hspec =>

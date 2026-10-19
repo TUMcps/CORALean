@@ -17,8 +17,8 @@ they differ by at most two.
 The bound is integral, so it is stated over ℕ and coerced where a scalar is
 wanted. That is what keeps the float layer exact in it: scaling a generator by a
 natural number is a repeated sum there, and the exponents it reads are exact in
-both layers. A sharper bound would be real-valued and this signature would
-change.
+both layers. The maximum itself is real-valued, `eDiffTight`, which `relaxWidth`
+reads over ℝ; this bound stays where a count of copies is wanted.
 
 The maximum itself is `(b/a)^{b/(a-b)} (1 - b/a)` on `[0,1]`, so at `a = 3,
 b = 1` this bound is `1` where the maximum is `≈ 0.385`.

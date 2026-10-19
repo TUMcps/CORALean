@@ -62,7 +62,7 @@ theorem LinearSys.IsCanonicalTrajectory.postDelta_outer {sys : LinearSys 𝕋 n}
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) Ψ)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat sys.A) r (m + 2)) Ψ)))
-    (h0 : (0 : Vec ℝ n) ∈ construct Ψ) :
+    (h0 : (0 : Vec ℝ n) ∈ construct Ψ) : -- --- STMT ---
     x t - x 0 ∈ construct (sys.postDelta r (m + 2) R₀ Ψ) :=
   traj.deltaReach_outer_inputSolution hr hT hε ht0 htr hconv hclosed hbdd hRconv hRclosed hRbdd h0
 

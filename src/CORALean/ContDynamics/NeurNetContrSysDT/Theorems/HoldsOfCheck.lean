@@ -37,9 +37,10 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 theorem NeurNetContrSysDT.holds_of_check [Contains ContSet (S n)] [IsDisjoint ContSet (S n)]
     (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n) (U_ext : S sys.nExt) {o : ℕ} (ho : 0 < o)
     (R₀ : S n) (spec : Specification ContSet) {π : Vec ℝ n → Vec ℝ sys.m}
-    (hπ : sys.contr.Sound π) {W : Set (Vec ℝ sys.plant.r)}
+    (hπ : sys.contr.Encloses π) {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
-    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (construct U_ext) W x v w) (k : ℕ) :
+    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (construct U_ext) W x v w)
+    (k : ℕ) : -- --- STMT ---
     spec.check (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
   fun h => sys.holds_of_reach U_ext ho R₀ spec hπ hW traj k (spec.check_sound _ h)
 

@@ -48,7 +48,7 @@ theorem LinearSys.maxBackReachCZFloat_subset
     (Pr : Real.HPolytope (Vec ℝ n)) (ZWr : Real.Zonotope (Vec ℝ n))
     (hP : P.construct ⊆ Pr.construct) (hZ : ZWr.construct ⊆ ZW.construct)
     (hker : ∀ i, ∀ y ∈ ZW.construct, (toRealMat P.Ae *ᵥ y) i = 0)
-    (hkerr : ∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) :
+    (hkerr : ∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) : -- --- STMT ---
     (LinearSys.maxBackReachCZFloat Bx P ZW).construct ⊆
       (LinearSys.maxBackReachCZ ρ Pr ZWr).construct := fun _ hx =>
   LinearSys.minkowskiDiff_subset_maxBackReachCZ ρ Pr ZWr hkerr

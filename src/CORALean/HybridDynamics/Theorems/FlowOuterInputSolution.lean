@@ -62,7 +62,8 @@ theorem Location.IsTrajectory.timeInterval_outer_inputSolution
       (MatExp.inputRemainder (toRealMat ℓ.dynamics.A) τ (m + 2)) ℓ.inputSet)))
     (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder (toRealMat ℓ.dynamics.A) τ (m + 2)) ℓ.inputSet)))
-    (h0 : (0 : Vec ℝ n) ∈ construct ℓ.inputSet) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ) :
+    (h0 : (0 : Vec ℝ n) ∈ construct ℓ.inputSet) {t : ℝ} (ht0 : 0 ≤ t)
+    (htτ : t ≤ τ) : -- --- STMT ---
     x t ∈ construct (Plus.plus (ℓ.timeIntervalStep τ (m + 2) R₀)
       (ℓ.dynamics.inputSolution τ (m + 2) ℓ.inputSet)) :=
   (traj.linearSys h₀ traj.inputSet_mem).timeInterval_outer_inputSolution hτ subset_rfl hε ht0 htτ

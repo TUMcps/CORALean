@@ -9,10 +9,10 @@ public import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloseQ
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolyOnOuter
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolyRefinableConvergent
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolySigmoidConvergent
-public import CORALean.NN.Layers.Theorems.Real.ActivationPolySound
+public import CORALean.NN.Layers.Theorems.Real.ActivationPolyEncloses
 public import CORALean.NN.Layers.Theorems.Real.ActivationPolySubsetInflate
 public import CORALean.NN.Layers.Theorems.Real.Basic
-public import CORALean.NN.Layers.Theorems.Real.BatchNormSound
+public import CORALean.NN.Layers.Theorems.Real.BatchNormEncloses
 public import CORALean.NN.Layers.Theorems.Real.ContinuousInvSqrt
 public import CORALean.NN.Layers.Theorems.Real.EvalPolyOne
 public import CORALean.NN.Layers.Theorems.Real.EvalPolyPadCoeffs
@@ -54,7 +54,7 @@ public import CORALean.NN.Layers.Theorems.Real.SigmoidRelaxationSound
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxEqInv
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxLeRaw
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
-public import CORALean.NN.Layers.Theorems.Real.SoftmaxSound
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxEncloses
 public import CORALean.NN.Layers.Theorems.Real.SoftplusMono
 public import CORALean.NN.Layers.Theorems.Real.SubMulBoundsOfDeriv
 public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid

@@ -36,15 +36,15 @@ theorem STL.Tree.sat_desugar (φ : STL.Tree n) (ξ : ℝ≥0 → Fin n → ℝ) 
   | not φ ih => simp only [STL.Tree.desugar, STL.Tree.Sat, ih]
   | and φ ψ ihφ ihψ => simp only [STL.Tree.desugar, STL.Tree.Sat, ihφ, ihψ]
   | or φ ψ ihφ ihψ => simp only [STL.Tree.desugar, STL.Tree.Sat, ihφ, ihψ]
-  | «until» a b φ ψ ihφ ihψ => simp only [STL.Tree.desugar, STL.Tree.Sat, ihφ, ihψ]
-  | release a b φ ψ ihφ ihψ => simp only [STL.Tree.desugar, STL.Tree.Sat, ihφ, ihψ]
-  | «finally» a b φ ih => simp [STL.Tree.desugar, STL.Tree.Sat, ih]
+  | «until» a b φ ψ ihφ ihψ =>
+    simp only [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ihφ, ihψ]
+  | release a b φ ψ ihφ ihψ =>
+    simp only [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ihφ, ihψ]
+  | «finally» a b φ ih => simp [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ih]
   | globally a b φ ih =>
-    simp only [STL.Tree.desugar, STL.Tree.Sat, ih]
-    push Not
-    simp
+    simp only [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ih]
   | next a φ ih =>
-    simp only [STL.Tree.desugar, STL.Tree.Sat, ih]
+    simp only [STL.Tree.desugar, STL.Tree.Sat, STL.Tree.HasUntilWitness, ih]
     constructor
     · rintro ⟨t, h₁, h₂, h₃, -⟩
       obtain rfl : t = a := le_antisymm h₂ h₁

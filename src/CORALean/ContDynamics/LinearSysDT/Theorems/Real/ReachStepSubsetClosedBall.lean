@@ -53,7 +53,7 @@ theorem LinearSysDT.reach_step_subset_closedBall (sys : LinearSysDT ℝ n) {o : 
     (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (hbox : (((Zonotope.mtimes sys.A
         (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U).reduceBox o).construct
-        ⊆ Metric.closedBall (0 : Vec ℝ n) rbox) :
+        ⊆ Metric.closedBall (0 : Vec ℝ n) rbox) : -- --- STMT ---
     (sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * r + rU + rbox) :=
   Zonotope.step_subset_closedBall sys.A hR hU hbox
