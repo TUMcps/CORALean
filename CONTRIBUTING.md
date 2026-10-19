@@ -239,21 +239,34 @@ directory of `ContDynamics/` or `HybridDynamics/` whose name says reach set, out
 window or locations and does not end in `Exact`, unless `scripts/exact-name-allowlist.txt` lists
 it with a reason; the list only shrinks.
 
-### A constraint is its level set's
+### A component is its own representation's
 
-A representation that stores a constraint system as a set of its own stores that set and
-reuses its operations: `ConZonotope` stores an `HPolytope`, `ConPolyZono` a `PolyLevelSet`
-(#174). Whatever an operation does to the constraint is one of the stored set's operations,
-with that set's theorem, and an operation the representation needs but the set lacks is added
-to the set, general and with its own exactness or membership theorem, rather than written row by
-row where it is used: the union's lower rows are `PolyLevelSet.cartProd`, `padVars` and
-`switch`, the convex hull's copies `copies` beside `linear`, `getSubset`'s substitution
+A representation that stores a set of another representation stores that set and reuses its
+operations (#174): `ConZonotope` stores an `HPolytope`, `ConPolyZono` a `PolyLevelSet`, `StarSet` a
+predicate (`StarSet.LinPred` at CORA's form), `ZonoBundle` and `Zoo` their members, denoted through
+`SetIntersection`. Whatever an operation does to the component is one of the component's
+operations, with its theorem, and an operation the representation needs but the component lacks is
+added to the component, general and with its own exactness or membership theorem, rather than
+written row by row where it is used: the union's lower rows are `PolyLevelSet.cartProd`, `padVars`
+and `switch`, the convex hull's copies `copies` beside `linear`, `getSubset`'s substitution
 `PolyLevelSet.getSubset`, `reduceCon`'s elimination `eliminate`, and the float merge
-`PolyLevelSet.compact`. `check-conventions.sh` runs `scripts/check-conpolyzono-cons.py`, which
-rejects a definition under `ContSet/ConPolyZono/` returning a matrix, an exponent matrix or a
-vector indexed by the constraint's rows or monomials, or named after a constraint field (`…A`,
-`…B`, `…R`), unless `scripts/conpolyzono-cons-allowlist.txt` lists it with a reason (the
-generator block, or data of one construction); the list only shrinks.
+`PolyLevelSet.compact`; a constrained zonotope's `compact` is `HPolytope.dropTrivialEqs` and
+`comap` (float: `selectCols` and `dropZeros`), `keepRows` is `toIneqs`, `relax` and `comap`, the
+float `reduceLiftBy` is `keepCols`, `dropEqs`, `padLeft`, `stackRows` and `eqsWithin`, `rescale`
+is `rescaleCols`, and `zeroFeasible`, `interiorCert` and `interiorMargin` are `containsOrigin`,
+`ineqsContainBall` and `ineqMargin`; a ReLU step on a star set builds its predicate with
+`LinPred.snoc` and `addRows`, and `absorbRounding` with `LinPred.append`.
+`check-conventions.sh` runs `scripts/check-component-reuse.py`, whose per-representation table
+says what counts as doing the component's work by hand: under `ContSet/ConPolyZono/`, a definition
+returning a matrix, an exponent matrix or a vector indexed by the constraint's rows or monomials,
+or named after a constraint field (`…A`, `…B`, `…R`); under `ContSet/ConZonotope/`, one that reads
+the polytope's rows (`P.A`, `P.b`, `P.Ae`, `P.be`, the slacks) or builds an `HPolytope` field by
+field; and under `ContSet/StarSet/` and the star-set files of `NN/Layers/`, one other than the
+predicate's own operations that reads or builds the predicate's fields. `Counterexamples/` model
+CORA's code as written and are not read. What must stay is in
+`scripts/component-reuse-allowlist.txt` with its reason (the generator block, data of one
+construction, a conversion, a certificate or a proposal that reads the rows as numbers); the list
+only shrinks.
 
 ### The ambient type
 

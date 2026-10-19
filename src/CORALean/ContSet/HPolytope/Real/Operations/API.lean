@@ -58,6 +58,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.RepresentsaFullspace
 public import CORALean.ContSet.HPolytope.Real.Operations.IsLPCenter
 public import CORALean.ContSet.HPolytope.Real.Operations.Volume
 public import CORALean.ContSet.HPolytope.Real.Operations.RowsRhs
+public import CORALean.ContSet.HPolytope.Real.Operations.ToIneqs
 public import CORALean.ContSet.HPolytope.Real.Operations.RowNorm
 public import CORALean.ContSet.HPolytope.Real.Operations.HitTime
 public import CORALean.ContSet.HPolytope.Real.Operations.ChordHighIndex

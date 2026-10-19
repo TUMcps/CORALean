@@ -1,0 +1,39 @@
+# Definitions that `scripts/check-component-reuse.py` flags as doing a stored component's work by
+# hand and that must stay (#174): data that is not the component's, data of one construction, a
+# conversion, or a certificate or proposal that reads the rows as numbers rather than operating on
+# the set. One line per definition: `<path>::<name>  <reason>`. The list only shrinks; an entry
+# whose definition is gone or no longer flagged is reported as stale.
+#
+# ConPolyZono: the factor constraint `cons`, a `PolyLevelSet`.
+#
+# The generator block: the dependent generators' exponent matrix `E` and the ambient matrix `G`.
+src/CORALean/ContSet/ConPolyZono/Float/Operations/Basic.lean::ConPolyZono.compactGensGap  generators: the gap of a merged generator column, an `n × h` matrix of the ambient block
+src/CORALean/ContSet/ConPolyZono/Real/Operations/AppendE.lean::ConPolyZono.appendE  generators: `E` and the constraint's `R` side by side, the factor-usage table `compactFactors` reads; no constraint is built from it
+src/CORALean/ContSet/ConPolyZono/Real/Operations/ConvHullE.lean::ConPolyZono.convHullE  generators: the hull's generator exponents of [1, Prop. 9]; its constraint is `PolyLevelSet.copies` and `PolyLevelSet.linear`
+src/CORALean/ContSet/ConPolyZono/Real/Operations/PadE.lean::ConPolyZono.padE  generators: `E` with the slack factors of `relax` and `absorbRounding` appended; the constraint side is `PolyLevelSet.relax`
+src/CORALean/ContSet/ConPolyZono/Real/Operations/ReduceConE.lean::ConPolyZono.reduceConE  generators: [1, Prop. 13]'s generator exponents after the substitution; its constraint is `PolyLevelSet.eliminate`
+src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionE.lean::ConPolyZono.unionE  generators: the union's generator exponents of [1, Thm. 1]; its constraint is `PolyLevelSet.and_` of the selector rows and `unionLower`
+#
+# Data of one construction, built into a `PolyLevelSet` where it is used.
+src/CORALean/ContSet/ConPolyZono/Real/Operations/UnionConCol.lean::ConPolyZono.unionConCol  data: the monomials of [1, Thm. 1]'s selector polynomial, a fixed row of the union, stored as the `PolyLevelSet` `unionConRow`
+src/CORALean/ContSet/ConPolyZono/Float/Operations/ZeroMonomials.lean::ConPolyZono.zeroMonomials  data: the constraint monomials at the zero factor vector, which CORA's `isFullDim` test reads beside the generators; it builds no constraint
+#
+# Conversions whose target is indexed by the constraint's rows.
+src/CORALean/ContSet/ConPolyZono/Real/Operations/ExtPolyZonotope.lean::ConPolyZono.extPolyZonotope  conversion: the lifted polynomial zonotope over `state × constraint value` of [1, Lemma 1], a set, not an operation on the constraint
+#
+# ConZonotope: the coefficient polytope `P`, an `HPolytope`.
+src/CORALean/ContSet/ConZonotope/Real/Operations/LiftEq.lean::ConZonotope.liftEq  conversion: the lifted zonotope [G; Aₑ] of Scott et al. 2016, Sec. 4.3, whose generators are the equality rows read at the unit vectors and whose center holds `-bₑ`; the inequalities go by `HPolytope.dropEqs`
+src/CORALean/ContSet/ConZonotope/Float/Operations/LiftEq.lean::ConZonotope.liftEq  conversion: the lifted zonotope [G; Aₑ] of Scott et al. 2016, Sec. 4.3, a `Zonotope` whose lower generator rows are the equality rows
+src/CORALean/ContSet/ConZonotope/Real/Operations/ReduceLiftBy.lean::ConZonotope.reduceLiftBy  data: `bₑ` carried to the equality rows read back from the reduced lifted zonotope (`HPolytope.eqs`); the inequality rows are `keepRows`'s, the stacking `HPolytope.intersection`
+src/CORALean/ContSet/ConZonotope/Float/Operations/ReduceLiftBy.lean::ConZonotope.reduceLiftBy  data: `bₑ` and its slack carried to the equality rows read back from the reduced lifted zonotope (`HPolytope.eqsWithin`); the inequality rows are `keepCols`, `dropEqs` and `padLeft`, the stacking `stackRows`
+src/CORALean/ContSet/ConZonotope/Real/Operations/NullPolytope.lean::ConZonotope.nullPolytope  data: CORA's own null-space program `[N; -N] y ≤ [1 - x0; 1 + x0]` of `@conZonotope/center`, built from the matrices `N` and `x0`, not from a stored polytope
+src/CORALean/ContSet/ConZonotope/Float/Operations/AnchorSlab.lean::ConZonotope.anchorSlab  data: the operand rows' slacks handed to the constraint's own `HPolytope.anchorEqsInBox` as their residuals; the rows themselves are `stackRows`, `eqs` and `slab`
+src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean::ConZonotope.aux_resUp  certificate: the residual of the coefficient program's dual over the constraint and the unit box together, column by column, which no operation of the polytope alone states
+src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean::ConZonotope.aux_resDown  certificate: the lower end of the same dual residual
+src/CORALean/ContSet/ConZonotope/Float/Operations/NominalBoundWeights.lean::ConZonotope.nominalBoundWeights  certificate: weak duality over the constraint and the unit box; its right-hand sides are the constraint's own `bSlackU`, `beSlackU` and `beSlackLN`
+src/CORALean/ContSet/ConZonotope/Float/Operations/IsDisjointLP.lean::ConZonotope.aux_coeffRows  proposal: the rows decoded into ℚ for the exact simplex that proposes a separating direction, which `separatesAlong` then certifies; nothing is trusted about it
+#
+# StarSet: the predicate `pred`, a `StarSet.LinPred`.
+src/CORALean/ContSet/StarSet/Real/Operations/RowBounds.lean::StarSet.rowBounds  data: the predicate's factor box `[l, u]` only, read as CORA's `getBounds` reads it for the interval of `c + G α`; no row is read or built
+src/CORALean/ContSet/StarSet/Float/Operations/RowBounds.lean::StarSet.rowBounds  data: the predicate's factor box `[l, u]` only, as in the exact layer, rounded outward
+src/CORALean/NN/Layers/Operations/StarSetFloatChordRow.lean::StarSet.chordRow  data: the predicate's factor box bounds the rounding of the chord row it builds, which `LinPred.addRows` then adds

@@ -3,6 +3,7 @@ module
 public import CORALean.NN.Layers.Operations.StarSetFloatChordGuard
 public import CORALean.NN.Layers.Operations.StarSetFloatChordRow
 public import CORALean.NN.Layers.Operations.StarSetFloatReluError
+public import CORALean.ContSet.StarSet.Float.Operations.Basic
 
 @[expose] public section
 
@@ -16,12 +17,14 @@ certifies it, the chord row `StarSet.chordRow`. The comparisons are the scalar's
 which certifies `≤` only, so a bound that is not known to be on one side takes the last branch,
 whose rows hold wherever the bounds do. The bounds are those of the nominal part, as
 `StarSet.rowBounds` gives them; the error box is made symmetric at `j` by `StarSet.reluError`
-in every branch, the ReLU being `1`-Lipschitz.
+in every branch, the ReLU being `1`-Lipschitz. The predicate is built by its own operations
+(#174), `LinPred.snoc` for the factor and `LinPred.addRows` for the rows, as in the exact layer,
+which the float `snoc` reads as (`StarSet.LinPred.nominal_snoc`).
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       12-October-2026
--- Last update:   15-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -49,13 +52,10 @@ def StarSet.reluNeuron (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋) :
       c := Function.update s.c j zero
       G := fun i => Fin.snoc (α := fun _ => 𝕋) (if i = j then (fun _ => zero) else s.G i)
         (if i = j then one else zero)
-      pred :=
-        { cons := s.pred.cons.map (fun r => (Fin.snoc (α := fun _ => 𝕋) r.1 zero, r.2)) ++
-            [(Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one), zero),
-             (Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one), neg (s.c j))] ++
-            (if StarSet.chordGuard b then [s.chordRow j b] else [])
-          l := Fin.snoc (α := fun _ => 𝕋) s.pred.l zero
-          u := Fin.snoc (α := fun _ => 𝕋) s.pred.u (maximum b.sup zero) }
+      pred := (s.pred.snoc zero (maximum b.sup zero)).addRows
+        ([(Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one), zero),
+          (Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one), neg (s.c j))] ++
+          (if StarSet.chordGuard b then [s.chordRow j b] else []))
       I_error := e }
 
 end CORALean.Float

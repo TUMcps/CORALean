@@ -3,9 +3,9 @@ module
 public import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
 public import CORALean.ContSet.HPolytope.Float.Operations.Isequal
 public import CORALean.ContSet.HPolytope.Float.Operations.Not
-public import CORALean.ContSet.HPolytope.Float.Operations.AnchorEqs
 public import CORALean.ContSet.HPolytope.Float.Operations.AnchorEqsInBox
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
+public import CORALean.ContSet.HPolytope.Float.Operations.BoxToSlack
 public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
 public import CORALean.ContSet.HPolytope.Float.Operations.MulVecAppendLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.AbsorbRounding
@@ -43,6 +43,14 @@ public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
 public import CORALean.ContSet.HPolytope.Float.Operations.SmulMemHalfScaledRight
+public import CORALean.ContSet.HPolytope.Float.Operations.SetRhs
+public import CORALean.ContSet.HPolytope.Float.Operations.RescaleCols
+public import CORALean.ContSet.HPolytope.Float.Operations.KeepCols
+public import CORALean.ContSet.HPolytope.Float.Operations.SelectCols
+public import CORALean.ContSet.HPolytope.Float.Operations.ContainsOrigin
+public import CORALean.ContSet.HPolytope.Float.Operations.IneqsContainBall
+public import CORALean.ContSet.HPolytope.Float.Operations.IneqMargin
+public import CORALean.ContSet.HPolytope.Float.Operations.EqsWithin
 public import CORALean.ContSet.HPolytope.Float.Operations.Translate
 public import CORALean.ContSet.HPolytope.Float.Operations.TranslateOuter
 public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
@@ -86,17 +94,17 @@ which reads no box), `padLeft`, `padRight` and `lift_` widen the coefficient spa
 box and the slacks along, `halfScaledLeft` and its mirror widen it by one weighting coordinate and
 halve every right-hand side into it, and the constructors copy matrices. None of them rounds.
 
-Moving the error box into the rows: `absorbRounding` raises each right-hand side by its slack and
-the box's support in that row's direction and writes each equality as the two inequalities it
-stands for, widened by its slack;
-the normalizations of a polytope with a box and `not` read a polytope through it, a box not being
-a halfspace.
+Moving the error box into the rows: `absorbRounding` raises each bound by its slack and the box's
+support along the row, each equality written as its two inequalities, the one place a slack enters
+`b`; the normalizations and `not` read a polytope through it. `boxToSlack` moves the box into the
+slacks instead, rows and bounds kept, which is what `intersection` stacks.
 
-Rounding, and where it goes: an inequality is raised; a rounded equality is kept, the certified step
-onto it paid into the box (`anchorEqs`, which `intersection`, `translate` and `scaleRows` use;
-`anchorEqsInBox` for unit-box coefficients), or written as two inequalities without a certificate.
-`minkDiffOf` shifts each inequality bound inward by a certified support bound of the subtrahend,
-rounding downward so the result stays inside the exact one.
+Rounding, and where it goes (#218): an operation that rounds a right-hand side stores a bound and
+writes the rounding into the row's slack (`setRhs`, which `translate` and `scaleRows` use), so a
+rounded equality stays an equality. `anchorEqsInBox`, for unit-box coefficients, instead moves the
+points onto the stored equalities, what that costs the inequalities written into their slacks.
+`minkDiffOf`, `not` and the inner `reduceOverDomain` round downward instead, so the result stays
+inside the exact one: a slack only widens a row, and cannot express that.
 
 Enclosing on chosen directions: `plusOf`, `linCombOf`, `mtimesOf` and `intervalOf`, whose rows
 nobody can predict from the inputs' — `ofBounds` is their shared shape and `DualBound` is where

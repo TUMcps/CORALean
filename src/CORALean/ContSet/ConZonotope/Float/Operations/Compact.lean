@@ -1,7 +1,9 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
-public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
+public import CORALean.ContSet.HPolytope.Float.Operations.SelectCols
 
 @[expose] public section
 
@@ -9,16 +11,19 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 # `ConZonotope.compact` over a floating-point scalar
 
 CORA's `@conZonotope/compact_` with method `'zeros'` (also what `'all'` does) on the stored
-floats: delete the equality rows that are `0 x = be` with `be = 0`, then the
-generators whose column of `[G; A; Ae]` is zero. A row or column goes only when every entry is
-certified zero by `le` both ways, so a `le` that fails keeps it: nothing rounds, and the set is
-the same (`compact_exact`). Inequality rows stay, as over ℝ; the kept generators and rows keep
+floats: delete the generators whose column of `[G; A; Ae]` is zero, then the zero constraint rows.
+Both steps on the constraint are its own operations (#174): `HPolytope.isZeroCol` tests a column,
+`HPolytope.selectCols` keeps the kept generators' columns, and `HPolytope.dropZeros`, the
+polytope's own `compact_ 'zeros'`, deletes the zero rows that hold (`0 x = be` with `be = 0`, and
+`0 ≤ b`) and returns the empty polytope when a zero row is certified infeasible. A row or column
+goes only when every entry is certified zero by `le` both ways, so nothing rounds but that
+infeasibility test, and the set is the same (`compact_exact`). The kept generators and rows keep
 their order. Tolerance `0`; CORA's `eps` removes columns below it as well.
 -/
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -34,29 +39,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ConZonotope.compact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
-  -- an entry certified zero
-  let isZero : 𝕋 → Bool := fun a => le a zero && le zero a
   -- the generators kept: some entry of the column of `[G; A; Ae]` not certified zero
   let S := Finset.univ.filter fun j : Fin cZ.h =>
-    !((List.finRange n).all (fun i => isZero (cZ.G j i))
-      && (List.finRange cZ.P.m).all (fun k => isZero (cZ.P.A k j))
-      && (List.finRange cZ.P.me).all (fun k => isZero (cZ.P.Ae k j)))
-  -- the equality rows kept: all but the certified `0 x = be` with `be = 0`
-  let R := Finset.univ.filter fun r : Fin cZ.P.me =>
-    !((List.finRange cZ.h).all (fun j => isZero (cZ.P.Ae r j)) && isZero (cZ.P.be r))
+    !(HPolytope.isZeroVec (cZ.G j) && cZ.P.isZeroCol j)
   { h := S.card
     c := cZ.c
     G := fun l => cZ.G (S.orderEmbOfFin rfl l)
-    P :=
-      { m := cZ.P.m
-        A := fun k l => cZ.P.A k (S.orderEmbOfFin rfl l)
-        b := cZ.P.b
-        me := R.card
-        Ae := fun r l => cZ.P.Ae (R.orderEmbOfFin rfl r) (S.orderEmbOfFin rfl l)
-        be := fun r => cZ.P.be (R.orderEmbOfFin rfl r)
-        b_error := cZ.P.b_error
-        be_error := fun r => cZ.P.be_error (R.orderEmbOfFin rfl r)
-        I_error := Interval.origin S.card }
+    -- the rows on the kept coefficients, the zero rows dropped
+    P := (cZ.P.selectCols (S.orderEmbOfFin rfl)).dropZeros
     I_error := cZ.I_error }
 
 end CORALean.Float

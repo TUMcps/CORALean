@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Compact
+public import CORALean.ContSet.HPolytope.Real.Theorems.ColWeightEqZeroIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.DropTrivialEqsExact
 
 @[expose] public section
 
@@ -15,7 +17,7 @@ original has, the dropped equality rows being `0 = 0`.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       03-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -87,54 +89,39 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope α) :
       ∧ ∀ i, cZ.P.Ae i (Pi.single j (1 : ℝ) : Vec ℝ cZ.h) = 0 := by
     intro j hj
     simp only [ConZonotope.compactGens, Finset.mem_filter, Finset.mem_univ, true_and,
-      not_or, not_exists, not_not] at hj
-    exact hj
-  -- an equality row that is not kept is `0 = 0`
-  have hrow : ∀ i, i ∉ ConZonotope.compactEqs cZ.P → cZ.P.Ae i = 0 ∧ cZ.P.be i = 0 := by
-    intro i hi
-    simpa [ConZonotope.compactEqs] using hi
+      not_or, not_not] at hj
+    exact ⟨hj.1, (HPolytope.colWeight_eq_zero_iff _ _).mp hj.2⟩
+  -- the constraint of `compact` is `P` read at the embedded coefficients
+  have hP : ∀ β' : Vec ℝ cZ.compactGens.card, β' ∈ cZ.compact.P.construct ↔
+      ConZonotope.compactEmbed cZ.compactGens β' ∈ cZ.P.construct := fun β' => by
+    show _ ∈ cZ.P.dropTrivialEqs.construct ↔ _
+    rw [HPolytope.dropTrivialEqs_exact]
   ext x
   constructor
   · rintro ⟨β', hβ', hP', hx'⟩
     -- pad the coefficients with zeros at the dropped generators
     have hoff : ∀ j, j ∉ cZ.compactGens → ConZonotope.compactEmbed cZ.compactGens β' j = 0 :=
       fun j hj => ConZonotope.aux_embed_off cZ.compactGens β' j hj
-    refine ⟨ConZonotope.compactEmbed cZ.compactGens β', fun j => ?_,
-      ⟨fun i => hP'.1 i, fun i => ?_⟩, ?_⟩
+    refine ⟨ConZonotope.compactEmbed cZ.compactGens β', fun j => ?_, (hP β').mp hP', ?_⟩
     · by_cases hj : j ∈ cZ.compactGens
       · obtain ⟨l, hl⟩ := (cZ.compactGens.orderIsoOfFin rfl).surjective ⟨j, hj⟩
         rw [show j = (cZ.compactGens.orderIsoOfFin rfl l).1 from by rw [hl],
           ConZonotope.aux_embed_apply]
         exact hβ' l
       · rw [hoff j hj, abs_zero]; exact zero_le_one
-    · by_cases hi : i ∈ ConZonotope.compactEqs cZ.P
-      · -- a kept row is `compact`'s own
-        have := hP'.2 (((ConZonotope.compactEqs cZ.P).orderIsoOfFin rfl).symm ⟨i, hi⟩)
-        change cZ.P.Ae ((ConZonotope.compactEqs cZ.P).orderIsoOfFin rfl
-          (((ConZonotope.compactEqs cZ.P).orderIsoOfFin rfl).symm ⟨i, hi⟩)).1
-          (ConZonotope.compactEmbed cZ.compactGens β') =
-          cZ.P.be ((ConZonotope.compactEqs cZ.P).orderIsoOfFin rfl
-          (((ConZonotope.compactEqs cZ.P).orderIsoOfFin rfl).symm ⟨i, hi⟩)).1 at this
-        rw [OrderIso.apply_symm_apply] at this
-        exact this
-      · obtain ⟨h1, h2⟩ := hrow i hi
-        rw [h1, h2]; simp
     · rw [hx']
       refine congrArg (cZ.c + ·) ?_
       rw [ConZonotope.aux_sum_kept cZ.compactGens _ fun j hj => by
         rw [hoff j hj, zero_smul]]
       exact Finset.sum_congr rfl fun l _ => by rw [ConZonotope.aux_embed_apply]; rfl
-  · rintro ⟨β, hβ, hP, hx⟩
-    refine ⟨fun l => β (cZ.compactGens.orderIsoOfFin rfl l).1, fun l => hβ _, ⟨fun i => ?_,
-      fun r => ?_⟩, ?_⟩
-    · -- the kept coefficients read the same constraint as the whole vector
-      have := ConZonotope.aux_functional_embed cZ.compactGens (cZ.P.A i)
-        (fun j hj => (hdrop j hj).2.1 i) β
-      exact this ▸ hP.1 i
-    · have := ConZonotope.aux_functional_embed cZ.compactGens
-        (cZ.P.Ae ((ConZonotope.compactEqs cZ.P).orderIsoOfFin rfl r).1)
-        (fun j hj => (hdrop j hj).2.2 _) β
-      exact this ▸ hP.2 _
+  · rintro ⟨β, hβ, hPβ, hx⟩
+    refine ⟨fun l => β (cZ.compactGens.orderIsoOfFin rfl l).1, fun l => hβ _,
+      (hP _).mpr ⟨fun i => ?_, fun i => ?_⟩, ?_⟩
+    -- the kept coefficients read every row as the whole vector does
+    · exact (ConZonotope.aux_functional_embed cZ.compactGens (cZ.P.A i)
+        (fun j hj => (hdrop j hj).2.1 i) β) ▸ hPβ.1 i
+    · exact (ConZonotope.aux_functional_embed cZ.compactGens (cZ.P.Ae i)
+        (fun j hj => (hdrop j hj).2.2 i) β) ▸ hPβ.2 i
     · rw [hx]
       refine congrArg (cZ.c + ·) ?_
       exact ConZonotope.aux_sum_kept cZ.compactGens (fun j => β j • cZ.G j) fun j hj => by

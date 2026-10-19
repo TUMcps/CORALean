@@ -1,8 +1,11 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
+public import CORALean.ContSet.HPolytope.Float.Operations.Basic
+public import CORALean.ContSet.HPolytope.Float.Operations.EqsWithin
+public import CORALean.ContSet.HPolytope.Float.Operations.KeepCols
+public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
-public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 @[expose] public section
 
@@ -12,9 +15,11 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 CORA's `@conZonotope/reduce` [1, Sec. 4.3] at a given partition, on the stored floats. The
 lifted zonotope `liftEq` is reduced by the float `Zonotope.reduceBy`, whose diagonal block
 rounds up, and its lower rows are read back as the equality system, the right-hand side `bₑ`
-carried over unchanged. The inequality rows follow the kept generators, zero on the fresh ones, with
-the bound raised by the dropped generators' reach `radius` (the float `keepSlack`), rounded
-up. The error box is the operand's: nothing is charged to it.
+carried over unchanged with its slack (`HPolytope.eqsWithin`). The inequality rows are the
+constraint's own operations: `HPolytope.keepCols` keeps the kept generators' columns and writes
+the dropped generators' reach into each row's slack (#218), `dropEqs` leaves the equalities to the
+lifted zonotope, and `padLeft` puts zeros at the fresh generators. The error box is the operand's:
+nothing is charged to it.
 
 ## References
 
@@ -25,7 +30,7 @@ up. The error box is the operand's: nothing is charged to it.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -48,18 +53,12 @@ def ConZonotope.reduceLiftBy (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
   let Gnew : Fin Zred.h → Vec 𝕋 n := fun j k => Zred.G j (Fin.castAdd cZ.P.me k)
   -- the last `mₑ` rows are the equality system, `bₑ` unchanged
   let Anew : Fin cZ.P.me → Vec 𝕋 Zred.h := fun i j => Zred.G j (Fin.natAdd n i)
-  -- each inequality row on the kept generators, zero on the fresh ones
-  let Aineq : Fin cZ.P.m → Vec 𝕋 Zred.h := fun i =>
-    Fin.append (fun l => cZ.P.A i (part.left l)) fun _ => zero
-  -- what the dropped generators can add to a row, rounded up
-  let slack : Vec 𝕋 cZ.P.m := radius fun i l => cZ.P.A i (part.right l)
   { h := Zred.h
     c := cZ.c
     G := Gnew
-    P := { m := cZ.P.m, A := Aineq, b := fun i => addUp (cZ.P.b i) (slack i),
-           me := cZ.P.me, Ae := Anew, be := cZ.P.be,
-           b_error := cZ.P.b_error, be_error := cZ.P.be_error,
-           I_error := Interval.origin Zred.h }
+    -- the inequality rows on the kept generators, zero on the fresh ones; the equalities read back
+    P := (((cZ.P.keepCols part).dropEqs).padLeft (n + cZ.P.me)).stackRows
+      (HPolytope.eqsWithin Anew cZ.P.be cZ.P.be_error)
     I_error := cZ.I_error }
 
 end CORALean.Float

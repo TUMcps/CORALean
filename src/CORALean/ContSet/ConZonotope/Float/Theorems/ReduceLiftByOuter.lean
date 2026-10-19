@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.ReduceLiftBy
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemKeepColsNominal
+public import CORALean.ContSet.HPolytope.Float.Operations.MemStackRowsNominalIff
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByCoeff
 
 @[expose] public section
@@ -16,9 +17,9 @@ A point `y + e` of `cZ`, `y` nominal at `β`: `Zonotope.reduceBy_coeff` on the l
 gives coefficients `ξ` that agree with `β` on the kept generators and reproduce every
 coordinate of the lifted sum. The upper coordinates are `y`, so the point is the result's
 nominal point at `ξ` plus the same `e`. The lower coordinates are `Aₑ β`, which the new
-equality rows read at `ξ` as the same number, equal to the unchanged `bₑ`. An
-inequality row at `ξ` is the row at `β` on the kept generators, which is the full row less
-what the dropped ones contribute, at most their reach, and `radius` rounded up covers it.
+equality rows read at `ξ` as the same number, within the carried slack of the unchanged `bₑ`. The
+inequality rows at `ξ` are the rows at `β` on the kept generators, the padded zeros reading the
+fresh ones as nothing, which `HPolytope.mem_keepCols_nominal` covers.
 
 ## References
 
@@ -52,50 +53,24 @@ theorem ConZonotope.reduceLiftBy_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
   obtain ⟨hPin, hPeq⟩ := HPolytope.mem_nominal_iff.mp hP
   obtain ⟨ξ, hξ, hξl, hsum⟩ := Zonotope.reduceBy_coeff cZ.liftEq part β hβ
   refine ⟨y, ConZonotope.mem_nominalSet_iff.mpr ⟨ξ, hξ, ?_, fun k => ?_⟩, e, he, hx⟩
-  · refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
-    · -- the row at the kept coefficients, against the full row and the dropped reach
-      have hfull := hPin i
-      simp only [mulVec, dotProduct, toRealMat] at hfull ⊢
-      rw [part.sum_split₂ fun j => toReal (cZ.P.A i j) * β j] at hfull
-      have hdrop : -toReal (radius (fun i l => cZ.P.A i (part.right l)) i)
-          ≤ ∑ l, toReal (cZ.P.A i (part.right l)) * β (part.right l) := by
-        have h1 : ∑ l, |toReal (cZ.P.A i (part.right l))|
-            ≤ toReal (radius (fun i l => cZ.P.A i (part.right l)) i) :=
-          sum_abs_le_radius (d := fun i l => cZ.P.A i (part.right l)) i
-        have h2 : -∑ l, |toReal (cZ.P.A i (part.right l))|
-            ≤ ∑ l, toReal (cZ.P.A i (part.right l)) * β (part.right l) := by
-          rw [← Finset.sum_neg_distrib]
-          refine Finset.sum_le_sum fun l _ => ?_
-          have := abs_le.mp (show |toReal (cZ.P.A i (part.right l)) * β (part.right l)|
-              ≤ |toReal (cZ.P.A i (part.right l))| by
-            rw [abs_mul]
-            simpa using mul_le_mul_of_nonneg_left (hβ (part.right l)) (abs_nonneg _))
-          linarith [this.1]
-        linarith
-      -- the row of the result at `ξ`: kept coefficients only
-      have hrow : ∑ j : Fin (q + (n + cZ.P.me)),
-          toReal ((cZ.reduceLiftBy part).P.A i j) * ξ j
-          = ∑ l, toReal (cZ.P.A i (part.left l)) * β (part.left l) := by
-        rw [Fin.sum_univ_add]
-        simp only [ConZonotope.reduceLiftBy, Fin.append_left, Fin.append_right, toReal_zero,
-          zero_mul, Finset.sum_const_zero, add_zero, hξl]
-        rfl
-      refine le_trans (le_of_eq hrow) ?_
-      have hu := add_le_addUp (cZ.P.b i) (radius (fun i l => cZ.P.A i (part.right l)) i)
-      show _ ≤ toReal (addUp (cZ.P.b i) (radius (fun i l => cZ.P.A i (part.right l)) i))
-        + |toReal (cZ.P.b_error i)|
-      linarith
+  · refine HPolytope.mem_stackRows_nominal_iff.mpr ⟨?_, HPolytope.mem_nominal_iff.mpr
+      ⟨fun i => i.elim0, fun i => ?_⟩⟩
+    · -- the inequality rows: the kept coefficients, the fresh ones read as zero
+      show ξ ∈ (((cZ.P.keepCols part).dropEqs).padLeft (n + cZ.P.me)).nominal.construct
+      rw [HPolytope.mem_padLeft_nominal_iff]
+      have hk := HPolytope.mem_keepCols_nominal cZ.P part hP fun l => hβ (part.right l)
+      have hl : blockLeft q (n + cZ.P.me) ξ = fun l => β (part.left l) := funext hξl
+      rw [hl]
+      exact HPolytope.mem_nominal_iff.mpr ⟨(HPolytope.mem_nominal_iff.mp hk).1, fun i => i.elim0⟩
     · -- the lower coordinates of the lifted sum are the original equality rows
       have heq := hPeq i
       simp only [mulVec, dotProduct, toRealMat] at heq ⊢
       have hs := hsum (Fin.natAdd n i)
       simp only [ConZonotope.liftEq, Fin.append_right] at hs
-      have key : ∑ j : Fin (cZ.reduceLiftBy part).h,
-          toReal ((cZ.reduceLiftBy part).P.Ae i j) * ξ j
-          = ∑ j, toReal (cZ.P.Ae i j) * β j := by
-        exact hs.symm
-      rw [key]
-      exact heq
+      have key : ∑ j : Fin (cZ.liftEq.reduceBy part).h,
+          toReal ((cZ.liftEq.reduceBy part).G j (Fin.natAdd n i)) * ξ j
+          = ∑ j, toReal (cZ.P.Ae i j) * β j := hs.symm
+      exact key ▸ heq
   · -- the upper coordinates are the point itself
     have hs := hsum (Fin.castAdd cZ.P.me k)
     simp only [ConZonotope.liftEq, Fin.append_left] at hs

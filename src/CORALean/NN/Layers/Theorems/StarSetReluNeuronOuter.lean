@@ -4,6 +4,8 @@ public import CORALean.NN.Layers.Definitions.Relu
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.FieldSimp
 public import CORALean.NN.Layers.Operations.StarSetReluNeuron
+public import CORALean.ContSet.StarSet.Real.Theorems.LinPredMemAddRowsIff
+public import CORALean.ContSet.StarSet.Real.Theorems.LinPredMemSnocIff
 
 @[expose] public section
 
@@ -18,7 +20,7 @@ chord from `(l, 0)` to `(u, u)`, since `max` is convex.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -75,18 +77,12 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet StarSet.LinPred n) (j : 
     · rw [hβ, Real.relu, max_eq_left h]; nlinarith [hbx.2]
   -- the old factors with `β` appended witness the new set
   have hS : ∑ k, s.G j k * α k = x j - s.c j := by rw [hxj]; ring
-  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, ⟨?_, ?_⟩, fun i => ?_⟩
-  · intro k
-    refine Fin.lastCases ?_ (fun k => ?_) k
-    · simp only [Fin.snoc_last]
-      exact ⟨hβ0, hβu⟩
-    · simp only [Fin.snoc_castSucc]
-      exact hα k
-  · -- the old rows, then the three new ones
+  refine ⟨Fin.snoc (α := fun _ => ℝ) α β, StarSet.LinPred.mem_addRows_iff.mpr
+    ⟨StarSet.LinPred.mem_snoc_iff.mpr ⟨⟨hα, hcα⟩, hβ0, hβu⟩, ?_⟩, fun i => ?_⟩
+  · -- the three new rows
     intro r hr
-    simp only [List.mem_append, List.mem_map, List.mem_cons, List.not_mem_nil, or_false] at hr
-    rcases hr with ⟨r', hr', rfl⟩ | rfl | rfl | rfl
-    · simpa [Fin.sum_univ_castSucc] using hcα r' hr'
+    simp only [List.mem_cons, List.not_mem_nil, or_false] at hr
+    rcases hr with rfl | rfl | rfl
     · simp [Fin.sum_univ_castSucc, hβ0]
     · simp only [Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last, hS]
       linarith

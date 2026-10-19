@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.InteriorCert
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.IneqsContainBallSound
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
 
 @[expose] public section
@@ -18,7 +19,7 @@ check has charged.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -29,21 +30,6 @@ namespace CORALean.Float
 open Matrix FloatOps SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-
-
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- A row applied to a short vector moves by at most its absolute sum times the bound. -/
-theorem ConZonotope.aux_row_move {m h : ℕ} (M : Mat 𝕋 m h) (v : Vec ℝ h) {δ : ℝ} (hδ : 0 ≤ δ)
-    (hv : ∀ j, |v j| ≤ δ) (i : Fin m) :
-    |(toRealMat M *ᵥ v) i| ≤ δ * toReal (radius M i) := by -- --- PROOF ---
-  calc |(toRealMat M *ᵥ v) i| = |∑ j, toReal (M i j) * v j| := rfl
-    _ ≤ ∑ j, |toReal (M i j) * v j| := Finset.abs_sum_le_sum_abs _ _
-    _ ≤ ∑ j, |toReal (M i j)| * δ := Finset.sum_le_sum fun j _ => by
-        rw [abs_mul]
-        exact mul_le_mul_of_nonneg_left (hv j) (abs_nonneg _)
-    _ = δ * ∑ j, |toReal (M i j)| := by rw [← Finset.sum_mul]; ring
-    _ ≤ δ * toReal (radius M i) := mul_le_mul_of_nonneg_left (sum_abs_le_radius i) hδ
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -79,13 +65,7 @@ theorem ConZonotope.box_subset {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat �
       exact Finset.sum_congr rfl fun j _ => by ring
     -- the inequality rows; there is no equality row
     refine ⟨fun i => ?_, fun i => absurd i.isLt (by omega)⟩
-    have h1 := toReal_le_of_le (hineq i)
-    have h2 := add_le_addUp (dotUp (cZ.P.A i) β₀) (mulUp δ (radius cZ.P.A i))
-    have h3 := le_dotUp (cZ.P.A i) β₀
-    have h4 := mul_le_mulUp δ (radius cZ.P.A i)
-    have h5 := (abs_le.mp (ConZonotope.aux_row_move cZ.P.A β' hδ hβδ i)).2
-    rw [hsplit]
-    linarith [abs_nonneg (toReal (cZ.P.b_error i))]
+    exact HPolytope.ineqsContainBall_sound hineq hδ (fun j => by simpa using hβδ j) i
   · -- the point: `y = c + G β` since `G β' = y - y₀`
     have := congrFun hβ' i
     simp only [Matrix.mulVec, dotProduct] at this

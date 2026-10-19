@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.KeepRows
+public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
 
 @[expose] public section
 
@@ -63,24 +65,17 @@ theorem ConZonotope.keepRows_mem (P : HPolytope (Vec ℝ h))
     (part : Split (Fin h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ h} (hβ : β ∈ P.construct)
     (hbox : ∀ l, |β (part.right l)| ≤ 1) :
     (fun l => β (part.left l)) ∈ (ConZonotope.keepRows P part).construct := by -- --- PROOF ---
-  obtain ⟨hA, hAe⟩ := hβ
-  refine ⟨?_, fun i => i.elim0⟩
-  -- the rows come in three blocks: inequalities, equalities as `≤`, equalities as `≥`
-  refine Fin.addCases (fun i => ?_) (fun i => ?_)
-  · simp only [ConZonotope.keepRows, Fin.append_left, LinearMap.comp_apply]
-    have h1 := ConZonotope.aux_apply_split part (P.A i) β
-    have h2 := (abs_le.mp (ConZonotope.aux_abs_dropped_le part (P.A i) hbox)).1
-    linarith [hA i]
-  · refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-    · simp only [ConZonotope.keepRows, Fin.append_left, Fin.append_right, LinearMap.comp_apply]
-      have h1 := ConZonotope.aux_apply_split part (P.Ae i) β
-      have h2 := (abs_le.mp (ConZonotope.aux_abs_dropped_le part (P.Ae i) hbox)).1
-      linarith [hAe i]
-    · simp only [ConZonotope.keepRows, Fin.append_right, LinearMap.comp_apply,
-        LinearMap.neg_apply]
-      have h1 := ConZonotope.aux_apply_split part (P.Ae i) β
-      have h2 := (abs_le.mp (ConZonotope.aux_abs_dropped_le part (P.Ae i) hbox)).2
-      linarith [hAe i]
+  -- every row, an equality as its two halves, holds at `β`
+  have hrows := HPolytope.mem_construct_iff_rows.mp hβ
+  show ConZonotope.keepEmbed part (fun l => β (part.left l))
+    ∈ (P.toIneqs.relax fun i => ConZonotope.keepSlack part (P.rows i)).construct
+  refine HPolytope.mem_relax_iff.mpr ⟨fun i => ?_, fun i => i.elim0⟩
+  -- a row at the kept coefficients is the row at `β` less what the dropped ones add
+  have h1 := ConZonotope.aux_apply_split part (P.rows i) β
+  have h2 := (abs_le.mp (ConZonotope.aux_abs_dropped_le part (P.rows i) hbox)).1
+  show P.rows i (ConZonotope.keepEmbed part fun l => β (part.left l))
+    ≤ P.rowsRhs i + ConZonotope.keepSlack part (P.rows i)
+  linarith [hrows i]
 
 end CORALean.Real
 

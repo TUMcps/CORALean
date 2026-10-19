@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.StarSet.Float.StarSet
+public import CORALean.ContSet.StarSet.Float.Operations.Basic
 
 @[expose] public section
 
@@ -12,12 +13,13 @@ The error box made part of the star set: `n` further factors, each ranging over 
 interval `[inf, sup]` in its coordinate, and added to the point by identity generators. A factor
 box is exactly what a star set already has, so nothing is widened: the old rows read the old
 factors only (a zero for each new one), every stored entry is a stored float, `zero` or `one`,
-so nothing rounds, and the box left over is the origin.
+so nothing rounds, and the box left over is the origin. The new factors are the predicate's own
+`StarSet.LinPred.append` (#174), whose membership is `StarSet.LinPred.mem_append_nominal_iff`.
 -/
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
--- Last update:   ---
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -37,10 +39,8 @@ def StarSet.absorbRounding (s : StarSet 𝕋 n) : StarSet 𝕋 n where
   m := s.m + n
   c := s.c
   G := fun i => Fin.append (s.G i) fun k => if k = i then one else zero
-  pred :=
-    { cons := s.pred.cons.map fun r => (Fin.append r.1 fun _ => zero, r.2)
-      l := Fin.append s.pred.l s.I_error.inf
-      u := Fin.append s.pred.u s.I_error.sup }
+  -- the predicate's own `append`: `n` factors over the box's bounds, read by no row
+  pred := s.pred.append s.I_error.inf s.I_error.sup
   I_error := Interval.origin n
 
 end CORALean.Float

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Float.Operations.AnchorSlab
-public import CORALean.ContSet.HPolytope.Float.Operations.Ineqs
+public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.HPolytope.Float.Operations.RescaleCols
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 
@@ -15,13 +15,11 @@ CORA's `conZonotope/rescale` and [1, Prop. 4]'s eq. 24 on the stored floats: the
 and `ξr` a radius rounded up from it to both ends, so the box around `ξm` covers `[ξL, ξU]` whatever
 the rounding did. The new center `c + G ξm` and generators `G diag(ξr)` are rounded down, what that
 costs going into the error box (the center's as a residual, the generators' as a generator error
-against `|δ| ≤ 1`); the constraint rows `A diag(ξr)` are rounded down too, their right-hand sides
-`b − A ξm` rounded outward and widened by the same generator error, their slack carried, so every
-rescaled coefficient vector stays feasible. An equality row's rescaled value, its slack included,
-lies between two such bounds; it stays an equality, at the upper one, where `ConZonotope.anchorSlab`
-certifies that every coefficient vector can be moved onto the rows inside the unit box (the point's
-move paid into the error box), and becomes the slab between the two otherwise. The interval is an
-argument, as over ℝ; the result is outer, never the exact rescaling.
+against `|δ| ≤ 1`, entry by entry the gap `mulDown_gap` bounds). The constraint is
+`HPolytope.rescaleCols`, the same substitution in its rows: `A diag(ξr)` and `Ae diag(ξr)` rounded
+down, the bounds `b − A ξm` and `be − Ae ξm`, every rounding written into the rows' slacks (#218),
+so an equality stays an equality and every rescaled coefficient vector stays feasible. The interval
+is an argument, as over ℝ; the result is outer, never the exact rescaling.
 
 ## References
 
@@ -32,7 +30,7 @@ argument, as over ℝ; the result is outer, never the exact rescaling.
 
 -- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       04-October-2026
--- Last update:   18-October-2026
+-- Last update:   19-October-2026
 -- Reviewed:      ---
 
 
@@ -56,28 +54,15 @@ def ConZonotope.rescale (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (ξL ξU : Vec 𝕋
   -- c + G ξm, rounded down and up
   let cLo : Vec 𝕋 n := fun i => addDown (cZ.c i) (dotDown (fun j => cZ.G j i) ξm)
   let cHi : Vec 𝕋 n := fun i => addUp (cZ.c i) (dotUp (fun j => cZ.G j i) ξm)
-  -- how far each entry of `M diag(ξr)`, rounded down, may be off
+  -- how far each entry of `G diag(ξr)`, rounded down, may be off
   let gapG : Mat 𝕋 n cZ.h := fun i j =>
     subUp (mulUp (cZ.G j i) (ξr j)) (mulDown (cZ.G j i) (ξr j))
-  let gapA : Mat 𝕋 cZ.P.m cZ.h := fun k j =>
-    subUp (mulUp (cZ.P.A k j) (ξr j)) (mulDown (cZ.P.A k j) (ξr j))
-  let gapAe : Mat 𝕋 cZ.P.me cZ.h := fun k j =>
-    subUp (mulUp (cZ.P.Ae k j) (ξr j)) (mulDown (cZ.P.Ae k j) (ξr j))
-  -- the inequality rows, then the equality rows as `anchorSlab` keeps them
-  ConZonotope.anchorSlab
-    { h := cZ.h
-      c := cLo
-      G := fun j i => mulDown (cZ.G j i) (ξr j)
-      P := { HPolytope.ineqs (fun k j => mulDown (cZ.P.A k j) (ξr j))
-        (fun k => addUp (subUp (cZ.P.b k) (dotDown (cZ.P.A k) ξm)) (sumUp (gapA k)))
-          with b_error := cZ.P.b_error }
-      I_error := (cZ.I_error.plus (Interval.residual cLo cHi cLo)).plus
-          (Zonotope.generatorError gapG) }
-    (fun k j => mulDown (cZ.P.Ae k j) (ξr j))
-    (fun k => subDown (subDown (subDown (cZ.P.be k) (absolute (cZ.P.be_error k)))
-      (dotUp (cZ.P.Ae k) ξm)) (sumUp (gapAe k)))
-    (fun k => addUp (subUp (addUp (cZ.P.be k) (absolute (cZ.P.be_error k)))
-      (dotDown (cZ.P.Ae k) ξm)) (sumUp (gapAe k)))
+  { h := cZ.h
+    c := cLo
+    G := fun j i => mulDown (cZ.G j i) (ξr j)
+    P := cZ.P.rescaleCols ξm ξr
+    I_error := (cZ.I_error.plus (Interval.residual cLo cHi cLo)).plus
+        (Zonotope.generatorError gapG) }
 
 end CORALean.Float
 

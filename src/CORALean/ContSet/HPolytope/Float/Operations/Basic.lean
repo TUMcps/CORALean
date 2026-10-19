@@ -37,6 +37,52 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
+-- ==================================  `HPolytope.beSlackLN`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The negated lower end of equality row `i` with its slack, rounded up: the bound of the row
+`-Aeᵢ` on the nominal part. -/
+def HPolytope.beSlackLN (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
+  addUp (neg (P.be i)) (absolute (P.be_error i))
+
+
+-- ===================================  `HPolytope.beSlackU`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The upper end of equality row `i` with its slack, rounded up. -/
+def HPolytope.beSlackU (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
+  addUp (P.be i) (absolute (P.be_error i))
+
+
+-- ===================================  `HPolytope.bSlackU`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The bound of inequality row `i` with its slack, rounded up: `bᵢ + |b_errorᵢ|`, what every
+point of the nominal part reads the row at most. -/
+def HPolytope.bSlackU (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.m) : 𝕋 :=
+  addUp (P.b i) (absolute (P.b_error i))
+
+
+-- ===================================  `HPolytope.dropEqs`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `P` without its equality rows: the inequalities, their slacks and the box kept. -/
+def HPolytope.dropEqs (P : HPolytope 𝕋 (Vec 𝕋 n)) : HPolytope 𝕋 (Vec 𝕋 n) :=
+  { P with me := 0, Ae := fun i => i.elim0, be := fun i => i.elim0, be_error := fun i => i.elim0 }
+
+
 -- ====================================  `HPolytope.errUp`  ===================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
@@ -58,7 +104,7 @@ def HPolytope.errUp (P : HPolytope 𝕋 (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
 /-- The negated lower end of equality row `i`, its slack and the error box folded in, rounded up:
 the bound of the row `-Aeᵢ`, so the equality reads as `Aeᵢ x ≤ beU i` and `-Aeᵢ x ≤ beLN i`. -/
 def HPolytope.beLN (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
-  addUp (addUp (neg (P.be i)) (absolute (P.be_error i))) (P.errUp (-(P.Ae i)))
+  addUp (P.beSlackLN i) (P.errUp (-(P.Ae i)))
 
 
 -- =====================================  `HPolytope.beU`  ====================================== --
@@ -69,19 +115,7 @@ def HPolytope.beLN (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
 
 /-- The upper end of equality row `i`, its slack and the error box folded in, rounded up. -/
 def HPolytope.beU (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
-  addUp (addUp (P.be i) (absolute (P.be_error i))) (P.errUp (P.Ae i))
-
-
--- ====================================  `HPolytope.beRes`  ===================================== --
--- Authors:       Claude Opus 5.5
--- Written:       15-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- How far equality row `i` can read from `beᵢ` on a point of the polytope, its error box
-included, rounded up: the larger of the two widenings `beU` and `beLN` add. -/
-def HPolytope.beRes (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
-  maximum (subUp (P.beU i) (P.be i)) (subUp (P.beLN i) (neg (P.be i)))
+  addUp (P.beSlackU i) (P.errUp (P.Ae i))
 
 
 -- ======================================  `HPolytope.bU`  ====================================== --
@@ -93,7 +127,19 @@ def HPolytope.beRes (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.me) : 𝕋 :=
 /-- The right-hand side of inequality row `i`, its slack and the error box folded in, rounded up:
 `bᵢ + |b_errorᵢ| + |Aᵢ| r`, the bound every point of the polytope, box included, satisfies. -/
 def HPolytope.bU (P : HPolytope 𝕋 (Vec 𝕋 n)) (i : Fin P.m) : 𝕋 :=
-  addUp (addUp (P.b i) (absolute (P.b_error i))) (P.errUp (P.A i))
+  addUp (P.bSlackU i) (P.errUp (P.A i))
+
+
+-- ==================================  `HPolytope.isZeroCol`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Every row's entry at coordinate `j` certified `zero`: no row reads that coordinate. -/
+def HPolytope.isZeroCol (P : HPolytope 𝕋 (Vec 𝕋 n)) (j : Fin n) : Bool :=
+  (List.finRange P.m).all (fun k => HPolytope.eqScalar (P.A k j) zero)
+    && (List.finRange P.me).all fun k => HPolytope.eqScalar (P.Ae k j) zero
 
 
 -- ==================================  `HPolytope.isZeroVec`  =================================== --
