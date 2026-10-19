@@ -13,6 +13,15 @@ interval `(0, 1)`, which is convex, is the set of none: it shares its support fu
 `[0, 1]`. What a support function represents is the closed convex sets, not all convex ones,
 where the introduction of [1] says "all convex sets".
 
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* a convex set that no support function denotes
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set

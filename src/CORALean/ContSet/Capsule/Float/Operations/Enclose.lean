@@ -12,6 +12,15 @@ CORA's `@capsule/enclose.m` with a matrix, as the exact layer reads it: `C2 = M 
 `convHull(C, C2)`. The header documents `M C + Cplus`, which the code does not compute (see
 `Capsule.enclose_cora_counterexample`); the generic `ContSet.enclose` is the documented set, which
 the `Plus`, `Mtimes` and `LinComb` instances of this class now give at float too.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C` – capsule
+* `M` – matrix
+* `Cplus` – capsule
+
+## Output
+* a capsule enclosing `C` and `M * Cplus`
 -/
 
 -- Authors:       Claude Opus 5.5

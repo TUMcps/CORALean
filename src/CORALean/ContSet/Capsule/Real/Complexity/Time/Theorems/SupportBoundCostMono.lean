@@ -10,6 +10,17 @@ public import CORALean.ContSet.Capsule.Real.Complexity.Time.Operations.SupportBo
 # `Capsule.supportBoundCost_mono`
 
 Monotone in the dimension.
+
+## Inputs
+* `n` – dimension
+* `n'` – larger dimension
+* `cf` – cost of evaluating the functional
+
+## Hypotheses
+* `h` – `n ≤ n'`
+
+## Conclusion
+* the cost of bounding a functional is monotone in the dimension
 -/
 
 -- Authors:       Claude Sonnet 5.5

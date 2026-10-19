@@ -15,6 +15,12 @@ box is exactly what a star set already has, so nothing is widened: the coefficie
 appended with the error box (`Interval.append`), the predicate is lifted to read the old factors
 only (`HPolytope.lift_`, #174), every stored entry is a stored float, `zero` or `one`, so nothing
 rounds, and the box left over is the origin.
+
+## Inputs
+* `s` – float star set
+
+## Output
+* the star set with the error box made part of its factors
 -/
 
 -- Authors:       Claude Sonnet 5.5

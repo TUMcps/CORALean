@@ -12,6 +12,15 @@ coefficients are the point, so it denotes what `p` denotes in `D` (`Theorems/OfP
 bounded set a representation of the family denotes is a star set this way, `D` any box around it,
 which is how [1, Def. 1] generalizes them.
 
+## Inputs
+* `P` – predicate family
+* `n` – dimension
+* `D` – box of the factors
+* `p` – predicate
+
+## Output
+* the star set of the points in `D` satisfying `p`
+
 ## References
 
 * [1] P. S. Duggirala and M. Viswanathan. "Parsimonious, Simulation Based Verification of Linear

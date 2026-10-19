@@ -12,6 +12,18 @@ public import CORALean.ContSet.Capsule.Float.Theorems.MtimesOuter
 As the exact layer: the segments between `C` and the image of `Cplus` lie in the hull of `C` and
 the stored `M Cplus`, `convHull_outer` after `mtimes_outer`. Outer, and of the set the code
 computes, not of the documented `M C ⊕ Cplus`.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C` – capsule
+* `M` – matrix
+* `Cplus` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* the hull of `C` and `M * Cplus` lies in `enclose`
 -/
 
 -- Authors:       Claude Opus 5.5

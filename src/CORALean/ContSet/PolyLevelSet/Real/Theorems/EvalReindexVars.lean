@@ -12,6 +12,19 @@ public import Mathlib.Data.Matrix.Mul
 At an injective `f` that reaches every variable some monomial reads, the reindexed rows at
 `y ∘ f` are `P`'s at `y`: a monomial is the same product, its factors outside the range of `f`
 being at exponent zero.
+
+## Inputs
+* `P` – polynomial level set
+* `n'` – new number of variables
+* `f` – variable map
+* `y` – point
+
+## Hypotheses
+* `hf` – `f` is injective
+* `h0` – unreached variables occur in no monomial
+
+## Conclusion
+* the reindexed rows at `y ∘ f` are `P`'s rows at `y`
 -/
 
 -- Authors:       Claude Opus 5.5

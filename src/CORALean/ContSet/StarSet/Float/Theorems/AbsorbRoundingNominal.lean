@@ -13,6 +13,15 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemAppendIff
 A point `c + Gα + e`, `e` in the box, is the absorbed star set's nominal point at the factors
 `(α, e)`: the lifted predicate reads the old factors only, the new ones lie in the error box
 appended to the coefficient box, and the new identity generators add `e` to the point.
+
+## Inputs
+* `s` – float star set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set lies in the nominal part of the absorbed star set
 -/
 
 -- Authors:       Claude Sonnet 5.5

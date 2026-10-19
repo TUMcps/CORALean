@@ -10,6 +10,15 @@ public import Mathlib.Analysis.Normed.Ring.Basic
 
 The supremum of the norms over the whole space is unbounded in positive dimension: the point
 with one coordinate `r` has norm `r`, for every `r`.
+
+## Inputs
+* `F` – full space
+
+## Hypotheses
+* `hn` – dimension positive
+
+## Conclusion
+* the supremum of the norms is `F.radius`
 -/
 
 -- Authors:       Claude Opus 5.5

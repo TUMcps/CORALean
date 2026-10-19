@@ -10,6 +10,17 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 
 `projectHighDim_` embeds the coordinates at `proj` and holds the rest at zero
 (`Function.extend`), so the image of `∅` is `∅`.
+
+## Inputs
+* `E` – empty set
+* `N` – target dimension
+* `proj` – coordinates of the old dimensions
+
+## Hypotheses
+* none
+
+## Conclusion
+* `projectHighDim_` denotes the image under the zero-padded embedding
 -/
 
 -- Authors:       Claude Opus 5.5

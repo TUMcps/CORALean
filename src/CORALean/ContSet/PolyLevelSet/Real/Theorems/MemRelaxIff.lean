@@ -15,6 +15,18 @@ public import Mathlib.Tactic.Ring
 
 The points `(x, y)` at which every original row, shifted by `sᵢ yᵢ`, meets its operator
 (`aux_eval_relax`).
+
+## Inputs
+* `P` – polynomial level set
+* `s` – row slack coefficients
+* `D` – box of the slack variables
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the relaxed set iff each shifted row meets its operator
 -/
 
 -- Authors:       Claude Opus 5.5

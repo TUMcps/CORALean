@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 `true` is `le` both ways on every field, so the nominal capsules have equal fields and denote the
 same set (`Capsule.isequal_construct`). Not complete: `le` is certified one way only.
+
+## Inputs
+* `C` – first capsule
+* `S` – second capsule
+
+## Hypotheses
+* `h` – `isequal` answers true
+
+## Conclusion
+* the two capsules denote the same set
 -/
 
 -- Authors:       Claude Opus 5.5

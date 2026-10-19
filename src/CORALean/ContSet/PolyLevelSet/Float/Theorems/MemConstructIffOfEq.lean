@@ -9,6 +9,16 @@ public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 
 Where every row is `=`, a point is in the set exactly when it solves each read-back row to within
 its slack: `|(A μ_R(x))ᵢ - bᵢ| ≤ |b_errorᵢ|`.
+
+## Inputs
+* `P` – polynomial level set
+* `x` – real point
+
+## Hypotheses
+* `h` – all rows are equations
+
+## Conclusion
+* `x` lies in the set iff it lies in the box and meets each row within its slack
 -/
 
 -- Authors:       Claude Opus 5.5

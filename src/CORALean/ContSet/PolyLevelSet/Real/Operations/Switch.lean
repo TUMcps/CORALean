@@ -15,6 +15,14 @@ Not one of CORA's operations: it is the lower block of [1, Thm. 1]'s union, as C
 `@conPolyZono/or` builds it, `[blkdiag(A₁, A₂), [-b₁; b₂] / 2]` over `b / 2`, with the selector
 factor for `x^e`.
 
+## Inputs
+* `P` – polynomial level set
+* `e` – exponent of the switching monomial
+* `s` – sign of each row
+
+## Output
+* the level set with each right-hand side switched
+
 ## References
 
 * [1] N. Kochdumper and M. Althoff. "Constrained Polynomial Zonotopes". Acta

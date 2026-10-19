@@ -11,6 +11,14 @@ Each row's right-hand side `bᵢ` taken at the weight `(1 + σᵢ x^e) / 2`, as 
 the new monomial is `∓ bᵢ / 2` and the right-hand side `bᵢ / 2`, both by `half`, which is exact,
 so nothing rounds, the slack stands, and the rows read back as `Real.PolyLevelSet.switch`
 (`eval_nominalCore_switch`).
+
+## Inputs
+* `P` – polynomial level set
+* `e` – exponent of the switching monomial
+* `s` – sign of each row
+
+## Output
+* the level set with each right-hand side switched
 -/
 
 -- Authors:       Claude Opus 5.5

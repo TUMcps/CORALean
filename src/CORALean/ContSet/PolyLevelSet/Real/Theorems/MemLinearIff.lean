@@ -10,6 +10,20 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 
 The points meeting every row `(A x - b)ᵢ ⋈ᵢ 0`: monomial `k` of `identE` is `xₖ`
 (`PolyZonotope.monomial_identE`), so the polynomial part is `A x`.
+
+## Inputs
+* `m` – number of rows
+* `A` – coefficient matrix
+* `b` – right-hand side
+* `op` – comparison of each row
+* `D` – box of the variables
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the set iff it lies in the box and meets each row
 -/
 
 -- Authors:       Claude Opus 5.5

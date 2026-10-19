@@ -9,6 +9,13 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 
 CORA's `@fullspace/enclosePoints`: `fullspace(size(points,1))`, the full space of the points'
 dimension.
+
+## Inputs
+* `p` – number of points
+* `_` – the points
+
+## Output
+* the full space of the points' dimension
 -/
 
 -- Authors:       Claude Opus 5.5

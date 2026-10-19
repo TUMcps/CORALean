@@ -11,6 +11,17 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 The polynomial level set of degree-1 rows at stored coefficients, each row with its slack:
 `|(A x - b)ᵢ| ≤ |b_errorᵢ|` at an equation, its monomials the variables themselves
 (`mem_linear_iff`). It reads back as `Real.PolyLevelSet.linear` at the read-back entries.
+
+## Inputs
+* `m` – number of rows
+* `A` – coefficient matrix
+* `b` – right-hand side
+* `b_error` – row slack
+* `op` – comparison of each row
+* `D` – box of the variables
+
+## Output
+* the level set of the linear rows
 -/
 
 -- Authors:       Claude Opus 5.5

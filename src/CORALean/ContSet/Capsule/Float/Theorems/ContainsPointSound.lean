@@ -13,6 +13,16 @@ A `true` answer exhibits the clipped parameter `t ∈ [-1, 1]`, a point `e` of t
 `-(c + t g - p)` to the box's range in each coordinate, which a nonempty box admits) and a
 certified bound on the length of the rest, `p - (c + t g) - e`: its squared length rounded up is at
 most `r²` rounded down, with `r ≥ 0`. So the point is in the capsule. `false` refutes nothing.
+
+## Inputs
+* `C` – capsule
+* `p` – float point
+
+## Hypotheses
+* `h` – `containsPoint` answers true
+
+## Conclusion
+* the point lies in the capsule
 -/
 
 -- Authors:       Claude Opus 5.5

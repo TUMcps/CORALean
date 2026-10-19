@@ -1594,7 +1594,7 @@ in sections that follow the prose and precede `## References`:
 
 `## Inputs` lists the *non-`Prop`* binders of the declaration, explicit or implicit, named exactly as
 in the declaration and in its order, without instance arguments (`[..]`) and without the dimension
-variables a `variable` line supplies. `## Hypotheses` lists the `Prop` binders the same way.
+variables a `variable` line supplies; an anonymous binder `(_ : T)` is listed as `_`. `## Hypotheses` lists the `Prop` binders the same way.
 `## Output` / `## Conclusion` has exactly one entry. Entries are terse, one line each:
 ``* `Z` – zonotope``. A section with nothing to list says `* none`. A definition that takes
 `Prop` binders (a `dite` condition, say) lists them under `## Hypotheses` between `## Inputs` and

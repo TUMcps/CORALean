@@ -11,6 +11,17 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 
 The product of the two sets, a point of it being one point of each side by side: the product's
 values are the operands' at their own variables (`eval_cartProd`).
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the product iff its two parts lie in the factors
 -/
 
 -- Authors:       Claude Opus 5.5

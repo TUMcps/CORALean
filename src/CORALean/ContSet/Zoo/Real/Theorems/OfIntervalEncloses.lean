@@ -13,6 +13,17 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalTaylmOuter
 
 Both members enclose the map the domain's `i`-th variable stands for, `mid + rad · tᵢ` on
 the normalized box, which ranges over `[inf i, sup i]`; for a nonempty coordinate interval.
+
+## Inputs
+* `I` – box of the variables
+* `N` – Taylor order
+* `i` – coordinate index
+
+## Hypotheses
+* `hI` – coordinate interval nonempty
+
+## Conclusion
+* the zoo encloses the box's coordinate function
 -/
 
 -- Authors:       Claude Opus 5.5

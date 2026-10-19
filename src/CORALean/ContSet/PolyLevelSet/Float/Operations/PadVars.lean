@@ -11,6 +11,14 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
 
 `Real.PolyLevelSet.padVars` at the stored floats: `r` fresh variables in the box `D` that no row
 reads, the stored rows and slacks untouched.
+
+## Inputs
+* `P` – polynomial level set
+* `r` – number of fresh variables
+* `D` – box of the fresh variables
+
+## Output
+* the level set with `r` unused variables appended
 -/
 
 -- Authors:       Claude Opus 5.5

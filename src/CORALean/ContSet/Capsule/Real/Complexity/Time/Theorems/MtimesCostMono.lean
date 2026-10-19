@@ -10,6 +10,19 @@ public import CORALean.ContSet.Capsule.Real.Complexity.Time.Operations.MtimesCos
 # `Capsule.mtimesCost_mono`
 
 Monotone in both dimensions.
+
+## Inputs
+* `m` – rows
+* `m'` – larger number of rows
+* `n` – columns
+* `n'` – larger number of columns
+
+## Hypotheses
+* `hm` – `m ≤ m'`
+* `hn` – `n ≤ n'`
+
+## Conclusion
+* the cost of mapping by a matrix is monotone in both dimensions
 -/
 
 -- Authors:       Claude Sonnet 5.5

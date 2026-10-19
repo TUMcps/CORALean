@@ -14,6 +14,25 @@ public import CORALean.ContSet.Interval.Float.Theorems.SinOuter
 For a center in its box, a base angle in its box and a real step within the stored step bounds,
 the exact sample `ctr + r (cos a, sin a)` at `a = a₀ + i * step` lies in the box: each interval
 operation encloses its exact counterpart (`plus_outer`, `times_outer`, `cos_outer`, `sin_outer`).
+
+## Inputs
+* `p` – precision of cos and sin
+* `step` – step size bounds
+* `s` – real step within the bounds
+* `ctr` – box around the center
+* `a₀` – box around the base angle
+* `r` – radius
+* `i` – sample index
+* `c` – real center
+* `a` – real base angle
+
+## Hypotheses
+* `hs` – `s` lies within the step bounds
+* `hc` – `c` lies in the center box
+* `ha` – `a` lies in the angle box
+
+## Conclusion
+* the exact sample point lies in the `arcBox`
 -/
 
 -- Authors:       Claude Opus 5.5

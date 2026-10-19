@@ -10,6 +10,13 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 
 Center, generator and error box read at `dims`, the radius unchanged, as over ℝ. Nothing is
 computed, so nothing is rounded.
+
+## Inputs
+* `C` – capsule
+* `dims` – coordinates kept
+
+## Output
+* the capsule restricted to the chosen coordinates
 -/
 
 -- Authors:       Claude Sonnet 5.5

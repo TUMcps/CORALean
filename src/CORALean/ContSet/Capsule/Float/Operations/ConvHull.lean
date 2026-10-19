@@ -15,6 +15,14 @@ center and generator are rounded, and what each misses of the exact one (per ent
 the gap between the upward and the downward rounding of the same sum or difference) goes into the
 error box, as a symmetric box: the center's as it is, the generator's at every segment parameter.
 `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C` – first capsule
+* `S` – second capsule
+
+## Output
+* a capsule enclosing the convex hull of both
 -/
 
 -- Authors:       Claude Opus 5.5

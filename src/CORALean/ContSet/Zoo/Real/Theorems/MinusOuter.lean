@@ -12,6 +12,19 @@ public import CORALean.ContSet.Interval.Real.Theorems.MinusOuter
 
 Every member of the result encloses the combined function: the Taylor model by
 `Taylm.minus_outer`, the interval by `Interval.minus_outer` on the two box values.
+
+## Inputs
+* `Z₁` – first zoo
+* `Z₂` – second zoo
+* `f` – first function
+* `g` – second function
+
+## Hypotheses
+* `h₁` – `Z₁` encloses `f`
+* `h₂` – `Z₂` encloses `g`
+
+## Conclusion
+* the difference zoo encloses `f - g`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.Global.Float.GenBlockDiag
 
 The stored stack reads back as the exact stack of the two read-back systems: the off-blocks are
 `zero`, which reads as `0`, and every other entry is copied.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the stacked rows read back as the exact stack
 -/
 
 -- Authors:       Claude Opus 5.5

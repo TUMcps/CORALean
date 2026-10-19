@@ -8,6 +8,15 @@ public import CORALean.ContSet.Capsule.Float.Capsule
 # A capsule whose error box is the origin is its nominal capsule
 
 The set is the nominal capsule plus the box, and adding `{0}` changes nothing.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `h` – error box is the origin
+
+## Conclusion
+* the capsule denotes its nominal capsule
 -/
 
 -- Authors:       Claude Opus 5.5

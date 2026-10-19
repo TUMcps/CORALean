@@ -11,6 +11,15 @@ public import CORALean.ContSet.StarSet.Float.Theorems.AbsorbRoundingNominal
 
 Read back through `ContSet`: the set lies in the nominal set of `absorbRounding`, and that box is
 the origin, so it lies in the whole.
+
+## Inputs
+* `s` – float star set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the set lies in the absorbed star set
 -/
 
 -- Authors:       Claude Sonnet 5.5

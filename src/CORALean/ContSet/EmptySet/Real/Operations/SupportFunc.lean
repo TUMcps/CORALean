@@ -10,6 +10,13 @@ public import Mathlib.Data.EReal.Basic
 
 CORA's `@emptySet/supportFunc_` for type `'upper'`: `-Inf`, the supremum over no point. It is a
 value of `EReal`, not `ℝ`, since no real number is the supremum of nothing.
+
+## Inputs
+* `_` – empty set
+* `_` – direction functional
+
+## Output
+* `-Inf`, the supremum over no point
 -/
 
 -- Authors:       Claude Opus 5.5

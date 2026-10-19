@@ -10,6 +10,12 @@ public import CORALean.Global.Cost
 
 Asserted, not proved: `Operations/Radius.lean` is `‖g‖₂ + r`: the squared length
 (`2 * n`), its `sqrt` and one addition.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the cost of the bounding radius of a capsule
 -/
 
 -- Authors:       Claude Sonnet 5.5

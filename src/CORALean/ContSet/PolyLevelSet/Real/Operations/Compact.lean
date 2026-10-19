@@ -15,6 +15,12 @@ The monomial list without repeats: monomials with equal exponent columns merged,
 columns added, and the columns that add up to zero dropped — `PolyZonotope.compact`'s merge, with
 the coefficient columns `A_(·,j)` as the generators. The rows, their right-hand sides and their
 operators stand, so the set does too (`compact_exact`).
+
+## Inputs
+* `P` – polynomial level set
+
+## Output
+* the level set with equal exponent columns merged
 -/
 
 -- Authors:       Claude Opus 5.5

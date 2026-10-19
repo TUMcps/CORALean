@@ -10,6 +10,18 @@ public import Mathlib.Tactic.Ring
 # `PolyLevelSet.switch` rounds nothing
 
 The switched rows, read back, are the read-back rows switched: halving and negating are exact.
+
+## Inputs
+* `P` – polynomial level set
+* `e` – exponent of the switching monomial
+* `s` – sign of each row
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the switched rows read back as the exact switch
 -/
 
 -- Authors:       Claude Opus 5.5

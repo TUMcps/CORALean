@@ -11,6 +11,15 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.TabAtKeepTab
 
 The tabulated merge and the one that rescans return the same set: the tables hold the very values
 the specification recomputes (`repTab_getD`, `tabAt_keepTab`), so the two differ in cost alone.
+
+## Inputs
+* `P` – polynomial level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `compact` equals its specification `compactSpec`
 -/
 
 -- Authors:       Claude Opus 5.5

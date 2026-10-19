@@ -10,6 +10,12 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Fullspace
 
 CORA's `@fullspace/polytope`, which is `polytope.Inf(n)`: no rows at all
 (`HPolytope.fullspace`). CORA throws at `n = 0`; nothing here does.
+
+## Inputs
+* `_` – full space
+
+## Output
+* the halfspace polytope with no rows
 -/
 
 -- Authors:       Claude Opus 5.5

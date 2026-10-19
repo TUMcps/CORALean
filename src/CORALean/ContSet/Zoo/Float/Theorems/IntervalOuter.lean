@@ -13,6 +13,18 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 The intersection of the members' enclosures contains the function's value at every box point: the
 Taylor model through `Taylm.bounds_mem`, the intersection through `Interval.intersection_exact`.
+
+## Inputs
+* `Z` – zoo
+* `f` – function
+* `t` – point of the normalized box
+
+## Hypotheses
+* `h` – `Z` encloses `f`
+* `ht` – `t` lies in the normalized box
+
+## Conclusion
+* `Z.interval` holds the value of `f` at `t`
 -/
 
 -- Authors:       Claude Opus 5.5

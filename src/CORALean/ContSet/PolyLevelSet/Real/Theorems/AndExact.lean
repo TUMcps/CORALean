@@ -11,6 +11,16 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 
 Stacking the rows is intersecting the sets, whatever the operators: the stacked values are the two
 operands' side by side (`eval_and_`).
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* `and_` denotes the intersection exactly
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,17 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 
 Lifting leaves the new coordinates unbounded, so the lifted set is every point whose
 selected coordinates lie in the set. For `∅` that is `∅` again.
+
+## Inputs
+* `E` – empty set
+* `N` – target dimension
+* `dims` – coordinates of the old dimensions
+
+## Hypotheses
+* none
+
+## Conclusion
+* `lift_` denotes the points whose selected coordinates lie in `E`
 -/
 
 -- Authors:       Claude Opus 5.5

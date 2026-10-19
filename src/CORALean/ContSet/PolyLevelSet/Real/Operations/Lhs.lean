@@ -12,6 +12,12 @@ The rows' polynomial part `x ↦ A μ_R(x)` as a polynomial zonotope over `Vec �
 point at `x` is `A μ_R(x)` (`point_lhs`). CORA's `polyZonotope(-b, A, [], R)` inside
 `@conPolyZono/getSubset`, with the offset left out: `b` takes no part in an operation on the
 monomials, which is what this is for, applying a `PolyZonotope` operation to the rows.
+
+## Inputs
+* `P` – polynomial level set
+
+## Output
+* the rows' polynomial part as a polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5

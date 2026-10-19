@@ -10,7 +10,7 @@ its `MAIN THEOREM` / `MAIN DEFINITION` banner) is
 
 `## Inputs` lists the non-`Prop` binders `(x : T)`, `{x : T}`, `⦃x : T⦄` of the declaration as
 `* `x` – description`, named exactly as in the declaration and in its order, none missing and none
-extra; instance binders `[..]` and everything that comes from a `variable` line are not binders of
+extra; an anonymous binder `(_ : T)` is listed as `_`; instance binders `[..]` and everything that comes from a `variable` line are not binders of
 the declaration and not listed. `## Hypotheses` lists the `Prop` binders the same way.
 `## Output` / `## Conclusion` has exactly one `*` entry. A section with nothing to list says
 `* none`. The sections come last, after the prose and before `## References`.
@@ -133,8 +133,7 @@ def binders(sig):
             else:
                 names, typ = inner, ""
             for nm in names.split():
-                if nm != "_":
-                    out.append((nm, typ.strip()))
+                out.append((nm, typ.strip()))
         i = j + 1
     return out
 
@@ -246,6 +245,26 @@ def listed(lines):
     return names
 
 
+FILLER = {"parameter", "argument", "input", "value", "result", "output", "hypothesis",
+          "assumption", "conclusion", "statement"}
+
+
+def bad_description(desc, minwords=0):
+    """Why a description is unacceptable (empty, placeholder, generic filler, too short), or None."""
+    d = desc.strip().strip("`").strip()
+    if not d:
+        return "empty"
+    low = d.lower()
+    if re.search(r"add description|\btodo\b|\btbd\b|\bfixme\b", low) or re.fullmatch(r"[.…\s-]+", d):
+        return "placeholder"
+    words = [w for w in re.findall(r"[a-z]+", low) if w not in ("a", "an", "the")]
+    if " ".join(words) in FILLER:
+        return "generic filler"
+    if len(desc.split()) < minwords:
+        return f"too short (need {minwords} words)"
+    return None
+
+
 def check(path, text):
     """Findings for one non-exempt file; each a `line: message`."""
     lines = text.split("\n")
@@ -291,9 +310,20 @@ def check(path, text):
         elif got != exp:
             out.append(f"{where}: `## {sec}` lists {got or 'nothing'} but `{name}` has "
                        f"{exp or 'none (write `* none`)'}, in that order")
+        for e in entries(body[sec]):
+            if e.rstrip() == "* none":
+                continue
+            m = re.match(r"^\* `[^`]+`\s*–\s*(.*)$", e)
+            why = bad_description(m.group(1)) if m else None
+            if why:
+                out.append(f"{where}: `## {sec}` entry description is {why}: {e.strip()}")
     last = "Conclusion" if theorem else "Output"
     if len(entries(body[last])) != 1:
         out.append(f"{where}: `## {last}` has {len(entries(body[last]))} entries, exactly one")
+    else:
+        why = bad_description(entries(body[last])[0][2:], 3)
+        if why:
+            out.append(f"{where}: `## {last}` entry is {why}: {entries(body[last])[0].strip()}")
     return out
 
 
@@ -339,4 +369,5 @@ def main():
     return 0
 
 
-sys.exit(main())
+if __name__ == "__main__":
+    sys.exit(main())

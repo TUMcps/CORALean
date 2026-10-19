@@ -12,6 +12,16 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 equivalence, so `y ∘ e.symm` is a preimage of any `y`: nothing is missed and
 the image is again everything. An equality, which is what `Reindex` asks for —
 the one class in this tree whose obligation is not an inclusion.
+
+## Inputs
+* `e` – coordinate relabelling
+* `F` – full space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the full space is the image of the full space under relabelling
 -/
 
 -- Authors:       Claude Opus 5

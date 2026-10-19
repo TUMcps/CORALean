@@ -11,6 +11,13 @@ public import CORALean.ContSet.Capsule.Real.Complexity.Time.Operations.ConvHullC
 
 Asserted, not proved: `Operations/Enclose.lean` is `Capsule.mtimes M Cplus`
 followed by `convHull` of the result with `C`, so the two costs add.
+
+## Inputs
+* `n` – dimension of the capsule
+* `m` – dimension of the second capsule
+
+## Output
+* the cost of enclosing a capsule and a mapped capsule
 -/
 
 -- Authors:       Claude Sonnet 5.5

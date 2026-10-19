@@ -10,6 +10,14 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 CORA's `@fullspace/projectHighDim_`: the object itself when `proj` has `N` entries, an
 error otherwise (a new dimension would have to be held at `0`, which the full space cannot
 say). Total here; the guarantee is stated for `n = N`, the one case CORA answers.
+
+## Inputs
+* `_` – full space
+* `N` – target dimension
+* `_` – coordinates of the old dimensions
+
+## Output
+* the full space of dimension `N`
 -/
 
 -- Authors:       Claude Opus 5.5

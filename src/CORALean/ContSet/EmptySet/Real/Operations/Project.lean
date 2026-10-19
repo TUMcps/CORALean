@@ -9,6 +9,13 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 
 CORA's `@emptySet/project`: only the dimension changes, to the number of kept coordinates.
 `dims` lists the kept coordinates, as in CORA, and `Fin m → Fin n` is its range check.
+
+## Inputs
+* `_` – empty set
+* `_` – coordinates kept
+
+## Output
+* the empty set in the kept dimension
 -/
 
 -- Authors:       Claude Opus 5.5

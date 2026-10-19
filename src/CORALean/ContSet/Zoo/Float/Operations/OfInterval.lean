@@ -13,6 +13,14 @@ CORA's `zoo(int, N)` for coordinate `i`: the variable of the box's float zonotop
 the stored center `c` and the generator `r` (`Interval.radiusFrom`), as the Taylor model of
 `Interval.taylm` and as the interval `[c - |r|, c + |r|]`, the ends rounded outward (`|r| = r` for
 a nonempty box). The box lies in that interval, so it is as wide as the box or wider.
+
+## Inputs
+* `I` – box of the variables
+* `N` – Taylor order
+* `i` – coordinate index
+
+## Output
+* the zoo of the `i`-th variable of the box
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -10,6 +10,16 @@ public import CORALean.ContSet.Fullspace.Real.Operations.Project
 The image of everything under the coordinate selection `dims` is everything, provided
 `dims` names distinct coordinates. CORA does not check that: `dims = [1,1]` is a
 projection onto the diagonal, which is not the full space of dimension two.
+
+## Inputs
+* `F` – full space
+* `dims` – coordinates kept
+
+## Hypotheses
+* `hdims` – `dims` is injective
+
+## Conclusion
+* `project` denotes the image under the coordinate selection
 -/
 
 -- Authors:       Claude Opus 5.5

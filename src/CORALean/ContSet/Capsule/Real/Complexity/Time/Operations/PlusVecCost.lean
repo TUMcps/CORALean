@@ -11,6 +11,12 @@ public import CORALean.Global.Cost
 Asserted, not proved: `Operations/PlusVec.lean` shifts the center, `n` additions;
 the generator and radius are copied into the result. The result's `2 * n + 1` scalars are all
 written.
+
+## Inputs
+* `n` – dimension
+
+## Output
+* the cost of adding a vector to a capsule
 -/
 
 -- Authors:       Claude Sonnet 5.5

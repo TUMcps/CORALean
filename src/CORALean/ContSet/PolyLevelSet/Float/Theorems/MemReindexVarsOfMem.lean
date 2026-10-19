@@ -13,6 +13,20 @@ At an injective `f` that reaches every variable some monomial reads, `y ∘ f` m
 rows within their slacks exactly when `y` meets `P`'s: the read-back rows are the exact layer's
 reindexed rows (`Real.PolyLevelSet.eval_reindexVars`). The box is projected with them, so a point
 of `P` gives one of the result; the converse fails, the dropped variables' bounds being lost.
+
+## Inputs
+* `P` – polynomial level set
+* `n'` – new number of variables
+* `f` – variable map
+* `y` – real point
+
+## Hypotheses
+* `hf` – `f` is injective
+* `h0` – unreached variables occur in no monomial
+* `hy` – `y` lies in `P`
+
+## Conclusion
+* `y ∘ f` lies in the reindexed level set
 -/
 
 -- Authors:       Claude Opus 5.5

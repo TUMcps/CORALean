@@ -11,6 +11,13 @@ CORA's `@fullspace/isequal` at two full spaces: `true`, their dimensions agreein
 the index, so two operands of one type agree on it; the other operand types of CORA's method
 (an `interval` with all endpoints infinite, other sets and numerics, which answer `false`) are
 not covered.
+
+## Inputs
+* `_` – first full space
+* `_` – second full space
+
+## Output
+* `true`, as two full spaces are equal
 -/
 
 -- Authors:       Claude Opus 5.5

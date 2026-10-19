@@ -10,6 +10,15 @@ public import CORALean.ContSet.Fullspace.Real.Theorems.IsFullDim
 
 The `Bool` `Fullspace.isFullDimTest` is `true` exactly when the interior of the set is nonempty:
 exact.
+
+## Inputs
+* `F` – full space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the test answers true iff the interior is nonempty
 -/
 
 -- Authors:       Claude Opus 5.5

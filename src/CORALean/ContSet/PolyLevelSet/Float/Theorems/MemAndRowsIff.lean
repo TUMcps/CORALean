@@ -13,6 +13,17 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalAnd
 A point of `P.andRows Q` is a point of `P`, its box included, at which `Q`'s rows hold within their
 slacks as well; `Q`'s box is not read. The read-back rows are the exact layer's stacked rows
 (`eval_nominalCore_and_`), so this is `Real.PolyLevelSet.mem_andRows_iff` with slacks.
+
+## Inputs
+* `P` – level set
+* `Q` – level set whose rows are added
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in `P.andRows Q` iff it lies in `P` and meets `Q`'s rows
 -/
 
 -- Authors:       Claude Opus 5.5

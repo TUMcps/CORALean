@@ -9,6 +9,18 @@ public import CORALean.ContSet.StarSet.Real.Operations.OfPred
 
 With the identity basis and center `0`, `c + G α` is `α`, so the points are the coefficients the
 predicate holds of.
+
+## Inputs
+* `P` – predicate family
+* `n` – dimension
+* `D` – box of the factors
+* `p` – predicate
+
+## Hypotheses
+* none
+
+## Conclusion
+* `ofPred` denotes the points of `D` satisfying `p`
 -/
 
 -- Authors:       Claude Opus 5.5

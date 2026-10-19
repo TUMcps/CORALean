@@ -12,6 +12,21 @@ public import CORALean.ContSet.Interval.Float.Theorems.RdivideOuter
 
 As `plus`, under the members' own denominator certificates: the Taylor model's margin `hm`
 (`Taylm.rdivide_outer`) and the interval's strict sign test `hJ` (`Interval.rdivide_outer`).
+
+## Inputs
+* `Z₁` – first zoo
+* `Z₂` – second zoo
+* `f` – first function
+* `g` – second function
+
+## Hypotheses
+* `h₁` – `Z₁` encloses `f`
+* `h₂` – `Z₂` encloses `g`
+* `hm` – Taylor model's denominator margin positive
+* `hJ` – interval's denominator excludes zero
+
+## Conclusion
+* the quotient zoo encloses `f / g`
 -/
 
 -- Authors:       Claude Opus 5.5

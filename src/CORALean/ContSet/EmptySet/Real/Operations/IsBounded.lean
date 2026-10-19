@@ -10,6 +10,12 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 CORA's `isBounded` of the emptyset, as the `Bool` it answers: always `true`: `∅` is compact, hence
 bounded. Holds no scalar and computes nothing numeric; `EmptySet.isBounded_iff` says it is
 boundedness of the set.
+
+## Inputs
+* `_` – empty set
+
+## Output
+* `true`, as `∅` is bounded
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -13,6 +13,17 @@ public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 The product of the two sets: the product's rows read back as the exact product's
 (`eval_nominalCore_cartProd`), whose values are each operand's at its own variables
 (`Real.PolyLevelSet.eval_cartProd`), and the slacks are stacked alike.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the product iff its two parts lie in the factors
 -/
 
 -- Authors:       Claude Opus 5.5

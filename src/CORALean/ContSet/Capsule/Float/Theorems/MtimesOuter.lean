@@ -20,6 +20,17 @@ the radius times the exact Frobenius norm, which is under the radius times its r
 negative radius denotes `∅`, so a point in the capsule has `0 ≤ r`, which the product with the
 bound needs). What it and `M e` miss of the stored `c̃ + t g̃ + w` is `M e`, the center's rounding
 `M c - c̃`, and `t (M g - g̃)`, which the three boxes of the stored box hold.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `M` – matrix
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* the image of `C` under `M` lies in `mtimes`
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

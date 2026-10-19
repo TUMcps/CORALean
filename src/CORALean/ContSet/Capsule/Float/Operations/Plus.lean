@@ -15,6 +15,14 @@ downward and what that costs, the exact sum less the stored center (between `0` 
 `addUp`, per entry), goes into the error box, with the sum of the operands' boxes. The lengths are
 compared on the squares rounded up, which is only a choice of branch: both branches enclose the
 sum. `k` is the number of Newton steps of the roots (`Global/Float/Sqrt`).
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C₁` – first capsule
+* `C₂` – second capsule
+
+## Output
+* a capsule enclosing the Minkowski sum
 -/
 
 -- Authors:       Claude Sonnet 5.5

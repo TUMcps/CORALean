@@ -10,6 +10,15 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 
 CORA's `isBounded` for the full space is `dim(fs) == 0`: `false` in every positive
 dimension, `true` at `0`, where the one point `Vec ℝ 0` has is all there is.
+
+## Inputs
+* `F` – full space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the full space is bounded iff the dimension is zero
 -/
 
 -- Authors:       Claude Opus 5.5

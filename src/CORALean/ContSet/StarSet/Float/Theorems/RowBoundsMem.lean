@@ -10,6 +10,17 @@ public import CORALean.ContSet.StarSet.Float.Operations.RowBounds
 
 Every point of the nominal star set has its neuron `j` between the two bounds. The bounds are
 those of the stored numbers and leave `I_error` out, which a caller adds.
+
+## Inputs
+* `s` – float star set
+* `j` – neuron index
+* `x` – real point
+
+## Hypotheses
+* `hx` – `x` lies in the nominal star set
+
+## Conclusion
+* neuron `j` of `x` lies within `rowBounds`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,13 @@ public import CORALean.ContSet.PolyLevelSet.Float.PolyLevelSet
 `Real.PolyLevelSet.and_` at the stored floats: the rows of both operands stacked over shared
 variables, each over its own monomials, the off-blocks `zero` and every entry and slack copied, so
 nothing rounds (`eval_nominalCore_and_`).
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+
+## Output
+* the level set of both operands' rows stacked
 -/
 
 -- Authors:       Claude Opus 5.5

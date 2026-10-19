@@ -9,6 +9,13 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 
 CORA's `@fullspace/project`: only the dimension changes, to the number of kept
 coordinates. CORA throws at `n = 0`; nothing here does.
+
+## Inputs
+* `_` – full space
+* `_` – coordinates kept
+
+## Output
+* the full space in the kept dimension
 -/
 
 -- Authors:       Claude Opus 5.5

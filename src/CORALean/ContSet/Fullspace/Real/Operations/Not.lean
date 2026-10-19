@@ -10,6 +10,12 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 
 CORA's `@fullspace/not`: the complement of the full space is the empty set of the same
 dimension.
+
+## Inputs
+* `_` – full space
+
+## Output
+* the empty set of the same dimension
 -/
 
 -- Authors:       Claude Opus 5.5

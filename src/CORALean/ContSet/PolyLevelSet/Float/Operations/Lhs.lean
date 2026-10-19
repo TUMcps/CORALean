@@ -13,6 +13,12 @@ The rows' polynomial part as a polynomial zonotope over `Vec 𝕋 m`, as over �
 as dependent generators at the exponents `R`, no center, no independent generators, an error box
 that is the origin. Whatever a `PolyZonotope` operation does to its generators is then done to
 the rows' coefficients.
+
+## Inputs
+* `P` – polynomial level set
+
+## Output
+* the rows' polynomial part as a polynomial zonotope
 -/
 
 -- Authors:       Claude Opus 5.5

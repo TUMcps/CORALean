@@ -9,6 +9,13 @@ public import CORALean.ContSet.Capsule.Float.Capsule
 
 CORA's `@capsule/reduce`, whose body is empty and returns its input. Nothing is computed, and the
 capsule stores its radius rather than an error box, so there is nothing to pay.
+
+## Inputs
+* `C` – capsule
+* `_` – target order, unused
+
+## Output
+* the capsule itself, unchanged
 -/
 
 -- Authors:       Claude Sonnet 5.5

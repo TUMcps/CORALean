@@ -12,6 +12,14 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.PadE
 `r` fresh variables after the old ones, ranging over the box `D` and at exponent zero in every
 monomial, so no row reads them: CORA's `@levelSet/lift_` at the embedding of the old variables as
 the first ones, the new box appended to the old.
+
+## Inputs
+* `P` – polynomial level set
+* `r` – number of fresh variables
+* `D` – box of the fresh variables
+
+## Output
+* the level set with `r` unused variables appended
 -/
 
 -- Authors:       Claude Opus 5.5

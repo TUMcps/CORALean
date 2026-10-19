@@ -12,6 +12,17 @@ A `true` answer exhibits a coordinate `i` whose center gap, rounded down, exceed
 radii bounds. A common point `x` would be within the first radius of one center and the second of
 the other, so by the triangle inequality the Euclidean distance of the centers, which is at least
 their gap in coordinate `i`, would be at most the sum. `false` refutes nothing.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C₁` – first capsule
+* `C₂` – second capsule
+
+## Hypotheses
+* `h` – `isDisjoint` answers true
+
+## Conclusion
+* the two capsules are disjoint
 -/
 
 -- Authors:       Claude Opus 5.5

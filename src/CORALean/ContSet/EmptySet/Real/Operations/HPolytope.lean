@@ -10,6 +10,12 @@ public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
 
 CORA's `@emptySet/polytope`, as the halfspace representation: the one unsatisfiable row
 of `HPolytope.emptySet`.
+
+## Inputs
+* `_` – empty set
+
+## Output
+* the unsatisfiable halfspace polytope
 -/
 
 -- Authors:       Claude Opus 5.5

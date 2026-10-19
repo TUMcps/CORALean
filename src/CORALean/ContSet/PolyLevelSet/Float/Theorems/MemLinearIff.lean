@@ -9,6 +9,21 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.MonomialIdentE
 # A point of `PolyLevelSet.linear`, over a floating-point scalar
 
 A point of the linear level set meets every read-back row `(A x - b)ᵢ` within its slack.
+
+## Inputs
+* `m` – number of rows
+* `A` – coefficient matrix
+* `b` – right-hand side
+* `b_error` – row slack
+* `op` – comparison of each row
+* `D` – box of the variables
+* `x` – real point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the set iff it lies in the box and meets each row
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -9,6 +9,17 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalCopies
 # A point of `PolyLevelSet.copies`
 
 A point of the copies is a point of `P` in every block of its variables.
+
+## Inputs
+* `P` – polynomial level set
+* `a` – number of copies
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the copies iff each block of variables lies in `P`
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -11,6 +11,17 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 Each coordinate of a point of the box lies between the two ends, so its absolute value is at most
 the larger end magnitude, `Interval.normMag`; the Euclidean norm of the point is then at most the
 norm of `normMag`, which `normUp` rounds up.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C` – capsule
+* `e` – real point
+
+## Hypotheses
+* `he` – `e` lies in the error box
+
+## Conclusion
+* `‖e‖₂` is at most `errorNorm`
 -/
 
 -- Authors:       Claude Opus 5.5

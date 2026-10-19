@@ -12,6 +12,19 @@ public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 Every member of the result encloses the combined function: the Taylor model by
 `Taylm.times_outer`, the interval by `Interval.times_outer` on the two box values.
+
+## Inputs
+* `Z₁` – first zoo
+* `Z₂` – second zoo
+* `f` – first function
+* `g` – second function
+
+## Hypotheses
+* `h₁` – `Z₁` encloses `f`
+* `h₂` – `Z₂` encloses `g`
+
+## Conclusion
+* the product zoo encloses `f * g`
 -/
 
 -- Authors:       Claude Opus 5.5

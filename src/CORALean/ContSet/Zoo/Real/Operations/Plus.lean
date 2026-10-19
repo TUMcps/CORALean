@@ -13,6 +13,13 @@ CORA's `plus` of two zoos (`aux_s_plus_zz`): `priv_combineZooObjects` keeps the 
 have, and the members are combined one by one, `Taylm.plus` on the Taylor model and
 `Interval.plus` on the interval. `Option.map₂` is the combination: a member missing on either
 side is dropped.
+
+## Inputs
+* `Z₁` – first zoo
+* `Z₂` – second zoo
+
+## Output
+* the zoo of the member-wise sum
 -/
 
 -- Authors:       Claude Opus 5.5

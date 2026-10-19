@@ -12,6 +12,19 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 Every point of the star set has the neuron's value between the two bounds: the row is its center
 plus `Σ G_jk (α_k - mid_k)`, and each factor is within its radius of the middle of its box.
+
+## Inputs
+* `P` – predicate family
+* `n` – dimension
+* `s` – star set
+* `j` – neuron index
+* `x` – point
+
+## Hypotheses
+* `hx` – `x` lies in the star set
+
+## Conclusion
+* neuron `j` of `x` lies within `rowBounds`
 -/
 
 -- Authors:       Claude Opus 5.5

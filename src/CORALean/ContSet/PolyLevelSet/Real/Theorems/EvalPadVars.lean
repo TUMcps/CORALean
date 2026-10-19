@@ -10,6 +10,18 @@ public import Mathlib.Algebra.BigOperators.Fin
 
 A monomial reads each fresh variable at exponent zero, so the padded system's values at a point
 are the original's at its first `n` variables.
+
+## Inputs
+* `P` – polynomial level set
+* `r` – number of fresh variables
+* `D` – box of the fresh variables
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* the padded rows at `x` are `P`'s at the first variables
 -/
 
 -- Authors:       Claude Opus 5.5

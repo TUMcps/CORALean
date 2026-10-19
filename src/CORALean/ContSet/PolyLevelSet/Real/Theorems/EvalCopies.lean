@@ -10,6 +10,19 @@ public import Mathlib.Data.Matrix.Mul
 
 Row `i` of copy `j` is `P`'s row `i` at the `j`-th block of variables: the other blocks meet it at
 coefficient zero and at exponent zero (`mulVec_repBlockDiag`, `prod_repBlockDiag`).
+
+## Inputs
+* `P` – polynomial level set
+* `a` – number of copies
+* `x` – point
+* `j` – copy index
+* `i` – row index
+
+## Hypotheses
+* none
+
+## Conclusion
+* row `i` of copy `j` is `P`'s row `i` at block `j`
 -/
 
 -- Authors:       Claude Opus 5.5

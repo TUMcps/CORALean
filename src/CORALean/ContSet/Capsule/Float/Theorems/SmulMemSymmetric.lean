@@ -11,6 +11,18 @@ public import CORALean.ContSet.Interval.Float.Theorems.Basic
 `t δ` lies in the box `[-m, m]` when `|t| ≤ 1` and `|δ| ≤ m` entrywise: each entry `|t δᵢ|` is at
 most `|δᵢ|`. A capsule's points are `c + t g + w` for `t ∈ [-1, 1]`, so this is where the rounding
 `δ` of a stored generator goes (#185).
+
+## Inputs
+* `m` – float bound vector
+* `δ` – real vector
+* `t` – segment parameter
+
+## Hypotheses
+* `ht` – `t` lies in `[-1, 1]`
+* `hδ` – `δ` is entrywise at most `m`
+
+## Conclusion
+* `t • δ` lies in the symmetric box of `m`
 -/
 
 -- Authors:       Claude Opus 5.5

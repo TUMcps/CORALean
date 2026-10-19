@@ -13,6 +13,13 @@ capsule by `f c + |f g| + r * ‖w‖₂`, where `w` is `f` read on the `n` basi
 vectors. Evaluating `f` is a parameter `cf`, as for `mapCost`: `f c`, `f g` and
 the `n` basis evaluations, `n + 2` in all; then `n` squares, `n - 1` additions,
 a `sqrt`, an `abs`, a product and two additions, bounded by `2 * n + 5`, and one write of the bound.
+
+## Inputs
+* `cf` – cost of evaluating the functional
+* `n` – dimension
+
+## Output
+* the cost of bounding a functional over a capsule
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -8,6 +8,16 @@ public import CORALean.ContSet.Capsule.Float.Operations.PiStep
 # `Capsule.piStep` brackets `π / 499`
 
 The two ends of `piStep` are bounds of the real `π / 499`.
+
+## Inputs
+* `p` – precision of acos
+* `k` – Newton steps for sqrt
+
+## Hypotheses
+* none
+
+## Conclusion
+* `piStep` brackets `π / 499`
 -/
 
 -- Authors:       Claude Opus 5.5

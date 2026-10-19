@@ -9,6 +9,17 @@ public import CORALean.ContSet.Fullspace.Real.Operations.Lift
 
 Lifting leaves the new coordinates unbounded, so the lifted set is every point whose
 selected coordinates lie in the set. For the full space that is everything.
+
+## Inputs
+* `F` – full space
+* `N` – target dimension
+* `dims` – coordinates of the old dimensions
+
+## Hypotheses
+* none
+
+## Conclusion
+* `lift_` denotes the points whose selected coordinates lie in `F`
 -/
 
 -- Authors:       Claude Opus 5.5

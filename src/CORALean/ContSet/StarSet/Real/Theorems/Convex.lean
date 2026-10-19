@@ -16,6 +16,17 @@ The set is the image of the predicate's coefficients under the affine map `α �
 convex combination of two points is the point of the same combination of their coefficients,
 which a convex predicate holds of. A predicate that is not convex, a `LevelSet` such as
 `{α | α₀² = 1}`, gives a star set that is not.
+
+## Inputs
+* `P` – predicate family
+* `n` – dimension
+* `s` – star set
+
+## Hypotheses
+* none
+
+## Conclusion
+* a star set of a convex predicate is convex
 -/
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5

@@ -14,6 +14,17 @@ residual `p - (c + t g)` is bounded entry by entry between two directed rounding
 at most `normUp` of the larger absolute bound, which the stored radius takes the maximum of.
 Nothing here depends on the mean, the farthest point or the projection being computed accurately:
 they only decide how large the radius becomes.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `N` – number of points
+* `pts` – the points
+
+## Hypotheses
+* none
+
+## Conclusion
+* every point lies in the enclosing capsule
 -/
 
 -- Authors:       Claude Opus 5.5

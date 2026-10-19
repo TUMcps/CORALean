@@ -10,6 +10,16 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 
 CORA's `supportFunc_(O,dir,'lower')` is `Inf`: the infimum of `c` over no point in
 `EReal`.
+
+## Inputs
+* `E` – empty set
+* `c` – direction functional
+
+## Hypotheses
+* none
+
+## Conclusion
+* the infimum of `c` over the empty set is `⊤`
 -/
 
 -- Authors:       Claude Opus 5.5

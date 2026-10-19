@@ -10,6 +10,16 @@ public import CORALean.ContSet.SetIntersection.Theorems.Basic
 
 `Zoo.Encloses` is membership in the zoo's `SetIntersection` of members; this unfolds it to the
 two members' own statements, the form the operations' guarantees are proved in.
+
+## Inputs
+* `Z` – zoo
+* `f` – function
+
+## Hypotheses
+* none
+
+## Conclusion
+* `Z` encloses `f` iff each member does
 -/
 
 -- Authors:       Claude Sonnet 5.5

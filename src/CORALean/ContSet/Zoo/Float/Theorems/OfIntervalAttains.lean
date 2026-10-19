@@ -14,6 +14,17 @@ public import CORALean.ContSet.Conversion.Float.Theorems.IntervalSubsetNominalZo
 
 Every value the box takes at coordinate `i` is a value of the zoo's function on `[-1, 1]ⁿ`, so the
 function is the box's coordinate.
+
+## Inputs
+* `I` – box
+* `i` – coordinate index
+* `x` – real point
+
+## Hypotheses
+* `hx` – `x` lies in the box
+
+## Conclusion
+* `x i` is the zoo's function at some point of the normalized box
 -/
 
 -- Authors:       Claude Opus 5.5

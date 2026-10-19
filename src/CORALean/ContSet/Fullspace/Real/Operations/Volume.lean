@@ -10,6 +10,12 @@ public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 CORA's `@fullspace/volume_`: `Inf`. CORA answers `NaN` at `n = 0`, which is not a value
 of `ENNReal`, so the guarantee is stated for `0 < n` only.
+
+## Inputs
+* `_` – full space
+
+## Output
+* the volume `∞`
 -/
 
 -- Authors:       Claude Opus 5.5

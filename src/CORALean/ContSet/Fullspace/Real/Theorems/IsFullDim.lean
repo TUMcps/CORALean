@@ -10,6 +10,15 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 Its interior is itself, which is nonempty in every dimension. Stated at `construct`, which is what
 `ContSet.IsFullDim` unfolds to: the `ContSet` instance is declared after the theorems.
+
+## Inputs
+* `F` – full space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the full space has nonempty interior
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -30,6 +30,15 @@ An empty capsule is modelled as `Capsule.empty`, radius `-1` (`isempty(S.r)` in 
 The branch for an empty `S` (l. 57-59 of `@capsule/convHull_.m`) executes `return` without having
 set `S_out`, so `convHull(C, capsule.empty(n))` raises MATLAB's "output argument not assigned"
 error, where the hull of a convex set with `∅` is the set itself. Read from the source, not run.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* none
+
+## Conclusion
+* CORA's `convHull_` with an empty operand yields no output, though the hull is `C`
 -/
 
 -- Authors:       Claude Sonnet 5.5

@@ -12,6 +12,15 @@ The header of `@capsule/enclose.m` documents `{a x₁ + (1 - a) x₂ | x₁ ∈ 
 with `C2 = M*C + Cplus`, but the code sets `C2 = M*Cplus` and adds nothing. For `C = {0}`,
 `M = 0` and `Cplus = {1}` the documented set contains `1` (at `a = 0`: `x₂ = M 0 + 1`), while the
 code returns `{0}`. Read from the source, not run.
+
+## Inputs
+* none
+
+## Hypotheses
+* none
+
+## Conclusion
+* the documented hull is not inside CORA's `enclose`
 -/
 
 -- Authors:       Claude Opus 5.5

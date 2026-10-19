@@ -14,6 +14,15 @@ read off the certificate: `ltStrict` is a strict inequality, `le` a weak one, an
 positive `|g j|` makes `g` nonzero. A nonempty box (`inf ≤ sup` certified per coordinate) has its
 lower corner in it, and the nominal part translated there, whose interior is the translated
 interior, is in the set.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `h` – `isFullDim` answers true
+
+## Conclusion
+* the capsule has nonempty interior
 -/
 
 -- Authors:       Claude Opus 5.5

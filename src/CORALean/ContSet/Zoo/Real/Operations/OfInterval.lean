@@ -14,6 +14,14 @@ CORA's constructor `zoo(int, methods, names, max_order, ...)`, `@zoo/zoo.m`: for
 for `affine(int)`, and `int` itself for `interval`. Here the `i`-th coordinate, with the two
 members a `Zoo` has: the Taylor model at order `N` (`Interval.taylm`) and the interval
 `[inf i, sup i]`.
+
+## Inputs
+* `I` – box of the variables
+* `N` – Taylor order
+* `i` – coordinate index
+
+## Output
+* the zoo of the `i`-th variable of the box
 -/
 
 -- Authors:       Claude Opus 5.5

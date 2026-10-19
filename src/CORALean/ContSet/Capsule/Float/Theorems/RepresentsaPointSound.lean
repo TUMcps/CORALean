@@ -13,6 +13,16 @@ public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointParts
 `true` makes the error box the origin, so the set is the nominal capsule's, and the nominal
 generator and radius `0`, so by the exact layer's `representsa_point_iff` (for `0 < n`) the capsule
 is the single point, its stored center.
+
+## Inputs
+* `C` – capsule
+
+## Hypotheses
+* `hn` – dimension positive
+* `h` – `representsa_point` answers true
+
+## Conclusion
+* the capsule denotes its stored center
 -/
 
 -- Authors:       Claude Opus 5.5

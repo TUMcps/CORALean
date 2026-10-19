@@ -14,6 +14,16 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 A point is `c + t g + w + e` with `‖w‖₂ ≤ r` and `e` in the box, so `‖e‖₂ ≤ errorNorm`
 (`norm₂_le_errorNorm`), and `w + e` is no longer than the raised radius by the triangle inequality.
 Nothing is left over, and the result's box, the origin, holds it.
+
+## Inputs
+* `k` – Newton steps for sqrt
+* `C` – capsule with error box
+
+## Hypotheses
+* none
+
+## Conclusion
+* the capsule is contained in its absorbed version
 -/
 
 -- Authors:       Claude Opus 5.5

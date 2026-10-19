@@ -10,6 +10,13 @@ public import CORALean.ContSet.StarSet.Real.StarSet
 # The star set of a point
 
 No factors, no rows, the empty box: `c + G α` over the empty family is `c`.
+
+## Inputs
+* `n` – dimension
+* `v` – the point
+
+## Output
+* the star set with no factors denoting `{v}`
 -/
 
 -- Authors:       Claude Sonnet 5.5

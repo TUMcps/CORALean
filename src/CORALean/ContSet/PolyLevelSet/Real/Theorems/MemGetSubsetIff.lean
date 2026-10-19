@@ -8,6 +8,19 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalGetSubset
 # A point of `PolyLevelSet.getSubset`
 
 `x` is in the re-parametrized set exactly when `x` with `xᵣ ↦ cen + rad xᵣ` is in the original.
+
+## Inputs
+* `P` – polynomial level set
+* `r` – variable index
+* `cen` – new center of the variable
+* `rad` – new radius of the variable
+* `x` – point
+
+## Hypotheses
+* none
+
+## Conclusion
+* `x` lies in the rescaled set iff the rescaled point lies in `P`
 -/
 
 -- Authors:       Claude Opus 5.5

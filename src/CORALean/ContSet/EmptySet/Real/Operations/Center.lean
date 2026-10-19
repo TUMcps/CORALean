@@ -9,6 +9,12 @@ public import CORALean.ContSet.EmptySet.Real.EmptySet
 
 CORA's `@emptySet/center`: `double.empty(n, 0)`, an `n × 0` matrix, the answer "there is no
 center". `none`, which a `Vec ℝ n` cannot say.
+
+## Inputs
+* `_` – empty set
+
+## Output
+* `none`, since an empty set has no center
 -/
 
 -- Authors:       Claude Opus 5.5

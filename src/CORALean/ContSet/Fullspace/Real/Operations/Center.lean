@@ -9,6 +9,12 @@ public import CORALean.ContSet.Fullspace.Real.Fullspace
 
 CORA's `center` of the full space: the origin, `zeros(n, 1)`. At `n = 0` CORA returns
 `NaN` for want of a vector to return; `Vec ℝ 0` has the one element `0`, which is it.
+
+## Inputs
+* `_` – full space
+
+## Output
+* the origin vector
 -/
 
 -- Authors:       Claude Opus 5.5

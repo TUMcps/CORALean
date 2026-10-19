@@ -10,6 +10,16 @@ public import CORALean.ContSet.PolyLevelSet.Real.Operations.CartProd
 
 The product's coefficient matrix reads back as the exact product's of the read-back operands: the
 off-blocks are `zero`, which reads as `0`, and every other entry is copied.
+
+## Inputs
+* `P₁` – first level set
+* `P₂` – second level set
+
+## Hypotheses
+* none
+
+## Conclusion
+* the product's coefficients read back as the exact product's
 -/
 
 -- Authors:       Claude Opus 5.5

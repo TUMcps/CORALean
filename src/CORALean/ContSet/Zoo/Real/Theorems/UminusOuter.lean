@@ -11,6 +11,16 @@ public import CORALean.ContSet.Interval.Real.Theorems.UminusExact
 # `Zoo.uminus` encloses the negation
 
 The Taylor model by `Taylm.uminus_outer`, the interval by `Interval.uminus_exact`.
+
+## Inputs
+* `Z` – zoo
+* `f` – function
+
+## Hypotheses
+* `h` – `Z` encloses `f`
+
+## Conclusion
+* the negated zoo encloses `-f`
 -/
 
 -- Authors:       Claude Opus 5.5

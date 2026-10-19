@@ -13,6 +13,17 @@ public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointParts
 
 Where the float test certifies a point capsule, the list is the one box `[c, c]`, and its point
 `c` is the exact layer's single vertex, on the frontier of the capsule.
+
+## Inputs
+* `p` – precision of atan2 and acos
+* `k` – Newton steps for sqrt
+* `C` – planar capsule
+
+## Hypotheses
+* `h` – capsule certified a point
+
+## Conclusion
+* the vertex list is the single box at the center
 -/
 
 -- Authors:       Claude Opus 5.5

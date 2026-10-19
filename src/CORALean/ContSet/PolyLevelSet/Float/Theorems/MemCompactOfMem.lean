@@ -16,6 +16,18 @@ A merged row moves by what its merged coefficients are off by, so the slack abso
 `abs_sum_le_radius` turns the row of gaps into one bound, every monomial being in `[-1,1]` on the
 unit box, and the slack grows by it (`compactSlack`). So every point of the box the rows admitted
 they still admit.
+
+## Inputs
+* `P` – polynomial level set
+* `a` – real point
+
+## Hypotheses
+* `hP` – all rows are equations
+* `ha` – `a` lies in the unit box
+* `hsat` – `a` lies in the level set
+
+## Conclusion
+* `a` lies in the compacted level set
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
